@@ -9,7 +9,7 @@ import { boltConnectionIs } from '@bolt/micro-journeys/src/connection';
 import { triggerAnims } from '@bolt/components-animate/utils';
 import {
   equalizeRelativeHeights,
-  equalizeRelativeHeightsClass,
+  equalizeRelativeHeightsKey,
 } from './utils/equalize-relative-heights';
 import styles from './two-character-layout.scss';
 
@@ -26,21 +26,20 @@ class BoltTwoCharacterLayout extends withLitHtml() {
       ...props.boolean,
       ...{ default: false },
     },
-    // Has the parent `bolt-interactive-step` attempted its animation of its children in?
-    parentAnimationsTriggered: {
-      ...props.boolean,
-      ...{ default: false },
-    },
   };
 
   // @ts-ignore
   constructor(self) {
     self = super(self);
     self.useShadow = hasNativeShadowDomSupport;
-    self.connection = this.querySelector(boltConnectionIs);
-    self.characters = [...this.querySelectorAll(boltCharacterIs)];
-    self.isInitialRender = true;
     return self;
+  }
+
+  connected() {
+    this.connection = this.querySelector(boltConnectionIs);
+    this.characters = [...this.querySelectorAll(boltCharacterIs)];
+    // console.log('this.connection', this.connection);
+    // console.log('this.characters', this.characters);
   }
 
   /**
@@ -48,7 +47,7 @@ class BoltTwoCharacterLayout extends withLitHtml() {
    * to one another so a connection can be centered between them, while
    * preserving document flow by avoiding absolute positioning.
    */
-  equalizeCharactersAndStyleConnection = () => {
+  equalizeCharactersAndStyleConnection = async () => {
     const eqHeightArgs = this.characters.map(character => {
       return {
         container: character,
@@ -59,23 +58,39 @@ class BoltTwoCharacterLayout extends withLitHtml() {
       };
     });
 
-    equalizeRelativeHeights(
+    await this.delay(0);
+    return equalizeRelativeHeights(
       eqHeightArgs,
       this.connection ? this.setConnectionWidth : null,
     );
-    this.triggerUpdate();
   };
 
-  animateContentIn = () => {
-    const anims = this.querySelectorAll('bolt-animate');
-    triggerAnims({ animEls: anims, stage: 'IN' });
-    // Tell the parent step that it can now normally animate this element.
-    this.dispatchEvent(
-      new CustomEvent(`${BoltTwoCharacterLayout.is}:animation-initialized`, {
-        bubbles: true,
-      }),
-    );
-    this.isInitialRender = false;
+  triggerAnimIns = async () => {
+    if (!this.areCharactersEqualized()) {
+      console.log('2char triggerAnimIns: about to equalize components');
+      // return this._triggerAnimIns();
+
+      try {
+        await this.ensureComponentsRendered();
+        console.log('2char triggerAnimIns: ensureComponentsRendered happened');
+        await this.equalizeCharactersAndStyleConnection();
+        this.triggerUpdate();
+        return this._triggerAnimIns();
+      } catch (e) {
+        console.error(e);
+      }
+    } else {
+      console.log(
+        '2char triggerAnimIns: chars are equalized and in this event simply triggerAnimIns was called',
+      );
+      return this._triggerAnimIns();
+    }
+  };
+
+  _triggerAnimIns = async () => {
+    const animEls = this.querySelectorAll('bolt-animate');
+    triggerAnims({ animEls, stage: 'IN' });
+    this.connection.refreshLinearGradient();
   };
 
   /**
@@ -94,8 +109,6 @@ class BoltTwoCharacterLayout extends withLitHtml() {
           .left - connection.getBoundingClientRect().left}px + 50%)`;
         connection.renderRoot.querySelector('.c-bolt-connection__main-image');
       }
-      // Hack for chrome which gets confused by [slot='connection']
-      // e.querySelector('bolt-animate[slot="connection"').style.display = 'flex';
     });
   };
 
@@ -105,7 +118,7 @@ class BoltTwoCharacterLayout extends withLitHtml() {
    * @param {int} timeoutAmount in MS
    * @return {Promise<unknown>}
    */
-  delay = async timeoutAmount =>
+  delay = timeoutAmount =>
     new Promise(resolve => {
       setTimeout(resolve, timeoutAmount);
     });
@@ -118,9 +131,9 @@ class BoltTwoCharacterLayout extends withLitHtml() {
    * @param attemptCount
    * @return {Promise<Promise|Promise>}
    */
-  ensureComponentsRendered = async (attemptCount = 0) => {
+  ensureComponentsRendered = (attemptCount = 0) => {
     const attemptMax = 15;
-    const attemptTimeout = 900;
+    const attemptTimeout = 250;
     return new Promise((resolve, reject) => {
       if (attemptMax <= attemptCount) {
         return reject(
@@ -153,6 +166,11 @@ class BoltTwoCharacterLayout extends withLitHtml() {
       }
     });
     if (this.connection) {
+      console.log(
+        `connectionheight: ${this.connection.offsetHeight}`,
+        this.connection,
+      );
+
       if (!this.connection.offsetHeight) {
         return false;
       }
@@ -168,7 +186,7 @@ class BoltTwoCharacterLayout extends withLitHtml() {
   areCharactersEqualized = () => {
     let isEqualized = true;
     this.characters.forEach(character => {
-      if (!character.classList.contains(equalizeRelativeHeightsClass)) {
+      if (!character[equalizeRelativeHeightsKey]) {
         isEqualized = false;
       }
     });
@@ -178,9 +196,12 @@ class BoltTwoCharacterLayout extends withLitHtml() {
   render() {
     const props = this.validateProps(this.props);
     const classes = cx('c-bolt-two-character-layout', {
-      'c-bolt-two-character-layout__initial':
-        !props.parentAnimationsTriggered && this.isInitialRender,
+      'c-bolt-two-character-layout__initial': !this.areCharactersEqualized(),
     });
+    console.log(
+      '2char render: this.areCharactersEqualized()',
+      this.areCharactersEqualized(),
+    );
     return html`
       ${this.addStyles([styles])}
       <div class="${classes}">
@@ -198,37 +219,6 @@ class BoltTwoCharacterLayout extends withLitHtml() {
         </div>
       </div>
     `;
-  }
-
-  /**
-   * Make sure that the component is rendering for the first time and `bolt-character`s are ready.
-   * Both characters have to be on the dom with width and height before this can run.
-   * The problem is that this component connects and components report as rendered
-   * before content is slotted. Thus, we have to wait for the parent to tell us
-   * that it has attempted to animate content as a sign that we can actually
-   * perform calculations against slotted elements that have height/width.
-   * We only do this on initial render after we're told the parent has animated.
-   * After this, `bolt-interactive-step` is in charge of animating `this` in and out.
-   */
-  rendered() {
-    super.rendered();
-    // The editor disconnects the old component and copies the HTML to an iframe.
-    // Don't perform animations or calculations on an unconnected component.
-    if (!this.isConnected) {
-      return;
-    }
-    if (this.isInitialRender && this.parentAnimationsTriggered) {
-      if (!this.areCharactersEqualized()) {
-        this.ensureComponentsRendered()
-          .then(() => {
-            this.equalizeCharactersAndStyleConnection();
-            this.animateContentIn();
-          })
-          .catch(e => console.error(e));
-      } else {
-        this.animateContentIn();
-      }
-    }
   }
 }
 

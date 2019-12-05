@@ -6,7 +6,7 @@
  * @prop {HTMLElement} paddingEqualizationTarget
  */
 
-export const equalizeRelativeHeightsClass = 'isEqualized';
+export const equalizeRelativeHeightsKey = 'boltIsEqualized';
 
 /**
  *
@@ -77,16 +77,19 @@ export const equalizeRelativeHeights = (
 
     // Add padding to the shorter ones to equalize the height.
     items.forEach((item, i) => {
+      const { paddingEqualizationTarget, relativeOffsetTop } = item;
+      if (paddingEqualizationTarget[equalizeRelativeHeightsKey] === true) {
+        return;
+      }
       if (indexOfLongest !== i) {
-        const { paddingEqualizationTarget, relativeOffsetTop } = item;
         // Remove 'calc': Nested calcs in IE work fine if wrapped only in parens.
         const previousPadding = `${paddingEqualizationTarget.style.paddingTop ||
           '0px'}`.replace('calc', '');
         paddingEqualizationTarget.style.paddingTop = `calc(${items[
           indexOfLongest
         ].relativeOffsetTop - relativeOffsetTop}px + ${previousPadding})`;
-        paddingEqualizationTarget.classList.add(equalizeRelativeHeightsClass);
       }
+      paddingEqualizationTarget[equalizeRelativeHeightsKey] = true;
     });
     if (callback) {
       callback();
