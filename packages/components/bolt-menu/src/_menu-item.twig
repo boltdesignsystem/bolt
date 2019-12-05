@@ -21,24 +21,22 @@
 <bolt-menu-item
   {{ this.props|without("content")|without("class") }}
 >
-  <replace-with-children>
-    {% set menu_item %}
-      <ssr-keep
-        for="bolt-menu-item"
-        {% if classes %} class="{{ classes|join(' ') }}" {% endif %}
-      >
-        {{ content }}
-      </ssr-keep>
-    {% endset %}
-    {% set trigger_options = {
-      content: menu_item,
-      display: "block",
-      no_outline: true,
-      attributes: item_attributes
-    } %}
-    {% if url %}
-      {% set trigger_options = trigger_options|merge({url: url}) %}
-    {% endif %}
-    {% include "@bolt-components-trigger/trigger.twig" with trigger_options only %}
-  </replace-with-children>
+  {% set menu_item %}
+    <ssr-keep
+      for="bolt-menu-item"
+      {% if classes %} class="{{ classes|join(' ') }}" {% endif %}
+    >
+      {{ content }}
+    </ssr-keep>
+  {% endset %}
+  {% set trigger_options = {
+    content: menu_item,
+    display: "block",
+    no_outline: true,
+    attributes: item_attributes
+  } %}
+  {% if url %}
+    {% set trigger_options = trigger_options|merge({url: url}) %}
+  {% endif %}
+  {% include "@bolt-components-trigger/trigger.twig" with trigger_options only %}
 </bolt-menu-item>
