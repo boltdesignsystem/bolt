@@ -68,7 +68,7 @@ $bolt-list-separator-styles: solid, dashed;
         border-bottom-width: $bolt-list-item-border-width;
 
         @include bolt-mq($breakpoint-name) {
-          border-right-width: $bolt-list-item-border-width;
+          border-left-width: $bolt-list-item-border-width;
           border-bottom-width: 0;
         }
       }
@@ -86,11 +86,11 @@ $bolt-list-separator-styles: solid, dashed;
         &.c-bolt-list-item--display-block {
           @include bolt-padding-bottom(#{$spacing-value-name});
         }
+      }
 
-        &.c-bolt-list-item--display-inline,
-        &.c-bolt-list-item--display-flex {
-          @include bolt-padding-right(#{$spacing-value-name});
-        }
+      &.c-bolt-list-item--display-inline,
+      &.c-bolt-list-item--display-flex {
+        @include bolt-padding-right(#{$spacing-value-name});
       }
     }
 
