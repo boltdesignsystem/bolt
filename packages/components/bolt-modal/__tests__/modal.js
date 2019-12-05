@@ -124,9 +124,7 @@ describe('<bolt-modal> Component', () => {
         const modal = document.createElement('bolt-modal');
         modal.setAttribute('uuid', '12345');
         modal.setAttribute('width', 'regular');
-        modal.innerHTML = `<bolt-text tag="h3" slot="header">This is the header</bolt-text>
-            ${contentChoice.content}
-            <bolt-text slot="footer">This is the footer</bolt-text>`;
+        modal.innerHTML = contentChoice.content;
         document.body.appendChild(modal);
         modal.updated();
         modal.show();
@@ -150,7 +148,7 @@ describe('<bolt-modal> Component', () => {
         const modal = document.createElement('bolt-modal');
         modal.setAttribute('uuid', '12345');
         modal.setAttribute('width', 'regular');
-        modal.innerHTML = `<bolt-text tag="h3" slot="header">This is the header</bolt-text>${contentChoice.content}<bolt-text slot="footer">This is the footer</bolt-text>`;
+        modal.innerHTML = contentChoice.content;
         document.body.appendChild(modal);
         modal.useShadow = false;
         modal.updated();
@@ -174,7 +172,7 @@ describe('<bolt-modal> Component', () => {
       `${contentChoice.name} <bolt-modal> at various viewport sizes`,
       async () => {
         const { html, ok } = await render('@bolt-components-modal/modal.twig', {
-          content: `<bolt-text tag="h3" slot="header">This is the header</bolt-text>${contentChoice.content}<bolt-text slot="footer">This is the footer</bolt-text>`,
+          content: contentChoice.content,
           width: 'regular',
         });
         expect(ok).toBe(true);
@@ -223,9 +221,7 @@ describe('<bolt-modal> Component', () => {
         });
 
         const { html, ok } = await render('@bolt-components-modal/modal.twig', {
-          content: `<bolt-text tag="h3" slot="header">This is the header</bolt-text>
-              ${renderedBand.html}
-              <bolt-text slot="footer">This is the footer</bolt-text>`,
+          content: renderedBand.html,
           width: 'regular',
         });
         expect(ok).toBe(true);
