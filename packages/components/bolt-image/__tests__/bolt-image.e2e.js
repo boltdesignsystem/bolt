@@ -52,38 +52,37 @@ module.exports = {
   },
 
   // test to catch issues like http://vjira2:8080/browse/WWWD-4292 in the future
-  // @todo: troubleshoot Sauce Labs issues w/ this -- locally and remotely this seems to run just fine in IE 11, Chrome, etc
-  //   'Heavily Delayed, Dynamically Injected Bolt Images Lazyload': function(
-  //     browser,
-  //   ) {
-  //     const { testingUrl } = browser.globals;
-  //     console.log(`global browser url: ${testingUrl}`);
-  //     currentBrowser = '--' + browser.currentEnv || 'chrome';
-  //     let testName = 'bolt-injected-image-loads';
+  'Heavily Delayed, Dynamically Injected Bolt Images Lazyload': function(
+    browser,
+  ) {
+    const { testingUrl } = browser.globals;
+    console.log(`global browser url: ${testingUrl}`);
+    currentBrowser = '--' + browser.currentEnv || 'chrome';
+    let testName = 'bolt-injected-image-loads';
 
-  //     browser
-  //       .url(
-  //         `${testingUrl}/pattern-lab/patterns/02-components-card-__tests__-personalized-card--client-rendered-personalized-card-example--client-rendered-tests/02-components-card-__tests__-personalized-card--client-rendered-personalized-card-example--client-rendered-tests.html`,
-  //       )
-  //       .waitForElementPresent(
-  //         '.js-no-shadow-image-test bolt-image[src="/images/placeholders/landscape-16x9-skyline.jpg"] img.is-lazyloaded',
-  //         20000,
-  //       )
-  //       .assert.attributeContains(
-  //         '.c-bolt-image__image',
-  //         'src',
-  //         '/images/placeholders/landscape-16x9-skyline.jpg',
-  //       )
-  //       .assert.attributeEquals(
-  //         '.c-bolt-image__image',
-  //         'srcset',
-  //         '/images/placeholders/landscape-16x9-skyline.jpg 50w, /images/placeholders/landscape-16x9-skyline.jpg 100w, /images/placeholders/landscape-16x9-skyline.jpg 200w, /images/placeholders/landscape-16x9-skyline.jpg 320w, /images/placeholders/landscape-16x9-skyline.jpg 480w',
-  //       )
-  //       .saveScreenshot(
-  //         `screenshots/bolt-image/${testName}--${currentBrowser}.png`,
-  //       )
-  //       .end();
-  //   },
+    browser
+      .url(
+        `${testingUrl}/pattern-lab/patterns/02-components-card-__tests__-personalized-card--client-rendered-personalized-card-example--client-rendered-tests/02-components-card-__tests__-personalized-card--client-rendered-personalized-card-example--client-rendered-tests.html`,
+      )
+      .waitForElementPresent(
+        '.js-no-shadow-image-test bolt-image[src="/images/placeholders/landscape-16x9-skyline.jpg"] img.is-lazyloaded',
+        20000,
+      )
+      .assert.attributeContains(
+        '.c-bolt-image__image',
+        'src',
+        '/images/placeholders/landscape-16x9-skyline.jpg',
+      )
+      .assert.attributeEquals(
+        '.c-bolt-image__image',
+        'srcset',
+        '/images/placeholders/landscape-16x9-skyline.jpg 50w, /images/placeholders/landscape-16x9-skyline.jpg 100w, /images/placeholders/landscape-16x9-skyline.jpg 200w, /images/placeholders/landscape-16x9-skyline.jpg 320w, /images/placeholders/landscape-16x9-skyline.jpg 480w',
+      )
+      .saveScreenshot(
+        `screenshots/bolt-image/${testName}--${currentBrowser}.png`,
+      )
+      .end();
+  },
 
   'Bolt Image zoom': function(browser) {
     const { testingUrl } = browser.globals;

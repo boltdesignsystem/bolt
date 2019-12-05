@@ -29,13 +29,20 @@
 
 <div {{ attributes.addClass(classes | raw) }}>
   {% if figure %}
+    {% set old_figure_with_content = figure.content %}
     {% set old_figure_with_icon = figure.icon %}
     {% set old_figure_with_image = figure.image %}
 
     <div class="o-bolt-flag__figure">
       {% block flag_figure %}
         {% set figureContent %}
-          {% if old_figure_with_icon %}
+          {% if old_figure_with_content %}
+            {% include "@bolt-components-figure/figure.twig" with {
+              media: {
+                content: old_figure_with_content
+              }
+            } only %}
+          {% elseif old_figure_with_icon %}
             {% include "@bolt-components-figure/figure.twig" with {
               media: {
                 icon: old_figure_with_icon
