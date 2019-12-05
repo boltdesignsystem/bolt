@@ -2,6 +2,9 @@
 
 bolt-connection {
   display: block;
+  @include bolt-ie11-only {
+    width: 250px;
+  }
 }
 
 .c-bolt-connection {

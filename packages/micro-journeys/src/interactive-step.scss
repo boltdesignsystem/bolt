@@ -93,6 +93,14 @@ bolt-interactive-step {
     }
   }
 
+  // for IE
+  &__top-slot,
+  &__bottom-slot,
+  bolt-animate[slot="top"],
+  bolt-animate[slot="bottom"] {
+    width: 100%;
+  }
+
   &__body-inner {
     display: flex;
     flex-direction: column;
