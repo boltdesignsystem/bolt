@@ -9,11 +9,13 @@ import {
   ifDefined,
 } from '@bolt/element';
 import menuStyles from './_menu-item.scss';
+import schema from '../menu.schema';
 
 let cx = classNames.bind(menuStyles);
 
 /*
  * 1 - @todo: remove SSR Hydration from this file, move to base
+ * 2 - @todo: remove Context workaround, provide in base
  */
 
 @customElement('bolt-menu-item')
@@ -64,15 +66,37 @@ class BoltMenuItem extends BoltElement {
 
     this.ssrPrepped = true;
   }
+
+  get parentComponent() {
+    return this.closest('bolt-menu');
+  }
+
+  get allMenuItems() {
+    return this.parentComponent.querySelectorAll('bolt-menu-item');
+  }
+
   render() {
-    console.log('rendering menu item');
+    const parent = this.parentComponent;
+
+    /* [2] */
+    const spacing = parent.spacing || schema.properties.spacing.default;
+
+    const isLast =
+      this.allMenuItems &&
+      this.allMenuItems.item(this.allMenuItems.length - 1) === this;
+
+    const classes = cx('c-bolt-menu-item', {
+      [`c-bolt-menu-item--spacing-${spacing}`]: spacing,
+      [`c-bolt-menu-item--last-item`]: isLast,
+    });
+
     return html`
       <bolt-trigger
         display="block"
         no-outline
         url="${ifDefined(this.url ? this.url : undefined)}"
       >
-        <div class="${cx(`c-bolt-menu-item`)}">
+        <div class="${classes}">
           ${this.slotify('default')}
         </div>
       </bolt-trigger>

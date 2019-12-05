@@ -8,6 +8,7 @@ import {
   unsafeCSS,
 } from '@bolt/element';
 import menuStyles from './menu.scss';
+import schema from '../menu.schema';
 
 let cx = classNames.bind(menuStyles);
 
@@ -44,11 +45,13 @@ class BoltMenu extends BoltElement {
   }
 
   render() {
-    console.log('rendering');
+    // @todo: automatic schema validation?
+    const spacing = this.spacing || schema.properties.spacing.default;
 
     const classes = cx('c-bolt-menu__title', {
-      [`c-bolt-menu__title--spacing-${this.spacing}`]: this.spacing,
+      [`c-bolt-menu__title--spacing-${spacing}`]: spacing,
     });
+
     return html`
       <div class="${cx(`c-bolt-menu`)}">
         ${this.templateMap.get('title') &&
