@@ -18,11 +18,7 @@ exports[`<bolt-modal> Component Long content usage <bolt-modal> at various viewp
 <bolt-modal width="regular"
             uuid="12345"
 >
-  <bolt-text subheadline
-             font-size="xlarge"
-  >
-    This is a test for very long content.
-  </bolt-text>
+  Long content.
   <bolt-image src="/fixtures/1200x2500.jpg"
               alt="Placeholder"
   >
@@ -141,30 +137,14 @@ exports[`<bolt-modal> Component Long content usage <bolt-modal> w/o Shadow DOM r
                 
             <!---->
             <!---->
-            
-      
-            <!---->
-            <bolt-text
-              class="is-first-child"
-              font-size="xlarge"
-              style=""
-              subheadline=""
-            >
-              This is a test for very long content.
-            </bolt-text>
-            <!---->
-            
-      
+            Long content. 
             <!---->
             <bolt-image
               alt="Placeholder"
-              class="is-last-child"
+              class="is-first-child is-last-child"
               src="/fixtures/1200x2500.jpg"
               style=""
             />
-            <!---->
-            
-    
             <!---->
             <!---->
             
@@ -196,26 +176,13 @@ exports[`<bolt-modal> Component Long content usage <bolt-modal> with Shadow DOM 
   uuid="12345"
   width="regular"
 >
-  
-      
-  <bolt-text
-    class="is-first-child"
-    font-size="xlarge"
-    style=""
-    subheadline=""
-  >
-    This is a test for very long content.
-  </bolt-text>
-  
-      
+  Long content. 
   <bolt-image
     alt="Placeholder"
-    class="is-last-child"
+    class="is-first-child is-last-child"
     src="/fixtures/1200x2500.jpg"
     style=""
   />
-  
-    
 </bolt-modal>
 `;
 
@@ -234,11 +201,7 @@ exports[`<bolt-modal> Component Long content usage<bolt-modal> with band at vari
                       bolt-object
         >
           <div class="o-bolt-wrapper o-bolt-wrapper--xxlarge o-bolt-wrapper--full">
-            <bolt-text subheadline
-                       font-size="xlarge"
-            >
-              This is a test for very long content.
-            </bolt-text>
+            Long content.
             <bolt-image src="/fixtures/1200x2500.jpg"
                         alt="Placeholder"
             >
@@ -255,9 +218,7 @@ exports[`<bolt-modal> Component Simple usage <bolt-modal> at various viewport si
 <bolt-modal width="regular"
             uuid="12345"
 >
-  <bolt-text>
-    This is the body (default).
-  </bolt-text>
+  Modal body slot
 </bolt-modal>
 `;
 
@@ -372,12 +333,7 @@ exports[`<bolt-modal> Component Simple usage <bolt-modal> w/o Shadow DOM renders
                 
             <!---->
             <!---->
-            <bolt-text
-              class="is-first-child is-last-child"
-              style=""
-            >
-              This is the body (default).
-            </bolt-text>
+            Modal body slot
             <!---->
             <!---->
             
@@ -409,12 +365,7 @@ exports[`<bolt-modal> Component Simple usage <bolt-modal> with Shadow DOM render
   uuid="12345"
   width="regular"
 >
-  <bolt-text
-    class="is-first-child is-last-child"
-    style=""
-  >
-    This is the body (default).
-  </bolt-text>
+  Modal body slot
 </bolt-modal>
 `;
 
@@ -433,9 +384,7 @@ exports[`<bolt-modal> Component Simple usage<bolt-modal> with band at various vi
                       bolt-object
         >
           <div class="o-bolt-wrapper o-bolt-wrapper--xxlarge o-bolt-wrapper--full">
-            <bolt-text>
-              This is the body (default).
-            </bolt-text>
+            Modal body slot
           </div>
         </bolt-wrapper>
       </div>

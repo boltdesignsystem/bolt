@@ -34,14 +34,11 @@ const viewportSizes = [
 const modalContent = [
   {
     name: 'Simple usage',
-    content: `<bolt-text>This is the body (default).</bolt-text>`,
+    content: `Modal body slot`,
   },
   {
     name: 'Long content usage',
-    content: `
-      <bolt-text subheadline font-size="xlarge">This is a test for very long content.</bolt-text>
-      <bolt-image src="/fixtures/1200x2500.jpg" alt="Placeholder"></bolt-image>
-    `,
+    content: `Long content. <bolt-image src="/fixtures/1200x2500.jpg" alt="Placeholder"></bolt-image>`,
   },
 ];
 
