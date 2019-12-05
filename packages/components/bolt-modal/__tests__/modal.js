@@ -11,10 +11,6 @@ const { join } = require('path');
 const schema = readYamlFileSync(join(__dirname, '../modal.schema.yml'));
 const { width, spacing, theme, scroll } = schema.properties;
 
-const vrtDefaultConfig = Object.assign(vrtConfig, {
-  failureThreshold: '0.025',
-});
-
 const timeout = 120000;
 
 // Currently, the only important breakpoints to test are 'small' and 'large'
@@ -143,9 +139,7 @@ describe('<bolt-modal> Component', () => {
         await page.waitFor(500);
 
         screenshots[size].modalOpened = await page.screenshot();
-        expect(screenshots[size].modalOpened).toMatchImageSnapshot(
-          vrtDefaultConfig,
-        );
+        expect(screenshots[size].modalOpened).toMatchImageSnapshot(vrtConfig);
 
         await page.evaluate(() => {
           document.querySelector('bolt-modal').hide();
@@ -181,9 +175,7 @@ describe('<bolt-modal> Component', () => {
         await page.waitFor(500);
         screenshots[size].modalOpened = await page.screenshot();
 
-        expect(screenshots[size].modalOpened).toMatchImageSnapshot(
-          vrtDefaultConfig,
-        );
+        expect(screenshots[size].modalOpened).toMatchImageSnapshot(vrtConfig);
         await page.evaluate(() => {
           document.querySelector('bolt-modal').hide();
         });
@@ -223,9 +215,7 @@ describe('<bolt-modal> Component', () => {
         await page.waitFor(500);
 
         screenshots[size].modalOpened = await page.screenshot();
-        expect(screenshots[size].modalOpened).toMatchImageSnapshot(
-          vrtDefaultConfig,
-        );
+        expect(screenshots[size].modalOpened).toMatchImageSnapshot(vrtConfig);
 
         await page.evaluate(() => {
           document.querySelector('bolt-modal').hide();
@@ -267,9 +257,7 @@ describe('<bolt-modal> Component', () => {
           await page.waitFor(500);
 
           screenshots[size].modalOpened = await page.screenshot();
-          expect(screenshots[size].modalOpened).toMatchImageSnapshot(
-            vrtDefaultConfig,
-          );
+          expect(screenshots[size].modalOpened).toMatchImageSnapshot(vrtConfig);
 
           await page.evaluate(() => {
             document.querySelector('bolt-modal').hide();
@@ -316,7 +304,7 @@ describe('<bolt-modal> Component', () => {
 
           screenshots[size].modalOpened = await page.screenshot();
           expect(screenshots[size].modalOpened).toMatchImageSnapshot({
-            vrtDefaultConfig,
+            vrtConfig,
           });
 
           await page.evaluate(() => {
