@@ -39,12 +39,9 @@ const modalContent = [
   {
     name: 'Long content usage',
     content: `
-      <bolt-text headline font-size="xxlarge">This is a test for very long content in modal.</bolt-text>
-      <bolt-image src="/fixtures/1200x660.jpg" alt="Placeholder"></bolt-image>
-      <bolt-text subheadline font-size="xlarge">This is a test for very long content in modal.</bolt-text>
-      <bolt-image src="/fixtures/1200x660.jpg" alt="Placeholder"></bolt-image>
-      <bolt-text eyebrow >This is a test for very long content in modal.</bolt-text>
-      <bolt-image src="/fixtures/1200x660.jpg" alt="Placeholder"></bolt-image>`,
+      <bolt-text subheadline font-size="xlarge">This is a test for very long content.</bolt-text>
+      <bolt-image src="/fixtures/1200x2500.jpg" alt="Placeholder"></bolt-image>
+    `,
   },
 ];
 
