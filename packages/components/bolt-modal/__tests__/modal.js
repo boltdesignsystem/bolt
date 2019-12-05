@@ -12,7 +12,7 @@ const schema = readYamlFileSync(join(__dirname, '../modal.schema.yml'));
 const { width, spacing, theme, scroll } = schema.properties;
 
 const vrtDefaultConfig = Object.assign(vrtConfig, {
-  failureThreshold: '0.01',
+  failureThreshold: '0.02',
   customDiffConfig: {
     includeAA: true,
   },
