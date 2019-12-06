@@ -1,3 +1,4 @@
+import * as Icons from '@bolt/components-icon/registry';
 import { h } from '@bolt/core/renderers';
 
 export const Financial = ({ bgColor, fgColor, size, ...otherProps }) => {
@@ -90,3 +91,5 @@ export const Financial = ({ bgColor, fgColor, size, ...otherProps }) => {
     </svg>
   );
 };
+
+Icons.set('financial', Financial);

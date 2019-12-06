@@ -1,3 +1,4 @@
+import * as Icons from '@bolt/components-icon/registry';
 import { h } from '@bolt/core/renderers';
 
 export const Platform = ({ bgColor, fgColor, size, ...otherProps }) => {
@@ -12,3 +13,5 @@ export const Platform = ({ bgColor, fgColor, size, ...otherProps }) => {
     </svg>
   );
 };
+
+Icons.set('platform', Platform);
