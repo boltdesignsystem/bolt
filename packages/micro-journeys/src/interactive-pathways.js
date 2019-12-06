@@ -72,7 +72,19 @@ class BoltInteractivePathways extends withLitContext() {
 
   connectedCallback() {
     super.connectedCallback();
-    this.style.opacity = 1;
+    // create an observer instance
+    var observer = new MutationObserver(function(mutations) {
+      console.log(mutations);
+      mutations.forEach(function(mutation) {
+        console.log(mutation.type);
+      });
+    });
+
+    // configuration of the observer:
+    var config = { attributes: true, childList: true, characterData: true };
+
+    // start the observer, pass in the target node, as well as the observer options
+    observer.observe(this, config);
 
     if (window.IntersectionObserver) {
       const observer = new IntersectionObserver(
@@ -180,6 +192,8 @@ class BoltInteractivePathways extends withLitContext() {
   }
 
   render() {
+    this.style.opacity = 1;
+
     const props = this.validateProps(this.props);
 
     const classes = cx('c-bolt-interactive-pathways', {
