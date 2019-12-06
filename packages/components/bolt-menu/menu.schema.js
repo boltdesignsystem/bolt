@@ -1,12 +1,11 @@
-// @todo: can uncomment once Trigger schema work is merged into `master`
-// const triggerSchema = require('@bolt/components-trigger/trigger.schema');
+const triggerSchema = require('@bolt/components-trigger/trigger.schema');
 
-// const {
-//   display,
-//   no_outline,
-//   ...modifiedTriggerProps
-// } = triggerSchema.properties;
-const modifiedTriggerProps = {};
+/* eslint-disable camelcase */
+const {
+  display,
+  no_outline,
+  ...modifiedTriggerProps
+} = triggerSchema.properties;
 
 module.exports = {
   $schema: 'http://json-schema.org/draft-04/schema#',
