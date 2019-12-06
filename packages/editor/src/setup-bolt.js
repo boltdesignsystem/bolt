@@ -1,6 +1,6 @@
 import * as grapesjs from 'grapesjs'; // eslint-disable-line no-unused-vars
 // @ts-ignore
-import buttonSchema from '@bolt/components-button/button.schema.yml';
+import buttonSchema from '@bolt/components-button/button.schema';
 // @ts-ignore
 import textSchema from '@bolt/components-text/text.schema.yml';
 import iconSchema from '@bolt/components-icon/icon.schema.json';
@@ -369,7 +369,7 @@ export function setupBolt(editor) {
     registerBlock: true,
     schema: buttonSchema,
     extend: 'text',
-    initialContent: ['Button'],
+    initialContent: ['<span>Button</span>'],
     propsToTraits: ['size', 'width', 'border_radius'],
     extraTraits: [
       colorTrait,
@@ -423,8 +423,6 @@ export function setupBolt(editor) {
       'subheadline',
       'tag',
       'text-transform',
-      'text',
-      'url',
     ],
   });
 

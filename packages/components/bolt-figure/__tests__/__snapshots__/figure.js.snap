@@ -1,5 +1,213 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`figure figure with deprecated "icon" prop still renders 1`] = `
+<bolt-figure>
+  <replace-with-grandchildren>
+    <figure class="c-bolt-figure">
+      <replace-with-children class="c-bolt-figure__media">
+        <div slot="media">
+          <bolt-icon name="add-open"
+                     size="large"
+          >
+          </bolt-icon>
+        </div>
+      </replace-with-children>
+      <replace-with-grandchildren>
+        <figcaption class="c-bolt-figure__caption">
+          Figure with icon.
+        </figcaption>
+      </replace-with-grandchildren>
+    </figure>
+  </replace-with-grandchildren>
+</bolt-figure>
+`;
+
+exports[`figure figure with deprecated "image" prop still renders 1`] = `
+<bolt-figure>
+  <replace-with-grandchildren>
+    <figure class="c-bolt-figure">
+      <replace-with-children class="c-bolt-figure__media">
+        <div slot="media">
+          <bolt-image src="/fixtures/landscape-16x9-mountains.jpg"
+                      srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w"
+                      sizes="auto"
+                      ratio="1151/638"
+                      placeholder-color="hsl(233, 33%, 97%)"
+                      placeholder-image="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                      no-lazy
+                      style="background-color: hsl(233, 33%, 97%);"
+          >
+            <bolt-ratio ratio="1151/638">
+              <replace-with-children class="c-bolt-ratio"
+                                     style="padding-bottom: calc((638 / 1151) * 100%); --aspect-ratio: 1.8040752351097;"
+              >
+                <img class="c-bolt-image__image-placeholder"
+                     sizes="auto"
+                     src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                >
+                <img class="c-bolt-image__image"
+                     srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w"
+                     sizes="auto"
+                     src="/fixtures/landscape-16x9-mountains.jpg"
+                >
+              </replace-with-children>
+            </bolt-ratio>
+          </bolt-image>
+        </div>
+      </replace-with-children>
+      <replace-with-grandchildren>
+        <figcaption class="c-bolt-figure__caption">
+          Figure with image.
+        </figcaption>
+      </replace-with-grandchildren>
+    </figure>
+  </replace-with-grandchildren>
+</bolt-figure>
+`;
+
+exports[`figure figure with deprecated "table" prop still renders 1`] = `
+<bolt-figure>
+  <replace-with-grandchildren>
+    <figure class="c-bolt-figure">
+      <replace-with-children class="c-bolt-figure__media">
+        <div slot="media">
+          <bolt-table format="regular">
+            <table class="c-bolt-table">
+              <thead class="c-bolt-table__head">
+                <tr class="c-bolt-table__row">
+                  <td class="c-bolt-table__cell">
+                  </td>
+                  <th class="c-bolt-table__cell c-bolt-table__cell--header"
+                      scope="col"
+                  >
+                    Column 1
+                  </th>
+                  <th class="c-bolt-table__cell c-bolt-table__cell--header"
+                      scope="col"
+                  >
+                    Column 2
+                  </th>
+                  <th class="c-bolt-table__cell c-bolt-table__cell--header"
+                      scope="col"
+                  >
+                    Column 3
+                  </th>
+                </tr>
+              </thead>
+              <tbody class="c-bolt-table__body">
+                <tr class="c-bolt-table__row">
+                  <th class="c-bolt-table__cell c-bolt-table__cell--header"
+                      scope="row"
+                  >
+                    Row 1
+                  </th>
+                  <td class="c-bolt-table__cell c-bolt-table__cell--data">
+                    R1C1
+                  </td>
+                  <td class="c-bolt-table__cell c-bolt-table__cell--data">
+                    R1C2
+                  </td>
+                  <td class="c-bolt-table__cell c-bolt-table__cell--data">
+                    R1C3
+                  </td>
+                </tr>
+                <tr class="c-bolt-table__row">
+                  <th class="c-bolt-table__cell c-bolt-table__cell--header"
+                      scope="row"
+                  >
+                    Row 2
+                  </th>
+                  <td class="c-bolt-table__cell c-bolt-table__cell--data">
+                    R2C1
+                  </td>
+                  <td class="c-bolt-table__cell c-bolt-table__cell--data">
+                    R2C2
+                  </td>
+                  <td class="c-bolt-table__cell c-bolt-table__cell--data">
+                    R2C3
+                  </td>
+                </tr>
+                <tr class="c-bolt-table__row">
+                  <th class="c-bolt-table__cell c-bolt-table__cell--header"
+                      scope="row"
+                  >
+                    Row 3
+                  </th>
+                  <td class="c-bolt-table__cell c-bolt-table__cell--data">
+                    R3C1
+                  </td>
+                  <td class="c-bolt-table__cell c-bolt-table__cell--data">
+                    R3C2
+                  </td>
+                  <td class="c-bolt-table__cell c-bolt-table__cell--data">
+                    R3C3
+                  </td>
+                </tr>
+              </tbody>
+              <tfoot class="c-bolt-table__foot">
+                <tr class="c-bolt-table__row">
+                  <th class="c-bolt-table__cell c-bolt-table__cell--header">
+                    Footer
+                  </th>
+                  <td class="c-bolt-table__cell c-bolt-table__cell--data">
+                    FC1
+                  </td>
+                  <td class="c-bolt-table__cell c-bolt-table__cell--data">
+                    FC2
+                  </td>
+                  <td class="c-bolt-table__cell c-bolt-table__cell--data">
+                    FC3
+                  </td>
+                </tr>
+              </tfoot>
+            </table>
+          </bolt-table>
+        </div>
+      </replace-with-children>
+      <replace-with-grandchildren>
+        <figcaption class="c-bolt-figure__caption">
+          Figure with table.
+        </figcaption>
+      </replace-with-grandchildren>
+    </figure>
+  </replace-with-grandchildren>
+</bolt-figure>
+`;
+
+exports[`figure figure with deprecated "video" prop still renders 1`] = `
+<bolt-figure>
+  <replace-with-grandchildren>
+    <figure class="c-bolt-figure">
+      <replace-with-children class="c-bolt-figure__media">
+        <div slot="media">
+          <bolt-ratio ratio="16/9">
+            <replace-with-children class="c-bolt-ratio"
+                                   style="padding-bottom: calc((9 / 16) * 100%); --aspect-ratio: 1.7777777777778;"
+            >
+              <bolt-video class="js-bolt-video-uuid--12345"
+                          video-id="4892122320001"
+                          account-id="1900410236"
+                          show-meta
+                          show-meta-title
+                          player-id="r1CAdLzTW"
+                          controls
+                          share-description="Share This Video"
+              >
+              </bolt-video>
+            </replace-with-children>
+          </bolt-ratio>
+        </div>
+      </replace-with-children>
+      <replace-with-grandchildren>
+        <figcaption class="c-bolt-figure__caption">
+          Figure with video.
+        </figcaption>
+      </replace-with-grandchildren>
+    </figure>
+  </replace-with-grandchildren>
+</bolt-figure>
+`;
+
 exports[`figure figure with icon 1`] = `
 <bolt-figure>
   <replace-with-grandchildren>
