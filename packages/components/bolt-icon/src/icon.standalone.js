@@ -2,6 +2,7 @@ import {
   colorContrast,
   css,
   define,
+  hasNativeShadowDomSupport,
   props,
   rgb2hex,
   supportsCSSVars,
@@ -107,6 +108,8 @@ class BoltIcon extends withPreact() {
 
     return (
       <span className={classes}>
+        {hasNativeShadowDomSupport &&
+          this.getRootNode() instanceof ShadowRoot && <style>{styles[0][1]}</style>}
         {DefaultIcon ? (
           <DefaultIcon
             className={iconClasses}
