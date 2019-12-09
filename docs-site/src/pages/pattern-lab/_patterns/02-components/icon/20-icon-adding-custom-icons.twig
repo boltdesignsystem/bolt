@@ -1,0 +1,97 @@
+
+<div class="o-bolt-wrapper">
+  {% include "@bolt-components-headline/headline.twig" with {
+    text: "Custom SVG Icons",
+    size: "xxlarge",
+  } only %}
+
+  <p>Can't find an existing SVG that suits your needs?</p>
+
+  <p>Before jumping ahead and adding a new custom SVG icon, please make sure you come and chat with the Bolt team <i>first</i> to see if there's already an existing icon that could get used instead OR it makes sense to add a new icon to the design system itself!</p>
+
+  <hr>
+
+  {% include "@bolt-components-headline/headline.twig" with {
+    text: "Adding Custom SVG Icons to Bolt",
+    size: "xxlarge",
+  } only %}
+
+  <p>Note: make sure your custom SVG icon _starts_ with `custom-` as this is required to ensure names of built-in icons don't collide with custom SVG icons added.</p>
+
+  {% include "@bolt-components-headline/headline.twig" with {
+    text: "Step 1. Import your custom SVG Icon in .js file that's compiled by the Bolt build tools. Note: make sure your SVG icon has been already exported for the web (docs coming soon!).",
+    size: "large",
+    tag: "p"
+  } only %}
+
+  <bolt-code-snippet lang="javascript">import './assets/icons/custom-users.svg';</bolt-code-snippet>
+
+  {% include "@bolt-components-headline/headline.twig" with {
+    text: "Step 2. After recompiling the site's JavaScript, your custom SVG can now be used in Twig, JS, or HTML!",
+    size: "large",
+    tag: "p"
+  } only %}
+
+  <div class="o-bolt-grid o-bolt-grid--flex o-bolt-grid--matrix">
+    <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@medium">
+<bolt-code-snippet lang="twig">{% verbatim %}{% include "@bolt-components-icon/icon.twig" with {
+  name: "custom-users",
+  size: "xlarge"
+} only %}{% endverbatim %}</bolt-code-snippet>
+    </div>
+
+    <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@medium">
+      <bolt-code-snippet lang="html">{% verbatim %}&lt;bolt-icon name="custom-users" size="xlarge"&gt;&lt;/bolt-icon&gt;{% endverbatim %}</bolt-code-snippet>
+    </div>
+  </div>
+
+  <div class="u-bolt-padding-medium">
+    {% include "@bolt-components-icon/icon.twig" with {
+      name: "custom-users",
+      size: "xlarge"
+    } %}
+  </div>
+
+  <hr>
+
+  {% include "@bolt-components-headline/headline.twig" with {
+    text: "Adding a Custom SVG Icon - Retain Original Colors",
+    size: "xxlarge",
+  } only %}
+
+  <p>This advanced use case is rarely recommended since it can limit the number of places an SVG icon can get used + prevents the icon's color palette from adjusting based on the location it's used.</p>
+
+  {% include "@bolt-components-headline/headline.twig" with {
+    text: "Step 1. Import your SVG Icon in .js file, making sure your icon ends in `-colored.svg`",
+    size: "large",
+    tag: "p"
+  } only %}
+
+<bolt-code-snippet lang="javascript">import './assets/icons/custom-arrow-left-colored.svg';</bolt-code-snippet>
+
+  {% include "@bolt-components-headline/headline.twig" with {
+    text: "Step 2. After recompiling the site's JavaScript, your custom colored SVG can now be used in Twig, JS, or HTML!",
+    size: "large",
+    tag: "p"
+  } only %}
+
+  <div class="o-bolt-grid o-bolt-grid--flex o-bolt-grid--matrix">
+    <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@medium">
+<bolt-code-snippet lang="twig">{% verbatim %}{% include "@bolt-components-icon/icon.twig" with {
+  name: "custom-arrow-left-colored",
+  size: "xlarge",
+} %}{% endverbatim %}</bolt-code-snippet>
+    </div>
+
+    <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@medium">
+      <bolt-code-snippet lang="html">{% verbatim %}&lt;bolt-icon name="custom-arrow-left-colored" size="xlarge"&gt;&lt;/bolt-icon&gt;{% endverbatim %}</bolt-code-snippet>
+    </div>
+  </div>
+
+  <div class="u-bolt-padding-medium">
+    {% include "@bolt-components-icon/icon.twig" with {
+      name: "custom-arrow-left-colored",
+      size: "xlarge"
+    } %}
+  </div>
+</div>
