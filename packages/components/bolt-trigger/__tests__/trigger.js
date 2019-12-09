@@ -1,7 +1,5 @@
 import { render } from '@bolt/twig-renderer';
-const { readYamlFileSync } = require('@bolt/build-tools/utils/yaml');
-const { join } = require('path');
-const schema = readYamlFileSync(join(__dirname, '../trigger.schema.yml'));
+import schema from '../trigger.schema';
 const { display, cursor } = schema.properties;
 
 describe('trigger', () => {
