@@ -9,7 +9,7 @@ function generateLoaderResult(content, raw = true) {
 
 const raw = true;
 
-module.exports = function (content, map) {
+module.exports = function(content, map) {
   const options = loaderUtils.getOptions(this) || {};
 
   validateOptions(schema, options, {
@@ -66,4 +66,4 @@ module.exports = function (content, map) {
   }
 
   return callback(null, generateLoaderResult(content, raw), map);
-}
+};

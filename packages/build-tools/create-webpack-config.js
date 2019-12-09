@@ -293,9 +293,7 @@ async function createWebpackConfig(buildConfig) {
           oneOf: [
             {
               issuer: /\.js$/,
-              use: [
-                scssLoaders,
-              ].reduce((acc, val) => acc.concat(val), []),
+              use: [scssLoaders].reduce((acc, val) => acc.concat(val), []),
             },
             {
               // no issuer here as it has a bug when its an entry point - https://github.com/webpack/webpack/issues/5906

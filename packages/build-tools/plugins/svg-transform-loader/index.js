@@ -10,7 +10,7 @@ const merge = require('merge-options');
 
 const defaultConfig = {
   raw: true,
-  transformQuery: null
+  transformQuery: null,
 };
 
 function generateLoaderResult(content, raw = true) {
@@ -18,71 +18,70 @@ function generateLoaderResult(content, raw = true) {
 }
 
 // eslint-disable-next-line func-names,consistent-return
-module.exports = function (content, map) {
-
+module.exports = function(content, map) {
   if (this.version === 1 && this.cacheable) {
     this.cacheable();
   }
 
   const callback = this.async();
 
-  const {
-    raw,
-    transformQuery,
-    ...transformPluginCfg
-  } = merge(defaultConfig, getOptions(this) || {});
+  const { raw, transformQuery, ...transformPluginCfg } = merge(
+    defaultConfig,
+    getOptions(this) || {},
+  );
 
   const query = this.resourceQuery ? parseQuery(this.resourceQuery) : null;
 
   const fileName = path.basename(this.resourcePath);
   let optimizedContent;
 
-  if (fileName.includes('-color')){
-    optimizedContent = content.replace('d="M0 0h24v24H0z"', '')
+  if (fileName.includes('-color')) {
+    optimizedContent = content
+      .replace('d="M0 0h24v24H0z"', '')
       .replace(/width=".*?"/, 'width={size}')
       .replace(/height=".*?"/, 'height={size}');
   } else {
     optimizedContent = content
-        .replace(
-          new RegExp(/ fill="(?!#fff|#FFF|#FFFFFF|none).*?"/, 'g'),
-          ' fill="var(--bolt-icon-primary-color)"',
-          )
-        .replace(
-          new RegExp(/ stroke="(?!#fff|#FFF|#FFFFFF|none).*?"/, 'g'),
-          ' stroke="var(--bolt-icon-primary-color)"',
-        )
-        .replace(
-          new RegExp(/ fill="(#fff|#FFF|#FFFFFF).*?"/, 'g'),
-          ' fill="var(--bolt-icon-secondary-color)"',
-        )
-        .replace(
-          new RegExp(/ stroke="(#fff|#FFF|#FFFFFF).*?"/, 'g'),
-          ' stroke="var(--bolt-icon-secondary-color)"',
-        )
-        // .replace(
-        //   new RegExp(/ fill="(?#fff|#FFF|#FFFFFF).*?"/, 'g'),
-        //   ' fill="var(--bolt-icon-secondary-color);"',
-        //   )
-        // )
-        // .replace('fill="#FFF"', 'fill="var(--bolt-icon-secondary-color);"')
-        // .replace('fill="#FFFFFF"', 'fill="var(--bolt-icon-secondary-color);"')
+      .replace(
+        new RegExp(/ fill="(?!#fff|#FFF|#FFFFFF|none).*?"/, 'g'),
+        ' fill="var(--bolt-icon-primary-color)"',
+      )
+      .replace(
+        new RegExp(/ stroke="(?!#fff|#FFF|#FFFFFF|none).*?"/, 'g'),
+        ' stroke="var(--bolt-icon-primary-color)"',
+      )
+      .replace(
+        new RegExp(/ fill="(#fff|#FFF|#FFFFFF).*?"/, 'g'),
+        ' fill="var(--bolt-icon-secondary-color)"',
+      )
+      .replace(
+        new RegExp(/ stroke="(#fff|#FFF|#FFFFFF).*?"/, 'g'),
+        ' stroke="var(--bolt-icon-secondary-color)"',
+      )
+      // .replace(
+      //   new RegExp(/ fill="(?#fff|#FFF|#FFFFFF).*?"/, 'g'),
+      //   ' fill="var(--bolt-icon-secondary-color);"',
+      //   )
+      // )
+      // .replace('fill="#FFF"', 'fill="var(--bolt-icon-secondary-color);"')
+      // .replace('fill="#FFFFFF"', 'fill="var(--bolt-icon-secondary-color);"')
 
-        // .replace('stroke="#FFF"', 'stroke="var(--bolt-icon-secondary-color);"')
-        // .replace('stroke="#FFFFFF"', 'stroke="var(--bolt-icon-secondary-color);"')f
-        // .replace(new RegExp(/ stroke=".*?"/, 'g'), ' stroke={bgColor}')
-        // .replace('viewBox', '{...otherProps} viewBox') // tack on extra props next to viewBox attribute
-        .replace('d="M0 0h24v24H0z"', '')
-        .replace(/width=".*?"/, 'width={size}')
-        .replace(/height=".*?"/, 'height={size}');
-        // .replace('otherProps="..."', '{...otherProps}')
+      // .replace('stroke="#FFF"', 'stroke="var(--bolt-icon-secondary-color);"')
+      // .replace('stroke="#FFFFFF"', 'stroke="var(--bolt-icon-secondary-color);"')f
+      // .replace(new RegExp(/ stroke=".*?"/, 'g'), ' stroke={bgColor}')
+      // .replace('viewBox', '{...otherProps} viewBox') // tack on extra props next to viewBox attribute
+      .replace('d="M0 0h24v24H0z"', '')
+      .replace(/width=".*?"/, 'width={size}')
+      .replace(/height=".*?"/, 'height={size}');
+    // .replace('otherProps="..."', '{...otherProps}')
   }
 
   // console.log(content);
   // console.log(optimizedContent);
-    // ?
+  // ?
 
-    // $(optimizedSVG)
-    //     .toString()
+  // $(optimizedSVG)
+  //     .toString()
 
   // console.log(raw);
 
@@ -138,7 +137,6 @@ module.exports = function (content, map) {
   //   }
   // });
 
-
   // const result = await svgo.optimize(svg);
   // const optimizedSVG = result.data;
 
@@ -159,7 +157,7 @@ module.exports = function (content, map) {
     .process(optimizedContent)
     .then(res => {
       callback(null, generateLoaderResult(res.svg, raw), map, {
-        ast: res.tree
+        ast: res.tree,
       });
     })
     .catch(callback);

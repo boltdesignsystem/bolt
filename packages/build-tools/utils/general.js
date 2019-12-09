@@ -77,7 +77,6 @@ async function dirExists(path) {
   return await folderExists(path);
 }
 
-
 /**
  * Check if a folder exists
  * @param path {string} - Path to the folder to check
@@ -101,7 +100,9 @@ async function ensureFolderExists(folderPath, pkgName) {
   const stats = await stat(folderPath);
   if (!stats.isDirectory()) {
     log.errorAndExit(
-      `The ${folderPath} folder does not exist and it was referenced in ${pkgName ? `${pkgName}'s package.json` : 'a component\'s package.json'} registered in the .boltrc.js config. Please verify the folder path is correct and try restarting the build.`,
+      `The ${folderPath} folder does not exist and it was referenced in ${
+        pkgName ? `${pkgName}'s package.json` : "a component's package.json"
+      } registered in the .boltrc.js config. Please verify the folder path is correct and try restarting the build.`,
       folderPath,
     );
   }
