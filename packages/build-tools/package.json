@@ -22,10 +22,15 @@
     "test": "FORCE_COLOR=1 npx lerna exec --scope @bolt/build-tools--test* --concurrency 1 -- yarn run test"
   },
   "dependencies": {
+    "preact": "^10.0.5",
+    "svgo-loader": "^2.2.1",
+    "svg-sprite-loader": "^3.5.1",
     "@babel/core": "^7.4.5",
     "@bolt/api": "^2.12.0",
     "@bolt/babel-preset-bolt": "^2.12.0",
     "@bolt/browserslist-config": "^2.12.0",
+    "@bolt/svg-transform-loader": "^0.0.0",
+    "@bolt/file-passthrough-loader": "^0.0.0",
     "@bolt/build-utils": "^2.12.0",
     "@bolt/postcss-themify": "^2.12.0",
     "@bolt/sass-export-data": "^2.12.0",
