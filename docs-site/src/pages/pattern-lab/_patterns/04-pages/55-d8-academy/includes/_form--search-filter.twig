@@ -1,0 +1,125 @@
+{% set search_text %}
+  {% include "@bolt-components-headline/text.twig" with {
+    size: "xsmall",
+    text: "Showing 992 results."
+  } only %}
+{% endset %}
+
+{% set children %}
+  {# Search #}
+  {% include "@pl/10-form-element-demo-input-element.twig" with {
+    "title": "Search",
+    "inputAttributes": {
+      "placeholder": "Search Pega Academy",
+      "type": "search"
+    },
+    "labelDisplayType": "floating",
+    "descriptionText": search_text
+  } only %}
+
+  {# Sort By #}
+  {% include "@pl/40-form-element-demo-select.twig" with {
+    "title": "Sort by",
+    "selectAttributes": {
+      class: "u-bolt-margin-bottom-medium"
+    },
+    "options": [
+      {
+        "type": "option",
+        "value": "",
+        "label": "- Sort by -"
+      },
+      {
+        "type": "option",
+        "value": "option-a",
+        "label": "Relevancy"
+      },
+      {
+        "type": "option",
+        "value": "option-b",
+        "label": "Option B"
+      },
+      {
+        "type": "option",
+        "value": "option-c",
+        "label": "Option C"
+      }
+    ]
+  } only %}
+
+  {# Checkboxes #}
+  {% set checkboxes_group_1 %}
+    {% include "@pl/30-form-element-demo-checkbox.twig" with {
+      "labelTitle": "Proin viverra (1040)",
+      "elementId": "checkbox-1"
+    } %}
+    {% include "@pl/30-form-element-demo-checkbox.twig" with {
+      "labelTitle": "Phasellus leo dolor (503)",
+      "elementId": "checkbox-2"
+    } %}
+    {% include "@pl/30-form-element-demo-checkbox.twig" with {
+      "labelTitle": "Aenean vulputate (167)",
+      "elementId": "checkbox-3"
+    } %}
+    {% include "@pl/30-form-element-demo-checkbox.twig" with {
+      "labelTitle": "Maecenas ullamcorper (96)",
+      "elementId": "checkbox-4"
+    } %}
+  {% endset %}
+
+  {% set checkboxes_group_2 %}
+    {% include "@pl/30-form-element-demo-checkbox.twig" with {
+      "labelTitle": "Proin viverra (1040)",
+      "elementId": "checkbox-5"
+    } %}
+    {% include "@pl/30-form-element-demo-checkbox.twig" with {
+      "labelTitle": "Phasellus leo dolor (503)",
+      "elementId": "checkbox-6"
+    } %}
+    {% include "@pl/30-form-element-demo-checkbox.twig" with {
+      "labelTitle": "Aenean vulputate (167)",
+      "elementId": "checkbox-7"
+    } %}
+    {% include "@pl/30-form-element-demo-checkbox.twig" with {
+      "labelTitle": "Maecenas ullamcorper (96)",
+      "elementId": "checkbox-8"
+    } %}
+  {% endset %}
+
+  {% set fieldset_children_1 %}
+    {% include "@bolt-components-form/form-checkboxes.twig" with {
+      children: checkboxes_group_1
+    } only %}
+  {% endset %}
+
+  {% set fieldset_children_2 %}
+    {% include "@bolt-components-form/form-checkboxes.twig" with {
+      children: checkboxes_group_2
+    } only %}
+  {% endset %}
+
+  {% include "@bolt-components-form/form-fieldset.twig" with {
+    "legendTitle": "Type",
+    "children": fieldset_children_1
+  } only %}
+
+  {% include "@bolt-components-form/form-fieldset.twig" with {
+    "legendTitle": "Skill Level",
+    "children": fieldset_children_2
+  } only %}
+{% endset %}
+
+{% include "@bolt/form.twig" with {
+  children: children
+} only  %}
+
+<hr>
+
+{% include "@bolt-components-link/link.twig" with {
+  text: "View archived training",
+  url: "#!",
+  icon: {
+    name: "chevron-right",
+    position: "after",
+  }
+} only %}
