@@ -1,3 +1,4 @@
+/* eslint-disable */
 import {
   colorContrast,
   css,
@@ -105,12 +106,13 @@ class BoltIcon extends withPreact() {
     );
 
     const DefaultIcon = Icons[`${name}`];
-
+    const altName = __webpack_public_path__ + '/build/bolt-svg-sprite.svg#' + name;
+    const inShadowDom = hasNativeShadowDomSupport && this.getRootNode() instanceof ShadowRoot;
+    
     return (
       <span className={classes}>
-        {hasNativeShadowDomSupport &&
-          this.getRootNode() instanceof ShadowRoot && <style>{styles[0][1]}</style>}
-        {DefaultIcon ? (
+        {inShadowDom && <style>{styles[0][1]}</style>}
+        {DefaultIcon && !inShadowDom ? (
           <DefaultIcon
             className={iconClasses}
             bgColor={primaryColor}
@@ -119,7 +121,7 @@ class BoltIcon extends withPreact() {
         ) : (
           // @ts-ignore
           <CustomIcon
-            glyph={name}
+            glyph={inShadowDom ? altName : name}
             className={iconClasses}
             bgColor={primaryColor}
             fgColor={secondaryColor}
