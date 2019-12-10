@@ -1,4 +1,3 @@
-/* eslint-disable */
 import {
   colorContrast,
   css,
@@ -9,13 +8,28 @@ import {
   supportsCSSVars,
 } from '@bolt/core/utils';
 import { spacingSizes } from '@bolt/core/data';
-import { withPreact } from '@bolt/core/renderers';
-import { h } from 'preact';
+import { h, withPreact, Markup } from '@bolt/core/renderers';
+// used to repurpose the HTML from the injected SVG sprite to work around situations where we can't reference these symbols
+import BrowserSprite from 'svg-baker-runtime/src/browser-sprite';
 import styles from './icon.scss';
 import schema from '../icon.schema.json';
 import CustomIcon from './icon.jsx';
 
 const svgIcons = require.context('@bolt/components-icons', true, /\.svg$/);
+
+const spriteNodeId = '__SVG_SPRITE_NODE__';
+const spriteGlobalVarName = '__SVG_SPRITE__';
+const isSpriteExists = !!window[spriteGlobalVarName];
+
+// eslint-disable-next-line import/no-mutable-exports
+let sprite;
+
+if (isSpriteExists) {
+  sprite = window[spriteGlobalVarName];
+} else {
+  sprite = new BrowserSprite({ attrs: { id: spriteNodeId } });
+  window[spriteGlobalVarName] = sprite;
+}
 
 const Icons = svgIcons.keys().reduce((images, path) => {
   const key = path.substring(path.lastIndexOf('/') + 1, path.lastIndexOf('.'));
@@ -38,7 +52,8 @@ class BoltIcon extends withPreact() {
 
   constructor(self) {
     self = super(self);
-    this.useShadow = false; // required since we are referencing SVG symbols that are inline on the page
+    this.useShadow =
+      hasNativeShadowDomSupport && this.getRootNode() instanceof ShadowRoot;
     this.useCssVars = supportsCSSVars;
     return self;
   }
@@ -106,13 +121,22 @@ class BoltIcon extends withPreact() {
     );
 
     const DefaultIcon = Icons[`${name}`];
-    const altName = __webpack_public_path__ + '/build/bolt-svg-sprite.svg#' + name;
-    const inShadowDom = hasNativeShadowDomSupport && this.getRootNode() instanceof ShadowRoot;
-    
+    const inShadowDom =
+      hasNativeShadowDomSupport && this.getRootNode() instanceof ShadowRoot;
+    const svgSymbol = sprite.node.querySelector(`#${name}`).outerHTML;
+
     return (
       <span className={classes}>
         {inShadowDom && <style>{styles[0][1]}</style>}
-        {DefaultIcon && !inShadowDom ? (
+        {inShadowDom && sprite && sprite.node && (
+          <svg
+            style="position:absolute;width:0px;height:0px;"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink">
+            <Markup markup={svgSymbol} trim={false}></Markup>
+          </svg>
+        )}
+        {DefaultIcon ? (
           <DefaultIcon
             className={iconClasses}
             bgColor={primaryColor}
@@ -121,7 +145,7 @@ class BoltIcon extends withPreact() {
         ) : (
           // @ts-ignore
           <CustomIcon
-            glyph={inShadowDom ? altName : name}
+            glyph={name}
             className={iconClasses}
             bgColor={primaryColor}
             fgColor={secondaryColor}
