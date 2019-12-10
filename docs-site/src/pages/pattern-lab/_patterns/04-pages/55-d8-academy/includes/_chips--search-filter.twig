@@ -4,23 +4,22 @@
   } only %}
 {% endset %}
 
-<bolt-list display="inline">
-  <bolt-list-item>
-    {% include "@bolt-components-chip/chip.twig" with {
+{% include "@bolt-components-list/list.twig" with {
+  display: "inline",
+  items: [
+    include("@bolt-components-chip/chip.twig", {
       text: "Challenge",
       url: "#!",
       size: "xsmall",
       icon: {
         name: "close",
-        position: "after",
-      },
-    } only %}
-  </bolt-list-item>
-  <bolt-list-item>
-    {% include "@bolt-components-headline/text.twig" with {
+        position: "after"
+      }
+    }),
+    include("@bolt-components-headline/text.twig", {
       text: "(" ~ clear_filters_link|trim ~ ")",
       tag: "span",
       size: "small"
-    } only %}
-  </bolt-list-item>
-</bolt-list>
+    })
+  ]
+} only %}
