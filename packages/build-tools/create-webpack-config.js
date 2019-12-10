@@ -437,6 +437,8 @@ async function createWebpackConfig(buildConfig) {
             new TerserPlugin({
               test: /\.m?js(\?.*)?$/i,
               sourceMap: config.sourceMaps,
+              cache: true,
+              parallel: true,
               terserOptions: {
                 safari10: true,
               },
