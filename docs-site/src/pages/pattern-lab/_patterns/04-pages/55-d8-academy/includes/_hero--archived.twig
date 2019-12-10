@@ -1,0 +1,8 @@
+{% extends "@academy/includes/_hero.twig" %}
+
+{% block headline %}
+  {% include "@bolt-components-headline/headline.twig" with {
+    size: "xxlarge",
+    text: "Archived Search Results"
+  } only %}
+{% endblock %}

@@ -1,0 +1,26 @@
+{% set clear_filters_link %}
+  {% include "@bolt-components-link/link.twig" with {
+    text: "Clear filters"
+  } only %}
+{% endset %}
+
+<bolt-list display="inline">
+  <bolt-list-item>
+    {% include "@bolt-components-chip/chip.twig" with {
+      text: "Challenge",
+      url: "#!",
+      size: "xsmall",
+      icon: {
+        name: "close",
+        position: "after",
+      },
+    } only %}
+  </bolt-list-item>
+  <bolt-list-item>
+    {% include "@bolt-components-headline/text.twig" with {
+      text: "(" ~ clear_filters_link|trim ~ ")",
+      tag: "span",
+      size: "small"
+    } only %}
+  </bolt-list-item>
+</bolt-list>
