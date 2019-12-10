@@ -1,0 +1,17 @@
+{% set back_link %}
+  {% include "@bolt-components-headline/headline.twig" with {
+    url: "#",
+    text: "Main Search",
+    size: "small",
+    icon: {
+      name: "arrow-left",
+      position: "before",
+    }
+  } only %}
+{% endset %}
+
+{% include "@bolt-components-band/band.twig" with {
+  theme: "xlight",
+  size: "small",
+  content: back_link,
+} only %}

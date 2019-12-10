@@ -4,9 +4,9 @@ import {
   html,
   vrtDefaultConfig as vrtConfig,
 } from '../../../testing/testing-helpers';
+import schema from '../accordion.schema';
+
 const { readYamlFileSync } = require('@bolt/build-tools/utils/yaml');
-const { join } = require('path');
-const schema = readYamlFileSync(join(__dirname, '../accordion.schema.yml'));
 const { single } = schema.properties;
 const { spacing } = schema.definitions;
 

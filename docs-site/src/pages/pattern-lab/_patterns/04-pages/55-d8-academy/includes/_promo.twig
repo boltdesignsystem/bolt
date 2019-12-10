@@ -1,0 +1,37 @@
+{% set content %}
+  {% grid "o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--matrix" %}
+    {% cell "u-bolt-width-1/12 u-bolt-width-8/12@medium" %}
+      {% include "@bolt-components-headline/headline.twig" with {
+        size: "xxlarge",
+        text: "Instructor-led Training"
+      } only %}
+      {% include "@bolt-components-headline/text.twig" with {
+        size: "xlarge",
+        text: "View the class schedule to see the latest in person training"
+      } only %}
+    {% endcell %}
+    {% cell "u-bolt-width-12/12 u-bolt-width-4/12@medium o-bolt-grid--right" %}
+      {% include "@bolt-components-button/button.twig" with {
+        text: "View Class Schedule",
+        style: "secondary",
+        border_radius: "full",
+        style: "primary"
+      } only %}
+    {% endcell %}
+  {% endgrid %}
+{% endset %}
+
+{% include "@bolt-components-band/band.twig" with {
+  theme: "xdark",
+  content: content,
+  background: {
+    opacity: "light",
+    fill: "gradient",
+    contentItems: [
+      {
+        pattern: "image",
+        src: "/images/content/backgrounds/background-night-sky.jpg",
+      },
+    ]
+  },
+} only %}

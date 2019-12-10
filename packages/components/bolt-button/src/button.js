@@ -9,7 +9,7 @@ import { convertInitialTags } from '@bolt/core/decorators';
 import classNames from 'classnames/bind';
 
 import buttonStyles from './button.scss';
-// import schema from '../button.schema.yml'; @todo: temporarily removed while we switch to `lit-element`, soon to be re-added
+// import schema from '../button.schema.js'; @todo: temporarily removed while we switch to `lit-element`, soon to be re-added
 
 let cx = classNames.bind(buttonStyles);
 

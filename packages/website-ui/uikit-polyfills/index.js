@@ -31,6 +31,7 @@ import '@webcomponents/url/url.js';
 import './platform/baseuri';
 import './platform/unresolved';
 import 'core-js/modules/es.array.for-each';
+import 'core-js/modules/es.array.from';
 
 if (window.NodeList && !NodeList.prototype.forEach) {
   NodeList.prototype.forEach = Array.prototype.forEach;
