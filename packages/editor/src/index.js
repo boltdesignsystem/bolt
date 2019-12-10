@@ -209,6 +209,8 @@ function init() {
     let uiWrapper;
 
     function cleanup() {
+      // Remove the onbeforeunload function that fires the unsaved warning.
+      window.onbeforeunload = null;
       if (editor) {
         editor.destroy();
       }
@@ -262,7 +264,6 @@ function init() {
           });
 
           if (ok) {
-            window.onbeforeunload = null;
             cleanup();
             container.innerHTML = html;
             trigger.innerText = 'Edit';
