@@ -1,4 +1,3 @@
-import * as Icons from '@bolt/components-icon/registry';
 import { h } from '@bolt/core/renderers';
 
 export const CoBrowse = ({ bgColor, fgColor, size, ...otherProps }) => {
@@ -13,5 +12,3 @@ export const CoBrowse = ({ bgColor, fgColor, size, ...otherProps }) => {
     </svg>
   );
 };
-
-Icons.set('co-browse', CoBrowse);

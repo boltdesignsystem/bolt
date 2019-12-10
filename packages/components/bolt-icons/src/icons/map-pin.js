@@ -1,4 +1,3 @@
-import * as Icons from '@bolt/components-icon/registry';
 import { h } from '@bolt/core/renderers';
 
 export const MapPin = ({ bgColor, fgColor, size, ...otherProps }) => {
@@ -14,5 +13,3 @@ export const MapPin = ({ bgColor, fgColor, size, ...otherProps }) => {
     </svg>
   );
 };
-
-Icons.set('map-pin', MapPin);

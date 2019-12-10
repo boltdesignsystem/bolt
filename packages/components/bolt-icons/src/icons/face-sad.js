@@ -1,4 +1,3 @@
-import * as Icons from '@bolt/components-icon/registry';
 import { h } from '@bolt/core/renderers';
 
 export const FaceSad = ({ bgColor, fgColor, size, ...otherProps }) => {
@@ -22,5 +21,3 @@ export const FaceSad = ({ bgColor, fgColor, size, ...otherProps }) => {
     </svg>
   );
 };
-
-Icons.set('face-sad', FaceSad);

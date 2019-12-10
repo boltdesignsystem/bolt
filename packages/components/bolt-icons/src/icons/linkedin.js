@@ -1,4 +1,3 @@
-import * as Icons from '@bolt/components-icon/registry';
 import { h } from '@bolt/core/renderers';
 
 export const Linkedin = ({ bgColor, fgColor, size, ...otherProps }) => {
@@ -11,5 +10,3 @@ export const Linkedin = ({ bgColor, fgColor, size, ...otherProps }) => {
     </svg>
   );
 };
-
-Icons.set('linkedin', Linkedin);

@@ -19,10 +19,7 @@ export const modalStyleguide = {
    */
   onReady() {
     // go through the panel toggles and add click event to the pattern extra toggle button
-    // using Array.from as a workaround to fix JS error in IE 11 throwing forEach error
-    const toggles = Array.from(
-      document.querySelectorAll('.pl-js-pattern-extra-toggle'),
-    );
+    const toggles = document.querySelectorAll('.pl-js-pattern-extra-toggle');
 
     toggles.forEach(toggle => {
       toggle.addEventListener('click', e => {
@@ -87,7 +84,7 @@ export const modalStyleguide = {
 
     // show the modal
     const toggle = document.getElementById(
-      'pl-pattern-extra-toggle-' + patternPartial,
+      'pl-pattern-extra-toggle-' + patternPartial
     );
     if (toggle) {
       toggle.classList.add('pl-is-active');
@@ -108,7 +105,7 @@ export const modalStyleguide = {
 
     // hide the modal, look at info-panel.js
     const toggle = document.getElementById(
-      'pl-pattern-extra-toggle-' + patternPartial,
+      'pl-pattern-extra-toggle-' + patternPartial
     );
     if (toggle) {
       toggle.classList.remove('pl-is-active');
@@ -136,7 +133,7 @@ export const modalStyleguide = {
       const patternData = JSON.parse(el.innerHTML);
       if (patternData.patternName !== undefined) {
         const patternMarkupEl = document.querySelector(
-          '#' + patternData.patternPartial + ' > .pl-js-pattern-example',
+          '#' + patternData.patternPartial + ' > .pl-js-pattern-example'
         );
         patternData.patternMarkup =
           patternMarkupEl !== null
@@ -145,7 +142,7 @@ export const modalStyleguide = {
         modalStyleguide.patternQueryInfo(
           patternData,
           iframePassback,
-          switchText,
+          switchText
         );
       }
     } else {
@@ -161,13 +158,13 @@ export const modalStyleguide = {
     const patternPartialSelector =
       patternPartial !== undefined ? '#' + patternPartial + ' > ' : '';
     let elsToHide = document.querySelectorAll(
-      patternPartialSelector + '.pl-has-annotation',
+      patternPartialSelector + '.pl-has-annotation'
     );
     for (let i = 0; i < elsToHide.length; i++) {
       elsToHide[i].classList.remove('pl-has-annotation');
     }
     elsToHide = document.querySelectorAll(
-      patternPartialSelector + '.pl-c-annotation-tip',
+      patternPartialSelector + '.pl-c-annotation-tip'
     );
     for (let i = 0; i < elsToHide.length; i++) {
       elsToHide[i].style.display = 'none';
@@ -261,12 +258,12 @@ export const modalStyleguide = {
             }
 
             const annotationTip = document.querySelector(
-              item.el + ' > span.pl-c-annotation-tip',
+              item.el + ' > span.pl-c-annotation-tip'
             );
             if (annotationTip === null) {
               elsToHighlight[j].insertBefore(
                 span,
-                elsToHighlight[j].firstChild,
+                elsToHighlight[j].firstChild
               );
             } else {
               annotationTip.style.display = 'inline-flex';

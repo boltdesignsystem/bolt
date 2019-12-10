@@ -1,6 +1,4 @@
 import 'regenerator-runtime/runtime';
-import 'core-js/modules/es.array.from';
-import 'core-js/modules/es.array.for-each';
 if (window.NodeList && !NodeList.prototype.forEach) {
   NodeList.prototype.forEach = Array.prototype.forEach;
 }

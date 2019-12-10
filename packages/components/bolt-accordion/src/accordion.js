@@ -8,7 +8,7 @@ import {
 import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
 
 import styles from './accordion.scss';
-import schema from '../accordion.schema';
+import schema from '../accordion.schema.yml';
 
 import { Accordion } from './_accordion-handorgel';
 

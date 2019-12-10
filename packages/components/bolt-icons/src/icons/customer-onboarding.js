@@ -1,4 +1,3 @@
-import * as Icons from '@bolt/components-icon/registry';
 import { h } from '@bolt/core/renderers';
 
 export const CustomerOnboarding = ({
@@ -18,5 +17,3 @@ export const CustomerOnboarding = ({
     </svg>
   );
 };
-
-Icons.set('customer-onboarding', CustomerOnboarding);
