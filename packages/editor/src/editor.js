@@ -89,7 +89,7 @@ export function enableEditor({ space, uiWrapper, config }) {
     // height: '100vh',
     // width: 'auto',
     plugins: [setupBolt, setupComponents, setupPanels, setupBlocks],
-    noticeOnUnload: false,
+    noticeOnUnload: true,
     panels: {
       stylePrefix: `${stylePrefix}panels-`,
       defaults: [

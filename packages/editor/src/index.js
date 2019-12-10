@@ -262,6 +262,7 @@ function init() {
           });
 
           if (ok) {
+            window.onbeforeunload = null;
             cleanup();
             container.innerHTML = html;
             trigger.innerText = 'Edit';
