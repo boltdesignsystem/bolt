@@ -1,6 +1,6 @@
 import * as grapesjs from 'grapesjs'; // eslint-disable-line no-unused-vars
 // @ts-ignore
-import buttonSchema from '@bolt/components-button/button.schema.yml';
+import buttonSchema from '@bolt/components-button/button.schema';
 // @ts-ignore
 import textSchema from '@bolt/components-text/text.schema.yml';
 import iconSchema from '@bolt/components-icon/icon.schema.json';

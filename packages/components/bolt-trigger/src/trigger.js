@@ -7,7 +7,7 @@ import { ifDefined } from 'lit-html/directives/if-defined';
 import classNames from 'classnames/bind';
 
 import styles from './trigger.scss';
-import schema from '../trigger.schema.yml';
+import schema from '../trigger.schema';
 
 let cx = classNames.bind(styles);
 
