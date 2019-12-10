@@ -123,12 +123,12 @@ class BoltIcon extends withPreact() {
     const DefaultIcon = Icons[`${name}`];
     const inShadowDom =
       hasNativeShadowDomSupport && this.getRootNode() instanceof ShadowRoot;
-    const svgSymbol = sprite.node.querySelector(`#${name}`).outerHTML;
+    const svgSymbol = name && sprite && sprite?.node?.querySelector(`#${name}`)?.outerHTML || '';
 
     return (
       <span className={classes}>
         {inShadowDom && <style>{styles[0][1]}</style>}
-        {inShadowDom && sprite && sprite.node && (
+        {(inShadowDom || window.self !== window.top) && sprite && sprite.node && (
           <svg
             style="position:absolute;width:0px;height:0px;"
             xmlns="http://www.w3.org/2000/svg"
