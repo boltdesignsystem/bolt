@@ -72,7 +72,6 @@ class BoltInteractivePathways extends withLitContext() {
 
   connectedCallback() {
     super.connectedCallback();
-    this.style.opacity = 1;
 
     if (window.IntersectionObserver) {
       const observer = new IntersectionObserver(
@@ -180,6 +179,8 @@ class BoltInteractivePathways extends withLitContext() {
   }
 
   render() {
+    this.style.opacity = 1;
+
     const props = this.validateProps(this.props);
 
     const classes = cx('c-bolt-interactive-pathways', {
