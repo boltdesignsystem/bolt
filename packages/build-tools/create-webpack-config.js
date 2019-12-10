@@ -228,11 +228,13 @@ async function createWebpackConfig(buildConfig) {
       loader: 'sass-loader',
       options: {
         sourceMap: config.sourceMaps,
-        importer: [npmSass.importer],
-        functions: sassExportData,
-        precision: 3,
-        data: globalSassData.join('\n'),
-        outputStyle: 'nested',
+        prependData: globalSassData.join('\n'),
+        sassOptions: {
+          outputStyle: 'nested',
+          importer: [npmSass.importer],
+          functions: sassExportData,
+          precision: 3,
+        },
       },
     },
   ];
@@ -263,8 +265,9 @@ async function createWebpackConfig(buildConfig) {
         '.jpg',
       ],
       alias: {
-        react: 'preact-compat',
-        'react-dom': 'preact-compat',
+        react: 'preact/compat',
+        'react-dom/test-utils': 'preact/test-utils',
+        'react-dom': 'preact/compat',
       },
     },
     module: {

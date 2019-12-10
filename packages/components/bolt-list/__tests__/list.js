@@ -111,4 +111,17 @@ describe('<bolt-list> Component', () => {
       expect(results.html).toMatchSnapshot();
     });
   });
+
+  test('Bolt List: items accept renderable objects as content', async () => {
+    const results = await renderString(`
+      {% set item_1 = create_attribute({'test-attr': 'test-value'}) %}
+
+      {% include "@bolt-components-list/list.twig" with {
+        items: [
+          item_1
+         ]
+      } only %}
+    `);
+    expect(results.html).toContain('test-attr="test-value"');
+  });
 });

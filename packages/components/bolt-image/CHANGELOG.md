@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.12.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/compare/v2.11.4...v2.12.0) (2019-11-26)
+
+
+### Bug Fixes
+
+* address prettier issues ([7060025](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/commit/7060025))
+* call super in the firstUpdated lifecycle event ([35e2cdc](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/commit/35e2cdc))
+* make sure all Boolean props are reflected as HTML attributes. Fix to address background images not getting the right classes with the `cover` prop has been added ([815f041](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/commit/815f041))
+* update lazysizes config to catch instances (IE 11) where images haven't finished rendering and lazysizes initializes ([bd540f9](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/commit/bd540f9))
+* workaround to address lazyloaded SVG images not loading in IE 11 ([928d1ad](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/commit/928d1ad))
+
+
+
+
+
 ## [2.11.2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/compare/v2.11.1...v2.11.2) (2019-11-14)
 
 **Note:** Version bump only for package @bolt/components-image
