@@ -285,14 +285,14 @@
             "dist": {
                 "type": "path",
                 "url": "../packages/php/twig-renderer",
-                "reference": "5803a44db8f7725565ad402df9b4f0b43520d85f",
+                "reference": "4b44a500f12fb7161a5f4e093fe8b7c76de82d47",
                 "shasum": null
             },
             "require": {
                 "bolt-design-system/core-php": "*",
                 "bolt-design-system/drupal-twig-extensions": "*",
                 "symfony/finder": "*",
-                "twig/twig": "1.37.1",
+                "twig/twig": "^1.42.2",
                 "webmozart/path-util": "*"
             },
             "type": "library",
@@ -934,7 +934,7 @@
             "version": "dev-develop",
             "source": {
                 "type": "git",
-                "url": "git@github.com:boltdesignsystem/patternlab-php-core.git",
+                "url": "https://github.com/boltdesignsystem/patternlab-php-core.git",
                 "reference": "41f32e4ee68e0c3a110f1746fbd8932a16d17c2d"
             },
             "dist": {
@@ -1300,12 +1300,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/debug.git",
-                "reference": "b8600a1d7d20b0e80906398bb1f50612fa074a8e"
+                "reference": "46447ad34330922e811e37633b9b8fe32f3606cb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/debug/zipball/b8600a1d7d20b0e80906398bb1f50612fa074a8e",
-                "reference": "b8600a1d7d20b0e80906398bb1f50612fa074a8e",
+                "url": "https://api.github.com/repos/symfony/debug/zipball/46447ad34330922e811e37633b9b8fe32f3606cb",
+                "reference": "46447ad34330922e811e37633b9b8fe32f3606cb",
                 "shasum": ""
             },
             "require": {
@@ -1348,7 +1348,7 @@
             ],
             "description": "Symfony Debug Component",
             "homepage": "https://symfony.com",
-            "time": "2019-11-28T13:33:56+00:00"
+            "time": "2019-12-10T10:48:09+00:00"
         },
         {
             "name": "symfony/event-dispatcher",
@@ -1684,12 +1684,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "1b78a23cf919e943c4730f27869bfe9b7def0e06"
+                "reference": "44b1f27257b05a34c4b0e3405a236fb67eb8b2db"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/1b78a23cf919e943c4730f27869bfe9b7def0e06",
-                "reference": "1b78a23cf919e943c4730f27869bfe9b7def0e06",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/44b1f27257b05a34c4b0e3405a236fb67eb8b2db",
+                "reference": "44b1f27257b05a34c4b0e3405a236fb67eb8b2db",
                 "shasum": ""
             },
             "require": {
@@ -1735,7 +1735,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2019-12-04T11:33:46+00:00"
+            "time": "2019-12-10T08:51:28+00:00"
         },
         {
             "name": "tooleks/php-avg-color-picker",
@@ -1791,31 +1791,30 @@
         },
         {
             "name": "twig/twig",
-            "version": "v1.37.1",
+            "version": "1.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "66be9366c76cbf23e82e7171d47cbfa54a057a62"
+                "reference": "335dcad4b00c6ff1aa7da6409fc6d5ab5d3d9d46"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/66be9366c76cbf23e82e7171d47cbfa54a057a62",
-                "reference": "66be9366c76cbf23e82e7171d47cbfa54a057a62",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/335dcad4b00c6ff1aa7da6409fc6d5ab5d3d9d46",
+                "reference": "335dcad4b00c6ff1aa7da6409fc6d5ab5d3d9d46",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.4.0",
+                "php": ">=5.5.0",
                 "symfony/polyfill-ctype": "^1.8"
             },
             "require-dev": {
                 "psr/container": "^1.0",
-                "symfony/debug": "^2.7",
-                "symfony/phpunit-bridge": "^3.4.19|^4.1.8"
+                "symfony/phpunit-bridge": "^4.4|^5.0"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.37-dev"
+                    "dev-master": "1.42-dev"
                 }
             },
             "autoload": {
@@ -1838,14 +1837,14 @@
                     "role": "Lead Developer"
                 },
                 {
-                    "name": "Armin Ronacher",
-                    "email": "armin.ronacher@active-4.com",
-                    "role": "Project Founder"
-                },
-                {
                     "name": "Twig Team",
                     "homepage": "https://twig.symfony.com/contributors",
                     "role": "Contributors"
+                },
+                {
+                    "name": "Armin Ronacher",
+                    "email": "armin.ronacher@active-4.com",
+                    "role": "Project Founder"
                 }
             ],
             "description": "Twig, the flexible, fast, and secure template language for PHP",
@@ -1853,7 +1852,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2019-01-14T14:59:29+00:00"
+            "time": "2019-12-09T16:35:58+00:00"
         },
         {
             "name": "webmozart/assert",
