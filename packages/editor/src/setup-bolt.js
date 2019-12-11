@@ -717,7 +717,7 @@ export function setupBolt(editor) {
     extend: 'link',
     registerBlock: true,
     draggable: true,
-    propsToTraits: ['display', 'valign', 'url', 'isHeadline'],
+    propsToTraits: ['display', 'url', 'isHeadline'],
     slots: {
       default: true,
     },
