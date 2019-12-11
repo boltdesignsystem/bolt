@@ -1,7 +1,7 @@
 {% extends "@pl/_default-page-template.twig" %}
 
 {% block global_header %}
-  {% include "@bolt/page-header.twig" %}
+  {% include "@bolt/page-header.twig" with { hideGlobalSearch: true } %}
 {% endblock %}
 
 
