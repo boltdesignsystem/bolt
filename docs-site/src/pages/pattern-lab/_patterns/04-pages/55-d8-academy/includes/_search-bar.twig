@@ -1,0 +1,27 @@
+{% set content %}
+  {% grid "o-bolt-grid o-bolt-grid--center" %}
+    {% cell "u-bolt-width-12/12 u-bolt-width-10/12@large" %}
+      {% include "@bolt-components-form/form.twig" with {
+        children: include("@bolt-components-typeahead/typeahead.twig", {
+          attributes: {
+            class: [
+              "js-typeahead-hook--exact-result"
+            ]
+          },
+          max_results: 5,
+        }),
+        attributes: {
+          action: "https://www.pega.com/search",
+          target: "_blank",
+          method: "GET"
+        }
+      } %}
+    {% endcell %}
+  {% endgrid %}
+{% endset %}
+
+{% include "@bolt-components-band/band.twig" with {
+  theme: "dark",
+  size: "xsmall",
+  content: content
+} only %}
