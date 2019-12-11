@@ -6,17 +6,6 @@
 {% endset %}
 
 {% set children %}
-  {# Search #}
-  {% include "@pl/10-form-element-demo-input-element.twig" with {
-    "title": "Search",
-    "inputAttributes": {
-      "placeholder": "Search Pega Academy",
-      "type": "search"
-    },
-    "labelDisplayType": "floating",
-    "descriptionText": search_text
-  } only %}
-
   {# Sort By #}
   {% include "@pl/40-form-element-demo-select.twig" with {
     "title": "Sort by",

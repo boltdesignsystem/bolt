@@ -2,6 +2,17 @@
 
 {% block headline %}
   {% include "@bolt-components-headline/headline.twig" with {
+    url: "#",
+    text: "Main Search",
+    size: "xsmall",
+    transform: "uppercase",
+    icon: {
+      name: "arrow-left",
+      position: "before",
+    }
+  } only %}
+
+  {% include "@bolt-components-headline/headline.twig" with {
     size: "xxlarge",
     text: "Archived Search Results"
   } only %}

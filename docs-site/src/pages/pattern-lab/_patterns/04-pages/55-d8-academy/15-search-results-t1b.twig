@@ -7,6 +7,9 @@
 
 {% block main_content %}
 
+  {# Search Bar #}
+  {% include "@academy/includes/_search-bar.twig" %}
+
   {# Hero #}
   {% include "@academy/includes/_hero.twig" %}
 
@@ -31,7 +34,7 @@
 
   {% include "@bolt-components-band/band.twig" with {
     theme: "light",
-    size: "medium",
+    size: "small",
     content: content,
   } only %}
 
