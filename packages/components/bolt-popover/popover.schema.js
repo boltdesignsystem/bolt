@@ -3,8 +3,7 @@
 module.exports = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'Popover',
-  description:
-    'A small overlay that opens on demand.',
+  description: 'A small overlay that opens on demand.',
   type: 'object',
   properties: {
     attributes: {
@@ -22,8 +21,23 @@ module.exports = {
     },
     placement: {
       type: 'string',
-      description: 'Sets the preferred placement of the popover. The actual placement of the popover will be automatically adjusted based on the space available on screen.',
-      enum: ['auto', 'top-left', 'top', 'top-right', 'left-top', 'left', 'left-bottom', 'right-top', 'right', 'right-bottom', 'bottom-left', 'bottom', 'bottom-right'],
+      description:
+        'Sets the preferred placement of the popover. The actual placement of the popover will be automatically adjusted based on the space available on screen.',
+      enum: [
+        'auto',
+        'top-left',
+        'top',
+        'top-right',
+        'left-top',
+        'left',
+        'left-bottom',
+        'right-top',
+        'right',
+        'right-bottom',
+        'bottom-left',
+        'bottom',
+        'bottom-right',
+      ],
       default: 'bottom-left',
     },
     spacing: {
@@ -34,7 +48,8 @@ module.exports = {
     },
     nowrap: {
       type: 'boolean',
-      description: 'Prevents the text in the content of the popover to wrap to a second line.',
+      description:
+        'Prevents the text in the content of the popover to wrap to a second line.',
     },
   },
 };
