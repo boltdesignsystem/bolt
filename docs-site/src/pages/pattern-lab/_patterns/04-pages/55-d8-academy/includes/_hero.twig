@@ -1,40 +1,23 @@
+{% set background = background|default({
+  opacity: "light",
+  fill: "gradient",
+  contentItems: [
+    {
+      pattern: "image",
+      src: "/images/content/backgrounds/background-night-sky.jpg",
+    },
+  ]
+}) %}
+
 {% set content %}
   {% grid "o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--matrix" %}
     {% cell "u-bolt-width-12/12 u-bolt-width-7/12@medium" %}
       {% block headline %}
-        {% include "@bolt-components-headline/headline.twig" with {
-          size: "xxxlarge",
-          text: "Search Results"
-        } only %}
       {% endblock %}
     {% endcell %}
     {% cell "u-bolt-width-12/12 u-bolt-width-5/12@medium o-bolt-grid--right" %}
-      {% grid "o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--matrix o-bolt-grid--small" %}
-        {% cell "u-bolt-width-12/12 u-bolt-width-6/12@medium" %}
-          {% include "@bolt-components-headline/text.twig" with {
-            size: "large",
-            text: "Looking for instructor-led training?",
-            attributes: {
-              class: "u-bolt-margin-bottom-none",
-            }
-          } only %}
-        {% endcell %}
-        {% cell "u-bolt-width-12/12 u-bolt-width-6/12@medium" %}
-          {% include "@bolt-components-button/button.twig" with {
-            text: "View Class Schedule",
-            style: "secondary",
-            border_radius: "full",
-            style: "primary"
-          } only %}
-        {% endcell %}
-      {% endgrid %}
-      {% include "@bolt-components-list/list.twig" with {
-        display: "flex",
-        items: [
-          description,
-          button,
-        ]
-      } only %}
+      {% block cta %}
+      {% endblock %}
     {% endcell %}
   {% endgrid %}
 {% endset %}
@@ -43,14 +26,5 @@
   theme: "xdark",
   size: "small",
   content: content,
-  background: {
-    opacity: "light",
-    fill: "gradient",
-    contentItems: [
-      {
-        pattern: "image",
-        src: "/images/content/backgrounds/background-night-sky.jpg",
-      },
-    ]
-  },
+  background: background
 } only %}
