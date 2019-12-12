@@ -1,0 +1,236 @@
+/* ------------------------------------ *\
+   Popover
+\* ------------------------------------ */
+
+@import '@bolt/core';
+
+// Component variables
+$bolt-popover-border-width: $bolt-border-width;
+$bolt-popover-border-style: $bolt-border-style;
+$bolt-popover-border-color: bolt-theme(text, 0.15);
+
+@mixin bolt-popover-bubble-tip-point-to($where) {
+  $radius: bolt-border-radius(large);
+  $directions: top-left, top-right, bottom-right, bottom-left;
+
+  @each $direction in $directions {
+    @if $direction == $where {
+      border-#{$direction}-radius: 0;
+    }
+
+    @else {
+      border-#{$direction}-radius: $radius;
+    }
+  }
+}
+
+// Register Custom Block Element
+@include bolt-repeat-rule(('bolt-popover', ':host')) {
+  display: inline;
+}
+
+.c-bolt-popover {
+  display: inline-flex;
+  position: relative;
+}
+
+.c-bolt-popover__content {
+  @include bolt-margin(0);
+  @include bolt-padding(0);
+  @include bolt-font-family(body);
+  @include bolt-font-size(xsmall);
+  @include bolt-font-weight(regular);
+
+  display: none;
+  position: absolute;
+  transform: translate3d(0, #{bolt-spacing(xxsmall)}, 0);
+  z-index: bolt-z-index(popover);
+  min-width: 200px;
+  overflow: hidden;
+  color: bolt-theme(text);
+  border-radius: bolt-border-radius(small);
+  border-width: $bolt-popover-border-width;
+  border-style: $bolt-popover-border-style;
+  border-color: $bolt-popover-border-color;
+  box-shadow: bolt-shadow('level-20');
+  background-color: bolt-theme(background);
+
+  @at-root .c-bolt-popover.is-expanded & {
+    display: block;
+  }
+
+  @at-root .c-bolt-popover--nowrap & {
+    min-width: auto;
+    white-space: nowrap;
+  }
+
+  @at-root .c-bolt-popover--top-right & {
+    @include bolt-popover-bubble-tip-point-to(bottom-right);
+    right: 0;
+    bottom: 100%;
+    transform: translate3d(0, -#{bolt-spacing(xxsmall)}, 0);
+  }
+
+  @at-root .c-bolt-popover--top & {
+    @include bolt-popover-bubble-tip-point-to(null);
+    bottom: 100%;
+    left: 50%;
+    transform: translate3d(-50%, -#{bolt-spacing(xxsmall)}, 0);
+  }
+
+  @at-root .c-bolt-popover--top-left & {
+    @include bolt-popover-bubble-tip-point-to(bottom-left);
+    bottom: 100%;
+    left: 0;
+    transform: translate3d(0, -#{bolt-spacing(xxsmall)}, 0);
+  }
+
+  @at-root .c-bolt-popover--left-top & {
+    @include bolt-popover-bubble-tip-point-to(top-right);
+    top: 0;
+    right: 100%;
+    transform: translate3d(-#{bolt-spacing(xxsmall)}, 0, 0);
+  }
+
+  @at-root .c-bolt-popover--left & {
+    @include bolt-popover-bubble-tip-point-to(null);
+    top: 50%;
+    right: 100%;
+    transform: translate3d(-#{bolt-spacing(xxsmall)}, -50%, 0);
+  }
+
+  @at-root .c-bolt-popover--left-bottom & {
+    @include bolt-popover-bubble-tip-point-to(bottom-right);
+    right: 100%;
+    bottom: 0;
+    transform: translate3d(-#{bolt-spacing(xxsmall)}, 0, 0);
+  }
+
+  @at-root .c-bolt-popover--right-top & {
+    @include bolt-popover-bubble-tip-point-to(top-left);
+    top: 0;
+    left: 100%;
+    transform: translate3d(#{bolt-spacing(xxsmall)}, 0, 0);
+  }
+
+  @at-root .c-bolt-popover--right & {
+    @include bolt-popover-bubble-tip-point-to(null);
+    top: 50%;
+    left: 100%;
+    transform: translate3d(#{bolt-spacing(xxsmall)}, -50%, 0);
+  }
+
+  @at-root .c-bolt-popover--right-bottom & {
+    @include bolt-popover-bubble-tip-point-to(bottom-left);
+    bottom: 0;
+    left: 100%;
+    transform: translate3d(#{bolt-spacing(xxsmall)}, 0, 0);
+  }
+
+  @at-root .c-bolt-popover--bottom-right & {
+    @include bolt-popover-bubble-tip-point-to(top-right);
+    top: 100%;
+    right: 0;
+    transform: translate3d(0, #{bolt-spacing(xxsmall)}, 0);
+  }
+
+  @at-root .c-bolt-popover--bottom & {
+    @include bolt-popover-bubble-tip-point-to(null);
+    top: 100%;
+    left: 50%;
+    transform: translate3d(-50%, #{bolt-spacing(xxsmall)}, 0);
+  }
+
+  @at-root .c-bolt-popover--bottom-left & {
+    @include bolt-popover-bubble-tip-point-to(top-left);
+    top: 100%;
+    left: 0;
+    transform: translate3d(0, #{bolt-spacing(xxsmall)}, 0);
+  }
+}
+
+// Spacing options
+@each $spacing-value in $bolt-spacing-values {
+  $spacing-value-name: nth($spacing-value, 1);
+
+  .c-bolt-popover--spacing-#{$spacing-value-name} {
+    .c-bolt-popover__content {
+      @include bolt-padding(#{$spacing-value-name});
+    }
+  }
+}
+
+
+
+
+// POC code, remove later.
+.c-bolt-menu-item {
+  @include bolt-padding(small, squished);
+  @include bolt-font-family(body);
+  @include bolt-font-size(xsmall);
+  @include bolt-font-weight(regular);
+
+  display: block;
+  position: relative;
+  transform: translate3d(0, 0, 0);
+  color: bolt-theme(text);
+  transition: background-color $bolt-transition;
+
+  &:before,
+  &:after {
+    content: '';
+    display: block;
+    position: absolute;
+    z-index: 0;
+    user-select: none;
+  }
+
+  &:before {
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0);
+    width: 0;
+    height: 100%;
+    border-radius: bolt-border-radius(full);
+    background-color: bolt-theme(link, 0.05);
+    transition: width $bolt-transition, border-radius $bolt-transition;
+  }
+
+  &:after {
+    top: 50%;
+    bottom: 0;
+    left: 0;
+    transform: translate3d(0, -50%, 0);
+    width: 3px;
+    height: 0;
+    border-radius: bolt-border-radius(small);
+    background-color: bolt-color(teal);
+    transition: height $bolt-transition;
+  }
+
+  @at-root bolt-trigger:hover & {
+    color: bolt-theme(link);
+
+    &:before {
+      width: 100%;
+      border-radius: 0;
+    }
+  }
+
+  @at-root bolt-trigger:active & {
+    background-color: bolt-theme(link, 0.1);
+  }
+
+  @at-root bolt-trigger:focus & {
+    color: bolt-theme(link);
+
+    &:before {
+      width: 100%;
+      border-radius: 0;
+    }
+
+    &:after {
+      height: 40%;
+    }
+  }
+}

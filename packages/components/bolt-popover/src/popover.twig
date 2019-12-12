@@ -1,0 +1,71 @@
+{% set schema = bolt.data.components["@bolt-components-popover"].schema %}
+
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(schema, _self) | raw }}
+{% endif %}
+
+{# Variables #}
+{% set base_class = "c-bolt-popover" %}
+{% set this = init(schema) %}
+{% set inner_attributes = create_attribute({}) %}
+
+{# Array of classes based on the defined + default props #}
+{% set classes = [
+  base_class,
+  this.data.placement.value != "auto" ? base_class ~ "--" ~ this.data.placement.value : "",
+  this.data.spacing.value != "none" ? base_class ~ "--spacing-" ~ this.data.spacing.value : "",
+  this.data.nowrap.value ? base_class ~ "--nowrap" : "",
+  "is-expanded",
+] %}
+
+{#
+  Sort classes passed in via attributes into two groups:
+  1. Those that should be applied to the inner tag (namely, "is-" and "has-" classes)
+  2. Those that should be applied to the outer custom element (everything else EXCEPT c-bolt-* classes, which should never be passed in via attributes)
+#}
+{% set outer_classes = [] %}
+{% set inner_classes = classes %}
+
+{% for class in this.props.class %}
+  {% if class starts with "is-" or class starts with "has-" %}
+    {% set inner_classes = inner_classes|merge([class]) %}
+  {% elseif class starts with "c-bolt-" == false %}
+    {% set outer_classes = outer_classes|merge([class]) %}
+  {% endif %}
+{% endfor %}
+
+<bolt-popover
+  {% if outer_classes %} class="{{ outer_classes|join(' ') }}" {% endif %}
+  {{ this.props|without("content")|without("class") }}
+  >
+  <span
+    {% if inner_classes %} class="{{ inner_classes|join(' ') }}" {% endif %}
+  >
+    {% if trigger %}
+      {# Custom Trigger #}
+      {{ trigger }}
+    {% elseif button %}
+      {# Predefined Trigger: button | link | trigger #}
+      {# aria and role attributes should be built-in #}
+      {# aria-haspopup is only for true menu (popover content is a list of actions) #}
+      {# aria-expanded is for indicating if popover content is visible or not #}
+      {# {% include "@bolt-components-button/button.twig" with {
+        text: button.text,
+        icon: {
+          name: button.icon.name,
+          position: button.icon.position,
+        },
+        attributes: {
+          "aria-haspopup": menu ? true,
+          "aria-expanded": true,
+          role: "button",
+        }
+      } only %} #}
+    {% endif %}
+    <span class="{{ "#{base_class}__content" }}">
+      {% if content %}
+        {{ content }}
+      {% endif %}
+    </span>
+  </span>
+</bolt-popover>

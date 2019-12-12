@@ -120,6 +120,7 @@ const config = {
       '@bolt/components-page-footer',
       '@bolt/components-page-header',
       '@bolt/components-pagination',
+      '@bolt/components-popover',
       '@bolt/components-share',
       '@bolt/components-search-filter',
       '@bolt/components-site',
