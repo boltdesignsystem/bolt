@@ -64,16 +64,7 @@
     {% endif %}
     <span class="{{ "#{base_class}__content" }}">
       {% if content %}
-        {# Custom Content #}
         {{ content }}
-      {% elseif menu %}
-        {# Predefined Menu #}
-        {# Role attribute should be built-in for both menu and menu items #}
-        {# {% include "@bolt-components-menu/menu.twig" with {
-          type: "action",
-          separator: "solid",
-          items: menu_items,
-        } only %} #}
       {% endif %}
     </span>
   </span>
