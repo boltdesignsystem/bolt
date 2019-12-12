@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.11.5](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/compare/v2.11.4...v2.11.5) (2019-12-12)
+
+
+### Features
+
+* add 7 new icons needed for upcoming site launches ([228d55b](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/commit/228d55b))
+
+
+
+
+
 ## [2.11.2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/compare/v2.11.1...v2.11.2) (2019-11-14)
 
 **Note:** Version bump only for package @bolt/components-icons
