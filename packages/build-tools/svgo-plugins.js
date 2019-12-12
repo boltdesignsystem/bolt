@@ -74,7 +74,7 @@ module.exports = [
   {
     cleanupNumericValues: {
       floatPrecision: 0,
-    }
+    },
   },
   {
     moveElemsAttrsToGroup: true,
