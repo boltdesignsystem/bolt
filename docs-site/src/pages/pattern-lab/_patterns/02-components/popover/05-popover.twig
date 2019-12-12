@@ -14,39 +14,25 @@
     }
   } only %}
 {% endset %}
-{% set menu_item_1 %}
-  <bolt-trigger role="menuitem" display="block" cursor="pointer" no-outline>
-    <div class="c-bolt-menu-item">
-      Additional action 1
-    </div>
-  </bolt-trigger>
-{% endset %}
-{% set menu_item_2 %}
-  <bolt-trigger role="menuitem" display="block" cursor="pointer" no-outline>
-    <div class="c-bolt-menu-item">
-      Additional action 2
-    </div>
-  </bolt-trigger>
-{% endset %}
-{% set menu_item_3 %}
-  <bolt-trigger role="menuitem" display="block" cursor="pointer" no-outline>
-    <div class="c-bolt-menu-item">
-      Additional action 3
-    </div>
-  </bolt-trigger>
-{% endset %}
-{% set menu_list %}
-  {% include "@bolt-components-list/list.twig" with {
-    spacing: "none",
-    separator: "solid",
+{% set menu %}
+  {% include "@bolt-components-menu/menu.twig" with {
+    title: "Menu Options",
     items: [
-      menu_item_1,
-      menu_item_2,
-      menu_item_3,
-    ],
-    attributes: {
-      role: "menu"
-    },
+      {
+        content: "Menu item 1 is a button",
+        attributes: {
+          "attribute-name": "function",
+        },
+      },
+      {
+        content: "Menu item 2 is a link",
+        url: "https://pega.com",
+        attributes: {
+          "on-click": "show",
+          "on-click-target": "js-target",
+        },
+      },
+    ]
   } only %}
 {% endset %}
 {% set popover_left %}
@@ -56,7 +42,7 @@
         nowrap: true,
         placement: "left-top",
         trigger: trigger,
-        content: menu_list,
+        content: menu,
       } only %}
     </bolt-list-item>
     <bolt-list-item>
@@ -64,7 +50,7 @@
         nowrap: true,
         placement: "left",
         trigger: trigger,
-        content: menu_list,
+        content: menu,
       } only %}
     </bolt-list-item>
     <bolt-list-item>
@@ -72,7 +58,7 @@
         nowrap: true,
         placement: "left-bottom",
         trigger: trigger,
-        content: menu_list,
+        content: menu,
       } only %}
     </bolt-list-item>
   </bolt-list>
@@ -85,7 +71,7 @@
           nowrap: true,
           placement: "right-top",
           trigger: trigger,
-          content: menu_list,
+          content: menu,
         } only %}
       </div>
     </bolt-list-item>
@@ -95,7 +81,7 @@
           nowrap: true,
           placement: "right",
           trigger: trigger,
-          content: menu_list,
+          content: menu,
         } only %}
       </div>
     </bolt-list-item>
@@ -105,7 +91,7 @@
           nowrap: true,
           placement: "right-bottom",
           trigger: trigger,
-          content: menu_list,
+          content: menu,
         } only %}
       </div>
     </bolt-list-item>
@@ -119,7 +105,7 @@
           nowrap: true,
           placement: "top-left",
           trigger: trigger,
-          content: menu_list,
+          content: menu,
         } only %}
       </div>
     </bolt-list-item>
@@ -129,7 +115,7 @@
           nowrap: true,
           placement: "top",
           trigger: trigger,
-          content: menu_list,
+          content: menu,
         } only %}
       </div>
     </bolt-list-item>
@@ -139,7 +125,7 @@
           nowrap: true,
           placement: "top-right",
           trigger: trigger,
-          content: menu_list,
+          content: menu,
         } only %}
       </div>
     </bolt-list-item>
@@ -153,7 +139,7 @@
           nowrap: true,
           placement: "bottom-left",
           trigger: trigger,
-          content: menu_list,
+          content: menu,
         } only %}
       </div>
     </bolt-list-item>
@@ -163,7 +149,7 @@
           nowrap: true,
           placement: "bottom",
           trigger: trigger,
-          content: menu_list,
+          content: menu,
         } only %}
       </div>
     </bolt-list-item>
@@ -173,7 +159,7 @@
           nowrap: true,
           placement: "bottom-right",
           trigger: trigger,
-          content: menu_list,
+          content: menu,
         } only %}
       </div>
     </bolt-list-item>
