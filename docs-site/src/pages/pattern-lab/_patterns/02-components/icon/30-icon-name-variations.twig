@@ -2,12 +2,11 @@
 
 {# loop through icons referenced in schema #}
 <ul class="bolt-icon-list-demo">
-{% for name in schema.properties.name.enum %}
+{% for name in schema.properties.name.anyOf[0].enum %}
   <li>
     {% include "@bolt-components-icon/icon.twig" with {
       name: name,
-      background: "circle",
-      size: "large",
+      size: "xlarge",
     }%}
     <br />{{ name }}
   </li>
