@@ -7,6 +7,7 @@
 {# Variables #}
 {% set base_class = "c-bolt-popover" %}
 {% set this = init(schema) %}
+{% set uuid = this.data.uuid|default(bolt.data.config.env == "test" ? "12345" : random()) %}
 {% set inner_attributes = create_attribute({}) %}
 
 {# Array of classes based on the defined + default props #}
@@ -37,32 +38,27 @@
 <bolt-popover
   {% if outer_classes %} class="{{ outer_classes|join(' ') }}" {% endif %}
   {{ this.props|without("content")|without("class") }}
+  uuid="{{ uuid }}"
   >
   <span
     {% if inner_classes %} class="{{ inner_classes|join(' ') }}" {% endif %}
   >
     {% if trigger %}
-      {# Custom Trigger #}
       {{ trigger }}
-    {% elseif button %}
-      {# Predefined Trigger: button | link | trigger #}
-      {# aria and role attributes should be built-in #}
-      {# aria-haspopup is only for true menu (popover content is a list of actions) #}
+      {# Accepted Trigger: button | trigger #}
+      {# aria and role attributes should be passed to bolt-button or bolt-trigger #}
+      {# aria-haspopup is only for menu (popover content is a group of actions) #}
+      {# aria-controls is only for non-menu (popover content is a nav or simple content with links) #}
       {# aria-expanded is for indicating if popover content is visible or not #}
-      {# {% include "@bolt-components-button/button.twig" with {
-        text: button.text,
-        icon: {
-          name: button.icon.name,
-          position: button.icon.position,
-        },
+      {# {% include "@bolt-components-trigger/trigger.twig" with {
         attributes: {
           "aria-haspopup": menu ? true,
-          "aria-expanded": true,
-          role: "button",
+          "aria-controls": not menu ? uuid,
+          "aria-expanded": true|false,
         }
       } only %} #}
     {% endif %}
-    <span class="{{ "#{base_class}__content" }}">
+    <span class="{{ "#{base_class}__content" }}" id="{{ uuid }}">
       {% if content %}
         {{ content }}
       {% endif %}

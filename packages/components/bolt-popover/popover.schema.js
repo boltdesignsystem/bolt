@@ -1,4 +1,5 @@
 // const triggerSchema = require('@bolt/components-trigger/trigger.schema');
+// const buttonSchema = require('@bolt/components-button/button.schema');
 
 module.exports = {
   $schema: 'http://json-schema.org/draft-04/schema#',
@@ -12,7 +13,8 @@ module.exports = {
         'A Drupal attributes object. Applies extra HTML attributes to the outer &lt;bolt-menu&gt; tag.',
     },
     trigger: {
-      type: 'any',
+      // Accepted Trigger: button | trigger
+      // type: 'object',
       description: 'Renders the trigger of the popover.',
     },
     content: {
@@ -50,6 +52,10 @@ module.exports = {
       type: 'boolean',
       description:
         'Prevents the text in the content of the popover to wrap to a second line.',
+    },
+    uuid: {
+      type: 'string',
+      description: 'Unique ID for popover, randomly generated if not provided.',
     },
   },
 };
