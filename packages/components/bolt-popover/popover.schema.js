@@ -55,8 +55,7 @@ module.exports = {
     },
     uuid: {
       type: 'string',
-      description:
-        'Unique ID for popover, randomly generated if not provided.',
+      description: 'Unique ID for popover, randomly generated if not provided.',
     },
   },
 };
