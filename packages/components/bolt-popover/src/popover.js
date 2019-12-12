@@ -18,6 +18,9 @@
 //     return {
 //       spacing: String,
 //       placement: String,
+//       nowrap: Boolean,
+//       expanded: Boolean, // @to-do: Expanded indicates if popover content is expanded
+//       uuid: String, // @to-do: uuid to be assigned to the id of popover content
 //       noCssVars: {
 //         type: Boolean,
 //         attribute: 'no-css-vars',
@@ -37,19 +40,27 @@
 //   render() {
 //     const spacing = this.spacing || schema.properties.spacing.default;
 //     const placement = this.placement || schema.properties.placement.default;
+//     const nowrap = this.nowrap || schema.properties.nowrap.default;
 
 //     const classes = cx('c-bolt-popover', {
 //       [`c-bolt-popover--spacing-${spacing}`]: spacing,
 //       [`c-bolt-popover--${placement}`]: placement,
+//       [`c-bolt-popover--nowrap`]: nowrap,
+//       [`is-expanded`]: expanded,
 //     });
 
 //     return html`
-//       <div class="${cx(`c-bolt-popover`)}">
-//         ${this.slotify('trigger')}
-//         <div class="${classes}">
+//       <span class="${classes}">
+//         // @to-do: Trigger slot should accept bolt-button and bolt-trigger; not recommended: button and a tags
+//         // aria and role attributes should be passed to bolt-button or bolt-trigger
+//         // aria-haspopup="true" is only for menu (popover content is a group of actions)
+//         // aria-controls="${uuid}" is only for non-menu (popover content is a nav or simple content with links)
+//         // aria-expanded="${expanded}" is for indicating if popover content is visible or not
+//         // ${this.slotify('trigger')}
+//         <span class="${cx(`c-bolt-popover__content`)}" id="${uuid}">
 //           ${this.slotify('default')}
-//         </div>
-//       </div>
+//         </span>
+//       </span>
 //     `;
 //   }
 // }
