@@ -1,0 +1,33 @@
+{% set content %}
+  {% grid "o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--matrix" %}
+    {# padding-bottom-none required for mobile when cells stack #}
+    {% cell "u-bolt-flex-grow u-bolt-padding-bottom-none" %}
+    {% endcell %}
+    {% cell "u-bolt-flex-shrink" %}
+      {% include "@bolt-components-list/list.twig" with {
+        display: "inline",
+        spacing: "small",
+        items: [
+          include("@bolt-components-button/button.twig", {
+            style: "primary",
+            size: "small",
+            border_radius: "full",
+            text: "My Favorite Training"
+          }),
+          include("@bolt-components-button/button.twig", {
+            style: "primary",
+            size: "small",
+            border_radius: "full",
+            text: "My Completed Training"
+          }),
+        ]
+      } only %}
+    {% endcell %}
+  {% endgrid %}
+{% endset %}
+
+{% include "@bolt-components-band/band.twig" with {
+  theme: "xdark",
+  size: "xsmall",
+  content: content
+} only %}
