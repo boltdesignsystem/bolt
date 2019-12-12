@@ -137,6 +137,8 @@ bolt-icon {
 
 
     &.has-background:not(.has-outline-background) {
+      color: bolt-text-contrast($backgroundColor);
+
       .c-bolt-icon__background-shape {
         opacity: bolt-opacity(100);
         border: 1px solid rgba(bolt-color(gray, dark), .5);
@@ -187,6 +189,14 @@ bolt-icon {
 // retroactively map the names of the new CSS custom property names used to the older names that were previously used for customizing icons
 $primaryColor: var(--bolt-icon-primary-color, var(--bolt-theme-icon, currentColor));
 $secondaryColor: var(--bolt-icon-secondary-color, rgba(var(--bolt-theme-background), 1));
+
+svg [fill="var(--bolt-icon-primary-color)"] {
+  fill: currentColor;
+}
+
+svg [stroke="var(--bolt-icon-primary-color)"] {
+  stroke: currentColor;
+}
 
 @supports(--var: foo){
   svg [fill="var(--bolt-icon-primary-color)"] {
