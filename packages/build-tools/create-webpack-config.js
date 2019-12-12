@@ -17,6 +17,7 @@ const merge = require('webpack-merge');
 const SassDocPlugin = require('@bolt/sassdoc-webpack-plugin');
 const { getConfig } = require('@bolt/build-utils/config-store');
 const { boltWebpackProgress } = require('@bolt/build-utils/webpack-helpers');
+const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
 const {
   webpackStats,
   statsPreset,
@@ -347,7 +348,70 @@ async function createWebpackConfig(buildConfig) {
           ],
         },
         {
-          test: /\.(cur|svg|png|jpg)$/,
+          test: /\.svg$/,
+          oneOf: [
+            {
+              issuer: /\.scss$/,
+              use: [
+                {
+                  loader: 'file-loader',
+                  options: {
+                    name: '[name].[ext]',
+                  },
+                },
+                {
+                  loader: 'svgo-loader',
+                  options: {
+                    plugins: require('./svgo-plugins'),
+                  },
+                },
+              ],
+            },
+            {
+              use: [
+                {
+                  loader: 'babel-loader',
+                  options: {
+                    babelrc: false,
+                    presets: ['@bolt/babel-preset-bolt'],
+                  },
+                },
+                {
+                  loader: 'svg-sprite-loader',
+                  options: {
+                    runtimeGenerator: require.resolve(
+                      './svg-to-icon-component-runtime-generator',
+                    ),
+                    runtimeOptions: {
+                      iconModule: path.join(
+                        path.dirname(require.resolve('@bolt/components-icon')),
+                        '/icon.jsx',
+                      ),
+                    },
+                    extract: true,
+                    spriteFilename: svgPath =>
+                      `bolt-svg-sprite${svgPath.substr(-4)}`,
+                  },
+                },
+                {
+                  loader: '@bolt/file-passthrough-loader',
+                  options: {
+                    name: 'icons/[name].[ext]',
+                  },
+                },
+                '@bolt/svg-transform-loader',
+                {
+                  loader: 'svgo-loader',
+                  options: {
+                    plugins: require('./svgo-plugins'),
+                  },
+                },
+              ],
+            },
+          ],
+        },
+        {
+          test: /\.(cur|png|jpg)$/,
           use: [
             'cache-loader',
             {
@@ -383,6 +447,13 @@ async function createWebpackConfig(buildConfig) {
         : [],
     },
     plugins: [
+      new SpriteLoaderPlugin({
+        plainSprite: true,
+        spriteAttrs: {
+          id: '__SVG_SPRITE_NODE__',
+          style: 'position: absolute; width: 0; height: 0',
+        },
+      }),
       new webpack.ProgressPlugin(boltWebpackProgress), // Ties together the Bolt custom Webpack messages + % complete
       new WriteFilePlugin(),
       new MiniCssExtractPlugin({
