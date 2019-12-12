@@ -98,6 +98,7 @@ bolt-modal:not([ready]) {
 
     .c-bolt-modal__container-header {
       @include bolt-padding(small large small small);
+      flex-shrink: 0; // If header text is missing, this will partially collapse without setting flex-shrink
     }
 
     .c-bolt-modal__container-header--hidden {
@@ -110,10 +111,16 @@ bolt-modal:not([ready]) {
       @include bolt-margin-top(auto);
       @include bolt-margin-bottom(auto);
 
-      flex: 1;
-      height: 100%;
+      flex: auto;
       overflow-y: auto;
       -webkit-overflow-scrolling: touch;
+
+      // This only works in Light DOM, which is fine because we're targeting IE11
+      > .is-first-child {
+        @include bolt-ie11-only {
+          align-items: flex-start;
+        }
+      }
     }
 
     .c-bolt-modal__container-footer {

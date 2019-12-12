@@ -69,6 +69,7 @@ bolt-device-viewer {
 // Image zoom custom element
 bolt-image-zoom {
   display: block; // Required to render magnifying glass properly
+  user-select: none; // prevent accidentally highlighting image with cursor
 }
 
 $bolt-magnifier-size: 350px;
@@ -399,6 +400,7 @@ bolt-image-zoom:hover > .c-bolt-image-zoom__overlay {
 
   background: rgba(0, 0, 0, 0.5);
   will-change: top, left;
+  transition: none; // prevents jank when moving around the magnifier
 
   img {
     object-fit: cover;
