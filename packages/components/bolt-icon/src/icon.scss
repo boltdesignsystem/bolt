@@ -188,6 +188,14 @@ bolt-icon {
 $primaryColor: var(--bolt-icon-primary-color, var(--bolt-theme-icon, currentColor));
 $secondaryColor: var(--bolt-icon-secondary-color, rgba(var(--bolt-theme-background), 1));
 
+svg [fill="var(--bolt-icon-primary-color)"] {
+  fill: currentColor;
+}
+
+svg [stroke="var(--bolt-icon-primary-color)"] {
+  stroke: currentColor;
+}
+
 @supports(--var: foo){
   svg [fill="var(--bolt-icon-primary-color)"] {
     fill: #{$primaryColor};
