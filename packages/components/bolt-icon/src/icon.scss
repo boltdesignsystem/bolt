@@ -137,6 +137,8 @@ bolt-icon {
 
 
     &.has-background:not(.has-outline-background) {
+      color: bolt-text-contrast($backgroundColor);
+
       .c-bolt-icon__background-shape {
         opacity: bolt-opacity(100);
         border: 1px solid rgba(bolt-color(gray, dark), .5);
