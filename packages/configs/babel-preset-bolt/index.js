@@ -12,6 +12,7 @@ const preset = function(api, opts = {}) {
       ],
     ],
     plugins: [
+      '@babel/plugin-proposal-optional-chaining',
       /**
        * 1. Helps with our Web Component Preact renderer
        */
