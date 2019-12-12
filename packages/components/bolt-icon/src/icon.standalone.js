@@ -2,21 +2,24 @@ import {
   colorContrast,
   css,
   define,
-  hasNativeShadowDomSupport,
   props,
   rgb2hex,
   supportsCSSVars,
 } from '@bolt/core/utils';
 import { spacingSizes } from '@bolt/core/data';
-import { h, withPreact } from '@bolt/core/renderers';
-
-import PubSub from 'pubsub-js';
-import * as Icons from '../registry';
+import { withPreact } from '@bolt/core/renderers';
+import { h } from 'preact';
 import styles from './icon.scss';
+import schema from '../icon.schema.json';
+import CustomIcon from './icon.jsx';
 
-const backgroundStyles = ['circle', 'square'];
+const svgIcons = require.context('@bolt/components-icons', true, /\.svg$/);
 
-const colors = ['teal', 'blue'];
+const Icons = svgIcons.keys().reduce((images, path) => {
+  const key = path.substring(path.lastIndexOf('/') + 1, path.lastIndexOf('.'));
+  images[key] = svgIcons(path).default;
+  return images;
+}, {});
 
 @define
 class BoltIcon extends withPreact() {
@@ -27,50 +30,24 @@ class BoltIcon extends withPreact() {
     size: props.string,
     background: props.string,
     color: props.string,
-
     // programatically spell out the contrast color that needs to get used
     contrastColor: props.string,
   };
 
   constructor(self) {
     self = super(self);
-    this.useShadow = hasNativeShadowDomSupport;
+    this.useShadow = false; // required since we are referencing SVG symbols that are inline on the page
     this.useCssVars = supportsCSSVars;
     return self;
   }
 
   connecting() {
-    const elem = this;
-
     this.state = {
-      primaryColor: 'var(--bolt-theme-icon, currentColor)',
-      secondaryColor: 'rgba(var(--bolt-theme-background), 1)',
+      primaryColor:
+        'var(--bolt-icon-primary-color, var(--bolt-theme-icon, currentColor))',
+      secondaryColor:
+        'var(--bolt-icon-secondary-color, rgba(var(--bolt-theme-background), 1))',
     };
-
-    // listen for page changes to decide when colors need to get recalculated
-    if (!this.useCssVars) {
-      const checkIfColorChanged = function(msg, data) {
-        /**
-         * The container with the class change contains this particular icon element so
-         * we should double-check the color contrast values.
-         */
-        if (data.target.contains) {
-          if (data.target.contains(elem)) {
-            const recalculatedSecondaryColor = colorContrast(
-              window.getComputedStyle(elem).getPropertyValue('color'),
-            );
-
-            elem.setAttribute('contrast-color', recalculatedSecondaryColor);
-            elem.state.secondaryColor = recalculatedSecondaryColor;
-          }
-        }
-      };
-
-      const colorObserver = PubSub.subscribe(
-        'component.icon',
-        checkIfColorChanged,
-      );
-    }
 
     if (!this.useCssVars) {
       this.state.primaryColor = 'currentColor';
@@ -81,6 +58,12 @@ class BoltIcon extends withPreact() {
         this.state.secondaryColor = colorContrast(
           rgb2hex(window.getComputedStyle(this).getPropertyValue('color')),
         );
+
+        if (this.style.color) {
+          this.state.secondaryColor = 'currentColor';
+        }
+        this.state.secondaryColor === '#000000' ? (this.isOnLight = true) : '';
+        this.state.secondaryColor === '#FFFFFF' ? (this.isOnDark = true) : '';
       }
     }
   }
@@ -95,72 +78,54 @@ class BoltIcon extends withPreact() {
         ? `c-bolt-icon--${size}`
         : '',
       name ? `c-bolt-icon--${name}` : '',
-      color && colors.includes(color) ? `c-bolt-icon--${color}` : '',
+      background && schema.properties.background.enum.includes(background)
+        ? `has-background`
+        : '',
+      background && schema.properties.background.enum.includes(background)
+        ? `has-${background}-background`
+        : '',
+      color && schema.properties.color.enum.includes(color)
+        ? `c-bolt-icon--${color}`
+        : '',
     );
 
-    const iconClasses = css('c-bolt-icon__icon');
+    const iconClasses = css(
+      'c-bolt-icon__icon',
+      size && spacingSizes[size] && spacingSizes[size] !== ''
+        ? `c-bolt-icon__icon--${size}`
+        : '',
+    );
 
     const backgroundClasses = css(
       'c-bolt-icon__background-shape',
-      background && backgroundStyles.includes(background)
+      background && schema.properties.background.enum.includes(background)
         ? `c-bolt-icon__background-shape--${background}`
         : '',
     );
 
-    const Icon = name;
-    const IconTag = Icons.get(`${Icon}`);
-    const iconSize =
-      size && spacingSizes[size]
-        ? spacingSizes[size].replace('rem', '') * (16 / 2)
-        : spacingSizes.medium.replace('rem', '') * (16 / 2);
+    const DefaultIcon = Icons[`${name}`];
 
     return (
-      <div className={classes}>
-        {this.useShadow && <style>{styles[0][1]}</style>}
-        <IconTag
-          className={iconClasses}
-          size={iconSize}
-          bgColor={primaryColor}
-          fgColor={secondaryColor}
-        />
-        {background && size === 'xlarge' && (
-          <span className={backgroundClasses} />
+      <span className={classes}>
+        {DefaultIcon ? (
+          <DefaultIcon
+            className={iconClasses}
+            bgColor={primaryColor}
+            fgColor={secondaryColor}
+          />
+        ) : (
+          // @ts-ignore
+          <CustomIcon
+            glyph={name}
+            className={iconClasses}
+            bgColor={primaryColor}
+            fgColor={secondaryColor}
+          />
         )}
-      </div>
+        {background && <span className={backgroundClasses} />}
+      </span>
     );
   }
-}
-
-/**
- * If CSS Vars are unsupported, listen for class changes on the page to selectively
- * decide when to check to see if an icon component's color should change.
- */
-const observedElements = [];
-
-// Observe body + children for changes, but only once.
-if (!supportsCSSVars && !observedElements.includes(document.body)) {
-  observedElements.push(document.body);
-
-  const observer = new MutationObserver(mutations => {
-    mutations.forEach(mutation => {
-      if (mutation.attributeName === 'class') {
-        // publish a topic asyncronously
-        PubSub.publish('component.icon', {
-          event: 'color-change',
-          target: mutation.target,
-        });
-      }
-    });
-  });
-
-  // Attach the mutation observer to the body to listen for className changes
-  observer.observe(document.body, {
-    attributes: true,
-    attributeFilter: ['class'],
-    attributeOldValue: false,
-    childList: false,
-    subtree: true,
-  });
 }
 
 export { BoltIcon };
