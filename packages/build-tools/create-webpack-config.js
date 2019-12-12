@@ -306,7 +306,7 @@ async function createWebpackConfig(buildConfig) {
           ],
         },
         {
-          test: /\.(js|tsx|mjs)$/,
+          test: /\.(js|tsx|mjs|jsx)$/,
           exclude: thePath => {
             if (
               thePath.includes('custom-elements-es5-adapter.js') ||
@@ -324,7 +324,6 @@ async function createWebpackConfig(buildConfig) {
             return false;
           },
           use: [
-            'cache-loader',
             {
               loader: 'babel-loader',
               options: {
@@ -337,7 +336,6 @@ async function createWebpackConfig(buildConfig) {
         {
           test: /\.(woff|woff2)$/,
           use: [
-            'cache-loader',
             {
               loader: 'url-loader',
               options: {
@@ -439,6 +437,8 @@ async function createWebpackConfig(buildConfig) {
             new TerserPlugin({
               test: /\.m?js(\?.*)?$/i,
               sourceMap: config.sourceMaps,
+              cache: true,
+              parallel: true,
               terserOptions: {
                 safari10: true,
               },
