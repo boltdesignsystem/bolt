@@ -42,23 +42,18 @@
     {% if inner_classes %} class="{{ inner_classes|join(' ') }}" {% endif %}
   >
     {% if trigger %}
-      {# Custom Trigger #}
       {{ trigger }}
     {% elseif button %}
       {# Predefined Trigger: button | link | trigger #}
       {# aria and role attributes should be built-in #}
-      {# aria-haspopup is only for true menu (popover content is a list of actions) #}
+      {# aria-haspopup is only for menu (popover content is a group of actions) #}
+      {# aria-controls is only for nav (popover content is a list of links) #}
       {# aria-expanded is for indicating if popover content is visible or not #}
       {# {% include "@bolt-components-button/button.twig" with {
-        text: button.text,
-        icon: {
-          name: button.icon.name,
-          position: button.icon.position,
-        },
         attributes: {
           "aria-haspopup": menu ? true,
+          "aria-controls": nav ? true,
           "aria-expanded": true,
-          role: "button",
         }
       } only %} #}
     {% endif %}
