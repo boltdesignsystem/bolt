@@ -236,7 +236,6 @@ async function createWebpackConfig(buildConfig) {
           precision: 3,
           data: globalSassData.join('\n'),
           outputStyle: 'nested',
-          // importer: [npmSass.importer],
         },
       },
     },
