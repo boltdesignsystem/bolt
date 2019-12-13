@@ -36,10 +36,6 @@ $bolt-tooltip-bubble-triangle-width: 8px;
   &--alert &__content {
     color: bolt-color(white);
     background-color: bolt-color(orange);
-
-    slot[name="text"] {
-      color: bolt-color(white);
-    }
   }
 
   &__icon {
@@ -55,7 +51,6 @@ $bolt-tooltip-bubble-triangle-width: 8px;
 
   &__slot {
     &--text {
-      color: bolt-color(black);
       line-height: ($bolt-line-height--xsmall + 0.2);
       text-align: left;
       @include bolt-font-weight(regular);
