@@ -3,6 +3,82 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.13.0](https://github.com/boltdesignsystem/bolt/compare/v2.12.1...v2.13.0) (2019-12-13)
+
+
+### Bug Fixes
+
+* add IE11 fix to long band modal content ([e901881](https://github.com/boltdesignsystem/bolt/commit/e901881))
+* adjust vertical alignment to Navbar ([9d5b40d](https://github.com/boltdesignsystem/bolt/commit/9d5b40d))
+* cherry pick update to @bolt/components-icons from https://github.com/boltdesignsystem/bolt/pull/1602 to pass eslint check ([9624370](https://github.com/boltdesignsystem/bolt/commit/9624370))
+* cleaning code ([7a0a5b2](https://github.com/boltdesignsystem/bolt/commit/7a0a5b2))
+* cleaning code ([a5f8128](https://github.com/boltdesignsystem/bolt/commit/a5f8128))
+* code issues ([136d610](https://github.com/boltdesignsystem/bolt/commit/136d610))
+* emit "ready" event only when interactive pathway is actually ready ([a291eae](https://github.com/boltdesignsystem/bolt/commit/a291eae))
+* fix prettier issue + update eslint config ([9b154e3](https://github.com/boltdesignsystem/bolt/commit/9b154e3))
+* importing sequence ([6a411ab](https://github.com/boltdesignsystem/bolt/commit/6a411ab))
+* inconsistent spacing ([03463b3](https://github.com/boltdesignsystem/bolt/commit/03463b3))
+* linting / syntax error ([a6ea6de](https://github.com/boltdesignsystem/bolt/commit/a6ea6de))
+* minor device viewer bug fixes encountered while working on https://github.com/boltdesignsystem/bolt/pull/1579 ([d51e2bf](https://github.com/boltdesignsystem/bolt/commit/d51e2bf))
+* old script linking ([b0012df](https://github.com/boltdesignsystem/bolt/commit/b0012df))
+* re-adding Preact's Fragment import for Typeahead ([0e097d2](https://github.com/boltdesignsystem/bolt/commit/0e097d2))
+* remove lint issues ([afc0e82](https://github.com/boltdesignsystem/bolt/commit/afc0e82))
+* Remove slot-based CSS selector so color works in IE ([fee836f](https://github.com/boltdesignsystem/bolt/commit/fee836f))
+* revert removing `main` key until other upstream updates are merged down; update .gitignore and .eslintignore rules as temp workaround to failing the build with these updates ([3e49783](https://github.com/boltdesignsystem/bolt/commit/3e49783))
+* update auto config + add temp patch ([db31459](https://github.com/boltdesignsystem/bolt/commit/db31459))
+* update band styles ([72d49db](https://github.com/boltdesignsystem/bolt/commit/72d49db))
+* update configuration to be inline with our master branch ([b5eeb44](https://github.com/boltdesignsystem/bolt/commit/b5eeb44))
+* update continuous deployment script ([48d5c6b](https://github.com/boltdesignsystem/bolt/commit/48d5c6b))
+* update default permissions for Drupal Lab's sites/default folder ([01e79dc](https://github.com/boltdesignsystem/bolt/commit/01e79dc))
+* update mobile modal flex styles to fix band bug, add demo ([2ab5114](https://github.com/boltdesignsystem/bolt/commit/2ab5114))
+* update modal test and snapshot ([55c6c4e](https://github.com/boltdesignsystem/bolt/commit/55c6c4e))
+* Update schema reference in accordion tests ([e09e493](https://github.com/boltdesignsystem/bolt/commit/e09e493))
+* update script on composer.json and package.json ([cd789d4](https://github.com/boltdesignsystem/bolt/commit/cd789d4))
+* update snapshots and test for modal ([df72915](https://github.com/boltdesignsystem/bolt/commit/df72915))
+* update static command ([6528240](https://github.com/boltdesignsystem/bolt/commit/6528240))
+* update travis configuration ([0cb69ac](https://github.com/boltdesignsystem/bolt/commit/0cb69ac))
+* update yarn.lock ([2f2eea2](https://github.com/boltdesignsystem/bolt/commit/2f2eea2))
+* **editor:** remove false error on editor navigation away from saved content ([790f0f4](https://github.com/boltdesignsystem/bolt/commit/790f0f4))
+* **editor:** restore pathways editable traits; fix opacity: 0 ([6a1fa98](https://github.com/boltdesignsystem/bolt/commit/6a1fa98))
+* update snapshots ([85d12e0](https://github.com/boltdesignsystem/bolt/commit/85d12e0))
+* update snapshots and test for modal ([e23f1c3](https://github.com/boltdesignsystem/bolt/commit/e23f1c3))
+* update travis configuration ([4108b20](https://github.com/boltdesignsystem/bolt/commit/4108b20))
+
+
+### Features
+
+* Add commands to serve static drupal-lab content ([d1a97e9](https://github.com/boltdesignsystem/bolt/commit/d1a97e9))
+* add drupal-lab integration server to webpack build ([87ab2e8](https://github.com/boltdesignsystem/bolt/commit/87ab2e8))
+* Add express server for drupal-lab example integration ([3197d6c](https://github.com/boltdesignsystem/bolt/commit/3197d6c))
+* add SQL and Java support to the Code Snippet component ([c5278da](https://github.com/boltdesignsystem/bolt/commit/c5278da))
+* cherry picking the Lighthouse CI-specific updates from https://github.com/boltdesignsystem/bolt/pull/1579 ([a3dd397](https://github.com/boltdesignsystem/bolt/commit/a3dd397))
+* convert Trigger schema to JS ([f4ff54d](https://github.com/boltdesignsystem/bolt/commit/f4ff54d))
+* re-export SVG icons that have visually clipped / masked areas to have the shape physically cut out (vs overlapping) ([174cd87](https://github.com/boltdesignsystem/bolt/commit/174cd87))
+* refactor existing Block List component to render via LitElement vs Preact; workaround to double-rendering quirk flagged ([8835513](https://github.com/boltdesignsystem/bolt/commit/8835513))
+* remove pre-compiled JS files with inline SVG source code ([3723f0d](https://github.com/boltdesignsystem/bolt/commit/3723f0d))
+* **editor:** add ability to remove icon from status-dialogue-bar ([cc58925](https://github.com/boltdesignsystem/bolt/commit/cc58925))
+* **editor:** notice on unload with unsaved changes ([9a163cb](https://github.com/boltdesignsystem/bolt/commit/9a163cb))
+* add drupal-lab integration to travis build and deploy ([6224904](https://github.com/boltdesignsystem/bolt/commit/6224904))
+* add generated static files ([9511415](https://github.com/boltdesignsystem/bolt/commit/9511415))
+* add integrations to default-server and update yarn.lock ([de3106e](https://github.com/boltdesignsystem/bolt/commit/de3106e))
+* Create commands to build, generate, clean and prepare static version of Drupal-Lab ([ba29e96](https://github.com/boltdesignsystem/bolt/commit/ba29e96))
+* create static drupal-lab instance on server ([e582c81](https://github.com/boltdesignsystem/bolt/commit/e582c81))
+* moving drupal-lab scripts to drupal-lab package.json ([9c07ba4](https://github.com/boltdesignsystem/bolt/commit/9c07ba4))
+* removing integration server ([7554ae2](https://github.com/boltdesignsystem/bolt/commit/7554ae2))
+* Update command to run integration server ([dcfdb24](https://github.com/boltdesignsystem/bolt/commit/dcfdb24))
+* Update config files ([90f17e3](https://github.com/boltdesignsystem/bolt/commit/90f17e3))
+* Update configuration for Tome ([8ab682a](https://github.com/boltdesignsystem/bolt/commit/8ab682a))
+* update default server configuration ([ff39534](https://github.com/boltdesignsystem/bolt/commit/ff39534))
+* update routes in now.sh ([6e0f8a1](https://github.com/boltdesignsystem/bolt/commit/6e0f8a1))
+* update routes in now.sh ([aaf8abb](https://github.com/boltdesignsystem/bolt/commit/aaf8abb))
+* update yarn.lock ([5fec3b2](https://github.com/boltdesignsystem/bolt/commit/5fec3b2))
+* upgrade PHP dependencies + update to use v0.13 of the Twig renderer via https://github.com/pattern-lab/patternlab-node/pull/1107 ([b12a6ff](https://github.com/boltdesignsystem/bolt/commit/b12a6ff))
+* wire up Block List's Twig template to use the new experimental SSR concept + light docs ([c4cb63b](https://github.com/boltdesignsystem/bolt/commit/c4cb63b))
+
+
+
+
+
 ## [2.12.1](https://github.com/boltdesignsystem/bolt/compare/v2.12.0...v2.12.1) (2019-12-12)
 
 **Note:** Version bump only for package bolt

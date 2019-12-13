@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.13.0](https://github.com/bolt-design-system/bolt/compare/v2.12.1...v2.13.0) (2019-12-13)
+
+
+### Features
+
+* upgrade PHP dependencies + update to use v0.13 of the Twig renderer via https://github.com/pattern-lab/patternlab-node/pull/1107 ([b12a6ff](https://github.com/bolt-design-system/bolt/commit/b12a6ff))
+
+
+
+
+
 ## [2.12.1](https://github.com/bolt-design-system/bolt/compare/v2.12.0...v2.12.1) (2019-12-12)
 
 **Note:** Version bump only for package @bolt/website
