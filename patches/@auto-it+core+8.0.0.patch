@@ -1,0 +1,13 @@
+diff --git a/node_modules/@auto-it/core/dist/release.js b/node_modules/@auto-it/core/dist/release.js
+index fa05da6..9b72cf5 100644
+--- a/node_modules/@auto-it/core/dist/release.js
++++ b/node_modules/@auto-it/core/dist/release.js
+@@ -461,7 +461,7 @@ class Release {
+         }
+         else {
+             const [, response] = await await_to_js_1.default(this.git.getCommit(commit.hash));
+-            if (response) {
++            if (response && response.data && response.data.author && response.data.author.login) {
+                 const username = response.data.author.login;
+                 const author = await this.git.getUserByUsername(username);
+                 resolvedAuthors.push(Object.assign(Object.assign({ name: commit.authorName, email: commit.authorEmail }, author), { hash: commit.hash }));

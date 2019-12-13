@@ -61,12 +61,12 @@ jobs:
       after_success: ./scripts/check-run-success.js 'Lint + Unit Tests'
       after_failure: ./scripts/check-run-failure.js 'Lint + Unit Tests'
 
-    - stage: Pre-deploy
-      if: (tag =~ ^v) OR (branch =~ /(master|release)/)
-      name: 'Build Drupal Lab'
-      script:
-        - cd example-integrations/drupal-lab
-        - npm run setup
+#    - stage: Pre-deploy
+#      if: (tag =~ ^v) OR (branch =~ /(master|release)/)
+#      name: 'Build Drupal Lab'
+#      script:
+#        - cd example-integrations/drupal-lab
+#        - npm run setup
 
     # quicker build + Nightwatch tests for feature branches
     - stage: Pre-deploy
@@ -79,6 +79,9 @@ jobs:
         - npx lerna run postbootstrap
         - yarn global add @lhci/cli@0.3.x
       script:
+        - cd example-integrations/drupal-lab
+        - yarn run generate # generate static version of Drupal Lab in the integration folder
+        - cd ../../
         - yarn run build
         - yarn run deploy
         - export NOW_URL=$(./scripts/get-latest-deploy.js)
@@ -96,6 +99,9 @@ jobs:
       before_script:
         - find . -name '.incache' -exec rm -rf {} +
       script:
+        - cd example-integrations/drupal-lab
+        - yarn run generate # generate static version of Drupal Lab in the integration folder
+        - cd ../../
         - yarn run build
         - yarn run deploy
 
@@ -123,8 +129,8 @@ jobs:
         - git remote set-url origin "https://${GITHUB_TOKEN}@github.com/boltdesignsystem/bolt.git" > /dev/null 2>&1
         - echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
         - git checkout master
-      install: 
-        - yarn install --frozen-lockfile 
+      install:
+        - yarn install --frozen-lockfile
         - yarn run setup:php
         - git reset --hard
       script: yarn run release
@@ -138,8 +144,8 @@ jobs:
         - git remote set-url origin "https://${GITHUB_TOKEN}@github.com/boltdesignsystem/bolt.git" > /dev/null 2>&1
         - echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
         - git checkout release/2.x
-      install: 
-        - yarn install --frozen-lockfile 
+      install:
+        - yarn install --frozen-lockfile
         - yarn run setup:php
         - git reset --hard
       script:

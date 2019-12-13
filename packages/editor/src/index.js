@@ -209,6 +209,8 @@ function init() {
     let uiWrapper;
 
     function cleanup() {
+      // Remove the onbeforeunload function that fires the unsaved warning.
+      window.onbeforeunload = null;
       if (editor) {
         editor.destroy();
       }
@@ -252,12 +254,6 @@ function init() {
             // @ts-ignore
             window.__handleEditorSave || exampleHandleEditorSave;
           const html = editor.getHtml();
-          const unsavedChanges = editor.getDirtyCount();
-          if (unsavedChanges) {
-            console.warn(
-              'There were unsaved changes we will lose on next page reload...',
-            );
-          }
           const container = editor.getContainer();
 
           trigger.innerText = 'Saving...';

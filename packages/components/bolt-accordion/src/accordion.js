@@ -2,7 +2,7 @@ import { html, customElement } from '@bolt/element';
 import { defineContext, withContext, props, css } from '@bolt/core/utils';
 import { withLitHtml } from '@bolt/core/renderers/renderer-lit-html';
 import styles from './accordion.scss';
-import schema from '../accordion.schema.yml';
+import schema from '../accordion.schema';
 import { Accordion } from './_accordion-handorgel';
 
 // define which specific props to provide to children that subscribe

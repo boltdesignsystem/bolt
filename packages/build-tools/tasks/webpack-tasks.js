@@ -13,12 +13,19 @@ const {
   webpackStats,
   statsPreset,
 } = require('@bolt/build-utils/webpack-verbosity');
+const fs = require('fs');
 const createWebpackConfig = require('../create-webpack-config');
 const webpackDevServerWaitpage = require('./webpack-dev-server-waitpage');
 
 let boltBuildConfig;
 let browserSyncIsRunning = false;
 const app = express();
+
+const getDirectories = source =>
+  fs
+    .readdirSync(source, { withFileTypes: true })
+    .filter(dir => dir.isDirectory())
+    .map(dir => dir.name);
 
 async function compile(customWebpackConfig) {
   boltBuildConfig = boltBuildConfig || (await getConfig());
@@ -147,6 +154,26 @@ async function server(customWebpackConfig) {
 
     app.use(express.static(boltBuildConfig.wwwDir));
     // app.use('/api', handleRequest); // Component Explorer being temporarily disabled until we've migrated our Twig Rendering Service to Now.sh v2
+
+    if (fs.existsSync(`${boltBuildConfig.wwwDir}/integrations`)) {
+      const integrationDirs = getDirectories(
+        `${boltBuildConfig.wwwDir}/integrations`,
+      );
+
+      integrationDirs.map(item => {
+        app.use(
+          express.static(`${boltBuildConfig.wwwDir}/integrations/${item}`),
+        );
+      });
+
+      app.get(['/drupal-lab'], (req, res) => {
+        const options = {
+          root: `${boltBuildConfig.wwwDir}/integrations/drupal-lab`,
+        };
+
+        res.sendFile('index.html', options);
+      });
+    }
 
     app.listen(boltBuildConfig.port, boltBuildConfig.hostname, function onStart(
       err,

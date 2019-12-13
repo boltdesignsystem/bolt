@@ -1,6 +1,6 @@
 import * as grapesjs from 'grapesjs'; // eslint-disable-line no-unused-vars
 // @ts-ignore
-import buttonSchema from '@bolt/components-button/button.schema.yml';
+import buttonSchema from '@bolt/components-button/button.schema';
 // @ts-ignore
 import textSchema from '@bolt/components-text/text.schema.yml';
 import iconSchema from '@bolt/components-icon/icon.schema.json';
@@ -564,44 +564,39 @@ export function setupBolt(editor) {
     </bolt-interactive-pathways>`,
   });
 
-  // Commented this out because this was superceded by above starters. But leaving because they're simpler and client may want to reinstate.
-  // registerBoltComponent({
-  //   name: 'bolt-interactive-pathways',
-  //   schema: pathwaysSchema,
-  //   propsToTraits: ['customImageSrc', 'imageAlt', 'theme', 'hidePathwaysImage'],
-  //   category: 'Starters',
-  //   blockTitle: 'Multiple Pathways',
-  //   draggable: true,
-  //   editable: false,
-  //   highlightable: false,
-  //   registerBlock: true,
-  //   slots: {
-  //     default: 'bolt-interactive-pathway',
-  //   },
-  //   initialContent: [
-  //     `<bolt-text subheadline font-size="xxlarge" slot="interactive-pathways-lead-text">How Pega technology resolves</bolt-text>`,
-  //     `<bolt-interactive-pathway pathway-title="First Title">
-  //       ${starters.stepOneCharacterLorem}
-  //       ${starters.stepTwoCharacterLorem}
-  //     </bolt-interactive-pathway>`,
-  //     `<bolt-interactive-pathway pathway-title="Second Title">
-  //       ${starters.stepOneCharacterLorem}
-  //       ${starters.stepTwoCharacterLorem}
-  //     </bolt-interactive-pathway>`,
-  //   ],
-  //   slotControls: [
-  //     {
-  //       slotName: 'default',
-  //       components: [
-  //         {
-  //           id: 'pathways',
-  //           title: 'Pathways',
-  //           content: starters.pathwayLorem,
-  //         },
-  //       ],
-  //     },
-  //   ],
-  // });
+  registerBoltComponent({
+    name: 'bolt-interactive-pathways',
+    schema: pathwaysSchema,
+    propsToTraits: ['customImageSrc', 'imageAlt', 'theme', 'hidePathwaysImage'],
+    draggable: true,
+    editable: false,
+    highlightable: false,
+    registerBlock: false,
+    slots: {
+      default: 'bolt-interactive-pathway',
+    },
+    // This way of adding pathways is superseded by the Starters. Thus: `registerBlock: false`.
+    // Prior sample content left commented out in case alternate starters are desired in the future.
+    initialContent: [
+      // `<bolt-text subheadline font-size="xxlarge" slot="interactive-pathways-lead-text">How Pega technology resolves</bolt-text>`,
+      // `<bolt-interactive-pathway pathway-title="First Title">
+      //   ${starters.stepOneCharacterLorem}
+      //   ${starters.stepTwoCharacterLorem}
+      // </bolt-interactive-pathway>`,
+    ],
+    slotControls: [
+      {
+        slotName: 'default',
+        components: [
+          {
+            id: 'pathways',
+            title: 'Pathways',
+            content: starters.pathwayLorem,
+          },
+        ],
+      },
+    ],
+  });
 
   registerBoltComponent({
     name: 'bolt-interactive-pathway',
@@ -722,7 +717,7 @@ export function setupBolt(editor) {
     extend: 'link',
     registerBlock: true,
     draggable: true,
-    propsToTraits: ['display', 'valign', 'url', 'isHeadline'],
+    propsToTraits: ['display', 'url', 'isHeadline'],
     slots: {
       default: true,
     },

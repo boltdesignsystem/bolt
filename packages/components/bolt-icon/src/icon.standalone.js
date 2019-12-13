@@ -10,8 +10,7 @@ import { spacingSizes } from '@bolt/core/data';
 import { h, withPreact } from '@bolt/core/renderers';
 
 import PubSub from 'pubsub-js';
-import upperCamelCase from 'uppercamelcase';
-import * as Icons from '@bolt/components-icons';
+import * as Icons from '../registry';
 import styles from './icon.scss';
 
 const backgroundStyles = ['circle', 'square'];
@@ -108,8 +107,8 @@ class BoltIcon extends withPreact {
         : '',
     );
 
-    const Icon = name ? upperCamelCase(name) : '';
-    const IconTag = Icons[`${Icon}`];
+    const Icon = name;
+    const IconTag = Icons.get(`${Icon}`);
     const iconSize =
       size && spacingSizes[size]
         ? spacingSizes[size].replace('rem', '') * (16 / 2)

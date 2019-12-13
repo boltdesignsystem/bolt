@@ -198,6 +198,15 @@ class BoltInteractivePathway extends withLitContext {
     });
   };
 
+  rendered() {
+    // The rendered content will be empty until the following condition is met.
+    // Therefore, hold off on calling super.rendered() (which in turn emits the
+    // "ready" event) until the condition is true.
+    if (this.isActivePathway || this.isBecomingActive) {
+      super.rendered && super.rendered();
+    }
+  }
+
   render() {
     if (!this.isActivePathway && !this.isBecomingActive) {
       return '';
