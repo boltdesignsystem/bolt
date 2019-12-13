@@ -13,6 +13,7 @@ bolt-text {
   &[display='inline'] {
     display: inline;
   }
+
   &[display='block'] {
     display: block;
   }
@@ -22,6 +23,7 @@ bolt-text {
   &[eyebrow] {
     @include bolt-margin-bottom(xxsmall);
   }
+
   &[subheadline] {
     @include bolt-margin-bottom(xsmall);
   }
@@ -104,9 +106,11 @@ $bolt-text-v2--plus-letter-spacing: 0.05rem;
   &--headline {
     @include bolt-font-family(heading);
   }
+
   &--body {
     @include bolt-font-family(body);
   }
+
   &--code {
     @include bolt-font-family(code);
   }
@@ -115,6 +119,7 @@ $bolt-text-v2--plus-letter-spacing: 0.05rem;
   &--color-theme-headline {
     color: bolt-theme(headline);
   }
+
   &--color-theme-body {
     color: bolt-theme(text);
   }
@@ -123,9 +128,11 @@ $bolt-text-v2--plus-letter-spacing: 0.05rem;
   &--font-weight-semibold {
     @include bolt-font-weight(semibold);
   }
+
   &--font-weight-regular {
     @include bolt-font-weight(regular);
   }
+
   &--font-weight-bold {
     @include bolt-font-weight(bold);
   }
@@ -134,6 +141,7 @@ $bolt-text-v2--plus-letter-spacing: 0.05rem;
   &--font-style-regular {
     font-style: normal;
   }
+
   &--font-style-italic {
     font-style: italic;
   }
@@ -147,23 +155,29 @@ $bolt-text-v2--plus-letter-spacing: 0.05rem;
       font-size: $bolt-font-size--xxxlarge--min;
     }
   }
+
   &--font-size-xxlarge {
     @include bolt-font-size(xxlarge);
     letter-spacing: $bolt-text-v2--minus-letter-spacing;
   }
+
   &--font-size-xlarge {
     @include bolt-font-size(xlarge);
   }
+
   &--font-size-large {
     @include bolt-font-size(large);
   }
+
   &--font-size-medium {
     @include bolt-font-size(medium);
   }
+
   &--font-size-small {
     @include bolt-font-size(small);
     letter-spacing: $bolt-text-v2--plus-letter-spacing;
   }
+
   &--font-size-xsmall {
     @include bolt-font-size(xsmall);
     letter-spacing: $bolt-text-v2--plus-letter-spacing;
@@ -173,6 +187,7 @@ $bolt-text-v2--plus-letter-spacing: 0.05rem;
   &--inline {
     display: inline;
   }
+
   &--block {
     display: block;
   }
@@ -181,13 +196,16 @@ $bolt-text-v2--plus-letter-spacing: 0.05rem;
   &--align-inherit {
     text-align: inherit;
   }
+
   &--align-start {
     text-align: left;
     text-align: start;
   }
+
   &--align-center {
     text-align: center;
   }
+
   &--align-end {
     text-align: right;
     text-align: end;
@@ -197,12 +215,15 @@ $bolt-text-v2--plus-letter-spacing: 0.05rem;
   &--text-transform-regular {
     text-transform: none;
   }
+
   &--text-transform-uppercase {
     text-transform: uppercase;
   }
+
   &--text-transform-lowercase {
     text-transform: lowercase;
   }
+
   &--text-transform-capitalize {
     text-transform: capitalize;
   }
@@ -211,9 +232,11 @@ $bolt-text-v2--plus-letter-spacing: 0.05rem;
   &--letter-spacing-narrow {
     letter-spacing:  $bolt-text-v2--minus-letter-spacing;
   }
+
   &--letter-spacing-regular {
     letter-spacing: normal;
   }
+
   &--letter-spacing-wide {
     letter-spacing:  $bolt-text-v2--plus-letter-spacing;
   }
@@ -252,21 +275,27 @@ $bolt-text-v2--plus-letter-spacing: 0.05rem;
     &.c-bolt-text-v2--font-size-xxxlarge {
       line-height: ($bolt-line-height--xxxlarge + $bolt-line-height--add-loose);
     }
+
     &.c-bolt-text-v2--font-size-xxlarge {
       line-height: ($bolt-line-height--xxlarge + $bolt-line-height--add-loose);
     }
+
     &.c-bolt-text-v2--font-size-xlarge {
       line-height: ($bolt-line-height--xlarge + $bolt-line-height--add-loose);
     }
+
     &.c-bolt-text-v2--font-size-large {
       line-height: ($bolt-line-height--large + $bolt-line-height--add-loose);
     }
+
     &.c-bolt-text-v2--font-size-medium {
       line-height: ($bolt-line-height--medium + $bolt-line-height--add-loose);
     }
+
     &.c-bolt-text-v2--font-size-small {
       line-height: ($bolt-line-height--small + $bolt-line-height--add-loose);
     }
+
     &.c-bolt-text-v2--font-size-xsmall {
       line-height: ($bolt-line-height--xsmall + $bolt-line-height--add-loose);
     }
