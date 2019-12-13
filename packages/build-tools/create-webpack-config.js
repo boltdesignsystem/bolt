@@ -234,8 +234,9 @@ async function createWebpackConfig(buildConfig) {
           importer: [npmSass.importer],
           functions: sassExportData,
           precision: 3,
-          outputStyle: 'expanded',
           data: globalSassData.join('\n'),
+          outputStyle: 'nested',
+          // importer: [npmSass.importer],
         },
       },
     },
@@ -269,8 +270,9 @@ async function createWebpackConfig(buildConfig) {
         '.jpg',
       ],
       alias: {
-        react: 'preact-compat',
-        'react-dom': 'preact-compat',
+        react: 'preact/compat',
+        'react-dom/test-utils': 'preact/test-utils',
+        'react-dom': 'preact/compat',
       },
     },
     module: {

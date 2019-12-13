@@ -3,6 +3,7 @@ export * from './contains-any';
 export * from './contains-tag-name';
 export * from './convert-schema-to-props';
 export * from './css';
+export * from './debounce';
 export * from './declarative-click-handler';
 export * from './environment';
 export * from './find-parent-tag';

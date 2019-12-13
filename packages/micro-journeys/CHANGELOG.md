@@ -3,6 +3,61 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.12.1](https://github.com/bolt-design-system/bolt/compare/v2.12.0...v2.12.1) (2019-12-12)
+
+**Note:** Version bump only for package @bolt/micro-journeys
+
+
+
+
+
+# [2.12.0](https://github.com/bolt-design-system/bolt/compare/v2.11.4...v2.12.0) (2019-11-26)
+
+**Note:** Version bump only for package @bolt/micro-journeys
+
+
+
+
+
+## [2.11.2](https://github.com/bolt-design-system/bolt/compare/v2.11.1...v2.11.2) (2019-11-14)
+
+**Note:** Version bump only for package @bolt/micro-journeys
+
+
+
+
+
+# [2.11.0](https://github.com/bolt-design-system/bolt/compare/v2.10.0...v2.11.0) (2019-11-14)
+
+
+### Bug Fixes
+
+* **micro-journeys:** clean up equalizeRelativeHeights; fix tryAttempts persistence bug ([5653901](https://github.com/bolt-design-system/bolt/commit/5653901))
+* **micro-journeys:** css cleanup ([913c49c](https://github.com/bolt-design-system/bolt/commit/913c49c))
+* **micro-journeys:** don't render inactive pathway; fix render issues on pathway and step ([ee741e1](https://github.com/bolt-design-system/bolt/commit/ee741e1))
+* **micro-journeys:** Edge fix for equalizeRelativeHeights, replace x and y with left and top ([afb1531](https://github.com/bolt-design-system/bolt/commit/afb1531))
+* **micro-journeys:** fix bolt-link usage with bolt-icon ([cc1cae0](https://github.com/bolt-design-system/bolt/commit/cc1cae0))
+* **micro-journeys:** IE 11 fixes for bolt character and connection ([9f99228](https://github.com/bolt-design-system/bolt/commit/9f99228))
+* **micro-journeys:** make dialog bar match comps in width; remove br tags from starters ([ecbcf8a](https://github.com/bolt-design-system/bolt/commit/ecbcf8a))
+* **micro-journeys:** move link component to use slot-after for icon ([bae9819](https://github.com/bolt-design-system/bolt/commit/bae9819))
+* **micro-journeys:** prevent render of content if not active step. Does not work w/o shadow dom. ([12094e9](https://github.com/bolt-design-system/bolt/commit/12094e9))
+* **micro-journeys:** refactor two-char layout to control its own animation in and out ([05dc857](https://github.com/bolt-design-system/bolt/commit/05dc857))
+* **micro-journeys:** restore file to pre-ie-11 fix attempt meddling ([f7f8f8a](https://github.com/bolt-design-system/bolt/commit/f7f8f8a))
+* **micro-journeys:** tighten up spacing around character and two-character elements to match comps ([01bb7c6](https://github.com/bolt-design-system/bolt/commit/01bb7c6))
+
+
+### Features
+
+* **micro-journey:** add export of bolt connection is ([fe61771](https://github.com/bolt-design-system/bolt/commit/fe61771))
+* **micro-journey:** adding name exports and prepping for IE 11 work, layout fixes ([6ec09e6](https://github.com/bolt-design-system/bolt/commit/6ec09e6))
+* **micro-journeys:** prevent body content render on inactive steps ([019a0ea](https://github.com/bolt-design-system/bolt/commit/019a0ea))
+* **micro-journeys:** refactor character, dialog, and 2-char layout to cooperate with document flow ([33471a3](https://github.com/bolt-design-system/bolt/commit/33471a3))
+* **micro-journeys:** starter templates for one and two character ([10bea16](https://github.com/bolt-design-system/bolt/commit/10bea16))
+
+
+
+
+
 # [2.10.0](https://github.com/bolt-design-system/bolt/compare/v2.9.2...v2.10.0) (2019-10-29)
 
 

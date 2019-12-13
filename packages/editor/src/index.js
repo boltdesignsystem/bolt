@@ -55,6 +55,38 @@ function addGrapesCssToPage() {
   });
 }
 
+/**
+ * Example function for how to save editor results
+ * Assign a function like this to `window.__handleEditorSave` to override this example one.
+ * @param {Object} opt
+ * @param {string} opt.html - The HTML from the saved editor
+ * @param {string} opt.id
+ * @return {Promise<{ ok: boolean, message: string }>}
+ */
+function exampleHandleEditorSave({ html, id }) {
+  const shouldThisFailToDemo = false;
+
+  //TODO:  Drupal Axios code likely here
+  return new Promise((resolve, reject) => {
+    // faking async delay
+    setTimeout(() => {
+      if (shouldThisFailToDemo) {
+        console.log('exampleHandleEditorSave failed');
+        resolve({
+          ok: false,
+          message: 'This is a demonstration of how to fail the save',
+        });
+      } else {
+        console.log('exampleHandleEditorSave ok!');
+        resolve({
+          ok: true,
+          message: 'Saved ok!',
+        });
+      }
+    }, 2000);
+  });
+}
+
 function addJsToPage(src) {
   return new Promise((resolve, reject) => {
     if (document.querySelector(`script[src="${src}"]`)) {
@@ -177,6 +209,8 @@ function init() {
     let uiWrapper;
 
     function cleanup() {
+      // Remove the onbeforeunload function that fires the unsaved warning.
+      window.onbeforeunload = null;
       if (editor) {
         editor.destroy();
       }
@@ -191,6 +225,7 @@ function init() {
       // eslint-disable-next-line default-case
       switch (editorState) {
         case EDITOR_STATES.NOT_READY: {
+          console.log('not ready');
           break;
         }
         case EDITOR_STATES.CLOSED: {
@@ -215,38 +250,31 @@ function init() {
           break;
         }
         case EDITOR_STATES.OPEN: {
+          const handleEditorSave =
+            // @ts-ignore
+            window.__handleEditorSave || exampleHandleEditorSave;
           const html = editor.getHtml();
-          const unsavedChanges = editor.getDirtyCount();
-          if (unsavedChanges) {
-            console.warn(
-              'There were unsaved changes we will lose on next page reload...',
-            );
-          }
           const container = editor.getContainer();
-          cleanup();
-          container.innerHTML = html;
 
-          // We need to make sure that any `<bolt-animate>` elements that are empty get removed. These are usually added via the slot controls, then had their children/contents (the actual elements being animated) deleted by user but the `<bolt-animate>` (which is almost always a slot) remains. We need this gone so that conditionals that check for empty slots don't return a false positive (i.e. conditional that says a slot is not empty but no visible elements are shown)
-          container.querySelectorAll('bolt-animate').forEach(
-            /** @type {HTMLElement} */
-            animEl => {
-              if (animEl.innerHTML === '') {
-                animEl.remove();
-              }
-            },
-          );
+          trigger.innerText = 'Saving...';
 
-          trigger.innerText = 'Edit';
-          editorState = EDITOR_STATES.CLOSED;
-          pegaEditor.dispatchEvent(
-            new CustomEvent('editor:save', {
-              bubbles: true,
-              detail: {
-                html: container.innerHTML,
-                id: config.id,
-              },
-            }),
-          );
+          const { ok, message } = await handleEditorSave({
+            html,
+            id: config.id,
+          });
+
+          if (ok) {
+            cleanup();
+            container.innerHTML = html;
+            trigger.innerText = 'Edit';
+            editorState = EDITOR_STATES.CLOSED;
+          } else {
+            const msg = `Error: could not save editor: ${message}`;
+            console.error(msg);
+            // eslint-disable-next-line no-alert
+            window.alert(msg);
+            trigger.innerText = 'Save & Close';
+          }
           break;
         }
       }

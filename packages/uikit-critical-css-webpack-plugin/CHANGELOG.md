@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.12.0](https://github.com/boltdesignsystem/bolt/compare/v2.11.4...v2.12.0) (2019-11-26)
+
+**Note:** Version bump only for package @bolt/critical-css-webpack-plugin
+
+
+
+
+
+# [2.11.0](https://github.com/bolt-design-system/bolt/compare/v2.10.0...v2.11.0) (2019-11-14)
+
+**Note:** Version bump only for package @bolt/critical-css-webpack-plugin
+
+
+
+
+
 # [2.8.0](https://github.com/bolt-design-system/bolt/compare/v2.8.0-beta.6...v2.8.0) (2019-10-11)
 
 **Note:** Version bump only for package @bolt/critical-css-webpack-plugin

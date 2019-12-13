@@ -4,16 +4,15 @@ import {
   css,
   hasNativeShadowDomSupport,
 } from '@bolt/core/utils';
-import { h, withPreact } from '@bolt/core/renderers';
-
-import html from 'preact-html';
+import { h, withPreact, Markup } from '@bolt/core/renderers';
 import Prism from 'prismjs/components/prism-core';
-
 import styles from './code-snippet.scss';
 
 import 'prismjs/components/prism-markup';
 import 'prismjs/components/prism-twig';
 import 'prismjs/components/prism-clike';
+import 'prismjs/components/prism-java';
+import 'prismjs/components/prism-sql';
 import 'prismjs/components/prism-javascript';
 import 'prismjs/components/prism-css';
 import 'prismjs/components/prism-css-extras';
@@ -87,7 +86,7 @@ class BoltCodeSnippetClass extends withPreact() {
       return (
         <code className={codeClasses}>
           {this.addStyles([styles])}
-          {html(highlightedCode)}
+          <Markup markup={highlightedCode} trim={false} />
         </code>
       );
     } else {
@@ -95,7 +94,7 @@ class BoltCodeSnippetClass extends withPreact() {
         <pre className={preClasses}>
           <code className={codeClasses}>
             {this.addStyles([styles])}
-            {html(highlightedCode)}
+            <Markup markup={highlightedCode} trim={false} />
           </code>
         </pre>
       );

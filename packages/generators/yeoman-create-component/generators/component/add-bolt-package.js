@@ -5,11 +5,11 @@ const sortPackageJson = require('sort-package-json');
 
 const boltPackageJsonPath = path.resolve(
   __dirname,
-  '../../../../../docs-site/package.json',
+  '../../../../docs-site/package.json',
 );
 const boltPackageJson = require(boltPackageJsonPath);
 
-function addBoltPackage(newPackageName, testingPath) {
+function addBoltPackage(newPackageName) {
   let deleteExisting = false;
   // check if this component has already been added to the .boltrc config and if so, exit early
   if (Object.keys(boltPackageJson.dependencies).includes(newPackageName)) {
@@ -40,14 +40,7 @@ function addBoltPackage(newPackageName, testingPath) {
     },
   );
 
-  if (testingPath) {
-    fs.writeFileSync(
-      `${testingPath}/package.json`,
-      updatedPrettyBoltPackageJson,
-    );
-  } else {
-    fs.writeFileSync(boltPackageJsonPath, updatedPrettyBoltPackageJson);
-  }
+  fs.writeFileSync(boltPackageJsonPath, updatedPrettyBoltPackageJson);
 }
 
 module.exports = {

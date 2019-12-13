@@ -5,11 +5,8 @@ import {
   stopServer,
   html,
 } from '../../../testing/testing-helpers';
-const { readYamlFileSync } = require('@bolt/build-tools/utils/yaml');
-const { join } = require('path');
-const schema = readYamlFileSync(join(__dirname, '../button.schema.yml'));
-const { tag } = schema.properties;
-
+import schema from '../button.schema';
+const { tag, type } = schema.properties;
 const timeout = 90000;
 
 describe('button', () => {
@@ -53,11 +50,25 @@ describe('button', () => {
     expect(results.html).toMatchSnapshot();
   });
 
+  // Tag is deprecated.  The presence or absence of a URL param determines which
+  // tag will be used.  The 'type' prop should be used for the values 'reset'
+  // and 'submit' because those aren't tags.
   tag.enum.forEach(async tagChoice => {
     test(`Button tag: ${tagChoice}`, async () => {
       const results = await render('@bolt-components-button/button.twig', {
         text: 'This is a button',
         tag: tagChoice,
+      });
+      expect(results.ok).toBe(true);
+      expect(results.html).toMatchSnapshot();
+    });
+  });
+
+  type.enum.forEach(async typeChoice => {
+    test(`Button type: ${typeChoice}`, async () => {
+      const results = await render('@bolt-components-button/button.twig', {
+        text: 'This is a button',
+        type: typeChoice,
       });
       expect(results.ok).toBe(true);
       expect(results.html).toMatchSnapshot();

@@ -1,12 +1,15 @@
-import { unsafeCSS } from 'lit-element';
-import { render, html } from 'lit-html';
-import { BoltActionElement } from '@bolt/element';
+import {
+  BoltActionElement,
+  unsafeCSS,
+  render,
+  html,
+  ifDefined,
+} from '@bolt/element';
 import { convertInitialTags } from '@bolt/core/decorators';
-import { ifDefined } from 'lit-html/directives/if-defined';
 import classNames from 'classnames/bind';
 
 import buttonStyles from './button.scss';
-// import schema from '../button.schema.yml'; @todo: temporarily removed while we switch to `lit-element`, soon to be re-added
+// import schema from '../button.schema.js'; @todo: temporarily removed while we switch to `lit-element`, soon to be re-added
 
 let cx = classNames.bind(buttonStyles);
 

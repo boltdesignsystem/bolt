@@ -12,6 +12,7 @@ const preset = function(api, opts = {}) {
       ],
     ],
     plugins: [
+      '@babel/plugin-proposal-optional-chaining',
       /**
        * 1. Helps with our Web Component Preact renderer
        */
@@ -20,9 +21,8 @@ const preset = function(api, opts = {}) {
         '@babel/plugin-transform-react-jsx' /* [1] */,
         {
           pragma: 'h',
-          pragmaFrag: '"span"',
+          pragmaFrag: 'Fragment',
           throwIfNamespace: false,
-          useBuiltIns: false,
         },
       ],
 

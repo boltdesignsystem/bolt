@@ -2,12 +2,10 @@
   BOLT CSS CORE
 \* ------------------------------------ */
 
-$bolt-lang: '' !default;
-$bolt-css-vars-json-data-export: '' !default;
-
-@import '~sass-mq/_mq';
-@import '~sassy-maps/sass/_sassy-maps';
-@import '~@bolt/sass-export-data/export-data.scss';
+@import 'sassy-lists';
+@import 'sass-mq/_mq';
+@import 'sassy-maps/sass/sassy-maps';
+@import '@bolt/sass-export-data/export-data.scss';
 
 @import '01-settings/00-settings-lang/_settings.lang-en';
 @import '01-settings/00-settings-lang/_settings.lang-ja';
@@ -20,6 +18,7 @@ $bolt-css-vars-json-data-export: '' !default;
 @import '01-settings/settings-font-weight/_settings-font-weight';
 @import '01-settings/settings-global/_settings-global';
 @import '01-settings/settings-opacity/_settings-opacity';
+@import '01-settings/settings-quotes/_settings-quotes';
 @import '01-settings/settings-shadow/_settings-shadow';
 @import '01-settings/settings-spacing/_settings-spacing';
 @import '01-settings/settings-themes/_constants';

@@ -1,7 +1,7 @@
 {
   "name": "@bolt/drupal-lab-example",
-  "private": true,
   "version": "2.4.0",
+  "private": true,
   "contributors": [
     {
       "name": "Salem Ghoweri",
@@ -14,9 +14,11 @@
     }
   ],
   "scripts": {
-    "setup:js": "cd web/themes/bolt-starter && npm install && npm run build",
-    "setup:php": "composer install && composer run build",
+    "copy": "cp -fr web/themes/bolt-starter/dist/*-bundle-*.js ../../www/integrations/drupal-lab/themes/bolt-starter/dist",
+    "deploy": "now deploy --local-config=now.drupal-lab.json --team boltdesignsystem --no-verify",
+    "generate": "composer run setup && composer run static && yarn run copy",
     "setup": "npx npm-run-all --serial setup:*",
-    "deploy": "now deploy --local-config=now.drupal-lab.json --team boltdesignsystem --no-verify"
+    "setup:js": "cd web/themes/bolt-starter && yarn && npm run build",
+    "setup:php": "composer install && composer run build"
   }
 }
