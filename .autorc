@@ -3,7 +3,7 @@
   "name": "Salem Ghoweri",
   "baseBranch": "release/2.x",
   "plugins": [
-    ['./scripts/auto-plugin.js'],
+    ["./scripts/auto-plugin.js"],
     [
       "released",
       {
@@ -14,73 +14,93 @@
   ],
   "owner": "boltdesignsystem",
   "email": "me@salemghoweri.com",
-  "skipReleaseLabels": ["docs", "chore", "internal", "wip", "devops"],
-  "labels": {
-    "documentation": "docs",
-    "deprecation": [
-      {
-        "title": "Deprecated ⚠️"
-      }
-    ],
-    "major": [
-      {
-        "name": "breaking change",
-        "title": "Major Breaking Changes 🛑",
-        "description": "Add this label to a PR to create a major release when merged."
-      },
-      {
-        "name": "major release",
-        "title": "Major Breaking Changes 🛑",
-        "description": "Add this label to a PR to create a major release when merged."
-      }
-    ],
-    "minor": [
-      {
-        "name": "new component",
-        "title": "New Components 🎉",
-        "description": "Increments the minor version when merged"
-      },
-      {
-        "name": "minor",
-        "description": "Increments the minor version when merged"
-      },
-      {
-        "name": "enhancement",
-        "title": "Features & Enhancements ✨",
-        "description": "Increments the minor version when merged"
-      },
-      {
-        "name": "new feature",
-        "title": "Features & Enhancements ✨",
-        "description": "Increments the minor version when merged"
-      },
-      {
-        "name": "improvement",
-        "title": "Features & Enhancements ✨",
-        "description": "Increments the minor version when merged"
-      }
-    ],
-    "patch": [
-      {
-        "name": "patch",
-        "description": "Increment the patch version when merged"
-      },
-      {
-        "name": "bug",
-        "title": "Bug Fixes 🐛",
-        "description": "Increment the patch version when merged"
-      },
-      {
-        "name": "hotfix",
-        "title": "Bug Fixes 🐛",
-        "description": "Increment the patch version when merged"
-      }
-    ],
-    "prerelease": "beta",
-    "pushToBaseBranch":  [
-      {
-        "title": "Misc 🔧"
-      }
-    ]
-  }
+  "labels": [
+    {
+      "name": "pushToBaseBranch",
+      "changelogTitle": "Misc 🔧"
+    },
+    {
+      "name": "documentation",
+      "changelogTitle": "Docs",
+      "releaseType": "none"
+    },
+    {
+      "name": "internal",
+      "releaseType": "none"
+    },
+    {
+      "name": "wip",
+      "releaseType": "none"
+    },
+    {
+      "name": "devops",
+      "releaseType": "none"
+    },
+    {
+      "name": "chore",
+      "releaseType": "none"
+    },
+    {
+      "changelogTitle": "Deprecations ⚠️",
+      "name": "deprecation"
+    },
+    {
+      "name": "breaking change",
+      "changelogTitle": "Major Breaking Changes 🛑",
+      "description": "Add this label to a PR to create a major release when merged.",
+      "releaseType": "major"
+    },
+    {
+      "name": "major release",
+      "changelogTitle": "Major Breaking Changes 🛑",
+      "description": "Add this label to a PR to create a major release when merged.",
+      "releaseType": "major"
+    },
+    {
+      "name": "new component",
+      "changelogTitle": "New Components 🎉",
+      "description": "Increments the minor version when merged",
+      "releaseType": "minor"
+    },
+    {
+      "name": "minor",
+      "description": "Increments the minor version when merged",
+      "releaseType": "minor"
+    },
+    {
+      "name": "enhancement",
+      "changelogTitle": "Features & Enhancements ✨",
+      "description": "Increments the minor version when merged",
+      "releaseType": "minor"
+    },
+    {
+      "name": "new feature",
+      "changelogTitle": "Features & Enhancements ✨",
+      "description": "Increments the minor version when merged",
+      "releaseType": "minor"
+    },
+    {
+      "name": "improvement",
+      "changelogTitle": "Features & Enhancements ✨",
+      "description": "Increments the minor version when merged",
+      "releaseType": "minor"
+    },
+    {
+      "name": "patch",
+      "description": "Increment the patch version when merged",
+      "releaseType": "patch"
+    },
+    {
+      "name": "bug",
+      "changelogTitle": "Bug Fixes 🐛",
+      "description": "Increment the patch version when merged",
+      "releaseType": "patch"
+    },
+    {
+      "name": "hotfix",
+      "changelogTitle": "Bug Fixes 🐛",
+      "description": "Increment the patch version when merged",
+      "releaseType": "patch"
+    }
+  ]
 }

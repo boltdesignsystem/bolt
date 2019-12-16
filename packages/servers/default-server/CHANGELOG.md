@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.13.0](https://github.com/boltdesignsystem/bolt/compare/v2.12.1...v2.13.0) (2019-12-13)
+
+
+### Features
+
+* add integrations to default-server and update yarn.lock ([de3106e](https://github.com/boltdesignsystem/bolt/commit/de3106e))
+* update default server configuration ([ff39534](https://github.com/boltdesignsystem/bolt/commit/ff39534))
+
+
+
+
+
 ## [2.12.1](https://github.com/bolt-design-system/bolt/compare/v2.12.0...v2.12.1) (2019-12-12)
 
 **Note:** Version bump only for package @bolt/default-server
