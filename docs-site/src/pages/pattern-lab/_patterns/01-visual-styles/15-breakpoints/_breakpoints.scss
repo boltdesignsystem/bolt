@@ -2,18 +2,15 @@
   @include bolt-margin-bottom(medium);
   position: relative;
   overflow: auto;
-
   ul {
     margin: 0;
     padding: 0;
   }
-
   li {
     margin: 0;
     padding: 0;
     list-style-type: none;
   }
-
   .breakpoints {
     > li {
       position: absolute;
@@ -33,12 +30,10 @@
         //        bottom: 20px;
         background: hsl(0, 0%, 35%);
       }
-
       &:hover {
         // stylelint-disable max-nesting-depth, selector-max-specificity
         cursor: help;
         border-left-color: blue;
-
         > .label {
           background-color: blue;
         }
@@ -46,10 +41,8 @@
       }
     }
   }
-
   .device_widths {
     padding-top: 20px;
-
     > li {
       margin-bottom: 15px;
       padding-right: 15px;
