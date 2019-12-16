@@ -77,7 +77,6 @@ bolt-carousel {
     touch-action: pan-y;
   }
 }
-
 .c-bolt-carousel--wp8-vertical {
   &, & > .c-bolt-carousel__wrapper {
     touch-action: pan-x;
@@ -94,6 +93,7 @@ bolt-carousel[nav-button-position="outside"].is-ready {
   min-width: calc(100% + #{bolt-spacing(medium) * 2});
   margin-right: (bolt-spacing(medium)) * -1;
   margin-left: (bolt-spacing(medium)) * -1;
+  // min-width: calc(100% + #{bolt-spacing(medium) * 2} + #{bolt-spacing(xxsmall) * 2});
 }
 
 bolt-carousel:not([nav-button-position]):not([no-nav-buttons]).is-ready,
