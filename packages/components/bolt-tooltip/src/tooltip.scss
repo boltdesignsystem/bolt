@@ -3,512 +3,247 @@
 \* ------------------------------------ */
 @import '@bolt/core';
 
-$bolt-tooltip-bubble-triangle-width: 8px;
-$bolt-tooltip-bubble-border-color: bolt-color(gray, light);
-$bolt-tooltip-transition: $bolt-transition;
+// Component variables
+$bolt-tooltip-border-width: $bolt-border-width;
+$bolt-tooltip-border-style: $bolt-border-style;
+$bolt-tooltip-border-color: bolt-theme(text, 0.15);
+$bolt-tooltip-spacing-values: xsmall, small, medium;
 
-@keyframes bounceDown {
-   0% { transform: translate(-50%, -50%) scale(0); }
-   30% { transform: translate(-50%, 25%) scale(1.1); }
-   100% { transform: translate(-50%, 15%) scale(1); }
- }
-
-@keyframes bounceUp {
-  0% { transform: translate(-50%, 50%) scale(0); }
-  30% { transform: translate(-50%, -125%) scale(1.1); }
-  100% { transform: translate(-50%, -115%) scale(1); }
+// Register Custom Block Element
+@include bolt-repeat-rule(('bolt-tooltip', ':host')) {
+  display: inline;
 }
 
-// Specific to items with count prop (e.g. Share component)
-@keyframes bounceUp-5 {
-  0% { transform: translate(-50%, 50%) scale(0); }
-  30% { transform: translate(-50%, -115%) scale(1.1); }
-  100% { transform: translate(-50%, -105%) scale(1); }
-}
-
-@keyframes bounceUp-4 {
-  0% { transform: translate(-50%, 50%) scale(0); }
-  30% { transform: translate(-50%, -116%) scale(1.1); }
-  100% { transform: translate(-50%, -106%) scale(1); }
-}
-
-@keyframes bounceUp-3 {
-  0% { transform: translate(-50%, 50%) scale(0); }
-  30% { transform: translate(-50%, -117%) scale(1.1); }
-  100% { transform: translate(-50%, -107%) scale(1); }
-}
-
-@keyframes bounceUp-2 {
-  0% { transform: translate(-50%, 50%) scale(0); }
-  30% { transform: translate(-50%, -120%) scale(1.1); }
-  100% { transform: translate(-50%, -110%) scale(1); }
-}
-
-:host {
-  display: inline-block;
-}
-
-// display the initial text for simple text-based Tooltips
-bolt-tooltip:not([ready]):not([trigger-type="button"]):before {
-  content: attr(trigger-text);
-}
-
-// hide the initial tooltip content before the JS is ready
-// @todo: refactor + replace when restoring tooltips that work w/o JS
-bolt-tooltip:not([ready]) > * {
-  display: none;
-}
-
-// Tooltip positioning
 .c-bolt-tooltip {
-  display: inline-block;
+  display: inline;
   position: relative;
 
-  // Aria tags for accessibility.
-  [aria-hidden="true"] {
-    opacity: bolt-opacity(0);
-    pointer-events: none;
-  }
-
-  [aria-hidden="false"] {
-    opacity: bolt-opacity(100);
-    pointer-events: auto;
-  }
-
-  &.is-push-up {
-    .c-bolt-tooltip__content {
-      top: 0;
-      transform: translateY(-100%);
-    }
-
-    .c-bolt-tooltip__content-bubble {
-      &:after,
-      &:before {
-        transform: translateY(100%);
-        border-top: $bolt-tooltip-bubble-triangle-width solid;
-        border-right: $bolt-tooltip-bubble-triangle-width solid transparent;
-        border-bottom: $bolt-tooltip-bubble-triangle-width solid transparent;
-        border-left: $bolt-tooltip-bubble-triangle-width solid transparent;
-      }
-
-      &:before {
-        top: auto;
-        bottom: 0;
-        border-top-color: $bolt-tooltip-bubble-border-color;
-        border-bottom-color: transparent;
-      }
-
-      &:after {
-        top: auto;
-        bottom: 1px;
-        border-top-color: white;
-        border-bottom-color: transparent;
-      }
-    }
-  }
-
-  &.is-push-down {
-    .c-bolt-tooltip__content-bubble {
-      &:after,
-      &:before {
-        transform: translateY(-100%);
-        border-top: $bolt-tooltip-bubble-triangle-width solid transparent;
-        border-right: $bolt-tooltip-bubble-triangle-width solid transparent;
-        border-bottom: $bolt-tooltip-bubble-triangle-width solid;
-        border-left: $bolt-tooltip-bubble-triangle-width solid transparent;
-      }
-
-      &:before {
-        top: 0;
-        bottom: auto;
-        border-bottom-color: $bolt-tooltip-bubble-border-color;
-      }
-
-      &:after {
-        top: 1px;
-        bottom: auto;
-        border-bottom-color: white;
-      }
-    }
-  }
-
-  &.is-align-right {
-    .c-bolt-tooltip__content {
-      right: bolt-spacing(small) * -1;
-      left: auto;
-    }
-
-    .c-bolt-tooltip__content-bubble {
-      &:before,
-      &:after {
-        right: calc(#{bolt-spacing(small)} + #{$bolt-tooltip-bubble-triangle-width / 2});
-        left: auto;
-      }
-    }
-  }
-
-  &.is-align-left {
-    .c-bolt-tooltip__content {
-      right: auto;
-      left: bolt-spacing(small) * -1;
-    }
-
-    .c-bolt-tooltip__content-bubble {
-      &:before,
-      &:after {
-        right: auto;
-        left: calc(#{bolt-spacing(small)} + #{$bolt-tooltip-bubble-triangle-width / 2});
-      }
-    }
-  }
-
-  &.is-align-center {
-    .c-bolt-tooltip__content {
-      left: 50%;
-    }
-
-    .c-bolt-tooltip__content-bubble {
-      &:after,
-      &:before {
-        left: 50%;
-      }
-    }
-
-    &.is-push-up {
-      .c-bolt-tooltip__content {
-        transform: translate(-50%, calc(-100%));
-
-        &--button {
-          transform: translate(-50%, -115%) scale(1);
-
-          &.c-bolt-tooltip__content--count-5 {
-            transform: translate(-50%, -105%) scale(1);
-          }
-          &.c-bolt-tooltip__content--count-4 {
-            transform: translate(-50%, -106%) scale(1);
-          }
-          &.c-bolt-tooltip__content--count-3 {
-            transform: translate(-50%, -107%) scale(1);
-          }
-          &.c-bolt-tooltip__content--count-2 {
-            transform: translate(-50%, -110%) scale(1);
-          }
-        }
-      }
-
-      .is-open+.c-bolt-tooltip__content--button {
-        animation: bounceUp 500ms ease forwards;
-
-        &.c-bolt-tooltip__content--count-5 {
-          animation: bounceUp-5 500ms ease forwards;
-        }
-        &.c-bolt-tooltip__content--count-4 {
-          animation: bounceUp-4 500ms ease forwards;
-        }
-        &.c-bolt-tooltip__content--count-3 {
-          animation: bounceUp-3 500ms ease forwards;
-        }
-        &.c-bolt-tooltip__content--count-2 {
-          animation: bounceUp-2 500ms ease forwards;
-        }
-      }
-
-      .c-bolt-tooltip__content-bubble {
-        &:after,
-        &:before {
-          transform: translate(-50%, 100%);
-        }
-      }
-    }
-
-    &.is-push-down {
-      .c-bolt-tooltip__content {
-        transform: translate(-50%);
-
-        &--button {
-          transform: translate(-50%, 15%) scale(1);
-        }
-      }
-
-      .is-open+.c-bolt-tooltip__content--button {
-        animation: bounceDown 500ms ease forwards;
-      }
-
-      .c-bolt-tooltip__content-bubble {
-        &:after,
-        &:before {
-          transform: translate(-50%, -100%);
-        }
-      }
-    }
-  }
-
-  &.is-push-right {
-    .c-bolt-tooltip__content {
-      left: 100%;
-    }
-
-    .c-bolt-tooltip__content-bubble {
-      &:after,
-      &:before {
-        border-top: $bolt-tooltip-bubble-triangle-width solid transparent;
-        border-right: $bolt-tooltip-bubble-triangle-width solid;
-        border-bottom: $bolt-tooltip-bubble-triangle-width solid transparent;
-        border-left: $bolt-tooltip-bubble-triangle-width solid transparent;
-      }
-
-      &:before {
-        left: $bolt-tooltip-bubble-triangle-width * -2;
-        border-right-color: $bolt-tooltip-bubble-border-color;
-      }
-
-      &:after {
-        left: calc(#{$bolt-tooltip-bubble-triangle-width * -2} + 1px);
-        border-right-color: white;
-      }
-    }
-  }
-
-  &.is-push-left {
-    .c-bolt-tooltip__content {
-      right: 100%;
-    }
-
-    .c-bolt-tooltip__content-bubble {
-      &:after,
-      &:before {
-        border-top: $bolt-tooltip-bubble-triangle-width solid transparent;
-        border-right: $bolt-tooltip-bubble-triangle-width solid transparent;
-        border-bottom: $bolt-tooltip-bubble-triangle-width solid transparent;
-        border-left: $bolt-tooltip-bubble-triangle-width solid;
-      }
-
-      &:before {
-        right: $bolt-tooltip-bubble-triangle-width * -2;
-        border-left-color: $bolt-tooltip-bubble-border-color;
-      }
-
-      &:after {
-        right: calc(#{$bolt-tooltip-bubble-triangle-width * -2} + 1px);
-        border-left-color: white;
-      }
-    }
-  }
-
-  &.is-valign-top {
-    .c-bolt-tooltip__content {
-      top: bolt-v-spacing(xsmall) * -1;
-    }
-
-    .c-bolt-tooltip__content-bubble {
-      &:after,
-      &:before {
-        top: calc(#{bolt-v-spacing(xsmall)} + #{$bolt-tooltip-bubble-triangle-width / 2});
-      }
-    }
-  }
-
-  &.is-valign-bottom {
-    .c-bolt-tooltip__content {
-      bottom: bolt-v-spacing(xsmall) * -1;
-    }
-
-    .c-bolt-tooltip__content-bubble {
-      &:after,
-      &:before {
-        bottom: calc(#{bolt-v-spacing(xsmall)} + #{$bolt-tooltip-bubble-triangle-width / 2});
-      }
-    }
-  }
-
-  &.is-valign-center {
-    .c-bolt-tooltip__content {
-      top: 50%;
-      transform: translateY(-50%);
-    }
-
-    .c-bolt-tooltip__content-bubble {
-      &:after,
-      &:before {
-        top: 50%;
-        transform: translateY(-50%);
-      }
-    }
-  }
-}
-
-
-// Category options
-.c-bolt-tooltip--help {
-  cursor: help;
-
-  .c-bolt-tooltip__trigger .c-bolt-button {
-    cursor: help;
-  }
-}
-
-.c-bolt-tooltip--action {
-  .c-bolt-tooltip__trigger {
-    cursor: pointer;
-    user-select: none;
-  }
-}
-
-
-// Spacing options
-.c-bolt-tooltip--spacing-none {
-  .c-bolt-tooltip__content-bubble {
-    @include bolt-padding(0);
-  }
-}
-
-.c-bolt-tooltip--spacing-xsmall {
-  .c-bolt-tooltip__content-bubble {
-    @include bolt-padding(xsmall, squished);
-  }
-}
-
-.c-bolt-tooltip--spacing-small {
-  .c-bolt-tooltip__content-bubble {
-    @include bolt-padding(small);
-  }
-}
-
-.c-bolt-tooltip--spacing-medium {
-  .c-bolt-tooltip__content-bubble {
-    @include bolt-padding(medium);
-  }
-}
-
-
-// Text wrapping
-.c-bolt-tooltip--nowrap {
-  .c-bolt-tooltip__content-bubble {
-    width: auto;
-    white-space: nowrap;
-  }
-}
-
-
-// Tooltip styling
-.c-bolt-tooltip__trigger {
-  display: block;
-
-  .c-bolt-button {
-    overflow: hidden;
-    font-weight: 900;
-
-    .is-push-up & {
-      position: relative;
-      z-index: bolt-z-index(tooltip) + 1; // We need a higher z-index to prevent hover animation when included items have elements to hover
-    }
-
-    &:focus {
-      outline: none;
-    }
+  &:hover .c-bolt-tooltip__content,
+  &.is-expanded .c-bolt-tooltip__content {
+    display: block;
   }
 }
 
 .c-bolt-tooltip__content {
-  display: block;
+  @include bolt-padding(xxsmall);
+  display: none;
   position: absolute;
-  z-index: bolt-z-index('tooltip');
-  cursor: default;
-  transition: all $bolt-tooltip-transition;
+  transform: translate3d(0, 0, 0);
+  z-index: 1;
+  min-width: 200px;
 
-  &--button {
-    opacity: 0 !important; // We need this to override the hover functionality
-    pointer-events: none;
+  @at-root .c-bolt-tooltip--nowrap & {
+    min-width: auto;
+    white-space: nowrap;
+  }
 
-    .is-open+& {
-      opacity: bolt-opacity(100) !important; // Brings us back only when active
-      pointer-events: auto !important; // Brings back the ability to click links within the tooltip only when active
+  @at-root .c-bolt-tooltip--top-right & {
+    right: 0;
+    bottom: 100%;
+    transform: translate3d(0, 0, 0);
+    padding-right: 0;
+    padding-left: 0;
+
+    .c-bolt-tooltip__bubble {
+      animation-name: zoomInDown;
+    }
+  }
+
+  @at-root .c-bolt-tooltip--top & {
+    bottom: 100%;
+    left: 50%;
+    transform: translate3d(-50%, 0, 0);
+    padding-right: 0;
+    padding-left: 0;
+
+    .c-bolt-tooltip__bubble {
+      animation-name: zoomInDown;
+    }
+  }
+
+  @at-root .c-bolt-tooltip--top-left & {
+    bottom: 100%;
+    left: 0;
+    transform: translate3d(0, 0, 0);
+    padding-right: 0;
+    padding-left: 0;
+
+    .c-bolt-tooltip__bubble {
+      animation-name: zoomInDown;
+    }
+  }
+
+  @at-root .c-bolt-tooltip--left-top & {
+    top: 0;
+    right: 100%;
+    transform: translate3d(0, 0, 0);
+    padding-top: 0;
+    padding-bottom: 0;
+
+    .c-bolt-tooltip__bubble {
+      animation-name: zoomInDown;
+      transform-origin: top right;
+    }
+  }
+
+  @at-root .c-bolt-tooltip--left & {
+    top: 50%;
+    right: 100%;
+    transform: translate3d(0, -50%, 0);
+    padding-top: 0;
+    padding-bottom: 0;
+
+    .c-bolt-tooltip__bubble {
+      animation-name: zoomInDown;
+      transform-origin: center right;
+    }
+  }
+
+  @at-root .c-bolt-tooltip--left-bottom & {
+    right: 100%;
+    bottom: 0;
+    transform: translate3d(0, 0, 0);
+    padding-top: 0;
+    padding-bottom: 0;
+
+    .c-bolt-tooltip__bubble {
+      animation-name: zoomInDown;
+      transform-origin: bottom right;
+    }
+  }
+
+  @at-root .c-bolt-tooltip--right-top & {
+    top: 0;
+    left: 100%;
+    transform: translate3d(0, 0, 0);
+    padding-top: 0;
+    padding-bottom: 0;
+
+    .c-bolt-tooltip__bubble {
+      animation-name: zoomInLeft;
+      transform-origin: top left;
+    }
+  }
+
+  @at-root .c-bolt-tooltip--right & {
+    top: 50%;
+    left: 100%;
+    transform: translate3d(0, -50%, 0);
+    padding-top: 0;
+    padding-bottom: 0;
+
+    .c-bolt-tooltip__bubble {
+      animation-name: zoomInLeft;
+      transform-origin: center left;
+    }
+  }
+
+  @at-root .c-bolt-tooltip--right-bottom & {
+    bottom: 0;
+    left: 100%;
+    transform: translate3d(0, 0, 0);
+    padding-top: 0;
+    padding-bottom: 0;
+
+    .c-bolt-tooltip__bubble {
+      animation-name: zoomInLeft;
+      transform-origin: bottom left;
+    }
+  }
+
+  @at-root .c-bolt-tooltip--bottom-right & {
+    top: 100%;
+    right: 0;
+    transform: translate3d(0, 0, 0);
+    padding-right: 0;
+    padding-left: 0;
+
+    .c-bolt-tooltip__bubble {
+      animation-name: zoomInDown;
+      transform-origin: top right;
+    }
+  }
+
+  @at-root .c-bolt-tooltip--bottom & {
+    top: 100%;
+    left: 50%;
+    transform: translate3d(-50%, 0, 0);
+    padding-right: 0;
+    padding-left: 0;
+
+    .c-bolt-tooltip__bubble {
+      animation-name: zoomInDown;
+    }
+  }
+
+  @at-root .c-bolt-tooltip--bottom-left & {
+    top: 100%;
+    left: 0;
+    transform: translate3d(0, 0, 0);
+    padding-right: 0;
+    padding-left: 0;
+
+    .c-bolt-tooltip__bubble {
+      animation-name: zoomInDown;
+      transform-origin: top left;
     }
   }
 }
 
-.c-bolt-tooltip__content-bubble {
-  @include bolt-padding(xsmall, squished);
-  @include bolt-shadow('level-20');
-
+.c-bolt-tooltip__bubble {
+  @include bolt-font-family(body);
+  @include bolt-font-size(xsmall);
+  @include bolt-font-weight(semibold);
   display: block;
-  position: relative;
-  width: 300px;
-  color: bolt-color(black);
-  border: 1px solid $bolt-tooltip-bubble-border-color;
-  border-radius: $bolt-border-radius;
-  background-color: bolt-color(white);
+  overflow: hidden;
+  color: bolt-theme(background);
+  text-align: left;
+  text-align: start;
+  border-radius: bolt-border-radius(small);
+  border-width: $bolt-tooltip-border-width;
+  border-style: $bolt-tooltip-border-style;
+  border-color: $bolt-tooltip-border-color;
+  box-shadow: bolt-shadow('level-30');
+  background-color: bolt-theme(text);
 
-  &:after,
-  &:before {
-    content: '';
-    display: block;
-    position: absolute;
-    width: 0;
-    height: 0;
-    pointer-events: none;
+
+  animation-duration: 500ms;
+  animation-fill-mode: both;
+}
+
+// Spacing options
+@each $spacing-value in $bolt-tooltip-spacing-values {
+  $spacing-value-name: nth($spacing-value, 1);
+
+  .c-bolt-tooltip--spacing-#{$spacing-value-name} {
+    .c-bolt-tooltip__bubble {
+      @include bolt-padding(#{$spacing-value-name}, squished);
+    }
   }
 }
 
-
-// Show and hide effects
-.c-bolt-tooltip:not(:hover):not(.is-open) > .c-bolt-tooltip__content,
-.c-bolt-tooltip__trigger + .c-bolt-tooltip__content {
-  opacity: bolt-opacity(0);
-  pointer-events: none;
-}
-
-.c-bolt-tooltip:hover:not(.is-rendered) > .c-bolt-tooltip__content,
-.c-bolt-tooltip.is-open > .c-bolt-tooltip__content,
-.c-bolt-tooltip__trigger.is-open + .c-bolt-tooltip__content {
-  opacity: bolt-opacity(100);
-  pointer-events: auto;
-}
-
-.c-bolt-tooltip.is-push-up {
-  &:not(:hover) > .c-bolt-tooltip__content,
-  .c-bolt-tooltip__trigger + .c-bolt-tooltip__content {
-    padding-bottom: $bolt-tooltip-bubble-triangle-width;
+@keyframes zoomInDown {
+  0% {
+    opacity: 0;
+    transform: scale3d(0, 0, 0) translate3d(0, -100%, 0);
+    animation-timing-function: cubic-bezier(0.55, .055, .675, .19)
   }
-
-  &:hover > .c-bolt-tooltip__content,
-  .c-bolt-tooltip__trigger.is-open + .c-bolt-tooltip__content {
-    //padding-bottom: 0.25em; // Extra spacing between the bubble and the trigger
+  60% {
+    opacity: 1;
+    transform: scale3d(.475, .475, .475) translate3d(0, 50%, 0);
+    animation-timing-function: cubic-bezier(0.175, .885, .32, 1)
   }
 }
 
-.c-bolt-tooltip.is-push-right {
-  &:not(:hover) > .c-bolt-tooltip__content,
-  .c-bolt-tooltip__trigger + .c-bolt-tooltip__content {
-    padding-left: 0;
+@keyframes zoomInLeft {
+  0% {
+    opacity: 0;
+    transform: scale3d(.1, .1, .1) translate3d(-50%, 0, 0);
+    animation-timing-function: cubic-bezier(0.55, .055, .675, .19)
   }
-
-  &:hover > .c-bolt-tooltip__content,
-  .c-bolt-tooltip__trigger.is-open + .c-bolt-tooltip__content {
-    padding-left: $bolt-tooltip-bubble-triangle-width * 1.5; // Extra spacing between the bubble and the trigger
-  }
-}
-
-.c-bolt-tooltip.is-push-down {
-  &:not(:hover) > .c-bolt-tooltip__content,
-  .c-bolt-tooltip__trigger + .c-bolt-tooltip__content {
-    padding-top: $bolt-tooltip-bubble-triangle-width;
-  }
-
-  &:hover > .c-bolt-tooltip__content,
-  .c-bolt-tooltip__trigger.is-open + .c-bolt-tooltip__content {
-    //padding-top: 0.25em; // Extra spacing between the bubble and the trigger
-  }
-}
-
-.c-bolt-tooltip.is-push-left {
-  &:not(:hover) > .c-bolt-tooltip__content,
-  .c-bolt-tooltip__trigger + .c-bolt-tooltip__content {
-    padding-right: 0;
-  }
-
-  &:hover > .c-bolt-tooltip__content,
-  .c-bolt-tooltip__trigger.is-open + .c-bolt-tooltip__content {
-    padding-right: $bolt-tooltip-bubble-triangle-width * 1.5; // Extra spacing between the bubble and the trigger
+  60% {
+    opacity: 1;
+    transform: scale3d(.475, .475, .475) translate3d(2rem, 0, 0);
+    animation-timing-function: cubic-bezier(0.175, .885, .32, 1)
   }
 }
