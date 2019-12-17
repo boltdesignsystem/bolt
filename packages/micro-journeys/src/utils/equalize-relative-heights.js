@@ -6,6 +6,8 @@
  * @prop {HTMLElement} paddingEqualizationTarget
  */
 
+export const equalizeRelativeHeightsKey = 'boltIsEqualized';
+
 /**
  *
  * @param {EqualizeRelativeHeightArgItem} item
@@ -31,6 +33,7 @@ const validateItem = item => {
  */
 const validateParamsForEqualizeRelativeHeights = items => {
   items.forEach((item, i) => {
+    const { container, elToEqualize, paddingEqualizationTarget } = item;
     if (!validateItem(item)) {
       throw new Error(
         `Element provided to equalizeRelativeHeights has no width. container: ${container.offsetWidth}, elToEqualize: ${elToEqualize.offsetWidth}, paddingEqualizationTarget: ${paddingEqualizationTarget.offsetWidth}`,
@@ -74,8 +77,11 @@ export const equalizeRelativeHeights = (
 
     // Add padding to the shorter ones to equalize the height.
     items.forEach((item, i) => {
+      const { paddingEqualizationTarget, relativeOffsetTop } = item;
+      if (paddingEqualizationTarget[equalizeRelativeHeightsKey] === true) {
+        return;
+      }
       if (indexOfLongest !== i) {
-        const { paddingEqualizationTarget, relativeOffsetTop } = item;
         // Remove 'calc': Nested calcs in IE work fine if wrapped only in parens.
         const previousPadding = `${paddingEqualizationTarget.style.paddingTop ||
           '0px'}`.replace('calc', '');
@@ -83,6 +89,7 @@ export const equalizeRelativeHeights = (
           indexOfLongest
         ].relativeOffsetTop - relativeOffsetTop}px + ${previousPadding})`;
       }
+      paddingEqualizationTarget[equalizeRelativeHeightsKey] = true;
     });
     if (callback) {
       callback();
