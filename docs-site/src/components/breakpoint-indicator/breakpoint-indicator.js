@@ -1,4 +1,4 @@
-import { LitElement, html, customElement } from 'lit-element';
+import { BoltElement, html, customElement } from '@bolt/element';
 import { ResizeObserver } from '@juggle/resize-observer';
 
 const ro = new ResizeObserver(entries => {
@@ -6,7 +6,7 @@ const ro = new ResizeObserver(entries => {
 });
 
 @customElement('bolt-breakpoint-indicator')
-class BreakpointIndicator extends LitElement {
+class BreakpointIndicator extends BoltElement {
   static get properties() {
     return {
       width: Number,

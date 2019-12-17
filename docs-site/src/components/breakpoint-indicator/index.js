@@ -1,14 +1,12 @@
+import '@bolt/polyfills';
 import { hasNativeShadowDomSupport } from '@bolt/element';
-import { polyfillLoader } from '@bolt/core/polyfills';
 
-// Don't try to run if Shadow DOM isn't supported
+// opt-out of rendering on older browsers since this is a nice-to-have vs must-have
 if (hasNativeShadowDomSupport) {
-  polyfillLoader.then(res => {
-    import(
-      /*
-      webpackMode: 'lazy',
-      webpackChunkName: 'bolt-breakpoint-indicator'
-    */ './breakpoint-indicator'
-    );
-  });
+  import(
+    /*
+    webpackMode: 'lazy',
+    webpackChunkName: 'breakpoint-indicator'
+  */ './breakpoint-indicator'
+  );
 }
