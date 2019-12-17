@@ -171,17 +171,20 @@ $bolt-list-valignments: start, center, end;
 }
 
 // Nowrap
-.c-bolt-list--display-inline,
-.c-bolt-list--display-flex {
-  flex-flow: row nowrap;
-}
+.c-bolt-list--nowrap {
+  &.c-bolt-list--display-inline,
+  &.c-bolt-list--display-flex {
+    flex-flow: row nowrap;
+  }
 
-@each $breakpoint in $bolt-breakpoints {
-  $breakpoint-name: nth($breakpoint, 1);
+  @each $breakpoint in $bolt-breakpoints {
+    $breakpoint-name: nth($breakpoint, 1);
 
-  .c-bolt-list--display-inline\@#{$breakpoint-name} {
-    @include bolt-mq($breakpoint-name) {
-      flex-flow: row nowrap;
+    &.c-bolt-list--display-inline\@#{$breakpoint-name} {
+      @include bolt-mq($breakpoint-name) {
+        flex-flow: row nowrap;
+      }
     }
   }
+
 }
