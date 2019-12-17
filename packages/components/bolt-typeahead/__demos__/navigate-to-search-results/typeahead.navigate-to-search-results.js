@@ -58,7 +58,7 @@ const items = [
 
 if (typeahead) {
   typeahead.addEventListener('ready', function(e) {
-    if (e.detail.name === 'bolt-typeahead') {
+    if (e.detail.name === 'bolt-autosuggest') {
       typeahead.items = items;
       typeahead.on('onSelected', (element, event, suggestion) => {
         const itemSelected = element.items.filter(

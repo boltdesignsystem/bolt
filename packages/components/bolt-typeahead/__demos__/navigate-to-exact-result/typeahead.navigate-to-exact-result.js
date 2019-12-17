@@ -22,7 +22,7 @@ const typeaheadDemoItems = [
 
 if (typeaheadDemo) {
   typeaheadDemo.addEventListener('ready', function(e) {
-    if (e.detail.name === 'bolt-typeahead') {
+    if (e.detail.name === 'bolt-autosuggest') {
       typeaheadDemo.items = typeaheadDemoItems;
 
       typeaheadDemo.on('onSelected', (element, event, suggestion) => {

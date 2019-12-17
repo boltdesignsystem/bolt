@@ -83,8 +83,8 @@
 {% endset %}
 
 {% spaceless %}
-  <bolt-typeahead {{ this.props }}>
-    <div class="{{ classNames.typeahead }}">
+  <bolt-autosuggest {{ this.props }}>
+    {# <div class="{{ classNames.typeahead }}">
       {% block label %}
         <label for="{{ uuid }}" class="{{ classNames.label }}">
           <span class="{{ utils.visuallyHidden }}">{{ this.data.input_label.value }}</span>
@@ -128,6 +128,6 @@
           {% endblock slot_after %}
         {% endembed %}
       </div>
-    </div>
-  </bolt-typeahead>
+    </div> #}
+  </bolt-autosuggest>
 {% endspaceless %}

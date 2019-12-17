@@ -5,7 +5,7 @@ const dynamicTypeaheadDemo = document.querySelector(
 
 if (dynamicTypeaheadDemo) {
   dynamicTypeaheadDemo.addEventListener('ready', function(e) {
-    if (e.detail.name === 'bolt-typeahead') {
+    if (e.detail.name === 'bolt-autosuggest') {
       // note: make sure to let Typeahead know when the data fetched is ready
       dynamicTypeaheadDemo.on('getSuggestions', async value => {
         return await new Promise(async resolve => {
