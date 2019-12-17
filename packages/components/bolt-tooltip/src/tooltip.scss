@@ -15,7 +15,7 @@ $bolt-tooltip-spacing-values: xsmall, small, medium;
 }
 
 .c-bolt-tooltip {
-  display: inline;
+  display: inline-flex;
   position: relative;
 
   &:hover .c-bolt-tooltip__content,
@@ -176,6 +176,7 @@ $bolt-tooltip-spacing-values: xsmall, small, medium;
 
     .c-bolt-tooltip__bubble {
       animation-name: a-bolt-zoom-in-down;
+      transform-origin: top center;
     }
   }
 
@@ -204,10 +205,10 @@ $bolt-tooltip-spacing-values: xsmall, small, medium;
   text-align: left;
   text-align: start;
   border-radius: bolt-border-radius(small);
-  border-width: $bolt-tooltip-border-width;
+  /* border-width: $bolt-tooltip-border-width;
   border-style: $bolt-tooltip-border-style;
   border-color: $bolt-tooltip-border-color;
-  box-shadow: bolt-shadow('level-30');
+  box-shadow: bolt-shadow('level-30'); */
   background-color: bolt-theme(text);
   animation-duration: 500ms;
   animation-fill-mode: both;
@@ -241,11 +242,11 @@ $bolt-tooltip-spacing-values: xsmall, small, medium;
 @keyframes a-bolt-zoom-in-left {
   0% {
     opacity: 0;
-    transform: scale3d(.1, .1, .1) translate3d(-50%, 0, 0);
+    transform: scale3d(.1, .1, .1) translate3d(-100%, 0, 0);
     animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19)
   }
   60% {
-    opacity: 1;
+    opacity: bolt-opacity(20);
     transform: scale3d(.475, .475, .475) translate3d(bolt-spacing(medium), 0, 0);
     animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1)
   }
@@ -258,7 +259,7 @@ $bolt-tooltip-spacing-values: xsmall, small, medium;
     animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19)
   }
   60% {
-    opacity: 1;
+    opacity: bolt-opacity(20);
     transform: scale3d(.475, .475, .475) translate3d(0, (bolt-v-spacing(medium) * -1), 0);
     animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1)
   }
@@ -267,11 +268,11 @@ $bolt-tooltip-spacing-values: xsmall, small, medium;
 @keyframes a-bolt-zoom-in-right {
   0% {
     opacity: 0;
-    transform: scale3d(.1, .1, .1) translate3d(50%, 0, 0);
+    transform: scale3d(.1, .1, .1) translate3d(100%, 0, 0);
     animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19)
   }
   60% {
-    opacity: 1;
+    opacity: bolt-opacity(20);
     transform: scale3d(.475, .475, .475) translate3d((bolt-spacing(medium) * -1), 0, 0);
     animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1)
   }
