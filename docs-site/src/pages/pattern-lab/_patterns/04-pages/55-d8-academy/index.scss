@@ -1,0 +1,22 @@
+.c-academy-featured-hero {
+  position: relative;
+
+  &:after {
+    content: '';
+    position: absolute;
+    top: -5rem;
+    right: -16vw;
+    z-index: 1;
+    width: 100vw;
+    height: 100%;
+    background-image: radial-gradient( 100% 109% at bottom 10% right 0%, #FF9B00 36%, rgba(0, 0, 0, 0) 67% );
+    mix-blend-mode: multiply;
+    background-position: bottom right;
+    background-repeat: no-repeat;
+    background-size: 70% 100%;
+  }
+}
+
+.c-academy-featured-hero__image {
+  filter: hue-rotate(345deg) contrast(1.3);
+}

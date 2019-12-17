@@ -1,7 +1,7 @@
 {% set content %}
-  {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--flex" %}
-    {% cell "u-bolt-width-12/12" %}
-      {% include "@bolt-components-headline/headline.twig" with {
+{% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--flex" %}
+{% cell "u-bolt-width-12/12" %}
+{% include "@bolt-components-headline/headline.twig" with {
         size: "xxlarge",
         weight: "bold",
         align: "center",
@@ -13,10 +13,10 @@
           ]
         }
       } only %}
-    {% endcell %}
+{% endcell %}
 
-    {% cell "u-bolt-width-12/12 u-bolt-width-4/12@medium u-bolt-text-align-center" %}
-      {% include "@bolt-components-icon/icon.twig" with {
+{% cell "u-bolt-width-12/12 u-bolt-width-4/12@medium u-bolt-text-align-center" %}
+{% include "@bolt-components-icon/icon.twig" with {
         name: "thumbs-up-outline",
         attributes: {
           style: [
@@ -28,22 +28,22 @@
         }
       } only %}
 
-      {% include "@bolt-components-headline/headline.twig" with {
+{% include "@bolt-components-headline/headline.twig" with {
         size: "xlarge",
         weight: "bold",
         align: "center",
         text: "Show the world how great you are."
       } only %}
 
-      {% include "@bolt-components-headline/text.twig" with {
+{% include "@bolt-components-headline/text.twig" with {
         size: "medium",
         align: "center",
         text: "A Pega certification confirms that you and your team have the skills, knowledge and experience to architect and implement world-class Pega solutions."
       } only %}
-    {% endcell %}
+{% endcell %}
 
-    {% cell "u-bolt-width-12/12 u-bolt-width-4/12@medium u-bolt-text-align-center" %}
-      {% include "@bolt-components-icon/icon.twig" with {
+{% cell "u-bolt-width-12/12 u-bolt-width-4/12@medium u-bolt-text-align-center" %}
+{% include "@bolt-components-icon/icon.twig" with {
         name: "world-outline",
         attributes: {
           class: [
@@ -55,22 +55,22 @@
         }
       } only %}
 
-      {% include "@bolt-components-headline/headline.twig" with {
+{% include "@bolt-components-headline/headline.twig" with {
         size: "xlarge",
         weight: "bold",
         align: "center",
         text: "Future proof your career."
       } only %}
 
-      {% include "@bolt-components-headline/text.twig" with {
+{% include "@bolt-components-headline/text.twig" with {
         size: "medium",
         align: "center",
         text: "Join our thriving Pega certified professional ecosystem and stay relevant and valuable."
       } only %}
-    {% endcell %}
+{% endcell %}
 
-    {% cell "u-bolt-width-12/12 u-bolt-width-4/12@medium u-bolt-text-align-center" %}
-      {% include "@bolt-components-icon/icon.twig" with {
+{% cell "u-bolt-width-12/12 u-bolt-width-4/12@medium u-bolt-text-align-center" %}
+{% include "@bolt-components-icon/icon.twig" with {
         name: "time-outline",
         attributes: {
           class: [
@@ -82,36 +82,29 @@
         }
       } only %}
 
-      {% include "@bolt-components-headline/headline.twig" with {
+{% include "@bolt-components-headline/headline.twig" with {
         size: "xlarge",
         weight: "bold",
         align: "center",
         text: "Build fast. Empower your team."
       } only %}
 
-      {% include "@bolt-components-headline/text.twig" with {
+{% include "@bolt-components-headline/text.twig" with {
         size: "medium",
         align: "center",
         text: "Projects that leverage Pega certified professionals see reduced costs and faster times to market by increasing team efficiency and minimizing errors."
       } only %}
-    {% endcell %}
+{% endcell %}
 
-    {% cell "u-bolt-width-12/12 u-bolt-text-align-center u-bolt-margin-top-medium" %}
-      {% include "@bolt-components-button/button.twig" with {
+{% cell "u-bolt-width-12/12 u-bolt-text-align-center u-bolt-margin-top-medium" %}
+{% include "@bolt-components-button/button.twig" with {
         text: "Browse Certification Missions",
         border_radius: "full"
       } only %}
-    {% endcell %}
+{% endcell %}
 
-  {% endgrid %}
+{% endgrid %}
 {% endset %}
-{# background-image: radial-gradient(4% 80%, #C910AB 0%, rgba(0,0,0,0.00) 96%); #}
-{# box-shadow: 0 12px 55px 4px #50E3C2, inset -13px -22px 58px 0 rgba(0,0,0,0.36); #}
-{# .rectangle {
-	height: 931px;
-	width: 1439px;
-	background: linear-gradient(181deg, rgba(6,214,214,0.82) 0%, #06304B 100%);
-} #}
 
 {% embed "@bolt-components-band/band.twig" with {
   theme: "xdark",
@@ -130,24 +123,19 @@
 
   {% block band_background %}
     <div class="c-bolt-background-crop u-bolt-negative-margin-top-xlarge u-bolt-margin-top-none@medium">
-    {# <svg viewBox="0 0 1 1" width="0" height="0">
-      <clipPath id="clip" clipPathUnits="objectBoundingBox">
-      <path d="M0 0 Q 0.5 0.2, 1 0 L 1 1 Q 0.5 0.8,0 1 L 0 0"></path>
-      </clipPath>
-    </svg> #}
-     <svg width="100%" height="100%" viewBox="0 0 1439 910" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="none">
+      <svg width="100%" height="100%" viewbox="0 0 1439 910" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveaspectratio="none">
         <defs>
-            <linearGradient x1="61.0254517%" y1="-9.85212704%" x2="59.3614272%" y2="85.2372888%" id="linearGradient-1">
-                <stop stop-color="#06D6D6" stop-opacity="1" offset="0%"></stop>
-                <stop stop-color="#06304B" offset="100%"></stop>
-            </linearGradient>
+          <linearGradient x1="61.0254517%" y1="-9.85212704%" x2="59.3614272%" y2="85.2372888%" id="linearGradient-1">
+            <stop stop-color="#06D6D6" stop-opacity="1" offset="0%"></stop>
+            <stop stop-color="#06304B" offset="100%"></stop>
+          </linearGradient>
         </defs>
         <g id="Pega-Academy-POC" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-            <g id="POC-Homepage" transform="translate(0.000000, -552.000000)" fill="url(#linearGradient-1)">
-                <path d="M1439,559.354391 L1439,899.910482 L1439,1462 L0,1462 L0,552.117981 C882.480263,925.532853 1362.14693,927.945041 1439,559.354391 Z" id="Rectangle-2"></path>
-            </g>
+          <g id="POC-Homepage" transform="translate(0.000000, -552.000000)" fill="url(#linearGradient-1)">
+            <path d="M1439,559.354391 L1439,899.910482 L1439,1462 L0,1462 L0,552.117981 C882.480263,925.532853 1362.14693,927.945041 1439,559.354391 Z" id="Rectangle-2"></path>
+          </g>
         </g>
-    </svg>
+      </svg>
     </div>
   {% endblock %}
 

@@ -1,12 +1,11 @@
 {% set content %}
-  {% grid "o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--matrix u-bolt-flex-nowrap" %}
+  {% grid "o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--matrix u-bolt-flex-nowrap@medium" %}
     {% cell "
       u-bolt-z-index-content
       u-bolt-flex-shrink-none
-      u-bolt-negative-margin-top-xxlarge
+      u-bolt-negative-margin-top-xxlarge@medium
       u-bolt-margin-bottom-xlarge@xlarge
       u-bolt-width-12/12
-      u-bolt-width-11/12@small
       u-bolt-width-10/12@medium
       u-bolt-width-8/12@large
       u-bolt-width-7/12@xlarge
@@ -47,47 +46,29 @@
       u-bolt-position-relative
       u-bolt-z-index-background
 
-      u-bolt-width-12/12
-      u-bolt-width-11/12@xsmall
-      u-bolt-width-10/12@small
-      u-bolt-width-8/12@medium
+      u-bolt-negative-margin-top-large
+      u-bolt-margin-top-none@medium
+      u-bolt-width-8/12
       u-bolt-width-7/12@large
       u-bolt-width-8/12@xxxlarge
 
-
-      u-bolt-pull-7/12
-      u-bolt-pull-6/12@xsmall
-      u-bolt-pull-4/12@small
+      u-bolt-margin-left-auto
       u-bolt-pull-3/12@medium
-      u-bolt-pull-1/12@large
       u-bolt-push-1/12@large
       u-bolt-push-2/12@xxxxlarge
     ">
-      <div class="c-bolt-background__item" style="position: absolute;
-      background-image: radial-gradient( 100% 109% at bottom 10% right 0%, #FF9B00 36%, rgba(0, 0, 0, 0) 67% );
-      top: -5rem;
-      right: -16vw;
-      z-index: 1;
-      width: 100vw;
-      mix-blend-mode: multiply;
-      background-position: bottom right;
-      background-repeat: no-repeat;
-      background-size: 70% 100%;">
-      </div>
-      <div class="c-academy-hero__image">
+      <div class="c-academy-featured-hero">
         {% include "@bolt-components-image/image.twig" with {
           src: "/images/academy/astronaut-hero.png",
           lazyload: false,
           attributes: {
             class: [
+              "c-academy-featured-hero__image",
               "u-bolt-negative-margin-right-xlarge",
               "u-bolt-padding-left-large@xlarge",
               "u-bolt-padding-left-xlarge@xxlarge",
               "u-bolt-negative-margin-right-xlarge@xxxlarge",
             ],
-            style: [
-              "filter: hue-rotate(345deg) contrast(1.3)"
-            ]
           }
         } only %}
       </div>
@@ -97,25 +78,17 @@
 
 {% embed "@bolt-components-band/band.twig" with {
   theme: "xdark",
+  background: {
+    fill: 'radial-gradient',
+    opacity: 'full',
+  },
   content: content,
   attributes: {
     class: [
-      "has-transparent-background",
       "u-bolt-negative-margin-bottom-xxxlarge"
-    ]
-  },
-  inner_attributes: {
-    class: [
-
     ]
   }
 } only %}
-
-  {% block band_background %}
-    <div class="c-bolt-background__item" style="position: absolute; background-color: #161B3D; background-image: radial-gradient(54% 190% at top -20% left 10%, #C910AB 10%, rgba(0,0,0,0.00) 96%); background-repeat: no-repeat; background-size: auto; height: 100%; width: calc(110vw); top: 0; left: 0; right;">
-    </div>
-
-  {% endblock %}
 
   {% block band_content %}
     <div class="u-bolt-padding-bottom-none">

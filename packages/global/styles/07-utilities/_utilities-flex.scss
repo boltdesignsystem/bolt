@@ -30,3 +30,13 @@
 .u-bolt-flex-nowrap {
   flex-wrap: nowrap !important;
 }
+
+// Loop over our breakpoints
+@each $breakpoint in $bolt-breakpoints {
+  $breakpointName: nth($breakpoint, 1);
+  @include bolt-mq($breakpointName) {
+    .u-bolt-flex-nowrap\@#{$breakpointName} {
+      flex-wrap: nowrap !important;
+    }
+  }
+}
