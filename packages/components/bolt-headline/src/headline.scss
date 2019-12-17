@@ -18,6 +18,10 @@ $bolt-headline--plus-letter-spacing: 0.05rem;
 .c-bolt-eyebrow,
 .c-bolt-text {
   @include bolt-headline;
+
+  strong {
+    @include bolt-font-weight(bold);
+  }
 }
 
 .c-bolt-headline {

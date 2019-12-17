@@ -26,6 +26,7 @@
 {% set type = type in types ? type : "text" %}
 {% set size = size | default(schema.properties.size.default) %}
 
+{% set autoshrink = autoshrink is defined ? autoshrink : schema.properties.autoshrink.default %}
 
 {# For backwards compatibility only, setting icon to exactly 'false' is the same as specifying 'none'.  Deprecated. #}
 {% if icon is sameas(false) %}
@@ -60,7 +61,7 @@
 {% set baseClass = prefix ~ type %}
 {% set attributes = create_attribute(attributes|default({})) %}
 
-{% if (size == "xxxlarge") and (text|length >= 60) %}
+{% if (size == "xxxlarge") and (text|length >= 60) and autoshrink == true %}
   {% set longTitle = true %}
 {% endif %}
 
