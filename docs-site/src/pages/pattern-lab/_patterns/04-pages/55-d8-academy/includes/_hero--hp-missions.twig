@@ -1,0 +1,31 @@
+{% set content %}
+  {% grid "o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--matrix" %}
+    {% cell "u-bolt-width-12/12" %}
+      {% include "@bolt-components-headline/headline.twig" with {
+        size: "xlarge",
+        weight: "bold",
+        align: "center",
+        text: "Browse Missions and path types",
+        attributes: {
+          class: [
+            "u-bolt-margin-bottom-large"
+          ]
+        }
+      } only %}
+    {% endcell %}
+
+    {% cell "u-bolt-width-12/12 u-bolt-width-6/12@medium" %}
+      Column 1
+    {% endcell %}
+
+    {% cell "u-bolt-width-12/12 u-bolt-width-6/12@medium" %}
+      Column 2
+    {% endcell %}
+
+  {% endgrid %}
+{% endset %}
+
+{% include "@bolt-components-band/band.twig" with {
+  theme: "dark",
+  content: content,
+} only %}
