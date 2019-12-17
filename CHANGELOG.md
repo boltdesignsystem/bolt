@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.13.1](https://github.com/boltdesignsystem/bolt/compare/v2.13.0...v2.13.1) (2019-12-17)
+
+
+### Bug Fixes
+
+* **micro-journey:** ie 11 fixes for two-character-layout ([eb186b9](https://github.com/boltdesignsystem/bolt/commit/eb186b9))
+* **micro-journeys:** error code in equalizeRelativeHeights ([10e2510](https://github.com/boltdesignsystem/bolt/commit/10e2510))
+* **micro-journeys:** make bolt-character render happen in two-character-layout in requestAnimationFrame ([5b53ac0](https://github.com/boltdesignsystem/bolt/commit/5b53ac0))
+* **micro-journeys:** make two-character-layout more robust ([26f7d9d](https://github.com/boltdesignsystem/bolt/commit/26f7d9d))
+* **micro-journeys:** push charactersAreReadyInitialization to bottom of call stack in bolt-two-character-layout ([1abb455](https://github.com/boltdesignsystem/bolt/commit/1abb455))
+* **micro-journeys:** two-character refactor with debug code ([6dbae1c](https://github.com/boltdesignsystem/bolt/commit/6dbae1c))
+
+
+
+
+
 # [2.13.0](https://github.com/boltdesignsystem/bolt/compare/v2.12.1...v2.13.0) (2019-12-13)
 
 

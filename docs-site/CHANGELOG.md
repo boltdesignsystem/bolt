@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.13.1](https://github.com/bolt-design-system/bolt/compare/v2.13.0...v2.13.1) (2019-12-17)
+
+
+### Bug Fixes
+
+* **micro-journeys:** make two-character-layout more robust ([26f7d9d](https://github.com/bolt-design-system/bolt/commit/26f7d9d))
+
+
+
+
+
 # [2.13.0](https://github.com/bolt-design-system/bolt/compare/v2.12.1...v2.13.0) (2019-12-13)
 
 
