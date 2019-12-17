@@ -55,7 +55,7 @@
   width: 100%;
   grid-column-start: 1;
   grid-column-end: 3;
-  // grid-column: 2 / -2;
+  overflow: hidden; // needed in order to crop off whitespace from negative vertical margins
 }
 
 .c-bolt-site__content--middle {
