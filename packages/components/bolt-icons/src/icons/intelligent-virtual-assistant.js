@@ -1,3 +1,4 @@
+import * as Icons from '@bolt/components-icon/registry';
 import { h } from '@bolt/core/renderers';
 
 export const IntelligentVirtualAssistant = ({
@@ -17,3 +18,5 @@ export const IntelligentVirtualAssistant = ({
     </svg>
   );
 };
+
+Icons.set('intelligent-virtual-assistant', IntelligentVirtualAssistant);

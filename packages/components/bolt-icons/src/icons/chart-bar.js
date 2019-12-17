@@ -1,3 +1,4 @@
+import * as Icons from '@bolt/components-icon/registry';
 import { h } from '@bolt/core/renderers';
 
 export const ChartBar = ({ bgColor, fgColor, size, ...otherProps }) => {
@@ -16,3 +17,5 @@ export const ChartBar = ({ bgColor, fgColor, size, ...otherProps }) => {
     </svg>
   );
 };
+
+Icons.set('chart-bar', ChartBar);

@@ -1,3 +1,4 @@
+import * as Icons from '@bolt/components-icon/registry';
 import { h } from '@bolt/core/renderers';
 
 export const MinusOpen = ({ bgColor, fgColor, size, ...otherProps }) => {
@@ -13,3 +14,5 @@ export const MinusOpen = ({ bgColor, fgColor, size, ...otherProps }) => {
     </svg>
   );
 };
+
+Icons.set('minus-open', MinusOpen);

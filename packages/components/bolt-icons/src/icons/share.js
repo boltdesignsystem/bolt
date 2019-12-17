@@ -1,3 +1,4 @@
+import * as Icons from '@bolt/components-icon/registry';
 import { h } from '@bolt/core/renderers';
 
 export const Share = ({ bgColor, fgColor, size, ...otherProps }) => {
@@ -10,3 +11,5 @@ export const Share = ({ bgColor, fgColor, size, ...otherProps }) => {
     </svg>
   );
 };
+
+Icons.set('share', Share);

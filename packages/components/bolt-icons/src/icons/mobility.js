@@ -1,3 +1,4 @@
+import * as Icons from '@bolt/components-icon/registry';
 import { h } from '@bolt/core/renderers';
 
 export const Mobility = ({ bgColor, fgColor, size, ...otherProps }) => {
@@ -12,3 +13,5 @@ export const Mobility = ({ bgColor, fgColor, size, ...otherProps }) => {
     </svg>
   );
 };
+
+Icons.set('mobility', Mobility);
