@@ -1,6 +1,6 @@
+import { unsafeCSS, BoltElement, customElement, html } from '@bolt/element';
 import classNames from 'classnames/bind';
 import cardStyles from './card.scss';
-import { unsafeCSS, BoltElement, customElement, html } from '@bolt/element';
 let cx = classNames.bind(cardStyles);
 
 // define which specific props to provide to children that subscribe
