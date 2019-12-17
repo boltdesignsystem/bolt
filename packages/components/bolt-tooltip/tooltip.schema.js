@@ -10,7 +10,7 @@ module.exports = {
         'A Drupal attributes object. Applies extra HTML attributes to the outer &lt;bolt-menu&gt; tag.',
     },
     trigger: {
-      type: 'any',
+      type: 'object',
       description: 'Renders the trigger of the tooltip.',
     },
     content: {

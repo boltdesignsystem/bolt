@@ -45,7 +45,8 @@ $bolt-tooltip-spacing-values: xsmall, small, medium;
     padding-left: 0;
 
     .c-bolt-tooltip__bubble {
-      animation-name: zoomInDown;
+      animation-name: a-bolt-zoom-in-up;
+      transform-origin: bottom right;
     }
   }
 
@@ -57,7 +58,8 @@ $bolt-tooltip-spacing-values: xsmall, small, medium;
     padding-left: 0;
 
     .c-bolt-tooltip__bubble {
-      animation-name: zoomInDown;
+      animation-name: a-bolt-zoom-in-up;
+      transform-origin: bottom center;
     }
   }
 
@@ -69,7 +71,8 @@ $bolt-tooltip-spacing-values: xsmall, small, medium;
     padding-left: 0;
 
     .c-bolt-tooltip__bubble {
-      animation-name: zoomInDown;
+      animation-name: a-bolt-zoom-in-up;
+      transform-origin: bottom left;
     }
   }
 
@@ -81,7 +84,7 @@ $bolt-tooltip-spacing-values: xsmall, small, medium;
     padding-bottom: 0;
 
     .c-bolt-tooltip__bubble {
-      animation-name: zoomInDown;
+      animation-name: a-bolt-zoom-in-right;
       transform-origin: top right;
     }
   }
@@ -94,7 +97,7 @@ $bolt-tooltip-spacing-values: xsmall, small, medium;
     padding-bottom: 0;
 
     .c-bolt-tooltip__bubble {
-      animation-name: zoomInDown;
+      animation-name: a-bolt-zoom-in-right;
       transform-origin: center right;
     }
   }
@@ -107,7 +110,7 @@ $bolt-tooltip-spacing-values: xsmall, small, medium;
     padding-bottom: 0;
 
     .c-bolt-tooltip__bubble {
-      animation-name: zoomInDown;
+      animation-name: a-bolt-zoom-in-right;
       transform-origin: bottom right;
     }
   }
@@ -120,7 +123,7 @@ $bolt-tooltip-spacing-values: xsmall, small, medium;
     padding-bottom: 0;
 
     .c-bolt-tooltip__bubble {
-      animation-name: zoomInLeft;
+      animation-name: a-bolt-zoom-in-left;
       transform-origin: top left;
     }
   }
@@ -133,7 +136,7 @@ $bolt-tooltip-spacing-values: xsmall, small, medium;
     padding-bottom: 0;
 
     .c-bolt-tooltip__bubble {
-      animation-name: zoomInLeft;
+      animation-name: a-bolt-zoom-in-left;
       transform-origin: center left;
     }
   }
@@ -146,7 +149,7 @@ $bolt-tooltip-spacing-values: xsmall, small, medium;
     padding-bottom: 0;
 
     .c-bolt-tooltip__bubble {
-      animation-name: zoomInLeft;
+      animation-name: a-bolt-zoom-in-left;
       transform-origin: bottom left;
     }
   }
@@ -159,7 +162,7 @@ $bolt-tooltip-spacing-values: xsmall, small, medium;
     padding-left: 0;
 
     .c-bolt-tooltip__bubble {
-      animation-name: zoomInDown;
+      animation-name: a-bolt-zoom-in-down;
       transform-origin: top right;
     }
   }
@@ -172,7 +175,7 @@ $bolt-tooltip-spacing-values: xsmall, small, medium;
     padding-left: 0;
 
     .c-bolt-tooltip__bubble {
-      animation-name: zoomInDown;
+      animation-name: a-bolt-zoom-in-down;
     }
   }
 
@@ -184,7 +187,7 @@ $bolt-tooltip-spacing-values: xsmall, small, medium;
     padding-left: 0;
 
     .c-bolt-tooltip__bubble {
-      animation-name: zoomInDown;
+      animation-name: a-bolt-zoom-in-down;
       transform-origin: top left;
     }
   }
@@ -205,8 +208,7 @@ $bolt-tooltip-spacing-values: xsmall, small, medium;
   border-color: $bolt-tooltip-border-color;
   box-shadow: bolt-shadow('level-30');
   background-color: bolt-theme(text);
-
-
+  transform: translate3d(0, 0, 0);
   animation-duration: 500ms;
   animation-fill-mode: both;
 }
@@ -222,28 +224,55 @@ $bolt-tooltip-spacing-values: xsmall, small, medium;
   }
 }
 
-@keyframes zoomInDown {
+// Animations
+@keyframes a-bolt-zoom-in-down {
   0% {
     opacity: 0;
     transform: scale3d(0, 0, 0) translate3d(0, -100%, 0);
-    animation-timing-function: cubic-bezier(0.55, .055, .675, .19)
+    animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19)
   }
   60% {
     opacity: 1;
-    transform: scale3d(.475, .475, .475) translate3d(0, 50%, 0);
-    animation-timing-function: cubic-bezier(0.175, .885, .32, 1)
+    transform: scale3d(.475, .475, .475) translate3d(0, bolt-v-spacing(medium), 0);
+    animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1)
   }
 }
 
-@keyframes zoomInLeft {
+@keyframes a-bolt-zoom-in-left {
   0% {
     opacity: 0;
     transform: scale3d(.1, .1, .1) translate3d(-50%, 0, 0);
-    animation-timing-function: cubic-bezier(0.55, .055, .675, .19)
+    animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19)
   }
   60% {
     opacity: 1;
-    transform: scale3d(.475, .475, .475) translate3d(2rem, 0, 0);
-    animation-timing-function: cubic-bezier(0.175, .885, .32, 1)
+    transform: scale3d(.475, .475, .475) translate3d(bolt-spacing(medium), 0, 0);
+    animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1)
+  }
+}
+
+@keyframes a-bolt-zoom-in-up {
+  0% {
+    opacity: 0;
+    transform: scale3d(.1, .1, .1) translate3d(0, 100%, 0);
+    animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19)
+  }
+  60% {
+    opacity: 1;
+    transform: scale3d(.475, .475, .475) translate3d(0, (bolt-v-spacing(medium) * -1), 0);
+    animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1)
+  }
+}
+
+@keyframes a-bolt-zoom-in-right {
+  0% {
+    opacity: 0;
+    transform: scale3d(.1, .1, .1) translate3d(50%, 0, 0);
+    animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19)
+  }
+  60% {
+    opacity: 1;
+    transform: scale3d(.475, .475, .475) translate3d((bolt-spacing(medium) * -1), 0, 0);
+    animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1)
   }
 }
