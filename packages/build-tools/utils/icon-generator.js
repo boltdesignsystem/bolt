@@ -211,8 +211,8 @@ async function transpileIcons(outputDir, icons) {
                 .toString()
                 .replace('viewBox', '{...otherProps} viewBox') // tack on extra props next to viewBox attribute
                 .replace('d="M0 0h24v24H0z"', '')
-                .replace(/width=".*?"/, 'width={size}')
-                .replace(/height=".*?"/, 'height={size}')
+                .replace(/ width=".*?"/, ' width={size}')
+                .replace(/ height=".*?"/, ' height={size}')
                 .replace('otherProps="..."', '{...otherProps}')
             : $(optimizedSVG)
                 .toString()
@@ -225,8 +225,8 @@ async function transpileIcons(outputDir, icons) {
                 )
                 .replace('viewBox', '{...otherProps} viewBox') // tack on extra props next to viewBox attribute
                 .replace('d="M0 0h24v24H0z"', '')
-                .replace(/width=".*?"/, 'width={size}')
-                .replace(/height=".*?"/, 'height={size}')
+                .replace(/ width=".*?"/, ' width={size}')
+                .replace(/ height=".*?"/, ' height={size}')
                 .replace('otherProps="..."', '{...otherProps}')
         }
       )

@@ -59,16 +59,17 @@ class BoltStatusDialogueBar extends withLitHtml() {
             `
           : ''}
         <div class="c-bolt-status-dialogue-bar__content">
-          ${props.iconName &&
-            html`
-              <div class="c-bolt-micro-journeys-flex-aspect">
-                <bolt-icon
-                  size="medium"
-                  name="${props.iconName}"
-                  class="c-bolt-status-dialogue-bar__icon"
-                />
-              </div>
-            `}
+          ${!props.iconName || props.iconName === '-none-'
+            ? ''
+            : html`
+                <div class="c-bolt-micro-journeys-flex-aspect">
+                  <bolt-icon
+                    size="medium"
+                    name="${props.iconName}"
+                    class="c-bolt-status-dialogue-bar__icon"
+                  />
+                </div>
+              `}
           <span class="c-bolt-status-dialogue-bar__slot--text">
             <div
               class="c-bolt-micro-journeys-flex-aspect c-bolt-micro-journeys-flex-aspect-full"

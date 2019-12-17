@@ -1,18 +1,21 @@
 {% extends "@pl/_default-page-template.twig" %}
 
 {% block global_header %}
-  {% include "@bolt/page-header.twig" %}
+  {% include "@bolt/page-header.twig" with { hideGlobalSearch: true } %}
 {% endblock %}
 
 
 {% block main_content %}
 
+  {# Search Bar #}
+  {% include "@academy/includes/_search-bar.twig" %}
+
   {# Hero #}
   {% include "@academy/includes/_hero--archived.twig" %}
 
   {# Body Top #}
-  {% include "@academy/includes/_back-link.twig" %}
-  {% include "@academy/includes/_archived-text.twig" %}
+  {% include "@academy/includes/_nav--search.twig" %}
+  {% include "@academy/includes/_band--archived-text.twig" %}
 
   {# Body #}
   {% set content %}
@@ -29,11 +32,11 @@
 
   {% include "@bolt-components-band/band.twig" with {
     theme: "light",
-    size: "medium",
+    size: "small",
     content: content,
   } only %}
 
   {# Body Bottom #}
-  {% include "@academy/includes/_promo.twig" %}
+  {% include "@academy/includes/_band--promo.twig" %}
 
 {% endblock %}

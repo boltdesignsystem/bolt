@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.13.0](https://github.com/bolt-design-system/bolt/compare/v2.12.1...v2.13.0) (2019-12-13)
+
+
+### Bug Fixes
+
+* **editor:** remove false error on editor navigation away from saved content ([790f0f4](https://github.com/bolt-design-system/bolt/commit/790f0f4))
+* **editor:** restore pathways editable traits; fix opacity: 0 ([6a1fa98](https://github.com/bolt-design-system/bolt/commit/6a1fa98))
+
+
+### Features
+
+* **editor:** notice on unload with unsaved changes ([9a163cb](https://github.com/bolt-design-system/bolt/commit/9a163cb))
+
+
+
+
+
 # [2.12.0](https://github.com/bolt-design-system/bolt/compare/v2.11.4...v2.12.0) (2019-11-26)
 
 
