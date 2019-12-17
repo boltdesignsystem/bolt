@@ -16,7 +16,4 @@ polyfillLoader.then(res => {
   import(
     /* webpackMode: 'eager', webpackChunkName: 'bolt-card-actions' */ './src/card-actions/card-actions'
   );
-  import(
-    /* webpackMode: 'eager', webpackChunkName: 'bolt-card-action' */ './src/card-actions/card-action'
-  );
 });

@@ -1,20 +1,29 @@
-import { props, define, hasNativeShadowDomSupport } from '@bolt/core/utils';
 import classNames from 'classnames/bind';
-import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
-import styles from './_card-actions.scss';
+import cardActions from './_card-actions.scss';
+import { unsafeCSS, BoltElement, customElement, html } from '@bolt/element';
+let cx = classNames.bind(cardActions);
 
-let cx = classNames.bind(styles);
-
-@define
-class BoltCardActions extends withLitHtml() {
-  static is = 'bolt-card-actions';
+@customElement('bolt-card-actions')
+class BoltCardActions extends BoltElement {
+  static get styles() {
+    return [unsafeCSS(cardActions)];
+  }
 
   render() {
     const classes = cx('c-bolt-card__actions');
-
+    const items = this.slotMap
+      .get('actions')
+      .filter(item => item.nodeType === 1);
+    console.log(items);
     return html`
-      ${this.addStyles([styles])}
-      <div class="${classes}">${this.slot('default')}</div>
+      <div class="${classes}">
+        ${items.map(
+          item =>
+            html`
+              <div class="c-bolt-card__action">${item}</div>
+            `,
+        )}
+      </div>
     `;
   }
 }

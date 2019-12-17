@@ -15,13 +15,17 @@
 {% set flag %}
   {% grid "o-bolt-grid--flex" %}
     {% cell "u-bolt-flex-shrink" %}
-      {% grid "o-bolt-grid--flex o-bolt-grid--middle u-bolt-height-full" %}
-        {% cell "u-bolt-width-1/1" %}
-          {% include "@bolt-components-image/image.twig" with {
+      {% grid "o-bolt-grid--flex o-bolt-grid--middle u-bolt-flex-col u-bolt-height-full" %}
+        {% cell "u-bolt-width-1/1 u-bolt-flex-grow" %}
+          {# {% include "@bolt-components-image/image.twig" with {
             src: "/images/placeholders/thumb-comet.jpg",
             alt: "Image alt.",
             max_width: "100px",
-          } only %}
+          } only %} #}
+          <div style="border-bottom-left-radius: 4px; border-top-left-radius: 4px; overflow: hidden; background: linear-gradient(180deg, #DA6C28 0%, #B33A12 100%); position: relative; min-width: 100px;" class="u-bolt-height-full">
+            <bolt-icon name="brand-meteor" style="font-size: 3.125rem; color: white; height: 3rem; width: 3rem; position: absolute; top: 1rem; left: 50%; transform: translateX(-50%)"></bolt-icon>
+            <bolt-icon name="brand-meteor" style="font-size: 3.125rem; color: white; height: 3rem; width: 3rem; transform: scale(2); position: absolute; bottom: 0; right: 0; opacity: 0.2; filter: drop-shadow(0 0 11px rgba(0,0,0,0.5);"></bolt-icon>
+          </div>
         {% endcell %}
       {% endgrid %}
     {% endcell %}

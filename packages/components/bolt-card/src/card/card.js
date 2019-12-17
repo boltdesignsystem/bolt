@@ -74,34 +74,36 @@ class BoltCard extends BoltElement {
           >
         `}
       ${this.slotify('default')}
+      ${this.slotMap.get('actions') &&
+        html`
+          <bolt-card-actions>
+            ${this.slotMap.get('actions')}
+          </bolt-card-actions>
+        `}
     `;
 
     switch (this.tag) {
       case 'article':
-        renderedCard = html`
+        return html`
           <article class="${classes}">
             ${cardContent}
           </article>
         `;
         break;
       case 'figure':
-        renderedCard = html`
+        return html`
           <figure class="${classes}">
             ${cardContent}
           </figure>
         `;
         break;
       default:
-        renderedCard = html`
+        return html`
           <div class="${classes}">
             ${cardContent}
           </div>
         `;
     }
-
-    return html`
-      ${renderedCard}
-    `;
   }
 }
 

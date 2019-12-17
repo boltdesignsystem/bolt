@@ -21,17 +21,15 @@
 {% import _self as card_code %}
 
 {% macro video() %}
-<bolt-card-media>
-    <bolt-ratio aspect-ratio-height="9" aspect-ratio-width="16">
-      <bolt-video data-setup='{"techOrder": ["Html5"], "resizeManager": false}' video-id="3861325118001" account-id="1900410236" show-meta show-meta-title player-id="r1CAdLzTW" controls></bolt-video>
-    </bolt-ratio>
-  </bolt-card-media>
+  <bolt-ratio aspect-ratio-height="9" aspect-ratio-width="16" slot="media">
+    <bolt-video data-setup='{"techOrder": ["Html5"], "resizeManager": false}' video-id="3861325118001" account-id="1900410236" show-meta show-meta-title player-id="r1CAdLzTW" controls></bolt-video>
+  </bolt-ratio>
 {% endmacro %}
 
 {% macro image() %}
-<bolt-card-media>
-    <bolt-image src="/images/placeholders/landscape-16x9-mountains.jpg" alt="Card media."></bolt-image>
-  </bolt-card-media>
+<bolt-image slot="media" src="/images/placeholders/landscape-16x9-mountains.jpg" alt="Card media."></bolt-image>
+
+{# <bolt-text slot="media" headline>This is a headline</bolt-text> #}
 {% endmacro %}
 
 {% macro body() %}
@@ -43,7 +41,9 @@
 {% endmacro %}
 
 {% macro body_clickable() %}
-<bolt-card-body>This is a card with an overall link that makes the whole card clickable.</bolt-card-body>
+<bolt-card-body>
+  This is a card with an overall link that makes the whole card clickable.
+</bolt-card-body>
 {% endmacro %}
 
 {% macro body_with_link() %}
@@ -51,20 +51,23 @@
 {% endmacro %}
 
 {% macro actions() %}
-<bolt-card-actions>
-    <bolt-card-action url="https://pega.com">
-      Internal link
-    </bolt-card-action>
-    <bolt-card-action url="https://yahoo.com" external>
-      External link
-    </bolt-card-action>
-  </bolt-card-actions>
+<bolt-button color="text" url="https://pega.com" width="full" align="start" slot="actions">
+    Internal link
+    <bolt-icon slot="after" name="chevron-right"></bolt-icon>
+  </bolt-button>
+
+  <bolt-button color="text" url="https://yahoo.com" target="_blank" width="full" align="start" slot="actions">
+    External link
+    <bolt-icon slot="after" name="external-link"></bolt-icon>
+  </bolt-button>
 {% endmacro %}
 
 {% set card_web_component_demo %}
 <bolt-card>
   {% include card_code.image() %}
+
   {% include card_code.body() %}
+
   {% include card_code.actions() %}
 </bolt-card>
 {% endset %}
