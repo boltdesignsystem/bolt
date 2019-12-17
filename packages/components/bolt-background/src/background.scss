@@ -236,3 +236,37 @@ bolt-background {
     left: $bolt-bg-shape-offset-side-large;
   }
 }
+
+.c-bolt-background-crop {
+  position: absolute;
+  filter: drop-shadow(0 12px 55px #50e3c2) drop-shadow(-13px -22px 58px rgba(0,0,0,0.36));
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  margin-top: calc(#{bolt-v-spacing(xxxlarge)} * -100%);
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+
+  @include bolt-mq(medium) {
+    justify-content: flex-end;
+  }
+
+  svg {
+    min-width: 3000px;
+
+    @include bolt-mq($from: 1100px) {
+      min-width: 0;
+    }
+  }
+}
+
+.has-transparent-background {
+  background-color: transparent !important;
+}
+
