@@ -1,8 +1,7 @@
 module.exports = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'Tooltip',
-  description:
-    'Floating label that briefly describes an element.',
+  description: 'Floating label that briefly describes an element.',
   type: 'object',
   properties: {
     attributes: {
@@ -16,8 +15,7 @@ module.exports = {
     },
     content: {
       type: 'any',
-      description:
-        'Renders the content of the tooltip.',
+      description: 'Renders the content of the tooltip.',
     },
     placement: {
       type: 'string',
@@ -48,7 +46,8 @@ module.exports = {
     },
     wrap: {
       type: 'boolean',
-      description: 'Allows the text in the content of the tooltip to wrap to a second line.',
+      description:
+        'Allows the text in the content of the tooltip to wrap to a second line.',
       default: false,
     },
     uuid: {
