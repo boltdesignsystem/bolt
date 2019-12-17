@@ -4,11 +4,11 @@ const prettier = require('prettier');
 
 const boltRcConfigPath = path.resolve(
   __dirname,
-  '../../../../../docs-site/.boltrc.js',
+  '../../../../docs-site/.boltrc.js',
 );
 const boltRcConfig = require(boltRcConfigPath);
 
-function updateBoltRcConfig(newPackageName, testingPath) {
+function updateBoltRcConfig(newPackageName) {
   // check if this component has already been added to the .boltrc config and if so, exit early
   if (boltRcConfig.components.global.includes(newPackageName)) {
     console.warn(
@@ -18,7 +18,7 @@ function updateBoltRcConfig(newPackageName, testingPath) {
     const updatedBoltRcContent = fs
       .readFileSync(boltRcConfigPath)
       .toString()
-      .replace(/global: \[/, `global: [\n      '${newPackageName}',`);
+      .replace(/global: \[/, `global: ['${newPackageName}',`);
 
     const updatedPrettyBoltRcContent = prettier.format(updatedBoltRcContent, {
       singleQuote: true,
@@ -28,11 +28,7 @@ function updateBoltRcConfig(newPackageName, testingPath) {
       parser: 'flow',
     });
 
-    if (testingPath) {
-      fs.writeFileSync(`${testingPath}/.boltrc.js`, updatedPrettyBoltRcContent);
-    } else {
-      fs.writeFileSync(boltRcConfigPath, updatedPrettyBoltRcContent);
-    }
+    fs.writeFileSync(boltRcConfigPath, updatedPrettyBoltRcContent);
   }
 }
 

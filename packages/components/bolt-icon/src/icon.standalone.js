@@ -2,7 +2,6 @@ import {
   colorContrast,
   css,
   define,
-  hasNativeShadowDomSupport,
   props,
   rgb2hex,
   supportsCSSVars,
@@ -82,6 +81,14 @@ class BoltIcon extends withPreact() {
         this.state.secondaryColor === '#000000' ? (this.isOnLight = true) : '';
         this.state.secondaryColor === '#FFFFFF' ? (this.isOnDark = true) : '';
       }
+    }
+  }
+
+  disconnectedCallback() {
+    super.disconnectedCallback && super.disconnectedCallback();
+
+    if (this.colorObserver) {
+      PubSub.unsubscribe(this.colorObserver);
     }
   }
 
