@@ -3,6 +3,7 @@ import {
   css,
   define,
   props,
+  hasNativeShadowDomSupport,
   rgb2hex,
   supportsCSSVars,
 } from '@bolt/core/utils';
