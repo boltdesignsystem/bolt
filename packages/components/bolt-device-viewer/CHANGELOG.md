@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.13.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-device-viewer/compare/v2.12.1...v2.13.0) (2019-12-13)
+
+
+### Bug Fixes
+
+* minor device viewer bug fixes encountered while working on https://github.com/boltdesignsystem/bolt/pull/1579 ([d51e2bf](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-device-viewer/commit/d51e2bf))
+
+
+
+
+
+## [2.12.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-device-viewer/compare/v2.12.0...v2.12.1) (2019-12-12)
+
+**Note:** Version bump only for package @bolt/components-device-viewer
+
+
+
+
+
 # [2.12.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-device-viewer/compare/v2.11.4...v2.12.0) (2019-11-26)
 
 **Note:** Version bump only for package @bolt/components-device-viewer

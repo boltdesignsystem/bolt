@@ -39,26 +39,26 @@ class BoltInteractivePathways extends withLitContext() {
     self._hasBeenInViewport = false;
     self._isVisible = false;
     self.dropdownActive = false;
-    self._handleClosingEvent = this._handleClosingEvent.bind(this);
+    self._handleClosingEvent = self._handleClosingEvent.bind(self);
     self._isReady = false;
 
-    this.checkChildrenAndRender = debounce(done => {
-      this.pathways = this.getPathways();
-      this.triggerUpdate();
+    self.checkChildrenAndRender = debounce(done => {
+      self.pathways = self.getPathways();
+      self.triggerUpdate();
       // using callback since debounced promises require a different library that's not already in Bolt
       if (done) setTimeout(done, 0);
     }, 150);
 
     self.addEventListener(
       'bolt-interactive-pathway:connected',
-      this.handlePathwayConnect,
+      self.handlePathwayConnect,
     );
     self.addEventListener(
       'bolt-interactive-pathway:disconnected',
-      this.handlePathwayDisconnect,
+      self.handlePathwayDisconnect,
     );
     self.addEventListener('bolt-interactive-pathway:title-updated', () => {
-      this.checkChildrenAndRender();
+      self.checkChildrenAndRender();
     });
 
     return self;
@@ -72,7 +72,6 @@ class BoltInteractivePathways extends withLitContext() {
 
   connectedCallback() {
     super.connectedCallback();
-    this.style.opacity = 1;
 
     if (window.IntersectionObserver) {
       const observer = new IntersectionObserver(
@@ -180,6 +179,8 @@ class BoltInteractivePathways extends withLitContext() {
   }
 
   render() {
+    this.style.opacity = 1;
+
     const props = this.validateProps(this.props);
 
     const classes = cx('c-bolt-interactive-pathways', {

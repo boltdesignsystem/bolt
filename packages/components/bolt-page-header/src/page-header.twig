@@ -528,6 +528,7 @@
             </ul>
           </nav>
           <ul class="o-bolt-bare-list c-header-buttons js-mega-nav__header-buttons">
+            {% if not hideGlobalSearch %}
             <li class="c-header-buttons__item">
               <div class="c-global-search-panel-trigger">
                 {% include "@bolt-components-button/button.twig" with {
@@ -572,6 +573,7 @@
                 <span class="c-global-search-panel-trigger__panel-tip t-bolt-dark"></span>
               </div>
             </li>
+            {% endif %}
             <li class="c-header-buttons__item">
               <div class="c-hamburger">
                 {% include "@bolt-components-button/button.twig" with {

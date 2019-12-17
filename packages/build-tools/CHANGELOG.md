@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.13.0](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/compare/v2.12.1...v2.13.0) (2019-12-13)
+
+
+### Bug Fixes
+
+* code issues ([136d610](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/136d610))
+* importing sequence ([6a411ab](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/6a411ab))
+* linting / syntax error ([a6ea6de](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/a6ea6de))
+
+
+### Features
+
+* add drupal-lab integration server to webpack build ([87ab2e8](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/87ab2e8))
+* add generated static files ([9511415](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/9511415))
+
+
+
+
+
+## [2.12.1](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/compare/v2.12.0...v2.12.1) (2019-12-12)
+
+**Note:** Version bump only for package @bolt/build-tools
+
+
+
+
+
 # [2.12.0](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/compare/v2.11.4...v2.12.0) (2019-11-26)
 
 

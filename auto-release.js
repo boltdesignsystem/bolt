@@ -48,7 +48,7 @@ async function init() {
   if (isCanaryRelease) {
     try {
       const version = await shell
-        .exec('auto version', { silent: true })
+        .exec(`auto version --from v${currentVersion}`, { silent: true })
         .stdout.trim();
 
       console.log('current version', currentVersion);
@@ -121,7 +121,7 @@ async function init() {
   } else if (isFullRelease) {
     try {
       const version = await shell
-        .exec('auto version', { silent: true })
+        .exec(`auto version --from v${currentVersion}`, { silent: true })
         .stdout.trim();
       const nextVersion = await semver.inc(currentVersion, version);
 
