@@ -83,6 +83,7 @@ bolt-button[type=\\"submit\\"] {
   appearance: none;
   background: 0 0;
   -webkit-user-select: none;
+  -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
   font-weight: 600;
@@ -702,6 +703,10 @@ table,
 ul {
   margin: 0;
   padding: 0;
+}
+::-moz-selection {
+  text-shadow: none;
+  background-color: #abb3f2;
 }
 ::selection {
   text-shadow: none;
@@ -17015,6 +17020,7 @@ bolt-button[type=\\"submit\\"] {
   appearance: none;
   background: 0 0;
   -webkit-user-select: none;
+  -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
   font-weight: 600;
@@ -17631,6 +17637,10 @@ table,
 ul {
   margin: 0;
   padding: 0;
+}
+::-moz-selection {
+  text-shadow: none;
+  background-color: #abb3f2;
 }
 ::selection {
   text-shadow: none;
