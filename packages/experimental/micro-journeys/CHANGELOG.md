@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.13.0](https://github.com/bolt-design-system/bolt/compare/v2.12.1...v2.13.0) (2019-12-13)
+
+
+### Bug Fixes
+
+* **editor:** restore pathways editable traits; fix opacity: 0 ([6a1fa98](https://github.com/bolt-design-system/bolt/commit/6a1fa98))
+* emit "ready" event only when interactive pathway is actually ready ([a291eae](https://github.com/bolt-design-system/bolt/commit/a291eae))
+* Remove slot-based CSS selector so color works in IE ([fee836f](https://github.com/bolt-design-system/bolt/commit/fee836f))
+
+
+### Features
+
+* **editor:** add ability to remove icon from status-dialogue-bar ([cc58925](https://github.com/bolt-design-system/bolt/commit/cc58925))
+
+
+
+
+
 ## [2.12.1](https://github.com/bolt-design-system/bolt/compare/v2.12.0...v2.12.1) (2019-12-12)
 
 **Note:** Version bump only for package @bolt/micro-journeys

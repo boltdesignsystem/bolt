@@ -16,12 +16,6 @@ let cx = classNames.bind(styles);
 class BoltFigure extends withLitHtml() {
   static is = 'bolt-figure';
 
-  // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
-  constructor(self) {
-    self = super(self);
-    return self;
-  }
-
   render() {
     const classes = cx('c-bolt-figure');
 

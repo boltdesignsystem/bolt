@@ -42,29 +42,29 @@ class BoltInteractivePathway extends withLitContext() {
     self.isActivePathway = false;
     self.activeStep = -1;
     self.steps = [];
-    this.checkChildrenAndRender = debounce(done => {
-      this.steps = this.getSteps();
-      this.triggerUpdate();
+    self.checkChildrenAndRender = debounce(done => {
+      self.steps = self.getSteps();
+      self.triggerUpdate();
       // using callback since debounced promises require a different library that's not already in Bolt
       if (done) setTimeout(done, 0);
     }, 150);
     self.addEventListener(
       'bolt-interactive-step:connected',
-      this.handleStepConnect,
+      self.handleStepConnect,
     );
     self.addEventListener(
       'bolt-interactive-step:disconnected',
-      this.handleStepDisconnect,
+      self.handleStepDisconnect,
     );
 
     self.addEventListener('bolt-interactive-step:change-active-step', event => {
-      const steps = this.getSteps();
+      const steps = self.getSteps();
       const stepId = steps.findIndex(step => step.el === event.target);
-      this.setActiveStep(stepId);
+      self.setActiveStep(stepId);
     });
 
     self.addEventListener('bolt-interactive-step:title-updated', () => {
-      this.checkChildrenAndRender();
+      self.checkChildrenAndRender();
     });
     return self;
   }
