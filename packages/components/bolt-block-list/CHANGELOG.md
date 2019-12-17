@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.13.0](https://github.com/bolt-design-system/bolt/compare/v2.12.1...v2.13.0) (2019-12-13)
+
+
+### Features
+
+* refactor existing Block List component to render via LitElement vs Preact; workaround to double-rendering quirk flagged ([8835513](https://github.com/bolt-design-system/bolt/commit/8835513))
+* wire up Block List's Twig template to use the new experimental SSR concept + light docs ([c4cb63b](https://github.com/bolt-design-system/bolt/commit/c4cb63b))
+
+
+
+
+
 # [2.12.0](https://github.com/bolt-design-system/bolt/compare/v2.11.4...v2.12.0) (2019-11-26)
 
 **Note:** Version bump only for package @bolt/components-block-list
