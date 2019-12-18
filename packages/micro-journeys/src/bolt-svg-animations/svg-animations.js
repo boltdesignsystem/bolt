@@ -1,6 +1,9 @@
 import { html, customElement } from '@bolt/element';
-import { hasNativeShadowDomSupport } from '@bolt/core/utils';
-import { withLitContext, convertSchemaToProps } from '@bolt/core';
+import { hasNativeShadowDomSupport } from '@bolt/core-v3.x/utils';
+import {
+  convertSchemaToProps,
+} from '@bolt/core-v3.x/utils';
+import { withLitContext } from '@bolt/core-v3.x/renderers';
 import classNames from 'classnames/bind';
 import * as SVGs from './svg';
 import styles from './svg-animations.scss';

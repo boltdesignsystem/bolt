@@ -1,0 +1,31 @@
+/* ------------------------------------ *\
+  Text Clearfix
+\* ------------------------------------ */
+
+////
+/// @group Tools: Utilities
+/// @author Salem Ghoweri
+////
+
+/// Provides the ability to add a proper clearfix
+/// @param {boolean} $important [null] - Set true to add "!important"
+/// @example scss
+/// .element {
+///   @include bolt-clearfix();
+/// }
+@mixin bolt-clearfix($important: null) {
+  @if $important == important {
+    $important: !important;
+  }
+
+  &:before,
+  &:after {
+    content: ' ' $important;
+    display: table $important;
+  }
+
+  &:after {
+    clear: both $important;
+  }
+}
+

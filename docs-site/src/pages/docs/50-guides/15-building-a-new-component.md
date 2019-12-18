@@ -41,7 +41,7 @@ Below you'll find a step-by-step guide to walk through the process of adding a n
     "access": "public"
   },
   "dependencies": {
-    "@bolt/core": "0.0.0"
+    "@bolt/core-v3.x": "0.0.0"
   }
 }
 ```
@@ -52,11 +52,11 @@ Below you'll find a step-by-step guide to walk through the process of adding a n
 **<u>Step 3</u>:** Add your necessary SCSS and JS files to `[bolt-NEW-COMPONENT]/src/`
 
 - Make sure all are reflected within `package.json`
-- Within your main scss file be sure to import core styles: `@import '@bolt/core';`
+- Within your main scss file be sure to import core styles: `@import '@bolt/core-v3.x';`
 - Within your main JS file be sure to include the pollyfillLoader:
 
 ```
-import { polyfillLoader } from '@bolt/core';
+import { polyfillLoader } from '@bolt/core-v3.x/polyfills';
 
 polyfillLoader.then((res) => {
   import('./COMPONENT.standalone.js');

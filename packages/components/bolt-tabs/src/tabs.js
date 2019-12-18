@@ -8,13 +8,13 @@ import {
   getUniqueId,
   whichTransitionEvent,
   waitForTransitionEnd,
-} from '@bolt/core/utils';
-import { withLitHtml } from '@bolt/core/renderers/renderer-lit-html';
+} from '@bolt/core-v3.x/utils';
+import { withLitHtml } from '@bolt/core-v3.x/renderers/renderer-lit-html';
 import classNames from 'classnames/bind';
 import styles from './tabs.scss';
 import schema from '../tabs.schema.yml';
 
-import '@bolt/core/utils/optimized-resize';
+import '@bolt/core-v3.x/utils/optimized-resize';
 
 // define which specific props to provide to children that subscribe
 export const TabsContext = defineContext({

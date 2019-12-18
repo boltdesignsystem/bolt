@@ -1,0 +1,10 @@
+/* stylelint-disable scss/at-function-pattern */
+
+/// Encode a color to JSON
+/// @access private
+/// @param {Color} $color - color to be encoded
+/// @return {String} - encoded color
+/// @require {function} _proof-quote
+@function _json-encode--color($color) {
+  @return _proof-quote($color);
+}

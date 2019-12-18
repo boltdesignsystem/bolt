@@ -1,8 +1,8 @@
 import qs from 'querystring';
-import { props, defineContext, withContext } from '@bolt/core/utils';
+import { props, defineContext, withContext } from '@bolt/core-v3.x/utils';
 import { prepSchema } from './utils';
 import isEqual from 'react-fast-compare';
-import { withLitHtml,  } from '@bolt/core/renderers/renderer-lit-html';
+import { withLitHtml,  } from '@bolt/core-v3.x/renderers/renderer-lit-html';
 import { guard } from 'lit-html/directives/guard';
 import { styleMap, html, unsafeHTML, customElement } from '@bolt/element';
 

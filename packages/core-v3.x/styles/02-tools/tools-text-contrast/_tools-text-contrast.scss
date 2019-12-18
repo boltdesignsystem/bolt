@@ -1,0 +1,23 @@
+/* ------------------------------------ *\
+  Text Contrast
+\* ------------------------------------ */
+
+////
+/// @group Tools: Typography
+/// @author Salem Ghoweri
+////
+
+/// Determines the correct color (black or white) to return, given the color passed in
+/// @param {color} $color - The color to check against
+/// @return {color} Either 'black' or 'white'
+/// @example scss - $primary-background-default not shown
+/// .element:hover {
+///   color: bolt-text-contrast($primary-background-default);
+/// }
+@function bolt-text-contrast($color) {
+  @if bolt-theme-tone($color) == "dark" {
+    @return bolt-color(white);
+  } @else {
+    @return bolt-color(black);
+  }
+}

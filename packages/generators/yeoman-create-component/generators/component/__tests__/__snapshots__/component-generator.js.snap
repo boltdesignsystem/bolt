@@ -2,8 +2,8 @@
 
 exports[`Yeoman component generator JS file exist 1`] = `
 "import { html, customElement } from '@bolt/element';
-import { props } from '@bolt/core/utils';
-import { withLitHtml } from '@bolt/core/renderers/renderer-lit-html';
+import { props } from '@bolt/core-v3.x/utils';
+import { withLitHtml } from '@bolt/core-v3.x/renderers/renderer-lit-html';
 import classNames from 'classnames/bind';
 import styles from './test.scss';
 import schema from '../test.schema.yml';
@@ -92,7 +92,7 @@ Array [
 `;
 
 exports[`Yeoman component generator index JS file exist 1`] = `
-"import { polyfillLoader } from '@bolt/core/polyfills';
+"import { polyfillLoader } from '@bolt/core-v3.x/polyfills';
 
 polyfillLoader.then(res => {
   import(/* webpackMode: 'eager', webpackChunkName: 'bolt-test' */ './src/test');

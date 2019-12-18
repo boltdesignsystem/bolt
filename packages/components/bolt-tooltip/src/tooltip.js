@@ -1,7 +1,7 @@
 import { html, customElement, ifDefined } from '@bolt/element';
-import { props } from '@bolt/core/utils';
+import { props } from '@bolt/core-v3.x/utils';
 import classNames from 'classnames/bind';
-import { withLitHtml } from '@bolt/core/renderers/renderer-lit-html';
+import { withLitHtml } from '@bolt/core-v3.x/renderers/renderer-lit-html';
 import styles from './tooltip.scss';
 
 let cx = classNames.bind(styles);

@@ -1,0 +1,18 @@
+/* ------------------------------------ *\
+  UPPERCASE MIXIN
+\* ------------------------------------ */
+
+////
+/// @group Tools: Typography
+/// @author Salem Ghoweri
+////
+
+/// Provides a bolt method for transforming text to uppercase
+/// @example scss
+/// .element {
+///    @include bolt-uppercase();
+/// }
+@mixin bolt-uppercase() {
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+}

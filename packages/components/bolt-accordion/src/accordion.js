@@ -1,6 +1,6 @@
 import { html, customElement } from '@bolt/element';
-import { defineContext, withContext, props, css } from '@bolt/core/utils';
-import { withLitHtml } from '@bolt/core/renderers/renderer-lit-html';
+import { defineContext, withContext, props, css } from '@bolt/core-v3.x/utils';
+import { withLitHtml } from '@bolt/core-v3.x/renderers/renderer-lit-html';
 import styles from './accordion.scss';
 import schema from '../accordion.schema';
 import { Accordion } from './_accordion-handorgel';

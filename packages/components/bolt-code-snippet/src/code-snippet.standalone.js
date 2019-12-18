@@ -1,6 +1,6 @@
 import { customElement } from '@bolt/element';
-import { props, css, hasNativeShadowDomSupport } from '@bolt/core/utils';
-import { h, withPreact, Markup } from '@bolt/core/renderers';
+import { props, css, hasNativeShadowDomSupport } from '@bolt/core-v3.x/utils';
+import { h, withPreact, Markup } from '@bolt/core-v3.x/renderers';
 import Prism from 'prismjs/components/prism-core';
 import styles from './code-snippet.scss';
 

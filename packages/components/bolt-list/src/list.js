@@ -5,9 +5,9 @@ import {
   props,
   define,
   hasNativeShadowDomSupport,
-} from '@bolt/core/utils';
+} from '@bolt/core-v3.x/utils';
 import classNames from 'classnames/bind';
-import { withLitHtml } from '@bolt/core/renderers/renderer-lit-html';
+import { withLitHtml } from '@bolt/core-v3.x/renderers/renderer-lit-html';
 import Ajv from 'ajv';
 
 import themes from '@bolt/global/styles/06-themes/_themes.all.scss';

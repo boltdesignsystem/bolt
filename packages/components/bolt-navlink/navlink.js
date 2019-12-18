@@ -1,6 +1,6 @@
 import { html, customElement } from '@bolt/element';
-import { props } from '@bolt/core/utils';
-import { withLitHtml } from '@bolt/core/renderers/renderer-lit-html';
+import { props } from '@bolt/core-v3.x/utils';
+import { withLitHtml } from '@bolt/core-v3.x/renderers/renderer-lit-html';
 import isVisible from 'is-visible';
 
 // Used for attaching smooth scroll behavior to dynamically created <bolt-navlink> instances

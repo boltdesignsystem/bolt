@@ -1,0 +1,30 @@
+/* ------------------------------------ *\
+  VISUALLY HIDDEN MIXIN
+\* ------------------------------------ */
+
+////
+/// @group Tools: Utilities
+/// @author Salem Ghoweri
+////
+
+/// Provides a bolt method for correctly hiding an element visually (for accessibility)
+/// @param {string} $important [null] - If 'important' is set, than '!important' will be returned
+/// @example scss
+/// .element {
+///    @include bolt-visuallyhidden(important);
+/// }
+@mixin bolt-visuallyhidden($important: null) {
+  @if $important == important {
+    $important: !important;
+  }
+  position: absolute $important;
+  width: 1px $important;
+  height: 1px $important;
+  overflow: hidden $important;
+  margin: -1px $important;
+  padding: 0 $important;
+  border: 0 $important;
+  clip: rect(0 0 0 0) $important;
+  clip-path: inset(50%) $important;
+  white-space: nowrap $important;
+}

@@ -1,4 +1,5 @@
-import { h } from '@bolt/core/renderers';
+import * as Icons from '@bolt/components-icon/registry';
+import { h } from '@bolt/core-v3.x/renderers';
 
 export const Ideas = ({ bgColor, fgColor, size, ...otherProps }) => {
   return (
@@ -10,3 +11,5 @@ export const Ideas = ({ bgColor, fgColor, size, ...otherProps }) => {
     </svg>
   );
 };
+
+Icons.set('ideas', Ideas);

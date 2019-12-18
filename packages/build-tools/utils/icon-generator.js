@@ -201,7 +201,7 @@ async function transpileIcons(outputDir, icons) {
 
       const element = `
   import * as Icons from '@bolt/components-icon/registry';
-  import { h } from '@bolt/core/renderers';
+  import { h } from '@bolt/core-v3.x/renderers';
 
   export const ${upperCamelName} = ({ bgColor, fgColor, size, ...otherProps }) => {
       return (

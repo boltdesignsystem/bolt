@@ -12,7 +12,7 @@ describe('test-utils', () => {
   test('getPkgDependencies', () => {
     const deps = tu.getPkgDependencies('@bolt/components-band');
     const expected = [
-      '@bolt/core',
+      '@bolt/core-v3.x',
       '@bolt/components-grid',
       '@bolt/components-background',
       '@bolt/components-background-shapes',
@@ -108,7 +108,7 @@ describe('test-utils', () => {
 
     const expected = [
       '@bolt/components-action-blocks',
-      '@bolt/core-php',
+      '@bolt/core-v3.x-php',
       '@bolt/twig-renderer',
     ];
 

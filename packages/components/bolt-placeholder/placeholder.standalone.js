@@ -1,5 +1,5 @@
-import { props, css, hasNativeShadowDomSupport } from '@bolt/core/utils';
-import { withLitHtml } from '@bolt/core/renderers/renderer-lit-html';
+import { props, css, hasNativeShadowDomSupport } from '@bolt/core-v3.x/utils';
+import { withLitHtml } from '@bolt/core-v3.x/renderers/renderer-lit-html';
 import { html, customElement } from '@bolt/element';
 import placeholderStyles from './placeholder.scss';
 

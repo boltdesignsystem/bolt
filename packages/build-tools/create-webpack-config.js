@@ -164,21 +164,21 @@ async function createWebpackConfig(buildConfig) {
         if (isModern) {
           entry[globalEntryName] = [
             '@bolt/polyfills/modern.js',
-            '@bolt/core/styles/index.scss',
+            '@bolt/core-v3.x/styles/index.scss',
           ];
         } else {
           entry[globalEntryName] = [
             '@bolt/polyfills',
-            '@bolt/core/styles/index.scss',
+            '@bolt/core-v3.x/styles/index.scss',
           ];
         }
       } else {
         entry[globalEntryName] = [
           '@bolt/polyfills',
-          '@bolt/core/styles/index.scss',
+          '@bolt/core-v3.x/styles/index.scss',
         ];
       }
-      // entry[globalEntryName] = ['@bolt/core/styles/index.scss'];
+      // entry[globalEntryName] = ['@bolt/core-v3.x/styles/index.scss'];
 
       components.global.forEach(component => {
         if (component.assets.style) {
@@ -466,7 +466,7 @@ async function createWebpackConfig(buildConfig) {
       new CopyWebpackPlugin(config.copy ? config.copy : []),
       new SassDocPlugin(
         {
-          src: `${path.dirname(resolve.sync('@bolt/core'))}/styles/`,
+          src: `${path.dirname(resolve.sync('@bolt/core-v3.x'))}/styles/`,
           dest: path.resolve(`${config.dataDir}/sassdoc.bolt.json`),
         },
         {
