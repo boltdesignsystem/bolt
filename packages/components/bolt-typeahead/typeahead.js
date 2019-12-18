@@ -136,17 +136,26 @@ class BoltTypeahead extends withEvents(withLitHtml()) {
   rendered() {
     super.rendered && super.rendered();
 
+    const setupEventHandlers = () => {
+      this.autosuggest.on('onInput', (element, event, newValue) => {
+        this.inputValue = newValue;
+      });
+
+      this.autosuggest.on('onChange', (element, event, newValue) => {
+        this.inputValue = newValue;
+      });
+    };
+
     if (!this.autosuggest) {
       this.autosuggest = this.renderRoot.querySelector('bolt-autosuggest');
-      this.autosuggest.addEventListener('ready', () => {
-        this.autosuggest.on('onInput', (element, event, newValue) => {
-          this.inputValue = newValue;
-        });
 
-        this.autosuggest.on('onChange', (element, event, newValue) => {
-          this.inputValue = newValue;
+      if (this.autosuggest._wasInitiallyRendered) {
+        setupEventHandlers();
+      } else {
+        this.autosuggest.addEventListener('ready', () => {
+          setupEventHandlers();
         });
-      });
+      }
     }
   }
 }
