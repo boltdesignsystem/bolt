@@ -1,3 +1,5 @@
+import { name } from 'skatejs/dist/esnext/name.js';
+
 export * from './color-contrast';
 export * from './contains-any';
 export * from './contains-tag-name';
@@ -33,4 +35,30 @@ export {
   afterNextRender,
 } from '@polymer/polymer/lib/utils/render-status.js';
 
-export { shadow, withComponent, props, define } from 'skatejs/dist/esnext';
+export { shadow, withComponent, props } from 'skatejs/dist/esnext';
+
+// rewrite the original @define decorator to maintain backwards compatibility
+function legacyDefine(clazz) {
+  window.customElements.define(clazz.is || name(), clazz);
+  return clazz;
+}
+
+function standardDefine(classOrDescriptor) {
+  const { kind, elements } = classOrDescriptor;
+  return {
+    kind,
+    elements,
+    finisher(clazz) {
+      window.customElements.define(clazz.is || name(), clazz);
+    },
+  };
+}
+
+// output the correct decorator syntax depending on the the env being compiled
+export function define(classOrDescriptor) {
+  if (typeof classOrDescriptor === 'function') {
+    return legacyDefine(classOrDescriptor);
+  } else {
+    return standardDefine(classOrDescriptor);
+  }
+}
