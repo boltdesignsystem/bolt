@@ -46,7 +46,7 @@ $bolt-offset-sizes: 12 !default;
  * <div class="u-width-7/12">
  */
 @include bolt-widths($bolt-width-sizes);
-@include bolt-offsets($bolt-width-sizes);
+@include bolt-offsets($bolt-offset-sizes);
 
 // Loop over our breakpoints
 @each $breakpoint in $bolt-breakpoints {
