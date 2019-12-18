@@ -104,66 +104,6 @@ exports[`<bolt-breadcrumb> Component basic usage with contentItems including ren
 </bolt-breadcrumb>
 `;
 
-exports[`<bolt-breadcrumb> Component basic usage with contentItems including rendered components and strings 2`] = `
-<bolt-breadcrumb bolt-component>
-  <nav class="c-bolt-breadcrumb"
-       aria-label="Breadcrumb"
-       role="navigation"
-  >
-    <ol class="c-bolt-breadcrumb__list">
-      <li class="c-bolt-breadcrumb__item">
-        <bolt-link display="inline"
-                   valign="center"
-                   url="#!"
-        >
-          <a href="#!"
-             is="shadow-root"
-             class="c-bolt-link  c-bolt-link--display-inline c-bolt-link--valign-center"
-          >
-            <replace-with-children class="c-bolt-link__text">
-              Home
-            </replace-with-children>
-          </a>
-        </bolt-link>
-      </li>
-      <li class="c-bolt-breadcrumb__item">
-        <bolt-link display="inline"
-                   valign="center"
-                   url="#!"
-        >
-          <a href="#!"
-             is="shadow-root"
-             class="c-bolt-link  c-bolt-link--display-inline c-bolt-link--valign-center"
-          >
-            <replace-with-children class="c-bolt-link__text">
-              Landing Page
-            </replace-with-children>
-          </a>
-        </bolt-link>
-      </li>
-      <li class="c-bolt-breadcrumb__item">
-        <bolt-link display="inline"
-                   valign="center"
-                   url="#!"
-        >
-          <a href="#!"
-             is="shadow-root"
-             class="c-bolt-link  c-bolt-link--display-inline c-bolt-link--valign-center"
-          >
-            <replace-with-children class="c-bolt-link__text">
-              Sub Page
-            </replace-with-children>
-          </a>
-        </bolt-link>
-      </li>
-      <li class="c-bolt-breadcrumb__item">
-        Current Page
-      </li>
-    </ol>
-  </nav>
-</bolt-breadcrumb>
-`;
-
 exports[`<bolt-breadcrumb> Component current page aria variation 1`] = `
 <bolt-breadcrumb bolt-component>
   <nav class="c-bolt-breadcrumb"
