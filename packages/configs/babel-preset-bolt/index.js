@@ -1,21 +1,30 @@
-const preset = function(api, opts = {}) {
+const legacyBabelConfig = function(api, opts = {}) {
   return {
     presets: [
       [
         '@babel/preset-env',
         {
+          ignoreBrowserslistConfig: true,
           modules: false,
           debug: false,
           corejs: 3,
           useBuiltIns: 'entry',
+          targets: {
+            browsers: require('@bolt/browserslist-config/all.js'),
+          },
         },
       ],
     ],
     plugins: [
       '@babel/plugin-proposal-optional-chaining',
-      /**
-       * 1. Helps with our Web Component Preact renderer
-       */
+      [
+        '@babel/plugin-proposal-decorators',
+        {
+          decoratorsBeforeExport: true,
+        },
+      ],
+      ['@babel/plugin-proposal-class-properties', { loose: true }],
+      '@babel/plugin-syntax-dynamic-import',
       '@babel/plugin-syntax-jsx' /* [1] */,
       [
         '@babel/plugin-transform-react-jsx' /* [1] */,
@@ -23,20 +32,54 @@ const preset = function(api, opts = {}) {
           pragma: 'h',
           pragmaFrag: 'Fragment',
           throwIfNamespace: false,
+          useBuiltIns: false,
         },
       ],
-
-      ['@babel/plugin-proposal-decorators', { legacy: true }],
-
-      // ex. class { handleThing = () => { } }
-      ['@babel/plugin-proposal-class-properties', { loose: true }],
-
-      // Allows us to dynamically import JS via Webpack. ex. import('button.standalone.js')
-      '@babel/plugin-syntax-dynamic-import' /* [2] */,
-
-      '@babel/plugin-proposal-object-rest-spread',
     ],
   };
 };
 
-module.exports = preset;
+const modernBabelConfig = function(api, opts = {}) {
+  return {
+    presets: [
+      [
+        '@babel/preset-env',
+        {
+          ignoreBrowserslistConfig: true,
+          modules: false,
+          debug: false,
+          corejs: 3,
+          useBuiltIns: 'entry',
+          targets: {
+            browsers: require('@bolt/browserslist-config/modern.js'),
+          },
+        },
+      ],
+    ],
+    plugins: [
+      '@babel/plugin-proposal-optional-chaining',
+      [
+        '@babel/plugin-proposal-decorators',
+        {
+          decoratorsBeforeExport: true,
+        },
+      ],
+      ['@babel/plugin-proposal-class-properties', { loose: true }],
+      '@babel/plugin-syntax-jsx' /* [1] */,
+      [
+        '@babel/plugin-transform-react-jsx' /* [1] */,
+        {
+          pragma: 'h',
+          pragmaFrag: 'Fragment',
+          throwIfNamespace: false,
+          useBuiltIns: false,
+        },
+      ],
+    ],
+  };
+};
+
+module.exports = {
+  legacyBabelConfig,
+  modernBabelConfig,
+};

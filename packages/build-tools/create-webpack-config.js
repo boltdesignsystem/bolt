@@ -23,6 +23,11 @@ const {
 } = require('@bolt/build-utils/webpack-verbosity');
 
 const {
+  modernBabelConfig,
+  legacyBabelConfig,
+} = require('@bolt/babel-preset-bolt');
+
+const {
   getBoltManifest,
   mapComponentNameToTwigNamespace,
 } = require('@bolt/build-utils/manifest');
@@ -50,7 +55,6 @@ async function createWebpackConfig(buildConfig) {
   });
 
   // map out Twig namespaces with the NPM package name
-  const npmToTwigNamespaceMap = await mapComponentNameToTwigNamespace();
 
   // filename suffix to tack on based on lang being compiled for
   let langSuffix = `${config.lang ? '-' + config.lang : ''}`;
@@ -92,6 +96,7 @@ async function createWebpackConfig(buildConfig) {
       ? JSON.stringify('production')
       : JSON.stringify('development'),
     bolt: {
+      esModules: JSON.stringify(config.esModules),
       publicPath: JSON.stringify(publicPath),
       mode: JSON.stringify(config.mode),
       isClient: config.mode === 'client',
@@ -144,14 +149,34 @@ async function createWebpackConfig(buildConfig) {
   /**
    * Build WebPack config's `entry` object
    * @link https://webpack.js.org/configuration/entry-context/#entry
+   * @param {boolean} isModern - specifies if the config returned should be for modern browsers or not
    * @returns {object} entry - WebPack config `entry`
    */
-  async function buildWebpackEntry() {
+  async function buildWebpackEntry(isModern) {
     const { components } = await getBoltManifest();
     const entry = {};
     const globalEntryName = 'bolt-global';
 
     if (components.global) {
+      // @todo: uncomment once related ES Module PRs have been merged
+      // if (config.esModules) {
+      //   if (isModern) {
+      //     entry[globalEntryName] = [
+      //       '@bolt/polyfills/modern.js',
+      //       '@bolt/core/styles/index.scss',
+      //     ];
+      //   } else {
+      //     entry[globalEntryName] = [
+      //       '@bolt/polyfills',
+      //       '@bolt/core/styles/index.scss',
+      //     ];
+      //   }
+      // } else {
+      //   entry[globalEntryName] = [
+      //     '@bolt/polyfills',
+      //     '@bolt/core/styles/index.scss',
+      //   ];
+      // }
       entry[globalEntryName] = ['@bolt/core/styles/index.scss'];
 
       components.global.forEach(component => {
@@ -163,17 +188,8 @@ async function createWebpackConfig(buildConfig) {
           entry[globalEntryName].push(component.assets.main);
         }
       });
-
-      const useHotMiddleware = !(
-        Array.isArray(fullBuildConfig.lang) && fullBuildConfig.lang.length > 1
-      );
-
-      if (!config.prod && config.webpackDevServer && useHotMiddleware) {
-        entry[globalEntryName].push(
-          `webpack-hot-middleware/client?name=${config.lang}&noInfo=true&quiet=true&logLevel=silent&reload=true`,
-        );
-      }
     }
+
     if (components.individual) {
       components.individual.forEach(component => {
         const files = [];
@@ -239,20 +255,9 @@ async function createWebpackConfig(buildConfig) {
     },
   ];
 
-  let webpackConfig = {
+  let sharedWebpackConfig = {
     target: 'web',
-    entry: await buildWebpackEntry(),
-    output: {
-      path: path.resolve(process.cwd(), config.buildDir),
-      // @todo: switch this to output .client.js and .server.js file prefixes when we hit Bolt v3.0
-      filename: `[name]${langSuffix}${
-        config.mode !== 'client' ? `.${config.mode}` : ''
-      }.js`,
-      chunkFilename: `[name]-bundle${langSuffix}-[chunkhash].js`,
-      publicPath,
-    },
     resolve: {
-      mainFields: ['esnext', 'jsnext:main', 'browser', 'module', 'main'],
       extensions: [
         '.js',
         '.jsx',
@@ -299,35 +304,6 @@ async function createWebpackConfig(buildConfig) {
                 MiniCssExtractPlugin.loader,
                 scssLoaders,
               ].reduce((acc, val) => acc.concat(val), []),
-            },
-          ],
-        },
-        {
-          test: /\.(js|tsx|mjs)$/,
-          exclude: thePath => {
-            if (
-              thePath.includes('custom-elements-es5-adapter.js') ||
-              thePath.includes('grapesjs/dist') ||
-              thePath.includes('core-js') ||
-              thePath.includes('regenerator-runtime') ||
-              thePath.includes('critical-path-polyfills') ||
-              thePath.includes('critical-css-vars') ||
-              thePath.includes('critical-css') ||
-              thePath.includes('critical-fonts')
-            ) {
-              return true;
-            }
-
-            return false;
-          },
-          use: [
-            'cache-loader',
-            {
-              loader: 'babel-loader',
-              options: {
-                babelrc: false,
-                presets: ['@bolt/babel-preset-bolt'],
-              },
             },
           ],
         },
@@ -383,52 +359,14 @@ async function createWebpackConfig(buildConfig) {
     plugins: [
       new webpack.ProgressPlugin(boltWebpackProgress), // Ties together the Bolt custom Webpack messages + % complete
       new WriteFilePlugin(),
-      new MiniCssExtractPlugin({
-        filename: `[name]${langSuffix}.css`,
-        chunkFilename: `[id]${langSuffix}.css`,
-      }),
-      // @todo This needs to be in `config.dataDir`
-      new ManifestPlugin({
-        fileName: `bolt-webpack-manifest${langSuffix}${
-          config.mode === 'client' ? '' : `.${config.mode}`
-        }.json`,
-        publicPath,
-        writeToFileEmit: true,
-        seed: {
-          name: 'Bolt Manifest',
-        },
-      }),
       new webpack.DefinePlugin(globalJsData),
-      new webpack.NamedModulesPlugin(),
-      new CopyWebpackPlugin(config.copy ? config.copy : []),
+      new webpack.NoEmitOnErrorsPlugin(),
     ],
   };
 
-  if (config.mode !== 'server') {
-    webpackConfig.plugins.push(
-      new SassDocPlugin(
-        {
-          src: `${path.dirname(resolve.sync('@bolt/core'))}/styles/`,
-          dest: path.resolve(`${config.dataDir}/sassdoc.bolt.json`),
-        },
-        {
-          outputPath: config.buildDir,
-        },
-      ),
-    );
-  }
-
-  if (!config.prod && config.webpackDevServer) {
-    webpackConfig.plugins.push(
-      new webpack.HotModuleReplacementPlugin(),
-      new webpack.NoEmitOnErrorsPlugin(),
-    );
-  }
-
-  // Enable new experimental cache mode to significantly speed up the initial build times
-  // if (config.enableCache && !config.prod) {
+  // cache mode significantly speeds up subsequent build times
   if (config.enableCache) {
-    webpackConfig.plugins.push(
+    sharedWebpackConfig.plugins.push(
       new HardSourceWebpackPlugin({
         info: {
           level: 'warn',
@@ -448,12 +386,12 @@ async function createWebpackConfig(buildConfig) {
 
   if (config.prod) {
     // https://webpack.js.org/plugins/module-concatenation-plugin/
-    webpackConfig.plugins.push(
+    sharedWebpackConfig.plugins.push(
       new webpack.optimize.ModuleConcatenationPlugin(),
     );
 
     // Optimize CSS - https://github.com/NMFR/optimize-css-assets-webpack-plugin
-    webpackConfig.plugins.push(
+    sharedWebpackConfig.plugins.push(
       new OptimizeCssAssetsPlugin({
         canPrint: config.verbosity > 2,
         cssProcessor: require('cssnano'),
@@ -472,28 +410,13 @@ async function createWebpackConfig(buildConfig) {
     );
 
     // @todo evaluate best source map approach for production builds -- particularly source-map vs hidden-source-map
-    webpackConfig.devtool =
+    sharedWebpackConfig.devtool =
       config.sourceMaps === false ? '' : 'hidden-source-map';
   } else {
     // not prod
     // @todo fix source maps
-    webpackConfig.devtool =
+    sharedWebpackConfig.devtool =
       config.sourceMaps === false ? '' : 'eval-source-map';
-  }
-
-  if (config.wwwDir) {
-    webpackConfig.devServer = {
-      logLevel: 'silent',
-      log: false,
-      overlayWarnings: true,
-      overlay: true,
-      quiet: true,
-      clientLogLevel: 'none',
-      stats: statsPreset(webpackStats[config.verbosity]),
-      hot: config.prod ? false : true,
-      noInfo: true, // webpackTasks.watch handles output info related to success & failure
-      publicPath,
-    };
   }
 
   // Simple Configuration
@@ -510,10 +433,139 @@ async function createWebpackConfig(buildConfig) {
   // The object will be merged into the final webpack config using webpack-merge.
 
   if (config.configureWebpack) {
-    webpackConfig = merge(webpackConfig, config.configureWebpack);
+    sharedWebpackConfig = merge(sharedWebpackConfig, config.configureWebpack);
   }
 
-  return webpackConfig;
+  const legacyWebpackConfig = merge(sharedWebpackConfig, {
+    entry: await buildWebpackEntry(false),
+    output: {
+      path: path.resolve(process.cwd(), config.buildDir),
+      // @todo: switch this to output .client.js and .server.js file prefixes when we hit Bolt v3.0
+      filename: `[name]${langSuffix}${
+        config.mode !== 'client' ? `.${config.mode}` : ''
+      }.js`,
+      chunkFilename: `[name]-bundle${langSuffix}-[chunkhash].js`,
+      publicPath,
+    },
+    plugins: [
+      new MiniCssExtractPlugin({
+        filename: `[name]${langSuffix}.css`,
+        chunkFilename: `[id]${langSuffix}.css`,
+      }),
+      // @todo This needs to be in `config.dataDir`
+      new ManifestPlugin({
+        fileName: `bolt-webpack-manifest${langSuffix}${
+          config.mode === 'client' ? '' : `.${config.mode}`
+        }.json`,
+        publicPath,
+        writeToFileEmit: true,
+        seed: {
+          name: 'Bolt Manifest',
+        },
+      }),
+      new CopyWebpackPlugin(config.copy ? config.copy : []),
+      new SassDocPlugin(
+        {
+          src: `${path.dirname(resolve.sync('@bolt/core'))}/styles/`,
+          dest: path.resolve(`${config.dataDir}/sassdoc.bolt.json`),
+        },
+        {
+          outputPath: config.buildDir,
+        },
+      ),
+    ],
+    module: {
+      rules: [
+        {
+          test: /\.(js|tsx|mjs)$/,
+          exclude: thePath => {
+            if (
+              thePath.includes('custom-elements-es5-adapter.js') ||
+              thePath.includes('grapesjs/dist') ||
+              thePath.includes('core-js') ||
+              thePath.includes('regenerator-runtime') ||
+              thePath.includes('critical-path-polyfills') ||
+              thePath.includes('critical-css-vars') ||
+              thePath.includes('critical-css') ||
+              thePath.includes('critical-fonts')
+            ) {
+              return true;
+            }
+
+            return false;
+          },
+          use: [
+            {
+              loader: 'babel-loader',
+              options: {
+                babelrc: false,
+                presets: [legacyBabelConfig],
+              },
+            },
+          ],
+        },
+      ],
+    },
+  });
+
+  const modernWebpackConfig = merge(sharedWebpackConfig, {
+    entry: await buildWebpackEntry(true),
+    resolve: {
+      mainFields: ['esnext', 'jsnext:main', 'browser', 'module', 'main'],
+    },
+    output: {
+      path: path.resolve(process.cwd(), config.buildDir),
+      // @todo: switch this to output .client.js and .server.js file prefixes when we hit Bolt v3.0
+      filename: `[name]${langSuffix}${
+        config.mode !== 'client' ? `.${config.mode}` : ''
+      }.modern.js`,
+      chunkFilename: `[name]-bundle${langSuffix}-[chunkhash].modern.js`,
+      publicPath,
+    },
+    plugins: [
+      new MiniCssExtractPlugin({
+        filename: `[name]${langSuffix}.css`,
+        chunkFilename: `[id]${langSuffix}.css`,
+      }),
+      // @todo This needs to be in `config.dataDir`
+      new ManifestPlugin({
+        fileName: `bolt-webpack-manifest${langSuffix}${
+          config.mode === 'client' ? '' : `.${config.mode}`
+        }.modern.json`,
+        publicPath,
+        writeToFileEmit: true,
+        seed: {
+          name: 'Bolt Modern Manifest',
+        },
+      }),
+    ],
+    module: {
+      rules: [
+        {
+          test: /\.(js|tsx|mjs)$/,
+          exclude: /(node_modules)/,
+          use: [
+            // 'cache-loader',
+            {
+              loader: 'babel-loader',
+              options: {
+                babelrc: false,
+                presets: [modernBabelConfig],
+              },
+            },
+          ],
+        },
+      ],
+    },
+  });
+
+  // if esModules support is enabled in the .boltrc config, serve up just the modern bundle for local dev + legacy + modern bundles in prod.
+  // Otherwise, continue serving the legacy bundle to everyone.
+  if (config.esModules) {
+    return [legacyWebpackConfig, modernWebpackConfig];
+  } else {
+    return [legacyWebpackConfig];
+  }
 }
 
 // Helper function to associate each unique language in the build config with a separate Webpack build instance (making filenames, etc unique);
@@ -524,14 +576,13 @@ async function assignLangToWebpackConfig(config, lang) {
     langSpecificConfig.lang = lang; // Make sure only ONE language config is set per Webpack build instance.
   }
 
-  let langSpecificWebpackConfig = await createWebpackConfig(langSpecificConfig);
+  let langSpecificWebpackConfigs = await createWebpackConfig(
+    langSpecificConfig,
+  );
 
-  if (langSpecificConfig.webpackStats) {
-    langSpecificWebpackConfig.profile = true;
-    langSpecificWebpackConfig.parallelism = 1;
-  }
-
-  webpackConfigs.push(langSpecificWebpackConfig);
+  langSpecificWebpackConfigs.forEach(langSpecificWebpackConfig => {
+    webpackConfigs.push(langSpecificWebpackConfig);
+  });
 }
 
 module.exports = async function() {

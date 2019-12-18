@@ -5,14 +5,26 @@
   {% endif %}
 
   {# @TODO: how do we get this to use the exact same values from our global .js config without having the source of truth live as a .yml or .json file...? #}
-  {% set manifestConfigFile = "@bolt-assets/bolt-webpack-manifest#{lang != "" ? "-" ~ lang : ""}.json" %}
+  {% set legacyManifestConfig = "@bolt-assets/bolt-webpack-manifest#{lang != "" ? "-" ~ lang : ""}.json" %}
+  {% set modernManifestConfig = "@bolt-assets/bolt-webpack-manifest#{lang != "" ? "-" ~ lang : ""}.modern.json" %}
 
-  {% set assets = [] %}
-  {% if fileExists(manifestConfigFile) %}
-    {% set assets = get_data(manifestConfigFile) %}
+  {% set legacyAssets = [] %}
+  {% set modernAssets = [] %}
+
+  {% if fileExists(legacyManifestConfig) %}
+    {% set legacyAssets = get_data(legacyManifestConfig) %}
   {% endif %}
 
-  <script src="{{ assets["bolt-global.js"] | default("/build/bolt-global.js") }}?cacheBuster={{ cacheBuster }}" async></script>
+  {% if fileExists(modernManifestConfig) %}
+    {% set modernAssets = get_data(modernManifestConfig) %}
+  {% endif %}
+
+  {% if bolt.data.config.esModules %}
+    <script type="module" src="{{ modernAssets["bolt-global.js"] | default("/build/bolt-global.modern.js") }}?cacheBuster={{ cacheBuster }}"></script>
+    <script nomodule src="{{ legacyAssets["bolt-global.js"] | default("/build/bolt-global.js") }}?cacheBuster={{ cacheBuster }}" async></script>
+  {% else %}
+    <script src="{{ legacyAssets["bolt-global.js"] | default("/build/bolt-global.js") }}?cacheBuster={{ cacheBuster }}" async></script>
+  {% endif %}
 
   {{ patternLabFoot | raw }}
 
