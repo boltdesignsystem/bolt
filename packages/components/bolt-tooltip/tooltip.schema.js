@@ -1,3 +1,5 @@
+const triggerSchema = require('@bolt/components-trigger/trigger.schema');
+
 module.exports = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'Tooltip',
@@ -10,8 +12,11 @@ module.exports = {
         'A Drupal attributes object. Applies extra HTML attributes to the outer &lt;bolt-menu&gt; tag.',
     },
     trigger: {
-      type: 'any',
+      type: 'object',
       description: 'Renders the trigger of the tooltip.',
+      properties: {
+        ...triggerSchema.properties,
+      },
     },
     content: {
       type: 'any',
@@ -36,7 +41,7 @@ module.exports = {
         'bottom',
         'bottom-right',
       ],
-      default: 'bottom-left',
+      default: 'bottom',
     },
     spacing: {
       type: 'string',

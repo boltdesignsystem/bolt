@@ -13,9 +13,8 @@
 {# Array of classes based on the defined + default props #}
 {% set classes = [
   base_class,
-  this.data.placement.value != "auto" ? base_class ~ "--" ~ this.data.placement.value : "",
-  this.data.spacing.value != "none" ? base_class ~ "--spacing-" ~ this.data.spacing.value : "",
-  this.data.wrap.value ? "" : base_class ~ "--nowrap",
+  this.data.placement.value != "auto" ? base_class ~ "--" ~ this.data.placement.value,
+  this.data.wrap.value ?  base_class ~ "--wrap",
 ] %}
 
 {#
@@ -36,25 +35,26 @@
 
 <bolt-tooltip
   {% if outer_classes %} class="{{ outer_classes|join(' ') }}" {% endif %}
-  {{ this.props|without("content")|without("class") }}
+  {{ this.props|without("trigger")|without("content")|without("class") }}
 >
-  <span {% if inner_classes %} class="{{ inner_classes|join(' ') }}" {% endif %}>
+  <replace-with-children {% if inner_classes %} class="{{ inner_classes|join(' ') }}" {% endif %}>
     {% if trigger %}
-      {% include "@bolt-components-trigger/trigger.twig" with {
-        content: trigger,
+      {% include "@bolt-components-trigger/trigger.twig" with trigger|merge({
         attributes: {
-          "aria-describedby": uuid,
-          "aria-controls": uuid,
+          "aria-describedby": "js-bolt-tooltip-" ~ uuid,
+          "aria-controls": "js-bolt-tooltip-" ~ uuid,
           "aria-expanded": false,
         }
-      } only %}
+      }) only %}
     {% endif %}
     {% if content %}
-      <span class="{{ "#{base_class}__content" }}" role="tooltip" id="{{ uuid }}" aria-hidden="true">
-        <span class="{{ "#{base_class}__bubble" }}">
-          {{ content }}
-        </span>
+      <span slot="content">
+        <replace-with-children id="{{ "js-bolt-tooltip-#{uuid}" }}" class="{{ "#{base_class}__content" }}" role="tooltip" aria-hidden="true">
+          <replace-with-children class="{{ "#{base_class}__bubble" }}">
+            {{ content }}
+          </replace-with-children>
+        </replace-with-children>
       </span>
     {% endif %}
-  </span>
+  </replace-with-children>
 </bolt-tooltip>
