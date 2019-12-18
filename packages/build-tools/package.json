@@ -15,12 +15,12 @@
   "bin": {
     "bolt": "index.js"
   },
-  "browserslist": [
-    "extends @bolt/browserslist-config"
-  ],
   "scripts": {
     "test": "FORCE_COLOR=1 npx lerna exec --scope @bolt/build-tools--test* --concurrency 1 -- yarn run test"
   },
+  "browserslist": [
+    "extends @bolt/browserslist-config"
+  ],
   "dependencies": {
     "@babel/core": "^7.4.5",
     "@bolt/api": "^2.13.0",
@@ -38,6 +38,7 @@
     "autoprefixer": "^9.5.1",
     "babel-loader": "^8.0.6",
     "better-opn": "^0.1.4",
+    "boxen": "^4.2.0",
     "browser-sync": "^2.26.5",
     "cache-loader": "^4.1.0",
     "camelcase": "^5.3.1",
