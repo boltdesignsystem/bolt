@@ -1,5 +1,6 @@
-import { props, define } from '@bolt/core/utils';
-import { withLitContext, html, convertSchemaToProps } from '@bolt/core';
+import { html, customElement } from 'lit-element';
+import { props } from '@bolt/core/utils';
+import { withLitContext, convertSchemaToProps } from '@bolt/core';
 import { triggerAnims } from '@bolt/components-animate/utils';
 import classNames from 'classnames/bind';
 import { boltTwoCharacterLayoutIs } from '@bolt/micro-journeys/src/two-character-layout';
@@ -8,8 +9,8 @@ import schema from './interactive-step.schema';
 
 const cx = classNames.bind(styles);
 
-@define
-class BoltInteractiveStep extends withLitContext() {
+@customElement('bolt-interactive-step')
+class BoltInteractiveStep extends withLitContext {
   static is = 'bolt-interactive-step';
 
   static props = {

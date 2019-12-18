@@ -1,15 +1,8 @@
-import {
-  defineContext,
-  withContext,
-  define,
-  props,
-  css,
-} from '@bolt/core/utils';
-import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
-
+import { html, customElement } from '@bolt/element';
+import { defineContext, withContext, props, css } from '@bolt/core/utils';
+import { withLitHtml } from '@bolt/core/renderers/renderer-lit-html';
 import styles from './accordion.scss';
 import schema from '../accordion.schema';
-
 import { Accordion } from './_accordion-handorgel';
 
 // define which specific props to provide to children that subscribe
@@ -20,10 +13,8 @@ export const AccordionContext = defineContext({
   iconValign: schema.properties.icon_valign.default,
 });
 
-@define
-class BoltAccordion extends withContext(withLitHtml()) {
-  static is = 'bolt-accordion';
-
+@customElement('bolt-accordion')
+class BoltAccordion extends withContext(withLitHtml) {
   static props = {
     single: props.boolean,
     noSeparator: props.boolean,

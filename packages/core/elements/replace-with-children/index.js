@@ -1,10 +1,7 @@
-import { define } from '@bolt/core/utils';
-import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
+import { customElement } from '@bolt/element';
 
-@define
+@customElement('replace-with-children')
 class ReplaceWithChildren extends HTMLElement {
-  static is = 'replace-with-children';
-
   connectedCallback() {
     const parentElement = this.parentElement;
 

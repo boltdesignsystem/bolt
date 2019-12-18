@@ -1,13 +1,11 @@
-import { props, define, hasNativeShadowDomSupport } from '@bolt/core/utils';
-import { html, withLitHtml } from '@bolt/core/renderers/renderer-lit-html';
+import { html, customElement } from '@bolt/element';
+import { withLitHtml } from '@bolt/core/renderers/renderer-lit-html';
 import classNames from 'classnames/bind';
 import styles from './radio-switch.scss';
 // let cx = classNames.bind(styles);
 
-@define
-class BoltRadioSwitch extends withLitHtml() {
-  static is = 'bolt-radio-switch';
-
+@customElement('bolt-radio-switch')
+class BoltRadioSwitch extends withLitHtml {
   // static props = {
   //   schema: props.object,
   //   formData: props.object,

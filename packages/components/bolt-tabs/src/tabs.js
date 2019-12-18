@@ -1,3 +1,4 @@
+import { html, customElement } from '@bolt/element';
 import {
   defineContext,
   withContext,
@@ -8,8 +9,7 @@ import {
   whichTransitionEvent,
   waitForTransitionEnd,
 } from '@bolt/core/utils';
-import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
-
+import { withLitHtml } from '@bolt/core/renderers/renderer-lit-html';
 import classNames from 'classnames/bind';
 import styles from './tabs.scss';
 import schema from '../tabs.schema.yml';
@@ -26,10 +26,8 @@ export const TabsContext = defineContext({
 
 let cx = classNames.bind(styles);
 
-@define
-class BoltTabs extends withContext(withLitHtml()) {
-  static is = 'bolt-tabs';
-
+@customElement('bolt-tabs')
+class BoltTabs extends withContext(withLitHtml) {
   static props = {
     align: props.string,
     inset: props.string,

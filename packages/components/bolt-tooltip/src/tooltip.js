@@ -1,15 +1,13 @@
-import { define, props } from '@bolt/core/utils';
+import { html, customElement, ifDefined } from '@bolt/element';
+import { props } from '@bolt/core/utils';
 import classNames from 'classnames/bind';
-import { html, withLitHtml } from '@bolt/core/renderers/renderer-lit-html';
-import { ifDefined } from 'lit-html/directives/if-defined';
+import { withLitHtml } from '@bolt/core/renderers/renderer-lit-html';
 import styles from './tooltip.scss';
 
 let cx = classNames.bind(styles);
 
-@define
-class BoltTooltip extends withLitHtml() {
-  static is = 'bolt-tooltip';
-
+@customElement('bolt-tooltip')
+class BoltTooltip extends withLitHtml {
   static props = {
     triggerText: {
       ...props.string,

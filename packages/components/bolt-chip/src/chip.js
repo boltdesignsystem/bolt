@@ -1,20 +1,16 @@
-import { props, define } from '@bolt/core/utils';
-import { html, render } from '@bolt/core/renderers/renderer-lit-html';
+import { convertInitialTags, customElement, html } from '@bolt/element';
+import { props } from '@bolt/core/utils';
+import { render } from '@bolt/core/renderers/renderer-lit-html';
 import { BoltAction } from '@bolt/core/elements/bolt-action';
-import { convertInitialTags } from '@bolt/core/decorators';
-
 import classNames from 'classnames/bind';
-
 import styles from './chip.scss';
 import schema from '../chip.schema.yml';
 
 let cx = classNames.bind(styles);
 
-@define
+@customElement('bolt-chip')
 @convertInitialTags('a', 'span') // The first matching tag will have its attributes converted to component props
 class BoltChip extends BoltAction {
-  static is = 'bolt-chip';
-
   static props = {
     ...BoltAction.props, // Provides: disabled, onClick, onClickTarget, target, url
     size: props.string,

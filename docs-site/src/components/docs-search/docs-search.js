@@ -1,13 +1,11 @@
-import { props, define } from '@bolt/core/utils';
-import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
-import { unsafeHTML } from 'lit-html/directives/unsafe-html.js';
+import { props } from '@bolt/core/utils';
+import { customElement, unsafeHTML, html } from '@bolt/element';
+import { withLitHtml } from '@bolt/core/renderers/renderer-lit-html';
 import docsearch from 'docsearch.js/dist/npm/src/lib/main.js';
 import qs from 'querystring';
 
-@define
-class BoltDocsSearch extends withLitHtml() {
-  static is = 'bds-docs-search';
-
+@customElement('bds-docs-search')
+class BoltDocsSearch extends withLitHtml {
   static props = {
     apiKey: props.string,
     indexName: props.string,

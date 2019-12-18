@@ -1,7 +1,7 @@
-import { props, define, mapWithDepth } from '@bolt/core/utils';
+import { html, customElement } from '@bolt/element';
+import { props, mapWithDepth } from '@bolt/core/utils';
 import classNames from 'classnames/bind';
-import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
-
+import { withLitHtml } from '@bolt/core/renderers/renderer-lit-html';
 import styles from './ol.scss';
 
 let cx = classNames.bind(styles);
@@ -17,10 +17,8 @@ function addNestedLevelProps(childNode, level) {
   return currentLevel;
 }
 
-@define
-class BoltOrderedList extends withLitHtml() {
-  static is = 'bolt-ol';
-
+@customElement('bolt-ol')
+class BoltOrderedList extends withLitHtml {
   static props = {
     level: {
       ...props.number,

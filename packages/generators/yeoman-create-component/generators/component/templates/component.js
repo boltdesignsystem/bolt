@@ -1,15 +1,14 @@
-import { props, define } from '@bolt/core/utils';
-import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
+import { html, customElement } from '@bolt/element';
+import { props } from '@bolt/core/utils';
+import { withLitHtml } from '@bolt/core/renderers/renderer-lit-html';
 import classNames from 'classnames/bind';
 import styles from './<%= props.name.kebabCase %>.scss';
 import schema from '../<%= props.name.kebabCase %>.schema.yml';
 
 let cx = classNames.bind(styles);
 
-@define
-class Bolt<%= props.name.pascalCase %> extends withLitHtml() {
-  static is = 'bolt-<%= props.name.kebabCase %>';
-
+@customElement('bolt-<%= props.name.kebabCase %>')
+class Bolt<%= props.name.pascalCase %> extends withLitHtml {
   static props = {
     noShadow: {
       ...props.boolean,

@@ -4,10 +4,10 @@ import { h, withPreact } from '@bolt/core/renderers';
 import isEqual from 'react-fast-compare';
 import { ComponentExplorerContext } from './component-explorer';
 
-@define
-export default class SchemaForm extends withContext(withPreact()) {
-  static is = 'bolt-schema-form';
+import { customElement } from '@bolt/element';
 
+@customElement('bolt-schema-form')
+export default class SchemaForm extends withContext(withPreact) {
   static props = {
     schema: props.object,
     formData: props.object,

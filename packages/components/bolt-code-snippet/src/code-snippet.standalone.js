@@ -1,9 +1,5 @@
-import {
-  define,
-  props,
-  css,
-  hasNativeShadowDomSupport,
-} from '@bolt/core/utils';
+import { customElement } from '@bolt/element';
+import { props, css, hasNativeShadowDomSupport } from '@bolt/core/utils';
 import { h, withPreact, Markup } from '@bolt/core/renderers';
 import Prism from 'prismjs/components/prism-core';
 import styles from './code-snippet.scss';
@@ -21,10 +17,8 @@ import 'prismjs/components/prism-bash';
 import 'prismjs/components/prism-markdown';
 import 'prismjs/components/prism-yaml';
 
-@define
-class BoltCodeSnippetClass extends withPreact() {
-  static is = 'bolt-code-snippet';
-
+@customElement('bolt-code-snippet')
+class BoltCodeSnippetClass extends withPreact {
   static props = {
     lang: props.string,
     display: props.string,

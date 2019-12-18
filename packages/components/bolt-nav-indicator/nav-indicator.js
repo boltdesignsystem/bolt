@@ -1,5 +1,6 @@
-import { define, hasNativeShadowDomSupport } from '@bolt/core/utils';
-import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
+import { html, customElement } from '@bolt/element';
+import { hasNativeShadowDomSupport } from '@bolt/core/utils';
+import { withLitHtml } from '@bolt/core/renderers/renderer-lit-html';
 
 import gumshoe from 'gumshoejs';
 import isVisible from 'is-visible';
@@ -150,10 +151,8 @@ let gumshoeStateModule = (function() {
   return pub;
 })();
 
-@define
-class BoltNavIndicator extends withLitHtml() {
-  static is = 'bolt-nav-indicator';
-
+@customElement('bolt-nav-indicator')
+class BoltNavIndicator extends withLitHtml {
   // Behavior for `<bolt-nav>` parent container
   static get observedAttributes() {
     return ['offset'];
