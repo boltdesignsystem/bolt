@@ -56,13 +56,19 @@ class BoltTooltip extends BoltElement {
             <bolt-trigger
               aria-describedby="js-bolt-tooltip-${uuid}"
               aria-controls="js-bolt-tooltip-${uuid}"
-              aria-expanded=false>
+              aria-expanded="false"
+            >
               ${this.slotify('default')}
             </bolt-trigger>
           `}
         ${this.templateMap.get('content') &&
           html`
-            <span id="js-bolt-tooltip-${uuid}" class="${cx(`c-bolt-tooltip__content`)}" role="tooltip" aria-hidden="true">
+            <span
+              id="js-bolt-tooltip-${uuid}"
+              class="${cx(`c-bolt-tooltip__content`)}"
+              role="tooltip"
+              aria-hidden="true"
+            >
               <span class="${cx(`c-bolt-tooltip__bubble`)}">
                 ${this.slotify('content')}
               </span>
