@@ -9,7 +9,7 @@ class BoltCopyToClipboard extends withLitHtml() {
 
   constructor(self) {
     self = super(self);
-    this.useShadow = false;
+    self.useShadow = false;
     return self;
   }
 
