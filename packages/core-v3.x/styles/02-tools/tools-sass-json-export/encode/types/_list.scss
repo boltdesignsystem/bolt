@@ -1,0 +1,16 @@
+/* stylelint-disable scss/at-function-pattern */
+
+/// Encode a list to JSON
+/// @access private
+/// @param {List} $list - list to be encoded
+/// @return {String} - encoded list
+/// @require {function} bolt-json-encode
+@function _json-encode--list($list) {
+  $str: '';
+
+  @each $item in $list {
+    $str: $str + ', ' + bolt-json-encode($item);
+  }
+
+  @return '[' + str-slice($str, 3) + ']';
+}

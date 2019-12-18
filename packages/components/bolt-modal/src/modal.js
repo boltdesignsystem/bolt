@@ -9,8 +9,8 @@ import {
   getScrollbarWidth,
   setScrollbarPadding,
   resetScrollbarPadding,
-} from '@bolt/core/utils';
-import { withLitHtml } from '@bolt/core/renderers/renderer-lit-html';
+} from '@bolt/core-v3.x/utils';
+import { withLitHtml } from '@bolt/core-v3.x/renderers/renderer-lit-html';
 import classNames from 'classnames/bind';
 import styles from './modal.scss';
 import schema from '../modal.schema.yml';

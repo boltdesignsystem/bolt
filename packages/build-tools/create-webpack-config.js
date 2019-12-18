@@ -55,96 +55,10 @@ async function createWebpackConfig(buildConfig) {
   });
 
   // map out Twig namespaces with the NPM package name
+  // const npmToTwigNamespaceMap = await mapComponentNameToTwigNamespace();
 
   // filename suffix to tack on based on lang being compiled for
   let langSuffix = `${config.lang ? '-' + config.lang : ''}`;
-
-  let themifyOptions = {
-    watchForChanges: config.watch && config.mode !== 'server',
-    classPrefix: 't-bolt-',
-    screwIE11: config.mode === 'server',
-    fallback: {
-      filename: 'bolt-css-vars-fallback',
-      jsonDataExport: 'theming-css-vars',
-    },
-  };
-
-  themifyOptions = deepmerge(themifyOptions, {
-    fallback: {
-      jsonPath: path.resolve(
-        config.buildDir,
-        `data/${themifyOptions.fallback.jsonDataExport}.json`,
-      ),
-      cssPath: path.resolve(
-        config.buildDir,
-        `${themifyOptions.fallback.filename}.css`,
-      ),
-    },
-  });
-
-  // Default global Sass data defined
-  let globalSassData = [
-    `$bolt-namespace: ${config.namespace};`,
-    `$bolt-css-vars-json-data-export: ${themifyOptions.fallback.jsonDataExport};`,
-    // output $bolt-lang variable in Sass even if not specified so things fall back accordingly.
-    `${config.lang ? `$bolt-lang: ${config.lang};` : '$bolt-lang: null;'}`,
-  ];
-
-  // Default global JS data defined
-  let globalJsData = {
-    'process.env.NODE_ENV': config.prod
-      ? JSON.stringify('production')
-      : JSON.stringify('development'),
-    bolt: {
-      esModules: JSON.stringify(config.esModules),
-      publicPath: JSON.stringify(publicPath),
-      mode: JSON.stringify(config.mode),
-      isClient: config.mode === 'client',
-      isServer: config.mode === 'server',
-      namespace: JSON.stringify(config.namespace),
-      themingFallbackCSS: JSON.stringify(
-        `${publicPath}${themifyOptions.fallback.filename}.css`,
-      ),
-      config: {
-        prod: config.prod,
-        lang: JSON.stringify(config.lang),
-        env: JSON.stringify(config.env),
-      },
-    },
-  };
-
-  // Merge together global Sass data overrides specified in a .boltrc config
-  if (config.globalData.scss && config.globalData.scss.length !== 0) {
-    const overrideItems = [];
-    config.globalData.scss.forEach(item => {
-      try {
-        const file = fs.readFileSync(item, 'utf8');
-        file
-          .split('\n')
-          .filter(x => x)
-          .forEach(x => overrideItems.push(x));
-      } catch (err) {
-        log.errorAndExit(`Could not find ${item}`, err);
-      }
-    });
-
-    globalSassData = [...globalSassData, ...overrideItems];
-  }
-
-  // Merge together any global JS data overrides
-  if (config.globalData.js && config.globalData.js.length !== 0) {
-    const overrideJsItems = [];
-    config.globalData.js.forEach(item => {
-      try {
-        const overrideFile = require(path.resolve(process.cwd(), item));
-        overrideJsItems.push(overrideFile);
-      } catch (err) {
-        log.errorAndExit(`Could not find ${item} file`, err);
-      }
-    });
-
-    globalJsData = deepmerge(globalJsData, ...overrideJsItems);
-  }
 
   /**
    * Build WebPack config's `entry` object
@@ -158,26 +72,25 @@ async function createWebpackConfig(buildConfig) {
     const globalEntryName = 'bolt-global';
 
     if (components.global) {
-      // @todo: uncomment once related ES Module PRs have been merged
-      // if (config.esModules) {
-      //   if (isModern) {
-      //     entry[globalEntryName] = [
-      //       '@bolt/polyfills/modern.js',
-      //       '@bolt/core/styles/index.scss',
-      //     ];
-      //   } else {
-      //     entry[globalEntryName] = [
-      //       '@bolt/polyfills',
-      //       '@bolt/core/styles/index.scss',
-      //     ];
-      //   }
-      // } else {
-      //   entry[globalEntryName] = [
-      //     '@bolt/polyfills',
-      //     '@bolt/core/styles/index.scss',
-      //   ];
-      // }
-      entry[globalEntryName] = ['@bolt/core/styles/index.scss'];
+      if (config.esModules) {
+        if (isModern) {
+          entry[globalEntryName] = [
+            '@bolt/polyfills/modern.js',
+            '@bolt/core-v3.x/styles/index.scss',
+          ];
+        } else {
+          entry[globalEntryName] = [
+            '@bolt/polyfills',
+            '@bolt/core-v3.x/styles/index.scss',
+          ];
+        }
+      } else {
+        entry[globalEntryName] = [
+          '@bolt/polyfills',
+          '@bolt/core-v3.x/styles/index.scss',
+        ];
+      }
+      // entry[globalEntryName] = ['@bolt/core-v3.x/styles/index.scss'];
 
       components.global.forEach(component => {
         if (component.assets.style) {
@@ -207,53 +120,123 @@ async function createWebpackConfig(buildConfig) {
     return entry;
   }
 
-  const scssLoaders = [
-    {
-      loader: 'css-loader',
-      options: {
-        sourceMap: config.sourceMaps,
-        modules: false, // needed for JS referencing classNames directly, such as critical fonts
-      },
+  let themifyOptions = {
+    watchForChanges: config.watch && config.mode !== 'server',
+    classPrefix: 't-bolt-',
+    screwIE11: false,
+    fallback: {
+      filename: 'bolt-css-vars-fallback',
+      jsonDataExport: 'theming-css-vars',
     },
-    {
-      loader: 'postcss-loader',
-      options: {
-        sourceMap: config.sourceMaps,
-        plugins: () => [
-          require('@bolt/postcss-themify')(themifyOptions),
-          postcssDiscardDuplicates,
-          autoprefixer({
-            grid: true,
-          }),
-        ],
-      },
-    },
-    {
-      loader: 'clean-css-loader',
-      options: {
-        level: config.prod ? 2 : 0,
-        format: config.prod ? false : 'beautify',
-        inline: ['remote'],
-      },
-    },
-    {
-      loader: 'resolve-url-loader',
-    },
+  };
 
-    {
-      loader: 'sass-loader',
-      options: {
-        sourceMap: config.sourceMaps,
-        prependData: globalSassData.join('\n'),
-        sassOptions: {
-          outputStyle: 'nested',
-          importer: [npmSass.importer],
-          functions: sassExportData,
-          precision: 3,
+  const legacyThemifyOptions = deepmerge(themifyOptions, {
+    fallback: {
+      jsonPath: path.resolve(
+        config.buildDir,
+        `data/${themifyOptions.fallback.jsonDataExport}.json`,
+      ),
+      cssPath: path.resolve(
+        config.buildDir,
+        `${themifyOptions.fallback.filename}.css`,
+      ),
+    },
+  });
+
+  const modernThemifyOptions = deepmerge(themifyOptions, {
+    fallback: {
+      jsonPath: path.resolve(
+        config.buildDir,
+        `data/${themifyOptions.fallback.jsonDataExport}.json`,
+      ),
+      cssPath: path.resolve(
+        config.buildDir,
+        `${themifyOptions.fallback.filename}.modern.css`,
+      ),
+    },
+  });
+
+  function getSassLoaders(isModern = false) {
+    // Default global Sass data defined
+    let globalSassData = [
+      `$bolt-namespace: ${config.namespace};`,
+      `$bolt-css-vars-json-data-export: ${
+        isModern
+          ? modernThemifyOptions.fallback.jsonDataExport
+          : legacyThemifyOptions.fallback.jsonDataExport
+      };`,
+      // output $bolt-lang variable in Sass even if not specified so things fall back accordingly.
+      `${config.lang ? `$bolt-lang: ${config.lang};` : '$bolt-lang: null;'}`,
+    ];
+
+    // Merge together global Sass data overrides specified in a .boltrc config
+    if (config.globalData.scss && config.globalData.scss.length !== 0) {
+      const overrideItems = [];
+      config.globalData.scss.forEach(item => {
+        try {
+          const file = fs.readFileSync(item, 'utf8');
+          file
+            .split('\n')
+            .filter(x => x)
+            .forEach(x => overrideItems.push(x));
+        } catch (err) {
+          log.errorAndExit(`Could not find ${item}`, err);
+        }
+      });
+
+      globalSassData = [...globalSassData, ...overrideItems];
+    }
+
+    return [
+      {
+        loader: 'css-loader',
+        options: {
+          sourceMap: config.sourceMaps,
+          modules: false, // needed for JS referencing classNames directly, such as critical fonts
         },
       },
-    },
-  ];
+      {
+        loader: 'postcss-loader',
+        options: {
+          sourceMap: config.sourceMaps,
+          plugins: () => [
+            require('@bolt/postcss-themify')(
+              isModern ? modernThemifyOptions : legacyThemifyOptions,
+            ),
+            postcssDiscardDuplicates,
+            autoprefixer({
+              grid: true,
+            }),
+          ],
+        },
+      },
+      {
+        loader: 'clean-css-loader',
+        options: {
+          level: config.prod ? 2 : 0,
+          format: config.prod ? false : 'beautify',
+          inline: ['remote'],
+        },
+      },
+      {
+        loader: 'resolve-url-loader',
+      },
+
+      {
+        loader: 'sass-loader',
+        options: {
+          sourceMap: config.sourceMaps,
+          prependData: globalSassData.join('\n'),
+          sassOptions: {
+            outputStyle: 'nested',
+            importer: [npmSass.importer],
+            functions: sassExportData,
+            precision: 3,
+          },
+        },
+      },
+    ];
+  }
 
   let sharedWebpackConfig = {
     target: 'web',
@@ -287,23 +270,6 @@ async function createWebpackConfig(buildConfig) {
                 transpileOnly: true,
                 experimentalWatchApi: true,
               },
-            },
-          ],
-        },
-        {
-          test: /\.scss$/,
-          oneOf: [
-            {
-              issuer: /\.js$/,
-              use: [scssLoaders].reduce((acc, val) => acc.concat(val), []),
-            },
-            {
-              // no issuer here as it has a bug when its an entry point - https://github.com/webpack/webpack/issues/5906
-              use: [
-                // 'css-hot-loader',
-                MiniCssExtractPlugin.loader,
-                scssLoaders,
-              ].reduce((acc, val) => acc.concat(val), []),
             },
           ],
         },
@@ -359,7 +325,6 @@ async function createWebpackConfig(buildConfig) {
     plugins: [
       new webpack.ProgressPlugin(boltWebpackProgress), // Ties together the Bolt custom Webpack messages + % complete
       new WriteFilePlugin(),
-      new webpack.DefinePlugin(globalJsData),
       new webpack.NoEmitOnErrorsPlugin(),
     ],
   };
@@ -448,6 +413,7 @@ async function createWebpackConfig(buildConfig) {
       publicPath,
     },
     plugins: [
+      new webpack.DefinePlugin(getGlobalJSData(false)),
       new MiniCssExtractPlugin({
         filename: `[name]${langSuffix}.css`,
         chunkFilename: `[id]${langSuffix}.css`,
@@ -466,7 +432,7 @@ async function createWebpackConfig(buildConfig) {
       new CopyWebpackPlugin(config.copy ? config.copy : []),
       new SassDocPlugin(
         {
-          src: `${path.dirname(resolve.sync('@bolt/core'))}/styles/`,
+          src: `${path.dirname(resolve.sync('@bolt/core-v3.x'))}/styles/`,
           dest: path.resolve(`${config.dataDir}/sassdoc.bolt.json`),
         },
         {
@@ -484,10 +450,7 @@ async function createWebpackConfig(buildConfig) {
               thePath.includes('grapesjs/dist') ||
               thePath.includes('core-js') ||
               thePath.includes('regenerator-runtime') ||
-              thePath.includes('critical-path-polyfills') ||
-              thePath.includes('critical-css-vars') ||
-              thePath.includes('critical-css') ||
-              thePath.includes('critical-fonts')
+              thePath.includes('critical-path-polyfills')
             ) {
               return true;
             }
@@ -504,9 +467,75 @@ async function createWebpackConfig(buildConfig) {
             },
           ],
         },
+        {
+          test: /\.scss$/,
+          oneOf: [
+            {
+              issuer: /\.js$/,
+              use: [getSassLoaders(false)].reduce(
+                (acc, val) => acc.concat(val),
+                [],
+              ),
+            },
+            {
+              // no issuer here as it has a bug when its an entry point - https://github.com/webpack/webpack/issues/5906
+              use: [
+                // 'css-hot-loader',
+                MiniCssExtractPlugin.loader,
+                getSassLoaders(false),
+              ].reduce((acc, val) => acc.concat(val), []),
+            },
+          ],
+        },
       ],
     },
   });
+
+  // Generate global JS data based on if the build is for ES Module-supporting browsers or not
+  function getGlobalJSData(isModern = false) {
+    let globalJsData = {
+      'process.env.NODE_ENV': config.prod
+        ? JSON.stringify('production')
+        : JSON.stringify('development'),
+      bolt: {
+        esModules: JSON.stringify(config.esModules),
+        publicPath: JSON.stringify(publicPath),
+        mode: JSON.stringify(config.mode),
+        isClient: config.mode === 'client',
+        isServer: config.mode === 'server',
+        namespace: JSON.stringify(config.namespace),
+        themingFallbackCSS: JSON.stringify(
+          `${publicPath}${
+            isModern
+              ? `${modernThemifyOptions.fallback.filename}.modern.css`
+              : `${legacyThemifyOptions.fallback.filename}.css`
+          }`,
+        ),
+        config: {
+          prod: config.prod,
+          lang: JSON.stringify(config.lang),
+          env: JSON.stringify(config.env),
+        },
+      },
+    };
+
+    // Merge together any global JS data overrides
+    if (config.globalData.js && config.globalData.js.length !== 0) {
+      const overrideJsItems = [];
+      config.globalData.js.forEach(item => {
+        try {
+          const overrideFile = require(path.resolve(process.cwd(), item));
+          overrideJsItems.push(overrideFile);
+        } catch (err) {
+          log.errorAndExit(`Could not find ${item} file`, err);
+        }
+      });
+
+      globalJsData = deepmerge(globalJsData, ...overrideJsItems);
+    }
+
+    return globalJsData;
+  }
 
   const modernWebpackConfig = merge(sharedWebpackConfig, {
     entry: await buildWebpackEntry(true),
@@ -523,6 +552,7 @@ async function createWebpackConfig(buildConfig) {
       publicPath,
     },
     plugins: [
+      new webpack.DefinePlugin(getGlobalJSData(true)),
       new MiniCssExtractPlugin({
         filename: `[name]${langSuffix}.css`,
         chunkFilename: `[id]${langSuffix}.css`,
@@ -555,6 +585,26 @@ async function createWebpackConfig(buildConfig) {
             },
           ],
         },
+        {
+          test: /\.scss$/,
+          oneOf: [
+            {
+              issuer: /\.js$/,
+              use: [getSassLoaders(true)].reduce(
+                (acc, val) => acc.concat(val),
+                [],
+              ),
+            },
+            {
+              // no issuer here as it has a bug when its an entry point - https://github.com/webpack/webpack/issues/5906
+              use: [
+                // 'css-hot-loader',
+                MiniCssExtractPlugin.loader,
+                getSassLoaders(true),
+              ].reduce((acc, val) => acc.concat(val), []),
+            },
+          ],
+        },
       ],
     },
   });
@@ -562,7 +612,7 @@ async function createWebpackConfig(buildConfig) {
   // if esModules support is enabled in the .boltrc config, serve up just the modern bundle for local dev + legacy + modern bundles in prod.
   // Otherwise, continue serving the legacy bundle to everyone.
   if (config.esModules) {
-    return [legacyWebpackConfig, modernWebpackConfig];
+    return [modernWebpackConfig, legacyWebpackConfig];
   } else {
     return [legacyWebpackConfig];
   }

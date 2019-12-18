@@ -1,6 +1,6 @@
-import { props } from '@bolt/core/utils';
+import { props } from '@bolt/core-v3.x/utils';
 import { customElement, html } from '@bolt/element';
-import { withLitHtml } from '@bolt/core/renderers/renderer-lit-html';
+import { withLitHtml } from '@bolt/core-v3.x/renderers/renderer-lit-html';
 const changeCase = require('change-case');
 
 @customElement('bolt-change-case')

@@ -1,6 +1,10 @@
 import { html, customElement } from '@bolt/element';
-import { props, hasNativeShadowDomSupport } from '@bolt/core/utils';
-import { withLitContext, convertSchemaToProps } from '@bolt/core';
+import {
+  props,
+  hasNativeShadowDomSupport,
+  convertSchemaToProps,
+} from '@bolt/core-v3.x/utils';
+import { withLitContext } from '@bolt/core-v3.x/renderers';
 import classNames from 'classnames/bind';
 import debounce from 'lodash.debounce';
 import themes from '@bolt/global/styles/06-themes/_themes.all.scss';

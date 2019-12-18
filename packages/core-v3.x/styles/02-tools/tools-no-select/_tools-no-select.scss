@@ -1,0 +1,17 @@
+/* ------------------------------------ *\
+  TOOLS - No Select
+\* ------------------------------------ */
+
+////
+/// @group Tools: Utilities
+/// @author Salem Ghoweri
+////
+
+/// Provides a bolt method for controlling the user's ability to select text.
+/// @example scss
+/// .element {
+///    @include bolt-no-select;
+/// }
+@mixin bolt-no-select {
+  user-select: none;
+}

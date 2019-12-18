@@ -20,7 +20,6 @@
   {% endif %}
 
   {% if bolt.data.config.esModules %}
-    <script type="module" src="{{ modernAssets["bolt-global.js"] | default("/build/bolt-global.modern.js") }}?cacheBuster={{ cacheBuster }}"></script>
     <script nomodule src="{{ legacyAssets["bolt-global.js"] | default("/build/bolt-global.js") }}?cacheBuster={{ cacheBuster }}" async></script>
   {% else %}
     <script src="{{ legacyAssets["bolt-global.js"] | default("/build/bolt-global.js") }}?cacheBuster={{ cacheBuster }}" async></script>

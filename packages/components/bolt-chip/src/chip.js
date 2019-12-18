@@ -1,7 +1,7 @@
 import { convertInitialTags, customElement, html } from '@bolt/element';
-import { props } from '@bolt/core/utils';
-import { render } from '@bolt/core/renderers/renderer-lit-html';
-import { BoltAction } from '@bolt/core/elements/bolt-action';
+import { props } from '@bolt/core-v3.x/utils';
+import { render } from '@bolt/core-v3.x/renderers/renderer-lit-html';
+import { BoltAction } from '@bolt/core-v3.x/elements/bolt-action';
 import classNames from 'classnames/bind';
 import styles from './chip.scss';
 import schema from '../chip.schema.yml';

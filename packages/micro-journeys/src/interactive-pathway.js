@@ -4,8 +4,8 @@ import {
   hasNativeShadowDomSupport,
   query,
   convertSchemaToProps,
-} from '@bolt/core/utils';
-import { withLitContext } from '@bolt/core';
+} from '@bolt/core-v3.x/utils';
+import { withLitContext } from '@bolt/core-v3.x/renderers';
 import classNames from 'classnames';
 import debounce from 'lodash.debounce';
 import styles from './interactive-pathway.scss';

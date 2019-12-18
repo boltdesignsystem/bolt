@@ -7,8 +7,8 @@ import {
   hasNativeShadowDomSupport,
   afterNextRender,
   watchForComponentMutations,
-} from '@bolt/core/utils';
-import { h, withPreact } from '@bolt/core/renderers';
+} from '@bolt/core-v3.x/utils';
+import { h, withPreact } from '@bolt/core-v3.x/renderers';
 
 @define
 export class BoltPreactDot extends withPreact() {

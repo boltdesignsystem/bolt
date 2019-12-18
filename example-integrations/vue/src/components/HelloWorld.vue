@@ -150,6 +150,6 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-@import '@bolt/core/styles/index.scss';
+@import '@bolt/core-v3.x/styles/index.scss';
 @import '@bolt/global/styles/05-objects/objects-inline-list/_objects-inline-list.scss';
 </style>

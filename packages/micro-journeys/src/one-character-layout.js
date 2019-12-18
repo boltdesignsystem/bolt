@@ -1,5 +1,5 @@
-import { props, hasNativeShadowDomSupport } from '@bolt/core/utils';
-import { withLitHtml } from '@bolt/core';
+import { props, hasNativeShadowDomSupport } from '@bolt/core-v3.x/utils';
+import { withLitHtml } from '@bolt/core-v3.x/renderers';
 import classNames from 'classnames/bind';
 import { html, customElement } from '@bolt/element';
 import styles from './one-character-layout.scss';

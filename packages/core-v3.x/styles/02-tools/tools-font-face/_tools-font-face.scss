@@ -1,0 +1,74 @@
+/* ------------------------------------ *\
+  TOOLS - FONT FACE
+\* ------------------------------------ */
+
+////
+/// @group Tools: Typography
+/// @author Mike Mai
+////
+
+/* ==========================================================================
+   #FONT-FACE
+   ========================================================================== */
+
+// =============================================================================
+// String Replace
+// =============================================================================
+
+/// A private utility function for carrying out string replacement
+/// @param {string} $string - The "needle"
+/// @param {string} $search - The "haystack"
+/// @param {string} $replace [''] - The string value to replace
+/// @access private
+/// @see {mixin} bolt-font-face
+/// @example scss - Basic replace ($name not shown)
+///   $example = _bolt-str-replace($name, ' ', '_')
+@function _bolt-str-replace($string, $search, $replace: '') {
+  $index: str-index($string, $search);
+
+  @if $index {
+    @return str-slice($string, 1, $index - 1) + $replace + _bolt-str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+  }
+
+  @return $string;
+}
+
+// =============================================================================
+// Font Face
+// =============================================================================
+
+/// Adds a correctly formatted @font-face declaration. Set at the top of the stylesheet.
+/// @param {string} $name - The 'font-family' name string
+/// @param {string} $path - Path to the font files
+/// @param {string} $weight [null] - Default font weight
+/// @param {string} $style [null] - Default style
+/// @param {string} $exts [woff2 woff] - Default extensions
+/// @example scss
+///   @include bolt-font-face('Awesome_font_name, '/path/to/font/');
+@mixin bolt-font-face($name, $path, $weight: null, $style: null, $exts: woff2 woff) {
+  $src: null;
+
+  $extmods: (
+    eot: '?',
+    svg: '#' + _bolt-str-replace($name, ' ', '_')
+  );
+
+  $formats: (
+    otf: 'opentype',
+    ttf: 'truetype'
+  );
+
+  @each $ext in $exts {
+    $extmod: if(map-has-key($extmods, $ext), $ext + map-get($extmods, $ext), $ext);
+    $format: if(map-has-key($formats, $ext), map-get($formats, $ext), $ext);
+    $src: append($src, url('#{$path}.#{$extmod}') format(quote($format)), comma);
+  }
+
+  @font-face {
+    font-family: quote($name);
+    font-style: $style;
+    font-weight: $weight;
+    src: $src;
+  }
+}
+

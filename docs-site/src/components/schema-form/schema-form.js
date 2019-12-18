@@ -1,6 +1,6 @@
 import Form from 'react-jsonschema-form';
-import { withContext, defineContext, define, props } from '@bolt/core/utils';
-import { h, withPreact } from '@bolt/core/renderers';
+import { withContext, defineContext, define, props } from '@bolt/core-v3.x/utils';
+import { h, withPreact } from '@bolt/core-v3.x/renderers';
 import isEqual from 'react-fast-compare';
 import { ComponentExplorerContext } from './component-explorer';
 

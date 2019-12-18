@@ -1,6 +1,10 @@
 import { html, customElement } from '@bolt/element';
-import { props, hasNativeShadowDomSupport } from '@bolt/core/utils';
-import { withLitHtml, convertSchemaToProps } from '@bolt/core';
+import {
+  props,
+  hasNativeShadowDomSupport,
+  convertSchemaToProps,
+} from '@bolt/core-v3.x/utils';
+import { withLitHtml } from '@bolt/core-v3.x/renderers';
 import classNames from 'classnames/bind';
 import schema from './character.schema';
 import styles from './character.scss';

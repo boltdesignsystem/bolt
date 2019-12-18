@@ -1,11 +1,11 @@
 import { html, customElement } from '@bolt/element';
-import { hasNativeShadowDomSupport } from '@bolt/core/utils';
-import { withLitHtml } from '@bolt/core/renderers/renderer-lit-html';
+import { hasNativeShadowDomSupport } from '@bolt/core-v3.x/utils';
+import { withLitHtml } from '@bolt/core-v3.x/renderers/renderer-lit-html';
 
 import gumshoe from 'gumshoejs';
 import isVisible from 'is-visible';
 
-import '@bolt/core/utils/optimized-resize';
+import '@bolt/core-v3.x/utils/optimized-resize';
 
 // const indicatorElement = '.js-bolt-nav-indicator';
 const navLinkElement = 'bolt-navlink'; // Custom element

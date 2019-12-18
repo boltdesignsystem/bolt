@@ -27,7 +27,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import '@bolt/core/styles/index.scss';
+@import '@bolt/core-v3.x/styles/index.scss';
 @import '@bolt/global/styles/04-elements/_elements-page.scss';
 @import '@bolt/global/styles/04-elements/_elements-links.scss';
 @import '@bolt/global/styles/05-objects/objects-ratio/ratio.scss';

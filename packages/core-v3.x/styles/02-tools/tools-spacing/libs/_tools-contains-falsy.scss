@@ -1,0 +1,23 @@
+////
+/// @group Tools: Layout
+/// @author Salem Ghoweri
+////
+
+/// Checks if a list does not contain any values.
+///
+/// @argument {list} $list
+///   The list to check against.
+///
+/// @return {boolean}
+///
+/// @access private
+
+@function _bolt-contains-falsy($list) {
+  @each $item in $list {
+    @if not $item {
+      @return true;
+    }
+  }
+
+  @return false;
+}

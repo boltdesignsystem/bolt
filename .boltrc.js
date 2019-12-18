@@ -67,8 +67,7 @@ nonImageFixtures.forEach(fixturePath => {
 });
 
 module.exports = {
-  // @todo: uncomment once related ES Module updates are in place
-  // esModules: true,
+  esModules: true,
   wwwDir: adjustRelativePath(siteConfig.wwwDir),
   buildDir: adjustRelativePath(siteConfig.buildDir),
   iconDir: [],

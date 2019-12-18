@@ -1,7 +1,7 @@
 // @ts-nocheck
 import { html, customElement } from '@bolt/element';
 import { props } from 'skatejs';
-import { withLitEvents } from '@bolt/core/renderers/with-events';
+import { withLitEvents } from '@bolt/core-v3.x/renderers/with-events';
 import { bind } from './classnames';
 import './typeahead.autosuggest'; // main Preact logic split from lit-html wrapper
 import styles from './typeahead.scoped.scss';

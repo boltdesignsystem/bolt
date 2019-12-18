@@ -1,7 +1,7 @@
 import { html, convertInitialTags, customElement } from '@bolt/element';
-import { props } from '@bolt/core/utils';
-import { render } from '@bolt/core/renderers/renderer-lit-html';
-import { BoltAction } from '@bolt/core/elements/bolt-action';
+import { props } from '@bolt/core-v3.x/utils';
+import { render } from '@bolt/core-v3.x/renderers/renderer-lit-html';
+import { BoltAction } from '@bolt/core-v3.x/elements/bolt-action';
 import { ifDefined } from 'lit-html/directives/if-defined';
 import classNames from 'classnames/bind';
 

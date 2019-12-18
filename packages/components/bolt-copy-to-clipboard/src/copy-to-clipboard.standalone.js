@@ -1,6 +1,6 @@
 import { html, customElement } from '@bolt/element';
 import ClipboardJS from 'clipboard';
-import { withLitHtml } from '@bolt/core/renderers/renderer-lit-html';
+import { withLitHtml } from '@bolt/core-v3.x/renderers/renderer-lit-html';
 
 @customElement('bolt-copy-to-clipboard')
 class BoltCopyToClipboard extends withLitHtml {

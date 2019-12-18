@@ -5,8 +5,8 @@ import {
   css,
   hasNativeShadowDomSupport,
   passiveSupported,
-} from '@bolt/core/utils';
-import { withLitHtml } from '@bolt/core/renderers/renderer-lit-html';
+} from '@bolt/core-v3.x/utils';
+import { withLitHtml } from '@bolt/core-v3.x/renderers/renderer-lit-html';
 
 /* From Modernizr */
 function whichAnimationEvent() {

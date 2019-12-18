@@ -1,13 +1,13 @@
-import { props, hasNativeShadowDomSupport } from '@bolt/core/utils';
+import { props, hasNativeShadowDomSupport } from '@bolt/core-v3.x/utils';
 import { html, customElement } from '@bolt/element';
-import { withLitHtml } from '@bolt/core/renderers/renderer-lit-html';
+import { withLitHtml } from '@bolt/core-v3.x/renderers/renderer-lit-html';
 import classNames from 'classnames/bind';
 import changeCase from 'change-case';
 import Swiper from 'swiper';
 import styles from '../index.scss';
 import originalSchema from '../carousel.schema.yml';
 
-import '@bolt/core/utils/optimized-resize';
+import '@bolt/core-v3.x/utils/optimized-resize';
 
 let cx = classNames.bind(styles);
 

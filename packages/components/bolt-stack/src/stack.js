@@ -1,6 +1,6 @@
 import { html, customElement } from '@bolt/element';
-import { props } from '@bolt/core/utils';
-import { withLitHtml } from '@bolt/core/renderers/renderer-lit-html';
+import { props } from '@bolt/core-v3.x/utils';
+import { withLitHtml } from '@bolt/core-v3.x/renderers/renderer-lit-html';
 import classNames from 'classnames/bind';
 import styles from './stack.scss';
 

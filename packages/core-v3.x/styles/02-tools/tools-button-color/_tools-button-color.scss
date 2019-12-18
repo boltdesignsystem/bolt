@@ -1,0 +1,34 @@
+/* ------------------------------------ *\
+  Button Colors
+\* ------------------------------------ */
+
+////
+/// @group Tools: Colors
+/// @author Salem Ghoweri
+////
+
+/// Generate different background and border color button interaction states based on the primary color passed in
+/// @param {color} $color - Used to generate button text, background, and border color
+/// @example scss
+/// .element {
+///   @include bolt-button-color(bolt-color(success, dark));
+/// }
+@mixin bolt-button-color($color) {
+  color: bolt-text-contrast($color);
+  border-color: mix(black, $color, 25%);
+  background-color: $color;
+
+  // &:hover {
+  //   color: bolt-text-contrast($color);
+  //   background-color: mix(black, $color, 15%);
+  //   border-color: mix(black, $color, 40%);
+  // }
+  //
+  // &:focus,
+  // &:active {
+  //   color: bolt-text-contrast($color);
+  //   background-color: mix(black, $color, 30%);
+  //   border-color: mix(black, $color, 55%);
+  // }
+}
+

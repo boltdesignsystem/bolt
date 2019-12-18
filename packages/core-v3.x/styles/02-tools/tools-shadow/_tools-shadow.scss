@@ -1,0 +1,57 @@
+////
+/// @group Tools: Shadows
+////
+
+/* ------------------------------------ *\
+  SHADOW MIXIN
+  see `_settings-shadow.scss`
+\* ------------------------------------ */
+
+/// This outputs the correct bolt values for transform and box-shadow
+/// @param {string} $key ['G'] - The desired shadow level (e.g. 'level-30')
+/// @param {boolean} $lifted [false] - Weather or not to use the 'raised' values
+/// @param {boolean|string} $base-color [false] - The base shadow color (with the 'transparentize' filter applied)
+/// @param {boolean} $utility [false] - If true, adds '!important' to declaration
+/// @example scss
+/// .element {
+///    @include bolt-shadow('level-30', true);
+/// }
+@mixin bolt-shadow($key: 'G', $lifted: false, $base-color: false, $utility: false) {
+  $shadows: map-get(bolt-get-shadows-map(), 'sets');
+  @if $base-color {
+    $shadows: map-get(bolt-get-shadows-map($base-color), 'sets');
+  }
+  $important: '';
+
+  @if $utility {
+    $important: '!important';
+  }
+  @if not(map-has-key($shadows, $key)) {
+    @error 'A value, #{$key}, was passed into @include bolt-shadow() that is not defined in $bolt-shadows';
+  } @else {
+    @if $lifted {
+      transform: translateY(-2px) #{$important};
+      box-shadow: unquote(map-get(map-get($shadows, $key), 'raised')) #{$important};
+    } @else {
+      box-shadow: unquote(map-get(map-get($shadows, $key), 'base')) #{$important};
+      transition: all 0.3s cubic-bezier(.25,.8,.25,1) #{$important};
+    }
+  }
+}
+
+@function bolt-shadow($key: 'G', $base-color: false, $utility: false) {
+  $shadows: map-get(bolt-get-shadows-map(), 'sets');
+  @if $base-color {
+    $shadows: map-get(bolt-get-shadows-map($base-color), 'sets');
+  }
+  $important: '';
+
+  @if $utility {
+    $important: '!important';
+  }
+  @if not(map-has-key($shadows, $key)) {
+    @error 'A value, #{$key}, was passed into @include bolt-shadow() that is not defined in $bolt-shadows';
+  } @else {
+    @return unquote(map-get(map-get($shadows, $key), 'base')) #{$important};
+  }
+}

@@ -1,5 +1,8 @@
 import { html, customElement } from '@bolt/element';
-import { withLitHtml, render } from '@bolt/core/renderers/renderer-lit-html';
+import {
+  withLitHtml,
+  render,
+} from '@bolt/core-v3.x/renderers/renderer-lit-html';
 import classNames from 'classnames/bind';
 
 import styles from './figure.scss';
@@ -8,12 +11,6 @@ let cx = classNames.bind(styles);
 
 @customElement('bolt-figure')
 class BoltFigure extends withLitHtml {
-  // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
-  constructor(self) {
-    self = super(self);
-    return self;
-  }
-
   render() {
     const classes = cx('c-bolt-figure');
 

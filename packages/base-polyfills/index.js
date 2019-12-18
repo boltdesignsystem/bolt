@@ -27,6 +27,7 @@ import '@webcomponents/custom-elements/src/custom-elements.js';
 import '@webcomponents/url/url.js';
 import '@bolt/polyfills/platform/baseuri';
 import '@bolt/polyfills/platform/unresolved';
+
 import 'element-closest';
 import 'whatwg-fetch';
 import 'mdn-polyfills/Node.prototype.prepend';

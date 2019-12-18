@@ -1,6 +1,6 @@
 import { html, customElement } from '@bolt/element';
-import { withContext, props, css } from '@bolt/core/utils';
-import { withLitHtml } from '@bolt/core/renderers/renderer-lit-html';
+import { withContext, props, css } from '@bolt/core-v3.x/utils';
+import { withLitHtml } from '@bolt/core-v3.x/renderers/renderer-lit-html';
 import styles from './accordion-item.scss';
 import { AccordionItemTrigger } from './AccordionItemTrigger';
 import { AccordionItemContent } from './AccordionItemContent';

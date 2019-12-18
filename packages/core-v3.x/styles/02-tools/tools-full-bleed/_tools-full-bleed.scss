@@ -1,0 +1,18 @@
+/// Places an element full browser width
+/// @group Tools: Layout
+/// @author Evan Lovely
+/// @example scss
+/// .element {
+///   @include bolt-full-bleed();
+/// }
+@mixin bolt-full-bleed {
+  position: relative;
+  right: 50%;
+  left: 50%;
+  width: 100%; //fallback if vw not supported.
+  width: 100vw;
+  margin-top: -0.5px; //-0.5px is currently needed to patch a rendering bug in Firefox (when combined with layers being hardware accelerated)
+  margin-right: -50vw;
+  margin-bottom: -0.5px; //-0.5px is currently needed to patch a rendering bug in Firefox (when combined with layers being hardware accelerated)
+  margin-left: -50vw;
+}

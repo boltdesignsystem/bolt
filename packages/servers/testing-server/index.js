@@ -20,11 +20,7 @@ getConfig().then(async boltConfig => {
         <head>
           <title>Test</title>
           <link rel="stylesheet" href="/build/bolt-global.css" />
-          ${
-            config.esModules
-              ? '<script type="module" src="/build/bolt-global.modern.js"></script>'
-              : '<script src="/build/bolt-global.js"></script>'
-          }
+          <script type="module" src="/build/bolt-global.modern.js"></script>
         </head>
         <body>
           <!-- set #root to inline-block so VRT screenshots are only as wide as the component vs are always full width -->

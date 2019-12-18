@@ -1,0 +1,85 @@
+/* ------------------------------------ *\
+  BOLT CSS CORE
+\* ------------------------------------ */
+
+@warn "You are using the old version of Bolt Core which will stop working in Bolt v3.0.";
+
+@import 'sassy-lists';
+@import 'sass-mq/_mq';
+@import 'sassy-maps/sass/sassy-maps';
+@import '@bolt/sass-export-data/export-data.scss';
+
+@import '01-settings/00-settings-lang/_settings.lang-en';
+@import '01-settings/00-settings-lang/_settings.lang-ja';
+@import '01-settings/_settings-z-index';
+@import '01-settings/settings-border-radius/_settings-border-radius';
+@import '01-settings/settings-breakpoints/_settings-breakpoints';
+@import '01-settings/settings-colors/_settings-colors';
+@import '01-settings/settings-font-family/_settings-font-family';
+@import '01-settings/settings-font-size/_settings-font-size';
+@import '01-settings/settings-font-weight/_settings-font-weight';
+@import '01-settings/settings-global/_settings-global';
+@import '01-settings/settings-opacity/_settings-opacity';
+@import '01-settings/settings-quotes/_settings-quotes';
+@import '01-settings/settings-shadow/_settings-shadow';
+@import '01-settings/settings-spacing/_settings-spacing';
+@import '01-settings/settings-themes/_constants';
+@import '01-settings/settings-themes/_helpers';
+@import '01-settings/settings-themes/index';
+
+@import '02-tools/tools-border-radius/_tools-border-radius';
+@import '02-tools/tools-breakpoint/_tools-breakpoint';
+@import '02-tools/tools-browser-support/_tools-browser-support';
+@import '02-tools/tools-button-color/_tools-button-color';
+@import '02-tools/tools-button-reset/_tools-button-reset';
+@import '02-tools/tools-clearfix/_tools-clearfix';
+@import '02-tools/tools-color-palette/_tools-color-palette';
+@import '02-tools/tools-css-vars/_tools-css-vars';
+@import '02-tools/tools-custom-element/_tools-custom-element';
+@import '02-tools/tools-data/export-data/export-data';
+@import '02-tools/tools-data/normalize-data/normalize-data';
+@import '02-tools/tools-data/tools-data';
+@import '02-tools/tools-font-face/_tools-font-face';
+@import '02-tools/tools-font-family/_tools-font-family';
+@import '02-tools/tools-font-kerning/_tools-font-kerning';
+@import '02-tools/tools-font-size/_tools-font-size';
+@import '02-tools/tools-font-weight/_tools-font-weight';
+@import '02-tools/tools-full-bleed/_tools-full-bleed';
+@import '02-tools/tools-ie11-only/_tools-ie11-only';
+@import '02-tools/tools-linear-interpolation/_tools-linear-interpolation';
+@import '02-tools/tools-list-remove/_tools-list-remove';
+@import '02-tools/tools-list-sort/_tools-list-sort';
+@import '02-tools/tools-map-recursive-merge/tools-map-recursive-merge';
+@import '02-tools/tools-map-sort/_tools-map-sort';
+@import '02-tools/tools-no-select/_tools-no-select';
+@import '02-tools/tools-opacity/_tools-opacity';
+@import '02-tools/tools-poly-fluid-sizing/_tools-poly-fluid-sizing';
+@import '02-tools/tools-px-to-rem/_tools-px-to-rem';
+@import '02-tools/tools-repeat-rule/_tools-repeat-rule';
+@import '02-tools/tools-sass-json-export/_tools.sass-json-export';
+@import '02-tools/tools-sass-json-export/encode/api/_json';
+@import '02-tools/tools-sass-json-export/encode/encode';
+@import '02-tools/tools-sass-json-export/encode/helpers/_quote';
+@import '02-tools/tools-sass-json-export/encode/mixins/_json';
+@import '02-tools/tools-sass-json-export/encode/types/_bool';
+@import '02-tools/tools-sass-json-export/encode/types/_color';
+@import '02-tools/tools-sass-json-export/encode/types/_list';
+@import '02-tools/tools-sass-json-export/encode/types/_map';
+@import '02-tools/tools-sass-json-export/encode/types/_null';
+@import '02-tools/tools-sass-json-export/encode/types/_number';
+@import '02-tools/tools-sass-json-export/encode/types/_string';
+@import '02-tools/tools-scrolling/_tools-scrolling';
+@import '02-tools/tools-shadow/_tools-shadow';
+@import '02-tools/tools-spacing/_tools-spacing';
+@import '02-tools/tools-spacing/libs/_tools-collapse-directionals';
+@import '02-tools/tools-spacing/libs/_tools-contains-falsy';
+@import '02-tools/tools-spacing/libs/_tools-directional-property';
+@import '02-tools/tools-spacing/libs/_tools-normalize-spacing-sizes';
+@import '02-tools/tools-spacing/libs/_tools-spacing-margin';
+@import '02-tools/tools-spacing/libs/_tools-spacing-padding';
+@import '02-tools/tools-strip-unit/_tools-strip-unit';
+@import '02-tools/tools-text-contrast/_tools-text-contrast';
+@import '02-tools/tools-themes/_tools.themes';
+@import '02-tools/tools-uppercase/_tools-uppercase';
+@import '02-tools/tools-visuallyhidden/_tools-visuallyhidden';
+@import '02-tools/tools-z-index/_tools-z-index';

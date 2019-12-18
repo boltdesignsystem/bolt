@@ -7,8 +7,8 @@ import {
   afterNextRender,
   watchForComponentMutations,
   withContext,
-} from '@bolt/core/utils';
-import { h, withPreact } from '@bolt/core/renderers';
+} from '@bolt/core-v3.x/utils';
+import { h, withPreact } from '@bolt/core-v3.x/renderers';
 
 import './bolt-preact-dot';
 
@@ -52,7 +52,7 @@ export class BoltPreactSierpinskiTriangle extends withContext(withPreact()) {
         </bolt-preact-dot>
       );
     }
-    
+
     const { throttle } = this.context || false; // fallback if the `throttle` context isn't available for some reason
     const slowDown = throttle;
 

@@ -1,6 +1,6 @@
 import { customElement } from '@bolt/element';
-import { props } from '@bolt/core/utils';
-import { h, withPreact } from '@bolt/core/renderers';
+import { props } from '@bolt/core-v3.x/utils';
+import { h, withPreact } from '@bolt/core-v3.x/renderers';
 
 @customElement('bolt-video-meta')
 class BoltVideoMeta extends withPreact {

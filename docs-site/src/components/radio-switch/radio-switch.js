@@ -1,5 +1,5 @@
 import { html, customElement } from '@bolt/element';
-import { withLitHtml } from '@bolt/core/renderers/renderer-lit-html';
+import { withLitHtml } from '@bolt/core-v3.x/renderers/renderer-lit-html';
 import classNames from 'classnames/bind';
 import styles from './radio-switch.scss';
 // let cx = classNames.bind(styles);

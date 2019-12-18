@@ -1,6 +1,6 @@
 import { html, customElement } from 'lit-element';
-import { props } from '@bolt/core/utils';
-import { withLitContext, convertSchemaToProps } from '@bolt/core';
+import { props, convertSchemaToProps } from '@bolt/core-v3.x/utils';
+import { withLitContext } from '@bolt/core-v3.x/renderers';
 import { triggerAnims } from '@bolt/components-animate/utils';
 import classNames from 'classnames/bind';
 import { boltTwoCharacterLayoutIs } from '@bolt/micro-journeys/src/two-character-layout';
