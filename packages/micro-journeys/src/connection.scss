@@ -2,10 +2,12 @@
 
 bolt-connection {
   display: block;
+  @include bolt-ie11-only {
+    width: 250px;
+  }
 }
 
 .c-bolt-connection {
-  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;

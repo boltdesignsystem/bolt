@@ -1,54 +1,25 @@
-/* eslint-disable */
 import FontFaceObserver from 'fontfaceobserver/fontfaceobserver.js';
 
-(function () {
-  var fontsLoadedClass = 'js-fonts-loaded';
+(() => {
+  const fontsLoadedClass = 'js-fonts-loaded';
+  const fontStack = require(`./font-stacks.bolt.json`);
+  const observers = [];
 
-  // Optimization for Repeat Views
-  if (sessionStorage.fontsLoadedCriticalFoftPreloadPolyfill) {
-    document.documentElement.className += ` ${fontsLoadedClass}`;
-    return;
-  }
+  Object.keys(fontStack).forEach(font => {
+    const { fontFamily, src, ...data } = fontStack[font];
+    const obs = new FontFaceObserver(fontStack[font].fontFamily, data);
 
-  var openSansRegular = new FontFaceObserver('Open Sans', {
-    weight: 400
+    observers.push(obs.load());
   });
 
-  var openSansItalic = new FontFaceObserver('Open Sans', {
-    weight: 400,
-    style: 'italic'
-  });
+  Promise.all(observers)
+    .then(() => {
+      document.documentElement.classList.add(fontsLoadedClass);
 
-  var openSansSemiBold = new FontFaceObserver('Open Sans', {
-    weight: 600
-  });
-
-  var openSansSemiBoldItalic = new FontFaceObserver('Open Sans', {
-    weight: 600,
-    style: 'italic'
-  });
-
-  var openSansExtraBold = new FontFaceObserver('Open Sans', {
-    weight: 800
-  });
-
-  var openSansExtraBoldItalic = new FontFaceObserver('Open Sans', {
-    weight: 800,
-    style: 'italic'
-  });
-
-  Promise.all([
-    openSansRegular.load(),
-    openSansItalic.load(),
-    openSansSemiBold.load(),
-    openSansSemiBoldItalic.load(),
-    openSansExtraBold.load(),
-    openSansExtraBoldItalic.load()
-
-  ]).then(function () {
-    document.documentElement.className += ` ${fontsLoadedClass}`;
-
-    // Optimization for Repeat Views
-    sessionStorage.fontsLoadedCriticalFoftPreloadPolyfill = true;
-  });
+      // Optimization for Repeat Views
+      sessionStorage.fontsLoadedCriticalFoftPreloadPolyfill = true;
+    })
+    .catch(err => {
+      console.warn('Some critical font are not available:', err);
+    });
 })();

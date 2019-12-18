@@ -51,6 +51,27 @@ class BoltConnection extends withLitContext {
     this.triggerUpdate();
   }
 
+  /**
+   * Chrome gets confused about the linear gradient and renders it as nothing in
+   * some arbitrary cases, specifically switching to a new step--but not always.
+   * It needs to be re-rendered to make it show. Many other things attempted.
+   */
+  refreshLinearGradient() {
+    // @TODO make this less dependent on `bolt-svg-animations` `connnectionBand` markup.
+    // Turns out that selectors `#connectionGradientBG, stop` must all be refreshed to re-render.
+    [
+      ...this.renderRoot
+        .querySelector('bolt-svg-animations')
+        .renderRoot.querySelector('svg')
+        .querySelectorAll('#connectionGradientBG, stop'),
+    ].forEach(e => {
+      e.style.display = 'none';
+      setTimeout(() => {
+        e.style.display = 'block';
+      }, 0);
+    });
+  }
+
   render() {
     const props = this.validateProps(this.props);
     const classes = cx('c-bolt-connection');
