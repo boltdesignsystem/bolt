@@ -1,6 +1,6 @@
 import { html, customElement } from '@bolt/element';
-import { hasNativeShadowDomSupport } from '@bolt/core-v3.x/utils';
 import {
+  hasNativeShadowDomSupport,
   convertSchemaToProps,
 } from '@bolt/core-v3.x/utils';
 import { withLitContext } from '@bolt/core-v3.x/renderers';

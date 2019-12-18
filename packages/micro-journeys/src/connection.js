@@ -2,7 +2,7 @@ import { html, customElement } from '@bolt/element';
 import {
   convertSchemaToProps,
   props,
-  hasNativeShadowDomSupport
+  hasNativeShadowDomSupport,
 } from '@bolt/core-v3.x/utils';
 import { withLitContext } from '@bolt/core-v3.x/renderers';
 import classNames from 'classnames/bind';

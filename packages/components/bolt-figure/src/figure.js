@@ -1,5 +1,8 @@
 import { html, customElement } from '@bolt/element';
-import { withLitHtml, render } from '@bolt/core-v3.x/renderers/renderer-lit-html';
+import {
+  withLitHtml,
+  render,
+} from '@bolt/core-v3.x/renderers/renderer-lit-html';
 import classNames from 'classnames/bind';
 
 import styles from './figure.scss';
