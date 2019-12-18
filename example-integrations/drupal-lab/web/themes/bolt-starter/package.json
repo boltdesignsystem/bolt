@@ -1,15 +1,15 @@
 {
   "name": "@bolt/bolt-starter",
-  "description": "Drupal 8 Starter Theme using the Bolt Design System",
-  "version": "2.4.0",
+  "version": "2.13.0",
   "private": true,
+  "description": "Drupal 8 Starter Theme using the Bolt Design System",
   "scripts": {
     "build": "FORCE_COLOR=1 npx npm-run-all --serial build:*",
+    "postbuild": "npm run test",
     "build:en": "bolt build --prod",
     "build:ja": "bolt build --prod --config-file .boltrc--ja.js",
     "start": "bolt start",
-    "test": "jest __tests__/index.js",
-    "postbuild": "npm run test"
+    "test": "jest __tests__/index.js"
   },
   "dependencies": {
     "@bolt/build-tools": "^2.13.0",
@@ -21,7 +21,6 @@
     "@bolt/components-link": "^2.13.0",
     "@bolt/components-navbar": "^2.13.0",
     "@bolt/components-sticky": "^2.13.0",
-    "@bolt/core-v3.x": "^2.13.0",
     "@bolt/global": "^2.13.0",
     "jest": "^24.9.0",
     "yargs": "^15.0.2"
