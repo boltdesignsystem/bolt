@@ -1,5 +1,5 @@
-import { css } from '@bolt/core/utils';
-import { html } from '@bolt/core/renderers/renderer-lit-html';
+import { css } from '@bolt/core-v3.x/utils';
+import { html } from '@bolt/core-v3.x/renderers/renderer-lit-html';
 
 export const AccordionItemTrigger = (children, props, context) => {
   const triggerClasses = css('c-bolt-accordion-item__trigger');

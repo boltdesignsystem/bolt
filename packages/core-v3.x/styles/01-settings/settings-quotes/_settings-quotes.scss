@@ -1,0 +1,30 @@
+////
+/// @group Settings: Quotes
+/// @author Dan Morse
+////
+
+/* ------------------------------------ *\
+  Language-specific quotation marks
+\* ------------------------------------ */
+
+/// Bolt's definition of language-specific quoatation marks.
+/// http://www.witch.westfalen.de/csstest/quotes/quotes.html
+/// @type Map
+$bolt-quotation-marks: (
+  'en': (
+    'open': '\201C',
+    'close': '\201D',
+  ),
+  'de': (
+    'open': '\201E',
+    'close': '\201C',
+  ),
+  'fr': (
+    'open': '\00AB',
+    'close': '\00BB',
+  ),
+  'ja': (
+    'open': '\300C',
+    'close': '\300D',
+  ),
+) !default;

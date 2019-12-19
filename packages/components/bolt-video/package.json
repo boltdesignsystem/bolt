@@ -1,5 +1,6 @@
 {
   "name": "@bolt/components-video",
+  "version": "2.13.0",
   "description": "Video Component in Bolt",
   "keywords": [
     "bolt design system",
@@ -7,7 +8,24 @@
     "design system",
     "components"
   ],
-  "version": "2.12.1",
+  "homepage": "https://boltdesignsystem.com",
+  "bugs": "https://github.com/bolt-design-system/bolt/issues",
+  "repository": "https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-video",
+  "license": "MIT",
+  "main": "index.js",
+  "style": "index.scss",
+  "dependencies": {
+    "@bolt/components-button": "^2.13.0",
+    "@bolt/components-ratio": "^2.12.0",
+    "@bolt/core-v3.x": "^2.13.0",
+    "dasherize": "^2.0.0",
+    "lodash.isequal": "^4.5.0",
+    "mousetrap": "^1.6.1"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "gitHead": "d41aa75ae3d195d9d7fb3952eed5e0ae80988133",
   "maintainers": [
     {
       "name": "Salem Ghoweri",
@@ -20,23 +38,5 @@
       "web": "http://mikemai.net/"
     }
   ],
-  "homepage": "https://boltdesignsystem.com",
-  "license": "MIT",
-  "repository": "https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-video",
-  "bugs": "https://github.com/bolt-design-system/bolt/issues",
-  "schema": "video.schema.yml",
-  "style": "index.scss",
-  "main": "index.js",
-  "publishConfig": {
-    "access": "public"
-  },
-  "dependencies": {
-    "@bolt/components-button": "^2.12.1",
-    "@bolt/components-ratio": "^2.12.0",
-    "@bolt/core": "^2.12.0",
-    "dasherize": "^2.0.0",
-    "lodash.isequal": "^4.5.0",
-    "mousetrap": "^1.6.1"
-  },
-  "gitHead": "d41aa75ae3d195d9d7fb3952eed5e0ae80988133"
+  "schema": "video.schema.yml"
 }

@@ -1,62 +1,251 @@
 <!--  Step Top-->
-<bolt-animate slot="top" in-order="1" in="fade-in" out="fade-out" out-order="1" initial-appearance="hidden" in-duration="500" in-easing="ease" idle="none" idle-duration="500" out-duration="350" out-easing="ease">
+<bolt-animate
+  slot="top"
+  in-order="1"
+  in="fade-in"
+  out="fade-out"
+  out-order="1"
+  initial-appearance="hidden"
+  in-duration="500"
+  in-easing="ease"
+  idle="none"
+  idle-duration="500"
+  out-duration="350"
+  out-easing="ease"
+>
   <bolt-two-character-layout>
-    <bolt-animate slot="character--left" in-order="1" in="fade-in" out="fade-out" out-order="1" initial-appearance="hidden" in-duration="500" in-easing="ease" idle="none" idle-duration="500" out-duration="350" out-easing="ease">
-      <bolt-character size="medium" character-image="customer-surprise" character-custom-url="https://www.fillmurray.com/g/200/200">
-        <bolt-animate slot="bottom" initial-appearance="hidden" in="none" in-duration="500" in-easing="ease" in-order="1" idle="none" idle-duration="500" out="none" out-duration="350" out-easing="ease" out-order="1">
-          <bolt-text font-size="xsmall" align="inherit" color="theme-body" display="block" font-family="body" font-style="regular" font-weight="regular" letter-spacing="regular" line-height="regular" tag="p" text-transform="regular">Company
+    <bolt-animate
+      slot="character--left"
+      in-order="1"
+      in="fade-in"
+      out="fade-out"
+      out-order="1"
+      initial-appearance="hidden"
+      in-duration="500"
+      in-easing="ease"
+      idle="none"
+      idle-duration="500"
+      out-duration="350"
+      out-easing="ease"
+    >
+      <bolt-character
+        size="medium"
+        character-image="customer-surprise"
+        character-custom-url="https://www.fillmurray.com/g/200/200"
+      >
+        <bolt-animate
+          slot="bottom"
+          initial-appearance="hidden"
+          in="none"
+          in-duration="500"
+          in-easing="ease"
+          in-order="1"
+          idle="none"
+          idle-duration="500"
+          out="none"
+          out-duration="350"
+          out-easing="ease"
+          out-order="1"
+        >
+          <bolt-text
+            font-size="xsmall"
+            align="inherit"
+            color="theme-body"
+            display="block"
+            font-family="body"
+            font-style="regular"
+            font-weight="regular"
+            letter-spacing="regular"
+            line-height="regular"
+            tag="p"
+            text-transform="regular"
+            >Company
           </bolt-text>
           <bolt-cta>
             <bolt-icon size="medium" slot="icon" name="asset-presentation">
             </bolt-icon>
-            <bolt-link slot="link" display="inline" valign="center" on-click="none">CTA Text<bolt-icon name="chevron-right" slot="after"></bolt-icon></bolt-link>
+            <bolt-link
+              slot="link"
+              display="inline"
+              valign="center"
+              on-click="none"
+              >CTA Text<bolt-icon name="chevron-right" slot="after"></bolt-icon
+            ></bolt-link>
           </bolt-cta>
         </bolt-animate>
-        <bolt-animate slot="background" in="fade-in" in-order="1" initial-appearance="hidden" in-duration="500" in-easing="ease" idle="none" idle-duration="500" out="none" out-duration="350" out-easing="ease" out-order="1">
-          <bolt-svg-animations speed="4000" anim-type="radar" theme="dark" direction="left">
+        <bolt-animate
+          slot="background"
+          in="fade-in"
+          in-order="1"
+          initial-appearance="hidden"
+          in-duration="500"
+          in-easing="ease"
+          idle="none"
+          idle-duration="500"
+          out="none"
+          out-duration="350"
+          out-easing="ease"
+          out-order="1"
+        >
+          <bolt-svg-animations
+            speed="4000"
+            anim-type="radar"
+            theme="dark"
+            direction="left"
+          >
           </bolt-svg-animations>
         </bolt-animate>
-        <bolt-animate slot="left" initial-appearance="hidden" in="none" in-duration="500" in-easing="ease" in-order="1" idle="none" idle-duration="500" out="none" out-duration="350" out-easing="ease" out-order="1">
+        <bolt-animate
+          slot="left"
+          initial-appearance="hidden"
+          in="none"
+          in-duration="500"
+          in-easing="ease"
+          in-order="1"
+          idle="none"
+          idle-duration="500"
+          out="none"
+          out-duration="350"
+          out-easing="ease"
+          out-order="1"
+        >
           <bolt-list display="block" spacing="small">
             <bolt-list-item>
-              <bolt-icon name="mobility" size="large">
-              </bolt-icon>
+              <bolt-icon name="mobility" size="large"> </bolt-icon>
             </bolt-list-item>
             <bolt-list-item>
-              <bolt-icon name="documentation" size="large">
-              </bolt-icon>
+              <bolt-icon name="documentation" size="large"> </bolt-icon>
             </bolt-list-item>
             <bolt-list-item last="">
-              <bolt-icon name="print" size="large">
-              </bolt-icon>
+              <bolt-icon name="print" size="large"> </bolt-icon>
             </bolt-list-item>
           </bolt-list>
         </bolt-animate>
+        <bolt-animate
+          slot="connection"
+          in="fade-in"
+          in-order="1"
+          out="fade-out"
+          out-order="1"
+          initial-appearance="hidden"
+          in-duration="500"
+          in-easing="ease"
+          idle="none"
+          idle-duration="500"
+          out-duration="350"
+          out-easing="ease"
+        >
+          <bolt-connection anim-type="connectionBand" direction="left">
+          </bolt-connection>
+        </bolt-animate>
       </bolt-character>
     </bolt-animate>
-    <bolt-animate slot="connection" in="fade-in" in-order="1" out="fade-out" out-order="1" initial-appearance="hidden" in-duration="500" in-easing="ease" idle="none" idle-duration="500" out-duration="350" out-easing="ease">
-      <bolt-connection anim-type="connectionBand" direction="left">
-      </bolt-connection>
-    </bolt-animate>
-    <bolt-animate slot="character--right" in="fade-in" in-order="1" out="fade-out" out-order="1" initial-appearance="hidden" in-duration="500" in-easing="ease" idle="none" idle-duration="500" out-duration="350" out-easing="ease">
-      <bolt-character size="medium" character-image="customer-surprise" character-custom-url="https://www.fillmurray.com/g/200/200">
-        <bolt-animate in="fade-in" in-order="1" out="fade-out" slot="top" out-order="1" initial-appearance="hidden" in-duration="500" in-easing="ease" idle="none" idle-duration="500" out-duration="350" out-easing="ease">
-          <bolt-status-dialogue-bar icon-name="mobility" dialogue-arrow-direction="none">
+    <bolt-animate
+      slot="character--right"
+      in="fade-in"
+      in-order="1"
+      out="fade-out"
+      out-order="1"
+      initial-appearance="hidden"
+      in-duration="500"
+      in-easing="ease"
+      idle="none"
+      idle-duration="500"
+      out-duration="350"
+      out-easing="ease"
+    >
+      <bolt-character
+        size="medium"
+        character-image="customer-surprise"
+        character-custom-url="https://www.fillmurray.com/g/200/200"
+      >
+        <bolt-animate
+          in="fade-in"
+          in-order="1"
+          out="fade-out"
+          slot="top"
+          out-order="1"
+          initial-appearance="hidden"
+          in-duration="500"
+          in-easing="ease"
+          idle="none"
+          idle-duration="500"
+          out-duration="350"
+          out-easing="ease"
+        >
+          <bolt-status-dialogue-bar
+            icon-name="mobility"
+            dialogue-arrow-direction="none"
+          >
             <p slot="text">
               Lorem ipsum dolor sit amet, consectetur adipisicing elit.
             </p>
           </bolt-status-dialogue-bar>
         </bolt-animate>
-        <bolt-animate slot="bottom" idle="none" initial-appearance="hidden" in="none" in-duration="500" in-easing="ease" in-order="1" idle-duration="500" out="none" out-duration="350" out-easing="ease" out-order="1">
-          <bolt-text font-size="xsmall" align="inherit" color="theme-body" display="block" font-family="body" font-style="regular" font-weight="regular" letter-spacing="regular" line-height="regular" tag="p" text-transform="regular">Customer
+        <bolt-animate
+          slot="bottom"
+          idle="none"
+          initial-appearance="hidden"
+          in="none"
+          in-duration="500"
+          in-easing="ease"
+          in-order="1"
+          idle-duration="500"
+          out="none"
+          out-duration="350"
+          out-easing="ease"
+          out-order="1"
+        >
+          <bolt-text
+            font-size="xsmall"
+            align="inherit"
+            color="theme-body"
+            display="block"
+            font-family="body"
+            font-style="regular"
+            font-weight="regular"
+            letter-spacing="regular"
+            line-height="regular"
+            tag="p"
+            text-transform="regular"
+            >Customer
           </bolt-text>
         </bolt-animate>
-        <bolt-animate slot="left" initial-appearance="hidden" in="none" in-duration="500" in-easing="ease" in-order="1" idle="none" idle-duration="500" out="none" out-duration="350" out-easing="ease" out-order="1">
+        <bolt-animate
+          slot="left"
+          initial-appearance="hidden"
+          in="none"
+          in-duration="500"
+          in-easing="ease"
+          in-order="1"
+          idle="none"
+          idle-duration="500"
+          out="none"
+          out-duration="350"
+          out-easing="ease"
+          out-order="1"
+        >
         </bolt-animate>
-        <bolt-animate slot="right" initial-appearance="hidden" in="none" in-duration="500" in-easing="ease" in-order="1" idle="none" idle-duration="500" out="none" out-duration="350" out-easing="ease" out-order="1">
-          <bolt-status-dialogue-bar dialogue-arrow-direction="none" is-alert-message="" icon-name="exclamation">
-            <p slot="text"> Uh oh!
-            </p>
+        <bolt-animate
+          slot="right"
+          initial-appearance="hidden"
+          in="none"
+          in-duration="500"
+          in-easing="ease"
+          in-order="1"
+          idle="none"
+          idle-duration="500"
+          out="none"
+          out-duration="350"
+          out-easing="ease"
+          out-order="1"
+        >
+          <bolt-status-dialogue-bar
+            dialogue-arrow-direction="none"
+            is-alert-message=""
+            icon-name="exclamation"
+          >
+            <p slot="text">Uh oh!</p>
           </bolt-status-dialogue-bar>
         </bolt-animate>
       </bolt-character>
@@ -64,17 +253,75 @@
   </bolt-two-character-layout>
 </bolt-animate>
 <!--  Step Bottom-->
-<bolt-animate slot="bottom" in-order="5" in="fade-in" out="fade-out" out-order="5" initial-appearance="hidden" in-duration="500" in-easing="ease" idle="none" idle-duration="500" out-duration="350" out-easing="ease">
-  <bolt-text align="inherit" color="theme-body" display="block" font-family="body" font-size="medium" font-style="regular" font-weight="regular" letter-spacing="regular" line-height="regular" tag="p" text-transform="regular">
-    To avoid costly calls to your service center (and keeping customers happy), you ned to stay one step ahead. That's why Pega's real-time monitoring and pattern detection lets you sense a potential billing issue, then send your customer a proactive notification.
+<bolt-animate
+  slot="bottom"
+  in-order="5"
+  in="fade-in"
+  out="fade-out"
+  out-order="5"
+  initial-appearance="hidden"
+  in-duration="500"
+  in-easing="ease"
+  idle="none"
+  idle-duration="500"
+  out-duration="350"
+  out-easing="ease"
+>
+  <bolt-text
+    align="inherit"
+    color="theme-body"
+    display="block"
+    font-family="body"
+    font-size="medium"
+    font-style="regular"
+    font-weight="regular"
+    letter-spacing="regular"
+    line-height="regular"
+    tag="p"
+    text-transform="regular"
+  >
+    To avoid costly calls to your service center (and keeping customers happy),
+    you ned to stay one step ahead. That's why Pega's real-time monitoring and
+    pattern detection lets you sense a potential billing issue, then send your
+    customer a proactive notification.
   </bolt-text>
   <bolt-cta>
-    <bolt-animate slot="icon" initial-appearance="hidden" in="none" in-duration="500" in-easing="ease" in-order="1" idle="none" idle-duration="500" out="none" out-duration="350" out-easing="ease" out-order="1">
-      <bolt-icon size="medium" name="video">
-      </bolt-icon>
+    <bolt-animate
+      slot="icon"
+      initial-appearance="hidden"
+      in="none"
+      in-duration="500"
+      in-easing="ease"
+      in-order="1"
+      idle="none"
+      idle-duration="500"
+      out="none"
+      out-duration="350"
+      out-easing="ease"
+      out-order="1"
+    >
+      <bolt-icon size="medium" name="video"> </bolt-icon>
     </bolt-animate>
-    <bolt-animate slot="link" initial-appearance="hidden" in="none" in-duration="500" in-easing="ease" in-order="1" idle="none" idle-duration="500" out="none" out-duration="350" out-easing="ease" out-order="1">
-      <bolt-link display="inline" valign="center" on-click="none">It's not mind-reading. It's signals<bolt-icon name="chevron-right" slot="after"></bolt-icon></bolt-link>
+    <bolt-animate
+      slot="link"
+      initial-appearance="hidden"
+      in="none"
+      in-duration="500"
+      in-easing="ease"
+      in-order="1"
+      idle="none"
+      idle-duration="500"
+      out="none"
+      out-duration="350"
+      out-easing="ease"
+      out-order="1"
+    >
+      <bolt-link display="inline" valign="center" on-click="none"
+        >It's not mind-reading. It's signals<bolt-icon
+          name="chevron-right"
+          slot="after"
+        ></bolt-icon
+      ></bolt-link>
     </bolt-animate>
   </bolt-cta>
 </bolt-animate>

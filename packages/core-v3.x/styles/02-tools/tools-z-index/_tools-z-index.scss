@@ -1,0 +1,43 @@
+////
+/// @group Tools: Layout
+////
+
+/* ------------------------------------ *\
+  see `_settings-z-index.scss`
+\* ------------------------------------ */
+
+/// Bolt Z Index mixin
+/// @param {string} $key ["content"]
+/// @param {boolean} $utility [false]
+/// @example scss - bolt-z-index mixin
+/// .element {
+///    @include bolt-z-index(tooltip);
+/// }
+@mixin bolt-z-index($key: "content", $utility: false) {
+  $indexes: map-get($bolt-z-indexes, 'sets');
+  $important: '';
+
+  @if $utility {
+    $important: '!important';
+  }
+  @if map-has-key($indexes, $key) {
+    z-index: map-get($indexes, $key) #{$important};
+  } @else {
+    @error 'A value, #{$key}, was passed into @include bolt-z-index() that is not defined in $bolt-z-indexes';
+  }
+}
+
+/// Bolt Z Index function
+/// @param {string} $key
+/// @example scss - bolt-z-index function
+/// .element {
+///    z-index: bolt-z-index('nav');
+/// }
+@function bolt-z-index($key) {
+  $indexes: map-get($bolt-z-indexes, 'sets');
+  @if map-has-key($indexes, $key) {
+    @return map-get($indexes, $key)
+  } @else {
+    @error 'A value, #{$key}, was passed into bolt-z-index() that is not defined in $bolt-z-indexes';
+  }
+}

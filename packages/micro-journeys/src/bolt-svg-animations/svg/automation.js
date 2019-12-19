@@ -1,4 +1,4 @@
-import { html } from '@bolt/core/renderers/renderer-lit-html';
+import { html } from '@bolt/core-v3.x/renderers/renderer-lit-html';
 
 export const automation = ({ speed, theme, animId }) => {
   const authoredStyle = html`

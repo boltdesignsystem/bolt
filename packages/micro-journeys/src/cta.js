@@ -1,14 +1,13 @@
-import { props, define, hasNativeShadowDomSupport } from '@bolt/core/utils';
-import { withLitHtml, html } from '@bolt/core';
+import { html, customElement } from '@bolt/element';
+import { props, hasNativeShadowDomSupport } from '@bolt/core-v3.x/utils';
+import { withLitHtml } from '@bolt/core-v3.x/renderers';
 import classNames from 'classnames/bind';
 import styles from './cta.scss';
 
 let cx = classNames.bind(styles);
 
-@define
-class BoltCta extends withLitHtml() {
-  static is = 'bolt-cta';
-
+@customElement('bolt-cta')
+class BoltCta extends withLitHtml {
   static props = {
     noShadow: {
       ...props.boolean,

@@ -1,16 +1,7 @@
 {
   "name": "@bolt/components-carousel",
-  "version": "2.12.1",
+  "version": "2.13.0",
   "description": "A web-component powered carousel component for cycling through a series of content such as images, text, or cards.",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-carousel"
-  },
-  "author": "Salem Ghoweri <me@salemghoweri.com>",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/bolt-design-system/bolt/issues"
-  },
   "keywords": [
     "bolt design system",
     "carousel",
@@ -18,17 +9,26 @@
     "pattern lab",
     "web component"
   ],
+  "bugs": {
+    "url": "https://github.com/bolt-design-system/bolt/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-carousel"
+  },
+  "license": "MIT",
+  "author": "Salem Ghoweri <me@salemghoweri.com>",
+  "main": "index.js",
+  "style": "index.scss",
   "dependencies": {
-    "@bolt/components-button": "^2.12.1",
-    "@bolt/core": "^2.12.0",
+    "@bolt/components-button": "^2.13.0",
+    "@bolt/core-v3.x": "^2.13.0",
     "swiper": "^4.5.0"
   },
   "publishConfig": {
     "access": "public"
   },
-  "style": "index.scss",
-  "main": "index.js",
-  "twig": "src/carousel.twig",
+  "gitHead": "d41aa75ae3d195d9d7fb3952eed5e0ae80988133",
   "schema": "carousel.schema.yml",
-  "gitHead": "d41aa75ae3d195d9d7fb3952eed5e0ae80988133"
+  "twig": "src/carousel.twig"
 }

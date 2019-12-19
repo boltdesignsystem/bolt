@@ -1,4 +1,4 @@
-import { html } from '@bolt/core/renderers/renderer-lit-html';
+import { html } from '@bolt/core-v3.x/renderers/renderer-lit-html';
 import { svg } from 'lit-html';
 
 export const radar = ({ speed, theme, animId }) => {

@@ -1,0 +1,23 @@
+/* stylelint-disable scss/at-function-pattern */
+
+/// Delay the encoding of ta literal to JSON to a type-specific method
+/// @access public
+/// @param {*} $value - value to be stringified
+/// @throw Unknown type for #{$value} (#{$type}).
+/// @return {String} - JSON encoded string
+/// @require {function} _json-encode--string
+/// @require {function} _json-encode--number
+/// @require {function} _json-encode--list
+/// @require {function} _json-encode--map
+/// @require {function} _json-encode--null
+/// @require {function} _json-encode--color
+/// @require {function} _json-encode--bool
+@function bolt-json-encode($value) {
+  $type: type-of($value);
+
+  @if function-exists('_json-encode--#{$type}') {
+    @return call(get-function('_json-encode--#{$type}'), $value);
+  }
+
+  @error 'Unknown type for #{$value} (#{$type}).';
+}

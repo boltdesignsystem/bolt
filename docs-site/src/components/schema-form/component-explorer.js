@@ -1,11 +1,10 @@
 import qs from 'querystring';
-import { define, props, defineContext, withContext } from '@bolt/core/utils';
+import { props, defineContext, withContext } from '@bolt/core-v3.x/utils';
 import { prepSchema } from './utils';
 import isEqual from 'react-fast-compare';
-import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
-import { styleMap } from 'lit-html/directives/style-map.js';
+import { withLitHtml,  } from '@bolt/core-v3.x/renderers/renderer-lit-html';
 import { guard } from 'lit-html/directives/guard';
-import { unsafeHTML } from 'lit-html/directives/unsafe-html.js';
+import { styleMap, html, unsafeHTML, customElement } from '@bolt/element';
 
 // define which specific props to provide to children that subscribe
 export const ComponentExplorerContext = defineContext({
@@ -18,10 +17,9 @@ export const ComponentExplorerContext = defineContext({
 import styles from './component-explorer.scss';
 import globalStyles from '@bolt/global/styles/index.scss';
 
-@define
-export default class ComponentExplorer extends withContext(withLitHtml()) {
-  static is = 'bolt-component-explorer';
 
+@customElement('bolt-component-explorer')
+export default class ComponentExplorer extends withContext(withLitHtml) {
   static props = {
     schemaUuid: props.string,
     schema: props.object,

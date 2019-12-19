@@ -4,7 +4,7 @@ title: Building a new component
 
 When building out a new component, make sure you take a look at some other existing components to get a sense of the coding standards and typical component structure in Bolt. The goal here is to have new and existing components feel just consistant and conherent - nothing should stick out like a sore thumb!
 
-Additionally, *all* new components must include the following config within their `package.json`:
+Additionally, _all_ new components must include the following config within their `package.json`:
 
 ```
 "publishConfig": {
@@ -14,12 +14,12 @@ Additionally, *all* new components must include the following config within thei
 
 This is required so lerna can successfully publish Bolt's packages to NPM!
 
-
 Below you'll find a step-by-step guide to walk through the process of adding a new component to the Bolt ecosystem.
 
-**<u>Step 1</u>:**  Create a new dir under `/packages/components/[bolt-NEW-COMPONENT]`
+**<u>Step 1</u>:** Create a new dir under `/packages/components/[bolt-NEW-COMPONENT]`
 
 **<u>Step 2</u>:** `cd` into the new dir and create a new `package.json` in the new dir:
+
 ```
 {
   "name": "@bolt/[NEW-COMPONENT]",
@@ -41,22 +41,24 @@ Below you'll find a step-by-step guide to walk through the process of adding a n
     "access": "public"
   },
   "dependencies": {
-    "@bolt/core": "0.0.0"
+    "@bolt/core-v3.x": "0.0.0"
   }
 }
 ```
+
 **Notes:**
+
 - Ensure you're ONLY adding the assets needed (e.g. if you don't need JavaScript then don't add `"main": "src/[COMPONENT].js"`)
 - Make sure to add any required Bolt components to `dependencies`
 
 **<u>Step 3</u>:** Add your necessary SCSS and JS files to `[bolt-NEW-COMPONENT]/src/`
 
 - Make sure all are reflected within `package.json`
-- Within your main scss file be sure to import core styles: `@import '@bolt/core';`
+- Within your main scss file be sure to import core styles: `@import '@bolt/core-v3.x';`
 - Within your main JS file be sure to include the pollyfillLoader:
 
 ```
-import { polyfillLoader } from '@bolt/core';
+import { polyfillLoader } from '@bolt/core-v3.x/polyfills';
 
 polyfillLoader.then((res) => {
   import('./COMPONENT.standalone.js');
@@ -123,7 +125,7 @@ properties:
       - 'facebook'
       - 'twitter'
       - 'linkedin'
-``` 
+```
 
 - <u>Note</u>: that the `required` properties are called out at the top of the file before the component `properties` get set
 - <u>Tip</u>: Review other `*.schema.yml` files for common solutions in structuring data

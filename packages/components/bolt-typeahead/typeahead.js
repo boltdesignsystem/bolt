@@ -1,17 +1,15 @@
 // @ts-nocheck
-import { define, props } from 'skatejs';
-import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
-import { withEvents } from '@bolt/core/renderers/with-events';
+import { html, customElement } from '@bolt/element';
+import { props } from 'skatejs';
+import { withLitEvents } from '@bolt/core-v3.x/renderers/with-events';
 import { bind } from './classnames';
 import './typeahead.autosuggest'; // main Preact logic split from lit-html wrapper
-
 import styles from './typeahead.scoped.scss';
+
 const cx = bind(styles);
 
-@define
-class BoltTypeahead extends withEvents(withLitHtml()) {
-  static is = 'bolt-typeahead';
-
+@customElement('bolt-typeahead')
+class BoltTypeahead extends withLitEvents {
   // @todo: replace with auto-wired up props approach used in Carousel
   static props = {
     inputPlaceholder: props.string,

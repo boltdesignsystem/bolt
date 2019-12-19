@@ -1,5 +1,6 @@
 {
   "name": "@bolt/components-chip-list",
+  "version": "2.13.0",
   "description": "Chip List Component in Bolt",
   "keywords": [
     "bolt design system",
@@ -8,8 +9,19 @@
     "design system",
     "objects"
   ],
-  "version": "2.12.1",
-  "sourceFilesFrom": "0.9.0",
+  "homepage": "https://bolt-design-system.com",
+  "bugs": "https://github.com/bolt-design-system/bolt/issues",
+  "repository": "https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-chip-list",
+  "license": "MIT",
+  "dependencies": {
+    "@bolt/components-chip": "^2.13.0",
+    "@bolt/components-list": "^2.13.0",
+    "@bolt/core-v3.x": "^2.13.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "gitHead": "d41aa75ae3d195d9d7fb3952eed5e0ae80988133",
   "maintainers": [
     {
       "name": "Salem Ghoweri",
@@ -22,19 +34,7 @@
       "web": "http://mikemai.net/"
     }
   ],
-  "homepage": "https://bolt-design-system.com",
-  "license": "MIT",
-  "repository": "https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-chip-list",
-  "bugs": "https://github.com/bolt-design-system/bolt/issues",
-  "twig": "src/chip-list.twig",
   "schema": "chip-list.schema.yml",
-  "publishConfig": {
-    "access": "public"
-  },
-  "dependencies": {
-    "@bolt/components-chip": "^2.12.1",
-    "@bolt/components-list": "^2.12.0",
-    "@bolt/core": "^2.12.0"
-  },
-  "gitHead": "d41aa75ae3d195d9d7fb3952eed5e0ae80988133"
+  "sourceFilesFrom": "0.9.0",
+  "twig": "src/chip-list.twig"
 }

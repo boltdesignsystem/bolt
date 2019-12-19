@@ -1,4 +1,4 @@
-import { query } from '@bolt/core/utils';
+import { query } from '@bolt/core-v3.x/utils';
 import { version } from 'grapesjs/package.json';
 import { detect } from 'detect-browser';
 

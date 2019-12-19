@@ -1,0 +1,22 @@
+////
+/// @group Tools: Utilities
+/// @author Mike Mai
+////
+
+
+/* ------------------------------------ *\
+  Strip Unit
+\* ------------------------------------ */
+
+
+/// Remove the unit of a length.
+/// @param {Number} $number - Number to remove unit from
+/// @return {Number} - Unitless number
+/// @example scss
+///   $bolt-floating-label-text-scale: bolt-strip-unit($bolt-font-size--xsmall);
+@function bolt-strip-unit($number) {
+  @if type-of($number) == 'number' and not unitless($number) {
+    @return $number / ($number * 0 + 1);
+  }
+  @return $number;
+}
