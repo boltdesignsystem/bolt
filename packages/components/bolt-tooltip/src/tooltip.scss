@@ -17,11 +17,14 @@ $bolt-tooltip-spacing-values: xsmall, small, medium;
 .c-bolt-tooltip {
   display: inline-flex;
   position: relative;
+}
 
-  &:hover .c-bolt-tooltip__content,
-  &.is-expanded .c-bolt-tooltip__content {
-    display: block;
-  }
+@include bolt-repeat-rule((
+  'bolt-tooltip:not([ready]) .c-bolt-tooltip:hover .c-bolt-tooltip__content',
+  ':host:not([ready]) .c-bolt-tooltip:hover .c-bolt-tooltip__content',
+  '.c-bolt-tooltip.is-expanded .c-bolt-tooltip__content'
+)) {
+  display: block;
 }
 
 .c-bolt-tooltip__content {
@@ -31,11 +34,6 @@ $bolt-tooltip-spacing-values: xsmall, small, medium;
   transform: translate3d(0, 0, 0);
   z-index: 1;
   white-space: nowrap;
-
-  @at-root .c-bolt-tooltip--wrap & {
-    width: 150px;
-    white-space: normal;
-  }
 
   @at-root .c-bolt-tooltip--top-right & {
     right: 0;
@@ -206,13 +204,23 @@ $bolt-tooltip-spacing-values: xsmall, small, medium;
   text-align: left;
   text-align: start;
   border-radius: bolt-border-radius(large);
-   border-width: $bolt-tooltip-border-width;
+  border-width: $bolt-tooltip-border-width;
   border-style: $bolt-tooltip-border-style;
   border-color: $bolt-tooltip-border-color;
   box-shadow: bolt-shadow('level-20');
   background-color: bolt-theme(text, 0.8);
   animation-duration: 250ms;
   animation-fill-mode: both;
+
+  @at-root .c-bolt-tooltip--text-wrap & {
+    width: 150px;
+    white-space: normal;
+    hyphens: auto;
+  }
+
+  @at-root .c-bolt-tooltip--text-align-center & {
+    text-align: center;
+  }
 }
 
 // Animations

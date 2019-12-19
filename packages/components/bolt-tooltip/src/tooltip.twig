@@ -14,7 +14,6 @@
 {% set classes = [
   base_class,
   this.data.placement.value != "auto" ? base_class ~ "--" ~ this.data.placement.value,
-  this.data.wrap.value ?  base_class ~ "--wrap",
 ] %}
 
 {#
@@ -39,13 +38,15 @@
 >
   <replace-with-children {% if inner_classes %} class="{{ inner_classes|join(' ') }}" {% endif %}>
     {% if trigger %}
-      {% include "@bolt-components-trigger/trigger.twig" with trigger|merge({
-        attributes: {
-          "aria-describedby": "js-bolt-tooltip-" ~ uuid,
-          "aria-controls": "js-bolt-tooltip-" ~ uuid,
-          "aria-expanded": false,
-        }
-      }) only %}
+      <replace-with-grandchildren>
+        {% include "@bolt-components-trigger/trigger.twig" with trigger|merge({
+          attributes: {
+            "aria-describedby": "js-bolt-tooltip-" ~ uuid,
+            "aria-controls": "js-bolt-tooltip-" ~ uuid,
+            "aria-expanded": false,
+          }
+        }) only %}
+      </replace-with-grandchildren>
     {% endif %}
     {% if content %}
       <span slot="content">

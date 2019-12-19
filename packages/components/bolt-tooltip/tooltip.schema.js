@@ -49,12 +49,6 @@ module.exports = {
       enum: ['none', 'xsmall', 'small', 'medium'],
       default: 'xsmall',
     },
-    wrap: {
-      type: 'boolean',
-      description:
-        'Allows the text in the content of the tooltip to wrap to a second line.',
-      default: false,
-    },
     uuid: {
       type: 'string',
       description: 'Unique ID for tooltip, randomly generated if not provided.',

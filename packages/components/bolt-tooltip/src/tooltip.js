@@ -17,7 +17,7 @@ class BoltTooltip extends BoltElement {
   static get properties() {
     return {
       placement: String,
-      wrap: {
+      open: {
         type: Boolean,
         reflect: true,
       },
@@ -32,31 +32,58 @@ class BoltTooltip extends BoltElement {
   constructor() {
     super();
     this.noCssVars = supportsCSSVars ? false : true;
+    this.open = false;
+    this.uuid = this.uuid || Math.floor(10000 + Math.random() * 90000);
   }
 
   static get styles() {
     return [unsafeCSS(tooltipStyles)];
   }
 
+  connectedCallback() {
+    super.connectedCallback && super.connectedCallback();
+    this.setAttribute('ready', '');
+  }
+
+  disconnectedCallback() {
+    super.disconnectedCallback && super.disconnectedCallback();
+    this.removeAttribute('ready');
+  }
+
   render() {
     // @todo: automatic schema validation?
     const placement = this.placement || schema.properties.placement.default;
-    const wrap = this.wrap || schema.properties.wrap.default;
-    const uuid = this.uuid || Math.floor(10000 + Math.random() * 90000);
+    const textContent =
+      this.templateMap.get('content') &&
+      this.templateMap.get('content')[0].textContent.trim();
 
     const classes = cx('c-bolt-tooltip', {
+      [`is-expanded`]: this.open,
       [`c-bolt-tooltip--${placement}`]: placement,
-      [`c-bolt-tooltip--wrap`]: wrap,
+      [`c-bolt-tooltip--text-wrap`]: textContent && textContent.length > 31,
+      [`c-bolt-tooltip--text-align-center`]:
+        textContent && textContent.length > 31 && textContent.length < 62,
     });
 
+    const onMouseover = () => {
+      this.open = true;
+    };
+    const onMouseout = () => {
+      this.open = false;
+    };
+
     return html`
-      <span class="${classes}">
+      <span
+        class="${classes}"
+        @mouseover="${onMouseover}"
+        @mouseout="${onMouseout}"
+      >
         ${this.templateMap.get('default') &&
           html`
             <bolt-trigger
-              aria-describedby="js-bolt-tooltip-${uuid}"
-              aria-controls="js-bolt-tooltip-${uuid}"
-              aria-expanded="false"
+              aria-describedby="js-bolt-tooltip-${this.uuid}"
+              aria-controls="js-bolt-tooltip-${this.uuid}"
+              aria-expanded="${this.open}"
             >
               ${this.slotify('default')}
             </bolt-trigger>
@@ -64,10 +91,10 @@ class BoltTooltip extends BoltElement {
         ${this.templateMap.get('content') &&
           html`
             <span
-              id="js-bolt-tooltip-${uuid}"
+              id="js-bolt-tooltip-${this.uuid}"
               class="${cx(`c-bolt-tooltip__content`)}"
               role="tooltip"
-              aria-hidden="true"
+              aria-hidden="${!this.open}"
             >
               <span class="${cx(`c-bolt-tooltip__bubble`)}">
                 ${this.slotify('content')}
