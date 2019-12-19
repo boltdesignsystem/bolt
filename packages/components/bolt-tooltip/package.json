@@ -1,28 +1,46 @@
 {
   "name": "@bolt/components-tooltip",
   "version": "2.13.0",
-  "description": "Tooltip Component in Bolt",
+  "description": "Floating label that briefly describes an element.",
+  "keywords": [
+    "bolt design system",
+    "bolt",
+    "css framework",
+    "design system",
+    "components",
+    "tooltip",
+    "collapsible"
+  ],
   "homepage": "https://boltdesignsystem.com",
-  "bugs": {
-    "url": "https://github.com/bolt-design-system/bolt/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/bolt-design-system/bolt/"
-  },
+  "bugs": "https://github.com/bolt-design-system/bolt/issues",
+  "repository": "https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tooltip",
   "license": "MIT",
   "main": "index.js",
   "style": "index.scss",
   "dependencies": {
-    "@bolt/components-button": "^2.13.0",
-    "@bolt/components-icon": "^2.13.0",
-    "@bolt/components-icons": "^2.13.0",
+    "@bolt/components-trigger": "^2.13.0",
     "@bolt/core-v3.x": "^2.13.0"
   },
   "publishConfig": {
     "access": "public"
   },
   "gitHead": "d41aa75ae3d195d9d7fb3952eed5e0ae80988133",
-  "schema": "tooltip.schema.yml",
+  "maintainers": [
+    {
+      "name": "Salem Ghoweri",
+      "email": "me@salemghoweri.com",
+      "web": "https://github.com/sghoweri"
+    },
+    {
+      "name": "Mike Mai",
+      "email": "boss@mikemai.net",
+      "web": "http://mikemai.net/"
+    },
+    {
+      "name": "Dan Morse",
+      "web": "https://github.com/danielamorse"
+    }
+  ],
+  "schema": "tooltip.schema.js",
   "twig": "src/tooltip.twig"
 }
