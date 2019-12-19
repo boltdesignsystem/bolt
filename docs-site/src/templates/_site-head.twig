@@ -41,13 +41,53 @@
 <!DOCTYPE html>
 <html lang="en-US" class="{{ htmlClasses|join(' ') }}">
   <head>
-    {% if fileExists("@bolt-assets/bolt-critical-path-polyfills.cjs.js") %}
-    <script>{{ inline(legacyAssets["bolt-critical-path-polyfills.cjs.js"] | default("")) }}</script>
-    {% endif %}
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width" />
     <title>Bolt Design System</title>
+
+    <script>
+      {% if fileExists("@bolt-assets/bolt-critical-path-polyfills.cjs.js") %}
+        {{ inline(legacyAssets["bolt-critical-path-polyfills.cjs.js"] | default("")) }}
+      {% endif %}
+
+      {% if fileExists("@bolt-assets/bolt-components-critical-css.js") %}
+        {{ inline( legacyAssets["bolt-components-critical-css.js"] | default("") ) }}
+        {{ inline( legacyAssets["bolt-components-critical-css-vars.js"] | default("") ) }}
+        {{ inline( legacyAssets["bolt-components-critical-fonts.js"] | default("") ) }}
+      {% endif %}
+
+      window.drupalSettings = {
+        google_analytics: {
+          trackCrossDomains: ['github.com']
+        }
+      }
+
+      window.bolt = window.bolt || {};
+      window.bolt.data = window.bolt.data || {};
+      window.bolt.data.fullManifest = window.bolt.data.fullManifest || {};
+      window.bolt.data.fullManifest.version = window.bolt.data.fullManifest.version || {{ bolt.data.fullManifest.version|json_encode|raw }};
+    </script>
+
+    <!-- async load PL's CSS -->
+    <link rel="stylesheet" href="{{ legacyAssets["bolt-global.css"] | default("/build/bolt-global.css") }}" media="all" />
+    <link rel="preload" href="/pattern-lab/styleguide/css/pattern-lab.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+    <noscript>
+      <link href="/pattern-lab/styleguide/css/pattern-lab.css" rel="stylesheet">
+    </noscript>
+
+    {# @TODO: wire this up to use Critical CSS #}
+    <style>
+      {% if fileExists("@bolt-assets/bolt-components-critical-fonts.css") %}
+        {{ inline( legacyAssets["bolt-components-critical-fonts.css"] | default("") ) }}
+      {% endif %}
+    </style>
+
+    {% if bolt.data.config.esModules %}
+      <script type="module" src="{{ modernAssets["bolt-global.js"] | default("/build/bolt-global.modern.js") }}" async></script>
+    {% endif %}
+
+    <script src="https://www.google-analytics.com/analytics.js" defer></script>
 
     <link rel="image_src" href="/images/bolt-logo-480.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=LbyzAXRqNz">
@@ -78,67 +118,6 @@
     <meta name="twitter:description" content="The Bolt Design System provides guidelines, reusable UI components, visual styles, tools, and other resources that power Pega’s digital ecosystem; saving time while keeping projects on-brand, and in scope." />
     <meta name="twitter:image" content="https://boltdesignsystem.com/images/bolt-logo-480.png" />
     <meta name="twitter:site" content="@pega" />
-
-    <!-- async load PL's CSS -->
-    <link rel="stylesheet" href="{{ legacyAssets["bolt-global.css"] | default("/build/bolt-global.css") }}" media="all" />
-    <link rel="stylesheet" href="/pattern-lab/styleguide/css/pattern-lab.css">
-
-    <noscript>
-      <link href="/pattern-lab/styleguide/css/pattern-lab.css" rel="stylesheet">
-    </noscript>
-
-    {# @TODO: wire this up to use Critical CSS #}
-    <style>
-      {% if fileExists("@bolt-assets/bolt-components-critical-fonts.css") %}
-        {{ inline( legacyAssets["bolt-components-critical-fonts.css"] | default("") ) }}
-      {% endif %}
-    </style>
-
-    <script>
-      {% if fileExists("@bolt-assets/bolt-components-critical-css.js") %}
-        {{ inline( legacyAssets["bolt-components-critical-css-vars.js"] | default("") ) }}
-        {{ inline( legacyAssets["bolt-components-critical-fonts.js"] | default("") ) }}
-      {% endif %}
-
-      window.drupalSettings = {
-        google_analytics: {
-          trackCrossDomains: ['github.com']
-        }
-      }
-
-      window.bolt = window.bolt || {};
-      window.bolt.data = window.bolt.data || {};
-      window.bolt.data.fullManifest = window.bolt.data.fullManifest || {};
-      window.bolt.data.fullManifest.version = window.bolt.data.fullManifest.version || {{ bolt.data.fullManifest.version|json_encode|raw }};
-    </script>
-
-    {% if bolt.data.config.esModules %}
-      <script type="module" src="{{ modernAssets["bolt-global.js"] | default("/build/bolt-global.modern.js") }}" async></script>
-    {% endif %}
-
-    <script src="https://www.google-analytics.com/analytics.js" defer></script>
-
-    {# <script>console.log('Bolt Global Twig variable. In Twig, you can tap into the `bolt` global var to access all sorts of helpful information about the Bolt Design System, such as colors, spacing, and more. Most is exported from Sass; to add more, add this to any Sass file: `@include export-data("myVariables.bolt.json", $my-variables-in-a-sass-map);`, and then you can access it in Twig via `bolt.data.myVariables`. Here is all the data available to the current templates, including the `bolt` var:');</script> #}
-
-    {# {% if inline_global_data %}
-      <script>
-        window.bolt = JSON.parse('{{ bolt.data|json_encode|e('js') }}');
-      </script>
-    {% endif %} #}
-
-    {% if patternLabFoot %}
-      {# {% set pl_data = patternLabFoot | raw | striptags %} #}
-
-      <script>
-        {# var patternLab = JSON.parse({{ pl_data }});
-        delete patternLab.cssEnabled;
-        delete patternLab.extraOutput; #}
-
-        {# console.clear(); // clear previous messages with new page loads in PL #}
-        {# console.log('Pattern / Component Info:'); #}
-        //console.table(patternLab);
-      </script>
-    {% endif %}
   </head>
 
   {% set bodyClasses = [
