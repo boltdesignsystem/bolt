@@ -1,59 +1,242 @@
-{% set content %}
-<ul class="c-bolt-block-list">
-  <li class="c-bolt-block-list__item">
-    <bolt-link display="inline" valign="center" url="" target="_blank" class="js-bolt-share__facebook">
-      <bolt-icon slot="before" name="facebook-solid" size="medium"></bolt-icon>Facebook</bolt-link>
-  </li>
-  <li class="c-bolt-block-list__item">
-    <bolt-link display="inline" valign="center" url="" target="_blank" class="js-bolt-share__twitter">
-      <bolt-icon slot="before" name="twitter" size="medium"></bolt-icon>Twitter</bolt-link>
-  </li>
-  <li class="c-bolt-block-list__item">
-    <bolt-link display="inline" valign="center" url="" target="_blank" class="js-bolt-share__linkedin">
-      <bolt-icon slot="before" name="linkedin" size="medium"></bolt-icon>LinkedIn</bolt-link>
-  </li>
-  <li class="c-bolt-block-list__item">
-    <bolt-link display="inline" valign="center" url="" target="_self" class="js-bolt-share__email">
-      <bolt-icon slot="before" name="email" size="medium"></bolt-icon>Email</bolt-link>
-  </li>
-  <li class="c-bolt-block-list__item">
-    <bolt-copy-to-clipboard>
-      <span class="c-bolt-copy-to-clipboard js-bolt-copy-to-clipboard">
-        <button class="c-bolt-copy-to-clipboard__trigger" data-clipboard-text="https://community.pega.com/knowledgebase/articles/documents-api-pega-infinity-mobile-client">
-          <div class="c-bolt-copy-to-clipboard__action">
-            <bolt-icon name="asset-link" size="medium"></bolt-icon>
-            <span class="c-bolt-copy-to-clipboard__action-text">
-              Copy Link
-            </span>
-          </div>
-        </button>
-        <span class="c-bolt-copy-to-clipboard__transition">
-          <span class="c-bolt-copy-to-clipboard__transition-animation">
-            <bolt-icon name="refresh" size="medium"></bolt-icon>
-          </span>
-        </span>
-        <span class="c-bolt-copy-to-clipboard__confirmation">
-          <div class="c-bolt-copy-to-clipboard__info js-bolt-copy-to-clipboard__trigger">
-            <bolt-icon name="check" size="medium"></bolt-icon>
-            Copied!
-          </div>
-        </span>
-      </span>
-    </bolt-copy-to-clipboard>
-  </li>
-</ul>
+{% set trigger %}
+  {% include "@bolt-components-headline/text.twig" with {
+    text: "CRM",
+    icon: {
+      name: "info-open",
+      position: "after",
+    }
+  } only %}
+{% endset %}
+{% set content = "Customer relationship management" %}
+
+{% set tooltips_top %}
+  <bolt-list display="flex" spacing="xlarge">
+    <bolt-list-item>
+      <div class="u-bolt-text-align-center">
+        {% include "@bolt-components-tooltip/tooltip.twig" with {
+          placement: "bottom-left",
+          trigger: {
+            content: trigger,
+          },
+          content: content,
+        } only %}
+      </div>
+    </bolt-list-item>
+    <bolt-list-item>
+      <div class="u-bolt-text-align-center">
+        {% include "@bolt-components-tooltip/tooltip.twig" with {
+          placement: "bottom",
+          trigger: {
+            content: trigger,
+          },
+          content: content,
+        } only %}
+      </div>
+    </bolt-list-item>
+    <bolt-list-item>
+      <div class="u-bolt-text-align-center">
+        {% include "@bolt-components-tooltip/tooltip.twig" with {
+          placement: "bottom-right",
+          trigger: {
+            content: trigger,
+          },
+          content: content,
+        } only %}
+      </div>
+    </bolt-list-item>
+  </bolt-list>
+{% endset %}
+{% set tooltips_right %}
+  <bolt-list spacing="xxlarge">
+    {# <bolt-list-item>
+      <div class="u-bolt-text-align-right">
+        {% include "@bolt-components-tooltip/tooltip.twig" with {
+          placement: "left-top",
+          trigger: {
+            content: trigger,
+          },
+          content: content,
+        } only %}
+      </div>
+    </bolt-list-item> #}
+    <bolt-list-item>
+      <div class="u-bolt-text-align-right">
+        {% include "@bolt-components-tooltip/tooltip.twig" with {
+          placement: "left",
+          trigger: {
+            content: trigger,
+          },
+          content: content,
+        } only %}
+      </div>
+    </bolt-list-item>
+    {# <bolt-list-item>
+      <div class="u-bolt-text-align-right">
+        {% include "@bolt-components-tooltip/tooltip.twig" with {
+          placement: "left-bottom",
+          trigger: {
+            content: trigger,
+          },
+          content: content,
+        } only %}
+      </div>
+    </bolt-list-item> #}
+  </bolt-list>
+{% endset %}
+{% set tooltips_bottom %}
+  <bolt-list display="flex" spacing="xlarge">
+    <bolt-list-item>
+      <div class="u-bolt-text-align-center">
+        {% include "@bolt-components-tooltip/tooltip.twig" with {
+          placement: "top-left",
+          trigger: {
+            content: trigger,
+          },
+          content: content,
+        } only %}
+      </div>
+    </bolt-list-item>
+    <bolt-list-item>
+      <div class="u-bolt-text-align-center">
+        {% include "@bolt-components-tooltip/tooltip.twig" with {
+          placement: "top",
+          trigger: {
+            content: trigger,
+          },
+          content: content,
+        } only %}
+      </div>
+    </bolt-list-item>
+    <bolt-list-item>
+      <div class="u-bolt-text-align-center">
+        {% include "@bolt-components-tooltip/tooltip.twig" with {
+          placement: "top-right",
+          trigger: {
+            content: trigger,
+          },
+          content: content,
+        } only %}
+      </div>
+    </bolt-list-item>
+  </bolt-list>
+{% endset %}
+{% set tooltips_left %}
+  <bolt-list spacing="xxlarge">
+    {# <bolt-list-item>
+      {% include "@bolt-components-tooltip/tooltip.twig" with {
+        placement: "right-top",
+        trigger: {
+          content: trigger,
+        },
+        content: content,
+      } only %}
+    </bolt-list-item> #}
+    <bolt-list-item>
+      {% include "@bolt-components-tooltip/tooltip.twig" with {
+        placement: "right",
+        trigger: {
+          content: trigger,
+        },
+        content: content,
+      } only %}
+    </bolt-list-item>
+    {# <bolt-list-item>
+      {% include "@bolt-components-tooltip/tooltip.twig" with {
+        placement: "right-bottom",
+        trigger: {
+          content: trigger,
+        },
+        content: content,
+      } only %}
+    </bolt-list-item> #}
+  </bolt-list>
+{% endset %}
+{% set grid %}
+  {% include "@bolt-components-grid/grid.twig" with {
+    gutter: "small",
+    items: [
+      {
+        column_start: "2",
+        column_span: "10",
+        row_start: "1",
+        content: tooltips_top,
+      },
+      {
+        column_start: "12",
+        column_span: "1",
+        row_start: "2",
+        content: tooltips_right,
+      },
+      {
+        column_start: "2",
+        column_span: "10",
+        row_start: "3",
+        content: tooltips_bottom,
+      },
+      {
+        column_start: "1",
+        column_span: "1",
+        row_start: "2",
+        content: tooltips_left,
+      },
+    ]
+  } only %}
 {% endset %}
 
-<div class="u-bolt-padding-top-large u-bolt-padding-bottom-large">
-  {% grid "o-bolt-grid--center" %}
-    {% cell "o-bolt-grid__cell" %}
-      {% include "@bolt-components-tooltip/tooltip.twig" with {
-        trigger: {
-          type: "text",
-          text: "This is the tooltip trigger"
-        },
-        content: content
-      } only %}
-    {% endcell %}
-  {% endgrid %}
+<div class="t-bolt-xlight u-bolt-padding-xlarge">
+  {% include "@bolt-components-band/band.twig" with {
+    theme: "none",
+    full_bleed: false,
+    content: grid,
+  } only %}
+</div>
+
+
+
+
+
+{% set trigger_content %}
+  <span class="u-bolt-color-gray">
+    {% include "@bolt-components-icon/icon.twig" with {
+      name: "lock",
+    } only %}
+  </span>
+{% endset %}
+{% set tooltips %}
+  {% include "@bolt-components-tooltip/tooltip.twig" with {
+    trigger: {
+      content: trigger_content,
+    },
+    content: "Closed for replies",
+  } only %}
+  <bolt-tooltip>
+    <span class="u-bolt-color-success"><bolt-icon name="check-solid"></bolt-icon></span>
+    <span slot="content">Solved</span>
+  </bolt-tooltip>
+  <bolt-tooltip wrap>
+    <span class="u-bolt-color-error"><bolt-icon name="close-solid"></bolt-icon></span>
+    <span slot="content">This is no bueno. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor.</span>
+  </bolt-tooltip>
+{% endset %}
+<div class="u-bolt-margin-large u-bolt-padding-small u-bolt-shadow-level-30">
+  <bolt-list display="flex">
+    <bolt-list-item>
+      <bolt-text headline>
+        This is a thread
+      </bolt-text>
+    </bolt-list-item>
+    <bolt-list-item>
+      <bolt-list display="inline" align="end" separator="solid">
+        <bolt-list-item>
+          {{ tooltips }}
+        </bolt-list-item>
+        <bolt-list-item>
+          16 replies
+        </bolt-list-item>
+        <bolt-list-item>
+          34 views
+        </bolt-list-item>
+      </bolt-list>
+    </bolt-list-item>
+  </bolt-list>
 </div>
