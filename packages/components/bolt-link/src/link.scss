@@ -25,6 +25,7 @@ $bolt-link-spacing: 'xxsmall';
   @include bolt-button-reset; // [1]
   display: inline;
   opacity: bolt-opacity(100);
+  max-width: 100%; // required so the Link doesn't overflow parent containers w/ a max-width specified
   margin-left: bolt-spacing(#{$bolt-link-spacing}) * -1;
   color: bolt-theme(link);
   text-decoration: underline;
@@ -68,6 +69,7 @@ $bolt-link-spacing: 'xxsmall';
 
 .c-bolt-link__text {
   display: inline;
+  max-width: 100%; // required so the Link doesn't overflow parent containers w/ a max-width specified
 }
 
 // Changes the underline styles when a link is also a headline, chevrons are added to headline links by default.
