@@ -1,15 +1,18 @@
-import { props, define, hasNativeShadowDomSupport } from '@bolt/core/utils';
-import { withLitHtml, html, convertSchemaToProps } from '@bolt/core';
+import { html, customElement } from '@bolt/element';
+import {
+  props,
+  hasNativeShadowDomSupport,
+  convertSchemaToProps,
+} from '@bolt/core-v3.x/utils';
+import { withLitHtml } from '@bolt/core-v3.x/renderers';
 import classNames from 'classnames/bind';
 import styles from './status-dialogue-bar.scss';
 import schema from './status-dialogue-bar.schema';
 
 let cx = classNames.bind(styles);
 
-@define
-class BoltStatusDialogueBar extends withLitHtml() {
-  static is = 'bolt-status-dialogue-bar';
-
+@customElement('bolt-status-dialogue-bar')
+class BoltStatusDialogueBar extends withLitHtml {
   static props = {
     noShadow: {
       ...props.boolean,

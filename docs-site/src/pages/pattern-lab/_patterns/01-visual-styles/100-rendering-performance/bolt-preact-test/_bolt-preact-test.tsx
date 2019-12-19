@@ -10,8 +10,8 @@ import {
   watchForComponentMutations,
   defineContext,
   withContext,
-} from '@bolt/core/utils';
-import { h, withPreact } from '@bolt/core/renderers';
+} from '@bolt/core-v3.x/utils';
+import { h, withPreact } from '@bolt/core-v3.x/renderers';
 
 export const PreactRenderPerfContext = defineContext({
   throttle: false,
@@ -75,8 +75,8 @@ export class BoltPreactTest extends withContext(withPreact()) {
       transform: `scaleX(${scale / 2.1}) scaleY(0.7) translateZ(0.1px)`,
     };
 
-    
-    
+
+
     return (
       <div>
         <div style={styles}>
@@ -84,7 +84,7 @@ export class BoltPreactTest extends withContext(withPreact()) {
             x={0}
             y={0}
             s={1000}
-            label={this.seconds} />   
+            label={this.seconds} />
         </div>
       </div>
     );

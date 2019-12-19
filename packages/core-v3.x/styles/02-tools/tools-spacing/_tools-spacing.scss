@@ -1,0 +1,81 @@
+////
+/// @group Tools: Layout
+/// @author Salem Ghoweri
+////
+
+/// Private bolt function to generate default spacing scale, based off of the base font size
+/// @param {list} $sizes - Sizes to iterate over
+/// @param {string} $char [''] - String to append to $keyName setting
+/// @return {map} $map
+/// @access private
+/// @requires $bolt-spacing-gutter
+/// @see $bolt-spacing-sizes
+/// @example scss - $bolt-spacing-values not shown
+///   $bolt-spacing-sizes: _bolt-create-spacing-map($bolt-spacing-values);
+@function _bolt-create-spacing-map($sizes, $char: '') {
+  $map: ();
+  @each $name, $value in $sizes {
+    $keyName: $name;
+    @if ($char != '' and $keyName != null) {
+      $keyName: $char + $keyName;
+    }
+    $keyValue: $value * $bolt-spacing-gutter;
+    $map: map-merge($map, ($keyName: $keyValue));
+  }
+  @return $map;
+}
+/// A map created from $bolt-spacing-values
+/// @see $bolt-spacing-values
+$bolt-spacing-sizes: _bolt-create-spacing-map($bolt-spacing-values);
+
+@include export-data('spacing/sizes.bolt.json', $bolt-spacing-sizes);
+
+/// Convenience function for pulling data from $bolt-spacing-sizes
+/// @param {string} $size - T-shirt size to pull
+/// @requires $bolt-spacing-sizes
+/// @return {number} A spacing unit
+/// @example scss
+/// .element {
+///   min-height: bolt-spacing(large);
+/// }
+@function bolt-spacing($size) {
+  @return map-get($bolt-spacing-sizes, nth($size, 1));
+}
+
+
+/// Convert shirt sizes in baseline-optimized sizes
+/// @param {string} $size - T-shirt size
+/// @param {string} $modifier [null] - Unit to multiply ending result by
+/// @return {number}
+/// @requires $bolt-spacing-squished
+/// @requires $bolt-spacing-stretched
+/// @requires $bolt-spacing-gutter
+/// @requires $bolt-spacing-leading
+/// @example scss
+/// .element {
+///   width: bolt-v-spacing(xsmall);
+/// }
+@function bolt-v-spacing($size, $modifier: null) {
+  @if ($modifier == 'squished') {
+    $modifier: $bolt-spacing-squished;
+  } @else if ($modifier == 'stretched') {
+    $modifier: $bolt-spacing-stretched;
+  } @else {
+    $modifier: 1;
+  }
+
+  @return (bolt-spacing($size) / bolt-strip-unit($bolt-spacing-gutter)) * $bolt-spacing-leading * $modifier;
+}
+
+/// An alias for @function bolt-v-spacing
+/// @alias bolt-v-spacing
+/// @param {string} $size - T-shirt size
+/// @return {number}
+/// @requires bolt-v-spacing
+/// @example scss
+/// .element {
+///   width: bolt-vertical-spacing(xsmall);
+/// }
+@function bolt-vertical-spacing($size) {
+  @return bolt-v-spacing($size);
+}

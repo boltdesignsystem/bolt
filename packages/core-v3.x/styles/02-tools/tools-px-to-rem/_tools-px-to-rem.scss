@@ -1,0 +1,26 @@
+/* ------------------------------------ *\
+  TOOLS - Pixel to REM
+\* ------------------------------------ */
+
+////
+/// @group Tools: Utilities
+/// @author Mike Mai
+////
+
+/// Bolt utility function to convert pixels to rems
+/// @param {string|number} $pixels - The pixel value to convert
+/// @param {string|number} $context [$bolt-base-font-size--min] - Value to divide pixel value by (before rem multiplication)
+/// @return {string} rem value (with unit)
+/// @example scss
+/// .element {
+///   font-size: bolt-rem(18px);
+/// }
+@function bolt-rem($pixels, $context: $bolt-base-font-size--min) {
+  @if (unitless($pixels)) {
+    $pixels: $pixels * 1px;
+  }
+  @if (unitless($context)) {
+    $context: $context * 1px;
+  }
+  @return $pixels / $context * 1rem;
+}

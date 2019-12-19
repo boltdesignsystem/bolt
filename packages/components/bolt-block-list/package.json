@@ -1,25 +1,25 @@
 {
   "name": "@bolt/components-block-list",
-  "description": "Block-list Component in Bolt",
   "version": "2.13.0",
+  "description": "Block-list Component in Bolt",
   "homepage": "https://boltdesignsystem.com",
-  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bolt-design-system/bolt/issues"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/bolt-design-system/bolt/"
   },
-  "bugs": {
-    "url": "https://github.com/bolt-design-system/bolt/issues"
-  },
-  "schema": "block-list.schema.yml",
-  "style": "src/block-list.scss",
+  "license": "MIT",
   "main": "src/block-list.js",
-  "twig": "src/block-list.twig",
+  "style": "src/block-list.scss",
+  "dependencies": {
+    "@bolt/core-v3.x": "^2.13.0"
+  },
   "publishConfig": {
     "access": "public"
   },
-  "dependencies": {
-    "@bolt/core": "^2.13.0"
-  },
-  "gitHead": "d41aa75ae3d195d9d7fb3952eed5e0ae80988133"
+  "gitHead": "d41aa75ae3d195d9d7fb3952eed5e0ae80988133",
+  "schema": "block-list.schema.yml",
+  "twig": "src/block-list.twig"
 }

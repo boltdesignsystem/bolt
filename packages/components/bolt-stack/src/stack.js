@@ -1,14 +1,13 @@
-import { props, define, hasNativeShadowDomSupport } from '@bolt/core/utils';
-import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
+import { html, customElement } from '@bolt/element';
+import { props } from '@bolt/core-v3.x/utils';
+import { withLitHtml } from '@bolt/core-v3.x/renderers/renderer-lit-html';
 import classNames from 'classnames/bind';
 import styles from './stack.scss';
 
 let cx = classNames.bind(styles);
 
-@define
-class BoltStack extends withLitHtml() {
-  static is = 'bolt-stack';
-
+@customElement('bolt-stack')
+class BoltStack extends withLitHtml {
   static props = {
     noShadow: {
       ...props.boolean,

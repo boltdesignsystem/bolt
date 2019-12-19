@@ -1,0 +1,38 @@
+////
+/// @group Tools: Border
+////
+
+/* ------------------------------------ *\
+   TOOLS - BORDER RADIUS
+   See map in `settings-border-radius`
+\* ------------------------------------ */
+
+/// Bolt border radius function
+/// @param {string} $value
+/// @example scss - bolt-border-radius function
+/// .element {
+///    border-radius: bolt-border-radius(small);
+/// }
+@function bolt-border-radius($value) {
+  @if map-has-key($bolt-border-radius-values, $value) {
+    @return map-get($bolt-border-radius-values, $value)
+  } @else {
+    @error 'A value, #{$value}, was passed into bolt-border-radius() that is not defined in $bolt-border-radius-values';
+  }
+}
+
+/// Bolt border radius mixin
+/// @param {string} $value
+/// @example scss - bolt-border-radius mixin
+/// .element {
+///    @include bolt-border-radius(small);
+/// }
+@mixin bolt-border-radius($value) {
+  $border-radius: map-get-deep($bolt-border-radius-values, $value);
+
+  @if map-has-key($bolt-border-radius-values, $value) {
+    border-radius: $border-radius;
+  } @else {
+    @error 'A value, #{$value}, was passed into @include bolt-border-radius() that is not defined in $bolt-border-radius-values';
+  }
+}

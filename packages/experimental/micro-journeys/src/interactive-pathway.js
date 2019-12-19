@@ -1,11 +1,11 @@
+import { html, customElement } from '@bolt/element';
 import {
   props,
-  define,
   hasNativeShadowDomSupport,
   query,
   convertSchemaToProps,
-} from '@bolt/core/utils';
-import { withLitContext, html } from '@bolt/core';
+} from '@bolt/core-v3.x/utils';
+import { withLitContext } from '@bolt/core-v3.x/renderers';
 import classNames from 'classnames';
 import debounce from 'lodash.debounce';
 import styles from './interactive-pathway.scss';
@@ -13,8 +13,8 @@ import schema from './interactive-pathway.schema';
 
 let cx = classNames.bind(styles);
 
-@define
-class BoltInteractivePathway extends withLitContext() {
+@customElement('bolt-interactive-pathway')
+class BoltInteractivePathway extends withLitContext {
   static is = 'bolt-interactive-pathway';
 
   static props = {

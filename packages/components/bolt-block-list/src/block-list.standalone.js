@@ -1,5 +1,10 @@
-import { BoltElement, customElement, unsafeCSS, html } from '@bolt/element';
-import { unsafeHTML } from 'lit-html/directives/unsafe-html';
+import {
+  BoltElement,
+  unsafeCSS,
+  html,
+  customElement,
+  unsafeHTML,
+} from '@bolt/element';
 import blockListStyles from './block-list.scss';
 
 @customElement('bolt-block-list')

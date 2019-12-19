@@ -1,0 +1,10 @@
+/* stylelint-disable scss/at-function-pattern */
+
+/// Encode a number to JSON
+/// @access private
+/// @param {Number} $number - number to be encoded
+/// @return {String} - encoded number
+/// @require {function} _proof-quote
+@function _json-encode--number($number) {
+  @return if(unitless($number), $number, _proof-quote($number));
+}

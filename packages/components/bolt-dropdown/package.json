@@ -1,9 +1,6 @@
 {
   "name": "@bolt/components-dropdown",
-  "main": "index.js",
-  "schema": "dropdown.schema.yml",
-  "style": "dropdown.scss",
-  "twig": "dropdown.twig",
+  "version": "2.13.0",
   "description": "Dropdown Component",
   "keywords": [
     "bolt design system",
@@ -13,24 +10,27 @@
     "dropdown",
     "collapsible"
   ],
-  "version": "2.13.0",
-  "author": "Salem Ghoweri",
   "homepage": "https://boltdesignsystem.com",
-  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-dropdown"
   },
-  "publishConfig": {
-    "access": "public"
-  },
+  "license": "MIT",
+  "author": "Salem Ghoweri",
+  "main": "index.js",
+  "style": "dropdown.scss",
+  "scripts": {},
   "dependencies": {
     "@bolt/components-icon": "^2.13.0",
-    "@bolt/core": "^2.13.0",
+    "@bolt/core-v3.x": "^2.13.0",
     "classnames": "^2.2.5",
     "ev-emitter": "^1.1.1",
     "handorgel": "^0.4.5"
   },
-  "scripts": {},
-  "gitHead": "d41aa75ae3d195d9d7fb3952eed5e0ae80988133"
+  "publishConfig": {
+    "access": "public"
+  },
+  "gitHead": "d41aa75ae3d195d9d7fb3952eed5e0ae80988133",
+  "schema": "dropdown.schema.yml",
+  "twig": "dropdown.twig"
 }

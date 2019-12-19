@@ -1,13 +1,13 @@
+import { customElement } from '@bolt/element';
 import {
   colorContrast,
   css,
-  define,
   props,
   rgb2hex,
   supportsCSSVars,
-} from '@bolt/core/utils';
-import { spacingSizes } from '@bolt/core/data';
-import { h, withPreact } from '@bolt/core/renderers';
+} from '@bolt/core-v3.x/utils';
+import { spacingSizes } from '@bolt/core-v3.x/data';
+import { h, withPreact } from '@bolt/core-v3.x/renderers';
 
 import PubSub from 'pubsub-js';
 import * as Icons from '../registry';
@@ -17,10 +17,8 @@ const backgroundStyles = ['circle', 'square'];
 
 const colors = ['teal', 'blue'];
 
-@define
-class BoltIcon extends withPreact() {
-  static is = 'bolt-icon';
-
+@customElement('bolt-icon')
+class BoltIcon extends withPreact {
   static props = {
     name: props.string,
     size: props.string,

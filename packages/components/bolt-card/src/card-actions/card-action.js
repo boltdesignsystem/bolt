@@ -1,17 +1,16 @@
 import { ifDefined } from 'lit-html/directives/if-defined';
-import { props, define, hasNativeShadowDomSupport } from '@bolt/core/utils';
+import { props, hasNativeShadowDomSupport } from '@bolt/core-v3.x/utils';
 import classNames from 'classnames/bind';
-import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
+import { withLitHtml } from '@bolt/core-v3.x/renderers/renderer-lit-html';
+import { html, customElement } from '@bolt/element';
 
 import schema from '../../card.schema.yml';
 import styles from './_card-action.scss';
 
 let cx = classNames.bind(styles);
 
-@define
-class BoltCardAction extends withLitHtml() {
-  static is = 'bolt-card-action';
-
+@customElement('bolt-card-action')
+class BoltCardAction extends withLitHtml {
   static props = {
     url: props.string, // figure || div
     external: props.boolean,

@@ -75,6 +75,19 @@
       justify-content: center;
     }
 
+    .c-progress-indicators {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+    }
+    .c-progress-indicator {
+      display: inline-block;
+    }
+    .c-progress-indicators > *:not(:last-child){
+      margin-right: 1rem;
+    }
+
     @keyframes blink {
       0% {
         opacity: .2;
@@ -153,33 +166,37 @@
 <div class="card">
   <div class="building">Bolt is compiling for the first time.</div>
 
-  <% for (var i = 0 ; i < progress.length ; i++) { %>
-    <progress-indicator>
-      <svg class="c-bolt-progress__loader c-bolt-progress__loader--<%= i %>" height="100" width="100">
-        <circle class="c-bolt-progress__circle c-bolt-progress__bar" cx="50" cy="50" r="40"></circle>
-        <circle class="c-bolt-progress__circle c-bolt-progress__progress" cx="50" cy="50" r="40"></circle>
-        <text x="53" y="55" text-anchor="middle" class="c-bolt-progress__text"><%= Math.round(100 * progress[i][0]) %>%</text>
-      </svg>
-    </progress-indicator>
+  <div class="c-progress-indicators">
 
-<%
-      const capitalize = (str) => {
-        if (typeof str !== 'string') return '';
-        return str.replace(/(?:^|\s)\S/g, function(a) { return a.toUpperCase(); });
-      }
+    <% for (var i = 0 ; i < progress.length ; i++) { %>
+      <div class="c-progress-indicator">
+      <progress-indicator>
+        <svg class="c-bolt-progress__loader c-bolt-progress__loader--<%= i %>" height="100" width="100">
+          <circle class="c-bolt-progress__circle c-bolt-progress__bar" cx="50" cy="50" r="40"></circle>
+          <circle class="c-bolt-progress__circle c-bolt-progress__progress" cx="50" cy="50" r="40"></circle>
+          <text x="53" y="55" text-anchor="middle" class="c-bolt-progress__text"><%= Math.round(100 * progress[i][0]) %>%</text>
+        </svg>
+      </progress-indicator>
 
-      const message = progress[i][1] || '';
-      const result = message.includes('building') || message.includes('compiling')
-        ? 'Compiling'
-        : message.includes('optimization')
-        ? 'Optimizing'
-        : message.includes('emitting') || message.includes('seal')
-        ? 'Wrapping up'
-        : progress[i][1];
-    %>
-    <div class="message"><strong><%= capitalize(result) %><span class="c-bolt-progress__animated-text">.</span><span class="c-bolt-progress__animated-text">.</span><span class="c-bolt-progress__animated-text">.</span></strong></div>
+  <%
+        const capitalize = (str) => {
+          if (typeof str !== 'string') return '';
+          return str.replace(/(?:^|\s)\S/g, function(a) { return a.toUpperCase(); });
+        }
 
-  <% }  %>
+        const message = progress[i][1] || '';
+        const result = message.includes('building') || message.includes('compiling')
+          ? 'Compiling'
+          : message.includes('optimization')
+          ? 'Optimizing'
+          : message.includes('emitting') || message.includes('seal')
+          ? 'Wrapping up'
+          : progress[i][1];
+      %>
+      <div class="message"><strong><%= capitalize(result) %><span class="c-bolt-progress__animated-text">.</span><span class="c-bolt-progress__animated-text">.</span><span class="c-bolt-progress__animated-text">.</span></strong></div>
+      </div>
+    <% }  %>
+  </div>
 
 
 

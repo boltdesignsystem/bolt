@@ -1,0 +1,25 @@
+/* ------------------------------------ *\
+  TOOLS - MAP SORT
+\* ------------------------------------ */
+
+////
+/// @group Tools: Utilities
+/// @author Mike Mai
+////
+
+/// Sort map by keys
+/// @param {map} $map - A SASS map
+/// @return {Map} $sortedMap - A SASS map sorted by keys
+/// @link https://gist.github.com/Jakobud/a0ac11e80a1de453cd86f0d3fc0a1410
+/// @requires {function} bolt-list-sort
+/// @see {mixin} bolt-poly-fluid-sizing
+/// @example scss - ($map not shown)
+///   $map: bolt-map-sort($map);
+@function bolt-map-sort($map) {
+  $keys: bolt-list-sort(map-keys($map));
+  $sortedMap: ();
+  @each $key in $keys {
+    $sortedMap: map-merge($sortedMap, ($key: map-get($map, $key)));
+  }
+  @return $sortedMap;
+}

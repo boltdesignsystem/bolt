@@ -1,19 +1,17 @@
-import { BoltAction } from '@bolt/core/elements/bolt-action';
-import { props, define } from '@bolt/core/utils';
+import { BoltAction } from '@bolt/core-v3.x/elements/bolt-action';
+import { props } from '@bolt/core-v3.x/utils';
 import classNames from 'classnames/bind';
-import { html, render } from '@bolt/core/renderers/renderer-lit-html';
-import { convertInitialTags } from '@bolt/core/decorators';
+import { render } from '@bolt/core-v3.x/renderers/renderer-lit-html';
+import { html, customElement, convertInitialTags } from '@bolt/element';
 
 import visuallyhiddenUtils from '@bolt/global/styles/07-utilities/_utilities-visuallyhidden.scss';
 import styles from './_card-link.scss';
 
 let cx = classNames.bind(styles);
 
-@define
+@customElement('bolt-card-link')
 @convertInitialTags('a') // The first matching tag will have its attributes converted to component props
 class BoltCardLink extends BoltAction {
-  static is = 'bolt-card-link';
-
   // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
   constructor(self) {
     self = super(self);
