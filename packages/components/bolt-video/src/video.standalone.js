@@ -1,5 +1,6 @@
-import { beforeNextRender, define, props, css } from '@bolt/core/utils';
-import { h, withPreact } from '@bolt/core/renderers';
+import { customElement } from '@bolt/element';
+import { beforeNextRender, props, css } from '@bolt/core-v3.x/utils';
+import { h, withPreact } from '@bolt/core-v3.x/renderers';
 import Mousetrap from 'mousetrap';
 import classNames from 'classnames';
 
@@ -12,10 +13,8 @@ import {
 import { datasetToObject, formatVideoDuration } from '../utils';
 
 let index = 0;
-@define
-class BoltVideo extends withPreact() {
-  static is = `${bolt.namespace}-video`;
-
+@customElement('bolt-video')
+class BoltVideo extends withPreact {
   static props = {
     videoId: props.string,
     accountId: props.string,

@@ -1,0 +1,21 @@
+////
+/// @group Tools: Button Reset
+////
+
+/* ------------------------------------ *\
+   TOOLS - BUTTON RESET
+\* ------------------------------------ */
+
+/// Lightweight style reset for button and input elements
+/// @param {string} $value
+/// @example scss - bolt-button-reset mixin
+/// .element {
+///    @include bolt-button-reset;
+/// }
+@mixin bolt-button-reset() {
+  @include bolt-padding(0);
+  @include bolt-font-family(body);
+
+  appearance: none; // override default [type=submit] button styles coming from Normalize
+  background: none;
+}

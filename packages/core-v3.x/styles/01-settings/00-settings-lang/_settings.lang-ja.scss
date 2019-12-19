@@ -1,0 +1,66 @@
+////
+/// @group Settings: Typography
+////
+
+// so the recursive map merge used below works as expected
+@import '../../02-tools/tools-map-recursive-merge/tools-map-recursive-merge';
+
+/* ------------------------------------ *\
+   Japanese Specific Typography Styles
+\* ------------------------------------ */
+
+@if ($bolt-lang == 'ja'){
+  // UI System fonts will display all Japanese Characters.
+
+  /// Bolt's definition of a Japanese specific font-stack.
+  $bolt-font-family--japanese:        -apple-system, BlinkMacSystemFont, 'ヒラギノ角ゴ ProN', 'Hiragino Kaku Gothic ProN', '游ゴシック', '游ゴシック体', YuGothic, 'Yu Gothic', 'メイリオ', Meiryo, 'ＭＳ ゴシック', 'MS Gothic', HiraKakuProN-W3, 'TakaoExゴシック', TakaoExGothic, 'MotoyaLCedar', 'Droid Sans Japanese', sans-serif !global;
+
+  $bolt-font-family--sans-fallback:   $bolt-font-family--japanese !global;
+  $bolt-font-family--sans:            $bolt-font-family--japanese !global;
+  $bolt-font-family--sans-subset:     $bolt-font-family--japanese !global;
+
+
+  // Headline font-weight reduced to 700, so a combmination of English and Japanese can look harmonious.
+  $bolt-font-weight--bold: 700 !global;
+
+
+  // Overall font-size reduced by 5%, because Japanese charaters are bigger than English.
+  $bolt-base-font-size--min: 14px !global;
+  $bolt-base-font-size--max: 17px !global;
+
+
+  // Redefined headline sizes.
+  $bolt-font-size--xxxlarge--max: 2.25rem !global;
+  $bolt-font-size--xxxlarge--min: 2.25rem !global;
+  $bolt-font-size--xxlarge:       1.75rem !global;
+  $bolt-font-size--xlarge:        1.425rem !global;
+  $bolt-font-size--large:         1.125rem !global;
+
+  $bolt-line-height--xxxlarge:    (1.14 * 1.1) !global;
+  $bolt-line-height--xxlarge:     (1.31 * 1.1) !global;
+  $bolt-line-height--xlarge:      (1.35 * 1.1) !global;
+  $bolt-line-height--large:       (1.45 * 1.1) !global;
+  $bolt-line-height--medium:      (1.65 * 1.1) !global;
+  $bolt-line-height--small:       (1.51 * 1.1) !global;
+  $bolt-line-height--xsmall:      (1.45 * 1.1) !global;
+  $bolt-line-height--tight:       (1.111 * 1.1) !global;
+
+
+  // Spacing values reduced to create more compact and monospace aesthetics.
+  $bolt-spacing-values: (
+    'xxsmall': 0.125,
+    'xsmall':  0.25,
+    'small':   0.35,
+    'medium':  0.7,
+    'large':   1.4,
+    'xlarge':  2.8,
+    'xxlarge': 5.6
+  ) !global;
+
+  // reference back to the "medium" size value (whatever it's currently set to)
+  // NOTE: this is how "sizeless" utility classes like `u-bolt-margin-bottom` get generated
+  $bolt-spacing-values: bolt-recursive-map-merge(
+    $bolt-spacing-values,
+    ('': map-get($bolt-spacing-values, 'medium'))
+  ) !global;
+}

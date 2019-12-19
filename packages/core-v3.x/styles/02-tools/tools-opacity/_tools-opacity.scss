@@ -1,0 +1,42 @@
+////
+/// @group Tools: Utilities
+////
+
+/* ------------------------------------ *\
+  see `_settings-opacity.scss`
+\* ------------------------------------ */
+
+/// Bolt Opacity mixin
+/// @param {string} $value
+/// @param {boolean} $important [false]
+/// @example scss - bolt-opacity mixin
+/// .element {
+///    @include bolt-opacity(80);
+/// }
+@mixin bolt-opacity($value, $utility: false) {
+  $important: '';
+
+  @if $utility {
+    $important: '!important';
+  }
+
+  @if map-has-key($bolt-opacities, $value) {
+    opacity: map-get($bolt-opacities, $value) #{$important};
+  } @else {
+    @error 'A value, #{$value}, was passed into @include bolt-opacity() that is not defined in $bolt-opacities';
+  }
+}
+
+/// Bolt Opacity function
+/// @param {string} $value
+/// @example scss - bolt-opacity function
+/// .element {
+///    opacity: bolt-opacity(80);
+/// }
+@function bolt-opacity($value) {
+  @if map-has-key($bolt-opacities, $value) {
+    @return map-get($bolt-opacities, $value)
+  } @else {
+    @error 'A value, #{$value}, was passed into bolt-opacity() that is not defined in $bolt-opacities';
+  }
+}

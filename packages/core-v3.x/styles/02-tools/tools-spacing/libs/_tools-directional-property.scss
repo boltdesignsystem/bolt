@@ -1,0 +1,60 @@
+////
+/// @group Tools: Layout
+/// @author Salem Ghoweri
+////
+
+/// Output directional properties, for instance `margin`.
+///
+/// @access private
+///
+/// @param {String} $prefix
+///   Prefix to use
+/// @param {String} $suffix
+///   Suffix to use
+/// @param {List} $values
+///   List of values
+///
+/// @require {function} _bolt-collapse-directional-values
+/// @require {function} _bolt-contains-falsy
+
+@mixin _bolt-directional-property($prefix, $suffix, $values, $important) {
+  @if $important == important {
+    $important: !important;
+  }
+
+  // Property Names
+  $top:    $prefix + '-top'    + if($suffix, '-#{$suffix}', '');
+  $bottom: $prefix + '-bottom' + if($suffix, '-#{$suffix}', '');
+  $left:   $prefix + '-left'   + if($suffix, '-#{$suffix}', '');
+  $right:  $prefix + '-right'  + if($suffix, '-#{$suffix}', '');
+  $all:    $prefix +             if($suffix, '-#{$suffix}', '');
+
+  $values: _bolt-collapse-directional-values($values);
+
+  @if _bolt-contains-falsy($values) {
+    @if nth($values, 1) { #{$top}: nth($values, 1) $important; }
+
+    @if length($values) == 1 {
+      @if nth($values, 1) {
+        #{$right}: nth($values, 1) $important;
+        #{$bottom}: nth($values, 1) $important;
+        #{$left}: nth($values, 1) $important;
+      }
+    } @else {
+      @if nth($values, 2) { #{$right}: nth($values, 2) $important; }
+    }
+
+    @if length($values) == 2 {
+      @if nth($values, 1) { #{$bottom}: nth($values, 1) $important; }
+      @if nth($values, 2) { #{$left}: nth($values, 2) $important; }
+    } @else if length($values) == 3 {
+      @if nth($values, 3) { #{$bottom}: nth($values, 3) $important; }
+      @if nth($values, 2) { #{$left}: nth($values, 2) $important; }
+    } @else if length($values) == 4 {
+      @if nth($values, 3) { #{$bottom}: nth($values, 3) $important; }
+      @if nth($values, 4) { #{$left}: nth($values, 4) $important; }
+    }
+  } @else {
+    #{$all}: $values $important;
+  }
+}

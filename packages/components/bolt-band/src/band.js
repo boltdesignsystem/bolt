@@ -1,5 +1,4 @@
-import { customElement, html } from 'lit-element';
-import { BoltElement } from '@bolt/element';
+import { BoltElement, customElement, html } from '@bolt/element';
 
 @customElement('bolt-band')
 class BoltBand extends BoltElement {

@@ -1,0 +1,46 @@
+/* ------------------------------------ *\
+  TOOLS - FONT FAMILY
+\* ------------------------------------ */
+
+////
+/// @group Tools: Typography
+/// @author Mike Mai
+////
+
+/// This returns the font-family for a specific element. Brand fonts are the default, with system fonts as the fallback.
+/// @param {string} $type - Defines the font-family being used for each type of text: heading, body, or code.
+/// @param {boolean} $is_root [false]
+/// @example scss - bolt-font-family mixin
+/// .element {
+///    @include bolt-font-family(body);
+/// }
+@mixin bolt-font-family($type, $is_root: false) {
+  $fallback-font-family: map-get-deep($bolt-font-families, 'font-families', $type, 'fallback-font');
+  $custom-font-family: map-get-deep($bolt-font-families, 'font-families', $type, 'custom-font');
+  $fonts-loaded-class: map-get-deep($bolt-font-families, 'font-families', $type, 'loaded-class');
+
+  $fontFamilyNames: map-keys(map-get($bolt-font-families, 'font-families')); // get the names of all available font families (custom and fallback)
+
+  font-family: $fallback-font-family;
+  font-family: var(--bolt-font-family-#{$type});
+
+  @if $is_root == false {
+    .#{$fonts-loaded-class} & {
+      font-family: $custom-font-family;
+      font-family: var(--bolt-font-family-#{$type});
+    }
+  }
+  @else {
+    @each $fontFamilyName in $fontFamilyNames {
+      --bolt-font-family-#{$fontFamilyName}: #{map-get-deep($bolt-font-families, 'font-families', $fontFamilyName, 'fallback-font')};
+    }
+
+    &.#{$fonts-loaded-class} {
+      @each $fontFamilyName in $fontFamilyNames {
+        --bolt-font-family-#{$fontFamilyName}: #{map-get-deep($bolt-font-families, 'font-families', $fontFamilyName, 'custom-font')};
+      }
+
+      font-family: $custom-font-family;
+    }
+  }
+}

@@ -1,12 +1,12 @@
+import { html, customElement } from '@bolt/element';
 import {
-  define,
   props,
   whichTransitionEvent,
   waitForTransitionEnd,
-} from '@bolt/core/utils';
-import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
+} from '@bolt/core-v3.x/utils';
+import { withLitHtml } from '@bolt/core-v3.x/renderers/renderer-lit-html';
 
-import '@bolt/core/utils/optimized-resize';
+import '@bolt/core-v3.x/utils/optimized-resize';
 
 /*
   Consider using these polyfills to broaden browser support:
@@ -14,10 +14,8 @@ import '@bolt/core/utils/optimized-resize';
     — https://www.npmjs.com/package/nodelist-foreach-polyfill
 */
 
-@define
-class BoltNavPriority extends withLitHtml() {
-  static is = 'bolt-nav-priority';
-
+@customElement('bolt-nav-priority')
+class BoltNavPriority extends withLitHtml {
   constructor(self) {
     self = super(self);
     self.activeLink = false;
