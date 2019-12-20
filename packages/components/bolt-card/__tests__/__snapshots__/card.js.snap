@@ -1,22 +1,20 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<bolt-card> Component add clickable functionality 1`] = `
-<bolt-card url="#!"
-           bolt-component
+exports[`<bolt-card> Component basic usage 1`] = `
+<bolt-card tag="article"
+           theme="none"
+           height="full"
 >
-  <div data-href="#!"
-       class="c-bolt-card"
-  >
-    <div class="c-bolt-card__media">
-      <a href="#!">
+  <replace-with-children class="c-bolt-card">
+    <bolt-card-media>
+      <replace-with-children class="c-bolt-card__media">
         <bolt-image src="/fixtures/landscape-16x9-mountains.jpg"
                     srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w"
-                    alt="Anthem Video"
+                    alt="Image alt."
                     sizes="auto"
                     ratio="1151/638"
                     placeholder-color="hsl(233, 33%, 97%)"
                     placeholder-image="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                    no-lazy
                     style="background-color: hsl(233, 33%, 97%);"
         >
           <bolt-ratio ratio="1151/638">
@@ -24,1329 +22,920 @@ exports[`<bolt-card> Component add clickable functionality 1`] = `
                                    style="padding-bottom: calc((638 / 1151) * 100%); --aspect-ratio: 1.8040752351097;"
             >
               <img class="c-bolt-image__image-placeholder"
-                   alt="Anthem Video"
-                   sizes="auto"
+                   alt="Image alt."
                    src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
               >
-              <img class="c-bolt-image__image"
-                   alt="Anthem Video"
-                   srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w"
-                   sizes="auto"
+              <img class="c-bolt-image__image c-bolt-image__lazyload c-bolt-image__lazyload--fade c-bolt-image__lazyload--blur js-lazyload"
+                   alt="Image alt."
+                   data-srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w"
+                   data-sizes="auto"
+                   srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
                    src="/fixtures/landscape-16x9-mountains.jpg"
               >
+              <noscript>
+                <img class="c-bolt-image__image"
+                     alt="Image alt."
+                     src="/fixtures/landscape-16x9-mountains.jpg"
+                     srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w"
+                >
+              </noscript>
             </replace-with-children>
           </bolt-ratio>
         </bolt-image>
+      </replace-with-children>
+    </bolt-card-media>
+    <bolt-card-body>
+      <replace-with-children class="c-bolt-card__body">
+        <p class="c-bolt-eyebrow c-bolt-eyebrow--regular">
+          This is an eyebrow
+        </p>
+        <h2 class="c-bolt-headline c-bolt-headline--bold c-bolt-headline--large">
+          This is a headline
+        </h2>
+        <p class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--medium">
+          This is a paragraph.
+        </p>
+      </replace-with-children>
+    </bolt-card-body>
+    <bolt-card-actions>
+      <replace-with-children class="c-bolt-card__actions">
+        <bolt-card-action url="https://pega.com">
+          <replace-with-children class="c-bolt-card__action">
+            <bolt-button size="medium"
+                         color="text"
+                         width="full"
+                         border-radius="regular"
+                         align="start"
+                         transform="none"
+                         url="https://pega.com"
+                         target="_self"
+            >
+              <a href="https://pega.com"
+                 class="c-bolt-button c-bolt-button--medium c-bolt-button--text c-bolt-button--full c-bolt-button--border-radius-regular c-bolt-button--start"
+                 is="shadow-root"
+              >
+                <replace-with-children class="c-bolt-button__item">
+                  This is a button
+                </replace-with-children>
+                <replace-with-grandchildren class="c-bolt-button__icon">
+                  <span class="c-bolt-button__icon-sizer">
+                    <bolt-icon slot="after"
+                               name="chevron-right"
+                    >
+                    </bolt-icon>
+                  </span>
+                </replace-with-grandchildren>
+              </a>
+            </bolt-button>
+          </replace-with-children>
+        </bolt-card-action>
+      </replace-with-children>
+    </bolt-card-actions>
+  </replace-with-children>
+</bolt-card>
+`;
+
+exports[`<bolt-card> Component clickable card 1`] = `
+<bolt-card tag="article"
+           theme="none"
+           height="full"
+           url="https://pega.com"
+>
+  <replace-with-children class="c-bolt-card">
+    <bolt-card-link>
+      <a href="https://pega.com"
+         class="c-bolt-card__link"
+      >
+        <replace-with-children class="u-bolt-visuallyhidden">
+          This entire card is clickable
+        </replace-with-children>
       </a>
-    </div>
-    <div class="c-bolt-card__body">
-      <p class="c-bolt-eyebrow c-bolt-eyebrow--regular">
-        Video
-      </p>
-      <h3 class="c-bolt-headline c-bolt-headline--bold c-bolt-headline--large">
-        Anthem: Service Desktop
-      </h3>
-      <p class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--medium">
-        Anthem debuts its next-generation service desktop, driving frictionless customer experiences.
-      </p>
-    </div>
-    <div class="c-bolt-card__footer">
-      <div class="c-bolt-card__footer-item">
-        <bolt-button size="medium"
-                     color="text"
-                     width="full"
-                     border-radius="regular"
-                     align="start"
-                     transform="none"
-                     url="#!"
+    </bolt-card-link>
+    <bolt-card-media>
+      <replace-with-children class="c-bolt-card__media">
+        <bolt-image src="/fixtures/landscape-16x9-mountains.jpg"
+                    srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w"
+                    alt="Image alt."
+                    sizes="auto"
+                    ratio="1151/638"
+                    placeholder-color="hsl(233, 33%, 97%)"
+                    placeholder-image="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                    style="background-color: hsl(233, 33%, 97%);"
         >
-          <a href="#!"
-             class="c-bolt-button c-bolt-button--medium c-bolt-button--text c-bolt-button--full c-bolt-button--border-radius-regular c-bolt-button--start"
-             is="shadow-root"
-          >
-            <replace-with-children class="c-bolt-button__item">
-              Get the report
-            </replace-with-children>
-            <replace-with-grandchildren class="c-bolt-button__icon">
-              <span class="c-bolt-button__icon-sizer">
-                <bolt-icon slot="after"
-                           name="chevron-right"
+          <bolt-ratio ratio="1151/638">
+            <replace-with-children class="c-bolt-ratio"
+                                   style="padding-bottom: calc((638 / 1151) * 100%); --aspect-ratio: 1.8040752351097;"
+            >
+              <img class="c-bolt-image__image-placeholder"
+                   alt="Image alt."
+                   src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+              >
+              <img class="c-bolt-image__image c-bolt-image__lazyload c-bolt-image__lazyload--fade c-bolt-image__lazyload--blur js-lazyload"
+                   alt="Image alt."
+                   data-srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w"
+                   data-sizes="auto"
+                   srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                   src="/fixtures/landscape-16x9-mountains.jpg"
+              >
+              <noscript>
+                <img class="c-bolt-image__image"
+                     alt="Image alt."
+                     src="/fixtures/landscape-16x9-mountains.jpg"
+                     srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w"
                 >
-                </bolt-icon>
-              </span>
-            </replace-with-grandchildren>
-          </a>
-        </bolt-button>
-      </div>
-    </div>
-  </div>
-</bolt-card>
-`;
-
-exports[`<bolt-card> Component basic usage 1`] = `
-<bolt-card bolt-component>
-  <div class="c-bolt-card">
-    <div class="c-bolt-card__media">
-      <bolt-image src="/fixtures/landscape-16x9-mountains.jpg"
-                  srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w"
-                  alt="Anthem Video"
-                  sizes="auto"
-                  ratio="1151/638"
-                  placeholder-color="hsl(233, 33%, 97%)"
-                  placeholder-image="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                  no-lazy
-                  style="background-color: hsl(233, 33%, 97%);"
-      >
-        <bolt-ratio ratio="1151/638">
-          <replace-with-children class="c-bolt-ratio"
-                                 style="padding-bottom: calc((638 / 1151) * 100%); --aspect-ratio: 1.8040752351097;"
-          >
-            <img class="c-bolt-image__image-placeholder"
-                 alt="Anthem Video"
-                 sizes="auto"
-                 src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-            >
-            <img class="c-bolt-image__image"
-                 alt="Anthem Video"
-                 srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w"
-                 sizes="auto"
-                 src="/fixtures/landscape-16x9-mountains.jpg"
-            >
-          </replace-with-children>
-        </bolt-ratio>
-      </bolt-image>
-    </div>
-    <div class="c-bolt-card__body">
-      <p class="c-bolt-eyebrow c-bolt-eyebrow--regular">
-        Video
-      </p>
-      <h3 class="c-bolt-headline c-bolt-headline--bold c-bolt-headline--large">
-        Anthem: Service Desktop
-      </h3>
-      <p class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--medium">
-        Anthem debuts its next-generation service desktop, driving frictionless customer experiences.
-      </p>
-    </div>
-    <div class="c-bolt-card__footer">
-      <div class="c-bolt-card__footer-item">
-        <bolt-button size="medium"
-                     color="text"
-                     width="full"
-                     border-radius="regular"
-                     align="start"
-                     transform="none"
-                     url="#!"
-        >
-          <a href="#!"
-             class="c-bolt-button c-bolt-button--medium c-bolt-button--text c-bolt-button--full c-bolt-button--border-radius-regular c-bolt-button--start"
-             is="shadow-root"
-          >
-            <replace-with-children class="c-bolt-button__item">
-              Get the report
+              </noscript>
             </replace-with-children>
-            <replace-with-grandchildren class="c-bolt-button__icon">
-              <span class="c-bolt-button__icon-sizer">
-                <bolt-icon slot="after"
-                           name="chevron-right"
-                >
-                </bolt-icon>
-              </span>
-            </replace-with-grandchildren>
-          </a>
-        </bolt-button>
-      </div>
-    </div>
-  </div>
-</bolt-card>
-`;
-
-exports[`<bolt-card> Component content tag variations: article 1`] = `
-<bolt-card bolt-component>
-  <div class="c-bolt-card">
-    <div class="c-bolt-card__media">
-      <bolt-image src="/fixtures/landscape-16x9-mountains.jpg"
-                  srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w"
-                  alt="Anthem Video"
-                  sizes="auto"
-                  ratio="1151/638"
-                  placeholder-color="hsl(233, 33%, 97%)"
-                  placeholder-image="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                  no-lazy
-                  style="background-color: hsl(233, 33%, 97%);"
-      >
-        <bolt-ratio ratio="1151/638">
-          <replace-with-children class="c-bolt-ratio"
-                                 style="padding-bottom: calc((638 / 1151) * 100%); --aspect-ratio: 1.8040752351097;"
-          >
-            <img class="c-bolt-image__image-placeholder"
-                 alt="Anthem Video"
-                 sizes="auto"
-                 src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-            >
-            <img class="c-bolt-image__image"
-                 alt="Anthem Video"
-                 srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w"
-                 sizes="auto"
-                 src="/fixtures/landscape-16x9-mountains.jpg"
-            >
-          </replace-with-children>
-        </bolt-ratio>
-      </bolt-image>
-    </div>
-    <article class="c-bolt-card__body">
-      <p class="c-bolt-eyebrow c-bolt-eyebrow--regular">
-        Video
-      </p>
-      <h3 class="c-bolt-headline c-bolt-headline--bold c-bolt-headline--large">
-        Anthem: Service Desktop
-      </h3>
-      <p class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--medium">
-        Anthem debuts its next-generation service desktop, driving frictionless customer experiences.
-      </p>
-    </article>
-    <div class="c-bolt-card__footer">
-      <div class="c-bolt-card__footer-item">
-        <bolt-button size="medium"
-                     color="text"
-                     width="full"
-                     border-radius="regular"
-                     align="start"
-                     transform="none"
-                     url="#!"
-        >
-          <a href="#!"
-             class="c-bolt-button c-bolt-button--medium c-bolt-button--text c-bolt-button--full c-bolt-button--border-radius-regular c-bolt-button--start"
-             is="shadow-root"
-          >
-            <replace-with-children class="c-bolt-button__item">
-              Get the report
-            </replace-with-children>
-            <replace-with-grandchildren class="c-bolt-button__icon">
-              <span class="c-bolt-button__icon-sizer">
-                <bolt-icon slot="after"
-                           name="chevron-right"
-                >
-                </bolt-icon>
-              </span>
-            </replace-with-grandchildren>
-          </a>
-        </bolt-button>
-      </div>
-    </div>
-  </div>
-</bolt-card>
-`;
-
-exports[`<bolt-card> Component content tag variations: div 1`] = `
-<bolt-card bolt-component>
-  <div class="c-bolt-card">
-    <div class="c-bolt-card__media">
-      <bolt-image src="/fixtures/landscape-16x9-mountains.jpg"
-                  srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w"
-                  alt="Anthem Video"
-                  sizes="auto"
-                  ratio="1151/638"
-                  placeholder-color="hsl(233, 33%, 97%)"
-                  placeholder-image="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                  no-lazy
-                  style="background-color: hsl(233, 33%, 97%);"
-      >
-        <bolt-ratio ratio="1151/638">
-          <replace-with-children class="c-bolt-ratio"
-                                 style="padding-bottom: calc((638 / 1151) * 100%); --aspect-ratio: 1.8040752351097;"
-          >
-            <img class="c-bolt-image__image-placeholder"
-                 alt="Anthem Video"
-                 sizes="auto"
-                 src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-            >
-            <img class="c-bolt-image__image"
-                 alt="Anthem Video"
-                 srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w"
-                 sizes="auto"
-                 src="/fixtures/landscape-16x9-mountains.jpg"
-            >
-          </replace-with-children>
-        </bolt-ratio>
-      </bolt-image>
-    </div>
-    <div class="c-bolt-card__body">
-      <p class="c-bolt-eyebrow c-bolt-eyebrow--regular">
-        Video
-      </p>
-      <h3 class="c-bolt-headline c-bolt-headline--bold c-bolt-headline--large">
-        Anthem: Service Desktop
-      </h3>
-      <p class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--medium">
-        Anthem debuts its next-generation service desktop, driving frictionless customer experiences.
-      </p>
-    </div>
-    <div class="c-bolt-card__footer">
-      <div class="c-bolt-card__footer-item">
-        <bolt-button size="medium"
-                     color="text"
-                     width="full"
-                     border-radius="regular"
-                     align="start"
-                     transform="none"
-                     url="#!"
-        >
-          <a href="#!"
-             class="c-bolt-button c-bolt-button--medium c-bolt-button--text c-bolt-button--full c-bolt-button--border-radius-regular c-bolt-button--start"
-             is="shadow-root"
-          >
-            <replace-with-children class="c-bolt-button__item">
-              Get the report
-            </replace-with-children>
-            <replace-with-grandchildren class="c-bolt-button__icon">
-              <span class="c-bolt-button__icon-sizer">
-                <bolt-icon slot="after"
-                           name="chevron-right"
-                >
-                </bolt-icon>
-              </span>
-            </replace-with-grandchildren>
-          </a>
-        </bolt-button>
-      </div>
-    </div>
-  </div>
-</bolt-card>
-`;
-
-exports[`<bolt-card> Component content tag variations: figcaption 1`] = `
-<bolt-card bolt-component>
-  <div class="c-bolt-card">
-    <div class="c-bolt-card__media">
-      <bolt-image src="/fixtures/landscape-16x9-mountains.jpg"
-                  srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w"
-                  alt="Anthem Video"
-                  sizes="auto"
-                  ratio="1151/638"
-                  placeholder-color="hsl(233, 33%, 97%)"
-                  placeholder-image="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                  no-lazy
-                  style="background-color: hsl(233, 33%, 97%);"
-      >
-        <bolt-ratio ratio="1151/638">
-          <replace-with-children class="c-bolt-ratio"
-                                 style="padding-bottom: calc((638 / 1151) * 100%); --aspect-ratio: 1.8040752351097;"
-          >
-            <img class="c-bolt-image__image-placeholder"
-                 alt="Anthem Video"
-                 sizes="auto"
-                 src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-            >
-            <img class="c-bolt-image__image"
-                 alt="Anthem Video"
-                 srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w"
-                 sizes="auto"
-                 src="/fixtures/landscape-16x9-mountains.jpg"
-            >
-          </replace-with-children>
-        </bolt-ratio>
-      </bolt-image>
-    </div>
-    <figcaption class="c-bolt-card__body">
-      <p class="c-bolt-eyebrow c-bolt-eyebrow--regular">
-        Video
-      </p>
-      <h3 class="c-bolt-headline c-bolt-headline--bold c-bolt-headline--large">
-        Anthem: Service Desktop
-      </h3>
-      <p class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--medium">
-        Anthem debuts its next-generation service desktop, driving frictionless customer experiences.
-      </p>
-    </figcaption>
-    <div class="c-bolt-card__footer">
-      <div class="c-bolt-card__footer-item">
-        <bolt-button size="medium"
-                     color="text"
-                     width="full"
-                     border-radius="regular"
-                     align="start"
-                     transform="none"
-                     url="#!"
-        >
-          <a href="#!"
-             class="c-bolt-button c-bolt-button--medium c-bolt-button--text c-bolt-button--full c-bolt-button--border-radius-regular c-bolt-button--start"
-             is="shadow-root"
-          >
-            <replace-with-children class="c-bolt-button__item">
-              Get the report
-            </replace-with-children>
-            <replace-with-grandchildren class="c-bolt-button__icon">
-              <span class="c-bolt-button__icon-sizer">
-                <bolt-icon slot="after"
-                           name="chevron-right"
-                >
-                </bolt-icon>
-              </span>
-            </replace-with-grandchildren>
-          </a>
-        </bolt-button>
-      </div>
-    </div>
-  </div>
-</bolt-card>
-`;
-
-exports[`<bolt-card> Component content tag variations: section 1`] = `
-<bolt-card bolt-component>
-  <div class="c-bolt-card">
-    <div class="c-bolt-card__media">
-      <bolt-image src="/fixtures/landscape-16x9-mountains.jpg"
-                  srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w"
-                  alt="Anthem Video"
-                  sizes="auto"
-                  ratio="1151/638"
-                  placeholder-color="hsl(233, 33%, 97%)"
-                  placeholder-image="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                  no-lazy
-                  style="background-color: hsl(233, 33%, 97%);"
-      >
-        <bolt-ratio ratio="1151/638">
-          <replace-with-children class="c-bolt-ratio"
-                                 style="padding-bottom: calc((638 / 1151) * 100%); --aspect-ratio: 1.8040752351097;"
-          >
-            <img class="c-bolt-image__image-placeholder"
-                 alt="Anthem Video"
-                 sizes="auto"
-                 src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-            >
-            <img class="c-bolt-image__image"
-                 alt="Anthem Video"
-                 srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w"
-                 sizes="auto"
-                 src="/fixtures/landscape-16x9-mountains.jpg"
-            >
-          </replace-with-children>
-        </bolt-ratio>
-      </bolt-image>
-    </div>
-    <section class="c-bolt-card__body">
-      <p class="c-bolt-eyebrow c-bolt-eyebrow--regular">
-        Video
-      </p>
-      <h3 class="c-bolt-headline c-bolt-headline--bold c-bolt-headline--large">
-        Anthem: Service Desktop
-      </h3>
-      <p class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--medium">
-        Anthem debuts its next-generation service desktop, driving frictionless customer experiences.
-      </p>
-    </section>
-    <div class="c-bolt-card__footer">
-      <div class="c-bolt-card__footer-item">
-        <bolt-button size="medium"
-                     color="text"
-                     width="full"
-                     border-radius="regular"
-                     align="start"
-                     transform="none"
-                     url="#!"
-        >
-          <a href="#!"
-             class="c-bolt-button c-bolt-button--medium c-bolt-button--text c-bolt-button--full c-bolt-button--border-radius-regular c-bolt-button--start"
-             is="shadow-root"
-          >
-            <replace-with-children class="c-bolt-button__item">
-              Get the report
-            </replace-with-children>
-            <replace-with-grandchildren class="c-bolt-button__icon">
-              <span class="c-bolt-button__icon-sizer">
-                <bolt-icon slot="after"
-                           name="chevron-right"
-                >
-                </bolt-icon>
-              </span>
-            </replace-with-grandchildren>
-          </a>
-        </bolt-button>
-      </div>
-    </div>
-  </div>
-</bolt-card>
-`;
-
-exports[`<bolt-card> Component only text 1`] = `
-<bolt-card bolt-component>
-  <div class="c-bolt-card">
-    <div class="c-bolt-card__media">
-    </div>
-    <div class="c-bolt-card__body">
-      <h3 class="c-bolt-headline c-bolt-headline--bold c-bolt-headline--large">
-        Anthem: Service Desktop
-      </h3>
-      <p class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--medium">
-        Anthem debuts its next-generation service desktop, driving frictionless customer experiences.
-      </p>
-    </div>
-    <div class="c-bolt-card__footer">
-    </div>
-  </div>
+          </bolt-ratio>
+        </bolt-image>
+      </replace-with-children>
+    </bolt-card-media>
+    <bolt-card-body>
+      <replace-with-children class="c-bolt-card__body">
+        <p class="c-bolt-eyebrow c-bolt-eyebrow--regular">
+          This is an eyebrow
+        </p>
+        <h2 class="c-bolt-headline c-bolt-headline--bold c-bolt-headline--large">
+          This is a headline
+        </h2>
+        <p class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--medium">
+          This is a paragraph.
+        </p>
+      </replace-with-children>
+    </bolt-card-body>
+  </replace-with-children>
 </bolt-card>
 `;
 
 exports[`<bolt-card> Component tag variations: article 1`] = `
-<bolt-card bolt-component>
-  <article class="c-bolt-card">
-    <div class="c-bolt-card__media">
-      <bolt-image src="/fixtures/landscape-16x9-mountains.jpg"
-                  srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w"
-                  alt="Anthem Video"
-                  sizes="auto"
-                  ratio="1151/638"
-                  placeholder-color="hsl(233, 33%, 97%)"
-                  placeholder-image="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                  no-lazy
-                  style="background-color: hsl(233, 33%, 97%);"
-      >
-        <bolt-ratio ratio="1151/638">
-          <replace-with-children class="c-bolt-ratio"
-                                 style="padding-bottom: calc((638 / 1151) * 100%); --aspect-ratio: 1.8040752351097;"
-          >
-            <img class="c-bolt-image__image-placeholder"
-                 alt="Anthem Video"
-                 sizes="auto"
-                 src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-            >
-            <img class="c-bolt-image__image"
-                 alt="Anthem Video"
-                 srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w"
-                 sizes="auto"
-                 src="/fixtures/landscape-16x9-mountains.jpg"
-            >
-          </replace-with-children>
-        </bolt-ratio>
-      </bolt-image>
-    </div>
-    <div class="c-bolt-card__body">
-      <p class="c-bolt-eyebrow c-bolt-eyebrow--regular">
-        Video
-      </p>
-      <h3 class="c-bolt-headline c-bolt-headline--bold c-bolt-headline--large">
-        Anthem: Service Desktop
-      </h3>
-      <p class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--medium">
-        Anthem debuts its next-generation service desktop, driving frictionless customer experiences.
-      </p>
-    </div>
-    <div class="c-bolt-card__footer">
-      <div class="c-bolt-card__footer-item">
-        <bolt-button size="medium"
-                     color="text"
-                     width="full"
-                     border-radius="regular"
-                     align="start"
-                     transform="none"
-                     url="#!"
+<bolt-card tag="article"
+           theme="none"
+           height="full"
+>
+  <replace-with-children class="c-bolt-card">
+    <bolt-card-media>
+      <replace-with-children class="c-bolt-card__media">
+        <bolt-image src="/fixtures/landscape-16x9-mountains.jpg"
+                    srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w"
+                    alt="Image alt."
+                    sizes="auto"
+                    ratio="1151/638"
+                    placeholder-color="hsl(233, 33%, 97%)"
+                    placeholder-image="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                    style="background-color: hsl(233, 33%, 97%);"
         >
-          <a href="#!"
-             class="c-bolt-button c-bolt-button--medium c-bolt-button--text c-bolt-button--full c-bolt-button--border-radius-regular c-bolt-button--start"
-             is="shadow-root"
-          >
-            <replace-with-children class="c-bolt-button__item">
-              Get the report
-            </replace-with-children>
-            <replace-with-grandchildren class="c-bolt-button__icon">
-              <span class="c-bolt-button__icon-sizer">
-                <bolt-icon slot="after"
-                           name="chevron-right"
+          <bolt-ratio ratio="1151/638">
+            <replace-with-children class="c-bolt-ratio"
+                                   style="padding-bottom: calc((638 / 1151) * 100%); --aspect-ratio: 1.8040752351097;"
+            >
+              <img class="c-bolt-image__image-placeholder"
+                   alt="Image alt."
+                   src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+              >
+              <img class="c-bolt-image__image c-bolt-image__lazyload c-bolt-image__lazyload--fade c-bolt-image__lazyload--blur js-lazyload"
+                   alt="Image alt."
+                   data-srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w"
+                   data-sizes="auto"
+                   srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                   src="/fixtures/landscape-16x9-mountains.jpg"
+              >
+              <noscript>
+                <img class="c-bolt-image__image"
+                     alt="Image alt."
+                     src="/fixtures/landscape-16x9-mountains.jpg"
+                     srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w"
                 >
-                </bolt-icon>
-              </span>
-            </replace-with-grandchildren>
-          </a>
-        </bolt-button>
-      </div>
-    </div>
-  </article>
+              </noscript>
+            </replace-with-children>
+          </bolt-ratio>
+        </bolt-image>
+      </replace-with-children>
+    </bolt-card-media>
+    <bolt-card-body>
+      <replace-with-children class="c-bolt-card__body">
+        <p class="c-bolt-eyebrow c-bolt-eyebrow--regular">
+          This is an eyebrow
+        </p>
+        <h2 class="c-bolt-headline c-bolt-headline--bold c-bolt-headline--large">
+          This is a headline
+        </h2>
+        <p class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--medium">
+          This is a paragraph.
+        </p>
+      </replace-with-children>
+    </bolt-card-body>
+  </replace-with-children>
 </bolt-card>
 `;
 
 exports[`<bolt-card> Component tag variations: div 1`] = `
-<bolt-card bolt-component>
-  <div class="c-bolt-card">
-    <div class="c-bolt-card__media">
-      <bolt-image src="/fixtures/landscape-16x9-mountains.jpg"
-                  srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w"
-                  alt="Anthem Video"
-                  sizes="auto"
-                  ratio="1151/638"
-                  placeholder-color="hsl(233, 33%, 97%)"
-                  placeholder-image="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                  no-lazy
-                  style="background-color: hsl(233, 33%, 97%);"
-      >
-        <bolt-ratio ratio="1151/638">
-          <replace-with-children class="c-bolt-ratio"
-                                 style="padding-bottom: calc((638 / 1151) * 100%); --aspect-ratio: 1.8040752351097;"
-          >
-            <img class="c-bolt-image__image-placeholder"
-                 alt="Anthem Video"
-                 sizes="auto"
-                 src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-            >
-            <img class="c-bolt-image__image"
-                 alt="Anthem Video"
-                 srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w"
-                 sizes="auto"
-                 src="/fixtures/landscape-16x9-mountains.jpg"
-            >
-          </replace-with-children>
-        </bolt-ratio>
-      </bolt-image>
-    </div>
-    <div class="c-bolt-card__body">
-      <p class="c-bolt-eyebrow c-bolt-eyebrow--regular">
-        Video
-      </p>
-      <h3 class="c-bolt-headline c-bolt-headline--bold c-bolt-headline--large">
-        Anthem: Service Desktop
-      </h3>
-      <p class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--medium">
-        Anthem debuts its next-generation service desktop, driving frictionless customer experiences.
-      </p>
-    </div>
-    <div class="c-bolt-card__footer">
-      <div class="c-bolt-card__footer-item">
-        <bolt-button size="medium"
-                     color="text"
-                     width="full"
-                     border-radius="regular"
-                     align="start"
-                     transform="none"
-                     url="#!"
+<bolt-card tag="div"
+           theme="none"
+           height="full"
+>
+  <replace-with-children class="c-bolt-card">
+    <bolt-card-media>
+      <replace-with-children class="c-bolt-card__media">
+        <bolt-image src="/fixtures/landscape-16x9-mountains.jpg"
+                    srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w"
+                    alt="Image alt."
+                    sizes="auto"
+                    ratio="1151/638"
+                    placeholder-color="hsl(233, 33%, 97%)"
+                    placeholder-image="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                    style="background-color: hsl(233, 33%, 97%);"
         >
-          <a href="#!"
-             class="c-bolt-button c-bolt-button--medium c-bolt-button--text c-bolt-button--full c-bolt-button--border-radius-regular c-bolt-button--start"
-             is="shadow-root"
-          >
-            <replace-with-children class="c-bolt-button__item">
-              Get the report
-            </replace-with-children>
-            <replace-with-grandchildren class="c-bolt-button__icon">
-              <span class="c-bolt-button__icon-sizer">
-                <bolt-icon slot="after"
-                           name="chevron-right"
+          <bolt-ratio ratio="1151/638">
+            <replace-with-children class="c-bolt-ratio"
+                                   style="padding-bottom: calc((638 / 1151) * 100%); --aspect-ratio: 1.8040752351097;"
+            >
+              <img class="c-bolt-image__image-placeholder"
+                   alt="Image alt."
+                   src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+              >
+              <img class="c-bolt-image__image c-bolt-image__lazyload c-bolt-image__lazyload--fade c-bolt-image__lazyload--blur js-lazyload"
+                   alt="Image alt."
+                   data-srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w"
+                   data-sizes="auto"
+                   srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                   src="/fixtures/landscape-16x9-mountains.jpg"
+              >
+              <noscript>
+                <img class="c-bolt-image__image"
+                     alt="Image alt."
+                     src="/fixtures/landscape-16x9-mountains.jpg"
+                     srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w"
                 >
-                </bolt-icon>
-              </span>
-            </replace-with-grandchildren>
-          </a>
-        </bolt-button>
-      </div>
-    </div>
-  </div>
+              </noscript>
+            </replace-with-children>
+          </bolt-ratio>
+        </bolt-image>
+      </replace-with-children>
+    </bolt-card-media>
+    <bolt-card-body>
+      <replace-with-children class="c-bolt-card__body">
+        <p class="c-bolt-eyebrow c-bolt-eyebrow--regular">
+          This is an eyebrow
+        </p>
+        <h2 class="c-bolt-headline c-bolt-headline--bold c-bolt-headline--large">
+          This is a headline
+        </h2>
+        <p class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--medium">
+          This is a paragraph.
+        </p>
+      </replace-with-children>
+    </bolt-card-body>
+  </replace-with-children>
 </bolt-card>
 `;
 
 exports[`<bolt-card> Component tag variations: figure 1`] = `
-<bolt-card bolt-component>
-  <figure class="c-bolt-card">
-    <div class="c-bolt-card__media">
-      <bolt-image src="/fixtures/landscape-16x9-mountains.jpg"
-                  srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w"
-                  alt="Anthem Video"
-                  sizes="auto"
-                  ratio="1151/638"
-                  placeholder-color="hsl(233, 33%, 97%)"
-                  placeholder-image="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                  no-lazy
-                  style="background-color: hsl(233, 33%, 97%);"
-      >
-        <bolt-ratio ratio="1151/638">
-          <replace-with-children class="c-bolt-ratio"
-                                 style="padding-bottom: calc((638 / 1151) * 100%); --aspect-ratio: 1.8040752351097;"
-          >
-            <img class="c-bolt-image__image-placeholder"
-                 alt="Anthem Video"
-                 sizes="auto"
-                 src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-            >
-            <img class="c-bolt-image__image"
-                 alt="Anthem Video"
-                 srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w"
-                 sizes="auto"
-                 src="/fixtures/landscape-16x9-mountains.jpg"
-            >
-          </replace-with-children>
-        </bolt-ratio>
-      </bolt-image>
-    </div>
-    <div class="c-bolt-card__body">
-      <p class="c-bolt-eyebrow c-bolt-eyebrow--regular">
-        Video
-      </p>
-      <h3 class="c-bolt-headline c-bolt-headline--bold c-bolt-headline--large">
-        Anthem: Service Desktop
-      </h3>
-      <p class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--medium">
-        Anthem debuts its next-generation service desktop, driving frictionless customer experiences.
-      </p>
-    </div>
-    <div class="c-bolt-card__footer">
-      <div class="c-bolt-card__footer-item">
-        <bolt-button size="medium"
-                     color="text"
-                     width="full"
-                     border-radius="regular"
-                     align="start"
-                     transform="none"
-                     url="#!"
+<bolt-card tag="figure"
+           theme="none"
+           height="full"
+>
+  <replace-with-children class="c-bolt-card">
+    <bolt-card-media>
+      <replace-with-children class="c-bolt-card__media">
+        <bolt-image src="/fixtures/landscape-16x9-mountains.jpg"
+                    srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w"
+                    alt="Image alt."
+                    sizes="auto"
+                    ratio="1151/638"
+                    placeholder-color="hsl(233, 33%, 97%)"
+                    placeholder-image="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                    style="background-color: hsl(233, 33%, 97%);"
         >
-          <a href="#!"
-             class="c-bolt-button c-bolt-button--medium c-bolt-button--text c-bolt-button--full c-bolt-button--border-radius-regular c-bolt-button--start"
-             is="shadow-root"
-          >
-            <replace-with-children class="c-bolt-button__item">
-              Get the report
-            </replace-with-children>
-            <replace-with-grandchildren class="c-bolt-button__icon">
-              <span class="c-bolt-button__icon-sizer">
-                <bolt-icon slot="after"
-                           name="chevron-right"
-                >
-                </bolt-icon>
-              </span>
-            </replace-with-grandchildren>
-          </a>
-        </bolt-button>
-      </div>
-    </div>
-  </figure>
-</bolt-card>
-`;
-
-exports[`<bolt-card> Component tag variations: section 1`] = `
-<bolt-card bolt-component>
-  <section class="c-bolt-card">
-    <div class="c-bolt-card__media">
-      <bolt-image src="/fixtures/landscape-16x9-mountains.jpg"
-                  srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w"
-                  alt="Anthem Video"
-                  sizes="auto"
-                  ratio="1151/638"
-                  placeholder-color="hsl(233, 33%, 97%)"
-                  placeholder-image="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                  no-lazy
-                  style="background-color: hsl(233, 33%, 97%);"
-      >
-        <bolt-ratio ratio="1151/638">
-          <replace-with-children class="c-bolt-ratio"
-                                 style="padding-bottom: calc((638 / 1151) * 100%); --aspect-ratio: 1.8040752351097;"
-          >
-            <img class="c-bolt-image__image-placeholder"
-                 alt="Anthem Video"
-                 sizes="auto"
-                 src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+          <bolt-ratio ratio="1151/638">
+            <replace-with-children class="c-bolt-ratio"
+                                   style="padding-bottom: calc((638 / 1151) * 100%); --aspect-ratio: 1.8040752351097;"
             >
-            <img class="c-bolt-image__image"
-                 alt="Anthem Video"
-                 srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w"
-                 sizes="auto"
-                 src="/fixtures/landscape-16x9-mountains.jpg"
-            >
-          </replace-with-children>
-        </bolt-ratio>
-      </bolt-image>
-    </div>
-    <div class="c-bolt-card__body">
-      <p class="c-bolt-eyebrow c-bolt-eyebrow--regular">
-        Video
-      </p>
-      <h3 class="c-bolt-headline c-bolt-headline--bold c-bolt-headline--large">
-        Anthem: Service Desktop
-      </h3>
-      <p class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--medium">
-        Anthem debuts its next-generation service desktop, driving frictionless customer experiences.
-      </p>
-    </div>
-    <div class="c-bolt-card__footer">
-      <div class="c-bolt-card__footer-item">
-        <bolt-button size="medium"
-                     color="text"
-                     width="full"
-                     border-radius="regular"
-                     align="start"
-                     transform="none"
-                     url="#!"
-        >
-          <a href="#!"
-             class="c-bolt-button c-bolt-button--medium c-bolt-button--text c-bolt-button--full c-bolt-button--border-radius-regular c-bolt-button--start"
-             is="shadow-root"
-          >
-            <replace-with-children class="c-bolt-button__item">
-              Get the report
-            </replace-with-children>
-            <replace-with-grandchildren class="c-bolt-button__icon">
-              <span class="c-bolt-button__icon-sizer">
-                <bolt-icon slot="after"
-                           name="chevron-right"
+              <img class="c-bolt-image__image-placeholder"
+                   alt="Image alt."
+                   src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+              >
+              <img class="c-bolt-image__image c-bolt-image__lazyload c-bolt-image__lazyload--fade c-bolt-image__lazyload--blur js-lazyload"
+                   alt="Image alt."
+                   data-srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w"
+                   data-sizes="auto"
+                   srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                   src="/fixtures/landscape-16x9-mountains.jpg"
+              >
+              <noscript>
+                <img class="c-bolt-image__image"
+                     alt="Image alt."
+                     src="/fixtures/landscape-16x9-mountains.jpg"
+                     srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w"
                 >
-                </bolt-icon>
-              </span>
-            </replace-with-grandchildren>
-          </a>
-        </bolt-button>
-      </div>
-    </div>
-  </section>
+              </noscript>
+            </replace-with-children>
+          </bolt-ratio>
+        </bolt-image>
+      </replace-with-children>
+    </bolt-card-media>
+    <bolt-card-body>
+      <replace-with-children class="c-bolt-card__body">
+        <p class="c-bolt-eyebrow c-bolt-eyebrow--regular">
+          This is an eyebrow
+        </p>
+        <h2 class="c-bolt-headline c-bolt-headline--bold c-bolt-headline--large">
+          This is a headline
+        </h2>
+        <p class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--medium">
+          This is a paragraph.
+        </p>
+      </replace-with-children>
+    </bolt-card-body>
+  </replace-with-children>
 </bolt-card>
 `;
 
 exports[`<bolt-card> Component theme variations: dark 1`] = `
-<bolt-card class="t-bolt-dark"
-           bolt-component
+<bolt-card tag="article"
+           theme="dark"
+           height="full"
 >
-  <div class="c-bolt-card">
-    <div class="c-bolt-card__media">
-      <bolt-image src="/fixtures/landscape-16x9-mountains.jpg"
-                  srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w"
-                  alt="Anthem Video"
-                  sizes="auto"
-                  ratio="1151/638"
-                  placeholder-color="hsl(233, 33%, 97%)"
-                  placeholder-image="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                  no-lazy
-                  style="background-color: hsl(233, 33%, 97%);"
-      >
-        <bolt-ratio ratio="1151/638">
-          <replace-with-children class="c-bolt-ratio"
-                                 style="padding-bottom: calc((638 / 1151) * 100%); --aspect-ratio: 1.8040752351097;"
-          >
-            <img class="c-bolt-image__image-placeholder"
-                 alt="Anthem Video"
-                 sizes="auto"
-                 src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-            >
-            <img class="c-bolt-image__image"
-                 alt="Anthem Video"
-                 srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w"
-                 sizes="auto"
-                 src="/fixtures/landscape-16x9-mountains.jpg"
-            >
-          </replace-with-children>
-        </bolt-ratio>
-      </bolt-image>
-    </div>
-    <div class="c-bolt-card__body">
-      <p class="c-bolt-eyebrow c-bolt-eyebrow--regular">
-        Video
-      </p>
-      <h3 class="c-bolt-headline c-bolt-headline--bold c-bolt-headline--large">
-        Anthem: Service Desktop
-      </h3>
-      <p class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--medium">
-        Anthem debuts its next-generation service desktop, driving frictionless customer experiences.
-      </p>
-    </div>
-    <div class="c-bolt-card__footer">
-      <div class="c-bolt-card__footer-item">
-        <bolt-button size="medium"
-                     color="text"
-                     width="full"
-                     border-radius="regular"
-                     align="start"
-                     transform="none"
-                     url="#!"
+  <replace-with-children class="c-bolt-card t-bolt-dark">
+    <bolt-card-media>
+      <replace-with-children class="c-bolt-card__media">
+        <bolt-image src="/fixtures/landscape-16x9-mountains.jpg"
+                    srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w"
+                    alt="Image alt."
+                    sizes="auto"
+                    ratio="1151/638"
+                    placeholder-color="hsl(233, 33%, 97%)"
+                    placeholder-image="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                    style="background-color: hsl(233, 33%, 97%);"
         >
-          <a href="#!"
-             class="c-bolt-button c-bolt-button--medium c-bolt-button--text c-bolt-button--full c-bolt-button--border-radius-regular c-bolt-button--start"
-             is="shadow-root"
-          >
-            <replace-with-children class="c-bolt-button__item">
-              Get the report
-            </replace-with-children>
-            <replace-with-grandchildren class="c-bolt-button__icon">
-              <span class="c-bolt-button__icon-sizer">
-                <bolt-icon slot="after"
-                           name="chevron-right"
+          <bolt-ratio ratio="1151/638">
+            <replace-with-children class="c-bolt-ratio"
+                                   style="padding-bottom: calc((638 / 1151) * 100%); --aspect-ratio: 1.8040752351097;"
+            >
+              <img class="c-bolt-image__image-placeholder"
+                   alt="Image alt."
+                   src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+              >
+              <img class="c-bolt-image__image c-bolt-image__lazyload c-bolt-image__lazyload--fade c-bolt-image__lazyload--blur js-lazyload"
+                   alt="Image alt."
+                   data-srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w"
+                   data-sizes="auto"
+                   srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                   src="/fixtures/landscape-16x9-mountains.jpg"
+              >
+              <noscript>
+                <img class="c-bolt-image__image"
+                     alt="Image alt."
+                     src="/fixtures/landscape-16x9-mountains.jpg"
+                     srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w"
                 >
-                </bolt-icon>
-              </span>
-            </replace-with-grandchildren>
-          </a>
-        </bolt-button>
-      </div>
-    </div>
-  </div>
+              </noscript>
+            </replace-with-children>
+          </bolt-ratio>
+        </bolt-image>
+      </replace-with-children>
+    </bolt-card-media>
+    <bolt-card-body>
+      <replace-with-children class="c-bolt-card__body">
+        <p class="c-bolt-eyebrow c-bolt-eyebrow--regular">
+          This is an eyebrow
+        </p>
+        <h2 class="c-bolt-headline c-bolt-headline--bold c-bolt-headline--large">
+          This is a headline
+        </h2>
+        <p class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--medium">
+          This is a paragraph.
+        </p>
+      </replace-with-children>
+    </bolt-card-body>
+  </replace-with-children>
 </bolt-card>
 `;
 
 exports[`<bolt-card> Component theme variations: light 1`] = `
-<bolt-card class="t-bolt-light"
-           bolt-component
+<bolt-card tag="article"
+           theme="light"
+           height="full"
 >
-  <div class="c-bolt-card">
-    <div class="c-bolt-card__media">
-      <bolt-image src="/fixtures/landscape-16x9-mountains.jpg"
-                  srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w"
-                  alt="Anthem Video"
-                  sizes="auto"
-                  ratio="1151/638"
-                  placeholder-color="hsl(233, 33%, 97%)"
-                  placeholder-image="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                  no-lazy
-                  style="background-color: hsl(233, 33%, 97%);"
-      >
-        <bolt-ratio ratio="1151/638">
-          <replace-with-children class="c-bolt-ratio"
-                                 style="padding-bottom: calc((638 / 1151) * 100%); --aspect-ratio: 1.8040752351097;"
-          >
-            <img class="c-bolt-image__image-placeholder"
-                 alt="Anthem Video"
-                 sizes="auto"
-                 src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-            >
-            <img class="c-bolt-image__image"
-                 alt="Anthem Video"
-                 srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w"
-                 sizes="auto"
-                 src="/fixtures/landscape-16x9-mountains.jpg"
-            >
-          </replace-with-children>
-        </bolt-ratio>
-      </bolt-image>
-    </div>
-    <div class="c-bolt-card__body">
-      <p class="c-bolt-eyebrow c-bolt-eyebrow--regular">
-        Video
-      </p>
-      <h3 class="c-bolt-headline c-bolt-headline--bold c-bolt-headline--large">
-        Anthem: Service Desktop
-      </h3>
-      <p class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--medium">
-        Anthem debuts its next-generation service desktop, driving frictionless customer experiences.
-      </p>
-    </div>
-    <div class="c-bolt-card__footer">
-      <div class="c-bolt-card__footer-item">
-        <bolt-button size="medium"
-                     color="text"
-                     width="full"
-                     border-radius="regular"
-                     align="start"
-                     transform="none"
-                     url="#!"
+  <replace-with-children class="c-bolt-card t-bolt-light">
+    <bolt-card-media>
+      <replace-with-children class="c-bolt-card__media">
+        <bolt-image src="/fixtures/landscape-16x9-mountains.jpg"
+                    srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w"
+                    alt="Image alt."
+                    sizes="auto"
+                    ratio="1151/638"
+                    placeholder-color="hsl(233, 33%, 97%)"
+                    placeholder-image="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                    style="background-color: hsl(233, 33%, 97%);"
         >
-          <a href="#!"
-             class="c-bolt-button c-bolt-button--medium c-bolt-button--text c-bolt-button--full c-bolt-button--border-radius-regular c-bolt-button--start"
-             is="shadow-root"
-          >
-            <replace-with-children class="c-bolt-button__item">
-              Get the report
-            </replace-with-children>
-            <replace-with-grandchildren class="c-bolt-button__icon">
-              <span class="c-bolt-button__icon-sizer">
-                <bolt-icon slot="after"
-                           name="chevron-right"
+          <bolt-ratio ratio="1151/638">
+            <replace-with-children class="c-bolt-ratio"
+                                   style="padding-bottom: calc((638 / 1151) * 100%); --aspect-ratio: 1.8040752351097;"
+            >
+              <img class="c-bolt-image__image-placeholder"
+                   alt="Image alt."
+                   src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+              >
+              <img class="c-bolt-image__image c-bolt-image__lazyload c-bolt-image__lazyload--fade c-bolt-image__lazyload--blur js-lazyload"
+                   alt="Image alt."
+                   data-srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w"
+                   data-sizes="auto"
+                   srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                   src="/fixtures/landscape-16x9-mountains.jpg"
+              >
+              <noscript>
+                <img class="c-bolt-image__image"
+                     alt="Image alt."
+                     src="/fixtures/landscape-16x9-mountains.jpg"
+                     srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w"
                 >
-                </bolt-icon>
-              </span>
-            </replace-with-grandchildren>
-          </a>
-        </bolt-button>
-      </div>
-    </div>
-  </div>
+              </noscript>
+            </replace-with-children>
+          </bolt-ratio>
+        </bolt-image>
+      </replace-with-children>
+    </bolt-card-media>
+    <bolt-card-body>
+      <replace-with-children class="c-bolt-card__body">
+        <p class="c-bolt-eyebrow c-bolt-eyebrow--regular">
+          This is an eyebrow
+        </p>
+        <h2 class="c-bolt-headline c-bolt-headline--bold c-bolt-headline--large">
+          This is a headline
+        </h2>
+        <p class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--medium">
+          This is a paragraph.
+        </p>
+      </replace-with-children>
+    </bolt-card-body>
+  </replace-with-children>
+</bolt-card>
+`;
+
+exports[`<bolt-card> Component theme variations: none 1`] = `
+<bolt-card tag="article"
+           theme="none"
+           height="full"
+>
+  <replace-with-children class="c-bolt-card">
+    <bolt-card-media>
+      <replace-with-children class="c-bolt-card__media">
+        <bolt-image src="/fixtures/landscape-16x9-mountains.jpg"
+                    srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w"
+                    alt="Image alt."
+                    sizes="auto"
+                    ratio="1151/638"
+                    placeholder-color="hsl(233, 33%, 97%)"
+                    placeholder-image="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                    style="background-color: hsl(233, 33%, 97%);"
+        >
+          <bolt-ratio ratio="1151/638">
+            <replace-with-children class="c-bolt-ratio"
+                                   style="padding-bottom: calc((638 / 1151) * 100%); --aspect-ratio: 1.8040752351097;"
+            >
+              <img class="c-bolt-image__image-placeholder"
+                   alt="Image alt."
+                   src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+              >
+              <img class="c-bolt-image__image c-bolt-image__lazyload c-bolt-image__lazyload--fade c-bolt-image__lazyload--blur js-lazyload"
+                   alt="Image alt."
+                   data-srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w"
+                   data-sizes="auto"
+                   srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                   src="/fixtures/landscape-16x9-mountains.jpg"
+              >
+              <noscript>
+                <img class="c-bolt-image__image"
+                     alt="Image alt."
+                     src="/fixtures/landscape-16x9-mountains.jpg"
+                     srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w"
+                >
+              </noscript>
+            </replace-with-children>
+          </bolt-ratio>
+        </bolt-image>
+      </replace-with-children>
+    </bolt-card-media>
+    <bolt-card-body>
+      <replace-with-children class="c-bolt-card__body">
+        <p class="c-bolt-eyebrow c-bolt-eyebrow--regular">
+          This is an eyebrow
+        </p>
+        <h2 class="c-bolt-headline c-bolt-headline--bold c-bolt-headline--large">
+          This is a headline
+        </h2>
+        <p class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--medium">
+          This is a paragraph.
+        </p>
+      </replace-with-children>
+    </bolt-card-body>
+  </replace-with-children>
 </bolt-card>
 `;
 
 exports[`<bolt-card> Component theme variations: xdark 1`] = `
-<bolt-card class="t-bolt-xdark"
-           bolt-component
+<bolt-card tag="article"
+           theme="xdark"
+           height="full"
 >
-  <div class="c-bolt-card">
-    <div class="c-bolt-card__media">
-      <bolt-image src="/fixtures/landscape-16x9-mountains.jpg"
-                  srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w"
-                  alt="Anthem Video"
-                  sizes="auto"
-                  ratio="1151/638"
-                  placeholder-color="hsl(233, 33%, 97%)"
-                  placeholder-image="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                  no-lazy
-                  style="background-color: hsl(233, 33%, 97%);"
-      >
-        <bolt-ratio ratio="1151/638">
-          <replace-with-children class="c-bolt-ratio"
-                                 style="padding-bottom: calc((638 / 1151) * 100%); --aspect-ratio: 1.8040752351097;"
-          >
-            <img class="c-bolt-image__image-placeholder"
-                 alt="Anthem Video"
-                 sizes="auto"
-                 src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-            >
-            <img class="c-bolt-image__image"
-                 alt="Anthem Video"
-                 srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w"
-                 sizes="auto"
-                 src="/fixtures/landscape-16x9-mountains.jpg"
-            >
-          </replace-with-children>
-        </bolt-ratio>
-      </bolt-image>
-    </div>
-    <div class="c-bolt-card__body">
-      <p class="c-bolt-eyebrow c-bolt-eyebrow--regular">
-        Video
-      </p>
-      <h3 class="c-bolt-headline c-bolt-headline--bold c-bolt-headline--large">
-        Anthem: Service Desktop
-      </h3>
-      <p class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--medium">
-        Anthem debuts its next-generation service desktop, driving frictionless customer experiences.
-      </p>
-    </div>
-    <div class="c-bolt-card__footer">
-      <div class="c-bolt-card__footer-item">
-        <bolt-button size="medium"
-                     color="text"
-                     width="full"
-                     border-radius="regular"
-                     align="start"
-                     transform="none"
-                     url="#!"
+  <replace-with-children class="c-bolt-card t-bolt-xdark">
+    <bolt-card-media>
+      <replace-with-children class="c-bolt-card__media">
+        <bolt-image src="/fixtures/landscape-16x9-mountains.jpg"
+                    srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w"
+                    alt="Image alt."
+                    sizes="auto"
+                    ratio="1151/638"
+                    placeholder-color="hsl(233, 33%, 97%)"
+                    placeholder-image="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                    style="background-color: hsl(233, 33%, 97%);"
         >
-          <a href="#!"
-             class="c-bolt-button c-bolt-button--medium c-bolt-button--text c-bolt-button--full c-bolt-button--border-radius-regular c-bolt-button--start"
-             is="shadow-root"
-          >
-            <replace-with-children class="c-bolt-button__item">
-              Get the report
-            </replace-with-children>
-            <replace-with-grandchildren class="c-bolt-button__icon">
-              <span class="c-bolt-button__icon-sizer">
-                <bolt-icon slot="after"
-                           name="chevron-right"
+          <bolt-ratio ratio="1151/638">
+            <replace-with-children class="c-bolt-ratio"
+                                   style="padding-bottom: calc((638 / 1151) * 100%); --aspect-ratio: 1.8040752351097;"
+            >
+              <img class="c-bolt-image__image-placeholder"
+                   alt="Image alt."
+                   src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+              >
+              <img class="c-bolt-image__image c-bolt-image__lazyload c-bolt-image__lazyload--fade c-bolt-image__lazyload--blur js-lazyload"
+                   alt="Image alt."
+                   data-srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w"
+                   data-sizes="auto"
+                   srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                   src="/fixtures/landscape-16x9-mountains.jpg"
+              >
+              <noscript>
+                <img class="c-bolt-image__image"
+                     alt="Image alt."
+                     src="/fixtures/landscape-16x9-mountains.jpg"
+                     srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w"
                 >
-                </bolt-icon>
-              </span>
-            </replace-with-grandchildren>
-          </a>
-        </bolt-button>
-      </div>
-    </div>
-  </div>
+              </noscript>
+            </replace-with-children>
+          </bolt-ratio>
+        </bolt-image>
+      </replace-with-children>
+    </bolt-card-media>
+    <bolt-card-body>
+      <replace-with-children class="c-bolt-card__body">
+        <p class="c-bolt-eyebrow c-bolt-eyebrow--regular">
+          This is an eyebrow
+        </p>
+        <h2 class="c-bolt-headline c-bolt-headline--bold c-bolt-headline--large">
+          This is a headline
+        </h2>
+        <p class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--medium">
+          This is a paragraph.
+        </p>
+      </replace-with-children>
+    </bolt-card-body>
+  </replace-with-children>
 </bolt-card>
 `;
 
 exports[`<bolt-card> Component theme variations: xlight 1`] = `
-<bolt-card class="t-bolt-xlight"
-           bolt-component
+<bolt-card tag="article"
+           theme="xlight"
+           height="full"
 >
-  <div class="c-bolt-card">
-    <div class="c-bolt-card__media">
-      <bolt-image src="/fixtures/landscape-16x9-mountains.jpg"
-                  srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w"
-                  alt="Anthem Video"
-                  sizes="auto"
-                  ratio="1151/638"
-                  placeholder-color="hsl(233, 33%, 97%)"
-                  placeholder-image="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                  no-lazy
-                  style="background-color: hsl(233, 33%, 97%);"
-      >
-        <bolt-ratio ratio="1151/638">
+  <replace-with-children class="c-bolt-card t-bolt-xlight">
+    <bolt-card-media>
+      <replace-with-children class="c-bolt-card__media">
+        <bolt-image src="/fixtures/landscape-16x9-mountains.jpg"
+                    srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w"
+                    alt="Image alt."
+                    sizes="auto"
+                    ratio="1151/638"
+                    placeholder-color="hsl(233, 33%, 97%)"
+                    placeholder-image="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                    style="background-color: hsl(233, 33%, 97%);"
+        >
+          <bolt-ratio ratio="1151/638">
+            <replace-with-children class="c-bolt-ratio"
+                                   style="padding-bottom: calc((638 / 1151) * 100%); --aspect-ratio: 1.8040752351097;"
+            >
+              <img class="c-bolt-image__image-placeholder"
+                   alt="Image alt."
+                   src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+              >
+              <img class="c-bolt-image__image c-bolt-image__lazyload c-bolt-image__lazyload--fade c-bolt-image__lazyload--blur js-lazyload"
+                   alt="Image alt."
+                   data-srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w"
+                   data-sizes="auto"
+                   srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                   src="/fixtures/landscape-16x9-mountains.jpg"
+              >
+              <noscript>
+                <img class="c-bolt-image__image"
+                     alt="Image alt."
+                     src="/fixtures/landscape-16x9-mountains.jpg"
+                     srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w"
+                >
+              </noscript>
+            </replace-with-children>
+          </bolt-ratio>
+        </bolt-image>
+      </replace-with-children>
+    </bolt-card-media>
+    <bolt-card-body>
+      <replace-with-children class="c-bolt-card__body">
+        <p class="c-bolt-eyebrow c-bolt-eyebrow--regular">
+          This is an eyebrow
+        </p>
+        <h2 class="c-bolt-headline c-bolt-headline--bold c-bolt-headline--large">
+          This is a headline
+        </h2>
+        <p class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--medium">
+          This is a paragraph.
+        </p>
+      </replace-with-children>
+    </bolt-card-body>
+  </replace-with-children>
+</bolt-card>
+`;
+
+exports[`<bolt-card> Component with two buttons as actions 1`] = `
+<bolt-card tag="article"
+           theme="none"
+           height="full"
+>
+  <replace-with-children class="c-bolt-card">
+    <bolt-card-media>
+      <replace-with-children class="c-bolt-card__media">
+        <bolt-image src="/fixtures/landscape-16x9-mountains.jpg"
+                    srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w"
+                    alt="Image alt."
+                    sizes="auto"
+                    ratio="1151/638"
+                    placeholder-color="hsl(233, 33%, 97%)"
+                    placeholder-image="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                    style="background-color: hsl(233, 33%, 97%);"
+        >
+          <bolt-ratio ratio="1151/638">
+            <replace-with-children class="c-bolt-ratio"
+                                   style="padding-bottom: calc((638 / 1151) * 100%); --aspect-ratio: 1.8040752351097;"
+            >
+              <img class="c-bolt-image__image-placeholder"
+                   alt="Image alt."
+                   src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+              >
+              <img class="c-bolt-image__image c-bolt-image__lazyload c-bolt-image__lazyload--fade c-bolt-image__lazyload--blur js-lazyload"
+                   alt="Image alt."
+                   data-srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w"
+                   data-sizes="auto"
+                   srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                   src="/fixtures/landscape-16x9-mountains.jpg"
+              >
+              <noscript>
+                <img class="c-bolt-image__image"
+                     alt="Image alt."
+                     src="/fixtures/landscape-16x9-mountains.jpg"
+                     srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w"
+                >
+              </noscript>
+            </replace-with-children>
+          </bolt-ratio>
+        </bolt-image>
+      </replace-with-children>
+    </bolt-card-media>
+    <bolt-card-body>
+      <replace-with-children class="c-bolt-card__body">
+        <p class="c-bolt-eyebrow c-bolt-eyebrow--regular">
+          This is an eyebrow
+        </p>
+        <h2 class="c-bolt-headline c-bolt-headline--bold c-bolt-headline--large">
+          This is a headline
+        </h2>
+        <p class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--medium">
+          This is a paragraph.
+        </p>
+      </replace-with-children>
+    </bolt-card-body>
+    <bolt-card-actions>
+      <replace-with-children class="c-bolt-card__actions">
+        <bolt-card-action url="https://pega.com">
+          <replace-with-children class="c-bolt-card__action">
+            <bolt-button size="medium"
+                         color="text"
+                         width="full"
+                         border-radius="regular"
+                         align="start"
+                         transform="none"
+                         url="https://pega.com"
+                         target="_self"
+            >
+              <a href="https://pega.com"
+                 class="c-bolt-button c-bolt-button--medium c-bolt-button--text c-bolt-button--full c-bolt-button--border-radius-regular c-bolt-button--start"
+                 is="shadow-root"
+              >
+                <replace-with-children class="c-bolt-button__item">
+                  This is the 1st button
+                </replace-with-children>
+                <replace-with-grandchildren class="c-bolt-button__icon">
+                  <span class="c-bolt-button__icon-sizer">
+                    <bolt-icon slot="after"
+                               name="chevron-right"
+                    >
+                    </bolt-icon>
+                  </span>
+                </replace-with-grandchildren>
+              </a>
+            </bolt-button>
+          </replace-with-children>
+        </bolt-card-action>
+        <bolt-card-action url="https://google.com">
+          <replace-with-children class="c-bolt-card__action">
+            <bolt-button size="medium"
+                         color="text"
+                         width="full"
+                         border-radius="regular"
+                         align="start"
+                         transform="none"
+                         url="https://google.com"
+                         target="_self"
+            >
+              <a href="https://google.com"
+                 class="c-bolt-button c-bolt-button--medium c-bolt-button--text c-bolt-button--full c-bolt-button--border-radius-regular c-bolt-button--start"
+                 is="shadow-root"
+              >
+                <replace-with-children class="c-bolt-button__item">
+                  This is the 2nd button
+                </replace-with-children>
+                <replace-with-grandchildren class="c-bolt-button__icon">
+                  <span class="c-bolt-button__icon-sizer">
+                    <bolt-icon slot="after"
+                               name="chevron-right"
+                    >
+                    </bolt-icon>
+                  </span>
+                </replace-with-grandchildren>
+              </a>
+            </bolt-button>
+          </replace-with-children>
+        </bolt-card-action>
+      </replace-with-children>
+    </bolt-card-actions>
+  </replace-with-children>
+</bolt-card>
+`;
+
+exports[`<bolt-card> Component with video as media 1`] = `
+<bolt-card tag="article"
+           theme="none"
+           height="full"
+>
+  <replace-with-children class="c-bolt-card">
+    <bolt-card-link on-click="toggle"
+                    on-click-target="js-bolt-video-uuid"
+    >
+    </bolt-card-link>
+    <bolt-card-media>
+      <replace-with-children class="c-bolt-card__media c-bolt-card__media--video">
+        <bolt-ratio ratio="16/9">
           <replace-with-children class="c-bolt-ratio"
-                                 style="padding-bottom: calc((638 / 1151) * 100%); --aspect-ratio: 1.8040752351097;"
+                                 style="padding-bottom: calc((9 / 16) * 100%); --aspect-ratio: 1.7777777777778;"
           >
-            <img class="c-bolt-image__image-placeholder"
-                 alt="Anthem Video"
-                 sizes="auto"
-                 src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+            <bolt-video class="js-bolt-video-uuid"
+                        video-id="5609376179001"
+                        account-id="1900410236"
+                        show-meta
+                        player-id="r1CAdLzTW"
+                        controls
+                        share-description="Share This Video"
             >
-            <img class="c-bolt-image__image"
-                 alt="Anthem Video"
-                 srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w"
-                 sizes="auto"
-                 src="/fixtures/landscape-16x9-mountains.jpg"
-            >
+            </bolt-video>
           </replace-with-children>
         </bolt-ratio>
-      </bolt-image>
-    </div>
-    <div class="c-bolt-card__body">
-      <p class="c-bolt-eyebrow c-bolt-eyebrow--regular">
-        Video
-      </p>
-      <h3 class="c-bolt-headline c-bolt-headline--bold c-bolt-headline--large">
-        Anthem: Service Desktop
-      </h3>
-      <p class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--medium">
-        Anthem debuts its next-generation service desktop, driving frictionless customer experiences.
-      </p>
-    </div>
-    <div class="c-bolt-card__footer">
-      <div class="c-bolt-card__footer-item">
-        <bolt-button size="medium"
-                     color="text"
-                     width="full"
-                     border-radius="regular"
-                     align="start"
-                     transform="none"
-                     url="#!"
-        >
-          <a href="#!"
-             class="c-bolt-button c-bolt-button--medium c-bolt-button--text c-bolt-button--full c-bolt-button--border-radius-regular c-bolt-button--start"
-             is="shadow-root"
-          >
-            <replace-with-children class="c-bolt-button__item">
-              Get the report
-            </replace-with-children>
-            <replace-with-grandchildren class="c-bolt-button__icon">
-              <span class="c-bolt-button__icon-sizer">
-                <bolt-icon slot="after"
-                           name="chevron-right"
-                >
-                </bolt-icon>
-              </span>
-            </replace-with-grandchildren>
-          </a>
-        </bolt-button>
-      </div>
-    </div>
-  </div>
-</bolt-card>
-`;
-
-exports[`<bolt-card> Component with two buttons in footer 1`] = `
-<bolt-card bolt-component>
-  <div class="c-bolt-card">
-    <div class="c-bolt-card__media">
-      <bolt-image src="/fixtures/landscape-16x9-mountains.jpg"
-                  srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w"
-                  alt="Anthem Video"
-                  sizes="auto"
-                  ratio="1151/638"
-                  placeholder-color="hsl(233, 33%, 97%)"
-                  placeholder-image="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                  no-lazy
-                  style="background-color: hsl(233, 33%, 97%);"
-      >
-        <bolt-ratio ratio="1151/638">
-          <replace-with-children class="c-bolt-ratio"
-                                 style="padding-bottom: calc((638 / 1151) * 100%); --aspect-ratio: 1.8040752351097;"
-          >
-            <img class="c-bolt-image__image-placeholder"
-                 alt="Anthem Video"
-                 sizes="auto"
-                 src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+      </replace-with-children>
+    </bolt-card-media>
+    <bolt-card-body>
+      <replace-with-children class="c-bolt-card__body">
+        <h2 class="c-bolt-headline c-bolt-headline--bold c-bolt-headline--large">
+          With link and video
+        </h2>
+        <p class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--medium">
+          This card has a link, which makes the whole card clickable, and you can make it play/pause the video. Action button is optional in this case.
+        </p>
+      </replace-with-children>
+    </bolt-card-body>
+    <bolt-card-actions>
+      <replace-with-children class="c-bolt-card__actions">
+        <bolt-card-action>
+          <replace-with-children class="c-bolt-card__action">
+            <bolt-button size="medium"
+                         color="text"
+                         width="full"
+                         border-radius="regular"
+                         align="start"
+                         transform="none"
+                         target="_self"
+                         on-click="toggle"
+                         on-click-target="js-bolt-video-uuid"
             >
-            <img class="c-bolt-image__image"
-                 alt="Anthem Video"
-                 srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w"
-                 sizes="auto"
-                 src="/fixtures/landscape-16x9-mountains.jpg"
-            >
+              <button class="c-bolt-button c-bolt-button--medium c-bolt-button--text c-bolt-button--full c-bolt-button--border-radius-regular c-bolt-button--start"
+                      is="shadow-root"
+              >
+                <replace-with-children class="c-bolt-button__item">
+                  This button is video control
+                </replace-with-children>
+                <replace-with-grandchildren class="c-bolt-button__icon">
+                  <span class="c-bolt-button__icon-sizer">
+                    <bolt-icon slot="after"
+                               name="chevron-right"
+                    >
+                    </bolt-icon>
+                  </span>
+                </replace-with-grandchildren>
+              </button>
+            </bolt-button>
           </replace-with-children>
-        </bolt-ratio>
-      </bolt-image>
-    </div>
-    <div class="c-bolt-card__body">
-      <p class="c-bolt-eyebrow c-bolt-eyebrow--regular">
-        Video
-      </p>
-      <h3 class="c-bolt-headline c-bolt-headline--bold c-bolt-headline--large">
-        Anthem: Service Desktop
-      </h3>
-      <p class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--medium">
-        Anthem debuts its next-generation service desktop, driving frictionless customer experiences.
-      </p>
-    </div>
-    <div class="c-bolt-card__footer">
-      <div class="c-bolt-card__footer-item">
-        <bolt-button size="medium"
-                     color="text"
-                     width="full"
-                     border-radius="regular"
-                     align="start"
-                     transform="none"
-                     url="#!"
-        >
-          <a href="#!"
-             class="c-bolt-button c-bolt-button--medium c-bolt-button--text c-bolt-button--full c-bolt-button--border-radius-regular c-bolt-button--start"
-             is="shadow-root"
-          >
-            <replace-with-children class="c-bolt-button__item">
-              Get the report
-            </replace-with-children>
-            <replace-with-grandchildren class="c-bolt-button__icon">
-              <span class="c-bolt-button__icon-sizer">
-                <bolt-icon slot="after"
-                           name="chevron-right"
-                >
-                </bolt-icon>
-              </span>
-            </replace-with-grandchildren>
-          </a>
-        </bolt-button>
-      </div>
-      <div class="c-bolt-card__footer-item">
-        <bolt-button size="medium"
-                     color="text"
-                     width="full"
-                     border-radius="regular"
-                     align="start"
-                     transform="none"
-                     url="#!"
-        >
-          <a href="#!"
-             class="c-bolt-button c-bolt-button--medium c-bolt-button--text c-bolt-button--full c-bolt-button--border-radius-regular c-bolt-button--start"
-             is="shadow-root"
-          >
-            <replace-with-children class="c-bolt-button__item">
-              Get the second report
-            </replace-with-children>
-            <replace-with-grandchildren class="c-bolt-button__icon">
-              <span class="c-bolt-button__icon-sizer">
-                <bolt-icon slot="after"
-                           name="chevron-right"
-                >
-                </bolt-icon>
-              </span>
-            </replace-with-grandchildren>
-          </a>
-        </bolt-button>
-      </div>
-    </div>
-  </div>
+        </bolt-card-action>
+      </replace-with-children>
+    </bolt-card-actions>
+  </replace-with-children>
 </bolt-card>
 `;
 
-exports[`<bolt-card> Component with video in header 1`] = `
-<bolt-card bolt-component>
-  <div class="c-bolt-card">
-    <div class="c-bolt-card__media">
-      <bolt-ratio ratio="16/9">
-        <replace-with-children class="c-bolt-ratio"
-                               style="padding-bottom: calc((9 / 16) * 100%); --aspect-ratio: 1.7777777777778;"
+exports[`<bolt-card> Component without actions 1`] = `
+<bolt-card tag="article"
+           theme="none"
+           height="full"
+>
+  <replace-with-children class="c-bolt-card">
+    <bolt-card-media>
+      <replace-with-children class="c-bolt-card__media">
+        <bolt-image src="/fixtures/landscape-16x9-mountains.jpg"
+                    srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w"
+                    alt="Image alt."
+                    sizes="auto"
+                    ratio="1151/638"
+                    placeholder-color="hsl(233, 33%, 97%)"
+                    placeholder-image="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                    style="background-color: hsl(233, 33%, 97%);"
         >
-          <bolt-video class="js-bolt-video-uuid--3c"
-                      video-id="5609376179001"
-                      account-id="1900410236"
-                      show-meta
-                      player-id="r1CAdLzTW"
-                      controls
-                      share-description="Share This Video"
-          >
-          </bolt-video>
-        </replace-with-children>
-      </bolt-ratio>
-    </div>
-    <div class="c-bolt-card__body">
-      <p class="c-bolt-eyebrow c-bolt-eyebrow--regular">
-        Video
-      </p>
-      <h3 class="c-bolt-headline c-bolt-headline--bold c-bolt-headline--large">
-        Anthem: Service Desktop
-      </h3>
-      <p class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--medium">
-        Anthem debuts its next-generation service desktop, driving frictionless customer experiences.
-      </p>
-    </div>
-    <div class="c-bolt-card__footer">
-      <div class="c-bolt-card__footer-item">
-        <bolt-button size="medium"
-                     color="text"
-                     width="full"
-                     border-radius="regular"
-                     align="start"
-                     transform="none"
-                     on-click="toggle"
-                     on-click-target="js-bolt-video-uuid--3c"
-        >
-          <button class="c-bolt-button c-bolt-button--medium c-bolt-button--text c-bolt-button--full c-bolt-button--border-radius-regular c-bolt-button--start"
-                  is="shadow-root"
-          >
-            <replace-with-children class="c-bolt-button__item">
-              Play or Pause
-            </replace-with-children>
-            <replace-with-grandchildren class="c-bolt-button__icon">
-              <span class="c-bolt-button__icon-sizer">
-                <bolt-icon slot="after"
-                           name="chevron-right"
-                >
-                </bolt-icon>
-              </span>
-            </replace-with-grandchildren>
-          </button>
-        </bolt-button>
-      </div>
-    </div>
-  </div>
-</bolt-card>
-`;
-
-exports[`<bolt-card> Component without footer 1`] = `
-<bolt-card bolt-component>
-  <div class="c-bolt-card">
-    <div class="c-bolt-card__media">
-      <bolt-image src="/fixtures/landscape-16x9-mountains.jpg"
-                  srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w"
-                  alt="Anthem Video"
-                  sizes="auto"
-                  ratio="1151/638"
-                  placeholder-color="hsl(233, 33%, 97%)"
-                  placeholder-image="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                  no-lazy
-                  style="background-color: hsl(233, 33%, 97%);"
-      >
-        <bolt-ratio ratio="1151/638">
-          <replace-with-children class="c-bolt-ratio"
-                                 style="padding-bottom: calc((638 / 1151) * 100%); --aspect-ratio: 1.8040752351097;"
-          >
-            <img class="c-bolt-image__image-placeholder"
-                 alt="Anthem Video"
-                 sizes="auto"
-                 src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+          <bolt-ratio ratio="1151/638">
+            <replace-with-children class="c-bolt-ratio"
+                                   style="padding-bottom: calc((638 / 1151) * 100%); --aspect-ratio: 1.8040752351097;"
             >
-            <img class="c-bolt-image__image"
-                 alt="Anthem Video"
-                 srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w"
-                 sizes="auto"
-                 src="/fixtures/landscape-16x9-mountains.jpg"
-            >
-          </replace-with-children>
-        </bolt-ratio>
-      </bolt-image>
-    </div>
-    <div class="c-bolt-card__body">
-      <p class="c-bolt-eyebrow c-bolt-eyebrow--regular">
-        Video
-      </p>
-      <h3 class="c-bolt-headline c-bolt-headline--bold c-bolt-headline--large">
-        Anthem: Service Desktop
-      </h3>
-      <p class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--medium">
-        Anthem debuts its next-generation service desktop, driving frictionless customer experiences.
-      </p>
-    </div>
-    <div class="c-bolt-card__footer">
-    </div>
-  </div>
+              <img class="c-bolt-image__image-placeholder"
+                   alt="Image alt."
+                   src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+              >
+              <img class="c-bolt-image__image c-bolt-image__lazyload c-bolt-image__lazyload--fade c-bolt-image__lazyload--blur js-lazyload"
+                   alt="Image alt."
+                   data-srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w"
+                   data-sizes="auto"
+                   srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                   src="/fixtures/landscape-16x9-mountains.jpg"
+              >
+              <noscript>
+                <img class="c-bolt-image__image"
+                     alt="Image alt."
+                     src="/fixtures/landscape-16x9-mountains.jpg"
+                     srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w"
+                >
+              </noscript>
+            </replace-with-children>
+          </bolt-ratio>
+        </bolt-image>
+      </replace-with-children>
+    </bolt-card-media>
+    <bolt-card-body>
+      <replace-with-children class="c-bolt-card__body">
+        <p class="c-bolt-eyebrow c-bolt-eyebrow--regular">
+          This is an eyebrow
+        </p>
+        <h2 class="c-bolt-headline c-bolt-headline--bold c-bolt-headline--large">
+          This is a headline
+        </h2>
+        <p class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--medium">
+          This is a paragraph.
+        </p>
+      </replace-with-children>
+    </bolt-card-body>
+  </replace-with-children>
 </bolt-card>
 `;
 
-exports[`<bolt-card> Component without footer and media 1`] = `
-<bolt-card bolt-component>
-  <div class="c-bolt-card">
-    <div class="c-bolt-card__media">
-    </div>
-    <div class="c-bolt-card__body">
-      <p class="c-bolt-eyebrow c-bolt-eyebrow--regular">
-        Video
-      </p>
-      <h3 class="c-bolt-headline c-bolt-headline--bold c-bolt-headline--large">
-        Anthem: Service Desktop
-      </h3>
-      <p class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--medium">
-        Anthem debuts its next-generation service desktop, driving frictionless customer experiences.
-      </p>
-    </div>
-    <div class="c-bolt-card__footer">
-    </div>
-  </div>
+exports[`<bolt-card> Component without media and actions 1`] = `
+<bolt-card tag="article"
+           theme="none"
+           height="full"
+>
+  <replace-with-children class="c-bolt-card">
+    <bolt-card-body>
+      <replace-with-children class="c-bolt-card__body">
+        <p class="c-bolt-eyebrow c-bolt-eyebrow--regular">
+          This is an eyebrow
+        </p>
+        <h2 class="c-bolt-headline c-bolt-headline--bold c-bolt-headline--large">
+          This is a headline
+        </h2>
+        <p class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--medium">
+          This is a paragraph.
+        </p>
+      </replace-with-children>
+    </bolt-card-body>
+  </replace-with-children>
 </bolt-card>
 `;
