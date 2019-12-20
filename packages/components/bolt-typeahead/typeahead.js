@@ -51,6 +51,14 @@ class BoltTypeahead extends withEvents(withLitHtml()) {
     }
   }
 
+  disconnected() {
+    super.disconnected && super.disconnected();
+
+    // hack so that "ready" event will fire next time component connects,
+    // and any external listeners will be re-added
+    this._wasInitiallyRendered = false;
+  }
+
   clearSearch() {
     this.inputValue = '';
     this.autosuggest.clearSearch();
