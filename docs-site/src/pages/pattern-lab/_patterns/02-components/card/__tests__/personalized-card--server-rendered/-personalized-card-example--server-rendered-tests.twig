@@ -10,7 +10,7 @@
         text: "Before:",
       } only %}
       <div class="js-disable-extra-slot-check">
-        {% include "@pl/_personalized-card-example.twig" with {
+        {% include "@pl/_personalized-card-test.twig" with {
           attributes: {
             class: [
               "js-personalized-card--server-rendered--with-large-delay",
@@ -25,14 +25,16 @@
       {% include "@bolt-components-headline/eyebrow.twig" with {
         text: "After:",
       } only %}
-      {% include "@pl/_personalized-card-example.twig" with {
-        attributes: {
-          class: [
-            "js-personalized-card--server-rendered--with-large-delay"
-          ]
-        },
-        headline_demo_text: "Personalized card, server-rendered, w/ a large delay (after)"
-      } only %}
+      <div>
+        {% include "@pl/_personalized-card-test.twig" with {
+          attributes: {
+            class: [
+              "js-personalized-card--server-rendered--with-large-delay"
+            ]
+          },
+          headline_demo_text: "Personalized card, server-rendered, w/ a large delay (after)"
+        } only %}
+      </div>
     {% endcell %}
   {% endgrid %}
 
@@ -48,7 +50,7 @@
       } only %}
 
       <div class="js-disable-extra-slot-check">
-        {% include "@pl/_personalized-card-example.twig" with {
+        {% include "@pl/_personalized-card-test.twig" with {
           attributes: {
             class: [
               "js-personalized-card--server-rendered--with-small-delay",
@@ -63,14 +65,16 @@
       {% include "@bolt-components-headline/eyebrow.twig" with {
         text: "After:",
       } only %}
-      {% include "@pl/_personalized-card-example.twig" with {
-        attributes: {
-          class: [
-            "js-personalized-card--server-rendered--with-small-delay"
-          ]
-        },
-        headline_demo_text: "Personalized card, server-rendered, w/ a small delay (after)"
-      } only %}
+      <div>
+        {% include "@pl/_personalized-card-test.twig" with {
+          attributes: {
+            class: [
+              "js-personalized-card--server-rendered--with-small-delay"
+            ]
+          },
+          headline_demo_text: "Personalized card, server-rendered, w/ a small delay (after)"
+        } only %}
+      </div>
     {% endcell %}
   {% endgrid %}
 
@@ -87,7 +91,7 @@
       } only %}
 
       <div class="js-disable-extra-slot-check">
-        {% include "@pl/_personalized-card-example.twig" with {
+        {% include "@pl/_personalized-card-test.twig" with {
           attributes: {
             class: [
               "js-personalized-card--server-rendered--without-delay",
@@ -102,14 +106,16 @@
       {% include "@bolt-components-headline/eyebrow.twig" with {
         text: "After:",
       } only %}
-      {% include "@pl/_personalized-card-example.twig" with {
-        attributes: {
-          class: [
-            "js-personalized-card--server-rendered--without-delay"
-          ]
-        },
-        headline_demo_text: "Personalized card, server-rendered, without a delay (after)"
-      } only %}
+      <div>
+        {% include "@pl/_personalized-card-test.twig" with {
+          attributes: {
+            class: [
+              "js-personalized-card--server-rendered--without-delay"
+            ]
+          },
+          headline_demo_text: "Personalized card, server-rendered, without a delay (after)"
+        } only %}
+      </div>
     {% endcell %}
   {% endgrid %}
 </div>
