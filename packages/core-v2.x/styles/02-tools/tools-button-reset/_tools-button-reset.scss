@@ -1,21 +1,3 @@
-////
-/// @group Tools: Button Reset
-////
+@warn "The ability to reference internal Sass partials in @bolt/core/styles is deprecated and will be removed in Bolt v3.0. Please update your code to only point to the main Core Styles entrypoint!";
 
-/* ------------------------------------ *\
-   TOOLS - BUTTON RESET
-\* ------------------------------------ */
-
-/// Lightweight style reset for button and input elements
-/// @param {string} $value
-/// @example scss - bolt-button-reset mixin
-/// .element {
-///    @include bolt-button-reset;
-/// }
-@mixin bolt-button-reset() {
-  @include bolt-padding(0);
-  @include bolt-font-family(body);
-
-  appearance: none; // override default [type=submit] button styles coming from Normalize
-  background: none;
-}
+@import '@bolt/core-v3.x/styles/02-tools/tools-button-reset/_tools-button-reset.scss';

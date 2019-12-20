@@ -76,21 +76,20 @@ async function createWebpackConfig(buildConfig) {
         if (isModern) {
           entry[globalEntryName] = [
             '@bolt/polyfills/modern.js',
-            '@bolt/core-v3.x/styles/index.scss',
+            '@bolt/core-v3.x/styles/main.scss',
           ];
         } else {
           entry[globalEntryName] = [
             '@bolt/polyfills',
-            '@bolt/core-v3.x/styles/index.scss',
+            '@bolt/core-v3.x/styles/main.scss',
           ];
         }
       } else {
         entry[globalEntryName] = [
           '@bolt/polyfills',
-          '@bolt/core-v3.x/styles/index.scss',
+          '@bolt/core-v3.x/styles/main.scss',
         ];
       }
-      // entry[globalEntryName] = ['@bolt/core-v3.x/styles/index.scss'];
 
       components.global.forEach(component => {
         if (component.assets.style) {
