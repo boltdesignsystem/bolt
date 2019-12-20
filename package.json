@@ -80,7 +80,7 @@
     "test:js:quick": "NODE_ENV='test' jest --colors \"$(bolt-list-pkg-paths-changed)\" --passWithNoTests",
     "test:js:update": "yarn run test:js -u",
     "test:monorepo": "jest ./__tests__/monorepo -c jest.config.quick.js --noStackTrace",
-    "test:php": "cd packages/core-php -- composer run test",
+    "test:php": "cd packages/php/shared-twig-extensions && composer run test",
     "test:pkgs": "lerna run test --ignore=@bolt/uikit-* --ignore=@bolt/build-tools--* --stream",
     "test:types": "tsc"
   },
