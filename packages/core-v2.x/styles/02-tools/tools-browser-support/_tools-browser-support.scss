@@ -1,31 +1,3 @@
-/* ------------------------------------ *\
-Browser Support
-\* ------------------------------------ */
+@warn "The ability to reference internal Sass partials in @bolt/core/styles is deprecated and will be removed in Bolt v3.0. Please update your code to only point to the main Core Styles entrypoint!";
 
-////
-/// @group Tools: Utilities
-/// @author Remy Denton
-////
-
-// This file contains mixins needed for checking browser support.
-
-
-/// Just checking "@supports (display: contents)" isn't enough to know that a browser supports it FULLY.  So, we check
-/// support for both "display: contents" and "caret-color" (which has similar browser support) -- if a browser fails
-/// either check, it gets the cross-browser fallback instead.
-/// @link https://www.meltajon.com/dev/how-to-use-supports-display-contents-feature-query-in-safari
-/// @example scss
-/// .element {
-///   @include bolt-if-browser-supports-display-contents {
-///     .element__item {
-///       @media screen and (max-width: #{bolt-breakpoint(xsmall)}) {
-///         display: contents;
-///       }
-///     }
-///   }
-/// }
-@mixin bolt-if-browser-supports-display-contents {
-  @supports (display: contents) and (caret-color: red) {
-    @content;
-  }
-}
+@import '@bolt/core-v3.x/styles/02-tools/tools-browser-support/_tools-browser-support.scss';

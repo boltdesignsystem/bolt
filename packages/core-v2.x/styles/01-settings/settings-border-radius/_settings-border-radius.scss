@@ -1,20 +1,3 @@
-////
-/// @group Settings: Border
-/// @author Mike Mai
-////
+@warn "The ability to reference internal Sass partials in @bolt/core/styles is deprecated and will be removed in Bolt v3.0. Please update your code to only point to the main Core Styles entrypoint!";
 
-/* ------------------------------------ *\
-   Border Radius Scale
-\* ------------------------------------ */
-
-@import '../../02-tools/tools-data/tools-data.scss';
-
-/// Bolt's definition of border-radius scale. Used within 'export-data()' to JSON.
-/// @type Map
-$bolt-border-radius-values: (
-  small: 3px,
-  large: 0.75em,
-  full: 100em
-) !default;
-
-@include bolt-export-data('border-radius.bolt.json', $bolt-border-radius-values);
+@import '@bolt/core-v3.x/styles/01-settings/settings-border-radius/_settings-border-radius.scss';
