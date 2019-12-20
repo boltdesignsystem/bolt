@@ -52,7 +52,7 @@ npm install @bolt/tools-font-weight
 
 ### Usage
 
-Once installed, you should `@import` the main Sass partial into your project’s main `.scss` file to make the included variables available to the rest of your code.
+Once installed, you should `@import` the main Sass partial into your project’s main `.scss';` file to make the included variables available to the rest of your code.
 
 ```
 // Settings
