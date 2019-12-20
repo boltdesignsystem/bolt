@@ -135,7 +135,7 @@
         {% for item in industryLinks %}
           {% cell "u-bolt-flex-basis-1/2 u-bolt-flex-grow" %}
             {% include "@bolt/flag.twig" with {
-              item.url,
+              url: item.url,
               valign: "middle",
               figure: {
                 content: include("@bolt-components-icon/icon.twig", {
