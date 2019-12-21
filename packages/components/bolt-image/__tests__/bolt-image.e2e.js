@@ -65,7 +65,7 @@ module.exports = {
         `${testingUrl}/pattern-lab/patterns/02-components-card-__tests__-personalized-card--server-rendered--personalized-card-example--server-rendered-tests/02-components-card-__tests__-personalized-card--server-rendered--personalized-card-example--server-rendered-tests.html`,
       )
       .waitForElementPresent(
-        '.js-no-shadow-image-test bolt-image[src="/images/placeholders/landscape-16x9-skyline.jpg"] img.is-lazyloaded',
+        '.o-bolt-grid:nth-child(2) > .o-bolt-grid__cell:nth-child(1) bolt-image[src="/images/placeholders/landscape-16x9-skyline.jpg"] img[srcset]',
         20000,
       )
       .assert.attributeContains(
