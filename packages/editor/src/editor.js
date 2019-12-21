@@ -402,6 +402,20 @@ export function enableEditor({ space, uiWrapper, config }) {
     renderSlotControls({ slotControls, name });
   });
 
+  editor.on('component:remove', (/** @type {grapesjs.Component} */ model) => {
+    // Editor removes all components in order on save/cleanup. Don't check then.
+    if (!editor.isSaving) {
+      const parent = model.parent();
+      // Remove empty parent `bolt-animate`s
+      if (parent && parent.attributes.tagName === 'bolt-animate') {
+        if (parent && parent.view.el.assignedSlot) {
+          parent.view.el.assignedSlot.remove();
+        }
+        parent.remove();
+      }
+    }
+  });
+
   editor.on('component:deselected', model => {
     render(html``, editorSlots.slotControls);
   });
