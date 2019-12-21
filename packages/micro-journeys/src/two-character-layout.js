@@ -13,6 +13,7 @@ import {
   equalizeRelativeHeightsKey,
 } from './utils/equalize-relative-heights';
 import styles from './two-character-layout.scss';
+import isChrome from './utils/is-chrome';
 
 let cx = classNames.bind(styles);
 
@@ -80,7 +81,11 @@ class BoltTwoCharacterLayout extends withLitHtml {
   _triggerAnimIns = async () => {
     const animEls = this.querySelectorAll('bolt-animate');
     triggerAnims({ animEls, stage: 'IN' });
-    this.connection.refreshLinearGradient();
+    // Chrome has a svg background bug which refreshLinearGradient fixes. In Safari, refreshLinearGradient
+    // causes svg background to be black.
+    if (isChrome()) {
+      this.connection.refreshLinearGradient();
+    }
   };
 
   /**
