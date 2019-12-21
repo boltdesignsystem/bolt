@@ -262,7 +262,6 @@ async function createWebpackConfig(buildConfig) {
         {
           test: /\.(ts|tsx)$/,
           use: [
-            'cache-loader',
             {
               loader: 'ts-loader',
               options: {
@@ -275,7 +274,6 @@ async function createWebpackConfig(buildConfig) {
         {
           test: /\.(woff|woff2)$/,
           use: [
-            'cache-loader',
             {
               loader: 'url-loader',
               options: {
@@ -288,7 +286,6 @@ async function createWebpackConfig(buildConfig) {
         {
           test: /\.(cur|svg|png|jpg)$/,
           use: [
-            'cache-loader',
             {
               loader: 'file-loader',
               options: {
@@ -299,7 +296,7 @@ async function createWebpackConfig(buildConfig) {
         },
         {
           test: [/\.yml$/, /\.yaml$/],
-          use: ['cache-loader', 'json-loader', 'yaml-loader'],
+          use: ['json-loader', 'yaml-loader'],
         },
         {
           test: [/\.html$/],
@@ -574,7 +571,6 @@ async function createWebpackConfig(buildConfig) {
           test: /\.(js|tsx|mjs)$/,
           exclude: /(node_modules)/,
           use: [
-            // 'cache-loader',
             {
               loader: 'babel-loader',
               options: {
