@@ -120,6 +120,13 @@
   <bolt-two-character-layout>
     <bolt-animate slot="character--left" in-order="1" in="fade-in" out="fade-out" out-order="1">
       <bolt-character size="medium" character-image="customer-surprise">
+        <bolt-animate in="fade-in" in-order="1" out="fade-out" slot="top" out-order="1">
+          <bolt-status-dialogue-bar icon-name="mobility" dialogue-arrow-direction="down" >
+            <p slot="text">
+              Not very long. Lorem ipsum dolor.
+            </p>
+          </bolt-status-dialogue-bar>
+        </bolt-animate>
         <bolt-animate slot="bottom"><bolt-text font-size="xsmall">lorem</bolt-text></bolt-animate>
         <bolt-animate slot="background" in="fade-in" in-order="1">
           <bolt-svg-animations
@@ -136,7 +143,7 @@
     <bolt-animate slot="character--right" in="fade-in" in-order="1" out="fade-out" out-order="1">
       <bolt-character size="medium" character-image="customer-surprise">
         <bolt-animate in="fade-in" in-order="1" out="fade-out" slot="top" out-order="1">
-          <bolt-status-dialogue-bar icon-name="mobility">
+          <bolt-status-dialogue-bar icon-name="mobility" dialogue-arrow-direction="down" >
             <p slot="text">
               Very long. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit.
             </p>
@@ -215,16 +222,9 @@
 
 <script>
   document.addEventListener("DOMContentLoaded", function() {
-    let connectedChars = 0;
-    const expectedChars = 17;
-    document.addEventListener('bolt-character:connected', function() {
-      connectedChars++;
-      if (connectedChars >= expectedChars) {
-        setTimeout(function() {
-          Array.from(document.querySelectorAll('bolt-animate')).forEach(function(e) {e.triggerAnimIn()});
-          Array.from(document.querySelectorAll('bolt-two-character-layout')).forEach(function(e) {e.setAttribute('parent-animations-triggered', true)});
-        }, 1000)
-      }
-    });
+    setTimeout(function() {
+      Array.from(document.querySelectorAll('bolt-animate')).forEach(function(e) {e.triggerAnimIn()});
+      Array.from(document.querySelectorAll('bolt-two-character-layout')).forEach(function(e) {e.triggerAnimIns()});
+    }, 4000);
   });
 </script>
