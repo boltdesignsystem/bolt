@@ -66,6 +66,9 @@ class BoltTypeahead extends withEvents(withLitHtml()) {
 
   submit(e) {
     this.handleSelected(e);
+
+    // prevent default behavior or form submits multiple times
+    e.preventDefault();
   }
 
   handleKeyPress(e) {
