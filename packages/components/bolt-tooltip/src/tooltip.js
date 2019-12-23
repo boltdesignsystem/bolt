@@ -65,29 +65,28 @@ class BoltTooltip extends BoltElement {
         textContent && textContent.length > 31 && textContent.length < 62,
     });
 
-    const onMouseover = () => {
+    const tooltipOpen = () => {
       this.open = true;
     };
-    const onMouseout = () => {
+    const tooltipClosed = () => {
       this.open = false;
     };
 
     return html`
       <span
         class="${classes}"
-        @mouseover="${onMouseover}"
-        @mouseout="${onMouseout}"
+        @mouseover="${tooltipOpen}"
+        @mouseout="${tooltipClosed}"
+        @focusin="${tooltipOpen}"
+        @focusout="${tooltipClosed}"
       >
-        ${this.templateMap.get('default') &&
-          html`
-            <bolt-trigger
-              aria-describedby="js-bolt-tooltip-${this.uuid}"
-              aria-controls="js-bolt-tooltip-${this.uuid}"
-              aria-expanded="${this.open}"
-            >
-              ${this.slotify('default')}
-            </bolt-trigger>
-          `}
+        <bolt-trigger
+          aria-describedby="js-bolt-tooltip-${this.uuid}"
+          aria-controls="js-bolt-tooltip-${this.uuid}"
+          aria-expanded="${this.open}"
+        >
+          ${this.slotify('default')}
+        </bolt-trigger>
         ${this.templateMap.get('content') &&
           html`
             <span
