@@ -229,6 +229,7 @@ async function createWebpackConfig(buildConfig) {
           sassOptions: {
             outputStyle: 'nested',
             importer: [npmSass.importer],
+            implementation: require('sass'),
             functions: sassExportData,
             precision: 3,
           },
@@ -259,18 +260,18 @@ async function createWebpackConfig(buildConfig) {
     },
     module: {
       rules: [
-        {
-          test: /\.(ts|tsx)$/,
-          use: [
-            {
-              loader: 'ts-loader',
-              options: {
-                transpileOnly: true,
-                experimentalWatchApi: true,
-              },
-            },
-          ],
-        },
+        // {
+        //   test: /\.(ts|tsx)$/,
+        //   use: [
+        //     {
+        //       loader: 'ts-loader',
+        //       options: {
+        //         transpileOnly: true,
+        //         experimentalWatchApi: true,
+        //       },
+        //     },
+        //   ],
+        // },
         {
           test: /\.(woff|woff2)$/,
           use: [
@@ -549,6 +550,7 @@ async function createWebpackConfig(buildConfig) {
     },
     plugins: [
       new webpack.DefinePlugin(getGlobalJSData(true)),
+      new CopyWebpackPlugin(config.copy ? config.copy : []),
       new MiniCssExtractPlugin({
         filename: `[name]${langSuffix}.css`,
         chunkFilename: `[id]${langSuffix}.css`,

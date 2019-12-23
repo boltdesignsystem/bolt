@@ -118,7 +118,7 @@ jobs:
       after_success:
         - ./scripts/deploy-branch-alias.js
         - ./scripts/deploy-tagged-release.js
-        - ./packages/testing/testing-nightwatch/nightwatch-report-results.js
+        - ./packages/testing-nightwatch/nightwatch-report-results.js
 
     - stage: Auto-release
       name: 'Canary Release'

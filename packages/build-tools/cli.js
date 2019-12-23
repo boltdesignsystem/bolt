@@ -12,7 +12,7 @@ const boxen = require('boxen');
 const chalk = require('chalk');
 
 const configSchema = readYamlFileSync(
-  path.join(__dirname, './utils/config.schema.yml'),
+  require.resolve('@bolt/build-utils/config.schema.yml'),
 );
 const packageJson = require('./package.json');
 

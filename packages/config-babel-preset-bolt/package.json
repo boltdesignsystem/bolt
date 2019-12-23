@@ -1,0 +1,43 @@
+{
+  "name": "@bolt/babel-preset-bolt",
+  "version": "2.13.0",
+  "description": "Babel preset configuration shared across the Bolt Design System",
+  "keywords": [
+    "babel",
+    "bolt",
+    "bolt design system",
+    "es6",
+    "node"
+  ],
+  "homepage": "https://boltdesignsystem.com",
+  "bugs": "https://github.com/bolt-design-system/bolt/issues",
+  "repository": "https://github.com/bolt-design-system/bolt/tree/master/packages/configs/babel-preset-bolt",
+  "license": "MIT",
+  "author": {
+    "name": "Salem Ghoweri",
+    "email": "me@salemghoweri.com"
+  },
+  "babel": {
+    "presets": [
+      "bolt"
+    ]
+  },
+  "dependencies": {
+    "@babel/core": "^7.7.7",
+    "@babel/plugin-proposal-class-properties": "^7.7.4",
+    "@babel/plugin-proposal-decorators": "^7.7.4",
+    "@babel/plugin-proposal-object-rest-spread": "^7.7.7",
+    "@babel/plugin-proposal-optional-chaining": "^7.7.5",
+    "@babel/plugin-syntax-dynamic-import": "^7.7.4",
+    "@babel/plugin-syntax-jsx": "^7.7.4",
+    "@babel/plugin-transform-react-jsx": "^7.7.7",
+    "@babel/plugin-transform-runtime": "^7.7.6",
+    "@babel/preset-env": "^7.7.7",
+    "@babel/runtime": "^7.7.7",
+    "@bolt/browserslist-config": "^2.13.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "gitHead": "3d198feea5f73c63913a956a2a077e229ad8d462"
+}

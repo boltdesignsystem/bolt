@@ -1,0 +1,38 @@
+{
+  "name": "@bolt/critical-path-polyfills",
+  "version": "2.12.0",
+  "main": "dist/bolt-critical-path-polyfills.cjs.js",
+  "module": "dist/bolt-critical-path-polyfills.esm.js",
+  "browser": "dist/bolt-critical-path-polyfills.umd.js",
+  "description": "A small batch of inline-friendly cross-browser polyfills used in the Bolt Design System",
+  "repository": "https://github.com/bolt-design-system/bolt/tree/master/packages/polyfills/critical-path-polyfills",
+  "bugs": "https://github.com/bolt-design-system/bolt/issues",
+  "keywords": [
+    "design system",
+    "bolt design system",
+    "critical path",
+    "polyfills",
+    "cross browser"
+  ],
+  "author": "Salem Ghoweri",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "rollup": "^1.27.14",
+    "@rollup/plugin-node-resolve": "^6.0.0",
+    "@rollup/plugin-commonjs": "^11.0.0",
+    "rollup-plugin-terser": "^5.1.3"
+  },
+  "homepage": "https://boltdesignsystem.com",
+  "scripts": {
+    "build": "rollup -c",
+    "watch": "rollup -c -w",
+    "prepublish": "npm run build",
+    "postbootstrap": "npm run build"
+  },
+  "files": [
+    "dist"
+  ]
+}

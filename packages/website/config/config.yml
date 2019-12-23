@@ -1,0 +1,86 @@
+v: 2.6.0
+overrideConfig: false
+ie:
+    - DS_Store
+    - less
+    - scss
+    - js
+    - json #so json files don't get copied over to the www folder
+id:
+    - scss
+    - .svn
+    - .sass-cache
+    - scripts
+    - styles
+    - assets
+cleanPublic: false
+patternStates:
+    - inprogress
+    - inreview
+    - complete
+styleGuideExcludes:
+    - 04-pages
+    - viewall-pages-all
+cacheBusterOn: 'true'
+publicDir: ../../www/pattern-lab/
+sourceDir: src/pages/pattern-lab/
+defaultPattern: components-overview
+defaultShowPatternInfo: false
+ishMinimum: '240'
+ishMaximum: '2600'
+ishViewportRange:
+    s:
+        - 320
+        - 600
+    m:
+        - 600
+        - 1000
+    l:
+        - 1000
+        - 2600
+ishControlsHide:
+    - hay
+    - disco
+    - random
+    - all
+    - views-all
+styleguideKit: bolt-design-system/styleguidekit-twig-default
+styleguideKitPath: vendor/bolt-design-system/styleguidekit-twig-default
+lineageMatch: '{%([ ]+)?(?:include|extends|embed)( |\()[&quot;\&#039;]([\/.@A-Za-z0-9-_]+)[&quot;\&#039;]([ A-Za-z0-9-&\}_\n\{&quot;:\&#039;,\/. \[\]]+)%}'
+lineageMatchKey: 3
+patternExtension: twig
+twigExtensions:
+    - '\BasaltInc\TwigTools\TwigExtensions\BasaltFakerExtension'
+    - '\Bolt\TwigExtensions\BoltCore'
+    - '\Bolt\TwigExtensions\BoltCoreCompat'
+    - '\Bolt\TwigExtensions\BoltExtras'
+twigDebug: true
+twigAutoescape: false
+twigDefaultDateFormat: ''
+twigDefaultIntervalFormat: ''
+twigMacroExt: macro.twig
+twigFilterExt: filter.php
+twigFunctionExt: function.php
+twigTagExt: tag.php
+twigTestExt: test.php
+extensions:
+    data: .data.json
+    schemas: .json
+    templates: .twig
+    docs: .docs.md
+    sg: .md
+plugins:
+  twigNamespaces:
+    enabled: true
+    readFromFile: ../../www/build/data/twig-namespaces.bolt.json
+# @todo: remove once we move to Pattern Lab Node + move this config into our patternlab.config.json
+theme:
+  logo:
+    srcDark: '/images/bolt-logo--dark.svg'
+    srcLight: '/images/bolt-logo--light.svg'
+    url: '/pattern-lab/?p=components-overview'
+    altText: 'Logo of the Bolt Design System'
+    text: ''
+  color: 'dark'
+  layout: 'vertical'
+  # "density" : "compact" | "cozy" | "comfortable",
