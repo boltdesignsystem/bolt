@@ -64,26 +64,25 @@ class BoltTypeahead extends withEvents(withLitHtml()) {
     this.autosuggest.clearSearch();
   }
 
-  submit() {
-    var evt = new KeyboardEvent('keypress', {
-      keyCode: 13,
-      which: 13,
-      key: 'Enter',
-    });
-    this.autosuggest.dispatchEvent(evt);
+  submit(e) {
+    this.handleSelected(e);
   }
 
   handleKeyPress(e) {
     if (e.target.value !== '') {
       if (e.key === 'Enter') {
-        this.autosuggest.onSelected(e, {
-          suggestionValue: this.inputValue,
-          suggestion: {
-            label: this.inputValue,
-          },
-        });
+        this.handleSelected(e);
       }
     }
+  }
+
+  handleSelected(e) {
+    this.autosuggest.onSelected(e, {
+      suggestionValue: this.inputValue,
+      suggestion: {
+        label: this.inputValue,
+      },
+    });
   }
 
   render() {
