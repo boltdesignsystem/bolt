@@ -163,8 +163,10 @@ class BoltTypeahead extends withEvents(withLitHtml()) {
         setupEventHandlers();
       }
 
-      this.autosuggest.addEventListener('ready', () => {
-        setupEventHandlers();
+      this.autosuggest.addEventListener('ready', e => {
+        if (e.detail.name === 'bolt-autosuggest') {
+          setupEventHandlers();
+        }
       });
     }
   }
