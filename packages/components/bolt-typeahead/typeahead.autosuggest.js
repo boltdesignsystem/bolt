@@ -108,6 +108,10 @@ class BoltAutosuggest extends withPreact() {
     super.disconnecting && super.disconnecting();
     // Keep an object of listener types mapped to callback functions
     this._listeners = {};
+
+    // hack so that "ready" event will fire next time component connects,
+    // and any external listeners will be re-added
+    this._wasInitiallyRendered = false;
   }
 
   // return the parent that's rendering <bolt-autosuggest> based on Shadow DOM usage
