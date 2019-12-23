@@ -371,7 +371,7 @@ class BoltAutosuggest extends withPreact() {
    * @param {{newValue: string}} newValue - the updated input value
    */
   onChange = (event, { newValue, method }) => {
-    this._fire('onChange', newValue, method);
+    this._fire('onChange', method, newValue);
 
     // @todo: replace this workaround with this.results.findIndex(findSelectedIndex) once `findIndex` can be safely polyfilled
     const suggestionIndex = this.results.indexOf(
