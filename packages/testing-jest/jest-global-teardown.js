@@ -3,7 +3,7 @@ const rimraf = require('rimraf');
 const path = require('path');
 
 const { teardown: teardownDevServer } = require('jest-dev-server');
-const { getConfig } = require('@bolt/build-tools/utils/config-store');
+const { getConfig } = require('@bolt/build-utils/config-store');
 const iconTasks = require('@bolt/build-tools/tasks/icon-tasks');
 const { buildPrep } = require('@bolt/build-tools/tasks/task-collections.js');
 

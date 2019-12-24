@@ -77,7 +77,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "git add packages/website/.cache --force && lint-staged",
+      "pre-commit": "git add .cache packages/website/.cache --force && lint-staged",
       "pre-push": "jest ./__tests__/monorepo-basics.test.js -c jest.config.quick.js --noStackTrace",
       "commitmsg": "commitlint -E $GIT_PARAMS"
     }

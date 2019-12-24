@@ -4,7 +4,7 @@ const app = express();
 const path = require('path');
 
 const port = process.env.PORT || 4444;
-const { getConfig } = require('@bolt/build-tools/utils/config-store');
+const { getConfig } = require('@bolt/build-utils/config-store');
 const webpackTasks = require('@bolt/build-tools/tasks/webpack-tasks');
 
 let server;

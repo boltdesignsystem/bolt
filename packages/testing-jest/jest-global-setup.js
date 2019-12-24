@@ -11,7 +11,7 @@ const chromePath = require('@moonandyou/chrome-path');
 const { buildPrep } = require('@bolt/build-tools/tasks/task-collections.js');
 const imageTasks = require('@bolt/build-tools/tasks/image-tasks');
 const iconTasks = require('@bolt/build-tools/tasks/icon-tasks');
-const { getConfig } = require('@bolt/build-tools/utils/config-store');
+const { getConfig } = require('@bolt/build-utils/config-store');
 
 module.exports = async function globalSetup() {
   let config = await getConfig();
@@ -29,7 +29,7 @@ module.exports = async function globalSetup() {
   await iconTasks.build(); // process icons used by any tests
 
   await setupDevServer({
-    command: `node packages/servers/testing-server`,
+    command: `node packages/servers-testing`,
     launchTimeout: 300000,
     port: 4444,
     usedPortAction: 'kill',
