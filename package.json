@@ -32,7 +32,7 @@
     ]
   },
   "scripts": {
-    "build": "cd packages/website && yarn run build:prod",
+    "build": "cd packages/website && yarn build:prod",
     "cc": "yarn create:component",
     "clean": "npx npm-run-all --parallel clean:*",
     "clean:cache": "find . -name 'cache' -type d -exec rm -rf {} +",
@@ -77,7 +77,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged",
+      "pre-commit": "git add packages/website/.cache --force && lint-staged",
       "pre-push": "jest ./__tests__/monorepo-basics.test.js -c jest.config.quick.js --noStackTrace",
       "commitmsg": "commitlint -E $GIT_PARAMS"
     }
@@ -113,7 +113,7 @@
   "browserslist": [
     "extends @bolt/browserslist-config"
   ],
-  "_dependencies": {
+  "dependencies": {
     "@auto-it/npm": "8.0.0",
     "@auto-it/omit-commits": "8.0.0",
     "@auto-it/released": "8.0.0",
@@ -134,7 +134,7 @@
     "sort-package-json": "^1.31.0",
     "typescript": "^3.7.4"
   },
-  "_devDependencies": {
+  "devDependencies": {
     "@types/jest": "^24.0.24",
     "@types/skatejs": "^5.0.1",
     "stylelint": "^12.0.0",

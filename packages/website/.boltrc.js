@@ -61,7 +61,22 @@ const config = {
     sets: [
       {
         base: './src/assets/images',
-        glob: '**',
+        glob: '**/*.svg',
+        dist: '../../www/images',
+      },
+      {
+        base: './src/assets/images',
+        glob: '**/*.jpeg',
+        dist: '../../www/images',
+      },
+      {
+        base: './src/assets/images',
+        glob: '**/*.jpg',
+        dist: '../../www/images',
+      },
+      {
+        base: './src/assets/images',
+        glob: '**/*.png',
         dist: '../../www/images',
       },
     ],
@@ -83,6 +98,7 @@ const config = {
       '@bolt/components-radio-switch',
       '@bolt/version-selector',
       '@bolt/components-ratio',
+      '@bolt/components-icons',
 
 
       '@bolt/components-carousel',

@@ -1,7 +1,6 @@
 const fs = require('fs');
 const { promisify } = require('util');
 const path = require('path');
-const symlink = promisify(fs.symlink);
 const readFile = promisify(fs.readFile);
 const writeFile = promisify(fs.writeFile);
 const mkdirp = promisify(require('mkdirp'));
@@ -9,56 +8,16 @@ const chokidar = require('chokidar');
 const chalk = require('chalk');
 const globby = require('globby');
 const ora = require('ora');
-const sharpImport = require('sharp');
+const sharp = require('sharp');
 const SVGO = require('svgo');
-const { spawnSync } = require('child_process');
 const log = require('@bolt/build-utils/log');
 const timer = require('@bolt/build-utils/timer');
 const { getConfig } = require('@bolt/build-utils/config-store');
 const { flattenArray } = require('@bolt/build-utils/general');
-let config, sharp;
-
-// https://github.com/lovell/sharp/issues/1593#issuecomment-491171982
-function warmupSharp(sharp) {
-  return sharp(
-    Buffer.from(
-      `<svg xmlns="http://www.w3.org/2000/svg"><rect width="1" height="1" /></svg>`,
-      'utf-8',
-    ),
-  )
-    .metadata()
-    .then(
-      () => sharp,
-      () => sharp,
-    );
-}
-
-const {
-  TRAVIS,
-  TRAVIS_BRANCH,
-  TRAVIS_PULL_REQUEST_BRANCH,
-  TRAVIS_PULL_REQUEST,
-} = process.env;
-
-let branchName = 'detached-HEAD';
-try {
-  branchName = spawnSync('git', ['symbolic-ref', 'HEAD'], {
-    encoding: 'utf8',
-  })
-    .stdout.replace('refs/heads/', '')
-    .replace(/\//g, '-')
-    .trim();
-} catch (error) {
-  process.exit(1);
-}
-
-if (TRAVIS === 'true') {
-  if (TRAVIS_PULL_REQUEST === 'false') {
-    branchName = TRAVIS_BRANCH;
-  } else {
-    branchName = TRAVIS_PULL_REQUEST_BRANCH;
-  }
-}
+const sizeOf = promisify(require('image-size'));
+const cacache = require('cacache');
+const cachePath = './.cache';
+let config;
 
 const svgo = new SVGO({
   plugins: [
@@ -88,15 +47,6 @@ let boltImageSizes = [
   2880,
 ];
 
-// don't resize images to all available options on feature-specific branches to speed up build times
-if (
-  branchName.includes('feature') === true &&
-  process.env.NODE_ENV !== 'test' &&
-  TRAVIS === true
-) {
-  boltImageSizes = [320, 640, 1024, 1920];
-}
-
 function makeWebPath(imagePath) {
   return `/${path.relative(config.wwwDir, imagePath)}`;
 }
@@ -125,159 +75,78 @@ async function processImage(file, set, skipOptimization = false) {
 
   await mkdirp(pathInfo.dir);
 
-  // we want to read the original file once, instead of reading for each size
-  const originalFileBuffer = await readFile(file);
-  // http://sharp.pixelplumbing.com/en/stable/api-input/#metadata
-  const { width, height } = await sharp(originalFileBuffer).metadata();
+  let dimensions, sizes;
 
-  // We add `null` to beginning b/c we want the original file too
-  // Filter the list to not include sizes bigger than our file
-  const sizes = [null, ...boltImageSizes].filter(size => width >= size);
+  try {
+    dimensions = await sizeOf(file);
+  } catch (err) {
+    console.error(err);
+  }
+
+  const width = dimensions.width;
+
+  if (pathInfo.ext === '.svg') {
+    sizes = [null];
+  } else {
+    sizes = [...boltImageSizes].filter(size => width >= size);
+  }
 
   // looping through all sizes and resizing
   return Promise.all(
     sizes.map(async size => {
-      const isOrig = size === null; // original file
-      if (!isOrig) {
-        // no need to resize these file extensions
-        if (pathInfo.ext === '.svg' || pathInfo.ext === '.gif') {
-          return;
-        }
-      }
-
       // Goes on end of filename
       const sizeSuffix = size ? `-${size}` : '';
       const thisPathInfo = Object.assign({}, pathInfo, {
         name: `${pathInfo.name}${sizeSuffix}`,
       });
       const newSizedPath = path.format(thisPathInfo);
-      const newSizeWebPath = makeWebPath(newSizedPath);
 
-      if (config.prod && skipOptimization === false) {
-        if (isOrig) {
-          if (
-            pathInfo.ext === '.jpeg' ||
-            pathInfo.ext === '.jpg' ||
-            pathInfo.ext === '.png'
-          ) {
-            await sharp(originalFileBuffer)
-              .resize(size)
-              .jpeg({
-                quality: 50,
-                progressive: true,
-                optimiseScans: true,
-                force: false,
-              })
-              .png({
-                progressive: true,
-                force: false,
-              })
-              .toFile(newSizedPath);
-          } else if (pathInfo.ext === '.svg') {
-            const result = await svgo.optimize(originalFileBuffer);
-            const optimizedSVG = result.data;
-            await writeFile(newSizedPath, optimizedSVG);
-          } else {
-            await sharp(originalFileBuffer)
-              .jpeg({
-                quality: 50,
-                progressive: true,
-                optimiseScans: true,
-                force: false,
-              })
-              .png({
-                progressive: true,
-                force: false,
-              })
-              .toFile(newSizedPath);
-          }
-        } else {
-          // http://sharp.pixelplumbing.com/en/stable/
-          if (
-            pathInfo.ext === '.jpeg' ||
-            pathInfo.ext === '.jpg' ||
-            pathInfo.ext === '.png'
-          ) {
-            await sharp(originalFileBuffer)
-              .resize(size)
-              .jpeg({
-                quality: 50,
-                progressive: true,
-                optimiseScans: true,
-                force: false,
-              })
-              .png({
-                progressive: true,
-                force: false,
-              })
-              .toFile(newSizedPath);
-          } else {
-            await sharp(originalFileBuffer)
-              .resize(size)
-              .toFile(newSizedPath);
-          }
-        }
+      if (pathInfo.ext === '.svg') {
+        const svgBuffer = await readFile(file);
+        const result = await svgo.optimize(svgBuffer);
+        const optimizedSVG = result.data;
+        await writeFile(newSizedPath, optimizedSVG);
       } else {
-        if (config.prod) {
-          if (
-            pathInfo.ext === '.jpeg' ||
-            pathInfo.ext === '.jpg' ||
-            pathInfo.ext === '.png'
-          ) {
-            await sharp(originalFileBuffer)
-              .resize(size)
-              .toFile(newSizedPath);
-          } else if (pathInfo.ext === '.svg') {
-            const result = await svgo.optimize(originalFileBuffer);
-            const optimizedSVG = result.data;
-            await writeFile(newSizedPath, optimizedSVG);
-          }
+        const results = await cacache.get.info(cachePath, newSizedPath);
+
+        if (results) {
+          cacache.get
+            .stream(cachePath, newSizedPath)
+            .pipe(fs.createWriteStream(newSizedPath));
         } else {
-          // Not prod, so let's be quicker
-          if (
-            pathInfo.ext === '.jpeg' ||
-            pathInfo.ext === '.jpg' ||
-            pathInfo.ext === '.png'
-          ) {
-            const symlinkPath = path.relative(thisPathInfo.dir, file);
-
-            try {
-              await symlink(symlinkPath, newSizedPath);
-            } catch (error) {
-              // If it's the error for symlink already exists, we don't care.
-              if (error.code !== 'EEXIST') {
-                log.errorAndExit(
-                  `Problem when attempting to symlink ${file} to ${newSizedPath}.`,
-                  error,
-                );
-              }
-            }
-          } else if (pathInfo.ext === '.svg') {
-            const result = await svgo.optimize(originalFileBuffer);
-            const optimizedSVG = result.data;
-            await writeFile(newSizedPath, optimizedSVG);
-          }
+          sharp(file)
+            .resize(size)
+            .jpeg({
+              quality: 50,
+              progressive: true,
+              optimiseScans: true,
+              force: false,
+            })
+            .png({
+              progressive: true,
+              force: false,
+            })
+            .toBuffer()
+            .then(data => {
+              cacache.put(cachePath, newSizedPath, data).then(integrity => {
+                writeFile(newSizedPath, data);
+              });
+            });
         }
-      }
-
-      if (!isOrig) {
-        return {
-          path: newSizeWebPath,
-          size,
-        };
       }
     }),
   ).then(resizedImagePaths => {
     // removes `undefined` & other non-truthy values (mainly original images & non processed file types like SVG or GIF)
     const sets = resizedImagePaths.filter(resizedImagePath => resizedImagePath);
     const imageMeta = {
-      original: file,
-      // width,
-      // height,
       fileId,
       src: makeWebPath(newPath),
       sizePaths: sets,
-      srcset: sets.map(set => `${set.path} ${set.size}w`).join(', '),
+      srcset: sets
+        .map(
+          set => `${set.path} ${pathInfo.ext !== '.svg' ? `${set.size}w` : ''}`,
+        )
+        .join(', '),
     };
 
     return imageMeta;
@@ -286,8 +155,6 @@ async function processImage(file, set, skipOptimization = false) {
 
 async function processImages(skipOptimization = false) {
   config = config || (await getConfig());
-  sharp = await warmupSharp(sharpImport);
-
   if (!config.images) {
     return;
   }
@@ -302,7 +169,7 @@ async function processImages(skipOptimization = false) {
 
   return Promise.all(
     config.images.sets.map(async set => {
-      const imagePaths = await globby(path.join(set.base, set.glob));
+      const imagePaths = await globby.sync(path.join(set.base, set.glob));
       return Promise.all(
         imagePaths.map(imagePath =>
           processImage(imagePath, set, skipOptimization),
