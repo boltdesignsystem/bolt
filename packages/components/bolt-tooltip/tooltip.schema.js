@@ -1,4 +1,6 @@
 const triggerSchema = require('@bolt/components-trigger/trigger.schema');
+const buttonSchema = require('@bolt/components-button/button.schema');
+const linkSchema = require('@bolt/components-link/link.schema');
 
 module.exports = {
   $schema: 'http://json-schema.org/draft-04/schema#',
@@ -13,9 +15,23 @@ module.exports = {
     },
     trigger: {
       type: 'object',
-      description: 'Renders the trigger of the tooltip.',
+      description: 'Renders the trigger of the tooltip as custom content.',
       properties: {
         ...triggerSchema.properties,
+      },
+    },
+    button: {
+      type: 'object',
+      description: 'Renders the trigger of the tooltip as a button.',
+      properties: {
+        ...buttonSchema.properties,
+      },
+    },
+    link: {
+      type: 'object',
+      description: 'Renders the trigger of the tooltip as a link.',
+      properties: {
+        ...linkSchema.properties,
       },
     },
     content: {

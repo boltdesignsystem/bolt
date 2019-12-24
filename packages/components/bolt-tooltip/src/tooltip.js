@@ -80,13 +80,36 @@ class BoltTooltip extends BoltElement {
         @focusin="${tooltipOpen}"
         @focusout="${tooltipClosed}"
       >
-        <bolt-trigger
-          aria-describedby="js-bolt-tooltip-${this.uuid}"
-          aria-controls="js-bolt-tooltip-${this.uuid}"
-          aria-expanded="${this.open}"
-        >
-          ${this.slotify('default')}
-        </bolt-trigger>
+        ${this.templateMap.get('trigger') &&
+          html`
+            <bolt-trigger
+              aria-describedby="js-bolt-tooltip-${this.uuid}"
+              aria-controls="js-bolt-tooltip-${this.uuid}"
+              aria-expanded="${this.open}"
+            >
+              ${this.slotify('trigger')}
+            </bolt-trigger>
+          `}
+        ${this.templateMap.get('button') &&
+          html`
+            <bolt-button
+              aria-describedby="js-bolt-tooltip-${this.uuid}"
+              aria-controls="js-bolt-tooltip-${this.uuid}"
+              aria-expanded="${this.open}"
+            >
+              ${this.slotify('button')}
+            </bolt-button>
+          `}
+        ${this.templateMap.get('link') &&
+          html`
+            <bolt-link
+              aria-describedby="js-bolt-tooltip-${this.uuid}"
+              aria-controls="js-bolt-tooltip-${this.uuid}"
+              aria-expanded="${this.open}"
+            >
+              ${this.slotify('link')}
+            </bolt-link>
+          `}
         ${this.templateMap.get('content') &&
           html`
             <span

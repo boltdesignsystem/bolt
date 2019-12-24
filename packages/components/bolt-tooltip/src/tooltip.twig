@@ -38,15 +38,41 @@
 >
   <replace-with-children {% if inner_classes %} class="{{ inner_classes|join(' ') }}" {% endif %}>
     {% if trigger %}
-      <replace-with-grandchildren>
-        {% include "@bolt-components-trigger/trigger.twig" with trigger|merge({
-          attributes: {
-            "aria-describedby": "js-bolt-tooltip-" ~ uuid,
-            "aria-controls": "js-bolt-tooltip-" ~ uuid,
-            "aria-expanded": false,
-          }
-        }) only %}
-      </replace-with-grandchildren>
+      <span slot="trigger">
+        <replace-with-grandchildren>
+          {% include "@bolt-components-trigger/trigger.twig" with trigger|merge({
+            attributes: {
+              "aria-describedby": "js-bolt-tooltip-" ~ uuid,
+              "aria-controls": "js-bolt-tooltip-" ~ uuid,
+              "aria-expanded": false,
+            }
+          }) only %}
+        </replace-with-grandchildren>
+      </span>
+    {% elseif button %}
+      <span slot="button">
+        <replace-with-grandchildren>
+          {% include "@bolt-components-button/button.twig" with button|merge({
+            attributes: {
+              "aria-describedby": "js-bolt-tooltip-" ~ uuid,
+              "aria-controls": "js-bolt-tooltip-" ~ uuid,
+              "aria-expanded": false,
+            }
+          }) only %}
+        </replace-with-grandchildren>
+      </span>
+    {% elseif link %}
+      <span slot="link">
+        <replace-with-grandchildren>
+          {% include "@bolt-components-link/link.twig" with link|merge({
+            attributes: {
+              "aria-describedby": "js-bolt-tooltip-" ~ uuid,
+              "aria-controls": "js-bolt-tooltip-" ~ uuid,
+              "aria-expanded": false,
+            }
+          }) only %}
+        </replace-with-grandchildren>
+      </span>
     {% endif %}
     {% if content %}
       <span slot="content">
