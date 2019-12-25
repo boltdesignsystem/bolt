@@ -3,9 +3,9 @@ import {
   stopServer,
   html,
   vrtDefaultConfig as vrtConfig,
-} from '../../../testing/testing-helpers';
+} from '@bolt/testing-helpers';
 
-const { readYamlFileSync } = require('@bolt/build-tools/utils/yaml');
+const { readYamlFileSync } = require('@bolt/build-utils/yaml');
 const { join } = require('path');
 const schema = readYamlFileSync(join(__dirname, '../tabs.schema.yml'));
 const { align, inset } = schema.properties;

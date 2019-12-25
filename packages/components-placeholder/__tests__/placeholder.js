@@ -1,6 +1,6 @@
 import { render, renderString } from '@bolt/twig-renderer';
 
-const { readYamlFileSync } = require('@bolt/build-tools/utils/yaml');
+const { readYamlFileSync } = require('@bolt/build-utils/yaml');
 const { join } = require('path');
 const schema = readYamlFileSync(join(__dirname, '../placeholder.schema.yml'));
 const { size } = schema.properties;
@@ -52,7 +52,7 @@ describe('<bolt-placeholder> Component', () => {
       size: "large",
       animated: true
     } %}
-    
+
     {% include "@bolt-components-placeholder/placeholder.twig" with {
       text: "Bolt Placeholder Example",
       size: "large",

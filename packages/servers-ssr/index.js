@@ -1,8 +1,8 @@
 const path = require('path');
 const fs = require('fs');
 const http2 = require('http2');
-const { fileExists } = require('@bolt/build-tools/utils/general');
-const { getConfig } = require('@bolt/build-tools/utils/config-store.js');
+const { fileExists } = require('@bolt/build-utils/general');
+const { getConfig } = require('@bolt/build-utils/config-store.js');
 const prettier = require('prettier');
 const { JsDomRenderBackend } = require('./libs/render/backend/jsdom');
 const {

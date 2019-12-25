@@ -4,8 +4,8 @@ import {
   renderString,
   stopServer,
   html,
-} from '../../../testing/testing-helpers';
-const { readYamlFileSync } = require('@bolt/build-tools/utils/yaml');
+} from '@bolt/testing-helpers';
+const { readYamlFileSync } = require('@bolt/build-utils/yaml');
 const { join } = require('path');
 const schema = readYamlFileSync(join(__dirname, '../band.schema.yml'));
 const { size, theme, tag } = schema.properties;

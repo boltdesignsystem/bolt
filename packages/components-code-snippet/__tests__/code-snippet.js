@@ -1,6 +1,6 @@
 import { render } from '@bolt/twig-renderer';
 
-const { readYamlFileSync } = require('@bolt/build-tools/utils/yaml');
+const { readYamlFileSync } = require('@bolt/build-utils/yaml');
 const { join } = require('path');
 const schema = readYamlFileSync(join(__dirname, '../code-snippet.schema.yml'));
 const { display, lang, syntax } = schema.properties;

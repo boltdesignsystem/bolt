@@ -1,8 +1,4 @@
-import {
-  render,
-  renderString,
-  stopServer,
-} from '../../../testing/testing-helpers';
+import { render, renderString, stopServer } from '@bolt/testing-helpers';
 
 describe('<bolt-sticky> Component', () => {
   test('basic usage', async () => {

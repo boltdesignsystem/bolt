@@ -5,7 +5,7 @@ import {
 } from '@bolt/twig-renderer';
 import { fixture as html } from '@open-wc/testing-helpers';
 
-const { readYamlFileSync } = require('@bolt/build-tools/utils/yaml');
+const { readYamlFileSync } = require('@bolt/build-utils/yaml');
 const { join } = require('path');
 const schema = readYamlFileSync(
   join(__dirname, '../<%= props.name.kebabCase %>.schema.yml'),

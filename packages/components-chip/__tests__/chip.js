@@ -1,5 +1,5 @@
 import { render } from '@bolt/twig-renderer';
-const { readYamlFileSync } = require('@bolt/build-tools/utils/yaml');
+const { readYamlFileSync } = require('@bolt/build-utils/yaml');
 const { join } = require('path');
 const schema = readYamlFileSync(join(__dirname, '../chip.schema.yml'));
 const { url, target, icon, size } = schema.properties;

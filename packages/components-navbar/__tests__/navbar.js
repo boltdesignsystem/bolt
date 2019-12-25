@@ -5,7 +5,7 @@ import {
   renderString,
   stopServer,
   html,
-} from '../../../testing/testing-helpers';
+} from '@bolt/testing-helpers';
 
 const imageVrtConfig = {
   failureThreshold: '0.02',

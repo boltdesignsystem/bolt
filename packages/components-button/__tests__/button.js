@@ -4,7 +4,7 @@ import {
   renderString,
   stopServer,
   html,
-} from '../../../testing/testing-helpers';
+} from '@bolt/testing-helpers';
 import schema from '../button.schema';
 const { tag, type } = schema.properties;
 const timeout = 90000;

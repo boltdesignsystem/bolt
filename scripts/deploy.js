@@ -2,10 +2,10 @@
 const fs = require('fs');
 const shell = require('shelljs');
 const path = require('path');
+const { getConfig } = require('@bolt/build-utils/config-store');
+const { fileExists } = require('@bolt/build-utils/general');
 const { gitSha } = require('./utils');
 const { branchName } = require('./utils/branch-name');
-const { getConfig } = require('../packages/build-tools/utils/config-store');
-const { fileExists } = require('../packages/build-tools/utils/general');
 
 const { TRAVIS, TRAVIS_TAG } = require('./utils/travis-vars');
 const { NOW_TOKEN } = process.env;
