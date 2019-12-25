@@ -88,7 +88,7 @@ async function processImage(file, set, skipOptimization = false) {
   if (pathInfo.ext === '.svg') {
     sizes = [null];
   } else {
-    sizes = [...boltImageSizes].filter(size => width >= size);
+    sizes = [null, ...boltImageSizes].filter(size => width >= size);
   }
 
   // looping through all sizes and resizing
@@ -115,7 +115,7 @@ async function processImage(file, set, skipOptimization = false) {
             .pipe(fs.createWriteStream(newSizedPath));
         } else {
           sharp(file)
-            .resize(size)
+            .resize(size !== '' && size !== null ? size : width)
             .jpeg({
               quality: 50,
               progressive: true,

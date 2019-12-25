@@ -50,13 +50,13 @@ describe('dependency mapper', () => {
     );
 
     expect(filePath).toBe(
-      join(repoRoot, 'packages/components/bolt-button/src/button.twig'),
+      join(repoRoot, 'packages/components-button/src/button.twig'),
     );
   });
 
   test('getFilesPkg', async () => {
     const pkgName = await dm.getFilesPkg(
-      join(repoRoot, 'packages/components/bolt-band/src/band.js'),
+      join(repoRoot, 'packages/components-band/src/band.js'),
     );
     expect(pkgName).toEqual('@bolt/components-band');
   });
