@@ -50,7 +50,7 @@ const nonImageFixtures = globby.sync([
 const itemsToCopy = [];
 
 const allComponentPackages = globby
-  .sync(path.join(__dirname, './packages/components-*/*/package.json'))
+  .sync(path.join(__dirname, './packages/components-*/package.json'))
   .map(pkgPath => require(pkgPath))
   .map(pkg => pkg.name);
 

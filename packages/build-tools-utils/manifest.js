@@ -142,21 +142,21 @@ async function getPkgInfo(pkgName) {
       deps: [],
     };
 
-    // if (pkg.peerDependencies) {
-    //   for (dependencyPackageName in pkg.peerDependencies) {
-    //     if (dependencyPackageName.includes('bolt')) {
-    //       info.deps.push(dependencyPackageName);
-    //     }
-    //   }
-    // }
+    if (pkg.peerDependencies) {
+      for (let dependencyPackageName in pkg.peerDependencies) {
+        if (dependencyPackageName.includes('bolt')) {
+          info.deps.push(dependencyPackageName);
+        }
+      }
+    }
 
-    // if (pkg.dependencies) {
-    //   for (dependencyPackageName in pkg.dependencies) {
-    //     if (dependencyPackageName.includes('bolt')) {
-    //       info.deps.push(dependencyPackageName);
-    //     }
-    //   }
-    // }
+    if (pkg.dependencies) {
+      for (let dependencyPackageName in pkg.dependencies) {
+        if (dependencyPackageName.includes('bolt')) {
+          info.deps.push(dependencyPackageName);
+        }
+      }
+    }
 
     info.twigNamespace = `@${info.basicName}`;
     if (pkg.style) {

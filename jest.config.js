@@ -11,7 +11,7 @@ module.exports = {
   testPathIgnorePatterns: [
     'node_modules',
     'vendor',
-    'docs-site',
+    'packages/website',
     'brightcove-player.test.js',
     'example-integrations',
     'packages/uikit-workshop',
@@ -31,7 +31,7 @@ module.exports = {
   },
   transformIgnorePatterns: [
     'node_modules/(?!(lit-html|@bolt|@open-wc)/)', // add any additional packages in node_modules that need to be transpiled for Jest
-    'packages/(?!(components-*|core|analytics|config|testing-jest|generators|micro-journeys)/)', // add any additional packages in node_modules that need to be transpiled for Jest
+    'packages/build-tools/', // add any additional packages in node_modules that need to be transpiled for Jest
     './scripts/monorepo.test.js',
   ],
   globalSetup: './packages/testing-jest/jest-global-setup.js',

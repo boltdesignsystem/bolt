@@ -77,20 +77,19 @@ jobs:
       name: 'Build + Deploy Website + Lighthouse CLI'
       if: (NOT tag =~ ^v) AND (NOT branch =~ /(master|release|bug|fix)/)
       install:
-        - npx json -I -f package.json -e 'delete this.dependencies'
-        - npx json -I -f package.json -e 'delete this.scripts.postinstall'
+        # - npx json -I -f package.json -e 'delete this.dependencies'
+        # - npx json -I -f package.json -e 'delete this.scripts.postinstall'
         - yarn run setup
-        - npx lerna run postbootstrap
-        - yarn global add @lhci/cli@0.3.x
+        # - yarn global add @lhci/cli@0.3.x
       script:
-        - cd example-integrations/drupal-lab
-        - yarn run generate # generate static version of Drupal Lab in the integration folder
-        - cd ../../
+        # - cd example-integrations/drupal-lab
+        # - yarn run generate # generate static version of Drupal Lab in the integration folder
+        # - cd ../../
         - yarn run build
         - yarn run deploy
-        - export NOW_URL=$(./scripts/get-latest-deploy.js)
-        - travis_retry yarn run test:e2e:quick
-        - lhci autorun --collect.numberOfRuns=3 --collect.url=$NOW_URL --collect.url=$NOW_URL/pattern-lab/patterns/04-pages-10-d8-product-pages-product-t2/04-pages-10-d8-product-pages-product-t2.html --collect.url=$NOW_URL/pattern-lab/patterns/06-experiments-micro-journeys-90-micro-journeys/06-experiments-micro-journeys-90-micro-journeys.html
+        # - export NOW_URL=$(./scripts/get-latest-deploy.js)
+        # - travis_retry yarn run test:e2e:quick
+        # - lhci autorun --collect.numberOfRuns=3 --collect.url=$NOW_URL --collect.url=$NOW_URL/pattern-lab/patterns/04-pages-10-d8-product-pages-product-t2/04-pages-10-d8-product-pages-product-t2.html --collect.url=$NOW_URL/pattern-lab/patterns/06-experiments-micro-journeys-90-micro-journeys/06-experiments-micro-journeys-90-micro-journeys.html
       after_success:
         - ./scripts/deploy-branch-alias.js
 
