@@ -46,7 +46,7 @@
     "deploy": "./scripts/deploy.js",
     "fix": "yarn lint:js --fix; yarn lint:scss --fix",
     "postinstall": "npx lerna run postbootstrap",
-    "jest": "jest --maxWorkers=3 --all --colors",
+    "jest": "jest --maxWorkers=3 --all --colors --cacheDirectory .jest-cache",
     "lint": "npm-run-all --parallel lint:*",
     "lint:js": "eslint --max-warnings 0 'packages/**/*.js' 'packages/website/**/*.js'",
     "lint:scss": "stylelint 'packages/**/*.scss' 'packages/website/**/*.scss' --config .stylelintrc",
@@ -68,18 +68,18 @@
     "test:e2e:quick-local": "NOW_URL=http://localhost:3000 ./node_modules/.bin/nightwatch --config packages/testing-nightwatch/nightwatch.local.js",
     "test:e2e:quick-master": " NOW_URL=https://master.boltdesignsystem.com ./node_modules/.bin/nightwatch --config packages/testing-nightwatch/nightwatch.local.js",
     "pretest:js": "npm run setup:php",
-    "test:js": "NODE_ENV='test' jest --all --colors 'packages|scripts' --passWithNoTests ",
-    "test:js:quick": "NODE_ENV='test' jest --colors \"$(bolt-list-pkg-paths-changed)\" --passWithNoTests",
+    "test:js": "NODE_ENV='test' jest --all --colors 'packages|scripts' --passWithNoTests --cacheDirectory .jest-cache",
+    "test:js:quick": "NODE_ENV='test' jest --colors \"$(bolt-list-pkg-paths-changed)\" --passWithNoTests --cacheDirectory .jest-cache",
     "test:js:update": "yarn run test:js -u",
-    "test:monorepo": "jest ./__tests__/monorepo -c jest.config.quick.js --noStackTrace",
+    "test:monorepo": "jest ./__tests__/monorepo -c jest.config.quick.js --noStackTrace --cacheDirectory .jest-cache",
     "test:php": "cd packages/twig-extensions-shared && composer run test",
     "test:pkgs": "lerna run test --ignore=@bolt/uikit-* --ignore=@bolt/build-tools--* --stream",
     "test:types": "tsc"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "git add .cache packages/website/.cache --force && lint-staged",
-      "pre-push": "jest ./__tests__/monorepo-basics.test.js -c jest.config.quick.js --noStackTrace",
+      "pre-commit": "lint-staged",
+      "pre-push": "jest ./__tests__/monorepo-basics.test.js -c jest.config.quick.js --noStackTrace --cacheDirectory .jest-cache",
       "commitmsg": "commitlint -E $GIT_PARAMS"
     }
   },
