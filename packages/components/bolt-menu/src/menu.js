@@ -7,13 +7,14 @@ import {
   styleMap,
   unsafeCSS,
 } from '@bolt/element';
+import { withContext } from 'wc-context';
 import menuStyles from './menu.scss';
 import schema from '../menu.schema';
 
 let cx = classNames.bind(menuStyles);
 
 @customElement('bolt-menu')
-class BoltMenu extends BoltElement {
+class BoltMenu extends withContext(BoltElement) {
   static get properties() {
     return {
       // ratio: String,
@@ -35,6 +36,12 @@ class BoltMenu extends BoltElement {
     };
   }
 
+  static get providedContexts() {
+    return {
+      spacing: { value: schema.properties.spacing.default },
+    };
+  }
+
   constructor() {
     super();
     this.noCssVars = supportsCSSVars ? false : true;
@@ -44,9 +51,19 @@ class BoltMenu extends BoltElement {
     return [unsafeCSS(menuStyles)];
   }
 
+  connectedCallback() {
+    super.connectedCallback && super.connectedCallback();
+
+    this.updateProvidedContext(
+      'spacing',
+      this.spacing || schema.properties.spacing.default,
+    );
+  }
+
   render() {
     // @todo: automatic schema validation?
     const spacing = this.spacing || schema.properties.spacing.default;
+    this.updateProvidedContext('spacing', spacing);
 
     const classes = cx('c-bolt-menu__title', {
       [`c-bolt-menu__title--spacing-${spacing}`]: spacing,

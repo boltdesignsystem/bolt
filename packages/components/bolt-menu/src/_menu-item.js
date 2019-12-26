@@ -8,6 +8,7 @@ import {
   unsafeCSS,
   ifDefined,
 } from '@bolt/element';
+import { withContext } from 'wc-context';
 import menuStyles from './_menu-item.scss';
 import schema from '../menu.schema';
 
@@ -15,15 +16,23 @@ let cx = classNames.bind(menuStyles);
 
 /*
  * 1 - @todo: remove SSR Hydration from this file, move to base
- * 2 - @todo: remove Context workaround, provide in base
  */
 
 @customElement('bolt-menu-item')
-class BoltMenuItem extends BoltElement {
+class BoltMenuItem extends withContext(BoltElement) {
   static get properties() {
     return {
       url: String,
+      spacing: String,
     };
+  }
+
+  static get observedContexts() {
+    return ['spacing'];
+  }
+
+  contextChangedCallback(name, oldValue, value) {
+    this[name] = value;
   }
 
   constructor() {
@@ -76,17 +85,12 @@ class BoltMenuItem extends BoltElement {
   }
 
   render() {
-    const parent = this.parentComponent;
-
-    /* [2] */
-    const spacing = parent.spacing || schema.properties.spacing.default;
-
     const isLast =
       this.allMenuItems &&
       this.allMenuItems.item(this.allMenuItems.length - 1) === this;
 
     const classes = cx('c-bolt-menu-item', {
-      [`c-bolt-menu-item--spacing-${spacing}`]: spacing,
+      [`c-bolt-menu-item--spacing-${this.spacing}`]: this.spacing,
       [`c-bolt-menu-item--last-item`]: isLast,
     });
 
