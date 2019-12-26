@@ -1,3 +1,4 @@
+{#
 {% set trigger %}
   {% include "@bolt-components-headline/text.twig" with {
     text: "CRM",
@@ -48,7 +49,7 @@
 {% endset %}
 {% set tooltips_right %}
   <bolt-list spacing="xxlarge">
-    {# <bolt-list-item>
+    <bolt-list-item>
       <div class="u-bolt-text-align-right">
         {% include "@bolt-components-tooltip/tooltip.twig" with {
           placement: "left-top",
@@ -58,7 +59,7 @@
           content: content,
         } only %}
       </div>
-    </bolt-list-item> #}
+    </bolt-list-item>
     <bolt-list-item>
       <div class="u-bolt-text-align-right">
         {% include "@bolt-components-tooltip/tooltip.twig" with {
@@ -70,7 +71,7 @@
         } only %}
       </div>
     </bolt-list-item>
-    {# <bolt-list-item>
+    <bolt-list-item>
       <div class="u-bolt-text-align-right">
         {% include "@bolt-components-tooltip/tooltip.twig" with {
           placement: "left-bottom",
@@ -80,7 +81,7 @@
           content: content,
         } only %}
       </div>
-    </bolt-list-item> #}
+    </bolt-list-item>
   </bolt-list>
 {% endset %}
 {% set tooltips_bottom %}
@@ -122,7 +123,7 @@
 {% endset %}
 {% set tooltips_left %}
   <bolt-list spacing="xxlarge">
-    {# <bolt-list-item>
+    <bolt-list-item>
       {% include "@bolt-components-tooltip/tooltip.twig" with {
         placement: "right-top",
         trigger: {
@@ -130,7 +131,7 @@
         },
         content: content,
       } only %}
-    </bolt-list-item> #}
+    </bolt-list-item>
     <bolt-list-item>
       {% include "@bolt-components-tooltip/tooltip.twig" with {
         placement: "right",
@@ -140,7 +141,7 @@
         content: content,
       } only %}
     </bolt-list-item>
-    {# <bolt-list-item>
+    <bolt-list-item>
       {% include "@bolt-components-tooltip/tooltip.twig" with {
         placement: "right-bottom",
         trigger: {
@@ -148,7 +149,7 @@
         },
         content: content,
       } only %}
-    </bolt-list-item> #}
+    </bolt-list-item>
   </bolt-list>
 {% endset %}
 {% set grid %}
@@ -234,6 +235,10 @@
     },
     content: "This is no bueno. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttito. Quisque eget odio ac lectus vestibulum faucibus eget in metus. In pellentesque.",
   } only %}
+  <bolt-tooltip>
+    <span class="u-bolt-color-error"><bolt-icon name="close-solid"></bolt-icon></span>
+    <span slot="content">This is no bueno. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttito. Quisque eget odio ac lectus vestibulum faucibus eget in metus. In pellentesque.</span>
+  </bolt-tooltip>
 {% endset %}
 <div class="u-bolt-margin-xlarge u-bolt-padding-small u-bolt-shadow-level-30">
   <bolt-list display="flex">
@@ -257,18 +262,26 @@
     </bolt-list-item>
   </bolt-list>
 </div>
-
+ #}
 
 
 <div class="u-bolt-margin-xlarge u-bolt-padding-small">
-  <bolt-list display="inline">
+  <bolt-list display="inline" spacing="large">
+    <bolt-list-item>
+      {% include "@bolt-components-tooltip/tooltip.twig" with {
+        trigger: {
+          content: "Banana stand",
+        },
+        content: "There's always money in it.",
+      } only %}
+    </bolt-list-item>
     <bolt-list-item>
       {% include "@bolt-components-tooltip/tooltip.twig" with {
         link: {
-          text: "CRM",
-          url: "https://pega.com/glossary#crm"
+          text: "GOB",
+          url: "https://pega.com/glossary#gob"
         },
-        content: "Customer relationship management",
+        content: "George Oscar Bluth Jr.",
       } only %}
     </bolt-list-item>
     <bolt-list-item>
@@ -277,19 +290,6 @@
           text: "Download",
         },
         content: "File size: 25MB",
-      } only %}
-    </bolt-list-item>
-    <bolt-list-item>
-      {% include "@bolt-components-tooltip/tooltip.twig" with {
-        button: {
-          text: "Share on Facebook",
-          iconOnly: true,
-          icon: {
-            name: "facebook",
-            position: "before",
-          }
-        },
-        content: "Share on Facebook",
       } only %}
     </bolt-list-item>
   </bolt-list>
