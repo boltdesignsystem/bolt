@@ -1,16 +1,16 @@
 const shell = require('shelljs');
-const { branchName } = require('./scripts/utils/branch-name');
 const isCanaryRelease = branchName === 'master';
 const isFullRelease =
   branchName === 'release-2.x' || branchName === 'release/2.x';
-const { normalizeUrlAlias } = require('./scripts/utils/normalize-url-alias');
-const { gitSha } = require('./scripts/utils');
 const execSync = require('child_process').execSync;
 const { spawn } = require('child_process');
-const { getLatestDeploy } = require('./scripts/utils');
 const { IncomingWebhook } = require('@slack/webhook');
 const chalk = require('chalk');
 const semver = require('semver');
+const { getLatestDeploy } = require('./scripts/utils');
+const { gitSha } = require('./scripts/utils');
+const { normalizeUrlAlias } = require('./scripts/utils/normalize-url-alias');
+const { branchName } = require('./scripts/utils/branch-name');
 const { NOW_TOKEN } = process.env;
 
 const lernaConfig = require('./lerna.json');
@@ -105,8 +105,8 @@ async function init() {
         const webhook = new IncomingWebhook(SLACK_WEBPACK_URL_CANARY);
         await webhook.send({
           text: `Bolt canary release, *${canaryReleaseVersion}*, has successfully published!
-           - <https://canary.boltdesignsystem.com|Shared Canary URL>
-           - <${tagSpecificUrl}|Unique Canary URL>`,
+            - <https://canary.boltdesignsystem.com|Shared Canary URL>
+            - <${tagSpecificUrl}|Unique Canary URL>`,
         });
       } else {
         console.log(
@@ -193,7 +193,7 @@ async function init() {
             const webhook = new IncomingWebhook(SLACK_WEBHOOK_URL);
             await webhook.send({
               text: `Bolt \`${releaseVersion}\` has been released! Check out the <https://github.com/boltdesignsystem/bolt/releases/tag/${releaseVersion}|latest release notes> for more details!
-                 - <https://boltdesignsystem.com|Updated Docs Site>`,
+                - <https://boltdesignsystem.com|Updated Docs Site>`,
             });
           } else {
             console.log(
