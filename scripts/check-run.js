@@ -67,9 +67,7 @@ async function getAccessToken() {
   if (!response.ok) {
     console.log(results);
     throw new Error(
-      `Error getting access token: ${response.status} ${response.statusText}. ${
-        results.message
-      }`,
+      `Error getting access token: ${response.status} ${response.statusText}. ${results.message}`,
     );
   }
 
@@ -162,9 +160,7 @@ async function createCheckSuite() {
   if (!response.ok) {
     console.log(results);
     throw new Error(
-      `Error creating check suite: ${response.status} ${response.statusText}. ${
-        results.message
-      }`,
+      `Error creating check suite: ${response.status} ${response.statusText}. ${results.message}`,
     );
   }
 
@@ -232,9 +228,7 @@ async function setCheckRun({
   if (!response.ok) {
     console.log(results);
     throw new Error(
-      `Error creating check run: ${response.status} ${response.statusText}. ${
-        results.message
-      }`,
+      `Error creating check run: ${response.status} ${response.statusText}. ${results.message}`,
     );
   }
 
