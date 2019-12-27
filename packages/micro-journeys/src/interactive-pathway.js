@@ -1,11 +1,11 @@
+import { html, customElement } from '@bolt/element';
 import {
   props,
-  define,
   hasNativeShadowDomSupport,
   query,
   convertSchemaToProps,
-} from '@bolt/core/utils';
-import { withLitContext, html } from '@bolt/core';
+} from '@bolt/core-v3.x/utils';
+import { withLitContext } from '@bolt/core-v3.x/renderers';
 import classNames from 'classnames';
 import debounce from 'lodash.debounce';
 import styles from './interactive-pathway.scss';
@@ -13,8 +13,8 @@ import schema from './interactive-pathway.schema';
 
 let cx = classNames.bind(styles);
 
-@define
-class BoltInteractivePathway extends withLitContext() {
+@customElement('bolt-interactive-pathway')
+class BoltInteractivePathway extends withLitContext {
   static is = 'bolt-interactive-pathway';
 
   static props = {
@@ -34,7 +34,6 @@ class BoltInteractivePathway extends withLitContext() {
     this.triggerUpdate();
   }
 
-  // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
   // @ts-ignore
   constructor(self) {
     self = super(self);
@@ -43,30 +42,29 @@ class BoltInteractivePathway extends withLitContext() {
     self.isActivePathway = false;
     self.activeStep = -1;
     self.steps = [];
-    this.checkChildrenAndRender = debounce(done => {
-      this.steps = this.getSteps();
-      this.triggerUpdate();
+    self.checkChildrenAndRender = debounce(done => {
+      self.steps = self.getSteps();
+      self.triggerUpdate();
       // using callback since debounced promises require a different library that's not already in Bolt
       if (done) setTimeout(done, 0);
     }, 150);
-
     self.addEventListener(
       'bolt-interactive-step:connected',
-      this.handleStepConnect,
+      self.handleStepConnect,
     );
     self.addEventListener(
       'bolt-interactive-step:disconnected',
-      this.handleStepDisconnect,
+      self.handleStepDisconnect,
     );
 
     self.addEventListener('bolt-interactive-step:change-active-step', event => {
-      const steps = this.getSteps();
+      const steps = self.getSteps();
       const stepId = steps.findIndex(step => step.el === event.target);
-      this.setActiveStep(stepId);
+      self.setActiveStep(stepId);
     });
 
     self.addEventListener('bolt-interactive-step:title-updated', () => {
-      this.checkChildrenAndRender();
+      self.checkChildrenAndRender();
     });
     return self;
   }
@@ -148,8 +146,12 @@ class BoltInteractivePathway extends withLitContext() {
 
   setActive(isActive = true) {
     this.isActivePathway = isActive;
-    this.setActiveStep(0);
     this.triggerUpdate();
+    setTimeout(() => {
+      this.setActiveStep(0);
+      this.triggerUpdate();
+      this.isBecomingActive = false;
+    }, 0);
   }
 
   /**
@@ -183,6 +185,7 @@ class BoltInteractivePathway extends withLitContext() {
       );
       return;
     }
+    await newActiveStep.el.setIsBecomingActive();
     if (currentActiveStep) {
       await currentActiveStep.el.triggerAnimOuts();
       steps.forEach(step => step.el.setActive(false));
@@ -190,13 +193,26 @@ class BoltInteractivePathway extends withLitContext() {
     this.activeStep = stepIndex;
     newActiveStep.el.setActive(true);
     this.triggerUpdate();
-    await newActiveStep.el.triggerAnimIns();
+    setTimeout(async () => {
+      await newActiveStep.el.triggerAnimIns();
+    });
   };
 
+  rendered() {
+    // The rendered content will be empty until the following condition is met.
+    // Therefore, hold off on calling super.rendered() (which in turn emits the
+    // "ready" event) until the condition is true.
+    if (this.isActivePathway || this.isBecomingActive) {
+      super.rendered && super.rendered();
+    }
+  }
+
   render() {
+    if (!this.isActivePathway && !this.isBecomingActive) {
+      return '';
+    }
     // Inherit theme from `interactive-pathways`
     const theme = this.context.theme || this.theme || '';
-
     const classes = cx('c-bolt-interactive-pathway', {
       [`c-bolt-interactive-pathway--disabled`]: !this.isActivePathway,
       [`c-bolt-interactive-pathway--active`]: this.isActivePathway,
@@ -205,13 +221,13 @@ class BoltInteractivePathway extends withLitContext() {
 
     const navClasses = cx('c-bolt-interactive-pathway__nav');
     const itemClasses = cx('c-bolt-interactive-pathway__items');
-
+    const activeStep = this.activeStep < 0 ? 0 : this.activeStep;
     return html`
       ${this.addStyles([styles])}
       <section class="${classes}">
         <nav class="${navClasses}">
           ${this.steps.map((step, stepIndex) => {
-            const isActiveItem = this.activeStep === stepIndex;
+            const isActiveItem = activeStep === stepIndex;
             const navItemClasses = cx('c-bolt-interactive-pathway__nav-item', {
               'c-bolt-interactive-pathway__nav-item--active': isActiveItem,
             });

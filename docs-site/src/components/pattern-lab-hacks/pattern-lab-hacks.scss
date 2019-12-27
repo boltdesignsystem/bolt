@@ -1,4 +1,4 @@
-@import '@bolt/core';
+@import '@bolt/core-v3.x';
 
 .pl-c-main {
   @include bolt-padding-left(small);
@@ -42,6 +42,12 @@
 
 .pl-c-pattern {
   position: static;
+}
+
+.pl-c-pattern[id*='-docs'] {
+  max-width: 1200px;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 .pl-c-category,

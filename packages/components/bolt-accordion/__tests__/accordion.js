@@ -4,9 +4,9 @@ import {
   html,
   vrtDefaultConfig as vrtConfig,
 } from '../../../testing/testing-helpers';
+import schema from '../accordion.schema';
+
 const { readYamlFileSync } = require('@bolt/build-tools/utils/yaml');
-const { join } = require('path');
-const schema = readYamlFileSync(join(__dirname, '../accordion.schema.yml'));
 const { single } = schema.properties;
 const { spacing } = schema.definitions;
 
@@ -202,14 +202,15 @@ describe('<bolt-accordion> Component', () => {
     // Wait for Handorgel to run, starts after component 'ready' event
     await page.waitFor(250);
 
-    const accordionShadowRoot = await page.evaluate(async () => {
-      return document.querySelector('bolt-accordion').renderRoot.innerHTML;
-    });
+    const accordionShadowRoot = await page.$eval(
+      'bolt-accordion',
+      el => el.renderRoot.innerHTML,
+    );
 
-    const accordionItemShadowRoot = await page.evaluate(async () => {
-      const item = document.querySelector('bolt-accordion-item');
-      return item.renderRoot.innerHTML;
-    });
+    const accordionItemShadowRoot = await page.$eval(
+      'bolt-accordion-item',
+      el => el.renderRoot.innerHTML,
+    );
 
     const renderedShadowRoot = await html(`<div>${accordionShadowRoot}</div>`);
     const renderedItemShadowRoot = await html(

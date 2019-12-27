@@ -11,6 +11,7 @@ const config = {
   openServerAtStart: true,
   // Environmental variable / preset to use
   env: 'pwa',
+  esModules: true,
   srcDir: './src/pages',
   buildDir: '../www/build',
   dataDir: '../www/build/data',
@@ -74,6 +75,7 @@ const config = {
 
   components: {
     global: [
+      '@bolt/theme-switcher',
       '@bolt/components-radio-switch',
       '@bolt/components-carousel',
       '@bolt/global',
@@ -135,7 +137,6 @@ const config = {
       '@bolt/components-ul',
       '@bolt/components-ol',
       '@bolt/components-video',
-      '@pegawww/with-without', // @todo: remove once w/wo has shipped
       '@bolt/components-grid',
       '@bolt/micro-journeys',
       '@bolt/components-editor',
@@ -164,7 +165,10 @@ const config = {
       to: path.join(__dirname, '../www/build'),
     },
     {
-      from: path.join(path.dirname(require.resolve(`@bolt/components-typeahead`)),'__demos__/typeahead.data.json'),
+      from: path.join(
+        path.dirname(require.resolve(`@bolt/components-typeahead`)),
+        '__demos__/typeahead.data.json',
+      ),
       to: path.join(__dirname, '../www/build/data'),
     },
     {

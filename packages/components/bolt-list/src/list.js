@@ -1,12 +1,13 @@
+import { html, customElement } from '@bolt/element';
 import {
   defineContext,
   withContext,
   props,
   define,
   hasNativeShadowDomSupport,
-} from '@bolt/core/utils';
+} from '@bolt/core-v3.x/utils';
 import classNames from 'classnames/bind';
-import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
+import { withLitHtml } from '@bolt/core-v3.x/renderers/renderer-lit-html';
 import Ajv from 'ajv';
 
 import themes from '@bolt/global/styles/06-themes/_themes.all.scss';
@@ -27,10 +28,8 @@ export const ListContext = defineContext({
   separator: 'none',
 });
 
-@define
-class BoltList extends withContext(withLitHtml()) {
-  static is = 'bolt-list';
-
+@customElement('bolt-list')
+class BoltList extends withContext(withLitHtml) {
   // provide context info to children that subscribe
   // (context + subscriber idea originally from https://codepen.io/trusktr/project/editor/XbEOMk)
   static get provides() {

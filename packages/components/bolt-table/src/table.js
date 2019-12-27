@@ -1,5 +1,6 @@
-import { props, define } from '@bolt/core/utils';
-import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
+import { html, customElement } from '@bolt/element';
+import { props } from '@bolt/core-v3.x/utils';
+import { withLitHtml } from '@bolt/core-v3.x/renderers/renderer-lit-html';
 import { unsafeHTML } from 'lit-html/directives/unsafe-html';
 import { ifDefined } from 'lit-html/directives/if-defined';
 import { parse, stringify } from 'himalaya';
@@ -11,10 +12,8 @@ import schema from '../table.schema.yml';
 
 let cx = classNames.bind(styles);
 
-@define
-class BoltTable extends withLitHtml() {
-  static is = 'bolt-table';
-
+@customElement('bolt-table')
+class BoltTable extends withLitHtml {
   static props = {
     format: {
       ...props.string,

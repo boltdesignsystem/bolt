@@ -1,28 +1,24 @@
+import { customElement } from '@bolt/element';
 import {
   colorContrast,
   css,
-  define,
-  hasNativeShadowDomSupport,
   props,
   rgb2hex,
   supportsCSSVars,
-} from '@bolt/core/utils';
-import { spacingSizes } from '@bolt/core/data';
-import { h, withPreact } from '@bolt/core/renderers';
+} from '@bolt/core-v3.x/utils';
+import { spacingSizes } from '@bolt/core-v3.x/data';
+import { h, withPreact } from '@bolt/core-v3.x/renderers';
 
 import PubSub from 'pubsub-js';
-import upperCamelCase from 'uppercamelcase';
-import * as Icons from '@bolt/components-icons';
+import * as Icons from '../registry';
 import styles from './icon.scss';
 
 const backgroundStyles = ['circle', 'square'];
 
 const colors = ['teal', 'blue'];
 
-@define
-class BoltIcon extends withPreact() {
-  static is = 'bolt-icon';
-
+@customElement('bolt-icon')
+class BoltIcon extends withPreact {
   static props = {
     name: props.string,
     size: props.string,
@@ -33,15 +29,10 @@ class BoltIcon extends withPreact() {
     contrastColor: props.string,
   };
 
-  constructor(self) {
-    self = super(self);
-    this.useShadow = hasNativeShadowDomSupport;
-    this.useCssVars = supportsCSSVars;
-    return self;
-  }
-
-  connecting() {
+  connectedCallback() {
+    super.connectedCallback && super.connectedCallback();
     const elem = this;
+    this.useCssVars = supportsCSSVars;
 
     this.state = {
       primaryColor: 'var(--bolt-theme-icon, currentColor)',
@@ -67,7 +58,7 @@ class BoltIcon extends withPreact() {
         }
       };
 
-      const colorObserver = PubSub.subscribe(
+      this.colorObserver = PubSub.subscribe(
         'component.icon',
         checkIfColorChanged,
       );
@@ -83,6 +74,14 @@ class BoltIcon extends withPreact() {
           rgb2hex(window.getComputedStyle(this).getPropertyValue('color')),
         );
       }
+    }
+  }
+
+  disconnectedCallback() {
+    super.disconnectedCallback && super.disconnectedCallback();
+
+    if (this.colorObserver) {
+      PubSub.unsubscribe(this.colorObserver);
     }
   }
 
@@ -108,8 +107,8 @@ class BoltIcon extends withPreact() {
         : '',
     );
 
-    const Icon = name ? upperCamelCase(name) : '';
-    const IconTag = Icons[`${Icon}`];
+    const Icon = name;
+    const IconTag = Icons.get(`${Icon}`);
     const iconSize =
       size && spacingSizes[size]
         ? spacingSizes[size].replace('rem', '') * (16 / 2)

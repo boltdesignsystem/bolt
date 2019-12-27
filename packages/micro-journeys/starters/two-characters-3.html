@@ -14,17 +14,14 @@
             <bolt-icon name="eye"></bolt-icon>
           </bolt-animate>
           <bolt-animate slot="link">
-            <bolt-link display="inline">
-              Agent view of billing charges
-              <bolt-icon name="chevron-right"></bolt-icon>
-            </bolt-link>
+            <bolt-link display="inline">Agent view of billing charges<bolt-icon name="chevron-right" slot="after"></bolt-icon></bolt-link>
           </bolt-animate>
         </bolt-cta>
       </bolt-animate>
+      <bolt-animate slot="connection" in="fade-in-slide-up" in-order="5" out="fade-out" out-order="1">
+        <bolt-connection></bolt-connection>
+      </bolt-animate>
     </bolt-character>
-  </bolt-animate>
-  <bolt-animate slot="connection" in="fade-in-slide-up" in-order="5" out="fade-out" out-order="1">
-    <bolt-connection connection-url="https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/animated-bands-rtl.png"></bolt-connection>
   </bolt-animate>
   <bolt-animate slot="character--right" in="fade-in-slide-up" in-order="10" out="fade-out" out-order="10">
     <bolt-character size="medium" character-image="customer-sad">

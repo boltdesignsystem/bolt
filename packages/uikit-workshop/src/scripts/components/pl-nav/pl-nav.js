@@ -5,8 +5,8 @@ import { h } from 'preact';
 const classNames = require('classnames');
 
 import { store } from '../../store.js'; // redux store
-import ArrowIcon from '../../../icons/arrow-down.svg';
 import { BaseComponent } from '../base-component.js';
+import Mousetrap from 'mousetrap';
 import 'url-search-params-polyfill';
 
 const SubSubList = props => {
@@ -52,12 +52,10 @@ const SubSubList = props => {
               )}
             </a>
 
-            {nonViewAllItems.length && (
+            {nonViewAllItems.length >= 1 && (
               <SpecialButton
                 aria-controls={category}
                 onClick={elem.toggleSpecialNavPanel}
-                isOpen={false}
-                isOpenClass={elem.isOpenClass}
               >
                 {category}
               </SpecialButton>
@@ -65,12 +63,7 @@ const SubSubList = props => {
           </div>
         ))
       ) : (
-        <Button
-          aria-controls={category}
-          onClick={elem.toggleNavPanel}
-          isOpen={false}
-          isOpenClass={elem.isOpenClass}
-        >
+        <Button aria-controls={category} onClick={elem.toggleNavPanel}>
           {category}
         </Button>
       )}
@@ -118,21 +111,17 @@ const SubSubList = props => {
 const SpecialButton = props => {
   return (
     <button
-      className={`pl-c-nav__link pl-c-nav__link--section-dropdown pl-js-acc-handle ${
-        props.isOpen ? props.isOpenClass : ''
-      }`}
+      className={`pl-c-nav__link pl-c-nav__link--section-dropdown pl-js-acc-handle`}
       role="tab"
       {...props}
     >
       {props.children}
-      <span class="pl-c-nav__link-icon">
-        <ArrowIcon
-          height={24}
-          width={24}
-          viewBox="0 0 24 24"
-          fill="currentColor"
-        />
-      </span>
+      <span
+        class="pl-c-nav__link-icon"
+        dangerouslySetInnerHTML={{
+          __html: '<pl-icon name="arrow-down"></pl-icon>',
+        }}
+      />
     </button>
   );
 };
@@ -140,21 +129,17 @@ const SpecialButton = props => {
 const Button = props => {
   return (
     <button
-      className={`pl-c-nav__link pl-c-nav__link--dropdown pl-js-acc-handle ${
-        props.isOpen ? props.isOpenClass : ''
-      }`}
+      className={`pl-c-nav__link pl-c-nav__link--dropdown pl-js-acc-handle`}
       role="tab"
       {...props}
     >
       <span className={`pl-c-nav__link-text`}>{props.children}</span>
-      <span class="pl-c-nav__link-icon">
-        <ArrowIcon
-          height={24}
-          width={24}
-          viewBox="0 0 24 24"
-          fill="currentColor"
-        />
-      </span>
+      <span
+        class="pl-c-nav__link-icon"
+        dangerouslySetInnerHTML={{
+          __html: '<pl-icon name="arrow-down"></pl-icon>',
+        }}
+      />
     </button>
   );
 };
@@ -162,20 +147,16 @@ const Button = props => {
 const ButtonTitle = props => {
   return (
     <button
-      className={`pl-c-nav__link pl-c-nav__link--title pl-js-acc-handle ${
-        props.isOpen ? props.isOpenClass : ''
-      }`}
+      className={`pl-c-nav__link pl-c-nav__link--title pl-js-acc-handle`}
       role="tab"
       {...props}
     >
-      <span class="pl-c-nav__link-icon">
-        <ArrowIcon
-          height={24}
-          width={16}
-          viewBox="0 0 24 24"
-          fill="currentColor"
-        />
-      </span>
+      <span
+        class="pl-c-nav__link-icon"
+        dangerouslySetInnerHTML={{
+          __html: '<pl-icon name="arrow-down"></pl-icon>',
+        }}
+      />
       <span className={`pl-c-nav__link-text`}>{props.children}</span>
     </button>
   );
@@ -191,11 +172,24 @@ class Nav extends BaseComponent {
     self.toggleSpecialNavPanel = self.toggleSpecialNavPanel.bind(self);
     self.handleClick = self.handleClick.bind(self);
     self.handleURLChange = self.handleURLChange.bind(self);
+    self.handlePageClick = self.handlePageClick.bind(self);
     self._hasInitiallyRendered = false;
-    self.handleURLChangeOnRender = false;
     self.receiveIframeMessage = self.receiveIframeMessage.bind(self);
     self.useShadow = false;
     return self;
+  }
+
+  handlePageClick(e) {
+    if (
+      e.target.closest('.pl-c-nav') === null &&
+      e.target.closest('.pl-js-nav-trigger') === null &&
+      e.target.closest('svg') === null &&
+      e.target.closest('pl-toggle-layout') === null
+    ) {
+      if (this.layoutMode !== 'vertical' && window.innerWidth > 670) {
+        this.cleanupActiveNav(true);
+      }
+    }
   }
 
   connected() {
@@ -207,26 +201,43 @@ class Nav extends BaseComponent {
     this.elem = this;
     this.previousActiveLinks = [];
     this.iframeElem = document.querySelector('pl-iframe');
-    window.addEventListener('message', this.receiveIframeMessage, false);
 
-    document.body.addEventListener('click', function(e) {
-      if (
-        e.target.closest('pl-header') === null &&
-        e.target.closest('svg') === null
-      ) {
-        self.cleanupActiveNav();
+    window.addEventListener('message', this.receiveIframeMessage, false);
+    document.body.addEventListener('click', this.handlePageClick);
+  }
+
+  connectedCallback() {
+    super.connectedCallback && super.connectedCallback();
+
+    Mousetrap.bind('esc', () => {
+      if (this.layoutMode !== 'vertical' && window.innerWidth > 670) {
+        this.cleanupActiveNav(true);
       }
     });
   }
 
-  _stateChanged(state) {
-    this.layoutMode = state.app.layoutMode || '';
+  disconnected() {
+    super.disconnected && super.disconnected();
+    document.body.removeEventListener('click', this.handlePageClick);
+    window.removeEventListener('message', this.receiveIframeMessage);
+  }
 
-    if (this.currentPattern !== state.app.currentPattern) {
-      this.currentPattern = state.app.currentPattern;
+  _stateChanged(state) {
+    if (this.layoutMode !== state.app.layoutMode) {
+      this.layoutMode = state.app.layoutMode || '';
     }
 
-    this.handleURLChange(); // so the nav logic is always correct (ex. layout changes)
+    if (this.currentPattern !== state.app.currentPattern) {
+      if (
+        state.app.currentPattern !== '' &&
+        this.currentPattern !== state.app.currentPattern &&
+        this._hasInitiallyRendered === true
+      ) {
+        this.handleURLChange(); // so the nav logic is always correct (ex. layout changes)
+      }
+
+      this.currentPattern = state.app.currentPattern;
+    }
   }
 
   receiveIframeMessage(event) {
@@ -250,11 +261,8 @@ class Nav extends BaseComponent {
 
     if (data.event !== undefined && data.event === 'patternLab.pageClick') {
       try {
-        if (
-          window.matchMedia('(min-width: calc(42em))').matches &&
-          self.layoutMode !== 'vertical'
-        ) {
-          self.cleanupActiveNav();
+        if (self.layoutMode !== 'vertical') {
+          self.cleanupActiveNav(true);
         }
       } catch (error) {
         console.log(error);
@@ -270,16 +278,22 @@ class Nav extends BaseComponent {
       '.pl-c-nav__link--title.pl-is-active'
     );
 
-    if (topLevelOnly === true) {
+    if (topLevelOnly === true && window.innerWidth > 670) {
       this.navContainer.classList.remove('pl-is-active');
       this.topLevelTriggers.forEach(trigger => {
         trigger.classList.remove('pl-is-active');
+        trigger.nextSibling.classList.remove('pl-is-active');
       });
     } else {
-      if (
-        window.matchMedia('(max-width: calc(42em - 1px))').matches ||
-        this.layoutMode !== 'vertical'
-      ) {
+      if (this.layoutMode !== 'vertical') {
+        this.navContainer.classList.remove('pl-is-active');
+        this.navAccordionTriggers.forEach(trigger => {
+          trigger.classList.remove('pl-is-active');
+        });
+        this.navAccordionPanels.forEach(panel => {
+          panel.classList.remove('pl-is-active');
+        });
+      } else if (this.layoutMode === 'vertical' && window.innerWidth <= 670) {
         this.navContainer.classList.remove('pl-is-active');
         this.navAccordionTriggers.forEach(trigger => {
           trigger.classList.remove('pl-is-active');
@@ -300,14 +314,7 @@ class Nav extends BaseComponent {
   }
 
   handleURLChange() {
-    if (!this._hasInitiallyRendered) {
-      this.handleURLChangeOnRender = true;
-      return;
-    }
-
-    const shouldAutoOpenNav =
-      window.matchMedia('(min-width: calc(42em))').matches &&
-      this.layoutMode === 'vertical';
+    const shouldAutoOpenNav = true;
 
     const currentPattern = this.currentPattern;
     const activeLink = document.querySelector(
@@ -326,24 +333,13 @@ class Nav extends BaseComponent {
       activeLink.classList.add('pl-is-active');
       this.previousActiveLinks.push(activeLink);
 
-      // handle overview links vs nested links
-      if (activeLink.classList.contains('pl-js-link-overview')) {
-        const childDropdownTrigger = activeLink.nextSibling;
-        const childDropdown = activeLink.parentNode.nextSibling;
-
-        if (childDropdown && shouldAutoOpenNav) {
-          if (childDropdown.tagName) {
-            childDropdown.classList.add('pl-is-active');
-            this.previousActiveLinks.push(childDropdown);
-          }
-        }
-
-        if (childDropdownTrigger && shouldAutoOpenNav) {
-          if (childDropdownTrigger.tagName) {
-            childDropdownTrigger.classList.add('pl-is-active');
-            this.previousActiveLinks.push(childDropdownTrigger);
-          }
-        }
+      if (
+        activeLink.parentNode.classList.contains(
+          'pl-c-nav__link--overview-wrapper'
+        )
+      ) {
+        activeLink.parentNode.classList.add('pl-is-active');
+        this.previousActiveLinks.push(activeLink.parentNode);
       }
 
       const parentDropdown = activeLink.closest('.pl-js-acc-panel');
@@ -359,8 +355,8 @@ class Nav extends BaseComponent {
             ) &&
             shouldAutoOpenNav
           ) {
-            this.previousActiveLinks.push(parentDropdown.previousSibling);
             parentDropdown.previousSibling.classList.add('pl-is-active');
+            this.previousActiveLinks.push(parentDropdown.previousSibling);
             parentDropdownTrigger = parentDropdown.previousSibling.querySelector(
               '.pl-js-acc-handle'
             );
@@ -371,31 +367,6 @@ class Nav extends BaseComponent {
           );
           const grandparentDropdownTrigger =
             grandparentDropdown.previousSibling;
-
-          if (parentDropdown && shouldAutoOpenNav) {
-            parentDropdown.classList.add('pl-is-active');
-            this.previousActiveLinks.push(parentDropdown);
-          }
-
-          // don't auto-open
-          if (parentDropdownTrigger) {
-            if (
-              shouldAutoOpenNav === true ||
-              parentDropdownTrigger.classList.contains(
-                'pl-c-nav__link--title'
-              ) === false
-            ) {
-              parentDropdownTrigger.classList.add('pl-is-active');
-              this.previousActiveLinks.push(parentDropdownTrigger);
-            }
-          }
-
-          if (grandparentDropdown && shouldAutoOpenNav) {
-            if (shouldAutoOpenNav) {
-              grandparentDropdown.classList.add('pl-is-active');
-            }
-            this.previousActiveLinks.push(grandparentDropdown);
-          }
 
           if (grandparentDropdownTrigger && shouldAutoOpenNav) {
             if (shouldAutoOpenNav) {
@@ -415,6 +386,7 @@ class Nav extends BaseComponent {
       ...props.boolean,
       ...{ default: true },
     },
+    currentPattern: props.string,
     layoutMode: props.string,
     collapsedByDefault: {
       ...props.boolean,
@@ -424,72 +396,12 @@ class Nav extends BaseComponent {
 
   toggleSpecialNavPanel(e) {
     const target = e.target;
-    const panel = target.parentNode.nextSibling;
-    const subnav = panel.parentNode.parentNode.classList.contains(
-      'pl-js-acc-panel'
-    );
-
-    if (!subnav) {
-      const navTriggers = document.querySelectorAll(
-        `.pl-js-acc-handle.pl-is-active`
-      );
-      const navPanels = document.querySelectorAll(
-        `.pl-js-acc-panel.pl-is-active`
-      );
-
-      navTriggers.forEach(navTrigger => {
-        if (navTrigger !== target) {
-          navTrigger.classList.remove('pl-is-active');
-        }
-      });
-
-      navPanels.forEach(navPanel => {
-        if (navPanel !== target) {
-          navPanel.classList.remove('pl-is-active');
-        }
-      });
-    }
-
-    if (target.classList.contains('pl-is-active')) {
-      target.classList.remove('pl-is-active');
-      panel.classList.remove('pl-is-active');
-    } else {
-      target.classList.add('pl-is-active');
-      panel.classList.add('pl-is-active');
-    }
+    target.parentNode.classList.toggle('pl-is-active');
   }
 
   toggleNavPanel(e) {
     const target = e.target;
-    const panel = target.nextSibling;
-    const subnav = target.parentNode.parentNode.classList.contains(
-      'pl-js-acc-panel'
-    );
-
-    if (!subnav) {
-      const navTriggers = document.querySelectorAll('.pl-js-acc-handle');
-      const navPanels = document.querySelectorAll('.pl-js-acc-panel');
-
-      navTriggers.forEach(navTrigger => {
-        if (navTrigger !== target) {
-          navTrigger.classList.remove('pl-is-active');
-        }
-      });
-
-      navPanels.forEach(navPanel => {
-        if (navPanel !== target) {
-          navPanel.classList.remove('pl-is-active');
-        }
-      });
-    }
-
-    if (target.classList.contains('pl-is-active')) {
-      target.classList.remove('pl-is-active');
-      panel.classList.remove('pl-is-active');
-    } else {
-      target.classList.add('pl-is-active');
-      panel.classList.add('pl-is-active');
-    }
+    target.classList.toggle('pl-is-active');
   }
 
   rendered() {
@@ -497,9 +409,10 @@ class Nav extends BaseComponent {
       this._hasInitiallyRendered = true;
     }
 
-    if (this.handleURLChangeOnRender === true) {
-      this.handleURLChangeOnRender = false;
-      this.handleURLChange();
+    this.handleURLChange();
+
+    if (this.layoutMode !== 'vertical' && window.innerWidth > 670) {
+      this.cleanupActiveNav(true);
     }
   }
 
@@ -520,8 +433,6 @@ class Nav extends BaseComponent {
               <ButtonTitle
                 aria-controls={item.patternTypeLC}
                 onClick={this.toggleNavPanel}
-                isOpen={false}
-                isOpenClass={this.isOpenClass}
               >
                 {item.patternTypeUC}
               </ButtonTitle>

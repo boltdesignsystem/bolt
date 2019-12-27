@@ -1,3 +1,4 @@
+import { html, customElement } from '@bolt/element';
 import {
   defineContext,
   withContext,
@@ -7,12 +8,13 @@ import {
   getUniqueId,
   whichTransitionEvent,
   waitForTransitionEnd,
-} from '@bolt/core/utils';
-import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
-
+} from '@bolt/core-v3.x/utils';
+import { withLitHtml } from '@bolt/core-v3.x/renderers/renderer-lit-html';
 import classNames from 'classnames/bind';
 import styles from './tabs.scss';
 import schema from '../tabs.schema.yml';
+
+import '@bolt/core-v3.x/utils/optimized-resize';
 
 // define which specific props to provide to children that subscribe
 export const TabsContext = defineContext({
@@ -24,10 +26,8 @@ export const TabsContext = defineContext({
 
 let cx = classNames.bind(styles);
 
-@define
-class BoltTabs extends withContext(withLitHtml()) {
-  static is = 'bolt-tabs';
-
+@customElement('bolt-tabs')
+class BoltTabs extends withContext(withLitHtml) {
   static props = {
     align: props.string,
     inset: props.string,
@@ -366,6 +366,22 @@ class BoltTabs extends withContext(withLitHtml()) {
     el.setAttribute('aria-hidden', 'false');
   }
 
+  _getShowMoreButtonWidth() {
+    let width = this.dropdownButton.offsetWidth;
+
+    // If button is hidden, we need to show it before we get the width.
+    // Explicitly check for 'is-hidden', as we'll be re-adding the class when we're done.
+    if (this.showMoreItem.classList.contains('is-hidden')) {
+      this.showMoreItem.classList.add('is-invisible');
+      this.showMoreItem.classList.remove('is-hidden');
+      width = this.dropdownButton.offsetWidth;
+      this.showMoreItem.classList.add('is-hidden');
+      this.showMoreItem.classList.remove('is-invisible');
+    }
+
+    return width;
+  }
+
   _resizeMenu() {
     const navWidth = this.primaryMenu.offsetWidth;
 
@@ -380,8 +396,7 @@ class BoltTabs extends withContext(withLitHtml()) {
     this.removeAttribute('will-update', '');
 
     this.classList.add('is-resizing');
-
-    const buttonWidth = this.dropdownButton.offsetWidth;
+    const buttonWidth = this._getShowMoreButtonWidth();
     const tolerance = 5; // Extra wiggle room when calculating how many items can fit
     const maxWidth = navWidth - tolerance - buttonWidth;
 
@@ -537,7 +552,7 @@ class BoltTabs extends withContext(withLitHtml()) {
         this._resizeMenu();
       });
 
-      window.addEventListener('optimizedResize', this._resizeMenu);
+      window.addEventListener('throttledResize', this._resizeMenu);
       this.dropdownButton.addEventListener('click', this._handleDropdownToggle);
 
       this.ready = true;
@@ -556,7 +571,7 @@ class BoltTabs extends withContext(withLitHtml()) {
     this.ready = false;
     this.removeAttribute('ready');
 
-    window.removeEventListener('optimizedResize', this._resizeMenu);
+    window.removeEventListener('throttledResize', this._resizeMenu);
     document.removeEventListener('click', this._handleExternalClicks);
     this.dropdownButton &&
       this.dropdownButton.removeEventListener(
@@ -586,31 +601,5 @@ class BoltTabs extends withContext(withLitHtml()) {
     `;
   }
 }
-
-// Create a custom 'optimizedResize' event that works just like window.resize but is more performant because it
-// won't fire before a previous event is complete.
-// This was adapted from https://developer.mozilla.org/en-US/docs/Web/Events/resize
-(function() {
-  function throttle(type, name, obj) {
-    obj = obj || window;
-    let running = false;
-
-    function func() {
-      if (running) {
-        return;
-      }
-      running = true;
-      requestAnimationFrame(function() {
-        obj.dispatchEvent(new CustomEvent(name));
-        running = false;
-      });
-    }
-    obj.addEventListener(type, func);
-  }
-
-  // Initialize on window.resize event.  Note that throttle can also be initialized on any type of event,
-  // such as scroll.
-  throttle('resize', 'optimizedResize');
-})();
 
 export { BoltTabs };

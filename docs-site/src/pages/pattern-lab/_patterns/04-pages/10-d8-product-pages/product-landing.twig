@@ -83,6 +83,32 @@
         } only %}
       {% endcell %}
 
+      {% set icon_1 %}
+        {% include "@bolt-components-icon/icon.twig" with {
+          name: "app-development",
+          size: "xlarge",
+          background: "circle",
+          color: "teal"
+        } only %}
+      {% endset %}
+
+      {% set icon_2 %}
+        {% include "@bolt-components-icon/icon.twig" with {
+          name: "sales-automation",
+          size: "xlarge",
+          background: "circle",
+          color: "teal"
+        } only %}
+      {% endset %}
+
+      {% set icon_3 %}
+        {% include "@bolt-components-icon/icon.twig" with {
+          name: "customer-service",
+          size: "xlarge",
+          background: "circle",
+          color: "teal"
+        } only %}
+      {% endset %}
 
       {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small" %}
         {% set flag_item_1 %}
@@ -90,12 +116,7 @@
             valign: "middle",
             url: "#!",
             figure: {
-              "icon": {
-                name: "app-development",
-                size: "xlarge",
-                background: "circle",
-                color: "teal"
-              }
+              content: icon_1
             },
             items: [
               {
@@ -120,12 +141,7 @@
             valign: "middle",
             url: "#!",
             figure: {
-              "icon": {
-                name: "sales-automation",
-                size: "xlarge",
-                background: "circle",
-                color: "teal"
-              }
+              content: icon_2
             },
             items: [
               {
@@ -150,12 +166,7 @@
             valign: "middle",
             url: "#!",
             figure: {
-              "icon": {
-                name: "customer-service",
-                size: "xlarge",
-                background: "circle",
-                color: "teal"
-              }
+              content: icon_3
             },
             items: [
               {

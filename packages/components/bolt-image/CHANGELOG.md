@@ -3,6 +3,55 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.12.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/compare/v2.11.4...v2.12.0) (2019-11-26)
+
+
+### Bug Fixes
+
+* address prettier issues ([7060025](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/commit/7060025))
+* call super in the firstUpdated lifecycle event ([35e2cdc](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/commit/35e2cdc))
+* make sure all Boolean props are reflected as HTML attributes. Fix to address background images not getting the right classes with the `cover` prop has been added ([815f041](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/commit/815f041))
+* update lazysizes config to catch instances (IE 11) where images haven't finished rendering and lazysizes initializes ([bd540f9](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/commit/bd540f9))
+* workaround to address lazyloaded SVG images not loading in IE 11 ([928d1ad](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/commit/928d1ad))
+
+
+
+
+
+## [2.11.2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/compare/v2.11.1...v2.11.2) (2019-11-14)
+
+**Note:** Version bump only for package @bolt/components-image
+
+
+
+
+
+# [2.11.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/compare/v2.10.0...v2.11.0) (2019-11-14)
+
+
+### Bug Fixes
+
+* fix prettier issue ([af6747a](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/commit/af6747a))
+* update Image component lazyloading logic to properly scope lazySizes.elements check + ensure lazySizes knows to check late loaded / dynamically injected images ([490ba17](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/commit/490ba17))
+* update Nightwatch test selector + demo code to render the client-side image used for testing w/o a Shadow DOM ([163e0b9](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/commit/163e0b9))
+
+
+
+
+
+## [2.10.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/compare/v2.10.0...v2.10.1) (2019-11-05)
+
+
+### Bug Fixes
+
+* fix prettier issue ([af6747a](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/commit/af6747a))
+* update Image component lazyloading logic to properly scope lazySizes.elements check + ensure lazySizes knows to check late loaded / dynamically injected images ([490ba17](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/commit/490ba17))
+* update Nightwatch test selector + demo code to render the client-side image used for testing w/o a Shadow DOM ([163e0b9](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/commit/163e0b9))
+
+
+
+
+
 # [2.10.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/compare/v2.9.2...v2.10.0) (2019-10-29)
 
 

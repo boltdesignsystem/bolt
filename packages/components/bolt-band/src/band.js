@@ -1,31 +1,23 @@
-import { define, hasNativeShadowDomSupport } from '@bolt/core/utils';
-import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
+import { BoltElement, customElement, html } from '@bolt/element';
 
-// To avoid invoking the parser with `.innerHTML` for every new instance, a
-// template for the contents of the ShadowDOM is is shared by all
-// `<bolt-band>` instances.
-//
-
-// ShadyCSS will rename classes as needed to ensure style scoping.
-
-@define
-class BoltBand extends withLitHtml() {
-  static is = 'bolt-band';
-
-  static get observedAttributes() {
-    return ['expanded', 'expandedHeight', 'initialHeight'];
+@customElement('bolt-band')
+class BoltBand extends BoltElement {
+  static get properties() {
+    return {
+      expanded: Boolean,
+      expandedHeight: {
+        type: String,
+        attribute: 'expanded-height',
+      },
+      initialHeight: {
+        type: String,
+        attribute: 'initial-height',
+      },
+    };
   }
 
-  constructor(self) {
-    self = super(self);
-    this.useShadow = hasNativeShadowDomSupport;
-    return self;
-  }
-
-  /**
-   * `connecting()` sets up the role, event handler and initial state.
-   */
-  connecting() {
+  firstUpdated() {
+    // super.connectedCallback && super.connectedCallback();
     this.state = {
       ready: false,
     };
@@ -66,7 +58,8 @@ class BoltBand extends withLitHtml() {
     );
   }
 
-  disconnecting() {
+  disconnectedCallback() {
+    super.disconnectedCallback && super.disconnectedCallback();
     this.removeEventListener(
       'videoExpandedHeightSet',
       this._adjustExpandedHeightToMatchVideo,
@@ -76,7 +69,9 @@ class BoltBand extends withLitHtml() {
   /**
    * `attributeChangedCallback` processes changes to the `expanded` attribute.
    */
-  attributeChangedCallback(name) {
+  updated(changedProperties) {
+    super.updated && super.updated(changedProperties);
+
     if (this.state.ready === false) {
       this.state.ready = true;
       this.classList.add('is-ready');
@@ -205,7 +200,7 @@ class BoltBand extends withLitHtml() {
 
   render() {
     return html`
-      ${this.slot('default')}
+      ${this.slotify('default')}
     `;
   }
 }

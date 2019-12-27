@@ -3,6 +3,56 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.13.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button/compare/v2.12.1...v2.13.0) (2019-12-13)
+
+**Note:** Version bump only for package @bolt/components-button
+
+
+
+
+
+## [2.12.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button/compare/v2.12.0...v2.12.1) (2019-12-12)
+
+**Note:** Version bump only for package @bolt/components-button
+
+
+
+
+
+# [2.12.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button/compare/v2.11.4...v2.12.0) (2019-11-26)
+
+
+### Bug Fixes
+
+* update bolt element version ([192d15d](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button/commit/192d15d))
+
+
+
+
+
+# [2.11.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button/compare/v2.10.0...v2.11.0) (2019-11-14)
+
+
+### Bug Fixes
+
+* Add missing type_options variable to button component ([30f93e9](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button/commit/30f93e9))
+* address eslint / prettier issues ([c4c31f9](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button/commit/c4c31f9))
+* do not specify a button "type" attribute by default ([2795f79](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button/commit/2795f79))
+* fix + update the button component's Jest tests ([7330472](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button/commit/7330472))
+* re-add outline 'none' to button css ([b2eddb8](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button/commit/b2eddb8))
+* Remove redundant button tag logic and dependency on deprecated schema ([38410c5](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button/commit/38410c5))
+* update Jest snapshots ([8aef49c](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button/commit/8aef49c))
+
+
+### Features
+
+* add icon-sizer 'span' to Twig template ([281c886](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button/commit/281c886))
+* rework button slotted content so that empty spans are not output, remove 'is-empty' CSS ([dd314d9](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button/commit/dd314d9))
+
+
+
+
+
 ## [2.9.2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button/compare/v2.9.1...v2.9.2) (2019-10-23)
 
 **Note:** Version bump only for package @bolt/components-button

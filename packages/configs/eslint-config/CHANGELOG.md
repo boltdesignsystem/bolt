@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.13.0](https://github.com/bolt-design-system/bolt/tree/master/packages/configs/eslint-config/compare/v2.12.1...v2.13.0) (2019-12-13)
+
+
+### Bug Fixes
+
+* fix prettier issue + update eslint config ([9b154e3](https://github.com/bolt-design-system/bolt/tree/master/packages/configs/eslint-config/commit/9b154e3))
+
+
+
+
+
+# [2.12.0](https://github.com/bolt-design-system/bolt/tree/master/packages/configs/eslint-config/compare/v2.11.4...v2.12.0) (2019-11-26)
+
+**Note:** Version bump only for package @bolt/eslint-config
+
+
+
+
+
+# [2.11.0](https://github.com/bolt-design-system/bolt/tree/master/packages/configs/eslint-config/compare/v2.10.0...v2.11.0) (2019-11-14)
+
+**Note:** Version bump only for package @bolt/eslint-config
+
+
+
+
+
 # [2.7.0](https://github.com/bolt-design-system/bolt/tree/master/packages/configs/eslint-config/compare/v2.6.0...v2.7.0) (2019-09-13)
 
 **Note:** Version bump only for package @bolt/eslint-config

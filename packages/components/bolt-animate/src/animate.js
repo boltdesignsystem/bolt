@@ -1,13 +1,10 @@
+import { classMap, styleMap, html, customElement } from '@bolt/element';
 import {
-  withLitHtml,
-  html,
   props,
-  define,
   hasNativeShadowDomSupport,
   convertSchemaToProps,
-} from '@bolt/core';
-import { styleMap } from 'lit-html/directives/style-map.js';
-import { classMap } from 'lit-html/directives/class-map.js';
+} from '@bolt/core-v3.x/utils';
+import { withLitHtml } from '@bolt/core-v3.x/renderers';
 import styles from './animate.scss';
 import schema from '../animate.schema';
 
@@ -31,10 +28,8 @@ export const ANIM_STAGES = {
   OUT: 'OUT',
 };
 
-@define
-class BoltAnimate extends withLitHtml() {
-  static is = 'bolt-animate';
-
+@customElement('bolt-animate')
+class BoltAnimate extends withLitHtml {
   static props = convertSchemaToProps(schema);
 
   constructor(self) {
@@ -190,7 +185,6 @@ class BoltAnimate extends withLitHtml() {
       composed: true,
       detail,
     });
-    console.debug(`event: ${eventName}`);
     this.dispatchEvent(myEvent);
   }
 
@@ -200,13 +194,14 @@ class BoltAnimate extends withLitHtml() {
     const isAnimIdle = this.props.idle === animationName;
     const isAnimOut = this.props.out === animationName;
 
+    const animatedEls = event.target.children;
     if (isAnimIn) {
-      this._emitEvent(EVENTS.END_IN);
+      this._emitEvent(EVENTS.END_IN, { animatedEls });
       this._triggerAnimIdle();
     } else if (isAnimIdle) {
       // don't care
     } else if (isAnimOut) {
-      this._emitEvent(EVENTS.END_OUT);
+      this._emitEvent(EVENTS.END_OUT, { animatedEls });
     } else {
       console.error('Unknown animation ended!', {
         event,

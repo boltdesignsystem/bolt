@@ -12,7 +12,7 @@
 {% endif %}
 
 {% if enableEditor %}
-  {# Editors can only be used when Shadow DOM is present #}
+{#   Editors can only be used when Shadow DOM is present#}
   {% include '@bolt-components-editor/editor-in-pl.twig' with {
     content: content,
   } only %}
@@ -24,13 +24,14 @@
 <div style="overflow: hidden; max-width: 100vw;">
   <hr>
   <h2>Shadow DOM – yes:☝️ no:👇</h2>
+  Note: Shadow DOM-less content is not working properly when nested in a form element, some children are adding a broken Shadow DOM. To test Shadow DOM-less content you must manually set `export const hasNativeShadowDomSupport = false;` in `utils/environment.js` until this is fixed.
   <hr>
 </div>
 
-{# When Bolt Web Components are wrapped in a `<form>` element all children have Shadow DOM disabled automatically #}
-<form onsubmit="event.preventDefault()">
-  {{ content }}
-</form>
+{# When Bolt Web Components are wrapped in a `<form>` element all children have Shadow DOM disabled automatically#}
+{#<form onsubmit="event.preventDefault()">#}
+{#  {{ content }}#}
+{#</form>#}
 
 <script>
   // Note: this code is not transpiled so it has to run in IE.

@@ -1,20 +1,22 @@
-import { props, define, hasNativeShadowDomSupport } from '@bolt/core/utils';
-import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
-
-import { convertInitialTags } from '@bolt/core/decorators';
+import { props, hasNativeShadowDomSupport } from '@bolt/core-v3.x/utils';
+import { withLitHtml } from '@bolt/core-v3.x/renderers/renderer-lit-html';
 import classNames from 'classnames/bind';
 import textStyles from '@bolt/components-text/index.scss';
+import {
+  ifDefined,
+  html,
+  convertInitialTags,
+  customElement,
+} from '@bolt/element';
 import styles from './blockquote.scss';
 import schema from '../blockquote.schema.yml';
 import { AuthorImage, AuthorName, AuthorTitle } from './Author';
 
 let cx = classNames.bind([styles, textStyles]);
 
-@define
+@customElement('bolt-blockquote')
 @convertInitialTags('blockquote') // The first matching tag will have its attributes converted to component props
-class BoltBlockquote extends withLitHtml() {
-  static is = 'bolt-blockquote';
-
+class BoltBlockquote extends withLitHtml {
   static props = {
     size: props.string,
     alignItems: props.string,
@@ -22,6 +24,7 @@ class BoltBlockquote extends withLitHtml() {
     indent: props.boolean,
     fullBleed: props.boolean,
     noQuotes: props.boolean,
+    lang: props.string,
     authorName: props.string,
     authorTitle: props.string,
     authorImage: props.string,
@@ -31,7 +34,7 @@ class BoltBlockquote extends withLitHtml() {
   constructor(self) {
     self = super(self);
     self.useShadow = hasNativeShadowDomSupport;
-    self.schema = this.getModifiedSchema(schema);
+    self.schema = self.getModifiedSchema(schema);
     return self;
   }
 
@@ -141,6 +144,7 @@ class BoltBlockquote extends withLitHtml() {
       indent,
       fullBleed,
       noQuotes,
+      lang,
       authorName,
       authorTitle,
       authorImage,
@@ -181,7 +185,18 @@ class BoltBlockquote extends withLitHtml() {
 
     return html`
       ${this.addStyles([styles, textStyles])}
-      <blockquote class="${classes}">
+      <blockquote
+        class="${classes}"
+        lang="${ifDefined(
+          lang
+            ? lang
+            : this.closest('[lang]')
+            ? this.closest('[lang]')
+                .getAttribute('lang')
+                .toLowerCase()
+            : undefined,
+        )}"
+      >
         ${this.slots.logo
           ? html`
               <div class="${cx('c-bolt-blockquote__logo')}">

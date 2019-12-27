@@ -1,0 +1,29 @@
+{
+  "ci": {
+    "assert": {
+      "preset": "lighthouse:no-pwa",
+      "assertions": {
+        "aria-required-attr": "warn",
+        "aria-required-children": "warn",
+        "aria-valid-attr-value": "warn",
+        "button-name": "warn",
+        "dom-size": "warn",
+        "external-anchors-use-rel-noopener": "warn",
+        "image-alt": "warn",
+        "label": "warn",
+        "link-name": "warn",
+        "list": "warn",
+        "listitem": "warn",
+        "meta-description": "warn",
+        "no-document-write": "warn",
+        "offscreen-images": "warn",
+        "unused-css-rules": "warn",
+        "uses-rel-preconnect": "warn",
+        "uses-text-compression": "warn"
+      }
+    },
+    "upload": {
+      "target": "temporary-public-storage"
+    }
+  }
+}

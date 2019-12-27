@@ -1,4 +1,4 @@
-@import '@bolt/core';
+@import '@bolt/core-v3.x';
 @import './nav-shared';
 
 bolt-interactive-step {
@@ -16,10 +16,14 @@ bolt-interactive-step {
   text-align: left;
 
   &__title {
-
     @include bolt-micro-journeys-nav-title;
+
     @include bolt-mq(medium) {
       display: none;
+    }
+
+    &:hover {
+      cursor: pointer;
     }
 
     .c-bolt-interactive-step--active & {
@@ -87,6 +91,14 @@ bolt-interactive-step {
       margin-left: -$nav-circle-size / 2;
       padding-left: 0;
     }
+  }
+
+  // for IE
+  &__top-slot,
+  &__bottom-slot,
+  bolt-animate[slot="top"],
+  bolt-animate[slot="bottom"] {
+    width: 100%;
   }
 
   &__body-inner {

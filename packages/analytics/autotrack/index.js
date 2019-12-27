@@ -1,11 +1,11 @@
 /* eslint-disable no-return-assign */
 // // Import the individual autotrack plugins you want to use.
-import '@bolt/core/polyfills/symbol-polyfill';
+import '@bolt/polyfills/platform/symbol';
 import 'autotrack/lib/plugins/clean-url-tracker';
 import 'autotrack/lib/plugins/media-query-tracker';
 import 'autotrack/lib/plugins/outbound-link-tracker';
 import 'autotrack/lib/plugins/page-visibility-tracker';
-// import { stateListener } from '@bolt/core/renderers/bolt-base';
+// import { stateListener } from '@bolt/core-v3.x/renderers/bolt-base';
 
 // // trackedCrossDomains is an array of external domains that we want to add external GA autolink tracking to.
 // // We use this to check if any components being rendered (or re-rendered) contain external links to one of these domains.

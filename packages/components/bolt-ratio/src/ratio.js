@@ -1,24 +1,46 @@
-import { props, css, define, supportsCSSVars } from '@bolt/core/utils';
-import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
-import { styleMap } from 'lit-html/directives/style-map.js';
+import { supportsCSSVars } from '@bolt/core-v3.x/utils';
+import classNames from 'classnames/dedupe';
+import {
+  customElement,
+  BoltElement,
+  html,
+  styleMap,
+  unsafeCSS,
+} from '@bolt/element';
+import ratioStyles from './ratio.scss';
 
-import styles from './ratio.scss';
+let cx = classNames.bind(ratioStyles);
 
-@define
-class BoltRatio extends withLitHtml() {
-  static is = 'bolt-ratio';
+@customElement('bolt-ratio')
+class BoltRatio extends BoltElement {
+  static get properties() {
+    return {
+      ratio: String,
+      _ratioW: String, // internal only prop for handling the width-specific data from the ratio prop
+      _ratioH: String, // internal only prop for handling the height-specific data from the ratio prop
+      aspectRatioHeight: {
+        type: Number, // deprecated - will be removed in Bolt v3.0
+        attribute: 'aspect-ratio-height',
+      },
+      aspectRatioWidth: {
+        type: Number, // deprecated - will be removed in Bolt v3.0
+        attribute: 'aspect-ratio-width',
+      },
+      noCssVars: {
+        type: Boolean,
+        attribute: 'no-css-vars',
+      },
+    };
+  }
 
-  static props = {
-    ratio: props.string,
-    _ratioW: props.string, // internal only prop for handling the width-specific data from the ratio prop
-    _ratioH: props.string, // internal only prop for handling the height-specific data from the ratio prop
-    aspectRatioHeight: props.number, // deprecated - will be removed in Bolt v3.0
-    aspectRatioWidth: props.number, // deprecated - will be removed in Bolt v3.0
-    noCssVars: {
-      ...props.boolean,
-      ...{ default: supportsCSSVars ? false : true },
-    },
-  };
+  connectedCallback() {
+    super.connectedCallback && super.connectedCallback();
+    this.noCssVars = supportsCSSVars ? false : true;
+  }
+
+  static get styles() {
+    return [unsafeCSS(ratioStyles)];
+  }
 
   /**
    * sets the style so that the height is based on a ratio of width to height
@@ -26,12 +48,12 @@ class BoltRatio extends withLitHtml() {
    * @param {Number} aspW - the width component of the ratio
    */
   _computeRatio() {
-    if (this.props.aspectRatioHeight && this.props.aspectRatioWidth) {
-      this._ratioH = this.props.aspectRatioHeight;
-      this._ratioW = this.props.aspectRatioWidth;
+    if (this.aspectRatioHeight && this.aspectRatioWidth) {
+      this._ratioH = this.aspectRatioHeight;
+      this._ratioW = this.aspectRatioWidth;
     } else {
-      this._ratioH = this.props.ratio ? this.props.ratio.split('/')[1] : 1;
-      this._ratioW = this.props.ratio ? this.props.ratio.split('/')[0] : 1;
+      this._ratioH = this.ratio ? this.ratio.split('/')[1] : 1;
+      this._ratioW = this.ratio ? this.ratio.split('/')[0] : 1;
     }
   }
 
@@ -46,9 +68,8 @@ class BoltRatio extends withLitHtml() {
         };
 
     return html`
-      ${this.addStyles([styles])}
-      <div class="${css(`c-bolt-ratio`)}" style=${styleMap(inlineStyles)}>
-        ${this.slot('default')}
+      <div class="${cx(`c-bolt-ratio`)}" style=${styleMap(inlineStyles)}>
+        ${this.slotify('default')}
       </div>
     `;
   }

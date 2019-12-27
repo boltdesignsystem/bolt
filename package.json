@@ -24,6 +24,7 @@
     "packages": [
       "docs-site",
       "docs-site/src/components/banner",
+      "docs-site/src/components/theme-switcher",
       "docs-site/src/components/docs-search",
       "docs-site/src/components/radio-switch",
       "packages/*",
@@ -52,40 +53,41 @@
     "cz": "git-cz",
     "deploy": "./scripts/deploy.js",
     "fix": "yarn lint:js --fix; yarn lint:scss --fix",
+    "postinstall": "patch-package && npx lerna run postbootstrap",
+    "jest": "jest --maxWorkers=3 --all --colors",
     "lint": "npm-run-all --parallel lint:*",
-    "lint:js": "eslint --max-warnings 0 'packages/**/*.js' 'docs-site/**/*.js'",
-    "lint:scss": "stylelint 'packages/**/*.scss' 'docs-site/**/*.scss' --config .stylelintrc",
+    "lint:js": "eslint '**/*.js' --ignore-pattern example-integrations",
+    "lint:scss": "stylelint '**/*.scss' --config .stylelintrc",
+    "release": "node ./auto-release.js",
     "serve": "node packages/servers/default-server",
     "setup": "yarn && yarn run setup:php",
     "setup:full": "yarn --force && yarn run setup:php",
-    "setup:php": "npx lerna exec --parallel --scope @bolt/twig-renderer --scope @bolt/drupal-twig-extensions --scope @bolt/core-php --scope @bolt/website -- composer install --prefer-dist --quiet",
+    "setup:php": "npx lerna exec --parallel --scope @bolt/twig-renderer --scope @bolt/drupal-twig-extensions --scope @bolt/core-php --scope @bolt/website -- composer install --prefer-dist",
     "setup:quick": "yarn && yarn run setup:php",
     "start": "cd docs-site && yarn run start",
     "test": "npm-run-all --parallel --aggregate-output test:js test:php test:monorepo test:build-tools",
+    "test:build-tools": "cd packages/build-tools && yarn run test",
     "test:e2e:full": "./node_modules/.bin/nightwatch --config packages/testing/testing-nightwatch/nightwatch.js --env chrome,firefox,ie11",
-    "test:e2e:quick": "./node_modules/.bin/nightwatch --config packages/testing/testing-nightwatch/nightwatch.js --env chrome,ie11",
     "test:e2e:full-live": " NOW_URL=https://boltdesignsystem.com ./node_modules/.bin/nightwatch --config packages/testing/testing-nightwatch/nightwatch.js --env chrome,firefox,ie11",
     "test:e2e:full-local": "NOW_URL=http://localhost:3000 ./node_modules/.bin/nightwatch --config packages/testing/testing-nightwatch/nightwatch.local.js --env chrome,safari",
     "test:e2e:full-master": " NOW_URL=https://master.boltdesignsystem.com ./node_modules/.bin/nightwatch --config packages/testing/testing-nightwatch/nightwatch.js --env chrome,firefox,ie11",
+    "test:e2e:quick": "./node_modules/.bin/nightwatch --config packages/testing/testing-nightwatch/nightwatch.js --env chrome,ie11",
     "test:e2e:quick-live": " NOW_URL=https://boltdesignsystem.com ./node_modules/.bin/nightwatch --config packages/testing/testing-nightwatch/nightwatch.local.js",
     "test:e2e:quick-local": "NOW_URL=http://localhost:3000 ./node_modules/.bin/nightwatch --config packages/testing/testing-nightwatch/nightwatch.local.js",
     "test:e2e:quick-master": " NOW_URL=https://master.boltdesignsystem.com ./node_modules/.bin/nightwatch --config packages/testing/testing-nightwatch/nightwatch.local.js",
     "pretest:js": "npm run setup:php",
-    "jest": "jest --maxWorkers=3 --all --colors",
     "test:js": "NODE_ENV='test' jest --all --colors 'packages|scripts' --passWithNoTests ",
     "test:js:quick": "NODE_ENV='test' jest --colors \"$(bolt-list-pkg-paths-changed)\" --passWithNoTests",
     "test:js:update": "yarn run test:js -u",
     "test:monorepo": "jest ./__tests__/monorepo -c jest.config.quick.js --noStackTrace",
-    "test:build-tools": "cd packages/build-tools && yarn run test",
     "test:php": "cd packages/core-php -- composer run test",
-    "test:pkgs": "lerna run test --ignore=@bolt/uikit-* --ignore=@bolt/build-tools--*",
-    "test:types": "tsc",
-    "postinstall": "patch-package && npx lerna run postbootstrap",
-    "release": "node ./auto-release.js"
+    "test:pkgs": "lerna run test --ignore=@bolt/uikit-* --ignore=@bolt/build-tools--* --stream",
+    "test:types": "tsc"
   },
   "husky": {
     "hooks": {
-      "pre-push": "yarn run lint && npm run test:monorepo",
+      "pre-commit": "lint-staged",
+      "pre-push": "jest ./__tests__/monorepo-basics.test.js -c jest.config.quick.js --noStackTrace",
       "commitmsg": "commitlint -E $GIT_PARAMS"
     }
   },
@@ -94,26 +96,38 @@
       "@commitlint/config-conventional"
     ]
   },
+  "lint-staged": {
+    "*.js": [
+      "eslint"
+    ],
+    "*.scss": [
+      "stylelint --config .stylelintrc"
+    ],
+    "package.json": [
+      "sort-package-json",
+      "git add"
+    ]
+  },
   "config": {
-    "puppeteer_skip_chromium_download": false,
     "commitizen": {
       "path": "./node_modules/@instructure/cz-lerna-changelog"
-    }
+    },
+    "puppeteer_skip_chromium_download": false
   },
   "browserslist": [
     "extends @bolt/browserslist-config"
   ],
   "dependencies": {
-    "shelljs": "^0.8.3",
-    "@slack/webhook" : "^5.0.2",
-    "@auto-it/released": "^7.11.0",
-    "@auto-it/npm": "^7.11.0",
-    "@auto-it/omit-commits": "^7.11.0",
-    "auto": "^7.11.0",
+    "@auto-it/npm": "^8.0.0",
+    "@auto-it/omit-commits": "^8.0.0",
+    "@auto-it/released": "^8.0.0",
+    "@bolt/testing-utils": "^2.8.0-beta.4",
     "@commitlint/cli": "^8.0.0",
     "@commitlint/config-conventional": "^8.0.0",
     "@instructure/cz-lerna-changelog": "^6.6.0",
     "@open-wc/testing-helpers": "^1.0.10",
+    "@slack/webhook": "^5.0.2",
+    "auto": "^8.0.0",
     "ci-utils": "^0.6.0",
     "commitizen": "^3.1.1",
     "conf": "^5.0.0",
@@ -122,15 +136,15 @@
     "eslint": "^6.0.1",
     "eslint-plugin-prettier": "^3.1.0",
     "eslint-plugin-react": "^7.14.2",
-    "globby": "^10.0.1",
-    "@bolt/testing-utils": "^2.8.0-beta.4",
     "find-pkg": "^2.0.0",
     "get-port": "^5.0.0",
+    "globby": "^10.0.1",
     "haunted": "^4.4.0",
     "husky": "^3.0.0",
     "jest": "^24.8.0",
     "jsonwebtoken": "^8.5.1",
     "lerna": "^3.15.0",
+    "lint-staged": "^9.5.0",
     "lit-element": "^2.2.0",
     "lit-html": "^1.1.1",
     "npm-run-all": "^4.1.5",
@@ -139,16 +153,18 @@
     "proxy-polyfill": "^0.3.0",
     "release-it": "^12.3.2",
     "semantic-release": "^15.13.18",
+    "shelljs": "^0.8.3",
+    "sort-package-json": "^1.31.0",
     "typescript": "^3.5.3"
-  },
-  "publishConfig": {
-    "access": "public"
   },
   "devDependencies": {
     "@types/jest": "^24.0.15",
+    "@types/skatejs": "^5.0.1",
     "stylelint": "^10.1.0",
     "stylelint-order": "^3.0.1",
-    "stylelint-scss": "^3.9.2",
-    "@types/skatejs": "^5.0.1"
+    "stylelint-scss": "^3.9.2"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

@@ -1,13 +1,13 @@
 import Form from 'react-jsonschema-form';
-import { withContext, defineContext, define, props } from '@bolt/core/utils';
-import { h, withPreact } from '@bolt/core/renderers';
+import { withContext, defineContext, define, props } from '@bolt/core-v3.x/utils';
+import { h, withPreact } from '@bolt/core-v3.x/renderers';
 import isEqual from 'react-fast-compare';
 import { ComponentExplorerContext } from './component-explorer';
 
-@define
-export default class SchemaForm extends withContext(withPreact()) {
-  static is = 'bolt-schema-form';
+import { customElement } from '@bolt/element';
 
+@customElement('bolt-schema-form')
+export default class SchemaForm extends withContext(withPreact) {
   static props = {
     schema: props.object,
     formData: props.object,
@@ -118,7 +118,7 @@ export default class SchemaForm extends withContext(withPreact()) {
         schema={this.state.schema}
         formData={this.state.formData}
         uiSchema={uiSchema}
-        // widgets={customWidgets} 
+        // widgets={customWidgets}
         onChange={data => this.onFormChange(data)}
         onError={(data) => console.error('Error in Schema Form', formData)}>
       </Form>

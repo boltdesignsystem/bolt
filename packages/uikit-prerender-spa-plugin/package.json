@@ -1,31 +1,46 @@
 {
   "name": "@bolt/prerender-spa-plugin",
-  "version": "2.8.0",
+  "version": "2.12.0",
   "description": "Bolt Design System fork of the Webpack Prerender SPA Plugin",
-  "license": "MIT",
-  "publishConfig": {
-    "access": "public"
-  },
-  "main": "index.js",
-  "scripts": {
-    "postinstall": "npm run build",
-    "build": "babel index.es6.js --out-file index.js",
-    "prepublishOnly": "npm run build"
-  },
-  "files": [
-    "index.es6.js",
-    "index.js"
-  ],
   "keywords": [
     "prerender",
     "spa",
     "ssr",
     "serverside-rendering"
   ],
+  "bugs": {
+    "url": "https://github.com/chrisvfritz/prerender-spa-plugin/issues",
+    "email": "chrisvfritz@gmail.com"
+  },
+  "repository": "chrisvfritz/prerender-spa-plugin",
+  "license": "MIT",
   "author": {
     "name": "Chris Fritz",
     "email": "chrisvfritz@gmail.com",
     "url": "https://twitter.com/chrisvfritz"
+  },
+  "files": [
+    "index.es6.js",
+    "index.js"
+  ],
+  "main": "index.js",
+  "scripts": {
+    "build": "babel index.es6.js --out-file index.js",
+    "postinstall": "npm run build",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "@babel/cli": "^7.5.0",
+    "@babel/core": "^7.5.4",
+    "@bolt/uikit-prerenderer": "^2.12.0",
+    "@prerenderer/prerenderer": "^0.7.2",
+    "html-minifier": "^4.0.0"
+  },
+  "engines": {
+    "node": ">=10.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "contributors": [
     {
@@ -51,20 +66,5 @@
       "name": "qkdreyer",
       "email": "quentin.dreyer@gmail.com"
     }
-  ],
-  "repository": "chrisvfritz/prerender-spa-plugin",
-  "bugs": {
-    "url": "https://github.com/chrisvfritz/prerender-spa-plugin/issues",
-    "email": "chrisvfritz@gmail.com"
-  },
-  "dependencies": {
-    "@babel/cli": "^7.5.0",
-    "@babel/core": "^7.5.4",
-    "@bolt/uikit-prerenderer": "^2.8.0",
-    "@prerenderer/prerenderer": "^0.7.2",
-    "html-minifier": "^4.0.0"
-  },
-  "engines": {
-    "node": ">=10.0.0"
-  }
+  ]
 }

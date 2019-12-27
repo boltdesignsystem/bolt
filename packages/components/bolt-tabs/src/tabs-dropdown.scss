@@ -41,6 +41,10 @@ $bolt-tabs-xsmall-bp: 420px; // Slightly increase the default 400px xsmall break
   @include bolt-mq($until: $bolt-tabs-xsmall-bp) {
     margin-left: auto;
   }
+
+  &.is-invisible {
+    visibility: hidden;
+  }
 }
 
 .c-bolt-tabs__dropdown-list {
@@ -130,6 +134,7 @@ $bolt-tabs-xsmall-bp: 420px; // Slightly increase the default 400px xsmall break
   @include bolt-font-size(medium);
   @include bolt-font-weight(semibold);
   display: flex;
+  flex-shrink: 0; // without this IE sometimes stacks text and icon
   align-items: center;
   position: relative;
   color: bolt-theme(headline);

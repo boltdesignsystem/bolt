@@ -1,26 +1,26 @@
 {
   "name": "@bolt/components-text",
+  "version": "2.13.0",
   "description": "Text Component in Bolt",
-  "version": "2.9.2",
   "homepage": "https://boltdesignsystem.com",
-  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bolt-design-system/bolt/issues"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/bolt-design-system/bolt/"
   },
-  "bugs": {
-    "url": "https://github.com/bolt-design-system/bolt/issues"
-  },
-  "style": "index.scss",
-  "twig": "src/text.twig",
+  "license": "MIT",
   "main": "index.js",
+  "style": "index.scss",
+  "dependencies": {
+    "@bolt/components-link": "^2.13.0",
+    "@bolt/core-v3.x": "^2.13.0"
+  },
   "publishConfig": {
     "access": "public"
   },
-  "dependencies": {
-    "@bolt/components-link": "^2.9.2",
-    "@bolt/core": "^2.9.2"
-  },
+  "gitHead": "d41aa75ae3d195d9d7fb3952eed5e0ae80988133",
   "schema": "text.schema.yml",
-  "gitHead": "d41aa75ae3d195d9d7fb3952eed5e0ae80988133"
+  "twig": "src/text.twig"
 }

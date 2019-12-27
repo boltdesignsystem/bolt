@@ -1,50 +1,15 @@
-import {
-  renameKey,
-  props,
-  define,
-  hasNativeShadowDomSupport,
-} from '@bolt/core/utils';
-import { html, withLitHtml } from '@bolt/core/renderers/renderer-lit-html';
+import { props, hasNativeShadowDomSupport } from '@bolt/core-v3.x/utils';
+import { html, customElement } from '@bolt/element';
+import { withLitHtml } from '@bolt/core-v3.x/renderers/renderer-lit-html';
 import classNames from 'classnames/bind';
 import changeCase from 'change-case';
 import Swiper from 'swiper';
 import styles from '../index.scss';
 import originalSchema from '../carousel.schema.yml';
 
+import '@bolt/core-v3.x/utils/optimized-resize';
+
 let cx = classNames.bind(styles);
-let wasCarouselResizerAdded = false;
-
-function addBoltCarouselResizer() {
-  if (wasCarouselResizerAdded === false) {
-    wasCarouselResizerAdded = true;
-
-    // Create a custom 'optimizedResize' event that works just like window.resize but is more performant because it
-    // won't fire before a previous event is complete.
-    // This was adapted from https://developer.mozilla.org/en-US/docs/Web/Events/resize
-    (function() {
-      function throttle(type, name, obj) {
-        obj = obj || window;
-        let running = false;
-
-        function func() {
-          if (running) {
-            return;
-          }
-          running = true;
-          requestAnimationFrame(function() {
-            obj.dispatchEvent(new CustomEvent(name));
-            running = false;
-          });
-        }
-        obj.addEventListener(type, func);
-      }
-
-      // Initialize on window.resize event.  Note that throttle can also be initialized on any type of event,
-      // such as scroll.
-      throttle('resize', 'carousel:resize');
-    })();
-  }
-}
 
 // @todo: re-wire to point to actual breakpoint data
 const boltBreakpoints = {
@@ -90,10 +55,8 @@ for (const key of schemaPropKeys) {
   }
 }
 
-@define
-class BoltCarousel extends withLitHtml() {
-  static is = 'bolt-carousel';
-
+@customElement('bolt-carousel')
+class BoltCarousel extends withLitHtml {
   static props = {
     ...carouselProps,
     slideOffsetBefore: props.boolean,
@@ -137,12 +100,8 @@ class BoltCarousel extends withLitHtml() {
 
   connecting() {
     super.connecting && super.connecting();
-    addBoltCarouselResizer();
 
-    if (!this.carouselResizeEventAdded) {
-      this.carouselResizeEventAdded = true;
-      window.addEventListener('carousel:resize', this.reInitCarousel);
-    }
+    window.addEventListener('throttledResize', this.reInitCarousel);
 
     const nextButton = this.querySelector('[slot="next-btn"]');
     const prevButton = this.querySelector('[slot="previous-btn"]');
@@ -506,10 +465,7 @@ class BoltCarousel extends withLitHtml() {
 
     this.isVisible = false;
 
-    if (this.carouselResizeEventAdded === true) {
-      this.carouselResizeEventAdded = false;
-      window.removeEventListener('carousel:resize', this.reInitCarousel);
-    }
+    window.removeEventListener('throttledResize', this.reInitCarousel);
   }
 
   update() {
@@ -703,10 +659,8 @@ class BoltCarousel extends withLitHtml() {
   }
 }
 
-@define
-class BoltCarouselSlide extends withLitHtml() {
-  static is = 'bolt-carousel-slide';
-
+@customElement('bolt-carousel-slide')
+class BoltCarouselSlide extends withLitHtml {
   // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
   constructor(self) {
     self = super(self);

@@ -49,16 +49,15 @@ describe('<bolt-ratio> Component', () => {
   });
 
   test('Default <bolt-ratio> w/o Shadow DOM renders', async function() {
-    const renderedRatioHTML = await page.evaluate(() => {
-      const ratio = document.createElement('bolt-ratio');
-      const img = document.createElement('img');
-      img.setAttribute('src', '/fixtures/1200x660.jpg');
-      ratio.setAttribute('no-shadow', '');
-      ratio.setAttribute('ratio', '1200/660');
-      ratio.appendChild(img);
-      document.body.appendChild(ratio);
-      ratio.useShadow = false;
-      ratio.updated();
+    const renderedRatioHTML = await page.evaluate(async () => {
+      document.body.insertAdjacentHTML(
+        'beforeend',
+        `<bolt-ratio no-shadow ratio="1200/660">
+          <img src="/fixtures/1200x660.jpg">
+        </bolt-ratio>`,
+      );
+      const ratio = document.querySelector('bolt-ratio');
+      await ratio.firstUpdated;
       return ratio.outerHTML;
     });
     expect(renderedRatioHTML).toMatchSnapshot();
@@ -101,7 +100,7 @@ describe('<bolt-ratio> Component', () => {
       ratio.setAttribute('ratio', '640/360');
       ratio.style.width = '640px';
       document.body.appendChild(ratio);
-      ratio.updated();
+      ratio.requestUpdate();
       return ratio.outerHTML;
     });
 
@@ -163,7 +162,7 @@ describe('<bolt-ratio> Component', () => {
       div.innerHTML = `${html}`;
       document.body.appendChild(div);
       const ratio = document.querySelector('bolt-ratio');
-      ratio.updated();
+      ratio.requestUpdate();
     }, html);
 
     await page.evaluate(async () => {
@@ -217,7 +216,7 @@ describe('<bolt-ratio> Component', () => {
       ratio.setAttribute('ratio', '12/8.5');
       ratio.appendChild(img);
       document.body.appendChild(ratio);
-      ratio.updated();
+      ratio.requestUpdate();
       return ratio.outerHTML;
     });
     expect(renderedRatioHTML).toMatchSnapshot();

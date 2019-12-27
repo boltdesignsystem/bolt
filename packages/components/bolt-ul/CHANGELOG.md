@@ -3,6 +3,41 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.13.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/lists/bolt-ul/compare/v2.12.1...v2.13.0) (2019-12-13)
+
+
+### Bug Fixes
+
+* inconsistent spacing ([03463b3](https://github.com/bolt-design-system/bolt/tree/master/packages/components/lists/bolt-ul/commit/03463b3))
+
+
+
+
+
+# [2.12.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/lists/bolt-ul/compare/v2.11.4...v2.12.0) (2019-11-26)
+
+**Note:** Version bump only for package @bolt/components-ul
+
+
+
+
+
+## [2.11.2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/lists/bolt-ul/compare/v2.11.1...v2.11.2) (2019-11-14)
+
+**Note:** Version bump only for package @bolt/components-ul
+
+
+
+
+
+# [2.11.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/lists/bolt-ul/compare/v2.10.0...v2.11.0) (2019-11-14)
+
+**Note:** Version bump only for package @bolt/components-ul
+
+
+
+
+
 ## [2.9.2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/lists/bolt-ul/compare/v2.9.1...v2.9.2) (2019-10-23)
 
 **Note:** Version bump only for package @bolt/components-ul

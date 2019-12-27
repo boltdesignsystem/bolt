@@ -3,6 +3,57 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.13.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-typeahead/compare/v2.12.1...v2.13.0) (2019-12-13)
+
+
+### Bug Fixes
+
+* re-adding Preact's Fragment import for Typeahead ([0e097d2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-typeahead/commit/0e097d2))
+
+
+
+
+
+## [2.12.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-typeahead/compare/v2.12.0...v2.12.1) (2019-12-12)
+
+**Note:** Version bump only for package @bolt/components-typeahead
+
+
+
+
+
+# [2.12.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-typeahead/compare/v2.11.4...v2.12.0) (2019-11-26)
+
+
+### Bug Fixes
+
+* fix prettier issues ([73cf9e5](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-typeahead/commit/73cf9e5))
+* get remaining a11y updates wired up and working ([5092418](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-typeahead/commit/5092418))
+* update rendering of hint text ([06d99d4](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-typeahead/commit/06d99d4))
+
+
+
+
+
+## [2.11.2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-typeahead/compare/v2.11.1...v2.11.2) (2019-11-14)
+
+**Note:** Version bump only for package @bolt/components-typeahead
+
+
+
+
+
+# [2.11.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-typeahead/compare/v2.10.0...v2.11.0) (2019-11-14)
+
+
+### Bug Fixes
+
+* update typeahead ([db86341](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-typeahead/commit/db86341))
+
+
+
+
+
 # [2.10.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-typeahead/compare/v2.9.2...v2.10.0) (2019-10-29)
 
 **Note:** Version bump only for package @bolt/components-typeahead

@@ -1,14 +1,16 @@
-import { props, define, hasNativeShadowDomSupport } from '@bolt/core/utils';
-import { withLitContext, html, convertSchemaToProps } from '@bolt/core';
+import { html, customElement } from 'lit-element';
+import { props, convertSchemaToProps } from '@bolt/core-v3.x/utils';
+import { withLitContext } from '@bolt/core-v3.x/renderers';
 import { triggerAnims } from '@bolt/components-animate/utils';
 import classNames from 'classnames/bind';
+import { boltTwoCharacterLayoutIs } from '@bolt/micro-journeys/src/two-character-layout';
 import styles from './interactive-step.scss';
 import schema from './interactive-step.schema';
 
 const cx = classNames.bind(styles);
 
-@define
-class BoltInteractiveStep extends withLitContext() {
+@customElement('bolt-interactive-step')
+class BoltInteractiveStep extends withLitContext {
   static is = 'bolt-interactive-step';
 
   static props = {
@@ -23,18 +25,39 @@ class BoltInteractiveStep extends withLitContext() {
     this.triggerUpdate();
   }
 
-  // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
+  // @ts-ignore
   constructor(self) {
     self = super(self);
-    self.useShadow = hasNativeShadowDomSupport;
     self._isActiveStep = false;
+    self._isBecomingActive = false;
+    // These components are responsible for their own inital animate in.
+    self.animateInExclusions = [boltTwoCharacterLayoutIs];
     return self;
   }
 
+  /**
+   * Set this step to be the active step, trigger re-render.
+   *
+   * @param {Boolean} isActive
+   */
   setActive(isActive = true) {
     this._isActiveStep = isActive;
+    this._isBecomingActive = false;
     this.triggerUpdate();
   }
+
+  /**
+   * Prepare the step by rendering the content to the DOM so that `bolt-animate`s
+   * can animate themselves out swiftly in preparation to be animated in.
+   *
+   * @param {Boolean} isBecomingActive
+   * @return {Promise}
+   */
+  setIsBecomingActive = async (isBecomingActive = true) => {
+    this._isBecomingActive = isBecomingActive;
+    this.triggerUpdate();
+    return this.triggerAnimOuts(1);
+  };
 
   /**
    * @param {Event} event
@@ -43,9 +66,7 @@ class BoltInteractiveStep extends withLitContext() {
 
   connectedCallback() {
     super.connectedCallback();
-
     this.addEventListener('bolt:transitionend', this.handleAnimationEnd);
-
     setTimeout(() => {
       this.dispatchEvent(
         new CustomEvent(`${BoltInteractiveStep.is}:connected`, {
@@ -60,9 +81,7 @@ class BoltInteractiveStep extends withLitContext() {
 
   disconnectedCallback() {
     super.disconnectedCallback();
-
     this.removeEventListener('bolt:transitionend', this.handleAnimationEnd);
-
     setTimeout(() => {
       this.dispatchEvent(
         new CustomEvent(`${BoltInteractiveStep.is}:disconnected`, {
@@ -75,14 +94,35 @@ class BoltInteractiveStep extends withLitContext() {
     }, 0);
   }
 
-  async triggerAnimOuts() {
+  async triggerAnimOuts(durationOverride = null) {
     const anims = this.querySelectorAll('bolt-animate');
-    return triggerAnims({ animEls: anims, stage: 'OUT' });
+    return triggerAnims({ animEls: anims, stage: 'OUT', durationOverride });
   }
 
   async triggerAnimIns() {
-    const anims = this.querySelectorAll('bolt-animate');
-    return triggerAnims({ animEls: anims, stage: 'IN' });
+    let animEls = [...this.querySelectorAll('bolt-animate')];
+    // Filter bolt-animates inside animateInExclusions.
+    if (this.animateInExclusions.length) {
+      const animateInExclusions = [
+        ...this.querySelectorAll(
+          `${this.animateInExclusions.join(' bolt-animate')} bolt-animate`,
+        ),
+      ];
+      [...this.querySelectorAll(this.animateInExclusions.join(' '))].forEach(
+        exclusion => {
+          exclusion.triggerAnimIns();
+        },
+      );
+      animEls = animEls.filter(animateEl => {
+        return !animateInExclusions.find(exclusion =>
+          animateEl.isSameNode(exclusion),
+        );
+      });
+    }
+    return triggerAnims({
+      animEls,
+      stage: 'IN',
+    });
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
@@ -156,10 +196,18 @@ class BoltInteractiveStep extends withLitContext() {
         <div class="c-bolt-interactive-step__body">
           <div class="c-bolt-interactive-step__body-inner">
             <div class="c-bolt-interactive-step__top-slot">
-              ${this.slot('top')}
+              ${this._isActiveStep || this._isBecomingActive
+                ? html`
+                    ${this.slot('top')}
+                  `
+                : ''}
             </div>
             <div class="c-bolt-interactive-step__bottom-slot">
-              ${this.slot('bottom')}
+              ${this._isActiveStep || this._isBecomingActive
+                ? html`
+                    ${this.slot('bottom')}
+                  `
+                : ''}
             </div>
           </div>
         </div>

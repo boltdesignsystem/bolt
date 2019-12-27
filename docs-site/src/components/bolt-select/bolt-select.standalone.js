@@ -1,20 +1,15 @@
 // Initially inspired by https://github.com/adidas/choicesjs-stencil/blob/master/src/components/choicesjs-stencil/choicesjs-stencil.tsx
 
-import { props, define } from '@bolt/core/utils';
+import { props } from '@bolt/core-v3.x/utils';
+import { customElement, html } from '@bolt/element';
 import Choices from 'choices.js';
-import {
-  withLitHtml,
-  html,
-  // render,
-} from '@bolt/core/renderers/renderer-lit-html';
+import { withLitHtml } from '@bolt/core-v3.x/renderers/renderer-lit-html';
 import { filterObject, isDefined, createSelectOptionData } from './utils';
 
 import styles from './bolt-select.scss';
 
-@define
-class BoltSelect extends withLitHtml() {
-  static is = 'bolt-select';
-
+@customElement('bolt-select')
+class BoltSelect extends withLitHtml {
   static props = {
     type: props.string, // single | multiple | text
     value: props.string,

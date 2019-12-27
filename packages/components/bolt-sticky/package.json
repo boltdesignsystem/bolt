@@ -1,5 +1,6 @@
 {
   "name": "@bolt/components-sticky",
+  "version": "2.13.0",
   "description": "Sticky Component in Bolt",
   "keywords": [
     "bolt design system",
@@ -8,8 +9,20 @@
     "design system",
     "components"
   ],
-  "version": "2.9.2",
-  "sourceFilesFrom": "0.10.0",
+  "homepage": "https://boltdesignsystem.com",
+  "bugs": "https://github.com/bolt-design-system/bolt/issues",
+  "repository": "https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-sticky",
+  "license": "MIT",
+  "main": "src/sticky.js",
+  "style": "src/sticky.scss",
+  "dependencies": {
+    "@bolt/core-v3.x": "^2.13.0",
+    "stickyfilljs": "^2.0.3"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "gitHead": "d41aa75ae3d195d9d7fb3952eed5e0ae80988133",
   "maintainers": [
     {
       "name": "Salem Ghoweri",
@@ -27,19 +40,6 @@
       "web": "https://github.com/remydenton"
     }
   ],
-  "homepage": "https://boltdesignsystem.com",
-  "license": "MIT",
-  "repository": "https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-sticky",
-  "bugs": "https://github.com/bolt-design-system/bolt/issues",
-  "main": "src/sticky.js",
-  "style": "src/sticky.scss",
-  "publishConfig": {
-    "access": "public"
-  },
-  "dependencies": {
-    "@bolt/core": "^2.9.2",
-    "stickyfilljs": "^2.0.3"
-  },
   "schema": "sticky.schema.yml",
-  "gitHead": "d41aa75ae3d195d9d7fb3952eed5e0ae80988133"
+  "sourceFilesFrom": "0.10.0"
 }

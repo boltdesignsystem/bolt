@@ -1,7 +1,5 @@
-import { polyfillLoader } from '@bolt/core/polyfills';
+import { polyfillLoader } from '@bolt/core-v3.x/polyfills';
 
 polyfillLoader.then(res => {
-  import(
-    /* webpackMode: 'eager', webpackChunkName: 'bolt-band' */ './src/band'
-  );
+  import(/* webpackChunkName: 'bolt-band' */ './src/band');
 });

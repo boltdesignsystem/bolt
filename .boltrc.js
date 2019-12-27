@@ -67,6 +67,7 @@ nonImageFixtures.forEach(fixturePath => {
 });
 
 module.exports = {
+  esModules: true,
   wwwDir: adjustRelativePath(siteConfig.wwwDir),
   buildDir: adjustRelativePath(siteConfig.buildDir),
   iconDir: [],
@@ -75,7 +76,6 @@ module.exports = {
       ...allComponentPackages,
       '@bolt/components-animate',
       '@bolt/micro-journeys',
-      '@pegawww/with-without', // @todo: remove once w/wo has shipped
       '@bolt/analytics-autolink',
     ],
   },
