@@ -2,9 +2,7 @@
   "version": 2,
   "scope": "boltdesignsystem",
   "name": "boltdesignsystem",
-  "builds": [
-    { "src": "www/**", "use": "@now/static" }
-  ],
+  "builds": [{ "src": "www/**", "use": "@now/static" }],
   "routes": [
     { "src": "/core/(.*)", "dest": "/www/integrations/drupal-lab/core/$1" },
     { "src": "/themes/(.*)", "dest": "/www/integrations/drupal-lab/themes/$1" },

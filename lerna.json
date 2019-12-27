@@ -3,13 +3,7 @@
   "version": "2.13.1",
   "command": {
     "publish": {
-      "allowBranch": [
-        "master",
-        "next",
-        "next/*",
-        "release/*",
-        "develop"
-      ],
+      "allowBranch": ["master", "next", "next/*", "release/*", "develop"],
       "conventionalCommits": true,
       "gitReset": true,
       "includeMergedTags": true,
@@ -27,8 +21,6 @@
     "**/__snapshots__/**"
   ],
   "npmClient": "yarn",
-  "npmClientArgs": [
-    "--ignore-optional"
-  ],
+  "npmClientArgs": ["--ignore-optional"],
   "useWorkspaces": true
 }

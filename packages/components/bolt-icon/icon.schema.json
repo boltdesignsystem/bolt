@@ -2,9 +2,7 @@
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Icon",
   "type": "object",
-  "required": [
-    "name"
-  ],
+  "required": ["name"],
   "properties": {
     "attributes": {
       "type": "object",
@@ -148,28 +146,17 @@
     "background": {
       "type": "string",
       "description": "Background shape. This applies *only* to 'xlarge' icons.",
-      "enum": [
-        "circle",
-        "square"
-      ]
+      "enum": ["circle", "square"]
     },
     "size": {
       "type": "string",
       "description": "Icon size.",
-      "enum": [
-        "small",
-        "medium",
-        "large",
-        "xlarge"
-      ]
+      "enum": ["small", "medium", "large", "xlarge"]
     },
     "color": {
       "type": "string",
       "description": "Icon color. Currently only support default (black) and teal.",
-      "enum": [
-        "teal",
-        "blue"
-      ]
+      "enum": ["teal", "blue"]
     }
   }
 }
