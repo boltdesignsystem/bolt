@@ -1,12 +1,12 @@
+import { html, customElement } from '@bolt/element';
 import {
-  define,
   props,
   whichTransitionEvent,
   waitForTransitionEnd,
-} from '@bolt/core/utils';
-import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
+} from '@bolt/core-v3.x/utils';
+import { withLitHtml } from '@bolt/core-v3.x/renderers/renderer-lit-html';
 
-import '@bolt/core/utils/optimized-resize';
+import '@bolt/core-v3.x/utils/optimized-resize';
 
 /*
   Consider using these polyfills to broaden browser support:
@@ -14,21 +14,17 @@ import '@bolt/core/utils/optimized-resize';
     — https://www.npmjs.com/package/nodelist-foreach-polyfill
 */
 
-@define
-class BoltNavPriority extends withLitHtml() {
-  static is = 'bolt-nav-priority';
-
+@customElement('bolt-nav-priority')
+class BoltNavPriority extends withLitHtml {
   constructor(self) {
     self = super(self);
-    this.activeLink = false;
-    this.useShadow = false;
-    this.isReady = false;
-    this.transitionEvent = whichTransitionEvent();
+    self.activeLink = false;
+    self.useShadow = false;
+    self.isReady = false;
+    self.transitionEvent = whichTransitionEvent();
 
-    this._adaptPriorityNav = this._adaptPriorityNav.bind(this);
-    this._handleDropdownToggle = this._handleDropdownToggle.bind(this);
-
-    return self;
+    self._adaptPriorityNav = self._adaptPriorityNav.bind(self);
+    self._handleDropdownToggle = self._handleDropdownToggle.bind(self);
   }
 
   static props = {
@@ -52,7 +48,7 @@ class BoltNavPriority extends withLitHtml() {
         <li class="c-bolt-nav-priority__item c-bolt-nav-priority__show-more">
           <button type="button" aria-haspopup="true" aria-expanded="false" class="c-bolt-nav-priority__button c-bolt-nav-priority__show-button">
             <span class="c-bolt-nav-priority__show-text">
-              ${this.props.moreText ? this.props.moreText : 'More'}
+              ${this.moreText ? this.moreText : 'More'}
             </span>
             <span class="c-bolt-nav-priority__show-icon">
               <bolt-icon name="chevron-down"></bolt-icon>

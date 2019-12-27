@@ -1,5 +1,5 @@
 import SmoothScroll from 'smooth-scroll/src/js/smooth-scroll.js';
-import { isValidSelector } from '@bolt/core/utils';
+import { isValidSelector } from '@bolt/core-v3.x/utils';
 
 export const smoothScroll = new SmoothScroll();
 

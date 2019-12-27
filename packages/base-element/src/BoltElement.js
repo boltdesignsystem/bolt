@@ -1,5 +1,4 @@
 /* eslint-disable no-unused-expressions */
-import { LitElement } from 'lit-element';
 import { supportsAdoptingStyleSheets } from 'lit-element/lib/css-tag.js';
 import { Slotify } from './Slotify.js';
 import {
@@ -11,7 +10,7 @@ import {
 @renderAndRenderedEvents()
 @lazyStyles()
 @conditionalShadowDom()
-class BoltElement extends Slotify(LitElement) {
+class BoltElement extends Slotify {
   // patch to https://github.com/Polymer/lit-element/blob/master/src/lit-element.ts#L208
   // as a temp workaround to constructible stylesheets not working when
   // rendering inside + outside an iframe. Filing a bug with lit-element shortly!

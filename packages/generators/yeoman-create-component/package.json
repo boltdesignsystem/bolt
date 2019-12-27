@@ -1,8 +1,15 @@
 {
   "name": "@bolt/generator-bolt",
-  "version": "2.12.0",
+  "version": "2.13.0",
   "description": "A yeoman generator for creating components for the Bolt Design System",
+  "keywords": [
+    "bolt design system",
+    "yeoman-generator"
+  ],
   "homepage": "https://boltdesignsystem.com",
+  "bugs": "https://github.com/bolt-design-system/bolt/issues",
+  "repository": "https://github.com/bolt-design-system/bolt/tree/master/packages/generator-bolt",
+  "license": "MIT",
   "author": {
     "name": "Salem Ghoweri",
     "email": "me@salemghoweri.com"
@@ -11,16 +18,11 @@
     "generators"
   ],
   "main": "generators/component/index.js",
-  "keywords": [
-    "bolt design system",
-    "yeoman-generator"
-  ],
   "dependencies": {
-    "@bolt/build-tools": "^2.12.0",
+    "@bolt/build-tools": "^2.13.0",
     "chalk": "^2.4.2",
     "change-case": "^3.1.0",
     "commander": "^2.19.0",
-    "node-dir": "^0.1.17",
     "pluralize": "^7.0.0",
     "sort-package-json": "^1.20.0",
     "yeoman-assert": "^3.1.1",
@@ -30,9 +32,6 @@
     "yo": "^2.0.5",
     "yosay": "^2.0.2"
   },
-  "license": "MIT",
-  "repository": "https://github.com/bolt-design-system/bolt/tree/master/packages/generator-bolt",
-  "bugs": "https://github.com/bolt-design-system/bolt/issues",
   "publishConfig": {
     "access": "public"
   },

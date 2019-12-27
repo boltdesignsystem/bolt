@@ -1,6 +1,6 @@
 // @todo: refactor this and break apart
 
-@import '@bolt/core';
+@import '@bolt/core-v3.x';
 $bds-sidebar-width: 320px;
 
 .c-bds-layout {
@@ -14,12 +14,12 @@ $bds-sidebar-width: 320px;
     flex-direction: column;
     flex-grow: 1;
   }
-  
+
   @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
     height: auto;
     min-height: 100vh;
   }
-  
+
   @include bolt-mq(medium) {
     &.c-bds-layout--has-sidebar {
       grid-template-columns: $bds-sidebar-width auto 1fr auto;
@@ -188,7 +188,7 @@ $bds-sidebar-width: 320px;
   @include bolt-mq(medium) {
     @include bolt-margin-top(bolt-spacing(xlarge) - bolt-spacing(medium));
     transform: translate3d(0, 0, 0);
-  
+
     @include bolt-mq(medium) {
       .c-bds-layout--has-sidebar & {
         grid-column-start: 1;
@@ -333,7 +333,7 @@ $bds-sidebar-width: 320px;
     @include bolt-padding-right(medium);
   }
 }
-  
+
 .c-bds-docs__page-content {
   width: 100%;
 
@@ -410,7 +410,7 @@ $bds-sidebar-width: 320px;
     grid-column: 1/span 4;
   }
 }
-  
+
 .c-bds-docs__page-nav {
   @include bolt-margin-bottom(large);
   -ms-grid-row: 3; /* [1] */
@@ -437,9 +437,9 @@ $bds-sidebar-width: 320px;
     text-align: left;
   }
 }
-  
-  
-  
+
+
+
 .c-bds-docs__page-nav__link {
   @include bolt-font-size(small);
 }
