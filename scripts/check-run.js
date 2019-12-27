@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 const jwt = require('jsonwebtoken');
 const execa = require('execa');
 const fs = require('fs');
