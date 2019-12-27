@@ -47,11 +47,11 @@ export const pluginLoader = {
       scriptjs(
         plugin.javascripts,
         plugin.name,
-        eval('(function() { ' + plugin.callback + ' })') // eslint-disable-line
+        eval('(function() { ' + plugin.callback + ' })'), // eslint-disable-line
       );
       scriptjs.ready(
         [plugin.name],
-        eval('(function() { ' + plugin.onready + ' })') // eslint-disable-line
+        eval('(function() { ' + plugin.onready + ' })'), // eslint-disable-line
       );
     }
   },

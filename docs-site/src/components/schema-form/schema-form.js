@@ -1,5 +1,10 @@
 import Form from 'react-jsonschema-form';
-import { withContext, defineContext, define, props } from '@bolt/core-v3.x/utils';
+import {
+  withContext,
+  defineContext,
+  define,
+  props,
+} from '@bolt/core-v3.x/utils';
 import { h, withPreact } from '@bolt/core-v3.x/renderers';
 import isEqual from 'react-fast-compare';
 import { ComponentExplorerContext } from './component-explorer';
@@ -26,7 +31,7 @@ export default class SchemaForm extends withContext(withPreact) {
 
   constructor(props) {
     super(props);
-    this.timeout =  null;
+    this.timeout = null;
     this.state = {
       formData: '',
       renderedHTML: '',
@@ -45,14 +50,14 @@ export default class SchemaForm extends withContext(withPreact) {
     this.setState({
       formData: this.props.formData,
     });
-    this.onFormChange({formData: this.props.formData});
+    this.onFormChange({ formData: this.props.formData });
   }
 
   shouldUpdate(prevProps, prevState) {
-    return (!isEqual(prevState,this.state));
+    return !isEqual(prevState, this.state);
   }
 
-  resetForm(){
+  resetForm() {
     this.setState({
       formData: this.context.formData,
     });
@@ -67,7 +72,7 @@ export default class SchemaForm extends withContext(withPreact) {
         bubbles: true,
       }),
     );
-  };
+  }
 
   render() {
     this.state.schema = this.state.schema || this.context.schema;
@@ -79,39 +84,39 @@ export default class SchemaForm extends withContext(withPreact) {
     const uiSchema = {
       layout: {
         navPosition: {
-          "ui:help": "Position of the next/prev buttons",
-          "ui:widget": "radio",
-          "ui:options": {
-            inline: true
-          }
+          'ui:help': 'Position of the next/prev buttons',
+          'ui:widget': 'radio',
+          'ui:options': {
+            inline: true,
+          },
         },
       },
       controls: {
         navPosition: {
-          "ui:help": "Position of the next/prev buttons",
-          "ui:widget": "radio",
-          "ui:options": {
-            inline: true
-          }
+          'ui:help': 'Position of the next/prev buttons',
+          'ui:widget': 'radio',
+          'ui:options': {
+            inline: true,
+          },
         },
       },
       slideConfig: {
         maxSlidesPerView: {
-          "ui:help": "Max # of slides to display.",
-          "ui:widget": "range",
-          "ui:options": {
-            inline: true
-          }
+          'ui:help': 'Max # of slides to display.',
+          'ui:widget': 'range',
+          'ui:options': {
+            inline: true,
+          },
         },
       },
       maxSlidesPerView: {
-        "ui:help": "Max # of slides to display.",
-        "ui:widget": "range",
-        "ui:options": {
-          inline: true
-        }
+        'ui:help': 'Max # of slides to display.',
+        'ui:widget': 'range',
+        'ui:options': {
+          inline: true,
+        },
       },
-    }
+    };
 
     return (
       <Form
@@ -120,8 +125,9 @@ export default class SchemaForm extends withContext(withPreact) {
         uiSchema={uiSchema}
         // widgets={customWidgets}
         onChange={data => this.onFormChange(data)}
-        onError={(data) => console.error('Error in Schema Form', formData)}>
-      </Form>
+        onError={data =>
+          console.error('Error in Schema Form', formData)
+        }></Form>
     );
   }
 }

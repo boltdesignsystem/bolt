@@ -39,7 +39,7 @@ class InfoToggle extends LitElement {
     this.isViewallPage = state.app.isViewallPage;
 
     this.__storeUnsubscribe = store.subscribe(() =>
-      this._stateChanged(store.getState())
+      this._stateChanged(store.getState()),
     );
     this._stateChanged(store.getState());
   }

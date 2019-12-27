@@ -4,4 +4,4 @@ module.exports = {
   buildDir: __dirname + '/www/pattern-lab',
   wwwDir: __dirname + '/www/',
   publicPath: '/pattern-lab/styleguide/',
-}
+};

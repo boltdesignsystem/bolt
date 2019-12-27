@@ -25,7 +25,7 @@ class Drawer extends LitElement {
       super.connectedCallback();
     }
     this.__storeUnsubscribe = store.subscribe(() =>
-      this._stateChanged(store.getState())
+      this._stateChanged(store.getState()),
     );
     this._stateChanged(store.getState());
   }

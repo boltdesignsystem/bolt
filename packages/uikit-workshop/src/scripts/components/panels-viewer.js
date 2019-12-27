@@ -56,7 +56,7 @@ export const panelsViewer = {
         panels,
         patternData,
         iframePassback,
-        switchText
+        switchText,
       );
     }
   },
@@ -101,7 +101,7 @@ export const panelsViewer = {
           // need a file and then render
           const fileBase = urlHandler.getFileName(
             patternData.patternPartial,
-            false
+            false,
           );
           const e = new XMLHttpRequest();
           // @todo: look deeper into how we can refactor this particular code block
@@ -125,7 +125,7 @@ export const panelsViewer = {
               const templateHighlighted = Prism.highlight(
                 templateFormatted,
                 Prism.languages[panels[i].name.toLowerCase()] ||
-                  Prism.languages['markup']
+                  Prism.languages['markup'],
                 // Prism.languages[panels[i].name.toLowerCase()],
               );
 
@@ -134,7 +134,7 @@ export const panelsViewer = {
                   <pre
                     class="language-markup"
                   ><code id="pl-code-fill-${language}" class="language-${language}">${unsafeHTML(
-                    code
+                    code,
                   )}</code></pre>
                 `;
 
@@ -169,7 +169,7 @@ export const panelsViewer = {
           e.open(
             'GET',
             fileBase + panel.httpRequestReplace + '?' + new Date().getTime(),
-            true
+            true,
           );
           e.send();
         } else {
@@ -178,12 +178,12 @@ export const panelsViewer = {
           templateCompiled = Hogan.compile(template.innerHTML);
           templateRendered = templateCompiled.render(patternData);
           const normalizedCode = normalizeWhitespace.normalize(
-            templateRendered
+            templateRendered,
           );
           normalizedCode.replace(/[\r\n]+/g, '\n\n');
           const highlightedCode = Prism.highlight(
             normalizedCode,
-            Prism.languages.html
+            Prism.languages.html,
           );
           panels[i].content = highlightedCode;
           Dispatcher.trigger('checkPanels', [
@@ -317,7 +317,7 @@ export const panelsViewer = {
     // add click events
     templateRendered = panelsUtil.addClickEvents(
       templateRendered,
-      patternPartial
+      patternPartial,
     );
 
     // add onclick events to the tabs in the rendered content

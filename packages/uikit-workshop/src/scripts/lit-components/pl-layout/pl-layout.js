@@ -67,7 +67,6 @@ class Layout extends BaseLitComponent {
       this.iframeElement.contentWindow.postMessage(obj, this.targetOrigin);
     }
   }
-
 }
 
 customElements.define('pl-layout', Layout);

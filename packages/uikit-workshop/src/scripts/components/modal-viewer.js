@@ -33,7 +33,7 @@ export const modalViewer = {
     Dispatcher.addListener('insertPanels', modalViewer.insert);
 
     modalViewer.__storeUnsubscribe = store.subscribe(() =>
-      modalViewer._stateChanged(store.getState())
+      modalViewer._stateChanged(store.getState()),
     );
     modalViewer._stateChanged(store.getState());
 
@@ -83,7 +83,7 @@ export const modalViewer = {
         if (modalViewer.iframeElement.contentWindow) {
           modalViewer.iframeElement.contentWindow.postMessage(
             obj,
-            modalViewer.targetOrigin
+            modalViewer.targetOrigin,
           );
         } else {
           modalViewer.iframeElement = document.querySelector('.pl-js-iframe');
@@ -111,7 +111,7 @@ export const modalViewer = {
       if (modalViewer.iframeElement.contentWindow) {
         modalViewer.iframeElement.contentWindow.postMessage(
           obj,
-          modalViewer.targetOrigin
+          modalViewer.targetOrigin,
         );
 
         const obj2 = JSON.stringify({
@@ -119,7 +119,7 @@ export const modalViewer = {
         });
         modalViewer.iframeElement.contentWindow.postMessage(
           obj2,
-          modalViewer.targetOrigin
+          modalViewer.targetOrigin,
         );
       } else {
         modalViewer.iframeElement = document.querySelector('.pl-js-iframe');
@@ -151,7 +151,7 @@ export const modalViewer = {
       if (modalViewer.iframeElement.contentWindow) {
         modalViewer.iframeElement.contentWindow.postMessage(
           obj,
-          modalViewer.targetOrigin
+          modalViewer.targetOrigin,
         );
       } else {
         modalViewer.iframeElement = document.querySelector('.pl-js-iframe');
@@ -257,7 +257,7 @@ export const modalViewer = {
       if (modalViewer.iframeElement.contentWindow) {
         modalViewer.iframeElement.contentWindow.postMessage(
           obj,
-          modalViewer.targetOrigin
+          modalViewer.targetOrigin,
         );
       } else {
         modalViewer.iframeElement = document.querySelector('.pl-js-iframe');
@@ -274,7 +274,7 @@ export const modalViewer = {
       if (modalViewer.iframeElement.contentWindow) {
         modalViewer.iframeElement.contentWindow.postMessage(
           obj,
-          modalViewer.targetOrigin
+          modalViewer.targetOrigin,
         );
       }
     }
@@ -343,7 +343,7 @@ export const modalViewer = {
         modalViewer.refresh(
           data.patternData,
           data.iframePassback,
-          data.switchText
+          data.switchText,
         );
       }
     } else if (

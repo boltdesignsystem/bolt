@@ -82,12 +82,13 @@ async function getTwigFilePath(templateName) {
 function findTwigFilesUsedInString(twigString, { unique = true } = {}) {
   /* eslint-disable prettier/prettier */
   const twigRegex = new RegExp(
-    "(?<=" + // begin lookahead assertion; these patterns must appear before and will not be included in result
-      "(include|extends|embed) " + // any of these words and then a space
-      "[\"|']" + // either `"` or `'`
-    ")" + // end lookahead assertion
-    "(.*\.twig)" // this will be captured as result. any character `.` infinite times `*` followed by a literal period `\.` and then `twig`
-    , 'g'); // Regex flags - `g`: global
+    '(?<=' + // begin lookahead assertion; these patterns must appear before and will not be included in result
+    '(include|extends|embed) ' + // any of these words and then a space
+    '["|\']' + // either `"` or `'`
+    ')' + // end lookahead assertion
+      '(.*.twig)', // this will be captured as result. any character `.` infinite times `*` followed by a literal period `\.` and then `twig`
+    'g',
+  ); // Regex flags - `g`: global
   /* eslint-enable prettier/prettier */
 
   let results = twigString.match(twigRegex);

@@ -22,7 +22,7 @@ export class BaseComponent extends SkatePreactElement {
 
   connectedCallback() {
     this.__storeUnsubscribe = store.subscribe(() =>
-      this._stateChanged(store.getState())
+      this._stateChanged(store.getState()),
     );
     this._stateChanged(store.getState());
     if (super.connectedCallback) {
@@ -87,7 +87,7 @@ export class BaseLitComponent extends LitElement {
 
   connectedCallback() {
     this.__storeUnsubscribe = store.subscribe(() =>
-      this._stateChanged(store.getState())
+      this._stateChanged(store.getState()),
     );
     this._stateChanged(store.getState());
     if (super.connectedCallback) {

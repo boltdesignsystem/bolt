@@ -62,7 +62,7 @@ class IFrame extends BaseLitComponent {
             window
               .getComputedStyle(document.body, null)
               .getPropertyValue('font-size'),
-            10
+            10,
           ); //Body size of the document
 
     //set up the default for the
@@ -109,7 +109,7 @@ class IFrame extends BaseLitComponent {
             currentPattern: currentPattern,
           },
           null,
-          addressReplacement
+          addressReplacement,
         );
       } else {
         window.history.replaceState(
@@ -117,7 +117,7 @@ class IFrame extends BaseLitComponent {
             currentPattern: currentPattern,
           },
           null,
-          addressReplacement
+          addressReplacement,
         );
       }
 
@@ -218,7 +218,7 @@ class IFrame extends BaseLitComponent {
             this.origOrientation = window.orientation;
           }
         },
-        false
+        false,
       );
     }
   }
@@ -285,7 +285,7 @@ class IFrame extends BaseLitComponent {
           pattern,
         },
         'Pattern Lab - ' + pattern,
-        null
+        null,
       );
       urlHandler.skipBack = false;
     }
@@ -445,7 +445,7 @@ class IFrame extends BaseLitComponent {
     document.body.addEventListener('mouseup', function() {
       self.iframeCover.removeEventListener(
         'mousemove',
-        handleIframeCoverResize
+        handleIframeCoverResize,
       );
       self.iframeCover.style.display = 'none';
       self

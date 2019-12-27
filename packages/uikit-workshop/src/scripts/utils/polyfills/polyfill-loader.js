@@ -50,7 +50,7 @@ export const loadPolyfills = new Promise(resolve => {
     Promise.all([import('@webcomponents/shadydom/src/shadydom.js')]).then(
       () => {
         resolve();
-      }
+      },
     );
   } else if (polyfills.includes('ce')) {
     // Based on https://github.com/webcomponents/webcomponentsjs/blob/master/entrypoints/webcomponents-hi-ce-index.js

@@ -17,8 +17,7 @@ export const Tooltip = function({ tooltip, children, hideArrow, ...props }) {
           {...getTooltipProps({
             ref: tooltipRef,
             className: 'tooltip-container',
-          })}
-        >
+          })}>
           {!hideArrow && (
             <div
               {...getArrowProps({
@@ -30,8 +29,7 @@ export const Tooltip = function({ tooltip, children, hideArrow, ...props }) {
           )}
           {tooltip}
         </div>
-      )}
-    >
+      )}>
       {children}
     </TooltipTrigger>
   );

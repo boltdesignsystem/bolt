@@ -25,7 +25,7 @@ class LayoutToggle extends LitElement {
     this.layoutMode = state.app.layoutMode || 'vertical';
 
     this.__storeUnsubscribe = store.subscribe(() =>
-      this._stateChanged(store.getState())
+      this._stateChanged(store.getState()),
     );
     this._stateChanged(store.getState());
 

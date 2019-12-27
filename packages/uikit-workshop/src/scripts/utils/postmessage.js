@@ -72,7 +72,7 @@ function receiveIframeMessage(event) {
         window.location.host +
         window.location.pathname.replace(
           'styleguide/html/styleguide.html',
-          ''
+          '',
         ) +
         data.path +
         '?' +

@@ -190,7 +190,7 @@ class Search extends BaseComponent {
         resultItem.item.highlightedLabel = result.join('');
 
         resultItem.item.highlightedLabel = ReactHtmlParser(
-          resultItem.item.highlightedLabel
+          resultItem.item.highlightedLabel,
         );
 
         if (resultItem.children && resultItem.children.length > 0) {
@@ -255,8 +255,7 @@ class Search extends BaseComponent {
       <div
         className={classNames('pl-c-typeahead__input-wrapper', {
           [`pl-c-typeahead__input-wrapper--with-clear-button`]: shouldShowClearButton,
-        })}
-      >
+        })}>
         <input {...inputProps} />
         {shouldShowClearButton && (
           <button
@@ -265,15 +264,13 @@ class Search extends BaseComponent {
             })}
             onClick={() => {
               this.clearSearch();
-            }}
-          >
+            }}>
             <VisuallyHidden>{clearButtonText}</VisuallyHidden>
             <svg
               viewBox="0 0 16 16"
               height="16"
               width="16"
-              className={'pl-c-typeahead__clear-button-icon'}
-            >
+              className={'pl-c-typeahead__clear-button-icon'}>
               <title>{clearButtonText}</title>
               <path d="M12.207 10.793l-1.414 1.414-2.793-2.793-2.793 2.793-1.414-1.414 2.793-2.793-2.793-2.793 1.414-1.414 2.793 2.793 2.793-2.793 1.414 1.414-2.793 2.793 2.793 2.793z" />
             </svg>
@@ -320,10 +317,10 @@ class Search extends BaseComponent {
       suggestionFirst: classNames('pl-c-typeahead__result--first'),
       suggestionHighlighted: classNames('pl-has-cursor'),
       sectionContainer: classNames(
-        'pl-c-typeahead__section-container'
+        'pl-c-typeahead__section-container',
       ) /* [1] */,
       sectionContainerFirst: classNames(
-        'pl-c-typeahead__section-container--first'
+        'pl-c-typeahead__section-container--first',
       ) /* [1] */,
       sectionTitle: classNames('pl-c-typeahead__section-title') /* [1] */,
     };

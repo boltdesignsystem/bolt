@@ -15,7 +15,7 @@ const SubSubList = props => {
 
   const nonViewAllItems = children.filter(
     item =>
-      item.patternName !== 'View All' && !item.patternName.includes(' Docs')
+      item.patternName !== 'View All' && !item.patternName.includes(' Docs'),
   );
   // const nonViewAllItems = children.filter((item => (item.patternName !== 'View All')));
   const viewAllItems = children.filter(item => item.patternName === 'View All');
@@ -39,8 +39,7 @@ const SubSubList = props => {
               onClick={e =>
                 elem.handleClick(e, patternSubtypeItem.patternPartial)
               }
-              data-patternpartial={patternSubtypeItem.patternPartial}
-            >
+              data-patternpartial={patternSubtypeItem.patternPartial}>
               {patternSubtypeItem.patternName === 'View All'
                 ? `${category}`
                 : patternSubtypeItem.patternName}
@@ -55,8 +54,7 @@ const SubSubList = props => {
             {nonViewAllItems.length >= 1 && (
               <SpecialButton
                 aria-controls={category}
-                onClick={elem.toggleSpecialNavPanel}
-              >
+                onClick={elem.toggleSpecialNavPanel}>
                 {category}
               </SpecialButton>
             )}
@@ -72,8 +70,7 @@ const SubSubList = props => {
         viewAllItems.length === 0) && (
         <ol
           id={category}
-          className={`pl-c-nav__subsublist pl-c-nav__subsublist--dropdown pl-js-acc-panel`}
-        >
+          className={`pl-c-nav__subsublist pl-c-nav__subsublist--dropdown pl-js-acc-panel`}>
           {nonViewAllItems.map(patternSubtypeItem => (
             <li class="pl-c-nav__item">
               <a
@@ -88,8 +85,7 @@ const SubSubList = props => {
                 onClick={e =>
                   elem.handleClick(e, patternSubtypeItem.patternPartial)
                 }
-                data-patternpartial={patternSubtypeItem.patternPartial}
-              >
+                data-patternpartial={patternSubtypeItem.patternPartial}>
                 {patternSubtypeItem.patternName === 'View All'
                   ? `${category} Overview`
                   : patternSubtypeItem.patternName}
@@ -113,8 +109,7 @@ const SpecialButton = props => {
     <button
       className={`pl-c-nav__link pl-c-nav__link--section-dropdown pl-js-acc-handle`}
       role="tab"
-      {...props}
-    >
+      {...props}>
       {props.children}
       <span
         class="pl-c-nav__link-icon"
@@ -131,8 +126,7 @@ const Button = props => {
     <button
       className={`pl-c-nav__link pl-c-nav__link--dropdown pl-js-acc-handle`}
       role="tab"
-      {...props}
-    >
+      {...props}>
       <span className={`pl-c-nav__link-text`}>{props.children}</span>
       <span
         class="pl-c-nav__link-icon"
@@ -149,8 +143,7 @@ const ButtonTitle = props => {
     <button
       className={`pl-c-nav__link pl-c-nav__link--title pl-js-acc-handle`}
       role="tab"
-      {...props}
-    >
+      {...props}>
       <span
         class="pl-c-nav__link-icon"
         dangerouslySetInnerHTML={{
@@ -275,7 +268,7 @@ class Nav extends BaseComponent {
     this.navAccordionTriggers = document.querySelectorAll('.pl-js-acc-handle');
     this.navAccordionPanels = document.querySelectorAll('.pl-js-acc-panel');
     this.topLevelTriggers = document.querySelectorAll(
-      '.pl-c-nav__link--title.pl-is-active'
+      '.pl-c-nav__link--title.pl-is-active',
     );
 
     if (topLevelOnly === true && window.innerWidth > 670) {
@@ -318,7 +311,7 @@ class Nav extends BaseComponent {
 
     const currentPattern = this.currentPattern;
     const activeLink = document.querySelector(
-      `[data-patternpartial="${currentPattern}"]`
+      `[data-patternpartial="${currentPattern}"]`,
     );
     const self = this;
 
@@ -335,7 +328,7 @@ class Nav extends BaseComponent {
 
       if (
         activeLink.parentNode.classList.contains(
-          'pl-c-nav__link--overview-wrapper'
+          'pl-c-nav__link--overview-wrapper',
         )
       ) {
         activeLink.parentNode.classList.add('pl-is-active');
@@ -351,19 +344,19 @@ class Nav extends BaseComponent {
 
           if (
             parentDropdown.previousSibling.classList.contains(
-              'pl-c-nav__link--overview-wrapper'
+              'pl-c-nav__link--overview-wrapper',
             ) &&
             shouldAutoOpenNav
           ) {
             parentDropdown.previousSibling.classList.add('pl-is-active');
             this.previousActiveLinks.push(parentDropdown.previousSibling);
             parentDropdownTrigger = parentDropdown.previousSibling.querySelector(
-              '.pl-js-acc-handle'
+              '.pl-js-acc-handle',
             );
           }
 
           const grandparentDropdown = parentDropdown.closest(
-            '.pl-c-nav__sublist--dropdown'
+            '.pl-c-nav__sublist--dropdown',
           );
           const grandparentDropdownTrigger =
             grandparentDropdown.previousSibling;
@@ -432,21 +425,18 @@ class Nav extends BaseComponent {
             <li className={classes}>
               <ButtonTitle
                 aria-controls={item.patternTypeLC}
-                onClick={this.toggleNavPanel}
-              >
+                onClick={this.toggleNavPanel}>
                 {item.patternTypeUC}
               </ButtonTitle>
 
               <ol
                 id={item.patternSubtypeUC}
-                className={`pl-c-nav__sublist pl-c-nav__sublist--dropdown pl-js-acc-panel`}
-              >
+                className={`pl-c-nav__sublist pl-c-nav__sublist--dropdown pl-js-acc-panel`}>
                 {item.patternTypeItems.map((patternSubtype, i) => {
                   return (
                     <SubSubList
                       elem={this.elem}
-                      category={patternSubtype.patternSubtypeUC}
-                    >
+                      category={patternSubtype.patternSubtypeUC}>
                       {patternSubtype.patternSubtypeItems}
                     </SubSubList>
                   );
@@ -463,8 +453,7 @@ class Nav extends BaseComponent {
                             this.handleClick(e, patternItem.patternPartial)
                           }
                           data-patternpartial={patternItem.patternPartial}
-                          tabindex="0"
-                        >
+                          tabindex="0">
                           {patternItem.patternName === 'View All'
                             ? patternItem.patternName + ' ' + item.patternTypeUC
                             : patternItem.patternName}
@@ -494,8 +483,7 @@ class Nav extends BaseComponent {
               href="styleguide/html/styleguide.html"
               class="pl-c-nav__link pl-c-nav__link--pattern"
               data-patternpartial="all"
-              tabindex="0"
-            >
+              tabindex="0">
               All
             </a>
           </li>

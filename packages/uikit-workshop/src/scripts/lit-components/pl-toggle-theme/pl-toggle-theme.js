@@ -38,7 +38,7 @@ class ThemeToggle extends LitElement {
     this.themeMode = state.app.themeMode || 'dark';
 
     this.__storeUnsubscribe = store.subscribe(() =>
-      this._stateChanged(store.getState())
+      this._stateChanged(store.getState()),
     );
     this._stateChanged(store.getState());
 

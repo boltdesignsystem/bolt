@@ -54,9 +54,9 @@ class ViewportSizes extends BaseComponent {
               minViewportWidth,
               window.config.ishViewportRange !== undefined
                 ? parseInt(window.config.ishViewportRange.s[1], 10)
-                : 500
+                : 500,
             ),
-            true
+            true,
           );
           break;
         case 'medium':
@@ -68,9 +68,9 @@ class ViewportSizes extends BaseComponent {
                 : 500,
               window.config.ishViewportRange !== undefined
                 ? parseInt(window.config.ishViewportRange.m[1], 10)
-                : 800
+                : 800,
             ),
-            true
+            true,
           );
           break;
         case 'large':
@@ -80,9 +80,9 @@ class ViewportSizes extends BaseComponent {
               window.config.ishViewportRange !== undefined
                 ? parseInt(window.config.ishViewportRange.l[0], 10)
                 : 800,
-              maxViewportWidth
+              maxViewportWidth,
             ),
-            true
+            true,
           );
           break;
         case 'full':
@@ -107,8 +107,7 @@ class ViewportSizes extends BaseComponent {
               placement="top"
               trigger="hover"
               tooltip="Small"
-              usePortal={false}
-            >
+              usePortal={false}>
               {({ getTriggerProps, triggerRef }) => (
                 <button
                   {...getTriggerProps({
@@ -134,8 +133,7 @@ class ViewportSizes extends BaseComponent {
               placement="top"
               trigger="hover"
               tooltip="Medium"
-              usePortal={false}
-            >
+              usePortal={false}>
               {({ getTriggerProps, triggerRef }) => (
                 <button
                   {...getTriggerProps({
@@ -161,8 +159,7 @@ class ViewportSizes extends BaseComponent {
               placement="top"
               trigger="hover"
               tooltip="Large"
-              usePortal={false}
-            >
+              usePortal={false}>
               {({ getTriggerProps, triggerRef }) => (
                 <button
                   {...getTriggerProps({
@@ -188,8 +185,7 @@ class ViewportSizes extends BaseComponent {
               placement="top"
               trigger="hover"
               tooltip="Full"
-              usePortal={false}
-            >
+              usePortal={false}>
               {({ getTriggerProps, triggerRef }) => (
                 <button
                   {...getTriggerProps({

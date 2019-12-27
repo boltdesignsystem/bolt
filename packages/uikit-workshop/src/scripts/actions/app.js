@@ -74,7 +74,7 @@ export const updateDrawerState = opened => (dispatch, getState) => {
 
 export const updateDrawerAnimationState = drawerIsAnimating => (
   dispatch,
-  getState
+  getState,
 ) => {
   if (getState().app.drawerIsAnimating !== drawerIsAnimating) {
     dispatch({

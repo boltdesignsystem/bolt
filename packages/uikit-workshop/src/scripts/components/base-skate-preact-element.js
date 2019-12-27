@@ -23,7 +23,6 @@ const preactNodeName = '__preactNodeName';
 
 let oldVnode;
 
-
 export class SkatePreactElement extends SkateElement {
   get props() {
     // We override props so that we can satisfy most use
@@ -33,10 +32,7 @@ export class SkatePreactElement extends SkateElement {
 
   renderer(root, call) {
     this._renderRoot = root;
-    this._preactDom = render(
-      call(),
-      root,
-    );
+    this._preactDom = render(call(), root);
   }
 
   disconnectedCallback() {

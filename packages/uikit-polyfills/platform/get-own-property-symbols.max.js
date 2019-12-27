@@ -110,8 +110,8 @@ THE SOFTWARE.
         (source[uid] = defineProperty(
           Object(uid),
           'constructor',
-          sourceConstructor
-        ))
+          sourceConstructor,
+        )),
       );
     },
     Symbol = function Symbol(description) {
@@ -131,7 +131,7 @@ THE SOFTWARE.
         setDescriptor(
           o,
           uid,
-          descriptor.enumerable ? copyAsNonEnumerable(descriptor) : descriptor
+          descriptor.enumerable ? copyAsNonEnumerable(descriptor) : descriptor,
         );
         addInternalIfNeeded(o, uid, !!descriptor.enumerable);
       } else {
@@ -253,7 +253,7 @@ THE SOFTWARE.
           get: function() {
             return defineProperty(this, prefix, { value: true })[prefix];
           },
-        })
+        }),
       )[prefix]
     ) {
       setDescriptor = defineProperty;

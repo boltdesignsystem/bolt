@@ -34,7 +34,7 @@ export const panelsUtil = {
 
     // tabPanelabout to become active
     const activeTabPanel = document.querySelector(
-      `#pl-${patternPartial}-${panelID}-panel`
+      `#pl-${patternPartial}-${panelID}-panel`,
     );
 
     const parentTabs = activeTabPanel.closest('.pl-js-tabs');
@@ -47,7 +47,7 @@ export const panelsUtil = {
 
     // tabLink about to become active
     const activeTabLink = parentTabs.querySelector(
-      `#pl-${patternPartial}-${panelID}-tab`
+      `#pl-${patternPartial}-${panelID}-tab`,
     );
 
     for (let i = 0; i < allTabLinks.length; ++i) {

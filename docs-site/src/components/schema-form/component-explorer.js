@@ -2,7 +2,7 @@ import qs from 'querystring';
 import { props, defineContext, withContext } from '@bolt/core-v3.x/utils';
 import { prepSchema } from './utils';
 import isEqual from 'react-fast-compare';
-import { withLitHtml,  } from '@bolt/core-v3.x/renderers/renderer-lit-html';
+import { withLitHtml } from '@bolt/core-v3.x/renderers/renderer-lit-html';
 import { guard } from 'lit-html/directives/guard';
 import { styleMap, html, unsafeHTML, customElement } from '@bolt/element';
 
@@ -16,7 +16,6 @@ export const ComponentExplorerContext = defineContext({
 
 import styles from './component-explorer.scss';
 import globalStyles from '@bolt/global/styles/index.scss';
-
 
 @customElement('bolt-component-explorer')
 export default class ComponentExplorer extends withContext(withLitHtml) {
@@ -73,7 +72,7 @@ export default class ComponentExplorer extends withContext(withLitHtml) {
     }
   }
 
-  switchTheme(themeName){
+  switchTheme(themeName) {
     this.setState({
       theme: themeName,
     });
@@ -162,7 +161,15 @@ export default class ComponentExplorer extends withContext(withLitHtml) {
           </div>
 
           <div style="position: absolute; bottom: 0; right: 0.5rem">
-            <bolt-list class="u-bolt-padding-small-squished" tag="ul" display="inline" spacing="none" separator="none" align="start" valign="center">
+            <bolt-list
+              class="u-bolt-padding-small-squished"
+              tag="ul"
+              display="inline"
+              spacing="none"
+              separator="none"
+              align="start"
+              valign="center"
+            >
               <bolt-list-item class="u-bolt-margin-left-small">
                 <input
                   type="radio"
@@ -176,7 +183,8 @@ export default class ComponentExplorer extends withContext(withLitHtml) {
                 <label
                   for="theme-xlight"
                   class="c-bolt-inline-label c-bolt-inline-label--radio"
-                  >xlight</label>
+                  >xlight</label
+                >
               </bolt-list-item>
 
               <bolt-list-item class="u-bolt-margin-left-small">
@@ -191,7 +199,8 @@ export default class ComponentExplorer extends withContext(withLitHtml) {
                 <label
                   for="theme-light"
                   class="c-bolt-inline-label c-bolt-inline-label--radio"
-                  >light</label>
+                  >light</label
+                >
               </bolt-list-item>
 
               <bolt-list-item class="u-bolt-margin-left-small">
@@ -206,7 +215,8 @@ export default class ComponentExplorer extends withContext(withLitHtml) {
                 <label
                   for="theme-dark"
                   class="c-bolt-inline-label c-bolt-inline-label--radio"
-                  >dark</label>
+                  >dark</label
+                >
               </bolt-list-item>
 
               <bolt-list-item class="u-bolt-margin-left-small">
@@ -221,7 +231,8 @@ export default class ComponentExplorer extends withContext(withLitHtml) {
                 <label
                   for="theme-xdark"
                   class="c-bolt-inline-label c-bolt-inline-label--radio"
-                  >xdark</label>
+                  >xdark</label
+                >
               </bolt-list-item>
             </bolt-list>
           </div>
