@@ -18,7 +18,6 @@
   flex-grow: 1;
   flex-shrink: 1;
   padding: 0.6rem 0.6rem;
-  flex-basis: calc(100% - 2.5rem);
   position: relative;
 
   &:after {
@@ -75,6 +74,7 @@
     font-size: 0.8rem;
     color: $pl-color-gray-20;
     color: var(--theme-text, $pl-color-gray-20);
+    max-width: 100%;
 
     > .pl-c-nav__link-icon {
       font-size: inherit;
@@ -152,12 +152,12 @@
   display: inline-flex;
   justify-content: center;
   font-size: 0;
-  flex-basis: 2.5rem;
   right: 0;
   border: 2px solid transparent !important;
   justify-content: center;
   align-items: center;
   color: currentColor;
+  max-width: 2.5rem;
 
   // border to indicate which nav links have two specific actions
   &:before {
