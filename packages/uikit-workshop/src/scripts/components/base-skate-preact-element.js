@@ -16,13 +16,7 @@ import { SkateElement } from './base-skate-element';
 
 /** @jsx h */
 
-import preact, { h, render } from 'preact';
-
-// TODO make this a Symbol() when it's supported.
-const preactNodeName = '__preactNodeName';
-
-let oldVnode;
-
+import { h, render } from 'preact';
 
 export class SkatePreactElement extends SkateElement {
   get props() {
@@ -33,10 +27,7 @@ export class SkatePreactElement extends SkateElement {
 
   renderer(root, call) {
     this._renderRoot = root;
-    this._preactDom = render(
-      call(),
-      root,
-    );
+    render(call(), root);
   }
 
   disconnectedCallback() {
