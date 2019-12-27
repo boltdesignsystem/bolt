@@ -56,8 +56,8 @@
     "postinstall": "patch-package && npx lerna run postbootstrap",
     "jest": "jest --maxWorkers=3 --all --colors",
     "lint": "npm-run-all --parallel lint:*",
-    "lint:js": "eslint --max-warnings 0 'packages/**/*.js' 'docs-site/**/*.js'",
-    "lint:scss": "stylelint 'packages/**/*.scss' 'docs-site/**/*.scss' --config .stylelintrc",
+    "lint:js": "eslint '**/*.js' --ignore-pattern example-integrations",
+    "lint:scss": "stylelint '**/*.scss' --config .stylelintrc",
     "release": "node ./auto-release.js",
     "serve": "node packages/servers/default-server",
     "setup": "yarn && yarn run setup:php",
@@ -98,12 +98,10 @@
   },
   "lint-staged": {
     "*.js": [
-      "eslint --fix",
-      "git add"
+      "eslint"
     ],
     "*.scss": [
-      "stylelint --config .stylelintrc --fix",
-      "git add"
+      "stylelint --config .stylelintrc"
     ],
     "package.json": [
       "sort-package-json",
