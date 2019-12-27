@@ -1,6 +1,6 @@
 import * as grapesjs from 'grapesjs';
-import { html, render } from '@bolt/core';
-import { query, IS_PROD } from '@bolt/core/utils';
+import { html, render } from '@bolt/core-v3.x/renderers';
+import { query, IS_PROD } from '@bolt/core-v3.x/utils';
 import { triggerAnimsInEl } from '@bolt/components-animate/utils';
 import { setupPanels } from './panels';
 import { setupBlocks } from './blocks';
@@ -89,7 +89,7 @@ export function enableEditor({ space, uiWrapper, config }) {
     // height: '100vh',
     // width: 'auto',
     plugins: [setupBolt, setupComponents, setupPanels, setupBlocks],
-    noticeOnUnload: IS_PROD,
+    noticeOnUnload: true,
     panels: {
       stylePrefix: `${stylePrefix}panels-`,
       defaults: [

@@ -7,7 +7,7 @@ if (boltSelect) {
 
   // group together the latest vs previous Bolt releases
   if (boltSelectTag) {
-    const currentVersionText = 'v' + window.bolt.data.fullManifest.version;
+    const currentVersionText = 'v' + window?.bolt?.data?.fullManifest?.version;
 
     const latestOption = document.createElement('optgroup');
     const prevOption = document.createElement('optgroup');

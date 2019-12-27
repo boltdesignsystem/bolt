@@ -1,27 +1,16 @@
-import { define } from '@bolt/core/utils';
+import { html, customElement } from '@bolt/element';
 import {
   withLitHtml,
-  html,
   render,
-} from '@bolt/core/renderers/renderer-lit-html';
-import { convertInitialTags } from '@bolt/core/decorators';
-
+} from '@bolt/core-v3.x/renderers/renderer-lit-html';
 import classNames from 'classnames/bind';
 
 import styles from './figure.scss';
 
 let cx = classNames.bind(styles);
 
-@define
-class BoltFigure extends withLitHtml() {
-  static is = 'bolt-figure';
-
-  // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
-  constructor(self) {
-    self = super(self);
-    return self;
-  }
-
+@customElement('bolt-figure')
+class BoltFigure extends withLitHtml {
   render() {
     const classes = cx('c-bolt-figure');
 

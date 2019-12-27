@@ -1,5 +1,5 @@
 const browserslist = require('browserslist');
-const config = require('./index');
+const config = require('./legacy');
 const browsers = browserslist(config);
 
 describe('Test the Bolt Browserslist Config', () => {

@@ -1,4 +1,4 @@
-// @todo: move to @bolt/core once Typeahead ships and/or CSS Modules ships
+// @todo: move to @bolt/core-v3.x once Typeahead ships and/or CSS Modules ships
 
 /*!
   Copyright (c) 2018 Jed Watson.

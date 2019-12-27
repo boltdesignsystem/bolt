@@ -2,9 +2,8 @@
 const globby = require('globby');
 const testFilesToIgnore = globby.sync([
   'packages/components/**/*.e2e.js',
-  'packages/components/**/*.no2e.js', // workaround to disable a few e2e tests 
+  'packages/components/**/*.no2e.js', // workaround to disable a few e2e tests
   'packages/**/*.data.js',
-  'packages/generators/**/*.test.js',
 ]);
 
 module.exports = {
@@ -22,6 +21,7 @@ module.exports = {
     'packages/components/bolt-button/__tests__/button-wc.test.js',
     'example-integrations/drupal-lab/web/themes/bolt-starter/__tests__/index.js', // tested separately after the Drupal Lab build
     'packages/patternlab-node',
+    './packages/generators',
     ...testFilesToIgnore,
   ],
   testEnvironment:
@@ -31,7 +31,7 @@ module.exports = {
   },
   transformIgnorePatterns: [
     'node_modules/(?!(lit-html|@bolt|@open-wc)/)', // add any additional packages in node_modules that need to be transpiled for Jest
-    'packages/(?!(components|core|analytics|config|testing|generators)/)', // add any additional packages in node_modules that need to be transpiled for Jest
+    'packages/(?!(components|core|analytics|config|testing|generators|micro-journeys)/)', // add any additional packages in node_modules that need to be transpiled for Jest
     './scripts/monorepo.test.js',
   ],
   globalSetup: './packages/testing/testing-jest/jest-global-setup.js',

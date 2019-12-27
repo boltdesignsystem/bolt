@@ -1,4 +1,4 @@
-import { supportsCSSVars } from '@bolt/core/utils/supports-css-vars';
+import { supportsCSSVars } from '@bolt/core-v3.x/utils/supports-css-vars';
 import { loadCSS } from 'fg-loadcss/src/loadCSS.js'; // helper function to conditionally load CSS files asynchronously
 global.loadCSS = loadCSS;
 

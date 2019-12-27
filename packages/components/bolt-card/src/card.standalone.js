@@ -1,6 +1,6 @@
 // // import {
 // //   utils
-// // } from '@bolt/core';
+// // } from '@bolt/core-v3.x';
 
 // // const css = utils.css.default;
 // // import styles from './card.scss';

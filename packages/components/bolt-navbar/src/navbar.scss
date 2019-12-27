@@ -1,4 +1,4 @@
-@import '@bolt/core';
+@import '@bolt/core-v3.x';
 
 /* ------------------------------------ *\
    Navbar
@@ -213,6 +213,7 @@ bolt-navbar {
 
   // Fix cross-browser bug where icon shrinks below its minimum natural width - see https://github.com/philipwalton/flexbugs#flexbug-1
   flex-shrink: 0;
+  line-height: 0; // fix vertical alignment of icon + title
 }
 
 .c-bolt-navbar__title-text {
