@@ -24,6 +24,7 @@ export const ListContext = defineContext({
   display: 'inline',
   spacing: 'none',
   inset: false,
+  nowrap: false,
   align: 'start',
   separator: 'none',
 });
@@ -42,6 +43,7 @@ class BoltList extends withContext(withLitHtml) {
     spacing: props.string, // none | xsmall | small | medium | large | xlarge
     separator: props.string, // none | solid | dashed
     inset: props.boolean, // true | false
+    nowrap: props.boolean, // true | false
     align: props.string, // start | center | end
     valign: props.string, // start | center | end
   };
@@ -80,6 +82,7 @@ class BoltList extends withContext(withLitHtml) {
       spacing,
       separator,
       inset,
+      nowrap,
       align,
       valign,
     } = this.validateProps(this.props);
@@ -87,6 +90,7 @@ class BoltList extends withContext(withLitHtml) {
     this.contexts.get(ListContext).display = display || this.props.display;
     this.contexts.get(ListContext).spacing = spacing || this.props.spacing;
     this.contexts.get(ListContext).inset = inset || this.props.inset;
+    this.contexts.get(ListContext).nowrap = nowrap || this.props.nowrap;
     this.contexts.get(ListContext).align = align || this.props.align;
     this.contexts.get(ListContext).separator =
       separator || this.props.separator;
@@ -98,6 +102,7 @@ class BoltList extends withContext(withLitHtml) {
       [`c-bolt-list--align-${align}`]: align,
       [`c-bolt-list--valign-${valign}`]: valign,
       [`c-bolt-list--inset`]: inset,
+      [`c-bolt-list--nowrap`]: nowrap,
     });
 
     if (this.slots.default) {
