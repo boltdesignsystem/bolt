@@ -25,6 +25,7 @@
 {% set align = align in align_options ? align : schema.properties.align.default %}
 {% set valign = valign in valign_options ? valign : schema.properties.valign.default %}
 {% set inset = inset is sameas(true) or inset is sameas(false) ? inset : schema.properties.inset.default %}
+{% set nowrap = nowrap is sameas(true) or nowrap is sameas(false) ? nowrap : schema.properties.nowrap.default %}
 
 {# Conditions for the semantic tag usage #}
 {% if tag == "div" or tag == "span" %}
@@ -42,6 +43,7 @@
   {% if align %} align="{{ align }}" {% endif %}
   {% if valign %} valign="{{ valign }}" {% endif %}
   {% if inset %} inset {% endif %}
+  {% if nowrap %} nowrap {% endif %}
   {{ attributes }}
 >
   {# This sets none values to not render anything. #}
@@ -57,6 +59,7 @@
     align in align_options ? "#{base_class}--align-#{align}" : "",
     valign in valign_options ? "#{base_class}--valign-#{valign}" : "",
     inset ? "#{base_class}--inset",
+    nowrap ? "#{base_class}--nowrap",
   ] %}
 
   <replace-with-grandchildren>
