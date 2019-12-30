@@ -1,47 +1,39 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Yeoman component generator JS file exist 1`] = `
-"import { html, customElement } from '@bolt/element';
-import { props } from '@bolt/core-v3.x/utils';
-import { withLitHtml } from '@bolt/core-v3.x/renderers/renderer-lit-html';
-import classNames from 'classnames/bind';
+"import { html, customElement, BoltElement } from '@bolt/element';
+import classNames from 'classnames/dedupe';
 import styles from './test.scss';
-import schema from '../test.schema.yml';
+//import schema from '../test.schema.yml';
 
 let cx = classNames.bind(styles);
 
 @customElement('bolt-test')
-class BoltTest extends withLitHtml {
-  static props = {
-    noShadow: {
-      ...props.boolean,
-      ...{ default: false },
-    },
-    disabled: {
-      ...props.boolean,
-      ...{ default: false },
-    },
-  };
+class BoltTest extends BoltElement {
+  static get properties() {
+    return {
+      noShadow: {
+        type: Boolean,
+        attribute: 'no-shadow',
+      },
+      disabled: Boolean,
+    };
+  }
 
   // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
   constructor(self) {
     self = super(self);
-    self.schema = this.getModifiedSchema(schema);
     return self;
   }
 
   render() {
-    // validate the original prop data passed along -- returns back the validated data w/ added default values
-    const { disabled } = this.validateProps(this.props);
-
     const classes = cx('c-bolt-test', {
       [\`c-bolt-test--disabled\`]: disabled,
     });
 
     return html\`
-      \${this.addStyles([styles])}
       <div class=\\"\${classes}\\">
-        \${this.slot('default')}
+        \${this.slotify('default')}
       </div>
     \`;
   }
@@ -52,7 +44,7 @@ export { BoltTest };
 `;
 
 exports[`Yeoman component generator SCSS file exist 1`] = `
-"@import '@bolt/core';
+"@import '@bolt/core-v3.x';
 
 // Local test Variables
 
@@ -68,7 +60,7 @@ exports[`Yeoman component generator SCSS file exist 1`] = `
  * 1. Provide line-comments like this.
  */
 .c-bolt-test {
-  //Styles go here.
+  //Styles go here. /* [1] */
   display: block;
 }
 "
@@ -94,8 +86,10 @@ Array [
 exports[`Yeoman component generator index JS file exist 1`] = `
 "import { polyfillLoader } from '@bolt/core-v3.x/polyfills';
 
-polyfillLoader.then(res => {
-  import(/* webpackMode: 'eager', webpackChunkName: 'bolt-test' */ './src/test');
+polyfillLoader.then(() => {
+  import(
+    /* webpackMode: 'eager', webpackChunkName: 'bolt-test' */ './src/test'
+  );
 });
 "
 `;
@@ -110,28 +104,28 @@ exports[`Yeoman component generator package.json file exist 1`] = `
   \\"name\\": \\"@bolt/components-test\\",
   \\"version\\": \\"0.0.0\\",
   \\"description\\": \\"Test Description\\",
+  \\"keywords\\": [
+    \\"bolt design system\\"
+  ],
+  \\"bugs\\": {
+    \\"url\\": \\"https://github.com/bolt-design-system/bolt/issues\\"
+  },
   \\"repository\\": {
     \\"type\\": \\"git\\",
     \\"url\\": \\"git+https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-test\\"
   },
-  \\"author\\": \\"Test User <test@example.org>\\",
   \\"license\\": \\"MIT\\",
-  \\"bugs\\": {
-    \\"url\\": \\"https://github.com/bolt-design-system/bolt/issues\\"
-  },
-  \\"keywords\\": [
-    \\"bolt design system\\"
-  ],
+  \\"author\\": \\"Test User <test@example.org>\\",
+  \\"main\\": \\"index.js\\",
+  \\"style\\": \\"index.scss\\",
   \\"dependencies\\": {
-    \\"@bolt/core\\": \\"^0.0.0\\"
+    \\"@bolt/core-v3.x\\": \\"^0.0.0\\"
   },
   \\"publishConfig\\": {
     \\"access\\": \\"public\\"
   },
-  \\"style\\": \\"index.scss\\",
-  \\"main\\": \\"index.js\\",
-  \\"twig\\": \\"src/test.twig\\",
-  \\"schema\\": \\"test.schema.yml\\"
+  \\"schema\\": \\"test.schema.yml\\",
+  \\"twig\\": \\"src/test.twig\\"
 }
 "
 `;
