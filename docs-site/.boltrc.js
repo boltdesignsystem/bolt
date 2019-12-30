@@ -128,6 +128,7 @@ const config = {
       '@bolt/components-sticky',
       '@bolt/components-stack',
       '@bolt/components-table',
+      '@bolt/components-toc',
       '@bolt/components-tabs',
       '@bolt/components-teaser',
       '@bolt/components-text',
