@@ -83,7 +83,6 @@ class BoltShadowToggle extends BoltElement {
   }
 
   render() {
-    // ${this.addStyles([styles])}
     return html`
       <div class="c-bolt-shadow-toggle__wrapper" @click=${this.onClick}>
         <ul
