@@ -126,7 +126,9 @@ if (program.configFile) {
           typeof program.prod === 'undefined' ? config.prod : program.prod;
 
         config.compat =
-          typeof program.compat === 'undefined'
+          config.prod === true || config.esModules === false
+            ? true
+            : typeof program.compat === 'undefined'
             ? config.compat
             : program.compat;
 
