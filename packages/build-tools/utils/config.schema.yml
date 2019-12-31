@@ -227,6 +227,10 @@
       type: boolean
       description: Production build, will compress assets.
       default: false
+    compat:
+      type: boolean
+      description: Compatibility mode enables compiling Webpack bundles for older legacy browsers that don't support ES Modules.
+      default: false
     enableSSR:
       type: boolean
       description: Manually enables or disables server-side rendering web components regardless on the build enviornment (vs automatically disabling in dev mode, enabling when in prod mode).

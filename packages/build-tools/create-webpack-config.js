@@ -611,7 +611,7 @@ async function createWebpackConfig(buildConfig) {
   // if esModules support is enabled in the .boltrc config, serve up just the modern bundle for local dev + legacy + modern bundles in prod.
   // Otherwise, continue serving the legacy bundle to everyone.
   if (config.esModules) {
-    if (config.prod) {
+    if (config.prod || config.compat) {
       return [modernWebpackConfig, legacyWebpackConfig];
     } else {
       return [modernWebpackConfig];

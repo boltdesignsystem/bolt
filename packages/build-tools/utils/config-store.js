@@ -45,6 +45,7 @@ async function getDefaultConfig() {
     quick: configSchema.properties.quick.default,
     webpackDevServer: configSchema.properties.webpackDevServer.default,
     prod: process.env.NODE_ENV === 'production',
+    compat: configSchema.properties.compat.default,
     startPath: configSchema.properties.startPath.default,
     webpackStats: configSchema.properties.webpackStats.default,
     globalData: {},
