@@ -4,7 +4,6 @@
 
 @import '@bolt/core-v3.x';
 
-
 .c-bolt-toc {
   @include bolt-shadow('level-20');
   display: block;
@@ -18,8 +17,14 @@
   @include bolt-font-family(heading);
   @include bolt-font-size(large);
   @include bolt-font-weight(bold);
+  display: block;
   color: bolt-color(white);
   background-color: bolt-theme(headline);
+}
+
+.c-bolt-toc__header-text {
+  @include bolt-margin(0);
+  @include bolt-padding(0);
 }
 
 .c-bolt-toc__list {
@@ -27,80 +32,4 @@
   @include bolt-padding(0);
   display: block;
   list-style: none;
-}
-
-.c-bolt-toc-item {
-  @include bolt-padding(small medium);
-  @include bolt-font-family(heading);
-  @include bolt-font-size(small);
-  @include bolt-font-weight(regular);
-  display: block;
-  position: relative;
-  transform: translate3d(0, 0, 0);
-  color: bolt-theme(text);
-  text-decoration: none;
-  transition: color $bolt-transition;
-
-  &:before,
-  &:after {
-    content: '';
-    display: block;
-    position: absolute;
-    z-index: 0;
-    user-select: none;
-  }
-
-  &:before {
-    top: 0;
-    left: 0;
-    transform: translate3d(0, 0, 0);
-    width: 0;
-    height: 100%;
-    background-color: bolt-theme(link, 0.05);
-    transition: width $bolt-transition, border-radius $bolt-transition;
-  }
-
-  &:after {
-    top: 50%;
-    bottom: 0;
-    left: 0;
-    transform: translate3d(0, -50%, 0);
-    width: 3px;
-    height: 0;
-    border-radius: bolt-border-radius(small);
-    background-color: bolt-theme(link);
-    transition: height $bolt-transition;
-  }
-
-  &:hover {
-    color: bolt-theme(link);
-
-    &:before {
-      width: 100%;
-      border-radius: 0;
-    }
-  }
-
-  &:active {
-    background-color: bolt-theme(link, 0.1);
-  }
-
-  &:focus,
-  &.is-current {
-    @include bolt-font-weight(semibold);
-    color: bolt-theme(headline);
-
-    &:before {
-      width: 100%;
-      border-radius: 0;
-    }
-
-    &:after {
-      height: 40%;
-    }
-  }
-}
-
-.c-bolt-toc-item--2nd-level {
-  padding-left: bolt-spacing(medium) + bolt-spacing(small);
 }

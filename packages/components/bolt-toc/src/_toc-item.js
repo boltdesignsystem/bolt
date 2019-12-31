@@ -8,13 +8,13 @@ import {
   unsafeCSS,
 } from '@bolt/element';
 import { withContext } from 'wc-context';
-import tocStyles from './toc.scss';
+import tocItemStyles from './_toc-item.scss';
 import schema from '../toc.schema';
 
-let cx = classNames.bind(tocStyles);
+let cx = classNames.bind(tocItemStyles);
 
-@customElement('bolt-toc')
-class BoltToc extends withContext(BoltElement) {
+@customElement('bolt-toc-item')
+class BoltTocItem extends withContext(BoltElement) {
   static get properties() {
     return {
       noCssVars: {
@@ -30,24 +30,16 @@ class BoltToc extends withContext(BoltElement) {
   }
 
   static get styles() {
-    return [unsafeCSS(tocStyles)];
+    return [unsafeCSS(tocItemStyles)];
   }
 
   render() {
     return html`
-      <nav class="${cx(`c-bolt-toc`)}">
-        ${this.templateMap.get('header') &&
-          html`
-            <div class="${cx(`c-bolt-toc__header`)}">
-              ${this.slotify('header')}
-            </div>
-          `}
-        <div class="${cx(`c-bolt-toc__list`)}" role="list">
-          ${this.slotify('default')}
-        </div>
-      </nav>
+      <a class="${cx(`c-bolt-toc-item`)}" href="#">
+        ${this.slotify('default')}
+      </a>
     `;
   }
 }
 
-export { BoltToc };
+export { BoltTocItem };

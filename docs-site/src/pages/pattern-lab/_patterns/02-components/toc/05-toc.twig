@@ -1,1 +1,12 @@
-{% include "@bolt-components-toc/toc.twig" %}
+<div class="u-bolt-margin-medium">
+  {% include "@bolt-components-toc/toc.twig" with {
+    header: "SAE Application Build",
+    items: [
+      "Understanding the rental reservation steps",
+      "Displaying current status of a reservation progress",
+      "Providing guidance through various screens",
+      "Creating a new user account identification through customer credentials",
+      "Creating new accounts using existing login credentials",
+    ]
+  } only %}
+</div>
