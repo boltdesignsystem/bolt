@@ -1,25 +1,3 @@
-/* ------------------------------------ *\
-  TOOLS - MAP SORT
-\* ------------------------------------ */
+@warn "The ability to reference internal Sass partials in @bolt/core/styles is deprecated and will be removed in Bolt v3.0. Please update your code to only point to the main Core Styles entrypoint!";
 
-////
-/// @group Tools: Utilities
-/// @author Mike Mai
-////
-
-/// Sort map by keys
-/// @param {map} $map - A SASS map
-/// @return {Map} $sortedMap - A SASS map sorted by keys
-/// @link https://gist.github.com/Jakobud/a0ac11e80a1de453cd86f0d3fc0a1410
-/// @requires {function} bolt-list-sort
-/// @see {mixin} bolt-poly-fluid-sizing
-/// @example scss - ($map not shown)
-///   $map: bolt-map-sort($map);
-@function bolt-map-sort($map) {
-  $keys: bolt-list-sort(map-keys($map));
-  $sortedMap: ();
-  @each $key in $keys {
-    $sortedMap: map-merge($sortedMap, ($key: map-get($map, $key)));
-  }
-  @return $sortedMap;
-}
+@import '@bolt/core-v3.x/styles/02-tools/tools-map-sort/_tools-map-sort.scss';

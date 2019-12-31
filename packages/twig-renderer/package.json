@@ -1,23 +1,21 @@
 {
   "name": "@bolt/twig-renderer",
   "version": "2.13.0",
-  "license": "MIT",
   "description": "Renders Twig templates using an on-the-fly PHP rendering service.",
-  "main": "twig-renderer.js",
-  "repository": "https://github.com/bolt-design-system/bolt/tree/master/packages/twig-renderer",
   "keywords": [
     "design system",
     "bolt design system",
     "twig",
     "php"
   ],
-  "maintainers": [
-    {
-      "name": "Salem Ghoweri",
-      "email": "me@salemghoweri.com",
-      "web": "https://github.com/sghoweri"
-    }
-  ],
+  "homepage": "https://boltdesignsystem.com",
+  "bugs": "https://github.com/bolt-design-system/bolt/issues",
+  "repository": "https://github.com/bolt-design-system/bolt/tree/master/packages/twig-renderer",
+  "license": "MIT",
+  "main": "twig-renderer.js",
+  "scripts": {
+    "setup": "composer run setup"
+  },
   "dependencies": {
     "@basalt/twig-renderer": "0.13.0",
     "@bolt/build-utils": "^2.13.0",
@@ -27,11 +25,13 @@
   "publishConfig": {
     "access": "public"
   },
-  "scripts": {
-    "setup": "composer run setup"
-  },
-  "schema": "utils/config.schema.yml",
-  "bugs": "https://github.com/bolt-design-system/bolt/issues",
-  "homepage": "https://boltdesignsystem.com",
-  "gitHead": "3d198feea5f73c63913a956a2a077e229ad8d462"
+  "gitHead": "3d198feea5f73c63913a956a2a077e229ad8d462",
+  "maintainers": [
+    {
+      "name": "Salem Ghoweri",
+      "email": "me@salemghoweri.com",
+      "web": "https://github.com/sghoweri"
+    }
+  ],
+  "schema": "utils/config.schema.yml"
 }

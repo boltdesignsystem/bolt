@@ -1,9 +1,6 @@
 {
   "name": "@bolt/uikit-workshop",
   "version": "2.13.0",
-  "publishConfig": {
-    "access": "public"
-  },
   "description": "Next-gen Pattern Lab UI used by the Bolt Design System. Pattern Lab PHP and Pattern Lab Node-friendly!",
   "keywords": [
     "bolt design system",
@@ -15,28 +12,24 @@
   "bugs": "https://github.com/bolt-design-system/bolt/issues",
   "repository": "https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop",
   "license": "MIT",
+  "files": [
+    "src",
+    "dist",
+    "views",
+    "views-twig",
+    "webpack.config.js"
+  ],
   "scripts": {
-    "preinstall": "export PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=1",
     "build": "webpack-cli --config webpack.config.js --display=minimal && RESULT=$( inline-critical -c ../../www/pattern-lab/styleguide/css/pattern-lab.css  -h ../../www/pattern-lab/index.html) && echo $RESULT > ../../www/pattern-lab/index.html",
+    "preinstall": "export PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=1",
     "test": "npm run build -- --bail",
     "watch": "webpack-cli --config webpack.config.js --progress --watch"
   },
-  "authors": [
-    {
-      "name": "Brad Frost",
-      "homepage": "http://bradfrostweb.com",
-      "role": "Creator"
-    },
-    {
-      "name": "Brian Muenzenmeyer",
-      "homepage": "http://brianmuenzenmeyer.com",
-      "role": "Developer"
-    },
-    {
-      "name": "Salem Ghoweri",
-      "homepage": "https://github.com/sghoweri",
-      "role": "Developer"
-    }
+  "browserslist": [
+    "last 2 version",
+    ">0.25%",
+    "ie 11",
+    "not op_mini all"
   ],
   "dependencies": {
     "@babel/core": "^7.6.4",
@@ -133,17 +126,24 @@
     "workbox-build": "^3.4.1",
     "yargs": "^14.2.0"
   },
-  "browserslist": [
-    "last 2 version",
-    ">0.25%",
-    "ie 11",
-    "not op_mini all"
-  ],
-  "files": [
-    "src",
-    "dist",
-    "views",
-    "views-twig",
-    "webpack.config.js"
+  "publishConfig": {
+    "access": "public"
+  },
+  "authors": [
+    {
+      "name": "Brad Frost",
+      "homepage": "http://bradfrostweb.com",
+      "role": "Creator"
+    },
+    {
+      "name": "Brian Muenzenmeyer",
+      "homepage": "http://brianmuenzenmeyer.com",
+      "role": "Developer"
+    },
+    {
+      "name": "Salem Ghoweri",
+      "homepage": "https://github.com/sghoweri",
+      "role": "Developer"
+    }
   ]
 }
