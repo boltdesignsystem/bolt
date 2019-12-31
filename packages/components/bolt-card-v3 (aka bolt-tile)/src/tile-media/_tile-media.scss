@@ -1,0 +1,34 @@
+/* ------------------------------------ *\
+   tile Media
+\* ------------------------------------ */
+
+@import '@bolt/core-v3.x';
+@import '../_tile-settings-and-tools.scss';
+
+:host {
+  overflow: initial;
+}
+
+bolt-tile-media {
+  overflow: initial;
+}
+
+.c-bolt-tile__media {
+  display: block;
+  height: 100%;
+
+  &.is-horizontal {
+    flex-basis: 130px;
+    max-width: 50%;
+  }
+}
+
+// required so the nested content fills the full width of the tile -- otherwise content (like a ratio object with an image inside) might not display as expected.
+.c-bolt-tile__media ::slotted(*) {
+  width: 100%;
+}
+
+.c-bolt-tile__media--video {
+  position: relative;
+  z-index: $bolt-tile-video-z-index;
+}

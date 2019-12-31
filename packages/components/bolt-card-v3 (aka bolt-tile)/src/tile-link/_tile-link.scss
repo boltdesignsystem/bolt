@@ -1,0 +1,30 @@
+/* ------------------------------------ *\
+   tile Link
+\* ------------------------------------ */
+
+@import '@bolt/core-v3.x';
+@import '../_tile-settings-and-tools.scss';
+
+// https://www.w3.org/TR/CSS21/visudet.html#abs-replaced-width
+
+.c-bolt-tile__link {
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: $bolt-tile-link-z-index; // a small z-index is required here so the <bolt-tile-link> covers most types of content used inside the tile component, except for a few exceptions
+  cursor: pointer;
+}
+
+button.c-bolt-tile__link {
+  width: 100%; // [1]
+  height: 100%; // [1]
+  padding: 0;
+  border: none;
+  background: none;
+  &:focus {
+    outline: none;
+  }
+}

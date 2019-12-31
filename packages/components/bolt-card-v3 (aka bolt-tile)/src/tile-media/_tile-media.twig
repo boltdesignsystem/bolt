@@ -1,0 +1,30 @@
+{% set tile_image = media.image %}
+{% set tile_video = media.video %}
+
+{% set tile_media_content = media.content %}
+
+{% set media_block = block("media") %}
+
+{% if tile_media_content %}
+	{# @todo: The replace function is a hack to get around the utf-8 bug. #}
+	{{ tile_media_content | join | replace({"UTF-8": ""}) }}
+{% else %}
+	{% if tile_image or media_block %}
+		<bolt-tile-media>
+			<replace-with-children class="c-bolt-tile__media">
+				{% if tile_image %}
+					{% include "@bolt-components-image/image.twig" with tile_image only %}
+				{% elseif media_block %}
+					{{ media_block }}
+				{% endif %}
+			</replace-with-children>
+		</bolt-tile-media>
+	{% endif %}
+	{% if tile_video %}
+		<bolt-tile-media>
+			<replace-with-children class="c-bolt-tile__media c-bolt-tile__media--video">
+				{% include "@bolt-components-video/video.twig" with tile_video only %}
+			</replace-with-children>
+		</bolt-tile-media>
+	{% endif %}
+{% endif %}

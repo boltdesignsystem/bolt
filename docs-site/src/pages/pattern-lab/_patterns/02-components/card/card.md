@@ -1,0 +1,3 @@
+---
+title: Legacy Card (Deprecated)
+---

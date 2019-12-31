@@ -1,0 +1,163 @@
+{% set schema = bolt.data.components["@bolt-components-text"].schema %}
+
+{% macro code_example(code) %}
+	<div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
+		{% grid "o-bolt-grid--center" %}
+		{% cell "u-bolt-width-12/12 u-bolt-width-6/12@medium" %}
+		{{ code }}
+		{% endcell %}
+		{% endgrid %}
+	</div>
+	<div class="u-bolt-margin-bottom-large">
+		<bolt-code-snippet syntax="dark" lang="html">
+			{% spaceless %}
+				{{ code | replace({
+        '<': '&lt;',
+        '>': '&gt;',
+      }) | trim | raw }}
+			{% endspaceless %}
+		</bolt-code-snippet>
+	</div>
+{% endmacro %}
+
+{% import _self as tile_code %}
+
+{% macro video() %}
+	<bolt-tile-media>
+		<bolt-ratio aspect-ratio-height="9" aspect-ratio-width="16">
+			<bolt-video data-setup='{"techOrder": ["Html5"], "resizeManager": false}' video-id="3861325118001" account-id="1900410236" show-meta show-meta-title player-id="r1CAdLzTW" controls></bolt-video>
+		</bolt-ratio>
+	</bolt-tile-media>
+{% endmacro %}
+
+{% macro image() %}
+	<bolt-tile-media>
+		<bolt-image src="/images/placeholders/landscape-16x9-mountains.jpg" alt="tile media."></bolt-image>
+	</bolt-tile-media>
+{% endmacro %}
+
+{% macro body() %}
+	<bolt-tile-body>
+		<bolt-text eyebrow>This is an eyebrow</bolt-text>
+		<bolt-text headline>This is a headline</bolt-text>
+		<bolt-text>This is a paragraph.</bolt-text>
+	</bolt-tile-body>
+{% endmacro %}
+
+{% macro body_clickable() %}
+	<bolt-tile-body>This is a tile with an overall link that makes the whole tile clickable.</bolt-tile-body>
+{% endmacro %}
+
+{% macro body_with_link() %}
+	<bolt-tile-body>This is a tile with an overall link that makes the whole tile clickable, while the body can still have
+		<bolt-link target="_blank" url="https://boltdesignsystem.com/docs">text links</bolt-link>
+		that would go somewhere else.</bolt-tile-body>
+{% endmacro %}
+
+{% macro actions() %}
+	<bolt-tile-actions>
+		<bolt-tile-action url="https://pega.com">
+			Internal link
+		</bolt-tile-action>
+		<bolt-tile-action url="https://yahoo.com" external>
+			External link
+		</bolt-tile-action>
+	</bolt-tile-actions>
+{% endmacro %}
+
+{% set tile_web_component_demo %}
+<bolt-tile>
+	{% include tile_code.image() %}
+	{% include tile_code.body() %}
+	{% include tile_code.actions() %}
+</bolt-tile>
+{% endset %}
+
+{% set simple_link_demo %}
+<bolt-tile url="https://google.com" url-text="Go to google.com">
+	{% include tile_code.image() %}
+	{% include tile_code.body_clickable() %}
+</bolt-tile>
+{% endset %}
+
+{% set advanced_link_demo %}
+<bolt-tile>
+	<bolt-tile-link custom-attribute="foo" html-attribute="bar">
+		<a href="http://google.com" target="_blank">Go to google.com</a>
+	</bolt-tile-link>
+	{% include tile_code.image() %}
+	{% include tile_code.body_clickable() %}
+</bolt-tile>
+{% endset %}
+
+{% set nested_links_demo %}
+<bolt-tile url="https://google.com">
+	{% include tile_code.video() %}
+	{% include tile_code.body_with_link() %}
+	{% include tile_code.actions() %}
+</bolt-tile>
+{% endset %}
+
+
+<div class="o-bolt-wrapper">
+	<bolt-text headline>
+		Web Component Usage
+	</bolt-text>
+	<bolt-text>
+		Bolt Text is a web component, you can simply use
+		<bolt-code-snippet display="inline" lang="html">&lt;bolt-tile&gt;</bolt-code-snippet>
+		in the markup to make it render. Its inner content is comprised of
+		<bolt-code-snippet display="inline" lang="html">&lt;bolt-tile-media&gt;</bolt-code-snippet>,
+		<bolt-code-snippet display="inline" lang="html">&lt;bolt-tile-body&gt;</bolt-code-snippet>, and
+		<bolt-code-snippet display="inline" lang="html">&lt;bolt-tile-actions&gt;</bolt-code-snippet>.
+	</bolt-text>
+	{% include tile_code.code_example(tile_web_component_demo) %}
+
+	<bolt-text headline>
+		Simple Link Usage
+	</bolt-text>
+	<bolt-text>
+		The simplest way to make the whole tile clickable is by passing a link address to the
+		<bolt-code-snippet display="inline" lang="html">url</bolt-code-snippet>
+		prop on the main
+		<bolt-code-snippet display="inline" lang="html">&lt;bolt-tile&gt;</bolt-code-snippet>
+		component itself. Also include the
+		<bolt-code-snippet display="inline" lang="html">url-text</bolt-code-snippet>
+		prop for accessibility.
+	</bolt-text>
+	{% include tile_code.code_example(simple_link_demo) %}
+
+	<bolt-text headline>
+		Advanced Link Usage
+	</bolt-text>
+	<bolt-text>
+		Insert a
+		<bolt-code-snippet display="inline" lang="html">&lt;bolt-tile-link&gt;</bolt-code-snippet>
+		inside
+		<bolt-code-snippet display="inline" lang="html">&lt;bolt-tile&gt;</bolt-code-snippet>
+		and you can pass more than just
+		<bolt-code-snippet display="inline" lang="html">url</bolt-code-snippet>.
+		<bolt-code-snippet display="inline" lang="html">&lt;bolt-tile-link&gt;</bolt-code-snippet>
+		is similar to
+		<bolt-code-snippet display="inline" lang="html">&lt;bolt-link&gt;</bolt-code-snippet>. You can add custom attributes to
+		<bolt-code-snippet display="inline" lang="html">&lt;bolt-tile-link&gt;</bolt-code-snippet>
+		and insert a semantic
+		<bolt-code-snippet display="inline" lang="html">&lt;a&gt;</bolt-code-snippet>
+		or
+		<bolt-code-snippet display="inline" lang="html">&lt;button&gt;</bolt-code-snippet>
+		element inside.
+	</bolt-text>
+	{% include tile_code.code_example(advanced_link_demo) %}
+
+	<bolt-text headline>
+		Nested Links
+	</bolt-text>
+	<bolt-text>
+		While making the whole tile clickable, you are still able to insert nested links as needed. Any
+		<bolt-code-snippet display="inline" lang="html">&lt;bolt-link&gt;</bolt-code-snippet>,
+		<bolt-code-snippet display="inline" lang="html">&lt;bolt-tile-link&gt;</bolt-code-snippet>, and
+		<bolt-code-snippet display="inline" lang="html">&lt;bolt-tile-action&gt;</bolt-code-snippet>
+		will work as expected.
+	</bolt-text>
+	{% include tile_code.code_example(nested_links_demo) %}
+</div>

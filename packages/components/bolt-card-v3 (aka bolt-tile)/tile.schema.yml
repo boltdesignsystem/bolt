@@ -1,0 +1,105 @@
+title: Tile
+type: object
+properties:
+  horizontal:
+    type: boolean
+    description: Horizontal layout
+  attributes:
+    type: object
+    description: A Drupal-style attributes object with extra attributes to append to this component.
+  tag:
+    type: string
+    description: HTML tag that contains the tile content.
+    default: article
+    enum:
+      - div
+      - article
+      - figure
+  height:
+    type: string
+    description: Controls the height of the tile to auto fit to content or the full height of the column in a grid.
+    default: full
+    enum:
+      - auto
+      - full
+  theme:
+    type: string
+    description: Controls the theme of the individual tile.
+    default: none
+    enum:
+      - xlight
+      - light
+      - dark
+      - xdark
+      - none
+  link:
+    type: object
+    description: Providing a link will make the whole tile clickable.
+    properties:
+      url:
+        type: string
+        description: Address for the link.
+      text:
+        type: string
+        description: Visually hidden text for link, included for accessibility.
+      attributes:
+        type: object
+        description: A Drupal-style attributes object with extra attributes to append to this component.
+  media:
+    type: object
+    description: Media section of the tile, accepts either image and video, or custom content.
+    properties:
+      image:
+        type: object
+        ref: '@bolt-components-image/image.schema.yml'
+      video:
+        type: object
+        ref: '@bolt-components-video/video.schema.yml'
+      content:
+        type:
+          - string
+          - array
+          - object
+        description: Passing free-form content into the tile media will ignore image or video data. Use this if the pre-configured image or video doesn't satisfy your needs.
+  body:
+    type: object
+    description: Body section of the tile, accepts pre-configured eyebrow, headline, and paragraph or custom content.
+    properties:
+      eyebrow:
+        type: string
+        description: Regular eyebrow.
+      headline:
+        type: string
+        description: Headline pre-defined to size large.
+      paragraph:
+        type: string
+        description: Regular paragraph of text.
+      content:
+        type:
+          - string
+          - array
+          - object
+        description: Passing free-form content into the tile body will ignore eyebrow, headline, and paragraph data. Use this if the pre-configured eyebrow, headline, and paragraph don't satisfy your needs.
+  actions:
+    type: array
+    description: Actions section of the tile, accepts buttons.
+    properties:
+      text:
+        type: string
+      url:
+        type: string
+      external:
+        type: boolean
+      attributes:
+        type: object
+        description: A Drupal-style attributes object with extra attributes to append to this component.
+  content:
+    type:
+      - string
+      - array
+      - object
+    description: Content will override media, body, and actions props. Use this to build a completely cuztomized tile.
+  raised:
+    type: boolean
+    description: Manually switch on / off the raised (shadow + animation effect) treament. By default this config option is applied if the tile contains a bolt-tile-link OR includes the `url` prop.
+    hidden: true

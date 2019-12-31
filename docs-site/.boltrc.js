@@ -77,6 +77,7 @@ const config = {
     global: [
       // helper components that are only used internally
       '@bolt/shadow-toggle',
+      '@bolt/components-tile',
       '@bolt/theme-switcher',
 
       '@bolt/components-radio-switch',
@@ -185,7 +186,7 @@ const config = {
     },
     {
       from: `${path.dirname(
-        resolve.sync('@bolt/global/package.json')
+        resolve.sync('@bolt/global/package.json'),
       )}/favicons/bolt`,
       to: path.join(__dirname, '../www/'),
       flatten: true,
@@ -194,7 +195,7 @@ const config = {
   alterTwigEnv: [
     {
       file: `${path.dirname(
-        resolve.sync('@bolt/twig-renderer/package.json')
+        resolve.sync('@bolt/twig-renderer/package.json'),
       )}/SetupTwigRenderer.php`,
       functions: ['addBoltCoreExtensions', 'addBoltExtraExtensions'],
     },

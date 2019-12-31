@@ -1,0 +1,75 @@
+@import '@bolt/core-v3.x';
+
+// Settings
+
+$bolt-tile-body-spacing: 'medium';
+$bolt-tile-shadow-color: bolt-color(gray, dark);
+$bolt-tile-border-width: $bolt-border-width;
+$bolt-tile-border-style: $bolt-border-style;
+$bolt-tile-border-color: bolt-theme(text, 0.15);
+$bolt-tile-border-radius: 4px;
+$bolt-tile-link-z-index: 1;
+$bolt-tile-individual-link-z-index: 2;
+$bolt-tile-video-z-index: $bolt-tile-individual-link-z-index;
+
+
+// Tools
+
+@mixin bolt-tile-border-reset {
+  border: 0;
+  border-style: $bolt-tile-border-style;
+  border-color: $bolt-tile-border-color;
+}
+
+@mixin bolt-tile-content-conditions {
+  // [Mai] Only the tile body should not have hidden overflow and border radius because its background is transparent. This also catches any kind of free-form content being passed, making sure they don't poke outside the tile (which has rounded corners and box shadows). The reason the tile itself shouldn't have hidden overflow is because the tile body can contain some kind of tooltip bubble or dropdown ui, they can poke out of the tile naturally.
+  > * {
+
+    &:first-child {
+      border-radius: $bolt-tile-border-radius $bolt-tile-border-radius 0 0;
+    }
+
+    &:last-child {
+      border-radius: 0 0 $bolt-tile-border-radius $bolt-tile-border-radius;
+    }
+
+    &:only-child{
+      border-radius: $bolt-tile-border-radius;
+    }
+  }
+
+  > bolt-tile-link + * {
+    border-radius: $bolt-tile-border-radius $bolt-tile-border-radius 0 0;
+
+    &:last-child {
+      border-radius: $bolt-tile-border-radius;
+    }
+  }
+
+  > bolt-tile-body,
+  > bolt-tile-link,
+  > replace-with-children {
+    overflow: visible;
+  }
+
+  > bolt-tile-media,
+  > bolt-tile-body,
+  > bolt-tile-actions {
+    &:last-child {
+      @include bolt-margin-top(auto);
+    }
+
+    &:only-child {
+      @include bolt-margin-top(auto);
+      @include bolt-margin-bottom(auto);
+    }
+  }
+
+  > * + bolt-tile-actions {
+    border-top-width: $bolt-tile-border-width;
+  }
+
+  > bolt-tile-actions:not(:last-child) {
+    border-bottom-width: $bolt-tile-border-width;
+  }
+}

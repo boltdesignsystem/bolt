@@ -1,0 +1,933 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<bolt-tile> Component basic usage 1`] = `
+<bolt-tile tag="article"
+           theme="none"
+           height="full"
+>
+  <replace-with-children class="c-bolt-tile">
+    <bolt-tile-media>
+      <replace-with-children class="c-bolt-tile__media">
+        <bolt-image src="/fixtures/landscape-16x9-mountains.jpg"
+                    srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w, /fixtures/landscape-16x9-mountains.jpg 1151w"
+                    alt="Image alt."
+                    sizes="auto"
+                    ratio="1151/638"
+                    placeholder-color="hsl(233, 33%, 97%)"
+                    placeholder-image="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                    style="background-color: hsl(233, 33%, 97%);"
+        >
+          <bolt-ratio ratio="1151/638">
+            <replace-with-children class="c-bolt-ratio"
+                                   style="padding-bottom: calc((638 / 1151) * 100%); --aspect-ratio: 1.8040752351097;"
+            >
+              <img class="c-bolt-image__image-placeholder"
+                   alt="Image alt."
+                   src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+              >
+              <img class="c-bolt-image__image c-bolt-image__lazyload c-bolt-image__lazyload--fade c-bolt-image__lazyload--blur js-lazyload"
+                   alt="Image alt."
+                   data-srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w, /fixtures/landscape-16x9-mountains.jpg 1151w"
+                   data-sizes="auto"
+                   srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                   src="/fixtures/landscape-16x9-mountains.jpg"
+              >
+              <noscript>
+                <img class="c-bolt-image__image"
+                     alt="Image alt."
+                     src="/fixtures/landscape-16x9-mountains.jpg"
+                     srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w, /fixtures/landscape-16x9-mountains.jpg 1151w"
+                >
+              </noscript>
+            </replace-with-children>
+          </bolt-ratio>
+        </bolt-image>
+      </replace-with-children>
+    </bolt-tile-media>
+    <bolt-tile-body>
+      <replace-with-children class="c-bolt-tile__body">
+        <p class="c-bolt-eyebrow c-bolt-eyebrow--regular">
+          This is an eyebrow
+        </p>
+        <h2 class="c-bolt-headline c-bolt-headline--bold c-bolt-headline--large">
+          This is a headline
+        </h2>
+        <p class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--medium">
+          This is a paragraph.
+        </p>
+      </replace-with-children>
+    </bolt-tile-body>
+    <bolt-tile-actions>
+      <replace-with-children class="c-bolt-tile__actions">
+        <bolt-tile-action url="https://pega.com">
+          <replace-with-children class="c-bolt-tile__action">
+            <bolt-button size="medium"
+                         color="text"
+                         width="full"
+                         border-radius="regular"
+                         align="start"
+                         transform="none"
+                         url="https://pega.com"
+                         target="_self"
+            >
+              <a href="https://pega.com"
+                 class="c-bolt-button c-bolt-button--medium c-bolt-button--text c-bolt-button--full c-bolt-button--border-radius-regular c-bolt-button--start"
+                 is="shadow-root"
+              >
+                <replace-with-children class="c-bolt-button__item">
+                  This is a button
+                </replace-with-children>
+                <replace-with-children class="c-bolt-button__icon c-bolt-button__icon-sizer">
+                  <bolt-icon slot="after"
+                             name="chevron-right"
+                  >
+                  </bolt-icon>
+                </replace-with-children>
+              </a>
+            </bolt-button>
+          </replace-with-children>
+        </bolt-tile-action>
+      </replace-with-children>
+    </bolt-tile-actions>
+  </replace-with-children>
+</bolt-tile>
+`;
+
+exports[`<bolt-tile> Component clickable tile 1`] = `
+<bolt-tile tag="article"
+           theme="none"
+           height="full"
+           url="https://pega.com"
+>
+  <replace-with-children class="c-bolt-tile">
+    <bolt-tile-link>
+      <a href="https://pega.com"
+         class="c-bolt-tile__link"
+      >
+        <replace-with-children class="u-bolt-visuallyhidden">
+          This entire tile is clickable
+        </replace-with-children>
+      </a>
+    </bolt-tile-link>
+    <bolt-tile-media>
+      <replace-with-children class="c-bolt-tile__media">
+        <bolt-image src="/fixtures/landscape-16x9-mountains.jpg"
+                    srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w, /fixtures/landscape-16x9-mountains.jpg 1151w"
+                    alt="Image alt."
+                    sizes="auto"
+                    ratio="1151/638"
+                    placeholder-color="hsl(233, 33%, 97%)"
+                    placeholder-image="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                    style="background-color: hsl(233, 33%, 97%);"
+        >
+          <bolt-ratio ratio="1151/638">
+            <replace-with-children class="c-bolt-ratio"
+                                   style="padding-bottom: calc((638 / 1151) * 100%); --aspect-ratio: 1.8040752351097;"
+            >
+              <img class="c-bolt-image__image-placeholder"
+                   alt="Image alt."
+                   src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+              >
+              <img class="c-bolt-image__image c-bolt-image__lazyload c-bolt-image__lazyload--fade c-bolt-image__lazyload--blur js-lazyload"
+                   alt="Image alt."
+                   data-srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w, /fixtures/landscape-16x9-mountains.jpg 1151w"
+                   data-sizes="auto"
+                   srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                   src="/fixtures/landscape-16x9-mountains.jpg"
+              >
+              <noscript>
+                <img class="c-bolt-image__image"
+                     alt="Image alt."
+                     src="/fixtures/landscape-16x9-mountains.jpg"
+                     srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w, /fixtures/landscape-16x9-mountains.jpg 1151w"
+                >
+              </noscript>
+            </replace-with-children>
+          </bolt-ratio>
+        </bolt-image>
+      </replace-with-children>
+    </bolt-tile-media>
+    <bolt-tile-body>
+      <replace-with-children class="c-bolt-tile__body">
+        <p class="c-bolt-eyebrow c-bolt-eyebrow--regular">
+          This is an eyebrow
+        </p>
+        <h2 class="c-bolt-headline c-bolt-headline--bold c-bolt-headline--large">
+          This is a headline
+        </h2>
+        <p class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--medium">
+          This is a paragraph.
+        </p>
+      </replace-with-children>
+    </bolt-tile-body>
+  </replace-with-children>
+</bolt-tile>
+`;
+
+exports[`<bolt-tile> Component tag variations: article 1`] = `
+<bolt-tile tag="article"
+           theme="none"
+           height="full"
+>
+  <replace-with-children class="c-bolt-tile">
+    <bolt-tile-media>
+      <replace-with-children class="c-bolt-tile__media">
+        <bolt-image src="/fixtures/landscape-16x9-mountains.jpg"
+                    srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w, /fixtures/landscape-16x9-mountains.jpg 1151w"
+                    alt="Image alt."
+                    sizes="auto"
+                    ratio="1151/638"
+                    placeholder-color="hsl(233, 33%, 97%)"
+                    placeholder-image="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                    style="background-color: hsl(233, 33%, 97%);"
+        >
+          <bolt-ratio ratio="1151/638">
+            <replace-with-children class="c-bolt-ratio"
+                                   style="padding-bottom: calc((638 / 1151) * 100%); --aspect-ratio: 1.8040752351097;"
+            >
+              <img class="c-bolt-image__image-placeholder"
+                   alt="Image alt."
+                   src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+              >
+              <img class="c-bolt-image__image c-bolt-image__lazyload c-bolt-image__lazyload--fade c-bolt-image__lazyload--blur js-lazyload"
+                   alt="Image alt."
+                   data-srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w, /fixtures/landscape-16x9-mountains.jpg 1151w"
+                   data-sizes="auto"
+                   srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                   src="/fixtures/landscape-16x9-mountains.jpg"
+              >
+              <noscript>
+                <img class="c-bolt-image__image"
+                     alt="Image alt."
+                     src="/fixtures/landscape-16x9-mountains.jpg"
+                     srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w, /fixtures/landscape-16x9-mountains.jpg 1151w"
+                >
+              </noscript>
+            </replace-with-children>
+          </bolt-ratio>
+        </bolt-image>
+      </replace-with-children>
+    </bolt-tile-media>
+    <bolt-tile-body>
+      <replace-with-children class="c-bolt-tile__body">
+        <p class="c-bolt-eyebrow c-bolt-eyebrow--regular">
+          This is an eyebrow
+        </p>
+        <h2 class="c-bolt-headline c-bolt-headline--bold c-bolt-headline--large">
+          This is a headline
+        </h2>
+        <p class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--medium">
+          This is a paragraph.
+        </p>
+      </replace-with-children>
+    </bolt-tile-body>
+  </replace-with-children>
+</bolt-tile>
+`;
+
+exports[`<bolt-tile> Component tag variations: div 1`] = `
+<bolt-tile tag="div"
+           theme="none"
+           height="full"
+>
+  <replace-with-children class="c-bolt-tile">
+    <bolt-tile-media>
+      <replace-with-children class="c-bolt-tile__media">
+        <bolt-image src="/fixtures/landscape-16x9-mountains.jpg"
+                    srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w, /fixtures/landscape-16x9-mountains.jpg 1151w"
+                    alt="Image alt."
+                    sizes="auto"
+                    ratio="1151/638"
+                    placeholder-color="hsl(233, 33%, 97%)"
+                    placeholder-image="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                    style="background-color: hsl(233, 33%, 97%);"
+        >
+          <bolt-ratio ratio="1151/638">
+            <replace-with-children class="c-bolt-ratio"
+                                   style="padding-bottom: calc((638 / 1151) * 100%); --aspect-ratio: 1.8040752351097;"
+            >
+              <img class="c-bolt-image__image-placeholder"
+                   alt="Image alt."
+                   src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+              >
+              <img class="c-bolt-image__image c-bolt-image__lazyload c-bolt-image__lazyload--fade c-bolt-image__lazyload--blur js-lazyload"
+                   alt="Image alt."
+                   data-srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w, /fixtures/landscape-16x9-mountains.jpg 1151w"
+                   data-sizes="auto"
+                   srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                   src="/fixtures/landscape-16x9-mountains.jpg"
+              >
+              <noscript>
+                <img class="c-bolt-image__image"
+                     alt="Image alt."
+                     src="/fixtures/landscape-16x9-mountains.jpg"
+                     srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w, /fixtures/landscape-16x9-mountains.jpg 1151w"
+                >
+              </noscript>
+            </replace-with-children>
+          </bolt-ratio>
+        </bolt-image>
+      </replace-with-children>
+    </bolt-tile-media>
+    <bolt-tile-body>
+      <replace-with-children class="c-bolt-tile__body">
+        <p class="c-bolt-eyebrow c-bolt-eyebrow--regular">
+          This is an eyebrow
+        </p>
+        <h2 class="c-bolt-headline c-bolt-headline--bold c-bolt-headline--large">
+          This is a headline
+        </h2>
+        <p class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--medium">
+          This is a paragraph.
+        </p>
+      </replace-with-children>
+    </bolt-tile-body>
+  </replace-with-children>
+</bolt-tile>
+`;
+
+exports[`<bolt-tile> Component tag variations: figure 1`] = `
+<bolt-tile tag="figure"
+           theme="none"
+           height="full"
+>
+  <replace-with-children class="c-bolt-tile">
+    <bolt-tile-media>
+      <replace-with-children class="c-bolt-tile__media">
+        <bolt-image src="/fixtures/landscape-16x9-mountains.jpg"
+                    srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w, /fixtures/landscape-16x9-mountains.jpg 1151w"
+                    alt="Image alt."
+                    sizes="auto"
+                    ratio="1151/638"
+                    placeholder-color="hsl(233, 33%, 97%)"
+                    placeholder-image="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                    style="background-color: hsl(233, 33%, 97%);"
+        >
+          <bolt-ratio ratio="1151/638">
+            <replace-with-children class="c-bolt-ratio"
+                                   style="padding-bottom: calc((638 / 1151) * 100%); --aspect-ratio: 1.8040752351097;"
+            >
+              <img class="c-bolt-image__image-placeholder"
+                   alt="Image alt."
+                   src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+              >
+              <img class="c-bolt-image__image c-bolt-image__lazyload c-bolt-image__lazyload--fade c-bolt-image__lazyload--blur js-lazyload"
+                   alt="Image alt."
+                   data-srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w, /fixtures/landscape-16x9-mountains.jpg 1151w"
+                   data-sizes="auto"
+                   srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                   src="/fixtures/landscape-16x9-mountains.jpg"
+              >
+              <noscript>
+                <img class="c-bolt-image__image"
+                     alt="Image alt."
+                     src="/fixtures/landscape-16x9-mountains.jpg"
+                     srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w, /fixtures/landscape-16x9-mountains.jpg 1151w"
+                >
+              </noscript>
+            </replace-with-children>
+          </bolt-ratio>
+        </bolt-image>
+      </replace-with-children>
+    </bolt-tile-media>
+    <bolt-tile-body>
+      <replace-with-children class="c-bolt-tile__body">
+        <p class="c-bolt-eyebrow c-bolt-eyebrow--regular">
+          This is an eyebrow
+        </p>
+        <h2 class="c-bolt-headline c-bolt-headline--bold c-bolt-headline--large">
+          This is a headline
+        </h2>
+        <p class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--medium">
+          This is a paragraph.
+        </p>
+      </replace-with-children>
+    </bolt-tile-body>
+  </replace-with-children>
+</bolt-tile>
+`;
+
+exports[`<bolt-tile> Component theme variations: dark 1`] = `
+<bolt-tile tag="article"
+           theme="dark"
+           height="full"
+>
+  <replace-with-children class="c-bolt-tile t-bolt-dark">
+    <bolt-tile-media>
+      <replace-with-children class="c-bolt-tile__media">
+        <bolt-image src="/fixtures/landscape-16x9-mountains.jpg"
+                    srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w, /fixtures/landscape-16x9-mountains.jpg 1151w"
+                    alt="Image alt."
+                    sizes="auto"
+                    ratio="1151/638"
+                    placeholder-color="hsl(233, 33%, 97%)"
+                    placeholder-image="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                    style="background-color: hsl(233, 33%, 97%);"
+        >
+          <bolt-ratio ratio="1151/638">
+            <replace-with-children class="c-bolt-ratio"
+                                   style="padding-bottom: calc((638 / 1151) * 100%); --aspect-ratio: 1.8040752351097;"
+            >
+              <img class="c-bolt-image__image-placeholder"
+                   alt="Image alt."
+                   src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+              >
+              <img class="c-bolt-image__image c-bolt-image__lazyload c-bolt-image__lazyload--fade c-bolt-image__lazyload--blur js-lazyload"
+                   alt="Image alt."
+                   data-srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w, /fixtures/landscape-16x9-mountains.jpg 1151w"
+                   data-sizes="auto"
+                   srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                   src="/fixtures/landscape-16x9-mountains.jpg"
+              >
+              <noscript>
+                <img class="c-bolt-image__image"
+                     alt="Image alt."
+                     src="/fixtures/landscape-16x9-mountains.jpg"
+                     srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w, /fixtures/landscape-16x9-mountains.jpg 1151w"
+                >
+              </noscript>
+            </replace-with-children>
+          </bolt-ratio>
+        </bolt-image>
+      </replace-with-children>
+    </bolt-tile-media>
+    <bolt-tile-body>
+      <replace-with-children class="c-bolt-tile__body">
+        <p class="c-bolt-eyebrow c-bolt-eyebrow--regular">
+          This is an eyebrow
+        </p>
+        <h2 class="c-bolt-headline c-bolt-headline--bold c-bolt-headline--large">
+          This is a headline
+        </h2>
+        <p class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--medium">
+          This is a paragraph.
+        </p>
+      </replace-with-children>
+    </bolt-tile-body>
+  </replace-with-children>
+</bolt-tile>
+`;
+
+exports[`<bolt-tile> Component theme variations: light 1`] = `
+<bolt-tile tag="article"
+           theme="light"
+           height="full"
+>
+  <replace-with-children class="c-bolt-tile t-bolt-light">
+    <bolt-tile-media>
+      <replace-with-children class="c-bolt-tile__media">
+        <bolt-image src="/fixtures/landscape-16x9-mountains.jpg"
+                    srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w, /fixtures/landscape-16x9-mountains.jpg 1151w"
+                    alt="Image alt."
+                    sizes="auto"
+                    ratio="1151/638"
+                    placeholder-color="hsl(233, 33%, 97%)"
+                    placeholder-image="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                    style="background-color: hsl(233, 33%, 97%);"
+        >
+          <bolt-ratio ratio="1151/638">
+            <replace-with-children class="c-bolt-ratio"
+                                   style="padding-bottom: calc((638 / 1151) * 100%); --aspect-ratio: 1.8040752351097;"
+            >
+              <img class="c-bolt-image__image-placeholder"
+                   alt="Image alt."
+                   src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+              >
+              <img class="c-bolt-image__image c-bolt-image__lazyload c-bolt-image__lazyload--fade c-bolt-image__lazyload--blur js-lazyload"
+                   alt="Image alt."
+                   data-srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w, /fixtures/landscape-16x9-mountains.jpg 1151w"
+                   data-sizes="auto"
+                   srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                   src="/fixtures/landscape-16x9-mountains.jpg"
+              >
+              <noscript>
+                <img class="c-bolt-image__image"
+                     alt="Image alt."
+                     src="/fixtures/landscape-16x9-mountains.jpg"
+                     srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w, /fixtures/landscape-16x9-mountains.jpg 1151w"
+                >
+              </noscript>
+            </replace-with-children>
+          </bolt-ratio>
+        </bolt-image>
+      </replace-with-children>
+    </bolt-tile-media>
+    <bolt-tile-body>
+      <replace-with-children class="c-bolt-tile__body">
+        <p class="c-bolt-eyebrow c-bolt-eyebrow--regular">
+          This is an eyebrow
+        </p>
+        <h2 class="c-bolt-headline c-bolt-headline--bold c-bolt-headline--large">
+          This is a headline
+        </h2>
+        <p class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--medium">
+          This is a paragraph.
+        </p>
+      </replace-with-children>
+    </bolt-tile-body>
+  </replace-with-children>
+</bolt-tile>
+`;
+
+exports[`<bolt-tile> Component theme variations: none 1`] = `
+<bolt-tile tag="article"
+           theme="none"
+           height="full"
+>
+  <replace-with-children class="c-bolt-tile">
+    <bolt-tile-media>
+      <replace-with-children class="c-bolt-tile__media">
+        <bolt-image src="/fixtures/landscape-16x9-mountains.jpg"
+                    srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w, /fixtures/landscape-16x9-mountains.jpg 1151w"
+                    alt="Image alt."
+                    sizes="auto"
+                    ratio="1151/638"
+                    placeholder-color="hsl(233, 33%, 97%)"
+                    placeholder-image="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                    style="background-color: hsl(233, 33%, 97%);"
+        >
+          <bolt-ratio ratio="1151/638">
+            <replace-with-children class="c-bolt-ratio"
+                                   style="padding-bottom: calc((638 / 1151) * 100%); --aspect-ratio: 1.8040752351097;"
+            >
+              <img class="c-bolt-image__image-placeholder"
+                   alt="Image alt."
+                   src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+              >
+              <img class="c-bolt-image__image c-bolt-image__lazyload c-bolt-image__lazyload--fade c-bolt-image__lazyload--blur js-lazyload"
+                   alt="Image alt."
+                   data-srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w, /fixtures/landscape-16x9-mountains.jpg 1151w"
+                   data-sizes="auto"
+                   srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                   src="/fixtures/landscape-16x9-mountains.jpg"
+              >
+              <noscript>
+                <img class="c-bolt-image__image"
+                     alt="Image alt."
+                     src="/fixtures/landscape-16x9-mountains.jpg"
+                     srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w, /fixtures/landscape-16x9-mountains.jpg 1151w"
+                >
+              </noscript>
+            </replace-with-children>
+          </bolt-ratio>
+        </bolt-image>
+      </replace-with-children>
+    </bolt-tile-media>
+    <bolt-tile-body>
+      <replace-with-children class="c-bolt-tile__body">
+        <p class="c-bolt-eyebrow c-bolt-eyebrow--regular">
+          This is an eyebrow
+        </p>
+        <h2 class="c-bolt-headline c-bolt-headline--bold c-bolt-headline--large">
+          This is a headline
+        </h2>
+        <p class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--medium">
+          This is a paragraph.
+        </p>
+      </replace-with-children>
+    </bolt-tile-body>
+  </replace-with-children>
+</bolt-tile>
+`;
+
+exports[`<bolt-tile> Component theme variations: xdark 1`] = `
+<bolt-tile tag="article"
+           theme="xdark"
+           height="full"
+>
+  <replace-with-children class="c-bolt-tile t-bolt-xdark">
+    <bolt-tile-media>
+      <replace-with-children class="c-bolt-tile__media">
+        <bolt-image src="/fixtures/landscape-16x9-mountains.jpg"
+                    srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w, /fixtures/landscape-16x9-mountains.jpg 1151w"
+                    alt="Image alt."
+                    sizes="auto"
+                    ratio="1151/638"
+                    placeholder-color="hsl(233, 33%, 97%)"
+                    placeholder-image="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                    style="background-color: hsl(233, 33%, 97%);"
+        >
+          <bolt-ratio ratio="1151/638">
+            <replace-with-children class="c-bolt-ratio"
+                                   style="padding-bottom: calc((638 / 1151) * 100%); --aspect-ratio: 1.8040752351097;"
+            >
+              <img class="c-bolt-image__image-placeholder"
+                   alt="Image alt."
+                   src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+              >
+              <img class="c-bolt-image__image c-bolt-image__lazyload c-bolt-image__lazyload--fade c-bolt-image__lazyload--blur js-lazyload"
+                   alt="Image alt."
+                   data-srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w, /fixtures/landscape-16x9-mountains.jpg 1151w"
+                   data-sizes="auto"
+                   srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                   src="/fixtures/landscape-16x9-mountains.jpg"
+              >
+              <noscript>
+                <img class="c-bolt-image__image"
+                     alt="Image alt."
+                     src="/fixtures/landscape-16x9-mountains.jpg"
+                     srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w, /fixtures/landscape-16x9-mountains.jpg 1151w"
+                >
+              </noscript>
+            </replace-with-children>
+          </bolt-ratio>
+        </bolt-image>
+      </replace-with-children>
+    </bolt-tile-media>
+    <bolt-tile-body>
+      <replace-with-children class="c-bolt-tile__body">
+        <p class="c-bolt-eyebrow c-bolt-eyebrow--regular">
+          This is an eyebrow
+        </p>
+        <h2 class="c-bolt-headline c-bolt-headline--bold c-bolt-headline--large">
+          This is a headline
+        </h2>
+        <p class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--medium">
+          This is a paragraph.
+        </p>
+      </replace-with-children>
+    </bolt-tile-body>
+  </replace-with-children>
+</bolt-tile>
+`;
+
+exports[`<bolt-tile> Component theme variations: xlight 1`] = `
+<bolt-tile tag="article"
+           theme="xlight"
+           height="full"
+>
+  <replace-with-children class="c-bolt-tile t-bolt-xlight">
+    <bolt-tile-media>
+      <replace-with-children class="c-bolt-tile__media">
+        <bolt-image src="/fixtures/landscape-16x9-mountains.jpg"
+                    srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w, /fixtures/landscape-16x9-mountains.jpg 1151w"
+                    alt="Image alt."
+                    sizes="auto"
+                    ratio="1151/638"
+                    placeholder-color="hsl(233, 33%, 97%)"
+                    placeholder-image="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                    style="background-color: hsl(233, 33%, 97%);"
+        >
+          <bolt-ratio ratio="1151/638">
+            <replace-with-children class="c-bolt-ratio"
+                                   style="padding-bottom: calc((638 / 1151) * 100%); --aspect-ratio: 1.8040752351097;"
+            >
+              <img class="c-bolt-image__image-placeholder"
+                   alt="Image alt."
+                   src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+              >
+              <img class="c-bolt-image__image c-bolt-image__lazyload c-bolt-image__lazyload--fade c-bolt-image__lazyload--blur js-lazyload"
+                   alt="Image alt."
+                   data-srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w, /fixtures/landscape-16x9-mountains.jpg 1151w"
+                   data-sizes="auto"
+                   srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                   src="/fixtures/landscape-16x9-mountains.jpg"
+              >
+              <noscript>
+                <img class="c-bolt-image__image"
+                     alt="Image alt."
+                     src="/fixtures/landscape-16x9-mountains.jpg"
+                     srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w, /fixtures/landscape-16x9-mountains.jpg 1151w"
+                >
+              </noscript>
+            </replace-with-children>
+          </bolt-ratio>
+        </bolt-image>
+      </replace-with-children>
+    </bolt-tile-media>
+    <bolt-tile-body>
+      <replace-with-children class="c-bolt-tile__body">
+        <p class="c-bolt-eyebrow c-bolt-eyebrow--regular">
+          This is an eyebrow
+        </p>
+        <h2 class="c-bolt-headline c-bolt-headline--bold c-bolt-headline--large">
+          This is a headline
+        </h2>
+        <p class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--medium">
+          This is a paragraph.
+        </p>
+      </replace-with-children>
+    </bolt-tile-body>
+  </replace-with-children>
+</bolt-tile>
+`;
+
+exports[`<bolt-tile> Component with two buttons as actions 1`] = `
+<bolt-tile tag="article"
+           theme="none"
+           height="full"
+>
+  <replace-with-children class="c-bolt-tile">
+    <bolt-tile-media>
+      <replace-with-children class="c-bolt-tile__media">
+        <bolt-image src="/fixtures/landscape-16x9-mountains.jpg"
+                    srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w, /fixtures/landscape-16x9-mountains.jpg 1151w"
+                    alt="Image alt."
+                    sizes="auto"
+                    ratio="1151/638"
+                    placeholder-color="hsl(233, 33%, 97%)"
+                    placeholder-image="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                    style="background-color: hsl(233, 33%, 97%);"
+        >
+          <bolt-ratio ratio="1151/638">
+            <replace-with-children class="c-bolt-ratio"
+                                   style="padding-bottom: calc((638 / 1151) * 100%); --aspect-ratio: 1.8040752351097;"
+            >
+              <img class="c-bolt-image__image-placeholder"
+                   alt="Image alt."
+                   src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+              >
+              <img class="c-bolt-image__image c-bolt-image__lazyload c-bolt-image__lazyload--fade c-bolt-image__lazyload--blur js-lazyload"
+                   alt="Image alt."
+                   data-srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w, /fixtures/landscape-16x9-mountains.jpg 1151w"
+                   data-sizes="auto"
+                   srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                   src="/fixtures/landscape-16x9-mountains.jpg"
+              >
+              <noscript>
+                <img class="c-bolt-image__image"
+                     alt="Image alt."
+                     src="/fixtures/landscape-16x9-mountains.jpg"
+                     srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w, /fixtures/landscape-16x9-mountains.jpg 1151w"
+                >
+              </noscript>
+            </replace-with-children>
+          </bolt-ratio>
+        </bolt-image>
+      </replace-with-children>
+    </bolt-tile-media>
+    <bolt-tile-body>
+      <replace-with-children class="c-bolt-tile__body">
+        <p class="c-bolt-eyebrow c-bolt-eyebrow--regular">
+          This is an eyebrow
+        </p>
+        <h2 class="c-bolt-headline c-bolt-headline--bold c-bolt-headline--large">
+          This is a headline
+        </h2>
+        <p class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--medium">
+          This is a paragraph.
+        </p>
+      </replace-with-children>
+    </bolt-tile-body>
+    <bolt-tile-actions>
+      <replace-with-children class="c-bolt-tile__actions">
+        <bolt-tile-action url="https://pega.com">
+          <replace-with-children class="c-bolt-tile__action">
+            <bolt-button size="medium"
+                         color="text"
+                         width="full"
+                         border-radius="regular"
+                         align="start"
+                         transform="none"
+                         url="https://pega.com"
+                         target="_self"
+            >
+              <a href="https://pega.com"
+                 class="c-bolt-button c-bolt-button--medium c-bolt-button--text c-bolt-button--full c-bolt-button--border-radius-regular c-bolt-button--start"
+                 is="shadow-root"
+              >
+                <replace-with-children class="c-bolt-button__item">
+                  This is the 1st button
+                </replace-with-children>
+                <replace-with-children class="c-bolt-button__icon c-bolt-button__icon-sizer">
+                  <bolt-icon slot="after"
+                             name="chevron-right"
+                  >
+                  </bolt-icon>
+                </replace-with-children>
+              </a>
+            </bolt-button>
+          </replace-with-children>
+        </bolt-tile-action>
+        <bolt-tile-action url="https://google.com">
+          <replace-with-children class="c-bolt-tile__action">
+            <bolt-button size="medium"
+                         color="text"
+                         width="full"
+                         border-radius="regular"
+                         align="start"
+                         transform="none"
+                         url="https://google.com"
+                         target="_self"
+            >
+              <a href="https://google.com"
+                 class="c-bolt-button c-bolt-button--medium c-bolt-button--text c-bolt-button--full c-bolt-button--border-radius-regular c-bolt-button--start"
+                 is="shadow-root"
+              >
+                <replace-with-children class="c-bolt-button__item">
+                  This is the 2nd button
+                </replace-with-children>
+                <replace-with-children class="c-bolt-button__icon c-bolt-button__icon-sizer">
+                  <bolt-icon slot="after"
+                             name="chevron-right"
+                  >
+                  </bolt-icon>
+                </replace-with-children>
+              </a>
+            </bolt-button>
+          </replace-with-children>
+        </bolt-tile-action>
+      </replace-with-children>
+    </bolt-tile-actions>
+  </replace-with-children>
+</bolt-tile>
+`;
+
+exports[`<bolt-tile> Component with video as media 1`] = `
+<bolt-tile tag="article"
+           theme="none"
+           height="full"
+>
+  <replace-with-children class="c-bolt-tile">
+    <bolt-tile-link on-click="toggle"
+                    on-click-target="js-bolt-video-uuid"
+    >
+    </bolt-tile-link>
+    <bolt-tile-media>
+      <replace-with-children class="c-bolt-tile__media c-bolt-tile__media--video">
+        <bolt-ratio ratio="16/9">
+          <replace-with-children class="c-bolt-ratio"
+                                 style="padding-bottom: calc((9 / 16) * 100%); --aspect-ratio: 1.7777777777778;"
+          >
+            <bolt-video class="js-bolt-video-uuid"
+                        video-id="5609376179001"
+                        account-id="1900410236"
+                        show-meta
+                        player-id="r1CAdLzTW"
+                        controls
+                        share-description="Share This Video"
+            >
+            </bolt-video>
+          </replace-with-children>
+        </bolt-ratio>
+      </replace-with-children>
+    </bolt-tile-media>
+    <bolt-tile-body>
+      <replace-with-children class="c-bolt-tile__body">
+        <h2 class="c-bolt-headline c-bolt-headline--bold c-bolt-headline--large">
+          With link and video
+        </h2>
+        <p class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--medium">
+          This tile has a link, which makes the whole tile clickable, and you can make it play/pause the video. Action button is optional in this case.
+        </p>
+      </replace-with-children>
+    </bolt-tile-body>
+    <bolt-tile-actions>
+      <replace-with-children class="c-bolt-tile__actions">
+        <bolt-tile-action>
+          <replace-with-children class="c-bolt-tile__action">
+            <bolt-button size="medium"
+                         color="text"
+                         width="full"
+                         border-radius="regular"
+                         align="start"
+                         transform="none"
+                         target="_self"
+                         on-click="toggle"
+                         on-click-target="js-bolt-video-uuid"
+            >
+              <button class="c-bolt-button c-bolt-button--medium c-bolt-button--text c-bolt-button--full c-bolt-button--border-radius-regular c-bolt-button--start"
+                      is="shadow-root"
+              >
+                <replace-with-children class="c-bolt-button__item">
+                  This button is video control
+                </replace-with-children>
+                <replace-with-children class="c-bolt-button__icon c-bolt-button__icon-sizer">
+                  <bolt-icon slot="after"
+                             name="chevron-right"
+                  >
+                  </bolt-icon>
+                </replace-with-children>
+              </button>
+            </bolt-button>
+          </replace-with-children>
+        </bolt-tile-action>
+      </replace-with-children>
+    </bolt-tile-actions>
+  </replace-with-children>
+</bolt-tile>
+`;
+
+exports[`<bolt-tile> Component without actions 1`] = `
+<bolt-tile tag="article"
+           theme="none"
+           height="full"
+>
+  <replace-with-children class="c-bolt-tile">
+    <bolt-tile-media>
+      <replace-with-children class="c-bolt-tile__media">
+        <bolt-image src="/fixtures/landscape-16x9-mountains.jpg"
+                    srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w, /fixtures/landscape-16x9-mountains.jpg 1151w"
+                    alt="Image alt."
+                    sizes="auto"
+                    ratio="1151/638"
+                    placeholder-color="hsl(233, 33%, 97%)"
+                    placeholder-image="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                    style="background-color: hsl(233, 33%, 97%);"
+        >
+          <bolt-ratio ratio="1151/638">
+            <replace-with-children class="c-bolt-ratio"
+                                   style="padding-bottom: calc((638 / 1151) * 100%); --aspect-ratio: 1.8040752351097;"
+            >
+              <img class="c-bolt-image__image-placeholder"
+                   alt="Image alt."
+                   src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+              >
+              <img class="c-bolt-image__image c-bolt-image__lazyload c-bolt-image__lazyload--fade c-bolt-image__lazyload--blur js-lazyload"
+                   alt="Image alt."
+                   data-srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w, /fixtures/landscape-16x9-mountains.jpg 1151w"
+                   data-sizes="auto"
+                   srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                   src="/fixtures/landscape-16x9-mountains.jpg"
+              >
+              <noscript>
+                <img class="c-bolt-image__image"
+                     alt="Image alt."
+                     src="/fixtures/landscape-16x9-mountains.jpg"
+                     srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w, /fixtures/landscape-16x9-mountains.jpg 1151w"
+                >
+              </noscript>
+            </replace-with-children>
+          </bolt-ratio>
+        </bolt-image>
+      </replace-with-children>
+    </bolt-tile-media>
+    <bolt-tile-body>
+      <replace-with-children class="c-bolt-tile__body">
+        <p class="c-bolt-eyebrow c-bolt-eyebrow--regular">
+          This is an eyebrow
+        </p>
+        <h2 class="c-bolt-headline c-bolt-headline--bold c-bolt-headline--large">
+          This is a headline
+        </h2>
+        <p class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--medium">
+          This is a paragraph.
+        </p>
+      </replace-with-children>
+    </bolt-tile-body>
+  </replace-with-children>
+</bolt-tile>
+`;
+
+exports[`<bolt-tile> Component without media and actions 1`] = `
+<bolt-tile tag="article"
+           theme="none"
+           height="full"
+>
+  <replace-with-children class="c-bolt-tile">
+    <bolt-tile-body>
+      <replace-with-children class="c-bolt-tile__body">
+        <p class="c-bolt-eyebrow c-bolt-eyebrow--regular">
+          This is an eyebrow
+        </p>
+        <h2 class="c-bolt-headline c-bolt-headline--bold c-bolt-headline--large">
+          This is a headline
+        </h2>
+        <p class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--medium">
+          This is a paragraph.
+        </p>
+      </replace-with-children>
+    </bolt-tile-body>
+  </replace-with-children>
+</bolt-tile>
+`;

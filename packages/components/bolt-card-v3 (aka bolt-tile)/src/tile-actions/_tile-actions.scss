@@ -1,0 +1,18 @@
+/* ------------------------------------ *\
+   tile Actions
+\* ------------------------------------ */
+
+@import '@bolt/core-v3.x';
+@import '../_tile-settings-and-tools.scss';
+
+bolt-tile-actions {
+  @include bolt-tile-border-reset;
+}
+
+.c-bolt-tile__actions {
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: $bolt-tile-individual-link-z-index;
+  width: 100%;
+}

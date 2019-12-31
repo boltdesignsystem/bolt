@@ -1,0 +1,67 @@
+{% set videoUuid1 = "js-bolt-video-uuid-tile" %}
+{% set videoUuid2 = "js-bolt-video-uuid-tile-with-link" %}
+
+{% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
+{% cell "u-bolt-width-6/12 u-bolt-width-4/12@small" %}
+{% include "@bolt-components-tile/tile.twig" with {
+      tag: "article",
+      media: {
+        video: {
+          videoId: "5780495299001",
+          accountId: "1900410236",
+          playerId: "r1CAdLzTW",
+          videoUuid: videoUuid1,
+          showMeta: true,
+          showMetaTitle: false,
+        },
+      },
+      body: {
+        eyebrow: "Video",
+        headline: "Video Meta Title Goes Here.",
+        paragraph: "Anthem debuts its next-generation service desktop, driving frictionless customer experiences.",
+      },
+      actions: [
+        {
+          text: "Play or Pause",
+          attributes: {
+            "on-click": "toggle",
+            "on-click-target": videoUuid1
+          }
+        },
+      ],
+    } only %}
+{% endcell %}
+{% cell "u-bolt-width-6/12 u-bolt-width-4/12@small" %}
+{% include "@bolt-components-tile/tile.twig" with {
+      link: {
+        attributes: {
+          "on-click": "toggle",
+          "on-click-target": videoUuid2,
+        },
+      },
+      media: {
+        video: {
+          videoId: "5609376179001",
+          accountId: "1900410236",
+          playerId: "r1CAdLzTW",
+          videoUuid: videoUuid2,
+          showMeta: true,
+          showMetaTitle: false,
+        },
+      },
+      body: {
+        headline: "With link and video",
+        paragraph: "This tile has a link, which makes the whole tile clickable, and you can make it play/pause the video. Action button is optional in this case.",
+      },
+      actions: [
+        {
+          text: "This button is video control",
+          attributes: {
+            "on-click": "toggle",
+            "on-click-target": videoUuid2,
+          },
+        }
+      ],
+    } only %}
+{% endcell %}
+{% endgrid %}

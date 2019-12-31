@@ -1,0 +1,27 @@
+{% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
+{% cell "u-bolt-width-12/12 u-bolt-width-6/12@small" %}
+{% include "@bolt-components-tile/tile.twig" with {
+      media: {
+        image: {
+          src: "/images/placeholders/landscape-16x9-mountains.jpg",
+          alt: "Image alt.",
+        },
+      },
+      body: {
+        eyebrow: "This is an eyebrow",
+        headline: "This is a headline",
+        paragraph: "This is a paragraph.",
+      },
+      actions: [
+        {
+          text: "This is a button",
+          url: "http://pega.com",
+        },
+        {
+          text: "Verylongunbrokenword",
+          url: "http://pega.com",
+        }
+      ],
+    } only %}
+{% endcell %}
+{% endgrid %}

@@ -1,9 +1,9 @@
 {% include "@bolt-components-card/card.twig" with {
+  url: "#!",
   contentItems: [
     {
       pattern: "image",
       src: "/images/placeholders/landscape-16x9-mountains.jpg",
-      lazyload: false,
       alt: "Anthem Video"
     },
     {
@@ -14,7 +14,7 @@
       pattern: "headline",
       tag: "h3",
       size: "large",
-      text: "Anthem: Service Desktop"
+      text: headline_demo_text | default("Anthem: Service Desktop")
     },
     {
       pattern: "text",
@@ -22,8 +22,13 @@
     },
     {
       pattern: "button",
-      text: "Get the report",
+      text: "Learn More",
       url: "http://pega.com",
-    }
+    },
+    {
+      pattern: "button",
+      text: "Register Now",
+      url: "http://pega.com",
+    },
   ]
-} only %}
+} %}

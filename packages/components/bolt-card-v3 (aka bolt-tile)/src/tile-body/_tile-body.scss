@@ -1,0 +1,33 @@
+/* ------------------------------------ *\
+   tile Body
+\* ------------------------------------ */
+
+@import '@bolt/core-v3.x';
+@import '../_tile-settings-and-tools.scss';
+
+bolt-tile-body {
+  width: 100%;
+}
+
+:host {
+  width: 100%;
+}
+
+.c-bolt-tile__body {
+  @include bolt-margin(0);
+  @include bolt-padding(#{$bolt-tile-body-spacing});
+
+  display: block;
+}
+
+// automatically raise the default z-index of nested bolt-links in the bolt-tile-body so they aren't covered by the bolt-tile-link layer
+.c-bolt-tile__body ::slotted(bolt-link) {
+  position: relative;
+  z-index: $bolt-tile-individual-link-z-index;
+}
+
+// fallback version of the above styles -- used if shadow dom isn't supported or not getting used in certain situations
+.c-bolt-tile__body bolt-link {
+  position: relative;
+  z-index: $bolt-tile-individual-link-z-index;
+}

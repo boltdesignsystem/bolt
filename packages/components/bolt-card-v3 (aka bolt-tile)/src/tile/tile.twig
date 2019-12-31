@@ -1,0 +1,101 @@
+{% set schema = bolt.data.components["@bolt-components-tile"].schema %}
+
+{% if enable_json_schema_validation %}
+	{{ validate_data_schema(schema, _self) | raw }}
+{% endif %}
+
+{# Variables #}
+{% set base_class = "c-bolt-tile" %}
+{% set attributes = create_attribute(attributes|default({})) %}
+{% set inner_attributes = create_attribute({}) %}
+
+{# Set up checks to validate that the component's prop values are allowed, based on the component's schema #}
+{% set tag_options = schema.properties.tag.enum %}
+{% set theme_options = schema.properties.theme.enum %}
+{% set height_options = schema.properties.height.enum %}
+
+{# Check that the component's current prop values are valid. if not, default to the schema default #}
+{% set tag = tag in tag_options ? tag : schema.properties.tag.default %}
+{% set theme = theme in theme_options ? theme : schema.properties.theme.default %}
+{% set height = height in height_options ? height : schema.properties.height.default %}
+
+{% if link %}
+	{% set link_url = link.url %}
+	{% set link_text = link.text %}
+	{% set link_target = link.target %}
+	{% set link_attributes = create_attribute(link.attributes) %}
+{% endif %}
+
+{% set media_block = block("media") %}
+{% set body_block = block("body") %}
+{% set actions_block = block("actions") %}
+
+{# tile component's custom element wrapper #}
+<bolt-tile
+	{% if tag %} tag="{{ tag }}" {% endif %} {% if theme %} theme="{{ theme }}" {% endif %} {% if height %} height="{{ height }}" {% endif %} {% if link_url %} url="{{ link_url }}" {% endif %} {% if horizontal %} horizontal {% endif %} {{ attributes }}>
+	{# This sets none values to not render anything. #}
+	{% set theme = theme == "none" ? false : theme %}
+
+	{# Array of classes based on the defined + default props #}
+	{% set classes = [
+    base_class,
+    horizontal ? "c-bolt-tile--horizontal" : "",
+    theme in theme_options ? "t-bolt-#{theme}" : "",
+  ] %}
+
+	<replace-with-children {{ inner_attributes.addClass(classes) }}>
+		{% if link %}
+			<bolt-tile-link {{ link_attributes }}>
+				{% if link_url %}
+					<a href="{{ link_url }}" class="{{ "#{base_class}__link" }}" {% if link_target %} target="{{ link_target }}" {% endif %}>
+						{% if link_text %}
+							<replace-with-children class="u-bolt-visuallyhidden">{{ link_text }}</replace-with-children>
+						{% endif %}
+					</a>
+				{% endif %}
+			</bolt-tile-link>
+		{% endif %}
+
+		{% if content %}
+			{# @todo: The replace function is a hack to get around the utf-8 bug. #}
+			{{ content | join | replace({"UTF-8": ""}) }}
+		{% else %}
+
+			{% if media or media_block %}
+				{% if media_block %}
+					{% embed "@bolt-components-tile/_tile-media.twig" %}
+						{% block media %}
+							{{ media_block }}
+						{% endblock %}
+					{% endembed %}
+				{% else %}
+					{% include "@bolt-components-tile/_tile-media.twig" %}
+				{% endif %}
+			{% endif %}
+
+			{% if body or body_block %}
+				{% if body_block %}
+					{% embed "@bolt-components-tile/_tile-body.twig" %}
+						{% block body %}
+							{{ body_block }}
+						{% endblock %}
+					{% endembed %}
+				{% else %}
+					{% include "@bolt-components-tile/_tile-body.twig" %}
+				{% endif %}
+			{% endif %}
+
+			{% if actions or actions_block %}
+				{% if actions_block %}
+					{% embed "@bolt-components-tile/_tile-actions.twig" %}
+						{% block actions %}
+							{{ actions_block }}
+						{% endblock %}
+					{% endembed %}
+				{% else %}
+					{% include "@bolt-components-tile/_tile-actions.twig" %}
+				{% endif %}
+			{% endif %}
+		{% endif %}
+	</replace-with-children>
+</bolt-tile>

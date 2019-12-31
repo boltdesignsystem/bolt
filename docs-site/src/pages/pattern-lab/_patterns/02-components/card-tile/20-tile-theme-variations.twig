@@ -1,0 +1,61 @@
+{% set container_themes = get_data("@bolt/themes.schema.json") %}
+{% set schema = bolt.data.components["@bolt-components-tile"].schema %}
+
+{% for container_theme in container_themes.properties.colors.enum %}
+	{% set tiles %}
+	{% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
+	{% cell "u-bolt-width-12/12" %}
+	{% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
+	{% for theme in schema.properties.theme.enum %}
+		{% cell "u-bolt-width-6/12 u-bolt-width-5/12@small" %}
+		{% include "@bolt-components-tile/tile.twig" with {
+                theme: theme,
+                body: {
+                  headline: theme|upper ~ " Themed tile",
+                  paragraph: "Each tile can be individually theme, only when the theme is set to <em>none</em> should the tile background be semi-transparent.",
+                },
+                actions: [
+                  {
+                    text: "This is a button",
+                    url: "http://pega.com",
+                  }
+                ],
+              } only %}
+		{% endcell %}
+	{% endfor %}
+	{% endgrid %}
+	{% endcell %}
+	{% endgrid %}
+	{% endset %}
+
+	<h3>Inside
+		{{ container_theme|upper }}
+		Parent Container</h3>
+	<div class="u-bolt-margin-bottom-medium">
+		{% embed "@bolt-components-band/band.twig" with {
+      theme: container_theme,
+    } %}
+			{% block band_content %}
+				{{ tiles }}
+			{% endblock %}
+		{% endembed %}
+		{% embed "@bolt-components-band/band.twig" with {
+      theme: container_theme,
+      background: {
+        opacity: "heavy",
+        fill: "color",
+        contentItems: [
+          {
+            pattern: "image",
+            src: "/images/content/backgrounds/background-tall-2.jpg",
+            lazyload: false
+          }
+        ]
+      }
+    } %}
+			{% block band_content %}
+				{{ tiles }}
+			{% endblock %}
+		{% endembed %}
+	</div>
+{% endfor %}
