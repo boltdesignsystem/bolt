@@ -1,0 +1,3 @@
+---
+title: Old Card (Deprecated)
+---

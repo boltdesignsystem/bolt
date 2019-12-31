@@ -13,6 +13,8 @@ import '@bolt/components-typeahead/__demos__/dynamically-fetch-data/typeahead.dy
 import '@bolt/components-typeahead/__demos__/navigate-to-search-results/typeahead.navigate-to-search-results';
 import '@bolt/components-typeahead/__demos__/navigate-to-exact-result/typeahead.navigate-to-exact-result';
 
+import './pages/pattern-lab/_patterns/02-components/card-deprecated/__tests__/index.js';
+
 // here if you need pl only JS
 // document.addEventListener('DOMContentLoaded', () => {
 //   /**
