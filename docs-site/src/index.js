@@ -1,6 +1,7 @@
 import './components/version-selector/version-selector';
 // import './components/schema-form'; // Component Explorer is temporarily disabled until we're done migrating our Twig Rendering Service to Now.sh v2
 import './components/handle-iframe-height';
+import './pages/pattern-lab/_patterns/02-components/card-deprecated/__tests__';
 // import './pages/pattern-lab/_patterns/01-styleguide/100-rendering-performance/bolt-preact-test';
 // import './pages/pattern-lab/_patterns/01-styleguide/100-rendering-performance/bolt-lit-test';
 // import './pages/pattern-lab/_patterns/01-styleguide/100-rendering-performance/lazy-lit-test';
@@ -12,8 +13,6 @@ enableAnimDemos();
 import '@bolt/components-typeahead/__demos__/dynamically-fetch-data/typeahead.dynamically-fetch-data';
 import '@bolt/components-typeahead/__demos__/navigate-to-search-results/typeahead.navigate-to-search-results';
 import '@bolt/components-typeahead/__demos__/navigate-to-exact-result/typeahead.navigate-to-exact-result';
-
-import './pages/pattern-lab/_patterns/02-components/card-deprecated/__tests__/index.js';
 
 // here if you need pl only JS
 // document.addEventListener('DOMContentLoaded', () => {

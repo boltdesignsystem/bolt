@@ -17,11 +17,9 @@ for (let i = 0; i < elementsToPersonalize.length; i++) {
       contentInjectionTarget = element.parentNode;
     }
 
-    if (contentInjectionTarget && contentInjectionTarget.parentNode) {
-      contentInjectionTarget.parentNode.replaceChild(
-        html,
-        contentInjectionTarget,
-      );
-    }
+    contentInjectionTarget.parentNode.replaceChild(
+      html,
+      contentInjectionTarget,
+    );
   }
 }
