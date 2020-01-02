@@ -108,6 +108,10 @@ class BoltAutosuggest extends withPreact() {
     super.disconnecting && super.disconnecting();
     // Keep an object of listener types mapped to callback functions
     this._listeners = {};
+
+    // hack so that "ready" event will fire next time component connects,
+    // and any external listeners will be re-added
+    this._wasInitiallyRendered = false;
   }
 
   // return the parent that's rendering <bolt-autosuggest> based on Shadow DOM usage
@@ -367,7 +371,7 @@ class BoltAutosuggest extends withPreact() {
    * @param {{newValue: string}} newValue - the updated input value
    */
   onChange = (event, { newValue, method }) => {
-    this._fire('onChange', newValue, method);
+    this._fire('onChange', method, newValue);
 
     // @todo: replace this workaround with this.results.findIndex(findSelectedIndex) once `findIndex` can be safely polyfilled
     const suggestionIndex = this.results.indexOf(
