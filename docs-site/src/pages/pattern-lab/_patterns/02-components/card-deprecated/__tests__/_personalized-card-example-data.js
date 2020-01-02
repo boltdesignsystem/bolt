@@ -28,6 +28,7 @@ const clientRenderedExample = [
             </bolt-text>
           </bolt-teaser>
         </div>
+
         <div class="c-bolt-card__footer">
           <bolt-teaser>
             <bolt-button-group bolt-component>
@@ -75,6 +76,7 @@ const clientRenderedExample = [
             </bolt-text>
           </bolt-teaser>
         </div>
+
         <div class="c-bolt-card__footer">
           <bolt-teaser>
             <bolt-button-group bolt-component>
@@ -123,6 +125,7 @@ const serverRenderedExample = [
             <p>See how Philips Healthcare uses the latest in Digital Process Automation (DPA) to improve health outcomes and foster patient engagement.</p>
           </bolt-teaser>
         </div>
+
         <div class="c-bolt-card__footer">
           <bolt-teaser>
             <bolt-button-group bolt-component>
@@ -172,6 +175,7 @@ const serverRenderedExample = [
             <p>See how Philips Healthcare uses the latest in Digital Process Automation (DPA) to improve health outcomes and foster patient engagement.</p>
           </bolt-teaser>
         </div>
+
         <div class="c-bolt-card__footer">
           <bolt-teaser>
             <bolt-button-group bolt-component>

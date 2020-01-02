@@ -1,3 +1,3 @@
 ---
-title: Old Card (Deprecated)
+title: Card (Deprecated)
 ---

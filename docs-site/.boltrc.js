@@ -77,7 +77,6 @@ const config = {
     global: [
       // helper components that are only used internally
       '@bolt/shadow-toggle',
-      '@bolt/components-tile',
       '@bolt/theme-switcher',
 
       '@bolt/components-radio-switch',
@@ -104,6 +103,7 @@ const config = {
       '@bolt/components-button',
       '@bolt/components-button-group',
       '@bolt/components-card',
+      '@bolt/components-card-replacement',
       '@bolt/components-chip',
       '@bolt/components-chip-list',
       '@bolt/components-code-snippet',

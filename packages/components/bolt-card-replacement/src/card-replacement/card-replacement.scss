@@ -1,0 +1,131 @@
+/* ------------------------------------ *\
+   card-replacements
+\* ------------------------------------ */
+
+@import '@bolt/core-v3.x';
+@import '../_card-replacement-settings-and-tools.scss';
+@import '@bolt/global/styles/06-themes/_themes.all.scss';
+
+
+// Custom element
+@include bolt-custom-element('bolt-card-replacement', block, medium);
+
+bolt-card-replacement {
+  @include bolt-card-replacement-border-reset;
+  @include bolt-card-replacement-content-conditions;
+
+  position: relative;
+  border-radius: $bolt-card-replacement-border-radius;
+  border-width: $bolt-card-replacement-border-width;
+
+  &[height='full'] {
+    display: flex;
+    height: 100%;
+  }
+
+  &[rounded]{
+    @include bolt-border-radius(large);
+  }
+}
+
+
+// card-replacement container styles
+.c-bolt-card-replacement {
+  @include bolt-card-replacement-content-conditions;
+  @include bolt-margin(0);
+  @include bolt-padding(0);
+  @include bolt-shadow('level-20', false, $bolt-card-replacement-shadow-color);
+
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  position: relative;
+  height: 100%;
+  border-radius: $bolt-card-replacement-border-radius;
+
+  // Non-themed card-replacement color settings.
+  // Note: when a card-replacement is themed, the `t-bolt-` class will define the color and background-color, these settings won't be loaded.
+  &:not([class*='t-bolt']) {
+    color: bolt-theme(text);
+    background-color: bolt-theme(
+      (
+        xdark: background 0.85,
+        dark: background 0.85,
+        light: secondary, // [Mai] This is not displaying correctly when JS is on.
+        xlight: background 0.85,
+      )
+    );
+    background-image:
+      linear-gradient(
+        to bottom,
+        rgba(bolt-color(white), 0.05),
+        rgba(bolt-color(white), 0.05)
+      );
+  }
+}
+
+.c-bolt-card-replacement--rounded {
+  @include bolt-border-radius(large);
+}
+
+.c-bolt-card-replacement--horizontal {
+  display: flex;
+  flex-direction: row;
+}
+
+.c-bolt-card-replacement--raised {
+  transition: transform $bolt-transition;
+
+  &:before {
+    @include bolt-shadow('level-30', false, $bolt-card-replacement-shadow-color);
+    content: '';
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: $bolt-card-replacement-border-radius;
+    transition: opacity $bolt-transition;
+  }
+
+  &:hover,
+  &:focus-within {
+    transform: translate3d(0, -1px, 0);
+
+    &:before {
+      opacity: 1;
+    }
+  }
+
+  &:active {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+// Old card-replacement footer
+
+.c-bolt-card_replacement__footer {
+  @include bolt-card-replacement-border-reset;
+
+  display: block;
+  border-top-width: $bolt-card-replacement-border-width;
+}
+
+.c-bolt-card_replacement__overflow-menu {
+  position: absolute;
+
+  &--top {
+    top: 0;
+  }
+
+  &--right {
+    right: 0;
+  }
+}
+
+.c-bolt-card-replacement__horizontal-wrapper {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
