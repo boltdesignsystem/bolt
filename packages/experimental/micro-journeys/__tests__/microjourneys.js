@@ -1,4 +1,4 @@
-import { stopServer, html } from '../../testing/testing-helpers';
+import { stopServer, html } from '../../../testing/testing-helpers';
 
 const timeout = 120000;
 
