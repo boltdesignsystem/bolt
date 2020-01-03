@@ -5,7 +5,7 @@
 @import '@bolt/core-v3.x';
 
 .c-bolt-toc-item {
-  @include bolt-padding(small medium);
+  @include bolt-padding(small);
   @include bolt-font-family(heading);
   @include bolt-font-size(small);
   @include bolt-font-weight(regular);
@@ -61,6 +61,7 @@
   }
 
   &:focus,
+  &:target,
   &.is-current {
     @include bolt-font-weight(semibold);
     color: bolt-theme(headline);
@@ -77,5 +78,6 @@
 }
 
 .c-bolt-toc-item--2nd-level {
-  padding-left: bolt-spacing(medium) + bolt-spacing(small);
+  padding-left: bolt-spacing(small) * 2;
+  background-color: rgba(bolt-color(gray), 0.06);
 }

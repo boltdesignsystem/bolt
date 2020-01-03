@@ -13,6 +13,21 @@ module.exports = {
       type: 'array',
       description:
         'Generates an array of items. The items represent the headlines of top level sections in an article.',
+      items: {
+        type: 'object',
+        description:
+          'Renders a linked item that points to the beginning of a particular section.',
+        properties: {
+          content: {
+            type: 'string',
+            description: 'Renders the text for the linked item.',
+          },
+          url: {
+            type: 'string',
+            description: 'Renders the `href` for the linked item.',
+          },
+        },
+      },
     },
     header: {
       type: 'string',
@@ -20,7 +35,8 @@ module.exports = {
     },
     uuid: {
       type: 'string',
-      description: 'Unique ID for popover, randomly generated if not provided.',
+      description:
+        'Unique ID for the table of content, randomly generated if not provided.',
     },
   },
 };

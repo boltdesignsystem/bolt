@@ -8,23 +8,19 @@
   @include bolt-shadow('level-20');
   display: block;
   overflow: hidden;
+  border: 1px solid $bolt-border-color;
   border-radius: bolt-border-radius(large);
 }
 
 .c-bolt-toc__header {
   @include bolt-margin(0);
-  @include bolt-padding(xsmall medium);
+  @include bolt-padding(xsmall small);
   @include bolt-font-family(heading);
   @include bolt-font-size(large);
   @include bolt-font-weight(bold);
   display: block;
-  color: bolt-color(white);
+  color: bolt-theme(background);
   background-color: bolt-theme(headline);
-}
-
-.c-bolt-toc__header-text {
-  @include bolt-margin(0);
-  @include bolt-padding(0);
 }
 
 .c-bolt-toc__list {

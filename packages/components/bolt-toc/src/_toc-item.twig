@@ -30,14 +30,20 @@
   {% endif %}
 {% endfor %}
 
+{#
+  Accessible attributes:
+  1. role="presentation": declares that an element is being used only for presentation and therefore does not have any accessibility semantics. This is necessary for telling Firefox + NVDA to correctly announce the number of listitems in a list.
+  2. role="listitem": declares that an element is a single item in a list.
+  3. Aria lists reference: https://www.scottohara.me/blog/2018/05/26/aria-lists.html
+#}
 <bolt-toc-item
   {% if outer_classes %} class="{{ outer_classes|join(' ') }}" {% endif %}
-  {{ this.props|without("items")|without("header")|without("class") }}
-  role="listitem"
+  {{ this.props|without("content")|without("class") }}
+  role="presentation"
 >
-  <replace-with-children>
-    <a {% if inner_classes %} class="{{ inner_classes|join(' ') }}" {% endif %} href="#{{ content|replace(' ', '-')|lower }}">
+  <replace-with-grandchildren role="listitem">
+    <a {% if inner_classes %} class="{{ inner_classes|join(' ') }}" {% endif %} href="{{ url }}">
       {{ content }}
     </a>
-  </replace-with-children>
+  </replace-with-grandchildren>
 </bolt-toc-item>
