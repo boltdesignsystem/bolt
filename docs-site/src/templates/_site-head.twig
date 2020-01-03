@@ -51,10 +51,12 @@
       {% endif %}
 
       {% if fileExists("@bolt-assets/bolt-components-critical-css.js") %}
-        {{ inline( legacyAssets["bolt-components-critical-css.js"] | default("") ) }}
         {{ inline( legacyAssets["bolt-components-critical-css-vars.js"] | default("") ) }}
-        {{ inline( legacyAssets["bolt-components-critical-fonts.js"] | default("") ) }}
       {% endif %}
+
+      if (sessionStorage.fontsLoadedCriticalFoftPreloadPolyfill){
+        document.documentElement.classList.add('js-fonts-loaded');
+      }
 
       window.drupalSettings = {
         google_analytics: {
@@ -82,8 +84,6 @@
         {{ inline( legacyAssets["bolt-components-critical-fonts.css"] | default("") ) }}
       {% endif %}
     </style>
-
-    <script src="https://www.google-analytics.com/analytics.js" defer></script>
 
     <link rel="image_src" href="/images/bolt-logo-480.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=LbyzAXRqNz">
