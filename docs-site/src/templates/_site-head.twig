@@ -83,10 +83,6 @@
       {% endif %}
     </style>
 
-    {% if bolt.data.config.esModules %}
-      <script type="module" src="{{ modernAssets["bolt-global.js"] | default("/build/bolt-global.modern.js") }}" async></script>
-    {% endif %}
-
     <script src="https://www.google-analytics.com/analytics.js" defer></script>
 
     <link rel="image_src" href="/images/bolt-logo-480.png">
