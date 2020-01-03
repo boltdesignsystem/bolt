@@ -6,21 +6,22 @@
 @import '../_card-replacement-settings-and-tools.scss';
 
 :host {
-  flex-basis: auto;
-  flex-grow: 1;
-  flex-shrink: 1;
-  overflow: initial;
+  & [horizontal] {
+    flex-basis: 25%;
+    flex-grow: 1;
+    flex-shrink: 1;
+    max-width: 300px;
+  }
 }
 
 bolt-card-replacement-media {
-  flex-basis: auto;
-  flex-grow: 1;
-  flex-shrink: 1;
   position: relative;
-  overflow: initial;
+  overflow: hidden;
 
   [horizontal] & {
     flex-basis: 25%;
+    flex-grow: 1;
+    flex-shrink: 1;
     max-width: 300px;
   }
 }
