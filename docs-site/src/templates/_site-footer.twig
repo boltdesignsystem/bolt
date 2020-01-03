@@ -30,9 +30,8 @@
 
   <script type="module">
     if (!sessionStorage.fontsLoadedCriticalFoftPreloadPolyfill){
-      {% if fileExists("@bolt-assets/bolt-components-critical-css.js") %}
-        {{ inline( legacyAssets["bolt-components-critical-fonts.js"] | default("") ) }}
-      {% endif %}
+      document.documentElement.classList.add('js-fonts-loaded');
+      sessionStorage.fontsLoadedCriticalFoftPreloadPolyfill = true;
     }
   </script>
 

@@ -81,7 +81,7 @@
     {# @TODO: wire this up to use Critical CSS #}
     <style>
       {% if fileExists("@bolt-assets/bolt-components-critical-fonts.css") %}
-        {{ inline( legacyAssets["bolt-components-critical-fonts.css"] | default("") ) }}
+        {# {{ inline( legacyAssets["bolt-components-critical-fonts.css"] | default("") ) }} #}
       {% endif %}
     </style>
 
