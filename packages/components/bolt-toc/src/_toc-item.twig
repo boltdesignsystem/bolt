@@ -12,6 +12,7 @@
 {# Array of classes based on the defined + default props #}
 {% set classes = [
   base_class,
+  active ? base_class ~ "--current",
 ] %}
 
 {#

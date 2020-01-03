@@ -25,6 +25,10 @@ class BoltTocItem extends withContext(BoltElement) {
   static get properties() {
     return {
       url: String,
+      active: {
+        type: Boolean,
+        reflect: true,
+      },
       role: {
         type: String,
         reflect: true,
@@ -42,10 +46,14 @@ class BoltTocItem extends withContext(BoltElement) {
   }
 
   render() {
+    const classes = cx('c-bolt-toc-item', {
+      [`c-bolt-toc-item--current`]: this.active,
+    });
+
     return html`
       <div role="listitem">
         <a
-          class="${cx(`c-bolt-toc-item`)}"
+          class="${classes}"
           href="${ifDefined(this.url ? this.url : undefined)}"
         >
           ${this.slotify('default')}

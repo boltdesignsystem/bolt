@@ -24,14 +24,18 @@ module.exports = {
           },
           url: {
             type: 'string',
-            description: 'Renders the `href` for the linked item.',
+            description: 'Renders the `href` for the linked item. This should be the `id` of the responding section. For example: `#section-one-name`.',
+          },
+          active: {
+            type: 'boolean',
+            description: 'Indicates that the item represents the current section being viewed.',
           },
         },
       },
     },
     header: {
       type: 'string',
-      description: 'Controls the header of the table of content.',
+      description: 'Renders a header for the table of content.',
     },
     uuid: {
       type: 'string',
