@@ -62,7 +62,7 @@ module.exports = {
 
     browser
       .url(
-        `${testingUrl}/pattern-lab/patterns/02-components-card-legacy-__tests__-personalized-card--client-rendered-personalized-card-example--client-rendered-tests/02-components-card-legacy-__tests__-personalized-card--client-rendered-personalized-card-example--client-rendered-tests.html`,
+        `${testingUrl}/pattern-lab/patterns/02-components-card-deprecated-__tests__-personalized-card--client-rendered--personalized-card-example--client-rendered-tests/02-components-card-deprecated-__tests__-personalized-card--client-rendered--personalized-card-example--client-rendered-tests.html`,
       )
       .waitForElementPresent(
         '.js-no-shadow-image-test bolt-image[src="/images/placeholders/landscape-16x9-skyline.jpg"] img.is-lazyloaded',
