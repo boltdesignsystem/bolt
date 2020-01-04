@@ -1,0 +1,18 @@
+<bolt-card-replacement-action {% if external %} external {% endif %} {% if url %} url="{{url}}" {% endif %}>
+	<replace-with-children class="c-bolt-card_replacement__action">
+		{% if text %}
+			{% include "@bolt-components-button/button.twig" with {
+        text: text,
+        url: url,
+        style: "text",
+        width: "full",
+        align: "start",
+        target: external == true ? "_blank" : "_self",
+        icon: {
+          name: external == false or external == null ? "chevron-right" : "external-link",
+        },
+        attributes: attributes|default({})
+      } only %}
+		{% endif %}
+	</replace-with-children>
+</bolt-card-replacement-action>
