@@ -6,7 +6,6 @@ const {
   TRAVIS_PULL_REQUEST_BRANCH,
 } = require('./travis-vars');
 
-
 let branchName = 'detached-HEAD';
 try {
   branchName = spawnSync('git', ['symbolic-ref', 'HEAD'], {

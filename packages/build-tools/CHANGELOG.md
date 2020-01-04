@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.13.2](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/compare/v2.13.1...v2.13.2) (2019-12-30)
+
+
+### Bug Fixes
+
+* Remove cache-loader from webpack fonts rule ([2906c70](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/2906c70))
+
+
+
+
+
 # [2.13.0](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/compare/v2.12.1...v2.13.0) (2019-12-13)
 
 
