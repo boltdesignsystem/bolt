@@ -20,12 +20,26 @@
   {% endif %}
 
   {% if bolt.data.config.esModules %}
+    <script nomodule src="{{ legacyAssets["bolt-global.js"] | default("/build/bolt-global.js") }}?cacheBuster={{ cacheBuster }}" async></script>
+
     <script type="module" src="{{ modernAssets["bolt-global.js"] | default("/build/bolt-global.modern.js") }}" async></script>
 
-    <script nomodule src="{{ legacyAssets["bolt-global.js"] | default("/build/bolt-global.js") }}?cacheBuster={{ cacheBuster }}" async></script>
   {% else %}
     <script src="{{ legacyAssets["bolt-global.js"] | default("/build/bolt-global.js") }}?cacheBuster={{ cacheBuster }}" async></script>
   {% endif %}
+
+  <script type="module">
+    if (!sessionStorage.fontsLoadedCriticalFoftPreloadPolyfill){
+      document.documentElement.classList.add('js-fonts-loaded');
+      sessionStorage.fontsLoadedCriticalFoftPreloadPolyfill = true;
+    }
+  </script>
+
+  <script nomodule>
+    document.documentElement.classList.add('js-fonts-loaded');
+  </script>
+
+  <script src="https://www.google-analytics.com/analytics.js" async></script>
 
   {{ patternLabFoot | raw }}
 
