@@ -68,6 +68,15 @@ class Layout extends BaseLitComponent {
     }
   }
 
+  render() {
+    return html`
+      <pl-header></pl-header>
+      <div class="pl-c-viewport-modal-wrapper">
+        <pl-iframe></pl-iframe>
+        <pl-drawer></pl-drawer>
+      </div>
+    `;
+  }
 }
 
 customElements.define('pl-layout', Layout);

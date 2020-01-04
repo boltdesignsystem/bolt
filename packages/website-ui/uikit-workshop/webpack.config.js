@@ -1,35 +1,40 @@
 // webpack.config.js
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HardSourceWebpackPlugin = require('hard-source-webpack-plugin-patch');
+const TerserPlugin = require('terser-webpack-plugin');
 const NoEmitPlugin = require('no-emit-webpack-plugin');
 const autoprefixer = require('autoprefixer');
-const CriticalCssPlugin = require('@bolt/critical-css-webpack-plugin');
+const CriticalCssPlugin = require('critical-css-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const selectorImporter = require('node-sass-selector-importer');
+const webpack = require('webpack');
 const CopyPlugin = require('copy-webpack-plugin');
 const PrerenderSPAPlugin = require('@bolt/prerender-spa-plugin');
 const localChrome = require('local-chrome');
-const TerserPlugin = require('terser-webpack-plugin');
 const path = require('path');
 const Renderer = require('@bolt/uikit-prerenderer');
 const puppeteer = require('puppeteer');
 const argv = require('yargs').argv;
 const merge = require('webpack-merge');
+const WebpackBar = require('webpackbar');
 
 const cosmiconfig = require('cosmiconfig');
 const explorer = cosmiconfig('patternlab');
 
 // @todo: wire these two ocnfigs up to use cosmicconfig!
 const defaultConfig = {
+  rootDir: process.cwd(),
   buildDir: './dist',
-  prod: true, // or false for local dev
+  prod: argv.watch ? false : true, // or false for local dev
   sourceMaps: true,
+  watch: argv.watch ? true : false,
   publicPath: './styleguide/',
   copy: [{ from: './src/images/**', to: 'images', flatten: true }],
+  noViewAll: false,
 };
 
-module.exports = function() {
+module.exports = function(apiConfig) {
   return new Promise(async resolve => {
     let customConfig = defaultConfig;
     let configToSearchFor;
@@ -47,7 +52,7 @@ module.exports = function() {
     }
 
     // Allow external flags for modifying PL's prod mode, on top of the .patternlabrc config file
-    const config = Object.assign({}, defaultConfig, customConfig);
+    const config = Object.assign({}, defaultConfig, customConfig, apiConfig);
 
     function getBabelConfig(isModern = false) {
       return {
@@ -130,6 +135,7 @@ module.exports = function() {
     ];
 
     const webpackConfig = {
+      stats: 'errors-warnings',
       performance: {
         hints: false,
       },
@@ -142,7 +148,7 @@ module.exports = function() {
         },
       },
       output: {
-        path: path.resolve(process.cwd(), `${config.buildDir}/styleguide`),
+        path: path.resolve(config.rootDir, `${config.buildDir}/styleguide`),
         publicPath: `${config.publicPath}`,
         filename: '[name].js',
         chunkFilename: `js/[name]-chunk-[chunkhash].js`,
@@ -211,7 +217,7 @@ module.exports = function() {
                 // otherwise extract the result and write out a .css file per usual
                 use: [MiniCssExtractPlugin.loader, scssLoaders].reduce(
                   (acc, val) => acc.concat(val),
-                  [],
+                  []
                 ),
               },
             ],
@@ -219,10 +225,9 @@ module.exports = function() {
         ],
       },
       cache: true,
-      // mode: config.prod ? 'production' : 'development',
-      mode: config.prod ? 'production' : 'development', // temp workaround till strange rendering issues with full `production` mode are switched on in Webpack
+      mode: config.prod ? 'production' : 'development',
       optimization: {
-        minimize: true,
+        minimize: config.prod,
         occurrenceOrder: true,
         namedChunks: true,
         removeAvailableModules: true,
@@ -254,6 +259,7 @@ module.exports = function() {
           : [],
       },
       plugins: [
+        new WebpackBar(),
         new CopyPlugin(config.copy),
         new NoEmitPlugin(['css/pattern-lab.js']),
       ],
@@ -273,14 +279,20 @@ module.exports = function() {
           // caches will be deleted. Together they must be at least 300MB in size
           sizeThreshold: 300 * 1024 * 1024,
         },
-      }),
+      })
     );
 
     const legacyConfig = merge(webpackConfig, {
       entry: {
-        'js/patternlab-pattern': './src/scripts/patternlab-pattern.js',
-        'js/patternlab-viewer': './src/scripts/patternlab-viewer.js',
-        'css/pattern-lab': './src/sass/pattern-lab.scss',
+        'js/patternlab-pattern': path.join(
+          __dirname,
+          './src/scripts/patternlab-pattern.js'
+        ),
+        'js/patternlab-viewer': path.join(
+          __dirname,
+          './src/scripts/patternlab-viewer.js'
+        ),
+        'css/pattern-lab': path.join(__dirname, './src/sass/pattern-lab.scss'),
       },
       module: {
         rules: [
@@ -308,9 +320,15 @@ module.exports = function() {
         mainFields: ['esnext', 'jsnext:main', 'browser', 'module', 'main'],
       },
       entry: {
-        'js/patternlab-pattern': './src/scripts/patternlab-pattern.modern.js',
-        'js/patternlab-viewer': './src/scripts/patternlab-viewer.modern.js',
-        'css/pattern-lab': './src/sass/pattern-lab.scss',
+        'js/patternlab-pattern': path.join(
+          __dirname,
+          './src/scripts/patternlab-pattern.modern.js'
+        ),
+        'js/patternlab-viewer': path.join(
+          __dirname,
+          './src/scripts/patternlab-viewer.modern.js'
+        ),
+        'css/pattern-lab': path.join(__dirname, './src/sass/pattern-lab.scss'),
       },
       output: {
         path: path.resolve(process.cwd(), `${config.buildDir}/styleguide`),
@@ -333,18 +351,20 @@ module.exports = function() {
       plugins: [
         // clear out the buildDir on every fresh Webpack build
         new CleanWebpackPlugin(
-          [
-            `${config.buildDir}/index.html`,
-            `${config.buildDir}/styleguide/css`,
-            `${config.buildDir}/styleguide/js`,
-          ],
+          config.watch
+            ? []
+            : [
+                `${config.buildDir}/index.html`,
+                `${config.buildDir}/styleguide/css`,
+                `${config.buildDir}/styleguide/js`,
+              ],
           {
             allowExternal: true,
             verbose: false,
 
             // perform clean just before files are emitted to the output dir
             beforeEmit: false,
-          },
+          }
         ),
         new PrerenderSPAPlugin({
           // Required - The path to the webpack-outputted app to prerender.
@@ -370,7 +390,7 @@ module.exports = function() {
         }),
         new HtmlWebpackPlugin({
           filename: '../index.html',
-          template: 'src/html/index.html',
+          template: path.resolve(__dirname, 'src/html/index.html'),
           inject: false,
         }),
         new MiniCssExtractPlugin({
