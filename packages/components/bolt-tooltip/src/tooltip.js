@@ -1,5 +1,3 @@
-import { supportsCSSVars } from '@bolt/core/utils';
-import classNames from 'classnames/dedupe';
 import {
   customElement,
   BoltElement,
@@ -7,6 +5,9 @@ import {
   styleMap,
   unsafeCSS,
 } from '@bolt/element';
+import { isFocusable } from '@bolt/core-v3.x/utils';
+import { ifDefined } from 'lit-html/directives/if-defined';
+import classNames from 'classnames/dedupe';
 import tooltipStyles from './tooltip.scss';
 import schema from '../tooltip.schema';
 
@@ -22,17 +23,17 @@ class BoltTooltip extends BoltElement {
         reflect: true,
       },
       uuid: String,
-      noCssVars: {
-        type: Boolean,
-        attribute: 'no-css-vars',
-      },
+      dotted: Boolean,
+      hasFocusableContent: Boolean,
     };
   }
 
   constructor() {
     super();
-    this.noCssVars = supportsCSSVars ? false : true;
     this.open = false;
+    this.hasFocus = false;
+    this.isHovering = false;
+    this.textContentLength = 0;
     this.uuid = this.uuid || Math.floor(10000 + Math.random() * 90000);
   }
 
@@ -50,65 +51,142 @@ class BoltTooltip extends BoltElement {
     this.removeAttribute('ready');
   }
 
+  setOpen() {
+    if (this.isHovering || this.hasFocus) {
+      this.open = true;
+    } else {
+      this.open = false;
+    }
+  }
+
+  handleFocus(e) {
+    this.hasFocus = e.type === 'focusin' ? true : false;
+    this.setOpen();
+  }
+
+  handleHover(e) {
+    this.isHovering =
+      e.type === 'mouseover' ||
+      (e.type === 'mouseout' &&
+        // relatedTarget may be slotted content
+        (this.contains(e.relatedTarget) ||
+          // or it may be in Shadow DOM
+          this.renderRoot.contains(e.relatedTarget)))
+        ? true
+        : false;
+    this.setOpen();
+  }
+
+  sortChildren() {
+    // @todo: add mutation observer and call this when content changes
+    let hasText, hasAllowedContent, hasDisallowedContent, hasFocusableContent;
+    const focusableElements = ['bolt-link', 'bolt-button', 'bolt-trigger'];
+    const allowedInlineElements = [
+      'abbr',
+      'acronym',
+      'b',
+      'cite',
+      'em',
+      'i',
+      'strong',
+      'sub',
+      'sup',
+      'time',
+    ];
+
+    const sort = e => {
+      if (e.nodeType === 3) {
+        // If text node
+        hasText = true;
+      } else if (e.nodeType === 1) {
+        // If element node
+        // Decides if tooltip gets a dotted underline style
+        if (allowedInlineElements.includes(e.nodeName.toLowerCase())) {
+          hasAllowedContent = true;
+        } else {
+          hasDisallowedContent = true;
+        }
+
+        // Decides if tooltip wrapper can get focus or not
+        if (
+          // Covers native elements and those with tabindex set
+          isFocusable(e) ||
+          // Covers custom elements which delegate focus
+          focusableElements.includes(e.nodeName.toLowerCase())
+        ) {
+          hasFocusableContent = true;
+        }
+      }
+    };
+
+    const recursivelySort = e => {
+      sort(e);
+      if (e.children) {
+        Array.from(e.children).forEach(e => {
+          recursivelySort(e);
+        });
+      }
+    };
+
+    this.templateMap.get('default') &&
+      this.templateMap.get('default').forEach(e => {
+        // Sorts through the default slot, figure out what kind of nodes it
+        // contains, and sets variables accordingly
+        recursivelySort(e);
+      });
+
+    this.dotted = (hasText || hasAllowedContent) && !hasDisallowedContent;
+    this.hasFocusableContent = hasFocusableContent;
+  }
+
+  getTextContentLength() {
+    // @todo: add mutation observer and call this when content changes
+    if (this.templateMap.get('content')) {
+      this.textContentLength = this.templateMap
+        .get('content')[0]
+        .textContent.trim().length;
+    }
+  }
+
   render() {
+    if (!this._wasInitiallyRendered) {
+      this.sortChildren();
+      this.getTextContentLength();
+    }
+
     // @todo: automatic schema validation?
     const placement = this.placement || schema.properties.placement.default;
-    const textContent =
-      this.templateMap.get('content') &&
-      this.templateMap.get('content')[0].textContent.trim();
 
     const classes = cx('c-bolt-tooltip', {
       [`is-expanded`]: this.open,
       [`c-bolt-tooltip--${placement}`]: placement,
-      [`c-bolt-tooltip--text-wrap`]: textContent && textContent.length > 31,
+      [`c-bolt-tooltip--dotted`]: this.dotted,
+      [`c-bolt-tooltip--text-wrap`]: this.textContentLength > 31,
       [`c-bolt-tooltip--text-align-center`]:
-        textContent && textContent.length > 31 && textContent.length < 62,
+        this.textContentLength > 31 && this.textContentLength < 62,
     });
-
-    const tooltipOpen = () => {
-      this.open = true;
-    };
-    const tooltipClosed = () => {
-      this.open = false;
-    };
 
     return html`
       <span
         class="${classes}"
-        @mouseover="${tooltipOpen}"
-        @mouseout="${tooltipClosed}"
-        @focusin="${tooltipOpen}"
-        @focusout="${tooltipClosed}"
+        @mouseover="${this.handleHover}"
+        @mouseout="${this.handleHover}"
+        @focusin="${this.handleFocus}"
+        @focusout="${this.handleFocus}"
       >
-        ${this.templateMap.get('trigger') &&
+        ${this.slotify('default') &&
           html`
-            <bolt-trigger
+            <span
+              tabindex="${this.hasFocusableContent ? '-1' : '0'}"
+              role="${ifDefined(
+                this.hasFocusableContent ? 'button' : undefined,
+              )}"
               aria-describedby="js-bolt-tooltip-${this.uuid}"
               aria-controls="js-bolt-tooltip-${this.uuid}"
               aria-expanded="${this.open}"
             >
-              ${this.slotify('trigger')}
-            </bolt-trigger>
-          `}
-        ${this.templateMap.get('button') &&
-          html`
-            <bolt-button
-              aria-describedby="js-bolt-tooltip-${this.uuid}"
-              aria-controls="js-bolt-tooltip-${this.uuid}"
-              aria-expanded="${this.open}"
-            >
-              ${this.slotify('button')}
-            </bolt-button>
-          `}
-        ${this.templateMap.get('link') &&
-          html`
-            <bolt-link
-              aria-describedby="js-bolt-tooltip-${this.uuid}"
-              aria-controls="js-bolt-tooltip-${this.uuid}"
-              aria-expanded="${this.open}"
-            >
-              ${this.slotify('link')}
-            </bolt-link>
+              ${this.slotify('default')}
+            </span>
           `}
         ${this.templateMap.get('content') &&
           html`

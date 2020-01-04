@@ -14,25 +14,8 @@ module.exports = {
         'A Drupal attributes object. Applies extra HTML attributes to the outer &lt;bolt-menu&gt; tag.',
     },
     trigger: {
-      type: 'object',
+      type: 'any',
       description: 'Renders the trigger of the tooltip as custom content.',
-      properties: {
-        ...triggerSchema.properties,
-      },
-    },
-    button: {
-      type: 'object',
-      description: 'Renders the trigger of the tooltip as a button.',
-      properties: {
-        ...buttonSchema.properties,
-      },
-    },
-    link: {
-      type: 'object',
-      description: 'Renders the trigger of the tooltip as a link.',
-      properties: {
-        ...linkSchema.properties,
-      },
     },
     content: {
       type: 'any',

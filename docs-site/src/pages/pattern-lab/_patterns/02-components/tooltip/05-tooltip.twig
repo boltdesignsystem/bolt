@@ -269,26 +269,24 @@
   <bolt-list display="inline" spacing="large">
     <bolt-list-item>
       {% include "@bolt-components-tooltip/tooltip.twig" with {
-        trigger: {
-          content: "Banana stand",
-        },
+        trigger: "Banana stand",
         content: "There's always money in it.",
       } only %}
     </bolt-list-item>
     <bolt-list-item>
       {% include "@bolt-components-tooltip/tooltip.twig" with {
-        link: {
+        trigger: include("@bolt-components-link/link.twig", {
           text: "GOB",
           url: "https://pega.com/glossary#gob"
-        },
+        }),
         content: "George Oscar Bluth Jr.",
       } only %}
     </bolt-list-item>
     <bolt-list-item>
       {% include "@bolt-components-tooltip/tooltip.twig" with {
-        button: {
+        trigger: include("@bolt-components-button/button.twig", {
           text: "Download",
-        },
+        }),
         content: "File size: 25MB",
       } only %}
     </bolt-list-item>
