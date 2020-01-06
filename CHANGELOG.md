@@ -3,6 +3,34 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.13.3](https://github.com/boltdesignsystem/bolt/compare/v2.13.2...v2.13.3) (2020-01-02)
+
+
+### Bug Fixes
+
+* be sure ready event is emitted by 'bolt-autosuggest' before adding event listeners ([000ce99](https://github.com/boltdesignsystem/bolt/commit/000ce99))
+* check if autosuggest has already rendered before adding event listeners ([1a065ce](https://github.com/boltdesignsystem/bolt/commit/1a065ce))
+* IE KeyboardEvent error on submit ([2a29a9b](https://github.com/boltdesignsystem/bolt/commit/2a29a9b))
+* make sure autosuggest event listeners are re-added when component re-connects ([602cbef](https://github.com/boltdesignsystem/bolt/commit/602cbef))
+* onChange arguments passed in wrong order ([82f1e2f](https://github.com/boltdesignsystem/bolt/commit/82f1e2f))
+* prevent search form from submitting multiple times ([a212747](https://github.com/boltdesignsystem/bolt/commit/a212747))
+* unset _wasInitiallyRendered so that event listeners are re-added in IE after disconnect ([18ffa3e](https://github.com/boltdesignsystem/bolt/commit/18ffa3e))
+
+
+
+
+
+## [2.13.2](https://github.com/boltdesignsystem/bolt/compare/v2.13.1...v2.13.2) (2019-12-30)
+
+
+### Bug Fixes
+
+* Remove cache-loader from webpack fonts rule ([2906c70](https://github.com/boltdesignsystem/bolt/commit/2906c70))
+
+
+
+
+
 ## [2.13.1](https://github.com/boltdesignsystem/bolt/compare/v2.13.0...v2.13.1) (2019-12-17)
 
 ### Bug Fixes

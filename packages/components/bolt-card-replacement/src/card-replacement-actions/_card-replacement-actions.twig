@@ -1,0 +1,7 @@
+<bolt-card-replacement-actions>
+  <replace-with-children class="c-bolt-card_replacement__actions">
+    {% for action in actions %}
+      {% include "@bolt-components-card-replacement/_card-replacement-action.twig" with action %}
+    {% endfor %}
+  </replace-with-children>
+</bolt-card-replacement-actions>

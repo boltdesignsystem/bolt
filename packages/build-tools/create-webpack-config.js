@@ -275,7 +275,6 @@ async function createWebpackConfig(buildConfig) {
         {
           test: /\.(woff|woff2)$/,
           use: [
-            'cache-loader',
             {
               loader: 'url-loader',
               options: {
@@ -552,6 +551,7 @@ async function createWebpackConfig(buildConfig) {
     },
     plugins: [
       new webpack.DefinePlugin(getGlobalJSData(true)),
+      new CopyWebpackPlugin(config.copy ? config.copy : []),
       new MiniCssExtractPlugin({
         filename: `[name]${langSuffix}.css`,
         chunkFilename: `[id]${langSuffix}.css`,

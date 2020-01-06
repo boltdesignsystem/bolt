@@ -27,6 +27,7 @@
       "docs-site/src/components/theme-switcher",
       "docs-site/src/components/docs-search",
       "docs-site/src/components/radio-switch",
+      "docs-site/src/components/shadow-toggle",
       "packages/*",
       "packages/*/*",
       "packages/build-tools/__tests__/*",
@@ -56,8 +57,8 @@
     "postinstall": "patch-package && npx lerna run postbootstrap",
     "jest": "jest --maxWorkers=3 --all --colors",
     "lint": "npm-run-all --parallel lint:*",
-    "lint:js": "eslint --max-warnings 0 'packages/**/*.js' 'docs-site/**/*.js'",
-    "lint:scss": "stylelint 'packages/**/*.scss' 'docs-site/**/*.scss' --config .stylelintrc",
+    "lint:js": "eslint '**/*.js' --ignore-pattern example-integrations",
+    "lint:scss": "stylelint '**/*.scss' --config .stylelintrc",
     "release": "node ./auto-release.js",
     "serve": "node packages/servers/default-server",
     "setup": "yarn && yarn run setup:php",
@@ -76,11 +77,11 @@
     "test:e2e:quick-local": "NOW_URL=http://localhost:3000 ./node_modules/.bin/nightwatch --config packages/testing/testing-nightwatch/nightwatch.local.js",
     "test:e2e:quick-master": " NOW_URL=https://master.boltdesignsystem.com ./node_modules/.bin/nightwatch --config packages/testing/testing-nightwatch/nightwatch.local.js",
     "pretest:js": "npm run setup:php",
-    "test:js": "NODE_ENV='test' jest --all --colors 'packages|scripts' --passWithNoTests ",
+    "test:js": "NODE_ENV='test' jest --all --colors 'packages|scripts' --bail --passWithNoTests ",
     "test:js:quick": "NODE_ENV='test' jest --colors \"$(bolt-list-pkg-paths-changed)\" --passWithNoTests",
     "test:js:update": "yarn run test:js -u",
     "test:monorepo": "jest ./__tests__/monorepo -c jest.config.quick.js --noStackTrace",
-    "test:php": "cd packages/core-php -- composer run test",
+    "test:php": "cd packages/twig-integration/twig-extensions-shared && composer run test",
     "test:pkgs": "lerna run test --ignore=@bolt/uikit-* --ignore=@bolt/build-tools--* --stream",
     "test:types": "tsc"
   },
@@ -98,16 +99,10 @@
   },
   "lint-staged": {
     "*.js": [
-      "eslint --fix",
-      "git add"
+      "eslint"
     ],
     "*.scss": [
-      "stylelint --config .stylelintrc --fix",
-      "git add"
-    ],
-    "*.{md,html}": [
-      "prettier --write",
-      "git add"
+      "stylelint --config .stylelintrc"
     ],
     "package.json": [
       "sort-package-json",
@@ -124,16 +119,16 @@
     "extends @bolt/browserslist-config"
   ],
   "dependencies": {
-    "@auto-it/npm": "^8.0.0",
-    "@auto-it/omit-commits": "^8.0.0",
-    "@auto-it/released": "^8.0.0",
+    "@auto-it/npm": "^8.7.3",
+    "@auto-it/omit-commits": "^8.7.3",
+    "@auto-it/released": "^8.7.3",
     "@bolt/testing-utils": "^2.8.0-beta.4",
     "@commitlint/cli": "^8.0.0",
     "@commitlint/config-conventional": "^8.0.0",
     "@instructure/cz-lerna-changelog": "^6.6.0",
     "@open-wc/testing-helpers": "^1.0.10",
     "@slack/webhook": "^5.0.2",
-    "auto": "^8.0.0",
+    "auto": "^8.7.3",
     "ci-utils": "^0.6.0",
     "commitizen": "^3.1.1",
     "conf": "^5.0.0",
