@@ -73,8 +73,6 @@ jobs:
       name: 'Build + Deploy Website + Lighthouse CLI'
       if: (NOT tag =~ ^v) AND (NOT branch =~ /(master|release|bug|fix)/)
       install:
-        - npx json -I -f package.json -e 'delete this.dependencies'
-        - npx json -I -f package.json -e 'delete this.scripts.postinstall'
         - yarn run setup
         - npx lerna run postbootstrap
         - yarn global add @lhci/cli@0.3.x
