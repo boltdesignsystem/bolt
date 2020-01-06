@@ -1,0 +1,27 @@
+@import '@bolt/core-v3.x';
+
+.c-bolt-toolbar {
+  @include bolt-font-size(small);
+  position: relative;
+  right: 50%;
+  left: 50%;
+  z-index: 1000;
+  width: 100%;
+  width: 100vw;
+  margin: 0 auto;
+  margin-right: -50vw;
+  margin-left: -50vw;
+  color: bolt-theme(secondary);
+}
+
+.c-bolt-toolbar--purple {
+  background-image: linear-gradient(90deg, #0F0664 0%, #751B84 100%);
+}
+
+.c-bolt-toolbar--teal {
+  background-image: linear-gradient(270deg, #009999 0%, #1F2656 100%);
+}
+
+.c-bolt-toolbar--orange {
+  background-image: linear-gradient(270deg, #DA6C28 0%, #B33A12 100%);
+}
