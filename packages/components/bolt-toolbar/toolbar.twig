@@ -1,0 +1,10 @@
+{% set toolbar_content = block("content") %}
+
+<div class="t-bolt-xdark c-bolt-toolbar c-bolt-toolbar--{{ gradientName | default('purple') }}">
+  {# <div class="o-bolt-wrapper u-bolt-padding-left-medium u-bolt-padding-right-medium u-bolt-max-width-none">
+    {{ content }}
+  </div> #}
+  {% embed "@bolt-components-navbar/navbar.twig" %}
+    {% block navbar_nav %}{{ toolbar_content | default(content) }}{% endblock %}
+  {% endembed %}
+</div>

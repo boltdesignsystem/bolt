@@ -1,10 +1,10 @@
 {% set currentVersion = "v" ~ bolt.data.fullManifest.version %}
 {% set latestVersion = bolt.data.boltReleases.options[0] %}
-{% set isNotStable = 
-  "alpha" in currentVersion or 
-  "beta" in currentVersion or 
-  "rc" in currentVersion 
-    ? true : false 
+{% set isNotStable =
+  "alpha" in currentVersion or
+  "beta" in currentVersion or
+  "rc" in currentVersion
+    ? true : false
 %}
 
 {% set latestStableVersion = "" %}
@@ -67,6 +67,8 @@
   text: text
 }) %}
 
-{% include "@bolt-site/banner.twig" with {
-  text:  bannerText
+{% include "@bolt-components-toolbar/toolbar.twig" with {
+  content:  bannerText,
+  gradientName: "purple",
+  theme: "none",
 } only %}

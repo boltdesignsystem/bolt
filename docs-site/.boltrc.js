@@ -78,7 +78,7 @@ const config = {
       // helper components that are only used internally
       '@bolt/shadow-toggle',
       '@bolt/theme-switcher',
-
+      '@bolt/components-toolbar',
       '@bolt/components-radio-switch',
       '@bolt/components-carousel',
       '@bolt/global',
@@ -92,7 +92,6 @@ const config = {
       '@bolt/components-placeholder',
       '@bolt/components-accordion',
       '@bolt/components-action-blocks',
-      '@bolt/components-banner',
       '@bolt/components-dropdown',
       '@bolt/components-background',
       '@bolt/components-background-shapes',
