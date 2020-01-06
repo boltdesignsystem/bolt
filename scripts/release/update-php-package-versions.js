@@ -23,7 +23,7 @@ fs.writeFileSync(corePhpPath, JSON.stringify(corePhp, null, '  '));
 
 const boltConnectPath = path.join(
   __dirname,
-  '../../packages/twig-integration/drupal-module/bolt_connect/composer.json',
+  '../../packages/twig-integration/drupal-module/composer.json',
 );
 const boltConnect = require(boltConnectPath);
 boltConnect.version = lernaVersion;
