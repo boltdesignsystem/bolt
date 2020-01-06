@@ -11,6 +11,48 @@
   flex-shrink: 1 !important;
 }
 
+.u-bolt-flex-shrink-none {
+  flex-shrink: 0 !important;
+}
+
 .u-bolt-flex-basis-auto {
   flex-basis: auto !important;
+}
+
+.u-bolt-flex-col {
+  flex-direction: column !important;
+}
+
+.u-bolt-flex-row {
+  flex-direction: row !important;
+}
+
+.u-bolt-flex-nowrap {
+  flex-wrap: nowrap !important;
+}
+
+// Loop over our breakpoints
+@each $breakpoint in $bolt-breakpoints {
+  $breakpointName: nth($breakpoint, 1);
+  @include bolt-mq($breakpointName) {
+    .u-bolt-flex-nowrap\@#{$breakpointName} {
+      flex-wrap: nowrap !important;
+    }
+  }
+}
+
+.u-bolt-flex-basis-1\/2 {
+  flex-basis: 50% !important;
+}
+
+.u-bolt-align-self-stretch {
+  align-self: stretch !important;
+}
+
+.u-bolt-align-items-center {
+  align-items: center !important;
+}
+
+.u-bolt-justify-content-center {
+  justify-content: center;
 }
