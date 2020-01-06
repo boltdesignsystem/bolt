@@ -89,6 +89,9 @@ class BoltLink extends BoltActionElement {
       if (anchorTarget) {
         renderedLink.setAttribute('target', anchorTarget);
       }
+      if (renderedLink.getAttribute('target') === null && urlTarget) {
+        renderedLink.setAttribute('target', urlTarget);
+      }
       renderedLink.className += ' ' + classes;
       render(innerSlots, renderedLink);
     } else {
