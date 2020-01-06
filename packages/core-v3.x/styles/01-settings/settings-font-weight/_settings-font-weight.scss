@@ -9,6 +9,7 @@
 
 /// Default regular font weight
 /// @see $bolt-font-weights
+$bolt-font-weight--light: 300 !default;
 $bolt-font-weight--regular: 400 !default;
 /// Default semibold font weight
 /// @see $bolt-font-weights
@@ -42,6 +43,7 @@ $bolt-font-weight--bold: 800 !default;
 /// @see {mixin} bolt-font-weight
 $bolt-font-weights: (
   font-weights: (
+    light:    $bolt-font-weight--light,
     bold:     $bolt-font-weight--bold,
     semibold: $bolt-font-weight--semibold,
     regular:  $bolt-font-weight--regular,
