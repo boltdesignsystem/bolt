@@ -1,0 +1,60 @@
+{% embed "@bolt-components-band/band.twig" with {
+  theme: "dark",
+  size: "small"
+} %}
+  {% block band_content %}
+    <div class="u-bolt-overflow-hidden">
+      {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--border o-bolt-grid--middle" %}
+        {% cell "u-bolt-width-12/12 u-bolt-width-7/12@small" %}
+
+          {% include "@bolt-components-headline/text.twig" with {
+            text: "Did you find this content helpful?",
+            weight: "semibold",
+            size: "medium",
+          } %}
+
+           {% include "@bolt-components-list/list.twig" with {
+              display: "inline",
+              size: "medium",
+              items: [
+                include("@bolt-components-button/button.twig", {
+                  text: "Yes",
+                  style: "text",
+                  size: "small",
+                  icon: {
+                    size: "large",
+                    position: "before",
+                    name: "add-open"
+                  }
+                }, with_context = false),
+                include("@bolt-components-button/button.twig", {
+                  text: "No",
+                  style: "text",
+                  size: "xsmall",
+                  icon: {
+                    size: "large",
+                    position: "before",
+                    name: "minus-open"
+                  }
+                }, with_context = false),
+                include("@bolt-components-headline/text.twig", {
+                  text: "<strong>28%</strong> found this useful",
+                  size: "xsmall"
+                }, with_context = false),
+              ]
+            } %}
+
+        {% endcell %}
+
+        {% cell "u-bolt-width-12/12 u-bolt-width-5/12@small u-bolt-align-self-stretch u-bolt-justify-content-center u-bolt-flex u-bolt-flex-direction-column u-bolt-flex-col" %}
+          {% include "@bolt-components-headline/text.twig" with {
+            text: "Want to help us improve this content? ",
+            weight: "semibold",
+            size: "medium",
+          } only %}
+        {% endcell %}
+
+      {% endgrid %}
+    </div>
+  {% endblock %}
+{% endembed %}

@@ -1,0 +1,29 @@
+{% set content %}
+  <div class="u-bolt-margin-bottom-large">
+    {% include "@bolt-components-headline/headline.twig" with {
+      size: "xxxlarge",
+      text: "Welcome back Justin!"
+    } only %}
+    {% include "@bolt-components-headline/subheadline.twig" with {
+      size: "xxlarge",
+      text: "Let's explore today."
+    } only %}
+  </div>
+{% endset %}
+
+{% include "@bolt-components-band/band.twig" with {
+  theme: "xdark",
+  size: "medium",
+  content: content,
+  background: {
+    opacity: "light",
+    fill: "gradient",
+    contentItems: [
+      {
+        pattern: "image",
+        src: "/images/content/backgrounds/background-night-sky.jpg",
+        placeholder_color: "#161215"
+      },
+    ]
+  }
+} only %}
