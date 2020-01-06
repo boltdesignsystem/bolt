@@ -1,0 +1,47 @@
+/* ------------------------------------ *\
+   card-replacement Media
+\* ------------------------------------ */
+
+@import '@bolt/core-v3.x';
+@import '../_card-replacement-settings-and-tools.scss';
+
+:host {
+  & [horizontal] {
+    flex-basis: 25%;
+    flex-grow: 1;
+    flex-shrink: 1;
+    max-width: 300px;
+  }
+}
+
+bolt-card-replacement-media {
+  position: relative;
+  overflow: hidden;
+
+  [horizontal] & {
+    flex-basis: 25%;
+    flex-grow: 1;
+    flex-shrink: 1;
+    max-width: 300px;
+  }
+}
+
+.c-bolt-card_replacement__media {
+  display: block;
+  height: 100%;
+
+  &.is-horizontal {
+    flex-basis: 130px;
+    max-width: 50%;
+  }
+}
+
+// required so the nested content fills the full width of the card-replacement -- otherwise content (like a ratio object with an image inside) might not display as expected.
+.c-bolt-card_replacement__media ::slotted(*) {
+  width: 100%;
+}
+
+.c-bolt-card_replacement__media--video {
+  position: relative;
+  z-index: $bolt-card-replacement-video-z-index;
+}
