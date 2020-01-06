@@ -1,0 +1,192 @@
+diff --git a/node_modules/@basalt/twig-renderer/dist/twig-renderer.js b/node_modules/@basalt/twig-renderer/dist/twig-renderer.js
+index 6aee6e8..b1f1924 100644
+--- a/node_modules/@basalt/twig-renderer/dist/twig-renderer.js
++++ b/node_modules/@basalt/twig-renderer/dist/twig-renderer.js
+@@ -206,7 +206,7 @@ class TwigRenderer {
+    */
+   constructor(userConfig) {
+     try {
+-      execa.shellSync('php --version');
++      execa.sync('php', ['--version']);
+     } catch (err) {
+       console.error('Error: php cli required. ', err.message);
+       process.exit(1);
+@@ -342,22 +342,18 @@ class TwigRenderer {
+   }
+
+   async getOpenPort() {
+-    let portSelected = await getPort({
+-      host: '127.0.0.1' // helps ensure the host being checked matches the PHP server being spun up
+-
+-    }); // pick another port if the one selected has already been taken
+-
+-    while (this.configStore.has(`ports.${portSelected}`)) {
+-      // eslint-disable-next-line no-await-in-loop
+-      portSelected = await getPort({
+-        host: '127.0.0.1' // helps ensure the host being checked matches the PHP server being spun up
++    this.portSelected = await getPort({
++      host: '127.0.0.1'
++    });
+
++    while (this.configStore.has(`ports.${this.portSelected}`)) {
++      this.portSelected = await getPort({
++        host: '127.0.0.1'
+       });
+-    } // remember which ports have been assigned to avoid giving out the same port twice
+-
++    }
+
+-    this.configStore.set(`ports.${portSelected}`, true);
+-    return portSelected;
++    this.configStore.set(`ports.${this.portSelected}`, true);
++    return this.portSelected;
+   }
+
+   async init() {
+@@ -379,14 +375,14 @@ class TwigRenderer {
+     this.phpServerPort = await this.getOpenPort();
+     this.phpServerUrl = `http://127.0.0.1:${this.phpServerPort}`; // @todo Pass config to PHP server a better way than writing JSON file, then reading in PHP
+
+-    const sharedConfigPath = path__default.join(__dirname, `shared-config--${this.phpServerPort}.json`);
+-    await fs.writeFile(sharedConfigPath, JSON.stringify(this.config, null, '  '));
++    this.sharedConfigPath = path__default.join(__dirname, `shared-config--${this.phpServerPort}.json`);
++    await fs.writeFile(this.sharedConfigPath, JSON.stringify(this.config, null, '  '));
+     const phpMemoryLimit = '4048M'; // @todo make user configurable
+
+-    const params = ['-d', `memory_limit=${phpMemoryLimit}`, path__default.join(__dirname, 'server--async.php'), this.phpServerPort, sharedConfigPath];
++    const params = ['-d', `memory_limit=${phpMemoryLimit}`, path__default.join(__dirname, 'server--async.php'), this.phpServerPort, this.sharedConfigPath];
+     this.phpServer = execa('php', params, {
+       cleanup: true,
+-      detached: false
++      detached: true
+     }); // the PHP close event appears to happen first, THEN the exit event
+
+     this.phpServer.on('close', async () => {
+@@ -395,7 +391,7 @@ class TwigRenderer {
+     });
+     this.phpServer.on('exit', async () => {
+       // console.log(`Server ${this.phpServerPort} event: 'exit'`);
+-      await fs.unlink(sharedConfigPath);
++      this.stop();
+       this.serverState = serverStates.STOPPED;
+     });
+     this.phpServer.on('disconnect', () => {// console.log(`Server ${this.phpServerPort} event: 'disconnect'`);
+@@ -414,8 +410,16 @@ class TwigRenderer {
+
+   stop() {
+     // console.log(`stopping server with port ${this.phpServerPort}`);
++    // remove old config file when we're done
++    try {
++      fs.accessSync(this.sharedConfigPath, fs.constants.R_OK | fs.constants.W_OK);
++      fs.unlinkSync(this.sharedConfigPath);
++    } catch (err) {// console.error('no access!');
++    }
++
++    this.configStore.delete(`ports.${this.portSelected}`);
+     this.serverState = serverStates.STOPPED;
+-    this.phpServer.kill(); // ↓ not 100% sure if we need this w/ execa; other exec examples seem to do this for cleanup
++    this.phpServer.cancel(); // ↓ not 100% sure if we need this w/ execa; other exec examples seem to do this for cleanup
+
+     this.phpServer.removeAllListeners();
+   }
+diff --git a/node_modules/@basalt/twig-renderer/dist/twig-renderer.mjs.js b/node_modules/@basalt/twig-renderer/dist/twig-renderer.mjs.js
+index 7eb62bf..3611549 100644
+--- a/node_modules/@basalt/twig-renderer/dist/twig-renderer.mjs.js
++++ b/node_modules/@basalt/twig-renderer/dist/twig-renderer.mjs.js
+@@ -201,7 +201,7 @@ class TwigRenderer {
+    */
+   constructor(userConfig) {
+     try {
+-      execa.shellSync('php --version');
++      execa.sync('php', ['--version']);
+     } catch (err) {
+       console.error('Error: php cli required. ', err.message);
+       process.exit(1);
+@@ -337,22 +337,18 @@ class TwigRenderer {
+   }
+
+   async getOpenPort() {
+-    let portSelected = await getPort({
+-      host: '127.0.0.1' // helps ensure the host being checked matches the PHP server being spun up
+-
+-    }); // pick another port if the one selected has already been taken
+-
+-    while (this.configStore.has(`ports.${portSelected}`)) {
+-      // eslint-disable-next-line no-await-in-loop
+-      portSelected = await getPort({
+-        host: '127.0.0.1' // helps ensure the host being checked matches the PHP server being spun up
++    this.portSelected = await getPort({
++      host: '127.0.0.1'
++    });
+
++    while (this.configStore.has(`ports.${this.portSelected}`)) {
++      this.portSelected = await getPort({
++        host: '127.0.0.1'
+       });
+-    } // remember which ports have been assigned to avoid giving out the same port twice
+-
++    }
+
+-    this.configStore.set(`ports.${portSelected}`, true);
+-    return portSelected;
++    this.configStore.set(`ports.${this.portSelected}`, true);
++    return this.portSelected;
+   }
+
+   async init() {
+@@ -374,14 +370,14 @@ class TwigRenderer {
+     this.phpServerPort = await this.getOpenPort();
+     this.phpServerUrl = `http://127.0.0.1:${this.phpServerPort}`; // @todo Pass config to PHP server a better way than writing JSON file, then reading in PHP
+
+-    const sharedConfigPath = path.join(__dirname, `shared-config--${this.phpServerPort}.json`);
+-    await fs.writeFile(sharedConfigPath, JSON.stringify(this.config, null, '  '));
++    this.sharedConfigPath = path.join(__dirname, `shared-config--${this.phpServerPort}.json`);
++    await fs.writeFile(this.sharedConfigPath, JSON.stringify(this.config, null, '  '));
+     const phpMemoryLimit = '4048M'; // @todo make user configurable
+
+-    const params = ['-d', `memory_limit=${phpMemoryLimit}`, path.join(__dirname, 'server--async.php'), this.phpServerPort, sharedConfigPath];
++    const params = ['-d', `memory_limit=${phpMemoryLimit}`, path.join(__dirname, 'server--async.php'), this.phpServerPort, this.sharedConfigPath];
+     this.phpServer = execa('php', params, {
+       cleanup: true,
+-      detached: false
++      detached: true
+     }); // the PHP close event appears to happen first, THEN the exit event
+
+     this.phpServer.on('close', async () => {
+@@ -390,7 +386,7 @@ class TwigRenderer {
+     });
+     this.phpServer.on('exit', async () => {
+       // console.log(`Server ${this.phpServerPort} event: 'exit'`);
+-      await fs.unlink(sharedConfigPath);
++      this.stop();
+       this.serverState = serverStates.STOPPED;
+     });
+     this.phpServer.on('disconnect', () => {// console.log(`Server ${this.phpServerPort} event: 'disconnect'`);
+@@ -409,8 +405,16 @@ class TwigRenderer {
+
+   stop() {
+     // console.log(`stopping server with port ${this.phpServerPort}`);
++    // remove old config file when we're done
++    try {
++      fs.accessSync(this.sharedConfigPath, fs.constants.R_OK | fs.constants.W_OK);
++      fs.unlinkSync(this.sharedConfigPath);
++    } catch (err) {// console.error('no access!');
++    }
++
++    this.configStore.delete(`ports.${this.portSelected}`);
+     this.serverState = serverStates.STOPPED;
+-    this.phpServer.kill(); // ↓ not 100% sure if we need this w/ execa; other exec examples seem to do this for cleanup
++    this.phpServer.cancel(); // ↓ not 100% sure if we need this w/ execa; other exec examples seem to do this for cleanup
+
+     this.phpServer.removeAllListeners();
+   }
+diff --git a/node_modules/@basalt/twig-renderer/index.d.ts b/node_modules/@basalt/twig-renderer/index.d.ts
+index 7ad1aae..8474394 100644
+--- a/node_modules/@basalt/twig-renderer/index.d.ts
++++ b/node_modules/@basalt/twig-renderer/index.d.ts
+@@ -1,4 +1,4 @@
+-interface TwigRendererConfig {
++export interface TwigRendererConfig {
+   src: {
+     /** Root directories for Twig Loader */
+     roots: string[];
