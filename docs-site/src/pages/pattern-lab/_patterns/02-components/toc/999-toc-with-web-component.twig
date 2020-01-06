@@ -1,0 +1,68 @@
+{% macro code_example(code) %}
+  <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
+    {% grid "o-bolt-grid--center" %}
+      {% cell "u-bolt-width-12/12 u-bolt-width-4/12@small" %}
+        {{ code }}
+      {% endcell %}
+    {% endgrid %}
+  </div>
+  <div class="u-bolt-margin-bottom-large">
+    <bolt-code-snippet syntax="dark" lang="html">{% spaceless %}
+      {{ code | replace({
+        '<': '&lt;',
+        '>': '&gt;',
+      }) | trim | raw }}
+    {% endspaceless %}</bolt-code-snippet>
+  </div>
+{% endmacro %}
+
+{% import _self as toc_code %}
+
+{% set toc_demo %}
+<bolt-toc>
+  <bolt-toc-item url="#section-one">
+    Section One
+  </bolt-toc-item>
+  <bolt-toc-item url="#section-two">
+    Section Two
+  </bolt-toc-item>
+  <bolt-toc-item url="#section-three">
+    Section Three
+  </bolt-toc-item>
+</bolt-toc>
+{% endset %}
+
+{% set toc_basic_demo %}
+<bolt-toc header="Marvel Cinematic Universe">
+  <bolt-toc-item url="#phase-one">
+    Phase One
+  </bolt-toc-item>
+  <bolt-toc-item url="#phase-two" active>
+    Phase Two
+  </bolt-toc-item>
+  <bolt-toc-item url="#phase-three">
+    Phase Three
+  </bolt-toc-item>
+</bolt-toc>
+{% endset %}
+
+
+<div class="u-bolt-margin-bottom-large">
+  <bolt-text headline>
+    Web Component Usage
+  </bolt-text>
+  <bolt-text>
+    Bolt Table of Content is a web component, you can simply use <bolt-code-snippet display="inline" lang="html">&lt;bolt-toc&gt;</bolt-code-snippet> in the markup to make it render.
+  </bolt-text>
+  {% include toc_code.code_example(toc_demo) %}
+</div>
+
+<div class="u-bolt-margin-bottom-large">
+  <bolt-text headline>
+    Basic Usage
+  </bolt-text>
+  <bolt-text>
+    All the props defined in the schema table can be used directly on the <bolt-code-snippet display="inline" lang="html">&lt;bolt-toc&gt;</bolt-code-snippet> element and the <bolt-code-snippet display="inline" lang="html">&lt;bolt-toc-item&gt;</bolt-code-snippet> element.
+  </bolt-text>
+  {% include toc_code.code_example(toc_basic_demo) %}
+</div>

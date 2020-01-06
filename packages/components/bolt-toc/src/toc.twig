@@ -41,11 +41,20 @@
   {{ this.props|without("items")|without("class") }}
 >
   <nav {% if inner_classes %} class="{{ inner_classes|join(' ') }}" {% endif %} aria-labelledby="{{ "js-bolt-toc-#{uuid}" }}">
-    {% if header %}
-      <h2 class="{{ "#{base_class}__header" }}" id="{{ "js-bolt-toc-#{uuid}" }}">
+    <h2
+      {% if header %}
+        class="c-bolt-toc__header"
+      {% else %}
+        class="c-bolt-toc__header c-bolt-toc__header--hidden"
+      {% endif %}
+      id="{{ "js-bolt-toc-#{uuid}" }}"
+    >
+      {% if header %}
         {{ header }}
-      </h2>
-    {% endif %}
+      {% else %}
+        Table of Content
+      {% endif %}
+    </h2>
     <ssr-keep for="bolt-toc" class="c-bolt-toc__list" role="list">
       {% for item in items %}
         {% if item %}

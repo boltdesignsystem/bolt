@@ -21,6 +21,10 @@
   display: block;
   color: bolt-theme(background);
   background-color: bolt-theme(headline);
+
+  &--hidden {
+    @include bolt-visuallyhidden;
+  }
 }
 
 .c-bolt-toc__list {

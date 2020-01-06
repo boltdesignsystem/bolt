@@ -75,15 +75,14 @@ class BoltToc extends withContext(BoltElement) {
         class="${cx(`c-bolt-toc`)}"
         aria-labelledby="js-bolt-toc-${this.uuid}"
       >
-        ${this.header &&
-          html`
-            <h2
-              class="${cx(`c-bolt-toc__header`)}"
-              id="js-bolt-toc-${this.uuid}"
-            >
-              ${this.header}
-            </h2>
-          `}
+        <h2
+          class="${cx(`c-bolt-toc__header`, {
+            [`c-bolt-toc__header--hidden`]: !this.header,
+          })}"
+          id="js-bolt-toc-${this.uuid}"
+        >
+          ${this.header ? this.header : 'Table of Content'}
+        </h2>
         <div class="${cx(`c-bolt-toc__list`)}" role="list">
           ${this.slotify('default')}
         </div>
