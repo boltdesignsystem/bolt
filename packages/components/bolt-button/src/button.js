@@ -89,7 +89,7 @@ class BoltButton extends BoltActionElement {
           `}${this.slotify('default') &&
           html`
             <span class="${itemClasses}">${this.slotify('default')}</span>
-          `}${this.slotify('after') &&
+          `}${this.slotMap.get('after') &&
           html`
             <span class="${iconClasses}"
               ><span class="${sizerClasses}"
