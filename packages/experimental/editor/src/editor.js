@@ -2,6 +2,7 @@ import * as grapesjs from 'grapesjs';
 import { html, render } from '@bolt/core-v3.x/renderers';
 import { query, IS_PROD } from '@bolt/core-v3.x/utils';
 import { triggerAnimsInEl } from '@bolt/components-animate/utils';
+import { boltTwoCharacterLayoutIs } from '@bolt/micro-journeys/src/two-character-layout';
 import { setupPanels } from './panels';
 import { setupBlocks } from './blocks';
 import { setupComponents } from './components';
@@ -27,6 +28,21 @@ export function enableEditor({ space, uiWrapper, config }) {
   };
 
   const stylePrefix = 'pega-editor-';
+
+  /**
+   * Refresh editor DOM content to see changes reflected after edits may mess up
+   * layout. Any miscellaneous refresh tasks can be put here.
+   *
+   * @param editor {grapesjs.Editor}
+   */
+  const refreshContent = editor => {
+    const document = editor.Canvas.getDocument();
+    document
+      .querySelectorAll(boltTwoCharacterLayoutIs)
+      .forEach(twoCharLayout => {
+        twoCharLayout.triggerLayoutRecalculate();
+      });
+  };
 
   /**
    * Move bolt-interactive-step or bolt-interactive-pathway up or down.
@@ -223,6 +239,17 @@ export function enableEditor({ space, uiWrapper, config }) {
               command: {
                 run: (/** @type {grapesjs.Editor} */ editor) => {
                   moveElement(editor, false);
+                },
+              },
+            },
+            {
+              id: 'refresh-content',
+              label: 'Refresh Content',
+              togglable: false,
+              className: 'gjs-pega-editor-panels-btn--refresh-content',
+              command: {
+                run: (/** @type {grapesjs.Editor} */ editor) => {
+                  refreshContent(editor);
                 },
               },
             },
