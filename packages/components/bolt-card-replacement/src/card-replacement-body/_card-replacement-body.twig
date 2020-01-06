@@ -1,0 +1,39 @@
+{% if tag == "figure" %}
+  {% set content_tag = "figcaption" %}
+{% else %}
+  {% set content_tag = "div" %}
+{% endif %}
+
+{% set card_replacement_body_content = body.content %}
+
+<bolt-card-replacement-body>
+  <replace-with-children class="c-bolt-card_replacement__body">
+    {% block body %}
+      {% if card_replacement_body_content %}
+        {# @todo: The replace function is a hack to get around the utf-8 bug. #}
+        {{ card_replacement_body_content | join | replace({"UTF-8": ""}) }}
+      {% else %}
+        {% set card_replacement_eyebrow = body.eyebrow %}
+        {% set card_replacement_headline = body.headline %}
+        {% set card_replacement_paragraph = body.paragraph %}
+
+        {% if card_replacement_eyebrow %}
+          {% include "@bolt-components-headline/eyebrow.twig" with {
+            text: card_replacement_eyebrow,
+          } only %}
+        {% endif %}
+        {% if card_replacement_headline %}
+          {% include "@bolt-components-headline/headline.twig" with {
+            text: card_replacement_headline,
+            size: "large",
+          } only %}
+        {% endif %}
+        {% if card_replacement_paragraph %}
+          {% include "@bolt-components-headline/text.twig" with {
+            text: card_replacement_paragraph,
+          } only %}
+        {% endif %}
+      {% endif %}
+    {% endblock %}
+  </replace-with-children>
+</bolt-card-replacement-body>

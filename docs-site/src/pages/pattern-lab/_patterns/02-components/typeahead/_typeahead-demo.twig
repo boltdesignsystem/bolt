@@ -5,7 +5,15 @@
 
 {{ typeahead_markdown_docs | markdown }}
 
-{% include twig_path %}
+{% set demo_content %}
+  {% include twig_path %}
+{% endset %}
+
+{% include "@bolt-components-band/band.twig" with {
+  content: demo_content,
+  theme: "none",
+  size: "none"
+} only %}
 
 <bolt-code-snippet syntax="light" lang="twig" class="u-bolt-block u-bolt-margin-top-medium">
   {% spaceless %}
