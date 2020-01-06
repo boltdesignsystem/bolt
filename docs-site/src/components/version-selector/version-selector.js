@@ -1,5 +1,5 @@
 import '../bolt-select/bolt-select';
-const boltSelect = document.querySelector('bolt-select');
+const boltSelect = document.querySelector('.js-bolt-version-selector');
 let shouldOpenInNewWindow = false;
 
 if (boltSelect) {
