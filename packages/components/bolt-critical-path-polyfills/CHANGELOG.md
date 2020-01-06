@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.14.0](https://github.com/bolt-design-system/bolt/tree/master/packages/polyfills/critical-path-polyfills/compare/v2.13.3...v2.14.0) (2020-01-06)
+
+
+### Bug Fixes
+
+* update folder name of critical path polyfills ([e6984f9](https://github.com/bolt-design-system/bolt/tree/master/packages/polyfills/critical-path-polyfills/commit/e6984f9))
+
+
+
+
+
 # [2.12.0](https://github.com/bolt-design-system/bolt/tree/master/packages/polyfills/critical-path-polyfills/compare/v2.11.4...v2.12.0) (2019-11-26)
 
 **Note:** Version bump only for package @bolt/critical-path-polyfills
