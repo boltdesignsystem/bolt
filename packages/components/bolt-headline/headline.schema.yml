@@ -34,6 +34,7 @@ properties:
     description: Font weights.
     default: regular
     enum:
+      - light
       - bold
       - regular
       - semibold
@@ -56,6 +57,10 @@ properties:
       - xlarge
       - xxlarge
       - xxxlarge
+  autoshrink:
+    type: boolean
+    description: Automatically shrink the font size used in the xxxlarge headline size  when 60 or more characters are used.
+    default: true
   transform:
     type: string
     description: Text transformation.
