@@ -3,6 +3,45 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.14.0](https://github.com/bolt-design-system/bolt/compare/v2.13.3...v2.14.0) (2020-01-06)
+
+
+### Bug Fixes
+
+* defer implementing context-specific changes until the next round of updates ([384dfd3](https://github.com/bolt-design-system/bolt/commit/384dfd3))
+* move ES Modules JS to footer to fix rendering quirks on extremely heavy pages (ex. the PL View All page) ([86fff24](https://github.com/bolt-design-system/bolt/commit/86fff24))
+* restore Text demo file mistakenly removed ([640e68a](https://github.com/bolt-design-system/bolt/commit/640e68a))
+* revert adding component internal updates — handled in a separate PR ([37882d5](https://github.com/bolt-design-system/bolt/commit/37882d5))
+* set version to 0.0.0 ([9b4e95a](https://github.com/bolt-design-system/bolt/commit/9b4e95a))
+* update @bolt/core-v3.x references to v2.13.0 ([28d7bcb](https://github.com/bolt-design-system/bolt/commit/28d7bcb))
+* update critical path assets to optimize for SSR initial rendering ([5095d82](https://github.com/bolt-design-system/bolt/commit/5095d82))
+* update demos + tests ([43912d4](https://github.com/bolt-design-system/bolt/commit/43912d4))
+* update dependencies to latest versions ([5d753b4](https://github.com/bolt-design-system/bolt/commit/5d753b4))
+* update snapshots + Nightwatch test ([5e267ad](https://github.com/bolt-design-system/bolt/commit/5e267ad))
+* update testing-helpers package path ([9b431b6](https://github.com/bolt-design-system/bolt/commit/9b431b6))
+
+
+### Features
+
+* add shadow toggle helper component, applying PR [#1538](https://github.com/bolt-design-system/bolt/issues/1538) to master ([e6921ec](https://github.com/bolt-design-system/bolt/commit/e6921ec))
+* cherry pick component constructor / event lifecycle cleanup work related to larger work in https://github.com/boltdesignsystem/bolt/pull/1579 ([3911459](https://github.com/bolt-design-system/bolt/commit/3911459))
+* cherry pick component constructor / event lifecycle cleanup work related to larger work in https://github.com/boltdesignsystem/bolt/pull/1579 ([43d1878](https://github.com/bolt-design-system/bolt/commit/43d1878))
+* manually port over build tool-specific changes + twig template update from https://github.com/boltdesignsystem/bolt/pull/1579 ([8e01533](https://github.com/bolt-design-system/bolt/commit/8e01533))
+* migrate over the customElements.define-related replacement + component dependency updates from https://github.com/boltdesignsystem/bolt/pull/1579 ([3b6f529](https://github.com/bolt-design-system/bolt/commit/3b6f529))
+* optimize site <head> perf ([8d8981a](https://github.com/bolt-design-system/bolt/commit/8d8981a))
+* update footer script to be async to even further improve performance! ([46eff1d](https://github.com/bolt-design-system/bolt/commit/46eff1d))
+* update version selector JS for the docs site to use new chain syntax ([88707c8](https://github.com/bolt-design-system/bolt/commit/88707c8))
+* update webpack config and boltrc ([623fa0d](https://github.com/bolt-design-system/bolt/commit/623fa0d))
+
+
+### Reverts
+
+* revert updating modern JS bundle to be async loaded until further testing is done ([ef482fc](https://github.com/bolt-design-system/bolt/commit/ef482fc))
+
+
+
+
+
 ## [2.13.3](https://github.com/bolt-design-system/bolt/compare/v2.13.2...v2.13.3) (2020-01-02)
 
 **Note:** Version bump only for package @bolt/website

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.14.0](https://github.com/bolt-design-system/bolt/compare/v2.13.3...v2.14.0) (2020-01-06)
+
+
+### Bug Fixes
+
+* move micro-journey util + temporarily ignore Prettier rules on new Card tests ([51457af](https://github.com/bolt-design-system/bolt/commit/51457af))
+* update testing-helpers package path ([9b431b6](https://github.com/bolt-design-system/bolt/commit/9b431b6))
+
+
+
+
+
 ## [2.13.1](https://github.com/bolt-design-system/bolt/compare/v2.13.0...v2.13.1) (2019-12-17)
 
 ### Bug Fixes

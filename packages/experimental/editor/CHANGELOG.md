@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.14.0](https://github.com/bolt-design-system/bolt/compare/v2.13.3...v2.14.0) (2020-01-06)
+
+
+### Bug Fixes
+
+* update testing-helpers package path ([9b431b6](https://github.com/bolt-design-system/bolt/commit/9b431b6))
+* update tsconfig path ([af61794](https://github.com/bolt-design-system/bolt/commit/af61794))
+
+
+
+
+
 # [2.13.0](https://github.com/bolt-design-system/bolt/compare/v2.12.1...v2.13.0) (2019-12-13)
 
 

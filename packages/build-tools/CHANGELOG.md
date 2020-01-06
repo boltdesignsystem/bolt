@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.14.0](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/compare/v2.13.3...v2.14.0) (2020-01-06)
+
+
+### Bug Fixes
+
+* add copy plugin to modern JS build so that copy task runs in local dev mode ([4390e8d](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/4390e8d))
+* fix logic in condition ([f37c8cb](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/f37c8cb))
+* minor eslint fix ([f83e951](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/f83e951))
+* update testing-helpers package path ([9b431b6](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/9b431b6))
+
+
+### Features
+
+* manually port over build tool-specific changes + twig template update from https://github.com/boltdesignsystem/bolt/pull/1579 ([8e01533](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/8e01533))
+* speed up local dev builds of the new es-module work ([8849452](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/8849452))
+* update webpack config and boltrc ([623fa0d](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/623fa0d))
+
+
+
+
+
 ## [2.13.2](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/compare/v2.13.1...v2.13.2) (2019-12-30)
 
 
