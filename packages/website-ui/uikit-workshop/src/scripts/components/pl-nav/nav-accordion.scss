@@ -1,0 +1,47 @@
+@import '../../../sass/scss/core.scss';
+
+.pl-c-nav__accordion {
+  background-color: inherit; // allows the nav's children inherit from the parent header
+  @include listReset();
+  @include accordionPanel();
+  display: flex;
+  flex-flow: row wrap;
+  opacity: 0;
+  visibility: hidden;
+
+  &.pl-c-nav__dropdown {
+    overflow: auto;
+  }
+}
+
+.is-open ~ .pl-c-nav__accordion {
+  visibility: visible;
+  transform: translateY(0);
+  opacity: 1;
+  max-height: none;
+
+  &:not(.pl-c-nav__dropdown) {
+    overflow: hidden;
+    box-shadow: 0 1px 1px rgba(255, 255, 255, 0.2);
+  }
+
+  &.pl-c-nav__dropdown {
+    @media all and (min-width: $pl-bp-med) {
+      .pl-c-body--theme-horizontal & {
+        max-height: calc(100vh - 3rem);
+      }
+    }
+  }
+
+  @media all and (min-width: $pl-bp-med) {
+    height: auto;
+  }
+
+  > * {
+    background-color: rgba(255,255,255,.05);
+
+    .pl-c-body--theme-light & {
+      background-color: rgba(0,0,0,.05);
+    }
+  }
+}

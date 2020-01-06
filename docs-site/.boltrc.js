@@ -103,6 +103,7 @@ const config = {
       '@bolt/components-button',
       '@bolt/components-button-group',
       '@bolt/components-card',
+      '@bolt/components-card-replacement',
       '@bolt/components-chip',
       '@bolt/components-chip-list',
       '@bolt/components-code-snippet',
@@ -185,7 +186,7 @@ const config = {
     },
     {
       from: `${path.dirname(
-        resolve.sync('@bolt/global/package.json')
+        resolve.sync('@bolt/global/package.json'),
       )}/favicons/bolt`,
       to: path.join(__dirname, '../www/'),
       flatten: true,
@@ -194,7 +195,7 @@ const config = {
   alterTwigEnv: [
     {
       file: `${path.dirname(
-        resolve.sync('@bolt/twig-renderer/package.json')
+        resolve.sync('@bolt/twig-renderer/package.json'),
       )}/SetupTwigRenderer.php`,
       functions: ['addBoltCoreExtensions', 'addBoltExtraExtensions'],
     },

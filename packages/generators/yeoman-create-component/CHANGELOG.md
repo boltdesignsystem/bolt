@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.14.0](https://github.com/bolt-design-system/bolt/tree/master/packages/generator-bolt/compare/v2.13.3...v2.14.0) (2020-01-06)
+
+
+### Features
+
+* migrate over the customElements.define-related replacement + component dependency updates from https://github.com/boltdesignsystem/bolt/pull/1579 ([3b6f529](https://github.com/bolt-design-system/bolt/tree/master/packages/generator-bolt/commit/3b6f529))
+
+
+
+
+
 ## [2.13.2](https://github.com/bolt-design-system/bolt/tree/master/packages/generator-bolt/compare/v2.13.1...v2.13.2) (2019-12-30)
 
 **Note:** Version bump only for package @bolt/generator-bolt
