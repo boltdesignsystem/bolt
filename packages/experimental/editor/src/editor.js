@@ -3,6 +3,7 @@ import { html, render } from '@bolt/core-v3.x/renderers';
 import { query, IS_PROD } from '@bolt/core-v3.x/utils';
 import { triggerAnimsInEl } from '@bolt/components-animate/utils';
 import { boltTwoCharacterLayoutIs } from '@bolt/micro-journeys/src/two-character-layout';
+import { boltCharacterIs } from '@bolt/micro-journeys/src/character';
 import { setupPanels } from './panels';
 import { setupBlocks } from './blocks';
 import { setupComponents } from './components';
@@ -371,6 +372,8 @@ export function enableEditor({ space, uiWrapper, config }) {
         ? newComponent[0].parent()
         : newComponent;
 
+    selected.view.el.setupSlots();
+    selected.view.el.triggerUpdate();
     if (selectAfterAdd) editor.select(singleComponent);
     if (triggerAnimsAfterAdd) {
       const newEl = singleComponent.getEl();
