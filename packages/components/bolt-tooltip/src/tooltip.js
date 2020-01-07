@@ -10,6 +10,7 @@ import { ifDefined } from 'lit-html/directives/if-defined';
 import classNames from 'classnames/dedupe';
 import tooltipStyles from './tooltip.scss';
 import schema from '../tooltip.schema';
+import Popper from 'popper.js';
 
 let cx = classNames.bind(tooltipStyles);
 
@@ -146,6 +147,33 @@ class BoltTooltip extends BoltElement {
         .get('content')[0]
         .textContent.trim().length;
     }
+  }
+
+  update(changedProperties) {
+    super.update && super.update(changedProperties);
+
+    if (changedProperties.get('placement')) {
+      if (this.popper) {
+        this.popper.destroy();
+      }
+      this.setupPlacement();
+    }
+  }
+
+  setupPlacement() {
+    this.tooltip = this.renderRoot.querySelector('.c-bolt-tooltip');
+    this.content = this.renderRoot.querySelector('.c-bolt-tooltip__content');
+
+    if (this.tooltip && this.content) {
+      this.popper = new Popper(this.tooltip, this.content, {
+        placement: this.placement || 'bottom',
+      });
+    }
+  }
+
+  firstUpdated(changedProperties) {
+    super.firstUpdated && super.firstUpdated(changedProperties);
+    this.setupPlacement();
   }
 
   render() {

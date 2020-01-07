@@ -30,171 +30,177 @@ $bolt-tooltip-spacing-values: xsmall, small, medium;
     '.c-bolt-tooltip.is-expanded .c-bolt-tooltip__content'
   )
 ) {
-  display: block;
+  visibility: visible;
+  opacity: 1;
 }
 
 .c-bolt-tooltip__content {
   @include bolt-padding(xxsmall);
-  display: none;
+  visibility: hidden; // display 'none' interferes with Popper.js calculating tooltip size
+  opacity: 0;
   position: absolute;
   transform: translate3d(0, 0, 0);
+  transition: opacity $bolt-transition-timing * 2
+    cubic-bezier(0.25, 0.8, 0.25, 1);
   z-index: 1;
   white-space: nowrap;
 
-  @at-root .c-bolt-tooltip--top-right & {
-    right: 0;
-    bottom: 100%;
-    transform: translate3d(0, 0, 0);
+  // @todo: all positioning that follows is overridden by Popper, animations won't work.
+  // Can we figure out Popper-friendly animation that doesn't rely on display 'none'?
+  @at-root .c-bolt-tooltip--top-end & {
+    // right: 0;
+    // bottom: 100%;
+    // transform: translate3d(0, 0, 0);
     padding-right: 0;
     padding-left: 0;
 
-    .c-bolt-tooltip__bubble {
-      animation-name: a-bolt-zoom-in-up;
-      transform-origin: bottom right;
-    }
+    // .c-bolt-tooltip__bubble {
+    //   animation-name: a-bolt-zoom-in-up;
+    //   transform-origin: bottom right;
+    // }
   }
 
-  @at-root .c-bolt-tooltip--top & {
-    bottom: 100%;
-    left: 50%;
-    transform: translate3d(-50%, 0, 0);
+  @at-root .c-bolt-tooltip--start & {
+    // bottom: 100%;
+    // left: 50%;
+    // transform: translate3d(-50%, 0, 0);
     padding-right: 0;
     padding-left: 0;
 
-    .c-bolt-tooltip__bubble {
-      animation-name: a-bolt-zoom-in-up;
-      transform-origin: bottom center;
-    }
+    // .c-bolt-tooltip__bubble {
+    //   animation-name: a-bolt-zoom-in-up;
+    //   transform-origin: bottom center;
+    // }
   }
 
-  @at-root .c-bolt-tooltip--top-left & {
-    bottom: 100%;
-    left: 0;
-    transform: translate3d(0, 0, 0);
+  @at-root .c-bolt-tooltip--top-start & {
+    // bottom: 100%;
+    // left: 0;
+    // transform: translate3d(0, 0, 0);
     padding-right: 0;
     padding-left: 0;
 
-    .c-bolt-tooltip__bubble {
-      animation-name: a-bolt-zoom-in-up;
-      transform-origin: bottom left;
-    }
+    // .c-bolt-tooltip__bubble {
+    //   animation-name: a-bolt-zoom-in-up;
+    //   transform-origin: bottom left;
+    // }
   }
 
-  @at-root .c-bolt-tooltip--left-top & {
-    top: 0;
-    right: 100%;
-    transform: translate3d(0, 0, 0);
+  @at-root .c-bolt-tooltip--left-start & {
+    // top: 0;
+    // right: 100%;
+    // transform: translate3d(0, 0, 0);
     padding-top: 0;
     padding-bottom: 0;
 
-    .c-bolt-tooltip__bubble {
-      animation-name: a-bolt-zoom-in-right;
-      transform-origin: top right;
-    }
+    // .c-bolt-tooltip__bubble {
+    //   animation-name: a-bolt-zoom-in-right;
+    //   transform-origin: top right;
+    // }
   }
 
-  @at-root .c-bolt-tooltip--left & {
-    top: 50%;
-    right: 100%;
-    transform: translate3d(0, -50%, 0);
+  @at-root .c-bolt-tooltip--start & {
+    // top: 50%;
+    // right: 100%;
+    // transform: translate3d(0, -50%, 0);
     padding-top: 0;
     padding-bottom: 0;
 
-    .c-bolt-tooltip__bubble {
-      animation-name: a-bolt-zoom-in-right;
-      transform-origin: center right;
-    }
+    // .c-bolt-tooltip__bubble {
+    //   animation-name: a-bolt-zoom-in-right;
+    //   transform-origin: center right;
+    // }
   }
 
-  @at-root .c-bolt-tooltip--left-bottom & {
-    right: 100%;
-    bottom: 0;
-    transform: translate3d(0, 0, 0);
+  @at-root .c-bolt-tooltip--left-end & {
+    // right: 100%;
+    // bottom: 0;
+    // transform: translate3d(0, 0, 0);
     padding-top: 0;
     padding-bottom: 0;
 
-    .c-bolt-tooltip__bubble {
-      animation-name: a-bolt-zoom-in-right;
-      transform-origin: bottom right;
-    }
+    // .c-bolt-tooltip__bubble {
+    //   animation-name: a-bolt-zoom-in-right;
+    //   transform-origin: bottom right;
+    // }
   }
 
-  @at-root .c-bolt-tooltip--right-top & {
-    top: 0;
-    left: 100%;
-    transform: translate3d(0, 0, 0);
+  @at-root .c-bolt-tooltip--right-start & {
+    // top: 0;
+    // left: 100%;
+    // transform: translate3d(0, 0, 0);
     padding-top: 0;
     padding-bottom: 0;
 
-    .c-bolt-tooltip__bubble {
-      animation-name: a-bolt-zoom-in-left;
-      transform-origin: top left;
-    }
+    // .c-bolt-tooltip__bubble {
+    //   animation-name: a-bolt-zoom-in-left;
+    //   transform-origin: top left;
+    // }
   }
 
-  @at-root .c-bolt-tooltip--right & {
-    top: 50%;
-    left: 100%;
-    transform: translate3d(0, -50%, 0);
+  @at-root .c-bolt-tooltip--end & {
+    // top: 50%;
+    // left: 100%;
+    // transform: translate3d(0, -50%, 0);
     padding-top: 0;
     padding-bottom: 0;
 
-    .c-bolt-tooltip__bubble {
-      animation-name: a-bolt-zoom-in-left;
-      transform-origin: center left;
-    }
+    // .c-bolt-tooltip__bubble {
+    //   animation-name: a-bolt-zoom-in-left;
+    //   transform-origin: center left;
+    // }
   }
 
-  @at-root .c-bolt-tooltip--right-bottom & {
-    bottom: 0;
-    left: 100%;
-    transform: translate3d(0, 0, 0);
+  @at-root .c-bolt-tooltip--right-end & {
+    // bottom: 0;
+    // left: 100%;
+    // transform: translate3d(0, 0, 0);
     padding-top: 0;
     padding-bottom: 0;
 
-    .c-bolt-tooltip__bubble {
-      animation-name: a-bolt-zoom-in-left;
-      transform-origin: bottom left;
-    }
+    // .c-bolt-tooltip__bubble {
+    //   animation-name: a-bolt-zoom-in-left;
+    //   transform-origin: bottom left;
+    // }
   }
 
-  @at-root .c-bolt-tooltip--bottom-right & {
-    top: 100%;
-    right: 0;
-    transform: translate3d(0, 0, 0);
+  @at-root .c-bolt-tooltip--bottom-end & {
+    // top: 100%;
+    // right: 0;
+    // transform: translate3d(0, 0, 0);
     padding-right: 0;
     padding-left: 0;
 
-    .c-bolt-tooltip__bubble {
-      animation-name: a-bolt-zoom-in-down;
-      transform-origin: top right;
-    }
+    // .c-bolt-tooltip__bubble {
+    //   animation-name: a-bolt-zoom-in-down;
+    //   transform-origin: top right;
+    // }
   }
 
-  @at-root .c-bolt-tooltip--bottom & {
-    top: 100%;
-    left: 50%;
-    transform: translate3d(-50%, 0, 0);
+  @at-root .c-bolt-tooltip--end & {
+    // top: 100%;
+    // left: 50%;
+    // transform: translate3d(-50%, 0, 0);
     padding-right: 0;
     padding-left: 0;
 
-    .c-bolt-tooltip__bubble {
-      animation-name: a-bolt-zoom-in-down;
-      transform-origin: top center;
-    }
+    // .c-bolt-tooltip__bubble {
+    //   animation-name: a-bolt-zoom-in-down;
+    //   transform-origin: top center;
+    // }
   }
 
-  @at-root .c-bolt-tooltip--bottom-left & {
-    top: 100%;
-    left: 0;
-    transform: translate3d(0, 0, 0);
+  @at-root .c-bolt-tooltip--bottom-start & {
+    // top: 100%;
+    // left: 0;
+    // transform: translate3d(0, 0, 0);
     padding-right: 0;
     padding-left: 0;
 
-    .c-bolt-tooltip__bubble {
-      animation-name: a-bolt-zoom-in-down;
-      transform-origin: top left;
-    }
+    // .c-bolt-tooltip__bubble {
+    //   animation-name: a-bolt-zoom-in-down;
+    //   transform-origin: top left;
+    // }
   }
 }
 
