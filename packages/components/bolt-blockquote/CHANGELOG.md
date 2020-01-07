@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.14.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-blockquote/compare/v2.13.3...v2.14.0) (2020-01-06)
+
+
+### Bug Fixes
+
+* revert adding component internal updates — handled in a separate PR ([37882d5](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-blockquote/commit/37882d5))
+
+
+### Features
+
+* cherry pick component constructor / event lifecycle cleanup work related to larger work in https://github.com/boltdesignsystem/bolt/pull/1579 ([3911459](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-blockquote/commit/3911459))
+* cherry pick component constructor / event lifecycle cleanup work related to larger work in https://github.com/boltdesignsystem/bolt/pull/1579 ([43d1878](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-blockquote/commit/43d1878))
+* migrate over the customElements.define-related replacement + component dependency updates from https://github.com/boltdesignsystem/bolt/pull/1579 ([3b6f529](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-blockquote/commit/3b6f529))
+
+
+
+
+
 # [2.13.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-blockquote/compare/v2.12.1...v2.13.0) (2019-12-13)
 
 **Note:** Version bump only for package @bolt/components-blockquote

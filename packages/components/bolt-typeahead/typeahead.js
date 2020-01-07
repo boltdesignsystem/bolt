@@ -49,31 +49,41 @@ class BoltTypeahead extends withLitEvents {
     }
   }
 
+  disconnected() {
+    super.disconnected && super.disconnected();
+
+    // hack so that "ready" event will fire next time component connects,
+    // and any external listeners will be re-added
+    this._wasInitiallyRendered = false;
+  }
+
   clearSearch() {
     this.inputValue = '';
     this.autosuggest.clearSearch();
   }
 
-  submit() {
-    var evt = new KeyboardEvent('keypress', {
-      keyCode: 13,
-      which: 13,
-      key: 'Enter',
-    });
-    this.autosuggest.dispatchEvent(evt);
+  submit(e) {
+    this.handleSelected(e);
+
+    // prevent default behavior or form submits multiple times
+    e.preventDefault();
   }
 
   handleKeyPress(e) {
     if (e.target.value !== '') {
       if (e.key === 'Enter') {
-        this.autosuggest.onSelected(e, {
-          suggestionValue: this.inputValue,
-          suggestion: {
-            label: this.inputValue,
-          },
-        });
+        this.handleSelected(e);
       }
     }
+  }
+
+  handleSelected(e) {
+    this.autosuggest.onSelected(e, {
+      suggestionValue: this.inputValue,
+      suggestion: {
+        label: this.inputValue,
+      },
+    });
   }
 
   render() {
@@ -134,16 +144,27 @@ class BoltTypeahead extends withLitEvents {
   rendered() {
     super.rendered && super.rendered();
 
+    const setupEventHandlers = () => {
+      this.autosuggest.on('onInput', (element, event, newValue) => {
+        this.inputValue = newValue;
+      });
+
+      this.autosuggest.on('onChange', (element, event, newValue) => {
+        this.inputValue = newValue;
+      });
+    };
+
     if (!this.autosuggest) {
       this.autosuggest = this.renderRoot.querySelector('bolt-autosuggest');
-      this.autosuggest.addEventListener('ready', () => {
-        this.autosuggest.on('onInput', (element, event, newValue) => {
-          this.inputValue = newValue;
-        });
 
-        this.autosuggest.on('onChange', (element, event, newValue) => {
-          this.inputValue = newValue;
-        });
+      if (this.autosuggest._wasInitiallyRendered) {
+        setupEventHandlers();
+      }
+
+      this.autosuggest.addEventListener('ready', e => {
+        if (e.detail.name === 'bolt-autosuggest') {
+          setupEventHandlers();
+        }
       });
     }
   }
