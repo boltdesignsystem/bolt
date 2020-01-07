@@ -8,9 +8,9 @@ import {
 import { isFocusable } from '@bolt/core-v3.x/utils';
 import { ifDefined } from 'lit-html/directives/if-defined';
 import classNames from 'classnames/dedupe';
+import Popper from 'popper.js';
 import tooltipStyles from './tooltip.scss';
 import schema from '../tooltip.schema';
-import Popper from 'popper.js';
 
 let cx = classNames.bind(tooltipStyles);
 
