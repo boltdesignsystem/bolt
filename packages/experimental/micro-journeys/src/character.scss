@@ -27,13 +27,13 @@ bolt-animate[slot="connection"] {
     width: 300px;
   }
 
-  &.c-bolt-character__has-one-side-content {
+  &.c-bolt-character__has-one-side-content:not(.c-bolt-character__is-in-two-character-layout) {
     @include bolt-ie11-only {
       width: 400px;
     }
   }
 
-  &.c-bolt-character__has-both-side-content {
+  &.c-bolt-character__has-both-side-content:not(.c-bolt-character__is-in-two-character-layout) {
     @include bolt-ie11-only {
       width: 500px;
     }
