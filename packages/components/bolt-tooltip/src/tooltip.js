@@ -178,9 +178,7 @@ class BoltTooltip extends BoltElement {
           html`
             <span
               tabindex="${this.hasFocusableContent ? '-1' : '0'}"
-              role="${ifDefined(
-                this.hasFocusableContent ? 'button' : undefined,
-              )}"
+              role="button"
               aria-describedby="js-bolt-tooltip-${this.uuid}"
               aria-controls="js-bolt-tooltip-${this.uuid}"
               aria-expanded="${this.open}"
