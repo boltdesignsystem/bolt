@@ -70,7 +70,7 @@ class BoltTooltip extends BoltElement {
       e.type === 'mouseover' ||
       (e.type === 'mouseout' &&
         // relatedTarget may be slotted content
-        (this.contains(e.relatedTarget) ||
+        (e.target.contains(e.relatedTarget) ||
           // or it may be in Shadow DOM
           this.renderRoot.contains(e.relatedTarget)))
         ? true
