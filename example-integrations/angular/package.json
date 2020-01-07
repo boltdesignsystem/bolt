@@ -3,22 +3,15 @@
   "version": "2.4.0",
   "private": true,
   "author": "Adam Szałapski",
-  "contributors": [
-    {
-      "name": "Salem Ghoweri",
-      "email": "me@salemghoweri.com",
-      "url": "https://github.com/sghoweri"
-    }
-  ],
   "scripts": {
+    "build": "ng build",
+    "e2e": "ng e2e",
     "preinstall": "cd .bolt && yarn",
     "postinstall": "cd .bolt && yarn run build",
+    "lint": "ng lint",
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
-    "test": "ng test",
-    "lint": "ng lint",
-    "e2e": "ng e2e"
+    "test": "ng test"
   },
   "dependencies": {
     "@angular/animations": "~8.0.0",
@@ -55,5 +48,12 @@
     "ts-node": "~8.2.0",
     "tslint": "~5.17.0",
     "typescript": "3.4.5"
-  }
+  },
+  "contributors": [
+    {
+      "name": "Salem Ghoweri",
+      "email": "me@salemghoweri.com",
+      "url": "https://github.com/sghoweri"
+    }
+  ]
 }

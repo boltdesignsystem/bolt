@@ -1,5 +1,6 @@
 {
   "name": "@bolt/components-ol",
+  "version": "2.14.0",
   "description": "Ordered-list Component in Bolt",
   "keywords": [
     "bolt design system",
@@ -8,7 +9,20 @@
     "design system",
     "components"
   ],
-  "version": "2.13.0",
+  "homepage": "https://bolt-design-system.com",
+  "bugs": "https://github.com/bolt-design-system/bolt/issues",
+  "repository": "https://github.com/bolt-design-system/bolt/tree/master/packages/components/lists/bolt-ol",
+  "license": "MIT",
+  "main": "index.js",
+  "style": "index.scss",
+  "dependencies": {
+    "@bolt/components-li": "^2.14.0",
+    "@bolt/core-v3.x": "^2.14.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "gitHead": "d41aa75ae3d195d9d7fb3952eed5e0ae80988133",
   "maintainers": [
     {
       "name": "Salem Ghoweri",
@@ -21,20 +35,6 @@
       "web": "http://mikemai.net/"
     }
   ],
-  "homepage": "https://bolt-design-system.com",
-  "license": "MIT",
-  "repository": "https://github.com/bolt-design-system/bolt/tree/master/packages/components/lists/bolt-ol",
-  "bugs": "https://github.com/bolt-design-system/bolt/issues",
-  "style": "index.scss",
-  "main": "index.js",
-  "twig": "src/ol.twig",
   "schema": "ol.schema.yml",
-  "publishConfig": {
-    "access": "public"
-  },
-  "dependencies": {
-    "@bolt/components-li": "^2.13.0",
-    "@bolt/core": "^2.13.0"
-  },
-  "gitHead": "d41aa75ae3d195d9d7fb3952eed5e0ae80988133"
+  "twig": "src/ol.twig"
 }

@@ -1,17 +1,10 @@
-import {
-  define,
-  props,
-  css,
-  hasNativeShadowDomSupport,
-} from '@bolt/core/utils';
-import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
-
+import { props, css, hasNativeShadowDomSupport } from '@bolt/core-v3.x/utils';
+import { withLitHtml } from '@bolt/core-v3.x/renderers/renderer-lit-html';
+import { html, customElement } from '@bolt/element';
 import placeholderStyles from './placeholder.scss';
 
-@define
-class BoltPlaceholder extends withLitHtml() {
-  static is = 'bolt-placeholder';
-
+@customElement('bolt-placeholder')
+class BoltPlaceholder extends withLitHtml {
   static props = {
     animated: props.boolean,
     size: props.string,

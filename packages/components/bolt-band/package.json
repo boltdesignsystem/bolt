@@ -1,21 +1,29 @@
 {
   "name": "@bolt/components-band",
+  "version": "2.14.0",
   "description": "Band Component in Bolt",
-  "license": "MIT",
-  "version": "2.12.0",
-  "homepage": "https://boltdesignsystem.com",
-  "repository": "https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-band",
-  "bugs": "https://github.com/bolt-design-system/bolt/issues",
-  "style": "index.scss",
-  "main": "index.js",
-  "twig": "src/band.twig",
-  "schema": "band.schema.yml",
   "keywords": [
     "bolt design system",
     "bolt",
     "design system",
     "components"
   ],
+  "homepage": "https://boltdesignsystem.com",
+  "bugs": "https://github.com/bolt-design-system/bolt/issues",
+  "repository": "https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-band",
+  "license": "MIT",
+  "main": "index.js",
+  "style": "index.scss",
+  "dependencies": {
+    "@bolt/components-background": "^2.14.0",
+    "@bolt/components-grid": "^2.14.0",
+    "@bolt/core-v3.x": "^2.14.0",
+    "@bolt/element": "^2.14.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "gitHead": "d41aa75ae3d195d9d7fb3952eed5e0ae80988133",
   "maintainers": [
     {
       "name": "Salem Ghoweri",
@@ -28,14 +36,6 @@
       "web": "http://mikemai.net/"
     }
   ],
-  "publishConfig": {
-    "access": "public"
-  },
-  "dependencies": {
-    "@bolt/components-background": "^2.12.0",
-    "@bolt/components-grid": "^2.12.0",
-    "@bolt/core": "^2.12.0",
-    "@bolt/element": "^2.12.0"
-  },
-  "gitHead": "d41aa75ae3d195d9d7fb3952eed5e0ae80988133"
+  "schema": "band.schema.yml",
+  "twig": "src/band.twig"
 }

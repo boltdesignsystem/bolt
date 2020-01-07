@@ -49,7 +49,6 @@ Object {
 exports[`Tests to confirm that the latest upcoming release of the @bolt/build-tools is compiling as expected Check that the Japanese-specific CSS bundle was generated and contains the correct font 1`] = `
 "@charset \\"UTF-8\\";
 bolt-button {
-  display: -webkit-inline-box;
   display: inline-flex;
   outline: 0;
 }
@@ -61,7 +60,6 @@ bolt-button[type=\\"submit\\"] {
   appearance: none;
 }
 :host {
-  display: -webkit-inline-box;
   display: inline-flex;
 }
 :host[type=\\"button\\"],
@@ -87,12 +85,9 @@ bolt-button[type=\\"submit\\"] {
   -ms-user-select: none;
   user-select: none;
   font-weight: 600;
-  display: -webkit-box;
   display: flex;
-  -webkit-box-align: center;
   align-items: center;
   position: relative;
-  -webkit-transform: translateZ(0);
   transform: translateZ(0);
   text-decoration: none;
   vertical-align: middle;
@@ -102,7 +97,6 @@ bolt-button[type=\\"submit\\"] {
   border-style: solid;
   box-shadow: 0 1px 4px 1px rgba(6, 10, 36, 0.1),
     0 5px 10px 0 rgba(6, 10, 36, 0.08);
-  -webkit-transition: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   transition: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   box-shadow: var(
     --bolt-button-box-shadow,
@@ -131,7 +125,6 @@ bolt-button[type=\\"submit\\"] {
   height: 100%;
   pointer-events: none;
   border-radius: 3px;
-  -webkit-transform: translateY(-2px);
   transform: translateY(-2px);
   box-shadow: var(
     --bolt-button-box-shadow,
@@ -155,7 +148,6 @@ bolt-button[type=\\"submit\\"] {
   color: rgba(var(--bolt-theme-text-on-primary-lighten-15), 1);
   border-color: rgba(var(--bolt-theme-primary-lighten-15), 1);
   background-color: rgba(var(--bolt-theme-primary-lighten-15), 1);
-  -webkit-transform: translateY(-2px);
   transform: translateY(-2px);
   box-shadow: 0 1px 8px 1px rgba(6, 10, 36, 0.18),
     0 5px 10px 1px rgba(6, 10, 36, 0.15), 0 15px 30px 0 rgba(6, 10, 36, 0.16);
@@ -171,7 +163,6 @@ bolt-button[type=\\"submit\\"] {
   color: rgba(var(--bolt-theme-text-on-primary-darken-25), 1);
   border-color: rgba(var(--bolt-theme-primary-darken-25), 1);
   background-color: rgba(var(--bolt-theme-primary-darken-25), 1);
-  -webkit-transform: translate3d(0, 1px, 0);
   transform: translate3d(0, 1px, 0);
 }
 .c-bolt-button--secondary {
@@ -184,7 +175,6 @@ bolt-button[type=\\"submit\\"] {
   color: rgba(var(--bolt-theme-text-on-secondary-lighten-5), 1);
   border-color: rgba(var(--bolt-theme-secondary-lighten-5), 1);
   background-color: rgba(var(--bolt-theme-secondary-lighten-5), 1);
-  -webkit-transform: translateY(-2px);
   transform: translateY(-2px);
   box-shadow: 0 1px 8px 1px rgba(6, 10, 36, 0.18),
     0 5px 10px 1px rgba(6, 10, 36, 0.15), 0 15px 30px 0 rgba(6, 10, 36, 0.16);
@@ -200,7 +190,6 @@ bolt-button[type=\\"submit\\"] {
   color: rgba(var(--bolt-theme-text-on-secondary-darken-10), 1);
   border-color: rgba(var(--bolt-theme-secondary-darken-10), 1);
   background-color: rgba(var(--bolt-theme-secondary-darken-10), 1);
-  -webkit-transform: translate3d(0, 1px, 0);
   transform: translate3d(0, 1px, 0);
 }
 .c-bolt-button--text {
@@ -273,10 +262,8 @@ bolt-button[type=\\"submit\\"] {
 [aria-disabled=\\"true\\"] .c-bolt-button:not(.c-bolt-button--text):visited {
   box-shadow: 0 1px 4px 1px rgba(6, 10, 36, 0.1),
     0 5px 10px 0 rgba(6, 10, 36, 0.08);
-  -webkit-transition: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   transition: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   opacity: 1;
-  -webkit-transform: none;
   transform: none;
   border-color: rgba(var(--bolt-theme-disabled), 1);
   box-shadow: var(
@@ -377,7 +364,6 @@ bolt-button[type=\\"submit\\"] {
   position: absolute;
   top: 50%;
   left: 50%;
-  -webkit-transform: translate3d(-50%, -50%, 0);
   transform: translate3d(-50%, -50%, 0);
 }
 .c-bolt-button--icon-only.c-bolt-button--xsmall .c-bolt-button__icon-sizer {
@@ -422,17 +408,14 @@ bolt-button[border-radius=\\"full\\"] {
   border-radius: 50em;
 }
 .c-bolt-button__icon {
-  display: -webkit-box;
   display: flex;
 }
 .c-bolt-button__item {
-  display: -webkit-inline-box;
   display: inline-flex;
   text-align: left;
   text-align: start;
 }
 .c-bolt-button__icon-sizer {
-  display: -webkit-box;
   display: flex;
 }
 .c-bolt-button:not(.c-bolt-button--icon-only)
@@ -444,15 +427,12 @@ bolt-button[border-radius=\\"full\\"] {
   margin-left: 0.25rem;
 }
 .c-bolt-button--center {
-  -webkit-box-pack: center;
   justify-content: center;
 }
 .c-bolt-button--start {
-  -webkit-box-pack: start;
   justify-content: flex-start;
 }
 .c-bolt-button--end {
-  -webkit-box-pack: end;
   justify-content: flex-end;
 }
 @font-face {
@@ -506,7 +486,6 @@ bolt-button[border-radius=\\"full\\"] {
 *,
 :after,
 :before {
-  -webkit-font-feature-settings: \\"kern\\";
   font-feature-settings: \\"kern\\";
   -webkit-font-kerning: normal;
   font-kerning: normal;
@@ -1016,7 +995,6 @@ bolt-bare-list > * {
 .o-bolt-crop--center > .o-bolt-crop__content {
   top: 50%;
   left: 50%;
-  -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
 .o-bolt-crop--1\\\\:1 {
@@ -1032,9 +1010,7 @@ bolt-bare-list > * {
   padding-bottom: 56.25%;
 }
 .o-bolt-flag {
-  display: -webkit-box;
   display: flex;
-  -webkit-box-align: start;
   align-items: flex-start;
 }
 .o-bolt-flag:not(:last-child) {
@@ -1042,7 +1018,6 @@ bolt-bare-list > * {
 }
 .o-bolt-flag__body {
   flex-basis: auto;
-  -webkit-box-flex: 1;
   flex-grow: 1;
   flex-shrink: 1;
   width: 100%;
@@ -1054,17 +1029,14 @@ bolt-bare-list > * {
   direction: ltr;
 }
 .o-bolt-flag--top {
-  -webkit-box-align: start;
   align-items: flex-start;
   vertical-align: top;
 }
 .o-bolt-flag--middle {
-  -webkit-box-align: center;
   align-items: center;
   vertical-align: middle;
 }
 .o-bolt-flag--bottom {
-  -webkit-box-align: end;
   align-items: flex-end;
   vertical-align: bottom;
 }
@@ -1075,7 +1047,6 @@ bolt-bare-list > * {
   margin-right: 1.4rem;
 }
 .o-bolt-grid {
-  -webkit-box-flex: 1;
   flex: 1 1 auto;
   margin: 0 0 0 -1.4rem;
   padding: 0;
@@ -1101,7 +1072,6 @@ bolt-bare-list > * {
   padding-left: 0;
 }
 .o-bolt-grid--center {
-  -webkit-box-pack: center;
   justify-content: center;
   text-align: center;
 }
@@ -1109,21 +1079,18 @@ bolt-bare-list > * {
   text-align: left;
 }
 .o-bolt-grid--middle.o-bolt-grid--flex {
-  -webkit-box-align: center;
   align-items: center;
 }
 .o-bolt-grid--middle > .o-bolt-grid__cell {
   vertical-align: middle;
 }
 .o-bolt-grid--bottom.o-bolt-grid--flex {
-  -webkit-box-align: end;
   align-items: flex-end;
 }
 .o-bolt-grid--bottom > .o-bolt-grid__cell {
   vertical-align: bottom;
 }
 .o-bolt-grid--right {
-  -webkit-box-pack: end;
   justify-content: flex-end;
   text-align: right;
 }
@@ -1162,10 +1129,7 @@ bolt-bare-list > * {
   padding-left: 2.8rem;
 }
 .o-bolt-grid--flex {
-  display: -webkit-box;
   display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
   flex-flow: row wrap;
 }
 .o-bolt-grid--matrix {
@@ -1837,15 +1801,12 @@ bolt-inline-list:not(:last-child) {
   display: none !important;
 }
 .u-bolt-flex {
-  display: -webkit-box !important;
   display: flex !important;
 }
 .u-bolt-inline-flex {
-  display: -webkit-inline-box !important;
   display: inline-flex !important;
 }
 .u-bolt-flex-grow {
-  -webkit-box-flex: 1 !important;
   flex-grow: 1 !important;
 }
 .u-bolt-flex-shrink {
@@ -1946,11 +1907,9 @@ bolt-inline-list:not(:last-child) {
     display: none !important;
   }
   .u-bolt-flex\\\\@xxsmall {
-    display: -webkit-box !important;
     display: flex !important;
   }
   .u-bolt-inline-flex\\\\@xxsmall {
-    display: -webkit-inline-box !important;
     display: inline-flex !important;
   }
   .u-bolt-height-xxsmall\\\\@xxsmall {
@@ -2046,11 +2005,9 @@ bolt-inline-list:not(:last-child) {
     display: none !important;
   }
   .u-bolt-flex\\\\@xsmall {
-    display: -webkit-box !important;
     display: flex !important;
   }
   .u-bolt-inline-flex\\\\@xsmall {
-    display: -webkit-inline-box !important;
     display: inline-flex !important;
   }
   .u-bolt-height-xxsmall\\\\@xsmall {
@@ -2146,11 +2103,9 @@ bolt-inline-list:not(:last-child) {
     display: none !important;
   }
   .u-bolt-flex\\\\@small {
-    display: -webkit-box !important;
     display: flex !important;
   }
   .u-bolt-inline-flex\\\\@small {
-    display: -webkit-inline-box !important;
     display: inline-flex !important;
   }
   .u-bolt-height-xxsmall\\\\@small {
@@ -2246,11 +2201,9 @@ bolt-inline-list:not(:last-child) {
     display: none !important;
   }
   .u-bolt-flex\\\\@medium {
-    display: -webkit-box !important;
     display: flex !important;
   }
   .u-bolt-inline-flex\\\\@medium {
-    display: -webkit-inline-box !important;
     display: inline-flex !important;
   }
   .u-bolt-height-xxsmall\\\\@medium {
@@ -2346,11 +2299,9 @@ bolt-inline-list:not(:last-child) {
     display: none !important;
   }
   .u-bolt-flex\\\\@large {
-    display: -webkit-box !important;
     display: flex !important;
   }
   .u-bolt-inline-flex\\\\@large {
-    display: -webkit-inline-box !important;
     display: inline-flex !important;
   }
   .u-bolt-height-xxsmall\\\\@large {
@@ -2446,11 +2397,9 @@ bolt-inline-list:not(:last-child) {
     display: none !important;
   }
   .u-bolt-flex\\\\@xlarge {
-    display: -webkit-box !important;
     display: flex !important;
   }
   .u-bolt-inline-flex\\\\@xlarge {
-    display: -webkit-inline-box !important;
     display: inline-flex !important;
   }
   .u-bolt-height-xxsmall\\\\@xlarge {
@@ -2546,11 +2495,9 @@ bolt-inline-list:not(:last-child) {
     display: none !important;
   }
   .u-bolt-flex\\\\@xxlarge {
-    display: -webkit-box !important;
     display: flex !important;
   }
   .u-bolt-inline-flex\\\\@xxlarge {
-    display: -webkit-inline-box !important;
     display: inline-flex !important;
   }
   .u-bolt-height-xxsmall\\\\@xxlarge {
@@ -2646,11 +2593,9 @@ bolt-inline-list:not(:last-child) {
     display: none !important;
   }
   .u-bolt-flex\\\\@xxxlarge {
-    display: -webkit-box !important;
     display: flex !important;
   }
   .u-bolt-inline-flex\\\\@xxxlarge {
-    display: -webkit-inline-box !important;
     display: inline-flex !important;
   }
   .u-bolt-height-xxsmall\\\\@xxxlarge {
@@ -3030,12 +2975,10 @@ bolt-inline-list:not(:last-child) {
 .u-bolt-shadow-level-10,
 .u-bolt-shadow-level-10-hoverable {
   box-shadow: 0 1px 2px 1px rgba(6, 10, 36, 0.08) !important;
-  -webkit-transition: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
   transition: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
 }
 .u-bolt-shadow--level-10--hoverable:hover,
 .u-bolt-shadow-level-10-hoverable:hover {
-  -webkit-transform: translateY(-2px) !important;
   transform: translateY(-2px) !important;
 }
 .u-bolt-shadow--level-20,
@@ -3044,12 +2987,10 @@ bolt-inline-list:not(:last-child) {
 .u-bolt-shadow-level-20-hoverable {
   box-shadow: 0 1px 4px 1px rgba(6, 10, 36, 0.1),
     0 5px 10px 0 rgba(6, 10, 36, 0.08) !important;
-  -webkit-transition: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
   transition: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
 }
 .u-bolt-shadow--level-20--hoverable:hover,
 .u-bolt-shadow-level-20-hoverable:hover {
-  -webkit-transform: translateY(-2px) !important;
   transform: translateY(-2px) !important;
   box-shadow: 0 1px 8px 1px rgba(6, 10, 36, 0.18),
     0 5px 10px 1px rgba(6, 10, 36, 0.15), 0 15px 30px 0 rgba(6, 10, 36, 0.16) !important;
@@ -3060,12 +3001,10 @@ bolt-inline-list:not(:last-child) {
 .u-bolt-shadow-level-30-hoverable {
   box-shadow: 0 8px 15px 1px rgba(6, 10, 36, 0.1),
     0 18px 24px 1px rgba(6, 10, 36, 0.12) !important;
-  -webkit-transition: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
   transition: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
 }
 .u-bolt-shadow--level-30--hoverable:hover,
 .u-bolt-shadow-level-30-hoverable:hover {
-  -webkit-transform: translateY(-2px) !important;
   transform: translateY(-2px) !important;
   box-shadow: 0 8px 15px 1px rgba(6, 10, 36, 0.1),
     0 24px 36px 1px rgba(6, 10, 36, 0.18), 0 35px 50px 0 rgba(6, 10, 36, 0.25) !important;
@@ -3076,12 +3015,10 @@ bolt-inline-list:not(:last-child) {
 .u-bolt-shadow-level-40-hoverable {
   box-shadow: 0 10px 20px 1px rgba(6, 10, 36, 0.1),
     0 24px 36px 1px rgba(6, 10, 36, 0.18) !important;
-  -webkit-transition: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
   transition: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
 }
 .u-bolt-shadow--level-40--hoverable:hover,
 .u-bolt-shadow-level-40-hoverable:hover {
-  -webkit-transform: translateY(-2px) !important;
   transform: translateY(-2px) !important;
   box-shadow: 0 10px 20px 1px rgba(6, 10, 36, 0.1),
     0 36px 49px 1px rgba(6, 10, 36, 0.2), 0 45px 65px 0 rgba(6, 10, 36, 0.3) !important;
@@ -3092,12 +3029,10 @@ bolt-inline-list:not(:last-child) {
 .u-bolt-shadow-level-50-hoverable {
   box-shadow: 0 10px 30px 1px rgba(6, 10, 36, 0.1),
     0 40px 48px 1px rgba(6, 10, 36, 0.25) !important;
-  -webkit-transition: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
   transition: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
 }
 .u-bolt-shadow--level-50--hoverable:hover,
 .u-bolt-shadow-level-50-hoverable:hover {
-  -webkit-transform: translateY(-2px) !important;
   transform: translateY(-2px) !important;
   box-shadow: 0 10px 30px 1px rgba(6, 10, 36, 0.1),
     0 50px 70px 1px rgba(6, 10, 36, 0.2), 0 55px 80px 0 rgba(6, 10, 36, 0.3) !important;
@@ -3108,12 +3043,10 @@ bolt-inline-list:not(:last-child) {
 .u-bolt-shadow-level-60-hoverable {
   box-shadow: 0 10px 30px 1px rgba(6, 10, 36, 0.1),
     0 50px 60px 1px rgba(6, 10, 36, 0.4) !important;
-  -webkit-transition: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
   transition: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
 }
 .u-bolt-shadow--level-60--hoverable:hover,
 .u-bolt-shadow-level-60-hoverable:hover {
-  -webkit-transform: translateY(-2px) !important;
   transform: translateY(-2px) !important;
   box-shadow: 0 10px 30px 1px rgba(6, 10, 36, 0.1),
     0 70px 80px 1px rgba(6, 10, 36, 0.2), 0 80px 120px 0 rgba(6, 10, 36, 0.35) !important;
@@ -3124,12 +3057,10 @@ bolt-inline-list:not(:last-child) {
 .u-bolt-shadow-level-70-hoverable {
   box-shadow: 0 10px 30px 1px rgba(6, 10, 36, 0.1),
     0 80px 90px 1px rgba(6, 10, 36, 0.4) !important;
-  -webkit-transition: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
   transition: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
 }
 .u-bolt-shadow--level-70--hoverable:hover,
 .u-bolt-shadow-level-70-hoverable:hover {
-  -webkit-transform: translateY(-2px) !important;
   transform: translateY(-2px) !important;
   box-shadow: 0 10px 30px 1px rgba(6, 10, 36, 0.1),
     0 110px 130px 1px rgba(6, 10, 36, 0.25),
@@ -13486,21 +13417,12 @@ bolt-inline-list:not(:last-child) {
   z-index: -20 !important;
 }
 bolt-icon {
-  display: -webkit-inline-box;
-  display: inline-flex;
-  -webkit-box-pack: center;
-  justify-content: center;
-  -webkit-box-align: center;
-  align-items: center;
-  -webkit-transform: translateZ(0);
+  display: inline-block;
   transform: translateZ(0);
-  vertical-align: middle;
-  -webkit-transition: inherit;
-  transition: inherit;
-}
-bolt-icon:not([size]) {
   width: 1em;
   height: 1em;
+  vertical-align: middle;
+  transition: inherit;
 }
 bolt-icon:not(:resolved) {
   height: 0;
@@ -13511,9 +13433,7 @@ bolt-icon:not(:resolved) {
   vertical-align: middle;
 }
 .c-bolt-icon {
-  display: block;
   position: relative;
-  height: 100%;
 }
 .c-bolt-icon__icon {
   display: block;
@@ -13525,51 +13445,60 @@ bolt-icon:not(:resolved) {
   color: var(--bolt-theme-icon);
   pointer-events: none;
 }
-.c-bolt-icon__icon--small {
+.c-bolt-icon--small > .c-bolt-icon__icon,
+bolt-icon[size=\\"small\\"] {
   width: 16px;
   height: 16px;
 }
-.c-bolt-icon__icon--medium {
+.c-bolt-icon--medium > .c-bolt-icon__icon,
+bolt-icon[size=\\"medium\\"] {
   width: 24px;
   height: 24px;
 }
-.c-bolt-icon__icon--large {
+.c-bolt-icon--large > .c-bolt-icon__icon,
+bolt-icon[size=\\"large\\"] {
   width: 32px;
   height: 32px;
 }
-.c-bolt-icon__icon--xlarge {
-  width: 38px;
-  height: 38px;
+.c-bolt-icon--xlarge > .c-bolt-icon__icon,
+bolt-icon[size=\\"xlarge\\"] {
+  width: 64px;
+  height: 64px;
+}
+.c-bolt-icon--xlarge > .c-bolt-icon__icon {
+  padding: 16px;
 }
 .c-bolt-icon--small > .c-bolt-icon__icon {
   stroke: currentColor;
   stroke-width: 1px;
 }
-.c-bolt-icon--small.has-background {
-  padding: 6px;
-}
-.c-bolt-icon--medium.has-background {
-  padding: 8px;
-}
-.c-bolt-icon--large.has-background {
-  padding: 12px;
-}
-.c-bolt-icon--xlarge.has-background {
-  padding: 13px;
-}
-.c-bolt-icon__background {
-  fill: currentColor;
-  fill: var(--bolt-theme-text, currentColor);
-}
 .c-bolt-icon__background-shape {
   opacity: 0.1;
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
   z-index: 40;
   width: 100%;
-  height: 100%;
+  height: 0;
+  padding-bottom: 100%;
   background-color: currentColor;
+}
+.c-bolt-icon__background-shape--circle {
+  border-radius: 50%;
+}
+.c-bolt-icon__background-shape--square {
+  border-radius: 3px;
+}
+.c-bolt-icon--teal {
+  color: #fff;
+  --bolt-theme-icon: #fff;
+  --bolt-theme-icon-background: #099;
+  --bolt-theme-icon-background-opacity: 1;
+}
+.c-bolt-icon--teal .c-bolt-icon__background-shape {
+  opacity: 1;
+  background-color: #099;
 }
 @supports (--css: variables) {
   .c-bolt-icon__background-shape {
@@ -13579,524 +13508,36 @@ bolt-icon:not(:resolved) {
       var(--bolt-theme-primary-text-default, currentColor)
     );
   }
+  .c-bolt-icon--teal {
+    color: var(--bolt-theme-icon);
+  }
+  .c-bolt-icon--teal .c-bolt-icon__background-shape {
+    opacity: var(--bolt-theme-icon-background-opacity);
+    background-color: var(--bolt-theme-icon-background);
+  }
 }
-.c-bolt-icon__background-shape--circle {
-  border-radius: 50%;
-}
-.c-bolt-icon__background-shape--square {
-  border-radius: 4px;
-}
-.c-bolt-icon__background-shape--outline {
-  opacity: 0.8;
-  border-radius: 50%;
-  background-color: transparent;
-  border: 2px solid currentColor;
-}
-.t-bolt-light .c-bolt-icon--blue,
-.t-bolt-xlight .c-bolt-icon--blue,
-:root .c-bolt-icon--blue {
+.c-bolt-icon--blue {
   color: #0074b3;
   --bolt-theme-icon: #0074b3;
-  -webkit-filter: drop-shadow(0 0 1px hsla(0, 0%, 100%, 0.2));
-  filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.2));
-}
-.t-bolt-light .c-bolt-icon--blue.has-background:not(.has-outline-background),
-.t-bolt-xlight .c-bolt-icon--blue.has-background:not(.has-outline-background),
-:root .c-bolt-icon--blue.has-background:not(.has-outline-background) {
-  color: #fff;
-  --bolt-theme-icon: #fff;
-  --bolt-theme-icon-background: #0074b3;
-  --bolt-theme-icon-background-opacity: 1;
-}
-.t-bolt-light
-  .c-bolt-icon--blue.has-background:not(.has-outline-background)
-  .c-bolt-icon__background-shape,
-.t-bolt-xlight
-  .c-bolt-icon--blue.has-background:not(.has-outline-background)
-  .c-bolt-icon__background-shape,
-:root
-  .c-bolt-icon--blue.has-background:not(.has-outline-background)
-  .c-bolt-icon__background-shape {
-  opacity: 1;
-  border: 1px solid rgba(92, 93, 102, 0.5);
-  background-color: #0074b3;
-}
-.t-bolt-light .c-bolt-icon--gray,
-.t-bolt-xlight .c-bolt-icon--gray,
-:root .c-bolt-icon--gray {
-  color: #5c5d66;
-  --bolt-theme-icon: #5c5d66;
-  -webkit-filter: drop-shadow(0 0 1px hsla(0, 0%, 100%, 0.2));
-  filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.2));
-}
-.t-bolt-light .c-bolt-icon--gray.has-background:not(.has-outline-background),
-.t-bolt-xlight .c-bolt-icon--gray.has-background:not(.has-outline-background),
-:root .c-bolt-icon--gray.has-background:not(.has-outline-background) {
-  color: #fff;
-  --bolt-theme-icon: #fff;
-  --bolt-theme-icon-background: #5c5d66;
-  --bolt-theme-icon-background-opacity: 1;
-}
-.t-bolt-light
-  .c-bolt-icon--gray.has-background:not(.has-outline-background)
-  .c-bolt-icon__background-shape,
-.t-bolt-xlight
-  .c-bolt-icon--gray.has-background:not(.has-outline-background)
-  .c-bolt-icon__background-shape,
-:root
-  .c-bolt-icon--gray.has-background:not(.has-outline-background)
-  .c-bolt-icon__background-shape {
-  opacity: 1;
-  border: 1px solid rgba(92, 93, 102, 0.5);
-  background-color: #5c5d66;
-}
-.t-bolt-light .c-bolt-icon--indigo,
-.t-bolt-xlight .c-bolt-icon--indigo,
-:root .c-bolt-icon--indigo {
-  color: #545da6;
-  --bolt-theme-icon: #545da6;
-  -webkit-filter: drop-shadow(0 0 1px hsla(0, 0%, 100%, 0.2));
-  filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.2));
-}
-.t-bolt-light .c-bolt-icon--indigo.has-background:not(.has-outline-background),
-.t-bolt-xlight .c-bolt-icon--indigo.has-background:not(.has-outline-background),
-:root .c-bolt-icon--indigo.has-background:not(.has-outline-background) {
-  color: #fff;
-  --bolt-theme-icon: #fff;
-  --bolt-theme-icon-background: #545da6;
-  --bolt-theme-icon-background-opacity: 1;
-}
-.t-bolt-light
-  .c-bolt-icon--indigo.has-background:not(.has-outline-background)
-  .c-bolt-icon__background-shape,
-.t-bolt-xlight
-  .c-bolt-icon--indigo.has-background:not(.has-outline-background)
-  .c-bolt-icon__background-shape,
-:root
-  .c-bolt-icon--indigo.has-background:not(.has-outline-background)
-  .c-bolt-icon__background-shape {
-  opacity: 1;
-  border: 1px solid rgba(92, 93, 102, 0.5);
-  background-color: #545da6;
-}
-.t-bolt-light .c-bolt-icon--orange,
-.t-bolt-xlight .c-bolt-icon--orange,
-:root .c-bolt-icon--orange {
-  color: #e84b17;
-  --bolt-theme-icon: #e84b17;
-  -webkit-filter: drop-shadow(0 0 1px hsla(0, 0%, 100%, 0.2));
-  filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.2));
-}
-.t-bolt-light .c-bolt-icon--orange.has-background:not(.has-outline-background),
-.t-bolt-xlight .c-bolt-icon--orange.has-background:not(.has-outline-background),
-:root .c-bolt-icon--orange.has-background:not(.has-outline-background) {
-  color: #fff;
-  --bolt-theme-icon: #fff;
-  --bolt-theme-icon-background: #e84b17;
-  --bolt-theme-icon-background-opacity: 1;
-}
-.t-bolt-light
-  .c-bolt-icon--orange.has-background:not(.has-outline-background)
-  .c-bolt-icon__background-shape,
-.t-bolt-xlight
-  .c-bolt-icon--orange.has-background:not(.has-outline-background)
-  .c-bolt-icon__background-shape,
-:root
-  .c-bolt-icon--orange.has-background:not(.has-outline-background)
-  .c-bolt-icon__background-shape {
-  opacity: 1;
-  border: 1px solid rgba(92, 93, 102, 0.5);
-  background-color: #e84b17;
-}
-.t-bolt-light .c-bolt-icon--teal,
-.t-bolt-xlight .c-bolt-icon--teal,
-:root .c-bolt-icon--teal {
-  color: #099;
-  --bolt-theme-icon: #099;
-  -webkit-filter: drop-shadow(0 0 1px hsla(0, 0%, 100%, 0.2));
-  filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.2));
-}
-.t-bolt-light .c-bolt-icon--teal.has-background:not(.has-outline-background),
-.t-bolt-xlight .c-bolt-icon--teal.has-background:not(.has-outline-background),
-:root .c-bolt-icon--teal.has-background:not(.has-outline-background) {
-  color: #fff;
-  --bolt-theme-icon: #fff;
-  --bolt-theme-icon-background: #099;
-  --bolt-theme-icon-background-opacity: 1;
-}
-.t-bolt-light
-  .c-bolt-icon--teal.has-background:not(.has-outline-background)
-  .c-bolt-icon__background-shape,
-.t-bolt-xlight
-  .c-bolt-icon--teal.has-background:not(.has-outline-background)
-  .c-bolt-icon__background-shape,
-:root
-  .c-bolt-icon--teal.has-background:not(.has-outline-background)
-  .c-bolt-icon__background-shape {
-  opacity: 1;
-  border: 1px solid rgba(92, 93, 102, 0.5);
-  background-color: #099;
-}
-.t-bolt-light .c-bolt-icon--white,
-.t-bolt-xlight .c-bolt-icon--white,
-:root .c-bolt-icon--white {
-  color: #5c5d66;
-  --bolt-theme-icon: #5c5d66;
-  -webkit-filter: drop-shadow(0 0 1px hsla(0, 0%, 100%, 0.2));
-  filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.2));
-}
-.t-bolt-light .c-bolt-icon--white.has-background:not(.has-outline-background),
-.t-bolt-xlight .c-bolt-icon--white.has-background:not(.has-outline-background),
-:root .c-bolt-icon--white.has-background:not(.has-outline-background) {
-  color: #151619;
-  --bolt-theme-icon: #151619;
   --bolt-theme-icon-background: #fff;
   --bolt-theme-icon-background-opacity: 1;
 }
-.t-bolt-light
-  .c-bolt-icon--white.has-background:not(.has-outline-background)
-  .c-bolt-icon__background-shape,
-.t-bolt-xlight
-  .c-bolt-icon--white.has-background:not(.has-outline-background)
-  .c-bolt-icon__background-shape,
-:root
-  .c-bolt-icon--white.has-background:not(.has-outline-background)
-  .c-bolt-icon__background-shape {
+.c-bolt-icon--blue .c-bolt-icon__background-shape {
   opacity: 1;
-  border: 1px solid rgba(92, 93, 102, 0.5);
   background-color: #fff;
 }
-.t-bolt-light .c-bolt-icon--yellow,
-.t-bolt-xlight .c-bolt-icon--yellow,
-:root .c-bolt-icon--yellow {
-  color: #e6a400;
-  --bolt-theme-icon: #e6a400;
-  -webkit-filter: drop-shadow(0 0 1px rgba(21, 22, 25, 0.2));
-  filter: drop-shadow(0 0 1px rgba(21, 22, 25, 0.2));
+@supports (--css: variables) {
+  .c-bolt-icon--blue {
+    color: var(--bolt-theme-icon);
+  }
+  .c-bolt-icon--blue .c-bolt-icon__background-shape {
+    opacity: var(--bolt-theme-icon-background-opacity);
+    background-color: var(--bolt-theme-icon-background);
+  }
 }
-.t-bolt-light .c-bolt-icon--yellow.has-background:not(.has-outline-background),
-.t-bolt-xlight .c-bolt-icon--yellow.has-background:not(.has-outline-background),
-:root .c-bolt-icon--yellow.has-background:not(.has-outline-background) {
-  color: #151619;
-  --bolt-theme-icon: #151619;
-  --bolt-theme-icon-background: #ffcc4d;
-  --bolt-theme-icon-background-opacity: 1;
-}
-.t-bolt-light
-  .c-bolt-icon--yellow.has-background:not(.has-outline-background)
-  .c-bolt-icon__background-shape,
-.t-bolt-xlight
-  .c-bolt-icon--yellow.has-background:not(.has-outline-background)
-  .c-bolt-icon__background-shape,
-:root
-  .c-bolt-icon--yellow.has-background:not(.has-outline-background)
-  .c-bolt-icon__background-shape {
-  opacity: 1;
-  border: 1px solid rgba(92, 93, 102, 0.5);
-  background-color: #ffcc4d;
-}
-.t-bolt-light .c-bolt-icon--green,
-.t-bolt-xlight .c-bolt-icon--green,
-:root .c-bolt-icon--green {
-  color: #209952;
-  --bolt-theme-icon: #209952;
-  -webkit-filter: drop-shadow(0 0 1px hsla(0, 0%, 100%, 0.2));
-  filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.2));
-}
-.t-bolt-light .c-bolt-icon--green.has-background:not(.has-outline-background),
-.t-bolt-xlight .c-bolt-icon--green.has-background:not(.has-outline-background),
-:root .c-bolt-icon--green.has-background:not(.has-outline-background) {
-  color: #fff;
-  --bolt-theme-icon: #fff;
-  --bolt-theme-icon-background: #209952;
-  --bolt-theme-icon-background-opacity: 1;
-}
-.t-bolt-light
-  .c-bolt-icon--green.has-background:not(.has-outline-background)
-  .c-bolt-icon__background-shape,
-.t-bolt-xlight
-  .c-bolt-icon--green.has-background:not(.has-outline-background)
-  .c-bolt-icon__background-shape,
-:root
-  .c-bolt-icon--green.has-background:not(.has-outline-background)
-  .c-bolt-icon__background-shape {
-  opacity: 1;
-  border: 1px solid rgba(92, 93, 102, 0.5);
-  background-color: #209952;
-}
-.t-bolt-light .c-bolt-icon--pink,
-.t-bolt-xlight .c-bolt-icon--pink,
-:root .c-bolt-icon--pink {
-  color: #a65389;
-  --bolt-theme-icon: #a65389;
-  -webkit-filter: drop-shadow(0 0 1px hsla(0, 0%, 100%, 0.2));
-  filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.2));
-}
-.t-bolt-light .c-bolt-icon--pink.has-background:not(.has-outline-background),
-.t-bolt-xlight .c-bolt-icon--pink.has-background:not(.has-outline-background),
-:root .c-bolt-icon--pink.has-background:not(.has-outline-background) {
-  color: #fff;
-  --bolt-theme-icon: #fff;
-  --bolt-theme-icon-background: #a65389;
-  --bolt-theme-icon-background-opacity: 1;
-}
-.t-bolt-light
-  .c-bolt-icon--pink.has-background:not(.has-outline-background)
-  .c-bolt-icon__background-shape,
-.t-bolt-xlight
-  .c-bolt-icon--pink.has-background:not(.has-outline-background)
-  .c-bolt-icon__background-shape,
-:root
-  .c-bolt-icon--pink.has-background:not(.has-outline-background)
-  .c-bolt-icon__background-shape {
-  opacity: 1;
-  border: 1px solid rgba(92, 93, 102, 0.5);
-  background-color: #a65389;
-}
-.t-bolt-dark .c-bolt-icon--blue,
-.t-bolt-xdark .c-bolt-icon--blue {
-  color: #0095e6;
-  --bolt-theme-icon: #0095e6;
-  -webkit-filter: drop-shadow(0 0 1px hsla(0, 0%, 100%, 0.2));
-  filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.2));
-}
-.t-bolt-dark .c-bolt-icon--blue.has-background:not(.has-outline-background),
-.t-bolt-xdark .c-bolt-icon--blue.has-background:not(.has-outline-background) {
-  color: #fff;
-  --bolt-theme-icon: #fff;
-  --bolt-theme-icon-background: #0074b3;
-  --bolt-theme-icon-background-opacity: 1;
-}
-.t-bolt-dark
-  .c-bolt-icon--blue.has-background:not(.has-outline-background)
-  .c-bolt-icon__background-shape,
-.t-bolt-xdark
-  .c-bolt-icon--blue.has-background:not(.has-outline-background)
-  .c-bolt-icon__background-shape {
-  opacity: 1;
-  border: 1px solid rgba(92, 93, 102, 0.5);
-  background-color: #0074b3;
-}
-.t-bolt-dark .c-bolt-icon--gray,
-.t-bolt-xdark .c-bolt-icon--gray {
-  color: #8d8e99;
-  --bolt-theme-icon: #8d8e99;
-  -webkit-filter: drop-shadow(0 0 1px hsla(0, 0%, 100%, 0.2));
-  filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.2));
-}
-.t-bolt-dark .c-bolt-icon--gray.has-background:not(.has-outline-background),
-.t-bolt-xdark .c-bolt-icon--gray.has-background:not(.has-outline-background) {
-  color: #fff;
-  --bolt-theme-icon: #fff;
-  --bolt-theme-icon-background: #5c5d66;
-  --bolt-theme-icon-background-opacity: 1;
-}
-.t-bolt-dark
-  .c-bolt-icon--gray.has-background:not(.has-outline-background)
-  .c-bolt-icon__background-shape,
-.t-bolt-xdark
-  .c-bolt-icon--gray.has-background:not(.has-outline-background)
-  .c-bolt-icon__background-shape {
-  opacity: 1;
-  border: 1px solid rgba(92, 93, 102, 0.5);
-  background-color: #5c5d66;
-}
-.t-bolt-dark .c-bolt-icon--indigo,
-.t-bolt-xdark .c-bolt-icon--indigo {
-  color: #abb3f2;
-  --bolt-theme-icon: #abb3f2;
-  -webkit-filter: drop-shadow(0 0 1px rgba(21, 22, 25, 0.2));
-  filter: drop-shadow(0 0 1px rgba(21, 22, 25, 0.2));
-}
-.t-bolt-dark .c-bolt-icon--indigo.has-background:not(.has-outline-background),
-.t-bolt-xdark .c-bolt-icon--indigo.has-background:not(.has-outline-background) {
-  color: #fff;
-  --bolt-theme-icon: #fff;
-  --bolt-theme-icon-background: #545da6;
-  --bolt-theme-icon-background-opacity: 1;
-}
-.t-bolt-dark
-  .c-bolt-icon--indigo.has-background:not(.has-outline-background)
-  .c-bolt-icon__background-shape,
-.t-bolt-xdark
-  .c-bolt-icon--indigo.has-background:not(.has-outline-background)
-  .c-bolt-icon__background-shape {
-  opacity: 1;
-  border: 1px solid rgba(92, 93, 102, 0.5);
-  background-color: #545da6;
-}
-.t-bolt-dark .c-bolt-icon--orange,
-.t-bolt-xdark .c-bolt-icon--orange {
-  color: #ff8c66;
-  --bolt-theme-icon: #ff8c66;
-  -webkit-filter: drop-shadow(0 0 1px rgba(21, 22, 25, 0.2));
-  filter: drop-shadow(0 0 1px rgba(21, 22, 25, 0.2));
-}
-.t-bolt-dark .c-bolt-icon--orange.has-background:not(.has-outline-background),
-.t-bolt-xdark .c-bolt-icon--orange.has-background:not(.has-outline-background) {
-  color: #fff;
-  --bolt-theme-icon: #fff;
-  --bolt-theme-icon-background: #e84b17;
-  --bolt-theme-icon-background-opacity: 1;
-}
-.t-bolt-dark
-  .c-bolt-icon--orange.has-background:not(.has-outline-background)
-  .c-bolt-icon__background-shape,
-.t-bolt-xdark
-  .c-bolt-icon--orange.has-background:not(.has-outline-background)
-  .c-bolt-icon__background-shape {
-  opacity: 1;
-  border: 1px solid rgba(92, 93, 102, 0.5);
-  background-color: #e84b17;
-}
-.t-bolt-dark .c-bolt-icon--teal,
-.t-bolt-xdark .c-bolt-icon--teal {
-  color: #7acdcd;
-  --bolt-theme-icon: #7acdcd;
-  -webkit-filter: drop-shadow(0 0 1px rgba(21, 22, 25, 0.2));
-  filter: drop-shadow(0 0 1px rgba(21, 22, 25, 0.2));
-}
-.t-bolt-dark .c-bolt-icon--teal.has-background:not(.has-outline-background),
-.t-bolt-xdark .c-bolt-icon--teal.has-background:not(.has-outline-background) {
-  color: #fff;
-  --bolt-theme-icon: #fff;
-  --bolt-theme-icon-background: #099;
-  --bolt-theme-icon-background-opacity: 1;
-}
-.t-bolt-dark
-  .c-bolt-icon--teal.has-background:not(.has-outline-background)
-  .c-bolt-icon__background-shape,
-.t-bolt-xdark
-  .c-bolt-icon--teal.has-background:not(.has-outline-background)
-  .c-bolt-icon__background-shape {
-  opacity: 1;
-  border: 1px solid rgba(92, 93, 102, 0.5);
-  background-color: #099;
-}
-.t-bolt-dark .c-bolt-icon--white,
-.t-bolt-xdark .c-bolt-icon--white {
-  color: #fff;
-  --bolt-theme-icon: #fff;
-  -webkit-filter: drop-shadow(0 0 1px rgba(21, 22, 25, 0.2));
-  filter: drop-shadow(0 0 1px rgba(21, 22, 25, 0.2));
-}
-.t-bolt-dark .c-bolt-icon--white.has-background:not(.has-outline-background),
-.t-bolt-xdark .c-bolt-icon--white.has-background:not(.has-outline-background) {
-  color: #151619;
-  --bolt-theme-icon: #151619;
-  --bolt-theme-icon-background: #fff;
-  --bolt-theme-icon-background-opacity: 1;
-}
-.t-bolt-dark
-  .c-bolt-icon--white.has-background:not(.has-outline-background)
-  .c-bolt-icon__background-shape,
-.t-bolt-xdark
-  .c-bolt-icon--white.has-background:not(.has-outline-background)
-  .c-bolt-icon__background-shape {
-  opacity: 1;
-  border: 1px solid rgba(92, 93, 102, 0.5);
-  background-color: #fff;
-}
-.t-bolt-dark .c-bolt-icon--yellow,
-.t-bolt-xdark .c-bolt-icon--yellow {
-  color: #ffcc4d;
-  --bolt-theme-icon: #ffcc4d;
-  -webkit-filter: drop-shadow(0 0 1px rgba(21, 22, 25, 0.2));
-  filter: drop-shadow(0 0 1px rgba(21, 22, 25, 0.2));
-}
-.t-bolt-dark .c-bolt-icon--yellow.has-background:not(.has-outline-background),
-.t-bolt-xdark .c-bolt-icon--yellow.has-background:not(.has-outline-background) {
-  color: #151619;
-  --bolt-theme-icon: #151619;
-  --bolt-theme-icon-background: #ffcc4d;
-  --bolt-theme-icon-background-opacity: 1;
-}
-.t-bolt-dark
-  .c-bolt-icon--yellow.has-background:not(.has-outline-background)
-  .c-bolt-icon__background-shape,
-.t-bolt-xdark
-  .c-bolt-icon--yellow.has-background:not(.has-outline-background)
-  .c-bolt-icon__background-shape {
-  opacity: 1;
-  border: 1px solid rgba(92, 93, 102, 0.5);
-  background-color: #ffcc4d;
-}
-.t-bolt-dark .c-bolt-icon--green,
-.t-bolt-xdark .c-bolt-icon--green {
-  color: #219953;
-  --bolt-theme-icon: #219953;
-  -webkit-filter: drop-shadow(0 0 1px hsla(0, 0%, 100%, 0.2));
-  filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.2));
-}
-.t-bolt-dark .c-bolt-icon--green.has-background:not(.has-outline-background),
-.t-bolt-xdark .c-bolt-icon--green.has-background:not(.has-outline-background) {
-  color: #fff;
-  --bolt-theme-icon: #fff;
-  --bolt-theme-icon-background: #209952;
-  --bolt-theme-icon-background-opacity: 1;
-}
-.t-bolt-dark
-  .c-bolt-icon--green.has-background:not(.has-outline-background)
-  .c-bolt-icon__background-shape,
-.t-bolt-xdark
-  .c-bolt-icon--green.has-background:not(.has-outline-background)
-  .c-bolt-icon__background-shape {
-  opacity: 1;
-  border: 1px solid rgba(92, 93, 102, 0.5);
-  background-color: #209952;
-}
-.t-bolt-dark .c-bolt-icon--pink,
-.t-bolt-xdark .c-bolt-icon--pink {
-  color: #b974a1;
-  --bolt-theme-icon: #b974a1;
-  -webkit-filter: drop-shadow(0 0 1px hsla(0, 0%, 100%, 0.2));
-  filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.2));
-}
-.t-bolt-dark .c-bolt-icon--pink.has-background:not(.has-outline-background),
-.t-bolt-xdark .c-bolt-icon--pink.has-background:not(.has-outline-background) {
-  color: #fff;
-  --bolt-theme-icon: #fff;
-  --bolt-theme-icon-background: #a65389;
-  --bolt-theme-icon-background-opacity: 1;
-}
-.t-bolt-dark
-  .c-bolt-icon--pink.has-background:not(.has-outline-background)
-  .c-bolt-icon__background-shape,
-.t-bolt-xdark
-  .c-bolt-icon--pink.has-background:not(.has-outline-background)
-  .c-bolt-icon__background-shape {
-  opacity: 1;
-  border: 1px solid rgba(92, 93, 102, 0.5);
-  background-color: #a65389;
-}
-svg [fill=\\"var(--bolt-icon-primary-color)\\"] {
+.c-bolt-icon__background {
   fill: currentColor;
-}
-svg [stroke=\\"var(--bolt-icon-primary-color)\\"] {
-  stroke: currentColor;
-}
-@supports (--var: foo) {
-  svg [fill=\\"var(--bolt-icon-primary-color)\\"] {
-    fill: var(--bolt-icon-primary-color, var(--bolt-theme-icon, currentColor));
-  }
-  svg [stroke=\\"var(--bolt-icon-primary-color)\\"] {
-    stroke: var(
-      --bolt-icon-primary-color,
-      var(--bolt-theme-icon, currentColor)
-    );
-  }
-  svg [fill=\\"var(--bolt-icon-secondary-color)\\"] {
-    fill: var(
-      --bolt-icon-secondary-color,
-      rgba(var(--bolt-theme-background), 1)
-    );
-  }
-  svg [stroke=\\"var(--bolt-icon-secondary-color)\\"] {
-    stroke: var(
-      --bolt-icon-secondary-color,
-      rgba(var(--bolt-theme-background), 1)
-    );
-  }
+  fill: var(--bolt-theme-text, currentColor);
 }
 bolt-figure {
   display: block;
@@ -14142,7 +13583,6 @@ bolt-link {
   text-decoration: underline;
   cursor: pointer;
   border: none;
-  -webkit-transition: 0.2s ease-in-out;
   transition: 0.2s ease-in-out;
 }
 .js-fonts-loaded .c-bolt-link {
@@ -14160,15 +13600,12 @@ bolt-link {
   opacity: 0.6;
 }
 .c-bolt-link--display-flex {
-  display: -webkit-inline-box;
   display: inline-flex;
 }
 .c-bolt-link--display-flex.c-bolt-link--valign-start {
-  -webkit-box-align: start;
   align-items: flex-start;
 }
 .c-bolt-link--display-flex.c-bolt-link--valign-center {
-  -webkit-box-align: center;
   align-items: center;
 }
 .c-bolt-link--display-inline .c-bolt-link__icon {
@@ -14239,7 +13676,6 @@ bolt-ratio {
 
 exports[`Tests to confirm that the latest upcoming release of the @bolt/build-tools is compiling as expected Check that the default English-specific bolt-global.css file built contains the correct utility class styles for the older u-bolt-margin-bottom syntax. 1`] = `
 "bolt-button {
-  display: -webkit-inline-box;
   display: inline-flex;
   outline: 0;
 }
@@ -14251,7 +13687,6 @@ bolt-button[type=\\"submit\\"] {
   appearance: none;
 }
 :host {
-  display: -webkit-inline-box;
   display: inline-flex;
 }
 :host[type=\\"button\\"],
@@ -14275,12 +13710,9 @@ bolt-button[type=\\"submit\\"] {
   -ms-user-select: none;
   user-select: none;
   font-weight: 600;
-  display: -webkit-box;
   display: flex;
-  -webkit-box-align: center;
   align-items: center;
   position: relative;
-  -webkit-transform: translateZ(0);
   transform: translateZ(0);
   text-decoration: none;
   vertical-align: middle;
@@ -14290,7 +13722,6 @@ bolt-button[type=\\"submit\\"] {
   border-style: solid;
   box-shadow: 0 1px 4px 1px rgba(6, 10, 36, 0.1),
     0 5px 10px 0 rgba(6, 10, 36, 0.08);
-  -webkit-transition: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   transition: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   box-shadow: var(
     --bolt-button-box-shadow,
@@ -14316,7 +13747,6 @@ bolt-button[type=\\"submit\\"] {
   height: 100%;
   pointer-events: none;
   border-radius: 3px;
-  -webkit-transform: translateY(-2px);
   transform: translateY(-2px);
   box-shadow: var(
     --bolt-button-box-shadow,
@@ -14340,7 +13770,6 @@ bolt-button[type=\\"submit\\"] {
   color: rgba(var(--bolt-theme-text-on-primary-lighten-15), 1);
   border-color: rgba(var(--bolt-theme-primary-lighten-15), 1);
   background-color: rgba(var(--bolt-theme-primary-lighten-15), 1);
-  -webkit-transform: translateY(-2px);
   transform: translateY(-2px);
   box-shadow: 0 1px 8px 1px rgba(6, 10, 36, 0.18),
     0 5px 10px 1px rgba(6, 10, 36, 0.15), 0 15px 30px 0 rgba(6, 10, 36, 0.16);
@@ -14356,7 +13785,6 @@ bolt-button[type=\\"submit\\"] {
   color: rgba(var(--bolt-theme-text-on-primary-darken-25), 1);
   border-color: rgba(var(--bolt-theme-primary-darken-25), 1);
   background-color: rgba(var(--bolt-theme-primary-darken-25), 1);
-  -webkit-transform: translate3d(0, 1px, 0);
   transform: translate3d(0, 1px, 0);
 }
 .c-bolt-button--secondary {
@@ -14369,7 +13797,6 @@ bolt-button[type=\\"submit\\"] {
   color: rgba(var(--bolt-theme-text-on-secondary-lighten-5), 1);
   border-color: rgba(var(--bolt-theme-secondary-lighten-5), 1);
   background-color: rgba(var(--bolt-theme-secondary-lighten-5), 1);
-  -webkit-transform: translateY(-2px);
   transform: translateY(-2px);
   box-shadow: 0 1px 8px 1px rgba(6, 10, 36, 0.18),
     0 5px 10px 1px rgba(6, 10, 36, 0.15), 0 15px 30px 0 rgba(6, 10, 36, 0.16);
@@ -14385,7 +13812,6 @@ bolt-button[type=\\"submit\\"] {
   color: rgba(var(--bolt-theme-text-on-secondary-darken-10), 1);
   border-color: rgba(var(--bolt-theme-secondary-darken-10), 1);
   background-color: rgba(var(--bolt-theme-secondary-darken-10), 1);
-  -webkit-transform: translate3d(0, 1px, 0);
   transform: translate3d(0, 1px, 0);
 }
 .c-bolt-button--text {
@@ -14458,10 +13884,8 @@ bolt-button[type=\\"submit\\"] {
 [aria-disabled=\\"true\\"] .c-bolt-button:not(.c-bolt-button--text):visited {
   box-shadow: 0 1px 4px 1px rgba(6, 10, 36, 0.1),
     0 5px 10px 0 rgba(6, 10, 36, 0.08);
-  -webkit-transition: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   transition: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   opacity: 1;
-  -webkit-transform: none;
   transform: none;
   border-color: rgba(var(--bolt-theme-disabled), 1);
   box-shadow: var(
@@ -14562,7 +13986,6 @@ bolt-button[type=\\"submit\\"] {
   position: absolute;
   top: 50%;
   left: 50%;
-  -webkit-transform: translate3d(-50%, -50%, 0);
   transform: translate3d(-50%, -50%, 0);
 }
 .c-bolt-button--icon-only.c-bolt-button--xsmall .c-bolt-button__icon-sizer {
@@ -14607,17 +14030,14 @@ bolt-button[border-radius=\\"full\\"] {
   border-radius: 50em;
 }
 .c-bolt-button__icon {
-  display: -webkit-box;
   display: flex;
 }
 .c-bolt-button__item {
-  display: -webkit-inline-box;
   display: inline-flex;
   text-align: left;
   text-align: start;
 }
 .c-bolt-button__icon-sizer {
-  display: -webkit-box;
   display: flex;
 }
 .c-bolt-button:not(.c-bolt-button--icon-only)
@@ -14629,15 +14049,12 @@ bolt-button[border-radius=\\"full\\"] {
   margin-left: 0.25rem;
 }
 .c-bolt-button--center {
-  -webkit-box-pack: center;
   justify-content: center;
 }
 .c-bolt-button--start {
-  -webkit-box-pack: start;
   justify-content: flex-start;
 }
 .c-bolt-button--end {
-  -webkit-box-pack: end;
   justify-content: flex-end;
 }
 @font-face {
@@ -14691,7 +14108,6 @@ bolt-button[border-radius=\\"full\\"] {
 *,
 :after,
 :before {
-  -webkit-font-feature-settings: \\"kern\\";
   font-feature-settings: \\"kern\\";
   -webkit-font-kerning: normal;
   font-kerning: normal;
@@ -15164,7 +14580,6 @@ bolt-bare-list > * {
 .o-bolt-crop--center > .o-bolt-crop__content {
   top: 50%;
   left: 50%;
-  -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
 .o-bolt-crop--1\\\\:1 {
@@ -15180,9 +14595,7 @@ bolt-bare-list > * {
   padding-bottom: 56.25%;
 }
 .o-bolt-flag {
-  display: -webkit-box;
   display: flex;
-  -webkit-box-align: start;
   align-items: flex-start;
 }
 .o-bolt-flag:not(:last-child) {
@@ -15190,7 +14603,6 @@ bolt-bare-list > * {
 }
 .o-bolt-flag__body {
   flex-basis: auto;
-  -webkit-box-flex: 1;
   flex-grow: 1;
   flex-shrink: 1;
   width: 100%;
@@ -15202,17 +14614,14 @@ bolt-bare-list > * {
   direction: ltr;
 }
 .o-bolt-flag--top {
-  -webkit-box-align: start;
   align-items: flex-start;
   vertical-align: top;
 }
 .o-bolt-flag--middle {
-  -webkit-box-align: center;
   align-items: center;
   vertical-align: middle;
 }
 .o-bolt-flag--bottom {
-  -webkit-box-align: end;
   align-items: flex-end;
   vertical-align: bottom;
 }
@@ -15223,7 +14632,6 @@ bolt-bare-list > * {
   margin-right: 2rem;
 }
 .o-bolt-grid {
-  -webkit-box-flex: 1;
   flex: 1 1 auto;
   margin: 0 0 0 -2rem;
   padding: 0;
@@ -15249,7 +14657,6 @@ bolt-bare-list > * {
   padding-left: 0;
 }
 .o-bolt-grid--center {
-  -webkit-box-pack: center;
   justify-content: center;
   text-align: center;
 }
@@ -15257,21 +14664,18 @@ bolt-bare-list > * {
   text-align: left;
 }
 .o-bolt-grid--middle.o-bolt-grid--flex {
-  -webkit-box-align: center;
   align-items: center;
 }
 .o-bolt-grid--middle > .o-bolt-grid__cell {
   vertical-align: middle;
 }
 .o-bolt-grid--bottom.o-bolt-grid--flex {
-  -webkit-box-align: end;
   align-items: flex-end;
 }
 .o-bolt-grid--bottom > .o-bolt-grid__cell {
   vertical-align: bottom;
 }
 .o-bolt-grid--right {
-  -webkit-box-pack: end;
   justify-content: flex-end;
   text-align: right;
 }
@@ -15310,10 +14714,7 @@ bolt-bare-list > * {
   padding-left: 4rem;
 }
 .o-bolt-grid--flex {
-  display: -webkit-box;
   display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
   flex-flow: row wrap;
 }
 .o-bolt-grid--matrix {
@@ -15985,15 +15386,12 @@ bolt-inline-list:not(:last-child) {
   display: none !important;
 }
 .u-bolt-flex {
-  display: -webkit-box !important;
   display: flex !important;
 }
 .u-bolt-inline-flex {
-  display: -webkit-inline-box !important;
   display: inline-flex !important;
 }
 .u-bolt-flex-grow {
-  -webkit-box-flex: 1 !important;
   flex-grow: 1 !important;
 }
 .u-bolt-flex-shrink {
@@ -16094,11 +15492,9 @@ bolt-inline-list:not(:last-child) {
     display: none !important;
   }
   .u-bolt-flex\\\\@xxsmall {
-    display: -webkit-box !important;
     display: flex !important;
   }
   .u-bolt-inline-flex\\\\@xxsmall {
-    display: -webkit-inline-box !important;
     display: inline-flex !important;
   }
   .u-bolt-height-xxsmall\\\\@xxsmall {
@@ -16194,11 +15590,9 @@ bolt-inline-list:not(:last-child) {
     display: none !important;
   }
   .u-bolt-flex\\\\@xsmall {
-    display: -webkit-box !important;
     display: flex !important;
   }
   .u-bolt-inline-flex\\\\@xsmall {
-    display: -webkit-inline-box !important;
     display: inline-flex !important;
   }
   .u-bolt-height-xxsmall\\\\@xsmall {
@@ -16294,11 +15688,9 @@ bolt-inline-list:not(:last-child) {
     display: none !important;
   }
   .u-bolt-flex\\\\@small {
-    display: -webkit-box !important;
     display: flex !important;
   }
   .u-bolt-inline-flex\\\\@small {
-    display: -webkit-inline-box !important;
     display: inline-flex !important;
   }
   .u-bolt-height-xxsmall\\\\@small {
@@ -16394,11 +15786,9 @@ bolt-inline-list:not(:last-child) {
     display: none !important;
   }
   .u-bolt-flex\\\\@medium {
-    display: -webkit-box !important;
     display: flex !important;
   }
   .u-bolt-inline-flex\\\\@medium {
-    display: -webkit-inline-box !important;
     display: inline-flex !important;
   }
   .u-bolt-height-xxsmall\\\\@medium {
@@ -16494,11 +15884,9 @@ bolt-inline-list:not(:last-child) {
     display: none !important;
   }
   .u-bolt-flex\\\\@large {
-    display: -webkit-box !important;
     display: flex !important;
   }
   .u-bolt-inline-flex\\\\@large {
-    display: -webkit-inline-box !important;
     display: inline-flex !important;
   }
   .u-bolt-height-xxsmall\\\\@large {
@@ -16594,11 +15982,9 @@ bolt-inline-list:not(:last-child) {
     display: none !important;
   }
   .u-bolt-flex\\\\@xlarge {
-    display: -webkit-box !important;
     display: flex !important;
   }
   .u-bolt-inline-flex\\\\@xlarge {
-    display: -webkit-inline-box !important;
     display: inline-flex !important;
   }
   .u-bolt-height-xxsmall\\\\@xlarge {
@@ -16694,11 +16080,9 @@ bolt-inline-list:not(:last-child) {
     display: none !important;
   }
   .u-bolt-flex\\\\@xxlarge {
-    display: -webkit-box !important;
     display: flex !important;
   }
   .u-bolt-inline-flex\\\\@xxlarge {
-    display: -webkit-inline-box !important;
     display: inline-flex !important;
   }
   .u-bolt-height-xxsmall\\\\@xxlarge {
@@ -16794,11 +16178,9 @@ bolt-inline-list:not(:last-child) {
     display: none !important;
   }
   .u-bolt-flex\\\\@xxxlarge {
-    display: -webkit-box !important;
     display: flex !important;
   }
   .u-bolt-inline-flex\\\\@xxxlarge {
-    display: -webkit-inline-box !important;
     display: inline-flex !important;
   }
   .u-bolt-height-xxsmall\\\\@xxxlarge {
@@ -17178,12 +16560,10 @@ bolt-inline-list:not(:last-child) {
 .u-bolt-shadow-level-10,
 .u-bolt-shadow-level-10-hoverable {
   box-shadow: 0 1px 2px 1px rgba(6, 10, 36, 0.08) !important;
-  -webkit-transition: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
   transition: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
 }
 .u-bolt-shadow--level-10--hoverable:hover,
 .u-bolt-shadow-level-10-hoverable:hover {
-  -webkit-transform: translateY(-2px) !important;
   transform: translateY(-2px) !important;
 }
 .u-bolt-shadow--level-20,
@@ -17192,12 +16572,10 @@ bolt-inline-list:not(:last-child) {
 .u-bolt-shadow-level-20-hoverable {
   box-shadow: 0 1px 4px 1px rgba(6, 10, 36, 0.1),
     0 5px 10px 0 rgba(6, 10, 36, 0.08) !important;
-  -webkit-transition: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
   transition: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
 }
 .u-bolt-shadow--level-20--hoverable:hover,
 .u-bolt-shadow-level-20-hoverable:hover {
-  -webkit-transform: translateY(-2px) !important;
   transform: translateY(-2px) !important;
   box-shadow: 0 1px 8px 1px rgba(6, 10, 36, 0.18),
     0 5px 10px 1px rgba(6, 10, 36, 0.15), 0 15px 30px 0 rgba(6, 10, 36, 0.16) !important;
@@ -17208,12 +16586,10 @@ bolt-inline-list:not(:last-child) {
 .u-bolt-shadow-level-30-hoverable {
   box-shadow: 0 8px 15px 1px rgba(6, 10, 36, 0.1),
     0 18px 24px 1px rgba(6, 10, 36, 0.12) !important;
-  -webkit-transition: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
   transition: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
 }
 .u-bolt-shadow--level-30--hoverable:hover,
 .u-bolt-shadow-level-30-hoverable:hover {
-  -webkit-transform: translateY(-2px) !important;
   transform: translateY(-2px) !important;
   box-shadow: 0 8px 15px 1px rgba(6, 10, 36, 0.1),
     0 24px 36px 1px rgba(6, 10, 36, 0.18), 0 35px 50px 0 rgba(6, 10, 36, 0.25) !important;
@@ -17224,12 +16600,10 @@ bolt-inline-list:not(:last-child) {
 .u-bolt-shadow-level-40-hoverable {
   box-shadow: 0 10px 20px 1px rgba(6, 10, 36, 0.1),
     0 24px 36px 1px rgba(6, 10, 36, 0.18) !important;
-  -webkit-transition: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
   transition: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
 }
 .u-bolt-shadow--level-40--hoverable:hover,
 .u-bolt-shadow-level-40-hoverable:hover {
-  -webkit-transform: translateY(-2px) !important;
   transform: translateY(-2px) !important;
   box-shadow: 0 10px 20px 1px rgba(6, 10, 36, 0.1),
     0 36px 49px 1px rgba(6, 10, 36, 0.2), 0 45px 65px 0 rgba(6, 10, 36, 0.3) !important;
@@ -17240,12 +16614,10 @@ bolt-inline-list:not(:last-child) {
 .u-bolt-shadow-level-50-hoverable {
   box-shadow: 0 10px 30px 1px rgba(6, 10, 36, 0.1),
     0 40px 48px 1px rgba(6, 10, 36, 0.25) !important;
-  -webkit-transition: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
   transition: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
 }
 .u-bolt-shadow--level-50--hoverable:hover,
 .u-bolt-shadow-level-50-hoverable:hover {
-  -webkit-transform: translateY(-2px) !important;
   transform: translateY(-2px) !important;
   box-shadow: 0 10px 30px 1px rgba(6, 10, 36, 0.1),
     0 50px 70px 1px rgba(6, 10, 36, 0.2), 0 55px 80px 0 rgba(6, 10, 36, 0.3) !important;
@@ -17256,12 +16628,10 @@ bolt-inline-list:not(:last-child) {
 .u-bolt-shadow-level-60-hoverable {
   box-shadow: 0 10px 30px 1px rgba(6, 10, 36, 0.1),
     0 50px 60px 1px rgba(6, 10, 36, 0.4) !important;
-  -webkit-transition: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
   transition: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
 }
 .u-bolt-shadow--level-60--hoverable:hover,
 .u-bolt-shadow-level-60-hoverable:hover {
-  -webkit-transform: translateY(-2px) !important;
   transform: translateY(-2px) !important;
   box-shadow: 0 10px 30px 1px rgba(6, 10, 36, 0.1),
     0 70px 80px 1px rgba(6, 10, 36, 0.2), 0 80px 120px 0 rgba(6, 10, 36, 0.35) !important;
@@ -17272,12 +16642,10 @@ bolt-inline-list:not(:last-child) {
 .u-bolt-shadow-level-70-hoverable {
   box-shadow: 0 10px 30px 1px rgba(6, 10, 36, 0.1),
     0 80px 90px 1px rgba(6, 10, 36, 0.4) !important;
-  -webkit-transition: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
   transition: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
 }
 .u-bolt-shadow--level-70--hoverable:hover,
 .u-bolt-shadow-level-70-hoverable:hover {
-  -webkit-transform: translateY(-2px) !important;
   transform: translateY(-2px) !important;
   box-shadow: 0 10px 30px 1px rgba(6, 10, 36, 0.1),
     0 110px 130px 1px rgba(6, 10, 36, 0.25),
@@ -27634,21 +27002,12 @@ bolt-inline-list:not(:last-child) {
   z-index: -20 !important;
 }
 bolt-icon {
-  display: -webkit-inline-box;
-  display: inline-flex;
-  -webkit-box-pack: center;
-  justify-content: center;
-  -webkit-box-align: center;
-  align-items: center;
-  -webkit-transform: translateZ(0);
+  display: inline-block;
   transform: translateZ(0);
-  vertical-align: middle;
-  -webkit-transition: inherit;
-  transition: inherit;
-}
-bolt-icon:not([size]) {
   width: 1em;
   height: 1em;
+  vertical-align: middle;
+  transition: inherit;
 }
 bolt-icon:not(:resolved) {
   height: 0;
@@ -27659,9 +27018,7 @@ bolt-icon:not(:resolved) {
   vertical-align: middle;
 }
 .c-bolt-icon {
-  display: block;
   position: relative;
-  height: 100%;
 }
 .c-bolt-icon__icon {
   display: block;
@@ -27673,51 +27030,60 @@ bolt-icon:not(:resolved) {
   color: var(--bolt-theme-icon);
   pointer-events: none;
 }
-.c-bolt-icon__icon--small {
+.c-bolt-icon--small > .c-bolt-icon__icon,
+bolt-icon[size=\\"small\\"] {
   width: 16px;
   height: 16px;
 }
-.c-bolt-icon__icon--medium {
+.c-bolt-icon--medium > .c-bolt-icon__icon,
+bolt-icon[size=\\"medium\\"] {
   width: 24px;
   height: 24px;
 }
-.c-bolt-icon__icon--large {
+.c-bolt-icon--large > .c-bolt-icon__icon,
+bolt-icon[size=\\"large\\"] {
   width: 32px;
   height: 32px;
 }
-.c-bolt-icon__icon--xlarge {
-  width: 38px;
-  height: 38px;
+.c-bolt-icon--xlarge > .c-bolt-icon__icon,
+bolt-icon[size=\\"xlarge\\"] {
+  width: 64px;
+  height: 64px;
+}
+.c-bolt-icon--xlarge > .c-bolt-icon__icon {
+  padding: 16px;
 }
 .c-bolt-icon--small > .c-bolt-icon__icon {
   stroke: currentColor;
   stroke-width: 1px;
 }
-.c-bolt-icon--small.has-background {
-  padding: 6px;
-}
-.c-bolt-icon--medium.has-background {
-  padding: 8px;
-}
-.c-bolt-icon--large.has-background {
-  padding: 12px;
-}
-.c-bolt-icon--xlarge.has-background {
-  padding: 13px;
-}
-.c-bolt-icon__background {
-  fill: currentColor;
-  fill: var(--bolt-theme-text, currentColor);
-}
 .c-bolt-icon__background-shape {
   opacity: 0.1;
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
   z-index: 40;
   width: 100%;
-  height: 100%;
+  height: 0;
+  padding-bottom: 100%;
   background-color: currentColor;
+}
+.c-bolt-icon__background-shape--circle {
+  border-radius: 50%;
+}
+.c-bolt-icon__background-shape--square {
+  border-radius: 3px;
+}
+.c-bolt-icon--teal {
+  color: #fff;
+  --bolt-theme-icon: #fff;
+  --bolt-theme-icon-background: #099;
+  --bolt-theme-icon-background-opacity: 1;
+}
+.c-bolt-icon--teal .c-bolt-icon__background-shape {
+  opacity: 1;
+  background-color: #099;
 }
 @supports (--css: variables) {
   .c-bolt-icon__background-shape {
@@ -27727,524 +27093,36 @@ bolt-icon:not(:resolved) {
       var(--bolt-theme-primary-text-default, currentColor)
     );
   }
+  .c-bolt-icon--teal {
+    color: var(--bolt-theme-icon);
+  }
+  .c-bolt-icon--teal .c-bolt-icon__background-shape {
+    opacity: var(--bolt-theme-icon-background-opacity);
+    background-color: var(--bolt-theme-icon-background);
+  }
 }
-.c-bolt-icon__background-shape--circle {
-  border-radius: 50%;
-}
-.c-bolt-icon__background-shape--square {
-  border-radius: 4px;
-}
-.c-bolt-icon__background-shape--outline {
-  opacity: 0.8;
-  border-radius: 50%;
-  background-color: transparent;
-  border: 2px solid currentColor;
-}
-.t-bolt-light .c-bolt-icon--blue,
-.t-bolt-xlight .c-bolt-icon--blue,
-:root .c-bolt-icon--blue {
+.c-bolt-icon--blue {
   color: #0074b3;
   --bolt-theme-icon: #0074b3;
-  -webkit-filter: drop-shadow(0 0 1px hsla(0, 0%, 100%, 0.2));
-  filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.2));
-}
-.t-bolt-light .c-bolt-icon--blue.has-background:not(.has-outline-background),
-.t-bolt-xlight .c-bolt-icon--blue.has-background:not(.has-outline-background),
-:root .c-bolt-icon--blue.has-background:not(.has-outline-background) {
-  color: #fff;
-  --bolt-theme-icon: #fff;
-  --bolt-theme-icon-background: #0074b3;
-  --bolt-theme-icon-background-opacity: 1;
-}
-.t-bolt-light
-  .c-bolt-icon--blue.has-background:not(.has-outline-background)
-  .c-bolt-icon__background-shape,
-.t-bolt-xlight
-  .c-bolt-icon--blue.has-background:not(.has-outline-background)
-  .c-bolt-icon__background-shape,
-:root
-  .c-bolt-icon--blue.has-background:not(.has-outline-background)
-  .c-bolt-icon__background-shape {
-  opacity: 1;
-  border: 1px solid rgba(92, 93, 102, 0.5);
-  background-color: #0074b3;
-}
-.t-bolt-light .c-bolt-icon--gray,
-.t-bolt-xlight .c-bolt-icon--gray,
-:root .c-bolt-icon--gray {
-  color: #5c5d66;
-  --bolt-theme-icon: #5c5d66;
-  -webkit-filter: drop-shadow(0 0 1px hsla(0, 0%, 100%, 0.2));
-  filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.2));
-}
-.t-bolt-light .c-bolt-icon--gray.has-background:not(.has-outline-background),
-.t-bolt-xlight .c-bolt-icon--gray.has-background:not(.has-outline-background),
-:root .c-bolt-icon--gray.has-background:not(.has-outline-background) {
-  color: #fff;
-  --bolt-theme-icon: #fff;
-  --bolt-theme-icon-background: #5c5d66;
-  --bolt-theme-icon-background-opacity: 1;
-}
-.t-bolt-light
-  .c-bolt-icon--gray.has-background:not(.has-outline-background)
-  .c-bolt-icon__background-shape,
-.t-bolt-xlight
-  .c-bolt-icon--gray.has-background:not(.has-outline-background)
-  .c-bolt-icon__background-shape,
-:root
-  .c-bolt-icon--gray.has-background:not(.has-outline-background)
-  .c-bolt-icon__background-shape {
-  opacity: 1;
-  border: 1px solid rgba(92, 93, 102, 0.5);
-  background-color: #5c5d66;
-}
-.t-bolt-light .c-bolt-icon--indigo,
-.t-bolt-xlight .c-bolt-icon--indigo,
-:root .c-bolt-icon--indigo {
-  color: #545da6;
-  --bolt-theme-icon: #545da6;
-  -webkit-filter: drop-shadow(0 0 1px hsla(0, 0%, 100%, 0.2));
-  filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.2));
-}
-.t-bolt-light .c-bolt-icon--indigo.has-background:not(.has-outline-background),
-.t-bolt-xlight .c-bolt-icon--indigo.has-background:not(.has-outline-background),
-:root .c-bolt-icon--indigo.has-background:not(.has-outline-background) {
-  color: #fff;
-  --bolt-theme-icon: #fff;
-  --bolt-theme-icon-background: #545da6;
-  --bolt-theme-icon-background-opacity: 1;
-}
-.t-bolt-light
-  .c-bolt-icon--indigo.has-background:not(.has-outline-background)
-  .c-bolt-icon__background-shape,
-.t-bolt-xlight
-  .c-bolt-icon--indigo.has-background:not(.has-outline-background)
-  .c-bolt-icon__background-shape,
-:root
-  .c-bolt-icon--indigo.has-background:not(.has-outline-background)
-  .c-bolt-icon__background-shape {
-  opacity: 1;
-  border: 1px solid rgba(92, 93, 102, 0.5);
-  background-color: #545da6;
-}
-.t-bolt-light .c-bolt-icon--orange,
-.t-bolt-xlight .c-bolt-icon--orange,
-:root .c-bolt-icon--orange {
-  color: #e84b17;
-  --bolt-theme-icon: #e84b17;
-  -webkit-filter: drop-shadow(0 0 1px hsla(0, 0%, 100%, 0.2));
-  filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.2));
-}
-.t-bolt-light .c-bolt-icon--orange.has-background:not(.has-outline-background),
-.t-bolt-xlight .c-bolt-icon--orange.has-background:not(.has-outline-background),
-:root .c-bolt-icon--orange.has-background:not(.has-outline-background) {
-  color: #fff;
-  --bolt-theme-icon: #fff;
-  --bolt-theme-icon-background: #e84b17;
-  --bolt-theme-icon-background-opacity: 1;
-}
-.t-bolt-light
-  .c-bolt-icon--orange.has-background:not(.has-outline-background)
-  .c-bolt-icon__background-shape,
-.t-bolt-xlight
-  .c-bolt-icon--orange.has-background:not(.has-outline-background)
-  .c-bolt-icon__background-shape,
-:root
-  .c-bolt-icon--orange.has-background:not(.has-outline-background)
-  .c-bolt-icon__background-shape {
-  opacity: 1;
-  border: 1px solid rgba(92, 93, 102, 0.5);
-  background-color: #e84b17;
-}
-.t-bolt-light .c-bolt-icon--teal,
-.t-bolt-xlight .c-bolt-icon--teal,
-:root .c-bolt-icon--teal {
-  color: #099;
-  --bolt-theme-icon: #099;
-  -webkit-filter: drop-shadow(0 0 1px hsla(0, 0%, 100%, 0.2));
-  filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.2));
-}
-.t-bolt-light .c-bolt-icon--teal.has-background:not(.has-outline-background),
-.t-bolt-xlight .c-bolt-icon--teal.has-background:not(.has-outline-background),
-:root .c-bolt-icon--teal.has-background:not(.has-outline-background) {
-  color: #fff;
-  --bolt-theme-icon: #fff;
-  --bolt-theme-icon-background: #099;
-  --bolt-theme-icon-background-opacity: 1;
-}
-.t-bolt-light
-  .c-bolt-icon--teal.has-background:not(.has-outline-background)
-  .c-bolt-icon__background-shape,
-.t-bolt-xlight
-  .c-bolt-icon--teal.has-background:not(.has-outline-background)
-  .c-bolt-icon__background-shape,
-:root
-  .c-bolt-icon--teal.has-background:not(.has-outline-background)
-  .c-bolt-icon__background-shape {
-  opacity: 1;
-  border: 1px solid rgba(92, 93, 102, 0.5);
-  background-color: #099;
-}
-.t-bolt-light .c-bolt-icon--white,
-.t-bolt-xlight .c-bolt-icon--white,
-:root .c-bolt-icon--white {
-  color: #5c5d66;
-  --bolt-theme-icon: #5c5d66;
-  -webkit-filter: drop-shadow(0 0 1px hsla(0, 0%, 100%, 0.2));
-  filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.2));
-}
-.t-bolt-light .c-bolt-icon--white.has-background:not(.has-outline-background),
-.t-bolt-xlight .c-bolt-icon--white.has-background:not(.has-outline-background),
-:root .c-bolt-icon--white.has-background:not(.has-outline-background) {
-  color: #151619;
-  --bolt-theme-icon: #151619;
   --bolt-theme-icon-background: #fff;
   --bolt-theme-icon-background-opacity: 1;
 }
-.t-bolt-light
-  .c-bolt-icon--white.has-background:not(.has-outline-background)
-  .c-bolt-icon__background-shape,
-.t-bolt-xlight
-  .c-bolt-icon--white.has-background:not(.has-outline-background)
-  .c-bolt-icon__background-shape,
-:root
-  .c-bolt-icon--white.has-background:not(.has-outline-background)
-  .c-bolt-icon__background-shape {
+.c-bolt-icon--blue .c-bolt-icon__background-shape {
   opacity: 1;
-  border: 1px solid rgba(92, 93, 102, 0.5);
   background-color: #fff;
 }
-.t-bolt-light .c-bolt-icon--yellow,
-.t-bolt-xlight .c-bolt-icon--yellow,
-:root .c-bolt-icon--yellow {
-  color: #e6a400;
-  --bolt-theme-icon: #e6a400;
-  -webkit-filter: drop-shadow(0 0 1px rgba(21, 22, 25, 0.2));
-  filter: drop-shadow(0 0 1px rgba(21, 22, 25, 0.2));
+@supports (--css: variables) {
+  .c-bolt-icon--blue {
+    color: var(--bolt-theme-icon);
+  }
+  .c-bolt-icon--blue .c-bolt-icon__background-shape {
+    opacity: var(--bolt-theme-icon-background-opacity);
+    background-color: var(--bolt-theme-icon-background);
+  }
 }
-.t-bolt-light .c-bolt-icon--yellow.has-background:not(.has-outline-background),
-.t-bolt-xlight .c-bolt-icon--yellow.has-background:not(.has-outline-background),
-:root .c-bolt-icon--yellow.has-background:not(.has-outline-background) {
-  color: #151619;
-  --bolt-theme-icon: #151619;
-  --bolt-theme-icon-background: #ffcc4d;
-  --bolt-theme-icon-background-opacity: 1;
-}
-.t-bolt-light
-  .c-bolt-icon--yellow.has-background:not(.has-outline-background)
-  .c-bolt-icon__background-shape,
-.t-bolt-xlight
-  .c-bolt-icon--yellow.has-background:not(.has-outline-background)
-  .c-bolt-icon__background-shape,
-:root
-  .c-bolt-icon--yellow.has-background:not(.has-outline-background)
-  .c-bolt-icon__background-shape {
-  opacity: 1;
-  border: 1px solid rgba(92, 93, 102, 0.5);
-  background-color: #ffcc4d;
-}
-.t-bolt-light .c-bolt-icon--green,
-.t-bolt-xlight .c-bolt-icon--green,
-:root .c-bolt-icon--green {
-  color: #209952;
-  --bolt-theme-icon: #209952;
-  -webkit-filter: drop-shadow(0 0 1px hsla(0, 0%, 100%, 0.2));
-  filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.2));
-}
-.t-bolt-light .c-bolt-icon--green.has-background:not(.has-outline-background),
-.t-bolt-xlight .c-bolt-icon--green.has-background:not(.has-outline-background),
-:root .c-bolt-icon--green.has-background:not(.has-outline-background) {
-  color: #fff;
-  --bolt-theme-icon: #fff;
-  --bolt-theme-icon-background: #209952;
-  --bolt-theme-icon-background-opacity: 1;
-}
-.t-bolt-light
-  .c-bolt-icon--green.has-background:not(.has-outline-background)
-  .c-bolt-icon__background-shape,
-.t-bolt-xlight
-  .c-bolt-icon--green.has-background:not(.has-outline-background)
-  .c-bolt-icon__background-shape,
-:root
-  .c-bolt-icon--green.has-background:not(.has-outline-background)
-  .c-bolt-icon__background-shape {
-  opacity: 1;
-  border: 1px solid rgba(92, 93, 102, 0.5);
-  background-color: #209952;
-}
-.t-bolt-light .c-bolt-icon--pink,
-.t-bolt-xlight .c-bolt-icon--pink,
-:root .c-bolt-icon--pink {
-  color: #a65389;
-  --bolt-theme-icon: #a65389;
-  -webkit-filter: drop-shadow(0 0 1px hsla(0, 0%, 100%, 0.2));
-  filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.2));
-}
-.t-bolt-light .c-bolt-icon--pink.has-background:not(.has-outline-background),
-.t-bolt-xlight .c-bolt-icon--pink.has-background:not(.has-outline-background),
-:root .c-bolt-icon--pink.has-background:not(.has-outline-background) {
-  color: #fff;
-  --bolt-theme-icon: #fff;
-  --bolt-theme-icon-background: #a65389;
-  --bolt-theme-icon-background-opacity: 1;
-}
-.t-bolt-light
-  .c-bolt-icon--pink.has-background:not(.has-outline-background)
-  .c-bolt-icon__background-shape,
-.t-bolt-xlight
-  .c-bolt-icon--pink.has-background:not(.has-outline-background)
-  .c-bolt-icon__background-shape,
-:root
-  .c-bolt-icon--pink.has-background:not(.has-outline-background)
-  .c-bolt-icon__background-shape {
-  opacity: 1;
-  border: 1px solid rgba(92, 93, 102, 0.5);
-  background-color: #a65389;
-}
-.t-bolt-dark .c-bolt-icon--blue,
-.t-bolt-xdark .c-bolt-icon--blue {
-  color: #0095e6;
-  --bolt-theme-icon: #0095e6;
-  -webkit-filter: drop-shadow(0 0 1px hsla(0, 0%, 100%, 0.2));
-  filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.2));
-}
-.t-bolt-dark .c-bolt-icon--blue.has-background:not(.has-outline-background),
-.t-bolt-xdark .c-bolt-icon--blue.has-background:not(.has-outline-background) {
-  color: #fff;
-  --bolt-theme-icon: #fff;
-  --bolt-theme-icon-background: #0074b3;
-  --bolt-theme-icon-background-opacity: 1;
-}
-.t-bolt-dark
-  .c-bolt-icon--blue.has-background:not(.has-outline-background)
-  .c-bolt-icon__background-shape,
-.t-bolt-xdark
-  .c-bolt-icon--blue.has-background:not(.has-outline-background)
-  .c-bolt-icon__background-shape {
-  opacity: 1;
-  border: 1px solid rgba(92, 93, 102, 0.5);
-  background-color: #0074b3;
-}
-.t-bolt-dark .c-bolt-icon--gray,
-.t-bolt-xdark .c-bolt-icon--gray {
-  color: #8d8e99;
-  --bolt-theme-icon: #8d8e99;
-  -webkit-filter: drop-shadow(0 0 1px hsla(0, 0%, 100%, 0.2));
-  filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.2));
-}
-.t-bolt-dark .c-bolt-icon--gray.has-background:not(.has-outline-background),
-.t-bolt-xdark .c-bolt-icon--gray.has-background:not(.has-outline-background) {
-  color: #fff;
-  --bolt-theme-icon: #fff;
-  --bolt-theme-icon-background: #5c5d66;
-  --bolt-theme-icon-background-opacity: 1;
-}
-.t-bolt-dark
-  .c-bolt-icon--gray.has-background:not(.has-outline-background)
-  .c-bolt-icon__background-shape,
-.t-bolt-xdark
-  .c-bolt-icon--gray.has-background:not(.has-outline-background)
-  .c-bolt-icon__background-shape {
-  opacity: 1;
-  border: 1px solid rgba(92, 93, 102, 0.5);
-  background-color: #5c5d66;
-}
-.t-bolt-dark .c-bolt-icon--indigo,
-.t-bolt-xdark .c-bolt-icon--indigo {
-  color: #abb3f2;
-  --bolt-theme-icon: #abb3f2;
-  -webkit-filter: drop-shadow(0 0 1px rgba(21, 22, 25, 0.2));
-  filter: drop-shadow(0 0 1px rgba(21, 22, 25, 0.2));
-}
-.t-bolt-dark .c-bolt-icon--indigo.has-background:not(.has-outline-background),
-.t-bolt-xdark .c-bolt-icon--indigo.has-background:not(.has-outline-background) {
-  color: #fff;
-  --bolt-theme-icon: #fff;
-  --bolt-theme-icon-background: #545da6;
-  --bolt-theme-icon-background-opacity: 1;
-}
-.t-bolt-dark
-  .c-bolt-icon--indigo.has-background:not(.has-outline-background)
-  .c-bolt-icon__background-shape,
-.t-bolt-xdark
-  .c-bolt-icon--indigo.has-background:not(.has-outline-background)
-  .c-bolt-icon__background-shape {
-  opacity: 1;
-  border: 1px solid rgba(92, 93, 102, 0.5);
-  background-color: #545da6;
-}
-.t-bolt-dark .c-bolt-icon--orange,
-.t-bolt-xdark .c-bolt-icon--orange {
-  color: #ff8c66;
-  --bolt-theme-icon: #ff8c66;
-  -webkit-filter: drop-shadow(0 0 1px rgba(21, 22, 25, 0.2));
-  filter: drop-shadow(0 0 1px rgba(21, 22, 25, 0.2));
-}
-.t-bolt-dark .c-bolt-icon--orange.has-background:not(.has-outline-background),
-.t-bolt-xdark .c-bolt-icon--orange.has-background:not(.has-outline-background) {
-  color: #fff;
-  --bolt-theme-icon: #fff;
-  --bolt-theme-icon-background: #e84b17;
-  --bolt-theme-icon-background-opacity: 1;
-}
-.t-bolt-dark
-  .c-bolt-icon--orange.has-background:not(.has-outline-background)
-  .c-bolt-icon__background-shape,
-.t-bolt-xdark
-  .c-bolt-icon--orange.has-background:not(.has-outline-background)
-  .c-bolt-icon__background-shape {
-  opacity: 1;
-  border: 1px solid rgba(92, 93, 102, 0.5);
-  background-color: #e84b17;
-}
-.t-bolt-dark .c-bolt-icon--teal,
-.t-bolt-xdark .c-bolt-icon--teal {
-  color: #7acdcd;
-  --bolt-theme-icon: #7acdcd;
-  -webkit-filter: drop-shadow(0 0 1px rgba(21, 22, 25, 0.2));
-  filter: drop-shadow(0 0 1px rgba(21, 22, 25, 0.2));
-}
-.t-bolt-dark .c-bolt-icon--teal.has-background:not(.has-outline-background),
-.t-bolt-xdark .c-bolt-icon--teal.has-background:not(.has-outline-background) {
-  color: #fff;
-  --bolt-theme-icon: #fff;
-  --bolt-theme-icon-background: #099;
-  --bolt-theme-icon-background-opacity: 1;
-}
-.t-bolt-dark
-  .c-bolt-icon--teal.has-background:not(.has-outline-background)
-  .c-bolt-icon__background-shape,
-.t-bolt-xdark
-  .c-bolt-icon--teal.has-background:not(.has-outline-background)
-  .c-bolt-icon__background-shape {
-  opacity: 1;
-  border: 1px solid rgba(92, 93, 102, 0.5);
-  background-color: #099;
-}
-.t-bolt-dark .c-bolt-icon--white,
-.t-bolt-xdark .c-bolt-icon--white {
-  color: #fff;
-  --bolt-theme-icon: #fff;
-  -webkit-filter: drop-shadow(0 0 1px rgba(21, 22, 25, 0.2));
-  filter: drop-shadow(0 0 1px rgba(21, 22, 25, 0.2));
-}
-.t-bolt-dark .c-bolt-icon--white.has-background:not(.has-outline-background),
-.t-bolt-xdark .c-bolt-icon--white.has-background:not(.has-outline-background) {
-  color: #151619;
-  --bolt-theme-icon: #151619;
-  --bolt-theme-icon-background: #fff;
-  --bolt-theme-icon-background-opacity: 1;
-}
-.t-bolt-dark
-  .c-bolt-icon--white.has-background:not(.has-outline-background)
-  .c-bolt-icon__background-shape,
-.t-bolt-xdark
-  .c-bolt-icon--white.has-background:not(.has-outline-background)
-  .c-bolt-icon__background-shape {
-  opacity: 1;
-  border: 1px solid rgba(92, 93, 102, 0.5);
-  background-color: #fff;
-}
-.t-bolt-dark .c-bolt-icon--yellow,
-.t-bolt-xdark .c-bolt-icon--yellow {
-  color: #ffcc4d;
-  --bolt-theme-icon: #ffcc4d;
-  -webkit-filter: drop-shadow(0 0 1px rgba(21, 22, 25, 0.2));
-  filter: drop-shadow(0 0 1px rgba(21, 22, 25, 0.2));
-}
-.t-bolt-dark .c-bolt-icon--yellow.has-background:not(.has-outline-background),
-.t-bolt-xdark .c-bolt-icon--yellow.has-background:not(.has-outline-background) {
-  color: #151619;
-  --bolt-theme-icon: #151619;
-  --bolt-theme-icon-background: #ffcc4d;
-  --bolt-theme-icon-background-opacity: 1;
-}
-.t-bolt-dark
-  .c-bolt-icon--yellow.has-background:not(.has-outline-background)
-  .c-bolt-icon__background-shape,
-.t-bolt-xdark
-  .c-bolt-icon--yellow.has-background:not(.has-outline-background)
-  .c-bolt-icon__background-shape {
-  opacity: 1;
-  border: 1px solid rgba(92, 93, 102, 0.5);
-  background-color: #ffcc4d;
-}
-.t-bolt-dark .c-bolt-icon--green,
-.t-bolt-xdark .c-bolt-icon--green {
-  color: #219953;
-  --bolt-theme-icon: #219953;
-  -webkit-filter: drop-shadow(0 0 1px hsla(0, 0%, 100%, 0.2));
-  filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.2));
-}
-.t-bolt-dark .c-bolt-icon--green.has-background:not(.has-outline-background),
-.t-bolt-xdark .c-bolt-icon--green.has-background:not(.has-outline-background) {
-  color: #fff;
-  --bolt-theme-icon: #fff;
-  --bolt-theme-icon-background: #209952;
-  --bolt-theme-icon-background-opacity: 1;
-}
-.t-bolt-dark
-  .c-bolt-icon--green.has-background:not(.has-outline-background)
-  .c-bolt-icon__background-shape,
-.t-bolt-xdark
-  .c-bolt-icon--green.has-background:not(.has-outline-background)
-  .c-bolt-icon__background-shape {
-  opacity: 1;
-  border: 1px solid rgba(92, 93, 102, 0.5);
-  background-color: #209952;
-}
-.t-bolt-dark .c-bolt-icon--pink,
-.t-bolt-xdark .c-bolt-icon--pink {
-  color: #b974a1;
-  --bolt-theme-icon: #b974a1;
-  -webkit-filter: drop-shadow(0 0 1px hsla(0, 0%, 100%, 0.2));
-  filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.2));
-}
-.t-bolt-dark .c-bolt-icon--pink.has-background:not(.has-outline-background),
-.t-bolt-xdark .c-bolt-icon--pink.has-background:not(.has-outline-background) {
-  color: #fff;
-  --bolt-theme-icon: #fff;
-  --bolt-theme-icon-background: #a65389;
-  --bolt-theme-icon-background-opacity: 1;
-}
-.t-bolt-dark
-  .c-bolt-icon--pink.has-background:not(.has-outline-background)
-  .c-bolt-icon__background-shape,
-.t-bolt-xdark
-  .c-bolt-icon--pink.has-background:not(.has-outline-background)
-  .c-bolt-icon__background-shape {
-  opacity: 1;
-  border: 1px solid rgba(92, 93, 102, 0.5);
-  background-color: #a65389;
-}
-svg [fill=\\"var(--bolt-icon-primary-color)\\"] {
+.c-bolt-icon__background {
   fill: currentColor;
-}
-svg [stroke=\\"var(--bolt-icon-primary-color)\\"] {
-  stroke: currentColor;
-}
-@supports (--var: foo) {
-  svg [fill=\\"var(--bolt-icon-primary-color)\\"] {
-    fill: var(--bolt-icon-primary-color, var(--bolt-theme-icon, currentColor));
-  }
-  svg [stroke=\\"var(--bolt-icon-primary-color)\\"] {
-    stroke: var(
-      --bolt-icon-primary-color,
-      var(--bolt-theme-icon, currentColor)
-    );
-  }
-  svg [fill=\\"var(--bolt-icon-secondary-color)\\"] {
-    fill: var(
-      --bolt-icon-secondary-color,
-      rgba(var(--bolt-theme-background), 1)
-    );
-  }
-  svg [stroke=\\"var(--bolt-icon-secondary-color)\\"] {
-    stroke: var(
-      --bolt-icon-secondary-color,
-      rgba(var(--bolt-theme-background), 1)
-    );
-  }
+  fill: var(--bolt-theme-text, currentColor);
 }
 bolt-figure {
   display: block;
@@ -28288,7 +27166,6 @@ bolt-link {
   text-decoration: underline;
   cursor: pointer;
   border: none;
-  -webkit-transition: 0.2s ease-in-out;
   transition: 0.2s ease-in-out;
 }
 .js-fonts-loaded .c-bolt-link {
@@ -28303,15 +27180,12 @@ bolt-link {
   opacity: 0.6;
 }
 .c-bolt-link--display-flex {
-  display: -webkit-inline-box;
   display: inline-flex;
 }
 .c-bolt-link--display-flex.c-bolt-link--valign-start {
-  -webkit-box-align: start;
   align-items: flex-start;
 }
 .c-bolt-link--display-flex.c-bolt-link--valign-center {
-  -webkit-box-align: center;
   align-items: center;
 }
 .c-bolt-link--display-inline .c-bolt-link__icon {

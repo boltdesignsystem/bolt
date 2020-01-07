@@ -1,5 +1,6 @@
 {
   "name": "@bolt/components-tabs",
+  "version": "2.14.0",
   "description": "Tabs organize multiple panels of related content, allowing users to view one panel at a time.",
   "keywords": [
     "bolt design system",
@@ -8,7 +9,20 @@
     "components",
     "tabs"
   ],
-  "version": "2.13.0",
+  "homepage": "https://boltdesignsystem.com",
+  "bugs": "https://github.com/bolt-design-system/bolt/issues",
+  "repository": "https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tabs",
+  "license": "MIT",
+  "main": "index.js",
+  "style": "index.scss",
+  "dependencies": {
+    "@bolt/components-trigger": "^2.14.0",
+    "@bolt/core-v3.x": "^2.14.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "gitHead": "d41aa75ae3d195d9d7fb3952eed5e0ae80988133",
   "maintainers": [
     {
       "name": "Salem Ghoweri",
@@ -25,19 +39,5 @@
       "web": "https://github.com/danielamorse"
     }
   ],
-  "homepage": "https://boltdesignsystem.com",
-  "license": "MIT",
-  "repository": "https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tabs",
-  "bugs": "https://github.com/bolt-design-system/bolt/issues",
-  "publishConfig": {
-    "access": "public"
-  },
-  "dependencies": {
-    "@bolt/components-trigger": "^2.13.0",
-    "@bolt/core": "^2.13.0"
-  },
-  "style": "index.scss",
-  "main": "index.js",
-  "schema": "tabs.schema.yml",
-  "gitHead": "d41aa75ae3d195d9d7fb3952eed5e0ae80988133"
+  "schema": "tabs.schema.yml"
 }

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.14.0](https://github.com/boltdesignsystem/bolt/compare/v2.13.3...v2.14.0) (2020-01-06)
+
+
+### Bug Fixes
+
+* update read-only Git repo script with updated package paths ([6a59347](https://github.com/boltdesignsystem/bolt/commit/6a59347))
+* update testing-helpers package path ([9b431b6](https://github.com/boltdesignsystem/bolt/commit/9b431b6))
+
+
+
+
+
 # [2.13.0](https://github.com/boltdesignsystem/bolt/compare/v2.12.1...v2.13.0) (2019-12-13)
 
 **Note:** Version bump only for package @bolt/scripts

@@ -1,20 +1,22 @@
-import { props, define, hasNativeShadowDomSupport } from '@bolt/core/utils';
-import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
-import { ifDefined } from 'lit-html/directives/if-defined';
-import { convertInitialTags } from '@bolt/core/decorators';
+import { props, hasNativeShadowDomSupport } from '@bolt/core-v3.x/utils';
+import { withLitHtml } from '@bolt/core-v3.x/renderers/renderer-lit-html';
 import classNames from 'classnames/bind';
 import textStyles from '@bolt/components-text/index.scss';
+import {
+  ifDefined,
+  html,
+  convertInitialTags,
+  customElement,
+} from '@bolt/element';
 import styles from './blockquote.scss';
 import schema from '../blockquote.schema.yml';
 import { AuthorImage, AuthorName, AuthorTitle } from './Author';
 
 let cx = classNames.bind([styles, textStyles]);
 
-@define
+@customElement('bolt-blockquote')
 @convertInitialTags('blockquote') // The first matching tag will have its attributes converted to component props
-class BoltBlockquote extends withLitHtml() {
-  static is = 'bolt-blockquote';
-
+class BoltBlockquote extends withLitHtml {
   static props = {
     size: props.string,
     alignItems: props.string,

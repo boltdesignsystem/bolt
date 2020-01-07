@@ -3,19 +3,19 @@ import {
   props,
   css,
   hasNativeShadowDomSupport,
-} from '@bolt/core/utils';
+} from '@bolt/core-v3.x/utils';
 import {
   render,
   withLitHtml,
   html,
-} from '@bolt/core/renderers/renderer-lit-html';
+} from '@bolt/core-v3.x/renderers/renderer-lit-html';
 
 import Handorgel from 'handorgel';
 
 import heightUtils from '@bolt/global/styles/07-utilities/_utilities-height.scss';
 import styles from './dropdown.scss';
 
-class BoltDropdown extends withLitHtml() {
+class BoltDropdown extends withLitHtml {
   static is = 'bolt-dropdown';
 
   static props = {

@@ -1,22 +1,19 @@
 {
   "name": "@bolt/sass-export-data",
-  "version": "2.12.0",
+  "version": "2.14.0",
   "description": "Export Sass as JSON data",
-  "main": "index.js",
-  "style": "export-data.scss",
-  "scripts": {
-    "test:compile": "rm -rf tests/basics/dest/ && mkdir tests/basics/dest/ && node-sass --functions tests/basics/function.js tests/basics/scss/style.scss tests/basics/dest/style.css",
-    "test": "mocha tests"
-  },
   "keywords": [
     "theme-tools-plugin",
     "theme-tools"
   ],
-  "author": "EvanLovely <evanlovely@gmail.com> (http://evanlovely.com)",
-  "license": "MIT",
   "repository": "https://github.com/basaltinc/theme-tools/tree/master/packages/sass-export-data",
-  "publishConfig": {
-    "access": "public"
+  "license": "MIT",
+  "author": "EvanLovely <evanlovely@gmail.com> (http://evanlovely.com)",
+  "main": "index.js",
+  "style": "export-data.scss",
+  "scripts": {
+    "test": "yarn run test:compile && mocha tests",
+    "test:compile": "rm -rf tests/basics/dest/ && mkdir tests/basics/dest/ && node-sass --functions tests/basics/function.js tests/basics/scss/style.scss tests/basics/dest/style.css"
   },
   "dependencies": {
     "@theme-tools/core": "^1.0.0",
@@ -26,6 +23,9 @@
     "jsondiffpatch": "^0.3.11",
     "mocha": "^6.1.4",
     "node-sass": "^4.12.0"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "gitHead": "3d198feea5f73c63913a956a2a077e229ad8d462"
 }

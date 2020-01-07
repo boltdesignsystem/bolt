@@ -1,18 +1,11 @@
-import {
-  define,
-  props,
-  css,
-  hasNativeShadowDomSupport,
-} from '@bolt/core/utils';
-import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
-
+import { html, customElement } from '@bolt/element';
+import { props, css, hasNativeShadowDomSupport } from '@bolt/core-v3.x/utils';
+import { withLitHtml } from '@bolt/core-v3.x/renderers/renderer-lit-html';
 import styles from './text.scss';
 import schema from '../text.schema.yml';
 
-@define
-class BoltText extends withLitHtml() {
-  static is = 'bolt-text';
-
+@customElement('bolt-text')
+class BoltText extends withLitHtml {
   static props = {
     tag: props.string,
     display: props.string,

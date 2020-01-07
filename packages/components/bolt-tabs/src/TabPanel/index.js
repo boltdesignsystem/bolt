@@ -1,20 +1,14 @@
-import {
-  withContext,
-  define,
-  props,
-  hasNativeShadowDomSupport,
-} from '@bolt/core/utils';
-import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
+import { html, customElement } from '@bolt/element';
+import { withContext, props } from '@bolt/core-v3.x/utils';
+import { withLitHtml } from '@bolt/core-v3.x/renderers/renderer-lit-html';
 import classNames from 'classnames/bind';
 import styles from './tab-panel.scss';
 import { TabsContext } from '../tabs';
 
 let cx = classNames.bind(styles);
 
-@define
-class TabPanel extends withContext(withLitHtml()) {
-  static is = 'bolt-tab-panel';
-
+@customElement('bolt-tab-panel')
+class TabPanel extends withContext(withLitHtml) {
   static props = {
     selected: props.boolean,
   };

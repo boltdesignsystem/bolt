@@ -1,5 +1,6 @@
 {
   "name": "@bolt/components-navbar",
+  "version": "2.14.0",
   "description": "Navbar Component in Bolt",
   "keywords": [
     "bolt design system",
@@ -8,7 +9,21 @@
     "design system",
     "components"
   ],
-  "version": "2.13.0",
+  "homepage": "https://boltdesignsystem.com",
+  "bugs": "https://github.com/bolt-design-system/bolt/issues",
+  "repository": "https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-navbar",
+  "license": "MIT",
+  "style": "src/navbar.scss",
+  "dependencies": {
+    "@bolt/components-nav-indicator": "^2.14.0",
+    "@bolt/components-nav-priority": "^2.14.0",
+    "@bolt/components-navlink": "^2.14.0",
+    "@bolt/core-v3.x": "^2.14.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "gitHead": "d41aa75ae3d195d9d7fb3952eed5e0ae80988133",
   "maintainers": [
     {
       "name": "Salem Ghoweri",
@@ -21,21 +36,6 @@
       "web": "http://mikemai.net/"
     }
   ],
-  "homepage": "https://boltdesignsystem.com",
-  "license": "MIT",
-  "repository": "https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-navbar",
-  "bugs": "https://github.com/bolt-design-system/bolt/issues",
-  "style": "src/navbar.scss",
-  "twig": "src/navbar.twig",
   "schema": "navbar.schema.yml",
-  "publishConfig": {
-    "access": "public"
-  },
-  "dependencies": {
-    "@bolt/components-nav-indicator": "^2.13.0",
-    "@bolt/components-nav-priority": "^2.13.0",
-    "@bolt/components-navlink": "^2.13.0",
-    "@bolt/core": "^2.13.0"
-  },
-  "gitHead": "d41aa75ae3d195d9d7fb3952eed5e0ae80988133"
+  "twig": "src/navbar.twig"
 }
