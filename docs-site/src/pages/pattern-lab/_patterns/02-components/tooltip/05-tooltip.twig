@@ -1,7 +1,7 @@
-{#
 {% set trigger %}
   {% include "@bolt-components-headline/text.twig" with {
     text: "CRM",
+    tag: "span",
     icon: {
       name: "info-open",
       position: "after",
@@ -15,10 +15,7 @@
     <bolt-list-item>
       <div class="u-bolt-text-align-center">
         {% include "@bolt-components-tooltip/tooltip.twig" with {
-          placement: "bottom-left",
-          trigger: {
-            content: trigger,
-          },
+          trigger: trigger,
           content: content,
         } only %}
       </div>
@@ -26,10 +23,7 @@
     <bolt-list-item>
       <div class="u-bolt-text-align-center">
         {% include "@bolt-components-tooltip/tooltip.twig" with {
-          placement: "bottom",
-          trigger: {
-            content: trigger,
-          },
+          trigger: trigger,
           content: content,
         } only %}
       </div>
@@ -37,10 +31,7 @@
     <bolt-list-item>
       <div class="u-bolt-text-align-center">
         {% include "@bolt-components-tooltip/tooltip.twig" with {
-          placement: "bottom-right",
-          trigger: {
-            content: trigger,
-          },
+          trigger: trigger,
           content: content,
         } only %}
       </div>
@@ -52,10 +43,7 @@
     <bolt-list-item>
       <div class="u-bolt-text-align-right">
         {% include "@bolt-components-tooltip/tooltip.twig" with {
-          placement: "left-top",
-          trigger: {
-            content: trigger,
-          },
+          trigger: trigger,
           content: content,
         } only %}
       </div>
@@ -63,10 +51,7 @@
     <bolt-list-item>
       <div class="u-bolt-text-align-right">
         {% include "@bolt-components-tooltip/tooltip.twig" with {
-          placement: "left",
-          trigger: {
-            content: trigger,
-          },
+          trigger: trigger,
           content: content,
         } only %}
       </div>
@@ -74,10 +59,7 @@
     <bolt-list-item>
       <div class="u-bolt-text-align-right">
         {% include "@bolt-components-tooltip/tooltip.twig" with {
-          placement: "left-bottom",
-          trigger: {
-            content: trigger,
-          },
+          trigger: trigger,
           content: content,
         } only %}
       </div>
@@ -89,10 +71,7 @@
     <bolt-list-item>
       <div class="u-bolt-text-align-center">
         {% include "@bolt-components-tooltip/tooltip.twig" with {
-          placement: "top-left",
-          trigger: {
-            content: trigger,
-          },
+          trigger: trigger,
           content: content,
         } only %}
       </div>
@@ -100,10 +79,7 @@
     <bolt-list-item>
       <div class="u-bolt-text-align-center">
         {% include "@bolt-components-tooltip/tooltip.twig" with {
-          placement: "top",
-          trigger: {
-            content: trigger,
-          },
+          trigger: trigger,
           content: content,
         } only %}
       </div>
@@ -111,10 +87,7 @@
     <bolt-list-item>
       <div class="u-bolt-text-align-center">
         {% include "@bolt-components-tooltip/tooltip.twig" with {
-          placement: "top-right",
-          trigger: {
-            content: trigger,
-          },
+          trigger: trigger,
           content: content,
         } only %}
       </div>
@@ -125,75 +98,65 @@
   <bolt-list spacing="xxlarge">
     <bolt-list-item>
       {% include "@bolt-components-tooltip/tooltip.twig" with {
-        placement: "right-top",
-        trigger: {
-          content: trigger,
-        },
+        trigger: trigger,
         content: content,
       } only %}
     </bolt-list-item>
     <bolt-list-item>
       {% include "@bolt-components-tooltip/tooltip.twig" with {
-        placement: "right",
-        trigger: {
-          content: trigger,
-        },
+        trigger: trigger,
         content: content,
       } only %}
     </bolt-list-item>
     <bolt-list-item>
       {% include "@bolt-components-tooltip/tooltip.twig" with {
-        placement: "right-bottom",
-        trigger: {
-          content: trigger,
-        },
+        trigger: trigger,
         content: content,
       } only %}
     </bolt-list-item>
   </bolt-list>
 {% endset %}
 {% set grid %}
-  {% include "@bolt-components-grid/grid.twig" with {
-    gutter: "small",
-    items: [
-      {
-        column_start: "2",
-        column_span: "10",
-        row_start: "1",
-        content: tooltips_top,
-      },
-      {
-        column_start: "12",
-        column_span: "1",
-        row_start: "2",
-        content: tooltips_right,
-      },
-      {
-        column_start: "2",
-        column_span: "10",
-        row_start: "3",
-        content: tooltips_bottom,
-      },
-      {
-        column_start: "1",
-        column_span: "1",
-        row_start: "2",
-        content: tooltips_left,
-      },
-    ]
-  } only %}
+  <div style="margin: 0 auto; max-width: 800px;">
+    {% include "@bolt-components-grid/grid.twig" with {
+      gutter: "small",
+      items: [
+        {
+          column_start: "2",
+          column_span: "10",
+          row_start: "1",
+          content: tooltips_top,
+        },
+        {
+          column_start: "12",
+          column_span: "1",
+          row_start: "2",
+          content: tooltips_right,
+        },
+        {
+          column_start: "2",
+          column_span: "10",
+          row_start: "3",
+          content: tooltips_bottom,
+        },
+        {
+          column_start: "1",
+          column_span: "1",
+          row_start: "2",
+          content: tooltips_left,
+        },
+      ]
+    } only %}
+  </div>
 {% endset %}
 
-<div class="t-bolt-xlight u-bolt-padding-xlarge">
+<div class="t-bolt-xlight u-bolt-padding-large">
   {% include "@bolt-components-band/band.twig" with {
     theme: "none",
     full_bleed: false,
     content: grid,
   } only %}
 </div>
-
-
-
 
 {% set lock_icon %}
   <span class="u-bolt-color-gray">
@@ -218,21 +181,15 @@
 {% endset %}
 {% set tooltips %}
   {% include "@bolt-components-tooltip/tooltip.twig" with {
-    trigger: {
-      content: lock_icon,
-    },
+    trigger: lock_icon,
     content: "Closed for replies",
   } only %}
   {% include "@bolt-components-tooltip/tooltip.twig" with {
-    trigger: {
-      content: check_icon,
-    },
+    trigger: check_icon,
     content: "Solved",
   } only %}
   {% include "@bolt-components-tooltip/tooltip.twig" with {
-    trigger: {
-      content: close_icon,
-    },
+    trigger: close_icon,
     content: "This is no bueno. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttito. Quisque eget odio ac lectus vestibulum faucibus eget in metus. In pellentesque.",
   } only %}
   <bolt-tooltip>
@@ -262,11 +219,23 @@
     </bolt-list-item>
   </bolt-list>
 </div>
- #}
 
-
-<div class="u-bolt-margin-xlarge u-bolt-padding-small">
+<div class="u-bolt-padding-small" style="margin: 0 auto; max-width: 900px;">
   <bolt-list display="inline" spacing="large">
+    <bolt-list-item>
+      {% include "@bolt-components-tooltip/tooltip.twig" with {
+        trigger: "Banana stand",
+        content: "There's always money in it.",
+        placement: "top-start"
+      } only %}
+    </bolt-list-item>
+    <bolt-list-item>
+      {% include "@bolt-components-tooltip/tooltip.twig" with {
+        trigger: "Banana stand",
+        content: "There's always money in it.",
+        placement: "right"
+      } only %}
+    </bolt-list-item>
     <bolt-list-item>
       {% include "@bolt-components-tooltip/tooltip.twig" with {
         trigger: "Banana stand",
