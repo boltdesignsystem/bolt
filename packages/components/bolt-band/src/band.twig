@@ -7,7 +7,8 @@
 {# Variables #}
 {% set base_class = "c-bolt-band" %}
 {% set attributes = create_attribute(attributes|default({})) %}
-{% set inner_attributes = create_attribute({}) %}
+{% set inner_attributes = create_attribute(inner_attributes|default({})) %}
+
 
 {# Deprecated #}
 {% if fullBleed is sameas(true) or fullBleed is sameas(false) %}
