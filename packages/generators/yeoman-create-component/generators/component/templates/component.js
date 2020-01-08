@@ -1,5 +1,5 @@
 import { html, customElement, BoltElement } from '@bolt/element';
-import classNames from 'classnames/dedupe';
+import classNames from 'classnames/bind';
 import styles from './<%= props.name.kebabCase %>.scss';
 //import schema from '../<%= props.name.kebabCase %>.schema.yml';
 
@@ -15,12 +15,6 @@ class Bolt<%= props.name.pascalCase %> extends BoltElement {
       },
       disabled: Boolean,
     };
-  }
-
-  // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
-  constructor(self) {
-    self = super(self);
-    return self;
   }
 
   render() {
