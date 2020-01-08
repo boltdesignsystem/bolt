@@ -1,0 +1,57 @@
+{% embed "@bolt-components-toolbar/toolbar.twig" with {
+  size: "xsmall",
+  theme: "none",
+  title: {
+    tag: "h2",
+    text: "Mission Name",
+    icon: {
+      name: "launchpad"
+    }
+  },
+} %}
+  {% block content %}
+    {% include "@bolt-components-list/list.twig" with {
+      display: "flex",
+      align: "end",
+      spacing: "small",
+      items: [
+        '<progress max="100" value="80">80%</progress>',
+        include("@bolt-components-list/list.twig", {
+          display: "inline",
+          items: [
+            include("@bolt-components-button/button.twig", {
+              text: "Share",
+              size: "small",
+              style: "secondary",
+              iconOnly: true,
+              icon: {
+                name: "share",
+              }
+            }),
+            include("@bolt-components-button/button.twig", {
+              text: "Star",
+              size: "small",
+              style: "secondary",
+              iconOnly: true,
+              icon: {
+                name: "star-solid",
+              }
+            }),
+            include("@bolt-components-button/button.twig", {
+              text: "Add",
+              size: "small",
+              style: "secondary",
+              iconOnly: true,
+              icon: {
+                name: "add-open",
+              }
+            })
+          ]
+        }),
+      ]
+    } only %}
+  {% endblock %}
+{% endembed %}
+
+
+{# End Toolbar #}

@@ -1,0 +1,126 @@
+{% extends "@pl/_default-page-template.twig" %}
+
+{% block global_header %}
+  {% include "@bolt/page-header.twig" %}
+{% endblock %}
+
+{% set hero %}
+  {% include "@academy/_hero--mission-landing.twig" with {
+    theme: "none"
+  } %}
+{% endset %}
+
+{% block main_content %}
+  {% include "@academy/_toolbar.twig" %}
+  {% embed "@bolt-components-band/band.twig" with {
+    theme: "xxdark",
+    inner_attributes: {
+      class: [
+        "u-bolt-padding-top-none"
+      ]
+    }
+  } %}
+    {% block band_background %}
+      <div style="position: absolute; top: 0;
+      right: 0; width: 100%;">
+        {% include "@bolt-components-image/image.twig" with {
+          src: "/images/academy/mission-hero.jpg",
+          placeholder_color: "#000000",
+          attributes: {
+            class: [
+              "u-bolt-float-right"
+            ],
+            style: "min-width: 1200px; width: 100%"
+          }
+        } only %}
+      </div>
+
+       {% include "@bolt-components-background/background.twig" with {
+        opacity: "light",
+        fill: "gradient",
+      } only %}
+    {% endblock %}
+
+    {% block band_content %}
+      {{ hero }}
+
+      {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
+        {% cell "u-bolt-width-1/1 u-bolt-width-10/12@small u-bolt-width-10/12@medium" %}
+          {% include "@academy/_hide-show-completed.twig" %}
+        {% endcell %}
+
+        {% cell "u-bolt-width-1/1 u-bolt-width-10/12@small u-bolt-width-10/12@medium" %}
+
+          {% set items = [
+            include("@academy/_card--mission-landing.twig", {
+              cardSubtitle: "Mission",
+              cardTitle: "Card Title",
+              cardGradient: "orange",
+              cardIcon: "meteor",
+              cardDescription: "Products is what you sell, it can be goods or services. In this lesson, you learn about the product hierarchy used to store products and how to manage products data in your Pega Sales Automation™ application.",
+            }),
+            include("@academy/_card--mission-landing.twig", {
+              cardSubtitle: "Module",
+              cardTitle: "Name of module that will take up two lines of text",
+              cardGradient: "teal",
+              cardIcon: "orbit",
+              link: {
+                url: "https://academy.pega.com/library/71/ui-specialist",
+              }
+            }),
+            include("@academy/_card--mission-landing.twig", {
+              cardSubtitle: "Mission Test",
+              cardTitle: "Card Title",
+              cardGradient: "purple",
+              cardIcon: "rocket",
+              status: "complete",
+            }),
+
+            include("@academy/_card--mission-landing.twig", {
+              cardSubtitle: "Mission Exercise",
+              cardTitle: "Card Title",
+              cardGradient: "purple",
+              cardIcon: "triangle"
+            }),
+            include("@academy/_card--mission-landing.twig", {
+              cardSubtitle: "Challenge",
+              cardTitle: "Card Title",
+              cardGradient: "purple",
+              cardIcon: "satelite"
+            }),
+            include("@academy/_card--mission-landing.twig", {
+              cardSubtitle: "Mission",
+              cardTitle: "Card Title",
+              cardGradient: "purple",
+              cardIcon: "molecule"
+            }),
+            include("@academy/_card--mission-landing.twig", {
+              cardSubtitle: "Module",
+              cardTitle: "Card Title",
+              cardGradient: "purple",
+              cardIcon: "atom"
+            }),
+            include("@academy/_award.twig"),
+          ] %}
+
+          {% grid "o-bolt-grid--matrix o-bolt-grid--small" %}
+            {% for item in items %}
+              {% cell "u-bolt-width-12/12" %}
+                {{ item }}
+              {% endcell %}
+
+              {% if not loop.last %}
+                {% cell "u-bolt-width-12/12" %}
+                  {% include "@academy/_spacer.twig" %}
+                {% endcell %}
+              {% endif %}
+            {% endfor %}
+          {% endgrid %}
+        {% endcell %}
+      {% endgrid %}
+    {% endblock %}
+  {% endembed %}
+
+  {% include "@academy/_hero--request-feedback.twig" %}
+
+{% endblock %}

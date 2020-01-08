@@ -5,7 +5,7 @@
 
 {% set media_block = block("media") %}
 
-{% if horizontal %}
+{% if horizontal and card_replacement_media_content %}
   {% set card_replacement_image = card_replacement_image | merge({
     ratio: false,
     cover: true,

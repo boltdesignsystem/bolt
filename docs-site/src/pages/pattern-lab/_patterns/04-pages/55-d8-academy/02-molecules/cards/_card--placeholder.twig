@@ -1,0 +1,29 @@
+{% include "@bolt-components-card/card.twig" with {
+  contentItems: [
+    {
+      pattern: "image",
+      src: "/images/placeholders/landscape-16x9-mountains.jpg",
+      lazyload: false,
+      alt: "Placeholder"
+    },
+    {
+      pattern: "eyebrow",
+      text: "Module"
+    },
+    {
+      pattern: "headline",
+      tag: "h3",
+      size: "large",
+      text: "Configuring a case type"
+    },
+    {
+      pattern: "text",
+      text: "Suspendisse faucibus, nunc et pellentesque egestas, lacus ante convallis tellus."
+    },
+    {
+      pattern: "button",
+      text: "Due: 7/21/19",
+      url: "#",
+    }
+  ]
+} only %}

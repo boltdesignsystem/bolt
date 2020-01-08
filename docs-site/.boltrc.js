@@ -40,6 +40,10 @@ const config = {
         // path.relative(process.cwd(), path.dirname(require.resolve('@bolt/components-sticky/package.json'))),
       ],
     },
+    academy: {
+      recursive: true,
+      paths: ['./src/pages/pattern-lab/_patterns/04-pages/55-d8-academy'],
+    },
     'bolt-assets': {
       recursive: true,
       paths: ['../www/build'],
