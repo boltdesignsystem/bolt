@@ -172,6 +172,7 @@ exports[`<bolt-band> Component Nested bands usage 2`] = `
 
 
 
+
           <bolt-band
             aria-expanded="false"
             class="is-ready"
@@ -237,6 +238,7 @@ exports[`<bolt-band> Component Nested bands usage 2`] = `
           </bolt-band>
           
         
+
 
 
 
@@ -732,6 +734,27 @@ exports[`<bolt-band> Component Theme of the band: xlight 1`] = `
            full-bleed
 >
   <div class="c-bolt-band c-bolt-band--medium t-bolt-xlight c-bolt-band--full-bleed">
+    <div class="c-bolt-band__content">
+      <bolt-wrapper size="xxlarge"
+                    full="true"
+                    bolt-object
+      >
+        <div class="o-bolt-wrapper o-bolt-wrapper--xxlarge o-bolt-wrapper--full">
+          This is a band.
+        </div>
+      </bolt-wrapper>
+    </div>
+  </div>
+</bolt-band>
+`;
+
+exports[`<bolt-band> Component Theme of the band: xxdark 1`] = `
+<bolt-band tag="div"
+           size="medium"
+           theme="xxdark"
+           full-bleed
+>
+  <div class="c-bolt-band c-bolt-band--medium t-bolt-xxdark c-bolt-band--full-bleed">
     <div class="c-bolt-band__content">
       <bolt-wrapper size="xxlarge"
                     full="true"
