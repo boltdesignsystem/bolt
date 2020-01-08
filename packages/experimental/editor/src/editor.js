@@ -372,6 +372,7 @@ export function enableEditor({ space, uiWrapper, config }) {
         ? newComponent[0].parent()
         : newComponent;
 
+    // @TODO this may need to change for components using the Slotify (button and link, once we support slots on them).
     selected.view.el.setupSlots();
     selected.view.el.triggerUpdate();
     if (selectAfterAdd) editor.select(singleComponent);
