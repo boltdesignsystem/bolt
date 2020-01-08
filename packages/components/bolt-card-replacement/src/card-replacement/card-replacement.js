@@ -67,7 +67,9 @@ class BoltCardReplacement extends withContext(BoltElement) {
     const cardReplacementLink =
       this.url && !this.querySelector('bolt-card-replacement-link')
         ? html`
-            <bolt-card-replacement-link url="${this.url}" ?target="${this.target}"
+            <bolt-card-replacement-link
+              url="${this.url}"
+              ?target="${this.target}"
               >${this.urlText}</bolt-card-replacement-link
             >
           `
@@ -77,7 +79,9 @@ class BoltCardReplacement extends withContext(BoltElement) {
       ${cardReplacementLink}
       ${this.slotMap.get('media') &&
         html`
-          <bolt-card-replacement-media>${this.slotify('media')}</bolt-card-replacement-media>
+          <bolt-card-replacement-media
+            >${this.slotify('media')}</bolt-card-replacement-media
+          >
         `}
       ${this.slotMap.get('body') &&
         html`
