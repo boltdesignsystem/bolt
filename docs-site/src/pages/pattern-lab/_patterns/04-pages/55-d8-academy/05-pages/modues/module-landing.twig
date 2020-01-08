@@ -1,9 +1,4 @@
-{% extends "@pl/_default-page-template.twig" %}
-
-{% block global_header %}
-  {% include "@bolt/page-header.twig" %}
-{% endblock %}
-
+{% extends "@academy/default-page-template.twig" %}
 
 {% block main_content %}
   {# Toolbar #}
@@ -23,7 +18,7 @@
     {% include "@bolt-components-breadcrumb/breadcrumb.twig" with {
       contentItems: [
         crumb_1,
-        "Internal Pega Test"
+        "Configuring a case hierarchy"
       ]
     } only %}
   {% endset %}
@@ -129,7 +124,149 @@
       text: "Achievement <br>Badge Awarded",
     } only %}
   {% endset %}
-  {% set prereq %}
+  {% set topic %}
+    {% grid "o-bolt-grid--flex o-bolt-grid--matrix" %}
+      {% cell "u-bolt-flex-grow" %}
+        {% include "@bolt-components-link/link.twig" with {
+          text: "Topic Title",
+          url: "#!",
+        } only %}
+      {% endcell %}
+      {% cell "u-bolt-flex-shrink" %}
+        10 mins
+      {% endcell %}
+    {% endgrid %}
+  {% endset %}
+  {% set topic_visited %}
+    {% grid "o-bolt-grid--flex o-bolt-grid--matrix" %}
+      {% cell "u-bolt-flex-grow" %}
+        {% include "@bolt-components-link/link.twig" with {
+          text: "Topic Title",
+          url: "#!",
+        } only %}
+      {% endcell %}
+      {% cell "u-bolt-flex-shrink" %}
+        <div class="u-bolt-color-gray">
+          10 mins
+          {% include "@bolt-components-icon/icon.twig" with {
+            name: "eye",
+            size: "medium",
+          } only %}
+        </div>
+      {% endcell %}
+    {% endgrid %}
+  {% endset %}
+  {% set quiz %}
+    {% grid "o-bolt-grid--flex o-bolt-grid--matrix" %}
+      {% cell "u-bolt-flex-grow" %}
+        {% include "@bolt-components-link/link.twig" with {
+          text: "Quiz Title",
+          url: "#!",
+          icon: {
+            name: "asset-text",
+            position: "before",
+          }
+        } only %}
+      {% endcell %}
+      {% cell "u-bolt-flex-shrink" %}
+        20 questions
+      {% endcell %}
+    {% endgrid %}
+  {% endset %}
+  {% set content %}
+    {% grid "o-bolt-grid--flex o-bolt-grid--matrix" %}
+      {% cell "u-bolt-width-1/1" %}
+        {% include "@bolt-components-headline/eyebrow.twig" with {
+          text: "Module",
+        } only %}
+        {% include "@bolt-components-headline/headline.twig" with {
+          size: "xxxlarge",
+          text: "Configuring a case hierarchy",
+          attributes: {
+            class: "u-bolt-margin-bottom-small",
+          }
+        } only %}
+        {% include "@bolt-components-list/list.twig" with {
+          display: "inline",
+          separator: "solid",
+          items: [
+            "9 topics",
+            "40 mins remaining",
+          ]
+        } only %}
+        {% include "@bolt-components-list/list.twig" with {
+          display: "inline",
+          items: [
+            chip_1,
+            chip_2,
+          ]
+        } only %}
+      {% endcell %}
+      {% cell "u-bolt-width-1/1 u-bolt-width-6/12@small" %}
+        {% include "@bolt-components-headline/text.twig" with {
+          text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris. Vivamus hendrerit arcu sed erat molestie vehicula. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor. Ut in nulla enim. Phasellus molestie magna non est bibendum non venenatis nisl tempor.",
+        } only %}
+        {% include "@bolt-components-headline/headline.twig" with {
+          size: "large",
+          text: "After completing this module, you should be able to:",
+          attributes: {
+            class: "u-bolt-margin-bottom-small",
+          }
+        } only %}
+        {% include "@bolt-components-ul/ul.twig" with {
+          items: [
+            "Item 1",
+            "Item 2",
+            "Item 3",
+            "Item 4",
+            "Item 5",
+          ]
+        } only %}
+      {% endcell %}
+      {% cell "u-bolt-width-1/1 u-bolt-width-6/12@small" %}
+        <div class="t-bolt-xlight u-bolt-shadow-20 u-bolt-border-radius-large u-bolt-padding-medium u-bolt-margin-bottom-small">
+          {% include "@bolt-components-headline/headline.twig" with {
+            size: "xlarge",
+            text: "Topics",
+            attributes: {
+              class: "u-bolt-margin-bottom-small",
+            }
+          } only %}
+          {% include "@bolt-components-list/list.twig" with {
+            separator: "solid",
+            items: [
+              topic_visited,
+              topic_visited,
+              topic,
+              topic,
+              topic,
+              quiz,
+            ]
+          } only %}
+        </div>
+      {% endcell %}
+    {% endgrid %}
+  {% endset %}
+
+  {% include "@bolt-components-band/band.twig" with {
+    theme: "xdark",
+    content: content,
+    background: {
+      opacity: "light",
+      fill: "gradient",
+      contentItems: [
+        {
+          pattern: "image",
+          src: "/images/content/backgrounds/background-night-sky.jpg",
+        },
+      ]
+    },
+  } only %}
+  {# End Hero #}
+
+
+  {# Also #}
+  {% set mission %}
     {% include "@bolt/flag.twig" with {
       valign: "middle",
       url: "#!",
@@ -156,42 +293,9 @@
   {% endset %}
   {% set content %}
     {% grid "o-bolt-grid--flex o-bolt-grid--matrix" %}
-      {% cell "u-bolt-width-1/1" %}
-        {% include "@bolt-components-headline/eyebrow.twig" with {
-          text: "Module",
-        } only %}
+      {% cell "u-bolt-width-1/1 u-bolt-width-6/12@small" %}
         {% include "@bolt-components-headline/headline.twig" with {
-          size: "xxxlarge",
-          text: "Internal Pega Test",
-          attributes: {
-            class: "u-bolt-margin-bottom-small",
-          }
-        } only %}
-        {% include "@bolt-components-list/list.twig" with {
-          display: "inline",
-          separator: "solid",
-          items: [
-            "60 Questions",
-            "90 mins",
-            "Passing Score Needed: 70%",
-          ]
-        } only %}
-        {% include "@bolt-components-list/list.twig" with {
-          display: "inline",
-          items: [
-            chip_1,
-            chip_2,
-          ]
-        } only %}
-      {% endcell %}
-      {% cell "u-bolt-width-1/1 u-bolt-width-5/12@small" %}
-        {% include "@bolt-components-headline/text.twig" with {
-          text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris. Vivamus hendrerit arcu sed erat molestie vehicula. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor. Ut in nulla enim. Phasellus molestie magna non est bibendum non venenatis nisl tempor.",
-        } only %}
-      {% endcell %}
-      {% cell "u-bolt-width-1/1 u-bolt-width-4/12@small" %}
-        {% include "@bolt-components-headline/headline.twig" with {
-          text: "Prerequisites",
+          text: "This module also appears in following missions",
           attributes: {
             class: "u-bolt-margin-bottom-small",
           }
@@ -199,60 +303,11 @@
         {% include "@bolt-components-list/list.twig" with {
           separator: "solid",
           items: [
-            prereq,
-            prereq,
-            prereq,
+            mission,
+            mission,
+            mission,
           ]
         } only %}
-      {% endcell %}
-      {% cell "u-bolt-width-1/1 u-bolt-width-3/12@small" %}
-        {% include "@bolt-components-headline/headline.twig" with {
-          size: "large",
-          text: "Exam Topics <small>(% of exam)</small>",
-          attributes: {
-            class: "u-bolt-margin-bottom-small",
-          }
-        } only %}
-        {% include "@bolt-components-ul/ul.twig" with {
-          items: [
-            "Pega Platform (8%)",
-            "Case Lifecycle (25%)",
-            "Case Data Modeling (17%)",
-            "Business Policy Automation (13%)",
-          ]
-        } only %}
-      {% endcell %}
-    {% endgrid %}
-  {% endset %}
-
-  {% include "@bolt-components-band/band.twig" with {
-    theme: "xdark",
-    content: content,
-    background: {
-      opacity: "light",
-      fill: "gradient",
-    },
-  } only %}
-  {# End Hero #}
-
-  {# Body #}
-  {% set content %}
-    {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
-      {% cell "u-bolt-width-1/1 u-bolt-width-10/12@small u-bolt-width-8/12@medium" %}
-        <div class="t-bolt-xlight u-bolt-padding-medium u-bolt-border-radius-large u-bolt-shadow-level-30">
-          {% include "@bolt-components-headline/headline.twig" with {
-            tag: "h2",
-            size: "large",
-            text: "Before you begin...",
-          } only %}
-          {% include "@bolt-components-headline/text.twig" with {
-            text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris. Vivamus hendrerit arcu sed erat molestie vehicula. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor. Ut in nulla enim. Phasellus molestie magna non est bibendum non venenatis nisl tempor.",
-          } only %}
-          {% include "@bolt-components-placeholder/placeholder.twig" with {
-            size: "large",
-            text: "H5P Embed",
-          } only %}
-        </div>
       {% endcell %}
     {% endgrid %}
   {% endset %}
@@ -261,5 +316,5 @@
     theme: "light",
     content: content,
   } only %}
-  {# End Body #}
+  {# End Also #}
 {% endblock %}

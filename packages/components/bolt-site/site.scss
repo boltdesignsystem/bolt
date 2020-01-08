@@ -18,6 +18,16 @@
 //   // --bg-color: hsl(150, 45%, 50%);
 // }
 
+html {
+  min-height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
 .c-bolt-site {
   display: grid;
   overflow-x: hidden; //Helps prevent horizontal scrolling in Chrome on Windows machines. Seems to be working fine w/ native position sticky at first glance.

@@ -1,0 +1,19 @@
+{% set hideGlobalSearch = true %}
+
+{% extends "@academy/default-page-template.twig" %}
+
+{% block main_content %}
+  {% include "@academy/_search-bar.twig" %}
+
+  {% block main %}
+    Main Page Content Goes Here
+  {% endblock %}
+
+  {# Body Bottom #}
+{% endblock %}
+
+{% block after_main_content %}
+  <div class="o-bolt-wrapper u-bolt-flex-grow-none u-bolt-margin-top-auto">
+    {% include "@academy/_hero--promo.twig" %}
+  </div>
+{% endblock %}
