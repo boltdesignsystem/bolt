@@ -29,6 +29,22 @@ module.exports = {
       },
     ],
   },
+  slots: {
+    default: {
+      type: 'object',
+      description: 'Button title text.',
+    },
+    before: {
+      type: 'object',
+      description:
+        'Anything passed to this slot will go before the button text.',
+    },
+    after: {
+      type: 'object',
+      description:
+        'Anything passed to this slot will go after the button text.',
+    },
+  },
   properties: {
     attributes: {
       type: 'object',
