@@ -7,7 +7,7 @@
 
   <p>Can't find an existing SVG that suits your needs?</p>
 
-  <p>Before jumping ahead and adding a new custom SVG icon, please make sure you come and chat with the Bolt team <i>first</i> to see if there's already an existing icon that could get used instead OR it makes sense to add a new icon to the design system itself!</p>
+  <p>Before jumping ahead and adding a new custom SVG icon, please make sure you come and chat with the Bolt team <i>first</i> to see if there's already an existing icon that could get used instead OR if it makes sense to add a new icon to the design system itself!</p>
 
   <hr>
 
@@ -16,10 +16,10 @@
     size: "xxlarge",
   } only %}
 
-  <p>Note: make sure your custom SVG icon _starts_ with `custom-` as this is required to ensure names of built-in icons don't collide with custom SVG icons added.</p>
+  <p>Note: make sure your custom SVG icon <i>starts</i> with <bolt-code-snippet display="inline" lang="html">custom-</bolt-code-snippet> as this is required to ensure names of built-in icons don't collide with custom SVG icons added.</p>
 
   {% include "@bolt-components-headline/headline.twig" with {
-    text: "Step 1. Import your custom SVG Icon in .js file that's compiled by the Bolt build tools. Note: make sure your SVG icon has been already exported for the web (docs coming soon!).",
+    text: "Step 1. Import your custom SVG Icon in a .js file that's compiled by the Bolt build tools. Note: make sure your SVG icon has been already exported for the web (docs coming soon!).",
     size: "large",
     tag: "p"
   } only %}
@@ -59,10 +59,10 @@
     size: "xxlarge",
   } only %}
 
-  <p>This advanced use case is rarely recommended since it can limit the number of places an SVG icon can get used + prevents the icon's color palette from adjusting based on the location it's used.</p>
+  <p>This advanced use case is rarely recommended since it can limit the number of places an SVG icon can get used and prevents the icon's color palette from adjusting based on the location it's used.</p>
 
   {% include "@bolt-components-headline/headline.twig" with {
-    text: "Step 1. Import your SVG Icon in .js file, making sure your icon ends in `-colored.svg`",
+    text: "Step 1. Import your SVG Icon in a .js file, making sure your icon ends in <bolt-code-snippet display=\"inline\" lang=\"html\">-colored.svg</bolt-code-snippet>",
     size: "large",
     tag: "p"
   } only %}
