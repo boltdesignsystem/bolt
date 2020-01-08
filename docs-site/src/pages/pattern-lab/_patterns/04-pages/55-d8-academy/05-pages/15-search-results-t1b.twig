@@ -8,24 +8,26 @@
 {% block main_content %}
 
   {# Search Bar #}
-  {% include "@academy/includes/_search-bar.twig" %}
+  {% include "@academy/_search-bar.twig" %}
 
   {# Hero #}
-  {% include "@academy/includes/_hero--archived.twig" %}
+  {% include "@academy/_hero--search-results.twig" %}
 
   {# Body Top #}
-  {% include "@academy/includes/_nav--search.twig" %}
-  {% include "@academy/includes/_band--archived-text.twig" %}
+  {% include "@academy/_nav--search.twig" %}
 
   {# Body #}
   {% set content %}
+
+    {% include "@academy/_chips--search-filter.twig" %}
+
     {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
-      {% cell "u-bolt-width-12/12 u-bolt-width-3/12@medium" %}
-        {% include "@academy/includes/_form--search-filter.twig" %}
+      {% cell "u-bolt-width-1/1 u-bolt-width-3/12@medium" %}
+        {% include "@academy/_form--search-filter.twig" %}
       {% endcell %}
       {% cell "u-bolt-width-1/1 u-bolt-width-9/12@medium" %}
-        {% include "@academy/includes/_card-list.twig" %}
-        {% include "@academy/includes/_pagination.twig" %}
+        {% include "@academy/_card-list.twig" %}
+        {% include "@academy/_pagination.twig" %}
       {% endcell %}
     {% endgrid %}
   {% endset %}
@@ -37,6 +39,6 @@
   } only %}
 
   {# Body Bottom #}
-  {% include "@academy/includes/_band--promo.twig" %}
+  {% include "@academy/_hero--promo.twig" %}
 
 {% endblock %}

@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% set hero %}
-  {% include "@academy/_hero.twig" with {
+  {% include "@academy/_hero--mission-landing.twig" with {
     theme: "none"
   } %}
 {% endset %}
@@ -52,14 +52,14 @@
         {% cell "u-bolt-width-1/1 u-bolt-width-10/12@small u-bolt-width-10/12@medium" %}
 
           {% set items = [
-            include("@academy/_card.twig", {
+            include("@academy/_card--mission-landing.twig", {
               cardSubtitle: "Mission",
               cardTitle: "Card Title",
               cardGradient: "orange",
               cardIcon: "meteor",
               cardDescription: "Products is what you sell, it can be goods or services. In this lesson, you learn about the product hierarchy used to store products and how to manage products data in your Pega Sales Automation™ application.",
             }),
-            include("@academy/_card.twig", {
+            include("@academy/_card--mission-landing.twig", {
               cardSubtitle: "Module",
               cardTitle: "Name of module that will take up two lines of text",
               cardGradient: "teal",
@@ -68,7 +68,7 @@
                 url: "https://academy.pega.com/library/71/ui-specialist",
               }
             }),
-            include("@academy/_card.twig", {
+            include("@academy/_card--mission-landing.twig", {
               cardSubtitle: "Mission Test",
               cardTitle: "Card Title",
               cardGradient: "purple",
@@ -76,25 +76,25 @@
               status: "complete",
             }),
 
-            include("@academy/_card.twig", {
+            include("@academy/_card--mission-landing.twig", {
               cardSubtitle: "Mission Exercise",
               cardTitle: "Card Title",
               cardGradient: "purple",
               cardIcon: "triangle"
             }),
-            include("@academy/_card.twig", {
+            include("@academy/_card--mission-landing.twig", {
               cardSubtitle: "Challenge",
               cardTitle: "Card Title",
               cardGradient: "purple",
               cardIcon: "satelite"
             }),
-            include("@academy/_card.twig", {
+            include("@academy/_card--mission-landing.twig", {
               cardSubtitle: "Mission",
               cardTitle: "Card Title",
               cardGradient: "purple",
               cardIcon: "molecule"
             }),
-            include("@academy/_card.twig", {
+            include("@academy/_card--mission-landing.twig", {
               cardSubtitle: "Module",
               cardTitle: "Card Title",
               cardGradient: "purple",
@@ -121,6 +121,6 @@
     {% endblock %}
   {% endembed %}
 
-  {% include "@academy/_feedback-footer.twig" %}
+  {% include "@academy/_hero--request-feedback.twig" %}
 
 {% endblock %}
