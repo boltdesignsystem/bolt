@@ -1,0 +1,31 @@
+{
+  "name": "bolt-design-system/bolt_connect",
+  "type": "drupal-module",
+  "version": "2.13.3",
+  "description": "Connect to Bolt Design System",
+  "keywords": [
+    "drupal",
+    "twig"
+  ],
+  "minimum-stability": "dev",
+  "license": "GPL-2.0+",
+  "prefer-stable": true,
+  "authors": [
+    {
+      "name": "Salem Ghoweri"
+    },
+    {
+      "name": "Evan Lovely"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Drupal\\bolt_connect\\": "src"
+    }
+  },
+  "require": {
+    "bolt-design-system/core-php": "2.13.3",
+    "basaltinc/twig-tools": "^1.4.0",
+    "webmozart/path-util": "^2.3"
+  }
+}

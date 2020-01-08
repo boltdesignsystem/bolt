@@ -1,0 +1,21 @@
+{% include "@bolt-components-card-replacement/card-replacement.twig" with {
+  horizontal: true,
+  media: {
+    image: {
+      src: "/images/placeholders/landscape-16x9-mountains.jpg",
+      alt: "Image alt.",
+      placeholder_color: "#afcde6",
+    },
+  },
+  body: {
+    eyebrow: "This is an eyebrow",
+    headline: "This is a headline",
+    paragraph: "This is a paragraph.",
+  },
+  actions: [
+    {
+      text: "This is a button",
+      url: "https://pega.com",
+    },
+  ],
+} only %}

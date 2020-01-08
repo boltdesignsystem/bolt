@@ -15,7 +15,7 @@ if (argv.v) {
 
 const corePhpPath = path.join(
   __dirname,
-  '../../packages/core-php/composer.json',
+  '../../packages/twig-integration/twig-extensions-shared/composer.json',
 );
 const corePhp = require(corePhpPath);
 corePhp.version = lernaVersion;
@@ -23,7 +23,7 @@ fs.writeFileSync(corePhpPath, JSON.stringify(corePhp, null, '  '));
 
 const boltConnectPath = path.join(
   __dirname,
-  '../../packages/drupal-modules/bolt_connect/composer.json',
+  '../../packages/twig-integration/drupal-module/composer.json',
 );
 const boltConnect = require(boltConnectPath);
 boltConnect.version = lernaVersion;
@@ -32,7 +32,7 @@ fs.writeFileSync(boltConnectPath, JSON.stringify(boltConnect, null, '  '));
 
 const boltConnectInfoPath = path.join(
   __dirname,
-  '../../packages/drupal-modules/bolt_connect/bolt_connect.info.yml',
+  '../../packages/twig-integration/drupal-module/bolt_connect.info.yml',
 );
 const boltConnectInfo = yaml.safeLoad(fs.readFileSync(boltConnectInfoPath));
 boltConnectInfo.version = lernaVersion;
