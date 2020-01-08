@@ -14,6 +14,7 @@ $bolt-gradient-angle--reversed: 180deg - abs($bolt-gradient-angle--default);
 $bolt-background-dark-overlay-opacity--light: 0.3;
 $bolt-background-dark-overlay-opacity--medium: 0.55;
 $bolt-background-dark-overlay-opacity--heavy: 0.8;
+$bolt-background-dark-overlay-opacity--full: 1;
 
 $bolt-bg-shape-offset-bottom-default: -100px;
 $bolt-bg-shape-offset-side-default: $bolt-bg-shape-offset-bottom-default * 1.2;
@@ -235,4 +236,43 @@ bolt-background {
   @include bolt-mq(large) {
     left: $bolt-bg-shape-offset-side-large;
   }
+}
+
+
+// @todo: move into Academy-specific styles
+.c-bolt-background-crop {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin-top: calc(#{bolt-v-spacing(xxxlarge)} * -100%);
+  pointer-events: none;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  filter: drop-shadow(0 12px 55px #50e3c2) drop-shadow(-13px -22px 58px rgba(0,0,0,0.36));
+
+  @include bolt-mq(medium) {
+    justify-content: flex-end;
+  }
+
+  svg {
+    min-width: 3000px;
+
+    @include bolt-mq($from: 1100px) {
+      min-width: 0;
+    }
+  }
+}
+
+.has-transparent-background {
+  background-color: transparent !important;
+}
+
+.c-bolt-background__overlay--radial-gradient-fill {
+  background-image: radial-gradient(54% 190% at top -20% left 10%, #C910AB 10%, rgba(0,0,0,0.00) 96%);
 }
