@@ -2,7 +2,7 @@
 import { LitElement } from 'lit-element';
 
 export class Slotify extends LitElement {
-  templateMap = new Map();
+  slotMap = new Map();
 
   assignSlotToContent(child) {
     return child.getAttribute
@@ -14,13 +14,13 @@ export class Slotify extends LitElement {
     return child && (!child.textContent || !child.textContent.trim());
   }
 
-  addChildToTemplateMap(slot, child) {
+  addChildToSlotMap(slot, child) {
     if (!slot) return;
 
-    if (!this.templateMap.has(slot)) {
-      this.templateMap.set(slot, [child]);
+    if (!this.slotMap.has(slot)) {
+      this.slotMap.set(slot, [child]);
     } else {
-      this.templateMap.set(slot, [...this.templateMap.get(slot), child]);
+      this.slotMap.set(slot, [...this.slotMap.get(slot), child]);
     }
   }
 
@@ -30,9 +30,9 @@ export class Slotify extends LitElement {
       const slot = this.assignSlotToContent(child);
 
       if (!child.textContent || child.textContent.trim().length > 0) {
-        this.addChildToTemplateMap(slot, child);
+        this.addChildToSlotMap(slot, child);
       } else if (slot && child instanceof HTMLElement) {
-        this.addChildToTemplateMap(slot, child);
+        this.addChildToSlotMap(slot, child);
       }
     });
   }
@@ -46,7 +46,7 @@ export class Slotify extends LitElement {
   }
 
   slotify(slot = 'default', defaultContent) {
-    const slotContent = this.templateMap.get(slot);
+    const slotContent = this.slotMap.get(slot);
 
     // render actualy slots if Shadow DOM supported + getting used
     // @todo: what's a better way to allow customizing the checks to perform?
