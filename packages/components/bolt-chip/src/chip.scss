@@ -8,9 +8,9 @@
 $bolt-chip-border-radius: bolt-border-radius(full);
 $bolt-chip-color: bolt-theme(text);
 $bolt-chip-color-link: bolt-theme(link);
-$bolt-chip-background-color: rgba(bolt-color(gray), 0.15);
-$bolt-chip-background-color-hover: rgba(bolt-color(gray), 0.2);
-$bolt-chip-background-color-active: rgba(bolt-color(gray), 0.4);
+$bolt-chip-background-color: bolt-theme(neutral, 0.3);
+$bolt-chip-background-color-hover: bolt-theme(neutral, 0.4);
+$bolt-chip-background-color-active: bolt-theme(neutral, 0.5);
 $bolt-chip-transition: $bolt-transition;
 $bolt-chip-item-size: bolt-spacing(xxsmall) / 2;
 
@@ -48,9 +48,6 @@ $bolt-chip-sizes: (
 @each $size in $bolt-chip-sizes {
   .c-bolt-chip--size-#{$size} {
     @include bolt-padding(#{$size}, squished);
-
-    padding-right: bolt-spacing(#{$size}) - $bolt-chip-item-size;
-    padding-left: bolt-spacing(#{$size}) - $bolt-chip-item-size;
   }
 }
 

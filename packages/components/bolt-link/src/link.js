@@ -71,13 +71,13 @@ class BoltLink extends BoltActionElement {
     // prettier-ignore
 
     const innerSlots = html`${
-      this.templateMap.get('before')
+      this.slotMap.get('before')
         ? html`<span class="${cx(`c-bolt-link__icon`)}">&#xfeff;${this.slotify('before')}</span>`
         : html`<slot name="before" />`}${
-      this.templateMap.get('default')
+      this.slotMap.get('default')
         ? html`<span class="${cx(`c-bolt-link__text`)}">${this.slotify('default')}</span>`
         : html`<slot />`}${
-      this.templateMap.get('after')
+      this.slotMap.get('after')
         ? html`<span class="${cx(`c-bolt-link__icon`)}">&#xfeff;${this.slotify('after')}</span>`
         : html`<slot name="after" />`}`;
 
@@ -88,6 +88,9 @@ class BoltLink extends BoltActionElement {
       }
       if (anchorTarget) {
         renderedLink.setAttribute('target', anchorTarget);
+      }
+      if (renderedLink.getAttribute('target') === null && urlTarget) {
+        renderedLink.setAttribute('target', urlTarget);
       }
       renderedLink.className += ' ' + classes;
       render(innerSlots, renderedLink);
