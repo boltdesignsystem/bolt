@@ -20,6 +20,7 @@ $bolt-tooltip-spacing-values: xsmall, small, medium;
 }
 
 .c-bolt-tooltip--dotted {
+  cursor: help;
   border-bottom: 1px dotted currentColor;
 }
 
@@ -35,14 +36,14 @@ $bolt-tooltip-spacing-values: xsmall, small, medium;
 }
 
 .c-bolt-tooltip__content {
-  @include bolt-padding(xxsmall);
+  @include bolt-padding(xxsmall 0);
   visibility: hidden; // display 'none' interferes with Popper.js calculating tooltip size
   opacity: 0;
   position: absolute;
   transform: translate3d(0, 0, 0);
+  z-index: 1;
   transition: opacity $bolt-transition-timing * 2
     cubic-bezier(0.25, 0.8, 0.25, 1);
-  z-index: 1;
   white-space: nowrap;
 
   // @todo: all positioning that follows is overridden by Popper, animations won't work.
