@@ -82,12 +82,23 @@ class BoltCharacter extends withLitHtml {
       [`${rootClass}__has-one-side-content`]:
         hasSideContent && !hasBothSideContent,
       [`${rootClass}__is-in-two-character-layout`]: this.isInTwoCharLayout,
+      [`${rootClass}__has-bottom-slot-constrained`]: props.constrainBottomSlot,
     });
 
     const image =
       props.characterImage === 'custom'
         ? props.characterCustomUrl
         : resolveCharacterImage(props.characterImage);
+
+    const bottomSlot = html`
+      <div
+        class="${rootClass}__slot ${rootClass}__slot--cardinal ${rootClass}__slot--bottom"
+      >
+        <div class="c-bolt-micro-journeys-flex-aspect">
+          ${this.slot('bottom')}
+        </div>
+      </div>
+    `;
 
     return html`
       ${this.addStyles([styles])}
@@ -102,73 +113,69 @@ class BoltCharacter extends withLitHtml {
               </div>
             </div>
           `}
-        ${hasSideContent
-          ? html`
-              <div
-                class="${rootClass}__slot ${rootClass}__slot--cardinal ${rootClass}__slot--left"
-              >
-                <div class="c-bolt-micro-journeys-flex-aspect">
-                  ${this.slot('left')}
-                </div>
-              </div>
-            `
-          : ''}
-        <div class="${rootClass}__center--wrapper">
-          <div class="${centerClass}">
-            ${props.useIcon
-              ? html`
-                  <div
-                    class="${rootClass}__slot ${rootClass}__slot--icon--wrapper"
-                  >
-                    <bolt-icon class="${rootClass}__slot--icon"></bolt-icon>
+        <div class="${rootClass}__center-inline--wrapper">
+          ${hasSideContent
+            ? html`
+                <div
+                  class="${rootClass}__slot ${rootClass}__slot--cardinal ${rootClass}__slot--left"
+                >
+                  <div class="c-bolt-micro-journeys-flex-aspect">
+                    ${this.slot('left')}
                   </div>
-                `
-              : html`
-                  <div
-                    class="${rootClass}__main-image--wrapper c-bolt-micro-journeys-flex-aspect"
-                  >
-                    <img
-                      class="${rootClass}__main-image"
-                      src="${image}"
-                      alt="Character Image"
-                    />
+                </div>
+              `
+            : ''}
+          <div class="${rootClass}__center--wrapper">
+            <div class="${centerClass}">
+              ${props.useIcon
+                ? html`
+                    <div
+                      class="${rootClass}__slot ${rootClass}__slot--icon--wrapper"
+                    >
+                      <bolt-icon class="${rootClass}__slot--icon"></bolt-icon>
+                    </div>
+                  `
+                : html`
+                    <div
+                      class="${rootClass}__main-image--wrapper c-bolt-micro-journeys-flex-aspect"
+                    >
+                      <img
+                        class="${rootClass}__main-image"
+                        src="${image}"
+                        alt="Character Image"
+                      />
+                    </div>
+                  `}
+              ${this.slots['background'] &&
+                html`
+                  <div class="${rootClass}__background">
+                    ${this.slot('background')}
                   </div>
                 `}
-            ${this.slots['background'] &&
-              html`
-                <div class="${rootClass}__background">
-                  ${this.slot('background')}
-                </div>
-              `}
-            ${this.slots['connection'] &&
-              html`
-                <div class="${rootClass}__slot ${connectionClass}">
-                  ${this.slot('connection')}
-                </div>
-              `}
-          </div>
-        </div>
-        ${hasSideContent
-          ? html`
-              <div
-                class="${rootClass}__slot ${rootClass}__slot--cardinal ${rootClass}__slot--right"
-              >
-                <div class="c-bolt-micro-journeys-flex-aspect">
-                  ${this.slot('right')}
-                </div>
-              </div>
-            `
-          : ''}
-        ${this.slots['bottom'] &&
-          html`
-            <div
-              class="${rootClass}__slot ${rootClass}__slot--cardinal ${rootClass}__slot--bottom"
-            >
-              <div class="c-bolt-micro-journeys-flex-aspect">
-                ${this.slot('bottom')}
-              </div>
+              ${this.slots['connection'] &&
+                html`
+                  <div class="${rootClass}__slot ${connectionClass}">
+                    ${this.slot('connection')}
+                  </div>
+                `}
             </div>
-          `}
+            ${props.constrainBottomSlot && this.slots['bottom']
+              ? bottomSlot
+              : ''}
+          </div>
+          ${hasSideContent
+            ? html`
+                <div
+                  class="${rootClass}__slot ${rootClass}__slot--cardinal ${rootClass}__slot--right"
+                >
+                  <div class="c-bolt-micro-journeys-flex-aspect">
+                    ${this.slot('right')}
+                  </div>
+                </div>
+              `
+            : ''}
+        </div>
+        ${!props.constrainBottomSlot && this.slots['bottom'] ? bottomSlot : ''}
       </div>
     `;
   }

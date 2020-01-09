@@ -43,34 +43,63 @@ bolt-animate[slot="connection"] {
     margin-bottom: bolt-spacing(small);
   }
 
-  &--small &__center--wrapper,
-  &--small &__main-image--wrapper {
-    width: 60px;
-    min-width: 60px;
-    height: 60px;
-    min-height: 60px;
+  &--small {
+    $width: 60px;
+
+    .c-bolt-character__slot--right,
+    .c-bolt-character__slot--left {
+      min-width: calc((100% - #{$width}) / 2);
+    }
+
+    .c-bolt-character__main-image--wrapper {
+      width: $width;
+      height: $width;
+    }
   }
 
-  &--medium &__center--wrapper,
-  &--medium  &__main-image--wrapper {
-    width: 75px;
-    min-width: 75px;
-    height: 75px;
-    min-height: 75px;
+  &--medium {
+    $width: 75px;
+
+    .c-bolt-character__slot--right,
+    .c-bolt-character__slot--left {
+      min-width: calc((100% - #{$width}) / 2);
+    }
+
+    .c-bolt-character__main-image--wrapper {
+      width: $width;
+      height: $width;
+    }
   }
 
-  &--large &__center--wrapper,
-  &--large &__main-image--wrapper {
-    width: 120px;
-    min-width: 120px;
-    height: 120px;
-    min-height: 120px;
+  &--large {
+    $width: 120px;
+
+    .c-bolt-character__slot--right,
+    .c-bolt-character__slot--left {
+      min-width: calc((100% - #{$width}) / 2);
+    }
+
+    .c-bolt-character__main-image--wrapper {
+      width: $width;
+      height: $width;
+    }
+  }
+
+  &__center-inline--wrapper {
+    display: flex;
+    flex: 1 1 auto;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
   }
 
   &__center--wrapper {
     display: flex;
-    flex: 1 0 33%;
+    flex: 1 1 auto;
+    flex-direction: column;
+    flex-wrap: nowrap;
     justify-content: center;
+    align-items: center;
 
     .c-bolt-character__has-side-content & {
       flex-grow: 0;
@@ -94,11 +123,10 @@ bolt-animate[slot="connection"] {
   }
 
   &__main-image {
-    flex: 0 0 100%;
     box-sizing: border-box;
     width: 100%;
+    // for IE
     min-width: 100%;
-    max-width: 100%;
     border: 4px solid white;
     border-radius: 50%;
     background-color: white;
@@ -159,15 +187,18 @@ bolt-animate[slot="connection"] {
       text-align: center;
     }
 
+    .c-bolt-character__has-bottom-slot-constrained &--bottom {
+      flex: 0 0 0;
+      height: 0;
+    }
+
     &--left {
-      flex: 0 0 33%;
-      min-width: 33%;
+      flex: 0 1 33%;
       text-align: right;
     }
 
     &--right {
-      flex: 0 0 33%;
-      min-width: 33%;
+      flex: 0 1 33%;
     }
   }
 }
