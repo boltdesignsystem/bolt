@@ -1,16 +1,19 @@
 {% set toolbar_content = block("content") %}
 
 <div class="t-bolt-xdark c-bolt-toolbar c-bolt-toolbar--{{ gradientName | default('purple') }}">
-  {# <div class="o-bolt-wrapper u-bolt-padding-left-medium u-bolt-padding-right-medium u-bolt-max-width-none">
-    {{ content }}
-  </div> #}
-  {% if title %}
-    <div class="c-bolt-toolbar__title">
-      {% block toolbar_title %}
-        {% include "@bolt-components-navbar/_navbar-title.twig" with title only %}
-      {% endblock %}
-    </div>
-  {% endif %}
+  <div class="c-bolt-toolbar__inner">
+    {% if title %}
+      <div class="c-bolt-toolbar__title">
+        {% block toolbar_title %}
+          {% include "@bolt-components-navbar/_navbar-title.twig" with title only %}
+        {% endblock %}
+      </div>
+    {% endif %}
 
-  {{ toolbar_content | default(content) }}
+    {% if toolbar_content %}
+      <div class="c-bolt-toolbar__content">
+        {{ toolbar_content | default(content) }}
+      </div>
+    {% endif %}
+  </div>
 </div>

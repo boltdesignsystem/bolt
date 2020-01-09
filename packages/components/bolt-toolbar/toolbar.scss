@@ -2,14 +2,6 @@
 
 .c-bolt-toolbar {
   @include bolt-font-size(small);
-  @include bolt-padding(small, squished);
-  @include bolt-padding-left(small);
-  @include bolt-padding-right(small);
-
-  @include bolt-mq(420px){
-    @include bolt-padding-left(medium);
-    @include bolt-padding-right(medium);
-  }
   position: relative;
   position: sticky;
   top: 0;
@@ -17,8 +9,32 @@
   z-index: 10;
   width: 100%;
   width: 100vw;
-  margin: 0 auto;
+  margin: 0 -50vw;
   color: bolt-theme(secondary);
+}
+
+.c-bolt-toolbar__inner {
+  @include bolt-padding(medium, squished);
+  @include bolt-padding-left(small);
+  @include bolt-padding-right(small);
+
+  @include bolt-mq(large){
+    @include bolt-padding-left(large);
+    @include bolt-padding-right(large);
+  }
+
+  display: flex;
+  max-width: 1400px;
+}
+
+.c-bolt-toolbar__title {
+  &:not(:last-child){
+    margin-right: 1rem;
+  }
+}
+
+.c-bolt-toolbar__content {
+  margin-left: auto;
 }
 
 .c-bolt-toolbar--purple {
