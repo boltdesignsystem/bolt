@@ -1,0 +1,212 @@
+{% set tooltip %}
+  {% include "@bolt-components-tooltip/tooltip.twig" with {
+    trigger: "CRM",
+    content: "Customer relationship management",
+  } only %}
+{% endset %}
+{% set tooltips_top %}
+  <bolt-list display="inline" spacing="xlarge" align="justify">
+    <bolt-list-item>
+      {{ tooltip }}
+    </bolt-list-item>
+    <bolt-list-item>
+      {{ tooltip }}
+    </bolt-list-item>
+    <bolt-list-item>
+      {{ tooltip }}
+    </bolt-list-item>
+  </bolt-list>
+{% endset %}
+{% set tooltips_right %}
+  <bolt-list spacing="medium">
+    <bolt-list-item>
+      <div class="u-bolt-text-align-right">
+        {{ tooltip }}
+      </div>
+    </bolt-list-item>
+    <bolt-list-item>
+      <div class="u-bolt-text-align-right">
+        {{ tooltip }}
+      </div>
+    </bolt-list-item>
+    <bolt-list-item>
+      <div class="u-bolt-text-align-right">
+        {{ tooltip }}
+      </div>
+    </bolt-list-item>
+  </bolt-list>
+{% endset %}
+{% set tooltips_bottom %}
+  <bolt-list display="inline" spacing="xlarge" align="justify">
+    <bolt-list-item>
+      {{ tooltip }}
+    </bolt-list-item>
+    <bolt-list-item>
+      {{ tooltip }}
+    </bolt-list-item>
+    <bolt-list-item>
+      {{ tooltip }}
+    </bolt-list-item>
+  </bolt-list>
+{% endset %}
+{% set tooltips_left %}
+  <bolt-list spacing="medium">
+    <bolt-list-item>
+      {{ tooltip }}
+    </bolt-list-item>
+    <bolt-list-item>
+      {{ tooltip }}
+    </bolt-list-item>
+    <bolt-list-item>
+      {{ tooltip }}
+    </bolt-list-item>
+  </bolt-list>
+{% endset %}
+
+{% include "@bolt-components-grid/grid.twig" with {
+  gutter: "small",
+  items: [
+    {
+      column_start: "1",
+      column_span: "12",
+      row_start: "1",
+      content: tooltips_top,
+    },
+    {
+      column_start: "12",
+      column_span: "1",
+      row_start: "2",
+      content: tooltips_right,
+    },
+    {
+      column_start: "1",
+      column_span: "12",
+      row_start: "3",
+      content: tooltips_bottom,
+    },
+    {
+      column_start: "1",
+      column_span: "1",
+      row_start: "2",
+      content: tooltips_left,
+    },
+  ]
+} only %}
+
+
+
+
+{#
+<div class="t-bolt-xlight u-bolt-padding-large">
+  {% include "@bolt-components-band/band.twig" with {
+    theme: "none",
+    full_bleed: false,
+    content: grid,
+  } only %}
+</div>
+
+{% set lock_icon %}
+  <span class="u-bolt-color-gray">
+    {% include "@bolt-components-icon/icon.twig" with {
+      name: "lock",
+    } only %}
+  </span>
+{% endset %}
+{% set check_icon %}
+  <span class="u-bolt-color-success">
+    {% include "@bolt-components-icon/icon.twig" with {
+      name: "check-solid",
+    } only %}
+  </span>
+{% endset %}
+{% set close_icon %}
+  <span class="u-bolt-color-error">
+    {% include "@bolt-components-icon/icon.twig" with {
+      name: "close-solid",
+    } only %}
+  </span>
+{% endset %}
+{% set tooltips %}
+  {% include "@bolt-components-tooltip/tooltip.twig" with {
+    trigger: lock_icon,
+    content: "Closed for replies",
+  } only %}
+  {% include "@bolt-components-tooltip/tooltip.twig" with {
+    trigger: check_icon,
+    content: "Solved",
+  } only %}
+  {% include "@bolt-components-tooltip/tooltip.twig" with {
+    trigger: close_icon,
+    content: "This is no bueno. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttito. Quisque eget odio ac lectus vestibulum faucibus eget in metus. In pellentesque.",
+  } only %}
+  <bolt-tooltip>
+    <span class="u-bolt-color-error"><bolt-icon name="close-solid"></bolt-icon></span>
+    <span slot="content">This is no bueno. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttito. Quisque eget odio ac lectus vestibulum faucibus eget in metus. In pellentesque.</span>
+  </bolt-tooltip>
+{% endset %}
+<div class="u-bolt-margin-xlarge u-bolt-padding-small u-bolt-shadow-level-30">
+  <bolt-list display="flex">
+    <bolt-list-item>
+      <bolt-text headline>
+        This is a thread
+      </bolt-text>
+    </bolt-list-item>
+    <bolt-list-item>
+      <bolt-list display="inline" align="end" separator="solid">
+        <bolt-list-item>
+          {{ tooltips }}
+        </bolt-list-item>
+        <bolt-list-item>
+          16 replies
+        </bolt-list-item>
+        <bolt-list-item>
+          34 views
+        </bolt-list-item>
+      </bolt-list>
+    </bolt-list-item>
+  </bolt-list>
+</div>
+
+<div class="u-bolt-padding-small" style="margin: 0 auto; max-width: 900px;">
+  <bolt-list display="inline" spacing="large">
+    <bolt-list-item>
+      {% include "@bolt-components-tooltip/tooltip.twig" with {
+        trigger: "Banana stand",
+        content: "There's always money in it.",
+        placement: "top-start"
+      } only %}
+    </bolt-list-item>
+    <bolt-list-item>
+      {% include "@bolt-components-tooltip/tooltip.twig" with {
+        trigger: "Banana stand",
+        content: "There's always money in it.",
+        placement: "right"
+      } only %}
+    </bolt-list-item>
+    <bolt-list-item>
+      {% include "@bolt-components-tooltip/tooltip.twig" with {
+        trigger: "Banana stand",
+        content: "There's always money in it.",
+      } only %}
+    </bolt-list-item>
+    <bolt-list-item>
+      {% include "@bolt-components-tooltip/tooltip.twig" with {
+        trigger: include("@bolt-components-link/link.twig", {
+          text: "GOB",
+          url: "https://pega.com/glossary#gob"
+        }),
+        content: "George Oscar Bluth Jr.",
+      } only %}
+    </bolt-list-item>
+    <bolt-list-item>
+      {% include "@bolt-components-tooltip/tooltip.twig" with {
+        trigger: include("@bolt-components-button/button.twig", {
+          text: "Download",
+        }),
+        content: "File size: 25MB",
+      } only %}
+    </bolt-list-item>
+  </bolt-list>
+</div>
+
+ #}
