@@ -2,7 +2,7 @@ const iconSchema = require('@bolt/components-icon/icon.schema.json');
 
 module.exports = {
   $schema: 'http://json-schema.org/draft-04/schema#',
-  title: 'Micro Journy Status Dialogue Bar',
+  title: 'Micro Journey Status Dialogue Bar',
   type: 'object',
   properties: {
     attributes: {
