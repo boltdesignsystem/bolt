@@ -38,8 +38,8 @@ module.exports = function(content, map) {
   if (fileName.includes('-color')) {
     optimizedContent = content
       .replace('d="M0 0h24v24H0z"', '')
-      .replace(/width=".*?"/, 'width={size}')
-      .replace(/height=".*?"/, 'height={size}');
+      .replace(/ width=".*?"/, ' width={size}')
+      .replace(/ height=".*?"/, ' height={size}');
   } else {
     optimizedContent = content
       .replace(
@@ -59,8 +59,8 @@ module.exports = function(content, map) {
         ' stroke="var(--bolt-icon-secondary-color)"',
       )
       .replace('d="M0 0h24v24H0z"', '')
-      .replace(/width=".*?"/, 'width={size}')
-      .replace(/height=".*?"/, 'height={size}');
+      .replace(/ width=".*?"/, ' width={size}')
+      .replace(/ height=".*?"/, ' height={size}');
   }
 
   if (!query || isEmpty(query)) {
