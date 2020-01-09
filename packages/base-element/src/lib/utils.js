@@ -6,20 +6,23 @@ export function findParentTag(el, tag) {
   return null;
 }
 
-export function shouldUseShadowDom(elem) {
-  if (
-    elem.useShadow === false ||
-    elem.noShadow === true ||
-    findParentTag(elem, 'FORM') ||
-    elem.hasAttribute('no-shadow') === true
-  ) {
-    return false;
-  } else {
-    return hasNativeShadowDomSupport;
-  }
+// global URL query flags & overrides for debugging & testing
+const isDebugMode =
+  (window.localStorage && window.localStorage.getItem('bolt-debug')) || false;
+let globallyUseShadowDom = supportsShadowDom();
+
+if (window.localStorage && window.localStorage.getItem('bolt-enable-shadow')) {
+  globallyUseShadowDom = true;
+} else if (
+  window.localStorage &&
+  window.localStorage.getItem('bolt-disable-shadow')
+) {
+  globallyUseShadowDom = false;
 }
 
-export const hasNativeShadowDomSupport = supportsShadowDom();
+export const hasNativeShadowDomSupport = isDebugMode
+  ? globallyUseShadowDom
+  : supportsShadowDom();
 
 // Helper util to check if the browser supports shadow DOM for conditional shimming / progressive rendering
 export function supportsShadowDom() {
@@ -31,6 +34,19 @@ export function supportsShadowDom() {
     return true;
   } else {
     return false;
+  }
+}
+
+export function shouldUseShadowDom(elem) {
+  if (
+    elem.useShadow === false ||
+    elem.noShadow === true ||
+    findParentTag(elem, 'FORM') ||
+    elem.hasAttribute('no-shadow') === true
+  ) {
+    return false;
+  } else {
+    return hasNativeShadowDomSupport;
   }
 }
 

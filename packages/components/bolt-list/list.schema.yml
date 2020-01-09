@@ -66,6 +66,7 @@ properties:
       - start
       - center
       - end
+      - justify
   valign:
     type: string
     description: 'Control the vertical alignment of items.'
@@ -74,3 +75,10 @@ properties:
       - start
       - center
       - end
+  nowrap:
+    type: boolean
+    description: 'Prevent inline/flex list items from wrapping to a second line.'
+    default: false
+    enum:
+      - true
+      - false

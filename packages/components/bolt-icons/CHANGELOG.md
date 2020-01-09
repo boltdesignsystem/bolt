@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.14.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/compare/v2.13.3...v2.14.0) (2020-01-06)
+
+
+### Bug Fixes
+
+* update @bolt/core-v3.x references to v2.13.0 ([28d7bcb](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/commit/28d7bcb))
+
+
+
+
+
 # [2.13.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/compare/v2.12.1...v2.13.0) (2019-12-13)
 
 
