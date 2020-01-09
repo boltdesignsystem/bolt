@@ -1,7 +1,7 @@
 {% set content %}
-{% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--flex" %}
-{% cell "u-bolt-width-12/12" %}
-{% include "@bolt-components-headline/headline.twig" with {
+  {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--flex" %}
+    {% cell "u-bolt-width-12/12" %}
+      {% include "@bolt-components-headline/headline.twig" with {
         size: "xxlarge",
         weight: "bold",
         align: "center",
@@ -13,11 +13,11 @@
           ]
         }
       } only %}
-{% endcell %}
+    {% endcell %}
 
-{% cell "u-bolt-width-12/12 u-bolt-width-4/12@medium u-bolt-text-align-center" %}
-{% include "@bolt-components-icon/icon.twig" with {
-        name: "thumbs-up-outline",
+    {% cell "u-bolt-width-12/12 u-bolt-width-4/12@medium u-bolt-text-align-center" %}
+      {% include "@bolt-components-icon/icon.twig" with {
+        name: "thumbs-up-open",
         attributes: {
           style: [
             "font-size: 4rem;"
@@ -28,23 +28,23 @@
         }
       } only %}
 
-{% include "@bolt-components-headline/headline.twig" with {
+      {% include "@bolt-components-headline/headline.twig" with {
         size: "xlarge",
         weight: "bold",
         align: "center",
         text: "Show the world how great you are."
       } only %}
 
-{% include "@bolt-components-headline/text.twig" with {
+      {% include "@bolt-components-headline/text.twig" with {
         size: "medium",
         align: "center",
         text: "A Pega certification confirms that you and your team have the skills, knowledge and experience to architect and implement world-class Pega solutions."
       } only %}
-{% endcell %}
+    {% endcell %}
 
-{% cell "u-bolt-width-12/12 u-bolt-width-4/12@medium u-bolt-text-align-center" %}
-{% include "@bolt-components-icon/icon.twig" with {
-        name: "world-outline",
+    {% cell "u-bolt-width-12/12 u-bolt-width-4/12@medium u-bolt-text-align-center" %}
+      {% include "@bolt-components-icon/icon.twig" with {
+        name: "world-open",
         attributes: {
           class: [
             "u-bolt-margin-bottom-medium"
@@ -55,23 +55,23 @@
         }
       } only %}
 
-{% include "@bolt-components-headline/headline.twig" with {
+      {% include "@bolt-components-headline/headline.twig" with {
         size: "xlarge",
         weight: "bold",
         align: "center",
         text: "Future proof your career."
       } only %}
 
-{% include "@bolt-components-headline/text.twig" with {
+      {% include "@bolt-components-headline/text.twig" with {
         size: "medium",
         align: "center",
         text: "Join our thriving Pega certified professional ecosystem and stay relevant and valuable."
       } only %}
-{% endcell %}
+    {% endcell %}
 
-{% cell "u-bolt-width-12/12 u-bolt-width-4/12@medium u-bolt-text-align-center" %}
-{% include "@bolt-components-icon/icon.twig" with {
-        name: "time-outline",
+    {% cell "u-bolt-width-12/12 u-bolt-width-4/12@medium u-bolt-text-align-center" %}
+      {% include "@bolt-components-icon/icon.twig" with {
+        name: "time-open",
         attributes: {
           class: [
             "u-bolt-margin-bottom-medium"
@@ -82,28 +82,27 @@
         }
       } only %}
 
-{% include "@bolt-components-headline/headline.twig" with {
+      {% include "@bolt-components-headline/headline.twig" with {
         size: "xlarge",
         weight: "bold",
         align: "center",
         text: "Build fast. Empower your team."
       } only %}
 
-{% include "@bolt-components-headline/text.twig" with {
+      {% include "@bolt-components-headline/text.twig" with {
         size: "medium",
         align: "center",
         text: "Projects that leverage Pega certified professionals see reduced costs and faster times to market by increasing team efficiency and minimizing errors."
       } only %}
-{% endcell %}
+    {% endcell %}
 
-{% cell "u-bolt-width-12/12 u-bolt-text-align-center u-bolt-margin-top-medium" %}
-{% include "@bolt-components-button/button.twig" with {
+    {% cell "u-bolt-width-12/12 u-bolt-text-align-center u-bolt-margin-top-medium" %}
+      {% include "@bolt-components-button/button.twig" with {
         text: "Browse Certification Missions",
         border_radius: "full"
       } only %}
-{% endcell %}
-
-{% endgrid %}
+    {% endcell %}
+  {% endgrid %}
 {% endset %}
 
 {% embed "@bolt-components-band/band.twig" with {

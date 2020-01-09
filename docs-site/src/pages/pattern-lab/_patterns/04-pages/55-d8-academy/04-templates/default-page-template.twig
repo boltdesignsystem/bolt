@@ -1,28 +1,29 @@
-{% block global_header %}
-  {% include "@bolt/page-header.twig" %}
-{% endblock %}
 
-
-<div class="c-bolt-site__content c-bolt-site__content--middle u-bolt-flex-grow u-bolt-flex-col"><!-- vertically center -->
-  {% block before_main_content %}
-    <!-- <p>Example main content block.</p> -->
+<div class="c-bolt-site">
+  {% block global_header %}
+    {% include "@bolt/page-header.twig" %}
   {% endblock %}
-  <div class="o-bolt-wrapper u-bolt-flex-grow-none">
-    <main>
+
+
+  <div class="c-bolt-site__content"><!-- vertically center -->
+    {% block before_main_content %}
+      <!-- <p>Example main content block.</p> -->
+    {% endblock %}
+    <main class="o-bolt-wrapper">
       <article>
         {% block main_content %}
           <p>Example main content block.</p>
         {% endblock %}
       </article>
     </main>
-  </div>
 
-  {% block after_main_content %}
-    <!-- <p>Example main content block.</p> -->
-  {% endblock %}
-</div>
-<div class="c-bolt-site__footer c-bolt-page-footer">
-  <div class="o-bolt-wrapper">
-    {% include "@bolt/page-footer.twig" %}
+    {% block after_main_content %}
+      <!-- <p>Example main content block.</p> -->
+    {% endblock %}
+  </div>
+  <div class="c-bolt-site__footer c-bolt-page-footer">
+    <div class="o-bolt-wrapper">
+      {% include "@bolt/page-footer.twig" %}
+    </div>
   </div>
 </div>

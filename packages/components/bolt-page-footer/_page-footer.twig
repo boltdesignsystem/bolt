@@ -1,7 +1,23 @@
 <footer role="contentinfo">
-    <small>
-      <p>
-        Quick Links: <a href="https://github.com/boltdesignsystem/bolt">Github</a> | <a href="/">Docs</a> | <a href="/pattern-lab/">Pattern Lab</a>
-      </p>
-    </small>
+  {% embed "@bolt-components-band/band.twig" with {
+    theme: "xlight"
+  } %}
+    {% block main_content %}
+      <small>
+        Footer Top
+      </small>
+    {% endblock %}
+  {% endembed %}
+
+  {% embed "@bolt-components-band/band.twig" with {
+    theme: "light"
+  } %}
+    {% block main_content %}
+      <small>
+        <p>
+          Quick Links: <a href="https://github.com/boltdesignsystem/bolt">Github</a> | <a href="/">Docs</a> | <a href="/pattern-lab/">Pattern Lab</a>
+        </p>
+      </small>
+    {% endblock %}
+  {% endembed %}
 </footer>
