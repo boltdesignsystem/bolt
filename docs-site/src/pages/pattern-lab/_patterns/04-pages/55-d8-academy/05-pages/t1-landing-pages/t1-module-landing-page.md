@@ -1,5 +1,5 @@
 ---
-title: Page Example - Landing Template - Module Landing
+title: Page - T1 Landing - Module Landing
 state: inprogress
 ---
 

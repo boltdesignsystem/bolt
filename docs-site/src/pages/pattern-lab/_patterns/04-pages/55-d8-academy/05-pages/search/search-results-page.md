@@ -1,5 +1,5 @@
 ---
-title: Page Example - Search Template - Search Results (Initial)
+title: Page - Search - Search Results (Initial)
 state: inprogress
 ---
 

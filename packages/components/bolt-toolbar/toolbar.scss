@@ -17,24 +17,66 @@
   @include bolt-padding(medium, squished);
   @include bolt-padding-left(small);
   @include bolt-padding-right(small);
+  max-width: calc(1400px);
 
   @include bolt-mq(large){
     @include bolt-padding-left(large);
     @include bolt-padding-right(large);
   }
 
-  display: flex;
-  max-width: 1400px;
+  // @include bolt-mq(large){
+  //   max-width: calc(1400px - 14rem);
+  //   @include bolt-padding-left(medium);
+  //   @include bolt-padding-right(medium);
+  // }
+
+  // max-width: calc(1400px - 4rem);
+  margin: 0 auto;
 }
 
 .c-bolt-toolbar__title {
+  display: flex;
+  align-items: center;
+
   &:not(:last-child){
-    margin-right: 1rem;
+    margin-right: 0.5rem;
   }
 }
 
-.c-bolt-toolbar__content {
-  margin-left: auto;
+.c-bolt-toolbar__title-text {
+  @include bolt-font-size(medium);
+  @include bolt-font-weight(semibold);
+}
+
+.c-bolt-toolbar__title-icon {
+  @include bolt-margin-right(small);
+}
+
+.c-bolt-toolbar__items {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  margin-bottom: bolt-v-spacing(small) * -1;
+}
+
+.c-bolt-toolbar__item {
+  margin-bottom: bolt-v-spacing(small);
+
+  &:not(:last-child){
+    margin-right: 1rem;
+  }
+
+  &--before {
+    display: flex;
+    align-items: center;
+  }
+
+  &--after {
+    margin-left: auto;
+  }
 }
 
 .c-bolt-toolbar--purple {

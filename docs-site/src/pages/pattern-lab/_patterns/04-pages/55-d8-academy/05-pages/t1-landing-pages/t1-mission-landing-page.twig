@@ -11,7 +11,36 @@
 {% endset %}
 
 {% block main_content %}
-  {% include "@academy/_toolbar.twig" %}
+  {% include "@academy/_toolbar.twig" with {
+    breadcrumbs: [
+      include("@bolt-components-link/link.twig", {
+        "text": "Home",
+        "url": "#!",
+        isHeadline: true,
+      }),
+      include("@bolt-components-link/link.twig", {
+        "text": "Landing Page",
+        "url": "#!",
+        isHeadline: true,
+      }),
+      include("@bolt-components-link/link.twig", {
+        "text": "Sub Page",
+        "url": "#!",
+        isHeadline: true,
+      }),
+      include("@bolt-components-headline/text.twig", {
+        "text": "Mission name Test",
+        size: "small",
+        weight: "bold",
+        tag: "span",
+        attributes: {
+          class: [
+            "u-bolt-inline"
+          ]
+        }
+      }),
+    ]
+  } %}
   {% embed "@bolt-components-band/band.twig" with {
     theme: "xxdark",
     inner_attributes: {

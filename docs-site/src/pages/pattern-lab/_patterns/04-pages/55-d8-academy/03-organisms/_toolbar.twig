@@ -3,21 +3,30 @@
   theme: "none",
   title: {
     tag: "h2",
-    text: "Mission Name",
     icon: {
-      name: "launchpad"
+      name: toolbarIcon
     }
   },
 } %}
-  {% block content %}
-    {% include "@bolt-components-list/list.twig" with {
-      display: "flex",
-      align: "end",
-      spacing: "small",
-      items: [
-        '<progress max="100" value="80">80%</progress>',
-        include("@bolt-components-list/list.twig", {
-          display: "inline",
+  {% if breadcrumbs %}
+    {% block content_before %}
+      {% include "@bolt-components-breadcrumb/breadcrumb.twig" with {
+        "contentItems": breadcrumbs
+      } only %}
+    {% endblock %}
+  {% endif %}
+
+  {% block content_after %}
+    {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--xsmall o-bolt-grid--right" %}
+      {% cell %}
+        <progress max="100" value="80">80%</progress>
+      {% endcell %}
+
+      {% cell %}
+        {% include "@bolt-components-list/list.twig" with {
+          display: "flex",
+          align: "end",
+          spacing: "xsmall",
           items: [
             include("@bolt-components-button/button.twig", {
               text: "Share",
@@ -47,9 +56,9 @@
               }
             })
           ]
-        }),
-      ]
-    } only %}
+        } only %}
+      {% endcell %}
+    {% endgrid %}
   {% endblock %}
 {% endembed %}
 

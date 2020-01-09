@@ -157,6 +157,13 @@ $bolt-grid-border-color: bolt-theme(border, 0.2);
 //     padding-left: bolt-spacing(xsmall);
 //   }
 // }
+.o-bolt-grid--xsmall {
+  margin-left: bolt-spacing(xsmall) * -1;
+
+  > .o-bolt-grid__cell {
+    padding-left: bolt-spacing(xsmall);
+  }
+}
 
 .o-bolt-grid--small {
   margin-left: bolt-spacing(small) * -1;
@@ -233,6 +240,14 @@ $bolt-grid-border-color: bolt-theme(border, 0.2);
 
     > .o-bolt-grid__cell {
       padding-bottom: bolt-v-spacing(small);
+    }
+  }
+
+  &.o-bolt-grid--xsmall {
+    margin-bottom: bolt-v-spacing(xsmall) * -1;
+
+    > .o-bolt-grid__cell {
+      padding-bottom: bolt-v-spacing(xsmall);
     }
   }
 }

@@ -1,5 +1,5 @@
 ---
-title: Page Example - Homepage
+title: Page - Homepage
 state: inreview
 ---
 

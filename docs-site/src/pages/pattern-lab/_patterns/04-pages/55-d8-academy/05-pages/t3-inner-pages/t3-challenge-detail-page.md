@@ -1,5 +1,5 @@
 ---
-title: Page Example - Details - Challenge
+title: Page - T3 Inner - Challenge
 state: inprogress
 ---
 

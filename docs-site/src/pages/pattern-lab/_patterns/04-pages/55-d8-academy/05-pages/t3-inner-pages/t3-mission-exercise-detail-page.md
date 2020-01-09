@@ -1,5 +1,5 @@
 ---
-title: Page Example - Details Template - Mission Exercise
+title: Page - T3 Inner - Mission Exercise
 state: inprogress
 ---
 

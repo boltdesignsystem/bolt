@@ -73,7 +73,7 @@ $bds-sidebar-width: 320px;
   z-index: bolt-z-index('modalBG') + 20;
 
   .c-bolt-navbar {
-    max-width: none;
+    max-width: calc(1400px - 14rem);
 
     @include bolt-mq(medium) {
       @include bolt-padding-left(medium);

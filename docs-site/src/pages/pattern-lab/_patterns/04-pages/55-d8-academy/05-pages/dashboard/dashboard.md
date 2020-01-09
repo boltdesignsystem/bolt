@@ -1,5 +1,5 @@
 ---
-title: Page Example - Dashboard
+title: Page - Dashboard
 state: inprogress
 ---
 

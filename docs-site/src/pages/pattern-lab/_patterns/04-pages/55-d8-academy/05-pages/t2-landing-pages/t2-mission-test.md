@@ -1,5 +1,5 @@
 ---
-title: Page Example - Landing Template - Mission Test
+title: Page - T2 Landing - Mission Test
 state: inprogress
 ---
 
