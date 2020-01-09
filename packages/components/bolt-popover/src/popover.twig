@@ -7,7 +7,7 @@
 {# Variables #}
 {% set base_class = "c-bolt-popover" %}
 {% set this = init(schema) %}
-{% set uuid = this.data.uuid|default(bolt.data.config.env == "test" ? "12345" : random()) %}
+{% set uuid = this.data.uuid|default(bolt.data.config.env == "test" ? "12345" : random() ~ "") %}
 {% set inner_attributes = create_attribute({}) %}
 
 {# Array of classes based on the defined + default props #}
@@ -16,7 +16,6 @@
   this.data.placement.value != "auto" ? base_class ~ "--" ~ this.data.placement.value : "",
   this.data.spacing.value != "none" ? base_class ~ "--spacing-" ~ this.data.spacing.value : "",
   this.data.nowrap.value ? base_class ~ "--nowrap" : "",
-  "is-expanded",
 ] %}
 
 {#
@@ -35,33 +34,32 @@
   {% endif %}
 {% endfor %}
 
+{% set popover_uuid = "js-bolt-tooltip-" ~ uuid %}
+
 <bolt-popover
   {% if outer_classes %} class="{{ outer_classes|join(' ') }}" {% endif %}
   {{ this.props|without("content")|without("class") }}
   uuid="{{ uuid }}"
   >
-  <span
+  <replace-with-children
     {% if inner_classes %} class="{{ inner_classes|join(' ') }}" {% endif %}
   >
     {% if trigger %}
-      {{ trigger }}
-      {# Accepted Trigger: button | trigger #}
-      {# aria and role attributes should be passed to bolt-button or bolt-trigger #}
-      {# aria-haspopup is only for menu (popover content is a group of actions) #}
-      {# aria-controls is only for non-menu (popover content is a nav or simple content with links) #}
-      {# aria-expanded is for indicating if popover content is visible or not #}
-      {# {% include "@bolt-components-trigger/trigger.twig" with {
-        attributes: {
-          "aria-haspopup": menu ? true,
-          "aria-controls": not menu ? uuid,
-          "aria-expanded": true|false,
-        }
-      } only %} #}
+      <replace-with-children
+        role="button"
+        tabindex="-1"
+        aria-describedby="{{ popover_uuid }}"
+        aria-controls="{{ popover_uuid }}"
+      >
+        {{ trigger }}
+      </replace-with-children>
     {% endif %}
-    <span class="{{ "#{base_class}__content" }}" id="{{ uuid }}">
-      {% if content %}
-        {{ content }}
-      {% endif %}
-    </span>
-  </span>
+    {% if content %}
+      <span slot="content">
+        <replace-with-children class="{{ "#{base_class}__content" }}" id="{{ popover_uuid }}" aria-hidden="true">
+            {{ content }}
+        </replace-with-children>
+      </span>
+    {% endif %}
+  </replace-with-children>
 </bolt-popover>
