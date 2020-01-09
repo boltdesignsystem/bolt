@@ -255,7 +255,9 @@ class BoltImage extends BoltElement {
             sizes="${ifDefined(
               this.isLazyLoaded || (this.sizes && this.sizes !== 'auto')
                 ? this.sizes
-                : `${this.offsetWidth}px`,
+                : this.offsetWidth > 0
+                ? `${this.offsetWidth}px`
+                : undefined,
             )}"
             data-sizes="${ifDefined(
               lazyload && this.sizes === 'auto' ? 'auto' : undefined,
