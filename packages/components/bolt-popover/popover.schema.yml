@@ -20,21 +20,21 @@ properties:
   placement:
     type: string
     description: 'Preferred placement of the popover. The actual placement of the popover will be automatically adjusted based on the space available on screen.'
-    default: bottom-left
+    default: bottom-start
     enum:
       - auto
-      - top-left
+      - top-start
       - top
-      - top-right
-      - left-top
+      - top-end
+      - left-start
       - left
-      - left-bottom
-      - right-top
+      - left-end
+      - right-start
       - right
-      - right-bottom
-      - bottom-left
+      - right-end
+      - bottom-start
       - bottom
-      - bottom-right
+      - bottom-end
   spacing:
     type: string
     description: 'The spacing around the popover content.'
