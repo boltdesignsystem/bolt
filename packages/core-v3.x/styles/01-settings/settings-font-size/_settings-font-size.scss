@@ -3,14 +3,13 @@
 /// @author Mike Mai
 ////
 
-@import "../../02-tools/tools-breakpoint/_tools-breakpoint.scss";
-@import "../../02-tools/tools-px-to-rem/_tools-px-to-rem.scss";
+@import '../../02-tools/tools-breakpoint/_tools-breakpoint.scss';
+@import '../../02-tools/tools-px-to-rem/_tools-px-to-rem.scss';
 
 /// Small breakpoint font-size
 $bolt-font-size--small-bp: bolt-rem(bolt-breakpoint(xxsmall)) !default;
 /// Medium breakpoint font-size
 $bolt-font-size--medium-bp: bolt-rem(bolt-breakpoint(medium)) !default;
-
 
 /* ------------------------------------ *\
   Scale
@@ -65,9 +64,6 @@ $bolt-line-height--xsmall: 1.45 !default;
 /// @see $bolt-font-sizes
 $bolt-line-height--tight: 1.111 !default;
 
-
-
-
 /// Bolt's definition of all options of possible text sizes.
 /// @type Map
 $bolt-font-sizes: (
@@ -80,7 +76,7 @@ $bolt-font-sizes: (
       line-height: (
         regular: $bolt-line-height--xxxlarge,
         tight: $bolt-line-height--tight
-      ),
+      )
     ),
     xxlarge: (
       font-size: $bolt-font-size--xxlarge,
