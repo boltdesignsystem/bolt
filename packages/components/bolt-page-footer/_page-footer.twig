@@ -1,8 +1,9 @@
-<footer role="contentinfo">
+<footer role="contentinfo" class="c-bolt-page-footer c-bolt-site__footer">
   {% embed "@bolt-components-band/band.twig" with {
-    theme: "xlight"
+    theme: "xlight",
+    size: "small"
   } %}
-    {% block main_content %}
+    {% block band_content %}
       <small>
         Footer Top
       </small>
@@ -10,9 +11,10 @@
   {% endembed %}
 
   {% embed "@bolt-components-band/band.twig" with {
-    theme: "light"
+    theme: "light",
+    size: "small"
   } %}
-    {% block main_content %}
+    {% block band_content %}
       <small>
         <p>
           Quick Links: <a href="https://github.com/boltdesignsystem/bolt">Github</a> | <a href="/">Docs</a> | <a href="/pattern-lab/">Pattern Lab</a>

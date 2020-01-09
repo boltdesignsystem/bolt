@@ -118,6 +118,7 @@
   </head>
 
   {% set bodyClasses = [
+    'c-bolt-site',
     pl_data.patternBreadcrumb.patternType == 'pages' ? 'c-bolt-site' : '',
     currentUrl == 'index.html' ? 't-bolt-xdark' : '',
     hasSidebar and patternLabFoot is not defined ? 'c-bds-layout--has-sidebar' : '',

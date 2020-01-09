@@ -2,6 +2,14 @@
 
 .c-bolt-toolbar {
   @include bolt-font-size(small);
+  @include bolt-padding(small, squished);
+  @include bolt-padding-left(small);
+  @include bolt-padding-right(small);
+
+  @include bolt-mq(420px){
+    @include bolt-padding-left(medium);
+    @include bolt-padding-right(medium);
+  }
   position: relative;
   position: sticky;
   top: 0;
@@ -10,8 +18,6 @@
   width: 100%;
   width: 100vw;
   margin: 0 auto;
-  margin-right: -50vw;
-  margin-left: -50vw;
   color: bolt-theme(secondary);
 }
 

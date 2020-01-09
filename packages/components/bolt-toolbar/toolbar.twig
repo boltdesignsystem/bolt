@@ -4,7 +4,13 @@
   {# <div class="o-bolt-wrapper u-bolt-padding-left-medium u-bolt-padding-right-medium u-bolt-max-width-none">
     {{ content }}
   </div> #}
-  {% embed "@bolt-components-navbar/navbar.twig" %}
-    {% block navbar_nav %}{{ toolbar_content | default(content) }}{% endblock %}
-  {% endembed %}
+  {% if title %}
+    <div class="c-bolt-toolbar__title">
+      {% block toolbar_title %}
+        {% include "@bolt-components-navbar/_navbar-title.twig" with title only %}
+      {% endblock %}
+    </div>
+  {% endif %}
+
+  {{ toolbar_content | default(content) }}
 </div>
