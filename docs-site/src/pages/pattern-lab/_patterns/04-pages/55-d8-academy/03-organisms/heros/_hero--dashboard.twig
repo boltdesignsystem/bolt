@@ -1,14 +1,12 @@
 {% set content %}
-  <div class="u-bolt-margin-bottom-large">
-    {% include "@bolt-components-headline/headline.twig" with {
-      size: "xxxlarge",
-      text: "Welcome back Justin!"
-    } only %}
-    {% include "@bolt-components-headline/subheadline.twig" with {
-      size: "xxlarge",
-      text: "Let's explore today."
-    } only %}
-  </div>
+  {% include "@bolt-components-headline/headline.twig" with {
+    size: "xxxlarge",
+    text: "Welcome back Justin!"
+  } only %}
+  {% include "@bolt-components-headline/subheadline.twig" with {
+    size: "xxlarge",
+    text: "Let's explore today."
+  } only %}
 {% endset %}
 
 {% include "@bolt-components-band/band.twig" with {

@@ -4,6 +4,11 @@
   @include bolt-padding-left(medium);
   @include bolt-padding-right(medium);
   min-height: 100vh; // so demos with overlays, etc aren't immediately chopped off
+
+  // fix rendering bug when rendering pages on view all sections
+  .c-bolt-site {
+    height: auto;
+  }
 }
 
 .sg-main {
