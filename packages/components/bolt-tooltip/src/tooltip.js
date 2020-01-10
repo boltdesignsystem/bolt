@@ -1,5 +1,5 @@
 import { customElement, BoltElement, html, unsafeCSS } from '@bolt/element';
-import { isFocusable } from '@bolt/core-v3.x/utils';
+import { isFocusable, debounce } from '@bolt/core-v3.x/utils';
 import classNames from 'classnames/dedupe';
 import Popper from 'popper.js';
 import tooltipStyles from './tooltip.scss';
@@ -59,16 +59,15 @@ class BoltTooltip extends BoltElement {
   }
 
   handleHover(e) {
-    this.isHovering =
-      e.type === 'mouseover' ||
-      (e.type === 'mouseout' &&
-        // relatedTarget may be slotted content
-        (e.target.contains(e.relatedTarget) ||
-          // or it may be in Shadow DOM
-          this.renderRoot.contains(e.relatedTarget)))
-        ? true
-        : false;
-    this.setOpen();
+    if (e.type === 'mouseenter') {
+      this.isHovering = true;
+    } else if (e.type === 'mouseleave') {
+      this.isHovering = false;
+    }
+
+    debounce(() => {
+      this.setOpen();
+    }, 100)();
   }
 
   sortChildren() {
@@ -190,8 +189,8 @@ class BoltTooltip extends BoltElement {
     return html`
       <span
         class="${classes}"
-        @mouseover="${this.handleHover}"
-        @mouseout="${this.handleHover}"
+        @mouseenter="${this.handleHover}"
+        @mouseleave="${this.handleHover}"
         @focusin="${this.handleFocus}"
         @focusout="${this.handleFocus}"
       >
