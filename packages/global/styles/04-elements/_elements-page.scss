@@ -6,7 +6,7 @@ $bolt-base-font-sizes: (
   bolt-breakpoint(xxsmall): 14px,
   bolt-breakpoint(xsmall): 15px,
   bolt-breakpoint(xxlarge): 16px,
-  bolt-breakpoint(xxxlarge):  18px
+  bolt-breakpoint(xxxxlarge): 18px,
 );
 
 html {
@@ -17,8 +17,8 @@ html {
 body {
   @include bolt-font-family(body);
   @include bolt-font-size(medium);
-  
-  // help ensure short pages (those not using `.c-bolt-site`) are tall enough.  Super important when dealing with components with 
+
+  // help ensure short pages (those not using `.c-bolt-site`) are tall enough.  Super important when dealing with components with
   // click event handlers on the body (and the body isn't automatically tall enough based on the content contained inside
   width: 100%;
   margin: 0;
