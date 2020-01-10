@@ -1,31 +1,28 @@
-{% set trigger = "CRM" %}
-{% set content = "Customer relationship management" %}
-{% set tooltip %}
-  {% include "@bolt-components-tooltip/tooltip.twig" with {
-    trigger: trigger,
-    content: content,
-  } only %}
-{% endset %}
+{# Setting variables for demo purposes #}
+{% set content = "Setting up preferred placement by using the placement prop." %}
 
 {% set tooltips_top %}
   <bolt-list display="inline" spacing="xlarge" align="center">
     <bolt-list-item>
+      {# Start component specific code #}
       {% include "@bolt-components-tooltip/tooltip.twig" with {
-        trigger: trigger,
+        trigger: "bottom-start",
         content: content,
         placement: "bottom-start"
       } only %}
     </bolt-list-item>
     <bolt-list-item>
+      {# Start component specific code #}
       {% include "@bolt-components-tooltip/tooltip.twig" with {
-        trigger: trigger,
+        trigger: "bottom",
         content: content,
         placement: "bottom"
       } only %}
     </bolt-list-item>
     <bolt-list-item>
+      {# Start component specific code #}
       {% include "@bolt-components-tooltip/tooltip.twig" with {
-        trigger: trigger,
+        trigger: "bottom-end",
         content: content,
         placement: "bottom-end"
       } only %}
@@ -36,8 +33,9 @@
   <bolt-list spacing="medium">
     <bolt-list-item>
       <div class="u-bolt-text-align-right">
+        {# Start component specific code #}
         {% include "@bolt-components-tooltip/tooltip.twig" with {
-          trigger: trigger,
+          trigger: "left-start",
           content: content,
           placement: "left-start"
         } only %}
@@ -45,8 +43,9 @@
     </bolt-list-item>
     <bolt-list-item>
       <div class="u-bolt-text-align-right">
+        {# Start component specific code #}
         {% include "@bolt-components-tooltip/tooltip.twig" with {
-          trigger: trigger,
+          trigger: "left",
           content: content,
           placement: "left"
         } only %}
@@ -54,8 +53,9 @@
     </bolt-list-item>
     <bolt-list-item>
       <div class="u-bolt-text-align-right">
+        {# Start component specific code #}
         {% include "@bolt-components-tooltip/tooltip.twig" with {
-          trigger: trigger,
+          trigger: "left-end",
           content: content,
           placement: "left-end"
         } only %}
@@ -66,22 +66,25 @@
 {% set tooltips_bottom %}
   <bolt-list display="inline" spacing="xlarge" align="center">
     <bolt-list-item>
+      {# Start component specific code #}
       {% include "@bolt-components-tooltip/tooltip.twig" with {
-        trigger: trigger,
+        trigger: "top-start",
         content: content,
         placement: "top-start"
       } only %}
     </bolt-list-item>
     <bolt-list-item>
+      {# Start component specific code #}
       {% include "@bolt-components-tooltip/tooltip.twig" with {
-        trigger: trigger,
+        trigger: "top",
         content: content,
         placement: "top"
       } only %}
     </bolt-list-item>
     <bolt-list-item>
+      {# Start component specific code #}
       {% include "@bolt-components-tooltip/tooltip.twig" with {
-        trigger: trigger,
+        trigger: "top-end",
         content: content,
         placement: "top-end"
       } only %}
@@ -91,27 +94,42 @@
 {% set tooltips_left %}
   <bolt-list spacing="medium">
     <bolt-list-item>
+      {# Start component specific code #}
       {% include "@bolt-components-tooltip/tooltip.twig" with {
-        trigger: trigger,
+        trigger: "right-start",
         content: content,
         placement: "right-start"
       } only %}
     </bolt-list-item>
     <bolt-list-item>
+      {# Start component specific code #}
       {% include "@bolt-components-tooltip/tooltip.twig" with {
-        trigger: trigger,
+        trigger: "right",
         content: content,
         placement: "right"
       } only %}
     </bolt-list-item>
     <bolt-list-item>
+      {# Start component specific code #}
       {% include "@bolt-components-tooltip/tooltip.twig" with {
-        trigger: trigger,
+        trigger: "right-end",
         content: content,
         placement: "right-end"
       } only %}
     </bolt-list-item>
   </bolt-list>
+{% endset %}
+
+
+{# Setting variables for demo purposes #}
+{% set trigger = "CRM" %}
+{% set content = "Customer relationship management" %}
+{% set tooltip %}
+  {# Start component specific code #}
+  {% include "@bolt-components-tooltip/tooltip.twig" with {
+    trigger: trigger,
+    content: content,
+  } only %}
 {% endset %}
 
 {% set tooltips_top_auto %}
