@@ -36,7 +36,8 @@
 
 <bolt-tooltip
   {% if outer_classes %} class="{{ outer_classes|join(' ') }}" {% endif %}
-  {{ this.props|without("trigger")|without("content")|without("class") }}
+  {{ this.props|without("uuid")|without("trigger")|without("content")|without("class") }}
+  uuid="{{ uuid }}"
 >
   <replace-with-children {% if inner_classes %} class="{{ inner_classes|join(' ') }}" {% endif %}>
     {% if trigger %}
