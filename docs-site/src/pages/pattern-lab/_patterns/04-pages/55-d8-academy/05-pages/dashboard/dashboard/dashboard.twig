@@ -1,0 +1,17 @@
+{% extends "@academy/_dashboard-page-template.twig" %}
+
+{% block page_content %}
+
+  {# Hero #}
+  {% include "@academy/_hero--dashboard.twig" %}
+
+  {# Body Top #}
+  {% include "@academy/_hero--dashboard-buttons.twig" %}
+
+  {# Body #}
+  {% include "@academy/_section--training-set.twig" %}
+  {% include "@academy/_section--training-set.twig" with { theme: "light" } %}
+  {% include "@academy/_section--training-set.twig" %}
+  {% include "@academy/_section--training-set.twig" with { theme: "light" } %}
+
+{% endblock %}

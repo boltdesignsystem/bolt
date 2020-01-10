@@ -1,0 +1,29 @@
+{% extends "@academy/_landing-page-template.twig" %}
+
+{% block page_content %}
+  {% include "@academy/landing-page-hero.twig" %}
+  {% include "@academy/h5p-embed.twig" %}
+
+  {% grid "o-bolt-grid--center o-bolt-grid--center o-bolt-grid--flex"  %}
+    {% cell %}
+      {% include "@bolt-components-button/button.twig" with {
+        size: "small",
+        text: "Return to mission",
+        url: "#!",
+        border_radius: "full",
+        attributes: {
+          class: [
+            "u-bolt-margin-top-medium",
+            "u-bolt-margin-left-auto",
+            "u-bolt-margin-right-auto",
+          ]
+        }
+      } only %}
+    {% endcell %}
+  {% endgrid %}
+{% endblock %}
+
+{% block global_footer %}
+  {% include "@academy/_hero--request-feedback.twig" %}
+  {{ parent() }}
+{% endblock %}

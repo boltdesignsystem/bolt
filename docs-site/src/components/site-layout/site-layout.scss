@@ -72,15 +72,6 @@ $bds-sidebar-width: 320px;
   grid-column-end: 3;
   z-index: bolt-z-index('modalBG') + 20;
 
-  .c-bolt-navbar {
-    max-width: calc(1400px - 14rem);
-
-    @include bolt-mq(medium) {
-      @include bolt-padding-left(medium);
-      @include bolt-padding-right(medium);
-    }
-  }
-
   @include bolt-mq(medium) {
     .c-bds-layout--has-sidebar & {
       grid-column-start: 1;
