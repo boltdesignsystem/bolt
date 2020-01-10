@@ -31,16 +31,16 @@ module.exports = {
   },
   slots: {
     default: {
-      type: 'object',
+      type: 'string',
       description: 'Button title text.',
     },
     before: {
-      type: 'object',
+      type: 'string',
       description:
         'Anything passed to this slot will go before the button text.',
     },
     after: {
-      type: 'object',
+      type: 'string',
       description:
         'Anything passed to this slot will go after the button text.',
     },
