@@ -129,8 +129,8 @@ class BoltTooltip extends BoltElement {
       }
     };
 
-    this.templateMap.get('default') &&
-      this.templateMap.get('default').forEach(e => {
+    this.slotMap.get('default') &&
+      this.slotMap.get('default').forEach(e => {
         // Sorts through the default slot, figure out what kind of nodes it
         // contains, and sets variables accordingly
         recursivelySort(e);
@@ -142,8 +142,8 @@ class BoltTooltip extends BoltElement {
 
   getTextContentLength() {
     // @todo: add mutation observer and call this when content changes
-    if (this.templateMap.get('content')) {
-      this.textContentLength = this.templateMap
+    if (this.slotMap.get('content')) {
+      this.textContentLength = this.slotMap
         .get('content')[0]
         .textContent.trim().length;
     }
@@ -214,7 +214,7 @@ class BoltTooltip extends BoltElement {
               ${this.slotify('default')}
             </span>
           `}
-        ${this.templateMap.get('content') &&
+        ${this.slotMap.get('content') &&
           html`
             <span
               id="js-bolt-tooltip-${this.uuid}"
