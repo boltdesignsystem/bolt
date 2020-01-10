@@ -1,0 +1,61 @@
+{% extends "@academy/_landing-page-template.twig" %}
+
+{% block page_content %}
+  {% include "@academy/landing-page-hero.twig" %}
+
+  {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
+    {% cell "u-bolt-width-1/1 u-bolt-width-10/12@small u-bolt-width-10/12@medium" %}
+      {% include "@academy/_hide-show-completed.twig" with {
+        hideCompleted: hideCompleted | default(false)
+      } %}
+    {% endcell %}
+
+    {% if contentItems %}
+      {% cell "u-bolt-width-1/1 u-bolt-width-10/12@small u-bolt-width-10/12@medium" %}
+
+        {% grid "o-bolt-grid--matrix o-bolt-grid--small" %}
+
+          {% if hideCompleted %}
+            {% set numberOfCompletedItems = 0 %}
+            {% set contentItemsConsolidated = [] %}
+
+              {% for item in contentItems %}
+                {% if item.completed %}
+                  {% set numberOfCompletedItems = numberOfCompletedItems + 1 %}
+                  {% if loop.last %}
+                    {% set contentItemsConsolidated = contentItemsConsolidated | merge([numberOfCompletedItems]) %}
+                  {% endif %}
+                {% else %}
+                  {% if numberOfCompletedItems != 0 %}
+                    {% set contentItemsConsolidated = contentItemsConsolidated | merge([
+                      include("@academy/_horizontal-divider.twig", { dividerText: "Completed (" ~ numberOfCompletedItems ~ ")" })
+                    ]) %}
+                    {% set numberOfCompletedItems = 0 %}
+                  {% endif %}
+                  {% set contentItemsConsolidated = contentItemsConsolidated | merge([item]) %}
+                {% endif %}
+              {% endfor %}
+            {% else %}
+              {% set contentItemsConsolidated = contentItems %}
+            {% endif %}
+
+            {% for item in contentItemsConsolidated %}
+              {% cell "u-bolt-width-12/12" %}
+                {% if item.cardTitle %}
+                  {% include "@academy/_horizontal-card.twig" with item %}
+                {% else %}
+                  {{ item }}
+                {% endif %}
+              {% endcell %}
+
+            {% if not loop.last %}
+              {% cell "u-bolt-width-12/12" %}
+                {% include "@academy/_card-spacer.twig" %}
+              {% endcell %}
+            {% endif %}
+          {% endfor %}
+        {% endgrid %}
+      {% endcell %}
+    {% endif %}
+  {% endgrid %}
+{% endblock %}

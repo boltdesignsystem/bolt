@@ -55,7 +55,7 @@
               size: "small",
               weight: "bold",
             }, with_context = false) : item )
-          } %}
+          } only %}
               {# include("@academy/_custom-select.twig", with_context = false), #}
         {% endif %}
         {#
@@ -91,7 +91,7 @@
               url: item.url | default(false),
               size: "xsmall",
             }, with_context = false) : item )
-          } %}
+          } only %}
               {# include("@academy/_custom-select.twig", with_context = false), #}
         {% endif %}
 

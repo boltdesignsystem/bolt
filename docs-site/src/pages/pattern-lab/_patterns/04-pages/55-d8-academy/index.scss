@@ -20,3 +20,28 @@
 .c-academy-featured-hero__image {
   filter: hue-rotate(345deg) contrast(1.3);
 }
+
+
+.c-academy-horizontal-divider {
+  display: flex;
+  width: 100%;
+  text-align: center;
+}
+
+.c-academy-horizontal-divider__border {
+  flex-grow: 1;
+  margin-top: 6px;
+  margin-bottom: 6px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-color: bolt-theme(border, 0.5);
+}
+
+.c-academy-horizontal-divider__text {
+  @include bolt-padding-left(xsmall);
+  @include bolt-padding-right(xsmall);
+  @include bolt-font-weight(bold);
+  @include bolt-font-size(small);
+}

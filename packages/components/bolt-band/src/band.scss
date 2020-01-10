@@ -43,6 +43,18 @@ $bolt-band-sizes: (
   'large': bolt-v-spacing(xlarge),
 );
 
+.c-bolt-band--valign-start {
+  align-items: flex-start;
+}
+
+.c-bolt-band--valign-center {
+  align-items: center;
+}
+
+.c-bolt-band--valign-end {
+  align-items: flex-end;
+}
+
 @each $size in $bolt-band-sizes {
   $size-name: nth($size, 1);
   $size-value: nth($size, 2);

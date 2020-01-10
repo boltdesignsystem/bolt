@@ -5,12 +5,12 @@
     {% include "@bolt/page-header.twig" %}
   {% endblock %}
 
-
-  <main class="c-bolt-site__content"><!-- vertically center -->
+  <main class="c-bolt-site__content">
     {% include "@academy/_toolbar.twig" %}
     {% embed "@bolt-components-band/band.twig" with {
       theme: "xxdark",
       size: "large",
+      valign: "start",
       content: main_content,
       inner_attributes: {
         class: [
