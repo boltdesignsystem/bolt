@@ -41,7 +41,7 @@
           }
         }),
         include("@bolt-components-headline/subheadline.twig", {
-          text: "You’ve&nbsp;completed&nbsp;the #{missionName} and earned a new badge!",
+          text: "You’ve completed the #{missionName} and earned a new badge!",
           align: "center",
           size: "xlarge",
           weight: "semibold",
@@ -130,20 +130,7 @@
 } only %}
 
 <script>
-  // Add parameter to the URL - demo helper function, not required in production
-  var setAutoOpenModalParam = function(set){
-    var currentUrl = window.location.href.split('?').shift();
-    var param = '?showModal=true';
-    window.location.href = set ? currentUrl + param : currentUrl;
-  }
-
-  // Get parameter to the URL - demo helper function, not required in production
-  var getUrlParameter = function(name) {
-      name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
-      var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
-      var results = regex.exec(location.search);
-      return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
-  };
+  // Demo code to open the Modal as soon as the page loads
 
   // Reference to the modal
   var autoOpenModal = document.querySelector('#js-modal-advanced-auto-open');
@@ -153,8 +140,6 @@
     setTimeout(function(){
       el.show();
     }, 100)
-    //if (getUrlParameter('showModal')) {
-    //}
   }
 
   // Callback on modal 'ready'
