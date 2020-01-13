@@ -88,6 +88,7 @@ export * from './icons/launchpad';
 export * from './icons/life-sciences';
 export * from './icons/linkedin';
 export * from './icons/linkedin-solid';
+export * from './icons/list';
 export * from './icons/lock';
 export * from './icons/manufacturing';
 export * from './icons/map-pin';
