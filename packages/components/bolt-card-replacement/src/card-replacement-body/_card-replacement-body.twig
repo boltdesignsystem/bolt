@@ -5,8 +5,9 @@
 {% endif %}
 
 {% set card_replacement_body_content = body.content %}
+{% set attributes = create_attribute(body.attributes|default({})) %}
 
-<bolt-card-replacement-body>
+<bolt-card-replacement-body {{ attributes }}>
   <replace-with-children class="c-bolt-card_replacement__body">
     {% block body %}
       {% if card_replacement_body_content %}
