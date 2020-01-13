@@ -611,7 +611,9 @@
         {% grid "o-bolt-grid--center c-global-search-panel__content__transition" %}
           {% cell "u-bolt-width-12/12 u-bolt-width-10/12@large" %}
             <div class="u-bolt-margin-bottom-small">
-              {% include "@bolt-components-typeahead/typeahead.demo.twig" only %}
+              <form>
+                {% include "@bolt-components-typeahead/typeahead.demo.twig" only %}
+              </form>
             </div>
             <bolt-text font-size="xsmall" align="center">
               Placeholder for helper text and did-you-mean text.
