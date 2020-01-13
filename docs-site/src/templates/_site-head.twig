@@ -118,10 +118,10 @@
   </head>
 
   {% set bodyClasses = [
-    'c-bolt-site',
-    pl_data.patternBreadcrumb.patternType == 'pages' ? 'c-bolt-site' : '',
+    patternData.patternBreadcrumb.patternType == 'pages' ? 'c-bolt-site' : '',
     currentUrl == 'index.html' ? 't-bolt-xdark' : '',
     hasSidebar and patternLabFoot is not defined ? 'c-bds-layout--has-sidebar' : '',
+    patternLabFoot is not defined ? 'c-bolt-site' : '',
     patternLabFoot is not defined ? 'c-bds-layout' : '',
     patternLabFoot is not defined ? ('c-bds-layout--' ~ urlChunks | length >= 2 ? urlChunks|first : 'c-bds-layout--parent') : '',
   ] %}
