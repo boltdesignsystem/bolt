@@ -42,15 +42,10 @@ module.exports = {
       ],
       default: 'bottom',
     },
-    spacing: {
-      type: 'string',
-      description: 'Controls the inset spacing of the tooltip content.',
-      enum: ['none', 'xsmall', 'small', 'medium'],
-      default: 'xsmall',
-    },
     uuid: {
       type: 'string',
-      description: 'Unique ID for tooltip, randomly generated if not provided.',
+      description:
+        'Unique ID for the tooltip, randomly generated if not provided.',
     },
   },
 };

@@ -3,13 +3,16 @@
 \* ------------------------------------ */
 @import '@bolt/core-v3.x';
 
-// Component variables
-$bolt-tooltip-border-width: $bolt-border-width;
-$bolt-tooltip-border-style: $bolt-border-style;
-$bolt-tooltip-border-color: bolt-theme(border, 0.2);
-$bolt-tooltip-spacing-values: xsmall, small, medium;
+/**
+ * Component variables
+ */
+$bolt-tooltip-bubble-border-width: $bolt-border-width;
+$bolt-tooltip-bubble-border-style: $bolt-border-style;
+$bolt-tooltip-bubble-border-color: bolt-theme(border, 0.2);
 
-// Register Custom Block Element
+/**
+ * Register custom element
+ */
 @include bolt-repeat-rule(('bolt-tooltip', ':host')) {
   display: inline;
 }
@@ -19,11 +22,18 @@ $bolt-tooltip-spacing-values: xsmall, small, medium;
   position: relative;
 }
 
+/**
+ * Plain text trigger gets underlined
+ */
 .c-bolt-tooltip--dotted {
   cursor: help;
-  border-bottom: 1px dotted currentColor;
+  border-bottom: 1px dotted bolt-theme(border, 0.4);
 }
 
+/**
+ * Content container
+ * - used for fade effect and placement
+ */
 .c-bolt-tooltip__content {
   visibility: hidden; // Visibility is used instead of display because display 'none' interferes with Popper.js calculating tooltip size.
   opacity: 0;
@@ -33,7 +43,7 @@ $bolt-tooltip-spacing-values: xsmall, small, medium;
   transition: opacity $bolt-transition;
   white-space: nowrap;
 
-  // @todo: position does not work without JS.
+  // @todo: Placement does not work without JS.
   // @at-root .c-bolt-tooltip--top-end & {
   //   right: 0;
   //   bottom: 100%;
@@ -118,6 +128,22 @@ $bolt-tooltip-spacing-values: xsmall, small, medium;
   opacity: 1;
 }
 
+// @todo: Since placement doesn't work without JS, this defaults to bottom placement when there is no JS.
+@include bolt-repeat-rule(
+  (
+    'bolt-tooltip:not([ready]) .c-bolt-tooltip:hover .c-bolt-tooltip__content',
+    ':host:not([ready]) .c-bolt-tooltip:hover .c-bolt-tooltip__content'
+  )
+) {
+  top: 100%;
+  left: 50%;
+  transform: translate3d(-50%, 0, 0);
+}
+
+/**
+ * Bubble inside the content container
+ * - used for visual design of the bubble and the fly in effect
+ */
 .c-bolt-tooltip__bubble {
   @include bolt-margin(xxsmall);
   @include bolt-padding(xxsmall xsmall);
@@ -131,15 +157,14 @@ $bolt-tooltip-spacing-values: xsmall, small, medium;
   text-align: left;
   text-align: start;
   border-radius: bolt-border-radius(large);
-  border-width: $bolt-tooltip-border-width;
-  border-style: $bolt-tooltip-border-style;
-  border-color: $bolt-tooltip-border-color;
+  border-width: $bolt-tooltip-bubble-border-width;
+  border-style: $bolt-tooltip-bubble-border-style;
+  border-color: $bolt-tooltip-bubble-border-color;
   box-shadow: bolt-shadow('level-20');
   background-color: bolt-theme(text, 0.8);
+  will-change: transform;
   transition: transform $bolt-transition-timing
     cubic-bezier(0.175, 0.885, 0.32, 1);
-  animation-duration: 250ms;
-  animation-fill-mode: both;
 
   @at-root .c-bolt-tooltip--text-wrap & {
     width: 150px;
@@ -226,67 +251,12 @@ $bolt-tooltip-spacing-values: xsmall, small, medium;
 
 @include bolt-repeat-rule(
   (
-    'bolt-tooltip:not([ready]) .c-bolt-tooltip:hover .c-bolt-tooltip__bubble',
-    ':host:not([ready]) .c-bolt-tooltip:hover .c-bolt-tooltip__bubble',
-    '.c-bolt-tooltip.is-expanded .c-bolt-tooltip__bubble'
+    '.c-bolt-tooltip.is-expanded .c-bolt-tooltip__bubble',
+    // @todo: Since placement doesn't work without JS, this turns off the fly in effect if there is no JS.
+      'bolt-tooltip:not([ready]) .c-bolt-tooltip__bubble',
+    // @todo: Since placement doesn't work without JS, this turns off the fly in effect if there is no JS.
+      ':host:not([ready]) .c-bolt-tooltip__bubble'
   )
 ) {
   transform: scale3d(1, 1, 1) translate3d(0, 0, 0);
-}
-
-// Animations
-@keyframes a-bolt-zoom-in-down {
-  0% {
-    opacity: 0;
-    transform: scale3d(0, 0, 0) translate3d(0, -100%, 0);
-    animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
-  }
-  60% {
-    opacity: 1;
-    transform: scale3d(0.475, 0.475, 0.475)
-      translate3d(0, bolt-v-spacing(medium), 0);
-    animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);
-  }
-}
-
-@keyframes a-bolt-zoom-in-left {
-  0% {
-    opacity: 0;
-    transform: scale3d(0.1, 0.1, 0.1) translate3d(-100%, 0, 0);
-    animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
-  }
-  60% {
-    opacity: bolt-opacity(20);
-    transform: scale3d(0.475, 0.475, 0.475)
-      translate3d(bolt-spacing(medium), 0, 0);
-    animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);
-  }
-}
-
-@keyframes a-bolt-zoom-in-up {
-  0% {
-    opacity: 0;
-    transform: scale3d(0.1, 0.1, 0.1) translate3d(0, 100%, 0);
-    animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
-  }
-  60% {
-    opacity: bolt-opacity(20);
-    transform: scale3d(0.475, 0.475, 0.475)
-      translate3d(0, (bolt-v-spacing(medium) * -1), 0);
-    animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);
-  }
-}
-
-@keyframes a-bolt-zoom-in-right {
-  0% {
-    opacity: 0;
-    transform: scale3d(0.1, 0.1, 0.1) translate3d(100%, 0, 0);
-    animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
-  }
-  60% {
-    opacity: bolt-opacity(20);
-    transform: scale3d(0.475, 0.475, 0.475)
-      translate3d((bolt-spacing(medium) * -1), 0, 0);
-    animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);
-  }
 }

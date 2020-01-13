@@ -8,12 +8,15 @@
 {% set base_class = "c-bolt-tooltip" %}
 {% set this = init(schema) %}
 {% set uuid = this.data.uuid|default(bolt.data.config.env == "test" ? "12345" : random() ~ "") %}
+{% set tooltip_uuid = "js-bolt-tooltip-" ~ uuid %}
 {% set inner_attributes = create_attribute({}) %}
 
 {# Array of classes based on the defined + default props #}
 {% set classes = [
   base_class,
   this.data.placement.value != "auto" ? base_class ~ "--" ~ this.data.placement.value,
+  this.data.content.value|length > 31 ? base_class ~ "--text-wrap",
+  this.data.content.value|length > 31 and this.data.content.value|length < 62 ? base_class ~ "--text-align-center",
 ] %}
 
 {#
@@ -32,11 +35,9 @@
   {% endif %}
 {% endfor %}
 
-{% set tooltip_uuid = "js-bolt-tooltip-" ~ uuid %}
-
 <bolt-tooltip
   {% if outer_classes %} class="{{ outer_classes|join(' ') }}" {% endif %}
-  {{ this.props|without("uuid")|without("trigger")|without("content")|without("class") }}
+  {{ this.props|without("trigger")|without("content")|without("class") }}
   uuid="{{ uuid }}"
 >
   <replace-with-children {% if inner_classes %} class="{{ inner_classes|join(' ') }}" {% endif %}>
