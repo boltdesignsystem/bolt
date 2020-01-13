@@ -673,7 +673,13 @@ export function setupBolt(editor) {
     draggable: false,
     editable: true,
     highlightable: true,
-    propsToTraits: ['size', 'characterImage', 'characterCustomUrl', 'useIcon', 'constrainBottomSlot'],
+    propsToTraits: [
+      'size',
+      'characterImage',
+      'characterCustomUrl',
+      'useIcon',
+      'constrainBottomSlot',
+    ],
     slots: {
       default: false,
       top: true,
@@ -747,7 +753,7 @@ export function setupBolt(editor) {
     draggable: true,
     editable: true,
     highlightable: true,
-    propsToTraits: ['iconName', 'isAlertMessage', 'dialogueArrowDirection'],
+    propsToTraits: ['iconName', 'isAlertMessage', 'dialogueArrowDirection', 'boxFloatDirection'],
     slots: {
       default: false,
       // @todo consider changing `text` to `default`

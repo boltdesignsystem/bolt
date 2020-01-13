@@ -27,5 +27,12 @@ module.exports = {
       enum: ['up', 'down', 'left', 'right', 'none'],
       default: 'none',
     },
+    boxFloatDirection: {
+      type: 'string',
+      description:
+        'The direction in which the dialog box should be floated given extra space in container if no arrow dialog arrow direction is given.',
+      enum: ['left', 'right', 'up', 'down', 'center'],
+      default: 'center',
+    },
   },
 };
