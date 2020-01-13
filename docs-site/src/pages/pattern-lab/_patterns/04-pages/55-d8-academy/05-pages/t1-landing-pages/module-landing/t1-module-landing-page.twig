@@ -50,126 +50,66 @@
     {% endblock %}
 
     {% block heroTopicList %}
-    {# {% cell "u-bolt-width-1/1 u-bolt-width-6/12@small" %} #}
-      <div class="t-bolt-xlight u-bolt-shadow-20 u-bolt-border-radius-large u-bolt-padding-medium u-bolt-margin-bottom-small">
-        {% include "@bolt-components-headline/headline.twig" with {
-          size: "xlarge",
-          text: "Topics",
-          attributes: {
-            class: "u-bolt-margin-bottom-small",
-          }
-        } only %}
 
-        {% include "@bolt-components-list/list.twig" with {
-          separator: "solid",
-          attributes: {
-            class: [
-              "u-bolt-negative-margin-right-small",
-              "u-bolt-padding-right-medium",
-            ],
-          },
-          items: [
-            include("@academy/_module-topic-item.twig", {
-              text: "Data types",
-              duration: "10 mins",
-              viewed: true,
-            }),
-            include("@academy/_module-topic-item.twig", {
-              text: "Creating a data type",
-              duration: "5 mins",
-            }),
-            include("@academy/_module-topic-item.twig", {
-              text: "Creating a data type",
-              duration: "5 mins",
-            }),
-            include("@academy/_module-quiz-item.twig", {
-              text: "Module Quiz",
-              numberOfQuestionsText: "3 Questions",
-            }),
-            include("@academy/_module-quiz-item.twig", {
-              text: "Module Quiz",
-              numberOfQuestionsText: "3 Questions",
-              status: "passed"
-            }),
-            include("@academy/_module-quiz-item.twig", {
-              text: "Module Quiz",
-              numberOfQuestionsText: "3 Questions",
-              status: "failed"
-            }),
+      {% include "@bolt-components-card-replacement/card-replacement.twig" with {
+        theme: "xlight",
+        rounded: true,
+        height: "auto",
+        attributes: {
+          class: [
+            "u-bolt-margin-bottom-small",
           ]
-        } only %}
-      </div>
+        },
+        body: {
+          content: [
+            include("@bolt-components-headline/headline.twig", {
+              size: "xlarge",
+              text: "Topics",
+              attributes: {
+                class: "u-bolt-margin-bottom-small",
+              }
+            }),
+            include("@bolt-components-list/list.twig", {
+              separator: "solid",
+              attributes: {
+                class: [
+                  "u-bolt-negative-margin-right-small",
+                  "u-bolt-padding-right-medium",
+                ],
+              },
+              items: [
+                include("@academy/_module-topic-item.twig", {
+                  text: "Data types",
+                  duration: "10 mins",
+                  viewed: true,
+                }),
+                include("@academy/_module-topic-item.twig", {
+                  text: "Creating a data type",
+                  duration: "5 mins",
+                }),
+                include("@academy/_module-topic-item.twig", {
+                  text: "Creating a data type",
+                  duration: "5 mins",
+                }),
+                include("@academy/_module-quiz-item.twig", {
+                  text: "Module Quiz",
+                  numberOfQuestionsText: "3 Questions",
+                }),
+                include("@academy/_module-quiz-item.twig", {
+                  text: "Module Quiz",
+                  numberOfQuestionsText: "3 Questions",
+                  status: "passed"
+                }),
+                include("@academy/_module-quiz-item.twig", {
+                  text: "Module Quiz",
+                  numberOfQuestionsText: "3 Questions",
+                  status: "failed"
+                }),
+              ]
+            }),
+          ] | join('')
+        }
+      } %}
     {% endblock %}
   {% endembed %}
 {% endblock %}
-
-  {# {% include "@bolt-components-band/band.twig" with {
-    theme: "xdark",
-    content: content,
-    background: {
-      opacity: "light",
-      fill: "gradient",
-      contentItems: [
-        {
-          pattern: "image",
-          src: "/images/content/backgrounds/background-night-sky.jpg",
-        },
-      ]
-    },
-  } only %} #}
-  {# End Hero #}
-
-
-  {# Also #}
-  {# {% set mission %}
-    {% include "@bolt/flag.twig" with {
-      valign: "middle",
-      url: "#!",
-      figure: {
-        content: include("@bolt-components-icon/icon.twig", {
-          name: "launchpad",
-          size: "xlarge",
-          background: "circle",
-          color: "teal"
-        })
-      },
-      items: [
-        {
-          pattern: "headline",
-          size: "large",
-          text: "Mission Title",
-          url: "https://www.pega.com",
-          icon: {
-            name: "chevron-right"
-          }
-        }
-      ]
-    } only %}
-  {% endset %}
-  {% set content %}
-    {% grid "o-bolt-grid--flex o-bolt-grid--matrix" %}
-      {% cell "u-bolt-width-1/1 u-bolt-width-6/12@small" %}
-        {% include "@bolt-components-headline/headline.twig" with {
-          text: "This module also appears in following missions",
-          attributes: {
-            class: "u-bolt-margin-bottom-small",
-          }
-        } only %}
-        {% include "@bolt-components-list/list.twig" with {
-          separator: "solid",
-          items: [
-            mission,
-            mission,
-            mission,
-          ]
-        } only %}
-      {% endcell %}
-    {% endgrid %}
-  {% endset %}
-
-  {% include "@bolt-components-band/band.twig" with {
-    theme: "light",
-    content: content,
-  } only %} #}
-  {# End Also #}
-{# {% endblock %} #}
