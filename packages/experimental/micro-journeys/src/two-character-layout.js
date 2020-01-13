@@ -94,14 +94,15 @@ class BoltTwoCharacterLayout extends withLitHtml {
    */
   setConnectionWidth = () => {
     this.characters.forEach((e, i) => {
-      const connection = e.querySelector('bolt-animate[slot="connection"');
+      const connection = e.querySelector('bolt-animate[slot="connection"]');
       const nextCharacter = this.characters[i + 1];
       if (connection && nextCharacter) {
         const nextCharacterCenter = nextCharacter.renderRoot.querySelector(
           `.${boltCharacterCenterClass}`,
         );
-        connection.style.minWidth = `calc(${nextCharacterCenter.getBoundingClientRect()
-          .left - connection.getBoundingClientRect().left}px + 50%)`;
+        connection.style.minWidth = `calc(
+        ${nextCharacterCenter.getBoundingClientRect().left - connection.getBoundingClientRect().left}px
+        + (${nextCharacterCenter.getBoundingClientRect().width / 2}px))`;
         connection.renderRoot.querySelector('.c-bolt-connection__main-image');
       }
     });
