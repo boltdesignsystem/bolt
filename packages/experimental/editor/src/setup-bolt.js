@@ -673,7 +673,7 @@ export function setupBolt(editor) {
     draggable: false,
     editable: true,
     highlightable: true,
-    propsToTraits: ['size', 'characterImage', 'characterCustomUrl', 'useIcon'],
+    propsToTraits: ['size', 'characterImage', 'characterCustomUrl', 'useIcon', 'constrainBottomSlot'],
     slots: {
       default: false,
       top: true,

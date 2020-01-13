@@ -76,7 +76,7 @@ class BoltCharacter extends withLitHtml {
     const hasBothSideContent = hasLeftContent && hasRightContent;
 
     const classes = cx(rootClass, `${rootClass}--${props.size}`, {
-      [`${rootClass}__has-background`]: !!this.slots['background'],
+      [`${rootClass}__has-background-padding`]: props.backgroundPadding,
       [`${rootClass}__has-side-content`]: hasSideContent,
       [`${rootClass}__has-both-side-content`]: hasBothSideContent,
       [`${rootClass}__has-one-side-content`]:
