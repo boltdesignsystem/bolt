@@ -230,37 +230,35 @@
 <bolt-text headline>
   Auto placement
 </bolt-text>
-<div class="u-bolt-margin-bottom-large">
-  {% include "@bolt-components-grid/grid.twig" with {
-    gutter: "small",
-    items: [
-      {
-        column_start: "1",
-        column_span: "12",
-        row_start: "1",
-        content: tooltips_top_auto,
-      },
-      {
-        column_start: "12",
-        column_span: "1",
-        row_start: "2",
-        content: tooltips_right_auto,
-      },
-      {
-        column_start: "1",
-        column_span: "12",
-        row_start: "3",
-        content: tooltips_bottom_auto,
-      },
-      {
-        column_start: "1",
-        column_span: "1",
-        row_start: "2",
-        content: tooltips_left_auto,
-      },
-    ]
-  } only %}
-</div>
+{% include "@bolt-components-grid/grid.twig" with {
+  gutter: "small",
+  items: [
+    {
+      column_start: "1",
+      column_span: "12",
+      row_start: "1",
+      content: tooltips_top_auto,
+    },
+    {
+      column_start: "12",
+      column_span: "1",
+      row_start: "2",
+      content: tooltips_right_auto,
+    },
+    {
+      column_start: "1",
+      column_span: "12",
+      row_start: "3",
+      content: tooltips_bottom_auto,
+    },
+    {
+      column_start: "1",
+      column_span: "1",
+      row_start: "2",
+      content: tooltips_left_auto,
+    },
+  ]
+} only %}
 
 
 

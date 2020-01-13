@@ -6,7 +6,7 @@
 // Component variables
 $bolt-tooltip-border-width: $bolt-border-width;
 $bolt-tooltip-border-style: $bolt-border-style;
-$bolt-tooltip-border-color: bolt-theme(text, 0.15);
+$bolt-tooltip-border-color: bolt-theme(border, 0.2);
 $bolt-tooltip-spacing-values: xsmall, small, medium;
 
 // Register Custom Block Element
@@ -24,6 +24,89 @@ $bolt-tooltip-spacing-values: xsmall, small, medium;
   border-bottom: 1px dotted currentColor;
 }
 
+.c-bolt-tooltip__content {
+  visibility: hidden; // Visibility is used instead of display because display 'none' interferes with Popper.js calculating tooltip size.
+  opacity: 0;
+  position: absolute;
+  transform: translate3d(0, 0, 0);
+  z-index: 1;
+  transition: opacity $bolt-transition;
+  white-space: nowrap;
+
+  // @todo: position does not work without JS.
+  // @at-root .c-bolt-tooltip--top-end & {
+  //   right: 0;
+  //   bottom: 100%;
+  //   transform: translate3d(0, 0, 0);
+  // }
+
+  // @at-root .c-bolt-tooltip--top & {
+  //   bottom: 100%;
+  //   left: 50%;
+  //   transform: translate3d(-50%, 0, 0);
+  // }
+
+  // @at-root .c-bolt-tooltip--top-start & {
+  //   bottom: 100%;
+  //   left: 0;
+  //   transform: translate3d(0, 0, 0);
+  // }
+
+  // @at-root .c-bolt-tooltip--left-start & {
+  //   top: 0;
+  //   right: 100%;
+  //   transform: translate3d(0, 0, 0);
+  // }
+
+  // @at-root .c-bolt-tooltip--left & {
+  //   top: 50%;
+  //   right: 100%;
+  //   transform: translate3d(0, -50%, 0);
+  // }
+
+  // @at-root .c-bolt-tooltip--left-end & {
+  //   right: 100%;
+  //   bottom: 0;
+  //   transform: translate3d(0, 0, 0);
+  // }
+
+  // @at-root .c-bolt-tooltip--right-start & {
+  //   top: 0;
+  //   left: 100%;
+  //   transform: translate3d(0, 0, 0);
+  // }
+
+  // @at-root .c-bolt-tooltip--right & {
+  //   top: 50%;
+  //   left: 100%;
+  //   transform: translate3d(0, -50%, 0);
+  // }
+
+  // @at-root .c-bolt-tooltip--right-end & {
+  //   bottom: 0;
+  //   left: 100%;
+  //   transform: translate3d(0, 0, 0);
+  // }
+
+  // @at-root .c-bolt-tooltip--bottom-end & {
+  //   top: 100%;
+  //   right: 0;
+  //   transform: translate3d(0, 0, 0);
+  // }
+
+  // @at-root .c-bolt-tooltip--bottom & {
+  //   top: 100%;
+  //   left: 50%;
+  //   transform: translate3d(-50%, 0, 0);
+  // }
+
+  // @at-root .c-bolt-tooltip--bottom-start & {
+  //   top: 100%;
+  //   left: 0;
+  //   transform: translate3d(0, 0, 0);
+  // }
+}
+
 @include bolt-repeat-rule(
   (
     'bolt-tooltip:not([ready]) .c-bolt-tooltip:hover .c-bolt-tooltip__content',
@@ -35,183 +118,14 @@ $bolt-tooltip-spacing-values: xsmall, small, medium;
   opacity: 1;
 }
 
-.c-bolt-tooltip__content {
-  @include bolt-padding(xxsmall);
-  visibility: hidden; // display 'none' interferes with Popper.js calculating tooltip size
-  opacity: 0;
-  position: absolute;
-  transform: translate3d(0, 0, 0);
-  z-index: 1;
-  transition: opacity $bolt-transition-timing * 2
-    cubic-bezier(0.25, 0.8, 0.25, 1);
-  white-space: nowrap;
-
-  // @todo: all positioning that follows is overridden by Popper, animations won't work.
-  // Can we figure out Popper-friendly animation that doesn't rely on display 'none'?
-  @at-root .c-bolt-tooltip--top-end & {
-    // right: 0;
-    // bottom: 100%;
-    // transform: translate3d(0, 0, 0);
-    padding-right: 0;
-    padding-left: 0;
-
-    // .c-bolt-tooltip__bubble {
-    //   animation-name: a-bolt-zoom-in-up;
-    //   transform-origin: bottom right;
-    // }
-  }
-
-  @at-root .c-bolt-tooltip--start & {
-    // bottom: 100%;
-    // left: 50%;
-    // transform: translate3d(-50%, 0, 0);
-    padding-right: 0;
-    padding-left: 0;
-
-    // .c-bolt-tooltip__bubble {
-    //   animation-name: a-bolt-zoom-in-up;
-    //   transform-origin: bottom center;
-    // }
-  }
-
-  @at-root .c-bolt-tooltip--top-start & {
-    // bottom: 100%;
-    // left: 0;
-    // transform: translate3d(0, 0, 0);
-    padding-right: 0;
-    padding-left: 0;
-
-    // .c-bolt-tooltip__bubble {
-    //   animation-name: a-bolt-zoom-in-up;
-    //   transform-origin: bottom left;
-    // }
-  }
-
-  @at-root .c-bolt-tooltip--left-start & {
-    // top: 0;
-    // right: 100%;
-    // transform: translate3d(0, 0, 0);
-    padding-top: 0;
-    padding-bottom: 0;
-
-    // .c-bolt-tooltip__bubble {
-    //   animation-name: a-bolt-zoom-in-right;
-    //   transform-origin: top right;
-    // }
-  }
-
-  @at-root .c-bolt-tooltip--start & {
-    // top: 50%;
-    // right: 100%;
-    // transform: translate3d(0, -50%, 0);
-    padding-top: 0;
-    padding-bottom: 0;
-
-    // .c-bolt-tooltip__bubble {
-    //   animation-name: a-bolt-zoom-in-right;
-    //   transform-origin: center right;
-    // }
-  }
-
-  @at-root .c-bolt-tooltip--left-end & {
-    // right: 100%;
-    // bottom: 0;
-    // transform: translate3d(0, 0, 0);
-    padding-top: 0;
-    padding-bottom: 0;
-
-    // .c-bolt-tooltip__bubble {
-    //   animation-name: a-bolt-zoom-in-right;
-    //   transform-origin: bottom right;
-    // }
-  }
-
-  @at-root .c-bolt-tooltip--right-start & {
-    // top: 0;
-    // left: 100%;
-    // transform: translate3d(0, 0, 0);
-    padding-top: 0;
-    padding-bottom: 0;
-
-    // .c-bolt-tooltip__bubble {
-    //   animation-name: a-bolt-zoom-in-left;
-    //   transform-origin: top left;
-    // }
-  }
-
-  @at-root .c-bolt-tooltip--end & {
-    // top: 50%;
-    // left: 100%;
-    // transform: translate3d(0, -50%, 0);
-    padding-top: 0;
-    padding-bottom: 0;
-
-    // .c-bolt-tooltip__bubble {
-    //   animation-name: a-bolt-zoom-in-left;
-    //   transform-origin: center left;
-    // }
-  }
-
-  @at-root .c-bolt-tooltip--right-end & {
-    // bottom: 0;
-    // left: 100%;
-    // transform: translate3d(0, 0, 0);
-    padding-top: 0;
-    padding-bottom: 0;
-
-    // .c-bolt-tooltip__bubble {
-    //   animation-name: a-bolt-zoom-in-left;
-    //   transform-origin: bottom left;
-    // }
-  }
-
-  @at-root .c-bolt-tooltip--bottom-end & {
-    // top: 100%;
-    // right: 0;
-    // transform: translate3d(0, 0, 0);
-    padding-right: 0;
-    padding-left: 0;
-
-    // .c-bolt-tooltip__bubble {
-    //   animation-name: a-bolt-zoom-in-down;
-    //   transform-origin: top right;
-    // }
-  }
-
-  @at-root .c-bolt-tooltip--end & {
-    // top: 100%;
-    // left: 50%;
-    // transform: translate3d(-50%, 0, 0);
-    padding-right: 0;
-    padding-left: 0;
-
-    // .c-bolt-tooltip__bubble {
-    //   animation-name: a-bolt-zoom-in-down;
-    //   transform-origin: top center;
-    // }
-  }
-
-  @at-root .c-bolt-tooltip--bottom-start & {
-    // top: 100%;
-    // left: 0;
-    // transform: translate3d(0, 0, 0);
-    padding-right: 0;
-    padding-left: 0;
-
-    // .c-bolt-tooltip__bubble {
-    //   animation-name: a-bolt-zoom-in-down;
-    //   transform-origin: top left;
-    // }
-  }
-}
-
 .c-bolt-tooltip__bubble {
+  @include bolt-margin(xxsmall);
   @include bolt-padding(xxsmall xsmall);
   @include bolt-font-family(body);
   @include bolt-font-size(xsmall);
   @include bolt-font-weight(semibold);
   display: block;
-  transform: translate3d(0, 0, 0);
+  transform: scale3d(1, 1, 1) translate3d(0, 0, 0);
   overflow: hidden;
   color: bolt-theme(background);
   text-align: left;
@@ -222,6 +136,8 @@ $bolt-tooltip-spacing-values: xsmall, small, medium;
   border-color: $bolt-tooltip-border-color;
   box-shadow: bolt-shadow('level-20');
   background-color: bolt-theme(text, 0.8);
+  transition: transform $bolt-transition-timing
+    cubic-bezier(0.175, 0.885, 0.32, 1);
   animation-duration: 250ms;
   animation-fill-mode: both;
 
@@ -234,6 +150,88 @@ $bolt-tooltip-spacing-values: xsmall, small, medium;
   @at-root .c-bolt-tooltip--text-align-center & {
     text-align: center;
   }
+
+  @at-root [class*='c-bolt-tooltip--top'] & {
+    transform: scale3d(0.1, 0.1, 0.1) translate3d(0, 100%, 0);
+    margin-right: 0;
+    margin-left: 0;
+  }
+
+  @at-root .c-bolt-tooltip--top-end & {
+    transform-origin: bottom right;
+  }
+
+  @at-root .c-bolt-tooltip--top & {
+    transform-origin: bottom center;
+  }
+
+  @at-root .c-bolt-tooltip--top-start & {
+    transform-origin: bottom left;
+  }
+
+  @at-root [class*='c-bolt-tooltip--left'] & {
+    transform: scale3d(0.1, 0.1, 0.1) translate3d(100%, 0, 0);
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  @at-root .c-bolt-tooltip--left-start & {
+    transform-origin: top right;
+  }
+
+  @at-root .c-bolt-tooltip--left & {
+    transform-origin: center right;
+  }
+
+  @at-root .c-bolt-tooltip--left-end & {
+    transform-origin: bottom right;
+  }
+
+  @at-root [class*='c-bolt-tooltip--right'] & {
+    transform: scale3d(0.1, 0.1, 0.1) translate3d(-100%, 0, 0);
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  @at-root .c-bolt-tooltip--right-start & {
+    transform-origin: top left;
+  }
+
+  @at-root .c-bolt-tooltip--right & {
+    transform-origin: center left;
+  }
+
+  @at-root .c-bolt-tooltip--right-end & {
+    transform-origin: bottom left;
+  }
+
+  @at-root [class*='c-bolt-tooltip--bottom'] & {
+    transform: scale3d(0, 0, 0) translate3d(0, -100%, 0);
+    margin-right: 0;
+    margin-left: 0;
+  }
+
+  @at-root .c-bolt-tooltip--bottom-end & {
+    transform-origin: top right;
+  }
+
+  @at-root .c-bolt-tooltip--bottom & {
+    transform-origin: top center;
+  }
+
+  @at-root .c-bolt-tooltip--bottom-start & {
+    transform-origin: top left;
+  }
+}
+
+@include bolt-repeat-rule(
+  (
+    'bolt-tooltip:not([ready]) .c-bolt-tooltip:hover .c-bolt-tooltip__bubble',
+    ':host:not([ready]) .c-bolt-tooltip:hover .c-bolt-tooltip__bubble',
+    '.c-bolt-tooltip.is-expanded .c-bolt-tooltip__bubble'
+  )
+) {
+  transform: scale3d(1, 1, 1) translate3d(0, 0, 0);
 }
 
 // Animations
