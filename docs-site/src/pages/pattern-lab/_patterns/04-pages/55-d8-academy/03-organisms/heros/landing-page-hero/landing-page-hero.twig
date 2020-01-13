@@ -1,3 +1,6 @@
+{% set heroTopicList = block('heroTopicList') %}
+{% set heroSupplementalContent = block('heroSupplementalContent') %}
+
 {% embed "@bolt-components-band/band.twig" with {
   theme: "none",
   size: "medium",
@@ -11,7 +14,7 @@
 
   {% block band_content %}
     {% grid "o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--matrix u-bolt-margin-bottom-small u-bolt-margin-bottom-medium@large" %}
-      {% cell "u-bolt-width-1/1 u-bolt-width-10/12@small" %}
+      {% cell "u-bolt-width-12/12 u-bolt-width-10/12@small" %}
 
         {% if heroSubTitle %}
           {% include "@bolt-components-headline/eyebrow.twig" with {
@@ -61,52 +64,70 @@
         {#
           TODO: how does data get passed into the custom select here ^
         #}
+    {% endcell %}
 
-        {% if heroDescription %}
-          {% include "@bolt-components-headline/text.twig" with {
-            text: heroDescription,
-            attributes: {
-              class: [
-                "u-bolt-line-length-optimal"
-              ]
-            }
-          } only %}
-        {% endif %}
+    {% cell "u-bolt-width-12/12" %}
+      {% grid "o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--matrix u-bolt-margin-bottom-small u-bolt-margin-bottom-medium@large" %}
 
-        {# array of tags - already rendered chips? render array?
+        {% cell "u-bolt-width-1/1 #{heroTopicList ? 'u-bolt-width-1/2@medium' : 'u-bolt-width-10/12@small'}" %}
+            {% if heroDescription %}
+              {% include "@bolt-components-headline/text.twig" with {
+                text: heroDescription,
+                attributes: {
+                  class: [
+                    "u-bolt-line-length-optimal"
+                  ]
+                }
+              } only %}
+            {% endif %}
 
-          docroot/themes/custom/pegaacademy_theme/templates/field/field--node--pega-content-tags.html.twig
-        #}
+            {# array of tags - already rendered chips? render array?
 
-        {% if heroTags %}
-          {% include "@bolt-components-list/list.twig" with {
-            display: "inline",
-            attributes: {
-              class: [
-                "u-bolt-negative-margin-top-xsmall",
-              ]
-            },
-            items: heroTags | map(item => item.text ? include("@bolt-components-chip/chip.twig", {
-              text: item.text,
-              url: item.url | default(false),
-              size: "xsmall",
-            }, with_context = false) : item )
-          } only %}
-              {# include("@academy/_custom-select.twig", with_context = false), #}
-        {% endif %}
+              docroot/themes/custom/pegaacademy_theme/templates/field/field--node--pega-content-tags.html.twig
+            #}
 
-        {# {% include "@bolt/flag.twig" with {
-          valign: "middle",
-          figure: {
-            content: include("@bolt-components-icon/icon.twig", { name: "launchpad", background: "circle", size: "xlarge" }, with_context = false),
-          },
-          content: include("@bolt-components-headline/text.twig", {
-            size: "small",
-            weight: "semibold",
-            text: "Achievement <br>Badge Awarded",
-          }, with_context = false),
-        } only %} #}
+            {% if heroTags %}
+              {% include "@bolt-components-list/list.twig" with {
+                display: "inline",
+                attributes: {
+                  class: [
+                    "u-bolt-negative-margin-top-xsmall",
+                  ]
+                },
+                items: heroTags | map(item => item.text ? include("@bolt-components-chip/chip.twig", {
+                  text: item.text,
+                  url: item.url | default(false),
+                  size: "xsmall",
+                }, with_context = false) : item )
+              } only %}
+                  {# include("@academy/_custom-select.twig", with_context = false), #}
+            {% endif %}
+
+            {% if heroSupplementalContent %}
+              {{ heroSupplementalContent }}
+            {% endif %}
+
+            {# {% include "@bolt/flag.twig" with {
+              valign: "middle",
+              figure: {
+                content: include("@bolt-components-icon/icon.twig", { name: "launchpad", background: "circle", size: "xlarge" }, with_context = false),
+              },
+              content: include("@bolt-components-headline/text.twig", {
+                size: "small",
+                weight: "semibold",
+                text: "Achievement <br>Badge Awarded",
+              }, with_context = false),
+            } only %} #}
+          {% endcell %}
+
+          {% if heroTopicList %}
+            {% cell "u-bolt-width-1/1 u-bolt-width-1/2@medium" %}
+              {{ heroTopicList }}
+            {% endcell %}
+          {% endif %}
+        {% endgrid %}
       {% endcell %}
+
     {% endgrid %}
   {% endblock %}
 {% endembed %}
