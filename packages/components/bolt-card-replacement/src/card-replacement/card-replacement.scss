@@ -10,12 +10,10 @@
 @include bolt-custom-element('bolt-card-replacement', block, medium);
 
 bolt-card-replacement {
-  @include bolt-card-replacement-border-reset;
   @include bolt-card-replacement-content-conditions;
 
   position: relative;
   border-radius: $bolt-card-replacement-border-radius;
-  border-width: $bolt-card-replacement-border-width;
 
   &[height='full'] {
     display: flex;
@@ -35,6 +33,7 @@ bolt-card-replacement {
 // card-replacement container styles
 .c-bolt-card-replacement {
   @include bolt-card-replacement-content-conditions;
+  @include bolt-card-replacement-border-reset;
   @include bolt-margin(0);
   @include bolt-padding(0);
   @include bolt-shadow('level-20', false, $bolt-card-replacement-shadow-color);
@@ -46,6 +45,7 @@ bolt-card-replacement {
   width: 100%; // Fix for IE 11 when height is set to full
   height: 100%;
   border-radius: $bolt-card-replacement-border-radius;
+  border-width: $bolt-card-replacement-border-width;
 
   // Non-themed card-replacement color settings.
   // Note: when a card-replacement is themed, the `t-bolt-` class will define the color and background-color, these settings won't be loaded.
