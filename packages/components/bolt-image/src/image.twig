@@ -104,8 +104,8 @@
 {% endif %}
 
 {% if valign and cover %}
-  {% set image_attributes = image_attributes.setAttribute("style", "object-position: 50% #{valign};") %}
-  {% set image_fallback_attributes = image_fallback_attributes.setAttribute("style", "object-position: 50% #{valign};") %}
+  {% set image_attributes = image_attributes.setAttribute("style", "object-position: #{align|default('50%')} #{valign};") %}
+  {% set image_fallback_attributes = image_fallback_attributes.setAttribute("style", "object-position: #{align|default('50%')} #{valign};") %}
 {% endif %}
 
 {% set image_tag %}
@@ -131,6 +131,7 @@
   {% if slot %}slot="{{ slot }}"{% endif %}
   {% if src %}src="{{ src }}"{% endif %}
   {% if valign %}valign="{{ valign }}"{% endif %}
+  {% if align %}align="{{ align }}"{% endif %}
   {% if srcset %}srcset="{{ srcset }}"{% endif %}
   {% if alt %}alt="{{ alt }}"{% endif %}
   {% if max_width %}max-width="{{ max_width }}"{% endif %}
