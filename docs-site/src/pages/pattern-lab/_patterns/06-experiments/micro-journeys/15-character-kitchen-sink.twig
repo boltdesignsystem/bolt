@@ -1,7 +1,12 @@
-
 {% set content %}
   <bolt-button onclick="triggerAnimateCharactersIn()">Trigger Characters Animate In</bolt-button>
 
+  <h2>Official Editor Starters</h2>
+  {{ source('@bolt-micro-journeys/starters/step-two-character-starter.html') }}
+
+  {{ source('@bolt-micro-journeys/starters/step-one-character-starter.html') }}
+
+  <h2>Test constrainBottomSlot, overlapping bottom and right content can't overlap</h2>
   <bolt-two-character-layout>
     <bolt-animate slot="character--left" in-order="1" in="fade-in" out="fade-out" out-order="1">
       <bolt-character size="medium" character-image="customer-surprise" constrain-bottom-slot>
@@ -88,6 +93,27 @@
   </div>
   <div class="u-bolt-padding-medium">
     <bolt-character
+      character-custom-url="https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/animated-bands-ltr.png"
+      size="medium"
+    >
+      <bolt-animate slot="top" idle="none">
+        <bolt-status-dialogue-bar dialogue-arrow-direction="down" icon-name="cloud">
+          <p slot="text">
+            I'm a medium character
+          </p>
+        </bolt-status-dialogue-bar>
+      </bolt-animate>
+      <bolt-animate slot="bottom" idle="none">
+        <bolt-status-dialogue-bar dialogue-arrow-direction="up" icon-name="cloud">
+          <p slot="text">
+            I'm a medium character
+          </p>
+        </bolt-status-dialogue-bar>
+      </bolt-animate>
+    </bolt-character>
+  </div>
+  <div class="u-bolt-padding-medium">
+    <bolt-character
         character-custom-url="https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/animated-bands-ltr.png"
         size="large"
     >
@@ -99,7 +125,7 @@
         </bolt-status-dialogue-bar>
       </bolt-animate>
       <bolt-animate slot="left">
-        <bolt-status-dialogue-bar icon-name="cloud" is-alert-message>
+        <bolt-status-dialogue-bar icon-name="cloud" is-alert-message box-float-direction="right">
           <p slot="text">
             Bill is due!
           </p>
@@ -121,7 +147,7 @@
         </bolt-status-dialogue-bar>
       </bolt-animate>
       <bolt-animate slot="left">
-        <bolt-status-dialogue-bar icon-name="cloud" is-alert-message>
+        <bolt-status-dialogue-bar icon-name="cloud" is-alert-message box-float-direction="right">
           <p slot="text">
             Bill is due! Lots more text. Lorem ipsum dolor sit amet, consectetur adipisicing elit.
           </p>
@@ -136,14 +162,14 @@
       size="large"
     >
       <bolt-animate slot="top" idle="none">
-        <bolt-status-dialogue-bar dialogue-arrow-direction="down" icon-name="cloud">
+        <bolt-status-dialogue-bar dialogue-arrow-direction="down" icon-name="cloud" >
           <p slot="text">
             I'm a large character
           </p>
         </bolt-status-dialogue-bar>
       </bolt-animate>
-      <bolt-animate slot="left">
-        <bolt-status-dialogue-bar icon-name="cloud" is-alert-message>
+      <bolt-animate slot="right">
+        <bolt-status-dialogue-bar icon-name="cloud" is-alert-message box-float-direction="left">
           <p slot="text">
             Bill is due!
           </p>
@@ -167,17 +193,17 @@
           <bolt-connection></bolt-connection>
         </bolt-animate>
         <bolt-animate slot="right" in="fade-in" in-duration=1000>
-          <bolt-status-dialogue-bar icon-name="cloud" is-alert-message>
+          <bolt-status-dialogue-bar icon-name="cloud" is-alert-message box-float-direction="left">
             <p slot="text">
               Bill is due!
             </p>
           </bolt-status-dialogue-bar>
-          <bolt-status-dialogue-bar icon-name="cloud" is-alert-message>
+          <bolt-status-dialogue-bar icon-name="cloud" is-alert-message box-float-direction="left">
             <p slot="text">
               Bill is due!
             </p>
           </bolt-status-dialogue-bar>
-          <bolt-status-dialogue-bar icon-name="cloud" is-alert-message>
+          <bolt-status-dialogue-bar icon-name="cloud" is-alert-message box-float-direction="left">
             <p slot="text">
               Bill is due!
             </p>
@@ -212,6 +238,11 @@
   {{ source('@bolt-micro-journeys/starters/two-characters-4.html') }}
 
   {{ source('@bolt-micro-journeys/starters/two-characters-lorem.html') }}
+
+  {{ source('@bolt-micro-journeys/starters/step-two-character-starter.html') }}
+
+  {{ source('@bolt-micro-journeys/starters/step-one-character-starter.html') }}
+
 
   <bolt-two-character-layout>
     <bolt-animate slot="character--left" in-order="1" in="fade-in" out="fade-out" out-order="1">
