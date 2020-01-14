@@ -212,14 +212,13 @@
         {% cell 'u-bolt-width-1/1 u-bolt-width-1/3@medium' %}
 
           {% include "@pl/_event-annotation.twig" with {
-            text: 'The finished page should be different from what is shown here in the following ways (consider the <a class="c-bolt-link" href="https://pega.invisionapp.com/d/main#/projects/prototypes/13581279">Invision comps</a> canonical in these respects): <br/>
+            text: 'The finished page should be different from what is shown here in the following ways (consider the <bolt-link url="https://pega.invisionapp.com/d/main#/projects/prototypes/13581279">Invision comps</bolt-link> canonical in these respects): <br/>
             * It should have an optional negative top margin to overlay the band above it<br/>
             * At mobile breakpoints, the form should overlay the whole screen'
           } only %}
 
           {% include "@pl/_event-annotation.twig" with {
-            text: 'Styling details of the form fields such as font size may appear slightly different.  That should
-            not be reason to fail this during QA - the correct sizes will be pulled in when the site is updated to use the latest 1.x version of Bolt.'
+            text: 'Styling details of the form fields such as font size may appear slightly different. That should not be reason to fail this during QA - the correct sizes will be pulled in when the site is updated to use the latest 1.x version of Bolt.'
           } only %}
 
           {% embed "@bolt/card.twig" with {
@@ -371,9 +370,7 @@
             } only %}
 
             {% include "@pl/_event-annotation.twig" with {
-              text: 'The "show more" link should open details in a modal.  Use
-                <a class="c-bolt-link" href="https://pega.invisionapp.com/d/main#/console/13581279/283315541/preview">this Invision comp</a>
-                as the source of truth for that modal.'
+              text: 'The "show more" link should open details in a modal. Use <bolt-link url="https://pega.invisionapp.com/d/main#/console/13581279/283315541/preview">this Invision comp</bolt-link> as the source of truth for that modal.'
             } only %}
 
           {% endcell %}
@@ -617,9 +614,7 @@
 
       <div class="u-bolt-text-align-center">
         {% include "@pl/_event-annotation.twig" with {
-          text: 'This section was originally designed as a simple 5-column Bolt grid .  However, because Drupal already
-          has a structure for putting partner logos within action blocks, it was redesigned to use that structure
-          instead.  It should be built using those existing structures, not rebuilt from the example below.  However,
+          text: 'This section was originally designed as a simple 5-column Bolt grid. However, because Drupal already has a structure for putting partner logos within action blocks, it was redesigned to use that structure instead. It should be built using those existing structures, not rebuilt from the example below. However,
           the example below can still serve as the source-of-truth for the finished product.'
         } only %}
       </div>
