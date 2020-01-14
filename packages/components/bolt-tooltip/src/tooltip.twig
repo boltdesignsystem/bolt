@@ -35,6 +35,31 @@
   {% endif %}
 {% endfor %}
 
+{# Deprecated #}
+{% if direction == "up" %}
+  {% set placement = "top" %}
+{% elseif direction == "down" %}
+  {% set placement = "bottom" %}
+{% endif %}
+{% if noWrap is sameas(true) or noWrap is sameas(false) %}
+  {% set noWrap = null %}
+{% endif %}
+{% if spacing %}
+  {% set spacing = null %}
+{% endif %}
+{% set toggle_name = trigger.toggle.name %}
+{% if toggle_name %}
+  {% set toggle_name = null %}
+{% endif %}
+{% set toggle_text = trigger.toggle.text %}
+{% if toggle_text %}
+  {% set toggle_text = null %}
+{% endif %}
+{% set transform = trigger.transform %}
+{% if transform %}
+  {% set transform = null %}
+{% endif %}
+
 <bolt-tooltip
   {% if outer_classes %} class="{{ outer_classes|join(' ') }}" {% endif %}
   {{ this.props|without("trigger")|without("content")|without("class") }}
@@ -42,15 +67,54 @@
 >
   <replace-with-children {% if inner_classes %} class="{{ inner_classes|join(' ') }}" {% endif %}>
     {% if trigger %}
-      <replace-with-children
-        role="button"
-        tabindex="0"
-        aria-describedby="{{ tooltip_uuid }}"
-        aria-controls="{{ tooltip_uuid }}"
-      >
-        {{ trigger }}
-      </replace-with-children>
+      {# Start adapter for old trigger data #}
+      {% if trigger.type == "text" %}
+        <replace-with-children
+          role="button"
+          tabindex="0"
+          aria-describedby="{{ tooltip_uuid }}"
+          aria-controls="{{ tooltip_uuid }}"
+        >
+          {% if trigger.icon %}
+            {% include "@bolt-components-icon/icon.twig" with trigger.icon %}
+          {% endif %}
+          {% if trigger.text %}
+            {{ trigger.text }}
+          {% endif %}
+        </replace-with-children>
+      {% elseif trigger.type == "button" %}
+        <replace-with-children
+          role="button"
+          tabindex="0"
+          aria-describedby="{{ tooltip_uuid }}"
+          aria-controls="{{ tooltip_uuid }}"
+        >
+          {% include "@bolt-components-button/button.twig" with {
+            text: trigger.text,
+            icon: {
+              name: trigger.icon.name,
+              size: trigger.icon.size,
+              position: "before",
+            },
+            style: "secondary",
+          } only %}
+        </replace-with-children>
+      {# End adapter for old trigger data #}
+
+      {# Start new trigger #}
+      {% else %}
+        <replace-with-children
+          role="button"
+          tabindex="0"
+          aria-describedby="{{ tooltip_uuid }}"
+          aria-controls="{{ tooltip_uuid }}"
+        >
+          {{ trigger }}
+        </replace-with-children>
+      {% endif %}
+      {# End new trigger #}
     {% endif %}
+
     {% if content %}
       <span slot="content">
         <replace-with-grandchildren id="{{ tooltip_uuid }}" class="{{ "#{base_class}__content" }}" role="tooltip" aria-hidden="true">

@@ -47,5 +47,17 @@ module.exports = {
       description:
         'Unique ID for the tooltip, randomly generated if not provided.',
     },
+    direction: {
+      type: 'any',
+      description: 'This prop is deprecated. Please use placement instead.',
+    },
+    noWrap: {
+      type: 'any',
+      description: 'This prop is deprecated. Please stop using it.',
+    },
+    spacing: {
+      type: 'any',
+      description: 'This prop is deprecated. Please stop using it.',
+    },
   },
 };
