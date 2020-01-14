@@ -4,6 +4,7 @@ import buttonSchema from '@bolt/components-button/button.schema';
 // @ts-ignore
 import textSchema from '@bolt/components-text/text.schema.yml';
 import iconSchema from '@bolt/components-icon/icon.schema.json';
+import listSchema from '@bolt/components-list/list.schema.yml';
 import characterSchema from '@bolt/micro-journeys/src/character.schema';
 import connectionSchema from '@bolt/micro-journeys/src/connection.schema';
 import pathwaysSchema from '@bolt/micro-journeys/src/interactive-pathways.schema';
@@ -423,6 +424,25 @@ export function setupBolt(editor) {
       'subheadline',
       'tag',
       'text-transform',
+    ],
+  });
+
+  registerBoltComponent({
+    name: 'bolt-list',
+    registerBlock: true,
+    schema: listSchema,
+    editable: true,
+    highlightable: true,
+    initialContent: ['<bolt-list-item><bolt-text>Item 1<bolt-text></bolt-list-item>'],
+    propsToTraits: [
+      'tag',
+      'display',
+      'spacing',
+      'separator',
+      'inset',
+      'align',
+      'valign',
+      'nowrap',
     ],
   });
 
