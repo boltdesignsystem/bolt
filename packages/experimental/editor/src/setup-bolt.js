@@ -699,6 +699,7 @@ export function setupBolt(editor) {
       'characterCustomUrl',
       'useIcon',
       'constrainBottomSlot',
+      'addBackgroundPadding',
     ],
     slots: {
       default: false,

@@ -54,5 +54,11 @@ module.exports = {
       description:
         'Constrain the bottom slot to the width of the character. Used when right or left slots overflow character height and encroach on bottom slot.',
     },
+    addBackgroundPadding: {
+      type: 'boolean',
+      default: false,
+      description:
+        'Add padding around the character equalling the width/height of the background. Collapses on mobile.',
+    },
   },
 };

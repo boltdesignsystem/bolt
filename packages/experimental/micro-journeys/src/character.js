@@ -83,6 +83,7 @@ class BoltCharacter extends withLitHtml {
         hasSideContent && !hasBothSideContent,
       [`${rootClass}__is-in-two-character-layout`]: this.isInTwoCharLayout,
       [`${rootClass}__has-bottom-slot-constrained`]: props.constrainBottomSlot,
+      [`${rootClass}__has-background-padding`]: props.addBackgroundPadding,
     });
 
     const image =
