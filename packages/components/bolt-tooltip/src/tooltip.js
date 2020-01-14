@@ -179,7 +179,7 @@ class BoltTooltip extends BoltElement {
 
     const classes = cx('c-bolt-tooltip', {
       [`is-expanded`]: this.open,
-      [`c-bolt-tooltip--${placement}`]: placement,
+      [`c-bolt-tooltip--${placement}`]: placement && placement !== 'auto',
       [`c-bolt-tooltip--dotted`]: this.dotted,
       [`c-bolt-tooltip--text-wrap`]: this.textContentLength > 31,
       [`c-bolt-tooltip--text-align-center`]:
