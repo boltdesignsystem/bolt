@@ -40,7 +40,7 @@ module.exports = {
         'bottom',
         'bottom-end',
       ],
-      default: 'bottom',
+      default: 'auto',
     },
     uuid: {
       type: 'string',
