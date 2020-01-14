@@ -5,6 +5,13 @@ bolt-interactive-step {
   @include bolt-padding-left(small);
   // Override generic styles from _generic-shared.scss
   margin-bottom: 0 !important;
+
+
+  > bolt-animate {
+    @include bolt-ie11-only {
+      display: block;
+    }
+  }
 }
 
 .c-bolt-interactive-step {

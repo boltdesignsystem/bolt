@@ -133,6 +133,7 @@ bolt-animate[slot="connection"] {
       display: block; // for IE 11.
     }
 
+    $ie-connection-width: 343px;
     &--connection {
       position: absolute;
       top: 50%;
@@ -142,8 +143,8 @@ bolt-animate[slot="connection"] {
       margin: auto 0;
 
       @include bolt-ie11-only {
-        width: 200px;
-        max-width: 200px;
+        width: $ie-connection-width;
+        max-width: $ie-connection-width;
       }
 
       bolt-animate {
@@ -152,7 +153,7 @@ bolt-animate[slot="connection"] {
 
       bolt-connection {
         @include bolt-ie11-only {
-          min-width: 200px !important;
+          min-width: $ie-connection-width !important;
         }
       }
     }

@@ -2,7 +2,9 @@
   <bolt-button onclick="triggerAnimateCharactersIn()">Trigger Characters Animate In</bolt-button>
 
   <h2>Official Editor Starters</h2>
-  {{ source('@bolt-micro-journeys/starters/step-two-character-starter.html') }}
+  <div class="demo__two-char-starter">
+    {{ source('@bolt-micro-journeys/starters/step-two-character-starter.html') }}
+  </div>
 
   {{ source('@bolt-micro-journeys/starters/step-one-character-starter.html') }}
 
@@ -383,3 +385,9 @@
     Array.from(document.querySelectorAll('bolt-animate')).forEach(function(e) {e.triggerAnimIn()});
   }
 </script>
+
+<style>
+  .demo__two-char-starter > bolt-animate {
+    display: block;
+  }
+</style>
