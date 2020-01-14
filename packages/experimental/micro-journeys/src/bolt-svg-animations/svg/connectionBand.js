@@ -7,12 +7,12 @@ export const connectionBand = ({ direction, theme }) => {
     translate(-80px, 0px) translate(0px, 0px); } 83.33% { transform:
     translate(80px, 0px) translate(-80px, 0px) translate(423px, 0px); } 100% {
     transform: translate(80px, 0px) translate(-80px, 0px) translate(423px, 0px);
-    } } #animatedConnectionBand { transform:
+    } } #animatedConnectionBand--${theme}--${direction} { transform:
     ${direction === 'left' ? 'scaleX(-1)' : 'scaleX(1)'}; }
-    #animatedConnectionBand * { animation-duration: 1s;
+    #animatedConnectionBand--${theme}--${direction} * { animation-duration: 1s;
     animation-iteration-count: infinite; animation-timing-function:
     cubic-bezier(0, 0, 1, 1); } #connectionGradientBG { fill:
-    url(#connectionGradient); } #connectionDirectionAnchor { transform: translate(-48px) translateZ(0); } #connectionArrows { animation-fill-mode:
+    url(#connectionGradient--${theme}); } #connectionDirectionAnchor { transform: translate(-48px) translateZ(0); } #connectionArrows { animation-fill-mode:
     backwards; animation-name: connectionArrowScroll; animation-timing-function:
     cubic-bezier(0, 0, 1, 1); }
   `;
@@ -26,12 +26,12 @@ export const connectionBand = ({ direction, theme }) => {
       <stop stop-color="#887ACC"  offset="100%"/>`;
 
   return svg`
-        <svg width="100%" viewBox="0 0 375 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="animatedConnectionBand">
+        <svg width="100%" viewBox="0 0 375 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="animatedConnectionBand--${theme}--${direction}">
       <style>
       ${authoredStyle}
       </style>
       <defs>
-        <linearGradient x1="3.0640354%" y1="50%" x2="100%" y2="50%" id="connectionGradient">
+        <linearGradient x1="3.0640354%" y1="50%" x2="100%" y2="50%" id="connectionGradient--${theme}">
          ${gradientColors}
         </linearGradient>
       </defs>
