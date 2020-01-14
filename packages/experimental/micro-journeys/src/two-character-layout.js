@@ -101,7 +101,8 @@ class BoltTwoCharacterLayout extends withLitHtml {
           `.${boltCharacterCenterClass}`,
         );
         connection.style.minWidth = `calc(
-        ${nextCharacterCenter.getBoundingClientRect().left - connection.getBoundingClientRect().left}px
+        ${nextCharacterCenter.getBoundingClientRect().left -
+          connection.getBoundingClientRect().left}px
         + (${nextCharacterCenter.getBoundingClientRect().width / 2}px))`;
         connection.renderRoot.querySelector('.c-bolt-connection__main-image');
       }
