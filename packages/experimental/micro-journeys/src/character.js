@@ -65,18 +65,23 @@ class BoltCharacter extends withLitHtml {
         }),
       );
     }, 0);
+    this.isInTwoCharLayout = !!this.closest('bolt-two-character-layout');
   }
 
   render() {
     const props = this.validateProps(this.props);
-    const hasSideContent = !!this.slots['left'] || !!this.slots['right'];
-    const hasBothSideContent = !!this.slots['left'] && !!this.slots['right'];
+    const hasRightContent = this.slots['right'] && this.slots['right'].length;
+    const hasLeftContent = this.slots['left'] && this.slots['left'].length;
+    const hasSideContent = hasLeftContent || hasRightContent;
+    const hasBothSideContent = hasLeftContent && hasRightContent;
+
     const classes = cx(rootClass, `${rootClass}--${props.size}`, {
       [`${rootClass}__has-background`]: !!this.slots['background'],
       [`${rootClass}__has-side-content`]: hasSideContent,
       [`${rootClass}__has-both-side-content`]: hasBothSideContent,
       [`${rootClass}__has-one-side-content`]:
         hasSideContent && !hasBothSideContent,
+      [`${rootClass}__is-in-two-character-layout`]: this.isInTwoCharLayout,
     });
 
     const image =
