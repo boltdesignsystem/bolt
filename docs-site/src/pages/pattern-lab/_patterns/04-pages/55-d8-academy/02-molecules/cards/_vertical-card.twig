@@ -23,7 +23,10 @@
           {% if cardTitle %}
             {% include "@bolt-components-headline/headline.twig" with {
               text: cardTitle,
-              size: "xlarge"
+              size: "xlarge",
+              attributes: {
+                style: "min-height: 58px;" 
+              }
             } only %}
           {% endif %}
         {% endcell %}
