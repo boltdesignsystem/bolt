@@ -24,6 +24,7 @@ properties:
   shapeGroup:
     type: string
     description: Add a Bolt Background Shapes group.
+    default: none
     enum:
       - A
       - B
@@ -38,10 +39,21 @@ properties:
   fill:
     type: string
     description: Type of fill to use for the overlay.
+    default: color
     enum:
       - color
       - gradient
+      - linear-gradient
       - radial-gradient
+  fill_color:
+    type: string
+    description: Color of the fill to use in the overlay.
+    default: default
+    enum:
+      - indigo
+      - pink
+      - default
+      - black
   focalPoint:
     type: object
     description: Where the opacity background should originate.
@@ -64,4 +76,4 @@ properties:
     type: array
     description: An array of objects to place in the background. Works with Image and Shape components. Video option is deprecated.
     items:
-      type: object
+      type: any
