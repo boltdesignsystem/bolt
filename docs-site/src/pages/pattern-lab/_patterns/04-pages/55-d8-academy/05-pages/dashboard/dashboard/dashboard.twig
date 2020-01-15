@@ -1,17 +1,32 @@
-{% extends "@academy/_dashboard-page-template.twig" %}
+{% extends "@academy/_default-page-template.twig" %}
 
 {% block page_content %}
+  {% embed "@academy/dashboard-page-hero.twig" %}
+    {% block heroButtonRow %}
+      {% include "@bolt-components-button-group/button-group.twig" with {
+        buttons: [
+          {
+            text: "My Favorite Training",
+            url: "#!",
+            style: "primary",
+            size: "small",
+            border_radius: "full"
+          },
+          {
+            text: "My Completed Training",
+            url: "#!",
+            style: "secondary",
+            size: "small",
+            border_radius: "full"
+          }
+        ]
+      } only %}
+    {% endblock %}
+  {% endembed %}
 
-  {# Hero #}
-  {% include "@academy/_hero--dashboard.twig" %}
-
-  {# Body Top #}
-  {% include "@academy/_hero--dashboard-buttons.twig" %}
-
-  {# Body #}
-  {% include "@academy/_section--training-set.twig" %}
-  {% include "@academy/_section--training-set.twig" with { theme: "light" } %}
-  {% include "@academy/_section--training-set.twig" %}
-  {% include "@academy/_section--training-set.twig" with { theme: "light" } %}
+  {% include "@academy/_dashboard-band--my-missions.twig" %}
+  {% include "@academy/_dashboard-band--in-progress.twig" %}
+  {% include "@academy/_dashboard-band--recommended.twig" %}
+  {% include "@academy/_dashboard-band--new-training.twig" %}
 
 {% endblock %}
