@@ -58,6 +58,7 @@ bolt-background {
 .c-bolt-background__item {
   display: block;
   display: flex;
+  position: absolute;
   width: 100%;
   height: 100%;
   overflow: hidden;
@@ -274,5 +275,26 @@ bolt-background {
 }
 
 .c-bolt-background__overlay--radial-gradient-fill {
-  background-image: radial-gradient(54% 190% at top -20% left 10%, #C910AB 10%, rgba(0,0,0,0.00) 96%);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+
+  &.c-bolt-background__overlay-fill-color--indigo {
+    background-image: radial-gradient(circle at 80vh 10vw, rgba(255,255,255,0) 0%, rgba(4,4,4,0.5) 100%, rgba(0,0,0,0.5) 100%), radial-gradient(circle at 80% 40%, #545DA6 20%, #161A3C 70%);
+    background-position: top right;
+  }
+
+  &.c-bolt-background__overlay-fill-color--pink {
+    background-image: radial-gradient(54% 190% at top -20% left 10%, #C910AB 10%, rgba(0,0,0,0.00) 96%);
+    background-position: top left;
+  }
+}
+
+.c-bolt-background__overlay--linear-gradient-fill {
+  &.c-bolt-background__overlay-fill-color--pink {
+    background: linear-gradient(350.07deg, rgba(162,4,147,0.98) 0%, #A50494 6.56%, rgba(31,38,86,0) 100%);
+  }
+
+  &.c-bolt-background__overlay-fill-color--black {
+    background: linear-gradient(0deg, rgba(0,0,0,0) 0.02%, #000000 100%);
+  }
 }
