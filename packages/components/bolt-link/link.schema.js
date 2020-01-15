@@ -1,0 +1,70 @@
+const iconSchema = require('@bolt/components-icon/icon.schema.json');
+const boltActionElementSchema = require('@bolt/element/src/BoltActionElement.schema.js');
+
+module.exports = {
+  $schema: 'http://json-schema.org/draft-04/schema#',
+  title: 'Link',
+  type: 'object',
+  required: ['size'],
+  properties: {
+    ...boltActionElementSchema,
+    ...{
+      attributes: {
+        type: 'object',
+        description:
+          'A Drupal-style attributes object with extra attributes to append to this component.',
+      },
+      display: {
+        type: 'string',
+        description:
+          'Display either an inline link or flex link (icons can hang on either side).',
+        default: 'inline',
+        enum: ['inline', 'flex'],
+      },
+      valign: {
+        type: 'string',
+        description: 'Controls the vertical alignment of text and icon.',
+        default: 'center',
+        enum: ['start', 'center'],
+      },
+      text: {
+        type: ['string', 'object', 'array'],
+        description: 'Renderable text content for the link.',
+      },
+      url: {
+        type: 'string',
+        description:
+          'Contains a URL that the link points to. This may also be passed as part of `attributes`.',
+      },
+      target: {
+        type: 'string',
+        description:
+          'Specifies where to display the linked URL. This may also be passed as part of `attributes`.',
+      },
+      icon: {
+        type: 'object',
+        description:
+          "Bolt icon. Accepts the same options as Bolt Icon Component `@bolt-components-icon` plus an additional 'position' parameter that determines placement within the button.",
+        properties: {
+          ...{
+            ...iconSchema,
+            position: {
+              type: 'string',
+              default: 'after',
+              enum: ['before', 'after'],
+            },
+          },
+        },
+      },
+      isHeadline: {
+        type: 'boolean',
+        description:
+          'Whether this link should get special headline styling treatment.',
+      },
+      href: {
+        title: 'DEPRECATED',
+        description: 'Use url instead.',
+      },
+    },
+  },
+};
