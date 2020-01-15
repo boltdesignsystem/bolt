@@ -1,0 +1,63 @@
+{% set content %}
+  {% grid "o-bolt-grid--flex o-bolt-grid--matrix" %}
+    {% if sectionTitle %}
+      {% cell "u-bolt-width-1/1 #{sectionButtons ? 'u-bolt-width-1/2@small' : 'u-bolt-width-3/4@small'} u-bolt-flex-grow" %}
+        {% include "@bolt-components-headline/headline.twig" with {
+          text: sectionTitle,
+          size: "xxlarge",
+          weight: "semibold",
+        } only %}
+      {% endcell %}
+    {% endif %}
+
+    {% if sectionButtons %}
+      {% cell "u-bolt-flex-shrink u-bolt-margin-top-auto" %}
+        {% include "@bolt-components-list/list.twig" with {
+          display: "inline",
+          tag: "ul",
+          spacing: "xxsmall",
+          items: sectionButtons
+        } %}
+      {% endcell %}
+    {% endif %}    
+  {% endgrid %}
+
+  {% if contentItems %}
+    {% if contentItems|length > 1 %}
+      {% set slides = [] %}
+      {% for item in contentItems %}
+        {# @todo: why do we do this check? #}
+        {% if item.cardTitle %}
+          {% set slides = slides|merge([include("@academy/_vertical-card.twig", item)]) %}
+        {% else %}
+          {% set slides = slides|merge([item]) %}
+        {% endif %}
+      {% endfor %}
+      {% include "@bolt-components-carousel/carousel.twig" with {
+        slides_per_view: 3,
+        nav_button_position: "outside",
+        slides: slides,
+        attributes: {
+          class: ["u-bolt-padding-top-medium"]
+        }
+      } only %}
+    {% else %}
+      {% grid "o-bolt-grid--flex o-bolt-grid--matrix u-bolt-padding-top-medium" %}
+        {% for item in contentItems %}
+          {% cell "u-bolt-width-12/12 u-bolt-width-6/12@small u-bolt-width-4/12@medium" %}
+            {% if item.cardTitle %}
+              {% include "@academy/_vertical-card.twig" with item %}
+            {% else %}
+              {{ item }}
+            {% endif %}
+          {% endcell %}
+        {% endfor %}
+      {% endgrid %}
+    {% endif %}
+  {% endif %}
+{% endset %}
+
+{% include "@bolt-components-band/band.twig" with {
+  theme: theme|default("xlight"),
+  content: content,
+} only %}
