@@ -15,11 +15,12 @@ module.exports = {
     },
     trigger: {
       type: 'any',
-      description: 'Renders the trigger of the tooltip as custom content.',
+      description: 'Renders the trigger of the tooltip.',
     },
     content: {
       type: 'any',
-      description: 'Renders the content of the tooltip.',
+      description:
+        'Renders the content of the tooltip. Plain text is preferred because this is supposed to be a simple label. For passing more complex content and actions, please use Popover instead.',
     },
     placement: {
       type: 'string',
