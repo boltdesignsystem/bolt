@@ -1,9 +1,22 @@
 @import '@bolt/core-v3.x';
 
-.pl-c-main {
-  @include bolt-padding-left(medium);
-  @include bolt-padding-right(medium);
+.pl-c-main.pl-c-main {
+  // overrides the defaults in PL for now
+  padding-left: 0;
+  padding-right: 0;
   min-height: 100vh; // so demos with overlays, etc aren't immediately chopped off
+
+  .pl-c-pattern:not([id*=pages-]) {
+    .pl-js-pattern-example {
+      @include bolt-padding-left(small);
+      @include bolt-padding-right(small);
+    }
+  }
+
+  .pl-c-pattern__header {
+    padding-right: .5rem;
+    padding-left: .5rem;
+  }
 
   // fix rendering bug when rendering pages on view all sections
   .c-bolt-site {
