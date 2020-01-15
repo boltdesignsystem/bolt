@@ -3,6 +3,37 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.14.2](https://github.com/boltdesignsystem/bolt/compare/v2.14.1...v2.14.2) (2020-01-15)
+
+
+### Bug Fixes
+
+* temp workaround to JS error after compiling with the Webpack DLL plugin ([839e174](https://github.com/boltdesignsystem/bolt/commit/839e174))
+
+
+
+
+
+# [2.14.0](https://github.com/boltdesignsystem/bolt/compare/v2.13.3...v2.14.0) (2020-01-06)
+
+
+### Bug Fixes
+
+* revert adding component internal updates — handled in a separate PR ([37882d5](https://github.com/boltdesignsystem/bolt/commit/37882d5))
+
+
+### Features
+
+* add shadow toggle helper component, applying PR [#1538](https://github.com/boltdesignsystem/bolt/issues/1538) to master ([e6921ec](https://github.com/boltdesignsystem/bolt/commit/e6921ec))
+* cherry pick component constructor / event lifecycle cleanup work related to larger work in https://github.com/boltdesignsystem/bolt/pull/1579 ([3911459](https://github.com/boltdesignsystem/bolt/commit/3911459))
+* cherry pick component constructor / event lifecycle cleanup work related to larger work in https://github.com/boltdesignsystem/bolt/pull/1579 ([43d1878](https://github.com/boltdesignsystem/bolt/commit/43d1878))
+* migrate over the customElements.define-related replacement + component dependency updates from https://github.com/boltdesignsystem/bolt/pull/1579 ([3b6f529](https://github.com/boltdesignsystem/bolt/commit/3b6f529))
+* port over Core base class / Bolt Element updates from https://github.com/boltdesignsystem/bolt/pull/1579 ([3e6dfd5](https://github.com/boltdesignsystem/bolt/commit/3e6dfd5))
+
+
+
+
+
 # [2.13.0](https://github.com/boltdesignsystem/bolt/compare/v2.12.1...v2.13.0) (2019-12-13)
 
 **Note:** Version bump only for package @bolt/element

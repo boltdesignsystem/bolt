@@ -61,6 +61,10 @@ $bolt-link-spacing: 'xxsmall';
   }
 }
 
+.c-bolt-link--display-block {
+  display: block;
+}
+
 .c-bolt-link__icon,
 .c-bolt-link__text {
   @include bolt-padding-left(#{$bolt-link-spacing});
@@ -68,6 +72,7 @@ $bolt-link-spacing: 'xxsmall';
 
 .c-bolt-link__text {
   display: inline;
+  max-width: 100%; // required so the Link doesn't overflow parent containers w/ a max-width specified
 }
 
 // Changes the underline styles when a link is also a headline, chevrons are added to headline links by default.

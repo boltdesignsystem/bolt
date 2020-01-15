@@ -35,6 +35,7 @@
 {% set cacheBuster = bolt.data.config.prod ? "?v=" ~ bolt.data.fullManifest.version : "" %}
 
 {% set htmlClasses = [
+  bolt.data.config.prod ? '' : 'js-fonts-loaded',
   currentUrl == 'index.html' ? 'u-bolt-min-height-screen u-bolt-flex' : ''
 ] %}
 
