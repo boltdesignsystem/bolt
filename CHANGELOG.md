@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.14.2](https://github.com/boltdesignsystem/bolt/compare/v2.14.1...v2.14.2) (2020-01-15)
+
+
+### Bug Fixes
+
+* temp workaround to JS error after compiling with the Webpack DLL plugin ([839e174](https://github.com/boltdesignsystem/bolt/commit/839e174))
+
+
+
+
+
 ## [2.14.1](https://github.com/boltdesignsystem/bolt/compare/v2.14.0...v2.14.1) (2020-01-09)
 
 
