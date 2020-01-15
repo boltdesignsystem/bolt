@@ -7,6 +7,20 @@ module.exports = {
   title: 'Tooltip',
   description: 'Floating label that briefly describes an element.',
   type: 'object',
+  required: ['trigger', 'content'],
+  not: {
+    anyOf: [
+      {
+        required: ['direction'],
+      },
+      {
+        required: ['noWrap'],
+      },
+      {
+        required: ['spacing'],
+      },
+    ],
+  },
   properties: {
     attributes: {
       type: 'object',
@@ -50,14 +64,17 @@ module.exports = {
     },
     direction: {
       type: 'any',
+      title: 'DEPRECATED',
       description: 'This prop is deprecated. Please use placement instead.',
     },
     noWrap: {
       type: 'any',
+      title: 'DEPRECATED',
       description: 'This prop is deprecated. Please stop using it.',
     },
     spacing: {
       type: 'any',
+      title: 'DEPRECATED',
       description: 'This prop is deprecated. Please stop using it.',
     },
   },
