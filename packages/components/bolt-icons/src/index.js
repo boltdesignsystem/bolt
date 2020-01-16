@@ -136,5 +136,4 @@ export * from './icons/warning';
 export * from './icons/watch';
 export * from './icons/workforce-intelligence';
 export * from './icons/world-open';
-export * from './icons/yeti';
 export * from './icons/youtube-solid';

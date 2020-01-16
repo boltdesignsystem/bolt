@@ -250,6 +250,7 @@ function init() {
           break;
         }
         case EDITOR_STATES.OPEN: {
+          editor.isSaving = true;
           const handleEditorSave =
             // @ts-ignore
             window.__handleEditorSave || exampleHandleEditorSave;
@@ -275,6 +276,7 @@ function init() {
             window.alert(msg);
             trigger.innerText = 'Save & Close';
           }
+          editor.isSaving = false;
           break;
         }
       }

@@ -3,6 +3,36 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.14.2](https://github.com/boltdesignsystem/bolt/compare/v2.14.1...v2.14.2) (2020-01-15)
+
+
+### Bug Fixes
+
+* temp workaround to JS error after compiling with the Webpack DLL plugin ([839e174](https://github.com/boltdesignsystem/bolt/commit/839e174))
+
+
+
+
+
+## [2.14.1](https://github.com/boltdesignsystem/bolt/compare/v2.14.0...v2.14.1) (2020-01-09)
+
+
+### Bug Fixes
+
+* minor UIKit prod CSS fixes ([f8a984c](https://github.com/boltdesignsystem/bolt/commit/f8a984c))
+* **editor:** trigger setupSlots after new slots are added to component via editor ([2a7b5f9](https://github.com/boltdesignsystem/bolt/commit/2a7b5f9))
+* **micro-journeys:** fix two-char layout animations in PL ([219a4d3](https://github.com/boltdesignsystem/bolt/commit/219a4d3))
+* **micro-journeys:** remove empty bolt-animates and their slots on component remove ([f9ed092](https://github.com/boltdesignsystem/bolt/commit/f9ed092))
+
+
+### Features
+
+* **editor:** refresh two-character-layout content button ([7480423](https://github.com/boltdesignsystem/bolt/commit/7480423))
+
+
+
+
+
 # [2.14.0](https://github.com/boltdesignsystem/bolt/compare/v2.13.3...v2.14.0) (2020-01-06)
 
 
