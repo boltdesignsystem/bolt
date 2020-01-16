@@ -426,6 +426,29 @@ export function enableEditor({ space, uiWrapper, config }) {
     render(content, editorSlots.slotControls);
   }
 
+  /**
+   * Add prop schema descriptions underneath traits on select if not present.
+   *
+   * @param {grapesjs.Component} model
+   * @return {void}
+   */
+  editor.on('component:selected', model => {
+    model.attributes.traits.models.forEach(trait => {
+      if (trait.attributes.description) {
+        // setTimeout because view hasn't yet been created for trait in component:selected.
+        setTimeout(() => {
+          const traitDescClass = 'trait-description';
+          if (trait.view.el.lastElementChild.getAttribute('class') !== traitDescClass) {
+            const template = document.createElement('template');
+            template.innerHTML = `<div class="${traitDescClass}" style="font-size: smaller"><i>${trait.attributes.description}</i></div>`;
+            trait.view.el.appendChild(template.content.firstChild);
+          }
+        }, 0);
+      }
+
+    });
+  });
+
   editor.on('component:selected', (/** @type {grapesjs.Component} */ model) => {
     const name = model.getName().toLowerCase();
     const slotControls = model.getSlotControls && model.getSlotControls();
