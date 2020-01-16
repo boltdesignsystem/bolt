@@ -157,8 +157,8 @@ class BoltTooltip extends BoltElement {
     this.content = this.renderRoot.querySelector('.c-bolt-tooltip__content');
 
     if (this.tooltip && this.content) {
-      this.popper = new Popper(this.tooltip, this.content, {
-        placement: this.placement || 'bottom',
+      this.popper = createPopper(this.tooltip, this.content, {
+        placement: this.placement || schema.properties.placement.default,
       });
     }
   }
