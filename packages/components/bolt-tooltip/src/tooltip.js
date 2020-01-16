@@ -1,7 +1,7 @@
 import { customElement, BoltElement, html, unsafeCSS } from '@bolt/element';
 import { isFocusable, debounce } from '@bolt/core-v3.x/utils';
 import classNames from 'classnames/dedupe';
-import Popper from 'popper.js';
+import { createPopper } from '@popperjs/core';
 import tooltipStyles from './tooltip.scss';
 import schema from '../tooltip.schema';
 
