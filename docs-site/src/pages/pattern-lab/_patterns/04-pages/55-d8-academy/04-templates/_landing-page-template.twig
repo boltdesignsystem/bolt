@@ -1,5 +1,5 @@
-{% set main_content = block("page_content") %}
-{% set _background = block("page_background") %}
+{% set mainContentBlock = block("page_content") %}
+{% set backgroundBlock = block("page_background") %}
 
 <div class="c-bolt-site">
   {% block global_header %}
@@ -12,7 +12,7 @@
       theme: pageTheme | default("xxdark"),
       size: "large",
       valign: "start",
-      content: main_content,
+      content: mainContentBlock,
       background: {
         overlay: "disabled",
         contentItems: [
@@ -44,8 +44,8 @@
       }
     } %}
       {% block band_background %}
-        {% if _background is not empty %}
-          {{ _background }}
+        {% if backgroundBlock is not empty %}
+          {{ backgroundBlock }}
         {% else %}
           {{ parent() }}
         {% endif %}
