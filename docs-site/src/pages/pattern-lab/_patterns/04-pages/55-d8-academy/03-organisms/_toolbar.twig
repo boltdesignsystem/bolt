@@ -39,40 +39,9 @@
       {% endcell %}
 
       {% cell %}
-        {% include "@bolt-components-list/list.twig" with {
-          display: "flex",
-          align: "end",
-          spacing: "xsmall",
-          items: [
-            include("@bolt-components-button/button.twig", {
-              text: "Share",
-              size: "small",
-              style: "secondary",
-              iconOnly: true,
-              icon: {
-                name: "share",
-              }
-            }),
-            include("@bolt-components-button/button.twig", {
-              text: "Star",
-              size: "small",
-              style: "secondary",
-              iconOnly: true,
-              icon: {
-                name: "star-solid",
-              }
-            }),
-            include("@bolt-components-button/button.twig", {
-              text: "Add",
-              size: "small",
-              style: "secondary",
-              iconOnly: true,
-              icon: {
-                name: "add-open",
-              }
-            })
-          ]
-        } only %}
+        {% include "@academy/_toolbar-actions.twig" with {
+          downloadButton: true
+        } %}
       {% endcell %}
     {% endgrid %}
   {% endblock %}
