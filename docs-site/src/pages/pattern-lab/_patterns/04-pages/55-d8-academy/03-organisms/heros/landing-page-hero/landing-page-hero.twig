@@ -15,119 +15,23 @@
   {% block band_content %}
     {% grid "o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--matrix u-bolt-margin-bottom-small u-bolt-margin-bottom-medium@large" %}
       {% cell "u-bolt-width-12/12 u-bolt-width-10/12@small" %}
-
-        {% if heroSubTitle %}
-          {% include "@bolt-components-headline/eyebrow.twig" with {
-            text: heroSubTitle,
-            weight: "bold",
-            size: "small",
-          } only %}
-        {% endif %}
-
-        {% if heroTitle %}
-          {% include "@bolt-components-headline/headline.twig" with {
-            size: "xxxlarge",
-            text: heroTitle,
-            attributes: {
-              class: "u-bolt-margin-bottom-medium",
-            }
-          } only %}
-        {% endif %}
-
-
-        {#
-          array of metaItems
-
-          docroot/themes/custom/pegaacademy_theme/templates/field/field--node--pega-content-stats.html.twig
-
-          TODO: reconcile with ^
-        #}
-
-        {% if heroMetaItems %}
-          {% include "@bolt-components-list/list.twig" with {
-            display: "inline",
-            separator: "solid",
-            attributes: {
-              class: [
-                "u-bolt-negative-margin-top-xsmall",
-                "u-bolt-margin-bottom-small",
-              ]
-            },
-            items: heroMetaItems | map(item => item.text ? include("@bolt-components-headline/text.twig", {
-              text: item.text,
-              size: "small",
-              weight: "bold",
-            }, with_context = false) : item )
-          } only %}
-              {# include("@academy/_custom-select.twig", with_context = false), #}
-        {% endif %}
-        {#
-          TODO: how does data get passed into the custom select here ^
-        #}
-    {% endcell %}
-
-    {% cell "u-bolt-width-12/12" %}
-      {% grid "o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--matrix u-bolt-margin-bottom-small u-bolt-margin-bottom-medium@large" %}
-
-        {% cell "u-bolt-width-1/1 #{heroTopicList ? 'u-bolt-width-1/2@medium' : 'u-bolt-width-10/12@small'}" %}
-            {% if heroDescription %}
-              {% include "@bolt-components-headline/text.twig" with {
-                text: heroDescription,
-                attributes: {
-                  class: [
-                    "u-bolt-line-length-optimal"
-                  ]
-                }
-              } only %}
-            {% endif %}
-
-            {# array of tags - already rendered chips? render array?
-
-              docroot/themes/custom/pegaacademy_theme/templates/field/field--node--pega-content-tags.html.twig
-            #}
-
-            {% if heroTags %}
-              {% include "@bolt-components-list/list.twig" with {
-                display: "inline",
-                attributes: {
-                  class: [
-                    "u-bolt-negative-margin-top-xsmall",
-                  ]
-                },
-                items: heroTags | map(item => item.text ? include("@bolt-components-chip/chip.twig", {
-                  text: item.text,
-                  url: item.url | default(false),
-                  size: "xsmall",
-                }, with_context = false) : item )
-              } only %}
-                  {# include("@academy/_custom-select.twig", with_context = false), #}
-            {% endif %}
-
-            {% if heroSupplementalContent %}
-              {{ heroSupplementalContent }}
-            {% endif %}
-
-            {# {% include "@bolt/flag.twig" with {
-              valign: "middle",
-              figure: {
-                content: include("@bolt-components-icon/icon.twig", { name: "launchpad", background: "circle", size: "xlarge" }, with_context = false),
-              },
-              content: include("@bolt-components-headline/text.twig", {
-                size: "small",
-                weight: "semibold",
-                text: "Achievement <br>Badge Awarded",
-              }, with_context = false),
-            } only %} #}
-          {% endcell %}
-
-          {% if heroTopicList %}
-            {% cell "u-bolt-width-1/1 u-bolt-width-1/2@medium" %}
-              {{ heroTopicList }}
-            {% endcell %}
-          {% endif %}
-        {% endgrid %}
+        {% include "@academy/_hero-primary-content.twig" %}
       {% endcell %}
 
+      {% cell "u-bolt-width-12/12" %}
+        {% grid "o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--matrix u-bolt-margin-bottom-small u-bolt-margin-bottom-medium@large" %}
+          {% cell "u-bolt-width-1/1 #{heroTopicList ? 'u-bolt-width-1/2@medium' : 'u-bolt-width-10/12@small'}" %}
+            {% include "@academy/_hero-secondary-content.twig" %}
+          {% endcell %}
+
+            {% if heroTopicList %}
+              {% cell "u-bolt-width-1/1 u-bolt-width-1/2@medium" %}
+                {{ heroTopicList }}
+              {% endcell %}
+            {% endif %}
+          {% endgrid %}
+        {% endcell %}
     {% endgrid %}
+
   {% endblock %}
 {% endembed %}

@@ -1,0 +1,48 @@
+{% if heroSubTitle %}
+  {% include "@bolt-components-headline/eyebrow.twig" with {
+    text: heroSubTitle,
+    weight: "bold",
+    size: "small",
+  } only %}
+{% endif %}
+
+{% if heroTitle %}
+  {% include "@bolt-components-headline/headline.twig" with {
+    size: "xxxlarge",
+    text: heroTitle,
+    attributes: {
+      class: "u-bolt-margin-bottom-medium",
+    }
+  } only %}
+{% endif %}
+
+
+{#
+  array of metaItems
+
+  docroot/themes/custom/pegaacademy_theme/templates/field/field--node--pega-content-stats.html.twig
+
+  TODO: reconcile with ^
+#}
+
+{% if heroMetaItems %}
+  {% include "@bolt-components-list/list.twig" with {
+    display: "inline",
+    separator: "solid",
+    attributes: {
+      class: [
+        "u-bolt-negative-margin-top-xsmall",
+        "u-bolt-margin-bottom-small",
+      ]
+    },
+    items: heroMetaItems | map(item => item.text ? include("@bolt-components-headline/text.twig", {
+      text: item.text,
+      size: "small",
+      weight: "bold",
+    }, with_context = false) : item )
+  } only %}
+      {# include("@academy/_custom-select.twig", with_context = false), #}
+{% endif %}
+{#
+  TODO: how does data get passed into the custom select here ^
+#}

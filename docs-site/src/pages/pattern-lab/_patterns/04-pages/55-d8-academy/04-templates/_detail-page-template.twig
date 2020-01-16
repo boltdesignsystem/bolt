@@ -1,0 +1,39 @@
+{% set mainContentBlock %}
+  {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
+    {% cell "u-bolt-width-1/1 u-bolt-width-8/12@medium" %}
+      {% include "@academy/detail-page-hero.twig" %}
+      {{ block("page_content") }}
+    {% endcell %}
+  {% endgrid %}
+{% endset %}
+{% set backgroundBlock = block("page_background") %}
+
+<div class="c-bolt-site">
+  {% block global_header %}
+    {% include "@bolt/page-header.twig" %}
+  {% endblock %}
+
+  <main class="c-bolt-site__content u-bolt-flex u-bolt-flex-col">
+    {% include "@academy/_toolbar.twig" with {
+      toolbarGradient: "orange"
+    } %}
+    {% include "@bolt-components-band/band.twig" with {
+      theme: "xlight",
+      size: "large",
+      valign: "start",
+      content: mainContentBlock,
+      inner_attributes: {
+        class: [
+          "u-bolt-padding-top-none"
+        ]
+      }
+    } %}
+  </main>
+  <div class="c-bolt-site__footer c-bolt-page-footer">
+    <div class="o-bolt-wrapper">
+      {% block global_footer %}
+        {% include "@bolt/page-footer.twig" %}
+      {% endblock %}
+    </div>
+  </div>
+</div>
