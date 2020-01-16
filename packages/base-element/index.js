@@ -1,3 +1,5 @@
+// temp workaround to auto-injected polyfills not getting bundled when Webpack DLL plugin is run outside of the Bolt Build tools
+import '@bolt/polyfills';
 export { BoltElement } from './src/BoltElement';
 export { BoltActionElement } from './src/BoltActionElement';
 export { Slotify } from './src/Slotify';

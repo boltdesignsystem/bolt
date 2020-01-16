@@ -31,7 +31,7 @@
   overflow: hidden;
 }
 
-$bolt-grid-border-width: 1px;
+$bolt-grid-border-width: 2px;
 $bolt-grid-border-color: bolt-theme(border, 0.2);
 
 .o-bolt-grid--matrix.o-bolt-grid--border {
@@ -57,8 +57,6 @@ $bolt-grid-border-color: bolt-theme(border, 0.2);
   }
 }
 
-
-
 .o-bolt-grid--rev {
   direction: rtl;
 
@@ -66,7 +64,6 @@ $bolt-grid-border-color: bolt-theme(border, 0.2);
     direction: ltr;
   }
 }
-
 
 /**
  * Gutterless grids have all the properties of regular grids, minus any spacing.
@@ -93,7 +90,6 @@ $bolt-grid-border-color: bolt-theme(border, 0.2);
   }
 }
 
-
 /**
  * Align grid cells vertically (`.o-bolt-grid--middle` or `.o-bolt-grid--bottom`). Extends
  * `.o-bolt-grid`.
@@ -117,7 +113,6 @@ $bolt-grid-border-color: bolt-theme(border, 0.2);
     vertical-align: bottom;
   }
 }
-
 
 /**
  * Align the entire grid to the right. Extends `.grid`.
@@ -145,9 +140,6 @@ $bolt-grid-border-color: bolt-theme(border, 0.2);
   align-self: flex-end;
   vertical-align: bottom;
 }
-
-
-
 
 // Grid gutter sizes
 // .o-bolt-grid--xsmall {
@@ -195,7 +187,6 @@ $bolt-grid-border-color: bolt-theme(border, 0.2);
   }
 }
 
-
 // /**
 //  * Extra extra wide gutters
 //  */
@@ -220,18 +211,14 @@ $bolt-grid-border-color: bolt-theme(border, 0.2);
 .o-bolt-grid--flex {
   display: flex;
   flex-flow: row wrap;
-
 }
 
-
-
 .o-bolt-grid--matrix {
-  &,
-  &.o-bolt-grid--medium {
-    margin-bottom: bolt-v-spacing(medium) * -1;
+  &.o-bolt-grid--xsmall {
+    margin-bottom: bolt-v-spacing(xsmall) * -1;
 
     > .o-bolt-grid__cell {
-      padding-bottom: bolt-v-spacing(medium);
+      padding-bottom: bolt-v-spacing(xsmall);
     }
   }
 
@@ -243,11 +230,21 @@ $bolt-grid-border-color: bolt-theme(border, 0.2);
     }
   }
 
-  &.o-bolt-grid--xsmall {
-    margin-bottom: bolt-v-spacing(xsmall) * -1;
+  &,
+  &.o-bolt-grid--medium {
+    margin-bottom: bolt-v-spacing(medium) * -1;
 
     > .o-bolt-grid__cell {
-      padding-bottom: bolt-v-spacing(xsmall);
+      padding-bottom: bolt-v-spacing(medium);
+    }
+  }
+
+  &,
+  &.o-bolt-grid--large {
+    margin-bottom: bolt-v-spacing(large) * -1;
+
+    > .o-bolt-grid__cell {
+      padding-bottom: bolt-v-spacing(large);
     }
   }
 }

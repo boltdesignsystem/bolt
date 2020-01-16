@@ -7,13 +7,13 @@
         size: "medium",
         text: "After completing this module, you should be able to:",
         attributes: {
-          class: "u-bolt-margin-bottom-small",
+          class: [
+            "u-bolt-margin-top-large",
+            "u-bolt-margin-bottom-small",
+          ]
         }
       } only %}
       {% include "@bolt-components-ul/ul.twig" with {
-        attributes: {
-          class: "u-bolt-margin-bottom-large",
-        },
         items: [
           "Explain how data types group related fields to model a single entity",
           "Explain how data types group related fields to model a single entity",
@@ -25,7 +25,10 @@
         size: "medium",
         text: "This module is available in the following Missions:",
         attributes: {
-          class: "u-bolt-margin-bottom-small",
+          class: [
+            "u-bolt-margin-top-large",
+            "u-bolt-margin-bottom-small",
+          ]
         }
       } only %}
       {% include "@bolt-components-list/list.twig" with {

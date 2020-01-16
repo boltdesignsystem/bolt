@@ -183,6 +183,23 @@ class BoltTwoCharacterLayout extends withLitHtml {
     return isEqualized;
   };
 
+  setCharactersToNotEqualized = () => {
+    this.characters.forEach(character => {
+      character[equalizeRelativeHeightsKey] = false;
+    });
+  };
+
+  triggerLayoutRecalculate = () => {
+    if (
+      this.closest('bolt-interactive-step')._isActiveStep &&
+      this.closest('bolt-interactive-pathway').isActivePathway
+    ) {
+      this.setCharactersToNotEqualized();
+      this.triggerUpdate();
+      this.triggerAnimIns();
+    }
+  };
+
   render() {
     const props = this.validateProps(this.props);
     const classes = cx('c-bolt-two-character-layout', {
