@@ -1,5 +1,3 @@
-import { supportsCSSVars } from '@bolt/core/utils';
-import classNames from 'classnames/dedupe';
 import {
   customElement,
   BoltElement,
@@ -8,6 +6,7 @@ import {
   unsafeCSS,
   ifDefined,
 } from '@bolt/element';
+import classNames from 'classnames/dedupe';
 import { withContext } from 'wc-context';
 import menuStyles from './_menu-item.scss';
 import schema from '../menu.schema';
@@ -37,7 +36,6 @@ class BoltMenuItem extends withContext(BoltElement) {
 
   constructor() {
     super();
-    this.noCssVars = supportsCSSVars ? false : true;
   }
 
   static get styles() {

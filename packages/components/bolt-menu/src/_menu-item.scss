@@ -69,7 +69,8 @@
     background-color: bolt-theme(link, 0.1);
   }
 
-  @at-root bolt-trigger:focus & {
+  /* This doesn't work in IE. Oh well. */
+  @at-root bolt-trigger:focus-within & {
     color: bolt-theme(link);
 
     &:before {
