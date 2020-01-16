@@ -16,8 +16,11 @@
 
 .c-bolt-banner {
   @include bolt-padding(medium, squished);
-  @include bolt-full-bleed;
   display: block;
+
+  &--full {
+    @include bolt-full-bleed; // @todo: `box-sizing: border-box` is not being set, this mixin did not work as expected.
+  }
 }
 
 /**
