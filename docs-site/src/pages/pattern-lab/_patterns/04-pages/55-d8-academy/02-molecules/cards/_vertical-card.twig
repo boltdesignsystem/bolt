@@ -65,7 +65,15 @@
   {% endblock %}
 
   {% block actions %}
-    {# Placeholder for status items #}
+    {% embed "@bolt-components-card-replacement/_card-replacement-actions.twig" %}
+      {% block action_items %}
+        {% if cardStatusItems %}
+          {% for item in cardStatusItems %}
+            {% include "@bolt-components-card-replacement/_card-replacement-action-item.twig" with { item: item } %}
+          {% endfor %}
+        {% endif %}
+      {% endblock %}
+    {% endembed %}
   {% endblock %}
 
 {% endembed %}
