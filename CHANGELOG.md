@@ -3,6 +3,149 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.14.2](https://github.com/boltdesignsystem/bolt/compare/v2.14.1...v2.14.2) (2020-01-15)
+
+
+### Bug Fixes
+
+* temp workaround to JS error after compiling with the Webpack DLL plugin ([839e174](https://github.com/boltdesignsystem/bolt/commit/839e174))
+
+
+
+
+
+## [2.14.1](https://github.com/boltdesignsystem/bolt/compare/v2.14.0...v2.14.1) (2020-01-09)
+
+
+### Bug Fixes
+
+* minor UIKit prod CSS fixes ([f8a984c](https://github.com/boltdesignsystem/bolt/commit/f8a984c))
+* **editor:** trigger setupSlots after new slots are added to component via editor ([2a7b5f9](https://github.com/boltdesignsystem/bolt/commit/2a7b5f9))
+* **micro-journeys:** fix two-char layout animations in PL ([219a4d3](https://github.com/boltdesignsystem/bolt/commit/219a4d3))
+* **micro-journeys:** remove empty bolt-animates and their slots on component remove ([f9ed092](https://github.com/boltdesignsystem/bolt/commit/f9ed092))
+
+
+### Features
+
+* **editor:** refresh two-character-layout content button ([7480423](https://github.com/boltdesignsystem/bolt/commit/7480423))
+
+
+
+
+
+# [2.14.0](https://github.com/boltdesignsystem/bolt/compare/v2.13.3...v2.14.0) (2020-01-06)
+
+
+### Bug Fixes
+
+* add adapter to the old [@define](https://github.com/define) decorator so old components using it outside of the monorepo continue to work as expected ([eea8e77](https://github.com/boltdesignsystem/bolt/commit/eea8e77))
+* add copy plugin to modern JS build so that copy task runs in local dev mode ([4390e8d](https://github.com/boltdesignsystem/bolt/commit/4390e8d))
+* add missing file ([7a95d50](https://github.com/boltdesignsystem/bolt/commit/7a95d50))
+* cleaning unneeded code from PR ([9acee89](https://github.com/boltdesignsystem/bolt/commit/9acee89))
+* defer implementing context-specific changes until the next round of updates ([384dfd3](https://github.com/boltdesignsystem/bolt/commit/384dfd3))
+* don't reference @bolt/core-3.x in Drupal Lab until after the transition package ships ([e7aaf79](https://github.com/boltdesignsystem/bolt/commit/e7aaf79))
+* eslint errors not fixable with --fix ([fcaa7a3](https://github.com/boltdesignsystem/bolt/commit/fcaa7a3))
+* fix logic in condition ([f37c8cb](https://github.com/boltdesignsystem/bolt/commit/f37c8cb))
+* fix recent changes to auto-release.js ([e294ccc](https://github.com/boltdesignsystem/bolt/commit/e294ccc))
+* flatten Button component Twig to speed up SSR rendering; update snapshots ([ed12056](https://github.com/boltdesignsystem/bolt/commit/ed12056))
+* IE 11-specific layout fix ([952386a](https://github.com/boltdesignsystem/bolt/commit/952386a))
+* jest test ([1cd931d](https://github.com/boltdesignsystem/bolt/commit/1cd931d))
+* linting ([f204792](https://github.com/boltdesignsystem/bolt/commit/f204792))
+* minor CSS fixes per PR feedback ([74ed583](https://github.com/boltdesignsystem/bolt/commit/74ed583))
+* minor eslint fix ([f83e951](https://github.com/boltdesignsystem/bolt/commit/f83e951))
+* minor Nav fixes for Firefox + IE 11 ([18bfca7](https://github.com/boltdesignsystem/bolt/commit/18bfca7))
+* move ES Modules JS to footer to fix rendering quirks on extremely heavy pages (ex. the PL View All page) ([86fff24](https://github.com/boltdesignsystem/bolt/commit/86fff24))
+* move micro-journey util + temporarily ignore Prettier rules on new Card tests ([51457af](https://github.com/boltdesignsystem/bolt/commit/51457af))
+* oops i forgot a class ([d4b1865](https://github.com/boltdesignsystem/bolt/commit/d4b1865))
+* remove auto patch no longer needed ([7ecbbe6](https://github.com/boltdesignsystem/bolt/commit/7ecbbe6))
+* restore Text demo file mistakenly removed ([640e68a](https://github.com/boltdesignsystem/bolt/commit/640e68a))
+* revert adding component internal updates — handled in a separate PR ([37882d5](https://github.com/boltdesignsystem/bolt/commit/37882d5))
+* set version to 0.0.0 ([9b4e95a](https://github.com/boltdesignsystem/bolt/commit/9b4e95a))
+* temporarily disable text compression warning with lighthouse tests ([1e0a8d0](https://github.com/boltdesignsystem/bolt/commit/1e0a8d0))
+* temporarily skip auto-linting / fixing md files till rules get updated ([14f9d93](https://github.com/boltdesignsystem/bolt/commit/14f9d93))
+* update @bolt/core-v3.x references to v2.13.0 ([28d7bcb](https://github.com/boltdesignsystem/bolt/commit/28d7bcb))
+* update critical path assets to optimize for SSR initial rendering ([5095d82](https://github.com/boltdesignsystem/bolt/commit/5095d82))
+* update demos + tests ([43912d4](https://github.com/boltdesignsystem/bolt/commit/43912d4))
+* update dependencies to latest versions ([5d753b4](https://github.com/boltdesignsystem/bolt/commit/5d753b4))
+* update folder name of critical path polyfills ([e6984f9](https://github.com/boltdesignsystem/bolt/commit/e6984f9))
+* update Jest snapshot for Card ([0eca083](https://github.com/boltdesignsystem/bolt/commit/0eca083))
+* update lighthouse CI config ([b6a02d6](https://github.com/boltdesignsystem/bolt/commit/b6a02d6))
+* update lighthouse config ([b225a37](https://github.com/boltdesignsystem/bolt/commit/b225a37))
+* update micro journey components to keep using the "is" static keyword due to internal logic using it ([d5af731](https://github.com/boltdesignsystem/bolt/commit/d5af731))
+* update Nightwatch test URL used to verify injected Cards + Images rendering as expected ([f657058](https://github.com/boltdesignsystem/bolt/commit/f657058))
+* update package.json ([e2db4ec](https://github.com/boltdesignsystem/bolt/commit/e2db4ec))
+* update read-only Git repo script with updated package paths ([6a59347](https://github.com/boltdesignsystem/bolt/commit/6a59347))
+* update snaps ([15dcd23](https://github.com/boltdesignsystem/bolt/commit/15dcd23))
+* update snapshots + Nightwatch test ([5e267ad](https://github.com/boltdesignsystem/bolt/commit/5e267ad))
+* update testing-helpers package path ([9b431b6](https://github.com/boltdesignsystem/bolt/commit/9b431b6))
+* update tsconfig path ([af61794](https://github.com/boltdesignsystem/bolt/commit/af61794))
+* update version in composer.json ([8285d44](https://github.com/boltdesignsystem/bolt/commit/8285d44))
+* upgrade Auto to the latest version; fixes issue with Canary releases not getting published ([48df8d5](https://github.com/boltdesignsystem/bolt/commit/48df8d5))
+* **micro-journeys:** black connection band in Safari ([555a6d1](https://github.com/boltdesignsystem/bolt/commit/555a6d1))
+* **micro-journeys:** broaden desktop width of status bar ([362c537](https://github.com/boltdesignsystem/bolt/commit/362c537))
+
+
+### Features
+
+* add Lighthouse CI to audit perf results ([347257e](https://github.com/boltdesignsystem/bolt/commit/347257e))
+* add new browserslist config file for ES Module supporting browsers ([e0cc2fd](https://github.com/boltdesignsystem/bolt/commit/e0cc2fd))
+* add shadow toggle helper component, applying PR [#1538](https://github.com/boltdesignsystem/bolt/issues/1538) to master ([e6921ec](https://github.com/boltdesignsystem/bolt/commit/e6921ec))
+* auto-format / order package.json files when changes are made ([7b6bc48](https://github.com/boltdesignsystem/bolt/commit/7b6bc48))
+* cherry pick component constructor / event lifecycle cleanup work related to larger work in https://github.com/boltdesignsystem/bolt/pull/1579 ([3911459](https://github.com/boltdesignsystem/bolt/commit/3911459))
+* cherry pick component constructor / event lifecycle cleanup work related to larger work in https://github.com/boltdesignsystem/bolt/pull/1579 ([43d1878](https://github.com/boltdesignsystem/bolt/commit/43d1878))
+* manually port over build tool-specific changes + twig template update from https://github.com/boltdesignsystem/bolt/pull/1579 ([8e01533](https://github.com/boltdesignsystem/bolt/commit/8e01533))
+* migrate over the customElements.define-related replacement + component dependency updates from https://github.com/boltdesignsystem/bolt/pull/1579 ([3b6f529](https://github.com/boltdesignsystem/bolt/commit/3b6f529))
+* move from manual adding critical font to using generated json file ([db69276](https://github.com/boltdesignsystem/bolt/commit/db69276))
+* optimize site <head> perf ([8d8981a](https://github.com/boltdesignsystem/bolt/commit/8d8981a))
+* port Link over to LitElement + using new conventions from https://github.com/boltdesignsystem/bolt/pull/1579 ([962b073](https://github.com/boltdesignsystem/bolt/commit/962b073))
+* port over Core base class / Bolt Element updates from https://github.com/boltdesignsystem/bolt/pull/1579 ([3e6dfd5](https://github.com/boltdesignsystem/bolt/commit/3e6dfd5))
+* port over polyfill updates from https://github.com/boltdesignsystem/bolt/pull/1579 ([720113e](https://github.com/boltdesignsystem/bolt/commit/720113e))
+* re-enable esmodule JS for testing server + fix lint issue with link ([90b4e91](https://github.com/boltdesignsystem/bolt/commit/90b4e91))
+* speed up local dev builds of the new es-module work ([8849452](https://github.com/boltdesignsystem/bolt/commit/8849452))
+* test lint-staged on carousel Sass ([6b52aa9](https://github.com/boltdesignsystem/bolt/commit/6b52aa9))
+* update commit hooks to automatically lint + format files as we go along ([9d19617](https://github.com/boltdesignsystem/bolt/commit/9d19617))
+* update footer script to be async to even further improve performance! ([46eff1d](https://github.com/boltdesignsystem/bolt/commit/46eff1d))
+* update version selector JS for the docs site to use new chain syntax ([88707c8](https://github.com/boltdesignsystem/bolt/commit/88707c8))
+* update webpack config and boltrc ([623fa0d](https://github.com/boltdesignsystem/bolt/commit/623fa0d))
+* upgrade UIKit to the latest version ([9f26400](https://github.com/boltdesignsystem/bolt/commit/9f26400))
+
+
+### Reverts
+
+* revert updating modern JS bundle to be async loaded until further testing is done ([ef482fc](https://github.com/boltdesignsystem/bolt/commit/ef482fc))
+
+
+
+
+
+## [2.13.3](https://github.com/boltdesignsystem/bolt/compare/v2.13.2...v2.13.3) (2020-01-02)
+
+
+### Bug Fixes
+
+* be sure ready event is emitted by 'bolt-autosuggest' before adding event listeners ([000ce99](https://github.com/boltdesignsystem/bolt/commit/000ce99))
+* check if autosuggest has already rendered before adding event listeners ([1a065ce](https://github.com/boltdesignsystem/bolt/commit/1a065ce))
+* IE KeyboardEvent error on submit ([2a29a9b](https://github.com/boltdesignsystem/bolt/commit/2a29a9b))
+* make sure autosuggest event listeners are re-added when component re-connects ([602cbef](https://github.com/boltdesignsystem/bolt/commit/602cbef))
+* onChange arguments passed in wrong order ([82f1e2f](https://github.com/boltdesignsystem/bolt/commit/82f1e2f))
+* prevent search form from submitting multiple times ([a212747](https://github.com/boltdesignsystem/bolt/commit/a212747))
+* unset _wasInitiallyRendered so that event listeners are re-added in IE after disconnect ([18ffa3e](https://github.com/boltdesignsystem/bolt/commit/18ffa3e))
+
+
+
+
+
+## [2.13.2](https://github.com/boltdesignsystem/bolt/compare/v2.13.1...v2.13.2) (2019-12-30)
+
+
+### Bug Fixes
+
+* Remove cache-loader from webpack fonts rule ([2906c70](https://github.com/boltdesignsystem/bolt/commit/2906c70))
+
+
+
+
+
 ## [2.13.1](https://github.com/boltdesignsystem/bolt/compare/v2.13.0...v2.13.1) (2019-12-17)
 
 ### Bug Fixes

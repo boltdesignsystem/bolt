@@ -1,9 +1,4 @@
 const shell = require('shelljs');
-const isCanaryRelease = branchName === 'master';
-const isFullRelease =
-  branchName === 'release-2.x' || branchName === 'release/2.x';
-const execSync = require('child_process').execSync;
-const { spawn } = require('child_process');
 const { IncomingWebhook } = require('@slack/webhook');
 const chalk = require('chalk');
 const semver = require('semver');
@@ -12,6 +7,10 @@ const { gitSha } = require('./scripts/utils');
 const { normalizeUrlAlias } = require('./scripts/utils/normalize-url-alias');
 const { branchName } = require('./scripts/utils/branch-name');
 const { NOW_TOKEN } = process.env;
+
+const isCanaryRelease = branchName === 'master';
+const isFullRelease =
+  branchName === 'release-2.x' || branchName === 'release/2.x';
 
 const lernaConfig = require('./lerna.json');
 const currentVersion = lernaConfig.version;

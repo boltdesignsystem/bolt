@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.14.2](https://github.com/bolt-design-system/bolt/tree/master/packages/core/compare/v2.14.1...v2.14.2) (2020-01-15)
+
+**Note:** Version bump only for package @bolt/core
+
+
+
+
+
+# [2.14.0](https://github.com/bolt-design-system/bolt/tree/master/packages/core/compare/v2.13.3...v2.14.0) (2020-01-06)
+
+
+### Bug Fixes
+
+* add adapter to the old [@define](https://github.com/define) decorator so old components using it outside of the monorepo continue to work as expected ([eea8e77](https://github.com/bolt-design-system/bolt/tree/master/packages/core/commit/eea8e77))
+
+
+### Features
+
+* speed up local dev builds of the new es-module work ([8849452](https://github.com/bolt-design-system/bolt/tree/master/packages/core/commit/8849452))
+
+
+
+
+
 # [2.13.0](https://github.com/bolt-design-system/bolt/tree/master/packages/core/compare/v2.12.1...v2.13.0) (2019-12-13)
 
 **Note:** Version bump only for package @bolt/core

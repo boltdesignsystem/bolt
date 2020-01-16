@@ -262,7 +262,6 @@ async function createWebpackConfig(buildConfig) {
         {
           test: /\.(ts|tsx)$/,
           use: [
-            'cache-loader',
             {
               loader: 'ts-loader',
               options: {
@@ -275,7 +274,6 @@ async function createWebpackConfig(buildConfig) {
         {
           test: /\.(woff|woff2)$/,
           use: [
-            'cache-loader',
             {
               loader: 'url-loader',
               options: {
@@ -288,7 +286,6 @@ async function createWebpackConfig(buildConfig) {
         {
           test: /\.(cur|svg|png|jpg)$/,
           use: [
-            'cache-loader',
             {
               loader: 'file-loader',
               options: {
@@ -299,7 +296,7 @@ async function createWebpackConfig(buildConfig) {
         },
         {
           test: [/\.yml$/, /\.yaml$/],
-          use: ['cache-loader', 'json-loader', 'yaml-loader'],
+          use: ['json-loader', 'yaml-loader'],
         },
         {
           test: [/\.html$/],
@@ -327,26 +324,6 @@ async function createWebpackConfig(buildConfig) {
       new webpack.NoEmitOnErrorsPlugin(),
     ],
   };
-
-  // cache mode significantly speeds up subsequent build times
-  if (config.enableCache) {
-    sharedWebpackConfig.plugins.push(
-      new HardSourceWebpackPlugin({
-        info: {
-          level: 'warn',
-        },
-        // Clean up large, old caches automatically.
-        cachePrune: {
-          // Caches younger than `maxAge` are not considered for deletion. They must
-          // be at least this (default: 2 days) old in milliseconds.
-          maxAge: 2 * 24 * 60 * 60 * 1000,
-          // All caches together must be larger than `sizeThreshold` before any
-          // caches will be deleted. Together they must be at least 300MB in size
-          sizeThreshold: 300 * 1024 * 1024,
-        },
-      }),
-    );
-  }
 
   if (config.prod) {
     // https://webpack.js.org/plugins/module-concatenation-plugin/
@@ -552,6 +529,7 @@ async function createWebpackConfig(buildConfig) {
     },
     plugins: [
       new webpack.DefinePlugin(getGlobalJSData(true)),
+      new CopyWebpackPlugin(config.copy ? config.copy : []),
       new MiniCssExtractPlugin({
         filename: `[name]${langSuffix}.css`,
         chunkFilename: `[id]${langSuffix}.css`,
@@ -574,7 +552,6 @@ async function createWebpackConfig(buildConfig) {
           test: /\.(js|tsx|mjs)$/,
           exclude: /(node_modules)/,
           use: [
-            // 'cache-loader',
             {
               loader: 'babel-loader',
               options: {
@@ -607,6 +584,45 @@ async function createWebpackConfig(buildConfig) {
       ],
     },
   });
+
+  // cache mode significantly speeds up subsequent build times
+  if (config.enableCache) {
+    legacyWebpackConfig.plugins.push(
+      new HardSourceWebpackPlugin({
+        info: {
+          level: 'warn',
+        },
+        cacheDirectory: path.join(process.cwd(), `./cache/webpack-legacy`),
+        // Clean up large, old caches automatically.
+        cachePrune: {
+          // Caches younger than `maxAge` are not considered for deletion. They must
+          // be at least this (default: 2 days) old in milliseconds.
+          maxAge: 2 * 24 * 60 * 60 * 1000,
+          // All caches together must be larger than `sizeThreshold` before any
+          // caches will be deleted. Together they must be at least 300MB in size
+          sizeThreshold: 300 * 1024 * 1024,
+        },
+      }),
+    );
+
+    modernWebpackConfig.plugins.push(
+      new HardSourceWebpackPlugin({
+        info: {
+          level: 'warn',
+        },
+        cacheDirectory: path.join(process.cwd(), `./cache/webpack-modern`),
+        // Clean up large, old caches automatically.
+        cachePrune: {
+          // Caches younger than `maxAge` are not considered for deletion. They must
+          // be at least this (default: 2 days) old in milliseconds.
+          maxAge: 2 * 24 * 60 * 60 * 1000,
+          // All caches together must be larger than `sizeThreshold` before any
+          // caches will be deleted. Together they must be at least 300MB in size
+          sizeThreshold: 300 * 1024 * 1024,
+        },
+      }),
+    );
+  }
 
   // if esModules support is enabled in the .boltrc config, serve up just the modern bundle for local dev + legacy + modern bundles in prod.
   // Otherwise, continue serving the legacy bundle to everyone.

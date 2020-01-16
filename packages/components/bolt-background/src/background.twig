@@ -12,7 +12,7 @@
 
 {% set overlayStates = ["enabled", "disabled"] %}
 
-{% set opacities = ["light", "medium", "heavy"] %}
+{% set opacities = ["light", "medium", "heavy", "full"] %}
 
 {% set shapeGroups = ["A", "B"] %}
 
@@ -20,7 +20,8 @@
 
 {% set fills = {
   "color": "color",
-  "gradient": "gradient"
+  "gradient": "gradient",
+  "radial-gradient": "radial-gradient"
 } %}
 
 {% if focalPoint and focalPoint.horizontal == "left" %}

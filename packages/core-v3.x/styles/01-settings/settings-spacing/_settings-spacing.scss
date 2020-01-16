@@ -28,6 +28,20 @@ $bolt-spacing-values: (
   'large': 2,
   'xlarge': 4,
   'xxlarge': 8,
+  'xxxlarge': 16
+) !default;
+
+/// Bolt's definition of negative margin scale. Used within 'export-data()' to JSON.
+/// @type Map
+$bolt-negative-margin-values: (
+  'xsmall': -0.25,
+  'small': -0.5,
+  'medium': -1,
+  'large': -2,
+  'xlarge': -4,
+  'xxlarge': -8,
+  'xxxlarge': -16,
+  'xxxxlarge': -32
 ) !default;
 
 @include bolt-export-data('spacing/scale.bolt.json', $bolt-spacing-values);
