@@ -5,7 +5,7 @@
 {% set overlay = overlay in schema.properties.overlay.enum ? overlay : schema.properties.overlay.default %}
 {% set opacity = opacity in schema.properties.opacity.enum ? opacity : opacity in schema.properties.opacity.default %}
 {% set fill = fill in schema.properties.fill.enum ? fill : schema.properties.fill.default %}
-{% set fill_color = fill_color in schema.properties.fill_color.enum ? fill_color : schema.properties.fill_color.default %}
+{% set fillColor = fillColor in schema.properties.fillColor.enum ? fillColor : schema.properties.fillColor.default %}
 
 {% if focalPoint and focalPoint.horizontal == "left" and fill == "gradient" %}
   {% set fill = "gradient-reversed" %}
@@ -15,7 +15,7 @@
   baseClass ~ "__overlay",
   baseClass ~ "__overlay--" ~ opacity ~ "-opacity",
   baseClass ~ "__overlay--" ~ fill ~ "-fill",
-  baseClass ~ "__overlay-fill-color--" ~ fill_color
+  baseClass ~ "__overlay-fill-color--" ~ fillColor
 ] %}
 
 {% if overlay == 'enabled' %}
