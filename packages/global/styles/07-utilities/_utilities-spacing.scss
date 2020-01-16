@@ -59,17 +59,9 @@ $bolt-spacing-sizes: map-merge($bolt-spacing-sizes-extras, $bolt-spacing-sizes);
   }
 }
 
-$bolt-negative-margin-values: (
-  'xsmall': -.25,
-  'small': -.5,
-  'medium': -1,
-  'large': -2,
-  'xlarge': -4,
-  'xxlarge': -8,
-  'xxxlarge': -16,
-  'xxxxlarge': -32,
-) !default;
-$bolt-negative-margin-sizes: _bolt-create-spacing-map($bolt-negative-margin-values);
+$bolt-negative-margin-sizes: _bolt-create-spacing-map(
+  $bolt-negative-margin-values
+);
 $bolt-negative-margin-directions: ('top', 'bottom', 'left', 'right');
 
 @mixin bolt-negative-margin-utils($breakpoint: null) {
