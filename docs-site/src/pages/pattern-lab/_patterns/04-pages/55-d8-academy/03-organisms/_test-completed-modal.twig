@@ -3,19 +3,20 @@
   {% include "@bolt-components-card-replacement/card-replacement.twig" with {
     theme: "dark",
     rounded: true,
+    overlay: "disabled",
     background: {
       contentItems: [
         {
           pattern: "image",
-          src: "/images/academy/mission-completed-background.png",
+          src: "/images/academy/planet-modal.svg",
           lazyload: false,
-          align: "80%"
         }
       ]
     },
     body: {
       attributes: {
         class: [
+          "u-bolt-margin-top-auto",
           "u-bolt-padding-left-small@small",
           "u-bolt-padding-right-small@small",
         ]
