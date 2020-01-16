@@ -5,13 +5,18 @@
   {% set gradientStart = "#751B84" %}
   {% set gradientMiddle = "#56157A" %}
   {% set gradientEnd = "#0F0664" %}
-
 {% elseif cardGradient == "teal" %}
   {% set gradientStart = "#009999" %}
   {% set gradientEnd = "#06304B" %}
 {% endif %}
 
-<div style="border-bottom-left-radius: 4px; border-top-left-radius: 4px; overflow: hidden; background: linear-gradient(180deg, {{ gradientStart }} 0%, {{ gradientMiddle ? gradientMiddle ~ ' 50%,' : '' }} {{ gradientEnd }} 100%); position: relative;" class="u-bolt-height-full u-bolt-padding-small">
-  <bolt-icon name="brand-{{ cardIcon }}" style="font-size: 3.125rem; color: white; height: 3rem; width: 3rem; position: absolute; left: 50%; transform: translateX(-50%);"></bolt-icon>
-  {# <bolt-icon name="brand-{{ cardIcon }}" style="font-size: 3.125rem; color: white; height: 3rem; width: 3rem; transform: scale(2); position: absolute; bottom: 0; right: 0; opacity: 0.2; filter: drop-shadow(0 0 11px rgba(0,0,0,0.5);"></bolt-icon> #}
-</div>
+{% if horizontal %}
+  <div style="border-bottom-left-radius: 4px; border-top-left-radius: 4px; overflow: hidden; background: linear-gradient(180deg, {{ gradientStart }} 0%, {{ gradientMiddle ? gradientMiddle ~ ' 50%,' : '' }} {{ gradientEnd }} 100%); position: relative;" class="u-bolt-height-full u-bolt-padding-small">
+    <bolt-icon name="brand-{{ cardIcon }}" style="font-size: 3.125rem; color: white; height: 3rem; width: 3rem; position: absolute; left: 50%; transform: translateX(-50%);"></bolt-icon>
+    {# <bolt-icon name="brand-{{ cardIcon }}" style="font-size: 3.125rem; color: white; height: 3rem; width: 3rem; transform: scale(2); position: absolute; bottom: 0; right: 0; opacity: 0.2; filter: drop-shadow(0 0 11px rgba(0,0,0,0.5);"></bolt-icon> #}
+  </div>
+{% else %}
+  <div style="border-top-left-radius: 4px; border-top-right-radius: 4px; overflow: hidden; background: linear-gradient(180deg, {{ gradientStart }} 0%, {{ gradientMiddle ? gradientMiddle ~ ' 50%,' : '' }} {{ gradientEnd }} 100%); position: absolute; width: 100%; top: 0; left: 0;" class="u-bolt-height-full u-bolt-padding-small u-bolt-z-index-background">
+    <bolt-icon class="u-bolt-margin-small u-bolt-negative-margin-top-small" name="brand-{{ cardIcon }}" style="font-size: 10rem; color: white; height: 10rem; width: 10rem; position: absolute; left: 0; top: 0; opacity: 0.15; filter: drop-shadow(0 0 11px rgba(0,0,0,0.5);"></bolt-icon>
+  </div>
+{% endif %}
