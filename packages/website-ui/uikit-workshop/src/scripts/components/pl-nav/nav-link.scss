@@ -3,7 +3,7 @@
 /**
  * Nav link
  */
- .pl-c-nav__link {
+.pl-c-nav__link {
   @include linkStyle;
   border: 0;
   text-align: left;
@@ -35,15 +35,14 @@
     display: block;
   }
 
-
-  &.is-open[role="tab"].is-active:after,
+  &.is-open[role='tab'].is-active:after,
   &.is-open:not(.is-active):after,
   &.is-open + .pl-c-nav__link--icon-only:after {
-    opacity: .1;
+    opacity: 0.1;
   }
 
   &.is-open.pl-c-nav__link--title:after {
-    opacity: .05;
+    opacity: 0.05;
   }
 
   &:hover:after {
@@ -116,6 +115,30 @@
         }
       }
     }
+  }
+}
+
+.pl-c-body--theme-light .pl-c-nav__link {
+  &.is-open[role='tab'].is-active:after,
+  &.is-open:not(.is-active):after,
+  &.is-open + .pl-c-nav__link--icon-only:after {
+    opacity: 0.1;
+  }
+
+  &.is-open.pl-c-nav__link--title:after {
+    opacity: 0.025;
+  }
+
+  &:hover:after {
+    opacity: 0.05;
+  }
+
+  &:focus:after {
+    opacity: 0.1;
+  }
+
+  &:focus:active:after {
+    opacity: 0.125;
   }
 }
 
