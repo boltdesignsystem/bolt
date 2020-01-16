@@ -4,6 +4,7 @@ import buttonSchema from '@bolt/components-button/button.schema';
 // @ts-ignore
 import textSchema from '@bolt/components-text/text.schema.yml';
 import iconSchema from '@bolt/components-icon/icon.schema.json';
+// @ts-ignore
 import listSchema from '@bolt/components-list/list.schema.yml';
 import characterSchema from '@bolt/micro-journeys/src/character.schema';
 import connectionSchema from '@bolt/micro-journeys/src/connection.schema';
