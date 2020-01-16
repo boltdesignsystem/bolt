@@ -1,4 +1,5 @@
-{% set main_content = block("page_content") %}
+{% set mainContentBlock = block("page_content") %}
+{% set backgroundBlock = block("page_background") %}
 
 <div class="c-bolt-site">
   {% block global_header %}
@@ -8,35 +9,46 @@
   <main class="c-bolt-site__content u-bolt-flex u-bolt-flex-col">
     {% include "@academy/_toolbar.twig" %}
     {% embed "@bolt-components-band/band.twig" with {
-      theme: "xxdark",
+      theme: pageTheme | default("xxdark"),
       size: "large",
       valign: "start",
-      content: main_content,
+      content: mainContentBlock,
+      background: {
+        overlay: "disabled",
+        contentItems: [
+          include('@bolt-components-background/background-overlay.twig', {
+            fill: "color",
+            fillColor: "black",
+            overlay: "enabled",
+          }, with_context = false),
+          include('@bolt-components-image/image.twig', {
+            placeholder_color: "#000000",
+            src: "/images/academy/mission-hero.jpg",
+            cover: false,
+            lazyload: false,
+            attributes: {
+              class: [
+                "u-bolt-margin-left-auto",
+                "u-bolt-flex-grow-none",
+                "u-bolt-float-right",
+              ],
+              style: "min-width: 1200px;"
+            }
+          })
+        ]
+      },
       inner_attributes: {
         class: [
           "u-bolt-padding-top-none"
         ]
       }
-    } only %}
+    } %}
       {% block band_background %}
-        <div style="position: absolute; top: 0;
-        right: 0; width: 100%;">
-          {% include "@bolt-components-image/image.twig" with {
-            src: "/images/academy/mission-hero.jpg",
-            placeholder_color: "#000000",
-            attributes: {
-              class: [
-                "u-bolt-float-right"
-              ],
-              style: "min-width: 1200px; width: 100%"
-            }
-          } only %}
-        </div>
-
-        {% include "@bolt-components-background/background.twig" with {
-          opacity: "light",
-          fill: "gradient",
-        } only %}
+        {% if backgroundBlock is not empty %}
+          {{ backgroundBlock }}
+        {% else %}
+          {{ parent() }}
+        {% endif %}
       {% endblock %}
     {% endembed %}
 
