@@ -27,15 +27,15 @@ bolt-animate[slot="connection"] {
     width: 300px;
   }
 
-  &.c-bolt-character__has-one-side-content {
+  &.c-bolt-character__has-one-side-content:not(.c-bolt-character__is-in-two-character-layout) {
     @include bolt-ie11-only {
       width: 400px;
     }
   }
 
-  &.c-bolt-character__has-both-side-content {
+  &.c-bolt-character__has-both-side-content:not(.c-bolt-character__is-in-two-character-layout) {
     @include bolt-ie11-only {
-      width: 550px;
+      width: 500px;
     }
   }
 
@@ -128,8 +128,8 @@ bolt-animate[slot="connection"] {
       margin: auto 0;
 
       @include bolt-ie11-only {
-        width: 250px;
-        max-width: 250px;
+        width: 200px;
+        max-width: 200px;
       }
 
       bolt-animate {
@@ -138,7 +138,7 @@ bolt-animate[slot="connection"] {
 
       bolt-connection {
         @include bolt-ie11-only {
-          min-width: 250px !important;
+          min-width: 200px !important;
         }
       }
     }

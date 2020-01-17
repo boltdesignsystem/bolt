@@ -1,0 +1,22 @@
+{% embed "@bolt-components-band/band.twig" with {
+  theme: "none",
+  size: "medium",
+  inner_attributes: {
+    class: [
+      "u-bolt-negative-margin-top-xsmall",
+      "u-bolt-margin-bottom-large",
+      "u-bolt-padding-bottom-none",
+    ]
+  }
+} %}
+  {% block band_content %}
+    {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--xsmall o-bolt-grid--matrix" %}
+      {% cell "u-bolt-width-1/1 u-bolt-width-8/12@medium" %}
+        {% include "@academy/_hero-primary-content.twig" %}
+      {% endcell %}
+      {% cell "u-bolt-width-1/1 u-bolt-width-8/12@medium" %}
+        {% include "@academy/_hero-secondary-content.twig" %}
+      {% endcell %}
+    {% endgrid %}
+  {% endblock %}
+{% endembed %}

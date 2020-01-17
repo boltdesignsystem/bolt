@@ -6,6 +6,8 @@
 @import '../_card-replacement-settings-and-tools.scss';
 
 bolt-card-replacement-body {
+  position: relative; // this + z-index needed in order to handle a background layer
+  z-index: 2;
   width: 100%;
 }
 

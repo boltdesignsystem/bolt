@@ -42,6 +42,7 @@ export function convertSchemaPropToTrait({ name, prop }) {
     label: prop.title || name,
     name: kebabCase(name),
     type: 'text',
+    description: prop.description ? prop.description : '',
   };
 
   if (prop.default) trait.default = prop.default;

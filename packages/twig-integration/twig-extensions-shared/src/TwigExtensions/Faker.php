@@ -24,6 +24,11 @@ class TwigFaker {
     return $this->faker->text($maxCharcters);
   }
 
+
+  function numberBetween($min = 1, $max = 99){
+    return $this->faker->numberBetween($min, $max);
+  }
+
   /**
    * Get random words
    * @param int $number - Max number of words
@@ -52,7 +57,7 @@ class TwigFaker {
    * @return string
    */
   static function sentence($nbWords = 6, $variableNbWords = true){
-    return $this->faker->sentences($nbWords, $variableNbWords);
+    return $this->faker->sentence($nbWords, $variableNbWords);
   }
 
   /**

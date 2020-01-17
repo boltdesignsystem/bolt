@@ -72,6 +72,7 @@ class BoltImage extends BoltElement {
         reflect: true, // fix for bg images not getting the right classes w/ just type: Boolean
       },
       valign: String,
+      align: String,
     };
   }
 
@@ -81,6 +82,7 @@ class BoltImage extends BoltElement {
     self.onLazyLoaded = self.onLazyLoaded.bind(self);
     self.initialClasses = [];
     self.valign = 'center';
+    self.align = 'center';
     self.placeholderImage =
       'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';
     self.sizes = 'auto';
@@ -255,7 +257,9 @@ class BoltImage extends BoltElement {
             sizes="${ifDefined(
               this.isLazyLoaded || (this.sizes && this.sizes !== 'auto')
                 ? this.sizes
-                : `${this.offsetWidth}px`,
+                : this.offsetWidth > 0
+                ? `${this.offsetWidth}px`
+                : undefined,
             )}"
             data-sizes="${ifDefined(
               lazyload && this.sizes === 'auto' ? 'auto' : undefined,
@@ -263,7 +267,7 @@ class BoltImage extends BoltElement {
             data-zoom="${ifDefined(this.zoom ? this.src : undefined)}"
             style="${ifDefined(
               this.valign
-                ? `object-position: center ${this.valign};`
+                ? `object-position: ${this.align} ${this.valign};`
                 : undefined,
             )}"
           />

@@ -1,0 +1,250 @@
+{% set content %}
+  {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--xlarge" %}
+    {% cell "u-bolt-width-12/12" %}
+      {% include "@bolt-components-headline/headline.twig" with {
+        size: "xxlarge",
+        weight: "bold",
+        align: "center",
+        text: "Browse Missions and path types",
+        attributes: {
+          class: [
+            "u-bolt-margin-bottom-medium"
+          ],
+          style: [
+            "font-size: 35px;",
+            "line-height: 56px;",
+          ]
+        }
+      } only %}
+    {% endcell %}
+
+    {% cell "u-bolt-width-12/12 u-bolt-width-6/12@large" %}
+
+      {% include "@bolt-components-headline/headline.twig" with {
+        text: "Browse Missions by <strong>Product</strong>",
+        size: "xxlarge",
+        weight: "light"
+      } only %}
+
+      {% set productLinks = [
+        {
+          text: "Pega Platform",
+          url: "/",
+          icon: "platform"
+        },
+        {
+          text: "Marketing",
+          url: "/",
+          icon: "marketing-gray"
+        },
+        {
+          text: "Customer Service",
+          url: "/",
+          icon: "customer-service"
+        },
+        {
+          text: "Sales Automation",
+          url: "/",
+          icon: "sales-automation"
+        },
+      ] %}
+
+      {% grid "o-bolt-grid--flex o-bolt-grid--matrix u-bolt-padding-bottom-large" %}
+        {% for item in productLinks %}
+          {% cell "u-bolt-flex-basis-1/2 u-bolt-flex-grow" %}
+            {% include "@bolt/flag.twig" with {
+              valign: "middle",
+              url: item.url,
+              figure: {
+                content: include("@bolt-components-icon/icon.twig", {
+                  name: item.icon,
+                  size: "xlarge",
+                  background: "circle",
+                }),
+              },
+              content: include("@bolt-components-headline/text.twig", {
+                text: include("@bolt-components-link/link.twig", {
+                  isHeadline: true,
+                  text: item.text,
+                  url: item.url,
+                }),
+                size: "small",
+                weight: "bold",
+              })
+            } only %}
+          {% endcell %}
+        {% endfor %}
+      {% endgrid %}
+
+
+
+
+
+
+
+      {% include "@bolt-components-headline/headline.twig" with {
+        text: "Browse Missions by <strong>Industry</strong>",
+        size: "xxlarge",
+        weight: "light"
+      } only %}
+
+      {% set industryLinks = [
+        {
+          text: "Communications",
+          url: "/",
+          icon: "communications"
+        },
+        {
+          text: "Healthcare",
+          url: "/",
+          icon: "healthcare"
+        },
+        {
+          text: "Energy & Utilities",
+          url: "/",
+          icon: "energy"
+        },
+        {
+          text: "Life Sciences",
+          url: "/",
+          icon: "life-sciences"
+        },
+        {
+          text: "Financial Services",
+          url: "/",
+          icon: "financial"
+        },
+        {
+          text: "Manufacturing & High Technology",
+          url: "/",
+          icon: "manufacturing"
+        },
+        {
+          text: "Government",
+          url: "/",
+          icon: "government"
+        },
+        {
+          text: "Insurance",
+          url: "/",
+          icon: "insurance"
+        },
+      ] %}
+
+      {% grid "o-bolt-grid--flex o-bolt-grid--matrix u-bolt-padding-bottom-large" %}
+        {% for item in industryLinks %}
+          {% cell "u-bolt-flex-basis-1/2 u-bolt-flex-grow" %}
+            {% include "@bolt/flag.twig" with {
+              url: item.url,
+              valign: "middle",
+              figure: {
+                content: include("@bolt-components-icon/icon.twig", {
+                  name: item.icon,
+                  size: "xlarge",
+                  background: "circle",
+                }),
+              },
+              content: include("@bolt-components-headline/text.twig", {
+                text: include("@bolt-components-link/link.twig", {
+                  text: item.text,
+                  url: item.url,
+                  isHeadline: true,
+                }),
+                size: "small",
+                weight: "bold",
+              })
+            } only %}
+          {% endcell %}
+        {% endfor %}
+      {% endgrid %}
+
+
+    {% endcell %}
+
+    {% cell "u-bolt-width-12/12 u-bolt-width-6/12@large" %}
+      {% include "@bolt/flag.twig" with {
+         attributes: {
+          class: [
+            "u-bolt-margin-bottom-large",
+          ],
+        },
+        url: "/",
+        valign: "top",
+        size: "medium",
+        figure: {
+          content: include("@bolt-components-image/image.twig", {
+            src: "/images/academy/homepage-promo-alt.jpg",
+            max_width: "300px",
+          }),
+        },
+        content: [
+          include("@bolt-components-headline/headline.twig", {
+            text: include("@bolt-components-link/link.twig", {
+              text: "Technical Paths",
+              url: "/",
+              isHeadline: true,
+            }),
+            size: "xlarge",
+            weight: "bold",
+          }),
+          include("@bolt-components-headline/text.twig", {
+            text: "Build strategic applications to help solve real-world problems for today’s fast-paced business environment.",
+            size: "large",
+          }),
+          include("@bolt-components-button/button.twig", {
+            style: "secondary",
+            size: "small",
+            border_radius: "full",
+            text: "View paths",
+          })
+        ] | join('')
+      } only %}
+
+      {% include "@bolt/flag.twig" with {
+        attributes: {
+          class: [
+            "u-bolt-margin-bottom-large",
+          ],
+        },
+        url: "/",
+        valign: "top",
+        size: "medium",
+        figure: {
+          content: include("@bolt-components-image/image.twig", {
+            src: "/images/academy/homepage-promo.jpg",
+            max_width: "300px",
+          }),
+        },
+        content: [
+          include("@bolt-components-headline/headline.twig", {
+            text: include("@bolt-components-link/link.twig", {
+              text: "Business Paths",
+              url: "/",
+              isHeadline: true,
+            }),
+            size: "xlarge",
+            weight: "bold",
+          }),
+          include("@bolt-components-headline/text.twig", {
+            text: "Ensure that business users align their strategic business goals with IT initiatives to ensure project success.",
+            size: "large",
+          }),
+          include("@bolt-components-button/button.twig", {
+            style: "secondary",
+            size: "small",
+            border_radius: "full",
+            text: "View paths",
+          })
+        ] | join('')
+      } only %}
+
+
+    {% endcell %}
+
+  {% endgrid %}
+{% endset %}
+
+{% include "@bolt-components-band/band.twig" with {
+  theme: "dark",
+  content: content,
+} only %}

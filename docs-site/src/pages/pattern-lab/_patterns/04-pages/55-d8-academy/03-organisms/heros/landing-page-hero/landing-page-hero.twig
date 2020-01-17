@@ -1,0 +1,37 @@
+{% set heroTopicList = block('heroTopicList') %}
+{% set heroSupplementalContent = block('heroSupplementalContent') %}
+
+{% embed "@bolt-components-band/band.twig" with {
+  theme: "none",
+  size: "medium",
+  inner_attributes: {
+    class: [
+      "u-bolt-negative-margin-top-xsmall",
+      "u-bolt-padding-bottom-none",
+    ]
+  }
+} %}
+
+  {% block band_content %}
+    {% grid "o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--matrix" %}
+      {% cell "u-bolt-width-12/12 u-bolt-width-10/12@small" %}
+        {% include "@academy/_hero-primary-content.twig" %}
+      {% endcell %}
+
+      {% cell "u-bolt-width-12/12" %}
+        {% grid "o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--matrix u-bolt-margin-bottom-small u-bolt-margin-bottom-medium@large" %}
+          {% cell "u-bolt-width-1/1 #{heroTopicList ? 'u-bolt-width-1/2@medium' : 'u-bolt-width-10/12@small'}" %}
+            {% include "@academy/_hero-secondary-content.twig" %}
+          {% endcell %}
+
+            {% if heroTopicList %}
+              {% cell "u-bolt-width-1/1 u-bolt-width-1/2@medium" %}
+                {{ heroTopicList }}
+              {% endcell %}
+            {% endif %}
+          {% endgrid %}
+        {% endcell %}
+    {% endgrid %}
+
+  {% endblock %}
+{% endembed %}

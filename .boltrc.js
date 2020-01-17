@@ -84,7 +84,7 @@ module.exports = {
   },
   prod: true,
   sourceMaps: false,
-  enableCache: true,
+  enableCache: false,
   verbosity: 1,
   copy: [...itemsToCopy],
   alterTwigEnv: [

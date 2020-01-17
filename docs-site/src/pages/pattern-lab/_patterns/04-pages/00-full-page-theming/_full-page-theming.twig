@@ -1,13 +1,13 @@
 {% extends "@pl/_default-page-template.twig" %}
 
 {% macro link(text, href, attributes) %}
-  {% include "@bolt/link.twig" with {
+  {% include "@bolt-components-link/link.twig" with {
     text: text,
     href: href,
     attributes: attributes | default({})
   } only %}
 {% endmacro %}
-{% import _self as bolt %}
+{% import _self as bolt_macro %}
 
 {% block main_content %}
 
@@ -88,7 +88,7 @@
         invert: true,
         lazyload: false
       },
-      content: "Powered by real AI," ~ bolt.link("Pega Customer Service", "google.com") ~ " delivers game-changing results for enterprises.",
+      content: "Powered by real AI," ~ bolt_macro.link("Pega Customer Service", "google.com") ~ " delivers game-changing results for enterprises.",
       buttons: [
         {
           text: "Sign Up",
