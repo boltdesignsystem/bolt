@@ -65,7 +65,7 @@ const config = {
         dist: '../www/images',
       },
       {
-        base: './src/pages/pattern-lab/_patterns/03-blueprints/00-assets',
+        base: './src/pages/pattern-lab/_patterns/03-blueprints/00-assets/images',
         glob: '**',
         dist: '../www/images',
       },
