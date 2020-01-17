@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.15.0](https://github.com/bolt-design-system/bolt/tree/master/packages/testing-utils/compare/v2.14.3...v2.15.0) (2020-01-17)
+
+
+### Bug Fixes
+
+* resolve execa / shell issue ([0eb57a3](https://github.com/bolt-design-system/bolt/tree/master/packages/testing-utils/commit/0eb57a3157c5eaa9ab22b3b1a5641bf7f62a9342))
+* revert execa CLI update ([1e258e3](https://github.com/bolt-design-system/bolt/tree/master/packages/testing-utils/commit/1e258e3db1422e5d915ee2ddf8b962141a0d83b6))
+* revert execa update to fix Lerna CLI error ([db3fc1a](https://github.com/bolt-design-system/bolt/tree/master/packages/testing-utils/commit/db3fc1a0eaeec4f49e4e9654fcf3747d883fac70))
+* update monorepo dependency test ([150cffd](https://github.com/bolt-design-system/bolt/tree/master/packages/testing-utils/commit/150cffd26a38a344a89ef294e5f74c1059758deb))
+
+
+
+
+
 # [2.14.0](https://github.com/bolt-design-system/bolt/tree/master/packages/testing-utils/compare/v2.13.3...v2.14.0) (2020-01-06)
 
 **Note:** Version bump only for package @bolt/testing-utils

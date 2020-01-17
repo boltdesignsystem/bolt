@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.15.0](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-carousel/compare/v2.14.3...v2.15.0) (2020-01-17)
+
+
+### Bug Fixes
+
+* regenerate Carousel VRT screenshots ([c634943](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-carousel/commit/c63494392048ca4584052b2b2f9fcc6361b4e239))
+
+
+
+
+
 # [2.14.0](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-carousel/compare/v2.13.3...v2.14.0) (2020-01-06)
 
 

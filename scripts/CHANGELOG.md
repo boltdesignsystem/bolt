@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.15.0](https://github.com/boltdesignsystem/bolt/compare/v2.14.3...v2.15.0) (2020-01-17)
+
+
+### Bug Fixes
+
+* resolve execa / shell issue ([0eb57a3](https://github.com/boltdesignsystem/bolt/commit/0eb57a3157c5eaa9ab22b3b1a5641bf7f62a9342))
+* revert execa update to fix Lerna CLI error ([db3fc1a](https://github.com/boltdesignsystem/bolt/commit/db3fc1a0eaeec4f49e4e9654fcf3747d883fac70))
+
+
+
+
+
 # [2.14.0](https://github.com/boltdesignsystem/bolt/compare/v2.13.3...v2.14.0) (2020-01-06)
 
 
