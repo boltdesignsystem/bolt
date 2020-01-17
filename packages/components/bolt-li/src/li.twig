@@ -20,11 +20,11 @@
     </bolt-li>
   {% endif %}
 {% else %}
-  <bolt-li {{ attributes }}>
-    <replace-with-grandchildren>
-      <li class="{{ classes|join(" ") }}">
+  <bolt-li {{ attributes }} role="presentation">
+    <replace-with-grandchildren role="listitem">
+      <div class="{{ classes|join(" ") }}">
         {{ children }}
-      </li>
+      </div>
     </replace-with-grandchildren>
   </bolt-li>
 {% endif %}

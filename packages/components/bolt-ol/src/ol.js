@@ -65,9 +65,9 @@ class BoltOrderedList extends withLitHtml {
 
     return html`
       ${this.addStyles([styles])}
-      <ol class="${classes}">
+      <div class="${classes}" role="list">
         ${this.slot('default')}
-      </ol>
+      </div>
     `;
   }
 }
