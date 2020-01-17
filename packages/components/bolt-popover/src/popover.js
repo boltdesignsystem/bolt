@@ -8,7 +8,7 @@ import {
 import { isFocusable } from '@bolt/core-v3.x/utils';
 import { ifDefined } from 'lit-html/directives/if-defined';
 import classNames from 'classnames/bind';
-import Popper from 'popper.js';
+import { createPopper } from '@popperjs/core';
 import popoverStyles from './popover.scss';
 import schema from '../popover.schema';
 
@@ -132,13 +132,20 @@ class BoltPopover extends BoltElement {
     this.content = this.renderRoot.querySelector('.c-bolt-popover__content');
 
     if (this.popover && this.content) {
-      this.popper = new Popper(this.popover, this.content, {
-        placement: this.placement || 'bottom',
-        onUpdate: data => {
-          if (this.placement !== data.placement) {
-            this.placement = data.placement;
-          }
-        },
+      this.popper = createPopper(this.popover, this.content, {
+        placement: this.placement || schema.properties.spacing.default,
+        modifiers: [
+          {
+            name: 'onPlacementChange',
+            enabled: true,
+            phase: 'afterWrite',
+            fn: ({ state }) => {
+              if (this.placement !== state.placement) {
+                this.placement = state.placement;
+              }
+            },
+          },
+        ],
       });
     }
   }
