@@ -1,5 +1,3 @@
-import { supportsCSSVars } from '@bolt/core/utils';
-import classNames from 'classnames/dedupe';
 import {
   customElement,
   BoltElement,
@@ -7,6 +5,7 @@ import {
   styleMap,
   unsafeCSS,
 } from '@bolt/element';
+import classNames from 'classnames/dedupe';
 import { withContext } from 'wc-context';
 import tocStyles from './toc.scss';
 import schema from '../toc.schema';
