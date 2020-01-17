@@ -135,7 +135,7 @@ async function init() {
       } else {
         await shell.exec(`
           node scripts/release/update-php-package-versions.js -v ${nextVersion}
-          git add packages/core-php/composer.json packages/drupal-modules/bolt_connect/bolt_connect.info.yml packages/drupal-modules/bolt_connect/composer.json
+          git add packages/twig-integration/twig-extensions-shared/composer.json packages/twig-integration/drupal-module/bolt_connect.info.yml packages/twig-integration/drupal-module/composer.json
           git commit -m "[skip travis] chore: version bump PHP-related dependencies to v${nextVersion}"
         `);
         await shell.exec(`
