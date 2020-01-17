@@ -100,6 +100,7 @@ const config = {
       '@bolt/components-background',
       '@bolt/components-background-shapes',
       '@bolt/components-band',
+      '@bolt/components-banner',
       '@bolt/components-block-list',
       '@bolt/components-blockquote',
       '@bolt/components-breadcrumb',
