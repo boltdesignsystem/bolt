@@ -1,0 +1,32 @@
+{% extends "@bolt-components-form/form-element.twig" %}
+
+{% set label %}
+  {% include("@bolt-components-form/form-label.twig") with {
+    "title": "Hide Completed",
+    "displayType": "inline-checkbox",
+    "attributes": {
+      "for": "hide-completed"
+    }
+  } %}
+{% endset %}
+
+{% set children %}
+  {% include("@bolt-components-form/form-input.twig") with {
+    "attributes": {
+      "type": "checkbox",
+      "id": ["hide-completed"],
+      "checked": hideCompleted,
+      "data-demo-url": hideCompleted ? link["pages-t1-mission-landing"] : link["pages-t1-mission-landing-hide-completed"]
+    },
+  } %}
+
+  <!-- Super simple demo for PL to go back and forth between page examples -->
+  <script>
+    document.querySelector('#hide-completed').addEventListener('change', function(e){
+      if (!e.target.getAttribute('data-demo-url')) return;
+      e.target.checked = !e.target.checked; // so browser history (going back and forth) doesn't mess w/ :checked psuedo state
+      window.location.href = e.target.getAttribute('data-demo-url');
+    });
+  </script>
+
+{% endset %}

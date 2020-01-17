@@ -25,7 +25,7 @@ const config = {
     enabled: true,
   },
   sourceMaps: !(process.env.TRAVIS || argv.prod),
-  enableCache: true,
+  enableCache: !(process.env.TRAVIS || argv.prod),
   enableSSR: false, // temp disabled till Travis issue fixed
   extraTwigNamespaces: {
     bolt: {
@@ -39,6 +39,10 @@ const config = {
         /* Example of including additional component paths to include in the main @bolt namespace */
         // path.relative(process.cwd(), path.dirname(require.resolve('@bolt/components-sticky/package.json'))),
       ],
+    },
+    academy: {
+      recursive: true,
+      paths: ['./src/pages/pattern-lab/_patterns/04-pages/55-d8-academy'],
     },
     'bolt-assets': {
       recursive: true,
@@ -78,7 +82,7 @@ const config = {
       // helper components that are only used internally
       '@bolt/shadow-toggle',
       '@bolt/theme-switcher',
-
+      '@bolt/components-toolbar',
       '@bolt/components-radio-switch',
       '@bolt/components-carousel',
       '@bolt/global',
@@ -92,7 +96,6 @@ const config = {
       '@bolt/components-placeholder',
       '@bolt/components-accordion',
       '@bolt/components-action-blocks',
-      '@bolt/components-banner',
       '@bolt/components-dropdown',
       '@bolt/components-background',
       '@bolt/components-background-shapes',

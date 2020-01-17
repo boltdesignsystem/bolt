@@ -1,0 +1,32 @@
+{% set attributes = create_attribute(attributes|default({})) %}
+{% if url %}
+  {% set attributes = attributes.setAttribute("href", url) %}
+{% endif %}
+
+{% set tag = tag | default("div") %}
+
+{% set toolbar_title %}
+  {% if icon and icon.name %}
+    <div class="c-bolt-toolbar__title-icon">
+      {% include "@bolt/icon.twig" with {
+        "name": icon.name,
+        "size": "large"
+      } only %}
+    </div>
+  {% endif %}
+  {% if text %}
+    <{{ tag }} class="c-bolt-toolbar__title-text">
+      {{ text }}
+    </{{ tag }}>
+  {% endif %}
+{% endset %}
+
+{% if url %}
+  <a class="c-bolt-toolbar__title c-bolt-toolbar__title--link" {{ attributes }}>
+    {{ toolbar_title }}
+  </a>
+{% else %}
+  <div class="c-bolt-toolbar__title c-bolt-toolbar__title--static">
+    {{ toolbar_title }}
+  </div>
+{% endif %}

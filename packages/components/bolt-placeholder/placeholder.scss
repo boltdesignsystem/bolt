@@ -4,6 +4,7 @@
 
 .c-bolt-placeholder {
   display: block;
+  height: 100%;
   overflow: hidden;
   color: bolt-color(gray);
   text-align: center;
@@ -13,7 +14,10 @@
 }
 
 .c-bolt-placeholder__content {
-  display: block; // Needed so custom elements take up the correct space
+  display: flex; // Needed so custom elements take up the correct space
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
 
 
@@ -43,8 +47,9 @@
 
 // Wrapper layer - created the dashed line treatment
 .c-bolt-placeholder__wrapper {
-  display: block; // Needed so custom elements take up the correct space
+  display: flex; // Needed so custom elements take up the correct space
   position:relative;
+  height: 100%;
   overflow:hidden;
 }
 

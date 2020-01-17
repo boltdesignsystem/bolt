@@ -1,11 +1,12 @@
 {% set card_replacement_image = media.image %}
 {% set card_replacement_video = media.video %}
+{% set attributes = create_attribute(media.attributes|default({})) %}
 
 {% set card_replacement_media_content = media.content %}
 
 {% set media_block = block("media") %}
 
-{% if horizontal %}
+{% if horizontal and card_replacement_image %}
   {% set card_replacement_image = card_replacement_image | merge({
     ratio: false,
     cover: true,
@@ -17,7 +18,7 @@
   {{ card_replacement_media_content | join | replace({"UTF-8": ""}) }}
 {% else %}
   {% if card_replacement_image or media_block %}
-    <bolt-card-replacement-media>
+    <bolt-card-replacement-media {{ attributes }}>
       <replace-with-children class="c-bolt-card_replacement__media">
         {% if card_replacement_image %}
           {% include "@bolt-components-image/image.twig" with card_replacement_image only %}
@@ -28,7 +29,7 @@
     </bolt-card-replacement-media>
   {% endif %}
   {% if card_replacement_video %}
-    <bolt-card-replacement-media>
+    <bolt-card-replacement-media {{ attributes }}>
       <replace-with-children class="c-bolt-card_replacement__media c-bolt-card_replacement__media--video">
         {% include "@bolt-components-video/video.twig" with card_replacement_video only %}
       </replace-with-children>
