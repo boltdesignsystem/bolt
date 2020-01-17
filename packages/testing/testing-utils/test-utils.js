@@ -10,7 +10,7 @@ const findPkg = require('find-pkg');
  * helper function to get gitSha without needing a GITHUB_TOKEN (for local dev);
  * @returns {string} git sha of last commit
  */
-const gitSha = execa.sync('git', ['rev-parse', '--short', 'HEAD']).stdout;
+const gitSha = execa.shellSync('git', ['rev-parse', '--short', 'HEAD']).stdout;
 
 const repoRoot = join(__dirname, '../../..');
 const lernaCli = join(repoRoot, 'node_modules/.bin/lerna');
@@ -138,7 +138,7 @@ function getFilesChanged({ from = 'HEAD', base = 'master', inDir } = {}) {
   const cmds = ['git', 'diff', '--name-only', `${base}...${from}`];
   if (inDir) cmds.push(inDir);
   try {
-    const results = execa.sync(cmds.join(' '), {
+    const results = execa.shellSync(cmds.join(' '), {
       cwd: repoRoot,
     });
     const files = results.stdout.split('\n');
