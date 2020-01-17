@@ -119,6 +119,7 @@ const config = {
       '@bolt/components-image',
       '@bolt/components-link',
       '@bolt/components-list',
+      '@bolt/components-menu',
       '@bolt/components-modal',
       '@bolt/components-nav-indicator',
       '@bolt/components-nav-priority',
