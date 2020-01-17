@@ -1,3 +1,5 @@
+// WIP - converting the original YAML schema over to JS
+
 // const triggerSchema = require('@bolt/components-trigger/trigger.schema');
 // const buttonSchema = require('@bolt/components-button/button.schema');
 
