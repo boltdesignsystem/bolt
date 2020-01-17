@@ -32,6 +32,10 @@ const config = {
       recursive: true,
       paths: ['src/templates', '../packages/components'],
     },
+    'bolt-blueprints': {
+      recursive: true,
+      paths: ['./src/pages/pattern-lab/_patterns/03-blueprints'],
+    },
     pl: {
       recursive: true,
       paths: [

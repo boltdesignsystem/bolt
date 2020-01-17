@@ -83,7 +83,7 @@
     "test:js:update": "yarn run test:js -u",
     "test:monorepo": "jest ./__tests__/monorepo -c jest.config.quick.js --noStackTrace",
     "test:php": "cd packages/twig-integration/twig-extensions-shared && composer run test",
-    "test:pkgs": "lerna run test --ignore=@bolt/uikit-* --ignore=@bolt/build-tools--* --stream",
+    "test:pkgs": "npx lerna run test --ignore=@bolt/uikit-* --ignore=@bolt/build-tools--* --stream",
     "test:types": "tsc"
   },
   "husky": {
