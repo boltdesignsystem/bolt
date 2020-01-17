@@ -1,0 +1,65 @@
+{% set section_1 %}
+  <div class="u-bolt-margin-bottom-medium">
+    {% include "@bolt-components-headline/headline.twig" with {
+      text: "This is section 1",
+      size: "xlarge",
+    } only %}
+    {% include "@bolt-components-headline/text.twig" with {
+      text: "Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante, ac egestas est urna sit amet arcu. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed molestie augue sit amet leo consequat posuere. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Proin vel ante a orci tempus eleifend ut et magna. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus luctus urna sed urna ultricies ac tempor dui sagittis. In condimentum facilisis porta. Sed nec diam eu diam mattis viverra. Nulla fringilla, orci ac euismod semper, magna diam porttitor mauris, quis sollicitudin sapien justo.",
+    } only %}
+  </div>
+{% endset %}
+{% set section_2 %}
+  <div class="u-bolt-margin-bottom-medium">
+    {% include "@bolt-components-headline/headline.twig" with {
+      text: "This is section 2",
+      size: "xlarge",
+    } only %}
+    {% include "@bolt-components-headline/text.twig" with {
+      text: "Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus. In pellentesque faucibus vestibulum. Nulla at nulla justo, eget luctus tortor. Nulla facilisi. Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante, ac egestas est urna sit amet arcu. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed.",
+    } only %}
+  </div>
+{% endset %}
+{% set section_3 %}
+  <div class="u-bolt-margin-bottom-medium">
+    {% include "@bolt-components-headline/headline.twig" with {
+      text: "This is section 3",
+      size: "xlarge",
+    } only %}
+    {% include "@bolt-components-headline/text.twig" with {
+      text: "Suspendisse dictum feugiat nisl ut dapibus. Mauris iaculis porttitor posuere. Praesent id metus massa, ut blandit odio. Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus.",
+    } only %}
+  </div>
+{% endset %}
+{% set section_4 %}
+  <div class="u-bolt-margin-bottom-medium">
+    {% include "@bolt-components-headline/headline.twig" with {
+      text: "This is section 4",
+      size: "xlarge",
+    } only %}
+    {% include "@bolt-components-headline/text.twig" with {
+      text: "Ut in nulla enim. Phasellus molestie magna non est bibendum non venenatis nisl tempor. Suspendisse dictum feugiat nisl ut dapibus. Mauris iaculis porttitor posuere. Praesent id metus massa, ut blandit odio. Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus. In pellentesque faucibus vestibulum. Nulla at nulla justo, eget luctus tortor. Nulla facilisi. Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare.",
+    } only %}
+  </div>
+{% endset %}
+{% set section_5 %}
+  <div class="u-bolt-margin-bottom-medium">
+    {% include "@bolt-components-headline/headline.twig" with {
+      text: "This is section 5",
+      size: "xlarge",
+    } only %}
+    {% include "@bolt-components-headline/text.twig" with {
+      text: "Phasellus molestie magna non est bibendum non venenatis nisl tempor. Suspendisse dictum feugiat nisl ut dapibus. Mauris iaculis porttitor posuere. Praesent id metus massa.",
+    } only %}
+  </div>
+{% endset %}
+
+{% include "@bolt-components-ol/ol.twig" with {
+  items: [
+    section_1,
+    section_2,
+    section_3,
+    section_4,
+    section_5,
+  ]
+} only %}
