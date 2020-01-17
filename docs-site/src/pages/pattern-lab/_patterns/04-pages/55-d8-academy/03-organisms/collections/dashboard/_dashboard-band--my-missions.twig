@@ -26,28 +26,7 @@
       cardGradient: "purple",
       cardIcon: "rocket",
       cardDescription: bolt.faker.paragraph(2),
-      cardUtilityItems: [
-        include("@bolt-components-button/button.twig", {
-          text: "Share",
-          size: "xsmall",
-          style: "text",
-          icon: {
-            name: "share",
-            size: "small"
-          },
-          iconOnly: true
-        }, with_context = false ),
-        include("@bolt-components-button/button.twig", {
-          text: "Remove from Dashboard",
-          size: "xsmall",
-          style: "text",
-          icon: {
-            name: "close",
-            size: "small"
-          },
-          iconOnly: true
-        }, with_context = false )
-      ],
+      removeButton: true,
       cardStatusItems: [
         include("@bolt-components-headline/eyebrow.twig", {
           text: "Last activity: 3 days ago",
@@ -85,29 +64,7 @@
       cardGradient: "purple",
       cardIcon: "rocket",
       cardDescription: bolt.faker.paragraph(2),
-      cardUtilityItems: [
-        include("@bolt-components-button/button.twig", {
-          text: "Share",
-          size: "xsmall",
-          style: "text",
-          icon: {
-            name: "share",
-            size: "small"
-          },
-          iconOnly: true
-        }, with_context = false ),
-        include("@bolt-components-button/button.twig", {
-          text: "Remove from Dashboard",
-          size: "xsmall",
-          style: "text",
-          icon: {
-            name: "close",
-            size: "small"
-          },
-          iconOnly: true,
-          disabled: true
-        }, with_context = false )
-      ],
+      removeButton: true,
       cardStatusItems: [
         include("@bolt-components-headline/eyebrow.twig", {
           text: "Last activity: 12/21/19",
@@ -152,28 +109,7 @@
       cardGradient: "purple",
       cardIcon: "rocket",
       cardDescription: bolt.faker.paragraph(2),
-      cardUtilityItems: [
-        include("@bolt-components-button/button.twig", {
-          text: "Share",
-          size: "xsmall",
-          style: "text",
-          icon: {
-            name: "share",
-            size: "small"
-          },
-          iconOnly: true
-        }, with_context = false ),
-        include("@bolt-components-button/button.twig", {
-          text: "Remove from Dashboard",
-          size: "xsmall",
-          style: "text",
-          icon: {
-            name: "close",
-            size: "small"
-          },
-          iconOnly: true,
-        }, with_context = false )
-      ],
+      removeButton: true,
       cardStatusItems: [
         include("@bolt-components-headline/eyebrow.twig", {
           text: "Last activity: 12/21/19",
