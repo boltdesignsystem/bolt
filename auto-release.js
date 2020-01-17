@@ -28,7 +28,7 @@ const canaryVersion = `.${process.env.TRAVIS_PULL_REQUEST_SHA ||
 process.env.FORCE_COLOR = true;
 
 async function getLernaPackages() {
-  const packages = shell.exec('npx lerna ls -pl', {
+  const packages = shell.exec('lerna ls -pl', {
     silent: true,
   }).stdout;
   const formattedPackages = [];
@@ -55,7 +55,7 @@ async function init() {
       console.log('canary version', canaryVersion);
 
       await shell.exec(
-        `npx lerna publish pre${version} --dist-tag canary --preid canary${canaryVersion} --no-git-reset --no-git-tag-version --exact --ignore-scripts --no-push --force-publish --yes -m "[skip travis] chore(release): pre-release %s"`,
+        `lerna publish pre${version} --dist-tag canary --preid canary${canaryVersion} --no-git-reset --no-git-tag-version --exact --ignore-scripts --no-push --force-publish --yes -m "[skip travis] chore(release): pre-release %s"`,
       );
 
       const packages = await getLernaPackages();
@@ -141,7 +141,7 @@ async function init() {
         await shell.exec(`
           git reset --hard
           rm scripts/bolt-design-system-bot.private-key.pem
-          npx lerna publish ${version} --yes -m "[skip travis] chore(release): release %s"
+          lerna publish ${version} --yes -m "[skip travis] chore(release): release %s"
         `);
 
         await shell.exec(`
