@@ -40,10 +40,6 @@ const config = {
         // path.relative(process.cwd(), path.dirname(require.resolve('@bolt/components-sticky/package.json'))),
       ],
     },
-    academy: {
-      recursive: true,
-      paths: ['./src/pages/pattern-lab/_patterns/04-pages/55-d8-academy'],
-    },
     'bolt-assets': {
       recursive: true,
       paths: ['../www/build'],
@@ -64,6 +60,11 @@ const config = {
         glob: '**',
         dist: '../www/images',
       },
+      {
+        base: './src/pages/pattern-lab/_patterns/03-blueprints/00-assets',
+        glob: '**',
+        dist: '../www/images',
+      },
     ],
   },
 
@@ -80,6 +81,7 @@ const config = {
   components: {
     global: [
       // helper components that are only used internally
+      '@bolt/blueprints',
       '@bolt/shadow-toggle',
       '@bolt/theme-switcher',
       '@bolt/components-toolbar',
