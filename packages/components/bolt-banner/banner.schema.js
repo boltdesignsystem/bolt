@@ -28,5 +28,11 @@ module.exports = {
       enum: ['start', 'center', 'end'],
       default: 'center',
     },
+    full: {
+      type: 'boolean',
+      description:
+        'Sets the width of the banner to take up 100% of the screen width.',
+      default: false,
+    },
   },
 };
