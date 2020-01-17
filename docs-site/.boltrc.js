@@ -2,7 +2,7 @@ const path = require('path');
 const resolve = require('resolve');
 const argv = require('yargs').argv;
 const deepmerge = require('deepmerge');
-const baseConfig = require('../.bolt-release/.boltrc.suggested.js');
+const baseConfig = require('@bolt/foundation/.boltrc.js');
 
 const config = deepmerge(baseConfig, {
   // array of languages to compile the design system. note, these are ignored when the --i18n flag is set to false
