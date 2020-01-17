@@ -55,7 +55,7 @@ module.exports = {
         'bottom',
         'bottom-end',
       ],
-      default: 'auto',
+      default: 'bottom',
     },
     uuid: {
       type: 'string',
