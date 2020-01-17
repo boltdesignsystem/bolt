@@ -23,26 +23,29 @@
   {% endgrid %}
 
   {% if contentItems %}
-    {% if contentItems|length > 1 %}
-      {% set slides = [] %}
-      {% for item in contentItems %}
-        {# @todo: why do we do this check? #}
-        {% if item.cardTitle %}
-          {% set slides = slides|merge([include("@academy/_vertical-card.twig", item)]) %}
-        {% else %}
-          {% set slides = slides|merge([item]) %}
-        {% endif %}
-      {% endfor %}
-      {% include "@bolt-components-carousel/carousel.twig" with {
-        slides_per_view: 3,
-        nav_button_position: "outside",
-        slides: slides,
-        attributes: {
-          class: ["u-bolt-padding-top-medium"]
-        }
-      } only %}
-    {% else %}
-      {% grid "o-bolt-grid--flex o-bolt-grid--matrix u-bolt-padding-top-medium" %}
+    {% grid "o-bolt-grid--flex o-bolt-grid--matrix u-bolt-padding-top-medium" %}
+      {% if contentItems|length > 1 %}
+        {% set slides = [] %}
+        {% for item in contentItems %}
+          {# @todo: why do we do this check? #}
+          {% if item.cardTitle %}
+            {% set slides = slides|merge([include("@academy/_vertical-card.twig", item)]) %}
+          {% else %}
+            {% set slides = slides|merge([item]) %}
+          {% endif %}
+        {% endfor %}
+
+        {% cell "u-bolt-width-12/12 #{contentItems|length == 2 ? 'u-bolt-width-2/3@large' : ''}" %}
+          {% include "@bolt-components-carousel/carousel.twig" with {
+            slides_per_view: 3,
+            nav_button_position: "outside",
+            slides: slides,
+            attributes: {
+              class: ["u-bolt-padding-top-medium"]
+            }
+          } only %}
+        {% endcell %}
+      {% else %}
         {% for item in contentItems %}
           {% cell "u-bolt-width-12/12 u-bolt-width-6/12@small u-bolt-width-4/12@medium" %}
             {% if item.cardTitle %}
@@ -52,8 +55,8 @@
             {% endif %}
           {% endcell %}
         {% endfor %}
-      {% endgrid %}
-    {% endif %}
+      {% endif %}
+    {% endgrid %}
   {% endif %}
 {% endset %}
 
