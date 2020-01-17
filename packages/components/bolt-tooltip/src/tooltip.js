@@ -159,6 +159,19 @@ class BoltTooltip extends BoltElement {
     if (this.tooltip && this.content) {
       this.popper = createPopper(this.tooltip, this.content, {
         placement: this.placement || schema.properties.placement.default,
+        modifiers: [
+          {
+            name: 'onPlacementChange',
+            enabled: true,
+            phase: 'afterWrite',
+            fn: ({ state }) => {
+              if (this.placement !== state.placement) {
+                this.placement = state.placement;
+                console.log(`placement changed to ${this.placement}`);
+              }
+            },
+          },
+        ],
       });
     }
   }
