@@ -22,7 +22,7 @@ const lernaCli = join(repoRoot, 'node_modules/.bin/lerna');
  */
 function runLernaCmd(cmd) {
   try {
-    const results = execa.commandSync(`${lernaCli} ${cmd} --json`, {
+    const results = execa.shellSync([lernaCli, cmd, '--json'].join(' '), {
       cwd: repoRoot,
     });
     return JSON.parse(results.stdout);
