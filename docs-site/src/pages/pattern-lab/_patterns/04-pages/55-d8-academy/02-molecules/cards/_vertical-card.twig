@@ -9,14 +9,15 @@
   }
 } %}
   {% block media %}
-  {# @todo: replace with 'u-bolt-position-relative' once it is working #}
-  <div class="t-bolt-dark u-bolt-padding-medium" style="position: relative;">
-    <div class="u-bolt-z-index-content" style="position: relative;">
+    {% include "@academy/_icon-banner.twig" with {
+      gradient: cardGradient
+    } %}
+    {# @todo: replace with 'u-bolt-position-relative' once it is working #}
+    <div class="t-bolt-dark u-bolt-padding-medium">
       {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--xsmall u-bolt-negative-margin-top-small u-bolt-negative-margin-right-small" %}
         {% cell "u-bolt-margin-left-auto" %}
           {% include "@academy/_toolbar-actions.twig" %}
         {% endcell %}
-
         {% cell "u-bolt-width-1/1" %}
           {% if cardSubtitle %}
             {% include "@bolt-components-headline/eyebrow.twig" with {
@@ -28,18 +29,13 @@
               text: cardTitle,
               size: "xlarge",
               attributes: {
-                style: "min-height: 58px;" 
+                style: "min-height: 58px;"
               }
             } only %}
           {% endif %}
         {% endcell %}
-
       {% endgrid %}
     </div>
-    {% include "@academy/_icon-banner.twig" with {
-      gradient: cardGradient
-    } %}
-  </div>
   {% endblock %}
 
   {% block body %}
