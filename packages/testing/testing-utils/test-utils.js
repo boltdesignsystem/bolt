@@ -22,7 +22,7 @@ const lernaCli = join(repoRoot, 'node_modules/.bin/lerna');
  */
 function runLernaCmd(cmd) {
   try {
-    const results = execa.shellSync([lernaCli, cmd, '--json'].join(' '), {
+    const results = execa.commandSync(`${lernaCli} ${cmd} --json`, {
       cwd: repoRoot,
     });
     return JSON.parse(results.stdout);
@@ -138,7 +138,7 @@ function getFilesChanged({ from = 'HEAD', base = 'master', inDir } = {}) {
   const cmds = ['git', 'diff', '--name-only', `${base}...${from}`];
   if (inDir) cmds.push(inDir);
   try {
-    const results = execa.shellSync(cmds.join(' '), {
+    const results = execa.sync(cmds.join(' '), {
       cwd: repoRoot,
     });
     const files = results.stdout.split('\n');

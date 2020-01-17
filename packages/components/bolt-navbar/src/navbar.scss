@@ -208,7 +208,7 @@ bolt-navbar {
 }
 
 .c-bolt-navbar__title-icon {
-  @include bolt-margin(0 xsmall 0 0);
+  @include bolt-margin(0 small 0 0);
   flex-basis: auto;
 
   // Fix cross-browser bug where icon shrinks below its minimum natural width - see https://github.com/philipwalton/flexbugs#flexbug-1
@@ -219,7 +219,7 @@ bolt-navbar {
 .c-bolt-navbar__title-text {
   white-space: normal; // wrap to multiple lines if needed
   flex-flow: wrap;
-  @include bolt-font-size(large);
+  @include bolt-font-size(medium);
   @include bolt-font-weight(semibold);
 
   // Adjust the Navbar Title size when being stacked vertically

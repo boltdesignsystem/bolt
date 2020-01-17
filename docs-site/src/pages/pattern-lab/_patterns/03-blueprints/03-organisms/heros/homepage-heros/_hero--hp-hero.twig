@@ -1,0 +1,99 @@
+{% set content %}
+  {% grid "o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--matrix u-bolt-flex-nowrap@medium" %}
+    {% cell "
+      u-bolt-z-index-content
+      u-bolt-flex-shrink-none
+      u-bolt-negative-margin-top-xxlarge@medium
+      u-bolt-margin-bottom-xlarge@xlarge
+      u-bolt-width-12/12
+      u-bolt-width-10/12@medium
+      u-bolt-width-9/12@large
+      u-bolt-width-7/12@xlarge
+
+      " %}
+      {% block headline %}
+        {% include "@bolt-components-headline/headline.twig" with {
+          size: "xxxlarge",
+          autoshrink: false,
+          weight: "regular",
+          text: "choose a <strong>mission</strong>.</br>
+                complete the <strong>challenges</strong>.</br>
+                earn bragging <strong>rights</strong>.",
+          attributes: {
+            class: [
+              "u-bolt-margin-bottom-large"
+            ]
+          }
+        } only %}
+
+        {% include "@bolt-components-headline/subheadline.twig" with {
+          size: "xlarge",
+          weight: "light",
+          text: "Infinity is just the beginning."
+        } only %}
+
+        {% include "@bolt-components-button/button.twig" with {
+          size: "small",
+          border_radius: "full",
+          text: "Start your training"
+        } only %}
+      {% endblock %}
+    {% endcell %}
+
+    <div class="
+      o-bolt-grid__cell
+      u-bolt-flex-shrink-none
+      u-bolt-position-relative
+      u-bolt-z-index-background
+
+      u-bolt-negative-margin-top-large
+      u-bolt-margin-top-none@medium
+      u-bolt-width-8/12
+      u-bolt-width-7/12@large
+      u-bolt-width-8/12@xxxlarge
+
+      u-bolt-margin-left-auto
+      u-bolt-pull-3/12@medium
+      u-bolt-pull-2/12@large
+      u-bolt-pull-1/12@xlarge
+      u-bolt-push-2/12@xxxxlarge
+    ">
+      <div class="c-bolt-featured-hero">
+        {% include "@bolt-components-image/image.twig" with {
+          src: "/images/academy/astronaut-hero.png",
+          lazyload: false,
+          attributes: {
+            class: [
+              "c-bolt-featured-hero__image",
+              "u-bolt-negative-margin-right-xlarge",
+              "u-bolt-padding-left-large@xlarge",
+              "u-bolt-padding-left-xlarge@xxlarge",
+              "u-bolt-negative-margin-right-xlarge@xxxlarge",
+            ],
+          }
+        } only %}
+      </div>
+    </div>
+  {% endgrid %}
+{% endset %}
+
+{% embed "@bolt-components-band/band.twig" with {
+  theme: "xdark",
+  background: {
+    fill: 'radial-gradient',
+    fillColor: 'pink',
+  },
+  content: content,
+  attributes: {
+    class: [
+      "u-bolt-negative-margin-bottom-xxxlarge"
+    ]
+  }
+} only %}
+
+  {% block band_content %}
+    <div class="u-bolt-padding-bottom-none">
+      {{ parent() }}
+    </div>
+  {% endblock %}
+{% endembed %}

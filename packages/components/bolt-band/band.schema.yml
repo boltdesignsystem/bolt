@@ -73,6 +73,14 @@ properties:
       - footer
       - nav
       - figure
+  valign:
+    type: string
+    description: Controls the internal vertical alignment of the band's content.
+    default: middle
+    enum:
+      - start
+      - center
+      - end
   size:
     type: string
     description: Controls the vertical spacing of the band.
@@ -91,7 +99,7 @@ properties:
       - true
       - false
   theme:
-    type: string
+    type: any
     description: Controls the theme of the band.
     default: dark
     enum:

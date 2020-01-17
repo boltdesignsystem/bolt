@@ -27,7 +27,7 @@ const config = deepmerge(baseConfig, {
     enabled: true,
   },
   sourceMaps: !(process.env.TRAVIS || argv.prod),
-  enableCache: true,
+  enableCache: !(process.env.TRAVIS || argv.prod),
   enableSSR: false, // temp disabled till Travis issue fixed
   extraTwigNamespaces: {
     bolt: {
@@ -62,6 +62,11 @@ const config = deepmerge(baseConfig, {
         glob: '**',
         dist: '../www/images',
       },
+      {
+        base: './src/pages/pattern-lab/_patterns/03-blueprints/00-assets',
+        glob: '**',
+        dist: '../www/images',
+      },
     ],
   },
 
@@ -85,10 +90,12 @@ const config = deepmerge(baseConfig, {
       // helper components that are only used internally
       '@bolt/analytics-autolink',
       '@bolt/analytics-autotrack',
+      '@bolt/blueprints',
       '@bolt/components-banner',
       '@bolt/components-radio-switch',
       '@bolt/components-page-footer',
       '@bolt/components-page-header',
+      '@bolt/components-toolbar',
       '@bolt/docs-search',
       // '@bolt/schema-form', // Component Explorer being temporarily disabled until we've migrated our Twig Rendering Service to Now.sh v2
       '@bolt/shadow-toggle',

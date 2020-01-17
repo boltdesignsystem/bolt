@@ -2,6 +2,8 @@ import * as grapesjs from 'grapesjs';
 import { html, render } from '@bolt/core-v3.x/renderers';
 import { query, IS_PROD } from '@bolt/core-v3.x/utils';
 import { triggerAnimsInEl } from '@bolt/components-animate/utils';
+import { boltTwoCharacterLayoutIs } from '@bolt/micro-journeys/src/two-character-layout';
+import { boltCharacterIs } from '@bolt/micro-journeys/src/character';
 import { setupPanels } from './panels';
 import { setupBlocks } from './blocks';
 import { setupComponents } from './components';
@@ -27,6 +29,21 @@ export function enableEditor({ space, uiWrapper, config }) {
   };
 
   const stylePrefix = 'pega-editor-';
+
+  /**
+   * Refresh editor DOM content to see changes reflected after edits may mess up
+   * layout. Any miscellaneous refresh tasks can be put here.
+   *
+   * @param editor {grapesjs.Editor}
+   */
+  const refreshContent = editor => {
+    const document = editor.Canvas.getDocument();
+    document
+      .querySelectorAll(boltTwoCharacterLayoutIs)
+      .forEach(twoCharLayout => {
+        twoCharLayout.triggerLayoutRecalculate();
+      });
+  };
 
   /**
    * Move bolt-interactive-step or bolt-interactive-pathway up or down.
@@ -226,6 +243,17 @@ export function enableEditor({ space, uiWrapper, config }) {
                 },
               },
             },
+            {
+              id: 'refresh-content',
+              label: 'Refresh Content',
+              togglable: false,
+              className: 'gjs-pega-editor-panels-btn--refresh-content',
+              command: {
+                run: (/** @type {grapesjs.Editor} */ editor) => {
+                  refreshContent(editor);
+                },
+              },
+            },
           ],
         },
         {
@@ -344,6 +372,8 @@ export function enableEditor({ space, uiWrapper, config }) {
         ? newComponent[0].parent()
         : newComponent;
 
+    selected.view.el.setupSlots();
+    selected.view.el.triggerUpdate();
     if (selectAfterAdd) editor.select(singleComponent);
     if (triggerAnimsAfterAdd) {
       const newEl = singleComponent.getEl();
@@ -396,10 +426,49 @@ export function enableEditor({ space, uiWrapper, config }) {
     render(content, editorSlots.slotControls);
   }
 
+  /**
+   * Add prop schema descriptions underneath traits on select if not present.
+   *
+   * @param {grapesjs.Component} model
+   * @return {void}
+   */
+  editor.on('component:selected', model => {
+    model.attributes.traits.models.forEach(trait => {
+      if (trait.attributes.description) {
+        // setTimeout because view hasn't yet been created for trait in component:selected.
+        setTimeout(() => {
+          const traitDescClass = 'trait-description';
+          if (
+            trait.view.el.lastElementChild.getAttribute('class') !==
+            traitDescClass
+          ) {
+            const template = document.createElement('template');
+            template.innerHTML = `<div class="${traitDescClass}" style="font-size: smaller"><i>${trait.attributes.description}</i></div>`;
+            trait.view.el.appendChild(template.content.firstChild);
+          }
+        }, 0);
+      }
+    });
+  });
+
   editor.on('component:selected', (/** @type {grapesjs.Component} */ model) => {
     const name = model.getName().toLowerCase();
     const slotControls = model.getSlotControls && model.getSlotControls();
     renderSlotControls({ slotControls, name });
+  });
+
+  editor.on('component:remove', (/** @type {grapesjs.Component} */ model) => {
+    // Editor removes all components in order on save/cleanup. Don't check then.
+    if (!editor.isSaving) {
+      const parent = model.parent();
+      // Remove empty parent `bolt-animate`s
+      if (parent && parent.attributes.tagName === 'bolt-animate') {
+        if (parent && parent.view.el.assignedSlot) {
+          parent.view.el.assignedSlot.remove();
+        }
+        parent.remove();
+      }
+    }
   });
 
   editor.on('component:deselected', model => {

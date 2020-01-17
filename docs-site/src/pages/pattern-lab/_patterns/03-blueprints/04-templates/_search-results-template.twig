@@ -1,0 +1,20 @@
+{% set hideGlobalSearch = true %}
+
+{% extends "@bolt-blueprints/_default-page-template.twig" %}
+
+{% block main_content %}
+  {% include "@bolt-blueprints/_search-bar.twig" %}
+
+  {% block main %}
+    Main Page Content Goes Here
+  {% endblock %}
+
+  {# Body Bottom #}
+{% endblock %}
+
+{% block global_footer %}
+  <div class="o-bolt-wrapper u-bolt-flex-grow-none u-bolt-margin-top-auto">
+    {% include "@bolt-blueprints/_hero--promo.twig" %}
+  </div>
+  {{ parent() }}
+{% endblock %}

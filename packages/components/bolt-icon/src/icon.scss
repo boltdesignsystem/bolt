@@ -99,6 +99,7 @@ bolt-icon[size='xlarge'],
 
 .c-bolt-icon__background-shape--square {
   border-radius: $bolt-border-radius;
+  border-radius: #{var(--bolt-theme-icon-radius, #{$bolt-border-radius})};
 }
 
 

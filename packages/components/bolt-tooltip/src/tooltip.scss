@@ -3,512 +3,260 @@
 \* ------------------------------------ */
 @import '@bolt/core-v3.x';
 
-$bolt-tooltip-bubble-triangle-width: 8px;
-$bolt-tooltip-bubble-border-color: bolt-color(gray, light);
-$bolt-tooltip-transition: $bolt-transition;
+/**
+ * Component variables
+ */
+$bolt-tooltip-bubble-border-width: $bolt-border-width;
+$bolt-tooltip-bubble-border-style: $bolt-border-style;
+$bolt-tooltip-bubble-border-color: bolt-theme(background, bolt-opacity(20));
 
-@keyframes bounceDown {
-   0% { transform: translate(-50%, -50%) scale(0); }
-   30% { transform: translate(-50%, 25%) scale(1.1); }
-   100% { transform: translate(-50%, 15%) scale(1); }
- }
-
-@keyframes bounceUp {
-  0% { transform: translate(-50%, 50%) scale(0); }
-  30% { transform: translate(-50%, -125%) scale(1.1); }
-  100% { transform: translate(-50%, -115%) scale(1); }
+/**
+ * Register custom element
+ */
+@include bolt-repeat-rule(('bolt-tooltip', ':host')) {
+  display: inline;
 }
 
-// Specific to items with count prop (e.g. Share component)
-@keyframes bounceUp-5 {
-  0% { transform: translate(-50%, 50%) scale(0); }
-  30% { transform: translate(-50%, -115%) scale(1.1); }
-  100% { transform: translate(-50%, -105%) scale(1); }
-}
-
-@keyframes bounceUp-4 {
-  0% { transform: translate(-50%, 50%) scale(0); }
-  30% { transform: translate(-50%, -116%) scale(1.1); }
-  100% { transform: translate(-50%, -106%) scale(1); }
-}
-
-@keyframes bounceUp-3 {
-  0% { transform: translate(-50%, 50%) scale(0); }
-  30% { transform: translate(-50%, -117%) scale(1.1); }
-  100% { transform: translate(-50%, -107%) scale(1); }
-}
-
-@keyframes bounceUp-2 {
-  0% { transform: translate(-50%, 50%) scale(0); }
-  30% { transform: translate(-50%, -120%) scale(1.1); }
-  100% { transform: translate(-50%, -110%) scale(1); }
-}
-
-:host {
-  display: inline-block;
-}
-
-// display the initial text for simple text-based Tooltips
-bolt-tooltip:not([ready]):not([trigger-type="button"]):before {
-  content: attr(trigger-text);
-}
-
-// hide the initial tooltip content before the JS is ready
-// @todo: refactor + replace when restoring tooltips that work w/o JS
-bolt-tooltip:not([ready]) > * {
-  display: none;
-}
-
-// Tooltip positioning
 .c-bolt-tooltip {
-  display: inline-block;
+  display: inline-flex;
   position: relative;
-
-  // Aria tags for accessibility.
-  [aria-hidden="true"] {
-    opacity: bolt-opacity(0);
-    pointer-events: none;
-  }
-
-  [aria-hidden="false"] {
-    opacity: bolt-opacity(100);
-    pointer-events: auto;
-  }
-
-  &.is-push-up {
-    .c-bolt-tooltip__content {
-      top: 0;
-      transform: translateY(-100%);
-    }
-
-    .c-bolt-tooltip__content-bubble {
-      &:after,
-      &:before {
-        transform: translateY(100%);
-        border-top: $bolt-tooltip-bubble-triangle-width solid;
-        border-right: $bolt-tooltip-bubble-triangle-width solid transparent;
-        border-bottom: $bolt-tooltip-bubble-triangle-width solid transparent;
-        border-left: $bolt-tooltip-bubble-triangle-width solid transparent;
-      }
-
-      &:before {
-        top: auto;
-        bottom: 0;
-        border-top-color: $bolt-tooltip-bubble-border-color;
-        border-bottom-color: transparent;
-      }
-
-      &:after {
-        top: auto;
-        bottom: 1px;
-        border-top-color: white;
-        border-bottom-color: transparent;
-      }
-    }
-  }
-
-  &.is-push-down {
-    .c-bolt-tooltip__content-bubble {
-      &:after,
-      &:before {
-        transform: translateY(-100%);
-        border-top: $bolt-tooltip-bubble-triangle-width solid transparent;
-        border-right: $bolt-tooltip-bubble-triangle-width solid transparent;
-        border-bottom: $bolt-tooltip-bubble-triangle-width solid;
-        border-left: $bolt-tooltip-bubble-triangle-width solid transparent;
-      }
-
-      &:before {
-        top: 0;
-        bottom: auto;
-        border-bottom-color: $bolt-tooltip-bubble-border-color;
-      }
-
-      &:after {
-        top: 1px;
-        bottom: auto;
-        border-bottom-color: white;
-      }
-    }
-  }
-
-  &.is-align-right {
-    .c-bolt-tooltip__content {
-      right: bolt-spacing(small) * -1;
-      left: auto;
-    }
-
-    .c-bolt-tooltip__content-bubble {
-      &:before,
-      &:after {
-        right: calc(#{bolt-spacing(small)} + #{$bolt-tooltip-bubble-triangle-width / 2});
-        left: auto;
-      }
-    }
-  }
-
-  &.is-align-left {
-    .c-bolt-tooltip__content {
-      right: auto;
-      left: bolt-spacing(small) * -1;
-    }
-
-    .c-bolt-tooltip__content-bubble {
-      &:before,
-      &:after {
-        right: auto;
-        left: calc(#{bolt-spacing(small)} + #{$bolt-tooltip-bubble-triangle-width / 2});
-      }
-    }
-  }
-
-  &.is-align-center {
-    .c-bolt-tooltip__content {
-      left: 50%;
-    }
-
-    .c-bolt-tooltip__content-bubble {
-      &:after,
-      &:before {
-        left: 50%;
-      }
-    }
-
-    &.is-push-up {
-      .c-bolt-tooltip__content {
-        transform: translate(-50%, calc(-100%));
-
-        &--button {
-          transform: translate(-50%, -115%) scale(1);
-
-          &.c-bolt-tooltip__content--count-5 {
-            transform: translate(-50%, -105%) scale(1);
-          }
-          &.c-bolt-tooltip__content--count-4 {
-            transform: translate(-50%, -106%) scale(1);
-          }
-          &.c-bolt-tooltip__content--count-3 {
-            transform: translate(-50%, -107%) scale(1);
-          }
-          &.c-bolt-tooltip__content--count-2 {
-            transform: translate(-50%, -110%) scale(1);
-          }
-        }
-      }
-
-      .is-open+.c-bolt-tooltip__content--button {
-        animation: bounceUp 500ms ease forwards;
-
-        &.c-bolt-tooltip__content--count-5 {
-          animation: bounceUp-5 500ms ease forwards;
-        }
-        &.c-bolt-tooltip__content--count-4 {
-          animation: bounceUp-4 500ms ease forwards;
-        }
-        &.c-bolt-tooltip__content--count-3 {
-          animation: bounceUp-3 500ms ease forwards;
-        }
-        &.c-bolt-tooltip__content--count-2 {
-          animation: bounceUp-2 500ms ease forwards;
-        }
-      }
-
-      .c-bolt-tooltip__content-bubble {
-        &:after,
-        &:before {
-          transform: translate(-50%, 100%);
-        }
-      }
-    }
-
-    &.is-push-down {
-      .c-bolt-tooltip__content {
-        transform: translate(-50%);
-
-        &--button {
-          transform: translate(-50%, 15%) scale(1);
-        }
-      }
-
-      .is-open+.c-bolt-tooltip__content--button {
-        animation: bounceDown 500ms ease forwards;
-      }
-
-      .c-bolt-tooltip__content-bubble {
-        &:after,
-        &:before {
-          transform: translate(-50%, -100%);
-        }
-      }
-    }
-  }
-
-  &.is-push-right {
-    .c-bolt-tooltip__content {
-      left: 100%;
-    }
-
-    .c-bolt-tooltip__content-bubble {
-      &:after,
-      &:before {
-        border-top: $bolt-tooltip-bubble-triangle-width solid transparent;
-        border-right: $bolt-tooltip-bubble-triangle-width solid;
-        border-bottom: $bolt-tooltip-bubble-triangle-width solid transparent;
-        border-left: $bolt-tooltip-bubble-triangle-width solid transparent;
-      }
-
-      &:before {
-        left: $bolt-tooltip-bubble-triangle-width * -2;
-        border-right-color: $bolt-tooltip-bubble-border-color;
-      }
-
-      &:after {
-        left: calc(#{$bolt-tooltip-bubble-triangle-width * -2} + 1px);
-        border-right-color: white;
-      }
-    }
-  }
-
-  &.is-push-left {
-    .c-bolt-tooltip__content {
-      right: 100%;
-    }
-
-    .c-bolt-tooltip__content-bubble {
-      &:after,
-      &:before {
-        border-top: $bolt-tooltip-bubble-triangle-width solid transparent;
-        border-right: $bolt-tooltip-bubble-triangle-width solid transparent;
-        border-bottom: $bolt-tooltip-bubble-triangle-width solid transparent;
-        border-left: $bolt-tooltip-bubble-triangle-width solid;
-      }
-
-      &:before {
-        right: $bolt-tooltip-bubble-triangle-width * -2;
-        border-left-color: $bolt-tooltip-bubble-border-color;
-      }
-
-      &:after {
-        right: calc(#{$bolt-tooltip-bubble-triangle-width * -2} + 1px);
-        border-left-color: white;
-      }
-    }
-  }
-
-  &.is-valign-top {
-    .c-bolt-tooltip__content {
-      top: bolt-v-spacing(xsmall) * -1;
-    }
-
-    .c-bolt-tooltip__content-bubble {
-      &:after,
-      &:before {
-        top: calc(#{bolt-v-spacing(xsmall)} + #{$bolt-tooltip-bubble-triangle-width / 2});
-      }
-    }
-  }
-
-  &.is-valign-bottom {
-    .c-bolt-tooltip__content {
-      bottom: bolt-v-spacing(xsmall) * -1;
-    }
-
-    .c-bolt-tooltip__content-bubble {
-      &:after,
-      &:before {
-        bottom: calc(#{bolt-v-spacing(xsmall)} + #{$bolt-tooltip-bubble-triangle-width / 2});
-      }
-    }
-  }
-
-  &.is-valign-center {
-    .c-bolt-tooltip__content {
-      top: 50%;
-      transform: translateY(-50%);
-    }
-
-    .c-bolt-tooltip__content-bubble {
-      &:after,
-      &:before {
-        top: 50%;
-        transform: translateY(-50%);
-      }
-    }
-  }
 }
 
-
-// Category options
-.c-bolt-tooltip--help {
+/**
+ * Plain text trigger gets underlined
+ */
+.c-bolt-tooltip--dotted {
   cursor: help;
-
-  .c-bolt-tooltip__trigger .c-bolt-button {
-    cursor: help;
-  }
+  border-bottom: 1px dotted bolt-theme(border, 0.4);
 }
 
-.c-bolt-tooltip--action {
-  .c-bolt-tooltip__trigger {
-    cursor: pointer;
-    user-select: none;
-  }
-}
-
-
-// Spacing options
-.c-bolt-tooltip--spacing-none {
-  .c-bolt-tooltip__content-bubble {
-    @include bolt-padding(0);
-  }
-}
-
-.c-bolt-tooltip--spacing-xsmall {
-  .c-bolt-tooltip__content-bubble {
-    @include bolt-padding(xsmall, squished);
-  }
-}
-
-.c-bolt-tooltip--spacing-small {
-  .c-bolt-tooltip__content-bubble {
-    @include bolt-padding(small);
-  }
-}
-
-.c-bolt-tooltip--spacing-medium {
-  .c-bolt-tooltip__content-bubble {
-    @include bolt-padding(medium);
-  }
-}
-
-
-// Text wrapping
-.c-bolt-tooltip--nowrap {
-  .c-bolt-tooltip__content-bubble {
-    width: auto;
-    white-space: nowrap;
-  }
-}
-
-
-// Tooltip styling
-.c-bolt-tooltip__trigger {
-  display: block;
-
-  .c-bolt-button {
-    overflow: hidden;
-    font-weight: 900;
-
-    .is-push-up & {
-      position: relative;
-      z-index: bolt-z-index(tooltip) + 1; // We need a higher z-index to prevent hover animation when included items have elements to hover
-    }
-
-    &:focus {
-      outline: none;
-    }
-  }
-}
-
+/**
+ * Content container
+ * - used for fade effect and placement
+ */
 .c-bolt-tooltip__content {
-  display: block;
+  visibility: hidden; // Visibility is used instead of display because display 'none' interferes with Popper.js calculating tooltip size.
+  opacity: 0;
   position: absolute;
-  z-index: bolt-z-index('tooltip');
-  cursor: default;
-  transition: all $bolt-tooltip-transition;
+  transform: translate3d(0, 0, 0);
+  z-index: bolt-z-index(tooltip);
+  transition: opacity $bolt-transition;
+  white-space: nowrap;
 
-  &--button {
-    opacity: 0 !important; // We need this to override the hover functionality
-    pointer-events: none;
+  // @todo: Placement does not work without JS.
+  // @at-root .c-bolt-tooltip--top-end & {
+  //   right: 0;
+  //   bottom: 100%;
+  //   transform: translate3d(0, 0, 0);
+  // }
 
-    .is-open+& {
-      opacity: bolt-opacity(100) !important; // Brings us back only when active
-      pointer-events: auto !important; // Brings back the ability to click links within the tooltip only when active
-    }
-  }
+  // @at-root .c-bolt-tooltip--top & {
+  //   bottom: 100%;
+  //   left: 50%;
+  //   transform: translate3d(-50%, 0, 0);
+  // }
+
+  // @at-root .c-bolt-tooltip--top-start & {
+  //   bottom: 100%;
+  //   left: 0;
+  //   transform: translate3d(0, 0, 0);
+  // }
+
+  // @at-root .c-bolt-tooltip--left-start & {
+  //   top: 0;
+  //   right: 100%;
+  //   transform: translate3d(0, 0, 0);
+  // }
+
+  // @at-root .c-bolt-tooltip--left & {
+  //   top: 50%;
+  //   right: 100%;
+  //   transform: translate3d(0, -50%, 0);
+  // }
+
+  // @at-root .c-bolt-tooltip--left-end & {
+  //   right: 100%;
+  //   bottom: 0;
+  //   transform: translate3d(0, 0, 0);
+  // }
+
+  // @at-root .c-bolt-tooltip--right-start & {
+  //   top: 0;
+  //   left: 100%;
+  //   transform: translate3d(0, 0, 0);
+  // }
+
+  // @at-root .c-bolt-tooltip--right & {
+  //   top: 50%;
+  //   left: 100%;
+  //   transform: translate3d(0, -50%, 0);
+  // }
+
+  // @at-root .c-bolt-tooltip--right-end & {
+  //   bottom: 0;
+  //   left: 100%;
+  //   transform: translate3d(0, 0, 0);
+  // }
+
+  // @at-root .c-bolt-tooltip--bottom-end & {
+  //   top: 100%;
+  //   right: 0;
+  //   transform: translate3d(0, 0, 0);
+  // }
+
+  // @at-root .c-bolt-tooltip--bottom & {
+  //   top: 100%;
+  //   left: 50%;
+  //   transform: translate3d(-50%, 0, 0);
+  // }
+
+  // @at-root .c-bolt-tooltip--bottom-start & {
+  //   top: 100%;
+  //   left: 0;
+  //   transform: translate3d(0, 0, 0);
+  // }
 }
 
-.c-bolt-tooltip__content-bubble {
-  @include bolt-padding(xsmall, squished);
-  @include bolt-shadow('level-20');
+@include bolt-repeat-rule(
+  (
+    'bolt-tooltip:not([ready]) .c-bolt-tooltip:hover .c-bolt-tooltip__content',
+    ':host:not([ready]) .c-bolt-tooltip:hover .c-bolt-tooltip__content',
+    '.c-bolt-tooltip.is-expanded .c-bolt-tooltip__content'
+  )
+) {
+  visibility: visible;
+  opacity: 1;
+}
 
+// @todo: Since placement doesn't work without JS, this defaults to bottom placement when there is no JS.
+@include bolt-repeat-rule(
+  (
+    'bolt-tooltip:not([ready]) .c-bolt-tooltip:hover .c-bolt-tooltip__content',
+    ':host:not([ready]) .c-bolt-tooltip:hover .c-bolt-tooltip__content'
+  )
+) {
+  top: 100%;
+  left: 50%;
+  transform: translate3d(-50%, 0, 0);
+}
+
+/**
+ * Bubble inside the content container
+ * - used for visual design of the bubble and the fly in effect
+ */
+.c-bolt-tooltip__bubble {
+  @include bolt-margin(xxsmall);
+  @include bolt-padding(xxsmall xsmall);
+  @include bolt-font-family(body);
+  @include bolt-font-size(xsmall);
+  @include bolt-font-weight(semibold);
   display: block;
-  position: relative;
-  width: 300px;
-  color: bolt-color(black);
-  border: 1px solid $bolt-tooltip-bubble-border-color;
-  border-radius: $bolt-border-radius;
-  background-color: bolt-color(white);
+  transform: scale3d(1, 1, 1) translate3d(0, 0, 0);
+  overflow: hidden;
+  color: bolt-theme(background);
+  text-align: left;
+  text-align: start;
+  border-radius: bolt-border-radius(large);
+  border-width: $bolt-tooltip-bubble-border-width;
+  border-style: $bolt-tooltip-bubble-border-style;
+  border-color: $bolt-tooltip-bubble-border-color;
+  box-shadow: bolt-shadow('level-20');
+  background-color: bolt-theme(text, 0.95);
+  will-change: transform;
+  transition: transform $bolt-transition-timing
+    cubic-bezier(0.175, 0.885, 0.32, 1);
 
-  &:after,
-  &:before {
-    content: '';
-    display: block;
-    position: absolute;
-    width: 0;
-    height: 0;
-    pointer-events: none;
+  @at-root .c-bolt-tooltip--text-wrap & {
+    width: 150px;
+    white-space: normal;
+    hyphens: auto;
+  }
+
+  @at-root .c-bolt-tooltip--text-align-center & {
+    text-align: center;
+  }
+
+  @at-root [class*='c-bolt-tooltip--top'] & {
+    transform: scale3d(0.1, 0.1, 0.1) translate3d(0, 100%, 0);
+    margin-right: 0;
+    margin-left: 0;
+  }
+
+  @at-root .c-bolt-tooltip--top-end & {
+    transform-origin: bottom right;
+  }
+
+  @at-root .c-bolt-tooltip--top & {
+    transform-origin: bottom center;
+  }
+
+  @at-root .c-bolt-tooltip--top-start & {
+    transform-origin: bottom left;
+  }
+
+  @at-root [class*='c-bolt-tooltip--left'] & {
+    transform: scale3d(0.1, 0.1, 0.1) translate3d(100%, 0, 0);
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  @at-root .c-bolt-tooltip--left-start & {
+    transform-origin: top right;
+  }
+
+  @at-root .c-bolt-tooltip--left & {
+    transform-origin: center right;
+  }
+
+  @at-root .c-bolt-tooltip--left-end & {
+    transform-origin: bottom right;
+  }
+
+  @at-root [class*='c-bolt-tooltip--right'] & {
+    transform: scale3d(0.1, 0.1, 0.1) translate3d(-100%, 0, 0);
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  @at-root .c-bolt-tooltip--right-start & {
+    transform-origin: top left;
+  }
+
+  @at-root .c-bolt-tooltip--right & {
+    transform-origin: center left;
+  }
+
+  @at-root .c-bolt-tooltip--right-end & {
+    transform-origin: bottom left;
+  }
+
+  @at-root [class*='c-bolt-tooltip--bottom'] & {
+    transform: scale3d(0, 0, 0) translate3d(0, -100%, 0);
+    margin-right: 0;
+    margin-left: 0;
+  }
+
+  @at-root .c-bolt-tooltip--bottom-end & {
+    transform-origin: top right;
+  }
+
+  @at-root .c-bolt-tooltip--bottom & {
+    transform-origin: top center;
+  }
+
+  @at-root .c-bolt-tooltip--bottom-start & {
+    transform-origin: top left;
   }
 }
 
-
-// Show and hide effects
-.c-bolt-tooltip:not(:hover):not(.is-open) > .c-bolt-tooltip__content,
-.c-bolt-tooltip__trigger + .c-bolt-tooltip__content {
-  opacity: bolt-opacity(0);
-  pointer-events: none;
-}
-
-.c-bolt-tooltip:hover:not(.is-rendered) > .c-bolt-tooltip__content,
-.c-bolt-tooltip.is-open > .c-bolt-tooltip__content,
-.c-bolt-tooltip__trigger.is-open + .c-bolt-tooltip__content {
-  opacity: bolt-opacity(100);
-  pointer-events: auto;
-}
-
-.c-bolt-tooltip.is-push-up {
-  &:not(:hover) > .c-bolt-tooltip__content,
-  .c-bolt-tooltip__trigger + .c-bolt-tooltip__content {
-    padding-bottom: $bolt-tooltip-bubble-triangle-width;
-  }
-
-  &:hover > .c-bolt-tooltip__content,
-  .c-bolt-tooltip__trigger.is-open + .c-bolt-tooltip__content {
-    //padding-bottom: 0.25em; // Extra spacing between the bubble and the trigger
-  }
-}
-
-.c-bolt-tooltip.is-push-right {
-  &:not(:hover) > .c-bolt-tooltip__content,
-  .c-bolt-tooltip__trigger + .c-bolt-tooltip__content {
-    padding-left: 0;
-  }
-
-  &:hover > .c-bolt-tooltip__content,
-  .c-bolt-tooltip__trigger.is-open + .c-bolt-tooltip__content {
-    padding-left: $bolt-tooltip-bubble-triangle-width * 1.5; // Extra spacing between the bubble and the trigger
-  }
-}
-
-.c-bolt-tooltip.is-push-down {
-  &:not(:hover) > .c-bolt-tooltip__content,
-  .c-bolt-tooltip__trigger + .c-bolt-tooltip__content {
-    padding-top: $bolt-tooltip-bubble-triangle-width;
-  }
-
-  &:hover > .c-bolt-tooltip__content,
-  .c-bolt-tooltip__trigger.is-open + .c-bolt-tooltip__content {
-    //padding-top: 0.25em; // Extra spacing between the bubble and the trigger
-  }
-}
-
-.c-bolt-tooltip.is-push-left {
-  &:not(:hover) > .c-bolt-tooltip__content,
-  .c-bolt-tooltip__trigger + .c-bolt-tooltip__content {
-    padding-right: 0;
-  }
-
-  &:hover > .c-bolt-tooltip__content,
-  .c-bolt-tooltip__trigger.is-open + .c-bolt-tooltip__content {
-    padding-right: $bolt-tooltip-bubble-triangle-width * 1.5; // Extra spacing between the bubble and the trigger
-  }
+@include bolt-repeat-rule(
+  (
+    '.c-bolt-tooltip.is-expanded .c-bolt-tooltip__bubble',
+    // @todo: Since placement doesn't work without JS, this turns off the fly in effect if there is no JS.
+      'bolt-tooltip:not([ready]) .c-bolt-tooltip__bubble',
+    // @todo: Since placement doesn't work without JS, this turns off the fly in effect if there is no JS.
+      ':host:not([ready]) .c-bolt-tooltip__bubble'
+  )
+) {
+  transform: scale3d(1, 1, 1) translate3d(0, 0, 0);
 }
