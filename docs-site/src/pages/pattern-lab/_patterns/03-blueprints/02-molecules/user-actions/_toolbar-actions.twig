@@ -6,15 +6,7 @@
   spacing: "xsmall",
   nowrap: true,
   items: [
-    shareButton ? include("@bolt-components-button/button.twig", {
-      text: "Share",
-      size: "small",
-      style: "secondary",
-      iconOnly: true,
-      icon: {
-        name: "share",
-      }
-    }, with_context = false) : '',
+    shareButton ? include("@bolt-blueprints/toolbar-buttons/_share.twig", with_context = false) : '',
     favoriteButton ? include("@bolt-components-button/button.twig", {
       text: "Favorite",
       size: "small",
@@ -33,15 +25,7 @@
         name: "add",
       }
     }, with_context = false) : '',
-    removeButton ? include("@bolt-components-button/button.twig", {
-      text: "Remove",
-      size: "small",
-      style: "secondary",
-      iconOnly: true,
-      icon: {
-        name: "trash",
-      }
-    }, with_context = false) : '',
+    removeButton ? include("@bolt-blueprints/toolbar-buttons/_remove.twig", with_context = false) : '',
     downloadButton ? include("@bolt-components-button/button.twig", {
       text: "Download",
       size: "small",

@@ -167,7 +167,6 @@ class BoltTooltip extends BoltElement {
             fn: ({ state }) => {
               if (this.placement !== state.placement) {
                 this.placement = state.placement;
-                console.log(`placement changed to ${this.placement}`);
               }
             },
           },

@@ -2,6 +2,11 @@
   horizontal: false,
   theme: "xlight",
   link_url: cardUrl,
+  media: {
+    attributes: {
+      style: ["overflow: visible;"]
+    }
+  }
 } %}
   {% block media %}
   {# @todo: replace with 'u-bolt-position-relative' once it is working #}
@@ -9,9 +14,7 @@
     <div class="u-bolt-z-index-content" style="position: relative;">
       {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--xsmall u-bolt-negative-margin-top-small u-bolt-negative-margin-right-small" %}
         {% cell "u-bolt-margin-left-auto" %}
-          {% include "@bolt-blueprints/_toolbar-actions.twig" with {
-            addButton: true
-          } %}
+          {% include "@bolt-blueprints/_toolbar-actions.twig" %}
         {% endcell %}
 
         {% cell "u-bolt-width-1/1" %}
@@ -23,7 +26,10 @@
           {% if cardTitle %}
             {% include "@bolt-components-headline/headline.twig" with {
               text: cardTitle,
-              size: "xlarge"
+              size: "xlarge",
+              attributes: {
+                style: "min-height: 58px;"
+              }
             } only %}
           {% endif %}
         {% endcell %}
@@ -60,4 +66,17 @@
       {% endgrid %}
     </div>
   {% endblock %}
+
+  {% block actions %}
+    {% embed "@bolt-components-card-replacement/_card-replacement-actions.twig" %}
+      {% block action_items %}
+        {% if cardStatusItems %}
+          {% for item in cardStatusItems %}
+            {% include "@bolt-components-card-replacement/_card-replacement-action-item.twig" with { item: item } %}
+          {% endfor %}
+        {% endif %}
+      {% endblock %}
+    {% endembed %}
+  {% endblock %}
+
 {% endembed %}
