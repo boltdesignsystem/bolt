@@ -27,7 +27,7 @@ describe('<bolt-banner> Component', () => {
   status.enum.forEach(async statusChoice => {
     test(`Status of the banner message: ${statusChoice}`, async () => {
       const results = await render('@bolt-components-banner/banner.twig', {
-        content: 'This banner is trying to convey ${statusChoice}',
+        content: `This banner is trying to convey ${statusChoice}`,
         status: statusChoice,
       });
       expect(results.ok).toBe(true);
@@ -38,7 +38,7 @@ describe('<bolt-banner> Component', () => {
   align.enum.forEach(async alignChoice => {
     test(`Text alignment: ${alignChoice}`, async () => {
       const results = await render('@bolt-components-banner/banner.twig', {
-        content: 'The text is aligned to the ${alignChoice}',
+        content: `The text is aligned to the ${alignChoice}`,
         align: alignChoice,
       });
       expect(results.ok).toBe(true);
