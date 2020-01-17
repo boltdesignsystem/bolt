@@ -170,7 +170,7 @@ class BoltPopover extends BoltElement {
         ${this.slotMap.get('default') &&
           html`
             <span
-              tabindex="${this.hasFocusableContent ? '0' : '-1'}"
+              tabindex="${this.hasFocusableContent ? '-1' : '0'}"
               role="button"
               aria-controls="${ifDefined(
                 !this.hasPopup ? `js-bolt-popover-${this.uuid}` : undefined,
