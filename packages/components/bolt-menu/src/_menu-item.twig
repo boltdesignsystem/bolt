@@ -7,7 +7,7 @@
 {# Variables #}
 {% set base_class = "c-bolt-menu-item" %}
 {% set this = init(schema.properties.items.items) %}
-{% set item_attributes = create_attribute(attributes|merge({
+{% set item_attributes = create_attribute(attributes|default({})|merge({
   "role": "menuitem",
 })) %}
 
