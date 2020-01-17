@@ -101,8 +101,8 @@ class BoltTypeahead extends withLitEvents {
         type="submit"
         color="text"
         icon-only
-        no-shadow
         @click=${this.submit}
+        no-shadow
         class=${cx(
           'c-bolt-typeahead__button',
           'c-bolt-typeahead__button--submit',
@@ -119,9 +119,9 @@ class BoltTypeahead extends withLitEvents {
       <bolt-button
         color="text"
         icon-only
-        no-shadow
         type="reset"
         @click=${this.clearSearch}
+        no-shadow
         class=${cx(
           'c-bolt-typeahead__button',
           'c-bolt-typeahead__button--clear',
