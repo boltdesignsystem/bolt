@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.15.1](https://github.com/bolt-design-system/bolt/compare/v2.15.0...v2.15.1) (2020-01-18)
+
+
+### Bug Fixes
+
+* update image paths ([5662ccf](https://github.com/bolt-design-system/bolt/commit/5662ccf57e5ed7374811da697408c14265091099))
+
+
+
+
+
 # [2.15.0](https://github.com/bolt-design-system/bolt/compare/v2.14.3...v2.15.0) (2020-01-17)
 
 
