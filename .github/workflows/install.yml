@@ -7,6 +7,31 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: Cache PHP dependencies (Docs Site)
+        uses: actions/cache@v1
+        with:
+          path: docs-site/vendor
+          key: ${{ runner.OS }}-build-${{ hashFiles('**/composer.lock') }}
+      - name: Cache PHP dependencies (Shared Twig Exts)
+        uses: actions/cache@v1
+        with:
+          path: packages/twig-integration/twig-extensions-shared/vendor
+          key: ${{ runner.OS }}-build-${{ hashFiles('**/composer.lock') }}
+      - name: Cache PHP dependencies (Compat Twig Exts)
+        uses: actions/cache@v1
+        with:
+          path: packages/twig-integration/twig-extensions-compat/vendor
+          key: ${{ runner.OS }}-build-${{ hashFiles('**/composer.lock') }}
+      - name: Cache PHP dependencies (Twig Renderer)
+        uses: actions/cache@v1
+        with:
+          path: packages/twig-integration/twig-renderer/vendor
+          key: ${{ runner.OS }}-build-${{ hashFiles('**/composer.lock') }}
+      - name: Cache Webpack / Images
+        uses: actions/cache@v1
+        with:
+          path: docs-site/cache
+          key: ${{ runner.OS }}-build-webpack
       - uses: shivammathur/setup-php@1.7.3
         with:
           php-version: '7.3'
