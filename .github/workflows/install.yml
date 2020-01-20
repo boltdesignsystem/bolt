@@ -1,0 +1,13 @@
+name: Node.js Package
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: shivammathur/setup-php@1.7.3
+      - uses: ianwalter/puppeteer@v2.0.0
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - run: yarn setup
