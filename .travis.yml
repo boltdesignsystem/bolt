@@ -11,8 +11,12 @@ cache:
   directories:
     - node_modules
     - docs-site/cache
+    - docs-site/vendor
     - www
     - cache
+    - packages/twig-integration/twig-extensions-shared/vendor
+    - packages/twig-integration/twig-extensions-compat/vendor
+    - packages/twig-integration/twig-renderer/vendor
 
 before_cache:
 - mkdir -p node_modules
@@ -80,14 +84,14 @@ jobs:
         - npx lerna run postbootstrap
         - yarn global add @lhci/cli@0.3.x
       script:
-        - cd example-integrations/drupal-lab
-        - yarn run generate # generate static version of Drupal Lab in the integration folder
-        - cd ../../
+        #- cd example-integrations/drupal-lab
+        #- yarn run generate # generate static version of Drupal Lab in the integration folder
+        #- cd ../../
         - yarn run build
         - yarn run deploy
         - export NOW_URL=$(./scripts/get-latest-deploy.js)
         - travis_retry yarn run test:e2e:quick
-        - lhci autorun --collect.numberOfRuns=3 --collect.url=$NOW_URL --collect.url=$NOW_URL/pattern-lab/patterns/04-pages-10-d8-product-pages-product-t2/04-pages-10-d8-product-pages-product-t2.html --collect.url=$NOW_URL/pattern-lab/patterns/06-experiments-micro-journeys-90-micro-journeys/06-experiments-micro-journeys-90-micro-journeys.html
+        - lhci autorun --collect.numberOfRuns=1 --collect.url=$NOW_URL --collect.url=$NOW_URL/pattern-lab/patterns/04-pages-10-d8-product-pages-product-t2/04-pages-10-d8-product-pages-product-t2.html --collect.url=$NOW_URL/pattern-lab/patterns/06-experiments-micro-journeys-90-micro-journeys/06-experiments-micro-journeys-90-micro-journeys.html
       after_success:
         - ./scripts/deploy-branch-alias.js
 
