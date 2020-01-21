@@ -17,22 +17,7 @@ let cx = classNames.bind(menuStyles);
 class BoltMenu extends withContext(BoltElement) {
   static get properties() {
     return {
-      // ratio: String,
-      // _ratioW: String, // internal only prop for handling the width-specific data from the ratio prop
-      // _ratioH: String, // internal only prop for handling the height-specific data from the ratio prop
-      // aspectRatioHeight: {
-      //   type: Number, // deprecated - will be removed in Bolt v3.0
-      //   attribute: 'aspect-ratio-height',
-      // },
-      // aspectRatioWidth: {
-      //   type: Number, // deprecated - will be removed in Bolt v3.0
-      //   attribute: 'aspect-ratio-width',
-      // },
       spacing: String,
-      noCssVars: {
-        type: Boolean,
-        attribute: 'no-css-vars',
-      },
     };
   }
 
@@ -44,7 +29,6 @@ class BoltMenu extends withContext(BoltElement) {
 
   constructor() {
     super();
-    this.noCssVars = supportsCSSVars ? false : true;
   }
 
   static get styles() {

@@ -1,0 +1,26 @@
+{# Setting variables for demo purposes #}
+{% set schema = bolt.data.components["@bolt-components-menu"].schema %}
+
+{% for spacing in schema.properties.spacing.enum %}
+  <bolt-list spacing="large">
+    <bolt-list-item>
+      <bolt-text headline>Menu with {{ spacing }} spacing</bolt-text>
+      {# Start component specific code #}
+      {% include "@bolt-components-menu/menu.twig" with {
+        spacing: spacing,
+        items: [
+          {
+            content: "Menu item 1",
+          },
+          {
+            content: "Menu item 2",
+          },
+          {
+            content: "Menu item 3",
+          },
+        ]
+      } only %}
+      {# End component specific code #}
+    </bolt-list-item>
+  </bolt-list>
+{% endfor %}
