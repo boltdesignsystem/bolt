@@ -1,10 +1,11 @@
 /* ------------------------------------ *\
    Popover
 \* ------------------------------------ */
+@import '@bolt/core-v3.x';
 
-@import '@bolt/core';
-
-// Component variables
+/**
+ * Component variables
+ */
 $bolt-popover-border-width: $bolt-border-width;
 $bolt-popover-border-style: $bolt-border-style;
 $bolt-popover-border-color: bolt-theme(text, 0.15);
@@ -22,7 +23,9 @@ $bolt-popover-border-color: bolt-theme(text, 0.15);
   }
 }
 
-// Register Custom Block Element
+/**
+ * Register custom element
+ */
 @include bolt-repeat-rule(('bolt-popover', ':host')) {
   display: inline;
 }
@@ -32,132 +35,159 @@ $bolt-popover-border-color: bolt-theme(text, 0.15);
   position: relative;
 }
 
+/**
+ * Content container
+ * - used for fade effect and placement
+ */
 .c-bolt-popover__content {
-  @include bolt-margin(0);
+  visibility: hidden; // Visibility is used instead of display because display 'none' interferes with Popper.js calculating popover size.
+  opacity: 0;
+  position: absolute;
+  transform: translate3d(0, 0, 0);
+  z-index: bolt-z-index(popover);
+  min-width: 200px; // @todo: there might be a JS way to do this. Need to think it over. Leaving this for now to make sure the content width doesn't get too narrow.
+  transition: opacity $bolt-transition;
+
+  @at-root .c-bolt-popover.is-expanded & {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
+/**
+ * Bubble inside the content container
+ * - used for visual design of the bubble and the fly in effect
+ */
+.c-bolt-popover__bubble {
+  @include bolt-margin(xxsmall);
   @include bolt-padding(0);
   @include bolt-font-family(body);
   @include bolt-font-size(xsmall);
-  @include bolt-font-weight(regular);
-  visibility: hidden; // display 'none' interferes with Popper.js calculating tooltip size
-  opacity: 0;
-  position: absolute;
-  transform: translate3d(0, #{bolt-spacing(xxsmall)}, 0);
-  z-index: bolt-z-index(popover);
-  min-width: 200px; // @todo: there's a better to do this. Need to carry over from tooltip. Leaving this for now to make sure the content width doesn't get too narrow.
+  @include bolt-font-weight(semibold);
+  display: block;
+  transform: scale3d(1, 1, 1) translate3d(0, 0, 0);
   overflow: hidden;
   color: bolt-theme(text);
+  text-align: left;
+  text-align: start;
   border-radius: bolt-border-radius(small);
   border-width: $bolt-popover-border-width;
   border-style: $bolt-popover-border-style;
   border-color: $bolt-popover-border-color;
   box-shadow: bolt-shadow('level-20');
   background-color: bolt-theme(background);
-  transition: opacity $bolt-transition-timing * 2
-    cubic-bezier(0.25, 0.8, 0.25, 1);
+  will-change: transform;
+  transition: transform $bolt-transition-timing
+    cubic-bezier(0.175, 0.885, 0.32, 1);
 
-  @at-root .c-bolt-popover.is-expanded & {
-    visibility: visible;
-    opacity: 1;
-  }
+  /* @at-root .c-bolt-popover--text-wrap & {
+    width: 150px;
+    white-space: normal;
+    hyphens: auto;
+  } */
 
   @at-root .c-bolt-popover--nowrap & {
     min-width: auto;
     white-space: nowrap;
   }
 
-  // @todo: for now these positioning styles are not needed, but when we implement
-  // the no-js solution we might want some of them.
+  @at-root [class*='c-bolt-popover--top'] & {
+    transform: scale3d(0.1, 0.1, 0.1) translate3d(0, 100%, 0);
+    margin-right: 0;
+    margin-left: 0;
+  }
+
   @at-root .c-bolt-popover--top-end & {
     @include bolt-popover-bubble-tip-point-to(bottom-right);
-    // right: 0;
-    // bottom: 100%;
-    // transform: translate3d(0, -#{bolt-spacing(xxsmall)}, 0);
+    transform-origin: bottom right;
   }
 
   @at-root .c-bolt-popover--top & {
     @include bolt-popover-bubble-tip-point-to(null);
-    // bottom: 100%;
-    // left: 50%;
-    // transform: translate3d(-50%, -#{bolt-spacing(xxsmall)}, 0);
+    transform-origin: bottom center;
   }
 
   @at-root .c-bolt-popover--top-start & {
     @include bolt-popover-bubble-tip-point-to(bottom-left);
-    // bottom: 100%;
-    // left: 0;
-    // transform: translate3d(0, -#{bolt-spacing(xxsmall)}, 0);
+    transform-origin: bottom left;
+  }
+
+  @at-root [class*='c-bolt-popover--left'] & {
+    transform: scale3d(0.1, 0.1, 0.1) translate3d(100%, 0, 0);
+    margin-top: 0;
+    margin-bottom: 0;
   }
 
   @at-root .c-bolt-popover--left-start & {
     @include bolt-popover-bubble-tip-point-to(top-right);
-    // top: 0;
-    // right: 100%;
-    // transform: translate3d(-#{bolt-spacing(xxsmall)}, 0, 0);
+    transform-origin: top right;
   }
 
   @at-root .c-bolt-popover--left & {
     @include bolt-popover-bubble-tip-point-to(null);
-    // top: 50%;
-    // right: 100%;
-    // transform: translate3d(-#{bolt-spacing(xxsmall)}, -50%, 0);
+    transform-origin: center right;
   }
 
   @at-root .c-bolt-popover--left-end & {
     @include bolt-popover-bubble-tip-point-to(bottom-right);
-    // right: 100%;
-    // bottom: 0;
-    // transform: translate3d(-#{bolt-spacing(xxsmall)}, 0, 0);
+    transform-origin: bottom right;
+  }
+
+  @at-root [class*='c-bolt-popover--right'] & {
+    transform: scale3d(0.1, 0.1, 0.1) translate3d(-100%, 0, 0);
+    margin-top: 0;
+    margin-bottom: 0;
   }
 
   @at-root .c-bolt-popover--right-start & {
     @include bolt-popover-bubble-tip-point-to(top-left);
-    // top: 0;
-    // left: 100%;
-    // transform: translate3d(#{bolt-spacing(xxsmall)}, 0, 0);
+    transform-origin: top left;
   }
 
   @at-root .c-bolt-popover--right & {
     @include bolt-popover-bubble-tip-point-to(null);
-    // top: 50%;
-    // left: 100%;
-    // transform: translate3d(#{bolt-spacing(xxsmall)}, -50%, 0);
+    transform-origin: center left;
   }
 
   @at-root .c-bolt-popover--right-end & {
     @include bolt-popover-bubble-tip-point-to(bottom-left);
-    // bottom: 0;
-    // left: 100%;
-    // transform: translate3d(#{bolt-spacing(xxsmall)}, 0, 0);
+    transform-origin: bottom left;
+  }
+
+  @at-root [class*='c-bolt-popover--bottom'] & {
+    transform: scale3d(0, 0, 0) translate3d(0, -100%, 0);
+    margin-right: 0;
+    margin-left: 0;
   }
 
   @at-root .c-bolt-popover--bottom-end & {
     @include bolt-popover-bubble-tip-point-to(top-right);
-    // top: 100%;
-    // right: 0;
-    // transform: translate3d(0, #{bolt-spacing(xxsmall)}, 0);
+    transform-origin: top right;
   }
 
   @at-root .c-bolt-popover--bottom & {
     @include bolt-popover-bubble-tip-point-to(null);
-    // top: 100%;
-    // left: 50%;
-    // transform: translate3d(-50%, #{bolt-spacing(xxsmall)}, 0);
+    transform-origin: top center;
   }
 
   @at-root .c-bolt-popover--bottom-start & {
     @include bolt-popover-bubble-tip-point-to(top-left);
-    // top: 100%;
-    // left: 0;
-    // transform: translate3d(0, #{bolt-spacing(xxsmall)}, 0);
+    transform-origin: top left;
+  }
+
+  @at-root .c-bolt-popover.is-expanded & {
+    transform: scale3d(1, 1, 1) translate3d(0, 0, 0);
   }
 }
 
-// Spacing options
+/**
+ * Spacing prop
+ */
 @each $spacing-value in $bolt-spacing-values {
   $spacing-value-name: nth($spacing-value, 1);
 
   .c-bolt-popover--spacing-#{$spacing-value-name} {
-    .c-bolt-popover__content {
+    .c-bolt-popover__bubble {
       @include bolt-padding(#{$spacing-value-name});
     }
   }

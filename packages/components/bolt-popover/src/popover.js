@@ -153,7 +153,7 @@ class BoltPopover extends BoltElement {
   firstUpdated(changedProperties) {
     super.firstUpdated && super.firstUpdated(changedProperties);
     this.setupPlacement();
-    this.hasPopup = this.querySelector('bolt-list');
+    this.hasPopup = this.querySelector('bolt-menu');
   }
 
   render() {
@@ -196,7 +196,9 @@ class BoltPopover extends BoltElement {
               class="${cx(`c-bolt-popover__content`)}"
               aria-hidden="${!this.expanded}"
             >
-              ${this.slotify('content')}
+              <span class="${cx(`c-bolt-popover__bubble`)}">
+                ${this.slotify('content')}
+              </span>
             </span>
           `}
       </span>
