@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.15.2](https://github.com/boltdesignsystem/bolt/compare/v2.15.1...v2.15.2) (2020-01-21)
+
+
+### Features
+
+* cherry pick new Banner-specific component work to merge down ([aa30d78](https://github.com/boltdesignsystem/bolt/commit/aa30d788bfdbe0b81a0339f95c821c016145f833))
+
+
+
+
+
 ## [2.15.1](https://github.com/boltdesignsystem/bolt/compare/v2.15.0...v2.15.1) (2020-01-18)
 
 
