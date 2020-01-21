@@ -339,46 +339,40 @@ export function enableEditor({ space, uiWrapper, config }) {
   }) {
     const selected = editor.getSelected();
     const components = selected.components();
-    /** @type {grapesjs.ComponentObject} */
-    const data = {
-      type: 'div', // temp tag, will remove after
-      content: '',
-    };
-
-    let tempComponent;
+    let newComponent;
     if (slotName === 'default') {
-      tempComponent = components.add(data);
+      // If slot is default, simply add it.
+      newComponent = components.add(content);
     } else {
-      const slots = selected.find('[slot]');
+      // If slot is already set up, add to existing slot.
       const [slot] = selected.find(`${name} > [slot="${slotName}"]`);
       if (slot) {
         const slotComponents = slot.components();
-        tempComponent = slotComponents.add(data);
+        newComponent = slotComponents.add(content);
       } else {
-        const [newSlot] = selected.append(
-          shouldCreateAnimatableSlotIfNotPresent
-            ? `<bolt-animate slot="${slotName}"></bolt-animate>`
-            : `<div slot="${slotName}"></div>`,
+        // Create new content for slot.
+        newComponent = selected.append(
+          /** @type {grapesjs.ComponentObject} */ {
+            tagName: shouldCreateAnimatableSlotIfNotPresent
+              ? 'bolt-animate'
+              : 'div',
+            removable: true,
+            draggable: false,
+            copyable: false,
+            attributes: { slot: slotName },
+            content,
+          },
         );
-        const slotComponents = newSlot.components();
-        tempComponent = slotComponents.add(data);
       }
     }
-
-    const newComponent = tempComponent.replaceWith(content);
-    // if `content` has more than one top level element, we'll get an array, so we need to get the parent element to select in editor and trigger possible animations
-    const singleComponent =
-      Array.isArray(newComponent) && newComponent.length > 0
-        ? newComponent[0].parent()
-        : newComponent;
-
-    selected.view.el.setupSlots();
-    selected.view.el.triggerUpdate();
-    if (selectAfterAdd) editor.select(singleComponent);
-    if (triggerAnimsAfterAdd) {
-      const newEl = singleComponent.getEl();
-      triggerAnimsInEl(newEl);
-    }
+    // Force slots to refresh.
+    selected.getEl().setupSlots();
+    selected.getEl().triggerUpdate();
+    // Handle case where multiple components are being added.
+    const newComponentSingle =
+      newComponent.length > 1 ? newComponent[0].parent() : newComponent[0];
+    if (selectAfterAdd) editor.select(newComponentSingle);
+    if (triggerAnimsAfterAdd) triggerAnimsInEl(newComponentSingle.getEl());
     return newComponent;
   }
 
