@@ -32,6 +32,10 @@ const config = {
       recursive: true,
       paths: ['src/templates', '../packages/components'],
     },
+    'bolt-blueprints': {
+      recursive: true,
+      paths: ['./src/pages/pattern-lab/_patterns/03-blueprints'],
+    },
     pl: {
       recursive: true,
       paths: [
@@ -39,10 +43,6 @@ const config = {
         /* Example of including additional component paths to include in the main @bolt namespace */
         // path.relative(process.cwd(), path.dirname(require.resolve('@bolt/components-sticky/package.json'))),
       ],
-    },
-    academy: {
-      recursive: true,
-      paths: ['./src/pages/pattern-lab/_patterns/04-pages/55-d8-academy'],
     },
     'bolt-assets': {
       recursive: true,
@@ -64,6 +64,11 @@ const config = {
         glob: '**',
         dist: '../www/images',
       },
+      {
+        base: './src/pages/pattern-lab/_patterns/03-blueprints/00-assets/images',
+        glob: '**',
+        dist: '../www/images',
+      },
     ],
   },
 
@@ -80,6 +85,7 @@ const config = {
   components: {
     global: [
       // helper components that are only used internally
+      '@bolt/blueprints',
       '@bolt/shadow-toggle',
       '@bolt/theme-switcher',
       '@bolt/components-toolbar',
@@ -100,6 +106,7 @@ const config = {
       '@bolt/components-background',
       '@bolt/components-background-shapes',
       '@bolt/components-band',
+      '@bolt/components-banner',
       '@bolt/components-block-list',
       '@bolt/components-blockquote',
       '@bolt/components-breadcrumb',

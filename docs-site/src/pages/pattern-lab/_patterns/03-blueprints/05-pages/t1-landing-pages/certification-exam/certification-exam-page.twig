@@ -1,0 +1,157 @@
+{% extends "@bolt-blueprints/_landing-page-template.twig" %}
+
+{% block page_background %}
+  {% include "@bolt-components-background/background.twig" with {
+    opacity: "full",
+    fill: "radial-gradient",
+    fillColor: "indigo"
+  } only %}
+{% endblock %}
+
+{% block page_content %}
+  {% embed "@bolt-blueprints/landing-page-hero.twig" %}
+    {% block heroSupplementalContent %}
+      {% include "@bolt-components-headline/headline.twig" with {
+        size: "xlarge",
+        text: "Prerequisites:",
+        attributes: {
+          class: "u-bolt-margin-bottom-small",
+        }
+      } only %}
+      {% include "@bolt-components-list/list.twig" with {
+        separator: "none",
+        display: "block",
+        spacing: "none",
+        items: [
+          include("@bolt-components-link/link.twig", {
+            url: "https://www.google.com",
+            text: "Name of Mission will go here"
+          }),
+        ],
+        attributes: {
+          class: "u-bolt-margin-bottom-large",
+        }
+      } only %}
+
+      {% include "@bolt-components-headline/headline.twig" with {
+        size: "xlarge",
+        text: "Exam Topics " ~ include("@bolt-components-headline/text.twig", {
+          weight: "regular",
+          tag: "span",
+          size: "medium",
+          text: "(% of exam)",
+          attributes: {
+            class: "u-bolt-inline",
+          }
+        }),
+        attributes: {
+          class: "u-bolt-margin-bottom-small",
+        }
+      } only %}
+
+      {% include "@bolt-components-ul/ul.twig" with {
+        attributes: {
+          class: "u-bolt-margin-bottom-large",
+        },
+        items: [
+          "Pega Platform <strong>(8%)</strong>",
+          "Case Lifecycle <strong>(25%)</strong>",
+          "Case Data Modeling <strong>(17%)</strong>",
+          "Business Policy Automation <strong>(13%)</strong>",
+          "User Views <strong>(20%)</strong>",
+          "Reports <strong>(12%)</strong>",
+          "Testing <strong>(5%)</strong>",
+        ]
+      } only %}
+    {% endblock %}
+
+    {% block heroTopicList %}
+
+      {% include "@bolt-components-card-replacement/card-replacement.twig" with {
+        theme: "xlight",
+        rounded: true,
+        height: "auto",
+        attributes: {
+          class: [
+            "u-bolt-margin-bottom-small",
+          ]
+        },
+        body: {
+          content: [
+            include("@bolt-blueprints/_headline-with-logo.twig", {
+              headline: include("@bolt-components-headline/headline.twig", {
+                size: "xlarge",
+                text: "Before you begin...",
+                attributes: {
+                  class: "u-bolt-margin-bottom-none",
+                }
+              }),
+              logo: include("@bolt-components-image/image.twig", {
+                src: "/images/pearson-logo.svg",
+                attributes: {
+                  style: "max-width: 170px;",
+                  class: [
+                    "u-bolt-margin-left-auto@small"
+                  ]
+                }
+              }),
+            }),
+            include("@bolt-components-headline/text.twig", {
+              size: "medium",
+              text: "The <strong>Certified System Architect Test</strong> is proctored by Pearson VUE. Users must create a Pearson VUE account if you do not already have one and register for the exam through the Pearson VUE site. There are two exam delivery options:",
+              attributes: {
+                class: [
+                  "u-bolt-margin-top-medium"
+                ]
+              }
+            }),
+            include("@bolt-components-ul/ul.twig", {
+              items: [
+                "Take an exam at a test center, or",
+                "Take an exam via Online Proctored delivery" ~ include("@bolt-components-headline/text.twig", {
+                  text: "(e.g., in a quiet, uninterrupted room in your home or office, proctored via webcam).",
+                  size: "xxsmall",
+                  style: "italic",
+                  align: "left",
+                }),
+              ]
+            }),
+            include("@bolt-components-list/list.twig", {
+              display: "inline",
+              spacing: "small",
+              align: "start",
+              attributes: {
+                class: [
+                  "u-bolt-margin-top-large"
+                ]
+              },
+              items: [
+                include("@bolt-components-button/button.twig", {
+                  text: "Create Pearson VUE Account",
+                  size: "small",
+                  style: "secondary",
+                  border_radius: "full",
+                  url: "https://www.google.com",
+                }),
+                include("@bolt-components-button/button.twig", {
+                  text: "Register for Exam",
+                  size: "small",
+                  border_radius: "full",
+                  attributes: {
+                    "on-click": "hide",
+                    "on-click-target": "js-modal-advanced-auto-open",
+                  },
+                }),
+              ]
+            })
+          ] | join('')
+        }
+      } %}
+    {% endblock %}
+  {% endembed %}
+{% endblock %}
+
+{% block global_footer %}
+  {% include "@bolt-blueprints/_hero--request-feedback.twig" %}
+  {{ parent() }}
+{% endblock %}

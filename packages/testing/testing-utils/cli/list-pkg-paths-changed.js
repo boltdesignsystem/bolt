@@ -31,7 +31,7 @@ if (process.env.TRAVIS === 'true') {
     },
   ].forEach(step => {
     process.stderr.write(`${step.label}\n`);
-    const results = execa.sync(step.cmd);
+    const results = execa.shellSync(step.cmd);
     if (results.failed) {
       process.stderr.write(`Uh oh, this Travis git step failed:\n`);
       process.stderr.write(`${results.stderr}\n`);
