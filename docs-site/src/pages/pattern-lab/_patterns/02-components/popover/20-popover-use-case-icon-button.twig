@@ -1,8 +1,13 @@
 {# Setting variables for demo purposes #}
 {% set trigger %}
   {% include "@bolt-components-button/button.twig" with {
-    text: "This triggers a popover",
-    size: "small",
+    size: "xsmall",
+    iconOnly: true,
+    text: "View more",
+    icon: {
+      name: "more",
+      position: "after",
+    },
   } only %}
 {% endset %}
 {% set content %}
@@ -10,6 +15,7 @@
   <bolt-text font-size="xsmall">This is the content of the popover. <bolt-link url="https://pega.com">call to action</bolt-link></bolt-text>
 {% endset %}
 
+<bolt-text headline>Overflow popover</bolt-text>
 {# Start component specific code #}
 {% include "@bolt-components-popover/popover.twig" with {
   trigger: trigger,

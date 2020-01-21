@@ -1,0 +1,27 @@
+{# Setting variables for demo purposes #}
+{% set schema = bolt.data.components["@bolt-components-popover"].schema %}
+{% set trigger %}
+  {% include "@bolt-components-button/button.twig" with {
+    text: "Trigger",
+    size: "small",
+  } only %}
+{% endset %}
+{% set content %}
+  <bolt-text headline font-size="small">Content</bolt-text>
+  <bolt-text font-size="xsmall">This is the content of the popover. <bolt-link url="https://pega.com">call to action</bolt-link></bolt-text>
+{% endset %}
+
+<bolt-list spacing="large">
+  {% for spacing in schema.properties.spacing.enum %}
+    <bolt-list-item>
+      <bolt-text headline>This popover has {{ spacing }} spacing</bolt-text>
+      {# Start component specific code #}
+      {% include "@bolt-components-popover/popover.twig" with {
+        trigger: trigger,
+        content: content,
+        spacing: spacing,
+      } only %}
+      {# End component specific code #}
+    </bolt-list-item>
+  {% endfor %}
+</bolt-list>
