@@ -43,6 +43,12 @@ export function enableEditor({ space, uiWrapper, config }) {
       .forEach(twoCharLayout => {
         twoCharLayout.triggerLayoutRecalculate();
       });
+    document.querySelectorAll('*').forEach(el => {
+      if (el.setupSlots) el.setupSlots();
+      if (el.triggerUpdate) el.triggerUpdate();
+      if (el.triggerAnimIns) el.triggerAnimIns();
+      if (el.triggerAnimIn) el.triggerAnimIn();
+    });
   };
 
   /**
