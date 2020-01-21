@@ -438,14 +438,16 @@ export function enableEditor({ space, uiWrapper, config }) {
         // setTimeout because view hasn't yet been created for trait in component:selected.
         setTimeout(() => {
           const traitDescClass = 'trait-description';
-          if (trait.view.el.lastElementChild.getAttribute('class') !== traitDescClass) {
+          if (
+            trait.view.el.lastElementChild.getAttribute('class') !==
+            traitDescClass
+          ) {
             const template = document.createElement('template');
             template.innerHTML = `<div class="${traitDescClass}" style="font-size: smaller"><i>${trait.attributes.description}</i></div>`;
             trait.view.el.appendChild(template.content.firstChild);
           }
         }, 0);
       }
-
     });
   });
 

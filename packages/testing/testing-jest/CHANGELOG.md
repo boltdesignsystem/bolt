@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.15.0](https://github.com/boltdesignsystem/bolt/compare/v2.14.3...v2.15.0) (2020-01-17)
+
+
+### Bug Fixes
+
+* adding removed earlier functionality ([f9d097b](https://github.com/boltdesignsystem/bolt/commit/f9d097b0482052f7ac8a949e1f1a70da30fd397f))
+
+
+### Features
+
+* port over misc monorepo-related updates from the epic/academy work ([b236c87](https://github.com/boltdesignsystem/bolt/commit/b236c87624b079432f7a02171fbf080be2a9bc19))
+
+
+
+
+
 # [2.14.0](https://github.com/boltdesignsystem/bolt/compare/v2.13.3...v2.14.0) (2020-01-06)
 
 **Note:** Version bump only for package @bolt/jest-config

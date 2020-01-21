@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.15.0](https://github.com/bolt-design-system/bolt/compare/v2.14.3...v2.15.0) (2020-01-17)
+
+
+### Bug Fixes
+
+* **micro-journeys:** fix mistaken both-side-content class; add class for in-two-char-layout; fix IE 11 styling in two-char layout ([dcb12fb](https://github.com/bolt-design-system/bolt/commit/dcb12fb04490e7f1e5e3e719a9fc96aa662f5e06))
+
+
+
+
+
 ## [2.14.1](https://github.com/bolt-design-system/bolt/compare/v2.14.0...v2.14.1) (2020-01-09)
 
 

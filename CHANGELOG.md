@@ -3,6 +3,135 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.15.1](https://github.com/boltdesignsystem/bolt/compare/v2.15.0...v2.15.1) (2020-01-18)
+
+
+### Bug Fixes
+
+* update image paths ([5662ccf](https://github.com/boltdesignsystem/bolt/commit/5662ccf57e5ed7374811da697408c14265091099))
+
+
+
+
+
+# [2.15.0](https://github.com/boltdesignsystem/bolt/compare/v2.14.3...v2.15.0) (2020-01-17)
+
+
+### Bug Fixes
+
+* add missing uuid prop ([03a7003](https://github.com/boltdesignsystem/bolt/commit/03a700381ee015b8be6ee9b612e997cb05fc8922))
+* add testing file for generator ([f3d6255](https://github.com/boltdesignsystem/bolt/commit/f3d62552c84062970c283b675fea6ba566779199))
+* adding removed earlier functionality ([f9d097b](https://github.com/boltdesignsystem/bolt/commit/f9d097b0482052f7ac8a949e1f1a70da30fd397f))
+* adjust docs site <head> to fix layout on inner pages + make sure the Mission modal doesn't open on the PL viewall section ([11be05c](https://github.com/boltdesignsystem/bolt/commit/11be05c5705d158ab369f26bf325480e57a469ac))
+* always set role to button ([9b84e36](https://github.com/boltdesignsystem/bolt/commit/9b84e368bee88b9049b3b513472b210d2c27d86c))
+* change placement default to auto ([525cb60](https://github.com/boltdesignsystem/bolt/commit/525cb60f92d64bee4c7ccb01c2ecc4a25ab082a7))
+* change svg names to follow conventions ([180cde4](https://github.com/boltdesignsystem/bolt/commit/180cde4f38f228e643639ca86bcf13777b87241a))
+* change to locally installed version of Lerna ([679d7e5](https://github.com/boltdesignsystem/bolt/commit/679d7e549eb1017bf373102acf5c3a59bd583caa))
+* CSS clean up and revert line-height change ([ffe6e4d](https://github.com/boltdesignsystem/bolt/commit/ffe6e4db2c8073fd9f6cb1b0fc4c406b36ae64d0))
+* css snaps ([f93db8c](https://github.com/boltdesignsystem/bolt/commit/f93db8c7331d88276963429e2d9f3783f158e2dd))
+* default text alignment ([7e384a1](https://github.com/boltdesignsystem/bolt/commit/7e384a1495596659ff7102b1f29f658854ae8f7d))
+* dependencies ([11520f4](https://github.com/boltdesignsystem/bolt/commit/11520f440a933f933b57a18aaccfd6251b3195e4))
+* dependency ([041c1e6](https://github.com/boltdesignsystem/bolt/commit/041c1e6629fdec88d0efb09acedc2649969b2a5c))
+* focus styles ([98083fd](https://github.com/boltdesignsystem/bolt/commit/98083fd9cdae21a8a2e46ab0ef588b5b080da91f))
+* force downgrade version of lerna used ([4c1bbd5](https://github.com/boltdesignsystem/bolt/commit/4c1bbd5c40da6898b7dd10cd7b607034f9542df9))
+* increase contrast to be AA compliant ([4817b94](https://github.com/boltdesignsystem/bolt/commit/4817b9489b1346842401d0089c53d66ca384bc3f))
+* js to not render class when placement is auto ([b73ec96](https://github.com/boltdesignsystem/bolt/commit/b73ec967fbdcffdcf09fcf45370eca54c7f9dcf1))
+* keep component placement prop in sync with popper ([d6be669](https://github.com/boltdesignsystem/bolt/commit/d6be669f217876cbc3643c7667f42aa8fe93f1df))
+* linting ([a5734fe](https://github.com/boltdesignsystem/bolt/commit/a5734fe047d59db4274392f782b96a0a5c42c6b1))
+* linting ([079dc4c](https://github.com/boltdesignsystem/bolt/commit/079dc4ce4b98fab7a5d9d20c8924b826b6fa5113))
+* linting ([31d44a1](https://github.com/boltdesignsystem/bolt/commit/31d44a1569b34d3557dcec388b71545cd9b9d131))
+* make border color consistent ([d925e45](https://github.com/boltdesignsystem/bolt/commit/d925e4591ad419ed450225a6828dc2792a943cbb))
+* minor UIKit prod CSS fixes ([7ce181c](https://github.com/boltdesignsystem/bolt/commit/7ce181c1f838f9edadb9db49c6879350a86fba9e))
+* naming convention and JA classes ([5133e9b](https://github.com/boltdesignsystem/bolt/commit/5133e9b3c12265624bce84d96de0ce8132482a03))
+* properly track mouseout event ([d596873](https://github.com/boltdesignsystem/bolt/commit/d596873d8f9707b8749e66d7dcb73bfdc81d894e))
+* regenerate Carousel VRT screenshots ([c634943](https://github.com/boltdesignsystem/bolt/commit/c63494392048ca4584052b2b2f9fcc6361b4e239))
+* remove button from tooltip dependencies ([14783ea](https://github.com/boltdesignsystem/bolt/commit/14783ea97f84c211629c367907d8e1ad3e0b1ce4))
+* remove constructor from component template, use bind version of classname package ([b643d68](https://github.com/boltdesignsystem/bolt/commit/b643d683cd92f6ff44fb211a05c5893c8e5b4a24))
+* remove empty test ([7f32c5d](https://github.com/boltdesignsystem/bolt/commit/7f32c5de24ac5a5e995fd5dc78bb554c08b66baa))
+* remove empty test file until Jest tests written ([aca9357](https://github.com/boltdesignsystem/bolt/commit/aca935736e6225d846189afdd46437f8f523262b))
+* remove issue with Grid matrix styles + remove grid margin overrides ([cdd89ed](https://github.com/boltdesignsystem/bolt/commit/cdd89ed066fbc5acb85cbbc207557105a9ad85d3))
+* remove word wrap completely and use existing scrolling mixin ([d5b6c50](https://github.com/boltdesignsystem/bolt/commit/d5b6c501b2cdc4352500222a0105948677528dde))
+* rename 'templateMap' to 'slotMap' after update on master ([83db554](https://github.com/boltdesignsystem/bolt/commit/83db554009ac2f8fc85bb5ff2921cd3c6a11a625))
+* rename templateMap to slotMap in card-replacement ([575a6f3](https://github.com/boltdesignsystem/bolt/commit/575a6f39b558a42b8871de4ea682e6618f0ebfc5))
+* resolve execa / shell issue ([0eb57a3](https://github.com/boltdesignsystem/bolt/commit/0eb57a3157c5eaa9ab22b3b1a5641bf7f62a9342))
+* restore missing Yeoman generator Jest test ([0b25123](https://github.com/boltdesignsystem/bolt/commit/0b25123c431f8d84dfaa900aafebdfe2f53327df))
+* reverse tab index logic, if has focusable content pass through focus ([dedf256](https://github.com/boltdesignsystem/bolt/commit/dedf256105a4de22ce2867f33a78bd35a122e09e))
+* revert execa CLI update ([1e258e3](https://github.com/boltdesignsystem/bolt/commit/1e258e3db1422e5d915ee2ddf8b962141a0d83b6))
+* revert execa update to fix Lerna CLI error ([db3fc1a](https://github.com/boltdesignsystem/bolt/commit/db3fc1a0eaeec4f49e4e9654fcf3747d883fac70))
+* schema ([8557204](https://github.com/boltdesignsystem/bolt/commit/8557204ee7ba2928482ee6ca9a6ad852dd521b31))
+* set placement based on schema default instead of hardcoding ([e5aa812](https://github.com/boltdesignsystem/bolt/commit/e5aa81244e5e77a70b32f8563da214b668198bc0))
+* stylelint fix ([787067c](https://github.com/boltdesignsystem/bolt/commit/787067cbe8f070f7d46cc3c48f8e8998246d9204))
+* stylelint updstes ([101a145](https://github.com/boltdesignsystem/bolt/commit/101a14526c1a0d632d4cd62afc7e17ad1bb8bbe7))
+* switch to mouseenter, mouseleave with debounce, mostly avoids bug where tooltip stays open after leave ([35e5fcd](https://github.com/boltdesignsystem/bolt/commit/35e5fcda5eb94caa4a3ec6ac566d9f5670f4f9d0))
+* test snaps ([5686349](https://github.com/boltdesignsystem/bolt/commit/56863496f8d1c6e7feec5a5e23f9e43e3e7173d4))
+* twig error when attributes is undefined ([a519e41](https://github.com/boltdesignsystem/bolt/commit/a519e41af05d152fb53894a485d1798f77b2448f))
+* twig schema validation errors ([ce01d58](https://github.com/boltdesignsystem/bolt/commit/ce01d58b89ff55ce09b7906ca8f631a774c517b2))
+* typo in doc ([668a9f7](https://github.com/boltdesignsystem/bolt/commit/668a9f77aad4d2b46daa355a7d1fae973bf405b2))
+* update Band Snapshot ([b88db8a](https://github.com/boltdesignsystem/bolt/commit/b88db8abb16116f82998cb084346a8db983cf0ba))
+* update Build Tools snapshot ([d28b86b](https://github.com/boltdesignsystem/bolt/commit/d28b86b19cb6629d0576019dc85af1f0ade3d698))
+* update drupal-module path ([6c63169](https://github.com/boltdesignsystem/bolt/commit/6c63169c82818a2a9cffdb1d6444792fc890e867))
+* update E2E test ([8f84d81](https://github.com/boltdesignsystem/bolt/commit/8f84d8175d3a34867ce4728bc8babe62bdfc438e))
+* update Jest snapshots ([e6bf37b](https://github.com/boltdesignsystem/bolt/commit/e6bf37b71dba8b50356e36cfd5b835ccf627d79d))
+* update monorepo dependency test ([150cffd](https://github.com/boltdesignsystem/bolt/commit/150cffd26a38a344a89ef294e5f74c1059758deb))
+* update mult-lang snap ([82cbfaf](https://github.com/boltdesignsystem/bolt/commit/82cbfaf406d9f3f72cf6f30fa3cf8809b721bf85))
+* update slotify keyname to 'slotMap' to fix broken reference ([ffef8e1](https://github.com/boltdesignsystem/bolt/commit/ffef8e1be8c90bb43c1f15ef66b30c92ad861954))
+* update snapshot ([958ed18](https://github.com/boltdesignsystem/bolt/commit/958ed185cc25888140f62f233f6596c4cc840788))
+* update snapshots ([97424ce](https://github.com/boltdesignsystem/bolt/commit/97424cec7aa86c550649b00e3d40384694e98698))
+* update snapshots + tweak breakpoint used for largest fluid font size ([e72dbe6](https://github.com/boltdesignsystem/bolt/commit/e72dbe6954437d00376e13d7a7718e5bea8dd191))
+* use consistent border color ([99da773](https://github.com/boltdesignsystem/bolt/commit/99da7731eade993720e66e7df5bcc5f9f4eb40e5))
+* **micro-journeys:** add button to trigger animate in; add example of 2-char layout with side content to PL ([e478aa8](https://github.com/boltdesignsystem/bolt/commit/e478aa883dd96b66f32675c8ad3060fdbb1d9b9f))
+* **micro-journeys:** fix mistaken both-side-content class; add class for in-two-char-layout; fix IE 11 styling in two-char layout ([dcb12fb](https://github.com/boltdesignsystem/bolt/commit/dcb12fb04490e7f1e5e3e719a9fc96aa662f5e06))
+* update snapshots ([6391dc1](https://github.com/boltdesignsystem/bolt/commit/6391dc150eca92d7f319eef7702571e27ebabb37))
+* update Tooltip snapshots ([fdd1a4d](https://github.com/boltdesignsystem/bolt/commit/fdd1a4deaa7be235965b210c39c9d8747b8bf5a1))
+* use the updated `fillColor` prop name ([fef8074](https://github.com/boltdesignsystem/bolt/commit/fef80748d98f1e34710b5c7cdfb5573164d7c9b9))
+* workaround to Pattern Lab UI quirks when displaying entire pages on the View All section ([896e425](https://github.com/boltdesignsystem/bolt/commit/896e42531e7abe5f1775b6f90ca9c71ae1c1d44b))
+* z-index ([cfe058d](https://github.com/boltdesignsystem/bolt/commit/cfe058d04e894d8bfe1411da8d001060bf642c46))
+* **micro-journeys:** ie11 shorten connection length in two-character-layout ([6334eea](https://github.com/boltdesignsystem/bolt/commit/6334eea0daec7b8099d68b33155920e5b78f3fd8))
+
+
+### Features
+
+* add ability to customize the toolbar's gradient from the Academy hero ([19981a6](https://github.com/boltdesignsystem/bolt/commit/19981a64e4b902f14c0da03d97845d1fbaf1db37))
+* add blocks to card-replacement to allow override in academy ([565a17f](https://github.com/boltdesignsystem/bolt/commit/565a17fae5ca4daddcf221319abf8717dc0fb386))
+* add is-focusable to core utils ([92892b6](https://github.com/boltdesignsystem/bolt/commit/92892b6100512c37e02cd749ad8c0656bf65f98e))
+* add new  font weight + new  prop to Headline component ([0c44b0c](https://github.com/boltdesignsystem/bolt/commit/0c44b0c93848da15b5237016dfa8d48a4a6650fc))
+* add new breakpoint, font size, font weight, and spacing options needed to support in-progress Academy work ([a87e109](https://github.com/boltdesignsystem/bolt/commit/a87e1095581a09db401b923d7282c1a8fad6fc86))
+* add new List icon ([cb94fd5](https://github.com/boltdesignsystem/bolt/commit/cb94fd5ad504c5e076b837469570ee06bb0ac0b1))
+* add popper placement support to popover ([86fcf4b](https://github.com/boltdesignsystem/bolt/commit/86fcf4b9caf75403f5289fb9304e07847a551a36))
+* add popper to handle tooltip placement ([1181b50](https://github.com/boltdesignsystem/bolt/commit/1181b500f65a7c1f5f0669bf9f1d4c11f3e2cb74))
+* add the ability to customize Icon's border radius via CSS custom property ([bcff00d](https://github.com/boltdesignsystem/bolt/commit/bcff00db184f8e6707c92b6cdb7ea0fc9f7b1ff5))
+* add tooltip and popover to toolbar buttons ([92cfe91](https://github.com/boltdesignsystem/bolt/commit/92cfe91e615650e595775c725f153e6f8ac49f53))
+* add wc-context to Menu component ([1ed6134](https://github.com/boltdesignsystem/bolt/commit/1ed613478ac793470f868c43f33b47c6372f99e7))
+* code snippet scrolling updates from the original Card component branch ([22816b5](https://github.com/boltdesignsystem/bolt/commit/22816b5001512e044c14701d53b3edf7f54f866d))
+* pass in card status to action block ([9247ff5](https://github.com/boltdesignsystem/bolt/commit/9247ff56cb8cc97ae1e49be8c9186cccf544d14b))
+* port list CSS update from epic/academy ([5b834b3](https://github.com/boltdesignsystem/bolt/commit/5b834b3ffa8315f578ed6d8bbda890e46676aab6))
+* port over Academy-related Band updates ([aa511e2](https://github.com/boltdesignsystem/bolt/commit/aa511e2abf31c9eead242a77e63397fa5d43862c))
+* port over Academy-related updates for @bolt/global styles ([5f09384](https://github.com/boltdesignsystem/bolt/commit/5f0938428261cf46295d6afd888bcf3295c6298e))
+* port over Academy-related updates to Background component ([9e6c197](https://github.com/boltdesignsystem/bolt/commit/9e6c1975301e58bfae5a006b9afe18ac32cc078a))
+* port over Chip-related updates made on the epic/academy branch ([4df332f](https://github.com/boltdesignsystem/bolt/commit/4df332f39bfd6c5ddcda6cc99e68f036155acde4))
+* port over link / image / flag related updates from epic/academy ([bffc7ba](https://github.com/boltdesignsystem/bolt/commit/bffc7ba45532eb7cbef7ad2fd1dd4d01a7cd2a61))
+* port over misc monorepo-related updates from the epic/academy work ([b236c87](https://github.com/boltdesignsystem/bolt/commit/b236c87624b079432f7a02171fbf080be2a9bc19))
+* port over Site container CSS update from epic/academy ([dd4d161](https://github.com/boltdesignsystem/bolt/commit/dd4d1618e0f542e828d5e59191fc86fb770a4c47))
+* port over Slotify template map API update ([19ac59f](https://github.com/boltdesignsystem/bolt/commit/19ac59fe482120a602b71a5efd031d9abce32718))
+* port over Webpack cache related updates ([1954447](https://github.com/boltdesignsystem/bolt/commit/195444752b480c40ac01b94ea6bfee30da955c2f))
+* prepare Menu schema to pull in Trigger schema, set default spacing value ([43cd817](https://github.com/boltdesignsystem/bolt/commit/43cd817a2107fb5941c496ff0f872db08eb3172a))
+* revert to 'bottom' placement as default, works better in v2 ([6ea0979](https://github.com/boltdesignsystem/bolt/commit/6ea097966c0c3cdc8c6865e6a09b8cf721c866da))
+* set min height on header ([ebb2318](https://github.com/boltdesignsystem/bolt/commit/ebb2318938621c4c8372544eb276a6cdb3dd1d82))
+* setup ssr-keep in Menu component, needs refactor ([0ad766f](https://github.com/boltdesignsystem/bolt/commit/0ad766f3853bdd4e7765d25ac268b3eccd061ef0))
+* setup workaround for Context in Menu component to pass spacing prop down ([6e0a405](https://github.com/boltdesignsystem/bolt/commit/6e0a4053ce166b9b665317e34ecbecfc915191fb))
+* update dashboard to reflect latest design, add vertical cards styles ([8402160](https://github.com/boltdesignsystem/bolt/commit/84021602d5fe7e6e3d297d33690b22341b764a4e))
+* update naming ot newest approach ([2d5453c](https://github.com/boltdesignsystem/bolt/commit/2d5453c473ba4c3031c3348e90f974ff7b5d424c))
+* update popover placement names ([cf47303](https://github.com/boltdesignsystem/bolt/commit/cf47303debdb94c3ce31cd6b44b7c331624320ec))
+* update popper to v2 for preventOverflow improvements ([fdb808f](https://github.com/boltdesignsystem/bolt/commit/fdb808fd057b4d4a30beae953617fdca9095ca32))
+* update to popover to Popper v2, update callbacks to use new API ([de0c554](https://github.com/boltdesignsystem/bolt/commit/de0c5543ea4ef3daf6d20360859abc3b9d0e4942))
+* use modified trigger schema in menu schema ([708b8c3](https://github.com/boltdesignsystem/bolt/commit/708b8c310af9787b82b574b9c803c2a607ada8ac))
+* when 2 cards make 2/3 width not 100% ([8558725](https://github.com/boltdesignsystem/bolt/commit/8558725e0a584e6eb38cdcf6b26e4873163e38fd))
+* **editor:** add prop schema descriptions underneath traits ([112e9c0](https://github.com/boltdesignsystem/bolt/commit/112e9c09926ae05ce0c5abaaf305d7e788e65ed0))
+
+
+
+
+
 ## [2.14.3](https://github.com/boltdesignsystem/bolt/compare/v2.14.2...v2.14.3) (2020-01-16)
 
 

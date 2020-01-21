@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.15.0](https://github.com/bolt-design-system/bolt/compare/v2.14.3...v2.15.0) (2020-01-17)
+
+
+### Bug Fixes
+
+* remove word wrap completely and use existing scrolling mixin ([d5b6c50](https://github.com/bolt-design-system/bolt/commit/d5b6c501b2cdc4352500222a0105948677528dde))
+
+
+### Features
+
+* code snippet scrolling updates from the original Card component branch ([22816b5](https://github.com/bolt-design-system/bolt/commit/22816b5001512e044c14701d53b3edf7f54f866d))
+
+
+
+
+
 # [2.14.0](https://github.com/bolt-design-system/bolt/compare/v2.13.3...v2.14.0) (2020-01-06)
 
 

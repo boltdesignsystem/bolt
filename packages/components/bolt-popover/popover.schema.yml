@@ -1,0 +1,53 @@
+title: Popover
+type: object
+properties:
+  attributes:
+    title: Attributes (Twig-only)
+    type: object
+    description: 'A Drupal attributes object. Used to apply extra HTML attributes to the outer &lt;bolt-popover&gt; tag.'
+  trigger:
+    type:
+      - string
+      - array
+      - object
+    description: 'Trigger of the popover.'
+  content:
+    type:
+      - string
+      - array
+      - object
+    description: 'Content of the popover.'
+  placement:
+    type: string
+    description: 'Preferred placement of the popover. The actual placement of the popover will be automatically adjusted based on the space available on screen.'
+    default: bottom-start
+    enum:
+      - auto
+      - top-start
+      - top
+      - top-end
+      - left-start
+      - left
+      - left-end
+      - right-start
+      - right
+      - right-end
+      - bottom-start
+      - bottom
+      - bottom-end
+  spacing:
+    type: string
+    description: 'The spacing around the popover content.'
+    default: none
+    enum:
+      - none
+      - xsmall
+      - small
+      - medium
+  nowrap:
+    type: boolean
+    description: 'Stops the text in the content to wrap to a second line.'
+    default: false
+  uuid:
+    type: string
+    description: Unique ID for popover, randomly generated if not provided.

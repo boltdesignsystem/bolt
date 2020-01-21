@@ -100,17 +100,11 @@
         {% endif %}
       {% endif %}
 
-      {% if actions or actions_block %}
-        {% if actions_block %}
-          {% embed "@bolt-components-card-replacement/_card-replacement-actions.twig" %}
-            {% block actions %}
-              {{ actions_block }}
-            {% endblock %}
-          {% endembed %}
-        {% else %}
+      {% block actions %}
+        {% if actions %}
           {% include "@bolt-components-card-replacement/_card-replacement-actions.twig" %}
         {% endif %}
-      {% endif %}
+      {% endblock %}
       {% if horizontal %}</div>{% endif %}
     {% endif %}
   </replace-with-children>
