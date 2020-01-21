@@ -81,7 +81,7 @@ jobs:
       if: (NOT tag =~ ^v) AND (NOT branch =~ /(master|release|bug|fix)/)
       install:
         - yarn run setup
-        - lerna run postbootstrap
+        - npx lerna run postbootstrap
         #- yarn global add @lhci/cli@0.3.x
       script:
         #- cd example-integrations/drupal-lab
