@@ -1,0 +1,14 @@
+{# Setting variables for demo purposes #}
+{% set schema = bolt.data.components["@bolt-components-banner"].schema %}
+
+<bolt-text headline>
+  Status
+</bolt-text>
+{% for status in schema.properties.status.enum %}
+  {# Start component specific code #}
+  {% include "@bolt-components-banner/banner.twig" with {
+    content: "This banner is trying to convey " ~ status,
+    status: status,
+  } only %}
+  {# End component specific code #}
+{% endfor %}

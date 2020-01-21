@@ -8,7 +8,7 @@
 {% set toolbar_title %}
   {% if icon and icon.name %}
     <div class="c-bolt-toolbar__title-icon">
-      {% include "@bolt/icon.twig" with {
+      {% include "@bolt-components-icon/icon.twig" with {
         "name": icon.name,
         "size": "large"
       } only %}

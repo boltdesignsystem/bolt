@@ -65,7 +65,8 @@ class BoltCardReplacement extends withContext(BoltElement) {
     let renderedCardReplacement;
 
     const cardReplacementLink =
-      this.url !== undefined && !this.querySelector('bolt-card-replacement-link')
+      this.url !== undefined &&
+      !this.querySelector('bolt-card-replacement-link')
         ? html`
             <bolt-card-replacement-link
               url="${this.url}"

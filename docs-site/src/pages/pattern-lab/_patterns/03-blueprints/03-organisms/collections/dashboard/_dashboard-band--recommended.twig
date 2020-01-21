@@ -1,0 +1,157 @@
+{% include "@bolt-blueprints/_dashboard-band.twig" with {
+  sectionTitle: "Recommended Missions",
+  theme: "light",
+  contentItems: [
+    {
+      cardUrl: "#!",
+      cardSubtitle: "Mission",
+      cardTitle: bolt.faker.sentence(3),
+      cardMetaItems: [
+        include("@bolt-components-headline/text.twig", {
+          size: "small",
+          weight: "bold",
+          text: "#{bolt.faker.numberBetween(2,10)} Modules",
+        }, with_context = false),
+        include("@bolt-components-headline/text.twig", {
+          size: "small",
+          weight: "bold",
+          text: "1 Challenge",
+        }, with_context = false),
+        include("@bolt-components-headline/text.twig", {
+          size: "small",
+          weight: "bold",
+          text: "25% complete",
+          attributes: {
+            class: ["u-bolt-color-orange"]
+          }
+        }, with_context = false)
+      ],
+      cardGradient: "purple",
+      cardIcon: "rocket",
+      cardDescription: bolt.faker.paragraph(2),
+      cardUtilityItems: [
+        include("@bolt-components-button/button.twig", {
+          text: "Share",
+          size: "xsmall",
+          style: "text",
+          icon: {
+            name: "share",
+            size: "small"
+          },
+          iconOnly: true
+        }, with_context = false ),
+        include("@bolt-components-button/button.twig", {
+          text: "Remove from Dashboard",
+          size: "xsmall",
+          style: "text",
+          icon: {
+            name: "add-open",
+            size: "small"
+          },
+          iconOnly: true
+        }, with_context = false )
+      ]
+    },
+    {
+      cardUrl: "#!",
+      cardSubtitle: "Mission",
+      cardTitle: bolt.faker.sentence(3),
+      cardMetaItems: [
+        include("@bolt-components-headline/text.twig", {
+          size: "small",
+          weight: "bold",
+          text: "#{bolt.faker.numberBetween(2,10)} Modules",
+        }, with_context = false),
+        include("@bolt-components-headline/text.twig", {
+          size: "small",
+          weight: "bold",
+          text: "1 Challenge",
+        }, with_context = false),
+        include("@bolt-components-headline/text.twig", {
+          size: "small",
+          weight: "bold",
+          text: "25% complete",
+          attributes: {
+            class: ["u-bolt-color-orange"]
+          }
+        }, with_context = false)
+      ],
+      cardGradient: "purple",
+      cardIcon: "rocket",
+      cardDescription: bolt.faker.paragraph(2),
+      cardUtilityItems: [
+        include("@bolt-components-button/button.twig", {
+          text: "Share",
+          size: "xsmall",
+          style: "text",
+          icon: {
+            name: "share",
+            size: "small"
+          },
+          iconOnly: true
+        }, with_context = false ),
+        include("@bolt-components-button/button.twig", {
+          text: "Remove from Dashboard",
+          size: "xsmall",
+          style: "text",
+          icon: {
+            name: "add-open",
+            size: "small"
+          },
+          iconOnly: true,
+          disabled: true
+        }, with_context = false )
+      ]
+    },
+    {
+      cardUrl: "#!",
+      cardSubtitle: "Mission",
+      cardTitle: bolt.faker.sentence(3),
+      cardMetaItems: [
+        include("@bolt-components-headline/text.twig", {
+          size: "small",
+          weight: "bold",
+          text: "#{bolt.faker.numberBetween(2,10)} Modules",
+        }, with_context = false),
+        include("@bolt-components-headline/text.twig", {
+          size: "small",
+          weight: "bold",
+          text: "1 Challenge",
+        }, with_context = false),
+        include("@bolt-components-headline/text.twig", {
+          size: "small",
+          weight: "bold",
+          text: "25% complete",
+          attributes: {
+            class: ["u-bolt-color-orange"]
+          }
+        }, with_context = false)
+      ],
+      cardGradient: "purple",
+      cardIcon: "rocket",
+      cardDescription: bolt.faker.paragraph(2),
+      cardUtilityItems: [
+        include("@bolt-components-button/button.twig", {
+          text: "Share",
+          size: "xsmall",
+          style: "text",
+          icon: {
+            name: "share",
+            size: "small"
+          },
+          iconOnly: true
+        }, with_context = false ),
+        include("@bolt-components-button/button.twig", {
+          text: "Remove from Dashboard",
+          size: "xsmall",
+          style: "text",
+          icon: {
+            name: "add-open",
+            size: "small"
+          },
+          iconOnly: true,
+        }, with_context = false )
+      ]
+    }
+  ]
+} %}
