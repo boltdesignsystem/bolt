@@ -9,14 +9,14 @@
   }
 } %}
   {% block media %}
-  {# @todo: replace with 'u-bolt-position-relative' once it is working #}
-  <div class="t-bolt-dark u-bolt-padding-medium" style="position: relative;">
-    <div class="u-bolt-z-index-content" style="position: relative;">
+    {% include "@bolt-blueprints/_icon-banner.twig" with {
+      gradient: cardGradient
+    } %}
+    <div class="t-bolt-dark u-bolt-padding-medium u-bolt-border-radius-small">
       {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--xsmall u-bolt-negative-margin-top-small u-bolt-negative-margin-right-small" %}
         {% cell "u-bolt-margin-left-auto" %}
           {% include "@bolt-blueprints/_toolbar-actions.twig" %}
         {% endcell %}
-
         {% cell "u-bolt-width-1/1" %}
           {% if cardSubtitle %}
             {% include "@bolt-components-headline/eyebrow.twig" with {
@@ -33,13 +33,8 @@
             } only %}
           {% endif %}
         {% endcell %}
-
       {% endgrid %}
     </div>
-    {% include "@bolt-blueprints/_icon-banner.twig" with {
-      gradient: cardGradient
-    } %}
-  </div>
   {% endblock %}
 
   {% block body %}
