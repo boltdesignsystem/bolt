@@ -20,12 +20,17 @@ class BoltPopover extends BoltElement {
     return {
       spacing: String,
       placement: String,
-      nowrap: Boolean,
       expanded: Boolean, // @to-do: Expanded indicates if popover content is expanded
       uuid: String, // @to-do: uuid to be assigned to the id of popover content
       hasPopup: Boolean,
       hasFocusableContent: Boolean,
     };
+  }
+
+  constructor() {
+    super();
+    this.textContentLength = 0;
+    this.uuid = this.uuid || Math.floor(10000 + Math.random() * 90000);
   }
 
   static get styles() {
@@ -85,7 +90,7 @@ class BoltPopover extends BoltElement {
     const sort = e => {
       if (e.nodeType === 1) {
         // If element node
-        // Decides if tooltip wrapper can get focus or not
+        // Decides if popover wrapper can get focus or not
         if (
           // Covers native elements and those with tabindex set
           isFocusable(e) ||
@@ -114,6 +119,15 @@ class BoltPopover extends BoltElement {
       });
 
     this.hasFocusableContent = hasFocusableContent;
+  }
+
+  getTextContentLength() {
+    // @todo: add mutation observer and call this when content changes
+    if (this.slotMap.get('content')) {
+      this.textContentLength = this.slotMap
+        .get('content')[0]
+        .textContent.trim().length;
+    }
   }
 
   update(changedProperties) {
@@ -159,17 +173,17 @@ class BoltPopover extends BoltElement {
   render() {
     if (!this._wasInitiallyRendered) {
       this.sortChildren();
+      this.getTextContentLength();
     }
 
     const spacing = this.spacing || schema.properties.spacing.default;
     const placement = this.placement || schema.properties.placement.default;
-    const nowrap = this.nowrap || schema.properties.nowrap.default;
 
     const classes = cx('c-bolt-popover', {
+      [`is-expanded`]: this.expanded,
       [`c-bolt-popover--spacing-${spacing}`]: spacing,
       [`c-bolt-popover--${placement}`]: placement,
-      [`c-bolt-popover--nowrap`]: nowrap,
-      [`is-expanded`]: this.expanded,
+      [`c-bolt-popover--text-wrap`]: this.textContentLength > 31,
     });
 
     return html`

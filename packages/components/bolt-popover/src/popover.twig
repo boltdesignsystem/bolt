@@ -15,7 +15,7 @@
   base_class,
   this.data.placement.value != "auto" ? base_class ~ "--" ~ this.data.placement.value : "",
   this.data.spacing.value != "none" ? base_class ~ "--spacing-" ~ this.data.spacing.value : "",
-  this.data.nowrap.value ? base_class ~ "--nowrap" : "",
+  this.data.content.value|length > 31 ? base_class ~ "--text-wrap",
 ] %}
 
 {#
