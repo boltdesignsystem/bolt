@@ -1,11 +1,16 @@
 {# Setting variables for demo purposes #}
+{% set link %}
+  {% include "@bolt-components-link/link.twig" with {
+    text: "call to action",
+    url: "https://pega.com",
+  } only %}
+{% endset %}
 {% set content %}
-  <bolt-text headline font-size="small">Content</bolt-text>
-  <bolt-text font-size="xsmall">This is the content of the popover. <bolt-link url="https://pega.com">call to action</bolt-link></bolt-text>
+  This is the content of the popover with a {{ link }}.
 {% endset %}
 
 {% set popovers_top %}
-  <bolt-list display="inline" spacing="xlarge" align="center">
+  <bolt-list display="inline" spacing="small" align="center">
     <bolt-list-item>
       {% set trigger %}
         {% include "@bolt-components-button/button.twig" with {
@@ -109,7 +114,7 @@
   </bolt-list>
 {% endset %}
 {% set popovers_bottom %}
-  <bolt-list display="inline" spacing="xlarge" align="center">
+  <bolt-list display="inline" spacing="small" align="center">
     <bolt-list-item>
       {% set trigger %}
         {% include "@bolt-components-button/button.twig" with {
@@ -221,8 +226,8 @@
         content: popovers_top,
       },
       {
-        column_start: "12",
-        column_span: "1",
+        column_start: "7",
+        column_span: "6",
         row_start: "2",
         content: popovers_right,
       },
@@ -234,7 +239,7 @@
       },
       {
         column_start: "1",
-        column_span: "1",
+        column_span: "6",
         row_start: "2",
         content: popovers_left,
       },
@@ -254,12 +259,13 @@
   {% include "@bolt-components-popover/popover.twig" with {
     trigger: trigger,
     content: content,
+    placement: "auto",
   } only %}
   {# End component specific code #}
 {% endset %}
 
 {% set popovers_top_auto %}
-  <bolt-list display="inline" spacing="xlarge" align="justify">
+  <bolt-list display="inline" spacing="small" align="center">
     <bolt-list-item>
       {{ popover }}
     </bolt-list-item>
@@ -291,7 +297,7 @@
   </bolt-list>
 {% endset %}
 {% set popovers_bottom_auto %}
-  <bolt-list display="inline" spacing="xlarge" align="justify">
+  <bolt-list display="inline" spacing="small" align="center">
     <bolt-list-item>
       {{ popover }}
     </bolt-list-item>
@@ -330,8 +336,8 @@
       content: popovers_top_auto,
     },
     {
-      column_start: "12",
-      column_span: "1",
+      column_start: "7",
+      column_span: "6",
       row_start: "2",
       content: popovers_right_auto,
     },
@@ -343,7 +349,7 @@
     },
     {
       column_start: "1",
-      column_span: "1",
+      column_span: "6",
       row_start: "2",
       content: popovers_left_auto,
     },
