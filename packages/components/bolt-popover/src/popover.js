@@ -20,8 +20,11 @@ class BoltPopover extends BoltElement {
     return {
       spacing: String,
       placement: String,
-      expanded: Boolean, // @to-do: Expanded indicates if popover content is expanded
-      uuid: String, // @to-do: uuid to be assigned to the id of popover content
+      uuid: String,
+      open: {
+        type: Boolean,
+        reflect: true,
+      },
       hasPopup: Boolean,
       hasFocusableContent: Boolean,
     };
@@ -29,6 +32,7 @@ class BoltPopover extends BoltElement {
 
   constructor() {
     super();
+    this.open = false;
     this.textContentLength = 0;
     this.uuid = this.uuid || Math.floor(10000 + Math.random() * 90000);
   }
@@ -49,9 +53,9 @@ class BoltPopover extends BoltElement {
 
   setOpen() {
     if (this.isHovering || this.hasFocus) {
-      this.expanded = true;
+      this.open = true;
     } else {
-      this.expanded = false;
+      this.open = false;
     }
   }
 
@@ -68,16 +72,16 @@ class BoltPopover extends BoltElement {
           e.target.closest('bolt-popover') === this
         )
       ) {
-        this.expanded = false;
+        this.open = false;
         document.removeEventListener('click', handleExternalClick);
       }
     };
 
-    if (this.expanded) {
-      this.expanded = false;
+    if (this.open) {
+      this.open = false;
       document.removeEventListener('click', handleExternalClick);
     } else {
-      this.expanded = true;
+      this.open = true;
       document.addEventListener('click', handleExternalClick);
     }
   }
@@ -180,7 +184,7 @@ class BoltPopover extends BoltElement {
     const placement = this.placement || schema.properties.placement.default;
 
     const classes = cx('c-bolt-popover', {
-      [`is-expanded`]: this.expanded,
+      [`is-expanded`]: this.open,
       [`c-bolt-popover--spacing-${spacing}`]: spacing,
       [`c-bolt-popover--${placement}`]: placement,
       [`c-bolt-popover--text-wrap`]: this.textContentLength > 31,
@@ -196,7 +200,7 @@ class BoltPopover extends BoltElement {
               aria-controls="${ifDefined(
                 !this.hasPopup ? `js-bolt-popover-${this.uuid}` : undefined,
               )}"
-              aria-expanded="${this.expanded}"
+              aria-expanded="${this.open}"
               aria-haspopup="${ifDefined(this.hasPopup ? 'true' : undefined)}"
               @click="${this.handleClick}"
             >
@@ -208,7 +212,7 @@ class BoltPopover extends BoltElement {
             <span
               id="js-bolt-popover-${this.uuid}"
               class="${cx(`c-bolt-popover__content`)}"
-              aria-hidden="${!this.expanded}"
+              aria-hidden="${!this.open}"
             >
               <span class="${cx(`c-bolt-popover__bubble`)}">
                 ${this.slotify('content')}
