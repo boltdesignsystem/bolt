@@ -11,7 +11,7 @@
   <bolt-text font-size="xsmall">This is the content of the popover. <bolt-link url="https://pega.com">call to action</bolt-link></bolt-text>
 {% endset %}
 
-<bolt-list spacing="large">
+<bolt-list spacing="medium">
   {% for spacing in schema.properties.spacing.enum %}
     <bolt-list-item>
       <bolt-text headline>This popover has {{ spacing }} spacing</bolt-text>
