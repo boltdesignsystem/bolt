@@ -1,7 +1,6 @@
-// WIP - converting the original YAML schema over to JS
-
-// const triggerSchema = require('@bolt/components-trigger/trigger.schema');
-// const buttonSchema = require('@bolt/components-button/button.schema');
+const triggerSchema = require('@bolt/components-trigger/trigger.schema');
+const buttonSchema = require('@bolt/components-button/button.schema');
+const linkSchema = require('@bolt/components-link/link.schema');
 
 module.exports = {
   $schema: 'http://json-schema.org/draft-04/schema#',
@@ -12,11 +11,10 @@ module.exports = {
     attributes: {
       type: 'object',
       description:
-        'A Drupal attributes object. Applies extra HTML attributes to the outer &lt;bolt-menu&gt; tag.',
+        'A Drupal attributes object. Applies extra HTML attributes to the outer &lt;bolt-popover&gt; tag.',
     },
     trigger: {
-      // Accepted Trigger: button | trigger
-      // type: 'object',
+      type: 'object',
       description: 'Renders the trigger of the popover.',
     },
     content: {
@@ -42,18 +40,13 @@ module.exports = {
         'bottom',
         'bottom-end',
       ],
-      default: 'auto',
+      default: 'bottom',
     },
     spacing: {
       type: 'string',
       description: 'Controls the spacing around the popover content.',
       enum: ['none', 'xsmall', 'small', 'medium'],
       default: 'small',
-    },
-    nowrap: {
-      type: 'boolean',
-      description:
-        'Prevents the text in the content of the popover to wrap to a second line.',
     },
     uuid: {
       type: 'string',
