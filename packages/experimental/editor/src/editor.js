@@ -358,16 +358,9 @@ export function enableEditor({ space, uiWrapper, config }) {
       } else {
         // Create new content for slot.
         newComponent = selected.append(
-          /** @type {grapesjs.ComponentObject} */ {
-            tagName: shouldCreateAnimatableSlotIfNotPresent
-              ? 'bolt-animate'
-              : 'div',
-            removable: true,
-            draggable: false,
-            copyable: false,
-            attributes: { slot: slotName },
-            content,
-          },
+          shouldCreateAnimatableSlotIfNotPresent
+            ? `<bolt-animate slot="${slotName}">${content}</bolt-animate>`
+            : `<div slot="${slotName}">${content}</div>`,
         );
       }
     }
