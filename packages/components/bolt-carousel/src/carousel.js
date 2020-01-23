@@ -298,6 +298,7 @@ class BoltCarousel extends withLitHtml {
     this.options = {
       thumbs: this.props.thumbs,
       watchOverflow: true,
+      roundLengths: true,
       a11y: {
         enabled: true,
         prevSlideMessage: this.props.prevSlideMessage,
