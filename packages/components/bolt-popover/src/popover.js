@@ -26,6 +26,10 @@ class BoltPopover extends BoltElement {
       hasPopup: Boolean,
       hasFocusableContent: Boolean,
       boundary: String,
+      fallbackPlacements: {
+        attribute: 'fallback-placements',
+        type: Array,
+      },
     };
   }
 
@@ -152,6 +156,7 @@ class BoltPopover extends BoltElement {
           {
             name: 'flip',
             options: {
+              fallbackPlacements: this.fallbackPlacements ?? undefined,
               boundary: this.$boundary,
             },
           },

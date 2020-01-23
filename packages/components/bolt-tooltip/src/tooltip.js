@@ -20,6 +20,10 @@ class BoltTooltip extends BoltElement {
       dotted: Boolean,
       hasFocusableContent: Boolean,
       boundary: String,
+      fallbackPlacements: {
+        attribute: 'fallback-placements',
+        type: Array,
+      },
     };
   }
 
@@ -178,6 +182,7 @@ class BoltTooltip extends BoltElement {
           {
             name: 'flip',
             options: {
+              fallbackPlacements: this.fallbackPlacements ?? undefined,
               boundary: this.$boundary,
             },
           },

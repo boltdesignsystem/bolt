@@ -66,6 +66,10 @@ module.exports = {
       type: 'string',
       description: 'Optionally allows you to specify a parent element selector to use as an outer boundary when calculating placement.',
     },
+    fallbackPlacements: {
+      type: 'array',
+      description: "An array of different placement options that Popper.js should try if there isn't enough space for the ideal placement. Normally this defaults to all placement options however this lets you limit the options to pick from in certain situations.",
+    },
     direction: {
       type: 'any',
       title: 'DEPRECATED',
