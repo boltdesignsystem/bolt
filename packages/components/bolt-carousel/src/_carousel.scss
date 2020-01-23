@@ -107,14 +107,6 @@ bolt-carousel[nav-button-position="outside"].is-ready {
   }
 }
 
-bolt-carousel:not([nav-button-position]):not([no-nav-buttons]).is-ready,
-bolt-carousel[nav-button-position="inside"].is-ready {
-  @include bolt-padding-left(0);
-  @include bolt-padding-right(0);
-  min-width: 100%;
-}
-
-
 // carousel space-between slides
 bolt-carousel {
   &[space-between="none"] {
@@ -139,7 +131,13 @@ bolt-carousel {
 // extra space around-specific styles
 bolt-carousel {
   --bolt-carousel-space-around: 5.1px; // vs 5px to work around sub-pixel rendering
+  width: 100%;
   width: calc(100% + var(--bolt-carousel-space-around) * 2);
   margin-right: calc(var(--bolt-carousel-space-around) * -1);
   margin-left: calc(var(--bolt-carousel-space-around) * -1);
+
+  &.is-ready {
+    padding-right: var(--bolt-carousel-space-around);
+    padding-left:var(--bolt-carousel-space-around);
+  }
 }
