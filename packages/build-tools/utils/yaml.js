@@ -95,6 +95,9 @@ async function getDataFile(filePath) {
       case '.js':
         return require(filePath);
         break;
+      case '.html':
+        return await readFile(filePath, 'utf8');
+        break;
     }
   } catch (err) {
     log.errorAndExit('Could not getDataFile', err);
