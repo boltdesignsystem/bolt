@@ -3,6 +3,36 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.15.2](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/compare/v2.15.1...v2.15.2) (2020-01-21)
+
+**Note:** Version bump only for package @bolt/uikit-workshop
+
+
+
+
+
+# [2.15.0](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/compare/v2.14.3...v2.15.0) (2020-01-17)
+
+
+### Bug Fixes
+
+* minor UIKit prod CSS fixes ([7ce181c](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/7ce181c1f838f9edadb9db49c6879350a86fba9e))
+
+
+
+
+
+## [2.14.1](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/compare/v2.14.0...v2.14.1) (2020-01-09)
+
+
+### Bug Fixes
+
+* minor UIKit prod CSS fixes ([f8a984c](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/f8a984c))
+
+
+
+
+
 # [2.14.0](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/compare/v2.13.3...v2.14.0) (2020-01-06)
 
 

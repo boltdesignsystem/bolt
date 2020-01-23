@@ -26,12 +26,14 @@
   {% set link_attributes = create_attribute(link.attributes) %}
 {% endif %}
 
+{% set background_block = block("background") %}
 {% set media_block = block("media") %}
 {% set body_block = block("body") %}
 {% set actions_block = block("actions") %}
 
 {# card-replacement component's custom element wrapper #}
 <bolt-card-replacement
+  {% if rounded %} rounded {% endif %}
   {% if tag %} tag="{{ tag }}" {% endif %} {% if theme %} theme="{{ theme }}" {% endif %} {% if height %} height="{{ height }}" {% endif %} {% if link_url %} url="{{ link_url }}" {% endif %} {% if horizontal %} horizontal {% endif %} {{ attributes }}>
   {# This sets none values to not render anything. #}
   {% set theme = theme == "none" ? false : theme %}
@@ -44,7 +46,7 @@
   ] %}
 
   <replace-with-children {{ inner_attributes.addClass(classes) }}>
-    {% if link %}
+    {% if link and link_url %}
       <bolt-card-replacement-link {{ link_attributes }}>
         {% if link_url %}
           <a href="{{ link_url }}" class="{{ "#{base_class}__link" }}" {% if link_target %} target="{{ link_target }}" {% endif %}>
@@ -54,6 +56,18 @@
           </a>
         {% endif %}
       </bolt-card-replacement-link>
+    {% endif %}
+
+    {% if background or background_block %}
+      {% if background_block %}
+        {% embed "@bolt-components-card-replacement/_card-replacement-background.twig" %}
+          {% block background %}
+            {{ background_block }}
+          {% endblock %}
+        {% endembed %}
+      {% else %}
+        {% include "@bolt-components-card-replacement/_card-replacement-background.twig" %}
+      {% endif %}
     {% endif %}
 
     {% if content %}
@@ -86,17 +100,11 @@
         {% endif %}
       {% endif %}
 
-      {% if actions or actions_block %}
-        {% if actions_block %}
-          {% embed "@bolt-components-card-replacement/_card-replacement-actions.twig" %}
-            {% block actions %}
-              {{ actions_block }}
-            {% endblock %}
-          {% endembed %}
-        {% else %}
+      {% block actions %}
+        {% if actions %}
           {% include "@bolt-components-card-replacement/_card-replacement-actions.twig" %}
         {% endif %}
-      {% endif %}
+      {% endblock %}
       {% if horizontal %}</div>{% endif %}
     {% endif %}
   </replace-with-children>

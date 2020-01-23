@@ -7,22 +7,26 @@
 
 :host {
   & [horizontal] {
-    flex-basis: 25%;
-    flex-grow: 1;
     flex-shrink: 1;
+    min-width: 80px;
     max-width: 300px;
+    overflow: auto;
+    border-radius: 4px 0 0 4px;
   }
 }
 
 bolt-card-replacement-media {
+  display: flex;
+  flex-direction: column;
   position: relative;
   overflow: hidden;
 
   [horizontal] & {
-    flex-basis: 25%;
-    flex-grow: 1;
     flex-shrink: 1;
+    min-width: 80px;
     max-width: 300px;
+    overflow: auto;
+    border-radius: 4px 0 0 4px;
   }
 }
 

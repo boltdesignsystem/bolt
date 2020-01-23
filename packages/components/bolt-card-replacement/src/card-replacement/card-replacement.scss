@@ -10,8 +10,8 @@
 @include bolt-custom-element('bolt-card-replacement', block, medium);
 
 bolt-card-replacement {
-  @include bolt-card-replacement-border-reset;
   @include bolt-card-replacement-content-conditions;
+  @include bolt-card-replacement-border-reset;
 
   position: relative;
   border-radius: $bolt-card-replacement-border-radius;
@@ -19,7 +19,8 @@ bolt-card-replacement {
 
   &[height='full'] {
     display: flex;
-    height: 100%;
+    flex-direction: column;
+    min-height: 100%;
   }
 
   &[rounded] {
@@ -136,4 +137,5 @@ bolt-card-replacement {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+  flex-shrink: 1;
 }
