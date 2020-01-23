@@ -19,15 +19,15 @@ describe('<bolt-toc> Component', () => {
     const results = await render('@bolt-components-toc/toc.twig', {
       items: [
         {
-          content: 'Section One',
+          text: 'Section One',
           url: '#section-one',
         },
         {
-          content: 'Section Two',
+          text: 'Section Two',
           url: '#section-two',
         },
         {
-          content: 'Section Three',
+          text: 'Section Three',
           url: '#section-three',
         },
       ],
@@ -42,15 +42,15 @@ describe('<bolt-toc> Component', () => {
       header: 'This is the header',
       items: [
         {
-          content: 'Section One',
+          text: 'Section One',
           url: '#section-one',
         },
         {
-          content: 'Section Two',
+          text: 'Section Two',
           url: '#section-two',
         },
         {
-          content: 'Section Three',
+          text: 'Section Three',
           url: '#section-three',
         },
       ],
@@ -63,16 +63,16 @@ describe('<bolt-toc> Component', () => {
     const results = await render('@bolt-components-toc/toc.twig', {
       items: [
         {
-          content: 'Section One',
+          text: 'Section One',
           url: '#section-one',
         },
         {
-          content: 'Section Two',
+          text: 'Section Two',
           url: '#section-two',
           active: true,
         },
         {
-          content: 'Section Three',
+          text: 'Section Three',
           url: '#section-three',
         },
       ],

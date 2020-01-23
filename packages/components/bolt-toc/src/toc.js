@@ -80,7 +80,7 @@ class BoltToc extends withContext(BoltElement) {
           })}"
           id="js-bolt-toc-${this.uuid}"
         >
-          ${this.header ? this.header : 'Table of Content'}
+          ${this.header ? this.header : 'Table of Contents'}
         </h2>
         <div class="${cx(`c-bolt-toc__list`)}" role="list">
           ${this.slotify('default')}

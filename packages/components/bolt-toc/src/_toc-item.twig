@@ -39,12 +39,12 @@
 #}
 <bolt-toc-item
   {% if outer_classes %} class="{{ outer_classes|join(' ') }}" {% endif %}
-  {{ this.props|without("content")|without("class") }}
+  {{ this.props|without("text")|without("class") }}
   role="presentation"
 >
   <replace-with-grandchildren role="listitem">
     <a {% if inner_classes %} class="{{ inner_classes|join(' ') }}" {% endif %} href="{{ url }}">
-      {{ content }}
+      {{ text }}
     </a>
   </replace-with-grandchildren>
 </bolt-toc-item>

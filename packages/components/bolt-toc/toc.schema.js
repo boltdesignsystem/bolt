@@ -1,8 +1,8 @@
 module.exports = {
   $schema: 'http://json-schema.org/draft-04/schema#',
-  title: 'Table of Content',
+  title: 'Table of Contents',
   description:
-    'Table of Content is a navigation list, usually found on an article page, of its section titles.',
+    'A navigation list, usually found on an article page, of its section titles.',
   type: 'object',
   properties: {
     attributes: {
@@ -19,7 +19,7 @@ module.exports = {
         description:
           'Renders a linked item that points to the beginning of a particular section.',
         properties: {
-          content: {
+          text: {
             type: 'string',
             description: 'Renders the text for the linked item.',
           },
@@ -38,12 +38,12 @@ module.exports = {
     },
     header: {
       type: 'string',
-      description: 'Renders a header for the table of content.',
+      description: 'Renders a header for the table of contents.',
     },
     uuid: {
       type: 'string',
       description:
-        'Unique ID for the table of content, randomly generated if not provided.',
+        'Unique ID for the table of contents, randomly generated if not provided.',
     },
   },
 };
