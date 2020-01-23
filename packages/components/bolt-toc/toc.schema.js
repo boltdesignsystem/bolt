@@ -1,7 +1,8 @@
 module.exports = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'Table of Content',
-  description: 'Table of Content is a navigation list, usually found on an article page, of its section titles.',
+  description:
+    'Table of Content is a navigation list, usually found on an article page, of its section titles.',
   type: 'object',
   properties: {
     attributes: {
@@ -24,11 +25,13 @@ module.exports = {
           },
           url: {
             type: 'string',
-            description: 'Renders the `href` for the linked item. This should be the `id` of the responding section. For example: `#section-one-name`.',
+            description:
+              'Renders the `href` for the linked item. This should be the `id` of the responding section. For example: `#section-one-name`.',
           },
           active: {
             type: 'boolean',
-            description: 'Indicates that the item represents the current section being viewed.',
+            description:
+              'Indicates that the item represents the current section being viewed.',
           },
         },
       },

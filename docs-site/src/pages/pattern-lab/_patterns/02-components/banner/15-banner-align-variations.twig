@@ -1,0 +1,14 @@
+{# Setting variables for demo purposes #}
+{% set schema = bolt.data.components["@bolt-components-banner"].schema %}
+
+<bolt-text headline>
+  Text alignment
+</bolt-text>
+{% for align in schema.properties.align.enum %}
+  {# Start component specific code #}
+  {% include "@bolt-components-banner/banner.twig" with {
+    content: "This banner's text is aligned to the " ~ align,
+    align: align,
+  } only %}
+  {# End component specific code #}
+{% endfor %}

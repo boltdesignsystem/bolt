@@ -11,7 +11,6 @@ const findPkg = require('find-pkg');
  * @returns {string} git sha of last commit
  */
 const gitSha = execa.sync('git', ['rev-parse', '--short', 'HEAD']).stdout;
-
 const repoRoot = join(__dirname, '../../..');
 const lernaCli = join(repoRoot, 'node_modules/.bin/lerna');
 
@@ -22,7 +21,7 @@ const lernaCli = join(repoRoot, 'node_modules/.bin/lerna');
  */
 function runLernaCmd(cmd) {
   try {
-    const results = execa.commandSync(`${lernaCli} ${cmd} --json`, {
+    const results = execa.shellSync([lernaCli, cmd, '--json'].join(' '), {
       cwd: repoRoot,
     });
     return JSON.parse(results.stdout);
@@ -138,7 +137,7 @@ function getFilesChanged({ from = 'HEAD', base = 'master', inDir } = {}) {
   const cmds = ['git', 'diff', '--name-only', `${base}...${from}`];
   if (inDir) cmds.push(inDir);
   try {
-    const results = execa.sync(cmds.join(' '), {
+    const results = execa.shellSync(cmds.join(' '), {
       cwd: repoRoot,
     });
     const files = results.stdout.split('\n');
