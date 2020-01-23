@@ -86,18 +86,6 @@ class BoltCarousel extends withLitHtml {
     return self;
   }
 
-  checkForSlideOffset() {
-    const carouselSlides = this.querySelectorAll('bolt-carousel-slide');
-    this.slideOffsetBefore = carouselSlides[0].querySelector('bolt-card')
-      ? true
-      : false;
-    this.slideOffsetAfter = carouselSlides[
-      carouselSlides.length - 1
-    ].querySelector('bolt-card')
-      ? true
-      : false;
-  }
-
   connecting() {
     super.connecting && super.connecting();
 
@@ -113,8 +101,6 @@ class BoltCarousel extends withLitHtml {
     if (prevButton) {
       prevButton.setAttribute('tabindex', '-1');
     }
-
-    this.checkForSlideOffset();
   }
 
   init() {
@@ -425,24 +411,6 @@ class BoltCarousel extends withLitHtml {
 
       this.classList.add('is-ready');
 
-      if (this.slideOffsetBefore && this.slideOffsetAfter) {
-        this.classList.remove(`is-offset-before`);
-        this.classList.remove(`is-offset-after`);
-        this.classList.add(`is-offset-both`);
-      } else if (this.slideOffsetBefore && !this.slideOffsetAfter) {
-        this.classList.remove(`is-offset-both`);
-        this.classList.remove(`is-offset-after`);
-        this.classList.add(`is-offset-before`);
-      } else if (this.slideOffsetAfter && !this.slideOffsetBefore) {
-        this.classList.remove(`is-offset-both`);
-        this.classList.remove(`is-offset-before`);
-        this.classList.add(`is-offset-after`);
-      } else {
-        this.classList.remove(`is-offset-both`);
-        this.classList.remove(`is-offset-before`);
-        this.classList.remove(`is-offset-after`);
-      }
-
       const slides = Array.from(this.querySelectorAll('bolt-carousel-slide'));
       slides.forEach(slide => {
         slide.classList.add('c-bolt-carousel__slide');
@@ -570,11 +538,8 @@ class BoltCarousel extends withLitHtml {
     // validate the original prop data passed along -- returns back the validated data w/ added default values
     const props = this.validateProps(this.props);
 
-    this.checkForSlideOffset();
 
     const classes = cx('c-bolt-carousel', {
-      [`c-bolt-carousel--offset-before`]: props.slideOffsetBefore,
-      [`c-bolt-carousel--offset-after`]: props.slideOffsetAfter,
       [`c-bolt-carousel--disabled`]: props.disabled,
       [`c-bolt-carousel--overflow`]: this.props.overflow,
       [`c-bolt-carousel--no-overflow`]: !this.props.overflow,
