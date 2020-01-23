@@ -182,18 +182,6 @@ class BoltCarousel extends withLitHtml {
 
     if (idealNumberOfSlides === 'auto' || idealNumberOfSlides === 1) {
       slidesPerView = 1;
-    } else if (
-      this.props.loop &&
-      idealNumberOfSlides &&
-      this.numberOfChildren >= idealNumberOfSlides
-    ) {
-      slidesPerView = idealNumberOfSlides;
-    } else if (
-      this.props.loop &&
-      idealNumberOfSlides &&
-      this.numberOfChildren < idealNumberOfSlides
-    ) {
-      slidesPerView = this.numberOfChildren;
     } else if (idealNumberOfSlides) {
       slidesPerView = idealNumberOfSlides;
     } else {
