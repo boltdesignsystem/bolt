@@ -19,7 +19,6 @@ properties:
       - '1'
       - '2'
       - '3'
-      - '4'
   slides_per_group:
     type: string
     description: Controls the number of slides to be swiped at once.
@@ -30,9 +29,9 @@ properties:
   max_slides_per_view:
     type: integer
     description: Limits the maximum number of slides that can display at any screen size. Combine this with the <code>slidesPerView</code> option to get the benefits of automatically adjusting the number of slides displayed at different screen sizes while putting a max limit of how many slides display at once.
-    default: 5
+    default: 3
     minimum: 1
-    maximum: 6
+    maximum: 3
     hidden: true
   space_between:
     type: string
