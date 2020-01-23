@@ -133,7 +133,7 @@ class BoltPopover extends BoltElement {
 
     if (this.popover && this.content) {
       this.popper = createPopper(this.popover, this.content, {
-        placement: this.placement || schema.properties.spacing.default,
+        placement: this.placement || schema.properties.placement.default,
         modifiers: [
           {
             name: 'onPlacementChange',
