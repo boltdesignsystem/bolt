@@ -62,6 +62,10 @@ module.exports = {
       description:
         'Unique ID for the tooltip, randomly generated if not provided.',
     },
+    boundary: {
+      type: 'string',
+      description: 'Optionally allows you to specify a parent element selector to use as an outer boundary when calculating placement.',
+    },
     direction: {
       type: 'any',
       title: 'DEPRECATED',

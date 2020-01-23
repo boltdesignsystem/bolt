@@ -25,6 +25,7 @@ class BoltPopover extends BoltElement {
       uuid: String, // @to-do: uuid to be assigned to the id of popover content
       hasPopup: Boolean,
       hasFocusableContent: Boolean,
+      boundary: String,
     };
   }
 
@@ -131,6 +132,9 @@ class BoltPopover extends BoltElement {
     this.popover = this.renderRoot.querySelector('.c-bolt-popover');
     this.content = this.renderRoot.querySelector('.c-bolt-popover__content');
 
+    this.$boundary =
+      this.$boundary || (this.boundary && this.closest(this.boundary)) || this;
+
     if (this.popover && this.content) {
       this.popper = createPopper(this.popover, this.content, {
         placement: this.placement || schema.properties.spacing.default,
@@ -143,6 +147,19 @@ class BoltPopover extends BoltElement {
               if (this.placement !== state.placement) {
                 this.placement = state.placement;
               }
+            },
+          },
+          {
+            name: 'flip',
+            options: {
+              boundary: this.$boundary,
+            },
+          },
+          {
+            name: 'preventOverflow',
+            options: {
+              altAxis: true,
+              boundary: this.$boundary,
             },
           },
         ],
