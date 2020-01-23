@@ -1,17 +1,33 @@
+{# Start component specific code #}
 {% include "@bolt-components-breadcrumb/breadcrumb.twig" with {
-  "contentItems": [
+  contentItems: [
     include("@bolt-components-link/link.twig", {
-      "text": "Home",
-      "url": "#!"
+      text: "Home",
+      url: "#!"
     }),
     include("@bolt-components-link/link.twig", {
-      "text": "Landing Page",
-      "url": "#!"
+      text: "Landing Page",
+      url: "#!"
     }),
     include("@bolt-components-link/link.twig", {
-      "text": "Sub Page",
-      "url": "#!"
+      text: "Sub Page",
+      url: "#!"
     }),
-    "Current Page"
+    include("@bolt-components-link/link.twig", {
+      text: "Current Page",
+      url: "#!",
+      attributes: {
+        "aria-current": true,
+      },
+    }),
   ]
 } only %}
+{# End component specific code #}
+
+{# Copy for demo purposes #}
+<bolt-banner align="start">
+  <bolt-text headline>Accessibility Requirement</bolt-text>
+  <bolt-text>
+    The <bolt-code-snippet display="inline" lang="html">aria-current</bolt-code-snippet> attribute must be applied to the last link in the set to indicate that it represents the current page.
+  </bolt-text>
+</bolt-banner>
