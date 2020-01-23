@@ -73,9 +73,6 @@ class BoltCarousel extends withLitHtml {
     self.useShadow = false;
     self.schema = originalSchema;
     self.onSlideChange = self.onSlideChange.bind(self);
-    self.hideArrowsIfAllSlidesAreVisible = self.hideArrowsIfAllSlidesAreVisible.bind(
-      self,
-    );
     self.disableSwipingIfAllSlidesAreVisible = self.disableSwipingIfAllSlidesAreVisible.bind(
       self,
     );
@@ -112,7 +109,6 @@ class BoltCarousel extends withLitHtml {
     );
 
     this.configureSlidesPerGroup();
-    this.hideArrowsIfAllSlidesAreVisible();
     this.disableSwipingIfAllSlidesAreVisible();
   }
 
@@ -448,7 +444,6 @@ class BoltCarousel extends withLitHtml {
   }
 
   onSlideChange() {
-    this.hideArrowsIfAllSlidesAreVisible();
     this.disableSwipingIfAllSlidesAreVisible();
   }
 
@@ -482,34 +477,6 @@ class BoltCarousel extends withLitHtml {
           nextButton.disabled = false;
           nextButton.removeAttribute('disabled');
         }
-      }
-    }
-  }
-
-  hideArrowsIfAllSlidesAreVisible() {
-    this.canNavButtonsBeHidden =
-      this.canNavButtonsBeHidden || this.props.noNavButtons === false;
-
-    if (this._wasManuallyUpdated === true) {
-      this._wasManuallyUpdated = false;
-    } else {
-      if (
-        this.swiper.isBeginning === true &&
-        this.swiper.isEnd === true &&
-        this.canNavButtonsBeHidden === true &&
-        this.noNavButtons === false
-      ) {
-        this._wasManuallyUpdated = true;
-        this.noNavButtons = true;
-        this.updated();
-      } else if (
-        this.canNavButtonsBeHidden &&
-        this.noNavButtons === true &&
-        (this.swiper.isBeginning === false || this.swiper.isEnd === false)
-      ) {
-        this._wasManuallyUpdated = true;
-        this.noNavButtons = false;
-        this.updated();
       }
     }
   }
