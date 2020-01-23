@@ -2,16 +2,11 @@
   horizontal: false,
   theme: "xlight",
   link_url: cardUrl,
-  media: {
-    attributes: {
-      style: ["overflow: visible;"]
-    }
-  }
 } %}
   {% block media %}
-  {# @todo: replace with 'u-bolt-position-relative' once it is working #}
-  <div class="t-bolt-dark u-bolt-padding-medium" style="position: relative;">
-    <div class="u-bolt-z-index-content" style="position: relative;">
+  {# @todo: consider moving this container into Card itself #}
+  <div class="t-bolt-dark u-bolt-padding-medium u-bolt-position-relative" style="border-top-left-radius: 4px; border-top-right-radius: 4px;">
+    <div class="u-bolt-z-index-content u-bolt-position-relative" style="border-top-left-radius: 4px; border-top-right-radius: 4px;">
       {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--xsmall u-bolt-negative-margin-top-small u-bolt-negative-margin-right-small" %}
         {% cell "u-bolt-margin-left-auto" %}
           {% include "@bolt-blueprints/_toolbar-actions.twig" %}
