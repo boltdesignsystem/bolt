@@ -29,18 +29,3 @@ $bolt-carousel-bullet-height: 8px;
     background-color: bolt-theme(secondary, 0.1);
   }
 }
-
-@mixin bolt-calculate-slide-basis($numberOfSlidesToDisplay, $exactNumberOfSlides: false, $minWidth: false) {
-  flex-basis: 0;
-
-  @if $exactNumberOfSlides == false {
-    min-width: calc(100% / #{$numberOfSlidesToDisplay} - calc(#{bolt-spacing(medium) * ($numberOfSlidesToDisplay - 1)} / #{$numberOfSlidesToDisplay}));
-  } @else {
-    min-width: calc(100% / #{$numberOfSlidesToDisplay} - #{bolt-spacing(medium)});
-  }
-}
-
-@mixin bolt-calculate-slide-min-width($minNumberOfSlidesToDisplay) {
-  flex-basis: 0;
-  min-width: 100% / $minNumberOfSlidesToDisplay;
-}

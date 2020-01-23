@@ -1,0 +1,29 @@
+@import '@bolt/core-v3.x';
+
+bolt-carousel-slide:not(.is-ready) {
+  bolt-carousel[slides-per-view="1"] & {
+    min-width: calc(100% - calc(var(--bolt-carousel-space-around) * 2));
+  }
+
+  bolt-carousel[slides-per-view="2"] & {
+    min-width: calc(100% - calc(var(--bolt-carousel-space-around) * 2));
+
+    @include bolt-mq($from: 600px) {
+      min-width: calc(calc(100% / 2) - calc(var(--bolt-carousel-space-between) / 2) - calc(var(--bolt-carousel-space-around) * 1));
+    }
+  }
+
+  bolt-carousel:not([slides-per-view="1"]):not([slides-per-view="2"]) &,
+  bolt-carousel[slides-per-view="auto"] &,
+  bolt-carousel[slides-per-view="3"] & {
+    min-width: calc(100% - calc(var(--bolt-carousel-space-around) * 2));
+
+    @include bolt-mq($from: 600px) {
+      min-width: calc(calc(100% / 2) - calc(var(--bolt-carousel-space-between) / 2) - calc(var(--bolt-carousel-space-around) * 1));
+    }
+
+    @include bolt-mq($from: medium) {
+      min-width: calc(calc(100%  / 3) - calc(var(--bolt-carousel-space-between) / 3) -  calc(var(--bolt-carousel-space-around) * 3));
+    }
+  }
+}
