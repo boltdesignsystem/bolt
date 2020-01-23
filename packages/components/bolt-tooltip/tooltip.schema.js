@@ -25,7 +25,7 @@ module.exports = {
     attributes: {
       type: 'object',
       description:
-        'A Drupal attributes object. Applies extra HTML attributes to the outer &lt;bolt-menu&gt; tag.',
+        'A Drupal attributes object. Applies extra HTML attributes to the outer &lt;bolt-tooltip&gt; tag.',
     },
     trigger: {
       type: 'any',
