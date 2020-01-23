@@ -11,10 +11,11 @@ import {
   Pagination,
   Scrollbar,
   A11y,
+  Autoplay,
 } from 'swiper/js/swiper.esm.js';
 
 // Install modules
-Swiper.use([Navigation, Pagination, Scrollbar, A11y]);
+Swiper.use([Navigation, Pagination, Scrollbar, A11y, Autoplay]);
 
 import styles from '../index.scss';
 import originalSchema from '../carousel.schema.yml';
@@ -505,7 +506,6 @@ class BoltCarousel extends withLitHtml {
   render() {
     // validate the original prop data passed along -- returns back the validated data w/ added default values
     const props = this.validateProps(this.props);
-
 
     const classes = cx('c-bolt-carousel', {
       [`c-bolt-carousel--disabled`]: props.disabled,
