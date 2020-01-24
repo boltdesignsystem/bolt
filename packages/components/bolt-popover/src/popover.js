@@ -9,6 +9,7 @@ import { isFocusable } from '@bolt/core-v3.x/utils';
 import { ifDefined } from 'lit-html/directives/if-defined';
 import classNames from 'classnames/bind';
 import { createPopper } from '@popperjs/core';
+import Mousetrap from 'mousetrap';
 import popoverStyles from './popover.scss';
 import schema from '../popover.schema';
 
@@ -35,6 +36,9 @@ class BoltPopover extends BoltElement {
     this.open = false;
     this.textContentLength = 0;
     this.uuid = this.uuid || Math.floor(10000 + Math.random() * 90000);
+    this.hide = this.hide.bind(this);
+    this.show = this.show.bind(this);
+    this.handleExternalClick = this.handleExternalClick.bind(this);
   }
 
   static get styles() {
@@ -51,38 +55,34 @@ class BoltPopover extends BoltElement {
     this.removeAttribute('ready');
   }
 
-  setOpen() {
-    if (this.isHovering || this.hasFocus) {
-      this.open = true;
-    } else {
-      this.open = false;
+  hide() {
+    this.open = false;
+    document.removeEventListener('click', this.handleExternalClick);
+    Mousetrap.unbind('esc');
+  }
+
+  show() {
+    this.open = true;
+    document.addEventListener('click', this.handleExternalClick);
+    Mousetrap.bind('esc', this.hide, 'keyup');
+  }
+
+  handleExternalClick(e) {
+    if (
+      !(
+        e.target.closest('bolt-popover') &&
+        e.target.closest('bolt-popover') === this
+      )
+    ) {
+      this.hide();
     }
   }
 
-  handleFocus(e) {
-    this.hasFocus = e.type === 'focusin' ? true : false;
-    this.setOpen();
-  }
-
   handleClick(e) {
-    const handleExternalClick = e => {
-      if (
-        !(
-          e.target.closest('bolt-popover') &&
-          e.target.closest('bolt-popover') === this
-        )
-      ) {
-        this.open = false;
-        document.removeEventListener('click', handleExternalClick);
-      }
-    };
-
     if (this.open) {
-      this.open = false;
-      document.removeEventListener('click', handleExternalClick);
+      this.hide();
     } else {
-      this.open = true;
-      document.addEventListener('click', handleExternalClick);
+      this.show();
     }
   }
 
