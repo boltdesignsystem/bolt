@@ -1,4 +1,4 @@
-@import '@bolt/core';
+@import '@bolt/core-v3.x';
 
 bolt-icon {
   display: inline-flex;
@@ -109,7 +109,8 @@ bolt-icon {
 }
 
 .c-bolt-icon__background-shape--square {
-  border-radius: 4px;
+  border-radius: $bolt-border-radius;
+  border-radius: #{var(--bolt-theme-icon-radius, #{$bolt-border-radius})};
 }
 
 .c-bolt-icon__background-shape--outline {

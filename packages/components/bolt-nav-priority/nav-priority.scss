@@ -2,7 +2,7 @@
    Nav
 \* ------------------------------------ */
 
-@import '@bolt/core';
+@import '@bolt/core-v3.x';
 
 $bolt-navbar-vspacing-small: bolt-v-spacing(small);
 $bolt-navbar-xsmall-bp: 420px; // Slightly increase the default 400px xsmall breakpoint to be better optimized for larger plus-sized mobile devices -- value shared by the bolt-navbar, bolt-nav-priority, and bolt-navlink components
@@ -214,7 +214,7 @@ bolt-nav-priority {
   background-color: bolt-theme(secondary, 0.05);
   transition: background-color 0.3s ease;
   white-space: nowrap;
-  
+
   @include bolt-mq($until: $bolt-navbar-xsmall-bp) {
     height: 100%; // fix for height: 100% causing issues on larger screen sizes
     border-left-color: bolt-theme(headline, 0.2);

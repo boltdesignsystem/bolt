@@ -1,16 +1,16 @@
+import { customElement } from '@bolt/element';
 import {
   colorContrast,
   css,
-  define,
-  hasNativeShadowDomSupport,
   props,
+  hasNativeShadowDomSupport,
   rgb2hex,
   supportsCSSVars,
-} from '@bolt/core/utils';
-import { spacingSizes } from '@bolt/core/data';
-import { h, withPreact, Markup } from '@bolt/core/renderers';
+} from '@bolt/core-v3.x/utils';
 // used to repurpose the HTML from the injected SVG sprite to work around situations where we can't reference these symbols
 import BrowserSprite from 'svg-baker-runtime/src/browser-sprite';
+import { spacingSizes } from '@bolt/core-v3.x/data';
+import { h, withPreact, Markup } from '@bolt/core-v3.x/renderers';
 import styles from './icon.scss';
 import schema from '../icon.schema.json';
 import CustomIcon from './icon.jsx';
@@ -37,10 +37,8 @@ const Icons = svgIcons.keys().reduce((images, path) => {
   return images;
 }, {});
 
-@define
-class BoltIcon extends withPreact() {
-  static is = 'bolt-icon';
-
+@customElement('bolt-icon')
+class BoltIcon extends withPreact {
   static props = {
     name: props.string,
     size: props.string,
@@ -83,6 +81,10 @@ class BoltIcon extends withPreact() {
         this.state.secondaryColor === '#FFFFFF' ? (this.isOnDark = true) : '';
       }
     }
+  }
+
+  disconnectedCallback() {
+    super.disconnectedCallback && super.disconnectedCallback();
   }
 
   render() {

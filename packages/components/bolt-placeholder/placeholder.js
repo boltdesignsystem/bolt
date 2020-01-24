@@ -1,4 +1,4 @@
-import { polyfillLoader } from '@bolt/core/polyfills';
+import { polyfillLoader } from '@bolt/core-v3.x/polyfills';
 
 // Eager so the <replace-with-children> component runs when this component is also booting up, resulting in no initial flash of unstyled content
 polyfillLoader.then(res => {
@@ -6,6 +6,6 @@ polyfillLoader.then(res => {
     /* webpackMode: 'eager', webpackChunkName: 'bolt-placeholder' */ './placeholder.standalone.js'
   );
   import(
-    /* webpackMode: 'eager', webpackChunkName: 'replace-with-children' */ '@bolt/core/elements/replace-with-children'
+    /* webpackMode: 'eager', webpackChunkName: 'replace-with-children' */ '@bolt/core-v3.x/elements/replace-with-children'
   );
 });

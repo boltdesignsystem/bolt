@@ -3,6 +3,66 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.15.2](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-modal/compare/v2.15.1...v2.15.2) (2020-01-21)
+
+**Note:** Version bump only for package @bolt/components-modal
+
+
+
+
+
+# [2.15.0](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-modal/compare/v2.14.3...v2.15.0) (2020-01-17)
+
+**Note:** Version bump only for package @bolt/components-modal
+
+
+
+
+
+# [2.14.0](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-modal/compare/v2.13.3...v2.14.0) (2020-01-06)
+
+
+### Bug Fixes
+
+* revert adding component internal updates — handled in a separate PR ([37882d5](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-modal/commit/37882d5))
+* update snapshots + Nightwatch test ([5e267ad](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-modal/commit/5e267ad))
+
+
+### Features
+
+* cherry pick component constructor / event lifecycle cleanup work related to larger work in https://github.com/boltdesignsystem/bolt/pull/1579 ([3911459](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-modal/commit/3911459))
+* cherry pick component constructor / event lifecycle cleanup work related to larger work in https://github.com/boltdesignsystem/bolt/pull/1579 ([43d1878](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-modal/commit/43d1878))
+* migrate over the customElements.define-related replacement + component dependency updates from https://github.com/boltdesignsystem/bolt/pull/1579 ([3b6f529](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-modal/commit/3b6f529))
+
+
+
+
+
+# [2.13.0](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-modal/compare/v2.12.1...v2.13.0) (2019-12-13)
+
+
+### Bug Fixes
+
+* add IE11 fix to long band modal content ([e901881](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-modal/commit/e901881))
+* remove lint issues ([afc0e82](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-modal/commit/afc0e82))
+* update mobile modal flex styles to fix band bug, add demo ([2ab5114](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-modal/commit/2ab5114))
+* update modal test and snapshot ([55c6c4e](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-modal/commit/55c6c4e))
+* update snapshots ([85d12e0](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-modal/commit/85d12e0))
+* update snapshots and test for modal ([df72915](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-modal/commit/df72915))
+* update snapshots and test for modal ([e23f1c3](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-modal/commit/e23f1c3))
+
+
+
+
+
+## [2.12.1](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-modal/compare/v2.12.0...v2.12.1) (2019-12-12)
+
+**Note:** Version bump only for package @bolt/components-modal
+
+
+
+
+
 # [2.12.0](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-modal/compare/v2.11.4...v2.12.0) (2019-11-26)
 
 **Note:** Version bump only for package @bolt/components-modal

@@ -1,0 +1,58 @@
+{% set schema = bolt.data.components["@bolt-components-menu"].schema %}
+
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(schema, _self) | raw }}
+{% endif %}
+
+{# Variables #}
+{% set base_class = "c-bolt-menu" %}
+{% set this = init(schema) %}
+{% set inner_attributes = create_attribute({}) %}
+
+{# Array of classes based on the defined + default props #}
+{% set classes = [
+  base_class,
+] %}
+
+{#
+  Sort classes passed in via attributes into two groups:
+  1. Those that should be applied to the inner tag (namely, "is-" and "has-" classes)
+  2. Those that should be applied to the outer custom element (everything else EXCEPT c-bolt-* classes, which should never be passed in via attributes)
+#}
+{% set outer_classes = [] %}
+{% set inner_classes = classes %}
+
+{% for class in this.props.class %}
+  {% if class starts with "is-" or class starts with "has-" %}
+    {% set inner_classes = inner_classes|merge([class]) %}
+  {% elseif class starts with "c-bolt-" == false %}
+    {% set outer_classes = outer_classes|merge([class]) %}
+  {% endif %}
+{% endfor %}
+
+<bolt-menu
+  {% if outer_classes %} class="{{ outer_classes|join(' ') }}" {% endif %}
+  {{ this.props|without("content")|without("title")|without("class") }}
+  role="menu"
+>
+  <replace-with-children {% if inner_classes %} class="{{ inner_classes|join(' ') }}" {% endif %}>
+    {% if title %}
+      {% set title_class = base_class ~ "__title" %}
+      {% set title_classes = [
+        title_class,
+        this.data.spacing.value ? title_class ~ "--spacing-" ~ this.data.spacing.value,
+      ] %}
+      <replace-with-children {% if title_classes %} class="{{ title_classes|join(' ') }}" {% endif %}>
+        <div slot="title">{{ title }}</div>
+      </replace-with-children>
+    {% endif %}
+    {% for item in items %}
+      {% if item %}
+        {% include "@bolt-components-menu/_menu-item.twig" with item|merge({
+          spacing: this.data.spacing.value,
+          last: loop.last,
+        }) only %}
+      {% endif %}
+    {% endfor %}
+  </replace-with-children>
+</bolt-menu>

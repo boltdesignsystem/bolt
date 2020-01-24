@@ -1,4 +1,4 @@
-import { supportsCSSVars } from '@bolt/core/utils';
+import { supportsCSSVars } from '@bolt/core-v3.x/utils';
 import classNames from 'classnames/dedupe';
 import {
   customElement,
@@ -33,8 +33,8 @@ class BoltRatio extends BoltElement {
     };
   }
 
-  constructor() {
-    super();
+  connectedCallback() {
+    super.connectedCallback && super.connectedCallback();
     this.noCssVars = supportsCSSVars ? false : true;
   }
 

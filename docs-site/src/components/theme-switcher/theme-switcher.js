@@ -1,7 +1,7 @@
 import { styleMap } from 'lit-html/directives/style-map.js';
 import { BoltElement } from '@bolt/element';
 import { html, customElement } from 'lit-element';
-import { getUniqueId } from '@bolt/core/utils/get-unique-id';
+import { getUniqueId } from '@bolt/core-v3.x/utils/get-unique-id';
 
 @customElement('bolt-theme-switcher')
 class BoltThemeSwitcher extends BoltElement {

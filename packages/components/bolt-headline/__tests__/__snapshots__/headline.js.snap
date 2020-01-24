@@ -72,6 +72,18 @@ exports[`<bolt-headline> Component Sizes at all varient font styles: xxlarge, no
 </h2>
 `;
 
+exports[`<bolt-headline> Component Sizes at all varient font styles: xxsmall, italic 1`] = `
+<h2 class="c-bolt-headline c-bolt-headline--bold c-bolt-headline--xxsmall">
+  Some text
+</h2>
+`;
+
+exports[`<bolt-headline> Component Sizes at all varient font styles: xxsmall, normal 1`] = `
+<h2 class="c-bolt-headline c-bolt-headline--bold c-bolt-headline--xxsmall">
+  Some text
+</h2>
+`;
+
 exports[`<bolt-headline> Component Sizes at all varient font styles: xxxlarge, italic 1`] = `
 <h2 class="c-bolt-headline c-bolt-headline--bold c-bolt-headline--xxxlarge">
   Some text
@@ -192,6 +204,24 @@ exports[`<bolt-headline> Component Sizes at all varient font weights: xxlarge, s
 </h2>
 `;
 
+exports[`<bolt-headline> Component Sizes at all varient font weights: xxsmall, bold 1`] = `
+<h2 class="c-bolt-headline c-bolt-headline--bold c-bolt-headline--xxsmall">
+  Some text
+</h2>
+`;
+
+exports[`<bolt-headline> Component Sizes at all varient font weights: xxsmall, regular 1`] = `
+<h2 class="c-bolt-headline c-bolt-headline--regular c-bolt-headline--xxsmall">
+  Some text
+</h2>
+`;
+
+exports[`<bolt-headline> Component Sizes at all varient font weights: xxsmall, semibold 1`] = `
+<h2 class="c-bolt-headline c-bolt-headline--semibold c-bolt-headline--xxsmall">
+  Some text
+</h2>
+`;
+
 exports[`<bolt-headline> Component Sizes at all varient font weights: xxxlarge, bold 1`] = `
 <h2 class="c-bolt-headline c-bolt-headline--bold c-bolt-headline--xxxlarge">
   Some text
@@ -267,6 +297,18 @@ exports[`<bolt-headline> Component headline with associated link 1`] = `
         <bolt-icon slot="after"
                    name="chevron-right"
         >
+          <span class="c-bolt-icon c-bolt-icon--chevron-right">
+            <svg class="c-bolt-icon__icon"
+                 xmlns="http://www.w3.org/2000/svg"
+                 viewbox="0 0 32 32"
+            >
+              <path fill="var(--bolt-icon-primary-color)"
+                    fill-rule="evenodd"
+                    d="M12.938 7.054a1.34 1.34 0 00-1.884 0 1.339 1.339 0 000 1.884l7.059 7.06-7.059 7.059a1.34 1.34 0 000 1.884 1.329 1.329 0 001.883 0l8-8a1.323 1.323 0 000-1.885l-7.999-8.002z"
+              >
+              </path>
+            </svg>
+          </span>
         </bolt-icon>
       </replace-with-children>
     </a>
@@ -279,6 +321,23 @@ exports[`<bolt-headline> Component headline with icon 1`] = `
   this is a headline
   <span class="c-bolt-headline__icon">
     <bolt-icon name="check">
+      <span class="c-bolt-icon c-bolt-icon--check">
+        <svg class="c-bolt-icon__icon"
+             xmlns="http://www.w3.org/2000/svg"
+             viewbox="0 0 24 24"
+        >
+          <g fill="none"
+             fill-rule="evenodd"
+          >
+            <path>
+            </path>
+            <path fill="var(--bolt-icon-primary-color)"
+                  d="M19.292 6.29L8.998 16.584 4.703 12.29a1.004 1.004 0 00-1.412 0 1.002 1.002 0 000 1.413l5 5a.995.995 0 001.411 0l11-11a.99.99 0 000-1.413 1.001 1.001 0 00-1.41 0z"
+            >
+            </path>
+          </g>
+        </svg>
+      </span>
     </bolt-icon>
   </span>
 </h2>

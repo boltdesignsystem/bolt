@@ -6,11 +6,12 @@ properties:
     description: A Drupal-style attributes object with extra attributes to append to this component.
   display:
     type: string
-    description: Display either an inline link or flex link (icons can hang on either side).
+    description: Display either an inline, block, or flex link (icons can hang on either side).
     default: inline
     enum:
       - inline
       - flex
+      - block
   valign:
     type: string
     description: Controls the vertical alignment of text and icon.

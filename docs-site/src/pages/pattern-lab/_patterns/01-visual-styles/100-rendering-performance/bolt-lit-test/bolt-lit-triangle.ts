@@ -7,8 +7,8 @@ import {
   afterNextRender,
   watchForComponentMutations,
   withContext,
-} from '@bolt/core/utils';
-import { html, render, withLitHtml } from '@bolt/core/renderers/renderer-lit-html';
+} from '@bolt/core-v3.x/utils';
+import { html, render, withLitHtml } from '@bolt/core-v3.x/renderers/renderer-lit-html';
 import './bolt-lit-dot';
 
 import { LitRenderPerfContext } from './bolt-lit-test';

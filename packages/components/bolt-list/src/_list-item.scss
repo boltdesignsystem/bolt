@@ -1,4 +1,4 @@
-@import '@bolt/core';
+@import '@bolt/core-v3.x';
 
 /* ------------------------------------ *\
    List Item
@@ -6,7 +6,7 @@
 
 // Variables
 $bolt-list-item-border-width: $bolt-border-width;
-$bolt-list-item-border-color: $bolt-border-color;
+$bolt-list-item-border-color: bolt-theme(border, 0.2);
 
 // Item base styles
 .c-bolt-list-item {
@@ -86,11 +86,11 @@ $bolt-list-separator-styles: solid, dashed;
         &.c-bolt-list-item--display-block {
           @include bolt-padding-bottom(#{$spacing-value-name});
         }
+      }
 
-        &.c-bolt-list-item--display-inline,
-        &.c-bolt-list-item--display-flex {
-          @include bolt-padding-right(#{$spacing-value-name});
-        }
+      &.c-bolt-list-item--display-inline,
+      &.c-bolt-list-item--display-flex {
+        @include bolt-padding-right(#{$spacing-value-name});
       }
     }
 

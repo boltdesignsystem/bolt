@@ -1,0 +1,35 @@
+{% set toolbar_content_before = block("content_before") %}
+{% set toolbar_content = block("content") %}
+{% set toolbar_content_after = block("content_after") %}
+
+<div class="t-bolt-xdark c-bolt-toolbar c-bolt-toolbar--{{ gradientName | default('purple') }}">
+  <div class="c-bolt-toolbar__inner">
+    <div class="c-bolt-toolbar__items">
+      {% if title or toolbar_content_before or content_before %}
+        <div class="c-bolt-toolbar__item c-bolt-toolbar__item--before">
+          {% if title %}
+            <div class="c-bolt-toolbar__title">
+              {% block toolbar_title %}
+                {% include "@bolt-components-toolbar/_toolbar-title.twig" with title only %}
+              {% endblock %}
+            </div>
+          {% endif %}
+
+          {{ toolbar_content_before | default(content_before) }}
+        </div>
+      {% endif %}
+
+      {% if toolbar_content or content %}
+        <div class="c-bolt-toolbar__item c-bolt-toolbar__item--center">
+          {{ toolbar_content | default(content) }}
+        </div>
+      {% endif %}
+
+      {% if toolbar_content_after or content_after %}
+        <div class="c-bolt-toolbar__item c-bolt-toolbar__item--after">
+          {{ toolbar_content_after | default(content_after) }}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>

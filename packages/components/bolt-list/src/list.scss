@@ -1,4 +1,4 @@
-@import '@bolt/core';
+@import '@bolt/core-v3.x';
 
 /* ------------------------------------ *\
    List
@@ -51,7 +51,7 @@
   '.c-bolt-list--display-flex bolt-list-item',
   '.c-bolt-list--display-flex ::slotted(bolt-list-item)'
 )) {
-  flex: 1 1 auto;
+  flex: 1;
 }
 
 @each $breakpoint in $bolt-breakpoints {
@@ -101,14 +101,17 @@
   }
 }
 
-// Align and Valign Props
-$bolt-list-alignments: start, center, end;
+// Align options
+$bolt-list-alignments: start, center, end, justify;
 
 @each $alignment in $bolt-list-alignments {
   .c-bolt-list--align-#{$alignment} {
     &.c-bolt-list--display-inline {
-      @if $alignment != 'center' {
+      @if $alignment != center and $alignment != justify {
         justify-content: flex-#{$alignment};
+      }
+      @else if $alignment == justify {
+        justify-content: space-between;
       }
       @else {
         justify-content: #{$alignment};
@@ -120,8 +123,11 @@ $bolt-list-alignments: start, center, end;
 
       &.c-bolt-list--display-inline\@#{$breakpoint-name} {
         @include bolt-mq($breakpoint-name) {
-          @if $alignment != 'center' {
+          @if $alignment != center and $alignment != justify {
             justify-content: flex-#{$alignment};
+          }
+          @else if $alignment == justify {
+            justify-content: space-between;
           }
           @else {
             justify-content: #{$alignment};
@@ -130,11 +136,16 @@ $bolt-list-alignments: start, center, end;
       }
     }
   }
+}
 
+// Valign options
+$bolt-list-valignments: start, center, end;
+
+@each $alignment in $bolt-list-valignments {
   .c-bolt-list--valign-#{$alignment} {
     &.c-bolt-list--display-inline,
     &.c-bolt-list--display-flex {
-      @if $alignment != 'center' {
+      @if $alignment != center {
         align-items: flex-#{$alignment};
       }
       @else {
@@ -147,7 +158,7 @@ $bolt-list-alignments: start, center, end;
 
       &.c-bolt-list--display-inline\@#{$breakpoint-name} {
         @include bolt-mq($breakpoint-name) {
-          @if $alignment != 'center' {
+          @if $alignment != center {
             align-items: flex-#{$alignment};
           }
           @else {
@@ -157,4 +168,23 @@ $bolt-list-alignments: start, center, end;
       }
     }
   }
+}
+
+// Nowrap
+.c-bolt-list--nowrap {
+  &.c-bolt-list--display-inline,
+  &.c-bolt-list--display-flex {
+    flex-flow: row nowrap;
+  }
+
+  @each $breakpoint in $bolt-breakpoints {
+    $breakpoint-name: nth($breakpoint, 1);
+
+    &.c-bolt-list--display-inline\@#{$breakpoint-name} {
+      @include bolt-mq($breakpoint-name) {
+        flex-flow: row nowrap;
+      }
+    }
+  }
+
 }
