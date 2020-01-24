@@ -1,0 +1,35 @@
+/* ------------------------------------ *\
+   card-replacement Body
+\* ------------------------------------ */
+
+@import '@bolt/core-v3.x';
+@import '../_card-replacement-settings-and-tools.scss';
+
+bolt-card-replacement-body {
+  position: relative; // this + z-index needed in order to handle a background layer
+  z-index: 2;
+  width: 100%;
+}
+
+:host {
+  width: 100%;
+}
+
+.c-bolt-card_replacement__body {
+  @include bolt-margin(0);
+  @include bolt-padding(#{$bolt-card-replacement-body-spacing});
+
+  display: block;
+}
+
+// automatically raise the default z-index of nested bolt-links in the bolt-card-replacement-body so they aren't covered by the bolt-card-replacement-link layer
+.c-bolt-card_replacement__body ::slotted(bolt-link) {
+  position: relative;
+  z-index: $bolt-card-replacement-individual-link-z-index;
+}
+
+// fallback version of the above styles -- used if shadow dom isn't supported or not getting used in certain situations
+.c-bolt-card_replacement__body bolt-link {
+  position: relative;
+  z-index: $bolt-card-replacement-individual-link-z-index;
+}

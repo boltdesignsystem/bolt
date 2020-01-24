@@ -1,0 +1,69 @@
+{# Setting variables for demo purposes #}
+{% set placeholder_1 %}
+  {% include "@bolt-components-placeholder/placeholder.twig" with {
+    text: "Item 1",
+    size: "xsmall",
+  } only %}
+{% endset %}
+{% set placeholder_2 %}
+  {% include "@bolt-components-placeholder/placeholder.twig" with {
+    text: "Item 2",
+    size: "xsmall",
+  } only %}
+{% endset %}
+{% set placeholder_3 %}
+  {% include "@bolt-components-placeholder/placeholder.twig" with {
+    text: "Item 3",
+    size: "xsmall",
+  } only %}
+{% endset %}
+{% set placeholder_4 %}
+  {% include "@bolt-components-placeholder/placeholder.twig" with {
+    text: "Item 4",
+    size: "xsmall",
+  } only %}
+{% endset %}
+{% set placeholder_5 %}
+  {% include "@bolt-components-placeholder/placeholder.twig" with {
+    text: "Item 5",
+    size: "xsmall",
+  } only %}
+{% endset %}
+{% set placeholder_6 %}
+  {% include "@bolt-components-placeholder/placeholder.twig" with {
+    text: "Item 6",
+    size: "xsmall",
+  } only %}
+{% endset %}
+
+{# Start component specific code #}
+<p><mark>Nowrap prop only works with inline and flex display, it has no effects on block display.</mark></p>
+
+<h3>Inline list with nowrap</h3>
+{% include "@bolt-components-list/list.twig" with {
+  display: "inline",
+  nowrap: true,
+  items: [
+    placeholder_1,
+    placeholder_2,
+    placeholder_3,
+    placeholder_4,
+    placeholder_5,
+    placeholder_6,
+  ]
+} only %}
+
+<h3>Flex list with nowrap</h3>
+{% include "@bolt-components-list/list.twig" with {
+  display: "flex",
+  nowrap: true,
+  items: [
+    placeholder_1,
+    placeholder_2,
+    placeholder_3,
+    placeholder_4,
+    placeholder_5,
+    placeholder_6,
+  ]
+} only %}
+{# End component specific code #}

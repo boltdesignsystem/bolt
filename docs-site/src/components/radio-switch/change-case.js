@@ -1,11 +1,10 @@
-import { props, define } from '@bolt/core/utils';
-import { html, withLitHtml } from '@bolt/core/renderers/renderer-lit-html';
+import { props } from '@bolt/core-v3.x/utils';
+import { customElement, html } from '@bolt/element';
+import { withLitHtml } from '@bolt/core-v3.x/renderers/renderer-lit-html';
 const changeCase = require('change-case');
 
-@define
-class BoltChangeCase extends withLitHtml() {
-  static is = 'bolt-change-case';
-
+@customElement('bolt-change-case')
+class BoltChangeCase extends withLitHtml {
   static props = {
     mode: props.string,
   };

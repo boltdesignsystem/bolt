@@ -1,5 +1,6 @@
-import { props, define } from '@bolt/core/utils';
-import { html, withLitHtml } from '@bolt/core/renderers/renderer-lit-html';
+import { html, customElement } from '@bolt/element';
+import { props } from '@bolt/core-v3.x/utils';
+import { withLitHtml } from '@bolt/core-v3.x/renderers/renderer-lit-html';
 import { isFocusable, isHidden } from './focusable';
 import { queryShadowRoot } from './shadow';
 
@@ -7,10 +8,9 @@ import { queryShadowRoot } from './shadow';
  * Focus trap web component.
  * @slot - Default content.
  */
-@define
-class FocusTrap extends withLitHtml() {
-  static is = 'focus-trap';
 
+@customElement('focus-trap')
+class FocusTrap extends withLitHtml {
   static props = {
     readonly: props.boolean,
     focused: props.boolean,

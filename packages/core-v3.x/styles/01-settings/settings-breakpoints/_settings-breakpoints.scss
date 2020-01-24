@@ -1,0 +1,27 @@
+////
+/// @group Settings: Breakpoints
+/// @author Salem Ghoweri
+////
+
+/// Major breakpoints used globally in Bolt.
+/// @type Map
+/// @see bolt-breakpoint
+$bolt-breakpoints: (
+  xxsmall:  320px,
+  xsmall:   400px,
+  small:    600px,
+  medium:   800px,
+  large:    1000px,
+  xlarge:   1200px,
+  xxlarge:  1400px,
+  xxxlarge: 1600px,
+  xxxxlarge: 1920px,
+) !default;
+
+/// A duplicate of $bolt-breakpoints - used within mq()
+/// @see {mixin} bolt-mq
+$mq-breakpoints: $bolt-breakpoints;
+
+
+@include export-data("breakpoints.bolt.json", $bolt-breakpoints);
+// Re-map Bolt's namespaced Sassmap to the Sass MQ's `$breakpoints` default

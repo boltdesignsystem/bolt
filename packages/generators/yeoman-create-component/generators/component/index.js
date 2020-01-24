@@ -226,18 +226,14 @@ module.exports = class extends Generator {
     // basic component Jest tests
     this.fs.copyTpl(
       this.templatePath('component.test.js'),
-      this.destinationPath(
-        `${this.folders.src}/bolt-${this.props.name.kebabCase}/__tests__/index.js`,
-      ),
+      this.destinationPath(`${this.props.dest}/__tests__/index.js`),
       { props: this.props },
     );
 
     // component README.md
     this.fs.copyTpl(
       this.templatePath('README.md'),
-      this.destinationPath(
-        `${this.folders.src}/bolt-${this.props.name.kebabCase}/README.md`,
-      ),
+      this.destinationPath(`${this.props.dest}/README.md`),
       {
         props: this.props,
         folders: this.folders,
@@ -247,9 +243,7 @@ module.exports = class extends Generator {
     // component package.json
     this.fs.copyTpl(
       this.templatePath('package.json'),
-      this.destinationPath(
-        `${this.folders.src}/bolt-${this.props.name.kebabCase}/package.json`,
-      ),
+      this.destinationPath(`${this.props.dest}/package.json`),
       {
         props: this.props,
         folders: this.folders,
@@ -280,7 +274,7 @@ module.exports = class extends Generator {
       shelljs.exec('yarn');
 
       shelljs.exec(
-        `npx prettier ${this.folders.src}/bolt-${this.props.name.kebabCase}/**/*.{js,scss,json} --write`,
+        `npx prettier ${this.props.dest}/**/*.{js,scss,json} --write`,
       );
     }
   }

@@ -1,19 +1,7 @@
 {
   "name": "@bolt/testing-utils",
-  "version": "2.12.0",
+  "version": "2.15.2",
   "description": "Server side utilities for running tests in the Bolt Design System.",
-  "main": "index.js",
-  "bin": {
-    "bolt-list-pkg-paths-changed": "cli/list-pkg-paths-changed.js"
-  },
-  "scripts": {
-    "test": "tsc"
-  },
-  "dependencies": {
-    "find-pkg": "^2.0.0",
-    "fs-extra": "^8.1.0",
-    "globby": "^9.2.0"
-  },
   "keywords": [
     "bolt design system",
     "design system",
@@ -23,6 +11,19 @@
   "bugs": "https://github.com/bolt-design-system/bolt/issues",
   "repository": "https://github.com/bolt-design-system/bolt/tree/master/packages/testing-utils",
   "license": "MIT",
+  "main": "index.js",
+  "bin": {
+    "bolt-list-pkg-paths-changed": "cli/list-pkg-paths-changed.js"
+  },
+  "scripts": {
+    "test": "tsc"
+  },
+  "dependencies": {
+    "execa": "^1.0.0",
+    "find-pkg": "^2.0.0",
+    "fs-extra": "^8.1.0",
+    "globby": "^9.2.0"
+  },
   "publishConfig": {
     "access": "public"
   },

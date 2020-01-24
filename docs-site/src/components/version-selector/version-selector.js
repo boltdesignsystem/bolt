@@ -1,5 +1,5 @@
 import '../bolt-select/bolt-select';
-const boltSelect = document.querySelector('bolt-select');
+const boltSelect = document.querySelector('.js-bolt-version-selector');
 let shouldOpenInNewWindow = false;
 
 if (boltSelect) {
@@ -7,7 +7,7 @@ if (boltSelect) {
 
   // group together the latest vs previous Bolt releases
   if (boltSelectTag) {
-    const currentVersionText = 'v' + window.bolt.data.fullManifest.version;
+    const currentVersionText = 'v' + window?.bolt?.data?.fullManifest?.version;
 
     const latestOption = document.createElement('optgroup');
     const prevOption = document.createElement('optgroup');

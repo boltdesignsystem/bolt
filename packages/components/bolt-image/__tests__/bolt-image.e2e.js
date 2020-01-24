@@ -43,7 +43,7 @@ module.exports = {
       .assert.attributeEquals(
         '.c-bolt-image__image',
         'srcset',
-        '/images/placeholders/landscape-16x9-mountains-50.jpg 50w, /images/placeholders/landscape-16x9-mountains-100.jpg 100w, /images/placeholders/landscape-16x9-mountains-200.jpg 200w, /images/placeholders/landscape-16x9-mountains-320.jpg 320w, /images/placeholders/landscape-16x9-mountains-480.jpg 480w, /images/placeholders/landscape-16x9-mountains-640.jpg 640w, /images/placeholders/landscape-16x9-mountains-800.jpg 800w, /images/placeholders/landscape-16x9-mountains-1024.jpg 1024w',
+        '/images/placeholders/landscape-16x9-mountains-50.jpg 50w, /images/placeholders/landscape-16x9-mountains-100.jpg 100w, /images/placeholders/landscape-16x9-mountains-200.jpg 200w, /images/placeholders/landscape-16x9-mountains-320.jpg 320w, /images/placeholders/landscape-16x9-mountains-480.jpg 480w, /images/placeholders/landscape-16x9-mountains-640.jpg 640w, /images/placeholders/landscape-16x9-mountains-800.jpg 800w, /images/placeholders/landscape-16x9-mountains-1024.jpg 1024w, /images/placeholders/landscape-16x9-mountains.jpg 1151w',
       )
       .saveScreenshot(
         `screenshots/bolt-image/${testName}--${currentBrowser}.png`,
@@ -62,7 +62,7 @@ module.exports = {
 
     browser
       .url(
-        `${testingUrl}/pattern-lab/patterns/02-components-card-__tests__-personalized-card--client-rendered-personalized-card-example--client-rendered-tests/02-components-card-__tests__-personalized-card--client-rendered-personalized-card-example--client-rendered-tests.html`,
+        `${testingUrl}/pattern-lab/patterns/02-components-card-deprecated-__tests__-personalized-card--client-rendered--personalized-card-example--client-rendered-tests/02-components-card-deprecated-__tests__-personalized-card--client-rendered--personalized-card-example--client-rendered-tests.html`,
       )
       .waitForElementPresent(
         '.js-no-shadow-image-test bolt-image[src="/images/placeholders/landscape-16x9-skyline.jpg"] img.is-lazyloaded',

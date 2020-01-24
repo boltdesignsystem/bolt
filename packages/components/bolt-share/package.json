@@ -1,5 +1,6 @@
 {
   "name": "@bolt/components-share",
+  "version": "2.15.2",
   "description": "Share Component in Bolt",
   "keywords": [
     "bolt design system",
@@ -8,8 +9,26 @@
     "design system",
     "components"
   ],
-  "version": "2.12.0",
   "homepage": "https://boltdesignsystem.com",
+  "bugs": {
+    "url": "https://github.com/bolt-design-system/bolt/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bolt-design-system/bolt/"
+  },
+  "license": "MIT",
+  "style": "index.scss",
+  "dependencies": {
+    "@bolt/components-copy-to-clipboard": "^2.15.2",
+    "@bolt/components-icon": "^2.15.2",
+    "@bolt/components-list": "^2.15.2",
+    "@bolt/core-v3.x": "^2.15.2"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "gitHead": "d41aa75ae3d195d9d7fb3952eed5e0ae80988133",
   "maintainers": [
     {
       "name": "Salem Ghoweri",
@@ -22,25 +41,6 @@
       "web": "http://mikemai.net/"
     }
   ],
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/bolt-design-system/bolt/"
-  },
-  "bugs": {
-    "url": "https://github.com/bolt-design-system/bolt/issues"
-  },
-  "style": "index.scss",
-  "twig": "src/share.twig",
   "schema": "share.schema.yml",
-  "publishConfig": {
-    "access": "public"
-  },
-  "dependencies": {
-    "@bolt/components-copy-to-clipboard": "^2.12.0",
-    "@bolt/components-icon": "^2.12.0",
-    "@bolt/components-list": "^2.12.0",
-    "@bolt/core": "^2.12.0"
-  },
-  "gitHead": "d41aa75ae3d195d9d7fb3952eed5e0ae80988133"
+  "twig": "src/share.twig"
 }

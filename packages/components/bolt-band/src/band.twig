@@ -1,13 +1,14 @@
 {% set schema = bolt.data.components["@bolt-components-band"].schema %}
 
-{% if enable_json_schema_validation %}
+{# {% if enable_json_schema_validation %}
   {{ validate_data_schema(schema, _self) | raw }}
-{% endif %}
+{% endif %} #}
 
 {# Variables #}
 {% set base_class = "c-bolt-band" %}
 {% set attributes = create_attribute(attributes|default({})) %}
-{% set inner_attributes = create_attribute({}) %}
+{% set inner_attributes = create_attribute(inner_attributes|default({})) %}
+
 
 {# Deprecated #}
 {% if fullBleed is sameas(true) or fullBleed is sameas(false) %}
@@ -22,10 +23,12 @@
 {% set tag_options = schema.properties.tag.enum %}
 {% set size_options = schema.properties.size.enum %}
 {% set theme_options = schema.properties.theme.enum %}
+{% set valign_options = schema.properties.valign.enum %}
 
 {# Check that the component's current prop values are valid. if not, default to the schema default #}
 {% set tag = tag in tag_options ? tag : schema.properties.tag.default %}
 {% set size = size in size_options ? size : schema.properties.size.default %}
+{% set valign = valign in valign_options ? valign : schema.properties.valign.default %}
 {% set theme = theme in theme_options ? theme : schema.properties.theme.default %}
 {% set full_bleed = full_bleed is sameas(true) or full_bleed is sameas(false) ? full_bleed : schema.properties.full_bleed.default %}
 
@@ -33,6 +36,7 @@
 {% set classes = [
   base_class,
   size != "none" ? "#{base_class}--#{size}" : "",
+  valign ? "#{base_class}--valign-#{valign}" : "",
   theme != "none" ? "t-bolt-#{theme}" : "",
   full_bleed ? "#{base_class}--full-bleed",
 ] %}
@@ -58,6 +62,7 @@
   {% if tag %} tag="{{ tag }}" {% endif %}
   {% if size %} size="{{ size }}" {% endif %}
   {% if theme %} theme="{{ theme }}" {% endif %}
+  {% if valign %} valign="{{ valign }}" {% endif %}
   {% if full_bleed %} full-bleed {% endif %}
   {% if outer_classes %} class="{{ outer_classes|join(' ') }}" {% endif %}
   {{ attributes | without("class") }}

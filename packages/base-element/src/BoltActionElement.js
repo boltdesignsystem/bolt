@@ -1,5 +1,5 @@
-import { declarativeClickHandler } from '@bolt/core/utils/declarative-click-handler';
-import { watchForComponentMutations } from '@bolt/core/utils/watch-for-component-mutations';
+import { declarativeClickHandler } from '@bolt/core-v3.x/utils/declarative-click-handler';
+import { watchForComponentMutations } from '@bolt/core-v3.x/utils/watch-for-component-mutations';
 import { supportsShadowDom } from './lib/utils';
 import { BoltElement } from './BoltElement';
 
@@ -21,11 +21,12 @@ class BoltActionElement extends BoltElement {
     };
   }
 
-  constructor() {
-    super();
-    this.rootElementTags = [];
-    this.delegateFocus = true;
-    this.clickHandler = this.clickHandler.bind(this);
+  constructor(self) {
+    self = super(self);
+    self.rootElementTags = [];
+    self.delegateFocus = true;
+    self.clickHandler = self.clickHandler.bind(self);
+    return self;
   }
 
   connectedCallback() {

@@ -4,8 +4,9 @@ import {
   render,
   html,
   ifDefined,
+  convertInitialTags,
+  customElement,
 } from '@bolt/element';
-import { convertInitialTags } from '@bolt/core/decorators';
 import classNames from 'classnames/bind';
 
 import buttonStyles from './button.scss';
@@ -13,6 +14,7 @@ import buttonStyles from './button.scss';
 
 let cx = classNames.bind(buttonStyles);
 
+@customElement('bolt-button')
 @convertInitialTags(['button', 'a'])
 class BoltButton extends BoltActionElement {
   static get styles() {
@@ -87,7 +89,7 @@ class BoltButton extends BoltActionElement {
           `}${this.slotify('default') &&
           html`
             <span class="${itemClasses}">${this.slotify('default')}</span>
-          `}${this.slotify('after') &&
+          `}${this.slotMap.get('after') &&
           html`
             <span class="${iconClasses}"
               ><span class="${sizerClasses}"
@@ -175,7 +177,5 @@ class BoltButton extends BoltActionElement {
     `;
   }
 }
-
-customElements.define('bolt-button', BoltButton);
 
 export { BoltButton };
