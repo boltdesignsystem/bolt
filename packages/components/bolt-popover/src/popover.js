@@ -28,6 +28,11 @@ class BoltPopover extends BoltElement {
       },
       hasPopup: Boolean,
       hasFocusableContent: Boolean,
+      boundary: String,
+      fallbackPlacements: {
+        attribute: 'fallback-placements',
+        type: Array,
+      },
     };
   }
 
@@ -149,6 +154,11 @@ class BoltPopover extends BoltElement {
     this.popover = this.renderRoot.querySelector('.c-bolt-popover');
     this.content = this.renderRoot.querySelector('.c-bolt-popover__content');
 
+    this.$boundary =
+      this.$boundary ||
+      (this.boundary && this.closest(this.boundary)) ||
+      undefined;
+
     if (this.popover && this.content) {
       this.popper = createPopper(this.popover, this.content, {
         placement: this.placement || schema.properties.placement.default,
@@ -161,6 +171,21 @@ class BoltPopover extends BoltElement {
               if (this.placement !== state.placement) {
                 this.placement = state.placement;
               }
+            },
+          },
+          {
+            name: 'flip',
+            options: {
+              fallbackPlacements: this.fallbackPlacements ?? undefined,
+              boundary: this.$boundary,
+            },
+          },
+          {
+            name: 'preventOverflow',
+            options: {
+              // @todo continue evaluating placement config
+              // altAxis: true,
+              boundary: this.$boundary,
             },
           },
         ],

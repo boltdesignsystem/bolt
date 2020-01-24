@@ -19,6 +19,11 @@ class BoltTooltip extends BoltElement {
       uuid: String,
       dotted: Boolean,
       hasFocusableContent: Boolean,
+      boundary: String,
+      fallbackPlacements: {
+        attribute: 'fallback-placements',
+        type: Array,
+      },
     };
   }
 
@@ -156,6 +161,10 @@ class BoltTooltip extends BoltElement {
     this.tooltip = this.renderRoot.querySelector('.c-bolt-tooltip');
     this.content = this.renderRoot.querySelector('.c-bolt-tooltip__content');
 
+    this.$boundary =
+      this.$boundary ||
+      (this.boundary && this.closest(this.boundary)) || undefined;
+
     if (this.tooltip && this.content) {
       this.popper = createPopper(this.tooltip, this.content, {
         placement: this.placement || schema.properties.placement.default,
@@ -168,6 +177,20 @@ class BoltTooltip extends BoltElement {
               if (this.placement !== state.placement) {
                 this.placement = state.placement;
               }
+            },
+          },
+          {
+            name: 'flip',
+            options: {
+              fallbackPlacements: this.fallbackPlacements ?? undefined,
+              boundary: this.$boundary,
+            },
+          },
+          {
+            name: 'preventOverflow',
+            options: {
+              altAxis: true,
+              boundary: this.$boundary,
             },
           },
         ],
