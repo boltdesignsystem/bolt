@@ -1,6 +1,6 @@
 {
   "name": "@bolt/prerender-spa-plugin",
-  "version": "2.14.0",
+  "version": "2.15.2",
   "description": "Bolt Design System fork of the Webpack Prerender SPA Plugin",
   "keywords": [
     "prerender",
@@ -18,29 +18,6 @@
     "name": "Chris Fritz",
     "email": "chrisvfritz@gmail.com",
     "url": "https://twitter.com/chrisvfritz"
-  },
-  "files": [
-    "index.es6.js",
-    "index.js"
-  ],
-  "main": "index.js",
-  "scripts": {
-    "build": "babel index.es6.js --out-file index.js",
-    "postinstall": "npm run build",
-    "prepublishOnly": "npm run build"
-  },
-  "dependencies": {
-    "@babel/cli": "^7.5.0",
-    "@babel/core": "^7.5.4",
-    "@bolt/uikit-prerenderer": "^2.14.0",
-    "@prerenderer/prerenderer": "^0.7.2",
-    "html-minifier": "^4.0.0"
-  },
-  "engines": {
-    "node": ">=10.0.0"
-  },
-  "publishConfig": {
-    "access": "public"
   },
   "contributors": [
     {
@@ -66,5 +43,28 @@
       "name": "qkdreyer",
       "email": "quentin.dreyer@gmail.com"
     }
-  ]
+  ],
+  "files": [
+    "index.es6.js",
+    "index.js"
+  ],
+  "main": "index.js",
+  "scripts": {
+    "build": "babel index.es6.js --out-file index.js",
+    "postinstall": "npm run build",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "@babel/cli": "^7.5.0",
+    "@babel/core": "^7.5.4",
+    "@bolt/uikit-prerenderer": "^2.15.2",
+    "@prerenderer/prerenderer": "^0.7.2",
+    "html-minifier": "^4.0.0"
+  },
+  "engines": {
+    "node": ">=10.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
 }

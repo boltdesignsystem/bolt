@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.15.2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icon/compare/v2.15.1...v2.15.2) (2020-01-21)
+
+**Note:** Version bump only for package @bolt/components-icon
+
+
+
+
+
+# [2.15.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icon/compare/v2.14.3...v2.15.0) (2020-01-17)
+
+
+### Features
+
+* add new List icon ([cb94fd5](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icon/commit/cb94fd5ad504c5e076b837469570ee06bb0ac0b1))
+* add the ability to customize Icon's border radius via CSS custom property ([bcff00d](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icon/commit/bcff00db184f8e6707c92b6cdb7ea0fc9f7b1ff5))
+
+
+
+
+
 # [2.14.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icon/compare/v2.13.3...v2.14.0) (2020-01-06)
 
 

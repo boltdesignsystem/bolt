@@ -14,6 +14,10 @@ import '@bolt/components-typeahead/__demos__/dynamically-fetch-data/typeahead.dy
 import '@bolt/components-typeahead/__demos__/navigate-to-search-results/typeahead.navigate-to-search-results';
 import '@bolt/components-typeahead/__demos__/navigate-to-exact-result/typeahead.navigate-to-exact-result';
 
+// demo to show how to add custom icons automatically
+import './assets/icons/custom-arrow-left-colored.svg';
+import './assets/icons/custom-users.svg';
+
 // here if you need pl only JS
 // document.addEventListener('DOMContentLoaded', () => {
 //   /**

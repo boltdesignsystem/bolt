@@ -34,6 +34,10 @@ const config = deepmerge(baseConfig, {
       recursive: true,
       paths: ['src/templates', '../packages/components'],
     },
+    'bolt-blueprints': {
+      recursive: true,
+      paths: ['./src/pages/pattern-lab/_patterns/03-blueprints'],
+    },
     pl: {
       recursive: true,
       paths: [
@@ -41,10 +45,6 @@ const config = deepmerge(baseConfig, {
         /* Example of including additional component paths to include in the main @bolt namespace */
         // path.relative(process.cwd(), path.dirname(require.resolve('@bolt/components-sticky/package.json'))),
       ],
-    },
-    'bolt-assets': {
-      recursive: true,
-      paths: ['../www/build'],
     },
     utils: {
       recursive: true,
@@ -63,7 +63,7 @@ const config = deepmerge(baseConfig, {
         dist: '../www/images',
       },
       {
-        base: './src/pages/pattern-lab/_patterns/03-blueprints/00-assets',
+        base: './src/pages/pattern-lab/_patterns/03-blueprints/00-assets/images',
         glob: '**',
         dist: '../www/images',
       },
@@ -91,7 +91,6 @@ const config = deepmerge(baseConfig, {
       '@bolt/analytics-autolink',
       '@bolt/analytics-autotrack',
       '@bolt/blueprints',
-      '@bolt/components-banner',
       '@bolt/components-radio-switch',
       '@bolt/components-page-footer',
       '@bolt/components-page-header',
