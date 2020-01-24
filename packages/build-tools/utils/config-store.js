@@ -1,6 +1,7 @@
 const chalk = require('chalk');
 const path = require('path');
 const cosmiconfig = require('cosmiconfig');
+const argv = require('yargs').argv;
 const explorer = cosmiconfig('bolt');
 const address = require('address');
 
@@ -45,7 +46,7 @@ async function getDefaultConfig() {
     quick: configSchema.properties.quick.default,
     webpackDevServer: configSchema.properties.webpackDevServer.default,
     prod: process.env.NODE_ENV === 'production',
-    compat: configSchema.properties.compat.default,
+    compat: undefined,
     startPath: configSchema.properties.startPath.default,
     webpackStats: configSchema.properties.webpackStats.default,
     globalData: {},
@@ -125,6 +126,18 @@ async function init(userConfig) {
   // End setting programatic defaults
 
   config = Object.assign({}, defaultConfig, userConfig, getEnvVarsConfig());
+
+  // conditionally adjust the behavior of the `compat` option based on a # of factors
+  if (
+    !config.esModules ||
+    config.compat === true ||
+    (config.esModules === true &&
+    argv.prod === true && // CLI args haven't been parsed yet so use yarg's arguments
+      config.compat === undefined)
+  ) {
+    config.compat = true;
+  }
+
   validateSchema(
     configSchema,
     config,

@@ -3,6 +3,70 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.15.2](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/compare/v2.15.1...v2.15.2) (2020-01-21)
+
+**Note:** Version bump only for package @bolt/build-tools
+
+
+
+
+
+# [2.15.0](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/compare/v2.14.3...v2.15.0) (2020-01-17)
+
+
+### Bug Fixes
+
+* css snaps ([f93db8c](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/f93db8c7331d88276963429e2d9f3783f158e2dd))
+* naming convention and JA classes ([5133e9b](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/5133e9b3c12265624bce84d96de0ce8132482a03))
+* revert execa update to fix Lerna CLI error ([db3fc1a](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/db3fc1a0eaeec4f49e4e9654fcf3747d883fac70))
+* update mult-lang snap ([82cbfaf](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/82cbfaf406d9f3f72cf6f30fa3cf8809b721bf85))
+* update snapshot ([958ed18](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/958ed185cc25888140f62f233f6596c4cc840788))
+* update snapshots ([97424ce](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/97424cec7aa86c550649b00e3d40384694e98698))
+* update snapshots ([6391dc1](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/6391dc150eca92d7f319eef7702571e27ebabb37))
+* update snapshots + tweak breakpoint used for largest fluid font size ([e72dbe6](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/e72dbe6954437d00376e13d7a7718e5bea8dd191))
+
+
+### Features
+
+* port over misc monorepo-related updates from the epic/academy work ([b236c87](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/b236c87624b079432f7a02171fbf080be2a9bc19))
+* port over Webpack cache related updates ([1954447](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/195444752b480c40ac01b94ea6bfee30da955c2f))
+
+
+
+
+
+# [2.14.0](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/compare/v2.13.3...v2.14.0) (2020-01-06)
+
+
+### Bug Fixes
+
+* add copy plugin to modern JS build so that copy task runs in local dev mode ([4390e8d](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/4390e8d))
+* fix logic in condition ([f37c8cb](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/f37c8cb))
+* minor eslint fix ([f83e951](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/f83e951))
+* update testing-helpers package path ([9b431b6](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/9b431b6))
+
+
+### Features
+
+* manually port over build tool-specific changes + twig template update from https://github.com/boltdesignsystem/bolt/pull/1579 ([8e01533](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/8e01533))
+* speed up local dev builds of the new es-module work ([8849452](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/8849452))
+* update webpack config and boltrc ([623fa0d](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/623fa0d))
+
+
+
+
+
+## [2.13.2](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/compare/v2.13.1...v2.13.2) (2019-12-30)
+
+
+### Bug Fixes
+
+* Remove cache-loader from webpack fonts rule ([2906c70](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/2906c70))
+
+
+
+
+
 # [2.13.0](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/compare/v2.12.1...v2.13.0) (2019-12-13)
 
 

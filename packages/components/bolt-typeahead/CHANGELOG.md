@@ -3,6 +3,50 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.15.2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-typeahead/compare/v2.15.1...v2.15.2) (2020-01-21)
+
+**Note:** Version bump only for package @bolt/components-typeahead
+
+
+
+
+
+# [2.15.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-typeahead/compare/v2.14.3...v2.15.0) (2020-01-17)
+
+**Note:** Version bump only for package @bolt/components-typeahead
+
+
+
+
+
+# [2.14.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-typeahead/compare/v2.13.3...v2.14.0) (2020-01-06)
+
+
+### Features
+
+* migrate over the customElements.define-related replacement + component dependency updates from https://github.com/boltdesignsystem/bolt/pull/1579 ([3b6f529](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-typeahead/commit/3b6f529))
+
+
+
+
+
+## [2.13.3](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-typeahead/compare/v2.13.2...v2.13.3) (2020-01-02)
+
+
+### Bug Fixes
+
+* be sure ready event is emitted by 'bolt-autosuggest' before adding event listeners ([000ce99](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-typeahead/commit/000ce99))
+* check if autosuggest has already rendered before adding event listeners ([1a065ce](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-typeahead/commit/1a065ce))
+* IE KeyboardEvent error on submit ([2a29a9b](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-typeahead/commit/2a29a9b))
+* make sure autosuggest event listeners are re-added when component re-connects ([602cbef](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-typeahead/commit/602cbef))
+* onChange arguments passed in wrong order ([82f1e2f](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-typeahead/commit/82f1e2f))
+* prevent search form from submitting multiple times ([a212747](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-typeahead/commit/a212747))
+* unset _wasInitiallyRendered so that event listeners are re-added in IE after disconnect ([18ffa3e](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-typeahead/commit/18ffa3e))
+
+
+
+
+
 # [2.13.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-typeahead/compare/v2.12.1...v2.13.0) (2019-12-13)
 
 

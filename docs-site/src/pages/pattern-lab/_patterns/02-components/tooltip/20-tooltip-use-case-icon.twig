@@ -1,0 +1,50 @@
+{# Setting variables for demo purposes #}
+{% set lock_icon %}
+  <span class="u-bolt-color-gray">
+    {% include "@bolt-components-icon/icon.twig" with {
+      name: "lock",
+      attributes: {
+        "aria-label": "Locked",
+      }
+    } only %}
+  </span>
+{% endset %}
+{% set check_icon %}
+  <span class="u-bolt-color-success">
+    {% include "@bolt-components-icon/icon.twig" with {
+      name: "check-solid",
+      attributes: {
+        "aria-label": "Yay",
+      }
+    } only %}
+  </span>
+{% endset %}
+{% set close_icon %}
+  <span class="u-bolt-color-error">
+    {% include "@bolt-components-icon/icon.twig" with {
+      name: "close-solid",
+      attributes: {
+        "aria-label": "Nay",
+      }
+    } only %}
+  </span>
+{% endset %}
+
+{% grid "o-bolt-grid--center" %}
+  {% cell %}
+    {# Start component specific code #}
+    {% include "@bolt-components-tooltip/tooltip.twig" with {
+      trigger: lock_icon,
+      content: "Closed for replies",
+    } only %}
+    {% include "@bolt-components-tooltip/tooltip.twig" with {
+      trigger: check_icon,
+      content: "Solved",
+    } only %}
+    {% include "@bolt-components-tooltip/tooltip.twig" with {
+      trigger: close_icon,
+      content: "This is no bueno. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttito. Quisque eget odio ac lectus vestibulum faucibus eget in metus. In pellentesque.",
+    } only %}
+    {# End component specific code #}
+  {% endcell %}
+{% endgrid %}

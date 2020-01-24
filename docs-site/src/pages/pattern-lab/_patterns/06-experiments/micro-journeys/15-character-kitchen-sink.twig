@@ -1,5 +1,61 @@
-
 {% set content %}
+  <bolt-button onclick="triggerAnimateCharactersIn()">Trigger Characters Animate In</bolt-button>
+
+  <h2>Official Editor Starters</h2>
+  <div class="demo__two-char-starter">
+    {{ source('@bolt-micro-journeys/starters/step-two-character-starter.html') }}
+  </div>
+  <div class="demo__two-char-starter">
+    {{ source('@bolt-micro-journeys/starters/step-one-character-starter.html') }}
+  </div>
+  <h2>Test constrainBottomSlot, overlapping bottom and right content can't overlap</h2>
+  <bolt-two-character-layout>
+    <bolt-animate slot="character--left" in-order="1" in="fade-in" out="fade-out" out-order="1">
+      <bolt-character size="medium" character-image="customer-surprise" constrain-bottom-slot>
+        <bolt-animate slot="bottom"><bolt-text font-size="xsmall">Very long. Lorem ipsem text not too long.</bolt-text></bolt-animate>
+        <bolt-animate slot="background" in="fade-in" in-order="1">
+          <bolt-svg-animations
+            speed="4000"
+            anim-type="radar"
+            theme="dark"
+          ></bolt-svg-animations>
+        </bolt-animate>
+        <bolt-animate slot="connection" in="fade-in" in-order="1" out="fade-out" out-order="1">
+          <bolt-connection></bolt-connection>
+        </bolt-animate>
+        <bolt-animate slot="right" in="fade-in" in-duration=1000>
+          <bolt-status-dialogue-bar icon-name="cloud" is-alert-message>
+            <p slot="text">
+              Bill is due!
+            </p>
+          </bolt-status-dialogue-bar>
+          <bolt-status-dialogue-bar icon-name="cloud" is-alert-message>
+            <p slot="text">
+              Bill is due!
+            </p>
+          </bolt-status-dialogue-bar>
+          <bolt-status-dialogue-bar icon-name="cloud" is-alert-message>
+            <p slot="text">
+              Bill is due!
+            </p>
+          </bolt-status-dialogue-bar>
+        </bolt-animate>
+      </bolt-character>
+    </bolt-animate>
+    <bolt-animate slot="character--right" in="fade-in" in-order="1" out="fade-out" out-order="1">
+      <bolt-character size="medium" character-image="customer-surprise">
+        <bolt-animate in="fade-in" in-order="1" out="fade-out" slot="top" out-order="1">
+          <bolt-status-dialogue-bar icon-name="mobility">
+            <p slot="text">
+              Very long. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+            </p>
+          </bolt-status-dialogue-bar>
+        </bolt-animate>
+        <bolt-animate slot="bottom" idle="none"><bolt-text font-size="xsmall">Customer</bolt-text></bolt-animate>
+      </bolt-character>
+    </bolt-animate>
+  </bolt-two-character-layout>
+
   <div class="u-bolt-padding-medium">
     <bolt-character
         character-custom-url="https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/animated-bands-ltr.png"
@@ -39,6 +95,27 @@
   </div>
   <div class="u-bolt-padding-medium">
     <bolt-character
+      character-custom-url="https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/animated-bands-ltr.png"
+      size="medium"
+    >
+      <bolt-animate slot="top" idle="none">
+        <bolt-status-dialogue-bar dialogue-arrow-direction="down" icon-name="cloud">
+          <p slot="text">
+            I'm a medium character
+          </p>
+        </bolt-status-dialogue-bar>
+      </bolt-animate>
+      <bolt-animate slot="bottom" idle="none">
+        <bolt-status-dialogue-bar dialogue-arrow-direction="up" icon-name="cloud">
+          <p slot="text">
+            I'm a medium character
+          </p>
+        </bolt-status-dialogue-bar>
+      </bolt-animate>
+    </bolt-character>
+  </div>
+  <div class="u-bolt-padding-medium">
+    <bolt-character
         character-custom-url="https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/animated-bands-ltr.png"
         size="large"
     >
@@ -50,7 +127,7 @@
         </bolt-status-dialogue-bar>
       </bolt-animate>
       <bolt-animate slot="left">
-        <bolt-status-dialogue-bar icon-name="cloud" is-alert-message>
+        <bolt-status-dialogue-bar icon-name="cloud" is-alert-message box-float-direction="right">
           <p slot="text">
             Bill is due!
           </p>
@@ -72,7 +149,7 @@
         </bolt-status-dialogue-bar>
       </bolt-animate>
       <bolt-animate slot="left">
-        <bolt-status-dialogue-bar icon-name="cloud" is-alert-message>
+        <bolt-status-dialogue-bar icon-name="cloud" is-alert-message box-float-direction="right">
           <p slot="text">
             Bill is due! Lots more text. Lorem ipsum dolor sit amet, consectetur adipisicing elit.
           </p>
@@ -87,14 +164,14 @@
       size="large"
     >
       <bolt-animate slot="top" idle="none">
-        <bolt-status-dialogue-bar dialogue-arrow-direction="down" icon-name="cloud">
+        <bolt-status-dialogue-bar dialogue-arrow-direction="down" icon-name="cloud" >
           <p slot="text">
             I'm a large character
           </p>
         </bolt-status-dialogue-bar>
       </bolt-animate>
-      <bolt-animate slot="left">
-        <bolt-status-dialogue-bar icon-name="cloud" is-alert-message>
+      <bolt-animate slot="right">
+        <bolt-status-dialogue-bar icon-name="cloud" is-alert-message box-float-direction="left">
           <p slot="text">
             Bill is due!
           </p>
@@ -102,6 +179,53 @@
       </bolt-animate>
     </bolt-character>
   </div>
+
+  <bolt-two-character-layout>
+    <bolt-animate slot="character--left" in-order="1" in="fade-in" out="fade-out" out-order="1">
+      <bolt-character size="medium" character-image="customer-surprise" constrain-bottom-slot>
+        <bolt-animate slot="bottom"><bolt-text font-size="xsmall">lorem</bolt-text></bolt-animate>
+        <bolt-animate slot="background" in="fade-in" in-order="1">
+          <bolt-svg-animations
+            speed="4000"
+            anim-type="radar"
+            theme="dark"
+          ></bolt-svg-animations>
+        </bolt-animate>
+        <bolt-animate slot="connection" in="fade-in" in-order="1" out="fade-out" out-order="1">
+          <bolt-connection></bolt-connection>
+        </bolt-animate>
+        <bolt-animate slot="right" in="fade-in" in-duration=1000>
+          <bolt-status-dialogue-bar icon-name="cloud" is-alert-message box-float-direction="left">
+            <p slot="text">
+              Bill is due!
+            </p>
+          </bolt-status-dialogue-bar>
+          <bolt-status-dialogue-bar icon-name="cloud" is-alert-message box-float-direction="left">
+            <p slot="text">
+              Bill is due!
+            </p>
+          </bolt-status-dialogue-bar>
+          <bolt-status-dialogue-bar icon-name="cloud" is-alert-message box-float-direction="left">
+            <p slot="text">
+              Bill is due!
+            </p>
+          </bolt-status-dialogue-bar>
+        </bolt-animate>
+      </bolt-character>
+    </bolt-animate>
+    <bolt-animate slot="character--right" in="fade-in" in-order="1" out="fade-out" out-order="1">
+      <bolt-character size="medium" character-image="customer-surprise">
+        <bolt-animate in="fade-in" in-order="1" out="fade-out" slot="top" out-order="1">
+          <bolt-status-dialogue-bar icon-name="mobility">
+            <p slot="text">
+              Very long. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+            </p>
+          </bolt-status-dialogue-bar>
+        </bolt-animate>
+        <bolt-animate slot="bottom" idle="none"><bolt-text font-size="xsmall">Customer</bolt-text></bolt-animate>
+      </bolt-character>
+    </bolt-animate>
+  </bolt-two-character-layout>
 
   {{ source('@bolt-micro-journeys/starters/one-character-1.html') }}
 
@@ -116,6 +240,11 @@
   {{ source('@bolt-micro-journeys/starters/two-characters-4.html') }}
 
   {{ source('@bolt-micro-journeys/starters/two-characters-lorem.html') }}
+
+  {{ source('@bolt-micro-journeys/starters/step-two-character-starter.html') }}
+
+  {{ source('@bolt-micro-journeys/starters/step-one-character-starter.html') }}
+
 
   <bolt-two-character-layout>
     <bolt-animate slot="character--left" in-order="1" in="fade-in" out="fade-out" out-order="1">
@@ -137,6 +266,50 @@
       <bolt-character size="medium" character-image="customer-surprise">
         <bolt-animate in="fade-in" in-order="1" out="fade-out" slot="top" out-order="1">
           <bolt-status-dialogue-bar icon-name="mobility">
+            <p slot="text">
+              Very long. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+            </p>
+          </bolt-status-dialogue-bar>
+        </bolt-animate>
+        <bolt-animate in="fade-in" in-order="1" out="fade-out" slot="right" out-order="1">
+          <bolt-status-dialogue-bar icon-name="mobility">
+            <p slot="text">
+              Short text.
+            </p>
+          </bolt-status-dialogue-bar>
+        </bolt-animate>
+        <bolt-animate slot="bottom" idle="none"><bolt-text font-size="xsmall">Customer</bolt-text></bolt-animate>
+      </bolt-character>
+    </bolt-animate>
+  </bolt-two-character-layout>
+
+  <bolt-two-character-layout>
+    <bolt-animate slot="character--left" in-order="1" in="fade-in" out="fade-out" out-order="1">
+      <bolt-character size="medium" character-image="customer-surprise">
+        <bolt-animate in="fade-in" in-order="1" out="fade-out" slot="top" out-order="1">
+          <bolt-status-dialogue-bar icon-name="mobility" dialogue-arrow-direction="down" >
+            <p slot="text">
+              Not very long. Lorem ipsum dolor.
+            </p>
+          </bolt-status-dialogue-bar>
+        </bolt-animate>
+        <bolt-animate slot="bottom"><bolt-text font-size="xsmall">lorem</bolt-text></bolt-animate>
+        <bolt-animate slot="background" in="fade-in" in-order="1">
+          <bolt-svg-animations
+            speed="4000"
+            anim-type="radar"
+            theme="dark"
+          ></bolt-svg-animations>
+        </bolt-animate>
+        <bolt-animate slot="connection" in="fade-in" in-order="1" out="fade-out" out-order="1">
+          <bolt-connection></bolt-connection>
+        </bolt-animate>
+      </bolt-character>
+    </bolt-animate>
+    <bolt-animate slot="character--right" in="fade-in" in-order="1" out="fade-out" out-order="1">
+      <bolt-character size="medium" character-image="customer-surprise">
+        <bolt-animate in="fade-in" in-order="1" out="fade-out" slot="top" out-order="1">
+          <bolt-status-dialogue-bar icon-name="mobility" dialogue-arrow-direction="down" >
             <p slot="text">
               Very long. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit.
             </p>
@@ -214,17 +387,14 @@
 } only %}
 
 <script>
-  document.addEventListener("DOMContentLoaded", function() {
-    let connectedChars = 0;
-    const expectedChars = 17;
-    document.addEventListener('bolt-character:connected', function() {
-      connectedChars++;
-      if (connectedChars >= expectedChars) {
-        setTimeout(function() {
-          Array.from(document.querySelectorAll('bolt-animate')).forEach(function(e) {e.triggerAnimIn()});
-          Array.from(document.querySelectorAll('bolt-two-character-layout')).forEach(function(e) {e.setAttribute('parent-animations-triggered', true)});
-        }, 1000)
-      }
-    });
-  });
+  function triggerAnimateCharactersIn() {
+    Array.from(document.querySelectorAll('bolt-two-character-layout')).forEach(function(e) {e.triggerAnimIns()});
+    Array.from(document.querySelectorAll('bolt-animate')).forEach(function(e) {e.triggerAnimIn()});
+  }
 </script>
+
+<style>
+  .demo__two-char-starter > bolt-animate {
+    display: block;
+  }
+</style>

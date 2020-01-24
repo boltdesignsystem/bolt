@@ -1,0 +1,31 @@
+{% set button %}
+  {% include "@bolt-components-button/button.twig" with {
+    text: "Share",
+    size: "small",
+    style: "secondary",
+    iconOnly: true,
+    icon: {
+      name: iconName,
+    }
+  } only %}
+{% endset %}
+
+{% if tooltip %}
+  {% include "@bolt-components-tooltip/tooltip.twig" with {
+    trigger: button,
+    content: tooltip
+  } only %}
+{% elseif popover %}
+  {% include "@bolt-components-popover/popover.twig" with {
+    trigger: button,
+    content: popover,
+    placement: "bottom",
+    spacing: "none",
+    attributes: {
+      class: ["t-bolt-light"],
+    }
+  } only %}
+{% else %}
+  {{ button }}
+{% endif %}
+

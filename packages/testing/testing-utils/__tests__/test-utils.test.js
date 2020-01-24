@@ -24,7 +24,11 @@ describe('test-utils', () => {
 
   test('getPkgDependents', () => {
     const dependents = tu.getPkgDependents('@bolt/components-grid');
-    expect(dependents).toEqual(['@bolt/components-band']);
+    expect(dependents).toEqual([
+      '@bolt/components-band',
+      '@bolt/blueprints',
+      '@bolt/components-page-footer',
+    ]);
   });
 
   test('getFilesPkgSync', () => {

@@ -1,9 +1,4 @@
 const shell = require('shelljs');
-const isCanaryRelease = branchName === 'master';
-const isFullRelease =
-  branchName === 'release-2.x' || branchName === 'release/2.x';
-const execSync = require('child_process').execSync;
-const { spawn } = require('child_process');
 const { IncomingWebhook } = require('@slack/webhook');
 const chalk = require('chalk');
 const semver = require('semver');
@@ -12,6 +7,10 @@ const { gitSha } = require('./scripts/utils');
 const { normalizeUrlAlias } = require('./scripts/utils/normalize-url-alias');
 const { branchName } = require('./scripts/utils/branch-name');
 const { NOW_TOKEN } = process.env;
+
+const isCanaryRelease = branchName === 'master';
+const isFullRelease =
+  branchName === 'release-2.x' || branchName === 'release/2.x';
 
 const lernaConfig = require('./lerna.json');
 const currentVersion = lernaConfig.version;
@@ -29,7 +28,7 @@ const canaryVersion = `.${process.env.TRAVIS_PULL_REQUEST_SHA ||
 process.env.FORCE_COLOR = true;
 
 async function getLernaPackages() {
-  const packages = shell.exec('npx lerna ls -pl', {
+  const packages = shell.exec('lerna ls -pl', {
     silent: true,
   }).stdout;
   const formattedPackages = [];
@@ -56,7 +55,7 @@ async function init() {
       console.log('canary version', canaryVersion);
 
       await shell.exec(
-        `npx lerna publish pre${version} --dist-tag canary --preid canary${canaryVersion} --no-git-reset --no-git-tag-version --exact --ignore-scripts --no-push --force-publish --yes -m "[skip travis] chore(release): pre-release %s"`,
+        `lerna publish pre${version} --dist-tag canary --preid canary${canaryVersion} --no-git-reset --no-git-tag-version --exact --ignore-scripts --no-push --force-publish --yes -m "[skip travis] chore(release): pre-release %s"`,
       );
 
       const packages = await getLernaPackages();
@@ -136,13 +135,13 @@ async function init() {
       } else {
         await shell.exec(`
           node scripts/release/update-php-package-versions.js -v ${nextVersion}
-          git add packages/core-php/composer.json packages/drupal-modules/bolt_connect/bolt_connect.info.yml packages/drupal-modules/bolt_connect/composer.json
+          git add packages/twig-integration/twig-extensions-shared/composer.json packages/twig-integration/drupal-module/bolt_connect.info.yml packages/twig-integration/drupal-module/composer.json
           git commit -m "[skip travis] chore: version bump PHP-related dependencies to v${nextVersion}"
         `);
         await shell.exec(`
           git reset --hard
           rm scripts/bolt-design-system-bot.private-key.pem
-          npx lerna publish ${version} --yes -m "[skip travis] chore(release): release %s"
+          lerna publish ${version} --yes -m "[skip travis] chore(release): release %s"
         `);
 
         await shell.exec(`

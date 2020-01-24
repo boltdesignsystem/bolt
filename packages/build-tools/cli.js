@@ -126,11 +126,7 @@ if (program.configFile) {
           typeof program.prod === 'undefined' ? config.prod : program.prod;
 
         config.compat =
-          config.prod === true || config.esModules === false
-            ? true
-            : typeof program.compat === 'undefined'
-            ? config.compat
-            : program.compat;
+          typeof program.compat === 'undefined' ? config.compat : program.compat;
 
         // automatically set enableSSR to true in prod mode and false in dev mode, unless manually set.
         config.enableSSR = false;
@@ -158,7 +154,10 @@ if (program.configFile) {
 Logging Verbosity: ${config.verbosity}
 Environment: ${config.prod ? 'Production' : 'Development'}
 Multi-lang: ${config.i18n}
-ES Modules Enabled: ${config.esModules}
+
+Bundling for...
+  - Modern Browsers? ${config.esModules ? '✅' : '❌'}
+  - Legacy Browsers? ${config.compat ? '✅' : '❌'}
 `);
 
       console.log(

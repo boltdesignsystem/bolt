@@ -1,0 +1,28 @@
+{
+  "name": "bolt-design-system/twig-renderer",
+  "type": "library",
+  "description": "Twig rendering service used by the Bolt Design System.",
+  "version": "2.8.0-beta.4",
+  "license": "MIT",
+  "repositories": [
+    {
+      "type": "path",
+	    "url": "../twig-extensions-shared"
+	  },
+    {
+      "type": "path",
+      "url": "../twig-extensions-compat"
+    }
+  ],
+  "minimum-stability": "dev",
+  "require": {
+    "bolt-design-system/core-php": "*",
+    "bolt-design-system/drupal-twig-extensions": "*",
+    "twig/twig": "^1.42.2",
+    "webmozart/path-util": "*",
+    "symfony/finder": "*"
+  },
+  "scripts": {
+    "setup": "@composer install --no-interaction --prefer-dist --no-progress"
+  }
+}

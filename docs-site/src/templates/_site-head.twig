@@ -35,6 +35,7 @@
 {% set cacheBuster = bolt.data.config.prod ? "?v=" ~ bolt.data.fullManifest.version : "" %}
 
 {% set htmlClasses = [
+  bolt.data.config.prod ? '' : 'js-fonts-loaded',
   currentUrl == 'index.html' ? 'u-bolt-min-height-screen u-bolt-flex' : ''
 ] %}
 
@@ -51,10 +52,12 @@
       {% endif %}
 
       {% if fileExists("@bolt-assets/bolt-components-critical-css.js") %}
-        {{ inline( legacyAssets["bolt-components-critical-css.js"] | default("") ) }}
         {{ inline( legacyAssets["bolt-components-critical-css-vars.js"] | default("") ) }}
-        {{ inline( legacyAssets["bolt-components-critical-fonts.js"] | default("") ) }}
       {% endif %}
+
+      if (sessionStorage.fontsLoadedCriticalFoftPreloadPolyfill){
+        document.documentElement.classList.add('js-fonts-loaded');
+      }
 
       window.drupalSettings = {
         google_analytics: {
@@ -79,15 +82,9 @@
     {# @TODO: wire this up to use Critical CSS #}
     <style>
       {% if fileExists("@bolt-assets/bolt-components-critical-fonts.css") %}
-        {{ inline( legacyAssets["bolt-components-critical-fonts.css"] | default("") ) }}
+        {# {{ inline( legacyAssets["bolt-components-critical-fonts.css"] | default("") ) }} #}
       {% endif %}
     </style>
-
-    {% if bolt.data.config.esModules %}
-      <script type="module" src="{{ modernAssets["bolt-global.js"] | default("/build/bolt-global.modern.js") }}" async></script>
-    {% endif %}
-
-    <script src="https://www.google-analytics.com/analytics.js" defer></script>
 
     <link rel="image_src" href="/images/bolt-logo-480.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=LbyzAXRqNz">
@@ -121,9 +118,10 @@
   </head>
 
   {% set bodyClasses = [
-    pl_data.patternBreadcrumb.patternType == 'pages' ? 'c-bolt-site' : '',
+    patternData.patternBreadcrumb.patternType == 'pages' ? 'c-bolt-site' : '',
     currentUrl == 'index.html' ? 't-bolt-xdark' : '',
     hasSidebar and patternLabFoot is not defined ? 'c-bds-layout--has-sidebar' : '',
+    patternLabFoot is not defined ? 'c-bolt-site' : '',
     patternLabFoot is not defined ? 'c-bds-layout' : '',
     patternLabFoot is not defined ? ('c-bds-layout--' ~ urlChunks | length >= 2 ? urlChunks|first : 'c-bds-layout--parent') : '',
   ] %}

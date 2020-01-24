@@ -1,0 +1,32 @@
+{% extends "@bolt-blueprints/_default-page-template.twig" %}
+
+{% block page_content %}
+  {% embed "@bolt-blueprints/dashboard-page-hero.twig" %}
+    {% block heroButtonRow %}
+      {% include "@bolt-components-button-group/button-group.twig" with {
+        buttons: [
+          {
+            text: "My Favorite Training",
+            url: "#!",
+            style: "primary",
+            size: "small",
+            border_radius: "full"
+          },
+          {
+            text: "My Completed Training",
+            url: "#!",
+            style: "secondary",
+            size: "small",
+            border_radius: "full"
+          }
+        ]
+      } only %}
+    {% endblock %}
+  {% endembed %}
+
+  {% include "@bolt-blueprints/_dashboard-band--my-missions.twig" %}
+  {% include "@bolt-blueprints/_dashboard-band--in-progress.twig" %}
+  {% include "@bolt-blueprints/_dashboard-band--recommended.twig" %}
+  {% include "@bolt-blueprints/_dashboard-band--new-training.twig" %}
+
+{% endblock %}

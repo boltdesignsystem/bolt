@@ -221,6 +221,20 @@ exports[`link basic link 1`] = `
 </bolt-link>
 `;
 
+exports[`link link display: block 1`] = `
+<bolt-link display="block"
+           valign="center"
+>
+  <a is="shadow-root"
+     class="c-bolt-link  c-bolt-link--display-block c-bolt-link--valign-center"
+  >
+    <replace-with-children class="c-bolt-link__text">
+      Hello World
+    </replace-with-children>
+  </a>
+</bolt-link>
+`;
+
 exports[`link link display: flex 1`] = `
 <bolt-link display="flex"
            valign="center"

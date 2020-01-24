@@ -229,8 +229,7 @@
       default: false
     compat:
       type: boolean
-      description: Compatibility mode enables compiling Webpack bundles for older legacy browsers that don't support ES Modules. Compatibility mode is enabled by default when either the 'esModules' config option is set to false or the 'prod' config option is set to true.
-      default: false
+      description: Compatibility mode enables compiling Webpack bundles for older legacy browsers that don't support ES Modules. Compatibility mode is enabled by default when the 'esModules' config option is set to false or the 'prod' config option is set to true and compat is set to true OR is undefined.
     enableSSR:
       type: boolean
       description: Manually enables or disables server-side rendering web components regardless on the build enviornment (vs automatically disabling in dev mode, enabling when in prod mode).

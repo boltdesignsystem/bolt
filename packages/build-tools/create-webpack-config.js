@@ -17,6 +17,7 @@ const merge = require('webpack-merge');
 const SassDocPlugin = require('@bolt/sassdoc-webpack-plugin');
 const { getConfig } = require('@bolt/build-utils/config-store');
 const { boltWebpackProgress } = require('@bolt/build-utils/webpack-helpers');
+const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
 const {
   webpackStats,
   statsPreset,
@@ -55,7 +56,6 @@ async function createWebpackConfig(buildConfig) {
   });
 
   // map out Twig namespaces with the NPM package name
-  // const npmToTwigNamespaceMap = await mapComponentNameToTwigNamespace();
 
   // filename suffix to tack on based on lang being compiled for
   let langSuffix = `${config.lang ? '-' + config.lang : ''}`;
@@ -262,7 +262,6 @@ async function createWebpackConfig(buildConfig) {
         {
           test: /\.(ts|tsx)$/,
           use: [
-            'cache-loader',
             {
               loader: 'ts-loader',
               options: {
@@ -275,7 +274,6 @@ async function createWebpackConfig(buildConfig) {
         {
           test: /\.(woff|woff2)$/,
           use: [
-            'cache-loader',
             {
               loader: 'url-loader',
               options: {
@@ -286,9 +284,71 @@ async function createWebpackConfig(buildConfig) {
           ],
         },
         {
-          test: /\.(cur|svg|png|jpg)$/,
+          test: /\.svg$/,
+          oneOf: [
+            {
+              issuer: /\.scss$/,
+              use: [
+                {
+                  loader: 'file-loader',
+                  options: {
+                    name: '[name].[ext]',
+                  },
+                },
+                {
+                  loader: 'svgo-loader',
+                  options: {
+                    plugins: require('./svgo-plugins'),
+                  },
+                },
+              ],
+            },
+            {
+              use: [
+                {
+                  loader: 'babel-loader',
+                  options: {
+                    babelrc: false,
+                    presets: [legacyBabelConfig],
+                  },
+                },
+                {
+                  loader: 'svg-sprite-loader',
+                  options: {
+                    runtimeGenerator: require.resolve(
+                      './svg-to-icon-component-runtime-generator',
+                    ),
+                    runtimeOptions: {
+                      iconModule: path.join(
+                        path.dirname(require.resolve('@bolt/components-icon')),
+                        '/icon.jsx',
+                      ),
+                    },
+                    extract: true,
+                    spriteFilename: svgPath =>
+                      `bolt-svg-sprite${svgPath.substr(-4)}`,
+                  },
+                },
+                {
+                  loader: '@bolt/file-passthrough-loader',
+                  options: {
+                    name: 'icons/[name].[ext]',
+                  },
+                },
+                '@bolt/svg-transform-loader',
+                {
+                  loader: 'svgo-loader',
+                  options: {
+                    plugins: require('./svgo-plugins'),
+                  },
+                },
+              ],
+            },
+          ],
+        },
+        {
+          test: /\.(cur|png|jpg)$/,
           use: [
-            'cache-loader',
             {
               loader: 'file-loader',
               options: {
@@ -299,7 +359,7 @@ async function createWebpackConfig(buildConfig) {
         },
         {
           test: [/\.yml$/, /\.yaml$/],
-          use: ['cache-loader', 'json-loader', 'yaml-loader'],
+          use: ['json-loader', 'yaml-loader'],
         },
         {
           test: [/\.html$/],
@@ -314,6 +374,8 @@ async function createWebpackConfig(buildConfig) {
             new TerserPlugin({
               test: /\.m?js(\?.*)?$/i,
               sourceMap: config.sourceMaps,
+              cache: true,
+              parallel: true,
               terserOptions: {
                 safari10: true,
               },
@@ -322,31 +384,18 @@ async function createWebpackConfig(buildConfig) {
         : [],
     },
     plugins: [
+      new SpriteLoaderPlugin({
+        plainSprite: true,
+        spriteAttrs: {
+          id: '__SVG_SPRITE_NODE__',
+          style: 'position: absolute; width: 0; height: 0',
+        },
+      }),
       new webpack.ProgressPlugin(boltWebpackProgress), // Ties together the Bolt custom Webpack messages + % complete
       new WriteFilePlugin(),
       new webpack.NoEmitOnErrorsPlugin(),
     ],
   };
-
-  // cache mode significantly speeds up subsequent build times
-  if (config.enableCache) {
-    sharedWebpackConfig.plugins.push(
-      new HardSourceWebpackPlugin({
-        info: {
-          level: 'warn',
-        },
-        // Clean up large, old caches automatically.
-        cachePrune: {
-          // Caches younger than `maxAge` are not considered for deletion. They must
-          // be at least this (default: 2 days) old in milliseconds.
-          maxAge: 2 * 24 * 60 * 60 * 1000,
-          // All caches together must be larger than `sizeThreshold` before any
-          // caches will be deleted. Together they must be at least 300MB in size
-          sizeThreshold: 300 * 1024 * 1024,
-        },
-      }),
-    );
-  }
 
   if (config.prod) {
     // https://webpack.js.org/plugins/module-concatenation-plugin/
@@ -442,7 +491,7 @@ async function createWebpackConfig(buildConfig) {
     module: {
       rules: [
         {
-          test: /\.(js|tsx|mjs)$/,
+          test: /\.(js|jsx|tsx|mjs)$/,
           exclude: thePath => {
             if (
               thePath.includes('custom-elements-es5-adapter.js') ||
@@ -552,6 +601,7 @@ async function createWebpackConfig(buildConfig) {
     },
     plugins: [
       new webpack.DefinePlugin(getGlobalJSData(true)),
+      new CopyWebpackPlugin(config.copy ? config.copy : []),
       new MiniCssExtractPlugin({
         filename: `[name]${langSuffix}.css`,
         chunkFilename: `[id]${langSuffix}.css`,
@@ -571,10 +621,9 @@ async function createWebpackConfig(buildConfig) {
     module: {
       rules: [
         {
-          test: /\.(js|tsx|mjs)$/,
+          test: /\.(js|jsx|tsx|mjs)$/,
           exclude: /(node_modules)/,
           use: [
-            // 'cache-loader',
             {
               loader: 'babel-loader',
               options: {
@@ -608,6 +657,54 @@ async function createWebpackConfig(buildConfig) {
     },
   });
 
+  // cache mode significantly speeds up subsequent build times
+  if (config.enableCache) {
+    legacyWebpackConfig.plugins.push(
+      new HardSourceWebpackPlugin({
+        info: {
+          level: 'warn',
+        },
+        cacheDirectory: path.join(process.cwd(), `./cache/webpack-legacy`),
+        // Clean up large, old caches automatically.
+        cachePrune: {
+          // Caches younger than `maxAge` are not considered for deletion. They must
+          // be at least this (default: 2 days) old in milliseconds.
+          maxAge: 2 * 24 * 60 * 60 * 1000,
+          // All caches together must be larger than `sizeThreshold` before any
+          // caches will be deleted. Together they must be at least 300MB in size
+          sizeThreshold: 300 * 1024 * 1024,
+        },
+      }),
+    );
+
+    modernWebpackConfig.plugins.push(
+      new HardSourceWebpackPlugin({
+        info: {
+          level: 'warn',
+        },
+        cacheDirectory: path.join(process.cwd(), `./cache/webpack-modern`),
+        // Clean up large, old caches automatically.
+        cachePrune: {
+          // Caches younger than `maxAge` are not considered for deletion. They must
+          // be at least this (default: 2 days) old in milliseconds.
+          maxAge: 2 * 24 * 60 * 60 * 1000,
+          // All caches together must be larger than `sizeThreshold` before any
+          // caches will be deleted. Together they must be at least 300MB in size
+          sizeThreshold: 300 * 1024 * 1024,
+        },
+      }),
+    );
+  }
+
+  /** if esModules support is enabled in the .boltrc config?
+   *  - for dev builds, compile only the modern bundle (unless the compat flag is enabled
+   *  - for prod builds...
+   *    - compile the modern + legacy builds if compat is undefined OR enabled
+   *    - compile ONLY the modern builds if compat mode is specifically disabled (ex. Jest)
+   *
+   * if esModules are NOT enabled, ONLY compile the legacy build (original build process)
+   */
+
   let outputConfig = [];
 
   // If compat is enabled, it means we need the legacy bundle (regardless of whether the modern bundle is also built).
@@ -615,7 +712,7 @@ async function createWebpackConfig(buildConfig) {
     outputConfig.push(legacyWebpackConfig);
   }
 
-  // If esModules support is enabled, we'll need the modern bundle.
+  // If esModules support is enabled, we'll compile the modern bundle.
   if (config.esModules) {
     outputConfig.push(modernWebpackConfig);
   }

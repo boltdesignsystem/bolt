@@ -13,6 +13,10 @@
     $selector: ':root, .t-bolt-#{$themeName}';
   }
 
+  @if ($themeName == 'xdark') {
+    $selector: '.t-bolt-xdark, .t-bolt-xxdark';
+  }
+
   #{unquote($selector)} {
     @each $themeOptionName, $themeOptionValue in $themeOptions {
 
@@ -33,4 +37,9 @@
     background-color: bolt-theme-prop-value($themeName, background);
     background-color: rgba(var(--bolt-theme-background), 1);
   }
+}
+
+.t-bolt-xxdark {
+  --bolt-theme-background: 0, 0, 0;
+  background-color: black;
 }

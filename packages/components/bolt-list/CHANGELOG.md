@@ -3,6 +3,50 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.15.2](https://github.com/bolt-design-system/bolt/compare/v2.15.1...v2.15.2) (2020-01-21)
+
+**Note:** Version bump only for package @bolt/components-list
+
+
+
+
+
+# [2.15.0](https://github.com/bolt-design-system/bolt/compare/v2.14.3...v2.15.0) (2020-01-17)
+
+
+### Bug Fixes
+
+* use consistent border color ([99da773](https://github.com/bolt-design-system/bolt/commit/99da7731eade993720e66e7df5bcc5f9f4eb40e5))
+
+
+### Features
+
+* port list CSS update from epic/academy ([5b834b3](https://github.com/bolt-design-system/bolt/commit/5b834b3ffa8315f578ed6d8bbda890e46676aab6))
+
+
+
+
+
+# [2.14.0](https://github.com/bolt-design-system/bolt/compare/v2.13.3...v2.14.0) (2020-01-06)
+
+
+### Bug Fixes
+
+* defer implementing context-specific changes until the next round of updates ([384dfd3](https://github.com/bolt-design-system/bolt/commit/384dfd3))
+* jest test ([1cd931d](https://github.com/bolt-design-system/bolt/commit/1cd931d))
+* linting ([f204792](https://github.com/bolt-design-system/bolt/commit/f204792))
+* oops i forgot a class ([d4b1865](https://github.com/bolt-design-system/bolt/commit/d4b1865))
+* update snaps ([15dcd23](https://github.com/bolt-design-system/bolt/commit/15dcd23))
+
+
+### Features
+
+* migrate over the customElements.define-related replacement + component dependency updates from https://github.com/boltdesignsystem/bolt/pull/1579 ([3b6f529](https://github.com/bolt-design-system/bolt/commit/3b6f529))
+
+
+
+
+
 # [2.13.0](https://github.com/bolt-design-system/bolt/compare/v2.12.1...v2.13.0) (2019-12-13)
 
 **Note:** Version bump only for package @bolt/components-list

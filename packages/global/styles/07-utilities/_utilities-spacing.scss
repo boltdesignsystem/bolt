@@ -59,13 +59,34 @@ $bolt-spacing-sizes: map-merge($bolt-spacing-sizes-extras, $bolt-spacing-sizes);
   }
 }
 
+$bolt-negative-margin-sizes: _bolt-create-spacing-map(
+  $bolt-negative-margin-values
+);
+$bolt-negative-margin-directions: ('top', 'bottom', 'left', 'right');
+
+@mixin bolt-negative-margin-utils($breakpoint: null) {
+  @for $i from 1 through length($bolt-negative-margin-directions) {
+    $direction: nth($bolt-negative-margin-directions, $i);
+    $type: '';
+    $prop: 'margin';
+
+    @each $size, $value in $bolt-negative-margin-sizes {
+      .u-bolt-negative-margin-#{$direction}-#{$size}#{$breakpoint} {
+        margin-#{$direction}: $value !important;
+      }
+    }
+  }
+}
+
 @include bolt-spacing-sizes-utils;
+@include bolt-negative-margin-utils;
 
 // Loop over our breakpoints
 @each $breakpoint in $bolt-breakpoints {
   $breakpointName: nth($breakpoint, 1);
   @include bolt-mq($breakpointName) {
     @include bolt-spacing-sizes-utils(\@#{$breakpointName});
+    @include bolt-negative-margin-utils(\@#{$breakpointName});
   }
 }
 
