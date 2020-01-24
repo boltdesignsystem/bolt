@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.16.0](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/compare/v2.15.2...v2.16.0) (2020-01-24)
+
+
+### Bug Fixes
+
+* update Jest snapshot for build tools ([7c8bc46](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/7c8bc464e5bc6c235ebb81bbb2fbb031037df1df))
+* update Jest snapshots ([7723275](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/77232750bdd8c6d351d0eac35d79f779e55b1fa6))
+* update package versions ([5af302c](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/5af302c1aaf7dea9577ca38044f6ded249889d6e))
+* update snapshots + fix prettier issues ([3eed559](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/3eed559af2e4ca279ad3328157f822588e97e3a3))
+
+
+### Features
+
+* Add --compat option for legacy support when esmodules is enabled ([946ae2a](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/946ae2a7875e747db65225b9e53adecaa37bc7a5))
+* add new helper Webpack plugins ([7eb295c](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/7eb295c4e934c4a1e10e44d5fbb072905d0a7efd))
+* update build tool utils for checking for folders ([def7d15](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/def7d15ef22400aaf32742ad320f4038345ffc93))
+
+
+
+
+
 ## [2.15.2](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/compare/v2.15.1...v2.15.2) (2020-01-21)
 
 **Note:** Version bump only for package @bolt/build-tools

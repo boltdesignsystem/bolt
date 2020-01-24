@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.16.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/compare/v2.15.2...v2.16.0) (2020-01-24)
+
+
+### Bug Fixes
+
+* add xdark theme test for icons + update fill colors so SVG transform logic works correctly ([b2187b5](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/commit/b2187b523ad5eed618cee7a52c5c2136ba3030ef))
+* re-test Icon updates ([c64faee](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/commit/c64faee4b2ebf33c011aa6e411a457da94e83ee1))
+* update atom icon ([afd604c](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/commit/afd604c465ed24bb28acf3f7ae88d373e6423b11))
+* update atom icon ([6ec91be](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/commit/6ec91be3551112b93683910110bc7cab301764d5))
+* update snapshots + fix prettier issues ([3eed559](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/commit/3eed559af2e4ca279ad3328157f822588e97e3a3))
+* update trash icon ([d57a61d](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/commit/d57a61d4816fca534bcd33c7d05ce743495858f0))
+* update updated brand SVG icons + fix handful of utility icons ([6b5c6b8](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/commit/6b5c6b85ec1338b3664a48070f68db08a2976908))
+
+
+### Features
+
+* add new helper Webpack plugins ([7eb295c](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/commit/7eb295c4e934c4a1e10e44d5fbb072905d0a7efd))
+
+
+
+
+
 ## [2.15.2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/compare/v2.15.1...v2.15.2) (2020-01-21)
 
 **Note:** Version bump only for package @bolt/components-icons

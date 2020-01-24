@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.16.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-accordion/compare/v2.15.2...v2.16.0) (2020-01-24)
+
+
+### Bug Fixes
+
+* update accordion snapshot ([0905595](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-accordion/commit/0905595910cdb9c498e5e124955d9f75514f7da6))
+* update Jest snapshots ([7723275](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-accordion/commit/77232750bdd8c6d351d0eac35d79f779e55b1fa6))
+* update snapshots + fix prettier issues ([3eed559](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-accordion/commit/3eed559af2e4ca279ad3328157f822588e97e3a3))
+* workaround to address Shadow DOM encapsulation nested context ([7475619](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-accordion/commit/74756195f6560fb166c645ad422f90f0ae0f602a))
+
+
+### Features
+
+* add new helper Webpack plugins ([7eb295c](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-accordion/commit/7eb295c4e934c4a1e10e44d5fbb072905d0a7efd))
+
+
+
+
+
 ## [2.15.2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-accordion/compare/v2.15.1...v2.15.2) (2020-01-21)
 
 **Note:** Version bump only for package @bolt/components-accordion
