@@ -165,7 +165,8 @@ class BoltPopover extends BoltElement {
           {
             name: 'preventOverflow',
             options: {
-              altAxis: true,
+              // @todo continue evaluating placement config
+              // altAxis: true,
               boundary: this.$boundary,
             },
           },
