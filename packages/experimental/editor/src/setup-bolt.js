@@ -4,6 +4,8 @@ import buttonSchema from '@bolt/components-button/button.schema';
 // @ts-ignore
 import textSchema from '@bolt/components-text/text.schema.yml';
 import iconSchema from '@bolt/components-icon/icon.schema.json';
+// @ts-ignore
+import listSchema from '@bolt/components-list/list.schema.yml';
 import characterSchema from '@bolt/micro-journeys/src/character.schema';
 import connectionSchema from '@bolt/micro-journeys/src/connection.schema';
 import pathwaysSchema from '@bolt/micro-journeys/src/interactive-pathways.schema';
@@ -427,6 +429,25 @@ export function setupBolt(editor) {
   });
 
   registerBoltComponent({
+    name: 'bolt-list',
+    registerBlock: true,
+    schema: listSchema,
+    editable: true,
+    highlightable: true,
+    initialContent: ['<bolt-list-item><bolt-text>Item 1<bolt-text></bolt-list-item>'],
+    propsToTraits: [
+      'tag',
+      'display',
+      'spacing',
+      'separator',
+      'inset',
+      'align',
+      'valign',
+      'nowrap',
+    ],
+  });
+
+  registerBoltComponent({
     name: 'bolt-icon',
     registerBlock: true,
     schema: iconSchema,
@@ -673,7 +694,14 @@ export function setupBolt(editor) {
     draggable: false,
     editable: true,
     highlightable: true,
-    propsToTraits: ['size', 'characterImage', 'characterCustomUrl', 'useIcon'],
+    propsToTraits: [
+      'size',
+      'characterImage',
+      'characterCustomUrl',
+      'useIcon',
+      'constrainBottomSlot',
+      'addBackgroundPadding',
+    ],
     slots: {
       default: false,
       top: true,
@@ -747,7 +775,7 @@ export function setupBolt(editor) {
     draggable: true,
     editable: true,
     highlightable: true,
-    propsToTraits: ['iconName', 'isAlertMessage', 'dialogueArrowDirection'],
+    propsToTraits: ['iconName', 'isAlertMessage', 'dialogueArrowDirection', 'boxFloatDirection'],
     slots: {
       default: false,
       // @todo consider changing `text` to `default`

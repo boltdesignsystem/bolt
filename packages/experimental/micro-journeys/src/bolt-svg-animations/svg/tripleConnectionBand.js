@@ -2,14 +2,14 @@ import { svg } from 'lit-html';
 
 export const tripleConnectionBand = ({ speed, direction, theme }) => {
   return svg`
-	<svg version="1.1" width="100%" id="bolt-triple-connection-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 348 126" style="enable-background:new 0 0 348 126;" xml:space="preserve">
-	
+	<svg version="1.1" width="100%" id="bolt-triple-connection-svg--${direction}" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 348 126" style="enable-background:new 0 0 348 126;" xml:space="preserve">
+
 	<style>
 
-	#bolt-triple-connection-svg { transform: ${
+	#bolt-triple-connection-svg--${direction} { transform: ${
     direction === 'right' ? 'scaleX(-1)' : 'scaleX(1)'
   };}
-	
+
 	@keyframes background_highlight {
 		0% {
 			fill-opacity: 1;
@@ -110,8 +110,8 @@ export const tripleConnectionBand = ({ speed, direction, theme }) => {
 			}
 	}
 
-	#bolt-triple-connection-svg * {
-	
+	#bolt-triple-connection-svg--${direction} * {
+
 		animation-duration: 3s;
 		animation-iteration-count: infinite;
 		animation-timing-function: cubic-bezier(0, 0, 1, 1);
@@ -147,18 +147,18 @@ export const tripleConnectionBand = ({ speed, direction, theme }) => {
 	}
 
 	#el_CSeCRpWXAn {
-			opacity: 0.5; 
+			opacity: 0.5;
 			enable-background: new;
 	}
 
 	#el_jXTRwSRTHD,
 	#el_70ksXSP-Vt,
-	#el_I62Er4NRpE  {   
+	#el_I62Er4NRpE  {
 			fill: #FFFFFF;
 	}
 
 	#el_7S1IQpp32N {
-			opacity: 0.2; 
+			opacity: 0.2;
 			enable-background: new;
 	}
 
