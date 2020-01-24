@@ -137,7 +137,9 @@ class BoltPopover extends BoltElement {
     this.content = this.renderRoot.querySelector('.c-bolt-popover__content');
 
     this.$boundary =
-      this.$boundary || (this.boundary && this.closest(this.boundary)) || this;
+      this.$boundary ||
+      (this.boundary && this.closest(this.boundary)) ||
+      undefined;
 
     if (this.popover && this.content) {
       this.popper = createPopper(this.popover, this.content, {
