@@ -502,7 +502,6 @@ export function enableEditor({ space, uiWrapper, config }) {
    * @return {void}
    */
   editor.on('component:deselected', (/** @type {grapesjs.Component} */ model) => {
-    console.log(model.view.el);
     if (model.view.el.removedClickHandler) {
       model.view.el.addEventListener('click', model.view.el.removedClickHandler);
       delete model.view.el.removedClickHandler;
