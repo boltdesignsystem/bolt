@@ -1,5 +1,6 @@
 {
   "name": "@bolt/components-menu",
+  "version": "2.15.2",
   "description": "A vertical list of menu items. This component is usually used inside a popover container to provide additional actions.",
   "keywords": [
     "bolt design system",
@@ -10,7 +11,21 @@
     "menu",
     "collapsible"
   ],
-  "version": "2.15.2",
+  "homepage": "https://boltdesignsystem.com",
+  "bugs": "https://github.com/bolt-design-system/bolt/issues",
+  "repository": "https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-menu",
+  "license": "MIT",
+  "main": "index.js",
+  "style": "index.scss",
+  "dependencies": {
+    "@bolt/components-trigger": "^2.15.2",
+    "@bolt/core": "^2.15.2",
+    "wc-context": "^0.9.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "gitHead": "d41aa75ae3d195d9d7fb3952eed5e0ae80988133",
   "maintainers": [
     {
       "name": "Salem Ghoweri",
@@ -27,21 +42,6 @@
       "web": "https://github.com/danielamorse"
     }
   ],
-  "homepage": "https://boltdesignsystem.com",
-  "license": "MIT",
-  "repository": "https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-menu",
-  "bugs": "https://github.com/bolt-design-system/bolt/issues",
-  "publishConfig": {
-    "access": "public"
-  },
-  "dependencies": {
-    "@bolt/components-trigger": "^2.15.2",
-    "@bolt/core": "^2.15.2",
-    "wc-context": "^0.9.0"
-  },
-  "style": "index.scss",
-  "main": "index.js",
-  "twig": "src/menu.twig",
   "schema": "menu.schema.js",
-  "gitHead": "d41aa75ae3d195d9d7fb3952eed5e0ae80988133"
+  "twig": "src/menu.twig"
 }
