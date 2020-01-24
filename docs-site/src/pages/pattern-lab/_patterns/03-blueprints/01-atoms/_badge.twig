@@ -1,0 +1,17 @@
+{% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
+  {% cell "u-bolt-flex-shrink" %}
+    {% include "@bolt-components-icon/icon.twig" with {
+      name: "launchpad",
+      background: "circle",
+      size: "xlarge"
+    } only %}
+  {% endcell %}
+  {% cell "u-bolt-width-1/1" %}
+    {% include "@bolt-components-headline/text.twig" with {
+      size: "small",
+      weight: "semibold",
+      align: "center",
+      text: "Achievement Badge Awarded",
+    } only %}
+  {% endcell %}
+{% endgrid %}

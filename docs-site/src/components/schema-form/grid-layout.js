@@ -1,4 +1,4 @@
-import { h } from '@bolt/core';
+import { h } from '@bolt/core-v3.x/renderers';
 // import React from 'react';
 import React, { Component } from 'react';
 import { WidthProvider, Responsive } from 'react-grid-layout';

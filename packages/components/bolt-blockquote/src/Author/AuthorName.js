@@ -1,4 +1,4 @@
-import { html } from '@bolt/core/renderers/renderer-lit-html';
+import { html } from '@bolt/core-v3.x/renderers/renderer-lit-html';
 import classNames from 'classnames/bind';
 import textStyles from '@bolt/components-text/index.scss';
 import styles from '../blockquote.scss';

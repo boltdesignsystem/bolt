@@ -11,6 +11,12 @@ properties:
       type: object
       description: Chip.
       ref: '@bolt-components-chip/chip.schema.yml'
+  size:
+    description: "Sets the size used for all of the chips (if size isn't specified on the individual chip)"
+    enum:
+      - xsmall
+      - small
+      - medium
   contentItems:
     type: array
     title: 'DEPRECATED'

@@ -8,6 +8,10 @@
     - components
   additionalProperties: false
   properties:
+    esModules:
+      type: boolean
+      title: Enables outputting a 2nd `.modern.js` version of the code for modern browsers supporting ES Modules. Check out the docs for more info!
+      default: false
     namespace:
       type: string
       title: Namespace prefix to use in classnames
@@ -146,9 +150,9 @@
           type: array
           description: Array of file extensions in the wwwDir that Webpack Dev Server will watch and trigger an HMR update when changed or added.
     enableCache:
-      default: false
+      default: true
       type: boolean
-      description: Experimental new `@bolt/build-tools` option that caches the output from Webpack's build to significantly speed up the build tools after the first normal compile.
+      description: Caches the output from Webpack's build to significantly speed up the build tools after the first normal compile.
     dataDir:
       type: string
       description: This is the directory where generated json data files exist with information about the overall build. Defaults to `data` inside `buildDir`

@@ -1,17 +1,15 @@
 // @ts-nocheck
-import { define, props } from 'skatejs';
-import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
-import { withEvents } from '@bolt/core/renderers/with-events';
+import { html, customElement } from '@bolt/element';
+import { props } from 'skatejs';
+import { withLitEvents } from '@bolt/core-v3.x/renderers/with-events';
 import { bind } from './classnames';
 import './typeahead.autosuggest'; // main Preact logic split from lit-html wrapper
-
 import styles from './typeahead.scoped.scss';
+
 const cx = bind(styles);
 
-@define
-class BoltTypeahead extends withEvents(withLitHtml()) {
-  static is = 'bolt-typeahead';
-
+@customElement('bolt-typeahead')
+class BoltTypeahead extends withLitEvents {
   // @todo: replace with auto-wired up props approach used in Carousel
   static props = {
     inputPlaceholder: props.string,
@@ -51,31 +49,41 @@ class BoltTypeahead extends withEvents(withLitHtml()) {
     }
   }
 
+  disconnected() {
+    super.disconnected && super.disconnected();
+
+    // hack so that "ready" event will fire next time component connects,
+    // and any external listeners will be re-added
+    this._wasInitiallyRendered = false;
+  }
+
   clearSearch() {
     this.inputValue = '';
     this.autosuggest.clearSearch();
   }
 
-  submit() {
-    var evt = new KeyboardEvent('keypress', {
-      keyCode: 13,
-      which: 13,
-      key: 'Enter',
-    });
-    this.autosuggest.dispatchEvent(evt);
+  submit(e) {
+    this.handleSelected(e);
+
+    // prevent default behavior or form submits multiple times
+    e.preventDefault();
   }
 
   handleKeyPress(e) {
     if (e.target.value !== '') {
       if (e.key === 'Enter') {
-        this.autosuggest.onSelected(e, {
-          suggestionValue: this.inputValue,
-          suggestion: {
-            label: this.inputValue,
-          },
-        });
+        this.handleSelected(e);
       }
     }
+  }
+
+  handleSelected(e) {
+    this.autosuggest.onSelected(e, {
+      suggestionValue: this.inputValue,
+      suggestion: {
+        label: this.inputValue,
+      },
+    });
   }
 
   render() {
@@ -136,16 +144,27 @@ class BoltTypeahead extends withEvents(withLitHtml()) {
   rendered() {
     super.rendered && super.rendered();
 
+    const setupEventHandlers = () => {
+      this.autosuggest.on('onInput', (element, event, newValue) => {
+        this.inputValue = newValue;
+      });
+
+      this.autosuggest.on('onChange', (element, event, newValue) => {
+        this.inputValue = newValue;
+      });
+    };
+
     if (!this.autosuggest) {
       this.autosuggest = this.renderRoot.querySelector('bolt-autosuggest');
-      this.autosuggest.addEventListener('ready', () => {
-        this.autosuggest.on('onInput', (element, event, newValue) => {
-          this.inputValue = newValue;
-        });
 
-        this.autosuggest.on('onChange', (element, event, newValue) => {
-          this.inputValue = newValue;
-        });
+      if (this.autosuggest._wasInitiallyRendered) {
+        setupEventHandlers();
+      }
+
+      this.autosuggest.addEventListener('ready', e => {
+        if (e.detail.name === 'bolt-autosuggest') {
+          setupEventHandlers();
+        }
       });
     }
   }

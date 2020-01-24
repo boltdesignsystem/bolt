@@ -1,6 +1,6 @@
 // BOLT HEADLINE COMPONENT
 
-@import '@bolt/core';
+@import '@bolt/core-v3.x';
 @import './tools.headlines';
 
 
@@ -18,6 +18,10 @@ $bolt-headline--plus-letter-spacing: 0.05rem;
 .c-bolt-eyebrow,
 .c-bolt-text {
   @include bolt-headline;
+
+  strong {
+    @include bolt-font-weight(bold);
+  }
 }
 
 .c-bolt-headline {
@@ -180,6 +184,10 @@ $bolt-headline--plus-letter-spacing: 0.05rem;
   @include bolt-font-size(xsmall);
 }
 
+.c-bolt-text--xxsmall,
+.c-bolt-headline--xxsmall {
+  @include bolt-font-size(xxsmall);
+}
 
 .c-bolt-headline--small,
 .c-bolt-headline--xsmall {

@@ -2,26 +2,26 @@
   "name": "<%= props.packageName %>",
   "version": "<%= props.boltVersion %>",
   "description": "<%= props.description %>",
+  "keywords": [
+    "bolt design system"
+  ],
+  "bugs": {
+    "url": "<%= props.gitUrl %>/issues"
+  },
   "repository": {
     "type": "git",
     "url": "git+<%= props.gitPath %>"
   },
-  "author": "<%= props.gitInfo.name %> <<%= props.gitInfo.email %>>",
   "license": "MIT",
-  "bugs": {
-    "url": "<%= props.gitUrl %>/issues"
-  },
-  "keywords": [
-    "bolt design system"
-  ],
+  "author": "<%= props.gitInfo.name %> <<%= props.gitInfo.email %>>",
+  "main": "index.js",
+  "style": "index.scss",
   "dependencies": {
-    "@bolt/core": "^<%= props.boltVersion %>"
+    "@bolt/core-v3.x": "^<%= props.boltVersion %>"
   },
   "publishConfig": {
     "access": "public"
   },
-  "style": "index.scss",
-  "main": "index.js",
-  "twig": "src/<%= props.name.kebabCase %>.twig",
-  "schema": "<%= props.name.kebabCase %>.schema.yml"
+  "schema": "<%= props.name.kebabCase %>.schema.yml",
+  "twig": "src/<%= props.name.kebabCase %>.twig"
 }

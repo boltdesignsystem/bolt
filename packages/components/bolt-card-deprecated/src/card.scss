@@ -1,0 +1,189 @@
+/* ------------------------------------ *\
+   Cards
+\* ------------------------------------ */
+
+@import '@bolt/core-v3.x';
+
+
+$bolt-global-shadow-depth-xsmall: 0  1px  3px rgba(bolt-color(black), 0.12), 0 1px  2px  rgba(bolt-color(black), 0.24); // Buttons - default
+$bolt-global-shadow-depth-small:  0  3px  6px rgba(bolt-color(black), 0.16), 0 3px  6px  rgba(bolt-color(black), 0.23); // Buttons - hover
+$bolt-global-shadow-depth-medium: 0 10px 20px rgba(bolt-color(black), 0.19), 0 6px  6px  rgba(bolt-color(black), 0.23); // Cards - default
+$bolt-global-shadow-depth-large:  0 14px 28px rgba(bolt-color(black), 0.25), 0 10px 10px rgba(bolt-color(black), 0.22); // Cards - hover
+$bolt-global-shadow-depth-xlarge: 0 19px 38px rgba(bolt-color(black), 0.3),  0 15px 12px rgba(bolt-color(black), 0.22); // Modals
+
+
+// $bolt-card-shadow: $bolt-shadow--small;
+$bolt-card-shadow: $bolt-global-shadow-depth-small;
+$bolt-card-shadow--hover: $bolt-global-shadow-depth-medium;
+$bolt-card-border-width: $bolt-border-width;
+$bolt-card-border-style: $bolt-border-style;
+$bolt-card-border-color: currentColor; // TODO: needs to map this to theme text color at 0.1 opacity.
+$bolt-card-border-radius: $bolt-border-radius;
+$bolt-card-transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+$bolt-card-translate--hover: $bolt-translate-raised--large;
+$bolt-card-translate--active: $bolt-translate-raised--medium;
+
+
+
+/**
+  * Card background: 80% theme background color + 20% white
+  */
+
+
+bolt-card {
+  display: flex;
+  height: 100%; // Try to fill vertical space if available, even if parent's isn't display: flex;
+  border-radius: $bolt-card-border-radius; // in case the theme is applied to the custom element itself.
+}
+
+.c-bolt-card {
+  display: flex;
+  flex-basis: 100%;
+  flex-direction: column;
+  flex-grow: 1; //If used in a flex box container, grow to fill available space.
+  position: relative;
+  transform: translate3d(0, 0, 0) scale(1, 1);
+  max-width: 100%; //IE11 flexbox fix
+  border-radius: $bolt-card-border-radius;
+  transition: $bolt-card-transition;
+
+  @supports (backdrop-filter: blur(10px)) or (-webkit-backdrop-filter: blur(10px)) {
+    background-color: rgba(bolt-color(white), 0.3);
+    -webkit-backdrop-filter: blur(10px) saturate(30%) brightness(300%);
+    backdrop-filter: blur(10px) saturate(30%) brightness(300%);
+  }
+
+  bolt-card[class*=t-bolt] & {
+    color: bolt-theme(text);
+    background-color: bolt-theme(background, 0.8);
+
+    &:before {
+      opacity: bolt-opacity(100);
+    }
+
+    @supports (backdrop-filter: blur(10px)) or (-webkit-backdrop-filter: blur(10px)) {
+      background-color: rgba(bolt-color(white), 0.3);
+      -webkit-backdrop-filter: blur(10px) saturate(30%) brightness(300%);
+      backdrop-filter: blur(10px) saturate(30%) brightness(300%);
+    }
+  }
+
+  &:not(.c-bolt-card--wrapper){
+    box-shadow: $bolt-card-shadow;
+    // height: 100%; //workaround to fix strange flexbox behavior when rendering as a custom element.
+  }
+
+  &:before,
+  &:after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translate3d(0, 0, 0); //Help prevent rounding errors in Chrome so bg doesn't spill out
+    z-index: bolt-z-index('background') - 5;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    border-radius: $bolt-card-border-radius;
+  }
+
+  &:before {
+    background-color: bolt-theme(background, 0.8);
+  }
+
+  &:after {
+
+    box-shadow: none;
+    background-color: rgba(bolt-color(white), 0.1);
+    transition: $bolt-card-transition;
+    @supports (backdrop-filter: blur(10px)) or (-webkit-backdrop-filter: blur(10px)) {
+      background-color: transparent;
+    }
+  }
+
+  &.is-actionable {
+    cursor: pointer;
+
+    // TODO: This class needs to be added when the entire card is clickable.
+    &:hover,
+    &:focus {
+      transform: $bolt-card-translate--hover;
+
+      &:after {
+        box-shadow: $bolt-card-shadow--hover;
+      }
+    }
+
+    &:active {
+      transform: $bolt-card-translate--active;
+
+      &:after {
+        box-shadow: none;
+      }
+    }
+  }
+}
+
+.c-bolt-card__media {
+  position: relative;
+  overflow: hidden;
+  /* stylelint-disable-next-line */
+  font-size: 0;
+  border-top-right-radius: $bolt-card-border-radius;
+  border-top-left-radius: $bolt-card-border-radius;
+}
+
+.c-bolt-card__body {
+  @include bolt-padding(medium);
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.c-bolt-card__footer {
+  display: flex;
+  position: relative;
+  overflow: hidden; // Prevent the card footer's border from overflowing outside the card. Workaround if card footer container rendering despite not having any content to display.
+
+  &:before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 1px;
+    border-top-color: bolt-theme(border, 0.2);
+    border-top-style: solid;
+    border-top-width: $bolt-card-border-width;
+  }
+}
+
+.c-bolt-card__footer-item {
+  &:not(:only-child) {
+    display: inline-flex;
+    flex: 1;
+    justify-content: center;
+    position: relative;
+    color: currentColor;
+    text-align: center;
+  }
+
+  &:only-child {
+    width: 100%;
+  }
+}
+
+.c-bolt-card__footer-item + .c-bolt-card__footer-item:before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 1px; // Prevent double border on top
+  left: 0;
+  width: 1px;
+  height: 100%;
+  border-left-color: bolt-theme(border, 0.2);
+  border-left-style: solid;
+  border-left-width: $bolt-card-border-width;
+}

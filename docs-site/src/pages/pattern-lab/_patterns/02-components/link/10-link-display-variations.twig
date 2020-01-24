@@ -46,6 +46,30 @@
   } only %}
 {% endset %}
 
+{% set block_link_icon_before %}
+  {% include "@bolt-components-link/link.twig" with {
+    display: "block",
+    text: "This is a block link with an icon. Very important to note that block links are never to be mixed inline within a paragraph of non-link text because they act as a paragraph themselves.",
+    url: "https://pega.com",
+    icon: {
+      name: "chevron-left",
+      position: "before"
+    },
+  } only %}
+{% endset %}
+
+{% set block_link_icon_after %}
+  {% include "@bolt-components-link/link.twig" with {
+    display: "block",
+    text: "This is a block link with an icon. Very important to note that block links are never to be mixed inline within a paragraph of non-link text because they act as a paragraph themselves.",
+    url: "https://pega.com",
+    icon: {
+      name: "chevron-right",
+      position: "after"
+    },
+  } only %}
+{% endset %}
+
 <h3>Inline link</h3>
 <p>
   This is an {{ inline_link_icon_before }}, and this is an {{ inline_link_icon_after }}. Inline links are truly inline, which means the text can wrap to a second line and the icon falls on the baseline either before or after the text.
@@ -57,4 +81,12 @@
 </p>
 <p>
   {{ flex_link_icon_after }}
+</p>
+
+<h3>Block link</h3>
+<p>
+  {{ block_link_icon_before }}
+</p>
+<p>
+  {{ block_link_icon_after }}
 </p>

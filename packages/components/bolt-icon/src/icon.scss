@@ -1,12 +1,17 @@
-@import '@bolt/core';
+@import '@bolt/core-v3.x';
 
 bolt-icon {
-  display: inline-block;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
   transform: translate3d(0, 0, 0); // Create a stacking context to scope internal z-index values.
-  width: 1em; // Default icon size if size prop not specified
-  height: 1em; // Default icon size if size prop not specified
   vertical-align: middle;
   transition: inherit;
+
+  &:not([size]) {
+    width: 1em; // Default icon size if size prop not specified
+    height: 1em; // Default icon size if size prop not specified
+  }
 
   &:not(:resolved){
     height: 0;
@@ -19,12 +24,10 @@ bolt-icon {
   vertical-align: middle;
 }
 
-
-// By default, icons should inherit the size of the container it's put inside
-
-// Wrapper
 .c-bolt-icon {
+  display: block;
   position: relative;
+  height: 100%;
 }
 
 .c-bolt-icon__icon {
@@ -36,35 +39,26 @@ bolt-icon {
   height: 1em;
   color: var(--bolt-theme-icon);
   pointer-events: none;
-}
 
-bolt-icon[size='small'],
-.c-bolt-icon--small > .c-bolt-icon__icon {
-  width: 16px;
-  height: 16px;
-}
+  &--small {
+    width: 16px;
+    height: 16px;
+  }
 
-bolt-icon[size='medium'],
-.c-bolt-icon--medium > .c-bolt-icon__icon {
-  width: 24px;
-  height: 24px;
-}
+  &--medium {
+    width: 24px;
+    height: 24px;
+  }
 
-bolt-icon[size='large'],
-.c-bolt-icon--large > .c-bolt-icon__icon {
-  width: 32px;
-  height: 32px;
-}
+  &--large {
+    width: 32px;
+    height: 32px;
+  }
 
-
-bolt-icon[size='xlarge'],
-.c-bolt-icon--xlarge > .c-bolt-icon__icon {
-  width: 64px;
-  height: 64px;
-}
-
-.c-bolt-icon--xlarge > .c-bolt-icon__icon {
-  padding: 16px;
+  &--xlarge {
+    width: 38px;
+    height: 38px;
+  }
 }
 
 .c-bolt-icon--small > .c-bolt-icon__icon {
@@ -72,19 +66,36 @@ bolt-icon[size='xlarge'],
   stroke-width: 1px;
 }
 
+// padding added internally when a background (outline or solid color) is used
+.c-bolt-icon--small.has-background {
+  padding: 6px;
+}
+
+.c-bolt-icon--medium.has-background {
+  padding: 8px;
+}
+
+.c-bolt-icon--large.has-background {
+  padding: 12px;
+}
+
+.c-bolt-icon--xlarge.has-background {
+  padding: 13px;
+}
+
+.c-bolt-icon__background {
+  fill: currentColor;
+  fill: var(--bolt-theme-text, currentColor)
+}
 
 .c-bolt-icon__background-shape {
-
-  // Fallback if CSS vars are not supported.
   opacity: 0.1;
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate3d(-50%, -50%, 0);
+  top: 0;
+  left: 0;
   z-index: bolt-z-index('contentBottom');
   width: 100%;
-  height: 0;
-  padding-bottom: 100%;
+  height: 100%;
   background-color: currentColor;
 
   @supports(--css: variables) {
@@ -99,74 +110,109 @@ bolt-icon[size='xlarge'],
 
 .c-bolt-icon__background-shape--square {
   border-radius: $bolt-border-radius;
+  border-radius: #{var(--bolt-theme-icon-radius, #{$bolt-border-radius})};
 }
 
+.c-bolt-icon__background-shape--outline {
+  opacity: 0.8;
+  border-radius: 50%;
+  border-width: 2px;
+  border-style: solid;
+  border-color: currentColor;
+  background-color: transparent;
+}
+
+// helper function to generate pre-defined color palettes for icons + backgrounds
+// optionally allows for the icon color (when used by itself or with an "outline" background) to be a different color than the one used when the icon is inverted on a solid color background
+@mixin bolt-icon-theme($name, $iconColor, $backgroundColor: ''){
+  .c-bolt-icon--#{$name} {
+    @if $backgroundColor == '' {
+      $backgroundColor: $iconColor;
+    }
+
+    color: $iconColor;
+    @include bolt-css-vars((
+      --bolt-theme-icon: $iconColor,
+    ));
+    filter: drop-shadow(0px 0px 1px rgba(bolt-text-contrast($iconColor), .2));
 
 
+    &.has-background:not(.has-outline-background) {
+      color: bolt-text-contrast($backgroundColor);
 
-// Color options
-.c-bolt-icon--teal {
-  $brand-color: bolt-color(teal);
-  $contrast-color: bolt-text-contrast($brand-color);
+      .c-bolt-icon__background-shape {
+        opacity: bolt-opacity(100);
+        border: 1px solid rgba(bolt-color(gray, dark), .5);
+        background-color: $backgroundColor;
+      }
 
-  // Fallbacks if CSS vars are not supported.
-  color: $contrast-color;
-
-  .c-bolt-icon__background-shape {
-    opacity: bolt-opacity(100);
-    background-color: $brand-color;
-  }
-
-  @include bolt-css-vars((
-    --bolt-theme-icon: $contrast-color,
-    --bolt-theme-icon-background: $brand-color,
-    --bolt-theme-icon-background-opacity: bolt-opacity(100),
-  ));
-
-  // Properties must be re-declared here so that CSS variable values will take precedence over hard-coded values for
-  // fallback browsers.  Remove this when support for browsers that don't support CSS vars is dropped.
-  @supports(--css: variables) {
-    color: var(--bolt-theme-icon);
-
-    .c-bolt-icon__background-shape {
-      opacity: var(--bolt-theme-icon-background-opacity);
-      background-color: var(--bolt-theme-icon-background);
+      @include bolt-css-vars((
+        --bolt-theme-icon: bolt-text-contrast($backgroundColor),
+        --bolt-theme-icon-background: $backgroundColor,
+        --bolt-theme-icon-background-opacity: bolt-opacity(100),
+      ));
     }
   }
 }
 
-.c-bolt-icon--blue {
-  $brand-color: bolt-color(blue);
-  $contrast-color: bolt-text-contrast($brand-color);
+// tweak the pre-defined colors depending on if they are used on dark or light backgrounds
+:root,
+.t-bolt-light,
+.t-bolt-xlight {
+  @include bolt-icon-theme(blue, bolt-color(blue));
+  @include bolt-icon-theme(gray, bolt-color(gray, dark));
+  @include bolt-icon-theme(indigo, bolt-color(indigo, light));
+  @include bolt-icon-theme(orange, bolt-color(orange));
+  @include bolt-icon-theme(teal, bolt-color(teal));
+  @include bolt-icon-theme(white, bolt-color(gray, dark), bolt-color(white));
+  @include bolt-icon-theme(yellow, #e6a400, bolt-color(yellow));
 
-  // Fallbacks if CSS vars are not supported.
-  color: $brand-color;
-
-  .c-bolt-icon__background-shape {
-    opacity: bolt-opacity(100);
-    background-color: $contrast-color;
-  }
-
-  @include bolt-css-vars((
-    --bolt-theme-icon: $brand-color,
-    --bolt-theme-icon-background: $contrast-color,
-    --bolt-theme-icon-background-opacity: bolt-opacity(100),
-  ));
-
-  // Properties must be re-declared here so that CSS variable values will take precedence over hard-coded values for
-  // fallback browsers.  Remove this when support for browsers that don't support CSS vars is dropped.
-  @supports(--css: variables) {
-    color: var(--bolt-theme-icon);
-
-    .c-bolt-icon__background-shape {
-      opacity: var(--bolt-theme-icon-background-opacity);
-      background-color: var(--bolt-theme-icon-background);
-    }
-  }
+  // add to @bolt/core colors?
+  @include bolt-icon-theme(green, #209952);
+  @include bolt-icon-theme(pink, #A65389);
 }
 
-.c-bolt-icon__background {
+.t-bolt-dark,
+.t-bolt-xdark {
+  @include bolt-icon-theme(blue, #0095e6, bolt-color(blue));
+  @include bolt-icon-theme(gray, bolt-color(gray), bolt-color(gray, dark));
+  @include bolt-icon-theme(indigo, bolt-color(indigo, xlight), bolt-color(indigo, light));
+  @include bolt-icon-theme(orange, bolt-color(orange, light), bolt-color(orange));
+  @include bolt-icon-theme(teal, bolt-color(teal, light), bolt-color(teal));
+  @include bolt-icon-theme(white, bolt-color(white));
+  @include bolt-icon-theme(yellow, bolt-color(yellow), bolt-color(yellow));
+
+  // add to @bolt/core colors?
+  @include bolt-icon-theme(green, mix(bolt-color(white), #209952, .4), #209952);
+  @include bolt-icon-theme(pink, #b974a1, #A65389);
+}
+
+// retroactively map the names of the new CSS custom property names used to the older names that were previously used for customizing icons
+$primaryColor: var(--bolt-icon-primary-color, var(--bolt-theme-icon, currentColor));
+$secondaryColor: var(--bolt-icon-secondary-color, rgba(var(--bolt-theme-background), 1));
+
+svg [fill="var(--bolt-icon-primary-color)"] {
   fill: currentColor;
-  fill: var(--bolt-theme-text, currentColor)
 }
 
+svg [stroke="var(--bolt-icon-primary-color)"] {
+  stroke: currentColor;
+}
+
+@supports(--var: foo){
+  svg [fill="var(--bolt-icon-primary-color)"] {
+    fill: #{$primaryColor};
+  }
+
+  svg [stroke="var(--bolt-icon-primary-color)"] {
+    stroke: #{$primaryColor};
+  }
+
+  svg [fill="var(--bolt-icon-secondary-color)"] {
+    fill: #{$secondaryColor};
+  }
+
+  svg [stroke="var(--bolt-icon-secondary-color)"] {
+    stroke: #{$secondaryColor};
+  }
+}

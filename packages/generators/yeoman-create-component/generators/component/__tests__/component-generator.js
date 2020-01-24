@@ -23,7 +23,7 @@ dirs.patternLab = `${dirs.global}/docs-site/src/pages/pattern-lab/_patterns/02-c
 describe('Yeoman component generator', () => {
   beforeAll(async () => {
     shell.exec(`rm -rf ${dirs.global}`);
-    shell.exec('yarn run cc -N Test -D "Test Description" -T');
+    shell.exec('yarn run cc -- -N Test -D "Test Description" -T');
   });
 
   afterAll(async () => {

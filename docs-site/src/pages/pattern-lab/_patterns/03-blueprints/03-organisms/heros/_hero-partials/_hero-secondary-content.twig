@@ -1,0 +1,35 @@
+{% if heroDescription %}
+  {% include "@bolt-components-headline/text.twig" with {
+    text: heroDescription,
+    attributes: {
+      class: [
+        "u-bolt-line-length-optimal"
+      ]
+    }
+  } only %}
+{% endif %}
+
+{# array of tags - already rendered chips? render array?
+  docroot/themes/custom/pegaacademy_theme/templates/field/field--node--pega-content-tags.html.twig
+#}
+
+{% if heroTags %}
+  {% include "@bolt-components-list/list.twig" with {
+    display: "inline",
+    attributes: {
+      class: [
+        "u-bolt-negative-margin-top-xsmall",
+      ]
+    },
+    items: heroTags | map(item => item.text ? include("@bolt-components-chip/chip.twig", {
+      text: item.text,
+      url: item.url | default(false),
+      size: "xsmall",
+    }, with_context = false) : item )
+  } only %}
+      {# include("@bolt-blueprints/_custom-select.twig", with_context = false), #}
+{% endif %}
+
+{% if heroSupplementalContent %}
+  {{ heroSupplementalContent }}
+{% endif %}
