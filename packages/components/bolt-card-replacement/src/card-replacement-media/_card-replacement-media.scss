@@ -11,8 +11,7 @@
     min-width: 80px;
     max-width: 300px;
     overflow: auto;
-    border-top-right-radius: 0;
-    border-bottom-left-radius: $bolt-card-replacement-border-radius;
+    border-radius: $bolt-card-replacement-border-radius 0 0 $bolt-card-replacement-border-radius;
   }
 }
 
@@ -20,6 +19,7 @@ bolt-card-replacement-media {
   display: flex;
   flex-direction: column;
   position: relative;
+  overflow: hidden;
   border-top-right-radius: $bolt-card-replacement-border-radius;
   border-top-left-radius: $bolt-card-replacement-border-radius;
 
@@ -28,8 +28,7 @@ bolt-card-replacement-media {
     min-width: 80px;
     max-width: 300px;
     overflow: auto;
-    border-top-right-radius: 0;
-    border-bottom-left-radius: $bolt-card-replacement-border-radius;
+    border-radius: $bolt-card-replacement-border-radius 0 0 $bolt-card-replacement-border-radius;
   }
 }
 
