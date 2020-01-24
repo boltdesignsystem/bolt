@@ -2,7 +2,7 @@
    Breadcrumb
 \* ------------------------------------ */
 
-@import '@bolt/core';
+@import '@bolt/core-v3.x';
 
 // Register Custom Block Element
 @include bolt-custom-element('bolt-breadcrumb', block, medium);
@@ -18,7 +18,7 @@
 .c-bolt-breadcrumb__list {
   @include bolt-margin(0);
   @include bolt-padding(0);
-  @include bolt-font-size(xsmall);
+  @include bolt-font-size(small);
   list-style: none;
 }
 

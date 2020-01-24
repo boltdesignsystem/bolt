@@ -5,14 +5,41 @@
   {% endif %}
 
   {# @TODO: how do we get this to use the exact same values from our global .js config without having the source of truth live as a .yml or .json file...? #}
-  {% set manifestConfigFile = "@bolt-assets/bolt-webpack-manifest#{lang != "" ? "-" ~ lang : ""}.json" %}
+  {% set legacyManifestConfig = "@bolt-assets/bolt-webpack-manifest#{lang != "" ? "-" ~ lang : ""}.json" %}
+  {% set modernManifestConfig = "@bolt-assets/bolt-webpack-manifest#{lang != "" ? "-" ~ lang : ""}.modern.json" %}
 
-  {% set assets = [] %}
-  {% if fileExists(manifestConfigFile) %}
-    {% set assets = get_data(manifestConfigFile) %}
+  {% set legacyAssets = [] %}
+  {% set modernAssets = [] %}
+
+  {% if fileExists(legacyManifestConfig) %}
+    {% set legacyAssets = get_data(legacyManifestConfig) %}
   {% endif %}
 
-  <script src="{{ assets["bolt-global.js"] | default("/build/bolt-global.js") }}?cacheBuster={{ cacheBuster }}" async></script>
+  {% if fileExists(modernManifestConfig) %}
+    {% set modernAssets = get_data(modernManifestConfig) %}
+  {% endif %}
+
+  {% if bolt.data.config.esModules %}
+    <script nomodule src="{{ legacyAssets["bolt-global.js"] | default("/build/bolt-global.js") }}?cacheBuster={{ cacheBuster }}" async></script>
+
+    <script type="module" src="{{ modernAssets["bolt-global.js"] | default("/build/bolt-global.modern.js") }}" async></script>
+
+  {% else %}
+    <script src="{{ legacyAssets["bolt-global.js"] | default("/build/bolt-global.js") }}?cacheBuster={{ cacheBuster }}" async></script>
+  {% endif %}
+
+  <script type="module">
+    if (!sessionStorage.fontsLoadedCriticalFoftPreloadPolyfill){
+      document.documentElement.classList.add('js-fonts-loaded');
+      sessionStorage.fontsLoadedCriticalFoftPreloadPolyfill = true;
+    }
+  </script>
+
+  <script nomodule>
+    document.documentElement.classList.add('js-fonts-loaded');
+  </script>
+
+  <script src="https://www.google-analytics.com/analytics.js" async></script>
 
   {{ patternLabFoot | raw }}
 
@@ -22,5 +49,7 @@
     <script>console.log('Bolt Global Twig variable. In Twig, you can tap into the `bolt` global var to access all sorts of helpful information about the Bolt Design System, such as colors, spacing, and more. Most is exported from Sass; to add more, add this to any Sass file: `@include export-data("myVariables.bolt.json", $my-variables-in-a-sass-map);`, and then you can access it in Twig via `bolt.data.myVariables`. Here is all the data available to the current templates, including the `bolt` var:');</script>
   {% endif %} #}
 
+    {# @todo: refactor once additional debug panel items are available #}
+    {% include "@bolt/shadow-toggle.twig" only %}
   </body>
 </html>

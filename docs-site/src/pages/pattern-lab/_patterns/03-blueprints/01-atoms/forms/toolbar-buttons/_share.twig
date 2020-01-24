@@ -1,0 +1,64 @@
+{% extends "@bolt-blueprints/toolbar-buttons/_toolbar-button.twig" %}
+
+{% set iconName = "share" %}
+{% set popover %}
+  {% include "@bolt-components-menu/menu.twig" with {
+    items: [
+      {
+        content: include("@bolt-components-headline/text.twig", {
+          text: "Facebook",
+          size: "medium",
+          icon: {
+            name: "facebook-solid",
+            position: "before"
+          }
+        }, with_context = false),
+        url: "#!"
+      },
+      {
+        content: include("@bolt-components-headline/text.twig", {
+          text: "Twitter",
+          size: "medium",
+          icon: {
+            name: "twitter",
+            position: "before"
+          }
+        }, with_context = false),
+        url: "#!"
+      },
+      {
+        content: include("@bolt-components-headline/text.twig", {
+          text: "LinkedIn",
+          size: "medium",
+          icon: {
+            name: "linkedin",
+            position: "before"
+          }
+        }, with_context = false),
+        url: "#!"
+      },
+      {
+        content: include("@bolt-components-headline/text.twig", {
+          text: "Email",
+          size: "medium",
+          icon: {
+            name: "email",
+            position: "before"
+          }
+        }, with_context = false),
+        url: "#!"
+      },
+      {
+        content: include("@bolt-components-headline/text.twig", {
+          text: "Link",
+          size: "medium",
+          icon: {
+            name: "asset-link",
+            position: "before"
+          }
+        }, with_context = false),
+        url: "#!"
+      },
+    ]
+  } only %}
+{% endset %}

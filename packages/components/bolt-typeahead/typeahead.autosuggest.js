@@ -1,7 +1,8 @@
 // @ts-nocheck
-import { define, props } from 'skatejs';
-import { h, withPreact, Fragment } from '@bolt/core/renderers';
-import { getUniqueId } from '@bolt/core/utils/get-unique-id';
+import { customElement } from '@bolt/element';
+import { props } from 'skatejs';
+import { h, withPreact, Fragment } from '@bolt/core-v3.x/renderers';
+import { getUniqueId } from '@bolt/core-v3.x/utils/get-unique-id';
 import Fuse from 'fuse.js';
 import ReactHtmlParser from 'react-html-parser';
 import Mousetrap from 'mousetrap';
@@ -47,10 +48,8 @@ export const highlightSearchResults = function(item) {
   });
 };
 
-@define
-class BoltAutosuggest extends withPreact() {
-  static is = 'bolt-autosuggest';
-
+@customElement('bolt-autosuggest')
+class BoltAutosuggest extends withPreact {
   get getParent() {
     return this.$parent;
   }
@@ -108,6 +107,10 @@ class BoltAutosuggest extends withPreact() {
     super.disconnecting && super.disconnecting();
     // Keep an object of listener types mapped to callback functions
     this._listeners = {};
+
+    // hack so that "ready" event will fire next time component connects,
+    // and any external listeners will be re-added
+    this._wasInitiallyRendered = false;
   }
 
   // return the parent that's rendering <bolt-autosuggest> based on Shadow DOM usage
@@ -367,7 +370,7 @@ class BoltAutosuggest extends withPreact() {
    * @param {{newValue: string}} newValue - the updated input value
    */
   onChange = (event, { newValue, method }) => {
-    this._fire('onChange', newValue, method);
+    this._fire('onChange', method, newValue);
 
     // @todo: replace this workaround with this.results.findIndex(findSelectedIndex) once `findIndex` can be safely polyfilled
     const suggestionIndex = this.results.indexOf(

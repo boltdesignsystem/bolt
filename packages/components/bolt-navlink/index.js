@@ -1,5 +1,7 @@
-import { polyfillLoader } from '@bolt/core/polyfills';
+import { polyfillLoader } from '@bolt/core-v3.x/polyfills';
 
-polyfillLoader.then(() => {
-  import('./navlink.js');
+polyfillLoader.then(res => {
+  import(
+    /* webpackMode: 'lazy', webpackChunkName: 'bolt-navlink' */ './navlink.js'
+  );
 });

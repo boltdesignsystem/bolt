@@ -1,0 +1,21 @@
+/* ------------------------------------ *\
+   card-replacement Actions
+\* ------------------------------------ */
+
+@import '@bolt/core-v3.x';
+@import '../_card-replacement-settings-and-tools.scss';
+
+bolt-card-replacement-actions {
+  @include bolt-card-replacement-border-reset;
+  overflow: hidden;
+  margin-top: auto;
+}
+
+.c-bolt-card_replacement__actions {
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: $bolt-card-replacement-individual-link-z-index;
+  width: 100%;
+  margin-top: auto;
+}

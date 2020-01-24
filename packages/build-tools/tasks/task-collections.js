@@ -265,13 +265,11 @@ async function start() {
 
   try {
     if (!config.quick) {
-      buildTime = await build({
-        shouldReturnTime: true,
-      });
+      buildTime = await build(true);
     }
     await Promise.all(await compileBasedOnEnvironment()).then(async () => {
       await watch();
-      await serve(buildTime, true);
+      await serve(buildTime);
     });
   } catch (error) {
     log.errorAndExit('Start failed', error);

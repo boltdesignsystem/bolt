@@ -1,4 +1,4 @@
-@import '@bolt/core';
+@import '@bolt/core-v3.x';
 
 $bolt-carousel-bullet-height: 8px;
 
@@ -7,7 +7,7 @@ $bolt-carousel-bullet-height: 8px;
     width: bolt-v-spacing(xsmall);
     height: bolt-v-spacing(xsmall);
   }
-  
+
   &::-webkit-scrollbar-thumb {
     border-radius: 10px;
     background-image: linear-gradient(
@@ -15,14 +15,14 @@ $bolt-carousel-bullet-height: 8px;
       rgba(255, 255, 255, 1) 0%,
       rgba(63, 63, 68, 0.15) 100%
     );
-  
+
     background-image: linear-gradient(
       to bottom,
       bolt-theme(primary-lighten-15) 0%,
       bolt-theme(primary-darken-25) 100%
     );
   }
-  
+
   &::-webkit-scrollbar-track {
     border-radius: 10px;
     box-shadow: inset 0 0 6px rgba(bolt-color(gray, dark), 0.5);

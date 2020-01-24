@@ -8,6 +8,9 @@ const configStore = require('@bolt/build-utils/config-store');
 const log = require('@bolt/build-utils/log');
 const { readYamlFileSync } = require('@bolt/build-utils/yaml');
 const { getPort } = require('@bolt/build-utils/get-port');
+const boxen = require('boxen');
+const chalk = require('chalk');
+
 const configSchema = readYamlFileSync(
   path.join(__dirname, './utils/config.schema.yml'),
 );
@@ -143,15 +146,38 @@ if (program.configFile) {
 
       const config = await configStore.getConfig();
 
-      log.dim(`Verbosity: ${config.verbosity}`);
-      log.dim(`Prod: ${config.prod}`);
-      log.dim(`i18n: ${config.i18n}`);
-      log.dim(
-        `enableSSR: ${config.enableSSR} ${
-          originalConfig.enableSSR ? '(manually set)' : '(auto set)'
-        }`,
+      const defaultConfigLog = chalk.white(`
+Logging Verbosity: ${config.verbosity}
+Environment: ${config.prod ? 'Production' : 'Development'}
+Multi-lang: ${config.i18n}
+ES Modules Enabled: ${config.esModules}
+`);
+
+      console.log(
+        boxen(defaultConfigLog, {
+          padding: {
+            top: 0,
+            bottom: 0,
+            left: 3,
+            right: 3,
+          },
+          margin: {
+            top: 1,
+            bottom: 0,
+            left: 1,
+            right: 1,
+          },
+          borderStyle: 'double',
+        }),
       );
-      log.dim(`Rendering Mode: ${config.mode}`);
+
+      // @todo: re-enable once JS-based SSR gets re-enabled and ships
+      // log.dim(
+      //   `enableSSR: ${config.enableSSR} ${
+      //     originalConfig.enableSSR ? '(manually set)' : '(auto set)'
+      //   }`,
+      // );
+      // log.dim(`Rendering Mode: ${config.mode}`);
       if (config.verbosity > 2) {
         log.dim(`Opening browser: ${config.openServerAtStart}`);
         log.dim(`Quick mode: ${config.quick}`);

@@ -1,14 +1,12 @@
+import { html, customElement } from '@bolt/element';
 import Drift from 'drift-zoom';
-
 import {
-  define,
   props,
   css,
   hasNativeShadowDomSupport,
   passiveSupported,
-} from '@bolt/core/utils';
-
-import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
+} from '@bolt/core-v3.x/utils';
+import { withLitHtml } from '@bolt/core-v3.x/renderers/renderer-lit-html';
 
 /* From Modernizr */
 function whichAnimationEvent() {
@@ -30,17 +28,15 @@ function whichAnimationEvent() {
 }
 const animationEvent = whichAnimationEvent();
 
-@define
-class BoltDeviceViewer extends withLitHtml() {
-  static is = 'bolt-device-viewer';
-
+@customElement('bolt-device-viewer')
+class BoltDeviceViewer extends withLitHtml {
   static props = {
     // name: props.string,
   };
 
   constructor(self) {
     self = super(self);
-    this.useShadow = hasNativeShadowDomSupport;
+    self.useShadow = hasNativeShadowDomSupport;
     return self;
   }
 
@@ -65,10 +61,8 @@ class BoltDeviceViewer extends withLitHtml() {
   }
 }
 
-@define
-class BoltImageZoom extends withLitHtml() {
-  static is = 'bolt-image-zoom';
-
+@customElement('bolt-image-zoom')
+class BoltImageZoom extends withLitHtml {
   static props = {
     mangify: props.boolean,
   };

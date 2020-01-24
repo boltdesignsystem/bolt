@@ -2,6 +2,8 @@
    #GRID
    ========================================================================== */
 
+@import '@bolt/core-v3.x';
+
 /**
  * 1. Workaround to Safari layout getting thrown off when using a negative letter-spacing to remove inline-block whitespace
  *    @TODO: remove when v1 grid with CSS Grid support rolls out
@@ -18,12 +20,42 @@
 
 .o-bolt-grid__cell {
   display: inline-block;
+  position: relative;
   padding-left: bolt-spacing(medium);
   vertical-align: top;
   font-size: 1rem; /* stylelint-disable-line */ /* [2] */
 }
 
+// Outer grid wrapper used with the "bordered" variation in order to hide overflowing cell padding / borders.
+.o-bolt-grid-wrapper {
+  overflow: hidden;
+}
 
+$bolt-grid-border-width: 2px;
+$bolt-grid-border-color: bolt-theme(border, 0.2);
+
+.o-bolt-grid--matrix.o-bolt-grid--border {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: bolt-v-spacing(small) * -1;
+  margin-right: bolt-spacing(small) * -1;
+  margin-bottom: bolt-v-spacing(small) * -1;
+  margin-left: bolt-spacing(small) * -1;
+  padding: 0;
+  list-style: none;
+
+  > .o-bolt-grid__cell {
+    @include bolt-padding(small);
+    @include bolt-margin-right($bolt-grid-border-width * -1);
+    @include bolt-margin-top($bolt-grid-border-width * -1);
+    border-bottom-color: $bolt-grid-border-color;
+    border-bottom-style: solid;
+    border-bottom-width: $bolt-grid-border-width;
+    border-left-color: $bolt-grid-border-color;
+    border-left-style: solid;
+    border-left-width: $bolt-grid-border-width;
+  }
+}
 
 .o-bolt-grid--rev {
   direction: rtl;
@@ -32,7 +64,6 @@
     direction: ltr;
   }
 }
-
 
 /**
  * Gutterless grids have all the properties of regular grids, minus any spacing.
@@ -59,7 +90,6 @@
   }
 }
 
-
 /**
  * Align grid cells vertically (`.o-bolt-grid--middle` or `.o-bolt-grid--bottom`). Extends
  * `.o-bolt-grid`.
@@ -83,7 +113,6 @@
     vertical-align: bottom;
   }
 }
-
 
 /**
  * Align the entire grid to the right. Extends `.grid`.
@@ -112,9 +141,6 @@
   vertical-align: bottom;
 }
 
-
-
-
 // Grid gutter sizes
 // .o-bolt-grid--xsmall {
 //   margin-left: bolt-spacing(xsmall) * -1;
@@ -123,6 +149,13 @@
 //     padding-left: bolt-spacing(xsmall);
 //   }
 // }
+.o-bolt-grid--xsmall {
+  margin-left: bolt-spacing(xsmall) * -1;
+
+  > .o-bolt-grid__cell {
+    padding-left: bolt-spacing(xsmall);
+  }
+}
 
 .o-bolt-grid--small {
   margin-left: bolt-spacing(small) * -1;
@@ -154,7 +187,6 @@
   }
 }
 
-
 // /**
 //  * Extra extra wide gutters
 //  */
@@ -179,15 +211,39 @@
 .o-bolt-grid--flex {
   display: flex;
   flex-flow: row wrap;
-
 }
-
-
 
 .o-bolt-grid--matrix {
-  margin-bottom: bolt-v-spacing(medium) * -1;
-}
+  &.o-bolt-grid--xsmall {
+    margin-bottom: bolt-v-spacing(xsmall) * -1;
 
-.o-bolt-grid--matrix > .o-bolt-grid__cell {
-  padding-bottom: bolt-v-spacing(medium);
+    > .o-bolt-grid__cell {
+      padding-bottom: bolt-v-spacing(xsmall);
+    }
+  }
+
+  &.o-bolt-grid--small {
+    margin-bottom: bolt-v-spacing(small) * -1;
+
+    > .o-bolt-grid__cell {
+      padding-bottom: bolt-v-spacing(small);
+    }
+  }
+
+  &,
+  &.o-bolt-grid--medium {
+    margin-bottom: bolt-v-spacing(medium) * -1;
+
+    > .o-bolt-grid__cell {
+      padding-bottom: bolt-v-spacing(medium);
+    }
+  }
+
+  &.o-bolt-grid--large {
+    margin-bottom: bolt-v-spacing(large) * -1;
+
+    > .o-bolt-grid__cell {
+      padding-bottom: bolt-v-spacing(large);
+    }
+  }
 }

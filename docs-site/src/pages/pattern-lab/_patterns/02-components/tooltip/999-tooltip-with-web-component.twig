@@ -1,0 +1,59 @@
+{% macro code_example(code) %}
+  <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
+    {% grid "o-bolt-grid--center" %}
+      {% cell %}
+        {{ code }}
+      {% endcell %}
+    {% endgrid %}
+  </div>
+  <div class="u-bolt-margin-bottom-large">
+    <bolt-code-snippet syntax="dark" lang="html">{% spaceless %}
+      {{ code | replace({
+        '<': '&lt;',
+        '>': '&gt;',
+      }) | trim | raw }}
+    {% endspaceless %}</bolt-code-snippet>
+  </div>
+{% endmacro %}
+
+{% import _self as tooltip_example %}
+
+{% set tooltip_demo %}
+<bolt-tooltip>
+  CRM
+  <span slot="content">Customer relationship management</span>
+</bolt-tooltip>
+{% endset %}
+
+{% set tooltip_prop_demo %}
+<bolt-tooltip placement="top" uuid="target-this-unique-id">
+  CRM
+  <span slot="content">Customer relationship management</span>
+</bolt-tooltip>
+{% endset %}
+
+{% set tooltip_advanced_demo %}
+<bolt-tooltip>
+  <bolt-button>Download</bolt-button>
+  <span slot="content">File size: 25MB</span>
+</bolt-tooltip>
+{% endset %}
+
+
+<bolt-text headline>Web Component Usage</bolt-text>
+<bolt-text>
+  Bolt Tooltip is a web component, you can simply use <bolt-code-snippet display="inline" lang="html">&lt;bolt-tooltip&gt;</bolt-code-snippet> in the markup to make it render.
+</bolt-text>
+{% include tooltip_example.code_example(tooltip_demo) %}
+
+<bolt-text headline>Prop Usage</bolt-text>
+<bolt-text>
+  Configure the tooltip with the properties specified in the schema.
+</bolt-text>
+{% include tooltip_example.code_example(tooltip_prop_demo) %}
+
+<bolt-text headline>Advanced Usage</bolt-text>
+<bolt-text>
+  Any element can be passed as the trigger.
+</bolt-text>
+{% include tooltip_example.code_example(tooltip_advanced_demo) %}

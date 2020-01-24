@@ -1,15 +1,13 @@
-import { withContext, define, props, css } from '@bolt/core/utils';
-import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
-
+import { html, customElement } from '@bolt/element';
+import { withContext, props, css } from '@bolt/core-v3.x/utils';
+import { withLitHtml } from '@bolt/core-v3.x/renderers/renderer-lit-html';
 import styles from './accordion-item.scss';
 import { AccordionItemTrigger } from './AccordionItemTrigger';
 import { AccordionItemContent } from './AccordionItemContent';
 import { AccordionContext } from '../accordion';
 
-@define
-class AccordionItem extends withContext(withLitHtml()) {
-  static is = 'bolt-accordion-item';
-
+@customElement('bolt-accordion-item')
+class AccordionItem extends withContext(withLitHtml) {
   static props = {
     open: props.boolean,
     contentSpacing: props.string,

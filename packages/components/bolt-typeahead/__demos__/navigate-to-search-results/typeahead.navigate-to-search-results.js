@@ -56,30 +56,40 @@ const items = [
   },
 ];
 
-if (typeahead) {
-  typeahead.addEventListener('ready', function(e) {
-    if (e.detail.name === 'bolt-typeahead') {
-      typeahead.items = items;
-      typeahead.on('onSelected', (element, event, suggestion) => {
-        const itemSelected = element.items.filter(
-          item => item.label === suggestion.suggestionValue,
-        )[0];
+const setupEventHandlers = () => {
+  typeahead.items = items;
+  typeahead.on('onSelected', (element, event, suggestion) => {
+    const itemSelected = element.items.filter(
+      item => item.label === suggestion.suggestionValue,
+    )[0];
 
-        if (itemSelected) {
-          if (itemSelected.label) {
-            if (window.location !== window.parent.location) {
-              // const win = window.open(`${itemSelected.url}`, '_blank');
-              const win = window.open(
-                `https://www.pega.com/search?q=${itemSelected.label}`,
-                '_blank',
-              );
-              win.focus();
-            } else {
-              window.location = `https://www.pega.com/search?q=${itemSelected.label}`;
-            }
-          }
+    if (itemSelected) {
+      if (itemSelected.label) {
+        if (window.location !== window.parent.location) {
+          // const win = window.open(`${itemSelected.url}`, '_blank');
+          const win = window.open(
+            `https://www.pega.com/search?q=${itemSelected.label}`,
+            '_blank',
+          );
+          win.focus();
+        } else {
+          window.location = `https://www.pega.com/search?q=${itemSelected.label}`;
         }
-      });
+      }
     }
   });
+};
+
+if (typeahead) {
+  if (typeahead) {
+    if (typeahead._wasInitiallyRendered) {
+      setupEventHandlers();
+    }
+
+    typeahead.addEventListener('ready', e => {
+      if (e.detail.name === 'bolt-typeahead') {
+        setupEventHandlers();
+      }
+    });
+  }
 }
