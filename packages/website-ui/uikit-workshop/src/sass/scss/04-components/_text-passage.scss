@@ -23,7 +23,7 @@
 	 * Link within the text passage
 	 */
   a {
-    color: $pl-color-gray-50;
+    color: inherit;
     text-decoration: underline;
     transition: opacity $pl-animate-quick ease;
 
@@ -112,8 +112,10 @@
 	 */
   ul {
     list-style: square;
-    margin-left: 0.9rem;
+    margin-left: 0;
+    margin-top: 0;
     margin-bottom: 1rem;
+    padding-left: 1rem;
 
     li:last-child {
       margin-bottom: 0;
@@ -125,8 +127,10 @@
 	 */
   ol {
     list-style: decimal;
-    margin-left: 0.9rem;
+    margin-left: 0;
+    margin-top: 0;
     margin-bottom: 1rem;
+    padding-left: 1rem;
 
     li:last-child {
       margin-bottom: 0;

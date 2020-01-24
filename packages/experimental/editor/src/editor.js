@@ -2,6 +2,8 @@ import * as grapesjs from 'grapesjs';
 import { html, render } from '@bolt/core-v3.x/renderers';
 import { query, IS_PROD } from '@bolt/core-v3.x/utils';
 import { triggerAnimsInEl } from '@bolt/components-animate/utils';
+import { boltTwoCharacterLayoutIs } from '@bolt/micro-journeys/src/two-character-layout';
+import { boltCharacterIs } from '@bolt/micro-journeys/src/character';
 import { setupPanels } from './panels';
 import { setupBlocks } from './blocks';
 import { setupComponents } from './components';
@@ -27,6 +29,27 @@ export function enableEditor({ space, uiWrapper, config }) {
   };
 
   const stylePrefix = 'pega-editor-';
+
+  /**
+   * Refresh editor DOM content to see changes reflected after edits may mess up
+   * layout. Any miscellaneous refresh tasks can be put here.
+   *
+   * @param editor {grapesjs.Editor}
+   */
+  const refreshContent = editor => {
+    const document = editor.Canvas.getDocument();
+    document
+      .querySelectorAll(boltTwoCharacterLayoutIs)
+      .forEach(twoCharLayout => {
+        twoCharLayout.triggerLayoutRecalculate();
+      });
+    document.querySelectorAll('*').forEach(el => {
+      if (el.setupSlots) el.setupSlots();
+      if (el.triggerUpdate) el.triggerUpdate();
+      if (el.triggerAnimIns) el.triggerAnimIns();
+      if (el.triggerAnimIn) el.triggerAnimIn();
+    });
+  };
 
   /**
    * Move bolt-interactive-step or bolt-interactive-pathway up or down.
@@ -226,6 +249,17 @@ export function enableEditor({ space, uiWrapper, config }) {
                 },
               },
             },
+            {
+              id: 'refresh-content',
+              label: 'Refresh Content',
+              togglable: false,
+              className: 'gjs-pega-editor-panels-btn--refresh-content',
+              command: {
+                run: (/** @type {grapesjs.Editor} */ editor) => {
+                  refreshContent(editor);
+                },
+              },
+            },
           ],
         },
         {
@@ -311,44 +345,33 @@ export function enableEditor({ space, uiWrapper, config }) {
   }) {
     const selected = editor.getSelected();
     const components = selected.components();
-    /** @type {grapesjs.ComponentObject} */
-    const data = {
-      type: 'div', // temp tag, will remove after
-      content: '',
-    };
-
-    let tempComponent;
+    let newComponent;
     if (slotName === 'default') {
-      tempComponent = components.add(data);
+      // If slot is default, simply add it.
+      newComponent = components.add(content);
     } else {
-      const slots = selected.find('[slot]');
+      // If slot is already set up, add to existing slot.
       const [slot] = selected.find(`${name} > [slot="${slotName}"]`);
       if (slot) {
         const slotComponents = slot.components();
-        tempComponent = slotComponents.add(data);
+        newComponent = slotComponents.add(content);
       } else {
-        const [newSlot] = selected.append(
+        // Create new content for slot.
+        newComponent = selected.append(
           shouldCreateAnimatableSlotIfNotPresent
-            ? `<bolt-animate slot="${slotName}"></bolt-animate>`
-            : `<div slot="${slotName}"></div>`,
+            ? `<bolt-animate slot="${slotName}">${content}</bolt-animate>`
+            : `<div slot="${slotName}">${content}</div>`,
         );
-        const slotComponents = newSlot.components();
-        tempComponent = slotComponents.add(data);
       }
     }
-
-    const newComponent = tempComponent.replaceWith(content);
-    // if `content` has more than one top level element, we'll get an array, so we need to get the parent element to select in editor and trigger possible animations
-    const singleComponent =
-      Array.isArray(newComponent) && newComponent.length > 0
-        ? newComponent[0].parent()
-        : newComponent;
-
-    if (selectAfterAdd) editor.select(singleComponent);
-    if (triggerAnimsAfterAdd) {
-      const newEl = singleComponent.getEl();
-      triggerAnimsInEl(newEl);
-    }
+    // Force slots to refresh.
+    selected.getEl().setupSlots();
+    selected.getEl().triggerUpdate();
+    // Handle case where multiple components are being added.
+    const newComponentSingle =
+      newComponent.length > 1 ? newComponent[0].parent() : newComponent[0];
+    if (selectAfterAdd) editor.select(newComponentSingle);
+    if (triggerAnimsAfterAdd) triggerAnimsInEl(newComponentSingle.getEl());
     return newComponent;
   }
 
@@ -397,15 +420,54 @@ export function enableEditor({ space, uiWrapper, config }) {
   }
 
   /**
-   * Render slot controls for selected component if they exist.
+   * Add prop schema descriptions underneath traits on select if not present.
    *
    * @param {grapesjs.Component} model
    * @return {void}
    */
   editor.on('component:selected', model => {
+    model.attributes.traits.models.forEach(trait => {
+      if (trait.attributes.description) {
+        // setTimeout because view hasn't yet been created for trait in component:selected.
+        setTimeout(() => {
+          const traitDescClass = 'trait-description';
+          if (
+            trait.view.el.lastElementChild.getAttribute('class') !==
+            traitDescClass
+          ) {
+            const template = document.createElement('template');
+            template.innerHTML = `<div class="${traitDescClass}" style="font-size: smaller"><i>${trait.attributes.description}</i></div>`;
+            trait.view.el.appendChild(template.content.firstChild);
+          }
+        }, 0);
+      }
+    });
+  });
+
+  /**
+   * Render slot controls for selected component if they exist.
+   *
+   * @param {grapesjs.Component} model
+   * @return {void}
+   */
+  editor.on('component:selected', (/** @type {grapesjs.Component} */ model) => {
     const name = model.getName().toLowerCase();
     const slotControls = model.getSlotControls && model.getSlotControls();
     renderSlotControls({ slotControls, name });
+  });
+
+  editor.on('component:remove', (/** @type {grapesjs.Component} */ model) => {
+    // Editor removes all components in order on save/cleanup. Don't check then.
+    if (!editor.isSaving) {
+      const parent = model.parent();
+      // Remove empty parent `bolt-animate`s
+      if (parent && parent.attributes.tagName === 'bolt-animate') {
+        if (parent && parent.view.el.assignedSlot) {
+          parent.view.el.assignedSlot.remove();
+        }
+        parent.remove();
+      }
+    }
   });
 
   /**

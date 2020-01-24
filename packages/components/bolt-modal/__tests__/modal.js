@@ -143,8 +143,19 @@ describe('<bolt-modal> Component', () => {
         screenshots[size] = [];
 
         await page.setViewport({ height, width });
-        await page.evaluate(() => {
-          document.querySelector('bolt-modal').show();
+        await page.evaluate(async () => {
+          const modals = Array.from(document.querySelectorAll('bolt-modal'));
+          return await Promise.all(
+            modals.map(elem => {
+              if (elem._wasInitiallyRendered) return;
+              return new Promise((resolve, reject) => {
+                elem.addEventListener('ready', resolve);
+                elem.addEventListener('error', reject);
+              });
+            }),
+          ).then(() => {
+            modals[0].show();
+          });
         });
         await page.waitFor(500);
 

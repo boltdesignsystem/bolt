@@ -108,7 +108,22 @@
  * Pattern Header inside modal
  */
 .pl-c-pattern-info__header {
+  padding-bottom: 0.5rem;
   margin-bottom: 0.5rem;
+  position: relative;
+
+  &:after {
+    display: block;
+    height: 1px;
+    content: '';
+    width: 100%;
+    background-color: currentColor;
+    opacity: 0.1;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 0;
+  }
 }
 
 /**

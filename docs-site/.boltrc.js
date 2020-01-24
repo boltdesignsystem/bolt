@@ -25,12 +25,16 @@ const config = {
     enabled: true,
   },
   sourceMaps: !(process.env.TRAVIS || argv.prod),
-  enableCache: true,
+  enableCache: !(process.env.TRAVIS || argv.prod),
   enableSSR: false, // temp disabled till Travis issue fixed
   extraTwigNamespaces: {
     bolt: {
       recursive: true,
       paths: ['src/templates', '../packages/components'],
+    },
+    'bolt-blueprints': {
+      recursive: true,
+      paths: ['./src/pages/pattern-lab/_patterns/03-blueprints'],
     },
     pl: {
       recursive: true,
@@ -39,10 +43,6 @@ const config = {
         /* Example of including additional component paths to include in the main @bolt namespace */
         // path.relative(process.cwd(), path.dirname(require.resolve('@bolt/components-sticky/package.json'))),
       ],
-    },
-    'bolt-assets': {
-      recursive: true,
-      paths: ['../www/build'],
     },
     utils: {
       recursive: true,
@@ -57,6 +57,11 @@ const config = {
     sets: [
       {
         base: './src/assets/images',
+        glob: '**',
+        dist: '../www/images',
+      },
+      {
+        base: './src/pages/pattern-lab/_patterns/03-blueprints/00-assets/images',
         glob: '**',
         dist: '../www/images',
       },
@@ -76,9 +81,10 @@ const config = {
   components: {
     global: [
       // helper components that are only used internally
+      '@bolt/blueprints',
       '@bolt/shadow-toggle',
       '@bolt/theme-switcher',
-
+      '@bolt/components-toolbar',
       '@bolt/components-radio-switch',
       '@bolt/components-carousel',
       '@bolt/global',
@@ -92,11 +98,11 @@ const config = {
       '@bolt/components-placeholder',
       '@bolt/components-accordion',
       '@bolt/components-action-blocks',
-      '@bolt/components-banner',
       '@bolt/components-dropdown',
       '@bolt/components-background',
       '@bolt/components-background-shapes',
       '@bolt/components-band',
+      '@bolt/components-banner',
       '@bolt/components-block-list',
       '@bolt/components-blockquote',
       '@bolt/components-breadcrumb',
@@ -116,6 +122,7 @@ const config = {
       '@bolt/components-image',
       '@bolt/components-link',
       '@bolt/components-list',
+      '@bolt/components-menu',
       '@bolt/components-modal',
       '@bolt/components-nav-indicator',
       '@bolt/components-nav-priority',
@@ -125,6 +132,7 @@ const config = {
       '@bolt/components-page-footer',
       '@bolt/components-page-header',
       '@bolt/components-pagination',
+      '@bolt/components-popover',
       '@bolt/components-share',
       '@bolt/components-search-filter',
       '@bolt/components-site',
