@@ -428,6 +428,15 @@ export function setupBolt(editor) {
     ],
   });
 
+  const iconNameCompat = {
+    description: iconSchema.properties.name.description,
+    type: 'string',
+    // @ts-ignore
+    enum: iconSchema.properties.name.anyOf[0].enum,
+  };
+
+  iconSchema.properties.name.type = 'string';
+
   registerBoltComponent({
     name: 'bolt-list',
     registerBlock: true,
@@ -453,7 +462,13 @@ export function setupBolt(editor) {
     schema: iconSchema,
     // draggable: '[slot]',
     initialContent: [`<span></span>`],
-    propsToTraits: ['size', 'name', 'background', 'color'],
+    propsToTraits: ['size', 'background', 'color'],
+    extraTraits: [
+      convertSchemaPropToTrait({
+        name: 'name',
+        prop: iconNameCompat,
+      }),
+    ],
   });
 
   registerBoltComponent({
