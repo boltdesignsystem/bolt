@@ -37,6 +37,7 @@ class SVGAnimations extends withLitContext {
     const theme = this.context.theme || this.theme || '';
     const classes = cx('c-bolt-svg-animations', {
       [`t-bolt-${theme}`]: theme !== 'undefined' && !!theme,
+      [`c-bolt-svg-animations__type--${props.animType}`]: true,
     });
 
     const SVGTag = SVGs[`${props.animType}`];

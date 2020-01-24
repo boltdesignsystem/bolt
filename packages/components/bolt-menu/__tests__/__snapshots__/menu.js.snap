@@ -1,0 +1,245 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<bolt-menu> Component basic usage 1`] = `
+<bolt-menu role="menu">
+  <replace-with-children class="c-bolt-menu">
+    <replace-with-children class="c-bolt-menu__title c-bolt-menu__title--spacing-small">
+      <span slot="title">
+        Menu title
+      </span>
+    </replace-with-children>
+    <bolt-menu-item>
+      <bolt-trigger role="menuitem"
+                    display="block"
+                    no-outline
+      >
+        <button type="button"
+                class="c-bolt-trigger c-bolt-trigger--display-block c-bolt-trigger--cursor-pointer c-bolt-trigger--outline-none"
+                is="shadow-root"
+        >
+          <ssr-keep for="bolt-menu-item"
+                    class="c-bolt-menu-item c-bolt-menu-item--spacing-small "
+          >
+            Menu item 1
+          </ssr-keep>
+        </button>
+      </bolt-trigger>
+    </bolt-menu-item>
+    <bolt-menu-item url="https://pega.com">
+      <bolt-trigger role="menuitem"
+                    url="https://pega.com"
+                    display="block"
+                    no-outline
+      >
+        <a href="https://pega.com"
+           class="c-bolt-trigger c-bolt-trigger--display-block c-bolt-trigger--cursor-pointer c-bolt-trigger--outline-none"
+           is="shadow-root"
+        >
+          <ssr-keep for="bolt-menu-item"
+                    class="c-bolt-menu-item c-bolt-menu-item--spacing-small "
+          >
+            Menu item 2
+          </ssr-keep>
+        </a>
+      </bolt-trigger>
+    </bolt-menu-item>
+    <bolt-menu-item>
+      <bolt-trigger role="menuitem"
+                    display="block"
+                    no-outline
+      >
+        <button type="button"
+                class="c-bolt-trigger c-bolt-trigger--display-block c-bolt-trigger--cursor-pointer c-bolt-trigger--outline-none"
+                is="shadow-root"
+        >
+          <ssr-keep for="bolt-menu-item"
+                    class="c-bolt-menu-item c-bolt-menu-item--spacing-small c-bolt-menu-item--last-item"
+          >
+            Menu item 2
+          </ssr-keep>
+        </button>
+      </bolt-trigger>
+    </bolt-menu-item>
+  </replace-with-children>
+</bolt-menu>
+`;
+
+exports[`<bolt-menu> Component menu item spacing: medium 1`] = `
+<bolt-menu spacing="medium"
+           role="menu"
+>
+  <replace-with-children class="c-bolt-menu">
+    <bolt-menu-item>
+      <bolt-trigger role="menuitem"
+                    display="block"
+                    no-outline
+      >
+        <button type="button"
+                class="c-bolt-trigger c-bolt-trigger--display-block c-bolt-trigger--cursor-pointer c-bolt-trigger--outline-none"
+                is="shadow-root"
+        >
+          <ssr-keep for="bolt-menu-item"
+                    class="c-bolt-menu-item c-bolt-menu-item--spacing-medium "
+          >
+            Menu item 1
+          </ssr-keep>
+        </button>
+      </bolt-trigger>
+    </bolt-menu-item>
+    <bolt-menu-item>
+      <bolt-trigger role="menuitem"
+                    display="block"
+                    no-outline
+      >
+        <button type="button"
+                class="c-bolt-trigger c-bolt-trigger--display-block c-bolt-trigger--cursor-pointer c-bolt-trigger--outline-none"
+                is="shadow-root"
+        >
+          <ssr-keep for="bolt-menu-item"
+                    class="c-bolt-menu-item c-bolt-menu-item--spacing-medium "
+          >
+            Menu item 2
+          </ssr-keep>
+        </button>
+      </bolt-trigger>
+    </bolt-menu-item>
+    <bolt-menu-item>
+      <bolt-trigger role="menuitem"
+                    display="block"
+                    no-outline
+      >
+        <button type="button"
+                class="c-bolt-trigger c-bolt-trigger--display-block c-bolt-trigger--cursor-pointer c-bolt-trigger--outline-none"
+                is="shadow-root"
+        >
+          <ssr-keep for="bolt-menu-item"
+                    class="c-bolt-menu-item c-bolt-menu-item--spacing-medium c-bolt-menu-item--last-item"
+          >
+            Menu item 2
+          </ssr-keep>
+        </button>
+      </bolt-trigger>
+    </bolt-menu-item>
+  </replace-with-children>
+</bolt-menu>
+`;
+
+exports[`<bolt-menu> Component menu item spacing: small 1`] = `
+<bolt-menu spacing="small"
+           role="menu"
+>
+  <replace-with-children class="c-bolt-menu">
+    <bolt-menu-item>
+      <bolt-trigger role="menuitem"
+                    display="block"
+                    no-outline
+      >
+        <button type="button"
+                class="c-bolt-trigger c-bolt-trigger--display-block c-bolt-trigger--cursor-pointer c-bolt-trigger--outline-none"
+                is="shadow-root"
+        >
+          <ssr-keep for="bolt-menu-item"
+                    class="c-bolt-menu-item c-bolt-menu-item--spacing-small "
+          >
+            Menu item 1
+          </ssr-keep>
+        </button>
+      </bolt-trigger>
+    </bolt-menu-item>
+    <bolt-menu-item>
+      <bolt-trigger role="menuitem"
+                    display="block"
+                    no-outline
+      >
+        <button type="button"
+                class="c-bolt-trigger c-bolt-trigger--display-block c-bolt-trigger--cursor-pointer c-bolt-trigger--outline-none"
+                is="shadow-root"
+        >
+          <ssr-keep for="bolt-menu-item"
+                    class="c-bolt-menu-item c-bolt-menu-item--spacing-small "
+          >
+            Menu item 2
+          </ssr-keep>
+        </button>
+      </bolt-trigger>
+    </bolt-menu-item>
+    <bolt-menu-item>
+      <bolt-trigger role="menuitem"
+                    display="block"
+                    no-outline
+      >
+        <button type="button"
+                class="c-bolt-trigger c-bolt-trigger--display-block c-bolt-trigger--cursor-pointer c-bolt-trigger--outline-none"
+                is="shadow-root"
+        >
+          <ssr-keep for="bolt-menu-item"
+                    class="c-bolt-menu-item c-bolt-menu-item--spacing-small c-bolt-menu-item--last-item"
+          >
+            Menu item 2
+          </ssr-keep>
+        </button>
+      </bolt-trigger>
+    </bolt-menu-item>
+  </replace-with-children>
+</bolt-menu>
+`;
+
+exports[`<bolt-menu> Component menu item spacing: xsmall 1`] = `
+<bolt-menu spacing="xsmall"
+           role="menu"
+>
+  <replace-with-children class="c-bolt-menu">
+    <bolt-menu-item>
+      <bolt-trigger role="menuitem"
+                    display="block"
+                    no-outline
+      >
+        <button type="button"
+                class="c-bolt-trigger c-bolt-trigger--display-block c-bolt-trigger--cursor-pointer c-bolt-trigger--outline-none"
+                is="shadow-root"
+        >
+          <ssr-keep for="bolt-menu-item"
+                    class="c-bolt-menu-item c-bolt-menu-item--spacing-xsmall "
+          >
+            Menu item 1
+          </ssr-keep>
+        </button>
+      </bolt-trigger>
+    </bolt-menu-item>
+    <bolt-menu-item>
+      <bolt-trigger role="menuitem"
+                    display="block"
+                    no-outline
+      >
+        <button type="button"
+                class="c-bolt-trigger c-bolt-trigger--display-block c-bolt-trigger--cursor-pointer c-bolt-trigger--outline-none"
+                is="shadow-root"
+        >
+          <ssr-keep for="bolt-menu-item"
+                    class="c-bolt-menu-item c-bolt-menu-item--spacing-xsmall "
+          >
+            Menu item 2
+          </ssr-keep>
+        </button>
+      </bolt-trigger>
+    </bolt-menu-item>
+    <bolt-menu-item>
+      <bolt-trigger role="menuitem"
+                    display="block"
+                    no-outline
+      >
+        <button type="button"
+                class="c-bolt-trigger c-bolt-trigger--display-block c-bolt-trigger--cursor-pointer c-bolt-trigger--outline-none"
+                is="shadow-root"
+        >
+          <ssr-keep for="bolt-menu-item"
+                    class="c-bolt-menu-item c-bolt-menu-item--spacing-xsmall c-bolt-menu-item--last-item"
+          >
+            Menu item 2
+          </ssr-keep>
+        </button>
+      </bolt-trigger>
+    </bolt-menu-item>
+  </replace-with-children>
+</bolt-menu>
+`;
