@@ -1,4 +1,4 @@
-@import '@bolt/core';
+@import '@bolt/core-v3.x';
 
 // Shared base text styles used across all headline, subheadline, eyebrow and vanilla DIY text components
 @mixin bolt-headline() {
@@ -47,6 +47,10 @@
 
   &--bold {
     @include bolt-font-weight(bold);
+  }
+
+  &--light {
+    @include bolt-font-weight(light);
   }
 }
 

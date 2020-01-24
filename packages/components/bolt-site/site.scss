@@ -4,102 +4,28 @@
 
 // Provides over-arching page wrapper + sticky footer functionality
 
-/**
- * 1. Avoid the IE 10-11 `min-height` bug.
- * 2. Set `flex-shrink` to `0` to prevent some browsers from
- *    letting these items shrink to smaller than their content's default
- *    minimum size. See http://bit.ly/1Mn35US for details.
- * 3. Use `%` instead of `vh` since `vh` is buggy in older mobile Safari.
- */
-
-// :root {
-//   --space: 1.5em;
-//   --space-lg: 2em;
-//   // --bg-color: hsl(150, 45%, 50%);
-// }
-
 .c-bolt-site {
   display: grid;
   overflow-x: hidden; //Helps prevent horizontal scrolling in Chrome on Windows machines. Seems to be working fine w/ native position sticky at first glance.
-  min-height: 100vh;
-  grid-template-areas: 'header' 'content' 'footer';
-  // grid-template-areas: "header header header" "navigation main ads" "footer footer footer";
-  grid-template-columns: auto 1fr auto;
+  grid-template-areas:
+    "header"
+    "content"
+    "footer";
+  height: 100vh;
+  grid-template-columns: 1fr;
   grid-template-rows: auto 1fr auto;
-
-  > * {
-    grid-column-start: 1;
-    grid-column-end: 3;
-  }
-
-  @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
-    height: 100vh;
-    overflow-x: hidden; // Prevent content from spilling over
-  }
 }
 
+.c-page-header,
 .c-bolt-site__header {
   grid-area: header;
-  grid-column-start: 1;
-  grid-column-end: 3;
-}
-
-.c-bolt-site__footer {
-  grid-area: footer;
-  grid-column-start: 1;
-  grid-column-end: 3;
 }
 
 .c-bolt-site__content {
   grid-area: content;
   width: 100%;
-  grid-column-start: 1;
-  grid-column-end: 3;
-  // grid-column: 2 / -2;
 }
 
-.c-bolt-site__content--middle {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  > * {
-    display: block;
-    flex-basis: auto;
-    flex-grow: 1; // How we make sure children don't report 0px widths
-    width: 100%;
-    -ms-flex-preferred-size: auto;
-
-    @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
-      margin: 0; //Fix flexbox weirdness
-    }
-  }
+.c-bolt-site__footer {
+  grid-area: footer;
 }
-
-// .c-bolt-site__header,
-// .c-bolt-site__footer {
-//   flex: none; /* 2 */
-//   width: 100%;
-// }
-//
-// .c-bolt-site__content {
-//   flex-grow: 1; /* 2 */
-//   flex-shrink: 0; /* 2 */
-//   flex-basis: auto; /* 2 */
-//   width: 100%;
-// }
-//
-// .c-bolt-site__content:after {
-//   content: '\00a0'; /* &nbsp; */
-//   display: block;
-//   height: 0;
-//   visibility: hidden;
-// }
-
-// .c-bolt-site__content--full {
-//   padding: 0;
-// }
-//
-// .c-bolt-site__content--full:after {
-//   content: none;
-// }

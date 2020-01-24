@@ -1,16 +1,14 @@
-import { withContext, define, props } from '@bolt/core/utils';
+import { html, customElement } from '@bolt/element';
+import { withContext, props } from '@bolt/core-v3.x/utils';
 import classNames from 'classnames/bind';
-import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
-
+import { withLitHtml } from '@bolt/core-v3.x/renderers/renderer-lit-html';
 import styles from './_list-item.scss';
 import { ListContext } from './list';
 
 let cx = classNames.bind(styles);
 
-@define
-class BoltListItem extends withContext(withLitHtml()) {
-  static is = 'bolt-list-item';
-
+@customElement('bolt-list-item')
+class BoltListItem extends withContext(withLitHtml) {
   static props = {
     last: props.boolean,
   };

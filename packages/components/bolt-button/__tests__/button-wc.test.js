@@ -1,10 +1,10 @@
 // WIP - still working on babel transpiling needed for this!
 // Inspired heavily by https://github.com/mixpanel/panel/blob/master/test/server/component.js
 
-import '@bolt/core/utils/testing-helpers/dom-shims';
+import '@bolt/core-v3.x/utils/testing-helpers/dom-shims';
 
-import nextAnimationFrame from '@bolt/core/utils/testing-helpers/next-animation-frame';
-import { compactHtml } from '@bolt/core/utils/testing-helpers/compact-html';
+import nextAnimationFrame from '@bolt/core-v3.x/utils/testing-helpers/next-animation-frame';
+import { compactHtml } from '@bolt/core-v3.x/utils/testing-helpers/compact-html';
 import { BoltButton } from '../src/button';
 
 customElements.define(`bolt-button`, BoltButton);

@@ -3,6 +3,35 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.15.2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/compare/v2.15.1...v2.15.2) (2020-01-21)
+
+**Note:** Version bump only for package @bolt/components-image
+
+
+
+
+
+# [2.15.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/compare/v2.14.3...v2.15.0) (2020-01-17)
+
+**Note:** Version bump only for package @bolt/components-image
+
+
+
+
+
+# [2.14.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/compare/v2.13.3...v2.14.0) (2020-01-06)
+
+
+### Bug Fixes
+
+* update @bolt/core-v3.x references to v2.13.0 ([28d7bcb](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/commit/28d7bcb))
+* update Nightwatch test URL used to verify injected Cards + Images rendering as expected ([f657058](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/commit/f657058))
+* update snapshots + Nightwatch test ([5e267ad](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/commit/5e267ad))
+
+
+
+
+
 # [2.12.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/compare/v2.11.4...v2.12.0) (2019-11-26)
 
 

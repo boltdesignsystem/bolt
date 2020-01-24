@@ -1,15 +1,9 @@
-import { define, props } from '@bolt/core/utils';
-import { h, withPreact } from '@bolt/core/renderers';
+import { customElement } from '@bolt/element';
+import { props } from '@bolt/core-v3.x/utils';
+import { h, withPreact } from '@bolt/core-v3.x/renderers';
 
-@define
-class BoltVideoMeta extends withPreact() {
-  static is = `${bolt.namespace}-video-meta`;
-
-  constructor(self) {
-    self = super(self);
-    return self;
-  }
-
+@customElement('bolt-video-meta')
+class BoltVideoMeta extends withPreact {
   static props = {
     duration: props.string,
     title: props.string,

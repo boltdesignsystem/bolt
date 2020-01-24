@@ -1,5 +1,6 @@
-{% block global_header %}{% endblock %}
-
+{% block global_header %}
+  {% include "@bolt/page-header.twig" %}
+{% endblock %}
 
 <div class="c-bolt-site__content c-bolt-site__content--middle"><!-- vertically center -->
   <div class="o-bolt-wrapper">
@@ -12,8 +13,7 @@
     </main>
   </div>
 </div>
-<div class="c-bolt-site__footer c-bolt-page-footer">
-  <div class="o-bolt-wrapper">
-    {% include "@bolt/page-footer.twig" %}
-  </div>
-</div>
+
+{% block global_footer %}
+  {% include "@bolt/page-footer.twig" %}
+{% endblock %}

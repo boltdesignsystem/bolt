@@ -1,10 +1,11 @@
-import { define, hasNativeShadowDomSupport } from '@bolt/core/utils';
-import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
+import { html, customElement } from '@bolt/element';
+import { hasNativeShadowDomSupport } from '@bolt/core-v3.x/utils';
+import { withLitHtml } from '@bolt/core-v3.x/renderers/renderer-lit-html';
 
 import gumshoe from 'gumshoejs';
 import isVisible from 'is-visible';
 
-import '@bolt/core/utils/optimized-resize';
+import '@bolt/core-v3.x/utils/optimized-resize';
 
 // const indicatorElement = '.js-bolt-nav-indicator';
 const navLinkElement = 'bolt-navlink'; // Custom element
@@ -150,10 +151,8 @@ let gumshoeStateModule = (function() {
   return pub;
 })();
 
-@define
-class BoltNavIndicator extends withLitHtml() {
-  static is = 'bolt-nav-indicator';
-
+@customElement('bolt-nav-indicator')
+class BoltNavIndicator extends withLitHtml {
   // Behavior for `<bolt-nav>` parent container
   static get observedAttributes() {
     return ['offset'];

@@ -1,0 +1,45 @@
+{% set usage %}
+{% verbatim %}
+  // Standard card-replacement
+
+  {% include "@bolt-components-card-replacement/card-replacement.twig" with {
+  media: {
+    image: {
+      src: "/images/placeholders/landscape-16x9-mountains.jpg",
+      alt: "Image alt.",
+    },
+  },
+  body: {
+    eyebrow: "This is an eyebrow",
+    headline: "This is a headline",
+    paragraph: "This is a paragraph.",
+  },
+  actions: [
+    {
+      text: "This is a button",
+      url: "https://pega.com",
+    },
+  ],
+} only %}
+
+  // Custom Content
+
+  {% include "@bolt-components-card-replacement/card-replacement.twig" with {
+  media: {
+    content: "Pass custom content to the card-replacement media.",
+  },
+  body: {
+    content: "Pass custom content to the card-replacement body.",
+  },
+} only %}
+
+  {% include "@bolt-components-card-replacement/card-replacement.twig" with {
+  content: "Pass completely custom content to the card-replacement, without the styles of the card-replacement body.",
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% include "@utils/docs.twig" with {
+  componentName: "card-replacement",
+  usage: usage
+} only %}

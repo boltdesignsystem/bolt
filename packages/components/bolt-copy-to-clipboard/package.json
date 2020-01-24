@@ -1,28 +1,28 @@
 {
   "name": "@bolt/components-copy-to-clipboard",
+  "version": "2.15.2",
   "description": "Copy to Clipboard Component in Bolt",
-  "version": "2.12.0",
   "homepage": "https://boltdesignsystem.com",
-  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bolt-design-system/bolt/issues"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/bolt-design-system/bolt/"
   },
-  "bugs": {
-    "url": "https://github.com/bolt-design-system/bolt/issues"
-  },
-  "schema": "copy-to-clipboard.schema.yml",
-  "style": "src/copy-to-clipboard.scss",
+  "license": "MIT",
   "main": "src/copy-to-clipboard.js",
-  "twig": "src/copy-to-clipboard.twig",
+  "style": "src/copy-to-clipboard.scss",
+  "dependencies": {
+    "@bolt/components-icon": "^2.15.2",
+    "@bolt/components-link": "^2.15.2",
+    "@bolt/core-v3.x": "^2.15.2",
+    "clipboard": "^2.0.0"
+  },
   "publishConfig": {
     "access": "public"
   },
-  "dependencies": {
-    "@bolt/components-icon": "^2.12.0",
-    "@bolt/components-link": "^2.12.0",
-    "@bolt/core": "^2.12.0",
-    "clipboard": "^2.0.0"
-  },
-  "gitHead": "d41aa75ae3d195d9d7fb3952eed5e0ae80988133"
+  "gitHead": "d41aa75ae3d195d9d7fb3952eed5e0ae80988133",
+  "schema": "copy-to-clipboard.schema.yml",
+  "twig": "src/copy-to-clipboard.twig"
 }

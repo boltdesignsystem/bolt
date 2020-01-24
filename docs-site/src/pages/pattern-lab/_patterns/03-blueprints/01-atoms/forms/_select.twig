@@ -1,0 +1,17 @@
+{% extends "@bolt-components-form/form-element.twig" %}
+
+{% set label_display = 'after' %}
+
+{% set label %}
+  {% include("@bolt-components-form/form-label.twig") with {
+    "title": title,
+    "displayType": "floating"
+  } %}
+{% endset %}
+
+{% set children %}
+  {% include("@bolt-components-form/form-select.twig") with {
+    "attributes": selectAttributes,
+    "options": options
+  } %}
+{% endset %}

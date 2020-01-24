@@ -253,9 +253,11 @@ async function buildBoltManifest() {
         config.components.global.map(getPkgInfo),
       );
 
-      const globalSrcPlusDeps = await aggregateBoltDependencies(globalSrc);
-
-      boltManifest.components.global = globalSrcPlusDeps;
+      // @todo: re-evaluate if we really should be doing this...
+      // boltManifest.components.global = globalSrc;
+      boltManifest.components.global = await aggregateBoltDependencies(
+        globalSrc,
+      );
     }
     if (config.components.individual) {
       const individualSrc = await Promise.all(
@@ -397,6 +399,10 @@ async function getTwigNamespaceConfig(relativeFrom, extraNamespaces = {}) {
       'bolt-data': {
         recursive: true,
         paths: [config.dataDir],
+      },
+      'bolt-assets': {
+        recursive: true,
+        paths: [config.buildDir],
       },
     },
     namespaces,

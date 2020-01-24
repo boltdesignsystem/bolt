@@ -9,8 +9,14 @@
 {% if items %}
   {% set params = {} %}
   {% set list = [] %}
-
   {% for item in items %}
+    {# allow chip size to be passed along from the parent if it doesn't already exist #}
+    {% if size and not item.size %}
+      {% set item = item | merge({
+        size: size
+      }) %}
+    {% endif %}
+
     {% set chip %}
       {% include "@bolt/chip.twig" with item only %}
     {% endset %}
