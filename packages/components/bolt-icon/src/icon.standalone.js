@@ -3,19 +3,39 @@ import {
   colorContrast,
   css,
   props,
+  hasNativeShadowDomSupport,
   rgb2hex,
   supportsCSSVars,
 } from '@bolt/core-v3.x/utils';
+// used to repurpose the HTML from the injected SVG sprite to work around situations where we can't reference these symbols
+import BrowserSprite from 'svg-baker-runtime/src/browser-sprite';
 import { spacingSizes } from '@bolt/core-v3.x/data';
-import { h, withPreact } from '@bolt/core-v3.x/renderers';
-
-import PubSub from 'pubsub-js';
-import * as Icons from '../registry';
+import { h, withPreact, Markup } from '@bolt/core-v3.x/renderers';
 import styles from './icon.scss';
+import schema from '../icon.schema.json';
+import CustomIcon from './icon.jsx';
 
-const backgroundStyles = ['circle', 'square'];
+const svgIcons = require.context('@bolt/components-icons', true, /\.svg$/);
 
-const colors = ['teal', 'blue'];
+const spriteNodeId = '__SVG_SPRITE_NODE__';
+const spriteGlobalVarName = '__SVG_SPRITE__';
+const isSpriteExists = !!window[spriteGlobalVarName];
+
+// eslint-disable-next-line import/no-mutable-exports
+let sprite;
+
+if (isSpriteExists) {
+  sprite = window[spriteGlobalVarName];
+} else {
+  sprite = new BrowserSprite({ attrs: { id: spriteNodeId } });
+  window[spriteGlobalVarName] = sprite;
+}
+
+const Icons = svgIcons.keys().reduce((images, path) => {
+  const key = path.substring(path.lastIndexOf('/') + 1, path.lastIndexOf('.'));
+  images[key] = svgIcons(path).default;
+  return images;
+}, {});
 
 @customElement('bolt-icon')
 class BoltIcon extends withPreact {
@@ -24,45 +44,25 @@ class BoltIcon extends withPreact {
     size: props.string,
     background: props.string,
     color: props.string,
-
     // programatically spell out the contrast color that needs to get used
     contrastColor: props.string,
   };
 
-  connectedCallback() {
-    super.connectedCallback && super.connectedCallback();
-    const elem = this;
+  constructor(self) {
+    self = super(self);
+    this.useShadow =
+      hasNativeShadowDomSupport && this.getRootNode() instanceof ShadowRoot;
     this.useCssVars = supportsCSSVars;
+    return self;
+  }
 
+  connecting() {
     this.state = {
-      primaryColor: 'var(--bolt-theme-icon, currentColor)',
-      secondaryColor: 'rgba(var(--bolt-theme-background), 1)',
+      primaryColor:
+        'var(--bolt-icon-primary-color, var(--bolt-theme-icon, currentColor))',
+      secondaryColor:
+        'var(--bolt-icon-secondary-color, rgba(var(--bolt-theme-background), 1))',
     };
-
-    // listen for page changes to decide when colors need to get recalculated
-    if (!this.useCssVars) {
-      const checkIfColorChanged = function(msg, data) {
-        /**
-         * The container with the class change contains this particular icon element so
-         * we should double-check the color contrast values.
-         */
-        if (data.target.contains) {
-          if (data.target.contains(elem)) {
-            const recalculatedSecondaryColor = colorContrast(
-              window.getComputedStyle(elem).getPropertyValue('color'),
-            );
-
-            elem.setAttribute('contrast-color', recalculatedSecondaryColor);
-            elem.state.secondaryColor = recalculatedSecondaryColor;
-          }
-        }
-      };
-
-      this.colorObserver = PubSub.subscribe(
-        'component.icon',
-        checkIfColorChanged,
-      );
-    }
 
     if (!this.useCssVars) {
       this.state.primaryColor = 'currentColor';
@@ -73,16 +73,18 @@ class BoltIcon extends withPreact {
         this.state.secondaryColor = colorContrast(
           rgb2hex(window.getComputedStyle(this).getPropertyValue('color')),
         );
+
+        if (this.style.color) {
+          this.state.secondaryColor = 'currentColor';
+        }
+        this.state.secondaryColor === '#000000' ? (this.isOnLight = true) : '';
+        this.state.secondaryColor === '#FFFFFF' ? (this.isOnDark = true) : '';
       }
     }
   }
 
   disconnectedCallback() {
     super.disconnectedCallback && super.disconnectedCallback();
-
-    if (this.colorObserver) {
-      PubSub.unsubscribe(this.colorObserver);
-    }
   }
 
   render() {
@@ -95,72 +97,68 @@ class BoltIcon extends withPreact {
         ? `c-bolt-icon--${size}`
         : '',
       name ? `c-bolt-icon--${name}` : '',
-      color && colors.includes(color) ? `c-bolt-icon--${color}` : '',
+      background && schema.properties.background.enum.includes(background)
+        ? `has-background`
+        : '',
+      background && schema.properties.background.enum.includes(background)
+        ? `has-${background}-background`
+        : '',
+      color && schema.properties.color.enum.includes(color)
+        ? `c-bolt-icon--${color}`
+        : '',
     );
 
-    const iconClasses = css('c-bolt-icon__icon');
+    const iconClasses = css(
+      'c-bolt-icon__icon',
+      size && spacingSizes[size] && spacingSizes[size] !== ''
+        ? `c-bolt-icon__icon--${size}`
+        : '',
+    );
 
     const backgroundClasses = css(
       'c-bolt-icon__background-shape',
-      background && backgroundStyles.includes(background)
+      background && schema.properties.background.enum.includes(background)
         ? `c-bolt-icon__background-shape--${background}`
         : '',
     );
 
-    const Icon = name;
-    const IconTag = Icons.get(`${Icon}`);
-    const iconSize =
-      size && spacingSizes[size]
-        ? spacingSizes[size].replace('rem', '') * (16 / 2)
-        : spacingSizes.medium.replace('rem', '') * (16 / 2);
+    const DefaultIcon = Icons[`${name}`];
+    const inShadowDom =
+      hasNativeShadowDomSupport && this.getRootNode() instanceof ShadowRoot;
+    const svgSymbol =
+      (name && sprite && sprite?.node?.querySelector(`#${name}`)?.outerHTML) ||
+      '';
 
     return (
-      <div className={classes}>
-        {this.useShadow && <style>{styles[0][1]}</style>}
-        <IconTag
-          className={iconClasses}
-          size={iconSize}
-          bgColor={primaryColor}
-          fgColor={secondaryColor}
-        />
-        {background && size === 'xlarge' && (
-          <span className={backgroundClasses} />
+      <span className={classes}>
+        {inShadowDom && <style>{styles[0][1]}</style>}
+        {(inShadowDom || window.self !== window.top) && sprite && sprite.node && (
+          <svg
+            style="position:absolute;width:0px;height:0px;"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink">
+            <Markup markup={svgSymbol} trim={false}></Markup>
+          </svg>
         )}
-      </div>
+        {DefaultIcon ? (
+          <DefaultIcon
+            className={iconClasses}
+            bgColor={primaryColor}
+            fgColor={secondaryColor}
+          />
+        ) : (
+          // @ts-ignore
+          <CustomIcon
+            glyph={name}
+            className={iconClasses}
+            bgColor={primaryColor}
+            fgColor={secondaryColor}
+          />
+        )}
+        {background && <span className={backgroundClasses} />}
+      </span>
     );
   }
-}
-
-/**
- * If CSS Vars are unsupported, listen for class changes on the page to selectively
- * decide when to check to see if an icon component's color should change.
- */
-const observedElements = [];
-
-// Observe body + children for changes, but only once.
-if (!supportsCSSVars && !observedElements.includes(document.body)) {
-  observedElements.push(document.body);
-
-  const observer = new MutationObserver(mutations => {
-    mutations.forEach(mutation => {
-      if (mutation.attributeName === 'class') {
-        // publish a topic asyncronously
-        PubSub.publish('component.icon', {
-          event: 'color-change',
-          target: mutation.target,
-        });
-      }
-    });
-  });
-
-  // Attach the mutation observer to the body to listen for className changes
-  observer.observe(document.body, {
-    attributes: true,
-    attributeFilter: ['class'],
-    attributeOldValue: false,
-    childList: false,
-    subtree: true,
-  });
 }
 
 export { BoltIcon };

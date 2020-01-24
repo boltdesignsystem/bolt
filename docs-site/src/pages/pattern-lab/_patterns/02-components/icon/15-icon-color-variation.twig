@@ -1,0 +1,36 @@
+{% set schema = bolt.data.components['@bolt-components-icon'].schema %}
+
+{% set icon_demo %}
+  {% for color in schema.properties.color.enum %}
+    <bolt-list display="flex" class="u-bolt-margin-right-small u-bolt-padding-small u-bolt-margin-bottom-small u-bolt-inline-flex" spacing="small" inset>
+      {% for background in schema.properties.background.enum %}
+        <bolt-list-item class="u-bolt-text-align-center u-bolt-padding-xsmall">
+          {% include "@bolt-components-icon/icon.twig" with {
+            name: "marketing-gray",
+            size: "large",
+            color: color,
+            background: background,
+            attributes: {
+              class: [
+                "u-bolt-margin-bottom-small"
+              ],
+              style: [
+                "min-height: 56px"
+              ]
+            }
+          }%}
+          <bolt-text font-size="xsmall" class="u-bolt-margin-bottom-none"><strong>background:</strong> {{ background }}</bolt-text>
+          <bolt-text font-size="xsmall" class="u-bolt-margin-bottom-none"><strong>color:</strong> {{ color }}</bolt-text>
+        </bolt-list-item>
+      {% endfor %}
+    </bolt-list>
+  {% endfor %}
+{% endset %}
+
+<div class="t-bolt-xlight u-bolt-padding-small u-bolt-padding-bottom-none">
+  {{ icon_demo }}
+</div>
+
+<div class="t-bolt-dark u-bolt-padding-small u-bolt-padding-bottom-none">
+  {{ icon_demo }}
+</div>
