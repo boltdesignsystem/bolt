@@ -130,14 +130,20 @@ bolt-carousel {
 
 // extra space around-specific styles
 bolt-carousel {
-  --bolt-carousel-space-around: 5.1px; // vs 5px to work around sub-pixel rendering
+  --bolt-carousel-space-around: #{$bolt-carousel-space-around};
+
   width: 100%;
+  width: calc(100% + #{$bolt-carousel-space-around} * 2);
   width: calc(100% + var(--bolt-carousel-space-around) * 2);
+  margin-right: calc(#{$bolt-carousel-space-around} * -1);
   margin-right: calc(var(--bolt-carousel-space-around) * -1);
+  margin-left: calc(#{$bolt-carousel-space-around} * -1);
   margin-left: calc(var(--bolt-carousel-space-around) * -1);
 
   &.is-ready {
+    padding-right: #{$bolt-carousel-space-around};
     padding-right: var(--bolt-carousel-space-around);
-    padding-left:var(--bolt-carousel-space-around);
+    padding-left: #{$bolt-carousel-space-around};
+    padding-left: var(--bolt-carousel-space-around);
   }
 }

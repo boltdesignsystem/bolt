@@ -1,6 +1,7 @@
 @import '@bolt/core-v3.x';
 
 $bolt-carousel-bullet-height: 8px;
+$bolt-carousel-space-around: 5.1px; // vs 5px to work around sub-pixel rendering
 
 @mixin bolt-carousel-scrollbar() {
   &::-webkit-scrollbar {
