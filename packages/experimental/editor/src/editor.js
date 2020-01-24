@@ -444,6 +444,12 @@ export function enableEditor({ space, uiWrapper, config }) {
     });
   });
 
+  /**
+   * Render slot controls for selected component if they exist.
+   *
+   * @param {grapesjs.Component} model
+   * @return {void}
+   */
   editor.on('component:selected', (/** @type {grapesjs.Component} */ model) => {
     const name = model.getName().toLowerCase();
     const slotControls = model.getSlotControls && model.getSlotControls();
@@ -464,8 +470,43 @@ export function enableEditor({ space, uiWrapper, config }) {
     }
   });
 
+  /**
+   * Remove slot controls for selected component.
+   *
+   * @param {grapesjs.Component} model
+   * @return {void}
+   */
   editor.on('component:deselected', model => {
     render(html``, editorSlots.slotControls);
+  });
+
+  /**
+   * Remove click handlers from selected components to prevent interactions
+   * preventing text editing in the editor.
+   *
+   * @param {grapesjs.Component} model
+   * @return {void}
+   */
+  editor.on('component:selected', (model) => {
+    // clickHandler is set in declarativeClickHandler and attached in BoltActionElement
+    if (model.view.el.clickHandler) {
+      model.view.el.removeEventListener('click', model.view.el.clickHandler);
+      model.view.el.removedClickHandler = model.view.el.clickHandler;
+    }
+  });
+
+  /**
+   * Re-add removed clickHandlers to selected components
+   *
+   * @param {grapesjs.Component} model
+   * @return {void}
+   */
+  editor.on('component:deselected', (/** @type {grapesjs.Component} */ model) => {
+    console.log(model.view.el);
+    if (model.view.el.removedClickHandler) {
+      model.view.el.addEventListener('click', model.view.el.removedClickHandler);
+      delete model.view.el.removedClickHandler;
+    }
   });
 
   editor.render();
