@@ -1,5 +1,5 @@
 import { customElement, BoltElement, html, unsafeCSS } from '@bolt/element';
-import { IS_DEV } from '@bolt/core-v3.x/utils';
+import { getUniqueId, IS_DEV } from '@bolt/core-v3.x/utils';
 import classNames from 'classnames/bind';
 import { withContext } from 'wc-context';
 import { getBounds, getCurrentPosition } from './waypoint';
@@ -44,7 +44,8 @@ class BoltToc extends withContext(BoltElement) {
   constructor() {
     super();
 
-    this.uuid = this.uuid || Math.floor(10000 + Math.random() * 90000);
+    this.uuid =
+      this.uuid || bolt.config.env === 'test' ? '12345' : getUniqueId();
 
     // These are fixed for now, make into props if necessary
     this.boundaryTop = 0;
