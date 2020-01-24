@@ -696,17 +696,28 @@ async function createWebpackConfig(buildConfig) {
     );
   }
 
-  // if esModules support is enabled in the .boltrc config, serve up just the modern bundle for local dev + legacy + modern bundles in prod.
-  // Otherwise, continue serving the legacy bundle to everyone.
-  if (config.esModules) {
-    if (config.prod) {
-      return [modernWebpackConfig, legacyWebpackConfig];
-    } else {
-      return [modernWebpackConfig];
-    }
-  } else {
-    return [legacyWebpackConfig];
+  /** if esModules support is enabled in the .boltrc config?
+   *  - for dev builds, compile only the modern bundle (unless the compat flag is enabled
+   *  - for prod builds...
+   *    - compile the modern + legacy builds if compat is undefined OR enabled
+   *    - compile ONLY the modern builds if compat mode is specifically disabled (ex. Jest)
+   *
+   * if esModules are NOT enabled, ONLY compile the legacy build (original build process)
+   */
+
+  let outputConfig = [];
+
+  // If compat is enabled, it means we need the legacy bundle (regardless of whether the modern bundle is also built).
+  if (config.compat) {
+    outputConfig.push(legacyWebpackConfig);
   }
+
+  // If esModules support is enabled, we'll compile the modern bundle.
+  if (config.esModules) {
+    outputConfig.push(modernWebpackConfig);
+  }
+
+  return outputConfig;
 }
 
 // Helper function to associate each unique language in the build config with a separate Webpack build instance (making filenames, etc unique);
