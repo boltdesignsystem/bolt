@@ -3,6 +3,32 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.16.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icon/compare/v2.15.2...v2.16.0) (2020-01-24)
+
+
+### Bug Fixes
+
+* add missing Icon dependency post-pulling in v2.13.0 ([e2d26f2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icon/commit/e2d26f2f428d765a4de459963097b384c42d1438))
+* address prettier issues ([54cd576](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icon/commit/54cd57613d946deb04dbaf21bb3ca15217110314))
+* icon adjustments ([a846ee0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icon/commit/a846ee0ba1ed92847541c11f6bc92f09bd75be27))
+* Icon color fix for IE 11 ([a6278be](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icon/commit/a6278beb9e7f178b309c54c6653bf016fb9cbed8))
+* partial fix for shadow dom rendering ([1d03ac9](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icon/commit/1d03ac945614ee8414a8ec3490aa8b7610d1a45c))
+* re-test Icon updates ([c64faee](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icon/commit/c64faee4b2ebf33c011aa6e411a457da94e83ee1))
+* test IE 11 fix ([c9f743c](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icon/commit/c9f743c04926914666281f4592065c645f869a08))
+* update snapshots + fix prettier issues ([3eed559](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icon/commit/3eed559af2e4ca279ad3328157f822588e97e3a3))
+* workaround to address Shadow DOM encapsulation nested context ([7475619](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icon/commit/74756195f6560fb166c645ad422f90f0ae0f602a))
+
+
+### Features
+
+* add new helper Webpack plugins ([7eb295c](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icon/commit/7eb295c4e934c4a1e10e44d5fbb072905d0a7efd))
+* finish wiring up refactored Icon component ([a9e3bd8](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icon/commit/a9e3bd898f88d12de95aac1f21afc88eefaf45a5))
+* update JSON schema validation used by Icon ([cba55e5](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icon/commit/cba55e551604d38c69089de1041fd54eed48ea41))
+
+
+
+
+
 ## [2.15.2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icon/compare/v2.15.1...v2.15.2) (2020-01-21)
 
 **Note:** Version bump only for package @bolt/components-icon

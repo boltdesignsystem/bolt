@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.16.0](https://github.com/bolt-design-system/bolt/compare/v2.15.2...v2.16.0) (2020-01-24)
+
+
+### Bug Fixes
+
+* **editor:** add ts-ignore to list schema import ([500d364](https://github.com/bolt-design-system/bolt/commit/500d36480d459d86962e431d5e9e00b55a5b3698))
+* **editor:** fix add of empty bolt-animate and replacement with content that triggered removal of empty before replacement ([7ffea26](https://github.com/bolt-design-system/bolt/commit/7ffea26d939d5ff0f26595db2a5e9d49090133d6))
+* **editor:** restore editability to Animates added via new slot ([e4225e1](https://github.com/bolt-design-system/bolt/commit/e4225e172c57ae9778dde4d59b1e11e4193b48fa))
+* **micro-journeys:** make Two Character wider ([81e7ba6](https://github.com/bolt-design-system/bolt/commit/81e7ba6126095cb0cbc41a141707c3359cf6cd9e))
+
+
+### Features
+
+* **editor:** add constrain bottom Character param to allow prevent side content overlap with long sides ([f856ed8](https://github.com/bolt-design-system/bolt/commit/f856ed8088635f327487c54706f0e9aecdc4704b))
+* **editor:** create box float direction param for Dialog to allow for removal of excessive spacing when no arrow direction specified ([57609ec](https://github.com/bolt-design-system/bolt/commit/57609ec44a490f3cd8e5329de76f86eeedc93e15))
+* **editor:** make bolt-list properties editable ([2994db2](https://github.com/bolt-design-system/bolt/commit/2994db2c55194919596830c03054f6eef81b52d4))
+* **editor:** refresh all the things on 'Refresh Content' ([006bfef](https://github.com/bolt-design-system/bolt/commit/006bfef19c286053fd536fd8ee5c638967112638))
+* **editor:** remove click handlers on element select; add function docs; add visual test ([a8449bb](https://github.com/bolt-design-system/bolt/commit/a8449bba9ee3fd0bb5f0ed5540b882605bac77f7))
+
+
+
+
+
 ## [2.15.2](https://github.com/bolt-design-system/bolt/compare/v2.15.1...v2.15.2) (2020-01-21)
 
 **Note:** Version bump only for package @bolt/components-editor

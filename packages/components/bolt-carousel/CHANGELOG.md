@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.16.0](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-carousel/compare/v2.15.2...v2.16.0) (2020-01-24)
+
+
+### Bug Fixes
+
+* update snapshots + fix prettier issues ([3eed559](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-carousel/commit/3eed559af2e4ca279ad3328157f822588e97e3a3))
+
+
+### Features
+
+* add new helper Webpack plugins ([7eb295c](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-carousel/commit/7eb295c4e934c4a1e10e44d5fbb072905d0a7efd))
+
+
+
+
+
 ## [2.15.2](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-carousel/compare/v2.15.1...v2.15.2) (2020-01-21)
 
 **Note:** Version bump only for package @bolt/components-carousel

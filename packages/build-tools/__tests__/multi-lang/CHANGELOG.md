@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.16.0](https://github.com/boltdesignsystem/bolt/compare/v2.15.2...v2.16.0) (2020-01-24)
+
+
+### Bug Fixes
+
+* update Jest snapshot for build tools ([7c8bc46](https://github.com/boltdesignsystem/bolt/commit/7c8bc464e5bc6c235ebb81bbb2fbb031037df1df))
+* update Jest snapshots ([7723275](https://github.com/boltdesignsystem/bolt/commit/77232750bdd8c6d351d0eac35d79f779e55b1fa6))
+
+
+### Features
+
+* add new helper Webpack plugins ([7eb295c](https://github.com/boltdesignsystem/bolt/commit/7eb295c4e934c4a1e10e44d5fbb072905d0a7efd))
+
+
+
+
+
 ## [2.15.2](https://github.com/boltdesignsystem/bolt/compare/v2.15.1...v2.15.2) (2020-01-21)
 
 **Note:** Version bump only for package @bolt/build-tools--test-multi-lang
