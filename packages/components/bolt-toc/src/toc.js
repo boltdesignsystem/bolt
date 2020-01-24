@@ -269,6 +269,10 @@ class BoltToc extends withContext(BoltElement) {
     // @todo: add mutation observer if we want this to update when items added or removed
     this.waypointData = this.itemData;
     this.updateWaypoints();
+
+    // Returns first active item or undefined
+    this.activeItem = Array.from(this.items).find(item => item.active);
+    this.updateProvidedContext('activeItem', this.activeItem);
   }
 
   render() {

@@ -66,8 +66,8 @@ class BoltTocItem extends withContext(BoltElement) {
   }
 
   contextChangedCallback(name, oldValue, value) {
-    if (name === 'activeItem') {
-      if (this === value) {
+    if (name === 'activeItem' && value) {
+      if (value === this) {
         this.active = true;
       } else {
         this.active = false;
