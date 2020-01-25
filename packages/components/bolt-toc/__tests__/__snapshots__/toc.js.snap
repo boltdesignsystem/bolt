@@ -1,0 +1,158 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<bolt-toc> Component Basic usage 1`] = `
+<bolt-toc>
+  <nav class="c-bolt-toc"
+       aria-labelledby="js-bolt-toc-12345"
+  >
+    <h2 class="c-bolt-toc__header c-bolt-toc__header--hidden"
+        id="js-bolt-toc-12345"
+    >
+      Table of Content
+    </h2>
+    <ssr-keep for="bolt-toc"
+              class="c-bolt-toc__list"
+              role="list"
+    >
+      <bolt-toc-item url="#section-one"
+                     role="presentation"
+      >
+        <replace-with-grandchildren role="listitem">
+          <a class="c-bolt-toc-item "
+             href="#section-one"
+          >
+            Section One
+          </a>
+        </replace-with-grandchildren>
+      </bolt-toc-item>
+      <bolt-toc-item url="#section-two"
+                     role="presentation"
+      >
+        <replace-with-grandchildren role="listitem">
+          <a class="c-bolt-toc-item "
+             href="#section-two"
+          >
+            Section Two
+          </a>
+        </replace-with-grandchildren>
+      </bolt-toc-item>
+      <bolt-toc-item url="#section-three"
+                     role="presentation"
+      >
+        <replace-with-grandchildren role="listitem">
+          <a class="c-bolt-toc-item "
+             href="#section-three"
+          >
+            Section Three
+          </a>
+        </replace-with-grandchildren>
+      </bolt-toc-item>
+    </ssr-keep>
+  </nav>
+</bolt-toc>
+`;
+
+exports[`<bolt-toc> Component Manuualy set the current item 1`] = `
+<bolt-toc>
+  <nav class="c-bolt-toc"
+       aria-labelledby="js-bolt-toc-12345"
+  >
+    <h2 class="c-bolt-toc__header c-bolt-toc__header--hidden"
+        id="js-bolt-toc-12345"
+    >
+      Table of Content
+    </h2>
+    <ssr-keep for="bolt-toc"
+              class="c-bolt-toc__list"
+              role="list"
+    >
+      <bolt-toc-item url="#section-one"
+                     role="presentation"
+      >
+        <replace-with-grandchildren role="listitem">
+          <a class="c-bolt-toc-item "
+             href="#section-one"
+          >
+            Section One
+          </a>
+        </replace-with-grandchildren>
+      </bolt-toc-item>
+      <bolt-toc-item url="#section-two"
+                     active
+                     role="presentation"
+      >
+        <replace-with-grandchildren role="listitem">
+          <a class="c-bolt-toc-item c-bolt-toc-item--current"
+             href="#section-two"
+          >
+            Section Two
+          </a>
+        </replace-with-grandchildren>
+      </bolt-toc-item>
+      <bolt-toc-item url="#section-three"
+                     role="presentation"
+      >
+        <replace-with-grandchildren role="listitem">
+          <a class="c-bolt-toc-item "
+             href="#section-three"
+          >
+            Section Three
+          </a>
+        </replace-with-grandchildren>
+      </bolt-toc-item>
+    </ssr-keep>
+  </nav>
+</bolt-toc>
+`;
+
+exports[`<bolt-toc> Component Table of content with a header 1`] = `
+<bolt-toc header="This is the header">
+  <nav class="c-bolt-toc"
+       aria-labelledby="js-bolt-toc-12345"
+  >
+    <h2 class="c-bolt-toc__header"
+        id="js-bolt-toc-12345"
+    >
+      This is the header
+    </h2>
+    <ssr-keep for="bolt-toc"
+              class="c-bolt-toc__list"
+              role="list"
+    >
+      <bolt-toc-item url="#section-one"
+                     role="presentation"
+      >
+        <replace-with-grandchildren role="listitem">
+          <a class="c-bolt-toc-item "
+             href="#section-one"
+          >
+            Section One
+          </a>
+        </replace-with-grandchildren>
+      </bolt-toc-item>
+      <bolt-toc-item url="#section-two"
+                     role="presentation"
+      >
+        <replace-with-grandchildren role="listitem">
+          <a class="c-bolt-toc-item "
+             href="#section-two"
+          >
+            Section Two
+          </a>
+        </replace-with-grandchildren>
+      </bolt-toc-item>
+      <bolt-toc-item url="#section-three"
+                     role="presentation"
+      >
+        <replace-with-grandchildren role="listitem">
+          <a class="c-bolt-toc-item "
+             href="#section-three"
+          >
+            Section Three
+          </a>
+        </replace-with-grandchildren>
+      </bolt-toc-item>
+    </ssr-keep>
+  </nav>
+</bolt-toc>
+`;
