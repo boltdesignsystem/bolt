@@ -15,19 +15,19 @@
             </div>
           {% endif %}
 
-          {{ toolbar_content_before | default(content_before) }}
+          {{ toolbar_content_before | default(content_before) | raw }}
         </div>
       {% endif %}
 
       {% if toolbar_content or content %}
         <div class="c-bolt-toolbar__item c-bolt-toolbar__item--center">
-          {{ toolbar_content | default(content) }}
+          {{ toolbar_content | default(content) | raw }}
         </div>
       {% endif %}
 
       {% if toolbar_content_after or content_after %}
         <div class="c-bolt-toolbar__item c-bolt-toolbar__item--after">
-          {{ toolbar_content_after | default(content_after) }}
+          {{ toolbar_content_after | default(content_after) | raw }}
         </div>
       {% endif %}
     </div>
