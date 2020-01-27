@@ -255,8 +255,8 @@ async function createWebpackConfig(buildConfig) {
         react: 'preact/compat',
         'react-dom/test-utils': 'preact/test-utils',
         'react-dom': 'preact/compat',
-        '../node_modules/svg-baker-runtime/browser-symbol.js': resolve.sync('svg-baker-runtime/browser-symbol.js'),
-        '../node_modules/svg-sprite-loader/runtime/browser-sprite.build.js': resolve.sync('svg-sprite-loader/runtime/browser-sprite.build.js'),
+        'svg-baker-runtime/browser-symbol.js': resolve.sync('svg-baker-runtime/browser-symbol.js'),
+        'svg-sprite-loader/runtime/browser-sprite.build.js': resolve.sync('svg-sprite-loader/runtime/browser-sprite.build.js'),
       },
     },
     module: {
