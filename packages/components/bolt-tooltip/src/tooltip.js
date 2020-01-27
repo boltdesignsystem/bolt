@@ -163,7 +163,8 @@ class BoltTooltip extends BoltElement {
 
     this.$boundary =
       this.$boundary ||
-      (this.boundary && this.closest(this.boundary)) || undefined;
+      (this.boundary && this.closest(this.boundary)) ||
+      undefined;
 
     if (this.tooltip && this.content) {
       this.popper = createPopper(this.tooltip, this.content, {

@@ -19,8 +19,12 @@ module.exports = function runtimeGenerator({
     path.relative(path.dirname(symbol.request.file), iconModulePath),
   );
 
-  const spriteModuleAbsPath = path.isAbsolute(spriteModule) ? spriteModule : path.join(context, spriteModule);
-  const symbolModuleAbsPath = path.isAbsolute(symbolModule) ? symbolModule : path.join(context, symbolModule);
+  const spriteModuleAbsPath = path.isAbsolute(spriteModule)
+    ? spriteModule
+    : path.join(context, spriteModule);
+  const symbolModuleAbsPath = path.isAbsolute(symbolModule)
+    ? symbolModule
+    : path.join(context, symbolModule);
 
   const spriteRequest = stringifyRequest(loaderContext, spriteModuleAbsPath);
   const symbolRequest = stringifyRequest(loaderContext, symbolModuleAbsPath);

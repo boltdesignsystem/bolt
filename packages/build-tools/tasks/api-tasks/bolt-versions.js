@@ -8,7 +8,7 @@ const InCache = require('incache');
 const Octokit = require('@octokit/rest').plugin(
   require('@octokit/plugin-throttling'),
 );
-const { createTokenAuth } = require("@octokit/auth-token");
+const { createTokenAuth } = require('@octokit/auth-token');
 
 let versionSpinner;
 

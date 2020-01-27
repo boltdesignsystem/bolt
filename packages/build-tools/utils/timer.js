@@ -8,13 +8,13 @@ function start() {
 function end(startTime, showMilliseconds = true) {
   const diff = convertHrtime(process.hrtime(startTime));
 
-  if (showMilliseconds){
+  if (showMilliseconds) {
     return prettyMs(diff.milliseconds, {
-      secondsDecimalDigits: 1
+      secondsDecimalDigits: 1,
     });
   } else {
     return prettyMs(diff.milliseconds, {
-      secondsDecimalDigits: 0
+      secondsDecimalDigits: 0,
     });
   }
 }

@@ -12,9 +12,10 @@ export const connectionBand = ({ direction, theme }) => {
     #animatedConnectionBand--${theme}--${direction} * { animation-duration: 1s;
     animation-iteration-count: infinite; animation-timing-function:
     cubic-bezier(0, 0, 1, 1); } #connectionGradientBG { fill:
-    url(#connectionGradient--${theme}); } #connectionDirectionAnchor { transform: translate(-48px) translateZ(0); } #connectionArrows { animation-fill-mode:
-    backwards; animation-name: connectionArrowScroll; animation-timing-function:
-    cubic-bezier(0, 0, 1, 1); }
+    url(#connectionGradient--${theme}); } #connectionDirectionAnchor {
+    transform: translate(-48px) translateZ(0); } #connectionArrows {
+    animation-fill-mode: backwards; animation-name: connectionArrowScroll;
+    animation-timing-function: cubic-bezier(0, 0, 1, 1); }
   `;
   const gradientColors =
     theme === 'dark'
