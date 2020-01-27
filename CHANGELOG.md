@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.16.1](https://github.com/boltdesignsystem/bolt/compare/v2.16.0...v2.16.1) (2020-01-27)
+
+
+### Bug Fixes
+
+* add raw filters to the Toolbar + Icon component's Twig templates ([472c23d](https://github.com/boltdesignsystem/bolt/commit/472c23da670ba1c39f7a497cd36a92c7fc785b92))
+* update the docs site-specific Twig template to address the CSS specificity / load order issue with styles in IE 11 ([9474a55](https://github.com/boltdesignsystem/bolt/commit/9474a55b71d9c5267c92346b2bd88b01b6e6ceae))
+
+
+
+
+
 # [2.16.0](https://github.com/boltdesignsystem/bolt/compare/v2.15.2...v2.16.0) (2020-01-24)
 
 
