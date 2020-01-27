@@ -17,6 +17,7 @@ const merge = require('webpack-merge');
 const SassDocPlugin = require('@bolt/sassdoc-webpack-plugin');
 const { getConfig } = require('@bolt/build-utils/config-store');
 const { boltWebpackProgress } = require('@bolt/build-utils/webpack-helpers');
+const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
 const {
   webpackStats,
   statsPreset,
@@ -55,7 +56,6 @@ async function createWebpackConfig(buildConfig) {
   });
 
   // map out Twig namespaces with the NPM package name
-  // const npmToTwigNamespaceMap = await mapComponentNameToTwigNamespace();
 
   // filename suffix to tack on based on lang being compiled for
   let langSuffix = `${config.lang ? '-' + config.lang : ''}`;
@@ -284,7 +284,70 @@ async function createWebpackConfig(buildConfig) {
           ],
         },
         {
-          test: /\.(cur|svg|png|jpg)$/,
+          test: /\.svg$/,
+          oneOf: [
+            {
+              issuer: /\.scss$/,
+              use: [
+                {
+                  loader: 'file-loader',
+                  options: {
+                    name: '[name].[ext]',
+                  },
+                },
+                {
+                  loader: 'svgo-loader',
+                  options: {
+                    plugins: require('./svgo-plugins'),
+                  },
+                },
+              ],
+            },
+            {
+              use: [
+                {
+                  loader: 'babel-loader',
+                  options: {
+                    babelrc: false,
+                    presets: [legacyBabelConfig],
+                  },
+                },
+                {
+                  loader: 'svg-sprite-loader',
+                  options: {
+                    runtimeGenerator: require.resolve(
+                      './svg-to-icon-component-runtime-generator',
+                    ),
+                    runtimeOptions: {
+                      iconModule: path.join(
+                        path.dirname(require.resolve('@bolt/components-icon')),
+                        '/icon.jsx',
+                      ),
+                    },
+                    extract: true,
+                    spriteFilename: svgPath =>
+                      `bolt-svg-sprite${svgPath.substr(-4)}`,
+                  },
+                },
+                {
+                  loader: '@bolt/file-passthrough-loader',
+                  options: {
+                    name: 'icons/[name].[ext]',
+                  },
+                },
+                '@bolt/svg-transform-loader',
+                {
+                  loader: 'svgo-loader',
+                  options: {
+                    plugins: require('./svgo-plugins'),
+                  },
+                },
+              ],
+            },
+          ],
+        },
+        {
+          test: /\.(cur|png|jpg)$/,
           use: [
             {
               loader: 'file-loader',
@@ -311,6 +374,8 @@ async function createWebpackConfig(buildConfig) {
             new TerserPlugin({
               test: /\.m?js(\?.*)?$/i,
               sourceMap: config.sourceMaps,
+              cache: true,
+              parallel: true,
               terserOptions: {
                 safari10: true,
               },
@@ -319,6 +384,13 @@ async function createWebpackConfig(buildConfig) {
         : [],
     },
     plugins: [
+      new SpriteLoaderPlugin({
+        plainSprite: true,
+        spriteAttrs: {
+          id: '__SVG_SPRITE_NODE__',
+          style: 'position: absolute; width: 0; height: 0',
+        },
+      }),
       new webpack.ProgressPlugin(boltWebpackProgress), // Ties together the Bolt custom Webpack messages + % complete
       new WriteFilePlugin(),
       new webpack.NoEmitOnErrorsPlugin(),
@@ -419,7 +491,7 @@ async function createWebpackConfig(buildConfig) {
     module: {
       rules: [
         {
-          test: /\.(js|tsx|mjs)$/,
+          test: /\.(js|jsx|tsx|mjs)$/,
           exclude: thePath => {
             if (
               thePath.includes('custom-elements-es5-adapter.js') ||
@@ -549,7 +621,7 @@ async function createWebpackConfig(buildConfig) {
     module: {
       rules: [
         {
-          test: /\.(js|tsx|mjs)$/,
+          test: /\.(js|jsx|tsx|mjs)$/,
           exclude: /(node_modules)/,
           use: [
             {
@@ -624,17 +696,28 @@ async function createWebpackConfig(buildConfig) {
     );
   }
 
-  // if esModules support is enabled in the .boltrc config, serve up just the modern bundle for local dev + legacy + modern bundles in prod.
-  // Otherwise, continue serving the legacy bundle to everyone.
-  if (config.esModules) {
-    if (config.prod) {
-      return [modernWebpackConfig, legacyWebpackConfig];
-    } else {
-      return [modernWebpackConfig];
-    }
-  } else {
-    return [legacyWebpackConfig];
+  /** if esModules support is enabled in the .boltrc config?
+   *  - for dev builds, compile only the modern bundle (unless the compat flag is enabled
+   *  - for prod builds...
+   *    - compile the modern + legacy builds if compat is undefined OR enabled
+   *    - compile ONLY the modern builds if compat mode is specifically disabled (ex. Jest)
+   *
+   * if esModules are NOT enabled, ONLY compile the legacy build (original build process)
+   */
+
+  let outputConfig = [];
+
+  // If compat is enabled, it means we need the legacy bundle (regardless of whether the modern bundle is also built).
+  if (config.compat) {
+    outputConfig.push(legacyWebpackConfig);
   }
+
+  // If esModules support is enabled, we'll compile the modern bundle.
+  if (config.esModules) {
+    outputConfig.push(modernWebpackConfig);
+  }
+
+  return outputConfig;
 }
 
 // Helper function to associate each unique language in the build config with a separate Webpack build instance (making filenames, etc unique);

@@ -63,6 +63,9 @@
 <bolt-tooltip
   {% if outer_classes %} class="{{ outer_classes|join(' ') }}" {% endif %}
   {{ this.props|without("trigger")|without("content")|without("class") }}
+  {% if fallbackPlacements %}
+    fallback-placements='{{ fallbackPlacements|json_encode() }} '
+  {% endif %}
   uuid="{{ uuid }}"
 >
   <replace-with-children {% if inner_classes %} class="{{ inner_classes|join(' ') }}" {% endif %}>

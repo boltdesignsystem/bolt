@@ -1,6 +1,6 @@
 @import '@bolt/core-v3.x';
 
-bolt-character {
+html bolt-character {
   display: block;
 }
 
@@ -9,6 +9,7 @@ bolt-svg-animations {
   width: 100%;
 }
 
+bolt-character > bolt-animate,
 bolt-animate[slot="connection"] {
   display: block;
 }
@@ -18,7 +19,7 @@ bolt-animate[slot="connection"] {
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  max-width: 500px;
+  max-width: 425px;
   margin-bottom:bolt-spacing(xsmall);
 
   // IE 11 collapses flexible width, but we need flex for alignment.
@@ -43,34 +44,48 @@ bolt-animate[slot="connection"] {
     margin-bottom: bolt-spacing(small);
   }
 
-  &--small &__center--wrapper,
-  &--small &__main-image--wrapper {
-    width: 60px;
-    min-width: 60px;
-    height: 60px;
-    min-height: 60px;
+  &--small {
+    $width: 60px;
+
+    .c-bolt-character__main-image--wrapper {
+      width: $width;
+      height: $width;
+    }
   }
 
-  &--medium &__center--wrapper,
-  &--medium  &__main-image--wrapper {
-    width: 75px;
-    min-width: 75px;
-    height: 75px;
-    min-height: 75px;
+  &--medium {
+    $width: 80px;
+
+    .c-bolt-character__main-image--wrapper {
+      width: $width;
+      height: $width;
+    }
   }
 
-  &--large &__center--wrapper,
-  &--large &__main-image--wrapper {
-    width: 120px;
-    min-width: 120px;
-    height: 120px;
-    min-height: 120px;
+  &--large {
+    $width: 120px;
+
+    .c-bolt-character__main-image--wrapper {
+      width: $width;
+      height: $width;
+    }
+  }
+
+  &__center-inline--wrapper {
+    display: flex;
+    flex: 1 1 auto;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
   }
 
   &__center--wrapper {
     display: flex;
-    flex: 1 0 33%;
+    flex: 1 1 auto;
+    flex-direction: column;
+    flex-wrap: nowrap;
     justify-content: center;
+    align-items: center;
 
     .c-bolt-character__has-side-content & {
       flex-grow: 0;
@@ -94,11 +109,10 @@ bolt-animate[slot="connection"] {
   }
 
   &__main-image {
-    flex: 0 0 100%;
     box-sizing: border-box;
     width: 100%;
+    // for IE
     min-width: 100%;
-    max-width: 100%;
     border: 4px solid white;
     border-radius: 50%;
     background-color: white;
@@ -109,7 +123,7 @@ bolt-animate[slot="connection"] {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%) scale(0.65);
-    z-index: 0;
+    z-index: 1;
     width: 200px; //@TODO these are here because the SVGs aren't square
     height: 200px;
   }
@@ -119,17 +133,18 @@ bolt-animate[slot="connection"] {
       display: block; // for IE 11.
     }
 
+    $ie-connection-width: 343px;
     &--connection {
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(0, -50%);
-      z-index: 1;
+      z-index: 0;
       margin: auto 0;
 
       @include bolt-ie11-only {
-        width: 200px;
-        max-width: 200px;
+        width: $ie-connection-width;
+        max-width: $ie-connection-width;
       }
 
       bolt-animate {
@@ -138,7 +153,7 @@ bolt-animate[slot="connection"] {
 
       bolt-connection {
         @include bolt-ie11-only {
-          min-width: 200px !important;
+          min-width: $ie-connection-width !important;
         }
       }
     }
@@ -147,27 +162,68 @@ bolt-animate[slot="connection"] {
       z-index: 2;
     }
 
+    $mobilePadding: bolt-spacing(xxsmall);
+    $desktopPadding: bolt-spacing(xsmall);
     &--top {
       flex: 1 0 100%;
       min-width: 100%;
+      margin-bottom: $mobilePadding;
       text-align: center;
+
+      @include bolt-mq(xsmall) {
+        margin-bottom: $desktopPadding;
+      }
     }
 
     &--bottom {
       flex: 1 0 100%;
       min-width: 100%;
+      margin-top: $mobilePadding;
       text-align: center;
+
+      @include bolt-mq(xsmall) {
+        margin-top: $desktopPadding;
+      }
     }
 
     &--left {
-      flex: 0 0 33%;
-      min-width: 33%;
+      flex: 0 1 33%;
+      margin-right: $mobilePadding;
       text-align: right;
+
+      @include bolt-mq(xsmall) {
+        margin-right: $desktopPadding;
+      }
     }
 
     &--right {
-      flex: 0 0 33%;
-      min-width: 33%;
+      flex: 0 1 33%;
+      margin-left: $mobilePadding;
+
+      @include bolt-mq(xsmall) {
+        margin-left: $desktopPadding;
+      }
+    }
+  }
+
+  &__has-bottom-slot-constrained {
+    .c-bolt-character__slot--bottom {
+      flex: 0 0 0;
+      position: relative;
+      height: 0;
+
+      .c-bolt-micro-journeys-flex-aspect {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+      }
+    }
+  }
+
+  &__has-background-padding .c-bolt-character__center {
+    @include bolt-mq(xsmall) {
+      margin: 25px;
     }
   }
 }

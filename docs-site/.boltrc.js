@@ -44,10 +44,6 @@ const config = {
         // path.relative(process.cwd(), path.dirname(require.resolve('@bolt/components-sticky/package.json'))),
       ],
     },
-    'bolt-assets': {
-      recursive: true,
-      paths: ['../www/build'],
-    },
     utils: {
       recursive: true,
       paths: ['./src/components/pattern-lab-utils'],
@@ -144,6 +140,7 @@ const config = {
       '@bolt/components-sticky',
       '@bolt/components-stack',
       '@bolt/components-table',
+      '@bolt/components-toc',
       '@bolt/components-tabs',
       '@bolt/components-teaser',
       '@bolt/components-text',

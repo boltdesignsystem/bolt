@@ -1,7 +1,6 @@
-// WIP - converting the original YAML schema over to JS
-
-// const triggerSchema = require('@bolt/components-trigger/trigger.schema');
-// const buttonSchema = require('@bolt/components-button/button.schema');
+const triggerSchema = require('@bolt/components-trigger/trigger.schema');
+const buttonSchema = require('@bolt/components-button/button.schema');
+const linkSchema = require('@bolt/components-link/link.schema');
 
 module.exports = {
   $schema: 'http://json-schema.org/draft-04/schema#',
@@ -12,11 +11,10 @@ module.exports = {
     attributes: {
       type: 'object',
       description:
-        'A Drupal attributes object. Applies extra HTML attributes to the outer &lt;bolt-menu&gt; tag.',
+        'A Drupal attributes object. Applies extra HTML attributes to the outer &lt;bolt-popover&gt; tag.',
     },
     trigger: {
-      // Accepted Trigger: button | trigger
-      // type: 'object',
+      type: 'object',
       description: 'Renders the trigger of the popover.',
     },
     content: {
@@ -29,20 +27,20 @@ module.exports = {
         'Sets the preferred placement of the popover. The actual placement of the popover will be automatically adjusted based on the space available on screen.',
       enum: [
         'auto',
-        'top-left',
+        'top-start',
         'top',
-        'top-right',
-        'left-top',
+        'top-end',
+        'left-start',
         'left',
-        'left-bottom',
-        'right-top',
+        'left-end',
+        'right-start',
         'right',
-        'right-bottom',
-        'bottom-left',
+        'right-end',
+        'bottom-start',
         'bottom',
-        'bottom-right',
+        'bottom-end',
       ],
-      default: 'bottom-left',
+      default: 'bottom',
     },
     spacing: {
       type: 'string',
@@ -50,10 +48,15 @@ module.exports = {
       enum: ['none', 'xsmall', 'small', 'medium'],
       default: 'small',
     },
-    nowrap: {
-      type: 'boolean',
+    boundary: {
+      type: 'string',
       description:
-        'Prevents the text in the content of the popover to wrap to a second line.',
+        "Optionally allows you to specify a parent element's CSS selector to use as an outer boundary when calculating placement.",
+    },
+    fallbackPlacements: {
+      type: 'array',
+      description:
+        "An array of different placement options that Popper.js should try if there isn't enough space for the ideal placement. Normally this defaults to all placement options however this lets you limit the options to pick from in certain situations.",
     },
     uuid: {
       type: 'string',
