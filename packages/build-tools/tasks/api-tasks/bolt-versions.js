@@ -8,10 +8,12 @@ const InCache = require('incache');
 const Octokit = require('@octokit/rest').plugin(
   require('@octokit/plugin-throttling'),
 );
+const { createTokenAuth } = require("@octokit/auth-token");
 
 let versionSpinner;
 
 const octokit = new Octokit({
+  authStrategy: createTokenAuth(process.env.GITHUB_TOKEN),
   auth() {
     if (process.env.GITHUB_TOKEN) {
       return `token ${process.env.GITHUB_TOKEN}`;
