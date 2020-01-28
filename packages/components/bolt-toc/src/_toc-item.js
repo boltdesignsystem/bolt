@@ -57,6 +57,7 @@ class BoltTocItem extends withContext(BoltElement) {
     super.connectedCallback && super.connectedCallback();
 
     if (this.url && this.url.indexOf('#') === 0) {
+      // todo: update `this.target` when url prop changes
       this.target = document.querySelector(this.url);
     }
   }
