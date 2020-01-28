@@ -459,14 +459,17 @@ export function enableEditor({ space, uiWrapper, config }) {
   editor.on('component:remove', (/** @type {grapesjs.Component} */ model) => {
     // Editor removes all components in order on save/cleanup. Don't check then.
     if (!editor.isSaving) {
-      const parent = model.parent();
-      // Remove empty parent `bolt-animate`s
-      if (parent && parent.attributes.tagName === 'bolt-animate') {
-        if (parent && parent.view.el.assignedSlot) {
-          parent.view.el.assignedSlot.remove();
+      // Timeout so cleanup and layer re-render happens on parent before removal.
+      setTimeout(() => {
+        const parent = model.parent();
+        // Remove empty parent `bolt-animate`s
+        if (parent && parent.attributes.tagName === 'bolt-animate') {
+          if (parent && parent.view.el.assignedSlot) {
+            parent.view.el.assignedSlot.remove();
+          }
+          parent.remove();
         }
-        parent.remove();
-      }
+      }, 0);
     }
   });
 
