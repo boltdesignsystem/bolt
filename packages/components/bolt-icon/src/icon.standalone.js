@@ -155,7 +155,7 @@ class BoltIcon extends withPreact {
             fgColor={secondaryColor}
           />
         )}
-        {background && <span className={backgroundClasses} />}
+        {background && background !== 'none' && <span className={backgroundClasses} />}
       </span>
     );
   }
