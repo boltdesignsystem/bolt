@@ -74,8 +74,12 @@ class BoltToc extends withContext(BoltElement) {
   connectedCallback() {
     super.connectedCallback && super.connectedCallback();
 
-    // Check if any `<ssr-keep>` elements have registered themselves here. If so, kick off the one-time hydration prep task.
-    if (this.ssrKeep && !this.ssrPrepped) {
+    // Store ssr-id and get all related ssr elements
+    this.ssrId = this.getAttribute('ssr-id');
+    this.ssrEls = this.querySelectorAll(`[ssr-for="${this.ssrId}"]`);
+
+    // Trying out new approach to SSR hydration prep, as ssr-keep isn't working properly on this component.
+    if (this.ssrEls && !this.ssrPrepped) {
       this.ssrHydrationPrep();
     }
 
@@ -113,25 +117,15 @@ class BoltToc extends withContext(BoltElement) {
     document.removeEventListener('scrollCancel', this.logScrollEvent, false);
   }
 
-  /* [1] */
   ssrHydrationPrep() {
-    // @todo: Move this to base-element, possibly as decorator
-    this.nodesToKeep = [];
-
-    this.ssrKeep.forEach(item => {
-      while (item.firstChild) {
-        this.nodesToKeep.push(item.firstChild); // track the nodes that will be preserved
-        this.appendChild(item.firstChild);
+    Array.from(this.ssrEls).forEach(el => {
+      const ssrType = el.getAttribute('ssr-type');
+      switch (ssrType) {
+        case 'remove':
+        default:
+          el.parentNode.removeChild(el);
       }
     });
-
-    // Remove all children not in the "keep" array
-    Array.from(this.children)
-      .filter(item => !this.nodesToKeep.includes(item))
-      .forEach(node => {
-        node.parentElement.removeChild(node);
-      });
-
     this.ssrPrepped = true;
   }
 
