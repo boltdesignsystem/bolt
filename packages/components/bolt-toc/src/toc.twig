@@ -41,7 +41,7 @@
   {{ this.props|without("items")|without("class") }}
   ssr-id="{{ uuid }}"
 >
-  <replace-with-children {% if inner_classes %} class="{{ inner_classes|join(' ') }}" {% endif %} aria-labelledby="{{ "js-bolt-toc-#{uuid}" }}">
+  <replace-with-children {% if inner_classes %} class="{{ inner_classes|join(' ') }}" {% endif %} role="navigation" aria-labelledby="{{ "js-bolt-toc-#{uuid}" }}">
     <h2
       {% if header %}
         class="c-bolt-toc__header"
