@@ -50,11 +50,6 @@ class BoltToc extends withContext(BoltElement) {
     // These are fixed for now, make into props if necessary
     this.boundaryTop = 0;
     this.boundaryBottom = '75%';
-
-    // Dislay waypoint boundaries on screen if debug is `true` (only ever IN_DEV!)
-    if (IS_DEV && BoltToc.debug && !BoltToc.debuggerAdded) {
-      this.addWaypointDebugger();
-    }
   }
 
   static get styles() {
@@ -94,6 +89,11 @@ class BoltToc extends withContext(BoltElement) {
     document.addEventListener('scrollStart', this.logScrollEvent, false);
     document.addEventListener('scrollStop', this.logScrollEvent, false);
     document.addEventListener('scrollCancel', this.logScrollEvent, false);
+
+    // Dislay waypoint boundaries on screen if debug is `true` (only ever IN_DEV!)
+    if (IS_DEV && BoltToc.debug && !BoltToc.debuggerAdded) {
+      this.addWaypointDebugger();
+    }
   }
 
   disconnectedCallback() {
