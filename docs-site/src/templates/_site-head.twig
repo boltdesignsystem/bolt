@@ -46,7 +46,15 @@
     <meta name="viewport" content="width=device-width" />
     <title>Bolt Design System</title>
 
-    <script>
+    <link rel="preconnect" href="https://www.google-analytics.com">
+    <link rel="preconnect dns-prefetch" href="https://www.google-analytics.com"/>
+
+    <!-- async load PL's CSS -->
+    <link rel="stylesheet" href="{{ legacyAssets["bolt-global.css"] | default("/build/bolt-global.css") }}" media="all" />
+    <link rel="preload" href="/pattern-lab/styleguide/css/pattern-lab.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+    {# critical path scripts for non-ES Module browsers #}
+    <script nomodule>
       {% if fileExists("@bolt-assets/bolt-critical-path-polyfills.cjs.js") %}
         {{ inline(legacyAssets["bolt-critical-path-polyfills.cjs.js"] | default("")) }}
       {% endif %}
@@ -54,7 +62,10 @@
       {% if fileExists("@bolt-assets/bolt-components-critical-css.js") %}
         {{ inline( legacyAssets["bolt-components-critical-css-vars.js"] | default("") ) }}
       {% endif %}
+    </script>
 
+    {# shared critical path scripts #}
+    <script>
       if (sessionStorage.fontsLoadedCriticalFoftPreloadPolyfill){
         document.documentElement.classList.add('js-fonts-loaded');
       }
@@ -70,10 +81,6 @@
       window.bolt.data.fullManifest = window.bolt.data.fullManifest || {};
       window.bolt.data.fullManifest.version = window.bolt.data.fullManifest.version || {{ bolt.data.fullManifest.version|json_encode|raw }};
     </script>
-
-    <!-- async load PL's CSS -->
-    <link rel="stylesheet" href="{{ legacyAssets["bolt-global.css"] | default("/build/bolt-global.css") }}" media="all" />
-    <link rel="preload" href="/pattern-lab/styleguide/css/pattern-lab.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 
     <noscript>
       <link href="/pattern-lab/styleguide/css/pattern-lab.css" rel="stylesheet">
