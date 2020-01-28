@@ -361,4 +361,7 @@ ${html}`;
   // document.querySelector('.js-pega-editor__trigger').click();
 }
 
+// Global reference in case editor HTML is injected after page load.
+window.initPegaEditor = init;
+
 init();

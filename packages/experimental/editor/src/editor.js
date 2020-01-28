@@ -390,6 +390,7 @@ export function enableEditor({ space, uiWrapper, config }) {
       return html`
         <h4>${slotName}</h4>
         <select
+          id="slot-select__${slotName.toLowerCase()}"
           @change=${event => {
             const { value } = event.target;
             if (value === 'none') return;
@@ -517,6 +518,8 @@ export function enableEditor({ space, uiWrapper, config }) {
   const canvasDoc = editor.Canvas.getDocument();
   const canvasWindow = editor.Canvas.getWindow();
   const canvasWrapper = editor.Canvas.getWrapperEl();
+
+  canvasWindow.getEditor = () => editor;
 
   addThemeContextClasses({ space, canvasWrapper });
 
