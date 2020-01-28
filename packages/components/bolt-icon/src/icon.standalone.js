@@ -97,10 +97,10 @@ class BoltIcon extends withPreact {
         ? `c-bolt-icon--${size}`
         : '',
       name ? `c-bolt-icon--${name}` : '',
-      background && schema.properties.background.enum.includes(background)
+      background && background !== 'none' && schema.properties.background.enum.includes(background)
         ? `has-background`
         : '',
-      background && schema.properties.background.enum.includes(background)
+      background && background !== 'none' && schema.properties.background.enum.includes(background)
         ? `has-${background}-background`
         : '',
       color && schema.properties.color.enum.includes(color)
