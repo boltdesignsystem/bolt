@@ -2,7 +2,7 @@ const path = require('path');
 const resolve = require('resolve');
 const argv = require('yargs').argv;
 const deepmerge = require('deepmerge');
-const baseConfig = require('@bolt/foundation/.boltrc.js');
+const baseConfig = require('@bolt/starter-kit/.boltrc.js');
 
 const config = deepmerge(baseConfig, {
   // array of languages to compile the design system. note, these are ignored when the --i18n flag is set to false
@@ -88,19 +88,18 @@ const config = deepmerge(baseConfig, {
        */
 
       // helper components that are only used internally
-      '@bolt/analytics-autolink',
       '@bolt/analytics-autotrack',
       '@bolt/blueprints',
       '@bolt/components-radio-switch',
       '@bolt/components-page-footer',
       '@bolt/components-page-header',
-      '@bolt/components-toolbar',
       '@bolt/docs-search',
       // '@bolt/schema-form', // Component Explorer being temporarily disabled until we've migrated our Twig Rendering Service to Now.sh v2
       '@bolt/shadow-toggle',
       '@bolt/theme-switcher',
 
       // Components that are excluded from the base release build.
+      '@bolt/components-search-filter',
       '@bolt/micro-journeys',
 
       /**

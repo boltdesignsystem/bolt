@@ -72,6 +72,7 @@ describe('check the config for monorepo packages', () => {
         !pkg.private &&
         pkg.name.includes('@bolt') &&
         !pkg.name.includes('@bolt/components-card') &&
+        !pkg.name.includes('@bolt/starter-kit') &&
         !pkg.name.includes('@bolt/critical-path-polyfills') // only currently exception to this rule
       ) {
         expect(

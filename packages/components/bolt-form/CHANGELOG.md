@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.16.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-form/compare/v2.16.0...v2.16.1) (2020-01-27)
+
+**Note:** Version bump only for package @bolt/components-form
+
+
+
+
+
+# [2.16.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-form/compare/v2.15.2...v2.16.0) (2020-01-24)
+
+**Note:** Version bump only for package @bolt/components-form
+
+
+
+
+
 ## [2.15.2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-form/compare/v2.15.1...v2.15.2) (2020-01-21)
 
 **Note:** Version bump only for package @bolt/components-form
