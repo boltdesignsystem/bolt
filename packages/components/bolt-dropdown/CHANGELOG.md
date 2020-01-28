@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.16.2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-dropdown/compare/v2.16.1...v2.16.2) (2020-01-28)
+
+**Note:** Version bump only for package @bolt/components-dropdown
+
+
+
+
+
 ## [2.16.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-dropdown/compare/v2.16.0...v2.16.1) (2020-01-27)
 
 **Note:** Version bump only for package @bolt/components-dropdown
