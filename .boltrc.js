@@ -75,7 +75,7 @@ module.exports = {
   components: {
     global: [
       ...allComponentPackages,
-      '@bolt/components-animate',
+      '@bolt/components-editor',
       '@bolt/micro-journeys',
       '@bolt/analytics-autolink',
     ],
