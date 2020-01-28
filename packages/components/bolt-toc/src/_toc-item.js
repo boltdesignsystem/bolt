@@ -61,10 +61,6 @@ class BoltTocItem extends withContext(BoltElement) {
     }
   }
 
-  disconnectedCallback() {
-    super.disconnectedCallback && super.disconnectedCallback();
-  }
-
   contextChangedCallback(name, oldValue, value) {
     if (name === 'activeItem' && value) {
       if (value === this) {
