@@ -126,7 +126,9 @@ if (program.configFile) {
           typeof program.prod === 'undefined' ? config.prod : program.prod;
 
         config.compat =
-          typeof program.compat === 'undefined' ? config.compat : program.compat;
+          typeof program.compat === 'undefined'
+            ? config.compat
+            : program.compat;
 
         // automatically set enableSSR to true in prod mode and false in dev mode, unless manually set.
         config.enableSSR = false;

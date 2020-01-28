@@ -487,7 +487,7 @@ export function enableEditor({ space, uiWrapper, config }) {
    * @param {grapesjs.Component} model
    * @return {void}
    */
-  editor.on('component:selected', (model) => {
+  editor.on('component:selected', model => {
     // clickHandler is set in declarativeClickHandler and attached in BoltActionElement
     if (model.view.el.clickHandler) {
       model.view.el.removeEventListener('click', model.view.el.clickHandler);
@@ -501,9 +501,14 @@ export function enableEditor({ space, uiWrapper, config }) {
    * @param {grapesjs.Component} model
    * @return {void}
    */
-  editor.on('component:deselected', (/** @type {grapesjs.Component} */ model) => {
+  editor.on('component:deselected', (
+    /** @type {grapesjs.Component} */ model,
+  ) => {
     if (model.view.el.removedClickHandler) {
-      model.view.el.addEventListener('click', model.view.el.removedClickHandler);
+      model.view.el.addEventListener(
+        'click',
+        model.view.el.removedClickHandler,
+      );
       delete model.view.el.removedClickHandler;
     }
   });
