@@ -68,6 +68,7 @@ nonImageFixtures.forEach(fixturePath => {
 
 module.exports = {
   esModules: true,
+  compat: false, // Jest tests only run w/ ES Modules so this should speed things up
   wwwDir: adjustRelativePath(siteConfig.wwwDir),
   buildDir: adjustRelativePath(siteConfig.buildDir),
   iconDir: [],
@@ -84,7 +85,7 @@ module.exports = {
   },
   prod: true,
   sourceMaps: false,
-  enableCache: false,
+  enableCache: true,
   verbosity: 1,
   copy: [...itemsToCopy],
   alterTwigEnv: [

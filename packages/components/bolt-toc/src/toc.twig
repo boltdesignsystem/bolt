@@ -1,0 +1,69 @@
+{% set schema = bolt.data.components["@bolt-components-toc"].schema %}
+
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(schema, _self) | raw }}
+{% endif %}
+
+{# Variables #}
+{% set base_class = "c-bolt-toc" %}
+{% set this = init(schema) %}
+{% set uuid = this.data.uuid|default(bolt.data.config.env == "test" ? "12345" : random() ~ "") %}
+{% set inner_attributes = create_attribute({}) %}
+
+{# Array of classes based on the defined + default props #}
+{% set classes = [
+  base_class,
+] %}
+
+{#
+  Sort classes passed in via attributes into two groups:
+  1. Those that should be applied to the inner tag (namely, "is-" and "has-" classes)
+  2. Those that should be applied to the outer custom element (everything else EXCEPT c-bolt-* classes, which should never be passed in via attributes)
+#}
+{% set outer_classes = [] %}
+{% set inner_classes = classes %}
+
+{% for class in this.props.class %}
+  {% if class starts with "is-" or class starts with "has-" %}
+    {% set inner_classes = inner_classes|merge([class]) %}
+  {% elseif class starts with "c-bolt-" == false %}
+    {% set outer_classes = outer_classes|merge([class]) %}
+  {% endif %}
+{% endfor %}
+
+{#
+  Accessible attributes:
+  1. role="list": declares that an element is a list.
+  2. Aria lists reference: https://www.scottohara.me/blog/2018/05/26/aria-lists.html
+#}
+<bolt-toc
+  {% if outer_classes %} class="{{ outer_classes|join(' ') }}" {% endif %}
+  {{ this.props|without("items")|without("class") }}
+  ssr-id="{{ uuid }}"
+>
+  <replace-with-children {% if inner_classes %} class="{{ inner_classes|join(' ') }}" {% endif %} role="navigation" aria-labelledby="{{ "js-bolt-toc-#{uuid}" }}">
+    <h2
+      {% if header %}
+        class="c-bolt-toc__header"
+      {% else %}
+        class="c-bolt-toc__header c-bolt-toc__header--hidden"
+      {% endif %}
+      id="{{ "js-bolt-toc-#{uuid}" }}"
+      ssr-for="{{ uuid }}"
+      ssr-type="remove"
+    >
+      {% if header %}
+        {{ header }}
+      {% else %}
+        Table of Content
+      {% endif %}
+    </h2>
+    <replace-with-children class="c-bolt-toc__list" role="list">
+      {% for item in items %}
+        {% if item %}
+          {% include "@bolt-components-toc/_toc-item.twig" with item only %}
+        {% endif %}
+      {% endfor %}
+    </replace-with-children>
+  </replace-with-children>
+</bolt-toc>

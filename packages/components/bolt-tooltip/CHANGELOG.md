@@ -3,6 +3,41 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.16.2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tooltip/compare/v2.16.1...v2.16.2) (2020-01-28)
+
+**Note:** Version bump only for package @bolt/components-tooltip
+
+
+
+
+
+## [2.16.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tooltip/compare/v2.16.0...v2.16.1) (2020-01-27)
+
+**Note:** Version bump only for package @bolt/components-tooltip
+
+
+
+
+
+# [2.16.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tooltip/compare/v2.15.2...v2.16.0) (2020-01-24)
+
+
+### Bug Fixes
+
+* schema typo in Tooltip component ([9f00c29](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tooltip/commit/9f00c295cdaab237db3d0cf09736a4410f44eadf))
+* update tooltip snapshots ([92f8970](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tooltip/commit/92f8970a4448c1bb07b65dedf15f7dd5e0d1a6d7))
+
+
+### Features
+
+* add new boundary option to Tooltip and Popover ([ed60347](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tooltip/commit/ed60347b9c3204703439da9ec2756e67f5852015))
+* add new Fallback Placements config option for Tooltip and Popover ([0f8ed44](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tooltip/commit/0f8ed4429464a3c184321f2034f1423f423eacd7))
+* update Tooltip default placement from bottom to top ([93b86ba](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tooltip/commit/93b86ba8e3fd467b1d847686c56cb04e390a94c0))
+
+
+
+
+
 ## [2.15.2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tooltip/compare/v2.15.1...v2.15.2) (2020-01-21)
 
 **Note:** Version bump only for package @bolt/components-tooltip

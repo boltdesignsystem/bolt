@@ -3,6 +3,62 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.16.3](https://github.com/bolt-design-system/bolt/compare/v2.16.2...v2.16.3) (2020-01-28)
+
+**Note:** Version bump only for package @bolt/website
+
+
+
+
+
+## [2.16.2](https://github.com/bolt-design-system/bolt/compare/v2.16.1...v2.16.2) (2020-01-28)
+
+**Note:** Version bump only for package @bolt/website
+
+
+
+
+
+## [2.16.1](https://github.com/bolt-design-system/bolt/compare/v2.16.0...v2.16.1) (2020-01-27)
+
+
+### Bug Fixes
+
+* update the docs site-specific Twig template to address the CSS specificity / load order issue with styles in IE 11 ([9474a55](https://github.com/bolt-design-system/bolt/commit/9474a55b71d9c5267c92346b2bd88b01b6e6ceae))
+
+
+
+
+
+# [2.16.0](https://github.com/bolt-design-system/bolt/compare/v2.15.2...v2.16.0) (2020-01-24)
+
+
+### Bug Fixes
+
+* add xdark theme test for icons + update fill colors so SVG transform logic works correctly ([b2187b5](https://github.com/bolt-design-system/bolt/commit/b2187b523ad5eed618cee7a52c5c2136ba3030ef))
+* consistent border color ([7c45348](https://github.com/bolt-design-system/bolt/commit/7c4534814f774873d46ef47cc53741a1ef6183fb))
+* docs and comments ([70f9f8f](https://github.com/bolt-design-system/bolt/commit/70f9f8fe0790dc1f0224d3943cc34842481e93f9))
+* docs comments consitency ([4b2f5db](https://github.com/bolt-design-system/bolt/commit/4b2f5db358ff39f1e34dd314e4cda54c547c4f72))
+* internal link ([bd7e0fc](https://github.com/bolt-design-system/bolt/commit/bd7e0fc2f4736c3664ad73133f899eb98b8c1eee))
+* remove icon background from card spacer ([d44ca99](https://github.com/bolt-design-system/bolt/commit/d44ca99daf9c23de3dbb4a4382d35ad89fd87486))
+* remove z-index and position ([329b1d6](https://github.com/bolt-design-system/bolt/commit/329b1d6070d9db26ae9cae85ab730f3e4a835974))
+* transition ([7732faf](https://github.com/bolt-design-system/bolt/commit/7732faf320fc6d856b6dcb48a5fbc50ef56ca03b))
+* update Toolbar button control props to prevent Tooltip / Popover from ever being placed outside of the Card or Carousel containers ([1c6d413](https://github.com/bolt-design-system/bolt/commit/1c6d41369bf02d8537bd9a98089f89715b187525))
+* **micro-journeys:** collapsing 2nd char in Two Char Layout in IE 11 ([ff42dda](https://github.com/bolt-design-system/bolt/commit/ff42ddac63eba93ee7661c46585e7dae4df80767))
+
+
+### Features
+
+* **editor:** remove click handlers on element select; add function docs; add visual test ([a8449bb](https://github.com/bolt-design-system/bolt/commit/a8449bba9ee3fd0bb5f0ed5540b882605bac77f7))
+* **micro-journeys:** better visual tests for Character ([9ce9e26](https://github.com/bolt-design-system/bolt/commit/9ce9e26482d8043c06168510654a3f4b3c4f7d64))
+* **micro-journeys:** center Character when in One Character Layout ([d0dccc0](https://github.com/bolt-design-system/bolt/commit/d0dccc057b046e56ee63fa11155cf895cc71da29))
+* Add --compat option for legacy support when esmodules is enabled ([946ae2a](https://github.com/bolt-design-system/bolt/commit/946ae2a7875e747db65225b9e53adecaa37bc7a5))
+* add new helper Webpack plugins ([7eb295c](https://github.com/bolt-design-system/bolt/commit/7eb295c4e934c4a1e10e44d5fbb072905d0a7efd))
+
+
+
+
+
 ## [2.15.2](https://github.com/bolt-design-system/bolt/compare/v2.15.1...v2.15.2) (2020-01-21)
 
 

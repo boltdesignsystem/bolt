@@ -43,7 +43,7 @@
         this.data.spacing.value ? title_class ~ "--spacing-" ~ this.data.spacing.value,
       ] %}
       <replace-with-children {% if title_classes %} class="{{ title_classes|join(' ') }}" {% endif %}>
-        <div slot="title">{{ title }}</div>
+        <span slot="title">{{ title }}</span>
       </replace-with-children>
     {% endif %}
     {% for item in items %}

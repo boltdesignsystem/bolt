@@ -25,7 +25,7 @@ module.exports = {
     attributes: {
       type: 'object',
       description:
-        'A Drupal attributes object. Applies extra HTML attributes to the outer &lt;bolt-menu&gt; tag.',
+        'A Drupal attributes object. Applies extra HTML attributes to the outer &lt;bolt-tooltip&gt; tag.',
     },
     trigger: {
       type: 'any',
@@ -55,12 +55,22 @@ module.exports = {
         'bottom',
         'bottom-end',
       ],
-      default: 'bottom',
+      default: 'top',
     },
     uuid: {
       type: 'string',
       description:
         'Unique ID for the tooltip, randomly generated if not provided.',
+    },
+    boundary: {
+      type: 'string',
+      description:
+        'Optionally allows you to specify a parent element selector to use as an outer boundary when calculating placement.',
+    },
+    fallbackPlacements: {
+      type: 'array',
+      description:
+        "An array of different placement options that Popper.js should try if there isn't enough space for the ideal placement. Normally this defaults to all placement options however this lets you limit the options to pick from in certain situations.",
     },
     direction: {
       type: 'any',

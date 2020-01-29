@@ -11,6 +11,25 @@ $bolt-tooltip-bubble-triangle-width: 8px;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: bolt-spacing(xxsmall);
+
+  &:not(.c-bolt-status-dialogue-bar--has-arrow) {
+    &.c-bolt-status-dialogue-bar--box-float--center {
+      justify-content: center;
+    }
+    &.c-bolt-status-dialogue-bar--box-float--up {
+      align-items: flex-start;
+    }
+    &.c-bolt-status-dialogue-bar--box-float--right {
+      justify-content: flex-end;
+    }
+    &.c-bolt-status-dialogue-bar--box-float--down {
+      align-items: flex-end;
+    }
+    &.c-bolt-status-dialogue-bar--box-float--left {
+      justify-content: flex-start;
+    }
+  }
 
   &__content {
     display: flex;
@@ -58,19 +77,11 @@ $bolt-tooltip-bubble-triangle-width: 8px;
     }
   }
 
-  $mobilePadding: bolt-spacing(xxxsmall);
-  $desktopPadding: bolt-spacing(xxsmall);
-
-  &:not(.c-bolt-status-dialogue-bar--has-arrow) {
-    margin: $mobilePadding;
-
-    @include bolt-mq(xsmall) {
-      margin: $desktopPadding;
-    }
+  &--has-arrow .c-bolt-status-dialogue-bar__content {
+    position: relative;
   }
 
   &--arrow {
-    position: relative;
     z-index: 1;
     color: white;
     line-height: 1;
@@ -99,46 +110,46 @@ $bolt-tooltip-bubble-triangle-width: 8px;
     transform: translateY(-12.5%) scaleY(1.25);
   }
 
-  &--arrow--up &--arrow {
-    top: .5px;
-    padding-top: $mobilePadding;
-    // @TODO replace with text-shadow mixin like bolt-shadow
-    text-shadow: 0 -3px 3px rgba(6, 10, 36, 0.18);
+  &--arrow--up {
+    .c-bolt-status-dialogue-bar__content {
+      bottom: .5px;
+    }
 
-    @include bolt-mq(xsmall) {
-      padding-top: $desktopPadding;
+    .c-bolt-status-dialogue-bar--arrow {
+      text-shadow: 0 -3px 3px rgba(6, 10, 36, 0.18);
+    }
+
+  }
+
+  &--arrow--right {
+    .c-bolt-status-dialogue-bar__content {
+      left: 2.5px;
+    }
+
+    .c-bolt-status-dialogue-bar--arrow {
+      order: 2;
+      text-shadow: 3px 0 3px rgba(6, 10, 36, 0.18);
     }
   }
 
-  &--arrow--right &--arrow {
-    order: 2;
-    right: 2.5px;
-    padding-right: $mobilePadding;
-    text-shadow: 3px 0 3px rgba(6, 10, 36, 0.18);
+  &--arrow--down {
+    .c-bolt-status-dialogue-bar__content {
+      top: 7.5px;
+    }
 
-    @include bolt-mq(xsmall) {
-      padding-right: $desktopPadding;
+    .c-bolt-status-dialogue-bar--arrow {
+      order: 2;
+      text-shadow: 0 3px 3px rgba(6, 10, 36, 0.18);
     }
   }
 
-  &--arrow--down &--arrow {
-    order: 2;
-    bottom: 7.5px;
-    padding-bottom: $mobilePadding;
-    text-shadow: 0 3px 3px rgba(6, 10, 36, 0.18);
-
-    @include bolt-mq(xsmall) {
-      padding-bottom: $desktopPadding;
+  &--arrow--left {
+    .c-bolt-status-dialogue-bar__content {
+      right: 4.5px;
     }
-  }
 
-  &--arrow--left &--arrow {
-    left: 4.5px;
-    padding-left: $mobilePadding;
-    text-shadow: -3px 0 3px rgba(6, 10, 36, 0.18);
-
-    @include bolt-mq(xsmall) {
-      padding-left: $desktopPadding;
+    .c-bolt-status-dialogue-bar--arrow {
+      text-shadow: -3px 0 3px rgba(6, 10, 36, 0.18);
     }
   }
 }
