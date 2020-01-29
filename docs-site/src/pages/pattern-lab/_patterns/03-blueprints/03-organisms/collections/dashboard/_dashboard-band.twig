@@ -51,7 +51,7 @@
             {% if item.cardTitle %}
               {% include "@bolt-blueprints/_vertical-card.twig" with item %}
             {% else %}
-              {{ item }}
+              {{ item|raw }}
             {% endif %}
           {% endcell %}
         {% endfor %}

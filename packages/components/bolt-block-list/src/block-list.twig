@@ -42,7 +42,7 @@
     {% for listItem in items %}
       <li class="{{ "#{baseClass}__item" }}">
         {% if listItem %}
-          {{ listItem }}
+          {{ listItem|raw }}
         {% endif %}
       </li>
     {% endfor %}

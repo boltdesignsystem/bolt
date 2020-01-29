@@ -25,7 +25,7 @@ Available variables:
   {% set _classes = _classes|merge(['is-invalid']) %}
 {% endif %}
 
-<input{{ attributes.addClass(_classes) }} />{{ children }}
+<input{{ attributes.addClass(_classes) }} />{{ children|raw }}
 
 {#
 Some input types support icons, others don't.  Note that if icons are supported though, we'll always output

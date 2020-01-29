@@ -18,24 +18,24 @@ Available variables:
 
 <div{{ attributes }}>
   {% if labelDisplay in ['before', 'invisible'] %}
-    {{ label }}
+    {{ label|raw }}
   {% endif %}
 
   {{ children }}
 
   {% if labelDisplay == 'after' %}
-    {{ label }}
+    {{ label|raw }}
   {% endif %}
 
   {% if errors %}
     <div class="c-bolt-input-message c-bolt-input-message--invalid">
-      {{ errors }}
+      {{ errors|raw }}
     </div>
   {% endif %}
 
   {% if descriptionText %}
     <div class="c-bolt-input-message">
-      {{ descriptionText }}
+      {{ descriptionText|raw }}
     </div>
   {% endif %}
 </div>

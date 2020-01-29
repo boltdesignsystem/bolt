@@ -45,7 +45,7 @@
     } %}
       {% block band_background %}
         {% if backgroundBlock is not empty %}
-          {{ backgroundBlock }}
+          {{ backgroundBlock|raw }}
         {% else %}
           {{ parent() }}
         {% endif %}

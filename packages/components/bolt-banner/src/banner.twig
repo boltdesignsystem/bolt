@@ -41,7 +41,7 @@
 >
   <replace-with-grandchildren>
     <div {% if inner_classes %} class="{{ inner_classes|join(' ') }}" {% endif %}>
-      {{ content }}
+      {{ content|raw }}
     </div>
   </replace-with-grandchildren>
 </bolt-banner>

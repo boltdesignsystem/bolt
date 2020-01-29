@@ -87,10 +87,10 @@
   {% set content %}
     {% grid "o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--matrix" %}
       {% cell "u-bolt-flex-grow" %}
-        {{ title }}
+        {{ title|raw }}
       {% endcell %}
       {% cell "u-bolt-flex-shrink" %}
-        {{ tools }}
+        {{ tools|raw }}
       {% endcell %}
     {% endgrid %}
   {% endset %}

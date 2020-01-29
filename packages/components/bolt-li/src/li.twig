@@ -13,7 +13,7 @@
       <replace-with-grandchildren>
         <li class="{{ classes|join(" ") }}">
   {% endif %}
-  {{ children }}
+  {{ children|raw }}
   {% if length == index %}
         </li>
       </replace-with-grandchildren>
@@ -23,7 +23,7 @@
   <bolt-li {{ attributes }}>
     <replace-with-grandchildren>
       <li class="{{ classes|join(" ") }}">
-        {{ children }}
+        {{ children|raw }}
       </li>
     </replace-with-grandchildren>
   </bolt-li>

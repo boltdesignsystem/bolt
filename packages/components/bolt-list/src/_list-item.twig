@@ -20,9 +20,9 @@
   <replace-with-grandchildren>
     <{{ tag }} {{ attributes.addClass(classes) }}>
       {% if item.content %}
-        {{ item.content }}
+        {{ item.content|raw }}
       {% else %}
-        {{ item }}
+        {{ item|raw }}
       {% endif %}
     </{{ tag }}>
   </replace-with-grandchildren>

@@ -16,7 +16,7 @@
     <ol class="{{ "#{baseClass}__list" }}">
       {% for item in contentItems %}
         <li class="{{ "#{baseClass}__item" }}">
-          {{ item }}
+          {{ item|raw }}
         </li>
       {% endfor %}
     </ol>

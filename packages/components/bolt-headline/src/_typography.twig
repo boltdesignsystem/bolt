@@ -102,7 +102,7 @@
 
     {% include "@bolt/link.twig" with linkVars only %}
   {% else %}
-    {{ text }}
+    {{ text|raw }}
   {% endif %}
 
   {% if icon and not url and iconPosition != "before" %}

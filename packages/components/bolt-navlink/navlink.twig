@@ -43,7 +43,7 @@
     <a {{ attributes.addClass(navlink_classes) }}>
       {{ macros.slotted_icon(icon, icon_position, "before") }}
       <span class="c-bolt-navlink__text">
-        {{ text | default("Default Navlink") }}
+        {{ text | default("Default Navlink")|raw }}
       </span>
       {{ macros.slotted_icon(icon, icon_position, "after") }}
     </a>

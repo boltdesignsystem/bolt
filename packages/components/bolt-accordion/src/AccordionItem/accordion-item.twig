@@ -83,24 +83,24 @@
       <{{ trigger_tag }} {{ label_attributes.addClass(label_classes) }}>
         <div class="c-bolt-accordion-item__trigger-content">
           <ssr-keep for="bolt-accordion-item">
-            <div slot="trigger">{{ trigger }}</div>
+            <div slot="trigger">{{ trigger|raw }}</div>
           </ssr-keep>
         </div>
       </{{ trigger_tag }}>
 
       <a href="#{{ primary_uuid }}" class="c-bolt-accordion-item__trigger-link c-bolt-accordion-item__trigger-link--open {{ trigger_spacing_class }}">
-        <span class="c-bolt-accordion-item__toggle-text">{{ this.data.open_label.value }}</span>
+        <span class="c-bolt-accordion-item__toggle-text">{{ this.data.open_label.value|raw }}</span>
       </a>
 
       <a href="#{{ secondary_uuid }}" class="c-bolt-accordion-item__trigger-link c-bolt-accordion-item__trigger-link--close {{ trigger_spacing_class }}">
-        <span class="c-bolt-accordion-item__toggle-text">{{ this.data.close_label.value }}</span>
+        <span class="c-bolt-accordion-item__toggle-text">{{ this.data.close_label.value|raw }}</span>
       </a>
     </div>
 
     <div class="c-bolt-accordion-item__content">
       <div {{ content_attributes.addClass(content_classes) }}>
         <ssr-keep for="bolt-accordion-item">
-          {{ content }}
+          {{ content|raw }}
         </ssr-keep>
       </div>
     </div>

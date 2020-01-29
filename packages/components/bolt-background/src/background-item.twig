@@ -26,8 +26,8 @@
   </div>
 {% elseif (item is iterable) %}
   <div class="{{ "#{baseClass}__item" }}">
-    {{ item }}
+    {{ item|raw }}
   </div>
 {% else %}
-  {{ item }}
+  {{ item|raw }}
 {% endif %}

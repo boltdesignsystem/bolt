@@ -82,7 +82,7 @@
             {% include "@bolt-components-icon/icon.twig" with trigger.icon %}
           {% endif %}
           {% if trigger.text %}
-            {{ trigger.text }}
+            {{ trigger.text|raw }}
           {% endif %}
         </replace-with-children>
       {% elseif trigger.type == "button" %}
@@ -112,7 +112,7 @@
           aria-describedby="{{ tooltip_uuid }}"
           aria-controls="{{ tooltip_uuid }}"
         >
-          {{ trigger }}
+          {{ trigger|raw }}
         </replace-with-children>
       {% endif %}
       {# End new trigger #}
@@ -122,7 +122,7 @@
       <span slot="content">
         <replace-with-grandchildren id="{{ tooltip_uuid }}" class="{{ "#{base_class}__content" }}" role="tooltip" aria-hidden="true">
           <span class="{{ "#{base_class}__bubble" }}">
-            {{ content }}
+            {{ content|raw }}
           </span>
         </replace-with-grandchildren>
       </span>

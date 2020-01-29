@@ -17,6 +17,6 @@
 
 <bolt-{{ componentName }} bolt-component {{ attributes.addClass(classes) }}>
   {% block sticky_content %}
-    {{ content }}
+    {{ content|raw }}
   {% endblock sticky_content %}
 </bolt-{{ componentName }}>

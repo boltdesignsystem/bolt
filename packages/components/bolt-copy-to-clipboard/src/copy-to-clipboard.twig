@@ -34,7 +34,7 @@
       size: iconSize
     } only %}
     <span class="{{ "#{base_class}__action-text" }}">
-      {{ trigger_text }}
+      {{ trigger_text|raw }}
     </span>
   </div>
 {% endset %}
@@ -67,15 +67,15 @@
   ] %}
   <span {{ inner_attributes.addClass(classes) }}>
     <button class="{{ "#{base_class}__trigger" }}" data-clipboard-text="{{ text_to_copy }}">
-      {{ custom_trigger|default(default_trigger) }}
+      {{ custom_trigger|default(default_trigger)|raw }}
     </button>
 
     <span class="{{ "#{base_class}__transition" }}">
-      {{ custom_transition|default(default_transition) }}
+      {{ custom_transition|default(default_transition)|raw }}
     </span>
 
     <span class="{{ "#{base_class}__confirmation" }}">
-      {{ custom_confirmation|default(default_confirmation) }}
+      {{ custom_confirmation|default(default_confirmation)|raw }}
     </span>
   </span>
 </bolt-copy-to-clipboard>

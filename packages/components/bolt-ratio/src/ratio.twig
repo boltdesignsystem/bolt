@@ -26,7 +26,7 @@
 <bolt-ratio {{ attributes }}>
   <replace-with-children class="c-bolt-ratio" style="{{ inline_styles | join(" ") }}">
     {% block ratio_content %}
-      {{ children }}
+      {{ children|raw }}
     {% endblock %}
   </replace-with-children>
 </bolt-ratio>

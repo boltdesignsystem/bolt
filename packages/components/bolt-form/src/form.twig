@@ -1,5 +1,5 @@
 {% set attributes = create_attribute(attributes | default({})) %}
 
 <form{{ attributes }}>
-  {{ children }}
+  {{ children|raw }}
 </form>

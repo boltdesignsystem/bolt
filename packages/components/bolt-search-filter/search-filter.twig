@@ -31,7 +31,7 @@
     <div class="{{ "#{baseClass}__panel" }}" id="{{ panelId }}">
       <div class="c-bolt-search-filter__panel-content">
         {% block search_filter %}
-          {{ content }}
+          {{ content|raw }}
         {% endblock search_filter %}
       </div>
 

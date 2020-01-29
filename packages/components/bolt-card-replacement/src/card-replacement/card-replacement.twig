@@ -62,7 +62,7 @@
       {% if background_block %}
         {% embed "@bolt-components-card-replacement/_card-replacement-background.twig" %}
           {% block background %}
-            {{ background_block }}
+            {{ background_block|raw }}
           {% endblock %}
         {% endembed %}
       {% else %}
@@ -72,14 +72,14 @@
 
     {% if content %}
       {# @todo: The replace function is a hack to get around the utf-8 bug. #}
-      {{ content | join | replace({"UTF-8": ""}) }}
+      {{ content | join | replace({"UTF-8": ""})|raw }}
     {% else %}
 
       {% if media or media_block %}
         {% if media_block %}
           {% embed "@bolt-components-card-replacement/_card-replacement-media.twig" %}
             {% block media %}
-              {{ media_block }}
+              {{ media_block|raw }}
             {% endblock %}
           {% endembed %}
         {% else %}
@@ -92,7 +92,7 @@
         {% if body_block %}
           {% embed "@bolt-components-card-replacement/_card-replacement-body.twig" %}
             {% block body %}
-              {{ body_block }}
+              {{ body_block|raw }}
             {% endblock %}
           {% endembed %}
         {% else %}

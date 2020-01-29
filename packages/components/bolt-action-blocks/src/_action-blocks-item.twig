@@ -18,7 +18,7 @@
 
     {% if text %}
       <div class="{{ "#{action_block_base_class}__item #{action_block_base_class}__text" }}">
-        {{ text }}
+        {{ text|raw }}
       </div>
     {% endif %}
   </a>

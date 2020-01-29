@@ -162,4 +162,4 @@
   {% set attributes = attributes.setAttribute("util", util|join(',')) %}
 {% endif %}
 
-<bolt-text {{ attributes }}>{{ text }}</bolt-text>
+<bolt-text {{ attributes }}>{{ text|raw }}</bolt-text>

@@ -74,7 +74,7 @@
     >
       {{ macros.slotted_icon(icon, icon_position, "before") }}
       <replace-with-children class="{{ "#{base_class}__text" }}">
-        {{ text }}
+        {{ text|raw }}
       </replace-with-children>
       {{ macros.slotted_icon(icon, icon_position, "after") }}
     </{{ tag }}>

@@ -22,6 +22,6 @@
   {{ this.props|without("content")|without("class") }}
 >
   <div {{ inner_attributes.addClass(base_class) }} is="shadow-root">
-    {{ content }}
+    {{ content|raw }}
   </div>
 </bolt-stack>

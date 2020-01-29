@@ -68,7 +68,7 @@
           <bolt-icon name="chevron-left" size="small"></bolt-icon>
         </span>
         <span class="{{ "#{baseClass}__text" }}">
-          {{ previousText }}
+          {{ previousText|raw }}
         </span>
       </a>
     {% endif %}
@@ -79,7 +79,7 @@
       <a {{ firstAttributes.addClass("#{baseClass}__item") }}>
       <span class="{{ "#{baseClass}__text" }}">
         <span class="u-bolt-visuallyhidden">
-          {{ "Navigate to first page"|t }}
+          {{ "Navigate to first page"|t|raw }}
         </span>
         1
       </span>
@@ -129,7 +129,7 @@
       <a {{ lastAttributes.addClass("#{baseClass}__item") }}>
         <span class="{{ "#{baseClass}__text" }}">
           <span class="u-bolt-visuallyhidden">
-            {{ "Navigate to last page"|t }}
+            {{ "Navigate to last page"|t|raw }}
           </span>
           {{ total }}
         </span>
@@ -141,7 +141,7 @@
       {% set nextAttributes = nextAttributes.setAttribute("href", nextAttributes.href|default(next.href)) %}
       <a {{ nextAttributes.addClass("#{baseClass}__item", "#{baseClass}__item--next") }}>
         <span class="{{ "#{baseClass}__text" }}">
-          {{ nextText }}
+          {{ nextText|raw }}
         </span>
         <span class="{{ "#{baseClass}__icon" }}">
           <bolt-icon name="chevron-right" size="small"></bolt-icon>

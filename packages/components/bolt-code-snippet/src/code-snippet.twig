@@ -48,9 +48,9 @@
 >
   {% if display == "inline" %}
     {% spaceless %}
-      {{ code_content }}
+      {{ code_content|raw }}
     {% endspaceless %}
   {% else %}
-    <pre {{ attributes.addClass(classes) }}>{{ code_content }}</pre>
+    <pre {{ attributes.addClass(classes) }}>{{ code_content|raw }}</pre>
   {% endif %}
 </bolt-code-snippet>

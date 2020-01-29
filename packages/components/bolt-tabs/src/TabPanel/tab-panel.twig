@@ -46,7 +46,7 @@
 <label for="{{ panel_id }}" {{ label_attributes.addClass(label_classes) }}>
   <span class="c-bolt-tabs__label-inner">
     <span class="c-bolt-tabs__label-text">
-      {{ label }}
+      {{ label|raw }}
     </span>
   </span>
 </label>
@@ -54,12 +54,12 @@
   <ssr-keep for="bolt-tabs">
     <bolt-tab-panel {% if outer_classes %} class="{{ outer_classes|join(' ') }}" {% endif %} {{ this.props|without("label")|without("content")|without("class") }}>
       <ssr-keep for="bolt-tab-panel">
-        <div slot="label">{{ label }}</div>
+        <div slot="label">{{ label|raw }}</div>
       </ssr-keep>
       <div {{ inner_attributes.addClass(inner_classes) }}>
         <div role="tabpanel" class="c-bolt-tab-panel__content">
           <ssr-keep for="bolt-tab-panel">
-            {{ content }}
+            {{ content|raw }}
           </ssr-keep>
         </div>
       </div>

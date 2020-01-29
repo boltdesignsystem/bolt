@@ -51,9 +51,9 @@
             %}
             <th {{ cell_attributes.addClass(cell_classes) }} scope="col">
               {% if cell.content %}
-                {{ cell.content }}
+                {{ cell.content|raw }}
               {% else %}
-                {{ cell }}
+                {{ cell|raw }}
               {% endif %}
             </th>
           {% endfor %}
@@ -76,9 +76,9 @@
               {% if cell is not empty %}
                 <th {{ cell_attributes.addClass(cell_classes) }} scope="row">
                   {% if cell.content %}
-                    {{ cell.content }}
+                    {{ cell.content|raw }}
                   {% else %}
-                    {{ cell }}
+                    {{ cell|raw }}
                   {% endif %}
                 </th>
               {% endif %}
@@ -92,9 +92,9 @@
               %}
               <td {{ cell_attributes.addClass(cell_classes) }}>
                 {% if cell is iterable %}
-                  {{ cell.content }}
+                  {{ cell.content|raw }}
                 {% else %}
-                  {{ cell }}
+                  {{ cell|raw }}
                 {% endif %}
               </td>
             {% endfor %}
@@ -110,9 +110,9 @@
               {% if loop.last %}
                 <th class="{{ "#{base_class}__cell #{base_class}__cell--header" }}">
                   {% if cell.content %}
-                    {{ cell.content }}
+                    {{ cell.content|raw }}
                   {% else %}
-                    {{ cell }}
+                    {{ cell|raw }}
                   {% endif %}
                 </th>
               {% endif %}
@@ -127,9 +127,9 @@
             %}
             <td {{ cell_attributes.addClass(cell_classes) }}>
               {% if cell.content %}
-                {{ cell.content }}
+                {{ cell.content|raw }}
               {% else %}
-                {{ cell }}
+                {{ cell|raw }}
               {% endif %}
             </td>
           {% endfor %}

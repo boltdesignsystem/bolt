@@ -9,7 +9,7 @@
         ] %}
 
         <div {{ attributes.addClass(item_classes) }}>
-          {{ item.content }}
+          {{ item.content|raw }}
         </div>
       {% endfor %}
     </div>

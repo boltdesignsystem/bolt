@@ -162,7 +162,7 @@ Sort classes passed in via attributes into two groups:
     {% block slot_before %}
       {{ macros.slottedIcon(icon, icon_position, "before") }}
     {% endblock %}
-    <replace-with-children class="c-bolt-button__item">{{ text }}</replace-with-children>
+    <replace-with-children class="c-bolt-button__item">{{ text|raw }}</replace-with-children>
     {% block slot_after %}
       {{ macros.slottedIcon(icon, icon_position, 'after') }}
     {% endblock %}

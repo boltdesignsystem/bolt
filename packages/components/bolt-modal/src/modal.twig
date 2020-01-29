@@ -20,5 +20,5 @@
   {{ this.props|without("content")|without("class") }}
   uuid="{{ uuid }}"
 >
-  {{ content }}
+  {{ content|raw }}
 </bolt-modal>

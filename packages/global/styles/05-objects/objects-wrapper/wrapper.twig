@@ -30,7 +30,7 @@
   <bolt-wrapper size="{{ size }}" full="{% if full == true %}true{% else %}false{% endif %}" bolt-object>
     <{{ tag }} {{ attributes.addClass(classes) }}>
       {% block wrapper_content %}
-        {{ content }}
+        {{ content|raw }}
       {% endblock wrapper_content %}
     </{{ tag }}>
   </bolt-wrapper>

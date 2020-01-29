@@ -80,7 +80,7 @@
     {% set regular_content_block %}
       {# Setting a block so it doesn't break legacy embeds #}
       {% block band_content %}
-        {{ content }}
+        {{ content|raw }}
       {% endblock %}
     {% endset %}
     {% set regular_content %}
@@ -113,7 +113,7 @@
                 ] %}
 
                 <div {{ attributes.addClass(item_classes) }}>
-                  {{ item.content }}
+                  {{ item.content|raw }}
                 </div>
               {% endfor %}
             </div>
@@ -125,7 +125,7 @@
         </div>
       {% endif %}
 
-      {{ regular_content }}
+      {{ regular_content|raw }}
 
       {% if pinned_content_lower %}
         <div class="{{ "#{base_class}__content #{base_class}__content--pinned #{base_class}__content--pinned-lower" }}">
@@ -133,7 +133,7 @@
             <div class="{{ "#{base_class}__pinned-items" }}">
               {% for item in pinned_content_lower %}
                 <div class="{{ "#{base_class}__pinned-item #{base_class}__pinned-item--#{item.align}" }}">
-                  {{ item.content }}
+                  {{ item.content|raw }}
                 </div>
               {% endfor %}
             </div>
@@ -147,7 +147,7 @@
     {% else %}
 
     {# Otherwise, render just the content #}
-      {{ regular_content }}
+      {{ regular_content|raw }}
     {% endif %}
   </{{ tag }}>
 </bolt-band>

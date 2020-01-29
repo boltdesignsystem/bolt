@@ -25,4 +25,4 @@
   {% set _classes = ["c-bolt-label"] %}
 {% endif %}
 
-<label{{ attributes.addClass(_classes) }}>{{ title }}</label>
+<label{{ attributes.addClass(_classes) }}>{{ title|raw }}</label>

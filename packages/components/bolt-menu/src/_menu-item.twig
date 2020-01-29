@@ -26,7 +26,7 @@
       for="bolt-menu-item"
       {% if classes %} class="{{ classes|join(' ') }}" {% endif %}
     >
-      {{ content }}
+      {{ content|raw }}
     </ssr-keep>
   {% endset %}
   {% set trigger_options = {

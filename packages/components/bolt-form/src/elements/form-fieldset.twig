@@ -28,17 +28,17 @@ Available variables:
   <div>
     {% if errors %}
       <div class="c-bolt-input-message c-bolt-input-message--invalid">
-        {{ errors }}
+        {{ errors|raw }}
       </div>
     {% endif %}
 
     {% if descriptionText %}
       <div class="c-bolt-input-message">
-        {{ descriptionText }}
+        {{ descriptionText|raw }}
       </div>
     {% endif %}
 
-    {{ children }}
+    {{ children|raw }}
 
   </div>
 </fieldset>

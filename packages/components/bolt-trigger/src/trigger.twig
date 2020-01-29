@@ -67,6 +67,6 @@
   {{ this.props|without("content")|without("class") }}
 >
   <{{ tag }} {{ inner_attributes|without("on-click")|without("on-click-target") }} is="shadow-root">
-    {{ content }}
+    {{ content|raw }}
   </{{ tag }}>
 </bolt-trigger>

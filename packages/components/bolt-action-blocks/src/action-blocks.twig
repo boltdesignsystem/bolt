@@ -73,7 +73,7 @@
 >
   <ul {{ inner_attributes.addClass(inner_classes) }}>
     {% if children %}
-      {{ children }}
+      {{ children|raw }}
     {% else %}
       {% for item in contentItems %}
         <li class="{{ "#{base_class}__item" }}">

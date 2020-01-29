@@ -17,4 +17,4 @@ Available variables:
   {% set _classes = _classes|merge(['is-invalid']) %}
 {% endif %}
 
-<textarea{{ attributes.addClass(_classes) }}>{{ value }}</textarea>
+<textarea{{ attributes.addClass(_classes) }}>{{ value|raw }}</textarea>

@@ -95,7 +95,7 @@ Sort classes passed in via attributes into two groups:
   >
     {{ macros.slotted_icon(icon, icon_position, "before") }}
     <replace-with-children class="{{ "#{base_class}__text" }}">
-      {{- text | default(label) | default("Learn More") -}}
+      {{- text | default(label) | default("Learn More")|raw -}}
     </replace-with-children>
     {{ macros.slotted_icon(icon, icon_position, "after") }}
   </a>

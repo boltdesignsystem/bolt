@@ -54,13 +54,13 @@
         aria-describedby="{{ popover_uuid }}"
         aria-controls="{{ popover_uuid }}"
       >
-        {{ trigger }}
+        {{ trigger|raw }}
       </replace-with-children>
     {% endif %}
     {% if content %}
       <span slot="content">
         <replace-with-children class="{{ "#{base_class}__content" }}" id="{{ popover_uuid }}" aria-hidden="true">
-            {{ content }}
+            {{ content|raw }}
         </replace-with-children>
       </span>
     {% endif %}

@@ -23,7 +23,7 @@
         {% if card_replacement_image %}
           {% include "@bolt-components-image/image.twig" with card_replacement_image only %}
         {% elseif media_block %}
-          {{ media_block }}
+          {{ media_block|raw }}
         {% endif %}
       </replace-with-children>
     </bolt-card-replacement-media>

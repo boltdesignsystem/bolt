@@ -87,7 +87,7 @@
         size: size,
       } only %}
       <span class="{{ "#{base_class}__link-text" }}">
-        {{ trigger_text }}
+        {{ trigger_text|raw }}
       </span>
     </span>
   {% endset %}
@@ -111,7 +111,7 @@
         size: size,
       } only %}
       <span class="{{ "#{base_class}__link-text" }}">
-        {{ confirmation_text }}
+        {{ confirmation_text|raw }}
       </span>
     </div>
   {% endset %}

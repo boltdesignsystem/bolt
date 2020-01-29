@@ -147,7 +147,7 @@
 
   {% set children %}
     {{ is_jpg ? image_placeholder : "" }}
-    {{ image_tag }}
+    {{ image_tag|raw }}
   {% endset %}
 
   {% block image_content %}
@@ -158,9 +158,9 @@
       } only %}
     {% else %}
       {% if can_use_placeholder %}
-        {{ image_placeholder}}
+        {{ image_placeholder|raw }}
       {% endif %}
-      {{ image_tag }}
+      {{ image_tag|raw }}
     {% endif %}
   {% endblock %}
 </bolt-image>

@@ -28,7 +28,7 @@
     {% for slide in slides %}
       {% embed "@bolt-components-carousel/_carousel-slide.twig" %}
         {% block default_slot %}
-          {{ slide }}
+          {{ slide|raw }}
         {% endblock %}
       {% endembed %}
     {% endfor %}

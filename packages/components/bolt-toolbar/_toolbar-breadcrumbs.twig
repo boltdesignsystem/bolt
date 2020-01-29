@@ -13,16 +13,16 @@
     </div>
   {% endif %}
   <{{ tag }} class="c-bolt-toolbar__title-text">
-    {{ text }}
+    {{ text|raw }}
   </{{ tag }}>
 {% endset %}
 
 {% if url %}
   <a class="c-bolt-toolbar__title--link" {{ attributes }}>
-    {{ toolbar_title }}
+    {{ toolbar_title|raw }}
   </a>
 {% else %}
   <div class="c-bolt-toolbar__title--static">
-    {{ toolbar_title }}
+    {{ toolbar_title|raw }}
   </div>
 {% endif %}
