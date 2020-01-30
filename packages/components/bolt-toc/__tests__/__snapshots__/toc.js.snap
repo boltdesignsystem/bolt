@@ -1,18 +1,20 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<bolt-toc> Component Basic usage 1`] = `
-<bolt-toc>
-  <nav class="c-bolt-toc"
-       aria-labelledby="js-bolt-toc-12345"
+<bolt-toc ssr-id="12345">
+  <replace-with-children class="c-bolt-toc"
+                         role="navigation"
+                         aria-labelledby="js-bolt-toc-12345"
   >
     <h2 class="c-bolt-toc__header c-bolt-toc__header--hidden"
         id="js-bolt-toc-12345"
+        ssr-for="12345"
+        ssr-type="remove"
     >
       Table of Content
     </h2>
-    <ssr-keep for="bolt-toc"
-              class="c-bolt-toc__list"
-              role="list"
+    <replace-with-children class="c-bolt-toc__list"
+                           role="list"
     >
       <bolt-toc-item url="#section-one"
                      role="presentation"
@@ -47,24 +49,26 @@ exports[`<bolt-toc> Component Basic usage 1`] = `
           </a>
         </replace-with-grandchildren>
       </bolt-toc-item>
-    </ssr-keep>
-  </nav>
+    </replace-with-children>
+  </replace-with-children>
 </bolt-toc>
 `;
 
 exports[`<bolt-toc> Component Manuualy set the current item 1`] = `
-<bolt-toc>
-  <nav class="c-bolt-toc"
-       aria-labelledby="js-bolt-toc-12345"
+<bolt-toc ssr-id="12345">
+  <replace-with-children class="c-bolt-toc"
+                         role="navigation"
+                         aria-labelledby="js-bolt-toc-12345"
   >
     <h2 class="c-bolt-toc__header c-bolt-toc__header--hidden"
         id="js-bolt-toc-12345"
+        ssr-for="12345"
+        ssr-type="remove"
     >
       Table of Content
     </h2>
-    <ssr-keep for="bolt-toc"
-              class="c-bolt-toc__list"
-              role="list"
+    <replace-with-children class="c-bolt-toc__list"
+                           role="list"
     >
       <bolt-toc-item url="#section-one"
                      role="presentation"
@@ -100,24 +104,28 @@ exports[`<bolt-toc> Component Manuualy set the current item 1`] = `
           </a>
         </replace-with-grandchildren>
       </bolt-toc-item>
-    </ssr-keep>
-  </nav>
+    </replace-with-children>
+  </replace-with-children>
 </bolt-toc>
 `;
 
 exports[`<bolt-toc> Component Table of content with a header 1`] = `
-<bolt-toc header="This is the header">
-  <nav class="c-bolt-toc"
-       aria-labelledby="js-bolt-toc-12345"
+<bolt-toc header="This is the header"
+          ssr-id="12345"
+>
+  <replace-with-children class="c-bolt-toc"
+                         role="navigation"
+                         aria-labelledby="js-bolt-toc-12345"
   >
     <h2 class="c-bolt-toc__header"
         id="js-bolt-toc-12345"
+        ssr-for="12345"
+        ssr-type="remove"
     >
       This is the header
     </h2>
-    <ssr-keep for="bolt-toc"
-              class="c-bolt-toc__list"
-              role="list"
+    <replace-with-children class="c-bolt-toc__list"
+                           role="list"
     >
       <bolt-toc-item url="#section-one"
                      role="presentation"
@@ -152,7 +160,7 @@ exports[`<bolt-toc> Component Table of content with a header 1`] = `
           </a>
         </replace-with-grandchildren>
       </bolt-toc-item>
-    </ssr-keep>
-  </nav>
+    </replace-with-children>
+  </replace-with-children>
 </bolt-toc>
 `;

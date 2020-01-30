@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.16.3](https://github.com/boltdesignsystem/bolt/compare/v2.16.2...v2.16.3) (2020-01-28)
+
+
+### Bug Fixes
+
+* **editor:** step removal event not completing when parent bolt-animate removed also ([21fccdc](https://github.com/boltdesignsystem/bolt/commit/21fccdc42882c9f5f73581d6390c29c00ad10643))
+
+
+
+
+
 ## [2.16.2](https://github.com/boltdesignsystem/bolt/compare/v2.16.1...v2.16.2) (2020-01-28)
 
 
