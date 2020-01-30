@@ -2,13 +2,15 @@
 
 exports[`<bolt-menu> Component basic usage 1`] = `
 <bolt-menu role="menu">
-  <replace-with-children class="c-bolt-menu">
+  <replace-with-children role="presentation"
+                         class="c-bolt-menu"
+  >
     <replace-with-children class="c-bolt-menu__title c-bolt-menu__title--spacing-small">
       <span slot="title">
         Menu title
       </span>
     </replace-with-children>
-    <bolt-menu-item>
+    <bolt-menu-item role="presentation">
       <bolt-trigger role="menuitem"
                     display="block"
                     no-outline
@@ -25,7 +27,9 @@ exports[`<bolt-menu> Component basic usage 1`] = `
         </button>
       </bolt-trigger>
     </bolt-menu-item>
-    <bolt-menu-item url="https://pega.com">
+    <bolt-menu-item url="https://pega.com"
+                    role="presentation"
+    >
       <bolt-trigger role="menuitem"
                     url="https://pega.com"
                     display="block"
@@ -43,7 +47,7 @@ exports[`<bolt-menu> Component basic usage 1`] = `
         </a>
       </bolt-trigger>
     </bolt-menu-item>
-    <bolt-menu-item>
+    <bolt-menu-item role="presentation">
       <bolt-trigger role="menuitem"
                     display="block"
                     no-outline
@@ -68,8 +72,10 @@ exports[`<bolt-menu> Component menu item spacing: medium 1`] = `
 <bolt-menu spacing="medium"
            role="menu"
 >
-  <replace-with-children class="c-bolt-menu">
-    <bolt-menu-item>
+  <replace-with-children role="presentation"
+                         class="c-bolt-menu"
+  >
+    <bolt-menu-item role="presentation">
       <bolt-trigger role="menuitem"
                     display="block"
                     no-outline
@@ -86,7 +92,7 @@ exports[`<bolt-menu> Component menu item spacing: medium 1`] = `
         </button>
       </bolt-trigger>
     </bolt-menu-item>
-    <bolt-menu-item>
+    <bolt-menu-item role="presentation">
       <bolt-trigger role="menuitem"
                     display="block"
                     no-outline
@@ -103,7 +109,7 @@ exports[`<bolt-menu> Component menu item spacing: medium 1`] = `
         </button>
       </bolt-trigger>
     </bolt-menu-item>
-    <bolt-menu-item>
+    <bolt-menu-item role="presentation">
       <bolt-trigger role="menuitem"
                     display="block"
                     no-outline
@@ -128,8 +134,10 @@ exports[`<bolt-menu> Component menu item spacing: small 1`] = `
 <bolt-menu spacing="small"
            role="menu"
 >
-  <replace-with-children class="c-bolt-menu">
-    <bolt-menu-item>
+  <replace-with-children role="presentation"
+                         class="c-bolt-menu"
+  >
+    <bolt-menu-item role="presentation">
       <bolt-trigger role="menuitem"
                     display="block"
                     no-outline
@@ -146,7 +154,7 @@ exports[`<bolt-menu> Component menu item spacing: small 1`] = `
         </button>
       </bolt-trigger>
     </bolt-menu-item>
-    <bolt-menu-item>
+    <bolt-menu-item role="presentation">
       <bolt-trigger role="menuitem"
                     display="block"
                     no-outline
@@ -163,7 +171,7 @@ exports[`<bolt-menu> Component menu item spacing: small 1`] = `
         </button>
       </bolt-trigger>
     </bolt-menu-item>
-    <bolt-menu-item>
+    <bolt-menu-item role="presentation">
       <bolt-trigger role="menuitem"
                     display="block"
                     no-outline
@@ -188,8 +196,10 @@ exports[`<bolt-menu> Component menu item spacing: xsmall 1`] = `
 <bolt-menu spacing="xsmall"
            role="menu"
 >
-  <replace-with-children class="c-bolt-menu">
-    <bolt-menu-item>
+  <replace-with-children role="presentation"
+                         class="c-bolt-menu"
+  >
+    <bolt-menu-item role="presentation">
       <bolt-trigger role="menuitem"
                     display="block"
                     no-outline
@@ -206,7 +216,7 @@ exports[`<bolt-menu> Component menu item spacing: xsmall 1`] = `
         </button>
       </bolt-trigger>
     </bolt-menu-item>
-    <bolt-menu-item>
+    <bolt-menu-item role="presentation">
       <bolt-trigger role="menuitem"
                     display="block"
                     no-outline
@@ -223,7 +233,7 @@ exports[`<bolt-menu> Component menu item spacing: xsmall 1`] = `
         </button>
       </bolt-trigger>
     </bolt-menu-item>
-    <bolt-menu-item>
+    <bolt-menu-item role="presentation">
       <bolt-trigger role="menuitem"
                     display="block"
                     no-outline

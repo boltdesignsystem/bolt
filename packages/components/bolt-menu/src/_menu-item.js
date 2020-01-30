@@ -23,6 +23,10 @@ class BoltMenuItem extends withContext(BoltElement) {
     return {
       url: String,
       spacing: String,
+      role: {
+        type: String,
+        reflect: true,
+      },
     };
   }
 
@@ -36,6 +40,7 @@ class BoltMenuItem extends withContext(BoltElement) {
 
   constructor() {
     super();
+    this.role = 'presentation';
   }
 
   static get styles() {
@@ -97,6 +102,7 @@ class BoltMenuItem extends withContext(BoltElement) {
         display="block"
         no-outline
         url="${ifDefined(this.url ? this.url : undefined)}"
+        role="menuitem"
       >
         <div class="${classes}">
           ${this.slotify('default')}

@@ -35,7 +35,7 @@
   {{ this.props|without("content")|without("title")|without("class") }}
   role="menu"
 >
-  <replace-with-children {% if inner_classes %} class="{{ inner_classes|join(' ') }}" {% endif %}>
+  <replace-with-children role="presentation" {% if inner_classes %} class="{{ inner_classes|join(' ') }}" {% endif %}>
     {% if title %}
       {% set title_class = base_class ~ "__title" %}
       {% set title_classes = [
