@@ -800,3 +800,52 @@ $config_directories['sync'] = '../config/sync';
 
 // Including local settings as we are always in development mode here
 require(__DIR__ . '/settings.local.php');
+
+
+/**
+ * TODO: Remove this after refactoring bolt components.
+ *  This should be removed after the .value property has been removed from the bolt twig templates.
+ *  @see blockquote.twig for an example.
+ *
+ * Customize the twig sandbox policy.
+ *
+ * By default, the following are blocked in twig templates by Drupal's twig
+ * sandbox policy:
+ *
+ *   attributes.my_boolean_attr.value
+ *   attributes.my_string_attr.value
+ *
+ * Whereas most sites wouldn't need these values in the twig layer (since logic
+ * involving them should normally be done in preprocessing instead), Bolt has
+ * nowhere else to do logic except twig.  Additionally, relying on any method
+ * besides 'value' is problematic, e.g.:
+ *
+ *   attributes.my_boolean_attr - truthy even if my_boolean_attr is FALSE
+ *   attributes.my_boolean_attr.__toString - empty if my_boolean_attr is FALSE
+ *
+ * Finally, since the Attribute object is already whitelisted because "it is
+ * intended to be changed from a Twig template", from a security standpoint it
+ * seems at most a minor change to whitelist AttributeValueBase objects as well.
+ *
+ * @see \Drupal\Core\Template\TwigSandboxPolicy
+ */
+$settings['twig_sandbox_whitelisted_classes'] = [
+  'Drupal\Core\Template\Attribute',
+  'Drupal\Core\Template\AttributeValueBase',
+];
+
+$settings['twig_sandbox_whitelisted_methods'] = [
+  // Defaults:
+  'id',
+  'label',
+  'bundle',
+  'get',
+  '__toString',
+  'toString',
+
+  // Additions:
+  'url',
+  'paragraph',
+  'numberBetween',
+  'sentence',
+];

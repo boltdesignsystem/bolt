@@ -1,0 +1,12 @@
+diff --git a/vendor/bolt-design-system/core-php/src/TwigExtensions/BoltCore.php b/vendor/bolt-design-system/core-php/src/TwigExtensions/BoltCore.php
+index 30350f7cd..0d7b41831 100644
+--- a/vendor/bolt-design-system/core-php/src/TwigExtensions/BoltCore.php
++++ b/vendor/bolt-design-system/core-php/src/TwigExtensions/BoltCore.php
+@@ -48,6 +48,7 @@ class BoltCore extends \Twig_Extension implements \Twig_Extension_InitRuntimeInt
+       TwigTools\TwigFunctions::validate_data_schema(),
+       Bolt\TwigFunctions::init(),
+       Bolt\TwigFunctions::publicpath(),
++      Bolt\TwigFunctions::pattern_template(),
+       Bolt\TwigFunctions::base64(),
+       Bolt\TwigFunctions::bgcolor(),
+       Bolt\TwigFunctions::ratio(),

@@ -18,13 +18,14 @@
     }
   ],
   "require": {
-    "bolt-design-system/bolt_connect": "*",
-    "bolt-design-system/core-php": "*",
+    "bolt-design-system/bolt_connect": "^2.15.2",
+    "bolt-design-system/core-php": "^2.15.2",
     "composer/installers": "^1.2",
     "cweagans/composer-patches": "^1.6",
     "drupal-composer/drupal-scaffold": "^2.2",
     "drupal/config_installer": "^1.7",
     "drupal/console": "^1.0.2",
+    "drupal/components": "*",
     "drupal/core": "~8.6",
     "drupal/devel": "^1.2",
     "drupal/field_group": "3.0-beta1",
@@ -64,11 +65,12 @@
       "drush site-install --verbose config_installer config_installer_sync_configure_form.sync_directory=../config/sync --account-name=admin --account-pass=admin --yes",
       "drush cache:rebuild",
       "@generate",
+      "drush en components",
       "drush core:cron",
       "drush cache:rebuild",
       "echo '' && echo 'All done. Login with user: admin pass:admin'"
     ],
-    "serve": "drush serve",
+    "serve": "drush rs 8082",
     "static": "drush tome:static",
     "export": "drush config:export",
     "generate": [
@@ -95,6 +97,7 @@
     ]
   },
   "extra": {
+    "patches-file": "composer.patches.json",
     "installer-paths": {
       "web/core": [
         "type:drupal-core"

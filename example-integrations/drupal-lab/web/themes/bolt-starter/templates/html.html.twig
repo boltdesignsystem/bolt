@@ -56,6 +56,252 @@
     <a href="#main-content" class="visually-hidden focusable">
       {{ 'Skip to main content'|t }}
     </a>
+
+
+    <!-- Twig include (works) -->
+    {% include "@bolt-components-button/button.twig" with {
+      "text": "This works",
+    } only %}
+
+
+    <!-- Twig include + text with HTML tag set to a variable first (works) -->
+    {% set value %}
+      <strong>And this works</strong>
+    {% endset %}
+
+    {% include "@bolt-components-button/button.twig" with {
+      "text": value
+    } only %}
+
+
+    <!-- broken examples -->
+
+    <!-- #1. Twig include + text with HTML tag appended (broken) -->
+    {% include "@bolt-components-button/button.twig" with {
+      "text": "<strong>" ~ "But Not This" ~ "</strong>"
+    } only %}
+
+    {% set exampleText = "Or This" %}
+    <!-- #2. Twig include + text with HTML tag appended via string interpolation (broken) -->
+    {% include "@bolt-components-button/button.twig" with {
+      "text": "<strong>#{exampleText}</strong>"
+    } only %}
+
+
+    <!-- #3. Twig include + popup w/ Share menu -- pre-built externally (broken) -->
+    {% include "@bolt-blueprints/01-atoms/forms/toolbar-buttons/_share.twig" only %}
+
+    <!-- #4. Twig include + popup w/ Share menu -- pre-built internally (still broken) -->
+    {% include "@bolt-starter/_share.html.twig" %}
+
+    <!-- #5. Twig include: Challenge Details Page (toolbar icon, popover, toolbar action buttons, breadcrumb links, etc broken) -->
+    {% include "@bolt-blueprints/05-pages/t2-inner-pages/challenge-details/t2-challenge-detail-page.twig" with {
+      "heroTitle": "Welcome back Justin!",
+      "heroDescription": "Let's change the way the world builds software."
+    } only %}
+
+    <!-- #6. Twig include: Challenge Details Page (toolbar icon, popover, toolbar action buttons, button group, carousel, cards all broken) -->
+    {% include "@bolt-blueprints/05-pages/dashboard/dashboard/dashboard.twig" with {
+      "heroTitle": "Welcome back Justin!",
+      "heroDescription": "Let's change the way the world builds software."
+    } only %}
+
+    <!-- #7. Twig include: Missiom Landing Page (+ Modal broken) -->
+    {% include "@bolt-blueprints/05-pages/t1-landing-pages/mission-landing--test-with-modal/t1-mission-landing--test-with-modal.twig" with {
+      "toolbarIcon": "launchpad",
+      "toolbarGradient": "teal",
+      "heroTitle": "Module name goes here",
+      "heroSubTitle": "Module",
+      "heroDescription": "Create data types to model the attributes of an entity and establish a common context for a group of fields.",
+      "heroTags": [
+        {
+          "text": "Data Integration",
+          "url": "#!"
+        },
+        {
+          "text": "Pega Platform",
+          "url": "#!"
+        }
+      ],
+      "heroMetaItems": [
+        {
+          "text": "4 Topics"
+        },
+        {
+          "text": "30 Mins"
+        }
+      ],
+      "breadcrumbs": [
+        {
+          "text": "Home",
+          "url": "#!"
+        },
+        {
+          "text": "Module name goes here"
+        }
+      ]
+    } only %}
+
+    <!-- #8 Module landing Page (finicky when logged in atm) -->
+    {% include "@bolt-blueprints/05-pages/t1-landing-pages/module-landing/t1-module-landing-page.twig" with {
+      "toolbarIcon": "launchpad",
+      "toolbarGradient": "teal",
+      "heroTitle": "Module name goes here",
+      "heroSubTitle": "Module",
+      "heroDescription": "Create data types to model the attributes of an entity and establish a common context for a group of fields.",
+      "heroTags": [
+        {
+          "text": "Data Integration",
+          "url": "#!"
+        },
+        {
+          "text": "Pega Platform",
+          "url": "#!"
+        }
+      ],
+      "heroMetaItems": [
+        {
+          "text": "4 Topics"
+        },
+        {
+          "text": "30 Mins"
+        }
+      ],
+      "breadcrumbs": [
+        {
+          "text": "Home",
+          "url": "#!"
+        },
+        {
+          "text": "Module name goes here"
+        }
+      ]
+    } %}
+
+
+    {# {% include "@bolt-blueprints/05-pages/t1-landing-pages/mission-landing/_mission-landing.twig" with {
+      "toolbarIcon": "launchpad",
+      "heroTitle": "Page Title Goes Here Test",
+      "heroSubTitle": "Page Subtitle",
+      "heroDescription": "An introduction to using Pega Platform to develop applications that advance the digital transformation of organizations. Test",
+      "heroTags": [
+        {
+          "text": "Beginner",
+          "url": "#!"
+        },
+        {
+          "text": "Pega Platform 8.3",
+          "url": "#!"
+        },
+        {
+          "text": "Application Development",
+          "url": "#!"
+        },
+        {
+          "text": "Case Management",
+          "url": "#!"
+        },
+        {
+          "text": "Other",
+          "url": "https://www.google.com"
+        }
+      ],
+      "heroMetaItems": [
+        {
+          "text": "13 Modules"
+        },
+        {
+          "text": "12 Challenges"
+        },
+        {
+          "text": "1 Mission"
+        },
+        {
+          "text": "7 hrs 30 mins"
+        },
+        {
+          "text": "Other"
+        }
+      ],
+      "breadcrumbs": [
+        {
+          "text": "Home",
+          "url": "#!"
+        },
+        {
+          "text": "Landing Page",
+          "url": "#!"
+        },
+        {
+          "text": "Sub Page",
+          "url": "#!"
+        },
+        {
+          "text": "Current Page"
+        }
+      ],
+      contentItems: [
+        include("@bolt-blueprints/_horizontal-card.twig", {
+          cardSubtitle: "Mission",
+          cardTitle: bolt.faker.sentence(3),
+          cardMetaItems: [
+            include("@bolt-components-headline/text.twig", {
+              size: "small",
+              weight: "bold",
+              text: "#{bolt.faker.numberBetween(2,30)} topics",
+            }, with_context = false),
+            include("@bolt-components-headline/text.twig", {
+              size: "small",
+              weight: "bold",
+              text: "Completed",
+              icon: {
+                name: "check-solid",
+                position: "before"
+              },
+              attributes: {
+                style: [
+                  'color: #3C9439;'
+                ]
+              }
+            }, with_context = false),
+          ],
+          cardGradient: "orange",
+          cardIcon: "meteor",
+          cardDescription: bolt.faker.paragraph(3),
+        }),
+        include("@bolt-blueprints/_horizontal-card.twig", {
+          cardSubtitle: "Mission",
+          cardTitle: bolt.faker.sentence(3),
+          cardMetaItems: [
+            include("@bolt-components-headline/text.twig", {
+              size: "small",
+              weight: "bold",
+              text: "#{bolt.faker.numberBetween(2,30)} topics",
+            }, with_context = false),
+            include("@bolt-components-headline/text.twig", {
+              size: "small",
+              weight: "bold",
+              text: "Completed",
+              icon: {
+                name: "check-solid",
+                position: "before"
+              },
+              attributes: {
+                style: [
+                  'color: #3C9439;'
+                ]
+              }
+            }, with_context = false),
+          ],
+          cardGradient: "orange",
+          cardIcon: "meteor",
+          cardDescription: bolt.faker.paragraph(3),
+        }),
+        include("@bolt-blueprints/_badge.twig"),
+      ]
+    } only %} #}
+
+
     {{ page_top }}
     {{ page }}
     {{ page_bottom }}
