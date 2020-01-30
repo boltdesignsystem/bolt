@@ -459,14 +459,17 @@ export function enableEditor({ space, uiWrapper, config }) {
   editor.on('component:remove', (/** @type {grapesjs.Component} */ model) => {
     // Editor removes all components in order on save/cleanup. Don't check then.
     if (!editor.isSaving) {
-      const parent = model.parent();
-      // Remove empty parent `bolt-animate`s
-      if (parent && parent.attributes.tagName === 'bolt-animate') {
-        if (parent && parent.view.el.assignedSlot) {
-          parent.view.el.assignedSlot.remove();
+      // Timeout so cleanup and layer re-render happens on parent before removal.
+      setTimeout(() => {
+        const parent = model.parent();
+        // Remove empty parent `bolt-animate`s
+        if (parent && parent.attributes.tagName === 'bolt-animate') {
+          if (parent && parent.view.el.assignedSlot) {
+            parent.view.el.assignedSlot.remove();
+          }
+          parent.remove();
         }
-        parent.remove();
-      }
+      }, 0);
     }
   });
 
@@ -487,7 +490,7 @@ export function enableEditor({ space, uiWrapper, config }) {
    * @param {grapesjs.Component} model
    * @return {void}
    */
-  editor.on('component:selected', (model) => {
+  editor.on('component:selected', model => {
     // clickHandler is set in declarativeClickHandler and attached in BoltActionElement
     if (model.view.el.clickHandler) {
       model.view.el.removeEventListener('click', model.view.el.clickHandler);
@@ -501,9 +504,14 @@ export function enableEditor({ space, uiWrapper, config }) {
    * @param {grapesjs.Component} model
    * @return {void}
    */
-  editor.on('component:deselected', (/** @type {grapesjs.Component} */ model) => {
+  editor.on('component:deselected', (
+    /** @type {grapesjs.Component} */ model,
+  ) => {
     if (model.view.el.removedClickHandler) {
-      model.view.el.addEventListener('click', model.view.el.removedClickHandler);
+      model.view.el.addEventListener(
+        'click',
+        model.view.el.removedClickHandler,
+      );
       delete model.view.el.removedClickHandler;
     }
   });

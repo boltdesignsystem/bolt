@@ -443,7 +443,9 @@ export function setupBolt(editor) {
     schema: listSchema,
     editable: true,
     highlightable: true,
-    initialContent: ['<bolt-list-item><bolt-text>Item 1<bolt-text></bolt-list-item>'],
+    initialContent: [
+      '<bolt-list-item><bolt-text>Item 1<bolt-text></bolt-list-item>',
+    ],
     propsToTraits: [
       'tag',
       'display',
@@ -790,7 +792,12 @@ export function setupBolt(editor) {
     draggable: true,
     editable: true,
     highlightable: true,
-    propsToTraits: ['iconName', 'isAlertMessage', 'dialogueArrowDirection', 'boxFloatDirection'],
+    propsToTraits: [
+      'iconName',
+      'isAlertMessage',
+      'dialogueArrowDirection',
+      'boxFloatDirection',
+    ],
     slots: {
       default: false,
       // @todo consider changing `text` to `default`

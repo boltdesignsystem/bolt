@@ -14,7 +14,7 @@ module.exports = {
       type: 'string',
       description: 'Icon name.',
       default: 'mobility',
-      enum: ['', ...iconSchema.properties.name.anyOf[0].enum],
+      enum: ['-none-', ...iconSchema.properties.name.anyOf[0].enum],
     },
     isAlertMessage: {
       type: 'boolean',

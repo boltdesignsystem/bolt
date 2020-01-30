@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.16.2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icon/compare/v2.16.1...v2.16.2) (2020-01-28)
+
+
+### Bug Fixes
+
+* Remove background on web component icons when background="none" ([6039441](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icon/commit/603944171dad44f3f879cccaaea99d70043ed58b))
+* Remove padding on web component icons when background="none" ([1653103](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icon/commit/1653103b5542b5b7293d3e2a39f29cb93cee0a48))
+
+
+
+
+
+## [2.16.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icon/compare/v2.16.0...v2.16.1) (2020-01-27)
+
+
+### Bug Fixes
+
+* add raw filters to the Toolbar + Icon component's Twig templates ([472c23d](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icon/commit/472c23da670ba1c39f7a497cd36a92c7fc785b92))
+
+
+
+
+
 # [2.16.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icon/compare/v2.15.2...v2.16.0) (2020-01-24)
 
 
