@@ -1,35 +1,86 @@
+// no-JS specific pre-rendering for <bolt-carousel> and <bolt-carousel-slide>
+//
+// @todo: needs additional cleanup + evaluate to see if the logic here can get further consolidated
+
 @import '@bolt/core-v3.x';
 
+// -- begin no-JS fallback styles for older browsers --
+
+// default spacing to avoid making this more complex than it already is
+$bolt-carousel-space-between: bolt-spacing(medium);
+
 bolt-carousel-slide:not(.is-ready) {
-  bolt-carousel[slides-per-view="1"] & {
-    min-width: calc(100% - calc(#{$bolt-carousel-space-around} * 2));
-    min-width: calc(100% - calc(var(--bolt-carousel-space-around) * 2));
-  }
+  min-width: calc(100% - calc(#{$bolt-carousel-space-around} * 2));
+}
 
-  bolt-carousel[slides-per-view="2"] & {
-    min-width: calc(100% - calc(#{$bolt-carousel-space-around} * 2));
-    min-width: calc(100% - calc(var(--bolt-carousel-space-around) * 2));
-
+// everything but when slides per view is 1 (so 2, 3, and auto)
+bolt-carousel:not([slides-per-view='1']) {
+  bolt-carousel-slide:not(.is-ready) {
     @include bolt-mq($from: 600px) {
-      min-width: calc(calc(100% / 2) - calc(#{$bolt-carousel-space-between} / 2) - calc(#{$bolt-carousel-space-around} * 1));
-      min-width: calc(calc(100% / 2) - calc(var(--bolt-carousel-space-between) / 2) - calc(var(--bolt-carousel-space-around) * 1));
-    }
-  }
-
-  bolt-carousel:not([slides-per-view="1"]):not([slides-per-view="2"]) &,
-  bolt-carousel[slides-per-view="auto"] &,
-  bolt-carousel[slides-per-view="3"] & {
-    min-width: calc(100% - calc(#{$bolt-carousel-space-between} * 2));
-    min-width: calc(100% - calc(var(--bolt-carousel-space-around) * 2));
-
-    @include bolt-mq($from: 600px) {
-      min-width: calc(calc(100% / 2) - calc(#{$bolt-carousel-space-between} / 2) - calc(#{$bolt-carousel-space-around} * 1));
-      min-width: calc(calc(100% / 2) - calc(var(--bolt-carousel-space-between) / 2) - calc(var(--bolt-carousel-space-around) * 1));
-    }
-
-    @include bolt-mq($from: medium) {
-      min-width: calc(calc(100%  / 3) - calc(#{$bolt-carousel-space-between} / 3) -  calc(#{$bolt-carousel-space-around} * 3));
-      min-width: calc(calc(100%  / 3) - calc(var(--bolt-carousel-space-between) / 3) -  calc(var(--bolt-carousel-space-around) * 3));
+      min-width: calc(
+        calc(100% / 2) - calc(#{$bolt-carousel-space-between} / 2) -
+          calc(#{$bolt-carousel-space-around} * 1)
+      );
     }
   }
 }
+
+// slides per view auto + undefined + slides per view = 3
+bolt-carousel:not([slides-per-view]),
+bolt-carousel[slides-per-view='auto'],
+bolt-carousel[slides-per-view='3'] {
+  bolt-carousel-slide:not(.is-ready) {
+    @include bolt-mq($from: medium) {
+      min-width: calc(
+        calc(100% / 3) - calc(#{$bolt-carousel-space-between} / 3) -
+          calc(#{$bolt-carousel-space-around} * 3)
+      );
+    }
+  }
+}
+// -- end no-JS fallback styles for older browsers --
+
+// -- begin no-JS fallback styles for modern browsers --
+
+// define css vars used across different breakpoints
+bolt-carousel:not(.is-ready) {
+  // 1 slides per view minimum in all conditions
+  --bolt-carousel-slides-per-view: 1;
+  --bolt-carousel-slide-size-adjustment: -4; // magic number that fine-tunes the spacing. eliminates the need for 3 separate min-width calculations.
+
+  // 2 slides per view (including when slides per view is set to auto + not defined.
+  &:not([slides-per-view='1']) {
+    @include bolt-mq($from: 600px) {
+      --bolt-carousel-slides-per-view: 2;
+      --bolt-carousel-slide-size-adjustment: 1;
+    }
+  }
+
+  // 3 slides per view (including when slides per view is set to auto + not defined.
+  &:not([slides-per-view='1']):not([slides-per-view='2']) {
+    @include bolt-mq($from: medium) {
+      --bolt-carousel-slides-per-view: 3;
+      --bolt-carousel-slide-size-adjustment: 3;
+    }
+  }
+}
+
+// actually use CSS vars when supported
+@supports (--foo: bar) {
+  bolt-carousel:not(.is-ready) {
+    bolt-carousel-slide:not(.is-ready) {
+      min-width: calc(
+        calc(100% / var(--bolt-carousel-slides-per-view)) -
+          calc(
+            var(--bolt-carousel-space-between) /
+              var(--bolt-carousel-slides-per-view)
+          ) -
+          calc(
+            var(--bolt-carousel-space-around) *
+              var(--bolt-carousel-slide-size-adjustment)
+          )
+      );
+    }
+  }
+}
+// -- end no-JS fallback styles for modern browsers --
