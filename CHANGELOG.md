@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.16.3](https://github.com/boltdesignsystem/bolt/compare/v2.16.2...v2.16.3) (2020-01-28)
+
+
+### Bug Fixes
+
+* **editor:** step removal event not completing when parent bolt-animate removed also ([21fccdc](https://github.com/boltdesignsystem/bolt/commit/21fccdc42882c9f5f73581d6390c29c00ad10643))
+
+
+
+
+
+## [2.16.2](https://github.com/boltdesignsystem/bolt/compare/v2.16.1...v2.16.2) (2020-01-28)
+
+
+### Bug Fixes
+
+* Remove background on web component icons when background="none" ([6039441](https://github.com/boltdesignsystem/bolt/commit/603944171dad44f3f879cccaaea99d70043ed58b))
+* Remove padding on web component icons when background="none" ([1653103](https://github.com/boltdesignsystem/bolt/commit/1653103b5542b5b7293d3e2a39f29cb93cee0a48))
+
+
+
+
+
 ## [2.16.1](https://github.com/boltdesignsystem/bolt/compare/v2.16.0...v2.16.1) (2020-01-27)
 
 

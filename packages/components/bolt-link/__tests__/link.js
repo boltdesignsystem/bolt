@@ -191,9 +191,10 @@ describe('link', () => {
 
   test('Default <bolt-link> with Shadow DOM renders with no extra whitespace', async function() {
     const defaultLinkOuter = await page.evaluate(async () => {
+      // Include huge inline font-size style to increase visibility of any unexpected whitespace
       document.body.insertAdjacentHTML(
         'beforeend',
-        '<div>(<bolt-link url="http://pega.com">Link Test -- No extra whitespace</bolt-link>)</div>',
+        '<div style="font-size: 300%;">(<bolt-link url="http://pega.com">Link Test -- No extra whitespace</bolt-link>)</div>',
       );
       const link = document.querySelector('bolt-link').parentNode;
       await link.updateComplete;

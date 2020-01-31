@@ -61,6 +61,10 @@ bolt-carousel:not(.is-ready) > [slot='next-btn'] {
       left: bolt-spacing(medium);
       transform: translateX(-50%) translateY(-50%);
 
+      @include bolt-mq(medium) {
+        left: bolt-spacing(large);
+      }
+
       &.is-pressed {
         transform: translateX(-50%) translateY(-50%) translateY(1px);
       }
@@ -69,6 +73,10 @@ bolt-carousel:not(.is-ready) > [slot='next-btn'] {
     &.c-bolt-carousel__button--next {
       right: bolt-spacing(medium);
       transform: translateX(50%) translateY(-50%);
+
+      @include bolt-mq(medium) {
+        right: bolt-spacing(large);
+      }
 
       &.is-pressed {
         transform: translateX(50%) translateY(-50%) translateY(1px);
