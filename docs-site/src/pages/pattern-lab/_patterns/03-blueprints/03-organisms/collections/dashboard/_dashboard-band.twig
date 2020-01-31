@@ -1,3 +1,5 @@
+{% import "@bolt-blueprints/macros.twig" as macros %}
+
 {% set content %}
   {% grid "o-bolt-grid--flex o-bolt-grid--matrix" %}
     {% if sectionTitle %}
@@ -29,7 +31,7 @@
         {% for item in contentItems %}
           {# @todo: why do we do this check? #}
           {% if item.cardTitle %}
-            {% set slides = slides|merge([include("@bolt-blueprints/_vertical-card.twig", item)]) %}
+            {% set slides = slides|merge([macros.include("@bolt-blueprints/_vertical-card.twig", item)]) %}
           {% else %}
             {% set slides = slides|merge([item]) %}
           {% endif %}

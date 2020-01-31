@@ -1,6 +1,8 @@
 {% set mainContentBlock = block("page_content") %}
 {% set backgroundBlock = block("page_background") %}
 
+{% import "@bolt-blueprints/macros.twig" as macros %}
+
 <div class="c-bolt-site">
   {% block global_header %}
     {% include "@bolt/page-header.twig" %}
@@ -16,12 +18,12 @@
       background: {
         overlay: "disabled",
         contentItems: [
-          include('@bolt-components-background/background-overlay.twig', {
+          macros.include('@bolt-components-background/background-overlay.twig', {
             fill: "color",
             fillColor: "black",
             overlay: "enabled",
-          }, with_context = false),
-          include('@bolt-components-image/image.twig', {
+          }, false),
+          macros.include('@bolt-components-image/image.twig', {
             placeholder_color: "#000000",
             src: "/images/mission-hero.jpg",
             cover: false,

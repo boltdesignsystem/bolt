@@ -1,40 +1,42 @@
+{% import "@bolt-blueprints/macros.twig" as macros %}
+
 {% set cardContentItems = [
     {
       cardUrl: "#!",
       cardSubtitle: "Mission",
       cardTitle: bolt.faker.sentence(3),
       cardMetaItems: [
-        include("@bolt-components-headline/text.twig", {
+        macros.include("@bolt-components-headline/text.twig", {
           size: "small",
           weight: "bold",
           text: "#{bolt.faker.numberBetween(2,10)} Modules",
-        }, with_context = false),
-        include("@bolt-components-headline/text.twig", {
+        }, false),
+        macros.include("@bolt-components-headline/text.twig", {
           size: "small",
           weight: "bold",
           text: "1 Challenge",
-        }, with_context = false),
-        include("@bolt-components-headline/text.twig", {
+        }, false),
+        macros.include("@bolt-components-headline/text.twig", {
           size: "small",
           weight: "bold",
           text: "25% complete",
           attributes: {
             class: ["u-bolt-color-orange"]
           }
-        }, with_context = false)
+        }, false)
       ],
       cardGradient: "purple",
       cardIcon: "rocket",
       cardDescription: bolt.faker.paragraph(2),
       removeButton: true,
       cardStatusItems: [
-        include("@bolt-components-headline/eyebrow.twig", {
+        macros.include("@bolt-components-headline/eyebrow.twig", {
           text: "Last activity: 3 days ago",
           align: "center",
           attributes: {
             class: ["u-bolt-padding-small"]
           }
-        }, with_context = false)
+        }, false)
       ]
     },
     {
@@ -42,44 +44,44 @@
       cardSubtitle: "Mission",
       cardTitle: bolt.faker.sentence(3),
       cardMetaItems: [
-        include("@bolt-components-headline/text.twig", {
+        macros.include("@bolt-components-headline/text.twig", {
           size: "small",
           weight: "bold",
           text: "#{bolt.faker.numberBetween(2,10)} Modules",
-        }, with_context = false),
-        include("@bolt-components-headline/text.twig", {
+        }, false),
+        macros.include("@bolt-components-headline/text.twig", {
           size: "small",
           weight: "bold",
           text: "1 Challenge",
-        }, with_context = false),
-        include("@bolt-components-headline/text.twig", {
+        }, false),
+        macros.include("@bolt-components-headline/text.twig", {
           size: "small",
           weight: "bold",
           text: "10% complete",
           attributes: {
             class: ["u-bolt-color-orange"]
           }
-        }, with_context = false)
+        }, false)
       ],
       cardGradient: "purple",
       cardIcon: "rocket",
       cardDescription: bolt.faker.paragraph(2),
       removeButton: true,
       cardStatusItems: [
-        include("@bolt-components-headline/eyebrow.twig", {
+        macros.include("@bolt-components-headline/eyebrow.twig", {
           text: "Last activity: 12/21/19",
           align: "center",
           attributes: {
             class: ["u-bolt-padding-small"]
           }
-        }, with_context = false),
-        include("@bolt-components-headline/eyebrow.twig", {
+        }, false),
+        macros.include("@bolt-components-headline/eyebrow.twig", {
           text: "Assigned",
           align: "center",
           attributes: {
             class: ["u-bolt-padding-small"]
           }
-        }, with_context = false)
+        }, false)
       ]
     },
     {
@@ -87,37 +89,37 @@
       cardSubtitle: "Mission",
       cardTitle: bolt.faker.sentence(3),
       cardMetaItems: [
-        include("@bolt-components-headline/text.twig", {
+        macros.include("@bolt-components-headline/text.twig", {
           size: "small",
           weight: "bold",
           text: "#{bolt.faker.numberBetween(2,10)} Modules",
-        }, with_context = false),
-        include("@bolt-components-headline/text.twig", {
+        }, false),
+        macros.include("@bolt-components-headline/text.twig", {
           size: "small",
           weight: "bold",
           text: "1 Challenge",
-        }, with_context = false),
-        include("@bolt-components-headline/text.twig", {
+        }, false),
+        macros.include("@bolt-components-headline/text.twig", {
           size: "small",
           weight: "bold",
           text: "10% complete",
           attributes: {
             class: ["u-bolt-color-orange"]
           }
-        }, with_context = false)
+        }, false)
       ],
       cardGradient: "purple",
       cardIcon: "rocket",
       cardDescription: bolt.faker.paragraph(2),
       removeButton: true,
       cardStatusItems: [
-        include("@bolt-components-headline/eyebrow.twig", {
+        macros.include("@bolt-components-headline/eyebrow.twig", {
           text: "Last activity: 12/21/19",
           align: "center",
           attributes: {
             class: ["u-bolt-padding-small"]
           }
-        }, with_context = false)
+        }, false)
       ]
     },
     {
@@ -125,30 +127,30 @@
       cardSubtitle: "Mission",
       cardTitle: bolt.faker.sentence(3),
       cardMetaItems: [
-        include("@bolt-components-headline/text.twig", {
+        macros.include("@bolt-components-headline/text.twig", {
           size: "small",
           weight: "bold",
           text: "#{bolt.faker.numberBetween(2,10)} Modules",
-        }, with_context = false),
-        include("@bolt-components-headline/text.twig", {
+        }, false),
+        macros.include("@bolt-components-headline/text.twig", {
           size: "small",
           weight: "bold",
           text: "1 Challenge",
-        }, with_context = false),
-        include("@bolt-components-headline/text.twig", {
+        }, false),
+        macros.include("@bolt-components-headline/text.twig", {
           size: "small",
           weight: "bold",
           text: "25% complete",
           attributes: {
             class: ["u-bolt-color-orange"]
           }
-        }, with_context = false)
+        }, false)
       ],
       cardGradient: "purple",
       cardIcon: "rocket",
       cardDescription: bolt.faker.paragraph(2),
       cardUtilityItems: [
-        include("@bolt-components-button/button.twig", {
+        macros.include("@bolt-components-button/button.twig", {
           text: "Share",
           size: "xsmall",
           style: "text",
@@ -157,8 +159,8 @@
             size: "small"
           },
           iconOnly: true
-        }, with_context = false ),
-        include("@bolt-components-button/button.twig", {
+        }, false ),
+        macros.include("@bolt-components-button/button.twig", {
           text: "Remove from Dashboard",
           size: "xsmall",
           style: "text",
@@ -167,16 +169,16 @@
             size: "small"
           },
           iconOnly: true
-        }, with_context = false )
+        }, false )
       ],
       cardStatusItems: [
-        include("@bolt-components-headline/eyebrow.twig", {
+        macros.include("@bolt-components-headline/eyebrow.twig", {
           text: "Last activity: 3 days ago",
           align: "center",
           attributes: {
             class: ["u-bolt-padding-small"]
           }
-        }, with_context = false)
+        }, false)
       ]
     },
     {
@@ -184,30 +186,30 @@
       cardSubtitle: "Mission",
       cardTitle: bolt.faker.sentence(3),
       cardMetaItems: [
-        include("@bolt-components-headline/text.twig", {
+        macros.include("@bolt-components-headline/text.twig", {
           size: "small",
           weight: "bold",
           text: "#{bolt.faker.numberBetween(2,10)} Modules",
-        }, with_context = false),
-        include("@bolt-components-headline/text.twig", {
+        }, false),
+        macros.include("@bolt-components-headline/text.twig", {
           size: "small",
           weight: "bold",
           text: "1 Challenge",
-        }, with_context = false),
-        include("@bolt-components-headline/text.twig", {
+        }, false),
+        macros.include("@bolt-components-headline/text.twig", {
           size: "small",
           weight: "bold",
           text: "10% complete",
           attributes: {
             class: ["u-bolt-color-orange"]
           }
-        }, with_context = false)
+        }, false)
       ],
       cardGradient: "purple",
       cardIcon: "rocket",
       cardDescription: bolt.faker.paragraph(2),
       cardUtilityItems: [
-        include("@bolt-components-button/button.twig", {
+        macros.include("@bolt-components-button/button.twig", {
           text: "Share",
           size: "xsmall",
           style: "text",
@@ -216,8 +218,8 @@
             size: "small"
           },
           iconOnly: true
-        }, with_context = false ),
-        include("@bolt-components-button/button.twig", {
+        }, false ),
+        macros.include("@bolt-components-button/button.twig", {
           text: "Remove from Dashboard",
           size: "xsmall",
           style: "text",
@@ -227,23 +229,23 @@
           },
           iconOnly: true,
           disabled: true
-        }, with_context = false )
+        }, false )
       ],
       cardStatusItems: [
-        include("@bolt-components-headline/eyebrow.twig", {
+        macros.include("@bolt-components-headline/eyebrow.twig", {
           text: "Last activity: 12/21/19",
           align: "center",
           attributes: {
             class: ["u-bolt-padding-small"]
           }
-        }, with_context = false),
-        include("@bolt-components-headline/eyebrow.twig", {
+        }, false),
+        macros.include("@bolt-components-headline/eyebrow.twig", {
           text: "Assigned",
           align: "center",
           attributes: {
             class: ["u-bolt-padding-small"]
           }
-        }, with_context = false)
+        }, false)
       ]
     },
     {
@@ -251,30 +253,30 @@
       cardSubtitle: "Mission",
       cardTitle: bolt.faker.sentence(3),
       cardMetaItems: [
-        include("@bolt-components-headline/text.twig", {
+        macros.include("@bolt-components-headline/text.twig", {
           size: "small",
           weight: "bold",
           text: "#{bolt.faker.numberBetween(2,10)} Modules",
-        }, with_context = false),
-        include("@bolt-components-headline/text.twig", {
+        }, false),
+        macros.include("@bolt-components-headline/text.twig", {
           size: "small",
           weight: "bold",
           text: "1 Challenge",
-        }, with_context = false),
-        include("@bolt-components-headline/text.twig", {
+        }, false),
+        macros.include("@bolt-components-headline/text.twig", {
           size: "small",
           weight: "bold",
           text: "10% complete",
           attributes: {
             class: ["u-bolt-color-orange"]
           }
-        }, with_context = false)
+        }, false)
       ],
       cardGradient: "purple",
       cardIcon: "rocket",
       cardDescription: bolt.faker.paragraph(2),
       cardUtilityItems: [
-        include("@bolt-components-button/button.twig", {
+        macros.include("@bolt-components-button/button.twig", {
           text: "Share",
           size: "xsmall",
           style: "text",
@@ -283,8 +285,8 @@
             size: "small"
           },
           iconOnly: true
-        }, with_context = false ),
-        include("@bolt-components-button/button.twig", {
+        }, false ),
+        macros.include("@bolt-components-button/button.twig", {
           text: "Remove from Dashboard",
           size: "xsmall",
           style: "text",
@@ -293,16 +295,16 @@
             size: "small"
           },
           iconOnly: true,
-        }, with_context = false )
+        }, false )
       ],
       cardStatusItems: [
-        include("@bolt-components-headline/eyebrow.twig", {
+        macros.include("@bolt-components-headline/eyebrow.twig", {
           text: "Last activity: 12/21/19",
           align: "center",
           attributes: {
             class: ["u-bolt-padding-small"]
           }
-        }, with_context = false)
+        }, false)
       ]
     },
     {
@@ -310,30 +312,30 @@
       cardSubtitle: "Mission",
       cardTitle: bolt.faker.sentence(3),
       cardMetaItems: [
-        include("@bolt-components-headline/text.twig", {
+        macros.include("@bolt-components-headline/text.twig", {
           size: "small",
           weight: "bold",
           text: "#{bolt.faker.numberBetween(2,10)} Modules",
-        }, with_context = false),
-        include("@bolt-components-headline/text.twig", {
+        }, false),
+        macros.include("@bolt-components-headline/text.twig", {
           size: "small",
           weight: "bold",
           text: "1 Challenge",
-        }, with_context = false),
-        include("@bolt-components-headline/text.twig", {
+        }, false),
+        macros.include("@bolt-components-headline/text.twig", {
           size: "small",
           weight: "bold",
           text: "25% complete",
           attributes: {
             class: ["u-bolt-color-orange"]
           }
-        }, with_context = false)
+        }, false)
       ],
       cardGradient: "purple",
       cardIcon: "rocket",
       cardDescription: bolt.faker.paragraph(2),
       cardUtilityItems: [
-        include("@bolt-components-button/button.twig", {
+        macros.include("@bolt-components-button/button.twig", {
           text: "Share",
           size: "xsmall",
           style: "text",
@@ -342,8 +344,8 @@
             size: "small"
           },
           iconOnly: true
-        }, with_context = false ),
-        include("@bolt-components-button/button.twig", {
+        }, false ),
+        macros.include("@bolt-components-button/button.twig", {
           text: "Remove from Dashboard",
           size: "xsmall",
           style: "text",
@@ -352,16 +354,16 @@
             size: "small"
           },
           iconOnly: true
-        }, with_context = false )
+        }, false )
       ],
       cardStatusItems: [
-        include("@bolt-components-headline/eyebrow.twig", {
+        macros.include("@bolt-components-headline/eyebrow.twig", {
           text: "Last activity: 3 days ago",
           align: "center",
           attributes: {
             class: ["u-bolt-padding-small"]
           }
-        }, with_context = false)
+        }, false)
       ]
     },
     {
@@ -369,30 +371,30 @@
       cardSubtitle: "Mission",
       cardTitle: bolt.faker.sentence(3),
       cardMetaItems: [
-        include("@bolt-components-headline/text.twig", {
+        macros.include("@bolt-components-headline/text.twig", {
           size: "small",
           weight: "bold",
           text: "#{bolt.faker.numberBetween(2,10)} Modules",
-        }, with_context = false),
-        include("@bolt-components-headline/text.twig", {
+        }, false),
+        macros.include("@bolt-components-headline/text.twig", {
           size: "small",
           weight: "bold",
           text: "1 Challenge",
-        }, with_context = false),
-        include("@bolt-components-headline/text.twig", {
+        }, false),
+        macros.include("@bolt-components-headline/text.twig", {
           size: "small",
           weight: "bold",
           text: "10% complete",
           attributes: {
             class: ["u-bolt-color-orange"]
           }
-        }, with_context = false)
+        }, false)
       ],
       cardGradient: "purple",
       cardIcon: "rocket",
       cardDescription: bolt.faker.paragraph(2),
       cardUtilityItems: [
-        include("@bolt-components-button/button.twig", {
+        macros.include("@bolt-components-button/button.twig", {
           text: "Share",
           size: "xsmall",
           style: "text",
@@ -401,8 +403,8 @@
             size: "small"
           },
           iconOnly: true
-        }, with_context = false ),
-        include("@bolt-components-button/button.twig", {
+        }, false ),
+        macros.include("@bolt-components-button/button.twig", {
           text: "Remove from Dashboard",
           size: "xsmall",
           style: "text",
@@ -412,23 +414,23 @@
           },
           iconOnly: true,
           disabled: true
-        }, with_context = false )
+        }, false )
       ],
       cardStatusItems: [
-        include("@bolt-components-headline/eyebrow.twig", {
+        macros.include("@bolt-components-headline/eyebrow.twig", {
           text: "Last activity: 12/21/19",
           align: "center",
           attributes: {
             class: ["u-bolt-padding-small"]
           }
-        }, with_context = false),
-        include("@bolt-components-headline/eyebrow.twig", {
+        }, false),
+        macros.include("@bolt-components-headline/eyebrow.twig", {
           text: "Assigned",
           align: "center",
           attributes: {
             class: ["u-bolt-padding-small"]
           }
-        }, with_context = false)
+        }, false)
       ]
     },
     {
@@ -436,30 +438,30 @@
       cardSubtitle: "Mission",
       cardTitle: bolt.faker.sentence(3),
       cardMetaItems: [
-        include("@bolt-components-headline/text.twig", {
+        macros.include("@bolt-components-headline/text.twig", {
           size: "small",
           weight: "bold",
           text: "#{bolt.faker.numberBetween(2,10)} Modules",
-        }, with_context = false),
-        include("@bolt-components-headline/text.twig", {
+        }, false),
+        macros.include("@bolt-components-headline/text.twig", {
           size: "small",
           weight: "bold",
           text: "1 Challenge",
-        }, with_context = false),
-        include("@bolt-components-headline/text.twig", {
+        }, false),
+        macros.include("@bolt-components-headline/text.twig", {
           size: "small",
           weight: "bold",
           text: "10% complete",
           attributes: {
             class: ["u-bolt-color-orange"]
           }
-        }, with_context = false)
+        }, false)
       ],
       cardGradient: "purple",
       cardIcon: "rocket",
       cardDescription: bolt.faker.paragraph(2),
       cardUtilityItems: [
-        include("@bolt-components-button/button.twig", {
+        macros.include("@bolt-components-button/button.twig", {
           text: "Share",
           size: "xsmall",
           style: "text",
@@ -468,8 +470,8 @@
             size: "small"
           },
           iconOnly: true
-        }, with_context = false ),
-        include("@bolt-components-button/button.twig", {
+        }, false ),
+        macros.include("@bolt-components-button/button.twig", {
           text: "Remove from Dashboard",
           size: "xsmall",
           style: "text",
@@ -478,16 +480,16 @@
             size: "small"
           },
           iconOnly: true,
-        }, with_context = false )
+        }, false )
       ],
       cardStatusItems: [
-        include("@bolt-components-headline/eyebrow.twig", {
+        macros.include("@bolt-components-headline/eyebrow.twig", {
           text: "Last activity: 12/21/19",
           align: "center",
           attributes: {
             class: ["u-bolt-padding-small"]
           }
-        }, with_context = false)
+        }, false)
       ]
     },
     {
@@ -495,30 +497,30 @@
       cardSubtitle: "Mission",
       cardTitle: bolt.faker.sentence(3),
       cardMetaItems: [
-        include("@bolt-components-headline/text.twig", {
+        macros.include("@bolt-components-headline/text.twig", {
           size: "small",
           weight: "bold",
           text: "#{bolt.faker.numberBetween(2,10)} Modules",
-        }, with_context = false),
-        include("@bolt-components-headline/text.twig", {
+        }, false),
+        macros.include("@bolt-components-headline/text.twig", {
           size: "small",
           weight: "bold",
           text: "1 Challenge",
-        }, with_context = false),
-        include("@bolt-components-headline/text.twig", {
+        }, false),
+        macros.include("@bolt-components-headline/text.twig", {
           size: "small",
           weight: "bold",
           text: "25% complete",
           attributes: {
             class: ["u-bolt-color-orange"]
           }
-        }, with_context = false)
+        }, false)
       ],
       cardGradient: "purple",
       cardIcon: "rocket",
       cardDescription: bolt.faker.paragraph(2),
       cardUtilityItems: [
-        include("@bolt-components-button/button.twig", {
+        macros.include("@bolt-components-button/button.twig", {
           text: "Share",
           size: "xsmall",
           style: "text",
@@ -527,8 +529,8 @@
             size: "small"
           },
           iconOnly: true
-        }, with_context = false ),
-        include("@bolt-components-button/button.twig", {
+        }, false ),
+        macros.include("@bolt-components-button/button.twig", {
           text: "Remove from Dashboard",
           size: "xsmall",
           style: "text",
@@ -537,16 +539,16 @@
             size: "small"
           },
           iconOnly: true
-        }, with_context = false )
+        }, false )
       ],
       cardStatusItems: [
-        include("@bolt-components-headline/eyebrow.twig", {
+        macros.include("@bolt-components-headline/eyebrow.twig", {
           text: "Last activity: 3 days ago",
           align: "center",
           attributes: {
             class: ["u-bolt-padding-small"]
           }
-        }, with_context = false)
+        }, false)
       ]
     },
     {
@@ -554,30 +556,30 @@
       cardSubtitle: "Mission",
       cardTitle: bolt.faker.sentence(3),
       cardMetaItems: [
-        include("@bolt-components-headline/text.twig", {
+        macros.include("@bolt-components-headline/text.twig", {
           size: "small",
           weight: "bold",
           text: "#{bolt.faker.numberBetween(2,10)} Modules",
-        }, with_context = false),
-        include("@bolt-components-headline/text.twig", {
+        }, false),
+        macros.include("@bolt-components-headline/text.twig", {
           size: "small",
           weight: "bold",
           text: "1 Challenge",
-        }, with_context = false),
-        include("@bolt-components-headline/text.twig", {
+        }, false),
+        macros.include("@bolt-components-headline/text.twig", {
           size: "small",
           weight: "bold",
           text: "10% complete",
           attributes: {
             class: ["u-bolt-color-orange"]
           }
-        }, with_context = false)
+        }, false)
       ],
       cardGradient: "purple",
       cardIcon: "rocket",
       cardDescription: bolt.faker.paragraph(2),
       cardUtilityItems: [
-        include("@bolt-components-button/button.twig", {
+        macros.include("@bolt-components-button/button.twig", {
           text: "Share",
           size: "xsmall",
           style: "text",
@@ -586,8 +588,8 @@
             size: "small"
           },
           iconOnly: true
-        }, with_context = false ),
-        include("@bolt-components-button/button.twig", {
+        }, false ),
+        macros.include("@bolt-components-button/button.twig", {
           text: "Remove from Dashboard",
           size: "xsmall",
           style: "text",
@@ -597,23 +599,23 @@
           },
           iconOnly: true,
           disabled: true
-        }, with_context = false )
+        }, false )
       ],
       cardStatusItems: [
-        include("@bolt-components-headline/eyebrow.twig", {
+        macros.include("@bolt-components-headline/eyebrow.twig", {
           text: "Last activity: 12/21/19",
           align: "center",
           attributes: {
             class: ["u-bolt-padding-small"]
           }
-        }, with_context = false),
-        include("@bolt-components-headline/eyebrow.twig", {
+        }, false),
+        macros.include("@bolt-components-headline/eyebrow.twig", {
           text: "Assigned",
           align: "center",
           attributes: {
             class: ["u-bolt-padding-small"]
           }
-        }, with_context = false)
+        }, false)
       ]
     },
     {
@@ -621,30 +623,30 @@
       cardSubtitle: "Mission",
       cardTitle: bolt.faker.sentence(3),
       cardMetaItems: [
-        include("@bolt-components-headline/text.twig", {
+        macros.include("@bolt-components-headline/text.twig", {
           size: "small",
           weight: "bold",
           text: "#{bolt.faker.numberBetween(2,10)} Modules",
-        }, with_context = false),
-        include("@bolt-components-headline/text.twig", {
+        }, false),
+        macros.include("@bolt-components-headline/text.twig", {
           size: "small",
           weight: "bold",
           text: "1 Challenge",
-        }, with_context = false),
-        include("@bolt-components-headline/text.twig", {
+        }, false),
+        macros.include("@bolt-components-headline/text.twig", {
           size: "small",
           weight: "bold",
           text: "10% complete",
           attributes: {
             class: ["u-bolt-color-orange"]
           }
-        }, with_context = false)
+        }, false)
       ],
       cardGradient: "purple",
       cardIcon: "rocket",
       cardDescription: bolt.faker.paragraph(2),
       cardUtilityItems: [
-        include("@bolt-components-button/button.twig", {
+        macros.include("@bolt-components-button/button.twig", {
           text: "Share",
           size: "xsmall",
           style: "text",
@@ -653,8 +655,8 @@
             size: "small"
           },
           iconOnly: true
-        }, with_context = false ),
-        include("@bolt-components-button/button.twig", {
+        }, false ),
+        macros.include("@bolt-components-button/button.twig", {
           text: "Remove from Dashboard",
           size: "xsmall",
           style: "text",
@@ -663,16 +665,16 @@
             size: "small"
           },
           iconOnly: true,
-        }, with_context = false )
+        }, false )
       ],
       cardStatusItems: [
-        include("@bolt-components-headline/eyebrow.twig", {
+        macros.include("@bolt-components-headline/eyebrow.twig", {
           text: "Last activity: 12/21/19",
           align: "center",
           attributes: {
             class: ["u-bolt-padding-small"]
           }
-        }, with_context = false)
+        }, false)
       ]
     },
 ] %}
@@ -709,13 +711,13 @@
   sectionTitle: "My Missions",
   theme: "light",
   sectionButtons: [
-    include("@bolt-components-button/button.twig", {
+    macros.include("@bolt-components-button/button.twig", {
       style: "secondary",
       size: "small",
       border_radius: "full",
       text: "Show all (12)"
-    }, with_context = false),
-    include("@bolt-components-button/button.twig", {
+    }, false),
+    macros.include("@bolt-components-button/button.twig", {
       style: "text",
       size: "large",
       text: "Add Missions",
@@ -723,7 +725,7 @@
         name: "add-open",
         position: "before"
       }
-    }, with_context = false)
+    }, false)
   ],
   contentItems: cardContentItems
 } %}

@@ -1,3 +1,5 @@
+{% import "@bolt-blueprints/macros.twig" as macros %}
+
 {% include "@bolt-blueprints/_dashboard-band.twig" with {
   sectionTitle: "In Progress",
   contentItems: [
@@ -6,25 +8,25 @@
       cardSubtitle: "Module",
       cardTitle: bolt.faker.sentence(3),
       cardMetaItems: [
-        include("@bolt-components-headline/text.twig", {
+        macros.include("@bolt-components-headline/text.twig", {
           size: "small",
           weight: "bold",
           text: "#{bolt.faker.numberBetween(2,10)} Topics",
-        }, with_context = false),
-        include("@bolt-components-headline/text.twig", {
+        }, false),
+        macros.include("@bolt-components-headline/text.twig", {
           size: "small",
           weight: "bold",
           text: "40 mins remaining",
           attributes: {
             class: ["u-bolt-color-orange"]
           }
-        }, with_context = false)
+        }, false)
       ],
       cardGradient: "teal",
       cardIcon: "orbit",
       cardDescription: bolt.faker.paragraph(2),
       cardUtilityItems: [
-        include("@bolt-components-button/button.twig", {
+        macros.include("@bolt-components-button/button.twig", {
           text: "Share",
           size: "xsmall",
           style: "text",
@@ -33,16 +35,16 @@
             size: "small"
           },
           iconOnly: true
-        }, with_context = false )
+        }, false )
       ],
       cardStatusItems: [
-        include("@bolt-components-headline/eyebrow.twig", {
+        macros.include("@bolt-components-headline/eyebrow.twig", {
           text: "Last activity: 3 days ago",
           align: "center",
           attributes: {
             class: ["u-bolt-padding-small"]
           }
-        }, with_context = false)
+        }, false)
       ]
     },
     {
@@ -50,25 +52,25 @@
       cardSubtitle: "Module",
       cardTitle: bolt.faker.sentence(3),
       cardMetaItems: [
-        include("@bolt-components-headline/text.twig", {
+        macros.include("@bolt-components-headline/text.twig", {
           size: "small",
           weight: "bold",
           text: "#{bolt.faker.numberBetween(2,10)} Topics",
-        }, with_context = false),
-        include("@bolt-components-headline/text.twig", {
+        }, false),
+        macros.include("@bolt-components-headline/text.twig", {
           size: "small",
           weight: "bold",
           text: "In progress",
           attributes: {
             class: ["u-bolt-color-orange"]
           }
-        }, with_context = false)
+        }, false)
       ],
       cardGradient: "orange",
       cardIcon: "meteor",
       cardDescription: bolt.faker.paragraph(2),
       cardUtilityItems: [
-        include("@bolt-components-button/button.twig", {
+        macros.include("@bolt-components-button/button.twig", {
           text: "Share",
           size: "xsmall",
           style: "text",
@@ -77,16 +79,16 @@
             size: "small"
           },
           iconOnly: true
-        }, with_context = false )
+        }, false )
       ],
       cardStatusItems: [
-        include("@bolt-components-headline/eyebrow.twig", {
+        macros.include("@bolt-components-headline/eyebrow.twig", {
           text: "Last activity: 12/21/19",
           align: "center",
           attributes: {
             class: ["u-bolt-padding-small"]
           }
-        }, with_context = false)
+        }, false)
       ]
     }
   ]
