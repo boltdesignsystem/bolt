@@ -1,0 +1,303 @@
+{% set hasSideNav = true %}
+{% set editButton = true %}
+{% set toolbarShowProgress = false %}
+
+{% extends "@bolt-blueprints/_detail-page-template.twig" %}
+
+{% set breadcrumbs = [
+  {
+    "text": "Home",
+    "url": link["blueprints-dashboard"]
+  },
+  {
+    "text": "Mission Name Goes Here",
+    "url": link["blueprints-t1-mission-landing"]
+  },
+  {
+    "text": "Module name goes here",
+    "url": link["blueprints-t1-module-landing-page"]
+  },
+  {
+    "text": "How to update a rule"
+  }
+] %}
+
+{% block page_controls %}
+  {% include "@bolt-components-button-group/button-group.twig" with {
+    buttons: [
+      {
+        text: "Previous Topic",
+        url: link["blueprints-t1-module-landing-page"],
+        style: "secondary",
+        size: "small",
+        border_radius: "full",
+        icon: {
+          position: "before",
+          name: "chevron-left"
+        }
+      },
+      {
+        text: "Next Topic",
+        url: link["blueprints-t2-challenge-detail-page"],
+        style: "secondary",
+        size: "small",
+        border_radius: "full",
+        icon: {
+          position: "after",
+          name: "chevron-right"
+        }
+      }
+    ]
+  } only %}
+{% endblock %}
+
+{% block side_nav %}
+  {% set content %}
+    {% include "@bolt-components-toc/toc.twig" with {
+      header: "Data types",
+      items: [
+        {
+          text: "Rule check out and check in",
+          url: "#rule-check-out-and-check-in",
+          active: true,
+        },
+        {
+          text: "Checking out a rule",
+          url: "#checking-out-a-rule",
+        },
+        {
+          text: "Checking in a rule",
+          url: "#checking-in-a-rule",
+        },
+        {
+          text: "Private edit",
+          url: "#private-edit",
+        },
+        {
+          text: "Data type best practices",
+          url: "#data-type-best-practices",
+        },
+      ]
+    } only %}
+    {# End component specific code #}
+  {% endset %}
+  {% include "@bolt-components-sticky/sticky.twig" with {
+    content: content,
+  } only %}
+
+{% endblock %}
+
+{% block page_content %}
+  {% include "@bolt-components-headline/text.twig" with {
+    text: "System architects often secure rulesets to prevent unauthorized or unintended changes to rules. When you edit the rules in a secured ruleset, you either check out the rule or perform a private edit.",
+  } only %}
+
+  {% include "@bolt-components-headline/headline.twig" with {
+    tag: "h2",
+    size: "xxlarge",
+    text: "Rule check out and check in",
+    attributes: {
+      id: "rule-check-out-and-check-in"
+    }
+  } only %}
+
+  {% set trigger_content %}
+    {% include "@bolt-components-figure/figure.twig" with {
+      media: {
+        content: include("@bolt-components-image/image.twig", {
+          src: "/images/placeholders/1920x1200.jpg",
+          alt: "A placeholder image",
+          max_width: "450px",
+        }),
+      },
+      caption: "Example of an image with caption + modal.",
+    } only %}
+  {% endset %}
+
+  {% set modal_content %}
+    {% include "@bolt-components-image/image.twig" with {
+      src: "/images/placeholders/1920x1200.jpg",
+      alt: "Example of a larger version of an image that can be viewed in a modal.",
+      max_width: "1920px",
+    } only %}
+  {% endset %}
+
+  {% include "@bolt-components-trigger/trigger.twig" with {
+    content: trigger_content,
+    cursor: "zoom-in",
+    display: "block",
+    attributes: {
+      class: [
+        "u-bolt-width-5/9@small",
+        "u-bolt-float-right@small",
+        "u-bolt-margin-left-medium@small",
+        "u-bolt-margin-bottom-medium",
+      ],
+      "on-click": "show",
+      "on-click-target": "js-modal-trigger-image-example--uuid",
+    },
+  } only %}
+
+  {% include "@bolt-components-modal/modal.twig" with {
+    attributes: {
+      class: "js-modal-trigger-image-example--uuid"
+    },
+    content: modal_content,
+    spacing: "none",
+    theme: "none",
+    scroll: "overall",
+    width: "auto",
+  } only %}
+
+  {% include "@bolt-components-headline/text.twig" with {
+    text: "The check-out feature is used to manage changes to rules when multiple developers work on an application. This feature allows a system architect to update a rule while preventing updates by other system architects. Rule check-oLorem ipsum dolor sit amet, consectetur adipiscing elit.",
+  } only %}
+
+
+    {% include "@bolt-components-headline/text.twig" with {
+      text: "Praesent commodo interdum risus, id semper lorem varius ut. his updates the application ruleset with a new version of the rule. When updating a rule in App Studio, App Studio automatically manages the check-out/check-in process for you. Mauris accumsan nisi massa, a ultricies lacus tristique ac. Etiam ullamcorper ante nisl, non consectetur diam pulvinar sed.",
+    } only %}
+
+    {% include "@bolt-components-headline/text.twig" with {
+      text: "Mauris hendrerit sem ex, eu finibus tellus vehicula eget. Etiam massa lacus, ornare et dapibus vehicula, facilisis eget sem. Nulla tincidunt dui nunc, quis laoreet augue pretium ac. Fusce ac felis eu velit lacinia tincidunt.ut creates a copy of a rule in a ruleset that is only visible to you, called a personal ruleset.",
+    } only %}
+
+    {% include "@bolt-components-headline/headline.twig" with {
+      tag: "h3",
+      size: "large",
+      text: "Checking out a rule",
+      attributes: {
+        id: "checking-out-a-rule"
+      }
+    } only %}
+
+    {% include "@bolt-components-figure/figure.twig" with {
+      media: {
+        content: include("@bolt-components-image/image.twig", {
+          src: "/images/placeholders/1920x1440.jpg",
+        }),
+      },
+      caption: "Lorem ipsum caption for the thumbnail.",
+      attributes: {
+        class: [
+          "u-bolt-width-3/9@small",
+          "u-bolt-float-left@small",
+          "u-bolt-margin-right-medium@small",
+          "u-bolt-margin-bottom-medium",
+        ],
+      }
+    } only %}
+
+    {% include "@bolt-components-headline/text.twig" with {
+      text: "Checking out a rule creates a copy of the original rule in your personal ruleset and prevents other system architects from checking the rule out until you check in your changes.",
+    } only %}
+
+    {% include "@bolt-components-headline/text.twig" with {
+      text: "The personal ruleset occupies the top spot in the ruleset stack. The rules in your personal ruleset override rules in the rest of the application. This allows you to test your changes to the rule without affecting other system architects.",
+    } only %}
+
+    {% include "@bolt-components-headline/text.twig" with {
+      text: "In the Dev Studio header, click the Checkouts icon to view a list of the rules you have checked out. After you update the rule and test the changes, you check in the rule. This updates the application ruleset with a new version of the rule. ",
+    } only %}
+
+
+
+    {% include "@bolt-components-headline/headline.twig" with {
+      tag: "h3",
+      size: "large",
+      text: "Checking in a rule",
+      attributes: {
+        id: "checking-in-a-rule"
+      }
+    } only %}
+
+    {% include "@bolt-components-figure/figure.twig" with {
+      media: {
+        content: include("@bolt-components-image/image.twig", {
+          src: "/images/placeholders/1920x960.jpg",
+        }),
+      },
+      caption: "Lorem ipsum caption for the thumbnail.",
+      attributes: {
+        class: [
+          "u-bolt-width-5/9@small",
+          "u-bolt-float-right@small",
+          "u-bolt-margin-left-medium@small",
+          "u-bolt-margin-bottom-medium",
+        ],
+      }
+    } only %}
+
+    {% include "@bolt-components-headline/text.twig" with {
+      text: "Checking out a rule creates a copy of the original rule in your personal ruleset and prevents other system architects from checking the rule out until you check in your changes.",
+    } only %}
+
+    {% include "@bolt-components-headline/text.twig" with {
+      text: "The personal ruleset occupies the top spot in the ruleset stack. The rules in your personal ruleset override rules in the rest of the application. In the Dev Studio header, click the Checkouts icon to view a list of the rules you have checked out. After you update the rule and test the changes, you check in the rule. This updates the application ruleset with a new version of the rule. After you update the rule and test the changes, you check in the rule. This updates the application ruleset with a new version of the rule. When updating a rule in App Studio, App Studio automatically manages the check-out/check-in process for you. When updating a rule in App Studio, App Studio automatically manages the check-out/check-in process for you. This allows you to test your changes to the rule without affecting other system architects.",
+    } only %}
+
+    {% include "@bolt-components-headline/headline.twig" with {
+      tag: "h2",
+      size: "xlarge",
+      text: "Private edit",
+      attributes: {
+        id: "private-edit"
+      }
+    } only %}
+
+    {% include "@bolt/video.twig" with {
+      videoId: "5844312574001",
+      accountId: "1519050010001",
+      playerId: "OuKXr6Xbd3",
+      showMeta: true,
+      showMetaTitle: true,
+      attributes: {
+        class: [
+          "u-bolt-width-4/9@small",
+          "u-bolt-float-right@small",
+          "u-bolt-margin-left-medium@small",
+          "u-bolt-margin-bottom-medium",
+        ],
+      }
+    } only %}
+
+    {% include "@bolt-components-headline/text.twig" with {
+      text: "A private edit provides a nonexclusive check out of a rule. This allows other system architects to edit a rule at the same time. Private edits are useful for quick debugging without interrupting development by other team members. This option is not available in App Studio.",
+    } only %}
+
+    {% include "@bolt-components-headline/text.twig" with {
+      text: "It is a best practice to lock older versions of a ruleset in order to prevent changes. For rules in a locked ruleset, a lock icon is displayed on the rule form.",
+    } only %}
+
+
+    {% include "@bolt-components-headline/headline.twig" with {
+      tag: "h2",
+      size: "xlarge",
+      text: "Data type best practices",
+      attributes: {
+        id: "data-type-best-practices"
+      }
+    } only %}
+
+    {% include "@bolt-components-headline/text.twig" with {
+      text: "A private edit provides a nonexclusive check out of a rule. This allows other system architects to edit a rule at the same time. Private edits are useful for quick debugging without interrupting development by other team members. This option is not available in App Studio.",
+    } only %}
+
+
+    {% set h5pExample %}
+      {% include "@bolt-components-placeholder/placeholder.twig" with {
+        size: "large",
+        text: "H5P Embed",
+      } only %}
+    {% endset %}
+
+    {% include "@bolt-components-ratio/ratio.twig" with {
+      ratio: "4/3",
+      children: h5pExample
+    } %}
+{% endblock %}
+
+{% block global_footer %}
+  {% include "@bolt-blueprints/_hero--request-feedback.twig" %}
+  {{ parent() }}
+{% endblock %}
