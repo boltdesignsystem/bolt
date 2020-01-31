@@ -6,12 +6,11 @@
 
 .c-bolt-site {
   display: grid;
-  overflow-x: hidden; //Helps prevent horizontal scrolling in Chrome on Windows machines. Seems to be working fine w/ native position sticky at first glance.
   grid-template-areas:
     "header"
     "content"
     "footer";
-  height: 100vh;
+  min-height: 100vh;
   grid-template-columns: 1fr;
   grid-template-rows: auto 1fr auto;
 }
