@@ -44,9 +44,10 @@ $bolt-font-weight--bold: 800 !default;
 $bolt-font-weights: (
   font-weights: (
     light:    $bolt-font-weight--light,
-    bold:     $bolt-font-weight--bold,
-    semibold: $bolt-font-weight--semibold,
     regular:  $bolt-font-weight--regular,
-    normal:   $bolt-font-weight--regular
+    normal:   $bolt-font-weight--regular,
+    semibold: $bolt-font-weight--semibold,
+    bold:      $bolt-font-weight--extrabold, // fake "bold". @todo: fix with v3.0
+    extrabold: $bolt-font-weight--extrabold, // actual extrabold
   )
 ) !default;
