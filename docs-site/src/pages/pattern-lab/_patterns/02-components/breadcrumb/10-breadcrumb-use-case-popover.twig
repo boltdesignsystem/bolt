@@ -1,50 +1,73 @@
+{# Setting variables for demo purposes #}
+{% set item_home %}
+  {% include "@bolt-components-link/link.twig" with {
+    text: "Home",
+    url: "#!",
+  } only %}
+{% endset %}
+{% set item_landing %}
+  {% include "@bolt-components-link/link.twig" with {
+    text: "Landing Page",
+    url: "#!",
+  } only %}
+{% endset %}
+{% set item_sub %}
+  {% include "@bolt-components-link/link.twig" with {
+    text: "Sub Page",
+    url: "#!",
+  } only %}
+{% endset %}
+{% set trigger %}
+  {% include "@bolt-components-link/link.twig" with {
+    text: "Current Page with Popover",
+    url: "#!",
+    attributes: {
+      "aria-current": "page",
+    },
+  } only %}
+{% endset %}
+{% set content %}
+  {% include "@bolt-components-menu/menu.twig" with {
+    title: "Choose one of these",
+    items: [
+      {
+        content: "Section 1",
+      },
+      {
+        content: "Section 2",
+      },
+      {
+        content: "Section 3",
+      },
+      {
+        content: "Section 4",
+      },
+      {
+        content: "Section 5",
+      },
+    ]
+  } only %}
+{% endset %}
+{% set popover %}
+  {% include "@bolt-components-popover/popover.twig" with {
+    trigger: trigger,
+    content: content,
+    spacing: "none",
+  } only %}
+{% endset %}
+
 <bolt-text headline>Page sections popover</bolt-text>
 <bolt-text>
   In addition to passing the Link component as an item, you may also pass the Popover component as an item, and use the Menu component in the popover to allow the user to navigate to a particular page's top sections.
 </bolt-text>
 
+{# Start component specific code #}
 {% include "@bolt-components-breadcrumb/breadcrumb.twig" with {
   contentItems: [
-    include("@bolt-components-link/link.twig", {
-      text: "Home",
-      url: "#!"
-    }),
-    include("@bolt-components-link/link.twig", {
-      text: "Landing Page",
-      url: "#!"
-    }),
-    include("@bolt-components-link/link.twig", {
-      text: "Sub Page",
-      url: "#!"
-    }),
-    include("@bolt-components-popover/popover.twig", {
-      spacing: "none",
-      trigger: include("@bolt-components-link/link.twig", {
-        text: "Current Page with Popover",
-        url: "#!",
-        attributes: {
-          "aria-current": "page",
-        },
-      }),
-      content: include("@bolt-components-menu/menu.twig", {
-        items: [
-          {
-            content: "Section 1",
-          },
-          {
-            content: "Section 2",
-          },
-          {
-            content: "Section 3",
-          },
-          {
-            content: "Section 4",
-          },
-          {
-            content: "Section 5",
-          },
-        ]
-      }),
-    }),
+    item_home,
+    item_landing,
+    item_sub,
+    popover,
   ]
 } only %}
+{# End component specific code #}
