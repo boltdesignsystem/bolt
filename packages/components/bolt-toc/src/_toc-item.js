@@ -2,12 +2,17 @@ import {
   customElement,
   BoltElement,
   html,
-  styleMap,
   ifDefined,
   unsafeCSS,
 } from '@bolt/element';
-import classNames from 'classnames/dedupe';
+import classNames from 'classnames/bind';
 import { withContext } from 'wc-context';
+import {
+  smoothScroll,
+  scrollOptions,
+  getScrollTarget,
+} from '@bolt/components-smooth-scroll';
+
 import tocItemStyles from './_toc-item.scss';
 import schema from '../toc.schema';
 
@@ -44,6 +49,57 @@ class BoltTocItem extends withContext(BoltElement) {
     return [unsafeCSS(tocItemStyles)];
   }
 
+  static get observedContexts() {
+    return ['activeItem'];
+  }
+
+  connectedCallback() {
+    super.connectedCallback && super.connectedCallback();
+
+    if (this.url && this.url.indexOf('#') === 0) {
+      // todo: update `this.target` when url prop changes
+      this.target = document.querySelector(this.url);
+    }
+  }
+
+  contextChangedCallback(name, oldValue, value) {
+    if (name === 'activeItem' && value) {
+      if (value === this) {
+        this.active = true;
+      } else {
+        this.active = false;
+      }
+    }
+  }
+
+  onClick(event) {
+    try {
+      if (this.target) {
+        event.preventDefault();
+        smoothScroll.animateScroll(this.target, this.shadowLink, scrollOptions);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+
+    this.dispatchEvent(
+      new CustomEvent('toc:activate', {
+        detail: {
+          activeItem: this,
+          onClick: true,
+        },
+        bubbles: true,
+      }),
+    );
+  }
+
+  firstUpdated() {
+    // `smoothScroll` needs the anchor as its second argument, does not
+    // appear to do anything but throws an error if missing
+    // https://github.com/cferdinandi/smooth-scroll#animatescroll
+    this.shadowLink = this.renderRoot.querySelector('a');
+  }
+
   render() {
     const classes = cx('c-bolt-toc-item', {
       [`c-bolt-toc-item--current`]: this.active,
@@ -54,6 +110,7 @@ class BoltTocItem extends withContext(BoltElement) {
         <a
           class="${classes}"
           href="${ifDefined(this.url ? this.url : undefined)}"
+          @click="${this.onClick}"
         >
           ${this.slotify('default')}
         </a>

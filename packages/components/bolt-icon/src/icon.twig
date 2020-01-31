@@ -38,7 +38,7 @@
         "<svg ": '<svg class="' ~ svg_classes|join(" ")|trim ~ '" '
       }) %}
 
-      {{ svg_source }}
+      {{ svg_source | raw }}
 
     {% else %}
      <svg class="{{ svg_classes|join(' ')|trim }}">

@@ -18,6 +18,10 @@ class BoltMenu extends withContext(BoltElement) {
   static get properties() {
     return {
       spacing: String,
+      role: {
+        type: String,
+        reflect: true,
+      },
     };
   }
 
@@ -29,6 +33,7 @@ class BoltMenu extends withContext(BoltElement) {
 
   constructor() {
     super();
+    this.role = 'menu';
   }
 
   static get styles() {
@@ -54,7 +59,7 @@ class BoltMenu extends withContext(BoltElement) {
     });
 
     return html`
-      <div class="${cx(`c-bolt-menu`)}">
+      <div class="${cx(`c-bolt-menu`)}" role="presentation">
         ${this.slotMap.get('title') &&
           html`
             <div class="${classes}">

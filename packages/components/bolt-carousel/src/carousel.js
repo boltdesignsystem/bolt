@@ -3,7 +3,20 @@ import { html, customElement } from '@bolt/element';
 import { withLitHtml } from '@bolt/core-v3.x/renderers/renderer-lit-html';
 import classNames from 'classnames/bind';
 import changeCase from 'change-case';
-import Swiper from 'swiper';
+
+// Import Swiper and modules
+import {
+  Swiper,
+  Navigation,
+  Pagination,
+  Scrollbar,
+  A11y,
+  Autoplay,
+} from 'swiper/js/swiper.esm.js';
+
+// Install modules
+Swiper.use([Navigation, Pagination, Scrollbar, A11y, Autoplay]);
+
 import styles from '../index.scss';
 import originalSchema from '../carousel.schema.yml';
 
@@ -73,9 +86,6 @@ class BoltCarousel extends withLitHtml {
     self.useShadow = false;
     self.schema = originalSchema;
     self.onSlideChange = self.onSlideChange.bind(self);
-    self.hideArrowsIfAllSlidesAreVisible = self.hideArrowsIfAllSlidesAreVisible.bind(
-      self,
-    );
     self.disableSwipingIfAllSlidesAreVisible = self.disableSwipingIfAllSlidesAreVisible.bind(
       self,
     );
@@ -84,18 +94,6 @@ class BoltCarousel extends withLitHtml {
     );
     self.reInitCarousel = self.reInitCarousel.bind(self);
     return self;
-  }
-
-  checkForSlideOffset() {
-    const carouselSlides = this.querySelectorAll('bolt-carousel-slide');
-    this.slideOffsetBefore = carouselSlides[0].querySelector('bolt-card')
-      ? true
-      : false;
-    this.slideOffsetAfter = carouselSlides[
-      carouselSlides.length - 1
-    ].querySelector('bolt-card')
-      ? true
-      : false;
   }
 
   connecting() {
@@ -113,8 +111,6 @@ class BoltCarousel extends withLitHtml {
     if (prevButton) {
       prevButton.setAttribute('tabindex', '-1');
     }
-
-    this.checkForSlideOffset();
   }
 
   init() {
@@ -126,7 +122,6 @@ class BoltCarousel extends withLitHtml {
     );
 
     this.configureSlidesPerGroup();
-    this.hideArrowsIfAllSlidesAreVisible();
     this.disableSwipingIfAllSlidesAreVisible();
   }
 
@@ -188,18 +183,6 @@ class BoltCarousel extends withLitHtml {
 
     if (idealNumberOfSlides === 'auto' || idealNumberOfSlides === 1) {
       slidesPerView = 1;
-    } else if (
-      this.props.loop &&
-      idealNumberOfSlides &&
-      this.numberOfChildren >= idealNumberOfSlides
-    ) {
-      slidesPerView = idealNumberOfSlides;
-    } else if (
-      this.props.loop &&
-      idealNumberOfSlides &&
-      this.numberOfChildren < idealNumberOfSlides
-    ) {
-      slidesPerView = this.numberOfChildren;
     } else if (idealNumberOfSlides) {
       slidesPerView = idealNumberOfSlides;
     } else {
@@ -316,6 +299,7 @@ class BoltCarousel extends withLitHtml {
     this.options = {
       thumbs: this.props.thumbs,
       watchOverflow: true,
+      roundLengths: true,
       a11y: {
         enabled: true,
         prevSlideMessage: this.props.prevSlideMessage,
@@ -425,24 +409,6 @@ class BoltCarousel extends withLitHtml {
 
       this.classList.add('is-ready');
 
-      if (this.slideOffsetBefore && this.slideOffsetAfter) {
-        this.classList.remove(`is-offset-before`);
-        this.classList.remove(`is-offset-after`);
-        this.classList.add(`is-offset-both`);
-      } else if (this.slideOffsetBefore && !this.slideOffsetAfter) {
-        this.classList.remove(`is-offset-both`);
-        this.classList.remove(`is-offset-after`);
-        this.classList.add(`is-offset-before`);
-      } else if (this.slideOffsetAfter && !this.slideOffsetBefore) {
-        this.classList.remove(`is-offset-both`);
-        this.classList.remove(`is-offset-before`);
-        this.classList.add(`is-offset-after`);
-      } else {
-        this.classList.remove(`is-offset-both`);
-        this.classList.remove(`is-offset-before`);
-        this.classList.remove(`is-offset-after`);
-      }
-
       const slides = Array.from(this.querySelectorAll('bolt-carousel-slide'));
       slides.forEach(slide => {
         slide.classList.add('c-bolt-carousel__slide');
@@ -480,7 +446,6 @@ class BoltCarousel extends withLitHtml {
   }
 
   onSlideChange() {
-    this.hideArrowsIfAllSlidesAreVisible();
     this.disableSwipingIfAllSlidesAreVisible();
   }
 
@@ -518,34 +483,6 @@ class BoltCarousel extends withLitHtml {
     }
   }
 
-  hideArrowsIfAllSlidesAreVisible() {
-    this.canNavButtonsBeHidden =
-      this.canNavButtonsBeHidden || this.props.noNavButtons === false;
-
-    if (this._wasManuallyUpdated === true) {
-      this._wasManuallyUpdated = false;
-    } else {
-      if (
-        this.swiper.isBeginning === true &&
-        this.swiper.isEnd === true &&
-        this.canNavButtonsBeHidden === true &&
-        this.noNavButtons === false
-      ) {
-        this._wasManuallyUpdated = true;
-        this.noNavButtons = true;
-        this.updated();
-      } else if (
-        this.canNavButtonsBeHidden &&
-        this.noNavButtons === true &&
-        (this.swiper.isBeginning === false || this.swiper.isEnd === false)
-      ) {
-        this._wasManuallyUpdated = true;
-        this.noNavButtons = false;
-        this.updated();
-      }
-    }
-  }
-
   buttonDownHandler() {
     this.classList.add('is-pressed');
   }
@@ -570,11 +507,7 @@ class BoltCarousel extends withLitHtml {
     // validate the original prop data passed along -- returns back the validated data w/ added default values
     const props = this.validateProps(this.props);
 
-    this.checkForSlideOffset();
-
     const classes = cx('c-bolt-carousel', {
-      [`c-bolt-carousel--offset-before`]: props.slideOffsetBefore,
-      [`c-bolt-carousel--offset-after`]: props.slideOffsetAfter,
       [`c-bolt-carousel--disabled`]: props.disabled,
       [`c-bolt-carousel--overflow`]: this.props.overflow,
       [`c-bolt-carousel--no-overflow`]: !this.props.overflow,

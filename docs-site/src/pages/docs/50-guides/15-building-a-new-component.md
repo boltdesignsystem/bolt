@@ -85,7 +85,7 @@ polyfillLoader.then((res) => {
 ]
 ```
 
-**<u>Step 7</u>:** Add component to `package.json` AND `.boltrc.js` within the Pattern Lab dir `/docs-site/`
+**<u>Step 7</u>:** Add component to `package.json` within the Pattern Lab dir `/docs-site/` AND the `.boltrc.js` within the `@bolt/foundation` package.
 
 **<u>Step 8</u>:** Build the things! `cd` to the root and run `npm run bootstrap`
 
