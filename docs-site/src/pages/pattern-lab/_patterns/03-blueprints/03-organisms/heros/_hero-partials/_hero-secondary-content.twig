@@ -1,3 +1,5 @@
+{% import "@bolt-blueprints/macros.twig" as macros %}
+
 {% if heroDescription %}
   {% include "@bolt-components-headline/text.twig" with {
     text: heroDescription,
@@ -21,11 +23,11 @@
         "u-bolt-negative-margin-top-xsmall",
       ]
     },
-    items: heroTags | map(item => item.text ? include("@bolt-components-chip/chip.twig", {
+    items: heroTags | map(item => item.text ? macros.include("@bolt-components-chip/chip.twig", {
       text: item.text,
       url: item.url | default(false),
       size: "xsmall",
-    }, with_context = false) : item )
+    }, false) : item )
   } only %}
       {# include("@bolt-blueprints/_custom-select.twig", with_context = false), #}
 {% endif %}

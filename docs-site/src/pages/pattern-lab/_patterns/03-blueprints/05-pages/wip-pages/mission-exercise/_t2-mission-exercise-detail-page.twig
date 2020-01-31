@@ -1,5 +1,7 @@
 {% extends "@bolt-blueprints/_default-page-template.twig" %}
 
+{% import "@bolt-blueprints/macros.twig" as macros %}
+
 {% block main_content %}
   {# Toolbar #}
   {% set icon %}
@@ -185,7 +187,7 @@
         } only %}
         {% include "@bolt-components-figure/figure.twig" with {
           media: {
-            content: include("@bolt-components-image/image.twig", {
+            content: macros.include("@bolt-components-image/image.twig", {
               src: "/images/placeholders/500x500.jpg",
             }),
           },
