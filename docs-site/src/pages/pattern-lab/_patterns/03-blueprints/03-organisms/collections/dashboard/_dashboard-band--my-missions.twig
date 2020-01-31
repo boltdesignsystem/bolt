@@ -705,10 +705,71 @@
   {% set processedCards = processedCards | merge([item]) %}
 {% endfor %} #}
 
+{% if showAll %}
+  {% set count %}{% spaceless %}
+    {% include "@bolt-components-headline/text.twig" with {
+      text: "(12)",
+      size: "small",
+      tag: "span",
+      attributes: {
+        class: [
+          "u-bolt-inline"
+        ]
+      }
+    } only %}
+  {% endspaceless %}{% endset %}
+  {% set sectionTitle = "My Missions " ~ count %}
+  {% set sectionButtons = false %}
+  {% set useCarousel = false %}
+{% endif %}
+
+{% if addMission %}
+  {% set content %}
+    <div class="u-bolt-padding-medium u-bolt-padding-top-xlarge u-bolt-padding-bottom-xlarge u-bolt-text-align-center">
+      {% include "@bolt-components-icon/icon.twig" with {
+        name: "add",
+        size: "large",
+        attributes: {
+          class: [
+            "u-bolt-margin-bottom-small",
+            "u-bolt-color-gray"
+          ]
+        }
+      }%}
+      {% include "@bolt-components-headline/text.twig" with {
+        text: "Add Mission",
+        size: "xlarge",
+        attributes: {
+          class: [
+            "u-bolt-color-gray"
+          ]
+        }
+      } only %}
+    </div>
+  {% endset %}
+
+  {% set emptyCard %}
+    {% include "@bolt-components-card-replacement/card-replacement.twig" with {
+      link: {
+        url: "#!",
+        text: "Add Mission"
+      },
+      theme: "none",
+      body: {
+        content: content
+      }
+    } %}
+  {% endset %}
+
+  {% set cardContentItems = [emptyCard] %}
+  {% set sectionButtons = false %}
+{% endif %}
+
+
 {% include "@bolt-blueprints/_dashboard-band.twig" with {
-  sectionTitle: "My Missions",
+  sectionTitle: sectionTitle|default("My Missions"),
   theme: "light",
-  sectionButtons: [
+  sectionButtons: sectionButtons ?? [
     include("@bolt-components-button/button.twig", {
       style: "secondary",
       size: "small",
@@ -725,5 +786,6 @@
       }
     }, with_context = false)
   ],
+  useCarousel: useCarousel,
   contentItems: cardContentItems
 } %}

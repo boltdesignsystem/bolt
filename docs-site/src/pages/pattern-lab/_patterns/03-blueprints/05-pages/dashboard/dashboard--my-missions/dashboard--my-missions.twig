@@ -1,0 +1,37 @@
+{% extends "@bolt-blueprints/_default-page-template.twig" %}
+
+{% block page_content %}
+  {% embed "@bolt-components-band/band.twig" with {
+    theme: "xdark",
+    size: "small",
+    background: {
+      opacity: "light",
+      fill: "gradient",
+      contentItems: [
+        {
+          pattern: "image",
+          src: "/images/dashboard-hero.jpg",
+          placeholder_color: "#000000"
+        },
+      ]
+    }
+  } %}
+    {% block band_content %}
+      {% include "@bolt-components-headline/headline.twig" with {
+        url: "#",
+        text: "Dashboard",
+        size: "small",
+        weight: "regular",
+        transform: "uppercase",
+        icon: {
+          name: "arrow-left",
+          position: "before",
+          color: "yellow"
+        }
+      } only %}
+    {% endblock %}
+  {% endembed %}
+
+  {% include "@bolt-blueprints/_dashboard-band--my-missions.twig" with { showAll: true } %}
+
+{% endblock %}

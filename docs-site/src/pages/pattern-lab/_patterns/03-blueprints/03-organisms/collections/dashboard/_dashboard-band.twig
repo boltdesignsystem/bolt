@@ -1,3 +1,5 @@
+{% set useCarousel = useCarousel ?? true %}
+
 {% set content %}
   {% grid "o-bolt-grid--flex o-bolt-grid--matrix" %}
     {% if sectionTitle %}
@@ -24,7 +26,7 @@
 
   {% if contentItems %}
     {% grid "o-bolt-grid--flex o-bolt-grid--matrix u-bolt-padding-top-medium" %}
-      {% if contentItems|length > 1 %}
+      {% if contentItems|length > 1 and useCarousel %}
         {% set slides = [] %}
         {% for item in contentItems %}
           {# @todo: why do we do this check? #}
