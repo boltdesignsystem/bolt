@@ -1,6 +1,7 @@
 {% embed "@bolt-components-toolbar/toolbar.twig" with {
   size: "xsmall",
   theme: "none",
+  sticky: sticky ?? true,
   gradientName: toolbarGradient | default(''),
   title: {
     tag: "h2",
