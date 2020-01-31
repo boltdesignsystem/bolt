@@ -37,7 +37,6 @@
   "main": "index.js",
   "scripts": {
     "build": "babel renderer.mjs --out-file index.js",
-    "preinstall": "export PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=1",
     "postinstall": "npm run build",
     "prepublishOnly": "npm run build"
   },
