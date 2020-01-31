@@ -101,9 +101,7 @@ class BoltLink extends BoltActionElement {
 
     // [1]
     // prettier-ignore
-    return html`
-      ${renderedLink}
-    `;
+    return html`${renderedLink}`;
   }
 }
 
