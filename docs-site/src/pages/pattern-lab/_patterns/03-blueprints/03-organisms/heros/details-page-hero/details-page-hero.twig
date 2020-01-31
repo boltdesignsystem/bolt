@@ -1,22 +1,10 @@
-{% embed "@bolt-components-band/band.twig" with {
-  theme: "none",
-  size: "medium",
-  inner_attributes: {
-    class: [
-      "u-bolt-negative-margin-top-xsmall",
-      "u-bolt-margin-bottom-large",
-      "u-bolt-padding-bottom-none",
-    ]
-  }
-} %}
-  {% block band_content %}
-    {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--xsmall o-bolt-grid--matrix" %}
-      {% cell "u-bolt-width-1/1 u-bolt-width-8/12@medium" %}
-        {% include "@bolt-blueprints/_hero-primary-content.twig" %}
-      {% endcell %}
-      {% cell "u-bolt-width-1/1 u-bolt-width-8/12@medium" %}
-        {% include "@bolt-blueprints/_hero-secondary-content.twig" %}
-      {% endcell %}
-    {% endgrid %}
-  {% endblock %}
-{% endembed %}
+{% grid "o-bolt-grid--flex o-bolt-grid--small o-bolt-grid--matrix u-bolt-padding-bottom-small" %}
+  {% cell "u-bolt-width-1/1" %}
+    {% include "@bolt-blueprints/_hero-primary-content.twig" %}
+  {% endcell %}
+  {% if heroSupplementalContent or heroTags or heroDescription %}
+    {% cell "u-bolt-width-1/1" %}
+      {% include "@bolt-blueprints/_hero-secondary-content.twig" %}
+    {% endcell %}
+  {% endif %}
+{% endgrid %}

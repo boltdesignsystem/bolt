@@ -1,4 +1,17 @@
 {% extends "@bolt-blueprints/_landing-page-template.twig" %}
+{% set breadcrumbs = [
+  {
+    "text": "Home",
+    "url": link["blueprints-dashboard"]
+  },
+  {
+    "text": "Mission Name Goes Here",
+    "url": link["blueprints-t1-mission-landing"]
+  },
+  {
+    "text": "Module name goes here"
+  }
+] %}
 
 {% block page_content %}
   {% embed "@bolt-blueprints/landing-page-hero.twig" %}
