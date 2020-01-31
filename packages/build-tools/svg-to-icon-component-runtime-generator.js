@@ -19,8 +19,15 @@ module.exports = function runtimeGenerator({
     path.relative(path.dirname(symbol.request.file), iconModulePath),
   );
 
-  const spriteRequest = stringifyRequest({ context }, spriteModule);
-  const symbolRequest = stringifyRequest({ context }, symbolModule);
+  const spriteModuleAbsPath = path.isAbsolute(spriteModule)
+    ? spriteModule
+    : path.join(context, spriteModule);
+  const symbolModuleAbsPath = path.isAbsolute(symbolModule)
+    ? symbolModule
+    : path.join(context, symbolModule);
+
+  const spriteRequest = stringifyRequest(loaderContext, spriteModuleAbsPath);
+  const symbolRequest = stringifyRequest(loaderContext, symbolModuleAbsPath);
   const parentComponentDisplayName = 'SpriteSymbolComponent';
   const displayName = `${pascalCase(symbol.id)}${parentComponentDisplayName}`;
 
