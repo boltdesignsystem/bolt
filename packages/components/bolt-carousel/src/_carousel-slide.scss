@@ -9,27 +9,40 @@ bolt-carousel-slide {
   position: relative;
   max-width: none;
   transition: transform 0.2s ease;
-  // scroll-snap-align: center;
   scroll-snap-align: start;
 
   &:not(.is-ready) {
-    flex-basis: calc(100% - var(--bolt-carousel-space-around));
+    flex-basis: 0;
     flex-direction: column;
+    flex-shrink: 1;
+    box-sizing: content-box;
+    padding-right: $bolt-carousel-space-around;
+    padding-right: var(--bolt-carousel-space-around);
+    padding-left: $bolt-carousel-space-around;
+    padding-left: var(--bolt-carousel-space-around);
   }
 
   &:not(.is-ready):not(:last-of-type) {
     @include bolt-margin-right(medium);
+    margin-right: calc(#{bolt-spacing(medium)} - calc(#{$bolt-carousel-space-around} * 2));
+    margin-right: calc(var(--bolt-carousel-space-between) - calc(var(--bolt-carousel-space-around) * 2));
 
     bolt-carousel[space-between='small'] & {
       @include bolt-margin-right(small);
+      margin-right: calc(#{bolt-spacing(small)} - calc(#{$bolt-carousel-space-around} * 2));
+      margin-right: calc(var(--bolt-carousel-space-between) - calc(var(--bolt-carousel-space-around) * 2));
     }
 
     bolt-carousel[space-between='none'] & {
       @include bolt-margin-right(0);
+      margin-right: calc(0rem - calc(#{$bolt-carousel-space-around} * 2));
+      margin-right: calc(var(--bolt-carousel-space-between) - calc(var(--bolt-carousel-space-around) * 2));
     }
 
     bolt-carousel[space-between='large'] & {
       @include bolt-margin-right(large);
+      margin-right: calc(#{bolt-spacing(large)} - calc(#{$bolt-carousel-space-around} * 2));
+      margin-right: calc(var(--bolt-carousel-space-between) - calc(var(--bolt-carousel-space-around) * 2));
     }
   }
 

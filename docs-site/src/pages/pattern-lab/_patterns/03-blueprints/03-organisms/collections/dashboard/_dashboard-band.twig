@@ -37,7 +37,7 @@
 
         {% cell "u-bolt-width-12/12 #{contentItems|length == 2 ? 'u-bolt-width-2/3@large' : ''}" %}
           {% include "@bolt-components-carousel/carousel.twig" with {
-            slides_per_view: 3,
+            slides_per_view: "auto",
             nav_button_position: "outside",
             slides: slides,
             attributes: {

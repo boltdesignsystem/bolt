@@ -1,7 +1,5 @@
 @import '@bolt/core-v3.x';
 
-$bolt-carousel-space-around: bolt-spacing(xsmall);
-
 bolt-carousel {
   display: flex;
   align-items: center;
@@ -12,6 +10,10 @@ bolt-carousel {
   overflow: hidden;
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
+
+  &.is-ready {
+    overflow: visible;
+  }
 
   &:not(:last-child){
     @include bolt-margin-bottom(medium);
@@ -31,10 +33,6 @@ bolt-carousel {
       overflow-x: visible;
     }
   }
-
-  // &[no-scroll-snap]{
-  //   scroll-snap-type: none;
-  // }
 }
 
 .c-bolt-carousel {
@@ -54,7 +52,12 @@ bolt-carousel {
   }
 
   &--no-overflow {
+    min-width: calc(100% + var(--bolt-carousel-space-around) * 2);
     overflow: hidden;
+    margin-right: calc(var(--bolt-carousel-space-around) * -1);
+    margin-left: calc(var(--bolt-carousel-space-around) * -1);
+    padding-right: var(--bolt-carousel-space-around);
+    padding-left:var(--bolt-carousel-space-around);
   }
 }
 
@@ -93,77 +96,54 @@ bolt-carousel[nav-button-position="outside"].is-ready {
   min-width: calc(100% + #{bolt-spacing(medium) * 2});
   margin-right: (bolt-spacing(medium)) * -1;
   margin-left: (bolt-spacing(medium)) * -1;
-  // min-width: calc(100% + #{bolt-spacing(medium) * 2} + #{bolt-spacing(xxsmall) * 2});
-}
 
-bolt-carousel:not([nav-button-position]):not([no-nav-buttons]).is-ready,
-bolt-carousel[nav-button-position="inside"].is-ready {
-  @include bolt-padding-left(0);
-  @include bolt-padding-right(0);
-  min-width: 100%;
-
-  &.is-offset-after,
-  &.is-offset-before {
-    min-width: calc(100% + 5px);
-  }
-
-  &.is-offset-before {
-    padding-left: 5px;
-  }
-
-  &.is-offset-after {
-    padding-right: 5px;
-  }
-
-  &.is-offset-both,
-  &.is-offset-before {
-    margin-left: -5px;
-  }
-
-  &.is-offset-both {
-    width: calc(100% + 10px);
-    min-width: calc(100% + 10px);
-    padding-right: 5px;
-    padding-left: 5px;
+  // mirror approach used by Wrapper at larger screen sizes
+  @include bolt-mq(medium) {
+    @include bolt-padding-left(large);
+    @include bolt-padding-right(large);
+    min-width: calc(100% + #{bolt-spacing(large) * 2});
+    margin-right: (bolt-spacing(large)) * -1;
+    margin-left: (bolt-spacing(large)) * -1;
   }
 }
-
 
 // carousel space-between slides
 bolt-carousel {
   &[space-between="none"] {
-    --bolt-carousel-spacing: 0rem;
+    --bolt-carousel-space-between: 0rem;
   }
 
   &[space-between="small"] {
-    --bolt-carousel-spacing: #{bolt-spacing(small)};
+    --bolt-carousel-space-between: #{bolt-spacing(small)};
   }
 
   &,
   &[space-between="medium"] {
-    --bolt-carousel-spacing: #{bolt-spacing(medium)};
+    --bolt-carousel-space-between: #{bolt-spacing(medium)};
   }
 
   &[space-between="large"] {
-    --bolt-carousel-spacing: #{bolt-spacing(large)};
+    --bolt-carousel-space-between: #{bolt-spacing(large)};
   }
 }
 
 
 // extra space around-specific styles
 bolt-carousel {
-  --bolt-carousel-space-around: 0rem;
+  --bolt-carousel-space-around: #{$bolt-carousel-space-around};
 
-  &[extra-space-between] {
-    --bolt-carousel-space-around: #{$bolt-carousel-space-around};
+  width: 100%;
+  width: calc(100% + #{$bolt-carousel-space-around} * 2);
+  width: calc(100% + var(--bolt-carousel-space-around) * 2);
+  margin-right: calc(#{$bolt-carousel-space-around} * -1);
+  margin-right: calc(var(--bolt-carousel-space-around) * -1);
+  margin-left: calc(#{$bolt-carousel-space-around} * -1);
+  margin-left: calc(var(--bolt-carousel-space-around) * -1);
+
+  &.is-ready {
+    padding-right: #{$bolt-carousel-space-around};
+    padding-right: var(--bolt-carousel-space-around);
+    padding-left: #{$bolt-carousel-space-around};
+    padding-left: var(--bolt-carousel-space-around);
   }
-
-  // &:not(.is-ready) {
-  //   // adds a small bit of padding before and after the carousel to prevent slides with box-shadows from getting cut off
-  //   &:before,
-  //   &:after {
-  //     content: '';
-  //     @include bolt-padding-left($bolt-carousel-space-around);
-  //   }
-  // }
 }
