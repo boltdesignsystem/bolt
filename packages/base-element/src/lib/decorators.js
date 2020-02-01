@@ -96,6 +96,17 @@ const conditionalShadowDomClass = clazz => {
     createRenderRoot() {
       this.useShadow = shouldUseShadowDom(this);
 
+      // @todo: look into adding fallback style loader
+      // if (this.constructor && this.useShadow === false && this.constructor.styles){
+      //   this.constructor.styles.map(item => {
+      //     if (item.cssText){
+      //       const stylesheet = new CSSStyleSheet();
+      //       stylesheet.replaceSync(item.cssText);
+      //       document.adoptedStyleSheets = [stylesheet];
+      //     }
+      //   });
+      // }
+
       if (this.useShadow) {
         return this.attachShadow({ mode: 'open' });
       } else {

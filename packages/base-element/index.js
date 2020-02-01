@@ -12,7 +12,7 @@ export {
 } from './src/lib/utils';
 
 export { convertInitialTags } from './src/lib/decorators';
-export { html, unsafeCSS } from 'lit-element';
+export { css, html, unsafeCSS } from 'lit-element';
 export { render } from 'lit-html';
 export { ifDefined } from 'lit-html/directives/if-defined';
 export { classMap } from 'lit-html/directives/class-map.js';
