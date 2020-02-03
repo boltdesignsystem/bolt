@@ -1,5 +1,5 @@
 const url = require('url');
-const { errorAndExit } = require('@bolt/build-tools/utils/log.js');
+const { errorAndExit } = require('@bolt/build-utils/log.js');
 const { toJson } = require('really-relaxed-json');
 const { render, renderString } = require('@bolt/twig-renderer');
 
