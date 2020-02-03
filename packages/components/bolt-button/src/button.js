@@ -21,6 +21,8 @@ class BoltButton extends BoltActionElement {
     return [unsafeCSS(buttonStyles)];
   }
 
+  // static useShadow = false; example of manually disabling Shadow DOM w/ BoltElement
+
   static get properties() {
     return {
       ...BoltActionElement.properties, // Provides: disabled, onClick, onClickTarget, target, url
