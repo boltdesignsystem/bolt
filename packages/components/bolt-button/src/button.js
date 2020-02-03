@@ -6,8 +6,8 @@ import {
   ifDefined,
   convertInitialTags,
   customElement,
+  classNames,
 } from '@bolt/element';
-import classNames from 'classnames/bind';
 
 import buttonStyles from './button.scss';
 // import schema from '../button.schema.js'; @todo: temporarily removed while we switch to `lit-element`, soon to be re-added

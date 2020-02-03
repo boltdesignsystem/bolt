@@ -9,6 +9,17 @@
     "@bolt/polyfills": "^2.16.0",
     "lit-element": "2.2.1"
   },
+  "devDependencies": {
+    "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-terser": "^5.2.0",
+    "rollup": "^1.31.0"
+  },
+  "scripts": {
+    "build": "rollup -c",
+    "postbootstrap": "npm run build",
+    "prepublish": "npm run build",
+    "watch": "rollup -c -w"
+  },
   "publishConfig": {
     "access": "public"
   }

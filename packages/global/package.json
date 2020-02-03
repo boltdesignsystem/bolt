@@ -8,12 +8,33 @@
   "license": "MIT",
   "main": "styles/index.js",
   "style": "styles/index.scss",
+  "module": "dist/bolt-global.css",
   "dependencies": {
     "@bolt/components-figure": "^2.16.2",
     "@bolt/components-link": "^2.16.2",
     "@bolt/components-ratio": "^2.16.0",
     "@bolt/core-v3.x": "^2.16.0",
-    "normalize-scss": "^7.0.1"
+    "normalize-scss": "^7.0.1",
+    "@bolt/components-icon": "^2.16.2",
+    "@bolt/element": "^2.16.0"
+  },
+  "devDependencies": {
+    "@rollup/plugin-html": "^0.1.1",
+    "rollup-plugin-yaml": "^2.0.0",
+    "rollup-plugin-scss": "^2.1.0",
+    "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-terser": "^5.2.0",
+    "rollup": "^1.31.0",
+    "rollup-plugin-postcss": "^2.0.6",
+    "rollup-plugin-sass": "^1.2.2",
+    "cssnano": "^4.1.10"
+  },
+  "scripts": {
+    "build": "rollup -c",
+    "postbootstrap": "npm run build",
+    "prepublish": "npm run build",
+    "watch": "rollup -c -w"
   },
   "publishConfig": {
     "access": "public"

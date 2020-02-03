@@ -1,3 +1,5 @@
+export * from './classnames';
+
 export function findParentTag(el, tag) {
   while (el.parentNode) {
     el = el.parentNode;

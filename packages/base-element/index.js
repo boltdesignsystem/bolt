@@ -9,6 +9,7 @@ export {
   shouldUseShadowDom,
   supportsShadowDom,
   findParentTag,
+  classNames,
 } from './src/lib/utils';
 
 export { convertInitialTags } from './src/lib/decorators';
