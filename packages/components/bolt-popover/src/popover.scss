@@ -47,6 +47,13 @@ $bolt-popover-border-color: bolt-theme(border, 0.2);
   z-index: bolt-z-index(popover);
   transition: opacity $bolt-transition;
 
+  // @todo: review alternative ways to handle no-JS layout overflow issues when adding in no-JS support to Popover
+  @at-root bolt-popover:not([ready]):not(:focus-within) & {
+    width: 0;
+    height: 0;
+    overflow: hidden;
+  }
+
   @at-root .c-bolt-popover.is-expanded & {
     visibility: visible;
     opacity: 1;
