@@ -4,8 +4,6 @@
 
 {% set card_replacement_media_content = media.content %}
 
-{% set media_block = block("media") %}
-
 {% if horizontal and card_replacement_image %}
   {% set card_replacement_image = card_replacement_image | merge({
     ratio: false,
@@ -17,13 +15,13 @@
   {# @todo: The replace function is a hack to get around the utf-8 bug. #}
   {{ card_replacement_media_content | join | replace({"UTF-8": ""}) }}
 {% else %}
-  {% if card_replacement_image or media_block %}
+  {% if card_replacement_image or block("media") %}
     <bolt-card-replacement-media {{ attributes }}>
       <replace-with-children class="c-bolt-card_replacement__media">
         {% if card_replacement_image %}
           {% include "@bolt-components-image/image.twig" with card_replacement_image only %}
-        {% elseif media_block %}
-          {{ media_block }}
+        {% elseif block("media") %}
+          {{ block("media") }}
         {% endif %}
       </replace-with-children>
     </bolt-card-replacement-media>
