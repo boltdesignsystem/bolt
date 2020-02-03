@@ -11,7 +11,6 @@ const selectorImporter = require('node-sass-selector-importer');
 const webpack = require('webpack');
 const CopyPlugin = require('copy-webpack-plugin');
 const PrerenderSPAPlugin = require('@bolt/prerender-spa-plugin');
-const localChrome = require('local-chrome');
 const path = require('path');
 const Renderer = require('@bolt/uikit-prerenderer');
 const puppeteer = require('puppeteer');

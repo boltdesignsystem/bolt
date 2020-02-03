@@ -1,29 +1,51 @@
-{# Breadcrumb Component in a Band #}
-{% set band_content %}
-  {% include "@bolt/breadcrumb.twig" with {
-    "contentItems": [
-      include("@bolt/link.twig", {
-        "text": "Home",
-        "url": "#"
-      }),
-      include("@bolt/link.twig", {
-        "text": "Page",
-        "url": "#"
-      }),
-      include("@bolt/link.twig", {
-        "text": "Sub Page",
-        "url": "#",
-        "attributes": {
-          "aria-current": "page"
-        },
-      })
-    ]
+{# Setting variables for demo purposes #}
+{% set item_home %}
+  {% include "@bolt-components-link/link.twig" with {
+    text: "Home",
+    url: "#!",
   } only %}
 {% endset %}
+{% set item_landing %}
+  {% include "@bolt-components-link/link.twig" with {
+    text: "Landing Page",
+    url: "#!",
+  } only %}
+{% endset %}
+{% set item_sub %}
+  {% include "@bolt-components-link/link.twig" with {
+    text: "Sub Page",
+    url: "#!",
+  } only %}
+{% endset %}
+{% set item_current %}
+  {% include "@bolt-components-link/link.twig" with {
+    text: "Current Page",
+    url: "#!",
+    attributes: {
+      "aria-current": "page",
+    },
+  } only %}
+{% endset %}
+
+{% set breadcrumb %}
+  {# Start component specific code #}
+  {% include "@bolt-components-breadcrumb/breadcrumb.twig" with {
+    contentItems: [
+      item_home,
+      item_landing,
+      item_sub,
+      item_current,
+    ]
+  } only %}
+  {# End component specific code #}
+{% endset %}
+
+
+{# Breadcrumb Component in a Band #}
 {% include "@bolt-components-band/band.twig" with {
   "size": "xsmall",
   "theme": "light",
-  "content": band_content
+  "content": breadcrumb
 } only %}
 
 {# Demo notes #}
@@ -42,36 +64,12 @@
 } only %}
 
 
-
-
 {# Breadcrumb Band Stacking On Top of Featured Band #}
-{% set breadcrumb_band_content %}
-  {% include "@bolt/breadcrumb.twig" with {
-    "contentItems": [
-      include("@bolt/link.twig", {
-        "text": "Home",
-        "url": "#"
-      }),
-      include("@bolt/link.twig", {
-        "text": "Page",
-        "url": "#"
-      }),
-      include("@bolt/link.twig", {
-        "text": "Sub Page",
-        "url": "#",
-        "attributes": {
-          "aria-current": "page"
-        },
-      })
-    ]
-  } only %}
-{% endset %}
-
 {% set stacked_bands %}
   {% include "@bolt-components-band/band.twig" with {
     "size": "small",
     "theme": "none",
-    "content": breadcrumb_band_content
+    "content": breadcrumb
   } only %}
   {% include "@pl/_band--feature.twig" with {
     "size": "large",
@@ -141,36 +139,12 @@
 } only %}
 
 
-
-
 {# Breadcrumb Band Stacking On Top of Featured Band with Outer Background Band #}
-{% set breadcrumb_band_content %}
-  {% include "@bolt/breadcrumb.twig" with {
-    "contentItems": [
-      include("@bolt/link.twig", {
-        "text": "Home",
-        "url": "#"
-      }),
-      include("@bolt/link.twig", {
-        "text": "Why Pega?",
-        "url": "#"
-      }),
-      include("@bolt/link.twig", {
-        "text": "Digital Transformation",
-        "url": "#",
-        "attributes": {
-          "aria-current": "page"
-        },
-      })
-    ]
-  } only %}
-{% endset %}
-
 {% set stacked_bands %}
   {% include "@bolt-components-band/band.twig" with {
     "size": "small",
     "theme": "none",
-    "content": breadcrumb_band_content
+    "content": breadcrumb
   } only %}
   {% include "@pl/_band--feature.twig" with {
     "size": "large",
@@ -254,36 +228,12 @@
 } only %}
 
 
-
-
 {# Breadcrumb Band Stacking On Top of Featured Band #}
-{% set breadcrumb_band_content %}
-  {% include "@bolt/breadcrumb.twig" with {
-    "contentItems": [
-      include("@bolt/link.twig", {
-        "text": "Home",
-        "url": "#"
-      }),
-      include("@bolt/link.twig", {
-        "text": "Why Pega?",
-        "url": "#"
-      }),
-      include("@bolt/link.twig", {
-        "text": "Digital Transformation",
-        "url": "#",
-        "attributes": {
-          "aria-current": "page"
-        },
-      })
-    ]
-  } only %}
-{% endset %}
-
 {% set stacked_bands %}
   {% include "@bolt-components-band/band.twig" with {
     "size": "xsmall",
     "theme": "dark",
-    "content": breadcrumb_band_content
+    "content": breadcrumb
   } only %}
   {% include "@pl/_band--feature.twig" with {
     "size": "large",

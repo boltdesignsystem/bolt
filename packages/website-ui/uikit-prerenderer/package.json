@@ -37,7 +37,6 @@
   "main": "index.js",
   "scripts": {
     "build": "babel renderer.mjs --out-file index.js",
-    "preinstall": "export PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=1",
     "postinstall": "npm run build",
     "prepublishOnly": "npm run build"
   },
@@ -46,7 +45,7 @@
     "@babel/core": "^7.5.4",
     "local-chrome": "^0.1.0",
     "promise-limit": "^2.7.0",
-    "puppeteer": "^2.0.0"
+    "puppeteer": "^2.1.0"
   },
   "engines": {
     "node": ">=10.0.0"
