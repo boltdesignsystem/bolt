@@ -1,4 +1,8 @@
-{% set heroButtonRow = block('heroButtonRow') %}
+{% if block('heroButtonRow') %}
+  {% set heroButtonRowBlock %}
+    {{ block('heroButtonRow') }}
+  {% endset %}
+{% endif %}
 
 {% embed "@bolt-components-band/band.twig" with {
   theme: "xdark",
@@ -46,9 +50,9 @@
         {% endif %}
       {% endcell %}
 
-      {% if heroButtonRow %}
+      {% if heroButtonRowBlock %}
         {% cell "u-bolt-flex-shrink u-bolt-margin-top-auto" %}
-          {{ heroButtonRow }}
+          {{ heroButtonRowBlock }}
         {% endcell %}
       {% endif %}
 

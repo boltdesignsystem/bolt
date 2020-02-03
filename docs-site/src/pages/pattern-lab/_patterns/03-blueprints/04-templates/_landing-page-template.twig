@@ -1,5 +1,14 @@
-{% set mainContentBlock = block("page_content") %}
-{% set backgroundBlock = block("page_background") %}
+{% if block("page_background") %}
+  {% set backgroundBlock %}
+    {{ block("page_background") }}
+  {% endset %}
+{% endif %}
+
+{% if block("page_content") %}
+  {% set mainContentBlock %}
+    {{ block("page_content") }}
+  {% endset %}
+{% endif %}
 
 {% import "@bolt-blueprints/macros.twig" as macros %}
 
