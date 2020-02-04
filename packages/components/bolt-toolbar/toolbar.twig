@@ -1,4 +1,4 @@
-<div class="t-bolt-xdark c-bolt-toolbar c-bolt-toolbar--{{ gradientName | default('purple') }}">
+<div class="t-bolt-xdark c-bolt-toolbar {{ sticky ? "c-bolt-toolbar--sticky" : "" }} c-bolt-toolbar--{{ gradientName | default('purple') }}">
   <div class="c-bolt-toolbar__inner">
     <div class="c-bolt-toolbar__items">
       {% if title or block('content_before') or content_before %}
@@ -16,7 +16,6 @@
           {% else %}
             {{ content_before }}
           {% endif %}
-
         </div>
       {% endif %}
 

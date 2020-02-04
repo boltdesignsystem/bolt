@@ -3,14 +3,18 @@
 .c-bolt-toolbar {
   @include bolt-font-size(small);
   position: relative;
+  z-index: 10;
+  width: 100%;
+  margin: 0 auto;
+  color: bolt-theme(secondary);
+}
+
+.c-bolt-toolbar--sticky {
   position: sticky;
   top: 0;
   left: 0;
-  z-index: 10;
-  width: 100%;
   width: 100vw;
   margin: 0 -50vw;
-  color: bolt-theme(secondary);
 }
 
 .c-bolt-toolbar__inner {

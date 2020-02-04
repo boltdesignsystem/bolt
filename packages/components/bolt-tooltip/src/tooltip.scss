@@ -20,6 +20,11 @@ $bolt-tooltip-bubble-border-color: bolt-theme(background, bolt-opacity(20));
 .c-bolt-tooltip {
   display: inline-flex;
   position: relative;
+
+  // apply overflow hidden when not being interacted with to avoid no-js layout issues
+  @at-root bolt-tooltip:not([ready]):not(:hover) {
+    overflow: hidden;
+  }
 }
 
 /**

@@ -23,4 +23,5 @@ body {
   width: 100%;
   margin: 0;
   color: bolt-color(indigo, xdark);
+  overflow-x: hidden; //Helps prevent horizontal scrolling in Chrome on Windows machines. Seems to be working fine w/ native position sticky at first glance.
 }

@@ -102,7 +102,7 @@ describe('Bolt Components declare dependencies in package.json if used in Twig f
 
             expect(boltPkg.name).pkgToHaveDependenciesOn([...twigDepPkgs]);
           }
-        }, 120000);
+        }, 240000);
       },
     );
 });

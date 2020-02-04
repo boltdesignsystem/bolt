@@ -8,6 +8,24 @@
   spacing: "xsmall",
   nowrap: true,
   items: [
+    editButton ? macros.include("@bolt-components-button/button.twig", {
+      text: "Edit",
+      size: "small",
+      style: "secondary",
+      iconOnly: true,
+      icon: {
+        name: "pencil",
+      }
+    }, false) : '',
+    downloadButton ? macros.include("@bolt-components-button/button.twig", {
+      text: "Download",
+      size: "small",
+      style: "secondary",
+      iconOnly: true,
+      icon: {
+        name: "download",
+      }
+    }, false) : '',
     shareButton ? macros.include("@bolt-blueprints/toolbar-buttons/_share.twig", {}, false) : '',
     favoriteButton ? macros.include("@bolt-components-button/button.twig", {
       text: "Favorite",
@@ -28,14 +46,5 @@
       }
     }, false) : '',
     removeButton ? macros.include("@bolt-blueprints/toolbar-buttons/_remove.twig", {}, false) : '',
-    downloadButton ? macros.include("@bolt-components-button/button.twig", {
-      text: "Download",
-      size: "small",
-      style: "secondary",
-      iconOnly: true,
-      icon: {
-        name: "download",
-      }
-    }, false) : '',
   ]
 } only %}

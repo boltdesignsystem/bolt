@@ -16,7 +16,9 @@ $bolt-font-weight--regular: 400 !default;
 $bolt-font-weight--semibold: 600 !default;
 /// Default bold font weight
 /// @see $bolt-font-weights
+// @todo: fix and update to 700 for v3.0
 $bolt-font-weight--bold: 800 !default;
+$bolt-font-weight--extrabold: 800 !default; // "actual" extra bold
 
 @if ($bolt-font-weight--regular < 400) {
   @error "Bolt's regular font weight can't be lighter than 400";
@@ -44,9 +46,10 @@ $bolt-font-weight--bold: 800 !default;
 $bolt-font-weights: (
   font-weights: (
     light:    $bolt-font-weight--light,
-    bold:     $bolt-font-weight--bold,
-    semibold: $bolt-font-weight--semibold,
     regular:  $bolt-font-weight--regular,
-    normal:   $bolt-font-weight--regular
+    normal:   $bolt-font-weight--regular,
+    semibold: $bolt-font-weight--semibold,
+    bold:      $bolt-font-weight--extrabold, // fake "bold". @todo: fix with v3.0
+    extrabold: $bolt-font-weight--extrabold, // actual extrabold
   )
 ) !default;
