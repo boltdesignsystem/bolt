@@ -1,7 +1,7 @@
 <div class="t-bolt-xdark c-bolt-toolbar c-bolt-toolbar--{{ gradientName | default('purple') }}">
   <div class="c-bolt-toolbar__inner">
     <div class="c-bolt-toolbar__items">
-      {% if title or block('toolbar_before') or content_before %}
+      {% if title or block('content_before') or content_before %}
         <div class="c-bolt-toolbar__item c-bolt-toolbar__item--before">
           {% if title %}
             <div class="c-bolt-toolbar__title">
@@ -11,10 +11,10 @@
             </div>
           {% endif %}
 
-          {%  if block("toolbar_before") %}
-            {{ block("toolbar_before") }}
+          {%  if block("content_before") %}
+            {{ block("content_before") }}
           {% else %}
-            {{ toolbar_before }}
+            {{ content_before }}
           {% endif %}
 
         </div>
