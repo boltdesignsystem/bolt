@@ -1,3 +1,5 @@
+{% import "@bolt-blueprints/macros.twig" as macros %}
+
 {% include "@bolt-blueprints/_mission-landing.twig" with {
   breadcrumbs: [
     {
@@ -13,12 +15,12 @@
       cardSubtitle: "Mission",
       cardTitle: bolt.faker.sentence(3),
       cardMetaItems: [
-        include("@bolt-components-headline/text.twig", {
+        macros.include("@bolt-components-headline/text.twig", {
           size: "small",
           weight: "bold",
           text: "#{bolt.faker.numberBetween(2,30)} topics",
-        }, with_context = false),
-        include("@bolt-components-headline/text.twig", {
+        }, false),
+        macros.include("@bolt-components-headline/text.twig", {
           size: "small",
           weight: "bold",
           text: "Completed",
@@ -31,7 +33,7 @@
               'color: #3C9439;'
             ]
           }
-        }, with_context = false),
+        }, false),
       ],
       cardGradient: "orange",
       cardIcon: "meteor",
@@ -96,6 +98,6 @@
       cardIcon: "atom",
       cardDescription: bolt.faker.paragraph(3),
     },
-    include("@bolt-blueprints/_badge.twig"),
+    macros.include("@bolt-blueprints/_badge.twig"),
   ]
 } %}

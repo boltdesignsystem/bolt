@@ -1,5 +1,14 @@
-{% set heroTopicList = block('heroTopicList') %}
-{% set heroSupplementalContent = block('heroSupplementalContent') %}
+{% if block('heroTopicList') %}
+  {% set heroTopicListBlock %}
+    {{ block('heroTopicList') }}
+  {% endset %}
+{% endif %}
+
+{% if block('heroSupplementalContent') %}
+  {% set heroSupplementalContentBlock %}
+    {{ block('heroSupplementalContent') }}
+  {% endset %}
+{% endif %}
 
 {% embed "@bolt-components-band/band.twig" with {
   theme: "none",
@@ -24,9 +33,9 @@
             {% include "@bolt-blueprints/_hero-secondary-content.twig" %}
           {% endcell %}
 
-            {% if heroTopicList %}
+            {% if heroTopicListBlock %}
               {% cell "u-bolt-width-1/1 u-bolt-width-1/2@medium" %}
-                {{ heroTopicList }}
+                {{ heroTopicListBlock }}
               {% endcell %}
             {% endif %}
           {% endgrid %}
