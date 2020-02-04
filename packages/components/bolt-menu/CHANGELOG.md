@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.17.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-menu/compare/v2.16.3...v2.17.0) (2020-02-04)
+
+
+### Bug Fixes
+
+* add proper role attributes ([2c1cc2e](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-menu/commit/2c1cc2e50d39c5f7da1f123694c57b39c0062928))
+* test snaps ([d952fdb](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-menu/commit/d952fdb98ba6364a43ce2ddee254b77466be231f))
+
+
+
+
+
 # [2.16.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-menu/compare/v2.15.2...v2.16.0) (2020-01-24)
 
 

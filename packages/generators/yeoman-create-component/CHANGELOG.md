@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.17.0](https://github.com/bolt-design-system/bolt/tree/master/packages/generator-bolt/compare/v2.16.3...v2.17.0) (2020-02-04)
+
+
+### Features
+
+* cherry pick build tools & generator-related updates from https://github.com/boltdesignsystem/bolt/pull/1711 ([67836b3](https://github.com/bolt-design-system/bolt/tree/master/packages/generator-bolt/commit/67836b38fdabc3bd293d297777d7f5a825da3d97))
+
+
+
+
+
 ## [2.16.2](https://github.com/bolt-design-system/bolt/tree/master/packages/generator-bolt/compare/v2.16.1...v2.16.2) (2020-01-28)
 
 **Note:** Version bump only for package @bolt/generator-bolt
