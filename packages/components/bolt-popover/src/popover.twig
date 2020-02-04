@@ -49,8 +49,8 @@
     {% if inner_classes %} class="{{ inner_classes|join(' ') }}" {% endif %}
   >
     {% if trigger %}
-      <replace-with-grandchildren>
-        <a href="#{{ popover_id }}" class="{{ "#{base_class}__nojs-trigger" }}">
+      <replace-with-grandchildren id="{{ popover_trigger_id }}">
+        <a href="#{{ popover_id }}" class="{{ "#{base_class}__nojs-trigger" }}" tabindex="-1">
           {{ trigger }}
         </a>
       </replace-with-grandchildren>
@@ -59,8 +59,9 @@
       <span slot="content">
         <replace-with-grandchildren class="{{ "#{base_class}__content" }}" id="{{ popover_id }}">
           <span class="{{ "#{base_class}__bubble" }}">
-            <a href="#" class="{{ "#{base_class}__nojs-close" }}">
-              <span aria-hidden="true">&times;</span> Close <span class="u-bolt-visuallyhidden">popover</span>
+            <a href="#{{ popover_trigger_id }}" class="{{ "#{base_class}__nojs-close" }}">
+              <span aria-hidden="true">&times;</span>
+              <span class="u-bolt-visuallyhidden">Close popover</span>
             </a>
             {{ content }}
           </span>
