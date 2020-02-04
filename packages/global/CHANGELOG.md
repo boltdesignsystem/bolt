@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.17.0](https://github.com/bolt-design-system/bolt/tree/master/packages/global/compare/v2.16.3...v2.17.0) (2020-02-04)
+
+
+### Bug Fixes
+
+* enable the real "bold" font weight we already have font assets for + add a comment regarding the font weight discrepancy in core/styles ([edca174](https://github.com/bolt-design-system/bolt/tree/master/packages/global/commit/edca174d486f7e344900ae33890883e56a228bfa))
+* workaround to make sure smooth scroll & waypoint functionality still works without breaking sticky footer and elements with position: sticky ([c80fdf8](https://github.com/bolt-design-system/bolt/tree/master/packages/global/commit/c80fdf8d80fcc98fea5a6aeb612281e295845dd8))
+
+
+### Features
+
+* add responsive float utility classes needed ([a3c9a2f](https://github.com/bolt-design-system/bolt/tree/master/packages/global/commit/a3c9a2f495e4bdf578bf94baf9be5ccbfc80962c))
+
+
+
+
+
 ## [2.16.2](https://github.com/bolt-design-system/bolt/tree/master/packages/global/compare/v2.16.1...v2.16.2) (2020-01-28)
 
 **Note:** Version bump only for package @bolt/global

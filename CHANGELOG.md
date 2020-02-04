@@ -3,6 +3,70 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.17.0](https://github.com/boltdesignsystem/bolt/compare/v2.16.3...v2.17.0) (2020-02-04)
+
+
+### Bug Fixes
+
+* add missing Autoplay swiper module ([26444f3](https://github.com/boltdesignsystem/bolt/commit/26444f30c7a8dab831d255462b4d88ea169c3652))
+* add missing deps ([5ea4a60](https://github.com/boltdesignsystem/bolt/commit/5ea4a608b33c12cac973118ae546c8134d6a18da))
+* add proper role attributes ([2c1cc2e](https://github.com/boltdesignsystem/bolt/commit/2c1cc2e50d39c5f7da1f123694c57b39c0062928))
+* add role navigation attribute ([47bd77b](https://github.com/boltdesignsystem/bolt/commit/47bd77be42d38ad13b31a76e7de8e68c27c40cda))
+* add z-index comment ([54164cf](https://github.com/boltdesignsystem/bolt/commit/54164cfa0a979cc949126c6adec8ecc4f1a96ca6))
+* address prettier warnings on master ([51abac6](https://github.com/boltdesignsystem/bolt/commit/51abac6cb034a3741e872efde17d5d00d3edca3b))
+* adjust no-JS behavior for Tooltip / Popover to reduce layout shifting when booting up / within carousels ([81768db](https://github.com/boltdesignsystem/bolt/commit/81768dbd75e1bda69cfe0b50622c13bb5af771a9))
+* aria attribute ([5564d74](https://github.com/boltdesignsystem/bolt/commit/5564d748188bedaa0b48c945e0b6cd0127ebba9e))
+* enable the real "bold" font weight we already have font assets for + add a comment regarding the font weight discrepancy in core/styles ([edca174](https://github.com/boltdesignsystem/bolt/commit/edca174d486f7e344900ae33890883e56a228bfa))
+* increase max timeout of Jest monorepo dependencies test ([7f4598f](https://github.com/boltdesignsystem/bolt/commit/7f4598f711b518aad90d4ecfc2692f958e0e7931))
+* indicator height ([a7e1911](https://github.com/boltdesignsystem/bolt/commit/a7e19113fd384911b2eae7c70a94fb9a6f52d64b))
+* js conventions ([6244e89](https://github.com/boltdesignsystem/bolt/commit/6244e8958b999087ef92a4db013dec12bc95e756))
+* make sure overall carousel (perceived) width is consistent across the different variations ([3365705](https://github.com/boltdesignsystem/bolt/commit/336570574b3117f459c7593f8a3b5c7d1b377b6c))
+* prettier updates ([6f886c6](https://github.com/boltdesignsystem/bolt/commit/6f886c6dc77aef0b7dbf3dc92430c15a9ceadc90))
+* remove inline includes ([ea13425](https://github.com/boltdesignsystem/bolt/commit/ea1342543e7e93f5bf52ae5c9fb59e7f5bbc9dc2))
+* remove line breaks in lit-element template to fix extra whitespace around links ([7ef27b7](https://github.com/boltdesignsystem/bolt/commit/7ef27b731c71df2f88b1d586f148f371be84f458))
+* remove padding on last list item ([d22258c](https://github.com/boltdesignsystem/bolt/commit/d22258ca87fb2576d812bb7259e63895dd9adecd))
+* rename content prop to text and grammar edits ([f5a4575](https://github.com/boltdesignsystem/bolt/commit/f5a4575576a5e074a6ca7d75c5e9aedc41bcd141))
+* snap carousel widths calculated to the exact pixel ([dd59c1f](https://github.com/boltdesignsystem/bolt/commit/dd59c1fafffa1d965440e6973d82d6282480cc34))
+* SSR hydration prep not working in IE11, new approach ([98fbf0a](https://github.com/boltdesignsystem/bolt/commit/98fbf0ae004aafc460f7b9084e1e37c777ea46fc))
+* test snaps ([d952fdb](https://github.com/boltdesignsystem/bolt/commit/d952fdb98ba6364a43ce2ddee254b77466be231f))
+* tests ([dda716e](https://github.com/boltdesignsystem/bolt/commit/dda716ea9145708f0fd72bc86eef7b004685f89d))
+* update .incache data + Github repo authentication dependencies ([0231c60](https://github.com/boltdesignsystem/bolt/commit/0231c60ae12a73420b40731771eb2c2252aa07b9))
+* Update block syntax in toolbar to avoid need for raw filter ([9ef07fd](https://github.com/boltdesignsystem/bolt/commit/9ef07fd3da339cb1427a96d7a88ecff82f40b1bc))
+* Update block syntax in toolbar to remove raw filter ([bb4993b](https://github.com/boltdesignsystem/bolt/commit/bb4993baa0058f72d9162a54f61383ba25a11322))
+* update core styles with extra-bold font weight var ([5f1b3b5](https://github.com/boltdesignsystem/bolt/commit/5f1b3b5f67728ab1942fa87b0343747aeb818e47))
+* update editor version ([4596d92](https://github.com/boltdesignsystem/bolt/commit/4596d923e31497c9705797ae9f7d9bb0c9fc4ad7))
+* Update empty block checking syntax in blueprint package ([98407bb](https://github.com/boltdesignsystem/bolt/commit/98407bb6eda1e676dc2ce368a661e221f44ce9c7))
+* Update empty block checking syntax in replacement card ([63d99e3](https://github.com/boltdesignsystem/bolt/commit/63d99e3bd61d122c252c686ad482dd5fedfa78fa))
+* update footer version ([e785869](https://github.com/boltdesignsystem/bolt/commit/e78586976d6fe44845ca10d99a8498013122db27))
+* update Jest test ([29d94cf](https://github.com/boltdesignsystem/bolt/commit/29d94cf88c0fc6346bcec7fd85fee5de5e3d1566))
+* update NPM dependencies to address Webpack SVG icon compile issues ([cfad6fc](https://github.com/boltdesignsystem/bolt/commit/cfad6fc99349d39cec2df583117bda64bda04020))
+* update Sass variable ([1faa2b7](https://github.com/boltdesignsystem/bolt/commit/1faa2b780eb95374bcefa98f31ad41db620c5f36))
+* update snapshots ([36b48f6](https://github.com/boltdesignsystem/bolt/commit/36b48f62ecdddecc0274fe4f076809cd57890419))
+* update snapshots ([05ab17d](https://github.com/boltdesignsystem/bolt/commit/05ab17d2c122ac6cd64a06e249bc3dfb73181519))
+* update Toolbar blocks to use the correct names :) ([61d55bf](https://github.com/boltdesignsystem/bolt/commit/61d55bf40532bddf8d64129cd7df1b534f9e61a8))
+* workaround to make sure smooth scroll & waypoint functionality still works without breaking sticky footer and elements with position: sticky ([c80fdf8](https://github.com/boltdesignsystem/bolt/commit/c80fdf8d80fcc98fea5a6aeb612281e295845dd8))
+
+
+### Features
+
+* add "My Missions" and "Add Mission" templates ([8b712d1](https://github.com/boltdesignsystem/bolt/commit/8b712d13e8da52909ede660f8015c9f1345b48f8))
+* add basic support to Toolbar to allow conditionally disabling sticky behavior ([76557e5](https://github.com/boltdesignsystem/bolt/commit/76557e59a7728b9dbfeaf9974ac3077839f370c9))
+* add responsive float utility classes needed ([a3c9a2f](https://github.com/boltdesignsystem/bolt/commit/a3c9a2f495e4bdf578bf94baf9be5ccbfc80962c))
+* add smooth scroll and scroll-spy behavior to bolt-toc ([87ff840](https://github.com/boltdesignsystem/bolt/commit/87ff840ada4a65efe62aca0c0eb8353c8a7e29b0))
+* Add suggested bolt.rc file for external builds ([0b8a771](https://github.com/boltdesignsystem/bolt/commit/0b8a771e7863c89692d0dc1e03a517db1ae321c3))
+* add test uuid to JS, use `getUniqueId` helper function ([291002c](https://github.com/boltdesignsystem/bolt/commit/291002cf640d6655e22c0de0345c27717bc51f46))
+* check for active item on first update, ensure only one active item at a time ([e9edd79](https://github.com/boltdesignsystem/bolt/commit/e9edd79b220eb3a1da8aae8fec929f3828590aed))
+* cherry pick build tools & generator-related updates from https://github.com/boltdesignsystem/bolt/pull/1711 ([67836b3](https://github.com/boltdesignsystem/bolt/commit/67836b38fdabc3bd293d297777d7f5a825da3d97))
+* cherry pick install & dependency related updates from https://github.com/boltdesignsystem/bolt/pull/1711 ([dfa3dd0](https://github.com/boltdesignsystem/bolt/commit/dfa3dd08d19a109736f64faef851e5516e3941e0))
+* cherry pick lit-element related updates from https://github.com/boltdesignsystem/bolt/pull/1711 ([a268d49](https://github.com/boltdesignsystem/bolt/commit/a268d496803dbe732d7e26cfcdc709dd2663b69f))
+* tighten up the TOC styles to better match the comps ([948fd64](https://github.com/boltdesignsystem/bolt/commit/948fd645e9ac3f8e216aa59f5e997cd257f450d4))
+* topic details page buildout + adding generic placeholder images for reference ([5112ecc](https://github.com/boltdesignsystem/bolt/commit/5112eccd4e6d892095de0765dd51b9e1ab13f9c0))
+* upgrade Swiper to the latest version; only pull in the modules being used ([11ade20](https://github.com/boltdesignsystem/bolt/commit/11ade2064a97215457f6c2f76067ac05350945cb))
+
+
+
+
+
 ## [2.16.3](https://github.com/boltdesignsystem/bolt/compare/v2.16.2...v2.16.3) (2020-01-28)
 
 

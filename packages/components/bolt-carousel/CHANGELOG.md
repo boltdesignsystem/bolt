@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.17.0](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-carousel/compare/v2.16.3...v2.17.0) (2020-02-04)
+
+
+### Bug Fixes
+
+* add missing Autoplay swiper module ([26444f3](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-carousel/commit/26444f30c7a8dab831d255462b4d88ea169c3652))
+* make sure overall carousel (perceived) width is consistent across the different variations ([3365705](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-carousel/commit/336570574b3117f459c7593f8a3b5c7d1b377b6c))
+* snap carousel widths calculated to the exact pixel ([dd59c1f](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-carousel/commit/dd59c1fafffa1d965440e6973d82d6282480cc34))
+* update Sass variable ([1faa2b7](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-carousel/commit/1faa2b780eb95374bcefa98f31ad41db620c5f36))
+* update snapshots ([05ab17d](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-carousel/commit/05ab17d2c122ac6cd64a06e249bc3dfb73181519))
+
+
+### Features
+
+* upgrade Swiper to the latest version; only pull in the modules being used ([11ade20](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-carousel/commit/11ade2064a97215457f6c2f76067ac05350945cb))
+
+
+
+
+
 ## [2.16.2](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-carousel/compare/v2.16.1...v2.16.2) (2020-01-28)
 
 **Note:** Version bump only for package @bolt/components-carousel

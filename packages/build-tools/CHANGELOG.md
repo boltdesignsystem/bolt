@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.17.0](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/compare/v2.16.3...v2.17.0) (2020-02-04)
+
+
+### Bug Fixes
+
+* address prettier warnings on master ([51abac6](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/51abac6cb034a3741e872efde17d5d00d3edca3b))
+* prettier updates ([6f886c6](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/6f886c6dc77aef0b7dbf3dc92430c15a9ceadc90))
+* update .incache data + Github repo authentication dependencies ([0231c60](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/0231c60ae12a73420b40731771eb2c2252aa07b9))
+* update NPM dependencies to address Webpack SVG icon compile issues ([cfad6fc](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/cfad6fc99349d39cec2df583117bda64bda04020))
+* update snapshots ([36b48f6](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/36b48f62ecdddecc0274fe4f076809cd57890419))
+
+
+### Features
+
+* cherry pick build tools & generator-related updates from https://github.com/boltdesignsystem/bolt/pull/1711 ([67836b3](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/67836b38fdabc3bd293d297777d7f5a825da3d97))
+* cherry pick install & dependency related updates from https://github.com/boltdesignsystem/bolt/pull/1711 ([dfa3dd0](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/dfa3dd08d19a109736f64faef851e5516e3941e0))
+
+
+
+
+
 ## [2.16.2](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/compare/v2.16.1...v2.16.2) (2020-01-28)
 
 **Note:** Version bump only for package @bolt/build-tools
