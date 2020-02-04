@@ -11,19 +11,19 @@
             </div>
           {% endif %}
 
-          {{ block('toolbar_before') | default(content_before) }}
+          {{ block('content_before') | default(content_before) | raw }}
         </div>
       {% endif %}
 
       {% if block("content") or content %}
         <div class="c-bolt-toolbar__item c-bolt-toolbar__item--center">
-          {{ block("content") | default(content) }}
+          {{ block("content") | default(content) | raw }}
         </div>
       {% endif %}
 
       {% if block("content_after") or content_after %}
         <div class="c-bolt-toolbar__item c-bolt-toolbar__item--after">
-          {{ block("content_after") | default(content_after) }}
+          {{ block("content_after") | default(content_after) | raw }}
         </div>
       {% endif %}
     </div>

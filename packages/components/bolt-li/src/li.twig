@@ -23,7 +23,7 @@
   <bolt-li {{ attributes }}>
     <replace-with-grandchildren>
       <li class="{{ classes|join(" ") }}">
-        {{ children }}
+        {{ children | raw }}
       </li>
     </replace-with-grandchildren>
   </bolt-li>
