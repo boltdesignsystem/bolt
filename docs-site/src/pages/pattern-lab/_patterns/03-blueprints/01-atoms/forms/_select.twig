@@ -5,15 +5,15 @@
 {% set label_display = 'after' %}
 
 {% set label %}
-  {% macros.include("@bolt-components-form/form-label.twig") with {
+  {{ macros.include("@bolt-components-form/form-label.twig", {
     "title": title,
     "displayType": "floating"
-  } %}
+  }) }}
 {% endset %}
 
 {% set children %}
-  {% macros.include("@bolt-components-form/form-select.twig") with {
+  {{ macros.include("@bolt-components-form/form-select.twig", {
     "attributes": selectAttributes,
     "options": options
-  } %}
+  }) }}
 {% endset %}
