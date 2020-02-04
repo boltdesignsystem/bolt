@@ -5,8 +5,8 @@ const ora = require('ora');
 const chalk = require('chalk');
 const checkLinks = require('check-links');
 const InCache = require('incache');
-const { Octokit } = require("@octokit/rest");
-const { throttling } = require("@octokit/plugin-throttling");
+const { Octokit } = require('@octokit/rest');
+const { throttling } = require('@octokit/plugin-throttling');
 const MyOctokit = Octokit.plugin(throttling);
 
 let versionSpinner;
@@ -50,7 +50,7 @@ async function getBoltTags() {
     try {
       // moved to the try/catch to gracefully handle the GITHUB_TOKEN env not being available
       const octokit = new MyOctokit({
-        auth: "token " + process.env.GITHUB_TOKEN || undefined,
+        auth: 'token ' + process.env.GITHUB_TOKEN || undefined,
         throttle: {
           onRateLimit: (retryAfter, options) => {
             console.warn(
