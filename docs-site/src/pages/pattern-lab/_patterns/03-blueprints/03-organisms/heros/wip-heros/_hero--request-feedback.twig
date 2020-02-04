@@ -3,6 +3,8 @@
   size: "small"
 } %}
   {% block band_content %}
+    {% import "@bolt-blueprints/macros.twig" as macros %}
+
     <div class="u-bolt-overflow-hidden">
       {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--border o-bolt-grid--middle" %}
         {% cell "u-bolt-width-12/12 u-bolt-width-7/12@small" %}
@@ -32,7 +34,7 @@
                     ]
                   },
                   items: [
-                    include("@bolt-components-button/button.twig", {
+                    macros.include("@bolt-components-button/button.twig", {
                       text: "Yes",
                       style: "text",
                       size: "small",
@@ -41,8 +43,8 @@
                         position: "before",
                         name: "add-open"
                       }
-                    }, with_context = false),
-                    include("@bolt-components-button/button.twig", {
+                    }, false),
+                    macros.include("@bolt-components-button/button.twig", {
                       text: "No",
                       style: "text",
                       size: "xsmall",
@@ -51,11 +53,11 @@
                         position: "before",
                         name: "minus-open"
                       }
-                    }, with_context = false),
-                    include("@bolt-components-headline/text.twig", {
+                    }, false),
+                    macros.include("@bolt-components-headline/text.twig", {
                       text: "<strong>28%</strong> found this useful",
                       size: "xsmall"
-                    }, with_context = false),
+                    }, false),
                   ]
                 } only %}
               {% endcell %}

@@ -1,6 +1,8 @@
 {% extends "@bolt-blueprints/_detail-page-template.twig" %}
 
 {% block page_content %}
+  {% import "@bolt-blueprints/macros.twig" as macros %}
+
   {% include "@bolt-components-headline/headline.twig" with {
     tag: "h2",
     size: "xxlarge",
@@ -43,7 +45,7 @@
 
   {% include "@bolt-components-figure/figure.twig" with {
     media: {
-      content: include("@bolt-components-image/image.twig", {
+      content: macros.include("@bolt-components-image/image.twig", {
         src: "/images/placeholders/500x500.jpg",
       }),
     },
