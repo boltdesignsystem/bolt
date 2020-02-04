@@ -1,8 +1,23 @@
 {% extends "@bolt-blueprints/_landing-page-template.twig" %}
+{% set breadcrumbs = [
+  {
+    "text": "Home",
+    "url": link["blueprints-dashboard"]
+  },
+  {
+    "text": "Mission Name Goes Here",
+    "url": link["blueprints-t1-mission-landing"]
+  },
+  {
+    "text": "Module name goes here"
+  }
+] %}
 
 {% block page_content %}
   {% embed "@bolt-blueprints/landing-page-hero.twig" %}
     {% block heroSupplementalContent %}
+      {% import "@bolt-blueprints/macros.twig" as macros %}
+
       {% include "@bolt-components-headline/headline.twig" with {
         size: "medium",
         text: "After completing this module, you should be able to:",
@@ -36,15 +51,15 @@
         display: "block",
         spacing: "none",
         items: [
-          include("@bolt-components-link/link.twig", {
+          macros.include("@bolt-components-link/link.twig", {
             url: "https://www.google.com",
             text: "Name of Mission will go here"
           }),
-          include("@bolt-components-link/link.twig", {
+          macros.include("@bolt-components-link/link.twig", {
             url: "https://www.google.com",
             text: "Name of Mission"
           }),
-          include("@bolt-components-link/link.twig", {
+          macros.include("@bolt-components-link/link.twig", {
             url: "https://www.google.com",
             text: "Adding another mission here"
           }),
@@ -53,6 +68,7 @@
     {% endblock %}
 
     {% block heroTopicList %}
+      {% import "@bolt-blueprints/macros.twig" as macros %}
 
       {% include "@bolt-components-card-replacement/card-replacement.twig" with {
         theme: "xlight",
@@ -65,14 +81,14 @@
         },
         body: {
           content: [
-            include("@bolt-components-headline/headline.twig", {
+            macros.include("@bolt-components-headline/headline.twig", {
               size: "xlarge",
               text: "Topics",
               attributes: {
                 class: "u-bolt-margin-bottom-small",
               }
             }),
-            include("@bolt-components-list/list.twig", {
+            macros.include("@bolt-components-list/list.twig", {
               separator: "solid",
               attributes: {
                 class: [
@@ -81,29 +97,29 @@
                 ],
               },
               items: [
-                include("@bolt-blueprints/_module-topic-item.twig", {
+                macros.include("@bolt-blueprints/_module-topic-item.twig", {
                   text: "Data types",
                   duration: "10 mins",
                   viewed: true,
                 }),
-                include("@bolt-blueprints/_module-topic-item.twig", {
+                macros.include("@bolt-blueprints/_module-topic-item.twig", {
                   text: "Creating a data type",
                   duration: "5 mins",
                 }),
-                include("@bolt-blueprints/_module-topic-item.twig", {
+                macros.include("@bolt-blueprints/_module-topic-item.twig", {
                   text: "Creating a data type",
                   duration: "5 mins",
                 }),
-                include("@bolt-blueprints/_module-quiz-item.twig", {
+                macros.include("@bolt-blueprints/_module-quiz-item.twig", {
                   text: "Module Quiz",
                   numberOfQuestionsText: "3 Questions",
                 }),
-                include("@bolt-blueprints/_module-quiz-item.twig", {
+                macros.include("@bolt-blueprints/_module-quiz-item.twig", {
                   text: "Module Quiz",
                   numberOfQuestionsText: "3 Questions",
                   status: "passed"
                 }),
-                include("@bolt-blueprints/_module-quiz-item.twig", {
+                macros.include("@bolt-blueprints/_module-quiz-item.twig", {
                   text: "Module Quiz",
                   numberOfQuestionsText: "3 Questions",
                   status: "failed"

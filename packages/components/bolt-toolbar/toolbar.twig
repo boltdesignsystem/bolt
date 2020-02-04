@@ -1,11 +1,7 @@
-{% set toolbar_content_before = block("content_before") %}
-{% set toolbar_content = block("content") %}
-{% set toolbar_content_after = block("content_after") %}
-
-<div class="t-bolt-xdark c-bolt-toolbar c-bolt-toolbar--{{ gradientName | default('purple') }}">
+<div class="t-bolt-xdark c-bolt-toolbar {{ sticky ? "c-bolt-toolbar--sticky" : "" }} c-bolt-toolbar--{{ gradientName | default('purple') }}">
   <div class="c-bolt-toolbar__inner">
     <div class="c-bolt-toolbar__items">
-      {% if title or toolbar_content_before or content_before %}
+      {% if title or block('content_before') or content_before %}
         <div class="c-bolt-toolbar__item c-bolt-toolbar__item--before">
           {% if title %}
             <div class="c-bolt-toolbar__title">
@@ -15,19 +11,31 @@
             </div>
           {% endif %}
 
-          {{ toolbar_content_before | default(content_before) | raw }}
+          {%  if block("content_before") %}
+            {{ block("content_before") }}
+          {% else %}
+            {{ content_before }}
+          {% endif %}
         </div>
       {% endif %}
 
-      {% if toolbar_content or content %}
+      {% if block("content") or content %}
         <div class="c-bolt-toolbar__item c-bolt-toolbar__item--center">
-          {{ toolbar_content | default(content) | raw }}
+          {%  if block("content") %}
+            {{ block("content") }}
+          {% else %}
+            {{ content }}
+          {% endif %}
         </div>
       {% endif %}
 
-      {% if toolbar_content_after or content_after %}
+      {% if block("content_after") or content_after %}
         <div class="c-bolt-toolbar__item c-bolt-toolbar__item--after">
-          {{ toolbar_content_after | default(content_after) | raw }}
+          {% if block("content_after") %}
+            {{ block("content_after") }}
+          {% else %}
+            {{ content_after }}
+          {% endif %}
         </div>
       {% endif %}
     </div>

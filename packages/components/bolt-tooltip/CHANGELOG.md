@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.17.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tooltip/compare/v2.16.3...v2.17.0) (2020-02-04)
+
+
+### Bug Fixes
+
+* address prettier warnings on master ([51abac6](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tooltip/commit/51abac6cb034a3741e872efde17d5d00d3edca3b))
+* adjust no-JS behavior for Tooltip / Popover to reduce layout shifting when booting up / within carousels ([81768db](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tooltip/commit/81768dbd75e1bda69cfe0b50622c13bb5af771a9))
+
+
+
+
+
 ## [2.16.2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tooltip/compare/v2.16.1...v2.16.2) (2020-01-28)
 
 **Note:** Version bump only for package @bolt/components-tooltip

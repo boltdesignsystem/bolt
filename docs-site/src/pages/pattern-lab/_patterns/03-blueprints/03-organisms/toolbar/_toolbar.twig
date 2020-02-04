@@ -1,6 +1,7 @@
 {% embed "@bolt-components-toolbar/toolbar.twig" with {
   size: "xsmall",
   theme: "none",
+  sticky: sticky ?? true,
   gradientName: toolbarGradient | default(''),
   title: {
     tag: "h2",
@@ -11,13 +12,15 @@
 } %}
   {% if breadcrumbs %}
     {% block content_before %}
+      {% import "@bolt-blueprints/macros.twig" as macros %}
+
       {% include "@bolt-components-breadcrumb/breadcrumb.twig" with {
-        "contentItems": breadcrumbs | map(breadcrumb => breadcrumb.text and breadcrumb.url ? include("@bolt-components-link/link.twig", {
+        "contentItems": breadcrumbs | map(breadcrumb => breadcrumb.text and breadcrumb.url ? macros.include("@bolt-components-link/link.twig", {
           text: breadcrumb.text,
           url: breadcrumb.url,
           isHeadline: true
-        }, with_context = false) : (breadcrumb.text ?
-          include("@bolt-components-headline/text.twig", {
+        }, false) : (breadcrumb.text ?
+          macros.include("@bolt-components-headline/text.twig", {
             text: breadcrumb.text,
             size: "small",
             weight: "bold",
@@ -27,7 +30,7 @@
                 "u-bolt-inline"
               ]
             }
-          }, with_context = false) : breadcrumb))
+          }, false) : breadcrumb))
       } only %}
     {% endblock %}
   {% endif %}

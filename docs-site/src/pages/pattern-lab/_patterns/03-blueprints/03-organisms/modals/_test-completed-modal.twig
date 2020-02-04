@@ -1,4 +1,5 @@
 {% set modalContent %}
+  {% import "@bolt-blueprints/macros.twig" as macros %}
 
   {% include "@bolt-components-card-replacement/card-replacement.twig" with {
     theme: "dark",
@@ -23,7 +24,7 @@
       },
       content: [
 
-        include("@bolt-components-headline/headline.twig", {
+        macros.include("@bolt-components-headline/headline.twig", {
           size: "xxlarge",
           text: "Congratulations #{userFirstName}!",
           align: "center",
@@ -36,7 +37,7 @@
             ]
           }
         }),
-        include("@bolt-components-headline/subheadline.twig", {
+        macros.include("@bolt-components-headline/subheadline.twig", {
           text: "You’ve completed the #{missionName} and earned a new badge!",
           align: "center",
           size: "xlarge",
@@ -49,9 +50,9 @@
             ]
           }
         }),
-        include("@bolt-components-ratio/ratio.twig", {
+        macros.include("@bolt-components-ratio/ratio.twig", {
           ratio: "140/160",
-          children: include("@bolt-components-placeholder/placeholder.twig", {
+          children: macros.include("@bolt-components-placeholder/placeholder.twig", {
             text: "FPO",
           }),
           attributes: {
@@ -63,7 +64,7 @@
             ]
           }
         }),
-        include("@bolt-components-headline/text.twig", {
+        macros.include("@bolt-components-headline/text.twig", {
           text: "<strong>NOTE:</strong> Please allow 24-48 hours for the badge to appear on your Achievements page.",
           size: "xxsmall",
           style: "italic",
@@ -77,12 +78,12 @@
             ]
           }
         }),
-        include("@bolt-components-list/list.twig", {
+        macros.include("@bolt-components-list/list.twig", {
           display: "inline",
           spacing: "small",
           align: "center",
           items: [
-            include("@bolt-components-button/button.twig", {
+            macros.include("@bolt-components-button/button.twig", {
               text: "Return to Mission",
               size: "small",
               border_radius: "full",
@@ -91,7 +92,7 @@
                 "on-click-target": "js-modal-advanced-auto-open",
               },
             }),
-            include("@bolt-components-button/button.twig", {
+            macros.include("@bolt-components-button/button.twig", {
               text: "View Achievements",
               size: "small",
               style: "secondary",

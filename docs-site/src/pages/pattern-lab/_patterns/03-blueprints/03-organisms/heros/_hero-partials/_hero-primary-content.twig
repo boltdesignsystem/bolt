@@ -1,3 +1,5 @@
+{% import "@bolt-blueprints/macros.twig" as macros %}
+
 {% if heroSubTitle %}
   {% include "@bolt-components-headline/eyebrow.twig" with {
     text: heroSubTitle,
@@ -10,9 +12,7 @@
   {% include "@bolt-components-headline/headline.twig" with {
     size: "xxxlarge",
     text: heroTitle,
-    attributes: {
-      class: "u-bolt-margin-bottom-medium",
-    }
+    tag: "h1",
   } only %}
 {% endif %}
 
@@ -35,11 +35,11 @@
         "u-bolt-margin-bottom-small",
       ]
     },
-    items: heroMetaItems | map(item => item.text ? include("@bolt-components-headline/text.twig", {
+    items: heroMetaItems | map(item => item.text ? macros.include("@bolt-components-headline/text.twig", {
       text: item.text,
       size: "small",
       weight: "bold",
-    }, with_context = false) : item )
+    }, false) : item )
   } only %}
       {# include("@bolt-blueprints/_custom-select.twig", with_context = false), #}
 {% endif %}

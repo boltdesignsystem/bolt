@@ -6,3 +6,25 @@
 .u-bolt-float-left {
   float: left !important;
 }
+
+.u-bolt-float-none {
+  float: none !important;
+}
+
+// Loop over our breakpoints
+@each $breakpoint in $bolt-breakpoints {
+  $breakpointName: nth($breakpoint, 1);
+  @include bolt-mq($breakpointName) {
+    .u-bolt-float-left\@#{$breakpointName} {
+      float: left !important;
+    }
+
+    .u-bolt-float-right\@#{$breakpointName} {
+      float: right !important;
+    }
+
+    .u-bolt-float-none\@#{$breakpointName} {
+      float: none !important;
+    }
+  }
+}

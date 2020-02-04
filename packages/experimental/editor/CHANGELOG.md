@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.17.0](https://github.com/bolt-design-system/bolt/compare/v2.16.3...v2.17.0) (2020-02-04)
+
+
+### Bug Fixes
+
+* address prettier warnings on master ([51abac6](https://github.com/bolt-design-system/bolt/commit/51abac6cb034a3741e872efde17d5d00d3edca3b))
+
+
+
+
+
 ## [2.16.3](https://github.com/bolt-design-system/bolt/compare/v2.16.2...v2.16.3) (2020-01-28)
 
 

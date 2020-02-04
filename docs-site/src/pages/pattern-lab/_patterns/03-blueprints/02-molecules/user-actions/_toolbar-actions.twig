@@ -1,32 +1,23 @@
 {% set shareButton = shareButton | default(true) %}
 
+{% import "@bolt-blueprints/macros.twig" as macros %}
+
 {% include "@bolt-components-list/list.twig" with {
   display: "flex",
   align: "end",
   spacing: "xsmall",
   nowrap: true,
   items: [
-    shareButton ? include("@bolt-blueprints/toolbar-buttons/_share.twig", with_context = false) : '',
-    favoriteButton ? include("@bolt-components-button/button.twig", {
-      text: "Favorite",
+    editButton ? macros.include("@bolt-components-button/button.twig", {
+      text: "Edit",
       size: "small",
       style: "secondary",
       iconOnly: true,
       icon: {
-        name: "heart",
+        name: "pencil",
       }
-    }, with_context = false) : '',
-    addButton ? include("@bolt-components-button/button.twig", {
-      text: "Add",
-      size: "small",
-      style: "secondary",
-      iconOnly: true,
-      icon: {
-        name: "add",
-      }
-    }, with_context = false) : '',
-    removeButton ? include("@bolt-blueprints/toolbar-buttons/_remove.twig", with_context = false) : '',
-    downloadButton ? include("@bolt-components-button/button.twig", {
+    }, false) : '',
+    downloadButton ? macros.include("@bolt-components-button/button.twig", {
       text: "Download",
       size: "small",
       style: "secondary",
@@ -34,6 +25,26 @@
       icon: {
         name: "download",
       }
-    }, with_context = false) : '',
+    }, false) : '',
+    shareButton ? macros.include("@bolt-blueprints/toolbar-buttons/_share.twig", {}, false) : '',
+    favoriteButton ? macros.include("@bolt-components-button/button.twig", {
+      text: "Favorite",
+      size: "small",
+      style: "secondary",
+      iconOnly: true,
+      icon: {
+        name: "heart",
+      }
+    }, false) : '',
+    addButton ? macros.include("@bolt-components-button/button.twig", {
+      text: "Add",
+      size: "small",
+      style: "secondary",
+      iconOnly: true,
+      icon: {
+        name: "add",
+      }
+    }, false) : '',
+    removeButton ? macros.include("@bolt-blueprints/toolbar-buttons/_remove.twig", {}, false) : '',
   ]
 } only %}

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.17.0](https://github.com/bolt-design-system/bolt/tree/master/packages/core/compare/v2.16.3...v2.17.0) (2020-02-04)
+
+
+### Bug Fixes
+
+* enable the real "bold" font weight we already have font assets for + add a comment regarding the font weight discrepancy in core/styles ([edca174](https://github.com/bolt-design-system/bolt/tree/master/packages/core/commit/edca174d486f7e344900ae33890883e56a228bfa))
+* update core styles with extra-bold font weight var ([5f1b3b5](https://github.com/bolt-design-system/bolt/tree/master/packages/core/commit/5f1b3b5f67728ab1942fa87b0343747aeb818e47))
+
+
+
+
+
 # [2.16.0](https://github.com/bolt-design-system/bolt/tree/master/packages/core/compare/v2.15.2...v2.16.0) (2020-01-24)
 
 **Note:** Version bump only for package @bolt/core-v3.x

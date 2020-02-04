@@ -11,6 +11,8 @@
 {% block page_content %}
   {% embed "@bolt-blueprints/landing-page-hero.twig" %}
     {% block heroSupplementalContent %}
+      {% import "@bolt-blueprints/macros.twig" as macros %}
+
       {% include "@bolt-components-headline/headline.twig" with {
         size: "xlarge",
         text: "Prerequisites:",
@@ -23,7 +25,7 @@
         display: "block",
         spacing: "none",
         items: [
-          include("@bolt-components-link/link.twig", {
+          macros.include("@bolt-components-link/link.twig", {
             url: "https://www.google.com",
             text: "Name of Mission will go here"
           }),
@@ -35,7 +37,7 @@
 
       {% include "@bolt-components-headline/headline.twig" with {
         size: "xlarge",
-        text: "Exam Topics " ~ include("@bolt-components-headline/text.twig", {
+        text: "Exam Topics " ~ macros.include("@bolt-components-headline/text.twig", {
           weight: "regular",
           tag: "span",
           size: "medium",
@@ -66,6 +68,7 @@
     {% endblock %}
 
     {% block heroTopicList %}
+      {% import "@bolt-blueprints/macros.twig" as macros %}
 
       {% include "@bolt-components-card-replacement/card-replacement.twig" with {
         theme: "xlight",
@@ -78,15 +81,15 @@
         },
         body: {
           content: [
-            include("@bolt-blueprints/_headline-with-logo.twig", {
-              headline: include("@bolt-components-headline/headline.twig", {
+            macros.include("@bolt-blueprints/_headline-with-logo.twig", {
+              headline: macros.include("@bolt-components-headline/headline.twig", {
                 size: "xlarge",
                 text: "Before you begin...",
                 attributes: {
                   class: "u-bolt-margin-bottom-none",
                 }
               }),
-              logo: include("@bolt-components-image/image.twig", {
+              logo: macros.include("@bolt-components-image/image.twig", {
                 src: "/images/pearson-logo.svg",
                 attributes: {
                   style: "max-width: 170px;",
@@ -96,7 +99,7 @@
                 }
               }),
             }),
-            include("@bolt-components-headline/text.twig", {
+            macros.include("@bolt-components-headline/text.twig", {
               size: "medium",
               text: "The <strong>Certified System Architect Test</strong> is proctored by Pearson VUE. Users must create a Pearson VUE account if you do not already have one and register for the exam through the Pearson VUE site. There are two exam delivery options:",
               attributes: {
@@ -105,10 +108,10 @@
                 ]
               }
             }),
-            include("@bolt-components-ul/ul.twig", {
+            macros.include("@bolt-components-ul/ul.twig", {
               items: [
                 "Take an exam at a test center, or",
-                "Take an exam via Online Proctored delivery" ~ include("@bolt-components-headline/text.twig", {
+                "Take an exam via Online Proctored delivery" ~ macros.include("@bolt-components-headline/text.twig", {
                   text: "(e.g., in a quiet, uninterrupted room in your home or office, proctored via webcam).",
                   size: "xxsmall",
                   style: "italic",
@@ -116,7 +119,7 @@
                 }),
               ]
             }),
-            include("@bolt-components-list/list.twig", {
+            macros.include("@bolt-components-list/list.twig", {
               display: "inline",
               spacing: "small",
               align: "start",
@@ -126,14 +129,14 @@
                 ]
               },
               items: [
-                include("@bolt-components-button/button.twig", {
+                macros.include("@bolt-components-button/button.twig", {
                   text: "Create Pearson VUE Account",
                   size: "small",
                   style: "secondary",
                   border_radius: "full",
                   url: "https://www.google.com",
                 }),
-                include("@bolt-components-button/button.twig", {
+                macros.include("@bolt-components-button/button.twig", {
                   text: "Register for Exam",
                   size: "small",
                   border_radius: "full",

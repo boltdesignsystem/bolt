@@ -3,6 +3,32 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.17.0](https://github.com/bolt-design-system/bolt/compare/v2.16.3...v2.17.0) (2020-02-04)
+
+
+### Bug Fixes
+
+* add missing deps ([5ea4a60](https://github.com/bolt-design-system/bolt/commit/5ea4a608b33c12cac973118ae546c8134d6a18da))
+* aria attribute ([5564d74](https://github.com/bolt-design-system/bolt/commit/5564d748188bedaa0b48c945e0b6cd0127ebba9e))
+* remove inline includes ([ea13425](https://github.com/bolt-design-system/bolt/commit/ea1342543e7e93f5bf52ae5c9fb59e7f5bbc9dc2))
+* rename content prop to text and grammar edits ([f5a4575](https://github.com/bolt-design-system/bolt/commit/f5a4575576a5e074a6ca7d75c5e9aedc41bcd141))
+* update .incache data + Github repo authentication dependencies ([0231c60](https://github.com/bolt-design-system/bolt/commit/0231c60ae12a73420b40731771eb2c2252aa07b9))
+* Update empty block checking syntax in blueprint package ([98407bb](https://github.com/bolt-design-system/bolt/commit/98407bb6eda1e676dc2ce368a661e221f44ce9c7))
+* update footer version ([e785869](https://github.com/bolt-design-system/bolt/commit/e78586976d6fe44845ca10d99a8498013122db27))
+
+
+### Features
+
+* add "My Missions" and "Add Mission" templates ([8b712d1](https://github.com/bolt-design-system/bolt/commit/8b712d13e8da52909ede660f8015c9f1345b48f8))
+* add basic support to Toolbar to allow conditionally disabling sticky behavior ([76557e5](https://github.com/bolt-design-system/bolt/commit/76557e59a7728b9dbfeaf9974ac3077839f370c9))
+* Add suggested bolt.rc file for external builds ([0b8a771](https://github.com/bolt-design-system/bolt/commit/0b8a771e7863c89692d0dc1e03a517db1ae321c3))
+* cherry pick install & dependency related updates from https://github.com/boltdesignsystem/bolt/pull/1711 ([dfa3dd0](https://github.com/bolt-design-system/bolt/commit/dfa3dd08d19a109736f64faef851e5516e3941e0))
+* topic details page buildout + adding generic placeholder images for reference ([5112ecc](https://github.com/bolt-design-system/bolt/commit/5112eccd4e6d892095de0765dd51b9e1ab13f9c0))
+
+
+
+
+
 ## [2.16.3](https://github.com/bolt-design-system/bolt/compare/v2.16.2...v2.16.3) (2020-01-28)
 
 **Note:** Version bump only for package @bolt/website

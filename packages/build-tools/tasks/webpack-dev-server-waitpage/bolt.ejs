@@ -31,7 +31,20 @@
       font-weight: semibold;
       color: white;
       margin-bottom: 1rem;
+      text-align: center;
     }
+
+    .duration {
+      font-weight: 600;
+      color: white;
+      font-size: 12px;
+      position: absolute;
+      bottom: 0.25rem;
+      right: 0.25rem;
+      z-index: 100;
+      text-align: right;
+    }
+
 <% for (var i = 0 ; i < progress.length ; i++) { %>
     .c-bolt-progress__circle {
       margin-top: 20px;
@@ -164,7 +177,10 @@
 
 
 <div class="card">
-  <div class="building">Bolt is compiling for the first time.</div>
+  <div class="building">
+    <span>Bolt is compiling for the first time.</span><br>
+  </div>
+  <span class="duration">(running for <%= duration %>)</span>
 
   <div class="c-progress-indicators">
 

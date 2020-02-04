@@ -1,6 +1,7 @@
 {% extends "@bolt-blueprints/_landing-page-template.twig" %}
 
 {% block page_content %}
+  {% import "@bolt-blueprints/macros.twig" as macros %}
   {% include "@bolt-blueprints/landing-page-hero.twig" %}
 
   {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
@@ -28,7 +29,7 @@
                 {% else %}
                   {% if numberOfCompletedItems != 0 %}
                     {% set contentItemsConsolidated = contentItemsConsolidated | merge([
-                      include("@bolt-blueprints/_horizontal-divider.twig", { dividerText: "Completed (" ~ numberOfCompletedItems ~ ")" })
+                      macros.include("@bolt-blueprints/_horizontal-divider.twig", { dividerText: "Completed (" ~ numberOfCompletedItems ~ ")" })
                     ]) %}
                     {% set numberOfCompletedItems = 0 %}
                   {% endif %}
