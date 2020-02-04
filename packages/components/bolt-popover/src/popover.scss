@@ -9,6 +9,8 @@
 $bolt-popover-border-width: $bolt-border-width;
 $bolt-popover-border-style: $bolt-border-style;
 $bolt-popover-border-color: bolt-theme(border, 0.2);
+$bolt-popover-transition: $bolt-transition-timing
+  cubic-bezier(0.175, 0.885, 0.32, 1);
 
 @mixin bolt-popover-bubble-tip-point-to($where) {
   $radius: bolt-border-radius(large);
@@ -45,11 +47,38 @@ $bolt-popover-border-color: bolt-theme(border, 0.2);
   position: absolute;
   transform: translate3d(0, 0, 0);
   z-index: bolt-z-index(popover);
-  transition: opacity $bolt-transition;
+  transition: opacity $bolt-popover-transition;
 
-  @at-root .c-bolt-popover.is-expanded & {
+  .c-bolt-popover.is-expanded &,
+  bolt-popover:not([ready]) &:target {
     visibility: visible;
     opacity: 1;
+  }
+
+  bolt-popover:not([ready]) & {
+    display: none;
+    top: 100%;
+    left: 50%;
+    transform: translate3d(-50%, #{bolt-v-spacing(xxsmall)}, 0);
+
+    &:target {
+      display: block;
+    }
+  }
+}
+
+.c-bolt-popover__nojs-close {
+  display: none;
+
+  bolt-popover:not([ready]) & {
+    @include bolt-padding(xsmall);
+    @include bolt-font-family(body);
+    @include bolt-font-size(xsmall);
+    @include bolt-font-weight(semibold);
+    display: block;
+    color: bolt-theme(link);
+    text-align: center;
+    background-color: bolt-theme(link, 0.05);
   }
 }
 
@@ -77,8 +106,7 @@ $bolt-popover-border-color: bolt-theme(border, 0.2);
   box-shadow: bolt-shadow('level-20');
   background-color: bolt-theme(background);
   will-change: transform;
-  transition: transform $bolt-transition-timing
-    cubic-bezier(0.175, 0.885, 0.32, 1);
+  transition: transform $bolt-popover-transition;
 
   @at-root .c-bolt-popover--text-wrap & {
     width: 250px; // If the content is long (more than 31 characters), the bubble will have this specific width and text will wrap. This logic is in the JS and Twig files.
@@ -169,7 +197,8 @@ $bolt-popover-border-color: bolt-theme(border, 0.2);
     transform-origin: top left;
   }
 
-  @at-root .c-bolt-popover.is-expanded & {
+  .c-bolt-popover.is-expanded &,
+  bolt-popover:not([ready]) .c-bolt-popover__content & {
     transform: scale3d(1, 1, 1) translate3d(0, 0, 0);
   }
 }
@@ -183,6 +212,15 @@ $bolt-popover-border-color: bolt-theme(border, 0.2);
   .c-bolt-popover--spacing-#{$spacing-value-name} {
     .c-bolt-popover__bubble {
       @include bolt-padding(#{$spacing-value-name});
+    }
+
+    @at-root bolt-popover:not([ready]) & {
+      .c-bolt-popover__nojs-close {
+        margin-top: bolt-v-spacing(#{$spacing-value-name}) * -1;
+        margin-right: bolt-spacing(#{$spacing-value-name}) * -1;
+        margin-bottom: bolt-v-spacing(small);
+        margin-left: bolt-spacing(#{$spacing-value-name}) * -1;
+      }
     }
   }
 }
