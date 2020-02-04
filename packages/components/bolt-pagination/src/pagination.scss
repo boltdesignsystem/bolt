@@ -17,6 +17,7 @@ $bolt-pagination-item-size: bolt-spacing(medium);
   @include bolt-padding(0);
 
   display: flex;
+  flex-wrap: wrap; // @todo: component needs better responsive design, for now just make sure it doesn't overflow the container
   list-style: none;
 }
 
