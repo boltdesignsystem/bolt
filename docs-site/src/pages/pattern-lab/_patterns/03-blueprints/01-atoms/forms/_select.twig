@@ -6,12 +6,12 @@
   {% include "@bolt-components-form/form-label.twig" with {
     title: title,
     displayType: "floating"
-  } %}
+  } only %}
 {% endset %}
 
 {% set children %}
   {% include "@bolt-components-form/form-select.twig" with {
     attributes: selectAttributes,
     options: options
-  } %}
+  } only %}
 {% endset %}
