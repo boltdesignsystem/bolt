@@ -72,17 +72,13 @@
     {% cell "u-bolt-flex-grow" %}
       {% include "@bolt/form.twig" with {
         children: macros.include("@bolt-blueprints/_select.twig", {
-          title: "Select Option",
+          title: "Sort",
           options: [
             {
               type: "option",
-              value: "",
-              label: "Select Option"
-            },
-            {
-              type: "option",
               value: "option-a",
-              label: "Latest Activity"
+              label: "Latest Activity",
+              selected: true
             },
             {
               type: "option",
