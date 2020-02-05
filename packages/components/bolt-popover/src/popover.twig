@@ -34,8 +34,8 @@
   {% endif %}
 {% endfor %}
 
-{% set popover_id = "js-bolt-tooltip-" ~ uuid %}
-{% set popover_trigger_id = "js-bolt-tooltip-trigger" ~ uuid %}
+{% set content_id = "js-bolt-popover-" ~ uuid %}
+{% set trigger_id = "js-bolt-popover-trigger-" ~ uuid %}
 
 <bolt-popover
   {% if outer_classes %} class="{{ outer_classes|join(' ') }}" {% endif %}
@@ -49,17 +49,17 @@
     {% if inner_classes %} class="{{ inner_classes|join(' ') }}" {% endif %}
   >
     {% if trigger %}
-      <replace-with-grandchildren id="{{ popover_trigger_id }}">
-        <a href="#{{ popover_id }}" class="{{ "#{base_class}__nojs-trigger" }}" tabindex="-1">
+      <replace-with-grandchildren id="{{ trigger_id }}">
+        <a href="#{{ content_id }}" class="{{ "#{base_class}__nojs-trigger" }}" tabindex="-1">
           {{ trigger }}
         </a>
       </replace-with-grandchildren>
     {% endif %}
     {% if content %}
       <span slot="content">
-        <replace-with-grandchildren class="{{ "#{base_class}__content" }}" id="{{ popover_id }}">
+        <replace-with-grandchildren class="{{ "#{base_class}__content" }}" id="{{ content_id }}">
           <span class="{{ "#{base_class}__bubble" }}">
-            <a href="#{{ popover_trigger_id }}" class="{{ "#{base_class}__nojs-close" }}">
+            <a href="#{{ trigger_id }}" class="{{ "#{base_class}__nojs-close" }}">
               <span aria-hidden="true">&times;</span>
               <span class="u-bolt-visuallyhidden">Close popover</span>
             </a>
