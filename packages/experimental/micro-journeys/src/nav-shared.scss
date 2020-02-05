@@ -13,7 +13,7 @@ $nav-circle-border-size: 2px;
     margin-top: calc(((#{$header-text-line-height} * #{$header-text-size}) - (#{$nav-circle-size--active} + (#{$nav-circle-border-size} * 2))) / 2);
     margin-left: -$nav-circle-size--active / 2 - $nav-circle-border-size;
     border: $nav-circle-border-size solid bolt-theme(primary);
-    background-color: bolt-theme(secondary);
+    background-color: bolt-theme(background);
   }
 
   @else {
@@ -30,7 +30,7 @@ $nav-circle-border-size: 2px;
     margin-right: bolt-spacing(small);
     margin-left: -$nav-circle-size / 2;
     border-radius: 50%;
-    background-color: bolt-theme(primary);
+    background-color: bolt-color(indigo, light);
   }
 }
 
@@ -44,7 +44,7 @@ $nav-circle-border-size: 2px;
   left: -$line-width / 2;
   width: $line-width;
   height: 100%;
-  background-color: bolt-theme(primary);
+  background-color: bolt-color(indigo, light);
 }
 
 @mixin bolt-micro-journeys-nav-title($active: false) {
@@ -52,10 +52,6 @@ $nav-circle-border-size: 2px;
     color: bolt-theme(primary);
     cursor: default;
     font-weight: bolder;
-
-    .t-bolt-dark & {
-      color: bolt-color(yellow);
-    }
   }
   @else {
     display: flex;
