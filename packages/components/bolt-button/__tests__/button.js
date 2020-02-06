@@ -83,7 +83,23 @@ describe('button', () => {
     expect(results.ok).toBe(true);
     expect(results.html).toMatchSnapshot();
 
-    // @todo: also test rendered HTML for `disabled` attribute
+    const buttonInnerHTML = await page.evaluate(async results => {
+      const wrapper = document.createElement('div');
+      wrapper.innerHTML = results.html;
+      document.body.appendChild(wrapper);
+      const button = document.querySelector('bolt-button');
+      await button.firstUpdated;
+      return button.renderRoot.innerHTML;
+    }, results);
+
+    const renderedHTML = await html(buttonInnerHTML);
+    expect(renderedHTML).toMatchSnapshot();
+
+    const image = await page.screenshot();
+    expect(image).toMatchImageSnapshot({
+      failureThreshold: '0.01',
+      failureThresholdType: 'percent',
+    });
   });
 
   test('Button with "disabled" adds attr to <a>', async () => {
@@ -95,7 +111,23 @@ describe('button', () => {
     expect(results.ok).toBe(true);
     expect(results.html).toMatchSnapshot();
 
-    // @todo: also test rendered HTML for `disabled` attribute
+    const buttonInnerHTML = await page.evaluate(async results => {
+      const wrapper = document.createElement('div');
+      wrapper.innerHTML = results.html;
+      document.body.appendChild(wrapper);
+      const button = document.querySelector('bolt-button');
+      await button.firstUpdated;
+      return button.renderRoot.innerHTML;
+    }, results);
+
+    const renderedHTML = await html(buttonInnerHTML);
+    expect(renderedHTML).toMatchSnapshot();
+
+    const image = await page.screenshot();
+    expect(image).toMatchImageSnapshot({
+      failureThreshold: '0.01',
+      failureThresholdType: 'percent',
+    });
   });
 
   test('Button with outer classes via Drupal Attributes', async () => {
