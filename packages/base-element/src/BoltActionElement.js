@@ -9,7 +9,10 @@ class BoltActionElement extends BoltElement {
     return {
       url: String,
       target: String,
-      disabled: Boolean,
+      disabled: {
+        type: Boolean,
+        reflect: true,
+      },
       onClick: {
         type: String,
         attribute: 'on-click',
