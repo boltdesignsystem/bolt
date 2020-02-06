@@ -80,6 +80,7 @@ describe('button', () => {
       text: 'This is a button',
       disabled: true,
     });
+
     expect(results.ok).toBe(true);
     expect(results.html).toMatchSnapshot();
 
@@ -93,6 +94,7 @@ describe('button', () => {
     }, results);
 
     const renderedHTML = await html(buttonInnerHTML);
+    expect(renderedHTML.hasAttribute('disabled')).toBe(true);
     expect(renderedHTML).toMatchSnapshot();
 
     const image = await page.screenshot();
@@ -108,6 +110,7 @@ describe('button', () => {
       url: 'http://pega.com',
       disabled: true,
     });
+
     expect(results.ok).toBe(true);
     expect(results.html).toMatchSnapshot();
 
@@ -121,6 +124,7 @@ describe('button', () => {
     }, results);
 
     const renderedHTML = await html(buttonInnerHTML);
+    expect(renderedHTML.hasAttribute('aria-disabled')).toBe(true);
     expect(renderedHTML).toMatchSnapshot();
 
     const image = await page.screenshot();
