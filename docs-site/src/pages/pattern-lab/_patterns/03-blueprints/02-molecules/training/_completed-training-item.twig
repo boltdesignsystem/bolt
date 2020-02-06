@@ -1,0 +1,121 @@
+{# Note: theme class must be set on container DIV, grid has negative margin that will cause background color to overflow #}
+{% set themeClass = archived ? 't-bolt-light' : '' %}
+
+<div class="u-bolt-padding-small {{ themeClass }}">
+  {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--small o-bolt-grid--middle" %}
+    {% cell %}
+      {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--small o-bolt-grid--middle u-bolt-flex-nowrap" %}
+        {% if icon %}
+          {% cell %}
+            {% include "@bolt-components-icon/icon.twig" with icon only %}
+          {% endcell %}
+        {% endif %}
+        {% cell %}
+          {% if title %}
+            {% include "@bolt-components-headline/headline.twig" with {
+              text: title,
+              url: url,
+              size: "large",
+              icon: "none",
+              attributes: {
+                class: ["u-bolt-margin-bottom-xxsmall"]
+              }
+            } only %}
+          {% endif %}
+
+          {% if type %}
+            {% set typeText %}
+              {% include "@bolt-components-headline/text.twig" with {
+                text: type|upper,
+                size: "xsmall"
+              } only %}
+            {% endset %}
+          {% endif %}
+
+          {% if status %}
+            {% set statusText %}
+              {% include "@bolt-components-headline/text.twig" with {
+                text: status,
+                size: "xsmall",
+                attributes: {
+                  class: ["u-bolt-color-success"]
+                }
+              } only %}
+            {% endset %}
+          {% endif %}
+
+          {% if lastUpdated %}
+            {% set lastUpdatedText %}
+              {% include "@bolt-components-headline/text.twig" with {
+                text: lastUpdated,
+                size: "xsmall"
+              } only %}
+            {% endset %}
+          {% endif %}
+
+          {% include "@bolt-components-list/list.twig" with {
+            display: "inline",
+            spacing: "xsmall",
+            separator: "solid",
+            items: [
+              typeText ? typeText : '',
+              statusText ? statusText : '',
+              lastUpdatedText ? lastUpdatedText : '',
+            ],
+            attributes: {
+              class: ["u-bolt-margin-bottom-none"]
+            }
+          } only %}
+
+          {% if additionalInfo %}
+            {{ additionalInfo }}
+          {% endif %}
+        {% endcell %}
+      {% endgrid %}
+    {% endcell %}
+
+    {% if badge or archived %}
+      {% cell "u-bolt-margin-left-auto" %}
+        {% grid "o-bolt-grid--flex o-bolt-grid--small o-bolt-grid--middle" %}
+          {% if badge %}
+            {% cell %}
+              <div class="u-bolt-text-align-center u-bolt-padding-right-xsmall">
+                {% include "@bolt-components-icon/icon.twig" with {
+                  name: "academy",
+                  attributes: {
+                    class: ["u-bolt-color-indigo-light"],
+                    style: "font-size: 1.8rem; width: 1.8rem; height: 1.8rem;"
+                  }
+                } only %}
+              </div>
+            {% endcell %}
+          {% endif %}
+          {% if archived %}
+            {% cell %}
+              <div class="u-bolt-text-align-center u-bolt-padding-left-small" style="border-left: 1px solid rgba(var(--bolt-theme-border), 0.2);">
+                {# @todo: replace "lock" with "archived" icon once provided #}
+                {% include "@bolt-components-icon/icon.twig" with {
+                  name: "lock",
+                  color: "gray",
+                  attributes: {
+                    style: "font-size: 1.2rem; width: 1.2rem; height: 1.2rem;"
+                  }
+                } only %}
+                {% include "@bolt-components-headline/text.twig" with {
+                  text: "Archived",
+                  size: "xxsmall",
+                  attributes: {
+                    class: [
+                      "u-bolt-margin-top-xxsmall",
+                      "u-bolt-color-gray"
+                    ]
+                  }
+                } only %}
+              </div>
+            {% endcell %}
+          {% endif %}
+        {% endgrid %}
+      {% endcell %}
+    {% endif %}
+  {% endgrid %}
+</div>

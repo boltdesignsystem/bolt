@@ -1,0 +1,257 @@
+{% extends "@bolt-blueprints/_default-page-template.twig" %}
+
+{% import "@bolt-blueprints/macros.twig" as macros %}
+
+{% block page_content %}
+  {% embed "@bolt-components-band/band.twig" with {
+    theme: "light",
+    size: "small",
+  } %}
+    {% block band_content %}
+      {% include "@bolt-components-headline/headline.twig" with {
+        url: "#",
+        text: "Dashboard",
+        size: "small",
+        weight: "regular",
+        transform: "uppercase",
+        icon: {
+          name: "arrow-left",
+          position: "before",
+        }
+      } only %}
+    {% endblock %}
+  {% endembed %}
+
+  {% include "@bolt-components-headline/headline.twig" with {
+    text: "Completed Training",
+    size: "xxlarge",
+    align: "center",
+    weight: "semibold",
+    attributes: {
+      class: [
+        "u-bolt-padding-top-large"
+      ]
+    }
+  } only %}
+
+  {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--small o-bolt-grid--bottom u-bolt-padding-bottom-medium" %}
+    {% cell "u-bolt-width-1/1" %}
+      {% include "@bolt-components-list/list.twig" with {
+        spacing: "none",
+        display: "inline",
+        align: "end",
+        items: [
+          macros.include("@bolt-components-button/button.twig", {
+            text: "Upload",
+            url: "#!",
+            style: "text",
+            iconOnly: true,
+            icon: {
+              name: "upload",
+              size: "medium",
+              color: "auto",
+              background: "square"
+            }
+          }, false),
+          macros.include("@bolt-components-button/button.twig", {
+            text: "Print",
+            url: "#!",
+            style: "text",
+            iconOnly: true,
+            icon: {
+              name: "print",
+              size: "medium",
+              color: "auto",
+              background: "square"
+            }
+          }, false),
+        ]
+      } only %}
+    {% endcell %}
+
+    {% cell "u-bolt-flex-grow" %}
+      {% include "@bolt/form.twig" with {
+        children: macros.include("@bolt-blueprints/_select.twig", {
+          title: "Sort",
+          options: [
+            {
+              type: "option",
+              value: "option-a",
+              label: "Latest Activity",
+              selected: true
+            },
+            {
+              type: "option",
+              value: "option-b",
+              label: "Oldest to Newest"
+            },
+            {
+              type: "option",
+              value: "option-c",
+              label: "Newest to Oldest"
+            }
+          ]
+        }, false),
+        attributes: {
+          class: ["u-bolt-inline-block"],
+          style: "min-width: 10rem;"
+        }
+      } only  %}
+    {% endcell %}
+    {% cell %}
+      {% include "@bolt-components-list/list.twig" with {
+        spacing: "small",
+        display: "inline",
+        separator: "solid",
+        items: [
+          macros.include("@bolt-components-headline/text.twig", {
+            text: "Sort by: <strong>Latest Activity</strong>",
+            size: "small",
+            tag: "span",
+            attributes: {
+              class: [
+                "u-bolt-inline-block",
+              ]
+            }
+          }, false),
+          macros.include("@bolt-components-headline/text.twig", {
+            text: "Created on: Oldest to Newest",
+            size: "small",
+            tag: "span",
+            attributes: {
+              class: [
+                "u-bolt-inline-block",
+              ]
+            }
+          }, false),
+          macros.include("@bolt-components-headline/text.twig", {
+            text: "Created on: Newest to Oldest",
+            size: "small",
+            tag: "span",
+            attributes: {
+              class: [
+                "u-bolt-inline-block",
+              ]
+            }
+          }, false),
+        ],
+        attributes: {
+          class: ["u-bolt-padding-top-small"]
+        }
+      } only %}
+    {% endcell %}
+  {% endgrid %}
+
+  {% include "@bolt-components-list/list.twig" with {
+    spacing: "none",
+    separator: "solid",
+    items: [
+      macros.include("@bolt-blueprints/_completed-training-item.twig", {
+        icon: {
+          name: "brand-orbit",
+          color: "teal",
+          attributes: {
+            style: "font-size: 3rem; width: 3rem; height: 3rem;"
+          }
+        },
+        title: "Business Process Modeling",
+        url: "#!",
+        type: "Module",
+        status: "Completed: August 1, 2019",
+        lastUpdated: "Last Updated: July 12, 2019"
+      }, false ),
+      macros.include("@bolt-blueprints/_completed-training-item.twig", {
+        icon: {
+          name: "brand-meteor",
+          color: "orange",
+          attributes: {
+            style: "font-size: 3rem; width: 3rem; height: 3rem;"
+          }
+        },
+        title: "Configuring a Case Type",
+        url: "#!",
+        type: "Challenge",
+        status: "Passed: Score 85%: July 31, 2019",
+        lastUpdated: "Last Updated: July 12, 2019",
+        archived: true
+      }, false ),
+      macros.include("@bolt-blueprints/_completed-training-item.twig", {
+        icon: {
+          name: "brand-rocket",
+          color: "indigo",
+          attributes: {
+            style: "font-size: 3rem; width: 3rem; height: 3rem;"
+          }
+        },
+        title: "System Architect Essentials",
+        url: "#!",
+        type: "Mission",
+        status: "Completed: August 1, 2019",
+        lastUpdated: "Last Updated: August 11, 2019",
+        additionalInfo: macros.include("@bolt-components-headline/text.twig", {
+          text: "This mission has been updated. Please recomplete to earn the mission badge again.",
+          size: "xsmall",
+          icon: {
+            name: "warning",
+            color: "yellow",
+            position: "before"
+          },
+          attributes: {
+            class: ["u-bolt-margin-top-xxsmall"]
+          }
+        }, false ),
+        badge: true,
+      }, false ),
+      macros.include("@bolt-blueprints/_completed-training-item.twig", {
+        icon: {
+          name: "brand-orbit",
+          color: "teal",
+          attributes: {
+            style: "font-size: 3rem; width: 3rem; height: 3rem;"
+          }
+        },
+        title: "Introduction to Business Architecture",
+        url: "#!",
+        type: "Module",
+        status: "Completed: July 1, 2019",
+        lastUpdated: "Last Updated: July 12, 2019"
+      }, false ),
+      macros.include("@bolt-blueprints/_completed-training-item.twig", {
+        icon: {
+          name: "brand-meteor",
+          color: "orange",
+          attributes: {
+            style: "font-size: 3rem; width: 3rem; height: 3rem;"
+          }
+        },
+        title: "Configuring a Case Type",
+        url: "#!",
+        type: "Challenge",
+        status: "Passed: Score 85%: July 31, 2019",
+        lastUpdated: "Last Updated: July 12, 2019",
+        archived: true,
+        badge: true
+      }, false ),
+      macros.include("@bolt-blueprints/_completed-training-item.twig", {
+        icon: {
+          name: "brand-orbit",
+          color: "teal",
+          attributes: {
+            style: "font-size: 3rem; width: 3rem; height: 3rem;"
+          }
+        },
+        title: "Business Process Modeling",
+        url: "#!",
+        type: "Module",
+        status: "Completed: August 1, 2019",
+        lastUpdated: "Last Updated: July 12, 2019"
+      }, false ),
+    ],
+    attributes: {
+      style: "border-top: 1px solid rgba(var(--bolt-theme-border), 0.2); border-bottom: 1px solid rgba(var(--bolt-theme-border), 0.2);"
+    }
+  } only %}
+
+  {% include "@bolt-blueprints/_pagination.twig" %}
+
+{% endblock %}
