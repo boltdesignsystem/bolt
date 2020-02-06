@@ -120,8 +120,8 @@ class BoltPopover extends BoltElement {
       }
     };
 
-    this.slotMap.get('content') &&
-      this.slotMap.get('content').forEach(e => {
+    this.slotMap.get('default') &&
+      this.slotMap.get('default').forEach(e => {
         // Sorts through the content slot, figure out what kind of nodes it
         // contains, and sets variables accordingly
         recursivelySort(e);
