@@ -56,8 +56,8 @@
       </replace-with-grandchildren>
     {% endif %}
     {% if content %}
-      <span slot="content">
-        <replace-with-grandchildren class="{{ "#{base_class}__content" }}" id="{{ content_id }}">
+      <span slot="content" id="{{ content_id }}">
+        <replace-with-grandchildren class="{{ "#{base_class}__content" }}">
           <span class="{{ "#{base_class}__bubble" }}">
             <a href="#{{ trigger_id }}" class="{{ "#{base_class}__nojs-close" }}">
               <span aria-hidden="true">&times;</span>
