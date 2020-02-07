@@ -115,29 +115,47 @@ export function enableEditor({ space, uiWrapper, config }) {
       }
 
       // once the moved item mounts and has it's animations trigger, resolve this Promise to let others know the move is complete. If it takes too long, then we use `setTimeout` to make it happen.
-      const backupTimeoutId = setTimeout(finish, 4000);
-      newEl.addEventListener(
-        `${tagName}:trigger-anim-ins`,
-        event => {
-          finish(backupTimeoutId);
-        },
-        { once: true },
-      );
+      const backupTimeoutId = setTimeout(finish, 2500);
+      if (isStep) {
+        newEl.addEventListener(
+          `${tagName}:trigger-anim-ins`,
+          event => {
+            finish(backupTimeoutId);
+          },
+          { once: true },
+        );
+      }
 
       // we wait an event loop & a bit extra so the async functions can finish that are fired in the 'component:remove' event handler (below) due to the `parentCollection.remove()` call above.
       setTimeout(() => {
         // The event handlers that catch this event are responsible for the re-triggering of animations, title sorting & other re-rendering
-        const eventName = isStep
-          ? 'bolt-interactive-step:change-active-step-to-index'
-          : 'bolt-interactive-pathway:title-updated';
-        newEl.dispatchEvent(
-          new CustomEvent(eventName, {
-            bubbles: true,
-            detail: {
-              index: newIndex,
-            },
-          }),
-        );
+
+        if (isStep) {
+          newEl.dispatchEvent(
+            new CustomEvent(
+              'bolt-interactive-step:change-active-step-to-index',
+              {
+                bubbles: true,
+                detail: {
+                  index: newIndex,
+                },
+              },
+            ),
+          );
+        }
+
+        if (isPathway) {
+          newEl.parentElement.beginItAll();
+          newEl.dispatchEvent(
+            new CustomEvent('bolt-interactive-pathway:title-updated', {
+              bubbles: true,
+              detail: {
+                index: newIndex,
+              },
+            }),
+          );
+          setTimeout(() => finish(backupTimeoutId), 0);
+        }
       }, 10);
     });
   }
