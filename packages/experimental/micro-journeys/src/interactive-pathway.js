@@ -60,7 +60,32 @@ class BoltInteractivePathway extends withLitContext {
     self.addEventListener('bolt-interactive-step:change-active-step', event => {
       const steps = self.getSteps();
       const stepId = steps.findIndex(step => step.el === event.target);
-      self.setActiveStep(stepId);
+      if (stepId > 0) {
+        self.setActiveStep(stepId);
+      } else {
+        console.warn('uh oh! could not find active step', { event, steps });
+      }
+    });
+
+    self.addEventListener('bolt-interactive-step:change-active-step-to-index', event => {
+      const { index } = event.detail || {};
+      if (typeof index !== 'number') {
+        console.warn(`Uh oh! "bolt-interactive-step:change-active-step-to-index" event was fired without an "index" in "event.detail"`, event);
+        return;
+      }
+
+      const steps = self.getSteps();
+      const totalSteps = steps.length;
+      if (totalSteps < index) {
+        console.warn(`Uh oh! "bolt-interactive-step:change-active-step-to-index" event was fired with an "index" that is bigger than our list of steps total items`, {
+          event,
+          totalSteps,
+          index,
+        });
+        return;
+      }
+
+      self.setActiveStep(index);
     });
 
     self.addEventListener('bolt-interactive-step:title-updated', () => {
