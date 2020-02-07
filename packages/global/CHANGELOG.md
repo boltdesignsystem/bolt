@@ -3,6 +3,75 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.17.0](https://github.com/bolt-design-system/bolt/tree/master/packages/global/compare/v2.16.3...v2.17.0) (2020-02-04)
+
+
+### Bug Fixes
+
+* enable the real "bold" font weight we already have font assets for + add a comment regarding the font weight discrepancy in core/styles ([edca174](https://github.com/bolt-design-system/bolt/tree/master/packages/global/commit/edca174d486f7e344900ae33890883e56a228bfa))
+* workaround to make sure smooth scroll & waypoint functionality still works without breaking sticky footer and elements with position: sticky ([c80fdf8](https://github.com/bolt-design-system/bolt/tree/master/packages/global/commit/c80fdf8d80fcc98fea5a6aeb612281e295845dd8))
+
+
+### Features
+
+* add responsive float utility classes needed ([a3c9a2f](https://github.com/bolt-design-system/bolt/tree/master/packages/global/commit/a3c9a2f495e4bdf578bf94baf9be5ccbfc80962c))
+
+
+
+
+
+## [2.16.2](https://github.com/bolt-design-system/bolt/tree/master/packages/global/compare/v2.16.1...v2.16.2) (2020-01-28)
+
+**Note:** Version bump only for package @bolt/global
+
+
+
+
+
+## [2.16.1](https://github.com/bolt-design-system/bolt/tree/master/packages/global/compare/v2.16.0...v2.16.1) (2020-01-27)
+
+**Note:** Version bump only for package @bolt/global
+
+
+
+
+
+# [2.16.0](https://github.com/bolt-design-system/bolt/tree/master/packages/global/compare/v2.15.2...v2.16.0) (2020-01-24)
+
+**Note:** Version bump only for package @bolt/global
+
+
+
+
+
+## [2.15.2](https://github.com/bolt-design-system/bolt/tree/master/packages/global/compare/v2.15.1...v2.15.2) (2020-01-21)
+
+**Note:** Version bump only for package @bolt/global
+
+
+
+
+
+# [2.15.0](https://github.com/bolt-design-system/bolt/tree/master/packages/global/compare/v2.14.3...v2.15.0) (2020-01-17)
+
+
+### Bug Fixes
+
+* make border color consistent ([d925e45](https://github.com/bolt-design-system/bolt/tree/master/packages/global/commit/d925e4591ad419ed450225a6828dc2792a943cbb))
+* naming convention and JA classes ([5133e9b](https://github.com/bolt-design-system/bolt/tree/master/packages/global/commit/5133e9b3c12265624bce84d96de0ce8132482a03))
+* remove issue with Grid matrix styles + remove grid margin overrides ([cdd89ed](https://github.com/bolt-design-system/bolt/tree/master/packages/global/commit/cdd89ed066fbc5acb85cbbc207557105a9ad85d3))
+* update snapshots + tweak breakpoint used for largest fluid font size ([e72dbe6](https://github.com/bolt-design-system/bolt/tree/master/packages/global/commit/e72dbe6954437d00376e13d7a7718e5bea8dd191))
+
+
+### Features
+
+* port over Academy-related updates for @bolt/global styles ([5f09384](https://github.com/bolt-design-system/bolt/tree/master/packages/global/commit/5f0938428261cf46295d6afd888bcf3295c6298e))
+* port over link / image / flag related updates from epic/academy ([bffc7ba](https://github.com/bolt-design-system/bolt/tree/master/packages/global/commit/bffc7ba45532eb7cbef7ad2fd1dd4d01a7cd2a61))
+
+
+
+
+
 # [2.14.0](https://github.com/bolt-design-system/bolt/tree/master/packages/global/compare/v2.13.3...v2.14.0) (2020-01-06)
 
 **Note:** Version bump only for package @bolt/global

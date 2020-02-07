@@ -1,0 +1,195 @@
+/* ------------------------------------ *\
+   Popover
+\* ------------------------------------ */
+@import '@bolt/core-v3.x';
+
+/**
+ * Component variables
+ */
+$bolt-popover-border-width: $bolt-border-width;
+$bolt-popover-border-style: $bolt-border-style;
+$bolt-popover-border-color: bolt-theme(border, 0.2);
+
+@mixin bolt-popover-bubble-tip-point-to($where) {
+  $radius: bolt-border-radius(large);
+  $directions: top-left, top-right, bottom-right, bottom-left;
+
+  @each $direction in $directions {
+    @if $direction == $where {
+      border-#{$direction}-radius: 0;
+    } @else {
+      border-#{$direction}-radius: $radius;
+    }
+  }
+}
+
+/**
+ * Register custom element
+ */
+@include bolt-repeat-rule(('bolt-popover', ':host')) {
+  display: inline;
+}
+
+.c-bolt-popover {
+  display: inline-flex;
+  position: relative;
+}
+
+/**
+ * Content container
+ * - used for fade effect and placement
+ */
+.c-bolt-popover__content {
+  visibility: hidden; // Visibility is used instead of display because display 'none' interferes with Popper.js calculating popover size.
+  opacity: 0;
+  position: absolute;
+  transform: translate3d(0, 0, 0);
+  z-index: bolt-z-index(popover);
+  transition: opacity $bolt-transition;
+
+  // @todo: review alternative ways to handle no-JS layout overflow issues when adding in no-JS support to Popover
+  @at-root bolt-popover:not([ready]):not(:focus-within) & {
+    width: 0;
+    height: 0;
+    overflow: hidden;
+  }
+
+  @at-root .c-bolt-popover.is-expanded & {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
+/**
+ * Bubble inside the content container
+ * - used for visual design of the bubble and the fly in effect
+ */
+.c-bolt-popover__bubble {
+  @include bolt-margin(xxsmall);
+  @include bolt-padding(0);
+  @include bolt-font-family(body);
+  @include bolt-font-size(xsmall);
+  @include bolt-font-weight(regular);
+  display: block;
+  transform: scale3d(1, 1, 1) translate3d(0, 0, 0);
+  overflow: hidden;
+  color: bolt-theme(text);
+  text-align: left;
+  text-align: start;
+  white-space: nowrap;
+  border-radius: bolt-border-radius(small);
+  border-width: $bolt-popover-border-width;
+  border-style: $bolt-popover-border-style;
+  border-color: $bolt-popover-border-color;
+  box-shadow: bolt-shadow('level-20');
+  background-color: bolt-theme(background);
+  will-change: transform;
+  transition: transform $bolt-transition-timing
+    cubic-bezier(0.175, 0.885, 0.32, 1);
+
+  @at-root .c-bolt-popover--text-wrap & {
+    width: 250px; // If the content is long (more than 31 characters), the bubble will have this specific width and text will wrap. This logic is in the JS and Twig files.
+    white-space: normal;
+  }
+
+  @at-root [class*='c-bolt-popover--top'] & {
+    transform: scale3d(0.1, 0.1, 0.1) translate3d(0, 100%, 0);
+    margin-right: 0;
+    margin-left: 0;
+  }
+
+  @at-root .c-bolt-popover--top-end & {
+    @include bolt-popover-bubble-tip-point-to(bottom-right);
+    transform-origin: bottom right;
+  }
+
+  @at-root .c-bolt-popover--top & {
+    @include bolt-popover-bubble-tip-point-to(null);
+    transform-origin: bottom center;
+  }
+
+  @at-root .c-bolt-popover--top-start & {
+    @include bolt-popover-bubble-tip-point-to(bottom-left);
+    transform-origin: bottom left;
+  }
+
+  @at-root [class*='c-bolt-popover--left'] & {
+    transform: scale3d(0.1, 0.1, 0.1) translate3d(100%, 0, 0);
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  @at-root .c-bolt-popover--left-start & {
+    @include bolt-popover-bubble-tip-point-to(top-right);
+    transform-origin: top right;
+  }
+
+  @at-root .c-bolt-popover--left & {
+    @include bolt-popover-bubble-tip-point-to(null);
+    transform-origin: center right;
+  }
+
+  @at-root .c-bolt-popover--left-end & {
+    @include bolt-popover-bubble-tip-point-to(bottom-right);
+    transform-origin: bottom right;
+  }
+
+  @at-root [class*='c-bolt-popover--right'] & {
+    transform: scale3d(0.1, 0.1, 0.1) translate3d(-100%, 0, 0);
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  @at-root .c-bolt-popover--right-start & {
+    @include bolt-popover-bubble-tip-point-to(top-left);
+    transform-origin: top left;
+  }
+
+  @at-root .c-bolt-popover--right & {
+    @include bolt-popover-bubble-tip-point-to(null);
+    transform-origin: center left;
+  }
+
+  @at-root .c-bolt-popover--right-end & {
+    @include bolt-popover-bubble-tip-point-to(bottom-left);
+    transform-origin: bottom left;
+  }
+
+  @at-root [class*='c-bolt-popover--bottom'] & {
+    transform: scale3d(0, 0, 0) translate3d(0, -100%, 0);
+    margin-right: 0;
+    margin-left: 0;
+  }
+
+  @at-root .c-bolt-popover--bottom-end & {
+    @include bolt-popover-bubble-tip-point-to(top-right);
+    transform-origin: top right;
+  }
+
+  @at-root .c-bolt-popover--bottom & {
+    @include bolt-popover-bubble-tip-point-to(null);
+    transform-origin: top center;
+  }
+
+  @at-root .c-bolt-popover--bottom-start & {
+    @include bolt-popover-bubble-tip-point-to(top-left);
+    transform-origin: top left;
+  }
+
+  @at-root .c-bolt-popover.is-expanded & {
+    transform: scale3d(1, 1, 1) translate3d(0, 0, 0);
+  }
+}
+
+/**
+ * Spacing prop
+ */
+@each $spacing-value in $bolt-spacing-values {
+  $spacing-value-name: nth($spacing-value, 1);
+
+  .c-bolt-popover--spacing-#{$spacing-value-name} {
+    .c-bolt-popover__bubble {
+      @include bolt-padding(#{$spacing-value-name});
+    }
+  }
+}

@@ -1,0 +1,156 @@
+{% set modalContent %}
+  {% import "@bolt-blueprints/macros.twig" as macros %}
+
+  {% include "@bolt-components-card-replacement/card-replacement.twig" with {
+    theme: "dark",
+    rounded: true,
+    overlay: "disabled",
+    background: {
+      contentItems: [
+        {
+          pattern: "image",
+          src: "/images/planet-modal.svg",
+          lazyload: false,
+        }
+      ]
+    },
+    body: {
+      attributes: {
+        class: [
+          "u-bolt-margin-top-auto",
+          "u-bolt-padding-left-small@small",
+          "u-bolt-padding-right-small@small",
+        ]
+      },
+      content: [
+
+        macros.include("@bolt-components-headline/headline.twig", {
+          size: "xxlarge",
+          text: "Congratulations #{userFirstName}!",
+          align: "center",
+          attributes: {
+            class: [
+              "u-bolt-margin-top-small",
+              "u-bolt-margin-left-auto",
+              "u-bolt-margin-right-auto",
+              "u-bolt-line-length-xsmall",
+            ]
+          }
+        }),
+        macros.include("@bolt-components-headline/subheadline.twig", {
+          text: "You’ve completed the #{missionName} and earned a new badge!",
+          align: "center",
+          size: "xlarge",
+          weight: "semibold",
+          attributes: {
+            class: [
+              "u-bolt-margin-left-auto",
+              "u-bolt-margin-right-auto",
+              "u-bolt-line-length-small",
+            ]
+          }
+        }),
+        macros.include("@bolt-components-ratio/ratio.twig", {
+          ratio: "140/160",
+          children: macros.include("@bolt-components-placeholder/placeholder.twig", {
+            text: "FPO",
+          }),
+          attributes: {
+            style: "max-width: 140px",
+            class: [
+              "u-bolt-margin-left-auto",
+              "u-bolt-margin-right-auto",
+              "u-bolt-margin-bottom-xlarge"
+            ]
+          }
+        }),
+        macros.include("@bolt-components-headline/text.twig", {
+          text: "<strong>NOTE:</strong> Please allow 24-48 hours for the badge to appear on your Achievements page.",
+          size: "xxsmall",
+          style: "italic",
+          align: "center",
+          attributes: {
+            class: [
+              "u-bolt-margin-bottom-small",
+              "u-bolt-margin-left-auto",
+              "u-bolt-margin-right-auto",
+              "u-bolt-line-length-xsmall",
+            ]
+          }
+        }),
+        macros.include("@bolt-components-list/list.twig", {
+          display: "inline",
+          spacing: "small",
+          align: "center",
+          items: [
+            macros.include("@bolt-components-button/button.twig", {
+              text: "Return to Mission",
+              size: "small",
+              border_radius: "full",
+              attributes: {
+                "on-click": "hide",
+                "on-click-target": "js-modal-advanced-auto-open",
+              },
+            }),
+            macros.include("@bolt-components-button/button.twig", {
+              text: "View Achievements",
+              size: "small",
+              style: "secondary",
+              border_radius: "full",
+              url: "https://www.google.com",
+              icon: {
+                name: "external-link",
+                position: "after"
+              }
+            }),
+          ]
+        })
+      ] | join('')
+    },
+  } only %}
+
+
+{% endset %}
+
+{% include "@bolt-components-modal/modal.twig" with {
+  content: modalContent,
+  spacing: "none",
+  theme: "none",
+  width: "auto",
+  scroll: "overall",
+  attributes: {
+    class: [
+      "js-modal-advanced-auto-open",
+    ],
+    id: "js-modal-advanced-auto-open"
+  },
+} only %}
+
+<script>
+  // Demo code to open the Modal as soon as the page loads
+
+  // Reference to the modal
+  var autoOpenModal = document.querySelector('#js-modal-advanced-auto-open');
+
+  // Calls modal 'show' method after a delay
+  var setAutoOpenModal = function(el) {
+    setTimeout(function(){
+      // adjust which window is being checked against if inside an iframe
+      // makes sure that this modal doesn't fire on the main viewall section
+      var windowToSearch = window.self !== window.top ? window.top.location : window.location;
+      if (windowToSearch.search.includes('viewall-pages') === false && windowToSearch.search.includes('viewall-blueprints') === false){
+        el.show();
+      }
+    }, 100)
+  }
+
+  // Callback on modal 'ready'
+  var onModalReady = function(e) {
+    setAutoOpenModal(autoOpenModal);
+    // IMPORTANT: remove this event listener unless you want it called each time the modal component renders
+    e.target.removeEventListener('modal:ready', onModalReady);
+  }
+
+  // Add 'ready' callback
+  autoOpenModal.addEventListener('modal:ready', onModalReady);
+</script>

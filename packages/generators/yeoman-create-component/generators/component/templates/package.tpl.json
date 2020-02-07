@@ -1,0 +1,27 @@
+{
+  "name": "<%= props.packageName %>",
+  "version": "<%= props.boltVersion %>",
+  "description": "<%= props.description %>",
+  "keywords": [
+    "bolt design system"
+  ],
+  "bugs": {
+    "url": "<%= props.gitUrl %>/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+<%= props.gitPath %>"
+  },
+  "license": "MIT",
+  "author": "<%= props.gitInfo.name %> <<%= props.gitInfo.email %>>",
+  "main": "index.js",
+  "style": "index.scss",
+  "dependencies": {
+    "@bolt/core-v3.x": "^<%= props.boltVersion %>"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "schema": "<%= props.name.kebabCase %>.schema.yml",
+  "twig": "src/<%= props.name.kebabCase %>.twig"
+}

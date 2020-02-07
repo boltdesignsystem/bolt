@@ -35,7 +35,7 @@ $bds-sidebar-width: 320px;
   grid-column-start: 1;
   grid-column-end: 1;
   max-width: 100vw;
-  margin: 0 auto;
+  height: 100%;
 
   .c-bds-layout__content--has-sidebar & {
     @include bolt-mq(medium) {
@@ -71,15 +71,6 @@ $bds-sidebar-width: 320px;
   grid-column-start: 1;
   grid-column-end: 3;
   z-index: bolt-z-index('modalBG') + 20;
-
-  .c-bolt-navbar {
-    max-width: none;
-
-    @include bolt-mq(medium) {
-      @include bolt-padding-left(medium);
-      @include bolt-padding-right(medium);
-    }
-  }
 
   @include bolt-mq(medium) {
     .c-bds-layout--has-sidebar & {
@@ -236,26 +227,19 @@ $bds-sidebar-width: 320px;
 }
 
 .c-bds-layout__content {
-  .c-bds-layout--parent:not(.c-bds-layout--has-sidebar) & {
-    display: flex;
-    flex-grow: 1;
-  }
-
   /* autoprefixer: ignore next */
   display: grid;
   flex-grow: 1;
   align-self: start;
+  height: 100%;
   // min-height: 100%; // causes extra (unnecessary) scrolling on the homepage. can we remove?
   grid-column-start: 1;
   grid-column-end: 3;
   grid-template-columns: auto;
   justify-self: start;
   grid-template-rows: auto;
-  overflow: hidden;
+  overflow: auto;
   grid-row-start: 2;
-  // display: flex;
-  // flex-direction: column;
-  // justify-content: space-between;
 
   @include bolt-mq(medium) {
     .c-bds-layout--has-sidebar & {

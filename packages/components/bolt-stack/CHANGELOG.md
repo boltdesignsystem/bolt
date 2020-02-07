@@ -3,6 +3,38 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.17.0](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-stack/compare/v2.16.3...v2.17.0) (2020-02-04)
+
+**Note:** Version bump only for package @bolt/components-stack
+
+
+
+
+
+# [2.16.0](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-stack/compare/v2.15.2...v2.16.0) (2020-01-24)
+
+**Note:** Version bump only for package @bolt/components-stack
+
+
+
+
+
+## [2.15.2](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-stack/compare/v2.15.1...v2.15.2) (2020-01-21)
+
+**Note:** Version bump only for package @bolt/components-stack
+
+
+
+
+
+# [2.15.0](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-stack/compare/v2.14.3...v2.15.0) (2020-01-17)
+
+**Note:** Version bump only for package @bolt/components-stack
+
+
+
+
+
 # [2.14.0](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-stack/compare/v2.13.3...v2.14.0) (2020-01-06)
 
 

@@ -1,0 +1,43 @@
+{% set schema = bolt.data.components["@bolt-components-menu"].schema %}
+
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(schema, _self) | raw }}
+{% endif %}
+
+{# Variables #}
+{% set base_class = "c-bolt-menu-item" %}
+{% set this = init(schema.properties.items.items) %}
+{% set item_attributes = create_attribute(attributes|default({})|merge({
+  "role": "menuitem",
+})) %}
+
+{# Array of classes based on the defined + default props #}
+{% set classes = [
+  base_class,
+  spacing ? base_class ~ "--spacing-" ~ spacing,
+  last ? base_class ~ "--last-item",
+] %}
+
+<bolt-menu-item
+  {{ this.props|without("content")|without("class") }}
+  role="presentation"
+>
+  {% set menu_item %}
+    <ssr-keep
+      for="bolt-menu-item"
+      {% if classes %} class="{{ classes|join(' ') }}" {% endif %}
+    >
+      {{ content }}
+    </ssr-keep>
+  {% endset %}
+  {% set trigger_options = {
+    content: menu_item,
+    display: "block",
+    no_outline: true,
+    attributes: item_attributes
+  } %}
+  {% if url %}
+    {% set trigger_options = trigger_options|merge({url: url}) %}
+  {% endif %}
+  {% include "@bolt-components-trigger/trigger.twig" with trigger_options only %}
+</bolt-menu-item>

@@ -3,6 +3,90 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.17.0](https://github.com/bolt-design-system/bolt/compare/v2.16.3...v2.17.0) (2020-02-04)
+
+
+### Bug Fixes
+
+* address prettier warnings on master ([51abac6](https://github.com/bolt-design-system/bolt/commit/51abac6cb034a3741e872efde17d5d00d3edca3b))
+
+
+### Features
+
+* cherry pick install & dependency related updates from https://github.com/boltdesignsystem/bolt/pull/1711 ([dfa3dd0](https://github.com/bolt-design-system/bolt/commit/dfa3dd08d19a109736f64faef851e5516e3941e0))
+
+
+
+
+
+## [2.16.2](https://github.com/bolt-design-system/bolt/compare/v2.16.1...v2.16.2) (2020-01-28)
+
+**Note:** Version bump only for package @bolt/micro-journeys
+
+
+
+
+
+## [2.16.1](https://github.com/bolt-design-system/bolt/compare/v2.16.0...v2.16.1) (2020-01-27)
+
+**Note:** Version bump only for package @bolt/micro-journeys
+
+
+
+
+
+# [2.16.0](https://github.com/bolt-design-system/bolt/compare/v2.15.2...v2.16.0) (2020-01-24)
+
+
+### Bug Fixes
+
+* match alignment between characters in starter step 3 ([f65a5ed](https://github.com/bolt-design-system/bolt/commit/f65a5ed478243011b0492e9b31a2585b4ffdede3))
+* **micro-journey:** fix Connection Band too long in Safari; not centered over Character in Chrome ([5287928](https://github.com/bolt-design-system/bolt/commit/5287928111baa918a44422359cad35b03aedb6c2))
+* **micro-journey:** fix Connection Band too long in Safari; not centered over Character in Chrome ([f2469c0](https://github.com/bolt-design-system/bolt/commit/f2469c06004eb0ef98f361055e1e0ae079f5607f))
+* **micro-journey:** make interactive-step bolt-animate be block instead of inline ([eb6a7a7](https://github.com/bolt-design-system/bolt/commit/eb6a7a735c2941b962729b0e5944d550ad563e5c))
+* **micro-journeys:** add box-float-direction to starters ([13671aa](https://github.com/bolt-design-system/bolt/commit/13671aaed97e998c1edf565fa555ed0b18695731))
+* **micro-journeys:** collapsing 2nd char in Two Char Layout in IE 11 ([ff42dda](https://github.com/bolt-design-system/bolt/commit/ff42ddac63eba93ee7661c46585e7dae4df80767))
+* **micro-journeys:** ensure connection band is centered perfectly in both characters ([c076f95](https://github.com/bolt-design-system/bolt/commit/c076f95bb13d8e65e21e8d1289f653f1c6a7e891))
+* **micro-journeys:** make character size match comps; fix safari connection bug ([53aa026](https://github.com/bolt-design-system/bolt/commit/53aa02620b99fa1f7674bff657d2e4c9b41426f9))
+* **micro-journeys:** make Two Character wider ([81e7ba6](https://github.com/bolt-design-system/bolt/commit/81e7ba6126095cb0cbc41a141707c3359cf6cd9e))
+* **micro-journeys:** move svg background to front of connection band ([588c336](https://github.com/bolt-design-system/bolt/commit/588c33624577b035d003821c638bb447b549e0a6))
+* **svg-animations:** FF not respecting direction or theme in connection bands ([807dc59](https://github.com/bolt-design-system/bolt/commit/807dc59a2481bde049e5ad46d053aefae628281a))
+* **svg-animations:** refactor connection band for code standards and to match comps; allow stretch to 375px ([7cdd849](https://github.com/bolt-design-system/bolt/commit/7cdd8497150cfcba62eb0a984374b70cc45705c5))
+
+
+### Features
+
+* **editor:** add constrain bottom Character param to allow prevent side content overlap with long sides ([f856ed8](https://github.com/bolt-design-system/bolt/commit/f856ed8088635f327487c54706f0e9aecdc4704b))
+* **editor:** create box float direction param for Dialog to allow for removal of excessive spacing when no arrow direction specified ([57609ec](https://github.com/bolt-design-system/bolt/commit/57609ec44a490f3cd8e5329de76f86eeedc93e15))
+* **micro-journeys:** add box-float-direction to Two Character Starter ([025ce6f](https://github.com/bolt-design-system/bolt/commit/025ce6f558fbdbcb2fa1227412df68efd2faa927))
+* **micro-journeys:** center Character when in One Character Layout ([d0dccc0](https://github.com/bolt-design-system/bolt/commit/d0dccc057b046e56ee63fa11155cf895cc71da29))
+* **micro-journeys:** improve equalizeRelativeHeights error message ([df4d977](https://github.com/bolt-design-system/bolt/commit/df4d97728f2793d6c2d1299839724b31a2633d91))
+* **micro-journeys:** spacing adjustments ([2e5dcf6](https://github.com/bolt-design-system/bolt/commit/2e5dcf6558f4d674e1d137c03dbb2872472afbf7))
+* **svg-animations:** add animation type as a class; not needed currently, but helpful. ([b2154d1](https://github.com/bolt-design-system/bolt/commit/b2154d1990992de860e7fe9e856203a31da9f0e4))
+
+
+
+
+
+## [2.15.2](https://github.com/bolt-design-system/bolt/compare/v2.15.1...v2.15.2) (2020-01-21)
+
+**Note:** Version bump only for package @bolt/micro-journeys
+
+
+
+
+
+# [2.15.0](https://github.com/bolt-design-system/bolt/compare/v2.14.3...v2.15.0) (2020-01-17)
+
+
+### Bug Fixes
+
+* **micro-journeys:** fix mistaken both-side-content class; add class for in-two-char-layout; fix IE 11 styling in two-char layout ([dcb12fb](https://github.com/bolt-design-system/bolt/commit/dcb12fb04490e7f1e5e3e719a9fc96aa662f5e06))
+
+
+
+
+
 ## [2.14.1](https://github.com/bolt-design-system/bolt/compare/v2.14.0...v2.14.1) (2020-01-09)
 
 

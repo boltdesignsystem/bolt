@@ -22,6 +22,7 @@
   "author": "Salem Ghoweri",
   "workspaces": {
     "packages": [
+      "docs-site/src/pages/pattern-lab/_patterns/03-blueprints",
       "docs-site",
       "docs-site/src/components/banner",
       "docs-site/src/components/theme-switcher",
@@ -66,6 +67,7 @@
     "setup:php": "npx lerna exec --parallel --scope @bolt/twig-renderer --scope @bolt/drupal-twig-extensions --scope @bolt/core-php --scope @bolt/website -- composer install --prefer-dist",
     "setup:quick": "yarn && yarn run setup:php",
     "start": "cd docs-site && yarn run start",
+    "start:compat": "cd docs-site && yarn run start:compat",
     "test": "npm-run-all --parallel --aggregate-output test:js test:php test:monorepo test:build-tools",
     "test:build-tools": "cd packages/build-tools && yarn run test",
     "test:e2e:full": "./node_modules/.bin/nightwatch --config packages/testing/testing-nightwatch/nightwatch.js --env chrome,firefox,ie11",
@@ -82,7 +84,7 @@
     "test:js:update": "yarn run test:js -u",
     "test:monorepo": "jest ./__tests__/monorepo -c jest.config.quick.js --noStackTrace",
     "test:php": "cd packages/twig-integration/twig-extensions-shared && composer run test",
-    "test:pkgs": "lerna run test --ignore=@bolt/uikit-* --ignore=@bolt/build-tools--* --stream",
+    "test:pkgs": "npx lerna run test --ignore=@bolt/uikit-* --ignore=@bolt/build-tools--* --stream",
     "test:types": "tsc"
   },
   "husky": {
@@ -112,8 +114,7 @@
   "config": {
     "commitizen": {
       "path": "./node_modules/@instructure/cz-lerna-changelog"
-    },
-    "puppeteer_skip_chromium_download": false
+    }
   },
   "browserslist": [
     "extends @bolt/browserslist-config"
@@ -129,6 +130,7 @@
     "@open-wc/testing-helpers": "^1.0.10",
     "@slack/webhook": "^5.0.2",
     "auto": "^8.7.3",
+    "chalk": "^3.0.0",
     "ci-utils": "^0.6.0",
     "commitizen": "^3.1.1",
     "conf": "^5.0.0",
@@ -138,13 +140,14 @@
     "eslint-plugin-prettier": "^3.1.0",
     "eslint-plugin-react": "^7.14.2",
     "find-pkg": "^2.0.0",
+    "fs-extra": "^8.1.0",
     "get-port": "^5.0.0",
     "globby": "^10.0.1",
     "haunted": "^4.4.0",
-    "husky": "^3.0.0",
+    "husky": "^4.2.1",
     "jest": "^24.8.0",
     "jsonwebtoken": "^8.5.1",
-    "lerna": "^3.15.0",
+    "lerna": "^3.20.2",
     "lint-staged": "^9.5.0",
     "lit-element": "^2.2.0",
     "lit-html": "^1.1.1",
@@ -154,6 +157,7 @@
     "proxy-polyfill": "^0.3.0",
     "release-it": "^12.3.2",
     "semantic-release": "^15.13.18",
+    "semver": "^7.1.1",
     "shelljs": "^0.8.3",
     "sort-package-json": "^1.31.0",
     "typescript": "^3.5.3"
@@ -164,6 +168,9 @@
     "stylelint": "^10.1.0",
     "stylelint-order": "^3.0.1",
     "stylelint-scss": "^3.9.2"
+  },
+  "optionalDependencies": {
+    "prettier": ">= 1.13.0"
   },
   "publishConfig": {
     "access": "public"

@@ -1,0 +1,333 @@
+{% set content %}
+  {% include "@bolt-components-headline/subheadline.twig" with {
+    tag: "h2",
+    size: "xlarge",
+    text: "Theme Color Tokens",
+    icon: {
+      name: "bolt-logo-colored",
+      position: "before",
+      background: "circle",
+      size: "medium",
+    },
+    attributes: {
+      class: [
+        "u-bolt-margin-bottom-xsmall",
+      ],
+    },
+  } only %}
+  <hr class="u-bolt-margin-top-none">
+  {% include "@bolt-components-table/table.twig" with {
+    headers: {
+      top: {
+        cells: [
+          "scss function",
+          "xlight / light",
+          "dark / xdark",
+        ]
+      },
+      side: {
+        cells: [
+          "Text",
+          "Background",
+          "Primary",
+          "Secondary",
+          "Link Text",
+          "Disabled Text",
+          "Disabled Background",
+          "Headline Text",
+          "Headline Link",
+          "Border",
+          "Neutral",
+        ]
+      }
+    },
+    rows: [
+      {
+        cells: [
+          "bolt-theme(text)",
+          {
+            content: "<span class='c-bds-color-square c-bds-color-square--text'></span> black",
+            attributes: {
+              class: "t-bolt-xlight",
+            },
+          },
+          {
+            content: "<span class='c-bds-color-square c-bds-color-square--text'></span> white",
+            attributes: {
+              class: "t-bolt-xdark",
+            },
+          },
+        ]
+      },
+      {
+        cells: [
+          "bolt-theme(background)",
+          {
+            content: "<span class='c-bds-color-square c-bds-color-square--background'></span> white / <span class='c-bds-color-square c-bds-color-square--background'></span> gray, xlight",
+            attributes: {
+              class: "t-bolt-xlight",
+            },
+          },
+          {
+            content: "<span class='c-bds-color-square c-bds-color-square--background'></span> indigo / <span class='c-bds-color-square c-bds-color-square--background'></span> indigo, dark",
+            attributes: {
+              class: "t-bolt-xdark",
+            },
+          },
+        ]
+      },
+      {
+        cells: [
+          "bolt-theme(primary)",
+          {
+            content: "<span class='c-bds-color-square c-bds-color-square--primary'></span> indigo, light",
+            attributes: {
+              class: "t-bolt-xlight",
+            },
+          },
+          {
+            content: "<span class='c-bds-color-square c-bds-color-square--primary'></span> yellow",
+            attributes: {
+              class: "t-bolt-xdark",
+            },
+          },
+        ]
+      },
+      {
+        cells: [
+          "bolt-theme(secondary)",
+          {
+            content: "<span class='c-bds-color-square c-bds-color-square--secondary'></span> white",
+            attributes: {
+              class: "t-bolt-xlight",
+            },
+          },
+          {
+            content: "<span class='c-bds-color-square c-bds-color-square--secondary'></span> white",
+            attributes: {
+              class: "t-bolt-xdark",
+            },
+          },
+        ]
+      },
+      {
+        cells: [
+          "bolt-theme(link)",
+          {
+            content: "<span class='c-bds-color-square c-bds-color-square--link'></span> indigo, light",
+            attributes: {
+              class: "t-bolt-xlight",
+            },
+          },
+          {
+            content: "<span class='c-bds-color-square c-bds-color-square--link'></span> white",
+            attributes: {
+              class: "t-bolt-xdark",
+            },
+          },
+        ]
+      },
+      {
+        cells: [
+          "bolt-theme(text-disabled)",
+          {
+            content: "<span class='c-bds-color-square c-bds-color-square--text-disabled'></span> gray",
+            attributes: {
+              class: "t-bolt-xlight",
+            },
+          },
+          {
+            content: "<span class='c-bds-color-square c-bds-color-square--text-disabled'></span> gray",
+            attributes: {
+              class: "t-bolt-xdark",
+            },
+          },
+        ]
+      },
+      {
+        cells: [
+          "bolt-theme(disabled)",
+          {
+            content: "<span class='c-bds-color-square c-bds-color-square--disabled'></span> gray, light",
+            attributes: {
+              class: "t-bolt-xlight",
+            },
+          },
+          {
+            content: "<span class='c-bds-color-square c-bds-color-square--disabled'></span> gray, light",
+            attributes: {
+              class: "t-bolt-xdark",
+            },
+          },
+        ]
+      },
+      {
+        cells: [
+          "bolt-theme(headline)",
+          {
+            content: "<span class='c-bds-color-square c-bds-color-square--headline'></span> indigo",
+            attributes: {
+              class: "t-bolt-xlight",
+            },
+          },
+          {
+            content: "<span class='c-bds-color-square c-bds-color-square--headline'></span> white",
+            attributes: {
+              class: "t-bolt-xdark",
+            },
+          },
+        ]
+      },
+      {
+        cells: [
+          "bolt-theme(headline-link)",
+          {
+            content: "<span class='c-bds-color-square c-bds-color-square--headline-link'></span> indigo, light",
+            attributes: {
+              class: "t-bolt-xlight",
+            },
+          },
+          {
+            content: "<span class='c-bds-color-square c-bds-color-square--headline-link'></span> white",
+            attributes: {
+              class: "t-bolt-xdark",
+            },
+          },
+        ]
+      },
+      {
+        cells: [
+          "bolt-theme(border, 0.2)",
+          {
+            content: "<span class='c-bds-color-square c-bds-color-square--border'></span> indigo, dark, 20%",
+            attributes: {
+              class: "t-bolt-xlight",
+            },
+          },
+          {
+            content: "<span class='c-bds-color-square c-bds-color-square--border'></span> white, 20%",
+            attributes: {
+              class: "t-bolt-xdark",
+            },
+          },
+        ]
+      },
+      {
+        cells: [
+          "bolt-theme(neutral)",
+          {
+            content: "<span class='c-bds-color-square c-bds-color-square--neutral'></span> gray",
+            attributes: {
+              class: "t-bolt-xlight",
+            },
+          },
+          {
+            content: "<span class='c-bds-color-square c-bds-color-square--neutral'></span> gray",
+            attributes: {
+              class: "t-bolt-xdark",
+            },
+          },
+        ]
+      },
+    ],
+  } only %}
+
+  {% include "@bolt-components-headline/subheadline.twig" with {
+    tag: "h2",
+    size: "xlarge",
+    text: "Content Type Overview",
+    icon: {
+      name: "documentation",
+      position: "before",
+      background: "circle",
+      size: "medium",
+    },
+    attributes: {
+      class: [
+        "u-bolt-margin-top-large",
+        "u-bolt-margin-bottom-xsmall",
+      ],
+    },
+  } only %}
+  <hr class="u-bolt-margin-top-none">
+  {% include "@bolt-components-headline/headline.twig" with {
+    tag: "h3",
+    size: "small",
+    text: "Headline",
+    attributes: {
+      class: "u-bolt-margin-bottom-xsmall"
+    },
+  } only %}
+  <bolt-card-replacement>
+    <bolt-card-replacement-body>
+      {% include "@bolt-components-headline/headline.twig" with {
+        size: "xxxlarge",
+        text: "Headline Text",
+      } only %}
+      {% include "@bolt-components-headline/headline.twig" with {
+        size: "xxxlarge",
+        text: "Headline Text Link",
+        url: "https://pega.com",
+      } only %}
+    </bolt-card-replacement-body>
+  </bolt-card-replacement>
+  {% include "@bolt-components-headline/headline.twig" with {
+    tag: "h3",
+    size: "small",
+    text: "Text",
+    attributes: {
+      class: "u-bolt-margin-bottom-xsmall"
+    },
+  } only %}
+  <bolt-card-replacement>
+    <bolt-card-replacement-body>
+      {% include "@bolt-components-headline/text.twig" with {
+        text: "Body text",
+      } only %}
+      {% include "@bolt-components-headline/text.twig" with {
+        text: "Body text link",
+        url: "https://pega.com",
+      } only %}
+    </bolt-card-replacement-body>
+  </bolt-card-replacement>
+  {% include "@bolt-components-headline/headline.twig" with {
+    tag: "h3",
+    size: "small",
+    text: "Border",
+    attributes: {
+      class: "u-bolt-margin-bottom-xsmall"
+    },
+  } only %}
+  <bolt-card-replacement>
+    <bolt-card-replacement-body>
+      <hr>
+    </bolt-card-replacement-body>
+  </bolt-card-replacement>
+  {% include "@bolt-components-headline/headline.twig" with {
+    tag: "h3",
+    size: "small",
+    text: "Button",
+    attributes: {
+      class: "u-bolt-margin-bottom-xsmall"
+    },
+  } only %}
+  <bolt-card-replacement>
+    <bolt-card-replacement-body>
+      <bolt-button>
+        Primary
+      </bolt-button>
+      <bolt-button color="secondary">
+        Secondary
+      </bolt-button>
+    </bolt-card-replacement-body>
+  </bolt-card-replacement>
+{% endset %}
+
+<bolt-list display="inline@xxlarge" spacing="large" align="center" inset nowrap>
+  <bolt-list-item class="t-bolt-light">
+    {{ content }}
+  </bolt-list-item>
+  <bolt-list-item class="t-bolt-dark">
+    {{ content }}
+  </bolt-list-item>
+</bolt-list>

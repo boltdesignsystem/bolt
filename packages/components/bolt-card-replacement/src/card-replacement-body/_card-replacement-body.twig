@@ -5,13 +5,14 @@
 {% endif %}
 
 {% set card_replacement_body_content = body.content %}
+{% set attributes = create_attribute(body.attributes|default({})) %}
 
-<bolt-card-replacement-body>
+<bolt-card-replacement-body {{ attributes }}>
   <replace-with-children class="c-bolt-card_replacement__body">
     {% block body %}
       {% if card_replacement_body_content %}
         {# @todo: The replace function is a hack to get around the utf-8 bug. #}
-        {{ card_replacement_body_content | join | replace({"UTF-8": ""}) }}
+        {{ card_replacement_body_content | join | replace({"UTF-8": ""}) | raw }}
       {% else %}
         {% set card_replacement_eyebrow = body.eyebrow %}
         {% set card_replacement_headline = body.headline %}

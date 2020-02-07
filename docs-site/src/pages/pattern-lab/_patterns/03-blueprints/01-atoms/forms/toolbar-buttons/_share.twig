@@ -1,0 +1,66 @@
+{% extends "@bolt-blueprints/toolbar-buttons/_toolbar-button.twig" %}
+
+{% import "@bolt-blueprints/macros.twig" as macros %}
+
+{% set iconName = "share" %}
+{% set popover %}
+  {% include "@bolt-components-menu/menu.twig" with {
+    items: [
+      {
+        content: macros.include("@bolt-components-headline/text.twig", {
+          text: "Facebook",
+          size: "medium",
+          icon: {
+            name: "facebook-solid",
+            position: "before"
+          }
+        }, false),
+        url: "#!"
+      },
+      {
+        content: macros.include("@bolt-components-headline/text.twig", {
+          text: "Twitter",
+          size: "medium",
+          icon: {
+            name: "twitter",
+            position: "before"
+          }
+        }, false),
+        url: "#!"
+      },
+      {
+        content: macros.include("@bolt-components-headline/text.twig", {
+          text: "LinkedIn",
+          size: "medium",
+          icon: {
+            name: "linkedin",
+            position: "before"
+          }
+        }, false),
+        url: "#!"
+      },
+      {
+        content: macros.include("@bolt-components-headline/text.twig", {
+          text: "Email",
+          size: "medium",
+          icon: {
+            name: "email",
+            position: "before"
+          }
+        }, false),
+        url: "#!"
+      },
+      {
+        content: macros.include("@bolt-components-headline/text.twig", {
+          text: "Link",
+          size: "medium",
+          icon: {
+            name: "asset-link",
+            position: "before"
+          }
+        }, false),
+        url: "#!"
+      },
+    ]
+  } only %}
+{% endset %}

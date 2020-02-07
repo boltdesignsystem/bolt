@@ -1,0 +1,37 @@
+/* ------------------------------------ *\
+   Table of Contents
+\* ------------------------------------ */
+
+@import '@bolt/core-v3.x';
+
+.c-bolt-toc {
+  @include bolt-shadow('level-20');
+  display: block;
+  overflow: hidden;
+  border: 1px solid $bolt-border-color;
+  border-radius: bolt-border-radius(large);
+}
+
+.c-bolt-toc__header {
+  @include bolt-margin(0);
+  @include bolt-padding(xsmall small);
+  @include bolt-font-family(heading);
+  @include bolt-font-size(large);
+  @include bolt-font-weight(bold);
+  display: block;
+  color: bolt-theme(background);
+  background-color: bolt-theme(headline);
+
+  &--hidden {
+    @include bolt-visuallyhidden;
+  }
+}
+
+.c-bolt-toc__list {
+  @include bolt-margin(0);
+  @include bolt-padding(0);
+  display: block;
+  list-style: none;
+  @include bolt-padding-top(small);
+  @include bolt-padding-bottom(small);
+}

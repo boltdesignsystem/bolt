@@ -3,6 +3,70 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.17.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-chip/compare/v2.16.3...v2.17.0) (2020-02-04)
+
+**Note:** Version bump only for package @bolt/components-chip
+
+
+
+
+
+## [2.16.2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-chip/compare/v2.16.1...v2.16.2) (2020-01-28)
+
+**Note:** Version bump only for package @bolt/components-chip
+
+
+
+
+
+## [2.16.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-chip/compare/v2.16.0...v2.16.1) (2020-01-27)
+
+**Note:** Version bump only for package @bolt/components-chip
+
+
+
+
+
+# [2.16.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-chip/compare/v2.15.2...v2.16.0) (2020-01-24)
+
+
+### Bug Fixes
+
+* update snapshots + fix prettier issues ([3eed559](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-chip/commit/3eed559af2e4ca279ad3328157f822588e97e3a3))
+
+
+### Features
+
+* add new helper Webpack plugins ([7eb295c](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-chip/commit/7eb295c4e934c4a1e10e44d5fbb072905d0a7efd))
+
+
+
+
+
+## [2.15.2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-chip/compare/v2.15.1...v2.15.2) (2020-01-21)
+
+**Note:** Version bump only for package @bolt/components-chip
+
+
+
+
+
+# [2.15.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-chip/compare/v2.14.3...v2.15.0) (2020-01-17)
+
+
+### Bug Fixes
+
+* increase contrast to be AA compliant ([4817b94](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-chip/commit/4817b9489b1346842401d0089c53d66ca384bc3f))
+
+
+### Features
+
+* port over Chip-related updates made on the epic/academy branch ([4df332f](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-chip/commit/4df332f39bfd6c5ddcda6cc99e68f036155acde4))
+
+
+
+
+
 # [2.14.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-chip/compare/v2.13.3...v2.14.0) (2020-01-06)
 
 

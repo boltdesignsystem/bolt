@@ -478,6 +478,14 @@ bolt-button[border-radius=\\"full\\"] {
 @font-face {
   font-family: Open Sans;
   font-style: normal;
+  font-weight: 700;
+  src: url(/build/fonts/opensans-bold.woff2) format(\\"woff2\\"),
+    url(/build/fonts/opensans-bold.woff) format(\\"woff\\");
+  font-display: swap;
+}
+@font-face {
+  font-family: Open Sans;
+  font-style: normal;
   font-weight: 800;
   src: url(/build/fonts/opensans-extrabold.woff2) format(\\"woff2\\"),
     url(/build/fonts/opensans-extrabold.woff) format(\\"woff\\");
@@ -646,7 +654,7 @@ legend {
 }
 progress {
   display: inline-block;
-  vertical-align: baseline;
+  vertical-align: middle;
 }
 textarea {
   overflow: auto;
@@ -682,10 +690,6 @@ table,
 ul {
   margin: 0;
   padding: 0;
-}
-::-moz-selection {
-  text-shadow: none;
-  background-color: #abb3f2;
 }
 ::selection {
   text-shadow: none;
@@ -778,7 +782,7 @@ h6 {
   font-family: var(--bolt-font-family-heading);
   font-size: 1.125rem;
   line-height: 1.595;
-  font-weight: 700;
+  font-weight: 800;
 }
 .js-fonts-loaded h1,
 .js-fonts-loaded h2,
@@ -901,6 +905,7 @@ body {
   width: 100%;
   margin: 0;
   color: #060923;
+  overflow-x: hidden;
 }
 .js-fonts-loaded body {
   font-family: -apple-system, BlinkMacSystemFont, ヒラギノ角ゴ ProN,
@@ -932,7 +937,7 @@ thead th {
     メイリオ, Meiryo, ＭＳ ゴシック, MS Gothic, HiraKakuProN-W3, TakaoExゴシック,
     TakaoExGothic, MotoyaLCedar, Droid Sans Japanese, sans-serif;
   font-family: var(--bolt-font-family-heading);
-  font-weight: 700;
+  font-weight: 800;
 }
 .js-fonts-loaded tfoot td,
 .js-fonts-loaded thead th {
@@ -1142,6 +1147,12 @@ bolt-bare-list > * {
   align-self: flex-end;
   vertical-align: bottom;
 }
+.o-bolt-grid--xsmall {
+  margin-left: -0.5rem;
+}
+.o-bolt-grid--xsmall > .o-bolt-grid__cell {
+  padding-left: 0.5rem;
+}
 .o-bolt-grid--small {
   margin-left: -0.7rem;
 }
@@ -1164,6 +1175,18 @@ bolt-bare-list > * {
   display: flex;
   flex-flow: row wrap;
 }
+.o-bolt-grid--matrix.o-bolt-grid--xsmall {
+  margin-bottom: -0.412rem;
+}
+.o-bolt-grid--matrix.o-bolt-grid--xsmall > .o-bolt-grid__cell {
+  padding-bottom: 0.412rem;
+}
+.o-bolt-grid--matrix.o-bolt-grid--small {
+  margin-bottom: -0.577rem;
+}
+.o-bolt-grid--matrix.o-bolt-grid--small > .o-bolt-grid__cell {
+  padding-bottom: 0.577rem;
+}
 .o-bolt-grid--matrix,
 .o-bolt-grid--matrix.o-bolt-grid--medium {
   margin-bottom: -1.155rem;
@@ -1172,11 +1195,11 @@ bolt-bare-list > * {
 .o-bolt-grid--matrix > .o-bolt-grid__cell {
   padding-bottom: 1.155rem;
 }
-.o-bolt-grid--matrix.o-bolt-grid--small {
-  margin-bottom: -0.577rem;
+.o-bolt-grid--matrix.o-bolt-grid--large {
+  margin-bottom: -2.31rem;
 }
-.o-bolt-grid--matrix.o-bolt-grid--small > .o-bolt-grid__cell {
-  padding-bottom: 0.577rem;
+.o-bolt-grid--matrix.o-bolt-grid--large > .o-bolt-grid__cell {
+  padding-bottom: 2.31rem;
 }
 bolt-inline-list {
   display: block;
@@ -1853,6 +1876,9 @@ bolt-inline-list:not(:last-child) {
 }
 .u-bolt-flex-grow {
   flex-grow: 1 !important;
+}
+.u-bolt-flex-grow-none {
+  flex-grow: 0 !important;
 }
 .u-bolt-flex-shrink {
   flex-shrink: 1 !important;
@@ -14578,6 +14604,70 @@ bolt-inline-list:not(:last-child) {
 .u-bolt-pull-12\\\\/12 {
   margin-left: -100% !important;
 }
+.u-bolt-max-width-none {
+  max-width: none !important;
+}
+.u-bolt-z-index--fab,
+.u-bolt-z-index-fab {
+  z-index: 300 !important;
+}
+.u-bolt-z-index--modal,
+.u-bolt-z-index-modal {
+  z-index: 200 !important;
+}
+.u-bolt-z-index--modalBG,
+.u-bolt-z-index-modalBG {
+  z-index: 180 !important;
+}
+.u-bolt-z-index--navFixed,
+.u-bolt-z-index-navFixed {
+  z-index: 160 !important;
+}
+.u-bolt-z-index--tooltip,
+.u-bolt-z-index-tooltip {
+  z-index: 140 !important;
+}
+.u-bolt-z-index--popover,
+.u-bolt-z-index-popover {
+  z-index: 120 !important;
+}
+.u-bolt-z-index--nav,
+.u-bolt-z-index-nav {
+  z-index: 100 !important;
+}
+.u-bolt-z-index--contentTop,
+.u-bolt-z-index-contentTop {
+  z-index: 80 !important;
+}
+.u-bolt-z-index--content,
+.u-bolt-z-index-content {
+  z-index: 60 !important;
+}
+.u-bolt-z-index--contentBottom,
+.u-bolt-z-index-contentBottom {
+  z-index: 40 !important;
+}
+.u-bolt-z-index--backgroundTop,
+.u-bolt-z-index-backgroundTop {
+  z-index: 20 !important;
+}
+.u-bolt-z-index--background,
+.u-bolt-z-index-background {
+  z-index: 0 !important;
+}
+.u-bolt-z-index--backgroundBottom,
+.u-bolt-z-index-backgroundBottom {
+  z-index: -20 !important;
+}
+.u-bolt-float-right {
+  float: right !important;
+}
+.u-bolt-float-left {
+  float: left !important;
+}
+.u-bolt-float-none {
+  float: none !important;
+}
 @media (min-width: 20em) {
   .u-bolt-pull-0\\\\/12\\\\@xxsmall,
   .u-bolt-push-0\\\\/12\\\\@xxsmall {
@@ -14888,6 +14978,15 @@ bolt-inline-list:not(:last-child) {
   }
   .u-bolt-width-12\\\\/12\\\\@xxsmall {
     width: 100% !important;
+  }
+  .u-bolt-float-left\\\\@xxsmall {
+    float: left !important;
+  }
+  .u-bolt-float-right\\\\@xxsmall {
+    float: right !important;
+  }
+  .u-bolt-float-none\\\\@xxsmall {
+    float: none !important;
   }
 }
 @media (min-width: 25em) {
@@ -15201,6 +15300,15 @@ bolt-inline-list:not(:last-child) {
   .u-bolt-width-12\\\\/12\\\\@xsmall {
     width: 100% !important;
   }
+  .u-bolt-float-left\\\\@xsmall {
+    float: left !important;
+  }
+  .u-bolt-float-right\\\\@xsmall {
+    float: right !important;
+  }
+  .u-bolt-float-none\\\\@xsmall {
+    float: none !important;
+  }
 }
 @media (min-width: 37.5em) {
   .u-bolt-pull-0\\\\/12\\\\@small,
@@ -15512,6 +15620,15 @@ bolt-inline-list:not(:last-child) {
   }
   .u-bolt-width-12\\\\/12\\\\@small {
     width: 100% !important;
+  }
+  .u-bolt-float-left\\\\@small {
+    float: left !important;
+  }
+  .u-bolt-float-right\\\\@small {
+    float: right !important;
+  }
+  .u-bolt-float-none\\\\@small {
+    float: none !important;
   }
 }
 @media (min-width: 50em) {
@@ -15825,6 +15942,15 @@ bolt-inline-list:not(:last-child) {
   .u-bolt-width-12\\\\/12\\\\@medium {
     width: 100% !important;
   }
+  .u-bolt-float-left\\\\@medium {
+    float: left !important;
+  }
+  .u-bolt-float-right\\\\@medium {
+    float: right !important;
+  }
+  .u-bolt-float-none\\\\@medium {
+    float: none !important;
+  }
 }
 @media (min-width: 62.5em) {
   .u-bolt-pull-0\\\\/12\\\\@large,
@@ -16136,6 +16262,15 @@ bolt-inline-list:not(:last-child) {
   }
   .u-bolt-width-12\\\\/12\\\\@large {
     width: 100% !important;
+  }
+  .u-bolt-float-left\\\\@large {
+    float: left !important;
+  }
+  .u-bolt-float-right\\\\@large {
+    float: right !important;
+  }
+  .u-bolt-float-none\\\\@large {
+    float: none !important;
   }
 }
 @media (min-width: 75em) {
@@ -16449,6 +16584,15 @@ bolt-inline-list:not(:last-child) {
   .u-bolt-width-12\\\\/12\\\\@xlarge {
     width: 100% !important;
   }
+  .u-bolt-float-left\\\\@xlarge {
+    float: left !important;
+  }
+  .u-bolt-float-right\\\\@xlarge {
+    float: right !important;
+  }
+  .u-bolt-float-none\\\\@xlarge {
+    float: none !important;
+  }
 }
 @media (min-width: 87.5em) {
   .u-bolt-pull-0\\\\/12\\\\@xxlarge,
@@ -16760,6 +16904,15 @@ bolt-inline-list:not(:last-child) {
   }
   .u-bolt-width-12\\\\/12\\\\@xxlarge {
     width: 100% !important;
+  }
+  .u-bolt-float-left\\\\@xxlarge {
+    float: left !important;
+  }
+  .u-bolt-float-right\\\\@xxlarge {
+    float: right !important;
+  }
+  .u-bolt-float-none\\\\@xxlarge {
+    float: none !important;
   }
 }
 @media (min-width: 100em) {
@@ -17073,6 +17226,15 @@ bolt-inline-list:not(:last-child) {
   .u-bolt-width-12\\\\/12\\\\@xxxlarge {
     width: 100% !important;
   }
+  .u-bolt-float-left\\\\@xxxlarge {
+    float: left !important;
+  }
+  .u-bolt-float-right\\\\@xxxlarge {
+    float: right !important;
+  }
+  .u-bolt-float-none\\\\@xxxlarge {
+    float: none !important;
+  }
 }
 @media (min-width: 120em) {
   .u-bolt-pull-0\\\\/12\\\\@xxxxlarge,
@@ -17385,78 +17547,64 @@ bolt-inline-list:not(:last-child) {
   .u-bolt-width-12\\\\/12\\\\@xxxxlarge {
     width: 100% !important;
   }
-}
-.u-bolt-max-width-none {
-  max-width: none !important;
-}
-.u-bolt-z-index--fab,
-.u-bolt-z-index-fab {
-  z-index: 300 !important;
-}
-.u-bolt-z-index--modal,
-.u-bolt-z-index-modal {
-  z-index: 200 !important;
-}
-.u-bolt-z-index--modalBG,
-.u-bolt-z-index-modalBG {
-  z-index: 180 !important;
-}
-.u-bolt-z-index--navFixed,
-.u-bolt-z-index-navFixed {
-  z-index: 160 !important;
-}
-.u-bolt-z-index--tooltip,
-.u-bolt-z-index-tooltip {
-  z-index: 140 !important;
-}
-.u-bolt-z-index--popover,
-.u-bolt-z-index-popover {
-  z-index: 120 !important;
-}
-.u-bolt-z-index--nav,
-.u-bolt-z-index-nav {
-  z-index: 100 !important;
-}
-.u-bolt-z-index--contentTop,
-.u-bolt-z-index-contentTop {
-  z-index: 80 !important;
-}
-.u-bolt-z-index--content,
-.u-bolt-z-index-content {
-  z-index: 60 !important;
-}
-.u-bolt-z-index--contentBottom,
-.u-bolt-z-index-contentBottom {
-  z-index: 40 !important;
-}
-.u-bolt-z-index--backgroundTop,
-.u-bolt-z-index-backgroundTop {
-  z-index: 20 !important;
-}
-.u-bolt-z-index--background,
-.u-bolt-z-index-background {
-  z-index: 0 !important;
-}
-.u-bolt-z-index--backgroundBottom,
-.u-bolt-z-index-backgroundBottom {
-  z-index: -20 !important;
-}
-.u-bolt-float-right {
-  float: right !important;
-}
-.u-bolt-float-left {
-  float: left !important;
+  .u-bolt-float-left\\\\@xxxxlarge {
+    float: left !important;
+  }
+  .u-bolt-float-right\\\\@xxxxlarge {
+    float: right !important;
+  }
+  .u-bolt-float-none\\\\@xxxxlarge {
+    float: none !important;
+  }
 }
 .u-bolt-line-length-optimal {
   max-width: 80ch;
 }
+.u-bolt-line-length-xsmall {
+  max-width: 18.75rem;
+}
+.u-bolt-line-length-small {
+  max-width: 25rem;
+}
+.u-bolt-line-length-medium {
+  max-width: 31.25rem;
+}
+.u-bolt-line-length-large {
+  max-width: 37.5rem;
+  max-width: 43.75rem;
+}
+.u-bolt-line-length-xlarge {
+  max-width: 50rem;
+}
+.u-bolt-align-baseline {
+  vertical-align: baseline !important;
+}
+.u-bolt-align-top {
+  vertical-align: top !important;
+}
+.u-bolt-align-middle {
+  vertical-align: middle !important;
+}
+.u-bolt-align-bottom {
+  vertical-align: bottom !important;
+}
+.u-bolt-align-text-top {
+  vertical-align: text-top !important;
+}
+.u-bolt-align-text-bottom {
+  vertical-align: text-bottom !important;
+}
 bolt-icon {
-  display: inline-block;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
   transform: translateZ(0);
-  width: 1em;
-  height: 1em;
   vertical-align: middle;
   transition: inherit;
+}
+bolt-icon:not([size]) {
+  width: 1em;
+  height: 1em;
 }
 bolt-icon:not(:resolved) {
   height: 0;
@@ -17467,7 +17615,9 @@ bolt-icon:not(:resolved) {
   vertical-align: middle;
 }
 .c-bolt-icon {
+  display: block;
   position: relative;
+  height: 100%;
 }
 .c-bolt-icon__icon {
   display: block;
@@ -17479,60 +17629,51 @@ bolt-icon:not(:resolved) {
   color: var(--bolt-theme-icon);
   pointer-events: none;
 }
-.c-bolt-icon--small > .c-bolt-icon__icon,
-bolt-icon[size=\\"small\\"] {
+.c-bolt-icon__icon--small {
   width: 16px;
   height: 16px;
 }
-.c-bolt-icon--medium > .c-bolt-icon__icon,
-bolt-icon[size=\\"medium\\"] {
+.c-bolt-icon__icon--medium {
   width: 24px;
   height: 24px;
 }
-.c-bolt-icon--large > .c-bolt-icon__icon,
-bolt-icon[size=\\"large\\"] {
+.c-bolt-icon__icon--large {
   width: 32px;
   height: 32px;
 }
-.c-bolt-icon--xlarge > .c-bolt-icon__icon,
-bolt-icon[size=\\"xlarge\\"] {
-  width: 64px;
-  height: 64px;
-}
-.c-bolt-icon--xlarge > .c-bolt-icon__icon {
-  padding: 16px;
+.c-bolt-icon__icon--xlarge {
+  width: 38px;
+  height: 38px;
 }
 .c-bolt-icon--small > .c-bolt-icon__icon {
   stroke: currentColor;
   stroke-width: 1px;
 }
+.c-bolt-icon--small.has-background {
+  padding: 6px;
+}
+.c-bolt-icon--medium.has-background {
+  padding: 8px;
+}
+.c-bolt-icon--large.has-background {
+  padding: 12px;
+}
+.c-bolt-icon--xlarge.has-background {
+  padding: 13px;
+}
+.c-bolt-icon__background {
+  fill: currentColor;
+  fill: var(--bolt-theme-text, currentColor);
+}
 .c-bolt-icon__background-shape {
   opacity: 0.1;
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate3d(-50%, -50%, 0);
+  top: 0;
+  left: 0;
   z-index: 40;
   width: 100%;
-  height: 0;
-  padding-bottom: 100%;
+  height: 100%;
   background-color: currentColor;
-}
-.c-bolt-icon__background-shape--circle {
-  border-radius: 50%;
-}
-.c-bolt-icon__background-shape--square {
-  border-radius: 3px;
-}
-.c-bolt-icon--teal {
-  color: #fff;
-  --bolt-theme-icon: #fff;
-  --bolt-theme-icon-background: #099;
-  --bolt-theme-icon-background-opacity: 1;
-}
-.c-bolt-icon--teal .c-bolt-icon__background-shape {
-  opacity: 1;
-  background-color: #099;
 }
 @supports (--css: variables) {
   .c-bolt-icon__background-shape {
@@ -17542,36 +17683,507 @@ bolt-icon[size=\\"xlarge\\"] {
       var(--bolt-theme-primary-text-default, currentColor)
     );
   }
-  .c-bolt-icon--teal {
-    color: var(--bolt-theme-icon);
-  }
-  .c-bolt-icon--teal .c-bolt-icon__background-shape {
-    opacity: var(--bolt-theme-icon-background-opacity);
-    background-color: var(--bolt-theme-icon-background);
-  }
 }
-.c-bolt-icon--blue {
+.c-bolt-icon__background-shape--circle {
+  border-radius: 50%;
+}
+.c-bolt-icon__background-shape--square {
+  border-radius: 3px;
+  border-radius: var(--bolt-theme-icon-radius, 3px);
+}
+.c-bolt-icon__background-shape--outline {
+  opacity: 0.8;
+  border-radius: 50%;
+  background-color: transparent;
+  border: 2px solid currentColor;
+}
+.t-bolt-light .c-bolt-icon--blue,
+.t-bolt-xlight .c-bolt-icon--blue,
+:root .c-bolt-icon--blue {
   color: #0074b3;
   --bolt-theme-icon: #0074b3;
+  filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.2));
+}
+.t-bolt-light .c-bolt-icon--blue.has-background:not(.has-outline-background),
+.t-bolt-xlight .c-bolt-icon--blue.has-background:not(.has-outline-background),
+:root .c-bolt-icon--blue.has-background:not(.has-outline-background) {
+  color: #fff;
+  --bolt-theme-icon: #fff;
+  --bolt-theme-icon-background: #0074b3;
+  --bolt-theme-icon-background-opacity: 1;
+}
+.t-bolt-light
+  .c-bolt-icon--blue.has-background:not(.has-outline-background)
+  .c-bolt-icon__background-shape,
+.t-bolt-xlight
+  .c-bolt-icon--blue.has-background:not(.has-outline-background)
+  .c-bolt-icon__background-shape,
+:root
+  .c-bolt-icon--blue.has-background:not(.has-outline-background)
+  .c-bolt-icon__background-shape {
+  opacity: 1;
+  border: 1px solid rgba(92, 93, 102, 0.5);
+  background-color: #0074b3;
+}
+.t-bolt-light .c-bolt-icon--gray,
+.t-bolt-xlight .c-bolt-icon--gray,
+:root .c-bolt-icon--gray {
+  color: #5c5d66;
+  --bolt-theme-icon: #5c5d66;
+  filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.2));
+}
+.t-bolt-light .c-bolt-icon--gray.has-background:not(.has-outline-background),
+.t-bolt-xlight .c-bolt-icon--gray.has-background:not(.has-outline-background),
+:root .c-bolt-icon--gray.has-background:not(.has-outline-background) {
+  color: #fff;
+  --bolt-theme-icon: #fff;
+  --bolt-theme-icon-background: #5c5d66;
+  --bolt-theme-icon-background-opacity: 1;
+}
+.t-bolt-light
+  .c-bolt-icon--gray.has-background:not(.has-outline-background)
+  .c-bolt-icon__background-shape,
+.t-bolt-xlight
+  .c-bolt-icon--gray.has-background:not(.has-outline-background)
+  .c-bolt-icon__background-shape,
+:root
+  .c-bolt-icon--gray.has-background:not(.has-outline-background)
+  .c-bolt-icon__background-shape {
+  opacity: 1;
+  border: 1px solid rgba(92, 93, 102, 0.5);
+  background-color: #5c5d66;
+}
+.t-bolt-light .c-bolt-icon--indigo,
+.t-bolt-xlight .c-bolt-icon--indigo,
+:root .c-bolt-icon--indigo {
+  color: #545da6;
+  --bolt-theme-icon: #545da6;
+  filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.2));
+}
+.t-bolt-light .c-bolt-icon--indigo.has-background:not(.has-outline-background),
+.t-bolt-xlight .c-bolt-icon--indigo.has-background:not(.has-outline-background),
+:root .c-bolt-icon--indigo.has-background:not(.has-outline-background) {
+  color: #fff;
+  --bolt-theme-icon: #fff;
+  --bolt-theme-icon-background: #545da6;
+  --bolt-theme-icon-background-opacity: 1;
+}
+.t-bolt-light
+  .c-bolt-icon--indigo.has-background:not(.has-outline-background)
+  .c-bolt-icon__background-shape,
+.t-bolt-xlight
+  .c-bolt-icon--indigo.has-background:not(.has-outline-background)
+  .c-bolt-icon__background-shape,
+:root
+  .c-bolt-icon--indigo.has-background:not(.has-outline-background)
+  .c-bolt-icon__background-shape {
+  opacity: 1;
+  border: 1px solid rgba(92, 93, 102, 0.5);
+  background-color: #545da6;
+}
+.t-bolt-light .c-bolt-icon--orange,
+.t-bolt-xlight .c-bolt-icon--orange,
+:root .c-bolt-icon--orange {
+  color: #e84b17;
+  --bolt-theme-icon: #e84b17;
+  filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.2));
+}
+.t-bolt-light .c-bolt-icon--orange.has-background:not(.has-outline-background),
+.t-bolt-xlight .c-bolt-icon--orange.has-background:not(.has-outline-background),
+:root .c-bolt-icon--orange.has-background:not(.has-outline-background) {
+  color: #fff;
+  --bolt-theme-icon: #fff;
+  --bolt-theme-icon-background: #e84b17;
+  --bolt-theme-icon-background-opacity: 1;
+}
+.t-bolt-light
+  .c-bolt-icon--orange.has-background:not(.has-outline-background)
+  .c-bolt-icon__background-shape,
+.t-bolt-xlight
+  .c-bolt-icon--orange.has-background:not(.has-outline-background)
+  .c-bolt-icon__background-shape,
+:root
+  .c-bolt-icon--orange.has-background:not(.has-outline-background)
+  .c-bolt-icon__background-shape {
+  opacity: 1;
+  border: 1px solid rgba(92, 93, 102, 0.5);
+  background-color: #e84b17;
+}
+.t-bolt-light .c-bolt-icon--teal,
+.t-bolt-xlight .c-bolt-icon--teal,
+:root .c-bolt-icon--teal {
+  color: #099;
+  --bolt-theme-icon: #099;
+  filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.2));
+}
+.t-bolt-light .c-bolt-icon--teal.has-background:not(.has-outline-background),
+.t-bolt-xlight .c-bolt-icon--teal.has-background:not(.has-outline-background),
+:root .c-bolt-icon--teal.has-background:not(.has-outline-background) {
+  color: #fff;
+  --bolt-theme-icon: #fff;
+  --bolt-theme-icon-background: #099;
+  --bolt-theme-icon-background-opacity: 1;
+}
+.t-bolt-light
+  .c-bolt-icon--teal.has-background:not(.has-outline-background)
+  .c-bolt-icon__background-shape,
+.t-bolt-xlight
+  .c-bolt-icon--teal.has-background:not(.has-outline-background)
+  .c-bolt-icon__background-shape,
+:root
+  .c-bolt-icon--teal.has-background:not(.has-outline-background)
+  .c-bolt-icon__background-shape {
+  opacity: 1;
+  border: 1px solid rgba(92, 93, 102, 0.5);
+  background-color: #099;
+}
+.t-bolt-light .c-bolt-icon--white,
+.t-bolt-xlight .c-bolt-icon--white,
+:root .c-bolt-icon--white {
+  color: #5c5d66;
+  --bolt-theme-icon: #5c5d66;
+  filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.2));
+}
+.t-bolt-light .c-bolt-icon--white.has-background:not(.has-outline-background),
+.t-bolt-xlight .c-bolt-icon--white.has-background:not(.has-outline-background),
+:root .c-bolt-icon--white.has-background:not(.has-outline-background) {
+  color: #151619;
+  --bolt-theme-icon: #151619;
   --bolt-theme-icon-background: #fff;
   --bolt-theme-icon-background-opacity: 1;
 }
-.c-bolt-icon--blue .c-bolt-icon__background-shape {
+.t-bolt-light
+  .c-bolt-icon--white.has-background:not(.has-outline-background)
+  .c-bolt-icon__background-shape,
+.t-bolt-xlight
+  .c-bolt-icon--white.has-background:not(.has-outline-background)
+  .c-bolt-icon__background-shape,
+:root
+  .c-bolt-icon--white.has-background:not(.has-outline-background)
+  .c-bolt-icon__background-shape {
   opacity: 1;
+  border: 1px solid rgba(92, 93, 102, 0.5);
   background-color: #fff;
 }
-@supports (--css: variables) {
-  .c-bolt-icon--blue {
-    color: var(--bolt-theme-icon);
-  }
-  .c-bolt-icon--blue .c-bolt-icon__background-shape {
-    opacity: var(--bolt-theme-icon-background-opacity);
-    background-color: var(--bolt-theme-icon-background);
-  }
+.t-bolt-light .c-bolt-icon--yellow,
+.t-bolt-xlight .c-bolt-icon--yellow,
+:root .c-bolt-icon--yellow {
+  color: #e6a400;
+  --bolt-theme-icon: #e6a400;
+  filter: drop-shadow(0 0 1px rgba(21, 22, 25, 0.2));
 }
-.c-bolt-icon__background {
+.t-bolt-light .c-bolt-icon--yellow.has-background:not(.has-outline-background),
+.t-bolt-xlight .c-bolt-icon--yellow.has-background:not(.has-outline-background),
+:root .c-bolt-icon--yellow.has-background:not(.has-outline-background) {
+  color: #151619;
+  --bolt-theme-icon: #151619;
+  --bolt-theme-icon-background: #ffcc4d;
+  --bolt-theme-icon-background-opacity: 1;
+}
+.t-bolt-light
+  .c-bolt-icon--yellow.has-background:not(.has-outline-background)
+  .c-bolt-icon__background-shape,
+.t-bolt-xlight
+  .c-bolt-icon--yellow.has-background:not(.has-outline-background)
+  .c-bolt-icon__background-shape,
+:root
+  .c-bolt-icon--yellow.has-background:not(.has-outline-background)
+  .c-bolt-icon__background-shape {
+  opacity: 1;
+  border: 1px solid rgba(92, 93, 102, 0.5);
+  background-color: #ffcc4d;
+}
+.t-bolt-light .c-bolt-icon--green,
+.t-bolt-xlight .c-bolt-icon--green,
+:root .c-bolt-icon--green {
+  color: #209952;
+  --bolt-theme-icon: #209952;
+  filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.2));
+}
+.t-bolt-light .c-bolt-icon--green.has-background:not(.has-outline-background),
+.t-bolt-xlight .c-bolt-icon--green.has-background:not(.has-outline-background),
+:root .c-bolt-icon--green.has-background:not(.has-outline-background) {
+  color: #fff;
+  --bolt-theme-icon: #fff;
+  --bolt-theme-icon-background: #209952;
+  --bolt-theme-icon-background-opacity: 1;
+}
+.t-bolt-light
+  .c-bolt-icon--green.has-background:not(.has-outline-background)
+  .c-bolt-icon__background-shape,
+.t-bolt-xlight
+  .c-bolt-icon--green.has-background:not(.has-outline-background)
+  .c-bolt-icon__background-shape,
+:root
+  .c-bolt-icon--green.has-background:not(.has-outline-background)
+  .c-bolt-icon__background-shape {
+  opacity: 1;
+  border: 1px solid rgba(92, 93, 102, 0.5);
+  background-color: #209952;
+}
+.t-bolt-light .c-bolt-icon--pink,
+.t-bolt-xlight .c-bolt-icon--pink,
+:root .c-bolt-icon--pink {
+  color: #a65389;
+  --bolt-theme-icon: #a65389;
+  filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.2));
+}
+.t-bolt-light .c-bolt-icon--pink.has-background:not(.has-outline-background),
+.t-bolt-xlight .c-bolt-icon--pink.has-background:not(.has-outline-background),
+:root .c-bolt-icon--pink.has-background:not(.has-outline-background) {
+  color: #fff;
+  --bolt-theme-icon: #fff;
+  --bolt-theme-icon-background: #a65389;
+  --bolt-theme-icon-background-opacity: 1;
+}
+.t-bolt-light
+  .c-bolt-icon--pink.has-background:not(.has-outline-background)
+  .c-bolt-icon__background-shape,
+.t-bolt-xlight
+  .c-bolt-icon--pink.has-background:not(.has-outline-background)
+  .c-bolt-icon__background-shape,
+:root
+  .c-bolt-icon--pink.has-background:not(.has-outline-background)
+  .c-bolt-icon__background-shape {
+  opacity: 1;
+  border: 1px solid rgba(92, 93, 102, 0.5);
+  background-color: #a65389;
+}
+.t-bolt-dark .c-bolt-icon--blue,
+.t-bolt-xdark .c-bolt-icon--blue {
+  color: #0095e6;
+  --bolt-theme-icon: #0095e6;
+  filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.2));
+}
+.t-bolt-dark .c-bolt-icon--blue.has-background:not(.has-outline-background),
+.t-bolt-xdark .c-bolt-icon--blue.has-background:not(.has-outline-background) {
+  color: #fff;
+  --bolt-theme-icon: #fff;
+  --bolt-theme-icon-background: #0074b3;
+  --bolt-theme-icon-background-opacity: 1;
+}
+.t-bolt-dark
+  .c-bolt-icon--blue.has-background:not(.has-outline-background)
+  .c-bolt-icon__background-shape,
+.t-bolt-xdark
+  .c-bolt-icon--blue.has-background:not(.has-outline-background)
+  .c-bolt-icon__background-shape {
+  opacity: 1;
+  border: 1px solid rgba(92, 93, 102, 0.5);
+  background-color: #0074b3;
+}
+.t-bolt-dark .c-bolt-icon--gray,
+.t-bolt-xdark .c-bolt-icon--gray {
+  color: #8d8e99;
+  --bolt-theme-icon: #8d8e99;
+  filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.2));
+}
+.t-bolt-dark .c-bolt-icon--gray.has-background:not(.has-outline-background),
+.t-bolt-xdark .c-bolt-icon--gray.has-background:not(.has-outline-background) {
+  color: #fff;
+  --bolt-theme-icon: #fff;
+  --bolt-theme-icon-background: #5c5d66;
+  --bolt-theme-icon-background-opacity: 1;
+}
+.t-bolt-dark
+  .c-bolt-icon--gray.has-background:not(.has-outline-background)
+  .c-bolt-icon__background-shape,
+.t-bolt-xdark
+  .c-bolt-icon--gray.has-background:not(.has-outline-background)
+  .c-bolt-icon__background-shape {
+  opacity: 1;
+  border: 1px solid rgba(92, 93, 102, 0.5);
+  background-color: #5c5d66;
+}
+.t-bolt-dark .c-bolt-icon--indigo,
+.t-bolt-xdark .c-bolt-icon--indigo {
+  color: #abb3f2;
+  --bolt-theme-icon: #abb3f2;
+  filter: drop-shadow(0 0 1px rgba(21, 22, 25, 0.2));
+}
+.t-bolt-dark .c-bolt-icon--indigo.has-background:not(.has-outline-background),
+.t-bolt-xdark .c-bolt-icon--indigo.has-background:not(.has-outline-background) {
+  color: #fff;
+  --bolt-theme-icon: #fff;
+  --bolt-theme-icon-background: #545da6;
+  --bolt-theme-icon-background-opacity: 1;
+}
+.t-bolt-dark
+  .c-bolt-icon--indigo.has-background:not(.has-outline-background)
+  .c-bolt-icon__background-shape,
+.t-bolt-xdark
+  .c-bolt-icon--indigo.has-background:not(.has-outline-background)
+  .c-bolt-icon__background-shape {
+  opacity: 1;
+  border: 1px solid rgba(92, 93, 102, 0.5);
+  background-color: #545da6;
+}
+.t-bolt-dark .c-bolt-icon--orange,
+.t-bolt-xdark .c-bolt-icon--orange {
+  color: #ff8c66;
+  --bolt-theme-icon: #ff8c66;
+  filter: drop-shadow(0 0 1px rgba(21, 22, 25, 0.2));
+}
+.t-bolt-dark .c-bolt-icon--orange.has-background:not(.has-outline-background),
+.t-bolt-xdark .c-bolt-icon--orange.has-background:not(.has-outline-background) {
+  color: #fff;
+  --bolt-theme-icon: #fff;
+  --bolt-theme-icon-background: #e84b17;
+  --bolt-theme-icon-background-opacity: 1;
+}
+.t-bolt-dark
+  .c-bolt-icon--orange.has-background:not(.has-outline-background)
+  .c-bolt-icon__background-shape,
+.t-bolt-xdark
+  .c-bolt-icon--orange.has-background:not(.has-outline-background)
+  .c-bolt-icon__background-shape {
+  opacity: 1;
+  border: 1px solid rgba(92, 93, 102, 0.5);
+  background-color: #e84b17;
+}
+.t-bolt-dark .c-bolt-icon--teal,
+.t-bolt-xdark .c-bolt-icon--teal {
+  color: #7acdcd;
+  --bolt-theme-icon: #7acdcd;
+  filter: drop-shadow(0 0 1px rgba(21, 22, 25, 0.2));
+}
+.t-bolt-dark .c-bolt-icon--teal.has-background:not(.has-outline-background),
+.t-bolt-xdark .c-bolt-icon--teal.has-background:not(.has-outline-background) {
+  color: #fff;
+  --bolt-theme-icon: #fff;
+  --bolt-theme-icon-background: #099;
+  --bolt-theme-icon-background-opacity: 1;
+}
+.t-bolt-dark
+  .c-bolt-icon--teal.has-background:not(.has-outline-background)
+  .c-bolt-icon__background-shape,
+.t-bolt-xdark
+  .c-bolt-icon--teal.has-background:not(.has-outline-background)
+  .c-bolt-icon__background-shape {
+  opacity: 1;
+  border: 1px solid rgba(92, 93, 102, 0.5);
+  background-color: #099;
+}
+.t-bolt-dark .c-bolt-icon--white,
+.t-bolt-xdark .c-bolt-icon--white {
+  color: #fff;
+  --bolt-theme-icon: #fff;
+  filter: drop-shadow(0 0 1px rgba(21, 22, 25, 0.2));
+}
+.t-bolt-dark .c-bolt-icon--white.has-background:not(.has-outline-background),
+.t-bolt-xdark .c-bolt-icon--white.has-background:not(.has-outline-background) {
+  color: #151619;
+  --bolt-theme-icon: #151619;
+  --bolt-theme-icon-background: #fff;
+  --bolt-theme-icon-background-opacity: 1;
+}
+.t-bolt-dark
+  .c-bolt-icon--white.has-background:not(.has-outline-background)
+  .c-bolt-icon__background-shape,
+.t-bolt-xdark
+  .c-bolt-icon--white.has-background:not(.has-outline-background)
+  .c-bolt-icon__background-shape {
+  opacity: 1;
+  border: 1px solid rgba(92, 93, 102, 0.5);
+  background-color: #fff;
+}
+.t-bolt-dark .c-bolt-icon--yellow,
+.t-bolt-xdark .c-bolt-icon--yellow {
+  color: #ffcc4d;
+  --bolt-theme-icon: #ffcc4d;
+  filter: drop-shadow(0 0 1px rgba(21, 22, 25, 0.2));
+}
+.t-bolt-dark .c-bolt-icon--yellow.has-background:not(.has-outline-background),
+.t-bolt-xdark .c-bolt-icon--yellow.has-background:not(.has-outline-background) {
+  color: #151619;
+  --bolt-theme-icon: #151619;
+  --bolt-theme-icon-background: #ffcc4d;
+  --bolt-theme-icon-background-opacity: 1;
+}
+.t-bolt-dark
+  .c-bolt-icon--yellow.has-background:not(.has-outline-background)
+  .c-bolt-icon__background-shape,
+.t-bolt-xdark
+  .c-bolt-icon--yellow.has-background:not(.has-outline-background)
+  .c-bolt-icon__background-shape {
+  opacity: 1;
+  border: 1px solid rgba(92, 93, 102, 0.5);
+  background-color: #ffcc4d;
+}
+.t-bolt-dark .c-bolt-icon--green,
+.t-bolt-xdark .c-bolt-icon--green {
+  color: #219953;
+  --bolt-theme-icon: #219953;
+  filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.2));
+}
+.t-bolt-dark .c-bolt-icon--green.has-background:not(.has-outline-background),
+.t-bolt-xdark .c-bolt-icon--green.has-background:not(.has-outline-background) {
+  color: #fff;
+  --bolt-theme-icon: #fff;
+  --bolt-theme-icon-background: #209952;
+  --bolt-theme-icon-background-opacity: 1;
+}
+.t-bolt-dark
+  .c-bolt-icon--green.has-background:not(.has-outline-background)
+  .c-bolt-icon__background-shape,
+.t-bolt-xdark
+  .c-bolt-icon--green.has-background:not(.has-outline-background)
+  .c-bolt-icon__background-shape {
+  opacity: 1;
+  border: 1px solid rgba(92, 93, 102, 0.5);
+  background-color: #209952;
+}
+.t-bolt-dark .c-bolt-icon--pink,
+.t-bolt-xdark .c-bolt-icon--pink {
+  color: #b974a1;
+  --bolt-theme-icon: #b974a1;
+  filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.2));
+}
+.t-bolt-dark .c-bolt-icon--pink.has-background:not(.has-outline-background),
+.t-bolt-xdark .c-bolt-icon--pink.has-background:not(.has-outline-background) {
+  color: #fff;
+  --bolt-theme-icon: #fff;
+  --bolt-theme-icon-background: #a65389;
+  --bolt-theme-icon-background-opacity: 1;
+}
+.t-bolt-dark
+  .c-bolt-icon--pink.has-background:not(.has-outline-background)
+  .c-bolt-icon__background-shape,
+.t-bolt-xdark
+  .c-bolt-icon--pink.has-background:not(.has-outline-background)
+  .c-bolt-icon__background-shape {
+  opacity: 1;
+  border: 1px solid rgba(92, 93, 102, 0.5);
+  background-color: #a65389;
+}
+svg [fill=\\"var(--bolt-icon-primary-color)\\"] {
   fill: currentColor;
-  fill: var(--bolt-theme-text, currentColor);
+}
+svg [stroke=\\"var(--bolt-icon-primary-color)\\"] {
+  stroke: currentColor;
+}
+@supports (--var: foo) {
+  svg [fill=\\"var(--bolt-icon-primary-color)\\"] {
+    fill: var(--bolt-icon-primary-color, var(--bolt-theme-icon, currentColor));
+  }
+  svg [stroke=\\"var(--bolt-icon-primary-color)\\"] {
+    stroke: var(
+      --bolt-icon-primary-color,
+      var(--bolt-theme-icon, currentColor)
+    );
+  }
+  svg [fill=\\"var(--bolt-icon-secondary-color)\\"] {
+    fill: var(
+      --bolt-icon-secondary-color,
+      rgba(var(--bolt-theme-background), 1)
+    );
+  }
+  svg [stroke=\\"var(--bolt-icon-secondary-color)\\"] {
+    stroke: var(
+      --bolt-icon-secondary-color,
+      rgba(var(--bolt-theme-background), 1)
+    );
+  }
 }
 bolt-figure {
   display: block;
@@ -18138,6 +18750,14 @@ bolt-button[border-radius=\\"full\\"] {
 @font-face {
   font-family: Open Sans;
   font-style: normal;
+  font-weight: 700;
+  src: url(/build/fonts/opensans-bold.woff2) format(\\"woff2\\"),
+    url(/build/fonts/opensans-bold.woff) format(\\"woff\\");
+  font-display: swap;
+}
+@font-face {
+  font-family: Open Sans;
+  font-style: normal;
   font-weight: 800;
   src: url(/build/fonts/opensans-extrabold.woff2) format(\\"woff2\\"),
     url(/build/fonts/opensans-extrabold.woff) format(\\"woff\\");
@@ -18306,7 +18926,7 @@ legend {
 }
 progress {
   display: inline-block;
-  vertical-align: baseline;
+  vertical-align: middle;
 }
 textarea {
   overflow: auto;
@@ -18342,10 +18962,6 @@ table,
 ul {
   margin: 0;
   padding: 0;
-}
-::-moz-selection {
-  text-shadow: none;
-  background-color: #abb3f2;
 }
 ::selection {
   text-shadow: none;
@@ -18532,6 +19148,7 @@ body {
   width: 100%;
   margin: 0;
   color: #060923;
+  overflow-x: hidden;
 }
 .js-fonts-loaded body {
   font-family: Open Sans, Helvetica Neue, sans-serif;
@@ -18765,6 +19382,12 @@ bolt-bare-list > * {
   align-self: flex-end;
   vertical-align: bottom;
 }
+.o-bolt-grid--xsmall {
+  margin-left: -0.5rem;
+}
+.o-bolt-grid--xsmall > .o-bolt-grid__cell {
+  padding-left: 0.5rem;
+}
 .o-bolt-grid--small {
   margin-left: -1rem;
 }
@@ -18787,6 +19410,18 @@ bolt-bare-list > * {
   display: flex;
   flex-flow: row wrap;
 }
+.o-bolt-grid--matrix.o-bolt-grid--xsmall {
+  margin-bottom: -0.412rem;
+}
+.o-bolt-grid--matrix.o-bolt-grid--xsmall > .o-bolt-grid__cell {
+  padding-bottom: 0.412rem;
+}
+.o-bolt-grid--matrix.o-bolt-grid--small {
+  margin-bottom: -0.825rem;
+}
+.o-bolt-grid--matrix.o-bolt-grid--small > .o-bolt-grid__cell {
+  padding-bottom: 0.825rem;
+}
 .o-bolt-grid--matrix,
 .o-bolt-grid--matrix.o-bolt-grid--medium {
   margin-bottom: -1.65rem;
@@ -18795,11 +19430,11 @@ bolt-bare-list > * {
 .o-bolt-grid--matrix > .o-bolt-grid__cell {
   padding-bottom: 1.65rem;
 }
-.o-bolt-grid--matrix.o-bolt-grid--small {
-  margin-bottom: -0.825rem;
+.o-bolt-grid--matrix.o-bolt-grid--large {
+  margin-bottom: -3.3rem;
 }
-.o-bolt-grid--matrix.o-bolt-grid--small > .o-bolt-grid__cell {
-  padding-bottom: 0.825rem;
+.o-bolt-grid--matrix.o-bolt-grid--large > .o-bolt-grid__cell {
+  padding-bottom: 3.3rem;
 }
 bolt-inline-list {
   display: block;
@@ -19476,6 +20111,9 @@ bolt-inline-list:not(:last-child) {
 }
 .u-bolt-flex-grow {
   flex-grow: 1 !important;
+}
+.u-bolt-flex-grow-none {
+  flex-grow: 0 !important;
 }
 .u-bolt-flex-shrink {
   flex-shrink: 1 !important;
@@ -32201,6 +32839,70 @@ bolt-inline-list:not(:last-child) {
 .u-bolt-pull-12\\\\/12 {
   margin-left: -100% !important;
 }
+.u-bolt-max-width-none {
+  max-width: none !important;
+}
+.u-bolt-z-index--fab,
+.u-bolt-z-index-fab {
+  z-index: 300 !important;
+}
+.u-bolt-z-index--modal,
+.u-bolt-z-index-modal {
+  z-index: 200 !important;
+}
+.u-bolt-z-index--modalBG,
+.u-bolt-z-index-modalBG {
+  z-index: 180 !important;
+}
+.u-bolt-z-index--navFixed,
+.u-bolt-z-index-navFixed {
+  z-index: 160 !important;
+}
+.u-bolt-z-index--tooltip,
+.u-bolt-z-index-tooltip {
+  z-index: 140 !important;
+}
+.u-bolt-z-index--popover,
+.u-bolt-z-index-popover {
+  z-index: 120 !important;
+}
+.u-bolt-z-index--nav,
+.u-bolt-z-index-nav {
+  z-index: 100 !important;
+}
+.u-bolt-z-index--contentTop,
+.u-bolt-z-index-contentTop {
+  z-index: 80 !important;
+}
+.u-bolt-z-index--content,
+.u-bolt-z-index-content {
+  z-index: 60 !important;
+}
+.u-bolt-z-index--contentBottom,
+.u-bolt-z-index-contentBottom {
+  z-index: 40 !important;
+}
+.u-bolt-z-index--backgroundTop,
+.u-bolt-z-index-backgroundTop {
+  z-index: 20 !important;
+}
+.u-bolt-z-index--background,
+.u-bolt-z-index-background {
+  z-index: 0 !important;
+}
+.u-bolt-z-index--backgroundBottom,
+.u-bolt-z-index-backgroundBottom {
+  z-index: -20 !important;
+}
+.u-bolt-float-right {
+  float: right !important;
+}
+.u-bolt-float-left {
+  float: left !important;
+}
+.u-bolt-float-none {
+  float: none !important;
+}
 @media (min-width: 20em) {
   .u-bolt-pull-0\\\\/12\\\\@xxsmall,
   .u-bolt-push-0\\\\/12\\\\@xxsmall {
@@ -32511,6 +33213,15 @@ bolt-inline-list:not(:last-child) {
   }
   .u-bolt-width-12\\\\/12\\\\@xxsmall {
     width: 100% !important;
+  }
+  .u-bolt-float-left\\\\@xxsmall {
+    float: left !important;
+  }
+  .u-bolt-float-right\\\\@xxsmall {
+    float: right !important;
+  }
+  .u-bolt-float-none\\\\@xxsmall {
+    float: none !important;
   }
 }
 @media (min-width: 25em) {
@@ -32824,6 +33535,15 @@ bolt-inline-list:not(:last-child) {
   .u-bolt-width-12\\\\/12\\\\@xsmall {
     width: 100% !important;
   }
+  .u-bolt-float-left\\\\@xsmall {
+    float: left !important;
+  }
+  .u-bolt-float-right\\\\@xsmall {
+    float: right !important;
+  }
+  .u-bolt-float-none\\\\@xsmall {
+    float: none !important;
+  }
 }
 @media (min-width: 37.5em) {
   .u-bolt-pull-0\\\\/12\\\\@small,
@@ -33135,6 +33855,15 @@ bolt-inline-list:not(:last-child) {
   }
   .u-bolt-width-12\\\\/12\\\\@small {
     width: 100% !important;
+  }
+  .u-bolt-float-left\\\\@small {
+    float: left !important;
+  }
+  .u-bolt-float-right\\\\@small {
+    float: right !important;
+  }
+  .u-bolt-float-none\\\\@small {
+    float: none !important;
   }
 }
 @media (min-width: 50em) {
@@ -33448,6 +34177,15 @@ bolt-inline-list:not(:last-child) {
   .u-bolt-width-12\\\\/12\\\\@medium {
     width: 100% !important;
   }
+  .u-bolt-float-left\\\\@medium {
+    float: left !important;
+  }
+  .u-bolt-float-right\\\\@medium {
+    float: right !important;
+  }
+  .u-bolt-float-none\\\\@medium {
+    float: none !important;
+  }
 }
 @media (min-width: 62.5em) {
   .u-bolt-pull-0\\\\/12\\\\@large,
@@ -33759,6 +34497,15 @@ bolt-inline-list:not(:last-child) {
   }
   .u-bolt-width-12\\\\/12\\\\@large {
     width: 100% !important;
+  }
+  .u-bolt-float-left\\\\@large {
+    float: left !important;
+  }
+  .u-bolt-float-right\\\\@large {
+    float: right !important;
+  }
+  .u-bolt-float-none\\\\@large {
+    float: none !important;
   }
 }
 @media (min-width: 75em) {
@@ -34072,6 +34819,15 @@ bolt-inline-list:not(:last-child) {
   .u-bolt-width-12\\\\/12\\\\@xlarge {
     width: 100% !important;
   }
+  .u-bolt-float-left\\\\@xlarge {
+    float: left !important;
+  }
+  .u-bolt-float-right\\\\@xlarge {
+    float: right !important;
+  }
+  .u-bolt-float-none\\\\@xlarge {
+    float: none !important;
+  }
 }
 @media (min-width: 87.5em) {
   .u-bolt-pull-0\\\\/12\\\\@xxlarge,
@@ -34383,6 +35139,15 @@ bolt-inline-list:not(:last-child) {
   }
   .u-bolt-width-12\\\\/12\\\\@xxlarge {
     width: 100% !important;
+  }
+  .u-bolt-float-left\\\\@xxlarge {
+    float: left !important;
+  }
+  .u-bolt-float-right\\\\@xxlarge {
+    float: right !important;
+  }
+  .u-bolt-float-none\\\\@xxlarge {
+    float: none !important;
   }
 }
 @media (min-width: 100em) {
@@ -34696,6 +35461,15 @@ bolt-inline-list:not(:last-child) {
   .u-bolt-width-12\\\\/12\\\\@xxxlarge {
     width: 100% !important;
   }
+  .u-bolt-float-left\\\\@xxxlarge {
+    float: left !important;
+  }
+  .u-bolt-float-right\\\\@xxxlarge {
+    float: right !important;
+  }
+  .u-bolt-float-none\\\\@xxxlarge {
+    float: none !important;
+  }
 }
 @media (min-width: 120em) {
   .u-bolt-pull-0\\\\/12\\\\@xxxxlarge,
@@ -35008,78 +35782,64 @@ bolt-inline-list:not(:last-child) {
   .u-bolt-width-12\\\\/12\\\\@xxxxlarge {
     width: 100% !important;
   }
-}
-.u-bolt-max-width-none {
-  max-width: none !important;
-}
-.u-bolt-z-index--fab,
-.u-bolt-z-index-fab {
-  z-index: 300 !important;
-}
-.u-bolt-z-index--modal,
-.u-bolt-z-index-modal {
-  z-index: 200 !important;
-}
-.u-bolt-z-index--modalBG,
-.u-bolt-z-index-modalBG {
-  z-index: 180 !important;
-}
-.u-bolt-z-index--navFixed,
-.u-bolt-z-index-navFixed {
-  z-index: 160 !important;
-}
-.u-bolt-z-index--tooltip,
-.u-bolt-z-index-tooltip {
-  z-index: 140 !important;
-}
-.u-bolt-z-index--popover,
-.u-bolt-z-index-popover {
-  z-index: 120 !important;
-}
-.u-bolt-z-index--nav,
-.u-bolt-z-index-nav {
-  z-index: 100 !important;
-}
-.u-bolt-z-index--contentTop,
-.u-bolt-z-index-contentTop {
-  z-index: 80 !important;
-}
-.u-bolt-z-index--content,
-.u-bolt-z-index-content {
-  z-index: 60 !important;
-}
-.u-bolt-z-index--contentBottom,
-.u-bolt-z-index-contentBottom {
-  z-index: 40 !important;
-}
-.u-bolt-z-index--backgroundTop,
-.u-bolt-z-index-backgroundTop {
-  z-index: 20 !important;
-}
-.u-bolt-z-index--background,
-.u-bolt-z-index-background {
-  z-index: 0 !important;
-}
-.u-bolt-z-index--backgroundBottom,
-.u-bolt-z-index-backgroundBottom {
-  z-index: -20 !important;
-}
-.u-bolt-float-right {
-  float: right !important;
-}
-.u-bolt-float-left {
-  float: left !important;
+  .u-bolt-float-left\\\\@xxxxlarge {
+    float: left !important;
+  }
+  .u-bolt-float-right\\\\@xxxxlarge {
+    float: right !important;
+  }
+  .u-bolt-float-none\\\\@xxxxlarge {
+    float: none !important;
+  }
 }
 .u-bolt-line-length-optimal {
   max-width: 80ch;
 }
+.u-bolt-line-length-xsmall {
+  max-width: 18.75rem;
+}
+.u-bolt-line-length-small {
+  max-width: 25rem;
+}
+.u-bolt-line-length-medium {
+  max-width: 31.25rem;
+}
+.u-bolt-line-length-large {
+  max-width: 37.5rem;
+  max-width: 43.75rem;
+}
+.u-bolt-line-length-xlarge {
+  max-width: 50rem;
+}
+.u-bolt-align-baseline {
+  vertical-align: baseline !important;
+}
+.u-bolt-align-top {
+  vertical-align: top !important;
+}
+.u-bolt-align-middle {
+  vertical-align: middle !important;
+}
+.u-bolt-align-bottom {
+  vertical-align: bottom !important;
+}
+.u-bolt-align-text-top {
+  vertical-align: text-top !important;
+}
+.u-bolt-align-text-bottom {
+  vertical-align: text-bottom !important;
+}
 bolt-icon {
-  display: inline-block;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
   transform: translateZ(0);
-  width: 1em;
-  height: 1em;
   vertical-align: middle;
   transition: inherit;
+}
+bolt-icon:not([size]) {
+  width: 1em;
+  height: 1em;
 }
 bolt-icon:not(:resolved) {
   height: 0;
@@ -35090,7 +35850,9 @@ bolt-icon:not(:resolved) {
   vertical-align: middle;
 }
 .c-bolt-icon {
+  display: block;
   position: relative;
+  height: 100%;
 }
 .c-bolt-icon__icon {
   display: block;
@@ -35102,60 +35864,51 @@ bolt-icon:not(:resolved) {
   color: var(--bolt-theme-icon);
   pointer-events: none;
 }
-.c-bolt-icon--small > .c-bolt-icon__icon,
-bolt-icon[size=\\"small\\"] {
+.c-bolt-icon__icon--small {
   width: 16px;
   height: 16px;
 }
-.c-bolt-icon--medium > .c-bolt-icon__icon,
-bolt-icon[size=\\"medium\\"] {
+.c-bolt-icon__icon--medium {
   width: 24px;
   height: 24px;
 }
-.c-bolt-icon--large > .c-bolt-icon__icon,
-bolt-icon[size=\\"large\\"] {
+.c-bolt-icon__icon--large {
   width: 32px;
   height: 32px;
 }
-.c-bolt-icon--xlarge > .c-bolt-icon__icon,
-bolt-icon[size=\\"xlarge\\"] {
-  width: 64px;
-  height: 64px;
-}
-.c-bolt-icon--xlarge > .c-bolt-icon__icon {
-  padding: 16px;
+.c-bolt-icon__icon--xlarge {
+  width: 38px;
+  height: 38px;
 }
 .c-bolt-icon--small > .c-bolt-icon__icon {
   stroke: currentColor;
   stroke-width: 1px;
 }
+.c-bolt-icon--small.has-background {
+  padding: 6px;
+}
+.c-bolt-icon--medium.has-background {
+  padding: 8px;
+}
+.c-bolt-icon--large.has-background {
+  padding: 12px;
+}
+.c-bolt-icon--xlarge.has-background {
+  padding: 13px;
+}
+.c-bolt-icon__background {
+  fill: currentColor;
+  fill: var(--bolt-theme-text, currentColor);
+}
 .c-bolt-icon__background-shape {
   opacity: 0.1;
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate3d(-50%, -50%, 0);
+  top: 0;
+  left: 0;
   z-index: 40;
   width: 100%;
-  height: 0;
-  padding-bottom: 100%;
+  height: 100%;
   background-color: currentColor;
-}
-.c-bolt-icon__background-shape--circle {
-  border-radius: 50%;
-}
-.c-bolt-icon__background-shape--square {
-  border-radius: 3px;
-}
-.c-bolt-icon--teal {
-  color: #fff;
-  --bolt-theme-icon: #fff;
-  --bolt-theme-icon-background: #099;
-  --bolt-theme-icon-background-opacity: 1;
-}
-.c-bolt-icon--teal .c-bolt-icon__background-shape {
-  opacity: 1;
-  background-color: #099;
 }
 @supports (--css: variables) {
   .c-bolt-icon__background-shape {
@@ -35165,36 +35918,507 @@ bolt-icon[size=\\"xlarge\\"] {
       var(--bolt-theme-primary-text-default, currentColor)
     );
   }
-  .c-bolt-icon--teal {
-    color: var(--bolt-theme-icon);
-  }
-  .c-bolt-icon--teal .c-bolt-icon__background-shape {
-    opacity: var(--bolt-theme-icon-background-opacity);
-    background-color: var(--bolt-theme-icon-background);
-  }
 }
-.c-bolt-icon--blue {
+.c-bolt-icon__background-shape--circle {
+  border-radius: 50%;
+}
+.c-bolt-icon__background-shape--square {
+  border-radius: 3px;
+  border-radius: var(--bolt-theme-icon-radius, 3px);
+}
+.c-bolt-icon__background-shape--outline {
+  opacity: 0.8;
+  border-radius: 50%;
+  background-color: transparent;
+  border: 2px solid currentColor;
+}
+.t-bolt-light .c-bolt-icon--blue,
+.t-bolt-xlight .c-bolt-icon--blue,
+:root .c-bolt-icon--blue {
   color: #0074b3;
   --bolt-theme-icon: #0074b3;
+  filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.2));
+}
+.t-bolt-light .c-bolt-icon--blue.has-background:not(.has-outline-background),
+.t-bolt-xlight .c-bolt-icon--blue.has-background:not(.has-outline-background),
+:root .c-bolt-icon--blue.has-background:not(.has-outline-background) {
+  color: #fff;
+  --bolt-theme-icon: #fff;
+  --bolt-theme-icon-background: #0074b3;
+  --bolt-theme-icon-background-opacity: 1;
+}
+.t-bolt-light
+  .c-bolt-icon--blue.has-background:not(.has-outline-background)
+  .c-bolt-icon__background-shape,
+.t-bolt-xlight
+  .c-bolt-icon--blue.has-background:not(.has-outline-background)
+  .c-bolt-icon__background-shape,
+:root
+  .c-bolt-icon--blue.has-background:not(.has-outline-background)
+  .c-bolt-icon__background-shape {
+  opacity: 1;
+  border: 1px solid rgba(92, 93, 102, 0.5);
+  background-color: #0074b3;
+}
+.t-bolt-light .c-bolt-icon--gray,
+.t-bolt-xlight .c-bolt-icon--gray,
+:root .c-bolt-icon--gray {
+  color: #5c5d66;
+  --bolt-theme-icon: #5c5d66;
+  filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.2));
+}
+.t-bolt-light .c-bolt-icon--gray.has-background:not(.has-outline-background),
+.t-bolt-xlight .c-bolt-icon--gray.has-background:not(.has-outline-background),
+:root .c-bolt-icon--gray.has-background:not(.has-outline-background) {
+  color: #fff;
+  --bolt-theme-icon: #fff;
+  --bolt-theme-icon-background: #5c5d66;
+  --bolt-theme-icon-background-opacity: 1;
+}
+.t-bolt-light
+  .c-bolt-icon--gray.has-background:not(.has-outline-background)
+  .c-bolt-icon__background-shape,
+.t-bolt-xlight
+  .c-bolt-icon--gray.has-background:not(.has-outline-background)
+  .c-bolt-icon__background-shape,
+:root
+  .c-bolt-icon--gray.has-background:not(.has-outline-background)
+  .c-bolt-icon__background-shape {
+  opacity: 1;
+  border: 1px solid rgba(92, 93, 102, 0.5);
+  background-color: #5c5d66;
+}
+.t-bolt-light .c-bolt-icon--indigo,
+.t-bolt-xlight .c-bolt-icon--indigo,
+:root .c-bolt-icon--indigo {
+  color: #545da6;
+  --bolt-theme-icon: #545da6;
+  filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.2));
+}
+.t-bolt-light .c-bolt-icon--indigo.has-background:not(.has-outline-background),
+.t-bolt-xlight .c-bolt-icon--indigo.has-background:not(.has-outline-background),
+:root .c-bolt-icon--indigo.has-background:not(.has-outline-background) {
+  color: #fff;
+  --bolt-theme-icon: #fff;
+  --bolt-theme-icon-background: #545da6;
+  --bolt-theme-icon-background-opacity: 1;
+}
+.t-bolt-light
+  .c-bolt-icon--indigo.has-background:not(.has-outline-background)
+  .c-bolt-icon__background-shape,
+.t-bolt-xlight
+  .c-bolt-icon--indigo.has-background:not(.has-outline-background)
+  .c-bolt-icon__background-shape,
+:root
+  .c-bolt-icon--indigo.has-background:not(.has-outline-background)
+  .c-bolt-icon__background-shape {
+  opacity: 1;
+  border: 1px solid rgba(92, 93, 102, 0.5);
+  background-color: #545da6;
+}
+.t-bolt-light .c-bolt-icon--orange,
+.t-bolt-xlight .c-bolt-icon--orange,
+:root .c-bolt-icon--orange {
+  color: #e84b17;
+  --bolt-theme-icon: #e84b17;
+  filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.2));
+}
+.t-bolt-light .c-bolt-icon--orange.has-background:not(.has-outline-background),
+.t-bolt-xlight .c-bolt-icon--orange.has-background:not(.has-outline-background),
+:root .c-bolt-icon--orange.has-background:not(.has-outline-background) {
+  color: #fff;
+  --bolt-theme-icon: #fff;
+  --bolt-theme-icon-background: #e84b17;
+  --bolt-theme-icon-background-opacity: 1;
+}
+.t-bolt-light
+  .c-bolt-icon--orange.has-background:not(.has-outline-background)
+  .c-bolt-icon__background-shape,
+.t-bolt-xlight
+  .c-bolt-icon--orange.has-background:not(.has-outline-background)
+  .c-bolt-icon__background-shape,
+:root
+  .c-bolt-icon--orange.has-background:not(.has-outline-background)
+  .c-bolt-icon__background-shape {
+  opacity: 1;
+  border: 1px solid rgba(92, 93, 102, 0.5);
+  background-color: #e84b17;
+}
+.t-bolt-light .c-bolt-icon--teal,
+.t-bolt-xlight .c-bolt-icon--teal,
+:root .c-bolt-icon--teal {
+  color: #099;
+  --bolt-theme-icon: #099;
+  filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.2));
+}
+.t-bolt-light .c-bolt-icon--teal.has-background:not(.has-outline-background),
+.t-bolt-xlight .c-bolt-icon--teal.has-background:not(.has-outline-background),
+:root .c-bolt-icon--teal.has-background:not(.has-outline-background) {
+  color: #fff;
+  --bolt-theme-icon: #fff;
+  --bolt-theme-icon-background: #099;
+  --bolt-theme-icon-background-opacity: 1;
+}
+.t-bolt-light
+  .c-bolt-icon--teal.has-background:not(.has-outline-background)
+  .c-bolt-icon__background-shape,
+.t-bolt-xlight
+  .c-bolt-icon--teal.has-background:not(.has-outline-background)
+  .c-bolt-icon__background-shape,
+:root
+  .c-bolt-icon--teal.has-background:not(.has-outline-background)
+  .c-bolt-icon__background-shape {
+  opacity: 1;
+  border: 1px solid rgba(92, 93, 102, 0.5);
+  background-color: #099;
+}
+.t-bolt-light .c-bolt-icon--white,
+.t-bolt-xlight .c-bolt-icon--white,
+:root .c-bolt-icon--white {
+  color: #5c5d66;
+  --bolt-theme-icon: #5c5d66;
+  filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.2));
+}
+.t-bolt-light .c-bolt-icon--white.has-background:not(.has-outline-background),
+.t-bolt-xlight .c-bolt-icon--white.has-background:not(.has-outline-background),
+:root .c-bolt-icon--white.has-background:not(.has-outline-background) {
+  color: #151619;
+  --bolt-theme-icon: #151619;
   --bolt-theme-icon-background: #fff;
   --bolt-theme-icon-background-opacity: 1;
 }
-.c-bolt-icon--blue .c-bolt-icon__background-shape {
+.t-bolt-light
+  .c-bolt-icon--white.has-background:not(.has-outline-background)
+  .c-bolt-icon__background-shape,
+.t-bolt-xlight
+  .c-bolt-icon--white.has-background:not(.has-outline-background)
+  .c-bolt-icon__background-shape,
+:root
+  .c-bolt-icon--white.has-background:not(.has-outline-background)
+  .c-bolt-icon__background-shape {
   opacity: 1;
+  border: 1px solid rgba(92, 93, 102, 0.5);
   background-color: #fff;
 }
-@supports (--css: variables) {
-  .c-bolt-icon--blue {
-    color: var(--bolt-theme-icon);
-  }
-  .c-bolt-icon--blue .c-bolt-icon__background-shape {
-    opacity: var(--bolt-theme-icon-background-opacity);
-    background-color: var(--bolt-theme-icon-background);
-  }
+.t-bolt-light .c-bolt-icon--yellow,
+.t-bolt-xlight .c-bolt-icon--yellow,
+:root .c-bolt-icon--yellow {
+  color: #e6a400;
+  --bolt-theme-icon: #e6a400;
+  filter: drop-shadow(0 0 1px rgba(21, 22, 25, 0.2));
 }
-.c-bolt-icon__background {
+.t-bolt-light .c-bolt-icon--yellow.has-background:not(.has-outline-background),
+.t-bolt-xlight .c-bolt-icon--yellow.has-background:not(.has-outline-background),
+:root .c-bolt-icon--yellow.has-background:not(.has-outline-background) {
+  color: #151619;
+  --bolt-theme-icon: #151619;
+  --bolt-theme-icon-background: #ffcc4d;
+  --bolt-theme-icon-background-opacity: 1;
+}
+.t-bolt-light
+  .c-bolt-icon--yellow.has-background:not(.has-outline-background)
+  .c-bolt-icon__background-shape,
+.t-bolt-xlight
+  .c-bolt-icon--yellow.has-background:not(.has-outline-background)
+  .c-bolt-icon__background-shape,
+:root
+  .c-bolt-icon--yellow.has-background:not(.has-outline-background)
+  .c-bolt-icon__background-shape {
+  opacity: 1;
+  border: 1px solid rgba(92, 93, 102, 0.5);
+  background-color: #ffcc4d;
+}
+.t-bolt-light .c-bolt-icon--green,
+.t-bolt-xlight .c-bolt-icon--green,
+:root .c-bolt-icon--green {
+  color: #209952;
+  --bolt-theme-icon: #209952;
+  filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.2));
+}
+.t-bolt-light .c-bolt-icon--green.has-background:not(.has-outline-background),
+.t-bolt-xlight .c-bolt-icon--green.has-background:not(.has-outline-background),
+:root .c-bolt-icon--green.has-background:not(.has-outline-background) {
+  color: #fff;
+  --bolt-theme-icon: #fff;
+  --bolt-theme-icon-background: #209952;
+  --bolt-theme-icon-background-opacity: 1;
+}
+.t-bolt-light
+  .c-bolt-icon--green.has-background:not(.has-outline-background)
+  .c-bolt-icon__background-shape,
+.t-bolt-xlight
+  .c-bolt-icon--green.has-background:not(.has-outline-background)
+  .c-bolt-icon__background-shape,
+:root
+  .c-bolt-icon--green.has-background:not(.has-outline-background)
+  .c-bolt-icon__background-shape {
+  opacity: 1;
+  border: 1px solid rgba(92, 93, 102, 0.5);
+  background-color: #209952;
+}
+.t-bolt-light .c-bolt-icon--pink,
+.t-bolt-xlight .c-bolt-icon--pink,
+:root .c-bolt-icon--pink {
+  color: #a65389;
+  --bolt-theme-icon: #a65389;
+  filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.2));
+}
+.t-bolt-light .c-bolt-icon--pink.has-background:not(.has-outline-background),
+.t-bolt-xlight .c-bolt-icon--pink.has-background:not(.has-outline-background),
+:root .c-bolt-icon--pink.has-background:not(.has-outline-background) {
+  color: #fff;
+  --bolt-theme-icon: #fff;
+  --bolt-theme-icon-background: #a65389;
+  --bolt-theme-icon-background-opacity: 1;
+}
+.t-bolt-light
+  .c-bolt-icon--pink.has-background:not(.has-outline-background)
+  .c-bolt-icon__background-shape,
+.t-bolt-xlight
+  .c-bolt-icon--pink.has-background:not(.has-outline-background)
+  .c-bolt-icon__background-shape,
+:root
+  .c-bolt-icon--pink.has-background:not(.has-outline-background)
+  .c-bolt-icon__background-shape {
+  opacity: 1;
+  border: 1px solid rgba(92, 93, 102, 0.5);
+  background-color: #a65389;
+}
+.t-bolt-dark .c-bolt-icon--blue,
+.t-bolt-xdark .c-bolt-icon--blue {
+  color: #0095e6;
+  --bolt-theme-icon: #0095e6;
+  filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.2));
+}
+.t-bolt-dark .c-bolt-icon--blue.has-background:not(.has-outline-background),
+.t-bolt-xdark .c-bolt-icon--blue.has-background:not(.has-outline-background) {
+  color: #fff;
+  --bolt-theme-icon: #fff;
+  --bolt-theme-icon-background: #0074b3;
+  --bolt-theme-icon-background-opacity: 1;
+}
+.t-bolt-dark
+  .c-bolt-icon--blue.has-background:not(.has-outline-background)
+  .c-bolt-icon__background-shape,
+.t-bolt-xdark
+  .c-bolt-icon--blue.has-background:not(.has-outline-background)
+  .c-bolt-icon__background-shape {
+  opacity: 1;
+  border: 1px solid rgba(92, 93, 102, 0.5);
+  background-color: #0074b3;
+}
+.t-bolt-dark .c-bolt-icon--gray,
+.t-bolt-xdark .c-bolt-icon--gray {
+  color: #8d8e99;
+  --bolt-theme-icon: #8d8e99;
+  filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.2));
+}
+.t-bolt-dark .c-bolt-icon--gray.has-background:not(.has-outline-background),
+.t-bolt-xdark .c-bolt-icon--gray.has-background:not(.has-outline-background) {
+  color: #fff;
+  --bolt-theme-icon: #fff;
+  --bolt-theme-icon-background: #5c5d66;
+  --bolt-theme-icon-background-opacity: 1;
+}
+.t-bolt-dark
+  .c-bolt-icon--gray.has-background:not(.has-outline-background)
+  .c-bolt-icon__background-shape,
+.t-bolt-xdark
+  .c-bolt-icon--gray.has-background:not(.has-outline-background)
+  .c-bolt-icon__background-shape {
+  opacity: 1;
+  border: 1px solid rgba(92, 93, 102, 0.5);
+  background-color: #5c5d66;
+}
+.t-bolt-dark .c-bolt-icon--indigo,
+.t-bolt-xdark .c-bolt-icon--indigo {
+  color: #abb3f2;
+  --bolt-theme-icon: #abb3f2;
+  filter: drop-shadow(0 0 1px rgba(21, 22, 25, 0.2));
+}
+.t-bolt-dark .c-bolt-icon--indigo.has-background:not(.has-outline-background),
+.t-bolt-xdark .c-bolt-icon--indigo.has-background:not(.has-outline-background) {
+  color: #fff;
+  --bolt-theme-icon: #fff;
+  --bolt-theme-icon-background: #545da6;
+  --bolt-theme-icon-background-opacity: 1;
+}
+.t-bolt-dark
+  .c-bolt-icon--indigo.has-background:not(.has-outline-background)
+  .c-bolt-icon__background-shape,
+.t-bolt-xdark
+  .c-bolt-icon--indigo.has-background:not(.has-outline-background)
+  .c-bolt-icon__background-shape {
+  opacity: 1;
+  border: 1px solid rgba(92, 93, 102, 0.5);
+  background-color: #545da6;
+}
+.t-bolt-dark .c-bolt-icon--orange,
+.t-bolt-xdark .c-bolt-icon--orange {
+  color: #ff8c66;
+  --bolt-theme-icon: #ff8c66;
+  filter: drop-shadow(0 0 1px rgba(21, 22, 25, 0.2));
+}
+.t-bolt-dark .c-bolt-icon--orange.has-background:not(.has-outline-background),
+.t-bolt-xdark .c-bolt-icon--orange.has-background:not(.has-outline-background) {
+  color: #fff;
+  --bolt-theme-icon: #fff;
+  --bolt-theme-icon-background: #e84b17;
+  --bolt-theme-icon-background-opacity: 1;
+}
+.t-bolt-dark
+  .c-bolt-icon--orange.has-background:not(.has-outline-background)
+  .c-bolt-icon__background-shape,
+.t-bolt-xdark
+  .c-bolt-icon--orange.has-background:not(.has-outline-background)
+  .c-bolt-icon__background-shape {
+  opacity: 1;
+  border: 1px solid rgba(92, 93, 102, 0.5);
+  background-color: #e84b17;
+}
+.t-bolt-dark .c-bolt-icon--teal,
+.t-bolt-xdark .c-bolt-icon--teal {
+  color: #7acdcd;
+  --bolt-theme-icon: #7acdcd;
+  filter: drop-shadow(0 0 1px rgba(21, 22, 25, 0.2));
+}
+.t-bolt-dark .c-bolt-icon--teal.has-background:not(.has-outline-background),
+.t-bolt-xdark .c-bolt-icon--teal.has-background:not(.has-outline-background) {
+  color: #fff;
+  --bolt-theme-icon: #fff;
+  --bolt-theme-icon-background: #099;
+  --bolt-theme-icon-background-opacity: 1;
+}
+.t-bolt-dark
+  .c-bolt-icon--teal.has-background:not(.has-outline-background)
+  .c-bolt-icon__background-shape,
+.t-bolt-xdark
+  .c-bolt-icon--teal.has-background:not(.has-outline-background)
+  .c-bolt-icon__background-shape {
+  opacity: 1;
+  border: 1px solid rgba(92, 93, 102, 0.5);
+  background-color: #099;
+}
+.t-bolt-dark .c-bolt-icon--white,
+.t-bolt-xdark .c-bolt-icon--white {
+  color: #fff;
+  --bolt-theme-icon: #fff;
+  filter: drop-shadow(0 0 1px rgba(21, 22, 25, 0.2));
+}
+.t-bolt-dark .c-bolt-icon--white.has-background:not(.has-outline-background),
+.t-bolt-xdark .c-bolt-icon--white.has-background:not(.has-outline-background) {
+  color: #151619;
+  --bolt-theme-icon: #151619;
+  --bolt-theme-icon-background: #fff;
+  --bolt-theme-icon-background-opacity: 1;
+}
+.t-bolt-dark
+  .c-bolt-icon--white.has-background:not(.has-outline-background)
+  .c-bolt-icon__background-shape,
+.t-bolt-xdark
+  .c-bolt-icon--white.has-background:not(.has-outline-background)
+  .c-bolt-icon__background-shape {
+  opacity: 1;
+  border: 1px solid rgba(92, 93, 102, 0.5);
+  background-color: #fff;
+}
+.t-bolt-dark .c-bolt-icon--yellow,
+.t-bolt-xdark .c-bolt-icon--yellow {
+  color: #ffcc4d;
+  --bolt-theme-icon: #ffcc4d;
+  filter: drop-shadow(0 0 1px rgba(21, 22, 25, 0.2));
+}
+.t-bolt-dark .c-bolt-icon--yellow.has-background:not(.has-outline-background),
+.t-bolt-xdark .c-bolt-icon--yellow.has-background:not(.has-outline-background) {
+  color: #151619;
+  --bolt-theme-icon: #151619;
+  --bolt-theme-icon-background: #ffcc4d;
+  --bolt-theme-icon-background-opacity: 1;
+}
+.t-bolt-dark
+  .c-bolt-icon--yellow.has-background:not(.has-outline-background)
+  .c-bolt-icon__background-shape,
+.t-bolt-xdark
+  .c-bolt-icon--yellow.has-background:not(.has-outline-background)
+  .c-bolt-icon__background-shape {
+  opacity: 1;
+  border: 1px solid rgba(92, 93, 102, 0.5);
+  background-color: #ffcc4d;
+}
+.t-bolt-dark .c-bolt-icon--green,
+.t-bolt-xdark .c-bolt-icon--green {
+  color: #219953;
+  --bolt-theme-icon: #219953;
+  filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.2));
+}
+.t-bolt-dark .c-bolt-icon--green.has-background:not(.has-outline-background),
+.t-bolt-xdark .c-bolt-icon--green.has-background:not(.has-outline-background) {
+  color: #fff;
+  --bolt-theme-icon: #fff;
+  --bolt-theme-icon-background: #209952;
+  --bolt-theme-icon-background-opacity: 1;
+}
+.t-bolt-dark
+  .c-bolt-icon--green.has-background:not(.has-outline-background)
+  .c-bolt-icon__background-shape,
+.t-bolt-xdark
+  .c-bolt-icon--green.has-background:not(.has-outline-background)
+  .c-bolt-icon__background-shape {
+  opacity: 1;
+  border: 1px solid rgba(92, 93, 102, 0.5);
+  background-color: #209952;
+}
+.t-bolt-dark .c-bolt-icon--pink,
+.t-bolt-xdark .c-bolt-icon--pink {
+  color: #b974a1;
+  --bolt-theme-icon: #b974a1;
+  filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.2));
+}
+.t-bolt-dark .c-bolt-icon--pink.has-background:not(.has-outline-background),
+.t-bolt-xdark .c-bolt-icon--pink.has-background:not(.has-outline-background) {
+  color: #fff;
+  --bolt-theme-icon: #fff;
+  --bolt-theme-icon-background: #a65389;
+  --bolt-theme-icon-background-opacity: 1;
+}
+.t-bolt-dark
+  .c-bolt-icon--pink.has-background:not(.has-outline-background)
+  .c-bolt-icon__background-shape,
+.t-bolt-xdark
+  .c-bolt-icon--pink.has-background:not(.has-outline-background)
+  .c-bolt-icon__background-shape {
+  opacity: 1;
+  border: 1px solid rgba(92, 93, 102, 0.5);
+  background-color: #a65389;
+}
+svg [fill=\\"var(--bolt-icon-primary-color)\\"] {
   fill: currentColor;
-  fill: var(--bolt-theme-text, currentColor);
+}
+svg [stroke=\\"var(--bolt-icon-primary-color)\\"] {
+  stroke: currentColor;
+}
+@supports (--var: foo) {
+  svg [fill=\\"var(--bolt-icon-primary-color)\\"] {
+    fill: var(--bolt-icon-primary-color, var(--bolt-theme-icon, currentColor));
+  }
+  svg [stroke=\\"var(--bolt-icon-primary-color)\\"] {
+    stroke: var(
+      --bolt-icon-primary-color,
+      var(--bolt-theme-icon, currentColor)
+    );
+  }
+  svg [fill=\\"var(--bolt-icon-secondary-color)\\"] {
+    fill: var(
+      --bolt-icon-secondary-color,
+      rgba(var(--bolt-theme-background), 1)
+    );
+  }
+  svg [stroke=\\"var(--bolt-icon-secondary-color)\\"] {
+    stroke: var(
+      --bolt-icon-secondary-color,
+      rgba(var(--bolt-theme-background), 1)
+    );
+  }
 }
 bolt-figure {
   display: block;

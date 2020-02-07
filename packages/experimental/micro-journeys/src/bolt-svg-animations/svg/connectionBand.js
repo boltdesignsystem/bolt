@@ -3,20 +3,19 @@ import { svg } from 'lit-html';
 
 export const connectionBand = ({ direction, theme }) => {
   const authoredStyle = html`
-    @keyframes connectionArrowScroll { 0% { transform:
-    translate(82.3648681640625px, 0px) translate(-82.3648681640625px, 0px)
-    translate(0px, 0px); } 83.33% { transform: translate(82.3648681640625px,
-    0px) translate(-82.3648681640625px, 0px) translate(297px, 0px); } 100% {
-    transform: translate(82.3648681640625px, 0px) translate(-82.3648681640625px,
-    0px) translate(297px, 0px); } } #animatedConnectionBand { transform:
+    @keyframes connectionArrowScroll { 0% { transform: translate(80px, 0px)
+    translate(-80px, 0px) translate(0px, 0px); } 83.33% { transform:
+    translate(80px, 0px) translate(-80px, 0px) translate(423px, 0px); } 100% {
+    transform: translate(80px, 0px) translate(-80px, 0px) translate(423px, 0px);
+    } } #animatedConnectionBand--${theme}--${direction} { transform:
     ${direction === 'left' ? 'scaleX(-1)' : 'scaleX(1)'}; }
-    #animatedConnectionBand * { animation-duration: 1s;
+    #animatedConnectionBand--${theme}--${direction} * { animation-duration: 1s;
     animation-iteration-count: infinite; animation-timing-function:
     cubic-bezier(0, 0, 1, 1); } #connectionGradientBG { fill:
-    url(#connectionGradient); } #connectionDirectionAnchor { transform:
-    translate(-140px) translateZ(0); } #connectionArrows { animation-fill-mode:
-    backwards; animation-name: connectionArrowScroll; animation-timing-function:
-    cubic-bezier(0, 0, 1, 1); }
+    url(#connectionGradient--${theme}); } #connectionDirectionAnchor {
+    transform: translate(-48px) translateZ(0); } #connectionArrows {
+    animation-fill-mode: backwards; animation-name: connectionArrowScroll;
+    animation-timing-function: cubic-bezier(0, 0, 1, 1); }
   `;
   const gradientColors =
     theme === 'dark'
@@ -28,21 +27,42 @@ export const connectionBand = ({ direction, theme }) => {
       <stop stop-color="#887ACC"  offset="100%"/>`;
 
   return svg`
-    <svg width="100%" viewBox="0 0 249 58" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="animatedConnectionBand">
+        <svg width="100%" viewBox="0 0 375 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="animatedConnectionBand--${theme}--${direction}">
       <style>
       ${authoredStyle}
       </style>
       <defs>
-        <linearGradient x1="3.0640354%" y1="50%" x2="100%" y2="50%" id="connectionGradient">
+        <linearGradient x1="3.0640354%" y1="50%" x2="100%" y2="50%" id="connectionGradient--${theme}">
          ${gradientColors}
         </linearGradient>
       </defs>
-      <polygon id="connectionGradientBG" points="0 57.4358974 276.459459 57.4358974 276.459459 0 0 0"/>
+      <polygon id="connectionGradientBG" points="0 80, 375 80, 375 0, 0 0"/>
       <g id="connectionDirectionAnchor">
         <g id="connectionArrows" fill-rule="evenodd">
-          <polygon id="el_aJxwcKruLg" fill="rgba(255,255,255, .3)" points="82.3648649 0 102.092324 28.7186667 82.3648649 57.4358974 91.2867703 57.4358974 111.013514 28.7186667 91.2867703 0"/>
-          <polygon id="el_2VvY9fEACt" fill="rgba(255,255,255, .55)" points="99.5540541 0 119.281514 28.7186667 99.5540541 57.4358974 108.475959 57.4358974 128.202703 28.7186667 108.475959 0"/>
-          <polygon id="el_U5FIkJzG7h" fill="rgba(255,255,255, 1)" points="116.743243 0 136.470703 28.7186667 116.743243 57.4358974 125.665149 57.4358974 145.391892 28.7186667 125.665149 0"/>
+          <polygon id="el_aJxwcKruLg" fill="rgba(255,255,255, .3)" points="
+            0 1,
+            30 40,
+            0 79,
+            12 79,
+            42 40,
+            12 1"
+          />
+          <polygon id="el_2VvY9fEACt" fill="rgba(255,255,255, .55)" points="
+              24 1,
+              54 40,
+              24 79,
+              36 79,
+              66 40,
+              36 1"
+          />
+          <polygon id="el_U5FIkJzG7h" fill="rgba(255,255,255, 1)" points="
+              48 1,
+              78 40,
+              48 79,
+              60 79,
+              90 40,
+              60 1"
+          />
         </g>
       </g>
     </svg>`;

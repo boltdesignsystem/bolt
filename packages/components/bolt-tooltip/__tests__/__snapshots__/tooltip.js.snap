@@ -1,89 +1,429 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`<bolt-tooltip> Component Advanced usage: adding tooltip to button 1`] = `
+<bolt-tooltip uuid="12345">
+  <replace-with-children class="c-bolt-tooltip c-bolt-tooltip--top  ">
+    <replace-with-children role="button"
+                           tabindex="0"
+                           aria-describedby="js-bolt-tooltip-12345"
+                           aria-controls="js-bolt-tooltip-12345"
+    >
+      <bolt-button>
+        Download
+      </bolt-button>
+    </replace-with-children>
+    <span slot="content">
+      <replace-with-grandchildren id="js-bolt-tooltip-12345"
+                                  class="c-bolt-tooltip__content"
+                                  role="tooltip"
+                                  aria-hidden="true"
+      >
+        <span class="c-bolt-tooltip__bubble">
+          File size: 25MB
+        </span>
+      </replace-with-grandchildren>
+    </span>
+  </replace-with-children>
+</bolt-tooltip>
+`;
+
 exports[`<bolt-tooltip> Component Basic usage 1`] = `
-<bolt-tooltip trigger-type="text"
-              trigger-text="Trigger text"
-              trigger-icon-name="info-open"
->
-  Tooltip content.
+<bolt-tooltip uuid="12345">
+  <replace-with-children class="c-bolt-tooltip c-bolt-tooltip--top c-bolt-tooltip--text-wrap c-bolt-tooltip--text-align-center">
+    <replace-with-children role="button"
+                           tabindex="0"
+                           aria-describedby="js-bolt-tooltip-12345"
+                           aria-controls="js-bolt-tooltip-12345"
+    >
+      CRM
+    </replace-with-children>
+    <span slot="content">
+      <replace-with-grandchildren id="js-bolt-tooltip-12345"
+                                  class="c-bolt-tooltip__content"
+                                  role="tooltip"
+                                  aria-hidden="true"
+      >
+        <span class="c-bolt-tooltip__bubble">
+          Customer relationship management
+        </span>
+      </replace-with-grandchildren>
+    </span>
+  </replace-with-children>
 </bolt-tooltip>
 `;
 
-exports[`<bolt-tooltip> Component Direction of the tooltip bubble: down 1`] = `
-<bolt-tooltip trigger-type="button"
-              trigger-text="Trigger text"
-              trigger-icon-name="info-open"
-              direction="down"
+exports[`<bolt-tooltip> Component Placement of the tooltip bubble: auto 1`] = `
+<bolt-tooltip placement="auto"
+              uuid="12345"
 >
-  Tooltip content.
+  <replace-with-children class="c-bolt-tooltip  c-bolt-tooltip--text-wrap c-bolt-tooltip--text-align-center">
+    <replace-with-children role="button"
+                           tabindex="0"
+                           aria-describedby="js-bolt-tooltip-12345"
+                           aria-controls="js-bolt-tooltip-12345"
+    >
+      CRM
+    </replace-with-children>
+    <span slot="content">
+      <replace-with-grandchildren id="js-bolt-tooltip-12345"
+                                  class="c-bolt-tooltip__content"
+                                  role="tooltip"
+                                  aria-hidden="true"
+      >
+        <span class="c-bolt-tooltip__bubble">
+          Customer relationship management
+        </span>
+      </replace-with-grandchildren>
+    </span>
+  </replace-with-children>
 </bolt-tooltip>
 `;
 
-exports[`<bolt-tooltip> Component Direction of the tooltip bubble: medium 1`] = `
-<bolt-tooltip trigger-type="text"
-              trigger-text="Trigger text"
-              trigger-icon-name="info-open"
-              spacing="medium"
+exports[`<bolt-tooltip> Component Placement of the tooltip bubble: bottom 1`] = `
+<bolt-tooltip placement="bottom"
+              uuid="12345"
 >
-  Tooltip content.
+  <replace-with-children class="c-bolt-tooltip c-bolt-tooltip--bottom c-bolt-tooltip--text-wrap c-bolt-tooltip--text-align-center">
+    <replace-with-children role="button"
+                           tabindex="0"
+                           aria-describedby="js-bolt-tooltip-12345"
+                           aria-controls="js-bolt-tooltip-12345"
+    >
+      CRM
+    </replace-with-children>
+    <span slot="content">
+      <replace-with-grandchildren id="js-bolt-tooltip-12345"
+                                  class="c-bolt-tooltip__content"
+                                  role="tooltip"
+                                  aria-hidden="true"
+      >
+        <span class="c-bolt-tooltip__bubble">
+          Customer relationship management
+        </span>
+      </replace-with-grandchildren>
+    </span>
+  </replace-with-children>
 </bolt-tooltip>
 `;
 
-exports[`<bolt-tooltip> Component Direction of the tooltip bubble: none 1`] = `
-<bolt-tooltip trigger-type="text"
-              trigger-text="Trigger text"
-              trigger-icon-name="info-open"
-              spacing="none"
+exports[`<bolt-tooltip> Component Placement of the tooltip bubble: bottom-end 1`] = `
+<bolt-tooltip placement="bottom-end"
+              uuid="12345"
 >
-  Tooltip content.
+  <replace-with-children class="c-bolt-tooltip c-bolt-tooltip--bottom-end c-bolt-tooltip--text-wrap c-bolt-tooltip--text-align-center">
+    <replace-with-children role="button"
+                           tabindex="0"
+                           aria-describedby="js-bolt-tooltip-12345"
+                           aria-controls="js-bolt-tooltip-12345"
+    >
+      CRM
+    </replace-with-children>
+    <span slot="content">
+      <replace-with-grandchildren id="js-bolt-tooltip-12345"
+                                  class="c-bolt-tooltip__content"
+                                  role="tooltip"
+                                  aria-hidden="true"
+      >
+        <span class="c-bolt-tooltip__bubble">
+          Customer relationship management
+        </span>
+      </replace-with-grandchildren>
+    </span>
+  </replace-with-children>
 </bolt-tooltip>
 `;
 
-exports[`<bolt-tooltip> Component Direction of the tooltip bubble: small 1`] = `
-<bolt-tooltip trigger-type="text"
-              trigger-text="Trigger text"
-              trigger-icon-name="info-open"
-              spacing="small"
+exports[`<bolt-tooltip> Component Placement of the tooltip bubble: bottom-start 1`] = `
+<bolt-tooltip placement="bottom-start"
+              uuid="12345"
 >
-  Tooltip content.
+  <replace-with-children class="c-bolt-tooltip c-bolt-tooltip--bottom-start c-bolt-tooltip--text-wrap c-bolt-tooltip--text-align-center">
+    <replace-with-children role="button"
+                           tabindex="0"
+                           aria-describedby="js-bolt-tooltip-12345"
+                           aria-controls="js-bolt-tooltip-12345"
+    >
+      CRM
+    </replace-with-children>
+    <span slot="content">
+      <replace-with-grandchildren id="js-bolt-tooltip-12345"
+                                  class="c-bolt-tooltip__content"
+                                  role="tooltip"
+                                  aria-hidden="true"
+      >
+        <span class="c-bolt-tooltip__bubble">
+          Customer relationship management
+        </span>
+      </replace-with-grandchildren>
+    </span>
+  </replace-with-children>
 </bolt-tooltip>
 `;
 
-exports[`<bolt-tooltip> Component Direction of the tooltip bubble: up 1`] = `
-<bolt-tooltip trigger-type="button"
-              trigger-text="Trigger text"
-              trigger-icon-name="info-open"
-              direction="up"
+exports[`<bolt-tooltip> Component Placement of the tooltip bubble: left 1`] = `
+<bolt-tooltip placement="left"
+              uuid="12345"
 >
-  Tooltip content.
+  <replace-with-children class="c-bolt-tooltip c-bolt-tooltip--left c-bolt-tooltip--text-wrap c-bolt-tooltip--text-align-center">
+    <replace-with-children role="button"
+                           tabindex="0"
+                           aria-describedby="js-bolt-tooltip-12345"
+                           aria-controls="js-bolt-tooltip-12345"
+    >
+      CRM
+    </replace-with-children>
+    <span slot="content">
+      <replace-with-grandchildren id="js-bolt-tooltip-12345"
+                                  class="c-bolt-tooltip__content"
+                                  role="tooltip"
+                                  aria-hidden="true"
+      >
+        <span class="c-bolt-tooltip__bubble">
+          Customer relationship management
+        </span>
+      </replace-with-grandchildren>
+    </span>
+  </replace-with-children>
 </bolt-tooltip>
 `;
 
-exports[`<bolt-tooltip> Component Direction of the tooltip bubble: xsmall 1`] = `
-<bolt-tooltip trigger-type="text"
-              trigger-text="Trigger text"
-              trigger-icon-name="info-open"
-              spacing="xsmall"
+exports[`<bolt-tooltip> Component Placement of the tooltip bubble: left-end 1`] = `
+<bolt-tooltip placement="left-end"
+              uuid="12345"
 >
-  Tooltip content.
+  <replace-with-children class="c-bolt-tooltip c-bolt-tooltip--left-end c-bolt-tooltip--text-wrap c-bolt-tooltip--text-align-center">
+    <replace-with-children role="button"
+                           tabindex="0"
+                           aria-describedby="js-bolt-tooltip-12345"
+                           aria-controls="js-bolt-tooltip-12345"
+    >
+      CRM
+    </replace-with-children>
+    <span slot="content">
+      <replace-with-grandchildren id="js-bolt-tooltip-12345"
+                                  class="c-bolt-tooltip__content"
+                                  role="tooltip"
+                                  aria-hidden="true"
+      >
+        <span class="c-bolt-tooltip__bubble">
+          Customer relationship management
+        </span>
+      </replace-with-grandchildren>
+    </span>
+  </replace-with-children>
 </bolt-tooltip>
 `;
 
-exports[`<bolt-tooltip> Component No wrapping for tooltip content: false 1`] = `
-<bolt-tooltip trigger-type="text"
-              trigger-text="Trigger text"
-              trigger-icon-name="info-open"
+exports[`<bolt-tooltip> Component Placement of the tooltip bubble: left-start 1`] = `
+<bolt-tooltip placement="left-start"
+              uuid="12345"
 >
-  Tooltip content. This text should wrap if noWrap is set to false, otherwise it should not wrap.
+  <replace-with-children class="c-bolt-tooltip c-bolt-tooltip--left-start c-bolt-tooltip--text-wrap c-bolt-tooltip--text-align-center">
+    <replace-with-children role="button"
+                           tabindex="0"
+                           aria-describedby="js-bolt-tooltip-12345"
+                           aria-controls="js-bolt-tooltip-12345"
+    >
+      CRM
+    </replace-with-children>
+    <span slot="content">
+      <replace-with-grandchildren id="js-bolt-tooltip-12345"
+                                  class="c-bolt-tooltip__content"
+                                  role="tooltip"
+                                  aria-hidden="true"
+      >
+        <span class="c-bolt-tooltip__bubble">
+          Customer relationship management
+        </span>
+      </replace-with-grandchildren>
+    </span>
+  </replace-with-children>
 </bolt-tooltip>
 `;
 
-exports[`<bolt-tooltip> Component No wrapping for tooltip content: true 1`] = `
-<bolt-tooltip trigger-type="text"
-              trigger-text="Trigger text"
-              trigger-icon-name="info-open"
-              no-wrap
+exports[`<bolt-tooltip> Component Placement of the tooltip bubble: right 1`] = `
+<bolt-tooltip placement="right"
+              uuid="12345"
 >
-  Tooltip content. This text should wrap if noWrap is set to false, otherwise it should not wrap.
+  <replace-with-children class="c-bolt-tooltip c-bolt-tooltip--right c-bolt-tooltip--text-wrap c-bolt-tooltip--text-align-center">
+    <replace-with-children role="button"
+                           tabindex="0"
+                           aria-describedby="js-bolt-tooltip-12345"
+                           aria-controls="js-bolt-tooltip-12345"
+    >
+      CRM
+    </replace-with-children>
+    <span slot="content">
+      <replace-with-grandchildren id="js-bolt-tooltip-12345"
+                                  class="c-bolt-tooltip__content"
+                                  role="tooltip"
+                                  aria-hidden="true"
+      >
+        <span class="c-bolt-tooltip__bubble">
+          Customer relationship management
+        </span>
+      </replace-with-grandchildren>
+    </span>
+  </replace-with-children>
+</bolt-tooltip>
+`;
+
+exports[`<bolt-tooltip> Component Placement of the tooltip bubble: right-end 1`] = `
+<bolt-tooltip placement="right-end"
+              uuid="12345"
+>
+  <replace-with-children class="c-bolt-tooltip c-bolt-tooltip--right-end c-bolt-tooltip--text-wrap c-bolt-tooltip--text-align-center">
+    <replace-with-children role="button"
+                           tabindex="0"
+                           aria-describedby="js-bolt-tooltip-12345"
+                           aria-controls="js-bolt-tooltip-12345"
+    >
+      CRM
+    </replace-with-children>
+    <span slot="content">
+      <replace-with-grandchildren id="js-bolt-tooltip-12345"
+                                  class="c-bolt-tooltip__content"
+                                  role="tooltip"
+                                  aria-hidden="true"
+      >
+        <span class="c-bolt-tooltip__bubble">
+          Customer relationship management
+        </span>
+      </replace-with-grandchildren>
+    </span>
+  </replace-with-children>
+</bolt-tooltip>
+`;
+
+exports[`<bolt-tooltip> Component Placement of the tooltip bubble: right-start 1`] = `
+<bolt-tooltip placement="right-start"
+              uuid="12345"
+>
+  <replace-with-children class="c-bolt-tooltip c-bolt-tooltip--right-start c-bolt-tooltip--text-wrap c-bolt-tooltip--text-align-center">
+    <replace-with-children role="button"
+                           tabindex="0"
+                           aria-describedby="js-bolt-tooltip-12345"
+                           aria-controls="js-bolt-tooltip-12345"
+    >
+      CRM
+    </replace-with-children>
+    <span slot="content">
+      <replace-with-grandchildren id="js-bolt-tooltip-12345"
+                                  class="c-bolt-tooltip__content"
+                                  role="tooltip"
+                                  aria-hidden="true"
+      >
+        <span class="c-bolt-tooltip__bubble">
+          Customer relationship management
+        </span>
+      </replace-with-grandchildren>
+    </span>
+  </replace-with-children>
+</bolt-tooltip>
+`;
+
+exports[`<bolt-tooltip> Component Placement of the tooltip bubble: top 1`] = `
+<bolt-tooltip placement="top"
+              uuid="12345"
+>
+  <replace-with-children class="c-bolt-tooltip c-bolt-tooltip--top c-bolt-tooltip--text-wrap c-bolt-tooltip--text-align-center">
+    <replace-with-children role="button"
+                           tabindex="0"
+                           aria-describedby="js-bolt-tooltip-12345"
+                           aria-controls="js-bolt-tooltip-12345"
+    >
+      CRM
+    </replace-with-children>
+    <span slot="content">
+      <replace-with-grandchildren id="js-bolt-tooltip-12345"
+                                  class="c-bolt-tooltip__content"
+                                  role="tooltip"
+                                  aria-hidden="true"
+      >
+        <span class="c-bolt-tooltip__bubble">
+          Customer relationship management
+        </span>
+      </replace-with-grandchildren>
+    </span>
+  </replace-with-children>
+</bolt-tooltip>
+`;
+
+exports[`<bolt-tooltip> Component Placement of the tooltip bubble: top-end 1`] = `
+<bolt-tooltip placement="top-end"
+              uuid="12345"
+>
+  <replace-with-children class="c-bolt-tooltip c-bolt-tooltip--top-end c-bolt-tooltip--text-wrap c-bolt-tooltip--text-align-center">
+    <replace-with-children role="button"
+                           tabindex="0"
+                           aria-describedby="js-bolt-tooltip-12345"
+                           aria-controls="js-bolt-tooltip-12345"
+    >
+      CRM
+    </replace-with-children>
+    <span slot="content">
+      <replace-with-grandchildren id="js-bolt-tooltip-12345"
+                                  class="c-bolt-tooltip__content"
+                                  role="tooltip"
+                                  aria-hidden="true"
+      >
+        <span class="c-bolt-tooltip__bubble">
+          Customer relationship management
+        </span>
+      </replace-with-grandchildren>
+    </span>
+  </replace-with-children>
+</bolt-tooltip>
+`;
+
+exports[`<bolt-tooltip> Component Placement of the tooltip bubble: top-start 1`] = `
+<bolt-tooltip placement="top-start"
+              uuid="12345"
+>
+  <replace-with-children class="c-bolt-tooltip c-bolt-tooltip--top-start c-bolt-tooltip--text-wrap c-bolt-tooltip--text-align-center">
+    <replace-with-children role="button"
+                           tabindex="0"
+                           aria-describedby="js-bolt-tooltip-12345"
+                           aria-controls="js-bolt-tooltip-12345"
+    >
+      CRM
+    </replace-with-children>
+    <span slot="content">
+      <replace-with-grandchildren id="js-bolt-tooltip-12345"
+                                  class="c-bolt-tooltip__content"
+                                  role="tooltip"
+                                  aria-hidden="true"
+      >
+        <span class="c-bolt-tooltip__bubble">
+          Customer relationship management
+        </span>
+      </replace-with-grandchildren>
+    </span>
+  </replace-with-children>
+</bolt-tooltip>
+`;
+
+exports[`<bolt-tooltip> Component UUID of the tooltip 1`] = `
+<bolt-tooltip uuid="custom-unique-id">
+  <replace-with-children class="c-bolt-tooltip c-bolt-tooltip--top c-bolt-tooltip--text-wrap c-bolt-tooltip--text-align-center">
+    <replace-with-children role="button"
+                           tabindex="0"
+                           aria-describedby="js-bolt-tooltip-custom-unique-id"
+                           aria-controls="js-bolt-tooltip-custom-unique-id"
+    >
+      CRM
+    </replace-with-children>
+    <span slot="content">
+      <replace-with-grandchildren id="js-bolt-tooltip-custom-unique-id"
+                                  class="c-bolt-tooltip__content"
+                                  role="tooltip"
+                                  aria-hidden="true"
+      >
+        <span class="c-bolt-tooltip__bubble">
+          Customer relationship management
+        </span>
+      </replace-with-grandchildren>
+    </span>
+  </replace-with-children>
 </bolt-tooltip>
 `;

@@ -3,6 +3,152 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.17.0](https://github.com/bolt-design-system/bolt/compare/v2.16.3...v2.17.0) (2020-02-04)
+
+
+### Bug Fixes
+
+* add missing deps ([5ea4a60](https://github.com/bolt-design-system/bolt/commit/5ea4a608b33c12cac973118ae546c8134d6a18da))
+* aria attribute ([5564d74](https://github.com/bolt-design-system/bolt/commit/5564d748188bedaa0b48c945e0b6cd0127ebba9e))
+* remove inline includes ([ea13425](https://github.com/bolt-design-system/bolt/commit/ea1342543e7e93f5bf52ae5c9fb59e7f5bbc9dc2))
+* rename content prop to text and grammar edits ([f5a4575](https://github.com/bolt-design-system/bolt/commit/f5a4575576a5e074a6ca7d75c5e9aedc41bcd141))
+* update .incache data + Github repo authentication dependencies ([0231c60](https://github.com/bolt-design-system/bolt/commit/0231c60ae12a73420b40731771eb2c2252aa07b9))
+* Update empty block checking syntax in blueprint package ([98407bb](https://github.com/bolt-design-system/bolt/commit/98407bb6eda1e676dc2ce368a661e221f44ce9c7))
+* update footer version ([e785869](https://github.com/bolt-design-system/bolt/commit/e78586976d6fe44845ca10d99a8498013122db27))
+
+
+### Features
+
+* add "My Missions" and "Add Mission" templates ([8b712d1](https://github.com/bolt-design-system/bolt/commit/8b712d13e8da52909ede660f8015c9f1345b48f8))
+* add basic support to Toolbar to allow conditionally disabling sticky behavior ([76557e5](https://github.com/bolt-design-system/bolt/commit/76557e59a7728b9dbfeaf9974ac3077839f370c9))
+* Add suggested bolt.rc file for external builds ([0b8a771](https://github.com/bolt-design-system/bolt/commit/0b8a771e7863c89692d0dc1e03a517db1ae321c3))
+* cherry pick install & dependency related updates from https://github.com/boltdesignsystem/bolt/pull/1711 ([dfa3dd0](https://github.com/bolt-design-system/bolt/commit/dfa3dd08d19a109736f64faef851e5516e3941e0))
+* topic details page buildout + adding generic placeholder images for reference ([5112ecc](https://github.com/bolt-design-system/bolt/commit/5112eccd4e6d892095de0765dd51b9e1ab13f9c0))
+
+
+
+
+
+## [2.16.3](https://github.com/bolt-design-system/bolt/compare/v2.16.2...v2.16.3) (2020-01-28)
+
+**Note:** Version bump only for package @bolt/website
+
+
+
+
+
+## [2.16.2](https://github.com/bolt-design-system/bolt/compare/v2.16.1...v2.16.2) (2020-01-28)
+
+**Note:** Version bump only for package @bolt/website
+
+
+
+
+
+## [2.16.1](https://github.com/bolt-design-system/bolt/compare/v2.16.0...v2.16.1) (2020-01-27)
+
+
+### Bug Fixes
+
+* update the docs site-specific Twig template to address the CSS specificity / load order issue with styles in IE 11 ([9474a55](https://github.com/bolt-design-system/bolt/commit/9474a55b71d9c5267c92346b2bd88b01b6e6ceae))
+
+
+
+
+
+# [2.16.0](https://github.com/bolt-design-system/bolt/compare/v2.15.2...v2.16.0) (2020-01-24)
+
+
+### Bug Fixes
+
+* add xdark theme test for icons + update fill colors so SVG transform logic works correctly ([b2187b5](https://github.com/bolt-design-system/bolt/commit/b2187b523ad5eed618cee7a52c5c2136ba3030ef))
+* consistent border color ([7c45348](https://github.com/bolt-design-system/bolt/commit/7c4534814f774873d46ef47cc53741a1ef6183fb))
+* docs and comments ([70f9f8f](https://github.com/bolt-design-system/bolt/commit/70f9f8fe0790dc1f0224d3943cc34842481e93f9))
+* docs comments consitency ([4b2f5db](https://github.com/bolt-design-system/bolt/commit/4b2f5db358ff39f1e34dd314e4cda54c547c4f72))
+* internal link ([bd7e0fc](https://github.com/bolt-design-system/bolt/commit/bd7e0fc2f4736c3664ad73133f899eb98b8c1eee))
+* remove icon background from card spacer ([d44ca99](https://github.com/bolt-design-system/bolt/commit/d44ca99daf9c23de3dbb4a4382d35ad89fd87486))
+* remove z-index and position ([329b1d6](https://github.com/bolt-design-system/bolt/commit/329b1d6070d9db26ae9cae85ab730f3e4a835974))
+* transition ([7732faf](https://github.com/bolt-design-system/bolt/commit/7732faf320fc6d856b6dcb48a5fbc50ef56ca03b))
+* update Toolbar button control props to prevent Tooltip / Popover from ever being placed outside of the Card or Carousel containers ([1c6d413](https://github.com/bolt-design-system/bolt/commit/1c6d41369bf02d8537bd9a98089f89715b187525))
+* **micro-journeys:** collapsing 2nd char in Two Char Layout in IE 11 ([ff42dda](https://github.com/bolt-design-system/bolt/commit/ff42ddac63eba93ee7661c46585e7dae4df80767))
+
+
+### Features
+
+* **editor:** remove click handlers on element select; add function docs; add visual test ([a8449bb](https://github.com/bolt-design-system/bolt/commit/a8449bba9ee3fd0bb5f0ed5540b882605bac77f7))
+* **micro-journeys:** better visual tests for Character ([9ce9e26](https://github.com/bolt-design-system/bolt/commit/9ce9e26482d8043c06168510654a3f4b3c4f7d64))
+* **micro-journeys:** center Character when in One Character Layout ([d0dccc0](https://github.com/bolt-design-system/bolt/commit/d0dccc057b046e56ee63fa11155cf895cc71da29))
+* Add --compat option for legacy support when esmodules is enabled ([946ae2a](https://github.com/bolt-design-system/bolt/commit/946ae2a7875e747db65225b9e53adecaa37bc7a5))
+* add new helper Webpack plugins ([7eb295c](https://github.com/bolt-design-system/bolt/commit/7eb295c4e934c4a1e10e44d5fbb072905d0a7efd))
+
+
+
+
+
+## [2.15.2](https://github.com/bolt-design-system/bolt/compare/v2.15.1...v2.15.2) (2020-01-21)
+
+
+### Features
+
+* cherry pick new Banner-specific component work to merge down ([aa30d78](https://github.com/bolt-design-system/bolt/commit/aa30d788bfdbe0b81a0339f95c821c016145f833))
+
+
+
+
+
+## [2.15.1](https://github.com/bolt-design-system/bolt/compare/v2.15.0...v2.15.1) (2020-01-18)
+
+
+### Bug Fixes
+
+* update image paths ([5662ccf](https://github.com/bolt-design-system/bolt/commit/5662ccf57e5ed7374811da697408c14265091099))
+
+
+
+
+
+# [2.15.0](https://github.com/bolt-design-system/bolt/compare/v2.14.3...v2.15.0) (2020-01-17)
+
+
+### Bug Fixes
+
+* adjust docs site <head> to fix layout on inner pages + make sure the Mission modal doesn't open on the PL viewall section ([11be05c](https://github.com/bolt-design-system/bolt/commit/11be05c5705d158ab369f26bf325480e57a469ac))
+* always set role to button ([9b84e36](https://github.com/bolt-design-system/bolt/commit/9b84e368bee88b9049b3b513472b210d2c27d86c))
+* change placement default to auto ([525cb60](https://github.com/bolt-design-system/bolt/commit/525cb60f92d64bee4c7ccb01c2ecc4a25ab082a7))
+* js to not render class when placement is auto ([b73ec96](https://github.com/bolt-design-system/bolt/commit/b73ec967fbdcffdcf09fcf45370eca54c7f9dcf1))
+* remove issue with Grid matrix styles + remove grid margin overrides ([cdd89ed](https://github.com/bolt-design-system/bolt/commit/cdd89ed066fbc5acb85cbbc207557105a9ad85d3))
+* resolve execa / shell issue ([0eb57a3](https://github.com/bolt-design-system/bolt/commit/0eb57a3157c5eaa9ab22b3b1a5641bf7f62a9342))
+* stylelint updstes ([101a145](https://github.com/bolt-design-system/bolt/commit/101a14526c1a0d632d4cd62afc7e17ad1bb8bbe7))
+* test snaps ([5686349](https://github.com/bolt-design-system/bolt/commit/56863496f8d1c6e7feec5a5e23f9e43e3e7173d4))
+* typo in doc ([668a9f7](https://github.com/bolt-design-system/bolt/commit/668a9f77aad4d2b46daa355a7d1fae973bf405b2))
+* use the updated `fillColor` prop name ([fef8074](https://github.com/bolt-design-system/bolt/commit/fef80748d98f1e34710b5c7cdfb5573164d7c9b9))
+* workaround to Pattern Lab UI quirks when displaying entire pages on the View All section ([896e425](https://github.com/bolt-design-system/bolt/commit/896e42531e7abe5f1775b6f90ca9c71ae1c1d44b))
+* **micro-journeys:** add button to trigger animate in; add example of 2-char layout with side content to PL ([e478aa8](https://github.com/bolt-design-system/bolt/commit/e478aa883dd96b66f32675c8ad3060fdbb1d9b9f))
+
+
+### Features
+
+* add ability to customize the toolbar's gradient from the Academy hero ([19981a6](https://github.com/bolt-design-system/bolt/commit/19981a64e4b902f14c0da03d97845d1fbaf1db37))
+* add tooltip and popover to toolbar buttons ([92cfe91](https://github.com/bolt-design-system/bolt/commit/92cfe91e615650e595775c725f153e6f8ac49f53))
+* pass in card status to action block ([9247ff5](https://github.com/bolt-design-system/bolt/commit/9247ff56cb8cc97ae1e49be8c9186cccf544d14b))
+* port over misc monorepo-related updates from the epic/academy work ([b236c87](https://github.com/bolt-design-system/bolt/commit/b236c87624b079432f7a02171fbf080be2a9bc19))
+* set min height on header ([ebb2318](https://github.com/bolt-design-system/bolt/commit/ebb2318938621c4c8372544eb276a6cdb3dd1d82))
+* update dashboard to reflect latest design, add vertical cards styles ([8402160](https://github.com/bolt-design-system/bolt/commit/84021602d5fe7e6e3d297d33690b22341b764a4e))
+* update popover placement names ([cf47303](https://github.com/bolt-design-system/bolt/commit/cf47303debdb94c3ce31cd6b44b7c331624320ec))
+* when 2 cards make 2/3 width not 100% ([8558725](https://github.com/bolt-design-system/bolt/commit/8558725e0a584e6eb38cdcf6b26e4873163e38fd))
+
+
+
+
+
+## [2.14.3](https://github.com/bolt-design-system/bolt/compare/v2.14.2...v2.14.3) (2020-01-16)
+
+**Note:** Version bump only for package @bolt/website
+
+
+
+
+
 ## [2.14.2](https://github.com/bolt-design-system/bolt/compare/v2.14.1...v2.14.2) (2020-01-15)
 
 **Note:** Version bump only for package @bolt/website

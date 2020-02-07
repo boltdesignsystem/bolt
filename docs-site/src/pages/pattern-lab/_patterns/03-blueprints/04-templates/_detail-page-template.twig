@@ -1,0 +1,78 @@
+{% set pageControls = block("page_controls") %}
+{% set sideNav = block("side_nav") %}
+{% set breadcrumbs = [
+  {
+    "text": "Home",
+    "url": link["blueprints-dashboard"]
+  },
+  {
+    "text": "Mission Name Goes Here",
+    "url": link["blueprints-t1-mission-landing"]
+  },
+  {
+    "text": "Module name goes here",
+    "url": link["blueprints-t1-module-landing-page"]
+  },
+  {
+    "text": "How to update a rule"
+  }
+] %}
+
+{% set mainContentBlock %}
+  {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--medium" %}
+    {% cell "u-bolt-width-12/12 u-bolt-text-align-right" %}
+      {% include "@bolt-components-band/band.twig" with {
+        content: pageControls,
+        size: "small",
+        theme: "none",
+      } only %}
+    {% endcell %}
+  {% endgrid %}
+
+  {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center o-bolt-grid--medium" %}
+    {% if sideNav %}
+      {% cell "u-bolt-width-1/1 u-bolt-width-3/12@medium" %}
+        {{ sideNav }}
+      {% endcell %}
+    {% endif %}
+
+    {% cell "u-bolt-width-1/1 u-bolt-width-9/12@medium u-bolt-padding-left-large@medium" %}
+      {% include "@bolt-blueprints/details-page-hero.twig" %}
+      {{ block("page_content") }}
+    {% endcell %}
+
+    {% cell "u-bolt-width-1/1 u-bolt-text-align-right" %}
+      {% include "@bolt-components-band/band.twig" with {
+        content: pageControls,
+        size: "medium",
+        theme: "none",
+      } only %}
+    {% endcell %}
+  {% endgrid %}
+{% endset %}
+
+<div class="c-bolt-site">
+  {% block global_header %}
+    {% include "@bolt/page-header.twig" %}
+  {% endblock %}
+
+  <main class="c-bolt-site__content u-bolt-flex u-bolt-flex-col">
+    {% include "@bolt-blueprints/_toolbar.twig" with {
+      toolbarGradient: toolbarGradient | default("orange"),
+      sticky: sideNav ? false : true,
+    } %}
+    {% include "@bolt-components-band/band.twig" with {
+      theme: "xlight",
+      size: "none",
+      valign: "start",
+      content: mainContentBlock,
+    } %}
+  </main>
+  <div class="c-bolt-site__footer c-bolt-page-footer">
+    <div class="o-bolt-wrapper">
+      {% block global_footer %}
+        {% include "@bolt/page-footer.twig" %}
+      {% endblock %}
+    </div>
+  </div>
+</div>

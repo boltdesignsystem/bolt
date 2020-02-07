@@ -1,0 +1,39 @@
+/* ------------------------------------ *\
+   card-replacement Actions
+\* ------------------------------------ */
+
+@import '@bolt/core-v3.x';
+@import '../_card-replacement-settings-and-tools.scss';
+
+bolt-card-replacement-background {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  overflow: hidden;
+  pointer-events: none;
+  border-radius: 4px;
+
+  [rounded] & {
+    @include bolt-border-radius(large);
+  }
+
+  & + bolt-card-replacement-body {
+    margin-bottom: auto;
+  }
+}
+
+.c-bolt-card_replacement__background {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 4px;
+
+  [rounded] & {
+    @include bolt-border-radius(large);
+  }
+}

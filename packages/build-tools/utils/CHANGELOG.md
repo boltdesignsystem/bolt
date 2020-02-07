@@ -3,6 +3,55 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.17.0](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/utils/compare/v2.16.3...v2.17.0) (2020-02-04)
+
+
+### Features
+
+* cherry pick build tools & generator-related updates from https://github.com/boltdesignsystem/bolt/pull/1711 ([67836b3](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/utils/commit/67836b38fdabc3bd293d297777d7f5a825da3d97))
+* cherry pick install & dependency related updates from https://github.com/boltdesignsystem/bolt/pull/1711 ([dfa3dd0](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/utils/commit/dfa3dd08d19a109736f64faef851e5516e3941e0))
+
+
+
+
+
+# [2.16.0](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/utils/compare/v2.15.2...v2.16.0) (2020-01-24)
+
+
+### Bug Fixes
+
+* update snapshots + fix prettier issues ([3eed559](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/utils/commit/3eed559af2e4ca279ad3328157f822588e97e3a3))
+
+
+### Features
+
+* Add --compat option for legacy support when esmodules is enabled ([946ae2a](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/utils/commit/946ae2a7875e747db65225b9e53adecaa37bc7a5))
+* add new helper Webpack plugins ([7eb295c](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/utils/commit/7eb295c4e934c4a1e10e44d5fbb072905d0a7efd))
+* update build tool utils for checking for folders ([def7d15](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/utils/commit/def7d15ef22400aaf32742ad320f4038345ffc93))
+
+
+
+
+
+## [2.15.2](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/utils/compare/v2.15.1...v2.15.2) (2020-01-21)
+
+**Note:** Version bump only for package @bolt/build-utils
+
+
+
+
+
+# [2.15.0](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/utils/compare/v2.14.3...v2.15.0) (2020-01-17)
+
+
+### Bug Fixes
+
+* revert execa update to fix Lerna CLI error ([db3fc1a](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/utils/commit/db3fc1a0eaeec4f49e4e9654fcf3747d883fac70))
+
+
+
+
+
 # [2.14.0](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/utils/compare/v2.13.3...v2.14.0) (2020-01-06)
 
 **Note:** Version bump only for package @bolt/build-utils

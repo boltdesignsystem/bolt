@@ -43,6 +43,12 @@ export function enableEditor({ space, uiWrapper, config }) {
       .forEach(twoCharLayout => {
         twoCharLayout.triggerLayoutRecalculate();
       });
+    document.querySelectorAll('*').forEach(el => {
+      if (el.setupSlots) el.setupSlots();
+      if (el.triggerUpdate) el.triggerUpdate();
+      if (el.triggerAnimIns) el.triggerAnimIns();
+      if (el.triggerAnimIn) el.triggerAnimIn();
+    });
   };
 
   /**
@@ -339,46 +345,33 @@ export function enableEditor({ space, uiWrapper, config }) {
   }) {
     const selected = editor.getSelected();
     const components = selected.components();
-    /** @type {grapesjs.ComponentObject} */
-    const data = {
-      type: 'div', // temp tag, will remove after
-      content: '',
-    };
-
-    let tempComponent;
+    let newComponent;
     if (slotName === 'default') {
-      tempComponent = components.add(data);
+      // If slot is default, simply add it.
+      newComponent = components.add(content);
     } else {
-      const slots = selected.find('[slot]');
+      // If slot is already set up, add to existing slot.
       const [slot] = selected.find(`${name} > [slot="${slotName}"]`);
       if (slot) {
         const slotComponents = slot.components();
-        tempComponent = slotComponents.add(data);
+        newComponent = slotComponents.add(content);
       } else {
-        const [newSlot] = selected.append(
+        // Create new content for slot.
+        newComponent = selected.append(
           shouldCreateAnimatableSlotIfNotPresent
-            ? `<bolt-animate slot="${slotName}"></bolt-animate>`
-            : `<div slot="${slotName}"></div>`,
+            ? `<bolt-animate slot="${slotName}">${content}</bolt-animate>`
+            : `<div slot="${slotName}">${content}</div>`,
         );
-        const slotComponents = newSlot.components();
-        tempComponent = slotComponents.add(data);
       }
     }
-
-    const newComponent = tempComponent.replaceWith(content);
-    // if `content` has more than one top level element, we'll get an array, so we need to get the parent element to select in editor and trigger possible animations
-    const singleComponent =
-      Array.isArray(newComponent) && newComponent.length > 0
-        ? newComponent[0].parent()
-        : newComponent;
-
-    selected.view.el.setupSlots();
-    selected.view.el.triggerUpdate();
-    if (selectAfterAdd) editor.select(singleComponent);
-    if (triggerAnimsAfterAdd) {
-      const newEl = singleComponent.getEl();
-      triggerAnimsInEl(newEl);
-    }
+    // Force slots to refresh.
+    selected.getEl().setupSlots();
+    selected.getEl().triggerUpdate();
+    // Handle case where multiple components are being added.
+    const newComponentSingle =
+      newComponent.length > 1 ? newComponent[0].parent() : newComponent[0];
+    if (selectAfterAdd) editor.select(newComponentSingle);
+    if (triggerAnimsAfterAdd) triggerAnimsInEl(newComponentSingle.getEl());
     return newComponent;
   }
 
@@ -426,6 +419,37 @@ export function enableEditor({ space, uiWrapper, config }) {
     render(content, editorSlots.slotControls);
   }
 
+  /**
+   * Add prop schema descriptions underneath traits on select if not present.
+   *
+   * @param {grapesjs.Component} model
+   * @return {void}
+   */
+  editor.on('component:selected', model => {
+    model.attributes.traits.models.forEach(trait => {
+      if (trait.attributes.description) {
+        // setTimeout because view hasn't yet been created for trait in component:selected.
+        setTimeout(() => {
+          const traitDescClass = 'trait-description';
+          if (
+            trait.view.el.lastElementChild.getAttribute('class') !==
+            traitDescClass
+          ) {
+            const template = document.createElement('template');
+            template.innerHTML = `<div class="${traitDescClass}" style="font-size: smaller"><i>${trait.attributes.description}</i></div>`;
+            trait.view.el.appendChild(template.content.firstChild);
+          }
+        }, 0);
+      }
+    });
+  });
+
+  /**
+   * Render slot controls for selected component if they exist.
+   *
+   * @param {grapesjs.Component} model
+   * @return {void}
+   */
   editor.on('component:selected', (/** @type {grapesjs.Component} */ model) => {
     const name = model.getName().toLowerCase();
     const slotControls = model.getSlotControls && model.getSlotControls();
@@ -435,19 +459,61 @@ export function enableEditor({ space, uiWrapper, config }) {
   editor.on('component:remove', (/** @type {grapesjs.Component} */ model) => {
     // Editor removes all components in order on save/cleanup. Don't check then.
     if (!editor.isSaving) {
-      const parent = model.parent();
-      // Remove empty parent `bolt-animate`s
-      if (parent && parent.attributes.tagName === 'bolt-animate') {
-        if (parent && parent.view.el.assignedSlot) {
-          parent.view.el.assignedSlot.remove();
+      // Timeout so cleanup and layer re-render happens on parent before removal.
+      setTimeout(() => {
+        const parent = model.parent();
+        // Remove empty parent `bolt-animate`s
+        if (parent && parent.attributes.tagName === 'bolt-animate') {
+          if (parent && parent.view.el.assignedSlot) {
+            parent.view.el.assignedSlot.remove();
+          }
+          parent.remove();
         }
-        parent.remove();
-      }
+      }, 0);
     }
   });
 
+  /**
+   * Remove slot controls for selected component.
+   *
+   * @param {grapesjs.Component} model
+   * @return {void}
+   */
   editor.on('component:deselected', model => {
     render(html``, editorSlots.slotControls);
+  });
+
+  /**
+   * Remove click handlers from selected components to prevent interactions
+   * preventing text editing in the editor.
+   *
+   * @param {grapesjs.Component} model
+   * @return {void}
+   */
+  editor.on('component:selected', model => {
+    // clickHandler is set in declarativeClickHandler and attached in BoltActionElement
+    if (model.view.el.clickHandler) {
+      model.view.el.removeEventListener('click', model.view.el.clickHandler);
+      model.view.el.removedClickHandler = model.view.el.clickHandler;
+    }
+  });
+
+  /**
+   * Re-add removed clickHandlers to selected components
+   *
+   * @param {grapesjs.Component} model
+   * @return {void}
+   */
+  editor.on('component:deselected', (
+    /** @type {grapesjs.Component} */ model,
+  ) => {
+    if (model.view.el.removedClickHandler) {
+      model.view.el.addEventListener(
+        'click',
+        model.view.el.removedClickHandler,
+      );
+      delete model.view.el.removedClickHandler;
+    }
   });
 
   editor.render();

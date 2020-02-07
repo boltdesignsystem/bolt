@@ -22,20 +22,11 @@ $bolt-interactive-step--dot-size: 1.2rem;
   &__nav-item {
     &:before {
       @include bolt-micro-journeys-nav-dot;
-
-      section.c-bolt-interactive-pathway.t-bolt-dark & {
-        background-color: bolt-color(indigo, light);
-      }
     }
 
     &--active {
       &:before {
         @include bolt-micro-journeys-nav-dot($active: true);
-
-        section.c-bolt-interactive-pathway.t-bolt-dark & {
-          border-color: bolt-color(white) !important;
-          background-color: bolt-color(yellow) !important;
-        }
       }
     }
   }
@@ -48,8 +39,7 @@ $bolt-interactive-step--dot-size: 1.2rem;
       display: block;
       flex: 1 0 30%;
       position: relative;
-      margin-right: bolt-spacing(large);
-      margin-right: bolt-spacing(large);
+      margin-right: bolt-spacing(small);
       @include bolt-micro-journeys-nav-items-wrapper;
     }
 
@@ -60,10 +50,6 @@ $bolt-interactive-step--dot-size: 1.2rem;
 
       &:after {
         @include bolt-micro-journeys-nav-line;
-
-        section.c-bolt-interactive-pathway.t-bolt-dark & {
-          background-color: bolt-color(indigo, light);
-        }
       }
 
       &--active {

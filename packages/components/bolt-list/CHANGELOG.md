@@ -3,6 +3,49 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.17.0](https://github.com/bolt-design-system/bolt/compare/v2.16.3...v2.17.0) (2020-02-04)
+
+
+### Bug Fixes
+
+* remove padding on last list item ([d22258c](https://github.com/bolt-design-system/bolt/commit/d22258ca87fb2576d812bb7259e63895dd9adecd))
+
+
+
+
+
+# [2.16.0](https://github.com/bolt-design-system/bolt/compare/v2.15.2...v2.16.0) (2020-01-24)
+
+**Note:** Version bump only for package @bolt/components-list
+
+
+
+
+
+## [2.15.2](https://github.com/bolt-design-system/bolt/compare/v2.15.1...v2.15.2) (2020-01-21)
+
+**Note:** Version bump only for package @bolt/components-list
+
+
+
+
+
+# [2.15.0](https://github.com/bolt-design-system/bolt/compare/v2.14.3...v2.15.0) (2020-01-17)
+
+
+### Bug Fixes
+
+* use consistent border color ([99da773](https://github.com/bolt-design-system/bolt/commit/99da7731eade993720e66e7df5bcc5f9f4eb40e5))
+
+
+### Features
+
+* port list CSS update from epic/academy ([5b834b3](https://github.com/bolt-design-system/bolt/commit/5b834b3ffa8315f578ed6d8bbda890e46676aab6))
+
+
+
+
+
 # [2.14.0](https://github.com/bolt-design-system/bolt/compare/v2.13.3...v2.14.0) (2020-01-06)
 
 

@@ -39,6 +39,8 @@ export function supportsShadowDom() {
 
 export function shouldUseShadowDom(elem) {
   if (
+    (elem.constructor && elem.constructor.useShadow === false) || // aka static useShadow = false;
+    (elem.constructor && elem.constructor.noShadow === true) ||
     elem.useShadow === false ||
     elem.noShadow === true ||
     findParentTag(elem, 'FORM') ||

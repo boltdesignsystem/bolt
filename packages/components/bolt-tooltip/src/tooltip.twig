@@ -1,50 +1,131 @@
+{% set schema = bolt.data.components["@bolt-components-tooltip"].schema %}
+
 {% if enable_json_schema_validation %}
-  {{ validate_data_schema(bolt.data.components['@bolt-components-tooltip'].schema, _self) | raw }}
+  {{ validate_data_schema(schema, _self) | raw }}
 {% endif %}
 
-{% set attributes = create_attribute(attributes|default({})) %}
-{% set componentName = "tooltip" %}
+{# Variables #}
+{% set base_class = "c-bolt-tooltip" %}
+{% set this = init(schema) %}
+{% set uuid = this.data.uuid|default(bolt.data.config.env == "test" ? "12345" : random() ~ "") %}
+{% set tooltip_uuid = "js-bolt-tooltip-" ~ uuid %}
+{% set inner_attributes = create_attribute({}) %}
 
-{% if trigger %}
-  {% set attributes = attributes.setAttribute("trigger-type", trigger.type) %}
-  {% set attributes = attributes.setAttribute("trigger-text", trigger.text) %}
+{# Array of classes based on the defined + default props #}
+{% set classes = [
+  base_class,
+  this.data.placement.value != "auto" ? base_class ~ "--" ~ this.data.placement.value,
+  this.data.content.value|length > 31 ? base_class ~ "--text-wrap",
+  this.data.content.value|length > 31 and this.data.content.value|length < 62 ? base_class ~ "--text-align-center",
+] %}
 
-  {% if trigger.transform %}
-    {% set attributes = attributes.setAttribute("trigger-transform", trigger.transform) %}
+{#
+  Sort classes passed in via attributes into two groups:
+  1. Those that should be applied to the inner tag (namely, "is-" and "has-" classes)
+  2. Those that should be applied to the outer custom element (everything else EXCEPT c-bolt-* classes, which should never be passed in via attributes)
+#}
+{% set outer_classes = [] %}
+{% set inner_classes = classes %}
+
+{% for class in this.props.class %}
+  {% if class starts with "is-" or class starts with "has-" %}
+    {% set inner_classes = inner_classes|merge([class]) %}
+  {% elseif class starts with "c-bolt-" == false %}
+    {% set outer_classes = outer_classes|merge([class]) %}
   {% endif %}
+{% endfor %}
 
-  {% if trigger.icon %}
-    {% set attributes = attributes.setAttribute("trigger-icon-name", trigger.icon.name) %}
-
-    {% if trigger.icon.size %}
-      {% set attributes = attributes.setAttribute("trigger-icon-size", trigger.icon.size) %}
-    {% endif %}
-  {% endif %}
-
-  {% if trigger.toggle %}
-    {% if trigger.toggle.text %}
-      {% set attributes = attributes.setAttribute("trigger-toggle-text", trigger.toggle.text) %}
-    {% endif %}
-    {% if trigger.toggle.name %}
-      {% set attributes = attributes.setAttribute("trigger-toggle-icon", trigger.toggle.name) %}
-    {% endif %}
-  {% endif %}
+{# Deprecated #}
+{% if direction == "up" %}
+  {% set placement = "top" %}
+{% elseif direction == "down" %}
+  {% set placement = "bottom" %}
 {% endif %}
-
-{% if noWrap %}
-  {% set attributes = attributes.setAttribute("no-wrap", noWrap) %}
+{% if noWrap is sameas(true) or noWrap is sameas(false) %}
+  {% set noWrap = null %}
 {% endif %}
-
 {% if spacing %}
-  {% set attributes = attributes.setAttribute("spacing", spacing) %}
+  {% set spacing = null %}
+{% endif %}
+{% set toggle_name = trigger.toggle.name %}
+{% if toggle_name %}
+  {% set toggle_name = null %}
+{% endif %}
+{% set toggle_text = trigger.toggle.text %}
+{% if toggle_text %}
+  {% set toggle_text = null %}
+{% endif %}
+{% set transform = trigger.transform %}
+{% if transform %}
+  {% set transform = null %}
 {% endif %}
 
-{% if direction %}
-  {% set attributes = attributes.setAttribute("direction", direction) %}
-{% endif %}
+<bolt-tooltip
+  {% if outer_classes %} class="{{ outer_classes|join(' ') }}" {% endif %}
+  {{ this.props|without("trigger")|without("content")|without("class") }}
+  {% if fallbackPlacements %}
+    fallback-placements='{{ fallbackPlacements|json_encode() }} '
+  {% endif %}
+  uuid="{{ uuid }}"
+>
+  <replace-with-children {% if inner_classes %} class="{{ inner_classes|join(' ') }}" {% endif %}>
+    {% if trigger %}
+      {# Start adapter for old trigger data #}
+      {% if trigger.type == "text" %}
+        <replace-with-children
+          role="button"
+          tabindex="0"
+          aria-describedby="{{ tooltip_uuid }}"
+          aria-controls="{{ tooltip_uuid }}"
+        >
+          {% if trigger.icon %}
+            {% include "@bolt-components-icon/icon.twig" with trigger.icon %}
+          {% endif %}
+          {% if trigger.text %}
+            {{ trigger.text }}
+          {% endif %}
+        </replace-with-children>
+      {% elseif trigger.type == "button" %}
+        <replace-with-children
+          role="button"
+          tabindex="0"
+          aria-describedby="{{ tooltip_uuid }}"
+          aria-controls="{{ tooltip_uuid }}"
+        >
+          {% include "@bolt-components-button/button.twig" with {
+            text: trigger.text,
+            icon: {
+              name: trigger.icon.name,
+              size: trigger.icon.size,
+              position: "before",
+            },
+            style: "secondary",
+          } only %}
+        </replace-with-children>
+      {# End adapter for old trigger data #}
 
-{% set customElementName = customElementName | default('bolt-' ~ componentName) %}
+      {# Start new trigger #}
+      {% else %}
+        <replace-with-children
+          role="button"
+          tabindex="0"
+          aria-describedby="{{ tooltip_uuid }}"
+          aria-controls="{{ tooltip_uuid }}"
+        >
+          {{ trigger }}
+        </replace-with-children>
+      {% endif %}
+      {# End new trigger #}
+    {% endif %}
 
-<{{ customElementName }} {{ attributes }}>
-  {{ content | default("") }}
-</{{ customElementName }}>
+    {% if content %}
+      <span slot="content">
+        <replace-with-grandchildren id="{{ tooltip_uuid }}" class="{{ "#{base_class}__content" }}" role="tooltip" aria-hidden="true">
+          <span class="{{ "#{base_class}__bubble" }}">
+            {{ content }}
+          </span>
+        </replace-with-grandchildren>
+      </span>
+    {% endif %}
+  </replace-with-children>
+</bolt-tooltip>

@@ -3,6 +3,70 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.17.0](https://github.com/boltdesignsystem/bolt/compare/v2.16.3...v2.17.0) (2020-02-04)
+
+
+### Bug Fixes
+
+* update NPM dependencies to address Webpack SVG icon compile issues ([cfad6fc](https://github.com/boltdesignsystem/bolt/commit/cfad6fc99349d39cec2df583117bda64bda04020))
+
+
+### Features
+
+* cherry pick install & dependency related updates from https://github.com/boltdesignsystem/bolt/pull/1711 ([dfa3dd0](https://github.com/boltdesignsystem/bolt/commit/dfa3dd08d19a109736f64faef851e5516e3941e0))
+
+
+
+
+
+## [2.16.2](https://github.com/boltdesignsystem/bolt/compare/v2.16.1...v2.16.2) (2020-01-28)
+
+**Note:** Version bump only for package @bolt/jest-config
+
+
+
+
+
+## [2.16.1](https://github.com/boltdesignsystem/bolt/compare/v2.16.0...v2.16.1) (2020-01-27)
+
+**Note:** Version bump only for package @bolt/jest-config
+
+
+
+
+
+# [2.16.0](https://github.com/boltdesignsystem/bolt/compare/v2.15.2...v2.16.0) (2020-01-24)
+
+**Note:** Version bump only for package @bolt/jest-config
+
+
+
+
+
+## [2.15.2](https://github.com/boltdesignsystem/bolt/compare/v2.15.1...v2.15.2) (2020-01-21)
+
+**Note:** Version bump only for package @bolt/jest-config
+
+
+
+
+
+# [2.15.0](https://github.com/boltdesignsystem/bolt/compare/v2.14.3...v2.15.0) (2020-01-17)
+
+
+### Bug Fixes
+
+* adding removed earlier functionality ([f9d097b](https://github.com/boltdesignsystem/bolt/commit/f9d097b0482052f7ac8a949e1f1a70da30fd397f))
+
+
+### Features
+
+* port over misc monorepo-related updates from the epic/academy work ([b236c87](https://github.com/boltdesignsystem/bolt/commit/b236c87624b079432f7a02171fbf080be2a9bc19))
+
+
+
+
+
 # [2.14.0](https://github.com/boltdesignsystem/bolt/compare/v2.13.3...v2.14.0) (2020-01-06)
 
 **Note:** Version bump only for package @bolt/jest-config

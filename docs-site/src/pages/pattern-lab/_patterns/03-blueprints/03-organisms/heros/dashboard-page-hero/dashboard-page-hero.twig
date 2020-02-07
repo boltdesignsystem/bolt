@@ -1,0 +1,61 @@
+{% if block('heroButtonRow') %}
+  {% set heroButtonRowBlock %}
+    {{ block('heroButtonRow') }}
+  {% endset %}
+{% endif %}
+
+{% embed "@bolt-components-band/band.twig" with {
+  theme: "xdark",
+  size: "medium",
+  background: {
+    opacity: "light",
+    fill: "gradient",
+    contentItems: [
+      {
+        pattern: "image",
+        src: "/images/dashboard-hero.jpg",
+        placeholder_color: "#000000"
+      },
+    ]
+  }
+} %}
+  {% block band_content %}
+    {% grid "o-bolt-grid--flex o-bolt-grid--matrix" %}
+      {% cell "u-bolt-width-1/1 u-bolt-width-1/2@medium u-bolt-flex-grow" %}
+        {% if heroSubTitle %}
+          {% include "@bolt-components-headline/eyebrow.twig" with {
+            text: heroSubTitle,
+            weight: "bold",
+            size: "small",
+          } only %}
+        {% endif %}
+
+        {% if heroTitle %}
+          {% include "@bolt-components-headline/headline.twig" with {
+            size: "xxxlarge",
+            text: heroTitle
+          } only %}
+        {% endif %}
+
+        {% if heroDescription %}
+          {% include "@bolt-components-headline/subheadline.twig" with {
+            size: "xxlarge",
+            text: heroDescription,
+            attributes: {
+              class: [
+                "u-bolt-line-length-optimal"
+              ]
+            }
+          } only %}
+        {% endif %}
+      {% endcell %}
+
+      {% if heroButtonRowBlock %}
+        {% cell "u-bolt-flex-shrink u-bolt-margin-top-auto" %}
+          {{ heroButtonRowBlock }}
+        {% endcell %}
+      {% endif %}
+
+    {% endgrid %}
+  {% endblock %}
+{% endembed %}

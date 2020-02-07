@@ -1,0 +1,11 @@
+{% set usage %}{% verbatim %}
+{% include "@bolt-components-popover/popover.twig" with {
+  trigger: "This is the popover trigger",
+  content: "This is the popover content."
+} only %}
+{% endverbatim %}{% endset %}
+
+{% include "@utils/docs.twig" with {
+  componentName: "popover",
+  usage: usage
+} only %}

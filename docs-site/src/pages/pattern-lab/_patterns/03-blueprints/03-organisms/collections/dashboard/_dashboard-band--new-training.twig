@@ -1,0 +1,127 @@
+{% import "@bolt-blueprints/macros.twig" as macros %}
+
+{% include "@bolt-blueprints/_dashboard-band.twig" with {
+  sectionTitle: "New Training",
+  contentItems: [
+    {
+      cardUrl: "#!",
+      cardSubtitle: "Mission",
+      cardTitle: bolt.faker.sentence(3),
+      cardMetaItems: [
+        macros.include("@bolt-components-headline/text.twig", {
+          size: "small",
+          weight: "bold",
+          text: "#{bolt.faker.numberBetween(2,10)} Modules",
+        }, false),
+        macros.include("@bolt-components-headline/text.twig", {
+          size: "small",
+          weight: "bold",
+          text: "1 Challenge",
+        }, false),
+        macros.include("@bolt-components-headline/text.twig", {
+          size: "small",
+          weight: "bold",
+          text: "25% complete",
+          attributes: {
+            class: ["u-bolt-color-orange"]
+          }
+        }, false)
+      ],
+      cardGradient: "purple",
+      cardIcon: "rocket",
+      cardDescription: bolt.faker.paragraph(2),
+      cardUtilityItems: [
+        macros.include("@bolt-components-button/button.twig", {
+          text: "Share",
+          size: "xsmall",
+          style: "text",
+          icon: {
+            name: "share",
+            size: "small"
+          },
+          iconOnly: true
+        }, false ),
+        macros.include("@bolt-components-button/button.twig", {
+          text: "Remove from Dashboard",
+          size: "xsmall",
+          style: "text",
+          icon: {
+            name: "add-open",
+            size: "small"
+          },
+          iconOnly: true
+        }, false )
+      ]
+    },
+    {
+      cardUrl: "#!",
+      cardSubtitle: "Module",
+      cardTitle: bolt.faker.sentence(3),
+      cardMetaItems: [
+        macros.include("@bolt-components-headline/text.twig", {
+          size: "small",
+          weight: "bold",
+          text: "#{bolt.faker.numberBetween(2,10)} Topics",
+        }, false),
+        macros.include("@bolt-components-headline/text.twig", {
+          size: "small",
+          weight: "bold",
+          text: "In progress",
+          attributes: {
+            class: ["u-bolt-color-orange"]
+          }
+        }, false)
+      ],
+      cardGradient: "orange",
+      cardIcon: "meteor",
+      cardDescription: bolt.faker.paragraph(2),
+      cardUtilityItems: [
+        macros.include("@bolt-components-button/button.twig", {
+          text: "Share",
+          size: "xsmall",
+          style: "text",
+          icon: {
+            name: "share",
+            size: "small"
+          },
+          iconOnly: true
+        }, false )
+      ]
+    },
+    {
+      cardUrl: "#!",
+      cardSubtitle: "Module",
+      cardTitle: bolt.faker.sentence(3),
+      cardMetaItems: [
+        macros.include("@bolt-components-headline/text.twig", {
+          size: "small",
+          weight: "bold",
+          text: "#{bolt.faker.numberBetween(2,10)} Topics",
+        }, false),
+        macros.include("@bolt-components-headline/text.twig", {
+          size: "small",
+          weight: "bold",
+          text: "40 mins remaining",
+          attributes: {
+            class: ["u-bolt-color-orange"]
+          }
+        }, false)
+      ],
+      cardGradient: "teal",
+      cardIcon: "orbit",
+      cardDescription: bolt.faker.paragraph(2),
+      cardUtilityItems: [
+        macros.include("@bolt-components-button/button.twig", {
+          text: "Share",
+          size: "xsmall",
+          style: "text",
+          icon: {
+            name: "share",
+            size: "small"
+          },
+          iconOnly: true
+        }, false )
+      ]
+    }
+  ]
+} %}

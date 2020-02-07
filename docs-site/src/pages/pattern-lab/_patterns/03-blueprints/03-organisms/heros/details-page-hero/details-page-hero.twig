@@ -1,0 +1,10 @@
+{% grid "o-bolt-grid--flex o-bolt-grid--small o-bolt-grid--matrix u-bolt-padding-bottom-small" %}
+  {% cell "u-bolt-width-1/1" %}
+    {% include "@bolt-blueprints/_hero-primary-content.twig" %}
+  {% endcell %}
+  {% if heroSupplementalContent or heroTags or heroDescription %}
+    {% cell "u-bolt-width-1/1" %}
+      {% include "@bolt-blueprints/_hero-secondary-content.twig" %}
+    {% endcell %}
+  {% endif %}
+{% endgrid %}
