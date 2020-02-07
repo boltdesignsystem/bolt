@@ -59,10 +59,13 @@ export function enableEditor({ space, uiWrapper, config }) {
    */
   const moveElement = (editor, directionIsUp = true) => {
     if (!editor.getSelected()) {
+      alert('Please select a component in the "Layers" panel before moving');
       return;
     }
 
     const selected = editor.getSelected();
+    const selectedIndex = selected.index();
+    const selectedHTML = selected.toHTML();
     const isStep = selected.attributes.tagName === 'bolt-interactive-step';
     const isPathway =
       selected.attributes.tagName === 'bolt-interactive-pathway';
@@ -73,35 +76,48 @@ export function enableEditor({ space, uiWrapper, config }) {
       return;
     }
 
+    // selected item & siblings
     const parentCollection = selected.parent().components();
     if (parentCollection.length <= 1) {
       return;
     }
 
-    const indexOfSelected = parentCollection.indexOf(selected);
+    // remove current one
     parentCollection.remove(selected);
-    if (directionIsUp) {
-      parentCollection.add(selected, {
-        at: Math.max(indexOfSelected - 1, 0),
-      });
-    } else {
-      parentCollection.add(selected, {
-        at: Math.min(indexOfSelected + 1, parentCollection.length),
-      });
-    }
-    const eventTargetSelector = isStep
-      ? 'bolt-interactive-pathway'
-      : 'bolt-interactive-pathways';
-    const eventName = isStep
-      ? 'bolt-interactive-step:change-active-step'
-      : 'bolt-interactive-pathway:title-updated';
-    const event = new CustomEvent(eventName, {
-      bubbles: true,
+
+    // figure out where the new one goes
+    const newIndex = directionIsUp
+      ? Math.max(selectedIndex - 1, 0)
+      : Math.min(selectedIndex + 1, parentCollection.length);
+    // insert it and get a reference to it
+    const newItem = parentCollection.add(selectedHTML, {
+      at: newIndex,
     });
-    parentCollection
-      .at(0)
-      .closest(eventTargetSelector)
-      .view.el.dispatchEvent(event);
+    /**
+     * Get the actual HTML element in the view
+     * @type {HTMLElement}
+     * @todo set this type to 'bolt-interactive-step' or 'bolt-interactive-pathway'
+     *  */
+    const newEl = newItem.getEl();
+
+    // Select it in the Editor UI for Layers panel focus
+    editor.select(newItem);
+
+    // we wait an event loop & a bit extra so the async functions can finish that are fired in the 'component:remove' event handler (below) due to the `parentCollection.remove()` call above.
+    setTimeout(() => {
+      // The event handlers that catch this event are responsible for the re-triggering of animations, title sorting & other re-rendering
+      const eventName = isStep
+        ? 'bolt-interactive-step:change-active-step-to-index'
+        : 'bolt-interactive-pathway:title-updated';
+      newEl.dispatchEvent(
+        new CustomEvent(eventName, {
+          bubbles: true,
+          detail: {
+            index: newIndex,
+          },
+        }),
+      );
+    }, 10);
   };
 
   /** @type {grapesjs.EditorConfig} */
