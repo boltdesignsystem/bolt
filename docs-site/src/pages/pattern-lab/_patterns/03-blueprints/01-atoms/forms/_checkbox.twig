@@ -3,20 +3,20 @@
 {% import "@bolt-blueprints/macros.twig" as macros %}
 
 {% set label %}
-  {% macros.include("@bolt-components-form/form-label.twig") with {
-    "title": labelTitle,
-    "displayType": "inline-checkbox",
-    "attributes": {
-      "for": elementId
+  {% include "@bolt-components-form/form-label.twig" with {
+    title: labelTitle,
+    displayType: "inline-checkbox",
+    attributes: {
+      for: elementId
     }
-  } %}
+  } only %}
 {% endset %}
 
 {% set children %}
-  {% macros.include("@bolt-components-form/form-input.twig") with {
-    "attributes": {
-      "type": "checkbox",
-      "id": elementId
+  {% include "@bolt-components-form/form-input.twig" with {
+    attributes: {
+      type: "checkbox",
+      id: elementId
     },
-  } %}
+  } only %}
 {% endset %}
