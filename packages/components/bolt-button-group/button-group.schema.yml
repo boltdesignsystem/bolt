@@ -10,11 +10,10 @@ properties:
       - ol
   buttons:
     type: array
-    description: An array of button objects.
+    description: An array of buttons.
     items:
-      type: object
-      description: Bolt button information.
-      ref: '@bolt-components-button/button.schema.js'
+      type: [string, object, array]
+      description: A single bolt button, which should be passed as renderable content (i.e. a string, render array, or included pattern).  Passing anything besides a bolt button is not supported.
   contentItems:
     type: array
     title: Content items.
