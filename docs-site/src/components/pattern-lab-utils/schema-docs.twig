@@ -36,10 +36,11 @@
           {{ macros.object(prop.properties) }}
         {% endif %}
       {% elseif prop.type == "array" and prop.items %}
-        {% if prop.items.type == "object" or prop.items.type == "any" %}
+        {% if prop.items.type == "object" or prop.items.type == "any" or prop.items.type is iterable %}
+          {% set printableType = prop.items.type is iterable ? prop.items.type|join(', ') : prop.items.type %}
           [<em>items</em>]:
           <ul class="c-bds-docs-list__child">
-            <li>Type: <code>{{ prop.items.type }}</code>{{ macros.titleAndDescription(prop.items.title, prop.items.description, prop.minimum, prop.maximum) }}</li>
+            <li>Type: <code>{{ printableType }}</code>{{ macros.titleAndDescription(prop.items.title, prop.items.description, prop.minimum, prop.maximum) }}</li>
             <li>Properties:
               <ul class="c-bds-docs-list__child c-bds-docs-list__child--level-2">
                 {% for key, property in prop.items.properties %}
