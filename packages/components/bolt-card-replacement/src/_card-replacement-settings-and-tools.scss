@@ -8,8 +8,9 @@ $bolt-card-replacement-border-width: $bolt-border-width;
 $bolt-card-replacement-border-style: $bolt-border-style;
 $bolt-card-replacement-border-color: bolt-theme(text, 0.15);
 $bolt-card-replacement-border-radius: 4px;
-$bolt-card-replacement-link-z-index: 1;
-$bolt-card-replacement-individual-link-z-index: 2;
+$bolt-card-replacement-link-z-index: 3;
+$bolt-card-replacement-individual-link-z-index: 4;
+$bolt-card-replacement-body-z-index: 2; // Must be at least 2 to layer over card-replacement-background, and these elements can appear in any order
 $bolt-card-replacement-video-z-index: $bolt-card-replacement-individual-link-z-index;
 
 
