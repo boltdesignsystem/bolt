@@ -1,15 +1,15 @@
-{% extends "@bolt-blueprints/_search-results-template.twig" %}
+{% set hideGlobalSearch = true %}
 
-{% block main %}
-  {# Hero #}
-  {% include "@bolt-blueprints/_hero--search-results.twig" %}
+{% import "@bolt-blueprints/macros.twig" as macros %}
 
-  {# Body Top #}
+{% extends "@bolt-blueprints/_default-page-template.twig" %}
+
+{% block page_content %}
+  {% include "@bolt-blueprints/_search-bar.twig" %}
+  {% include "@bolt-blueprints/search-results-hero.twig" %}
   {% include "@bolt-blueprints/_nav--search.twig" %}
 
-  {# Body #}
   {% set content %}
-
     {% include "@bolt-blueprints/_chips--search-filter.twig" %}
 
     {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
@@ -17,7 +17,7 @@
         {% include "@bolt-blueprints/_form--search-filter.twig" %}
       {% endcell %}
       {% cell "u-bolt-width-1/1 u-bolt-width-9/12@medium" %}
-        {% include "@bolt-blueprints/_card-list.twig" %}
+        {% include "@bolt-blueprints/_search-results--results-list.twig" %}
         {% include "@bolt-blueprints/_pagination.twig" %}
       {% endcell %}
     {% endgrid %}
@@ -28,5 +28,11 @@
     size: "small",
     content: content,
   } only %}
+{% endblock %}
 
+{% block global_footer %}
+  <div class="o-bolt-wrapper u-bolt-flex-grow-none u-bolt-margin-top-auto">
+    {% include "@bolt-blueprints/_band--instructor-led-training.twig" %}
+  </div>
+  {{ parent() }}
 {% endblock %}
