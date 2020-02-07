@@ -23,6 +23,7 @@
         {% if button.text is defined %}
           {% include "@bolt/button.twig" with button only %}
         {% else %}
+          {# It's only valid to pass a bolt button here; anything else is not supported. #}
           {{ button }}
         {% endif %}
       </li>
