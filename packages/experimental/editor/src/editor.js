@@ -56,7 +56,7 @@ export function enableEditor({ space, uiWrapper, config }) {
    *
    * @param opt {Object}
    * @param opt.editor {grapesjs.Editor}
-   * @param opt.isUp {[boolean = true]}: If true, move direction is up. If false, direction is down.
+   * @param opt.isUp {boolean} If true, move direction is up. If false, direction is down.
    * @returns {Promise<void>}
    */
   function moveElement({ editor, isUp = true }) {
@@ -145,7 +145,11 @@ export function enableEditor({ space, uiWrapper, config }) {
         }
 
         if (isPathway) {
-          newEl.parentElement.beginItAll();
+          /** @type {import('@bolt/micro-journeys/src/interactive-pathways').BoltInteractivePathways} */
+          const pathway = newEl.parentElement;
+          if (pathway && pathway.beginItAll) {
+            pathway.beginItAll();
+          }
           newEl.dispatchEvent(
             new CustomEvent('bolt-interactive-pathway:title-updated', {
               bubbles: true,
@@ -165,6 +169,7 @@ export function enableEditor({ space, uiWrapper, config }) {
    * @param opt {Object}
    * @param opt.editor {grapesjs.Editor}
    * @param opt.buttonId {string} i.e. `move-up`, `move-down`, etc
+   * @param [opt.panelId='buttons'] {string}
    * @param opt.disable {boolean}
    * @returns {void}
    */
