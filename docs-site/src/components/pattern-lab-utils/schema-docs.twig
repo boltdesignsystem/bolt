@@ -150,7 +150,9 @@
       <li>
         <code>{{ key }}</code>
         {{ macros.titleAndDescription(prop.title, prop.description, prop.minimum, prop.maximum) }}
-        {% if isRef %}<br />Type: {{ prop.type is iterable ? prop.type|join(", ") : prop.type }} {% endif %}
+        {% if isRef %}
+          <p>Type: {{ prop.type is iterable ? prop.type|join(", ") : prop.type }}</p>
+        {% endif %}
         {{ macros.schemaProps(prop) }}
       </li>
     {% endfor %}
