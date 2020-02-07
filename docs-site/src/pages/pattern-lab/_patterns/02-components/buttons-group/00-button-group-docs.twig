@@ -1,16 +1,24 @@
 {% set usage %}{% verbatim %}
+{% set button_1 %}
+  {% include "@bolt-components-button/button.twig" with {
+    text: "Learn More",
+    style: "primary"
+  } only %}
+{% endset %}
+
+{% set button_2 %}
+  {% include "@bolt-components-button/button.twig" with {
+    text: "About Pega",
+    style: "secondary"
+  } only %}
+{% endset %}
+
 {% include "@bolt-components-button-group/button-group.twig" with {
   buttons: [
-    {
-      text: "Learn More",
-      style: "primary"
-    },
-    {
-      text: "About Pega",
-      style: "secondary"
-    }
+    button_1,
+    button_2
   ]
-} only %}
+} %}
 {% endverbatim %}{% endset %}
 
 {% include "@utils/docs.twig" with {
