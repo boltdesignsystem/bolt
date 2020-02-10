@@ -7,71 +7,72 @@
     {% endgrid %}
   </div>
   <div class="u-bolt-margin-bottom-large">
-    <bolt-code-snippet syntax="dark" lang="html">{% spaceless %}{{ code | replace({
+    <bolt-code-snippet syntax="dark" lang="html">{% spaceless %}
+      {{ code | replace({
         '<': '&lt;',
         '>': '&gt;',
-      }) | trim | raw }}{% endspaceless %}
-    </bolt-code-snippet>
+      }) | trim | raw }}
+    {% endspaceless %}</bolt-code-snippet>
   </div>
 {% endmacro %}
 
 {% import _self as card_replacement_code %}
 
 {% macro video() %}
-<bolt-card-replacement-media>
-  <bolt-ratio aspect-ratio-height="9" aspect-ratio-width="16">
-    <bolt-video data-setup='{"techOrder": ["Html5"], "resizeManager": false}' video-id="3861325118001" account-id="1900410236" show-meta show-meta-title player-id="r1CAdLzTW" controls></bolt-video>
-  </bolt-ratio>
-</bolt-card-replacement-media>
+  <bolt-card-replacement-media>
+    <bolt-ratio aspect-ratio-height="9" aspect-ratio-width="16">
+      <bolt-video data-setup='{"techOrder": ["Html5"], "resizeManager": false}' video-id="3861325118001" account-id="1900410236" show-meta show-meta-title player-id="r1CAdLzTW" controls></bolt-video>
+    </bolt-ratio>
+  </bolt-card-replacement-media>
 {% endmacro %}
 
 {% macro image() %}
-<bolt-card-replacement-media>
-  <bolt-image src="/images/placeholders/landscape-16x9-mountains.jpg" alt="card-replacement media."></bolt-image>
-</bolt-card-replacement-media>
+  <bolt-card-replacement-media>
+    <bolt-image src="/images/placeholders/landscape-16x9-mountains.jpg" alt="card-replacement media."></bolt-image>
+  </bolt-card-replacement-media>
 {% endmacro %}
 
 {% macro body() %}
-<bolt-card-replacement-body>
-  <bolt-text eyebrow>This is an eyebrow</bolt-text>
-  <bolt-text headline>This is a headline</bolt-text>
-  <bolt-text>This is a paragraph.</bolt-text>
-</bolt-card-replacement-body>
+  <bolt-card-replacement-body>
+    <bolt-text eyebrow>This is an eyebrow</bolt-text>
+    <bolt-text headline>This is a headline</bolt-text>
+    <bolt-text>This is a paragraph.</bolt-text>
+  </bolt-card-replacement-body>
 {% endmacro %}
 
 {% macro body_clickable() %}
-<bolt-card-replacement-body>This is a card-replacement with an overall link that makes the whole card-replacement clickable.</bolt-card-replacement-body>
+  <bolt-card-replacement-body>This is a card-replacement with an overall link that makes the whole card-replacement clickable.</bolt-card-replacement-body>
 {% endmacro %}
 
 {% macro body_with_link() %}
-<bolt-card-replacement-body>
-  This is a card-replacement with an overall link that makes the whole card-replacement clickable, while the body can still have <bolt-link target="_blank" url="https://boltdesignsystem.com/docs">text links</bolt-link> that would go somewhere else.
-</bolt-card-replacement-body>
+  <bolt-card-replacement-body>
+    This is a card-replacement with an overall link that makes the whole card-replacement clickable, while the body can still have <bolt-link target="_blank" url="https://boltdesignsystem.com/docs">text links</bolt-link> that would go somewhere else.
+  </bolt-card-replacement-body>
 {% endmacro %}
 
 {% macro actions() %}
-<bolt-card-replacement-actions>
-  <bolt-card-replacement-action url="https://pega.com">
-    Internal link
-  </bolt-card-replacement-action>
-  <bolt-card-replacement-action url="https://yahoo.com" external>
-    External link
-  </bolt-card-replacement-action>
-</bolt-card-replacement-actions>
+  <bolt-card-replacement-actions>
+    <bolt-card-replacement-action url="https://pega.com">
+      Internal link
+    </bolt-card-replacement-action>
+    <bolt-card-replacement-action url="https://yahoo.com" external>
+      External link
+    </bolt-card-replacement-action>
+  </bolt-card-replacement-actions>
 {% endmacro %}
 
 {% set card_replacement_web_component_demo %}
 <bolt-card-replacement>
-  {% include card_replacement_code.image() %}
-  {% include card_replacement_code.body() %}
-  {% include card_replacement_code.actions() %}
+{% include card_replacement_code.image() %}
+{% include card_replacement_code.body() %}
+{% include card_replacement_code.actions() %}
 </bolt-card-replacement>
 {% endset %}
 
 {% set simple_link_demo %}
 <bolt-card-replacement url="https://google.com" url-text="Go to google.com">
-  {% include card_replacement_code.image() %}
-  {% include card_replacement_code.body_clickable() %}
+{% include card_replacement_code.image() %}
+{% include card_replacement_code.body_clickable() %}
 </bolt-card-replacement>
 {% endset %}
 
@@ -80,16 +81,16 @@
   <bolt-card-replacement-link custom-attribute="foo" html-attribute="bar">
     <a href="http://google.com" target="_blank">Go to google.com</a>
   </bolt-card-replacement-link>
-  {% include card_replacement_code.image() %}
-  {% include card_replacement_code.body_clickable() %}
+{% include card_replacement_code.image() %}
+{% include card_replacement_code.body_clickable() %}
 </bolt-card-replacement>
 {% endset %}
 
 {% set nested_links_demo %}
 <bolt-card-replacement url="https://google.com">
-  {% include card_replacement_code.video() %}
-  {% include card_replacement_code.body_with_link() %}
-  {% include card_replacement_code.actions() %}
+{% include card_replacement_code.video() %}
+{% include card_replacement_code.body_with_link() %}
+{% include card_replacement_code.actions() %}
 </bolt-card-replacement>
 {% endset %}
 
