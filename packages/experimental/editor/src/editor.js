@@ -54,55 +54,162 @@ export function enableEditor({ space, uiWrapper, config }) {
   /**
    * Move bolt-interactive-step or bolt-interactive-pathway up or down.
    *
-   * @param editor {grapesjs.Editor}
-   * @param directionIsUp {boolean}: If true, move direction is up. If false, direction is down.
+   * @param opt {Object}
+   * @param opt.editor {grapesjs.Editor}
+   * @param opt.isUp {boolean} If true, move direction is up. If false, direction is down.
+   * @returns {Promise<void>}
    */
-  const moveElement = (editor, directionIsUp = true) => {
-    if (!editor.getSelected()) {
-      return;
-    }
+  function moveElement({ editor, isUp = true }) {
+    return new Promise((resolve, reject) => {
+      const selected = editor.getSelected();
+      if (!selected) {
+        alert('Please select a component in the "Layers" panel before moving');
+        reject();
+      }
 
-    const selected = editor.getSelected();
-    const isStep = selected.attributes.tagName === 'bolt-interactive-step';
-    const isPathway =
-      selected.attributes.tagName === 'bolt-interactive-pathway';
+      const selectedIndex = selected.index();
+      const selectedHTML = selected.toHTML();
+      const { tagName } = selected?.attributes || {};
+      const isStep = tagName === 'bolt-interactive-step';
+      const isPathway = tagName === 'bolt-interactive-pathway';
 
-    if (!(isPathway || isStep)) {
-      // eslint-disable-next-line no-alert
-      alert('"Move Up" and "Move Down" only work for Steps and Pathways');
-      return;
-    }
+      if (!(isPathway || isStep)) {
+        // eslint-disable-next-line no-alert
+        alert('"Move Up" and "Move Down" only work for Steps and Pathways');
+        reject();
+      }
 
-    const parentCollection = selected.parent().components();
-    if (parentCollection.length <= 1) {
-      return;
-    }
+      // selected item & siblings
+      const parentCollection = selected.parent().components();
+      if (parentCollection.length <= 1) {
+        reject();
+      }
 
-    const indexOfSelected = parentCollection.indexOf(selected);
-    parentCollection.remove(selected);
-    if (directionIsUp) {
-      parentCollection.add(selected, {
-        at: Math.max(indexOfSelected - 1, 0),
+      // remove current one
+      parentCollection.remove(selected);
+
+      // figure out where the new one goes
+      const newIndex = isUp
+        ? Math.max(selectedIndex - 1, 0)
+        : Math.min(selectedIndex + 1, parentCollection.length);
+      // insert it and get a reference to it
+      const newItem = parentCollection.add(selectedHTML, {
+        at: newIndex,
       });
-    } else {
-      parentCollection.add(selected, {
-        at: Math.min(indexOfSelected + 1, parentCollection.length),
-      });
-    }
-    const eventTargetSelector = isStep
-      ? 'bolt-interactive-pathway'
-      : 'bolt-interactive-pathways';
-    const eventName = isStep
-      ? 'bolt-interactive-step:change-active-step'
-      : 'bolt-interactive-pathway:title-updated';
-    const event = new CustomEvent(eventName, {
-      bubbles: true,
+      /**
+       * Get the actual HTML element in the view
+       * @type {HTMLElement}
+       * @todo set this type to 'bolt-interactive-step' or 'bolt-interactive-pathway'
+       *  */
+      const newEl = newItem.getEl();
+
+      function finish(timeoutId) {
+        if (timeoutId) {
+          clearTimeout(timeoutId);
+        }
+        setTimeout(() => {
+          // Select it in the Editor UI for Layers panel focus
+          editor.select(newItem);
+        }, 0);
+        resolve();
+      }
+
+      // once the moved item mounts and has it's animations trigger, resolve this Promise to let others know the move is complete. If it takes too long, then we use `setTimeout` to make it happen.
+      const backupTimeoutId = setTimeout(finish, 2500);
+      if (isStep) {
+        newEl.addEventListener(
+          `${tagName}:trigger-anim-ins`,
+          event => {
+            finish(backupTimeoutId);
+          },
+          { once: true },
+        );
+      }
+
+      // we wait an event loop & a bit extra so the async functions can finish that are fired in the 'component:remove' event handler (below) due to the `parentCollection.remove()` call above.
+      setTimeout(() => {
+        // The event handlers that catch this event are responsible for the re-triggering of animations, title sorting & other re-rendering
+
+        if (isStep) {
+          newEl.dispatchEvent(
+            new CustomEvent(
+              'bolt-interactive-step:change-active-step-to-index',
+              {
+                bubbles: true,
+                detail: {
+                  index: newIndex,
+                },
+              },
+            ),
+          );
+        }
+
+        if (isPathway) {
+          /** @type {import('@bolt/micro-journeys/src/interactive-pathways').BoltInteractivePathways} */
+          const pathway = newEl.parentElement;
+          if (pathway && pathway.beginItAll) {
+            pathway.beginItAll();
+          }
+          newEl.dispatchEvent(
+            new CustomEvent('bolt-interactive-pathway:title-updated', {
+              bubbles: true,
+              detail: {
+                index: newIndex,
+              },
+            }),
+          );
+          setTimeout(() => finish(backupTimeoutId), 0);
+        }
+      }, 10);
     });
-    parentCollection
-      .at(0)
-      .closest(eventTargetSelector)
-      .view.el.dispatchEvent(event);
-  };
+  }
+
+  /**
+   * Adjust a button in the toolbar to be clickable or not by changing it's `disabled` attribute
+   * @param opt {Object}
+   * @param opt.editor {grapesjs.Editor}
+   * @param opt.buttonId {string} i.e. `move-up`, `move-down`, etc
+   * @param [opt.panelId='buttons'] {string}
+   * @param opt.disable {boolean}
+   * @returns {void}
+   */
+  function setButtonClickability({
+    editor,
+    buttonId = '',
+    panelId = 'buttons',
+    disable = true,
+  }) {
+    const thisButton = editor.Panels.getButton(panelId, buttonId);
+    thisButton.attributes.disable = disable;
+    thisButton.trigger('change:disable');
+  }
+
+  /**
+   * Sets the "Move Up" and "Move Down" button to disabled if needed (i.e. if first, then no "Move Up")
+   * @param editor {grapesjs.Editor}
+   * @returns {void}
+   */
+  function setMoveButtonsClickability(editor) {
+    const selected = editor.getSelected();
+    if (!selected) return;
+    const name = selected.getName()?.toLowerCase();
+    const parent = selected.parent();
+    if (!parent) return;
+    const siblingComponents = parent.components();
+    if (!siblingComponents) return;
+    const sameSiblingComponents = siblingComponents.filter(component =>
+      component.is(name),
+    );
+    const selectedIndex = sameSiblingComponents.findIndex(
+      component => component.cid === selected.cid,
+    );
+    if (selectedIndex === -1) return;
+    const isFirst = selectedIndex === 0;
+    const isLast = selectedIndex === sameSiblingComponents.length - 1;
+
+    setButtonClickability({ editor, buttonId: 'move-up', disable: isFirst });
+    setButtonClickability({ editor, buttonId: 'move-down', disable: isLast });
+  }
 
   /** @type {grapesjs.EditorConfig} */
   const editorConfig = {
@@ -231,10 +338,19 @@ export function enableEditor({ space, uiWrapper, config }) {
               id: 'move-up',
               label: 'Move Up',
               togglable: false,
+              disable: true,
               className: 'gjs-pega-editor-panels-btn--move-up',
               command: {
                 run: (/** @type {grapesjs.Editor} */ editor) => {
-                  moveElement(editor, true);
+                  setButtonClickability({
+                    editor,
+                    buttonId: 'move-up',
+                    disable: true,
+                  });
+
+                  moveElement({ editor, isUp: true }).then(() => {
+                    setMoveButtonsClickability(editor);
+                  });
                 },
               },
             },
@@ -242,10 +358,19 @@ export function enableEditor({ space, uiWrapper, config }) {
               id: 'move-down',
               label: 'Move Down',
               togglable: false,
+              disable: true,
               className: 'gjs-pega-editor-panels-btn--move-down',
               command: {
-                run: (/** @type {grapesjs.Editor} */ editor) => {
-                  moveElement(editor, false);
+                run(/** @type {grapesjs.Editor} */ editor) {
+                  setButtonClickability({
+                    editor,
+                    buttonId: 'move-down',
+                    disable: true,
+                  });
+
+                  moveElement({ editor, isUp: false }).then(() => {
+                    setMoveButtonsClickability(editor);
+                  });
                 },
               },
             },
@@ -454,6 +579,27 @@ export function enableEditor({ space, uiWrapper, config }) {
     const name = model.getName().toLowerCase();
     const slotControls = model.getSlotControls && model.getSlotControls();
     renderSlotControls({ slotControls, name });
+  });
+
+  /**
+   * Change the "Move Up" & "Move Down" to disabled/enabled
+   * Only works for 'bolt-interactive-step' or 'bolt-interactive-pathway'
+   * Disable for all other components
+   * Disable appropriate button when selected item is first or last
+   *
+   * @param {grapesjs.Component} model
+   * @return {void}
+   */
+  editor.on('component:selected', (/** @type {grapesjs.Component} */ model) => {
+    const name = model.getName().toLowerCase();
+    const isMovable =
+      name === 'bolt-interactive-step' || name === 'bolt-interactive-pathway';
+    if (!isMovable) {
+      setButtonClickability({ editor, buttonId: 'move-up', disable: true });
+      setButtonClickability({ editor, buttonId: 'move-down', disable: true });
+      return;
+    }
+    setMoveButtonsClickability(editor);
   });
 
   editor.on('component:remove', (/** @type {grapesjs.Component} */ model) => {

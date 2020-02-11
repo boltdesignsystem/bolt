@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.17.1](https://github.com/bolt-design-system/bolt/compare/v2.17.0...v2.17.1) (2020-02-11)
+
+
+### Bug Fixes
+
+* **editor:** disable "Move Up/Down" buttons when appropriate ([93731aa](https://github.com/bolt-design-system/bolt/commit/93731aaef78a38dd68aeb3af1a42e4773c3b5ae3))
+* **editor:** pathway re-arrangement ([56307b1](https://github.com/bolt-design-system/bolt/commit/56307b195b02390d45b02d55e5afa7a3201c85a2))
+* **editor:** rearrange step w content ([e36185f](https://github.com/bolt-design-system/bolt/commit/e36185fa731c2a6b458affd30236a243b666826f))
+
+
+
+
+
 # [2.17.0](https://github.com/bolt-design-system/bolt/compare/v2.16.3...v2.17.0) (2020-02-04)
 
 
