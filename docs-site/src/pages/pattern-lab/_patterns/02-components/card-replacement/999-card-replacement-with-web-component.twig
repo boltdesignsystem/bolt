@@ -7,14 +7,12 @@
     {% endgrid %}
   </div>
   <div class="u-bolt-margin-bottom-large">
-    <bolt-code-snippet syntax="dark" lang="html">
-      {% spaceless %}
-        {{ code | replace({
+    <bolt-code-snippet syntax="dark" lang="html">{% spaceless %}
+      {{ code | replace({
         '<': '&lt;',
         '>': '&gt;',
       }) | trim | raw }}
-      {% endspaceless %}
-    </bolt-code-snippet>
+    {% endspaceless %}</bolt-code-snippet>
   </div>
 {% endmacro %}
 
@@ -47,9 +45,9 @@
 {% endmacro %}
 
 {% macro body_with_link() %}
-  <bolt-card-replacement-body>This is a card-replacement with an overall link that makes the whole card-replacement clickable, while the body can still have
-    <bolt-link target="_blank" url="https://boltdesignsystem.com/docs">text links</bolt-link>
-    that would go somewhere else.</bolt-card-replacement-body>
+  <bolt-card-replacement-body>
+    This is a card-replacement with an overall link that makes the whole card-replacement clickable, while the body can still have <bolt-link target="_blank" url="https://boltdesignsystem.com/docs">text links</bolt-link> that would go somewhere else.
+  </bolt-card-replacement-body>
 {% endmacro %}
 
 {% macro actions() %}
@@ -65,16 +63,16 @@
 
 {% set card_replacement_web_component_demo %}
 <bolt-card-replacement>
-  {% include card_replacement_code.image() %}
-  {% include card_replacement_code.body() %}
-  {% include card_replacement_code.actions() %}
+{% include card_replacement_code.image() %}
+{% include card_replacement_code.body() %}
+{% include card_replacement_code.actions() %}
 </bolt-card-replacement>
 {% endset %}
 
 {% set simple_link_demo %}
 <bolt-card-replacement url="https://google.com" url-text="Go to google.com">
-  {% include card_replacement_code.image() %}
-  {% include card_replacement_code.body_clickable() %}
+{% include card_replacement_code.image() %}
+{% include card_replacement_code.body_clickable() %}
 </bolt-card-replacement>
 {% endset %}
 
@@ -83,16 +81,16 @@
   <bolt-card-replacement-link custom-attribute="foo" html-attribute="bar">
     <a href="http://google.com" target="_blank">Go to google.com</a>
   </bolt-card-replacement-link>
-  {% include card_replacement_code.image() %}
-  {% include card_replacement_code.body_clickable() %}
+{% include card_replacement_code.image() %}
+{% include card_replacement_code.body_clickable() %}
 </bolt-card-replacement>
 {% endset %}
 
 {% set nested_links_demo %}
 <bolt-card-replacement url="https://google.com">
-  {% include card_replacement_code.video() %}
-  {% include card_replacement_code.body_with_link() %}
-  {% include card_replacement_code.actions() %}
+{% include card_replacement_code.video() %}
+{% include card_replacement_code.body_with_link() %}
+{% include card_replacement_code.actions() %}
 </bolt-card-replacement>
 {% endset %}
 

@@ -139,3 +139,16 @@ bolt-card-replacement {
   flex-grow: 1;
   flex-shrink: 1;
 }
+
+// This catches all links and button inside the card (inner links) and increases their z-index to make them higher than the outer link. Reference the _card-replacement-settings-and-tools.scss to see the full stacking order.
+@include bolt-repeat-rule(
+  (
+    '::slotted(bolt-link)',
+    'bolt-card-replacement bolt-link',
+    '::slotted(bolt-button)',
+    'bolt-card-replacement bolt-button'
+  )
+) {
+  position: relative;
+  z-index: $bolt-card-replacement-z-index-inner-link;
+}
