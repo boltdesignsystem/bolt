@@ -36,43 +36,46 @@
           {{ macros.object(prop.properties) }}
         {% endif %}
       {% elseif prop.type == "array" and prop.items %}
-        {% if prop.items.type == "object" or prop.items.type == "any" %}
+        {% if prop.items.type == "object" or prop.items.type == "any" or prop.items.type is iterable %}
+          {% set printableType = prop.items.type is iterable ? prop.items.type|join(', ') : prop.items.type %}
           [<em>items</em>]:
           <ul class="c-bds-docs-list__child">
-            <li>Type: <code>{{ prop.items.type }}</code>{{ macros.titleAndDescription(prop.items.title, prop.items.description, prop.minimum, prop.maximum) }}</li>
-            <li>Properties:
-              <ul class="c-bds-docs-list__child c-bds-docs-list__child--level-2">
-                {% for key, property in prop.items.properties %}
-                  <li><code>{{ key }}</code>
-                    {{ macros.titleAndDescription(property.title, property.description, prop.minimum, prop.maximum) }}
-                    {% if property.type %}
-                      <ul class="c-bds-docs-list__child c-bds-docs-list__child--level-3">
-                        <li>
-                          Type:
-                          {% if property.type is iterable %}
-                            {% for type in property.type %}
-                              <code>{{ type }}</code>{% if not loop.last %}, {% endif %}
-                            {% endfor %}
-                          {% else %}
-                            <code>{{ property.type }}</code>
+            <li>Type: <code>{{ printableType }}</code>{{ macros.titleAndDescription(prop.items.title, prop.items.description, prop.minimum, prop.maximum) }}</li>
+            {% if prop.items.properties is not empty %}
+              <li>Properties:
+                <ul class="c-bds-docs-list__child c-bds-docs-list__child--level-2">
+                  {% for key, property in prop.items.properties %}
+                    <li><code>{{ key }}</code>
+                      {{ macros.titleAndDescription(property.title, property.description, prop.minimum, prop.maximum) }}
+                      {% if property.type %}
+                        <ul class="c-bds-docs-list__child c-bds-docs-list__child--level-3">
+                          <li>
+                            Type:
+                            {% if property.type is iterable %}
+                              {% for type in property.type %}
+                                <code>{{ type }}</code>{% if not loop.last %}, {% endif %}
+                              {% endfor %}
+                            {% else %}
+                              <code>{{ property.type }}</code>
+                            {% endif %}
+                          </li>
+                          {% if property.enum %}
+                          <li>
+                            Enum:
+                            {{ macros.loopThroughEnums(property) }}
+                          </li>
                           {% endif %}
-                        </li>
-                        {% if property.enum %}
-                        <li>
-                          Enum:
-                          {{ macros.loopThroughEnums(property) }}
-                        </li>
-                        {% endif %}
-                        {% if property.type == "object" and property.properties %}
-                          <li>Properties:</li>
-                          {{ macros.object(property.properties) }}
-                        {% endif %}
-                      </ul>
-                    {% endif %}
-                  </li>
-                {% endfor %}
-              </ul>
-            </li>
+                          {% if property.type == "object" and property.properties %}
+                            <li>Properties:</li>
+                            {{ macros.object(property.properties) }}
+                          {% endif %}
+                        </ul>
+                      {% endif %}
+                    </li>
+                  {% endfor %}
+                </ul>
+              </li>
+            {% endif %}
           </ul>
         {% endif %}
       {% elseif not prop.enum %}
@@ -147,7 +150,9 @@
       <li>
         <code>{{ key }}</code>
         {{ macros.titleAndDescription(prop.title, prop.description, prop.minimum, prop.maximum) }}
-        {% if isRef %}<br />Type: {{ prop.type is iterable ? prop.type|join(", ") : prop.type }} {% endif %}
+        {% if isRef %}
+          <p>Type: {{ prop.type is iterable ? prop.type|join(", ") : prop.type }}</p>
+        {% endif %}
         {{ macros.schemaProps(prop) }}
       </li>
     {% endfor %}
