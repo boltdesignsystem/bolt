@@ -1,0 +1,51 @@
+{% set hideGlobalSearch = true %}
+
+{% import "@bolt-blueprints/macros.twig" as macros %}
+
+{% extends "@bolt-blueprints/_default-page-template.twig" %}
+
+{% block page_content %}
+  {% include "@bolt-blueprints/_search-bar.twig" %}
+  {% include "@bolt-blueprints/search-results-hero--archived.twig" %}
+  {% include "@bolt-blueprints/_nav--search.twig" %}
+
+  {% set archived_content %}
+    {% include "@bolt-components-headline/text.twig" with {
+      text: "This content has been archived.",
+      font_size: "large",
+      align: "center"
+    } only %}
+  {% endset %}
+
+  {# TODO: needs darker background color #}
+  {% include "@bolt-components-band/band.twig" with {
+    theme: "light",
+    size: "xsmall",
+    content: archived_content,
+  } only %}
+
+  {% set content %}
+    {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
+      {% cell "u-bolt-width-1/1 u-bolt-width-3/12@medium" %}
+        {% include "@bolt-blueprints/_form--search-filter.twig" %}
+      {% endcell %}
+      {% cell "u-bolt-width-1/1 u-bolt-width-9/12@medium" %}
+        {% include "@bolt-blueprints/_search-results--results-list.twig" %}
+        {% include "@bolt-blueprints/_pagination.twig" %}
+      {% endcell %}
+    {% endgrid %}
+  {% endset %}
+
+  {% include "@bolt-components-band/band.twig" with {
+    theme: "light",
+    size: "small",
+    content: content,
+  } only %}
+{% endblock %}
+
+{% block global_footer %}
+  <div class="o-bolt-wrapper u-bolt-flex-grow-none u-bolt-margin-top-auto">
+    {% include "@bolt-blueprints/_band--instructor-led-training.twig" %}
+  </div>
+  {{ parent() }}
+{% endblock %}
