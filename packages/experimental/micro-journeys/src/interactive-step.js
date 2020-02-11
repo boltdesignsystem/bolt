@@ -119,6 +119,13 @@ class BoltInteractiveStep extends withLitContext {
         );
       });
     }
+
+    this.dispatchEvent(
+      new CustomEvent(`${BoltInteractiveStep.is}:trigger-anim-ins`, {
+        bubbles: true,
+      }),
+    );
+
     return triggerAnims({
       animEls,
       stage: 'IN',
