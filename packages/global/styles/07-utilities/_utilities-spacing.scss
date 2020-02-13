@@ -59,29 +59,34 @@ $bolt-spacing-sizes: map-merge($bolt-spacing-sizes-extras, $bolt-spacing-sizes);
   }
 }
 
-$bolt-negative-margin-sizes: _bolt-create-spacing-map(
-  $bolt-negative-margin-values
-);
-$bolt-negative-margin-directions: ('top', 'bottom', 'left', 'right');
-
+// Negative margins
+// Dev note: It takes regular margin spacing and multiply it by -1.
 @mixin bolt-negative-margin-utils($breakpoint: null) {
-  @for $i from 1 through length($bolt-negative-margin-directions) {
-    $direction: nth($bolt-negative-margin-directions, $i);
-    $type: '';
-    $prop: 'margin';
+  @for $direction from 1 through length($bolt-spacing-directions) {
+    $direction: nth($bolt-spacing-directions, $direction);
 
-    @each $size, $value in $bolt-negative-margin-sizes {
-      .u-bolt-negative-margin-#{$direction}-#{$size}#{$breakpoint} {
-        margin-#{$direction}: $value !important;
+    @each $spacing-value in $bolt-spacing-values {
+      $spacing-value-name: nth($spacing-value, 1);
+
+      @if $direction != top and $direction != bottom {
+        .u-bolt-negative-margin-#{$direction}-#{$spacing-value-name}#{$breakpoint} {
+          margin-#{$direction}: bolt-spacing(#{$spacing-value-name}) *
+            -1 !important;
+        }
+      } @else {
+        .u-bolt-negative-margin-#{$direction}-#{$spacing-value-name}#{$breakpoint} {
+          margin-#{$direction}: bolt-v-spacing(#{$spacing-value-name}) *
+            -1 !important;
+        }
       }
     }
   }
 }
 
+// Generate regular and responsive spacing util classes
 @include bolt-spacing-sizes-utils;
 @include bolt-negative-margin-utils;
 
-// Loop over our breakpoints
 @each $breakpoint in $bolt-breakpoints {
   $breakpointName: nth($breakpoint, 1);
   @include bolt-mq($breakpointName) {
@@ -90,6 +95,7 @@ $bolt-negative-margin-directions: ('top', 'bottom', 'left', 'right');
   }
 }
 
+// Export spacing data
 @include export-data('spacing-sizes.bolt.json', $bolt-spacing-sizes);
 @include export-data('spacing-properties.bolt.json', $bolt-spacing-properties);
 @include export-data('spacing-directions.bolt.json', $bolt-spacing-directions);
