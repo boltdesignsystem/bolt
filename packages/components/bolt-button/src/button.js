@@ -26,10 +26,10 @@ class BoltButton extends BoltActionElement {
   static get properties() {
     return {
       ...BoltActionElement.properties, // Provides: disabled, onClick, onClickTarget, target, url
-      color: String,
-      text: String,
-      size: String,
-      rounded: Boolean, // DEPRECATED.  Use border-radius instead of rounded.
+      color: { type: String },
+      text: { type: String },
+      size: { type: String },
+      rounded: { type: Boolean }, // DEPRECATED.  Use border-radius instead of rounded.
       borderRadius: {
         type: String,
         attribute: 'border-radius',
@@ -38,12 +38,12 @@ class BoltButton extends BoltActionElement {
         type: Boolean,
         attribute: 'icon-only',
       },
-      width: String,
-      align: String,
-      transform: String,
-      type: String,
-      tabindex: Number,
-      inert: Boolean, // will eventually go hand in hand with https://github.com/WICG/inert#notes-on-the-polyfill
+      width: { type: String },
+      align: { type: String },
+      transform: { type: String },
+      type: { type: String },
+      tabindex: { type: Number },
+      inert: { type: Boolean }, // will eventually go hand in hand with https://github.com/WICG/inert#notes-on-the-polyfill
     };
   }
 
