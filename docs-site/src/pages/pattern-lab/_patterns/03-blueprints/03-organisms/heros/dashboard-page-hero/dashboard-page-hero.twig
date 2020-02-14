@@ -22,25 +22,16 @@
   {% block band_content %}
     {% grid "o-bolt-grid--flex o-bolt-grid--matrix" %}
       {% cell "u-bolt-width-1/1 u-bolt-width-1/2@medium u-bolt-flex-grow" %}
-        {% if heroSubTitle %}
-          {% include "@bolt-components-headline/eyebrow.twig" with {
-            text: heroSubTitle,
-            weight: "bold",
-            size: "small",
-          } only %}
-        {% endif %}
 
-        {% if heroTitle %}
-          {% include "@bolt-components-headline/headline.twig" with {
-            size: "xxxlarge",
-            text: heroTitle
-          } only %}
-        {% endif %}
+        {% include "@bolt-blueprints/_headline-with-eyebrow.twig" with {
+          eyebrow: heroSubTitle,
+          headline: heroTitle
+        } only %}
 
-        {% if heroDescription %}
+        {% if trainingDescription %}
           {% include "@bolt-components-headline/subheadline.twig" with {
             size: "xxlarge",
-            text: heroDescription,
+            text: trainingDescription,
             attributes: {
               class: [
                 "u-bolt-line-length-optimal"

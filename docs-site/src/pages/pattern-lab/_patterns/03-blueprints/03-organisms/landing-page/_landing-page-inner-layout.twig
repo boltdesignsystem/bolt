@@ -1,0 +1,63 @@
+{% if block("hero_content") %}
+  {% set heroContentBlock %}
+    {{ block("hero_content") }}
+  {% endset %}
+{% endif %}
+
+{% if block("main_content") %}
+  {% set mainContentBlock %}
+    {{ block("main_content") }}
+  {% endset %}
+{% endif %}
+
+{# Amount the top background image will be pulled into the next band #}
+{% set backgroundOffsetSize = "32rem" %}
+
+{% set mainBackgroundGradient %}
+  <div style="background-image: linear-gradient(transparent, rgba(var(--bolt-theme-background),1)); width: 100%; position: absolute; left: 0; bottom: 0; height: 8rem;"></div>
+{% endset %}
+
+{# Hero content (includes background image if provided) #}
+{% embed "@bolt-components-band/band.twig" with {
+  theme: "none",
+  size: "medium",
+  valign: "start",
+  background: {
+    overlay: "disabled",
+    contentItems: mainBackgroundImage ? [
+      {
+        pattern: "image",
+        src: mainBackgroundImage,
+        lazyload: false,
+        align: "75%",
+        valign: "25%",
+      },
+      mainBackgroundGradient
+    ] : []
+  },
+  inner_attributes: {
+    style: "padding-bottom: #{backgroundOffsetSize};",
+  }
+} %}
+  {% block band_content %}
+    {{ heroContentBlock }}
+  {% endblock %}
+{% endembed %}
+
+{# Main page content #}
+{% embed "@bolt-components-band/band.twig" with {
+  theme: "none",
+  size: "medium",
+  valign: "start",
+  inner_attributes: {
+    style: "margin-top: -#{backgroundOffsetSize};",
+    class: [
+      "u-bolt-padding-top-medium",
+      "u-bolt-padding-bottom-xlarge"
+    ]
+  }
+} %}
+  {% block band_content %}
+    {{ mainContentBlock }}
+  {% endblock %}
+{% endembed %}

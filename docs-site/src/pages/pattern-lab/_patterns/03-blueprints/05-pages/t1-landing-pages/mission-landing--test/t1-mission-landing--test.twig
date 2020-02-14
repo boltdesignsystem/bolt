@@ -1,29 +1,45 @@
 {% extends "@bolt-blueprints/_landing-page-template.twig" %}
 
+{% import "@bolt-blueprints/macros.twig" as macros %}
+
 {% block page_content %}
-  {% include "@bolt-blueprints/landing-page-hero.twig" %}
-  {% include "@bolt-blueprints/h5p-embed.twig" %}
 
-  {% grid "o-bolt-grid--center o-bolt-grid--center o-bolt-grid--flex"  %}
-    {% cell %}
-      {% include "@bolt-components-button/button.twig" with {
-        size: "small",
-        text: "Return to mission",
-        url: "#!",
-        border_radius: "full",
-        attributes: {
-          class: [
-            "u-bolt-margin-top-medium",
-            "u-bolt-margin-left-auto",
-            "u-bolt-margin-right-auto",
-          ]
-        }
-      } only %}
-    {% endcell %}
-  {% endgrid %}
-{% endblock %}
+  {% embed "@bolt-blueprints/_landing-page-inner-layout.twig" %}
 
-{% block global_footer %}
-  {# {% include "@bolt-blueprints/_band--request-feedback.twig" %} #}
-  {{ parent() }}
+    {% block hero_content %}
+      {% include "@bolt-blueprints/landing-page-hero.twig" %}
+    {% endblock %}
+
+    {% block main_content %}
+
+      {% set trainingSupplementalContent %}
+        {% include "@bolt-blueprints/h5p-embed.twig" %}
+        {% grid "o-bolt-grid--center o-bolt-grid--center o-bolt-grid--flex"  %}
+          {% cell %}
+            {% include "@bolt-components-button/button.twig" with {
+              size: "small",
+              text: "Return to mission",
+              url: "#!",
+              border_radius: "full",
+              attributes: {
+                class: [
+                  "u-bolt-margin-top-medium",
+                  "u-bolt-margin-left-auto",
+                  "u-bolt-margin-right-auto",
+                ]
+              }
+            } only %}
+          {% endcell %}
+        {% endgrid %}
+      {% endset %}
+
+      {% embed "@bolt-blueprints/_landing-page-main-1-col.twig" %}
+        {% block supplemental_content %}
+          {{ trainingSupplementalContent }}
+        {% endblock %}
+      {% endembed %}
+
+    {% endblock %}
+  {% endembed %}
+
 {% endblock %}

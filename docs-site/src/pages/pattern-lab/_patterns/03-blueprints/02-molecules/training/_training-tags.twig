@@ -1,0 +1,17 @@
+{% import "@bolt-blueprints/macros.twig" as macros %}
+
+{% if items|length %}
+  {% include "@bolt-components-list/list.twig" with {
+    display: "inline",
+    attributes: {
+      class: [
+        "u-bolt-margin-bottom",
+      ]
+    },
+    items: items|map(item => item.text ? macros.include("@bolt-components-chip/chip.twig", {
+      text: item.text,
+      url: item.url | default(false),
+      size: "xsmall",
+    }, false) : item )
+  } only %}
+{% endif %}
