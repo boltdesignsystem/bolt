@@ -67,14 +67,19 @@ $bolt-spacing-sizes: map-merge($bolt-spacing-sizes-extras, $bolt-spacing-sizes);
 
     @each $spacing-value in $bolt-spacing-values {
       $spacing-value-name: nth($spacing-value, 1);
+      $spacing: '';
+
+      @if $spacing-value-name != '' {
+        $spacing: '-' + $spacing-value-name;
+      }
 
       @if $direction != top and $direction != bottom {
-        .u-bolt-negative-margin-#{$direction}-#{$spacing-value-name}#{$breakpoint} {
+        .u-bolt-negative-margin-#{$direction}#{$spacing}#{$breakpoint} {
           margin-#{$direction}: bolt-spacing(#{$spacing-value-name}) *
             -1 !important;
         }
       } @else {
-        .u-bolt-negative-margin-#{$direction}-#{$spacing-value-name}#{$breakpoint} {
+        .u-bolt-negative-margin-#{$direction}#{$spacing}#{$breakpoint} {
           margin-#{$direction}: bolt-v-spacing(#{$spacing-value-name}) *
             -1 !important;
         }
