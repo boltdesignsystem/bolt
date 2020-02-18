@@ -3,12 +3,17 @@
 \* ------------------------------------ */
 @import '@bolt/core-v3.x';
 
+// Dev Notes
+// 1. Any instance of bolt-popover:not([ready]) in this file is used to create NoJS fallback styles.
+
 /**
  * Component variables
  */
 $bolt-popover-border-width: $bolt-border-width;
 $bolt-popover-border-style: $bolt-border-style;
 $bolt-popover-border-color: bolt-theme(border, 0.2);
+$bolt-popover-transition: $bolt-transition-timing
+  cubic-bezier(0.175, 0.885, 0.32, 1);
 
 @mixin bolt-popover-bubble-tip-point-to($where) {
   $radius: bolt-border-radius(large);
@@ -36,6 +41,23 @@ $bolt-popover-border-color: bolt-theme(border, 0.2);
 }
 
 /**
+ * NoJS fallback trigger
+ */
+.c-bolt-popover__nojs-trigger {
+  position: relative;
+}
+
+.c-bolt-popover__nojs-trigger-overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  color: inherit;
+  text-decoration: none;
+}
+
+/**
  * Content container
  * - used for fade effect and placement
  */
@@ -45,18 +67,56 @@ $bolt-popover-border-color: bolt-theme(border, 0.2);
   position: absolute;
   transform: translate3d(0, 0, 0);
   z-index: bolt-z-index(popover);
-  transition: opacity $bolt-transition;
+  transition: opacity $bolt-popover-transition;
 
-  // @todo: review alternative ways to handle no-JS layout overflow issues when adding in no-JS support to Popover
-  @at-root bolt-popover:not([ready]):not(:focus-within) & {
-    width: 0;
-    height: 0;
-    overflow: hidden;
-  }
-
-  @at-root .c-bolt-popover.is-expanded & {
+  .c-bolt-popover.is-expanded &,
+  bolt-popover:not([ready]) [slot='content']:target & {
     visibility: visible;
     opacity: 1;
+  }
+
+  bolt-popover:not([ready]) & {
+    display: none;
+    top: 100%;
+    left: 50%;
+    transform: translate3d(-50%, #{bolt-v-spacing(xxsmall)}, 0);
+  }
+
+  bolt-popover:not([ready]) [slot='content']:target & {
+    display: block;
+  }
+}
+
+/**
+ * NoJS fallback close button
+ */
+.c-bolt-popover__nojs-close {
+  display: none;
+
+  bolt-popover:not([ready]) & {
+    @include bolt-font-family(body);
+    @include bolt-font-weight(semibold);
+    display: block;
+    width: 1.25rem;
+    height: 1.25rem;
+    margin-bottom: bolt-v-spacing(xsmall);
+    margin-left: auto;
+    color: bolt-theme(link);
+    line-height: 1;
+    text-align: center;
+    font-size: 1rem;
+    border-bottom-left-radius: bolt-border-radius(large);
+
+    &:hover,
+    &:focus {
+      background-color: bolt-theme(link, 0.1);
+      outline-offset: -4px;
+    }
+
+    &:active {
+      color: bolt-theme(text);
+      background-color: bolt-theme(link, 0.15);
+    }
   }
 }
 
@@ -84,8 +144,7 @@ $bolt-popover-border-color: bolt-theme(border, 0.2);
   box-shadow: bolt-shadow('level-20');
   background-color: bolt-theme(background);
   will-change: transform;
-  transition: transform $bolt-transition-timing
-    cubic-bezier(0.175, 0.885, 0.32, 1);
+  transition: transform $bolt-popover-transition;
 
   @at-root .c-bolt-popover--text-wrap & {
     width: 250px; // If the content is long (more than 31 characters), the bubble will have this specific width and text will wrap. This logic is in the JS and Twig files.
@@ -176,7 +235,8 @@ $bolt-popover-border-color: bolt-theme(border, 0.2);
     transform-origin: top left;
   }
 
-  @at-root .c-bolt-popover.is-expanded & {
+  .c-bolt-popover.is-expanded &,
+  bolt-popover:not([ready]) .c-bolt-popover__content & {
     transform: scale3d(1, 1, 1) translate3d(0, 0, 0);
   }
 }
@@ -190,6 +250,13 @@ $bolt-popover-border-color: bolt-theme(border, 0.2);
   .c-bolt-popover--spacing-#{$spacing-value-name} {
     .c-bolt-popover__bubble {
       @include bolt-padding(#{$spacing-value-name});
+    }
+
+    @at-root bolt-popover:not([ready]) & {
+      .c-bolt-popover__nojs-close {
+        margin-top: bolt-v-spacing(#{$spacing-value-name}) * -1;
+        margin-right: bolt-spacing(#{$spacing-value-name}) * -1;
+      }
     }
   }
 }
