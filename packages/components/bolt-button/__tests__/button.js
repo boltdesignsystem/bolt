@@ -80,10 +80,28 @@ describe('button', () => {
       text: 'This is a button',
       disabled: true,
     });
+
     expect(results.ok).toBe(true);
     expect(results.html).toMatchSnapshot();
 
-    // @todo: also test rendered HTML for `disabled` attribute
+    const buttonInnerHTML = await page.evaluate(async results => {
+      const wrapper = document.createElement('div');
+      wrapper.innerHTML = results.html;
+      document.body.appendChild(wrapper);
+      const button = document.querySelector('bolt-button');
+      await button.firstUpdated;
+      return button.renderRoot.innerHTML;
+    }, results);
+
+    const renderedHTML = await html(buttonInnerHTML);
+    expect(renderedHTML.hasAttribute('disabled')).toBe(true);
+    expect(renderedHTML).toMatchSnapshot();
+
+    const image = await page.screenshot();
+    expect(image).toMatchImageSnapshot({
+      failureThreshold: '0.01',
+      failureThresholdType: 'percent',
+    });
   });
 
   test('Button with "disabled" adds attr to <a>', async () => {
@@ -92,10 +110,28 @@ describe('button', () => {
       url: 'http://pega.com',
       disabled: true,
     });
+
     expect(results.ok).toBe(true);
     expect(results.html).toMatchSnapshot();
 
-    // @todo: also test rendered HTML for `disabled` attribute
+    const buttonInnerHTML = await page.evaluate(async results => {
+      const wrapper = document.createElement('div');
+      wrapper.innerHTML = results.html;
+      document.body.appendChild(wrapper);
+      const button = document.querySelector('bolt-button');
+      await button.firstUpdated;
+      return button.renderRoot.innerHTML;
+    }, results);
+
+    const renderedHTML = await html(buttonInnerHTML);
+    expect(renderedHTML.hasAttribute('aria-disabled')).toBe(true);
+    expect(renderedHTML).toMatchSnapshot();
+
+    const image = await page.screenshot();
+    expect(image).toMatchImageSnapshot({
+      failureThreshold: '0.01',
+      failureThresholdType: 'percent',
+    });
   });
 
   test('Button with outer classes via Drupal Attributes', async () => {
