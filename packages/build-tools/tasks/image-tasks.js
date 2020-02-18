@@ -132,7 +132,7 @@ async function processImage(file, set, skipOptimization = false) {
           sharp(file)
             .resize(size !== null ? size : width)
             .jpeg({
-              quality: 50,
+              quality: 80,
               progressive: true,
               optimiseScans: true,
               force: false,

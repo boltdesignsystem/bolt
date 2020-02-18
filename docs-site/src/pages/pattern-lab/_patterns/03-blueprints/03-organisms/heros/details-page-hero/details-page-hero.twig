@@ -1,10 +1,20 @@
 {% grid "o-bolt-grid--flex o-bolt-grid--small o-bolt-grid--matrix u-bolt-padding-bottom-small" %}
   {% cell "u-bolt-width-1/1" %}
-    {% include "@bolt-blueprints/_hero-primary-content.twig" %}
+    {% include "@bolt-blueprints/_headline-with-eyebrow.twig" with {
+      eyebrow: heroSubTitle,
+      headline: heroTitle
+    } only %}
+
+    {% include "@bolt-blueprints/_training-meta-items.twig" with {
+      items: trainingMetaItems
+    } only %}
+
+    {% include "@bolt-blueprints/_training-description.twig" with {
+      text: trainingDescription
+    } only %}
+
+    {% include "@bolt-blueprints/_training-tags.twig" with {
+      items: trainingTags
+    } only %}
   {% endcell %}
-  {% if heroSupplementalContent or heroTags or heroDescription %}
-    {% cell "u-bolt-width-1/1" %}
-      {% include "@bolt-blueprints/_hero-secondary-content.twig" %}
-    {% endcell %}
-  {% endif %}
 {% endgrid %}
