@@ -299,7 +299,6 @@ async function createWebpackConfig(buildConfig) {
                   loader: 'svgo-loader',
                   options: {
                     plugins: require('./svgo-plugins'),
-                    precision: 1,
                   },
                 },
               ],
