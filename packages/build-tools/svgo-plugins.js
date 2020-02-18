@@ -83,9 +83,6 @@ module.exports = [
     moveGroupAttrsToElems: true,
   },
   {
-    collapseGroups: true,
-  },
-  {
     removeRasterImages: false,
   },
   {
