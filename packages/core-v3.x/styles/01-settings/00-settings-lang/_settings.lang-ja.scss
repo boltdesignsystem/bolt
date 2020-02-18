@@ -58,17 +58,6 @@
     'xxxlarge': 11.2,
   ) !global;
 
-  $bolt-negative-margin-values: (
-    'xsmall': -0.25,
-    'small': -0.35,
-    'medium': -0.7,
-    'large': -1.4,
-    'xlarge': -2.8,
-    'xxlarge': -5.6,
-    'xxxlarge': -11.2,
-    'xxxxlarge': -22.4,
-  ) !global;
-
   // reference back to the "medium" size value (whatever it's currently set to)
   // NOTE: this is how "sizeless" utility classes like `u-bolt-margin-bottom` get generated
   $bolt-spacing-values: bolt-recursive-map-merge(
