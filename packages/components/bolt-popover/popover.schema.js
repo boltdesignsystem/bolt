@@ -15,11 +15,13 @@ module.exports = {
     },
     trigger: {
       type: 'object',
-      description: 'Renders the trigger of the popover.',
+      description:
+        'Renders the trigger of the popover. Usually a link or button is used.',
     },
     content: {
       type: 'any',
-      description: 'Renders the content of the popover.',
+      description:
+        'Renders the content of the popover, which can be structured content that may contain calls to action.',
     },
     placement: {
       type: 'string',

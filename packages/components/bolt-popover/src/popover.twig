@@ -13,9 +13,9 @@
 {# Array of classes based on the defined + default props #}
 {% set classes = [
   base_class,
-  this.data.placement.value != "auto" ? base_class ~ "--" ~ this.data.placement.value : "",
+  base_class ~ "--bottom",
+  base_class ~ "--text-wrap",
   this.data.spacing.value != "none" ? base_class ~ "--spacing-" ~ this.data.spacing.value : "",
-  this.data.content.value|length > 31 ? base_class ~ "--text-wrap",
 ] %}
 
 {#
@@ -34,7 +34,8 @@
   {% endif %}
 {% endfor %}
 
-{% set popover_uuid = "js-bolt-tooltip-" ~ uuid %}
+{% set content_id = "js-bolt-popover-" ~ uuid %}
+{% set trigger_id = "js-bolt-popover-trigger-" ~ uuid %}
 
 <bolt-popover
   {% if outer_classes %} class="{{ outer_classes|join(' ') }}" {% endif %}
@@ -48,20 +49,23 @@
     {% if inner_classes %} class="{{ inner_classes|join(' ') }}" {% endif %}
   >
     {% if trigger %}
-      <replace-with-children
-        role="button"
-        tabindex="-1"
-        aria-describedby="{{ popover_uuid }}"
-        aria-controls="{{ popover_uuid }}"
-      >
-        {{ trigger }}
-      </replace-with-children>
+      <replace-with-grandchildren id="{{ trigger_id }}">
+        <a href="#{{ content_id }}" class="{{ "#{base_class}__nojs-trigger" }}" tabindex="-1">
+          {{ trigger }}
+        </a>
+      </replace-with-grandchildren>
     {% endif %}
     {% if content %}
-      <span slot="content">
-        <replace-with-children class="{{ "#{base_class}__content" }}" id="{{ popover_uuid }}" aria-hidden="true">
-          {{ content }}
-        </replace-with-children>
+      <span slot="content" id="{{ content_id }}">
+        <replace-with-grandchildren class="{{ "#{base_class}__content" }}">
+          <span class="{{ "#{base_class}__bubble" }}">
+            <a href="#{{ trigger_id }}" class="{{ "#{base_class}__nojs-close" }}">
+              <span aria-hidden="true">&times;</span>
+              <span class="u-bolt-visuallyhidden">Close popover</span>
+            </a>
+            {{ content }}
+          </span>
+        </replace-with-grandchildren>
       </span>
     {% endif %}
   </replace-with-children>
