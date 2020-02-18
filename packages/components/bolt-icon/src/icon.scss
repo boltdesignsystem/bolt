@@ -37,7 +37,7 @@ bolt-icon {
   z-index: bolt-z-index('content');
   width: 1em;
   height: 1em;
-  color: var(--bolt-theme-icon);
+  color: var(--bolt-theme-icon, currentColor);
   pointer-events: none;
 
   &--small {
@@ -185,34 +185,4 @@ bolt-icon {
   // add to @bolt/core colors?
   @include bolt-icon-theme(green, mix(bolt-color(white), #209952, .4), #209952);
   @include bolt-icon-theme(pink, #b974a1, #A65389);
-}
-
-// retroactively map the names of the new CSS custom property names used to the older names that were previously used for customizing icons
-$primaryColor: var(--bolt-icon-primary-color, var(--bolt-theme-icon, currentColor));
-$secondaryColor: var(--bolt-icon-secondary-color, rgba(var(--bolt-theme-background), 1));
-
-svg [fill="var(--bolt-icon-primary-color)"] {
-  fill: currentColor;
-}
-
-svg [stroke="var(--bolt-icon-primary-color)"] {
-  stroke: currentColor;
-}
-
-@supports(--var: foo){
-  svg [fill="var(--bolt-icon-primary-color)"] {
-    fill: #{$primaryColor};
-  }
-
-  svg [stroke="var(--bolt-icon-primary-color)"] {
-    stroke: #{$primaryColor};
-  }
-
-  svg [fill="var(--bolt-icon-secondary-color)"] {
-    fill: #{$secondaryColor};
-  }
-
-  svg [stroke="var(--bolt-icon-secondary-color)"] {
-    stroke: #{$secondaryColor};
-  }
 }

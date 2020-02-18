@@ -17746,7 +17746,7 @@ bolt-icon:not(:resolved) {
   z-index: 60;
   width: 1em;
   height: 1em;
-  color: var(--bolt-theme-icon);
+  color: var(--bolt-theme-icon, currentColor);
   pointer-events: none;
 }
 .c-bolt-icon__icon--small {
@@ -18275,35 +18275,6 @@ bolt-icon:not(:resolved) {
   opacity: 1;
   border: 1px solid rgba(92, 93, 102, 0.5);
   background-color: #a65389;
-}
-svg [fill=\\"var(--bolt-icon-primary-color)\\"] {
-  fill: currentColor;
-}
-svg [stroke=\\"var(--bolt-icon-primary-color)\\"] {
-  stroke: currentColor;
-}
-@supports (--var: foo) {
-  svg [fill=\\"var(--bolt-icon-primary-color)\\"] {
-    fill: var(--bolt-icon-primary-color, var(--bolt-theme-icon, currentColor));
-  }
-  svg [stroke=\\"var(--bolt-icon-primary-color)\\"] {
-    stroke: var(
-      --bolt-icon-primary-color,
-      var(--bolt-theme-icon, currentColor)
-    );
-  }
-  svg [fill=\\"var(--bolt-icon-secondary-color)\\"] {
-    fill: var(
-      --bolt-icon-secondary-color,
-      rgba(var(--bolt-theme-background), 1)
-    );
-  }
-  svg [stroke=\\"var(--bolt-icon-secondary-color)\\"] {
-    stroke: var(
-      --bolt-icon-secondary-color,
-      rgba(var(--bolt-theme-background), 1)
-    );
-  }
 }
 bolt-figure {
   display: block;
@@ -36101,7 +36072,7 @@ bolt-icon:not(:resolved) {
   z-index: 60;
   width: 1em;
   height: 1em;
-  color: var(--bolt-theme-icon);
+  color: var(--bolt-theme-icon, currentColor);
   pointer-events: none;
 }
 .c-bolt-icon__icon--small {
@@ -36630,35 +36601,6 @@ bolt-icon:not(:resolved) {
   opacity: 1;
   border: 1px solid rgba(92, 93, 102, 0.5);
   background-color: #a65389;
-}
-svg [fill=\\"var(--bolt-icon-primary-color)\\"] {
-  fill: currentColor;
-}
-svg [stroke=\\"var(--bolt-icon-primary-color)\\"] {
-  stroke: currentColor;
-}
-@supports (--var: foo) {
-  svg [fill=\\"var(--bolt-icon-primary-color)\\"] {
-    fill: var(--bolt-icon-primary-color, var(--bolt-theme-icon, currentColor));
-  }
-  svg [stroke=\\"var(--bolt-icon-primary-color)\\"] {
-    stroke: var(
-      --bolt-icon-primary-color,
-      var(--bolt-theme-icon, currentColor)
-    );
-  }
-  svg [fill=\\"var(--bolt-icon-secondary-color)\\"] {
-    fill: var(
-      --bolt-icon-secondary-color,
-      rgba(var(--bolt-theme-background), 1)
-    );
-  }
-  svg [stroke=\\"var(--bolt-icon-secondary-color)\\"] {
-    stroke: var(
-      --bolt-icon-secondary-color,
-      rgba(var(--bolt-theme-background), 1)
-    );
-  }
 }
 bolt-figure {
   display: block;
