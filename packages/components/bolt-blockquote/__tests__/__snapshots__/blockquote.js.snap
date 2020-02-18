@@ -357,6 +357,40 @@ exports[`<bolt-blockquote> component <bolt-blockquote> border variations: vertic
 `;
 
 exports[`<bolt-blockquote> component <bolt-blockquote> indent usage 1`] = `
+<bolt-blockquote>
+  <blockquote class="c-bolt-blockquote c-bolt-blockquote--xlarge c-bolt-blockquote--align-items-start c-bolt-blockquote--bordered-vertical"
+              is="shadow-root"
+  >
+    <replace-with-grandchildren class="c-bolt-blockquote__quote">
+      <div class="c-bolt-text c-bolt-text--semibold c-bolt-text--normal c-bolt-text--xlarge">
+        <p>
+          The greater danger for most of us lies not in setting our aim too high and falling short; but in setting our aim too low, and achieving our mark.
+        </p>
+      </div>
+    </replace-with-grandchildren>
+    <replace-with-grandchildren>
+      <footer class="c-bolt-blockquote__footer">
+        <replace-with-children class="c-bolt-blockquote__footer-item">
+          <cite slot="author-name"
+                class="c-bolt-text c-bolt-text--bold c-bolt-text--normal c-bolt-text--xsmall"
+          >
+            Michelangelo di Lodovico Buonarroti Simoni
+          </cite>
+        </replace-with-children>
+        <replace-with-children class="c-bolt-blockquote__footer-item">
+          <cite slot="author-title"
+                class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--xsmall"
+          >
+            Renaissance Artist
+          </cite>
+        </replace-with-children>
+      </footer>
+    </replace-with-grandchildren>
+  </blockquote>
+</bolt-blockquote>
+`;
+
+exports[`<bolt-blockquote> component <bolt-blockquote> indent usage 2`] = `
 <bolt-blockquote indent>
   <blockquote class="c-bolt-blockquote c-bolt-blockquote--xlarge c-bolt-blockquote--align-items-start c-bolt-blockquote--bordered-vertical c-bolt-blockquote--indented"
               is="shadow-root"
