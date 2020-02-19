@@ -86,7 +86,13 @@ module.exports = [
     removeRasterImages: false,
   },
   {
-    mergePaths: true,
+    mergePaths: {
+      collapseRepeated: true,
+      force: true,
+      leadingZero: true,
+      negativeExtraSpace: true,
+      noSpaceAfterFlags: true,
+    },
   },
   {
     convertShapeToPath: true,
