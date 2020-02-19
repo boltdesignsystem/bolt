@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.18.0](https://github.com/bolt-design-system/bolt/compare/v2.17.1...v2.18.0) (2020-02-19)
+
+
+### Bug Fixes
+
+* Remove CSS workarounds for micro journeys in dark theme ([0e3ed89](https://github.com/bolt-design-system/bolt/commit/0e3ed89a12296e8c2a5575b1e1e366ed1d0bc0c8))
+
+
+
+
+
 ## [2.17.1](https://github.com/bolt-design-system/bolt/compare/v2.17.0...v2.17.1) (2020-02-11)
 
 

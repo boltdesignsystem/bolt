@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.18.0](https://github.com/boltdesignsystem/bolt/compare/v2.17.1...v2.18.0) (2020-02-19)
+
+
+### Bug Fixes
+
+* re-organize z-index and update docs ([13ad6b4](https://github.com/boltdesignsystem/bolt/commit/13ad6b45bf73fa1750a30aa11a1f36f1fbea00e4))
+* scope `bolt-link` and `bolt-button` selectors to `bolt-card-replacement` or else apply globally ([6db4dae](https://github.com/boltdesignsystem/bolt/commit/6db4dae57fabd906848cd9ce588557029f3f8b4c))
+* update Jest snapshots ([ffb309e](https://github.com/boltdesignsystem/bolt/commit/ffb309edef66264d916d58e2e44d97a1152dd44e))
+* whole-card clickability ([9fde749](https://github.com/boltdesignsystem/bolt/commit/9fde7496292033e0e1a83df455bdebc2c4e20785))
+
+
+
+
+
 # [2.17.0](https://github.com/boltdesignsystem/bolt/compare/v2.16.3...v2.17.0) (2020-02-04)
 
 

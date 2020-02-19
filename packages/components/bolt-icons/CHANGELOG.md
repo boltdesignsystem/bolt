@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.18.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/compare/v2.17.1...v2.18.0) (2020-02-19)
+
+
+### Bug Fixes
+
+* update asset-text SVG asset to no longer use a mask. fixes weird rendering / opacity issues being seen with this original version ([b0771f6](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/commit/b0771f6e7e81fff7fe91843e6a954aeea5993e16))
+* update file SVG icon to correctly render a visible border after compiling ([a7cce95](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/commit/a7cce9521e3326c3cfe58bfc61f4843aba18cdaa))
+* update Jest snapshots ([ffb309e](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/commit/ffb309edef66264d916d58e2e44d97a1152dd44e))
+
+
+
+
+
 # [2.17.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/compare/v2.16.3...v2.17.0) (2020-02-04)
 
 **Note:** Version bump only for package @bolt/components-icons

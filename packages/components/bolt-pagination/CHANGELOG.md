@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.18.0](https://github.com/bolt-design-system/bolt/compare/v2.17.1...v2.18.0) (2020-02-19)
+
+
+### Bug Fixes
+
+* prevent Pagination from overflowing container by allowing wrap ([f65ade5](https://github.com/bolt-design-system/bolt/commit/f65ade52ed7596eae6c64b264b42b1f319c99fab))
+
+
+
+
+
 # [2.17.0](https://github.com/bolt-design-system/bolt/compare/v2.16.3...v2.17.0) (2020-02-04)
 
 **Note:** Version bump only for package @bolt/components-pagination

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.18.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icon/compare/v2.17.1...v2.18.0) (2020-02-19)
+
+
+### Bug Fixes
+
+* update CSS custom property styles to only use the original Icon component's styling API; fixes cross browser rendering issues encountered in Firefox and Safari ([efab5f5](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icon/commit/efab5f523190a7f6ee5509cd029bd1669ddb6837))
+* update Jest snapshots ([ffb309e](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icon/commit/ffb309edef66264d916d58e2e44d97a1152dd44e))
+
+
+
+
+
 # [2.17.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icon/compare/v2.16.3...v2.17.0) (2020-02-04)
 
 **Note:** Version bump only for package @bolt/components-icon

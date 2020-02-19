@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.18.0](https://github.com/boltdesignsystem/bolt/compare/v2.17.1...v2.18.0) (2020-02-19)
+
+
+### Bug Fixes
+
+* re-write button and BoltActionElement props to use proper syntax ([baac30c](https://github.com/boltdesignsystem/bolt/commit/baac30c4840d82ea8c59fb2fda8c81dab2f152a6))
+* set 'reflect' to true to fix button 'disabled' prop ([2dc18c7](https://github.com/boltdesignsystem/bolt/commit/2dc18c7ad3610786c5510e1d7215195f78379c2e))
+
+
+
+
+
 # [2.17.0](https://github.com/boltdesignsystem/bolt/compare/v2.16.3...v2.17.0) (2020-02-04)
 
 

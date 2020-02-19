@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.18.0](https://github.com/bolt-design-system/bolt/tree/master/packages/global/compare/v2.17.1...v2.18.0) (2020-02-19)
+
+
+### Bug Fixes
+
+* negative margin mixin and maps ([b813c66](https://github.com/bolt-design-system/bolt/tree/master/packages/global/commit/b813c66d6cd4824a38523b230a573d2450243247))
+* snaps and class name for JA ([584570e](https://github.com/bolt-design-system/bolt/tree/master/packages/global/commit/584570e0823b54301cc63c8e59fb70daf394fc2f))
+
+
+
+
+
 # [2.17.0](https://github.com/bolt-design-system/bolt/tree/master/packages/global/compare/v2.16.3...v2.17.0) (2020-02-04)
 
 

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.18.0](https://github.com/boltdesignsystem/bolt/compare/v2.17.1...v2.18.0) (2020-02-19)
+
+
+### Bug Fixes
+
+* snaps and class name for JA ([584570e](https://github.com/boltdesignsystem/bolt/commit/584570e0823b54301cc63c8e59fb70daf394fc2f))
+* update Jest snapshots ([ffb309e](https://github.com/boltdesignsystem/bolt/commit/ffb309edef66264d916d58e2e44d97a1152dd44e))
+
+
+
+
+
 # [2.17.0](https://github.com/boltdesignsystem/bolt/compare/v2.16.3...v2.17.0) (2020-02-04)
 
 

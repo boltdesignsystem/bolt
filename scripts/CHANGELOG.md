@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.18.0](https://github.com/boltdesignsystem/bolt/compare/v2.17.1...v2.18.0) (2020-02-19)
+
+
+### Bug Fixes
+
+* fix broken composer.json path in the update script + bump PHP dependencies to the latest version ([e5b9058](https://github.com/boltdesignsystem/bolt/commit/e5b90582582dd3d0939fd47fd8b24043f0178d49))
+
+
+
+
+
 # [2.17.0](https://github.com/boltdesignsystem/bolt/compare/v2.16.3...v2.17.0) (2020-02-04)
 
 
