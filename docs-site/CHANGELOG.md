@@ -3,6 +3,44 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.18.1](https://github.com/bolt-design-system/bolt/compare/v2.18.0...v2.18.1) (2020-02-21)
+
+**Note:** Version bump only for package @bolt/website
+
+
+
+
+
+# [2.18.0](https://github.com/bolt-design-system/bolt/compare/v2.17.1...v2.18.0) (2020-02-19)
+
+
+### Bug Fixes
+
+* Allow a schema type that is an array to be printed ([9558d08](https://github.com/bolt-design-system/bolt/commit/9558d081ed9e427e39391bcda0d3360a7aeae5ad))
+* Avoid print empty "Properties:" label if no properties exist ([b595315](https://github.com/bolt-design-system/bolt/commit/b5953156e7905bdd193dc2594c483ae6f3add268))
+* blueprint 'checkbox' partial, use regular include instead of macro ([5ef6f8a](https://github.com/bolt-design-system/bolt/commit/5ef6f8ac3cee7b04e04b80cb4b4ae6d34ae932da))
+* Fixing spacing issues caused by display:inline on `<p>` tag in docs ([864d6cb](https://github.com/bolt-design-system/bolt/commit/864d6cbf9cf66a128deb559fb50d4299c26678b7))
+* force background to use a larger image src ([b926f6b](https://github.com/bolt-design-system/bolt/commit/b926f6b6356136b4c0a33e4ad026280f1baa1b09))
+* re-organize z-index and update docs ([13ad6b4](https://github.com/bolt-design-system/bolt/commit/13ad6b45bf73fa1750a30aa11a1f36f1fbea00e4))
+* rename blueprint page templates to avoid name space conflict with default page templates ([3c7070d](https://github.com/bolt-design-system/bolt/commit/3c7070d77546c90248658907dcdee630b4a0beed))
+* use of macro in Blueprint Select partial ([00eab39](https://github.com/bolt-design-system/bolt/commit/00eab393a7b534cfa91ccaf9e2a68d67711fe54e))
+* web component doc code indents ([421a4bc](https://github.com/bolt-design-system/bolt/commit/421a4bcd732021ebad1e53efe449f239de9bd3c0))
+* wrapping links in Safari ([7f02ec2](https://github.com/bolt-design-system/bolt/commit/7f02ec2ad946b8da54785ce741d62839b6e951e6))
+
+
+### Features
+
+* add `only` option to select includes to avoid unintentional data leaking in ([8a98399](https://github.com/bolt-design-system/bolt/commit/8a983994299ea67b44c99c2f8f3d7fbb84927f04))
+* add Completed Training template ([9350319](https://github.com/bolt-design-system/bolt/commit/935031947b42fa062d2e18148668efea42f822be))
+* re-add Search templates, refactor to follow current conventions ([0f4b57d](https://github.com/bolt-design-system/bolt/commit/0f4b57d06d1f11cc52f2610564af066084ad8880))
+* replace mission and module space bg images ([01d8cfc](https://github.com/bolt-design-system/bolt/commit/01d8cfc77dcf947ba90835d9a67945089fa542bb))
+* Update label, remove empty default from sort on training page ([96fe99d](https://github.com/bolt-design-system/bolt/commit/96fe99d66dc2697960588426576bbfcfe988e01e))
+* update landing templates to work with additional background images, minor typography changes ([50c165f](https://github.com/bolt-design-system/bolt/commit/50c165f3fb6d355d9081d983a5abd70e72351f09))
+
+
+
+
+
 ## [2.17.1](https://github.com/bolt-design-system/bolt/compare/v2.17.0...v2.17.1) (2020-02-11)
 
 **Note:** Version bump only for package @bolt/website

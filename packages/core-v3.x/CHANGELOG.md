@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.18.0](https://github.com/bolt-design-system/bolt/tree/master/packages/core/compare/v2.17.1...v2.18.0) (2020-02-19)
+
+
+### Bug Fixes
+
+* negative margin mixin and maps ([b813c66](https://github.com/bolt-design-system/bolt/tree/master/packages/core/commit/b813c66d6cd4824a38523b230a573d2450243247))
+
+
+
+
+
 # [2.17.0](https://github.com/bolt-design-system/bolt/tree/master/packages/core/compare/v2.16.3...v2.17.0) (2020-02-04)
 
 

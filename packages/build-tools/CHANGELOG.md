@@ -3,6 +3,36 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.18.1](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/compare/v2.18.0...v2.18.1) (2020-02-21)
+
+
+### Bug Fixes
+
+* update Jest snapshots ([ab95153](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/ab951539d56f526a758bc276eb7df49362b0efc8))
+
+
+
+
+
+# [2.18.0](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/compare/v2.17.1...v2.18.0) (2020-02-19)
+
+
+### Bug Fixes
+
+* increase JPG compression quality so background images aren't as pixelated ([f302af9](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/f302af9d108b29352f73e5f38ced350956e53157))
+* snaps and class name for JA ([584570e](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/584570e0823b54301cc63c8e59fb70daf394fc2f))
+* update CSS custom property styles to only use the original Icon component's styling API; fixes cross browser rendering issues encountered in Firefox and Safari ([efab5f5](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/efab5f523190a7f6ee5509cd029bd1669ddb6837))
+* update Jest snapshots ([ffb309e](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/ffb309edef66264d916d58e2e44d97a1152dd44e))
+
+
+### Features
+
+* update SVGO config to force merging together similar SVG <paths> ([3c3b93e](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/3c3b93e91ac6ffa66ae0bb5c3b2c44e0fbe2623b))
+
+
+
+
+
 # [2.17.0](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/compare/v2.16.3...v2.17.0) (2020-02-04)
 
 

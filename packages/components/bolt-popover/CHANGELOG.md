@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.18.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-popover/compare/v2.18.0...v2.18.1) (2020-02-21)
+
+**Note:** Version bump only for package @bolt/components-popover
+
+
+
+
+
+# [2.18.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-popover/compare/v2.17.1...v2.18.0) (2020-02-19)
+
+
+### Bug Fixes
+
+* adding proper id to trigger ([00e4470](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-popover/commit/00e4470dcfd431ccd9d72b2475ad514fe969c6aa))
+* address PR feedback ([6f35b9b](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-popover/commit/6f35b9bb56d26e658f130f7ce0b925aea4dc37ed))
+* popover double-focus, must check 'default' slot not 'content' for focusable content ([6f3afc7](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-popover/commit/6f3afc75881ca41b431fe4fc3286b539224f45e8))
+* snaps update ([923979b](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-popover/commit/923979bf3400a0e0ce10da2a5565cf5844ec5e7d))
+* typos in twig ([a822a6e](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-popover/commit/a822a6e52885697410c6d5615f83dc2fccccb326))
+* update snaps ([09b442d](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-popover/commit/09b442dce1040a8af4fddb8613bbdec3c76b0d0e))
+
+
+
+
+
 # [2.17.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-popover/compare/v2.16.3...v2.17.0) (2020-02-04)
 
 

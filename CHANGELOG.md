@@ -3,6 +3,69 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.18.1](https://github.com/boltdesignsystem/bolt/compare/v2.18.0...v2.18.1) (2020-02-21)
+
+
+### Bug Fixes
+
+* Correct icon color rules ([5cb7b52](https://github.com/boltdesignsystem/bolt/commit/5cb7b5282ef0effd188295d4c56f2943cabd01a6))
+* update Jest snapshots ([ab95153](https://github.com/boltdesignsystem/bolt/commit/ab951539d56f526a758bc276eb7df49362b0efc8))
+
+
+
+
+
+# [2.18.0](https://github.com/boltdesignsystem/bolt/compare/v2.17.1...v2.18.0) (2020-02-19)
+
+
+### Bug Fixes
+
+* adding proper id to trigger ([00e4470](https://github.com/boltdesignsystem/bolt/commit/00e4470dcfd431ccd9d72b2475ad514fe969c6aa))
+* address PR feedback ([6f35b9b](https://github.com/boltdesignsystem/bolt/commit/6f35b9bb56d26e658f130f7ce0b925aea4dc37ed))
+* Allow a schema type that is an array to be printed ([9558d08](https://github.com/boltdesignsystem/bolt/commit/9558d081ed9e427e39391bcda0d3360a7aeae5ad))
+* Avoid print empty "Properties:" label if no properties exist ([b595315](https://github.com/boltdesignsystem/bolt/commit/b5953156e7905bdd193dc2594c483ae6f3add268))
+* blueprint 'checkbox' partial, use regular include instead of macro ([5ef6f8a](https://github.com/boltdesignsystem/bolt/commit/5ef6f8ac3cee7b04e04b80cb4b4ae6d34ae932da))
+* fix broken composer.json path in the update script + bump PHP dependencies to the latest version ([e5b9058](https://github.com/boltdesignsystem/bolt/commit/e5b90582582dd3d0939fd47fd8b24043f0178d49))
+* Fixing spacing issues caused by display:inline on `<p>` tag in docs ([864d6cb](https://github.com/boltdesignsystem/bolt/commit/864d6cbf9cf66a128deb559fb50d4299c26678b7))
+* force background to use a larger image src ([b926f6b](https://github.com/boltdesignsystem/bolt/commit/b926f6b6356136b4c0a33e4ad026280f1baa1b09))
+* increase JPG compression quality so background images aren't as pixelated ([f302af9](https://github.com/boltdesignsystem/bolt/commit/f302af9d108b29352f73e5f38ced350956e53157))
+* negative margin mixin and maps ([b813c66](https://github.com/boltdesignsystem/bolt/commit/b813c66d6cd4824a38523b230a573d2450243247))
+* popover double-focus, must check 'default' slot not 'content' for focusable content ([6f3afc7](https://github.com/boltdesignsystem/bolt/commit/6f3afc75881ca41b431fe4fc3286b539224f45e8))
+* prevent Pagination from overflowing container by allowing wrap ([f65ade5](https://github.com/boltdesignsystem/bolt/commit/f65ade52ed7596eae6c64b264b42b1f319c99fab))
+* re-organize z-index and update docs ([13ad6b4](https://github.com/boltdesignsystem/bolt/commit/13ad6b45bf73fa1750a30aa11a1f36f1fbea00e4))
+* re-write button and BoltActionElement props to use proper syntax ([baac30c](https://github.com/boltdesignsystem/bolt/commit/baac30c4840d82ea8c59fb2fda8c81dab2f152a6))
+* Remove CSS workarounds for micro journeys in dark theme ([0e3ed89](https://github.com/boltdesignsystem/bolt/commit/0e3ed89a12296e8c2a5575b1e1e366ed1d0bc0c8))
+* rename blueprint page templates to avoid name space conflict with default page templates ([3c7070d](https://github.com/boltdesignsystem/bolt/commit/3c7070d77546c90248658907dcdee630b4a0beed))
+* scope `bolt-link` and `bolt-button` selectors to `bolt-card-replacement` or else apply globally ([6db4dae](https://github.com/boltdesignsystem/bolt/commit/6db4dae57fabd906848cd9ce588557029f3f8b4c))
+* set 'reflect' to true to fix button 'disabled' prop ([2dc18c7](https://github.com/boltdesignsystem/bolt/commit/2dc18c7ad3610786c5510e1d7215195f78379c2e))
+* snaps and class name for JA ([584570e](https://github.com/boltdesignsystem/bolt/commit/584570e0823b54301cc63c8e59fb70daf394fc2f))
+* snaps update ([923979b](https://github.com/boltdesignsystem/bolt/commit/923979bf3400a0e0ce10da2a5565cf5844ec5e7d))
+* typos in twig ([a822a6e](https://github.com/boltdesignsystem/bolt/commit/a822a6e52885697410c6d5615f83dc2fccccb326))
+* update asset-text SVG asset to no longer use a mask. fixes weird rendering / opacity issues being seen with this original version ([b0771f6](https://github.com/boltdesignsystem/bolt/commit/b0771f6e7e81fff7fe91843e6a954aeea5993e16))
+* update CSS custom property styles to only use the original Icon component's styling API; fixes cross browser rendering issues encountered in Firefox and Safari ([efab5f5](https://github.com/boltdesignsystem/bolt/commit/efab5f523190a7f6ee5509cd029bd1669ddb6837))
+* update file SVG icon to correctly render a visible border after compiling ([a7cce95](https://github.com/boltdesignsystem/bolt/commit/a7cce9521e3326c3cfe58bfc61f4843aba18cdaa))
+* update Jest snapshots ([ffb309e](https://github.com/boltdesignsystem/bolt/commit/ffb309edef66264d916d58e2e44d97a1152dd44e))
+* update snaps ([09b442d](https://github.com/boltdesignsystem/bolt/commit/09b442dce1040a8af4fddb8613bbdec3c76b0d0e))
+* use of macro in Blueprint Select partial ([00eab39](https://github.com/boltdesignsystem/bolt/commit/00eab393a7b534cfa91ccaf9e2a68d67711fe54e))
+* web component doc code indents ([421a4bc](https://github.com/boltdesignsystem/bolt/commit/421a4bcd732021ebad1e53efe449f239de9bd3c0))
+* whole-card clickability ([9fde749](https://github.com/boltdesignsystem/bolt/commit/9fde7496292033e0e1a83df455bdebc2c4e20785))
+* wrapping links in Safari ([7f02ec2](https://github.com/boltdesignsystem/bolt/commit/7f02ec2ad946b8da54785ce741d62839b6e951e6))
+
+
+### Features
+
+* add `only` option to select includes to avoid unintentional data leaking in ([8a98399](https://github.com/boltdesignsystem/bolt/commit/8a983994299ea67b44c99c2f8f3d7fbb84927f04))
+* add Completed Training template ([9350319](https://github.com/boltdesignsystem/bolt/commit/935031947b42fa062d2e18148668efea42f822be))
+* re-add Search templates, refactor to follow current conventions ([0f4b57d](https://github.com/boltdesignsystem/bolt/commit/0f4b57d06d1f11cc52f2610564af066084ad8880))
+* replace mission and module space bg images ([01d8cfc](https://github.com/boltdesignsystem/bolt/commit/01d8cfc77dcf947ba90835d9a67945089fa542bb))
+* Update label, remove empty default from sort on training page ([96fe99d](https://github.com/boltdesignsystem/bolt/commit/96fe99d66dc2697960588426576bbfcfe988e01e))
+* update landing templates to work with additional background images, minor typography changes ([50c165f](https://github.com/boltdesignsystem/bolt/commit/50c165f3fb6d355d9081d983a5abd70e72351f09))
+* update SVGO config to force merging together similar SVG <paths> ([3c3b93e](https://github.com/boltdesignsystem/bolt/commit/3c3b93e91ac6ffa66ae0bb5c3b2c44e0fbe2623b))
+
+
+
+
+
 ## [2.17.1](https://github.com/boltdesignsystem/bolt/compare/v2.17.0...v2.17.1) (2020-02-11)
 
 

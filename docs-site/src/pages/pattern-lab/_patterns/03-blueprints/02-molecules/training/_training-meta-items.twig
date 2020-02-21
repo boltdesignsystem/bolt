@@ -1,0 +1,19 @@
+{% import "@bolt-blueprints/macros.twig" as macros %}
+
+{% if items|length %}
+  {% include "@bolt-components-list/list.twig" with {
+    display: "inline",
+    separator: "solid",
+    attributes: {
+      class: [
+        "u-bolt-negative-margin-top-small",
+        "u-bolt-margin-bottom-small",
+      ]
+    },
+    items: items|map(item => item.text ? macros.include("@bolt-components-headline/text.twig", {
+      text: item.text,
+      size: "small",
+      weight: "semibold",
+    }, false) : item )
+  } only %}
+{% endif %}

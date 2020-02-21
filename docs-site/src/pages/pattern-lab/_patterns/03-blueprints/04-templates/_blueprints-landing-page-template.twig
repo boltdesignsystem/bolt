@@ -20,39 +20,10 @@
   <main class="c-bolt-site__content u-bolt-flex u-bolt-flex-col">
     {% include "@bolt-blueprints/_toolbar.twig" %}
     {% embed "@bolt-components-band/band.twig" with {
-      theme: pageTheme | default("xxdark"),
-      size: "large",
+      theme: pageTheme|default("xxdark"),
+      size: "none",
       valign: "start",
-      content: mainContentBlock,
-      background: {
-        overlay: "disabled",
-        contentItems: [
-          macros.include('@bolt-components-background/background-overlay.twig', {
-            fill: "color",
-            fillColor: "black",
-            overlay: "enabled",
-          }, false),
-          macros.include('@bolt-components-image/image.twig', {
-            placeholder_color: "#000000",
-            src: "/images/mission-hero.jpg",
-            cover: false,
-            lazyload: false,
-            attributes: {
-              class: [
-                "u-bolt-margin-left-auto",
-                "u-bolt-flex-grow-none",
-                "u-bolt-float-right",
-              ],
-              style: "min-width: 1200px;"
-            }
-          })
-        ]
-      },
-      inner_attributes: {
-        class: [
-          "u-bolt-padding-top-none"
-        ]
-      }
+      content: mainContentBlock
     } %}
       {% block band_background %}
         {% if backgroundBlock is not empty %}
@@ -72,11 +43,3 @@
     </div>
   </div>
 </div>
-
-{# {% block main %}
-
-{% endblock %}
-
-{% block global_footer %}
-  {{ parent() }}
-{% endblock %} #}

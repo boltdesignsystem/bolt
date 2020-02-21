@@ -3,7 +3,7 @@
 {% set useCarousel = useCarousel ?? true %}
 
 {% set content %}
-  {% grid "o-bolt-grid--flex o-bolt-grid--matrix" %}
+  {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--middle" %}
     {% if sectionTitle %}
       {% cell "u-bolt-width-1/1 #{sectionButtons ? 'u-bolt-width-1/2@small' : 'u-bolt-width-3/4@small'} u-bolt-flex-grow" %}
         {% include "@bolt-components-headline/headline.twig" with {
@@ -15,13 +15,14 @@
     {% endif %}
 
     {% if sectionButtons %}
-      {% cell "u-bolt-flex-shrink u-bolt-margin-top-auto" %}
-        {% include "@bolt-components-list/list.twig" with {
-          display: "inline",
-          tag: "ul",
-          spacing: "xxsmall",
-          items: sectionButtons
-        } %}
+      {% cell %}
+        {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--middle o-bolt-grid--xsmall" %}
+          {% for button in sectionButtons %}
+            {% cell %}
+              {{ button }}
+            {% endcell %}
+          {% endfor %}
+        {% endgrid %}
       {% endcell %}
     {% endif %}
   {% endgrid %}
@@ -43,10 +44,7 @@
           {% include "@bolt-components-carousel/carousel.twig" with {
             slides_per_view: "auto",
             nav_button_position: "outside",
-            slides: slides,
-            attributes: {
-              class: ["u-bolt-padding-top-medium"]
-            }
+            slides: slides
           } only %}
         {% endcell %}
       {% else %}

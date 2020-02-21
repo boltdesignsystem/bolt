@@ -1,0 +1,15 @@
+{% if eyebrow %}
+  {% include "@bolt-components-headline/eyebrow.twig" with {
+    text: eyebrow,
+    weight: "semibold",
+    size: "small",
+  } only %}
+{% endif %}
+
+{% if headline %}
+  {% include "@bolt-components-headline/headline.twig" with {
+    size: "xxxlarge",
+    text: headline,
+    tag: "h1",
+  } only %}
+{% endif %}
