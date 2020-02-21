@@ -122,8 +122,8 @@
                     <td>{{ base_scale ~ "rem" }}</td>
                     <td>
                       <bolt-tooltip>
-                        {{ base_scale * base_pixel|number_format(2,".",",") ~ "px" }}
-                        <span slot="content">scales from {{ base_scale * smallbp_pixel|number_format(2,".",",") ~ "px" }} to {{ base_scale * largebp_pixel|number_format(2,".",",") ~ "px" }}</span>
+                        {{ (base_scale * base_pixel)|round(0, 'ceil') ~ "px" }}
+                        <span slot="content">scales from {{ (base_scale * smallbp_pixel)|round(0, 'ceil') ~ "px" }} to {{ (base_scale * largebp_pixel)|round(0, 'ceil') ~ "px" }}</span>
                       </bolt-tooltip>
                     </td>
                   </tr>
@@ -156,15 +156,15 @@
               {% for name, value in bolt.data.spacing.scale %}
                 {% if name is not empty %}
                   {% set multiplier = 2 %}
-                  {% set base_scale = value * multiplier %}
+                  {% set base_scale = value|number_format(2,".",",") * multiplier|number_format(2,".",",") %}
                   <tr>
                     <th>{{ name }}</th>
                     <td>bolt-spacing({{ name }})</td>
                     <td>{{ base_scale ~ "rem" }}</td>
                     <td>
                       <bolt-tooltip>
-                        {{ base_scale * base_pixel ~ "px" }}
-                        <span slot="content">scales from {{ base_scale * smallbp_pixel ~ "px" }} to {{ base_scale * largebp_pixel ~ "px" }}</span>
+                        {{ (base_scale * base_pixel)|round(0, 'ceil') ~ "px" }}
+                        <span slot="content">scales from {{ (base_scale * smallbp_pixel)|round(0, 'ceil') ~ "px" }} to {{ (base_scale * largebp_pixel)|round(0, 'ceil') ~ "px" }}</span>
                       </bolt-tooltip>
                     </td>
                   </tr>
