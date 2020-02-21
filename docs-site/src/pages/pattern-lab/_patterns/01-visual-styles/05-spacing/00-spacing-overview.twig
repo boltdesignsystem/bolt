@@ -100,7 +100,7 @@
       <bolt-stack spacing="small">
         <hr class="u-bolt-margin-none">
       </bolt-stack>
-      <bolt-stack spacing="large">
+      <bolt-stack spacing="medium">
         <bolt-table>
           <table>
             <thead>
@@ -118,7 +118,7 @@
                   {% set base_scale = value|number_format(2,".",",") * multiplier|number_format(2,".",",") %}
                   <tr>
                     <th>{{ name }}</th>
-                    <td>bolt-spacing({{ name }})</td>
+                    <td>bolt-v-spacing({{ name }})</td>
                     <td>{{ base_scale ~ "rem" }}</td>
                     <td>
                       <bolt-tooltip>
