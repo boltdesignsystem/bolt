@@ -35,11 +35,13 @@
 {# Array of classes based on the defined + default props #}
 {% set classes = [
   base_class,
-  size != "none" ? "#{base_class}--#{size}" : "",
   valign ? "#{base_class}--valign-#{valign}" : "",
   theme != "none" ? "t-bolt-#{theme}" : "",
   full_bleed ? "#{base_class}--full-bleed",
+  image ? "has-image" : "",
 ] %}
+
+{% set band_content_size = size != "none" ? "c-bolt-band__content--" ~ size : "" %}
 
 {#
   Sort classes passed in via attributes into two groups:
@@ -83,11 +85,35 @@
         {{ content }}
       {% endblock %}
     {% endset %}
+
+    {% set cell_classes = image ? 'u-bolt-width-12/12 u-bolt-width-6/12@small' : 'u-bolt-width-12/12' %}
+
     {% set regular_content %}
-      <div class="{{ "#{base_class}__content" }}">
-        {% include "@bolt/wrapper.twig" with {
-          content: regular_content_block,
-        } only %}
+      <div class="o-bolt-wrapper u-bolt-width-1/1">
+        <div class="o-bolt-grid o-bolt-grid--matrix u-bolt-width-1/1">
+          {% if image and reversed %}
+            <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@small">
+              <div class="c-bolt-band__image">
+                {% include "@bolt-components-image/image.twig" with image only %}
+              </div>
+            </div>
+          {% endif %}
+
+          <div class="o-bolt-grid__cell {{ image ? 'u-bolt-width-1/1 u-bolt-width-6/12@small' : 'u-bolt-width-1/1' }}">
+            <div class="c-bolt-band__content {{ band_content_size }}">
+              {{ regular_content_block }}
+            </div>
+          </div>
+
+
+          {% if image and not reversed %}
+            <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@small">
+              <div class="c-bolt-band__image">
+                {% include "@bolt-components-image/image.twig" with image only %}
+              </div>
+            </div>
+          {% endif %}
+        </div>
       </div>
     {% endset %}
 
