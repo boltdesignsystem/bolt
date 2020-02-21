@@ -156,7 +156,7 @@
               {% for name, value in bolt.data.spacing.scale %}
                 {% if name is not empty %}
                   {% set multiplier = 2 %}
-                  {% set base_scale = value|number_format(2,".",",") * multiplier|number_format(2,".",",") %}
+                  {% set base_scale = value * multiplier %}
                   <tr>
                     <th>{{ name }}</th>
                     <td>bolt-spacing({{ name }})</td>
