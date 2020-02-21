@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.18.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icon/compare/v2.18.0...v2.18.1) (2020-02-21)
+
+
+### Bug Fixes
+
+* Correct icon color rules ([5cb7b52](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icon/commit/5cb7b5282ef0effd188295d4c56f2943cabd01a6))
+
+
+
+
+
 # [2.18.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icon/compare/v2.17.1...v2.18.0) (2020-02-19)
 
 
