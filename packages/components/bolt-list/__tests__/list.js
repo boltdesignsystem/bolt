@@ -4,6 +4,7 @@ import {
   renderString,
   stopServer,
   html,
+  vrtDefaultConfig,
 } from '../../../testing/testing-helpers';
 const { readYamlFileSync } = require('@bolt/build-tools/utils/yaml');
 const { join } = require('path');
@@ -22,9 +23,25 @@ const {
 const timeout = 120000;
 
 describe('<bolt-list> Component', () => {
+  let page;
+
   afterAll(async () => {
     await stopServer();
-  }, 100);
+    await page.close();
+  });
+
+  beforeEach(async () => {
+    await page.evaluate(() => {
+      document.body.innerHTML = '';
+    });
+  }, timeout);
+
+  beforeAll(async () => {
+    page = await global.__BROWSER__.newPage();
+    await page.goto('http://127.0.0.1:4444/', {
+      timeout: 0,
+    });
+  }, timeout);
 
   test('basic usage', async () => {
     const results = await render('@bolt-components-list/list.twig', {
@@ -156,5 +173,46 @@ describe('<bolt-list> Component', () => {
       } only %}
     `);
     expect(results.html).toContain('test-attr="test-value"');
+  });
+
+  test(`list custom separator color`, async () => {
+    // Use 'block' (default) and bold color like 'red' so that VRT catches regressions,
+    // with 'inline' or subtler colors it passes.
+    const results = await render('@bolt-components-list/list.twig', {
+      separator: 'solid',
+      items: ['item 1', 'item 2', 'item 3'],
+      attributes: {
+        style: ['--bolt-list-item-border-color: red;'],
+      },
+    });
+
+    expect(results.ok).toBe(true);
+    expect(results.html).toMatchSnapshot();
+
+    await page.evaluate(async results => {
+      const wrapper = document.createElement('div');
+      wrapper.innerHTML = results.html;
+      document.body.appendChild(wrapper);
+      const list = document.querySelector('bolt-list');
+
+      if (list._wasInitiallyRendered) return;
+      return new Promise((resolve, reject) => {
+        list.addEventListener('ready', resolve);
+        list.addEventListener('error', reject);
+      });
+    }, results);
+
+    // @todo: `html()` (`@open-wc/testing-helpers`) is not handling CSS custom properties properly.
+    // It converts `--` to `-`. Do not include code snapshot until that's resolved.
+
+    // const listInnerHTML = await page.evaluate(async () => {
+    //   return document.querySelector('bolt-list').outerHTML;
+    // });
+
+    // const renderedHTML = await html(listInnerHTML);
+    // expect(renderedHTML).toMatchSnapshot();
+
+    const image = await page.screenshot();
+    expect(image).toMatchImageSnapshot(vrtDefaultConfig);
   });
 });
