@@ -1,0 +1,21 @@
+.u-bolt-flip-x {
+  transform: scaleX(-1) !important;
+}
+
+.u-bolt-flip-none {
+  transform: none !important;
+}
+
+// Loop over our breakpoints
+@each $breakpoint in $bolt-breakpoints {
+  $breakpointName: nth($breakpoint, 1);
+  @include bolt-mq($breakpointName) {
+    .u-bolt-flip-x\@#{$breakpointName} {
+      transform: scaleX(-1) !important;
+    }
+
+    .u-bolt-flip-none\@#{$breakpointName} {
+      transform: none !important;
+    }
+  }
+}

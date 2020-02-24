@@ -14,7 +14,7 @@
 {% set sizes = sizes|default("auto") %}
 {% set srcset = srcset|default(src) %}
 
-{% if image_data_bolt.srcset %}
+{% if image_data_bolt.srcset and not srcset %}
   {% set srcset = image_data_bolt.srcset %}
 {% endif %}
 

@@ -29,33 +29,6 @@ bolt-band {
       min-height: 56.25vh;
     }
   }
-
-  &.has-image {
-    min-height: 300px;
-  }
-}
-
-.c-bolt-band__image {
-  padding: 0 24px;
-  position: relative;
-  z-index: 2;
-
-  @media screen and (min-width: 768px) {
-    height: calc(100% - 64px);
-    overflow: hidden;
-    padding: 0;
-    position: absolute;
-    top: 32px;
-    width: 50%;
-    z-index: 2;
-    left: 50%;
-    right: auto;
-  }
-
-  @media screen and (min-width: 1056px) {
-    height: calc(100% - 96px);
-    top: 48px;
-  }
 }
 
 .c-bolt-band--full-bleed {
@@ -85,7 +58,7 @@ $bolt-band-sizes: (
   $size-name: nth($size, 1);
   $size-value: nth($size, 2);
 
-  .c-bolt-band__content--#{$size-name} {
+  .c-bolt-band--#{$size-name} {
     padding-top: $size-value;
     padding-bottom: $size-value;
 
