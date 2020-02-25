@@ -7,6 +7,9 @@
 {% set image_data_bolt = bolt.data.images[src] %} {# Data from Bolt Manifest #}
 {% set image_data_twig = getImageData(src)  %} {# Data from processing image file #}
 
+{% set is_jpg = src|split('.')|last == "jpg" %}
+{% set is_gif = src|split('.')|last == "gif" %}
+
 {% set display = display in display_options ? display : schema.properties.display.default %}
 {% set height = height|default(image_data_twig.height) %}
 {% set width = width|default(image_data_twig.width) %}
@@ -14,7 +17,7 @@
 {% set sizes = sizes|default("auto") %}
 {% set srcset = srcset|default(src) %}
 
-{% if image_data_bolt.srcset and not srcset %}
+{% if image_data_bolt.srcset and not is_gif %}
   {% set srcset = image_data_bolt.srcset %}
 {% endif %}
 
@@ -25,8 +28,6 @@
 {% set ph_color = placeholder_color|default(image_data_bolt.color|default(schema.properties.placeholder_color.default)) %}
 {# Note: image-specific base64 data is only generated in production mode, default data is used for local development #}
 {% set ph_image = placeholder_image|default(image_data_bolt.base64|default(schema.properties.placeholder_image.default)) %}
-
-{% set is_jpg = src|split('.')|last == "jpg" %}
 
 {# 'ratio' should be a string, but boolean was previously supported. Boolean is now DEPRECATED. #}
 {% if ratio is sameas(false) or ratio is sameas(true) %}
