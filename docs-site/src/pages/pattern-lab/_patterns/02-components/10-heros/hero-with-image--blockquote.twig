@@ -1,47 +1,6 @@
-{% set content %}
-  {% grid "o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--large u-bolt-overflow-hidden" %}
-    {% cell "u-bolt-width-1/1 u-bolt-width-6/12@medium u-bolt-padding-top-large u-bolt-padding-bottom-large" %}
-      {% include "@bolt-components-blockquote/blockquote.twig" with {
-        size: "xxlarge",
-        weight: "bold",
-        border: "none",
-        "author": {
-          "name": "Oliver Zeeb",
-          "title": "Team Lead, Application Development <br>W&W-Gruppe"
-        },
-        "content": "<p>Pega is one of the key technologies that we are using to rebuild our application landscape.</p>"
-      } %}
-    {% endcell %}
-
-    {% cell "o-bolt-grid__cell--bottom u-bolt-width-1/1 u-bolt-width-1/2@medium u-bolt-padding-top-large@medium" %}
-      {% include "@bolt-components-image/image.twig" with {
-        src: "/images/heros/hero-foreground--teal.png",
-        max_width: "450px",
-        attributes: {
-          class: [
-            "u-bolt-margin-left-auto",
-            "u-bolt-margin-right-auto",
-            "u-bolt-margin-right-none@large",
-          ]
-        }
-      } only %}
-    {% endcell %}
-
-  {% endgrid %}
-{% endset %}
-
-{% include "@bolt-components-band/band.twig" with {
-  theme: "dark",
-  content: content,
-  size: "none",
-  background: {
-    overlay: "disabled",
-    contentItems: [
-      {
-        pattern: "image",
-        lazyload: false,
-        src: "/images/heros/hero-background--teal.jpg",
-      },
-    ]
-  }
-} only %}
+{% include "@pl/_hero-component.twig" with {
+  main_content: include("@pl/_hero-example--blockquote.twig"),
+  background: "/images/heros/hero-background--teal.jpg",
+  image: "/images/heros/hero-foreground--teal.png",
+  imageValign: "bottom",
+} %}
