@@ -1,0 +1,63 @@
+{% set content %}
+  {% grid "o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--large o-bolt-grid--matrix o-bolt-grid--medium" %}
+    {% cell "o-bolt-grid__cell--top u-bolt-width-1/1 u-bolt-width-1/2@small" %}
+      {% include "@bolt-components-image/image.twig" with {
+        src: "/images/heros/hero-foreground--orange--animated-gif.gif",
+        srcset: "/images/heros/hero-foreground--pegaworld-inspire.gif",
+        max_width: "450px",
+        ratio: "550/476",
+        attributes: {
+          class: [
+            "u-bolt-margin-right-auto",
+            "u-bolt-margin-left-auto",
+          ]
+        }
+      } only %}
+    {% endcell %}
+
+
+    {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small" %}
+      {% include "@bolt-components-image/image.twig" with {
+        src: "/images/heros/hero-foreground--orange--logo.svg",
+        alt: "PegaWorld iNspire logo",
+        lazyload: false,
+        attributes: {
+          class: [
+            "u-bolt-margin-bottom-medium",
+          ]
+        }
+      } only %}
+      {% include "@bolt-components-headline/subheadline.twig" with {
+        size: "xlarge",
+        text: "Boston Convention & Exhibition Center May&nbsp;31&nbsp;-&nbsp;June&nbsp;2,&nbsp;2020",
+        attributes: {
+          class: [
+            "u-bolt-line-length-medium"
+          ]
+        }
+      } only %}
+      {% include "@bolt-components-button/button.twig" with {
+        text: "See full agenda",
+        style: "secondary"
+      } only %}
+    {% endcell %}
+
+  {% endgrid %}
+{% endset %}
+
+{% include "@bolt-components-band/band.twig" with {
+  theme: "dark",
+  content: content,
+  size: "medium",
+  background: {
+    overlay: "disabled",
+    contentItems: [
+      {
+        pattern: "image",
+        lazyload: false,
+        placeholder_color: "#eb5a28",
+        src: "/images/heros/hero-background--orange.jpg",
+      },
+    ]
+  }
+} only %}
