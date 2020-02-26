@@ -16,19 +16,19 @@ $bolt-font-size--medium-bp: bolt-rem(bolt-breakpoint(medium)) !default;
 \* ------------------------------------ */
 /// Default XXX Large Max font-size. Used within $bolt-font-sizes map.
 /// @see $bolt-font-sizes
-$bolt-font-size--xxxlarge--max: 3.083rem !default;
+$bolt-font-size--xxxlarge--max: 3rem !default;
 /// Default XXX Large Min font-size. Used within $bolt-font-sizes map.
 /// @see $bolt-font-sizes
-$bolt-font-size--xxxlarge--min: 2.275rem !default;
+$bolt-font-size--xxxlarge--min: 2.25rem !default;
 /// Default XX Large font-size. Used within $bolt-font-sizes map.
 /// @see $bolt-font-sizes
-$bolt-font-size--xxlarge: 1.781rem !default;
+$bolt-font-size--xxlarge: 1.85rem !default;
 /// Default X Large font-size. Used within $bolt-font-sizes map.
 /// @see $bolt-font-sizes
-$bolt-font-size--xlarge: 1.417rem !default;
+$bolt-font-size--xlarge: 1.4rem !default;
 /// Default Large font-size. Used within $bolt-font-sizes map.
 /// @see $bolt-font-sizes
-$bolt-font-size--large: 1.111rem !default;
+$bolt-font-size--large: 1.2rem !default;
 /// Medium font-size. Used within $bolt-font-sizes map.
 /// @see $bolt-font-sizes
 $bolt-font-size--medium: 1rem !default;
@@ -53,10 +53,10 @@ $bolt-line-height--xlarge: 1.35 !default;
 $bolt-line-height--large: 1.45 !default;
 /// Default Medium line-height. Used within $bolt-font-sizes map.
 /// @see $bolt-font-sizes
-$bolt-line-height--medium: 1.65 !default;
+$bolt-line-height--medium: 1.5 !default;
 /// Default Small line-height. Used within $bolt-font-sizes map.
 /// @see $bolt-font-sizes
-$bolt-line-height--small: 1.51 !default;
+$bolt-line-height--small: 1.5 !default;
 /// Default X Small line-height. Used within $bolt-font-sizes map.
 /// @see $bolt-font-sizes
 $bolt-line-height--xsmall: 1.45 !default;
@@ -118,12 +118,6 @@ $bolt-font-sizes: (
       line-height: (
         regular: $bolt-line-height--xsmall,
         tight: $bolt-line-height--tight
-      )
-    ),
-    xxsmall: (
-      font-size: bolt-rem(12px),
-      line-height: (
-        regular: 1.41, // 17px / 12px
       )
     )
   )
