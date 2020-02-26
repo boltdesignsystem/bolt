@@ -1,18 +1,3 @@
-// const iconSchema = require('@bolt/components-icon/icon.schema.json');
-
-// iconSchema.properties = {
-//   position: {
-//     description: 'Where to position the icon within the button',
-//     type: 'string',
-//     default: 'after',
-//     enum: ['before', 'after'],
-//   },
-//   ...iconSchema.properties,
-// };
-
-// iconSchema.description =
-//   'Icon data as expected by the icon component. Accepts an additional position prop that determines placement within the button.';
-
 module.exports = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'Bolt Hero',
