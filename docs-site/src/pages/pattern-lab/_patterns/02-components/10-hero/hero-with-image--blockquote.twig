@@ -1,0 +1,18 @@
+{% import "@bolt-blueprints/macros.twig" as macros %}
+
+{% include "@bolt-components-hero/hero.twig" with {
+  content: macros.include("@bolt-components-blockquote/blockquote.twig", {
+    size: "xxlarge",
+    weight: "bold",
+    border: "none",
+    "author": {
+      "name": "Oliver Zeeb",
+      "title": "Team Lead, Application Development <br>W&W-Gruppe"
+    },
+    "content": "<p>Pega is one of the key technologies that we are using to rebuild our application landscape.</p>"
+  }),
+  background: "/images/heros/hero-background--teal.jpg",
+  image: "/images/heros/hero-foreground--teal.png",
+  imageValign: "bottom",
+  theme: "dark",
+} %}

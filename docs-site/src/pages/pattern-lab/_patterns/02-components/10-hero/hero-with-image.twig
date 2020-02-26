@@ -1,0 +1,33 @@
+{% import "@bolt-blueprints/macros.twig" as macros %}
+
+{% include "@bolt-components-hero/hero.twig" with {
+  content: [
+    macros.include("@bolt-components-headline/headline.twig", {
+      size: "xxxlarge",
+      text: "It's show time.",
+    }),
+    macros.include("@bolt-components-headline/subheadline.twig", {
+      size: "xlarge",
+      text: "Please join us for PegaWorld 2019 event at MGM Grand in Las&nbsp;Vegas",
+      attributes: {
+        class: [
+          "u-bolt-line-length-medium"
+        ]
+      }
+    }),
+    macros.include("@bolt-components-headline/text.twig", {
+      text: "Monday, June 3rd, 2019 <br>10AM - 3PM EST",
+      weight: "bold",
+    }),
+    macros.include("@bolt-components-button/button.twig", {
+      text: "Watch livestream",
+      style: "secondary"
+    })
+  ] | join(''),
+  theme: "light",
+  background: "/images/heros/hero-background--yellow.svg",
+  image: "/images/heros/hero-foreground--yellow.png",
+  imageValign: "bottom",
+  imageMaxWidth: "375px",
+  imageAlign: "right"
+} %}

@@ -1,0 +1,33 @@
+{% import "@bolt-blueprints/macros.twig" as macros %}
+
+{% include "@bolt-components-hero/hero.twig" with {
+  theme: "none",
+  content: [
+    macros.include("@bolt-components-icon/icon.twig", {
+      size: "xlarge",
+      name: "brand-operations",
+      color: "teal",
+      background: "circle",
+      attributes: {
+        class: [
+          "u-bolt-margin-bottom-medium",
+        ]
+      }
+    }),
+    macros.include("@bolt-components-headline/headline.twig", {
+      size: "xxxlarge",
+      text: "A Prominent Headline Certainly Helps",
+    }),
+    macros.include("@bolt-components-headline/subheadline.twig", {
+      size: "xlarge",
+      text: "This one even includes a tagline.",
+    }),
+    macros.include("@bolt-components-button/button.twig", {
+      text: "Learn More",
+      style: "primary"
+    }),
+  ] | join(''),
+  imageMaxWidth: '1200px',
+  imageMinWidth: '60vw',
+  image: "/images/heros/responsive-web-design.svg"
+} %}
