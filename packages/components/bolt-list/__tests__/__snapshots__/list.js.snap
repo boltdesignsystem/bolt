@@ -36,6 +36,43 @@ exports[`<bolt-list> Component basic usage 1`] = `
 </bolt-list>
 `;
 
+exports[`<bolt-list> Component list custom separator color 1`] = `
+<bolt-list tag="ul"
+           display="block"
+           spacing="xsmall"
+           separator="solid"
+           align="start"
+           valign="center"
+           style="--bolt-list-item-border-color: red;"
+>
+  <replace-with-grandchildren>
+    <ul class="c-bolt-list c-bolt-list--display-block c-bolt-list--spacing-xsmall c-bolt-list--separator-solid c-bolt-list--align-start c-bolt-list--valign-center">
+      <bolt-list-item>
+        <replace-with-grandchildren>
+          <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-xsmall c-bolt-list-item--separator-solid c-bolt-list-item--align-start">
+            item 1
+          </li>
+        </replace-with-grandchildren>
+      </bolt-list-item>
+      <bolt-list-item>
+        <replace-with-grandchildren>
+          <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-xsmall c-bolt-list-item--separator-solid c-bolt-list-item--align-start">
+            item 2
+          </li>
+        </replace-with-grandchildren>
+      </bolt-list-item>
+      <bolt-list-item last>
+        <replace-with-grandchildren>
+          <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-xsmall c-bolt-list-item--separator-solid c-bolt-list-item--align-start c-bolt-list-item--last-item">
+            item 3
+          </li>
+        </replace-with-grandchildren>
+      </bolt-list-item>
+    </ul>
+  </replace-with-grandchildren>
+</bolt-list>
+`;
+
 exports[`<bolt-list> Component list display: block 1`] = `
 <bolt-list tag="ul"
            display="block"

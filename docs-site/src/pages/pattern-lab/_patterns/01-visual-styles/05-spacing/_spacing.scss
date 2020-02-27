@@ -1,0 +1,17 @@
+.c-bds-spacing-square {
+  background-color: bolt-theme(neutral, 0.2);
+}
+
+@each $spacing-value in $bolt-spacing-values {
+  $spacing-value-name: nth($spacing-value, 1);
+
+  .c-bds-spacing-square--#{$spacing-value-name} {
+    width: bolt-spacing(#{$spacing-value-name});
+    height: bolt-v-spacing(medium);
+  }
+
+  .c-bds-spacing-square--v-#{$spacing-value-name} {
+    width: 100%;
+    height: bolt-v-spacing(#{$spacing-value-name});
+  }
+}
