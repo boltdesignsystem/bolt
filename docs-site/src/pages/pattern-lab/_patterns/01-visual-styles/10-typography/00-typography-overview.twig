@@ -1,0 +1,679 @@
+{% set characters_sample = "ABCČĆDĐEFGHIJKLMNOPQRSŠTUVWXYZŽabcčćdđefghijklmnopqrsštuvwxyzžАБВГҐДЂЕЁЄЖЗЅИІЇЙЈКЛЉМНЊОПРСТЋУЎФХЦЧЏШЩЪЫЬЭЮЯабвгґдђеёєжзѕиіїйјклљмнњопрстћуўфхцчџшщъыьэюяΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩαβγδεζηθικλμνξοπρστυφχψωάΆέΈέΉίϊΐΊόΌύΰϋΎΫΏĂÂÊÔƠƯăâêôơư1234567890‘?’“!”(%)[#]{@}/&\<-+÷×=>®©$€£¥¢:;,.*" %}
+{% set text_sample = "Every second he kept glancing at the clock." %}
+
+{% set content %}
+  <bolt-stack spacing="large">
+    <bolt-text headline font-size="xxxlarge" tag="h1">
+      Typography
+    </bolt-text>
+    <bolt-text subheadline font-size="xxlarge" tag="h2">
+      The typographic foundation of Bolt.
+    </bolt-text>
+  </bolt-stack>
+
+  <bolt-tabs label-spacing="medium" panel-spacing="medium" inset="off">
+
+    {# Fonts #}
+    <bolt-tab-panel>
+      <bolt-text slot="label">Fonts</bolt-text>
+
+      <bolt-stack spacing="medium">
+        <bolt-text headline font-size="xxlarge" tag="h2">
+          Body: Open Sans
+        </bolt-text>
+      </bolt-stack>
+      <bolt-stack spacing="xsmall">
+        <bolt-text eyebrow tag="h3">
+          Characters
+        </bolt-text>
+      </bolt-stack>
+      <bolt-stack spacing="small">
+        <hr class="u-bolt-margin-none">
+      </bolt-stack>
+      <bolt-stack spacing="medium">
+        <bolt-text font-size="medium" letter-spacing="wide" style="overflow-wrap: break-word;">
+          {{ characters_sample }}
+        </bolt-text>
+      </bolt-stack>
+      <bolt-stack spacing="xsmall">
+        <bolt-text eyebrow tag="h3">
+          Styles
+        </bolt-text>
+      </bolt-stack>
+      <bolt-stack spacing="small">
+        <hr class="u-bolt-margin-none">
+      </bolt-stack>
+      <bolt-stack spacing="large">
+        <bolt-list spacing="xsmall">
+          <bolt-list-item>
+            <bolt-text font-size="medium" font-weight="regular">
+              Regular
+            </bolt-text>
+          </bolt-list-item>
+          <bolt-list-item>
+            <bolt-text font-size="medium" font-weight="regular" font-style="italic">
+              Regular Italic
+            </bolt-text>
+          </bolt-list-item>
+          <bolt-list-item>
+            <bolt-text font-size="medium" font-weight="semibold">
+              Semi-Bold
+            </bolt-text>
+          </bolt-list-item>
+          <bolt-list-item>
+            <bolt-text font-size="medium" font-weight="semibold" font-style="italic">
+              Semi-Bold Italic
+            </bolt-text>
+          </bolt-list-item>
+          <bolt-list-item>
+            <bolt-text font-size="medium" font-weight="bold">
+              Bold
+            </bolt-text>
+          </bolt-list-item>
+          <bolt-list-item>
+            <bolt-text font-size="medium" font-weight="bold" font-style="italic">
+              Bold Italic
+            </bolt-text>
+          </bolt-list-item>
+        </bolt-list>
+      </bolt-stack>
+
+      <bolt-stack spacing="medium">
+        <bolt-text headline font-size="xxlarge" tag="h2">
+          Heading: Open Sans
+        </bolt-text>
+      </bolt-stack>
+      <bolt-stack spacing="xsmall">
+        <bolt-text eyebrow tag="h3">
+          Characters
+        </bolt-text>
+      </bolt-stack>
+      <bolt-stack spacing="small">
+        <hr class="u-bolt-margin-none">
+      </bolt-stack>
+      <bolt-stack spacing="medium">
+        <bolt-text font-size="xxlarge" letter-spacing="wide" style="overflow-wrap: break-word;">
+          {{ characters_sample }}
+        </bolt-text>
+      </bolt-stack>
+      <bolt-stack spacing="xsmall">
+        <bolt-text eyebrow tag="h3">
+          Styles
+        </bolt-text>
+      </bolt-stack>
+      <bolt-stack spacing="small">
+        <hr class="u-bolt-margin-none">
+      </bolt-stack>
+      <bolt-stack spacing="large">
+        <bolt-list spacing="xsmall">
+          <bolt-list-item>
+            <bolt-text font-size="xxlarge" font-weight="regular">
+              Regular
+            </bolt-text>
+          </bolt-list-item>
+          <bolt-list-item>
+            <bolt-text font-size="xxlarge" font-weight="regular" font-style="italic">
+              Regular Italic
+            </bolt-text>
+          </bolt-list-item>
+          <bolt-list-item>
+            <bolt-text font-size="xxlarge" font-weight="semibold">
+              Semi-Bold
+            </bolt-text>
+          </bolt-list-item>
+          <bolt-list-item>
+            <bolt-text font-size="xxlarge" font-weight="semibold" font-style="italic">
+              Semi-Bold Italic
+            </bolt-text>
+          </bolt-list-item>
+          <bolt-list-item>
+            <bolt-text font-size="xxlarge" font-weight="bold">
+              Bold
+            </bolt-text>
+          </bolt-list-item>
+          <bolt-list-item>
+            <bolt-text font-size="xxlarge" font-weight="bold" font-style="italic">
+              Bold Italic
+            </bolt-text>
+          </bolt-list-item>
+        </bolt-list>
+      </bolt-stack>
+
+      <bolt-stack spacing="medium">
+        <bolt-text headline font-size="xxlarge" tag="h2">
+          Code: monospace*
+        </bolt-text>
+      </bolt-stack>
+      <bolt-stack spacing="xsmall">
+        <bolt-text eyebrow tag="h3">
+          Characters
+        </bolt-text>
+      </bolt-stack>
+      <bolt-stack spacing="small">
+        <hr class="u-bolt-margin-none">
+      </bolt-stack>
+      <bolt-stack spacing="medium">
+        <bolt-text font-family="code" font-size="medium" letter-spacing="wide" style="overflow-wrap: break-word;">
+          {{ characters_sample }}
+        </bolt-text>
+      </bolt-stack>
+      <bolt-stack spacing="xsmall">
+        <bolt-text eyebrow tag="h3">
+          Styles
+        </bolt-text>
+      </bolt-stack>
+      <bolt-stack spacing="small">
+        <hr class="u-bolt-margin-none">
+      </bolt-stack>
+      <bolt-stack spacing="medium">
+        <bolt-list spacing="xsmall">
+          <bolt-list-item>
+            <bolt-text font-family="code" font-size="medium" font-weight="regular">
+              Regular
+            </bolt-text>
+          </bolt-list-item>
+          <bolt-list-item>
+            <bolt-text font-family="code" font-size="medium" font-weight="regular" font-style="italic">
+              Regular Italic
+            </bolt-text>
+          </bolt-list-item>
+          <bolt-list-item>
+            <bolt-text font-family="code" font-size="medium" font-weight="bold">
+              Bold
+            </bolt-text>
+          </bolt-list-item>
+          <bolt-list-item>
+            <bolt-text font-family="code" font-size="medium" font-weight="bold" font-style="italic">
+              Bold Italic
+            </bolt-text>
+          </bolt-list-item>
+        </bolt-list>
+      </bolt-stack>
+      <bolt-stack spacing="large">
+        <bolt-banner align="start">
+          *Bolt prefers the system default for code text&rsquo;s font-family which maximizes the readability across all platforms and browsers.
+        </bolt-banner>
+      </bolt-stack>
+    </bolt-tab-panel>
+
+    {# Scales #}
+    <bolt-tab-panel>
+      <bolt-text slot="label">Scales</bolt-text>
+
+      <bolt-stack spacing="medium">
+        <bolt-text headline font-size="xxlarge" tag="h2">
+          Body
+        </bolt-text>
+      </bolt-stack>
+      <bolt-stack spacing="xsmall">
+        <bolt-text eyebrow tag="h3">
+          Text
+        </bolt-text>
+      </bolt-stack>
+      <bolt-stack spacing="small">
+        <hr class="u-bolt-margin-none">
+      </bolt-stack>
+      <bolt-stack spacing="large">
+        <bolt-list spacing="xsmall">
+          <bolt-list-item>
+            <bolt-tooltip placement="top-start">
+              <bolt-text display="inline" font-size="medium">
+                {{ text_sample }}
+              </bolt-text>
+              <span slot="content">medium</span>
+            </bolt-tooltip>
+          </bolt-list-item>
+          <bolt-list-item>
+            <bolt-tooltip placement="top-start">
+              <bolt-text display="inline" font-size="small">
+                {{ text_sample }}
+              </bolt-text>
+              <span slot="content">small</span>
+            </bolt-tooltip>
+          </bolt-list-item>
+          <bolt-list-item>
+            <bolt-tooltip placement="top-start">
+              <bolt-text display="inline" font-size="xsmall">
+                {{ text_sample }}
+              </bolt-text>
+              <span slot="content">xsmall</span>
+            </bolt-tooltip>
+          </bolt-list-item>
+        </bolt-list>
+      </bolt-stack>
+      <bolt-stack spacing="medium">
+        <bolt-text headline font-size="xxlarge" tag="h2">
+          Heading
+        </bolt-text>
+      </bolt-stack>
+      <bolt-stack spacing="xsmall">
+        <bolt-text eyebrow tag="h3">
+          Headline
+        </bolt-text>
+      </bolt-stack>
+      <bolt-stack spacing="xsmall">
+        <hr class="u-bolt-margin-none">
+      </bolt-stack>
+      <bolt-stack spacing="medium">
+        <bolt-list spacing="xsmall">
+          <bolt-list-item>
+            <bolt-tooltip placement="top-start">
+              <bolt-text headline display="inline" font-size="xxxlarge">
+                {{ text_sample ~ "*" }}
+              </bolt-text>
+              <span slot="content">xxxlarge</span>
+            </bolt-tooltip>
+          </bolt-list-item>
+          <bolt-list-item>
+            <bolt-tooltip placement="top-start">
+              <bolt-text headline display="inline" font-size="xxlarge">
+                {{ text_sample }}
+              </bolt-text>
+              <span slot="content">xxlarge</span>
+            </bolt-tooltip>
+          </bolt-list-item>
+          <bolt-list-item>
+            <bolt-tooltip placement="top-start">
+              <bolt-text headline display="inline" font-size="xlarge">
+                {{ text_sample }}
+              </bolt-text>
+              <span slot="content">xlarge</span>
+            </bolt-tooltip>
+          </bolt-list-item>
+          <bolt-list-item>
+            <bolt-tooltip placement="top-start">
+              <bolt-text headline display="inline" font-size="large">
+                {{ text_sample }}
+              </bolt-text>
+              <span slot="content">large</span>
+            </bolt-tooltip>
+          </bolt-list-item>
+          <bolt-list-item>
+            <bolt-tooltip placement="top-start">
+              <bolt-text headline display="inline" font-size="medium">
+                {{ text_sample }}
+              </bolt-text>
+              <span slot="content">medium</span>
+            </bolt-tooltip>
+          </bolt-list-item>
+          <bolt-list-item>
+            <bolt-tooltip placement="top-start">
+              <bolt-text headline display="inline" font-size="small">
+                {{ text_sample }}
+              </bolt-text>
+              <span slot="content">small</span>
+            </bolt-tooltip>
+          </bolt-list-item>
+          <bolt-list-item>
+            <bolt-tooltip placement="top-start">
+              <bolt-text headline display="inline" font-size="xsmall">
+                {{ text_sample }}
+              </bolt-text>
+              <span slot="content">xsmall</span>
+            </bolt-tooltip>
+          </bolt-list-item>
+        </bolt-list>
+      </bolt-stack>
+      <bolt-stack spacing="xsmall">
+        <bolt-text eyebrow tag="h3">
+          Subheadline
+        </bolt-text>
+      </bolt-stack>
+      <bolt-stack spacing="small">
+        <hr class="u-bolt-margin-none">
+      </bolt-stack>
+      <bolt-stack spacing="medium">
+        <bolt-list spacing="xsmall">
+          <bolt-list-item>
+            <bolt-tooltip placement="top-start">
+              <bolt-text subheadline display="inline" font-size="xxlarge">
+                {{ text_sample }}
+              </bolt-text>
+              <span slot="content">xxlarge</span>
+            </bolt-tooltip>
+          </bolt-list-item>
+          <bolt-list-item>
+            <bolt-tooltip placement="top-start">
+              <bolt-text subheadline display="inline" font-size="xlarge">
+                {{ text_sample }}
+              </bolt-text>
+              <span slot="content">xlarge</span>
+            </bolt-tooltip>
+          </bolt-list-item>
+          <bolt-list-item>
+            <bolt-tooltip placement="top-start">
+              <bolt-text subheadline display="inline" font-size="large">
+                {{ text_sample }}
+              </bolt-text>
+              <span slot="content">large</span>
+            </bolt-tooltip>
+          </bolt-list-item>
+        </bolt-list>
+      </bolt-stack>
+      <bolt-stack spacing="xsmall">
+        <bolt-text eyebrow tag="h3">
+          Eyebrow
+        </bolt-text>
+      </bolt-stack>
+      <bolt-stack spacing="small">
+        <hr class="u-bolt-margin-none">
+      </bolt-stack>
+      <bolt-stack spacing="medium">
+        <bolt-tooltip placement="top-start">
+          <bolt-text eyebrow display="inline">
+            {{ text_sample }}
+          </bolt-text>
+          <span slot="content">xsmall (only size)</span>
+        </bolt-tooltip>
+      </bolt-stack>
+      <bolt-stack spacing="medium">
+        <bolt-banner align="start">
+          *xxxlarge size should only be used for display headlines.
+        </bolt-banner>
+      </bolt-stack>
+    </bolt-tab-panel>
+
+    {# Pairings #}
+    <bolt-tab-panel>
+      <bolt-text slot="label">Pairings</bolt-text>
+
+      <bolt-stack spacing="medium">
+        <bolt-text headline font-size="xxlarge" tag="h2">
+          Common Pairings
+        </bolt-text>
+      </bolt-stack>
+      <bolt-stack spacing="xsmall">
+        <bolt-text eyebrow tag="h3">
+          Article Title
+        </bolt-text>
+      </bolt-stack>
+      <bolt-stack spacing="small">
+        <hr class="u-bolt-margin-none">
+      </bolt-stack>
+      <bolt-stack spacing="large">
+        <bolt-text headline font-size="xxxlarge" align="center">
+          This is a xxxlarge headline
+        </bolt-text>
+        <bolt-text subheadline font-size="xlarge" align="center">
+          This is a xlarge subheadline
+        </bolt-text>
+      </bolt-stack>
+      <bolt-stack spacing="xsmall">
+        <bolt-text eyebrow tag="h3">
+          Page Title
+        </bolt-text>
+      </bolt-stack>
+      <bolt-stack spacing="small">
+        <hr class="u-bolt-margin-none">
+      </bolt-stack>
+      <bolt-stack spacing="large">
+        <bolt-text headline font-size="small">
+          This is a small headline
+        </bolt-text>
+        <bolt-text headline font-size="xxxlarge">
+          This is a xxxlarge headline
+        </bolt-text>
+        <bolt-text subheadline font-size="xxlarge">
+          This is a xxlarge subheadline
+        </bolt-text>
+      </bolt-stack>
+      <bolt-stack spacing="xsmall">
+        <bolt-text eyebrow tag="h3">
+          Teaser
+        </bolt-text>
+      </bolt-stack>
+      <bolt-stack spacing="small">
+        <hr class="u-bolt-margin-none">
+      </bolt-stack>
+      <bolt-stack spacing="large">
+        <bolt-text eyebrow>
+          This is an eyebrow
+        </bolt-text>
+        <bolt-text headline font-size="xxxlarge">
+          This is a xxxlarge headline
+        </bolt-text>
+        <bolt-text subheadline font-size="xxlarge">
+          This is a xxlarge subheadline
+        </bolt-text>
+        <bolt-text>
+          This is regular text, and some lorem ipsum. Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante. Etiam at risus et justo dignissim congue. Donec congue lacinia.
+        </bolt-text>
+      </bolt-stack>
+      <bolt-stack spacing="xsmall">
+        <bolt-text eyebrow tag="h3">
+          Mini Teaser
+        </bolt-text>
+      </bolt-stack>
+      <bolt-stack spacing="small">
+        <hr class="u-bolt-margin-none">
+      </bolt-stack>
+      <bolt-stack spacing="large">
+        <bolt-text eyebrow>
+          This is an eyebrow
+        </bolt-text>
+        <bolt-text headline font-size="xlarge">
+          This is a xlarge headline
+        </bolt-text>
+      </bolt-stack>
+      <bolt-stack spacing="xsmall">
+        <bolt-text eyebrow tag="h3">
+          Inline Mix
+        </bolt-text>
+      </bolt-stack>
+      <bolt-stack spacing="small">
+        <hr class="u-bolt-margin-none">
+      </bolt-stack>
+      <bolt-stack spacing="large">
+        <bolt-text display="inline" subheadline font-size="xxlarge">
+          Inline xxlarge subheadline
+        </bolt-text>
+        <bolt-text display="inline" headline font-size="xxlarge">
+          &amp; xxlarge headline
+        </bolt-text>
+      </bolt-stack>
+    </bolt-tab-panel>
+
+    {# Tokens #}
+    <bolt-tab-panel>
+      <bolt-text slot="label">Tokens</bolt-text>
+
+      <bolt-stack spacing="medium">
+        <bolt-text headline font-size="xxlarge" tag="h2">
+          Font-family Tokens
+        </bolt-text>
+      </bolt-stack>
+      <bolt-stack spacing="large">
+        <bolt-table>
+          <table>
+            <thead>
+              <tr>
+                <td></td>
+                <th>SCSS mixin</th>
+                <th>Font-family</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th>heading</th>
+                <td>@include bolt-font-family(heading)</td>
+                <td>Open Sans</td>
+              </tr>
+              <tr>
+                <th>body</th>
+                <td>@include bolt-font-family(body)</td>
+                <td>Open Sans</td>
+              </tr>
+              <tr>
+                <th>code</th>
+                <td>@include bolt-font-family(code)</td>
+                <td>monospace</td>
+              </tr>
+            </tbody>
+          </table>
+        </bolt-table>
+      </bolt-stack>
+
+      <bolt-stack spacing="medium">
+        <bolt-text headline font-size="xxlarge" tag="h2">
+          Font-size Tokens
+        </bolt-text>
+      </bolt-stack>
+      <bolt-stack spacing="medium">
+        <bolt-table>
+          <table>
+            <thead>
+              <tr>
+                <td></td>
+                <th>SCSS mixin</th>
+                <th>Font scale*</th>
+                <th>Font-size (at 1400px viewport)**</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th rowspan=2>xxxlarge</th>
+                <td rowspan=2>@include bolt-font-size(xxxlarge)</td>
+                <td>3.083rem (below 60 characters)</td>
+                <td>
+                  <bolt-tooltip placement="top-start">
+                    49px
+                    <span slot="content">scales from 43px to 55px</span>
+                  </bolt-tooltip>
+                </td>
+              </tr>
+              <tr>
+                <td>2.275rem (above 60 characters)</td>
+                <td>
+                  <bolt-tooltip placement="top-start">
+                    36px
+                    <span slot="content">scales from 32px to 41px</span>
+                  </bolt-tooltip>
+                </td>
+              </tr>
+              <tr>
+                <th>xxlarge</th>
+                <td>@include bolt-font-size(xxlarge)</td>
+                <td>1.781rem</td>
+                <td>
+                  <bolt-tooltip placement="top-start">
+                    28px
+                    <span slot="content">scales from 25px to 32px</span>
+                  </bolt-tooltip>
+                </td>
+              </tr>
+              <tr>
+                <th>xlarge</th>
+                <td>@include bolt-font-size(xlarge)</td>
+                <td>1.417rem</td>
+                <td>
+                  <bolt-tooltip placement="top-start">
+                    23px
+                    <span slot="content">scales from 20px to 25px</span>
+                  </bolt-tooltip>
+                </td>
+              </tr>
+              <tr>
+                <th>large</th>
+                <td>@include bolt-font-size(large)</td>
+                <td>1.111rem</td>
+                <td>
+                  <bolt-tooltip placement="top-start">
+                    18px
+                    <span slot="content">scales from 16px to 20px</span>
+                  </bolt-tooltip>
+                </td>
+              </tr>
+              <tr>
+                <th>medium (base)</th>
+                <td>@include bolt-font-size(medium)</td>
+                <td>1rem</td>
+                <td>
+                  <bolt-tooltip placement="top-start">
+                    16px
+                    <span slot="content">scales from 14px to 18px</span>
+                  </bolt-tooltip>
+                </td>
+              </tr>
+              <tr>
+                <th>small</th>
+                <td>@include bolt-font-size(small)</td>
+                <td>0.9rem</td>
+                <td>
+                  <bolt-tooltip placement="top-start">
+                    14px
+                    <span slot="content">scales from 13px to 16px</span>
+                  </bolt-tooltip>
+                </td>
+              </tr>
+              <tr>
+                <th>xsmall</th>
+                <td>@include bolt-font-size(xsmall)</td>
+                <td>0.8rem</td>
+                <td>
+                  <bolt-tooltip placement="top-start">
+                    13px
+                    <span slot="content">scales from 11px to 14px</span>
+                  </bolt-tooltip>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </bolt-table>
+      </bolt-stack>
+      <bolt-stack spacing="large">
+        <bolt-banner align="start">
+          <bolt-list>
+            <bolt-list-item>
+              *xxxlarge headline text has an additional scaling effect depending on the length of the text.
+            </bolt-list-item>
+            <bolt-list-item>
+              **Font-sizes in Bolt are responsive from 320px viewport to 1920px viewport. <bolt-link url="{{ link['viewall-visual-styles-breakpoints'] }}">View Breakpoint System<bolt-icon name="chevron-right" slot="after"></bolt-icon></bolt-link>
+            </bolt-list-item>
+          </bolt-list>
+        </bolt-banner>
+      </bolt-stack>
+
+      <bolt-stack spacing="medium">
+        <bolt-text headline font-size="xxlarge" tag="h2">
+          Font-weight Tokens
+        </bolt-text>
+      </bolt-stack>
+      <bolt-stack spacing="large">
+        <bolt-table>
+          <table>
+            <thead>
+              <tr>
+                <td></td>
+                <th>SCSS mixin</th>
+                <th>Font-weight</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th>regular</th>
+                <td>@include bolt-font-weight(regular)</td>
+                <td>400</td>
+              </tr>
+              <tr>
+                <th>semibold</th>
+                <td>@include bolt-font-weight(semibold)</td>
+                <td>600</td>
+              </tr>
+              <tr>
+                <th>bold</th>
+                <td>@include bolt-font-weight(bold)</td>
+                <td>800</td>
+              </tr>
+            </tbody>
+          </table>
+        </bolt-table>
+      </bolt-stack>
+    </bolt-tab-panel>
+  </bolt-tabs>
+{% endset %}
+
+{% include "@bolt-components-band/band.twig" with {
+  content: content,
+  theme: "none",
+  size: "large",
+} only %}

@@ -42,7 +42,11 @@ $bolt-list-separator-styles: solid, dashed;
   .c-bolt-list-item--separator-#{$separator-style} {
     border-width: 0;
     border-style: #{$separator-style};
-    border-color: $bolt-list-item-border-color;
+    border-color: $bolt-list-item-border-color; // @todo: remove once we drop IE11 support
+    border-color: var(
+      --bolt-list-item-border-color,
+      $bolt-list-item-border-color
+    );
   }
 }
 
