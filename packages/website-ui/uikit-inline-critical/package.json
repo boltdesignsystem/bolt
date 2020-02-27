@@ -1,0 +1,77 @@
+{
+  "name": "@bolt/uikit-inline-critical",
+  "version": "5.3.1",
+  "description": "Inline critical-path css and load the existing stylesheets asynchronously",
+  "main": "index.js",
+  "scripts": {
+    "jest": "jest --coverage",
+    "xo": "xo",
+    "test": "npm run xo && npm run jest"
+  },
+  "files": [
+    "index.js",
+    "cli.js",
+    "src/*.js"
+  ],
+  "bin": "cli.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bezoerb/inline-critical"
+  },
+  "keywords": [
+    "css",
+    "inline",
+    "loadcss",
+    "critical-path"
+  ],
+  "author": "Ben Zörb <ben@sommerlaune.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bezoerb/inline-critical/issues"
+  },
+  "dependencies": {
+    "chalk": "^3.0.0",
+    "clean-css": "^4.2.1",
+    "css": "^2.2.4",
+    "detect-indent": "^6.0.0",
+    "fg-loadcss": "^2.1.0",
+    "get-stdin": "^7.0.0",
+    "indent-string": "^4.0.0",
+    "jsdom": "^15.2.1",
+    "lodash.defaults": "^4.2.0",
+    "lodash.escaperegexp": "^4.1.2",
+    "lodash.isregexp": "^4.0.1",
+    "lodash.isstring": "^4.0.1",
+    "meow": "^5.0.0",
+    "normalize-newline": "^3.0.0",
+    "postcss": "^7.0.21",
+    "postcss-discard": "^0.3.3",
+    "prettier": "^1.19.1",
+    "reaver": "^2.0.0",
+    "slash": "^3.0.0",
+    "uglify-js": "^3.6.8",
+    "execa": "^1.0.0",
+    "fs-extra": "^8.1.0",
+    "jest": "^24.9.0",
+    "read-pkg-up": "^7.0.0",
+    "xo": "^0.25.3"
+  },
+  "xo": {
+    "space": 2,
+    "prettier": true
+  },
+  "jest": {
+    "roots": [
+      ""
+    ]
+  },
+  "prettier": {
+    "trailingComma": "es5",
+    "singleQuote": true,
+    "printWidth": 120,
+    "bracketSpacing": false
+  },
+  "engines": {
+    "node": ">= 8"
+  }
+}

@@ -50,8 +50,9 @@
     <link rel="preconnect dns-prefetch" href="https://www.google-analytics.com"/>
 
     <!-- async load PL's CSS -->
+    <link rel="preload" href="{{ legacyAssets["bolt-global.css"] | default("/build/bolt-global.css") }}">
     <link rel="stylesheet" href="{{ legacyAssets["bolt-global.css"] | default("/build/bolt-global.css") }}" media="all" />
-    <link rel="preload" href="/pattern-lab/styleguide/css/pattern-lab.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="stylesheet" href="/pattern-lab/styleguide/css/pattern-lab.css" media="print" onload="this.media='all'">
 
     {# critical path scripts for non-ES Module browsers #}
     <script nomodule>
