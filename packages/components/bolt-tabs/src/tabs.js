@@ -10,6 +10,8 @@ import {
   waitForTransitionEnd,
 } from '@bolt/core-v3.x/utils';
 import { withLitHtml } from '@bolt/core-v3.x/renderers/renderer-lit-html';
+import { smoothScroll } from '@bolt/components-smooth-scroll';
+import queryString from 'query-string';
 import classNames from 'classnames/bind';
 import styles from './tabs.scss';
 import schema from '../tabs.schema.yml';
@@ -95,7 +97,19 @@ class BoltTabs extends withContext(withLitHtml) {
     const initialSelectedTab =
       preselectedIndex !== -1 ? preselectedIndex : this.selectedIndex;
 
-    this.setSelectedTab(initialSelectedTab);
+    // If there is a deep link in the URL (i.e. a query param with `tab` as name, `TAB_ID` as value),
+    // it overrides`initialSelectedTab`
+    const queryTabId = queryString.parse(window.location.search).tab;
+    const queryMatchingTab = panelsArray.indexOf(
+      panelsArray.find(element => element.id === queryTabId),
+    );
+
+    if (queryMatchingTab !== -1) {
+      this.setSelectedTab(queryMatchingTab);
+      this.shouldScrollIntoView = true;
+    } else {
+      this.setSelectedTab(initialSelectedTab);
+    }
 
     // @todo: Only need this if we want to listen for `selected` attribute changes on children. For now, just do a one-time check on setup.
     // this.addEventListener('tabs:setSelectedTab', e => {
@@ -286,10 +300,15 @@ class BoltTabs extends withContext(withLitHtml) {
           [`c-bolt-tabs__label--vertical-border`]: isDropdown,
         });
         const labelText = label ? label.textContent : `Tab label ${index + 1}`; // @todo: add icon support? how to handle missing labels?
-        const labelId = isDropdown
-          ? `tab-dropdown-${this.tabsId}-${index + 1}`
-          : `tab-${this.tabsId}-${index + 1}`; // Use 1-based Id's
-        const panelId = `tab-panel-${this.tabsId}-${index + 1}`; // Use 1-based Id's
+
+        // Dropdowns are duplicate labels and get different ID prefix
+        const labelPrefix = isDropdown ? 'tab-dropdown' : 'tab-label';
+
+        const labelId = item.id
+          ? `${labelPrefix}-${item.id}`
+          : `${labelPrefix}-${this.tabsId}-${index + 1}`; // Use 1-based Id's
+
+        const panelId = item.id || `tab-panel-${this.tabsId}-${index + 1}`; // Use 1-based Id's
 
         let button = html`
           <bolt-trigger
@@ -558,6 +577,34 @@ class BoltTabs extends withContext(withLitHtml) {
       this.ready = true;
       this.setAttribute('ready', '');
       this.dispatchEvent(new CustomEvent('tabs:ready'));
+    }
+
+    if (this.shouldScrollIntoView) {
+      let shouldResetScroll;
+
+      if (window.history?.scrollRestoration === 'auto') {
+        // If you are refreshing the page and using a browser with `scrollRestoration`,
+        // temporarily disable `scrollRestoration` while we scroll to the element, avoids janky scroll.
+        // https://developers.google.com/web/updates/2015/09/history-api-scroll-restoration
+        window.history.scrollRestoration = 'manual';
+        shouldResetScroll = true;
+      }
+
+      setTimeout(() => {
+        smoothScroll.animateScroll(this, 0, {
+          speed: 750,
+          easing: 'easeInOutCubic',
+          updateURL: false,
+        });
+
+        this.shouldScrollIntoView = false;
+
+        if (shouldResetScroll) {
+          setTimeout(() => {
+            window.history.scrollRestoration = 'auto';
+          }, 1000); // wait another second to turn 'scrollRestoration' back on, just to be safe
+        }
+      }, 750); // Must let the page load or scroll is not at all "smooth", can reduce to 500ms but not much less
     }
 
     if (!this.observer) {

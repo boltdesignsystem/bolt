@@ -18,6 +18,9 @@ properties:
           type: boolean
           description: Set active state on tab. Only one active tab allowed at a time. Defaults to first tab.
           default: false
+        id:
+          type: string
+          description: Unique identifier for each tab label, may be used for deep linking.
   align:
     description: Horizontal alignment of tab labels.
     type: string
