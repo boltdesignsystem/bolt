@@ -30,13 +30,13 @@ $bolt-button-translate--active: translate3d(0, 1px, 0);
 }
 
 @mixin bolt-button-raised-effect {
-  &:hover,
-  &.is-hover {
+  &:hover:not([disabled]),
+  &.is-hover:not([disabled]) {
     @include bolt-shadow('level-20', true);
   }
 
-  &:active,
-  &.is-active {
+  &:active:not([disabled]),
+  &.is-active:not([disabled]) {
     transform: $bolt-button-translate--active;
   }
 }
@@ -224,37 +224,21 @@ $bolt-button-translate--active: translate3d(0, 1px, 0);
 
 @mixin bolt-button-style--disabled() {
   cursor: not-allowed;
+  color: bolt-theme(text-disabled);
+  transform: none;
+  opacity: 1;
 
-  &,
-  &:visited,
-  &:hover,
-  &.is-hover,
-  &:active,
-  &.is-active {
-    color: bolt-theme(text-disabled);
+  * {
+    pointer-events: none;
   }
 
-  &:not(.c-bolt-button--text),
-  &:not(.c-bolt-button--text):visited,
-  &:not(.c-bolt-button--text):hover,
-  &:not(.c-bolt-button--text).is-hover,
-  &:not(.c-bolt-button--text):active,
-  &:not(.c-bolt-button--text).is-active {
-    @include bolt-shadow('level-20');
-    opacity: bolt-opacity(100);
-    transform: none;
-    border-color: bolt-theme(disabled);
-    box-shadow: var(--bolt-button-box-shadow, #{bolt-shadow('level-20')});
+  &:not(.c-bolt-button--text){
     background-color: bolt-theme(disabled);
-    will-change: box-shadow;
   }
 
-  &:before,
-  &:hover:before,
-  &.is-hover:before,
-  &:active:before,
-  &.is-active:before {
+  &:before {
     display: none;
+    content: '';
   }
 }
 
