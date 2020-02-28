@@ -8,6 +8,9 @@
       class: [
         "u-bolt-negative-margin-top-small",
         "u-bolt-margin-bottom-small",
+      ],
+      style: [
+        "--bolt-list-item-border-color: rgba(var(--bolt-theme-border), 0.4)"
       ]
     },
     items: items|map(item => item.text ? macros.include("@bolt-components-headline/text.twig", {
