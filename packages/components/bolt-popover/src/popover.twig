@@ -58,7 +58,7 @@
     {% if content %}
       <span slot="content" id="{{ content_id }}">
         <replace-with-grandchildren class="{{ "#{base_class}__content" }}">
-          <span class="{{ "#{base_class}__bubble" }} {{ theme != 'none' ? 't-bolt-' ~ theme : '' }}">
+          <span class="{{ "#{base_class}__bubble" }}{{ theme and theme != 'none' ? ' t-bolt-' ~ theme : '' }}">
             <a href="#{{ trigger_id }}" class="{{ "#{base_class}__nojs-close" }}">
               <span aria-hidden="true">&times;</span>
               <span class="u-bolt-visuallyhidden">Close popover</span>
