@@ -93,8 +93,6 @@ bolt-button[type=\\"submit\\"] {
   vertical-align: middle;
   cursor: pointer;
   border-radius: 3px;
-  border-width: 1px;
-  border-style: solid;
   box-shadow: 0 1px 4px 1px rgba(6, 10, 36, 0.1),
     0 5px 10px 0 rgba(6, 10, 36, 0.08);
   transition: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
@@ -105,6 +103,7 @@ bolt-button[type=\\"submit\\"] {
   );
   outline: 0;
   will-change: box-shadow;
+  border: 1px solid transparent;
 }
 .js-fonts-loaded .c-bolt-button {
   font-family: -apple-system, BlinkMacSystemFont, ヒラギノ角ゴ ProN,
@@ -140,63 +139,117 @@ bolt-button[type=\\"submit\\"] {
 }
 .c-bolt-button--primary {
   color: rgba(var(--bolt-theme-text-on-primary), 1);
-  border-color: rgba(var(--bolt-theme-primary), 1);
   background-color: rgba(var(--bolt-theme-primary), 1);
 }
 .c-bolt-button--primary.is-hover,
 .c-bolt-button--primary:hover {
   color: rgba(var(--bolt-theme-text-on-primary-lighten-15), 1);
-  border-color: rgba(var(--bolt-theme-primary-lighten-15), 1);
   background-color: rgba(var(--bolt-theme-primary-lighten-15), 1);
-  transform: translateY(-2px);
-  box-shadow: 0 1px 8px 1px rgba(6, 10, 36, 0.18),
-    0 5px 10px 1px rgba(6, 10, 36, 0.15), 0 15px 30px 0 rgba(6, 10, 36, 0.16);
 }
 .c-bolt-button--primary.is-focus:not([disabled]):not(.c-bolt-button--disabled):not(.c-bolt-button--inert),
 .c-bolt-button--primary:focus:not([disabled]):not(.c-bolt-button--disabled):not(.c-bolt-button--inert) {
   color: rgba(var(--bolt-theme-text-on-primary-darken-15), 1);
-  border-color: rgba(var(--bolt-theme-primary-darken-15), 1);
   background-color: rgba(var(--bolt-theme-primary-darken-15), 1);
 }
 .c-bolt-button--primary.is-active,
 .c-bolt-button--primary:active {
   color: rgba(var(--bolt-theme-text-on-primary-darken-25), 1);
-  border-color: rgba(var(--bolt-theme-primary-darken-25), 1);
   background-color: rgba(var(--bolt-theme-primary-darken-25), 1);
+}
+.c-bolt-button--primary.is-hover:not([disabled]),
+.c-bolt-button--primary:hover:not([disabled]) {
+  transform: translateY(-2px);
+  box-shadow: 0 1px 8px 1px rgba(6, 10, 36, 0.18),
+    0 5px 10px 1px rgba(6, 10, 36, 0.15), 0 15px 30px 0 rgba(6, 10, 36, 0.16);
+}
+.c-bolt-button--primary.is-active:not([disabled]),
+.c-bolt-button--primary:active:not([disabled]) {
   transform: translate3d(0, 1px, 0);
 }
 .c-bolt-button--secondary {
   color: rgba(var(--bolt-theme-text-on-secondary), 1);
-  border-color: rgba(var(--bolt-theme-secondary), 1);
   background-color: rgba(var(--bolt-theme-secondary), 1);
 }
 .c-bolt-button--secondary.is-hover,
 .c-bolt-button--secondary:hover {
   color: rgba(var(--bolt-theme-text-on-secondary-lighten-5), 1);
-  border-color: rgba(var(--bolt-theme-secondary-lighten-5), 1);
   background-color: rgba(var(--bolt-theme-secondary-lighten-5), 1);
-  transform: translateY(-2px);
-  box-shadow: 0 1px 8px 1px rgba(6, 10, 36, 0.18),
-    0 5px 10px 1px rgba(6, 10, 36, 0.15), 0 15px 30px 0 rgba(6, 10, 36, 0.16);
 }
 .c-bolt-button--secondary.is-focus:not([disabled]):not(.c-bolt-button--disabled):not(.c-bolt-button--inert),
 .c-bolt-button--secondary:focus:not([disabled]):not(.c-bolt-button--disabled):not(.c-bolt-button--inert) {
   color: rgba(var(--bolt-theme-text-on-secondary-darken-3), 1);
-  border-color: rgba(var(--bolt-theme-secondary-darken-3), 1);
   background-color: rgba(var(--bolt-theme-secondary-darken-3), 1);
 }
 .c-bolt-button--secondary.is-active,
 .c-bolt-button--secondary:active {
   color: rgba(var(--bolt-theme-text-on-secondary-darken-10), 1);
-  border-color: rgba(var(--bolt-theme-secondary-darken-10), 1);
   background-color: rgba(var(--bolt-theme-secondary-darken-10), 1);
+}
+.c-bolt-button--secondary.is-hover:not([disabled]),
+.c-bolt-button--secondary:hover:not([disabled]) {
+  transform: translateY(-2px);
+  box-shadow: 0 1px 8px 1px rgba(6, 10, 36, 0.18),
+    0 5px 10px 1px rgba(6, 10, 36, 0.15), 0 15px 30px 0 rgba(6, 10, 36, 0.16);
+}
+.c-bolt-button--secondary.is-active:not([disabled]),
+.c-bolt-button--secondary:active:not([disabled]) {
   transform: translate3d(0, 1px, 0);
+}
+.c-bolt-button--tertiary {
+  color: rgba(21, 22, 25, 0.9);
+  color: var(
+    --bolt-theme--tertiary--text-color--default,
+    rgba(21, 22, 25, 0.9)
+  );
+  background-color: rgba(141, 142, 153, 0.15);
+  background-color: var(
+    --bolt-theme--tertiary--background-color--default,
+    rgba(141, 142, 153, 0.15)
+  );
+  -webkit-backdrop-filter: saturate(105%) blur(20px);
+  backdrop-filter: saturate(105%) blur(20px);
+}
+.c-bolt-button--tertiary,
+.c-bolt-button--tertiary:before {
+  box-shadow: none;
+}
+.c-bolt-button--tertiary.is-hover,
+.c-bolt-button--tertiary:hover {
+  color: #151619;
+  color: var(--bolt-theme--tertiary--text-color--hover, #151619);
+  background-color: rgba(141, 142, 153, 0.3);
+  background-color: var(
+    --bolt-theme--tertiary--background-color--hover,
+    rgba(141, 142, 153, 0.3)
+  );
+}
+.c-bolt-button--tertiary.is-focus,
+.c-bolt-button--tertiary:active:focus,
+.c-bolt-button--tertiary:focus,
+.c-bolt-button--tertiary:focus:hover:not(:active) {
+  color: #151619;
+  color: var(--bolt-theme--tertiary--text-color--focus, #151619);
+  background-color: rgba(141, 142, 153, 0.4);
+  background-color: var(
+    --bolt-theme--tertiary--background-color--focus,
+    rgba(141, 142, 153, 0.4)
+  );
+}
+.c-bolt-button--tertiary.is-active,
+.c-bolt-button--tertiary:active,
+.c-bolt-button--tertiary:active:hover {
+  color: #151619;
+  color: var(--bolt-theme--tertiary--text-color--active, #151619);
+  background-color: rgba(141, 142, 153, 0.5);
+  background-color: var(
+    --bolt-theme--tertiary--background-color--active,
+    rgba(141, 142, 153, 0.5)
+  );
 }
 .c-bolt-button--text {
   opacity: 1;
   color: rgba(var(--bolt-theme-headline-link), 1);
   text-decoration: none;
-  border-color: transparent;
 }
 .c-bolt-button--text,
 .c-bolt-button--text.c-bolt-button--disabled,
@@ -220,75 +273,25 @@ bolt-button[type=\\"submit\\"] {
 .c-bolt-button--disabled,
 .c-bolt-button[disabled],
 [aria-disabled=\\"true\\"] .c-bolt-button {
-  cursor: not-allowed;
-}
-.c-bolt-button--disabled,
-.c-bolt-button--disabled.is-active,
-.c-bolt-button--disabled.is-hover,
-.c-bolt-button--disabled:active,
-.c-bolt-button--disabled:hover,
-.c-bolt-button--disabled:visited,
-.c-bolt-button[disabled],
-.c-bolt-button[disabled].is-active,
-.c-bolt-button[disabled].is-hover,
-.c-bolt-button[disabled]:active,
-.c-bolt-button[disabled]:hover,
-.c-bolt-button[disabled]:visited,
-[aria-disabled=\\"true\\"] .c-bolt-button,
-[aria-disabled=\\"true\\"] .c-bolt-button.is-active,
-[aria-disabled=\\"true\\"] .c-bolt-button.is-hover,
-[aria-disabled=\\"true\\"] .c-bolt-button:active,
-[aria-disabled=\\"true\\"] .c-bolt-button:hover,
-[aria-disabled=\\"true\\"] .c-bolt-button:visited {
-  color: rgba(var(--bolt-theme-text-disabled), 1);
-}
-.c-bolt-button--disabled:not(.c-bolt-button--text),
-.c-bolt-button--disabled:not(.c-bolt-button--text).is-active,
-.c-bolt-button--disabled:not(.c-bolt-button--text).is-hover,
-.c-bolt-button--disabled:not(.c-bolt-button--text):active,
-.c-bolt-button--disabled:not(.c-bolt-button--text):hover,
-.c-bolt-button--disabled:not(.c-bolt-button--text):visited,
-.c-bolt-button[disabled]:not(.c-bolt-button--text),
-.c-bolt-button[disabled]:not(.c-bolt-button--text).is-active,
-.c-bolt-button[disabled]:not(.c-bolt-button--text).is-hover,
-.c-bolt-button[disabled]:not(.c-bolt-button--text):active,
-.c-bolt-button[disabled]:not(.c-bolt-button--text):hover,
-.c-bolt-button[disabled]:not(.c-bolt-button--text):visited,
-[aria-disabled=\\"true\\"] .c-bolt-button:not(.c-bolt-button--text),
-[aria-disabled=\\"true\\"] .c-bolt-button:not(.c-bolt-button--text).is-active,
-[aria-disabled=\\"true\\"] .c-bolt-button:not(.c-bolt-button--text).is-hover,
-[aria-disabled=\\"true\\"] .c-bolt-button:not(.c-bolt-button--text):active,
-[aria-disabled=\\"true\\"] .c-bolt-button:not(.c-bolt-button--text):hover,
-[aria-disabled=\\"true\\"] .c-bolt-button:not(.c-bolt-button--text):visited {
-  box-shadow: 0 1px 4px 1px rgba(6, 10, 36, 0.1),
-    0 5px 10px 0 rgba(6, 10, 36, 0.08);
-  transition: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   opacity: 1;
   transform: none;
-  border-color: rgba(var(--bolt-theme-disabled), 1);
-  box-shadow: var(
-    --bolt-button-box-shadow,
-    0 1px 4px 1px rgba(6, 10, 36, 0.1),
-    0 5px 10px 0 rgba(6, 10, 36, 0.08)
-  );
-  background-color: rgba(var(--bolt-theme-disabled), 1);
-  will-change: box-shadow;
+  color: rgba(var(--bolt-theme-text-disabled), 1);
+  cursor: not-allowed;
 }
-.c-bolt-button--disabled.is-active:before,
-.c-bolt-button--disabled.is-hover:before,
-.c-bolt-button--disabled:active:before,
+.c-bolt-button--disabled *,
+.c-bolt-button[disabled] *,
+[aria-disabled=\\"true\\"] .c-bolt-button * {
+  pointer-events: none;
+}
+.c-bolt-button--disabled:not(.c-bolt-button--text),
+.c-bolt-button[disabled]:not(.c-bolt-button--text),
+[aria-disabled=\\"true\\"] .c-bolt-button:not(.c-bolt-button--text) {
+  background-color: rgba(var(--bolt-theme-disabled), 1);
+}
 .c-bolt-button--disabled:before,
-.c-bolt-button--disabled:hover:before,
-.c-bolt-button[disabled].is-active:before,
-.c-bolt-button[disabled].is-hover:before,
-.c-bolt-button[disabled]:active:before,
 .c-bolt-button[disabled]:before,
-.c-bolt-button[disabled]:hover:before,
-[aria-disabled=\\"true\\"] .c-bolt-button.is-active:before,
-[aria-disabled=\\"true\\"] .c-bolt-button.is-hover:before,
-[aria-disabled=\\"true\\"] .c-bolt-button:active:before,
-[aria-disabled=\\"true\\"] .c-bolt-button:before,
-[aria-disabled=\\"true\\"] .c-bolt-button:hover:before {
+[aria-disabled=\\"true\\"] .c-bolt-button:before {
+  content: \\"\\";
   display: none;
 }
 .c-bolt-button--uppercase {
@@ -1703,6 +1706,38 @@ bolt-inline-list:not(:last-child) {
 .t-bolt-xxdark {
   --bolt-theme-background: 0, 0, 0;
   background-color: #000;
+}
+.t-bolt-light,
+.t-bolt-xlight,
+:root {
+  --bolt-theme--tertiary--background-color--default: rgba(141, 142, 153, 0.15);
+  --bolt-theme--tertiary--background-color--hover: rgba(141, 142, 153, 0.3);
+  --bolt-theme--tertiary--background-color--focus: rgba(141, 142, 153, 0.4);
+  --bolt-theme--tertiary--background-color--active: rgba(141, 142, 153, 0.5);
+  --bolt-theme--tertiary--text-color--default: rgba(21, 22, 25, 0.9);
+  --bolt-theme--tertiary--text-color--hover: #151619;
+  --bolt-theme--tertiary--text-color--active: var(
+    --bolt-theme--tertiary--text-color--hover
+  );
+  --bolt-theme--tertiary--text-color--focus: var(
+    --bolt-theme--tertiary--text-color--hover
+  );
+}
+.t-bolt-dark,
+.t-bolt-xdark,
+.t-bolt-xxdark {
+  --bolt-theme--tertiary--background-color--default: hsla(0, 0%, 100%, 0.2);
+  --bolt-theme--tertiary--background-color--hover: hsla(0, 0%, 100%, 0.3);
+  --bolt-theme--tertiary--background-color--focus: hsla(0, 0%, 100%, 0.35);
+  --bolt-theme--tertiary--background-color--active: hsla(0, 0%, 100%, 0.4);
+  --bolt-theme--tertiary--text-color--default: hsla(0, 0%, 100%, 0.9);
+  --bolt-theme--tertiary--text-color--hover: #fff;
+  --bolt-theme--tertiary--text-color--active: var(
+    --bolt-theme--tertiary--text-color--hover
+  );
+  --bolt-theme--tertiary--text-color--focus: var(
+    --bolt-theme--tertiary--text-color--hover
+  );
 }
 .u-bolt-border-radius-small {
   border-radius: 3px !important;
@@ -18458,8 +18493,6 @@ bolt-button[type=\\"submit\\"] {
   vertical-align: middle;
   cursor: pointer;
   border-radius: 3px;
-  border-width: 1px;
-  border-style: solid;
   box-shadow: 0 1px 4px 1px rgba(6, 10, 36, 0.1),
     0 5px 10px 0 rgba(6, 10, 36, 0.08);
   transition: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
@@ -18470,6 +18503,7 @@ bolt-button[type=\\"submit\\"] {
   );
   outline: 0;
   will-change: box-shadow;
+  border: 1px solid transparent;
 }
 .js-fonts-loaded .c-bolt-button {
   font-family: Open Sans, Helvetica Neue, sans-serif;
@@ -18502,63 +18536,117 @@ bolt-button[type=\\"submit\\"] {
 }
 .c-bolt-button--primary {
   color: rgba(var(--bolt-theme-text-on-primary), 1);
-  border-color: rgba(var(--bolt-theme-primary), 1);
   background-color: rgba(var(--bolt-theme-primary), 1);
 }
 .c-bolt-button--primary.is-hover,
 .c-bolt-button--primary:hover {
   color: rgba(var(--bolt-theme-text-on-primary-lighten-15), 1);
-  border-color: rgba(var(--bolt-theme-primary-lighten-15), 1);
   background-color: rgba(var(--bolt-theme-primary-lighten-15), 1);
-  transform: translateY(-2px);
-  box-shadow: 0 1px 8px 1px rgba(6, 10, 36, 0.18),
-    0 5px 10px 1px rgba(6, 10, 36, 0.15), 0 15px 30px 0 rgba(6, 10, 36, 0.16);
 }
 .c-bolt-button--primary.is-focus:not([disabled]):not(.c-bolt-button--disabled):not(.c-bolt-button--inert),
 .c-bolt-button--primary:focus:not([disabled]):not(.c-bolt-button--disabled):not(.c-bolt-button--inert) {
   color: rgba(var(--bolt-theme-text-on-primary-darken-15), 1);
-  border-color: rgba(var(--bolt-theme-primary-darken-15), 1);
   background-color: rgba(var(--bolt-theme-primary-darken-15), 1);
 }
 .c-bolt-button--primary.is-active,
 .c-bolt-button--primary:active {
   color: rgba(var(--bolt-theme-text-on-primary-darken-25), 1);
-  border-color: rgba(var(--bolt-theme-primary-darken-25), 1);
   background-color: rgba(var(--bolt-theme-primary-darken-25), 1);
+}
+.c-bolt-button--primary.is-hover:not([disabled]),
+.c-bolt-button--primary:hover:not([disabled]) {
+  transform: translateY(-2px);
+  box-shadow: 0 1px 8px 1px rgba(6, 10, 36, 0.18),
+    0 5px 10px 1px rgba(6, 10, 36, 0.15), 0 15px 30px 0 rgba(6, 10, 36, 0.16);
+}
+.c-bolt-button--primary.is-active:not([disabled]),
+.c-bolt-button--primary:active:not([disabled]) {
   transform: translate3d(0, 1px, 0);
 }
 .c-bolt-button--secondary {
   color: rgba(var(--bolt-theme-text-on-secondary), 1);
-  border-color: rgba(var(--bolt-theme-secondary), 1);
   background-color: rgba(var(--bolt-theme-secondary), 1);
 }
 .c-bolt-button--secondary.is-hover,
 .c-bolt-button--secondary:hover {
   color: rgba(var(--bolt-theme-text-on-secondary-lighten-5), 1);
-  border-color: rgba(var(--bolt-theme-secondary-lighten-5), 1);
   background-color: rgba(var(--bolt-theme-secondary-lighten-5), 1);
-  transform: translateY(-2px);
-  box-shadow: 0 1px 8px 1px rgba(6, 10, 36, 0.18),
-    0 5px 10px 1px rgba(6, 10, 36, 0.15), 0 15px 30px 0 rgba(6, 10, 36, 0.16);
 }
 .c-bolt-button--secondary.is-focus:not([disabled]):not(.c-bolt-button--disabled):not(.c-bolt-button--inert),
 .c-bolt-button--secondary:focus:not([disabled]):not(.c-bolt-button--disabled):not(.c-bolt-button--inert) {
   color: rgba(var(--bolt-theme-text-on-secondary-darken-3), 1);
-  border-color: rgba(var(--bolt-theme-secondary-darken-3), 1);
   background-color: rgba(var(--bolt-theme-secondary-darken-3), 1);
 }
 .c-bolt-button--secondary.is-active,
 .c-bolt-button--secondary:active {
   color: rgba(var(--bolt-theme-text-on-secondary-darken-10), 1);
-  border-color: rgba(var(--bolt-theme-secondary-darken-10), 1);
   background-color: rgba(var(--bolt-theme-secondary-darken-10), 1);
+}
+.c-bolt-button--secondary.is-hover:not([disabled]),
+.c-bolt-button--secondary:hover:not([disabled]) {
+  transform: translateY(-2px);
+  box-shadow: 0 1px 8px 1px rgba(6, 10, 36, 0.18),
+    0 5px 10px 1px rgba(6, 10, 36, 0.15), 0 15px 30px 0 rgba(6, 10, 36, 0.16);
+}
+.c-bolt-button--secondary.is-active:not([disabled]),
+.c-bolt-button--secondary:active:not([disabled]) {
   transform: translate3d(0, 1px, 0);
+}
+.c-bolt-button--tertiary {
+  color: rgba(21, 22, 25, 0.9);
+  color: var(
+    --bolt-theme--tertiary--text-color--default,
+    rgba(21, 22, 25, 0.9)
+  );
+  background-color: rgba(141, 142, 153, 0.15);
+  background-color: var(
+    --bolt-theme--tertiary--background-color--default,
+    rgba(141, 142, 153, 0.15)
+  );
+  -webkit-backdrop-filter: saturate(105%) blur(20px);
+  backdrop-filter: saturate(105%) blur(20px);
+}
+.c-bolt-button--tertiary,
+.c-bolt-button--tertiary:before {
+  box-shadow: none;
+}
+.c-bolt-button--tertiary.is-hover,
+.c-bolt-button--tertiary:hover {
+  color: #151619;
+  color: var(--bolt-theme--tertiary--text-color--hover, #151619);
+  background-color: rgba(141, 142, 153, 0.3);
+  background-color: var(
+    --bolt-theme--tertiary--background-color--hover,
+    rgba(141, 142, 153, 0.3)
+  );
+}
+.c-bolt-button--tertiary.is-focus,
+.c-bolt-button--tertiary:active:focus,
+.c-bolt-button--tertiary:focus,
+.c-bolt-button--tertiary:focus:hover:not(:active) {
+  color: #151619;
+  color: var(--bolt-theme--tertiary--text-color--focus, #151619);
+  background-color: rgba(141, 142, 153, 0.4);
+  background-color: var(
+    --bolt-theme--tertiary--background-color--focus,
+    rgba(141, 142, 153, 0.4)
+  );
+}
+.c-bolt-button--tertiary.is-active,
+.c-bolt-button--tertiary:active,
+.c-bolt-button--tertiary:active:hover {
+  color: #151619;
+  color: var(--bolt-theme--tertiary--text-color--active, #151619);
+  background-color: rgba(141, 142, 153, 0.5);
+  background-color: var(
+    --bolt-theme--tertiary--background-color--active,
+    rgba(141, 142, 153, 0.5)
+  );
 }
 .c-bolt-button--text {
   opacity: 1;
   color: rgba(var(--bolt-theme-headline-link), 1);
   text-decoration: none;
-  border-color: transparent;
 }
 .c-bolt-button--text,
 .c-bolt-button--text.c-bolt-button--disabled,
@@ -18582,75 +18670,25 @@ bolt-button[type=\\"submit\\"] {
 .c-bolt-button--disabled,
 .c-bolt-button[disabled],
 [aria-disabled=\\"true\\"] .c-bolt-button {
-  cursor: not-allowed;
-}
-.c-bolt-button--disabled,
-.c-bolt-button--disabled.is-active,
-.c-bolt-button--disabled.is-hover,
-.c-bolt-button--disabled:active,
-.c-bolt-button--disabled:hover,
-.c-bolt-button--disabled:visited,
-.c-bolt-button[disabled],
-.c-bolt-button[disabled].is-active,
-.c-bolt-button[disabled].is-hover,
-.c-bolt-button[disabled]:active,
-.c-bolt-button[disabled]:hover,
-.c-bolt-button[disabled]:visited,
-[aria-disabled=\\"true\\"] .c-bolt-button,
-[aria-disabled=\\"true\\"] .c-bolt-button.is-active,
-[aria-disabled=\\"true\\"] .c-bolt-button.is-hover,
-[aria-disabled=\\"true\\"] .c-bolt-button:active,
-[aria-disabled=\\"true\\"] .c-bolt-button:hover,
-[aria-disabled=\\"true\\"] .c-bolt-button:visited {
-  color: rgba(var(--bolt-theme-text-disabled), 1);
-}
-.c-bolt-button--disabled:not(.c-bolt-button--text),
-.c-bolt-button--disabled:not(.c-bolt-button--text).is-active,
-.c-bolt-button--disabled:not(.c-bolt-button--text).is-hover,
-.c-bolt-button--disabled:not(.c-bolt-button--text):active,
-.c-bolt-button--disabled:not(.c-bolt-button--text):hover,
-.c-bolt-button--disabled:not(.c-bolt-button--text):visited,
-.c-bolt-button[disabled]:not(.c-bolt-button--text),
-.c-bolt-button[disabled]:not(.c-bolt-button--text).is-active,
-.c-bolt-button[disabled]:not(.c-bolt-button--text).is-hover,
-.c-bolt-button[disabled]:not(.c-bolt-button--text):active,
-.c-bolt-button[disabled]:not(.c-bolt-button--text):hover,
-.c-bolt-button[disabled]:not(.c-bolt-button--text):visited,
-[aria-disabled=\\"true\\"] .c-bolt-button:not(.c-bolt-button--text),
-[aria-disabled=\\"true\\"] .c-bolt-button:not(.c-bolt-button--text).is-active,
-[aria-disabled=\\"true\\"] .c-bolt-button:not(.c-bolt-button--text).is-hover,
-[aria-disabled=\\"true\\"] .c-bolt-button:not(.c-bolt-button--text):active,
-[aria-disabled=\\"true\\"] .c-bolt-button:not(.c-bolt-button--text):hover,
-[aria-disabled=\\"true\\"] .c-bolt-button:not(.c-bolt-button--text):visited {
-  box-shadow: 0 1px 4px 1px rgba(6, 10, 36, 0.1),
-    0 5px 10px 0 rgba(6, 10, 36, 0.08);
-  transition: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   opacity: 1;
   transform: none;
-  border-color: rgba(var(--bolt-theme-disabled), 1);
-  box-shadow: var(
-    --bolt-button-box-shadow,
-    0 1px 4px 1px rgba(6, 10, 36, 0.1),
-    0 5px 10px 0 rgba(6, 10, 36, 0.08)
-  );
-  background-color: rgba(var(--bolt-theme-disabled), 1);
-  will-change: box-shadow;
+  color: rgba(var(--bolt-theme-text-disabled), 1);
+  cursor: not-allowed;
 }
-.c-bolt-button--disabled.is-active:before,
-.c-bolt-button--disabled.is-hover:before,
-.c-bolt-button--disabled:active:before,
+.c-bolt-button--disabled *,
+.c-bolt-button[disabled] *,
+[aria-disabled=\\"true\\"] .c-bolt-button * {
+  pointer-events: none;
+}
+.c-bolt-button--disabled:not(.c-bolt-button--text),
+.c-bolt-button[disabled]:not(.c-bolt-button--text),
+[aria-disabled=\\"true\\"] .c-bolt-button:not(.c-bolt-button--text) {
+  background-color: rgba(var(--bolt-theme-disabled), 1);
+}
 .c-bolt-button--disabled:before,
-.c-bolt-button--disabled:hover:before,
-.c-bolt-button[disabled].is-active:before,
-.c-bolt-button[disabled].is-hover:before,
-.c-bolt-button[disabled]:active:before,
 .c-bolt-button[disabled]:before,
-.c-bolt-button[disabled]:hover:before,
-[aria-disabled=\\"true\\"] .c-bolt-button.is-active:before,
-[aria-disabled=\\"true\\"] .c-bolt-button.is-hover:before,
-[aria-disabled=\\"true\\"] .c-bolt-button:active:before,
-[aria-disabled=\\"true\\"] .c-bolt-button:before,
-[aria-disabled=\\"true\\"] .c-bolt-button:hover:before {
+[aria-disabled=\\"true\\"] .c-bolt-button:before {
+  content: \\"\\";
   display: none;
 }
 .c-bolt-button--uppercase {
@@ -20028,6 +20066,38 @@ bolt-inline-list:not(:last-child) {
 .t-bolt-xxdark {
   --bolt-theme-background: 0, 0, 0;
   background-color: #000;
+}
+.t-bolt-light,
+.t-bolt-xlight,
+:root {
+  --bolt-theme--tertiary--background-color--default: rgba(141, 142, 153, 0.15);
+  --bolt-theme--tertiary--background-color--hover: rgba(141, 142, 153, 0.3);
+  --bolt-theme--tertiary--background-color--focus: rgba(141, 142, 153, 0.4);
+  --bolt-theme--tertiary--background-color--active: rgba(141, 142, 153, 0.5);
+  --bolt-theme--tertiary--text-color--default: rgba(21, 22, 25, 0.9);
+  --bolt-theme--tertiary--text-color--hover: #151619;
+  --bolt-theme--tertiary--text-color--active: var(
+    --bolt-theme--tertiary--text-color--hover
+  );
+  --bolt-theme--tertiary--text-color--focus: var(
+    --bolt-theme--tertiary--text-color--hover
+  );
+}
+.t-bolt-dark,
+.t-bolt-xdark,
+.t-bolt-xxdark {
+  --bolt-theme--tertiary--background-color--default: hsla(0, 0%, 100%, 0.2);
+  --bolt-theme--tertiary--background-color--hover: hsla(0, 0%, 100%, 0.3);
+  --bolt-theme--tertiary--background-color--focus: hsla(0, 0%, 100%, 0.35);
+  --bolt-theme--tertiary--background-color--active: hsla(0, 0%, 100%, 0.4);
+  --bolt-theme--tertiary--text-color--default: hsla(0, 0%, 100%, 0.9);
+  --bolt-theme--tertiary--text-color--hover: #fff;
+  --bolt-theme--tertiary--text-color--active: var(
+    --bolt-theme--tertiary--text-color--hover
+  );
+  --bolt-theme--tertiary--text-color--focus: var(
+    --bolt-theme--tertiary--text-color--hover
+  );
 }
 .u-bolt-border-radius-small {
   border-radius: 3px !important;
