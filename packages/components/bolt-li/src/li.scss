@@ -93,7 +93,9 @@ bolt-ol {
         #{$bolt-li-bullet-position} - (#{$bolt-ol-bullet-size} / 2)
       ); // This is effectively the same as setting to `0`, but by using calc() it works with any given `$bolt-li-bullet-position` value
       width: $bolt-ol-bullet-size;
+      height: $bolt-ol-bullet-size;
       counter-increment: li;
+      line-height: $bolt-ol-bullet-size;
       text-align: center;
     }
   }
