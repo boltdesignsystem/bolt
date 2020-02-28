@@ -11,7 +11,7 @@ import {
 } from '@bolt/core-v3.x/utils';
 import { withLitHtml } from '@bolt/core-v3.x/renderers/renderer-lit-html';
 import { smoothScroll } from '@bolt/components-smooth-scroll';
-import queryString from 'query-string';
+import URLSearchParams from '@ungap/url-search-params'; // URLSearchParams poly for older browsers
 import classNames from 'classnames/bind';
 import styles from './tabs.scss';
 import schema from '../tabs.schema.yml';
@@ -99,13 +99,14 @@ class BoltTabs extends withContext(withLitHtml) {
 
     // If there is a deep link in the URL (i.e. a query param with `tab` as name, `TAB_ID` as value),
     // it overrides`initialSelectedTab`
-    const queryTabId = queryString.parse(window.location.search).tab;
-    const queryMatchingTab = panelsArray.indexOf(
-      panelsArray.find(element => element.id === queryTabId),
+    const urlParams = new URLSearchParams(window.location.search);
+    const selectedTabParam = urlParams.get('selected-tab');
+    const selectedTabParamIndex = panelsArray.indexOf(
+      panelsArray.find(element => element.id === selectedTabParam),
     );
 
-    if (queryMatchingTab !== -1) {
-      this.setSelectedTab(queryMatchingTab);
+    if (selectedTabParamIndex !== -1) {
+      this.setSelectedTab(selectedTabParamIndex);
       this.shouldScrollIntoView = true;
     } else {
       this.setSelectedTab(initialSelectedTab);
