@@ -1,0 +1,52 @@
+{% set tab_content_1 %}
+  {% include "@bolt-components-placeholder/placeholder.twig" with {
+      text: "Tab panel 1",
+      size: "large",
+    } only %}
+{% endset %}
+{% set tab_content_2 %}
+  {% include "@bolt-components-placeholder/placeholder.twig" with {
+      text: "Tab panel 2",
+      size: "large",
+    } only %}
+{% endset %}
+{% set tab_content_3 %}
+  {% include "@bolt-components-placeholder/placeholder.twig" with {
+      text: "Tab panel 3",
+      size: "large",
+    } only %}
+{% endset %}
+
+<div class="placeholder-fixed-element" style="background: yellow; padding: 2rem; text-align: center; position: fixed; top: 0; height: 100px; width: 100%;">
+  Placeholder "fixed" element, should not overlap deep linked tab on smooth scroll.
+</div>
+
+<div style="padding-top: 100px;">
+  <bolt-text class="u-bolt-margin-top">
+    If there is a "fixed" element on the page it may overlap your deep linked tab when the page first smooth scrolls to it. Fix this by using <code>scrollOffsetSelector</code> to select the "fixed" element and <code>scrollOffset</code> for any additional adjstments. See a demo: <bolt-link url="?selected-tab=tab-3">?selected-tab=tab-3</bolt-link>.
+  </bolt-text>
+
+  <div style="margin-top: 100vh; margin-bottom: 100vh;">
+    {% include "@bolt-components-tabs/tabs.twig" with {
+      scrollOffsetSelector: '.placeholder-fixed-element',
+      scrollOffset: 25,
+      panels: [
+        {
+          label: "Tab label 1",
+          content: tab_content_1,
+          id: "tab-1",
+        },
+        {
+          label: "Tab label 2",
+          content: tab_content_2,
+          id: "tab-2",
+        },
+        {
+          label: "Tab label 3",
+          content: tab_content_3,
+          id: "tab-3",
+        }
+      ]
+    } only %}
+  </div>
+</div>
