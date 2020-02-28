@@ -6,7 +6,7 @@ module.exports = {
   properties: {
     content: {
       type: ['string', 'array', 'object'],
-      description: 'content to display in the Hero',
+      description: 'The content to display in the Hero',
     },
     theme: {
       type: 'string',
@@ -17,12 +17,12 @@ module.exports = {
     background: {
       type: 'string',
       description:
-        'path to a background image that displays underneath the content / foreground image in the Hero.',
+        'The path to a background image that displays underneath the content / foreground image in the Hero.',
     },
     image: {
       type: 'string',
       description:
-        'path to a foreground image that  displays along-side the other Hero content.',
+        'The path to a foreground image that  displays along-side the other Hero content.',
     },
     imageAlign: {
       type: 'string',
@@ -49,18 +49,11 @@ module.exports = {
       type: 'string',
       hidden: true,
     },
-    mobileOrder: {
-      type: 'string',
-      description: 'Swaps the order of content / image on smaller screens',
-      enum: ['image-before-content', 'content-before-image'],
-      default: 'image-before-content',
-      hidden: true,
-    },
-    desktopOrder: {
-      type: 'string',
-      description: 'Swaps the order of content / image on larger screens',
-      enum: ['image-before-content', 'content-before-image'],
-      default: 'content-before-image',
+    reverseOrder: {
+      type: 'boolean',
+      description:
+        'Reverses the order on larger screens (desktop) so the image comes first (left column) and the content comes second (right column).',
+      default: false,
       hidden: true,
     },
   },
