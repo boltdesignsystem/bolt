@@ -22,15 +22,23 @@
   vertical-align: middle;
 }
 
+// 1. @todo: Uncomment for "fixed" header, currently conflicts with other fixed elements on Press and Media pages, turned off for now
 .c-page-header {
   display: block;
   position: relative;
+  // position: fixed; /* [1] */
   top: 0;
   right: 0;
   left: 0;
   z-index: bolt-z-index('nav');
   width: 100%;
   border-bottom: 1px solid #f5f5fa;
+  // ~ .c-bolt-site__content {
+  //   margin-top: 50px;
+  //   @media (min-width: 62.5em) {
+  //     margin-top: 110px;
+  //   }
+  // } /* [1] */
 }
 
 .c-page-header:before,
