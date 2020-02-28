@@ -115,6 +115,54 @@ $bolt-button-translate--active: translate3d(0, 1px, 0);
   }
 }
 
+
+/**
+  1. @todo: how do we want to handle these global theming fallback values?
+  2. @todo: remove when IE 11 support dropped
+  **/
+@mixin bolt-button-style--tertiary() {
+  color: #{rgba(bolt-color(black), 0.9)}; /* [2] */
+  color: var(--bolt-theme--tertiary--text-color--default, #{rgba(bolt-color(black), 0.9)}); /* [1] */
+
+  background-color: #{rgba(bolt-color(gray), 0.15)}; /* [2] */
+  background-color: var(--bolt-theme--tertiary--background-color--default, #{rgba(bolt-color(gray), 0.15)}); /* [1] */
+
+  &,
+  &:before {
+    box-shadow: none;
+  }
+
+  &:hover,
+  &.is-hover {
+    color: bolt-color(black); /* [2] */
+    color: var(--bolt-theme--tertiary--text-color--hover, #{bolt-color(black)}); /* [1] */
+
+    background-color: #{rgba(bolt-color(gray), 0.3)}; /* [2] */
+    background-color: var(--bolt-theme--tertiary--background-color--hover, #{rgba(bolt-color(gray), 0.3)}); /* [1] */
+  }
+
+  &:focus:hover:not(:active),
+  &:active:focus,
+  &:focus,
+  &.is-focus {
+    color: bolt-color(black); /* [2] */
+    color: var(--bolt-theme--tertiary--text-color--focus, #{bolt-color(black)}); /* [1] */
+
+    background-color: #{rgba(bolt-color(gray), 0.4)}; /* [2] */
+    background-color: var(--bolt-theme--tertiary--background-color--focus, #{rgba(bolt-color(gray), 0.4)}); /* [1] */
+  }
+
+  &:active:hover,
+  &:active,
+  &.is-active {
+    color: bolt-color(black); /* [2] */
+    color: var(--bolt-theme--tertiary--text-color--active, #{bolt-color(black)}); /* [1] */
+
+    background-color: #{rgba(bolt-color(gray), 0.5)}; /* [2] */
+    background-color: var(--bolt-theme--tertiary--background-color--active, #{rgba(bolt-color(gray), 0.5)}); /* [1] */
+  }
+}
+
 @mixin bolt-button-style--secondary() {
   color: bolt-theme(text-on-secondary);
   border-color: bolt-theme(secondary);
@@ -262,5 +310,7 @@ $bolt-button-translate--active: translate3d(0, 1px, 0);
     @include bolt-button-style--text;
   } @else if ($style == 'disabled') {
     @include bolt-button-style--disabled;
+  } @else if ($style == 'tertiary') {
+    @include bolt-button-style--tertiary;
   }
 }
