@@ -36,6 +36,8 @@ class BoltTabs extends withContext(withLitHtml) {
     labelSpacing: props.string,
     panelSpacing: props.string,
     variant: props.string,
+    scrollOffset: props.number,
+    scrollOffsetSelector: props.string,
     // uuid: props.string, @todo: make `uuid` a prop, for now internal only
     // `selectedTab` is a 1-based index, everywhere else is 0-based
     selectedTab: {
@@ -593,6 +595,8 @@ class BoltTabs extends withContext(withLitHtml) {
 
       setTimeout(() => {
         smoothScroll.animateScroll(this, 0, {
+          header: this.props.scrollOffsetSelector,
+          offset: this.props.scrollOffset,
           speed: 750,
           easing: 'easeInOutCubic',
           updateURL: false,
