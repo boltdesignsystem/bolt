@@ -51,11 +51,11 @@ $bolt-button-translate--active: translate3d(0, 1px, 0);
   transform: translate3d(0, 0, 0);
   text-decoration: none;
   vertical-align: middle;
-  border-color: transparent;
   cursor: pointer;
   border-radius: bolt-button-border-radius('regular');
   border-width: $bolt-button-border-width;
   border-style: $bolt-button-border-style;
+  border-color: transparent;
   @include bolt-shadow('level-20');
   box-shadow: var(--bolt-button-box-shadow, #{bolt-shadow('level-20')});
   outline: none;
@@ -215,10 +215,10 @@ $bolt-button-translate--active: translate3d(0, 1px, 0);
 }
 
 @mixin bolt-button-style--disabled() {
-  cursor: not-allowed;
-  color: bolt-theme(text-disabled);
-  transform: none;
   opacity: 1;
+  transform: none;
+  color: bolt-theme(text-disabled);
+  cursor: not-allowed;
 
   * {
     pointer-events: none;
@@ -229,8 +229,8 @@ $bolt-button-translate--active: translate3d(0, 1px, 0);
   }
 
   &:before {
-    display: none;
     content: '';
+    display: none;
   }
 }
 
