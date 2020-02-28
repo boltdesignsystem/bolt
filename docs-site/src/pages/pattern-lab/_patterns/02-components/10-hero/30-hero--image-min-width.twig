@@ -1,4 +1,7 @@
-{% import "@bolt-blueprints/macros.twig" as macros %}
+{% import "@bolt/macros.twig" as macros %}
+{# ^ allows us to use inline includes that also work in Drupal #}
+
+<bolt-text>This demo creatively uses the <code>imageMinWidth</code> prop to "pin" the image to the right side of the screen on larger devices.</bolt-text>
 
 {% include "@bolt-components-hero/hero.twig" with {
   theme: "none",
@@ -27,7 +30,6 @@
       style: "primary"
     }),
   ] | join(''),
-  imageMaxWidth: '1200px',
   imageMinWidth: '60vw',
   image: "/images/heros/responsive-web-design.svg"
 } %}

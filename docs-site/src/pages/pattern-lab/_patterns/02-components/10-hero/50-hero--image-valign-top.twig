@@ -1,4 +1,7 @@
-{% import "@bolt-blueprints/macros.twig" as macros %}
+{% import "@bolt/macros.twig" as macros %}
+{# ^ allows us to use inline includes that also work in Drupal #}
+
+<bolt-text>This demo sets the <code>imageValign</code> prop to <code>top</code> so the image is always flush with the top-edge of the Hero container.</bolt-text>
 
 {% include "@bolt-components-hero/hero.twig" with {
   content: [

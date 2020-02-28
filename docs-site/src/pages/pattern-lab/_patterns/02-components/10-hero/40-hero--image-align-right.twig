@@ -1,4 +1,7 @@
-{% import "@bolt-blueprints/macros.twig" as macros %}
+{% import "@bolt/macros.twig" as macros %}
+{# ^ allows us to use inline includes that also work in Drupal #}
+
+<bolt-text>This Hero demo sets the <code>imageAlign</code> prop so the image is right-aligned within it's Grid column instead of being center (default) or left aligned. This horizonal alignment is especially visible on smaller screens or when using smaller-width images.</bolt-text>
 
 {% include "@bolt-components-hero/hero.twig" with {
   content: [
