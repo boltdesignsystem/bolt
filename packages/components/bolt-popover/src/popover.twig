@@ -19,7 +19,7 @@
 ] %}
 {% set bubble_classes = [
   base_class ~ "__bubble",
-  this.data.theme.value != "none" ? "t-bolt-" ~ this.data.theme.value,
+  this.data.theme.value != "none" ? "t-bolt-#{this.data.theme.value}" : "",
 ] %}
 
 {#

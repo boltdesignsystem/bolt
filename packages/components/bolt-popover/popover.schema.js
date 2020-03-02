@@ -55,6 +55,7 @@ module.exports = {
       description:
         'Applies a Bolt color theme to the bubble that contains the main Popover content.',
       enum: ['none', 'xlight', 'light', 'dark', 'xdark'],
+      default: 'none',
     },
     boundary: {
       type: 'string',
