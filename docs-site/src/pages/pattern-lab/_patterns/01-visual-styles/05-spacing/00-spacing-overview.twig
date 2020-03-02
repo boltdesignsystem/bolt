@@ -1,0 +1,190 @@
+{% set base_pixel = 16 %}
+{% set smallbp_pixel = 14 %}
+{% set largebp_pixel = 18 %}
+
+{% set content %}
+  <bolt-stack spacing="large">
+    <bolt-text headline font-size="xxxlarge" tag="h1">
+      Spacing
+    </bolt-text>
+    <bolt-text subheadline font-size="xxlarge" tag="h2">
+      The spacing foundation of Bolt.
+    </bolt-text>
+  </bolt-stack>
+
+  <bolt-tabs label-spacing="medium" panel-spacing="medium" inset="off">
+
+    {# Vertical #}
+    <bolt-tab-panel>
+      <bolt-text slot="label">Vertical</bolt-text>
+
+      <bolt-stack spacing="medium">
+        <bolt-text headline font-size="xxlarge" tag="h2">
+          Vertical Spacing
+        </bolt-text>
+        <bolt-text>
+          The base value of vertical spacing is based on the leading of base body text (1.65rem).
+        </bolt-text>
+      </bolt-stack>
+      <bolt-stack spacing="medium">
+        <bolt-list spacing="large">
+          {% for name, value in bolt.data.spacing.scale %}
+            {% if name is not empty %}
+              {% set multiplier = 1.65 %}
+              <bolt-list-item>
+                <bolt-list>
+                  <bolt-list-item>
+                    <div class="{{ "c-bds-spacing-square c-bds-spacing-square--v-#{name}" }}"></div>
+                  </bolt-list-item>
+                  <bolt-list-item>
+                    <bolt-text headline font-size="small">
+                      {{ name }}: {{ value|number_format(2,".",",") * multiplier|number_format(2,".",",") ~ "rem" }}
+                    </bolt-text>
+                  </bolt-list-item>
+                </bolt-list>
+              </bolt-list-item>
+            {% endif %}
+          {% endfor %}
+        </bolt-list>
+      </bolt-stack>
+    </bolt-tab-panel>
+
+    {# Horizontal #}
+    <bolt-tab-panel>
+      <bolt-text slot="label">Horizontal</bolt-text>
+
+      <bolt-stack spacing="medium">
+        <bolt-text headline font-size="xxlarge" tag="h2">
+          Horizontal Spacing
+        </bolt-text>
+        <bolt-text>
+          The base value of horizontal spacing is based on the gutter of the grid (2rem).
+        </bolt-text>
+      </bolt-stack>
+      <bolt-stack spacing="medium">
+        <bolt-list spacing="large">
+          {% for name, value in bolt.data.spacing.sizes %}
+            {% if name is not empty %}
+              <bolt-list-item>
+                <bolt-list>
+                  <bolt-list-item>
+                    <div class="{{ "c-bds-spacing-square c-bds-spacing-square--#{name}" }}"></div>
+                  </bolt-list-item>
+                  <bolt-list-item>
+                    <bolt-text headline font-size="small">
+                      {{ name }}: {{ value }}
+                    </bolt-text>
+                  </bolt-list-item>
+                </bolt-list>
+              </bolt-list-item>
+            {% endif %}
+          {% endfor %}
+        </bolt-list>
+      </bolt-stack>
+    </bolt-tab-panel>
+
+    {# Tokens #}
+    <bolt-tab-panel>
+      <bolt-text slot="label">Tokens</bolt-text>
+
+      <bolt-stack spacing="medium">
+        <bolt-text headline font-size="xxlarge" tag="h2">
+          Spacing Tokens
+        </bolt-text>
+      </bolt-stack>
+      <bolt-stack spacing="xsmall">
+        <bolt-text eyebrow tag="h3">
+          Vertical
+        </bolt-text>
+      </bolt-stack>
+      <bolt-stack spacing="small">
+        <hr class="u-bolt-margin-none">
+      </bolt-stack>
+      <bolt-stack spacing="medium">
+        <bolt-table>
+          <table>
+            <thead>
+              <tr>
+                <td></td>
+                <th>SCSS function</th>
+                <th>Spacing scale</th>
+                <th>Spacing size (at 1400px viewport)*</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for name, value in bolt.data.spacing.scale %}
+                {% if name is not empty %}
+                  {% set multiplier = 1.65 %}
+                  {% set base_scale = value|number_format(2,".",",") * multiplier|number_format(2,".",",") %}
+                  <tr>
+                    <th>{{ name }}</th>
+                    <td>bolt-v-spacing({{ name }})</td>
+                    <td>{{ base_scale ~ "rem" }}</td>
+                    <td>
+                      <bolt-tooltip>
+                        {{ (base_scale * base_pixel)|round(0, 'ceil') ~ "px" }}
+                        <span slot="content">scales from {{ (base_scale * smallbp_pixel)|round(0, 'ceil') ~ "px" }} to {{ (base_scale * largebp_pixel)|round(0, 'ceil') ~ "px" }}</span>
+                      </bolt-tooltip>
+                    </td>
+                  </tr>
+                {% endif %}
+              {% endfor %}
+            </tbody>
+          </table>
+        </bolt-table>
+      </bolt-stack>
+      <bolt-stack spacing="xsmall">
+        <bolt-text eyebrow tag="h3">
+          Horizontal
+        </bolt-text>
+      </bolt-stack>
+      <bolt-stack spacing="small">
+        <hr class="u-bolt-margin-none">
+      </bolt-stack>
+      <bolt-stack spacing="medium">
+        <bolt-table>
+          <table>
+            <thead>
+              <tr>
+                <td></td>
+                <th>SCSS function</th>
+                <th>Spacing scale</th>
+                <th>Spacing size (at 1400px viewport)*</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for name, value in bolt.data.spacing.scale %}
+                {% if name is not empty %}
+                  {% set multiplier = 2 %}
+                  {% set base_scale = value * multiplier %}
+                  <tr>
+                    <th>{{ name }}</th>
+                    <td>bolt-spacing({{ name }})</td>
+                    <td>{{ base_scale ~ "rem" }}</td>
+                    <td>
+                      <bolt-tooltip>
+                        {{ (base_scale * base_pixel)|round(0, 'ceil') ~ "px" }}
+                        <span slot="content">scales from {{ (base_scale * smallbp_pixel)|round(0, 'ceil') ~ "px" }} to {{ (base_scale * largebp_pixel)|round(0, 'ceil') ~ "px" }}</span>
+                      </bolt-tooltip>
+                    </td>
+                  </tr>
+                {% endif %}
+              {% endfor %}
+            </tbody>
+          </table>
+        </bolt-table>
+      </bolt-stack>
+      <bolt-stack spacing="large">
+        <bolt-banner align="start">
+          *Spacing sizes in Bolt are responsive from 320px viewport to 1920px viewport. <bolt-link url="{{ link['viewall-visual-styles-breakpoints'] }}">View Breakpoint System<bolt-icon name="chevron-right" slot="after"></bolt-icon></bolt-link>
+        </bolt-banner>
+      </bolt-stack>
+    </bolt-tab-panel>
+  </bolt-tabs>
+{% endset %}
+
+{% include "@bolt-components-band/band.twig" with {
+  content: content,
+  theme: "none",
+  size: "large",
+} only %}
