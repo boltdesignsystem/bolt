@@ -56,7 +56,7 @@
 
 
 {% set content %}
-  {% grid "o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--medium #{   (reverseOrder == false and imageValign != 'bottom') or (reverseOrder == true and not image) ? 'o-bolt-grid--rev' : '' }" %}
+  {% grid "o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--medium #{(reverseOrder == false and imageValign != 'bottom') or (reverseOrder == true and not image) ? 'o-bolt-grid--rev' : '' }" %}
 
     {% if _isImageFirstOnMobile and image %}
       {{ renderedImage }}
