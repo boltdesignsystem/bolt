@@ -29,7 +29,6 @@ module.exports = {
       enum: ['left', 'center', 'right'],
       description: "Adjusts the Hero Image's horizontal alignment",
       default: 'center',
-      hidden: true,
     },
     imageValign: {
       type: 'string',
@@ -41,20 +40,17 @@ module.exports = {
       description: 'Customizes the min width of the Hero Image',
       default: 'none',
       type: 'string',
-      hidden: true,
     },
     imageMaxWidth: {
       description: 'Customizes the maximum width of the Hero Image',
       default: '450px',
       type: 'string',
-      hidden: true,
     },
     reverseOrder: {
       type: 'boolean',
       description:
         'Reverses the order on larger screens (desktop) so the image comes first (left column) and the content comes second (right column).',
       default: false,
-      hidden: true,
     },
   },
 };
