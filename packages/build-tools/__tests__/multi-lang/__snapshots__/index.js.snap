@@ -196,12 +196,10 @@ bolt-button[type=\\"submit\\"] {
   transform: translate3d(0, 1px, 0);
 }
 .c-bolt-button--tertiary {
-  color: rgba(21, 22, 25, 0.9);
   color: var(
     --bolt-theme--tertiary--text-color--default,
     rgba(21, 22, 25, 0.9)
   );
-  background-color: rgba(141, 142, 153, 0.15);
   background-color: var(
     --bolt-theme--tertiary--background-color--default,
     rgba(141, 142, 153, 0.15)
@@ -215,9 +213,7 @@ bolt-button[type=\\"submit\\"] {
 }
 .c-bolt-button--tertiary.is-hover,
 .c-bolt-button--tertiary:hover {
-  color: #151619;
   color: var(--bolt-theme--tertiary--text-color--hover, #151619);
-  background-color: rgba(141, 142, 153, 0.3);
   background-color: var(
     --bolt-theme--tertiary--background-color--hover,
     rgba(141, 142, 153, 0.3)
@@ -227,9 +223,7 @@ bolt-button[type=\\"submit\\"] {
 .c-bolt-button--tertiary:active:focus,
 .c-bolt-button--tertiary:focus,
 .c-bolt-button--tertiary:focus:hover:not(:active) {
-  color: #151619;
   color: var(--bolt-theme--tertiary--text-color--focus, #151619);
-  background-color: rgba(141, 142, 153, 0.4);
   background-color: var(
     --bolt-theme--tertiary--background-color--focus,
     rgba(141, 142, 153, 0.4)
@@ -238,13 +232,21 @@ bolt-button[type=\\"submit\\"] {
 .c-bolt-button--tertiary.is-active,
 .c-bolt-button--tertiary:active,
 .c-bolt-button--tertiary:active:hover {
-  color: #151619;
   color: var(--bolt-theme--tertiary--text-color--active, #151619);
-  background-color: rgba(141, 142, 153, 0.5);
   background-color: var(
     --bolt-theme--tertiary--background-color--active,
     rgba(141, 142, 153, 0.5)
   );
+}
+.c-bolt-button--tertiary.is-hover:not([disabled]),
+.c-bolt-button--tertiary:hover:not([disabled]) {
+  transform: translateY(-2px);
+  box-shadow: 0 1px 8px 1px rgba(6, 10, 36, 0.18),
+    0 5px 10px 1px rgba(6, 10, 36, 0.15), 0 15px 30px 0 rgba(6, 10, 36, 0.16);
+}
+.c-bolt-button--tertiary.is-active:not([disabled]),
+.c-bolt-button--tertiary:active:not([disabled]) {
+  transform: translate3d(0, 1px, 0);
 }
 .c-bolt-button--text {
   opacity: 1;
@@ -18593,12 +18595,10 @@ bolt-button[type=\\"submit\\"] {
   transform: translate3d(0, 1px, 0);
 }
 .c-bolt-button--tertiary {
-  color: rgba(21, 22, 25, 0.9);
   color: var(
     --bolt-theme--tertiary--text-color--default,
     rgba(21, 22, 25, 0.9)
   );
-  background-color: rgba(141, 142, 153, 0.15);
   background-color: var(
     --bolt-theme--tertiary--background-color--default,
     rgba(141, 142, 153, 0.15)
@@ -18612,9 +18612,7 @@ bolt-button[type=\\"submit\\"] {
 }
 .c-bolt-button--tertiary.is-hover,
 .c-bolt-button--tertiary:hover {
-  color: #151619;
   color: var(--bolt-theme--tertiary--text-color--hover, #151619);
-  background-color: rgba(141, 142, 153, 0.3);
   background-color: var(
     --bolt-theme--tertiary--background-color--hover,
     rgba(141, 142, 153, 0.3)
@@ -18624,9 +18622,7 @@ bolt-button[type=\\"submit\\"] {
 .c-bolt-button--tertiary:active:focus,
 .c-bolt-button--tertiary:focus,
 .c-bolt-button--tertiary:focus:hover:not(:active) {
-  color: #151619;
   color: var(--bolt-theme--tertiary--text-color--focus, #151619);
-  background-color: rgba(141, 142, 153, 0.4);
   background-color: var(
     --bolt-theme--tertiary--background-color--focus,
     rgba(141, 142, 153, 0.4)
@@ -18635,13 +18631,21 @@ bolt-button[type=\\"submit\\"] {
 .c-bolt-button--tertiary.is-active,
 .c-bolt-button--tertiary:active,
 .c-bolt-button--tertiary:active:hover {
-  color: #151619;
   color: var(--bolt-theme--tertiary--text-color--active, #151619);
-  background-color: rgba(141, 142, 153, 0.5);
   background-color: var(
     --bolt-theme--tertiary--background-color--active,
     rgba(141, 142, 153, 0.5)
   );
+}
+.c-bolt-button--tertiary.is-hover:not([disabled]),
+.c-bolt-button--tertiary:hover:not([disabled]) {
+  transform: translateY(-2px);
+  box-shadow: 0 1px 8px 1px rgba(6, 10, 36, 0.18),
+    0 5px 10px 1px rgba(6, 10, 36, 0.15), 0 15px 30px 0 rgba(6, 10, 36, 0.16);
+}
+.c-bolt-button--tertiary.is-active:not([disabled]),
+.c-bolt-button--tertiary:active:not([disabled]) {
+  transform: translate3d(0, 1px, 0);
 }
 .c-bolt-button--text {
   opacity: 1;
