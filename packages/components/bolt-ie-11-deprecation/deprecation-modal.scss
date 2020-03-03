@@ -1,0 +1,285 @@
+$background-color: #faf4d1;
+$text-color: black;
+$icon-size: 3rem;
+$max-width: 1400px;
+$link-color: #545DA6;
+$font-size: 14px;
+$spacing-small: 0.5rem;
+$spacing-medium: 1rem;
+$spacing-large: 2rem;
+$inline-list-border-color: rgba(6, 9, 35, 0.2);
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes slideInModal {
+  0% {
+    transform: translate3d(-50%, 200%, 0);
+  }
+
+  100% {
+    transform: translate3d(-50%, -50%, 0);
+  }
+}
+
+@keyframes slideOutModal {
+  0% {
+    transform: translate3d(-50%, -50%, 0);
+  }
+
+  100% {
+    transform: translate3d(-50%, 200%, 0);
+  }
+}
+
+.c-bolt-ie-11-deprecation,
+.c-bolt-ie-11-deprecation__close-link--overlay {
+  display: none;
+}
+
+// only display on IE 10 + IE 11
+.c-bolt-ie-11-deprecation {
+  box-sizing: border-box;
+
+  // when this is the only UI on the page
+  * {
+    box-sizing: border-box;
+  }
+
+  visibility: visible;
+  opacity: 0;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -200%, 0);
+  z-index: 2000;
+  z-index: 2000;
+  width: 80vw;
+  max-width: 700px;
+  height: auto;
+  color: $text-color;
+  font-family: "Open Sans", "Helvetica Neue", sans-serif;
+  border-radius: 6px;
+  background-color: $background-color;
+  backface-visibility: hidden;
+  transition: all 0.2s ease;
+  animation: fadeIn 0.3s ease 1s forwards;
+  animation-name: fadeIn, slideInModal;
+
+  &.is-animating-out {
+    opacity: 0;
+    transform: translate3d(-50%, 200%, 0);
+    animation: fadeOut 0.2s ease 0s forwards;
+    animation-name: fadeOut, slideOutModal;
+  }
+
+  &.is-animating-out + .c-bolt-ie-11-deprecation__close-link--overlay {
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0s linear 0s;
+    animation: none;
+  }
+
+  &:target,
+  &.is-hidden ~ .c-bolt-ie-11-deprecation__close-link--overlay,
+  &.is-hidden ~ .c-bolt-ie-11-deprecation__close-label--overlay {
+    display: none;
+  }
+
+  // delay displaying so the JS logic has time to run
+  &:not(.is-hidden),
+  &:not(.is-hidden) ~ .c-bolt-ie-11-deprecation__close-link--overlay {
+
+    // automatically display on IE 11 + IE 10
+    @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+      display: block;
+    }
+  }
+
+  &.is-hidden {
+    display: none;
+  }
+}
+
+.c-bolt-ie-11-deprecation__state {
+  display: none;
+}
+
+.c-bolt-ie-11-deprecation__state + .c-bolt-ie-11-deprecation__wrapper .c-bolt-ie-11-deprecation__trigger {
+  z-index: 1;
+}
+
+
+.c-bolt-ie-11-deprecation__close-link {
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  outline-offset: -4px;
+
+  &--overlay {
+    z-index: 1000;
+    background: rgba(6, 9, 35, 0.2);
+    transition: all 0.3s ease;
+    visibility: visible;
+    animation: fadeIn 0.3s ease 1s forwards;
+  }
+}
+
+.c-bolt-ie-11-deprecation__close-link--overlay,
+.c-bolt-ie-11-deprecation__close-label.c-bolt-ie-11-deprecation__close-label--overlay {
+  opacity: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.c-bolt-ie-11-deprecation__close-label.c-bolt-ie-11-deprecation__close-label--overlay {
+  z-index: 1001;
+}
+
+.c-bolt-ie-11-deprecation__close-text {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  clip: rect(0 0 0 0);
+  -webkit-clip-path: inset(50%);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.c-bolt-ie-11-deprecation__state:checked + .c-bolt-ie-11-deprecation .c-bolt-ie-11-deprecation__close-link,
+.c-bolt-ie-11-deprecation__state:target + .c-bolt-ie-11-deprecation .c-bolt-ie-11-deprecation__close-label {
+  display: block;
+}
+
+.c-bolt-ie-11-deprecation__close {
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  line-height: 1;
+}
+
+.c-bolt-ie-11-deprecation__close-label {
+  display: inline-block;
+  position: relative;
+  z-index: 10;
+  width: $icon-size;
+  height: $icon-size;
+  cursor: pointer;
+}
+
+.c-bolt-ie-11-deprecation__state:checked + .c-bolt-ie-11-deprecation,
+.c-bolt-ie-11-deprecation__state:target + .c-bolt-ie-11-deprecation {
+  display: none;
+  visibility: hidden;
+  opacity: 0;
+  transform: translate3d(0, -200%, 0);
+  height: 0;
+  padding: 0;
+  pointer-events: none;
+  transition: all 0.2s ease;
+}
+
+.c-bolt-ie-11-deprecation__icon {
+  margin-right: $spacing-medium;
+}
+
+.c-bolt-ie-11-deprecation__icon,
+.c-bolt-ie-11-deprecation__close-icon {
+  flex-grow: 0;
+  flex-shrink: 0.5;
+  width: $icon-size;
+  height: $icon-size;
+  color: $text-color;
+}
+
+.c-bolt-ie-11-deprecation__close-icon {
+  padding: $spacing-small * 1.5;
+}
+
+.c-bolt-ie-11-deprecation__wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  max-width: $max-width;
+  margin-right: auto;
+  margin-left: auto;
+  padding-top: $spacing-medium * 2;
+  padding-right: $spacing-large;
+  padding-bottom: $spacing-medium * 2;
+  padding-left: $spacing-large;
+}
+
+.c-bolt-ie-11-deprecation__inline-list {
+  display: inline;
+  margin: 0;
+  margin-right: calc(#{-1 * $spacing-medium} - -1px);
+  padding: 0;
+  letter-spacing: -1 * $spacing-small;
+}
+
+.c-bolt-ie-11-deprecation__inline-list-item {
+  display: inline-block;
+  margin: 0;
+  margin-right: $spacing-small;
+  padding: 0;
+  padding-right: $spacing-small;
+  list-style: none;
+  letter-spacing: normal;
+
+  &:not(:last-child){
+    border-right-color: $inline-list-border-color;
+    border-right-style: solid;
+    border-right-width: 1px;
+  }
+}
+
+.c-bolt-ie-11-deprecation__text {
+  display: inline;
+  margin-right: $spacing-medium;
+  font-size: $font-size;
+}
+
+.c-bolt-ie-11-deprecation__paragraph {
+  display: inline;
+  margin-right: $spacing-small;
+}
+
+.c-bolt-ie-11-deprecation__link {
+  color: $link-color;
+  text-decoration: underline;
+}
+
+.c-bolt-ie-11-deprecation__state:checked ~ .c-bolt-ie-11-deprecation__close-link,
+.c-bolt-ie-11-deprecation__state:target ~ .c-bolt-ie-11-deprecation__close-link--overlay {
+  display: none;
+}

@@ -1,0 +1,8 @@
+{% set usage %}{% verbatim %}
+{% include '@bolt-components-ie-11-deprecation/dist/deprecation-modal.html' only %}
+{% endverbatim %}{% endset %}
+
+{% include "@utils/docs.twig" with {
+  componentName: "ie-11-deprecation",
+  usage: usage
+} only %}

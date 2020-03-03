@@ -1,0 +1,33 @@
+{
+  "name": "@bolt/components-ie-11-deprecation",
+  "version": "2.18.1",
+  "description": "Deprecation Notice for dropping IE 11 support in the Bolt Design System",
+  "keywords": [
+    "bolt design system"
+  ],
+  "bugs": {
+    "url": "https://github.com/bolt-design-system/bolt/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-ie-11-deprecation"
+  },
+  "license": "MIT",
+  "author": "Salem Ghoweri <me@salemghoweri.com>",
+  "scripts": {
+    "watch": "parcel deprecation-modal.html",
+    "build": "parcel build deprecation-modal.html",
+    "postbootstrap": "yarn build",
+    "postinstall": "yarn build"
+  },
+  "dependencies": {
+    "autoprefixer": "^9.7.4",
+    "js-cookie": "^2.2.1",
+    "parcel-bundler": "^1.12.4",
+    "parcel-plugin-inliner": "^1.0.13"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "twig": "src/ie-11-deprecation.twig"
+}

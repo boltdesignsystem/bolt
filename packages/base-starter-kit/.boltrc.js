@@ -1,6 +1,7 @@
 module.exports = {
   components: {
     global: [
+      '@bolt/components-ie-11-deprecation',
       '@bolt/core-v3.x',
       '@bolt/global',
       '@bolt/components-accordion',
