@@ -88,3 +88,11 @@
 .pl-c-pattern[id*="-docs"] .pl-c-pattern__extra-wrapper {
   display: none;
 }
+
+.pl-placeholder-fixed-element {
+  position: fixed;
+
+  @at-root .pl-c-pattern & {
+    position: static; // Set to 'static' on the View All page
+  }
+}
