@@ -75,6 +75,7 @@ module.exports = {
   components: {
     global: [
       ...allComponentPackages,
+      '@bolt/deprecation-modal',
       '@bolt/components-animate',
       '@bolt/micro-journeys',
       '@bolt/analytics-autolink',

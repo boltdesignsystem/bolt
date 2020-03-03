@@ -49,13 +49,13 @@ $inline-list-border-color: rgba(6, 9, 35, 0.2);
   }
 }
 
-.c-bolt-ie-11-deprecation,
-.c-bolt-ie-11-deprecation__close-link--overlay {
+.c-bolt-deprecation-modal,
+.c-bolt-deprecation-modal__close-link--overlay {
   display: none;
 }
 
 // only display on IE 10 + IE 11
-.c-bolt-ie-11-deprecation {
+.c-bolt-deprecation-modal {
   box-sizing: border-box;
 
   // when this is the only UI on the page
@@ -90,7 +90,7 @@ $inline-list-border-color: rgba(6, 9, 35, 0.2);
     animation-name: fadeOut, slideOutModal;
   }
 
-  &.is-animating-out + .c-bolt-ie-11-deprecation__close-link--overlay {
+  &.is-animating-out + .c-bolt-deprecation-modal__close-link--overlay {
     opacity: 0;
     pointer-events: none;
     transition: all 0s linear 0s;
@@ -98,14 +98,14 @@ $inline-list-border-color: rgba(6, 9, 35, 0.2);
   }
 
   &:target,
-  &.is-hidden ~ .c-bolt-ie-11-deprecation__close-link--overlay,
-  &.is-hidden ~ .c-bolt-ie-11-deprecation__close-label--overlay {
+  &.is-hidden ~ .c-bolt-deprecation-modal__close-link--overlay,
+  &.is-hidden ~ .c-bolt-deprecation-modal__close-label--overlay {
     display: none;
   }
 
   // delay displaying so the JS logic has time to run
   &:not(.is-hidden),
-  &:not(.is-hidden) ~ .c-bolt-ie-11-deprecation__close-link--overlay {
+  &:not(.is-hidden) ~ .c-bolt-deprecation-modal__close-link--overlay {
 
     // automatically display on IE 11 + IE 10
     @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
@@ -118,16 +118,16 @@ $inline-list-border-color: rgba(6, 9, 35, 0.2);
   }
 }
 
-.c-bolt-ie-11-deprecation__state {
+.c-bolt-deprecation-modal__state {
   display: none;
 }
 
-.c-bolt-ie-11-deprecation__state + .c-bolt-ie-11-deprecation__wrapper .c-bolt-ie-11-deprecation__trigger {
+.c-bolt-deprecation-modal__state + .c-bolt-deprecation-modal__wrapper .c-bolt-deprecation-modal__trigger {
   z-index: 1;
 }
 
 
-.c-bolt-ie-11-deprecation__close-link {
+.c-bolt-deprecation-modal__close-link {
   position: absolute;
   top: 0;
   right: 0;
@@ -145,8 +145,8 @@ $inline-list-border-color: rgba(6, 9, 35, 0.2);
   }
 }
 
-.c-bolt-ie-11-deprecation__close-link--overlay,
-.c-bolt-ie-11-deprecation__close-label.c-bolt-ie-11-deprecation__close-label--overlay {
+.c-bolt-deprecation-modal__close-link--overlay,
+.c-bolt-deprecation-modal__close-label.c-bolt-deprecation-modal__close-label--overlay {
   opacity: 0;
   position: fixed;
   top: 0;
@@ -155,11 +155,11 @@ $inline-list-border-color: rgba(6, 9, 35, 0.2);
   height: 100%;
 }
 
-.c-bolt-ie-11-deprecation__close-label.c-bolt-ie-11-deprecation__close-label--overlay {
+.c-bolt-deprecation-modal__close-label.c-bolt-deprecation-modal__close-label--overlay {
   z-index: 1001;
 }
 
-.c-bolt-ie-11-deprecation__close-text {
+.c-bolt-deprecation-modal__close-text {
   position: absolute;
   width: 1px;
   height: 1px;
@@ -173,12 +173,12 @@ $inline-list-border-color: rgba(6, 9, 35, 0.2);
   white-space: nowrap;
 }
 
-.c-bolt-ie-11-deprecation__state:checked + .c-bolt-ie-11-deprecation .c-bolt-ie-11-deprecation__close-link,
-.c-bolt-ie-11-deprecation__state:target + .c-bolt-ie-11-deprecation .c-bolt-ie-11-deprecation__close-label {
+.c-bolt-deprecation-modal__state:checked + .c-bolt-deprecation-modal .c-bolt-deprecation-modal__close-link,
+.c-bolt-deprecation-modal__state:target + .c-bolt-deprecation-modal .c-bolt-deprecation-modal__close-label {
   display: block;
 }
 
-.c-bolt-ie-11-deprecation__close {
+.c-bolt-deprecation-modal__close {
   display: inline-block;
   position: absolute;
   top: 0;
@@ -186,7 +186,7 @@ $inline-list-border-color: rgba(6, 9, 35, 0.2);
   line-height: 1;
 }
 
-.c-bolt-ie-11-deprecation__close-label {
+.c-bolt-deprecation-modal__close-label {
   display: inline-block;
   position: relative;
   z-index: 10;
@@ -195,8 +195,8 @@ $inline-list-border-color: rgba(6, 9, 35, 0.2);
   cursor: pointer;
 }
 
-.c-bolt-ie-11-deprecation__state:checked + .c-bolt-ie-11-deprecation,
-.c-bolt-ie-11-deprecation__state:target + .c-bolt-ie-11-deprecation {
+.c-bolt-deprecation-modal__state:checked + .c-bolt-deprecation-modal,
+.c-bolt-deprecation-modal__state:target + .c-bolt-deprecation-modal {
   display: none;
   visibility: hidden;
   opacity: 0;
@@ -207,12 +207,12 @@ $inline-list-border-color: rgba(6, 9, 35, 0.2);
   transition: all 0.2s ease;
 }
 
-.c-bolt-ie-11-deprecation__icon {
+.c-bolt-deprecation-modal__icon {
   margin-right: $spacing-medium;
 }
 
-.c-bolt-ie-11-deprecation__icon,
-.c-bolt-ie-11-deprecation__close-icon {
+.c-bolt-deprecation-modal__icon,
+.c-bolt-deprecation-modal__close-icon {
   flex-grow: 0;
   flex-shrink: 0.5;
   width: $icon-size;
@@ -220,11 +220,11 @@ $inline-list-border-color: rgba(6, 9, 35, 0.2);
   color: $text-color;
 }
 
-.c-bolt-ie-11-deprecation__close-icon {
+.c-bolt-deprecation-modal__close-icon {
   padding: $spacing-small * 1.5;
 }
 
-.c-bolt-ie-11-deprecation__wrapper {
+.c-bolt-deprecation-modal__wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -238,7 +238,7 @@ $inline-list-border-color: rgba(6, 9, 35, 0.2);
   padding-left: $spacing-large;
 }
 
-.c-bolt-ie-11-deprecation__inline-list {
+.c-bolt-deprecation-modal__inline-list {
   display: inline;
   margin: 0;
   margin-right: calc(#{-1 * $spacing-medium} - -1px);
@@ -246,7 +246,7 @@ $inline-list-border-color: rgba(6, 9, 35, 0.2);
   letter-spacing: -1 * $spacing-small;
 }
 
-.c-bolt-ie-11-deprecation__inline-list-item {
+.c-bolt-deprecation-modal__inline-list-item {
   display: inline-block;
   margin: 0;
   margin-right: $spacing-small;
@@ -262,23 +262,23 @@ $inline-list-border-color: rgba(6, 9, 35, 0.2);
   }
 }
 
-.c-bolt-ie-11-deprecation__text {
+.c-bolt-deprecation-modal__text {
   display: inline;
   margin-right: $spacing-medium;
   font-size: $font-size;
 }
 
-.c-bolt-ie-11-deprecation__paragraph {
+.c-bolt-deprecation-modal__paragraph {
   display: inline;
   margin-right: $spacing-small;
 }
 
-.c-bolt-ie-11-deprecation__link {
+.c-bolt-deprecation-modal__link {
   color: $link-color;
   text-decoration: underline;
 }
 
-.c-bolt-ie-11-deprecation__state:checked ~ .c-bolt-ie-11-deprecation__close-link,
-.c-bolt-ie-11-deprecation__state:target ~ .c-bolt-ie-11-deprecation__close-link--overlay {
+.c-bolt-deprecation-modal__state:checked ~ .c-bolt-deprecation-modal__close-link,
+.c-bolt-deprecation-modal__state:target ~ .c-bolt-deprecation-modal__close-link--overlay {
   display: none;
 }

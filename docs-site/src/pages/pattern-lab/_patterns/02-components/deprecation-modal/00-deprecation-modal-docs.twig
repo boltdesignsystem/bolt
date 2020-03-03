@@ -1,0 +1,18 @@
+{% set usage %}{% verbatim %}
+{% include '@bolt-deprecation-modal/ie-11.twig' only %}
+{% endverbatim %}{% endset %}
+
+{# workaround so the default component docs UI doesn't break #}
+
+{% set data = getBoltData() %} {# grab a fresh copy of the full manifest data to reflect schema.yml file changes, etc #}
+{% set readme_file = "@bolt-deprecation-modal/README.md" %}
+{% set change_log_file = "@bolt-deprecation-modal/CHANGELOG.md" %}
+{% set pkg = get_data("@bolt-deprecation-modal/package.json") %}
+{% set schema = {
+  title: "Deprecation Modal"
+} %}
+
+{% include "@utils/docs.twig" with {
+  usage: usage
+} %}
+

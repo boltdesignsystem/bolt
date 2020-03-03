@@ -12,13 +12,13 @@ if (window.NodeList && !NodeList.prototype.forEach) {
 
 window.addEventListener('load', function() {
   const dismissNoticeTriggers = document.querySelectorAll(
-    '.js-dismiss-deprecation-notice',
+    '.js-dismiss-deprecation-modal',
   );
   const deprecationNotification = document.querySelector(
-    '.js-ie-11-deprecation',
+    '.js-deprecation-modal',
   );
 
-  if (deprecationNotification && Cookies.get('dismissIEDeprecationNotice')) {
+  if (deprecationNotification && Cookies.get('dismissIE11DeprecationModal')) {
     deprecationNotification.classList.add('is-hidden');
   }
 
@@ -26,7 +26,7 @@ window.addEventListener('load', function() {
     dismissNoticeTriggers.forEach(trigger => {
       trigger.addEventListener('click', e => {
         e.preventDefault();
-        Cookies.set('dismissIEDeprecationNotice', true, { expires: 1 });
+        Cookies.set('dismissIE11DeprecationModal', true, { expires: 1 });
         deprecationNotification.classList.add('is-animating-out');
 
         setTimeout(() => {

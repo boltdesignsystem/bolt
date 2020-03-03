@@ -1,0 +1,47 @@
+{
+  "name": "@bolt/deprecation-modal",
+  "version": "2.18.1",
+  "description": "Modal to alert users about major upcoming changes (ex. dropping IE 11 support) in the Bolt Design System",
+  "keywords": [
+    "bolt design system",
+    "ie 11",
+    "internet explorer",
+    "modal",
+    "deprecation"
+  ],
+  "bugs": {
+    "url": "https://github.com/boltdesignsystem/bolt/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/boltdesignsystem/bolt/tree/master/packages/base-deprecation-modal"
+  },
+  "license": "MIT",
+  "author": "Salem Ghoweri <me@salemghoweri.com>",
+  "files": [
+    "dist/*",
+    "ie-11.twig",
+    "deprecation-modal.twig"
+  ],
+  "scripts": {
+    "prebuild": "rm -rf dist",
+    "build": "parcel build deprecation-modal.html -o deprecation-modal.built.html",
+    "postbootstrap": "yarn build",
+    "prepublish": "yarn build",
+    "pretest": "yarn build",
+    "watch": "parcel deprecation-modal.html"
+  },
+  "browserslist": [
+    "IE 11"
+  ],
+  "dependencies": {
+    "autoprefixer": "^9.7.4",
+    "js-cookie": "^2.2.1",
+    "parcel-bundler": "^1.12.4",
+    "parcel-plugin-inliner": "^1.0.13"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "twig": "deprecation-modal.twig"
+}

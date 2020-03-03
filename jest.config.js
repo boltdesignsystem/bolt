@@ -31,7 +31,7 @@ module.exports = {
   },
   transformIgnorePatterns: [
     'node_modules/(?!(lit-html|@bolt|@open-wc)/)', // add any additional packages in node_modules that need to be transpiled for Jest
-    'packages/(?!(components|core|analytics|config|testing|generators|experimental)/)', // add any additional packages in node_modules that need to be transpiled for Jest
+    'packages/(?!(base-deprecation-modal|components|core|analytics|config|testing|generators|experimental)/)', // add any additional packages in node_modules that need to be transpiled for Jest
     './scripts/monorepo.test.js',
   ],
   globalSetup: './packages/testing/testing-jest/jest-global-setup.js',
