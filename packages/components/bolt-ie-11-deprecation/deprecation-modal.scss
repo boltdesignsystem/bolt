@@ -128,7 +128,6 @@ $inline-list-border-color: rgba(6, 9, 35, 0.2);
 
 
 .c-bolt-ie-11-deprecation__close-link {
-  display: block;
   position: absolute;
   top: 0;
   right: 0;
@@ -138,10 +137,10 @@ $inline-list-border-color: rgba(6, 9, 35, 0.2);
   outline-offset: -4px;
 
   &--overlay {
+    visibility: visible;
     z-index: 1000;
     background: rgba(6, 9, 35, 0.2);
     transition: all 0.3s ease;
-    visibility: visible;
     animation: fadeIn 0.3s ease 1s forwards;
   }
 }
