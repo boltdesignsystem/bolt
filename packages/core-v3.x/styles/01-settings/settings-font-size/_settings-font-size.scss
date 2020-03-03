@@ -41,10 +41,10 @@ $bolt-font-size--xsmall: 0.75rem !default;
 
 /// Default XXX Large line-height. Used within $bolt-font-sizes map.
 /// @see $bolt-font-sizes
-$bolt-line-height--xxxlarge: 1.25 !default;
+$bolt-line-height--xxxlarge: 1.375 !default;
 /// Default XX Large line-height. Used within $bolt-font-sizes map.
 /// @see $bolt-font-sizes
-$bolt-line-height--xxlarge: 1.25 !default;
+$bolt-line-height--xxlarge: 1.375 !default;
 /// Default X Large line-height. Used within $bolt-font-sizes map.
 /// @see $bolt-font-sizes
 $bolt-line-height--xlarge: 1.3 !default;
@@ -118,6 +118,13 @@ $bolt-font-sizes: (
       line-height: (
         regular: $bolt-line-height--xsmall,
         tight: $bolt-line-height--tight
+      )
+    ),
+    xxsmall: (
+      font-size: bolt-rem(12px),
+      line-height: (
+        regular: 1.41,
+        // 17px / 12px
       )
     )
   )
