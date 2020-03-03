@@ -7,6 +7,10 @@ $bolt-ol-bullet-bg-color: rgba(bolt-color(gray), 0.2);
 $bolt-li-spacing: bolt-spacing(medium);
 $bolt-li-bullet-position: $bolt-ol-bullet-size / 2; // Sets the center position of the bullet, could be any value but basing it off of OL width seems to work best so that OL circle is flush left.
 
+bolt-li {
+  display: block; // Fixes FF bug where OL numbers are positioned above circle
+}
+
 .c-bolt-li {
   box-sizing: border-box;
   position: relative;
