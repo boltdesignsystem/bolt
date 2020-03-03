@@ -17,7 +17,7 @@
     } only %}
 {% endset %}
 
-<div class="placeholder-fixed-element" style="background: yellow; padding: 2rem; text-align: center; position: fixed; top: 0; height: 100px; width: 100%;">
+<div class="pl-placeholder-fixed-element" style="background: yellow; padding: 2rem; text-align: center; top: 0; height: 100px; width: 100%;">
   Placeholder "fixed" element, should not overlap tabs when page first loads.
 </div>
 
@@ -28,7 +28,7 @@
 
   <div style="margin-top: 100vh; margin-bottom: 100vh;">
     {% include "@bolt-components-tabs/tabs.twig" with {
-      scrollOffsetSelector: '.placeholder-fixed-element',
+      scrollOffsetSelector: '.pl-placeholder-fixed-element',
       scrollOffset: 25,
       panels: [
         {
