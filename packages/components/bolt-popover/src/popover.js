@@ -26,6 +26,9 @@ class BoltPopover extends BoltElement {
         type: Boolean,
         reflect: true,
       },
+      theme: {
+        type: String,
+      },
       hasPopup: Boolean,
       hasFocusableContent: Boolean,
       boundary: String,
@@ -215,6 +218,10 @@ class BoltPopover extends BoltElement {
       [`c-bolt-popover--text-wrap`]: this.textContentLength > 31,
     });
 
+    const bubbleClasses = cx('c-bolt-popover__bubble', {
+      [`t-bolt-${this.theme}`]: this.theme && this.theme !== 'none',
+    });
+
     return html`
       <span class="${classes}">
         ${this.slotMap.get('default') &&
@@ -239,7 +246,7 @@ class BoltPopover extends BoltElement {
               class="${cx(`c-bolt-popover__content`)}"
               aria-hidden="${!this.open}"
             >
-              <span class="${cx(`c-bolt-popover__bubble`)}">
+              <span class="${bubbleClasses}">
                 ${this.slotify('content')}
               </span>
             </span>
