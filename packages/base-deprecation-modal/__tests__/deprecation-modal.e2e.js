@@ -33,7 +33,7 @@ module.exports = {
 
       // modal re-appears after deleting cookie
       browser
-        .deleteCookie('dismissIEDeprecationNotice')
+        .deleteCookie('dismissIE11DeprecationModal')
         .url(
           `${testingUrl}/pattern-lab/patterns/02-components-deprecation-modal-ie-11-deprecation/02-components-deprecation-modal-ie-11-deprecation.html`,
         )
