@@ -43,3 +43,37 @@
   --bolt-theme-background: 0, 0, 0;
   background-color: black;
 }
+
+// manually spec out the tertiary background + text colors vs using the original Theming
+// system to auto-generate a ton of extra vars we don't need;
+//
+// Part of the broader initiative to move Bolt to CSS vars + simplify our CSS Architecture
+//
+// @todo: review this when working through the new CSS custom property / vars spec (ex. http://vjira2:8080/browse/BDS-2031)
+.t-bolt-light,
+.t-bolt-xlight,
+:root {
+  --bolt-theme--tertiary--background-color--default: #{rgba(bolt-color(gray), 0.15)};
+  --bolt-theme--tertiary--background-color--hover:   #{rgba(bolt-color(gray), 0.3)};
+  --bolt-theme--tertiary--background-color--focus:   #{rgba(bolt-color(gray), 0.4)};
+  --bolt-theme--tertiary--background-color--active:  #{rgba(bolt-color(gray), 0.5)};
+
+  --bolt-theme--tertiary--text-color--default: #{rgba(bolt-color(black), 0.9)};
+  --bolt-theme--tertiary--text-color--hover:   #{rgba(bolt-color(black), 1)};
+  --bolt-theme--tertiary--text-color--active:  var(--bolt-theme--tertiary--text-color--hover);
+  --bolt-theme--tertiary--text-color--focus:   var(--bolt-theme--tertiary--text-color--hover);
+}
+
+.t-bolt-dark,
+.t-bolt-xdark,
+.t-bolt-xxdark {
+  --bolt-theme--tertiary--background-color--default:   #{rgba(bolt-color(white), 0.2)};
+  --bolt-theme--tertiary--background-color--hover:     #{rgba(bolt-color(white), 0.3)};
+  --bolt-theme--tertiary--background-color--focus:     #{rgba(bolt-color(white), 0.35)};
+  --bolt-theme--tertiary--background-color--active:    #{rgba(bolt-color(white), 0.4)};
+
+  --bolt-theme--tertiary--text-color--default: #{rgba(bolt-color(white), 0.9)};
+  --bolt-theme--tertiary--text-color--hover:   #{rgba(bolt-color(white), 1)};
+  --bolt-theme--tertiary--text-color--active:  var(--bolt-theme--tertiary--text-color--hover);
+  --bolt-theme--tertiary--text-color--focus:   var(--bolt-theme--tertiary--text-color--hover);
+}

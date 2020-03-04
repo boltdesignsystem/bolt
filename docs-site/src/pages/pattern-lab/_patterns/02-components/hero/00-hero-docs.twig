@@ -1,0 +1,16 @@
+{% set usage %}{% verbatim %}
+{% include "@bolt-components-hero/hero.twig" with {
+  content: "Hero content goes here",
+  background: "/images/heros/hero-background--yellow.svg",
+  image: "/images/heros/hero-foreground--yellow.png",
+  theme: "dark",
+} only %}
+{% endverbatim %}{% endset %}
+
+{% include "@utils/docs.twig" with {
+  componentName: "hero",
+  usage: usage,
+  schemaForm: {
+    template: '@bolt-components-hero/hero.twig',
+  },
+} only %}

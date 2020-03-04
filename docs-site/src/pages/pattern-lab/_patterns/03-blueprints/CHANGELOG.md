@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.19.0](https://github.com/boltdesignsystem/bolt/tree/master/docs-site/src/pages/pattern-lab/_patterns/03-blueprints/compare/v2.18.1...v2.19.0) (2020-03-04)
+
+
+### Features
+
+* add example of CSS var on Academy ([d8072d1](https://github.com/boltdesignsystem/bolt/tree/master/docs-site/src/pages/pattern-lab/_patterns/03-blueprints/commit/d8072d145ff626bfff31972126e304fd8316a5d8))
+* remove 'brand-' prefix from icon in _icon-banner.twig ([6e19057](https://github.com/boltdesignsystem/bolt/tree/master/docs-site/src/pages/pattern-lab/_patterns/03-blueprints/commit/6e19057a88e9e5c90343899d23dbc6c8b7d819a3))
+
+
+
+
+
 ## [2.18.1](https://github.com/boltdesignsystem/bolt/tree/master/docs-site/src/pages/pattern-lab/_patterns/03-blueprints/compare/v2.18.0...v2.18.1) (2020-02-21)
 
 **Note:** Version bump only for package @bolt/blueprints

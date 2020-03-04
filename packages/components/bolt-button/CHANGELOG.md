@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.19.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button/compare/v2.18.1...v2.19.0) (2020-03-04)
+
+
+### Bug Fixes
+
+* address Stylelint issues ([59156a3](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button/commit/59156a3d356f1e7e463be44b3f636ae95f0a1b8f))
+
+
+### Features
+
+* add new Tertiary button variant ([75a5bd3](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button/commit/75a5bd35ea1a58632f63e60f83d80b3bf639a040))
+
+
+
+
+
 ## [2.18.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button/compare/v2.18.0...v2.18.1) (2020-02-21)
 
 **Note:** Version bump only for package @bolt/components-button

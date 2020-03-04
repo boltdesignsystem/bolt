@@ -60,7 +60,7 @@ module.exports = {
       type: 'string',
       description: 'Style of the button determined by information hierarchy.',
       default: 'primary',
-      enum: ['primary', 'secondary', 'text'],
+      enum: ['primary', 'secondary', 'tertiary', 'text'],
     },
     width: {
       type: 'string',

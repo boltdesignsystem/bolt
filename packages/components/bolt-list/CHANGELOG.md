@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.19.0](https://github.com/bolt-design-system/bolt/compare/v2.18.1...v2.19.0) (2020-03-04)
+
+
+### Features
+
+* add CSS var to override bolt-list border color ([e5b3bbb](https://github.com/bolt-design-system/bolt/commit/e5b3bbbc615ea0c020fb9747acd8cdc5be94a280))
+
+
+
+
+
 # [2.18.0](https://github.com/bolt-design-system/bolt/compare/v2.17.1...v2.18.0) (2020-02-19)
 
 **Note:** Version bump only for package @bolt/components-list

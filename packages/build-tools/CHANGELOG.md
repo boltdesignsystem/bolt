@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.19.0](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/compare/v2.18.1...v2.19.0) (2020-03-04)
+
+
+### Bug Fixes
+
+* update Image build task to properly support + optimize .gifs ([1030aa5](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/1030aa5a476b515fc2d40838e6bebd5742fc1add))
+
+
+
+
+
 ## [2.18.1](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/compare/v2.18.0...v2.18.1) (2020-02-21)
 
 
