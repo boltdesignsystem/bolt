@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.19.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-blockquote/compare/v2.18.1...v2.19.0) (2020-03-04)
+
+
+### Bug Fixes
+
+* allow <bolt-blockquote> web component size to be adjustable ([219a7d7](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-blockquote/commit/219a7d7abce550b0fc79d27d140d696ec257fbd5))
+* swap order of classes applied ([b6f9f8a](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-blockquote/commit/b6f9f8aef9fb94fc72e77d8cb23b12ea32e43d22))
+* update Blockquote Jest snapshot ([5f2990d](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-blockquote/commit/5f2990d33ad7d1efbb8a2c3665eaa9e7f5bcdd0c))
+* update Jest snapshots for Blockquote ([565a4f4](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-blockquote/commit/565a4f4ce624bdd5711a55367668da27eef81f32))
+
+
+### Features
+
+* support customizing Blockquote font weight ([39198b2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-blockquote/commit/39198b26cf6bde7c3feb95cea2611e909201c13e))
+
+
+
+
+
 ## [2.18.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-blockquote/compare/v2.18.0...v2.18.1) (2020-02-21)
 
 **Note:** Version bump only for package @bolt/components-blockquote

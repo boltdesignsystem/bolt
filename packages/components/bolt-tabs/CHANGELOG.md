@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.19.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tabs/compare/v2.18.1...v2.19.0) (2020-03-04)
+
+
+### Features
+
+* add `id` prop and enable deep linking via query param ([bfd521f](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tabs/commit/bfd521fb3bc99cd1ee5db947f8079737d62a6db9))
+* add smooth scrolling offset props to Tabs ([820df65](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tabs/commit/820df650d603d4d174ed542b2f764a6b99e59887))
+* switch from 'query-string' parser to 'url-search-params' polyfill ([77ed51f](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tabs/commit/77ed51fb71440eecc26b524892831ad21a9a1fe7))
+
+
+
+
+
 # [2.18.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tabs/compare/v2.17.1...v2.18.0) (2020-02-19)
 
 **Note:** Version bump only for package @bolt/components-tabs

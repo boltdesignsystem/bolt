@@ -24,6 +24,7 @@
 {% set classes = [
   base_class,
   this.data.size.value in schema.properties.size.enum ? base_class ~ "--" ~ this.data.size.value : "",
+  this.data.weight.value in schema.properties.weight.enum ? base_class ~ "--" ~ this.data.weight.value : "",
   this.data.align_items.value in align_items_options|keys ? base_class ~ "--align-items-" ~ align_items_options[this.data.align_items.value],
   this.data.border.value == 'none' ? base_class ~ "--borderless" : base_class ~ "--bordered-" ~ this.data.border.value,
   this.data.indent.value ? base_class ~ "--indented" : "",
@@ -65,7 +66,7 @@
         text: content,
         tag: text_tag,
         size: this.data.size.value,
-        weight: "semibold"
+        weight: this.data.weight.value,
       } only %}
     </{{quote_tag}}>
 

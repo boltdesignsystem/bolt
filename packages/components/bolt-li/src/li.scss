@@ -1,11 +1,12 @@
 @import '@bolt/core-v3.x';
 
 // Local Variables
-$bolt-ul-bullet-size: 6px; // Using px here because I need to make a perfect circle without subpixel issues.
-
-// Local Variables
 $bolt-ol-bullet-size: $bolt-line-height--xsmall + rem;
 $bolt-ol-bullet-bg-color: rgba(bolt-color(gray), 0.2);
+$bolt-li-spacing: bolt-spacing(medium);
+$bolt-li-bullet-level-1: '\25CF'; // black-circle
+$bolt-li-bullet-level-2: '\26AC'; // white-circle
+$bolt-li-bullet-level-3: '\25A0'; // black-square
 
 bolt-li {
   display: block; // Fixes FF bug where OL numbers are positioned above circle
@@ -15,7 +16,7 @@ bolt-li {
   box-sizing: border-box;
   position: relative;
   margin-bottom: bolt-spacing(xxsmall);
-  margin-left: bolt-spacing(medium); // was bolt-spacing(small) + bolt-spacing(xsmall) but this breaks down when mixing together ordered and unordered lists
+  margin-left: $bolt-li-spacing;
   @include bolt-padding(0);
 
   &--last-item {
@@ -26,34 +27,29 @@ bolt-li {
 // unordered-list specific list-item styles
 .c-bolt-li--ul-item {
   &:before {
-    content: '';
+    content: $bolt-li-bullet-level-1;
     display: block;
     box-sizing: border-box;
     position: absolute;
-    top: calc(0.55rem + 1px);
-    left: bolt-spacing(small) * -2;
-    width: $bolt-ul-bullet-size;
-    height: $bolt-ul-bullet-size;
-    line-height: $bolt-ul-bullet-size;
-    border-radius: $bolt-ul-bullet-size;
-    border-width: $bolt-border-width;
-    border-style: $bolt-border-style;
-    border-color: bolt-theme(headline);
-    background-color: bolt-theme(headline);
+    top: 0;
+    left: $bolt-li-spacing * -1;
+    transform: scale(0.8);
+    width: $bolt-ol-bullet-size;
+    height: $bolt-ol-bullet-size;
+    line-height: $bolt-ol-bullet-size;
+    text-align: center;
   }
 
   &.c-bolt-li--level {
     &-2 {
       &:before {
-        border-radius: $bolt-ul-bullet-size;
-        background-color: transparent;
+        content: $bolt-li-bullet-level-2;
       }
     }
 
     &-3 {
       &:before {
-        border-radius: 0;
-        background-color: bolt-theme(headline);
+        content: $bolt-li-bullet-level-3;
       }
     }
   }
@@ -63,16 +59,14 @@ bolt-li {
   .c-bolt-ul {
     .c-bolt-li--ul-item {
       &:before {
-        border-radius: $bolt-ul-bullet-size;
-        background-color: transparent;
+        content: $bolt-li-bullet-level-2;
       }
     }
 
     .c-bolt-ul {
       .c-bolt-li--ul-item {
         &:before {
-          border-radius: 0;
-          background-color: bolt-theme(headline);
+          content: $bolt-li-bullet-level-3;
         }
       }
     }
@@ -89,9 +83,13 @@ bolt-ol {
       @include bolt-font-weight(bold);
       content: counter(li);
       position: absolute;
-      top: .25em;
-      left: bolt-spacing(small) / 2;
+      top: 0.25em;
+      left: 0;
+      width: $bolt-ol-bullet-size;
+      height: $bolt-ol-bullet-size;
       counter-increment: li;
+      line-height: $bolt-ol-bullet-size;
+      text-align: center;
     }
   }
 }
@@ -102,7 +100,7 @@ bolt-ol {
   display: block;
   position: absolute;
   top: 0.125em;
-  left: bolt-spacing(small) * -2;
+  left: $bolt-li-spacing * -1;
   width: $bolt-ol-bullet-size;
   height: $bolt-ol-bullet-size;
   color: bolt-theme(headline);

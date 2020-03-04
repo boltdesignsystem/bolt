@@ -17,6 +17,13 @@ properties:
       - large
       - xlarge
       - xxlarge
+  weight:
+    description: Text weight.
+    default: semibold
+    type: string
+    enum:
+      - semibold
+      - bold
   alignItems:
     description: Aligns items left, center, or right.
     default: left

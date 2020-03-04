@@ -3,6 +3,59 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.19.0](https://github.com/boltdesignsystem/bolt/compare/v2.18.1...v2.19.0) (2020-03-04)
+
+
+### Bug Fixes
+
+* address Stylelint issues ([59156a3](https://github.com/boltdesignsystem/bolt/commit/59156a3d356f1e7e463be44b3f636ae95f0a1b8f))
+* allow <bolt-blockquote> web component size to be adjustable ([219a7d7](https://github.com/boltdesignsystem/bolt/commit/219a7d7abce550b0fc79d27d140d696ec257fbd5))
+* calculation ([c14dc10](https://github.com/boltdesignsystem/bolt/commit/c14dc10ca88c063d6aab4e17caee904f886e5f24))
+* docs and theme class in twig ([f61fbec](https://github.com/boltdesignsystem/bolt/commit/f61fbec99b6c04358fa790e4e44e582e212abf89))
+* fix background image path ([b6cb0c9](https://github.com/boltdesignsystem/bolt/commit/b6cb0c9f7404a9ab31df1f34add143aa0f87b433))
+* list item vertical alignment ([79410ca](https://github.com/boltdesignsystem/bolt/commit/79410ca7b4370be9f133f3f86607fa9201e59b26))
+* number incrementing in FF ([83fdbbe](https://github.com/boltdesignsystem/bolt/commit/83fdbbe773846f64886fedc1dd72f78cb23bdce1))
+* position of OL number in FF ([f7f4ee2](https://github.com/boltdesignsystem/bolt/commit/f7f4ee2a75ea552d6e2be6849bdf496cf7793e35))
+* remove 0px no longer needed ([e48425c](https://github.com/boltdesignsystem/bolt/commit/e48425c8c721b8f77b2c4d41ec137d2851a0c2cc))
+* remove capitalization from Schema prop table ([38a63ba](https://github.com/boltdesignsystem/bolt/commit/38a63ba4308d8373dabb78a622b7f6405eb5db31))
+* revert updating <aside> in Hero README.md -- web component version breaks with the markdown rendering ([8bbdf14](https://github.com/boltdesignsystem/bolt/commit/8bbdf1400048770940128387a45174f22bd24bda))
+* round px numbers ([1dc8bdc](https://github.com/boltdesignsystem/bolt/commit/1dc8bdc91e0d323b1272f3108a2e9d91c35f189b))
+* set `is-crawlable` assertion to `warn` to fix failing lighthouse job ([e12c172](https://github.com/boltdesignsystem/bolt/commit/e12c172fdaf7710dcd630b2764b9f9006e3119c5))
+* set placeholder element to 'static' on View All page ([9e674a0](https://github.com/boltdesignsystem/bolt/commit/9e674a0e1f818b0bcf6e5f08ea868453718a3697))
+* swap order of classes applied ([b6f9f8a](https://github.com/boltdesignsystem/bolt/commit/b6f9f8aef9fb94fc72e77d8cb23b12ea32e43d22))
+* switch from font-size to transform to fix vertical centering ([f31abe5](https://github.com/boltdesignsystem/bolt/commit/f31abe52a0b1f1cc65e6df63bc112eb18cab5976))
+* tests ([85dbd7b](https://github.com/boltdesignsystem/bolt/commit/85dbd7b0036fc66880092fa53215c23fdbdc8981))
+* tweak Image component Twig update to better support gifs ([59f5df4](https://github.com/boltdesignsystem/bolt/commit/59f5df4a7ed21b230c90fd1b379126f8f005ace3))
+* typo ([7077b17](https://github.com/boltdesignsystem/bolt/commit/7077b17ade3d6a974b2faae6f4901c536419db49))
+* update Blockquote Jest snapshot ([5f2990d](https://github.com/boltdesignsystem/bolt/commit/5f2990d33ad7d1efbb8a2c3665eaa9e7f5bcdd0c))
+* update Image build task to properly support + optimize .gifs ([1030aa5](https://github.com/boltdesignsystem/bolt/commit/1030aa5a476b515fc2d40838e6bebd5742fc1add))
+* update Image component's Twig to allow custom srcset to be used in Bolt -- workaround for supporting .gifs ([1a69b24](https://github.com/boltdesignsystem/bolt/commit/1a69b2425016d70495e143146dc8d2a6b562ed77))
+* update Jest snapshots for Blockquote ([565a4f4](https://github.com/boltdesignsystem/bolt/commit/565a4f4ce624bdd5711a55367668da27eef81f32))
+* update Jest test ([2364f75](https://github.com/boltdesignsystem/bolt/commit/2364f7514b50c5d9cef715bfd7a4b1ef4029aab3))
+* update PL resizer logic to no longer be off by 80px ([dbf1758](https://github.com/boltdesignsystem/bolt/commit/dbf17580369784bc4666a63f8f7d5c687a181914))
+
+
+### Features
+
+* 1st pass building out Hero examples + corresponding assets ([78b7733](https://github.com/boltdesignsystem/bolt/commit/78b773300eccf95aa6959210ca35fb8d1e201798))
+* add `id` prop and enable deep linking via query param ([bfd521f](https://github.com/boltdesignsystem/bolt/commit/bfd521fb3bc99cd1ee5db947f8079737d62a6db9))
+* add built-in theming support to Popover ([d532c62](https://github.com/boltdesignsystem/bolt/commit/d532c62cb1cb7a67a32523d9de70e0f2bf9e663e))
+* add CSS var to override bolt-list border color ([e5b3bbb](https://github.com/boltdesignsystem/bolt/commit/e5b3bbbc615ea0c020fb9747acd8cdc5be94a280))
+* add example of CSS var on Academy ([d8072d1](https://github.com/boltdesignsystem/bolt/commit/d8072d145ff626bfff31972126e304fd8316a5d8))
+* add new Blockquote demos handling the new `weight` prop + existing `size` prop ([0a4cb85](https://github.com/boltdesignsystem/bolt/commit/0a4cb8594c24fd6bca0769232d0e414c411742b6))
+* add new Tertiary button variant ([75a5bd3](https://github.com/boltdesignsystem/bolt/commit/75a5bd35ea1a58632f63e60f83d80b3bf639a040))
+* add smooth scrolling offset props to Tabs ([820df65](https://github.com/boltdesignsystem/bolt/commit/820df650d603d4d174ed542b2f764a6b99e59887))
+* manually define the Tertiary UI background and text theme colors ([0f4bf1b](https://github.com/boltdesignsystem/bolt/commit/0f4bf1bef71098fc62ef394933d49a7f7e2f6208))
+* refactor ul + ol bullet and styles so that spacing and bullet position are calculated not harcoded ([b6bb4e8](https://github.com/boltdesignsystem/bolt/commit/b6bb4e822e94f6cf7200983f74c5e1118311b3cf))
+* remove 'brand-' prefix from icon in _icon-banner.twig ([6e19057](https://github.com/boltdesignsystem/bolt/commit/6e19057a88e9e5c90343899d23dbc6c8b7d819a3))
+* support customizing Blockquote font weight ([39198b2](https://github.com/boltdesignsystem/bolt/commit/39198b26cf6bde7c3feb95cea2611e909201c13e))
+* switch from 'query-string' parser to 'url-search-params' polyfill ([77ed51f](https://github.com/boltdesignsystem/bolt/commit/77ed51fb71440eecc26b524892831ad21a9a1fe7))
+* switch to using HTML entities for bullets so we don't have to use calc() ([82e77cc](https://github.com/boltdesignsystem/bolt/commit/82e77ccb97513367cce4896837f6863e1350f10b))
+
+
+
+
+
 ## [2.18.1](https://github.com/boltdesignsystem/bolt/compare/v2.18.0...v2.18.1) (2020-02-21)
 
 
