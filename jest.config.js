@@ -1,7 +1,7 @@
 // https://facebook.github.io/jest/docs/en/configuration.html
 const globby = require('globby');
 const testFilesToIgnore = globby.sync([
-  'packages/components/**/*.e2e.js',
+  'packages/**/*.e2e.js',
   'packages/components/**/*.no2e.js', // workaround to disable a few e2e tests
   'packages/**/*.data.js',
   'packages/generators/**/*.test.js',
