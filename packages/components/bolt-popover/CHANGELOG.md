@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.19.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-popover/compare/v2.18.1...v2.19.0) (2020-03-04)
+
+
+### Bug Fixes
+
+* docs and theme class in twig ([f61fbec](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-popover/commit/f61fbec99b6c04358fa790e4e44e582e212abf89))
+* tests ([85dbd7b](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-popover/commit/85dbd7b0036fc66880092fa53215c23fdbdc8981))
+
+
+### Features
+
+* add built-in theming support to Popover ([d532c62](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-popover/commit/d532c62cb1cb7a67a32523d9de70e0f2bf9e663e))
+
+
+
+
+
 ## [2.18.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-popover/compare/v2.18.0...v2.18.1) (2020-02-21)
 
 **Note:** Version bump only for package @bolt/components-popover
