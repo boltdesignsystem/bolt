@@ -17,10 +17,10 @@ module.exports = {
         .url(
           `${testingUrl}/pattern-lab/patterns/02-components-deprecation-modal-ie-11-deprecation/02-components-deprecation-modal-ie-11-deprecation.html`,
         )
-        .waitForElementVisible('.js-deprecation-modal', 2000)
+        .waitForElementVisible('.js-deprecation-modal', 3000)
         .click('css selector', '.js-dismiss-deprecation-modal')
         .expect.element('.js-deprecation-modal')
-        .to.not.be.visible.after(1000);
+        .to.not.be.visible.after(3000);
 
       // modal remains hidden refreshing (after clicking on the X)
       browser
@@ -38,15 +38,15 @@ module.exports = {
           `${testingUrl}/pattern-lab/patterns/02-components-deprecation-modal-ie-11-deprecation/02-components-deprecation-modal-ie-11-deprecation.html`,
         )
         .expect.element('.js-deprecation-modal')
-        .to.be.visible.after(2000);
+        .to.be.visible.after(3000);
 
       // modal closes via keyboard by tabbing to the hidden close button
       browser
         .url(
           `${testingUrl}/pattern-lab/patterns/02-components-deprecation-modal-ie-11-deprecation/02-components-deprecation-modal-ie-11-deprecation.html`,
         )
-        .waitForElementVisible('.js-deprecation-modal', 2000)
-        .waitForElementVisible('.c-bolt-deprecation-modal__text', 2000)
+        .waitForElementVisible('.js-deprecation-modal', 3000)
+        .waitForElementVisible('.c-bolt-deprecation-modal__text', 3000)
         .click('css selector', '.c-bolt-deprecation-modal__text')
         .keys([
           browser.Keys.TAB,
@@ -56,7 +56,7 @@ module.exports = {
           browser.Keys.ENTER,
         ])
         .expect.element('.js-deprecation-modal')
-        .to.not.be.visible.after(2000);
+        .to.not.be.visible.after(3000);
 
       // modal doesn't re-open after closing via keyboard
       browser
@@ -64,7 +64,7 @@ module.exports = {
           `${testingUrl}/pattern-lab/patterns/02-components-deprecation-modal-ie-11-deprecation/02-components-deprecation-modal-ie-11-deprecation.html`,
         )
         .expect.element('.js-deprecation-modal')
-        .to.not.be.visible.after(2000);
+        .to.not.be.visible.after(3000);
     } else {
       browser
         .url(
