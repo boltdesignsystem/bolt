@@ -6,8 +6,8 @@
 
 {% block main_content %}
   {% set content %}
-    {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--large o-bolt-grid--center" %}
-      {% cell "u-bolt-width-12/12 u-bolt-width-8/12@small" %}
+    {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--large o-bolt-grid--middle" %}
+      {% cell "u-bolt-width-12/12 u-bolt-width-6/12@small" %}
         {% include "@bolt-components-headline/eyebrow.twig" with {
           text: "Case Study",
           tag: "p",
@@ -18,35 +18,76 @@
           tag: "h1",
         } only %}
       {% endcell %}
-      {% cell "u-bolt-width-12/12 u-bolt-width-4/12@small" %}
+      {% cell "u-bolt-width-12/12 u-bolt-width-6/12@small" %}
         {% include "@bolt-components-image/image.twig" with {
           src: "/images/placeholders/landscape-16x9-mountains.jpg",
           alt: "Alt text",
         } only %}
       {% endcell %}
+      {% set icon %}
+        {% include "@bolt-components-icon/icon.twig" with {
+          name: "check",
+          size: "large"
+        } only %}
+      {% endset %}
       {% cell "u-bolt-width-12/12 u-bolt-width-4/12@small" %}
-        {% include "@bolt-components-headline/headline.twig" with {
-          text: "Transformed client services with automation to serve more customers, faster",
-          size: "xlarge",
-          tag: "h2",
+        {% include "@bolt/flag.twig" with {
+          valign: "middle",
+          figure: {
+            content: icon,
+          },
+          items: [
+            {
+              pattern: "headline",
+              size: "large",
+              text: "Transformed client services with automation to serve more customers, faster",
+            },
+          ]
         } only %}
       {% endcell %}
       {% cell "u-bolt-width-12/12 u-bolt-width-4/12@small" %}
-        {% include "@bolt-components-headline/headline.twig" with {
-          text: "Built new end-to-end operations model to seamlessly connect front and back office",
-          size: "xlarge",
-          tag: "h2",
+        {% include "@bolt/flag.twig" with {
+          valign: "middle",
+          figure: {
+            content: icon,
+          },
+          items: [
+            {
+              pattern: "headline",
+              size: "large",
+              text: "Built new end-to-end operations model to seamlessly connect front and back office",
+            },
+          ]
         } only %}
       {% endcell %}
       {% cell "u-bolt-width-12/12 u-bolt-width-4/12@small" %}
-        {% include "@bolt-components-headline/headline.twig" with {
-          text: "Deploys updates faster with rapid app delivery",
-          size: "xlarge",
-          tag: "h2",
+        {% include "@bolt/flag.twig" with {
+          valign: "middle",
+          figure: {
+            content: icon,
+          },
+          items: [
+            {
+              pattern: "headline",
+              size: "large",
+              text: "Deploys updates faster with rapid app delivery",
+            },
+          ]
         } only %}
       {% endcell %}
     {% endgrid %}
   {% endset %}
+  {% include "@bolt-components-navbar/navbar.twig" with {
+    theme: "xdark",
+    title: {
+      tag: "h3",
+      text: "All customers",
+      icon: {
+        name: "arrow-left"
+      }
+    },
+    links: []
+  } only %}
   {% include "@bolt-components-band/band.twig" with {
     content: content,
     size: "large"
@@ -54,85 +95,97 @@
 
 
   {% set content %}
-    {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
-      {% cell "u-bolt-width-12/12" %}
-        {% include "@bolt-components-action-blocks/action-blocks.twig" with {
-          contentItems: [
-            {
-              text: "Feature Name",
-              url: "#!",
-              icon: {
-                name: "user",
-                size: "large",
-              }
+    {% grid "o-bolt-grid--flex o-bolt-grid--matrix" %}
+      {% cell "u-bolt-width-12/12 u-bolt-width-8/12@medium" %}
+        {% include "@bolt-components-blockquote/blockquote.twig" with {
+          author: {
+            name: "Leopold Martinez",
+            title: "Director of Operations, Banco Santander, Brasil"
+          },
+          content: "<p>The most important part of our transformation is making sure that we can keep growing and keep improving our digital relationship with the clients.</p>"
+        } only %}
+        {% include "@bolt-components-headline/headline.twig" with {
+          text: faker.text(66),
+        } only %}
+        {% include "@bolt-components-headline/text.twig" with {
+          text: faker.text(666),
+        } only %}
+        {% include "@bolt-components-headline/headline.twig" with {
+          text: faker.text(66),
+        } only %}
+        {% include "@bolt-components-headline/text.twig" with {
+          text: faker.text(666),
+        } only %}
+        {% include "@bolt-components-headline/headline.twig" with {
+          text: faker.text(66),
+        } only %}
+        {% include "@bolt-components-headline/text.twig" with {
+          text: faker.text(666),
+        } only %}
+      {% endcell %}
+      {% cell "u-bolt-width-12/12 u-bolt-width-4/12@medium" %}
+        {% set icon %}
+          {% include "@bolt-components-icon/icon.twig" with {
+            name: "asset-text",
+            size: "large",
+          } only %}
+        {% endset %}
+        {% set item_1 %}
+          {% include "@bolt/flag.twig" with {
+            valign: "top",
+            figure: {
+              content: icon,
             },
-            {
-              text: "Feature Name",
-              url: "#!",
-              icon: {
-                name: "user",
+            items: [
+              {
+                pattern: "headline",
                 size: "large",
-              }
+                text: "The power of robotic process automation (RPA)﻿",
+                url: "https://pega.com",
+              },
+            ],
+          } only %}
+        {% endset %}
+        {% set item_2 %}
+          {% include "@bolt/flag.twig" with {
+            valign: "top",
+            figure: {
+              content: icon,
             },
-            {
-              text: "Feature Name",
-              url: "#!",
-              icon: {
-                name: "user",
+            items: [
+              {
+                pattern: "headline",
                 size: "large",
-              }
+                text: "Embracing low-code development﻿",
+                url: "https://pega.com",
+              },
+            ],
+          } only %}
+        {% endset %}
+        {% set item_3 %}
+          {% include "@bolt/flag.twig" with {
+            valign: "top",
+            figure: {
+              content: icon,
             },
-            {
-              text: "Feature Name",
-              url: "#!",
-              icon: {
-                name: "user",
+            items: [
+              {
+                pattern: "headline",
                 size: "large",
-              }
-            },
-            {
-              text: "Feature Name",
-              url: "#!",
-              icon: {
-                name: "user",
-                size: "large",
-              }
-            },
-            {
-              text: "Feature Name",
-              url: "#!",
-              icon: {
-                name: "user",
-                size: "large",
-              }
-            },
+                text: "Don’t let legacy technology slow you down﻿﻿",
+                url: "https://pega.com",
+              },
+            ],
+          } only %}
+        {% endset %}
+        {% include "@bolt-components-list/list.twig" with {
+          separator: "solid",
+          spacing: "medium",
+          items: [
+            item_1,
+            item_2,
+            item_3,
           ]
-        } only %}
-      {% endcell %}
-      {% cell "u-bolt-width-12/12 u-bolt-width-6/12@small" %}
-        {% include "@bolt-components-image/image.twig" with {
-          src: "/images/placeholders/landscape-16x9-mountains.jpg",
-          alt: "Alt text",
-          attributes: {
-            class: "u-bolt-margin-bottom-medium",
-          },
-        } only %}
-        {% include "@bolt-components-headline/text.twig" with {
-          text: "Pega Robotic Automation™ builds bridges between unrelated software systems in order to automate tedious manual work and repetitive tasks, improving productivity and efficiency.",
-          tag: "p",
-        } only %}
-      {% endcell %}
-      {% cell "u-bolt-width-12/12 u-bolt-width-6/12@small" %}
-        {% include "@bolt-components-image/image.twig" with {
-          src: "/images/placeholders/landscape-16x9-mountains.jpg",
-          alt: "Alt text",
-          attributes: {
-            class: "u-bolt-margin-bottom-medium",
-          },
-        } only %}
-        {% include "@bolt-components-headline/text.twig" with {
-          text: "Pega Robot Manager™ is the central application used to manage all robots in your bot-force. Use this tool to manage how attended and unattended robots are configured and the work they can perform.",
-          tag: "p",
         } only %}
       {% endcell %}
     {% endgrid %}
@@ -140,95 +193,5 @@
   {% include "@bolt-components-band/band.twig" with {
     content: content,
     theme: "xlight",
-  } only %}
-
-
-  {% set content %}
-    {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
-      {% cell "u-bolt-width-12/12 u-bolt-width-4/12@small" %}
-        {% include "@bolt-components-headline/headline.twig" with {
-          text: "Get Started",
-          size: "xxlarge",
-          tag: "h2",
-        } only %}
-        {% include "@bolt-components-headline/subheadline.twig" with {
-          text: "Before you automate your tasks, make sure that you are all set to configure and install your environment. Then, get ready to build and use your robots!",
-          size: "xlarge",
-          tag: "p",
-        } only %}
-      {% endcell %}
-      {% cell "u-bolt-width-12/12 u-bolt-width-4/12@small" %}
-        {% include "@bolt-components-headline/headline.twig" with {
-          text: "Install + Configure",
-          size: "xxlarge",
-          tag: "h2",
-        } only %}
-        {% include "@bolt-components-headline/headline.twig" with {
-          text: "Pega Robotic Automation version Installation Instructions",
-          size: "xlarge",
-          tag: "h3",
-        } only %}
-        {% include "@bolt-components-headline/text.twig" with {
-          text: "Pega Robotic Automation includes the tools you need to create robots and provides a runtime environment for those robots. Use the Installation Instructions to install and configure Pega Robotic Automation.",
-          tag: "p",
-        } only %}
-        <hr class="u-bolt-margin-top-none u-bolt-margin-bottom-medium">
-        {% include "@bolt-components-headline/headline.twig" with {
-          text: "Installing Pega Robot Manager 8.3.1",
-          size: "xlarge",
-          tag: "h3",
-        } only %}
-        {% include "@bolt-components-headline/text.twig" with {
-          text: "Pega Robot Manager™ is the central application used to manage all robots in your bot-force. Use this tool to manage how attended and unattended robots are configured and work that they can perform.",
-          tag: "p",
-        } only %}
-      {% endcell %}
-      {% cell "u-bolt-width-12/12 u-bolt-width-4/12@small" %}
-        {% include "@bolt-components-headline/headline.twig" with {
-          text: "Build + Use",
-          size: "xxlarge",
-          tag: "h2",
-        } only %}
-        {% include "@bolt-components-headline/headline.twig" with {
-          text: "Configuring Pega Robot Manager 8.3.1",
-          size: "xlarge",
-          tag: "h3",
-        } only %}
-        <hr class="u-bolt-margin-top-none u-bolt-margin-bottom-medium">
-        {% include "@bolt-components-headline/headline.twig" with {
-          text: "Using Pega Robot Manager 8.3.1",
-          size: "xlarge",
-          tag: "h3",
-        } only %}
-        {% include "@bolt-components-headline/text.twig" with {
-          text: "Get the most out of your bot-force. This article describes how to use Robot Manager for both your attended and unattended robots.",
-          tag: "p",
-        } only %}
-        <hr class="u-bolt-margin-top-none u-bolt-margin-bottom-medium">
-        {% include "@bolt-components-headline/eyebrow.twig" with {
-          text: "Video",
-          tag: "p",
-        } only %}
-        {% include "@bolt-components-headline/headline.twig" with {
-          text: "Getting Started with Pega Robotics",
-          size: "xlarge",
-          tag: "h3",
-        } only %}
-        <hr class="u-bolt-margin-top-none u-bolt-margin-bottom-medium">
-        {% include "@bolt-components-headline/eyebrow.twig" with {
-          text: "Video",
-          tag: "p",
-        } only %}
-        {% include "@bolt-components-headline/headline.twig" with {
-          text: "Pega RPA Product How-Tos",
-          size: "xlarge",
-          tag: "h3",
-        } only %}
-      {% endcell %}
-    {% endgrid %}
-  {% endset %}
-  {% include "@bolt-components-band/band.twig" with {
-    content: content,
-    theme: "light",
   } only %}
 {% endblock %}

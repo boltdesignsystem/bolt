@@ -1,0 +1,185 @@
+{% extends "@pl/_default-page-template.twig" %}
+
+{% block global_header %}
+  {% include "@pl/_page-header.twig" %}
+{% endblock %}
+
+{% block main_content %}
+  {% set content %}
+    {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--large o-bolt-grid--middle" %}
+      {% cell "u-bolt-width-12/12 u-bolt-width-8/12@small" %}
+        {% include "@bolt-components-headline/headline.twig" with {
+          text: "Digital process automation, unleashed",
+          size: "xxxlarge",
+          tag: "h1",
+        } only %}
+        {% include "@bolt-components-headline/text.twig" with {
+          text: "Real digital transformation takes more than superficial change. You’ll need to look deeper. Think bigger. Reimagine the way your whole organization works. If you’re up for the challenge, then digital process automation (DPA) is the solution.",
+          tag: "h2",
+        } only %}
+      {% endcell %}
+      {% cell "u-bolt-width-12/12 u-bolt-width-4/12@small" %}
+        {% include "@bolt-components-blockquote/blockquote.twig" with {
+          author: {
+            name: "Chat Villarosa",
+            title: "Director of Digitization COE, Cisco"
+          },
+          content: "<p>We were able to work with business and IT, look at a process, optimize it, and basically automate 100% of [it].</p>"
+        } only %}
+      {% endcell %}
+    {% endgrid %}
+  {% endset %}
+  {% include "@bolt-components-band/band.twig" with {
+    content: content,
+    size: "large"
+  } only %}
+  {% embed "@bolt-components-sticky/sticky.twig" %}
+    {% block sticky_content %}
+      {% include "@bolt-components-navbar/navbar.twig" with {
+        theme: "xlight",
+        center: true,
+        title: {
+          tag: "h3",
+          text: "Put DPA into action",
+        },
+        links: [
+          {
+            text: "Section 1",
+            url: "#!"
+          },
+          {
+            text: "Section 2",
+            url: "#!"
+          },
+          {
+            text: "Section 3",
+            url: "#!"
+          },
+          {
+            text: "Section 4",
+            url: "#!"
+          },
+        ]
+      } only %}
+    {% endblock %}
+  {% endembed %}
+
+
+  {% set content %}
+    {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--large" %}
+      {% cell "u-bolt-width-12/12 u-bolt-width-8/12@medium" %}
+        {% set item_1 %}
+          {% include "@bolt-components-headline/headline.twig" with {
+            text: faker.text(66),
+          } only %}
+          {% include "@bolt-components-headline/text.twig" with {
+            text: faker.text(666),
+          } only %}
+        {% endset %}
+        {% set item_2 %}
+          {% include "@bolt-components-headline/headline.twig" with {
+            text: faker.text(66),
+          } only %}
+          {% include "@bolt-components-headline/text.twig" with {
+            text: faker.text(666),
+          } only %}
+        {% endset %}
+        {% set item_3 %}
+          {% include "@bolt-components-headline/headline.twig" with {
+            text: faker.text(66),
+          } only %}
+          {% include "@bolt-components-headline/text.twig" with {
+            text: faker.text(666),
+          } only %}
+        {% endset %}
+        {% include "@bolt-components-headline/headline.twig" with {
+          size: "xxlarge",
+          tag: "h3",
+          text: "3 things to know before you start",
+        } only %}
+        {% include "@bolt-components-list/list.twig" with {
+          separator: "solid",
+          spacing: "medium",
+          items: [
+            item_1,
+            item_2,
+            item_3,
+          ]
+        } only %}
+      {% endcell %}
+      {% cell "u-bolt-width-12/12 u-bolt-width-4/12@medium" %}
+        {% include "@bolt-components-card-replacement/card-replacement.twig" with {
+          height: "auto",
+          media: {
+            image: {
+              src: "/images/placeholders/landscape-16x9-mountains.jpg",
+              alt: "Image alt.",
+            },
+          },
+          body: {
+            headline: "It's time to embrace DPA",
+            paragraph: "Learn how to avoid common mistakes and chart a path to operational excellence.",
+          },
+          actions: [
+            {
+              text: "Get the whitepaper",
+              url: "https://pega.com",
+            },
+          ],
+        } only %}
+
+      {% endcell %}
+    {% endgrid %}
+  {% endset %}
+  {% include "@bolt-components-band/band.twig" with {
+    content: content,
+    theme: "xlight",
+  } only %}
+
+
+  {% set content %}
+    {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--large" %}
+      {% cell "u-bolt-width-12/12 u-bolt-width-4/12@medium" %}
+        {% include "@bolt-components-card-replacement/card-replacement.twig" with {
+          height: "auto",
+          media: {
+            image: {
+              src: "/images/placeholders/landscape-16x9-mountains.jpg",
+              alt: "Image alt.",
+            },
+          },
+          body: {
+            headline: "The power of a single platform",
+            paragraph: "The Forrester Wave™ says Pega offers enterprises “a highly unified and agile architecture.”",
+          },
+          actions: [
+            {
+              text: "Get the analyst report",
+              url: "https://pega.com",
+            },
+          ],
+        } only %}
+      {% endcell %}
+      {% cell "u-bolt-width-12/12 u-bolt-width-8/12@medium" %}
+        {% include "@bolt-components-headline/headline.twig" with {
+          size: "xxlarge",
+          tag: "h3",
+          text: "Goodbye, silos. Hello, seamless experiences.",
+        } only %}
+        {% include "@bolt-components-headline/text.twig" with {
+          text: faker.text(666),
+        } only %}
+        {% include "@bolt-components-headline/text.twig" with {
+          text: faker.text(666),
+        } only %}
+        {% include "@bolt-components-headline/text.twig" with {
+          text: faker.text(666),
+        } only %}
+      {% endcell %}
+    {% endgrid %}
+  {% endset %}
+  {% include "@bolt-components-band/band.twig" with {
+    content: content,
+    theme: "light",
+  } only %}
+{% endblock %}

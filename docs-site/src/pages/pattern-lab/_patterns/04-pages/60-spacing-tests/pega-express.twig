@@ -1,0 +1,270 @@
+{% extends "@pl/_default-page-template.twig" %}
+
+{% block global_header %}
+  {% include "@pl/_page-header.twig" %}
+{% endblock %}
+
+{% block main_content %}
+  {% set content %}
+    {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--large o-bolt-grid--middle" %}
+      {% cell "u-bolt-width-12/12 u-bolt-width-6/12@small" %}
+        {% include "@bolt-components-headline/eyebrow.twig" with {
+          text: "PROJECT HUB",
+          url: "https://pega.com",
+          icon: {
+            name: "arrow-left",
+            position: "before",
+          },
+        } only %}
+        {% include "@bolt-components-headline/headline.twig" with {
+          text: "Pega Express Methodology",
+          size: "xxxlarge",
+          tag: "h1",
+        } only %}
+        {% include "@bolt-components-headline/subheadline.twig" with {
+          text: "Achieve business outcomes quickly.",
+          size: "xxlarge",
+          tag: "h2",
+        } only %}
+        {% include "@bolt-components-headline/text.twig" with {
+          text: "Pega Express™ has evolved. Once a part of the Pega Platform, this name now unifies our low code experience strategy with our delivery methods. Starting with Pega 8.4, experience the evolution of Pega Express, a purposefully designed experience to ensure the capture and configuration of just what you need to be successful.",
+        } only %}
+      {% endcell %}
+      {% cell "u-bolt-width-12/12 u-bolt-width-6/12@small" %}
+        {% include "@bolt-components-image/image.twig" with {
+          src: "/images/placeholders/landscape-16x9-mountains.jpg",
+          alt: "Alt text",
+        } only %}
+      {% endcell %}
+    {% endgrid %}
+  {% endset %}
+  {% include "@bolt-components-band/band.twig" with {
+    content: content,
+  } only %}
+  {% embed "@bolt-components-sticky/sticky.twig" %}
+    {% block sticky_content %}
+      {% include "@bolt-components-navbar/navbar.twig" with {
+        theme: "xdark",
+        center: true,
+        title: {
+          tag: "h3",
+          text: "PEGA METHODOLOGY DELIVERY RESOURCES",
+        },
+        links: [
+          {
+            text: "Section 1",
+            url: "#!"
+          },
+          {
+            text: "Section 2",
+            url: "#!"
+          },
+          {
+            text: "Section 3",
+            url: "#!"
+          },
+          {
+            text: "Section 4",
+            url: "#!"
+          },
+        ]
+      } only %}
+    {% endblock %}
+  {% endembed %}
+
+
+  {% set content %}
+    {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--large" %}
+      {% cell "u-bolt-width-12/12 u-bolt-width-4/12@medium" %}
+        {% include "@bolt-components-headline/eyebrow.twig" with {
+          text: "Before you begin",
+        } only %}
+        {% include "@bolt-components-headline/headline.twig" with {
+          text: "Discover",
+          size: "xxxlarge",
+          tag: "h2",
+          url: "https://pega.com",
+        } only %}
+        {% include "@bolt-components-headline/headline.twig" with {
+          text: faker.text(36),
+          size: "xlarge",
+          url: "https://pega.com",
+        } only %}
+        {% include "@bolt-components-headline/text.twig" with {
+          text: faker.text(66),
+        } only %}
+        {% include "@bolt-components-headline/headline.twig" with {
+          text: faker.text(36),
+          size: "xlarge",
+          url: "https://pega.com",
+        } only %}
+        {% include "@bolt-components-headline/text.twig" with {
+          text: faker.text(66),
+        } only %}
+        {% include "@bolt-components-headline/headline.twig" with {
+          text: faker.text(36),
+          size: "xlarge",
+          url: "https://pega.com",
+        } only %}
+        {% include "@bolt-components-headline/text.twig" with {
+          text: faker.text(66),
+        } only %}
+      {% endcell %}
+      {% cell "u-bolt-width-12/12 u-bolt-width-8/12@medium" %}
+        {% include "@bolt-components-device-viewer/device-viewer.twig" with {
+          device: "ipad",
+          orientation: "landscape",
+          image: {
+            src: "/images/content/screenshots/device-screenshot--tablet.jpg",
+          },
+        } only %}
+      {% endcell %}
+    {% endgrid %}
+  {% endset %}
+  {% include "@bolt-components-band/band.twig" with {
+    content: content,
+    theme: "xlight",
+  } only %}
+
+
+  {% set content %}
+    {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--large" %}
+      {% cell "u-bolt-width-12/12 u-bolt-width-4/12@medium" %}
+        {% include "@bolt-components-icon/icon.twig" with {
+          name: "user",
+          background: "circle",
+          size: "large"
+        } only %}
+        {% include "@bolt-components-headline/eyebrow.twig" with {
+          text: faker.text(16),
+        } only %}
+        {% include "@bolt-components-headline/headline.twig" with {
+          text: faker.text(6),
+          size: "xxxlarge",
+          tag: "h3",
+          url: "https://pega.com",
+        } only %}
+        {% include "@bolt-components-headline/text.twig" with {
+          text: faker.text(66),
+          size: "large",
+        } only %}
+        {% include "@bolt-components-headline/headline.twig" with {
+          text: faker.text(36),
+          size: "xlarge",
+          url: "https://pega.com",
+        } only %}
+        {% include "@bolt-components-headline/text.twig" with {
+          text: faker.text(66),
+        } only %}
+        {% include "@bolt-components-headline/headline.twig" with {
+          text: faker.text(36),
+          size: "xlarge",
+          url: "https://pega.com",
+        } only %}
+        {% include "@bolt-components-headline/text.twig" with {
+          text: faker.text(66),
+        } only %}
+        {% include "@bolt-components-headline/headline.twig" with {
+          text: faker.text(36),
+          size: "xlarge",
+          url: "https://pega.com",
+        } only %}
+        {% include "@bolt-components-headline/text.twig" with {
+          text: faker.text(66),
+        } only %}
+      {% endcell %}
+      {% cell "u-bolt-width-12/12 u-bolt-width-4/12@medium" %}
+        {% include "@bolt-components-icon/icon.twig" with {
+          name: "user",
+          background: "circle",
+          size: "large"
+        } only %}
+        {% include "@bolt-components-headline/eyebrow.twig" with {
+          text: faker.text(16),
+        } only %}
+        {% include "@bolt-components-headline/headline.twig" with {
+          text: faker.text(6),
+          size: "xxxlarge",
+          tag: "h3",
+          url: "https://pega.com",
+        } only %}
+        {% include "@bolt-components-headline/text.twig" with {
+          text: faker.text(66),
+          size: "large",
+        } only %}
+        {% include "@bolt-components-headline/headline.twig" with {
+          text: faker.text(36),
+          size: "xlarge",
+          url: "https://pega.com",
+        } only %}
+        {% include "@bolt-components-headline/text.twig" with {
+          text: faker.text(66),
+        } only %}
+        {% include "@bolt-components-headline/headline.twig" with {
+          text: faker.text(36),
+          size: "xlarge",
+          url: "https://pega.com",
+        } only %}
+        {% include "@bolt-components-headline/text.twig" with {
+          text: faker.text(66),
+        } only %}
+        {% include "@bolt-components-headline/headline.twig" with {
+          text: faker.text(36),
+          size: "xlarge",
+          url: "https://pega.com",
+        } only %}
+        {% include "@bolt-components-headline/text.twig" with {
+          text: faker.text(66),
+        } only %}
+      {% endcell %}
+      {% cell "u-bolt-width-12/12 u-bolt-width-4/12@medium" %}
+        {% include "@bolt-components-icon/icon.twig" with {
+          name: "user",
+          background: "circle",
+          size: "large"
+        } only %}
+        {% include "@bolt-components-headline/eyebrow.twig" with {
+          text: faker.text(16),
+        } only %}
+        {% include "@bolt-components-headline/headline.twig" with {
+          text: faker.text(6),
+          size: "xxxlarge",
+          tag: "h3",
+          url: "https://pega.com",
+        } only %}
+        {% include "@bolt-components-headline/text.twig" with {
+          text: faker.text(66),
+          size: "large",
+        } only %}
+        {% include "@bolt-components-headline/headline.twig" with {
+          text: faker.text(36),
+          size: "xlarge",
+          url: "https://pega.com",
+        } only %}
+        {% include "@bolt-components-headline/text.twig" with {
+          text: faker.text(66),
+        } only %}
+        {% include "@bolt-components-headline/headline.twig" with {
+          text: faker.text(36),
+          size: "xlarge",
+          url: "https://pega.com",
+        } only %}
+        {% include "@bolt-components-headline/text.twig" with {
+          text: faker.text(66),
+        } only %}
+        {% include "@bolt-components-headline/headline.twig" with {
+          text: faker.text(36),
+          size: "xlarge",
+          url: "https://pega.com",
+        } only %}
+        {% include "@bolt-components-headline/text.twig" with {
+          text: faker.text(66),
+        } only %}
+      {% endcell %}
+    {% endgrid %}
+  {% endset %}
+  {% include "@bolt-components-band/band.twig" with {
+    content: content,
+    theme: "light",
+  } only %}
+{% endblock %}
