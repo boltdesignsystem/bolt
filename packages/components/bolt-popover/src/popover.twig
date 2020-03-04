@@ -17,6 +17,10 @@
   base_class ~ "--text-wrap",
   this.data.spacing.value != "none" ? base_class ~ "--spacing-" ~ this.data.spacing.value : "",
 ] %}
+{% set bubble_classes = [
+  base_class ~ "__bubble",
+  this.data.theme.value != "none" ? "t-bolt-#{this.data.theme.value}" : "",
+] %}
 
 {#
   Sort classes passed in via attributes into two groups:
@@ -58,7 +62,7 @@
     {% if content %}
       <span slot="content" id="{{ content_id }}">
         <replace-with-grandchildren class="{{ "#{base_class}__content" }}">
-          <span class="{{ "#{base_class}__bubble" }}">
+          <span class="{{ bubble_classes|join(' ') }}">
             <a href="#{{ trigger_id }}" class="{{ "#{base_class}__nojs-close" }}">
               <span aria-hidden="true">&times;</span>
               <span class="u-bolt-visuallyhidden">Close popover</span>

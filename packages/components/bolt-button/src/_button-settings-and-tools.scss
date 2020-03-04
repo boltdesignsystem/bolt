@@ -30,13 +30,13 @@ $bolt-button-translate--active: translate3d(0, 1px, 0);
 }
 
 @mixin bolt-button-raised-effect {
-  &:hover,
-  &.is-hover {
+  &:hover:not([disabled]),
+  &.is-hover:not([disabled]) {
     @include bolt-shadow('level-20', true);
   }
 
-  &:active,
-  &.is-active {
+  &:active:not([disabled]),
+  &.is-active:not([disabled]) {
     transform: $bolt-button-translate--active;
   }
 }
@@ -55,6 +55,7 @@ $bolt-button-translate--active: translate3d(0, 1px, 0);
   border-radius: bolt-button-border-radius('regular');
   border-width: $bolt-button-border-width;
   border-style: $bolt-button-border-style;
+  border-color: transparent;
   @include bolt-shadow('level-20');
   box-shadow: var(--bolt-button-box-shadow, #{bolt-shadow('level-20')});
   outline: none;
@@ -90,54 +91,81 @@ $bolt-button-translate--active: translate3d(0, 1px, 0);
 // Button Colors / Types
 @mixin bolt-button-style--primary() {
   color: bolt-theme(text-on-primary);
-  border-color: bolt-theme(primary);
   background-color: bolt-theme(primary);
 
   &:hover,
   &.is-hover {
     color: bolt-theme(text-on-primary-lighten-15);
-    border-color: bolt-theme(primary-lighten-15);
     background-color: bolt-theme(primary-lighten-15);
   }
 
   &:focus:not([disabled]):not(.c-bolt-button--disabled):not(.c-bolt-button--inert),
   &.is-focus:not([disabled]):not(.c-bolt-button--disabled):not(.c-bolt-button--inert) {
     color: bolt-theme(text-on-primary-darken-15);
-    border-color: bolt-theme(primary-darken-15);
     background-color: bolt-theme(primary-darken-15);
   }
 
   &:active,
   &.is-active {
     color: bolt-theme(text-on-primary-darken-25);
-    border-color: bolt-theme(primary-darken-25);
     background-color: bolt-theme(primary-darken-25);
+  }
+}
+
+
+/**
+  @todo: how do we want to handle these global theming fallback values?
+  **/
+@mixin bolt-button-style--tertiary() {
+  color: var(--bolt-theme--tertiary--text-color--default, #{rgba(bolt-color(black), 0.9)});
+  background-color: var(--bolt-theme--tertiary--background-color--default, #{rgba(bolt-color(gray), 0.15)});
+
+  &,
+  &:before {
+    box-shadow: none;
+  }
+
+  &:hover,
+  &.is-hover {
+    color: var(--bolt-theme--tertiary--text-color--hover, #{bolt-color(black)});
+    background-color: var(--bolt-theme--tertiary--background-color--hover, #{rgba(bolt-color(gray), 0.3)});
+  }
+
+  &:focus:hover:not(:active),
+  &:active:focus,
+  &:focus,
+  &.is-focus {
+    color: var(--bolt-theme--tertiary--text-color--focus, #{bolt-color(black)});
+    background-color: var(--bolt-theme--tertiary--background-color--focus, #{rgba(bolt-color(gray), 0.4)}); /* [1] */
+  }
+
+  &:active:hover,
+  &:active,
+  &.is-active {
+    color: var(--bolt-theme--tertiary--text-color--active, #{bolt-color(black)});
+    background-color: var(--bolt-theme--tertiary--background-color--active, #{rgba(bolt-color(gray), 0.5)});
   }
 }
 
 @mixin bolt-button-style--secondary() {
   color: bolt-theme(text-on-secondary);
-  border-color: bolt-theme(secondary);
   background-color: bolt-theme(secondary);
 
   &:hover,
   &.is-hover {
     color: bolt-theme(text-on-secondary-lighten-5);
-    border-color: bolt-theme(secondary-lighten-5);
     background-color: bolt-theme(secondary-lighten-5);
   }
 
   &:focus:not([disabled]):not(.c-bolt-button--disabled):not(.c-bolt-button--inert),
   &.is-focus:not([disabled]):not(.c-bolt-button--disabled):not(.c-bolt-button--inert) {
     color: bolt-theme(text-on-secondary-darken-3);
-    border-color: bolt-theme(secondary-darken-3);
     background-color: bolt-theme(secondary-darken-3);
   }
 
   &:active,
   &.is-active {
     color: bolt-theme(text-on-secondary-darken-10);
-    border-color: bolt-theme(secondary-darken-10);
     background-color: bolt-theme(secondary-darken-10);
   }
 }
@@ -148,7 +176,6 @@ $bolt-button-translate--active: translate3d(0, 1px, 0);
   opacity: bolt-opacity(100);
   color: bolt-theme(headline-link);
   text-decoration: none;
-  border-color: transparent;
 
   &,
   &[disabled],
@@ -175,37 +202,21 @@ $bolt-button-translate--active: translate3d(0, 1px, 0);
 }
 
 @mixin bolt-button-style--disabled() {
+  opacity: 1;
+  transform: none;
+  color: bolt-theme(text-disabled);
   cursor: not-allowed;
 
-  &,
-  &:visited,
-  &:hover,
-  &.is-hover,
-  &:active,
-  &.is-active {
-    color: bolt-theme(text-disabled);
+  * {
+    pointer-events: none;
   }
 
-  &:not(.c-bolt-button--text),
-  &:not(.c-bolt-button--text):visited,
-  &:not(.c-bolt-button--text):hover,
-  &:not(.c-bolt-button--text).is-hover,
-  &:not(.c-bolt-button--text):active,
-  &:not(.c-bolt-button--text).is-active {
-    @include bolt-shadow('level-20');
-    opacity: bolt-opacity(100);
-    transform: none;
-    border-color: bolt-theme(disabled);
-    box-shadow: var(--bolt-button-box-shadow, #{bolt-shadow('level-20')});
+  &:not(.c-bolt-button--text){
     background-color: bolt-theme(disabled);
-    will-change: box-shadow;
   }
 
-  &:before,
-  &:hover:before,
-  &.is-hover:before,
-  &:active:before,
-  &.is-active:before {
+  &:before {
+    content: '';
     display: none;
   }
 }
@@ -226,18 +237,15 @@ $bolt-button-translate--active: translate3d(0, 1px, 0);
   &.c-bolt-button,
   &.c-bolt-button:visited {
     color: bolt-text-contrast($button-background-color-default);
-    border-color: $button-background-color-default;
     background-color: $button-background-color-default;
   }
   &:focus,
   &:hover {
     color: bolt-text-contrast($button-background-color-default);
-    border-color: $button-background-color-hover;
     background-color: $button-background-color-hover;
   }
   &:active {
     color: bolt-text-contrast($button-background-color-default);
-    border-color: $button-background-color-active;
     background-color: $button-background-color-active;
   }
 }
@@ -262,5 +270,7 @@ $bolt-button-translate--active: translate3d(0, 1px, 0);
     @include bolt-button-style--text;
   } @else if ($style == 'disabled') {
     @include bolt-button-style--disabled;
+  } @else if ($style == 'tertiary') {
+    @include bolt-button-style--tertiary;
   }
 }
