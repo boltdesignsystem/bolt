@@ -1,7 +1,7 @@
 {% extends "@pl/_default-page-template.twig" %}
 
 {% block global_header %}
-  {% include "@pl/page-header.twig" %}
+  {% include "@pl/_page-header.twig" %}
 {% endblock %}
 
 {% block main_content %}
@@ -362,85 +362,207 @@
 } only %}
   {% block band_content %}
 
-    {% grid "o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--middle o-bolt-grid--matrix" %}
+    {% set tab1 %}
+      {% grid "o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--middle o-bolt-grid--matrix" %}
 
-      {% cell "u-bolt-width-1/1 u-bolt-width-5/12@small" %}
-        {% include "@bolt/subheadline.twig" with {
-          text: "Maximize Value with <strong>Next&nbsp;Best Action Intelligence</strong>",
-          size: "xxlarge",
-          tag: "span"
-        } only %}
+        {% cell "u-bolt-width-1/1 u-bolt-width-5/12@small" %}
+          {% include "@bolt/subheadline.twig" with {
+            text: "Maximize Value with <strong>Next&nbsp;Best Action Intelligence</strong>",
+            size: "xxlarge",
+            tag: "span"
+          } only %}
 
-        {% include "@bolt-components-headline/text.twig" with {
-          text: "Blow away your customer’s expectations - engage each individual one-to-one, letting the AI constantly adapt to their needs.",
-          size: "medium"
-        } only %}
+          {% include "@bolt-components-headline/text.twig" with {
+            text: "Blow away your customer’s expectations - engage each individual one-to-one, letting the AI constantly adapt to their needs.",
+            size: "medium"
+          } only %}
 
-        {% include "@bolt/button-group.twig" with {
-          "buttons": [
-            {
-              "text": "Call to action",
-              "style": "primary"
-            },
-            {
-              "text": "Call to action",
-              "style": "secondary"
+          {% include "@bolt/button-group.twig" with {
+            "buttons": [
+              {
+                "text": "Call to action",
+                "style": "primary"
+              },
+              {
+                "text": "Call to action",
+                "style": "secondary"
+              }
+            ]
+          } only %}
+        {% endcell %}
+
+        {% cell "u-bolt-width-1/1 u-bolt-width-7/12@small" %}
+          {% include "@bolt/device-viewer.twig" with {
+            device: "iphone8",
+            orientation: "portrait",
+            color: "black",
+            magnify: TRUE,
+            image: {
+              src: "/images/content/screenshots/device-screenshot--phone.jpg"
             }
-          ]
-        } only %}
-      {% endcell %}
+          } only %}
+        {% endcell %}
+      {% endgrid %}
+    {% endset %}
 
-      {% cell "u-bolt-width-1/1 u-bolt-width-7/12@small" %}
-        {% include "@bolt/device-viewer.twig" with {
-          device: "iphone8",
-          orientation: "portrait",
-          color: "black",
-          magnify: TRUE,
-          image: {
-            src: "/images/content/screenshots/device-screenshot--phone.jpg"
-          }
-        } only %}
-      {% endcell %}
+    {% set tab2 %}
+      {% grid "o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--middle o-bolt-grid--matrix" %}
 
-       {% cell "u-bolt-width-1/1 u-bolt-width-7/12@small" %}
-        {% include "@bolt/device-viewer.twig" with {
-          device: "iphone8",
-          orientation: "portrait",
-          color: "gold",
-          magnify: TRUE,
-          image: {
-            src: "/images/content/screenshots/device-screenshot--phone.jpg"
-          }
-        } only %}
-      {% endcell %}
+        {% cell "u-bolt-width-1/1 u-bolt-width-7/12@small" %}
+          {% include "@bolt/device-viewer.twig" with {
+            device: "iphone8",
+            orientation: "portrait",
+            color: "gold",
+            magnify: TRUE,
+            image: {
+              src: "/images/content/screenshots/device-screenshot--phone.jpg"
+            }
+          } only %}
+        {% endcell %}
 
-      {% cell "u-bolt-width-1/1 u-bolt-width-7/12@small" %}
-        {% include "@bolt/device-viewer.twig" with {
-          device: "iphone8",
-          orientation: "landscape",
-          color: "gold",
-          magnify: TRUE,
-          image: {
-            src: "/images/content/screenshots/device-screenshot--phone.jpg"
-          }
-        } only %}
-      {% endcell %}
+        {% cell "u-bolt-width-1/1 u-bolt-width-5/12@small" %}
+          {% include "@bolt/subheadline.twig" with {
+            text: "Maximize Value with <strong>Next&nbsp;Best Action Intelligence</strong>",
+            size: "xxlarge",
+            tag: "span"
+          } only %}
 
+          {% include "@bolt-components-headline/text.twig" with {
+            text: "zzzBlow away your customer’s expectations - engage each individual one-to-one, letting the AI constantly adapt to their needs.",
+            size: "medium"
+          } only %}
 
-       {% cell "u-bolt-width-1/1" %}
-        {% include "@bolt/device-viewer.twig" with {
-          device: "iphone8",
-          orientation: "landscape",
-          color: "black",
-          magnify: TRUE,
-          image: {
-            src: "/images/content/screenshots/device-screenshot--phone.jpg"
-          }
-        } only %}
-      {% endcell %}
+          {% include "@bolt/button-group.twig" with {
+            "buttons": [
+              {
+                "text": "Call to action",
+                "style": "primary"
+              },
+              {
+                "text": "Call to action",
+                "style": "secondary"
+              }
+            ]
+          } only %}
+        {% endcell %}
 
-    {% endgrid %}
+      {% endgrid %}
+    {% endset %}
 
+    {% set tab3 %}
+      {% grid "o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--middle o-bolt-grid--matrix" %}
+
+        {% cell "u-bolt-width-1/1 u-bolt-width-5/12@small" %}
+          {% include "@bolt/subheadline.twig" with {
+            text: "Maximize Value with <strong>Next&nbsp;Best Action Intelligence</strong>",
+            size: "xxlarge",
+            tag: "span"
+          } only %}
+
+          {% include "@bolt-components-headline/text.twig" with {
+            text: "Blow away your customer’s expectations - engage each individual one-to-one, letting the AI constantly adapt to their needs.",
+            size: "medium"
+          } only %}
+
+          {% include "@bolt/button-group.twig" with {
+            "buttons": [
+              {
+                "text": "Call to action",
+                "style": "primary"
+              },
+              {
+                "text": "Call to action",
+                "style": "secondary"
+              }
+            ]
+          } only %}
+        {% endcell %}
+
+        {% cell "u-bolt-width-1/1 u-bolt-width-7/12@small" %}
+          {% include "@bolt/device-viewer.twig" with {
+            device: "iphone8",
+            orientation: "landscape",
+            color: "gold",
+            magnify: TRUE,
+            image: {
+              src: "/images/content/screenshots/device-screenshot--phone.jpg"
+            }
+          } only %}
+        {% endcell %}
+
+      {% endgrid %}
+    {% endset %}
+
+    {% set tab4 %}
+      {% grid "o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--middle o-bolt-grid--matrix" %}
+
+        {% cell "u-bolt-width-1/1 u-bolt-width-7/12@small" %}
+          {% include "@bolt/device-viewer.twig" with {
+            device: "iphone8",
+            orientation: "landscape",
+            color: "black",
+            magnify: TRUE,
+            image: {
+              src: "/images/content/screenshots/device-screenshot--phone.jpg"
+            }
+          } only %}
+        {% endcell %}
+
+        {% cell "u-bolt-width-1/1 u-bolt-width-5/12@small" %}
+          {% include "@bolt/subheadline.twig" with {
+            text: "Maximize Value with <strong>Next&nbsp;Best Action Intelligence</strong>",
+            size: "xxlarge",
+            tag: "span"
+          } only %}
+
+          {% include "@bolt-components-headline/text.twig" with {
+            text: "zzzBlow away your customer’s expectations - engage each individual one-to-one, letting the AI constantly adapt to their needs.",
+            size: "medium"
+          } only %}
+
+          {% include "@bolt/button-group.twig" with {
+            "buttons": [
+              {
+                "text": "Call to action",
+                "style": "primary"
+              },
+              {
+                "text": "Call to action",
+                "style": "secondary"
+              }
+            ]
+          } only %}
+        {% endcell %}
+
+      {% endgrid %}
+    {% endset %}
+
+    {% include "@bolt-components-tabs/tabs.twig" with {
+      align: "center",
+      spacing: "medium",
+      panels: [
+        {
+          label: "Product feature 1",
+          content: tab1,
+          id: "tab-1",
+        },
+        {
+          label: "Product feature 2",
+          content: tab2,
+          id: "tab-2",
+        },
+        {
+          label: "Product feature 3",
+          content: tab3,
+          id: "tab-3",
+        },
+        {
+          label: "Product feature 4",
+          content: tab4,
+          id: "tab-4",
+        }
+      ]
+    } only %}  
 
   {% endblock %}
 {% endembed %}

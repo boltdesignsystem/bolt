@@ -19,6 +19,7 @@ let cx = classNames.bind([styles, textStyles]);
 class BoltBlockquote extends withLitHtml {
   static props = {
     size: props.string,
+    weight: props.string,
     alignItems: props.string,
     border: props.string,
     indent: props.boolean,
@@ -139,6 +140,7 @@ class BoltBlockquote extends withLitHtml {
     // validate the original prop data passed along -- returns back the validated data w/ added default values
     const {
       size,
+      weight,
       alignItems,
       border,
       indent,
@@ -152,6 +154,7 @@ class BoltBlockquote extends withLitHtml {
 
     const classes = cx('c-bolt-blockquote', {
       [`c-bolt-blockquote--${size}`]: size,
+      [`c-bolt-blockquote--${weight}`]: weight,
       [`c-bolt-blockquote--align-items-${this.getAlignItemsOption(
         alignItems,
       )}`]: this.getAlignItemsOption(alignItems),
@@ -173,7 +176,7 @@ class BoltBlockquote extends withLitHtml {
       'c-bolt-text-v2--block',
       'c-bolt-text-v2--body',
       `c-bolt-text-v2--font-size-${size}`,
-      'c-bolt-text-v2--font-weight-semibold',
+      `c-bolt-text-v2--font-weight-${weight}`,
       'c-bolt-text-v2--font-style-regular',
       'c-bolt-text-v2--color-theme-headline',
       'c-bolt-text-v2--letter-spacing-regular',
