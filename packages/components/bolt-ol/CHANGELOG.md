@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.19.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/lists/bolt-ol/compare/v2.18.1...v2.19.0) (2020-03-04)
+
+
+### Bug Fixes
+
+* number incrementing in FF ([83fdbbe](https://github.com/bolt-design-system/bolt/tree/master/packages/components/lists/bolt-ol/commit/83fdbbe773846f64886fedc1dd72f78cb23bdce1))
+
+
+
+
+
 # [2.18.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/lists/bolt-ol/compare/v2.17.1...v2.18.0) (2020-02-19)
 
 **Note:** Version bump only for package @bolt/components-ol
