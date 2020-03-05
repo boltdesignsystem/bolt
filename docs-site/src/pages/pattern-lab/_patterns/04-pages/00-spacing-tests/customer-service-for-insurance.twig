@@ -1,0 +1,212 @@
+{% extends "@pl/_default-page-template.twig" %}
+
+{% block global_header %}
+  {% include "@pl/_page-header.twig" %}
+{% endblock %}
+
+{% block main_content %}
+  {% set content %}
+    {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center u-bolt-margin-bottom-large" %}
+      {% cell "u-bolt-width-12/12" %}
+        {% include "@bolt-components-headline/subheadline.twig" with {
+          text: "— PEGA MICROJOURNEYS —",
+          align: "center",
+          size: "xxlarge",
+          tag: "p",
+        } only %}
+        {% include "@bolt-components-headline/headline.twig" with {
+          text: "Customer Service for Insurance",
+          align: "center",
+          size: "xxxlarge",
+          tag: "h1",
+        } only %}
+        {% include "@bolt-components-headline/subheadline.twig" with {
+          text: "Pega Customer Service for Insurance microjourneys provides a single, unified, familiar interface for customer service employees, addressing key customer service functions.",
+          align: "center",
+          size: "xlarge",
+          tag: "p",
+        } only %}
+      {% endcell %}
+    {% endgrid %}
+    {% include "@bolt-components-headline/headline.twig" with {
+      text: "Featured Microjourneys",
+      align: "center",
+      size: "xxlarge",
+      tag: "h2",
+    } only %}
+    {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--large o-bolt-grid--center" %}
+      {% cell "u-bolt-width-12/12 u-bolt-width-6/12@small" %}
+        {% include "@bolt-components-card-replacement/card-replacement.twig" with {
+          media: {
+            image: {
+              src: "/images/placeholders/landscape-16x9-mountains.jpg",
+              alt: "Image alt.",
+            },
+          },
+          body: {
+            eyebrow: "This is an eyebrow",
+            headline: "This is a headline",
+            paragraph: "This is a paragraph.",
+          },
+          actions: [
+            {
+              text: "This is a button",
+              url: "https://pega.com",
+            },
+          ],
+        } only %}
+      {% endcell %}
+      {% cell "u-bolt-width-12/12 u-bolt-width-6/12@small" %}
+        {% include "@bolt-components-card-replacement/card-replacement.twig" with {
+          media: {
+            image: {
+              src: "/images/placeholders/landscape-16x9-mountains.jpg",
+              alt: "Image alt.",
+            },
+          },
+          body: {
+            eyebrow: "This is an eyebrow",
+            headline: "This is a headline",
+            paragraph: "This is a paragraph.",
+          },
+          actions: [
+            {
+              text: "This is a button",
+              url: "https://pega.com",
+            },
+          ],
+        } only %}
+      {% endcell %}
+    {% endgrid %}
+  {% endset %}
+  {% include "@bolt-components-band/band.twig" with {
+    content: content,
+    size: "large"
+  } only %}
+
+
+  {% set content %}
+    {% include "@bolt-components-headline/subheadline.twig" with {
+      text: "Additional Microjourneys",
+      align: "center",
+      size: "xxlarge",
+      tag: "h3",
+    } only %}
+    {% grid "o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--matrix" %}
+      {% cell "u-bolt-width-12/12 u-bolt-width-6/12@small" %}
+        {% include "@bolt-components-headline/headline.twig" with {
+          text: faker.text(26),
+          size: "large",
+          tag: "h4",
+        } only %}
+        {% include "@bolt-components-headline/text.twig" with {
+          text: faker.text(106),
+        } only %}
+        <hr class="u-bolt-margin-top-none u-bolt-margin-bottom-medium">
+        {% include "@bolt-components-headline/headline.twig" with {
+          text: faker.text(26),
+          size: "large",
+          tag: "h4",
+        } only %}
+        {% include "@bolt-components-headline/text.twig" with {
+          text: faker.text(106),
+        } only %}
+        <hr class="u-bolt-margin-top-none u-bolt-margin-bottom-medium">
+        {% include "@bolt-components-headline/headline.twig" with {
+          text: faker.text(26),
+          size: "large",
+          tag: "h4",
+        } only %}
+        {% include "@bolt-components-headline/text.twig" with {
+          text: faker.text(106),
+        } only %}
+        <hr class="u-bolt-margin-top-none u-bolt-margin-bottom-medium">
+        {% include "@bolt-components-headline/headline.twig" with {
+          text: faker.text(26),
+          size: "large",
+          tag: "h4",
+        } only %}
+        {% include "@bolt-components-headline/text.twig" with {
+          text: faker.text(106),
+        } only %}
+        <hr class="u-bolt-margin-top-none u-bolt-margin-bottom-medium">
+        {% include "@bolt-components-headline/headline.twig" with {
+          text: faker.text(26),
+          size: "large",
+          tag: "h4",
+        } only %}
+        {% include "@bolt-components-headline/text.twig" with {
+          text: faker.text(106),
+        } only %}
+        <hr class="u-bolt-margin-top-none u-bolt-margin-bottom-medium">
+        {% include "@bolt-components-headline/headline.twig" with {
+          text: faker.text(26),
+          size: "large",
+          tag: "h4",
+        } only %}
+        {% include "@bolt-components-headline/text.twig" with {
+          text: faker.text(106),
+        } only %}
+      {% endcell %}
+      {% cell "u-bolt-width-12/12 u-bolt-width-6/12@small" %}
+        {% include "@bolt-components-headline/headline.twig" with {
+          text: faker.text(26),
+          size: "large",
+          tag: "h4",
+        } only %}
+        {% include "@bolt-components-headline/text.twig" with {
+          text: faker.text(106),
+        } only %}
+        <hr class="u-bolt-margin-top-none u-bolt-margin-bottom-medium">
+        {% include "@bolt-components-headline/headline.twig" with {
+          text: faker.text(26),
+          size: "large",
+          tag: "h4",
+        } only %}
+        {% include "@bolt-components-headline/text.twig" with {
+          text: faker.text(106),
+        } only %}
+        <hr class="u-bolt-margin-top-none u-bolt-margin-bottom-medium">
+        {% include "@bolt-components-headline/headline.twig" with {
+          text: faker.text(26),
+          size: "large",
+          tag: "h4",
+        } only %}
+        {% include "@bolt-components-headline/text.twig" with {
+          text: faker.text(106),
+        } only %}
+        <hr class="u-bolt-margin-top-none u-bolt-margin-bottom-medium">
+        {% include "@bolt-components-headline/headline.twig" with {
+          text: faker.text(26),
+          size: "large",
+          tag: "h4",
+        } only %}
+        {% include "@bolt-components-headline/text.twig" with {
+          text: faker.text(106),
+        } only %}
+        <hr class="u-bolt-margin-top-none u-bolt-margin-bottom-medium">
+        {% include "@bolt-components-headline/headline.twig" with {
+          text: faker.text(26),
+          size: "large",
+          tag: "h4",
+        } only %}
+        {% include "@bolt-components-headline/text.twig" with {
+          text: faker.text(106),
+        } only %}
+        <hr class="u-bolt-margin-top-none u-bolt-margin-bottom-medium">
+        {% include "@bolt-components-headline/headline.twig" with {
+          text: faker.text(26),
+          size: "large",
+          tag: "h4",
+        } only %}
+        {% include "@bolt-components-headline/text.twig" with {
+          text: faker.text(106),
+        } only %}
+      {% endcell %}
+    {% endgrid %}
+  {% endset %}
+  {% include "@bolt-components-band/band.twig" with {
+    content: content,
+    theme: "xlight",
+  } only %}
+{% endblock %}
