@@ -29,6 +29,7 @@ describe('test-utils', () => {
       '@bolt/components-band',
       '@bolt/generator-bolt',
       '@bolt/blueprints',
+      '@bolt/components-hero',
       '@bolt/components-page-footer',
     ]);
   });

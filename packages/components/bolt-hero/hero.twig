@@ -1,0 +1,96 @@
+{% set schema = bolt.data.components["@bolt-components-hero"].schema %}
+
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(schema, _self) | raw }}
+{% endif %}
+
+{% set this = init(schema) %}
+
+{% set imageValign = this.data["image_valign"].value %}
+{% set imageAlign = this.data["image_align"].value %}
+
+{% set reverseOrder = this.data["reverse_order"].value %}
+
+{% set _largeBreakpoint = _largeBreakpoint | default("medium") %}
+{% set _mediumBreakpoint = _mediumBreakpoint | default("small") %}
+
+{% set _imagePaddingTop = imageValign == "top" ? "none" : "large" %}
+{% set _imagePaddingBottom = this.data["image_valign"] == "bottom" ? "none" : "large" %}
+
+{% set _isImageFirstOnMobile = (imageValign != 'bottom') or (imageValign == 'top') %}
+{% set _isImageFirstOnDesktop = reverseOrder == true %}
+{% set _isImageLastOnMobile = (imageValign != 'top') or (imageValign == 'bottom') %}
+
+{% if image %}
+  {% set renderedImage %}
+    <div
+      class="
+        o-bolt-grid__cell
+        o-bolt-grid__cell--{{imageValign}}
+        u-bolt-width-12/12
+        u-bolt-width-5/12@{{ _mediumBreakpoint }}
+        u-bolt-width-6/12@{{ _largeBreakpoint }}
+        u-bolt-padding-{{_isImageFirstOnDesktop ? 'right' : 'left'}}-large@{{_largeBreakpoint}}
+        {{ _isImageFirstOnMobile and imageValign != 'top' ? 'u-bolt-padding-top-large' : '' }}
+        {{ _isImageLastOnMobile and imageValign != 'bottom' and not _isImageFirstOnMobile ? 'u-bolt-padding-bottom-large' : '' }}
+        u-bolt-padding-top-{{_imagePaddingTop}}@{{_mediumBreakpoint}}
+        u-bolt-padding-bottom-{{_imagePaddingBottom}}@{{_mediumBreakpoint}}
+      ">
+      {% include "@bolt-components-image/image.twig" with {
+        src: this.data["image"].value,
+        max_width: this.data["image_max_width"].value,
+        attributes: {
+          style: "min-width: " ~ (this.data["image_min_width"].value ? this.data["image_min_width"].value : 'none') ~ ";",
+          class: [
+            imageAlign == 'center' ? "u-bolt-margin-left-auto" : "",
+            imageAlign == 'center' ? "u-bolt-margin-right-auto" : "",
+            imageAlign == 'left' ? "u-bolt-margin-right-auto" : "",
+            imageAlign == 'right' ? "u-bolt-margin-left-auto" : "",
+            imageAlign == 'center' ? "u-bolt-margin-#{_isImageFirstOnDesktop ? 'left' : 'right'}-none@#{_mediumBreakpoint}" : "",
+          ]
+        }
+      } only %}
+    </div>
+  {% endset %}
+{% endif %}
+
+
+{% set content %}
+  {% grid "o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--medium #{(reverseOrder == false and imageValign != 'bottom') or (reverseOrder == true and not image) ? 'o-bolt-grid--rev' : '' }" %}
+
+    {% if _isImageFirstOnMobile and image %}
+      {{ renderedImage }}
+    {% endif %}
+
+    {% cell "
+      u-bolt-width-12/12
+      u-bolt-width-7/12@#{ _mediumBreakpoint }
+      u-bolt-width-6/12@#{ _largeBreakpoint }
+      u-bolt-padding-top-large
+      u-bolt-padding-bottom-large
+    " %}
+      {{ content }}
+    {% endcell %}
+
+    {% if _isImageLastOnMobile and image and not _isImageFirstOnMobile %}
+      {{ renderedImage }}
+    {% endif %}
+
+  {% endgrid %}
+{% endset %}
+
+{% include "@bolt-components-band/band.twig" with {
+  theme: this.data.theme.value,
+  content: content,
+  size: "none",
+  background: {
+    overlay: "disabled",
+    contentItems: [
+      {
+        pattern: "image",
+        lazyload: false,
+        src: this.data["background"].value | default('data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=='),
+      },
+    ]
+  }
+} only %}

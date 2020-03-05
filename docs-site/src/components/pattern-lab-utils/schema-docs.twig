@@ -99,9 +99,9 @@
     <!-- name -->
     <td class="c-bds-docs-table__col c-bds-docs-table__col--key">
       <strong>
-        {% set capitalizedKey = name[:1]|capitalize ~ name[1:] %}
+        {% set capitalizedKey = name[:1]|lower ~ name[1:] %}
         {% set capitalizedKeyWithPrefix = prefix ~ capitalizedKey %}
-        <bolt-change-case mode="snake">{{ capitalizedKeyWithPrefix }}</bolt-change-case>
+        {{ capitalizedKeyWithPrefix }}
         {% if required %}<span class="required-key" title="Required">*</span>{% endif %}
       </strong>
     </td>
@@ -260,9 +260,9 @@
                     <!-- name -->
                     <td class="c-bds-docs-table__col c-bds-docs-table__col--key">
                       <strong>
-                        {% set capitalizedKey = key[:1]|capitalize ~ key[1:] %}
+                        {% set capitalizedKey = key[:1]|lower ~ key[1:] %}
                         {% set capitalizedKeyWithPrefix = prefix ~ capitalizedKey %}
-                        <bolt-change-case mode="snake">{{ capitalizedKeyWithPrefix }}</bolt-change-case>
+                        {{ capitalizedKeyWithPrefix }}
                         {% if key in requiredProps %}<span class="required-key" title="Required">*</span>{% endif %}
                       </strong>
                     </td>

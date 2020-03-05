@@ -1,0 +1,222 @@
+{% extends "@pl/_default-page-template.twig" %}
+
+{% block global_header %}
+  {% include "@pl/_page-header.twig" %}
+{% endblock %}
+
+{% block main_content %}
+  {% set content %}
+    {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
+      {% cell "u-bolt-width-12/12 u-bolt-width-8/12@small" %}
+        {% include "@bolt-components-headline/eyebrow.twig" with {
+          text: "All Products",
+          tag: "p",
+          icon: {
+            name: "arrow-left",
+            position: "before",
+          },
+        } only %}
+        {% include "@bolt-components-headline/headline.twig" with {
+          text: "Pega RPA",
+          size: "xxxlarge",
+          tag: "h1",
+        } only %}
+        {% include "@bolt-components-headline/subheadline.twig" with {
+          text: "Robots running processes. Brace yourself – big changes are underway in the world of work.",
+          size: "xxlarge",
+          tag: "h2",
+        } only %}
+      {% endcell %}
+      {% cell "u-bolt-width-12/12 u-bolt-width-4/12@small" %}
+        {% include "@bolt-components-image/image.twig" with {
+          src: "/images/placeholders/landscape-16x9-mountains.jpg",
+          alt: "Alt text",
+        } only %}
+      {% endcell %}
+    {% endgrid %}
+  {% endset %}
+  {% include "@bolt-components-band/band.twig" with {
+    content: content,
+    size: "large"
+  } only %}
+
+
+  {% set content %}
+    {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
+      {% cell "u-bolt-width-12/12" %}
+        {% include "@bolt-components-action-blocks/action-blocks.twig" with {
+          contentItems: [
+            {
+              text: "Feature Name",
+              url: "#!",
+              icon: {
+                name: "user",
+                size: "large",
+              }
+            },
+            {
+              text: "Feature Name",
+              url: "#!",
+              icon: {
+                name: "user",
+                size: "large",
+              }
+            },
+            {
+              text: "Feature Name",
+              url: "#!",
+              icon: {
+                name: "user",
+                size: "large",
+              }
+            },
+            {
+              text: "Feature Name",
+              url: "#!",
+              icon: {
+                name: "user",
+                size: "large",
+              }
+            },
+            {
+              text: "Feature Name",
+              url: "#!",
+              icon: {
+                name: "user",
+                size: "large",
+              }
+            },
+            {
+              text: "Feature Name",
+              url: "#!",
+              icon: {
+                name: "user",
+                size: "large",
+              }
+            },
+          ]
+        } only %}
+      {% endcell %}
+      {% cell "u-bolt-width-12/12 u-bolt-width-6/12@small" %}
+        {% include "@bolt-components-image/image.twig" with {
+          src: "/images/placeholders/landscape-16x9-mountains.jpg",
+          alt: "Alt text",
+          attributes: {
+            class: "u-bolt-margin-bottom-medium",
+          },
+        } only %}
+        {% include "@bolt-components-headline/text.twig" with {
+          text: "Pega Robotic Automation™ builds bridges between unrelated software systems in order to automate tedious manual work and repetitive tasks, improving productivity and efficiency.",
+          tag: "p",
+        } only %}
+      {% endcell %}
+      {% cell "u-bolt-width-12/12 u-bolt-width-6/12@small" %}
+        {% include "@bolt-components-image/image.twig" with {
+          src: "/images/placeholders/landscape-16x9-mountains.jpg",
+          alt: "Alt text",
+          attributes: {
+            class: "u-bolt-margin-bottom-medium",
+          },
+        } only %}
+        {% include "@bolt-components-headline/text.twig" with {
+          text: "Pega Robot Manager™ is the central application used to manage all robots in your bot-force. Use this tool to manage how attended and unattended robots are configured and the work they can perform.",
+          tag: "p",
+        } only %}
+      {% endcell %}
+    {% endgrid %}
+  {% endset %}
+  {% include "@bolt-components-band/band.twig" with {
+    content: content,
+    theme: "xlight",
+  } only %}
+
+
+  {% set content %}
+    {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
+      {% cell "u-bolt-width-12/12 u-bolt-width-4/12@small" %}
+        {% include "@bolt-components-headline/headline.twig" with {
+          text: "Get Started",
+          size: "xxlarge",
+          tag: "h2",
+        } only %}
+        {% include "@bolt-components-headline/subheadline.twig" with {
+          text: "Before you automate your tasks, make sure that you are all set to configure and install your environment. Then, get ready to build and use your robots!",
+          size: "xlarge",
+          tag: "p",
+        } only %}
+      {% endcell %}
+      {% cell "u-bolt-width-12/12 u-bolt-width-4/12@small" %}
+        {% include "@bolt-components-headline/headline.twig" with {
+          text: "Install + Configure",
+          size: "xxlarge",
+          tag: "h2",
+        } only %}
+        {% include "@bolt-components-headline/headline.twig" with {
+          text: "Pega Robotic Automation version Installation Instructions",
+          size: "xlarge",
+          tag: "h3",
+        } only %}
+        {% include "@bolt-components-headline/text.twig" with {
+          text: "Pega Robotic Automation includes the tools you need to create robots and provides a runtime environment for those robots. Use the Installation Instructions to install and configure Pega Robotic Automation.",
+          tag: "p",
+        } only %}
+        <hr class="u-bolt-margin-top-none u-bolt-margin-bottom-medium">
+        {% include "@bolt-components-headline/headline.twig" with {
+          text: "Installing Pega Robot Manager 8.3.1",
+          size: "xlarge",
+          tag: "h3",
+        } only %}
+        {% include "@bolt-components-headline/text.twig" with {
+          text: "Pega Robot Manager™ is the central application used to manage all robots in your bot-force. Use this tool to manage how attended and unattended robots are configured and work that they can perform.",
+          tag: "p",
+        } only %}
+      {% endcell %}
+      {% cell "u-bolt-width-12/12 u-bolt-width-4/12@small" %}
+        {% include "@bolt-components-headline/headline.twig" with {
+          text: "Build + Use",
+          size: "xxlarge",
+          tag: "h2",
+        } only %}
+        {% include "@bolt-components-headline/headline.twig" with {
+          text: "Configuring Pega Robot Manager 8.3.1",
+          size: "xlarge",
+          tag: "h3",
+        } only %}
+        <hr class="u-bolt-margin-top-none u-bolt-margin-bottom-medium">
+        {% include "@bolt-components-headline/headline.twig" with {
+          text: "Using Pega Robot Manager 8.3.1",
+          size: "xlarge",
+          tag: "h3",
+        } only %}
+        {% include "@bolt-components-headline/text.twig" with {
+          text: "Get the most out of your bot-force. This article describes how to use Robot Manager for both your attended and unattended robots.",
+          tag: "p",
+        } only %}
+        <hr class="u-bolt-margin-top-none u-bolt-margin-bottom-medium">
+        {% include "@bolt-components-headline/eyebrow.twig" with {
+          text: "Video",
+          tag: "p",
+        } only %}
+        {% include "@bolt-components-headline/headline.twig" with {
+          text: "Getting Started with Pega Robotics",
+          size: "xlarge",
+          tag: "h3",
+        } only %}
+        <hr class="u-bolt-margin-top-none u-bolt-margin-bottom-medium">
+        {% include "@bolt-components-headline/eyebrow.twig" with {
+          text: "Video",
+          tag: "p",
+        } only %}
+        {% include "@bolt-components-headline/headline.twig" with {
+          text: "Pega RPA Product How-Tos",
+          size: "xlarge",
+          tag: "h3",
+        } only %}
+      {% endcell %}
+    {% endgrid %}
+  {% endset %}
+  {% include "@bolt-components-band/band.twig" with {
+    content: content,
+    theme: "light",
+  } only %}
+{% endblock %}

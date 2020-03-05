@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.19.0](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/compare/v2.18.1...v2.19.0) (2020-03-04)
+
+
+### Bug Fixes
+
+* remove 0px no longer needed ([e48425c](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/e48425c8c721b8f77b2c4d41ec137d2851a0c2cc))
+* update PL resizer logic to no longer be off by 80px ([dbf1758](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/dbf17580369784bc4666a63f8f7d5c687a181914))
+
+
+
+
+
 # [2.17.0](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/compare/v2.16.3...v2.17.0) (2020-02-04)
 
 

@@ -1,0 +1,214 @@
+{% extends "@pl/_default-page-template.twig" %}
+
+{% block global_header %}
+  {% include "@pl/_page-header.twig" %}
+{% endblock %}
+
+{% block main_content %}
+  {% set content %}
+    {% grid "o-bolt-grid--flex o-bolt-grid--matrix" %}
+      {% cell "u-bolt-width-12/12" %}
+        {% include "@bolt-components-headline/eyebrow.twig" with {
+          text: "Pega Platform",
+          url: "#!",
+          tag: "p",
+          icon: {
+            name: "arrow-left",
+            position: "before",
+          },
+        } only %}
+        {% include "@bolt-components-headline/headline.twig" with {
+          text: "DevOps Capabilities",
+          size: "xxxlarge",
+          tag: "h1",
+        } only %}
+      {% endcell %}
+    {% endgrid %}
+  {% endset %}
+  {% include "@bolt-components-band/band.twig" with {
+    content: content,
+    size: "small"
+  } only %}
+
+
+  {% set content %}
+    {% grid "o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--matrix" %}
+      {% cell "u-bolt-width-12/12 u-bolt-width-4/12@small" %}
+        {% include "@bolt-components-image/image.twig" with {
+          src: "/images/placeholders/landscape-16x9-mountains.jpg",
+          alt: "Alt text",
+        } only %}
+      {% endcell %}
+      {% cell "u-bolt-width-12/12 u-bolt-width-4/12@small" %}
+        {% include "@bolt-components-video/video.twig" with {
+          videoId: "3974147489001",
+          accountId: "1900410236",
+          playerId: "r1CAdLzTW",
+          showMeta: true,
+          showMetaTitle: true
+        } only %}
+      {% endcell %}
+      {% cell "u-bolt-width-12/12 u-bolt-width-4/12@small" %}
+        {% include "@bolt-components-headline/headline.twig" with {
+          text: "What's new in 8.4",
+          size: "xlarge",
+          tag: "h2",
+        } only %}
+        {% include "@bolt-components-headline/text.twig" with {
+          text: "Explore new Deployment Manager features and Automated Testing capabilities.",
+        } only %}
+        {% include "@bolt-components-button/button.twig" with {
+          text: "Browse new features",
+        } only %}
+      {% endcell %}
+      {% cell "u-bolt-width-12/12 u-bolt-width-4/12@small" %}
+        {% set content %}
+          {% include "@bolt-components-headline/headline.twig" with {
+            text: faker.text(36),
+            size: "large",
+            align: "center",
+            tag: "h3",
+            url: "#!",
+          } only %}
+        {% endset %}
+        {% include "@bolt-components-card-replacement/card-replacement.twig" with {
+          body: {
+            content: content,
+          },
+        } only %}
+      {% endcell %}
+      {% cell "u-bolt-width-12/12 u-bolt-width-4/12@small" %}
+        {% set content %}
+          {% include "@bolt-components-headline/headline.twig" with {
+            text: faker.text(36),
+            size: "large",
+            align: "center",
+            tag: "h3",
+            url: "#!",
+          } only %}
+        {% endset %}
+        {% include "@bolt-components-card-replacement/card-replacement.twig" with {
+          body: {
+            content: content,
+          },
+        } only %}
+      {% endcell %}
+      {% cell "u-bolt-width-12/12 u-bolt-width-4/12@small" %}
+        {% set content %}
+          {% include "@bolt-components-headline/headline.twig" with {
+            text: faker.text(36),
+            size: "large",
+            align: "center",
+            tag: "h3",
+            url: "#!",
+          } only %}
+        {% endset %}
+        {% include "@bolt-components-card-replacement/card-replacement.twig" with {
+          body: {
+            content: content,
+          },
+        } only %}
+      {% endcell %}
+      {% cell "u-bolt-width-12/12 u-bolt-width-4/12@small" %}
+        {% set content %}
+          {% include "@bolt-components-headline/headline.twig" with {
+            text: faker.text(36),
+            size: "large",
+            align: "center",
+            tag: "h3",
+            url: "#!",
+          } only %}
+        {% endset %}
+        {% include "@bolt-components-card-replacement/card-replacement.twig" with {
+          body: {
+            content: content,
+          },
+        } only %}
+      {% endcell %}
+      {% cell "u-bolt-width-12/12 u-bolt-width-4/12@small" %}
+        {% set content %}
+          {% include "@bolt-components-headline/headline.twig" with {
+            text: faker.text(36),
+            size: "large",
+            align: "center",
+            tag: "h3",
+            url: "#!",
+          } only %}
+        {% endset %}
+        {% include "@bolt-components-card-replacement/card-replacement.twig" with {
+          body: {
+            content: content,
+          },
+        } only %}
+      {% endcell %}
+      {% cell "u-bolt-width-12/12 u-bolt-width-4/12@small" %}
+        {% set content %}
+          {% include "@bolt-components-headline/headline.twig" with {
+            text: faker.text(36),
+            size: "large",
+            align: "center",
+            tag: "h3",
+            url: "#!",
+          } only %}
+        {% endset %}
+        {% include "@bolt-components-card-replacement/card-replacement.twig" with {
+          body: {
+            content: content,
+          },
+        } only %}
+      {% endcell %}
+      {% cell "u-bolt-width-12/12 u-bolt-width-4/12@small" %}
+        {% set content %}
+          {% include "@bolt-components-headline/headline.twig" with {
+            text: faker.text(36),
+            size: "large",
+            align: "center",
+            tag: "h3",
+            url: "#!",
+          } only %}
+        {% endset %}
+        {% include "@bolt-components-card-replacement/card-replacement.twig" with {
+          body: {
+            content: content,
+          },
+        } only %}
+      {% endcell %}
+      {% cell "u-bolt-width-12/12 u-bolt-width-4/12@small" %}
+        {% set content %}
+          {% include "@bolt-components-headline/headline.twig" with {
+            text: faker.text(36),
+            size: "large",
+            align: "center",
+            tag: "h3",
+            url: "#!",
+          } only %}
+        {% endset %}
+        {% include "@bolt-components-card-replacement/card-replacement.twig" with {
+          body: {
+            content: content,
+          },
+        } only %}
+      {% endcell %}
+      {% cell "u-bolt-width-12/12 u-bolt-width-4/12@small" %}
+        {% set content %}
+          {% include "@bolt-components-headline/headline.twig" with {
+            text: faker.text(36),
+            size: "large",
+            align: "center",
+            tag: "h3",
+            url: "#!",
+          } only %}
+        {% endset %}
+        {% include "@bolt-components-card-replacement/card-replacement.twig" with {
+          body: {
+            content: content,
+          },
+        } only %}
+      {% endcell %}
+    {% endgrid %}
+  {% endset %}
+  {% include "@bolt-components-band/band.twig" with {
+    content: content,
+    theme: "xlight",
+  } only %}
+{% endblock %}

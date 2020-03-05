@@ -3,6 +3,32 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.19.0](https://github.com/bolt-design-system/bolt/compare/v2.18.1...v2.19.0) (2020-03-04)
+
+
+### Bug Fixes
+
+* calculation ([c14dc10](https://github.com/bolt-design-system/bolt/commit/c14dc10ca88c063d6aab4e17caee904f886e5f24))
+* docs and theme class in twig ([f61fbec](https://github.com/bolt-design-system/bolt/commit/f61fbec99b6c04358fa790e4e44e582e212abf89))
+* fix background image path ([b6cb0c9](https://github.com/bolt-design-system/bolt/commit/b6cb0c9f7404a9ab31df1f34add143aa0f87b433))
+* remove capitalization from Schema prop table ([38a63ba](https://github.com/bolt-design-system/bolt/commit/38a63ba4308d8373dabb78a622b7f6405eb5db31))
+* round px numbers ([1dc8bdc](https://github.com/bolt-design-system/bolt/commit/1dc8bdc91e0d323b1272f3108a2e9d91c35f189b))
+* set placeholder element to 'static' on View All page ([9e674a0](https://github.com/bolt-design-system/bolt/commit/9e674a0e1f818b0bcf6e5f08ea868453718a3697))
+* typo ([7077b17](https://github.com/bolt-design-system/bolt/commit/7077b17ade3d6a974b2faae6f4901c536419db49))
+
+
+### Features
+
+* 1st pass building out Hero examples + corresponding assets ([78b7733](https://github.com/bolt-design-system/bolt/commit/78b773300eccf95aa6959210ca35fb8d1e201798))
+* add example of CSS var on Academy ([d8072d1](https://github.com/bolt-design-system/bolt/commit/d8072d145ff626bfff31972126e304fd8316a5d8))
+* add new Blockquote demos handling the new `weight` prop + existing `size` prop ([0a4cb85](https://github.com/bolt-design-system/bolt/commit/0a4cb8594c24fd6bca0769232d0e414c411742b6))
+* remove 'brand-' prefix from icon in _icon-banner.twig ([6e19057](https://github.com/bolt-design-system/bolt/commit/6e19057a88e9e5c90343899d23dbc6c8b7d819a3))
+* switch from 'query-string' parser to 'url-search-params' polyfill ([77ed51f](https://github.com/bolt-design-system/bolt/commit/77ed51fb71440eecc26b524892831ad21a9a1fe7))
+
+
+
+
+
 ## [2.18.1](https://github.com/bolt-design-system/bolt/compare/v2.18.0...v2.18.1) (2020-02-21)
 
 **Note:** Version bump only for package @bolt/website

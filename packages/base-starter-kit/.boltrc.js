@@ -29,6 +29,7 @@ module.exports = {
       '@bolt/components-form',
       '@bolt/components-grid',
       '@bolt/components-headline',
+      '@bolt/components-hero',
       '@bolt/components-icon',
       '@bolt/components-image',
       '@bolt/components-link',

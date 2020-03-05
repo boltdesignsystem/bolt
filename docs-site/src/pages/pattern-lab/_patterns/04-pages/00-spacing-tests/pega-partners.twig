@@ -1,0 +1,184 @@
+{% extends "@pl/_default-page-template.twig" %}
+
+{% block global_header %}
+  {% include "@pl/_page-header.twig" %}
+{% endblock %}
+
+{% block main_content %}
+  {% set content %}
+    {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
+      {% cell "u-bolt-width-12/12 u-bolt-width-8/12@small" %}
+        {% include "@bolt-components-headline/headline.twig" with {
+          text: "Pega Partners",
+          align: "center",
+          size: "xxxlarge",
+          tag: "h1",
+        } only %}
+        {% include "@bolt-components-headline/subheadline.twig" with {
+          text: "Transforming the world’s biggest enterprises is a team effort. Our partners are here to help clients get the business outcomes they need, fast.",
+          align: "center",
+          size: "xxlarge",
+          tag: "h2",
+        } only %}
+      {% endcell %}
+    {% endgrid %}
+  {% endset %}
+  {% include "@bolt-components-band/band.twig" with {
+    content: content,
+    size: "large"
+  } only %}
+
+
+  {% set content %}
+    {% grid "o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--middle o-bolt-grid--matrix" %}
+      {% cell "u-bolt-width-12/12 u-bolt-width-6/12@small" %}
+        {% include "@bolt-components-image/image.twig" with {
+          src: "/images/placeholders/landscape-16x9-mountains.jpg",
+          alt: "Alt text",
+        } only %}
+      {% endcell %}
+      {% cell "u-bolt-width-12/12 u-bolt-width-6/12@small" %}
+        {% include "@bolt-components-headline/headline.twig" with {
+          text: "Facing big challenges? Don’t go it alone.",
+          size: "xxlarge",
+          tag: "h2",
+        } only %}
+        {% include "@bolt-components-headline/text.twig" with {
+          text: "They’re experienced. They’re smart. They’re strategic. And they’re ready to show you how to maximize the value of your Pega investment. Browse our world-class consulting and services partners by location, industry, and more, and find the right one to help you deliver groundbreaking results.",
+          size: "medium",
+        } only %}
+        {% include "@bolt-components-button/button.twig" with {
+          text: "Find a partner",
+          url: "https://pega.com",
+        } only %}
+      {% endcell %}
+    {% endgrid %}
+  {% endset %}
+  {% include "@bolt-components-band/band.twig" with {
+    content: content,
+    theme: "light",
+  } only %}
+
+
+  {% set content %}
+    {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
+      {% cell "u-bolt-width-12/12 u-bolt-width-8/12@small" %}
+        {% include "@bolt-components-headline/headline.twig" with {
+          text: "Featured Partners",
+          align: "center",
+          size: "xxlarge",
+        } only %}
+        {% include "@bolt-components-headline/text.twig" with {
+          text: "Click a partner logo below to learn more about their expertise, insights, and solutions.",
+          align: "center",
+        } only %}
+      {% endcell %}
+      {% cell "u-bolt-width-12/12" %}
+        {% include "@bolt-components-action-blocks/action-blocks.twig" with {
+          contentItems: [
+            {
+              text: "Partner Name",
+              url: "#!",
+              icon: {
+                name: "user",
+                size: "large",
+              }
+            },
+            {
+              text: "Partner Name",
+              url: "#!",
+              icon: {
+                name: "user",
+                size: "large",
+              }
+            },
+            {
+              text: "Partner Name",
+              url: "#!",
+              icon: {
+                name: "user",
+                size: "large",
+              }
+            },
+            {
+              text: "Partner Name",
+              url: "#!",
+              icon: {
+                name: "user",
+                size: "large",
+              }
+            },
+            {
+              text: "Partner Name",
+              url: "#!",
+              icon: {
+                name: "user",
+                size: "large",
+              }
+            },
+            {
+              text: "Partner Name",
+              url: "#!",
+              icon: {
+                name: "user",
+                size: "large",
+              }
+            },
+            {
+              text: "Partner Name",
+              url: "#!",
+              icon: {
+                name: "user",
+                size: "large",
+              }
+            },
+            {
+              text: "Partner Name",
+              url: "#!",
+              icon: {
+                name: "user",
+                size: "large",
+              }
+            },
+            {
+              text: "Partner Name",
+              url: "#!",
+              icon: {
+                name: "user",
+                size: "large",
+              }
+            },
+            {
+              text: "Partner Name",
+              url: "#!",
+              icon: {
+                name: "user",
+                size: "large",
+              }
+            },
+            {
+              text: "Partner Name",
+              url: "#!",
+              icon: {
+                name: "user",
+                size: "large",
+              }
+            },
+            {
+              text: "Partner Name",
+              url: "#!",
+              icon: {
+                name: "user",
+                size: "large",
+              }
+            },
+          ]
+        } only %}
+      {% endcell %}
+    {% endgrid %}
+  {% endset %}
+  {% include "@bolt-components-band/band.twig" with {
+    content: content,
+    theme: "xlight",
+  } only %}
+{% endblock %}

@@ -1,0 +1,3 @@
+---
+title: "Image Horizontal Alignment"
+---

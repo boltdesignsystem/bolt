@@ -17,6 +17,8 @@ const { flattenArray } = require('@bolt/build-utils/general');
 const sizeOf = promisify(require('image-size'));
 const cacache = require('cacache');
 const cachePath = path.join(process.cwd(), './cache');
+const imagemin = require('imagemin');
+const imageminGifsicle = require('imagemin-gifsicle');
 let config;
 
 const svgo = new SVGO({
@@ -85,7 +87,7 @@ async function processImage(file, set, skipOptimization = false) {
 
   const width = dimensions.width;
 
-  if (pathInfo.ext === '.svg') {
+  if (pathInfo.ext === '.svg' || pathInfo.ext === '.gif') {
     sizes = [null];
   } else {
     sizes = [...boltImageSizes, null].filter(size => width >= size);
@@ -128,32 +130,50 @@ async function processImage(file, set, skipOptimization = false) {
             await cacache.rm.entry(cachePath, newSizedPath);
           }
 
-          // then resize the asset + cache the results
-          sharp(file)
-            .resize(size !== null ? size : width)
-            .jpeg({
-              quality: 80,
-              progressive: true,
-              optimiseScans: true,
-              force: false,
-            })
-            .png({
-              progressive: true,
-              force: false,
-            })
-            .toBuffer()
-            .then(data => {
-              cacache
-                .put(cachePath, newSizedPath, data, {
-                  metadata: {
-                    originalFileName: currentFileName,
-                    originalFileSize: currentFileSize,
-                  },
-                })
-                .then(integrity => {
-                  writeFile(newSizedPath, data);
-                });
+          if (pathInfo.ext === '.gif') {
+            const result = await imagemin([file], {
+              plugins: [imageminGifsicle()],
             });
+            await writeFile(newSizedPath, result[0].data);
+
+            cacache
+              .put(cachePath, newSizedPath, result[0].data, {
+                metadata: {
+                  originalFileName: currentFileName,
+                  originalFileSize: currentFileSize,
+                },
+              })
+              .then(integrity => {
+                writeFile(newSizedPath, result[0].data);
+              });
+          } else {
+            // then resize the asset + cache the results
+            sharp(file)
+              .resize(size !== null ? size : width)
+              .jpeg({
+                quality: 80,
+                progressive: true,
+                optimiseScans: true,
+                force: false,
+              })
+              .png({
+                progressive: true,
+                force: false,
+              })
+              .toBuffer()
+              .then(data => {
+                cacache
+                  .put(cachePath, newSizedPath, data, {
+                    metadata: {
+                      originalFileName: currentFileName,
+                      originalFileSize: currentFileSize,
+                    },
+                  })
+                  .then(integrity => {
+                    writeFile(newSizedPath, data);
+                  });
+              });
+          }
         }
       }
 

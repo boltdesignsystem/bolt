@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.19.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/compare/v2.18.1...v2.19.0) (2020-03-04)
+
+
+### Bug Fixes
+
+* tweak Image component Twig update to better support gifs ([59f5df4](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/commit/59f5df4a7ed21b230c90fd1b379126f8f005ace3))
+* update Image component's Twig to allow custom srcset to be used in Bolt -- workaround for supporting .gifs ([1a69b24](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/commit/1a69b2425016d70495e143146dc8d2a6b562ed77))
+
+
+
+
+
 # [2.18.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/compare/v2.17.1...v2.18.0) (2020-02-19)
 
 **Note:** Version bump only for package @bolt/components-image
