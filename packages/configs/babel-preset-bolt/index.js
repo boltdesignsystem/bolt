@@ -10,7 +10,7 @@ const legacyBabelConfig = function(api, opts = {}) {
           corejs: 3,
           useBuiltIns: 'entry',
           targets: {
-            browsers: require('@bolt/browserslist-config/all.js'),
+            browsers: require('@bolt/browserslist-config/modern.js'),
           },
         },
       ],
