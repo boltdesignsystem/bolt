@@ -17,16 +17,24 @@
     url: "#!",
   } only %}
 {% endset %}
-{% set trigger %}
-  {% include "@bolt-components-link/link.twig" with {
-    text: "Current Page with Popover",
-    url: "#!",
-    attributes: {
-      "aria-current": "page",
-    },
+
+{% set trigger_content %}
+  {% include "@bolt-components-headline/text.twig" with {
+    text: "Current Page",
+    weight: "bold",
+    size: "small",
+    icon: {
+      name: "chevron-down",
+      position: "after",
+    }
   } only %}
 {% endset %}
-{% set content %}
+{% set trigger %}
+  {% include "@bolt-components-trigger/trigger.twig" with {
+    content: trigger_content,
+  } only %}
+{% endset %}
+{% set menu_content %}
   {% include "@bolt-components-menu/menu.twig" with {
     title: "Choose one of these",
     items: [
@@ -51,8 +59,11 @@
 {% set popover %}
   {% include "@bolt-components-popover/popover.twig" with {
     trigger: trigger,
-    content: content,
+    content: menu_content,
     spacing: "none",
+    attributes: {
+      "aria-current": "page",
+    },
   } only %}
 {% endset %}
 
