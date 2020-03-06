@@ -1,0 +1,33 @@
+{# Setting variables for demo purposes #}
+{% set schema = bolt.data.components["@bolt-components-popover"].schema %}
+{% set link %}
+  {% include "@bolt-components-link/link.twig" with {
+    text: "call to action",
+    url: "https://pega.com",
+  } only %}
+{% endset %}
+{% set content %}
+  This is the content of the popover with a {{ link }}.
+{% endset %}
+
+<bolt-text headline>Content theme</bolt-text>
+<bolt-text>Adjust the Bolt color theme of the content by using the <bolt-code-snippet display="inline" lang="html">theme</bolt-code-snippet> prop.</bolt-text>
+<bolt-list display="inline" spacing="medium">
+  {% for theme in schema.properties.theme.enum %}
+    <bolt-list-item>
+      {% set trigger %}
+        {% include "@bolt-components-button/button.twig" with {
+          text: "theme: " ~ theme,
+          size: "small",
+        } only %}
+      {% endset %}
+      {# Start component specific code #}
+      {% include "@bolt-components-popover/popover.twig" with {
+        trigger: trigger,
+        content: content,
+        theme: theme,
+      } only %}
+      {# End component specific code #}
+    </bolt-list-item>
+  {% endfor %}
+</bolt-list>

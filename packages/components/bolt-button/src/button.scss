@@ -41,6 +41,12 @@
   @include bolt-button-raised-effect;
 }
 
+.c-bolt-button--tertiary {
+  @include bolt-button-style(tertiary);
+  @include bolt-button-raised-effect;
+  backdrop-filter: saturate(105%) blur(20px);
+}
+
 .c-bolt-button--text {
   @include bolt-button-style(text);
 }

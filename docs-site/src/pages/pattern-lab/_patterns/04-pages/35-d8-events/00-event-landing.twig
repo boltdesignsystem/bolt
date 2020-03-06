@@ -11,17 +11,17 @@
     theme: "xdark",
     full_bleed: true,
     background: {
-      "opacity": "medium",
-      "fill": "color",
-      "focalPoint": {
-        "vertical": "center",
-        "horizontal": "center"
+      opacity: "medium",
+      fill: "color",
+      focalPoint: {
+        vertical: "center",
+        horizontal: "center"
       },
-      "contentItems": [
+      contentItems: [
         {
-          "pattern": "image",
-          "src": "/images/content/backgrounds/events-landing.png",
-          "lazyload": true
+          pattern: "image",
+          src: "/images/content/backgrounds/events-landing.jpg",
+          lazyload: true
         }
       ]
     }
@@ -37,14 +37,14 @@
         {% block band_content  %}
 
           {% grid "o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--center" %}
-            {% cell "u-bolt-width-1/1 u-bolt-width-3/4@small u-bolt-text-align-center" %}
-              {% include "@bolt/headline.twig" with {
+            {% cell "u-bolt-width-12/12 u-bolt-width-9/12@small u-bolt-text-align-center" %}
+              {% include "@bolt-components-headline/headline.twig" with {
                 text: "Events at Pega: Meet the people behind the tech",
                 size: "xxxlarge",
                 tag: "h1"
               } only %}
 
-              {% include "@bolt/subheadline.twig" with {
+              {% include "@bolt-components-headline/subheadline.twig" with {
                 text: "Join Pega thought leaders, customers, and partners from around the world and explore the power of Pega firsthand."
               } only %}
             {% endcell %}
@@ -61,153 +61,140 @@
         {% block band_content  %}
 
           {% grid "o-bolt-grid--flex o-bolt-grid--matrix" %}
-            {% cell "u-bolt-width-1/1 u-bolt-width-2/3@medium" %}
-              {% include "@bolt/headline.twig" with {
+            {% cell "u-bolt-width-12/12 u-bolt-width-8/12@medium" %}
+              {% include "@bolt-components-headline/headline.twig" with {
                 text: "Featured Pega Events",
                 size: "xxlarge"
               } only %}
-
               {% grid "o-bolt-grid--flex o-bolt-grid--matrix" %}
-                {% cell "u-bolt-width-1/1 u-bolt-width-1/2@medium" %}
-                  {% embed "@bolt-components-card/card.twig" with {
-                    url: "#!",
-                    contentItems: [
+                {% cell "u-bolt-width-12/12 u-bolt-width-6/12@medium" %}
+                  {% include "@bolt-components-card-replacement/card-replacement.twig" with {
+                    body: {
+                      eyebrow: "Conference | June 3-6, 2018",
+                      headline: "PEGAWORLD 2018",
+                      paragraph: "We get it. Plenty of events promise big things, or to make dreams come true. At our flagship event, PegaWorld, we definitely think big - but we also empower you with the technology and know-how to turn ideas into actual results.",
+                    },
+                    actions: [
                       {
-                        pattern: "button",
-                        text: "Learn more"
-                      }
-                    ]
+                        text: "Learn more",
+                      },
+                    ],
                   } only %}
-
-                    {% block card_media %}
-                    {% endblock %}
-
-                    {% block card_body %}
-                      {% include "@bolt-components-headline/eyebrow.twig" with {
-                        text: "Conference | June 3-6, 2018",
-                      } only %}
-
-                      {% include "@bolt-components-headline/headline.twig" with {
-                        text: "PEGAWORLD 2018"
-                      } only %}
-
-                      <p>
-                        We get it. Plenty of events promise big things, or to make dreams come true. At our flagship
-                        event, PegaWorld, we definitely think big - but we also empower you with the technology and
-                        know-how to turn ideas into actual results.
-                      </p>
-
-                    {% endblock %}
-                  {% endembed %}
                 {% endcell %}
-
-                {% cell "u-bolt-width-1/1 u-bolt-width-1/2@medium" %}
-
-                  {% embed "@bolt-components-card/card.twig" with {
-                    url: "#!",
-                    contentItems: [
+                {% cell "u-bolt-width-12/12 u-bolt-width-6/12@medium" %}
+                  {% include "@bolt-components-card-replacement/card-replacement.twig" with {
+                    body: {
+                      eyebrow: "Networking | Multiple Dates",
+                      headline: "Customer Engagement Summits",
+                      paragraph: "Customer engagement, digital transformation - where do you stand?  Which technology is best? Artifical Intelligence?  Robotics?  The Customer Engagement Summits offers you the opportunity to meet your peers, talk to experts, listen to business experiences and turn your digital transformation into a reality!",
+                    },
+                    actions: [
                       {
-                        pattern: "button",
-                        text: "Learn more"
-                      }
-                    ]
+                        text: "Learn more",
+                      },
+                    ],
                   } only %}
-
-                    {% block card_media %}
-                    {% endblock %}
-
-                    {% block card_body %}
-                      {% include "@bolt-components-headline/eyebrow.twig" with {
-                        text: "Networking | Multiple Dates",
-                      } only %}
-
-                      {% include "@bolt-components-headline/headline.twig" with {
-                        text: "Customer Engagement Summits",
-                      } only %}
-
-                      <p>
-                        Customer engagement, digital transformation - where do you stand?  Which technology is best?
-                        Artifical Intelligence?  Robotics?  The Customer Engagement Summits offers you the opportunity to
-                        meet your peers, talk to experts, listen to business experiences and turn your digital
-                        transformation into a reality!
-                      </p>
-
-                    {% endblock %}
-                  {% endembed %}
-
                 {% endcell %}
               {% endgrid %}
 
             {% endcell %}
-            {% cell "u-bolt-width-1/1 u-bolt-width-1/3@medium" %}
-              {% include "@bolt/headline.twig" with {
+            {% cell "u-bolt-width-12/12 u-bolt-width-4/12@medium" %}
+              {% include "@bolt-components-headline/headline.twig" with {
                 text: "Find Us Here Also",
                 size: "xxlarge"
               } only %}
 
-                {% set listItems %}
-
-                {% endset %}
-
-                {% include "@bolt/ui-list.twig" with {
-                  size: "small",
-                  contentItems : [
-                    {
-                      contentItems: [
-                        {
-                          "pattern": "headline",
-                          "size": "large",
-                          "text": "Mobil World Congress, 2/26-3/1",
-                          "url": "#",
-                          "icon": {
-                            name: "external-link"
-                          }
-                        }
-                      ]
-                    },
-                    {
-                      contentItems: [
-                        {
-                          "pattern": "headline",
-                          "size": "large",
-                          "text": "CCW 2018, 2/27 - 3/1",
-                          "url": "#",
-                          "icon": {
-                            name: "external-link"
-                          }
-                        }
-                      ]
-                    },
-                    {
-                      contentItems: [
-                        {
-                          "pattern": "headline",
-                          "size": "large",
-                          "text": "HIMSS18, 3/5 - 3/10",
-                          "url": "#",
-                          "icon": {
-                            name: "external-link"
-                          }
-                        }
-                      ]
-                    },
-                    {
-                      contentItems: [
-                        {
-                          "pattern": "headline",
-                          "size": "large",
-                          "text": "ACAMS 2018, 4/9",
-                          "url": "#",
-                          "icon": {
-                            name: "external-link"
-                          }
-                        }
-                      ]
-                    }
+              {% set text %}
+                {% include "@bolt-components-headline/headline.twig" with {
+                  text: "Find Us Here Also",
+                  size: "large",
+                  url: "#!",
+                  icon: "none",
+                } only %}
+              {% endset %}
+              {% set icon %}
+                {% include "@bolt-components-icon/icon.twig" with {
+                  name: "external-link",
+                } only %}
+              {% endset %}
+              {% set list_item_1 %}
+                {% include "@bolt-components-list/list.twig" with {
+                  display: "inline",
+                  align: "justify",
+                  items: [
+                    text,
+                    icon,
                   ]
                 } only %}
+              {% endset %}
 
+              {% set text %}
+                {% include "@bolt-components-headline/headline.twig" with {
+                  text: "CCW 2018, 2/27 - 3/1",
+                  size: "large",
+                  url: "#!",
+                  icon: "none",
+                } only %}
+              {% endset %}
+              {% set list_item_2 %}
+                {% include "@bolt-components-list/list.twig" with {
+                  display: "inline",
+                  align: "justify",
+                  items: [
+                    text,
+                    icon,
+                  ]
+                } only %}
+              {% endset %}
 
+              {% set text %}
+                {% include "@bolt-components-headline/headline.twig" with {
+                  text: "HIMSS18, 3/5 - 3/10",
+                  size: "large",
+                  url: "#!",
+                  icon: "none",
+                } only %}
+              {% endset %}
+              {% set list_item_3 %}
+                {% include "@bolt-components-list/list.twig" with {
+                  display: "inline",
+                  align: "justify",
+                  items: [
+                    text,
+                    icon,
+                  ]
+                } only %}
+              {% endset %}
+
+              {% set text %}
+                {% include "@bolt-components-headline/headline.twig" with {
+                  text: "ACAMS 2018, 4/9",
+                  size: "large",
+                  url: "#!",
+                  icon: "none",
+                } only %}
+              {% endset %}
+              {% set list_item_4 %}
+                {% include "@bolt-components-list/list.twig" with {
+                  display: "inline",
+                  align: "justify",
+                  items: [
+                    text,
+                    icon,
+                  ]
+                } only %}
+              {% endset %}
+
+              {% include "@bolt-components-list/list.twig" with {
+                separator: "solid",
+                spacing: "small",
+                items: [
+                  list_item_1,
+                  list_item_2,
+                  list_item_3,
+                  list_item_4,
+                ]
+              } only %}
             {% endcell %}
           {% endgrid %}
         {% endblock %}
@@ -226,7 +213,7 @@
         Showing 555 results in <a href="#">filter 1</a>, <a href="#">filter 2</a>, and "<b>search term</b>" (<a href="">Clear filters</a>)
       </p>
       {% grid "o-bolt-grid--matrix" %}
-        {% cell "u-bolt-width-1/1 u-bolt-width-3/12@medium" %}
+        {% cell "u-bolt-width-12/12 u-bolt-width-3/12@medium" %}
 
           {% set facets = [
             {
@@ -257,8 +244,8 @@
             {% set checkboxChildren %}
               {% for checkbox in facet.checkboxes %}
                 {% include ("@pl/30-form-element-demo-checkbox.twig") with {
-                  "labelTitle": checkbox,
-                  "elementId": "checkbox-" ~ facet.title ~ checkbox
+                  labelTitle: checkbox,
+                  elementId: "checkbox-" ~ facet.title ~ checkbox
                 } only %}
               {% endfor %}
             {% endset %}
@@ -270,8 +257,8 @@
             {% endset %}
 
             {% include "@bolt-components-form/form-fieldset.twig" with {
-              "legendTitle": facet.title,
-              "children": fieldsetChildren
+              legendTitle: facet.title,
+              children: fieldsetChildren
             } only %}
           {% endfor %}
 
@@ -285,53 +272,47 @@
 
         {% endcell %}
 
-        {% cell "u-bolt-width-1/1 u-bolt-width-9/12@medium" %}
+        {% cell "u-bolt-width-12/12 u-bolt-width-9/12@medium" %}
           {% grid "o-bolt-grid--matrix" %}
-            {% for i in 1..6 %}
-              {% cell "u-bolt-width-1/1" %}
-                {% embed "@bolt/card.twig" with {
-                  theme: "xlight"
+            {% for i in 1..9 %}
+              {% cell "u-bolt-width-12/12" %}
+                {% set content %}
+                  {% grid "o-bolt-grid--flex o-bolt-grid--matrix" %}
+                    {% cell "u-bolt-width-12/12 u-bolt-width-3/12@small" %}
+                      {% include "@bolt/image.twig" with {
+                        src: "/images/placeholders/500x500.jpg",
+                        lazyload: false
+                      } only %}
+                    {% endcell %}
+                    {% cell "u-bolt-width-12/12 u-bolt-width-9/12@small" %}
+                      {% include "@bolt-components-headline/eyebrow.twig" with {
+                        text: faker.text(16),
+                      } only %}
+                      {% include "@bolt-components-headline/headline.twig" with {
+                        text: faker.text(66),
+                        size: "xlarge",
+                      } only %}
+                      {% include "@bolt-components-headline/text.twig" with {
+                        text: faker.text(166),
+                      } only %}
+                      {% include "@bolt-components-link/link.twig" with {
+                        text: "Request a Meeting",
+                        icon: {
+                          name: "chevron-right"
+                        }
+                      } only %}
+                    {% endcell %}
+                  {% endgrid %}
+                {% endset %}
+                {% include "@bolt-components-card-replacement/card-replacement.twig" with {
+                  theme: "xlight",
+                  link: {
+                    url: "#!",
+                  },
+                  body: {
+                    content: content,
+                  },
                 } only %}
-
-                  {% block card_media %}
-                  {% endblock %}
-
-                  {% block card_body %}
-
-                    {% grid "o-bolt-grid--flex o-bolt-grid--matrix" %}
-                      {% cell "u-bolt-width-1/1 u-bolt-width-1/4@small" %}
-                        {% include "@bolt/image.twig" with {
-                          src: "/images/placeholders/500x500.jpg",
-                          lazyload: false
-                        } only %}
-                      {% endcell %}
-
-                      {% cell "u-bolt-width-1/1 u-bolt-width-3/4@small" %}
-                        {% include "@bolt/eyebrow.twig" with {
-                          text: "Conference | Rebruary 26 - March 1 2018 | Barcelona, Spain"
-                        } only %}
-
-                        {% include "@bolt/headline.twig" with {
-                          text: "Mobile World Congress",
-                          size: "xlarge"
-                        } only %}
-
-                        <p> The Pega Communications and Media team is hosting a meeting room at Mobile World Congress - the world's
-                          largest gathering for the mobile industry. Visit us in Hall 2, stand C31MR at the Fira Gran Via conference
-                          facility in Barcelona, Spain. View the event page to request a meeting in advance.</p>
-
-                        <p>
-                          {% include "@bolt/link.twig" with {
-                            text: "Request a Meeting",
-                            icon: {
-                              name: "chevron-right"
-                            }
-                          } only %}
-                        </p>
-                      {% endcell %}
-                    {% endgrid %}
-                  {% endblock %}
-                {% endembed %}
               {% endcell %}
             {% endfor %}
           {% endgrid %}
@@ -349,8 +330,8 @@
     {% block band_content %}
 
       {% grid "o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--center" %}
-        {% cell "u-bolt-width-1/1 u-bolt-width-2/3@small u-bolt-text-align-center" %}
-          {% include "@bolt/blockquote.twig" with {
+        {% cell "u-bolt-width-12/12 u-bolt-width-8/12@small u-bolt-text-align-center" %}
+          {% include "@bolt-components-blockquote/blockquote.twig" with {
             size: "xlarge",
             border: "none",
             alignItems: "center",

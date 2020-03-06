@@ -2,7 +2,7 @@
   {% include "@bolt-components-button/button.twig" with {
     text: "Share",
     size: "small",
-    style: "secondary",
+    style: "tertiary",
     iconOnly: true,
     icon: {
       name: iconName,
@@ -28,9 +28,7 @@
       "bottom-start"
     ],
     spacing: "none",
-    attributes: {
-      class: ["t-bolt-light"],
-    }
+    theme: "xlight",
   } only %}
 {% else %}
   {{ button }}

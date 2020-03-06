@@ -1,0 +1,197 @@
+{% extends "@pl/_default-page-template.twig" %}
+
+{% block global_header %}
+  {% include "@pl/_page-header.twig" %}
+{% endblock %}
+
+{% block main_content %}
+  {% set content %}
+    {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--large o-bolt-grid--middle" %}
+      {% cell "u-bolt-width-12/12 u-bolt-width-6/12@small" %}
+        {% include "@bolt-components-headline/eyebrow.twig" with {
+          text: "Case Study",
+          tag: "p",
+        } only %}
+        {% include "@bolt-components-headline/headline.twig" with {
+          text: "Banco Santander Brasil: Delivering exceptional client service, fast",
+          size: "xxxlarge",
+          tag: "h1",
+        } only %}
+      {% endcell %}
+      {% cell "u-bolt-width-12/12 u-bolt-width-6/12@small" %}
+        {% include "@bolt-components-image/image.twig" with {
+          src: "/images/placeholders/landscape-16x9-mountains.jpg",
+          alt: "Alt text",
+        } only %}
+      {% endcell %}
+      {% set icon %}
+        {% include "@bolt-components-icon/icon.twig" with {
+          name: "check",
+          size: "large"
+        } only %}
+      {% endset %}
+      {% cell "u-bolt-width-12/12 u-bolt-width-4/12@small" %}
+        {% include "@bolt/flag.twig" with {
+          valign: "middle",
+          figure: {
+            content: icon,
+          },
+          items: [
+            {
+              pattern: "headline",
+              size: "large",
+              text: "Transformed client services with automation to serve more customers, faster",
+            },
+          ]
+        } only %}
+      {% endcell %}
+      {% cell "u-bolt-width-12/12 u-bolt-width-4/12@small" %}
+        {% include "@bolt/flag.twig" with {
+          valign: "middle",
+          figure: {
+            content: icon,
+          },
+          items: [
+            {
+              pattern: "headline",
+              size: "large",
+              text: "Built new end-to-end operations model to seamlessly connect front and back office",
+            },
+          ]
+        } only %}
+      {% endcell %}
+      {% cell "u-bolt-width-12/12 u-bolt-width-4/12@small" %}
+        {% include "@bolt/flag.twig" with {
+          valign: "middle",
+          figure: {
+            content: icon,
+          },
+          items: [
+            {
+              pattern: "headline",
+              size: "large",
+              text: "Deploys updates faster with rapid app delivery",
+            },
+          ]
+        } only %}
+      {% endcell %}
+    {% endgrid %}
+  {% endset %}
+  {% include "@bolt-components-navbar/navbar.twig" with {
+    theme: "xdark",
+    title: {
+      tag: "h3",
+      text: "All customers",
+      icon: {
+        name: "arrow-left"
+      }
+    },
+    links: []
+  } only %}
+  {% include "@bolt-components-band/band.twig" with {
+    content: content,
+    size: "large"
+  } only %}
+
+
+  {% set content %}
+    {% grid "o-bolt-grid--flex o-bolt-grid--matrix" %}
+      {% cell "u-bolt-width-12/12 u-bolt-width-8/12@medium" %}
+        {% include "@bolt-components-blockquote/blockquote.twig" with {
+          author: {
+            name: "Leopold Martinez",
+            title: "Director of Operations, Banco Santander, Brasil"
+          },
+          content: "<p>The most important part of our transformation is making sure that we can keep growing and keep improving our digital relationship with the clients.</p>"
+        } only %}
+        {% include "@bolt-components-headline/headline.twig" with {
+          text: faker.text(66),
+        } only %}
+        {% include "@bolt-components-headline/text.twig" with {
+          text: faker.text(666),
+        } only %}
+        {% include "@bolt-components-headline/headline.twig" with {
+          text: faker.text(66),
+        } only %}
+        {% include "@bolt-components-headline/text.twig" with {
+          text: faker.text(666),
+        } only %}
+        {% include "@bolt-components-headline/headline.twig" with {
+          text: faker.text(66),
+        } only %}
+        {% include "@bolt-components-headline/text.twig" with {
+          text: faker.text(666),
+        } only %}
+      {% endcell %}
+      {% cell "u-bolt-width-12/12 u-bolt-width-4/12@medium" %}
+        {% set icon %}
+          {% include "@bolt-components-icon/icon.twig" with {
+            name: "asset-text",
+            size: "large",
+          } only %}
+        {% endset %}
+        {% set item_1 %}
+          {% include "@bolt/flag.twig" with {
+            valign: "top",
+            figure: {
+              content: icon,
+            },
+            items: [
+              {
+                pattern: "headline",
+                size: "large",
+                text: "The power of robotic process automation (RPA)﻿",
+                url: "https://pega.com",
+              },
+            ],
+          } only %}
+        {% endset %}
+        {% set item_2 %}
+          {% include "@bolt/flag.twig" with {
+            valign: "top",
+            figure: {
+              content: icon,
+            },
+            items: [
+              {
+                pattern: "headline",
+                size: "large",
+                text: "Embracing low-code development﻿",
+                url: "https://pega.com",
+              },
+            ],
+          } only %}
+        {% endset %}
+        {% set item_3 %}
+          {% include "@bolt/flag.twig" with {
+            valign: "top",
+            figure: {
+              content: icon,
+            },
+            items: [
+              {
+                pattern: "headline",
+                size: "large",
+                text: "Don’t let legacy technology slow you down﻿﻿",
+                url: "https://pega.com",
+              },
+            ],
+          } only %}
+        {% endset %}
+        {% include "@bolt-components-list/list.twig" with {
+          separator: "solid",
+          spacing: "medium",
+          items: [
+            item_1,
+            item_2,
+            item_3,
+          ]
+        } only %}
+      {% endcell %}
+    {% endgrid %}
+  {% endset %}
+  {% include "@bolt-components-band/band.twig" with {
+    content: content,
+    theme: "xlight",
+  } only %}
+{% endblock %}
