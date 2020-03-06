@@ -12,7 +12,7 @@ hidden: false
    - Most likely should be defined as JSON (Style Dictionary's default) OR as `.js` files (my personal preference)
 2. We have 3 tiers of tokens
    - **#1. Global tokens** (pure values)
-   - **#2. Category-specific** tokens (opinionated defaults shared across multiple things)
+   - **#2. Context-specific** tokens (opinionated defaults shared across multiple things)
    - **#3. Component-specific** tokens (tokens just for buttons, just for links, etc)
 3. Our existing ITCSS `settings.global.scss` file needs to go away -- break some of these out into other settings / tokens appropriately
 4. Most other existing ITCSS settings files map out fairly nicely 
@@ -207,6 +207,7 @@ hidden: false
 <bolt-code-snippet lang="css" class="u-bolt-negative-margin-bottom-medium u-bolt-block">--bolt-shadow-100
 --bolt-shadow-300
 --bolt-shadow-500
+--bolt-shadow-500
 --bolt-shadow-900
 </bolt-code-snippet>
       </td>
@@ -227,61 +228,71 @@ hidden: false
 
 
 
+<hr>
 
-## Opacity
+<bolt-text font-size="xxxlarge" tag="h2" font-weight="semibold">
+  #2. Context-specific Tokens (Themes, Density, UI Types)
+</bolt-text>
 
-
-## Shadows
-
-
-
-
+> As a rule of thumb: if 2 or more bits of UI should stay magically in sync, it might make sense to define that shared rule here.
 
 
-# Tier 2: Prop Values Affected By Context
+<bolt-text font-size="large" font-weight="bold" class="u-bolt-margin-bottom-none">
+  Syntax
+</bolt-text>
 
-Theme
-Density
-UI
-
-Rule of thumb: if 2 or more pieces of UI need to stay magically in sync, you probably want a definition here.
-
-
+<bolt-code-snippet lang="css">
 --bolt-[Context]--[SCOPE]--[PROP]--[MODIFIER]
-    --bolt-theme--[SCOPE]--[PROP]--[MODIFIER]  --> color palette
-  --bolt-density--[SCOPE]--[PROP]--[MODIFIER] --> spacing density
-       --bolt-ui--[SCOPE]--[PROP]--[MODIFIER] --> UI defaults
-
-
-
-Themes ONLY affect color so putting color in the name isn't necessary
+/**
+  * Context will likely be one of 3 things: 
+  * - `theme`
+  * - `density`
+  * - `ui` (maybe...)
+  */
+    --bolt-theme--[SCOPE]--[PROP]--[MODIFIER]  //--> color palette
+  --bolt-density--[SCOPE]--[PROP]--[MODIFIER] //--> spacing density
+       --bolt-ui--[SCOPE]--[PROP]--[MODIFIER] // --> UI defaults
+/**
+  * Note: because themes ONLY affect color, putting `color` 
+  * in the name shouldn't be necessary
+  **/
 --bolt-theme--background
 --bolt-theme--border
 --bolt-theme--text
 --bolt-theme--icon
 --bolt-theme--primary--bg-color
 --bolt-theme--primary--bg-color--disabled
+</bolt-code-snippet>
 
 
 
-
-// by hierchy
+<bolt-text font-size="large" font-weight="bold" class="u-bolt-margin-bottom-none">
+  By Hierarchy
+</bolt-text>
+<bolt-code-snippet lang="css">
 --bolt-...--primary--...
 --bolt-...--secondary--...
 --bolt-...--tertiary--...
+<bolt-code-snippet>
 
-// by type of thing and/or element
+<bolt-text font-size="large" font-weight="bold" class="u-bolt-margin-bottom-none">
+  By type of thing and/or element
+</bolt-text>
+<bolt-code-snippet lang="css">
 --bolt-...--text--...
 --bolt-...--headings--...
 --bolt-...--h1--...
 --bolt-...--h6--...
+<bolt-code-snippet>
 
+<bolt-text font-size="large" font-weight="bold" class="u-bolt-margin-bottom-none">
+  By component type
+</bolt-text>
+<bolt-code-snippet lang="css">
 --bolt-...--overlays--...
 --bolt-...--dividers--...
-
 --bolt-...--input--...
-
-
+<bolt-code-snippet>
 
 
 
