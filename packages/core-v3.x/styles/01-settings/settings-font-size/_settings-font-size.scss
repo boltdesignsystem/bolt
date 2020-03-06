@@ -38,6 +38,9 @@ $bolt-font-size--small: 0.85rem !default;
 /// X Small font-size. Used within $bolt-font-sizes map.
 /// @see $bolt-font-sizes
 $bolt-font-size--xsmall: 0.75rem !default;
+/// XX Small font-size. Used within $bolt-font-sizes map.
+/// @see $bolt-font-sizes
+$bolt-font-size--xsmall: 0.65rem !default;
 
 /// Default XXX Large line-height. Used within $bolt-font-sizes map.
 /// @see $bolt-font-sizes
@@ -60,6 +63,9 @@ $bolt-line-height--small: 1.4 !default;
 /// Default X Small line-height. Used within $bolt-font-sizes map.
 /// @see $bolt-font-sizes
 $bolt-line-height--xsmall: 1.4 !default;
+/// Default XX Small line-height. Used within $bolt-font-sizes map.
+/// @see $bolt-font-sizes
+$bolt-line-height--xxsmall: 1.4 !default;
 /// Default Tight line-height. Used within $bolt-font-sizes map.
 /// @see $bolt-font-sizes
 $bolt-line-height--tight: 1.25 !default;
@@ -121,10 +127,10 @@ $bolt-font-sizes: (
       )
     ),
     xxsmall: (
-      font-size: bolt-rem(12px),
+      font-size: $bolt-font-size--xxsmall,
       line-height: (
-        regular: 1.41,
-        // 17px / 12px
+        regular: $bolt-line-height--xxsmall,
+        tight: $bolt-line-height--tight
       )
     )
   )
