@@ -73,12 +73,8 @@ module.exports = {
       .assert.elementPresent(video)
       .assert.not.visible(video)
       .execute(function(data) {
-        document
-          .querySelector('bolt-tabs')
-          .renderRoot.querySelector(
-            '.c-bolt-tabs__nav > .c-bolt-tabs__label:nth-child(4)',
-          )
-          .click();
+        // Opens video tab
+        document.querySelector('bolt-tabs').setAttribute('selected-tab', 4);
       })
       .assert.visible(video)
       .click(videoPlayer)
