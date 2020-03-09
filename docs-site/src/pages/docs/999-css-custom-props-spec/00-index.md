@@ -19,15 +19,15 @@ hidden: false
    - These should most likely be defined as JSON (Style Dictionary's default) OR preferably as `.js` files (my personal preference + also supported by Style Dictionary)
 2. New Sass tooling + updates to existing Sass tooling required
 3. Our existing ITCSS `settings.global.scss` file goes away and gets broken out into other (new) settings / token files appropriately
-  - Most of our other existing ITCSS settings files should map out quite nicely
+     - Most of our other existing ITCSS settings files should map out quite nicely
 4. Global vars only use single dashes. Context and component-specific vars use double-dashes after the `--bolt-[THING]` prefix
 
 ### Considerations:
-- **The simpler, the better** (Limiting Verbosity)
+- **Verbosity** (the simpler, the better)
   - We should try to favor using _shorter_ variable names instead of trying to match the CSS property being used. (discussion needed)
-- **Web performance**
+- **Web Performance**
   - Utility classes are the largest contributor to our large CSS file size. Auto-generated CSS custom prop values are probably the 2nd largest contributor to our large CSS file size...
-- **Best Docs Are No Docs**
+- **Intuitive** (aka the best docs are no docs)
   - The simpler the naming convention, the easier it is to adopt and use (plus requires less docs to reference)
 
 ## Questions + Discussion Points:
@@ -38,13 +38,13 @@ hidden: false
 3. Do we _REALLY_ need a `--default` suffix for UI that has multiple states?
    - `--bolt-button--background-color` vs `--bolt-button--background-color--default`
 4. Do we _REALLY_ need to include `-color` suffix on everything?
-  - `--bolt-btn--background` === `--bolt-btn--background-color` acceptable shorthand?
-  - `--bolt-btn--text` === `--bolt-btn--text-color` acceptable shorthand?
-  - `--bolt-button--border` === `--bolt-btn--border-color` acceptable shorthand?
+  - `--bolt-button--background` === `--bolt-button--background-color` acceptable shorthand?
+  - `--bolt-button--text` === `--bolt-button--text-color` acceptable shorthand?
+  - `--bolt-button--border` === `--bolt-button--border-color` acceptable shorthand?
 5. Sass tooling
 6. When, where, why, and how do we handle CSS custom prop fallbacks
-3. How do utility classes tie into all of this?
-
+7. How do utility classes tie into all of this?
+8. How concise can we make are CSS custom property names?
 
 ```
 --bolt-font-size-md
@@ -59,11 +59,6 @@ hidden: false
 ```
 
 ```
---bolt-btn--bg
---bolt-btn--bg-color
---bolt-btn--background
---bolt-btn--background-color
-
 --bolt-button--bg
 --bolt-button--bg-color
 --bolt-button--background
@@ -81,17 +76,17 @@ hidden: false
 <hr>
 
 <bolt-text font-size="xxxlarge" tag="h2" font-weight="semibold">
-  #1. Global Tokens
+## 1. Global Tokens
 </bolt-text>
 
-<bolt-text font-size="large" font-weight="bold" class="u-bolt-margin-bottom-none">
-  Syntax
-</bolt-text>
+### Syntax
 
-<bolt-code-snippet lang="html">--bolt-[NAME]-[VALUE]-[OPTIONAL VARIANT]</bolt-code-snippet>
+```
+--bolt-[NAME]-[VALUE]-[OPTIONAL VARIANT]
+```
 
 <bolt-text font-size="xlarge" tag="h3" font-weight="light" class="u-bolt-margin-bottom-none">
-  Notes:
+### Notes:
 </bolt-text>
 
 - TLDR: Basically ITCSS `settings.scss` layer as flat static CSS custom property values
@@ -229,7 +224,7 @@ hidden: false
 <hr>
 
 <bolt-text font-size="xxxlarge" tag="h2" font-weight="semibold">
-  #3. Component-specific Tokens (Buttons, Cards, etc)
+## 3. Component-specific Tokens (Buttons, Cards, etc)
 </bolt-text>
 
 
@@ -243,19 +238,19 @@ hidden: false
 --bolt-[COMPONENT-NAME]--[PURPOSE]--[STATE/MODIFIER]`
         ^- who            ^- what    ^- when / how
 
---bolt-btn--bg-color--hover: ...
+--bolt-button--bg-color--hover: ...
 ```
 
 ### Examples
 
 ```css
 // ex. button vars
---bolt-btn--bg-color: ...
---bolt-btn--bg-color--hover: ...
---bolt-btn--bg-color--active: ...
---bolt-btn--bg-color--disabled: ..
---bolt-btn--border-width
---bolt-btn--border-color
+--bolt-button--bg-color: ...
+--bolt-button--bg-color--hover: ...
+--bolt-button--bg-color--active: ...
+--bolt-button--bg-color--disabled: ..
+--bolt-button--border-width
+--bolt-button--border-color
 
 // ex. icon vars
 --bolt-icon--color:
