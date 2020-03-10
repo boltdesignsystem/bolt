@@ -71,12 +71,23 @@ module.exports = {
       )
       .waitForElementVisible('bolt-tabs', 1000)
       .assert.elementPresent(video)
-      .assert.not.visible(video)
+      .execute(
+        function(data) {
+          // Get initial selected tab
+          return document.querySelector('bolt-tabs').selectedTab;
+        },
+        [],
+        function(result) {
+          browser.assert.ok(
+            result.value === 1,
+            `On load the first tab is open and Video is hidden`,
+          );
+        },
+      )
       .execute(function(data) {
         // Opens video tab
         document.querySelector('bolt-tabs').setAttribute('selected-tab', 4);
       })
-      .assert.visible(video)
       .click(videoPlayer)
       .pause(4000)
       .assert.cssClassPresent(videoPlayer, ['vjs-has-started', 'vjs-playing'])
