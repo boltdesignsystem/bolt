@@ -1,0 +1,187 @@
+/* ------------------------------------ *\
+   Docs Site Article
+   Originally ported over from https://github.com/boltdesignsystem/bolt/pull/1438
+\* ------------------------------------ */
+
+@import '@bolt/core';
+
+$letter-spacing-tight: -0.025rem;
+$letter-spacing-loose: 0.05rem;
+$element-spacing: $bolt-spacing-leading - (($bolt-spacing-leading - 1) / 2) * 1rem;
+
+
+.c-bds-layout__main {
+  color: bolt-theme(text);
+
+  p,
+  blockquote,
+  figure,
+  // pre,
+  ul,
+  ol,
+  hr {
+    @include bolt-margin-top(0);
+    @include bolt-margin-right(0);
+    @include bolt-margin-left(0);
+
+    margin-bottom: $element-spacing;
+
+    &:last-child {
+      @include bolt-margin-bottom(0);
+    }
+  }
+
+  hr {
+    box-sizing: content-box;
+    opacity: 1;
+    height: 0;
+    overflow: visible;
+    margin-top: $element-spacing;
+    border: none;
+    border-bottom: 1px solid rgba(bolt-color(gray), 0.25);
+  }
+
+  p {
+    @include bolt-font-size(medium);
+  }
+
+  h1,
+  h2 {
+    & + ul,
+    & + ol {
+      margin-top: bolt-v-spacing(small) * -1;
+    }
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: bolt-theme(headline);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    letter-spacing: $letter-spacing-tight;
+  }
+
+  h1 {
+    @include bolt-font-size(xxxlarge);
+  }
+
+  h2 {
+    @include bolt-font-size(xxlarge);
+    @include bolt-font-weight(semibold);
+    @include bolt-margin-bottom(medium);
+  }
+
+  h3 {
+    @include bolt-font-size(xlarge);
+    @include bolt-font-weight(regular);
+    @include bolt-margin-bottom(small);
+  }
+
+  h4 {
+    @include bolt-font-size(large);
+    @include bolt-margin-bottom(xsmall);
+  }
+
+  h5 {
+    @include bolt-font-size(medium);
+    @include bolt-margin-bottom(xsmall);
+  }
+
+  h6 {
+    @include bolt-font-size(small);
+    @include bolt-font-weight(semibold);
+    @include bolt-margin-bottom(xsmall);
+
+    text-transform: uppercase;
+    letter-spacing: $letter-spacing-loose;
+  }
+
+  b,
+  strong {
+    @include bolt-font-weight(bold);
+  }
+
+  small,
+  figcaption {
+    @include bolt-font-size(xsmall);
+  }
+
+  sub,
+  sup {
+    position: relative;
+    line-height: 0;
+    vertical-align: baseline;
+    font-size: bolt-strip-unit(bolt-font-size(xsmall)) + em;
+  }
+
+  sub {
+    bottom: -0.25em;
+  }
+
+  sup {
+    top: -0.5em;
+  }
+
+  img {
+    border-style: none;
+  }
+
+  blockquote {
+    @include bolt-margin-right(0);
+    @include bolt-margin-left(0);
+    @include bolt-padding-left(small);
+    @include bolt-font-size(large);
+    @include bolt-font-weight(semibold);
+
+    border-left: 3px solid bolt-color(teal);
+
+    p {
+      font-size: inherit;
+
+      & + p {
+        margin-top: bolt-v-spacing(small) * -1;
+      }
+    }
+  }
+
+  blockquote footer,
+  figcaption {
+    opacity: 0.5;
+  }
+
+  figure {
+    @include bolt-padding(0);
+
+    img {
+      max-width: 100%;
+    }
+  }
+
+  ol,
+  ul {
+    @include bolt-padding-right(0);
+    @include bolt-padding-left(2.25em);
+
+    li {
+      @include bolt-margin-bottom(xsmall);
+
+      &:last-of-type {
+        @include bolt-margin-bottom(0);
+      }
+
+      ol,
+      ul {
+        @include bolt-margin-top(xsmall);
+        @include bolt-padding-left(1.25em);
+      }
+    }
+  }
+}
