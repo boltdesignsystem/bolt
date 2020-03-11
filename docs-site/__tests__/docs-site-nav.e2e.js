@@ -12,7 +12,9 @@ module.exports = {
       .pause(1000)
       .getCssProperty('.c-bds-layout__sidebar', 'transform', function(result) {
         browser.assert.ok(
-          result.value === 'matrix(1, 0, 0, 1, 0, 0)',
+          result.value === 'matrix(1, 0, 0, 1, 0, 0)' ||
+            result.value ===
+              'matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)',
           `verified that the off-canvas nav should have animated onto the page.`,
         );
       })
@@ -22,7 +24,9 @@ module.exports = {
       .pause(1000)
       .getCssProperty('.c-bds-layout__sidebar', 'transform', function(result) {
         browser.assert.ok(
-          result.value === 'matrix(1, 0, 0, 1, -320, 0)',
+          result.value === 'matrix(1, 0, 0, 1, -320, 0)' ||
+            result.value ===
+              'matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -320, 0, 0, 1)',
           `verified that the off-canvas nav should have animated off of the page.`,
         );
       })
