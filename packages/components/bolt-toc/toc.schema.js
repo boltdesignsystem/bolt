@@ -10,6 +10,16 @@ module.exports = {
       description:
         'A Drupal attributes object. Applies extra HTML attributes to the outer &lt;bolt-toc&gt; tag.',
     },
+    scrollOffsetSelector: {
+      type: 'string',
+      description:
+        'Selects a fixed element on the page, offsets smooth scrolling by the height of that element. Must be a valid CSS selector.',
+    },
+    scrollOffset: {
+      type: 'integer',
+      description:
+        'Additional offset for smooth scrolling, integer converted to pixel value.',
+    },
     items: {
       type: 'array',
       description:

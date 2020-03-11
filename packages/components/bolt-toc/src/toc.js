@@ -38,6 +38,14 @@ class BoltToc extends withContext(BoltElement) {
     return {
       header: String,
       uuid: String,
+      scrollOffset: {
+        attribute: 'scroll-offset',
+        type: Number,
+      },
+      scrollOffsetSelector: {
+        attribute: 'scroll-offset-selector',
+        type: String,
+      },
     };
   }
 
@@ -62,6 +70,8 @@ class BoltToc extends withContext(BoltElement) {
   static get providedContexts() {
     return {
       activeItem: { value: null },
+      scrollOffsetSelector: { value: null },
+      scrollOffset: { value: null },
     };
   }
 
@@ -170,8 +180,13 @@ class BoltToc extends withContext(BoltElement) {
   onActivate(event) {
     if (event?.detail?.activeItem) {
       this.activeItem = event.detail.activeItem;
-      this.updateProvidedContext('activeItem', this.activeItem);
+      this.updateContext();
     }
+  }
+
+  updateContext() {
+    this.updateProvidedContext('activeItem', this.activeItem);
+    this.updateProvidedContext('scrollOffsetSelector', this.scrollOffsetSelector);
   }
 
   updateWaypoints() {
@@ -236,7 +251,7 @@ class BoltToc extends withContext(BoltElement) {
 
     if (item && item !== this.activeItem) {
       this.activeItem = item;
-      this.updateProvidedContext('activeItem', this.activeItem);
+      this.updateContext();
     }
   }
 
@@ -245,6 +260,18 @@ class BoltToc extends withContext(BoltElement) {
   }
 
   onPositionChange({ target, currentPosition, previousPosition }) {
+    // auto-adjust a sticky parent's offset automatically
+    this.stickyParent = this.stickyParent || this.closest('bolt-sticky');
+    this.scrollElem =
+      this.scrollElem ||
+      (this.scrollOffsetSelector &&
+        document.querySelector(this.scrollOffsetSelector));
+    if (this.scrollElem && this.stickyParent) {
+      if (this.scrollElem.offsetHeight) {
+        this.stickyParent.style.top = `${this.scrollElem.offsetHeight}px`;
+      }
+    }
+
     // If `activeItem` is undefined (could be first load), use the first item
     // with position 'below' to get the previous item, which is assumed to be
     // the most visible section
@@ -253,7 +280,7 @@ class BoltToc extends withContext(BoltElement) {
         let item = this.getMatchingItem(target, -1);
         if (item) {
           this.activeItem = item;
-          this.updateProvidedContext('activeItem', this.activeItem);
+          this.updateContext();
         }
       }
     }
@@ -266,7 +293,7 @@ class BoltToc extends withContext(BoltElement) {
 
     // Returns first active item or undefined
     this.activeItem = Array.from(this.items).find(item => item.active);
-    this.updateProvidedContext('activeItem', this.activeItem);
+    this.updateContext();
   }
 
   render() {
