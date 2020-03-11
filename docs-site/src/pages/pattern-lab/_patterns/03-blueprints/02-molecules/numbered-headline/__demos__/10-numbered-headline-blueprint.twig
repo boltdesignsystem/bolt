@@ -1,0 +1,109 @@
+
+{% set schema = bolt.data.components["@bolt-blueprints-numbered-headline"].schema %}
+{% set headlineSchema = bolt.data.components["@bolt-components-headline"].schema %}
+
+{% set usage %}
+{% verbatim %}
+{% include "@bolt-blueprints/numbered-headline.twig" with {
+  tag: "h2",
+  size: "xxlarge",
+  text: "Numbered Headline",
+  numberText: 1,
+  numberColor: "indigo"
+} only %}
+{% endverbatim %}
+{% endset %}
+
+<div class="o-bolt-wrapper">
+  {% include "@bolt-components-headline/headline.twig" with {
+    size: "xxxlarge",
+    tag: "h1",
+    text: "Numbered Headline",
+  } only %}
+
+  {% include "@bolt-components-headline/subheadline.twig" with {
+    size: "xxlarge",
+    tag: "h2",
+    text: schema.description,
+  } only %}
+
+  {# start usage #}
+  {% include "@bolt-components-headline/headline.twig" with {
+    size: "xxlarge",
+    tag: "h2",
+    text: "Usage",
+  } only %}
+
+  {% include "@bolt-blueprints/numbered-headline.twig" with {
+    tag: "h2",
+    size: "xxlarge",
+    text: "Numbered Headline",
+    numberText: 1,
+    numberColor: "indigo"
+  } only %}
+
+  {% include "@bolt-components-code-snippet/code-snippet.twig" with {
+    lang: "twig",
+    content: usage
+  } only %}
+  {# end usage #}
+
+  {# start schema #}
+  {% if schema and schema.properties %}
+    {% include "@bolt/headline.twig" with {
+      size: "xxlarge",
+      tag: "h2",
+      text: "Schema",
+      icon: "none",
+    } only %}
+    {% include '@utils/schema-docs.twig' with { schema: schema } only %}
+  {% endif %}
+
+  <aside class="c-bds-callout c-bds-callout--notice u-bolt-margin-top-medium u-bolt-margin-bottom-large">
+    <p>Check out the <a href="{{ link["viewall-components-headline"]}}">Headline component docs</a> to reference the additional props supported by the Numbered Headline variant.
+    </p>
+  </aside>
+  {# end schema #}
+
+  <p>
+    By setting the Numbered Headline's <code>numberColor</code> prop to <code>indigo</code>, <code>purple</code>, <code>teal</code>, or <code>orange</code>, you can choose the background color of the Numbered Headline's Number Bullet. NOTE: if you don't specify a <code>numberColor</code>, the bullet doesn't show up by default.
+  </p>
+
+  {% include "@bolt-components-headline/headline.twig" with {
+    tag: "h2",
+    size: "xlarge",
+    text: "Color options",
+  } only %}
+
+  {% for color in schema.properties.numberColor.enum %}
+    <h3>numberColor: <code>{{ color ? color : "undefined" }}</code></h3>
+    {% include "@bolt-blueprints/numbered-headline.twig" with {
+      size: "xxlarge",
+      text: "Numbered Headline w/ #{color} bullet",
+      numberText: loop.index,
+      numberColor: color
+    } only %}
+  {% endfor %}
+
+  <hr>
+
+  {% include "@bolt-components-headline/headline.twig" with {
+    tag: "h2",
+    size: "xlarge",
+    text: "Bullet size",
+  } only %}
+
+  {% include "@bolt-components-headline/text.twig" with {
+    tag: "p",
+    text: "It might also be worth pointing out: the size of the numbered bullet is currently a fixed however could be easily updated to have proportionally-sized bullets."
+  } only %}
+
+  {% for size in headlineSchema.properties.size.enum %}
+    {% include "@bolt-blueprints/numbered-headline.twig" with {
+      size: size,
+      text: "Numbered Headline that's #{size} in size",
+      numberText: loop.index,
+      numberColor: "indigo"
+    } only %}
+  {% endfor %}
+</div>

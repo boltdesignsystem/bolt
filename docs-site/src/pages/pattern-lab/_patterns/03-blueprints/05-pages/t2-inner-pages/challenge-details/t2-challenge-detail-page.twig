@@ -3,10 +3,12 @@
 {% block page_content %}
   {% import "@bolt-blueprints/macros.twig" as macros %}
 
-  {% include "@bolt-components-headline/headline.twig" with {
+  {% include "@bolt-blueprints/numbered-headline.twig" with {
     tag: "h2",
     size: "xxlarge",
     text: "Scenario",
+    numberText: 1,
+    numberColor: "orange"
   } only %}
 
   {% include "@bolt-components-headline/text.twig" with {
