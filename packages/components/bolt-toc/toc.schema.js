@@ -10,6 +10,10 @@ module.exports = {
       description:
         'A Drupal attributes object. Applies extra HTML attributes to the outer &lt;bolt-toc&gt; tag.',
     },
+    addStickyOffset: {
+      type: 'boolean',
+      description: 'When enabled, this will automatically add a `top` offset style based on the height of the `scrollOffsetSelector` plus the `scrollOffset` (if defined),',
+    },
     scrollOffsetSelector: {
       type: 'string',
       description:

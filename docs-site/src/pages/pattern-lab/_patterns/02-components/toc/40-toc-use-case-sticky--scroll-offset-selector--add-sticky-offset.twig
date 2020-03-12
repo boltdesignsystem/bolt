@@ -1,4 +1,18 @@
-<div class="js-sticky-offset u-bolt-padding-medium" style="position: sticky; top: 0; background: red;">Ex. Sticky Element</div>
+{% set props %}
+{% verbatim %}
+{% include "@bolt-components-toc/toc.twig" with {
+  scrollOffsetSelector: ".js-sticky-offset",
+  addStickyOffset: true,
+} %}
+{% endverbatim %}
+{% endset %}
+
+{% include "@bolt-components-code-snippet/code-snippet.twig" with {
+  content: props,
+  lang: "twig"
+} only %}
+
+<div class="js-sticky-offset u-bolt-padding-small u-bolt-padding-medium@medium" style="position: sticky; top: 0; background: red;">Ex. Sticky Element</div>
 
 <div class="o-bolt-wrapper u-bolt-margin-top-large u-bolt-margin-bottom-large">
   {% grid "o-bolt-grid--flex o-bolt-grid--matrix" %}
@@ -7,6 +21,7 @@
         {# Start component specific code #}
         {% include "@bolt-components-toc/toc.twig" with {
           scrollOffsetSelector: ".js-sticky-offset",
+          addStickyOffset: true,
           header: "Marvel Cinematic Universe",
           items: [
             {

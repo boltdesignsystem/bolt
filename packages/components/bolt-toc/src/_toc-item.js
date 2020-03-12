@@ -77,6 +77,8 @@ class BoltTocItem extends withContext(BoltElement) {
       }
     } else if (name === 'scrollOffsetSelector' && value) {
       this.scrollOffsetSelector = value;
+    } else if (name === 'scrollOffset' && value) {
+      this.scrollOffset = value;
     }
   }
 
@@ -86,13 +88,13 @@ class BoltTocItem extends withContext(BoltElement) {
         event.preventDefault();
         let scrollOpts = scrollOptions;
 
-        // adjust default smooth scroll if context-provided scrollOffsetSelector or scrollOffset props exist
-        if (this.scrollOffsetSelector) {
-          scrollOpts.header = this.scrollOffsetSelector;
-        }
-        if (this.scrollOffset) {
-          scrollOpts.offset = this.scrollOffset;
-        }
+        const scrollOffset = this.scrollOffset || 0;
+        const scrollOffsetElemHeight = this.scrollOffsetSelector
+          ? document.querySelector(this.scrollOffsetSelector).clientHeight
+          : 0;
+
+        scrollOpts.offset = scrollOffset + scrollOffsetElemHeight;
+
         smoothScroll.animateScroll(this.target, this.shadowLink, scrollOpts);
       }
     } catch (err) {
