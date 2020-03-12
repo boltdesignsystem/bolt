@@ -53,8 +53,40 @@ class BoltPopover extends BoltElement {
     return [unsafeCSS(popoverStyles)];
   }
 
+  // removes any hashes from the URL while preserving any query string params
+  // todo: maybe worth sharing this + matchSSRState with other Bolt components?
+  clearURLHash() {
+    window.history.replaceState(
+      '',
+      document.title,
+      window.location.pathname + window.location.search,
+    );
+  }
+
+  // updates Popover's internal state to match any SSR / no-js interactions that have occurred
+  matchSSRState() {
+    const uuid = this.getAttribute('uuid');
+
+    const popoverOpenedHash = `#js-bolt-popover-${uuid}`;
+    const popoverClosedHash = `#js-bolt-popover-trigger-${uuid}`;
+
+    const currentHash = window.location.href.substr(
+      window.location.href.indexOf('#'),
+    );
+
+    // if URL hash matches, auto-open or auto-close + clean up any existing URL hashes
+    if (currentHash === popoverOpenedHash) {
+      this.clearURLHash();
+      this.show();
+    } else if (currentHash === popoverClosedHash) {
+      this.clearURLHash();
+      this.hide();
+    }
+  }
+
   connectedCallback() {
     super.connectedCallback && super.connectedCallback();
+    this.matchSSRState();
     this.setAttribute('ready', '');
   }
 
