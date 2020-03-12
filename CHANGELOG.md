@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.19.1](https://github.com/boltdesignsystem/bolt/compare/v2.19.0...v2.19.1) (2020-03-11)
+
+
+### Bug Fixes
+
+* remove original fix for loading hidden videos, not necessary anymore, actually causing new bug ([a7af0ed](https://github.com/boltdesignsystem/bolt/commit/a7af0ed4b8d2710b92395b241cb891cf24ca03e2))
+
+
+
+
+
 # [2.19.0](https://github.com/boltdesignsystem/bolt/compare/v2.18.1...v2.19.0) (2020-03-04)
 
 
