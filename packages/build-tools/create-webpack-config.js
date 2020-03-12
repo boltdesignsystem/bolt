@@ -122,7 +122,7 @@ async function createWebpackConfig(buildConfig) {
   let themifyOptions = {
     watchForChanges: config.watch && config.mode !== 'server',
     classPrefix: 't-bolt-',
-    screwIE11: false,
+    screwIE11: true,
     fallback: {
       filename: 'bolt-css-vars-fallback',
       jsonDataExport: 'theming-css-vars',
@@ -150,7 +150,7 @@ async function createWebpackConfig(buildConfig) {
       ),
       cssPath: path.resolve(
         config.buildDir,
-        `${themifyOptions.fallback.filename}.modern.css`,
+        `${themifyOptions.fallback.filename}.css`,
       ),
     },
   });

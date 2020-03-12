@@ -449,6 +449,6 @@ module.exports = function(apiConfig) {
     //   );
     // }
 
-    return resolve([modernConfig, legacyConfig]);
+    return resolve([modernConfig]);
   });
 };
