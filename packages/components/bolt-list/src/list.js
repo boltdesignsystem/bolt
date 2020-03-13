@@ -8,13 +8,10 @@ import {
 } from '@bolt/core-v3.x/utils';
 import classNames from 'classnames/bind';
 import { withLitHtml } from '@bolt/core-v3.x/renderers/renderer-lit-html';
-import Ajv from 'ajv';
 
 import themes from '@bolt/global/styles/06-themes/_themes.wc.scss';
 import styles from './list.scss';
 import schema from '../list.schema.yml';
-
-const ajv = new Ajv({ useDefaults: 'shared' });
 
 let cx = classNames.bind(styles);
 
@@ -51,28 +48,8 @@ class BoltList extends withContext(withLitHtml) {
   constructor(self) {
     self = super(self);
     self.useShadow = hasNativeShadowDomSupport;
-    self.validate = ajv.compile(schema);
+    this.schema = schema;
     return self;
-  }
-
-  validateProps(propData) {
-    const validatedData = propData;
-
-    // remove default strings in prop data so schema validation can fill in the default
-    for (let property in validatedData) {
-      if (validatedData[property] === '') {
-        delete validatedData[property];
-      }
-    }
-
-    let isValid = this.validate(validatedData);
-
-    // bark at any schema validation errors
-    if (!isValid) {
-      // console.log(this.validate.errors);
-    }
-
-    return validatedData;
   }
 
   render() {

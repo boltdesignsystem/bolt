@@ -1,9 +1,10 @@
-import Ajv from 'ajv';
-import { props } from 'skatejs';
 import { withLifecycle } from 'skatejs/dist/esnext/with-lifecycle.js';
 import { withUpdate } from 'skatejs/dist/esnext/with-update.js';
 import { withRenderer } from 'skatejs/dist/esnext/with-renderer.js';
 import camelcase from 'camelcase';
+import { Validator } from 'jsonschema';
+const v = new Validator();
+
 import {
   shouldUseShadowDom,
   hasNativeShadowDomSupport,
@@ -89,7 +90,6 @@ export class BoltBase extends withComponent(HTMLElement) {
 
   validateProps(propData) {
     var validatedData = propData;
-    const ajv = new Ajv({ useDefaults: 'shared', coerceTypes: true });
 
     // remove default strings in prop data so schema validation can fill in the default
     for (let property in validatedData) {
@@ -112,11 +112,11 @@ export class BoltBase extends withComponent(HTMLElement) {
     }
 
     if (this.formattedSchema) {
-      let isValid = ajv.validate(this.formattedSchema, validatedData);
+      const validationResult = v.validate(validatedData, this.formattedSchema);
 
       // bark at any schema validation errors
-      if (!isValid) {
-        console.log(ajv.errors);
+      if (!validationResult.valid) {
+        console.log(validationResult.errors);
       }
     }
 
