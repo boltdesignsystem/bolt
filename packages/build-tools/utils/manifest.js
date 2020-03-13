@@ -1,7 +1,5 @@
 /* eslint-disable no-await-in-loop */
 const { promisify } = require('util');
-const resolve = require('resolve');
-const fs = require('fs');
 const path = require('path');
 const $RefParser = require('json-schema-ref-parser');
 const log = require('./log');
@@ -10,30 +8,6 @@ const writeFile = promisify(fs.writeFile);
 const { getDataFile } = require('./yaml');
 const { validateSchemaSchema } = require('./schemas');
 const { getConfig } = require('./config-store');
-
-// recursively flatten heavily nested arrays
-function flattenDeep(arr1) {
-  return arr1.reduce(
-    (acc, val) =>
-      Array.isArray(val) ? acc.concat(flattenDeep(val)) : acc.concat(val),
-    [],
-  );
-}
-
-// utility function to help with removing duplicate objects (like shared dependencies)
-function removeDuplicateObjectsFromArray(originalArray, prop) {
-  var newArray = [];
-  var lookupObject = {};
-
-  for (var i in originalArray) {
-    lookupObject[originalArray[i][prop]] = originalArray[i];
-  }
-
-  for (i in lookupObject) {
-    newArray.push(lookupObject[i]);
-  }
-  return newArray;
-}
 
 let boltManifest = {
   name: 'Bolt Manifest',
@@ -142,22 +116,6 @@ async function getPkgInfo(pkgName) {
       deps: [],
     };
 
-    if (pkg.peerDependencies) {
-      for (dependencyPackageName in pkg.peerDependencies) {
-        if (dependencyPackageName.includes('bolt')) {
-          info.deps.push(dependencyPackageName);
-        }
-      }
-    }
-
-    if (pkg.dependencies) {
-      for (dependencyPackageName in pkg.dependencies) {
-        if (dependencyPackageName.includes('bolt')) {
-          info.deps.push(dependencyPackageName);
-        }
-      }
-    }
-
     info.twigNamespace = `@${info.basicName}`;
     if (pkg.style) {
       info.assets.style = path.join(dir, pkg.style);
@@ -214,37 +172,6 @@ async function getPkgInfo(pkgName) {
   }
 }
 
-// loop through package-specific dependencies to merge and dedupe
-async function aggregateBoltDependencies(data) {
-  let componentDependencies = [];
-  let componentsWithoutDeps = data;
-
-  componentsWithoutDeps.forEach(item => {
-    if (item.deps) {
-      componentDependencies.push([...item.deps]);
-    }
-  });
-
-  componentDependencies = flattenDeep(componentDependencies);
-
-  componentDependencies = componentDependencies.filter(function(x, i, a) {
-    if (x !== '@bolt/build-tools' && a.indexOf(x) === i) {
-      return x;
-    }
-  });
-
-  let globalDepsSrc = await Promise.all(componentDependencies.map(getPkgInfo));
-
-  componentsWithoutDeps = componentsWithoutDeps.concat(globalDepsSrc);
-
-  var uniqueComponentsWithDeps = removeDuplicateObjectsFromArray(
-    componentsWithoutDeps,
-    'name',
-  );
-
-  return uniqueComponentsWithDeps;
-}
-
 async function buildBoltManifest() {
   const config = await getConfig();
   try {
@@ -254,10 +181,7 @@ async function buildBoltManifest() {
       );
 
       // @todo: re-evaluate if we really should be doing this...
-      // boltManifest.components.global = globalSrc;
-      boltManifest.components.global = await aggregateBoltDependencies(
-        globalSrc,
-      );
+      boltManifest.components.global = globalSrc;
     }
     if (config.components.individual) {
       const individualSrc = await Promise.all(
