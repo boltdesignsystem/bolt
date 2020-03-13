@@ -28,6 +28,7 @@ module.exports = {
       '@bolt/components-figure',
       '@bolt/components-form',
       '@bolt/components-grid',
+      '@bolt/components-ratio',
       '@bolt/components-headline',
       '@bolt/components-hero',
       '@bolt/components-icon',
@@ -64,8 +65,6 @@ module.exports = {
     ],
     individual: [
       '@bolt/components-critical-fonts',
-      '@bolt/components-critical-css',
-      '@bolt/components-critical-css-vars',
     ],
   },
 };

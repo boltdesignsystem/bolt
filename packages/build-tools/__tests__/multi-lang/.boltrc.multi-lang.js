@@ -8,7 +8,7 @@ const config = {
   wwwDir: './dist-lang',
   components: {
     global: [
-      '@bolt/core',
+      '@bolt/core-v3.x',
       '@bolt/components-button',
       '@bolt/global',
     ],
