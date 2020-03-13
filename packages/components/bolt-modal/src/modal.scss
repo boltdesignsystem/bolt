@@ -1,5 +1,4 @@
 @import '@bolt/core-v3.x';
-@import '@bolt/global/styles/06-themes/_themes.all.scss';
 
 /* ------------------------------------ *\
    Modal
@@ -261,6 +260,7 @@ bolt-modal:not([ready]) {
   opacity: bolt-opacity(0);
   transform: translate3d(0, 0, 0) scale($bolt-modal-animation-scale); /* [1] */
   transition: opacity $bolt-modal-transition, transform $bolt-modal-transition;
+  background-color: bolt-theme(background);
 
   @at-root .c-bolt-modal.is-open #{&} {
     opacity: bolt-opacity(100);

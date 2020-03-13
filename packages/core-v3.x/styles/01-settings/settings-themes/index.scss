@@ -3,6 +3,25 @@
 @import '../../02-tools/tools-text-contrast/tools-text-contrast';
 @import '../../02-tools/tools-map-recursive-merge/tools-map-recursive-merge';
 
+// helper function to check if the CSS var is on the whitelist of variants used
+@function bolt-list-contains($value, $list) {
+  @return (false != index($list, $value));
+}
+
+// whitelist of the theme color variants actively being used
+$themeColorVariantsUsed:
+  primary,
+  secondary,
+  primary-darken-15,
+  primary-darken-25,
+  primary-lighten-15,
+  secondary-darken-10,
+  secondary-darken-15,
+  secondary-darken-25,
+  secondary-darken-3,
+  secondary-darken-5,
+  secondary-lighten-5;
+
 // pre-defined theming system values
 $bolt-theme-ui-colors: (
   // This is actually dark.
@@ -50,17 +69,17 @@ $bolt-theme-interactive-shades: (
   ),
   lighten: (
     5,
-    10,
+    // 10,
     15,
-    20,
-    25,
+    // 20,
+    // 25,
   ),
   darken: (
     3,
     5,
     10,
     15,
-    20,
+    // 20,
     25,
   ),
 ) !default;
@@ -119,16 +138,19 @@ $bolt-themes: (
 
         $propValue: mix($mixColor, $property, $shade);
 
-        $bolt-themes: bolt-recursive-map-merge(
-          $bolt-themes,
-          (
-            #{$themeName}:
-              (
-                $propName: $propValue,
-                text-on-#{$propName}: bolt-text-contrast($propValue),
-              )
-          )
-        );
+
+        @if index($themeColorVariantsUsed, $propName) {
+          $bolt-themes: bolt-recursive-map-merge(
+            $bolt-themes,
+            (
+              #{$themeName}:
+                (
+                  $propName: $propValue,
+                  text-on-#{$propName}: bolt-text-contrast($propValue),
+                )
+            )
+          );
+        }
       }
     }
   }

@@ -11,6 +11,7 @@ import classNames from 'classnames/bind';
 import { createPopper } from '@popperjs/core';
 import Mousetrap from 'mousetrap';
 import popoverStyles from './popover.scss';
+import themeStyles from '@bolt/global/styles/06-themes/_themes.wc.scss';
 import schema from '../popover.schema';
 
 let cx = classNames.bind(popoverStyles);
@@ -50,7 +51,7 @@ class BoltPopover extends BoltElement {
   }
 
   static get styles() {
-    return [unsafeCSS(popoverStyles)];
+    return [unsafeCSS(popoverStyles), unsafeCSS(themeStyles)];
   }
 
   connectedCallback() {

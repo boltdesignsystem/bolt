@@ -13,6 +13,7 @@ import {
 import { withLitHtml } from '@bolt/core-v3.x/renderers/renderer-lit-html';
 import classNames from 'classnames/bind';
 import styles from './modal.scss';
+import themeStyles from '@bolt/global/styles/06-themes/_themes.wc.scss';
 import schema from '../modal.schema.yml';
 
 const tabbable = require('tabbable');
@@ -442,7 +443,7 @@ class BoltModal extends withLitHtml {
     // @todo: work through how we want to handle the default dialog modal title
     //  vs a customized modal title vs providing a title but hiding it.
     return html`
-      ${this.addStyles([styles])}
+      ${this.addStyles([styles, themeStyles])}
       <div
         class="${classes}"
         aria-hidden=${open === true ? 'false' : 'true'}

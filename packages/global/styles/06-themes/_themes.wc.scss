@@ -1,0 +1,59 @@
+/* ------------------------------------ *\
+   Subset of Bolt's Theming-specific CSS custom props for web component
+\* ------------------------------------ */
+
+@import '@bolt/core-v3.x';
+
+@each $themeName, $themeOptions in $bolt-themes {
+  @if ($themeName == 'xdark') {
+    $selector: ':root, .t-bolt-xdark, .t-bolt-dark';
+
+    #{unquote($selector)} {
+      @each $themeOptionName, $themeOptionValue in $themeOptions {
+        @if $themeOptionName != 'background' {
+          @if type-of($themeOptionValue) == color and type-of($themeOptionValue) != string {
+            $red: round(red($themeOptionValue));
+            $green: round(green($themeOptionValue));
+            $blue: round(blue($themeOptionValue));
+
+            --bolt-theme-#{$themeOptionName}: #{$red, $green, $blue};
+          } @else {
+            --bolt-theme-#{$themeOptionName}: #{$themeOptionValue};
+          }
+        }
+      }
+
+      color: rgba(var(--bolt-theme-text), 1);
+      background-color: rgba(var(--bolt-theme-background), 1);
+
+    }
+  }
+}
+
+@each $themeName, $themeOptions in $bolt-themes {
+  $selector: '.t-bolt-#{$themeName}';
+  @if ($themeName == 'xlight') {
+    $selector: ':root, .t-bolt-xlight';
+  }
+
+  #{unquote($selector)} {
+    @each $themeOptionName, $themeOptionValue in $themeOptions {
+      @if $themeOptionName == 'background' or $themeOptionName == 'text' or $themeOptionName == 'headline' or $themeOptionName == 'headline-link' {
+        @if type-of($themeOptionValue) == color and type-of($themeOptionValue) != string {
+          $red: round(red($themeOptionValue));
+          $green: round(green($themeOptionValue));
+          $blue: round(blue($themeOptionValue));
+
+          --bolt-theme-#{$themeOptionName}: #{$red, $green, $blue};
+        } @else {
+          --bolt-theme-#{$themeOptionName}: #{$themeOptionValue};
+        }
+      }
+    }
+
+  }
+}
+
+.t-bolt-xxdark {
+  --bolt-theme-background: 0, 0, 0;
+}
