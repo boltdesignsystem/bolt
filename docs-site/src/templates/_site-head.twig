@@ -6,7 +6,7 @@
 
 
 {# @TODO: how do we get this to use the exact same values from our global .js config without having the source of truth live as a .yml or .json file...? #}
-{% set modernManifestConfig = "@bolt-assets/bolt-webpack-manifest#{lang != "" ? "-" ~ lang : ""}.modern.json" %}
+{% set modernManifestConfig = "@bolt-assets/bolt-webpack-manifest#{lang != "" ? "-" ~ lang : ""}.json" %}
 
 {% set modernAssets = [] %}
 
