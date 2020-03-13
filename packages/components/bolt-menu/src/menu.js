@@ -1,4 +1,3 @@
-import { supportsCSSVars } from '@bolt/core/utils';
 import classNames from 'classnames/dedupe';
 import {
   customElement,
