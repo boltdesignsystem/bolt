@@ -1,6 +1,7 @@
 /* eslint-disable no-await-in-loop */
 const { promisify } = require('util');
 const path = require('path');
+const fs = require('fs');
 const $RefParser = require('json-schema-ref-parser');
 const log = require('./log');
 const { ensureFileExists } = require('./general');
