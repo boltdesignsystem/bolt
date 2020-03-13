@@ -133,14 +133,7 @@ bolt-autosuggest {
   border-bottom-left-radius: $bolt-typeahead-border-radius;
   box-shadow: rgba(bolt-color(gray, dark), 0.3) 0px 15px 46px -10px;
 
-  background-color: bolt-theme(
-    (
-      xdark: brand-darken-5,
-      dark: brand-lighten-20,
-      light: secondary,
-      xlight: secondary,
-    )
-  );
+  background-color: bolt-theme(secondary);
   background-color: var(--bolt-typeahead-menu-background, rgba(var(--bolt-theme-secondary), 1));
   transition: max-height 0.3s cubic-bezier(0.645,0.045,0.355,1), opacity 0.3s cubic-bezier(0.645,0.045,0.355,1);
 

@@ -91,8 +91,7 @@ $PSEUDO_CLASSES: (
   */
 @function bolt-theme($props...) {
   @if (is-map($props...)) {
-    $value: bolt-json-encode($props...);
-    @return "bolt-themify(#{$value})";
+    @error "The longhand version of `bolt-theme` is no longer supported. Please update your code to only use the shorthand `bolt-theme(color, opacity)` syntax."
   } @else {
     $color: null;
     $opacity: 1;
@@ -105,38 +104,13 @@ $PSEUDO_CLASSES: (
     $value: map-get-deep($bolt-themes, 'light', $color);
 
     // Automatically assign opacity based on the color selected.
-    $opacity: alpha($value);
+    $opacity: 1;
 
     @if (length($props) >= 2) {
       $opacity: nth($props, 2);
     }
 
-    @if ($value){
-      $value: bolt-json-encode(
-        (
-          xlight: (
-            #{$color},
-            #{$opacity}
-          ),
-          light: (
-            #{$color},
-            #{$opacity}
-          ),
-          dark: (
-            #{$color},
-            #{$opacity}
-          ),
-          xdark: (
-            #{$color},
-            #{$opacity}
-          )
-        )
-      );
-      @return "bolt-themify(#{$value})";
-    } @else {
-      @warn 'Warning! ' + $color + ' bolt-theme was not found...';
-      @return '';
-    }
+    @return rgba(var(--bolt-theme-#{$color}), #{$opacity});
   }
 }
 

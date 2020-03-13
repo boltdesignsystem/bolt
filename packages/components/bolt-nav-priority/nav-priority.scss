@@ -139,14 +139,7 @@ bolt-nav-priority {
   border-bottom-right-radius: $bolt-border-radius;
   border-bottom-left-radius: $bolt-border-radius;
   box-shadow: 0 1px 2px 1px rgba(6, 10, 36, 0.1);
-  background-color: bolt-theme(
-    (
-      xdark: brand-darken-5,
-      dark: brand-lighten-20,
-      light: secondary,
-      xlight: secondary,
-    )
-  );
+  background-color: bolt-theme(background-secondary, 1);
   transition: max-height 0.3s cubic-bezier(0.28, 0.11, 0.32, 1) 0s, visibility 0s linear 0.3s;
 
   * {
@@ -211,7 +204,6 @@ bolt-nav-priority {
   border-width: thin;
   border-style: solid;
   border-color: transparent;
-  background-color: bolt-theme(secondary, 0.05);
   transition: background-color 0.3s ease;
   white-space: nowrap;
 
@@ -224,7 +216,7 @@ bolt-nav-priority {
 
   &:before {
     content: '';
-    opacity: bolt-opacity(0);
+    opacity: bolt-opacity(20);
     position: absolute;
     top: 0;
     left: 0;
@@ -235,22 +227,14 @@ bolt-nav-priority {
     overflow: hidden;
     pointer-events: none;
     pointer-events: none;
-    background-color: bolt-theme(
-      (
-        xdark: brand 0.95,
-        dark: brand 0.95,
-        light: neutral 0.95,
-        xlight: neutral 0.95,
-      )
-    );
+    background-color: bolt-theme(neutral, .5);
     transition: opacity 0.3s ease;
   }
 
   &:hover {
-    background-color: bolt-theme(secondary, 0.15);
 
     &:before {
-      opacity: 0.1;
+      opacity: 0.3;
     }
   }
 
@@ -263,10 +247,10 @@ bolt-nav-priority {
 
   &.is-active,
   &:active {
-    background-color: bolt-theme(secondary, 0.1);
+    background-color: bolt-theme(background-secondary, 1);
 
     &:before {
-      opacity: 0.1;
+      opacity: 0;
     }
   }
 
