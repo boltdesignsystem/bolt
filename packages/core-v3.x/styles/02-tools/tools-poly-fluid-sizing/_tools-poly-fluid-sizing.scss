@@ -15,7 +15,7 @@
 /// @see {mixin} bolt-font-size
 /// @example scss
 ///   @include bolt-poly-fluid-sizing('font-size', (576px: 22px, 768px: 24px, 992px: 34px));
-@mixin bolt-poly-fluid-sizing($property, $map) {
+@mixin bolt-poly-fluid-sizing($property, $map, $includeCssVars: false, $cssVarPrefix: 'bolt-') {
   // Get the number of provided breakpoints
   $length: length(map-keys($map));
 
@@ -33,6 +33,9 @@
   // @include bolt-poly-fluid-sizing('font-size', $map);
 
   // Minimum size
+  @if $includeCssVars {
+    --#{$cssVarPrefix}#{$property}: #{map-get($map, nth($keys, 1))};
+  }
   #{$property}: map-get($map, nth($keys, 1));
 
   // Interpolated size through breakpoints
@@ -42,8 +45,14 @@
       $value2: map-get($map, nth($keys, ($i + 1)));
       // If values are not equal, perform linear interpolation
       @if ($value1 != $value2) {
+        @if $includeCssVars {
+          --#{$cssVarPrefix}#{$property}: #{bolt-linear-interpolation((nth($keys, $i): $value1, nth($keys, ($i + 1)): $value2))};
+        }
         #{$property}: bolt-linear-interpolation((nth($keys, $i): $value1, nth($keys, ($i + 1)): $value2));
       } @else {
+        @if $includeCssVars {
+          --#{$cssVarPrefix}#{$property}: #{$value1};
+        }
         #{$property}: $value1;
       }
     }
@@ -51,6 +60,9 @@
 
   // Maxmimum size
   @media (min-width: nth($keys, $length)) {
+    @if $includeCssVars {
+      --#{$cssVarPrefix}#{$property}: #{map-get($map, nth($keys, $length))};
+    }
     #{$property}: map-get($map, nth($keys, $length));
   }
 }
