@@ -45,12 +45,13 @@ export class Slotify extends LitElement {
     super.update(changedProperties);
   }
 
-  slotify(slot = 'default', defaultContent) {
+  slotify(slot = 'default', tryToUseRealSlots = true, defaultContent) {
     const slotContent = this.slotMap.get(slot);
 
     // render actualy slots if Shadow DOM supported + getting used
     // @todo: what's a better way to allow customizing the checks to perform?
     if (
+      tryToUseRealSlots === true &&
       this.shadowRoot &&
       (this.useShadow === undefined || this.useShadow === true) &&
       (this.noShadow === undefined || this.useShadow === false) &&
