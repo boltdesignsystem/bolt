@@ -17,12 +17,6 @@ class BoltCardReplacement extends withContext(BoltElement) {
   //   return [card-replacementContext];
   // }
 
-  static get providedContexts() {
-    return {
-      horizontal: { value: this.horizontal },
-    };
-  }
-
   static get styles() {
     return [unsafeCSS(cardReplacementStyles)];
   }
@@ -36,7 +30,10 @@ class BoltCardReplacement extends withContext(BoltElement) {
       theme: String, // xdark | dark | light | xlight
       tag: String, // div | figure | article
       height: String, // full | auto
-      raised: Boolean,
+      raised: {
+        type: Boolean,
+        reflect: true,
+      },
       url: String,
       urlText: String,
       rounded: {
@@ -47,16 +44,24 @@ class BoltCardReplacement extends withContext(BoltElement) {
   }
 
   render() {
-    const isRaised =
+    const canBeRaised =
       (this.raised && this.raised === true) ||
       (this.url && this.url.length > 0) ||
-      this.querySelector('bolt-card-replacement-link');
+      this.querySelector('bolt-card-replacement-link')
+        ? true
+        : false;
+
+    if (canBeRaised) {
+      this.setAttribute('can-raise', '');
+    } else {
+      this.removeAttribute('can-raise');
+    }
 
     // validate the original prop data passed along -- returns back the validated data w/ added default values
     // const { theme, tag } = this.validateProps(this.props);
 
     const classes = cx('c-bolt-card-replacement', {
-      [`c-bolt-card-replacement--raised`]: isRaised,
+      [`c-bolt-card-replacement--raised`]: canBeRaised,
       [`c-bolt-card-replacement--horizontal`]: this.horizontal,
       [`c-bolt-card-replacement--rounded`]: this.rounded,
       [`t-bolt-${this.theme}`]: this.theme && this.theme !== 'none',
@@ -66,6 +71,7 @@ class BoltCardReplacement extends withContext(BoltElement) {
 
     const cardReplacementLink =
       this.url !== undefined &&
+      this.url !== null &&
       !this.querySelector('bolt-card-replacement-link')
         ? html`
             <bolt-card-replacement-link
