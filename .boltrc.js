@@ -78,7 +78,6 @@ module.exports = {
       '@bolt/components-animate',
       '@bolt/micro-journeys',
       '@bolt/analytics-autolink',
-      '@bolt/blueprints',
     ],
   },
   images: {

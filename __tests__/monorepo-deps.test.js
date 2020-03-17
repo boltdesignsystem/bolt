@@ -69,12 +69,7 @@ describe('Bolt Components declare dependencies in package.json if used in Twig f
             [join(boltPkg.location, '**/*.twig')],
             {
               gitignore: true,
-              ignore: [
-                '**/__tests__/**',
-                '**/__demos__/**',
-                '**/node_modules/**',
-                '**/vendor/**',
-              ],
+              ignore: ['**/__tests__/**', '**/node_modules/**', '**/vendor/**'],
             },
           );
 
