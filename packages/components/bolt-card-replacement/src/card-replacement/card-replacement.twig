@@ -47,7 +47,11 @@
 {# card-replacement component's custom element wrapper #}
 <bolt-card-replacement
   {% if rounded %} rounded {% endif %}
-  {% if tag %} tag="{{ tag }}" {% endif %} {% if theme %} theme="{{ theme }}" {% endif %} {% if height %} height="{{ height }}" {% endif %} {% if link_url %} url="{{ link_url }}" {% endif %} {% if horizontal %} horizontal {% endif %} {{ attributes }}>
+  {% if tag %} tag="{{ tag }}" {% endif %}
+  {% if theme %} theme="{{ theme }}" {% endif %}
+  {% if height %} height="{{ height }}" {% endif %}
+  {% if link_url or url %} url="{{ link_url | default(url) }}" can-raise {% endif %}
+  {% if horizontal %} horizontal {% endif %} {{ attributes }}>
   {# This sets none values to not render anything. #}
   {% set theme = theme == "none" ? false : theme %}
 
@@ -100,7 +104,7 @@
         {% endif %}
       {% endif %}
 
-      {% if horizontal %}<div class="c-bolt-card-replacement__horizontal-wrapper">{% endif %}
+      {% if horizontal and (body or actions) %}<div class="c-bolt-card-replacement__horizontal-wrapper">{% endif %}
       {% if body or body_block %}
         {% if body_block %}
           {% embed "@bolt-components-card-replacement/_card-replacement-body.twig" %}
@@ -118,7 +122,7 @@
           {% include "@bolt-components-card-replacement/_card-replacement-actions.twig" %}
         {% endif %}
       {% endblock %}
-      {% if horizontal %}</div>{% endif %}
+      {% if horizontal and (body or actions) %}</div>{% endif %}
     {% endif %}
   </replace-with-children>
 </bolt-card-replacement>
