@@ -70,6 +70,7 @@ $bolt-popover-transition: $bolt-transition-timing
   z-index: bolt-z-index(popover);
   transition: opacity $bolt-popover-transition;
 
+  &[aria-hidden="false"],
   .c-bolt-popover.is-expanded &,
   bolt-popover:not([ready]) [slot='content']:target & {
     visibility: visible;
@@ -134,6 +135,7 @@ $bolt-popover-transition: $bolt-transition-timing
   display: block;
   transform: scale3d(1, 1, 1) translate3d(0, 0, 0);
   overflow: hidden;
+  margin: 0;
   color: bolt-theme(text);
   text-align: left;
   text-align: start;

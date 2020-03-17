@@ -5,6 +5,7 @@ import {
   styleMap,
   unsafeCSS,
 } from '@bolt/element';
+import { render } from 'lit-html';
 import { isFocusable } from '@bolt/core-v3.x/utils';
 import { ifDefined } from 'lit-html/directives/if-defined';
 import classNames from 'classnames/bind';
@@ -47,6 +48,13 @@ class BoltPopover extends BoltElement {
     this.hide = this.hide.bind(this);
     this.show = this.show.bind(this);
     this.handleExternalClick = this.handleExternalClick.bind(this);
+
+    this.externalContentContainer = document.createElement('div');
+    this.externalContentContainer.setAttribute(
+      'id',
+      `popover-content-uuid-${this.uuid}`,
+    );
+    document.body.appendChild(this.externalContentContainer);
   }
 
   static get styles() {
@@ -70,6 +78,7 @@ class BoltPopover extends BoltElement {
   }
 
   show() {
+    this.setupPlacement();
     this.open = true;
     document.addEventListener('click', this.handleExternalClick);
     Mousetrap.bind('esc', this.hide, 'keyup');
@@ -149,13 +158,14 @@ class BoltPopover extends BoltElement {
       if (this.popper) {
         this.popper.destroy();
       }
-      this.setupPlacement();
     }
   }
 
   setupPlacement() {
     this.popover = this.renderRoot.querySelector('.c-bolt-popover');
-    this.content = this.renderRoot.querySelector('.c-bolt-popover__content');
+    this.content = this.externalContentContainer.querySelector(
+      '.c-bolt-popover__content',
+    );
 
     this.$boundary =
       this.$boundary ||
@@ -183,14 +193,6 @@ class BoltPopover extends BoltElement {
               boundary: this.$boundary,
             },
           },
-          {
-            name: 'preventOverflow',
-            options: {
-              // @todo continue evaluating placement config
-              // altAxis: true,
-              boundary: this.$boundary,
-            },
-          },
         ],
       });
     }
@@ -203,6 +205,8 @@ class BoltPopover extends BoltElement {
   }
 
   render() {
+    this.setupPlacement();
+
     if (!this._wasInitiallyRendered) {
       this.sortChildren();
       this.getTextContentLength();
@@ -222,6 +226,24 @@ class BoltPopover extends BoltElement {
       [`t-bolt-${this.theme}`]: this.theme && this.theme !== 'none',
     });
 
+    render(
+      html`
+        ${this.slotMap.get('content') &&
+          html`
+            <span
+              id="js-bolt-popover-${this.uuid}"
+              class="${cx(`c-bolt-popover__content`)}"
+              aria-hidden="${!this.open}"
+            >
+              <span class="${bubbleClasses}">
+                ${this.slotify('content', false)}
+              </span>
+            </span>
+          `}
+      `,
+      this.externalContentContainer,
+    );
+
     return html`
       <span class="${classes}">
         ${this.slotMap.get('default') &&
@@ -237,18 +259,6 @@ class BoltPopover extends BoltElement {
               @click="${this.handleClick}"
             >
               ${this.slotify('default')}
-            </span>
-          `}
-        ${this.slotMap.get('content') &&
-          html`
-            <span
-              id="js-bolt-popover-${this.uuid}"
-              class="${cx(`c-bolt-popover__content`)}"
-              aria-hidden="${!this.open}"
-            >
-              <span class="${bubbleClasses}">
-                ${this.slotify('content')}
-              </span>
             </span>
           `}
       </span>
