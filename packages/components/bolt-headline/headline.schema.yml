@@ -86,3 +86,21 @@ properties:
   quoted:
     type: boolean
     description: Adds quoted styling to text.
+  bulletText:
+    description: 'Text that displays in a small circle to the left of the main Headline text. Providing content will trigger the bullet to appear.'
+    type: [string, number]
+  bulletColor:
+    description: 'The optional background color of the Headline bullet. Uses inherited theme colors if unspecified.'
+    type: string
+    enum:
+      - 'teal'
+      - 'indigo'
+      - 'orange'
+      - 'purple'
+  bulletSize:
+    description: "Allows the bullet switch from being a fixed size (default) to being proportional to Headline's current font size."
+    type: string
+    default: fixed
+    enum:
+      - 'auto'
+      - 'fixed'

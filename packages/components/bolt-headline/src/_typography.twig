@@ -26,6 +26,7 @@
 {% set type = type in types ? type : "text" %}
 {% set size = size | default(schema.properties.size.default) %}
 
+{% set bulletSize = bulletSize in schema.properties.bulletSize.enum ? bulletSize : schema.properties.bulletSize.default %}
 {% set autoshrink = autoshrink is defined ? autoshrink : schema.properties.autoshrink.default %}
 
 {# For backwards compatibility only, setting icon to exactly 'false' is the same as specifying 'none'.  Deprecated. #}
@@ -69,7 +70,6 @@
   {% set attributes = attributes.setAttribute("slot", slot) %}
 {% endif %}
 
-
 {% set classes = [
   baseClass,
   quoted ? baseClass ~ "--" ~ "quoted" : "",
@@ -82,14 +82,33 @@
   iconPosition ? baseClass ~ "--icon-position-" ~ iconPosition : ""
 ] %}
 
-<{{ tag }} {{ attributes.addClass(classes) }}>{% spaceless %}
+{% set iconBefore %}
   {% if icon and not url and iconPosition == "before" %}
-    <span class="{{ "#{baseClass}__icon" }}">
-      {% include "@bolt/icon.twig" with icon only %}
+    <span class="c-bolt-headline__icon c-bolt-headline__icon--position-before">
+      {% include "@bolt-components-icon/icon.twig" with icon only %}
     </span>
   {% endif %}
+{% endset %}
 
-  {% if url %}
+{% set iconAfter %}
+  {% if icon and not url and iconPosition != "before" %}
+      <span class="c-bolt-headline__icon c-bolt-headline__icon--position-after">
+        {% include "@bolt-components-icon/icon.twig" with icon only %}
+      </span>
+  {% endif %}
+{% endset %}
+
+<{{ tag }} {{ attributes.addClass(classes) }}>
+{% if bulletText %}
+    <span class="c-bolt-headline__bullet c-bolt-headline__bullet--size-{{ bulletSize }}">
+      <span class="c-bolt-headline__bullet-inner
+        {{ bulletColor ? 'c-bolt-headline__bullet-inner--' ~ bulletColor : ''}}
+      ">
+        <span class="c-bolt-headline__bullet-text">{{ bulletText }}</span>
+      </span>
+    </span>
+  {% endif %}
+  {%- if url -%}
     {% set linkVars = {
       text: text,
       url: url,
@@ -101,13 +120,6 @@
     {% endif %}
 
     {% include "@bolt/link.twig" with linkVars only %}
-  {% else %}
-    {{ text }}
-  {% endif %}
-
-  {% if icon and not url and iconPosition != "before" %}
-    <span class="{{ "#{baseClass}__icon" }}">
-      {% include "@bolt/icon.twig" with icon only %}
-    </span>
-  {% endif %}
-{% endspaceless %}</{{ tag }}>
+  {%- else -%}
+    <span class="c-bolt-headline__text">{{- iconBefore -}}<span class="c-bolt-headline__text-inner">{{- text -}}{{- iconAfter -}}</span></span></span>
+  {%- endif -%}</{{ tag }}>

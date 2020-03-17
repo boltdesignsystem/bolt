@@ -1,0 +1,356 @@
+
+{% set schema = bolt.data.components['@bolt-components-headline'].schema %}
+
+{% include "@bolt-components-headline/headline.twig" with {
+  size: "xxxlarge",
+  text: "Bulleted Headline",
+  tag: "h1",
+  attributes: {
+    class: ["u-bolt-margin-bottom-medium"]
+  }
+} only %}
+
+{% include "@bolt-components-headline/headline.twig" with {
+  size: "xxlarge",
+  text: "Basic Usage",
+  tag: "h2",
+  attributes: {
+    class: ["u-bolt-margin-bottom-medium"]
+  }
+} only %}
+
+{% set withoutColorExample %}{% verbatim %}{% include "@bolt-components-headline/headline.twig" with {
+  text: "Example bulleted headline (w/o bulletColor)",
+  bulletText: 7,
+} only %}{% endverbatim %}{% endset %}
+
+{% include "@bolt-components-headline/headline.twig" with {
+  text: "Example bulleted headline (w/o bulletColor)",
+  bulletText: 7,
+} only %}
+
+{% include "@bolt-components-code-snippet/code-snippet.twig" with {
+  lang: "twig",
+  content: withoutColorExample
+} %}
+
+{% set withColorExample %}{% verbatim %}{% include "@bolt-components-headline/headline.twig" with {
+  text: "Example bulleted headline (w/ bulletColor)",
+  bulletText: 42,
+  bulletColor: "orange"
+} only %}{% endverbatim %}{% endset %}
+
+{% include "@bolt-components-headline/headline.twig" with {
+  text: "Example bulleted headline (w/ bulletColor)",
+  bulletText: 42,
+  bulletColor: "orange"
+} only %}
+
+{% include "@bolt-components-code-snippet/code-snippet.twig" with {
+  lang: "twig",
+  content: withColorExample
+} %}
+
+<hr>
+
+{% grid %}
+  {% cell "u-bolt-width-12/12" %}
+    {% include "@bolt-components-headline/headline.twig" with {
+      size: "xxlarge",
+      text: "Up to 3 digits supported",
+      tag: "h2",
+      attributes: {
+        class: ["u-bolt-margin-bottom-xsmall"]
+      }
+    } only %}
+  {% endcell %}
+
+  {% cell "u-bolt-width-12/12 u-bolt-width-4/12@small" %}
+    {% include "@bolt-components-headline/headline.twig" with {
+      size: "xxlarge",
+      text: "Single-digit",
+      bulletText: 7,
+    } only %}
+  {% endcell %}
+
+  {% cell "u-bolt-width-12/12 u-bolt-width-4/12@small" %}
+    {% include "@bolt-components-headline/headline.twig" with {
+      size: "xxlarge",
+      text: "Double-digit",
+      bulletText: 42,
+    } only %}
+  {% endcell %}
+
+  {% cell "u-bolt-width-12/12 u-bolt-width-4/12@small" %}
+    {% include "@bolt-components-headline/headline.twig" with {
+      size: "xxlarge",
+      text: "Triple-digit",
+      bulletText: 123,
+    } only %}
+  {% endcell %}
+{% endgrid %}
+
+
+<hr>
+
+{% include "@bolt-components-headline/headline.twig" with {
+  size: "xxlarge",
+  text: "Icons Supported",
+  tag: "h2",
+} only %}
+
+{% include "@bolt-components-headline/headline.twig" with {
+  size: "xxlarge",
+  text: "Bulleted Headline With Left Icon",
+  bulletText: 1,
+  icon: {
+    name: "arrow-left",
+    position: "before"
+  }
+} only %}
+
+{% include "@bolt-components-headline/headline.twig" with {
+  size: "xxlarge",
+  text: "Bulleted Headline With Right Icons",
+  bulletText: 2,
+  icon: {
+    name: "chevron-right",
+    position: "after"
+  }
+} only %}
+
+<hr>
+
+{% include "@bolt-components-headline/headline.twig" with {
+  size: "xxlarge",
+  text: "Align Support",
+  tag: "h2",
+  attributes: {
+    class: ["u-bolt-margin-bottom-medium"]
+  }
+} only %}
+
+{% include "@bolt-components-headline/headline.twig" with {
+  size: "xlarge",
+  text: "Bulleted Headline - Left",
+  bulletText: 1,
+  align: "left"
+} only %}
+
+{% include "@bolt-components-headline/headline.twig" with {
+  size: "xlarge",
+  text: "Bulleted Headline - Center",
+  bulletText: 2,
+  align: "center"
+} only %}
+
+{% include "@bolt-components-headline/headline.twig" with {
+  size: "xlarge",
+  text: "Bulleted Headline - Right",
+  bulletText: 3,
+  align: "right"
+} only %}
+
+<hr>
+
+{% include "@bolt-components-headline/headline.twig" with {
+  size: "xxlarge",
+  text: "bulletSize",
+  tag: "h2",
+} only %}
+
+
+{% include "@bolt-components-headline/headline.twig" with {
+  size: "xlarge",
+  text: "buletSize: 'fixed' (default)",
+  tag: "h3",
+} only %}
+
+{% include "@bolt-components-headline/headline.twig" with {
+  size: "xxxlarge",
+  text: "Bulleted Headline (xxxlarge)",
+  bulletText: 1,
+} only %}
+
+{% include "@bolt-components-headline/subheadline.twig" with {
+  size: "xxlarge",
+  text: "Bulleted Subheadline (xxlarge)",
+  bulletText: 2,
+} only %}
+
+{% include "@bolt-components-headline/text.twig" with {
+  text: "Bulleted Text (large)",
+  size: "large",
+  bulletText: 3,
+} only %}
+
+{% include "@bolt-components-headline/eyebrow.twig" with {
+  text: "Bulleted Eyebrow",
+  bulletText: 4,
+} only %}
+
+<hr>
+
+{% include "@bolt-components-headline/headline.twig" with {
+  size: "xlarge",
+  text: "buletSize: 'auto'",
+  tag: "h3",
+} only %}
+
+
+{% include "@bolt-components-headline/headline.twig" with {
+  size: "xxxlarge",
+  text: "Bulleted Headline (xxxlarge)",
+  bulletText: 1,
+  bulletSize: "auto",
+} only %}
+
+{% include "@bolt-components-headline/subheadline.twig" with {
+  size: "xxlarge",
+  text: "Bulleted Subheadline (xxlarge)",
+  bulletText: 2,
+  bulletSize: "auto",
+} only %}
+
+{% include "@bolt-components-headline/text.twig" with {
+  text: "Bulleted Text (large)",
+  size: "large",
+  bulletText: 3,
+  bulletSize: "auto",
+} only %}
+
+{% include "@bolt-components-headline/eyebrow.twig" with {
+  text: "Bulleted Eyebrow",
+  bulletText: 4,
+  bulletSize: "auto",
+} only %}
+
+<hr>
+
+{% include "@bolt-components-headline/headline.twig" with {
+  size: "xxlarge",
+  text: "bulletSize (fixed vs auto)",
+  tag: "h3",
+} only %}
+
+{% for size in schema.properties.size.enum %}
+  {% include "@bolt-components-headline/text.twig" with {
+    size: size,
+    weight: "bold",
+    text: "Fixed-size Bulleted Headline (#{size})",
+    bulletText: loop.index,
+    bulletColor: "indigo",
+    attributes: {
+      class: ["u-bolt-margin-bottom-xsmall"]
+    }
+  } only %}
+{% endfor %}
+
+<br>
+
+{% for size in schema.properties.size.enum %}
+  {% include "@bolt-components-headline/text.twig" with {
+    size: size,
+    weight: "bold",
+    text: "Auto-size Bulleted Headline #{size}",
+    bulletText: loop.index,
+    bulletColor: "indigo",
+    bulletSize: "auto",
+    attributes: {
+      class: ["u-bolt-margin-bottom-xsmall"]
+    }
+  } only %}
+{% endfor %}
+
+<hr>
+
+  {% include "@bolt-components-headline/headline.twig" with {
+    size: "xxlarge",
+    text: "bulletColor",
+    tag: "h2",
+  } only %}
+
+<p>
+  By setting the <code>bulletColor</code> prop to <code>indigo</code>, <code>purple</code>, <code>teal</code>, or <code>orange</code>, you can choose the background color of the Headline Bullet.
+</p>
+
+{% grid "o-bolt-grid--medium o-bolt-grid--matrix" %}
+  {% for color in schema.properties.bulletColor.enum %}
+    {% cell "u-bolt-width-12/12 u-bolt-width-6/12@small" %}
+      {% include "@bolt-components-headline/headline.twig" with {
+        size: "xxlarge",
+        text: "Bulleted Headline w/ Number",
+        bulletText: loop.index,
+        bulletColor: color
+      } only %}
+    {% endcell %}
+  {% endfor %}
+
+  {% set letters = ["A", "B", "C", "D"] %}
+  {% for letter in letters %}
+    {% cell "u-bolt-width-12/12 u-bolt-width-6/12@small" %}
+      {% include "@bolt-components-headline/headline.twig" with {
+        size: "xxlarge",
+        text: "Bulleted Headline w/ Letter",
+        bulletText: letter,
+        bulletColor: schema.properties.bulletColor.enum[loop.index0]
+      } only %}
+    {% endcell %}
+  {% endfor %}
+{% endgrid %}
+
+<hr>
+
+{% include "@bolt-components-headline/headline.twig" with {
+  size: "xxlarge",
+  text: "Theming",
+  attributes: {
+    class: ["u-bolt-margin-bottom-medium"]
+  }
+} only %}
+
+<p>
+  If you don't specify a <code>bulletColor</code>, the current theme's colors will be used instead.
+</p>
+
+{% grid "o-bolt-grid--full" %}
+  {% cell "u-bolt-width-12/12 u-bolt-width-6/12@small" %}
+    <div class="t-bolt-xlight u-bolt-padding-top-small u-bolt-padding-bottom-small u-bolt-padding-left-small u-bolt-padding-right-small">
+      {% include "@bolt-components-headline/headline.twig" with {
+        size: "xxlarge",
+        text: "Without bulletColor",
+        bulletText: 1,
+      } only %}
+    </div>
+  {% endcell %}
+
+  {% cell "u-bolt-width-12/12 u-bolt-width-6/12@small" %}
+    <div class="t-bolt-light u-bolt-padding-top-small u-bolt-padding-bottom-small u-bolt-padding-left-small u-bolt-padding-right-small">
+      {% include "@bolt-components-headline/headline.twig" with {
+        size: "xxlarge",
+        text: "Without bulletColor",
+        bulletText: 2,
+      } only %}
+    </div>
+  {% endcell %}
+
+  {% cell "u-bolt-width-12/12 u-bolt-width-6/12@small" %}
+    <div class="t-bolt-dark u-bolt-padding-top-small u-bolt-padding-bottom-small u-bolt-padding-left-small u-bolt-padding-right-small">
+      {% include "@bolt-components-headline/headline.twig" with {
+        size: "xxlarge",
+        text: "Without bulletColor",
+        bulletText: 3,
+      } only %}
+    </div>
+  {% endcell %}
+
+  {% cell "u-bolt-width-12/12 u-bolt-width-6/12@small" %}
+    <div class="t-bolt-xdark u-bolt-padding-top-small u-bolt-padding-bottom-small u-bolt-padding-left-small u-bolt-padding-right-small">
+      {% include "@bolt-components-headline/headline.twig" with {
+        size: "xxlarge",
+        text: "Without bulletColor",
+        bulletText: 4,
+      } only %}
+    </div>
+  {% endcell %}
+{% endgrid %}
