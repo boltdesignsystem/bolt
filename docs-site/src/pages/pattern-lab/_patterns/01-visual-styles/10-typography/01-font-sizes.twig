@@ -10,7 +10,7 @@
 <hr>
 
 <h2>Font size scale:</h2>
-{% for fontSize, fontSizeValues in bolt.data.fontSizes["font-sizes"] %}
+{% for fontSize, fontSizeValues in bolt.data.typography.fontSizes["font-sizes"] %}
   <h2> {{ fontSize }} Font Size</h2>
 
   <p>
@@ -22,7 +22,7 @@
         {# todo: use a similar approach to the one below to handle the two different xxxlarge sizes #}
       {% endfor %}
     {% else %}
-      {% for size, value in bolt.data.baseFontSizes %}
+      {% for size, value in bolt.data.typography.baseFontSizes %}
         <p>
           <strong>Breakpoint: {{ size }}</strong>
           <code>{{ fontSizeValues["font-size"]|replace({'rem': ''}) * value|replace({'px': ''}) }}</code>
