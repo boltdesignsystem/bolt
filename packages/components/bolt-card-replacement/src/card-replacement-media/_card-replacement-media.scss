@@ -10,8 +10,6 @@
     flex-shrink: 1;
     min-width: 80px;
     max-width: 300px;
-    overflow: auto;
-    border-radius: 4px 0 0 4px;
   }
 }
 
@@ -21,11 +19,14 @@ bolt-card-replacement-media {
   position: relative;
 
   [horizontal] & {
+    flex-grow: 1;
     flex-shrink: 1;
     min-width: 80px;
     max-width: 300px;
-    overflow: auto;
-    border-radius: 4px 0 0 4px;
+
+    &:last-child {
+      max-width: 100%;
+    }
   }
 }
 

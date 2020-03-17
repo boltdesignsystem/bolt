@@ -24,37 +24,6 @@ $bolt-card-replacement-z-index-inner-link: 2;
 }
 
 @mixin bolt-card-replacement-content-conditions {
-  // [Mai] Only the card-replacement body should not have hidden overflow and border radius because its background is transparent. This also catches any kind of free-form content being passed, making sure they don't poke outside the card-replacement (which has rounded corners and box shadows). The reason the card-replacement itself shouldn't have hidden overflow is because the card-replacement body can contain some kind of tooltip bubble or dropdown ui, they can poke out of the card-replacement naturally.
-  > * {
-    &:first-child {
-      border-radius: $bolt-card-replacement-border-radius
-        $bolt-card-replacement-border-radius 0 0;
-    }
-
-    &:last-child {
-      border-radius: 0 0 $bolt-card-replacement-border-radius
-        $bolt-card-replacement-border-radius;
-    }
-
-    &:only-child {
-      border-radius: $bolt-card-replacement-border-radius;
-    }
-  }
-
-  > bolt-card-replacement-link + * {
-    border-radius: $bolt-card-replacement-border-radius
-      $bolt-card-replacement-border-radius 0 0;
-
-    &:last-child {
-      border-radius: $bolt-card-replacement-border-radius;
-    }
-  }
-
-  > bolt-card-replacement-body,
-  > bolt-card-replacement-link,
-  > replace-with-children {
-    overflow: visible;
-  }
 
   > bolt-card-replacement-actions {
     &:last-child {

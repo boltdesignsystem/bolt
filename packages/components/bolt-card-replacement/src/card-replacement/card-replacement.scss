@@ -10,11 +10,12 @@
 @include bolt-custom-element('bolt-card-replacement', block, medium);
 
 bolt-card-replacement {
+  --bolt-card-border-radius: #{$bolt-card-replacement-border-radius};
+
   @include bolt-card-replacement-content-conditions;
   @include bolt-card-replacement-border-reset;
-
   position: relative;
-  border-radius: $bolt-card-replacement-border-radius;
+  border-radius: var(--bolt-card-border-radius);
   border-width: $bolt-card-replacement-border-width;
 
   &[height='full'] {
@@ -24,12 +25,34 @@ bolt-card-replacement {
   }
 
   &[rounded] {
-    @include bolt-border-radius(large);
+    --bolt-card-border-radius: #{bolt-border-radius(large)};
   }
 
-  &[horizontal] > *:first-child {
-    border-radius: $bolt-card-replacement-border-radius 0 0
-      $bolt-card-replacement-border-radius;
+  &:before,
+  &:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    pointer-events: none;
+    border-radius: inherit;
+    transition: opacity $bolt-transition;
+  }
+
+  &:before {
+    @include bolt-shadow('level-20', false, $bolt-card-replacement-shadow-color);
+  }
+
+  &:after {
+    opacity: 0;
+
+    @include bolt-shadow(
+      'level-30',
+      false,
+      $bolt-card-replacement-shadow-color
+    );
   }
 }
 
@@ -38,15 +61,15 @@ bolt-card-replacement {
   @include bolt-card-replacement-content-conditions;
   @include bolt-margin(0);
   @include bolt-padding(0);
-  @include bolt-shadow('level-20', false, $bolt-card-replacement-shadow-color);
-
   display: flex;
   flex-direction: column;
   flex-grow: 1;
   position: relative;
   width: 100%; // Fix for IE 11 when height is set to full
   height: 100%;
-  border-radius: $bolt-card-replacement-border-radius;
+  overflow: hidden;
+  border-radius: var(--bolt-card-border-radius);
+  border-width: $bolt-card-replacement-border-width;
 
   // Non-themed card-replacement color settings.
   // Note: when a card-replacement is themed, the `t-bolt-` class will define the color and background-color, these settings won't be loaded.
@@ -69,51 +92,34 @@ bolt-card-replacement {
   }
 }
 
-.c-bolt-card-replacement--rounded {
-  @include bolt-border-radius(large);
-}
 
 .c-bolt-card-replacement--horizontal {
   display: flex;
   flex-direction: row;
 }
 
-.c-bolt-card-replacement--raised {
-  transition: transform $bolt-transition;
-
-  &:before {
-    @include bolt-shadow(
-      'level-30',
-      false,
-      $bolt-card-replacement-shadow-color
-    );
-    content: '';
-    opacity: 0;
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    border-radius: $bolt-card-replacement-border-radius;
-    transition: opacity $bolt-transition;
-  }
+bolt-card-replacement[can-raise] {
+  transition: transform 0.1s ease;
 
   &:hover,
   &:focus-within {
     transform: translate3d(0, -1px, 0);
 
-    &:before {
-      opacity: 1;
+    &:after {
+      opacity: 1
     }
   }
 
-  &:active {
-    transform: translate3d(0, 0, 0);
+  &:active:hover {
+    transform: translate3d(0, 1px, 0);
+
+    &:after {
+      opacity: 0.5;
+    }
   }
 }
 
 // Old card-replacement footer
-
 .c-bolt-card_replacement__footer {
   @include bolt-card-replacement-border-reset;
 
@@ -125,11 +131,11 @@ bolt-card-replacement {
   position: absolute;
 
   &--top {
-    top: 0;
+    top: 0.5rem;
   }
 
   &--right {
-    right: 0;
+    right: 0.5rem;
   }
 }
 
