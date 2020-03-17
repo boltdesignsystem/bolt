@@ -70,9 +70,7 @@ class BoltPopover extends BoltElement {
     const popoverOpenedHash = `#js-bolt-popover-${uuid}`;
     const popoverClosedHash = `#js-bolt-popover-trigger-${uuid}`;
 
-    const currentHash = window.location.href.substr(
-      window.location.href.indexOf('#'),
-    );
+    const currentHash = window.location.hash.split('?')[0];
 
     // if URL hash matches, auto-open or auto-close + clean up any existing URL hashes
     if (currentHash === popoverOpenedHash) {
