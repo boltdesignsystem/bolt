@@ -123,7 +123,8 @@ $bolt-font-sizes: (
     xxsmall: (
       font-size: bolt-rem(12px),
       line-height: (
-        regular: 1.41, // 17px / 12px
+        regular: 1.41,
+        // 17px / 12px
       )
     )
   )
@@ -134,8 +135,11 @@ $bolt-base-font-sizes: (
   bolt-breakpoint(xxsmall): 14px,
   bolt-breakpoint(xsmall): 15px,
   bolt-breakpoint(xxlarge): 16px,
-  bolt-breakpoint(xxxxlarge): 18px,
+  bolt-breakpoint(xxxxlarge): 18px
 ) !default;
 
-@include bolt-export-data('font-sizes.bolt.json', $bolt-font-sizes);
-@include bolt-export-data('base-font-sizes.bolt.json', $bolt-base-font-sizes);
+@include bolt-export-data('typography/font-sizes.bolt.json', $bolt-font-sizes);
+@include bolt-export-data(
+  'typography/base-font-sizes.bolt.json',
+  $bolt-base-font-sizes
+);
