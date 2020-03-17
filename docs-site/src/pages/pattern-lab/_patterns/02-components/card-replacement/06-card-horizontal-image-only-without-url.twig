@@ -1,0 +1,13 @@
+{% import "@bolt-blueprints/macros.twig" as macros %}
+
+{% embed "@bolt-components-card-replacement/card-replacement.twig" with {
+  horizontal: true,
+  theme: "xlight",
+  rounded: true,
+} %}
+  {% block media %}
+    {% include "@bolt-components-image/image.twig" with {
+      src: "/images/placeholders/landscape-16x9-mountains.jpg",
+    } only %}
+  {% endblock %}
+{% endembed %}

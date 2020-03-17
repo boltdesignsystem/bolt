@@ -1,0 +1,174 @@
+{% import "@bolt-blueprints/macros.twig" as macros %}
+
+{% embed "@bolt-components-card-replacement/card-replacement.twig" with {
+  horizontal: true,
+  theme: "xlight",
+  link_url: cardUrl,
+  cardUrl: "#!",
+  cardSubtitle: "Mission",
+  cardTitle: bolt.faker.sentence(3),
+  cardMetaItems: [
+    macros.include("@bolt-components-headline/text.twig", {
+      size: "small",
+      weight: "bold",
+      text: "#{bolt.faker.numberBetween(2,10)} Modules",
+    }, false),
+    macros.include("@bolt-components-headline/text.twig", {
+      size: "small",
+      weight: "bold",
+      text: "1 Challenge",
+    }, false),
+    macros.include("@bolt-components-headline/text.twig", {
+      size: "small",
+      weight: "bold",
+      text: "25% complete",
+      attributes: {
+        class: ["u-bolt-color-orange"]
+      }
+    }, false)
+  ],
+  cardGradient: "purple",
+  cardIcon: "brand-rocket",
+  cardDescription: bolt.faker.paragraph(2),
+  removeButton: true,
+  cardStatusItems: [
+    macros.include("@bolt-components-headline/eyebrow.twig", {
+      text: "Last activity: 3 days ago",
+      align: "center",
+      attributes: {
+        class: ["u-bolt-padding-small"]
+      }
+    }, false)
+  ]
+} %}
+  {% block media %}
+    {% include "@bolt-components-image/image.twig" with {
+      src: "/images/placeholders/landscape-16x9-mountains.jpg",
+      cover: true,
+    } only %}
+  {% endblock %}
+
+  {% block body %}
+    <div class="c-bolt-card_replacement__overflow-menu c-bolt-card_replacement__overflow-menu--top c-bolt-card_replacement__overflow-menu--right">
+      {% include "@bolt-components-popover/popover.twig" with {
+        trigger: macros.include("@bolt-components-button/button.twig", {
+          text: "Share",
+          size: "small",
+          style: "tertiary",
+          iconOnly: true,
+          icon: {
+            name: "share",
+          }
+        }),
+        content: macros.include("@bolt-components-menu/menu.twig", {
+          items: [
+            {
+              content: macros.include("@bolt-components-headline/text.twig", {
+                text: "Facebook",
+                size: "medium",
+                icon: {
+                  name: "facebook-solid",
+                  position: "before"
+                }
+              }, false),
+              url: "#!"
+            },
+            {
+              content: macros.include("@bolt-components-headline/text.twig", {
+                text: "Twitter",
+                size: "medium",
+                icon: {
+                  name: "twitter",
+                  position: "before"
+                }
+              }, false),
+              url: "#!"
+            },
+            {
+              content: macros.include("@bolt-components-headline/text.twig", {
+                text: "LinkedIn",
+                size: "medium",
+                icon: {
+                  name: "linkedin",
+                  position: "before"
+                }
+              }, false),
+              url: "#!"
+            },
+            {
+              content: macros.include("@bolt-components-headline/text.twig", {
+                text: "Email",
+                size: "medium",
+                icon: {
+                  name: "email",
+                  position: "before"
+                }
+              }, false),
+              url: "#!"
+            },
+            {
+              content: macros.include("@bolt-components-headline/text.twig", {
+                text: "Link",
+                size: "medium",
+                icon: {
+                  name: "asset-link",
+                  position: "before"
+                }
+              }, false),
+              url: "#!"
+            },
+          ]
+        }),
+        placement: "bottom-end",
+        spacing: "none",
+        theme: "xlight",
+      } only %}
+    </div>
+
+    <div class="u-bolt-overflow-hidden">
+      {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--border" %}
+        {% cell "u-bolt-width-12/12 u-bolt-width-6/12@small" %}
+          {% if cardSubtitle %}
+            {% include "@bolt-components-headline/eyebrow.twig" with {
+              text: cardSubtitle,
+            } only %}
+          {% endif %}
+
+          {% if cardTitle %}
+            {% include "@bolt-components-headline/headline.twig" with {
+              text: cardTitle,
+              size: "xlarge",
+              attributes: {
+                class: "u-bolt-margin-bottom-small",
+              }
+            } only %}
+          {% endif %}
+          {% if cardMetaItems %}
+            {% include "@bolt-components-list/list.twig" with {
+              display: "inline",
+              separator: "solid",
+              tag: "ul",
+              items: cardMetaItems
+            } %}
+          {% endif %}
+        {% endcell %}
+
+        {% if cardDescription %}
+          {% cell "u-bolt-width-12/12 u-bolt-width-6/12@small" %}
+            {% include "@bolt-components-headline/text.twig" with {
+              text: cardDescription,
+              size: "small",
+              attributes: {
+                class: [
+                  "u-bolt-padding-top-xsmall@small",
+                  "u-bolt-padding-bottom-xsmall@small",
+                ]
+              }
+            } only %}
+          {% endcell %}
+        {% endif %}
+      {% endgrid %}
+    </div>
+  {% endblock %}
+
+{% endembed %}
