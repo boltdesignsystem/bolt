@@ -87,7 +87,9 @@ describe('figure', () => {
     ).toBe(true);
 
     expect(
-      renderedHTML.querySelector('figcaption').classList.contains('c-bolt-figure__caption'),
+      renderedHTML
+        .querySelector('figcaption')
+        .classList.contains('c-bolt-figure__caption'),
     ).toBe(true);
 
     const image = await page.screenshot();
