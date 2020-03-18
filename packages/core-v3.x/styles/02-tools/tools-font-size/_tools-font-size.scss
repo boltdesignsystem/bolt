@@ -15,24 +15,18 @@
 /// .element {
 ///    @include bolt-font-size(large);
 /// }
-@mixin bolt-font-size($size, $leading: regular, $includeCssVars: false, $cssVarPrefix: 'bolt-') {
+@mixin bolt-font-size($size, $leading: regular) {
   $font-size: map-get-deep($bolt-font-sizes, 'font-sizes', $size, 'font-size');
 
   @if (type-of($font-size) == 'map') {
     $length: length(map-keys($font-size));
 
     @if ($length < 2) {
-      @if $includeCssVars {
-        --#{$cssVarPrefix}font-size: #{nth($font-size, 2)};
-      }
       font-size: nth($font-size, 2);
     } @else {
-      @include bolt-poly-fluid-sizing('font-size', $font-size, $includeCssVars, $cssVarPrefix);
+      @include bolt-poly-fluid-sizing('font-size', $font-size);
     }
   } @else {
-    @if $includeCssVars {
-      --#{$cssVarPrefix}font-size: #{$font-size};
-    }
     font-size: $font-size;
   }
 
@@ -47,17 +41,11 @@
       $length: length(map-keys($leading));
 
       @if ($length < 2) {
-        @if $includeCssVars {
-          --#{$cssVarPrefix}line-height: #{nth($leading, 2)};
-        }
         line-height: nth($leading, 2);
       } @else {
-        @include bolt-poly-fluid-sizing('line-height', $leading, $includeCssVars, $cssVarPrefix);
+        @include bolt-poly-fluid-sizing('line-height', $leading);
       }
     } @else {
-      @if $includeCssVars {
-        --#{$cssVarPrefix}line-height: #{$leading};
-      }
       line-height: $leading;
     }
   }

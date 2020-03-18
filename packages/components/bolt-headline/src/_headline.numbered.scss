@@ -10,7 +10,7 @@
   justify-content: center;
   align-items: center;
   align-self: flex-start;
-  min-height: calc(var(--bolt-headline-line-height) * 1em);
+  min-height: 1.1em;
 
   --bolt-headline-bullet-line-height: 1;
 
@@ -22,11 +22,11 @@
   }
 
   // the `auto` sized bullets will increase / decrease based on the Headline's font size
-  &--size-auto {
-    --bolt-headline-bullet-size: 1em;
-    --bolt-headline-bullet-font-size: calc(0.5em + 3px);
-    --bolt-headline-bullet-font-weight: inherit;
-  }
+  // &--size-auto {
+  //   --bolt-headline-bullet-size: 1em;
+  //   --bolt-headline-bullet-font-size: calc(0.5em + 3px);
+  //   --bolt-headline-bullet-font-weight: inherit;
+  // }
 
   * + & {
     @include bolt-margin-left(xsmall);
