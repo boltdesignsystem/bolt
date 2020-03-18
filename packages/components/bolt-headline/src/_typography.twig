@@ -90,20 +90,18 @@
   {% endif %}
 {% endset %}
 
-{% set iconAfter %}
-  {% if icon and not url and iconPosition != "before" %}
-      <span class="c-bolt-headline__icon c-bolt-headline__icon--position-after">
-        {% include "@bolt-components-icon/icon.twig" with icon only %}
-      </span>
-  {% endif %}
-{% endset %}
+{% if icon and not url and iconPosition != "before" %}
+  {% set iconAfter %}
+    <span class="c-bolt-headline__icon c-bolt-headline__icon--position-after">
+      {% include "@bolt-components-icon/icon.twig" with icon only %}
+    </span>
+  {% endset %}
+{% endif %}
 
-<{{ tag }} {{ attributes.addClass(classes) }}>
-{% if numberText %}
+<{{ tag }} {{ attributes.addClass(classes) }}>{% spaceless %}
+  {% if numberText %}
     <span class="c-bolt-headline__bullet c-bolt-headline__bullet--size-{{ numberSize }}">
-      <span class="c-bolt-headline__bullet-inner
-        {{ numberColor ? 'c-bolt-headline__bullet-inner--' ~ numberColor : ''}}
-      ">
+      <span class="c-bolt-headline__bullet-inner {{ numberColor ? 'c-bolt-headline__bullet-inner--' ~ numberColor : ''}}">
         <span class="c-bolt-headline__bullet-text">{{ numberText }}</span>
       </span>
     </span>
@@ -121,5 +119,10 @@
 
     {% include "@bolt/link.twig" with linkVars only %}
   {%- else -%}
-    <span class="c-bolt-headline__text">{{- iconBefore -}}<span class="c-bolt-headline__text-inner">{{- text -}}{{- iconAfter -}}</span></span></span>
-  {%- endif -%}</{{ tag }}>
+    <span class="c-bolt-headline__text">{% spaceless %}
+      {{- iconBefore -}}
+      {{- text -}}
+      {{- iconAfter -}}
+    {% endspaceless %}</span>
+  {%- endif -%}
+{% endspaceless %}</{{ tag }}>
