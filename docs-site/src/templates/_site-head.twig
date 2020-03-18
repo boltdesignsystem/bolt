@@ -54,15 +54,17 @@
     <link rel="preload" href="/pattern-lab/styleguide/css/pattern-lab.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 
     {# critical path scripts for non-ES Module browsers #}
-    <script nomodule>
-      {% if fileExists("@bolt-assets/bolt-critical-path-polyfills.cjs.js") %}
-        {{ inline(legacyAssets["bolt-critical-path-polyfills.cjs.js"] | default("")) }}
-      {% endif %}
+    {% if bolt.data.config.compat == true %}
+      <script nomodule>
+        {% if fileExists("@bolt-assets/bolt-critical-path-polyfills.cjs.js") %}
+          {{ inline(legacyAssets["bolt-critical-path-polyfills.cjs.js"] | default("")) }}
+        {% endif %}
 
-      {% if fileExists("@bolt-assets/bolt-components-critical-css.js") %}
-        {{ inline( legacyAssets["bolt-components-critical-css-vars.js"] | default("") ) }}
-      {% endif %}
-    </script>
+        {% if fileExists("@bolt-assets/bolt-components-critical-css.js") %}
+          {{ inline( legacyAssets["bolt-components-critical-css-vars.js"] | default("") ) }}
+        {% endif %}
+      </script>
+    {% endif %}
 
     {# shared critical path scripts #}
     <script>
