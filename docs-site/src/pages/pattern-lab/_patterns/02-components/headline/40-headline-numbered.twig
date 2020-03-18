@@ -153,54 +153,56 @@
 
 <hr>
 
-{% include "@bolt-components-headline/headline.twig" with {
-  size: "xxxlarge",
-  text: "Numbered Headline (xxxlarge)",
-  numberText: 1,
-} only %}
-
-{% include "@bolt-components-headline/subheadline.twig" with {
-  size: "xxlarge",
-  text: "Numbered Subheadline (xxlarge)",
-  numberText: 2,
-} only %}
-
-{% include "@bolt-components-headline/text.twig" with {
-  text: "Numbered Text (large)",
-  size: "large",
-  numberText: 3,
-} only %}
-
-{% include "@bolt-components-headline/eyebrow.twig" with {
-  text: "Numbered Eyebrow",
-  numberText: 4,
-} only %}
+<bolt-stack>
+  {% include "@bolt-components-headline/eyebrow.twig" with {
+    text: "Numbered Eyebrow",
+    numberText: 4,
+  } only %}
+</bolt-stack>
+<bolt-stack>
+  {% include "@bolt-components-headline/headline.twig" with {
+    size: "xxxlarge",
+    text: "Numbered Headline (xxxlarge)",
+    numberText: 1,
+  } only %}
+</bolt-stack>
+<bolt-stack>
+  {% include "@bolt-components-headline/subheadline.twig" with {
+    size: "xxlarge",
+    text: "Numbered Subheadline (xxlarge)",
+    numberText: 2,
+  } only %}
+</bolt-stack>
+<bolt-stack>
+  {% include "@bolt-components-headline/text.twig" with {
+    text: "Numbered Text",
+    numberText: 3,
+  } only %}
+</bolt-stack>
 
 <hr>
 
 {% for size in schema.properties.size.enum %}
-  {% include "@bolt-components-headline/text.twig" with {
-    size: size,
-    weight: "bold",
-    text: "Fixed-size Numbered Headline (#{size})",
-    numberText: loop.index,
-    numberColor: "indigo",
-    attributes: {
-      class: ["u-bolt-margin-bottom-xsmall"]
-    }
-  } only %}
+  <bolt-stack>
+    {% include "@bolt-components-headline/headline.twig" with {
+      size: size,
+      text: "Numbered Headline (#{size})",
+      numberText: loop.index,
+      numberColor: "indigo",
+    } only %}
+  </bolt-stack>
 {% endfor %}
 
 <hr>
 
-  {% include "@bolt-components-headline/headline.twig" with {
-    size: "xxlarge",
-    text: "numberColor",
-    tag: "h2",
-  } only %}
+{% include "@bolt-components-headline/headline.twig" with {
+  size: "xxlarge",
+  text: "numberColor",
+  tag: "h2",
+} only %}
 
 <p>
-  By setting the <code>numberColor</code> prop to <code>indigo</code>, <code>purple</code>, <code>teal</code>, or <code>orange</code>, you can choose the background color of the Headline Bullet.
+  By setting the <code>numberColor</code> prop to <code>indigo</code>, <code>purple</code>, <code>teal</code>, or <code>orange</code>, you can choose the background color of the Headline Number.
 </p>
 
 {% grid "o-bolt-grid--medium o-bolt-grid--matrix" %}
