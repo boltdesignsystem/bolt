@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.20.0](https://github.com/boltdesignsystem/bolt/compare/v2.19.1...v2.20.0) (2020-03-18)
+
+
+### Bug Fixes
+
+* temporarily disable check-runs to work around bad creds error from Github ([de5b901](https://github.com/boltdesignsystem/bolt/commit/de5b901e1fffdd553d613907c95c40392266c0ed))
+
+
+
+
+
 # [2.19.0](https://github.com/boltdesignsystem/bolt/compare/v2.18.1...v2.19.0) (2020-03-04)
 
 **Note:** Version bump only for package @bolt/scripts

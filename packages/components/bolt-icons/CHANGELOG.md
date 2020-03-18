@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.20.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/compare/v2.19.1...v2.20.0) (2020-03-18)
+
+
+### Bug Fixes
+
+* update Icons per PR feedback ([c3f5457](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/commit/c3f54575b0bbda56ad60f680bf8052ab648c7ae0))
+
+
+### Features
+
+* update 5 out of the 7 existing Academy icons to be more consistent with the rest of the Bolt Design System ([20e47d7](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/commit/20e47d7f76c6f934296e9240ae8d53cd8bb7a1fa))
+
+
+
+
+
 # [2.19.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/compare/v2.18.1...v2.19.0) (2020-03-04)
 
 **Note:** Version bump only for package @bolt/components-icons

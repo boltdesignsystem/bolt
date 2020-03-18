@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.20.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-headline/compare/v2.19.1...v2.20.0) (2020-03-18)
+
+
+### Bug Fixes
+
+* address eslint + stylelint linter issues ([caea760](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-headline/commit/caea76028a4cca41dfefbc3e230f57ff0035d84d))
+* vertially center number ([1589d4a](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-headline/commit/1589d4ab0d340d6f334bd51ccc98623d02c43100))
+
+
+### Features
+
+* add new bulleted headline functionality + supporting demos ([fdbc223](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-headline/commit/fdbc223ed9ee1b5f2a988a94bbcb0306beca6fa9))
+
+
+
+
+
 # [2.19.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-headline/compare/v2.18.1...v2.19.0) (2020-03-04)
 
 **Note:** Version bump only for package @bolt/components-headline

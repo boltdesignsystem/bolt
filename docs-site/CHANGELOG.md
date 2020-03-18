@@ -3,6 +3,35 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.20.0](https://github.com/bolt-design-system/bolt/compare/v2.19.1...v2.20.0) (2020-03-18)
+
+
+### Bug Fixes
+
+* add new E2E integration test to verify that the docs site off-canvas nav can be opened / closed moving forward ([7bffd09](https://github.com/bolt-design-system/bolt/commit/7bffd0966bcebcc2c6a49834e382d5fac4f9745e))
+* change demo to reflect actual usage ([c010fca](https://github.com/bolt-design-system/bolt/commit/c010fca45c7b561794f6e52421f66d2ae6c75062))
+* don't show medium sized headline ([6c4b5c7](https://github.com/bolt-design-system/bolt/commit/6c4b5c7de19c4abbc839a16e2955175d472f2cdd))
+* update API + Card snapshots ([6d67a9e](https://github.com/bolt-design-system/bolt/commit/6d67a9e38705252516c444b918a33f97aeb7d8d0))
+* update docs site off-canvas nav IDs to not match with new SVG icon IDs on the page. ([ff7d74b](https://github.com/bolt-design-system/bolt/commit/ff7d74b27ddc9012962da4edd91f53d6e15c2a0e))
+* update Icons per PR feedback ([c3f5457](https://github.com/bolt-design-system/bolt/commit/c3f54575b0bbda56ad60f680bf8052ab648c7ae0))
+* update new E2E test to also work correctly in IE 11 ([aaf8916](https://github.com/bolt-design-system/bolt/commit/aaf8916a923d20274c878e462c364a5f642ae8c0))
+* update Twig include path ([40f6aad](https://github.com/bolt-design-system/bolt/commit/40f6aadcfae4437e3e9cf5e7aab5183ed10cfa7a))
+* vertially center number ([1589d4a](https://github.com/bolt-design-system/bolt/commit/1589d4ab0d340d6f334bd51ccc98623d02c43100))
+
+
+### Features
+
+* add E2E integration tests that cover Popover's new SSR / no-JS state restoration logic ([d1e6936](https://github.com/bolt-design-system/bolt/commit/d1e6936dcdec42386cfa3540ad9737b7a63616c3))
+* add new bulleted headline functionality + supporting demos ([fdbc223](https://github.com/bolt-design-system/bolt/commit/fdbc223ed9ee1b5f2a988a94bbcb0306beca6fa9))
+* add offset support to TOC component ([8bcc05d](https://github.com/bolt-design-system/bolt/commit/8bcc05d94303d3193e48bcfe786be0167588e14f))
+* create new numbered headline blueprint for Academy; add basic docs + demos ([1eb8e75](https://github.com/bolt-design-system/bolt/commit/1eb8e753d0e515165a1bee98b9420f08020e0106))
+* replace `xxsmall` with `xsmall` in Blueprints ([0af47fc](https://github.com/bolt-design-system/bolt/commit/0af47fc59d830e1989dcf98d189619d6b8bfcfd7))
+* update TOC demos + add realistic sticky Page Header use case to Blueprints ([b140e37](https://github.com/bolt-design-system/bolt/commit/b140e37be83cf4d0f8ae25cb8255856e0ad6a725))
+
+
+
+
+
 ## [2.19.1](https://github.com/bolt-design-system/bolt/compare/v2.19.0...v2.19.1) (2020-03-11)
 
 **Note:** Version bump only for package @bolt/website
