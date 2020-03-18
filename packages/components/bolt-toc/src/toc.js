@@ -46,8 +46,8 @@ class BoltToc extends withContext(BoltElement) {
         attribute: 'scroll-offset-selector',
         type: String,
       },
-      addStickyOffset: {
-        attribute: 'add-sticky-offset',
+      sticky: {
+        attribute: 'sticky',
         type: Boolean,
       },
     };
@@ -191,7 +191,10 @@ class BoltToc extends withContext(BoltElement) {
   updateContext() {
     this.updateProvidedContext('activeItem', this.activeItem);
     this.updateProvidedContext('scrollOffset', this.scrollOffset);
-    this.updateProvidedContext('scrollOffsetSelector', this.scrollOffsetSelector);
+    this.updateProvidedContext(
+      'scrollOffsetSelector',
+      this.scrollOffsetSelector,
+    );
   }
 
   updateWaypoints() {
@@ -265,16 +268,15 @@ class BoltToc extends withContext(BoltElement) {
   }
 
   onPositionChange({ target, currentPosition, previousPosition }) {
-    if (this.addStickyOffset){
+    if (this.sticky) {
       // auto-adjust a sticky parent's offset automatically
-      this.stickyParent = this.stickyParent || this.closest('bolt-sticky');
       this.scrollElem =
         this.scrollElem ||
         (this.scrollOffsetSelector &&
           document.querySelector(this.scrollOffsetSelector));
-      if (this.scrollElem && this.stickyParent) {
+      if (this.scrollElem) {
         if (this.scrollElem.offsetHeight) {
-          this.stickyParent.style.top = `${this.scrollElem.offsetHeight +
+          this.style.top = `${this.scrollElem.offsetHeight +
             (this.scrollOffset || 0)}px`;
         }
       }

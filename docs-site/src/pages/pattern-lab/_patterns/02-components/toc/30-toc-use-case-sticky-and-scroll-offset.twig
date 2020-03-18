@@ -1,8 +1,9 @@
 {% set props %}
 {% verbatim %}
 {% include "@bolt-components-toc/toc.twig" with {
+  sticky: true,
   scrollOffsetSelector: ".js-sticky-offset",
-  addStickyOffset: true,
+  scrollOffset: 16,
 } %}
 {% endverbatim %}
 {% endset %}
@@ -12,37 +13,41 @@
   lang: "twig"
 } only %}
 
-<div class="js-sticky-offset u-bolt-padding-small u-bolt-padding-medium@medium" style="position: sticky; top: 0; background: red;">Ex. Sticky Element</div>
+{% include "@bolt-components-sticky/sticky.twig" with {
+  content: include("@bolt-components-banner/banner.twig", {
+    content: '<div class="u-bolt-padding-small@medium">Ex. Sticky Element</div>',
+    status: "warning",
+  }),
+  attributes: {
+    class: ["js-sticky-offset"]
+  }
+} only %}
 
 <div class="o-bolt-wrapper u-bolt-margin-top-large u-bolt-margin-bottom-large">
   {% grid "o-bolt-grid--flex o-bolt-grid--matrix" %}
     {% cell "u-bolt-width-4/12" %}
-      {% set content %}
-        {# Start component specific code #}
-        {% include "@bolt-components-toc/toc.twig" with {
-          scrollOffsetSelector: ".js-sticky-offset",
-          addStickyOffset: true,
-          header: "Marvel Cinematic Universe",
-          items: [
-            {
-              text: "Phase One",
-              url: "#phase-one",
-            },
-            {
-              text: "Phase Two",
-              url: "#phase-two",
-            },
-            {
-              text: "Phase Three",
-              url: "#phase-three",
-            },
-          ]
-        } only %}
-        {# End component specific code #}
-      {% endset %}
-      {% include "@bolt-components-sticky/sticky.twig" with {
-        content: content,
+      {# Start component specific code #}
+      {% include "@bolt-components-toc/toc.twig" with {
+        sticky: true,
+        scrollOffsetSelector: ".js-sticky-offset",
+        scrollOffset: 16,
+        header: "Marvel Cinematic Universe",
+        items: [
+          {
+            text: "Phase One",
+            url: "#phase-one",
+          },
+          {
+            text: "Phase Two",
+            url: "#phase-two",
+          },
+          {
+            text: "Phase Three",
+            url: "#phase-three",
+          },
+        ]
       } only %}
+      {# End component specific code #}
     {% endcell %}
     {% cell "u-bolt-width-8/12" %}
       {% include "@bolt-components-headline/headline.twig" with {
