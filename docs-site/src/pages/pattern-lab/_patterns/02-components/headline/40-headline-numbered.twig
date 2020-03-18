@@ -183,14 +183,16 @@
 <hr>
 
 {% for size in schema.properties.size.enum %}
-  <bolt-stack>
-    {% include "@bolt-components-headline/headline.twig" with {
-      size: size,
-      text: "Numbered Headline (#{size})",
-      numberText: loop.index,
-      numberColor: "indigo",
-    } only %}
-  </bolt-stack>
+  {% if size != "medium" %}
+    <bolt-stack>
+      {% include "@bolt-components-headline/headline.twig" with {
+        size: size,
+        text: "Numbered Headline (#{size})",
+        numberText: loop.index,
+        numberColor: "indigo",
+      } only %}
+    </bolt-stack>
+  {% endif %}
 {% endfor %}
 
 <hr>
