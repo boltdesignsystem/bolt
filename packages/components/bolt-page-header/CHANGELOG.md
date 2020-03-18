@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.20.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-page-header/compare/v2.19.1...v2.20.0) (2020-03-18)
+
+
+### Features
+
+* update TOC demos + add realistic sticky Page Header use case to Blueprints ([b140e37](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-page-header/commit/b140e37be83cf4d0f8ae25cb8255856e0ad6a725))
+
+
+
+
+
 # [2.19.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-page-header/compare/v2.18.1...v2.19.0) (2020-03-04)
 
 **Note:** Version bump only for package @bolt/components-page-header

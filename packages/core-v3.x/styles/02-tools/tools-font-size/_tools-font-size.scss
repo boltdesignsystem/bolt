@@ -43,7 +43,6 @@
       @if ($length < 2) {
         line-height: nth($leading, 2);
       } @else {
-        @debug $leading;
         @include bolt-poly-fluid-sizing('line-height', $leading);
       }
     } @else {

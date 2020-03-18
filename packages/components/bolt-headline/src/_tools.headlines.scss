@@ -7,7 +7,8 @@
   @include bolt-headline-text-alignment;
   @include bolt-headline-text-transform;
 
-  display: block;
+  display: flex;
+  align-items: flex-start;
   // display: flex; // @todo: uncomment when fixing headline flex behavior
   // flex-flow: row nowrap; // @todo: uncomment when fixing headline flex behavior
 
@@ -33,7 +34,22 @@
   }
 }
 
+.c-bolt-headline__icon {
+  display: inline-flex;
+  justify-content: center;
+  align-items: inherit; // different alignment than if align-items is set to center
+  min-height: 1.2em;
+  vertical-align: text-bottom;
 
+  &--icon-position-before,
+  &--icon-position-left {
+    @include bolt-margin-right(xxsmall);
+  }
+  &--icon-position-after,
+  &--icon-position-right {
+    @include bolt-margin-left(xxsmall);
+  }
+}
 
 /** Headline Font Weight Options **/
 @mixin bolt-headline-font-weight {

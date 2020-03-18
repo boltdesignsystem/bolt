@@ -7,6 +7,19 @@
 /// @author Mike Mai
 ////
 
+
+// checks to see if a deeply nested Sass map exists
+@function bolt-map-deep-exists($map, $keys...) {
+  @each $key in $keys {
+    $map: map-get($map, $key);
+  }
+  @if $map {
+    @return true;
+  } @else {
+    @return false;
+  }
+}
+
 /// This returns the font-weight for a specific element.
 /// @param {string} $weight - Defines the weight of the text: bold, semi-bold, regular, or normal.
 /// @example scss - Mixin
@@ -18,7 +31,13 @@
 ///    font-weight: 800;
 /// }
 @mixin bolt-font-weight($weight) {
-  $font-weight: map-get-deep($bolt-font-weights, 'font-weights', $weight);
+  font-weight: bolt-font-weight($weight);
+}
 
-  font-weight: $font-weight;
+@function bolt-font-weight($weight) {
+  @if bolt-map-deep-exists($bolt-font-weights, 'font-weights', $weight){
+    @return map-get-deep($bolt-font-weights, 'font-weights', $weight);
+  } @else {
+    @return $weight;
+  }
 }

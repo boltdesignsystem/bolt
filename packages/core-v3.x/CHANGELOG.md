@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.20.0](https://github.com/bolt-design-system/bolt/tree/master/packages/core/compare/v2.19.1...v2.20.0) (2020-03-18)
+
+
+### Bug Fixes
+
+* update xxsmall font-size to follow conventions ([da323e3](https://github.com/bolt-design-system/bolt/tree/master/packages/core/commit/da323e31801a8d4ab7152564b71b5c860cfe9c0d))
+
+
+### Features
+
+* add function version of bolt-font-weight ([e2860f5](https://github.com/bolt-design-system/bolt/tree/master/packages/core/commit/e2860f56e4b46d518d5420c4b70f609ac1f789c7))
+* update bolt-font-size + poly fluid sizing functions to support optionally outputting CSS custom properties ([1b4edec](https://github.com/bolt-design-system/bolt/tree/master/packages/core/commit/1b4edecb4a0cfa5a7618ef37cb17eddafbb10aa5))
+
+
+
+
+
 # [2.19.0](https://github.com/bolt-design-system/bolt/tree/master/packages/core/compare/v2.18.1...v2.19.0) (2020-03-04)
 
 **Note:** Version bump only for package @bolt/core-v3.x

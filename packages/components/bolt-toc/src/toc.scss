@@ -4,6 +4,26 @@
 
 @import '@bolt/core-v3.x';
 
+// Older versions of Edge
+bolt-toc {
+  display: block;
+
+  &[sticky]{
+    position: sticky;
+    top: 0;
+  }
+}
+
+// newer versions of Edge + Chrome, Safari, and Firefox
+:host {
+  display: block;
+
+  &[sticky]{
+    position: sticky;
+    top: 0;
+  }
+}
+
 .c-bolt-toc {
   @include bolt-shadow('level-20');
   display: block;

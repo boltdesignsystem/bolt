@@ -1,5 +1,96 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`figure A Figures without any \`default\` slotted content won't render a <figcaption> 1`] = `
+<div
+  style=""
+>
+  <!---->
+  
+      
+  <figure
+    class="c-bolt-figure"
+    style=""
+  >
+    
+        
+            
+    <div
+      class="c-bolt-figure__media"
+      style=""
+    >
+      
+              
+      <slot
+        name="media"
+        style=""
+      />
+      
+            
+    </div>
+    
+          
+        
+      
+  </figure>
+  
+    
+  <!---->
+</div>
+`;
+
+exports[`figure Figures renders slotted \`default\` and \`media\` content 1`] = `
+<div
+  style=""
+>
+  <!---->
+  
+      
+  <figure
+    class="c-bolt-figure"
+    style=""
+  >
+    
+        
+            
+    <div
+      class="c-bolt-figure__media"
+      style=""
+    >
+      
+              
+      <slot
+        name="media"
+        style=""
+      />
+      
+            
+    </div>
+    
+          
+        
+            
+    <figcaption
+      class="c-bolt-figure__caption"
+      style=""
+    >
+      
+              
+      <slot
+        style=""
+      />
+      
+            
+    </figcaption>
+    
+          
+      
+  </figure>
+  
+    
+  <!---->
+</div>
+`;
+
 exports[`figure figure with deprecated "icon" prop still renders 1`] = `
 <bolt-figure>
   <replace-with-grandchildren>

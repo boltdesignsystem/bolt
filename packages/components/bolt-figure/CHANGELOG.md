@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.20.0](https://github.com/bolt-design-system/bolt/compare/v2.19.1...v2.20.0) (2020-03-18)
+
+
+### Bug Fixes
+
+* address eslint + stylelint linter issues ([caea760](https://github.com/bolt-design-system/bolt/commit/caea76028a4cca41dfefbc3e230f57ff0035d84d))
+* temporarily bypass figure VRT diff and just use rendered markup diff for now ([4ac49df](https://github.com/bolt-design-system/bolt/commit/4ac49df61a5770c5cc3b522e679a9bd3c8e0499f))
+
+
+
+
+
 ## [2.19.1](https://github.com/bolt-design-system/bolt/compare/v2.19.0...v2.19.1) (2020-03-11)
 
 **Note:** Version bump only for package @bolt/components-figure

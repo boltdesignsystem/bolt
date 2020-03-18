@@ -10,8 +10,8 @@ import { ifDefined } from 'lit-html/directives/if-defined';
 import classNames from 'classnames/bind';
 import { createPopper } from '@popperjs/core';
 import Mousetrap from 'mousetrap';
-import popoverStyles from './popover.scss';
 import themeStyles from '@bolt/global/styles/06-themes/_themes.wc.scss';
+import popoverStyles from './popover.scss';
 import schema from '../popover.schema';
 
 let cx = classNames.bind(popoverStyles);
@@ -54,8 +54,38 @@ class BoltPopover extends BoltElement {
     return [unsafeCSS(popoverStyles), unsafeCSS(themeStyles)];
   }
 
+  // removes any hashes from the URL while preserving any query string params
+  // todo: maybe worth sharing this + matchSSRState with other Bolt components?
+  clearURLHash() {
+    window.history.replaceState(
+      '',
+      document.title,
+      window.location.pathname + window.location.search,
+    );
+  }
+
+  // updates Popover's internal state to match any SSR / no-js interactions that have occurred
+  matchSSRState() {
+    const uuid = this.getAttribute('uuid');
+
+    const popoverOpenedHash = `#js-bolt-popover-${uuid}`;
+    const popoverClosedHash = `#js-bolt-popover-trigger-${uuid}`;
+
+    const currentHash = window.location.hash;
+
+    // if URL hash matches, auto-open or auto-close + clean up any existing URL hashes
+    if (currentHash === popoverOpenedHash) {
+      this.clearURLHash();
+      this.show();
+    } else if (currentHash === popoverClosedHash) {
+      this.clearURLHash();
+      this.hide();
+    }
+  }
+
   connectedCallback() {
     super.connectedCallback && super.connectedCallback();
+    this.matchSSRState();
     this.setAttribute('ready', '');
   }
 
