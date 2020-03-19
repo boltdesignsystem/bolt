@@ -64,7 +64,8 @@ const config = deepmerge(baseConfig, {
         dist: '../www/images',
       },
       {
-        base: './src/pages/pattern-lab/_patterns/03-blueprints/00-assets/images',
+        base:
+          './src/pages/pattern-lab/_patterns/03-blueprints/00-assets/images',
         glob: '**',
         dist: '../www/images',
       },
@@ -119,10 +120,6 @@ const config = deepmerge(baseConfig, {
     individual: [],
   },
   copy: [
-    {
-      from: require.resolve(`@bolt/critical-path-polyfills`),
-      to: path.join(__dirname, '../www/build'),
-    },
     {
       from: path.join(
         path.dirname(require.resolve(`@bolt/components-typeahead`)),

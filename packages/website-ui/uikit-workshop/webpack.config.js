@@ -4,7 +4,6 @@ const HardSourceWebpackPlugin = require('hard-source-webpack-plugin-patch');
 const TerserPlugin = require('terser-webpack-plugin');
 const NoEmitPlugin = require('no-emit-webpack-plugin');
 const autoprefixer = require('autoprefixer');
-const CriticalCssPlugin = require('critical-css-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const selectorImporter = require('node-sass-selector-importer');
@@ -13,7 +12,6 @@ const CopyPlugin = require('copy-webpack-plugin');
 const PrerenderSPAPlugin = require('@bolt/prerender-spa-plugin');
 const path = require('path');
 const Renderer = require('@bolt/uikit-prerenderer');
-const puppeteer = require('puppeteer');
 const argv = require('yargs').argv;
 const merge = require('webpack-merge');
 const WebpackBar = require('webpackbar');
@@ -216,7 +214,7 @@ module.exports = function(apiConfig) {
                 // otherwise extract the result and write out a .css file per usual
                 use: [MiniCssExtractPlugin.loader, scssLoaders].reduce(
                   (acc, val) => acc.concat(val),
-                  []
+                  [],
                 ),
               },
             ],
@@ -278,18 +276,18 @@ module.exports = function(apiConfig) {
           // caches will be deleted. Together they must be at least 300MB in size
           sizeThreshold: 300 * 1024 * 1024,
         },
-      })
+      }),
     );
 
     const legacyConfig = merge(webpackConfig, {
       entry: {
         'js/patternlab-pattern': path.join(
           __dirname,
-          './src/scripts/patternlab-pattern.js'
+          './src/scripts/patternlab-pattern.js',
         ),
         'js/patternlab-viewer': path.join(
           __dirname,
-          './src/scripts/patternlab-viewer.js'
+          './src/scripts/patternlab-viewer.js',
         ),
         'css/pattern-lab': path.join(__dirname, './src/sass/pattern-lab.scss'),
       },
@@ -321,11 +319,11 @@ module.exports = function(apiConfig) {
       entry: {
         'js/patternlab-pattern': path.join(
           __dirname,
-          './src/scripts/patternlab-pattern.modern.js'
+          './src/scripts/patternlab-pattern.modern.js',
         ),
         'js/patternlab-viewer': path.join(
           __dirname,
-          './src/scripts/patternlab-viewer.modern.js'
+          './src/scripts/patternlab-viewer.modern.js',
         ),
         'css/pattern-lab': path.join(__dirname, './src/sass/pattern-lab.scss'),
       },
@@ -363,7 +361,7 @@ module.exports = function(apiConfig) {
 
             // perform clean just before files are emitted to the output dir
             beforeEmit: false,
-          }
+          },
         ),
         new PrerenderSPAPlugin({
           // Required - The path to the webpack-outputted app to prerender.

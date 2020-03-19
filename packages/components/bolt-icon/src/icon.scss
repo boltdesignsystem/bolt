@@ -124,7 +124,7 @@ bolt-icon {
 // helper function to generate pre-defined color palettes for icons + backgrounds
 // optionally allows for the icon color (when used by itself or with an "outline" background) to be a different color than the one used when the icon is inverted on a solid color background
 @mixin bolt-icon-theme($name, $iconColor, $backgroundColor: ''){
-  .c-bolt-icon--#{$name} {
+  .c-bolt-icon--#{"" + $name} {
     @if $backgroundColor == '' {
       $backgroundColor: $iconColor;
     }

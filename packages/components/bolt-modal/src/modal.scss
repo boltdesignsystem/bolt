@@ -259,8 +259,8 @@ bolt-modal:not([ready]) {
   display: block;
   opacity: bolt-opacity(0);
   transform: translate3d(0, 0, 0) scale($bolt-modal-animation-scale); /* [1] */
-  transition: opacity $bolt-modal-transition, transform $bolt-modal-transition;
   background-color: bolt-theme(background);
+  transition: opacity $bolt-modal-transition, transform $bolt-modal-transition;
 
   @at-root .c-bolt-modal.is-open #{&} {
     opacity: bolt-opacity(100);

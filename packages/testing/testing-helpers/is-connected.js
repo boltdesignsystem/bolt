@@ -5,7 +5,6 @@
 
 const util = require('util');
 const dns = require('dns');
-// const puppeteer = require('puppeteer');
 
 export async function isConnected() {
   try {

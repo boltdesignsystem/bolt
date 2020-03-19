@@ -1,5 +1,4 @@
 const path = require('path');
-const Prerenderer = require('@prerenderer/prerenderer');
 const PuppeteerRenderer = require('@bolt/uikit-prerenderer');
 const { minify } = require('html-minifier');
 
@@ -78,7 +77,7 @@ PrerenderSPAPlugin.prototype.apply = function(compiler) {
   };
 
   const afterEmit = (compilation, done) => {
-    const PrerendererInstance = new Prerenderer(this._options);
+    const PrerendererInstance = new PuppeteerRenderer(this._options);
 
     PrerendererInstance.initialize()
       .then(() => {
