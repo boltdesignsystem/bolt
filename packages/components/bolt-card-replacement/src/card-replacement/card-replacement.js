@@ -1,8 +1,8 @@
 import { unsafeCSS, BoltElement, customElement, html } from '@bolt/element';
 import classNames from 'classnames/bind';
 import { withContext } from 'wc-context';
-import cardReplacementStyles from './card-replacement.scss';
 import themeStyles from '@bolt/global/styles/06-themes/_themes.wc.scss';
+import cardReplacementStyles from './card-replacement.scss';
 
 let cx = classNames.bind(cardReplacementStyles);
 

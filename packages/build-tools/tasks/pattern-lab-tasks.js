@@ -45,8 +45,12 @@ async function asyncConfig() {
   }
 }
 
+let patternLabIsCompiling = false;
+
 async function compile(errorShouldExit, dataOnly = false) {
   config = config || (await asyncConfig());
+
+  events.emit('build-tasks/pattern-lab:compiling');
 
   const plTaskName = dataOnly ? 'Pattern Lab Data' : 'Pattern Lab';
 
@@ -132,6 +136,8 @@ async function compile(errorShouldExit, dataOnly = false) {
 async function precompile() {
   config = config || (await asyncConfig());
 
+  events.emit('build-tasks/pattern-lab:precompiling');
+
   return new Promise(async (resolve, reject) => {
     const jsFolderExists = await dirExists(
       path.join(process.cwd(), config.wwwDir, 'pattern-lab/styleguide/js/'),
@@ -163,6 +169,8 @@ async function precompile() {
             )} run build`,
           ).stdout;
 
+          events.emit('build-tasks/pattern-lab:precompiled');
+
           resolve(result);
         } else {
           resolve();
@@ -187,6 +195,18 @@ compileWithNoExit.displayName = 'pattern-lab:compile';
 async function watch() {
   config = config || (await asyncConfig());
   const dirs = await manifest.getAllDirs();
+
+  events.on('build-tasks/pattern-lab:precompiling', async () => {
+    patternLabIsCompiling = true;
+  });
+
+  events.on('build-tasks/pattern-lab:compiling', async () => {
+    patternLabIsCompiling = true;
+  });
+
+  events.on('build-tasks/pattern-lab:compiled', async () => {
+    patternLabIsCompiling = false;
+  });
 
   // Used by watches
   const debouncedCompile = debounce(compileWithNoExit, config.debounceRate);
@@ -236,7 +256,8 @@ async function watch() {
   });
 
   // auto-regenerate when pattern lab data emitted
-  events.on('webpack-dev-server:compiled', async () => {
+  events.once('build-tasks/pattern-lab:compiled', async () => {
+    console.log('PL watching for changes once (and only once)');
     if (isWatching === false) {
       isWatching = true;
     }
@@ -254,10 +275,15 @@ async function watch() {
 
     // list of all events: https://www.npmjs.com/package/chokidar#methods--events
     watcher.on('all', (event, path) => {
-      if (config.verbosity > 3) {
-        console.log('Pattern Lab watch event: ', event, path);
+      if (patternLabIsCompiling) {
+        // console.log('skip recompiling PL since compile already going on...');
+      } else {
+        if (config.verbosity > 3) {
+          console.log('Pattern Lab watch event: ', event, path);
+        }
+        // console.log('recompiling PL');
+        debouncedCompile();
       }
-      debouncedCompile();
     });
   });
 }

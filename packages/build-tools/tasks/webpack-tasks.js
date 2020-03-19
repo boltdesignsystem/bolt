@@ -2,7 +2,8 @@ const webpack = require('webpack');
 const express = require('express');
 const browserSync = require('browser-sync').create();
 const webpackDevMiddleware = require('webpack-dev-middleware');
-const webpackHotMiddleware = require('webpack-hot-middleware');
+const hasha = require('hasha');
+const path = require('path');
 const chalk = require('chalk');
 const opn = require('better-opn');
 const { handleRequest } = require('@bolt/api');
@@ -70,6 +71,20 @@ async function server(customWebpackConfig) {
   const webpackConfigs =
     customWebpackConfig || (await createWebpackConfig(boltBuildConfig));
 
+  let patternLabIsCompiling = false;
+
+  events.on('build-tasks/pattern-lab:precompiling', async () => {
+    patternLabIsCompiling = true;
+  });
+
+  events.on('build-tasks/pattern-lab:compiling', async () => {
+    patternLabIsCompiling = true;
+  });
+
+  events.on('build-tasks/pattern-lab:compiled', async () => {
+    patternLabIsCompiling = false;
+  });
+
   const browserSyncFileToWatch = [
     `${boltBuildConfig.wwwDir}/**/*.css`,
     `${boltBuildConfig.wwwDir}/**/*.html`,
@@ -77,7 +92,71 @@ async function server(customWebpackConfig) {
     `!**/vendor/**/*`,
   ];
 
-  browserSyncFileToWatch.push(`${boltBuildConfig.wwwDir}/**/*.js`);
+  console.log(process.cwd());
+
+  // customize bs reload behavior based on the type of asset that's changed
+  const filesToWatch = [
+    // {
+    //   match: [`${process.cwd()}/patternlab-config.json`],
+    //   fn: async function(event, filePath) {
+    //     // when the main PL config changes, clear Node's cache (so the JSON config is re-read) and trigger another PL build
+    //     // this allows config changes to show up without restarting the build!
+    //     Object.keys(require.cache).forEach(function(key) {
+    //       delete require.cache[key];
+    //     });
+
+    //     const config = require(configPath);
+    //     const pl = require('@pattern-lab/core')(config);
+
+    //     pl.build({
+    //       watch: false,
+    //       cleanPublic: true,
+    //     });
+    //   },
+    // },
+    `${boltBuildConfig.wwwDir}/**/*.css`,
+    `${boltBuildConfig.wwwDir}/**/*.js`,
+    {
+      match: [
+        `${boltBuildConfig.wwwDir}/**/*.svg`,
+        `${boltBuildConfig.wwwDir}/**/*.png`,
+        `${boltBuildConfig.wwwDir}/**/*.jpg`,
+      ],
+      async fn() {
+        browserSync.reload();
+      },
+    },
+    // only reload the Webpack-generated HTML files when the contents have changed
+    {
+      match: [
+        path.join(process.cwd(), `${boltBuildConfig.wwwDir}/**/*.html`),
+        path.join(
+          process.cwd(),
+          `${boltBuildConfig.wwwDir}/styleguide/html/*.html`,
+        ),
+      ],
+      async fn(event, filePath) {
+        let updatedHash = false;
+
+        if (fs.existsSync(path.resolve(__dirname, `../${filePath}`))) {
+          const hash = await hasha.fromFile(
+            path.resolve(__dirname, `../${filePath}`),
+            { algorithm: 'md5' },
+          );
+
+          if (!fileHashes[filePath] || fileHashes[filePath] !== hash) {
+            fileHashes[filePath] = hash;
+            updatedHash = true;
+          }
+
+          if (updatedHash && !patternLabIsCompiling) {
+            console.log(`reloading ${filePath}`);
+            browserSync.reload(filePath);
+          }
+        }
+      },
+    },
+  ];
 
   const isUsingInternalServer =
     typeof boltBuildConfig.proxyHostname === 'undefined' &&
@@ -102,7 +181,7 @@ async function server(customWebpackConfig) {
             ignoreInitial: true,
           },
           port: boltBuildConfig.port,
-          files: browserSyncFileToWatch,
+          files: filesToWatch,
         },
         function(err, bs) {
           browserSyncIsRunning = true; // so we only spin this up once Webpack has finished up initially

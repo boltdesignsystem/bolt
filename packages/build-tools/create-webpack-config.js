@@ -20,9 +20,7 @@ const { boltWebpackProgress } = require('@bolt/build-utils/webpack-helpers');
 const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
 const modernBabelConfig = require('@bolt/babel-preset-bolt');
 
-const {
-  getBoltManifest,
-} = require('@bolt/build-utils/manifest');
+const { getBoltManifest } = require('@bolt/build-utils/manifest');
 const log = require('@bolt/build-utils/log');
 
 // Store set of webpack configs used in multiple builds
@@ -472,10 +470,7 @@ async function createWebpackConfig(buildConfig) {
           oneOf: [
             {
               issuer: /\.js$/,
-              use: [getSassLoaders()].reduce(
-                (acc, val) => acc.concat(val),
-                [],
-              ),
+              use: [getSassLoaders()].reduce((acc, val) => acc.concat(val), []),
             },
             {
               // no issuer here as it has a bug when its an entry point - https://github.com/webpack/webpack/issues/5906

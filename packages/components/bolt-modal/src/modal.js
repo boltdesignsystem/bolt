@@ -12,8 +12,8 @@ import {
 } from '@bolt/core-v3.x/utils';
 import { withLitHtml } from '@bolt/core-v3.x/renderers/renderer-lit-html';
 import classNames from 'classnames/bind';
-import styles from './modal.scss';
 import themeStyles from '@bolt/global/styles/06-themes/_themes.wc.scss';
+import styles from './modal.scss';
 import schema from '../modal.schema.yml';
 
 const tabbable = require('tabbable');

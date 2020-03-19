@@ -260,17 +260,14 @@ async function watch() {
 }
 
 async function start() {
-  let buildTime;
   config = config || (await getConfig());
 
   try {
-    if (!config.quick) {
-      buildTime = await build(true);
-    }
-    await Promise.all(await compileBasedOnEnvironment()).then(async () => {
-      await watch();
-      await serve(buildTime);
-    });
+    await Promise.all([
+      await compileBasedOnEnvironment(),
+      await watch(),
+      await serve(),
+    ]);
   } catch (error) {
     log.errorAndExit('Start failed', error);
   }

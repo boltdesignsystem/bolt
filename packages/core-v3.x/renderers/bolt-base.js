@@ -91,7 +91,11 @@ export class BoltBase extends withComponent(HTMLElement) {
   }
 
   validateProps(propData) {
-    var validatedData = propData;
+    if (!this.schema) {
+      return propData;
+    }
+
+    const validatedData = propData;
 
     // remove default strings in prop data so schema validation can fill in the default
     for (let property in validatedData) {
@@ -100,41 +104,41 @@ export class BoltBase extends withComponent(HTMLElement) {
       }
     }
 
-    // Skip this if formatted schema data is already stored
-    if (this.schema && !this.formattedSchema) {
-      if (formattedSchemas[this.tagName]) {
-        this.formattedSchema = formattedSchemas[this.tagName];
-      } else {
-        this.formattedSchema = this.schema;
-        this.formattedSchema.id = this.tagName;
+    this.formattedSchema = this.schema;
 
-        Object.keys(this.formattedSchema.properties).map(key => {
-          this.formattedSchema.properties = renameKey(
-            key,
-            camelcase(key),
-            this.formattedSchema.properties,
-          );
-        });
+    Object.keys(this.formattedSchema.properties).map(key => {
+      this.formattedSchema.properties = renameKey(
+        key,
+        camelcase(key),
+        this.formattedSchema.properties,
+      );
+    });
 
-        // let ins = new Instantiator(this.formattedSchema);
-        // this.formattedSchema = ins.instantiate(this.formattedSchema.id);
+    const schemaDefaults = Object.keys(this.formattedSchema.properties).reduce(
+      (schemaProperties, propertyName) => {
+        if (this.formattedSchema.properties[propertyName].default) {
+          schemaProperties[propertyName] = this.formattedSchema.properties[
+            propertyName
+          ].default;
+        }
+        return schemaProperties;
+      },
+      {},
+    );
 
-        formattedSchemas[this.tagName] = this.formattedSchema;
-      }
+    const propsWithDefaultData = Object.assign({}, schemaDefaults, propData);
+
+    const validationResult = v.validate(
+      propsWithDefaultData,
+      this.formattedSchema,
+    );
+
+    // bark at any schema validation errors
+    if (!validationResult.valid) {
+      console.log(validationResult);
     }
 
-    if (this.formattedSchema) {
-      const validationResult = v.validate(validatedData, this.formattedSchema);
-
-      // bark at any schema validation errors
-      if (!validationResult.valid) {
-        console.log(validationResult);
-      }
-
-      return Object.assign({}, this.formattedSchema, validationResult.instance);
-    } else {
-      return propData;
-    }
+    return validationResult.instance;
   }
 
   /**

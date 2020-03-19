@@ -47,11 +47,21 @@
     <link rel="stylesheet" href="{{ modernAssets["bolt-global.css"] | default("/build/bolt-global.css") }}" media="all" />
     <link rel="preload" href="/pattern-lab/styleguide/css/pattern-lab.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 
+    <link rel="preload" href="/build/fonts/opensans-regular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/build/fonts/opensans-semibold.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/build/fonts/opensans-bold.woff2" as="font" type="font/woff2" crossorigin>
+
+    {% for assetName, assetPath in modernAssets %}
+      {% if '.js' in assetName and '.json' in assetName == false %}
+        <link rel="modulepreload" href="{{ assetPath }}">
+      {% endif %}
+    {% endfor %}
+
     {# shared critical path scripts #}
     <script>
-      if (sessionStorage.fontsLoadedCriticalFoftPreloadPolyfill){
-        document.documentElement.classList.add('js-fonts-loaded');
-      }
+      //if (sessionStorage.fontsLoadedCriticalFoftPreloadPolyfill){
+      //  document.documentElement.classList.add('js-fonts-loaded');
+      //}
 
       window.drupalSettings = {
         google_analytics: {
