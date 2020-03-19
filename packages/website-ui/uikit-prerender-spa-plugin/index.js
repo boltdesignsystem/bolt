@@ -1,5 +1,6 @@
-const path = require('path'); // const Prerenderer = require('@prerenderer/prerenderer');
+const path = require('path');
 
+const Prerenderer = require('@prerenderer/prerenderer');
 
 const PuppeteerRenderer = require('@bolt/uikit-prerenderer');
 
@@ -60,7 +61,7 @@ PrerenderSPAPlugin.prototype.apply = function (compiler) {
   };
 
   const afterEmit = (compilation, done) => {
-    const PrerendererInstance = new PuppeteerRenderer(this._options);
+    const PrerendererInstance = new Prerenderer(this._options);
     PrerendererInstance.initialize().then(() => {
       return PrerendererInstance.renderRoutes(this._options.routes || []);
     }) // Backwards-compatibility with v2 (postprocessHTML should be migrated to postProcess)

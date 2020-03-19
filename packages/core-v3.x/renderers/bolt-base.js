@@ -24,6 +24,8 @@ export function shadow(elem) {
   );
 }
 
+const formattedSchemas = [];
+
 export const withComponent = (Base = HTMLElement) =>
   withLifecycle(withUpdate(withRenderer(Base)));
 
@@ -100,15 +102,25 @@ export class BoltBase extends withComponent(HTMLElement) {
 
     // Skip this if formatted schema data is already stored
     if (this.schema && !this.formattedSchema) {
-      this.formattedSchema = {};
-      Object.assign(this.formattedSchema, this.schema);
-      Object.keys(this.formattedSchema.properties).map(key => {
-        this.formattedSchema.properties = renameKey(
-          key,
-          camelcase(key),
-          this.formattedSchema.properties,
-        );
-      });
+      if (formattedSchemas[this.tagName]) {
+        this.formattedSchema = formattedSchemas[this.tagName];
+      } else {
+        this.formattedSchema = this.schema;
+        this.formattedSchema.id = this.tagName;
+
+        Object.keys(this.formattedSchema.properties).map(key => {
+          this.formattedSchema.properties = renameKey(
+            key,
+            camelcase(key),
+            this.formattedSchema.properties,
+          );
+        });
+
+        // let ins = new Instantiator(this.formattedSchema);
+        // this.formattedSchema = ins.instantiate(this.formattedSchema.id);
+
+        formattedSchemas[this.tagName] = this.formattedSchema;
+      }
     }
 
     if (this.formattedSchema) {
@@ -116,11 +128,13 @@ export class BoltBase extends withComponent(HTMLElement) {
 
       // bark at any schema validation errors
       if (!validationResult.valid) {
-        console.log(validationResult.errors);
+        console.log(validationResult);
       }
-    }
 
-    return validatedData;
+      return Object.assign({}, this.formattedSchema, validationResult.instance);
+    } else {
+      return propData;
+    }
   }
 
   /**
