@@ -56,11 +56,11 @@ describe('figure', () => {
       null,
     );
 
-    const image = await page.screenshot();
-    expect(image).toMatchImageSnapshot({
-      failureThreshold: '0.01',
-      failureThresholdType: 'percent',
-    });
+    // const image = await page.screenshot();
+    // expect(image).toMatchImageSnapshot({
+    //   failureThreshold: '0.01',
+    //   failureThresholdType: 'percent',
+    // });
 
     expect(renderedInnerHTML).toMatchSnapshot();
   });
@@ -87,14 +87,16 @@ describe('figure', () => {
     ).toBe(true);
 
     expect(
-      renderedHTML.querySelector('figcaption').classList.contains('c-bolt-figure__caption'),
+      renderedHTML
+        .querySelector('figcaption')
+        .classList.contains('c-bolt-figure__caption'),
     ).toBe(true);
 
-    const image = await page.screenshot();
-    expect(image).toMatchImageSnapshot({
-      failureThreshold: '0.01',
-      failureThresholdType: 'percent',
-    });
+    // const image = await page.screenshot();
+    // expect(image).toMatchImageSnapshot({
+    //   failureThreshold: '0.01',
+    //   failureThresholdType: 'percent',
+    // });
 
     expect(renderedHTML).toMatchSnapshot();
   });

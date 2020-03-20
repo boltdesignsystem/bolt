@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.20.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-toc/compare/v2.19.1...v2.20.0) (2020-03-18)
+
+
+### Features
+
+* add offset support to TOC component ([8bcc05d](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-toc/commit/8bcc05d94303d3193e48bcfe786be0167588e14f))
+
+
+
+
+
 # [2.19.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-toc/compare/v2.18.1...v2.19.0) (2020-03-04)
 
 **Note:** Version bump only for package @bolt/components-toc

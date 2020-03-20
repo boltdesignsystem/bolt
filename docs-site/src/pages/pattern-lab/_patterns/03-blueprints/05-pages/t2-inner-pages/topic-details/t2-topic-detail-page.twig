@@ -54,39 +54,36 @@
 {% endblock %}
 
 {% block side_nav %}
-  {% set content %}
-    {% include "@bolt-components-toc/toc.twig" with {
-      header: "Data types",
-      items: [
-        {
-          text: "Rule check out and check in",
-          url: "#rule-check-out-and-check-in",
-          active: true,
-        },
-        {
-          text: "Checking out a rule",
-          url: "#checking-out-a-rule",
-        },
-        {
-          text: "Checking in a rule",
-          url: "#checking-in-a-rule",
-        },
-        {
-          text: "Private edit",
-          url: "#private-edit",
-        },
-        {
-          text: "Data type best practices",
-          url: "#data-type-best-practices",
-        },
-      ]
-    } only %}
-    {# End component specific code #}
-  {% endset %}
-  {% include "@bolt-components-sticky/sticky.twig" with {
-    content: content,
+  {% include "@bolt-components-toc/toc.twig" with {
+    header: "Data types",
+    sticky: true,
+    scrollOffsetSelector: ".js-global-header",
+    scrollOffset: 16,
+    items: [
+      {
+        text: "Rule check out and check in",
+        url: "#rule-check-out-and-check-in",
+        active: true,
+      },
+      {
+        text: "Checking out a rule",
+        url: "#checking-out-a-rule",
+      },
+      {
+        text: "Checking in a rule",
+        url: "#checking-in-a-rule",
+      },
+      {
+        text: "Private edit",
+        url: "#private-edit",
+      },
+      {
+        text: "Data type best practices",
+        url: "#data-type-best-practices",
+      },
+    ]
   } only %}
-
+  {# End component specific code #}
 {% endblock %}
 
 {% block page_content %}

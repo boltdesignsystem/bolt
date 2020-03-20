@@ -37,6 +37,12 @@ class BoltTocItem extends withContext(BoltElement) {
         type: String,
         reflect: true,
       },
+      scrollOffset: {
+        type: Number,
+      },
+      scrollOffsetSelector: {
+        type: String,
+      },
     };
   }
 
@@ -50,7 +56,7 @@ class BoltTocItem extends withContext(BoltElement) {
   }
 
   static get observedContexts() {
-    return ['activeItem'];
+    return ['activeItem', 'scrollOffsetSelector', 'scrollOffset'];
   }
 
   connectedCallback() {
@@ -69,6 +75,10 @@ class BoltTocItem extends withContext(BoltElement) {
       } else {
         this.active = false;
       }
+    } else if (name === 'scrollOffsetSelector' && value) {
+      this.scrollOffsetSelector = value;
+    } else if (name === 'scrollOffset' && value) {
+      this.scrollOffset = value;
     }
   }
 
@@ -76,7 +86,16 @@ class BoltTocItem extends withContext(BoltElement) {
     try {
       if (this.target) {
         event.preventDefault();
-        smoothScroll.animateScroll(this.target, this.shadowLink, scrollOptions);
+        let scrollOpts = scrollOptions;
+
+        const scrollOffset = this.scrollOffset || 0;
+        const scrollOffsetElemHeight = this.scrollOffsetSelector
+          ? document.querySelector(this.scrollOffsetSelector).clientHeight
+          : 0;
+
+        scrollOpts.offset = scrollOffset + scrollOffsetElemHeight;
+
+        smoothScroll.animateScroll(this.target, this.shadowLink, scrollOpts);
       }
     } catch (err) {
       console.log(err);

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.20.0](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-stack/compare/v2.19.1...v2.20.0) (2020-03-18)
+
+
+### Bug Fixes
+
+* use `replace-with-children` instead of is=shadow-root, use current Twig conventions ([96b10a5](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-stack/commit/96b10a5f21056d997c0296766c2a35d1350aae8c))
+
+
+
+
+
 # [2.19.0](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-stack/compare/v2.18.1...v2.19.0) (2020-03-04)
 
 **Note:** Version bump only for package @bolt/components-stack

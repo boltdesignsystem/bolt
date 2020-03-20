@@ -38,6 +38,18 @@ class BoltToc extends withContext(BoltElement) {
     return {
       header: String,
       uuid: String,
+      scrollOffset: {
+        attribute: 'scroll-offset',
+        type: Number,
+      },
+      scrollOffsetSelector: {
+        attribute: 'scroll-offset-selector',
+        type: String,
+      },
+      sticky: {
+        attribute: 'sticky',
+        type: Boolean,
+      },
     };
   }
 
@@ -62,6 +74,8 @@ class BoltToc extends withContext(BoltElement) {
   static get providedContexts() {
     return {
       activeItem: { value: null },
+      scrollOffsetSelector: { value: null },
+      scrollOffset: { value: null },
     };
   }
 
@@ -170,8 +184,17 @@ class BoltToc extends withContext(BoltElement) {
   onActivate(event) {
     if (event?.detail?.activeItem) {
       this.activeItem = event.detail.activeItem;
-      this.updateProvidedContext('activeItem', this.activeItem);
+      this.updateContext();
     }
+  }
+
+  updateContext() {
+    this.updateProvidedContext('activeItem', this.activeItem);
+    this.updateProvidedContext('scrollOffset', this.scrollOffset);
+    this.updateProvidedContext(
+      'scrollOffsetSelector',
+      this.scrollOffsetSelector,
+    );
   }
 
   updateWaypoints() {
@@ -236,7 +259,7 @@ class BoltToc extends withContext(BoltElement) {
 
     if (item && item !== this.activeItem) {
       this.activeItem = item;
-      this.updateProvidedContext('activeItem', this.activeItem);
+      this.updateContext();
     }
   }
 
@@ -245,6 +268,20 @@ class BoltToc extends withContext(BoltElement) {
   }
 
   onPositionChange({ target, currentPosition, previousPosition }) {
+    if (this.sticky) {
+      // auto-adjust a sticky parent's offset automatically
+      this.scrollElem =
+        this.scrollElem ||
+        (this.scrollOffsetSelector &&
+          document.querySelector(this.scrollOffsetSelector));
+      if (this.scrollElem) {
+        if (this.scrollElem.offsetHeight) {
+          this.style.top = `${this.scrollElem.offsetHeight +
+            (this.scrollOffset || 0)}px`;
+        }
+      }
+    }
+
     // If `activeItem` is undefined (could be first load), use the first item
     // with position 'below' to get the previous item, which is assumed to be
     // the most visible section
@@ -253,7 +290,7 @@ class BoltToc extends withContext(BoltElement) {
         let item = this.getMatchingItem(target, -1);
         if (item) {
           this.activeItem = item;
-          this.updateProvidedContext('activeItem', this.activeItem);
+          this.updateContext();
         }
       }
     }
@@ -266,7 +303,7 @@ class BoltToc extends withContext(BoltElement) {
 
     // Returns first active item or undefined
     this.activeItem = Array.from(this.items).find(item => item.active);
-    this.updateProvidedContext('activeItem', this.activeItem);
+    this.updateContext();
   }
 
   render() {

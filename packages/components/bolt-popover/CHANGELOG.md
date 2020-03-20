@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.20.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-popover/compare/v2.19.1...v2.20.0) (2020-03-18)
+
+
+### Bug Fixes
+
+* address eslint + stylelint linter issues ([caea760](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-popover/commit/caea76028a4cca41dfefbc3e230f57ff0035d84d))
+* switch to vanilla window.location.hash ([e3cad3a](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-popover/commit/e3cad3ab0b1af905be3509bd7be4f54c84d33da7))
+* update Popover logic to strip query strings from hash when checking if the URL hash matches ([ad9880d](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-popover/commit/ad9880d6d5976a089763b42aa4de1f481fa5ae77))
+
+
+### Features
+
+* add E2E integration tests that cover Popover's new SSR / no-JS state restoration logic ([d1e6936](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-popover/commit/d1e6936dcdec42386cfa3540ad9737b7a63616c3))
+* update Popover to mirror it's internal state with the original page's no-JS / SSR state; clean up any existing URL hashes ([e981658](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-popover/commit/e9816587ad6a6d74859e486382c3000b3bc24d0c))
+
+
+
+
+
 # [2.19.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-popover/compare/v2.18.1...v2.19.0) (2020-03-04)
 
 
