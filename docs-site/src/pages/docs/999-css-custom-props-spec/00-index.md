@@ -52,17 +52,34 @@ hidden: false
 
 <div class="o-bolt-grid o-bolt-grid--flex">
   <div class="o-bolt-grid__cell u-bolt-width-6/12">
-    <h3 style="color: green;">Use single dashes for everything but modifiers</h3>
-
+    <h3 style="color: green;">Use single dashes for everything but states (`--active`, `--selected`, etc)</h3>
+    
 ```
---bolt-link-text--disabled
---bolt-button--raised
---bolt-theme-primary
+// Examples
+--c-bolt-link-opacity--hover: --bolt-opacity-80;
+--c-bolt-link-opacity--active: --bolt-opacity-60;
+
+// Possible states
+--checked
+--unchecked
+--default
+--current 
+--empty
+--read-only
+--enabled
+--disabled
+--visited
+--hover
+--active
+--focus
+--valid
+--invalid
+--fullscreen 
 ```
 </code>
   </div>
   <div class="o-bolt-grid__cell u-bolt-width-6/12">
-    <h3 style="color: red;">Only use double-dashes for modifiers</h3>
+    <h3 style="color: red;">Only use double-dashes for states</h3>
 
 ```
 --bolt--link--text--disabled
