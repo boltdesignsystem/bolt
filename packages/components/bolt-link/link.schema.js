@@ -22,6 +22,9 @@ module.exports = {
   title: 'Link',
   description: 'Text link.',
   type: 'object',
+  not: {
+    required: ['href'],
+  },
   properties: {
     attributes: {
       type: 'object',
