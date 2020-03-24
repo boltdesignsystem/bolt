@@ -1,4 +1,21 @@
-// @todo: WIP
+const iconSchema = require('@bolt/components-icon/icon.schema.json');
+const elementSchemas = require('@bolt/element/element.schemas');
+
+iconSchema.properties = {
+  position: {
+    description: 'Where to position the icon within the link.',
+    type: 'string',
+    default: 'after',
+    enum: ['before', 'after'],
+  },
+  ...iconSchema.properties,
+};
+
+iconSchema.description =
+  'Icon data as expected by the icon component. Accepts an additional position prop that determines placement within the link.';
+
+// @TODO Move the 'disabled' prop out of BoltActionElement and into button instead.
+delete elementSchemas.boltActionElement.properties.disabled;
 
 module.exports = {
   $schema: 'http://json-schema.org/draft-04/schema#',
@@ -9,17 +26,17 @@ module.exports = {
     attributes: {
       type: 'object',
       description:
-        'A Drupal attributes object. Applies extra HTML attributes to the outer &lt;bolt-menu&gt; tag.',
+        'A Drupal-style attributes object with extra attributes to append to this component.',
     },
     text: {
-      type: 'any',
-      description: 'Renders the text content for the link.',
+      type: ['string', 'object', 'array'],
+      description: 'Renderable content (i.e. a string, render array, or included pattern) for the link.',
     },
     display: {
       type: 'string',
       description:
         'Display either an inline link or flex link (icons can hang on either side).',
-      enum: ['inline', 'flex'],
+      enum: ['inline', 'flex', 'block'],
       default: 'inline',
     },
     valign: {
@@ -28,20 +45,16 @@ module.exports = {
       enum: ['center', 'start'],
       default: 'center',
     },
-    url: {
-      type: 'string',
-      description:
-        'Contains a URL that the link points to. This may also be passed as part of `attributes`',
-    },
-    target: {
-      type: 'string',
-      description:
-        'Specifies where to display the linked URL. This may also be passed as part of `attributes`',
-    },
     isHeadline: {
       type: 'boolean',
       description:
         'Whether this link should get special headline styling treatment.',
     },
+    icon: iconSchema,
+    ...elementSchemas.boltActionElement.properties,
+    href: {
+      title: 'DEPRECATED',
+      description: 'Use url instead.',
+    }
   },
 };
