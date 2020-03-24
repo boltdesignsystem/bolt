@@ -8,11 +8,13 @@ import {
   BoltElement,
   convertInitialTags,
 } from '@bolt/element';
+import { spread } from '@open-wc/lit-helpers';
 import classNames from 'classnames/bind';
 import linkStyles from './link.scss';
 import schema from '../link.schema.yml';
-
 let cx = classNames.bind(linkStyles);
+
+delete schema.properties['attributes'];
 
 @customElement('bolt-link')
 @convertInitialTags(['button', 'a'])
@@ -21,31 +23,51 @@ class BoltLink extends BoltActionElement {
     return [unsafeCSS(linkStyles)];
   }
 
+  static schema = schema;
+
   static get properties() {
-    return {
-      ...BoltActionElement.properties,
-      display: String,
-      valign: String,
-      isHeadline: {
+    return Object.assign({}, this.props, {
+      disabled: {
         type: Boolean,
-        attribute: 'is-headline',
       },
-    };
+      onClick: {
+        type: String,
+        attribute: 'on-click',
+      },
+      onClickTarget: {
+        type: String,
+        attribute: 'on-click-target',
+      },
+    });
   }
 
-  // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
-  constructor(self) {
-    self = super(self);
-    self.schema = schema;
-    self.display = schema.properties.display.default;
-    self.valign = schema.properties.valign.default;
-    return self;
+  connectedCallback() {
+    super.connectedCallback && super.connectedCallback();
+
+    this.customProps = {};
+
+    if (this.rootElement) {
+      Array.from(this.rootElement.firstChild.attributes).forEach(item => {
+        let propName;
+        switch (item.name) {
+          case 'href':
+            propName = 'url';
+            break;
+          default:
+            propName = item.name;
+        }
+
+        if (!this[propName]) {
+          this[propName] = item.value; // use element props if not already defined
+        }
+
+        // extra HTML attributes to include on the rendered <a> tag
+        this.customProps[item.name] = item.value;
+      });
+    }
   }
 
   render() {
-    // 1. Remove line breaks before and after lit-html template tags, causes unwanted space inside and around inline links
-    // 2. Zero Width No-break Space (&#xfeff;) is needed to make the last word always stick with the icon, so the icon will never become an orphan.
-
     // Validate the original prop data passed along -- returns back the validated data w/ added default values
     // const { display, valign, url, target, isHeadline } = this.validateProps(
     //   this.props,
@@ -56,15 +78,6 @@ class BoltLink extends BoltActionElement {
       [`c-bolt-link--valign-${this.valign}`]: this.valign,
       [`c-bolt-link--headline`]: this.isHeadline,
     });
-
-    // Decide on if the rendered button tag should be a <button> or <a> tag, based on if a URL exists OR if a link was passed in from the getgo
-    const hasUrl = this.url && this.url.length > 0 && this.url !== 'null';
-
-    // Assign default target attribute value if one isn't specified
-    const anchorTarget = this.target && hasUrl ? this.target : '_self';
-
-    // The linkElement to render, based on the initial HTML passed alone.
-    let renderedLink;
 
     // 1. Remove line breaks before and after lit-html template tags, causes unwanted space inside and around inline links
     // 2. Zero Width No-break Space (&#xfeff;) is needed to make the last word always stick with the icon, so the icon will never become an orphan.
@@ -81,27 +94,16 @@ class BoltLink extends BoltActionElement {
         ? html`<span class="${cx(`c-bolt-link__icon`)}">&#xfeff;${this.slotify('after')}</span>`
         : html`<slot name="after" />`}`;
 
-    if (this.rootElement) {
-      renderedLink = this.rootElement.firstChild.cloneNode(true);
-      if (hasUrl) {
-        renderedLink.setAttribute('href', this.url);
-      }
-      if (anchorTarget) {
-        renderedLink.setAttribute('target', anchorTarget);
-      }
-      renderedLink.className += ' ' + classes;
-      render(innerSlots, renderedLink);
-    } else {
-      // [1]
-      // prettier-ignore
-      renderedLink = html`<a href="${ifDefined(hasUrl ? this.url : undefined)}" class="${classes}" target="${anchorTarget}"
-          >${innerSlots}</a
-        >`;
-    }
-
     // [1]
     // prettier-ignore
-    return html`${renderedLink}`;
+    return html`
+      <a ...="${spread(this.customProps)}" 
+        href="${ifDefined(this.url ? this.url : undefined)}"
+        class="${classes}"
+        target="${this.target}">
+        ${innerSlots}
+      </a>
+      `;
   }
 }
 
