@@ -69,7 +69,8 @@ class BoltElement extends Slotify {
 
         props[propName] = {
           type: propType,
-          reflect: property.type === 'boolean' || property.reflect ? true : false,
+          reflect:
+            property.type === 'boolean' || property.reflect ? true : false,
           attribute: paramCase(propName),
         };
       }
