@@ -10,7 +10,7 @@ import {
 import classNames from 'classnames/bind';
 
 import buttonStyles from './button.scss';
-// import schema from '../button.schema.js'; @todo: temporarily removed while we switch to `lit-element`, soon to be re-added
+import schema from '../button.schema.js';
 
 let cx = classNames.bind(buttonStyles);
 
@@ -21,29 +21,19 @@ class BoltButton extends BoltActionElement {
     return [unsafeCSS(buttonStyles)];
   }
 
-  // static useShadow = false; example of manually disabling Shadow DOM w/ BoltElement
+  static schema = schema;
 
   static get properties() {
     return {
-      ...BoltActionElement.properties, // Provides: disabled, onClick, onClickTarget, target, url
-      color: { type: String },
-      text: { type: String },
-      size: { type: String },
-      rounded: { type: Boolean }, // DEPRECATED.  Use border-radius instead of rounded.
-      borderRadius: {
+      ...this.props,
+      onClick: {
         type: String,
-        attribute: 'border-radius',
+        attribute: 'on-click',
       },
-      iconOnly: {
-        type: Boolean,
-        attribute: 'icon-only',
+      onClickTarget: {
+        type: String,
+        attribute: 'on-click-target',
       },
-      width: { type: String },
-      align: { type: String },
-      transform: { type: String },
-      type: { type: String },
-      tabindex: { type: Number },
-      inert: { type: Boolean }, // will eventually go hand in hand with https://github.com/WICG/inert#notes-on-the-polyfill
     };
   }
 

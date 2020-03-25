@@ -9,7 +9,7 @@
 <p><mark>Note: interactive states only appear when the user interacts with the button, they are not styles that are available for use.</mark></p>
 
 <h3>Regular States</h3>
-{% for style in schema.properties.style.enum %}
+{% for style in schema.properties.color.enum %}
   {% set button %}
     {% include "@bolt-components-button/button.twig" with {
       text: style|capitalize ~ " button",
@@ -34,7 +34,7 @@
 {% endfor %}
 
 <h3>Interactive States</h3>
-{% for style in schema.properties.style.enum %}
+{% for style in schema.properties.color.enum %}
   {% set button_hover %}
     {% include "@bolt-components-button/button.twig" with {
       text: style|capitalize ~ " button (hover)",
