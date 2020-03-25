@@ -34,7 +34,7 @@ jobs:
   include:
     - stage: Post-deploy
       name: 'Nightwatch End-to-End (Full)'
-      if: (tag =~ ^v) OR (branch =~ /(master|release|bug|fix)/)
+      # if: (tag =~ ^v) OR (branch =~ /(master|release|bug|fix)/)
       install:
         - npx json -I -f package.json -e 'delete this.dependencies'
         - npx json -I -f package.json -e 'delete this.scripts.postinstall'
