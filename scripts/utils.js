@@ -139,7 +139,9 @@ function getLatestDeploy() {
         } else if (fallbackResults) {
           resolve(`https://${fallbackResults.url}`);
         } else {
-          reject(new Error('No deployments found'));
+          // return the most recent now.sh deployment as a last resort
+          resolve(`https://${results.deployments[0].url}`);
+          // reject(new Error('No deployments found'));
         }
       })
       .catch(error => {
