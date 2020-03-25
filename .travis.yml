@@ -14,105 +14,32 @@ cache:
     - www
     - cache
 
-before_cache:
-- mkdir -p node_modules
-- mkdir -p docs-site/cache
-- mkdir -p cache
-- mkdir -p www
+# before_cache:
+# - mkdir -p node_modules
+# - mkdir -p docs-site/cache
+# - mkdir -p cache
+# - mkdir -p www
 
 before_install:
   - openssl aes-256-cbc -K $encrypted_4537e53f71e7_key -iv $encrypted_4537e53f71e7_iv -in scripts/bolt-design-system-bot.private-key.pem.enc -out scripts/bolt-design-system-bot.private-key.pem -d
   - nvm install # version lifted from `.nvmrc`
-  - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.19.1
+  - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.21.1
   - export PATH="$HOME/.yarn/bin:$PATH"
+  - composer config --global github-oauth.github.com ${GH_TOKEN}
 
-# see more conditions: https://docs.travis-ci.com/user/conditions-v1
-# Stages run sequentially; the jobs in them run in parallel
 stages:
-  - Pre-deploy
   - Post-deploy
-  - Auto-release
-#  Just an example of having a whole stage be branch conditional; see more conditions: https://docs.travis-ci.com/user/conditions-v1
-#  - name: Super Hard Tests
-#    if: branch = master
 
 jobs:
   include:
-    - stage: Pre-deploy
-      name: 'Smoke Tests: Jest Component-Specific Tests'
-      install:
-        - yarn run setup
-        - yarn workspace @bolt/website prep # creates data and manifest files
-      # before_script: ./scripts/check-run-queue.js 'Jest Component Tests'
-      script:
-        - travis_retry yarn test:js
-        # - yarn test:js:quick --maxWorkers=1 # running both `test:js` as comparison; remove or comment out this or other one eventually
-
-      # after_success: ./scripts/check-run-success.js 'Jest Component Tests'
-      # after_failure: ./scripts/check-run-failure.js 'Jest Component Tests'
-    - stage: Pre-deploy
-      name: 'Smoke Tests: Lint + Jest Unit Tests'
-      install:
-        - yarn run setup
-        - yarn workspace @bolt/website prep # creates data and manifest files
-      # before_script: ./scripts/check-run-queue.js 'Lint + Unit Tests'
-      script:
-        - yarn run lint
-        - yarn test:php
-        - yarn test:monorepo --maxWorkers=1
-        - yarn test:pkgs
-
-      # after_success: ./scripts/check-run-success.js 'Lint + Unit Tests'
-      # after_failure: ./scripts/check-run-failure.js 'Lint + Unit Tests'
-    #    - stage: Pre-deploy
-    #      if: (tag =~ ^v) OR (branch =~ /(master|release)/)
-    #      name: 'Build Drupal Lab'
-    #      script:
-    #        - cd example-integrations/drupal-lab
-    #        - npm run setup
-
-    # quicker build + Nightwatch tests for feature branches
-    - stage: Pre-deploy
-      name: 'Build + Deploy Website + Lighthouse CLI'
-      if: (NOT tag =~ ^v) AND (NOT branch =~ /(master|release|bug|fix)/)
-      install:
-        - yarn run setup
-        - npx lerna run postbootstrap
-        # - yarn global add @lhci/cli@0.3.x
-      script:
-        # - cd example-integrations/drupal-lab
-        # - yarn run generate # generate static version of Drupal Lab in the integration folder
-        # - cd ../../
-        - yarn run build
-        - yarn run deploy
-        - export NOW_URL=$(./scripts/get-latest-deploy.js)
-        - travis_retry yarn run test:e2e:quick
-        # - lhci autorun --collect.numberOfRuns=3 --collect.url=$NOW_URL --collect.url=$NOW_URL/pattern-lab/patterns/04-pages-10-d8-product-pages-product-t2/04-pages-10-d8-product-pages-product-t2.html --collect.url=$NOW_URL/pattern-lab/patterns/06-experiments-micro-journeys-90-micro-journeys/06-experiments-micro-journeys-90-micro-journeys.html
-      after_success:
-        - ./scripts/deploy-branch-alias.js
-
-    # full build + Nightwatch tests for non-feature branches + tagged releases
-    - stage: Pre-deploy
-      name: 'Build + Deploy Website (Full)'
-      if: (tag =~ ^v) OR (branch =~ /(master|release|bug|fix)/)
-      install:
-        - yarn run setup
-      before_script:
-        - find . -name '.incache' -exec rm -rf {} +
-      script:
-        # - cd example-integrations/drupal-lab
-        # - yarn run generate # generate static version of Drupal Lab in the integration folder
-        # - cd ../../
-        - yarn run build
-        - yarn run deploy
-
     - stage: Post-deploy
       name: 'Nightwatch End-to-End (Full)'
       if: (tag =~ ^v) OR (branch =~ /(master|release|bug|fix)/)
       install:
-        - yarn
-        - npx lerna run postbootstrap
-      # before_script: ./scripts/check-run-in-progress.js 'Nightwatch'
+        - npx json -I -f package.json -e 'delete this.dependencies'
+        - npx json -I -f package.json -e 'delete this.scripts.postinstall'
+        - npx json -I -f package.json -e 'this["workspaces"].packages = ["scripts", "packages/testing/testing-nightwatch"]'
+        - yarn install --production
       script:
         - export NOW_URL=$(./scripts/get-latest-deploy.js)
         - travis_retry yarn run test:e2e:full
@@ -121,43 +48,9 @@ jobs:
         - ./scripts/deploy-tagged-release.js
         # - ./packages/testing/testing-nightwatch/nightwatch-report-results.js
 
-    - stage: Auto-release
-      name: 'Canary Release'
-      if: (branch =~ /(master)/)
-      before_script:
-        - git config --global user.email ${GITHUB_EMAIL}
-        - git config --global user.name ${GITHUB_USER}
-        - git remote set-url origin "https://${GITHUB_TOKEN}@github.com/boltdesignsystem/bolt.git" > /dev/null 2>&1
-        - echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
-        - git checkout master
-      install:
-        - yarn install --frozen-lockfile
-        - yarn run setup:php
-        - git reset --hard
-      script: yarn run release
-
-    - stage: Auto-release
-      name: 'Full Release'
-      if: (branch =~ /(release\/2.x)/)
-      before_script:
-        - git config --global user.email ${GITHUB_EMAIL}
-        - git config --global user.name ${GITHUB_USER}
-        - git remote set-url origin "https://${GITHUB_TOKEN}@github.com/boltdesignsystem/bolt.git" > /dev/null 2>&1
-        - echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
-        - git checkout release/2.x
-      install:
-        - yarn install --frozen-lockfile
-        - yarn run setup:php
-        - git reset --hard
-      script:
-        - yarn run release
-      after_success:
-        - cd "`git rev-parse --show-toplevel`" && git clean -fd && git reset --hard HEAD && cd -
-        - ./scripts/release/update-read-only-git-repos.sh
-
 notifications:
   email:
     on_success: never
-    on_failure: never # @todo re-enable
+    on_failure: true # @todo re-enable
   slack:
     secure: cNto+gWAoK1JM9jBNG4i4rMSybv3twMbqlFSCohQFBDMwKFMdlyWqFDX6iYKtHxWEDzrZyRz3qiJ8/S44mgjeKJ/xHbHDtPchp/KL2P1htipvwD2EZXobcBEGl83v2rmtFO1WNJUPB3RIJE2yt1wJsX7NIXpDw82hePmaIvNJmtbLpK/J5uaFqGNHIsctmULgVmGSNSTyK4nYxxjNNLd0EvO37Y6VN8FhsKNu2NHMKeeQxinEvETDUh8XuqXZYNWE3PBvVa4OiDhgnr5K27jsnWX+wEmqg0xY+CMf7mUSTqVN61fA7LnHyM0qcGGmB6YTv4QYLMwPydp+nsjDcm3St9D+KOTsQ4ExOaEAL/6EnAEpl8GtxST+ytdqswhCC4yMCO61Hy+M5AoXgDSGrrXHgZakDMAcEVcJdH38791hRxcuM3ldVmHAlAWFdgRLG5rRMVh3qoXz7jbraoTdjyKMegQIQdKR2SX7O9Dv0EEtLz4lTFN2RENvAjLggUPPU+ESoUHmSbwmPGnt7jy3ra2AI3nnYpfn/0e6Op/A3z7HLbdm3XyuNWoTPhy1mc4Adca+HosJ37UPv7nDRIGds1sKYAeWq94+rEk+/6IQ/oRIDRhSYsQbLLWnU6DH4o7iOj7D+X/ngjqmF75nW2s5+7rtdBHFvNzOJalCKHiDTMfdlQ=
