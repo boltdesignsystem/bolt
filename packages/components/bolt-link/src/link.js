@@ -21,25 +21,20 @@ class BoltLink extends BoltActionElement {
     return [unsafeCSS(linkStyles)];
   }
 
+  static schema = schema;
+
   static get properties() {
     return {
-      ...BoltActionElement.properties,
-      display: String,
-      valign: String,
-      isHeadline: {
-        type: Boolean,
-        attribute: 'is-headline',
+      ...this.props,
+      onClick: {
+        type: String,
+        attribute: 'on-click',
+      },
+      onClickTarget: {
+        type: String,
+        attribute: 'on-click-target',
       },
     };
-  }
-
-  // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
-  constructor(self) {
-    self = super(self);
-    self.schema = schema;
-    self.display = schema.properties.display.default;
-    self.valign = schema.properties.valign.default;
-    return self;
   }
 
   render() {
