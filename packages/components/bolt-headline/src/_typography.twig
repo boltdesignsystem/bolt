@@ -72,6 +72,7 @@
 
 {% set classes = [
   baseClass,
+  numberText ? baseClass ~ "--" ~ "bulleted" : "",
   quoted ? baseClass ~ "--" ~ "quoted" : "",
   weight in weights ? baseClass ~ "--" ~ weight : "",
   align in alignments and align != null ? baseClass ~ "--" ~ align : "",
@@ -119,10 +120,10 @@
 
     {% include "@bolt/link.twig" with linkVars only %}
   {%- else -%}
-    <span class="c-bolt-headline__text">{% spaceless %}
+    {% if iconAfter or quoted %}<span class="c-bolt-headline__text">{% endif %}{% spaceless %}
       {{- iconBefore -}}
       {{- text -}}
       {{- iconAfter -}}
-    {% endspaceless %}</span>
+    {% endspaceless %}{% if iconAfter or quoted %}</span>{% endif %}
   {%- endif -%}
 {% endspaceless %}</{{ tag }}>
