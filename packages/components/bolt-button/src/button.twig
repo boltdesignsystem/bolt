@@ -58,6 +58,9 @@
     {% if url %}
       {% set inner_attributes = inner_attributes.setAttribute("href", url) %}
     {% endif %}
+    {% if attributes.rel %}
+      {% set inner_attributes = inner_attributes.setAttribute("rel", attributes.rel) %}
+    {% endif %}
   {% endif %}
   {% if attributes.target %}
     {% set inner_attributes = inner_attributes.setAttribute("target", attributes.target) %}
