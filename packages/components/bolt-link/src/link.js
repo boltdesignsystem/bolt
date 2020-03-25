@@ -94,7 +94,7 @@ class BoltLink extends BoltActionElement {
     } else {
       // [1]
       // prettier-ignore
-      renderedLink = html`<a href="${this.url}" class="${classes}" target="${anchorTarget}"
+      renderedLink = html`<a href="${ifDefined(hasUrl ? this.url : undefined)}" class="${classes}" target="${anchorTarget}"
           >${innerSlots}</a
         >`;
     }
