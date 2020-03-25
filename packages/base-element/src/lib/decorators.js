@@ -1,3 +1,5 @@
+import { camelCase } from 'camel-case';
+import { paramCase } from 'param-case';
 import styleInjector from './style-injector';
 import { getComponentRootElement, shouldUseShadowDom } from './utils';
 
@@ -298,3 +300,112 @@ export const renderAndRenderedEvents = () => classOrDescriptor =>
   typeof classOrDescriptor === 'function'
     ? legacyRenderEventDecorator(classOrDescriptor)
     : standardRenderEventDecorator(classOrDescriptor);
+
+/**
+ * A Class decorator that extends the LitElement to support using a JSON schema for automatically configuring component props.
+ *
+ * @param {Class} clazz - The original Class to extend
+ * @returns {Class} - The extended Class with this.props + default props auto-added
+ */
+const jsonSchemaPropsDecorator = clazz => {
+  return class extends clazz {
+    constructor() {
+      super();
+
+      // set the WC's prop defaults based on the schema defaults
+      if (this.constructor.defaultProps) {
+        for (const key in this.constructor.defaultProps) {
+          let value = this.constructor.defaultProps[key];
+          this[key] = value;
+        }
+      }
+    }
+
+    // uses the static schema data passed to to generate default property data
+    static get props() {
+      this.defaultProps = this.defaultProps || {};
+
+      if (!this.schema) {
+        return {};
+      }
+
+      const props = {};
+      for (const key in this.schema.properties) {
+        let property = this.schema.properties[key];
+
+        if (
+          !property.title ||
+          (!property.title.includes('deprecated') &&
+            !property.title.includes('DEPRECATED'))
+        ) {
+          const propName = camelCase(key);
+
+          if (property.default) {
+            this.defaultProps[propName] = property.default;
+          }
+
+          let propType;
+
+          switch (property.type) {
+            case 'boolean':
+              propType = Boolean;
+              break;
+            case 'string':
+              propType = String;
+              break;
+            case 'number':
+              propType = Number;
+              break;
+            case 'array':
+              propType = Array;
+              break;
+            case 'object':
+              propType = Object;
+              break;
+            case undefined:
+              propType = String;
+              break;
+
+            // @todo: re-evaluate this approach for handling `any` + multi-types
+            default:
+              propType = Object;
+              break;
+          }
+
+          props[propName] = {
+            type: propType,
+            reflect:
+              property.type === 'boolean' || property.reflect ? true : false,
+            attribute: paramCase(propName),
+          };
+        }
+      }
+
+      return props;
+    }
+  };
+};
+
+const legacyJsonSchemaPropsDecorator = clazz => {
+  return jsonSchemaPropsDecorator(clazz);
+};
+
+const standardJsonSchemaPropsDecorator = descriptor => {
+  const { kind, elements } = descriptor;
+  return {
+    kind,
+    elements,
+    finisher(clazz) {
+      return jsonSchemaPropsDecorator(clazz);
+    },
+  };
+};
+
+/**
+ * Class decorator factory that adds `render` and `rendered` custom events to the LitElement-based web component
+ * Automatically uses the appropriate decorator syntax based on what's supported / how the code is being compiled.
+ */
+export const jsonSchemaProps = () => classOrDescriptor =>
+  typeof classOrDescriptor === 'function'
+    ? legacyJsonSchemaPropsDecorator(classOrDescriptor)
+    : standardJsonSchemaPropsDecorator(classOrDescriptor);
