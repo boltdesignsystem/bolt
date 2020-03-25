@@ -7,10 +7,13 @@
   @include bolt-headline-text-alignment;
   @include bolt-headline-text-transform;
 
-  display: flex;
-  align-items: flex-start;
   // display: flex; // @todo: uncomment when fixing headline flex behavior
   // flex-flow: row nowrap; // @todo: uncomment when fixing headline flex behavior
+
+  &--bulleted {
+    display: inline-flex;
+    width: 100%;
+  }
 
   color: bolt-theme(headline);
 
@@ -37,8 +40,8 @@
 .c-bolt-headline__icon {
   display: inline-flex;
   justify-content: center;
-  align-items: inherit; // different alignment than if align-items is set to center
-  min-height: 1.2em;
+  align-items: center; // different alignment than if align-items is set to center
+  min-height: 1.3em;
   vertical-align: text-bottom;
 
   &--icon-position-before,
