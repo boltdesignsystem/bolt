@@ -72,6 +72,7 @@
 
 {% set classes = [
   baseClass,
+  numberText ? baseClass ~ "--" ~ "bulleted" : "",
   quoted ? baseClass ~ "--" ~ "quoted" : "",
   weight in weights ? baseClass ~ "--" ~ weight : "",
   align in alignments and align != null ? baseClass ~ "--" ~ align : "",
@@ -82,23 +83,25 @@
   iconPosition ? baseClass ~ "--icon-position-" ~ iconPosition : ""
 ] %}
 
-{% set iconBefore %}
+{% set iconBefore %}{% apply spaceless %}
   {% if icon and not url and iconPosition == "before" %}
     <span class="c-bolt-headline__icon c-bolt-headline__icon--position-before">
       {% include "@bolt-components-icon/icon.twig" with icon only %}
     </span>
   {% endif %}
-{% endset %}
+{% endapply %}{% endset %}
 
-{% if icon and not url and iconPosition != "before" %}
-  {% set iconAfter %}
+{% set iconAfter %}{% apply spaceless %}
+  {% if icon and not url and iconPosition != "before" %}
     <span class="c-bolt-headline__icon c-bolt-headline__icon--position-after">
       {% include "@bolt-components-icon/icon.twig" with icon only %}
     </span>
-  {% endset %}
-{% endif %}
+  {% endif %}
+{% endapply %}{% endset %}
 
-<{{ tag }} {{ attributes.addClass(classes) }}>{% spaceless %}
+{% set hasIcon = iconBefore or iconAfter ? true : false %}
+
+<{{ tag }} {{ attributes.addClass(classes) }}>{% apply spaceless %}
   {% if numberText %}
     <span class="c-bolt-headline__bullet c-bolt-headline__bullet--size-{{ numberSize }}">
       <span class="c-bolt-headline__bullet-inner {{ numberColor ? 'c-bolt-headline__bullet-inner--' ~ numberColor : ''}}">
@@ -112,17 +115,15 @@
       url: url,
       isHeadline: (type != "text")
     } %}
-
     {% if icon %}
       {% set linkVars = linkVars | merge({ icon: icon }) %}
     {% endif %}
-
     {% include "@bolt/link.twig" with linkVars only %}
   {%- else -%}
-    <span class="c-bolt-headline__text">{% spaceless %}
+    {% if hasIcon or quoted %}<span class="c-bolt-headline__text">{% endif %}
       {{- iconBefore -}}
       {{- text -}}
       {{- iconAfter -}}
-    {% endspaceless %}</span>
-  {%- endif -%}
-{% endspaceless %}</{{ tag }}>
+    {% if hasIcon or quoted %}</span>{% endif %}
+  {% endif %}
+{% endapply %}</{{ tag }}>

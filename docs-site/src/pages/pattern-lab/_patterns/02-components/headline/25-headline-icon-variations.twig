@@ -1,11 +1,18 @@
+{% set schema = bolt.data.components['@bolt-components-headline'].schema %}
+
 <h3>Headline w/ Icon Position <code>before</code></h3>
-{% include "@bolt-components-headline/headline.twig" with {
-  text: "What we do at Pega is brilliant!",
-  icon: {
-    name: "arrow-left",
-    position: "before"
-  }
-} only %}
+
+{% for size in schema.properties.size.enum %}
+  {% include "@bolt-components-headline/text.twig" with {
+    weight: "bold",
+    text: "What we do at Pega is brilliant!",
+    size: size,
+    icon: {
+      name: "arrow-left",
+      position: "before"
+    }
+  } only %}
+{% endfor %}
 <br><br>
 
 
