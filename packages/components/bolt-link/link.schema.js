@@ -14,8 +14,13 @@ iconSchema.properties = {
 iconSchema.description =
   'Icon data as expected by the icon component. Accepts an additional position prop that determines placement within the link.';
 
-// @TODO Move the 'disabled' prop out of BoltActionElement and into button instead.
-delete elementSchemas.boltActionElement.properties.disabled;
+// @TODO Move the 'disabled' prop out of BoltActionElement and into button instead. For now, simply omit it here.
+const {
+  url,
+  target,
+  disabled,
+  ...onClickProps
+} = elementSchemas.boltActionElement.properties;
 
 module.exports = {
   $schema: 'http://json-schema.org/draft-04/schema#',
@@ -33,8 +38,11 @@ module.exports = {
     },
     text: {
       type: ['string', 'object', 'array'],
-      description: 'Renderable content (i.e. a string, render array, or included pattern) for the link.',
+      description:
+        'Renderable content (i.e. a string, render array, or included pattern) for the link.',
     },
+    url,
+    target,
     display: {
       type: 'string',
       description:
@@ -54,10 +62,10 @@ module.exports = {
         'Whether this link should get special headline styling treatment.',
     },
     icon: iconSchema,
-    ...elementSchemas.boltActionElement.properties,
+    ...onClickProps,
     href: {
       title: 'DEPRECATED',
       description: 'Use url instead.',
-    }
+    },
   },
 };
