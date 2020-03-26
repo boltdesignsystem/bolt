@@ -14,6 +14,8 @@ const convertInitialClass = (tags, moveChildrenToRoot, clazz) => {
   return class extends clazz {
     // returns a set of key:value pairs of component properties with an `alias` name defined
     static get propAliases() {
+      if (!this.properties) return {};
+
       // reuse aliases if this runs more than once
       if (this.propertyAliases) {
         return this.propertyAliases;
@@ -65,7 +67,10 @@ const convertInitialClass = (tags, moveChildrenToRoot, clazz) => {
             let propNameFromAttribute;
 
             // rename any HTML attributes that match property aliases defined
-            if (Object.keys(this.constructor.propAliases).includes(item.name)) {
+            if (
+              this.constructor.propAliases &&
+              Object.keys(this.constructor.propAliases).includes(item.name)
+            ) {
               propNameFromAttribute = this.constructor.propAliases[item.name];
             } else {
               propNameFromAttribute = item.name;
