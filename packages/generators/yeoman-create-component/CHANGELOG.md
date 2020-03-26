@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.20.1](https://github.com/bolt-design-system/bolt/tree/master/packages/generator-bolt/compare/v2.20.0...v2.20.1) (2020-03-26)
+
+**Note:** Version bump only for package @bolt/generator-bolt
+
+
+
+
+
 # [2.20.0](https://github.com/bolt-design-system/bolt/tree/master/packages/generator-bolt/compare/v2.19.1...v2.20.0) (2020-03-18)
 
 **Note:** Version bump only for package @bolt/generator-bolt

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.20.1](https://github.com/bolt-design-system/bolt/compare/v2.20.0...v2.20.1) (2020-03-26)
+
+
+### Bug Fixes
+
+* remove extra whitespace + better adjust vertical alignment of Icon within the Headline component; update PL demo to include demoing icons at different Headline sizes ([7f116f5](https://github.com/bolt-design-system/bolt/commit/7f116f50e964943e8b8e706cacd9babff607fe31))
+
+
+
+
+
 # [2.20.0](https://github.com/bolt-design-system/bolt/compare/v2.19.1...v2.20.0) (2020-03-18)
 
 
