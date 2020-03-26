@@ -403,4 +403,58 @@ describe('<bolt-blockquote> component', () => {
       expect(renderedShadowRoot.innerHTML).toMatchSnapshot();
     });
   });
+
+  // follow-up VRT to catch the visual regression related to http://vjira2:8080/browse/BDS-2074
+  test('<bolt-blockquote> initially rendering via Twig display quotes correctly', async function() {
+    const results = await render(
+      '@bolt-components-blockquote/blockquote.twig',
+      {
+        content:
+          '<p>The greater danger for most of us lies not in setting our aim too high and falling short; but in setting our aim too low, and achieving our mark.</p>',
+        border: 'horizontal',
+        inset: true,
+        logo: {
+          invert: true,
+          src: '/fixtures/paypal.svg',
+        },
+        author: {
+          image: {
+            src: '/fixtures/author.jpg',
+            lazyload: false,
+          },
+          name: 'Michelangelo di Lodovico Buonarroti Simoni',
+          title: 'Renaissance Artist',
+        },
+      },
+    );
+
+    const renderedBlockquoteHTML = results.html;
+
+    await page.evaluate((renderedBlockquoteHTML) => {
+      document.body.insertAdjacentHTML(
+        'beforeend',
+        `${renderedBlockquoteHTML}`,
+      );
+      document.body.classList.add('u-bolt-padding-medium');
+    }, renderedBlockquoteHTML);
+
+    await page.evaluate(async () => {
+      const selectors = Array.from(
+        document.querySelectorAll('bolt-blockquote'),
+      );
+      return await Promise.all(
+        selectors.map(blockquote => {
+          if (blockquote._wasInitiallyRendered === true) return;
+          return new Promise((resolve, reject) => {
+            blockquote.addEventListener('ready', resolve);
+            blockquote.addEventListener('error', reject);
+          });
+        }),
+      );
+    });
+
+    await page.waitFor(1000);
+    const image = await page.screenshot();
+    expect(image).toMatchImageSnapshot();
+  });
 });
