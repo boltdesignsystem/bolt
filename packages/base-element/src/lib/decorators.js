@@ -13,7 +13,6 @@ import { getComponentRootElement, shouldUseShadowDom } from './utils';
 const convertInitialClass = (tags, moveChildrenToRoot, clazz) => {
   return class extends clazz {
     connectedCallback() {
-      super.connectedCallback && super.connectedCallback();
       // Make sure the component ONLY ever reuses any existing HTML ONCE.
       if (
         (this._wasInitiallyRendered === false ||
@@ -37,6 +36,9 @@ const convertInitialClass = (tags, moveChildrenToRoot, clazz) => {
           this._convertedInitialTags = true;
         }
       }
+
+      // call super AFTER prep work so we can use this initial element within a component's connectedCallback
+      super.connectedCallback && super.connectedCallback();
     }
   };
 };

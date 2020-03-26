@@ -16,8 +16,10 @@
 {% endset %}
 
 {% set link_demo_icon %}
+
+{# dummy data attribute set on this <bolt-link> <a> tag to confirm extra attributes added to inner HTML elements are automatically retained #}
 <p>
-  <bolt-link><a href="https://pega.com"><bolt-icon slot="before" name="info-open"></bolt-icon>This is a link with icon</a></bolt-link>
+  <bolt-link><a href="https://pega.com" data-analytics="click"><bolt-icon slot="before" name="info-open"></bolt-icon>This is a link with icon</a></bolt-link>
 </p>
 <p>
   <bolt-link><a href="https://pega.com">This is a link with icon<bolt-icon slot="after" name="info-open"></bolt-icon></a></bolt-link>

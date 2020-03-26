@@ -11,6 +11,7 @@ export {
   findParentTag,
 } from './src/lib/utils';
 
+export { spread } from '@open-wc/lit-helpers';
 export { convertInitialTags } from './src/lib/decorators';
 export { css, html, unsafeCSS } from 'lit-element';
 export { render } from 'lit-html';
