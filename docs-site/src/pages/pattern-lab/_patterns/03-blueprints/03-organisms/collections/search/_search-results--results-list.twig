@@ -44,6 +44,18 @@
     }, false),
     macros.include("@bolt-blueprints/_horizontal-card.twig", {
       cardUrl: "#!",
+      completed: true,
+      cardSubtitle: "Certification",
+      cardTitle: bolt.faker.sentence(3),
+      cardGradient: "indigo",
+      cardIcon: "academy",
+      link: {
+        url: "https://academy.pega.com/library/71/ui-specialist",
+      },
+      cardDescription: bolt.faker.paragraph(3),
+    }, false),
+    macros.include("@bolt-blueprints/_horizontal-card.twig", {
+      cardUrl: "#!",
       cardSubtitle: "Module",
       cardTitle: "Name of module that will take up two lines of text",
       cardGradient: "teal",
