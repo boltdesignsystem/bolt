@@ -7,7 +7,10 @@ import { BoltElement } from './BoltElement';
 class BoltActionElement extends BoltElement {
   static get properties() {
     return {
-      url: { type: String },
+      url: {
+        type: String,
+        alias: 'href',
+      },
       target: { type: String },
       disabled: {
         type: Boolean,
