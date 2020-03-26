@@ -39,6 +39,7 @@ class BoltLink extends BoltActionElement {
     self.schema = schema;
     self.display = schema.properties.display.default;
     self.valign = schema.properties.valign.default;
+    self.target = schema.properties.target.default; // @todo: remove once https://github.com/boltdesignsystem/bolt/pull/1795 lands
     return self;
   }
 
@@ -64,14 +65,13 @@ class BoltLink extends BoltActionElement {
         ? html`<span class="${cx(`c-bolt-link__icon`)}">&#xfeff;${this.slotify('after')}</span>`
         : html`<slot name="after" />`}`;
 
-    return html`
-      <a ...="${spread(this.rootElementAttributes)}"
-        href="${ifDefined(this.url ? this.url : undefined)}"
-        class="${classes}"
-        target="${ifDefined(this.target ? this.target : undefined)}">
-        ${innerSlots}
-      </a>
-    `;
+    // [1]
+    // prettier-ignore
+    return html`<a
+      ...="${spread(this.rootElementAttributes)}"
+      href="${ifDefined(this.url ? this.url : undefined)}"
+      class="${classes}"
+      target="${ifDefined(this.target ? this.target : undefined)}">${innerSlots}</a>`;
   }
 }
 

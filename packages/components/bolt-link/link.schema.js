@@ -30,11 +30,13 @@ module.exports = {
     },
     url: {
       type: 'string',
+      alias: 'href',
       description:
         'Contains a URL that the link points to. This may also be passed as part of `attributes`',
     },
     target: {
       type: 'string',
+      default: '_self',
       description:
         'Specifies where to display the linked URL. This may also be passed as part of `attributes`',
     },
