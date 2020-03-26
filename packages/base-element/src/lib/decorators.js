@@ -333,6 +333,7 @@ const jsonSchemaPropsDecorator = clazz => {
       for (const key in this.schema.properties) {
         let property = this.schema.properties[key];
 
+        // skip any schema properties marked as being deprecated
         if (
           !property.title ||
           (!property.title.includes('deprecated') &&
@@ -346,6 +347,8 @@ const jsonSchemaPropsDecorator = clazz => {
 
           let propType;
 
+          // map the JSON schema property type to LitElement property types
+          // see https://lit-element.polymer-project.org/guide/properties#declare for more info
           switch (property.type) {
             case 'boolean':
               propType = Boolean;
@@ -366,7 +369,7 @@ const jsonSchemaPropsDecorator = clazz => {
               propType = String;
               break;
 
-            // @todo: re-evaluate this approach for handling `any` + multi-types
+            // @todo: re-evaluate this switch default for handling `any` + multi-types
             default:
               propType = Object;
               break;
@@ -402,7 +405,7 @@ const standardJsonSchemaPropsDecorator = descriptor => {
 };
 
 /**
- * Class decorator factory that adds `render` and `rendered` custom events to the LitElement-based web component
+ * Class decorator factory that adds JSON schema support to the LitElement-based web component
  * Automatically uses the appropriate decorator syntax based on what's supported / how the code is being compiled.
  */
 export const jsonSchemaProps = () => classOrDescriptor =>
