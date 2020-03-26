@@ -42,34 +42,6 @@ class BoltLink extends BoltActionElement {
     return self;
   }
 
-  connectedCallback() {
-    super.connectedCallback && super.connectedCallback();
-
-    // collect any extra HTML attributes from the rootElement to retain
-    this.rootElementAttributes = {};
-
-    if (this.rootElement) {
-      Array.from(this.rootElement.firstChild.attributes).forEach(item => {
-        let propName;
-        switch (item.name) {
-          case 'href':
-            propName = 'url';
-            break;
-          default:
-            propName = item.name;
-        }
-
-        // use the element's HTML attribute value as prop defaults
-        if (!this[propName]) {
-          this[propName] = item.value; // use element props if not already defined
-        }
-
-        // extra HTML attributes to include on the rendered <a> tag
-        this.rootElementAttributes[item.name] = item.value;
-      });
-    }
-  }
-
   render() {
     const classes = cx('c-bolt-link', {
       [`c-bolt-link--display-${this.display}`]: this.display,

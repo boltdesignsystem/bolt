@@ -1,11 +1,11 @@
 import {
   BoltActionElement,
   unsafeCSS,
-  render,
   html,
   ifDefined,
   convertInitialTags,
   customElement,
+  spread,
 } from '@bolt/element';
 import classNames from 'classnames/bind';
 
@@ -72,9 +72,6 @@ class BoltButton extends BoltActionElement {
     // Assign default target attribute value if one isn't specified
     const urlTarget = this.target && hasUrl ? this.target : '_self';
 
-    // The buttonElement to render, based on the initial HTML passed alone.
-    let buttonElement = null;
-
     const innerSlots = () => {
       const itemClasses = cx('c-bolt-button__item');
       const iconClasses = cx('c-bolt-button__icon');
@@ -102,45 +99,17 @@ class BoltButton extends BoltActionElement {
       `;
     };
 
-    if (this.rootElement) {
-      buttonElement = this.rootElement.firstChild.cloneNode(true);
-      buttonElement.className += ' ' + classes;
-
-      // @todo: find automatic way to dissolve original HTML elements into their respective props + custom attributes
-      if (buttonElement.tagName === 'A') {
-        const url = this.url || this.originalUrl;
-
-        if (this.disabled) {
-          this.originalUrl = buttonElement.getAttribute('href');
-          buttonElement.setAttribute('aria-disabled', 'true');
-          buttonElement.removeAttribute('href');
-        } else {
-          buttonElement.removeAttribute('aria-disabled');
-
-          if (url) {
-            buttonElement.setAttribute('href', url);
-          }
-        }
-
-        if (this.target) {
-          buttonElement.setAttribute('target', this.target);
-        }
-      } else {
-        if (this.disabled) {
-          buttonElement.setAttribute('disabled', '');
-        } else {
-          buttonElement.removeAttribute('disabled');
-        }
-      }
-
-      if (this.tabindex) {
-        buttonElement.setAttribute('tabindex', this.tabindex);
-      }
-
-      render(innerSlots(), buttonElement);
-    } else if (hasUrl) {
-      buttonElement = html`
+    if (hasUrl) {
+      // note: using spread can be simple however here we want to filter out certain HTML attrs
+      // ex. of vanilla usage (all HTML attrs OK)...="${spread(this.rootElementAttributes)}"
+      return html`
         <a
+          ...="${spread(
+            // remove the disabled attribute from rootElementAttributes
+            Object.assign({}, this.rootElementAttributes, {
+              disabled: undefined,
+            }),
+          )}"
           href="${ifDefined(this.url && !this.disabled ? this.url : undefined)}"
           class="${classes}"
           target="${urlTarget}"
@@ -156,8 +125,14 @@ class BoltButton extends BoltActionElement {
         >
       `;
     } else {
-      buttonElement = html`
+      return html`
         <button
+          ...="${spread(
+            // remove the href attribute from rootElementAttributes
+            Object.assign({}, this.rootElementAttributes, {
+              href: undefined,
+            }),
+          )}"
           class="${classes}"
           tabindex=${ifDefined(
             this.tabindex === -1
@@ -173,10 +148,6 @@ class BoltButton extends BoltActionElement {
         </button>
       `;
     }
-
-    return html`
-      ${buttonElement}
-    `;
   }
 }
 
