@@ -319,4 +319,226 @@ describe('button', () => {
 
     expect(button).not.toBeNull();
   });
+
+  test('Button uses initial HTML to populate prop defaults', async function() {
+    const { initialUrl, initialHTML } = await page.evaluate(async () => {
+      document.body.insertAdjacentHTML(
+        'beforeend',
+        `<bolt-button no-shadow>
+          <a href="https://www.google.com">Button w/ Nested Link</a>
+        </bolt-button>`,
+      );
+      const btn = document.querySelector('bolt-button');
+      await btn.updateComplete;
+      return {
+        initialUrl: btn.url,
+        initialHTML: btn.outerHTML,
+      };
+    });
+
+    // initial HTML-defined attributes can be updated
+    const { updatedUrl, updatedHTML } = await page.evaluate(async () => {
+      const btn = document.querySelector('bolt-button');
+      btn.setAttribute('url', 'https://boltdesignsystem.com');
+      await btn.updateComplete;
+      return {
+        updatedUrl: btn.url,
+        updatedHTML: btn.outerHTML,
+      };
+    });
+
+    // removing the url prop will convert the <a> into a <button> tag
+    const { finalUrl, finalHTML } = await page.evaluate(async () => {
+      const btn = document.querySelector('bolt-button');
+      btn.removeAttribute('url');
+      await btn.updateComplete;
+      return {
+        finalUrl: btn.url,
+        finalHTML: btn.outerHTML,
+      };
+    });
+
+    const initialMarkup = await html(initialHTML);
+    const updatedMarkup = await html(updatedHTML);
+    const finalMarkup = await html(finalHTML);
+
+    expect(
+      initialMarkup.querySelector('.c-bolt-button').getAttribute('href'),
+    ).toBe('https://www.google.com');
+    expect(initialMarkup.querySelector('.c-bolt-button').tagName).toBe('a');
+
+    expect(
+      updatedMarkup.querySelector('.c-bolt-button').getAttribute('href'),
+    ).toBe('https://boltdesignsystem.com');
+
+    expect(
+      finalMarkup.querySelector('.c-bolt-button').hasAttribute('href'),
+    ).toBe(false);
+    expect(finalMarkup.querySelector('.c-bolt-button').tagName).toBe('button');
+
+    expect(initialUrl).toBe('https://www.google.com');
+    expect(updatedUrl).toBe('https://boltdesignsystem.com');
+    expect(finalUrl).toBe(null);
+  });
+
+  test('Buttons render and retains extra HTML attributes', async function() {
+    const { initialHTML } = await page.evaluate(async () => {
+      document.body.insertAdjacentHTML(
+        'beforeend',
+        `<bolt-button no-shadow>
+          <a data-uuid="1234" href="https://yahoo.com">Button w/ Data Attribute</a>
+        </bolt-button>`,
+      );
+      const btn = document.querySelector('bolt-button');
+      await btn.updateComplete;
+      return {
+        initialHTML: btn.outerHTML,
+      };
+    });
+
+    // removing the url prop will convert the <a> into a <button> tag
+    const { finalHTML } = await page.evaluate(async () => {
+      const btn = document.querySelector('bolt-button');
+      btn.url = null;
+      await btn.updateComplete;
+      return {
+        finalHTML: btn.outerHTML,
+      };
+    });
+
+    const initialMarkup = await html(initialHTML);
+    const finalMarkup = await html(finalHTML);
+
+    expect(
+      initialMarkup.querySelector('.c-bolt-button').getAttribute('href'),
+    ).toBe('https://yahoo.com');
+    expect(initialMarkup.querySelector('.c-bolt-button').tagName).toBe('a');
+    expect(
+      initialMarkup.querySelector('.c-bolt-button').getAttribute('data-uuid'),
+    ).toBe('1234');
+    expect(initialMarkup).toMatchSnapshot();
+
+    expect(
+      finalMarkup.querySelector('.c-bolt-button').hasAttribute('href'),
+    ).toBe(false);
+    expect(finalMarkup.querySelector('.c-bolt-button').tagName).toBe('button');
+    expect(
+      finalMarkup.querySelector('.c-bolt-button').getAttribute('data-uuid'),
+    ).toBe('1234');
+    expect(finalMarkup).toMatchSnapshot();
+  });
+
+  test('Buttons with initial HTML attributes that conflict w/ custom element props will defer to  using the custom element prop values', async function() {
+    const { initialUrl, initialHTML } = await page.evaluate(async () => {
+      document.body.insertAdjacentHTML(
+        'beforeend',
+        `<bolt-button url="https://google.com" no-shadow>
+          <a data-uuid="1234" href="https://yahoo.com">Button w/ Href Not Matching Prop</a>
+        </bolt-button>`,
+      );
+      const btn = document.querySelector('bolt-button');
+      await btn.updateComplete;
+      return {
+        initialUrl: btn.url,
+        initialHTML: btn.outerHTML,
+      };
+    });
+
+    // updating the url prop to re-render
+    const { finalUrl, finalHTML } = await page.evaluate(async () => {
+      const btn = document.querySelector('bolt-button');
+      btn.setAttribute('url', 'https://github.com');
+      await btn.updateComplete;
+      return {
+        finalUrl: btn.url,
+        finalHTML: btn.outerHTML,
+      };
+    });
+
+    const initialMarkup = await html(initialHTML);
+    const finalMarkup = await html(finalHTML);
+
+    expect(
+      initialMarkup.querySelector('.c-bolt-button').getAttribute('href'),
+    ).toBe('https://google.com');
+    expect(initialMarkup).toMatchSnapshot();
+
+    expect(
+      finalMarkup.querySelector('.c-bolt-button').getAttribute('href'),
+    ).toBe('https://github.com');
+    expect(finalMarkup).toMatchSnapshot();
+
+    expect(initialUrl).toBe('https://google.com');
+    expect(finalUrl).toBe('https://github.com');
+  });
+
+  test('Buttons only render the [disabled] attribute on <button>, tags', async function() {
+    const { initialHTML, initialUrl } = await page.evaluate(async () => {
+      document.body.insertAdjacentHTML(
+        'beforeend',
+        `<bolt-button url="https://google.com" disabled no-shadow>
+          Disabled Button
+        </bolt-button>`,
+      );
+      const btn = document.querySelector('bolt-button');
+      await btn.updateComplete;
+      return {
+        initialUrl: btn.url,
+        initialHTML: btn.outerHTML,
+      };
+    });
+
+    // <a> tag-based buttons retain their URL after removing the disabled prop
+    const { updatedHTML } = await page.evaluate(async () => {
+      const btn = document.querySelector('bolt-button');
+      btn.removeAttribute('disabled');
+      await btn.updateComplete;
+      return {
+        updatedUrl: btn.url,
+        updatedHTML: btn.outerHTML,
+      };
+    });
+
+    // button retained the URL after removing the disabled prop
+    const { finalHTML } = await page.evaluate(async () => {
+      const btn = document.querySelector('bolt-button');
+      btn.setAttribute('disabled', '');
+      btn.removeAttribute('url');
+      await btn.updateComplete;
+      return {
+        finalUrl: btn.url,
+        finalHTML: btn.outerHTML,
+      };
+    });
+
+    const initialMarkup = await html(initialHTML);
+    const updatedMarkup = await html(updatedHTML);
+    const finalMarkup = await html(finalHTML);
+
+    expect(
+      initialMarkup.querySelector('.c-bolt-button').getAttribute('href'),
+    ).toBe(null);
+    expect(initialUrl).toBe('https://google.com');
+    expect(initialMarkup.querySelector('.c-bolt-button').tagName).toBe('a');
+    expect(initialMarkup.querySelector('.c-bolt-button').hasAttribute('disabled')).toBe(false);
+    expect(initialMarkup.querySelector('.c-bolt-button').hasAttribute('aria-disabled')).toBe(true);
+    expect(initialMarkup).toMatchSnapshot();
+
+    expect(
+      updatedMarkup.querySelector('.c-bolt-button').getAttribute('href'),
+    ).toBe('https://google.com');
+    expect(initialUrl).toBe('https://google.com');
+    expect(updatedMarkup.querySelector('.c-bolt-button').tagName).toBe('a');
+    expect(updatedMarkup.querySelector('.c-bolt-button').hasAttribute('disabled')).toBe(false);
+    expect(updatedMarkup.querySelector('.c-bolt-button').hasAttribute('aria-disabled')).toBe(false);
+    expect(updatedMarkup).toMatchSnapshot();
+
+    expect(
+      finalMarkup.querySelector('.c-bolt-button').getAttribute('href'),
+    ).toBe(null);
+    expect(finalMarkup.querySelector('.c-bolt-button').tagName).toBe('button');
+    expect(finalMarkup.querySelector('.c-bolt-button').hasAttribute('disabled')).toBe(true);
+    expect(finalMarkup.querySelector('.c-bolt-button').hasAttribute('aria-disabled')).toBe(false);
+    expect(finalMarkup).toMatchSnapshot();
+  });
 });
