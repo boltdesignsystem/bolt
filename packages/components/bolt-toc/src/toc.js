@@ -173,11 +173,16 @@ class BoltToc extends withContext(BoltElement) {
     };
   }
 
+  // Smooth scroll events triggered by clicking menu items
   logScrollEvent(event) {
     if (event.type === 'scrollStart') {
       this.scrolling = true;
     } else if (event.type === 'scrollStop' || event.type === 'scrollCancel') {
-      this.scrolling = false;
+      // Wait before unsetting the scrolling flag as waypoint events may fire
+      // at same time as `scrollStop` event, avoids race condition
+      setTimeout(() => {
+        this.scrolling = false;
+      }, 100);
     }
   }
 
