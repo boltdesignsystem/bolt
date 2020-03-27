@@ -89,9 +89,11 @@ class BoltTocItem extends withContext(BoltElement) {
         let scrollOpts = scrollOptions;
 
         const scrollOffset = this.scrollOffset || 0;
-        const scrollOffsetElemHeight = this.scrollOffsetSelector
-          ? document.querySelector(this.scrollOffsetSelector).clientHeight
-          : 0;
+        const scrollOffsetElemHeight =
+          this.scrollOffsetSelector &&
+          document.querySelector(this.scrollOffsetSelector)
+            ? document.querySelector(this.scrollOffsetSelector).clientHeight
+            : 0;
 
         scrollOpts.offset = scrollOffset + scrollOffsetElemHeight;
 
