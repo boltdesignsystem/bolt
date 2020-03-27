@@ -21,13 +21,6 @@
 {% set _isImageFirstOnDesktop = reverseOrder == true %}
 {% set _isImageFirstOnMobile = imageValign != 'bottom' %}
 
-{#
-  Image and content will be printed in the order they should appear on mobile.  For desktop, leave it the same unless:
-    - An image is present, in which case check to see if mobile and desktop ordering should be different
-    - No image is present, in which case simply honor the reverseOrder prop.
-#}
-{% set _reverseGrid = image ? (_isImageFirstOnDesktop != _isImageFirstOnMobile) : reverseOrder %}
-
 {% if image %}
   {% set renderedImage %}
     <div
