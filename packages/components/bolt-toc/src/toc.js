@@ -147,7 +147,7 @@ class BoltToc extends withContext(BoltElement) {
     const marker = document.createElement('div');
     marker.setAttribute(
       'style',
-      `position: fixed; bottom: ${this.boundaryBottom}; top: ${this.boundaryTop}; width: 100%; border: 1px solid red; opacity: 0.5`,
+      `position: fixed; bottom: ${this.boundaryBottom}; top: ${this.boundaryTop}; width: 100%; border: 1px solid red; opacity: 0.5; pointer-events: none;`,
     );
     document.body.appendChild(marker);
     BoltToc.debuggerAdded = true;
