@@ -33,7 +33,7 @@ async function init(keepAlive = false) {
       roots: [relativeFrom],
       namespaces: TwigRenderer.convertLegacyNamespacesConfig(twigNamespaces),
     },
-    debug: true,
+    debug: false,
     alterTwigEnv: config.alterTwigEnv,
     hasExtraInfoInResponses: false, // Will add `info` onto results with a lot of info about Twig Env
     maxConcurrency: 50,

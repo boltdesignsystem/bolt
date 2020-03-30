@@ -3,15 +3,22 @@
 namespace Bolt\TwigExtensions;
 use \Faker\Factory;
 
-class TwigFaker {
-  private $faker;
 
-  function __construct () {
-      $this->faker = Factory::create();
+class TwigFaker {
+  // public $faker;
+
+  public static $faker;
+
+
+  public function __construct () {
+    // $faker = ;
+    static::$faker = Factory::create();
+
+    // self::$faker = $faker;
       if (getenv('TWIG_FAKER_ALWAYS_GET_SAME_TEXT')) {// Env Var can be set to any text
         // Set it so each call returns that same text: it won't be random text each time.
         // Valuable for Visual Regression Testing.
-        $this->faker->seed(1234);
+        self::$faker->seed(1234);
       }
   }
 
@@ -20,13 +27,13 @@ class TwigFaker {
    * @param int $maxCharcters - Max characters of text
    * @return string
    */
-  function text($maxCharcters = 200) {
-    return $this->faker->text($maxCharcters);
+  public function text($maxCharcters = 200) {
+    return self::$faker->text($maxCharcters);
   }
 
 
-  function numberBetween($min = 1, $max = 99){
-    return $this->faker->numberBetween($min, $max);
+  public function numberBetween($min = 1, $max = 99){
+    return self::$faker->numberBetween($min, $max);
   }
 
   /**
@@ -34,8 +41,8 @@ class TwigFaker {
    * @param int $number - Max number of words
    * @return string
    */
-  function words($number = 3, $asText = true) {
-    return $this->faker->words($number, true);
+  public function words($number = 3, $asText = true) {
+    return self::$faker->words($number, true);
   }
 
   /**
@@ -43,8 +50,8 @@ class TwigFaker {
    * @param int $number - Number of sentences
    * @return string
    */
-  function sentences($nb = 3, $asText = false){
-    return $this->faker->sentences($nb, $asText);
+  public function sentences($nb = 3, $asText = false){
+    return self::$faker->sentences($nb, $asText);
   }
 
   /**
@@ -56,8 +63,8 @@ class TwigFaker {
    *                                  otherwise $nbWords may vary by +/-40% with a minimum of 1
    * @return string
    */
-  static function sentence($nbWords = 6, $variableNbWords = true){
-    return $this->faker->sentence($nbWords, $variableNbWords);
+  static public function sentence($nbWords = 6, $variableNbWords = true){
+    return self::$faker->sentence($nbWords, $variableNbWords);
   }
 
   /**
@@ -65,28 +72,28 @@ class TwigFaker {
    * @param bool $variable - Should the number vary by +/- 40%?
    * @return string
    */
-  function paragraph($sentences = 8, $variable = true) {
-    return $this->faker->paragraph($sentences, $variable);
+  public function paragraph($sentences = 8, $variable = true) {
+    return self::$faker->paragraph($sentences, $variable);
   }
 
   /**
    * @example 'Robust full-range hub'
    */
-  function catchPhrase(){
-    return $this->faker->catchPhrase();
+  public function catchPhrase(){
+    return self::$faker->catchPhrase();
   }
 
   /**
    * @example 'integrate extensible convergence'
    */
-  function bs(){
-    return $this->faker->bs();
+  public function bs(){
+    return self::$faker->bs();
   }
 
   /**
    * @example 'Acme Ltd'
    */
-  function company(){
-    return $this->faker->company();
+  public function company(){
+    return self::$faker->company();
   }
 }
