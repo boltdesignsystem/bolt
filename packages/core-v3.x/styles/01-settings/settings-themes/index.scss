@@ -4,8 +4,8 @@
 @import '../../02-tools/tools-map-recursive-merge/tools-map-recursive-merge';
 
 // pre-defined theming system values
+// "light" is actually dark, "dark" is actually light.
 $bolt-theme-ui-colors: (
-  // This is actually dark.
   light: (
     border: bolt-color(white),
     contrast-filter: grayscale(100%) invert(100%) brightness(150%),
@@ -21,7 +21,6 @@ $bolt-theme-ui-colors: (
     brand: bolt-color(indigo),
     background-secondary: mix(bolt-color(white), bolt-color(indigo), 7.5%),
   ),
-  // This is actually light.
   dark: (
     border: bolt-color(indigo, dark),
     contrast-filter: none,
@@ -195,8 +194,4 @@ $bolt-themes-export: ();
   }
 }
 
-@include bolt-export-data-sync(
-  $bolt-css-vars-json-data-export + '.json',
-  $bolt-themes-export
-);
 @include bolt-export-data-sync('theming.bolt.json', $bolt-themes);

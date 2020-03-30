@@ -52,15 +52,8 @@ bolt-card-replacement {
   // Note: when a card-replacement is themed, the `t-bolt-` class will define the color and background-color, these settings won't be loaded.
   &:not([class*='t-bolt']) {
     color: bolt-theme(text);
-    background-color: bolt-theme(
-      (
-        xdark: background 0.85,
-        dark: background 0.85,
-        light: secondary,
-        // [Mai] This is not displaying correctly when JS is on.
-          xlight: background 0.85,
-      )
-    );
+    // Note: at of v3.0 no longer uses themify to set variable token
+    background-color: bolt-theme(background, 0.85);
     background-image: linear-gradient(
       to bottom,
       rgba(bolt-color(white), 0.05),

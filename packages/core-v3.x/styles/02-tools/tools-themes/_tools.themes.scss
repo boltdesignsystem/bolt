@@ -90,54 +90,30 @@ $PSEUDO_CLASSES: (
   *   - Other args generate a bolt-themify json-encoded map according to theme settings in `settings-themes/index.scss`
   */
 @function bolt-theme($props...) {
-  @if (is-map($props...)) {
-    $value: bolt-json-encode($props...);
-    @return "bolt-themify(#{$value})";
-  } @else {
-    $color: null;
-    $opacity: 1;
+  $value: ();
+  $color: null;
+  $opacity: 1;
 
-    @if (length($props) >= 1) {
-      $color: nth($props, 1);
-    }
-
-    // check at least one color swatch to make sure the theme exists
-    $value: map-get-deep($bolt-themes, 'light', $color);
-
-    // Automatically assign opacity based on the color selected.
-    $opacity: alpha($value);
-
-    @if (length($props) >= 2) {
-      $opacity: nth($props, 2);
-    }
-
-    @if ($value){
-      $value: bolt-json-encode(
-        (
-          xlight: (
-            #{$color},
-            #{$opacity}
-          ),
-          light: (
-            #{$color},
-            #{$opacity}
-          ),
-          dark: (
-            #{$color},
-            #{$opacity}
-          ),
-          xdark: (
-            #{$color},
-            #{$opacity}
-          )
-        )
-      );
-      @return "bolt-themify(#{$value})";
-    } @else {
-      @warn 'Warning! ' + $color + ' bolt-theme was not found...';
-      @return '';
-    }
+  @if (length($props) >= 1) {
+    $color: nth($props, 1);
   }
+
+  // check at least one color swatch to make sure the theme exists
+  $value: map-get-deep($bolt-themes, 'light', $color);
+
+  // Automatically assign opacity based on the color selected.
+  $opacity: alpha($value);
+
+  @if (length($props) >= 2) {
+    $opacity: nth($props, 2);
+  }
+
+  @if (not $value) {
+    @warn 'Warning! ' + $color + ' bolt-theme was not found...';
+    @return '';
+  }
+
+  @return rgba(var(--bolt-theme-#{$color}), $opacity);
 }
 
 @mixin boltGenerateThemeHelpers($propsArr) {
