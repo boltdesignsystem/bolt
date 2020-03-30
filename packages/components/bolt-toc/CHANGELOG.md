@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.20.2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-toc/compare/v2.20.1...v2.20.2) (2020-03-30)
+
+
+### Bug Fixes
+
+* make sure querySelector returns element before getting clientHeight ([097c17e](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-toc/commit/097c17e48c87c253f087092c17bf33bfdb21bcaa))
+* race condition on smoothScroll stop ([318e6ad](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-toc/commit/318e6add68b8e514a809eed16b892fdeebddc027))
+* remove default `header` value, causing unexpected results on Academy ([a60bab8](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-toc/commit/a60bab8e6077e98d8308e5a5f63427f5ac18af75))
+* turn off pointer events on waypoint debugger, just a bug while debugging ([62dbd1a](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-toc/commit/62dbd1a6e4c604f50ca419b5b8b5da999b686c80))
+
+
+
+
+
 # [2.20.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-toc/compare/v2.19.1...v2.20.0) (2020-03-18)
 
 
