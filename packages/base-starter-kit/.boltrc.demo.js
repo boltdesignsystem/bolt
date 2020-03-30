@@ -4,7 +4,6 @@ const path = require('path');
 
 module.exports = deepmerge(baseConfig, {
   env: 'drupal',
-  esModules: true,
   buildDir: './dist/build',
   dataDir: './dist/build/data',
   wwwDir: './dist',

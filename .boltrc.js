@@ -67,8 +67,6 @@ nonImageFixtures.forEach(fixturePath => {
 });
 
 module.exports = {
-  esModules: true,
-  compat: false, // Jest tests only run w/ ES Modules so this should speed things up
   wwwDir: adjustRelativePath(siteConfig.wwwDir),
   buildDir: adjustRelativePath(siteConfig.buildDir),
   iconDir: [],

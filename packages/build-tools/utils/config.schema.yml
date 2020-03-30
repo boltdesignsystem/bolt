@@ -8,10 +8,6 @@
     - components
   additionalProperties: false
   properties:
-    esModules:
-      type: boolean
-      title: Enables outputting a 2nd `.modern.js` version of the code for modern browsers supporting ES Modules. Check out the docs for more info!
-      default: false
     namespace:
       type: string
       title: Namespace prefix to use in classnames
@@ -227,9 +223,6 @@
       type: boolean
       description: Production build, will compress assets.
       default: false
-    compat:
-      type: boolean
-      description: Compatibility mode enables compiling Webpack bundles for older legacy browsers that don't support ES Modules. Compatibility mode is enabled by default when the 'esModules' config option is set to false or the 'prod' config option is set to true and compat is set to true OR is undefined.
     enableSSR:
       type: boolean
       description: Manually enables or disables server-side rendering web components regardless on the build enviornment (vs automatically disabling in dev mode, enabling when in prod mode).
