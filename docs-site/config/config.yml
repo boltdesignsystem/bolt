@@ -5,7 +5,7 @@ ie:
     - less
     - scss
     - js
-    - json
+    - json #so json files don't get copied over to the www folder
 id:
     - scss
     - .svn
@@ -18,6 +18,9 @@ patternStates:
     - inprogress
     - inreview
     - complete
+# styleGuideExcludes:
+    # - 04-pages
+    # - viewall-pages-all
 cacheBusterOn: 'true'
 publicDir: ../www/pattern-lab/
 sourceDir: src/pages/pattern-lab/
@@ -47,10 +50,11 @@ lineageMatch: '{%([ ]+)?(?:include|extends|embed)( |\()[&quot;\&#039;]([\/.@A-Za
 lineageMatchKey: 3
 patternExtension: twig
 twigExtensions:
-    - \BasaltInc\TwigTools\TwigExtensions\BasaltFakerExtension
-    - \Bolt\TwigExtensions\BoltCore
-    - \Bolt\TwigExtensions\BoltCoreCompat
-    - \Bolt\TwigExtensions\BoltExtras
+    - '\BasaltInc\TwigTools\TwigExtensions\BasaltFakerExtension'
+    - '\Bolt\TwigExtensions\BoltCore'
+    - '\Bolt\TwigExtensions\BoltCoreCompat'
+    - '\Bolt\TwigExtensions\BoltExtras'
+twigDebug: false
 twigCache: cache/twig
 twigAutoescape: false
 twigDefaultDateFormat: ''
@@ -67,16 +71,17 @@ extensions:
     docs: .docs.md
     sg: .md
 plugins:
-    twigNamespaces:
-        enabled: true
-        readFromFile: ../www/build/data/twig-namespaces.bolt.json
+  twigNamespaces:
+    enabled: true
+    readFromFile: ../www/build/data/twig-namespaces.bolt.json
+# @todo: remove once we move to Pattern Lab Node + move this config into our patternlab.config.json
 theme:
-    logo:
-        srcDark: /images/bolt-logo--dark.svg
-        srcLight: /images/bolt-logo--light.svg
-        url: '/pattern-lab/?p=components-overview'
-        altText: 'Logo of the Bolt Design System'
-        text: ''
-    color: dark
-    layout: vertical
-twigDebug: false
+  logo:
+    srcDark: '/images/bolt-logo--dark.svg'
+    srcLight: '/images/bolt-logo--light.svg'
+    url: '/pattern-lab/?p=components-overview'
+    altText: 'Logo of the Bolt Design System'
+    text: ''
+  color: 'dark'
+  layout: 'vertical'
+  # "density" : "compact" | "cozy" | "comfortable",
