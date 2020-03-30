@@ -89,11 +89,18 @@ class BoltTocItem extends withContext(BoltElement) {
         let scrollOpts = scrollOptions;
 
         const scrollOffset = this.scrollOffset || 0;
-        const scrollOffsetElemHeight = this.scrollOffsetSelector
-          ? document.querySelector(this.scrollOffsetSelector).clientHeight
-          : 0;
+        const scrollOffsetElemHeight =
+          this.scrollOffsetSelector &&
+          document.querySelector(this.scrollOffsetSelector)
+            ? document.querySelector(this.scrollOffsetSelector).clientHeight
+            : 0;
 
         scrollOpts.offset = scrollOffset + scrollOffsetElemHeight;
+
+        // Delete the default `header` value: https://github.com/cferdinandi/smooth-scroll#fixed-headers
+        // It works with fixed but not sticky elements. For consistency, handle scroll position entirely through `offset`.
+        // @todo We need a solution for multiple stacked fixed/sticky elements. Also see `onPositionChange()` in toc.js.
+        delete scrollOpts.header;
 
         smoothScroll.animateScroll(this.target, this.shadowLink, scrollOpts);
       }
