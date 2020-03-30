@@ -147,7 +147,7 @@ class BoltToc extends withContext(BoltElement) {
     const marker = document.createElement('div');
     marker.setAttribute(
       'style',
-      `position: fixed; bottom: ${this.boundaryBottom}; top: ${this.boundaryTop}; width: 100%; border: 1px solid red; opacity: 0.5`,
+      `position: fixed; bottom: ${this.boundaryBottom}; top: ${this.boundaryTop}; width: 100%; border: 1px solid red; opacity: 0.5; pointer-events: none;`,
     );
     document.body.appendChild(marker);
     BoltToc.debuggerAdded = true;
@@ -173,11 +173,16 @@ class BoltToc extends withContext(BoltElement) {
     };
   }
 
+  // Smooth scroll events triggered by clicking menu items
   logScrollEvent(event) {
     if (event.type === 'scrollStart') {
       this.scrolling = true;
     } else if (event.type === 'scrollStop' || event.type === 'scrollCancel') {
-      this.scrolling = false;
+      // Wait before unsetting the scrolling flag as waypoint events may fire
+      // at same time as `scrollStop` event, avoids race condition
+      setTimeout(() => {
+        this.scrolling = false;
+      }, 100);
     }
   }
 
