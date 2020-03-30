@@ -5,7 +5,7 @@ index 5eab40386..2c2df1d9c 100644
 @@ -127,37 +127,31 @@ class PatternData {
  	 *  @TODO: figure out how to store this PL's main config
  	 */
- 
+
 -		$finder = new Finder();
 -		$patternObjects = $finder
 -		                  ->in($patternSourceDir)
@@ -59,10 +59,10 @@ index 5eab40386..2c2df1d9c 100644
 +										->notName('*.lock')
 +										->notName('*.scss')
 +										->notName('*.css')
-+										->notName('_*.*')
-+										->exclude(array('node_modules', 'vendor', '.git', '__tests__', 'tests'));
++										->notName('_*')
++										->exclude(array('node_modules', 'vendor', '.git', '__tests__'));
 +	 $patternObjects = iterator_to_array($patternObjects);
- 
+
  		// sort the returned objects
  		ksort($patternObjects);
 @@ -183,7 +177,6 @@ class PatternData {
@@ -71,5 +71,5 @@ index 5eab40386..2c2df1d9c 100644
  			}
 -
  		}
- 
+
  		// dispatch that the data is loaded
