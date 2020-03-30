@@ -5,16 +5,12 @@ use \Faker\Factory;
 
 
 class TwigFaker {
-  // public $faker;
-
   public static $faker;
 
 
   public function __construct () {
-    // $faker = ;
     static::$faker = Factory::create();
 
-    // self::$faker = $faker;
       if (getenv('TWIG_FAKER_ALWAYS_GET_SAME_TEXT')) {// Env Var can be set to any text
         // Set it so each call returns that same text: it won't be random text each time.
         // Valuable for Visual Regression Testing.
