@@ -13,7 +13,8 @@
   {% set align = itemAlignment %}
 {% endif %}
 
-{# DEPRECATED.  Use the prooperty `align` instead of `itemAlignment`. #}
+{# DEPRECATED.  Use the `color` instead of `style` property in Twig. 
+  Note: this prop name is ultimately switching to `variant` with the next SEMVER release #}
 {% if style %}
   {% set color = style %}
 {% endif %}
