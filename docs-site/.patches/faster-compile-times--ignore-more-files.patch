@@ -60,7 +60,7 @@ index 5eab40386..2c2df1d9c 100644
 +										->notName('*.scss')
 +										->notName('*.css')
 +										->notName('_*')
-+										->exclude(array('node_modules', 'vendor', '.git', '__tests__'));
++										->exclude(array('node_modules', 'vendor', '.git'));
 +	 $patternObjects = iterator_to_array($patternObjects);
 
  		// sort the returned objects
