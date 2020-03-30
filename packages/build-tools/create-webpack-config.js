@@ -23,10 +23,7 @@ const {
   statsPreset,
 } = require('@bolt/build-utils/webpack-verbosity');
 
-const {
-  modernBabelConfig,
-  legacyBabelConfig,
-} = require('@bolt/babel-preset-bolt');
+const babelConfig = require('@bolt/babel-preset-bolt');
 
 const {
   getBoltManifest,
@@ -309,7 +306,7 @@ async function createWebpackConfig(buildConfig) {
                   loader: 'babel-loader',
                   options: {
                     babelrc: false,
-                    presets: [legacyBabelConfig],
+                    presets: [babelConfig],
                   },
                 },
                 {
@@ -510,7 +507,7 @@ async function createWebpackConfig(buildConfig) {
               loader: 'babel-loader',
               options: {
                 babelrc: false,
-                presets: [legacyBabelConfig],
+                presets: [babelConfig],
               },
             },
           ],
@@ -628,7 +625,7 @@ async function createWebpackConfig(buildConfig) {
               loader: 'babel-loader',
               options: {
                 babelrc: false,
-                presets: [modernBabelConfig],
+                presets: [babelConfig],
               },
             },
           ],

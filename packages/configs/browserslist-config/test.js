@@ -1,6 +1,5 @@
 const browserslist = require('browserslist');
-const config = require('./legacy');
-const browsers = browserslist(config);
+const browsers = browserslist();
 
 describe('Test the Bolt Browserslist Config', () => {
   test('Config successfully resolves a list of browsers', async () => {
@@ -10,7 +9,7 @@ describe('Test the Bolt Browserslist Config', () => {
     console.log(browsers.join('\n'));
   });
 
-  test('Browserslist config includes IE 11 support', async () => {
-    expect(browsers).toContain('ie 11');
+  test('Browserslist config does not include IE 11 support', async () => {
+    expect(browsers).not.toContain('ie 11');
   });
 });
