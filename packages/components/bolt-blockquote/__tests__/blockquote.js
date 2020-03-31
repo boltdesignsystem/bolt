@@ -409,6 +409,7 @@ describe('<bolt-blockquote> component', () => {
     await page.setViewport({
       width: 300,
       height: 80,
+      deviceScaleFactor: 8,
     });
 
     const results = await render(
@@ -459,8 +460,8 @@ describe('<bolt-blockquote> component', () => {
     });
 
     expect(image).toMatchImageSnapshot({
-      failureThreshold: '50',
-      failureThresholdType: 'pixel',
+      failureThreshold: '0.003',
+      failureThresholdType: 'percent',
     });
   });
 });
