@@ -58,7 +58,7 @@ properties:
       - xlarge
       - xxlarge
       - xxxlarge
-# The default of `true` here goes against convention but it is forward thinking. [Salem] The goal is to have `autoshrink` to be an opt-in prop (Twig and JS), hence why I don't have this prop called `no-autoshrink` to help us future-proof those updates.
+  # The default of `true` here goes against convention but it is forward thinking. [Salem] The goal is to have `autoshrink` to be an opt-in prop (Twig and JS), hence why I don't have this prop called `no-autoshrink` to help us future-proof those updates.
   autoshrink:
     type: boolean
     description: Automatically shrink the font size used in the `xxxlarge` headline size when 60 or more characters are used.
@@ -86,3 +86,21 @@ properties:
   quoted:
     type: boolean
     description: Adds quoted styling to text.
+  numberText:
+    description: 'Text that displays in a small circle to the left of the main Headline text. Providing content will trigger the bullet to appear.'
+    type: [string, number]
+  numberColor:
+    description: 'The optional background color of the Headline bullet. Uses inherited theme colors if unspecified.'
+    type: string
+    enum:
+      - 'teal'
+      - 'indigo'
+      - 'orange'
+      - 'purple'
+  # numberSize:
+  #   description: "Allows the bullet switch from being a fixed size (default) to being proportional to Headline's current font size."
+  #   type: string
+  #   default: fixed
+  #   enum:
+  #     - 'auto'
+  #     - 'fixed'

@@ -3,6 +3,36 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.20.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-headline/compare/v2.20.0...v2.20.1) (2020-03-26)
+
+
+### Bug Fixes
+
+* fix for vertical alignment of Icon in Numbered Bullet ([3e09ffa](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-headline/commit/3e09ffac020b9e5bf987cde5a5f952035702e3c7))
+* remove extra whitespace + better adjust vertical alignment of Icon within the Headline component; update PL demo to include demoing icons at different Headline sizes ([7f116f5](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-headline/commit/7f116f50e964943e8b8e706cacd9babff607fe31))
+* tweak headline logic to work around alignment regresion in v2.20.0 ([796ae54](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-headline/commit/796ae54be4cb7d18eb5822636ba4463b963f01d0))
+
+
+
+
+
+# [2.20.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-headline/compare/v2.19.1...v2.20.0) (2020-03-18)
+
+
+### Bug Fixes
+
+* address eslint + stylelint linter issues ([caea760](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-headline/commit/caea76028a4cca41dfefbc3e230f57ff0035d84d))
+* vertially center number ([1589d4a](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-headline/commit/1589d4ab0d340d6f334bd51ccc98623d02c43100))
+
+
+### Features
+
+* add new bulleted headline functionality + supporting demos ([fdbc223](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-headline/commit/fdbc223ed9ee1b5f2a988a94bbcb0306beca6fa9))
+
+
+
+
+
 # [2.19.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-headline/compare/v2.18.1...v2.19.0) (2020-03-04)
 
 **Note:** Version bump only for package @bolt/components-headline

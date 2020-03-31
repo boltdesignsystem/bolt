@@ -10,7 +10,7 @@ import {
 } from '@bolt/element';
 import classNames from 'classnames/bind';
 import linkStyles from './link.scss';
-import schema from '../link.schema.yml';
+import schema from '../link.schema';
 
 let cx = classNames.bind(linkStyles);
 
@@ -94,7 +94,7 @@ class BoltLink extends BoltActionElement {
     } else {
       // [1]
       // prettier-ignore
-      renderedLink = html`<a href="${this.url}" class="${classes}" target="${anchorTarget}"
+      renderedLink = html`<a href="${ifDefined(hasUrl ? this.url : undefined)}" class="${classes}" target="${anchorTarget}"
           >${innerSlots}</a
         >`;
     }

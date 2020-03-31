@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 import * as grapesjs from 'grapesjs';
 import { html, render } from '@bolt/core-v3.x/renderers';
 import { query, IS_PROD } from '@bolt/core-v3.x/utils';

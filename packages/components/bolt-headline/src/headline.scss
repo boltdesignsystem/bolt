@@ -2,6 +2,7 @@
 
 @import '@bolt/core-v3.x';
 @import './tools.headlines';
+@import './_headline.numbered'; // numbered bullet variation
 
 
 /* ------------------------------------ *\
@@ -39,6 +40,9 @@ $bolt-headline--plus-letter-spacing: 0.05rem;
 // @TODO: grab the same shared values from the Blockquote component
 .c-bolt-headline--quoted > .c-bolt-headline__text,
 .c-bolt-subheadline--quoted > .c-bolt-subheadline__text {
+  // workaround to display: flex breaking quote styles
+  display: inline-block;
+
   &:first-child:before,
   &:last-child:after {
     font-family: 'Georgia', serif; // TODO: Replace with Noto Serif when it is added.
@@ -54,8 +58,6 @@ $bolt-headline--plus-letter-spacing: 0.05rem;
     content: '\201D';
   }
 }
-
-
 
 .c-bolt-eyebrow {
   @include bolt-margin-bottom(0.1rem);
@@ -84,6 +86,15 @@ $bolt-headline--plus-letter-spacing: 0.05rem;
 
   &:last-child {
     @include bolt-margin(0 0 0 small);
+  }
+}
+
+.c-bolt-headline__text {
+  display: inline-block;
+
+  &-inner {
+    display: inline-block;
+    vertical-align: middle;
   }
 }
 

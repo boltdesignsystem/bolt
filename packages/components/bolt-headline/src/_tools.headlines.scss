@@ -7,9 +7,14 @@
   @include bolt-headline-text-alignment;
   @include bolt-headline-text-transform;
 
-  display: block;
   // display: flex; // @todo: uncomment when fixing headline flex behavior
   // flex-flow: row nowrap; // @todo: uncomment when fixing headline flex behavior
+
+  &--bulleted {
+    display: inline-flex;
+    align-items: flex-start;
+    width: 100%;
+  }
 
   color: bolt-theme(headline);
 
@@ -17,23 +22,27 @@
   &:last-child {
     @include bolt-margin-bottom(0);
   }
-
-  // Headline + Icon and/or Icon + Headline Spacing
-  &--icon-position-before,
-  &--icon-position-left {
-    .c-bolt-headline__icon {
-      @include bolt-margin-right(xxsmall);
-    }
-  }
-  &--icon-position-after,
-  &--icon-position-right {
-    .c-bolt-headline__icon {
-      @include bolt-margin-left(xxsmall);
-    }
-  }
 }
 
+.c-bolt-headline__icon {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center; // different alignment than if align-items is set to center
+  position: relative;
 
+  // adjust vertical alignment of icons, given the unknown line-height / font-size
+  // @todo: re-evaluate this workaround once we're outputting the CSS custom prop values of current font size + line height being used
+  top: 0.2ex;
+
+  &--position-before,
+  &--position-left {
+    @include bolt-margin-right(xsmall);
+  }
+  &--position-after,
+  &--position-right {
+    @include bolt-margin-left(xsmall);
+  }
+}
 
 /** Headline Font Weight Options **/
 @mixin bolt-headline-font-weight {

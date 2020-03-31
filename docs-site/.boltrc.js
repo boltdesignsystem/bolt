@@ -13,6 +13,7 @@ const config = deepmerge(baseConfig, {
   openServerAtStart: true,
   // Environmental variable / preset to use
   env: 'pwa',
+  compat: false,
   esModules: true,
   srcDir: './src/pages',
   buildDir: '../www/build',

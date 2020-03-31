@@ -3,6 +3,50 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.20.2](https://github.com/boltdesignsystem/bolt/tree/master/docs-site/src/pages/pattern-lab/_patterns/03-blueprints/compare/v2.20.1...v2.20.2) (2020-03-30)
+
+**Note:** Version bump only for package @bolt/blueprints
+
+
+
+
+
+## [2.20.1](https://github.com/boltdesignsystem/bolt/tree/master/docs-site/src/pages/pattern-lab/_patterns/03-blueprints/compare/v2.20.0...v2.20.1) (2020-03-26)
+
+**Note:** Version bump only for package @bolt/blueprints
+
+
+
+
+
+# [2.20.0](https://github.com/boltdesignsystem/bolt/tree/master/docs-site/src/pages/pattern-lab/_patterns/03-blueprints/compare/v2.19.1...v2.20.0) (2020-03-18)
+
+
+### Bug Fixes
+
+* update API + Card snapshots ([6d67a9e](https://github.com/boltdesignsystem/bolt/tree/master/docs-site/src/pages/pattern-lab/_patterns/03-blueprints/commit/6d67a9e38705252516c444b918a33f97aeb7d8d0))
+* update Icons per PR feedback ([c3f5457](https://github.com/boltdesignsystem/bolt/tree/master/docs-site/src/pages/pattern-lab/_patterns/03-blueprints/commit/c3f54575b0bbda56ad60f680bf8052ab648c7ae0))
+* update Twig include path ([40f6aad](https://github.com/boltdesignsystem/bolt/tree/master/docs-site/src/pages/pattern-lab/_patterns/03-blueprints/commit/40f6aadcfae4437e3e9cf5e7aab5183ed10cfa7a))
+
+
+### Features
+
+* create new numbered headline blueprint for Academy; add basic docs + demos ([1eb8e75](https://github.com/boltdesignsystem/bolt/tree/master/docs-site/src/pages/pattern-lab/_patterns/03-blueprints/commit/1eb8e753d0e515165a1bee98b9420f08020e0106))
+* replace `xxsmall` with `xsmall` in Blueprints ([0af47fc](https://github.com/boltdesignsystem/bolt/tree/master/docs-site/src/pages/pattern-lab/_patterns/03-blueprints/commit/0af47fc59d830e1989dcf98d189619d6b8bfcfd7))
+* update TOC demos + add realistic sticky Page Header use case to Blueprints ([b140e37](https://github.com/boltdesignsystem/bolt/tree/master/docs-site/src/pages/pattern-lab/_patterns/03-blueprints/commit/b140e37be83cf4d0f8ae25cb8255856e0ad6a725))
+
+
+
+
+
+## [2.19.1](https://github.com/boltdesignsystem/bolt/tree/master/docs-site/src/pages/pattern-lab/_patterns/03-blueprints/compare/v2.19.0...v2.19.1) (2020-03-11)
+
+**Note:** Version bump only for package @bolt/blueprints
+
+
+
+
+
 # [2.19.0](https://github.com/boltdesignsystem/bolt/tree/master/docs-site/src/pages/pattern-lab/_patterns/03-blueprints/compare/v2.18.1...v2.19.0) (2020-03-04)
 
 

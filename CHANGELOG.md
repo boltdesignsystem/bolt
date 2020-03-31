@@ -3,6 +3,88 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.20.2](https://github.com/boltdesignsystem/bolt/compare/v2.20.1...v2.20.2) (2020-03-30)
+
+
+### Bug Fixes
+
+* make sure querySelector returns element before getting clientHeight ([097c17e](https://github.com/boltdesignsystem/bolt/commit/097c17e48c87c253f087092c17bf33bfdb21bcaa))
+* race condition on smoothScroll stop ([318e6ad](https://github.com/boltdesignsystem/bolt/commit/318e6add68b8e514a809eed16b892fdeebddc027))
+* remove default `header` value, causing unexpected results on Academy ([a60bab8](https://github.com/boltdesignsystem/bolt/commit/a60bab8e6077e98d8308e5a5f63427f5ac18af75))
+* turn off pointer events on waypoint debugger, just a bug while debugging ([62dbd1a](https://github.com/boltdesignsystem/bolt/commit/62dbd1a6e4c604f50ca419b5b8b5da999b686c80))
+
+
+
+
+
+## [2.20.1](https://github.com/boltdesignsystem/bolt/compare/v2.20.0...v2.20.1) (2020-03-26)
+
+
+### Bug Fixes
+
+* fix for vertical alignment of Icon in Numbered Bullet ([3e09ffa](https://github.com/boltdesignsystem/bolt/commit/3e09ffac020b9e5bf987cde5a5f952035702e3c7))
+* remove extra whitespace + better adjust vertical alignment of Icon within the Headline component; update PL demo to include demoing icons at different Headline sizes ([7f116f5](https://github.com/boltdesignsystem/bolt/commit/7f116f50e964943e8b8e706cacd9babff607fe31))
+* tweak headline logic to work around alignment regresion in v2.20.0 ([796ae54](https://github.com/boltdesignsystem/bolt/commit/796ae54be4cb7d18eb5822636ba4463b963f01d0))
+* update Blockquote snapshots ([7768711](https://github.com/boltdesignsystem/bolt/commit/776871167c2875ccab70de3058757f4378d23518))
+* update Jest snapshots ([e582e39](https://github.com/boltdesignsystem/bolt/commit/e582e39e084114ae731e2246db5e5b897e55cdf5))
+
+
+
+
+
+# [2.20.0](https://github.com/boltdesignsystem/bolt/compare/v2.19.1...v2.20.0) (2020-03-18)
+
+
+### Bug Fixes
+
+* add Blueprints to list of packages Jest knows about when running dependency checks ([af213ae](https://github.com/boltdesignsystem/bolt/commit/af213ae722f37940bb9e496283dc4840ebce33a3))
+* add new E2E integration test to verify that the docs site off-canvas nav can be opened / closed moving forward ([7bffd09](https://github.com/boltdesignsystem/bolt/commit/7bffd0966bcebcc2c6a49834e382d5fac4f9745e))
+* address eslint + stylelint linter issues ([caea760](https://github.com/boltdesignsystem/bolt/commit/caea76028a4cca41dfefbc3e230f57ff0035d84d))
+* auto-ignore __demos__ folders when running component dependency check ([e41ae27](https://github.com/boltdesignsystem/bolt/commit/e41ae27dbec9d6d2fd31211549bf5198b5eb6b48))
+* change demo to reflect actual usage ([c010fca](https://github.com/boltdesignsystem/bolt/commit/c010fca45c7b561794f6e52421f66d2ae6c75062))
+* don't show medium sized headline ([6c4b5c7](https://github.com/boltdesignsystem/bolt/commit/6c4b5c7de19c4abbc839a16e2955175d472f2cdd))
+* switch to vanilla window.location.hash ([e3cad3a](https://github.com/boltdesignsystem/bolt/commit/e3cad3ab0b1af905be3509bd7be4f54c84d33da7))
+* temporarily bypass figure VRT diff and just use rendered markup diff for now ([4ac49df](https://github.com/boltdesignsystem/bolt/commit/4ac49df61a5770c5cc3b522e679a9bd3c8e0499f))
+* temporarily disable check-runs to work around bad creds error from Github ([de5b901](https://github.com/boltdesignsystem/bolt/commit/de5b901e1fffdd553d613907c95c40392266c0ed))
+* update API + Card snapshots ([6d67a9e](https://github.com/boltdesignsystem/bolt/commit/6d67a9e38705252516c444b918a33f97aeb7d8d0))
+* update docs site off-canvas nav IDs to not match with new SVG icon IDs on the page. ([ff7d74b](https://github.com/boltdesignsystem/bolt/commit/ff7d74b27ddc9012962da4edd91f53d6e15c2a0e))
+* update Icons per PR feedback ([c3f5457](https://github.com/boltdesignsystem/bolt/commit/c3f54575b0bbda56ad60f680bf8052ab648c7ae0))
+* update new E2E test to also work correctly in IE 11 ([aaf8916](https://github.com/boltdesignsystem/bolt/commit/aaf8916a923d20274c878e462c364a5f642ae8c0))
+* update Popover logic to strip query strings from hash when checking if the URL hash matches ([ad9880d](https://github.com/boltdesignsystem/bolt/commit/ad9880d6d5976a089763b42aa4de1f481fa5ae77))
+* update Twig include path ([40f6aad](https://github.com/boltdesignsystem/bolt/commit/40f6aadcfae4437e3e9cf5e7aab5183ed10cfa7a))
+* update xxsmall font-size to follow conventions ([da323e3](https://github.com/boltdesignsystem/bolt/commit/da323e31801a8d4ab7152564b71b5c860cfe9c0d))
+* use `replace-with-children` instead of is=shadow-root, use current Twig conventions ([96b10a5](https://github.com/boltdesignsystem/bolt/commit/96b10a5f21056d997c0296766c2a35d1350aae8c))
+* vertially center number ([1589d4a](https://github.com/boltdesignsystem/bolt/commit/1589d4ab0d340d6f334bd51ccc98623d02c43100))
+
+
+### Features
+
+* add E2E integration tests that cover Popover's new SSR / no-JS state restoration logic ([d1e6936](https://github.com/boltdesignsystem/bolt/commit/d1e6936dcdec42386cfa3540ad9737b7a63616c3))
+* add function version of bolt-font-weight ([e2860f5](https://github.com/boltdesignsystem/bolt/commit/e2860f56e4b46d518d5420c4b70f609ac1f789c7))
+* add new bulleted headline functionality + supporting demos ([fdbc223](https://github.com/boltdesignsystem/bolt/commit/fdbc223ed9ee1b5f2a988a94bbcb0306beca6fa9))
+* add offset support to TOC component ([8bcc05d](https://github.com/boltdesignsystem/bolt/commit/8bcc05d94303d3193e48bcfe786be0167588e14f))
+* create new numbered headline blueprint for Academy; add basic docs + demos ([1eb8e75](https://github.com/boltdesignsystem/bolt/commit/1eb8e753d0e515165a1bee98b9420f08020e0106))
+* replace `xxsmall` with `xsmall` in Blueprints ([0af47fc](https://github.com/boltdesignsystem/bolt/commit/0af47fc59d830e1989dcf98d189619d6b8bfcfd7))
+* update 5 out of the 7 existing Academy icons to be more consistent with the rest of the Bolt Design System ([20e47d7](https://github.com/boltdesignsystem/bolt/commit/20e47d7f76c6f934296e9240ae8d53cd8bb7a1fa))
+* update bolt-font-size + poly fluid sizing functions to support optionally outputting CSS custom properties ([1b4edec](https://github.com/boltdesignsystem/bolt/commit/1b4edecb4a0cfa5a7618ef37cb17eddafbb10aa5))
+* update Popover to mirror it's internal state with the original page's no-JS / SSR state; clean up any existing URL hashes ([e981658](https://github.com/boltdesignsystem/bolt/commit/e9816587ad6a6d74859e486382c3000b3bc24d0c))
+* update TOC demos + add realistic sticky Page Header use case to Blueprints ([b140e37](https://github.com/boltdesignsystem/bolt/commit/b140e37be83cf4d0f8ae25cb8255856e0ad6a725))
+
+
+
+
+
+## [2.19.1](https://github.com/boltdesignsystem/bolt/compare/v2.19.0...v2.19.1) (2020-03-11)
+
+
+### Bug Fixes
+
+* remove original fix for loading hidden videos, not necessary anymore, actually causing new bug ([a7af0ed](https://github.com/boltdesignsystem/bolt/commit/a7af0ed4b8d2710b92395b241cb891cf24ca03e2))
+
+
+
+
+
 # [2.19.0](https://github.com/boltdesignsystem/bolt/compare/v2.18.1...v2.19.0) (2020-03-04)
 
 

@@ -69,6 +69,70 @@ exports[`link Default <bolt-link> w/o Shadow DOM renders 3`] = `
 </div>
 `;
 
+exports[`link Default <bolt-link> w/o Shadow DOM renders and without url prop 1`] = `
+<div>
+  <bolt-link no-shadow>
+    <a class="c-bolt-link c-bolt-link--display-inline c-bolt-link--valign-center"
+       target="_self"
+    >
+      <slot name="before">
+      </slot>
+      <span class="c-bolt-link__text">
+        This is a link without url prop
+      </span>
+      <slot name="after">
+      </slot>
+    </a>
+  </bolt-link>
+</div>
+`;
+
+exports[`link Default <bolt-link> w/o Shadow DOM renders and without url prop 3`] = `
+<div
+  style=""
+>
+  <bolt-link
+    no-shadow=""
+    style=""
+  >
+    <!---->
+    <!---->
+  </bolt-link>
+  <a
+    class="c-bolt-link c-bolt-link--display-inline c-bolt-link--valign-center"
+    style=""
+    target="_self"
+  >
+    <!---->
+    <!---->
+    <slot
+      name="before"
+      style=""
+    />
+    <!---->
+    <span
+      class="c-bolt-link__text"
+      style=""
+    >
+      <!---->
+      <!---->
+      This is a link without url prop
+      <!---->
+      <!---->
+    </span>
+    <!---->
+    <slot
+      name="after"
+      style=""
+    />
+    <!---->
+    <!---->
+  </a>
+  <!---->
+  <!---->
+</div>
+`;
+
 exports[`link Default <bolt-link> with Shadow DOM renders 1`] = `
 <a href="http://pega.com"
    class="c-bolt-link c-bolt-link--display-inline c-bolt-link--valign-center"
@@ -88,6 +152,27 @@ exports[`link Default <bolt-link> with Shadow DOM renders 1`] = `
 exports[`link Default <bolt-link> with Shadow DOM renders 2`] = `
 <bolt-link url="http://pega.com">
   Link Test -- Outer HTML
+</bolt-link>
+`;
+
+exports[`link Default <bolt-link> with Shadow DOM renders and without url prop 1`] = `
+<a class="c-bolt-link c-bolt-link--display-inline c-bolt-link--valign-center"
+   target="_self"
+>
+  <slot name="before">
+  </slot>
+  <span class="c-bolt-link__text">
+    <slot>
+    </slot>
+  </span>
+  <slot name="after">
+  </slot>
+</a>
+`;
+
+exports[`link Default <bolt-link> with Shadow DOM renders and without url prop 2`] = `
+<bolt-link>
+  Link Test without url attr -- Outer HTML
 </bolt-link>
 `;
 

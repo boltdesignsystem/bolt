@@ -22,10 +22,15 @@
         } only %}
       {% endset %}
       {# Start component specific code #}
+
+      {# note: these UUIDs are used in the Popover's E2E integration tests:
+        packages/components/bolt-popover/__tests__/popover.e2e.js
+      #}
       {% include "@bolt-components-popover/popover.twig" with {
         trigger: trigger,
         content: content,
         theme: theme,
+        uuid: "theme-demo-#{theme}-#{loop.index}"
       } only %}
       {# End component specific code #}
     </bolt-list-item>

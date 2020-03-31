@@ -25,6 +25,7 @@ before_install:
   - nvm install # version lifted from `.nvmrc`
   - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.19.1
   - export PATH="$HOME/.yarn/bin:$PATH"
+  - composer config --global github-oauth.github.com ${GITHUB_TOKEN}
 
 # see more conditions: https://docs.travis-ci.com/user/conditions-v1
 # Stages run sequentially; the jobs in them run in parallel
@@ -43,33 +44,33 @@ jobs:
       install:
         - yarn run setup
         - yarn workspace @bolt/website prep # creates data and manifest files
-      before_script: ./scripts/check-run-queue.js 'Jest Component Tests'
+      # before_script: ./scripts/check-run-queue.js 'Jest Component Tests'
       script:
         - travis_retry yarn test:js
         # - yarn test:js:quick --maxWorkers=1 # running both `test:js` as comparison; remove or comment out this or other one eventually
-      after_success: ./scripts/check-run-success.js 'Jest Component Tests'
-      after_failure: ./scripts/check-run-failure.js 'Jest Component Tests'
 
+      # after_success: ./scripts/check-run-success.js 'Jest Component Tests'
+      # after_failure: ./scripts/check-run-failure.js 'Jest Component Tests'
     - stage: Pre-deploy
       name: 'Smoke Tests: Lint + Jest Unit Tests'
       install:
         - yarn run setup
         - yarn workspace @bolt/website prep # creates data and manifest files
-      before_script: ./scripts/check-run-queue.js 'Lint + Unit Tests'
+      # before_script: ./scripts/check-run-queue.js 'Lint + Unit Tests'
       script:
         - yarn run lint
         - yarn test:php
         - yarn test:monorepo --maxWorkers=1
         - yarn test:pkgs
-      after_success: ./scripts/check-run-success.js 'Lint + Unit Tests'
-      after_failure: ./scripts/check-run-failure.js 'Lint + Unit Tests'
 
-#    - stage: Pre-deploy
-#      if: (tag =~ ^v) OR (branch =~ /(master|release)/)
-#      name: 'Build Drupal Lab'
-#      script:
-#        - cd example-integrations/drupal-lab
-#        - npm run setup
+      # after_success: ./scripts/check-run-success.js 'Lint + Unit Tests'
+      # after_failure: ./scripts/check-run-failure.js 'Lint + Unit Tests'
+    #    - stage: Pre-deploy
+    #      if: (tag =~ ^v) OR (branch =~ /(master|release)/)
+    #      name: 'Build Drupal Lab'
+    #      script:
+    #        - cd example-integrations/drupal-lab
+    #        - npm run setup
 
     # quicker build + Nightwatch tests for feature branches
     - stage: Pre-deploy
@@ -78,16 +79,16 @@ jobs:
       install:
         - yarn run setup
         - npx lerna run postbootstrap
-        - yarn global add @lhci/cli@0.3.x
+        # - yarn global add @lhci/cli@0.3.x
       script:
-        - cd example-integrations/drupal-lab
-        - yarn run generate # generate static version of Drupal Lab in the integration folder
-        - cd ../../
+        # - cd example-integrations/drupal-lab
+        # - yarn run generate # generate static version of Drupal Lab in the integration folder
+        # - cd ../../
         - yarn run build
         - yarn run deploy
         - export NOW_URL=$(./scripts/get-latest-deploy.js)
         - travis_retry yarn run test:e2e:quick
-        - lhci autorun --collect.numberOfRuns=3 --collect.url=$NOW_URL --collect.url=$NOW_URL/pattern-lab/patterns/04-pages-10-d8-product-pages-product-t2/04-pages-10-d8-product-pages-product-t2.html --collect.url=$NOW_URL/pattern-lab/patterns/06-experiments-micro-journeys-90-micro-journeys/06-experiments-micro-journeys-90-micro-journeys.html
+        # - lhci autorun --collect.numberOfRuns=3 --collect.url=$NOW_URL --collect.url=$NOW_URL/pattern-lab/patterns/04-pages-10-d8-product-pages-product-t2/04-pages-10-d8-product-pages-product-t2.html --collect.url=$NOW_URL/pattern-lab/patterns/06-experiments-micro-journeys-90-micro-journeys/06-experiments-micro-journeys-90-micro-journeys.html
       after_success:
         - ./scripts/deploy-branch-alias.js
 
@@ -100,9 +101,9 @@ jobs:
       before_script:
         - find . -name '.incache' -exec rm -rf {} +
       script:
-        - cd example-integrations/drupal-lab
-        - yarn run generate # generate static version of Drupal Lab in the integration folder
-        - cd ../../
+        # - cd example-integrations/drupal-lab
+        # - yarn run generate # generate static version of Drupal Lab in the integration folder
+        # - cd ../../
         - yarn run build
         - yarn run deploy
 
@@ -112,14 +113,14 @@ jobs:
       install:
         - yarn
         - npx lerna run postbootstrap
-      before_script: ./scripts/check-run-in-progress.js 'Nightwatch'
+      # before_script: ./scripts/check-run-in-progress.js 'Nightwatch'
       script:
         - export NOW_URL=$(./scripts/get-latest-deploy.js)
         - travis_retry yarn run test:e2e:full
       after_success:
         - ./scripts/deploy-branch-alias.js
         - ./scripts/deploy-tagged-release.js
-        - ./packages/testing/testing-nightwatch/nightwatch-report-results.js
+        # - ./packages/testing/testing-nightwatch/nightwatch-report-results.js
 
     - stage: Auto-release
       name: 'Canary Release'

@@ -5,9 +5,7 @@ import {
   stopServer,
   html,
 } from '../../../testing/testing-helpers';
-const { readYamlFileSync } = require('@bolt/build-tools/utils/yaml');
-const { join } = require('path');
-const schema = readYamlFileSync(join(__dirname, '../link.schema.yml'));
+import schema from '../link.schema';
 const { display, valign } = schema.properties;
 
 const timeout = 90000;
@@ -180,6 +178,72 @@ describe('link', () => {
 
     const renderedHTML = await html(defaultLinkOuter);
     expect(renderedHTML.textContent).toEqual('Link Test -- Outer HTML');
+
+    const image = await page.screenshot();
+
+    expect(image).toMatchImageSnapshot({
+      failureThreshold: '0.01',
+      failureThresholdType: 'percent',
+    });
+  });
+
+  test('Default <bolt-link> w/o Shadow DOM renders and without url prop', async function() {
+    const renderedLinkHTML = await page.evaluate(async () => {
+      document.body.insertAdjacentHTML(
+        'beforeend',
+        '<div><bolt-link no-shadow>This is a link without url prop' +
+          '</bolt-link></div>',
+      );
+      const link = document.querySelector('bolt-link');
+      await link.updateComplete;
+      return link.parentNode.outerHTML;
+    });
+    expect(renderedLinkHTML).toMatchSnapshot();
+
+    const renderedHTML = await html(renderedLinkHTML);
+
+    expect(renderedHTML.hasAttribute('href')).toBe(false);
+    expect(
+      renderedHTML
+        .querySelector('.c-bolt-link')
+        .classList.contains('c-bolt-link--display-inline'),
+    ).toBe(true);
+
+    const image = await page.screenshot();
+    expect(image).toMatchImageSnapshot({
+      failureThreshold: '0.01',
+      failureThresholdType: 'percent',
+    });
+
+    expect(renderedHTML).toMatchSnapshot();
+  });
+
+  test('Default <bolt-link> with Shadow DOM renders and without url prop', async function() {
+    const defaultLinkShadowRoot = await page.evaluate(async () => {
+      document.body.insertAdjacentHTML(
+        'beforeend',
+        '<bolt-link>Link Test without url prop -- Shadow Root HTML</bolt-link>',
+      );
+      const link = document.querySelector('bolt-link');
+      await link.updateComplete;
+      return link.renderRoot.innerHTML;
+    });
+    expect(defaultLinkShadowRoot).toMatchSnapshot();
+
+    const defaultLinkOuter = await page.evaluate(async () => {
+      const link = document.createElement('bolt-link');
+      link.textContent = 'Link Test without url attr -- Outer HTML';
+      document.body.appendChild(link);
+      await link.updateComplete;
+      return link.outerHTML;
+    });
+    expect(defaultLinkOuter).toMatchSnapshot();
+
+    const renderedHTML = await html(defaultLinkOuter);
+    expect(renderedHTML.hasAttribute('href')).toBe(false);
+    expect(renderedHTML.textContent).toEqual(
+      'Link Test without url attr -- Outer HTML',
+    );
 
     const image = await page.screenshot();
 

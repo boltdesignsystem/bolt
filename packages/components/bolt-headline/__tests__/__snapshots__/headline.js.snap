@@ -318,27 +318,29 @@ exports[`<bolt-headline> Component headline with associated link 1`] = `
 
 exports[`<bolt-headline> Component headline with icon 1`] = `
 <h2 class="c-bolt-headline c-bolt-headline--bold c-bolt-headline--xlarge">
-  this is a headline
-  <span class="c-bolt-headline__icon">
-    <bolt-icon name="check">
-      <span class="c-bolt-icon c-bolt-icon--check">
-        <svg class="c-bolt-icon__icon"
-             xmlns="http://www.w3.org/2000/svg"
-             viewbox="0 0 24 24"
-        >
-          <g fill="none"
-             fill-rule="evenodd"
+  <span class="c-bolt-headline__text">
+    this is a headline
+    <span class="c-bolt-headline__icon c-bolt-headline__icon--position-after">
+      <bolt-icon name="check">
+        <span class="c-bolt-icon c-bolt-icon--check">
+          <svg class="c-bolt-icon__icon"
+               xmlns="http://www.w3.org/2000/svg"
+               viewbox="0 0 24 24"
           >
-            <path>
-            </path>
-            <path fill="var(--bolt-theme-icon, currentColor)"
-                  d="M19.292 6.29L8.998 16.584 4.703 12.29a1.004 1.004 0 00-1.412 0 1.002 1.002 0 000 1.413l5 5a.995.995 0 001.411 0l11-11a.99.99 0 000-1.413 1.001 1.001 0 00-1.41 0z"
+            <g fill="none"
+               fill-rule="evenodd"
             >
-            </path>
-          </g>
-        </svg>
-      </span>
-    </bolt-icon>
+              <path>
+              </path>
+              <path fill="var(--bolt-theme-icon, currentColor)"
+                    d="M19.292 6.29L8.998 16.584 4.703 12.29a1.004 1.004 0 00-1.412 0 1.002 1.002 0 000 1.413l5 5a.995.995 0 001.411 0l11-11a.99.99 0 000-1.413 1.001 1.001 0 00-1.41 0z"
+              >
+              </path>
+            </g>
+          </svg>
+        </span>
+      </bolt-icon>
+    </span>
   </span>
 </h2>
 `;
