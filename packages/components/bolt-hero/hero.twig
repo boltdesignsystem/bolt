@@ -17,9 +17,9 @@
 {% set _imagePaddingTop = imageValign == "top" ? "none" : "large" %}
 {% set _imagePaddingBottom = this.data["image_valign"] == "bottom" ? "none" : "large" %}
 
-{% set _isImageFirstOnMobile = (imageValign != 'bottom') or (imageValign == 'top') %}
+{# Image order on desktop is always determined by the reverseOrder prop; order on mobile is always set automatically #}
 {% set _isImageFirstOnDesktop = reverseOrder == true %}
-{% set _isImageLastOnMobile = (imageValign != 'top') or (imageValign == 'bottom') %}
+{% set _isImageFirstOnMobile = imageValign != 'bottom' %}
 
 {% if image %}
   {% set renderedImage %}
@@ -32,7 +32,7 @@
         u-bolt-width-6/12@{{ _largeBreakpoint }}
         u-bolt-padding-{{_isImageFirstOnDesktop ? 'right' : 'left'}}-large@{{_largeBreakpoint}}
         {{ _isImageFirstOnMobile and imageValign != 'top' ? 'u-bolt-padding-top-large' : '' }}
-        {{ _isImageLastOnMobile and imageValign != 'bottom' and not _isImageFirstOnMobile ? 'u-bolt-padding-bottom-large' : '' }}
+        {{ _isImageFirstOnMobile == false and imageValign != 'bottom' ? 'u-bolt-padding-bottom-large' : '' }}
         u-bolt-padding-top-{{_imagePaddingTop}}@{{_mediumBreakpoint}}
         u-bolt-padding-bottom-{{_imagePaddingBottom}}@{{_mediumBreakpoint}}
       ">
@@ -54,11 +54,17 @@
   {% endset %}
 {% endif %}
 
+{#
+  Image and content are printed in the order they should appear on mobile.  For desktop, leave it the same unless:
+    - An image is present, in which case check to see if mobile and desktop ordering should be different.
+    - No image is present, in which case simply honor the reverseOrder prop.
+#}
+{% set _reverseGrid = image ? (_isImageFirstOnDesktop != _isImageFirstOnMobile) : reverseOrder %}
 
 {% set content %}
-  {% grid "o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--medium #{(reverseOrder == false and imageValign != 'bottom') or (reverseOrder == true and not image) ? 'o-bolt-grid--rev' : '' }" %}
+  {% grid "o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--medium #{_reverseGrid ? 'o-bolt-grid--rev' : '' }" %}
 
-    {% if _isImageFirstOnMobile and image %}
+    {% if image and _isImageFirstOnMobile %}
       {{ renderedImage }}
     {% endif %}
 
@@ -72,7 +78,7 @@
       {{ content }}
     {% endcell %}
 
-    {% if _isImageLastOnMobile and image and not _isImageFirstOnMobile %}
+    {% if image and _isImageFirstOnMobile == false %}
       {{ renderedImage }}
     {% endif %}
 
