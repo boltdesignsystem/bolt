@@ -414,7 +414,7 @@ describe('<bolt-blockquote> component', () => {
     const results = await render(
       '@bolt-components-blockquote/blockquote.twig',
       {
-        content: '<p>Short and sweet</p>',
+        content: '<p>Engage!</p>',
         border: 'vertical',
         inset: true,
       },
@@ -445,15 +445,22 @@ describe('<bolt-blockquote> component', () => {
       );
     });
 
+    const blockquote = await page.$('bolt-blockquote');
+    const boundingBox = await blockquote.boundingBox();
+
     await page.waitFor(1000);
-    const image = await page.screenshot();
-    expect(image).toMatchImageSnapshot({
-      failureThreshold: '20',
-      failureThresholdType: 'pixel',
-      customDiffConfig: {
-        threshold: '.1',
-        includeAA: false,
+    const image = await page.screenshot({
+      clip: {
+        x: boundingBox.x,
+        y: boundingBox.y,
+        width: Math.min(boundingBox.width, page.viewport().width),
+        height: Math.min(boundingBox.height, page.viewport().height),
       },
+    });
+
+    expect(image).toMatchImageSnapshot({
+      failureThreshold: '50',
+      failureThresholdType: 'pixel',
     });
   });
 });
