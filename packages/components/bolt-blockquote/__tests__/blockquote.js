@@ -407,9 +407,9 @@ describe('<bolt-blockquote> component', () => {
   // follow-up VRT to catch the visual regression related to http://vjira2:8080/browse/BDS-2074
   test('<bolt-blockquote> initially rendering via Twig display quotes correctly', async function() {
     await page.setViewport({
-      width: 250,
+      width: 200,
       height: 80,
-      deviceScaleFactor: 8,
+      deviceScaleFactor: 16,
     });
 
     const results = await render(
@@ -461,11 +461,11 @@ describe('<bolt-blockquote> component', () => {
     });
 
     expect(image).toMatchImageSnapshot({
-      failureThreshold: '0.003',
+      failureThreshold: '0.0071',
       failureThresholdType: 'percent',
       customDiffConfig: {
-        threshold: '.4',
-        includeAA: true,
+        threshold: '.65',
+        includeAA: false,
       },
     });
   });
