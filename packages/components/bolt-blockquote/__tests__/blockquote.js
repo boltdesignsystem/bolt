@@ -461,11 +461,11 @@ describe('<bolt-blockquote> component', () => {
     });
 
     expect(image).toMatchImageSnapshot({
-      failureThreshold: '0.0071',
+      failureThreshold: '0.013',
       failureThresholdType: 'percent',
       customDiffConfig: {
-        threshold: '.65',
-        includeAA: false,
+        threshold: '.7',
+        includeAA: true,
       },
     });
   });
