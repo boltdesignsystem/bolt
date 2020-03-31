@@ -296,7 +296,7 @@ hidden: false
 | Colors          | `--bolt-color-indigo-xdark`      <br> `--bolt-color-red`                |
 | Font family     | `--bolt-font-family-heading`     <br> `--bolt-font-family-body`         |
 | Font size       | `--bolt-font-size-xsmall`        <br> `--bolt-font-size-md`         |
-| Line height     | `--bolt-bolt-line-height-md` <br> `--bolt-line-height-md-tight` |
+| Line height     | `--bolt-line-height-md` <br> `--bolt-line-height-md-tight` |
 | Font weight     | `--bolt-font-weight-light`       <br> `--bolt-font-weight-bold`         |
 | Transitions     | `--bolt-transition-fast`         <br> `--bolt-transition-slow`          |
 | Opacity         | `--bolt-opacity-20`              <br> `--bolt-opacity-50`               |
