@@ -455,6 +455,9 @@ describe('<bolt-blockquote> component', () => {
 
     await page.waitFor(1000);
     const image = await page.screenshot();
-    expect(image).toMatchImageSnapshot();
+    expect(image).toMatchImageSnapshot({
+      failureThreshold: '20',
+      failureThresholdType: 'pixel',
+    });
   });
 });
