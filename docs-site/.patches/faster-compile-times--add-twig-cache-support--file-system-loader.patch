@@ -1,0 +1,30 @@
+diff --git a/src/PatternLab/PatternEngine/Twig/Loaders/FilesystemLoader.php b/src/PatternLab/PatternEngine/Twig/Loaders/FilesystemLoader.php
+index 1b0e00c92..5dba4d080 100644
+--- a/src/PatternLab/PatternEngine/Twig/Loaders/FilesystemLoader.php
++++ b/src/PatternLab/PatternEngine/Twig/Loaders/FilesystemLoader.php
+@@ -26,6 +26,7 @@ class FilesystemLoader extends Loader {
+ 		
+ 		// set-up default vars
+ 		$twigDebug = Config::getOption("twigDebug");
++		$twigCache = Config::getOption("twigCache");
+ 		
+ 		// set-up the paths to be searched for templates
+ 		$filesystemLoaderPaths   = array();
+@@ -46,7 +47,11 @@ class FilesystemLoader extends Loader {
+ 		
+ 		// set-up Twig
+ 		$twigLoader = new \Twig_Loader_Filesystem($filesystemLoaderPaths);
+-		$instance   = new \Twig_Environment($twigLoader, array("debug" => $twigDebug));
++		$instance   = new \Twig_Environment($twigLoader, array(
++			"debug" => false,
++			"cache" => $twigCache,
++			"auto_reload" => true,
++		));
+ 		
+ 		// customize Twig
+ 		TwigUtil::setInstance($instance);
+@@ -85,3 +90,4 @@ class FilesystemLoader extends Loader {
+ 	}
+ 	
+ }
++
