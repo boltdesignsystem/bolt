@@ -1,0 +1,125 @@
+diff --git a/src/PatternLab/PatternData/Rules/DocumentationRule.php b/src/PatternLab/PatternData/Rules/DocumentationRule.php
+index 14a3676fc..1666ebc66 100644
+--- a/src/PatternLab/PatternData/Rules/DocumentationRule.php
++++ b/src/PatternLab/PatternData/Rules/DocumentationRule.php
+@@ -71,14 +71,14 @@ class DocumentationRule extends \PatternLab\PatternData\Rule {
+ 		// figure out if this is a pattern subtype
+ 		$patternSubtypeDoc = false;
+ 		if ($depth == 1) {
+-			// go through all of the directories to see if this one matches our doc
+-			foreach (glob($patternSourceDir.DIRECTORY_SEPARATOR.$patternType.DIRECTORY_SEPARATOR."*",GLOB_ONLYDIR) as $dir) {
+-				$dir = str_replace($patternSourceDir.DIRECTORY_SEPARATOR.$patternType.DIRECTORY_SEPARATOR,"",$dir);
+-				if ($dir == $doc) {
+-					$patternSubtypeDoc = true;
+-					break;
+-				}
+-			}
++		 // go through all of the directories to see if this one matches our doc
++		 foreach (glob($patternSourceDir.DIRECTORY_SEPARATOR.$patternType.DIRECTORY_SEPARATOR."*",GLOB_ONLYDIR) as $dir) {
++		   $dir = str_replace($patternSourceDir.DIRECTORY_SEPARATOR.$patternType.DIRECTORY_SEPARATOR,"",$dir);
++		   if ($dir == $doc) {
++		     $patternSubtypeDoc = true;
++		     break;
++		   }
++		 }
+ 		}
+ 		$category         = ($patternSubtypeDoc) ? "patternSubtype" : "pattern";
+ 		$patternStoreKey  = ($patternSubtypeDoc) ? $docPartial."-plsubtype" : $docPartial;
+@@ -92,41 +92,41 @@ class DocumentationRule extends \PatternLab\PatternData\Rule {
+ 		$patternPathSrc          = $ppdExporter->run();
+ 		$options                 = array();
+ 		$options["patternPaths"] = $patternPathSrc;
+-		$patternEngineBasePath   = PatternEngine::getInstance()->getBasePath();
+-		$patternLoaderClass      = $patternEngineBasePath . "\Loaders\PatternLoader";
+-		$patternLoader           = new $patternLoaderClass($options);
++		// $patternEngineBasePath   = PatternEngine::getInstance()->getBasePath();
++		// $patternLoaderClass      = $patternEngineBasePath . "\Loaders\PatternLoader";
++		// $patternLoader           = new $patternLoaderClass($options);
+ 		
+ 		
+ 		// Combine local + global pattern data.
+ 		$data = array();
+ 		$globalData = Data::getPatternSpecificData($docPartial);
+-		$localData = array();
++		// $localData = array();
+ 		
+-		if (PatternData::getOption($docPartial) && isset(PatternData::getOption($docPartial)["data"])){
+-			$localData = PatternData::getOption($docPartial)["data"];
+-		}
++		// if (PatternData::getOption($docPartial) && isset(PatternData::getOption($docPartial)["data"])){
++		//  $localData = PatternData::getOption($docPartial)["data"];
++		// }
+ 		
+-		if (!empty($localData)){
+-			$data = array_replace_recursive($globalData, $localData);
+-		} else {
+-			$data = $globalData;
+-		}
++		// if (!empty($localData)){
++		//  $data = array_replace_recursive($globalData, $localData);
++		// } else {
++		// $data = $globalData;
++		// }
+ 
+ 		// Render the markdown content as a pattern, piping in the pattern-specific data from above.
+-		$text = $patternLoader->render(array(
+-			"pattern" => $text,
+-			"data" => $data
+-		));
++		// $text = $patternLoader->render(array(
++		//  "pattern" => $text,
++		//  "data" => $data
++		// ));
+ 
+ 		// Finally parse the resulting content as normal markup; continue as usual.
+ 		list($yaml,$markdown) = Documentation::parse($text);
+ 
+ 
+ 		$patternStoreData = array("category"   => $category,
+-								  "desc"       => trim($markdown),
+-								  "descExists" => true,
+-								  "meta"       => $yaml,
+-								  "full"       => $doc);
++									"desc"       => trim($markdown),
++									"descExists" => true,
++									"meta"       => $yaml,
++									"full"       => $doc);
+ 
+ 		// can set `title: My Cool Pattern` instead of lifting from file name
+ 		if (isset($title)) {
+@@ -134,19 +134,19 @@ class DocumentationRule extends \PatternLab\PatternData\Rule {
+ 		}
+ 
+ 		$availableKeys = [
+-      'state', // can use `state: inprogress` instead of `button@inprogress.mustache`
+-      'hidden', // setting to `true`, removes from menu and viewall, which is same as adding `_` prefix
+-      'noviewall', // setting to `true`, removes from view alls but keeps in menu, which is same as adding `-` prefix
+-      'order', // @todo implement order
+-      'tags', // not implemented, awaiting spec approval and integration with styleguide kit. adding to be in sync with Node version.
+-      'links', // not implemented, awaiting spec approval and integration with styleguide kit. adding to be in sync with Node version.
+-    ];
++			'state', // can use `state: inprogress` instead of `button@inprogress.mustache`
++			'hidden', // setting to `true`, removes from menu and viewall, which is same as adding `_` prefix
++			'noviewall', // setting to `true`, removes from view alls but keeps in menu, which is same as adding `-` prefix
++			'order', // @todo implement order
++			'tags', // not implemented, awaiting spec approval and integration with styleguide kit. adding to be in sync with Node version.
++			'links', // not implemented, awaiting spec approval and integration with styleguide kit. adding to be in sync with Node version.
++		];
+ 
+ 		foreach ($availableKeys as $key) {
+-      if (isset($yaml[$key])) {
+-        $patternStoreData[$key] = $yaml[$key];
+-      }
+-    }
++			if (isset($yaml[$key])) {
++				$patternStoreData[$key] = $yaml[$key];
++			}
++		}
+ 
+ 		// if the pattern data store already exists make sure this data overwrites it
+ 		$patternStoreData = (PatternData::checkOption($patternStoreKey)) ? array_replace_recursive(PatternData::getOption($patternStoreKey),$patternStoreData) : $patternStoreData;
+@@ -155,3 +155,4 @@ class DocumentationRule extends \PatternLab\PatternData\Rule {
+ 	}
+ 	
+ }
++
