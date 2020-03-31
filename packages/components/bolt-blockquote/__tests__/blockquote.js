@@ -6,6 +6,7 @@ import {
   html,
   vrtDefaultConfig as vrtConfig,
 } from '../../../testing/testing-helpers';
+const os = require('os');
 const { readYamlFileSync } = require('@bolt/build-tools/utils/yaml');
 const { join } = require('path');
 const schema = readYamlFileSync(join(__dirname, '../blockquote.schema.yml'));
@@ -406,12 +407,14 @@ describe('<bolt-blockquote> component', () => {
 
   // follow-up VRT to catch the visual regression related to http://vjira2:8080/browse/BDS-2074
   test('<bolt-blockquote> initially rendering via Twig display quotes correctly', async function() {
+    // significantly increase the pixel density for a higher precision VRT diff
     await page.setViewport({
       width: 200,
       height: 80,
       deviceScaleFactor: 16,
     });
 
+    // Only include bare-minimum content in Blockquote to reduce the cross-OS text rendering differences throwing off any VRT results
     const results = await render(
       '@bolt-components-blockquote/blockquote.twig',
       {
@@ -430,6 +433,7 @@ describe('<bolt-blockquote> component', () => {
         `${renderedBlockquoteHTML}`,
       );
       document.body.classList.add('u-bolt-padding-small');
+      document.body.classList.add('t-bolt-xdark');
     }, renderedBlockquoteHTML);
 
     await page.evaluate(async () => {
@@ -451,6 +455,8 @@ describe('<bolt-blockquote> component', () => {
     const boundingBox = await blockquote.boundingBox();
 
     await page.waitFor(1000);
+
+    // crop the blockquote screenshot to the element's dimensions so the visual % difference between w/ and w/o quotes is more easily measurable
     const image = await page.screenshot({
       clip: {
         x: boundingBox.x,
@@ -460,8 +466,9 @@ describe('<bolt-blockquote> component', () => {
       },
     });
 
+    // conditionally adjust VRT precision based on MacOS vs Linux text rendering differences. Both should still pick up a missing Blockquote double-quote, albeit with a ~.75% range
     expect(image).toMatchImageSnapshot({
-      failureThreshold: '0.013',
+      failureThreshold: os.platform() === 'darwin' ? '0.007' : '0.018',
       failureThresholdType: 'percent',
       customDiffConfig: {
         threshold: '.7',
