@@ -406,24 +406,28 @@ describe('<bolt-blockquote> component', () => {
 
   // follow-up VRT to catch the visual regression related to http://vjira2:8080/browse/BDS-2074
   test('<bolt-blockquote> initially rendering via Twig display quotes correctly', async function() {
+    await page.setViewport({
+      width: 300,
+      height: 80,
+    });
+
     const results = await render(
       '@bolt-components-blockquote/blockquote.twig',
       {
-        content:
-          '<p>Short and sweet quote.</p>',
-        border: 'horizontal',
+        content: '<p>Short and sweet</p>',
+        border: 'vertical',
         inset: true,
       },
     );
 
     const renderedBlockquoteHTML = results.html;
 
-    await page.evaluate((renderedBlockquoteHTML) => {
+    await page.evaluate(renderedBlockquoteHTML => {
       document.body.insertAdjacentHTML(
         'beforeend',
         `${renderedBlockquoteHTML}`,
       );
-      document.body.classList.add('u-bolt-padding-medium');
+      document.body.classList.add('u-bolt-padding-small');
     }, renderedBlockquoteHTML);
 
     await page.evaluate(async () => {
@@ -446,6 +450,10 @@ describe('<bolt-blockquote> component', () => {
     expect(image).toMatchImageSnapshot({
       failureThreshold: '20',
       failureThresholdType: 'pixel',
+      customDiffConfig: {
+        threshold: '.1',
+        includeAA: false,
+      },
     });
   });
 });
