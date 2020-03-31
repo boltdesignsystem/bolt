@@ -5,18 +5,18 @@ hidden: false
 ---
 
 - [TLDR Spec](#tldr-spec)
-- [Do's and Don'ts](#dos-and-donts)
 - [Global Tokens](#global-tokens)
   - [Syntax](#syntax)
   - [Global Tokens Example](#global-tokens-example)
   - [Mapping Global Tokens to ITCSS](#mapping-global-tokens-to-itcss)
-- [Context-specific Tokens (Themes, Density, UI Types)](#context-specific-tokens-themes-density-ui-types)
+- [Context & Token-specific Variables (Themes, Density, UI Types)](#context--token-specific-variables-themes-density-ui-types)
   - [Syntax](#syntax-1)
   - [Theming Examples](#theming-examples)
   - [Density Examples (TBD)](#density-examples-tbd)
 - [Component-specific Tokens (Buttons, Cards, etc)](#component-specific-tokens-buttons-cards-etc)
   - [Syntax](#syntax-2)
   - [Component-specific Examples](#component-specific-examples)
+- [Do's and Don'ts](#dos-and-donts)
 - [Things To Consider](#things-to-consider)
 - [Implementation Details](#implementation-details)
 - [Questions](#questions)
@@ -28,9 +28,9 @@ hidden: false
 ## TLDR Spec
 
 - Bolt has 3 tiers of CSS custom properties
-  1. **Global** (pure design token values)
-  2. **Context-specific** (opinionated defaults that are shared -- like themes)
-  3. **Component-specific** (tokens for specific components like buttons, links, etc)
+  1. **Global** (prefix-less `--bolt-`) for raw design token values
+  2. **Context or Token-specific** (`--t-bolt-` prefix) for defaults shared across UI like themes
+  3. **Component-specific** (`--c-bolt-` prefix) for component-specific variables
 
 ```
 // global
@@ -38,231 +38,16 @@ hidden: false
 --bolt-color-indigo-dark: ...
 --bolt-shadow-300
 
-// contextual
---bolt-theme-primary: ...
---bolt-theme-secondary--active: ...
+// contextual / token-specific
+--t-bolt-[token-name]: ...
+--t-bolt-primary: ...
+--t-bolt-secondary--active: ...
 
 // component-specific
---bolt-card-spacing
---bolt-button-bg--disabled: ...
+--c-bolt-card-bg:
+--c-bolt-button-bg: ...
 ```
 ---
-
-## Do's and Don'ts
-
-<div class="o-bolt-grid o-bolt-grid--flex">
-  <div class="o-bolt-grid__cell u-bolt-width-6/12">
-    <h3 style="color: green;">Use single dashes for everything but states (`--active`, `--selected`, etc)</h3>
-    
-```
-// Examples
---c-bolt-link-opacity--hover: --bolt-opacity-80;
---c-bolt-link-opacity--active: --bolt-opacity-60;
-
-// Possible states
---checked
---unchecked
---default
---current 
---empty
---read-only
---enabled
---disabled
---visited
---hover
---active
---focus
---valid
---invalid
---fullscreen 
-```
-</code>
-  </div>
-  <div class="o-bolt-grid__cell u-bolt-width-6/12">
-    <h3 style="color: red;">Only use double-dashes for states</h3>
-
-```
---bolt--link--text--disabled
---bolt--button--raised
---bolt-theme--primary
-```
-</code>
-  </div>
-</div>
-
-
-<div class="o-bolt-grid o-bolt-grid--flex">
-  <div class="o-bolt-grid__cell u-bolt-width-6/12">
-    <h3 style="color: green;">Do use the full component name</h3>
-
-```
---bolt-button-bg
---bolt-band-spacing
-```
-</code>
-  </div>
-  <div class="o-bolt-grid__cell u-bolt-width-6/12">
-    <h3 style="color: red;">Don't use component nicknames</h3>
-
-```
---bolt-btn-bg
---bolt-feature-band-spacing
-```
-</code>
-  </div>
-</div>
-
-
-
-<div class="o-bolt-grid o-bolt-grid--flex">
-  <div class="o-bolt-grid__cell u-bolt-width-6/12">
-    <h3 style="color: green;">Do use shorter variable names</h3>
-
-```
---bolt-button-bg         
---bolt-button-shadow
-```
-</code>
-  </div>
-  <div class="o-bolt-grid__cell u-bolt-width-6/12">
-    <h3 style="color: red;">Don't use verbose names</h3>
-
-```
---bolt-button-background
---bolt-button-box-shadow
-```
-</code>
-  </div>
-</div>
-
-
-<div class="o-bolt-grid o-bolt-grid--flex">
-  <div class="o-bolt-grid__cell u-bolt-width-6/12">
-    <h3 style="color: green;">Use shorter t-shirt sizes</h3>
-
-```
---bolt-band-spacing-xl
---bolt-card-spacing-md
---bolt-font-size-md
---bolt-shadow-lg
-```
-</code>
-  </div>
-  <div class="o-bolt-grid__cell u-bolt-width-6/12">
-    <h3 style="color: red;">Don't use longhand t-shirt sizes</h3>
-
-```
---bolt-band-spacing-xlarge
---bolt-card-spacing-medium
---bolt-font-size-medium
---bolt-shadow-large
-```
-</code>
-  </div>
-</div>
-
-
-<div class="o-bolt-grid o-bolt-grid--flex">
-  <div class="o-bolt-grid__cell u-bolt-width-6/12">
-    <h3 style="color: green;">Use `-X00` suffix (`-100` to `-900`) for items in a series</h3>
-
-```
---bolt-shadow-100
---bolt-shadow-500
-```
-</code>
-  </div>
-  <div class="o-bolt-grid__cell u-bolt-width-6/12">
-    <h3 style="color: red;">Don't use the `-X00` suffix in colors</h3>
-
-```
---bolt-color-indigo-100
---bolt-color-yellow-700
-```
-</code>
-  </div>
-</div>
-
-
-
-<div class="o-bolt-grid o-bolt-grid--flex">
-  <div class="o-bolt-grid__cell u-bolt-width-6/12">
-    <h3 style="color: green;">Use `lighter`, `lightest`, `darker`, `darkest`, for colors</h3>
-
-```
---bolt-color-indigo-lightest
---bolt-color-indigo-lighter
---bolt-color-indigo-light
---bolt-color-indigo
---bolt-color-indigo-dark
---bolt-color-indigo-darker
---bolt-color-indigo-darkest
-```
-</code>
-  </div>
-  <div class="o-bolt-grid__cell u-bolt-width-6/12">
-    <h3 style="color: red;">Don't use the old t-shirt size syntax for colors</h3>
-
-```
---bolt-color-indigo-xxlight ❌
---bolt-color-indigo-xlight  ❌
---bolt-color-indigo-light   ✅
---bolt-color-indigo         ✅
---bolt-color-indigo-dark    ✅
---bolt-color-indigo-xdark   ❌
---bolt-color-indigo-xxdark  ❌
-```
-</code>
-  </div>
-</div>
-
-
-<div class="o-bolt-grid o-bolt-grid--flex">
-  <div class="o-bolt-grid__cell u-bolt-width-6/12">
-    <h3 style="color: green;">Always omit `color` in `--bolt-theme` vars</h3>
-
-```
---bolt-theme-bg
---bolt-theme-primary
-```
-</code>
-  </div>
-  <div class="o-bolt-grid__cell u-bolt-width-6/12">
-    <h3 style="color: red;">Don't include `color` in theme vars</h3>
-
-```
---bolt-theme-bg-color
---bolt-theme-primary-color
-```
-</code>
-  </div>
-</div>
-
-<div class="o-bolt-grid o-bolt-grid--flex">
-  <div class="o-bolt-grid__cell u-bolt-width-6/12">
-    <h3 style="color: green;">Do use `color` in global vars</h3>
-
-```
---bolt-color-indigo
---bolt-color-orange
---bolt-color-yellow-dark
-```
-</code>
-  </div>
-  <div class="o-bolt-grid__cell u-bolt-width-6/12">
-    <h3 style="color: red;">Don't omit `color` in global vars</h3>
-
-```
---bolt-indigo
---bolt-orange
---bolt-yellow-dark
-```
-</code>
-  </div>
-</div>
-
----
-
 
 ## Global Tokens
 - TLDR: Basically ITCSS `settings.scss` layer as flat static CSS custom property values
@@ -292,15 +77,15 @@ hidden: false
 | Token           | CSS Custom Property Name |
 | ---             | ---                                                                     |
 | Border Radius   | `--bolt-border-radius-full`      <br> `--bolt-border-radius-sm`      |
-| Breakpoints     | `--bolt-breakpoint-xxs`      <br> `--bolt-breakpoint-md`        |
-| Colors          | `--bolt-color-indigo-xdark`      <br> `--bolt-color-red`                |
+| Breakpoints     | `--bolt-breakpoint-xxs`          <br> `--bolt-breakpoint-md`        |
+| Colors          | `--bolt-color-indigo-xdark`        <br> `--bolt-color-red`                |
 | Font family     | `--bolt-font-family-heading`     <br> `--bolt-font-family-body`         |
-| Font size       | `--bolt-font-size-xsmall`        <br> `--bolt-font-size-md`         |
-| Line height     | `--bolt-line-height-md` <br> `--bolt-line-height-md-tight` |
+| Font size       | `--bolt-font-size-xs`            <br> `--bolt-font-size-md`         |
+| Line height     | `--bolt-line-height-md`          <br> `--bolt-line-height-md-tight` |
 | Font weight     | `--bolt-font-weight-light`       <br> `--bolt-font-weight-bold`         |
 | Transitions     | `--bolt-transition-fast`         <br> `--bolt-transition-slow`          |
 | Opacity         | `--bolt-opacity-20`              <br> `--bolt-opacity-50`               |
-| Spacing         | `--bolt-spacing-md`          <br> `--bolt-vspacing-md`          |
+| Spacing         | `--bolt-spacing-md`              <br> `--bolt-vspacing-md`          |
 | Shadows         | `--bolt-shadow-100`              <br> `--bolt-shadow-300`               |
 
 </bolt-table>
@@ -309,11 +94,12 @@ hidden: false
 
 ---
 
-## Context-specific Tokens (Themes, Density, UI Types)
+## Context & Token-specific Variables (Themes, Density, UI Types)
 
 - Theming system definitions (previously living in `settings`)
 - New `density` layer
 - Generic component defaults could also live here (previously in `settings.global.scss`)
+- `--t-bolt-` prefix in the name
 
 > NOTE: As a rule of thumb: if 2 or more bits of UI should stay magically in sync, it might make sense to define that shared rule here.
 
@@ -334,52 +120,49 @@ hidden: false
   * Note: because themes ONLY affect color, putting `color` 
   * in the name shouldn't be necessary
   **/
---bolt-theme-background
---bolt-theme-border
---bolt-theme-text
---bolt-theme-icon
---bolt-theme-primary
---bolt-theme-primary--disabled
+--t-bolt-background
+--t-bolt-border
+--t-bolt-text
+--t-bolt-icon
+--t-bolt-primary
+--t-bolt-primary--disabled
 ```
 
 
 ### Theming Examples
 
 ```
---bolt-theme-heading
---bolt-theme-text
---bolt-theme-background-color
---bolt-theme-background-gradient
---bolt-theme-border
+--t-bolt-heading
+--t-bolt-text
+--t-bolt-bg-color
+--t-bolt-bg-gradient
+--t-bolt-border
 
---bolt-theme-primary-background-color
---bolt-theme-primary-background-color--hover
+--t-bolt-primary-bg-color
+--t-bolt-primary-bg-color--hover
 
---bolt-theme-primary-shadow
---bolt-theme-primary-shadow--raised
+--t-bolt-primary-shadow
+--t-bolt-primary-shadow--raised
 
---bolt-theme-secondary-text
---bolt-theme-secondary-text--disabled
---bolt-theme-tertiary-border-color
+--t-bolt-secondary-text
+--t-bolt-secondary-text--disabled
+--t-bolt-tertiary-border-color
 
---bolt-theme-text-on-background
---bolt-theme-heading-on-background
---bolt-theme-text-on-primary
---bolt-theme-text-on-secondary
---bolt-theme-text-on-tertiary
+--t-bolt-text-on-background
+--t-bolt-heading-on-background
+--t-bolt-text-on-primary
+--t-bolt-text-on-secondary
+--t-bolt-text-on-tertiary
 
-// --bolt-theme-surface?
-// --bolt-theme-overlay?
-// --bolt-theme-shadow?
 ```
 
 ### Density Examples (TBD)
 
 ```
---bolt-density-spacing-xl
---bolt-density-vspacing-md
---bolt-density-font-size-md
---bolt-density-line-height-md
+--t-bolt-density-spacing-xl
+--t-bolt-density-vspacing-md
+--t-bolt-density-font-size-md
+--t-bolt-density-line-height-md
 ```
 
 > NOTE: this UI-specific detail is one thing in still a little on the fence with... 
@@ -390,46 +173,236 @@ hidden: false
 
 - doesn't have to be 1:1 to the component name
 - doesn't (and probably **shouldn't**) be required to map to a specific css property
-- the shorter (within reason), the better; when in doubt, prefer clarity over conciseness 
+- the shorter (within reason), the better; when in doubt, prefer clarity over conciseness
+- `--c-bolt-` prefix in the name
 
 ### Syntax
 
 ```
---bolt-[COMPONENT-NAME]-[PURPOSE]--[STATE/MODIFIER]`
+--c-bolt-[COMPONENT-NAME]-[PURPOSE]--[STATE/MODIFIER]`
         ^- who            ^- what    ^- when / how
 
---bolt-button-bg--hover: ...
+--c-bolt-button-bg--hover: ...
 ```
 
 ### Component-specific Examples
 
 ```css
 // ex. button vars
---bolt-button-bg: ...
---bolt-button-bg--hover: ...
---bolt-button-bg--active: ...
---bolt-button-bg--disabled: ..
---bolt-button-border-width
---bolt-button-border-color
+--c-bolt-button-bg: ...
+--c-bolt-button-bg--hover: ...
+--c-bolt-button-bg--active: ...
+--c-bolt-button-bg--disabled: ..
+--c-bolt-button-border-width
+--c-bolt-button-border-color
 
 // ex. icon vars
---bolt-icon-color:
---bolt-icon-bg:
---bolt-icon-bg-opacity:
---bolt-icon-size-md:
---bolt-icon-size-lg:
+--c-bolt-icon-color:
+--c-bolt-icon-bg:
+--c-bolt-icon-bg-opacity:
+--c-bolt-icon-size-md:
+--c-bolt-icon-size-lg:
 
 // ex. card vars
---bolt-card-shadow
---bolt-card-shadow--raised
---bolt-card-spacing
---bolt-card-spacing--lg
---bolt-card-radius
---bolt-card-radius--lg
---bolt-card-bg-color
+--c-bolt-card-shadow
+--c-bolt-card-shadow--raised
+--c-bolt-card-spacing
+--c-bolt-card-spacing--lg
+--c-bolt-card-radius
+--c-bolt-card-radius--lg
+--c-bolt-card-bg-color
 
 ```
 
+---
+
+
+## Do's and Don'ts
+
+<div class="o-bolt-grid o-bolt-grid--flex">
+  <div class="o-bolt-grid__cell u-bolt-width-6/12">
+    <h3 style="color: green;">Use single dashes for everything but states (`--active`, `--selected`, etc)</h3>
+    
+```
+// Examples
+--c-bolt-link-opacity--hover: ...
+--c-bolt-link-opacity--active: ...
+
+// Possible states
+--checked
+--unchecked
+--default
+--current 
+--empty
+--read-only
+--enabled
+--disabled
+--visited
+--hover
+--active
+--focus
+--valid
+--invalid
+--fullscreen 
+```
+</code>
+  </div>
+  <div class="o-bolt-grid__cell u-bolt-width-6/12">
+    <h3 style="color: red;"><em>Only</em> use double-dashes for states</h3>
+
+```
+--c-bolt--link--text--disabled
+--c-bolt--button--raised
+```
+</code>
+  </div>
+</div>
+
+
+<div class="o-bolt-grid o-bolt-grid--flex">
+  <div class="o-bolt-grid__cell u-bolt-width-6/12">
+    <h3 style="color: green;">Do use the full component name</h3>
+
+```
+--c-bolt-button-bg
+--c-bolt-band-spacing
+```
+</code>
+  </div>
+  <div class="o-bolt-grid__cell u-bolt-width-6/12">
+    <h3 style="color: red;">Avoid using component nicknames</h3>
+
+```
+--c-bolt-btn-bg
+--c-bolt-feature-band-spacing
+```
+</code>
+  </div>
+</div>
+
+
+
+<div class="o-bolt-grid o-bolt-grid--flex">
+  <div class="o-bolt-grid__cell u-bolt-width-6/12">
+    <h3 style="color: green;">Do use shorter variable names</h3>
+
+```
+`bg` instead of `background`
+`shadow` instead of `box-shadow`
+
+...
+
+--c-bolt-button-bg         
+--c-bolt-button-shadow
+```
+</code>
+  </div>
+  <div class="o-bolt-grid__cell u-bolt-width-6/12">
+    <h3 style="color: red;">Don't use verbose names</h3>
+
+```
+--c-bolt-button-background
+--c-bolt-button-box-shadow
+```
+</code>
+  </div>
+</div>
+
+
+<div class="o-bolt-grid o-bolt-grid--flex">
+  <div class="o-bolt-grid__cell u-bolt-width-6/12">
+    <h3 style="color: green;">Use shorter t-shirt sizes</h3>
+
+```
+--bolt-font-size-md
+--bolt-shadow-lg
+
+--c-bolt-band-spacing-xl
+--c-bolt-card-spacing-md
+```
+</code>
+  </div>
+  <div class="o-bolt-grid__cell u-bolt-width-6/12">
+    <h3 style="color: red;">Don't use longhand t-shirt sizes</h3>
+
+```
+--bolt-font-size-medium
+--bolt-shadow-large
+
+--c-bolt-band-spacing-xlarge
+--c-bolt-card-spacing-medium
+```
+</code>
+  </div>
+</div>
+
+
+<div class="o-bolt-grid o-bolt-grid--flex">
+  <div class="o-bolt-grid__cell u-bolt-width-6/12">
+    <h3 style="color: green;">Use `-X00` suffix for items in a series like shadows</h3>
+
+```
+--bolt-shadow-100
+--bolt-shadow-500
+```
+</code>
+  </div>
+  <div class="o-bolt-grid__cell u-bolt-width-6/12">
+    <h3 style="color: red;">Don't use the `-X00` suffix in spacing</h3>
+    <br>
+
+```
+--bolt-spacing-100
+--bolt-spacing-500
+```
+</code>
+  </div>
+</div>
+
+
+<div class="o-bolt-grid o-bolt-grid--flex">
+  <div class="o-bolt-grid__cell u-bolt-width-6/12">
+    <h3 style="color: green;">Always omit `color` in `--bolt-theme` vars</h3>
+
+```
+--t-bolt-bg
+--t-bolt-primary
+```
+</code>
+  </div>
+  <div class="o-bolt-grid__cell u-bolt-width-6/12">
+    <h3 style="color: red;">Don't include `color` in theme vars</h3>
+
+```
+--t-bolt-bg-color
+--t-bolt-primary-color
+```
+</code>
+  </div>
+</div>
+
+<div class="o-bolt-grid o-bolt-grid--flex">
+  <div class="o-bolt-grid__cell u-bolt-width-6/12">
+    <h3 style="color: green;">Do use `color` in global vars</h3>
+
+```
+--bolt-color-indigo
+--bolt-color-orange
+--bolt-color-yellow-dark
+```
+</code>
+  </div>
+  <div class="o-bolt-grid__cell u-bolt-width-6/12">
+    <h3 style="color: red;">Don't omit `color` in global vars</h3>
+
+```
+--bolt-indigo
+--bolt-orange
+--bolt-yellow-dark
+```
+</code>
+  </div>
+</div>
 
 ---
 
