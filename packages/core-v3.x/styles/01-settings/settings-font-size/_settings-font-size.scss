@@ -135,3 +135,17 @@ $bolt-font-sizes: (
     )
   )
 ) !default;
+
+// base font sizes used at different breakpoints
+$bolt-base-font-sizes: (
+  bolt-breakpoint(xxsmall): 14px,
+  bolt-breakpoint(xsmall): 15px,
+  bolt-breakpoint(xxlarge): 16px,
+  bolt-breakpoint(xxxxlarge): 18px
+) !default;
+
+@include bolt-export-data('typography/font-sizes.bolt.json', $bolt-font-sizes);
+@include bolt-export-data(
+  'typography/base-font-sizes.bolt.json',
+  $bolt-base-font-sizes
+);

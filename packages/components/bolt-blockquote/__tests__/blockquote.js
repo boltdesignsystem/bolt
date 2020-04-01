@@ -118,6 +118,26 @@ describe('<bolt-blockquote> component', () => {
           },
         },
       );
+
+      const twigRenderedHTML = results.html;
+
+      const renderedBlockquoteHTML = await page.evaluate(
+        async twigRenderedHTML => {
+          document.body.insertAdjacentHTML('beforeend', `${twigRenderedHTML}`);
+          const blockquote = document.querySelector('bolt-blockquote');
+          await blockquote.updateComplete;
+          return blockquote.outerHTML;
+        },
+        twigRenderedHTML,
+      );
+
+      const renderedHTML = await html(renderedBlockquoteHTML);
+
+      await page.waitFor(500);
+      const image = await page.screenshot();
+
+      expect(image).toMatchImageSnapshot(vrtDefaultConfig);
+      expect(renderedHTML).toMatchSnapshot();
       expect(results.ok).toBe(true);
       expect(results.html).toMatchSnapshot();
     });

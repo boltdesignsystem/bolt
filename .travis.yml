@@ -25,6 +25,7 @@ before_install:
   - nvm install # version lifted from `.nvmrc`
   - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.19.1
   - export PATH="$HOME/.yarn/bin:$PATH"
+  - composer config --global github-oauth.github.com ${GITHUB_TOKEN}
 
 # see more conditions: https://docs.travis-ci.com/user/conditions-v1
 # Stages run sequentially; the jobs in them run in parallel
@@ -86,7 +87,7 @@ jobs:
         - yarn run build
         - yarn run deploy
         - export NOW_URL=$(./scripts/get-latest-deploy.js)
-        - travis_retry yarn run test:e2e:quick
+        - travis_retry yarn run test:e2e:quick-local
         # - lhci autorun --collect.numberOfRuns=3 --collect.url=$NOW_URL --collect.url=$NOW_URL/pattern-lab/patterns/04-pages-10-d8-product-pages-product-t2/04-pages-10-d8-product-pages-product-t2.html --collect.url=$NOW_URL/pattern-lab/patterns/06-experiments-micro-journeys-90-micro-journeys/06-experiments-micro-journeys-90-micro-journeys.html
       after_success:
         - ./scripts/deploy-branch-alias.js
