@@ -19,6 +19,7 @@
 //
 // 1. Reset typography so it doesn't inherit from a higher level container.
 // 2. Reset text-align so it doesn't conflict with the align prop which handles the horizontal alignment of inline items in a list, not the text-align within.
+// 3. Width must be defined in order for the list to dislay correctly in Firefox.
 .c-bolt-list {
   @include bolt-margin(0);
   @include bolt-padding(0);
@@ -79,12 +80,13 @@
     margin-left: bolt-spacing(#{$spacing-value-name}) * -1;
   }
 
+  // CSS hack targeting any Firefox version: https://css-tricks.com/snippets/css/css-hacks-targeting-firefox/
   @-moz-document url-prefix('') {
     .c-bolt-list--spacing-#{$spacing-value-name}.c-bolt-list--inset {
       // The inline here is talking about the items inside, the List component itself is still a block level element that would fill up the space of any container.
       &.c-bolt-list--display-inline,
       &.c-bolt-list--display-flex {
-        width: 100%; // Width must be defined in order for the list to dislay correctly in Firefox.
+        width: 100%; // [3]
       }
 
       @each $breakpoint in $bolt-breakpoints {
@@ -92,7 +94,7 @@
 
         &.c-bolt-list--display-inline\@#{$breakpoint-name} {
           @include bolt-mq($breakpoint-name) {
-            width: 100%; // Width must be defined in order for the list to dislay correctly in Firefox.
+            width: 100%; // [3]
           }
         }
       }
@@ -101,9 +103,7 @@
       // The inline here is talking about the items inside, the List component itself is still a block level element that would fill up the space of any container.
       &.c-bolt-list--display-inline,
       &.c-bolt-list--display-flex {
-        width: calc(
-          100% + #{bolt-spacing($spacing-value-name)}
-        ); // Width must be defined in order for the list to dislay correctly in Firefox.
+        width: calc(100% + #{bolt-spacing($spacing-value-name)}); // [3]
       }
 
       @each $breakpoint in $bolt-breakpoints {
@@ -111,9 +111,7 @@
 
         &.c-bolt-list--display-inline\@#{$breakpoint-name} {
           @include bolt-mq($breakpoint-name) {
-            width: calc(
-              100% + #{bolt-spacing($spacing-value-name)}
-            ); // Width must be defined in order for the list to dislay correctly in Firefox.
+            width: calc(100% + #{bolt-spacing($spacing-value-name)}); // [3]
           }
         }
       }
