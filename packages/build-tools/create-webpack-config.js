@@ -9,7 +9,6 @@ const postcssDiscardDuplicates = require('postcss-discard-duplicates');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const fs = require('fs');
 const deepmerge = require('deepmerge');
-const resolve = require('resolve');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const npmSass = require('npm-sass');
 const merge = require('webpack-merge');
@@ -438,7 +437,6 @@ async function createWebpackConfig(buildConfig) {
       mainFields: ['esnext', 'jsnext:main', 'browser', 'module', 'main'],
     },
     output: {
-      futureEmitAssets: true,
       path: path.resolve(process.cwd(), config.buildDir),
       // @todo: switch this to output .client.js and .server.js file prefixes when we hit Bolt v3.0
       filename: `[name]${langSuffix}${

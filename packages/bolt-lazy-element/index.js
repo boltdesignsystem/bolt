@@ -42,26 +42,32 @@ HTMLElement.prototype.attachShadow = function(options) {
 };
 
 const idleQueue = new IdleQueue({
-  // defaultMinTaskTime: 40, // Only run if there's lots of time left.
+  defaultMinTaskTime: 40, // Only run if there's lots of time left.
   ensureTasksRun: true,
 });
 
-export const lazyQueue = async (componentTagNames, callback) => {
+export const lazyQueue = async (componentSelectors = [], callback) => {
   let elemFound = false;
 
-  componentTagNames.forEach(element => {
-    if (elemFound === false) {
-      elemFound = document.querySelector(element) ? true : false;
-    }
-  });
-
-  if (elemFound) {
-    await callback();
-  } else {
-    idleQueue.pushTask(() => {
-      componentTagNames.map(tagname => {
-        lazyDefinitions.set(tagname, callback);
-      });
+  if (componentSelectors.length === 0) {
+    idleQueue.pushTask(async () => {
+      await callback();
     });
+  } else {
+    componentSelectors.forEach(selector => {
+      if (elemFound === false) {
+        elemFound = document.querySelector(selector) ? true : false;
+      }
+    });
+
+    if (elemFound) {
+      await callback();
+    } else {
+      idleQueue.pushTask(() => {
+        componentSelectors.map(selector => {
+          lazyDefinitions.set(selector, callback);
+        });
+      });
+    }
   }
 };

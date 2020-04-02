@@ -311,7 +311,7 @@ const createTracker = () => {
     trackedDomains = window.drupalSettings.google_analytics.trackCrossDomains;
   } catch {
     // default domains to track if no global data defined
-    trackedDomains = window.bolt.autolink.domains || [];
+    trackedDomains = window.bolt?.autolink?.domains || [];
   }
 
   if (trackedDomains.length >= 1) {

@@ -74,10 +74,8 @@ module.exports = {
   iconDir: [],
   components: {
     global: [
-      ...allComponentPackages,
+      ...siteConfig.components.global,
       // '@bolt/components-animate',
-      '@bolt/micro-journeys',
-      '@bolt/analytics-autolink',
     ],
   },
   images: {

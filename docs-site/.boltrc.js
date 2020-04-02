@@ -89,7 +89,6 @@ const config = deepmerge(baseConfig, {
        * baseConfig.  Use this only for internal components.
        */
       // helper components that are only used internally
-      '@bolt/analytics-autotrack',
       '@bolt/components-page-footer',
       '@bolt/components-page-header',
       '@bolt/docs-search',

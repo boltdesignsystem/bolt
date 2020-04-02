@@ -1,5 +1,5 @@
 import { lazyQueue } from '@bolt/lazy-element';
 
 lazyQueue(['bolt-modal'], async () => {
-  await import('./src/modal');
+  await import(/* webpackChunkName: "bolt-modal" */ './src/modal');
 });

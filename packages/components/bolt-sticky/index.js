@@ -1,5 +1,5 @@
 import { lazyQueue } from '@bolt/lazy-element';
 
 lazyQueue(['bolt-sticky'], async () => {
-  await import('./src/sticky.js');
+  await import(/* webpackChunkName: "bolt-sticky" */ './src/sticky.js');
 });

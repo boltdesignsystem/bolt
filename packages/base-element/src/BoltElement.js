@@ -3,12 +3,12 @@ import { supportsAdoptingStyleSheets } from 'lit-element/lib/css-tag.js';
 import { Slotify } from './Slotify.js';
 import {
   renderAndRenderedEvents,
-  lazyStyles,
+  // lazyStyles,
   conditionalShadowDom,
 } from './lib/decorators';
 
 @renderAndRenderedEvents()
-@lazyStyles()
+// @lazyStyles()
 @conditionalShadowDom()
 class BoltElement extends Slotify {
   connectedCallback() {

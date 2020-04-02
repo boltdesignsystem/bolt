@@ -1,6 +1,4 @@
 import { declarativeClickHandler } from '@bolt/core-v3.x/utils/declarative-click-handler';
-import { watchForComponentMutations } from '@bolt/core-v3.x/utils/watch-for-component-mutations';
-import { supportsShadowDom } from './lib/utils';
 import { BoltElement } from './BoltElement';
 
 // Subclass of BoltElement that's designed to handle link-like component behavior
