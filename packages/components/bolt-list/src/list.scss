@@ -47,10 +47,12 @@
   flex-flow: row wrap;
 }
 
-@include bolt-repeat-rule((
-  '.c-bolt-list--display-flex bolt-list-item',
-  '.c-bolt-list--display-flex ::slotted(bolt-list-item)'
-)) {
+@include bolt-repeat-rule(
+  (
+    '.c-bolt-list--display-flex bolt-list-item',
+    '.c-bolt-list--display-flex ::slotted(bolt-list-item)'
+  )
+) {
   flex: 1;
 }
 
@@ -67,7 +69,6 @@
     }
   }
 }
-
 
 // Spacing Prop
 @each $spacing-value in $bolt-spacing-values {
@@ -133,11 +134,9 @@ $bolt-list-alignments: start, center, end, justify;
     &.c-bolt-list--display-inline {
       @if $alignment != center and $alignment != justify {
         justify-content: flex-#{$alignment};
-      }
-      @else if $alignment == justify {
+      } @else if $alignment == justify {
         justify-content: space-between;
-      }
-      @else {
+      } @else {
         justify-content: #{$alignment};
       }
     }
@@ -149,11 +148,9 @@ $bolt-list-alignments: start, center, end, justify;
         @include bolt-mq($breakpoint-name) {
           @if $alignment != center and $alignment != justify {
             justify-content: flex-#{$alignment};
-          }
-          @else if $alignment == justify {
+          } @else if $alignment == justify {
             justify-content: space-between;
-          }
-          @else {
+          } @else {
             justify-content: #{$alignment};
           }
         }
@@ -171,8 +168,7 @@ $bolt-list-valignments: start, center, end;
     &.c-bolt-list--display-flex {
       @if $alignment != center {
         align-items: flex-#{$alignment};
-      }
-      @else {
+      } @else {
         align-items: #{$alignment};
       }
     }
@@ -184,8 +180,7 @@ $bolt-list-valignments: start, center, end;
         @include bolt-mq($breakpoint-name) {
           @if $alignment != center {
             align-items: flex-#{$alignment};
-          }
-          @else {
+          } @else {
             align-items: #{$alignment};
           }
         }
@@ -210,5 +205,4 @@ $bolt-list-valignments: start, center, end;
       }
     }
   }
-
 }
