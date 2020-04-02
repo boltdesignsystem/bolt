@@ -17,7 +17,8 @@
   height: 100%;
   color: bolt-theme(headline);
   outline: none;
-  transition: color $bolt-action-blocks-transition-timing $bolt-action-blocks-transition-ease;
+  transition: color $bolt-action-blocks-transition-timing
+    $bolt-action-blocks-transition-ease;
 
   &:hover,
   &:active,
@@ -36,10 +37,12 @@
     height: 100%;
     pointer-events: none;
     background-color: $bolt-action-block-background;
-    transition: all $bolt-action-blocks-transition-timing $bolt-action-blocks-transition-ease;
+    transition: all $bolt-action-blocks-transition-timing
+      $bolt-action-blocks-transition-ease;
   }
 
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     &:before {
       opacity: bolt-opacity(100);
     }
@@ -47,7 +50,7 @@
 
   &:active {
     &:before {
-      opacity: .8;
+      opacity: 0.8;
     }
   }
 }
@@ -65,5 +68,16 @@
 
   &:last-child {
     @include bolt-margin-bottom(0);
+  }
+}
+
+// Spacing prop
+@each $spacing-value in $bolt-spacing-values {
+  $spacing-value-name: nth($spacing-value, 1);
+
+  .c-bolt-action-blocks--spacing-#{$spacing-value-name} {
+    .c-bolt-action-block {
+      @include bolt-padding(#{$spacing-value-name}, stretched);
+    }
   }
 }

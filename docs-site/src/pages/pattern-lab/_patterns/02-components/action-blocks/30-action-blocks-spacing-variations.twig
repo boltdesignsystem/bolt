@@ -1,0 +1,54 @@
+{% set schema = bolt.data.components["@bolt-components-action-blocks"].schema %}
+
+{% for spacing in schema.properties.spacing.enum %}
+  <h3>Spacing: {{ spacing }}</h3>
+  <div class="u-bolt-margin-bottom-medium">
+    {% include "@bolt-components-action-blocks/action-blocks.twig" with {
+      spacing: spacing,
+      contentItems: [
+        {
+          text: "Item 1",
+          url: "#!",
+          icon: {
+            name: "download",
+          }
+        },
+        {
+          text: "Item 2",
+          url: "#!",
+          icon: {
+            name: "copy-to-clipboard",
+          }
+        },
+        {
+          text: "Item 3",
+          url: "#!",
+          icon: {
+            name: "calendar",
+          }
+        },
+        {
+          text: "Item 4",
+          url: "#!",
+          icon: {
+            name: "external-link",
+          }
+        },
+        {
+          text: "Item 5",
+          url: "#!",
+          icon: {
+            name: "launchpad",
+          }
+        },
+        {
+          text: "Item 6",
+          url: "#!",
+          icon: {
+            name: "info-open",
+          }
+        },
+      ]
+    } only %}
+  </div>
+{% endfor %}
