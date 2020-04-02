@@ -17,178 +17,93 @@
     <bolt-tab-panel>
       <bolt-text slot="label">Fonts</bolt-text>
 
-      <bolt-stack spacing="medium">
-        <bolt-text headline font-size="xxlarge" tag="h2">
-          Body: Open Sans
-        </bolt-text>
-      </bolt-stack>
-      <bolt-stack spacing="xsmall">
-        <bolt-text eyebrow tag="h3">
-          Characters
-        </bolt-text>
-      </bolt-stack>
-      <bolt-stack spacing="small">
-        <hr class="u-bolt-margin-none">
-      </bolt-stack>
-      <bolt-stack spacing="medium">
-        <bolt-text font-size="medium" letter-spacing="wide" style="overflow-wrap: break-word;">
-          {{ characters_sample }}
-        </bolt-text>
-      </bolt-stack>
-      <bolt-stack spacing="xsmall">
-        <bolt-text eyebrow tag="h3">
-          Styles
-        </bolt-text>
-      </bolt-stack>
-      <bolt-stack spacing="small">
-        <hr class="u-bolt-margin-none">
-      </bolt-stack>
-      <bolt-stack spacing="large">
-        <bolt-list spacing="xsmall">
-          <bolt-list-item>
-            <bolt-text font-size="medium" font-weight="regular">
-              Regular
+      {% for fontFamilyToken, fontFamilyGroup, fontFamilyName in bolt.data.typography.fontFamilies["font-families"] %}
+        {% if fontFamilyToken != "bodySubset" %}
+          <bolt-stack spacing="medium">
+            <bolt-text headline font-size="xxlarge" tag="h2">
+              {{ fontFamilyToken|capitalize }}:
+              {% for fontName in fontFamilyGroup["custom-font"] %}
+                {% if loop.index == 1 %}
+                  {{ fontName }}{% if fontFamilyToken == "code" %}*{% endif %}
+                {% endif %}
+              {% endfor %}
             </bolt-text>
-          </bolt-list-item>
-          <bolt-list-item>
-            <bolt-text font-size="medium" font-weight="regular" font-style="italic">
-              Regular Italic
+          </bolt-stack>
+          <bolt-stack spacing="xsmall">
+            <bolt-text eyebrow tag="h3">
+              Characters
             </bolt-text>
-          </bolt-list-item>
-          <bolt-list-item>
-            <bolt-text font-size="medium" font-weight="semibold">
-              Semi-Bold
+          </bolt-stack>
+          <bolt-stack spacing="small">
+            <hr class="u-bolt-margin-none">
+          </bolt-stack>
+          <bolt-stack spacing="medium">
+            <bolt-text font-size="large" letter-spacing="wide" style="overflow-wrap: break-word;"
+              {% if fontFamilyToken == "heading" %}
+                headline
+              {% elseif fontFamilyToken == "code" %}
+                font-family="code"
+              {% endif %}
+            >
+              {{ characters_sample }}
             </bolt-text>
-          </bolt-list-item>
-          <bolt-list-item>
-            <bolt-text font-size="medium" font-weight="semibold" font-style="italic">
-              Semi-Bold Italic
+          </bolt-stack>
+          <bolt-stack spacing="xsmall">
+            <bolt-text eyebrow tag="h3">
+              Styles
             </bolt-text>
-          </bolt-list-item>
-          <bolt-list-item>
-            <bolt-text font-size="medium" font-weight="bold">
-              Bold
-            </bolt-text>
-          </bolt-list-item>
-          <bolt-list-item>
-            <bolt-text font-size="medium" font-weight="bold" font-style="italic">
-              Bold Italic
-            </bolt-text>
-          </bolt-list-item>
-        </bolt-list>
-      </bolt-stack>
-
-      <bolt-stack spacing="medium">
-        <bolt-text headline font-size="xxlarge" tag="h2">
-          Heading: Open Sans
-        </bolt-text>
-      </bolt-stack>
-      <bolt-stack spacing="xsmall">
-        <bolt-text eyebrow tag="h3">
-          Characters
-        </bolt-text>
-      </bolt-stack>
-      <bolt-stack spacing="small">
-        <hr class="u-bolt-margin-none">
-      </bolt-stack>
-      <bolt-stack spacing="medium">
-        <bolt-text font-size="xxlarge" letter-spacing="wide" style="overflow-wrap: break-word;">
-          {{ characters_sample }}
-        </bolt-text>
-      </bolt-stack>
-      <bolt-stack spacing="xsmall">
-        <bolt-text eyebrow tag="h3">
-          Styles
-        </bolt-text>
-      </bolt-stack>
-      <bolt-stack spacing="small">
-        <hr class="u-bolt-margin-none">
-      </bolt-stack>
-      <bolt-stack spacing="large">
-        <bolt-list spacing="xsmall">
-          <bolt-list-item>
-            <bolt-text font-size="xxlarge" font-weight="regular">
-              Regular
-            </bolt-text>
-          </bolt-list-item>
-          <bolt-list-item>
-            <bolt-text font-size="xxlarge" font-weight="regular" font-style="italic">
-              Regular Italic
-            </bolt-text>
-          </bolt-list-item>
-          <bolt-list-item>
-            <bolt-text font-size="xxlarge" font-weight="semibold">
-              Semi-Bold
-            </bolt-text>
-          </bolt-list-item>
-          <bolt-list-item>
-            <bolt-text font-size="xxlarge" font-weight="semibold" font-style="italic">
-              Semi-Bold Italic
-            </bolt-text>
-          </bolt-list-item>
-          <bolt-list-item>
-            <bolt-text font-size="xxlarge" font-weight="bold">
-              Bold
-            </bolt-text>
-          </bolt-list-item>
-          <bolt-list-item>
-            <bolt-text font-size="xxlarge" font-weight="bold" font-style="italic">
-              Bold Italic
-            </bolt-text>
-          </bolt-list-item>
-        </bolt-list>
-      </bolt-stack>
-
-      <bolt-stack spacing="medium">
-        <bolt-text headline font-size="xxlarge" tag="h2">
-          Code: monospace*
-        </bolt-text>
-      </bolt-stack>
-      <bolt-stack spacing="xsmall">
-        <bolt-text eyebrow tag="h3">
-          Characters
-        </bolt-text>
-      </bolt-stack>
-      <bolt-stack spacing="small">
-        <hr class="u-bolt-margin-none">
-      </bolt-stack>
-      <bolt-stack spacing="medium">
-        <bolt-text font-family="code" font-size="medium" letter-spacing="wide" style="overflow-wrap: break-word;">
-          {{ characters_sample }}
-        </bolt-text>
-      </bolt-stack>
-      <bolt-stack spacing="xsmall">
-        <bolt-text eyebrow tag="h3">
-          Styles
-        </bolt-text>
-      </bolt-stack>
-      <bolt-stack spacing="small">
-        <hr class="u-bolt-margin-none">
-      </bolt-stack>
-      <bolt-stack spacing="medium">
-        <bolt-list spacing="xsmall">
-          <bolt-list-item>
-            <bolt-text font-family="code" font-size="medium" font-weight="regular">
-              Regular
-            </bolt-text>
-          </bolt-list-item>
-          <bolt-list-item>
-            <bolt-text font-family="code" font-size="medium" font-weight="regular" font-style="italic">
-              Regular Italic
-            </bolt-text>
-          </bolt-list-item>
-          <bolt-list-item>
-            <bolt-text font-family="code" font-size="medium" font-weight="bold">
-              Bold
-            </bolt-text>
-          </bolt-list-item>
-          <bolt-list-item>
-            <bolt-text font-family="code" font-size="medium" font-weight="bold" font-style="italic">
-              Bold Italic
-            </bolt-text>
-          </bolt-list-item>
-        </bolt-list>
-      </bolt-stack>
+          </bolt-stack>
+          <bolt-stack spacing="small">
+            <hr class="u-bolt-margin-none">
+          </bolt-stack>
+          <bolt-stack spacing="large">
+            <bolt-list spacing="xsmall">
+              {% if fontFamilyToken != "heading" %}
+                <bolt-list-item>
+                  <bolt-text font-size="medium" font-weight="regular"
+                    {% if fontFamilyToken == "code" %}
+                      font-family="code"
+                    {% endif %}
+                  >
+                    Regular
+                  </bolt-text>
+                </bolt-list-item>
+                <bolt-list-item>
+                  <bolt-text font-size="medium" font-weight="regular" font-style="italic"
+                    {% if fontFamilyToken == "code" %}
+                      font-family="code"
+                    {% endif %}
+                  >
+                    Regular Italic
+                  </bolt-text>
+                </bolt-list-item>
+              {% endif %}
+              {% if fontFamilyToken != "code" %}
+                <bolt-list-item>
+                  <bolt-text font-size="medium" font-weight="semibold">
+                    Semi-Bold
+                  </bolt-text>
+                </bolt-list-item>
+                <bolt-list-item>
+                  <bolt-text font-size="medium" font-weight="semibold" font-style="italic">
+                    Semi-Bold Italic
+                  </bolt-text>
+                </bolt-list-item>
+                <bolt-list-item>
+                  <bolt-text font-size="medium" font-weight="bold">
+                    Bold
+                  </bolt-text>
+                </bolt-list-item>
+                <bolt-list-item>
+                  <bolt-text font-size="medium" font-weight="bold" font-style="italic">
+                    Bold Italic
+                  </bolt-text>
+                </bolt-list-item>
+              {% endif %}
+            </bolt-list>
+          </bolt-stack>
+        {% endif %}
+      {% endfor %}
       <bolt-stack spacing="large">
         <bolt-banner align="start">
           *Bolt prefers the system default for code text&rsquo;s font-family which maximizes the readability across all platforms and browsers.
@@ -368,7 +283,7 @@
       </bolt-stack>
       <bolt-stack spacing="medium">
         <bolt-banner align="start">
-          *xxxlarge size should only be used for display headlines.
+          *xxxlarge size should only be used for display text (hero headline).
         </bolt-banner>
       </bolt-stack>
     </bolt-tab-panel>
@@ -493,21 +408,25 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th>heading</th>
-                <td>@include bolt-font-family(heading)</td>
-                <td>Open Sans</td>
-              </tr>
-              <tr>
-                <th>body</th>
-                <td>@include bolt-font-family(body)</td>
-                <td>Open Sans</td>
-              </tr>
-              <tr>
-                <th>code</th>
-                <td>@include bolt-font-family(code)</td>
-                <td>monospace</td>
-              </tr>
+              {% for fontFamilyToken, fontFamilyGroup, fontFamilyName in bolt.data.typography.fontFamilies["font-families"] %}
+                {% if fontFamilyToken != "bodySubset" %}
+                  <tr>
+                    <th>
+                      {{ fontFamilyToken }}
+                    </th>
+                    <td>
+                      @include bolt-font-family({{ fontFamilyToken }})
+                    </td>
+                    <td>
+                      {% for fontName in fontFamilyGroup["custom-font"] %}
+                        {% if loop.index == 1 %}
+                          {{ fontName }}
+                        {% endif %}
+                      {% endfor %}
+                    </td>
+                  </tr>
+                {% endif %}
+              {% endfor %}
             </tbody>
           </table>
         </bolt-table>
@@ -525,97 +444,79 @@
               <tr>
                 <td></td>
                 <th>SCSS mixin</th>
-                <th>Font scale*</th>
-                <th>Font-size (at 1400px viewport)**</th>
+                <th>Font scale</th>
+                <th>Font-size (at 1400px viewport)*</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th rowspan=2>xxxlarge</th>
-                <td rowspan=2>@include bolt-font-size(xxxlarge)</td>
-                <td>3.083rem (below 60 characters)</td>
-                <td>
-                  <bolt-tooltip placement="top-start">
-                    49px
-                    <span slot="content">scales from 43px to 55px</span>
-                  </bolt-tooltip>
-                </td>
-              </tr>
-              <tr>
-                <td>2.275rem (above 60 characters)</td>
-                <td>
-                  <bolt-tooltip placement="top-start">
-                    36px
-                    <span slot="content">scales from 32px to 41px</span>
-                  </bolt-tooltip>
-                </td>
-              </tr>
-              <tr>
-                <th>xxlarge</th>
-                <td>@include bolt-font-size(xxlarge)</td>
-                <td>1.781rem</td>
-                <td>
-                  <bolt-tooltip placement="top-start">
-                    28px
-                    <span slot="content">scales from 25px to 32px</span>
-                  </bolt-tooltip>
-                </td>
-              </tr>
-              <tr>
-                <th>xlarge</th>
-                <td>@include bolt-font-size(xlarge)</td>
-                <td>1.417rem</td>
-                <td>
-                  <bolt-tooltip placement="top-start">
-                    23px
-                    <span slot="content">scales from 20px to 25px</span>
-                  </bolt-tooltip>
-                </td>
-              </tr>
-              <tr>
-                <th>large</th>
-                <td>@include bolt-font-size(large)</td>
-                <td>1.111rem</td>
-                <td>
-                  <bolt-tooltip placement="top-start">
-                    18px
-                    <span slot="content">scales from 16px to 20px</span>
-                  </bolt-tooltip>
-                </td>
-              </tr>
-              <tr>
-                <th>medium (base)</th>
-                <td>@include bolt-font-size(medium)</td>
-                <td>1rem</td>
-                <td>
-                  <bolt-tooltip placement="top-start">
-                    16px
-                    <span slot="content">scales from 14px to 18px</span>
-                  </bolt-tooltip>
-                </td>
-              </tr>
-              <tr>
-                <th>small</th>
-                <td>@include bolt-font-size(small)</td>
-                <td>0.9rem</td>
-                <td>
-                  <bolt-tooltip placement="top-start">
-                    14px
-                    <span slot="content">scales from 13px to 16px</span>
-                  </bolt-tooltip>
-                </td>
-              </tr>
-              <tr>
-                <th>xsmall</th>
-                <td>@include bolt-font-size(xsmall)</td>
-                <td>0.8rem</td>
-                <td>
-                  <bolt-tooltip placement="top-start">
-                    13px
-                    <span slot="content">scales from 11px to 14px</span>
-                  </bolt-tooltip>
-                </td>
-              </tr>
+              {% for fontSizeName, fontSizeValue in bolt.data.typography.fontSizes["font-sizes"] %}
+                <tr>
+                  <th>
+                    {{ fontSizeName }}{% if fontSizeName == "xxxlarge" %}**{% endif %}
+                  </th>
+                  <td>
+                    @include bolt-font-size({{ fontSizeName }})
+                  </td>
+                  <td>
+                    {% if fontSizeValue["font-size"] is iterable %}
+                      {% for bp, value in fontSizeValue["font-size"] %}
+                        <bolt-stack spacing="xsmall">
+                          {% if loop.index == 1 %}
+                            min:
+                          {% else %}
+                            max:
+                          {% endif %}
+                          {{ value }}
+                        </bolt-stack>
+                      {% endfor %}
+                    {% else %}
+                      {{ fontSizeValue["font-size"] }}
+                    {% endif %}
+                  </td>
+                  <td>
+                    {% if fontSizeValue["font-size"] is iterable %}
+                      {% for bp, value in fontSizeValue["font-size"] %}
+                        <bolt-stack spacing="xsmall">
+                          {% if loop.index == 1 %}
+                            min:
+                          {% else %}
+                            max:
+                          {% endif %}
+                          <bolt-tooltip placement="top-start">
+                            {% for baseBp, baseValue in bolt.data.typography.baseFontSizes %}
+                              {% if baseBp == "1400px" %}
+                                {{ (value|replace({"rem": ""}) * baseValue|replace({"px": ""}))|round(0, "ceil") ~ "px" }}
+                              {% endif %}
+                            {% endfor %}
+                            <span slot="content">
+                              {% for baseBp, baseValue in bolt.data.typography.baseFontSizes %}
+                                <bolt-stack spacing="xsmall">
+                                  <strong>{{ baseBp }} viewport:</strong> {{ (value|replace({"rem": ""}) * baseValue|replace({"px": ""}))|round(0, "ceil") ~ "px" }}
+                                </bolt-stack>
+                              {% endfor %}
+                            </span>
+                          </bolt-tooltip>
+                        </bolt-stack>
+                      {% endfor %}
+                    {% else %}
+                      <bolt-tooltip placement="top-start">
+                        {% for baseBp, baseValue in bolt.data.typography.baseFontSizes %}
+                          {% if baseBp == "1400px" %}
+                            {{ (fontSizeValue["font-size"]|replace({"rem": ""}) * baseValue|replace({"px": ""}))|round(0, "ceil") ~ "px" }}
+                          {% endif %}
+                        {% endfor %}
+                        <span slot="content">
+                          {% for baseBp, baseValue in bolt.data.typography.baseFontSizes %}
+                            <bolt-stack spacing="xsmall">
+                              <strong>{{ baseBp }} viewport:</strong> {{ (fontSizeValue["font-size"]|replace({"rem": ""}) * baseValue|replace({"px": ""}))|round(0, "ceil") ~ "px" }}
+                            </bolt-stack>
+                          {% endfor %}
+                        </span>
+                      </bolt-tooltip>
+                    {% endif %}
+                  </td>
+                </tr>
+              {% endfor %}
             </tbody>
           </table>
         </bolt-table>
@@ -624,10 +525,10 @@
         <bolt-banner align="start">
           <bolt-list>
             <bolt-list-item>
-              *xxxlarge headline text has an additional scaling effect depending on the length of the text.
+              *Font-sizes in Bolt are responsive from 320px viewport to 1920px viewport. <bolt-link url="{{ link['viewall-visual-styles-breakpoints'] }}">View Breakpoint System<bolt-icon name="chevron-right" slot="after"></bolt-icon></bolt-link>
             </bolt-list-item>
             <bolt-list-item>
-              **Font-sizes in Bolt are responsive from 320px viewport to 1920px viewport. <bolt-link url="{{ link['viewall-visual-styles-breakpoints'] }}">View Breakpoint System<bolt-icon name="chevron-right" slot="after"></bolt-icon></bolt-link>
+              **xxxlarge size has an additional scaling effect because it's intended to be used as display text (hero headline).
             </bolt-list-item>
           </bolt-list>
         </bolt-banner>
@@ -639,6 +540,7 @@
         </bolt-text>
       </bolt-stack>
       <bolt-stack spacing="large">
+        {# @todo: generate this with a map when the font-weight debate settles with branding #}
         <bolt-table>
           <table>
             <thead>
