@@ -68,11 +68,11 @@
   {% endif %}
   uuid="{{ uuid }}"
 >
-  <replace-with-children {% if inner_classes %} class="{{ inner_classes|join(' ') }}" {% endif %}>
+  <div {% if inner_classes %} class="{{ inner_classes|join(' ') }}" {% endif %}>
     {% if trigger %}
       {# Start adapter for old trigger data #}
       {% if trigger.type == "text" %}
-        <replace-with-children
+        <ssr-keep for="bolt-tooltip"
           role="button"
           tabindex="0"
           aria-describedby="{{ tooltip_uuid }}"
@@ -84,9 +84,9 @@
           {% if trigger.text %}
             {{ trigger.text }}
           {% endif %}
-        </replace-with-children>
+        </ssr-keep>
       {% elseif trigger.type == "button" %}
-        <replace-with-children
+        <ssr-keep for="bolt-tooltip"
           role="button"
           tabindex="0"
           aria-describedby="{{ tooltip_uuid }}"
@@ -101,31 +101,33 @@
             },
             style: "secondary",
           } only %}
-        </replace-with-children>
+        </ssr-keep>
       {# End adapter for old trigger data #}
 
       {# Start new trigger #}
       {% else %}
-        <replace-with-children
+        <ssr-keep for="bolt-tooltip"
           role="button"
           tabindex="0"
           aria-describedby="{{ tooltip_uuid }}"
           aria-controls="{{ tooltip_uuid }}"
         >
           {{ trigger }}
-        </replace-with-children>
+        </ssr-keep>
       {% endif %}
       {# End new trigger #}
     {% endif %}
 
     {% if content %}
-      <span slot="content">
-        <replace-with-grandchildren id="{{ tooltip_uuid }}" class="{{ "#{base_class}__content" }}" role="tooltip" aria-hidden="true">
-          <span class="{{ "#{base_class}__bubble" }}">
-            {{ content }}
-          </span>
-        </replace-with-grandchildren>
-      </span>
+      <div id="{{ tooltip_uuid }}" class="{{ "#{base_class}__content" }}" role="tooltip" aria-hidden="true">
+        <span class="{{ "#{base_class}__bubble" }}">
+          <ssr-keep for="bolt-tooltip">
+            <span slot="content">
+              {{ content }}
+            </span>
+          </ssr-keep>
+        </span>
+      </div>
     {% endif %}
-  </replace-with-children>
+  </div>
 </bolt-tooltip>

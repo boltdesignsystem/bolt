@@ -1,4 +1,4 @@
-import '../bolt-select/bolt-select';
+import '../bolt-select/bolt-select.standalone.js';
 const boltSelect = document.querySelector('.js-bolt-version-selector');
 let shouldOpenInNewWindow = false;
 

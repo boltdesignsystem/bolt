@@ -17,20 +17,20 @@
 {% else %}
   {% if card_replacement_image or block("media") %}
     <bolt-card-replacement-media {{ attributes }}>
-      <replace-with-children class="c-bolt-card_replacement__media">
+      <ssr-keep for="bolt-card-replacement-media" class="c-bolt-card_replacement__media">
         {% if card_replacement_image %}
           {% include "@bolt-components-image/image.twig" with card_replacement_image only %}
         {% elseif block("media") %}
           {{ block("media") }}
         {% endif %}
-      </replace-with-children>
+      </ssr-keep>
     </bolt-card-replacement-media>
   {% endif %}
   {% if card_replacement_video %}
     <bolt-card-replacement-media {{ attributes }}>
-      <replace-with-children class="c-bolt-card_replacement__media c-bolt-card_replacement__media--video">
+      <ssr-keep for="bolt-card-replacement-media" class="c-bolt-card_replacement__media c-bolt-card_replacement__media--video">
         {% include "@bolt-components-video/video.twig" with card_replacement_video only %}
-      </replace-with-children>
+      </ssr-keep>
     </bolt-card-replacement-media>
   {% endif %}
 {% endif %}

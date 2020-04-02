@@ -41,7 +41,7 @@
   {{ this.props|without("items")|without("class") }}
   ssr-id="{{ uuid }}"
 >
-  <replace-with-children {% if inner_classes %} class="{{ inner_classes|join(' ') }}" {% endif %} role="navigation" aria-labelledby="{{ "js-bolt-toc-#{uuid}" }}">
+  <ssr-keep for="bolt-toc" {% if inner_classes %} class="{{ inner_classes|join(' ') }}" {% endif %} role="navigation" aria-labelledby="{{ "js-bolt-toc-#{uuid}" }}">
     <h2
       {% if header %}
         class="c-bolt-toc__header"
@@ -58,12 +58,12 @@
         Table of Content
       {% endif %}
     </h2>
-    <replace-with-children class="c-bolt-toc__list" role="list">
+    <ssr-keep for="bolt-toc" class="c-bolt-toc__list" role="list">
       {% for item in items %}
         {% if item %}
           {% include "@bolt-components-toc/_toc-item.twig" with item only %}
         {% endif %}
       {% endfor %}
-    </replace-with-children>
-  </replace-with-children>
+    </ssr-keep>
+  </ssr-keep>
 </bolt-toc>

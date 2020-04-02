@@ -7,9 +7,6 @@ class ssrKeep extends HTMLElement {
   }
 
   connectedCallback() {
-    if (bolt.isServer) {
-      return;
-    }
 
     const target = this.closest(this.for);
 

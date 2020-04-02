@@ -1,7 +1,5 @@
-import { polyfillLoader } from '@bolt/core-v3.x/polyfills';
+import { lazyQueue } from '@bolt/lazy-element';
 
-polyfillLoader.then(res => {
-  import(
-    /* webpackMode: 'lazy', webpackChunkName: 'bolt-nav-indicator' */ './nav-indicator.js'
-  );
+lazyQueue(['bolt-nav-indicator'], async () => {
+  await import('./nav-indicator');
 });

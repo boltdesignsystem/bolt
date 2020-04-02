@@ -10,21 +10,19 @@
 {% if nested %}
   {% if index == 1 %}
     <bolt-li {{ attributes }}>
-      <replace-with-grandchildren>
-        <li class="{{ classes|join(" ") }}">
+        <li class="{{ classes|join(" ") }}"><ssr-keep for="bolt-li">
   {% endif %}
   {{ children }}
   {% if length == index %}
-        </li>
-      </replace-with-grandchildren>
+        </ssr-keep></li>
     </bolt-li>
   {% endif %}
 {% else %}
   <bolt-li {{ attributes }}>
-    <replace-with-grandchildren>
-      <li class="{{ classes|join(" ") }}">
+    <li class="{{ classes|join(" ") }}">
+      <ssr-keep for="bolt-li">
         {{ children }}
-      </li>
-    </replace-with-grandchildren>
+      </ssr-keep>
+    </li>
   </bolt-li>
 {% endif %}

@@ -1,5 +1,5 @@
-import { BoltDropdown } from './dropdown.js';
+import { lazyQueue } from '@bolt/lazy-element';
 
-if (!customElements.get('bolt-dropdown')) {
-  customElements.define(BoltDropdown.is, BoltDropdown);
-}
+lazyQueue(['bolt-dropdown'], async () => {
+  await import('./dropdown.js');
+});

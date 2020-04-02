@@ -88,36 +88,17 @@ const config = deepmerge(baseConfig, {
        * outside of the docs site-- those should instead be pulled in through
        * baseConfig.  Use this only for internal components.
        */
-
       // helper components that are only used internally
       '@bolt/analytics-autotrack',
-      '@bolt/blueprints',
-      '@bolt/components-radio-switch',
       '@bolt/components-page-footer',
       '@bolt/components-page-header',
       '@bolt/docs-search',
-      // '@bolt/schema-form', // Component Explorer being temporarily disabled until we've migrated our Twig Rendering Service to Now.sh v2
       '@bolt/shadow-toggle',
-      '@bolt/theme-switcher',
-
-      // Components that are excluded from the base release build.
       '@bolt/components-search-filter',
       '@bolt/micro-journeys',
-
-      /**
-       * note: resolving these paths isn't typically required when
-       * the .boltrc config is run through the bolt CLI tool (ie.
-       * normal, default usage).
-       *
-       * Resolving these IS sometimes needed however when running
-       * a build task completely on it's own (ex. running
-       * webpack-cli directly using Bolt's webpack config)
-       */
-      // Keeping PL specific assets here so we can remove an extra JS + CSS request from the site
       resolve.sync('./src/index.scss'),
       resolve.sync('./src/index.js'),
     ],
-    individual: [],
   },
   copy: [
     {

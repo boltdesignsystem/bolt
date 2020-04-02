@@ -54,35 +54,38 @@
 >
   <blockquote {{ inner_attributes.addClass(inner_classes) }} is="shadow-root">
     {% if logo %}
-      <replace-with-children class="{{ "#{base_class}__logo" }}">
+      <ssr-keep for="bolt-blockquote" class="{{ "#{base_class}__logo" }}">
         {% include "@bolt/logo.twig" with logo|merge({
           slot: "logo",
         }) only %}
-      </replace-with-children>
+      </ssr-keep>
     {% endif %}
 
-    <{{quote_tag}} class="{{ "#{base_class}__quote" }}">
-      {% include "@bolt-components-headline/text.twig" with {
-        text: content,
-        tag: text_tag,
-        size: this.data.size.value,
-        weight: this.data.weight.value,
-      } only %}
-    </{{quote_tag}}>
+    <ssr-keep for="bolt-blockquote">
+      <{{quote_tag}} class="{{ "#{base_class}__quote" }}">
+        {% include "@bolt-components-headline/text.twig" with {
+          text: content,
+          tag: text_tag,
+          size: this.data.size.value,
+          weight: this.data.weight.value,
+        } only %}
+      </{{quote_tag}}>
+    </ssr-keep>
 
     {% if author %}
-      <replace-with-grandchildren>
         <footer class="{{ "#{base_class}__footer" }}">
             {% if author.image %}
-              <replace-with-grandchildren class="{{ "#{base_class}__footer-item" }}">
+              <div class="{{ "#{base_class}__footer-item" }}">
                 <div class="{{ "#{base_class}__image" }}">
-                  {% include "@bolt/image.twig" with author.image|merge({ slot:"author-image"}) only %}
+                  <ssr-keep for="bolt-blockquote">
+                    {% include "@bolt/image.twig" with author.image|merge({ slot:"author-image"}) only %}
+                  </ssr-keep>
                 </div>
-              </replace-with-grandchildren>
+              </div>
             {% endif %}
 
             {% if author.name %}
-              <replace-with-children class="{{ "#{base_class}__footer-item" }}">
+              <ssr-keep for="bolt-blockquote" class="{{ "#{base_class}__footer-item" }}">
                 {% include "@bolt-components-headline/text.twig" with {
                   text: author.name,
                   tag: "cite",
@@ -90,21 +93,21 @@
                   weight: "bold",
                   slot: "author-name"
                 } %}
-              </replace-with-children>
+              </ssr-keep>
             {% endif %}
 
             {% if author.title %}
-              <replace-with-children class="{{ "#{base_class}__footer-item" }}">
+              <ssr-keep for="bolt-blockquote" class="{{ "#{base_class}__footer-item" }}">
                 {% include "@bolt-components-headline/text.twig" with {
                   text: author.title,
                   tag: "cite",
                   size: "xsmall",
                   slot: "author-title"
                 } only %}
-              </replace-with-children>
+              </ssr-keep>
             {% endif %}
         </footer>
-      </replace-with-grandchildren>
     {% endif %}
+    </ssr-keep>
   </blockquote>
 </bolt-blockquote>

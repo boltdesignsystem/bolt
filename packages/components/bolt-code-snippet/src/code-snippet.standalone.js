@@ -26,14 +26,20 @@ class BoltCodeSnippetClass extends withPreact {
   };
 
   replaceEntities(string) {
-    return string
-      .replace(/&amp;/g, '&')
-      .replace(/&lt;/g, '<')
-      .replace(/&gt;/g, '>');
+    if (string) {
+      return string
+        .replace(/&amp;/g, '&')
+        .replace(/&lt;/g, '<')
+        .replace(/&gt;/g, '>');
+    }
   }
 
   highlightHTML(code, lang) {
-    return Prism.highlight(this.replaceEntities(code), Prism.languages[lang]);
+    if (code && lang) {
+      return Prism.highlight(this.replaceEntities(code), Prism.languages[lang]);
+    } else {
+      return code;
+    }
   }
 
   constructor(self) {

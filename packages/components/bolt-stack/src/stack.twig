@@ -34,7 +34,7 @@
   {% if outer_classes %} class="{{ outer_classes|join(' ') }}" {% endif %}
   {{ this.props|without("content")|without("class") }}
 >
-  <replace-with-children {{ inner_attributes.addClass(inner_classes) }}>
+  <ssr-keep for="bolt-stack" {{ inner_attributes.addClass(inner_classes) }}>
     {{ content }}
-  </replace-with-children>
+  </ssr-keep>
 </bolt-stack>

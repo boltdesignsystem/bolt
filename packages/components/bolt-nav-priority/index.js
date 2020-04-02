@@ -1,7 +1,5 @@
-import { polyfillLoader } from '@bolt/core-v3.x/polyfills';
+import { lazyQueue } from '@bolt/lazy-element';
 
-polyfillLoader.then(res => {
-  import(
-    /* webpackMode: 'lazy', webpackChunkName: 'bolt-nav-priority' */ './nav-priority.js'
-  );
+lazyQueue(['bolt-nav-priority'], async () => {
+  await import('./nav-priority');
 });

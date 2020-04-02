@@ -1,2 +1,7 @@
-import './placeholder.standalone.js';
-import '@bolt/core-v3.x/elements/replace-with-children';
+import { lazyQueue } from '@bolt/lazy-element';
+
+lazyQueue(['bolt-placeholder'], async () => {
+  await Promise.all([
+    import('./placeholder.standalone.js'),
+  ]);
+});

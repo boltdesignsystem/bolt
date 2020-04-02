@@ -35,24 +35,26 @@
   {{ this.props|without("content")|without("title")|without("class") }}
   role="menu"
 >
-  <replace-with-children role="presentation" {% if inner_classes %} class="{{ inner_classes|join(' ') }}" {% endif %}>
+  <div role="presentation" {% if inner_classes %} class="{{ inner_classes|join(' ') }}" {% endif %}>
     {% if title %}
       {% set title_class = base_class ~ "__title" %}
       {% set title_classes = [
         title_class,
         this.data.spacing.value ? title_class ~ "--spacing-" ~ this.data.spacing.value,
       ] %}
-      <replace-with-children {% if title_classes %} class="{{ title_classes|join(' ') }}" {% endif %}>
+      <ssr-keep for="bolt-menu" {% if title_classes %} class="{{ title_classes|join(' ') }}" {% endif %}>
         <span slot="title">{{ title }}</span>
-      </replace-with-children>
+      </ssr-keep>
     {% endif %}
-    {% for item in items %}
-      {% if item %}
-        {% include "@bolt-components-menu/_menu-item.twig" with item|merge({
-          spacing: this.data.spacing.value,
-          last: loop.last,
-        }) only %}
-      {% endif %}
-    {% endfor %}
-  </replace-with-children>
+    <ssr-keep for="bolt-menu">
+      {% for item in items %}
+        {% if item %}
+          {% include "@bolt-components-menu/_menu-item.twig" with item|merge({
+            spacing: this.data.spacing.value,
+            last: loop.last,
+          }) only %}
+        {% endif %}
+      {% endfor %}
+    </ssr-keep>
+  </div>
 </bolt-menu>

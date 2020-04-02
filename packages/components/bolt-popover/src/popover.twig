@@ -49,28 +49,32 @@
   {% endif %}
   uuid="{{ uuid }}"
   >
-  <replace-with-children
+  <div
     {% if inner_classes %} class="{{ inner_classes|join(' ') }}" {% endif %}
   >
     {% if trigger %}
-      <replace-with-grandchildren id="{{ trigger_id }}">
+      <div id="{{ trigger_id }}">
         <a href="#{{ content_id }}" class="{{ "#{base_class}__nojs-trigger" }}" tabindex="-1">
-          {{ trigger }}
+          <ssr-keep for="bolt-popover">
+            {{ trigger }}
+          </ssr-keep>
         </a>
-      </replace-with-grandchildren>
+      </div>
     {% endif %}
     {% if content %}
-      <span slot="content" id="{{ content_id }}">
-        <replace-with-grandchildren class="{{ "#{base_class}__content" }}">
-          <span class="{{ bubble_classes|join(' ') }}">
-            <a href="#{{ trigger_id }}" class="{{ "#{base_class}__nojs-close" }}">
-              <span aria-hidden="true">&times;</span>
-              <span class="u-bolt-visuallyhidden">Close popover</span>
-            </a>
-            {{ content }}
-          </span>
-        </replace-with-grandchildren>
-      </span>
+      <div id="{{ content_id }}" class="{{ "#{base_class}__content" }}">
+        <span class="{{ bubble_classes|join(' ') }}">
+          <ssr-keep for="bolt-popover">
+            <span slot="content">
+              <a href="#{{ trigger_id }}" class="{{ "#{base_class}__nojs-close" }}">
+                <span aria-hidden="true">&times;</span>
+                <span class="u-bolt-visuallyhidden">Close popover</span>
+              </a>
+              {{ content }}
+            </span>
+          </ssr-keep>
+        </span>
+      </div>
     {% endif %}
-  </replace-with-children>
+  </div>
 </bolt-popover>

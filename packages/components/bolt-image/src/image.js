@@ -93,6 +93,7 @@ class BoltImage extends BoltElement {
   disconnectedCallback() {
     super.disconnectedCallback && super.disconnectedCallback();
     window.removeEventListener('debouncedResize', this.onResize);
+    this.isLazyLoaded = false;
   }
 
   connectedCallback() {

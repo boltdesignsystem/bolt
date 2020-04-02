@@ -1,6 +1,5 @@
-import meta from './animate.meta';
-import './src/animate';
+import { lazyQueue } from '@bolt/lazy-element';
 
-export default {
-  meta,
-};
+lazyQueue(['bolt-animate'], async () => {
+  await import('./src/animate');
+});

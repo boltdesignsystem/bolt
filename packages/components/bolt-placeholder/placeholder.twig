@@ -42,13 +42,13 @@
     {# workaround to still allow external utility classes to get added (ex. for spacing or layout tweaks) while still encapsulating internal styling #}
     {% if utils %} class="{{ utils|join(' ') }}"{% endif %}
   >
-  <replace-with-children class="{{ classes|join(' ') }}">
-    <replace-with-children class="{{ wrapperClasses|join(' ') }}">
-      <replace-with-children class="c-bolt-placeholder__wrapper-y"></replace-with-children>
-      <replace-with-children class="c-bolt-placeholder__wrapper-x"></replace-with-children>
-      <replace-with-children class="{{ contentClasses|join(' ') }}">
+  <div class="{{ classes|join(' ') }}">
+    <div class="{{ wrapperClasses|join(' ') }}">
+      <div class="c-bolt-placeholder__wrapper-y"></div>
+      <div class="c-bolt-placeholder__wrapper-x"></div>
+      <ssr-keep for="bolt-placeholder" class="{{ contentClasses|join(' ') }}">
         {{ text }}
-      </replace-with-children>
-    </replace-with-children>
-  </replace-with-children>
+      </ssr-keep>
+    </div>
+  </div>
 </bolt-placeholder>

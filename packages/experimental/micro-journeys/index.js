@@ -1,12 +1,5 @@
-import { polyfillLoader } from '@bolt/core-v3.x/polyfills';
+import { lazyQueue } from '@bolt/lazy-element';
 
-import './src/interactive-pathways';
-import './src/interactive-pathway';
-import './src/interactive-step';
-import './src/bolt-svg-animations/svg-animations';
-import './src/character';
-import './src/connection';
-import './src/cta';
-import './src/status-dialogue-bar';
-import './src/two-character-layout';
-import './src/one-character-layout';
+lazyQueue(['bolt-interactive-pathway'], async () => {
+  await import('./src/index.js');
+});

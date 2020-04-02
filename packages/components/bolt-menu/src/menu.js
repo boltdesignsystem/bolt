@@ -9,6 +9,7 @@ import {
 import { withContext } from 'wc-context';
 import menuStyles from './menu.scss';
 import schema from '../menu.schema';
+import './_menu-item';
 
 let cx = classNames.bind(menuStyles);
 

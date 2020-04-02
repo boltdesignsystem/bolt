@@ -58,13 +58,13 @@
     theme in theme_options ? "t-bolt-#{theme}" : "",
   ] %}
 
-  <replace-with-children {{ inner_attributes.addClass(classes) }}>
+  <ssr-keep for="bolt-card-replacement" {{ inner_attributes.addClass(classes) }}>
     {% if link and link_url %}
       <bolt-card-replacement-link {{ link_attributes }}>
         {% if link_url %}
           <a href="{{ link_url }}" class="{{ "#{base_class}__link" }}" {% if link_target %} target="{{ link_target }}" {% endif %}>
             {% if link_text %}
-              <replace-with-children class="u-bolt-visuallyhidden">{{ link_text }}</replace-with-children>
+              <ssr-keep for="bolt-card-replacement-link" class="u-bolt-visuallyhidden">{{ link_text }}</ssr-keep>
             {% endif %}
           </a>
         {% endif %}
@@ -120,5 +120,5 @@
       {% endblock %}
       {% if horizontal %}</div>{% endif %}
     {% endif %}
-  </replace-with-children>
+  </ssr-keep>
 </bolt-card-replacement>

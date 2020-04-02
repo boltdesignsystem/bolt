@@ -13,15 +13,6 @@
     {% set modernAssets = get_data(modernManifestConfig) %}
   {% endif %}
 
-  <script type="module" src="{{ modernAssets["bolt-global.js"] | default("/build/bolt-global.js") }}" async></script>
-
-  <script type="module">
-    if (!sessionStorage.fontsLoadedCriticalFoftPreloadPolyfill){
-      document.documentElement.classList.add('js-fonts-loaded');
-      sessionStorage.fontsLoadedCriticalFoftPreloadPolyfill = true;
-    }
-  </script>
-
   <script src="https://www.google-analytics.com/analytics.js" async></script>
 
   {{ patternLabFoot | raw }}

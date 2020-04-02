@@ -1,5 +1,5 @@
-import { polyfillLoader } from '@bolt/core-v3.x/polyfills';
+import { lazyQueue } from '@bolt/lazy-element';
 
-polyfillLoader.then(res => {
-  import(/* webpackChunkName: 'bolt-band' */ './src/band');
+lazyQueue(['bolt-band'], async () => {
+  await import('./src/band');
 });

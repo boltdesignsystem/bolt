@@ -4,13 +4,9 @@ module.exports = function(api, opts = {}) {
       [
         '@babel/preset-env',
         {
-          ignoreBrowserslistConfig: true,
-          modules: false,
-          debug: false,
-          corejs: 3,
-          useBuiltIns: 'entry',
+          bugfixes: true,
           targets: {
-            browsers: require('@bolt/browserslist-config'),
+            esmodules: true,
           },
         },
       ],
@@ -31,7 +27,6 @@ module.exports = function(api, opts = {}) {
           pragma: 'h',
           pragmaFrag: 'Fragment',
           throwIfNamespace: false,
-          useBuiltIns: false,
         },
       ],
     ],

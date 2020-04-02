@@ -11,7 +11,6 @@ const fs = require('fs');
 const deepmerge = require('deepmerge');
 const resolve = require('resolve');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const WriteFilePlugin = require('write-file-webpack-plugin');
 const npmSass = require('npm-sass');
 const merge = require('webpack-merge');
 const SassDocPlugin = require('@bolt/sassdoc-webpack-plugin');
@@ -22,6 +21,7 @@ const modernBabelConfig = require('@bolt/babel-preset-bolt');
 
 const { getBoltManifest } = require('@bolt/build-utils/manifest');
 const log = require('@bolt/build-utils/log');
+const { StatsWriterPlugin } = require('webpack-stats-plugin');
 
 // Store set of webpack configs used in multiple builds
 let webpackConfigs = [];
@@ -59,10 +59,7 @@ async function createWebpackConfig(buildConfig) {
     const globalEntryName = 'bolt-global';
 
     if (components.global) {
-      entry[globalEntryName] = [
-        '@bolt/polyfills/modern.js',
-        '@bolt/core-v3.x/styles/main.scss',
-      ];
+      entry[globalEntryName] = ['@bolt/core-v3.x/styles/main.scss'];
 
       components.global.forEach(component => {
         if (component.assets.style) {
@@ -305,8 +302,12 @@ async function createWebpackConfig(buildConfig) {
               sourceMap: config.sourceMaps,
               cache: true,
               parallel: true,
+              extractComments: false,
               terserOptions: {
                 safari10: true,
+                output: {
+                  comments: false,
+                },
               },
             }),
           ]
@@ -321,8 +322,22 @@ async function createWebpackConfig(buildConfig) {
         },
       }),
       new webpack.ProgressPlugin(boltWebpackProgress), // Ties together the Bolt custom Webpack messages + % complete
-      new WriteFilePlugin(),
       new webpack.NoEmitOnErrorsPlugin(),
+      new StatsWriterPlugin({
+        stats: {
+          all: true,
+        },
+        filename: 'bolt-webpack-stats.json', // Default
+        transform(data, opts) {
+          return JSON.stringify(
+            {
+              childAssets: data['entrypoints']['bolt-global']['childAssets'],
+            },
+            null,
+            2,
+          );
+        },
+      }),
     ],
   };
 

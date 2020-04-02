@@ -63,20 +63,18 @@
   {% if outer_classes %} class="{{ outer_classes|join(' ') }}" {% endif %}
   {{ this.props|without("text")|without("class") }}
 >
-  <replace-with-grandchildren>
-    <{{ tag }}
-      {% if url %}
-        href="{{ url }}"
-        {% if target %} target="{{ target }}" {% endif %}
-      {% endif %}
-      {{ inner_attributes.addClass(inner_classes) }}
-      is="shadow-root"
-    >
-      {{ macros.slotted_icon(icon, icon_position, "before") }}
-      <replace-with-children class="{{ "#{base_class}__text" }}">
-        {{ text }}
-      </replace-with-children>
-      {{ macros.slotted_icon(icon, icon_position, "after") }}
-    </{{ tag }}>
-  </replace-with-grandchildren>
+  <{{ tag }}
+    {% if url %}
+      href="{{ url }}"
+      {% if target %} target="{{ target }}" {% endif %}
+    {% endif %}
+    {{ inner_attributes.addClass(inner_classes) }}
+    is="shadow-root"
+  >
+    {{ macros.slotted_icon(icon, icon_position, "before") }}
+    <ssr-keep for="bolt-chip" class="{{ "#{base_class}__text" }}">
+      {{ text }}
+    </ssr-keep>
+    {{ macros.slotted_icon(icon, icon_position, "after") }}
+  </{{ tag }}>
 </bolt-chip>{% endspaceless %}

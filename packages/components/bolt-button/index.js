@@ -1,2 +1,5 @@
-import '@bolt/core-v3.x/elements/replace-with-children';
-import './src/button';
+import { lazyQueue } from '@bolt/lazy-element';
+
+lazyQueue(['bolt-button'], async () => {
+  await import('./src/button');
+});

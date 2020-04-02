@@ -44,19 +44,19 @@
       "email": "quentin.dreyer@gmail.com"
     }
   ],
+  "main": "index.js",
   "files": [
     "index.es6.js",
     "index.js"
   ],
-  "main": "index.js",
   "scripts": {
     "build": "babel index.es6.js --out-file index.js",
     "postinstall": "npm run build",
     "prepublishOnly": "npm run build"
   },
   "dependencies": {
-    "@babel/cli": "^7.5.0",
-    "@babel/core": "^7.5.4",
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.9.0",
     "@bolt/uikit-prerenderer": "^2.19.0",
     "@prerenderer/prerenderer": "^0.7.2",
     "html-minifier": "^4.0.0"

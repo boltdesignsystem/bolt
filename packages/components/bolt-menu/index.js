@@ -1,2 +1,7 @@
-import './src/menu';
-import './src/_menu-item';
+import { lazyQueue } from '@bolt/lazy-element';
+
+lazyQueue(['bolt-menu'], async () => {
+  await Promise.all([
+    import('./src/menu'),
+  ]);
+});

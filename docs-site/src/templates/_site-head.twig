@@ -29,7 +29,7 @@
 {% set cacheBuster = bolt.data.config.prod ? "?v=" ~ bolt.data.fullManifest.version : "" %}
 
 {% set htmlClasses = [
-  bolt.data.config.prod ? '' : 'js-fonts-loaded',
+  bolt.data.config.prod ? 'js-fonts-loaded' : 'js-fonts-loaded',
   currentUrl == 'index.html' ? 'u-bolt-min-height-screen u-bolt-flex' : ''
 ] %}
 
@@ -47,22 +47,22 @@
     <link rel="stylesheet" href="{{ modernAssets["bolt-global.css"] | default("/build/bolt-global.css") }}" media="all" />
     <link rel="preload" href="/pattern-lab/styleguide/css/pattern-lab.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 
-    <link rel="preload" href="/build/fonts/opensans-regular.woff2" as="font" type="font/woff2" crossorigin>
+    {# <link rel="preload" href="/build/fonts/opensans-regular.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="/build/fonts/opensans-semibold.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="/build/fonts/opensans-bold.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/build/fonts/opensans-bold.woff2" as="font" type="font/woff2" crossorigin> #}
 
-    {% for assetName, assetPath in modernAssets %}
+    {# <script type="module">
+      {{ inline(modernAssets["runtime~bolt-global.js"]) }}
+    </script> #}
+
+    {# {% for assetName, assetPath in modernAssets %}
       {% if '.js' in assetName and '.json' in assetName == false %}
-        <link rel="modulepreload" href="{{ assetPath }}">
+        <link rel="prefetch" href="{{ assetPath }}">
       {% endif %}
-    {% endfor %}
+    {% endfor %} #}
 
     {# shared critical path scripts #}
     <script>
-      //if (sessionStorage.fontsLoadedCriticalFoftPreloadPolyfill){
-      //  document.documentElement.classList.add('js-fonts-loaded');
-      //}
-
       window.drupalSettings = {
         google_analytics: {
           trackCrossDomains: ['github.com']
@@ -75,16 +75,18 @@
       window.bolt.data.fullManifest.version = window.bolt.data.fullManifest.version || {{ bolt.data.fullManifest.version|json_encode|raw }};
     </script>
 
+    <script type="module" src="{{ modernAssets["bolt-global.js"] | default("/build/bolt-global.js") }}" async></script>
+
     <noscript>
       <link href="/pattern-lab/styleguide/css/pattern-lab.css" rel="stylesheet">
     </noscript>
 
     {# @TODO: wire this up to use Critical CSS #}
-    <style>
+    {# <style>
       {% if fileExists("@bolt-assets/bolt-components-critical-fonts.css") %}
-        {# {{ inline( modernAssets["bolt-components-critical-fonts.css"] | default("") ) }} #}
+        {{ inline( modernAssets["bolt-components-critical-fonts.css"] | default("") ) }}
       {% endif %}
-    </style>
+    </style> #}
 
     <link rel="image_src" href="/images/bolt-logo-480.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=LbyzAXRqNz">

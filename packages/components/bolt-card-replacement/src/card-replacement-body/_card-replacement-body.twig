@@ -8,7 +8,7 @@
 {% set attributes = create_attribute(body.attributes|default({})) %}
 
 <bolt-card-replacement-body {{ attributes }}>
-  <replace-with-children class="c-bolt-card_replacement__body">
+  <ssr-keep for="bolt-card-replacement-body" class="c-bolt-card_replacement__body">
     {% block body %}
       {% if card_replacement_body_content %}
         {# @todo: The replace function is a hack to get around the utf-8 bug. #}
@@ -36,5 +36,5 @@
         {% endif %}
       {% endif %}
     {% endblock %}
-  </replace-with-children>
+  </ssr-keep>
 </bolt-card-replacement-body>

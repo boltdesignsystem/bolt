@@ -35,6 +35,7 @@ module.exports = {
       '@bolt/components-image',
       '@bolt/components-link',
       '@bolt/components-list',
+      '@bolt/components-li',
       '@bolt/components-logo',
       '@bolt/components-menu',
       '@bolt/components-modal',
@@ -62,9 +63,6 @@ module.exports = {
       '@bolt/components-typeahead',
       '@bolt/components-ul',
       '@bolt/components-video',
-    ],
-    individual: [
-      '@bolt/components-critical-fonts',
     ],
   },
 };

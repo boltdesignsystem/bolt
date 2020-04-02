@@ -1,1 +1,5 @@
-import './src/table';
+import { lazyQueue } from '@bolt/lazy-element';
+
+lazyQueue(['bolt-table'], async () => {
+  await import('./src/table');
+});

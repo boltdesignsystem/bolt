@@ -108,9 +108,9 @@
         type: "reset"
       } %}
         {% block slot_after %}
-          <replace-with-children class="c-bolt-button__icon">
+          <ssr-keep for="bolt-typeahead" class="c-bolt-button__icon">
             {{ clear_icon }}
-          </replace-with-children>
+          </ssr-keep>
         {% endblock slot_after %}
       {% endembed %}
 
@@ -122,9 +122,9 @@
           type: "submit"
         } %}
           {% block slot_after %}
-            <replace-with-children class="c-bolt-button__icon">
+            <ssr-keep for="bolt-typeahead" class="c-bolt-button__icon">
               {{ search_icon }}
-            </replace-with-children>
+            </ssr-keep>
           {% endblock slot_after %}
         {% endembed %}
       </div>

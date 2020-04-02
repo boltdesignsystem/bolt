@@ -94,9 +94,9 @@ Sort classes passed in via attributes into two groups:
     {{ filtered_attributes|without('id') }}
   >
     {{ macros.slotted_icon(icon, icon_position, "before") }}
-    <replace-with-children class="{{ "#{base_class}__text" }}">
+    <ssr-keep for="bolt-link" class="{{ "#{base_class}__text" }}">
       {{- text | default(label) | default("Learn More") -}}
-    </replace-with-children>
+    </ssr-keep>
     {{ macros.slotted_icon(icon, icon_position, "after") }}
   </a>
 </bolt-link>{% endspaceless %}

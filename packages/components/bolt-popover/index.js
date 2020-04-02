@@ -1,1 +1,5 @@
-import './src/popover';
+import { lazyQueue } from '@bolt/lazy-element';
+
+lazyQueue(['bolt-popover'], async () => {
+  await Promise.all([import('./src/popover')]);
+});

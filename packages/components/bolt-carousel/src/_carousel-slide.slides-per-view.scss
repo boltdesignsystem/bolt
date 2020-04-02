@@ -26,9 +26,9 @@ bolt-carousel:not([slides-per-view='1']) {
 }
 
 // slides per view auto + undefined + slides per view = 3
-bolt-carousel:not([slides-per-view]),
-bolt-carousel[slides-per-view='auto'],
-bolt-carousel[slides-per-view='3'] {
+bolt-carousel:not([slides-per-view]):not(.is-ready),
+bolt-carousel[slides-per-view='auto']:not(.is-ready),
+bolt-carousel[slides-per-view='3']:not(.is-ready) {
   bolt-carousel-slide:not(.is-ready) {
     @include bolt-mq($from: medium) {
       min-width: calc(

@@ -38,7 +38,7 @@
 
   #{unquote($selector)} {
     @each $themeOptionName, $themeOptionValue in $themeOptions {
-      @if $themeOptionName == 'background' or $themeOptionName == 'text' or $themeOptionName == 'headline' or $themeOptionName == 'headline-link' {
+      @if $themeOptionName == 'background' or $themeOptionName == 'text' or $themeOptionName == 'headline' or $themeOptionName == 'link' or $themeOptionName == 'border' or $themeOptionName == 'headline-link' {
         @if type-of($themeOptionValue) == color and type-of($themeOptionValue) != string {
           $red: round(red($themeOptionValue));
           $green: round(green($themeOptionValue));

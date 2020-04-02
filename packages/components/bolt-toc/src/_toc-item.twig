@@ -42,9 +42,9 @@
   {{ this.props|without("text")|without("class") }}
   role="presentation"
 >
-  <replace-with-grandchildren role="listitem">
-    <a {% if inner_classes %} class="{{ inner_classes|join(' ') }}" {% endif %} href="{{ url }}">
+  <div role="listitem">
+    <a {% if inner_classes %} class="{{ inner_classes|join(' ') }}" {% endif %} href="{{ url }}"><ssr-keep for="bolt-toc-item">
       {{ text }}
-    </a>
-  </replace-with-grandchildren>
+    </ssr-keep></a>
+  </div>
 </bolt-toc-item>
