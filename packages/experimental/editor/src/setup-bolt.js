@@ -20,7 +20,7 @@ import imageSchema from '@bolt/components-image/image.schema.yml';
 import animateSchema from '@bolt/components-animate/animate.schema';
 import * as starters from '@bolt/micro-journeys/starters';
 // @ts-ignore
-import linkSchema from '@bolt/components-link/link.schema.yml';
+import linkSchema from '@bolt/components-link/link.schema';
 // import { animationNames } from '@bolt/components-animate/animation-meta';
 import { isChildOfEl, convertSchemaPropToTrait, getStepsLorem } from './utils';
 

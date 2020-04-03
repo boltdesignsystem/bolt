@@ -1,4 +1,5 @@
 const iconSchema = require('@bolt/components-icon/icon.schema.json');
+const elementSchemas = require('@bolt/element/element.schemas');
 
 iconSchema.properties = {
   position: {
@@ -93,6 +94,7 @@ module.exports = {
       default: false,
       required: ['icon'],
     },
+    ...elementSchemas.boltActionElement.properties,
     itemAlignment: {
       title: 'DEPRECATED',
       description: 'Use the align parameter instead.',

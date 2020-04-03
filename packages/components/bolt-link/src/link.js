@@ -10,7 +10,7 @@ import {
 } from '@bolt/element';
 import classNames from 'classnames/bind';
 import linkStyles from './link.scss';
-import schema from '../link.schema.yml';
+import schema from '../link.schema';
 
 let cx = classNames.bind(linkStyles);
 

@@ -3,6 +3,35 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.20.2](https://github.com/boltdesignsystem/bolt/compare/v2.20.1...v2.20.2) (2020-03-30)
+
+
+### Bug Fixes
+
+* make sure querySelector returns element before getting clientHeight ([097c17e](https://github.com/boltdesignsystem/bolt/commit/097c17e48c87c253f087092c17bf33bfdb21bcaa))
+* race condition on smoothScroll stop ([318e6ad](https://github.com/boltdesignsystem/bolt/commit/318e6add68b8e514a809eed16b892fdeebddc027))
+* remove default `header` value, causing unexpected results on Academy ([a60bab8](https://github.com/boltdesignsystem/bolt/commit/a60bab8e6077e98d8308e5a5f63427f5ac18af75))
+* turn off pointer events on waypoint debugger, just a bug while debugging ([62dbd1a](https://github.com/boltdesignsystem/bolt/commit/62dbd1a6e4c604f50ca419b5b8b5da999b686c80))
+
+
+
+
+
+## [2.20.1](https://github.com/boltdesignsystem/bolt/compare/v2.20.0...v2.20.1) (2020-03-26)
+
+
+### Bug Fixes
+
+* fix for vertical alignment of Icon in Numbered Bullet ([3e09ffa](https://github.com/boltdesignsystem/bolt/commit/3e09ffac020b9e5bf987cde5a5f952035702e3c7))
+* remove extra whitespace + better adjust vertical alignment of Icon within the Headline component; update PL demo to include demoing icons at different Headline sizes ([7f116f5](https://github.com/boltdesignsystem/bolt/commit/7f116f50e964943e8b8e706cacd9babff607fe31))
+* tweak headline logic to work around alignment regresion in v2.20.0 ([796ae54](https://github.com/boltdesignsystem/bolt/commit/796ae54be4cb7d18eb5822636ba4463b963f01d0))
+* update Blockquote snapshots ([7768711](https://github.com/boltdesignsystem/bolt/commit/776871167c2875ccab70de3058757f4378d23518))
+* update Jest snapshots ([e582e39](https://github.com/boltdesignsystem/bolt/commit/e582e39e084114ae731e2246db5e5b897e55cdf5))
+
+
+
+
+
 # [2.20.0](https://github.com/boltdesignsystem/bolt/compare/v2.19.1...v2.20.0) (2020-03-18)
 
 
