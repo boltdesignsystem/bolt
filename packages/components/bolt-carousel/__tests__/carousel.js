@@ -159,25 +159,20 @@ describe('carousel', () => {
 
         document.body.appendChild(carousel);
 
-        // return back the carousel's HTML once the carousel + carousel items have all finished rendering
-        const carousels = Array.from(
-          document.querySelectorAll('bolt-carousel'),
+        const undefinedElements = document.querySelectorAll(
+          'bolt-carousel',
+          'bolt-icon',
+          'bolt-button',
+          'bolt-image',
+          'bolt-button',
         );
-        const carouselItems = Array.from(
-          document.querySelectorAll('bolt-carousel-item'),
+        const promises = [...undefinedElements].map(elem =>
+          customElements.whenDefined(elem.localName),
         );
-        const allElements = [...carousels, ...carouselItems];
-        return await Promise.all(
-          allElements.map(element => {
-            if (element._wasInitiallyRendered) return;
-            return new Promise((resolve, reject) => {
-              element.addEventListener('ready', resolve);
-              element.addEventListener('error', reject);
-            });
-          }),
-        ).then(() => {
-          return carousel.outerHTML;
-        });
+
+        await Promise.all(promises);
+        const boltCarousel = document.querySelector('bolt-carousel');
+        return boltCarousel.outerHTML;
       });
 
       const screenshots = [];

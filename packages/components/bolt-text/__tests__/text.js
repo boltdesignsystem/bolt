@@ -128,7 +128,7 @@ describe('<bolt-text> Component', () => {
 
   // xxxlarge Headline (Light DOM)
   test('xxxlarge headline using <bolt-text> w/o Shadow DOM renders', async function() {
-    const renderedTextHTML = await page.evaluate(() => {
+    const renderedTextHTML = await page.evaluate(async () => {
       const text = document.createElement('bolt-text');
 
       text.textContent = `This is xxxlarge headline`;
@@ -136,7 +136,11 @@ describe('<bolt-text> Component', () => {
       text.setAttribute('font-size', 'xxxlarge');
       document.body.appendChild(text);
       text.useShadow = false;
-      text.updated();
+      const undefinedElements = document.querySelectorAll('bolt-text');
+      const promises = [...undefinedElements].map(elem =>
+        customElements.whenDefined(elem.localName),
+      );
+      await Promise.all(promises);
 
       return text.outerHTML;
     });
@@ -190,7 +194,7 @@ describe('<bolt-text> Component', () => {
 
   // Long xxxlarge Headline (Light DOM)
   test('Long xxxlarge headline using <bolt-text> w/o Shadow DOM renders', async function() {
-    const renderedTextHTML = await page.evaluate(() => {
+    const renderedTextHTML = await page.evaluate(async () => {
       const text = document.createElement('bolt-text');
 
       text.textContent = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam in gravida ex.`;
@@ -198,7 +202,11 @@ describe('<bolt-text> Component', () => {
       text.setAttribute('font-size', 'xxxlarge');
       document.body.appendChild(text);
       text.useShadow = false;
-      text.updated();
+      const undefinedElements = document.querySelectorAll('bolt-text');
+      const promises = [...undefinedElements].map(elem =>
+        customElements.whenDefined(elem.localName),
+      );
+      await Promise.all(promises);
 
       return text.outerHTML;
     });
@@ -250,7 +258,7 @@ describe('<bolt-text> Component', () => {
 
   // All caps xxlarge bold quote (Light DOM)
   test('All caps xxlarge bold quote using <bolt-text> w/o Shadow DOM renders', async function() {
-    const renderedTextHTML = await page.evaluate(() => {
+    const renderedTextHTML = await page.evaluate(async () => {
       const text = document.createElement('bolt-text');
 
       text.textContent = `This is a quote`;
@@ -262,7 +270,11 @@ describe('<bolt-text> Component', () => {
       text.setAttribute('font-weight', 'bold');
       document.body.appendChild(text);
       text.useShadow = false;
-      text.updated();
+      const undefinedElements = document.querySelectorAll('bolt-text');
+      const promises = [...undefinedElements].map(elem =>
+        customElements.whenDefined(elem.localName),
+      );
+      await Promise.all(promises);
 
       return text.outerHTML;
     });

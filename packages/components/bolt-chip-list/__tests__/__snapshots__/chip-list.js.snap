@@ -8,82 +8,84 @@ exports[`<bolt-chip-list> Component basic usage with links 1`] = `
            align="start"
            valign="center"
 >
-  <replace-with-grandchildren>
-    <ul class="c-bolt-list c-bolt-list--display-inline c-bolt-list--spacing-xsmall c-bolt-list--align-start c-bolt-list--valign-center">
+  <ul class="c-bolt-list c-bolt-list--display-inline c-bolt-list--spacing-xsmall c-bolt-list--align-start c-bolt-list--valign-center">
+    <ssr-keep for="bolt-list"
+              style="display: contents;"
+    >
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+        <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+          <ssr-keep for="bolt-list-item">
             <bolt-chip url="#!">
-              <replace-with-grandchildren>
-                <a href="#!"
-                   class="c-bolt-chip c-bolt-chip--link c-bolt-chip--size-small"
-                   is="shadow-root"
+              <a href="#!"
+                 class="c-bolt-chip c-bolt-chip--link c-bolt-chip--size-small"
+                 is="shadow-root"
+              >
+                <ssr-keep for="bolt-chip"
+                          class="c-bolt-chip__text"
                 >
-                  <replace-with-children class="c-bolt-chip__text">
-                    Chip link 1
-                  </replace-with-children>
-                </a>
-              </replace-with-grandchildren>
+                  Chip link 1
+                </ssr-keep>
+              </a>
             </bolt-chip>
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+        <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+          <ssr-keep for="bolt-list-item">
             <bolt-chip url="#!">
-              <replace-with-grandchildren>
-                <a href="#!"
-                   class="c-bolt-chip c-bolt-chip--link c-bolt-chip--size-small"
-                   is="shadow-root"
+              <a href="#!"
+                 class="c-bolt-chip c-bolt-chip--link c-bolt-chip--size-small"
+                 is="shadow-root"
+              >
+                <ssr-keep for="bolt-chip"
+                          class="c-bolt-chip__text"
                 >
-                  <replace-with-children class="c-bolt-chip__text">
-                    Chip link 2
-                  </replace-with-children>
-                </a>
-              </replace-with-grandchildren>
+                  Chip link 2
+                </ssr-keep>
+              </a>
             </bolt-chip>
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+        <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+          <ssr-keep for="bolt-list-item">
             <bolt-chip url="#!">
-              <replace-with-grandchildren>
-                <a href="#!"
-                   class="c-bolt-chip c-bolt-chip--link c-bolt-chip--size-small"
-                   is="shadow-root"
+              <a href="#!"
+                 class="c-bolt-chip c-bolt-chip--link c-bolt-chip--size-small"
+                 is="shadow-root"
+              >
+                <ssr-keep for="bolt-chip"
+                          class="c-bolt-chip__text"
                 >
-                  <replace-with-children class="c-bolt-chip__text">
-                    Chip link 3
-                  </replace-with-children>
-                </a>
-              </replace-with-grandchildren>
+                  Chip link 3
+                </ssr-keep>
+              </a>
             </bolt-chip>
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
       <bolt-list-item last>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start c-bolt-list-item--last-item">
+        <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start c-bolt-list-item--last-item">
+          <ssr-keep for="bolt-list-item">
             <bolt-chip url="#!">
-              <replace-with-grandchildren>
-                <a href="#!"
-                   class="c-bolt-chip c-bolt-chip--link c-bolt-chip--size-small"
-                   is="shadow-root"
+              <a href="#!"
+                 class="c-bolt-chip c-bolt-chip--link c-bolt-chip--size-small"
+                 is="shadow-root"
+              >
+                <ssr-keep for="bolt-chip"
+                          class="c-bolt-chip__text"
                 >
-                  <replace-with-children class="c-bolt-chip__text">
-                    Chip link 4
-                  </replace-with-children>
-                </a>
-              </replace-with-grandchildren>
+                  Chip link 4
+                </ssr-keep>
+              </a>
             </bolt-chip>
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
-    </ul>
-  </replace-with-grandchildren>
+    </ssr-keep>
+  </ul>
 </bolt-list>
 `;
 
@@ -95,80 +97,82 @@ exports[`<bolt-chip-list> Component basic usage with mixed behavior 1`] = `
            align="start"
            valign="center"
 >
-  <replace-with-grandchildren>
-    <ul class="c-bolt-list c-bolt-list--display-inline c-bolt-list--spacing-xsmall c-bolt-list--align-start c-bolt-list--valign-center">
+  <ul class="c-bolt-list c-bolt-list--display-inline c-bolt-list--spacing-xsmall c-bolt-list--align-start c-bolt-list--valign-center">
+    <ssr-keep for="bolt-list"
+              style="display: contents;"
+    >
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+        <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+          <ssr-keep for="bolt-list-item">
             <bolt-chip url="#!">
-              <replace-with-grandchildren>
-                <a href="#!"
-                   class="c-bolt-chip c-bolt-chip--link c-bolt-chip--size-small"
-                   is="shadow-root"
+              <a href="#!"
+                 class="c-bolt-chip c-bolt-chip--link c-bolt-chip--size-small"
+                 is="shadow-root"
+              >
+                <ssr-keep for="bolt-chip"
+                          class="c-bolt-chip__text"
                 >
-                  <replace-with-children class="c-bolt-chip__text">
-                    Chip link 1
-                  </replace-with-children>
-                </a>
-              </replace-with-grandchildren>
+                  Chip link 1
+                </ssr-keep>
+              </a>
             </bolt-chip>
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+        <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+          <ssr-keep for="bolt-list-item">
             <bolt-chip>
-              <replace-with-grandchildren>
-                <span class="c-bolt-chip c-bolt-chip--size-small"
-                      is="shadow-root"
+              <span class="c-bolt-chip c-bolt-chip--size-small"
+                    is="shadow-root"
+              >
+                <ssr-keep for="bolt-chip"
+                          class="c-bolt-chip__text"
                 >
-                  <replace-with-children class="c-bolt-chip__text">
-                    Chip text 1
-                  </replace-with-children>
-                </span>
-              </replace-with-grandchildren>
+                  Chip text 1
+                </ssr-keep>
+              </span>
             </bolt-chip>
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+        <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+          <ssr-keep for="bolt-list-item">
             <bolt-chip url="#!">
-              <replace-with-grandchildren>
-                <a href="#!"
-                   class="c-bolt-chip c-bolt-chip--link c-bolt-chip--size-small"
-                   is="shadow-root"
+              <a href="#!"
+                 class="c-bolt-chip c-bolt-chip--link c-bolt-chip--size-small"
+                 is="shadow-root"
+              >
+                <ssr-keep for="bolt-chip"
+                          class="c-bolt-chip__text"
                 >
-                  <replace-with-children class="c-bolt-chip__text">
-                    Chip link 3
-                  </replace-with-children>
-                </a>
-              </replace-with-grandchildren>
+                  Chip link 3
+                </ssr-keep>
+              </a>
             </bolt-chip>
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
       <bolt-list-item last>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start c-bolt-list-item--last-item">
+        <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start c-bolt-list-item--last-item">
+          <ssr-keep for="bolt-list-item">
             <bolt-chip>
-              <replace-with-grandchildren>
-                <span class="c-bolt-chip c-bolt-chip--size-small"
-                      is="shadow-root"
+              <span class="c-bolt-chip c-bolt-chip--size-small"
+                    is="shadow-root"
+              >
+                <ssr-keep for="bolt-chip"
+                          class="c-bolt-chip__text"
                 >
-                  <replace-with-children class="c-bolt-chip__text">
-                    Chip text 2
-                  </replace-with-children>
-                </span>
-              </replace-with-grandchildren>
+                  Chip text 2
+                </ssr-keep>
+              </span>
             </bolt-chip>
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
-    </ul>
-  </replace-with-grandchildren>
+    </ssr-keep>
+  </ul>
 </bolt-list>
 `;
 
@@ -180,77 +184,79 @@ exports[`<bolt-chip-list> Component basic usage without links 1`] = `
            align="start"
            valign="center"
 >
-  <replace-with-grandchildren>
-    <ul class="c-bolt-list c-bolt-list--display-inline c-bolt-list--spacing-xsmall c-bolt-list--align-start c-bolt-list--valign-center">
+  <ul class="c-bolt-list c-bolt-list--display-inline c-bolt-list--spacing-xsmall c-bolt-list--align-start c-bolt-list--valign-center">
+    <ssr-keep for="bolt-list"
+              style="display: contents;"
+    >
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+        <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+          <ssr-keep for="bolt-list-item">
             <bolt-chip>
-              <replace-with-grandchildren>
-                <span class="c-bolt-chip c-bolt-chip--size-small"
-                      is="shadow-root"
+              <span class="c-bolt-chip c-bolt-chip--size-small"
+                    is="shadow-root"
+              >
+                <ssr-keep for="bolt-chip"
+                          class="c-bolt-chip__text"
                 >
-                  <replace-with-children class="c-bolt-chip__text">
-                    Chip text 1
-                  </replace-with-children>
-                </span>
-              </replace-with-grandchildren>
+                  Chip text 1
+                </ssr-keep>
+              </span>
             </bolt-chip>
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+        <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+          <ssr-keep for="bolt-list-item">
             <bolt-chip>
-              <replace-with-grandchildren>
-                <span class="c-bolt-chip c-bolt-chip--size-small"
-                      is="shadow-root"
+              <span class="c-bolt-chip c-bolt-chip--size-small"
+                    is="shadow-root"
+              >
+                <ssr-keep for="bolt-chip"
+                          class="c-bolt-chip__text"
                 >
-                  <replace-with-children class="c-bolt-chip__text">
-                    Chip text 2
-                  </replace-with-children>
-                </span>
-              </replace-with-grandchildren>
+                  Chip text 2
+                </ssr-keep>
+              </span>
             </bolt-chip>
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+        <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+          <ssr-keep for="bolt-list-item">
             <bolt-chip>
-              <replace-with-grandchildren>
-                <span class="c-bolt-chip c-bolt-chip--size-small"
-                      is="shadow-root"
+              <span class="c-bolt-chip c-bolt-chip--size-small"
+                    is="shadow-root"
+              >
+                <ssr-keep for="bolt-chip"
+                          class="c-bolt-chip__text"
                 >
-                  <replace-with-children class="c-bolt-chip__text">
-                    Chip text 3
-                  </replace-with-children>
-                </span>
-              </replace-with-grandchildren>
+                  Chip text 3
+                </ssr-keep>
+              </span>
             </bolt-chip>
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
       <bolt-list-item last>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start c-bolt-list-item--last-item">
+        <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start c-bolt-list-item--last-item">
+          <ssr-keep for="bolt-list-item">
             <bolt-chip>
-              <replace-with-grandchildren>
-                <span class="c-bolt-chip c-bolt-chip--size-small"
-                      is="shadow-root"
+              <span class="c-bolt-chip c-bolt-chip--size-small"
+                    is="shadow-root"
+              >
+                <ssr-keep for="bolt-chip"
+                          class="c-bolt-chip__text"
                 >
-                  <replace-with-children class="c-bolt-chip__text">
-                    Chip text 4
-                  </replace-with-children>
-                </span>
-              </replace-with-grandchildren>
+                  Chip text 4
+                </ssr-keep>
+              </span>
             </bolt-chip>
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
-    </ul>
-  </replace-with-grandchildren>
+    </ssr-keep>
+  </ul>
 </bolt-list>
 `;

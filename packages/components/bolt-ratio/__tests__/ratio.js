@@ -57,7 +57,11 @@ describe('<bolt-ratio> Component', () => {
         </bolt-ratio>`,
       );
       const ratio = document.querySelector('bolt-ratio');
-      await ratio.firstUpdated;
+      const undefinedElements = document.querySelectorAll('bolt-ratio');
+      const promises = [...undefinedElements].map(elem =>
+        customElements.whenDefined(elem.localName),
+      );
+      await Promise.all(promises);
       return ratio.outerHTML;
     });
     expect(renderedRatioHTML).toMatchSnapshot();

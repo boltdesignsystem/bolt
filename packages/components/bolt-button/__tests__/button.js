@@ -85,15 +85,19 @@ describe('button', () => {
     expect(results.html).toMatchSnapshot();
 
     const buttonInnerHTML = await page.evaluate(async results => {
-      const wrapper = document.createElement('div');
-      wrapper.innerHTML = results.html;
-      document.body.appendChild(wrapper);
-      const button = document.querySelector('bolt-button');
-      await button.firstUpdated;
-      return button.renderRoot.innerHTML;
+      document.body.insertAdjacentHTML('beforeend', results.html);
+      const undefinedElements = document.querySelectorAll('bolt-button');
+      const promises = [...undefinedElements].map(elem =>
+        customElements.whenDefined(elem.localName),
+      );
+
+      // Wait for all the custom elements to be upgraded,
+      await Promise.all(promises);
+      const boltButton = document.querySelector('bolt-button');
+      return boltButton.renderRoot.innerHTML;
     }, results);
 
-    const renderedHTML = await html(buttonInnerHTML);
+    const renderedHTML = await html(`${buttonInnerHTML}`);
     expect(renderedHTML.hasAttribute('disabled')).toBe(true);
     expect(renderedHTML).toMatchSnapshot();
 
@@ -119,7 +123,11 @@ describe('button', () => {
       wrapper.innerHTML = results.html;
       document.body.appendChild(wrapper);
       const button = document.querySelector('bolt-button');
-      await button.firstUpdated;
+      const undefinedElements = document.querySelectorAll('bolt-button');
+      const promises = [...undefinedElements].map(elem =>
+        customElements.whenDefined(elem.localName),
+      );
+      await Promise.all(promises);
       return button.renderRoot.innerHTML;
     }, results);
 
@@ -231,7 +239,11 @@ describe('button', () => {
       const btn = document.createElement('bolt-button');
       btn.textContent = 'Button Test -- Shadow Root HTML';
       document.body.appendChild(btn);
-      await btn.firstUpdated;
+      const undefinedElements = document.querySelectorAll('bolt-button');
+      const promises = [...undefinedElements].map(elem =>
+        customElements.whenDefined(elem.localName),
+      );
+      await Promise.all(promises);
       return btn.renderRoot.innerHTML;
     });
 
@@ -239,7 +251,11 @@ describe('button', () => {
       const btn = document.createElement('bolt-button');
       btn.textContent = 'Button Test -- Outer HTML';
       document.body.appendChild(btn);
-      await btn.firstUpdated;
+      const undefinedElements = document.querySelectorAll('bolt-button');
+      const promises = [...undefinedElements].map(elem =>
+        customElements.whenDefined(elem.localName),
+      );
+      await Promise.all(promises);
       return btn.outerHTML;
     });
 

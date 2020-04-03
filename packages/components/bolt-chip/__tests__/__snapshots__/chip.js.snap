@@ -2,94 +2,96 @@
 
 exports[`chip basic usage 1`] = `
 <bolt-chip>
-  <replace-with-grandchildren>
-    <span class="c-bolt-chip c-bolt-chip--size-small"
-          is="shadow-root"
+  <span class="c-bolt-chip c-bolt-chip--size-small"
+        is="shadow-root"
+  >
+    <ssr-keep for="bolt-chip"
+              class="c-bolt-chip__text"
     >
-      <replace-with-children class="c-bolt-chip__text">
-        Hello World
-      </replace-with-children>
-    </span>
-  </replace-with-grandchildren>
+      Hello World
+    </ssr-keep>
+  </span>
 </bolt-chip>
 `;
 
 exports[`chip chip size: medium 1`] = `
 <bolt-chip size="medium">
-  <replace-with-grandchildren>
-    <span class="c-bolt-chip c-bolt-chip--size-medium"
-          is="shadow-root"
+  <span class="c-bolt-chip c-bolt-chip--size-medium"
+        is="shadow-root"
+  >
+    <ssr-keep for="bolt-chip"
+              class="c-bolt-chip__text"
     >
-      <replace-with-children class="c-bolt-chip__text">
-        Chip size
-      </replace-with-children>
-    </span>
-  </replace-with-grandchildren>
+      Chip size
+    </ssr-keep>
+  </span>
 </bolt-chip>
 `;
 
 exports[`chip chip size: small 1`] = `
 <bolt-chip size="small">
-  <replace-with-grandchildren>
-    <span class="c-bolt-chip c-bolt-chip--size-small"
-          is="shadow-root"
+  <span class="c-bolt-chip c-bolt-chip--size-small"
+        is="shadow-root"
+  >
+    <ssr-keep for="bolt-chip"
+              class="c-bolt-chip__text"
     >
-      <replace-with-children class="c-bolt-chip__text">
-        Chip size
-      </replace-with-children>
-    </span>
-  </replace-with-grandchildren>
+      Chip size
+    </ssr-keep>
+  </span>
 </bolt-chip>
 `;
 
 exports[`chip chip size: xsmall 1`] = `
 <bolt-chip size="xsmall">
-  <replace-with-grandchildren>
-    <span class="c-bolt-chip c-bolt-chip--size-xsmall"
-          is="shadow-root"
+  <span class="c-bolt-chip c-bolt-chip--size-xsmall"
+        is="shadow-root"
+  >
+    <ssr-keep for="bolt-chip"
+              class="c-bolt-chip__text"
     >
-      <replace-with-children class="c-bolt-chip__text">
-        Chip size
-      </replace-with-children>
-    </span>
-  </replace-with-grandchildren>
+      Chip size
+    </ssr-keep>
+  </span>
 </bolt-chip>
 `;
 
 exports[`chip icon usage 1`] = `
 <bolt-chip>
-  <replace-with-grandchildren>
-    <span class="c-bolt-chip c-bolt-chip--size-small"
-          is="shadow-root"
+  <span class="c-bolt-chip c-bolt-chip--size-small"
+        is="shadow-root"
+  >
+    <ssr-keep class="c-bolt-chip__icon"
+              for="bolt-chip"
     >
-      <replace-with-children class="c-bolt-chip__icon">
-        <bolt-icon slot="before"
-                   name="check"
-        >
-          <span class="c-bolt-icon c-bolt-icon--check">
-            <svg class="c-bolt-icon__icon"
-                 xmlns="http://www.w3.org/2000/svg"
-                 viewbox="0 0 24 24"
+      <bolt-icon slot="before"
+                 name="check"
+      >
+        <span class="c-bolt-icon c-bolt-icon--check">
+          <svg class="c-bolt-icon__icon"
+               xmlns="http://www.w3.org/2000/svg"
+               viewbox="0 0 24 24"
+          >
+            <g fill="none"
+               fill-rule="evenodd"
             >
-              <g fill="none"
-                 fill-rule="evenodd"
+              <path>
+              </path>
+              <path fill="var(--bolt-theme-icon, currentColor)"
+                    d="M19.292 6.29L8.998 16.584 4.703 12.29a1.004 1.004 0 00-1.412 0 1.002 1.002 0 000 1.413l5 5a.995.995 0 001.411 0l11-11a.99.99 0 000-1.413 1.001 1.001 0 00-1.41 0z"
               >
-                <path>
-                </path>
-                <path fill="var(--bolt-theme-icon, currentColor)"
-                      d="M19.292 6.29L8.998 16.584 4.703 12.29a1.004 1.004 0 00-1.412 0 1.002 1.002 0 000 1.413l5 5a.995.995 0 001.411 0l11-11a.99.99 0 000-1.413 1.001 1.001 0 00-1.41 0z"
-                >
-                </path>
-              </g>
-            </svg>
-          </span>
-        </bolt-icon>
-      </replace-with-children>
-      <replace-with-children class="c-bolt-chip__text">
-        Icon before
-      </replace-with-children>
-    </span>
-  </replace-with-grandchildren>
+              </path>
+            </g>
+          </svg>
+        </span>
+      </bolt-icon>
+    </ssr-keep>
+    <ssr-keep for="bolt-chip"
+              class="c-bolt-chip__text"
+    >
+      Icon before
+    </ssr-keep>
+  </span>
 </bolt-chip>
 `;
 
@@ -97,16 +99,16 @@ exports[`chip url usage 1`] = `
 <bolt-chip url="https://pega.com"
            target="_blank"
 >
-  <replace-with-grandchildren>
-    <a href="https://pega.com"
-       target="_blank"
-       class="c-bolt-chip c-bolt-chip--link c-bolt-chip--size-small"
-       is="shadow-root"
+  <a href="https://pega.com"
+     target="_blank"
+     class="c-bolt-chip c-bolt-chip--link c-bolt-chip--size-small"
+     is="shadow-root"
+  >
+    <ssr-keep for="bolt-chip"
+              class="c-bolt-chip__text"
     >
-      <replace-with-children class="c-bolt-chip__text">
-        Has URL
-      </replace-with-children>
-    </a>
-  </replace-with-grandchildren>
+      Has URL
+    </ssr-keep>
+  </a>
 </bolt-chip>
 `;

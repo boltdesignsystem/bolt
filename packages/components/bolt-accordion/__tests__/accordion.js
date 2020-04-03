@@ -182,21 +182,14 @@ describe('<bolt-accordion> Component', () => {
       wrapper.innerHTML = accordionHTML;
       document.body.appendChild(wrapper);
 
-      const accordion = document.querySelector('bolt-accordion');
-      const accordionItems = Array.from(
-        document.querySelectorAll('bolt-accordion-item'),
+      const undefinedElements = document.querySelectorAll(
+        'bolt-accordion',
+        'bolt-accordion-item',
       );
-      const allElements = [accordion, ...accordionItems];
-
-      return await Promise.all(
-        allElements.map(element => {
-          if (element._wasInitiallyRendered) return;
-          return new Promise((resolve, reject) => {
-            element.addEventListener('ready', resolve);
-            element.addEventListener('error', reject);
-          });
-        }),
+      const promises = [...undefinedElements].map(elem =>
+        customElements.whenDefined(elem.localName),
       );
+      await Promise.all(promises);
     }, accordionHTML);
 
     // Wait for Handorgel to run, starts after component 'ready' event
@@ -233,22 +226,15 @@ describe('<bolt-accordion> Component', () => {
       const wrapper = document.createElement('div');
       wrapper.innerHTML = accordionNoShadowHTML;
       document.body.appendChild(wrapper);
-
-      const accordion = document.querySelector('bolt-accordion');
-      const accordionItems = Array.from(
-        document.querySelectorAll('bolt-accordion-item'),
+      const undefinedElements = document.querySelectorAll(
+        'bolt-icon',
+        'bolt-accordion',
+        'bolt-accordion-item',
       );
-      const allElements = [accordion, ...accordionItems];
-
-      return await Promise.all(
-        allElements.map(element => {
-          if (element._wasInitiallyRendered) return;
-          return new Promise((resolve, reject) => {
-            element.addEventListener('ready', resolve);
-            element.addEventListener('error', reject);
-          });
-        }),
+      const promises = [...undefinedElements].map(elem =>
+        customElements.whenDefined(elem.localName),
       );
+      await Promise.all(promises);
     }, accordionNoShadowHTML);
 
     // Wait for Handorgel to run, starts after component 'ready' event

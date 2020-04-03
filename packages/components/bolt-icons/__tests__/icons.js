@@ -41,23 +41,31 @@ describe('<bolt-icon> Component', () => {
   });
 
   test('Default <bolt-icon> with Shadow DOM renders', async function() {
-    const defaultIconShadowRoot = await page.evaluate(() => {
+    const defaultIconShadowRoot = await page.evaluate(async () => {
       const icon = document.createElement('bolt-icon');
       icon.setAttribute('name', 'add-open');
       icon.setAttribute('background', 'circle');
       icon.setAttribute('size', 'large');
       document.body.appendChild(icon);
-      icon.updated();
+      const undefinedElements = document.querySelectorAll('bolt-icon');
+      const promises = [...undefinedElements].map(elem =>
+        customElements.whenDefined(elem.localName),
+      );
+      await Promise.all(promises);
       return icon.renderRoot.innerHTML;
     });
 
-    const defaultIconOuter = await page.evaluate(() => {
+    const defaultIconOuter = await page.evaluate(async () => {
       const icon = document.createElement('bolt-icon');
       icon.setAttribute('name', 'add-open');
       icon.setAttribute('background', 'circle');
       icon.setAttribute('size', 'large');
       document.body.appendChild(icon);
-      icon.updated();
+      const undefinedElements = document.querySelectorAll('bolt-icon');
+      const promises = [...undefinedElements].map(elem =>
+        customElements.whenDefined(elem.localName),
+      );
+      await Promise.all(promises);
       return icon.outerHTML;
     });
 
@@ -76,23 +84,31 @@ describe('<bolt-icon> Component', () => {
   });
 
   test('Additional <bolt-icon> with Shadow DOM renders', async function() {
-    const defaultIconShadowRoot = await page.evaluate(() => {
+    const defaultIconShadowRoot = await page.evaluate(async () => {
       const icon = document.createElement('bolt-icon');
       icon.setAttribute('name', 'yeti');
       icon.setAttribute('background', 'circle');
       icon.setAttribute('size', 'large');
       document.body.appendChild(icon);
-      icon.updated();
+      const undefinedElements = document.querySelectorAll('bolt-icon');
+      const promises = [...undefinedElements].map(elem =>
+        customElements.whenDefined(elem.localName),
+      );
+      await Promise.all(promises);
       return icon.renderRoot.innerHTML;
     });
 
-    const defaultIconOuter = await page.evaluate(() => {
+    const defaultIconOuter = await page.evaluate(async () => {
       const icon = document.createElement('bolt-icon');
       icon.setAttribute('name', 'yeti');
       icon.setAttribute('background', 'circle');
       icon.setAttribute('size', 'large');
       document.body.appendChild(icon);
-      icon.updated();
+      const undefinedElements = document.querySelectorAll('bolt-icon');
+      const promises = [...undefinedElements].map(elem =>
+        customElements.whenDefined(elem.localName),
+      );
+      await Promise.all(promises);
       return icon.outerHTML;
     });
 

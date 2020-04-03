@@ -2,9 +2,10 @@
 
 exports[`<bolt-toc> Component Basic usage 1`] = `
 <bolt-toc ssr-id="12345">
-  <replace-with-children class="c-bolt-toc"
-                         role="navigation"
-                         aria-labelledby="js-bolt-toc-12345"
+  <ssr-keep for="bolt-toc"
+            class="c-bolt-toc"
+            role="navigation"
+            aria-labelledby="js-bolt-toc-12345"
   >
     <h2 class="c-bolt-toc__header c-bolt-toc__header--hidden"
         id="js-bolt-toc-12345"
@@ -13,52 +14,60 @@ exports[`<bolt-toc> Component Basic usage 1`] = `
     >
       Table of Content
     </h2>
-    <replace-with-children class="c-bolt-toc__list"
-                           role="list"
+    <ssr-keep for="bolt-toc"
+              class="c-bolt-toc__list"
+              role="list"
     >
       <bolt-toc-item url="#section-one"
                      role="presentation"
       >
-        <replace-with-grandchildren role="listitem">
+        <div role="listitem">
           <a class="c-bolt-toc-item "
              href="#section-one"
           >
-            Section One
+            <ssr-keep for="bolt-toc-item">
+              Section One
+            </ssr-keep>
           </a>
-        </replace-with-grandchildren>
+        </div>
       </bolt-toc-item>
       <bolt-toc-item url="#section-two"
                      role="presentation"
       >
-        <replace-with-grandchildren role="listitem">
+        <div role="listitem">
           <a class="c-bolt-toc-item "
              href="#section-two"
           >
-            Section Two
+            <ssr-keep for="bolt-toc-item">
+              Section Two
+            </ssr-keep>
           </a>
-        </replace-with-grandchildren>
+        </div>
       </bolt-toc-item>
       <bolt-toc-item url="#section-three"
                      role="presentation"
       >
-        <replace-with-grandchildren role="listitem">
+        <div role="listitem">
           <a class="c-bolt-toc-item "
              href="#section-three"
           >
-            Section Three
+            <ssr-keep for="bolt-toc-item">
+              Section Three
+            </ssr-keep>
           </a>
-        </replace-with-grandchildren>
+        </div>
       </bolt-toc-item>
-    </replace-with-children>
-  </replace-with-children>
+    </ssr-keep>
+  </ssr-keep>
 </bolt-toc>
 `;
 
 exports[`<bolt-toc> Component Manuualy set the current item 1`] = `
 <bolt-toc ssr-id="12345">
-  <replace-with-children class="c-bolt-toc"
-                         role="navigation"
-                         aria-labelledby="js-bolt-toc-12345"
+  <ssr-keep for="bolt-toc"
+            class="c-bolt-toc"
+            role="navigation"
+            aria-labelledby="js-bolt-toc-12345"
   >
     <h2 class="c-bolt-toc__header c-bolt-toc__header--hidden"
         id="js-bolt-toc-12345"
@@ -67,45 +76,52 @@ exports[`<bolt-toc> Component Manuualy set the current item 1`] = `
     >
       Table of Content
     </h2>
-    <replace-with-children class="c-bolt-toc__list"
-                           role="list"
+    <ssr-keep for="bolt-toc"
+              class="c-bolt-toc__list"
+              role="list"
     >
       <bolt-toc-item url="#section-one"
                      role="presentation"
       >
-        <replace-with-grandchildren role="listitem">
+        <div role="listitem">
           <a class="c-bolt-toc-item "
              href="#section-one"
           >
-            Section One
+            <ssr-keep for="bolt-toc-item">
+              Section One
+            </ssr-keep>
           </a>
-        </replace-with-grandchildren>
+        </div>
       </bolt-toc-item>
       <bolt-toc-item url="#section-two"
                      active
                      role="presentation"
       >
-        <replace-with-grandchildren role="listitem">
+        <div role="listitem">
           <a class="c-bolt-toc-item c-bolt-toc-item--current"
              href="#section-two"
           >
-            Section Two
+            <ssr-keep for="bolt-toc-item">
+              Section Two
+            </ssr-keep>
           </a>
-        </replace-with-grandchildren>
+        </div>
       </bolt-toc-item>
       <bolt-toc-item url="#section-three"
                      role="presentation"
       >
-        <replace-with-grandchildren role="listitem">
+        <div role="listitem">
           <a class="c-bolt-toc-item "
              href="#section-three"
           >
-            Section Three
+            <ssr-keep for="bolt-toc-item">
+              Section Three
+            </ssr-keep>
           </a>
-        </replace-with-grandchildren>
+        </div>
       </bolt-toc-item>
-    </replace-with-children>
-  </replace-with-children>
+    </ssr-keep>
+  </ssr-keep>
 </bolt-toc>
 `;
 
@@ -113,9 +129,10 @@ exports[`<bolt-toc> Component Table of content with a header 1`] = `
 <bolt-toc header="This is the header"
           ssr-id="12345"
 >
-  <replace-with-children class="c-bolt-toc"
-                         role="navigation"
-                         aria-labelledby="js-bolt-toc-12345"
+  <ssr-keep for="bolt-toc"
+            class="c-bolt-toc"
+            role="navigation"
+            aria-labelledby="js-bolt-toc-12345"
   >
     <h2 class="c-bolt-toc__header"
         id="js-bolt-toc-12345"
@@ -124,43 +141,50 @@ exports[`<bolt-toc> Component Table of content with a header 1`] = `
     >
       This is the header
     </h2>
-    <replace-with-children class="c-bolt-toc__list"
-                           role="list"
+    <ssr-keep for="bolt-toc"
+              class="c-bolt-toc__list"
+              role="list"
     >
       <bolt-toc-item url="#section-one"
                      role="presentation"
       >
-        <replace-with-grandchildren role="listitem">
+        <div role="listitem">
           <a class="c-bolt-toc-item "
              href="#section-one"
           >
-            Section One
+            <ssr-keep for="bolt-toc-item">
+              Section One
+            </ssr-keep>
           </a>
-        </replace-with-grandchildren>
+        </div>
       </bolt-toc-item>
       <bolt-toc-item url="#section-two"
                      role="presentation"
       >
-        <replace-with-grandchildren role="listitem">
+        <div role="listitem">
           <a class="c-bolt-toc-item "
              href="#section-two"
           >
-            Section Two
+            <ssr-keep for="bolt-toc-item">
+              Section Two
+            </ssr-keep>
           </a>
-        </replace-with-grandchildren>
+        </div>
       </bolt-toc-item>
       <bolt-toc-item url="#section-three"
                      role="presentation"
       >
-        <replace-with-grandchildren role="listitem">
+        <div role="listitem">
           <a class="c-bolt-toc-item "
              href="#section-three"
           >
-            Section Three
+            <ssr-keep for="bolt-toc-item">
+              Section Three
+            </ssr-keep>
           </a>
-        </replace-with-grandchildren>
+        </div>
       </bolt-toc-item>
-    </replace-with-children>
-  </replace-with-children>
+    </ssr-keep>
+  </ssr-keep>
 </bolt-toc>
 `;

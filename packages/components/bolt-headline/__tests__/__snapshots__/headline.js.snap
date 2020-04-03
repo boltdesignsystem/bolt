@@ -290,10 +290,14 @@ exports[`<bolt-headline> Component headline with associated link 1`] = `
        is="shadow-root"
        class="c-bolt-link c-bolt-link--headline c-bolt-link--display-inline c-bolt-link--valign-center"
     >
-      <replace-with-children class="c-bolt-link__text">
+      <ssr-keep for="bolt-link"
+                class="c-bolt-link__text"
+      >
         this is a headline
-      </replace-with-children>
-      <replace-with-children class="c-bolt-link__icon">
+      </ssr-keep>
+      <ssr-keep for="bolt-link"
+                class="c-bolt-link__icon"
+      >
         <bolt-icon slot="after"
                    name="chevron-right"
         >
@@ -310,7 +314,7 @@ exports[`<bolt-headline> Component headline with associated link 1`] = `
             </svg>
           </span>
         </bolt-icon>
-      </replace-with-children>
+      </ssr-keep>
     </a>
   </bolt-link>
 </h2>

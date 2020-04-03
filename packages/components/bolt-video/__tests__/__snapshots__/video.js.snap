@@ -2,8 +2,9 @@
 
 exports[`<bolt-video> Component <bolt-video> compiles 1`] = `
 <bolt-ratio ratio="16/9">
-  <replace-with-children class="c-bolt-ratio"
-                         style="padding-bottom: calc((9 / 16) * 100%); --aspect-ratio: 1.7777777777778;"
+  <ssr-keep for="bolt-ratio"
+            class="c-bolt-ratio"
+            style="padding-bottom: calc((9 / 16) * 100%); --aspect-ratio: 1.7777777777778;"
   >
     <bolt-video class="js-bolt-video-uuid--12345"
                 video-id="4892122320001"
@@ -14,14 +15,15 @@ exports[`<bolt-video> Component <bolt-video> compiles 1`] = `
                 share-description="Share This Video"
     >
     </bolt-video>
-  </replace-with-children>
+  </ssr-keep>
 </bolt-ratio>
 `;
 
 exports[`<bolt-video> Component <bolt-video> compiles with a different \`video-id\` 1`] = `
 <bolt-ratio ratio="16/9">
-  <replace-with-children class="c-bolt-ratio"
-                         style="padding-bottom: calc((9 / 16) * 100%); --aspect-ratio: 1.7777777777778;"
+  <ssr-keep for="bolt-ratio"
+            class="c-bolt-ratio"
+            style="padding-bottom: calc((9 / 16) * 100%); --aspect-ratio: 1.7777777777778;"
   >
     <bolt-video class="js-bolt-video-uuid--12345"
                 video-id="5609376179001"
@@ -32,14 +34,15 @@ exports[`<bolt-video> Component <bolt-video> compiles with a different \`video-i
                 share-description="Share This Video"
     >
     </bolt-video>
-  </replace-with-children>
+  </ssr-keep>
 </bolt-ratio>
 `;
 
 exports[`<bolt-video> Component <bolt-video> compiles with a meta description + meta title 1`] = `
 <bolt-ratio ratio="16/9">
-  <replace-with-children class="c-bolt-ratio"
-                         style="padding-bottom: calc((9 / 16) * 100%); --aspect-ratio: 1.7777777777778;"
+  <ssr-keep for="bolt-ratio"
+            class="c-bolt-ratio"
+            style="padding-bottom: calc((9 / 16) * 100%); --aspect-ratio: 1.7777777777778;"
   >
     <bolt-video class="js-bolt-video-uuid--12345"
                 video-id="4892122320001"
@@ -51,14 +54,15 @@ exports[`<bolt-video> Component <bolt-video> compiles with a meta description + 
                 share-description="Share This Video"
     >
     </bolt-video>
-  </replace-with-children>
+  </ssr-keep>
 </bolt-ratio>
 `;
 
 exports[`<bolt-video> Component <bolt-video> compiles with a meta description 1`] = `
 <bolt-ratio ratio="16/9">
-  <replace-with-children class="c-bolt-ratio"
-                         style="padding-bottom: calc((9 / 16) * 100%); --aspect-ratio: 1.7777777777778;"
+  <ssr-keep for="bolt-ratio"
+            class="c-bolt-ratio"
+            style="padding-bottom: calc((9 / 16) * 100%); --aspect-ratio: 1.7777777777778;"
   >
     <bolt-video class="js-bolt-video-uuid--12345"
                 video-id="4892122320001"
@@ -69,6 +73,6 @@ exports[`<bolt-video> Component <bolt-video> compiles with a meta description 1`
                 share-description="Share This Video"
     >
     </bolt-video>
-  </replace-with-children>
+  </ssr-keep>
 </bolt-ratio>
 `;

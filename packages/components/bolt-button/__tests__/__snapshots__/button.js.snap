@@ -11,9 +11,11 @@ exports[`button Basic usage 1`] = `
   <button class="c-bolt-button c-bolt-button--medium c-bolt-button--primary c-bolt-button--border-radius-regular c-bolt-button--center"
           is="shadow-root"
   >
-    <replace-with-children class="c-bolt-button__item">
+    <ssr-keep for="bolt-button"
+              class="c-bolt-button__item"
+    >
       This is a button
-    </replace-with-children>
+    </ssr-keep>
   </button>
 </bolt-button>
 `;
@@ -33,9 +35,11 @@ exports[`button Button adds target if passed via attributes 1`] = `
      class="c-bolt-button c-bolt-button--medium c-bolt-button--primary c-bolt-button--border-radius-regular c-bolt-button--center"
      is="shadow-root"
   >
-    <replace-with-children class="c-bolt-button__item">
+    <ssr-keep for="bolt-button"
+              class="c-bolt-button__item"
+    >
       This is a button
-    </replace-with-children>
+    </ssr-keep>
   </a>
 </bolt-button>
 `;
@@ -51,9 +55,11 @@ exports[`button Button tag: a 1`] = `
   <button class="c-bolt-button c-bolt-button--medium c-bolt-button--primary c-bolt-button--border-radius-regular c-bolt-button--center"
           is="shadow-root"
   >
-    <replace-with-children class="c-bolt-button__item">
+    <ssr-keep for="bolt-button"
+              class="c-bolt-button__item"
+    >
       This is a button
-    </replace-with-children>
+    </ssr-keep>
   </button>
 </bolt-button>
 `;
@@ -69,9 +75,11 @@ exports[`button Button tag: button 1`] = `
   <button class="c-bolt-button c-bolt-button--medium c-bolt-button--primary c-bolt-button--border-radius-regular c-bolt-button--center"
           is="shadow-root"
   >
-    <replace-with-children class="c-bolt-button__item">
+    <ssr-keep for="bolt-button"
+              class="c-bolt-button__item"
+    >
       This is a button
-    </replace-with-children>
+    </ssr-keep>
   </button>
 </bolt-button>
 `;
@@ -87,9 +95,11 @@ exports[`button Button tag: link 1`] = `
   <button class="c-bolt-button c-bolt-button--medium c-bolt-button--primary c-bolt-button--border-radius-regular c-bolt-button--center"
           is="shadow-root"
   >
-    <replace-with-children class="c-bolt-button__item">
+    <ssr-keep for="bolt-button"
+              class="c-bolt-button__item"
+    >
       This is a button
-    </replace-with-children>
+    </ssr-keep>
   </button>
 </bolt-button>
 `;
@@ -106,9 +116,11 @@ exports[`button Button tag: reset 1`] = `
           class="c-bolt-button c-bolt-button--medium c-bolt-button--primary c-bolt-button--border-radius-regular c-bolt-button--center"
           is="shadow-root"
   >
-    <replace-with-children class="c-bolt-button__item">
+    <ssr-keep for="bolt-button"
+              class="c-bolt-button__item"
+    >
       This is a button
-    </replace-with-children>
+    </ssr-keep>
   </button>
 </bolt-button>
 `;
@@ -125,9 +137,11 @@ exports[`button Button tag: submit 1`] = `
           class="c-bolt-button c-bolt-button--medium c-bolt-button--primary c-bolt-button--border-radius-regular c-bolt-button--center"
           is="shadow-root"
   >
-    <replace-with-children class="c-bolt-button__item">
+    <ssr-keep for="bolt-button"
+              class="c-bolt-button__item"
+    >
       This is a button
-    </replace-with-children>
+    </ssr-keep>
   </button>
 </bolt-button>
 `;
@@ -144,9 +158,11 @@ exports[`button Button type: button 1`] = `
           class="c-bolt-button c-bolt-button--medium c-bolt-button--primary c-bolt-button--border-radius-regular c-bolt-button--center"
           is="shadow-root"
   >
-    <replace-with-children class="c-bolt-button__item">
+    <ssr-keep for="bolt-button"
+              class="c-bolt-button__item"
+    >
       This is a button
-    </replace-with-children>
+    </ssr-keep>
   </button>
 </bolt-button>
 `;
@@ -163,9 +179,11 @@ exports[`button Button type: reset 1`] = `
           class="c-bolt-button c-bolt-button--medium c-bolt-button--primary c-bolt-button--border-radius-regular c-bolt-button--center"
           is="shadow-root"
   >
-    <replace-with-children class="c-bolt-button__item">
+    <ssr-keep for="bolt-button"
+              class="c-bolt-button__item"
+    >
       This is a button
-    </replace-with-children>
+    </ssr-keep>
   </button>
 </bolt-button>
 `;
@@ -182,9 +200,11 @@ exports[`button Button type: submit 1`] = `
           class="c-bolt-button c-bolt-button--medium c-bolt-button--primary c-bolt-button--border-radius-regular c-bolt-button--center"
           is="shadow-root"
   >
-    <replace-with-children class="c-bolt-button__item">
+    <ssr-keep for="bolt-button"
+              class="c-bolt-button__item"
+    >
       This is a button
-    </replace-with-children>
+    </ssr-keep>
   </button>
 </bolt-button>
 `;
@@ -203,9 +223,11 @@ exports[`button Button with "disabled" adds attr to <a> 1`] = `
      class="c-bolt-button c-bolt-button--disabled c-bolt-button--medium c-bolt-button--primary c-bolt-button--border-radius-regular c-bolt-button--center"
      is="shadow-root"
   >
-    <replace-with-children class="c-bolt-button__item">
+    <ssr-keep for="bolt-button"
+              class="c-bolt-button__item"
+    >
       This is a button
-    </replace-with-children>
+    </ssr-keep>
   </a>
 </bolt-button>
 `;
@@ -255,9 +277,11 @@ exports[`button Button with "disabled" adds attr to <button> 1`] = `
           class="c-bolt-button c-bolt-button--disabled c-bolt-button--medium c-bolt-button--primary c-bolt-button--border-radius-regular c-bolt-button--center"
           is="shadow-root"
   >
-    <replace-with-children class="c-bolt-button__item">
+    <ssr-keep for="bolt-button"
+              class="c-bolt-button__item"
+    >
       This is a button
-    </replace-with-children>
+    </ssr-keep>
   </button>
 </bolt-button>
 `;
@@ -266,11 +290,10 @@ exports[`button Button with "disabled" adds attr to <button> 2`] = `
 <button
   class="c-bolt-button c-bolt-button--medium c-bolt-button--primary c-bolt-button--border-radius-regular c-bolt-button--center c-bolt-button--disabled"
   disabled=""
-  is="shadow-root"
   style=""
 >
-  <!---->
   
+          
         
   <!---->
   
@@ -290,7 +313,7 @@ exports[`button Button with "disabled" adds attr to <button> 2`] = `
   <!---->
   
       
-  <!---->
+        
 </button>
 `;
 
@@ -306,9 +329,11 @@ exports[`button Button with an onClick attributes renders properly 1`] = `
   <button class="c-bolt-button c-bolt-button--medium c-bolt-button--primary c-bolt-button--border-radius-regular c-bolt-button--center"
           is="shadow-root"
   >
-    <replace-with-children class="c-bolt-button__item">
+    <ssr-keep for="bolt-button"
+              class="c-bolt-button__item"
+    >
       Button w/ onClick via attributes
-    </replace-with-children>
+    </ssr-keep>
   </button>
 </bolt-button>
 `;
@@ -325,9 +350,11 @@ exports[`button Button with an onClick param renders properly 1`] = `
   <button class="c-bolt-button c-bolt-button--medium c-bolt-button--primary c-bolt-button--border-radius-regular c-bolt-button--center"
           is="shadow-root"
   >
-    <replace-with-children class="c-bolt-button__item">
+    <ssr-keep for="bolt-button"
+              class="c-bolt-button__item"
+    >
       Button with onClick via param
-    </replace-with-children>
+    </ssr-keep>
   </button>
 </bolt-button>
 `;
@@ -343,9 +370,11 @@ exports[`button Button with c-bolt- class is thrown out 1`] = `
   <button class="c-bolt-button c-bolt-button--medium c-bolt-button--primary c-bolt-button--border-radius-regular c-bolt-button--center"
           is="shadow-root"
   >
-    <replace-with-children class="c-bolt-button__item">
+    <ssr-keep for="bolt-button"
+              class="c-bolt-button__item"
+    >
       Button with outer JS-prefixed class
-    </replace-with-children>
+    </ssr-keep>
   </button>
 </bolt-button>
 `;
@@ -361,9 +390,11 @@ exports[`button Button with inner classes via Drupal Attributes 1`] = `
   <button class="c-bolt-button c-bolt-button--medium c-bolt-button--primary c-bolt-button--border-radius-regular c-bolt-button--center is-active"
           is="shadow-root"
   >
-    <replace-with-children class="c-bolt-button__item">
+    <ssr-keep for="bolt-button"
+              class="c-bolt-button__item"
+    >
       Button with inner classes
-    </replace-with-children>
+    </ssr-keep>
   </button>
 </bolt-button>
 `;
@@ -380,9 +411,11 @@ exports[`button Button with outer JS-class via Drupal Attributes 1`] = `
   <button class="c-bolt-button c-bolt-button--medium c-bolt-button--primary c-bolt-button--border-radius-regular c-bolt-button--center"
           is="shadow-root"
   >
-    <replace-with-children class="c-bolt-button__item">
+    <ssr-keep for="bolt-button"
+              class="c-bolt-button__item"
+    >
       Button with outer JS-prefixed class
-    </replace-with-children>
+    </ssr-keep>
   </button>
 </bolt-button>
 `;
@@ -399,9 +432,11 @@ exports[`button Button with outer classes via Drupal Attributes 1`] = `
   <button class="c-bolt-button c-bolt-button--medium c-bolt-button--primary c-bolt-button--border-radius-regular c-bolt-button--center"
           is="shadow-root"
   >
-    <replace-with-children class="c-bolt-button__item">
+    <ssr-keep for="bolt-button"
+              class="c-bolt-button__item"
+    >
       Button with outer classes
-    </replace-with-children>
+    </ssr-keep>
   </button>
 </bolt-button>
 `;
@@ -500,9 +535,11 @@ exports[`button Inline button inside a container with defined text alignment. 1`
       <button class="c-bolt-button c-bolt-button--medium c-bolt-button--primary c-bolt-button--border-radius-regular c-bolt-button--center"
               is="shadow-root"
       >
-        <replace-with-children class="c-bolt-button__item">
+        <ssr-keep for="bolt-button"
+                  class="c-bolt-button__item"
+        >
           Align right
-        </replace-with-children>
+        </ssr-keep>
       </button>
     </bolt-button>
   </div>
@@ -517,9 +554,11 @@ exports[`button Inline button inside a container with defined text alignment. 1`
       <button class="c-bolt-button c-bolt-button--medium c-bolt-button--primary c-bolt-button--border-radius-regular c-bolt-button--center"
               is="shadow-root"
       >
-        <replace-with-children class="c-bolt-button__item">
+        <ssr-keep for="bolt-button"
+                  class="c-bolt-button__item"
+        >
           Align center
-        </replace-with-children>
+        </ssr-keep>
       </button>
     </bolt-button>
   </div>
@@ -534,9 +573,11 @@ exports[`button Inline button inside a container with defined text alignment. 1`
       <button class="c-bolt-button c-bolt-button--medium c-bolt-button--primary c-bolt-button--border-radius-regular c-bolt-button--center"
               is="shadow-root"
       >
-        <replace-with-children class="c-bolt-button__item">
+        <ssr-keep for="bolt-button"
+                  class="c-bolt-button__item"
+        >
           Align left
-        </replace-with-children>
+        </ssr-keep>
       </button>
     </bolt-button>
   </div>

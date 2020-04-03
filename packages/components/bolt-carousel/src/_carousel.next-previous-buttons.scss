@@ -110,12 +110,12 @@ bolt-carousel:not(.is-ready) > [slot='next-btn'] {
       left: 0;
 
       &:before {
-        left: calc(50% - 0.5rem);
+        left: calc(50% + 0.5rem);
         transform: rotate(135deg) translateX(150%) translateY(0) translateZ(0) perspective(1px);
       }
 
       &:after {
-        left: calc(50% - 0.5rem);
+        left: calc(50% + 0.5rem);
         transform: rotate(-135deg) translateX(150%) translateY(0) translateZ(0) perspective(1px);
       }
     }
@@ -125,12 +125,12 @@ bolt-carousel:not(.is-ready) > [slot='next-btn'] {
       left: auto;
 
       &:before {
-        right: calc(50% - 0.5rem);
+        right: calc(50% + 0.5rem);
         transform: rotate(45deg) translateX(150%) translateY(0) translateZ(0) perspective(1px);
       }
 
       &:after {
-        right: calc(50% - 0.5rem);
+        right: calc(50% + 0.5rem);
         transform: rotate(-45deg) translateX(150%) translateY(0) translateZ(0) perspective(1px);
       }
     }

@@ -12,8 +12,9 @@ exports[`<bolt-image> Component <bolt-image> with max-width and additional style
             style="display: block;background-color: hsl(233, 33%, 97%); width: 200px; max-width: 100%;"
 >
   <bolt-ratio ratio="20/11">
-    <replace-with-children class="c-bolt-ratio"
-                           style="padding-bottom: calc((11 / 20) * 100%); --aspect-ratio: 1.8181818181818;"
+    <ssr-keep for="bolt-ratio"
+              class="c-bolt-ratio"
+              style="padding-bottom: calc((11 / 20) * 100%); --aspect-ratio: 1.8181818181818;"
     >
       <img class="c-bolt-image__image-placeholder"
            alt="A Rock Climber"
@@ -33,7 +34,7 @@ exports[`<bolt-image> Component <bolt-image> with max-width and additional style
              srcset="/fixtures/1200x660-50.jpg 50w, /fixtures/1200x660-100.jpg 100w, /fixtures/1200x660-200.jpg 200w, /fixtures/1200x660-320.jpg 320w, /fixtures/1200x660-480.jpg 480w, /fixtures/1200x660-640.jpg 640w, /fixtures/1200x660-800.jpg 800w, /fixtures/1200x660-1024.jpg 1024w, /fixtures/1200x660.jpg 1200w"
         >
       </noscript>
-    </replace-with-children>
+    </ssr-keep>
   </bolt-ratio>
 </bolt-image>
 `;
@@ -50,8 +51,9 @@ exports[`<bolt-image> Component <bolt-image> with max-width of 50% renders as ex
             style="background-color: hsl(233, 33%, 97%); width: 50%;"
 >
   <bolt-ratio ratio="20/11">
-    <replace-with-children class="c-bolt-ratio"
-                           style="padding-bottom: calc((11 / 20) * 100%); --aspect-ratio: 1.8181818181818;"
+    <ssr-keep for="bolt-ratio"
+              class="c-bolt-ratio"
+              style="padding-bottom: calc((11 / 20) * 100%); --aspect-ratio: 1.8181818181818;"
     >
       <img class="c-bolt-image__image-placeholder"
            alt="A Rock Climber"
@@ -71,7 +73,7 @@ exports[`<bolt-image> Component <bolt-image> with max-width of 50% renders as ex
              srcset="/fixtures/1200x660-50.jpg 50w, /fixtures/1200x660-100.jpg 100w, /fixtures/1200x660-200.jpg 200w, /fixtures/1200x660-320.jpg 320w, /fixtures/1200x660-480.jpg 480w, /fixtures/1200x660-640.jpg 640w, /fixtures/1200x660-800.jpg 800w, /fixtures/1200x660-1024.jpg 1024w, /fixtures/1200x660.jpg 1200w"
         >
       </noscript>
-    </replace-with-children>
+    </ssr-keep>
   </bolt-ratio>
 </bolt-image>
 `;
@@ -88,8 +90,9 @@ exports[`<bolt-image> Component <bolt-image> with max-width of 200px renders as 
             style="background-color: hsl(233, 33%, 97%); width: 200px; max-width: 100%;"
 >
   <bolt-ratio ratio="20/11">
-    <replace-with-children class="c-bolt-ratio"
-                           style="padding-bottom: calc((11 / 20) * 100%); --aspect-ratio: 1.8181818181818;"
+    <ssr-keep for="bolt-ratio"
+              class="c-bolt-ratio"
+              style="padding-bottom: calc((11 / 20) * 100%); --aspect-ratio: 1.8181818181818;"
     >
       <img class="c-bolt-image__image-placeholder"
            alt="A Rock Climber"
@@ -109,7 +112,7 @@ exports[`<bolt-image> Component <bolt-image> with max-width of 200px renders as 
              srcset="/fixtures/1200x660-50.jpg 50w, /fixtures/1200x660-100.jpg 100w, /fixtures/1200x660-200.jpg 200w, /fixtures/1200x660-320.jpg 320w, /fixtures/1200x660-480.jpg 480w, /fixtures/1200x660-640.jpg 640w, /fixtures/1200x660-800.jpg 800w, /fixtures/1200x660-1024.jpg 1024w, /fixtures/1200x660.jpg 1200w"
         >
       </noscript>
-    </replace-with-children>
+    </ssr-keep>
   </bolt-ratio>
 </bolt-image>
 `;
@@ -126,8 +129,9 @@ exports[`<bolt-image> Component <bolt-image> with ratio object and lazyloading d
             style="background-color: hsl(233, 33%, 97%);"
 >
   <bolt-ratio ratio="20/11">
-    <replace-with-children class="c-bolt-ratio"
-                           style="padding-bottom: calc((11 / 20) * 100%); --aspect-ratio: 1.8181818181818;"
+    <ssr-keep for="bolt-ratio"
+              class="c-bolt-ratio"
+              style="padding-bottom: calc((11 / 20) * 100%); --aspect-ratio: 1.8181818181818;"
     >
       <img class="c-bolt-image__image-placeholder"
            alt="A Rock Climber"
@@ -140,7 +144,7 @@ exports[`<bolt-image> Component <bolt-image> with ratio object and lazyloading d
            sizes="auto"
            src="/fixtures/1200x660.jpg"
       >
-    </replace-with-children>
+    </ssr-keep>
   </bolt-ratio>
 </bolt-image>
 `;
@@ -156,8 +160,9 @@ exports[`<bolt-image> Component <bolt-image> with ratio object compiles 1`] = `
             style="background-color: hsl(233, 33%, 97%);"
 >
   <bolt-ratio ratio="20/11">
-    <replace-with-children class="c-bolt-ratio"
-                           style="padding-bottom: calc((11 / 20) * 100%); --aspect-ratio: 1.8181818181818;"
+    <ssr-keep for="bolt-ratio"
+              class="c-bolt-ratio"
+              style="padding-bottom: calc((11 / 20) * 100%); --aspect-ratio: 1.8181818181818;"
     >
       <img class="c-bolt-image__image-placeholder"
            alt="A Rock Climber"
@@ -177,7 +182,7 @@ exports[`<bolt-image> Component <bolt-image> with ratio object compiles 1`] = `
              srcset="/fixtures/1200x660-50.jpg 50w, /fixtures/1200x660-100.jpg 100w, /fixtures/1200x660-200.jpg 200w, /fixtures/1200x660-320.jpg 320w, /fixtures/1200x660-480.jpg 480w, /fixtures/1200x660-640.jpg 640w, /fixtures/1200x660-800.jpg 800w, /fixtures/1200x660-1024.jpg 1024w, /fixtures/1200x660.jpg 1200w"
         >
       </noscript>
-    </replace-with-children>
+    </ssr-keep>
   </bolt-ratio>
 </bolt-image>
 `;

@@ -132,7 +132,11 @@ describe('link', () => {
         '<div><bolt-link url="http://pega.com" no-shadow>This is a link</bolt-link></div>',
       );
       const link = document.querySelector('bolt-link');
-      await link.updateComplete;
+      const undefinedElements = document.querySelectorAll('bolt-link');
+      const promises = [...undefinedElements].map(elem =>
+        customElements.whenDefined(elem.localName),
+      );
+      await Promise.all(promises);
       return link.parentNode.outerHTML;
     });
     expect(renderedLinkHTML).toMatchSnapshot();
@@ -161,7 +165,11 @@ describe('link', () => {
         '<bolt-link url="http://pega.com">Link Test -- Shadow Root HTML</bolt-link>',
       );
       const link = document.querySelector('bolt-link');
-      await link.updateComplete;
+      const undefinedElements = document.querySelectorAll('bolt-link');
+      const promises = [...undefinedElements].map(elem =>
+        customElements.whenDefined(elem.localName),
+      );
+      await Promise.all(promises);
       return link.renderRoot.innerHTML;
     });
     expect(defaultLinkShadowRoot).toMatchSnapshot();
@@ -171,7 +179,11 @@ describe('link', () => {
       link.setAttribute('url', 'http://pega.com');
       link.textContent = 'Link Test -- Outer HTML';
       document.body.appendChild(link);
-      await link.updateComplete;
+      const undefinedElements = document.querySelectorAll('bolt-link');
+      const promises = [...undefinedElements].map(elem =>
+        customElements.whenDefined(elem.localName),
+      );
+      await Promise.all(promises);
       return link.outerHTML;
     });
     expect(defaultLinkOuter).toMatchSnapshot();
@@ -195,7 +207,11 @@ describe('link', () => {
           '</bolt-link></div>',
       );
       const link = document.querySelector('bolt-link');
-      await link.updateComplete;
+      const undefinedElements = document.querySelectorAll('bolt-link');
+      const promises = [...undefinedElements].map(elem =>
+        customElements.whenDefined(elem.localName),
+      );
+      await Promise.all(promises);
       return link.parentNode.outerHTML;
     });
     expect(renderedLinkHTML).toMatchSnapshot();
@@ -225,7 +241,11 @@ describe('link', () => {
         '<bolt-link>Link Test without url prop -- Shadow Root HTML</bolt-link>',
       );
       const link = document.querySelector('bolt-link');
-      await link.updateComplete;
+      const undefinedElements = document.querySelectorAll('bolt-link');
+      const promises = [...undefinedElements].map(elem =>
+        customElements.whenDefined(elem.localName),
+      );
+      await Promise.all(promises);
       return link.renderRoot.innerHTML;
     });
     expect(defaultLinkShadowRoot).toMatchSnapshot();
@@ -234,7 +254,11 @@ describe('link', () => {
       const link = document.createElement('bolt-link');
       link.textContent = 'Link Test without url attr -- Outer HTML';
       document.body.appendChild(link);
-      await link.updateComplete;
+      const undefinedElements = document.querySelectorAll('bolt-link');
+      const promises = [...undefinedElements].map(elem =>
+        customElements.whenDefined(elem.localName),
+      );
+      await Promise.all(promises);
       return link.outerHTML;
     });
     expect(defaultLinkOuter).toMatchSnapshot();
@@ -261,7 +285,11 @@ describe('link', () => {
         '<div style="font-size: 300%;">(<bolt-link url="http://pega.com">Link Test -- No extra whitespace</bolt-link>)</div>',
       );
       const link = document.querySelector('bolt-link').parentNode;
-      await link.updateComplete;
+      const undefinedElements = document.querySelectorAll('bolt-link');
+      const promises = [...undefinedElements].map(elem =>
+        customElements.whenDefined(elem.localName),
+      );
+      await Promise.all(promises);
       return link.outerHTML;
     });
     expect(defaultLinkOuter).toMatchSnapshot();
@@ -300,7 +328,11 @@ describe('link', () => {
       const div = document.createElement('div');
       document.body.insertAdjacentHTML('beforeend', html);
       const link = document.querySelector('bolt-link');
-      await link.updateComplete;
+      const undefinedElements = document.querySelectorAll('bolt-link');
+      const promises = [...undefinedElements].map(elem =>
+        customElements.whenDefined(elem.localName),
+      );
+      await Promise.all(promises);
       return link.outerHTML;
     }, template.html);
 

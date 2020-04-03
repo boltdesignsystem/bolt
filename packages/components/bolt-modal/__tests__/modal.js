@@ -183,7 +183,11 @@ describe('<bolt-modal> Component', () => {
           ${contentChoice.content}
           <bolt-text slot="footer">Footer slot</bolt-text>`;
         document.body.appendChild(modal);
-        modal.updated();
+        const undefinedElements = document.querySelectorAll('bolt-modal');
+        const promises = [...undefinedElements].map(elem =>
+          customElements.whenDefined(elem.localName),
+        );
+        await Promise.all(promises);
         return modal.outerHTML;
       }, contentChoice);
 
@@ -217,7 +221,7 @@ describe('<bolt-modal> Component', () => {
 
   modalContent.forEach(async contentChoice => {
     test(`${contentChoice.name} <bolt-modal> w/o Shadow DOM renders`, async () => {
-      const renderedModal = await page.evaluate(contentChoice => {
+      const renderedModal = await page.evaluate(async contentChoice => {
         const modal = document.createElement('bolt-modal');
         modal.setAttribute('uuid', '12345');
         modal.setAttribute('width', 'regular');
@@ -226,7 +230,11 @@ describe('<bolt-modal> Component', () => {
           <bolt-text slot="footer">Footer slot</bolt-text>`;
         document.body.appendChild(modal);
         modal.useShadow = false;
-        modal.updated();
+        const undefinedElements = document.querySelectorAll('bolt-modal');
+        const promises = [...undefinedElements].map(elem =>
+          customElements.whenDefined(elem.localName),
+        );
+        await Promise.all(promises);
         return modal.outerHTML;
       }, contentChoice);
 

@@ -100,7 +100,7 @@ describe('Bolt Tabs', () => {
   });
 
   test('Web Component usage (Light DOM)', async () => {
-    const tabsOuter = await page.evaluate(tabsInnerHTML => {
+    const tabsOuter = await page.evaluate(async tabsInnerHTML => {
       const wrapper = document.createElement('div');
       wrapper.innerHTML = tabsInnerHTML;
       document.body.appendChild(wrapper);
@@ -109,8 +109,16 @@ describe('Bolt Tabs', () => {
       const tabPanels = Array.from(document.querySelectorAll('bolt-tab-panel'));
       [tabs, ...tabPanels].forEach(el => {
         el.setAttribute('no-shadow', '');
-        el.updated();
       });
+
+      const undefinedElements = document.querySelectorAll(
+        'bolt-tabs',
+        'bolt-tab-panel',
+      );
+      const promises = [...undefinedElements].map(elem =>
+        customElements.whenDefined(elem.localName),
+      );
+      await Promise.all(promises);
 
       return tabs.outerHTML;
     }, tabsInnerHTML);

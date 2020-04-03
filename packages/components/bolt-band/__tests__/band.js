@@ -96,7 +96,11 @@ describe('<bolt-band> Component', () => {
       div.innerHTML = `${html}`;
       document.body.appendChild(div);
       const band = document.querySelector('bolt-band');
-      await band.firstUpdated;
+      const undefinedElements = document.querySelectorAll('bolt-band');
+      const promises = [...undefinedElements].map(elem =>
+        customElements.whenDefined(elem.localName),
+      );
+      await Promise.all(promises);
       return band.outerHTML;
     }, template.html);
 
@@ -175,7 +179,11 @@ describe('<bolt-band> Component', () => {
       div.innerHTML = `${html}`;
       document.body.appendChild(div);
       const band = document.querySelector('bolt-band');
-      await band.firstUpdated;
+      const undefinedElements = document.querySelectorAll('bolt-band');
+      const promises = [...undefinedElements].map(elem =>
+        customElements.whenDefined(elem.localName),
+      );
+      await Promise.all(promises);
       return band.outerHTML;
     }, template.html);
 

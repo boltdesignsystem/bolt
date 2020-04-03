@@ -39,10 +39,14 @@ exports[`<bolt-typeahead> Component Typeahead Twig Template Renders 1`] = `
                 class="c-bolt-button c-bolt-button--medium c-bolt-button--text c-bolt-button--border-radius-regular c-bolt-button--center c-bolt-button--icon-only"
                 is="shadow-root"
         >
-          <replace-with-children class="c-bolt-button__item">
+          <ssr-keep for="bolt-button"
+                    class="c-bolt-button__item"
+          >
             Clear search results
-          </replace-with-children>
-          <replace-with-children class="c-bolt-button__icon">
+          </ssr-keep>
+          <ssr-keep for="bolt-typeahead"
+                    class="c-bolt-button__icon"
+          >
             <bolt-icon class="c-bolt-typeahead__icon"
                        name="close-solid"
             >
@@ -59,7 +63,7 @@ exports[`<bolt-typeahead> Component Typeahead Twig Template Renders 1`] = `
                 </svg>
               </span>
             </bolt-icon>
-          </replace-with-children>
+          </ssr-keep>
         </button>
       </bolt-button>
       <div class="c-bolt-typeahead__button c-bolt-typeahead__button--submit">
@@ -76,10 +80,14 @@ exports[`<bolt-typeahead> Component Typeahead Twig Template Renders 1`] = `
                   class="c-bolt-button c-bolt-button--medium c-bolt-button--text c-bolt-button--border-radius-regular c-bolt-button--center c-bolt-button--icon-only"
                   is="shadow-root"
           >
-            <replace-with-children class="c-bolt-button__item">
+            <ssr-keep for="bolt-button"
+                      class="c-bolt-button__item"
+            >
               Submit search query
-            </replace-with-children>
-            <replace-with-children class="c-bolt-button__icon">
+            </ssr-keep>
+            <ssr-keep for="bolt-typeahead"
+                      class="c-bolt-button__icon"
+            >
               <bolt-icon class="c-bolt-typeahead__icon"
                          name="search"
               >
@@ -101,7 +109,7 @@ exports[`<bolt-typeahead> Component Typeahead Twig Template Renders 1`] = `
                   </svg>
                 </span>
               </bolt-icon>
-            </replace-with-children>
+            </ssr-keep>
           </button>
         </bolt-button>
       </div>

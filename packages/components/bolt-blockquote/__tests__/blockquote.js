@@ -207,7 +207,7 @@ describe('<bolt-blockquote> component', () => {
   });
 
   test('<bolt-blockquote> renders to Shadow DOM', async function() {
-    const defaultBlockquoteOuter = await page.evaluate(() => {
+    const defaultBlockquoteOuter = await page.evaluate(async () => {
       const blockquote = document.createElement('bolt-blockquote');
       blockquote.setAttribute('author-name', 'Chris Heilmann');
       blockquote.setAttribute('author-title', 'Developer Evangelist');
@@ -216,7 +216,11 @@ describe('<bolt-blockquote> component', () => {
       `;
       document.body.appendChild(blockquote);
       document.body.classList.add('u-bolt-padding-medium');
-      blockquote.updated();
+      const undefinedElements = document.querySelectorAll('bolt-blockquote');
+      const promises = [...undefinedElements].map(elem =>
+        customElements.whenDefined(elem.localName),
+      );
+      await Promise.all(promises);
       return blockquote.outerHTML;
     });
 
@@ -246,7 +250,7 @@ describe('<bolt-blockquote> component', () => {
   });
 
   test('<bolt-blockquote> renders to Light DOM', async function() {
-    const renderedBlockquoteHTML = await page.evaluate(() => {
+    const renderedBlockquoteHTML = await page.evaluate(async () => {
       const blockquote = document.createElement('bolt-blockquote');
       blockquote.setAttribute(
         'author-name',
@@ -262,7 +266,11 @@ describe('<bolt-blockquote> component', () => {
       document.body.appendChild(blockquote);
       document.body.classList.add('u-bolt-padding-medium');
       blockquote.useShadow = false;
-      blockquote.updated();
+      const undefinedElements = document.querySelectorAll('bolt-blockquote');
+      const promises = [...undefinedElements].map(elem =>
+        customElements.whenDefined(elem.localName),
+      );
+      await Promise.all(promises);
       return blockquote.outerHTML;
     });
 
@@ -298,7 +306,7 @@ describe('<bolt-blockquote> component', () => {
   });
 
   test('<bolt-blockquote> renders when inside a <form>', async function() {
-    const renderedBlockquoteHTML = await page.evaluate(() => {
+    const renderedBlockquoteHTML = await page.evaluate(async () => {
       const form = document.createElement('form');
       const blockquote = document.createElement('bolt-blockquote');
       blockquote.setAttribute('author-name', 'Every Developer, Ever.');
@@ -313,7 +321,11 @@ describe('<bolt-blockquote> component', () => {
       document.body.appendChild(form);
       document.body.classList.add('u-bolt-padding-medium');
       form.appendChild(blockquote);
-      blockquote.updated();
+      const undefinedElements = document.querySelectorAll('bolt-blockquote');
+      const promises = [...undefinedElements].map(elem =>
+        customElements.whenDefined(elem.localName),
+      );
+      await Promise.all(promises);
       return blockquote.innerHTML;
     });
 
@@ -342,7 +354,7 @@ describe('<bolt-blockquote> component', () => {
   });
 
   test('<bolt-blockquote> with No Quotes renders', async function() {
-    const defaultBlockquoteOuter = await page.evaluate(() => {
+    const defaultBlockquoteOuter = await page.evaluate(async () => {
       const blockquote = document.createElement('bolt-blockquote');
       blockquote.setAttribute(
         'author-name',
@@ -354,7 +366,11 @@ describe('<bolt-blockquote> component', () => {
         <p>The greater danger for most of us lies not in setting our aim too high and falling short...</p>
         <p>In fact, the greater danger is setting our aim too low and achieving our mark.</p>`;
       document.body.appendChild(blockquote);
-      blockquote.updated();
+      const undefinedElements = document.querySelectorAll('bolt-blockquote');
+      const promises = [...undefinedElements].map(elem =>
+        customElements.whenDefined(elem.localName),
+      );
+      await Promise.all(promises);
       return blockquote.outerHTML;
     });
 
@@ -370,7 +386,7 @@ describe('<bolt-blockquote> component', () => {
 
   languages.forEach(async lang => {
     test(`<bolt-blockquote> with lang-specific quotes (${lang})`, async () => {
-      await page.evaluate(lang => {
+      await page.evaluate(async lang => {
         const blockquote = document.createElement('bolt-blockquote');
         blockquote.setAttribute(
           'author-name',
@@ -382,7 +398,11 @@ describe('<bolt-blockquote> component', () => {
           <p>The greater danger for most of us lies not in setting our aim too high and falling short...</p>
           <p>In fact, the greater danger is setting our aim too low and achieving our mark.</p>`;
         document.body.appendChild(blockquote);
-        blockquote.updated();
+        const undefinedElements = document.querySelectorAll('bolt-blockquote');
+        const promises = [...undefinedElements].map(elem =>
+          customElements.whenDefined(elem.localName),
+        );
+        await Promise.all(promises);
       }, lang);
 
       const blockquoteShadowRoot = await page.evaluate(async () => {

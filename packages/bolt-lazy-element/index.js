@@ -5,28 +5,28 @@ const lazyDefinitionObserver = new MutationObserver(records => {
   for (const record of records) {
     for (const node of record.addedNodes) {
       const walker = document.createTreeWalker(node, NodeFilter.SHOW_ELEMENT);
-      while (walker.nextNode() !== null) {
-        let tagName = walker.currentNode.tagName.toLowerCase();
-        const lazyDefinition = lazyDefinitions.get(tagName);
-        if (lazyDefinition !== undefined) {
-          lazyDefinitions.delete(tagName);
+      let currentNode = walker.currentNode;
+      while (currentNode) {
+        if (currentNode.tagName) {
+          let tagName = currentNode.tagName.toLowerCase();
+          const lazyDefinition = lazyDefinitions.get(tagName);
+          if (lazyDefinition !== undefined) {
+            lazyDefinitions.delete(tagName);
 
-          if (
-            (tagName.includes('bolt-') &&
-              !window.customElements.get(tagName)) ||
-            !tagName.includes('bolt-')
-          ) {
-            (async () => {
-              await lazyDefinition();
-            })();
+            if (!window.customElements.get(tagName)) {
+              (async () => {
+                await lazyDefinition();
+              })();
+            }
           }
         }
+        currentNode = walker.nextNode();
       }
     }
   }
 });
 
-lazyDefinitionObserver.observe(document, {
+lazyDefinitionObserver.observe(document.body, {
   childList: true,
   subtree: true,
 });

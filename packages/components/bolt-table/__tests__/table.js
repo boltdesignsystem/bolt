@@ -151,17 +151,13 @@ describe('<bolt-table> Component', () => {
     const renderedTableHTML = await page.evaluate(async staticHTML => {
       document.getElementById('root').innerHTML = staticHTML;
       const table = document.querySelector('bolt-table');
-      return await Promise.all([
-        async () => {
-          if (table._wasInitiallyRendered) return;
-          return new Promise((resolve, reject) => {
-            table.addEventListener('ready', resolve);
-            table.addEventListener('error', reject);
-          });
-        },
-      ]).then(() => {
-        return table.outerHTML;
-      });
+
+      const undefinedElements = document.querySelectorAll('bolt-table');
+      const promises = [...undefinedElements].map(elem =>
+        customElements.whenDefined(elem.localName),
+      );
+      await Promise.all(promises);
+      return table.outerHTML;
     }, staticHTML);
 
     const renderedHTML = await html(renderedTableHTML);

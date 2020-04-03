@@ -143,7 +143,7 @@ bolt-carousel {
   &.is-ready {
     // using a much larger space-around value isn't needed until JS kicks in (when cards can be raised while hovering over them)
     --bolt-carousel-space-around: 16px;
-
+    max-width: calc(100vw + var(--bolt-carousel-space-around) * 2);
     padding-right: #{$bolt-carousel-space-around};
     padding-right: var(--bolt-carousel-space-around);
     padding-left: #{$bolt-carousel-space-around};

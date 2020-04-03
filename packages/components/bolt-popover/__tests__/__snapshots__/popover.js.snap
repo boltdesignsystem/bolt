@@ -2,81 +2,89 @@
 
 exports[`<bolt-popover> Component UUID of the popover 1`] = `
 <bolt-popover uuid="custom-unique-id">
-  <replace-with-children class="c-bolt-popover c-bolt-popover--bottom c-bolt-popover--text-wrap c-bolt-popover--spacing-small">
-    <replace-with-grandchildren id="js-bolt-popover-trigger-custom-unique-id">
+  <div class="c-bolt-popover c-bolt-popover--bottom c-bolt-popover--text-wrap c-bolt-popover--spacing-small">
+    <div id="js-bolt-popover-trigger-custom-unique-id">
       <a href="#js-bolt-popover-custom-unique-id"
          class="c-bolt-popover__nojs-trigger"
          tabindex="-1"
       >
-        <bolt-button>
-          This triggers a popover
-        </bolt-button>
+        <ssr-keep for="bolt-popover">
+          <bolt-button>
+            This triggers a popover
+          </bolt-button>
+        </ssr-keep>
       </a>
-    </replace-with-grandchildren>
-    <span slot="content"
-          id="js-bolt-popover-custom-unique-id"
+    </div>
+    <div id="js-bolt-popover-custom-unique-id"
+         class="c-bolt-popover__content"
     >
-      <replace-with-grandchildren class="c-bolt-popover__content">
-        <span class="c-bolt-popover__bubble ">
-          <a href="#js-bolt-popover-trigger-custom-unique-id"
-             class="c-bolt-popover__nojs-close"
-          >
-            <span aria-hidden="true">
-              &times;
-            </span>
-            <span class="u-bolt-visuallyhidden">
-              Close popover
-            </span>
-          </a>
-          This is the content of the popover with a
-          <bolt-link url="https://pega.com">
-            call to action
-          </bolt-link>
-          .
-        </span>
-      </replace-with-grandchildren>
-    </span>
-  </replace-with-children>
+      <span class="c-bolt-popover__bubble ">
+        <ssr-keep for="bolt-popover">
+          <span slot="content">
+            <a href="#js-bolt-popover-trigger-custom-unique-id"
+               class="c-bolt-popover__nojs-close"
+            >
+              <span aria-hidden="true">
+                &times;
+              </span>
+              <span class="u-bolt-visuallyhidden">
+                Close popover
+              </span>
+            </a>
+            This is the content of the popover with a
+            <bolt-link url="https://pega.com">
+              call to action
+            </bolt-link>
+            .
+          </span>
+        </ssr-keep>
+      </span>
+    </div>
+  </div>
 </bolt-popover>
 `;
 
 exports[`<bolt-popover> Component basic usage 1`] = `
 <bolt-popover uuid="12345">
-  <replace-with-children class="c-bolt-popover c-bolt-popover--bottom c-bolt-popover--text-wrap c-bolt-popover--spacing-small">
-    <replace-with-grandchildren id="js-bolt-popover-trigger-12345">
+  <div class="c-bolt-popover c-bolt-popover--bottom c-bolt-popover--text-wrap c-bolt-popover--spacing-small">
+    <div id="js-bolt-popover-trigger-12345">
       <a href="#js-bolt-popover-12345"
          class="c-bolt-popover__nojs-trigger"
          tabindex="-1"
       >
-        <bolt-button>
-          This triggers a popover
-        </bolt-button>
+        <ssr-keep for="bolt-popover">
+          <bolt-button>
+            This triggers a popover
+          </bolt-button>
+        </ssr-keep>
       </a>
-    </replace-with-grandchildren>
-    <span slot="content"
-          id="js-bolt-popover-12345"
+    </div>
+    <div id="js-bolt-popover-12345"
+         class="c-bolt-popover__content"
     >
-      <replace-with-grandchildren class="c-bolt-popover__content">
-        <span class="c-bolt-popover__bubble ">
-          <a href="#js-bolt-popover-trigger-12345"
-             class="c-bolt-popover__nojs-close"
-          >
-            <span aria-hidden="true">
-              &times;
-            </span>
-            <span class="u-bolt-visuallyhidden">
-              Close popover
-            </span>
-          </a>
-          This is the content of the popover with a
-          <bolt-link url="https://pega.com">
-            call to action
-          </bolt-link>
-          .
-        </span>
-      </replace-with-grandchildren>
-    </span>
-  </replace-with-children>
+      <span class="c-bolt-popover__bubble ">
+        <ssr-keep for="bolt-popover">
+          <span slot="content">
+            <a href="#js-bolt-popover-trigger-12345"
+               class="c-bolt-popover__nojs-close"
+            >
+              <span aria-hidden="true">
+                &times;
+              </span>
+              <span class="u-bolt-visuallyhidden">
+                Close popover
+              </span>
+            </a>
+            This is the content of the popover with a
+            <bolt-link url="https://pega.com">
+              call to action
+            </bolt-link>
+            .
+          </span>
+        </ssr-keep>
+      </span>
+    </div>
+  </div>
 </bolt-popover>
 `;
 
@@ -84,41 +92,45 @@ exports[`<bolt-popover> Component content placement: auto 1`] = `
 <bolt-popover placement="auto"
               uuid="12345"
 >
-  <replace-with-children class="c-bolt-popover c-bolt-popover--bottom c-bolt-popover--text-wrap c-bolt-popover--spacing-small">
-    <replace-with-grandchildren id="js-bolt-popover-trigger-12345">
+  <div class="c-bolt-popover c-bolt-popover--bottom c-bolt-popover--text-wrap c-bolt-popover--spacing-small">
+    <div id="js-bolt-popover-trigger-12345">
       <a href="#js-bolt-popover-12345"
          class="c-bolt-popover__nojs-trigger"
          tabindex="-1"
       >
-        <bolt-button>
-          This triggers a popover
-        </bolt-button>
+        <ssr-keep for="bolt-popover">
+          <bolt-button>
+            This triggers a popover
+          </bolt-button>
+        </ssr-keep>
       </a>
-    </replace-with-grandchildren>
-    <span slot="content"
-          id="js-bolt-popover-12345"
+    </div>
+    <div id="js-bolt-popover-12345"
+         class="c-bolt-popover__content"
     >
-      <replace-with-grandchildren class="c-bolt-popover__content">
-        <span class="c-bolt-popover__bubble ">
-          <a href="#js-bolt-popover-trigger-12345"
-             class="c-bolt-popover__nojs-close"
-          >
-            <span aria-hidden="true">
-              &times;
-            </span>
-            <span class="u-bolt-visuallyhidden">
-              Close popover
-            </span>
-          </a>
-          This is the content of the popover with a
-          <bolt-link url="https://pega.com">
-            call to action
-          </bolt-link>
-          .
-        </span>
-      </replace-with-grandchildren>
-    </span>
-  </replace-with-children>
+      <span class="c-bolt-popover__bubble ">
+        <ssr-keep for="bolt-popover">
+          <span slot="content">
+            <a href="#js-bolt-popover-trigger-12345"
+               class="c-bolt-popover__nojs-close"
+            >
+              <span aria-hidden="true">
+                &times;
+              </span>
+              <span class="u-bolt-visuallyhidden">
+                Close popover
+              </span>
+            </a>
+            This is the content of the popover with a
+            <bolt-link url="https://pega.com">
+              call to action
+            </bolt-link>
+            .
+          </span>
+        </ssr-keep>
+      </span>
+    </div>
+  </div>
 </bolt-popover>
 `;
 
@@ -126,41 +138,45 @@ exports[`<bolt-popover> Component content placement: bottom 1`] = `
 <bolt-popover placement="bottom"
               uuid="12345"
 >
-  <replace-with-children class="c-bolt-popover c-bolt-popover--bottom c-bolt-popover--text-wrap c-bolt-popover--spacing-small">
-    <replace-with-grandchildren id="js-bolt-popover-trigger-12345">
+  <div class="c-bolt-popover c-bolt-popover--bottom c-bolt-popover--text-wrap c-bolt-popover--spacing-small">
+    <div id="js-bolt-popover-trigger-12345">
       <a href="#js-bolt-popover-12345"
          class="c-bolt-popover__nojs-trigger"
          tabindex="-1"
       >
-        <bolt-button>
-          This triggers a popover
-        </bolt-button>
+        <ssr-keep for="bolt-popover">
+          <bolt-button>
+            This triggers a popover
+          </bolt-button>
+        </ssr-keep>
       </a>
-    </replace-with-grandchildren>
-    <span slot="content"
-          id="js-bolt-popover-12345"
+    </div>
+    <div id="js-bolt-popover-12345"
+         class="c-bolt-popover__content"
     >
-      <replace-with-grandchildren class="c-bolt-popover__content">
-        <span class="c-bolt-popover__bubble ">
-          <a href="#js-bolt-popover-trigger-12345"
-             class="c-bolt-popover__nojs-close"
-          >
-            <span aria-hidden="true">
-              &times;
-            </span>
-            <span class="u-bolt-visuallyhidden">
-              Close popover
-            </span>
-          </a>
-          This is the content of the popover with a
-          <bolt-link url="https://pega.com">
-            call to action
-          </bolt-link>
-          .
-        </span>
-      </replace-with-grandchildren>
-    </span>
-  </replace-with-children>
+      <span class="c-bolt-popover__bubble ">
+        <ssr-keep for="bolt-popover">
+          <span slot="content">
+            <a href="#js-bolt-popover-trigger-12345"
+               class="c-bolt-popover__nojs-close"
+            >
+              <span aria-hidden="true">
+                &times;
+              </span>
+              <span class="u-bolt-visuallyhidden">
+                Close popover
+              </span>
+            </a>
+            This is the content of the popover with a
+            <bolt-link url="https://pega.com">
+              call to action
+            </bolt-link>
+            .
+          </span>
+        </ssr-keep>
+      </span>
+    </div>
+  </div>
 </bolt-popover>
 `;
 
@@ -168,41 +184,45 @@ exports[`<bolt-popover> Component content placement: bottom-end 1`] = `
 <bolt-popover placement="bottom-end"
               uuid="12345"
 >
-  <replace-with-children class="c-bolt-popover c-bolt-popover--bottom c-bolt-popover--text-wrap c-bolt-popover--spacing-small">
-    <replace-with-grandchildren id="js-bolt-popover-trigger-12345">
+  <div class="c-bolt-popover c-bolt-popover--bottom c-bolt-popover--text-wrap c-bolt-popover--spacing-small">
+    <div id="js-bolt-popover-trigger-12345">
       <a href="#js-bolt-popover-12345"
          class="c-bolt-popover__nojs-trigger"
          tabindex="-1"
       >
-        <bolt-button>
-          This triggers a popover
-        </bolt-button>
+        <ssr-keep for="bolt-popover">
+          <bolt-button>
+            This triggers a popover
+          </bolt-button>
+        </ssr-keep>
       </a>
-    </replace-with-grandchildren>
-    <span slot="content"
-          id="js-bolt-popover-12345"
+    </div>
+    <div id="js-bolt-popover-12345"
+         class="c-bolt-popover__content"
     >
-      <replace-with-grandchildren class="c-bolt-popover__content">
-        <span class="c-bolt-popover__bubble ">
-          <a href="#js-bolt-popover-trigger-12345"
-             class="c-bolt-popover__nojs-close"
-          >
-            <span aria-hidden="true">
-              &times;
-            </span>
-            <span class="u-bolt-visuallyhidden">
-              Close popover
-            </span>
-          </a>
-          This is the content of the popover with a
-          <bolt-link url="https://pega.com">
-            call to action
-          </bolt-link>
-          .
-        </span>
-      </replace-with-grandchildren>
-    </span>
-  </replace-with-children>
+      <span class="c-bolt-popover__bubble ">
+        <ssr-keep for="bolt-popover">
+          <span slot="content">
+            <a href="#js-bolt-popover-trigger-12345"
+               class="c-bolt-popover__nojs-close"
+            >
+              <span aria-hidden="true">
+                &times;
+              </span>
+              <span class="u-bolt-visuallyhidden">
+                Close popover
+              </span>
+            </a>
+            This is the content of the popover with a
+            <bolt-link url="https://pega.com">
+              call to action
+            </bolt-link>
+            .
+          </span>
+        </ssr-keep>
+      </span>
+    </div>
+  </div>
 </bolt-popover>
 `;
 
@@ -210,41 +230,45 @@ exports[`<bolt-popover> Component content placement: bottom-start 1`] = `
 <bolt-popover placement="bottom-start"
               uuid="12345"
 >
-  <replace-with-children class="c-bolt-popover c-bolt-popover--bottom c-bolt-popover--text-wrap c-bolt-popover--spacing-small">
-    <replace-with-grandchildren id="js-bolt-popover-trigger-12345">
+  <div class="c-bolt-popover c-bolt-popover--bottom c-bolt-popover--text-wrap c-bolt-popover--spacing-small">
+    <div id="js-bolt-popover-trigger-12345">
       <a href="#js-bolt-popover-12345"
          class="c-bolt-popover__nojs-trigger"
          tabindex="-1"
       >
-        <bolt-button>
-          This triggers a popover
-        </bolt-button>
+        <ssr-keep for="bolt-popover">
+          <bolt-button>
+            This triggers a popover
+          </bolt-button>
+        </ssr-keep>
       </a>
-    </replace-with-grandchildren>
-    <span slot="content"
-          id="js-bolt-popover-12345"
+    </div>
+    <div id="js-bolt-popover-12345"
+         class="c-bolt-popover__content"
     >
-      <replace-with-grandchildren class="c-bolt-popover__content">
-        <span class="c-bolt-popover__bubble ">
-          <a href="#js-bolt-popover-trigger-12345"
-             class="c-bolt-popover__nojs-close"
-          >
-            <span aria-hidden="true">
-              &times;
-            </span>
-            <span class="u-bolt-visuallyhidden">
-              Close popover
-            </span>
-          </a>
-          This is the content of the popover with a
-          <bolt-link url="https://pega.com">
-            call to action
-          </bolt-link>
-          .
-        </span>
-      </replace-with-grandchildren>
-    </span>
-  </replace-with-children>
+      <span class="c-bolt-popover__bubble ">
+        <ssr-keep for="bolt-popover">
+          <span slot="content">
+            <a href="#js-bolt-popover-trigger-12345"
+               class="c-bolt-popover__nojs-close"
+            >
+              <span aria-hidden="true">
+                &times;
+              </span>
+              <span class="u-bolt-visuallyhidden">
+                Close popover
+              </span>
+            </a>
+            This is the content of the popover with a
+            <bolt-link url="https://pega.com">
+              call to action
+            </bolt-link>
+            .
+          </span>
+        </ssr-keep>
+      </span>
+    </div>
+  </div>
 </bolt-popover>
 `;
 
@@ -252,41 +276,45 @@ exports[`<bolt-popover> Component content placement: left 1`] = `
 <bolt-popover placement="left"
               uuid="12345"
 >
-  <replace-with-children class="c-bolt-popover c-bolt-popover--bottom c-bolt-popover--text-wrap c-bolt-popover--spacing-small">
-    <replace-with-grandchildren id="js-bolt-popover-trigger-12345">
+  <div class="c-bolt-popover c-bolt-popover--bottom c-bolt-popover--text-wrap c-bolt-popover--spacing-small">
+    <div id="js-bolt-popover-trigger-12345">
       <a href="#js-bolt-popover-12345"
          class="c-bolt-popover__nojs-trigger"
          tabindex="-1"
       >
-        <bolt-button>
-          This triggers a popover
-        </bolt-button>
+        <ssr-keep for="bolt-popover">
+          <bolt-button>
+            This triggers a popover
+          </bolt-button>
+        </ssr-keep>
       </a>
-    </replace-with-grandchildren>
-    <span slot="content"
-          id="js-bolt-popover-12345"
+    </div>
+    <div id="js-bolt-popover-12345"
+         class="c-bolt-popover__content"
     >
-      <replace-with-grandchildren class="c-bolt-popover__content">
-        <span class="c-bolt-popover__bubble ">
-          <a href="#js-bolt-popover-trigger-12345"
-             class="c-bolt-popover__nojs-close"
-          >
-            <span aria-hidden="true">
-              &times;
-            </span>
-            <span class="u-bolt-visuallyhidden">
-              Close popover
-            </span>
-          </a>
-          This is the content of the popover with a
-          <bolt-link url="https://pega.com">
-            call to action
-          </bolt-link>
-          .
-        </span>
-      </replace-with-grandchildren>
-    </span>
-  </replace-with-children>
+      <span class="c-bolt-popover__bubble ">
+        <ssr-keep for="bolt-popover">
+          <span slot="content">
+            <a href="#js-bolt-popover-trigger-12345"
+               class="c-bolt-popover__nojs-close"
+            >
+              <span aria-hidden="true">
+                &times;
+              </span>
+              <span class="u-bolt-visuallyhidden">
+                Close popover
+              </span>
+            </a>
+            This is the content of the popover with a
+            <bolt-link url="https://pega.com">
+              call to action
+            </bolt-link>
+            .
+          </span>
+        </ssr-keep>
+      </span>
+    </div>
+  </div>
 </bolt-popover>
 `;
 
@@ -294,41 +322,45 @@ exports[`<bolt-popover> Component content placement: left-end 1`] = `
 <bolt-popover placement="left-end"
               uuid="12345"
 >
-  <replace-with-children class="c-bolt-popover c-bolt-popover--bottom c-bolt-popover--text-wrap c-bolt-popover--spacing-small">
-    <replace-with-grandchildren id="js-bolt-popover-trigger-12345">
+  <div class="c-bolt-popover c-bolt-popover--bottom c-bolt-popover--text-wrap c-bolt-popover--spacing-small">
+    <div id="js-bolt-popover-trigger-12345">
       <a href="#js-bolt-popover-12345"
          class="c-bolt-popover__nojs-trigger"
          tabindex="-1"
       >
-        <bolt-button>
-          This triggers a popover
-        </bolt-button>
+        <ssr-keep for="bolt-popover">
+          <bolt-button>
+            This triggers a popover
+          </bolt-button>
+        </ssr-keep>
       </a>
-    </replace-with-grandchildren>
-    <span slot="content"
-          id="js-bolt-popover-12345"
+    </div>
+    <div id="js-bolt-popover-12345"
+         class="c-bolt-popover__content"
     >
-      <replace-with-grandchildren class="c-bolt-popover__content">
-        <span class="c-bolt-popover__bubble ">
-          <a href="#js-bolt-popover-trigger-12345"
-             class="c-bolt-popover__nojs-close"
-          >
-            <span aria-hidden="true">
-              &times;
-            </span>
-            <span class="u-bolt-visuallyhidden">
-              Close popover
-            </span>
-          </a>
-          This is the content of the popover with a
-          <bolt-link url="https://pega.com">
-            call to action
-          </bolt-link>
-          .
-        </span>
-      </replace-with-grandchildren>
-    </span>
-  </replace-with-children>
+      <span class="c-bolt-popover__bubble ">
+        <ssr-keep for="bolt-popover">
+          <span slot="content">
+            <a href="#js-bolt-popover-trigger-12345"
+               class="c-bolt-popover__nojs-close"
+            >
+              <span aria-hidden="true">
+                &times;
+              </span>
+              <span class="u-bolt-visuallyhidden">
+                Close popover
+              </span>
+            </a>
+            This is the content of the popover with a
+            <bolt-link url="https://pega.com">
+              call to action
+            </bolt-link>
+            .
+          </span>
+        </ssr-keep>
+      </span>
+    </div>
+  </div>
 </bolt-popover>
 `;
 
@@ -336,41 +368,45 @@ exports[`<bolt-popover> Component content placement: left-start 1`] = `
 <bolt-popover placement="left-start"
               uuid="12345"
 >
-  <replace-with-children class="c-bolt-popover c-bolt-popover--bottom c-bolt-popover--text-wrap c-bolt-popover--spacing-small">
-    <replace-with-grandchildren id="js-bolt-popover-trigger-12345">
+  <div class="c-bolt-popover c-bolt-popover--bottom c-bolt-popover--text-wrap c-bolt-popover--spacing-small">
+    <div id="js-bolt-popover-trigger-12345">
       <a href="#js-bolt-popover-12345"
          class="c-bolt-popover__nojs-trigger"
          tabindex="-1"
       >
-        <bolt-button>
-          This triggers a popover
-        </bolt-button>
+        <ssr-keep for="bolt-popover">
+          <bolt-button>
+            This triggers a popover
+          </bolt-button>
+        </ssr-keep>
       </a>
-    </replace-with-grandchildren>
-    <span slot="content"
-          id="js-bolt-popover-12345"
+    </div>
+    <div id="js-bolt-popover-12345"
+         class="c-bolt-popover__content"
     >
-      <replace-with-grandchildren class="c-bolt-popover__content">
-        <span class="c-bolt-popover__bubble ">
-          <a href="#js-bolt-popover-trigger-12345"
-             class="c-bolt-popover__nojs-close"
-          >
-            <span aria-hidden="true">
-              &times;
-            </span>
-            <span class="u-bolt-visuallyhidden">
-              Close popover
-            </span>
-          </a>
-          This is the content of the popover with a
-          <bolt-link url="https://pega.com">
-            call to action
-          </bolt-link>
-          .
-        </span>
-      </replace-with-grandchildren>
-    </span>
-  </replace-with-children>
+      <span class="c-bolt-popover__bubble ">
+        <ssr-keep for="bolt-popover">
+          <span slot="content">
+            <a href="#js-bolt-popover-trigger-12345"
+               class="c-bolt-popover__nojs-close"
+            >
+              <span aria-hidden="true">
+                &times;
+              </span>
+              <span class="u-bolt-visuallyhidden">
+                Close popover
+              </span>
+            </a>
+            This is the content of the popover with a
+            <bolt-link url="https://pega.com">
+              call to action
+            </bolt-link>
+            .
+          </span>
+        </ssr-keep>
+      </span>
+    </div>
+  </div>
 </bolt-popover>
 `;
 
@@ -378,41 +414,45 @@ exports[`<bolt-popover> Component content placement: right 1`] = `
 <bolt-popover placement="right"
               uuid="12345"
 >
-  <replace-with-children class="c-bolt-popover c-bolt-popover--bottom c-bolt-popover--text-wrap c-bolt-popover--spacing-small">
-    <replace-with-grandchildren id="js-bolt-popover-trigger-12345">
+  <div class="c-bolt-popover c-bolt-popover--bottom c-bolt-popover--text-wrap c-bolt-popover--spacing-small">
+    <div id="js-bolt-popover-trigger-12345">
       <a href="#js-bolt-popover-12345"
          class="c-bolt-popover__nojs-trigger"
          tabindex="-1"
       >
-        <bolt-button>
-          This triggers a popover
-        </bolt-button>
+        <ssr-keep for="bolt-popover">
+          <bolt-button>
+            This triggers a popover
+          </bolt-button>
+        </ssr-keep>
       </a>
-    </replace-with-grandchildren>
-    <span slot="content"
-          id="js-bolt-popover-12345"
+    </div>
+    <div id="js-bolt-popover-12345"
+         class="c-bolt-popover__content"
     >
-      <replace-with-grandchildren class="c-bolt-popover__content">
-        <span class="c-bolt-popover__bubble ">
-          <a href="#js-bolt-popover-trigger-12345"
-             class="c-bolt-popover__nojs-close"
-          >
-            <span aria-hidden="true">
-              &times;
-            </span>
-            <span class="u-bolt-visuallyhidden">
-              Close popover
-            </span>
-          </a>
-          This is the content of the popover with a
-          <bolt-link url="https://pega.com">
-            call to action
-          </bolt-link>
-          .
-        </span>
-      </replace-with-grandchildren>
-    </span>
-  </replace-with-children>
+      <span class="c-bolt-popover__bubble ">
+        <ssr-keep for="bolt-popover">
+          <span slot="content">
+            <a href="#js-bolt-popover-trigger-12345"
+               class="c-bolt-popover__nojs-close"
+            >
+              <span aria-hidden="true">
+                &times;
+              </span>
+              <span class="u-bolt-visuallyhidden">
+                Close popover
+              </span>
+            </a>
+            This is the content of the popover with a
+            <bolt-link url="https://pega.com">
+              call to action
+            </bolt-link>
+            .
+          </span>
+        </ssr-keep>
+      </span>
+    </div>
+  </div>
 </bolt-popover>
 `;
 
@@ -420,41 +460,45 @@ exports[`<bolt-popover> Component content placement: right-end 1`] = `
 <bolt-popover placement="right-end"
               uuid="12345"
 >
-  <replace-with-children class="c-bolt-popover c-bolt-popover--bottom c-bolt-popover--text-wrap c-bolt-popover--spacing-small">
-    <replace-with-grandchildren id="js-bolt-popover-trigger-12345">
+  <div class="c-bolt-popover c-bolt-popover--bottom c-bolt-popover--text-wrap c-bolt-popover--spacing-small">
+    <div id="js-bolt-popover-trigger-12345">
       <a href="#js-bolt-popover-12345"
          class="c-bolt-popover__nojs-trigger"
          tabindex="-1"
       >
-        <bolt-button>
-          This triggers a popover
-        </bolt-button>
+        <ssr-keep for="bolt-popover">
+          <bolt-button>
+            This triggers a popover
+          </bolt-button>
+        </ssr-keep>
       </a>
-    </replace-with-grandchildren>
-    <span slot="content"
-          id="js-bolt-popover-12345"
+    </div>
+    <div id="js-bolt-popover-12345"
+         class="c-bolt-popover__content"
     >
-      <replace-with-grandchildren class="c-bolt-popover__content">
-        <span class="c-bolt-popover__bubble ">
-          <a href="#js-bolt-popover-trigger-12345"
-             class="c-bolt-popover__nojs-close"
-          >
-            <span aria-hidden="true">
-              &times;
-            </span>
-            <span class="u-bolt-visuallyhidden">
-              Close popover
-            </span>
-          </a>
-          This is the content of the popover with a
-          <bolt-link url="https://pega.com">
-            call to action
-          </bolt-link>
-          .
-        </span>
-      </replace-with-grandchildren>
-    </span>
-  </replace-with-children>
+      <span class="c-bolt-popover__bubble ">
+        <ssr-keep for="bolt-popover">
+          <span slot="content">
+            <a href="#js-bolt-popover-trigger-12345"
+               class="c-bolt-popover__nojs-close"
+            >
+              <span aria-hidden="true">
+                &times;
+              </span>
+              <span class="u-bolt-visuallyhidden">
+                Close popover
+              </span>
+            </a>
+            This is the content of the popover with a
+            <bolt-link url="https://pega.com">
+              call to action
+            </bolt-link>
+            .
+          </span>
+        </ssr-keep>
+      </span>
+    </div>
+  </div>
 </bolt-popover>
 `;
 
@@ -462,41 +506,45 @@ exports[`<bolt-popover> Component content placement: right-start 1`] = `
 <bolt-popover placement="right-start"
               uuid="12345"
 >
-  <replace-with-children class="c-bolt-popover c-bolt-popover--bottom c-bolt-popover--text-wrap c-bolt-popover--spacing-small">
-    <replace-with-grandchildren id="js-bolt-popover-trigger-12345">
+  <div class="c-bolt-popover c-bolt-popover--bottom c-bolt-popover--text-wrap c-bolt-popover--spacing-small">
+    <div id="js-bolt-popover-trigger-12345">
       <a href="#js-bolt-popover-12345"
          class="c-bolt-popover__nojs-trigger"
          tabindex="-1"
       >
-        <bolt-button>
-          This triggers a popover
-        </bolt-button>
+        <ssr-keep for="bolt-popover">
+          <bolt-button>
+            This triggers a popover
+          </bolt-button>
+        </ssr-keep>
       </a>
-    </replace-with-grandchildren>
-    <span slot="content"
-          id="js-bolt-popover-12345"
+    </div>
+    <div id="js-bolt-popover-12345"
+         class="c-bolt-popover__content"
     >
-      <replace-with-grandchildren class="c-bolt-popover__content">
-        <span class="c-bolt-popover__bubble ">
-          <a href="#js-bolt-popover-trigger-12345"
-             class="c-bolt-popover__nojs-close"
-          >
-            <span aria-hidden="true">
-              &times;
-            </span>
-            <span class="u-bolt-visuallyhidden">
-              Close popover
-            </span>
-          </a>
-          This is the content of the popover with a
-          <bolt-link url="https://pega.com">
-            call to action
-          </bolt-link>
-          .
-        </span>
-      </replace-with-grandchildren>
-    </span>
-  </replace-with-children>
+      <span class="c-bolt-popover__bubble ">
+        <ssr-keep for="bolt-popover">
+          <span slot="content">
+            <a href="#js-bolt-popover-trigger-12345"
+               class="c-bolt-popover__nojs-close"
+            >
+              <span aria-hidden="true">
+                &times;
+              </span>
+              <span class="u-bolt-visuallyhidden">
+                Close popover
+              </span>
+            </a>
+            This is the content of the popover with a
+            <bolt-link url="https://pega.com">
+              call to action
+            </bolt-link>
+            .
+          </span>
+        </ssr-keep>
+      </span>
+    </div>
+  </div>
 </bolt-popover>
 `;
 
@@ -504,41 +552,45 @@ exports[`<bolt-popover> Component content placement: top 1`] = `
 <bolt-popover placement="top"
               uuid="12345"
 >
-  <replace-with-children class="c-bolt-popover c-bolt-popover--bottom c-bolt-popover--text-wrap c-bolt-popover--spacing-small">
-    <replace-with-grandchildren id="js-bolt-popover-trigger-12345">
+  <div class="c-bolt-popover c-bolt-popover--bottom c-bolt-popover--text-wrap c-bolt-popover--spacing-small">
+    <div id="js-bolt-popover-trigger-12345">
       <a href="#js-bolt-popover-12345"
          class="c-bolt-popover__nojs-trigger"
          tabindex="-1"
       >
-        <bolt-button>
-          This triggers a popover
-        </bolt-button>
+        <ssr-keep for="bolt-popover">
+          <bolt-button>
+            This triggers a popover
+          </bolt-button>
+        </ssr-keep>
       </a>
-    </replace-with-grandchildren>
-    <span slot="content"
-          id="js-bolt-popover-12345"
+    </div>
+    <div id="js-bolt-popover-12345"
+         class="c-bolt-popover__content"
     >
-      <replace-with-grandchildren class="c-bolt-popover__content">
-        <span class="c-bolt-popover__bubble ">
-          <a href="#js-bolt-popover-trigger-12345"
-             class="c-bolt-popover__nojs-close"
-          >
-            <span aria-hidden="true">
-              &times;
-            </span>
-            <span class="u-bolt-visuallyhidden">
-              Close popover
-            </span>
-          </a>
-          This is the content of the popover with a
-          <bolt-link url="https://pega.com">
-            call to action
-          </bolt-link>
-          .
-        </span>
-      </replace-with-grandchildren>
-    </span>
-  </replace-with-children>
+      <span class="c-bolt-popover__bubble ">
+        <ssr-keep for="bolt-popover">
+          <span slot="content">
+            <a href="#js-bolt-popover-trigger-12345"
+               class="c-bolt-popover__nojs-close"
+            >
+              <span aria-hidden="true">
+                &times;
+              </span>
+              <span class="u-bolt-visuallyhidden">
+                Close popover
+              </span>
+            </a>
+            This is the content of the popover with a
+            <bolt-link url="https://pega.com">
+              call to action
+            </bolt-link>
+            .
+          </span>
+        </ssr-keep>
+      </span>
+    </div>
+  </div>
 </bolt-popover>
 `;
 
@@ -546,41 +598,45 @@ exports[`<bolt-popover> Component content placement: top-end 1`] = `
 <bolt-popover placement="top-end"
               uuid="12345"
 >
-  <replace-with-children class="c-bolt-popover c-bolt-popover--bottom c-bolt-popover--text-wrap c-bolt-popover--spacing-small">
-    <replace-with-grandchildren id="js-bolt-popover-trigger-12345">
+  <div class="c-bolt-popover c-bolt-popover--bottom c-bolt-popover--text-wrap c-bolt-popover--spacing-small">
+    <div id="js-bolt-popover-trigger-12345">
       <a href="#js-bolt-popover-12345"
          class="c-bolt-popover__nojs-trigger"
          tabindex="-1"
       >
-        <bolt-button>
-          This triggers a popover
-        </bolt-button>
+        <ssr-keep for="bolt-popover">
+          <bolt-button>
+            This triggers a popover
+          </bolt-button>
+        </ssr-keep>
       </a>
-    </replace-with-grandchildren>
-    <span slot="content"
-          id="js-bolt-popover-12345"
+    </div>
+    <div id="js-bolt-popover-12345"
+         class="c-bolt-popover__content"
     >
-      <replace-with-grandchildren class="c-bolt-popover__content">
-        <span class="c-bolt-popover__bubble ">
-          <a href="#js-bolt-popover-trigger-12345"
-             class="c-bolt-popover__nojs-close"
-          >
-            <span aria-hidden="true">
-              &times;
-            </span>
-            <span class="u-bolt-visuallyhidden">
-              Close popover
-            </span>
-          </a>
-          This is the content of the popover with a
-          <bolt-link url="https://pega.com">
-            call to action
-          </bolt-link>
-          .
-        </span>
-      </replace-with-grandchildren>
-    </span>
-  </replace-with-children>
+      <span class="c-bolt-popover__bubble ">
+        <ssr-keep for="bolt-popover">
+          <span slot="content">
+            <a href="#js-bolt-popover-trigger-12345"
+               class="c-bolt-popover__nojs-close"
+            >
+              <span aria-hidden="true">
+                &times;
+              </span>
+              <span class="u-bolt-visuallyhidden">
+                Close popover
+              </span>
+            </a>
+            This is the content of the popover with a
+            <bolt-link url="https://pega.com">
+              call to action
+            </bolt-link>
+            .
+          </span>
+        </ssr-keep>
+      </span>
+    </div>
+  </div>
 </bolt-popover>
 `;
 
@@ -588,41 +644,45 @@ exports[`<bolt-popover> Component content placement: top-start 1`] = `
 <bolt-popover placement="top-start"
               uuid="12345"
 >
-  <replace-with-children class="c-bolt-popover c-bolt-popover--bottom c-bolt-popover--text-wrap c-bolt-popover--spacing-small">
-    <replace-with-grandchildren id="js-bolt-popover-trigger-12345">
+  <div class="c-bolt-popover c-bolt-popover--bottom c-bolt-popover--text-wrap c-bolt-popover--spacing-small">
+    <div id="js-bolt-popover-trigger-12345">
       <a href="#js-bolt-popover-12345"
          class="c-bolt-popover__nojs-trigger"
          tabindex="-1"
       >
-        <bolt-button>
-          This triggers a popover
-        </bolt-button>
+        <ssr-keep for="bolt-popover">
+          <bolt-button>
+            This triggers a popover
+          </bolt-button>
+        </ssr-keep>
       </a>
-    </replace-with-grandchildren>
-    <span slot="content"
-          id="js-bolt-popover-12345"
+    </div>
+    <div id="js-bolt-popover-12345"
+         class="c-bolt-popover__content"
     >
-      <replace-with-grandchildren class="c-bolt-popover__content">
-        <span class="c-bolt-popover__bubble ">
-          <a href="#js-bolt-popover-trigger-12345"
-             class="c-bolt-popover__nojs-close"
-          >
-            <span aria-hidden="true">
-              &times;
-            </span>
-            <span class="u-bolt-visuallyhidden">
-              Close popover
-            </span>
-          </a>
-          This is the content of the popover with a
-          <bolt-link url="https://pega.com">
-            call to action
-          </bolt-link>
-          .
-        </span>
-      </replace-with-grandchildren>
-    </span>
-  </replace-with-children>
+      <span class="c-bolt-popover__bubble ">
+        <ssr-keep for="bolt-popover">
+          <span slot="content">
+            <a href="#js-bolt-popover-trigger-12345"
+               class="c-bolt-popover__nojs-close"
+            >
+              <span aria-hidden="true">
+                &times;
+              </span>
+              <span class="u-bolt-visuallyhidden">
+                Close popover
+              </span>
+            </a>
+            This is the content of the popover with a
+            <bolt-link url="https://pega.com">
+              call to action
+            </bolt-link>
+            .
+          </span>
+        </ssr-keep>
+      </span>
+    </div>
+  </div>
 </bolt-popover>
 `;
 
@@ -630,41 +690,45 @@ exports[`<bolt-popover> Component content spacing: medium 1`] = `
 <bolt-popover spacing="medium"
               uuid="12345"
 >
-  <replace-with-children class="c-bolt-popover c-bolt-popover--bottom c-bolt-popover--text-wrap c-bolt-popover--spacing-medium">
-    <replace-with-grandchildren id="js-bolt-popover-trigger-12345">
+  <div class="c-bolt-popover c-bolt-popover--bottom c-bolt-popover--text-wrap c-bolt-popover--spacing-medium">
+    <div id="js-bolt-popover-trigger-12345">
       <a href="#js-bolt-popover-12345"
          class="c-bolt-popover__nojs-trigger"
          tabindex="-1"
       >
-        <bolt-button>
-          This triggers a popover
-        </bolt-button>
+        <ssr-keep for="bolt-popover">
+          <bolt-button>
+            This triggers a popover
+          </bolt-button>
+        </ssr-keep>
       </a>
-    </replace-with-grandchildren>
-    <span slot="content"
-          id="js-bolt-popover-12345"
+    </div>
+    <div id="js-bolt-popover-12345"
+         class="c-bolt-popover__content"
     >
-      <replace-with-grandchildren class="c-bolt-popover__content">
-        <span class="c-bolt-popover__bubble ">
-          <a href="#js-bolt-popover-trigger-12345"
-             class="c-bolt-popover__nojs-close"
-          >
-            <span aria-hidden="true">
-              &times;
-            </span>
-            <span class="u-bolt-visuallyhidden">
-              Close popover
-            </span>
-          </a>
-          This is the content of the popover with a
-          <bolt-link url="https://pega.com">
-            call to action
-          </bolt-link>
-          .
-        </span>
-      </replace-with-grandchildren>
-    </span>
-  </replace-with-children>
+      <span class="c-bolt-popover__bubble ">
+        <ssr-keep for="bolt-popover">
+          <span slot="content">
+            <a href="#js-bolt-popover-trigger-12345"
+               class="c-bolt-popover__nojs-close"
+            >
+              <span aria-hidden="true">
+                &times;
+              </span>
+              <span class="u-bolt-visuallyhidden">
+                Close popover
+              </span>
+            </a>
+            This is the content of the popover with a
+            <bolt-link url="https://pega.com">
+              call to action
+            </bolt-link>
+            .
+          </span>
+        </ssr-keep>
+      </span>
+    </div>
+  </div>
 </bolt-popover>
 `;
 
@@ -672,41 +736,45 @@ exports[`<bolt-popover> Component content spacing: none 1`] = `
 <bolt-popover spacing="none"
               uuid="12345"
 >
-  <replace-with-children class="c-bolt-popover c-bolt-popover--bottom c-bolt-popover--text-wrap ">
-    <replace-with-grandchildren id="js-bolt-popover-trigger-12345">
+  <div class="c-bolt-popover c-bolt-popover--bottom c-bolt-popover--text-wrap ">
+    <div id="js-bolt-popover-trigger-12345">
       <a href="#js-bolt-popover-12345"
          class="c-bolt-popover__nojs-trigger"
          tabindex="-1"
       >
-        <bolt-button>
-          This triggers a popover
-        </bolt-button>
+        <ssr-keep for="bolt-popover">
+          <bolt-button>
+            This triggers a popover
+          </bolt-button>
+        </ssr-keep>
       </a>
-    </replace-with-grandchildren>
-    <span slot="content"
-          id="js-bolt-popover-12345"
+    </div>
+    <div id="js-bolt-popover-12345"
+         class="c-bolt-popover__content"
     >
-      <replace-with-grandchildren class="c-bolt-popover__content">
-        <span class="c-bolt-popover__bubble ">
-          <a href="#js-bolt-popover-trigger-12345"
-             class="c-bolt-popover__nojs-close"
-          >
-            <span aria-hidden="true">
-              &times;
-            </span>
-            <span class="u-bolt-visuallyhidden">
-              Close popover
-            </span>
-          </a>
-          This is the content of the popover with a
-          <bolt-link url="https://pega.com">
-            call to action
-          </bolt-link>
-          .
-        </span>
-      </replace-with-grandchildren>
-    </span>
-  </replace-with-children>
+      <span class="c-bolt-popover__bubble ">
+        <ssr-keep for="bolt-popover">
+          <span slot="content">
+            <a href="#js-bolt-popover-trigger-12345"
+               class="c-bolt-popover__nojs-close"
+            >
+              <span aria-hidden="true">
+                &times;
+              </span>
+              <span class="u-bolt-visuallyhidden">
+                Close popover
+              </span>
+            </a>
+            This is the content of the popover with a
+            <bolt-link url="https://pega.com">
+              call to action
+            </bolt-link>
+            .
+          </span>
+        </ssr-keep>
+      </span>
+    </div>
+  </div>
 </bolt-popover>
 `;
 
@@ -714,41 +782,45 @@ exports[`<bolt-popover> Component content spacing: small 1`] = `
 <bolt-popover spacing="small"
               uuid="12345"
 >
-  <replace-with-children class="c-bolt-popover c-bolt-popover--bottom c-bolt-popover--text-wrap c-bolt-popover--spacing-small">
-    <replace-with-grandchildren id="js-bolt-popover-trigger-12345">
+  <div class="c-bolt-popover c-bolt-popover--bottom c-bolt-popover--text-wrap c-bolt-popover--spacing-small">
+    <div id="js-bolt-popover-trigger-12345">
       <a href="#js-bolt-popover-12345"
          class="c-bolt-popover__nojs-trigger"
          tabindex="-1"
       >
-        <bolt-button>
-          This triggers a popover
-        </bolt-button>
+        <ssr-keep for="bolt-popover">
+          <bolt-button>
+            This triggers a popover
+          </bolt-button>
+        </ssr-keep>
       </a>
-    </replace-with-grandchildren>
-    <span slot="content"
-          id="js-bolt-popover-12345"
+    </div>
+    <div id="js-bolt-popover-12345"
+         class="c-bolt-popover__content"
     >
-      <replace-with-grandchildren class="c-bolt-popover__content">
-        <span class="c-bolt-popover__bubble ">
-          <a href="#js-bolt-popover-trigger-12345"
-             class="c-bolt-popover__nojs-close"
-          >
-            <span aria-hidden="true">
-              &times;
-            </span>
-            <span class="u-bolt-visuallyhidden">
-              Close popover
-            </span>
-          </a>
-          This is the content of the popover with a
-          <bolt-link url="https://pega.com">
-            call to action
-          </bolt-link>
-          .
-        </span>
-      </replace-with-grandchildren>
-    </span>
-  </replace-with-children>
+      <span class="c-bolt-popover__bubble ">
+        <ssr-keep for="bolt-popover">
+          <span slot="content">
+            <a href="#js-bolt-popover-trigger-12345"
+               class="c-bolt-popover__nojs-close"
+            >
+              <span aria-hidden="true">
+                &times;
+              </span>
+              <span class="u-bolt-visuallyhidden">
+                Close popover
+              </span>
+            </a>
+            This is the content of the popover with a
+            <bolt-link url="https://pega.com">
+              call to action
+            </bolt-link>
+            .
+          </span>
+        </ssr-keep>
+      </span>
+    </div>
+  </div>
 </bolt-popover>
 `;
 
@@ -756,41 +828,45 @@ exports[`<bolt-popover> Component content spacing: xsmall 1`] = `
 <bolt-popover spacing="xsmall"
               uuid="12345"
 >
-  <replace-with-children class="c-bolt-popover c-bolt-popover--bottom c-bolt-popover--text-wrap c-bolt-popover--spacing-xsmall">
-    <replace-with-grandchildren id="js-bolt-popover-trigger-12345">
+  <div class="c-bolt-popover c-bolt-popover--bottom c-bolt-popover--text-wrap c-bolt-popover--spacing-xsmall">
+    <div id="js-bolt-popover-trigger-12345">
       <a href="#js-bolt-popover-12345"
          class="c-bolt-popover__nojs-trigger"
          tabindex="-1"
       >
-        <bolt-button>
-          This triggers a popover
-        </bolt-button>
+        <ssr-keep for="bolt-popover">
+          <bolt-button>
+            This triggers a popover
+          </bolt-button>
+        </ssr-keep>
       </a>
-    </replace-with-grandchildren>
-    <span slot="content"
-          id="js-bolt-popover-12345"
+    </div>
+    <div id="js-bolt-popover-12345"
+         class="c-bolt-popover__content"
     >
-      <replace-with-grandchildren class="c-bolt-popover__content">
-        <span class="c-bolt-popover__bubble ">
-          <a href="#js-bolt-popover-trigger-12345"
-             class="c-bolt-popover__nojs-close"
-          >
-            <span aria-hidden="true">
-              &times;
-            </span>
-            <span class="u-bolt-visuallyhidden">
-              Close popover
-            </span>
-          </a>
-          This is the content of the popover with a
-          <bolt-link url="https://pega.com">
-            call to action
-          </bolt-link>
-          .
-        </span>
-      </replace-with-grandchildren>
-    </span>
-  </replace-with-children>
+      <span class="c-bolt-popover__bubble ">
+        <ssr-keep for="bolt-popover">
+          <span slot="content">
+            <a href="#js-bolt-popover-trigger-12345"
+               class="c-bolt-popover__nojs-close"
+            >
+              <span aria-hidden="true">
+                &times;
+              </span>
+              <span class="u-bolt-visuallyhidden">
+                Close popover
+              </span>
+            </a>
+            This is the content of the popover with a
+            <bolt-link url="https://pega.com">
+              call to action
+            </bolt-link>
+            .
+          </span>
+        </ssr-keep>
+      </span>
+    </div>
+  </div>
 </bolt-popover>
 `;
 
@@ -798,41 +874,45 @@ exports[`<bolt-popover> Component content theme: dark 1`] = `
 <bolt-popover theme="dark"
               uuid="12345"
 >
-  <replace-with-children class="c-bolt-popover c-bolt-popover--bottom c-bolt-popover--text-wrap c-bolt-popover--spacing-small">
-    <replace-with-grandchildren id="js-bolt-popover-trigger-12345">
+  <div class="c-bolt-popover c-bolt-popover--bottom c-bolt-popover--text-wrap c-bolt-popover--spacing-small">
+    <div id="js-bolt-popover-trigger-12345">
       <a href="#js-bolt-popover-12345"
          class="c-bolt-popover__nojs-trigger"
          tabindex="-1"
       >
-        <bolt-button>
-          This triggers a popover
-        </bolt-button>
+        <ssr-keep for="bolt-popover">
+          <bolt-button>
+            This triggers a popover
+          </bolt-button>
+        </ssr-keep>
       </a>
-    </replace-with-grandchildren>
-    <span slot="content"
-          id="js-bolt-popover-12345"
+    </div>
+    <div id="js-bolt-popover-12345"
+         class="c-bolt-popover__content"
     >
-      <replace-with-grandchildren class="c-bolt-popover__content">
-        <span class="c-bolt-popover__bubble t-bolt-dark">
-          <a href="#js-bolt-popover-trigger-12345"
-             class="c-bolt-popover__nojs-close"
-          >
-            <span aria-hidden="true">
-              &times;
-            </span>
-            <span class="u-bolt-visuallyhidden">
-              Close popover
-            </span>
-          </a>
-          This is the content of the popover with a
-          <bolt-link url="https://pega.com">
-            call to action
-          </bolt-link>
-          .
-        </span>
-      </replace-with-grandchildren>
-    </span>
-  </replace-with-children>
+      <span class="c-bolt-popover__bubble t-bolt-dark">
+        <ssr-keep for="bolt-popover">
+          <span slot="content">
+            <a href="#js-bolt-popover-trigger-12345"
+               class="c-bolt-popover__nojs-close"
+            >
+              <span aria-hidden="true">
+                &times;
+              </span>
+              <span class="u-bolt-visuallyhidden">
+                Close popover
+              </span>
+            </a>
+            This is the content of the popover with a
+            <bolt-link url="https://pega.com">
+              call to action
+            </bolt-link>
+            .
+          </span>
+        </ssr-keep>
+      </span>
+    </div>
+  </div>
 </bolt-popover>
 `;
 
@@ -840,41 +920,45 @@ exports[`<bolt-popover> Component content theme: light 1`] = `
 <bolt-popover theme="light"
               uuid="12345"
 >
-  <replace-with-children class="c-bolt-popover c-bolt-popover--bottom c-bolt-popover--text-wrap c-bolt-popover--spacing-small">
-    <replace-with-grandchildren id="js-bolt-popover-trigger-12345">
+  <div class="c-bolt-popover c-bolt-popover--bottom c-bolt-popover--text-wrap c-bolt-popover--spacing-small">
+    <div id="js-bolt-popover-trigger-12345">
       <a href="#js-bolt-popover-12345"
          class="c-bolt-popover__nojs-trigger"
          tabindex="-1"
       >
-        <bolt-button>
-          This triggers a popover
-        </bolt-button>
+        <ssr-keep for="bolt-popover">
+          <bolt-button>
+            This triggers a popover
+          </bolt-button>
+        </ssr-keep>
       </a>
-    </replace-with-grandchildren>
-    <span slot="content"
-          id="js-bolt-popover-12345"
+    </div>
+    <div id="js-bolt-popover-12345"
+         class="c-bolt-popover__content"
     >
-      <replace-with-grandchildren class="c-bolt-popover__content">
-        <span class="c-bolt-popover__bubble t-bolt-light">
-          <a href="#js-bolt-popover-trigger-12345"
-             class="c-bolt-popover__nojs-close"
-          >
-            <span aria-hidden="true">
-              &times;
-            </span>
-            <span class="u-bolt-visuallyhidden">
-              Close popover
-            </span>
-          </a>
-          This is the content of the popover with a
-          <bolt-link url="https://pega.com">
-            call to action
-          </bolt-link>
-          .
-        </span>
-      </replace-with-grandchildren>
-    </span>
-  </replace-with-children>
+      <span class="c-bolt-popover__bubble t-bolt-light">
+        <ssr-keep for="bolt-popover">
+          <span slot="content">
+            <a href="#js-bolt-popover-trigger-12345"
+               class="c-bolt-popover__nojs-close"
+            >
+              <span aria-hidden="true">
+                &times;
+              </span>
+              <span class="u-bolt-visuallyhidden">
+                Close popover
+              </span>
+            </a>
+            This is the content of the popover with a
+            <bolt-link url="https://pega.com">
+              call to action
+            </bolt-link>
+            .
+          </span>
+        </ssr-keep>
+      </span>
+    </div>
+  </div>
 </bolt-popover>
 `;
 
@@ -882,41 +966,45 @@ exports[`<bolt-popover> Component content theme: none 1`] = `
 <bolt-popover theme="none"
               uuid="12345"
 >
-  <replace-with-children class="c-bolt-popover c-bolt-popover--bottom c-bolt-popover--text-wrap c-bolt-popover--spacing-small">
-    <replace-with-grandchildren id="js-bolt-popover-trigger-12345">
+  <div class="c-bolt-popover c-bolt-popover--bottom c-bolt-popover--text-wrap c-bolt-popover--spacing-small">
+    <div id="js-bolt-popover-trigger-12345">
       <a href="#js-bolt-popover-12345"
          class="c-bolt-popover__nojs-trigger"
          tabindex="-1"
       >
-        <bolt-button>
-          This triggers a popover
-        </bolt-button>
+        <ssr-keep for="bolt-popover">
+          <bolt-button>
+            This triggers a popover
+          </bolt-button>
+        </ssr-keep>
       </a>
-    </replace-with-grandchildren>
-    <span slot="content"
-          id="js-bolt-popover-12345"
+    </div>
+    <div id="js-bolt-popover-12345"
+         class="c-bolt-popover__content"
     >
-      <replace-with-grandchildren class="c-bolt-popover__content">
-        <span class="c-bolt-popover__bubble ">
-          <a href="#js-bolt-popover-trigger-12345"
-             class="c-bolt-popover__nojs-close"
-          >
-            <span aria-hidden="true">
-              &times;
-            </span>
-            <span class="u-bolt-visuallyhidden">
-              Close popover
-            </span>
-          </a>
-          This is the content of the popover with a
-          <bolt-link url="https://pega.com">
-            call to action
-          </bolt-link>
-          .
-        </span>
-      </replace-with-grandchildren>
-    </span>
-  </replace-with-children>
+      <span class="c-bolt-popover__bubble ">
+        <ssr-keep for="bolt-popover">
+          <span slot="content">
+            <a href="#js-bolt-popover-trigger-12345"
+               class="c-bolt-popover__nojs-close"
+            >
+              <span aria-hidden="true">
+                &times;
+              </span>
+              <span class="u-bolt-visuallyhidden">
+                Close popover
+              </span>
+            </a>
+            This is the content of the popover with a
+            <bolt-link url="https://pega.com">
+              call to action
+            </bolt-link>
+            .
+          </span>
+        </ssr-keep>
+      </span>
+    </div>
+  </div>
 </bolt-popover>
 `;
 
@@ -924,41 +1012,45 @@ exports[`<bolt-popover> Component content theme: xdark 1`] = `
 <bolt-popover theme="xdark"
               uuid="12345"
 >
-  <replace-with-children class="c-bolt-popover c-bolt-popover--bottom c-bolt-popover--text-wrap c-bolt-popover--spacing-small">
-    <replace-with-grandchildren id="js-bolt-popover-trigger-12345">
+  <div class="c-bolt-popover c-bolt-popover--bottom c-bolt-popover--text-wrap c-bolt-popover--spacing-small">
+    <div id="js-bolt-popover-trigger-12345">
       <a href="#js-bolt-popover-12345"
          class="c-bolt-popover__nojs-trigger"
          tabindex="-1"
       >
-        <bolt-button>
-          This triggers a popover
-        </bolt-button>
+        <ssr-keep for="bolt-popover">
+          <bolt-button>
+            This triggers a popover
+          </bolt-button>
+        </ssr-keep>
       </a>
-    </replace-with-grandchildren>
-    <span slot="content"
-          id="js-bolt-popover-12345"
+    </div>
+    <div id="js-bolt-popover-12345"
+         class="c-bolt-popover__content"
     >
-      <replace-with-grandchildren class="c-bolt-popover__content">
-        <span class="c-bolt-popover__bubble t-bolt-xdark">
-          <a href="#js-bolt-popover-trigger-12345"
-             class="c-bolt-popover__nojs-close"
-          >
-            <span aria-hidden="true">
-              &times;
-            </span>
-            <span class="u-bolt-visuallyhidden">
-              Close popover
-            </span>
-          </a>
-          This is the content of the popover with a
-          <bolt-link url="https://pega.com">
-            call to action
-          </bolt-link>
-          .
-        </span>
-      </replace-with-grandchildren>
-    </span>
-  </replace-with-children>
+      <span class="c-bolt-popover__bubble t-bolt-xdark">
+        <ssr-keep for="bolt-popover">
+          <span slot="content">
+            <a href="#js-bolt-popover-trigger-12345"
+               class="c-bolt-popover__nojs-close"
+            >
+              <span aria-hidden="true">
+                &times;
+              </span>
+              <span class="u-bolt-visuallyhidden">
+                Close popover
+              </span>
+            </a>
+            This is the content of the popover with a
+            <bolt-link url="https://pega.com">
+              call to action
+            </bolt-link>
+            .
+          </span>
+        </ssr-keep>
+      </span>
+    </div>
+  </div>
 </bolt-popover>
 `;
 
@@ -966,40 +1058,44 @@ exports[`<bolt-popover> Component content theme: xlight 1`] = `
 <bolt-popover theme="xlight"
               uuid="12345"
 >
-  <replace-with-children class="c-bolt-popover c-bolt-popover--bottom c-bolt-popover--text-wrap c-bolt-popover--spacing-small">
-    <replace-with-grandchildren id="js-bolt-popover-trigger-12345">
+  <div class="c-bolt-popover c-bolt-popover--bottom c-bolt-popover--text-wrap c-bolt-popover--spacing-small">
+    <div id="js-bolt-popover-trigger-12345">
       <a href="#js-bolt-popover-12345"
          class="c-bolt-popover__nojs-trigger"
          tabindex="-1"
       >
-        <bolt-button>
-          This triggers a popover
-        </bolt-button>
+        <ssr-keep for="bolt-popover">
+          <bolt-button>
+            This triggers a popover
+          </bolt-button>
+        </ssr-keep>
       </a>
-    </replace-with-grandchildren>
-    <span slot="content"
-          id="js-bolt-popover-12345"
+    </div>
+    <div id="js-bolt-popover-12345"
+         class="c-bolt-popover__content"
     >
-      <replace-with-grandchildren class="c-bolt-popover__content">
-        <span class="c-bolt-popover__bubble t-bolt-xlight">
-          <a href="#js-bolt-popover-trigger-12345"
-             class="c-bolt-popover__nojs-close"
-          >
-            <span aria-hidden="true">
-              &times;
-            </span>
-            <span class="u-bolt-visuallyhidden">
-              Close popover
-            </span>
-          </a>
-          This is the content of the popover with a
-          <bolt-link url="https://pega.com">
-            call to action
-          </bolt-link>
-          .
-        </span>
-      </replace-with-grandchildren>
-    </span>
-  </replace-with-children>
+      <span class="c-bolt-popover__bubble t-bolt-xlight">
+        <ssr-keep for="bolt-popover">
+          <span slot="content">
+            <a href="#js-bolt-popover-trigger-12345"
+               class="c-bolt-popover__nojs-close"
+            >
+              <span aria-hidden="true">
+                &times;
+              </span>
+              <span class="u-bolt-visuallyhidden">
+                Close popover
+              </span>
+            </a>
+            This is the content of the popover with a
+            <bolt-link url="https://pega.com">
+              call to action
+            </bolt-link>
+            .
+          </span>
+        </ssr-keep>
+      </span>
+    </div>
+  </div>
 </bolt-popover>
 `;

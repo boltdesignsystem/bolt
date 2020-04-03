@@ -324,8 +324,7 @@ class BoltCarousel extends BoltElement {
     this.swiper.update();
   }
 
-  firstUpdated() {
-    console.log('first rendered carousel');
+  firstUpdated(changedProperties) {
     if (this.noJs) {
       return;
     }
@@ -491,6 +490,8 @@ class BoltCarousel extends BoltElement {
         this.swiper.update();
       }
     }
+
+    super.firstUpdated && super.firstUpdated(changedProperties);
 
     // super.rendered && super.rendered();
   }

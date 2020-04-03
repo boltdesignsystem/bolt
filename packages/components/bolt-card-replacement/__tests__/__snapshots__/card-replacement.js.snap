@@ -5,9 +5,13 @@ exports[`<bolt-card-replacement> Component basic usage 1`] = `
                        theme="none"
                        height="full"
 >
-  <replace-with-children class="c-bolt-card-replacement">
+  <ssr-keep for="bolt-card-replacement"
+            class="c-bolt-card-replacement"
+  >
     <bolt-card-replacement-media>
-      <replace-with-children class="c-bolt-card_replacement__media">
+      <ssr-keep for="bolt-card-replacement-media"
+                class="c-bolt-card_replacement__media"
+      >
         <bolt-image src="/fixtures/landscape-16x9-mountains.jpg"
                     srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w, /fixtures/landscape-16x9-mountains.jpg 1151w"
                     alt="Image alt."
@@ -18,8 +22,9 @@ exports[`<bolt-card-replacement> Component basic usage 1`] = `
                     style="background-color: hsl(233, 33%, 97%);"
         >
           <bolt-ratio ratio="1151/638">
-            <replace-with-children class="c-bolt-ratio"
-                                   style="padding-bottom: calc((638 / 1151) * 100%); --aspect-ratio: 1.8040752351097;"
+            <ssr-keep for="bolt-ratio"
+                      class="c-bolt-ratio"
+                      style="padding-bottom: calc((638 / 1151) * 100%); --aspect-ratio: 1.8040752351097;"
             >
               <img class="c-bolt-image__image-placeholder"
                    alt="Image alt."
@@ -39,13 +44,15 @@ exports[`<bolt-card-replacement> Component basic usage 1`] = `
                      srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w, /fixtures/landscape-16x9-mountains.jpg 1151w"
                 >
               </noscript>
-            </replace-with-children>
+            </ssr-keep>
           </bolt-ratio>
         </bolt-image>
-      </replace-with-children>
+      </ssr-keep>
     </bolt-card-replacement-media>
     <bolt-card-replacement-body>
-      <replace-with-children class="c-bolt-card_replacement__body">
+      <ssr-keep for="bolt-card-replacement-body"
+                class="c-bolt-card_replacement__body"
+      >
         <p class="c-bolt-eyebrow c-bolt-eyebrow--regular">
           This is an eyebrow
         </p>
@@ -55,12 +62,16 @@ exports[`<bolt-card-replacement> Component basic usage 1`] = `
         <p class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--medium">
           This is a paragraph.
         </p>
-      </replace-with-children>
+      </ssr-keep>
     </bolt-card-replacement-body>
     <bolt-card-replacement-actions>
-      <replace-with-children class="c-bolt-card_replacement__actions">
+      <ssr-keep for="bolt-card-replacement-actions"
+                class="c-bolt-card_replacement__actions"
+      >
         <bolt-card-replacement-action url="https://pega.com">
-          <replace-with-children class="c-bolt-card_replacement__action">
+          <ssr-keep for="bolt-card-replacement-action"
+                    class="c-bolt-card_replacement__action"
+          >
             <bolt-button size="medium"
                          color="text"
                          width="full"
@@ -74,10 +85,14 @@ exports[`<bolt-card-replacement> Component basic usage 1`] = `
                  class="c-bolt-button c-bolt-button--medium c-bolt-button--text c-bolt-button--full c-bolt-button--border-radius-regular c-bolt-button--start"
                  is="shadow-root"
               >
-                <replace-with-children class="c-bolt-button__item">
+                <ssr-keep for="bolt-button"
+                          class="c-bolt-button__item"
+                >
                   This is a button
-                </replace-with-children>
-                <replace-with-children class="c-bolt-button__icon c-bolt-button__icon-sizer">
+                </ssr-keep>
+                <ssr-keep for="bolt-button"
+                          class="c-bolt-button__icon c-bolt-button__icon-sizer"
+                >
                   <bolt-icon slot="after"
                              name="chevron-right"
                   >
@@ -94,14 +109,14 @@ exports[`<bolt-card-replacement> Component basic usage 1`] = `
                       </svg>
                     </span>
                   </bolt-icon>
-                </replace-with-children>
+                </ssr-keep>
               </a>
             </bolt-button>
-          </replace-with-children>
+          </ssr-keep>
         </bolt-card-replacement-action>
-      </replace-with-children>
+      </ssr-keep>
     </bolt-card-replacement-actions>
-  </replace-with-children>
+  </ssr-keep>
 </bolt-card-replacement>
 `;
 
@@ -111,18 +126,24 @@ exports[`<bolt-card-replacement> Component clickable card-replacement 1`] = `
                        height="full"
                        url="https://pega.com"
 >
-  <replace-with-children class="c-bolt-card-replacement">
+  <ssr-keep for="bolt-card-replacement"
+            class="c-bolt-card-replacement"
+  >
     <bolt-card-replacement-link>
       <a href="https://pega.com"
          class="c-bolt-card-replacement__link"
       >
-        <replace-with-children class="u-bolt-visuallyhidden">
+        <ssr-keep for="bolt-card-replacement-link"
+                  class="u-bolt-visuallyhidden"
+        >
           This entire card-replacement is clickable
-        </replace-with-children>
+        </ssr-keep>
       </a>
     </bolt-card-replacement-link>
     <bolt-card-replacement-media>
-      <replace-with-children class="c-bolt-card_replacement__media">
+      <ssr-keep for="bolt-card-replacement-media"
+                class="c-bolt-card_replacement__media"
+      >
         <bolt-image src="/fixtures/landscape-16x9-mountains.jpg"
                     srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w, /fixtures/landscape-16x9-mountains.jpg 1151w"
                     alt="Image alt."
@@ -133,8 +154,9 @@ exports[`<bolt-card-replacement> Component clickable card-replacement 1`] = `
                     style="background-color: hsl(233, 33%, 97%);"
         >
           <bolt-ratio ratio="1151/638">
-            <replace-with-children class="c-bolt-ratio"
-                                   style="padding-bottom: calc((638 / 1151) * 100%); --aspect-ratio: 1.8040752351097;"
+            <ssr-keep for="bolt-ratio"
+                      class="c-bolt-ratio"
+                      style="padding-bottom: calc((638 / 1151) * 100%); --aspect-ratio: 1.8040752351097;"
             >
               <img class="c-bolt-image__image-placeholder"
                    alt="Image alt."
@@ -154,13 +176,15 @@ exports[`<bolt-card-replacement> Component clickable card-replacement 1`] = `
                      srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w, /fixtures/landscape-16x9-mountains.jpg 1151w"
                 >
               </noscript>
-            </replace-with-children>
+            </ssr-keep>
           </bolt-ratio>
         </bolt-image>
-      </replace-with-children>
+      </ssr-keep>
     </bolt-card-replacement-media>
     <bolt-card-replacement-body>
-      <replace-with-children class="c-bolt-card_replacement__body">
+      <ssr-keep for="bolt-card-replacement-body"
+                class="c-bolt-card_replacement__body"
+      >
         <p class="c-bolt-eyebrow c-bolt-eyebrow--regular">
           This is an eyebrow
         </p>
@@ -170,9 +194,9 @@ exports[`<bolt-card-replacement> Component clickable card-replacement 1`] = `
         <p class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--medium">
           This is a paragraph.
         </p>
-      </replace-with-children>
+      </ssr-keep>
     </bolt-card-replacement-body>
-  </replace-with-children>
+  </ssr-keep>
 </bolt-card-replacement>
 `;
 
@@ -181,9 +205,13 @@ exports[`<bolt-card-replacement> Component tag variations: article 1`] = `
                        theme="none"
                        height="full"
 >
-  <replace-with-children class="c-bolt-card-replacement">
+  <ssr-keep for="bolt-card-replacement"
+            class="c-bolt-card-replacement"
+  >
     <bolt-card-replacement-media>
-      <replace-with-children class="c-bolt-card_replacement__media">
+      <ssr-keep for="bolt-card-replacement-media"
+                class="c-bolt-card_replacement__media"
+      >
         <bolt-image src="/fixtures/landscape-16x9-mountains.jpg"
                     srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w, /fixtures/landscape-16x9-mountains.jpg 1151w"
                     alt="Image alt."
@@ -194,8 +222,9 @@ exports[`<bolt-card-replacement> Component tag variations: article 1`] = `
                     style="background-color: hsl(233, 33%, 97%);"
         >
           <bolt-ratio ratio="1151/638">
-            <replace-with-children class="c-bolt-ratio"
-                                   style="padding-bottom: calc((638 / 1151) * 100%); --aspect-ratio: 1.8040752351097;"
+            <ssr-keep for="bolt-ratio"
+                      class="c-bolt-ratio"
+                      style="padding-bottom: calc((638 / 1151) * 100%); --aspect-ratio: 1.8040752351097;"
             >
               <img class="c-bolt-image__image-placeholder"
                    alt="Image alt."
@@ -215,13 +244,15 @@ exports[`<bolt-card-replacement> Component tag variations: article 1`] = `
                      srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w, /fixtures/landscape-16x9-mountains.jpg 1151w"
                 >
               </noscript>
-            </replace-with-children>
+            </ssr-keep>
           </bolt-ratio>
         </bolt-image>
-      </replace-with-children>
+      </ssr-keep>
     </bolt-card-replacement-media>
     <bolt-card-replacement-body>
-      <replace-with-children class="c-bolt-card_replacement__body">
+      <ssr-keep for="bolt-card-replacement-body"
+                class="c-bolt-card_replacement__body"
+      >
         <p class="c-bolt-eyebrow c-bolt-eyebrow--regular">
           This is an eyebrow
         </p>
@@ -231,9 +262,9 @@ exports[`<bolt-card-replacement> Component tag variations: article 1`] = `
         <p class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--medium">
           This is a paragraph.
         </p>
-      </replace-with-children>
+      </ssr-keep>
     </bolt-card-replacement-body>
-  </replace-with-children>
+  </ssr-keep>
 </bolt-card-replacement>
 `;
 
@@ -242,9 +273,13 @@ exports[`<bolt-card-replacement> Component tag variations: div 1`] = `
                        theme="none"
                        height="full"
 >
-  <replace-with-children class="c-bolt-card-replacement">
+  <ssr-keep for="bolt-card-replacement"
+            class="c-bolt-card-replacement"
+  >
     <bolt-card-replacement-media>
-      <replace-with-children class="c-bolt-card_replacement__media">
+      <ssr-keep for="bolt-card-replacement-media"
+                class="c-bolt-card_replacement__media"
+      >
         <bolt-image src="/fixtures/landscape-16x9-mountains.jpg"
                     srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w, /fixtures/landscape-16x9-mountains.jpg 1151w"
                     alt="Image alt."
@@ -255,8 +290,9 @@ exports[`<bolt-card-replacement> Component tag variations: div 1`] = `
                     style="background-color: hsl(233, 33%, 97%);"
         >
           <bolt-ratio ratio="1151/638">
-            <replace-with-children class="c-bolt-ratio"
-                                   style="padding-bottom: calc((638 / 1151) * 100%); --aspect-ratio: 1.8040752351097;"
+            <ssr-keep for="bolt-ratio"
+                      class="c-bolt-ratio"
+                      style="padding-bottom: calc((638 / 1151) * 100%); --aspect-ratio: 1.8040752351097;"
             >
               <img class="c-bolt-image__image-placeholder"
                    alt="Image alt."
@@ -276,13 +312,15 @@ exports[`<bolt-card-replacement> Component tag variations: div 1`] = `
                      srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w, /fixtures/landscape-16x9-mountains.jpg 1151w"
                 >
               </noscript>
-            </replace-with-children>
+            </ssr-keep>
           </bolt-ratio>
         </bolt-image>
-      </replace-with-children>
+      </ssr-keep>
     </bolt-card-replacement-media>
     <bolt-card-replacement-body>
-      <replace-with-children class="c-bolt-card_replacement__body">
+      <ssr-keep for="bolt-card-replacement-body"
+                class="c-bolt-card_replacement__body"
+      >
         <p class="c-bolt-eyebrow c-bolt-eyebrow--regular">
           This is an eyebrow
         </p>
@@ -292,9 +330,9 @@ exports[`<bolt-card-replacement> Component tag variations: div 1`] = `
         <p class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--medium">
           This is a paragraph.
         </p>
-      </replace-with-children>
+      </ssr-keep>
     </bolt-card-replacement-body>
-  </replace-with-children>
+  </ssr-keep>
 </bolt-card-replacement>
 `;
 
@@ -303,9 +341,13 @@ exports[`<bolt-card-replacement> Component tag variations: figure 1`] = `
                        theme="none"
                        height="full"
 >
-  <replace-with-children class="c-bolt-card-replacement">
+  <ssr-keep for="bolt-card-replacement"
+            class="c-bolt-card-replacement"
+  >
     <bolt-card-replacement-media>
-      <replace-with-children class="c-bolt-card_replacement__media">
+      <ssr-keep for="bolt-card-replacement-media"
+                class="c-bolt-card_replacement__media"
+      >
         <bolt-image src="/fixtures/landscape-16x9-mountains.jpg"
                     srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w, /fixtures/landscape-16x9-mountains.jpg 1151w"
                     alt="Image alt."
@@ -316,8 +358,9 @@ exports[`<bolt-card-replacement> Component tag variations: figure 1`] = `
                     style="background-color: hsl(233, 33%, 97%);"
         >
           <bolt-ratio ratio="1151/638">
-            <replace-with-children class="c-bolt-ratio"
-                                   style="padding-bottom: calc((638 / 1151) * 100%); --aspect-ratio: 1.8040752351097;"
+            <ssr-keep for="bolt-ratio"
+                      class="c-bolt-ratio"
+                      style="padding-bottom: calc((638 / 1151) * 100%); --aspect-ratio: 1.8040752351097;"
             >
               <img class="c-bolt-image__image-placeholder"
                    alt="Image alt."
@@ -337,13 +380,15 @@ exports[`<bolt-card-replacement> Component tag variations: figure 1`] = `
                      srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w, /fixtures/landscape-16x9-mountains.jpg 1151w"
                 >
               </noscript>
-            </replace-with-children>
+            </ssr-keep>
           </bolt-ratio>
         </bolt-image>
-      </replace-with-children>
+      </ssr-keep>
     </bolt-card-replacement-media>
     <bolt-card-replacement-body>
-      <replace-with-children class="c-bolt-card_replacement__body">
+      <ssr-keep for="bolt-card-replacement-body"
+                class="c-bolt-card_replacement__body"
+      >
         <p class="c-bolt-eyebrow c-bolt-eyebrow--regular">
           This is an eyebrow
         </p>
@@ -353,9 +398,9 @@ exports[`<bolt-card-replacement> Component tag variations: figure 1`] = `
         <p class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--medium">
           This is a paragraph.
         </p>
-      </replace-with-children>
+      </ssr-keep>
     </bolt-card-replacement-body>
-  </replace-with-children>
+  </ssr-keep>
 </bolt-card-replacement>
 `;
 
@@ -364,9 +409,13 @@ exports[`<bolt-card-replacement> Component theme variations: dark 1`] = `
                        theme="dark"
                        height="full"
 >
-  <replace-with-children class="c-bolt-card-replacement t-bolt-dark">
+  <ssr-keep for="bolt-card-replacement"
+            class="c-bolt-card-replacement t-bolt-dark"
+  >
     <bolt-card-replacement-media>
-      <replace-with-children class="c-bolt-card_replacement__media">
+      <ssr-keep for="bolt-card-replacement-media"
+                class="c-bolt-card_replacement__media"
+      >
         <bolt-image src="/fixtures/landscape-16x9-mountains.jpg"
                     srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w, /fixtures/landscape-16x9-mountains.jpg 1151w"
                     alt="Image alt."
@@ -377,8 +426,9 @@ exports[`<bolt-card-replacement> Component theme variations: dark 1`] = `
                     style="background-color: hsl(233, 33%, 97%);"
         >
           <bolt-ratio ratio="1151/638">
-            <replace-with-children class="c-bolt-ratio"
-                                   style="padding-bottom: calc((638 / 1151) * 100%); --aspect-ratio: 1.8040752351097;"
+            <ssr-keep for="bolt-ratio"
+                      class="c-bolt-ratio"
+                      style="padding-bottom: calc((638 / 1151) * 100%); --aspect-ratio: 1.8040752351097;"
             >
               <img class="c-bolt-image__image-placeholder"
                    alt="Image alt."
@@ -398,13 +448,15 @@ exports[`<bolt-card-replacement> Component theme variations: dark 1`] = `
                      srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w, /fixtures/landscape-16x9-mountains.jpg 1151w"
                 >
               </noscript>
-            </replace-with-children>
+            </ssr-keep>
           </bolt-ratio>
         </bolt-image>
-      </replace-with-children>
+      </ssr-keep>
     </bolt-card-replacement-media>
     <bolt-card-replacement-body>
-      <replace-with-children class="c-bolt-card_replacement__body">
+      <ssr-keep for="bolt-card-replacement-body"
+                class="c-bolt-card_replacement__body"
+      >
         <p class="c-bolt-eyebrow c-bolt-eyebrow--regular">
           This is an eyebrow
         </p>
@@ -414,9 +466,9 @@ exports[`<bolt-card-replacement> Component theme variations: dark 1`] = `
         <p class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--medium">
           This is a paragraph.
         </p>
-      </replace-with-children>
+      </ssr-keep>
     </bolt-card-replacement-body>
-  </replace-with-children>
+  </ssr-keep>
 </bolt-card-replacement>
 `;
 
@@ -425,9 +477,13 @@ exports[`<bolt-card-replacement> Component theme variations: light 1`] = `
                        theme="light"
                        height="full"
 >
-  <replace-with-children class="c-bolt-card-replacement t-bolt-light">
+  <ssr-keep for="bolt-card-replacement"
+            class="c-bolt-card-replacement t-bolt-light"
+  >
     <bolt-card-replacement-media>
-      <replace-with-children class="c-bolt-card_replacement__media">
+      <ssr-keep for="bolt-card-replacement-media"
+                class="c-bolt-card_replacement__media"
+      >
         <bolt-image src="/fixtures/landscape-16x9-mountains.jpg"
                     srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w, /fixtures/landscape-16x9-mountains.jpg 1151w"
                     alt="Image alt."
@@ -438,8 +494,9 @@ exports[`<bolt-card-replacement> Component theme variations: light 1`] = `
                     style="background-color: hsl(233, 33%, 97%);"
         >
           <bolt-ratio ratio="1151/638">
-            <replace-with-children class="c-bolt-ratio"
-                                   style="padding-bottom: calc((638 / 1151) * 100%); --aspect-ratio: 1.8040752351097;"
+            <ssr-keep for="bolt-ratio"
+                      class="c-bolt-ratio"
+                      style="padding-bottom: calc((638 / 1151) * 100%); --aspect-ratio: 1.8040752351097;"
             >
               <img class="c-bolt-image__image-placeholder"
                    alt="Image alt."
@@ -459,13 +516,15 @@ exports[`<bolt-card-replacement> Component theme variations: light 1`] = `
                      srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w, /fixtures/landscape-16x9-mountains.jpg 1151w"
                 >
               </noscript>
-            </replace-with-children>
+            </ssr-keep>
           </bolt-ratio>
         </bolt-image>
-      </replace-with-children>
+      </ssr-keep>
     </bolt-card-replacement-media>
     <bolt-card-replacement-body>
-      <replace-with-children class="c-bolt-card_replacement__body">
+      <ssr-keep for="bolt-card-replacement-body"
+                class="c-bolt-card_replacement__body"
+      >
         <p class="c-bolt-eyebrow c-bolt-eyebrow--regular">
           This is an eyebrow
         </p>
@@ -475,9 +534,9 @@ exports[`<bolt-card-replacement> Component theme variations: light 1`] = `
         <p class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--medium">
           This is a paragraph.
         </p>
-      </replace-with-children>
+      </ssr-keep>
     </bolt-card-replacement-body>
-  </replace-with-children>
+  </ssr-keep>
 </bolt-card-replacement>
 `;
 
@@ -486,9 +545,13 @@ exports[`<bolt-card-replacement> Component theme variations: none 1`] = `
                        theme="none"
                        height="full"
 >
-  <replace-with-children class="c-bolt-card-replacement">
+  <ssr-keep for="bolt-card-replacement"
+            class="c-bolt-card-replacement"
+  >
     <bolt-card-replacement-media>
-      <replace-with-children class="c-bolt-card_replacement__media">
+      <ssr-keep for="bolt-card-replacement-media"
+                class="c-bolt-card_replacement__media"
+      >
         <bolt-image src="/fixtures/landscape-16x9-mountains.jpg"
                     srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w, /fixtures/landscape-16x9-mountains.jpg 1151w"
                     alt="Image alt."
@@ -499,8 +562,9 @@ exports[`<bolt-card-replacement> Component theme variations: none 1`] = `
                     style="background-color: hsl(233, 33%, 97%);"
         >
           <bolt-ratio ratio="1151/638">
-            <replace-with-children class="c-bolt-ratio"
-                                   style="padding-bottom: calc((638 / 1151) * 100%); --aspect-ratio: 1.8040752351097;"
+            <ssr-keep for="bolt-ratio"
+                      class="c-bolt-ratio"
+                      style="padding-bottom: calc((638 / 1151) * 100%); --aspect-ratio: 1.8040752351097;"
             >
               <img class="c-bolt-image__image-placeholder"
                    alt="Image alt."
@@ -520,13 +584,15 @@ exports[`<bolt-card-replacement> Component theme variations: none 1`] = `
                      srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w, /fixtures/landscape-16x9-mountains.jpg 1151w"
                 >
               </noscript>
-            </replace-with-children>
+            </ssr-keep>
           </bolt-ratio>
         </bolt-image>
-      </replace-with-children>
+      </ssr-keep>
     </bolt-card-replacement-media>
     <bolt-card-replacement-body>
-      <replace-with-children class="c-bolt-card_replacement__body">
+      <ssr-keep for="bolt-card-replacement-body"
+                class="c-bolt-card_replacement__body"
+      >
         <p class="c-bolt-eyebrow c-bolt-eyebrow--regular">
           This is an eyebrow
         </p>
@@ -536,9 +602,9 @@ exports[`<bolt-card-replacement> Component theme variations: none 1`] = `
         <p class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--medium">
           This is a paragraph.
         </p>
-      </replace-with-children>
+      </ssr-keep>
     </bolt-card-replacement-body>
-  </replace-with-children>
+  </ssr-keep>
 </bolt-card-replacement>
 `;
 
@@ -547,9 +613,13 @@ exports[`<bolt-card-replacement> Component theme variations: xdark 1`] = `
                        theme="xdark"
                        height="full"
 >
-  <replace-with-children class="c-bolt-card-replacement t-bolt-xdark">
+  <ssr-keep for="bolt-card-replacement"
+            class="c-bolt-card-replacement t-bolt-xdark"
+  >
     <bolt-card-replacement-media>
-      <replace-with-children class="c-bolt-card_replacement__media">
+      <ssr-keep for="bolt-card-replacement-media"
+                class="c-bolt-card_replacement__media"
+      >
         <bolt-image src="/fixtures/landscape-16x9-mountains.jpg"
                     srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w, /fixtures/landscape-16x9-mountains.jpg 1151w"
                     alt="Image alt."
@@ -560,8 +630,9 @@ exports[`<bolt-card-replacement> Component theme variations: xdark 1`] = `
                     style="background-color: hsl(233, 33%, 97%);"
         >
           <bolt-ratio ratio="1151/638">
-            <replace-with-children class="c-bolt-ratio"
-                                   style="padding-bottom: calc((638 / 1151) * 100%); --aspect-ratio: 1.8040752351097;"
+            <ssr-keep for="bolt-ratio"
+                      class="c-bolt-ratio"
+                      style="padding-bottom: calc((638 / 1151) * 100%); --aspect-ratio: 1.8040752351097;"
             >
               <img class="c-bolt-image__image-placeholder"
                    alt="Image alt."
@@ -581,13 +652,15 @@ exports[`<bolt-card-replacement> Component theme variations: xdark 1`] = `
                      srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w, /fixtures/landscape-16x9-mountains.jpg 1151w"
                 >
               </noscript>
-            </replace-with-children>
+            </ssr-keep>
           </bolt-ratio>
         </bolt-image>
-      </replace-with-children>
+      </ssr-keep>
     </bolt-card-replacement-media>
     <bolt-card-replacement-body>
-      <replace-with-children class="c-bolt-card_replacement__body">
+      <ssr-keep for="bolt-card-replacement-body"
+                class="c-bolt-card_replacement__body"
+      >
         <p class="c-bolt-eyebrow c-bolt-eyebrow--regular">
           This is an eyebrow
         </p>
@@ -597,9 +670,9 @@ exports[`<bolt-card-replacement> Component theme variations: xdark 1`] = `
         <p class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--medium">
           This is a paragraph.
         </p>
-      </replace-with-children>
+      </ssr-keep>
     </bolt-card-replacement-body>
-  </replace-with-children>
+  </ssr-keep>
 </bolt-card-replacement>
 `;
 
@@ -608,9 +681,13 @@ exports[`<bolt-card-replacement> Component theme variations: xlight 1`] = `
                        theme="xlight"
                        height="full"
 >
-  <replace-with-children class="c-bolt-card-replacement t-bolt-xlight">
+  <ssr-keep for="bolt-card-replacement"
+            class="c-bolt-card-replacement t-bolt-xlight"
+  >
     <bolt-card-replacement-media>
-      <replace-with-children class="c-bolt-card_replacement__media">
+      <ssr-keep for="bolt-card-replacement-media"
+                class="c-bolt-card_replacement__media"
+      >
         <bolt-image src="/fixtures/landscape-16x9-mountains.jpg"
                     srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w, /fixtures/landscape-16x9-mountains.jpg 1151w"
                     alt="Image alt."
@@ -621,8 +698,9 @@ exports[`<bolt-card-replacement> Component theme variations: xlight 1`] = `
                     style="background-color: hsl(233, 33%, 97%);"
         >
           <bolt-ratio ratio="1151/638">
-            <replace-with-children class="c-bolt-ratio"
-                                   style="padding-bottom: calc((638 / 1151) * 100%); --aspect-ratio: 1.8040752351097;"
+            <ssr-keep for="bolt-ratio"
+                      class="c-bolt-ratio"
+                      style="padding-bottom: calc((638 / 1151) * 100%); --aspect-ratio: 1.8040752351097;"
             >
               <img class="c-bolt-image__image-placeholder"
                    alt="Image alt."
@@ -642,13 +720,15 @@ exports[`<bolt-card-replacement> Component theme variations: xlight 1`] = `
                      srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w, /fixtures/landscape-16x9-mountains.jpg 1151w"
                 >
               </noscript>
-            </replace-with-children>
+            </ssr-keep>
           </bolt-ratio>
         </bolt-image>
-      </replace-with-children>
+      </ssr-keep>
     </bolt-card-replacement-media>
     <bolt-card-replacement-body>
-      <replace-with-children class="c-bolt-card_replacement__body">
+      <ssr-keep for="bolt-card-replacement-body"
+                class="c-bolt-card_replacement__body"
+      >
         <p class="c-bolt-eyebrow c-bolt-eyebrow--regular">
           This is an eyebrow
         </p>
@@ -658,9 +738,9 @@ exports[`<bolt-card-replacement> Component theme variations: xlight 1`] = `
         <p class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--medium">
           This is a paragraph.
         </p>
-      </replace-with-children>
+      </ssr-keep>
     </bolt-card-replacement-body>
-  </replace-with-children>
+  </ssr-keep>
 </bolt-card-replacement>
 `;
 
@@ -669,9 +749,13 @@ exports[`<bolt-card-replacement> Component with two buttons as actions 1`] = `
                        theme="none"
                        height="full"
 >
-  <replace-with-children class="c-bolt-card-replacement">
+  <ssr-keep for="bolt-card-replacement"
+            class="c-bolt-card-replacement"
+  >
     <bolt-card-replacement-media>
-      <replace-with-children class="c-bolt-card_replacement__media">
+      <ssr-keep for="bolt-card-replacement-media"
+                class="c-bolt-card_replacement__media"
+      >
         <bolt-image src="/fixtures/landscape-16x9-mountains.jpg"
                     srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w, /fixtures/landscape-16x9-mountains.jpg 1151w"
                     alt="Image alt."
@@ -682,8 +766,9 @@ exports[`<bolt-card-replacement> Component with two buttons as actions 1`] = `
                     style="background-color: hsl(233, 33%, 97%);"
         >
           <bolt-ratio ratio="1151/638">
-            <replace-with-children class="c-bolt-ratio"
-                                   style="padding-bottom: calc((638 / 1151) * 100%); --aspect-ratio: 1.8040752351097;"
+            <ssr-keep for="bolt-ratio"
+                      class="c-bolt-ratio"
+                      style="padding-bottom: calc((638 / 1151) * 100%); --aspect-ratio: 1.8040752351097;"
             >
               <img class="c-bolt-image__image-placeholder"
                    alt="Image alt."
@@ -703,13 +788,15 @@ exports[`<bolt-card-replacement> Component with two buttons as actions 1`] = `
                      srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w, /fixtures/landscape-16x9-mountains.jpg 1151w"
                 >
               </noscript>
-            </replace-with-children>
+            </ssr-keep>
           </bolt-ratio>
         </bolt-image>
-      </replace-with-children>
+      </ssr-keep>
     </bolt-card-replacement-media>
     <bolt-card-replacement-body>
-      <replace-with-children class="c-bolt-card_replacement__body">
+      <ssr-keep for="bolt-card-replacement-body"
+                class="c-bolt-card_replacement__body"
+      >
         <p class="c-bolt-eyebrow c-bolt-eyebrow--regular">
           This is an eyebrow
         </p>
@@ -719,12 +806,16 @@ exports[`<bolt-card-replacement> Component with two buttons as actions 1`] = `
         <p class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--medium">
           This is a paragraph.
         </p>
-      </replace-with-children>
+      </ssr-keep>
     </bolt-card-replacement-body>
     <bolt-card-replacement-actions>
-      <replace-with-children class="c-bolt-card_replacement__actions">
+      <ssr-keep for="bolt-card-replacement-actions"
+                class="c-bolt-card_replacement__actions"
+      >
         <bolt-card-replacement-action url="https://pega.com">
-          <replace-with-children class="c-bolt-card_replacement__action">
+          <ssr-keep for="bolt-card-replacement-action"
+                    class="c-bolt-card_replacement__action"
+          >
             <bolt-button size="medium"
                          color="text"
                          width="full"
@@ -738,10 +829,14 @@ exports[`<bolt-card-replacement> Component with two buttons as actions 1`] = `
                  class="c-bolt-button c-bolt-button--medium c-bolt-button--text c-bolt-button--full c-bolt-button--border-radius-regular c-bolt-button--start"
                  is="shadow-root"
               >
-                <replace-with-children class="c-bolt-button__item">
+                <ssr-keep for="bolt-button"
+                          class="c-bolt-button__item"
+                >
                   This is the 1st button
-                </replace-with-children>
-                <replace-with-children class="c-bolt-button__icon c-bolt-button__icon-sizer">
+                </ssr-keep>
+                <ssr-keep for="bolt-button"
+                          class="c-bolt-button__icon c-bolt-button__icon-sizer"
+                >
                   <bolt-icon slot="after"
                              name="chevron-right"
                   >
@@ -758,13 +853,15 @@ exports[`<bolt-card-replacement> Component with two buttons as actions 1`] = `
                       </svg>
                     </span>
                   </bolt-icon>
-                </replace-with-children>
+                </ssr-keep>
               </a>
             </bolt-button>
-          </replace-with-children>
+          </ssr-keep>
         </bolt-card-replacement-action>
         <bolt-card-replacement-action url="https://google.com">
-          <replace-with-children class="c-bolt-card_replacement__action">
+          <ssr-keep for="bolt-card-replacement-action"
+                    class="c-bolt-card_replacement__action"
+          >
             <bolt-button size="medium"
                          color="text"
                          width="full"
@@ -778,10 +875,14 @@ exports[`<bolt-card-replacement> Component with two buttons as actions 1`] = `
                  class="c-bolt-button c-bolt-button--medium c-bolt-button--text c-bolt-button--full c-bolt-button--border-radius-regular c-bolt-button--start"
                  is="shadow-root"
               >
-                <replace-with-children class="c-bolt-button__item">
+                <ssr-keep for="bolt-button"
+                          class="c-bolt-button__item"
+                >
                   This is the 2nd button
-                </replace-with-children>
-                <replace-with-children class="c-bolt-button__icon c-bolt-button__icon-sizer">
+                </ssr-keep>
+                <ssr-keep for="bolt-button"
+                          class="c-bolt-button__icon c-bolt-button__icon-sizer"
+                >
                   <bolt-icon slot="after"
                              name="chevron-right"
                   >
@@ -798,14 +899,14 @@ exports[`<bolt-card-replacement> Component with two buttons as actions 1`] = `
                       </svg>
                     </span>
                   </bolt-icon>
-                </replace-with-children>
+                </ssr-keep>
               </a>
             </bolt-button>
-          </replace-with-children>
+          </ssr-keep>
         </bolt-card-replacement-action>
-      </replace-with-children>
+      </ssr-keep>
     </bolt-card-replacement-actions>
-  </replace-with-children>
+  </ssr-keep>
 </bolt-card-replacement>
 `;
 
@@ -814,12 +915,17 @@ exports[`<bolt-card-replacement> Component with video as media 1`] = `
                        theme="none"
                        height="full"
 >
-  <replace-with-children class="c-bolt-card-replacement">
+  <ssr-keep for="bolt-card-replacement"
+            class="c-bolt-card-replacement"
+  >
     <bolt-card-replacement-media>
-      <replace-with-children class="c-bolt-card_replacement__media c-bolt-card_replacement__media--video">
+      <ssr-keep for="bolt-card-replacement-media"
+                class="c-bolt-card_replacement__media c-bolt-card_replacement__media--video"
+      >
         <bolt-ratio ratio="16/9">
-          <replace-with-children class="c-bolt-ratio"
-                                 style="padding-bottom: calc((9 / 16) * 100%); --aspect-ratio: 1.7777777777778;"
+          <ssr-keep for="bolt-ratio"
+                    class="c-bolt-ratio"
+                    style="padding-bottom: calc((9 / 16) * 100%); --aspect-ratio: 1.7777777777778;"
           >
             <bolt-video class="js-bolt-video-uuid"
                         video-id="5609376179001"
@@ -830,24 +936,30 @@ exports[`<bolt-card-replacement> Component with video as media 1`] = `
                         share-description="Share This Video"
             >
             </bolt-video>
-          </replace-with-children>
+          </ssr-keep>
         </bolt-ratio>
-      </replace-with-children>
+      </ssr-keep>
     </bolt-card-replacement-media>
     <bolt-card-replacement-body>
-      <replace-with-children class="c-bolt-card_replacement__body">
+      <ssr-keep for="bolt-card-replacement-body"
+                class="c-bolt-card_replacement__body"
+      >
         <h2 class="c-bolt-headline c-bolt-headline--bold c-bolt-headline--large">
           With link and video
         </h2>
         <p class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--medium">
           This card-replacement has a link, which makes the whole card-replacement clickable, and you can make it play/pause the video. Action button is optional in this case.
         </p>
-      </replace-with-children>
+      </ssr-keep>
     </bolt-card-replacement-body>
     <bolt-card-replacement-actions>
-      <replace-with-children class="c-bolt-card_replacement__actions">
+      <ssr-keep for="bolt-card-replacement-actions"
+                class="c-bolt-card_replacement__actions"
+      >
         <bolt-card-replacement-action>
-          <replace-with-children class="c-bolt-card_replacement__action">
+          <ssr-keep for="bolt-card-replacement-action"
+                    class="c-bolt-card_replacement__action"
+          >
             <bolt-button size="medium"
                          color="text"
                          width="full"
@@ -861,10 +973,14 @@ exports[`<bolt-card-replacement> Component with video as media 1`] = `
               <button class="c-bolt-button c-bolt-button--medium c-bolt-button--text c-bolt-button--full c-bolt-button--border-radius-regular c-bolt-button--start"
                       is="shadow-root"
               >
-                <replace-with-children class="c-bolt-button__item">
+                <ssr-keep for="bolt-button"
+                          class="c-bolt-button__item"
+                >
                   This button is video control
-                </replace-with-children>
-                <replace-with-children class="c-bolt-button__icon c-bolt-button__icon-sizer">
+                </ssr-keep>
+                <ssr-keep for="bolt-button"
+                          class="c-bolt-button__icon c-bolt-button__icon-sizer"
+                >
                   <bolt-icon slot="after"
                              name="chevron-right"
                   >
@@ -881,14 +997,14 @@ exports[`<bolt-card-replacement> Component with video as media 1`] = `
                       </svg>
                     </span>
                   </bolt-icon>
-                </replace-with-children>
+                </ssr-keep>
               </button>
             </bolt-button>
-          </replace-with-children>
+          </ssr-keep>
         </bolt-card-replacement-action>
-      </replace-with-children>
+      </ssr-keep>
     </bolt-card-replacement-actions>
-  </replace-with-children>
+  </ssr-keep>
 </bolt-card-replacement>
 `;
 
@@ -897,9 +1013,13 @@ exports[`<bolt-card-replacement> Component without actions 1`] = `
                        theme="none"
                        height="full"
 >
-  <replace-with-children class="c-bolt-card-replacement">
+  <ssr-keep for="bolt-card-replacement"
+            class="c-bolt-card-replacement"
+  >
     <bolt-card-replacement-media>
-      <replace-with-children class="c-bolt-card_replacement__media">
+      <ssr-keep for="bolt-card-replacement-media"
+                class="c-bolt-card_replacement__media"
+      >
         <bolt-image src="/fixtures/landscape-16x9-mountains.jpg"
                     srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w, /fixtures/landscape-16x9-mountains.jpg 1151w"
                     alt="Image alt."
@@ -910,8 +1030,9 @@ exports[`<bolt-card-replacement> Component without actions 1`] = `
                     style="background-color: hsl(233, 33%, 97%);"
         >
           <bolt-ratio ratio="1151/638">
-            <replace-with-children class="c-bolt-ratio"
-                                   style="padding-bottom: calc((638 / 1151) * 100%); --aspect-ratio: 1.8040752351097;"
+            <ssr-keep for="bolt-ratio"
+                      class="c-bolt-ratio"
+                      style="padding-bottom: calc((638 / 1151) * 100%); --aspect-ratio: 1.8040752351097;"
             >
               <img class="c-bolt-image__image-placeholder"
                    alt="Image alt."
@@ -931,13 +1052,15 @@ exports[`<bolt-card-replacement> Component without actions 1`] = `
                      srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w, /fixtures/landscape-16x9-mountains.jpg 1151w"
                 >
               </noscript>
-            </replace-with-children>
+            </ssr-keep>
           </bolt-ratio>
         </bolt-image>
-      </replace-with-children>
+      </ssr-keep>
     </bolt-card-replacement-media>
     <bolt-card-replacement-body>
-      <replace-with-children class="c-bolt-card_replacement__body">
+      <ssr-keep for="bolt-card-replacement-body"
+                class="c-bolt-card_replacement__body"
+      >
         <p class="c-bolt-eyebrow c-bolt-eyebrow--regular">
           This is an eyebrow
         </p>
@@ -947,9 +1070,9 @@ exports[`<bolt-card-replacement> Component without actions 1`] = `
         <p class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--medium">
           This is a paragraph.
         </p>
-      </replace-with-children>
+      </ssr-keep>
     </bolt-card-replacement-body>
-  </replace-with-children>
+  </ssr-keep>
 </bolt-card-replacement>
 `;
 
@@ -958,9 +1081,13 @@ exports[`<bolt-card-replacement> Component without media and actions 1`] = `
                        theme="none"
                        height="full"
 >
-  <replace-with-children class="c-bolt-card-replacement">
+  <ssr-keep for="bolt-card-replacement"
+            class="c-bolt-card-replacement"
+  >
     <bolt-card-replacement-body>
-      <replace-with-children class="c-bolt-card_replacement__body">
+      <ssr-keep for="bolt-card-replacement-body"
+                class="c-bolt-card_replacement__body"
+      >
         <p class="c-bolt-eyebrow c-bolt-eyebrow--regular">
           This is an eyebrow
         </p>
@@ -970,8 +1097,8 @@ exports[`<bolt-card-replacement> Component without media and actions 1`] = `
         <p class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--medium">
           This is a paragraph.
         </p>
-      </replace-with-children>
+      </ssr-keep>
     </bolt-card-replacement-body>
-  </replace-with-children>
+  </ssr-keep>
 </bolt-card-replacement>
 `;

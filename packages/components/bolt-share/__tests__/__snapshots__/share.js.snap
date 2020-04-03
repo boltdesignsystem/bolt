@@ -13,20 +13,22 @@ exports[`<bolt-share> Component basic usage 1`] = `
                align="start"
                valign="center"
     >
-      <replace-with-grandchildren>
-        <ul class="c-bolt-list c-bolt-list--display-inline c-bolt-list--spacing-small c-bolt-list--align-start c-bolt-list--valign-center">
+      <ul class="c-bolt-list c-bolt-list--display-inline c-bolt-list--spacing-small c-bolt-list--align-start c-bolt-list--valign-center">
+        <ssr-keep for="bolt-list"
+                  style="display: contents;"
+        >
           <bolt-list-item>
-            <replace-with-grandchildren>
-              <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-small c-bolt-list-item--align-start">
+            <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-small c-bolt-list-item--align-start">
+              <ssr-keep for="bolt-list-item">
                 <span class="c-bolt-share__label c-bolt-share__label--medium">
                   Share this page
                 </span>
-              </li>
-            </replace-with-grandchildren>
+              </ssr-keep>
+            </li>
           </bolt-list-item>
           <bolt-list-item>
-            <replace-with-grandchildren>
-              <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-small c-bolt-list-item--align-start">
+            <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-small c-bolt-list-item--align-start">
+              <ssr-keep for="bolt-list-item">
                 <a class="c-bolt-share__link js-bolt-share__link--facebook"
                    href="https://www.facebook.com/sharer/sharer.php?u=https://boltdesignsystem.com&amp;src=sdkpreparse"
                    target="_blank"
@@ -51,12 +53,12 @@ exports[`<bolt-share> Component basic usage 1`] = `
                     Facebook
                   </span>
                 </a>
-              </li>
-            </replace-with-grandchildren>
+              </ssr-keep>
+            </li>
           </bolt-list-item>
           <bolt-list-item>
-            <replace-with-grandchildren>
-              <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-small c-bolt-list-item--align-start">
+            <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-small c-bolt-list-item--align-start">
+              <ssr-keep for="bolt-list-item">
                 <a class="c-bolt-share__link js-bolt-share__link--twitter"
                    href="https://twitter.com/intent/tweet?url=https://boltdesignsystem.com&text=Sample%20Share%20Text&via=pega&hashtags=boltDesignSystemRocks!"
                    target="_blank"
@@ -81,12 +83,12 @@ exports[`<bolt-share> Component basic usage 1`] = `
                     Twitter
                   </span>
                 </a>
-              </li>
-            </replace-with-grandchildren>
+              </ssr-keep>
+            </li>
           </bolt-list-item>
           <bolt-list-item>
-            <replace-with-grandchildren>
-              <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-small c-bolt-list-item--align-start">
+            <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-small c-bolt-list-item--align-start">
+              <ssr-keep for="bolt-list-item">
                 <a class="c-bolt-share__link js-bolt-share__link--linkedin"
                    href="https://www.linkedin.com/shareArticle?url=https://boltdesignsystem.com"
                    target="_blank"
@@ -111,12 +113,12 @@ exports[`<bolt-share> Component basic usage 1`] = `
                     LinkedIn
                   </span>
                 </a>
-              </li>
-            </replace-with-grandchildren>
+              </ssr-keep>
+            </li>
           </bolt-list-item>
           <bolt-list-item>
-            <replace-with-grandchildren>
-              <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-small c-bolt-list-item--align-start">
+            <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-small c-bolt-list-item--align-start">
+              <ssr-keep for="bolt-list-item">
                 <a class="c-bolt-share__link js-bolt-share__link--email"
                    href="mailto:?&body=Sample%20Text%20--%20https%3A//boltdesignsystem.com"
                    target="_blank"
@@ -146,12 +148,12 @@ exports[`<bolt-share> Component basic usage 1`] = `
                     Email
                   </span>
                 </a>
-              </li>
-            </replace-with-grandchildren>
+              </ssr-keep>
+            </li>
           </bolt-list-item>
           <bolt-list-item last>
-            <replace-with-grandchildren>
-              <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-small c-bolt-list-item--align-start c-bolt-list-item--last-item">
+            <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-small c-bolt-list-item--align-start c-bolt-list-item--last-item">
+              <ssr-keep for="bolt-list-item">
                 <bolt-copy-to-clipboard>
                   <span class="c-bolt-copy-to-clipboard js-bolt-copy-to-clipboard">
                     <button class="c-bolt-copy-to-clipboard__trigger"
@@ -241,11 +243,11 @@ exports[`<bolt-share> Component basic usage 1`] = `
                     </span>
                   </span>
                 </bolt-copy-to-clipboard>
-              </li>
-            </replace-with-grandchildren>
+              </ssr-keep>
+            </li>
           </bolt-list-item>
-        </ul>
-      </replace-with-grandchildren>
+        </ssr-keep>
+      </ul>
     </bolt-list>
   </div>
 </bolt-share>
@@ -264,20 +266,22 @@ exports[`<bolt-share> Component share align: center 1`] = `
                align="center"
                valign="center"
     >
-      <replace-with-grandchildren>
-        <ul class="c-bolt-list c-bolt-list--display-inline c-bolt-list--spacing-small c-bolt-list--align-center c-bolt-list--valign-center">
+      <ul class="c-bolt-list c-bolt-list--display-inline c-bolt-list--spacing-small c-bolt-list--align-center c-bolt-list--valign-center">
+        <ssr-keep for="bolt-list"
+                  style="display: contents;"
+        >
           <bolt-list-item>
-            <replace-with-grandchildren>
-              <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-small c-bolt-list-item--align-center">
+            <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-small c-bolt-list-item--align-center">
+              <ssr-keep for="bolt-list-item">
                 <span class="c-bolt-share__label c-bolt-share__label--medium">
                   Share this page
                 </span>
-              </li>
-            </replace-with-grandchildren>
+              </ssr-keep>
+            </li>
           </bolt-list-item>
           <bolt-list-item>
-            <replace-with-grandchildren>
-              <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-small c-bolt-list-item--align-center">
+            <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-small c-bolt-list-item--align-center">
+              <ssr-keep for="bolt-list-item">
                 <a class="c-bolt-share__link js-bolt-share__link--facebook"
                    href="https://www.facebook.com/sharer/sharer.php?u=https://boltdesignsystem.com&amp;src=sdkpreparse"
                    target="_blank"
@@ -302,12 +306,12 @@ exports[`<bolt-share> Component share align: center 1`] = `
                     Facebook
                   </span>
                 </a>
-              </li>
-            </replace-with-grandchildren>
+              </ssr-keep>
+            </li>
           </bolt-list-item>
           <bolt-list-item>
-            <replace-with-grandchildren>
-              <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-small c-bolt-list-item--align-center">
+            <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-small c-bolt-list-item--align-center">
+              <ssr-keep for="bolt-list-item">
                 <a class="c-bolt-share__link js-bolt-share__link--twitter"
                    href="https://twitter.com/intent/tweet?url=https://boltdesignsystem.com&text=Sample%20Share%20Text&via=pega&hashtags=boltDesignSystemRocks!"
                    target="_blank"
@@ -332,12 +336,12 @@ exports[`<bolt-share> Component share align: center 1`] = `
                     Twitter
                   </span>
                 </a>
-              </li>
-            </replace-with-grandchildren>
+              </ssr-keep>
+            </li>
           </bolt-list-item>
           <bolt-list-item>
-            <replace-with-grandchildren>
-              <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-small c-bolt-list-item--align-center">
+            <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-small c-bolt-list-item--align-center">
+              <ssr-keep for="bolt-list-item">
                 <a class="c-bolt-share__link js-bolt-share__link--linkedin"
                    href="https://www.linkedin.com/shareArticle?url=https://boltdesignsystem.com"
                    target="_blank"
@@ -362,12 +366,12 @@ exports[`<bolt-share> Component share align: center 1`] = `
                     LinkedIn
                   </span>
                 </a>
-              </li>
-            </replace-with-grandchildren>
+              </ssr-keep>
+            </li>
           </bolt-list-item>
           <bolt-list-item last>
-            <replace-with-grandchildren>
-              <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-small c-bolt-list-item--align-center c-bolt-list-item--last-item">
+            <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-small c-bolt-list-item--align-center c-bolt-list-item--last-item">
+              <ssr-keep for="bolt-list-item">
                 <a class="c-bolt-share__link js-bolt-share__link--email"
                    href="mailto:?&body=Sample%20Text%20--%20https%3A//boltdesignsystem.com"
                    target="_blank"
@@ -397,11 +401,11 @@ exports[`<bolt-share> Component share align: center 1`] = `
                     Email
                   </span>
                 </a>
-              </li>
-            </replace-with-grandchildren>
+              </ssr-keep>
+            </li>
           </bolt-list-item>
-        </ul>
-      </replace-with-grandchildren>
+        </ssr-keep>
+      </ul>
     </bolt-list>
   </div>
 </bolt-share>
@@ -420,20 +424,22 @@ exports[`<bolt-share> Component share align: end 1`] = `
                align="end"
                valign="center"
     >
-      <replace-with-grandchildren>
-        <ul class="c-bolt-list c-bolt-list--display-inline c-bolt-list--spacing-small c-bolt-list--align-end c-bolt-list--valign-center">
+      <ul class="c-bolt-list c-bolt-list--display-inline c-bolt-list--spacing-small c-bolt-list--align-end c-bolt-list--valign-center">
+        <ssr-keep for="bolt-list"
+                  style="display: contents;"
+        >
           <bolt-list-item>
-            <replace-with-grandchildren>
-              <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-small c-bolt-list-item--align-end">
+            <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-small c-bolt-list-item--align-end">
+              <ssr-keep for="bolt-list-item">
                 <span class="c-bolt-share__label c-bolt-share__label--medium">
                   Share this page
                 </span>
-              </li>
-            </replace-with-grandchildren>
+              </ssr-keep>
+            </li>
           </bolt-list-item>
           <bolt-list-item>
-            <replace-with-grandchildren>
-              <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-small c-bolt-list-item--align-end">
+            <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-small c-bolt-list-item--align-end">
+              <ssr-keep for="bolt-list-item">
                 <a class="c-bolt-share__link js-bolt-share__link--facebook"
                    href="https://www.facebook.com/sharer/sharer.php?u=https://boltdesignsystem.com&amp;src=sdkpreparse"
                    target="_blank"
@@ -458,12 +464,12 @@ exports[`<bolt-share> Component share align: end 1`] = `
                     Facebook
                   </span>
                 </a>
-              </li>
-            </replace-with-grandchildren>
+              </ssr-keep>
+            </li>
           </bolt-list-item>
           <bolt-list-item>
-            <replace-with-grandchildren>
-              <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-small c-bolt-list-item--align-end">
+            <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-small c-bolt-list-item--align-end">
+              <ssr-keep for="bolt-list-item">
                 <a class="c-bolt-share__link js-bolt-share__link--twitter"
                    href="https://twitter.com/intent/tweet?url=https://boltdesignsystem.com&text=Sample%20Share%20Text&via=pega&hashtags=boltDesignSystemRocks!"
                    target="_blank"
@@ -488,12 +494,12 @@ exports[`<bolt-share> Component share align: end 1`] = `
                     Twitter
                   </span>
                 </a>
-              </li>
-            </replace-with-grandchildren>
+              </ssr-keep>
+            </li>
           </bolt-list-item>
           <bolt-list-item>
-            <replace-with-grandchildren>
-              <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-small c-bolt-list-item--align-end">
+            <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-small c-bolt-list-item--align-end">
+              <ssr-keep for="bolt-list-item">
                 <a class="c-bolt-share__link js-bolt-share__link--linkedin"
                    href="https://www.linkedin.com/shareArticle?url=https://boltdesignsystem.com"
                    target="_blank"
@@ -518,12 +524,12 @@ exports[`<bolt-share> Component share align: end 1`] = `
                     LinkedIn
                   </span>
                 </a>
-              </li>
-            </replace-with-grandchildren>
+              </ssr-keep>
+            </li>
           </bolt-list-item>
           <bolt-list-item last>
-            <replace-with-grandchildren>
-              <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-small c-bolt-list-item--align-end c-bolt-list-item--last-item">
+            <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-small c-bolt-list-item--align-end c-bolt-list-item--last-item">
+              <ssr-keep for="bolt-list-item">
                 <a class="c-bolt-share__link js-bolt-share__link--email"
                    href="mailto:?&body=Sample%20Text%20--%20https%3A//boltdesignsystem.com"
                    target="_blank"
@@ -553,11 +559,11 @@ exports[`<bolt-share> Component share align: end 1`] = `
                     Email
                   </span>
                 </a>
-              </li>
-            </replace-with-grandchildren>
+              </ssr-keep>
+            </li>
           </bolt-list-item>
-        </ul>
-      </replace-with-grandchildren>
+        </ssr-keep>
+      </ul>
     </bolt-list>
   </div>
 </bolt-share>
@@ -576,20 +582,22 @@ exports[`<bolt-share> Component share align: start 1`] = `
                align="start"
                valign="center"
     >
-      <replace-with-grandchildren>
-        <ul class="c-bolt-list c-bolt-list--display-inline c-bolt-list--spacing-small c-bolt-list--align-start c-bolt-list--valign-center">
+      <ul class="c-bolt-list c-bolt-list--display-inline c-bolt-list--spacing-small c-bolt-list--align-start c-bolt-list--valign-center">
+        <ssr-keep for="bolt-list"
+                  style="display: contents;"
+        >
           <bolt-list-item>
-            <replace-with-grandchildren>
-              <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-small c-bolt-list-item--align-start">
+            <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-small c-bolt-list-item--align-start">
+              <ssr-keep for="bolt-list-item">
                 <span class="c-bolt-share__label c-bolt-share__label--medium">
                   Share this page
                 </span>
-              </li>
-            </replace-with-grandchildren>
+              </ssr-keep>
+            </li>
           </bolt-list-item>
           <bolt-list-item>
-            <replace-with-grandchildren>
-              <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-small c-bolt-list-item--align-start">
+            <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-small c-bolt-list-item--align-start">
+              <ssr-keep for="bolt-list-item">
                 <a class="c-bolt-share__link js-bolt-share__link--facebook"
                    href="https://www.facebook.com/sharer/sharer.php?u=https://boltdesignsystem.com&amp;src=sdkpreparse"
                    target="_blank"
@@ -614,12 +622,12 @@ exports[`<bolt-share> Component share align: start 1`] = `
                     Facebook
                   </span>
                 </a>
-              </li>
-            </replace-with-grandchildren>
+              </ssr-keep>
+            </li>
           </bolt-list-item>
           <bolt-list-item>
-            <replace-with-grandchildren>
-              <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-small c-bolt-list-item--align-start">
+            <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-small c-bolt-list-item--align-start">
+              <ssr-keep for="bolt-list-item">
                 <a class="c-bolt-share__link js-bolt-share__link--twitter"
                    href="https://twitter.com/intent/tweet?url=https://boltdesignsystem.com&text=Sample%20Share%20Text&via=pega&hashtags=boltDesignSystemRocks!"
                    target="_blank"
@@ -644,12 +652,12 @@ exports[`<bolt-share> Component share align: start 1`] = `
                     Twitter
                   </span>
                 </a>
-              </li>
-            </replace-with-grandchildren>
+              </ssr-keep>
+            </li>
           </bolt-list-item>
           <bolt-list-item>
-            <replace-with-grandchildren>
-              <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-small c-bolt-list-item--align-start">
+            <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-small c-bolt-list-item--align-start">
+              <ssr-keep for="bolt-list-item">
                 <a class="c-bolt-share__link js-bolt-share__link--linkedin"
                    href="https://www.linkedin.com/shareArticle?url=https://boltdesignsystem.com"
                    target="_blank"
@@ -674,12 +682,12 @@ exports[`<bolt-share> Component share align: start 1`] = `
                     LinkedIn
                   </span>
                 </a>
-              </li>
-            </replace-with-grandchildren>
+              </ssr-keep>
+            </li>
           </bolt-list-item>
           <bolt-list-item last>
-            <replace-with-grandchildren>
-              <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-small c-bolt-list-item--align-start c-bolt-list-item--last-item">
+            <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-small c-bolt-list-item--align-start c-bolt-list-item--last-item">
+              <ssr-keep for="bolt-list-item">
                 <a class="c-bolt-share__link js-bolt-share__link--email"
                    href="mailto:?&body=Sample%20Text%20--%20https%3A//boltdesignsystem.com"
                    target="_blank"
@@ -709,11 +717,11 @@ exports[`<bolt-share> Component share align: start 1`] = `
                     Email
                   </span>
                 </a>
-              </li>
-            </replace-with-grandchildren>
+              </ssr-keep>
+            </li>
           </bolt-list-item>
-        </ul>
-      </replace-with-grandchildren>
+        </ssr-keep>
+      </ul>
     </bolt-list>
   </div>
 </bolt-share>
@@ -732,20 +740,22 @@ exports[`<bolt-share> Component share opacity: 20 1`] = `
                align="start"
                valign="center"
     >
-      <replace-with-grandchildren>
-        <ul class="c-bolt-list c-bolt-list--display-inline c-bolt-list--spacing-small c-bolt-list--align-start c-bolt-list--valign-center">
+      <ul class="c-bolt-list c-bolt-list--display-inline c-bolt-list--spacing-small c-bolt-list--align-start c-bolt-list--valign-center">
+        <ssr-keep for="bolt-list"
+                  style="display: contents;"
+        >
           <bolt-list-item>
-            <replace-with-grandchildren>
-              <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-small c-bolt-list-item--align-start">
+            <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-small c-bolt-list-item--align-start">
+              <ssr-keep for="bolt-list-item">
                 <span class="c-bolt-share__label c-bolt-share__label--medium">
                   Share this page
                 </span>
-              </li>
-            </replace-with-grandchildren>
+              </ssr-keep>
+            </li>
           </bolt-list-item>
           <bolt-list-item>
-            <replace-with-grandchildren>
-              <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-small c-bolt-list-item--align-start">
+            <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-small c-bolt-list-item--align-start">
+              <ssr-keep for="bolt-list-item">
                 <a class="c-bolt-share__link js-bolt-share__link--facebook"
                    href="https://www.facebook.com/sharer/sharer.php?u=https://boltdesignsystem.com&amp;src=sdkpreparse"
                    target="_blank"
@@ -770,12 +780,12 @@ exports[`<bolt-share> Component share opacity: 20 1`] = `
                     Facebook
                   </span>
                 </a>
-              </li>
-            </replace-with-grandchildren>
+              </ssr-keep>
+            </li>
           </bolt-list-item>
           <bolt-list-item>
-            <replace-with-grandchildren>
-              <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-small c-bolt-list-item--align-start">
+            <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-small c-bolt-list-item--align-start">
+              <ssr-keep for="bolt-list-item">
                 <a class="c-bolt-share__link js-bolt-share__link--twitter"
                    href="https://twitter.com/intent/tweet?url=https://boltdesignsystem.com&text=Sample%20Share%20Text&via=pega&hashtags=boltDesignSystemRocks!"
                    target="_blank"
@@ -800,12 +810,12 @@ exports[`<bolt-share> Component share opacity: 20 1`] = `
                     Twitter
                   </span>
                 </a>
-              </li>
-            </replace-with-grandchildren>
+              </ssr-keep>
+            </li>
           </bolt-list-item>
           <bolt-list-item>
-            <replace-with-grandchildren>
-              <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-small c-bolt-list-item--align-start">
+            <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-small c-bolt-list-item--align-start">
+              <ssr-keep for="bolt-list-item">
                 <a class="c-bolt-share__link js-bolt-share__link--linkedin"
                    href="https://www.linkedin.com/shareArticle?url=https://boltdesignsystem.com"
                    target="_blank"
@@ -830,12 +840,12 @@ exports[`<bolt-share> Component share opacity: 20 1`] = `
                     LinkedIn
                   </span>
                 </a>
-              </li>
-            </replace-with-grandchildren>
+              </ssr-keep>
+            </li>
           </bolt-list-item>
           <bolt-list-item last>
-            <replace-with-grandchildren>
-              <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-small c-bolt-list-item--align-start c-bolt-list-item--last-item">
+            <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-small c-bolt-list-item--align-start c-bolt-list-item--last-item">
+              <ssr-keep for="bolt-list-item">
                 <a class="c-bolt-share__link js-bolt-share__link--email"
                    href="mailto:?&body=Sample%20Text%20--%20https%3A//boltdesignsystem.com"
                    target="_blank"
@@ -865,11 +875,11 @@ exports[`<bolt-share> Component share opacity: 20 1`] = `
                     Email
                   </span>
                 </a>
-              </li>
-            </replace-with-grandchildren>
+              </ssr-keep>
+            </li>
           </bolt-list-item>
-        </ul>
-      </replace-with-grandchildren>
+        </ssr-keep>
+      </ul>
     </bolt-list>
   </div>
 </bolt-share>
@@ -888,20 +898,22 @@ exports[`<bolt-share> Component share opacity: 40 1`] = `
                align="start"
                valign="center"
     >
-      <replace-with-grandchildren>
-        <ul class="c-bolt-list c-bolt-list--display-inline c-bolt-list--spacing-small c-bolt-list--align-start c-bolt-list--valign-center">
+      <ul class="c-bolt-list c-bolt-list--display-inline c-bolt-list--spacing-small c-bolt-list--align-start c-bolt-list--valign-center">
+        <ssr-keep for="bolt-list"
+                  style="display: contents;"
+        >
           <bolt-list-item>
-            <replace-with-grandchildren>
-              <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-small c-bolt-list-item--align-start">
+            <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-small c-bolt-list-item--align-start">
+              <ssr-keep for="bolt-list-item">
                 <span class="c-bolt-share__label c-bolt-share__label--medium">
                   Share this page
                 </span>
-              </li>
-            </replace-with-grandchildren>
+              </ssr-keep>
+            </li>
           </bolt-list-item>
           <bolt-list-item>
-            <replace-with-grandchildren>
-              <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-small c-bolt-list-item--align-start">
+            <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-small c-bolt-list-item--align-start">
+              <ssr-keep for="bolt-list-item">
                 <a class="c-bolt-share__link js-bolt-share__link--facebook"
                    href="https://www.facebook.com/sharer/sharer.php?u=https://boltdesignsystem.com&amp;src=sdkpreparse"
                    target="_blank"
@@ -926,12 +938,12 @@ exports[`<bolt-share> Component share opacity: 40 1`] = `
                     Facebook
                   </span>
                 </a>
-              </li>
-            </replace-with-grandchildren>
+              </ssr-keep>
+            </li>
           </bolt-list-item>
           <bolt-list-item>
-            <replace-with-grandchildren>
-              <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-small c-bolt-list-item--align-start">
+            <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-small c-bolt-list-item--align-start">
+              <ssr-keep for="bolt-list-item">
                 <a class="c-bolt-share__link js-bolt-share__link--twitter"
                    href="https://twitter.com/intent/tweet?url=https://boltdesignsystem.com&text=Sample%20Share%20Text&via=pega&hashtags=boltDesignSystemRocks!"
                    target="_blank"
@@ -956,12 +968,12 @@ exports[`<bolt-share> Component share opacity: 40 1`] = `
                     Twitter
                   </span>
                 </a>
-              </li>
-            </replace-with-grandchildren>
+              </ssr-keep>
+            </li>
           </bolt-list-item>
           <bolt-list-item>
-            <replace-with-grandchildren>
-              <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-small c-bolt-list-item--align-start">
+            <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-small c-bolt-list-item--align-start">
+              <ssr-keep for="bolt-list-item">
                 <a class="c-bolt-share__link js-bolt-share__link--linkedin"
                    href="https://www.linkedin.com/shareArticle?url=https://boltdesignsystem.com"
                    target="_blank"
@@ -986,12 +998,12 @@ exports[`<bolt-share> Component share opacity: 40 1`] = `
                     LinkedIn
                   </span>
                 </a>
-              </li>
-            </replace-with-grandchildren>
+              </ssr-keep>
+            </li>
           </bolt-list-item>
           <bolt-list-item last>
-            <replace-with-grandchildren>
-              <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-small c-bolt-list-item--align-start c-bolt-list-item--last-item">
+            <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-small c-bolt-list-item--align-start c-bolt-list-item--last-item">
+              <ssr-keep for="bolt-list-item">
                 <a class="c-bolt-share__link js-bolt-share__link--email"
                    href="mailto:?&body=Sample%20Text%20--%20https%3A//boltdesignsystem.com"
                    target="_blank"
@@ -1021,11 +1033,11 @@ exports[`<bolt-share> Component share opacity: 40 1`] = `
                     Email
                   </span>
                 </a>
-              </li>
-            </replace-with-grandchildren>
+              </ssr-keep>
+            </li>
           </bolt-list-item>
-        </ul>
-      </replace-with-grandchildren>
+        </ssr-keep>
+      </ul>
     </bolt-list>
   </div>
 </bolt-share>
@@ -1044,20 +1056,22 @@ exports[`<bolt-share> Component share opacity: 60 1`] = `
                align="start"
                valign="center"
     >
-      <replace-with-grandchildren>
-        <ul class="c-bolt-list c-bolt-list--display-inline c-bolt-list--spacing-small c-bolt-list--align-start c-bolt-list--valign-center">
+      <ul class="c-bolt-list c-bolt-list--display-inline c-bolt-list--spacing-small c-bolt-list--align-start c-bolt-list--valign-center">
+        <ssr-keep for="bolt-list"
+                  style="display: contents;"
+        >
           <bolt-list-item>
-            <replace-with-grandchildren>
-              <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-small c-bolt-list-item--align-start">
+            <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-small c-bolt-list-item--align-start">
+              <ssr-keep for="bolt-list-item">
                 <span class="c-bolt-share__label c-bolt-share__label--medium">
                   Share this page
                 </span>
-              </li>
-            </replace-with-grandchildren>
+              </ssr-keep>
+            </li>
           </bolt-list-item>
           <bolt-list-item>
-            <replace-with-grandchildren>
-              <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-small c-bolt-list-item--align-start">
+            <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-small c-bolt-list-item--align-start">
+              <ssr-keep for="bolt-list-item">
                 <a class="c-bolt-share__link js-bolt-share__link--facebook"
                    href="https://www.facebook.com/sharer/sharer.php?u=https://boltdesignsystem.com&amp;src=sdkpreparse"
                    target="_blank"
@@ -1082,12 +1096,12 @@ exports[`<bolt-share> Component share opacity: 60 1`] = `
                     Facebook
                   </span>
                 </a>
-              </li>
-            </replace-with-grandchildren>
+              </ssr-keep>
+            </li>
           </bolt-list-item>
           <bolt-list-item>
-            <replace-with-grandchildren>
-              <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-small c-bolt-list-item--align-start">
+            <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-small c-bolt-list-item--align-start">
+              <ssr-keep for="bolt-list-item">
                 <a class="c-bolt-share__link js-bolt-share__link--twitter"
                    href="https://twitter.com/intent/tweet?url=https://boltdesignsystem.com&text=Sample%20Share%20Text&via=pega&hashtags=boltDesignSystemRocks!"
                    target="_blank"
@@ -1112,12 +1126,12 @@ exports[`<bolt-share> Component share opacity: 60 1`] = `
                     Twitter
                   </span>
                 </a>
-              </li>
-            </replace-with-grandchildren>
+              </ssr-keep>
+            </li>
           </bolt-list-item>
           <bolt-list-item>
-            <replace-with-grandchildren>
-              <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-small c-bolt-list-item--align-start">
+            <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-small c-bolt-list-item--align-start">
+              <ssr-keep for="bolt-list-item">
                 <a class="c-bolt-share__link js-bolt-share__link--linkedin"
                    href="https://www.linkedin.com/shareArticle?url=https://boltdesignsystem.com"
                    target="_blank"
@@ -1142,12 +1156,12 @@ exports[`<bolt-share> Component share opacity: 60 1`] = `
                     LinkedIn
                   </span>
                 </a>
-              </li>
-            </replace-with-grandchildren>
+              </ssr-keep>
+            </li>
           </bolt-list-item>
           <bolt-list-item last>
-            <replace-with-grandchildren>
-              <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-small c-bolt-list-item--align-start c-bolt-list-item--last-item">
+            <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-small c-bolt-list-item--align-start c-bolt-list-item--last-item">
+              <ssr-keep for="bolt-list-item">
                 <a class="c-bolt-share__link js-bolt-share__link--email"
                    href="mailto:?&body=Sample%20Text%20--%20https%3A//boltdesignsystem.com"
                    target="_blank"
@@ -1177,11 +1191,11 @@ exports[`<bolt-share> Component share opacity: 60 1`] = `
                     Email
                   </span>
                 </a>
-              </li>
-            </replace-with-grandchildren>
+              </ssr-keep>
+            </li>
           </bolt-list-item>
-        </ul>
-      </replace-with-grandchildren>
+        </ssr-keep>
+      </ul>
     </bolt-list>
   </div>
 </bolt-share>
@@ -1200,20 +1214,22 @@ exports[`<bolt-share> Component share opacity: 80 1`] = `
                align="start"
                valign="center"
     >
-      <replace-with-grandchildren>
-        <ul class="c-bolt-list c-bolt-list--display-inline c-bolt-list--spacing-small c-bolt-list--align-start c-bolt-list--valign-center">
+      <ul class="c-bolt-list c-bolt-list--display-inline c-bolt-list--spacing-small c-bolt-list--align-start c-bolt-list--valign-center">
+        <ssr-keep for="bolt-list"
+                  style="display: contents;"
+        >
           <bolt-list-item>
-            <replace-with-grandchildren>
-              <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-small c-bolt-list-item--align-start">
+            <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-small c-bolt-list-item--align-start">
+              <ssr-keep for="bolt-list-item">
                 <span class="c-bolt-share__label c-bolt-share__label--medium">
                   Share this page
                 </span>
-              </li>
-            </replace-with-grandchildren>
+              </ssr-keep>
+            </li>
           </bolt-list-item>
           <bolt-list-item>
-            <replace-with-grandchildren>
-              <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-small c-bolt-list-item--align-start">
+            <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-small c-bolt-list-item--align-start">
+              <ssr-keep for="bolt-list-item">
                 <a class="c-bolt-share__link js-bolt-share__link--facebook"
                    href="https://www.facebook.com/sharer/sharer.php?u=https://boltdesignsystem.com&amp;src=sdkpreparse"
                    target="_blank"
@@ -1238,12 +1254,12 @@ exports[`<bolt-share> Component share opacity: 80 1`] = `
                     Facebook
                   </span>
                 </a>
-              </li>
-            </replace-with-grandchildren>
+              </ssr-keep>
+            </li>
           </bolt-list-item>
           <bolt-list-item>
-            <replace-with-grandchildren>
-              <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-small c-bolt-list-item--align-start">
+            <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-small c-bolt-list-item--align-start">
+              <ssr-keep for="bolt-list-item">
                 <a class="c-bolt-share__link js-bolt-share__link--twitter"
                    href="https://twitter.com/intent/tweet?url=https://boltdesignsystem.com&text=Sample%20Share%20Text&via=pega&hashtags=boltDesignSystemRocks!"
                    target="_blank"
@@ -1268,12 +1284,12 @@ exports[`<bolt-share> Component share opacity: 80 1`] = `
                     Twitter
                   </span>
                 </a>
-              </li>
-            </replace-with-grandchildren>
+              </ssr-keep>
+            </li>
           </bolt-list-item>
           <bolt-list-item>
-            <replace-with-grandchildren>
-              <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-small c-bolt-list-item--align-start">
+            <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-small c-bolt-list-item--align-start">
+              <ssr-keep for="bolt-list-item">
                 <a class="c-bolt-share__link js-bolt-share__link--linkedin"
                    href="https://www.linkedin.com/shareArticle?url=https://boltdesignsystem.com"
                    target="_blank"
@@ -1298,12 +1314,12 @@ exports[`<bolt-share> Component share opacity: 80 1`] = `
                     LinkedIn
                   </span>
                 </a>
-              </li>
-            </replace-with-grandchildren>
+              </ssr-keep>
+            </li>
           </bolt-list-item>
           <bolt-list-item last>
-            <replace-with-grandchildren>
-              <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-small c-bolt-list-item--align-start c-bolt-list-item--last-item">
+            <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-small c-bolt-list-item--align-start c-bolt-list-item--last-item">
+              <ssr-keep for="bolt-list-item">
                 <a class="c-bolt-share__link js-bolt-share__link--email"
                    href="mailto:?&body=Sample%20Text%20--%20https%3A//boltdesignsystem.com"
                    target="_blank"
@@ -1333,11 +1349,11 @@ exports[`<bolt-share> Component share opacity: 80 1`] = `
                     Email
                   </span>
                 </a>
-              </li>
-            </replace-with-grandchildren>
+              </ssr-keep>
+            </li>
           </bolt-list-item>
-        </ul>
-      </replace-with-grandchildren>
+        </ssr-keep>
+      </ul>
     </bolt-list>
   </div>
 </bolt-share>
@@ -1356,20 +1372,22 @@ exports[`<bolt-share> Component share opacity: 100 1`] = `
                align="start"
                valign="center"
     >
-      <replace-with-grandchildren>
-        <ul class="c-bolt-list c-bolt-list--display-inline c-bolt-list--spacing-small c-bolt-list--align-start c-bolt-list--valign-center">
+      <ul class="c-bolt-list c-bolt-list--display-inline c-bolt-list--spacing-small c-bolt-list--align-start c-bolt-list--valign-center">
+        <ssr-keep for="bolt-list"
+                  style="display: contents;"
+        >
           <bolt-list-item>
-            <replace-with-grandchildren>
-              <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-small c-bolt-list-item--align-start">
+            <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-small c-bolt-list-item--align-start">
+              <ssr-keep for="bolt-list-item">
                 <span class="c-bolt-share__label c-bolt-share__label--medium">
                   Share this page
                 </span>
-              </li>
-            </replace-with-grandchildren>
+              </ssr-keep>
+            </li>
           </bolt-list-item>
           <bolt-list-item>
-            <replace-with-grandchildren>
-              <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-small c-bolt-list-item--align-start">
+            <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-small c-bolt-list-item--align-start">
+              <ssr-keep for="bolt-list-item">
                 <a class="c-bolt-share__link js-bolt-share__link--facebook"
                    href="https://www.facebook.com/sharer/sharer.php?u=https://boltdesignsystem.com&amp;src=sdkpreparse"
                    target="_blank"
@@ -1394,12 +1412,12 @@ exports[`<bolt-share> Component share opacity: 100 1`] = `
                     Facebook
                   </span>
                 </a>
-              </li>
-            </replace-with-grandchildren>
+              </ssr-keep>
+            </li>
           </bolt-list-item>
           <bolt-list-item>
-            <replace-with-grandchildren>
-              <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-small c-bolt-list-item--align-start">
+            <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-small c-bolt-list-item--align-start">
+              <ssr-keep for="bolt-list-item">
                 <a class="c-bolt-share__link js-bolt-share__link--twitter"
                    href="https://twitter.com/intent/tweet?url=https://boltdesignsystem.com&text=Sample%20Share%20Text&via=pega&hashtags=boltDesignSystemRocks!"
                    target="_blank"
@@ -1424,12 +1442,12 @@ exports[`<bolt-share> Component share opacity: 100 1`] = `
                     Twitter
                   </span>
                 </a>
-              </li>
-            </replace-with-grandchildren>
+              </ssr-keep>
+            </li>
           </bolt-list-item>
           <bolt-list-item>
-            <replace-with-grandchildren>
-              <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-small c-bolt-list-item--align-start">
+            <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-small c-bolt-list-item--align-start">
+              <ssr-keep for="bolt-list-item">
                 <a class="c-bolt-share__link js-bolt-share__link--linkedin"
                    href="https://www.linkedin.com/shareArticle?url=https://boltdesignsystem.com"
                    target="_blank"
@@ -1454,12 +1472,12 @@ exports[`<bolt-share> Component share opacity: 100 1`] = `
                     LinkedIn
                   </span>
                 </a>
-              </li>
-            </replace-with-grandchildren>
+              </ssr-keep>
+            </li>
           </bolt-list-item>
           <bolt-list-item last>
-            <replace-with-grandchildren>
-              <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-small c-bolt-list-item--align-start c-bolt-list-item--last-item">
+            <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-small c-bolt-list-item--align-start c-bolt-list-item--last-item">
+              <ssr-keep for="bolt-list-item">
                 <a class="c-bolt-share__link js-bolt-share__link--email"
                    href="mailto:?&body=Sample%20Text%20--%20https%3A//boltdesignsystem.com"
                    target="_blank"
@@ -1489,11 +1507,11 @@ exports[`<bolt-share> Component share opacity: 100 1`] = `
                     Email
                   </span>
                 </a>
-              </li>
-            </replace-with-grandchildren>
+              </ssr-keep>
+            </li>
           </bolt-list-item>
-        </ul>
-      </replace-with-grandchildren>
+        </ssr-keep>
+      </ul>
     </bolt-list>
   </div>
 </bolt-share>
@@ -1512,20 +1530,22 @@ exports[`<bolt-share> Component share size: medium 1`] = `
                align="start"
                valign="center"
     >
-      <replace-with-grandchildren>
-        <ul class="c-bolt-list c-bolt-list--display-inline c-bolt-list--spacing-small c-bolt-list--align-start c-bolt-list--valign-center">
+      <ul class="c-bolt-list c-bolt-list--display-inline c-bolt-list--spacing-small c-bolt-list--align-start c-bolt-list--valign-center">
+        <ssr-keep for="bolt-list"
+                  style="display: contents;"
+        >
           <bolt-list-item>
-            <replace-with-grandchildren>
-              <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-small c-bolt-list-item--align-start">
+            <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-small c-bolt-list-item--align-start">
+              <ssr-keep for="bolt-list-item">
                 <span class="c-bolt-share__label c-bolt-share__label--medium">
                   Share this page
                 </span>
-              </li>
-            </replace-with-grandchildren>
+              </ssr-keep>
+            </li>
           </bolt-list-item>
           <bolt-list-item>
-            <replace-with-grandchildren>
-              <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-small c-bolt-list-item--align-start">
+            <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-small c-bolt-list-item--align-start">
+              <ssr-keep for="bolt-list-item">
                 <a class="c-bolt-share__link js-bolt-share__link--facebook"
                    href="https://www.facebook.com/sharer/sharer.php?u=https://boltdesignsystem.com&amp;src=sdkpreparse"
                    target="_blank"
@@ -1550,12 +1570,12 @@ exports[`<bolt-share> Component share size: medium 1`] = `
                     Facebook
                   </span>
                 </a>
-              </li>
-            </replace-with-grandchildren>
+              </ssr-keep>
+            </li>
           </bolt-list-item>
           <bolt-list-item>
-            <replace-with-grandchildren>
-              <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-small c-bolt-list-item--align-start">
+            <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-small c-bolt-list-item--align-start">
+              <ssr-keep for="bolt-list-item">
                 <a class="c-bolt-share__link js-bolt-share__link--twitter"
                    href="https://twitter.com/intent/tweet?url=https://boltdesignsystem.com&text=Sample%20Share%20Text&via=pega&hashtags=boltDesignSystemRocks!"
                    target="_blank"
@@ -1580,12 +1600,12 @@ exports[`<bolt-share> Component share size: medium 1`] = `
                     Twitter
                   </span>
                 </a>
-              </li>
-            </replace-with-grandchildren>
+              </ssr-keep>
+            </li>
           </bolt-list-item>
           <bolt-list-item>
-            <replace-with-grandchildren>
-              <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-small c-bolt-list-item--align-start">
+            <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-small c-bolt-list-item--align-start">
+              <ssr-keep for="bolt-list-item">
                 <a class="c-bolt-share__link js-bolt-share__link--linkedin"
                    href="https://www.linkedin.com/shareArticle?url=https://boltdesignsystem.com"
                    target="_blank"
@@ -1610,12 +1630,12 @@ exports[`<bolt-share> Component share size: medium 1`] = `
                     LinkedIn
                   </span>
                 </a>
-              </li>
-            </replace-with-grandchildren>
+              </ssr-keep>
+            </li>
           </bolt-list-item>
           <bolt-list-item last>
-            <replace-with-grandchildren>
-              <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-small c-bolt-list-item--align-start c-bolt-list-item--last-item">
+            <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-small c-bolt-list-item--align-start c-bolt-list-item--last-item">
+              <ssr-keep for="bolt-list-item">
                 <a class="c-bolt-share__link js-bolt-share__link--email"
                    href="mailto:?&body=Sample%20Text%20--%20https%3A//boltdesignsystem.com"
                    target="_blank"
@@ -1645,11 +1665,11 @@ exports[`<bolt-share> Component share size: medium 1`] = `
                     Email
                   </span>
                 </a>
-              </li>
-            </replace-with-grandchildren>
+              </ssr-keep>
+            </li>
           </bolt-list-item>
-        </ul>
-      </replace-with-grandchildren>
+        </ssr-keep>
+      </ul>
     </bolt-list>
   </div>
 </bolt-share>
@@ -1668,20 +1688,22 @@ exports[`<bolt-share> Component share size: small 1`] = `
                align="start"
                valign="center"
     >
-      <replace-with-grandchildren>
-        <ul class="c-bolt-list c-bolt-list--display-inline c-bolt-list--spacing-xsmall c-bolt-list--align-start c-bolt-list--valign-center">
+      <ul class="c-bolt-list c-bolt-list--display-inline c-bolt-list--spacing-xsmall c-bolt-list--align-start c-bolt-list--valign-center">
+        <ssr-keep for="bolt-list"
+                  style="display: contents;"
+        >
           <bolt-list-item>
-            <replace-with-grandchildren>
-              <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+            <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+              <ssr-keep for="bolt-list-item">
                 <span class="c-bolt-share__label c-bolt-share__label--small">
                   Share this page
                 </span>
-              </li>
-            </replace-with-grandchildren>
+              </ssr-keep>
+            </li>
           </bolt-list-item>
           <bolt-list-item>
-            <replace-with-grandchildren>
-              <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+            <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+              <ssr-keep for="bolt-list-item">
                 <a class="c-bolt-share__link js-bolt-share__link--facebook"
                    href="https://www.facebook.com/sharer/sharer.php?u=https://boltdesignsystem.com&amp;src=sdkpreparse"
                    target="_blank"
@@ -1706,12 +1728,12 @@ exports[`<bolt-share> Component share size: small 1`] = `
                     Facebook
                   </span>
                 </a>
-              </li>
-            </replace-with-grandchildren>
+              </ssr-keep>
+            </li>
           </bolt-list-item>
           <bolt-list-item>
-            <replace-with-grandchildren>
-              <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+            <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+              <ssr-keep for="bolt-list-item">
                 <a class="c-bolt-share__link js-bolt-share__link--twitter"
                    href="https://twitter.com/intent/tweet?url=https://boltdesignsystem.com&text=Sample%20Share%20Text&via=pega&hashtags=boltDesignSystemRocks!"
                    target="_blank"
@@ -1736,12 +1758,12 @@ exports[`<bolt-share> Component share size: small 1`] = `
                     Twitter
                   </span>
                 </a>
-              </li>
-            </replace-with-grandchildren>
+              </ssr-keep>
+            </li>
           </bolt-list-item>
           <bolt-list-item>
-            <replace-with-grandchildren>
-              <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+            <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+              <ssr-keep for="bolt-list-item">
                 <a class="c-bolt-share__link js-bolt-share__link--linkedin"
                    href="https://www.linkedin.com/shareArticle?url=https://boltdesignsystem.com"
                    target="_blank"
@@ -1766,12 +1788,12 @@ exports[`<bolt-share> Component share size: small 1`] = `
                     LinkedIn
                   </span>
                 </a>
-              </li>
-            </replace-with-grandchildren>
+              </ssr-keep>
+            </li>
           </bolt-list-item>
           <bolt-list-item last>
-            <replace-with-grandchildren>
-              <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start c-bolt-list-item--last-item">
+            <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start c-bolt-list-item--last-item">
+              <ssr-keep for="bolt-list-item">
                 <a class="c-bolt-share__link js-bolt-share__link--email"
                    href="mailto:?&body=Sample%20Text%20--%20https%3A//boltdesignsystem.com"
                    target="_blank"
@@ -1801,11 +1823,11 @@ exports[`<bolt-share> Component share size: small 1`] = `
                     Email
                   </span>
                 </a>
-              </li>
-            </replace-with-grandchildren>
+              </ssr-keep>
+            </li>
           </bolt-list-item>
-        </ul>
-      </replace-with-grandchildren>
+        </ssr-keep>
+      </ul>
     </bolt-list>
   </div>
 </bolt-share>
