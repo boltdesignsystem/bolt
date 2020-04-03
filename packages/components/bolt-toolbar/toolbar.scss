@@ -4,7 +4,7 @@
   @include bolt-font-size(small);
   position: relative;
   z-index: 10;
-  width: 100%;
+  min-width: 100%;
   margin: 0 auto;
   color: bolt-theme(secondary);
 }
@@ -85,6 +85,10 @@
 
 .c-bolt-toolbar--purple {
   background-image: linear-gradient(90deg, #0F0664 0%, #751B84 100%);
+}
+
+.c-bolt-toolbar--purple-solid {
+  background-image: linear-gradient(90deg, #751B84 0%, #751B84 100%);
 }
 
 .c-bolt-toolbar--indigo {

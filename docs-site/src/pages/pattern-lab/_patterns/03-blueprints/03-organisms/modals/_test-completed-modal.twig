@@ -18,14 +18,27 @@
       attributes: {
         class: [
           "u-bolt-margin-top-auto",
-          "u-bolt-padding-left-small@small",
-          "u-bolt-padding-right-small@small",
         ]
       },
       content: [
-
+        macros.include("@bolt-components-ratio/ratio.twig", {
+          ratio: "150/175",
+          children: macros.include("@bolt-components-placeholder/placeholder.twig", {
+            text: "FPO",
+          }),
+          attributes: {
+            style: "max-width: 150px",
+            class: [
+              "u-bolt-margin-top-medium",
+              "u-bolt-margin-left-auto",
+              "u-bolt-margin-right-auto",
+              "u-bolt-margin-bottom-medium"
+            ]
+          }
+        }),
         macros.include("@bolt-components-headline/headline.twig", {
-          size: "xxlarge",
+          size: "xxxlarge",
+          autoshrink: false,
           text: "Congratulations #{userFirstName}!",
           align: "center",
           attributes: {
@@ -33,7 +46,7 @@
               "u-bolt-margin-top-small",
               "u-bolt-margin-left-auto",
               "u-bolt-margin-right-auto",
-              "u-bolt-line-length-xsmall",
+              "c-bolt-headline--xxxlarge-min"
             ]
           }
         }),
@@ -46,65 +59,36 @@
             class: [
               "u-bolt-margin-left-auto",
               "u-bolt-margin-right-auto",
-              "u-bolt-line-length-small",
-            ]
-          }
-        }),
-        macros.include("@bolt-components-ratio/ratio.twig", {
-          ratio: "140/160",
-          children: macros.include("@bolt-components-placeholder/placeholder.twig", {
-            text: "FPO",
-          }),
-          attributes: {
-            style: "max-width: 140px",
-            class: [
-              "u-bolt-margin-left-auto",
-              "u-bolt-margin-right-auto",
-              "u-bolt-margin-bottom-xlarge"
+              "u-bolt-line-length-medium",
+              "u-bolt-margin-bottom-large",
             ]
           }
         }),
         macros.include("@bolt-components-headline/text.twig", {
           text: "<strong>NOTE:</strong> Please allow 24-48 hours for the badge to appear on your Achievements page.",
           size: "xsmall",
-          style: "italic",
           align: "center",
           attributes: {
             class: [
+              "u-bolt-margin-top-small",
               "u-bolt-margin-bottom-small",
               "u-bolt-margin-left-auto",
               "u-bolt-margin-right-auto",
-              "u-bolt-line-length-xsmall",
             ]
           }
         }),
-        macros.include("@bolt-components-list/list.twig", {
-          display: "inline",
-          spacing: "small",
-          align: "center",
-          items: [
-            macros.include("@bolt-components-button/button.twig", {
-              text: "Return to Mission",
-              size: "small",
-              border_radius: "full",
-              attributes: {
-                "on-click": "hide",
-                "on-click-target": "js-modal-advanced-auto-open",
-              },
-            }),
-            macros.include("@bolt-components-button/button.twig", {
-              text: "View Achievements",
-              size: "small",
-              style: "secondary",
-              border_radius: "full",
-              url: "https://www.google.com",
-              icon: {
-                name: "external-link",
-                position: "after"
-              }
-            }),
-          ]
-        })
+        macros.include("@bolt-components-toolbar/toolbar.twig", {
+          content_before: "Return to mission",
+          gradientName: "purple-solid",
+          attributes: {
+            class: [
+              "u-bolt-negative-margin-left-medium",
+              "u-bolt-negative-margin-right-medium",
+
+              "u-bolt-text-align-center"
+            ]
+          }
+        }),
       ] | join('')
     },
   } only %}
@@ -116,7 +100,7 @@
   content: modalContent,
   spacing: "none",
   theme: "none",
-  width: "auto",
+  width: "optimal",
   scroll: "overall",
   attributes: {
     class: [
