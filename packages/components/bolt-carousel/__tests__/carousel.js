@@ -19,7 +19,7 @@ const vrtDefaultConfig = {
   },
 };
 
-const timeout = 180000;
+const timeout = 10000;
 
 const viewportSizes = [
   {
@@ -73,7 +73,7 @@ describe('carousel', () => {
 
   afterAll(async () => {
     await page.close();
-  }, 100);
+  }, timeout);
 
   // test('basic carousel component renders', async () => {
   //   const results = await render('@bolt-components-carousel/carousel.twig');
@@ -161,10 +161,9 @@ describe('carousel', () => {
 
         const undefinedElements = document.querySelectorAll(
           'bolt-carousel',
-          'bolt-icon',
+          'bolt-carousel-slide',
           'bolt-button',
           'bolt-image',
-          'bolt-button',
         );
         const promises = [...undefinedElements].map(elem =>
           customElements.whenDefined(elem.localName),

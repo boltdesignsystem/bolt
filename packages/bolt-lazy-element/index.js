@@ -63,11 +63,11 @@ export const lazyQueue = async (componentSelectors = [], callback) => {
     if (elemFound) {
       await callback();
     } else {
-      idleQueue.pushTask(() => {
-        componentSelectors.map(selector => {
-          lazyDefinitions.set(selector, callback);
-        });
+      // idleQueue.pushTask(() => {
+      componentSelectors.map(selector => {
+        lazyDefinitions.set(selector, callback);
       });
+      // });
     }
   }
 };
