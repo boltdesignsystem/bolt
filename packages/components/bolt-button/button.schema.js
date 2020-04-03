@@ -58,10 +58,6 @@ module.exports = {
       enum: ['xsmall', 'small', 'medium', 'large', 'xlarge'],
     },
     style: {
-      title: 'DEPRECATED',
-      description: 'Use the color parameter instead.',
-    },
-    color: {
       type: 'string',
       description: 'Style of the button determined by information hierarchy.',
       default: 'primary',

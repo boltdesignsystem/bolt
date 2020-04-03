@@ -361,7 +361,7 @@ export function setupBolt(editor) {
 
   // schema has it as `style` but web component uses it as `color` since `style` is a reserved HTML attribute; see http://vjira2:8080/browse/BDS-721 & http://vjira2:8080/browse/BDS-1104
   const colorTrait = convertSchemaPropToTrait({
-    prop: buttonSchema.properties.color,
+    prop: buttonSchema.properties.style,
     name: 'color',
   });
   colorTrait.label = 'Color';

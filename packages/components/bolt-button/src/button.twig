@@ -13,12 +13,6 @@
   {% set align = itemAlignment %}
 {% endif %}
 
-{# DEPRECATED.  Use the `color` instead of `style` property in Twig. 
-  Note: this prop name is ultimately switching to `variant` with the next SEMVER release #}
-{% if style %}
-  {% set color = style %}
-{% endif %}
-
 {# DEPRECATED.  Use the values `start` and `end` insted of `left` and `right`. #}
 {% if align == "left" %}
  {% set align = "start" %}
@@ -38,7 +32,7 @@
 
 {# Set up checks to validate that the component's prop values are allowed, based on the component's schema #}
 {% set size_options = schema.properties.size.enum %}
-{% set color_options = schema.properties.color.enum %}
+{% set style_options = schema.properties.style.enum %}
 {% set width_options = schema.properties.width.enum %}
 {% set border_radius_options = schema.properties.border_radius.enum %}
 {% set align_options = schema.properties.align.enum %}
@@ -49,7 +43,7 @@
 
 {# Check that the component's current prop values are valid. if not, default to the schema default #}
 {% set size = size in size_options ? size : schema.properties.size.default %}
-{% set color = color in color_options ? color : schema.properties.color.default %}
+{% set style = style in style_options ? style : schema.properties.style.default %}
 {% set width = width in width_options ? width : schema.properties.width.default %}
 {% set border_radius = border_radius in border_radius_options ? border_radius : schema.properties.border_radius.default %}
 {% set align = align in align_options ? align : schema.properties.align.default %}
@@ -82,7 +76,7 @@
   base_class,
   disabled ? "#{base_class}--disabled" : "",
   size ? "#{base_class}--#{size}" : "",
-  color ? "#{base_class}--#{color}" : "",
+  style ? "#{base_class}--#{style}" : "",
   width != "auto" ? "#{base_class}--#{width}" : "",
   border_radius ? "#{base_class}--border-radius-#{border_radius}" : "",
   align ? "#{base_class}--#{align}" : "",
@@ -144,7 +138,7 @@ Sort classes passed in via attributes into two groups:
 {# Set up the custom element's prop values based on the params passed into the Twig template - used to hydrate the component's initial state and appearance once the Button Component's JavaScript kicks in #}
 <bolt-button
   {% if size %} size="{{ size }}" {% endif %}
-  {% if color %} color="{{ color }}" {% endif %}
+  {% if style %} color="{{ style }}" {% endif %}
   {% if width %} width="{{ width }}" {% endif %}
   {% if border_radius %} border-radius="{{ border_radius }}" {% endif %}
   {% if align %} align="{{ align }}" {% endif %}
