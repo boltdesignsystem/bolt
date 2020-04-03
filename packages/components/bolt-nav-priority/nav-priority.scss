@@ -143,6 +143,20 @@ bolt-nav-priority {
   background-color: bolt-theme(background);
   transition: max-height 0.3s cubic-bezier(0.28, 0.11, 0.32, 1) 0s, visibility 0s linear 0.3s;
 
+  &:before {
+    content: '';
+    opacity: 0.1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+    background-color: bolt-color(white);
+  }
+
   * {
     white-space: normal;
   }
@@ -235,7 +249,7 @@ bolt-nav-priority {
   }
 
   &:hover {
-    background-color: bolt-theme(secondary, 0.15);
+    background-color: bolt-theme(secondary, 0.1);
 
     &:before {
       opacity: 0.1;
@@ -251,7 +265,7 @@ bolt-nav-priority {
 
   &.is-active,
   &:active {
-    background-color: bolt-theme(secondary, 0.1);
+    background-color: bolt-theme(secondary, 0.05);
 
     &:before {
       opacity: 0.1;
