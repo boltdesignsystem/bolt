@@ -60,7 +60,7 @@ const setupEventHandlers = () => {
   typeahead.items = items;
   typeahead.on('onSelected', (element, event, suggestion) => {
     const itemSelected = element.items.filter(
-      item => item.label === suggestion.suggestionValue,
+      (item) => item.label === suggestion.suggestionValue,
     )[0];
 
     if (itemSelected) {
@@ -86,7 +86,7 @@ if (typeahead) {
       setupEventHandlers();
     }
 
-    typeahead.addEventListener('ready', e => {
+    typeahead.addEventListener('ready', (e) => {
       if (e.detail.name === 'bolt-typeahead') {
         setupEventHandlers();
       }

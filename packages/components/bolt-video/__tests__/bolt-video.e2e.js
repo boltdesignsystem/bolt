@@ -2,7 +2,7 @@ let currentBrowser;
 
 module.exports = {
   tags: ['component', 'video'],
-  'Bolt Video Playback Rate': function(browser) {
+  'Bolt Video Playback Rate': function (browser) {
     const { testingUrl } = browser.globals;
     console.log(`global browser url: ${testingUrl}`);
     currentBrowser = '--' + browser.currentEnv || 'chrome';
@@ -15,18 +15,18 @@ module.exports = {
       .waitForElementVisible('.video-js', 1000)
       .click('.vjs-big-play-button')
       .assert.elementPresent('.vjs-playback-rate')
-      .execute(function(data) {
+      .execute(function (data) {
         return document.querySelector('button.vjs-playback-rate').click();
       })
       .saveScreenshot(
         `screenshots/bolt-video/${testName}--${currentBrowser}.png`,
       )
       .execute(
-        function(data) {
+        function (data) {
           return document.querySelector('bolt-video').player.playbackRate();
         },
         [],
-        function(result) {
+        function (result) {
           browser.assert.ok(
             result.value === 1.25,
             `verified that <bolt-video> play rate has sped up to ${result.value}`,
@@ -34,11 +34,11 @@ module.exports = {
         },
       )
       .execute(
-        function(data) {
+        function (data) {
           return document.querySelector('.vjs-playback-rate-value').textContent;
         },
         [],
-        function(result) {
+        function (result) {
           browser.assert.ok(
             result.value === '1.25x',
             `verified that <bolt-video> play rate text reads 1.25x.`,
@@ -51,7 +51,7 @@ module.exports = {
       .end();
   },
 
-  '<bolt-video> plays via <bolt-button> on-click hook': function(browser) {
+  '<bolt-video> plays via <bolt-button> on-click hook': function (browser) {
     const { testingUrl } = browser.globals;
     currentBrowser = '--' + browser.currentEnv || 'chrome';
     let testName = 'bolt-video-external-controls';
@@ -64,11 +64,11 @@ module.exports = {
       .click('bolt-button')
       .pause(1000)
       .execute(
-        function(data) {
+        function (data) {
           return document.querySelector('bolt-video').player.hasStarted_;
         },
         [],
-        function(result) {
+        function (result) {
           browser.assert.ok(
             result.value === true,
             `verified the <bolt-video> has started playing via the "hasStarted" property.`,
@@ -80,11 +80,11 @@ module.exports = {
       )
       .pause(4000)
       .execute(
-        function(data) {
+        function (data) {
           return document.querySelector('bolt-video').player.currentTime();
         },
         [],
-        function(result) {
+        function (result) {
           browser.assert.ok(
             result.value > 1,
             `<bolt-video> starts playing when <bolt-button> is clicked -- verified since the current video's play time is ${result.value} seconds`,

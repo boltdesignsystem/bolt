@@ -478,7 +478,7 @@ class BoltCarousel extends BoltElement {
       this.classList.add('is-ready');
 
       const slides = Array.from(this.querySelectorAll('bolt-carousel-slide'));
-      slides.forEach(slide => {
+      slides.forEach((slide) => {
         slide.classList.add('c-bolt-carousel__slide');
         slide.classList.add('is-ready');
       });
@@ -623,14 +623,10 @@ class BoltCarousel extends BoltElement {
         ${this.freeScroll
           ? this.noScrollbar
             ? ''
-            : html`
-                <div class="c-bolt-carousel__scrollbar"></div>
-              `
+            : html` <div class="c-bolt-carousel__scrollbar"></div> `
           : this.noPagination
           ? ''
-          : html`
-              <div class="c-bolt-carousel__pagination"></div>
-            `}
+          : html` <div class="c-bolt-carousel__pagination"></div> `}
       </div>
 
       ${this.noNavButtons === true

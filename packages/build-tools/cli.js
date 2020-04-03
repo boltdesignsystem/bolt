@@ -18,7 +18,7 @@ const packageJson = require('./package.json');
 
 let userConfig;
 
-const parseIntWithRadix = string => parseInt(string, 10);
+const parseIntWithRadix = (string) => parseInt(string, 10);
 
 // global `bolt` cli options & meta
 program
@@ -74,7 +74,7 @@ if (program.configFile) {
      * @returns {Object} config - Final updated config
      */
     async function updateConfig(options, programInstance) {
-      await configStore.updateConfig(async config => {
+      await configStore.updateConfig(async (config) => {
         originalConfig = config;
 
         config.verbosity =
@@ -223,7 +223,7 @@ Bundling for...
       )
       .option('-I, --i18n', configSchema.properties.i18n.description)
       .option('-Q, --quick', configSchema.properties.quick.description)
-      .action(async options => {
+      .action(async (options) => {
         log.info(
           `Starting build (${options.parallel ? 'parallel' : 'serial'})`,
         );
@@ -235,7 +235,7 @@ Bundling for...
     program
       .command('prep')
       .description('Prepwork before building')
-      .action(async options => {
+      .action(async (options) => {
         log.info('Starting prep work.');
         await updateConfig(options, program);
         require('./tasks/task-collections').buildPrep();
@@ -245,7 +245,7 @@ Bundling for...
     program
       .command('criticalcss')
       .description('Generate Critical CSS')
-      .action(async options => {
+      .action(async (options) => {
         log.info('Starting critical CSS');
         await updateConfig(options, program);
         require('./tasks/task-collections').criticalcss();
@@ -263,7 +263,7 @@ Bundling for...
         configSchema.properties.webpackDevServer.description,
       )
       .option('--watch', configSchema.properties.watch.description)
-      .action(async options => {
+      .action(async (options) => {
         if (options.watch === undefined) {
           options.watch = true;
         }
@@ -271,13 +271,13 @@ Bundling for...
         require('./tasks/task-collections').serve();
       });
 
-    program.command('watch').action(async options => {
+    program.command('watch').action(async (options) => {
       options.watch = true;
       await updateConfig(options, program);
       require('./tasks/task-collections').watch();
     });
 
-    program.command('clean').action(async options => {
+    program.command('clean').action(async (options) => {
       await updateConfig(options, program);
       require('./tasks/task-collections').clean();
     });
@@ -295,7 +295,7 @@ Bundling for...
         configSchema.properties.webpackDevServer.description,
       )
       .option('--watch', configSchema.properties.watch.description)
-      .action(async options => {
+      .action(async (options) => {
         if (options.watch === undefined) {
           options.watch = true;
         }
@@ -307,7 +307,7 @@ Bundling for...
     program
       .command('lint')
       .description("A linter... that doesn't work!")
-      .action(async options => {
+      .action(async (options) => {
         await updateConfig(options, program);
       });
 
@@ -315,7 +315,7 @@ Bundling for...
       .command('img')
       .alias('images')
       .description('Image process')
-      .action(async options => {
+      .action(async (options) => {
         await updateConfig(options, program);
         require('./tasks/task-collections').images();
       });
@@ -328,7 +328,7 @@ Bundling for...
         '--webpack-stats',
         configSchema.properties.webpackStats.description,
       )
-      .action(async options => {
+      .action(async (options) => {
         await updateConfig(options, program);
         try {
           await require('./tasks/webpack-tasks').compile();
@@ -341,7 +341,7 @@ Bundling for...
       .command('pattern-lab')
       .alias('pl')
       .description('Pattern Lab Compile')
-      .action(async options => {
+      .action(async (options) => {
         await updateConfig(options, program);
         try {
           await require('./tasks/pattern-lab-tasks').compile();
@@ -353,7 +353,7 @@ Bundling for...
     program
       .command('static')
       .description('Static Site Compile')
-      .action(async options => {
+      .action(async (options) => {
         await updateConfig(options, program);
         try {
           await require('./tasks/task-collections').buildPrep();
@@ -372,6 +372,6 @@ Bundling for...
     // cli init ~ must go at bottom
     program.parse(process.argv);
   });
-})().catch(err => {
+})().catch((err) => {
   console.error(err);
 });

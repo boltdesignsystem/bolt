@@ -45,8 +45,8 @@ describe('test-utils', () => {
     const files = tu.getPkgFiles('@bolt/testing-helpers');
     const pkgPath = tu.getPkgPathFromName('@bolt/testing-helpers');
     ['index.js', 'is-connected.js', 'CHANGELOG.md', 'package.json']
-      .map(file => join(pkgPath, file))
-      .forEach(file => {
+      .map((file) => join(pkgPath, file))
+      .forEach((file) => {
         expect(files).toContain(file);
       });
   });
@@ -100,7 +100,7 @@ describe('test-utils', () => {
       'packages/twig-renderer/SetupTwigRenderer.php',
       'packages/twig-renderer/package.json',
       'yarn.lock',
-    ].map(x => join(repoRoot, x));
+    ].map((x) => join(repoRoot, x));
 
     expect(files.sort()).toStrictEqual(expected.sort());
   });
@@ -111,7 +111,7 @@ describe('test-utils', () => {
         from: 'v2.4.4',
         base: 'v2.4.3',
       })
-      .map(p => p.name);
+      .map((p) => p.name);
 
     const expected = [
       '@bolt/components-action-blocks',

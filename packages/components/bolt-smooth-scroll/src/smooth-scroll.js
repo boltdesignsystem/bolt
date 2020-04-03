@@ -46,7 +46,7 @@ const customScrollElems = document.querySelectorAll('a[href^="#"]');
 const customScrollElemsArray = Array.from(customScrollElems);
 
 // go through our array of results and filter out only the ones that are valid selectors. // in this case, valid selectors = valid HTML5 id names which omits hash bang links, etc.
-let filteredCustomScrollElems = customScrollElemsArray.filter(element =>
+let filteredCustomScrollElems = customScrollElemsArray.filter((element) =>
   isValidSelector(element.getAttribute('href')),
 );
 
@@ -61,7 +61,7 @@ for (var i = 0, len = filteredCustomScrollElems.length; i < len; i++) {
     const scrollTarget = getScrollTarget(scrollElem);
 
     if (scrollTarget) {
-      scrollElem.addEventListener('click', function(event) {
+      scrollElem.addEventListener('click', function (event) {
         smoothScroll.animateScroll(scrollTarget, scrollElem, scrollOptions);
       });
     }

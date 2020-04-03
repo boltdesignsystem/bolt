@@ -3,10 +3,10 @@
 const { getLatestDeploy } = require('./utils');
 
 getLatestDeploy()
-  .then(url => {
+  .then((url) => {
     process.stdout.write(url);
   })
-  .catch(error => {
+  .catch((error) => {
     process.stderr.write(error);
     process.exit(1);
   });

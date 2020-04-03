@@ -14,10 +14,10 @@ setCheckRun({
   status: 'completed',
   conclusion: 'failure',
 })
-  .then(results => {
+  .then((results) => {
     console.log(`Failed Check Run ${name}: ${results.html_url}`);
   })
-  .catch(err => {
+  .catch((err) => {
     console.error(`Error: Failing Check Run ${name}`, err);
     process.exit(1);
   });

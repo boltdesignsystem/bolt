@@ -66,7 +66,7 @@ class BoltSelect extends withLitHtml {
     if (optgroupsFound.length > 0) {
       self.options = [];
       self.optgroups = [];
-      self.groups.forEach(optgroup => {
+      self.groups.forEach((optgroup) => {
         self.optgroups.push({
           label: optgroup.label || '',
           choices: createSelectOptionData(optgroup.querySelectorAll('option')),
@@ -242,9 +242,7 @@ class BoltSelect extends withLitHtml {
         break;
     }
 
-    return html`
-      ${this.addStyles([styles])} ${this.element}
-    `;
+    return html` ${this.addStyles([styles])} ${this.element} `;
   }
 
   _init() {

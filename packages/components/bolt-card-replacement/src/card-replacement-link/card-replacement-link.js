@@ -29,11 +29,7 @@ class BoltCardReplacementLink extends BoltAction {
     const slotMarkup = () => {
       return html`
         <span class="${cx('u-bolt-visuallyhidden')}">
-          ${'default' in this.slots
-            ? this.slot('default')
-            : html`
-                <slot />
-              `}
+          ${'default' in this.slots ? this.slot('default') : html` <slot /> `}
         </span>
       `;
     };

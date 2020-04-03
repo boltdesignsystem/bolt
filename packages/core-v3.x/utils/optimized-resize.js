@@ -8,7 +8,7 @@
 
 import { debounce } from './debounce';
 
-(function() {
+(function () {
   function addThrottledEvent(type, name, obj) {
     obj = obj || window;
     let running = false;
@@ -18,7 +18,7 @@ import { debounce } from './debounce';
         return;
       }
       running = true;
-      requestAnimationFrame(function() {
+      requestAnimationFrame(function () {
         obj.dispatchEvent(new CustomEvent(name));
         running = false;
       });
@@ -31,7 +31,7 @@ import { debounce } from './debounce';
 
     obj.addEventListener(
       type,
-      debounce(function() {
+      debounce(function () {
         obj.dispatchEvent(new CustomEvent(name));
       }),
     );

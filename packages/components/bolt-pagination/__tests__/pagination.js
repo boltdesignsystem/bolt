@@ -60,7 +60,7 @@ describe('<bolt-pagination> Component', () => {
   });
 
   // Props
-  align.enum.forEach(async alignChoice => {
+  align.enum.forEach(async (alignChoice) => {
     test(`Horizontal alignment: ${alignChoice}`, async () => {
       const results = await render(
         '@bolt-components-pagination/pagination.twig',

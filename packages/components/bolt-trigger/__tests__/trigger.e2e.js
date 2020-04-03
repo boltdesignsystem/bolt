@@ -5,7 +5,7 @@ let currentBrowser;
 
 module.exports = {
   tags: ['component', 'trigger'],
-  'Bolt Trigger Modal': function(browser) {
+  'Bolt Trigger Modal': function (browser) {
     const { testingUrl } = browser.globals;
     console.log(`global browser url: ${testingUrl}`);
     currentBrowser = '--' + browser.currentEnv || 'chrome';
@@ -18,18 +18,18 @@ module.exports = {
       .waitForElementVisible('bolt-trigger[on-click="show"]', 1000)
       // .click('bolt-trigger[on-click="show"]') // [1]
       .execute(
-        function(selector) {
+        function (selector) {
           document.querySelector(selector).click();
         },
         ['bolt-trigger[on-click="show"]'],
       )
       .pause(1000)
       .execute(
-        function(data) {
+        function (data) {
           return document.querySelector('bolt-modal').open;
         },
         [],
-        function(result) {
+        function (result) {
           browser.assert.ok(
             result.value === true,
             `verified <bolt-trigger> opened the modal.`,
@@ -43,18 +43,18 @@ module.exports = {
       .pause(1000)
       // .click('bolt-trigger[on-click="hide"]') // [1]
       .execute(
-        function(selector) {
+        function (selector) {
           document.querySelector(selector).click();
         },
         ['bolt-trigger[on-click="hide"]'],
       )
       .pause(1000)
       .execute(
-        function(data) {
+        function (data) {
           return document.querySelector('bolt-modal').open;
         },
         [],
-        function(result) {
+        function (result) {
           browser.assert.ok(
             result.value === false,
             `verified <bolt-trigger> closed the modal.`,

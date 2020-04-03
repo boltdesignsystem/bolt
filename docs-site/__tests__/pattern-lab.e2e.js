@@ -1,5 +1,5 @@
 module.exports = {
-  'Pattern Lab: Confirm Successful Now.sh Deploy - Pattern Lab Inner': function(
+  'Pattern Lab: Confirm Successful Now.sh Deploy - Pattern Lab Inner': function (
     browser,
   ) {
     const { testingUrl } = browser.globals;

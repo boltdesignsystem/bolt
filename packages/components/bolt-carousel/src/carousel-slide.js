@@ -11,9 +11,7 @@ class BoltCarouselSlide extends BoltElement {
 
   render() {
     const classes = cx('c-bolt-carousel-slide');
-    return html`
-      <div class="${classes}">${this.slotify('default')}</div>
-    `;
+    return html` <div class="${classes}">${this.slotify('default')}</div> `;
   }
 }
 

@@ -26,7 +26,7 @@ class BoltAction extends withLitHtml {
 
   connecting() {
     // When possible, use afterNextRender to defer non-critical work until after first paint.
-    afterNextRender(this, function() {
+    afterNextRender(this, function () {
       this.addEventListener('click', this.clickHandler);
     });
   }

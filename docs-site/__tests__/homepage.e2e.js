@@ -1,5 +1,5 @@
 module.exports = {
-  "Bolt Site: verify boltdesignsystem.com's homepage compiled + deployed": function(
+  "Bolt Site: verify boltdesignsystem.com's homepage compiled + deployed": function (
     browser,
   ) {
     const { testingUrl } = browser.globals;
@@ -11,7 +11,7 @@ module.exports = {
       .end();
   },
 
-  "Bolt Site: verify boltdesignsystem.com's getting started page compiled + deployed": function(
+  "Bolt Site: verify boltdesignsystem.com's getting started page compiled + deployed": function (
     browser,
   ) {
     const { testingUrl } = browser.globals;

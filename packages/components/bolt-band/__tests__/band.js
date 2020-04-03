@@ -43,7 +43,7 @@ describe('<bolt-band> Component', () => {
   });
 
   // Props
-  size.enum.forEach(async sizeChoice => {
+  size.enum.forEach(async (sizeChoice) => {
     test(`Size of the band: ${sizeChoice}`, async () => {
       const results = await render('@bolt-components-band/band.twig', {
         size: sizeChoice,
@@ -54,7 +54,7 @@ describe('<bolt-band> Component', () => {
     });
   });
 
-  theme.enum.forEach(async themeChoice => {
+  theme.enum.forEach(async (themeChoice) => {
     test(`Theme of the band: ${themeChoice}`, async () => {
       const results = await render('@bolt-components-band/band.twig', {
         theme: themeChoice,
@@ -65,7 +65,7 @@ describe('<bolt-band> Component', () => {
     });
   });
 
-  tag.enum.forEach(async tagChoice => {
+  tag.enum.forEach(async (tagChoice) => {
     test(`Semantic tag usage: ${tagChoice}`, async () => {
       const results = await render('@bolt-components-band/band.twig', {
         tag: tagChoice,
@@ -76,7 +76,7 @@ describe('<bolt-band> Component', () => {
     });
   });
 
-  test('Full bleed usage', async function() {
+  test('Full bleed usage', async function () {
     const template = await renderString(`
       {% include "@bolt-components-band/band.twig" with {
         theme: "dark",
@@ -90,14 +90,14 @@ describe('<bolt-band> Component', () => {
       } only %}
     `);
 
-    const renderedBandHTML = await page.evaluate(async html => {
+    const renderedBandHTML = await page.evaluate(async (html) => {
       const div = document.createElement('div');
       div.style.padding = '40px';
       div.innerHTML = `${html}`;
       document.body.appendChild(div);
       const band = document.querySelector('bolt-band');
       const undefinedElements = document.querySelectorAll('bolt-band');
-      const promises = [...undefinedElements].map(elem =>
+      const promises = [...undefinedElements].map((elem) =>
         customElements.whenDefined(elem.localName),
       );
       await Promise.all(promises);
@@ -148,7 +148,7 @@ describe('<bolt-band> Component', () => {
     expect(results.html).toMatchSnapshot();
   });
 
-  test('Nested bands usage', async function() {
+  test('Nested bands usage', async function () {
     const template = await renderString(`
       {% set parent_band_content %}
         {% include "@bolt-components-headline/headline.twig" with {
@@ -174,13 +174,13 @@ describe('<bolt-band> Component', () => {
       } only %}
     `);
 
-    const renderedBandHTML = await page.evaluate(async html => {
+    const renderedBandHTML = await page.evaluate(async (html) => {
       const div = document.createElement('div');
       div.innerHTML = `${html}`;
       document.body.appendChild(div);
       const band = document.querySelector('bolt-band');
       const undefinedElements = document.querySelectorAll('bolt-band');
-      const promises = [...undefinedElements].map(elem =>
+      const promises = [...undefinedElements].map((elem) =>
         customElements.whenDefined(elem.localName),
       );
       await Promise.all(promises);

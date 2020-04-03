@@ -26,7 +26,7 @@ describe('<bolt-popover> Component', () => {
   });
 
   // Props
-  placement.enum.forEach(async placementChoice => {
+  placement.enum.forEach(async (placementChoice) => {
     test(`content placement: ${placementChoice}`, async () => {
       const results = await render('@bolt-components-popover/popover.twig', {
         trigger: '<bolt-button>This triggers a popover</bolt-button>',
@@ -39,7 +39,7 @@ describe('<bolt-popover> Component', () => {
     });
   });
 
-  spacing.enum.forEach(async spacingChoice => {
+  spacing.enum.forEach(async (spacingChoice) => {
     test(`content spacing: ${spacingChoice}`, async () => {
       const results = await render('@bolt-components-popover/popover.twig', {
         trigger: '<bolt-button>This triggers a popover</bolt-button>',
@@ -52,7 +52,7 @@ describe('<bolt-popover> Component', () => {
     });
   });
 
-  theme.enum.forEach(async themeChoice => {
+  theme.enum.forEach(async (themeChoice) => {
     test(`content theme: ${themeChoice}`, async () => {
       const results = await render('@bolt-components-popover/popover.twig', {
         trigger: '<bolt-button>This triggers a popover</bolt-button>',

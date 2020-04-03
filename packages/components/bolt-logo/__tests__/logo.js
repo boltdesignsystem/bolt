@@ -24,7 +24,7 @@ describe('logo', () => {
     });
   }, timeout);
 
-  afterAll(async function() {
+  afterAll(async function () {
     await stopServer();
     await page.close();
   });
@@ -48,7 +48,7 @@ describe('logo', () => {
     expect(results.html).toMatchSnapshot();
   });
 
-  test('Default <bolt-logo> renders', async function() {
+  test('Default <bolt-logo> renders', async function () {
     const renderedLogoHTML = await page.evaluate(() => {
       const logo = document.createElement('bolt-logo');
 
@@ -72,7 +72,7 @@ describe('logo', () => {
     expect(renderedHTML).toMatchSnapshot();
   });
 
-  test('Inverted <bolt-logo> renders as inverted', async function() {
+  test('Inverted <bolt-logo> renders as inverted', async function () {
     const renderedLogoHTML = await page.evaluate(() => {
       const logo = document.createElement('bolt-logo');
       const wrapper = document.createElement('div');
@@ -92,7 +92,7 @@ describe('logo', () => {
     await page.evaluate(async () => {
       const selectors = Array.from(document.querySelectorAll('bolt-logo'));
       await Promise.all(
-        selectors.map(logo => {
+        selectors.map((logo) => {
           const logoImage = logo.querySelector('bolt-image');
           if (logoImage._wasInitiallyRendered === true) return;
           return new Promise((resolve, reject) => {

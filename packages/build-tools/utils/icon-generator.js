@@ -26,7 +26,7 @@ function alphabetizeIconList(a, b) {
 async function aggregateIcons(outputDir, icons) {
   // @ts-ignore
   return Promise.all(
-    icons.map(async icon => {
+    icons.map(async (icon) => {
       const id = path
         .basename(icon, '.svg')
         .replace(/ /g, '-')
@@ -62,7 +62,7 @@ async function getPackageBasePath(outputPackageName) {
 async function getIconSourcePaths(outputPackageName, extendedIconDirs) {
   const packageDir = await getPackageBasePath(outputPackageName);
   const dirs = [packageDir, ...extendedIconDirs];
-  return dirs.map(dir => path.join(dir, globPattern));
+  return dirs.map((dir) => path.join(dir, globPattern));
 }
 
 async function generate(outputPackageName, extendedIconDirs) {

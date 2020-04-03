@@ -25,12 +25,12 @@ async function phpServer() {
       true,
       true,
     )
-      .then(output => {
+      .then((output) => {
         console.log('---');
         console.log(output);
         console.log('===');
       })
-      .catch(error => {
+      .catch((error) => {
         console.log('---Error:');
         console.log(error);
         console.log('===End: Error');
@@ -72,7 +72,7 @@ async function getServerConfig() {
     serverConfig.proxy = {
       target: `http://localhost:${config.proxyPort}/`,
       proxyReq: [
-        function(proxyReq) {
+        function (proxyReq) {
           proxyReq.setHeader(`${config.proxyHeader}`, 'true');
         },
       ],
@@ -107,7 +107,7 @@ function reload(files) {
   server.reload(files);
 }
 
-events.on('reload', async files => {
+events.on('reload', async (files) => {
   config = config || (await getConfig());
 
   if (config.verbosity > 4) {

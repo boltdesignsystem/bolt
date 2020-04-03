@@ -26,7 +26,7 @@ export class Slotify extends LitElement {
 
   // Save a reference to the pseudoSlot content before lit-element renders
   saveSlots() {
-    Array.from(this.childNodes).forEach(child => {
+    Array.from(this.childNodes).forEach((child) => {
       const slot = this.assignSlotToContent(child);
 
       if (!child.textContent || child.textContent.trim().length > 0) {

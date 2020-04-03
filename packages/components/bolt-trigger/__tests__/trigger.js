@@ -11,7 +11,7 @@ describe('trigger', () => {
     expect(results.html).toMatchSnapshot();
   });
 
-  display.enum.forEach(async option => {
+  display.enum.forEach(async (option) => {
     test(`trigger display: ${option}`, async () => {
       const results = await render('@bolt-components-trigger/trigger.twig', {
         content: 'Hello World',
@@ -22,7 +22,7 @@ describe('trigger', () => {
     });
   });
 
-  cursor.enum.forEach(async option => {
+  cursor.enum.forEach(async (option) => {
     test(`trigger cursor: ${option}`, async () => {
       const results = await render('@bolt-components-trigger/trigger.twig', {
         content: 'Hello World',

@@ -101,7 +101,7 @@ class BoltShadowToggle extends BoltElement {
               ?checked=${this.isEnabled}
               name="shadowToggle"
               id="radio1"
-              @change=${e => this.onFormChange(e.target.value)}
+              @change=${(e) => this.onFormChange(e.target.value)}
             />
             <label class="c-bolt-shadow-toggle__label" for="radio1">
               <svg viewBox="0 0 24 24" height="32" width="32">
@@ -122,7 +122,7 @@ class BoltShadowToggle extends BoltElement {
               name="shadowToggle"
               ?checked=${this.isDisabled}
               id="radio2"
-              @change=${e => this.onFormChange(e.target.value)}
+              @change=${(e) => this.onFormChange(e.target.value)}
             />
             <label class="c-bolt-shadow-toggle__label" for="radio2">
               <svg viewBox="0 0 24 24" height="32" width="32">
@@ -146,7 +146,7 @@ class BoltShadowToggle extends BoltElement {
           <bolt-button
             color="text"
             size="xsmall"
-            @click=${e => this.onReset(e.target.value)}
+            @click=${(e) => this.onReset(e.target.value)}
           >
             ${this.isIndeterminate
               ? 'Click to Override Shadow DOM'

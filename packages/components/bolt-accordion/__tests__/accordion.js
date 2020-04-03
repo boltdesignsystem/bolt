@@ -90,7 +90,7 @@ describe('<bolt-accordion> Component', () => {
     expect(results.html).toMatchSnapshot();
   });
 
-  single.enum.forEach(async singleChoice => {
+  single.enum.forEach(async (singleChoice) => {
     test(`expand single items: ${singleChoice}`, async () => {
       const results = await render(
         '@bolt-components-accordion/accordion.twig',
@@ -104,7 +104,7 @@ describe('<bolt-accordion> Component', () => {
     });
   });
 
-  spacing.enum.forEach(async spacingChoice => {
+  spacing.enum.forEach(async (spacingChoice) => {
     test(`spacing: ${spacingChoice}`, async () => {
       const results = await render(
         '@bolt-components-accordion/accordion.twig',
@@ -118,7 +118,7 @@ describe('<bolt-accordion> Component', () => {
     });
   });
 
-  spacing.enum.forEach(async spacingChoice => {
+  spacing.enum.forEach(async (spacingChoice) => {
     test(`trigger spacing: ${spacingChoice}`, async () => {
       const results = await render(
         '@bolt-components-accordion/accordion.twig',
@@ -176,8 +176,8 @@ describe('<bolt-accordion> Component', () => {
     expect(results.html).toMatchSnapshot();
   });
 
-  test('Default <bolt-accordion> with Shadow DOM renders', async function() {
-    await page.evaluate(async accordionHTML => {
+  test('Default <bolt-accordion> with Shadow DOM renders', async function () {
+    await page.evaluate(async (accordionHTML) => {
       const wrapper = document.createElement('div');
       wrapper.innerHTML = accordionHTML;
       document.body.appendChild(wrapper);
@@ -186,7 +186,7 @@ describe('<bolt-accordion> Component', () => {
         'bolt-accordion',
         'bolt-accordion-item',
       );
-      const promises = [...undefinedElements].map(elem =>
+      const promises = [...undefinedElements].map((elem) =>
         customElements.whenDefined(elem.localName),
       );
       await Promise.all(promises);
@@ -197,12 +197,12 @@ describe('<bolt-accordion> Component', () => {
 
     const accordionShadowRoot = await page.$eval(
       'bolt-accordion',
-      el => el.renderRoot.innerHTML,
+      (el) => el.renderRoot.innerHTML,
     );
 
     const accordionItemShadowRoot = await page.$eval(
       'bolt-accordion-item',
-      el => el.renderRoot.innerHTML,
+      (el) => el.renderRoot.innerHTML,
     );
 
     const renderedShadowRoot = await html(`<div>${accordionShadowRoot}</div>`);
@@ -221,8 +221,8 @@ describe('<bolt-accordion> Component', () => {
     });
   });
 
-  test('Default <bolt-accordion> w/o Shadow DOM renders', async function() {
-    await page.evaluate(async accordionNoShadowHTML => {
+  test('Default <bolt-accordion> w/o Shadow DOM renders', async function () {
+    await page.evaluate(async (accordionNoShadowHTML) => {
       const wrapper = document.createElement('div');
       wrapper.innerHTML = accordionNoShadowHTML;
       document.body.appendChild(wrapper);
@@ -231,7 +231,7 @@ describe('<bolt-accordion> Component', () => {
         'bolt-accordion',
         'bolt-accordion-item',
       );
-      const promises = [...undefinedElements].map(elem =>
+      const promises = [...undefinedElements].map((elem) =>
         customElements.whenDefined(elem.localName),
       );
       await Promise.all(promises);

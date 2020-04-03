@@ -106,7 +106,7 @@ export class BoltBase extends withComponent(HTMLElement) {
 
     this.formattedSchema = this.schema;
 
-    Object.keys(this.formattedSchema.properties).map(key => {
+    Object.keys(this.formattedSchema.properties).map((key) => {
       this.formattedSchema.properties = renameKey(
         key,
         camelcase(key),
@@ -155,7 +155,7 @@ export class BoltBase extends withComponent(HTMLElement) {
     }
 
     try {
-      propsToRemove.forEach(item => {
+      propsToRemove.forEach((item) => {
         if (modifiedSchema.properties && modifiedSchema.properties[item]) {
           // Delete property key from schema
           delete modifiedSchema.properties[item];
@@ -186,7 +186,7 @@ export class BoltBase extends withComponent(HTMLElement) {
   ssrHydrationPrep() {
     this.nodesToKeep = [];
 
-    this.ssrKeep.forEach(item => {
+    this.ssrKeep.forEach((item) => {
       while (item.firstChild) {
         this.nodesToKeep.push(item.firstChild); // track the nodes that will be preserved
         this.appendChild(item.firstChild);
@@ -195,8 +195,8 @@ export class BoltBase extends withComponent(HTMLElement) {
 
     // Remove all children not in the "keep" array
     Array.from(this.children)
-      .filter(item => !this.nodesToKeep.includes(item))
-      .forEach(node => {
+      .filter((item) => !this.nodesToKeep.includes(item))
+      .forEach((node) => {
         node.parentElement.removeChild(node);
       });
 
@@ -218,12 +218,12 @@ export class BoltBase extends withComponent(HTMLElement) {
    */
   addClassesToSlottedChildren(slotNames = ['default']) {
     if (this.slots) {
-      const applyClasses = slotName => {
+      const applyClasses = (slotName) => {
         if (!(slotName in this.slots)) return;
 
         const currentSlot = [];
 
-        this.slots[slotName].forEach(item => {
+        this.slots[slotName].forEach((item) => {
           if (item.tagName) {
             item.classList.remove('is-first-child');
             item.classList.remove('is-last-child'); // clean up existing classes
@@ -244,7 +244,7 @@ export class BoltBase extends withComponent(HTMLElement) {
         }
       };
 
-      slotNames.forEach(name => applyClasses(name));
+      slotNames.forEach((name) => applyClasses(name));
     }
   }
 
@@ -253,7 +253,7 @@ export class BoltBase extends withComponent(HTMLElement) {
     const slots = { default: [] };
 
     // Loop through nodelist
-    selector.forEach(function(child, index, nodelist) {
+    selector.forEach(function (child, index, nodelist) {
       const slotName = child.getAttribute ? child.getAttribute('slot') : null;
 
       if (!slotName) {

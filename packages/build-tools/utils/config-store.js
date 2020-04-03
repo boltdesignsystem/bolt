@@ -56,7 +56,7 @@ async function getDefaultConfig() {
 
 async function getEnvVarsConfig() {
   const envVars = {};
-  Object.keys(process.env).forEach(envVar => {
+  Object.keys(process.env).forEach((envVar) => {
     if (envVar.startsWith('bolt_')) {
       /** @type {string} - All env vars are strings */
       let value = process.env[envVar];

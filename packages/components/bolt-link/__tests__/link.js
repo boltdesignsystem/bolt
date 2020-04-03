@@ -39,7 +39,7 @@ describe('link', () => {
     expect(results.html).toMatchSnapshot();
   });
 
-  display.enum.forEach(async option => {
+  display.enum.forEach(async (option) => {
     test(`link display: ${option}`, async () => {
       const results = await render('@bolt-components-link/link.twig', {
         text: 'Hello World',
@@ -50,7 +50,7 @@ describe('link', () => {
     });
   });
 
-  valign.enum.forEach(async option => {
+  valign.enum.forEach(async (option) => {
     test(`link valign: ${option}`, async () => {
       const results = await render('@bolt-components-link/link.twig', {
         text: 'Hello World',
@@ -125,7 +125,7 @@ describe('link', () => {
     expect(results.html).toMatchSnapshot();
   });
 
-  test('Default <bolt-link> w/o Shadow DOM renders', async function() {
+  test('Default <bolt-link> w/o Shadow DOM renders', async function () {
     const renderedLinkHTML = await page.evaluate(async () => {
       document.body.insertAdjacentHTML(
         'beforeend',
@@ -133,7 +133,7 @@ describe('link', () => {
       );
       const link = document.querySelector('bolt-link');
       const undefinedElements = document.querySelectorAll('bolt-link');
-      const promises = [...undefinedElements].map(elem =>
+      const promises = [...undefinedElements].map((elem) =>
         customElements.whenDefined(elem.localName),
       );
       await Promise.all(promises);
@@ -158,7 +158,7 @@ describe('link', () => {
     expect(renderedHTML).toMatchSnapshot();
   });
 
-  test('Default <bolt-link> with Shadow DOM renders', async function() {
+  test('Default <bolt-link> with Shadow DOM renders', async function () {
     const defaultLinkShadowRoot = await page.evaluate(async () => {
       document.body.insertAdjacentHTML(
         'beforeend',
@@ -166,7 +166,7 @@ describe('link', () => {
       );
       const link = document.querySelector('bolt-link');
       const undefinedElements = document.querySelectorAll('bolt-link');
-      const promises = [...undefinedElements].map(elem =>
+      const promises = [...undefinedElements].map((elem) =>
         customElements.whenDefined(elem.localName),
       );
       await Promise.all(promises);
@@ -180,7 +180,7 @@ describe('link', () => {
       link.textContent = 'Link Test -- Outer HTML';
       document.body.appendChild(link);
       const undefinedElements = document.querySelectorAll('bolt-link');
-      const promises = [...undefinedElements].map(elem =>
+      const promises = [...undefinedElements].map((elem) =>
         customElements.whenDefined(elem.localName),
       );
       await Promise.all(promises);
@@ -199,7 +199,7 @@ describe('link', () => {
     });
   });
 
-  test('Default <bolt-link> w/o Shadow DOM renders and without url prop', async function() {
+  test('Default <bolt-link> w/o Shadow DOM renders and without url prop', async function () {
     const renderedLinkHTML = await page.evaluate(async () => {
       document.body.insertAdjacentHTML(
         'beforeend',
@@ -208,7 +208,7 @@ describe('link', () => {
       );
       const link = document.querySelector('bolt-link');
       const undefinedElements = document.querySelectorAll('bolt-link');
-      const promises = [...undefinedElements].map(elem =>
+      const promises = [...undefinedElements].map((elem) =>
         customElements.whenDefined(elem.localName),
       );
       await Promise.all(promises);
@@ -234,7 +234,7 @@ describe('link', () => {
     expect(renderedHTML).toMatchSnapshot();
   });
 
-  test('Default <bolt-link> with Shadow DOM renders and without url prop', async function() {
+  test('Default <bolt-link> with Shadow DOM renders and without url prop', async function () {
     const defaultLinkShadowRoot = await page.evaluate(async () => {
       document.body.insertAdjacentHTML(
         'beforeend',
@@ -242,7 +242,7 @@ describe('link', () => {
       );
       const link = document.querySelector('bolt-link');
       const undefinedElements = document.querySelectorAll('bolt-link');
-      const promises = [...undefinedElements].map(elem =>
+      const promises = [...undefinedElements].map((elem) =>
         customElements.whenDefined(elem.localName),
       );
       await Promise.all(promises);
@@ -255,7 +255,7 @@ describe('link', () => {
       link.textContent = 'Link Test without url attr -- Outer HTML';
       document.body.appendChild(link);
       const undefinedElements = document.querySelectorAll('bolt-link');
-      const promises = [...undefinedElements].map(elem =>
+      const promises = [...undefinedElements].map((elem) =>
         customElements.whenDefined(elem.localName),
       );
       await Promise.all(promises);
@@ -277,7 +277,7 @@ describe('link', () => {
     });
   });
 
-  test('Default <bolt-link> with Shadow DOM renders with no extra whitespace', async function() {
+  test('Default <bolt-link> with Shadow DOM renders with no extra whitespace', async function () {
     const defaultLinkOuter = await page.evaluate(async () => {
       // Include huge inline font-size style to increase visibility of any unexpected whitespace
       document.body.insertAdjacentHTML(
@@ -286,7 +286,7 @@ describe('link', () => {
       );
       const link = document.querySelector('bolt-link').parentNode;
       const undefinedElements = document.querySelectorAll('bolt-link');
-      const promises = [...undefinedElements].map(elem =>
+      const promises = [...undefinedElements].map((elem) =>
         customElements.whenDefined(elem.localName),
       );
       await Promise.all(promises);
@@ -324,12 +324,12 @@ describe('link', () => {
     `);
 
     // Next, convert to a javascript node and disable shadow dom so we can evaluate it with js.
-    const renderedLinkHTML = await page.evaluate(async html => {
+    const renderedLinkHTML = await page.evaluate(async (html) => {
       const div = document.createElement('div');
       document.body.insertAdjacentHTML('beforeend', html);
       const link = document.querySelector('bolt-link');
       const undefinedElements = document.querySelectorAll('bolt-link');
-      const promises = [...undefinedElements].map(elem =>
+      const promises = [...undefinedElements].map((elem) =>
         customElements.whenDefined(elem.localName),
       );
       await Promise.all(promises);
@@ -344,7 +344,7 @@ describe('link', () => {
     const elemsWithAnyId = renderedHTML.querySelectorAll('[id]');
     let allIds = [];
     let dupIds = [];
-    elemsWithAnyId.forEach(el => {
+    elemsWithAnyId.forEach((el) => {
       if (el.id) {
         if (allIds.includes(el.id)) {
           dupIds.push(el.id);

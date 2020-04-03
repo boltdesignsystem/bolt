@@ -15,7 +15,7 @@ module.exports = {
       type: 'string',
       title: 'Build In Animation Name',
       default: 'none',
-      enum: animationNames.buildIns.map(a => a.value),
+      enum: animationNames.buildIns.map((a) => a.value),
     },
     inDuration: {
       type: 'number',
@@ -32,7 +32,7 @@ module.exports = {
     inEasing: {
       type: 'string',
       title: 'Build In Easing',
-      enum: easings.map(e => e.value),
+      enum: easings.map((e) => e.value),
       default: 'ease',
     },
     inOrder: {
@@ -44,7 +44,7 @@ module.exports = {
       type: 'string',
       title: 'Idle Animation Name',
       default: 'none',
-      enum: animationNames.idles.map(a => a.value),
+      enum: animationNames.idles.map((a) => a.value),
     },
     idleDuration: {
       type: 'number',
@@ -63,7 +63,7 @@ module.exports = {
       type: 'string',
       title: 'Build Out Animation Name',
       default: 'none',
-      enum: animationNames.buildOuts.map(a => a.value),
+      enum: animationNames.buildOuts.map((a) => a.value),
     },
     outDuration: {
       type: 'number',
@@ -80,7 +80,7 @@ module.exports = {
     outEasing: {
       type: 'string',
       title: 'Build Out Easing',
-      enum: easings.map(e => e.value),
+      enum: easings.map((e) => e.value),
       default: 'ease',
     },
     outOrder: {

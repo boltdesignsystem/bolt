@@ -5,7 +5,7 @@ import styles from '../blockquote.scss';
 
 let cx = classNames.bind([styles, textStyles]);
 
-export const AuthorName = elem => {
+export const AuthorName = (elem) => {
   const { props, slots } = elem;
 
   // @todo: Temporary workaround until we can use `bolt-text`

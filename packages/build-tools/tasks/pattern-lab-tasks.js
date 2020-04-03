@@ -61,11 +61,11 @@ async function compile(errorShouldExit, dataOnly = false) {
     const failedCompilingPlMsg = `The initial ${plTaskName} compile failed!`;
     const failedRecompilingPlMsg = `Failed to recompile ${plTaskName}!`;
 
-    const endCompilingPlMsg = function(startTime) {
+    const endCompilingPlMsg = function (startTime) {
       return `Compiled ${plTaskName} in ${chalk.bold(timer.end(startTime))}`;
     };
 
-    const endRecompilingPlMsg = function(startTime) {
+    const endRecompilingPlMsg = function (startTime) {
       return `${plTaskName} ${
         initialBuild ? 'compiled' : 'recompiled'
       } in ${chalk.bold(timer.end(startTime))}`;
@@ -88,7 +88,7 @@ async function compile(errorShouldExit, dataOnly = false) {
       errorShouldExit,
       false,
     )
-      .then(output => {
+      .then((output) => {
         plSpinner.succeed(
           chalk.green(
             initialBuild
@@ -116,7 +116,7 @@ async function compile(errorShouldExit, dataOnly = false) {
 
         resolve(output);
       })
-      .catch(error => {
+      .catch((error) => {
         plSpinner.fail(
           chalk.red(
             initialBuild ? failedCompilingPlMsg : failedRecompilingPlMsg,
@@ -155,7 +155,7 @@ async function precompile() {
       jsFolderExists && scssFolderExists && indexHtmlExists;
 
     await compile(true)
-      .then(output => {
+      .then((output) => {
         // check if pattern lab's UIKIt assets exist -- automatically regenerate if the required assets are missing.
         if (!isPatternLabAlreadyCompiled || config.prod === true) {
           chalk.yellow(
@@ -176,7 +176,7 @@ async function precompile() {
           resolve();
         }
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error);
         reject(error);
       });
@@ -213,11 +213,11 @@ async function watch() {
 
   const globPattern = `**/*.{${config.watchedExtensions.join(',')}}`;
   const watchedFiles = [
-    dirs.map(dir => path.join(dir, globPattern)),
+    dirs.map((dir) => path.join(dir, globPattern)),
     path.join(plSource, globPattern),
     path.join(config.dataDir, '**/*'),
     `!${path.join(config.dataDir, 'sassdoc.bolt.json')}`,
-    `!${dirs.map(dir => path.join(dir, '**/*.schema.yml'))}`, // ignore watching schema files since the new schema file watcher below handles this
+    `!${dirs.map((dir) => path.join(dir, '**/*.schema.yml'))}`, // ignore watching schema files since the new schema file watcher below handles this
   ];
 
   // watch schema files for changes; regenerate the globally shared manifest data when updated
@@ -227,7 +227,7 @@ async function watch() {
   // @todo: move this entire
   const schemaFileWatcher = chokidar.watch(
     [
-      dirs.map(dir => path.join(dir, `**/*.schema.yml`)),
+      dirs.map((dir) => path.join(dir, `**/*.schema.yml`)),
       path.join(plSource, `**/*.schema.yml`),
       `!${path.join(config.dataDir, 'sassdoc.bolt.json')}`,
     ],

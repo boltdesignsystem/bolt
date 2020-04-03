@@ -71,7 +71,7 @@ async function generateSchemaFile(icons) {
     resolve.sync('@bolt/components-icon/package.json'),
   );
   const iconComponentSchema = path.join(iconComponentDir, 'icon.schema.json');
-  const names = icons.map(icon => icon.id);
+  const names = icons.map((icon) => icon.id);
   const schema = await fs.readJson(iconComponentSchema);
   schema.properties.name.anyOf[0].enum = names;
 

@@ -6,10 +6,10 @@ async function getPort(basePort = 8000) {
       .getPortPromise({
         port: basePort,
       })
-      .then(port => {
+      .then((port) => {
         return resolve(port);
       })
-      .catch(err => {
+      .catch((err) => {
         return reject(err);
       });
   });

@@ -35,7 +35,7 @@ describe('<bolt-snippet> Component', () => {
     expect(results.html).toMatchSnapshot();
   });
 
-  display.enum.forEach(async displayChoice => {
+  display.enum.forEach(async (displayChoice) => {
     test(`Snippet display: ${displayChoice}`, async () => {
       const results = await render(
         '@bolt-components-code-snippet/code-snippet.twig',
@@ -49,7 +49,7 @@ describe('<bolt-snippet> Component', () => {
     });
   });
 
-  lang.enum.forEach(async langChoice => {
+  lang.enum.forEach(async (langChoice) => {
     test(`Snippet language: ${langChoice}`, async () => {
       const results = await render(
         '@bolt-components-code-snippet/code-snippet.twig',
@@ -63,7 +63,7 @@ describe('<bolt-snippet> Component', () => {
     });
   });
 
-  syntax.enum.forEach(async syntaxChoice => {
+  syntax.enum.forEach(async (syntaxChoice) => {
     test(`Snippet syntax: ${syntaxChoice}`, async () => {
       const results = await render(
         '@bolt-components-code-snippet/code-snippet.twig',

@@ -54,7 +54,7 @@ async function finishRendering(rows, callback) {
       },
       rows: ${JSON.stringify(arraySort(rows, 'cells'))},
     } only %}
-  `).then(renderedResults => {
+  `).then((renderedResults) => {
     const formattedTable = prettier.format(renderedResults.html, {
       parser: 'html',
     });
@@ -63,7 +63,7 @@ async function finishRendering(rows, callback) {
       path.join(config.buildDir, 'status-board.twig'),
       formattedTable,
       'utf8',
-      function(err) {
+      function (err) {
         if (err) {
           console.log('An error occured while writing JSON Object to File.');
           return console.log(err);
@@ -95,11 +95,11 @@ async function generateStatusBoard() {
       shell.exec('npx lerna ls --json --all', { silent: true }).stdout,
     );
 
-    filteredBoltPackages = boltPackages.filter(pkg =>
+    filteredBoltPackages = boltPackages.filter((pkg) =>
       pkg.name.includes('@bolt/components'),
     );
 
-    filteredBoltPackages.sort(function(a, b) {
+    filteredBoltPackages.sort(function (a, b) {
       if (a.name < b.name) {
         return -1;
       }
@@ -109,7 +109,7 @@ async function generateStatusBoard() {
       return 0;
     });
 
-    Object.keys(boltUrls).forEach(function(url) {
+    Object.keys(boltUrls).forEach(function (url) {
       if (!url.includes('viewall')) {
         delete boltUrls[url];
       } else if (url.includes('visual-styles') || url.includes('pages-')) {
@@ -117,7 +117,7 @@ async function generateStatusBoard() {
       }
     });
 
-    filteredBoltPackages.forEach(function(boltPackage) {
+    filteredBoltPackages.forEach(function (boltPackage) {
       const pkgName = boltPackage.name;
       const componentPath = boltPackage.location;
       const pkg = require(`${boltPackage.location}/package.json`);
@@ -155,7 +155,7 @@ async function generateStatusBoard() {
         docsFound = false;
       }
 
-      Object.keys(boltUrls).forEach(async function(url, urlIndex, urlArray) {
+      Object.keys(boltUrls).forEach(async function (url, urlIndex, urlArray) {
         const urlAddress = boltUrls[url];
         const normalizedUrlName = url.replace(
           'viewall-components-',
@@ -178,7 +178,7 @@ async function generateStatusBoard() {
           const formattedPackageName = pkgName
             .replace('@bolt/components-', '')
             .replace(/\-/g, ' ')
-            .replace(/\b\w/g, function(l) {
+            .replace(/\b\w/g, function (l) {
               return l.toUpperCase();
             });
 
@@ -219,7 +219,7 @@ async function checkToSeeIfFinishedPrerendering(resolve) {
   // Only wait a second or so for re-renders to complete before skipping.
   let retryAttempts = 3;
   // @todo: refactor to use promises
-  const waitForRequestsToFinish = setInterval(async function() {
+  const waitForRequestsToFinish = setInterval(async function () {
     if (pendingRequests.length === 0 || retryAttempts === 0) {
       // console.log(processedComponents.length);
       await finishRendering(tableRows, resolve);

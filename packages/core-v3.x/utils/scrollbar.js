@@ -48,7 +48,7 @@ export const setScrollbarPadding = (element, scrollbarWidth) => {
  * Reset padding on a given element, will remove current padding style and restore original padding style if necessary, used after modal closes
  * @param {HTMLElement} element - The target element
  */
-export const resetScrollbarPadding = element => {
+export const resetScrollbarPadding = (element) => {
   if (!element) {
     return;
   }

@@ -22,7 +22,7 @@ async function writeBoltVersionUrlsToJson(versionData) {
   const config = await getConfig();
   let versionInfo = versionData;
 
-  versionInfo.sort(function(a, b) {
+  versionInfo.sort(function (a, b) {
     return semver.rcompare(a.label, b.label);
   });
 
@@ -32,7 +32,7 @@ async function writeBoltVersionUrlsToJson(versionData) {
       options: versionInfo,
     }),
     'utf8',
-    err => {
+    (err) => {
       if (err) throw err;
     },
   );

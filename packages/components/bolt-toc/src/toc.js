@@ -132,7 +132,7 @@ class BoltToc extends withContext(BoltElement) {
   }
 
   ssrHydrationPrep() {
-    Array.from(this.ssrEls).forEach(el => {
+    Array.from(this.ssrEls).forEach((el) => {
       const ssrType = el.getAttribute('ssr-type');
       switch (ssrType) {
         case 'remove':
@@ -161,7 +161,7 @@ class BoltToc extends withContext(BoltElement) {
     let triggers = [];
     let targets = [];
 
-    this.items.forEach(item => {
+    this.items.forEach((item) => {
       if (item.target) {
         triggers.push(item);
         targets.push(item.target);
@@ -203,7 +203,7 @@ class BoltToc extends withContext(BoltElement) {
   }
 
   updateWaypoints() {
-    const update = target => {
+    const update = (target) => {
       if (!target || this.scrolling) return;
 
       const trigger = this.getMatchingItem(target);
@@ -245,7 +245,7 @@ class BoltToc extends withContext(BoltElement) {
       }
     };
 
-    this.waypointData?.targets.forEach(target => {
+    this.waypointData?.targets.forEach((target) => {
       update(target);
     });
   }
@@ -281,8 +281,9 @@ class BoltToc extends withContext(BoltElement) {
           document.querySelector(this.scrollOffsetSelector));
       if (this.scrollElem) {
         if (this.scrollElem.offsetHeight) {
-          this.style.top = `${this.scrollElem.offsetHeight +
-            (this.scrollOffset || 0)}px`;
+          this.style.top = `${
+            this.scrollElem.offsetHeight + (this.scrollOffset || 0)
+          }px`;
         }
       }
     }
@@ -307,7 +308,7 @@ class BoltToc extends withContext(BoltElement) {
     this.updateWaypoints();
 
     // Returns first active item or undefined
-    this.activeItem = Array.from(this.items).find(item => item.active);
+    this.activeItem = Array.from(this.items).find((item) => item.active);
     this.updateContext();
   }
 

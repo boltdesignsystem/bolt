@@ -15,7 +15,7 @@ export function containsTagName(nodeList, tags) {
     return null;
   }
 
-  tags = tags.map(name => name.toUpperCase());
+  tags = tags.map((name) => name.toUpperCase());
 
   nodeList.forEach((childElement, i) => {
     if (childElement.tagName && tags.includes(childElement.tagName)) {

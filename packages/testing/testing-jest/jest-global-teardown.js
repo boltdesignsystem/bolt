@@ -9,7 +9,7 @@ const { buildPrep } = require('@bolt/build-tools/tasks/task-collections.js');
 
 const DIR = path.join(os.tmpdir(), 'jest_puppeteer_global_setup');
 
-module.exports = async function() {
+module.exports = async function () {
   // close the browser instance if it exists. workaround to ensure any webpack-dev-servers running are closed first before starting to run any tests
   if (global.__BROWSER_GLOBAL__) {
     await global.__BROWSER_GLOBAL__.close();
@@ -18,7 +18,7 @@ module.exports = async function() {
   const config = await getConfig();
 
   config.iconDir = config.iconDir.filter(
-    item => !item.includes('__tests__/fixtures'),
+    (item) => !item.includes('__tests__/fixtures'),
   );
 
   await iconTasks.build(); // cleaning icons after all tests

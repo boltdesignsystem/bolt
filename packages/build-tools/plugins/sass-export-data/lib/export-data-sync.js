@@ -3,7 +3,7 @@ const path = require('path');
 const jsondiff = require('jsondiffpatch');
 const getValue = require('./get-value');
 
-module.exports = config => {
+module.exports = (config) => {
   function exportDataSync(file, value) {
     const filename = path.join(config.path, file.getValue());
     const output = getValue(value);

@@ -53,7 +53,7 @@ describe('button', () => {
   // Tag is deprecated.  The presence or absence of a URL param determines which
   // tag will be used.  The 'type' prop should be used for the values 'reset'
   // and 'submit' because those aren't tags.
-  tag.enum.forEach(async tagChoice => {
+  tag.enum.forEach(async (tagChoice) => {
     test(`Button tag: ${tagChoice}`, async () => {
       const results = await render('@bolt-components-button/button.twig', {
         text: 'This is a button',
@@ -64,7 +64,7 @@ describe('button', () => {
     });
   });
 
-  type.enum.forEach(async typeChoice => {
+  type.enum.forEach(async (typeChoice) => {
     test(`Button type: ${typeChoice}`, async () => {
       const results = await render('@bolt-components-button/button.twig', {
         text: 'This is a button',
@@ -84,10 +84,10 @@ describe('button', () => {
     expect(results.ok).toBe(true);
     expect(results.html).toMatchSnapshot();
 
-    const buttonInnerHTML = await page.evaluate(async results => {
+    const buttonInnerHTML = await page.evaluate(async (results) => {
       document.body.insertAdjacentHTML('beforeend', results.html);
       const undefinedElements = document.querySelectorAll('bolt-button');
-      const promises = [...undefinedElements].map(elem =>
+      const promises = [...undefinedElements].map((elem) =>
         customElements.whenDefined(elem.localName),
       );
 
@@ -118,13 +118,13 @@ describe('button', () => {
     expect(results.ok).toBe(true);
     expect(results.html).toMatchSnapshot();
 
-    const buttonInnerHTML = await page.evaluate(async results => {
+    const buttonInnerHTML = await page.evaluate(async (results) => {
       const wrapper = document.createElement('div');
       wrapper.innerHTML = results.html;
       document.body.appendChild(wrapper);
       const button = document.querySelector('bolt-button');
       const undefinedElements = document.querySelectorAll('bolt-button');
-      const promises = [...undefinedElements].map(elem =>
+      const promises = [...undefinedElements].map((elem) =>
         customElements.whenDefined(elem.localName),
       );
       await Promise.all(promises);
@@ -206,7 +206,7 @@ describe('button', () => {
     expect(results.html).toMatchSnapshot();
   });
 
-  test('Default <bolt-button> w/o Shadow DOM renders', async function() {
+  test('Default <bolt-button> w/o Shadow DOM renders', async function () {
     const renderedButtonHTML = await page.evaluate(async () => {
       document.body.insertAdjacentHTML(
         'beforeend',
@@ -234,13 +234,13 @@ describe('button', () => {
     expect(renderedHTML).toMatchSnapshot();
   });
 
-  test('Default <bolt-button> with Shadow DOM renders', async function() {
+  test('Default <bolt-button> with Shadow DOM renders', async function () {
     const defaultButtonShadowRoot = await page.evaluate(async () => {
       const btn = document.createElement('bolt-button');
       btn.textContent = 'Button Test -- Shadow Root HTML';
       document.body.appendChild(btn);
       const undefinedElements = document.querySelectorAll('bolt-button');
-      const promises = [...undefinedElements].map(elem =>
+      const promises = [...undefinedElements].map((elem) =>
         customElements.whenDefined(elem.localName),
       );
       await Promise.all(promises);
@@ -252,7 +252,7 @@ describe('button', () => {
       btn.textContent = 'Button Test -- Outer HTML';
       document.body.appendChild(btn);
       const undefinedElements = document.querySelectorAll('bolt-button');
-      const promises = [...undefinedElements].map(elem =>
+      const promises = [...undefinedElements].map((elem) =>
         customElements.whenDefined(elem.localName),
       );
       await Promise.all(promises);
@@ -320,7 +320,7 @@ describe('button', () => {
     `);
 
     // Next, convert to a javascript node so we can evaluate it with js.
-    const renderedButtonHTML = await page.evaluate(html => {
+    const renderedButtonHTML = await page.evaluate((html) => {
       const div = document.createElement('div');
       div.innerHTML = `${html}`;
       document.body.appendChild(div);

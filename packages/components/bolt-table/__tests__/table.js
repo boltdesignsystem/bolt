@@ -64,7 +64,7 @@ describe('<bolt-table> Component', () => {
 
     const twigHTML = results.html;
 
-    const renderedTableHTML = await page.evaluate(async twigHTML => {
+    const renderedTableHTML = await page.evaluate(async (twigHTML) => {
       document.getElementById('root').innerHTML = twigHTML;
       const table = document.querySelector('bolt-table');
       return await Promise.all([
@@ -148,12 +148,12 @@ describe('<bolt-table> Component', () => {
       </bolt-table>
     `;
 
-    const renderedTableHTML = await page.evaluate(async staticHTML => {
+    const renderedTableHTML = await page.evaluate(async (staticHTML) => {
       document.getElementById('root').innerHTML = staticHTML;
       const table = document.querySelector('bolt-table');
 
       const undefinedElements = document.querySelectorAll('bolt-table');
-      const promises = [...undefinedElements].map(elem =>
+      const promises = [...undefinedElements].map((elem) =>
         customElements.whenDefined(elem.localName),
       );
       await Promise.all(promises);
@@ -292,7 +292,7 @@ describe('<bolt-table> Component', () => {
     expect(results.html).toMatchSnapshot();
   });
 
-  format.enum.forEach(async option => {
+  format.enum.forEach(async (option) => {
     test(`table format: ${option}`, async () => {
       const results = await renderTwig('@bolt-components-table/table.twig', {
         format: option,
@@ -324,7 +324,7 @@ describe('<bolt-table> Component', () => {
     });
   });
 
-  borderless.enum.forEach(async option => {
+  borderless.enum.forEach(async (option) => {
     test(`borderless table: ${option}`, async () => {
       const results = await renderTwig('@bolt-components-table/table.twig', {
         borderless: option,
@@ -358,7 +358,7 @@ describe('<bolt-table> Component', () => {
     });
   });
 
-  first_col_fixed_width.enum.forEach(async option => {
+  first_col_fixed_width.enum.forEach(async (option) => {
     test(`first column fixed width table: ${option}`, async () => {
       const results = await renderTwig('@bolt-components-table/table.twig', {
         first_col_fixed_width: option,

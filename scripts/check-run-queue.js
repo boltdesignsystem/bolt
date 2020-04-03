@@ -10,10 +10,10 @@ if (!name) {
 }
 
 setCheckRun({ name })
-  .then(results => {
+  .then((results) => {
     console.log(`Queued Check Run ${name}: ${results.html_url}`);
   })
-  .catch(err => {
+  .catch((err) => {
     console.error(`Error: Queuing Check Run ${name}`, err);
     process.exit(1);
   });

@@ -87,7 +87,7 @@ async function getPkgInfo(pkgName) {
     // match NPM scoped package names
     // borrowed from https://github.com/sindresorhus/scoped-regex
     const regex = '@[a-z\\d][\\w-.]+/[a-z\\d][\\w-.]*';
-    const scopedRegex = options =>
+    const scopedRegex = (options) =>
       options && options.exact
         ? new RegExp(`^${regex}$`, 'i')
         : new RegExp(regex, 'gi');
@@ -211,8 +211,8 @@ async function getAllDirs(relativeFrom) {
   const dirs = [];
   const manifest = await getBoltManifest();
   [manifest.components.global, manifest.components.individual].forEach(
-    componentList => {
-      componentList.forEach(component => {
+    (componentList) => {
+      componentList.forEach((component) => {
         dirs.push(
           relativeFrom
             ? path.relative(relativeFrom, component.dir)
@@ -236,7 +236,7 @@ async function mapComponentNameToTwigNamespace() {
     ...manifest.components.global,
     ...manifest.components.individual,
   ];
-  allComponents.forEach(component => {
+  allComponents.forEach((component) => {
     if (component.twigNamespace) {
       twigNamespaces[component.twigNamespace] = component.name;
     }
@@ -251,7 +251,7 @@ async function createComponentsManifest() {
     ...manifest.components.global,
     ...manifest.components.individual,
   ];
-  allComponents.forEach(component => {
+  allComponents.forEach((component) => {
     if (component.twigNamespace) {
       components[component.twigNamespace] = component;
     }
@@ -295,8 +295,8 @@ async function getTwigNamespaceConfig(relativeFrom, extraNamespaces = {}) {
   const global = manifest.components.global;
   const individual = manifest.components.individual;
 
-  [global, individual].forEach(componentList => {
-    componentList.forEach(component => {
+  [global, individual].forEach((componentList) => {
+    componentList.forEach((component) => {
       if (!component.twigNamespace) {
         return;
       }
@@ -345,7 +345,7 @@ async function getTwigNamespaceConfig(relativeFrom, extraNamespaces = {}) {
   //    This causes the folder declared in `extraNamespaces` to be looked in first for templates, before our default;
   //    allowing end user developers to selectively overwrite some templates.
   if (extraNamespaces) {
-    Object.keys(extraNamespaces).forEach(namespace => {
+    Object.keys(extraNamespaces).forEach((namespace) => {
       const settings = extraNamespaces[namespace];
       if (
         namespaceConfigFile[namespace] &&

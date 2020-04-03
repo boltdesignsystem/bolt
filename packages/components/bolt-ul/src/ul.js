@@ -50,7 +50,7 @@ class BoltUnorderedList extends withLitHtml {
 
     if (this.slots.default) {
       const updatedDefaultSlot = this.slots.default.filter(
-        item => item.tagName,
+        (item) => item.tagName,
       );
       const updatedSlotsLength = updatedDefaultSlot.length;
       const lastSlotItem = updatedDefaultSlot[updatedSlotsLength - 1];

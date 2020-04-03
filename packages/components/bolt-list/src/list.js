@@ -84,7 +84,7 @@ class BoltList extends withContext(withLitHtml) {
 
     if (this.slots.default) {
       const updatedDefaultSlot = this.slots.default.filter(
-        item => item.tagName,
+        (item) => item.tagName,
       );
       const updatedSlotsLength = updatedDefaultSlot.length;
       const lastSlotItem = updatedDefaultSlot[updatedDefaultSlot.length - 1];
@@ -122,9 +122,7 @@ class BoltList extends withContext(withLitHtml) {
         `;
     }
 
-    return html`
-      ${this.addStyles([styles, themes])} ${renderedList}
-    `;
+    return html` ${this.addStyles([styles, themes])} ${renderedList} `;
   }
 }
 

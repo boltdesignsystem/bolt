@@ -1,7 +1,7 @@
 import { IdleQueue } from 'idlize/IdleQueue.mjs';
 
 export const lazyDefinitions = new Map();
-const lazyDefinitionObserver = new MutationObserver(records => {
+const lazyDefinitionObserver = new MutationObserver((records) => {
   for (const record of records) {
     for (const node of record.addedNodes) {
       const walker = document.createTreeWalker(node, NodeFilter.SHOW_ELEMENT);
@@ -32,7 +32,7 @@ lazyDefinitionObserver.observe(document.body, {
 });
 
 const originalAttachShadow = HTMLElement.prototype.attachShadow;
-HTMLElement.prototype.attachShadow = function(options) {
+HTMLElement.prototype.attachShadow = function (options) {
   const shadow = originalAttachShadow.call(this, options);
   lazyDefinitionObserver.observe(shadow, {
     childList: true,
@@ -54,7 +54,7 @@ export const lazyQueue = async (componentSelectors = [], callback) => {
       await callback();
     });
   } else {
-    componentSelectors.forEach(selector => {
+    componentSelectors.forEach((selector) => {
       if (elemFound === false) {
         elemFound = document.querySelector(selector) ? true : false;
       }
@@ -64,7 +64,7 @@ export const lazyQueue = async (componentSelectors = [], callback) => {
       await callback();
     } else {
       // idleQueue.pushTask(() => {
-      componentSelectors.map(selector => {
+      componentSelectors.map((selector) => {
         lazyDefinitions.set(selector, callback);
       });
       // });

@@ -44,7 +44,7 @@ describe('<bolt-stack> component', () => {
     expect(results.html).toMatchSnapshot();
   });
 
-  spacing.enum.forEach(async spacingChoice => {
+  spacing.enum.forEach(async (spacingChoice) => {
     test(`stack spacing: ${spacingChoice}`, async () => {
       const results = await renderString(
         `

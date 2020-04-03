@@ -64,7 +64,7 @@ class BoltConnection extends withLitContext {
         .querySelector('bolt-svg-animations')
         .renderRoot.querySelector('svg')
         .querySelectorAll('#connectionGradientBG, stop'),
-    ].forEach(e => {
+    ].forEach((e) => {
       e.style.display = 'none';
       setTimeout(() => {
         e.style.display = 'block';
@@ -79,11 +79,11 @@ class BoltConnection extends withLitContext {
       ${this.addStyles([styles])}
       <div class="${classes}">
         ${this.slots.top &&
-          html`
-            <span class="c-bolt-connection__slot--top">
-              ${this.slot('top')}
-            </span>
-          `}
+        html`
+          <span class="c-bolt-connection__slot--top">
+            ${this.slot('top')}
+          </span>
+        `}
         <bolt-svg-animations
           class="c-bolt-connection__main-image"
           speed="${props.speed}"
@@ -92,11 +92,11 @@ class BoltConnection extends withLitContext {
           theme=${this.context.theme}
         />
         ${this.slots.bottom &&
-          html`
-            <span class="c-bolt-connection__slot--bottom">
-              ${this.slot('bottom')}
-            </span>
-          `}
+        html`
+          <span class="c-bolt-connection__slot--bottom">
+            ${this.slot('bottom')}
+          </span>
+        `}
       </div>
     `;
   }

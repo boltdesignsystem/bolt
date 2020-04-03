@@ -37,7 +37,7 @@ class BoltStatusDialogueBar extends withLitHtml {
       [`c-bolt-status-dialogue-bar--has-arrow c-bolt-status-dialogue-bar--arrow--${props.dialogueArrowDirection}`]: hasArrow,
       [`c-bolt-status-dialogue-bar--box-float--${props.boxFloatDirection}`]: true,
     });
-    const triangle = (direction => {
+    const triangle = ((direction) => {
       switch (direction) {
         case 'right':
           return '▶';

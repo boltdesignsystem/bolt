@@ -40,9 +40,7 @@ class BoltCopyToClipboard extends withLitHtml {
   }
 
   render() {
-    return html`
-      ${this.slot('default')}
-    `;
+    return html` ${this.slot('default')} `;
   }
 }
 

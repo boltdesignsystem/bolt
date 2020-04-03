@@ -39,7 +39,7 @@ async function clean(dirs) {
   await del(dirs, {
     // dryRun: true, // debug what's flagged for being deleted
     force: true, // needed if you want to delete directories outside CWD
-  }).then(paths => {
+  }).then((paths) => {
     // console.log('Files and folders that would be deleted:\n', paths.join('\n'));
   });
 

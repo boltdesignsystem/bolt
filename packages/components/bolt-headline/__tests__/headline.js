@@ -59,7 +59,7 @@ describe('<bolt-headline> Component', () => {
     expect(results.html).toMatchSnapshot();
   });
 
-  tag.enum.forEach(displayChoice => {
+  tag.enum.forEach((displayChoice) => {
     test(`tag display: ${displayChoice}`, async () => {
       const results = await render('@bolt-components-headline/headline.twig', {
         tag: displayChoice,
@@ -70,7 +70,7 @@ describe('<bolt-headline> Component', () => {
     });
   });
 
-  align.enum.forEach(alignmentChoice => {
+  align.enum.forEach((alignmentChoice) => {
     test(`text alignment: ${alignmentChoice}`, async () => {
       const results = await render('@bolt-components-headline/headline.twig', {
         align: alignmentChoice,
@@ -81,10 +81,10 @@ describe('<bolt-headline> Component', () => {
     });
   });
 
-  size.enum.forEach(sizeChoice => {
+  size.enum.forEach((sizeChoice) => {
     const fontWeight = ['bold', 'regular', 'semibold'];
 
-    fontWeight.forEach(weightChoice => {
+    fontWeight.forEach((weightChoice) => {
       test(`Sizes at all varient font weights: ${sizeChoice}, ${weightChoice}`, async () => {
         const results = await render(
           '@bolt-components-headline/headline.twig',
@@ -100,10 +100,10 @@ describe('<bolt-headline> Component', () => {
     });
   });
 
-  size.enum.forEach(sizeChoice => {
+  size.enum.forEach((sizeChoice) => {
     const fontStyle = ['normal', 'italic'];
 
-    fontStyle.forEach(fontChoice => {
+    fontStyle.forEach((fontChoice) => {
       test(`Sizes at all varient font styles: ${sizeChoice}, ${fontChoice}`, async () => {
         const results = await render(
           '@bolt-components-headline/headline.twig',
@@ -119,7 +119,7 @@ describe('<bolt-headline> Component', () => {
     });
   });
 
-  transform.enum.forEach(caseChoice => {
+  transform.enum.forEach((caseChoice) => {
     test(`text casing: ${caseChoice}`, async () => {
       const results = await render('@bolt-components-headline/headline.twig', {
         transform: caseChoice,

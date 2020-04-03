@@ -8,7 +8,7 @@ import {
   smoothScroll,
   scrollOptions,
   getScrollTarget,
-} from '@bolt/components-smooth-scroll';
+} from '@bolt/components-smooth-scroll/src/smooth-scroll';
 
 @customElement('bolt-navlink')
 class BoltNavLink extends withLitHtml {

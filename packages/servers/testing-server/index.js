@@ -9,7 +9,7 @@ const webpackTasks = require('@bolt/build-tools/tasks/webpack-tasks');
 
 let server;
 
-getConfig().then(async boltConfig => {
+getConfig().then(async (boltConfig) => {
   let config = boltConfig;
   await webpackTasks.compile();
   app.use(express.static(path.relative(process.cwd(), config.wwwDir)));

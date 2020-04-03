@@ -8,10 +8,10 @@
  * subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
  */
 
-(function() {
+(function () {
   // defaultPrevented is broken in IE.
   // https://connect.microsoft.com/IE/feedback/details/790389/event-defaultprevented-returns-false-after-preventdefault-was-called
-  const workingDefaultPrevented = (function() {
+  const workingDefaultPrevented = (function () {
     const e = document.createEvent('Event');
     e.initEvent('foo', true, true);
     e.preventDefault();
@@ -20,7 +20,7 @@
 
   if (!workingDefaultPrevented) {
     const origPreventDefault = Event.prototype.preventDefault;
-    Event.prototype.preventDefault = function() {
+    Event.prototype.preventDefault = function () {
       if (!this.cancelable) {
         return;
       }
@@ -45,7 +45,7 @@
      * @param {!string} inType
      * @param {?(EventInit)=} params
      */
-    window.Event = function(inType, params) {
+    window.Event = function (inType, params) {
       params = params || {};
       const e = document.createEvent('Event');
       e.initEvent(inType, Boolean(params.bubbles), Boolean(params.cancelable));
@@ -69,7 +69,7 @@
      * @param {!string} inType
      * @param {?(CustomEventInit<T>)=} params
      */
-    window.CustomEvent = function(inType, params) {
+    window.CustomEvent = function (inType, params) {
       params = params || {};
       const e = document.createEvent('CustomEvent');
       e.initCustomEvent(
@@ -90,7 +90,7 @@
      * @param {!string} inType
      * @param {?(MouseEventInit)=} params
      */
-    window.MouseEvent = function(inType, params) {
+    window.MouseEvent = function (inType, params) {
       params = params || {};
       const e = document.createEvent('MouseEvent');
       e.initMouseEvent(

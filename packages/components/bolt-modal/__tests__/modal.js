@@ -77,7 +77,7 @@ describe('<bolt-modal> Component', () => {
     expect(results.html).toMatchSnapshot();
   });
 
-  width.enum.forEach(async widthChoice => {
+  width.enum.forEach(async (widthChoice) => {
     test(`modal width: ${widthChoice}`, async () => {
       const results = await render('@bolt-components-modal/modal.twig', {
         width: widthChoice,
@@ -88,7 +88,7 @@ describe('<bolt-modal> Component', () => {
     });
   });
 
-  spacing.enum.forEach(async spacingChoice => {
+  spacing.enum.forEach(async (spacingChoice) => {
     test(`modal spacing: ${spacingChoice}`, async () => {
       const results = await render('@bolt-components-modal/modal.twig', {
         spacing: spacingChoice,
@@ -99,7 +99,7 @@ describe('<bolt-modal> Component', () => {
     });
   });
 
-  theme.enum.forEach(async themeChoice => {
+  theme.enum.forEach(async (themeChoice) => {
     test(`modal theme: ${themeChoice}`, async () => {
       const results = await render('@bolt-components-modal/modal.twig', {
         theme: themeChoice,
@@ -110,7 +110,7 @@ describe('<bolt-modal> Component', () => {
     });
   });
 
-  scroll.enum.forEach(async scrollChoice => {
+  scroll.enum.forEach(async (scrollChoice) => {
     test(`modal scroll: ${scrollChoice}`, async () => {
       const results = await render('@bolt-components-modal/modal.twig', {
         scroll: scrollChoice,
@@ -131,7 +131,7 @@ describe('<bolt-modal> Component', () => {
       expect(ok).toBe(true);
       expect(html).toMatchSnapshot();
 
-      await page.evaluate(html => {
+      await page.evaluate((html) => {
         document.body.innerHTML = html;
       }, html);
 
@@ -146,7 +146,7 @@ describe('<bolt-modal> Component', () => {
         await page.evaluate(async () => {
           const modals = Array.from(document.querySelectorAll('bolt-modal'));
           return await Promise.all(
-            modals.map(elem => {
+            modals.map((elem) => {
               if (elem._wasInitiallyRendered) return;
               return new Promise((resolve, reject) => {
                 elem.addEventListener('ready', resolve);
@@ -173,9 +173,9 @@ describe('<bolt-modal> Component', () => {
     timeout,
   );
 
-  modalContent.forEach(async contentChoice => {
+  modalContent.forEach(async (contentChoice) => {
     test(`${contentChoice.name} <bolt-modal> with Shadow DOM renders`, async () => {
-      const renderedModal = await page.evaluate(async contentChoice => {
+      const renderedModal = await page.evaluate(async (contentChoice) => {
         const modal = document.createElement('bolt-modal');
         modal.setAttribute('uuid', '12345');
         modal.setAttribute('width', 'regular');
@@ -184,7 +184,7 @@ describe('<bolt-modal> Component', () => {
           <bolt-text slot="footer">Footer slot</bolt-text>`;
         document.body.appendChild(modal);
         const undefinedElements = document.querySelectorAll('bolt-modal');
-        const promises = [...undefinedElements].map(elem =>
+        const promises = [...undefinedElements].map((elem) =>
           customElements.whenDefined(elem.localName),
         );
         await Promise.all(promises);
@@ -219,9 +219,9 @@ describe('<bolt-modal> Component', () => {
     });
   });
 
-  modalContent.forEach(async contentChoice => {
+  modalContent.forEach(async (contentChoice) => {
     test(`${contentChoice.name} <bolt-modal> w/o Shadow DOM renders`, async () => {
-      const renderedModal = await page.evaluate(async contentChoice => {
+      const renderedModal = await page.evaluate(async (contentChoice) => {
         const modal = document.createElement('bolt-modal');
         modal.setAttribute('uuid', '12345');
         modal.setAttribute('width', 'regular');
@@ -231,7 +231,7 @@ describe('<bolt-modal> Component', () => {
         document.body.appendChild(modal);
         modal.useShadow = false;
         const undefinedElements = document.querySelectorAll('bolt-modal');
-        const promises = [...undefinedElements].map(elem =>
+        const promises = [...undefinedElements].map((elem) =>
           customElements.whenDefined(elem.localName),
         );
         await Promise.all(promises);
@@ -267,7 +267,7 @@ describe('<bolt-modal> Component', () => {
     });
   });
 
-  modalContent.forEach(async contentChoice => {
+  modalContent.forEach(async (contentChoice) => {
     test(
       `${contentChoice.name} <bolt-modal> at various viewport sizes`,
       async () => {
@@ -280,7 +280,7 @@ describe('<bolt-modal> Component', () => {
         expect(ok).toBe(true);
         expect(html).toMatchSnapshot();
 
-        await page.evaluate(html => {
+        await page.evaluate((html) => {
           document.body.innerHTML = html;
         }, html);
 
@@ -312,7 +312,7 @@ describe('<bolt-modal> Component', () => {
     );
   });
 
-  modalContent.forEach(async contentChoice => {
+  modalContent.forEach(async (contentChoice) => {
     test(
       `${contentChoice.name}<bolt-modal> with band at various viewport sizes`,
       async () => {
@@ -331,7 +331,7 @@ describe('<bolt-modal> Component', () => {
         expect(ok).toBe(true);
         expect(html).toMatchSnapshot();
 
-        await page.evaluate(html => {
+        await page.evaluate((html) => {
           document.body.innerHTML = html;
         }, html);
 

@@ -161,7 +161,7 @@ class BoltTypeahead extends withLitEvents {
         setupEventHandlers();
       }
 
-      this.autosuggest.addEventListener('ready', e => {
+      this.autosuggest.addEventListener('ready', (e) => {
         if (e.detail.name === 'bolt-autosuggest') {
           setupEventHandlers();
         }

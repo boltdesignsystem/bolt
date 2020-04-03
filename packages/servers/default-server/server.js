@@ -9,11 +9,11 @@ const port = process.env.PORT || 3000;
 
 let server;
 
-const getDirectories = source =>
+const getDirectories = (source) =>
   fs
     .readdirSync(source, { withFileTypes: true })
-    .filter(dir => dir.isDirectory())
-    .map(dir => dir.name);
+    .filter((dir) => dir.isDirectory())
+    .map((dir) => dir.name);
 
 async function startServer() {
   const config = await getConfig();
@@ -54,7 +54,7 @@ async function startServer() {
   if (fs.existsSync(`${config.wwwDir}/integrations`)) {
     const integrationDirs = getDirectories(`${config.wwwDir}/integrations`);
 
-    integrationDirs.map(item => {
+    integrationDirs.map((item) => {
       app.use(express.static(`${config.wwwDir}/integrations/${item}`));
     });
 
@@ -82,7 +82,7 @@ function stopServer() {
     process.exit(0);
   });
 
-  setTimeout(function() {
+  setTimeout(function () {
     console.log('Forcefully shutting down server');
     process.exit(0);
   }, 1500);

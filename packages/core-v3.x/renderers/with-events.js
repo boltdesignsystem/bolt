@@ -57,7 +57,7 @@ export class withLitEvents extends withLitHtml {
     var listeners = this._listeners[type] || [];
 
     listeners.forEach(
-      function(listener) {
+      function (listener) {
         listener(this, props);
       }.bind(this),
     );

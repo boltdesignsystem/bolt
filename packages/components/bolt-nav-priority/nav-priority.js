@@ -32,7 +32,7 @@ class BoltNavPriority extends withLitHtml {
   };
 
   connecting() {
-    Promise.all([customElements.whenDefined('bolt-navlink')]).then(_ => {
+    Promise.all([customElements.whenDefined('bolt-navlink')]).then((_) => {
       this.isOpen = false;
       this.offsettolerance = 5; // Extra wiggle room when calculating how many items can fit
 
@@ -74,7 +74,7 @@ class BoltNavPriority extends withLitHtml {
         'bolt-navlink',
       );
 
-      this.dropdownLinks.forEach(navlink => {
+      this.dropdownLinks.forEach((navlink) => {
         navlink.setAttribute('is-dropdown-link', '');
       });
 
@@ -99,16 +99,14 @@ class BoltNavPriority extends withLitHtml {
   }
 
   render() {
-    return html`
-      ${this.slot('default')}
-    `;
+    return html` ${this.slot('default')} `;
   }
 
   _adaptPriorityNav() {
     this.classList.add('is-resizing');
 
     // reveal all items for the calculation
-    this.allListItems.forEach(item => {
+    this.allListItems.forEach((item) => {
       item.classList.remove('is-hidden');
     });
 
@@ -152,7 +150,7 @@ class BoltNavPriority extends withLitHtml {
   }
 
   _handleExternalClicks() {
-    document.addEventListener('click', e => {
+    document.addEventListener('click', (e) => {
       let el = e.target;
       while (el) {
         if (el === this.priorityDropdown || el === this.dropdownButton) {

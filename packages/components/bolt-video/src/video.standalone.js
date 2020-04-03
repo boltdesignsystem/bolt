@@ -146,7 +146,7 @@ class BoltVideo extends withPreact {
     const allPlugins = [...elem.defaultPlugins, ...enabledPlugins];
 
     // remove duplicates
-    const uniqueAndEnabledPlugins = allPlugins.filter(function(item, index) {
+    const uniqueAndEnabledPlugins = allPlugins.filter(function (item, index) {
       const itemName = allPlugins[index];
       return (
         allPlugins.indexOf(item) >= index &&
@@ -155,7 +155,7 @@ class BoltVideo extends withPreact {
     });
 
     // check to confirm plugins exist before initializing
-    uniqueAndEnabledPlugins.forEach(pluginName => {
+    uniqueAndEnabledPlugins.forEach((pluginName) => {
       if (BoltVideo.availablePlugins) {
         if (BoltVideo.availablePlugins[pluginName]) {
           BoltVideo.availablePlugins[pluginName](player, elem);
@@ -183,7 +183,7 @@ class BoltVideo extends withPreact {
       player.socialOverlay.options_.description = elem.props.shareDescription;
     }
 
-    player.on('loadedmetadata', function() {
+    player.on('loadedmetadata', function () {
       const duration = player.mediainfo.duration;
       const title = player.mediainfo.name;
       const width = player.mediainfo.sources[1].width;
@@ -205,27 +205,27 @@ class BoltVideo extends withPreact {
       }
     });
 
-    player.on('play', function() {
+    player.on('play', function () {
       elem.onPlay(player);
     });
 
-    player.on('pause', function() {
+    player.on('pause', function () {
       elem.onPause(player);
     });
 
-    player.on('seeked', function() {
+    player.on('seeked', function () {
       elem.onSeeked(player);
     });
 
-    player.on('timeupdate', function() {
+    player.on('timeupdate', function () {
       // elem.onPlay(player);
     });
 
-    player.on('durationchange', function() {
+    player.on('durationchange', function () {
       elem.onDurationChange(player);
     });
 
-    player.on('ended', function() {
+    player.on('ended', function () {
       elem.onEnded(player);
     });
   }
@@ -309,13 +309,13 @@ class BoltVideo extends withPreact {
 
       s.onload = () => {
         // We know Brightcove has loaded, so immediately call initVideoJS() on each video
-        BoltVideo.players.forEach(function(player) {
+        BoltVideo.players.forEach(function (player) {
           player.initVideoJS();
         });
       };
 
       // handle script not loading
-      s.onerror = err => {
+      s.onerror = (err) => {
         const uriErr = {
           code: '',
           message: `The script ${err.target.src} is not accessible.`,

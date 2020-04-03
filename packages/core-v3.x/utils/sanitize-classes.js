@@ -6,10 +6,10 @@ export function sanitizeBoltClasses(
   // Remove any `c-bolt-` prefixed classes but leave the rest
   let remainingClasses;
 
-  prefixes.forEach(function(prefix) {
+  prefixes.forEach(function (prefix) {
     remainingClasses = elementToSanitize.className
       .split(' ')
-      .filter(function(c) {
+      .filter(function (c) {
         return c.lastIndexOf(prefix, 0) !== 0;
       });
   });

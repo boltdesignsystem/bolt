@@ -44,7 +44,7 @@ class JestScreenshotReporter {
     let summaryOfFailingTests = ``;
     let summaryOfVrtResults = ``;
 
-    results.testResults.forEach(result => {
+    results.testResults.forEach((result) => {
       if (result.numFailingTests >= 1) {
         pathsToFailingTests.push(
           `• ${path.relative(process.cwd(), result.testFilePath)}`,
@@ -94,8 +94,8 @@ ${vrtScreenshots.join('\n')}
           path.join(testingDir, '/__image_snapshots__/__diff_output__/'),
         );
 
-        filesToProcess.forEach(file => {
-          const filePromise = new Promise(async function(resolve, reject) {
+        filesToProcess.forEach((file) => {
+          const filePromise = new Promise(async function (resolve, reject) {
             const imageData = fs.readFileSync(
               path.join(
                 testingDir,
@@ -114,7 +114,7 @@ ${vrtScreenshots.join('\n')}
               );
               resolve(urlToDisplay);
             } else {
-              uploadImage(file, imageData).then(url => {
+              uploadImage(file, imageData).then((url) => {
                 const urlToDisplay = `https://${url}/${file}`;
                 resolve(urlToDisplay);
               });
@@ -125,8 +125,8 @@ ${vrtScreenshots.join('\n')}
 
         if (NOW_TOKEN) {
           return Promise.all(allImagePromises)
-            .then(function(screenshotDiffs) {
-              screenshotDiffs.forEach(screenshot => {
+            .then(function (screenshotDiffs) {
+              screenshotDiffs.forEach((screenshot) => {
                 vrtScreenshots.push(
                   `• ${terminalLink(
                     screenshot.substring(
@@ -146,7 +146,7 @@ ${vrtScreenshots.join('\n')}
               );
               resolveAll(screenshotDiffs);
             })
-            .catch(err => {
+            .catch((err) => {
               console.log(
                 chalk.red.bold(
                   `Error uploading image diff(s) to now.sh: ${err}`,
@@ -155,8 +155,8 @@ ${vrtScreenshots.join('\n')}
             });
         } else {
           return Promise.all(allImagePromises)
-            .then(function(screenshotDiffs) {
-              screenshotDiffs.forEach(screenshot => {
+            .then(function (screenshotDiffs) {
+              screenshotDiffs.forEach((screenshot) => {
                 vrtScreenshots.push(
                   `• ${terminalLink(
                     screenshot.substring(
@@ -170,7 +170,7 @@ ${vrtScreenshots.join('\n')}
 
               resolveAll(screenshotDiffs);
             })
-            .catch(err => {
+            .catch((err) => {
               console.log(
                 chalk.red.bold(
                   `Error encountered when processing local image VRT diff(s): ${err}`,

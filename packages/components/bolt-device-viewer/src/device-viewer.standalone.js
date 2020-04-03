@@ -43,9 +43,7 @@ class BoltDeviceViewer extends withLitHtml {
   render({ props }) {
     const classes = css('c-bolt-image-magnifier');
 
-    return html`
-      <div class="${classes}">${this.slot('default')}</div>
-    `;
+    return html` <div class="${classes}">${this.slot('default')}</div> `;
   }
 
   connecting() {
@@ -112,7 +110,7 @@ class BoltImageZoom extends withLitHtml {
       );
 
     function animationLeaveFunction() {
-      setTimeout(function() {
+      setTimeout(function () {
         iconElem.removeEventListener(animationEvent, animationLeaveFunction);
         screenElem.classList.remove('is-mouse-leaving');
       }, 1000);
@@ -150,9 +148,7 @@ class BoltImageZoom extends withLitHtml {
   }
 
   render() {
-    return html`
-      ${this.slot('default')}
-    `;
+    return html` ${this.slot('default')} `;
   }
 }
 

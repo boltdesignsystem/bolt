@@ -14,7 +14,7 @@ const totalNumberOfPackages = boltPackages.length; // # of packages found
 let numberOfPackagesProcessed = 0; // iterator for forEach loop so we know when we're done
 
 async function generatePackageData() {
-  boltPackages.forEach(async pkg => {
+  boltPackages.forEach(async (pkg) => {
     if (pkg.version !== '0.0.0' && pkg.private !== true) {
       const name = pkg.name;
       try {
@@ -42,7 +42,7 @@ async function generatePackageData() {
         path.join(config.dataDir, 'bolt-pkg-versions.json'),
         formattedJSON,
         'utf8',
-        function(err) {
+        function (err) {
           if (err) {
             console.log('An error occured while writing JSON Object to File.');
             return console.log(err);

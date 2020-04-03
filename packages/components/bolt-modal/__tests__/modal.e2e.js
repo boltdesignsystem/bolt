@@ -2,7 +2,7 @@ let currentBrowser;
 
 module.exports = {
   tags: ['component', 'modal', 'web component'],
-  'Bolt Modal': function(browser) {
+  'Bolt Modal': function (browser) {
     const { testingUrl } = browser.globals;
     console.log(`global browser url: ${testingUrl}`);
     currentBrowser = '--' + browser.currentEnv || 'chrome';
@@ -16,14 +16,14 @@ module.exports = {
       .click('bolt-button')
       .pause(1000)
       .execute(
-        function(data) {
+        function (data) {
           const modal = document.querySelector('bolt-modal');
           return modal.renderRoot
             .querySelector('.c-bolt-modal')
             .classList.contains('is-open');
         },
         [],
-        function(result) {
+        function (result) {
           browser.assert.ok(
             result.value === true,
             `verified that clicking <bolt-button> opened <bolt-modal> and added the class "is-open".`,

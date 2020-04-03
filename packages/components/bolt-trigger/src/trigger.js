@@ -106,8 +106,8 @@ class BoltTrigger extends BoltAction {
           class="${classes}"
           target="${ifDefined(target ? target : undefined)}"
           aria-disabled=${ifDefined(disabled ? 'true' : undefined)}
-          @focus="${e => this._handleFocus(e)}"
-          @blur="${e => this._handleBlur(e)}"
+          @focus="${(e) => this._handleFocus(e)}"
+          @blur="${(e) => this._handleBlur(e)}"
           >${this.slot('default')}</a
         >
       `;
@@ -117,17 +117,15 @@ class BoltTrigger extends BoltAction {
           class="${classes}"
           type="${type}"
           disabled=${ifDefined(disabled ? '' : undefined)}
-          @focus="${e => this._handleFocus(e)}"
-          @blur="${e => this._handleBlur(e)}"
+          @focus="${(e) => this._handleFocus(e)}"
+          @blur="${(e) => this._handleBlur(e)}"
         >
           ${this.slot('default')}
         </button>
       `;
     }
 
-    return html`
-      ${this.addStyles([styles])} ${triggerElement}
-    `;
+    return html` ${this.addStyles([styles])} ${triggerElement} `;
   }
 }
 

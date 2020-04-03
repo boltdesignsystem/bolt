@@ -2,7 +2,7 @@ let currentBrowser;
 
 module.exports = {
   tags: ['component', 'carousel'],
-  'Bolt Carousel E2E': function(browser) {
+  'Bolt Carousel E2E': function (browser) {
     const { testingUrl } = browser.globals;
     console.log(`global browser url: ${testingUrl}`);
     currentBrowser = '--' + browser.currentEnv || 'chrome';

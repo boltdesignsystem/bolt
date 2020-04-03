@@ -101,7 +101,7 @@ describe('<bolt-navbar> Component', () => {
       expect(ok).toBe(true);
       expect(html).toMatchSnapshot();
 
-      await page.evaluate(html => {
+      await page.evaluate((html) => {
         const div = document.createElement('div');
         div.innerHTML = `${html}`;
         document.body.appendChild(div);
@@ -110,7 +110,7 @@ describe('<bolt-navbar> Component', () => {
       const screenshots = [];
 
       async function isVisible(selector) {
-        return await page.evaluate(selector => {
+        return await page.evaluate((selector) => {
           const e = document.querySelector(selector);
           if (!e) return false;
           const style = window.getComputedStyle(e);
@@ -190,7 +190,7 @@ describe('<bolt-navbar> Component', () => {
       expect(ok).toBe(true);
       expect(html).toMatchSnapshot();
 
-      await page.evaluate(html => {
+      await page.evaluate((html) => {
         const div = document.createElement('div');
         div.innerHTML = `${html}`;
         document.body.appendChild(div);
@@ -260,7 +260,7 @@ describe('<bolt-navbar> Component', () => {
       expect(ok).toBe(true);
       expect(html).toMatchSnapshot();
 
-      await page.evaluate(html => {
+      await page.evaluate((html) => {
         const div = document.createElement('div');
         div.innerHTML = `${html}`;
         document.body.appendChild(div);
@@ -269,7 +269,7 @@ describe('<bolt-navbar> Component', () => {
       const screenshots = [];
 
       async function isVisible(selector) {
-        return await page.evaluate(selector => {
+        return await page.evaluate((selector) => {
           const e = document.querySelector(selector);
           if (!e) return false;
           const style = window.getComputedStyle(e);
@@ -353,7 +353,7 @@ describe('<bolt-navbar> Component', () => {
       expect(ok).toBe(true);
       expect(html).toMatchSnapshot();
 
-      await page.evaluate(html => {
+      await page.evaluate((html) => {
         const div = document.createElement('div');
         div.innerHTML = `${html}`;
         document.body.appendChild(div);
@@ -362,7 +362,7 @@ describe('<bolt-navbar> Component', () => {
       const screenshots = [];
 
       async function isVisible(selector) {
-        return await page.evaluate(selector => {
+        return await page.evaluate((selector) => {
           const e = document.querySelector(selector);
           if (!e) return false;
           const style = window.getComputedStyle(e);
@@ -414,7 +414,7 @@ describe('<bolt-navbar> Component', () => {
       expect(ok).toBe(true);
       expect(html).toMatchSnapshot();
 
-      await page.evaluate(html => {
+      await page.evaluate((html) => {
         const div = document.createElement('div');
         div.innerHTML = `${html}`;
         document.body.appendChild(div);
@@ -467,7 +467,7 @@ describe('<bolt-navbar> Component', () => {
       expect(ok).toBe(true);
       expect(html).toMatchSnapshot();
 
-      await page.evaluate(html => {
+      await page.evaluate((html) => {
         const div = document.createElement('div');
         div.innerHTML = `${html}`;
         document.body.appendChild(div);
@@ -528,7 +528,7 @@ describe('<bolt-navbar> Component', () => {
       expect(ok).toBe(true);
       expect(html).toMatchSnapshot();
 
-      await page.evaluate(html => {
+      await page.evaluate((html) => {
         const div = document.createElement('div');
         div.innerHTML = `${html}`;
         document.body.appendChild(div);

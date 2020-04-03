@@ -49,7 +49,7 @@ const standardCustomElement = (tagName, descriptor) => {
  *
  * @param tagName the name of the custom element to define
  */
-export const customElement = tagName => classOrDescriptor =>
+export const customElement = (tagName) => (classOrDescriptor) =>
   typeof classOrDescriptor === 'function'
     ? legacyCustomElement(tagName, classOrDescriptor)
     : standardCustomElement(tagName, classOrDescriptor);

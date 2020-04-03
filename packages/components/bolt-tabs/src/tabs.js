@@ -10,7 +10,7 @@ import {
   waitForTransitionEnd,
 } from '@bolt/core-v3.x/utils';
 import { withLitHtml } from '@bolt/core-v3.x/renderers/renderer-lit-html';
-import { smoothScroll } from '@bolt/components-smooth-scroll';
+import { smoothScroll } from '@bolt/components-smooth-scroll/src/smooth-scroll';
 import URLSearchParams from '@ungap/url-search-params'; // URLSearchParams poly for older browsers
 import classNames from 'classnames/bind';
 import styles from './tabs.scss';
@@ -92,7 +92,7 @@ class BoltTabs extends withContext(withLitHtml) {
     // @todo: replace this with the block above once `findIndex` can be safely polyfilled
     const panelsArray = Array.from(panels);
     const preselectedIndex = panelsArray.indexOf(
-      panelsArray.find(element => element.hasAttribute('selected')),
+      panelsArray.find((element) => element.hasAttribute('selected')),
     );
 
     // If there is a preselected panel, it overrides `selectedTab` prop
@@ -104,7 +104,7 @@ class BoltTabs extends withContext(withLitHtml) {
     const urlParams = new URLSearchParams(window.location.search);
     const selectedTabParam = urlParams.get('selected-tab');
     const selectedTabParamIndex = panelsArray.indexOf(
-      panelsArray.find(element => element.id === selectedTabParam),
+      panelsArray.find((element) => element.id === selectedTabParam),
     );
 
     if (selectedTabParamIndex !== -1) {
@@ -129,11 +129,11 @@ class BoltTabs extends withContext(withLitHtml) {
   get tabPanels() {
     if (this.useShadow) {
       return Array.from(this.children).filter(
-        child => child.tagName === 'BOLT-TAB-PANEL',
+        (child) => child.tagName === 'BOLT-TAB-PANEL',
       );
     } else if (this.slots && this.slots.default !== undefined) {
       return Array.from(this.slots.default).filter(
-        child => child.tagName === 'BOLT-TAB-PANEL',
+        (child) => child.tagName === 'BOLT-TAB-PANEL',
       );
     } else {
       return this.getElementsByTagName('bolt-tab-panel');
@@ -210,7 +210,7 @@ class BoltTabs extends withContext(withLitHtml) {
         );
         const elementsToUpdate = this.querySelectorAll('[will-update]');
         if (elementsToUpdate.length) {
-          elementsToUpdate.forEach(el => {
+          elementsToUpdate.forEach((el) => {
             el.update && el.update();
           });
         }
@@ -291,7 +291,7 @@ class BoltTabs extends withContext(withLitHtml) {
       this.menuIsOpen && this.closeDropdown();
     };
 
-    const tabButtons = isDropdown => {
+    const tabButtons = (isDropdown) => {
       let buttons = [];
 
       Array.from(this.tabPanels).forEach((item, index) => {
@@ -323,9 +323,9 @@ class BoltTabs extends withContext(withLitHtml) {
             aria-controls="${panelId}"
             id="${labelId}"
             tabindex="${isSelected ? 0 : -1}"
-            @click=${e => handleLabelClick(e, index)}
-            @keydown=${e => this.handleOnKeydown(e)}
-            @keyup=${e => this.handleOnKeyup(e)}
+            @click=${(e) => handleLabelClick(e, index)}
+            @keydown=${(e) => this.handleOnKeydown(e)}
+            @keyup=${(e) => this.handleOnKeyup(e)}
           >
             <span class="${labelInnerClasses}"
               ><span class="${labelTextClasses}">${labelText}</span></span
@@ -347,8 +347,8 @@ class BoltTabs extends withContext(withLitHtml) {
             aria-haspopup="true"
             aria-expanded="${this.menuIsOpen}"
             class="${cx('c-bolt-tabs__button', 'c-bolt-tabs__show-button')}"
-            @keydown=${e => this.handleOnKeydown(e)}
-            @keyup=${e => this.handleOnKeyup(e)}
+            @keydown=${(e) => this.handleOnKeydown(e)}
+            @keyup=${(e) => this.handleOnKeyup(e)}
           >
             <span class="${cx('c-bolt-tabs__show-text')}">
               ${this.props.moreText ? this.props.moreText : 'More'}
@@ -428,7 +428,7 @@ class BoltTabs extends withContext(withLitHtml) {
     let isOverflowing = false; // keep track when the items in the nav stop fitting
 
     // reveal all items for the calculation
-    this.allItems.forEach(item => {
+    this.allItems.forEach((item) => {
       this._showLabel(item);
     });
 
@@ -570,7 +570,7 @@ class BoltTabs extends withContext(withLitHtml) {
         '.c-bolt-tabs__dropdown',
       );
 
-      Promise.all([customElements.whenDefined('bolt-trigger')]).then(_ => {
+      Promise.all([customElements.whenDefined('bolt-trigger')]).then((_) => {
         this._resizeMenu();
       });
 
@@ -648,9 +648,7 @@ class BoltTabs extends withContext(withLitHtml) {
     this.contexts.get(TabsContext).selectedIndex = this.selectedIndex;
     this.contexts.get(TabsContext).tabPanels = this.tabPanels;
 
-    return html`
-      ${this.addStyles([styles])} ${this.template()}
-    `;
+    return html` ${this.addStyles([styles])} ${this.template()} `;
   }
 }
 

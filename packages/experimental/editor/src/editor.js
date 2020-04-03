@@ -37,14 +37,14 @@ export function enableEditor({ space, uiWrapper, config }) {
    *
    * @param editor {grapesjs.Editor}
    */
-  const refreshContent = editor => {
+  const refreshContent = (editor) => {
     const document = editor.Canvas.getDocument();
     document
       .querySelectorAll(boltTwoCharacterLayoutIs)
-      .forEach(twoCharLayout => {
+      .forEach((twoCharLayout) => {
         twoCharLayout.triggerLayoutRecalculate();
       });
-    document.querySelectorAll('*').forEach(el => {
+    document.querySelectorAll('*').forEach((el) => {
       if (el.setupSlots) el.setupSlots();
       if (el.triggerUpdate) el.triggerUpdate();
       if (el.triggerAnimIns) el.triggerAnimIns();
@@ -120,7 +120,7 @@ export function enableEditor({ space, uiWrapper, config }) {
       if (isStep) {
         newEl.addEventListener(
           `${tagName}:trigger-anim-ins`,
-          event => {
+          (event) => {
             finish(backupTimeoutId);
           },
           { once: true },
@@ -198,11 +198,11 @@ export function enableEditor({ space, uiWrapper, config }) {
     if (!parent) return;
     const siblingComponents = parent.components();
     if (!siblingComponents) return;
-    const sameSiblingComponents = siblingComponents.filter(component =>
+    const sameSiblingComponents = siblingComponents.filter((component) =>
       component.is(name),
     );
     const selectedIndex = sameSiblingComponents.findIndex(
-      component => component.cid === selected.cid,
+      (component) => component.cid === selected.cid,
     );
     if (selectedIndex === -1) return;
     const isFirst = selectedIndex === 0;
@@ -262,7 +262,7 @@ export function enableEditor({ space, uiWrapper, config }) {
               id: 'duplicate',
               label: 'Duplicate',
               command: {
-                run: editor => {
+                run: (editor) => {
                   editor.runCommand('core:copy');
                   editor.runCommand('core:paste');
                 },
@@ -301,8 +301,8 @@ export function enableEditor({ space, uiWrapper, config }) {
               label: 'Resize: Mobile',
               togglable: true,
               command: {
-                run: editor => editor.setDevice('Mobile'),
-                stop: editor => editor.setDevice('Full'),
+                run: (editor) => editor.setDevice('Mobile'),
+                stop: (editor) => editor.setDevice('Full'),
               },
             },
             {
@@ -310,8 +310,8 @@ export function enableEditor({ space, uiWrapper, config }) {
               label: 'Resize: Tablet',
               togglable: true,
               command: {
-                run: editor => editor.setDevice('Tablet'),
-                stop: editor => editor.setDevice('Full'),
+                run: (editor) => editor.setDevice('Tablet'),
+                stop: (editor) => editor.setDevice('Full'),
               },
             },
             {
@@ -319,8 +319,8 @@ export function enableEditor({ space, uiWrapper, config }) {
               label: 'Resize: Desktop',
               togglable: true,
               command: {
-                run: editor => editor.setDevice('Desktop'),
-                stop: editor => editor.setDevice('Full'),
+                run: (editor) => editor.setDevice('Desktop'),
+                stop: (editor) => editor.setDevice('Full'),
               },
             },
             {
@@ -516,10 +516,10 @@ export function enableEditor({ space, uiWrapper, config }) {
       return html`
         <h4>${slotName}</h4>
         <select
-          @change=${event => {
+          @change=${(event) => {
             const { value } = event.target;
             if (value === 'none') return;
-            const component = components.find(c => c.id === value);
+            const component = components.find((c) => c.id === value);
             const newComponent = addComponentToSelectedComponentsSlot({
               slotName,
               content: component.content,
@@ -530,7 +530,7 @@ export function enableEditor({ space, uiWrapper, config }) {
         >
           <option value="none">(Add component to slot)</option>
           ${components.map(
-            component => html`
+            (component) => html`
               <option value="${component.id}">${component.title}</option>
             `,
           )}
@@ -551,8 +551,8 @@ export function enableEditor({ space, uiWrapper, config }) {
    * @param {grapesjs.Component} model
    * @return {void}
    */
-  editor.on('component:selected', model => {
-    model.attributes.traits.models.forEach(trait => {
+  editor.on('component:selected', (model) => {
+    model.attributes.traits.models.forEach((trait) => {
       if (trait.attributes.description) {
         // setTimeout because view hasn't yet been created for trait in component:selected.
         setTimeout(() => {
@@ -626,7 +626,7 @@ export function enableEditor({ space, uiWrapper, config }) {
    * @param {grapesjs.Component} model
    * @return {void}
    */
-  editor.on('component:deselected', model => {
+  editor.on('component:deselected', (model) => {
     render(html``, editorSlots.slotControls);
   });
 
@@ -637,7 +637,7 @@ export function enableEditor({ space, uiWrapper, config }) {
    * @param {grapesjs.Component} model
    * @return {void}
    */
-  editor.on('component:selected', model => {
+  editor.on('component:selected', (model) => {
     // clickHandler is set in declarativeClickHandler and attached in BoltActionElement
     if (model.view.el.clickHandler) {
       model.view.el.removeEventListener('click', model.view.el.clickHandler);
@@ -675,7 +675,7 @@ export function enableEditor({ space, uiWrapper, config }) {
   // prevents `overflow: hidden` from cutting off child elements that break out of their box
   canvasWrapper.style.padding = '20px';
 
-  config.scripts.forEach(script => {
+  config.scripts.forEach((script) => {
     const scriptEl = canvasDoc.createElement('script');
     scriptEl.src = script;
     scriptEl.async = true;
@@ -690,7 +690,7 @@ export function enableEditor({ space, uiWrapper, config }) {
   function addDropzoneHighlights() {
     const dropzones = query(dropzoneSelector, canvasDoc);
     if (!dropzones) return;
-    dropzones.forEach(el => {
+    dropzones.forEach((el) => {
       const isEmpty = el.children.length === 0;
       el.style.outline = 'dotted green 1px';
     });
@@ -699,13 +699,13 @@ export function enableEditor({ space, uiWrapper, config }) {
   function removeDropzoneHighlights() {
     const dropzones = query(dropzoneSelector, canvasDoc);
     if (!dropzones) return;
-    dropzones.forEach(el => {
+    dropzones.forEach((el) => {
       el.style.outline = '';
     });
     dropzoneSelector = '';
   }
 
-  editor.on('block:drag:start', block => {
+  editor.on('block:drag:start', (block) => {
     const { id } = block;
     const component = editor.DomComponents.getType(id);
     const { droppable, draggable } = component.model.prototype.defaults;

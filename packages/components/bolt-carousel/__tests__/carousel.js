@@ -107,7 +107,7 @@ describe('carousel', () => {
 
   test(
     'Basic 3 Slide <bolt-carousel> Renders',
-    async function() {
+    async function () {
       const renderedComponentHTML = await page.evaluate(async () => {
         const carousel = document.createElement('bolt-carousel');
         const carouselSlide1 = document.createElement('bolt-carousel-slide');
@@ -165,7 +165,7 @@ describe('carousel', () => {
           'bolt-button',
           'bolt-image',
         );
-        const promises = [...undefinedElements].map(elem =>
+        const promises = [...undefinedElements].map((elem) =>
           customElements.whenDefined(elem.localName),
         );
 
@@ -196,7 +196,7 @@ describe('carousel', () => {
 
   test(
     'Basic 3 Slide <bolt-carousel> Renders w/ Nav Controls',
-    async function() {
+    async function () {
       const renderedComponentHTML = await page.evaluate(async () => {
         const carousel = document.createElement('bolt-carousel');
         const carouselSlide1 = document.createElement('bolt-carousel-slide');
@@ -264,7 +264,7 @@ describe('carousel', () => {
         const images = Array.from(document.querySelectorAll('bolt-image'));
         const allElements = [...carousels, ...carouselItems, ...images];
         return await Promise.all(
-          allElements.map(element => {
+          allElements.map((element) => {
             if (element._wasInitiallyRendered) return;
             return new Promise((resolve, reject) => {
               element.addEventListener('ready', resolve);
@@ -298,7 +298,7 @@ describe('carousel', () => {
 
   test(
     'Basic 3 Slide <bolt-carousel> Renders w/ Outer Nav Controls',
-    async function() {
+    async function () {
       const renderedComponentHTML = await page.evaluate(async () => {
         const carousel = document.createElement('bolt-carousel');
         carousel.setAttribute('nav-button-position', 'outside');
@@ -367,7 +367,7 @@ describe('carousel', () => {
         const images = Array.from(document.querySelectorAll('bolt-image'));
         const allElements = [...carousels, ...carouselItems, ...images];
         return await Promise.all(
-          allElements.map(element => {
+          allElements.map((element) => {
             if (element._wasInitiallyRendered) return;
             return new Promise((resolve, reject) => {
               element.addEventListener('ready', resolve);
@@ -401,7 +401,7 @@ describe('carousel', () => {
 
   test(
     'Basic 3 Slide <bolt-carousel> Renders w/ Variable (Auto) Slide Per View',
-    async function() {
+    async function () {
       const renderedComponentHTML = await page.evaluate(async () => {
         const carousel = document.createElement('bolt-carousel');
         carousel.setAttribute('slides-per-view', 'auto');
@@ -463,7 +463,7 @@ describe('carousel', () => {
         // const images = Array.from(document.querySelectorAll('bolt-image'));
         const allElements = [...carousels, ...carouselItems];
         return Promise.all(
-          allElements.map(element => {
+          allElements.map((element) => {
             if (element._wasInitiallyRendered) return;
             return new Promise((resolve, reject) => {
               element.addEventListener('ready', resolve);
@@ -497,7 +497,7 @@ describe('carousel', () => {
 
   test(
     'Basic 7 Slide <bolt-carousel> Renders',
-    async function() {
+    async function () {
       const renderedComponentHTML = await page.evaluate(async () => {
         const carousel = document.createElement('bolt-carousel');
         const carouselSlide1 = document.createElement('bolt-carousel-slide');
@@ -598,7 +598,7 @@ describe('carousel', () => {
         const images = Array.from(document.querySelectorAll('bolt-image'));
         const allElements = [...carousels, ...carouselItems, ...images];
         return await Promise.all(
-          allElements.map(element => {
+          allElements.map((element) => {
             if (element._wasInitiallyRendered) return;
             return new Promise((resolve, reject) => {
               element.addEventListener('ready', resolve);

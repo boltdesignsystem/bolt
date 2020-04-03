@@ -52,7 +52,7 @@ class AccordionItem extends withContext(withLitHtml) {
     );
 
     originalInput && originalInput.remove();
-    originalLinks.length && originalLinks.forEach(el => el.remove());
+    originalLinks.length && originalLinks.forEach((el) => el.remove());
 
     // @todo: Can we get this from Accordion via context instead?
     this.accordionItems =
@@ -69,7 +69,7 @@ class AccordionItem extends withContext(withLitHtml) {
 
   close() {
     const elem = this;
-    setTimeout(function() {
+    setTimeout(function () {
       elem.accordion.folds[0].close();
     }, 300);
   }
@@ -88,14 +88,12 @@ class AccordionItem extends withContext(withLitHtml) {
       this.isLastItem ? 'c-bolt-accordion-item--last-item' : '',
     );
 
-    const slotMarkup = name => {
+    const slotMarkup = (name) => {
       switch (name) {
         case 'trigger':
           return name in this.slots
             ? AccordionItemTrigger(this.slot(name), this.props, this.context)
-            : html`
-                <slot name="${name}" />
-              `;
+            : html` <slot name="${name}" /> `;
 
         default:
           return name in this.slots
@@ -104,25 +102,19 @@ class AccordionItem extends withContext(withLitHtml) {
                 this.props,
                 this.context,
               )
-            : html`
-                <slot />
-              `;
+            : html` <slot /> `;
       }
     };
 
     const innerSlots = [slotMarkup('trigger'), slotMarkup('default')];
 
-    return html`
-      <div class="${accordionClasses}">${innerSlots}</div>
-    `;
+    return html` <div class="${accordionClasses}">${innerSlots}</div> `;
   }
 
   render() {
     this.addClassesToSlottedChildren(['default', 'trigger']);
 
-    return html`
-      ${this.addStyles([styles])} ${this.template()}
-    `;
+    return html` ${this.addStyles([styles])} ${this.template()} `;
   }
 }
 

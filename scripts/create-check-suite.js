@@ -2,7 +2,7 @@
 const { createCheckSuite } = require('./check-run');
 
 createCheckSuite()
-  .then(results => {
+  .then((results) => {
     console.log(`Check Suite Created ${results.id}`);
   })
   .catch(() => {

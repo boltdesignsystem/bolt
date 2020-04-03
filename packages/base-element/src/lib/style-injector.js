@@ -161,11 +161,11 @@ function addStylesToDom(styles) {
   }
 }
 
-export default function(list) {
+export default function (list) {
   return {
     styles: listToStyles(list),
     getStyles() {
-      return this.styles.map(style => style.parts[0].css);
+      return this.styles.map((style) => style.parts[0].css);
     },
 
     // aliases to the existing use + update methods

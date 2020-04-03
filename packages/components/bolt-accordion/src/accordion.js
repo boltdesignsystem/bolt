@@ -132,7 +132,7 @@ class BoltAccordion extends withContext(withLitHtml) {
       this.accordionOptions,
     );
 
-    this.accordion.folds.forEach(fold => {
+    this.accordion.folds.forEach((fold) => {
       if (
         fold.button.classList.contains(
           'c-bolt-accordion-item__trigger-label--inactive',
@@ -142,23 +142,23 @@ class BoltAccordion extends withContext(withLitHtml) {
       }
     });
 
-    this.accordion.on('destroyed', fold => {
+    this.accordion.on('destroyed', (fold) => {
       delete this.accordion;
     });
 
-    this.accordion.on('fold:opened', fold => {
+    this.accordion.on('fold:opened', (fold) => {
       this.dispatchLayoutChanged();
 
       // @todo: register these elements in Bolt data instead?
       const elementsToUpdate = this.querySelectorAll('[will-update]');
       if (elementsToUpdate.length) {
-        elementsToUpdate.forEach(el => {
+        elementsToUpdate.forEach((el) => {
           el.update && el.update();
         });
       }
     });
 
-    this.accordion.on('fold:closed', fold => {
+    this.accordion.on('fold:closed', (fold) => {
       this.dispatchLayoutChanged();
     });
   }
@@ -186,7 +186,7 @@ class BoltAccordion extends withContext(withLitHtml) {
 
     // Reference to all the accordion items
     this.accordionItemElements = Array.from(this.accordionRoot.children).filter(
-      item => item.tagName === 'BOLT-ACCORDION-ITEM',
+      (item) => item.tagName === 'BOLT-ACCORDION-ITEM',
     );
 
     // Copy of that reference that will be mutated as we process each accordion item
@@ -196,17 +196,17 @@ class BoltAccordion extends withContext(withLitHtml) {
     this.accordionItems = [];
 
     Promise.all(
-      this.accordionItemElements.map(item => {
+      this.accordionItemElements.map((item) => {
         if (item._wasInitiallyRendered || this._wasMutated) return;
         return new Promise((resolve, reject) => {
-          item.addEventListener('ready', e => {
+          item.addEventListener('ready', (e) => {
             return item === e.target && resolve();
           });
           item.addEventListener('error', reject);
         });
       }),
     ).then(() => {
-      this.accordionItemElements.forEach(item => {
+      this.accordionItemElements.forEach((item) => {
         this.handleAccordionItemReady(item);
       });
       this._wasMutated = false;
@@ -219,7 +219,7 @@ class BoltAccordion extends withContext(withLitHtml) {
     // todo: this.useShadow is a temporary workaround until mutation observer works better with light DOM
     if (window.MutationObserver && this.useShadow) {
       // Re-generate slots + re-render when mutations are observed
-      const mutationCallback = function(mutationsList, observer) {
+      const mutationCallback = function (mutationsList, observer) {
         for (let mutation of mutationsList) {
           if (mutation.type === 'childList') {
             // @todo: handle add/remove children
@@ -307,9 +307,7 @@ class BoltAccordion extends withContext(withLitHtml) {
     this.contexts.get(AccordionContext).spacing = spacing;
     this.contexts.get(AccordionContext).iconValign = iconValign;
 
-    return html`
-      ${this.addStyles([styles])} ${this.template()}
-    `;
+    return html` ${this.addStyles([styles])} ${this.template()} `;
   }
 }
 

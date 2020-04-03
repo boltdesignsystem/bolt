@@ -7,7 +7,7 @@ const buildDir = require('./.boltrc.multi-lang.js').buildDir;
 
 describe('Tests to confirm that the latest upcoming release of the @bolt/build-tools is compiling as expected', () => {
   test('Check that Bolt Build Tools is generating JSON data from Sass files', async () => {
-    const dataFileExists = async function() {
+    const dataFileExists = async function () {
       try {
         await fs.promises.access(
           path.resolve(
@@ -25,7 +25,7 @@ describe('Tests to confirm that the latest upcoming release of the @bolt/build-t
   });
 
   test('Check JSON data for colors was generated and outputted by the @bolt/build-tools', async () => {
-    const getColorData = async function() {
+    const getColorData = async function () {
       try {
         await fs.promises.access(
           path.resolve(
@@ -56,7 +56,7 @@ describe('Tests to confirm that the latest upcoming release of the @bolt/build-t
   });
 
   test('Check that the Japanese-specific CSS bundle was generated and contains the correct font', async () => {
-    const getCSSData = async function() {
+    const getCSSData = async function () {
       try {
         const cssData = fs
           .readFileSync(
@@ -85,7 +85,7 @@ describe('Tests to confirm that the latest upcoming release of the @bolt/build-t
   });
 
   test('Check that the Japanese-specific bolt-global-ja.css file built contains the correct utility class styles for the older u-bolt-margin-bottom syntax.', async () => {
-    const getCSSData = async function() {
+    const getCSSData = async function () {
       try {
         const cssData = fs
           .readFileSync(
@@ -112,7 +112,7 @@ describe('Tests to confirm that the latest upcoming release of the @bolt/build-t
   });
 
   test('Check that the default English-specific bolt-global.css file built contains the correct utility class styles for the older u-bolt-margin-bottom syntax.', async () => {
-    const getCSSData = async function() {
+    const getCSSData = async function () {
       try {
         const cssData = fs
           .readFileSync(

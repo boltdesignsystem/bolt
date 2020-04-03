@@ -9,9 +9,9 @@ import { BoltButton } from '../src/button';
 
 customElements.define(`bolt-button`, BoltButton);
 
-describe.skip(`Server-side button component renderer`, function() {
+describe.skip(`Server-side button component renderer`, function () {
   // WIP - need to confirm state expected
-  test(`can register and create components with document.createElement`, function() {
+  test(`can register and create components with document.createElement`, function () {
     const el = document.createElement(`bolt-button`);
     expect(el.state).toEqual({});
     el.connectedCallback();
@@ -21,7 +21,7 @@ describe.skip(`Server-side button component renderer`, function() {
   });
 
   // WIP - need to confirm HTML expected
-  test(`renders a simple component`, async function() {
+  test(`renders a simple component`, async function () {
     const el = new BoltButton();
     el.connectedCallback();
     await nextAnimationFrame();
@@ -33,7 +33,7 @@ describe.skip(`Server-side button component renderer`, function() {
   });
 
   // WIP #1
-  test(`button re-renders properly when a slotted icon is injected`, async function() {
+  test(`button re-renders properly when a slotted icon is injected`, async function () {
     const testButton = document.querySelector('.js-button-test');
     const newIcon = document.createElement('bolt-icon');
     newIcon.setAttribute('name', 'arrow-left');
@@ -42,14 +42,14 @@ describe.skip(`Server-side button component renderer`, function() {
   });
 
   // WIP #2
-  test(`button re-renders properly when a slotted icon is removed`, async function() {
+  test(`button re-renders properly when a slotted icon is removed`, async function () {
     const testButton = document.querySelector('.js-button-test');
     const iconToRemove = testButton.querySelector('bolt-icon:last-child');
     testButton.removeChild(iconToRemove);
   });
 
   // WIP #3
-  test(`button re-renders when attribute updated`, async function() {
+  test(`button re-renders when attribute updated`, async function () {
     const testButton = document.querySelector('.js-button-test');
     testButton.setAttribute('color', 'secondary');
   });

@@ -6,7 +6,7 @@ export function declarativeClickHandler(element) {
     if (clickTarget) {
       const elems = document.querySelectorAll(`.${clickTarget}`);
       if (elems) {
-        elems.forEach(function(elem) {
+        elems.forEach(function (elem) {
           if (elem[clickMethod]) {
             elem[clickMethod]();
           } else {

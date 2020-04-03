@@ -8,15 +8,15 @@
  * subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
  */
 
-(function() {
+(function () {
   if (!Array.from) {
-    Array.from = function(object) {
+    Array.from = function (object) {
       return [].slice.call(/** @type {IArrayLike} */ (object));
     };
   }
 
   if (!Object.assign) {
-    const assign = function(target, source) {
+    const assign = function (target, source) {
       const n$ = Object.getOwnPropertyNames(source);
       for (var i = 0, p; i < n$.length; i++) {
         p = n$[i];
@@ -24,7 +24,7 @@
       }
     };
 
-    Object.assign = function(target) {
+    Object.assign = function (target) {
       const args = [].slice.call(arguments, 1);
       for (var i = 0, s; i < args.length; i++) {
         s = args[i];

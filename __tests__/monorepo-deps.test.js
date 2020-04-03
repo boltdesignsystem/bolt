@@ -21,8 +21,8 @@ const {
 function pkgToHaveDependenciesOn(pkgName, deps) {
   const listedDeps = getPkgDependencies(pkgName);
   const missingDeps = [];
-  deps.forEach(dep => {
-    if (!listedDeps.some(d => d === dep)) {
+  deps.forEach((dep) => {
+    if (!listedDeps.some((d) => d === dep)) {
       if (dep !== pkgName) {
         if (dep !== '@bolt/global') {
           missingDeps.push(dep);
@@ -60,10 +60,10 @@ describe.skip('Bolt Components declare dependencies in package.json if used in T
   ];
 
   boltPkgs
-    .filter(boltPkg => !excludedPkgs.includes(boltPkg.name))
+    .filter((boltPkg) => !excludedPkgs.includes(boltPkg.name))
     .forEach(
       /** @type {BoltPkg} */
-      boltPkg => {
+      (boltPkg) => {
         test(`pkg: ${boltPkg.name}`, async () => {
           const twigFilePaths = await globby(
             [join(boltPkg.location, '**/*.twig')],
@@ -82,19 +82,19 @@ describe.skip('Bolt Components declare dependencies in package.json if used in T
             const twigDepPkgs = new Set();
 
             await Promise.all(
-              twigFilePaths.map(async twigFilePath => {
+              twigFilePaths.map(async (twigFilePath) => {
                 const theseTwigDeps = await findTwigFilesUsedInFile(
                   twigFilePath,
                 );
-                theseTwigDeps.forEach(x => twigDeps.add(x));
+                theseTwigDeps.forEach((x) => twigDeps.add(x));
               }),
             );
 
             await Promise.all(
-              [...twigDeps].map(twigDep => {
+              [...twigDeps].map((twigDep) => {
                 return getTwigFilePath(twigDep)
                   .then(getFilesPkg)
-                  .then(pkgName => twigDepPkgs.add(pkgName));
+                  .then((pkgName) => twigDepPkgs.add(pkgName));
               }),
             );
 

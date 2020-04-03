@@ -90,12 +90,12 @@ async function processImage(file, set, skipOptimization = false) {
   if (pathInfo.ext === '.svg' || pathInfo.ext === '.gif') {
     sizes = [null];
   } else {
-    sizes = [...boltImageSizes, null].filter(size => width >= size);
+    sizes = [...boltImageSizes, null].filter((size) => width >= size);
   }
 
   // looping through all sizes and resizing
   return Promise.all(
-    sizes.map(async size => {
+    sizes.map(async (size) => {
       // Goes on end of filename
       const sizeSuffix = size ? `-${size}` : '';
       const thisPathInfo = Object.assign({}, pathInfo, {
@@ -143,7 +143,7 @@ async function processImage(file, set, skipOptimization = false) {
                   originalFileSize: currentFileSize,
                 },
               })
-              .then(integrity => {
+              .then((integrity) => {
                 writeFile(newSizedPath, result[0].data);
               });
           } else {
@@ -161,7 +161,7 @@ async function processImage(file, set, skipOptimization = false) {
                 force: false,
               })
               .toBuffer()
-              .then(data => {
+              .then((data) => {
                 cacache
                   .put(cachePath, newSizedPath, data, {
                     metadata: {
@@ -169,7 +169,7 @@ async function processImage(file, set, skipOptimization = false) {
                       originalFileSize: currentFileSize,
                     },
                   })
-                  .then(integrity => {
+                  .then((integrity) => {
                     writeFile(newSizedPath, data);
                   });
               });
@@ -182,16 +182,19 @@ async function processImage(file, set, skipOptimization = false) {
         size: size !== null ? size : width,
       };
     }),
-  ).then(resizedImagePaths => {
+  ).then((resizedImagePaths) => {
     // removes `undefined` & other non-truthy values (mainly original images & non processed file types like SVG or GIF)
-    const sets = resizedImagePaths.filter(resizedImagePath => resizedImagePath);
+    const sets = resizedImagePaths.filter(
+      (resizedImagePath) => resizedImagePath,
+    );
     const imageMeta = {
       fileId,
       src: makeWebPath(newPath),
       sizePaths: sets,
       srcset: sets
         .map(
-          set => `${set.path} ${pathInfo.ext !== '.svg' ? `${set.size}w` : ''}`,
+          (set) =>
+            `${set.path} ${pathInfo.ext !== '.svg' ? `${set.size}w` : ''}`,
         )
         .join(', ')
         .trim(),
@@ -216,19 +219,19 @@ async function processImages(skipOptimization = false) {
   }
 
   return Promise.all(
-    config.images.sets.map(async set => {
+    config.images.sets.map(async (set) => {
       const imagePaths = await globby.sync(path.join(set.base, set.glob));
       return Promise.all(
-        imagePaths.map(imagePath =>
+        imagePaths.map((imagePath) =>
           processImage(imagePath, set, skipOptimization),
         ),
       );
     }),
-  ).then(async setsOfImageMetas => {
+  ).then(async (setsOfImageMetas) => {
     // When it's all done
     const imageMetas = flattenArray(setsOfImageMetas);
     const imageManifest = {};
-    imageMetas.forEach(imageMeta => {
+    imageMetas.forEach((imageMeta) => {
       imageManifest[imageMeta.src] = imageMeta;
     });
     await writeImageManifest(imageManifest);

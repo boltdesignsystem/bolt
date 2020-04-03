@@ -29,7 +29,7 @@ describe('<bolt-device-viewer> Component', () => {
     expect(results.html).toMatchSnapshot();
   });
 
-  deviceName.enum.forEach(async deviceChoice => {
+  deviceName.enum.forEach(async (deviceChoice) => {
     test(`decvice-viewer display: ${deviceChoice}`, async () => {
       const results = await render(
         '@bolt-components-device-viewer/device-viewer.twig',
@@ -42,7 +42,7 @@ describe('<bolt-device-viewer> Component', () => {
     });
   });
 
-  color.enum.forEach(async colorChoice => {
+  color.enum.forEach(async (colorChoice) => {
     test(`device-viewer display: ${colorChoice}`, async () => {
       const results = await render(
         '@bolt-components-device-viewer/device-viewer.twig',
@@ -56,7 +56,7 @@ describe('<bolt-device-viewer> Component', () => {
     });
   });
 
-  orientation.enum.forEach(async orientationChoice => {
+  orientation.enum.forEach(async (orientationChoice) => {
     test(`device-viewer display: ${orientationChoice}`, async () => {
       const results = await render(
         '@bolt-components-device-viewer/device-viewer.twig',

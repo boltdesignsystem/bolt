@@ -7,7 +7,7 @@ import {
 
 const initializedElements = new WeakSet();
 
-const withContext = Base => {
+const withContext = (Base) => {
   return class extends Base {
     get context() {
       // eslint-disable-next-line no-return-assign
@@ -18,7 +18,7 @@ const withContext = Base => {
       super.connectedCallback && super.connectedCallback();
       const observedContexts = this.constructor.observedContexts;
       if (observedContexts) {
-        observedContexts.forEach(context => observeContext(this, context));
+        observedContexts.forEach((context) => observeContext(this, context));
       }
 
       if (!initializedElements.has(this)) {
@@ -28,7 +28,7 @@ const withContext = Base => {
             this.__wcProvidedContexts || (this.__wcProvidedContexts = {});
           const mappedProps =
             this.__wcMappedProps || (this.__wcMappedProps = {});
-          Object.keys(providedContextConfigs).forEach(name => {
+          Object.keys(providedContextConfigs).forEach((name) => {
             const config = providedContextConfigs[name];
             const property =
               typeof config === 'string' ? config : config.property;
@@ -47,7 +47,7 @@ const withContext = Base => {
       super.disconnectedCallback && super.disconnectedCallback();
       const observedContexts = this.constructor.observedContexts;
       if (observedContexts) {
-        observedContexts.forEach(context => unobserveContext(this, context));
+        observedContexts.forEach((context) => unobserveContext(this, context));
       }
     }
 
@@ -57,7 +57,7 @@ const withContext = Base => {
       if (mappedProps) {
         const providedContexts =
           this.__wcProvidedContexts || (this.__wcProvidedContexts = {});
-        Object.keys(mappedProps).forEach(contextName => {
+        Object.keys(mappedProps).forEach((contextName) => {
           const property = mappedProps[contextName];
           if (property in props) {
             const value = this[property];

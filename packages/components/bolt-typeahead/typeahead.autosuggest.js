@@ -13,9 +13,9 @@ import { bind } from './classnames';
 import styles from './typeahead.scoped.scss';
 const cx = bind(styles);
 
-export const highlightSearchResults = function(item) {
+export const highlightSearchResults = function (item) {
   const resultItem = item;
-  resultItem.matches.forEach(matchItem => {
+  resultItem.matches.forEach((matchItem) => {
     const text = resultItem.item[matchItem.key];
     const result = [];
     const matches = [].concat(matchItem.indices);
@@ -41,7 +41,7 @@ export const highlightSearchResults = function(item) {
     );
 
     if (resultItem.children && resultItem.children.length > 0) {
-      resultItem.children.forEach(child => {
+      resultItem.children.forEach((child) => {
         highlightSearchResults(child);
       });
     }
@@ -174,7 +174,7 @@ class BoltAutosuggest extends withPreact {
     var listeners = this.getParent._listeners[type] || [];
 
     listeners.forEach(
-      function(listener) {
+      function (listener) {
         listener(this, ...props);
       }.bind(this),
     );
@@ -224,7 +224,7 @@ class BoltAutosuggest extends withPreact {
     }
 
     // @todo: allow for this to be customized?
-    Mousetrap.bind('command+shift+f', function(e) {
+    Mousetrap.bind('command+shift+f', function (e) {
       e.preventDefault();
       self.toggleSearch();
     });
@@ -258,7 +258,7 @@ class BoltAutosuggest extends withPreact {
     this.triggerUpdate();
   }
 
-  onInput = e => {
+  onInput = (e) => {
     this._fire('onInput', e, e.target.value);
     let value = e.target.value;
 
@@ -292,7 +292,7 @@ class BoltAutosuggest extends withPreact {
     document.activeElement.blur();
   }
 
-  getSuggestionValue = suggestion => suggestion.label;
+  getSuggestionValue = (suggestion) => suggestion.label;
 
   // customized UI that the search results are rendered within
   // we customize the default from react-autosuggest by adding optional footer UI
@@ -318,7 +318,7 @@ class BoltAutosuggest extends withPreact {
       items = this.getParent.items;
       this.items = items;
     } else {
-      await new Promise(async resolve => {
+      await new Promise(async (resolve) => {
         const listeners = this.getParent._listeners['getSuggestions'] || [];
         const listener = listeners[0];
         items = await listener(this, value);
@@ -345,11 +345,11 @@ class BoltAutosuggest extends withPreact {
     const fuse = new Fuse(items, fuseOptions);
     this.results = fuse.search(value);
 
-    this.results.forEach(resultItem => {
+    this.results.forEach((resultItem) => {
       highlightSearchResults(resultItem, cx);
     });
 
-    this.results = this.results.filter(result => result.score <= 0.9);
+    this.results = this.results.filter((result) => result.score <= 0.9);
 
     const reducedResults = this.results.reduce((total, result) => {
       total.push(result.item);
@@ -374,7 +374,7 @@ class BoltAutosuggest extends withPreact {
 
     // @todo: replace this workaround with this.results.findIndex(findSelectedIndex) once `findIndex` can be safely polyfilled
     const suggestionIndex = this.results.indexOf(
-      this.results.find(result => result.item.label === newValue),
+      this.results.find((result) => result.item.label === newValue),
     );
 
     this.setState({

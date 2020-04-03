@@ -88,7 +88,7 @@ export function addThemeContextClasses({ space, canvasWrapper }) {
   let themeClass = '';
   const themeContextEl = space.closest(themeClasses.join(', '));
   if (themeContextEl) {
-    themeContextEl.classList.forEach(className => {
+    themeContextEl.classList.forEach((className) => {
       if (themeClasses.includes(`.${className}`)) {
         themeClass = className;
       }

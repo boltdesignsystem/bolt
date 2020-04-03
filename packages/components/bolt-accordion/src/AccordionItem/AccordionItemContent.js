@@ -10,7 +10,7 @@ export const AccordionItemContent = (children, props, context) => {
     !props.contentSpacing ? 'c-bolt-accordion-item__content-inner--offset' : '',
   );
 
-  const contentTemplate = children => {
+  const contentTemplate = (children) => {
     return html`
       <div class="${css('c-bolt-accordion-item__content')}">
         <div class="${contentInnerClasses}">

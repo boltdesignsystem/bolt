@@ -82,11 +82,9 @@ class BoltDocsSearch extends withLitHtml {
         } only %}
       `;
 
-      const processResult = content => {
+      const processResult = (content) => {
         this.renderedHTML = content;
-        return html`
-          ${unsafeHTML(content)}
-        `;
+        return html` ${unsafeHTML(content)} `;
       };
 
       this.renderedHTML = fetch(
@@ -100,19 +98,15 @@ class BoltDocsSearch extends withLitHtml {
             'Content-Type': 'application/json',
           },
         },
-      ).then(res => res.text().then(result => processResult(result)));
+      ).then((res) => res.text().then((result) => processResult(result)));
     }
   }
 
   render() {
     if (this.renderedHTML) {
-      return html`
-        ${unsafeHTML(this.renderedHTML)}
-      `;
+      return html` ${unsafeHTML(this.renderedHTML)} `;
     } else {
-      return html`
-        ${unsafeHTML(this.innerHTML)}
-      `;
+      return html` ${unsafeHTML(this.innerHTML)} `;
     }
   }
 }

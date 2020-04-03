@@ -2,7 +2,7 @@ let currentBrowser;
 
 module.exports = {
   tags: ['component', 'accordion', 'web component'],
-  'Accordion: item opened': function(browser) {
+  'Accordion: item opened': function (browser) {
     const { testingUrl } = browser.globals;
     console.log(`global browser url: ${testingUrl}`);
     currentBrowser = '--' + browser.currentEnv || 'chrome';
@@ -25,7 +25,7 @@ module.exports = {
       .end();
   },
 
-  'Accordion: inactive item remains closed': function(browser) {
+  'Accordion: inactive item remains closed': function (browser) {
     const { testingUrl } = browser.globals;
     console.log(`global browser url: ${testingUrl}`);
     currentBrowser = '--' + browser.currentEnv || 'chrome';

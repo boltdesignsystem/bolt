@@ -109,12 +109,12 @@ class BoltInteractiveStep extends withLitContext {
         ),
       ];
       [...this.querySelectorAll(this.animateInExclusions.join(' '))].forEach(
-        exclusion => {
+        (exclusion) => {
           exclusion.triggerAnimIns();
         },
       );
-      animEls = animEls.filter(animateEl => {
-        return !animateInExclusions.find(exclusion =>
+      animEls = animEls.filter((animateEl) => {
+        return !animateInExclusions.find((exclusion) =>
           animateEl.isSameNode(exclusion),
         );
       });
@@ -204,16 +204,12 @@ class BoltInteractiveStep extends withLitContext {
           <div class="c-bolt-interactive-step__body-inner">
             <div class="c-bolt-interactive-step__top-slot">
               ${this._isActiveStep || this._isBecomingActive
-                ? html`
-                    ${this.slot('top')}
-                  `
+                ? html` ${this.slot('top')} `
                 : ''}
             </div>
             <div class="c-bolt-interactive-step__bottom-slot">
               ${this._isActiveStep || this._isBecomingActive
-                ? html`
-                    ${this.slot('bottom')}
-                  `
+                ? html` ${this.slot('bottom')} `
                 : ''}
             </div>
           </div>

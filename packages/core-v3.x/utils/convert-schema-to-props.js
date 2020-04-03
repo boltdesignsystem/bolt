@@ -15,7 +15,7 @@ export function convertSchemaToProps(schema) {
 
   const myProps = {};
 
-  Object.keys(schema.properties).forEach(prop => {
+  Object.keys(schema.properties).forEach((prop) => {
     const info = schema.properties[prop];
     switch (info.type) {
       case 'number':

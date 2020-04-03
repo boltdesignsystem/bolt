@@ -85,7 +85,7 @@ describe('<bolt-blockquote> component', () => {
     expect(results.html).toMatchSnapshot();
   });
 
-  size.enum.forEach(async option => {
+  size.enum.forEach(async (option) => {
     test(`<bolt-blockquote> size variations: ${option}`, async () => {
       const results = await render(
         '@bolt-components-blockquote/blockquote.twig',
@@ -104,7 +104,7 @@ describe('<bolt-blockquote> component', () => {
     });
   });
 
-  alignItems.enum.forEach(async option => {
+  alignItems.enum.forEach(async (option) => {
     test(`<bolt-blockquote> align variations: ${option}`, async () => {
       const results = await render(
         '@bolt-components-blockquote/blockquote.twig',
@@ -122,7 +122,7 @@ describe('<bolt-blockquote> component', () => {
       const twigRenderedHTML = results.html;
 
       const renderedBlockquoteHTML = await page.evaluate(
-        async twigRenderedHTML => {
+        async (twigRenderedHTML) => {
           document.body.insertAdjacentHTML('beforeend', `${twigRenderedHTML}`);
           const blockquote = document.querySelector('bolt-blockquote');
           await blockquote.updateComplete;
@@ -143,7 +143,7 @@ describe('<bolt-blockquote> component', () => {
     });
   });
 
-  border.enum.forEach(async option => {
+  border.enum.forEach(async (option) => {
     test(`<bolt-blockquote> border variations: ${option}`, async () => {
       const results = await render(
         '@bolt-components-blockquote/blockquote.twig',
@@ -206,7 +206,7 @@ describe('<bolt-blockquote> component', () => {
     expect(results.html).toMatchSnapshot();
   });
 
-  test('<bolt-blockquote> renders to Shadow DOM', async function() {
+  test('<bolt-blockquote> renders to Shadow DOM', async function () {
     const defaultBlockquoteOuter = await page.evaluate(async () => {
       const blockquote = document.createElement('bolt-blockquote');
       blockquote.setAttribute('author-name', 'Chris Heilmann');
@@ -217,7 +217,7 @@ describe('<bolt-blockquote> component', () => {
       document.body.appendChild(blockquote);
       document.body.classList.add('u-bolt-padding-medium');
       const undefinedElements = document.querySelectorAll('bolt-blockquote');
-      const promises = [...undefinedElements].map(elem =>
+      const promises = [...undefinedElements].map((elem) =>
         customElements.whenDefined(elem.localName),
       );
       await Promise.all(promises);
@@ -229,7 +229,7 @@ describe('<bolt-blockquote> component', () => {
         document.querySelectorAll('bolt-blockquote'),
       );
       return await Promise.all(
-        selectors.map(blockquote => {
+        selectors.map((blockquote) => {
           if (blockquote._wasInitiallyRendered === true) return;
           return new Promise((resolve, reject) => {
             blockquote.addEventListener('ready', resolve);
@@ -249,7 +249,7 @@ describe('<bolt-blockquote> component', () => {
     expect(renderedHTML).toMatchSnapshot();
   });
 
-  test('<bolt-blockquote> renders to Light DOM', async function() {
+  test('<bolt-blockquote> renders to Light DOM', async function () {
     const renderedBlockquoteHTML = await page.evaluate(async () => {
       const blockquote = document.createElement('bolt-blockquote');
       blockquote.setAttribute(
@@ -267,7 +267,7 @@ describe('<bolt-blockquote> component', () => {
       document.body.classList.add('u-bolt-padding-medium');
       blockquote.useShadow = false;
       const undefinedElements = document.querySelectorAll('bolt-blockquote');
-      const promises = [...undefinedElements].map(elem =>
+      const promises = [...undefinedElements].map((elem) =>
         customElements.whenDefined(elem.localName),
       );
       await Promise.all(promises);
@@ -287,7 +287,7 @@ describe('<bolt-blockquote> component', () => {
         document.querySelectorAll('bolt-blockquote'),
       );
       return await Promise.all(
-        selectors.map(blockquote => {
+        selectors.map((blockquote) => {
           if (blockquote._wasInitiallyRendered === true) return;
           return new Promise((resolve, reject) => {
             blockquote.addEventListener('ready', resolve);
@@ -305,7 +305,7 @@ describe('<bolt-blockquote> component', () => {
     expect(renderedHTML).toMatchSnapshot();
   });
 
-  test('<bolt-blockquote> renders when inside a <form>', async function() {
+  test('<bolt-blockquote> renders when inside a <form>', async function () {
     const renderedBlockquoteHTML = await page.evaluate(async () => {
       const form = document.createElement('form');
       const blockquote = document.createElement('bolt-blockquote');
@@ -322,7 +322,7 @@ describe('<bolt-blockquote> component', () => {
       document.body.classList.add('u-bolt-padding-medium');
       form.appendChild(blockquote);
       const undefinedElements = document.querySelectorAll('bolt-blockquote');
-      const promises = [...undefinedElements].map(elem =>
+      const promises = [...undefinedElements].map((elem) =>
         customElements.whenDefined(elem.localName),
       );
       await Promise.all(promises);
@@ -334,7 +334,7 @@ describe('<bolt-blockquote> component', () => {
         document.querySelectorAll('bolt-blockquote'),
       );
       return await Promise.all(
-        selectors.map(blockquote => {
+        selectors.map((blockquote) => {
           if (blockquote._wasInitiallyRendered === true) return;
           return new Promise((resolve, reject) => {
             blockquote.addEventListener('ready', resolve);
@@ -353,7 +353,7 @@ describe('<bolt-blockquote> component', () => {
     expect(renderedHTML).toMatchSnapshot();
   });
 
-  test('<bolt-blockquote> with No Quotes renders', async function() {
+  test('<bolt-blockquote> with No Quotes renders', async function () {
     const defaultBlockquoteOuter = await page.evaluate(async () => {
       const blockquote = document.createElement('bolt-blockquote');
       blockquote.setAttribute(
@@ -367,7 +367,7 @@ describe('<bolt-blockquote> component', () => {
         <p>In fact, the greater danger is setting our aim too low and achieving our mark.</p>`;
       document.body.appendChild(blockquote);
       const undefinedElements = document.querySelectorAll('bolt-blockquote');
-      const promises = [...undefinedElements].map(elem =>
+      const promises = [...undefinedElements].map((elem) =>
         customElements.whenDefined(elem.localName),
       );
       await Promise.all(promises);
@@ -384,9 +384,9 @@ describe('<bolt-blockquote> component', () => {
     expect(renderedHTML).toMatchSnapshot();
   });
 
-  languages.forEach(async lang => {
+  languages.forEach(async (lang) => {
     test(`<bolt-blockquote> with lang-specific quotes (${lang})`, async () => {
-      await page.evaluate(async lang => {
+      await page.evaluate(async (lang) => {
         const blockquote = document.createElement('bolt-blockquote');
         blockquote.setAttribute(
           'author-name',
@@ -399,7 +399,7 @@ describe('<bolt-blockquote> component', () => {
           <p>In fact, the greater danger is setting our aim too low and achieving our mark.</p>`;
         document.body.appendChild(blockquote);
         const undefinedElements = document.querySelectorAll('bolt-blockquote');
-        const promises = [...undefinedElements].map(elem =>
+        const promises = [...undefinedElements].map((elem) =>
           customElements.whenDefined(elem.localName),
         );
         await Promise.all(promises);

@@ -36,7 +36,7 @@ describe('<bolt-menu> Component', () => {
   });
 
   // Props
-  spacing.enum.forEach(async spacingChoice => {
+  spacing.enum.forEach(async (spacingChoice) => {
     test(`menu item spacing: ${spacingChoice}`, async () => {
       const results = await render('@bolt-components-menu/menu.twig', {
         spacing: spacingChoice,

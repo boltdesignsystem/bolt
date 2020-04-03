@@ -6,7 +6,7 @@ const { render, renderString } = require('@bolt/twig-renderer');
 async function getBody(request) {
   return new Promise((resolve, reject) => {
     let body = [];
-    request.on('data', chunk => body.push(chunk));
+    request.on('data', (chunk) => body.push(chunk));
     request.on('end', () => {
       body = Buffer.concat(body).toString();
       if (request.headers['content-type'] === 'application/json') {
@@ -14,7 +14,7 @@ async function getBody(request) {
       }
       resolve(body);
     });
-    request.on('error', e => {
+    request.on('error', (e) => {
       console.error(`problem with request: ${e.message}`);
       reject(e.message);
     });

@@ -29,7 +29,7 @@ class BoltBlockList extends BoltElement {
       <ul class="c-bolt-block-list">
         ${this.items && this.items.length >= 1
           ? this.items.map(
-              item =>
+              (item) =>
                 html`
                   <li class="c-bolt-block-list__item">${unsafeHTML(item)}</li>
                 `,

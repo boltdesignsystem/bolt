@@ -48,7 +48,7 @@ async function run() {
       stream.end();
     } else {
       const chunks = [];
-      stream.on('data', chunk => {
+      stream.on('data', (chunk) => {
         chunks.push(chunk);
       });
       stream.on('end', async () => {
@@ -110,7 +110,7 @@ async function setupWebpack(config) {
       webpackConfig[0].entry['bolt-global'] = webpackConfig[0].entry[
         'bolt-global'
       ].filter(
-        item =>
+        (item) =>
           !item.includes('.scss') &&
           !item.includes('critical-fonts') &&
           !item.includes('bolt-critical-css') &&

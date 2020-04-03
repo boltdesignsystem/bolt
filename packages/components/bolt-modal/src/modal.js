@@ -224,7 +224,7 @@ class BoltModal extends withLitHtml {
    * @access private
    * @param {Event} event
    */
-  _handleKeyPresseskeypress = function(event) {
+  _handleKeyPresseskeypress = function (event) {
     // If the dialog is shown and the ESCAPE key is being pressed, prevent any
     // further effects from the ESCAPE key and hide the modal
     if (this.open && event.which === ESCAPE_KEY) {
@@ -305,10 +305,10 @@ class BoltModal extends withLitHtml {
    */
   addClassesToSlottedChildren() {
     if (this.slots) {
-      const applyClasses = slotName => {
+      const applyClasses = (slotName) => {
         const currentSlot = [];
 
-        this.slots[slotName].forEach(item => {
+        this.slots[slotName].forEach((item) => {
           if (item.tagName) {
             item.classList.remove('is-first-child');
             item.classList.remove('is-last-child'); // clean up existing classes
@@ -395,7 +395,7 @@ class BoltModal extends withLitHtml {
         theme && (theme === 'light' || theme === 'xlight'),
     });
 
-    const delegateFocus = e => {
+    const delegateFocus = (e) => {
       if (!this.useShadow) {
         const button = e.target.renderRoot.querySelector('button');
         button && button.focus();
@@ -409,10 +409,10 @@ class BoltModal extends withLitHtml {
     const defaultCloseButton = html`
       <bolt-trigger
         class="js-close-button-fallback"
-        @click=${e => this.hide(e)}
-        @focus=${e => delegateFocus(e)}
-        @trigger:focus=${e => this._handleTriggerFocus(e)}
-        @trigger:blur=${e => this._handleTriggerBlur(e)}
+        @click=${(e) => this.hide(e)}
+        @focus=${(e) => delegateFocus(e)}
+        @trigger:focus=${(e) => this._handleTriggerFocus(e)}
+        @trigger:blur=${(e) => this._handleTriggerBlur(e)}
         display="block"
         no-outline
         autofocus
@@ -425,7 +425,7 @@ class BoltModal extends withLitHtml {
       </bolt-trigger>
     `;
 
-    const handleModalClick = e => this._handleModalClick(e);
+    const handleModalClick = (e) => this._handleModalClick(e);
 
     // Cannot inline this logic so moved it outside of html template
     const footerTemplate = () => {

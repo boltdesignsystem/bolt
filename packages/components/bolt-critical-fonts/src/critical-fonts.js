@@ -5,7 +5,7 @@ const fontsLoadedClass = 'js-fonts-loaded';
 const observers = [];
 
 // if (!sessionStorage.fontsLoadedCriticalFoftPreloadPolyfill){
-Object.keys(fontStack).forEach(font => {
+Object.keys(fontStack).forEach((font) => {
   const { fontFamily, src, ...data } = fontStack[font];
   const obs = new FontFaceObserver(fontStack[font].fontFamily, data);
 
@@ -19,7 +19,7 @@ Promise.all(observers)
     // Optimization for Repeat Views
     sessionStorage.fontsLoadedCriticalFoftPreloadPolyfill = true;
   })
-  .catch(err => {
+  .catch((err) => {
     console.warn('Some critical font are not available:', err);
   });
 // }

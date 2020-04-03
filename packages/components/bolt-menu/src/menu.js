@@ -61,11 +61,11 @@ class BoltMenu extends withContext(BoltElement) {
     return html`
       <div class="${cx(`c-bolt-menu`)}" role="presentation">
         ${this.slotMap.get('title') &&
-          html`
-            <div class="${classes}">
-              ${this.slotify('title')}
-            </div>
-          `}
+        html`
+          <div class="${classes}">
+            ${this.slotify('title')}
+          </div>
+        `}
         ${this.slotify('default')}
       </div>
     `;

@@ -17,7 +17,7 @@ for (let i = 0; i < elementsToPersonalize.length; i++) {
       contentInjectionTarget = element.parentNode;
     }
 
-    setTimeout(function() {
+    setTimeout(function () {
       contentInjectionTarget.parentNode.replaceChild(
         html,
         contentInjectionTarget,

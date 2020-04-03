@@ -2,7 +2,7 @@ let currentBrowser;
 
 module.exports = {
   tags: ['component', 'copy-to-clipboard', 'web component'],
-  'Bolt Copy To Clipboard': function(browser) {
+  'Bolt Copy To Clipboard': function (browser) {
     const { testingUrl } = browser.globals;
     console.log(`global browser url: ${testingUrl}`);
     currentBrowser = '--' + browser.currentEnv || 'chrome';
@@ -18,7 +18,7 @@ module.exports = {
       )
       .pause(1000)
       .execute(
-        function(data) {
+        function (data) {
           // Approach 1: test that ClipBoardJS instance on Copy To Clipboard instantiates and lifts copy
           // Drawback: ClipboardJS may still work despite breaking change to interface with browser/clipboard API
           // Confirm ClipboardJS instance has stored the desired text string
@@ -44,7 +44,7 @@ module.exports = {
           // return copyTargetInput.value === 'https://boltdesignsystem.com';
         },
         [],
-        function(result) {
+        function (result) {
           browser.assert.ok(
             result.value === true,
             `verified that "bolt-copy-to-clipboard" instantiated Clipboard.js and stored value from Dom after click.`,

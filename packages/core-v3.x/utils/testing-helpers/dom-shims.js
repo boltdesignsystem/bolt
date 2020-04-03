@@ -30,9 +30,9 @@ global.requestAnimationFrame =
   global.requestAnimationFrame || requestAnimationFrame;
 
 // patch DOM insertion functions to call connectedCallback on Custom Elements
-[`appendChild`, `insertBefore`, `replaceChild`].forEach(funcName => {
+[`appendChild`, `insertBefore`, `replaceChild`].forEach((funcName) => {
   const origFunc = Element.prototype[funcName];
-  Element.prototype[funcName] = function() {
+  Element.prototype[funcName] = function () {
     const child = origFunc.apply(this, arguments);
     requestAnimationFrame(() => {
       if (!child.initialized && child.connectedCallback) {
@@ -54,7 +54,7 @@ class HTMLElement extends Element {
   }
 
   hasAttribute(name) {
-    return !!this.attributes.find(attr => attr.name === name);
+    return !!this.attributes.find((attr) => attr.name === name);
   }
 
   __attrIsObserved(name) {
@@ -72,7 +72,7 @@ global.HTMLElement = HTMLElement;
 const registeredElements = {};
 
 const originalCreateElement = Document.prototype.createElement;
-Document.prototype.createElement = function(tagName) {
+Document.prototype.createElement = function (tagName) {
   tagName = tagName.toLowerCase();
   const customElProto = registeredElements[tagName];
   let el;

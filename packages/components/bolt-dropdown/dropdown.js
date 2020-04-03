@@ -52,7 +52,7 @@ class BoltDropdown extends withLitHtml {
 
     const elem = this;
 
-    window.addEventListener('resize', function() {
+    window.addEventListener('resize', function () {
       elem.autoHeight();
     });
 
@@ -74,7 +74,7 @@ class BoltDropdown extends withLitHtml {
 
   close() {
     const elem = this;
-    setTimeout(function() {
+    setTimeout(function () {
       elem.dropdown.folds[0].close();
     }, 300);
   }

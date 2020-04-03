@@ -25,7 +25,7 @@ const setupEventHandlers = () => {
 
   typeaheadDemo.on('onSelected', (element, event, suggestion) => {
     const exactMatch = element.items.filter(
-      item => item.label === suggestion.suggestionValue,
+      (item) => item.label === suggestion.suggestionValue,
     )[0];
 
     function navigateTo(url) {
@@ -54,7 +54,7 @@ if (typeaheadDemo) {
     setupEventHandlers();
   }
 
-  typeaheadDemo.addEventListener('ready', e => {
+  typeaheadDemo.addEventListener('ready', (e) => {
     if (e.detail.name === 'bolt-typeahead') {
       setupEventHandlers();
     }

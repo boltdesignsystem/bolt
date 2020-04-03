@@ -2,7 +2,7 @@ let currentBrowser;
 
 module.exports = {
   tags: ['component', 'tabs', 'web component'],
-  'Tabs: tab selected': function(browser) {
+  'Tabs: tab selected': function (browser) {
     const { testingUrl } = browser.globals;
     console.log(`global browser url: ${testingUrl}`);
     currentBrowser = '--' + browser.currentEnv || 'chrome';
@@ -27,7 +27,7 @@ module.exports = {
       .end();
   },
 
-  'Tabs: adaptive menu': function(browser) {
+  'Tabs: adaptive menu': function (browser) {
     const { testingUrl } = browser.globals;
     console.log(`global browser url: ${testingUrl}`);
     currentBrowser = '--' + browser.currentEnv || 'chrome';
@@ -57,7 +57,7 @@ module.exports = {
       .end();
   },
 
-  'Tabs: loads video content in inactive tab': function(browser) {
+  'Tabs: loads video content in inactive tab': function (browser) {
     const { testingUrl } = browser.globals;
     console.log(`global browser url: ${testingUrl}`);
     currentBrowser = '--' + browser.currentEnv || 'chrome';
@@ -72,19 +72,19 @@ module.exports = {
       .waitForElementVisible('bolt-tabs', 1000)
       .assert.elementPresent(video)
       .execute(
-        function(data) {
+        function (data) {
           // Get initial selected tab
           return document.querySelector('bolt-tabs').selectedTab;
         },
         [],
-        function(result) {
+        function (result) {
           browser.assert.ok(
             result.value === 1,
             `On load the first tab is open and Video is hidden`,
           );
         },
       )
-      .execute(function(data) {
+      .execute(function (data) {
         // Opens video tab
         document.querySelector('bolt-tabs').setAttribute('selected-tab', 4);
       })
@@ -95,11 +95,11 @@ module.exports = {
       .pause(1000)
       .assert.cssClassPresent(videoPlayer, ['vjs-paused'])
       .execute(
-        function(data) {
+        function (data) {
           return document.querySelector('bolt-video').player.currentTime();
         },
         [],
-        function(result) {
+        function (result) {
           browser.assert.ok(
             result.value > 1,
             `<bolt-video> starts playing when <bolt-button> is clicked -- verified since the current video's play time is ${result.value} seconds`,

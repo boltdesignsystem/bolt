@@ -23,7 +23,7 @@ describe('Micro journeys', () => {
     await page.close();
   }, timeout);
 
-  test('<bolt-interactive-pathway> ready event emits only when actually ready', async function() {
+  test('<bolt-interactive-pathway> ready event emits only when actually ready', async function () {
     await page.evaluate(async () => {
       const wrapper = document.createElement('div');
       wrapper.innerHTML = `
@@ -40,7 +40,7 @@ describe('Micro journeys', () => {
       );
 
       return new Promise((resolve, reject) => {
-        interactivePathway.addEventListener('ready', e => {
+        interactivePathway.addEventListener('ready', (e) => {
           // Make sure that this is the ready event on interactivePathway and not a child element.
           if (interactivePathway === e.target) {
             resolve();

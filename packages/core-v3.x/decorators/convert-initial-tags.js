@@ -11,7 +11,7 @@
 import { getComponentRootElement } from '@bolt/core-v3.x/utils/get-component-root-element';
 
 export function convertInitialTags(tags, moveChildrenToRoot = true) {
-  return target => {
+  return (target) => {
     return class extends target {
       connectedCallback() {
         super.connectedCallback && super.connectedCallback();

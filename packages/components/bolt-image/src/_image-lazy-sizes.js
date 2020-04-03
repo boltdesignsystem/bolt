@@ -21,12 +21,12 @@ Object.assign(lazySizes.cfg, {
   getElements(selector) {
     let elements = Array.from(
       document.querySelectorAll('bolt-image'),
-    ).map(elem =>
+    ).map((elem) =>
       elem.renderRoot
         ? elem.renderRoot.querySelector(selector)
         : elem.querySelector(selector),
     );
-    elements = elements.filter(function(el) {
+    elements = elements.filter(function (el) {
       return el != null;
     });
     return elements;

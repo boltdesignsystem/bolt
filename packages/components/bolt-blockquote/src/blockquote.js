@@ -48,7 +48,7 @@ class BoltBlockquote extends withLitHtml {
     // and causes component to disappear.
     if (window.MutationObserver && this.useShadow) {
       // Re-generate slots + re-render when mutations are observed
-      const mutationCallback = function(mutationsList, observer) {
+      const mutationCallback = function (mutationsList, observer) {
         self.slots = self._checkSlots();
         self.triggerUpdate();
 
@@ -113,7 +113,7 @@ class BoltBlockquote extends withLitHtml {
       if (this.slots.default) {
         const defaultSlot = [];
 
-        this.slots.default.forEach(item => {
+        this.slots.default.forEach((item) => {
           if (item.tagName) {
             item.classList.remove('is-first-child');
             item.classList.remove('is-last-child'); // clean up existing classes
@@ -194,9 +194,7 @@ class BoltBlockquote extends withLitHtml {
           lang
             ? lang
             : this.closest('[lang]')
-            ? this.closest('[lang]')
-                .getAttribute('lang')
-                .toLowerCase()
+            ? this.closest('[lang]').getAttribute('lang').toLowerCase()
             : undefined,
         )}"
       >
@@ -216,7 +214,7 @@ class BoltBlockquote extends withLitHtml {
           ? html`
               <footer class="${cx('c-bolt-blockquote__footer')}">
                 ${footerItems.map(
-                  footerItem => html`
+                  (footerItem) => html`
                     <div class="${cx('c-bolt-blockquote__footer-item')}">
                       ${footerItem}
                     </div>

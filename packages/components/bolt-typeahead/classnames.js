@@ -44,7 +44,7 @@ export function classNames(...args) {
   // if CSS Modules enabled, automatically map the CSS selector to the mangled classname (what classnames/bind was _supposed_ to already do...)
   if (styles) {
     if (styles.locals) {
-      classes = classes.map(selector =>
+      classes = classes.map((selector) =>
         styles.locals[selector] ? styles.locals[selector] : selector,
       );
     }

@@ -19,9 +19,9 @@ const SLACK_WEBHOOK_URL = process.env.SLACK_WEBHOOK_URL;
 const SLACK_WEBPACK_URL_CANARY = process.env.SLACK_WEBPACK_URL_CANARY;
 
 // figure out what a canary release version would be
-const canaryVersion = `.${process.env.TRAVIS_PULL_REQUEST_SHA ||
-  process.env.TRAVIS_JOB_NUMBER ||
-  gitSha}`;
+const canaryVersion = `.${
+  process.env.TRAVIS_PULL_REQUEST_SHA || process.env.TRAVIS_JOB_NUMBER || gitSha
+}`;
 
 // force color output in CLI
 // @ts-ignore
@@ -32,7 +32,7 @@ async function getLernaPackages() {
     silent: true,
   }).stdout;
   const formattedPackages = [];
-  packages.split('\n').map(packageInfo => {
+  packages.split('\n').map((packageInfo) => {
     const [packagePath, name, version] = packageInfo.split(':');
 
     if (packagePath && version) {
@@ -59,7 +59,7 @@ async function init() {
       );
 
       const packages = await getLernaPackages();
-      const versioned = packages.find(p => p.version.includes('canary'));
+      const versioned = packages.find((p) => p.version.includes('canary'));
       if (!versioned) {
         console.log(
           'No packages were changed so no canary version was published.',
@@ -94,7 +94,7 @@ async function init() {
 
       const latestUrl = await getLatestDeploy();
 
-      nowAliases.forEach(alias => {
+      nowAliases.forEach((alias) => {
         shell.exec(`npx now alias ${latestUrl} ${alias} --token=${NOW_TOKEN}`);
       });
 
@@ -172,7 +172,7 @@ async function init() {
 
         const latestUrl = await getLatestDeploy();
 
-        nowAliases.forEach(alias => {
+        nowAliases.forEach((alias) => {
           shell.exec(
             `npx now alias ${latestUrl} ${alias} --token=${NOW_TOKEN}`,
           );

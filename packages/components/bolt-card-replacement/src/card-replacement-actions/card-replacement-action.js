@@ -42,9 +42,7 @@ class BoltCardReplacementAction extends withLitHtml {
                 ></bolt-icon>
               </bolt-button>
             `
-          : html`
-              ${this.slot('default')}
-            `}
+          : html` ${this.slot('default')} `}
       </div>
     `;
   }

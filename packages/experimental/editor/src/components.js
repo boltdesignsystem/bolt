@@ -17,7 +17,7 @@ export function setupComponents(editor) {
   // const { model: dModel, view: dView } = dType;
 
   DomComponents.addType('bolt-action-blocks', {
-    isComponent: el => el.tagName === 'BOLT-ACTION-BLOCKS',
+    isComponent: (el) => el.tagName === 'BOLT-ACTION-BLOCKS',
     model: {
       defaults: {
         tagName: 'bolt-action-blocks',

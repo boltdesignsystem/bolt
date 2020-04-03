@@ -29,7 +29,7 @@ if (process.env.TRAVIS === 'true') {
       label: 'Git Fetch',
       cmd: 'git fetch',
     },
-  ].forEach(step => {
+  ].forEach((step) => {
     process.stderr.write(`${step.label}\n`);
     const results = execa.shellSync(step.cmd);
     if (results.failed) {
@@ -59,16 +59,16 @@ if (pkgs.length >= 1) {
   process.stderr.write(`Comparing this commit "HEAD" to base of "${base}":\n`);
   process.stderr.write(
     `These packages were found to have had recent changes:
-      ${pkgs.map(pkg => pkg.name).join('\n')}
+      ${pkgs.map((pkg) => pkg.name).join('\n')}
 
       Filtering tests to only run on these packages.\n`,
   );
 
-  pkgs.forEach(pkg => {
+  pkgs.forEach((pkg) => {
     process.stderr.write(`- ${pkg.name} : ${pkg.relPath} \n`);
   });
 
-  const filteredList = pkgs.map(pkg => pkg.relPath).join('|');
+  const filteredList = pkgs.map((pkg) => pkg.relPath).join('|');
   process.stdout.write(filteredList || './fake-test-path'); // dummy path to Jest so we can exit early
 } else {
   process.stderr.write(`No packages have recently changed! Exiting early...`);

@@ -9,7 +9,7 @@ export class ContextGetter {
 
     if (
       (ctor.consumes &&
-        ctor.consumes.find(ctxAndProps => ctxAndProps[0] === Context)) ||
+        ctor.consumes.find((ctxAndProps) => ctxAndProps[0] === Context)) ||
       (ctor.provides && ctor.provides.includes(Context))
     ) {
       if (this._cache.has(Context)) return this._cache.get(Context);

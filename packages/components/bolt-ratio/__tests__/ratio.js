@@ -48,7 +48,7 @@ describe('<bolt-ratio> Component', () => {
     expect(results.html).toMatchSnapshot();
   });
 
-  test('Default <bolt-ratio> w/o Shadow DOM renders', async function() {
+  test('Default <bolt-ratio> w/o Shadow DOM renders', async function () {
     const renderedRatioHTML = await page.evaluate(async () => {
       document.body.insertAdjacentHTML(
         'beforeend',
@@ -58,7 +58,7 @@ describe('<bolt-ratio> Component', () => {
       );
       const ratio = document.querySelector('bolt-ratio');
       const undefinedElements = document.querySelectorAll('bolt-ratio');
-      const promises = [...undefinedElements].map(elem =>
+      const promises = [...undefinedElements].map((elem) =>
         customElements.whenDefined(elem.localName),
       );
       await Promise.all(promises);
@@ -69,7 +69,7 @@ describe('<bolt-ratio> Component', () => {
     await page.evaluate(async () => {
       const selectors = Array.from(document.querySelectorAll('bolt-ratio'));
       return await Promise.all(
-        selectors.map(ratio => {
+        selectors.map((ratio) => {
           if (ratio._wasInitiallyRendered) return;
           return new Promise((resolve, reject) => {
             ratio.addEventListener('ready', resolve);
@@ -92,7 +92,7 @@ describe('<bolt-ratio> Component', () => {
     expect(renderedRatioStyles).toMatch(parseFloat(1200 / 660).toFixed(5));
   });
 
-  test('<bolt-ratio> with HTML5 video renders', async function() {
+  test('<bolt-ratio> with HTML5 video renders', async function () {
     const renderedRatioHTML = await page.evaluate(() => {
       const ratio = document.createElement('bolt-ratio');
 
@@ -111,7 +111,7 @@ describe('<bolt-ratio> Component', () => {
     await page.evaluate(async () => {
       const selectors = Array.from(document.querySelectorAll('bolt-ratio'));
       return await Promise.all(
-        selectors.map(ratio => {
+        selectors.map((ratio) => {
           if (ratio._wasInitiallyRendered === true)
             return '_wasInitiallyRendered';
           return new Promise((resolve, reject) => {
@@ -125,7 +125,7 @@ describe('<bolt-ratio> Component', () => {
     await page.evaluate(async () => {
       const selectors = Array.from(document.querySelectorAll('bolt-ratio'));
       return await Promise.all(
-        selectors.map(ratio => {
+        selectors.map((ratio) => {
           const video = ratio.querySelector('video');
           if (video.readyState === 4) return;
           return new Promise((resolve, reject) => {
@@ -161,7 +161,7 @@ describe('<bolt-ratio> Component', () => {
 
     const html = results.html;
 
-    await page.evaluate(html => {
+    await page.evaluate((html) => {
       const div = document.createElement('div');
       div.innerHTML = `${html}`;
       document.body.appendChild(div);
@@ -172,7 +172,7 @@ describe('<bolt-ratio> Component', () => {
     await page.evaluate(async () => {
       const selectors = Array.from(document.querySelectorAll('bolt-ratio'));
       await Promise.all(
-        selectors.map(ratio => {
+        selectors.map((ratio) => {
           if (ratio._wasInitiallyRendered === true) return;
           return new Promise((resolve, reject) => {
             ratio.addEventListener('ready', resolve);
@@ -185,7 +185,7 @@ describe('<bolt-ratio> Component', () => {
     await page.evaluate(async () => {
       const selectors = Array.from(document.querySelectorAll('bolt-ratio'));
       return await Promise.all(
-        selectors.map(ratio => {
+        selectors.map((ratio) => {
           const image = ratio.querySelector('img');
           if (image.complete) {
             return;
@@ -212,7 +212,7 @@ describe('<bolt-ratio> Component', () => {
     expect(renderedRatioStyles).toMatch(parseFloat(1200 / 850).toFixed(5));
   });
 
-  test('<bolt-ratio> web component - ratio prop fraction containing a decimal', async function() {
+  test('<bolt-ratio> web component - ratio prop fraction containing a decimal', async function () {
     const renderedRatioHTML = await page.evaluate(() => {
       const ratio = document.createElement('bolt-ratio');
       const img = document.createElement('img');
@@ -228,7 +228,7 @@ describe('<bolt-ratio> Component', () => {
     await page.evaluate(async () => {
       const selectors = Array.from(document.querySelectorAll('bolt-ratio'));
       await Promise.all(
-        selectors.map(ratio => {
+        selectors.map((ratio) => {
           if (ratio._wasInitiallyRendered === true) return;
           return new Promise((resolve, reject) => {
             ratio.addEventListener('ready', resolve);

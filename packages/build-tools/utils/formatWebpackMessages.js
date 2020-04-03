@@ -43,7 +43,7 @@ function formatMessage(message, isError) {
     lines[0] = lines[0].substr(lines[0].lastIndexOf('!') + 1);
   }
 
-  lines = lines.filter(function(line) {
+  lines = lines.filter(function (line) {
     // Webpack adds a list of entry points to warning messages:
     //  @ ./src/index.js
     //  @ multi react-scripts/~/react-dev-utils/webpackHotDevClient.js ...
@@ -106,10 +106,10 @@ function formatMessage(message, isError) {
 }
 
 function formatWebpackMessages(json) {
-  var formattedErrors = json.errors.map(function(message) {
+  var formattedErrors = json.errors.map(function (message) {
     return formatMessage(message, true);
   });
-  var formattedWarnings = json.warnings.map(function(message) {
+  var formattedWarnings = json.warnings.map(function (message) {
     return formatMessage(message, false);
   });
   var result = {

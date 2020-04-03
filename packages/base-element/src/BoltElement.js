@@ -26,7 +26,7 @@ class BoltElement extends Slotify {
   ssrHydrationPrep() {
     this.nodesToKeep = [];
 
-    this.ssrKeep.forEach(item => {
+    this.ssrKeep.forEach((item) => {
       while (item.firstChild) {
         this.nodesToKeep.push(item.firstChild); // track the nodes that will be preserved
         this.appendChild(item.firstChild);
@@ -35,8 +35,8 @@ class BoltElement extends Slotify {
 
     // Remove all children not in the "keep" array
     Array.from(this.children)
-      .filter(item => !this.nodesToKeep.includes(item))
-      .forEach(node => {
+      .filter((item) => !this.nodesToKeep.includes(item))
+      .forEach((node) => {
         node.parentElement.removeChild(node);
       });
 
@@ -64,7 +64,7 @@ class BoltElement extends Slotify {
       this.renderRoot.adoptedStyleSheets.length === 0
     ) {
       this._needsShimAdoptedStyleSheets = false;
-      this.constructor._styles.forEach(s => {
+      this.constructor._styles.forEach((s) => {
         const style = document.createElement('style');
         style.textContent = s.cssText;
         this.renderRoot.appendChild(style);

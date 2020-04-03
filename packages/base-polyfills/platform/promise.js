@@ -43,7 +43,7 @@ if (!window.Promise) {
   }).observe(node, { characterData: true });
 
   // set _immediateFn to a MutationObserver for close-to-native timing
-  PromisePolyfill._immediateFn = fn => {
+  PromisePolyfill._immediateFn = (fn) => {
     callbacks.push(fn);
     twiddleNode();
   };

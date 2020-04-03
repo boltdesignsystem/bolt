@@ -69,7 +69,7 @@ function handleClickTracking(e, elem) {
     // if not, apply GA autolink behavior to all external links
     try {
       if (
-        window.bolt.autolink.domains.some(function(v) {
+        window.bolt.autolink.domains.some(function (v) {
           return link.href.indexOf(v) >= 0;
         })
       ) {
@@ -104,10 +104,10 @@ function onComponentRender(e) {
     if (hasInternalAnchor) {
       // remove event listeners if the component had previously rendered.
       if (elem._wasInitiallyRendered) {
-        elem.removeEventListener('click', e => handleClickTracking(e, elem));
+        elem.removeEventListener('click', (e) => handleClickTracking(e, elem));
       }
 
-      elem.addEventListener('click', e => handleClickTracking(e, elem));
+      elem.addEventListener('click', (e) => handleClickTracking(e, elem));
     }
   }
 }

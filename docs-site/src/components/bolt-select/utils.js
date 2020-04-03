@@ -36,7 +36,7 @@ export function isDefined(value) {
 export function createSelectOptions(options) {
   const selectOptions = Array.from(options);
   return selectOptions.map(
-    option =>
+    (option) =>
       wire(
         this,
       )`<option value=${option.value} selected=${option.selected}>${option.text}</option>`,
@@ -53,7 +53,7 @@ export function createSelectOptionData(options) {
   const selectOptions = Array.from(options);
   const newOptions = [];
 
-  selectOptions.forEach(function(option) {
+  selectOptions.forEach(function (option) {
     const { value, selected, text } = option;
 
     newOptions.push({

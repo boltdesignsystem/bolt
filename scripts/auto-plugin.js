@@ -6,7 +6,7 @@ class BoltAutoPlugin {
   }
 
   apply(auto) {
-    auto.hooks.onCreateChangelog.tap('Bolt', changelog =>
+    auto.hooks.onCreateChangelog.tap('Bolt', (changelog) =>
       changelog.hooks.renderChangelogTitle.tap(
         'Changelog Titles',
         (label, changelogTitles) => `### ${changelogTitles[label]}`,

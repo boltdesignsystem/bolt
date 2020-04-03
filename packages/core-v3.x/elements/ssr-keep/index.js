@@ -7,7 +7,6 @@ class ssrKeep extends HTMLElement {
   }
 
   connectedCallback() {
-
     const target = this.closest(this.for);
 
     if (target) {

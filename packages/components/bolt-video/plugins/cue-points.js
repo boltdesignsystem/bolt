@@ -4,7 +4,7 @@ import '@bolt/components-button';
 import isEqual from 'lodash.isequal';
 import { getSubArray } from '../utils';
 
-export const VideoOverlayContent = props => {
+export const VideoOverlayContent = (props) => {
   return (
     <bolt-button color="primary" url={props.url} target={props.target}>
       {props.text}
@@ -120,7 +120,7 @@ export function cuePointsPlugin(player, elem) {
     );
   }
 
-  player.on('loadstart', function() {
+  player.on('loadstart', function () {
     if (!player.mediainfo.cue_points) {
       return;
     }
@@ -139,8 +139,8 @@ export function cuePointsPlugin(player, elem) {
     }
 
     // process through available cue point data when the video player instance is playing / the time updates
-    player.on('timeupdate', function() {
-      const cuePointsFound = $this.cuePoints.find(function(cuePoint) {
+    player.on('timeupdate', function () {
+      const cuePointsFound = $this.cuePoints.find(function (cuePoint) {
         if (!cuePoint.hideTime) {
           cuePoint.hideTime = getCuePointHideTime($this, cuePoint);
         }

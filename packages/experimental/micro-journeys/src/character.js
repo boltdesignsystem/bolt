@@ -17,7 +17,7 @@ import uCommPlus from './images/u-comm-plus.png';
 
 let cx = classNames.bind(styles);
 
-const resolveCharacterImage = characterImage => {
+const resolveCharacterImage = (characterImage) => {
   switch (characterImage) {
     case 'customer-neutral':
       return customerNeutral;
@@ -105,15 +105,15 @@ class BoltCharacter extends withLitHtml {
       ${this.addStyles([styles])}
       <div class="${classes}">
         ${this.slots['top'] &&
-          html`
-            <div
-              class="${rootClass}__slot ${rootClass}__slot--cardinal ${rootClass}__slot--top"
-            >
-              <div class="c-bolt-micro-journeys-flex-aspect">
-                ${this.slot('top')}
-              </div>
+        html`
+          <div
+            class="${rootClass}__slot ${rootClass}__slot--cardinal ${rootClass}__slot--top"
+          >
+            <div class="c-bolt-micro-journeys-flex-aspect">
+              ${this.slot('top')}
             </div>
-          `}
+          </div>
+        `}
         <div class="${rootClass}__center-inline--wrapper">
           ${hasSideContent
             ? html`
@@ -148,17 +148,17 @@ class BoltCharacter extends withLitHtml {
                     </div>
                   `}
               ${this.slots['background'] &&
-                html`
-                  <div class="${rootClass}__background">
-                    ${this.slot('background')}
-                  </div>
-                `}
+              html`
+                <div class="${rootClass}__background">
+                  ${this.slot('background')}
+                </div>
+              `}
               ${this.slots['connection'] &&
-                html`
-                  <div class="${rootClass}__slot ${connectionClass}">
-                    ${this.slot('connection')}
-                  </div>
-                `}
+              html`
+                <div class="${rootClass}__slot ${connectionClass}">
+                  ${this.slot('connection')}
+                </div>
+              `}
             </div>
             ${props.constrainBottomSlot && this.slots['bottom']
               ? bottomSlot

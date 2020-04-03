@@ -2,12 +2,12 @@
 
 import { createElement, Component } from 'preact'; /** @jsx createElement */
 
-const debounce = function(func, wait, immediate) {
+const debounce = function (func, wait, immediate) {
   var timeout;
-  return function() {
+  return function () {
     var context = this;
     var args = arguments;
-    var later = function() {
+    var later = function () {
       timeout = null;
       if (!immediate) func.apply(context, args);
     };
@@ -21,7 +21,7 @@ const statusDebounceMillis = 1400;
 
 export class TypeaheadStatus extends Component {
   static defaultProps = {
-    tQueryTooShort: minQueryLength =>
+    tQueryTooShort: (minQueryLength) =>
       `Type in ${minQueryLength} or more characters for results`,
     tNoResults: () => 'No search results',
     tSelectedOption: (selectedOption, length, index) =>
@@ -43,7 +43,7 @@ export class TypeaheadStatus extends Component {
 
   componentWillMount() {
     const that = this;
-    this.debounceStatusUpdate = debounce(function() {
+    this.debounceStatusUpdate = debounce(function () {
       if (!that.state.debounced) {
         const shouldSilence =
           !that.props.isInFocus || that.props.validChoiceMade;

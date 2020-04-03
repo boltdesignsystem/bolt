@@ -39,7 +39,7 @@ function getDate() {
   return new Date().toISOString();
 }
 
-const getHeaders = token => ({
+const getHeaders = (token) => ({
   'Content-Type': 'application/json',
   Accept:
     'application/vnd.github.antiope-preview+json, application/vnd.github.machine-man-preview+json, application/vnd.github.v3+json',
@@ -58,7 +58,7 @@ async function getAccessToken() {
         ...getHeaders(jwtToken),
       },
     },
-  ).catch(err => {
+  ).catch((err) => {
     console.error('error getting access token', err);
     process.exit(1);
   });
@@ -151,7 +151,7 @@ async function createCheckSuite() {
         head_sha: getGitSha(),
       }),
     },
-  ).catch(err => {
+  ).catch((err) => {
     console.error('error creating check suite', err);
     process.exit(1);
   });
@@ -219,7 +219,7 @@ async function setCheckRun({
       },
       body: JSON.stringify(body),
     },
-  ).catch(err => {
+  ).catch((err) => {
     console.error('error setting check run ' + name + ' to ' + status, err);
     process.exit(1);
   });

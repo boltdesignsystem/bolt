@@ -45,7 +45,7 @@ class TabPanel extends withContext(withLitHtml) {
   }
 
   setSelectedTab() {
-    Array.from(this.context.tabPanels).forEach(item => {
+    Array.from(this.context.tabPanels).forEach((item) => {
       if (item !== this) {
         item.removeAttribute('selected');
         item.selected = false;
@@ -86,14 +86,12 @@ class TabPanel extends withContext(withLitHtml) {
 
     const contentClasses = cx('c-bolt-tab-panel__content');
 
-    const slotMarkup = name => {
+    const slotMarkup = (name) => {
       switch (name) {
         case 'label':
           return name in this.slots
             ? this.slot(name)
-            : html`
-                <slot name="${name}" />
-              `;
+            : html` <slot name="${name}" /> `;
 
         default:
           return name in this.slots
@@ -109,17 +107,13 @@ class TabPanel extends withContext(withLitHtml) {
                   ${this.slot('default')}
                 </div>
               `
-            : html`
-                <slot />
-              `;
+            : html` <slot /> `;
       }
     };
 
     const innerSlots = [slotMarkup('label'), slotMarkup('default')];
 
-    return html`
-      <div class="${classes}">${innerSlots}</div>
-    `;
+    return html` <div class="${classes}">${innerSlots}</div> `;
   }
 
   rendered() {
@@ -134,9 +128,7 @@ class TabPanel extends withContext(withLitHtml) {
   }
 
   render() {
-    return html`
-      ${this.addStyles([styles])} ${this.template()}
-    `;
+    return html` ${this.addStyles([styles])} ${this.template()} `;
   }
 }
 

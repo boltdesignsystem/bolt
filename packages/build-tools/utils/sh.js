@@ -28,21 +28,21 @@ async function sh(
       child.stderr.pipe(process.stderr);
     }
 
-    child.stdout.on('data', data => {
+    child.stdout.on('data', (data) => {
       output += data;
       if (streamOutput) {
         process.stdout.write(data);
       }
     });
 
-    child.stderr.on('data', data => {
+    child.stderr.on('data', (data) => {
       output += data;
       if (streamOutput) {
         process.stdout.write(data);
       }
     });
 
-    child.on('close', code => {
+    child.on('close', (code) => {
       if (code > 0) {
         const errorMsg = chalk.red(`
           Error with code ${code}${

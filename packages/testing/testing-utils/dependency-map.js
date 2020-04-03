@@ -55,7 +55,7 @@ async function getTwigFilePath(templateName) {
     );
   }
 
-  const globPatterns = namespaceConfig.paths.map(path => {
+  const globPatterns = namespaceConfig.paths.map((path) => {
     const suffix = namespaceConfig.recursive ? join('**', relPath) : relPath;
     return join(twigNamespaceRoot, path, suffix);
   });
@@ -99,9 +99,9 @@ function findTwigFilesUsedInString(twigString, { unique = true } = {}) {
   return (
     results
       // don't include any Yeoman generator files
-      .filter(r => !r.includes('<%='))
+      .filter((r) => !r.includes('<%='))
       // don't include any dynamic file includes
-      .filter(r => !r.includes('~'))
+      .filter((r) => !r.includes('~'))
   );
 }
 

@@ -2,7 +2,7 @@ let currentBrowser;
 
 module.exports = {
   tags: ['component', 'popover'],
-  'Popover w/ matching open no-JS / SSR state auto-opens but can still be closed': function(
+  'Popover w/ matching open no-JS / SSR state auto-opens but can still be closed': function (
     browser,
   ) {
     const { testingUrl } = browser.globals;
@@ -23,7 +23,7 @@ module.exports = {
       .end();
   },
 
-  'Popover w/ matching closed no-JS / SSR state remains closed': function(
+  'Popover w/ matching closed no-JS / SSR state remains closed': function (
     browser,
   ) {
     const { testingUrl } = browser.globals;
@@ -42,7 +42,7 @@ module.exports = {
       .end();
   },
 
-  "Popover's URL cleanup doesn't modify existing URL query strings": function(
+  "Popover's URL cleanup doesn't modify existing URL query strings": function (
     browser,
   ) {
     const { testingUrl } = browser.globals;

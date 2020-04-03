@@ -47,7 +47,7 @@ function whichTransitionEndEvent() {
 // is the same as the last time it was called, it avoids initializing gumshoe again (among other things, when
 // initializing multiple navbars on one page, this only initializes gumshoe once).  If the offset value HAS changed--
 // presumably because the header has adjusted its own height--gumshoe will be re-initialized with the new value.
-let gumshoeStateModule = (function() {
+let gumshoeStateModule = (function () {
   let offset; // Private variable
   let pub = {}; // public object - returned at end of module to allow external interaction
   let reference;
@@ -57,7 +57,7 @@ let gumshoeStateModule = (function() {
   const gumshoeExtraOffset = 100;
 
   // navSelectorInstance is used to map up the element calling setOffset so <bolt-nav-indicator> methods can get used
-  pub.setOffset = function(newOffset, navSelectorInstance) {
+  pub.setOffset = function (newOffset, navSelectorInstance) {
     if (offset !== newOffset) {
       offset = newOffset;
 
@@ -144,7 +144,7 @@ let gumshoeStateModule = (function() {
     }
   };
 
-  pub.getOffset = function() {
+  pub.getOffset = function () {
     return offset;
   };
 
@@ -182,9 +182,7 @@ class BoltNavIndicator extends withLitHtml {
   }
 
   render() {
-    return html`
-      ${this.slot('default')}
-    `;
+    return html` ${this.slot('default')} `;
   }
 
   get offset() {
@@ -204,7 +202,7 @@ class BoltNavIndicator extends withLitHtml {
    */
   resetLinks(activeLink = null) {
     const links = this._allLinks();
-    links.forEach(link => {
+    links.forEach((link) => {
       if (link !== activeLink && link.deactivate) {
         link.deactivate();
       }
@@ -310,7 +308,7 @@ class BoltNavIndicator extends withLitHtml {
     Promise.all([
       customElements.whenDefined('bolt-nav-priority'),
       customElements.whenDefined('bolt-navlink'),
-    ]).then(_ => {
+    ]).then((_) => {
       // If the nav indicator already exists, exit early.
       if (this.querySelector(`.${this.indicatorClass}`)) {
         return;

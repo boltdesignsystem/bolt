@@ -77,14 +77,14 @@ describe('Bolt Tabs', () => {
   });
 
   test('Web Component usage (Shadow DOM)', async () => {
-    const tabsOuter = await page.evaluate(tabsInnerHTML => {
+    const tabsOuter = await page.evaluate((tabsInnerHTML) => {
       const wrapper = document.createElement('div');
       wrapper.innerHTML = tabsInnerHTML;
       document.body.appendChild(wrapper);
 
       const tabs = document.querySelector('bolt-tabs');
       const tabPanels = Array.from(document.querySelectorAll('bolt-tab-panel'));
-      [tabs, ...tabPanels].forEach(el => el.updated());
+      [tabs, ...tabPanels].forEach((el) => el.updated());
 
       return tabs.outerHTML;
     }, tabsInnerHTML);
@@ -100,14 +100,14 @@ describe('Bolt Tabs', () => {
   });
 
   test('Web Component usage (Light DOM)', async () => {
-    const tabsOuter = await page.evaluate(async tabsInnerHTML => {
+    const tabsOuter = await page.evaluate(async (tabsInnerHTML) => {
       const wrapper = document.createElement('div');
       wrapper.innerHTML = tabsInnerHTML;
       document.body.appendChild(wrapper);
 
       const tabs = document.querySelector('bolt-tabs');
       const tabPanels = Array.from(document.querySelectorAll('bolt-tab-panel'));
-      [tabs, ...tabPanels].forEach(el => {
+      [tabs, ...tabPanels].forEach((el) => {
         el.setAttribute('no-shadow', '');
       });
 
@@ -115,7 +115,7 @@ describe('Bolt Tabs', () => {
         'bolt-tabs',
         'bolt-tab-panel',
       );
-      const promises = [...undefinedElements].map(elem =>
+      const promises = [...undefinedElements].map((elem) =>
         customElements.whenDefined(elem.localName),
       );
       await Promise.all(promises);
@@ -133,7 +133,7 @@ describe('Bolt Tabs', () => {
     expect(renderedHTML).toMatchSnapshot();
   });
 
-  align.enum.forEach(async option => {
+  align.enum.forEach(async (option) => {
     test(`Align: ${option}`, async () => {
       const tabsOuter = await page.evaluate(
         (option, tabsInnerHTML) => {
@@ -146,7 +146,7 @@ describe('Bolt Tabs', () => {
             document.querySelectorAll('bolt-tab-panel'),
           );
           tabs.setAttribute('align', option);
-          [tabs, ...tabPanels].forEach(el => el.updated());
+          [tabs, ...tabPanels].forEach((el) => el.updated());
 
           return tabs.outerHTML;
         },
@@ -165,7 +165,7 @@ describe('Bolt Tabs', () => {
     });
   });
 
-  inset.enum.forEach(async option => {
+  inset.enum.forEach(async (option) => {
     test(`Inset: ${option}`, async () => {
       const tabsOuter = await page.evaluate(
         (option, tabsInnerHTML) => {
@@ -179,7 +179,7 @@ describe('Bolt Tabs', () => {
           );
 
           tabs.setAttribute('inset', option);
-          [tabs, ...tabPanels].forEach(el => el.updated());
+          [tabs, ...tabPanels].forEach((el) => el.updated());
 
           return tabs.outerHTML;
         },

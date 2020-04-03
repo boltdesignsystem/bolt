@@ -26,7 +26,7 @@ if (!flags.noOpts) {
   location.search
     .slice(1)
     .split('&')
-    .forEach(option => {
+    .forEach((option) => {
       const parts = option.split('=');
       let match;
       if (parts[0] && (match = parts[0].match(flagMatcher))) {
@@ -45,7 +45,7 @@ if (!flags.noOpts) {
   if (flags.log && flags.log.split) {
     const parts = flags.log.split(',');
     flags.log = {};
-    parts.forEach(f => {
+    parts.forEach((f) => {
       flags.log[f] = true;
     });
   } else {

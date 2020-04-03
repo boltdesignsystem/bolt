@@ -2,7 +2,7 @@ let currentBrowser;
 
 module.exports = {
   tags: ['component', 'blockquote', 'web component'],
-  'Bolt Blockquote': function(browser) {
+  'Bolt Blockquote': function (browser) {
     const { testingUrl } = browser.globals;
     console.log(`global browser url: ${testingUrl}`);
     currentBrowser = '--' + browser.currentEnv || 'chrome';
@@ -15,14 +15,14 @@ module.exports = {
       .waitForElementVisible('bolt-blockquote', 1000)
       .assert.elementPresent('bolt-logo[slot="logo"]')
       .execute(
-        function(data) {
+        function (data) {
           const blockquote = document.querySelector('bolt-blockquote');
           return blockquote.renderRoot
             .querySelector('blockquote')
             .classList.contains('c-bolt-blockquote');
         },
         [],
-        function(result) {
+        function (result) {
           browser.assert.ok(
             result.value === true,
             `verified that <bolt-blockquote> rendered the blockquote element with a class of  c-bolt-blockquote.`,

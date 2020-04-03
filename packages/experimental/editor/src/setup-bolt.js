@@ -141,7 +141,7 @@ const basicSlottableComponents = [
 const characterSlottableComponents = [];
 const ctaTextSlottableComponents = [];
 
-Object.keys(starters).map(id => {
+Object.keys(starters).map((id) => {
   const content = starters[id];
   const component = {
     id,
@@ -169,7 +169,7 @@ export function setupBolt(editor) {
   } = editor;
 
   DomComponents.addType('div', {
-    isComponent: el => el.tagName === 'DIV',
+    isComponent: (el) => el.tagName === 'DIV',
     model: {
       defaults: {
         tagName: 'div',
@@ -240,7 +240,7 @@ export function setupBolt(editor) {
   }) {
     const { title, description, properties } = schema;
 
-    const traitsFromProps = propsToTraits.map(propName => {
+    const traitsFromProps = propsToTraits.map((propName) => {
       const prop = properties[propName];
 
       if (!prop) {
@@ -253,21 +253,21 @@ export function setupBolt(editor) {
     });
 
     // Registering slots as Components so we can declare them as dropzones
-    Object.keys(slots).forEach(slotName => {
+    Object.keys(slots).forEach((slotName) => {
       if (slotName === 'default') return;
       const droppable = slots[slotName];
       const slotComponentName = `${name}__slot--${slotName}`;
       // These are the components that can be slots, we use `null` to indicate that any HTML element with a `slot` attribute
       const extendableComponents = [null, 'bolt-animate'];
 
-      extendableComponents.forEach(extendableComponent => {
+      extendableComponents.forEach((extendableComponent) => {
         const slotId = extendableComponent
           ? `${slotComponentName}--${extendableComponent}`
           : slotComponentName;
 
         DomComponents.addType(slotId, {
           extend: extendableComponent,
-          isComponent: el => {
+          isComponent: (el) => {
             if (!el.getAttribute) return false;
             const assignedSlot = el.getAttribute('slot');
             if (!isChildOfEl(el, name)) return false;
@@ -300,7 +300,7 @@ export function setupBolt(editor) {
     const componentConfig = {
       isComponent: isComponent
         ? isComponent
-        : el => el.tagName === name.toUpperCase(),
+        : (el) => el.tagName === name.toUpperCase(),
       extend,
       model: {
         defaults: {
@@ -322,8 +322,8 @@ export function setupBolt(editor) {
     };
 
     if (removalEventsToFireOnParents.length) {
-      componentConfig.model.removed = function() {
-        removalEventsToFireOnParents.forEach(eventConfig => {
+      componentConfig.model.removed = function () {
+        removalEventsToFireOnParents.forEach((eventConfig) => {
           // this.closest(whatever) is always 0 so we use this.parent().closest(). Meaning immediate ancestors won't work.
           const parent = this.parent().closest(eventConfig.parentSelector);
           // parent is only found and dispatched once, because (my guess is that) nodes are removed from parent -> down.
@@ -678,7 +678,7 @@ export function setupBolt(editor) {
     name: 'bolt-animate',
     schema: animateSchema,
     propsToTraits: Object.keys(animateSchema.properties).filter(
-      prop => prop !== 'showMeta',
+      (prop) => prop !== 'showMeta',
     ),
     draggable: false,
     editable: true,
@@ -699,7 +699,7 @@ export function setupBolt(editor) {
       top: true,
       bottom: true,
     },
-    slotControls: ['top', 'bottom'].map(slotName => ({
+    slotControls: ['top', 'bottom'].map((slotName) => ({
       slotName,
       components: basicSlottableComponents,
     })),
@@ -728,7 +728,7 @@ export function setupBolt(editor) {
       background: true,
     },
     slotControls: [
-      ...['top', 'right', 'bottom', 'left'].map(slotName => ({
+      ...['top', 'right', 'bottom', 'left'].map((slotName) => ({
         slotName,
         components: basicSlottableComponents,
       })),
@@ -811,7 +811,7 @@ export function setupBolt(editor) {
   // the svg animations behind a character.
   const svgAnimationsSchemaForCharacter = svgAnimationsSchema;
   svgAnimationsSchemaForCharacter.properties.animType.enum = svgAnimationsSchema.properties.animType.enum.filter(
-    item => item !== 'connectionBand' && item !== 'tripleConnectionBand',
+    (item) => item !== 'connectionBand' && item !== 'tripleConnectionBand',
   );
   registerBoltComponent({
     name: 'bolt-svg-animations',

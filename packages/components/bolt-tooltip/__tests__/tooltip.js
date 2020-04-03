@@ -35,7 +35,7 @@ describe('<bolt-tooltip> Component', () => {
   });
 
   // Props
-  placement.enum.forEach(async placementChoice => {
+  placement.enum.forEach(async (placementChoice) => {
     test(`Placement of the tooltip bubble: ${placementChoice}`, async () => {
       const results = await render('@bolt-components-tooltip/tooltip.twig', {
         trigger: 'CRM',

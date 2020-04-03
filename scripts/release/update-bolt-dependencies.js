@@ -15,7 +15,7 @@ let spinner = new Ora(chalk.blue(`Detecting bolt packages to update`)).start();
 
 async function readJsonPackages(directories) {
   const dirs = directories ? directories : [];
-  const allPackages = dirs.map(dir => path.join(dir, globPattern));
+  const allPackages = dirs.map((dir) => path.join(dir, globPattern));
 
   return await globby(allPackages, { dot: true });
 }
@@ -30,13 +30,13 @@ async function collectDependencies(json) {
 async function checkForBoltDependencies(json) {
   const keys = Object.keys(await collectDependencies(json));
 
-  return keys.filter(key => key.includes('@bolt')).length > 0;
+  return keys.filter((key) => key.includes('@bolt')).length > 0;
 }
 
 async function lookForAdditionalSymbols(pkgNumber) {
   const pkg = typeof pkgNumber !== 'undefined' ? pkgNumber : '';
 
-  return additionalPkgSymbols.filter(symbol => pkg.includes(`${symbol}`));
+  return additionalPkgSymbols.filter((symbol) => pkg.includes(`${symbol}`));
 }
 
 async function compareBoltVersions(pkg, json) {
@@ -54,7 +54,7 @@ async function compareBoltVersions(pkg, json) {
 async function updateDependencies(dirs) {
   const paths = await readJsonPackages(dirs);
 
-  paths.forEach(async file => {
+  paths.forEach(async (file) => {
     jsonFile.readFile(file, async (error, data) => {
       if (error) {
         spinner.fail(
@@ -70,7 +70,7 @@ async function updateDependencies(dirs) {
           const devDependencies = data.devDependencies;
 
           return Promise.all(
-            await boltPackages.map(async pkg => {
+            await boltPackages.map(async (pkg) => {
               const updatedVersion = await compareBoltVersions(pkg, data);
 
               if (
@@ -87,7 +87,7 @@ async function updateDependencies(dirs) {
             }),
           )
             .then(() => {
-              jsonFile.writeFile(file, data, { spaces: 2 }, error => {
+              jsonFile.writeFile(file, data, { spaces: 2 }, (error) => {
                 if (error) {
                   spinner.fail(
                     chalk.red(
@@ -99,7 +99,7 @@ async function updateDependencies(dirs) {
                 }
               });
             })
-            .catch(error => {
+            .catch((error) => {
               spinner.fail(
                 chalk.red(`Error trying to update package.json file. ${error}`),
               );

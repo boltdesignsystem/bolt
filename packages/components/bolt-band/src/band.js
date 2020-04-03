@@ -112,7 +112,7 @@ class BoltBand extends BoltElement {
     this.expanded = false;
 
     // clean up inline CSS after waiting just a bit
-    setTimeout(function() {
+    setTimeout(function () {
       elem.innerBand.removeAttribute('style', 'minHeight');
     }, 100);
   }
@@ -199,9 +199,7 @@ class BoltBand extends BoltElement {
   }
 
   render() {
-    return html`
-      ${this.slotify('default')}
-    `;
+    return html` ${this.slotify('default')} `;
   }
 }
 

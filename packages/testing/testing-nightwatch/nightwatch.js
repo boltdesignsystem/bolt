@@ -14,7 +14,7 @@ let srcFolders = globby.sync([
   'test/*/*.e2e.js',
 ]);
 
-srcFolders = srcFolders.map(function(folder) {
+srcFolders = srcFolders.map(function (folder) {
   return path.dirname(folder);
 });
 

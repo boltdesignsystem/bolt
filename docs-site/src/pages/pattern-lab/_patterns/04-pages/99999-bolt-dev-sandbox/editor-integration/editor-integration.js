@@ -113,7 +113,7 @@ if (typeof window.ClassicEditor !== 'undefined') {
         // { model: 'code', view: 'bolt-code-snippet', title: 'Code snippet' },
       ],
     },
-  }).catch(error => {
+  }).catch((error) => {
     console.error(error);
   });
 }

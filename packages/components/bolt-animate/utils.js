@@ -27,7 +27,7 @@ async function triggerAnimOnEls({
   }
   return Promise.all(
     animEls.map(
-      animEl =>
+      (animEl) =>
         new Promise((resolve, reject) => {
           let timeoutId;
           let triggered = false;
@@ -96,7 +96,7 @@ async function triggerAnimOnEls({
         }),
     ),
   )
-    .then(results => {
+    .then((results) => {
       return results;
     })
     .catch(console.log.bind(console));
@@ -141,7 +141,7 @@ export async function triggerAnims({
 
   const orders = [];
 
-  animEls.forEach(animEl => {
+  animEls.forEach((animEl) => {
     animEl[orderProp] = animEl[orderProp] || 1;
     const order = animEl[orderProp];
     if (!orders.includes(order)) {
@@ -152,7 +152,7 @@ export async function triggerAnims({
   const animOrders = orders.sort((a, b) => a - b);
   for (const order of animOrders) {
     // Trigger the animations in order
-    const animElsToTrigger = animEls.filter(a => a[orderProp] === order);
+    const animElsToTrigger = animEls.filter((a) => a[orderProp] === order);
     if (debug) {
       console.debug(`${eventName}: order:${order}`, animElsToTrigger);
     }

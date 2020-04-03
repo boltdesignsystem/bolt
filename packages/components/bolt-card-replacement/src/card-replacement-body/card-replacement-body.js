@@ -20,9 +20,7 @@ class BoltCardReplacementBody extends BoltElement {
               ${this.slotify('default')}
             </figcaption>
           `
-        : html`
-            <div class="${classes}">${this.slotify('default')}</div>
-          `}
+        : html` <div class="${classes}">${this.slotify('default')}</div> `}
     `;
   }
 }

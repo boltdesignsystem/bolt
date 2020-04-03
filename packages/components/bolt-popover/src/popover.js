@@ -130,7 +130,7 @@ class BoltPopover extends BoltElement {
     let hasFocusableContent;
     const focusableElements = ['bolt-link', 'bolt-button', 'bolt-trigger'];
 
-    const sort = e => {
+    const sort = (e) => {
       if (e.nodeType === 1) {
         // If element node
         // Decides if popover wrapper can get focus or not
@@ -145,17 +145,17 @@ class BoltPopover extends BoltElement {
       }
     };
 
-    const recursivelySort = e => {
+    const recursivelySort = (e) => {
       sort(e);
       if (e.children) {
-        Array.from(e.children).forEach(e => {
+        Array.from(e.children).forEach((e) => {
           recursivelySort(e);
         });
       }
     };
 
     this.slotMap.get('default') &&
-      this.slotMap.get('default').forEach(e => {
+      this.slotMap.get('default').forEach((e) => {
         // Sorts through the content slot, figure out what kind of nodes it
         // contains, and sets variables accordingly
         recursivelySort(e);
@@ -256,32 +256,32 @@ class BoltPopover extends BoltElement {
     return html`
       <span class="${classes}">
         ${this.slotMap.get('default') &&
-          html`
-            <span
-              tabindex="${this.hasFocusableContent ? '-1' : '0'}"
-              role="button"
-              aria-controls="${ifDefined(
-                !this.hasPopup ? `js-bolt-popover-${this.uuid}` : undefined,
-              )}"
-              aria-expanded="${this.open}"
-              aria-haspopup="${ifDefined(this.hasPopup ? 'true' : undefined)}"
-              @click="${this.handleClick}"
-            >
-              ${this.slotify('default')}
-            </span>
-          `}
+        html`
+          <span
+            tabindex="${this.hasFocusableContent ? '-1' : '0'}"
+            role="button"
+            aria-controls="${ifDefined(
+              !this.hasPopup ? `js-bolt-popover-${this.uuid}` : undefined,
+            )}"
+            aria-expanded="${this.open}"
+            aria-haspopup="${ifDefined(this.hasPopup ? 'true' : undefined)}"
+            @click="${this.handleClick}"
+          >
+            ${this.slotify('default')}
+          </span>
+        `}
         ${this.slotMap.get('content') &&
-          html`
-            <span
-              id="js-bolt-popover-${this.uuid}"
-              class="${cx(`c-bolt-popover__content`)}"
-              aria-hidden="${!this.open}"
-            >
-              <span class="${bubbleClasses}">
-                ${this.slotify('content')}
-              </span>
+        html`
+          <span
+            id="js-bolt-popover-${this.uuid}"
+            class="${cx(`c-bolt-popover__content`)}"
+            aria-hidden="${!this.open}"
+          >
+            <span class="${bubbleClasses}">
+              ${this.slotify('content')}
             </span>
-          `}
+          </span>
+        `}
       </span>
     `;
   }

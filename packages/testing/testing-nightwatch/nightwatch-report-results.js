@@ -51,7 +51,7 @@ function createNowDeployment(files) {
         builds: [{ src: '**', use: '@now/static' }],
       }),
     },
-  ).then(async res => {
+  ).then(async (res) => {
     const { ok, status, statusText } = res;
     const body = await res.json();
     if (!ok) {
@@ -73,7 +73,7 @@ function isDeployReady(id) {
       Authorization: `Bearer ${NOW_TOKEN}`,
       'Content-Type': 'application/json',
     },
-  }).then(async res => {
+  }).then(async (res) => {
     const { ok, status, statusText } = res;
     if (!ok) {
       throw new Error(
@@ -124,7 +124,7 @@ async function collectSauceLabResults(build) {
         body: file,
       },
     )
-      .then(async res => {
+      .then(async (res) => {
         const { ok, status, statusText } = res;
         console.log(status);
         console.log(statusText);
@@ -146,7 +146,7 @@ async function collectSauceLabResults(build) {
       ${message}`,
         );
       })
-      .catch(err => {
+      .catch((err) => {
         console.error(err);
         throw new Error(err.message);
       });
@@ -157,7 +157,7 @@ async function collectSauceLabResults(build) {
       `https://saucelabs.com/rest/v1/${SAUCE_USERNAME}/jobs/${buildId}/assets/${fileName}`,
       sauceFetchOptions,
     )
-      .then(async res => {
+      .then(async (res) => {
         const { ok, status, statusText, headers } = res;
         const contentType = headers.get('content-type');
         if (!ok) {
@@ -175,7 +175,7 @@ async function collectSauceLabResults(build) {
         };
       })
       .then(uploadFile)
-      .catch(err => {
+      .catch((err) => {
         console.error('transferFileFromSauceToNow', err);
         throw new Error(err);
       });
@@ -193,7 +193,7 @@ async function collectSauceLabResults(build) {
         },
       },
     )
-      .then(res => {
+      .then((res) => {
         if (res.ok) {
           console.log(`Set SauceLabs details ok`);
           return res.json();
@@ -204,20 +204,20 @@ async function collectSauceLabResults(build) {
           );
         }
       })
-      .then(jobs => jobs.filter(r => r.build === build));
+      .then((jobs) => jobs.filter((r) => r.build === build));
 
     console.log(
       'Getting all info from SauceLabs, downloading all screenshots, and uploading to a now.sh deploy for image hosting....',
     );
     const tests = await Promise.all(
-      buildJobs.map(async buildJob => {
+      buildJobs.map(async (buildJob) => {
         // just the file names, not absolute paths
         /** @type {{ 'sauce-log': string, 'video': string, 'selenium-log': string, screenshots: string[], 'video.mp4': string  }} */
         const assetsNames = await fetch(
           // https://wiki.saucelabs.com/display/DOCS/Job+Methods
           `https://saucelabs.com/rest/v1/${SAUCE_USERNAME}/jobs/${buildJob.id}/assets`,
           sauceFetchOptions,
-        ).then(async res => {
+        ).then(async (res) => {
           const { ok, status, statusText } = res;
           if (ok) {
             return await res.json();
@@ -234,12 +234,12 @@ async function collectSauceLabResults(build) {
 
         const filteredScreenshots = await Promise.all(
           assetsNames.screenshots.filter(
-            screenshot => !screenshot.includes('0000screenshot.png'),
+            (screenshot) => !screenshot.includes('0000screenshot.png'),
           ),
         );
 
         const screenshots = await Promise.all(
-          filteredScreenshots.map(screenshot =>
+          filteredScreenshots.map((screenshot) =>
             transferFileFromSauceToNow(screenshot, buildJob.id),
           ),
         );
@@ -258,7 +258,7 @@ async function collectSauceLabResults(build) {
           },
         };
       }),
-    ).catch(err => {
+    ).catch((err) => {
       console.error('Promise.all error', err);
       throw new Error(err);
     });
@@ -274,15 +274,15 @@ async function collectSauceLabResults(build) {
 
     return {
       totalTests: tests.length,
-      passedTests: tests.filter(test => test.passed).length,
+      passedTests: tests.filter((test) => test.passed).length,
       build,
       testSets: groupBy(
-        tests.map(test => {
+        tests.map((test) => {
           return {
             ...test,
             assets: {
               finalScreenshot: `${url}/${test.assets.finalScreenshot}`,
-              screenshots: test.assets.screenshots.map(s => `${url}/${s}`),
+              screenshots: test.assets.screenshots.map((s) => `${url}/${s}`),
             },
           };
         }),
@@ -308,7 +308,7 @@ async function setGithubAppSauceResults(sauceResults) {
     const allImages = [];
 
     const text = Object.keys(testSets)
-      .map(testName => {
+      .map((testName) => {
         const tests = testSets[testName];
 
         return `
@@ -316,7 +316,7 @@ async function setGithubAppSauceResults(sauceResults) {
 <details open>
 
         ${tests
-          .map(test => {
+          .map((test) => {
             const {
               passed,
               browser,

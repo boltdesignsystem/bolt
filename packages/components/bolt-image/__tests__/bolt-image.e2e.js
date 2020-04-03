@@ -2,7 +2,7 @@ let currentBrowser;
 
 module.exports = {
   tags: ['component', 'image'],
-  'Bolt Image image is showed': function(browser) {
+  'Bolt Image image is showed': function (browser) {
     const { testingUrl } = browser.globals;
     console.log(`global browser url: ${testingUrl}`);
     currentBrowser = '--' + browser.currentEnv || 'chrome';
@@ -14,21 +14,21 @@ module.exports = {
         `${testingUrl}/pattern-lab/patterns/02-components-image--40-image-no-shadow/02-components-image--40-image-no-shadow.html`,
       )
       .waitForElementVisible('body', 1000)
-      .getElementSize('body', function(result) {
+      .getElementSize('body', function (result) {
         bodyWidth = result.value.width;
       })
-      .getElementSize('bolt-image', function(result) {
+      .getElementSize('bolt-image', function (result) {
         const imageHeight = Math.round(bodyWidth / 1.3333333333);
 
         this.assert.equal(result.value.width, bodyWidth);
         // this.assert.equal(result.value.height, imageHeight);
       })
       .execute(
-        function(data) {
+        function (data) {
           return document.querySelector('bolt-image')._wasInitiallyRendered;
         },
         [],
-        function(result) {
+        function (result) {
           browser.assert.ok(
             result.value === true,
             `verified the <bolt-image> was rendered via the "_wasInitiallyRendered" property.`,
@@ -52,7 +52,7 @@ module.exports = {
   },
 
   // test to catch issues like http://vjira2:8080/browse/WWWD-4292 in the future
-  'Heavily Delayed, Dynamically Injected Bolt Images Lazyload': function(
+  'Heavily Delayed, Dynamically Injected Bolt Images Lazyload': function (
     browser,
   ) {
     const { testingUrl } = browser.globals;
@@ -84,7 +84,7 @@ module.exports = {
       .end();
   },
 
-  'Bolt Image zoom': function(browser) {
+  'Bolt Image zoom': function (browser) {
     const { testingUrl } = browser.globals;
     console.log(`global browser url: ${testingUrl}`);
     currentBrowser = '--' + browser.currentEnv || 'chrome';

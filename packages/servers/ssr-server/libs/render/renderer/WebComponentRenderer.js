@@ -10,7 +10,7 @@ class WebComponentRenderer extends Renderer {
     await Renderer.prototype.start.call(this);
 
     const window = await this.backend.getWindow();
-    const promises = this.components.map(name =>
+    const promises = this.components.map((name) =>
       window.customElements.whenDefined(name),
     );
     await Promise.all(promises);

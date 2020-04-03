@@ -204,19 +204,9 @@ class BoltImage extends BoltElement {
       }
     }
 
-    const _isJpg =
-      this.src &&
-      this.src
-        .split('.')
-        .pop()
-        .includes('jpg');
+    const _isJpg = this.src && this.src.split('.').pop().includes('jpg');
     this._isSvg =
-      !this._isJpg &&
-      this.src &&
-      this.src
-        .split('.')
-        .pop()
-        .includes('svg');
+      !this._isJpg && this.src && this.src.split('.').pop().includes('svg');
     const _canUseRatio = ratioW > 0 && ratioH > 0 && _useRatio && !this.cover;
     // Only JPGs allowed, PNGs can have transparency and may not look right layered over placeholder
     const _canUsePlaceholder = (_canUseRatio || this.cover) && _isJpg;
@@ -245,13 +235,15 @@ class BoltImage extends BoltElement {
             class="${classes}"
             src="${ifDefined(this.src ? this.src : fallbackSrc)}"
             alt="${ifDefined(this.alt ? this.alt : undefined)}"
-            srcset="${ifDefined(
-              !lazyload
-                ? this.srcset || this.src || undefined
-                : this.isLazyLoaded
-                ? this.srcset
-                : this.placeholderImage || undefined,
-            )}"
+            srcset="
+              ${ifDefined(
+                !lazyload
+                  ? this.srcset || this.src || undefined
+                  : this.isLazyLoaded
+                  ? this.srcset
+                  : this.placeholderImage || undefined,
+              )}
+            "
             data-srcset="${ifDefined(
               lazyload ? this.srcset || this.src : undefined,
             )}"
@@ -311,9 +303,9 @@ class BoltImage extends BoltElement {
               })}"
               src="${this.src}"
               alt="${ifDefined(this.alt ? this.alt : undefined)}"
-              srcset="${ifDefined(
-                !lazyload ? this.srcset || this.src : undefined,
-              )}"
+              srcset="
+                ${ifDefined(!lazyload ? this.srcset || this.src : undefined)}
+              "
               data-srcset="${ifDefined(
                 lazyload ? this.srcset || this.src : undefined,
               )}"
@@ -327,7 +319,7 @@ class BoltImage extends BoltElement {
       ${placeholderImageElement()} ${imageElement()} ${fallbackImageElement()}
     `;
 
-    const ratioTemplate = children => {
+    const ratioTemplate = (children) => {
       return html`
         <bolt-ratio ratio="${ratioW * 1}/${ratioH * 1}">
           ${children}
@@ -355,9 +347,7 @@ class BoltImage extends BoltElement {
       renderedImage = imageTemplate;
     }
 
-    return html`
-      ${renderedImage}
-    `;
+    return html` ${renderedImage} `;
   }
 }
 

@@ -123,7 +123,7 @@ async function handleNightwatchResults(client, callback) {
             'Content-Length': data.length,
           },
         },
-        function(res) {
+        function (res) {
           let results;
           res.setEncoding('utf8');
 

@@ -37,7 +37,7 @@ class BoltTable extends withLitHtml {
   }
 
   removeEmptyNodes(nodes) {
-    return nodes.filter(node => {
+    return nodes.filter((node) => {
       if (node.type !== 'comment') {
         if (node.type === 'element') {
           node.children = this.removeEmptyNodes(node.children);
@@ -49,7 +49,7 @@ class BoltTable extends withLitHtml {
   }
 
   removeCommentNodes(nodes) {
-    return nodes.filter(node => {
+    return nodes.filter((node) => {
       if (node.type === 'element') {
         node.children = this.removeCommentNodes(node.children);
         return true;
@@ -60,7 +60,7 @@ class BoltTable extends withLitHtml {
   }
 
   stripWhitespace(nodes) {
-    return nodes.map(node => {
+    return nodes.map((node) => {
       if (node.type === 'element') {
         node.children = this.stripWhitespace(node.children);
       } else {
@@ -90,7 +90,7 @@ class BoltTable extends withLitHtml {
   convertElements(element, object, parent = 'body') {
     const boltedObject = object !== undefined ? object : {};
 
-    element.map(element => {
+    element.map((element) => {
       switch (element.tagName) {
         case 'thead':
           this.createProp(boltedObject, 'head', []);
@@ -105,7 +105,7 @@ class BoltTable extends withLitHtml {
           this.convertElements(element.children, boltedObject, 'foot');
           break;
         case 'tr':
-          const elements = element.children.map(child => child);
+          const elements = element.children.map((child) => child);
 
           boltedObject[`${parent}`].push(elements);
           break;
@@ -123,19 +123,19 @@ class BoltTable extends withLitHtml {
     const nodesToUpdate = this.renderRoot.querySelectorAll('*[data-attrs]');
     const tdInThead = this.renderRoot.querySelectorAll('thead td');
 
-    [...nodesToUpdate].forEach(node => {
+    [...nodesToUpdate].forEach((node) => {
       let attrsToUpdate = node.getAttribute('data-attrs');
       node.removeAttribute('data-attrs');
 
       const attrArray = attrsToUpdate.split('|');
 
-      attrArray.map(attr => {
+      attrArray.map((attr) => {
         const attrs = attr.split('=');
         node.setAttribute(`${attrs[0]}`, `${attrs[1]}`);
       });
     });
 
-    [...tdInThead].forEach(td => {
+    [...tdInThead].forEach((td) => {
       if (td.innerHTML.replace(/\s/g, '') === '') {
         td.innerHTML = '';
       }
@@ -165,31 +165,19 @@ class BoltTable extends withLitHtml {
         case 'head':
           return html`
             <thead class=${headClasses}>
-              ${boltTable[tag].map(
-                row => html`
-                  ${setRowTag(row, tag)}
-                `,
-              )}
+              ${boltTable[tag].map((row) => html` ${setRowTag(row, tag)} `)}
             </thead>
           `;
         case 'foot':
           return html`
             <tfoot class=${footClasses}>
-              ${boltTable[tag].map(
-                row => html`
-                  ${setRowTag(row, tag)}
-                `,
-              )}
+              ${boltTable[tag].map((row) => html` ${setRowTag(row, tag)} `)}
             </tfoot>
           `;
         default:
           return html`
             <tbody class=${bodyClasses}>
-              ${boltTable[tag].map(
-                row => html`
-                  ${setRowTag(row, tag)}
-                `,
-              )}
+              ${boltTable[tag].map((row) => html` ${setRowTag(row, tag)} `)}
             </tbody>
           `;
       }
@@ -198,12 +186,7 @@ class BoltTable extends withLitHtml {
     function setRowTag(row, section) {
       return html`
         <tr class=${rowClasses}>
-          ${row.map(
-            item =>
-              html`
-                ${setCellTag(item, section)}
-              `,
-          )}
+          ${row.map((item) => html` ${setCellTag(item, section)} `)}
         </tr>
       `;
     }
@@ -259,7 +242,7 @@ class BoltTable extends withLitHtml {
     function injectClasses(classes, attributes) {
       // @todo: `findIndex` does not work in IE11 without a polyfill, so it silently stops/fails here.
       // Once polyfilled, the table markup disappears on load. Come back to this, polyfill it, and fix he underlying table bug.
-      const classIndex = attributes.findIndex(item => item.key === 'class');
+      const classIndex = attributes.findIndex((item) => item.key === 'class');
 
       if (classIndex === -1) {
         attributes.push({ key: 'class', value: classes });
@@ -273,15 +256,11 @@ class BoltTable extends withLitHtml {
     function renderCell(cell) {
       const content = stringify(cell.children);
 
-      return html`
-        ${unsafeHTML(content)}
-      `;
+      return html` ${unsafeHTML(content)} `;
     }
 
-    Object.keys(boltTable).map(key => {
-      boltTableMarkup.push(html`
-        ${setSectionTag(key)}
-      `);
+    Object.keys(boltTable).map((key) => {
+      boltTableMarkup.push(html` ${setSectionTag(key)} `);
     });
 
     injectClasses(tableClasses, parseCode[0].attributes);

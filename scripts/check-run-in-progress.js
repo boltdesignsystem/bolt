@@ -10,10 +10,10 @@ if (!name) {
 }
 
 setCheckRun({ name, status: 'in_progress' })
-  .then(results => {
+  .then((results) => {
     console.log(`Check Run in-progress ${name}: ${results.html_url}`);
   })
-  .catch(err => {
+  .catch((err) => {
     console.error(`Error: Marking Check Run ${name} as in progress`, err);
     process.exit(1);
   });

@@ -47,7 +47,7 @@ class BoltInteractivePathways extends withLitContext {
     self._handleClosingEvent = self._handleClosingEvent.bind(self);
     self._isReady = false;
 
-    self.checkChildrenAndRender = debounce(done => {
+    self.checkChildrenAndRender = debounce((done) => {
       self.pathways = self.getPathways();
       self.triggerUpdate();
       // using callback since debounced promises require a different library that's not already in Bolt
@@ -80,8 +80,8 @@ class BoltInteractivePathways extends withLitContext {
 
     if (window.IntersectionObserver) {
       const observer = new IntersectionObserver(
-        entries => {
-          entries.forEach(entry => {
+        (entries) => {
+          entries.forEach((entry) => {
             if (entry.isIntersecting) {
               this._hasBeenInViewport = true;
               if (this._isReady) {
@@ -133,7 +133,7 @@ class BoltInteractivePathways extends withLitContext {
   /**
    * @param {Event} event
    */
-  _handleClosingEvent = function(event) {
+  _handleClosingEvent = function (event) {
     // Close dropdown on ESC keypress or clicks outside of the dropdown
     if (
       (this.dropdownActive && event.which === 27) ||
@@ -237,9 +237,7 @@ class BoltInteractivePathways extends withLitContext {
             style=${menuItemTextColor}
           >
             ${isActiveItem
-              ? html`
-                  <bolt-icon size="medium" name="check"></bolt-icon>
-                `
+              ? html` <bolt-icon size="medium" name="check"></bolt-icon> `
               : ''}
             ${title}
           </bolt-text>
@@ -256,7 +254,7 @@ class BoltInteractivePathways extends withLitContext {
         >
           <button
             class="c-bolt-interactive-pathways__dropdown-trigger"
-            @click=${e => this.toggleDropdown(e)}
+            @click=${(e) => this.toggleDropdown(e)}
           >
             ${titles[this.activePathwayIndex]}
             <bolt-icon

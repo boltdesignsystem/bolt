@@ -35,7 +35,7 @@ describe('chip', () => {
     expect(results.html).toMatchSnapshot();
   });
 
-  size.enum.forEach(async option => {
+  size.enum.forEach(async (option) => {
     test(`chip size: ${option}`, async () => {
       const results = await render('@bolt-components-chip/chip.twig', {
         text: 'Chip size',

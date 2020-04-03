@@ -10,9 +10,9 @@ const orphanResolveQueue = {
     if (!this.running) {
       this.running = true;
       resolved.then(() => {
-        this.contexts.forEach(context => {
+        this.contexts.forEach((context) => {
           const orphans = orphanMap[context];
-          orphans.forEach(orphan => {
+          orphans.forEach((orphan) => {
             const event = sendContextEvent(orphan, context);
             if (event.detail.handled) {
               orphans.delete(orphan);
@@ -54,7 +54,7 @@ function registerProvidedContext(el, name, providedContexts) {
     el.__wcContextObserverMap || (el.__wcContextObserverMap = {});
   const observers = observerMap[name] || (observerMap[name] = []);
   const orphans = orphanMap[name];
-  el.addEventListener(`context-request-${name}`, event => {
+  el.addEventListener(`context-request-${name}`, (event) => {
     event.stopPropagation();
     const targetEl = event.target;
     const value = providedContexts[name];
@@ -89,7 +89,7 @@ function notifyContextChange(el, name, value) {
   const observerMap = el.__wcContextObserverMap;
   const observers = observerMap && observerMap[name];
   if (observers) {
-    observers.forEach(observer => {
+    observers.forEach((observer) => {
       const context = observer.context;
       const oldValue = context[name];
       if (oldValue !== value) {

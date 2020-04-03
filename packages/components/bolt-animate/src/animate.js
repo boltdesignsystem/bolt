@@ -237,7 +237,7 @@ class BoltAnimate extends withLitHtml {
       ${this.addStyles([styles])}
       <div
         class="${classMap(classes)}"
-        @animationend=${e => this._handleAnimEndEvent(e)}
+        @animationend=${(e) => this._handleAnimEndEvent(e)}
         style=${styleMap(this._animStyle)}
       >
         ${this.slot('default')}

@@ -92,7 +92,7 @@ class BoltTooltip extends BoltElement {
       'time',
     ];
 
-    const sort = e => {
+    const sort = (e) => {
       if (e.nodeType === 3) {
         // If text node
         hasText = true;
@@ -117,17 +117,17 @@ class BoltTooltip extends BoltElement {
       }
     };
 
-    const recursivelySort = e => {
+    const recursivelySort = (e) => {
       sort(e);
       if (e.children) {
-        Array.from(e.children).forEach(e => {
+        Array.from(e.children).forEach((e) => {
           recursivelySort(e);
         });
       }
     };
 
     this.slotMap.get('default') &&
-      this.slotMap.get('default').forEach(e => {
+      this.slotMap.get('default').forEach((e) => {
         // Sorts through the default slot, figure out what kind of nodes it
         // contains, and sets variables accordingly
         recursivelySort(e);
@@ -231,30 +231,30 @@ class BoltTooltip extends BoltElement {
         @focusout="${this.handleFocus}"
       >
         ${this.slotify('default') &&
-          html`
-            <span
-              tabindex="${this.hasFocusableContent ? '-1' : '0'}"
-              role="button"
-              aria-describedby="js-bolt-tooltip-${this.uuid}"
-              aria-controls="js-bolt-tooltip-${this.uuid}"
-              aria-expanded="${this.open}"
-            >
-              ${this.slotify('default')}
-            </span>
-          `}
+        html`
+          <span
+            tabindex="${this.hasFocusableContent ? '-1' : '0'}"
+            role="button"
+            aria-describedby="js-bolt-tooltip-${this.uuid}"
+            aria-controls="js-bolt-tooltip-${this.uuid}"
+            aria-expanded="${this.open}"
+          >
+            ${this.slotify('default')}
+          </span>
+        `}
         ${this.slotMap.get('content') &&
-          html`
-            <span
-              id="js-bolt-tooltip-${this.uuid}"
-              class="${cx(`c-bolt-tooltip__content`)}"
-              role="tooltip"
-              aria-hidden="${!this.open}"
-            >
-              <span class="${cx(`c-bolt-tooltip__bubble`)}">
-                ${this.slotify('content')}
-              </span>
+        html`
+          <span
+            id="js-bolt-tooltip-${this.uuid}"
+            class="${cx(`c-bolt-tooltip__content`)}"
+            role="tooltip"
+            aria-hidden="${!this.open}"
+          >
+            <span class="${cx(`c-bolt-tooltip__bubble`)}">
+              ${this.slotify('content')}
             </span>
-          `}
+          </span>
+        `}
       </span>
     `;
   }

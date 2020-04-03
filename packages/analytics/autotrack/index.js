@@ -380,7 +380,7 @@ const trackErrors = () => {
   // `window.__e.q`, as specified in `index.html`.
   const loadErrorEvents = (window.__e && window.__e.q) || [];
 
-  const trackErrorEvent = evt => {
+  const trackErrorEvent = (evt) => {
     // Use a different eventCategory for uncaught errors.
     const fieldsObj = { eventCategory: 'Uncaught Error' };
 
@@ -414,12 +414,12 @@ const trackCustomDimensions = () => {
   // that every dimension in every hit has *some* value. This is necessary
   // because Google Analytics will drop rows with empty dimension values
   // in your reports.
-  Object.keys(dimensions).forEach(key => {
+  Object.keys(dimensions).forEach((key) => {
     ga('set', dimensions[key], NULL_VALUE);
   });
 
   // Adds tracking of dimensions known at page load time.
-  ga(tracker => {
+  ga((tracker) => {
     // const {selectedPage, pinnedDemo} = getState();
     tracker.set({
       // General dimensions
@@ -434,9 +434,9 @@ const trackCustomDimensions = () => {
 
   // Adds tracking to record each the type, time, uuid, and visibility state
   //   // of each hit immediately before it's sent.
-  ga(tracker => {
+  ga((tracker) => {
     const originalBuildHitTask = tracker.get('buildHitTask');
-    tracker.set('buildHitTask', model => {
+    tracker.set('buildHitTask', (model) => {
       const qt = model.get('queueTime') || 0;
       model.set(dimensions.HIT_TIME, String(new Date() - qt), true);
       model.set(dimensions.HIT_ID, uuid(), true);
@@ -491,7 +491,7 @@ const requireAutotrackPlugins = () => {
  * @param {string} definition The definition string (e.g. 'dimension1').
  * @return {number} The definition index.
  */
-const getDefinitionIndex = definition => +/\d+$/.exec(definition)[0];
+const getDefinitionIndex = (definition) => +/\d+$/.exec(definition)[0];
 
 /**
  * Generates a UUID.

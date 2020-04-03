@@ -205,7 +205,7 @@ describe('<bolt-card> Component', () => {
     expect(results.html).toMatchSnapshot();
   });
 
-  tag.enum.forEach(async option => {
+  tag.enum.forEach(async (option) => {
     test(`tag variations: ${option}`, async () => {
       const results = await render('@bolt-components-card/card.twig', {
         tag: option,
@@ -279,7 +279,7 @@ describe('<bolt-card> Component', () => {
     expect(results.html).toMatchSnapshot();
   });
 
-  contentTag.enum.forEach(async option => {
+  contentTag.enum.forEach(async (option) => {
     test(`content tag variations: ${option}`, async () => {
       const results = await render('@bolt-components-card/card.twig', {
         contentTag: option,
@@ -317,7 +317,7 @@ describe('<bolt-card> Component', () => {
     });
   });
 
-  theme.enum.forEach(async option => {
+  theme.enum.forEach(async (option) => {
     test(`theme variations: ${option}`, async () => {
       const results = await render('@bolt-components-card/card.twig', {
         theme: option,

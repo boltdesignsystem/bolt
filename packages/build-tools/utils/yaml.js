@@ -37,7 +37,7 @@ function fromYaml(string) {
 function readYamlFile(file) {
   return new Promise((resolve, reject) => {
     readFile(file, 'utf8')
-      .then(data => resolve(fromYaml(data)))
+      .then((data) => resolve(fromYaml(data)))
       .catch(reject);
   });
 }
@@ -68,9 +68,7 @@ function readYamlFileSync(file) {
  */
 function writeYamlFile(file, data) {
   return new Promise((resolve, reject) => {
-    writeFile(file, toYaml(data))
-      .then(resolve)
-      .catch(reject);
+    writeFile(file, toYaml(data)).then(resolve).catch(reject);
   });
 }
 

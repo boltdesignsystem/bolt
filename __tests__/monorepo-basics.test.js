@@ -24,11 +24,13 @@ describe('check the config for monorepo packages', () => {
   let pkgs = [];
 
   beforeAll(async () => {
-    const dirs = rootPkg.workspaces.packages.map(pkg => `${pkg}/package.json`);
+    const dirs = rootPkg.workspaces.packages.map(
+      (pkg) => `${pkg}/package.json`,
+    );
     const pkgDirs = await globby(dirs);
 
     pkgs = await Promise.all(
-      pkgDirs.map(async pkgPath => {
+      pkgDirs.map(async (pkgPath) => {
         const fileString = await fs.readFile(pkgPath);
         const pkg = JSON.parse(fileString);
         pkg.pkgPath = process.cwd() + '/' + pkgPath;
@@ -42,7 +44,7 @@ describe('check the config for monorepo packages', () => {
    * This is necessary to ensure the Lerna publish to NPM doesn't unexpectedly fail mid-way due to this config option missing.
    */
   test('non-private @bolt packages have the required publishConfig', async () => {
-    pkgs.forEach(pkg => {
+    pkgs.forEach((pkg) => {
       if (!pkg.private && pkg.private !== true && pkg.name.includes('@bolt')) {
         assert.ok(
           pkg.publishConfig !== 'undefined',
@@ -67,7 +69,7 @@ describe('check the config for monorepo packages', () => {
   });
 
   test('non-private @bolt packages (generally) do not use devDependencies', async () => {
-    pkgs.forEach(pkg => {
+    pkgs.forEach((pkg) => {
       if (
         !pkg.private &&
         pkg.name.includes('@bolt') &&
@@ -88,7 +90,7 @@ describe('check the config for monorepo packages', () => {
   });
 
   test('non-private @bolt packages do not use peerDependencies', async () => {
-    pkgs.forEach(pkg => {
+    pkgs.forEach((pkg) => {
       if (!pkg.private && pkg.name.includes('@bolt')) {
         expect(
           pkg.peerDependencies,
@@ -105,15 +107,15 @@ describe('check the config for monorepo packages', () => {
   test('`@bolt` dependencies are symlinked to the packages folder', async () => {
     const baseDir = resolve(__dirname, '../node_modules/@bolt');
     readdir(baseDir)
-      .then(dirNames =>
+      .then((dirNames) =>
         Promise.all(
-          dirNames.map(dirName => {
+          dirNames.map((dirName) => {
             const item = {
               path: join(baseDir, dirName),
             };
             return new Promise((resolve, reject) => {
               lstat(item.path)
-                .then(stats => {
+                .then((stats) => {
                   item.stats = stats;
                   resolve(item);
                 })
@@ -122,8 +124,8 @@ describe('check the config for monorepo packages', () => {
           }),
         ),
       )
-      .then(items => {
-        items.forEach(item => {
+      .then((items) => {
+        items.forEach((item) => {
           if (!item.path.includes('fast-sass-loader')) {
             expect(
               item.stats.isSymbolicLink(),

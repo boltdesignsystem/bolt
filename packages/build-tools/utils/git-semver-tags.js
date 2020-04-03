@@ -9,7 +9,7 @@ async function gitSemverTags() {
   const tags = [];
   const splitData = stdout.split('\n');
 
-  splitData.forEach(function(tag) {
+  splitData.forEach(function (tag) {
     if (tag.startsWith('v')) {
       if (semverValid(tag)) {
         tags.push(tag);

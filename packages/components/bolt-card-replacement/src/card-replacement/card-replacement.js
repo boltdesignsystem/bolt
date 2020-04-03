@@ -81,17 +81,17 @@ class BoltCardReplacement extends withContext(BoltElement) {
     const cardReplacementContent = html`
       ${cardReplacementLink}
       ${this.slotMap.get('media') &&
-        html`
-          <bolt-card-replacement-media
-            >${this.slotify('media')}</bolt-card-replacement-media
-          >
-        `}
+      html`
+        <bolt-card-replacement-media
+          >${this.slotify('media')}</bolt-card-replacement-media
+        >
+      `}
       ${this.slotMap.get('body') &&
-        html`
-          <bolt-card-replacement-body .tag=${this.tag}
-            >${this.slotify('body')}</bolt-card-replacement-body
-          >
-        `}
+      html`
+        <bolt-card-replacement-body .tag=${this.tag}
+          >${this.slotify('body')}</bolt-card-replacement-body
+        >
+      `}
       ${this.slotify('default')}
     `;
 
@@ -118,9 +118,7 @@ class BoltCardReplacement extends withContext(BoltElement) {
         `;
     }
 
-    return html`
-      ${renderedCardReplacement}
-    `;
+    return html` ${renderedCardReplacement} `;
   }
 }
 

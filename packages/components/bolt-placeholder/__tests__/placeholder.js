@@ -31,7 +31,7 @@ describe('<bolt-placeholder> Component', () => {
     expect(results.html).toMatchSnapshot();
   });
 
-  size.enum.forEach(async sizeChoice => {
+  size.enum.forEach(async (sizeChoice) => {
     test(`Placeholder size: ${sizeChoice}`, async () => {
       const results = await render(
         '@bolt-components-placeholder/placeholder.twig',

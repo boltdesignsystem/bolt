@@ -7,7 +7,7 @@ const { aliasNowUrl } = require('./utils/handle-now-aliases');
 const { TRAVIS_TAG } = require('./utils/travis-vars');
 
 getLatestDeploy()
-  .then(async url => {
+  .then(async (url) => {
     const tags = await promisifyGitTags();
     const latestTag = tags[0];
 
@@ -23,7 +23,7 @@ getLatestDeploy()
       // skip alias to main site
     }
   })
-  .catch(error => {
+  .catch((error) => {
     console.error(error);
     process.exit(1);
   });

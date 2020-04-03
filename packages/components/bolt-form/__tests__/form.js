@@ -46,7 +46,7 @@ describe('<bolt-form> Component', () => {
     },
   ];
 
-  inputs.forEach(async inputChoice => {
+  inputs.forEach(async (inputChoice) => {
     test(`input with inputAttribute ${JSON.stringify(
       inputChoice.type,
     )}`, async () => {

@@ -27,11 +27,11 @@ class BoltRadioSwitch extends withLitHtml {
     const changeCaseElements = document.querySelectorAll('bolt-change-case');
     const schemaTable = this.closest('bolt-schema-table');
     if (value === 'wc') {
-      changeCaseElements.forEach(element => {
+      changeCaseElements.forEach((element) => {
         element.setAttribute('mode', 'kebab');
       });
     } else {
-      changeCaseElements.forEach(element => {
+      changeCaseElements.forEach((element) => {
         element.setAttribute('mode', 'camel');
       });
     }
@@ -66,7 +66,7 @@ class BoltRadioSwitch extends withLitHtml {
             name="radioSwitch"
             id="radio1"
             checked
-            @change=${e => this.onFormChange(e.target.value)}
+            @change=${(e) => this.onFormChange(e.target.value)}
           />
           <label class="c-bolt-radio-switch__label" for="radio1">Twig</label>
         </li>
@@ -78,7 +78,7 @@ class BoltRadioSwitch extends withLitHtml {
             type="radio"
             name="radioSwitch"
             id="radio2"
-            @change=${e => this.onFormChange(e.target.value)}
+            @change=${(e) => this.onFormChange(e.target.value)}
           />
           <label class="c-bolt-radio-switch__label" for="radio2"
             >Web Component</label

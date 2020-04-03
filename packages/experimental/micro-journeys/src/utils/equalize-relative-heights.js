@@ -14,7 +14,7 @@ export const equalizeRelativeHeightsKey = 'boltIsEqualized';
  *
  * @return {boolean} if all elements on item have width.
  */
-const validateItem = item => {
+const validateItem = (item) => {
   const { container, elToEqualize, paddingEqualizationTarget } = item;
   return (
     !!container.offsetWidth &&
@@ -31,7 +31,7 @@ const validateItem = item => {
  *
  * @throws {Error} when container, elToEqualize, or paddingEqualizationTarget have no offsetWidth.
  */
-const validateParamsForEqualizeRelativeHeights = items => {
+const validateParamsForEqualizeRelativeHeights = (items) => {
   items.forEach((item, i) => {
     const { container, elToEqualize, paddingEqualizationTarget } = item;
     if (!validateItem(item)) {
@@ -83,11 +83,12 @@ export const equalizeRelativeHeights = (
       }
       if (indexOfLongest !== i) {
         // Remove 'calc': Nested calcs in IE work fine if wrapped only in parens.
-        const previousPadding = `${paddingEqualizationTarget.style.paddingTop ||
-          '0px'}`.replace('calc', '');
-        paddingEqualizationTarget.style.paddingTop = `calc(${items[
-          indexOfLongest
-        ].relativeOffsetTop - relativeOffsetTop}px + ${previousPadding})`;
+        const previousPadding = `${
+          paddingEqualizationTarget.style.paddingTop || '0px'
+        }`.replace('calc', '');
+        paddingEqualizationTarget.style.paddingTop = `calc(${
+          items[indexOfLongest].relativeOffsetTop - relativeOffsetTop
+        }px + ${previousPadding})`;
       }
       paddingEqualizationTarget[equalizeRelativeHeightsKey] = true;
     });

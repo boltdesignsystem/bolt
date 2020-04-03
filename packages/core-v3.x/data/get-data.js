@@ -7,12 +7,12 @@ import 'whatwg-fetch';
  * @return {Promise<Object>}
  */
 export async function getData(name) {
-  return await new Promise(async resolve => {
+  return await new Promise(async (resolve) => {
     await fetch(`${bolt.publicPath}data/${name}.bolt.json`)
-      .then(function(response) {
+      .then(function (response) {
         return response.json();
       })
-      .then(function(data) {
+      .then(function (data) {
         return resolve(data);
       });
   });

@@ -22,11 +22,11 @@ let boltBuildConfig;
 let browserSyncIsRunning = false;
 const app = express();
 
-const getDirectories = source =>
+const getDirectories = (source) =>
   fs
     .readdirSync(source, { withFileTypes: true })
-    .filter(dir => dir.isDirectory())
-    .map(dir => dir.name);
+    .filter((dir) => dir.isDirectory())
+    .map((dir) => dir.name);
 
 async function compile(customWebpackConfig) {
   boltBuildConfig = boltBuildConfig || (await getConfig());
@@ -183,7 +183,7 @@ async function server(customWebpackConfig) {
           port: boltBuildConfig.port,
           files: filesToWatch,
         },
-        function(err, bs) {
+        function (err, bs) {
           browserSyncIsRunning = true; // so we only spin this up once Webpack has finished up initially
 
           if (boltBuildConfig.openServerAtStart) {
@@ -239,7 +239,7 @@ async function server(customWebpackConfig) {
         `${boltBuildConfig.wwwDir}/integrations`,
       );
 
-      integrationDirs.map(item => {
+      integrationDirs.map((item) => {
         app.use(
           express.static(`${boltBuildConfig.wwwDir}/integrations/${item}`),
         );

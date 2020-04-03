@@ -62,7 +62,7 @@ class BoltMenuItem extends withContext(BoltElement) {
     // @todo: Move this to base-element, possibly as decorator
     this.nodesToKeep = [];
 
-    this.ssrKeep.forEach(item => {
+    this.ssrKeep.forEach((item) => {
       while (item.firstChild) {
         this.nodesToKeep.push(item.firstChild); // track the nodes that will be preserved
         this.appendChild(item.firstChild);
@@ -71,8 +71,8 @@ class BoltMenuItem extends withContext(BoltElement) {
 
     // Remove all children not in the "keep" array
     Array.from(this.children)
-      .filter(item => !this.nodesToKeep.includes(item))
-      .forEach(node => {
+      .filter((item) => !this.nodesToKeep.includes(item))
+      .forEach((node) => {
         node.parentElement.removeChild(node);
       });
 

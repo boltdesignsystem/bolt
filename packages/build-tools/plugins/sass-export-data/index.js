@@ -7,7 +7,7 @@ const jsondiff = require('jsondiffpatch');
 const defaultConfig = require('./config.default');
 const getValue = require('./lib/get-value');
 
-module.exports = userConfig => {
+module.exports = (userConfig) => {
   const config = core.utils.merge({}, defaultConfig, userConfig);
   const args = '($file, $value, $options:())';
 

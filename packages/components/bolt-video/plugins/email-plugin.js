@@ -1,4 +1,4 @@
-export const emailPlugin = player => {
+export const emailPlugin = (player) => {
   if (player.activePlugins_) {
     if (
       !player.activePlugins_.emailSocialShare &&

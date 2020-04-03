@@ -30,7 +30,7 @@ describe('<bolt-text> Component', () => {
   }, timeout);
 
   // Basic Usage (Shadow DOM)
-  test('Default <bolt-text> w/ Shadow DOM renders', async function() {
+  test('Default <bolt-text> w/ Shadow DOM renders', async function () {
     const renderedTextHTML = await page.evaluate(() => {
       const text = document.createElement('bolt-text');
 
@@ -52,7 +52,7 @@ describe('<bolt-text> Component', () => {
   });
 
   // Multiple text elements (Shadow DOM)
-  test('Multiple <bolt-text> elements w/ Shadow DOM render', async function() {
+  test('Multiple <bolt-text> elements w/ Shadow DOM render', async function () {
     const renderedTextHTML = await page.evaluate(() => {
       const wrapper = document.createElement('div');
       const text1 = document.createElement('bolt-text');
@@ -80,7 +80,7 @@ describe('<bolt-text> Component', () => {
   });
 
   // Code text (Shadow DOM)
-  test('Code text using <bolt-text> w/ Shadow DOM renders', async function() {
+  test('Code text using <bolt-text> w/ Shadow DOM renders', async function () {
     const renderedTextHTML = await page.evaluate(() => {
       const text = document.createElement('bolt-text');
 
@@ -103,7 +103,7 @@ describe('<bolt-text> Component', () => {
   });
 
   // xxxlarge Headline (Shadow DOM)
-  test('xxxlarge headline using <bolt-text> w/ Shadow DOM renders', async function() {
+  test('xxxlarge headline using <bolt-text> w/ Shadow DOM renders', async function () {
     const renderedTextHTML = await page.evaluate(() => {
       const text = document.createElement('bolt-text');
 
@@ -127,7 +127,7 @@ describe('<bolt-text> Component', () => {
   });
 
   // xxxlarge Headline (Light DOM)
-  test('xxxlarge headline using <bolt-text> w/o Shadow DOM renders', async function() {
+  test('xxxlarge headline using <bolt-text> w/o Shadow DOM renders', async function () {
     const renderedTextHTML = await page.evaluate(async () => {
       const text = document.createElement('bolt-text');
 
@@ -137,7 +137,7 @@ describe('<bolt-text> Component', () => {
       document.body.appendChild(text);
       text.useShadow = false;
       const undefinedElements = document.querySelectorAll('bolt-text');
-      const promises = [...undefinedElements].map(elem =>
+      const promises = [...undefinedElements].map((elem) =>
         customElements.whenDefined(elem.localName),
       );
       await Promise.all(promises);
@@ -169,7 +169,7 @@ describe('<bolt-text> Component', () => {
   });
 
   // Long xxxlarge Headline (Shadow DOM)
-  test('Long xxxlarge headline using <bolt-text> w/ Shadow DOM renders', async function() {
+  test('Long xxxlarge headline using <bolt-text> w/ Shadow DOM renders', async function () {
     const renderedTextHTML = await page.evaluate(() => {
       const text = document.createElement('bolt-text');
 
@@ -193,7 +193,7 @@ describe('<bolt-text> Component', () => {
   });
 
   // Long xxxlarge Headline (Light DOM)
-  test('Long xxxlarge headline using <bolt-text> w/o Shadow DOM renders', async function() {
+  test('Long xxxlarge headline using <bolt-text> w/o Shadow DOM renders', async function () {
     const renderedTextHTML = await page.evaluate(async () => {
       const text = document.createElement('bolt-text');
 
@@ -203,7 +203,7 @@ describe('<bolt-text> Component', () => {
       document.body.appendChild(text);
       text.useShadow = false;
       const undefinedElements = document.querySelectorAll('bolt-text');
-      const promises = [...undefinedElements].map(elem =>
+      const promises = [...undefinedElements].map((elem) =>
         customElements.whenDefined(elem.localName),
       );
       await Promise.all(promises);
@@ -229,7 +229,7 @@ describe('<bolt-text> Component', () => {
   });
 
   // All caps xxlarge bold quote (Shadow DOM)
-  test('All caps xxlarge bold quote using <bolt-text> w/ Shadow DOM renders', async function() {
+  test('All caps xxlarge bold quote using <bolt-text> w/ Shadow DOM renders', async function () {
     const renderedTextHTML = await page.evaluate(() => {
       const text = document.createElement('bolt-text');
 
@@ -257,7 +257,7 @@ describe('<bolt-text> Component', () => {
   });
 
   // All caps xxlarge bold quote (Light DOM)
-  test('All caps xxlarge bold quote using <bolt-text> w/o Shadow DOM renders', async function() {
+  test('All caps xxlarge bold quote using <bolt-text> w/o Shadow DOM renders', async function () {
     const renderedTextHTML = await page.evaluate(async () => {
       const text = document.createElement('bolt-text');
 
@@ -271,7 +271,7 @@ describe('<bolt-text> Component', () => {
       document.body.appendChild(text);
       text.useShadow = false;
       const undefinedElements = document.querySelectorAll('bolt-text');
-      const promises = [...undefinedElements].map(elem =>
+      const promises = [...undefinedElements].map((elem) =>
         customElements.whenDefined(elem.localName),
       );
       await Promise.all(promises);

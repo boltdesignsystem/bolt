@@ -62,7 +62,7 @@ async function getPage(file) {
     .relative(config.srcDir, file)
     .replace('.md', '.html')
     .split('/')
-    .map(x => x.replace(/^[0-9]*-/, '')) // Removing number prefix `05-item` => `item`
+    .map((x) => x.replace(/^[0-9]*-/, '')) // Removing number prefix `05-item` => `item`
     .join('/');
   const fileContents = await readFile(file, 'utf8');
 
@@ -71,7 +71,7 @@ async function getPage(file) {
 
   const dirTree = url.split('/');
 
-  let depth = url.split('/').filter(x => x !== 'index.html').length;
+  let depth = url.split('/').filter((x) => x !== 'index.html').length;
 
   let parent = dirTree[depth - 2];
 
@@ -106,7 +106,7 @@ async function getPages(srcDir) {
     '!**/_*.{md,html}',
   ]);
 
-  return Promise.all(allPaths.map(getPage)).then(pages => {
+  return Promise.all(allPaths.map(getPage)).then((pages) => {
     if (config.verbosity > 4) {
       log.dim('All data for Static pages:');
       console.log(pages);
@@ -137,7 +137,7 @@ async function getNestedPages(folder) {
   });
 
   return Promise.all(
-    items.map(async item => {
+    items.map(async (item) => {
       const fullPath = path.join(folder, item);
       const stats = await lstat(fullPath);
       if (stats.isDirectory()) {
@@ -145,7 +145,7 @@ async function getNestedPages(folder) {
         const children = await getNestedPages(fullPath);
         // The children include the `indexFile` as well, so let's remove it.
         const filterChildren = children.filter(
-          child => indexFile !== child.srcPath,
+          (child) => indexFile !== child.srcPath,
         );
         let item;
         try {
@@ -175,7 +175,7 @@ async function getSiteData(pages) {
   const nestedPages = await getNestedPages(config.srcDir);
   const site = {
     nestedPages,
-    pages: pages.map(page => ({
+    pages: pages.map((page) => ({
       url: page.url,
       meta: page.meta,
       // choosing not to have `page.body` in here on purpose
@@ -202,7 +202,7 @@ async function compile(exitOnError = true) {
 
   const pages = await getPages(config.srcDir);
 
-  const renderPages = pages.map(async page => {
+  const renderPages = pages.map(async (page) => {
     const site = await getSiteData(pages);
 
     const layout = page.meta.layout ? page.meta.layout : 'default';
@@ -240,7 +240,7 @@ async function compile(exitOnError = true) {
         spinner.succeed(endMessage);
       }
     })
-    .catch(error => {
+    .catch((error) => {
       console.log(error);
       const endMessage = chalk.red(
         `Compiling Static Site failed in ${timer.end(startTime)}`,
@@ -264,7 +264,7 @@ async function watch() {
   const watchedPaths = [];
 
   // generate wwwDir globbed paths for each file extension being watched
-  config.watchedExtensions.forEach(ext => {
+  config.watchedExtensions.forEach((ext) => {
     watchedPaths.push(path.join(process.cwd(), '**/*' + ext));
   });
 

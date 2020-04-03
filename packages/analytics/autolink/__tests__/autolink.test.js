@@ -21,7 +21,7 @@ describe('analytics autolinker', () => {
     await page.close();
   });
 
-  test('autolinker does not modify component URLs already containing an _ga query string', async function() {
+  test('autolinker does not modify component URLs already containing an _ga query string', async function () {
     await page.addScriptTag({
       type: 'module',
       path: path.join(__dirname, 'fixtures/test-analytics-config.data.js'),
@@ -42,7 +42,7 @@ describe('analytics autolinker', () => {
     expect(currentUrl).toContain('_ga=1234');
   }, 120000);
 
-  test('autolinker updates the URLs of a <bolt-button> with an external url (2nd in the config) + rendering to the Shadow DOM', async function() {
+  test('autolinker updates the URLs of a <bolt-button> with an external url (2nd in the config) + rendering to the Shadow DOM', async function () {
     await page.addScriptTag({
       type: 'module',
       path: path.join(__dirname, 'fixtures/test-analytics-config.data.js'),
@@ -63,7 +63,7 @@ describe('analytics autolinker', () => {
     expect(currentUrl).toContain('_ga');
   }, 120000);
 
-  test('autolinker tracks the URLs of a <bolt-button> with an external url (2nd in the config) + rendering to the Shadow DOM - even after re-rendering', async function() {
+  test('autolinker tracks the URLs of a <bolt-button> with an external url (2nd in the config) + rendering to the Shadow DOM - even after re-rendering', async function () {
     await page.addScriptTag({
       type: 'module',
       path: path.join(__dirname, 'fixtures/test-analytics-config.data.js'),
@@ -92,7 +92,7 @@ describe('analytics autolinker', () => {
     expect(currentUrl).toContain('brightcove.com');
   }, 120000);
 
-  test('autolinker updates the URLs of a <bolt-button> with an external url + rendering to the Shadow DOM', async function() {
+  test('autolinker updates the URLs of a <bolt-button> with an external url + rendering to the Shadow DOM', async function () {
     await page.addScriptTag({
       type: 'module',
       path: path.join(__dirname, 'fixtures/test-analytics-config.data.js'),
@@ -113,7 +113,7 @@ describe('analytics autolinker', () => {
     expect(currentUrl).toContain('_ga');
   }, 120000);
 
-  test('autolinker updates the URLs of <bolt-button>s with external urls + render to the light DOM', async function() {
+  test('autolinker updates the URLs of <bolt-button>s with external urls + render to the light DOM', async function () {
     await page.addScriptTag({
       type: 'module',
       path: path.join(__dirname, 'fixtures/test-analytics-config.data.js'),
@@ -135,7 +135,7 @@ describe('analytics autolinker', () => {
     expect(currentUrl).toContain('_ga');
   }, 120000);
 
-  test('autolinker does not track <bolt-button>s with urls not containing domains in the config', async function() {
+  test('autolinker does not track <bolt-button>s with urls not containing domains in the config', async function () {
     await page.addScriptTag({
       type: 'module',
       path: path.join(__dirname, 'fixtures/test-analytics-config.data.js'),
@@ -156,7 +156,7 @@ describe('analytics autolinker', () => {
     expect(currentUrl).not.toContain('_ga');
   }, 120000);
 
-  test('autolinker updates the URLs of a <bolt-link> with an external url + rendering to the Shadow DOM', async function() {
+  test('autolinker updates the URLs of a <bolt-link> with an external url + rendering to the Shadow DOM', async function () {
     await page.addScriptTag({
       type: 'module',
       path: path.join(__dirname, 'fixtures/test-analytics-config.data.js'),
@@ -178,7 +178,7 @@ describe('analytics autolinker', () => {
     expect(currentUrl).toContain('_ga');
   }, 120000);
 
-  test('autolinker updates the URLs of a <bolt-link> with an external url + rendering to the light DOM', async function() {
+  test('autolinker updates the URLs of a <bolt-link> with an external url + rendering to the light DOM', async function () {
     await page.addScriptTag({
       type: 'module',
       path: path.join(__dirname, 'fixtures/test-analytics-config.data.js'),
@@ -200,7 +200,7 @@ describe('analytics autolinker', () => {
     expect(currentUrl).toContain('_ga');
   }, 120000);
 
-  test('autolinker does not track <bolt-link>s with urls not containing domains in the config', async function() {
+  test('autolinker does not track <bolt-link>s with urls not containing domains in the config', async function () {
     await page.addScriptTag({
       type: 'module',
       path: path.join(__dirname, 'fixtures/test-analytics-config.data.js'),
@@ -222,7 +222,7 @@ describe('analytics autolinker', () => {
     expect(currentUrl).not.toContain('_ga');
   }, 120000);
 
-  test('the correct inline config for specifying autolink domains inside Drupal exists', async function() {
+  test('the correct inline config for specifying autolink domains inside Drupal exists', async function () {
     await page.addScriptTag({
       type: 'module',
       path: path.join(
@@ -240,7 +240,7 @@ describe('analytics autolinker', () => {
     expect(config).toBe('developer.mozilla.org');
   }, 120000);
 
-  test('allow Drupal to configure which domains get configured / tracked by autolink.', async function() {
+  test('allow Drupal to configure which domains get configured / tracked by autolink.', async function () {
     await page.addScriptTag({
       type: 'module',
       path: path.join(

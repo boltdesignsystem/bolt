@@ -42,7 +42,7 @@ class BoltInteractivePathway extends withLitContext {
     self.isActivePathway = false;
     self.activeStep = -1;
     self.steps = [];
-    self.checkChildrenAndRender = debounce(done => {
+    self.checkChildrenAndRender = debounce((done) => {
       self.steps = self.getSteps();
       self.triggerUpdate();
       // using callback since debounced promises require a different library that's not already in Bolt
@@ -57,19 +57,22 @@ class BoltInteractivePathway extends withLitContext {
       self.handleStepDisconnect,
     );
 
-    self.addEventListener('bolt-interactive-step:change-active-step', event => {
-      const steps = self.getSteps();
-      const stepId = steps.findIndex(step => step.el === event.target);
-      if (stepId > 0) {
-        self.setActiveStep(stepId);
-      } else {
-        console.warn('uh oh! could not find active step', { event, steps });
-      }
-    });
+    self.addEventListener(
+      'bolt-interactive-step:change-active-step',
+      (event) => {
+        const steps = self.getSteps();
+        const stepId = steps.findIndex((step) => step.el === event.target);
+        if (stepId > 0) {
+          self.setActiveStep(stepId);
+        } else {
+          console.warn('uh oh! could not find active step', { event, steps });
+        }
+      },
+    );
 
     self.addEventListener(
       'bolt-interactive-step:change-active-step-to-index',
-      event => {
+      (event) => {
         const { index } = event.detail || {};
         if (typeof index !== 'number') {
           console.warn(
@@ -142,7 +145,7 @@ class BoltInteractivePathway extends withLitContext {
       this,
     ));
 
-    return els.map(el => ({
+    return els.map((el) => ({
       el,
       title: el.getTitle(),
     }));
@@ -200,7 +203,7 @@ class BoltInteractivePathway extends withLitContext {
    * @param {number} stepIndex
    * @return {Promise<void>}
    */
-  setActiveStep = async stepIndex => {
+  setActiveStep = async (stepIndex) => {
     if (stepIndex === this.activeStep) {
       // @todo first one initially set twice, causes double animation in
       console.warn('current step already active');
@@ -222,7 +225,7 @@ class BoltInteractivePathway extends withLitContext {
     await newActiveStep.el.setIsBecomingActive();
     if (currentActiveStep) {
       await currentActiveStep.el.triggerAnimOuts();
-      steps.forEach(step => step.el.setActive(false));
+      steps.forEach((step) => step.el.setActive(false));
     }
     this.activeStep = stepIndex;
     newActiveStep.el.setActive(true);

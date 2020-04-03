@@ -14,17 +14,17 @@ class BoltFigure extends BoltElement {
     return html`
       <figure class="${cx('c-bolt-figure')}">
         ${this.slotMap.get('media') &&
-          html`
-            <div class="${cx('c-bolt-figure__media')}">
-              ${this.slotify('media')}
-            </div>
-          `}
+        html`
+          <div class="${cx('c-bolt-figure__media')}">
+            ${this.slotify('media')}
+          </div>
+        `}
         ${this.slotMap.get('default') &&
-          html`
-            <figcaption class="${cx('c-bolt-figure__caption')}">
-              ${this.slotify('default')}
-            </figcaption>
-          `}
+        html`
+          <figcaption class="${cx('c-bolt-figure__caption')}">
+            ${this.slotify('default')}
+          </figcaption>
+        `}
       </figure>
     `;
   }

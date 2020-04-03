@@ -40,7 +40,7 @@ describe('<bolt-icon> Component', () => {
     expect(results.html).toMatchSnapshot();
   });
 
-  test('Default <bolt-icon> with Shadow DOM renders', async function() {
+  test('Default <bolt-icon> with Shadow DOM renders', async function () {
     const defaultIconShadowRoot = await page.evaluate(async () => {
       const icon = document.createElement('bolt-icon');
       icon.setAttribute('name', 'add-open');
@@ -48,7 +48,7 @@ describe('<bolt-icon> Component', () => {
       icon.setAttribute('size', 'large');
       document.body.appendChild(icon);
       const undefinedElements = document.querySelectorAll('bolt-icon');
-      const promises = [...undefinedElements].map(elem =>
+      const promises = [...undefinedElements].map((elem) =>
         customElements.whenDefined(elem.localName),
       );
       await Promise.all(promises);
@@ -62,7 +62,7 @@ describe('<bolt-icon> Component', () => {
       icon.setAttribute('size', 'large');
       document.body.appendChild(icon);
       const undefinedElements = document.querySelectorAll('bolt-icon');
-      const promises = [...undefinedElements].map(elem =>
+      const promises = [...undefinedElements].map((elem) =>
         customElements.whenDefined(elem.localName),
       );
       await Promise.all(promises);
@@ -83,7 +83,7 @@ describe('<bolt-icon> Component', () => {
     expect(renderedHTML).toMatchSnapshot();
   });
 
-  test('Additional <bolt-icon> with Shadow DOM renders', async function() {
+  test('Additional <bolt-icon> with Shadow DOM renders', async function () {
     const defaultIconShadowRoot = await page.evaluate(async () => {
       const icon = document.createElement('bolt-icon');
       icon.setAttribute('name', 'yeti');
@@ -91,7 +91,7 @@ describe('<bolt-icon> Component', () => {
       icon.setAttribute('size', 'large');
       document.body.appendChild(icon);
       const undefinedElements = document.querySelectorAll('bolt-icon');
-      const promises = [...undefinedElements].map(elem =>
+      const promises = [...undefinedElements].map((elem) =>
         customElements.whenDefined(elem.localName),
       );
       await Promise.all(promises);
@@ -105,7 +105,7 @@ describe('<bolt-icon> Component', () => {
       icon.setAttribute('size', 'large');
       document.body.appendChild(icon);
       const undefinedElements = document.querySelectorAll('bolt-icon');
-      const promises = [...undefinedElements].map(elem =>
+      const promises = [...undefinedElements].map((elem) =>
         customElements.whenDefined(elem.localName),
       );
       await Promise.all(promises);

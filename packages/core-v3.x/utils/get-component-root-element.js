@@ -17,7 +17,7 @@ export function getComponentRootElement(nodeList, tags) {
     return null;
   }
 
-  tags = tags.map(name => name.toUpperCase());
+  tags = tags.map((name) => name.toUpperCase());
 
   nodeList.forEach((childElement, i) => {
     if (

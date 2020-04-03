@@ -17,7 +17,7 @@ describe('background shapes', () => {
     await stopServer();
   }, 100);
 
-  shapeGroup.enum.forEach(async group => {
+  shapeGroup.enum.forEach(async (group) => {
     test(`shape group: ${group}`, async () => {
       const results = await render(
         '@bolt-components-background-shapes/background-shapes.twig',

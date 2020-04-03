@@ -61,10 +61,9 @@ const standardConvertInitialTags = (
 };
 
 // output the correct decorator syntax depending on the the env being compiled
-export const convertInitialTags = (
-  tags,
-  moveChildrenToRoot,
-) => classOrDescriptor =>
+export const convertInitialTags = (tags, moveChildrenToRoot) => (
+  classOrDescriptor,
+) =>
   typeof classOrDescriptor === 'function'
     ? legacyConvertInitialTags(tags, moveChildrenToRoot, classOrDescriptor)
     : standardConvertInitialTags(tags, moveChildrenToRoot, classOrDescriptor);
@@ -74,7 +73,7 @@ export const convertInitialTags = (
  *
  * @returns {Class} - The extended Class with an updated createRenderRoot method + hooks to opt out of rendering to Shadow DOM even after initially rendering
  */
-const conditionalShadowDomClass = clazz => {
+const conditionalShadowDomClass = (clazz) => {
   return class extends clazz {
     static get properties() {
       return {
@@ -155,11 +154,11 @@ const conditionalShadowDomClass = clazz => {
   };
 };
 
-const legacyConditionalShadowDom = clazz => {
+const legacyConditionalShadowDom = (clazz) => {
   return conditionalShadowDomClass(clazz);
 };
 
-const standardConditionalShadowDom = descriptor => {
+const standardConditionalShadowDom = (descriptor) => {
   const { kind, elements } = descriptor;
   return {
     kind,
@@ -173,7 +172,7 @@ const standardConditionalShadowDom = descriptor => {
 /**
  * Class decorator factory to apply conditional Shadow DOM rendering logic
  */
-export const conditionalShadowDom = () => classOrDescriptor =>
+export const conditionalShadowDom = () => (classOrDescriptor) =>
   typeof classOrDescriptor === 'function'
     ? legacyConditionalShadowDom(classOrDescriptor)
     : standardConditionalShadowDom(classOrDescriptor);
@@ -183,7 +182,7 @@ export const conditionalShadowDom = () => classOrDescriptor =>
  *
  * @returns {Class} - The extended Class with an updated createRenderRoot method + hooks to opt out of rendering to Shadow DOM even after initially rendering
  */
-const lazyStylesClass = clazz => {
+const lazyStylesClass = (clazz) => {
   return class extends clazz {
     connectedCallback() {
       super.connectedCallback && super.connectedCallback();
@@ -208,14 +207,14 @@ const lazyStylesClass = clazz => {
 /**
  * A conditional Shadow DOM decorator for the old (legacy) decorator syntax
  */
-const legacyLazyStyles = clazz => {
+const legacyLazyStyles = (clazz) => {
   return lazyStylesClass(clazz);
 };
 
 /**
  * A conditional Shadow DOM decorator for the new decorator syntax
  */
-const standardLazyStyles = descriptor => {
+const standardLazyStyles = (descriptor) => {
   const { kind, elements } = descriptor;
   return {
     kind,
@@ -229,7 +228,7 @@ const standardLazyStyles = descriptor => {
 /**
  * Class decorator factory that defines the decorated class as a custom element.
  */
-export const lazyStyles = () => classOrDescriptor =>
+export const lazyStyles = () => (classOrDescriptor) =>
   typeof classOrDescriptor === 'function'
     ? legacyLazyStyles(classOrDescriptor)
     : standardLazyStyles(classOrDescriptor);
@@ -241,7 +240,7 @@ export const lazyStyles = () => classOrDescriptor =>
  * @param {Class} clazz - The original Class to extend
  * @returns {Class} - The extended Class with added events when rendering + updating
  */
-const renderEventsClass = clazz => {
+const renderEventsClass = (clazz) => {
   return class extends clazz {
     firstUpdated(changedProperties) {
       this._wasInitiallyRendered = true; // legacy internal prop used internally by many of Bolt's Web Components
@@ -275,11 +274,11 @@ const renderEventsClass = clazz => {
   };
 };
 
-const legacyRenderEventDecorator = clazz => {
+const legacyRenderEventDecorator = (clazz) => {
   return renderEventsClass(clazz);
 };
 
-const standardRenderEventDecorator = descriptor => {
+const standardRenderEventDecorator = (descriptor) => {
   const { kind, elements } = descriptor;
   return {
     kind,
@@ -294,7 +293,7 @@ const standardRenderEventDecorator = descriptor => {
  * Class decorator factory that adds `render` and `rendered` custom events to the LitElement-based web component
  * Automatically uses the appropriate decorator syntax based on what's supported / how the code is being compiled.
  */
-export const renderAndRenderedEvents = () => classOrDescriptor =>
+export const renderAndRenderedEvents = () => (classOrDescriptor) =>
   typeof classOrDescriptor === 'function'
     ? legacyRenderEventDecorator(classOrDescriptor)
     : standardRenderEventDecorator(classOrDescriptor);

@@ -82,23 +82,21 @@ class BoltButton extends BoltActionElement {
 
       return html`
         ${this.slotify('before') &&
-          html`
-            <span class="${iconClasses}"
-              ><span class="${sizerClasses}"
-                >${this.slotify('before')}</span
-              ></span
-            >
-          `}${this.slotify('default') &&
-          html`
-            <span class="${itemClasses}">${this.slotify('default')}</span>
-          `}${this.slotMap.get('after') &&
-          html`
-            <span class="${iconClasses}"
-              ><span class="${sizerClasses}"
-                >${this.slotify('after')}</span
-              ></span
-            >
-          `}
+        html`
+          <span class="${iconClasses}"
+            ><span class="${sizerClasses}"
+              >${this.slotify('before')}</span
+            ></span
+          >
+        `}${this.slotify('default') &&
+        html`
+          <span class="${itemClasses}">${this.slotify('default')}</span>
+        `}${this.slotMap.get('after') &&
+        html`
+          <span class="${iconClasses}"
+            ><span class="${sizerClasses}">${this.slotify('after')}</span></span
+          >
+        `}
       `;
     };
 
@@ -174,9 +172,7 @@ class BoltButton extends BoltActionElement {
       `;
     }
 
-    return html`
-      ${buttonElement}
-    `;
+    return html` ${buttonElement} `;
   }
 }
 

@@ -46,7 +46,7 @@ class BoltTwoCharacterLayout extends withLitHtml {
    * preserving document flow by avoiding absolute positioning.
    */
   equalizeCharactersAndStyleConnection = async () => {
-    const eqHeightArgs = this.characters.map(character => {
+    const eqHeightArgs = this.characters.map((character) => {
       return {
         container: character,
         elToEqualize: character.renderRoot.querySelector(
@@ -101,8 +101,10 @@ class BoltTwoCharacterLayout extends withLitHtml {
           `.${boltCharacterCenterClass}`,
         );
         connection.style.minWidth = `calc(
-        ${nextCharacterCenter.getBoundingClientRect().left -
-          connection.getBoundingClientRect().left}px
+        ${
+          nextCharacterCenter.getBoundingClientRect().left -
+          connection.getBoundingClientRect().left
+        }px
         + (${nextCharacterCenter.getBoundingClientRect().width / 2}px))`;
         connection.renderRoot.querySelector('.c-bolt-connection__main-image');
       }
@@ -115,8 +117,8 @@ class BoltTwoCharacterLayout extends withLitHtml {
    * @param {int} timeoutAmount in MS
    * @return {Promise<unknown>}
    */
-  delay = timeoutAmount =>
-    new Promise(resolve => {
+  delay = (timeoutAmount) =>
+    new Promise((resolve) => {
       setTimeout(resolve, timeoutAmount);
     });
 
@@ -157,7 +159,7 @@ class BoltTwoCharacterLayout extends withLitHtml {
    * @return {boolean} if all required components have offsetHeight.
    */
   areComponentsRendered = () => {
-    this.characters.forEach(character => {
+    this.characters.forEach((character) => {
       if (!character.offsetHeight) {
         return false;
       }
@@ -177,7 +179,7 @@ class BoltTwoCharacterLayout extends withLitHtml {
    */
   areCharactersEqualized = () => {
     let isEqualized = true;
-    this.characters.forEach(character => {
+    this.characters.forEach((character) => {
       if (!character[equalizeRelativeHeightsKey]) {
         isEqualized = false;
       }
@@ -186,7 +188,7 @@ class BoltTwoCharacterLayout extends withLitHtml {
   };
 
   setCharactersToNotEqualized = () => {
-    this.characters.forEach(character => {
+    this.characters.forEach((character) => {
       character[equalizeRelativeHeightsKey] = false;
     });
   };

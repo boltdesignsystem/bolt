@@ -162,14 +162,14 @@ class FocusTrap extends withLitHtml {
       <div
         id="start"
         tabindex="${this.active === true ? `0` : `-1`}"
-        @focus=${e => this.focusLastElement(e)}
+        @focus=${(e) => this.focusLastElement(e)}
       ></div>
       ${this.slot('default')}
       <div id="backup"></div>
       <div
         id="end"
         tabindex="${this.active === true ? `0` : `-1`}"
-        @focus=${e => this.focusFirstElement(e)}
+        @focus=${(e) => this.focusFirstElement(e)}
       ></div>
     `;
   }

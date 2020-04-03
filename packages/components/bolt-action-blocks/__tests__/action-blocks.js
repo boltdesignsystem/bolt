@@ -72,7 +72,7 @@ describe('<bolt-action-blocks> Component', () => {
   });
 
   // Props
-  valign.enum.forEach(async valignChoice => {
+  valign.enum.forEach(async (valignChoice) => {
     test(`Vertical alignment of each block's content: ${valignChoice}`, async () => {
       const results = await render(
         '@bolt-components-action-blocks/action-blocks.twig',
@@ -112,7 +112,7 @@ describe('<bolt-action-blocks> Component', () => {
     });
   });
 
-  borderless.enum.forEach(async borderlessChoice => {
+  borderless.enum.forEach(async (borderlessChoice) => {
     test(`Border in between each block: ${borderlessChoice}`, async () => {
       const results = await render(
         '@bolt-components-action-blocks/action-blocks.twig',

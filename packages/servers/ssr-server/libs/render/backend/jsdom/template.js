@@ -23,9 +23,10 @@ function template(webpackAssets) {
         <body>
           ${assetPaths
             .filter(
-              path => path.includes('.js') && path.includes('bundle') === false,
+              (path) =>
+                path.includes('.js') && path.includes('bundle') === false,
             )
-            .map(path => `<script src="${path}"></script>`)
+            .map((path) => `<script src="${path}"></script>`)
             .join('\n')}
         </body>
       </html>

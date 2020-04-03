@@ -18,7 +18,7 @@ function generateLoaderResult(content, raw = true) {
 }
 
 // eslint-disable-next-line func-names,consistent-return
-module.exports = function(content, map) {
+module.exports = function (content, map) {
   if (this.version === 1 && this.cacheable) {
     this.cacheable();
   }
@@ -71,14 +71,14 @@ module.exports = function(content, map) {
     transformQuery(query);
   }
 
-  Object.keys(query).forEach(param => {
+  Object.keys(query).forEach((param) => {
     query[param] = decodeURIComponent(query[param]);
   });
 
   postsvg()
     .use(transformPlugin(stringifyQuery(query), transformPluginCfg))
     .process(optimizedContent)
-    .then(res => {
+    .then((res) => {
       callback(null, generateLoaderResult(res.svg, raw), map, {
         ast: res.tree,
       });

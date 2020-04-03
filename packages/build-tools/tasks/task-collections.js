@@ -206,7 +206,7 @@ async function build(shouldReturnTime = false) {
     }
 
     config.prod || config.watch === false ? await webpackTasks.compile() : '';
-    await images().catch(error => {
+    await images().catch((error) => {
       console.log(error);
       // log.errorAndExit('Image task failed', error);
     });

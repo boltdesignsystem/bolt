@@ -1,4 +1,4 @@
-export const playbackPlugin = player => {
+export const playbackPlugin = (player) => {
   var options = {
     playbackRates: [1, 1.25, 1.5, 2],
   };

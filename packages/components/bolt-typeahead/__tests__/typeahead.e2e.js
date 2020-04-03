@@ -2,7 +2,7 @@ let currentBrowser;
 
 module.exports = {
   tags: ['component', 'typeahead'],
-  'Bolt Typeahead: Dynamic Data': function(browser) {
+  'Bolt Typeahead: Dynamic Data': function (browser) {
     const { testingUrl } = browser.globals;
     console.log(`global browser url: ${testingUrl}`);
     currentBrowser = '--' + browser.currentEnv || 'chrome';
@@ -26,8 +26,9 @@ module.exports = {
     }
 
     browser.saveScreenshot(
-      `screenshots/pattern-lab/typeahead--${browser.capabilities.browserName ||
-        'chrome'}.png`,
+      `screenshots/pattern-lab/typeahead--${
+        browser.capabilities.browserName || 'chrome'
+      }.png`,
     );
 
     browser.expect.elements('.c-bolt-typeahead__result').count.to.equal(1);

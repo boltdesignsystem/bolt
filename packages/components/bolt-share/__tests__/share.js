@@ -48,7 +48,7 @@ describe('<bolt-share> Component', () => {
     expect(results.html).toMatchSnapshot();
   });
 
-  size.enum.forEach(async sizeChoice => {
+  size.enum.forEach(async (sizeChoice) => {
     test(`share size: ${sizeChoice}`, async () => {
       const results = await render('@bolt-components-share/share.twig', {
         size: sizeChoice,
@@ -80,7 +80,7 @@ describe('<bolt-share> Component', () => {
     });
   });
 
-  opacity.enum.forEach(async opacityChoice => {
+  opacity.enum.forEach(async (opacityChoice) => {
     test(`share opacity: ${opacityChoice}`, async () => {
       const results = await render('@bolt-components-share/share.twig', {
         opacity: opacityChoice,
@@ -112,7 +112,7 @@ describe('<bolt-share> Component', () => {
     });
   });
 
-  align.enum.forEach(async alignChoice => {
+  align.enum.forEach(async (alignChoice) => {
     test(`share align: ${alignChoice}`, async () => {
       const results = await render('@bolt-components-share/share.twig', {
         align: alignChoice,

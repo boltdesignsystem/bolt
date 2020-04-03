@@ -30,10 +30,10 @@ function post({ path, requestBody, query, TOKEN }) {
       },
     };
 
-    const req = http.request(options, res => {
+    const req = http.request(options, (res) => {
       const chunks = [];
 
-      res.on('data', chunk => {
+      res.on('data', (chunk) => {
         chunks.push(chunk);
       });
 
@@ -69,10 +69,10 @@ function get({ path, query, hostname, TOKEN }) {
         Authorization: `Bearer ${TOKEN || process.env.NOW_TOKEN}`,
       },
     };
-    const req = http.request(options, res => {
+    const req = http.request(options, (res) => {
       const chunks = [];
 
-      res.on('data', chunk => {
+      res.on('data', (chunk) => {
         chunks.push(chunk);
       });
 
@@ -108,7 +108,7 @@ function getLatestDeploy() {
         Authorization: `Bearer ${process.env.NOW_TOKEN}`,
       },
     })
-      .then(results => {
+      .then((results) => {
         if (results.error) {
           process.stderr.write(
             `Error getting latest now.sh deploy: ${results.error.message}`,
@@ -118,21 +118,21 @@ function getLatestDeploy() {
 
         // If a deployment hasn't finished uploading (is incomplete), the url property will have a value of null.
         const resultsWithGitSha = results.deployments.filter(
-          d => d.meta.gitSha === gitSha,
+          (d) => d.meta.gitSha === gitSha,
         );
 
-        const fallbackResultsWithGitSha = results.deployments.filter(d =>
+        const fallbackResultsWithGitSha = results.deployments.filter((d) =>
           gitSha.includes(d.meta.gitSha),
         );
 
-        const result = resultsWithGitSha.find(d => d.url);
+        const result = resultsWithGitSha.find((d) => d.url);
 
         // if an exact match isn't found, check partial matches and sort by most recent
-        fallbackResultsWithGitSha.sort(function(a, b) {
+        fallbackResultsWithGitSha.sort(function (a, b) {
           // Turn created unix time strings into dates, and then sort by what happened most recently
           return new Date(a.created) - new Date(b.created);
         });
-        const fallbackResults = fallbackResultsWithGitSha.find(d => d.url);
+        const fallbackResults = fallbackResultsWithGitSha.find((d) => d.url);
 
         if (result) {
           resolve(`https://${result.url}`);
@@ -142,7 +142,7 @@ function getLatestDeploy() {
           reject(new Error('No deployments found'));
         }
       })
-      .catch(error => {
+      .catch((error) => {
         reject(error);
       });
   });

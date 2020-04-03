@@ -4,10 +4,10 @@ const { aliasNowUrl } = require('./utils/handle-now-aliases');
 const { branchName } = require('./utils/branch-name');
 
 getLatestDeploy()
-  .then(url => {
+  .then((url) => {
     aliasNowUrl(url, branchName);
   })
-  .catch(error => {
+  .catch((error) => {
     console.error(error);
     process.exit(1);
   });

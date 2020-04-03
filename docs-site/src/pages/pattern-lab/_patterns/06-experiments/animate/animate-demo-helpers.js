@@ -8,7 +8,7 @@ export function enableAnimDemos() {
     }
 
     setTimeout(() => {
-      document.querySelectorAll('.demo-animate').forEach(animDemo => {
+      document.querySelectorAll('.demo-animate').forEach((animDemo) => {
         let triggeredIn = false;
         const trigger = animDemo.querySelector('.demo-animate__trigger');
         const wrapper = animDemo.querySelector('.demo-animate__wrapper');

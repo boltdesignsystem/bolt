@@ -51,7 +51,7 @@ describe('<bolt-list> Component', () => {
     expect(results.html).toMatchSnapshot();
   });
 
-  display.enum.forEach(async displayChoice => {
+  display.enum.forEach(async (displayChoice) => {
     test(`list display: ${displayChoice}`, async () => {
       const results = await render('@bolt-components-list/list.twig', {
         display: displayChoice,
@@ -62,7 +62,7 @@ describe('<bolt-list> Component', () => {
     });
   });
 
-  spacing.enum.forEach(async spacingChoice => {
+  spacing.enum.forEach(async (spacingChoice) => {
     test(`list spacing: ${spacingChoice}`, async () => {
       const results = await render('@bolt-components-list/list.twig', {
         spacing: spacingChoice,
@@ -73,7 +73,7 @@ describe('<bolt-list> Component', () => {
     });
   });
 
-  separator.enum.forEach(async separatorChoice => {
+  separator.enum.forEach(async (separatorChoice) => {
     test(`list separator: ${separatorChoice}`, async () => {
       const results = await render('@bolt-components-list/list.twig', {
         separator: separatorChoice,
@@ -84,7 +84,7 @@ describe('<bolt-list> Component', () => {
     });
   });
 
-  inset.enum.forEach(async insetChoice => {
+  inset.enum.forEach(async (insetChoice) => {
     test(`list inset spacing: ${insetChoice}`, async () => {
       const results = await render('@bolt-components-list/list.twig', {
         inset: insetChoice,
@@ -95,7 +95,7 @@ describe('<bolt-list> Component', () => {
     });
   });
 
-  align.enum.forEach(async alignChoice => {
+  align.enum.forEach(async (alignChoice) => {
     test(`list items horizontal alignment: ${alignChoice}`, async () => {
       const results = await render('@bolt-components-list/list.twig', {
         display: 'inline',
@@ -107,7 +107,7 @@ describe('<bolt-list> Component', () => {
     });
   });
 
-  valign.enum.forEach(async valignChoice => {
+  valign.enum.forEach(async (valignChoice) => {
     test(`list items vertical alignment: ${valignChoice}`, async () => {
       const results = await render('@bolt-components-list/list.twig', {
         display: 'inline',
@@ -119,7 +119,7 @@ describe('<bolt-list> Component', () => {
     });
   });
 
-  tag.enum.forEach(async tagChoice => {
+  tag.enum.forEach(async (tagChoice) => {
     test(`list tag: ${tagChoice}`, async () => {
       const results = await render('@bolt-components-list/list.twig', {
         tag: tagChoice,
@@ -130,7 +130,7 @@ describe('<bolt-list> Component', () => {
     });
   });
 
-  nowrap.enum.forEach(async nowrapChoice => {
+  nowrap.enum.forEach(async (nowrapChoice) => {
     test(`list nowrap: ${nowrapChoice}`, async () => {
       const results = await render('@bolt-components-list/list.twig', {
         display: 'inline',
@@ -189,7 +189,7 @@ describe('<bolt-list> Component', () => {
     expect(results.ok).toBe(true);
     expect(results.html).toMatchSnapshot();
 
-    await page.evaluate(async results => {
+    await page.evaluate(async (results) => {
       const wrapper = document.createElement('div');
       wrapper.innerHTML = results.html;
       document.body.appendChild(wrapper);

@@ -124,17 +124,17 @@ function init() {
   const pegaEditors = query(selectors.editor.base)
     // ensure we don't try to init an editor that is already init-ed
     .filter(
-      ed => !ed.classList.contains(selectors.editor.init.replace('.', '')),
+      (ed) => !ed.classList.contains(selectors.editor.init.replace('.', '')),
     );
 
   if (pegaEditors.length === 0) {
     return;
   }
 
-  pegaEditors.forEach(pegaEditor => {
+  pegaEditors.forEach((pegaEditor) => {
     let editorState = EDITOR_STATES.NOT_READY;
 
-    pegaEditor.addEventListener('editor:save', event => {
+    pegaEditor.addEventListener('editor:save', (event) => {
       console.debug('event heard: "editor:save"', event);
     });
 
@@ -286,7 +286,7 @@ function init() {
     editorState = EDITOR_STATES.CLOSED;
 
     if (feedbackEl) {
-      window['onUsersnapLoad'] = api => {
+      window['onUsersnapLoad'] = (api) => {
         window['usersnapApi'] = api;
         api.init({
           button: null,
@@ -308,7 +308,7 @@ function init() {
           },
         });
 
-        api.on('open', event => {
+        api.on('open', (event) => {
           const {
             name: browserName,
             os: browserOs,
@@ -343,7 +343,7 @@ ${html}`;
           event.api.setValue('customData', metadata);
         });
 
-        api.on('error', event => {
+        api.on('error', (event) => {
           console.error('Usersnap error', event);
         });
       };
@@ -352,7 +352,7 @@ ${html}`;
       );
     }
 
-    feedbackEl.addEventListener('click', async event => {
+    feedbackEl.addEventListener('click', async (event) => {
       window['usersnapApi'].open();
     });
   });

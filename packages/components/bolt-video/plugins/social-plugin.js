@@ -1,4 +1,4 @@
-export const socialPlugin = player => {
+export const socialPlugin = (player) => {
   if (player.activePlugins_) {
     if (!player.activePlugins_.social) {
       return player.social({

@@ -12,7 +12,7 @@ export const AccordionItemTrigger = (children, props, context) => {
       : '',
   );
 
-  const labelInner = children => {
+  const labelInner = (children) => {
     return html`
       <div class="c-bolt-accordion-item__trigger-content">
         ${children}
@@ -25,11 +25,9 @@ export const AccordionItemTrigger = (children, props, context) => {
     `;
   };
 
-  const innerTriggerTemplate = children => {
+  const innerTriggerTemplate = (children) => {
     return props.inactive
-      ? html`
-          <div class="${labelClasses}">${labelInner(children)}</div>
-        `
+      ? html` <div class="${labelClasses}">${labelInner(children)}</div> `
       : html`
           <button type="button" class="${labelClasses}">
             ${labelInner(children)}
@@ -37,7 +35,7 @@ export const AccordionItemTrigger = (children, props, context) => {
         `;
   };
 
-  const triggerTemplate = children => {
+  const triggerTemplate = (children) => {
     return html`
       ${props.open
         ? html`
@@ -45,9 +43,7 @@ export const AccordionItemTrigger = (children, props, context) => {
               ${children}
             </div>
           `
-        : html`
-            <div class="${triggerClasses}">${children}</div>
-          `}
+        : html` <div class="${triggerClasses}">${children}</div> `}
     `;
   };
 

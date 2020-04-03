@@ -9,7 +9,7 @@ for (let i = 0, len = inputs.length; i < len; i++) {
     input.classList.add('is-filled');
   }
 
-  input.onchange = function() {
+  input.onchange = function () {
     if (input.value) {
       input.classList.add('is-filled');
     } else {
@@ -17,7 +17,7 @@ for (let i = 0, len = inputs.length; i < len; i++) {
     }
   };
 
-  input.onfocus = function() {
+  input.onfocus = function () {
     input.classList.remove('is-touched');
 
     // In there were server-side errors, the 'is-invalid' class will be present
@@ -29,7 +29,7 @@ for (let i = 0, len = inputs.length; i < len; i++) {
     }
   };
 
-  input.onblur = function(e) {
+  input.onblur = function (e) {
     if (!e.isTrusted) {
       // This blur event was triggered by a script, not a human, so don't mark
       // the input as is-touched (because it actually wasn't) or show errors.
@@ -46,14 +46,14 @@ for (let i = 0, len = inputs.length; i < len; i++) {
   // A custom event listener that allows other scripts to manually show errors.
   input.addEventListener(
     'showerrors',
-    function() {
+    function () {
       input.showErrors();
     },
     false,
   );
 
   // Callback function to display validation errors for a given input.
-  input.showErrors = function() {
+  input.showErrors = function () {
     input.classList.add('is-touched');
 
     // Clear existing errors.
@@ -79,11 +79,11 @@ for (let i = 0, len = customInputWrappers.length; i < len; i++) {
   const wrapper = customInputWrappers[i];
   const input = wrapper.querySelector('.c-bolt-input');
 
-  input.onfocus = function() {
+  input.onfocus = function () {
     wrapper.classList.add('is-active');
   };
 
-  input.onblur = function() {
+  input.onblur = function () {
     wrapper.classList.remove('is-active');
   };
 }

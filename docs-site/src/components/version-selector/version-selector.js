@@ -48,7 +48,7 @@ if (boltSelect) {
 }
 
 if (boltSelect) {
-  boltSelect.addEventListener('mousedown', function(e) {
+  boltSelect.addEventListener('mousedown', function (e) {
     if (e.metaKey === true) {
       shouldOpenInNewWindow = true;
     } else {
@@ -56,7 +56,7 @@ if (boltSelect) {
     }
   });
 
-  boltSelect.addEventListener('choice', function(e) {
+  boltSelect.addEventListener('choice', function (e) {
     var url = e.detail.choice.value;
     if (url && window.location.href !== url) {
       // open Bolt version selected in a new tab (vs same tab) if the CMD / meta key is held

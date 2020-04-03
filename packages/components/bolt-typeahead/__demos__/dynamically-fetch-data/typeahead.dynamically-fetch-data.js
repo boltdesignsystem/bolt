@@ -5,13 +5,13 @@ const dynamicTypeaheadDemo = document.querySelector(
 
 const setupEventHandlers = () => {
   // note: make sure to let Typeahead know when the data fetched is ready
-  dynamicTypeaheadDemo.on('getSuggestions', async value => {
-    return await new Promise(async resolve => {
+  dynamicTypeaheadDemo.on('getSuggestions', async (value) => {
+    return await new Promise(async (resolve) => {
       await fetch('/build/data/typeahead.data.json')
-        .then(function(response) {
+        .then(function (response) {
           return response.json();
         })
-        .then(function(data) {
+        .then(function (data) {
           return resolve(data);
         });
     });
@@ -19,7 +19,7 @@ const setupEventHandlers = () => {
 
   dynamicTypeaheadDemo.on('onSelected', (element, event, suggestion) => {
     const exactMatch = element.items.filter(
-      item => item.label === suggestion.suggestionValue,
+      (item) => item.label === suggestion.suggestionValue,
     )[0];
 
     function navigateTo(url) {
@@ -48,7 +48,7 @@ if (dynamicTypeaheadDemo) {
     setupEventHandlers();
   }
 
-  dynamicTypeaheadDemo.addEventListener('ready', e => {
+  dynamicTypeaheadDemo.addEventListener('ready', (e) => {
     if (e.detail.name === 'bolt-typeahead') {
       setupEventHandlers();
     }

@@ -26,7 +26,7 @@ async function generateVrtUrls() {
   );
 
   const allPackages = boltPackages.filter(
-    pkg =>
+    (pkg) =>
       pkg.name.includes('@bolt/components-image') ||
       pkg.name.includes('@bolt/components-band') ||
       pkg.name.includes('@bolt/components-blockquote') ||
@@ -34,7 +34,7 @@ async function generateVrtUrls() {
       pkg.name.includes('@bolt/components-video'),
   );
 
-  getBoltTags().then(versions => {
+  getBoltTags().then((versions) => {
     const latestVersion = versions[0].name.replace(/\./g, '-');
     const previousVersion = versions[1].name.replace(/\./g, '-');
 
@@ -43,11 +43,11 @@ async function generateVrtUrls() {
 
     // @todo: double-check each url path generated to make sure the URL path actually exists
     // @todo: update to reference bolt-version data -- comparing the current version (already wired up) + the previous version (not yet wired up) of the design system.
-    Object.keys(boltUrls).forEach(function(url) {
+    Object.keys(boltUrls).forEach(function (url) {
       const urlName = url;
       const urlAddress = boltUrls[url];
 
-      allPackages.forEach(function(individualPackage) {
+      allPackages.forEach(function (individualPackage) {
         const name = individualPackage.name;
         const packageName = name.replace('@bolt/', '');
 
@@ -126,7 +126,7 @@ async function generateVrtUrls() {
       ),
       JSON.stringify(filteredUrls),
       'utf8',
-      function(err) {
+      function (err) {
         if (err) {
           console.log('An error occured while writing JSON Object to File.');
           return console.log(err);

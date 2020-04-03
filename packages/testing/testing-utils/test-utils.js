@@ -64,7 +64,7 @@ function getPkgDependencies(pkgName) {
     `--scope '${pkgName}'`,
   ];
   const pkgs = runLernaCmd(cmds.join(' '));
-  return pkgs.filter(p => p.name !== pkgName).map(p => p.name);
+  return pkgs.filter((p) => p.name !== pkgName).map((p) => p.name);
 }
 
 /**
@@ -80,7 +80,7 @@ function getPkgDependents(pkgName) {
     `--scope '${pkgName}'`,
   ];
   const pkgs = runLernaCmd(cmds.join(' '));
-  return pkgs.filter(p => p.name !== pkgName).map(p => p.name);
+  return pkgs.filter((p) => p.name !== pkgName).map((p) => p.name);
 }
 
 /**
@@ -142,7 +142,7 @@ function getFilesChanged({ from = 'HEAD', base = 'master', inDir } = {}) {
     });
     const files = results.stdout.split('\n');
     if (!files) return [];
-    return files.map(file => join(repoRoot, file));
+    return files.map((file) => join(repoRoot, file));
   } catch (err) {
     console.error(err);
     process.exit(1);
@@ -173,11 +173,11 @@ function getPkgsChanged({ from = 'HEAD', base = 'master' } = {}) {
   // will contain package names and keep them unique
   const pkgs = new Set();
 
-  filesChanged.forEach(filePath => {
+  filesChanged.forEach((filePath) => {
     const { base: filename, dir } = parse(filePath);
     const dirs = dir.split('/');
     // exclude if in foldersToExclude
-    if (dirs.some(d => foldersToExclude.includes(d))) {
+    if (dirs.some((d) => foldersToExclude.includes(d))) {
       return;
     }
 
@@ -195,7 +195,7 @@ function getPkgsChanged({ from = 'HEAD', base = 'master' } = {}) {
     pkgs.add(pkgName);
   });
 
-  return [...pkgs].map(name => {
+  return [...pkgs].map((name) => {
     const absPath = getPkgPathFromName(name);
     return {
       name,
