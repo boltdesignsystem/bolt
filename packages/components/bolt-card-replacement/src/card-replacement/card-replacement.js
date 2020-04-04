@@ -39,10 +39,11 @@ class BoltCardReplacement extends withContext(BoltElement) {
       raised: Boolean,
       url: String,
       urlText: String,
-      rounded: {
-        type: Boolean,
-        reflect: true,
-      },
+      // borderRadius: String,
+      // rounded: {
+      //   type: Boolean,
+      //   reflect: true,
+      // },
     };
   }
 
@@ -58,7 +59,8 @@ class BoltCardReplacement extends withContext(BoltElement) {
     const classes = cx('c-bolt-card-replacement', {
       [`c-bolt-card-replacement--raised`]: isRaised,
       [`c-bolt-card-replacement--horizontal`]: this.horizontal,
-      [`c-bolt-card-replacement--rounded`]: this.rounded,
+      // [`c-bolt-card-replacement--border-radius-${this.borderRadius}`]: this.borderRadius,
+      // [`c-bolt-card-replacement--rounded`]: this.rounded,
       [`t-bolt-${this.theme}`]: this.theme && this.theme !== 'none',
     });
 

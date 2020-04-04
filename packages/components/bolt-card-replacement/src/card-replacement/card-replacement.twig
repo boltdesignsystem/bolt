@@ -11,11 +11,13 @@
 
 {# Set up checks to validate that the component's prop values are allowed, based on the component's schema #}
 {% set tag_options = schema.properties.tag.enum %}
+{% set borderRadius_options = schema.properties.borderRadius.enum %}
 {% set theme_options = schema.properties.theme.enum %}
 {% set height_options = schema.properties.height.enum %}
 
 {# Check that the component's current prop values are valid. if not, default to the schema default #}
 {% set tag = tag in tag_options ? tag : schema.properties.tag.default %}
+{% set borderRadius = borderRadius in borderRadius_options ? borderRadius : schema.properties.borderRadius.default %}
 {% set theme = theme in theme_options ? theme : schema.properties.theme.default %}
 {% set height = height in height_options ? height : schema.properties.height.default %}
 
@@ -47,14 +49,23 @@
 {# card-replacement component's custom element wrapper #}
 <bolt-card-replacement
   {% if rounded %} rounded {% endif %}
-  {% if tag %} tag="{{ tag }}" {% endif %} {% if theme %} theme="{{ theme }}" {% endif %} {% if height %} height="{{ height }}" {% endif %} {% if link_url %} url="{{ link_url }}" {% endif %} {% if horizontal %} horizontal {% endif %} {{ attributes }}>
+  {% if tag %} tag="{{ tag }}" {% endif %}
+  {% if borderRadius %} border-radius="{{ borderRadius }}" {% endif %}
+  {% if theme %} theme="{{ theme }}" {% endif %}
+  {% if height %} height="{{ height }}" {% endif %}
+  {% if link_url %} url="{{ link_url }}" {% endif %}
+  {% if horizontal %} horizontal {% endif %}
+  {{ attributes }}>
+
   {# This sets none values to not render anything. #}
+  {% set borderRadius = borderRadius == "small" ? false : borderRadius %}
   {% set theme = theme == "none" ? false : theme %}
 
   {# Array of classes based on the defined + default props #}
   {% set classes = [
     base_class,
     horizontal ? "c-bolt-card-replacement--horizontal" : "",
+    borderRadius in borderRadius_options ? "c-bolt-card-replacement--border-radius-#{borderRadius}" : "",
     theme in theme_options ? "t-bolt-#{theme}" : "",
   ] %}
 
@@ -84,10 +95,11 @@
     {% endif %}
 
     {% if content %}
+      {# Custom Content #}
       {# @todo: The replace function is a hack to get around the utf-8 bug. #}
       {{ content | join | replace({"UTF-8": ""}) }}
     {% else %}
-
+      {# Structured Content #}
       {% if media or media_block %}
         {% if media_block %}
           {% embed "@bolt-components-card-replacement/_card-replacement-media.twig" %}
@@ -99,25 +111,23 @@
           {% include "@bolt-components-card-replacement/_card-replacement-media.twig" %}
         {% endif %}
       {% endif %}
-
       {% if horizontal %}<div class="c-bolt-card-replacement__horizontal-wrapper">{% endif %}
-      {% if body or body_block %}
-        {% if body_block %}
-          {% embed "@bolt-components-card-replacement/_card-replacement-body.twig" %}
-            {% block body %}
-              {{ body_block }}
-            {% endblock %}
-          {% endembed %}
-        {% else %}
-          {% include "@bolt-components-card-replacement/_card-replacement-body.twig" %}
+        {% if body or body_block %}
+          {% if body_block %}
+            {% embed "@bolt-components-card-replacement/_card-replacement-body.twig" %}
+              {% block body %}
+                {{ body_block }}
+              {% endblock %}
+            {% endembed %}
+          {% else %}
+            {% include "@bolt-components-card-replacement/_card-replacement-body.twig" %}
+          {% endif %}
         {% endif %}
-      {% endif %}
-
-      {% block actions %}
-        {% if actions %}
-          {% include "@bolt-components-card-replacement/_card-replacement-actions.twig" %}
-        {% endif %}
-      {% endblock %}
+        {% block actions %}
+          {% if actions %}
+            {% include "@bolt-components-card-replacement/_card-replacement-actions.twig" %}
+          {% endif %}
+        {% endblock %}
       {% if horizontal %}</div>{% endif %}
     {% endif %}
   </replace-with-children>
