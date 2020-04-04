@@ -9,36 +9,123 @@
 // Custom element
 @include bolt-custom-element('bolt-card-replacement', block, medium);
 
-bolt-card-replacement {
-  @include bolt-card-replacement-content-conditions;
-  @include bolt-card-replacement-border-reset;
+// Actions container alignment and border
+bolt-card-replacement,
+.c-bolt-card-replacement {
+  > bolt-card-replacement-actions {
+    &:last-child {
+      @include bolt-margin-top(auto);
+    }
 
+    &:only-child {
+      @include bolt-margin-top(auto);
+      @include bolt-margin-bottom(auto);
+    }
+  }
+
+  > bolt-card-replacement-actions:not(:last-child) {
+    border-bottom-width: $bolt-card-replacement-border-width;
+  }
+
+  * + bolt-card-replacement-actions {
+    border-top-width: $bolt-card-replacement-border-width;
+  }
+}
+
+// Border radius prop
+// @todo: the massive conditions used here are due to the inability of using overflow hidden.
+bolt-card-replacement {
+  --c-bolt-card-border-radius: #{bolt-border-radius(small)};
+}
+
+bolt-card-replacement[border-radius='large'] {
+  --c-bolt-card-border-radius: #{bolt-border-radius(large)};
+}
+
+bolt-card-replacement,
+.c-bolt-card-replacement {
+  border-radius: var(--c-bolt-card-border-radius);
+
+  > *:first-child,
+  bolt-card-replacement-link + *,
+  bolt-card-replacement-background + *,
+  bolt-card-replacement-media:first-child bolt-image,
+  bolt-card-replacement-media:first-child bolt-ratio,
+  bolt-card-replacement-link + bolt-card-replacement-media bolt-image,
+  bolt-card-replacement-link + bolt-card-replacement-media bolt-ratio,
+  bolt-card-replacement-background + bolt-card-replacement-media bolt-image,
+  bolt-card-replacement-background + bolt-card-replacement-media bolt-ratio {
+    border-top-right-radius: var(--c-bolt-card-border-radius);
+    border-top-left-radius: var(--c-bolt-card-border-radius);
+  }
+
+  > *:last-child,
+  bolt-card-replacement-link + *:last-child,
+  bolt-card-replacement-background + *:last-child,
+  bolt-card-replacement-media:last-child bolt-image,
+  bolt-card-replacement-media:last-child bolt-ratio,
+  bolt-card-replacement-link
+    + bolt-card-replacement-media:last-child
+    bolt-image,
+  bolt-card-replacement-link
+    + bolt-card-replacement-media:last-child
+    bolt-ratio,
+  bolt-card-replacement-background
+    + bolt-card-replacement-media:last-child
+    bolt-image,
+  bolt-card-replacement-background
+    + bolt-card-replacement-media:last-child
+    bolt-ratio {
+    border-bottom-right-radius: var(--c-bolt-card-border-radius);
+    border-bottom-left-radius: var(--c-bolt-card-border-radius);
+  }
+}
+
+bolt-card-replacement[horizontal],
+.c-bolt-card-replacement--horizontal {
+  border-radius: calc(
+    var(--c-bolt-card-border-radius) + #{$bolt-card-replacement-border-width}
+  );
+
+  bolt-card-replacement-media {
+    overflow: hidden;
+  }
+
+  > *:first-child,
+  bolt-card-replacement-link + *,
+  bolt-card-replacement-background + * {
+    border-top-right-radius: 0;
+    border-bottom-left-radius: var(--c-bolt-card-border-radius);
+  }
+
+  > *:last-child,
+  bolt-card-replacement-link + *:last-child,
+  bolt-card-replacement-background + *:last-child {
+    border-top-right-radius: var(--c-bolt-card-border-radius);
+    border-bottom-left-radius: 0;
+  }
+}
+
+bolt-card-replacement {
+  > .c-bolt-card-replacement:only-child {
+    border-radius: var(--c-bolt-card-border-radius);
+  }
+}
+
+// card-replacement container styles
+bolt-card-replacement {
   position: relative;
-  border-radius: $bolt-card-replacement-border-radius;
-  border-width: $bolt-card-replacement-border-width;
 
   &[height='full'] {
     display: flex;
     flex-direction: column;
     min-height: 100%;
   }
-
-  &[rounded] {
-    @include bolt-border-radius(large);
-  }
-
-  &[horizontal] > *:first-child {
-    border-radius: $bolt-card-replacement-border-radius 0 0
-      $bolt-card-replacement-border-radius;
-  }
 }
 
-// card-replacement container styles
 .c-bolt-card-replacement {
-  @include bolt-card-replacement-content-conditions;
   @include bolt-margin(0);
   @include bolt-padding(0);
-  @include bolt-shadow('level-20', false, $bolt-card-replacement-shadow-color);
 
   display: flex;
   flex-direction: column;
@@ -46,21 +133,38 @@ bolt-card-replacement {
   position: relative;
   width: 100%; // Fix for IE 11 when height is set to full
   height: 100%;
-  border-radius: $bolt-card-replacement-border-radius;
+
+  &:before,
+  &:after {
+    position: absolute;
+    top: $bolt-card-replacement-border-width * -1;
+    right: $bolt-card-replacement-border-width * -1;
+    bottom: $bolt-card-replacement-border-width * -1;
+    left: $bolt-card-replacement-border-width * -1;
+    z-index: 0;
+    pointer-events: none;
+    border-radius: calc(
+      var(--c-bolt-card-border-radius)
+    ); // Do not mess with this unless you understand the logic for the border-radius prop.
+  }
+
+  &:before {
+    @include bolt-card-replacement-border-reset;
+    @include bolt-shadow(
+      'level-20',
+      false,
+      $bolt-card-replacement-shadow-color
+    );
+
+    content: '';
+    border-width: $bolt-card-replacement-border-width;
+  }
 
   // Non-themed card-replacement color settings.
   // Note: when a card-replacement is themed, the `t-bolt-` class will define the color and background-color, these settings won't be loaded.
   &:not([class*='t-bolt']) {
     color: bolt-theme(text);
-    background-color: bolt-theme(
-      (
-        xdark: background 0.85,
-        dark: background 0.85,
-        light: secondary,
-        // [Mai] This is not displaying correctly when JS is on.
-          xlight: background 0.85,
-      )
-    );
+    background-color: bolt-theme(background, 0.85);
     background-image: linear-gradient(
       to bottom,
       rgba(bolt-color(white), 0.05),
@@ -69,19 +173,10 @@ bolt-card-replacement {
   }
 }
 
-.c-bolt-card-replacement--rounded {
-  @include bolt-border-radius(large);
-}
-
-.c-bolt-card-replacement--horizontal {
-  display: flex;
-  flex-direction: row;
-}
-
 .c-bolt-card-replacement--raised {
   transition: transform $bolt-transition;
 
-  &:before {
+  &:after {
     @include bolt-shadow(
       'level-30',
       false,
@@ -89,12 +184,6 @@ bolt-card-replacement {
     );
     content: '';
     opacity: 0;
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    border-radius: $bolt-card-replacement-border-radius;
     transition: opacity $bolt-transition;
   }
 
@@ -102,7 +191,7 @@ bolt-card-replacement {
   &:focus-within {
     transform: translate3d(0, -1px, 0);
 
-    &:before {
+    &:after {
       opacity: 1;
     }
   }
@@ -110,6 +199,10 @@ bolt-card-replacement {
   &:active {
     transform: translate3d(0, 0, 0);
   }
+}
+
+.c-bolt-card-replacement--horizontal {
+  flex-direction: row;
 }
 
 // Old card-replacement footer

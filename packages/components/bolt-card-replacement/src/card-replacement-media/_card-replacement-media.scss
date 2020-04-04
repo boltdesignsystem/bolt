@@ -5,16 +5,6 @@
 @import '@bolt/core-v3.x';
 @import '../_card-replacement-settings-and-tools.scss';
 
-:host {
-  & [horizontal] {
-    flex-shrink: 1;
-    min-width: 80px;
-    max-width: 300px;
-    overflow: auto;
-    border-radius: 4px 0 0 4px;
-  }
-}
-
 bolt-card-replacement-media {
   display: flex;
   flex-direction: column;
@@ -24,19 +14,16 @@ bolt-card-replacement-media {
     flex-shrink: 1;
     min-width: 80px;
     max-width: 300px;
-    overflow: auto;
-    border-radius: 4px 0 0 4px;
+  }
+
+  bolt-image {
+    overflow: hidden; // Do not mess with this unless you understand the logic for the border-radius prop in card-replacement.scss.
   }
 }
 
 .c-bolt-card_replacement__media {
   display: block;
   height: 100%;
-
-  &.is-horizontal {
-    flex-basis: 130px;
-    max-width: 50%;
-  }
 }
 
 // required so the nested content fills the full width of the card-replacement -- otherwise content (like a ratio object with an image inside) might not display as expected.

@@ -1,5 +1,5 @@
 /* ------------------------------------ *\
-   card-replacement Actions
+   card-replacement background
 \* ------------------------------------ */
 
 @import '@bolt/core-v3.x';
@@ -11,23 +11,17 @@ bolt-card-replacement-background {
   right: 0;
   bottom: 0;
   left: 0;
-
-  & + bolt-card-replacement-body {
-    margin-bottom: auto;
-  }
+  z-index: $bolt-card-replacement-z-index-background;
+  overflow: hidden;
+  pointer-events: none;
+  user-select: none;
+  border-radius: var(
+    --c-bolt-card-border-radius
+  ); // Do not mess with this unless you understand the logic for the border-radius prop in card-replacement.scss.
 }
 
 .c-bolt-card_replacement__background {
   position: relative;
-  z-index: $bolt-card-replacement-z-index-background;
   width: 100%;
   height: 100%;
-  overflow: hidden;
-  pointer-events: none;
-  user-select: none;
-  border-radius: $bolt-card-replacement-border-radius;
-
-  [rounded] & {
-    @include bolt-border-radius(large);
-  }
 }

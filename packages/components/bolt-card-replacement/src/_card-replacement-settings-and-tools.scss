@@ -7,7 +7,6 @@ $bolt-card-replacement-shadow-color: bolt-color(gray, dark);
 $bolt-card-replacement-border-width: $bolt-border-width;
 $bolt-card-replacement-border-style: $bolt-border-style;
 $bolt-card-replacement-border-color: bolt-theme(text, 0.15);
-$bolt-card-replacement-border-radius: 4px;
 
 // Don't set z-index on body, because body can have links that need to set its own z-index. We'd want to keep z-index usage at a minimum to avoid endless conflicts. Background should be set to 0 because it's the lowest in the stacking order and 0 will not cover up body as long as body is set to position:relative.
 // @todo: also note, setting inner link to 2 is prone to conflicts, but there's no other way currently.
@@ -21,57 +20,4 @@ $bolt-card-replacement-z-index-inner-link: 2;
   border: 0;
   border-style: $bolt-card-replacement-border-style;
   border-color: $bolt-card-replacement-border-color;
-}
-
-@mixin bolt-card-replacement-content-conditions {
-  // [Mai] Only the card-replacement body should not have hidden overflow and border radius because its background is transparent. This also catches any kind of free-form content being passed, making sure they don't poke outside the card-replacement (which has rounded corners and box shadows). The reason the card-replacement itself shouldn't have hidden overflow is because the card-replacement body can contain some kind of tooltip bubble or dropdown ui, they can poke out of the card-replacement naturally.
-  > * {
-    &:first-child {
-      border-radius: $bolt-card-replacement-border-radius
-        $bolt-card-replacement-border-radius 0 0;
-    }
-
-    &:last-child {
-      border-radius: 0 0 $bolt-card-replacement-border-radius
-        $bolt-card-replacement-border-radius;
-    }
-
-    &:only-child {
-      border-radius: $bolt-card-replacement-border-radius;
-    }
-  }
-
-  > bolt-card-replacement-link + * {
-    border-radius: $bolt-card-replacement-border-radius
-      $bolt-card-replacement-border-radius 0 0;
-
-    &:last-child {
-      border-radius: $bolt-card-replacement-border-radius;
-    }
-  }
-
-  > bolt-card-replacement-body,
-  > bolt-card-replacement-link,
-  > replace-with-children {
-    overflow: visible;
-  }
-
-  > bolt-card-replacement-actions {
-    &:last-child {
-      @include bolt-margin-top(auto);
-    }
-
-    &:only-child {
-      @include bolt-margin-top(auto);
-      @include bolt-margin-bottom(auto);
-    }
-  }
-
-  > * + bolt-card-replacement-actions {
-    border-top-width: $bolt-card-replacement-border-width;
-  }
-
-  > bolt-card-replacement-actions:not(:last-child) {
-    border-bottom-width: $bolt-card-replacement-border-width;
-  }
 }
