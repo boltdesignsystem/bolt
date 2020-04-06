@@ -12,13 +12,14 @@ let cx = classNames.bind(styles);
 @customElement('bolt-card-replacement-action')
 class BoltCardReplacementAction extends withLitHtml {
   static props = {
-    url: props.string, // figure || div
+    url: props.string,
     external: props.boolean,
+    spacing: props.string,
   };
 
   render(props) {
     const classes = cx('c-bolt-card_replacement__action');
-    const { url, external } = this.props;
+    const { url, external, spacing } = this.props;
 
     return html`
       ${this.addStyles([styles])}
@@ -34,6 +35,7 @@ class BoltCardReplacementAction extends withLitHtml {
                 target="${ifDefined(
                   url ? (external ? '_blank' : '_self') : undefined,
                 )}"
+                size="${ifDefined(spacing ? spacing : undefined)}"
               >
                 ${this.slot('default')}
                 <bolt-icon

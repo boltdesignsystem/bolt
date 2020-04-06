@@ -39,6 +39,10 @@ bolt-card-replacement,
   border-radius: var(--c-bolt-card-border-radius);
 }
 
+.c-bolt-card-replacement--border-radius-small {
+  --c-bolt-card-border-radius: #{bolt-border-radius(small)};
+}
+
 .c-bolt-card-replacement--border-radius-large {
   --c-bolt-card-border-radius: #{bolt-border-radius(large)};
 }

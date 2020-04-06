@@ -11,12 +11,14 @@
 
 {# Set up checks to validate that the component's prop values are allowed, based on the component's schema #}
 {% set tag_options = schema.properties.tag.enum %}
+{% set spacing_options = schema.properties.spacing.enum %}
 {% set borderRadius_options = schema.properties.borderRadius.enum %}
 {% set theme_options = schema.properties.theme.enum %}
 {% set height_options = schema.properties.height.enum %}
 
 {# Check that the component's current prop values are valid. if not, default to the schema default #}
 {% set tag = tag in tag_options ? tag : schema.properties.tag.default %}
+{% set spacing = spacing in spacing_options ? spacing : schema.properties.spacing.default %}
 {% set borderRadius = borderRadius in borderRadius_options ? borderRadius : schema.properties.borderRadius.default %}
 {% set theme = theme in theme_options ? theme : schema.properties.theme.default %}
 {% set height = height in height_options ? height : schema.properties.height.default %}
@@ -50,6 +52,7 @@
 <bolt-card-replacement
   {% if rounded %} rounded {% endif %}
   {% if tag %} tag="{{ tag }}" {% endif %}
+  {% if spacing %} spacing="{{ spacing }}" {% endif %}
   {% if borderRadius %} border-radius="{{ borderRadius }}" {% endif %}
   {% if theme %} theme="{{ theme }}" {% endif %}
   {% if height %} height="{{ height }}" {% endif %}
@@ -57,8 +60,7 @@
   {% if horizontal %} horizontal {% endif %}
   {{ attributes }}>
 
-  {# This sets none values to not render anything. #}
-  {% set borderRadius = borderRadius == "small" ? false : borderRadius %}
+  {# This sets none value to not render anything. #}
   {% set theme = theme == "none" ? false : theme %}
 
   {# Array of classes based on the defined + default props #}
