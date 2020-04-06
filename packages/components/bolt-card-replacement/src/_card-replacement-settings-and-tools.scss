@@ -6,7 +6,7 @@ $bolt-card-replacement-body-spacing: 'medium';
 $bolt-card-replacement-shadow-color: bolt-color(gray, dark);
 $bolt-card-replacement-border-width: $bolt-border-width;
 $bolt-card-replacement-border-style: $bolt-border-style;
-$bolt-card-replacement-border-color: bolt-theme(text, 0.15);
+$bolt-card-replacement-border-color: bolt-theme(border, 0.2);
 
 // Don't set z-index on body, because body can have links that need to set its own z-index. We'd want to keep z-index usage at a minimum to avoid endless conflicts. Background should be set to 0 because it's the lowest in the stacking order and 0 will not cover up body as long as body is set to position:relative.
 // @todo: also note, setting inner link to 2 is prone to conflicts, but there's no other way currently.

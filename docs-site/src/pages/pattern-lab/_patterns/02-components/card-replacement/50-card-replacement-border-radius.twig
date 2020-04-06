@@ -1,0 +1,48 @@
+{% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
+  {% cell "u-bolt-width-12/12 u-bolt-width-6/12@small" %}
+    {% include "@bolt-components-card-replacement/card-replacement.twig" with {
+      borderRadius: "large",
+      media: {
+        image: {
+          src: "/images/placeholders/landscape-16x9-mountains.jpg",
+          alt: "Image alt.",
+          placeholder_color: "#afcde6",
+        },
+      },
+      body: {
+        headline: "This card has large border radius",
+        paragraph: "This is a paragraph.",
+      },
+      actions: [
+        {
+          text: "This is a button",
+          url: "https://pega.com",
+        },
+      ],
+    } only %}
+  {% endcell %}
+  {% cell "u-bolt-width-12/12 u-bolt-width-8/12@small" %}
+    {% include "@bolt-components-card-replacement/card-replacement.twig" with {
+      borderRadius: "large",
+      horizontal: true,
+      media: {
+        image: {
+          src: "/images/placeholders/landscape-16x9-mountains.jpg",
+          alt: "Image alt.",
+          placeholder_color: "#afcde6",
+        },
+      },
+      body: {
+        headline: "This card has large border radius",
+        paragraph: "This is a paragraph.",
+      },
+      actions: [
+        {
+          text: "This is a button",
+          url: "https://pega.com",
+        },
+      ],
+    } only %}
+  {% endcell %}
+{% endgrid %}
+{# End component specific code #}
