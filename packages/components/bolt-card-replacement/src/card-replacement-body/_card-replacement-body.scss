@@ -11,8 +11,17 @@
 
 .c-bolt-card_replacement__body {
   @include bolt-margin(0);
-  @include bolt-padding(#{$bolt-card-replacement-body-spacing});
 
   display: block;
   position: relative; // Position is needed to bring body's stacking order above background.
+
+  // Spacing prop
+  &--spacing-small {
+    @include bolt-padding(small);
+  }
+
+  &--spacing-medium {
+    @include bolt-padding(medium);
+  }
 }
+

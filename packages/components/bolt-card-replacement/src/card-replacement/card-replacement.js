@@ -46,10 +46,6 @@ class BoltCardReplacement extends withContext(BoltElement) {
         type: String,
         attribute: 'border-radius',
       },
-      // rounded: {
-      //   type: Boolean,
-      //   reflect: true,
-      // },
     };
   }
 
@@ -68,7 +64,6 @@ class BoltCardReplacement extends withContext(BoltElement) {
       [`c-bolt-card-replacement--spacing-${this.spacing}`]: this.spacing,
       [`c-bolt-card-replacement--border-radius-${this.borderRadius}`]: this
         .borderRadius,
-      // [`c-bolt-card-replacement--rounded`]: this.rounded,
       [`t-bolt-${this.theme}`]: this.theme && this.theme !== 'none',
     });
 
@@ -96,7 +91,7 @@ class BoltCardReplacement extends withContext(BoltElement) {
         `}
       ${this.slotMap.get('body') &&
         html`
-          <bolt-card-replacement-body .tag=${this.tag}
+          <bolt-card-replacement-body .tag=${this.tag} .spacing=${this.spacing}
             >${this.slotify('body')}</bolt-card-replacement-body
           >
         `}
