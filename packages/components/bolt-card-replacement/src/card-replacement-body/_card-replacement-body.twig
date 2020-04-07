@@ -25,8 +25,7 @@
   <replace-with-children {{ inner_attributes.addClass(classes) }}>
     {% block body %}
       {% if card_replacement_body_content %}
-        {# @todo: The replace function is a hack to get around the utf-8 bug. #}
-        {{ card_replacement_body_content | join | replace({"UTF-8": ""}) | raw }}
+        {{ card_replacement_body_content }}
       {% else %}
         {% set card_replacement_eyebrow = body.eyebrow %}
         {% set card_replacement_headline = body.headline %}

@@ -98,8 +98,7 @@
 
     {% if content %}
       {# Custom Content #}
-      {# @todo: The replace function is a hack to get around the utf-8 bug. #}
-      {{ content | join | replace({"UTF-8": ""}) }}
+      {{ content }}
     {% else %}
       {# Structured Content #}
       {% if media or media_block %}

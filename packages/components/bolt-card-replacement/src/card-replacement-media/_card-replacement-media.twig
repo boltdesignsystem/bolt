@@ -12,8 +12,7 @@
 {% endif %}
 
 {% if card_replacement_media_content %}
-  {# @todo: The replace function is a hack to get around the utf-8 bug. #}
-  {{ card_replacement_media_content | join | replace({"UTF-8": ""}) }}
+  {{ card_replacement_media_content }}
 {% else %}
   {% if card_replacement_image or block("media") %}
     <bolt-card-replacement-media {{ attributes }}>
