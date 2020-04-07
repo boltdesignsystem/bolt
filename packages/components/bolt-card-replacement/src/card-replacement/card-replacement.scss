@@ -32,7 +32,8 @@ bolt-card-replacement {
       $bolt-card-replacement-border-radius;
   }
 
-  > *:not(bolt-card-replacement-link) {
+  // workaround so the `<bolt-card-replacement-background>` layer always renders underneath siblings (ex. <bolt-band> with a background color)
+  > *:not(bolt-card-replacement-link):not(bolt-card-replacement-background) {
     position: relative;
   }
 }
