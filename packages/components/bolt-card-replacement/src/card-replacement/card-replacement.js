@@ -2,6 +2,7 @@ import { unsafeCSS, BoltElement, customElement, html } from '@bolt/element';
 import classNames from 'classnames/bind';
 import { withContext } from 'wc-context';
 import cardReplacementStyles from './card-replacement.scss';
+import schema from '../../card-replacement.schema.yml';
 let cx = classNames.bind(cardReplacementStyles);
 
 // define which specific props to provide to children that subscribe
@@ -20,6 +21,7 @@ class BoltCardReplacement extends withContext(BoltElement) {
   static get providedContexts() {
     return {
       horizontal: { value: this.horizontal },
+      spacing: { value: schema.properties.spacing.default },
     };
   }
 
@@ -49,7 +51,19 @@ class BoltCardReplacement extends withContext(BoltElement) {
     };
   }
 
+  connectedCallback() {
+    super.connectedCallback && super.connectedCallback();
+
+    this.updateProvidedContext(
+      'spacing',
+      this.spacing || schema.properties.spacing.default,
+    );
+  }
+
   render() {
+    const spacing = this.spacing || schema.properties.spacing.default;
+    this.updateProvidedContext('spacing', spacing);
+
     const isRaised =
       (this.raised && this.raised === true) ||
       (this.url && this.url.length > 0) ||
@@ -61,7 +75,7 @@ class BoltCardReplacement extends withContext(BoltElement) {
     const classes = cx('c-bolt-card-replacement', {
       [`c-bolt-card-replacement--raised`]: isRaised,
       [`c-bolt-card-replacement--horizontal`]: this.horizontal,
-      [`c-bolt-card-replacement--spacing-${this.spacing}`]: this.spacing,
+      [`c-bolt-card-replacement--spacing-${spacing}`]: spacing,
       [`c-bolt-card-replacement--border-radius-${this.borderRadius}`]: this
         .borderRadius,
       [`t-bolt-${this.theme}`]: this.theme && this.theme !== 'none',
