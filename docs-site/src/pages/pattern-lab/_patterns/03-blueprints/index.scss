@@ -62,7 +62,7 @@
 
 .c-bolt-rating__helper-text {
   display: inline-flex;
-  color: #8D8E99;
+  color: bolt-color(gray);
   @include bolt-font-size(xsmall);
   @include bolt-font-weight(600)
 
@@ -78,7 +78,8 @@
 .c-bolt-rating__input {
   opacity: 0;
   position: absolute;
-  margin-right: -100%;
+  left: -100%;
+  pointer-events: none;
 }
 
 .c-bolt-rating__inputs {
@@ -103,13 +104,13 @@
   position: relative;
   width: 31px;
   height: 31px;
-  color: #1F2555;
+  color: bolt-color(indigo);
   text-align: center;
   letter-spacing: normal;
   cursor: pointer;
   user-select: none;
   border-radius: bolt-border-radius(full);
-  background-color: #E1E2EB;
+  background-color: bolt-color(gray, light);
   transition: all 0.01s linear;
 
 
