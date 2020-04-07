@@ -11,9 +11,16 @@ bolt-card-replacement-background {
   right: 0;
   bottom: 0;
   left: 0;
+  z-index: 1;
 
   & + bolt-card-replacement-body {
     margin-bottom: auto;
+  }
+
+  // fix for other sibling content inside of cards getting overlapped by the bg
+  & ~ * {
+    position: relative;
+    z-index: 2;
   }
 }
 
