@@ -8,7 +8,23 @@
 bolt-card-replacement-actions {
   @include bolt-card-replacement-border-reset;
   overflow: hidden;
-  margin-top: auto;
+
+  &:last-child {
+    @include bolt-margin-top(auto);
+  }
+
+  &:only-child {
+    @include bolt-margin-top(auto);
+    @include bolt-margin-bottom(auto);
+  }
+
+  &:not(:last-child) {
+    border-bottom-width: $bolt-card-replacement-border-width;
+  }
+
+  @at-root * + #{&} {
+    border-top-width: $bolt-card-replacement-border-width;
+  }
 }
 
 .c-bolt-card_replacement__actions {

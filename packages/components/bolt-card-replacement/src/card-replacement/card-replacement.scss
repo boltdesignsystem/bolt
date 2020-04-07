@@ -9,29 +9,6 @@
 // Custom element
 @include bolt-custom-element('bolt-card-replacement', block, medium);
 
-// Actions container alignment and border
-bolt-card-replacement,
-.c-bolt-card-replacement {
-  > bolt-card-replacement-actions {
-    &:last-child {
-      @include bolt-margin-top(auto);
-    }
-
-    &:only-child {
-      @include bolt-margin-top(auto);
-      @include bolt-margin-bottom(auto);
-    }
-  }
-
-  > bolt-card-replacement-actions:not(:last-child) {
-    border-bottom-width: $bolt-card-replacement-border-width;
-  }
-
-  * + bolt-card-replacement-actions {
-    border-top-width: $bolt-card-replacement-border-width;
-  }
-}
-
 // Border radius prop
 // @todo: the massive conditions used here are due to the inability of using overflow hidden.
 .c-bolt-card-replacement {
