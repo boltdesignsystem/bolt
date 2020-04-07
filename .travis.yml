@@ -93,9 +93,14 @@ jobs:
         - travis_retry yarn run test:e2e:quick-local
         # - lhci autorun --collect.numberOfRuns=3 --collect.url=$NOW_URL --collect.url=$NOW_URL/pattern-lab/patterns/04-pages-10-d8-product-pages-product-t2/04-pages-10-d8-product-pages-product-t2.html --collect.url=$NOW_URL/pattern-lab/patterns/06-experiments-micro-journeys-90-micro-journeys/06-experiments-micro-journeys-90-micro-journeys.html
       after_success:
+        - npx github-deploy-status --token ${GITHUB_TOKEN} --action create -e staging --ref ${TRAVIS_BRANCH} --user boltdesignsystem --repo bolt
+        - npx github-deploy-status --token ${GITHUB_TOKEN} --action in_progress -e staging --ref ${TRAVIS_BRANCH} --user boltdesignsystem --repo bolt
         - ./scripts/deploy-branch-alias.js
+        - export NOW_BRANCH_URL=$(./scripts/get-branch-alias.js)
+        - npx github-deploy-status --token ${GITHUB_TOKEN} --action success -e staging --ref feature/update-mission-modal --user boltdesignsystem --repo bolt -l ${NOW_BRANCH_URL}
       after_failure:
         - npx github-deploy-status --token ${GITHUB_TOKEN} --action failure -e dev --ref ${TRAVIS_BRANCH} --user boltdesignsystem --repo bolt
+        - npx github-deploy-status --token ${GITHUB_TOKEN} --action failure -e staging --ref ${TRAVIS_BRANCH} --user boltdesignsystem --repo bolt
 
     # full build + Nightwatch tests for non-feature branches + tagged releases
     - stage: Pre-deploy
