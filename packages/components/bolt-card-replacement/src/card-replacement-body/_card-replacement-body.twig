@@ -1,14 +1,28 @@
+{% set schema = bolt.data.components["@bolt-components-card-replacement"].schema %}
+
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(schema, _self) | raw }}
+{% endif %}
+
+{% set attributes = create_attribute(body.attributes|default({})) %}
+{% set inner_attributes = create_attribute({}) %}
+{% set card_replacement_body_content = body.content %}
+{% set spacing_options = schema.properties.spacing.enum %}
+{% set spacing = spacing in spacing_options ? spacing : schema.properties.spacing.default %}
+{% set classes = [
+  "c-bolt-card_replacement__body",
+  "c-bolt-card_replacement__body--spacing-#{spacing}",
+] %}
+
+{# @todo: `content_tag` does not appear to be used, can this safely be removed? #}
 {% if tag == "figure" %}
   {% set content_tag = "figcaption" %}
 {% else %}
   {% set content_tag = "div" %}
 {% endif %}
 
-{% set card_replacement_body_content = body.content %}
-{% set attributes = create_attribute(body.attributes|default({})) %}
-
 <bolt-card-replacement-body {{ attributes }}>
-  <replace-with-children class="c-bolt-card_replacement__body">
+  <replace-with-children {{ inner_attributes.addClass(classes) }}>
     {% block body %}
       {% if card_replacement_body_content %}
         {# @todo: The replace function is a hack to get around the utf-8 bug. #}
