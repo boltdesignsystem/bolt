@@ -1,6 +1,7 @@
 import { ifDefined } from 'lit-html/directives/if-defined';
 import { props, hasNativeShadowDomSupport } from '@bolt/core-v3.x/utils';
 import classNames from 'classnames/bind';
+import { withContext } from 'wc-context';
 import { withLitHtml } from '@bolt/core-v3.x/renderers/renderer-lit-html';
 import { html, customElement } from '@bolt/element';
 
@@ -10,12 +11,23 @@ import styles from './_card-replacement-action.scss';
 let cx = classNames.bind(styles);
 
 @customElement('bolt-card-replacement-action')
-class BoltCardReplacementAction extends withLitHtml {
+class BoltCardReplacementAction extends withContext(withLitHtml) {
   static props = {
     url: props.string,
     external: props.boolean,
     spacing: props.string,
   };
+
+  static get observedContexts() {
+    return ['spacing'];
+  }
+
+  contextChangedCallback(name, oldValue, value) {
+    if (name in this.props) {
+      // setAttibute will trigger re-render
+      this.setAttribute(name, value);
+    }
+  }
 
   render(props) {
     const classes = cx('c-bolt-card_replacement__action');
