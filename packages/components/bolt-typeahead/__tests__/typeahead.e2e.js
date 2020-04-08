@@ -19,12 +19,6 @@ module.exports = {
       )
       .click('.js-c-typeahead__input'); // click on the PL search input
 
-    if (browser.sendKeys) {
-      browser.sendKeys('.js-c-typeahead__input', 'AI');
-    } else {
-      browser.keys('AI');
-    }
-
     browser.saveScreenshot(
       `screenshots/pattern-lab/typeahead--${browser.capabilities.browserName ||
         'chrome'}.png`,

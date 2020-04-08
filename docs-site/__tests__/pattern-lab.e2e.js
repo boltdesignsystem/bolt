@@ -23,13 +23,6 @@ module.exports = {
   //     .assert.elementPresent('.js-c-typeahead__input')
   //     .click('.js-c-typeahead__input'); // click on the PL search input
 
-  //   // type "Components-Card" in the input field. Adjust command based on browser support
-  //   if (browser.sendKeys) {
-  //     browser.sendKeys('.js-c-typeahead__input', 'Components-Card');
-  //   } else {
-  //     browser.keys('Components-Card');
-  //   }
-
   // browser.saveScreenshot(
   //   `screenshots/pattern-lab/pattern-lab-search-input--${browser.capabilities
   //     .browserName || 'chrome'}.png`,
