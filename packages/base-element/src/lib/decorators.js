@@ -339,6 +339,7 @@ const jsonSchemaPropsDecorator = clazz => {
           (!property.title.includes('deprecated') &&
             !property.title.includes('DEPRECATED'))
         ) {
+          // @todo: skip any twig only schema properties such as `attributes`, `content`, `items`
           const propName = camelCase(key);
 
           if (property.default) {
