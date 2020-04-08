@@ -14,14 +14,17 @@
 
   display: block;
   position: relative; // Position is needed to bring body's stacking order above background.
-
-  // Spacing prop
-  &--spacing-small {
-    @include bolt-padding(small);
-  }
-
-  &--spacing-medium {
-    @include bolt-padding(medium);
-  }
 }
 
+// Spacing prop
+$bolt-card-replacement-spacing: small, medium;
+
+@each $spacing-value in $bolt-spacing-values {
+  $spacing-value-name: nth($spacing-value, 1);
+
+  @if index($bolt-card-replacement-spacing, $spacing-value-name) {
+    .c-bolt-card_replacement__body--spacing-#{$spacing-value-name} {
+      @include bolt-padding(#{$spacing-value-name});
+    }
+  }
+}
