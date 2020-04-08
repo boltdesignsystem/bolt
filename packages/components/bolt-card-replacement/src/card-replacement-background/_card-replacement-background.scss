@@ -11,13 +11,17 @@ bolt-card-replacement-background {
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: $bolt-card-replacement-z-index-background;
-  overflow: hidden;
+  z-index: $bolt-card-replacement-z-index-background; // Please reference the z-index management in _card-replacement-settings-and-tools.scss. Do not mess with this unless you understand the full stacking order.
+  overflow: hidden; // Do not mess with this unless you understand the logic for the border-radius prop in card-replacement.scss. This makes sure card background respects the card's border-radius.
   pointer-events: none;
   user-select: none;
   border-radius: var(
     --c-bolt-card-border-radius
   ); // Do not mess with this unless you understand the logic for the border-radius prop in card-replacement.scss.
+
+  & ~ * {
+    position: relative; // Please reference the z-index management in _card-replacement-settings-and-tools.scss. Do not mess with this unless you understand the full stacking order. This makes sure anything coming after the background will stack on top of the background.
+  }
 }
 
 .c-bolt-card_replacement__background {

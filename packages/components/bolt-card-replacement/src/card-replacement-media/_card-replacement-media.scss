@@ -10,14 +10,14 @@ bolt-card-replacement-media {
   flex-direction: column;
   position: relative;
 
-  [horizontal] & {
+  @at-root [horizontal] #{&} {
     flex-shrink: 1;
     min-width: 80px;
     max-width: 300px;
   }
 
   bolt-image {
-    overflow: hidden; // Do not mess with this unless you understand the logic for the border-radius prop in card-replacement.scss.
+    overflow: hidden; // Do not mess with this unless you understand the logic for the border-radius prop in card-replacement.scss. This makes sure vertical card's media image respects the card's border-radius.
   }
 }
 
