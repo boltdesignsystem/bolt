@@ -15,9 +15,11 @@ let cx = classNames.bind(menuStyles);
 
 @customElement('bolt-menu')
 class BoltMenu extends withContext(BoltElement) {
+  static schema = schema;
+
   static get properties() {
     return {
-      spacing: String,
+      ...this.props,
       role: {
         type: String,
         reflect: true,
