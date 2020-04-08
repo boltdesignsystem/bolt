@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.21.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-site/compare/v2.20.2...v2.21.0) (2020-04-08)
+
+**Note:** Version bump only for package @bolt/components-site
+
+
+
+
+
 # [2.20.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-site/compare/v2.19.1...v2.20.0) (2020-03-18)
 
 **Note:** Version bump only for package @bolt/components-site

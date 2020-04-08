@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.21.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button/compare/v2.20.2...v2.21.0) (2020-04-08)
+
+
+### Features
+
+* Add schema for BoltActionElement to button component ([e33e1fa](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button/commit/e33e1faaf9da12032e7f50ec94508f01d07ca0f0))
+
+
+
+
+
 # [2.20.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button/compare/v2.19.1...v2.20.0) (2020-03-18)
 
 **Note:** Version bump only for package @bolt/components-button

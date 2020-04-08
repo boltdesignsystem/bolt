@@ -1,0 +1,40 @@
+{% import "@bolt-blueprints/macros.twig" as macros %}
+
+{% include "@bolt-components-band/band.twig" with {
+  content: "Return to mission",
+  size: "xsmall",
+  full_bleed: false,
+  theme: "none",
+  attributes: {
+    style: [
+      "background-color: #751B83"
+    ],
+    class: [
+      "t-bolt-xdark",
+      "u-bolt-position-relative",
+      "u-bolt-flex-grow-none",
+    ]
+  },
+  content: macros.include("@bolt-components-list/list.twig", {
+    display: "inline",
+    spacing: "small",
+    align: "center",
+    separator: "solid",
+    items: [
+      macros.include("@bolt-components-link/link.twig", {
+        text: "Return to Mission",
+        url: "#!",
+        isHeadline: true,
+      }),
+      macros.include("@bolt-components-link/link.twig", {
+        text: "View your Achievements",
+        url: "#!",
+        isHeadline: true,
+         icon: {
+          name: "external-link",
+          position: "after"
+        },
+      })
+    ]
+  })
+} only %}

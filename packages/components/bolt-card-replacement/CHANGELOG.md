@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.21.0](https://github.com/boltdesignsystem/bolt/compare/v2.20.2...v2.21.0) (2020-04-08)
+
+
+### Bug Fixes
+
+* Allow card url attributes to be empty ([de91388](https://github.com/boltdesignsystem/bolt/commit/de91388d1415d0ede4f868fb69d9fdb17b95ac12))
+* card fix related to bug when updating the Mission Completed modal blueprint ([ea89b68](https://github.com/boltdesignsystem/bolt/commit/ea89b687e6827cfa1e3f39f512809646a7b34198))
+* minor clean up on utils and css ([8b732c8](https://github.com/boltdesignsystem/bolt/commit/8b732c87721a3fab083cdd48d16351847af31a01))
+* Prevent adding empty url prop to card action button ([d2ce4eb](https://github.com/boltdesignsystem/bolt/commit/d2ce4ebf1f718ca804d76c5e2664c31c623fb6df))
+* Remove join filters and related hacks in replacement card ([67beb1c](https://github.com/boltdesignsystem/bolt/commit/67beb1c8ea0409af63a28c210ad1d71f2ae7838c))
+* update card so background layer doesn't interfere with other elements ([5d58dea](https://github.com/boltdesignsystem/bolt/commit/5d58deafc555aad38fef897e31ce88cd9a1159f7))
+* update card-specific updates to work around z-index issues ([622d47f](https://github.com/boltdesignsystem/bolt/commit/622d47f92d0308a0dc143b9e5bec90a28e409182))
+
+
+
+
+
 ## [2.20.1](https://github.com/boltdesignsystem/bolt/compare/v2.20.0...v2.20.1) (2020-03-26)
 
 

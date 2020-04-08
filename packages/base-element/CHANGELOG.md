@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.21.0](https://github.com/boltdesignsystem/bolt/compare/v2.20.2...v2.21.0) (2020-04-08)
+
+
+### Features
+
+* Add schema for BoltActionElement in element package ([864f38c](https://github.com/boltdesignsystem/bolt/commit/864f38cb7b24a68d3afca5e6aaacf8073cb0b768))
+
+
+
+
+
 # [2.20.0](https://github.com/boltdesignsystem/bolt/compare/v2.19.1...v2.20.0) (2020-03-18)
 
 **Note:** Version bump only for package @bolt/element
