@@ -72,12 +72,16 @@
 }
 
 // Spacing prop
+$bolt-action-blocks-spacing: xsmall, small, medium;
+
 @each $spacing-value in $bolt-spacing-values {
   $spacing-value-name: nth($spacing-value, 1);
 
-  .c-bolt-action-blocks--spacing-#{$spacing-value-name} {
-    .c-bolt-action-block {
-      @include bolt-padding(#{$spacing-value-name}, stretched);
+  @if index($bolt-action-blocks-spacing, $spacing-value-name) {
+    .c-bolt-action-blocks--spacing-#{$spacing-value-name} {
+      .c-bolt-action-block {
+        @include bolt-padding(#{$spacing-value-name}, stretched);
+      }
     }
   }
 }
