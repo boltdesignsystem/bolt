@@ -4,7 +4,6 @@
   {% for spacing in schema.properties.spacing.enum %}
     {% cell "u-bolt-width-12/12 u-bolt-width-4/12@small" %}
       {% include "@bolt-components-card-replacement/card-replacement.twig" with {
-        tag: "figure",
         spacing: spacing,
         media: {
           image: {
