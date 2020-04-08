@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.21.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-blockquote/compare/v2.20.2...v2.21.0) (2020-04-08)
+
+
+### Bug Fixes
+
+* update VRT test to conditionally adjust % diff allowed based on the OS ([80f6299](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-blockquote/commit/80f6299bae7b8452596170ef12591fb46c88e788))
+
+
+### Features
+
+* update VRT config for Blockquote to allow for <= a 20px VRT diff ([586bcaa](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-blockquote/commit/586bcaa5bebc46dc240c64869b8d658bf539af44))
+
+
+
+
+
 ## [2.20.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-blockquote/compare/v2.20.0...v2.20.1) (2020-03-26)
 
 

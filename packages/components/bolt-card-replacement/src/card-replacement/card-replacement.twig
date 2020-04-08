@@ -27,7 +27,7 @@
   {% set link_url = link.url %}
   {% set link_text = link.text %}
   {% set link_target = link.target %}
-  {% set link_attributes = create_attribute(link.attributes) %}
+  {% set link_attributes = create_attribute(link.attributes|default({})) %}
 {% endif %}
 
 {% if block("background") %}

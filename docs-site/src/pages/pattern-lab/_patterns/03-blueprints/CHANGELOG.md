@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.21.0](https://github.com/boltdesignsystem/bolt/tree/master/docs-site/src/pages/pattern-lab/_patterns/03-blueprints/compare/v2.20.2...v2.21.0) (2020-04-08)
+
+
+### Bug Fixes
+
+* minor clean up on utils and css ([8b732c8](https://github.com/boltdesignsystem/bolt/tree/master/docs-site/src/pages/pattern-lab/_patterns/03-blueprints/commit/8b732c87721a3fab083cdd48d16351847af31a01))
+* prevent long module titles from wrapping next cell ([79f9768](https://github.com/boltdesignsystem/bolt/tree/master/docs-site/src/pages/pattern-lab/_patterns/03-blueprints/commit/79f9768bde42ac527d82a7b541a10f0c1a91f12f))
+* replace satellite icon with orbit, satellite removed ([5d9e63b](https://github.com/boltdesignsystem/bolt/tree/master/docs-site/src/pages/pattern-lab/_patterns/03-blueprints/commit/5d9e63b864b5287d40c3430b187b9703c3cdc944))
+* update outline around rating inputs ([8dcbdc9](https://github.com/boltdesignsystem/bolt/tree/master/docs-site/src/pages/pattern-lab/_patterns/03-blueprints/commit/8dcbdc961d1a102078c5bfcd6f2ec511aef1e2e9))
+* update rating input offset; update hard-coded colors to use bolt-color function instead ([74c4856](https://github.com/boltdesignsystem/bolt/tree/master/docs-site/src/pages/pattern-lab/_patterns/03-blueprints/commit/74c485654e3a1d81df61bd45a7ac25cfd3b63f29))
+
+
+### Features
+
+* add 'indigo' option to icon banner ([b3890fb](https://github.com/boltdesignsystem/bolt/tree/master/docs-site/src/pages/pattern-lab/_patterns/03-blueprints/commit/b3890fb19d9d02ede89160a03e0a23a6831d3a91))
+* update Modal blueprint with new rating component ([097d123](https://github.com/boltdesignsystem/bolt/tree/master/docs-site/src/pages/pattern-lab/_patterns/03-blueprints/commit/097d1236f21cb3f0aeda2ac5776a61b02607d42e))
+
+
+
+
+
 ## [2.20.2](https://github.com/boltdesignsystem/bolt/tree/master/docs-site/src/pages/pattern-lab/_patterns/03-blueprints/compare/v2.20.1...v2.20.2) (2020-03-30)
 
 **Note:** Version bump only for package @bolt/blueprints
