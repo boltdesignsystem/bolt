@@ -3,8 +3,7 @@
 .c-bolt-toolbar {
   @include bolt-font-size(small);
   position: relative;
-  z-index: 10;
-  width: 100%;
+  min-width: 100%;
   margin: 0 auto;
   color: bolt-theme(secondary);
 }
@@ -13,6 +12,7 @@
   position: sticky;
   top: 0;
   left: 0;
+  z-index: bolt-z-index(nav);
   width: 100vw;
   margin: 0 -50vw;
 }
@@ -23,7 +23,7 @@
   @include bolt-padding-right(small);
   max-width: calc(1400px);
 
-  @include bolt-mq(large){
+  @include bolt-mq(large) {
     @include bolt-padding-left(large);
     @include bolt-padding-right(large);
   }
@@ -42,7 +42,7 @@
   display: flex;
   align-items: center;
 
-  &:not(:last-child){
+  &:not(:last-child) {
     margin-right: 0.5rem;
   }
 }
@@ -69,7 +69,7 @@
 .c-bolt-toolbar__item {
   margin-bottom: bolt-v-spacing(small);
 
-  &:not(:last-child){
+  &:not(:last-child) {
     margin-right: 1rem;
   }
 
@@ -84,17 +84,21 @@
 }
 
 .c-bolt-toolbar--purple {
-  background-image: linear-gradient(90deg, #0F0664 0%, #751B84 100%);
+  background-image: linear-gradient(90deg, #0f0664 0%, #751b84 100%);
+}
+
+.c-bolt-toolbar--purple-solid {
+  background-image: linear-gradient(90deg, #751b84 0%, #751b84 100%);
 }
 
 .c-bolt-toolbar--indigo {
-  background-image: linear-gradient(90deg, #161A3C 0%, #545DA6 100%);
+  background-image: linear-gradient(90deg, #161a3c 0%, #545da6 100%);
 }
 
 .c-bolt-toolbar--teal {
-  background-image: linear-gradient(270deg, #009999 0%, #1F2656 100%);
+  background-image: linear-gradient(270deg, #009999 0%, #1f2656 100%);
 }
 
 .c-bolt-toolbar--orange {
-  background-image: linear-gradient(270deg, #DA6C28 0%, #B33A12 100%);
+  background-image: linear-gradient(270deg, #da6c28 0%, #b33a12 100%);
 }

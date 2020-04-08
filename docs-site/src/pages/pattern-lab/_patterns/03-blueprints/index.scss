@@ -47,3 +47,171 @@
   @include bolt-font-weight(bold);
   @include bolt-font-size(small);
 }
+
+
+// WIP Rating Component
+.c-bolt-rating {
+  display: flex;
+}
+
+.c-bolt-rating__inner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.c-bolt-rating__helper-text {
+  display: inline-flex;
+  color: bolt-color(gray);
+  @include bolt-font-size(xsmall);
+  @include bolt-font-weight(600)
+
+  & + * {
+    @include bolt-margin-left(xsmall);
+  }
+
+  * + & {
+    @include bolt-margin-left(xsmall);
+  }
+}
+
+.c-bolt-rating__input {
+  opacity: 0;
+  position: absolute;
+  left: -100%;
+  pointer-events: none;
+}
+
+.c-bolt-rating__inputs {
+  display: inline-flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  margin-right: bolt-spacing(xxsmall) * -1;
+  margin-bottom: bolt-v-spacing(xxsmall) * -1;
+  letter-spacing: -0.5rem;
+}
+
+.c-bolt-rating__label {
+  @include bolt-font-size(small);
+  @include bolt-font-weight(bold);
+  @include bolt-margin-bottom(xxsmall);
+  @include bolt-margin-right(xxsmall);
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 31px;
+  height: 31px;
+  color: bolt-color(indigo);
+  text-align: center;
+  letter-spacing: normal;
+  cursor: pointer;
+  user-select: none;
+  border-radius: bolt-border-radius(full);
+  background-color: bolt-color(gray, light);
+  transition: all 0.01s linear;
+
+
+  &:before,
+  &:after {
+    content: '';
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transform: translate3d(0, 0, 0);
+    pointer-events: none;
+    border-radius: bolt-border-radius(full);
+    transition: all 0.05s linear;
+  }
+
+  &:before {
+    border: 2px solid bolt-color(blue);
+  }
+
+  &:after {
+    background-color: bolt-color(black);
+  }
+
+  &:hover:after {
+    opacity: 0.05;
+  }
+
+  &:active:after {
+    opacity: 0.1;
+  }
+}
+
+.c-bolt-rating__input:focus + .c-bolt-rating__label:before {
+  opacity: 1;
+}
+
+.c-bolt-rating__input:checked + .c-bolt-rating__label {
+  color: bolt-color(white);
+  background-color: bolt-color(gray);
+
+  &--0\/10 {
+    background-color: #D61219;
+  }
+
+  &--1\/10 {
+    background-color: #CE3900;
+  }
+
+  &--2\/10 {
+    background-color: #C35000;
+  }
+
+  &--3\/10 {
+    background-color: #B66200;
+  }
+
+  &--4\/10 {
+    background-color: #A77100;
+  }
+
+  &--5\/10 {
+    background-color: #977E00;
+  }
+
+  &--6\/10 {
+    background-color: #868900;
+  }
+
+  &--7\/10 {
+    background-color: #749300;
+  }
+
+  &--8\/10 {
+    background-color: #609B12;
+  }
+
+  &--9\/10 {
+    background-color: #47A334;
+  }
+
+  &--10\/10 {
+    background-color: #20AA50;
+  }
+}
+
+.c-bolt-rating__no-rating-outline {
+  display: block;
+  opacity: 0;
+  position: absolute;
+  top: -2px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  outline: 2px dotted bolt-color(gray);
+  outline-offset: 2px;
+}
+
+.c-bolt-rating__input--no-rating:focus ~ .c-bolt-rating__no-rating-outline {
+  opacity: 1;
+}
