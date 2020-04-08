@@ -11,7 +11,7 @@
           pattern: "image",
           src: "/images/orion-nebula.jpg",
           lazyload: false,
-          valign: "90%"
+          valign: "-22rem",
         }
       ]
     },
@@ -32,41 +32,31 @@
               }
             }),
             macros.include("@bolt-components-headline/headline.twig", {
-              size: "xxxlarge",
-              autoshrink: false,
               text: "Congratulations #{userFirstName}!",
+              tag: "h2",
               align: "center",
-              attributes: {
-                class: [
-                  "u-bolt-margin-top-small",
-                  "u-bolt-margin-left-auto",
-                  "u-bolt-margin-right-auto",
-                  "c-bolt-headline--xxxlarge-min"
-                ]
-              }
+              size: "xxlarge",
             }),
             macros.include("@bolt-components-headline/subheadline.twig", {
               text: "You’ve completed the #{missionName} and earned a new badge!",
+              tag: "h3",
               align: "center",
               size: "xlarge",
-              weight: "semibold",
               attributes: {
                 class: [
+                  "u-bolt-line-length-medium",
                   "u-bolt-margin-left-auto",
                   "u-bolt-margin-right-auto",
-                  "u-bolt-line-length-medium",
                   "u-bolt-margin-bottom-large",
                 ]
               }
             }),
             macros.include("@bolt-components-headline/text.twig", {
               text: "<strong>NOTE:</strong> Please allow 24-48 hours for the badge to appear on your Achievements page.",
-              size: "xsmall",
               align: "center",
+              size: "xsmall",
               attributes: {
                 class: [
-                  "u-bolt-margin-top-small",
-                  "u-bolt-negative-margin-bottom-small",
                   "u-bolt-margin-left-auto",
                   "u-bolt-margin-right-auto",
                 ]
