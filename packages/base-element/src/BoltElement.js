@@ -5,11 +5,13 @@ import {
   renderAndRenderedEvents,
   lazyStyles,
   conditionalShadowDom,
+  jsonSchemaProps,
 } from './lib/decorators';
 
 @renderAndRenderedEvents()
 @lazyStyles()
 @conditionalShadowDom()
+@jsonSchemaProps()
 class BoltElement extends Slotify {
   // patch to https://github.com/Polymer/lit-element/blob/master/src/lit-element.ts#L208
   // as a temp workaround to constructible stylesheets not working when
