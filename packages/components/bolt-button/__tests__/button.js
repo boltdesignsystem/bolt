@@ -381,7 +381,7 @@ describe('button', () => {
     expect(finalUrl).toBe(null);
   });
 
-  test('Buttons render and retains extra HTML attributes', async function() {
+  test('correctly render and retains extra HTML attributes', async function() {
     const { initialHTML } = await page.evaluate(async () => {
       document.body.insertAdjacentHTML(
         'beforeend',
@@ -428,7 +428,7 @@ describe('button', () => {
     expect(finalMarkup).toMatchSnapshot();
   });
 
-  test('Buttons with initial HTML attributes that conflict w/ custom element props will defer to  using the custom element prop values', async function() {
+  test('initial HTML attributes in conflict w/ custom element props will defer to  using the custom element prop values', async function() {
     const { initialUrl, initialHTML } = await page.evaluate(async () => {
       document.body.insertAdjacentHTML(
         'beforeend',
@@ -472,7 +472,7 @@ describe('button', () => {
     expect(finalUrl).toBe('https://github.com');
   });
 
-  test('Buttons only render the [disabled] attribute on <button>, tags', async function() {
+  test('only render the [disabled] attribute on <button>, tags', async function() {
     const { initialHTML, initialUrl } = await page.evaluate(async () => {
       document.body.insertAdjacentHTML(
         'beforeend',
@@ -520,8 +520,14 @@ describe('button', () => {
     ).toBe(null);
     expect(initialUrl).toBe('https://google.com');
     expect(initialMarkup.querySelector('.c-bolt-button').tagName).toBe('a');
-    expect(initialMarkup.querySelector('.c-bolt-button').hasAttribute('disabled')).toBe(false);
-    expect(initialMarkup.querySelector('.c-bolt-button').hasAttribute('aria-disabled')).toBe(true);
+    expect(
+      initialMarkup.querySelector('.c-bolt-button').hasAttribute('disabled'),
+    ).toBe(false);
+    expect(
+      initialMarkup
+        .querySelector('.c-bolt-button')
+        .hasAttribute('aria-disabled'),
+    ).toBe(true);
     expect(initialMarkup).toMatchSnapshot();
 
     expect(
@@ -529,16 +535,26 @@ describe('button', () => {
     ).toBe('https://google.com');
     expect(initialUrl).toBe('https://google.com');
     expect(updatedMarkup.querySelector('.c-bolt-button').tagName).toBe('a');
-    expect(updatedMarkup.querySelector('.c-bolt-button').hasAttribute('disabled')).toBe(false);
-    expect(updatedMarkup.querySelector('.c-bolt-button').hasAttribute('aria-disabled')).toBe(false);
+    expect(
+      updatedMarkup.querySelector('.c-bolt-button').hasAttribute('disabled'),
+    ).toBe(false);
+    expect(
+      updatedMarkup
+        .querySelector('.c-bolt-button')
+        .hasAttribute('aria-disabled'),
+    ).toBe(false);
     expect(updatedMarkup).toMatchSnapshot();
 
     expect(
       finalMarkup.querySelector('.c-bolt-button').getAttribute('href'),
     ).toBe(null);
     expect(finalMarkup.querySelector('.c-bolt-button').tagName).toBe('button');
-    expect(finalMarkup.querySelector('.c-bolt-button').hasAttribute('disabled')).toBe(true);
-    expect(finalMarkup.querySelector('.c-bolt-button').hasAttribute('aria-disabled')).toBe(false);
+    expect(
+      finalMarkup.querySelector('.c-bolt-button').hasAttribute('disabled'),
+    ).toBe(true);
+    expect(
+      finalMarkup.querySelector('.c-bolt-button').hasAttribute('aria-disabled'),
+    ).toBe(false);
     expect(finalMarkup).toMatchSnapshot();
   });
 });
