@@ -42,7 +42,7 @@
               separator: "solid",
               tag: "ul",
               items: cardMetaItems
-            } %}
+            } only %}
           {% endif %}
         {% endcell %}
         {% if cardDescription %}
@@ -62,7 +62,7 @@
       {% block action_items %}
         {% if cardStatusItems %}
           {% for item in cardStatusItems %}
-            {% include "@bolt-components-card-replacement/_card-replacement-action-item.twig" with { item: item } %}
+            {% include "@bolt-components-card-replacement/_card-replacement-action-item.twig" with { item: item } only %}
           {% endfor %}
         {% endif %}
       {% endblock %}

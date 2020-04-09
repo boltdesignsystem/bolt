@@ -17,7 +17,7 @@
           {% cell "u-bolt-width-1/1 u-bolt-width-10/12@small u-bolt-width-10/12@medium" %}
             {% include "@bolt-blueprints/_hide-show-completed.twig" with {
               hideCompleted: hideCompleted | default(false)
-            } %}
+            } only %}
           {% endcell %}
 
           {% if contentItems %}
