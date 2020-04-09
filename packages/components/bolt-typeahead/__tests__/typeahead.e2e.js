@@ -17,7 +17,8 @@ module.exports = {
       .assert.elementPresent(
         '.js-typeahead-hook--dynamically-fetch-data .c-bolt-button',
       )
-      .click('.js-c-typeahead__input'); // click on the PL search input
+      .click('.js-c-typeahead__input')
+      .keys('AI');
 
     browser.saveScreenshot(
       `screenshots/pattern-lab/typeahead--${browser.capabilities.browserName ||
