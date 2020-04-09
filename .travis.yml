@@ -126,7 +126,7 @@ jobs:
         - travis_retry yarn gds -a success -e commit-preview -r ${TRAVIS_BRANCH} -l ${NOW_URL}
       after_script:
         - travis_retry yarn gds -a fail_if_unsuccessful -e commit-preview -r ${TRAVIS_BRANCH}
-git
+
     - stage: Post-deploy
       name: 'Nightwatch End-to-End (Full)'
       if: (tag =~ ^v) OR (branch =~ /(master|release|bug|fix)/)
