@@ -18,44 +18,29 @@ import '@bolt/components-typeahead/__demos__/navigate-to-exact-result/typeahead.
 import './assets/icons/custom-arrow-left-colored.svg';
 import './assets/icons/custom-users.svg';
 
-// here if you need pl only JS
-// document.addEventListener('DOMContentLoaded', () => {
-//   /**
-//    * Docs Edit README Link > Simple edit hover effect
-//    */
-//   const editLink = document.getElementsByClassName(
-//     'c-bds-docs__page-nav__link',
-//   );
-//   const editWrap = document.getElementsByClassName('c-bds-docs__lead');
+// Blueprint-specific JS demoing the Mission Completed form's button re-activating
+const missionRatingInputs = document.querySelectorAll(
+  '.js-mission-rating-input',
+);
+const missionRatingSubmit = document.querySelector('.js-mission-rating-submit');
 
-//   function toggleEditOn() {
-//     editWrap[0].classList.add('edit-this-readme');
-//   }
+for (const missionRatingInput of missionRatingInputs) {
+  missionRatingInput.addEventListener('input', e => {
+    if (missionRatingInput.validity.valid && e.target.value !== 'on') {
+      missionRatingSubmit.removeAttribute('disabled');
+    } else {
+      missionRatingSubmit.setAttribute('disabled', '');
+    }
+  });
+}
 
-//   function toggleEditOff() {
-//     editWrap[0].classList.remove('edit-this-readme');
-//   }
+if (missionRatingSubmit) {
+  missionRatingSubmit.addEventListener('click', e => {
+    if (!missionRatingSubmit.hasAttribute('disabled')) {
+      e.preventDefault();
 
-//   if (editLink[0]) {
-//     editLink[0].addEventListener('mouseover', toggleEditOn, false);
-//   }
-
-//   if (editWrap[0]) {
-//     editLink[0].addEventListener('mouseout', toggleEditOff, false);
-//   }
-
-//   /**
-//    * Make sure all external facing links open in a new tab in PL.
-//    * Important as external links can behave strangely within the iframe setup of PL.
-//    */
-//   const docsSiteLinks = document.querySelectorAll('a');
-//   for (var i = 0, len = docsSiteLinks.length; i < len; i++) {
-//     const linkElem = docsSiteLinks[i];
-//     const href = linkElem.getAttribute('href');
-//     if (href) {
-//       if (href.startsWith('http')) {
-//         linkElem.setAttribute('target', '_blank');
-//       }
-//     }
-//   }
-// });
+      window.location.href =
+        '/pattern-lab/patterns/03-blueprints-05-pages-t1-landing-pages-mission-landing--test-with-modal-02-t1-mission-landing--test-with-modal--after-submit/03-blueprints-05-pages-t1-landing-pages-mission-landing--test-with-modal-02-t1-mission-landing--test-with-modal--after-submit.html';
+    }
+  });
+}

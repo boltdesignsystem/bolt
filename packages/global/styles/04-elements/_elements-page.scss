@@ -2,13 +2,6 @@
   Body and heading declaration
 \* ------------------------------------ */
 
-$bolt-base-font-sizes: (
-  bolt-breakpoint(xxsmall): 14px,
-  bolt-breakpoint(xsmall): 15px,
-  bolt-breakpoint(xxlarge): 16px,
-  bolt-breakpoint(xxxxlarge): 18px,
-);
-
 html {
   @include bolt-poly-fluid-sizing('font-size', $bolt-base-font-sizes);
   @include bolt-font-family(body, true);

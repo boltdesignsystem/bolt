@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.21.0](https://github.com/bolt-design-system/bolt/tree/master/packages/core/compare/v2.20.2...v2.21.0) (2020-04-08)
+
+
+### Bug Fixes
+
+* auto generate font-size table ([6f8df6c](https://github.com/bolt-design-system/bolt/tree/master/packages/core/commit/6f8df6c97bdb72a00719d818d207956bb0583bd6))
+* conflicts ([0545936](https://github.com/bolt-design-system/bolt/tree/master/packages/core/commit/0545936bac643f0b08f7b119b579e49d3b8998df))
+* group json data ([6eedbe7](https://github.com/bolt-design-system/bolt/tree/master/packages/core/commit/6eedbe7b1cab0b3d0918679c0c3a3732a946553f))
+
+
+### Features
+
+* expose design token data for font size options + base font size used at different bps ([63c545b](https://github.com/bolt-design-system/bolt/tree/master/packages/core/commit/63c545bc07dbf7f4b0429aaff9496382ad3a6ff4))
+
+
+
+
+
 # [2.20.0](https://github.com/bolt-design-system/bolt/tree/master/packages/core/compare/v2.19.1...v2.20.0) (2020-03-18)
 
 

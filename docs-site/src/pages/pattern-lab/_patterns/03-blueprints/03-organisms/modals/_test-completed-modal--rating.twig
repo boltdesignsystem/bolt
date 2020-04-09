@@ -1,0 +1,126 @@
+{% set content %}
+
+
+  {% include "@bolt-components-headline/text.twig" with {
+    weight: "semibold",
+    align: "center",
+    text: "How likely are you to recommend this mission to a friend or colleague?"
+  } %}
+
+  <form class="js-mission-rating-form">
+    <fieldset class="c-bolt-rating">
+      <div class="c-bolt-rating__inner">
+        {% grid "o-bolt-grid--xsmall o-bolt-grid--matrix o-bolt-grid--center o-bolt-grid--middle o-bolt-grid--flex" %}
+          {% cell "u-bolt-text-align-left u-bolt-margin-right-auto" %}
+            <span class="c-bolt-rating__helper-text c-bolt-rating__helper-text--before">
+              Not very likely
+            </span>
+          {% endcell %}
+
+          {% cell "u-bolt-text-align-center u-bolt-width-12/12 u-bolt-width-8/12@medium" %}
+            <div class="c-bolt-rating__inputs">
+              <input class="c-bolt-rating__input c-bolt-rating__input--no-rating js-mission-rating-input" type="radio" name="mission-rating" id="no-rating">
+
+              <input class="c-bolt-rating__input js-mission-rating-input" required type="radio" id="rate0" name="mission-rating" value="0">
+              <label class="c-bolt-rating__label c-bolt-rating__label--0/10" for="rate0" title="0 out of 10 - highly unlikely">0</label>
+
+              <input class="c-bolt-rating__input js-mission-rating-input" required type="radio" id="rate1" name="mission-rating" value="1">
+              <label class="c-bolt-rating__label c-bolt-rating__label--1/10" for="rate1" title="1 out of 10 - very unlikely">1</label>
+
+              <input class="c-bolt-rating__input js-mission-rating-input" required type="radio" id="rate2" name="mission-rating" value="2">
+              <label class="c-bolt-rating__label c-bolt-rating__label--2/10" for="rate2" title="2 out of 10 - unlikely">2</label>
+
+              <input class="c-bolt-rating__input js-mission-rating-input" required type="radio" id="rate3" name="mission-rating" value="3">
+              <label class="c-bolt-rating__label c-bolt-rating__label--3/10" for="rate3" title="3 out of 10 - more unlikely">3</label>
+
+              <input class="c-bolt-rating__input js-mission-rating-input" required type="radio" id="rate4" name="mission-rating" value="4">
+              <label class="c-bolt-rating__label c-bolt-rating__label--4/10" for="rate4" title="4 out of 10 - neutral, slightly unlikely">4</label>
+
+              <input class="c-bolt-rating__input js-mission-rating-input" required type="radio" id="rate5" name="mission-rating" value="5">
+              <label class="c-bolt-rating__label c-bolt-rating__label--5/10" for="rate5" title="5 out of 10 - neutral">5</label>
+
+              <input class="c-bolt-rating__input js-mission-rating-input" required type="radio" id="rate6" name="mission-rating" value="6">
+              <label class="c-bolt-rating__label c-bolt-rating__label--6/10" for="rate6" title="6 out of 10 - neutral, slightly likely">6</label>
+
+              <input class="c-bolt-rating__input js-mission-rating-input" required type="radio" id="rate7" name="mission-rating" value="7">
+              <label class="c-bolt-rating__label c-bolt-rating__label--7/10" for="rate7" title="7 out of 10 - more likely">7</label>
+
+              <input class="c-bolt-rating__input js-mission-rating-input" required type="radio" id="rate8" name="mission-rating" value="8">
+              <label class="c-bolt-rating__label c-bolt-rating__label--8/10" for="rate8" title="8 out of 10 - likely">8</label>
+
+              <input class="c-bolt-rating__input js-mission-rating-input" required type="radio" id="rate9" name="mission-rating" value="9">
+              <label class="c-bolt-rating__label c-bolt-rating__label--9/10" for="rate9" title="9 out of 10 - very likely">9</label>
+
+              <input class="c-bolt-rating__input js-mission-rating-input" required type="radio" id="rate10" name="mission-rating" value="10">
+              <label class="c-bolt-rating__label c-bolt-rating__label--10/10" for="rate10" title="10 out of 10 - highly likely">10</label>
+
+              <span class="c-bolt-rating__no-rating-outline"></span>
+            </div>
+          {% endcell %}
+
+          {% cell "u-bolt-text-align-right u-bolt-margin-left-auto" %}
+            <span class="c-bolt-rating__helper-text c-bolt-rating__helper-text--after">
+              Extremely likely
+            </span>
+          {% endcell %}
+        {% endgrid %}
+        </div>
+
+    </fieldset>
+
+    {% import "@bolt-blueprints/macros.twig" as macros %}
+
+    {% include "@bolt-components-form/form-element.twig" with {
+      labelDisplay: "after",
+      label: macros.include("@bolt-components-form/form-label.twig", {
+        "title": "Leave a comment",
+        "displayType": "floating"
+      }),
+      children: macros.include("@bolt-components-form/form-textarea.twig", {
+        "attributes": {
+          "required": false,
+          "placeholder": "Leave a comment",
+        }
+      }),
+    } only %}
+
+    {% grid "o-bolt-grid--center" %}
+      {% cell %}
+        {% include "@bolt-components-form/form-element.twig" with {
+          children: macros.include("@bolt-components-button/button.twig", {
+            text: "Submit",
+            type: "submit",
+            size: "medium",
+            disabled: true,
+            border_radius: "full",
+            align: "center",
+            attributes: {
+              class: [
+                "js-mission-rating-submit",
+                "u-bolt-margin-left-auto",
+                "u-bolt-margin-right-auto",
+              ]
+            }
+          })
+        } only %}
+      {% endcell %}
+    {% endgrid %}
+  </form>
+{% endset %}
+
+
+
+
+{% include "@bolt-components-card-replacement/_card-replacement-body.twig" with {
+  body: {
+     attributes: {
+      class: [
+        "t-bolt-xlight",
+        "u-bolt-position-relative",
+        "js-mission-rating",
+      ]
+    },
+    content: content
+  }
+} only %}
+
