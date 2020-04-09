@@ -62,8 +62,12 @@ const convertInitialClass = (tags, moveChildrenToRoot, clazz) => {
           this.rootElement.appendChild(rootElement);
           this._convertedInitialTags = true;
 
+          const attributes = Array.from(
+            this.rootElement.firstChild.attributes,
+          ).filter(attribute => attribute.name !== 'style');
+
           // collect any original HTML attributes off of the rootElement
-          Array.from(this.rootElement.firstChild.attributes).forEach(item => {
+          attributes.forEach(item => {
             let propNameFromAttribute;
 
             // rename any HTML attributes that match property aliases defined
