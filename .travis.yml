@@ -110,7 +110,7 @@ jobs:
       name: 'Build + Deploy Website (Full)'
       if: (tag =~ ^v) OR (branch =~ /(master|release|bug|fix)/)
       install:
-        - yarn run setupgit
+        - yarn run setup
       before_script:
         - find . -name '.incache' -exec rm -rf {} +
       script:
