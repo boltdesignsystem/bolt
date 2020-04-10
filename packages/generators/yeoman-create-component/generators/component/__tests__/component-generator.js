@@ -11,7 +11,7 @@ const dirs = {
   test: 'index.js',
   package: 'package.json',
   readme: 'README.md',
-  schema: 'test.schema.yml',
+  schema: 'test.schema.js',
   boltrc: '.boltrc.js',
 };
 

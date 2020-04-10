@@ -200,9 +200,9 @@ module.exports = class extends Generator {
 
     // component-specific schema
     this.fs.copyTpl(
-      this.templatePath('component.schema.yml'),
+      this.templatePath('component.schema.js'),
       this.destinationPath(
-        `${this.props.dest}/${this.props.name.kebabCase}.schema.yml`,
+        `${this.props.dest}/${this.props.name.kebabCase}.schema.js`,
       ),
       { props: this.props },
     );
