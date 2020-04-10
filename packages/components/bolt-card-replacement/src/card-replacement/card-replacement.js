@@ -105,7 +105,7 @@ class BoltCardReplacement extends withContext(BoltElement) {
         `}
       ${this.slotMap.get('body') &&
         html`
-          <bolt-card-replacement-body .tag=${this.tag} .spacing=${this.spacing}
+          <bolt-card-replacement-body .tag=${this.tag}
             >${this.slotify('body')}</bolt-card-replacement-body
           >
         `}
