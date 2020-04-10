@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.21.0](https://github.com/bolt-design-system/bolt/tree/master/packages/core-php/compare/v2.20.2...v2.21.0) (2020-04-08)
+
+
+### Features
+
+* apply patches to speed up Twig rendering in Pattern Lab + within the Twig Renderer ([5a21b5c](https://github.com/bolt-design-system/bolt/tree/master/packages/core-php/commit/5a21b5c602e4735aef0e13711a17f1e5ff6f6705))
+
+
+
+
+
 ## [2.20.2](https://github.com/bolt-design-system/bolt/tree/master/packages/core-php/compare/v2.20.1...v2.20.2) (2020-03-30)
 
 **Note:** Version bump only for package @bolt/core-php

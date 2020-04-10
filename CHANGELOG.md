@@ -3,6 +3,58 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.21.0](https://github.com/boltdesignsystem/bolt/compare/v2.20.2...v2.21.0) (2020-04-08)
+
+
+### Bug Fixes
+
+* Allow card url attributes to be empty ([de91388](https://github.com/boltdesignsystem/bolt/commit/de91388d1415d0ede4f868fb69d9fdb17b95ac12))
+* auto generate font-size table ([6f8df6c](https://github.com/boltdesignsystem/bolt/commit/6f8df6c97bdb72a00719d818d207956bb0583bd6))
+* card fix related to bug when updating the Mission Completed modal blueprint ([ea89b68](https://github.com/boltdesignsystem/bolt/commit/ea89b687e6827cfa1e3f39f512809646a7b34198))
+* conflicts ([0545936](https://github.com/boltdesignsystem/bolt/commit/0545936bac643f0b08f7b119b579e49d3b8998df))
+* data paths ([4c7037a](https://github.com/boltdesignsystem/bolt/commit/4c7037add890744348c0554c64b9321aabb2e1de))
+* don't ignore compiling patterns in __tests__ folders ([5ed3757](https://github.com/boltdesignsystem/bolt/commit/5ed3757e2da7e6544023945d026e74063ffeda81))
+* fix empty href prop ([0499c4b](https://github.com/boltdesignsystem/bolt/commit/0499c4b95c0204471ee66683ac37f349114ee3db))
+* group json data ([6eedbe7](https://github.com/boltdesignsystem/bolt/commit/6eedbe7b1cab0b3d0918679c0c3a3732a946553f))
+* hooks up font-family to a map ([e8fd1fe](https://github.com/boltdesignsystem/bolt/commit/e8fd1fe8f1b4dd687f9920703815655d68c04bfd))
+* minor adjustment to PL patch logic ([4cc9846](https://github.com/boltdesignsystem/bolt/commit/4cc9846437f223f1c61eb3785f8c907a1b0915e1))
+* minor clean up on utils and css ([8b732c8](https://github.com/boltdesignsystem/bolt/commit/8b732c87721a3fab083cdd48d16351847af31a01))
+* open prop typo in web component demo ([b3e46e9](https://github.com/boltdesignsystem/bolt/commit/b3e46e98dc063b21b59fcfb07e62c629b7987a89))
+* Prevent adding empty url prop to card action button ([d2ce4eb](https://github.com/boltdesignsystem/bolt/commit/d2ce4ebf1f718ca804d76c5e2664c31c623fb6df))
+* prevent long module titles from wrapping next cell ([79f9768](https://github.com/boltdesignsystem/bolt/commit/79f9768bde42ac527d82a7b541a10f0c1a91f12f))
+* Properly deprecate href component in link schema, update pl example ([785d951](https://github.com/boltdesignsystem/bolt/commit/785d95139101ff0fca4902ed5986e1e0cd0b64ee))
+* remove hardcoded copy ([087615f](https://github.com/boltdesignsystem/bolt/commit/087615fac37d501313121c963589b7bfc8164abb))
+* Remove join filters and related hacks in replacement card ([67beb1c](https://github.com/boltdesignsystem/bolt/commit/67beb1c8ea0409af63a28c210ad1d71f2ae7838c))
+* replace satellite icon with orbit, satellite removed ([5d9e63b](https://github.com/boltdesignsystem/bolt/commit/5d9e63b864b5287d40c3430b187b9703c3cdc944))
+* Rework logic for grid ordering in hero component ([2adc65f](https://github.com/boltdesignsystem/bolt/commit/2adc65f5d468cda611ccf7425d8b79825312b035))
+* scope `width` hack to FF-only ([3d09773](https://github.com/boltdesignsystem/bolt/commit/3d09773f2bfb18948a54c805f3c5541dd95ea57e))
+* temporarily disable the futureEmitAssets output config option until the WriteFilePlugin plugin error is further debugged ([937bbd1](https://github.com/boltdesignsystem/bolt/commit/937bbd13dc6847c1b17ca2a0f637d24410b6ae3b))
+* test bolt-list without FF `width` hack ([c24560a](https://github.com/boltdesignsystem/bolt/commit/c24560ab2ebb23e9c414d757ab28f505e78ff106))
+* update card so background layer doesn't interfere with other elements ([5d58dea](https://github.com/boltdesignsystem/bolt/commit/5d58deafc555aad38fef897e31ce88cd9a1159f7))
+* update card-specific updates to work around z-index issues ([622d47f](https://github.com/boltdesignsystem/bolt/commit/622d47f92d0308a0dc143b9e5bec90a28e409182))
+* update outline around rating inputs ([8dcbdc9](https://github.com/boltdesignsystem/bolt/commit/8dcbdc961d1a102078c5bfcd6f2ec511aef1e2e9))
+* update rating input offset; update hard-coded colors to use bolt-color function instead ([74c4856](https://github.com/boltdesignsystem/bolt/commit/74c485654e3a1d81df61bd45a7ac25cfd3b63f29))
+* update Travis CI command ([cd199e8](https://github.com/boltdesignsystem/bolt/commit/cd199e84267e1ff067a9a9fe0f45c58f1d16faf2))
+* update Travis.yml config + push to bugfix branch to check that aliases work correctly ([0f483ec](https://github.com/boltdesignsystem/bolt/commit/0f483ecb40302e60c8fd8022eec04cb31d1624e4))
+* update VRT test to conditionally adjust % diff allowed based on the OS ([80f6299](https://github.com/boltdesignsystem/bolt/commit/80f6299bae7b8452596170ef12591fb46c88e788))
+
+
+### Features
+
+* add 'indigo' option to icon banner ([b3890fb](https://github.com/boltdesignsystem/bolt/commit/b3890fb19d9d02ede89160a03e0a23a6831d3a91))
+* Add schema for BoltActionElement in element package ([864f38c](https://github.com/boltdesignsystem/bolt/commit/864f38cb7b24a68d3afca5e6aaacf8073cb0b768))
+* Add schema for BoltActionElement to button component ([e33e1fa](https://github.com/boltdesignsystem/bolt/commit/e33e1faaf9da12032e7f50ec94508f01d07ca0f0))
+* apply patches to speed up Twig rendering in Pattern Lab + within the Twig Renderer ([5a21b5c](https://github.com/boltdesignsystem/bolt/commit/5a21b5c602e4735aef0e13711a17f1e5ff6f6705))
+* expose design token data for font size options + base font size used at different bps ([63c545b](https://github.com/boltdesignsystem/bolt/commit/63c545bc07dbf7f4b0429aaff9496382ad3a6ff4))
+* test deployment URLs including branch-specific URLs ([bc1c488](https://github.com/boltdesignsystem/bolt/commit/bc1c4880e98df6d0eb36998e6f8ebf3e2dbd09cc))
+* Update link component to use js schema ([351f2c8](https://github.com/boltdesignsystem/bolt/commit/351f2c8bc51297218c6326ff39338494feaf2251))
+* update Modal blueprint with new rating component ([097d123](https://github.com/boltdesignsystem/bolt/commit/097d1236f21cb3f0aeda2ac5776a61b02607d42e))
+* update VRT config for Blockquote to allow for <= a 20px VRT diff ([586bcaa](https://github.com/boltdesignsystem/bolt/commit/586bcaa5bebc46dc240c64869b8d658bf539af44))
+
+
+
+
+
 ## [2.20.2](https://github.com/boltdesignsystem/bolt/compare/v2.20.1...v2.20.2) (2020-03-30)
 
 

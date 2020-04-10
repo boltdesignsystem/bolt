@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.21.0](https://github.com/bolt-design-system/bolt/tree/master/packages/twig-renderer/compare/v2.20.2...v2.21.0) (2020-04-08)
+
+
+### Bug Fixes
+
+* minor adjustment to PL patch logic ([4cc9846](https://github.com/bolt-design-system/bolt/tree/master/packages/twig-renderer/commit/4cc9846437f223f1c61eb3785f8c907a1b0915e1))
+
+
+### Features
+
+* apply patches to speed up Twig rendering in Pattern Lab + within the Twig Renderer ([5a21b5c](https://github.com/bolt-design-system/bolt/tree/master/packages/twig-renderer/commit/5a21b5c602e4735aef0e13711a17f1e5ff6f6705))
+
+
+
+
+
 # [2.19.0](https://github.com/bolt-design-system/bolt/tree/master/packages/twig-renderer/compare/v2.18.1...v2.19.0) (2020-03-04)
 
 **Note:** Version bump only for package @bolt/twig-renderer

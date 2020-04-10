@@ -3,6 +3,37 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.21.0](https://github.com/bolt-design-system/bolt/compare/v2.20.2...v2.21.0) (2020-04-08)
+
+
+### Bug Fixes
+
+* auto generate font-size table ([6f8df6c](https://github.com/bolt-design-system/bolt/commit/6f8df6c97bdb72a00719d818d207956bb0583bd6))
+* data paths ([4c7037a](https://github.com/bolt-design-system/bolt/commit/4c7037add890744348c0554c64b9321aabb2e1de))
+* don't ignore compiling patterns in __tests__ folders ([5ed3757](https://github.com/bolt-design-system/bolt/commit/5ed3757e2da7e6544023945d026e74063ffeda81))
+* hooks up font-family to a map ([e8fd1fe](https://github.com/bolt-design-system/bolt/commit/e8fd1fe8f1b4dd687f9920703815655d68c04bfd))
+* minor adjustment to PL patch logic ([4cc9846](https://github.com/bolt-design-system/bolt/commit/4cc9846437f223f1c61eb3785f8c907a1b0915e1))
+* minor clean up on utils and css ([8b732c8](https://github.com/bolt-design-system/bolt/commit/8b732c87721a3fab083cdd48d16351847af31a01))
+* open prop typo in web component demo ([b3e46e9](https://github.com/bolt-design-system/bolt/commit/b3e46e98dc063b21b59fcfb07e62c629b7987a89))
+* prevent long module titles from wrapping next cell ([79f9768](https://github.com/bolt-design-system/bolt/commit/79f9768bde42ac527d82a7b541a10f0c1a91f12f))
+* Properly deprecate href component in link schema, update pl example ([785d951](https://github.com/bolt-design-system/bolt/commit/785d95139101ff0fca4902ed5986e1e0cd0b64ee))
+* remove hardcoded copy ([087615f](https://github.com/bolt-design-system/bolt/commit/087615fac37d501313121c963589b7bfc8164abb))
+* replace satellite icon with orbit, satellite removed ([5d9e63b](https://github.com/bolt-design-system/bolt/commit/5d9e63b864b5287d40c3430b187b9703c3cdc944))
+* update outline around rating inputs ([8dcbdc9](https://github.com/bolt-design-system/bolt/commit/8dcbdc961d1a102078c5bfcd6f2ec511aef1e2e9))
+* update rating input offset; update hard-coded colors to use bolt-color function instead ([74c4856](https://github.com/bolt-design-system/bolt/commit/74c485654e3a1d81df61bd45a7ac25cfd3b63f29))
+
+
+### Features
+
+* add 'indigo' option to icon banner ([b3890fb](https://github.com/bolt-design-system/bolt/commit/b3890fb19d9d02ede89160a03e0a23a6831d3a91))
+* apply patches to speed up Twig rendering in Pattern Lab + within the Twig Renderer ([5a21b5c](https://github.com/bolt-design-system/bolt/commit/5a21b5c602e4735aef0e13711a17f1e5ff6f6705))
+* expose design token data for font size options + base font size used at different bps ([63c545b](https://github.com/bolt-design-system/bolt/commit/63c545bc07dbf7f4b0429aaff9496382ad3a6ff4))
+* update Modal blueprint with new rating component ([097d123](https://github.com/bolt-design-system/bolt/commit/097d1236f21cb3f0aeda2ac5776a61b02607d42e))
+
+
+
+
+
 ## [2.20.2](https://github.com/bolt-design-system/bolt/compare/v2.20.1...v2.20.2) (2020-03-30)
 
 **Note:** Version bump only for package @bolt/website
