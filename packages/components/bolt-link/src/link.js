@@ -5,8 +5,8 @@ import {
   html,
   ifDefined,
   customElement,
-  BoltElement,
   convertInitialTags,
+  spread,
 } from '@bolt/element';
 import classNames from 'classnames/bind';
 import linkStyles from './link.scss';
@@ -39,32 +39,16 @@ class BoltLink extends BoltActionElement {
     self.schema = schema;
     self.display = schema.properties.display.default;
     self.valign = schema.properties.valign.default;
+    self.target = schema.properties.target.default; // @todo: remove once https://github.com/boltdesignsystem/bolt/pull/1795 lands
     return self;
   }
 
   render() {
-    // 1. Remove line breaks before and after lit-html template tags, causes unwanted space inside and around inline links
-    // 2. Zero Width No-break Space (&#xfeff;) is needed to make the last word always stick with the icon, so the icon will never become an orphan.
-
-    // Validate the original prop data passed along -- returns back the validated data w/ added default values
-    // const { display, valign, url, target, isHeadline } = this.validateProps(
-    //   this.props,
-    // );
-
     const classes = cx('c-bolt-link', {
       [`c-bolt-link--display-${this.display}`]: this.display,
       [`c-bolt-link--valign-${this.valign}`]: this.valign,
       [`c-bolt-link--headline`]: this.isHeadline,
     });
-
-    // Decide on if the rendered button tag should be a <button> or <a> tag, based on if a URL exists OR if a link was passed in from the getgo
-    const hasUrl = this.url && this.url.length > 0 && this.url !== 'null';
-
-    // Assign default target attribute value if one isn't specified
-    const anchorTarget = this.target && hasUrl ? this.target : '_self';
-
-    // The linkElement to render, based on the initial HTML passed alone.
-    let renderedLink;
 
     // 1. Remove line breaks before and after lit-html template tags, causes unwanted space inside and around inline links
     // 2. Zero Width No-break Space (&#xfeff;) is needed to make the last word always stick with the icon, so the icon will never become an orphan.
@@ -81,27 +65,13 @@ class BoltLink extends BoltActionElement {
         ? html`<span class="${cx(`c-bolt-link__icon`)}">&#xfeff;${this.slotify('after')}</span>`
         : html`<slot name="after" />`}`;
 
-    if (this.rootElement) {
-      renderedLink = this.rootElement.firstChild.cloneNode(true);
-      if (hasUrl) {
-        renderedLink.setAttribute('href', this.url);
-      }
-      if (anchorTarget) {
-        renderedLink.setAttribute('target', anchorTarget);
-      }
-      renderedLink.className += ' ' + classes;
-      render(innerSlots, renderedLink);
-    } else {
-      // [1]
-      // prettier-ignore
-      renderedLink = html`<a href="${ifDefined(hasUrl ? this.url : undefined)}" class="${classes}" target="${anchorTarget}"
-          >${innerSlots}</a
-        >`;
-    }
-
     // [1]
     // prettier-ignore
-    return html`${renderedLink}`;
+    return html`<a
+      ...="${spread(this.rootElementAttributes)}"
+      href="${ifDefined(this.url ? this.url : undefined)}"
+      class="${classes}"
+      target="${ifDefined(this.target ? this.target : undefined)}">${innerSlots}</a>`;
   }
 }
 
