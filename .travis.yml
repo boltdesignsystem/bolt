@@ -79,28 +79,33 @@ jobs:
       install:
         - yarn run setup
         - npx lerna run postbootstrap
+        - export GIT_SHA=$(./scripts/get-git-sha.js)
+        - echo $GIT_SHA
         # - yarn global add @lhci/cli@0.3.x
       script:
         # - cd example-integrations/drupal-lab
         # - yarn run generate # generate static version of Drupal Lab in the integration folder
         # - cd ../../
-        - npx github-deploy-status --token ${GITHUB_TOKEN} -a create -e commit-preview -r ${TRAVIS_BRANCH} -u boltdesignsystem -p bolt
         - yarn run build
-        - npx github-deploy-status --token ${GITHUB_TOKEN} -a in_progress -e commit-preview -r ${TRAVIS_BRANCH} -u boltdesignsystem -p bolt
+        - travis_retry yarn gds -a create -e ${TRAVIS_BRANCH}--${GIT_SHA}--commit-preview -r ${TRAVIS_BRANCH}
+        - travis_retry yarn gds -a in_progress -e ${TRAVIS_BRANCH}--${GIT_SHA}--commit-preview -r ${TRAVIS_BRANCH}
         - yarn run deploy
         - export NOW_URL=$(./scripts/get-latest-deploy.js)
-        - npx github-deploy-status --token ${GITHUB_TOKEN} -a success -e commit-preview -r ${TRAVIS_BRANCH} -u boltdesignsystem -p bolt -l ${NOW_URL}
+        - travis_retry yarn gds -a success -e ${TRAVIS_BRANCH}--${GIT_SHA}--commit-preview -r ${TRAVIS_BRANCH} -l ${NOW_URL}
         - travis_retry yarn run test:e2e:quick-local
         # - lhci autorun --collect.numberOfRuns=3 --collect.url=$NOW_URL --collect.url=$NOW_URL/pattern-lab/patterns/04-pages-10-d8-product-pages-product-t2/04-pages-10-d8-product-pages-product-t2.html --collect.url=$NOW_URL/pattern-lab/patterns/06-experiments-micro-journeys-90-micro-journeys/06-experiments-micro-journeys-90-micro-journeys.html
       after_success:
-        - npx github-deploy-status --token ${GITHUB_TOKEN} -a create -e branch-preview -r ${TRAVIS_BRANCH} -u boltdesignsystem -p bolt
-        - npx github-deploy-status --token ${GITHUB_TOKEN} -a in_progress -e branch-preview -r ${TRAVIS_BRANCH} -u boltdesignsystem -p bolt
+        - travis_retry yarn gds -a create -e ${TRAVIS_BRANCH}--branch-preview -r ${TRAVIS_BRANCH}
+        - travis_retry yarn gds -a in_progress -e ${TRAVIS_BRANCH}--branch-preview -r ${TRAVIS_BRANCH}
         - ./scripts/deploy-branch-alias.js
         - export NOW_BRANCH_URL=$(./scripts/get-branch-alias.js)
-        - npx github-deploy-status --token ${GITHUB_TOKEN} -a success -e branch-preview -r ${TRAVIS_BRANCH} -u boltdesignsystem -p bolt -l ${NOW_BRANCH_URL}
+        - travis_retry yarn gds -a success -e ${TRAVIS_BRANCH}--branch-preview -r ${TRAVIS_BRANCH} -l ${NOW_BRANCH_URL}
       after_failure:
-        - npx github-deploy-status --token ${GITHUB_TOKEN} -a failure -e commit-preview -r ${TRAVIS_BRANCH} -u boltdesignsystem -p bolt
-        - npx github-deploy-status --token ${GITHUB_TOKEN} -a failure -e branch-preview -r ${TRAVIS_BRANCH} -u boltdesignsystem -p bolt
+        - travis_retry yarn gds -a failure -e ${TRAVIS_BRANCH}--${GIT_SHA}--commit-preview -r ${TRAVIS_BRANCH}
+        - travis_retry yarn gds -a failure -e ${TRAVIS_BRANCH}--branch-preview -r ${TRAVIS_BRANCH}
+      after_script:
+        - travis_retry yarn gds -a fail_if_unsuccessful -e ${TRAVIS_BRANCH}--${GIT_SHA}--commit-preview -r ${TRAVIS_BRANCH}
+        - travis_retry yarn gds -a fail_if_unsuccessful -e ${TRAVIS_BRANCH}--branch-preview -r ${TRAVIS_BRANCH}
 
     # full build + Nightwatch tests for non-feature branches + tagged releases
     - stage: Pre-deploy
@@ -108,19 +113,22 @@ jobs:
       if: (tag =~ ^v) OR (branch =~ /(master|release|bug|fix)/)
       install:
         - yarn run setup
+        - export GIT_SHA=$(./scripts/get-git-sha.js)
       before_script:
         - find . -name '.incache' -exec rm -rf {} +
       script:
         # - cd example-integrations/drupal-lab
         # - yarn run generate # generate static version of Drupal Lab in the integration folder
         # - cd ../../
-        - npx github-deploy-status --token ${GITHUB_TOKEN} -a create -e commit-preview -r ${TRAVIS_BRANCH} -u boltdesignsystem -p bolt
+        - travis_retry yarn gds -a create -e ${TRAVIS_BRANCH}--${GIT_SHA}--commit-preview -r ${TRAVIS_BRANCH}
         - yarn run build
-        - npx github-deploy-status --token ${GITHUB_TOKEN} -a in_progress -e commit-preview -r ${TRAVIS_BRANCH} -u boltdesignsystem -p bolt
+        - travis_retry yarn gds -a in_progress -e ${TRAVIS_BRANCH}--${GIT_SHA}--commit-preview -r ${TRAVIS_BRANCH}
         - yarn run deploy
       after_success:
         - export NOW_URL=$(./scripts/get-latest-deploy.js)
-        - npx github-deploy-status --token ${GITHUB_TOKEN} -a success -e commit-preview -r ${TRAVIS_BRANCH} -u boltdesignsystem -p bolt -l ${NOW_URL}
+        - travis_retry yarn gds -a success -e ${TRAVIS_BRANCH}--${GIT_SHA}--commit-preview -r ${TRAVIS_BRANCH} -l ${NOW_URL}
+      after_script:
+        - travis_retry yarn gds -a fail_if_unsuccessful -e ${TRAVIS_BRANCH}--${GIT_SHA}--commit-preview -r ${TRAVIS_BRANCH}
 
     - stage: Post-deploy
       name: 'Nightwatch End-to-End (Full)'
@@ -131,15 +139,17 @@ jobs:
       # before_script: ./scripts/check-run-in-progress.js 'Nightwatch'
       script:
         - export NOW_URL=$(./scripts/get-latest-deploy.js)
-        - npx github-deploy-status --token ${GITHUB_TOKEN} -a create -e branch-preview -r ${TRAVIS_BRANCH} -u boltdesignsystem -p bolt
-        - npx github-deploy-status --token ${GITHUB_TOKEN} -a in_progress -e branch-preview -r ${TRAVIS_BRANCH} -u boltdesignsystem -p bolt
+        - travis_retry yarn gds -a create -e ${TRAVIS_BRANCH}--branch-preview -r ${TRAVIS_BRANCH}
+        - travis_retry yarn gds -a in_progress -e ${TRAVIS_BRANCH}--branch-preview -r ${TRAVIS_BRANCH}
         - travis_retry yarn run test:e2e:full
       after_success:
         - ./scripts/deploy-branch-alias.js
         - export NOW_BRANCH_URL=$(./scripts/get-branch-alias.js)
-        - npx github-deploy-status --token ${GITHUB_TOKEN} -a success -e branch-preview -r ${TRAVIS_BRANCH} -u boltdesignsystem -p bolt -l ${NOW_BRANCH_URL}
+        - travis_retry yarn gds -a success -e ${TRAVIS_BRANCH}--branch-preview -r ${TRAVIS_BRANCH} -l ${NOW_BRANCH_URL}
         - ./scripts/deploy-tagged-release.js
         # - ./packages/testing/testing-nightwatch/nightwatch-report-results.js
+      after_script:
+        - travis_retry yarn gds -a fail_if_unsuccessful -e ${TRAVIS_BRANCH}--branch-preview -r ${TRAVIS_BRANCH}
 
     - stage: Auto-release
       name: 'Canary Release'
