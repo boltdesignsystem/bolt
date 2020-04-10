@@ -145,7 +145,7 @@ module.exports = class extends Generator {
           typeof program.description === 'string'
             ? program.description
             : () => {
-                return `The ${this.name.noCase} component - part of the Bolt Design System.`;
+                return `[Describe the ${this.name.titleCase} component]`;
               },
         when: !program.test,
         validate: input => {
