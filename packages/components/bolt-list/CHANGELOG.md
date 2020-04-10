@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.21.0](https://github.com/bolt-design-system/bolt/compare/v2.20.2...v2.21.0) (2020-04-08)
+
+
+### Bug Fixes
+
+* scope `width` hack to FF-only ([3d09773](https://github.com/bolt-design-system/bolt/commit/3d09773f2bfb18948a54c805f3c5541dd95ea57e))
+* test bolt-list without FF `width` hack ([c24560a](https://github.com/bolt-design-system/bolt/commit/c24560ab2ebb23e9c414d757ab28f505e78ff106))
+
+
+
+
+
 # [2.20.0](https://github.com/bolt-design-system/bolt/compare/v2.19.1...v2.20.0) (2020-03-18)
 
 **Note:** Version bump only for package @bolt/components-list

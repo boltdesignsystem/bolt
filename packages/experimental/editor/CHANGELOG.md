@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.21.0](https://github.com/bolt-design-system/bolt/compare/v2.20.2...v2.21.0) (2020-04-08)
+
+
+### Features
+
+* Update link component to use js schema ([351f2c8](https://github.com/bolt-design-system/bolt/commit/351f2c8bc51297218c6326ff39338494feaf2251))
+
+
+
+
+
 # [2.20.0](https://github.com/bolt-design-system/bolt/compare/v2.19.1...v2.20.0) (2020-03-18)
 
 
