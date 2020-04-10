@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.21.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-typeahead/compare/v2.21.0...v2.21.1) (2020-04-10)
+
+**Note:** Version bump only for package @bolt/components-typeahead
+
+
+
+
+
 # [2.21.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-typeahead/compare/v2.20.2...v2.21.0) (2020-04-08)
 
 **Note:** Version bump only for package @bolt/components-typeahead
