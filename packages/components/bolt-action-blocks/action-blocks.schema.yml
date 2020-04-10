@@ -4,15 +4,23 @@ type: object
 not:
   anyOf:
     - required:
-      - maxItemsPerRow
+        - maxItemsPerRow
     - required:
-      - align
+        - align
     - required:
-      - border
+        - border
 properties:
   attributes:
     type: object
     description: A Drupal-style attributes object with extra attributes to append to this component.
+  spacing:
+    type: string
+    description: Spacing surrounding each action block.
+    default: medium
+    enum:
+      - xsmall
+      - small
+      - medium
   max_items_per_row:
     type: number
     description: The max amount of items (action blocks) to be displayed in one row.
