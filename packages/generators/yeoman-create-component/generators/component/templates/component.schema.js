@@ -1,7 +1,6 @@
 module.exports = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: '<%= props.name.titleCase %>',
-  description: '<%= props.description %>',
   type: 'object',
   properties: {
     attributes: {
