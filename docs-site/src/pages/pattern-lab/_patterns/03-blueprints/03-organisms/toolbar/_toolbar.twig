@@ -36,9 +36,11 @@
   {% endif %}
 
   {% block content_after %}
-    {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--xsmall o-bolt-grid--right" %}
-      {% cell %}
-        <progress max="100" value="80">80%</progress>
+    {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--small o-bolt-grid--right" %}
+      {% cell 'o-bolt-grid__cell--middle' %}
+        {% include "@bolt-components-progress-bar/progress-bar.twig" with {
+          value: "80",
+        } only %}
       {% endcell %}
 
       {% cell %}

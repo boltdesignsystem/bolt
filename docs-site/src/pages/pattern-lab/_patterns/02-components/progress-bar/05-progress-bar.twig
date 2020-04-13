@@ -1,0 +1,66 @@
+{% include "@bolt-components-progress-bar/progress-bar.twig" with {
+  value: "0",
+} only %}
+
+{% include "@bolt-components-progress-bar/progress-bar.twig" with {
+  value: "50",
+  animated: true,
+} only %}
+
+{% include "@bolt-components-progress-bar/progress-bar.twig" with {
+  value: "75",
+  striped: true,
+} only %}
+
+{% include "@bolt-components-progress-bar/progress-bar.twig" with {
+  title: "Course Progress",
+  value: "75",
+} only %}
+
+{% include "@bolt-components-progress-bar/progress-bar.twig" with {
+  title: "Step",
+  value: 2,
+  min: 0,
+  max: 5,
+  valueText: "2 of 5",
+  valuePosition: "top",
+} only %}
+
+{% include "@bolt-components-progress-bar/progress-bar.twig" with {
+  value: "100",
+} only %}
+
+
+{# {% include "@bolt-components-progress-bar/progress-bar.twig" with {
+  value: "50",
+  indeterminate: true,
+} only %} #}
+
+{% include "@bolt-components-progress-bar/progress-bar.twig" with {
+  value: "50",
+  animated: true,
+  valuePosition: "top",
+  attributes: {
+    class: [
+      "js-animated-progress-bar"
+    ]
+  }
+} only %}
+
+
+<script>
+  window.addEventListener('load', function() {
+    var progressBar = document.querySelector('.js-animated-progress-bar');
+
+    var myVar = setInterval(myTimer, 250);
+
+    function myTimer() {
+      progressBar.value += 1;
+
+      if (progressBar.value >= progressBar.max){
+        clearInterval(myVar);
+        progressBar.animated = false;
+      }
+    }
+  });
+</script>
