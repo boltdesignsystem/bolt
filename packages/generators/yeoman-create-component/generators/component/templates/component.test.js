@@ -52,7 +52,7 @@ describe('<%= props.name.titleCase %>', () => {
     expect(results.html).toMatchSnapshot();
   });
 
-  test('renders w/ Shadow DOM', async function() {
+  test('renders with Shadow DOM', async function() {
     const shadowRoot = await page.evaluate(async () => {
       document.body.insertAdjacentHTML(
         'beforeend',
@@ -79,7 +79,7 @@ describe('<%= props.name.titleCase %>', () => {
     expect(image).toMatchImageSnapshot(vrtDefaultConfig);
   });
 
-  test('renders w/o Shadow DOM', async function() {
+  test('renders without Shadow DOM', async function() {
     const outerHTML = await page.evaluate(async () => {
       document.body.insertAdjacentHTML(
         'beforeend',
