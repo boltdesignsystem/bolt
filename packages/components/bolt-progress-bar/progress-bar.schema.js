@@ -9,64 +9,48 @@ module.exports = {
       description:
         'A Drupal attributes object. Applies extra HTML attributes to the outer &lt;bolt-progress-bar&gt; tag.',
     },
-    // Label indicating how the progress bar should be announced to the user
-    title: {
-      description: 'Text that displays above the Progress Bar.',
-      type: 'string',
-    },
-    variant: {
-      description: 'Style variant of the Progress Bar',
-      type: 'string',
-      enum: ['error', 'success', 'info', 'default'],
-    },
-    valuePosition: {
-      description: 'The position where the value text gets displayed.',
-      type: 'string',
-      default: 'outside',
-      enum: ['outside', 'top', 'none'],
-    },
-    valueText: {
-      description: 'Text description of current progress value to display instead of percentage.',
-      type: 'string',
-    },
-    size: {
-      description: 'The size of the Progress Bar component',
-      type: 'string',
-      enum: ['small', 'medium'],
-      default: 'small',
+    value: {
+      type: 'number',
+      description:
+        'Typically represents the value (from 0 to 100) of the percentage progressed.',
+      default: 0,
     },
     min: {
       type: 'number',
       description:
-        "The minimum value for the progress bar, used to calculate the amount that's filled in.",
+        "The minimum value allowed in the Progress Bar; used to calculate the amount that's currently filled in.",
       default: 0,
     },
     max: {
       type: 'number',
       description:
-        "The maximum value for the progress bar, used to calculate the amount that's filled in.",
+        "The maximum value allowed in the Progress Bar; used to calculate the amount that's filled in.",
       default: 100,
     },
-    value: {
-      type: 'number',
+    title: {
+      description: 'Optional text that displays above the Progress Bar.',
+      type: 'string',
+    },
+    valuePosition: {
       description:
-        'Represents the value (from 0 to 100) of the percentage progressed.',
-      default: 0,
+        'The position where the value text is displayed -- to the side, on top, or hidden entirely.',
+      type: 'string',
+      default: 'outside',
+      enum: ['outside', 'top', 'none'],
+    },
+    valueText: {
+      description:
+        'Alternative text description of the current progress value to display instead of the percentage default. Ex. "1 out of 5"',
+      type: 'string',
     },
     animated: {
       type: 'boolean',
       description:
-        'Enable the animated background. Also automatically sets "striped" to true',
+        'Enables the animated background to better indicate active progress. Note: this will also automatically set "striped" to true when enabled.',
     },
     striped: {
       type: 'boolean',
       description: 'Enables displaying a striped background.',
     },
-    // animated: {
-    //   type: 'Boolean',
-    //   description:
-    //     'Animates ',
-    //   default: 0,
-    // },
   },
 };
