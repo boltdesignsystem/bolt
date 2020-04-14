@@ -18,4 +18,5 @@ function addBoltCoreExtensions(\Twig\Environment &$env, $config) {
 
 function addBoltExtraExtensions(\Twig\Environment &$env, $config) {
   $env->addExtension(new \Bolt\TwigExtensions\BoltExtras());
+  $env->addExtension(new \Twig\Extension\StringLoaderExtension());
 }

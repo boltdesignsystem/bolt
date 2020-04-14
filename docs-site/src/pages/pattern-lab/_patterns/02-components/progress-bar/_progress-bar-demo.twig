@@ -1,0 +1,76 @@
+{% set uuid = random() %}
+{# {% set uuidTrigger = ".js-code-trigger--" ~ uuid %} #}
+{% set uuidTriggerTarget = "js-code-toggle--" ~ uuid %}
+{% set uuidTriggerTargetClass = "." ~ uuidTriggerTarget %}
+
+<div class="u-bolt-shadow-level-10 u-bolt-margin-small u-bolt-margin-bottom-medium">
+  <header class="t-bolt-light u-bolt-padding-small">
+    {% grid "o-bolt-grid--middle o-bolt-grid--flex u-bolt-flex-flow-none" %}
+      {% cell %}
+        {% include "@bolt-components-headline/headline.twig" with {
+          text: name,
+          size: "medium"
+        } only %}
+      {% endcell %}
+
+      {% if panels %}
+        {% cell "u-bolt-margin-left-auto" %}
+          {% include "@bolt-components-button/button.twig" with {
+            text: name,
+            iconOnly: true,
+            size: "small",
+            icon: {
+              name: "java",
+            },
+            onClick: "toggle",
+            onClickTarget: uuidTriggerTarget,
+            style: "text",
+          } only %}
+        {% endcell %}
+      {% endif %}
+    {% endgrid %}
+  </header>
+
+  <div class="t-bolt-xlight u-bolt-padding-small u-bolt-padding-top-medium u-bolt-padding-bottom-medium">
+    {{ example }}
+  </div>
+
+  {% if panels %}
+    <section class="u-bolt-hidden">
+      <hr class="u-bolt-margin-top-none u-bolt-margin-bottom-small">
+
+      {% set tabPanels = [] %}
+      {% for panel in panels %}
+        {% set tabPanels = tabPanels | merge([{
+          label: panel.label,
+          content: include("@bolt-components-code-snippet/code-snippet.twig", {
+            display: "block",
+            lang: panel.lang | default("html"),
+            content: panel.code
+          }, with_context = false),
+        }]) %}
+      {% endfor %}
+
+      {% include "@bolt-components-tabs/tabs.twig" with {
+        panels: tabPanels,
+        attributes: {
+          class: [
+            uuidTriggerTarget,
+          ]
+        }
+      } only %}
+    </section>
+  {% endif %}
+</div>
+
+<script>
+  window.addEventListener('load', function() {
+    const codeTabs = document.querySelector('{{ uuidTriggerTargetClass }}');
+    if (codeTabs){
+      codeTabs.toggle = function(){
+        this.closest('section').classList.toggle('u-bolt-hidden');
+        this.update(); // tabs don't render the priority+ nav menu correctly without this :-/
+      }
+    }
+  });
+</script>
