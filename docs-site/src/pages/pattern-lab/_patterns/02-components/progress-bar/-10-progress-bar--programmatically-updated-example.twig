@@ -1,0 +1,24 @@
+{% include "@bolt-components-button/button.twig" with {
+  text: "Click to reset",
+  icon: {
+    name: "refresh",
+    position: "after",
+  },
+  disabled: true,
+  attributes: {
+    class: [
+      "js-animated-progress-bar--reset"
+    ]
+  }
+} only %}
+
+{% include "@bolt-components-progress-bar/progress-bar.twig" with {
+  value: "50",
+  animated: true,
+  valuePosition: "top",
+  attributes: {
+    class: [
+      "js-animated-progress-bar"
+    ]
+  }
+} only %}

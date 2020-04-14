@@ -1,0 +1,48 @@
+{% grid "o-bolt-grid--flex u-bolt-flexwrap-nowrap" %}
+  {% cell %}
+    {% include "@bolt-components-button/button.twig" with {
+      text: "Go Back",
+      icon: {
+        name: "chevron-left"
+      },
+      disabled: true,
+      iconOnly: true,
+      attributes: {
+        class: [
+          "js-progress-bar-stepper--back"
+        ]
+      }
+    } only %}
+  {% endcell %}
+
+  {% cell %}
+    {% include "@bolt-components-progress-bar/progress-bar.twig" with {
+      title: "Step",
+      value: 1,
+      min: 1,
+      max: 5,
+      valueText: "1 of 5",
+      valuePosition: "top",
+      attributes: {
+        class: [
+          "js-progress-bar-stepper"
+        ]
+      }
+    } only %}
+  {% endcell %}
+
+  {% cell %}
+    {% include "@bolt-components-button/button.twig" with {
+      text: "Go Forward",
+      icon: {
+        name: "chevron-right"
+      },
+      iconOnly: true,
+      attributes: {
+        class: [
+          "js-progress-bar-stepper--forward"
+        ]
+      }
+    } only %}
+  {% endcell %}
+{% endgrid %}

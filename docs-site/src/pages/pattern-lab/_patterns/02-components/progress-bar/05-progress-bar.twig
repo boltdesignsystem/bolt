@@ -1,554 +1,252 @@
-{% set twigExample %}{% verbatim %}
-{% include "@bolt-components-progress-bar/progress-bar.twig" with {
-  value: "0",
-} only %}
-{% endverbatim %}{% endset %}
-
 {% include "@pl/_progress-bar-demo.twig" with {
   name: "Value: <code>0</code>",
-  example: include(template_from_string(twigExample)),
+  example: include("@pl/_20-progress-bar--values--0.twig"),
+  link: link["components-progress-bar--values"],
   panels: [
     {
       label: "Twig",
       lang: "twig",
-      code: source(twigExample|spaceless),
+      code: source("@pl/_20-progress-bar--values--0.twig"),
     },
     {
       lang: "html",
       label: "Web Component",
-      code: '<bolt-progress-bar value="0"></bolt-progress-bar>'
+      code: source("@pl/_20-progress-bar--values--0.html"),
     },
   ]
 } only %}
-
-
-{% set twigExample %}{% verbatim %}
-{% include "@bolt-components-progress-bar/progress-bar.twig" with {
-  value: "50",
-} only %}
-{% endverbatim %}{% endset %}
 
 {% include "@pl/_progress-bar-demo.twig" with {
   name: "Value: <code>50</code>",
-  example: include(template_from_string(twigExample)),
+  example: include("@pl/_20-progress-bar--values--50.twig"),
+  link: link["components-progress-bar--values"],
   panels: [
     {
       label: "Twig",
       lang: "twig",
-      code: source(twigExample|spaceless),
+      code: source("@pl/_20-progress-bar--values--50.twig"),
     },
     {
       lang: "html",
       label: "Web Component",
-      code: '<bolt-progress-bar value="50"></bolt-progress-bar>'
+      code: source("@pl/_20-progress-bar--values--50.html"),
     },
   ]
 } only %}
-
-
-
-{% set twigExample %}{% verbatim %}
-{% include "@bolt-components-progress-bar/progress-bar.twig" with {
-  value: "100",
-} only %}
-{% endverbatim %}{% endset %}
 
 {% include "@pl/_progress-bar-demo.twig" with {
   name: "Value: <code>100</code>",
-  example: include(template_from_string(twigExample)),
+  example: include("@pl/_20-progress-bar--values--100.twig"),
+  link: link["components-progress-bar--values"],
   panels: [
     {
       label: "Twig",
       lang: "twig",
-      code: source(twigExample|spaceless),
+      code: source("@pl/_20-progress-bar--values--100.twig"),
     },
     {
       lang: "html",
       label: "Web Component",
-      code: '<bolt-progress-bar value="100"></bolt-progress-bar>'
+      code: source("@pl/_20-progress-bar--values--100.html"),
     },
   ]
 } only %}
 
-
-
-{% set twigExample %}
-{% grid "o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--small o-bolt-grid--right" %}
-  {% cell "u-bolt-width-12/12 u-bolt-width-4/12@small" %}
-    {% embed "@bolt-components-toolbar/toolbar.twig" with {
-      size: "xsmall",
-      theme: "none",
-      gradientName: "indigo",
-    } %}
-      {% block content_before %}
-        {% grid "o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--small o-bolt-grid--right" %}
-          {% cell 'o-bolt-grid__cell--middle' %}
-            {% include "@bolt-components-progress-bar/progress-bar.twig" with {
-              value: "80",
-            } only %}
-          {% endcell %}
-        {% endgrid %}
-      {% endblock %}
-    {% endembed %}
-  {% endcell %}
-
-  {% cell "u-bolt-width-12/12 u-bolt-width-4/12@small" %}
-    {% embed "@bolt-components-toolbar/toolbar.twig" with {
-      size: "xsmall",
-      theme: "none",
-      gradientName: "orange",
-    } %}
-      {% block content_before %}
-        {% grid "o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--small o-bolt-grid--right" %}
-          {% cell 'o-bolt-grid__cell--middle' %}
-            {% include "@bolt-components-progress-bar/progress-bar.twig" with {
-              value: "80",
-            } only %}
-          {% endcell %}
-        {% endgrid %}
-      {% endblock %}
-    {% endembed %}
-  {% endcell %}
-
-  {% cell "u-bolt-width-12/12 u-bolt-width-4/12@small" %}
-    {% embed "@bolt-components-toolbar/toolbar.twig" with {
-      size: "xsmall",
-      theme: "none",
-      gradientName: "purple",
-    } %}
-      {% block content_before %}
-        {% grid "o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--small o-bolt-grid--right" %}
-          {% cell 'o-bolt-grid__cell--middle' %}
-            {% include "@bolt-components-progress-bar/progress-bar.twig" with {
-              value: "80",
-            } only %}
-          {% endcell %}
-        {% endgrid %}
-      {% endblock %}
-    {% endembed %}
-  {% endcell %}
-{% endgrid %}
-{% endset %}
 
 {% include "@pl/_progress-bar-demo.twig" with {
   name: "Toolbar / Theming",
-  example: twigExample,
+  example: include("@pl/-60-progress-bar--theming.twig"),
+  link: link["components-progress-bar--theming"],
 } only %}
 
 <hr>
-
-
-{% set twigExample %}{% verbatim %}
-{% include "@bolt-components-progress-bar/progress-bar.twig" with {
-  min: 1,
-  max: 10,
-  value: 5,
-} only %}
-{% endverbatim %}{% endset %}
 
 {% include "@pl/_progress-bar-demo.twig" with {
   name: "Min / Max",
-  example: include(template_from_string(twigExample)),
+  example: include("@pl/-50-progress-bar--min-max.twig"),
+  link: link["components-progress-bar--min-max"],
   panels: [
     {
       label: "Twig",
       lang: "twig",
-      code: source(twigExample|spaceless),
+      code: source("@pl/-50-progress-bar--min-max.twig"),
     },
     {
       lang: "html",
       label: "Web Component",
-      code: '<bolt-progress-bar min="1" max="10" value="5"></bolt-progress-bar>'
+      code: source("@pl/-50-progress-bar--min-max.html"),
     },
   ]
 } only %}
 
 <hr>
 
-{% set twigExample %}{% verbatim %}
-{% include "@bolt-components-progress-bar/progress-bar.twig" with {
-  value: "75",
-  striped: true,
-} only %}
-{% endverbatim %}{% endset %}
-
 {% include "@pl/_progress-bar-demo.twig" with {
-  name: "Striped: <code>true</code>",
-  example: include(template_from_string(twigExample)),
+  name: "Striped",
+  example: include("@pl/-40-progress-bar--striped.twig"),
+  link: link["components-progress-bar--striped"],
   panels: [
     {
       label: "Twig",
       lang: "twig",
-      code: source(twigExample|spaceless),
+      code: source("@pl/-40-progress-bar--striped.twig"),
     },
     {
       lang: "html",
       label: "Web Component",
-      code: '<bolt-progress-bar striped value="75"></bolt-progress-bar>'
+      code: source("@pl/-40-progress-bar--striped.html"),
     },
   ]
 } only %}
 
-
-{% set twigExample %}{% verbatim %}
-{% include "@bolt-components-progress-bar/progress-bar.twig" with {
-  value: "50",
-  animated: true,
-} only %}
-{% endverbatim %}{% endset %}
-
 {% include "@pl/_progress-bar-demo.twig" with {
-  name: "Animated: <code>true</code>",
-  example: include(template_from_string(twigExample)),
+  name: "Animated",
+  example: include("@pl/-40-progress-bar--animated.twig"),
+  link: link["components-progress-bar--animated"],
   panels: [
     {
       label: "Twig",
       lang: "twig",
-      code: source(twigExample|spaceless),
+      code: source("@pl/-40-progress-bar--animated.twig"),
     },
     {
       lang: "html",
       label: "Web Component",
-      code: '<bolt-progress-bar animated value="50"></bolt-progress-bar>'
+      code: source("@pl/-40-progress-bar--animated.html"),
     },
   ]
 } only %}
 
-
-
-{% set twigSource %}{% verbatim %}
-
-{% include "@bolt-components-progress-bar/progress-bar.twig" with {
-  value: "75",
-  title: "Course Progress",
-} only %}
-
-{% endverbatim %}{% endset %}
 
 {% include "@pl/_progress-bar-demo.twig" with {
   name: "With Title",
-  example: include(template_from_string(twigSource)),
+  example: include("@pl/-30-progress-bar--with-title.twig"),
+  link: link["components-progress-bar--with-title"],
   panels: [
     {
       label: "Twig",
       lang: "twig",
-      code: twigSource
+      code: source("@pl/-30-progress-bar--with-title.twig"),
     },
     {
       lang: "html",
       label: "Web Component",
-      code: '<bolt-progress-bar title="Course Progress" value="75"></bolt-progress-bar>'
+      code: source("@pl/-30-progress-bar--with-title.html"),
     },
   ]
 } only %}
 
 
-{% set twigSource %}{% verbatim %}
-{% include "@bolt-components-progress-bar/progress-bar.twig" with {
-  valuePosition: "top",
-  value: "75",
+{% include "@pl/_progress-bar-demo.twig" with {
+  name: "With Title + Value Position: <code>top</code>",
+  example: include("@pl/-30-progress-bar--with-title-plus-value-position-top.twig"),
+  link: link["components-progress-bar--with-title-plus-value-position-top"],
+  panels: [
+    {
+      label: "Twig",
+      lang: "twig",
+      code: source("@pl/-30-progress-bar--with-title-plus-value-position-top.twig"),
+    },
+    {
+      lang: "html",
+      label: "Web Component",
+      code: source("@pl/-30-progress-bar--with-title-plus-value-position-top.html"),
+    },
+  ]
 } only %}
-{% endverbatim %}{% endset %}
+
+
 
 {% include "@pl/_progress-bar-demo.twig" with {
   name: "No Title + valuePosition: <code>top</code>",
-  example: include(template_from_string(twigSource)),
+  example: include("@pl/-10-progress-bar--no-title-plus-value-position-top.twig"),
+  link: link["components-progress-bar--no-title-plus-value-position-top"],
   panels: [
     {
       label: "Twig",
       lang: "twig",
-      code: twigSource
+      code: source("@pl/-10-progress-bar--no-title-plus-value-position-top.twig"),
     },
     {
       lang: "html",
       label: "Web Component",
-      code: '<bolt-progress-bar value-position="top" value="75"></bolt-progress-bar>'
+      code: source("@pl/-10-progress-bar--no-title-plus-value-position-top.html"),
     },
   ]
 } only %}
-
-
-
-
-{% set twigSource %}{% verbatim %}
-{% include "@bolt-components-progress-bar/progress-bar.twig" with {
-  title: "Course Progress",
-  valuePosition: "none",
-  value: "75",
-} only %}
-{% endverbatim %}{% endset %}
-
-{% include "@pl/_progress-bar-demo.twig" with {
-  name: "With Title + valuePosition: <code>none</code>",
-  example: include(template_from_string(twigSource)),
-  panels: [
-    {
-      label: "Twig",
-      lang: "twig",
-      code: twigSource
-    },
-    {
-      lang: "html",
-      label: "Web Component",
-      code: '<bolt-progress-bar title="Course Progress" value-position="none" value="75"></bolt-progress-bar>'
-    },
-  ]
-} only %}
-
-
-
-
-{% set twigSource %}{% verbatim %}
-{% include "@bolt-components-progress-bar/progress-bar.twig" with {
-  valuePosition: "none",
-  value: "75",
-} only %}
-{% endverbatim %}{% endset %}
 
 {% include "@pl/_progress-bar-demo.twig" with {
   name: "No Title + valuePosition: <code>none</code>",
-  example: include(template_from_string(twigSource)),
+  example: include("@pl/-10-progress-bar--no-title-plus-value-position-none.twig"),
+  link: link["components-progress-bar--no-title-plus-value-position-none"],
   panels: [
     {
       label: "Twig",
       lang: "twig",
-      code: twigSource
+      code: source("@pl/-10-progress-bar--no-title-plus-value-position-none.twig"),
     },
     {
       lang: "html",
       label: "Web Component",
-      code: '<bolt-progress-bar value-position="none" value="75"></bolt-progress-bar>'
+      code: source("@pl/-10-progress-bar--no-title-plus-value-position-none.html"),
     },
   ]
 } only %}
-
-
-
-
-{% set twigSource %}{% verbatim %}
-{% include "@bolt-components-progress-bar/progress-bar.twig" with {
-  valuePosition: "outside",
-  value: "75",
-} only %}
-{% endverbatim %}{% endset %}
 
 {% include "@pl/_progress-bar-demo.twig" with {
   name: "No Title + valuePosition: <code>outside</code> (Default)",
-  example: include(template_from_string(twigSource)),
+  example: include("@pl/-10-progress-bar--no-title-plus-value-position-outside.twig"),
+  link: link["components-progress-bar--no-title-plus-value-position-outside"],
   panels: [
     {
       label: "Twig",
       lang: "twig",
-      code: twigSource
+      code: source("@pl/-10-progress-bar--no-title-plus-value-position-outside.twig"),
     },
     {
       lang: "html",
       label: "Web Component",
-      code: '<bolt-progress-bar value-position="outside" value="75"></bolt-progress-bar>'
+      code: source("@pl/-10-progress-bar--no-title-plus-value-position-outside.html"),
     },
   ]
 } only %}
 
 
 <hr>
-
-
-
-{% set twigSource %}{% verbatim %}
-{% grid "o-bolt-grid--flex u-bolt-flexwrap-nowrap" %}
-  {% cell %}
-    {% include "@bolt-components-button/button.twig" with {
-      text: "Go Back",
-      icon: {
-        name: "chevron-left"
-      },
-      disabled: true,
-      iconOnly: true,
-      attributes: {
-        class: [
-          "js-progress-bar-stepper--back"
-        ]
-      }
-    } only %}
-  {% endcell %}
-
-  {% cell %}
-    {% include "@bolt-components-progress-bar/progress-bar.twig" with {
-      title: "Step",
-      value: 1,
-      min: 1,
-      max: 5,
-      valueText: "1 of 5",
-      valuePosition: "top",
-      attributes: {
-        class: [
-          "js-progress-bar-stepper"
-        ]
-      }
-    } only %}
-  {% endcell %}
-
-  {% cell %}
-    {% include "@bolt-components-button/button.twig" with {
-      text: "Go Forward",
-      icon: {
-        name: "chevron-right"
-      },
-      iconOnly: true,
-      attributes: {
-        class: [
-          "js-progress-bar-stepper--forward"
-        ]
-      }
-    } only %}
-  {% endcell %}
-{% endgrid %}
-{% endverbatim %}{% endset %}
-
-{% set jsSource %}{% verbatim %}
-<script>
-  window.addEventListener('load', function() {
-    var progressBar = document.querySelector('.js-progress-bar-stepper');
-
-    var progressBarBackward = document.querySelector('.js-progress-bar-stepper--back');
-    var progressBarForward = document.querySelector('.js-progress-bar-stepper--forward');
-
-    function updateProgressText(){
-      progressBar.valueText = `${progressBar.value} of ${progressBar.max}`;
-    }
-
-    progressBarBackward.addEventListener('click', ()=> {
-      if (progressBar.value > progressBar.min) {
-        progressBar.value = progressBar.value - 1;
-        updateProgressText();
-      }
-    });
-
-    progressBarForward.addEventListener('click', ()=> {
-      if (progressBar.value < progressBar.max) {
-        progressBar.value = progressBar.value + 1;
-        updateProgressText();
-      }
-    });
-
-    progressBar.addEventListener('rendered', function(){
-      if (progressBar.value === progressBar.min) {
-        progressBarBackward.setAttribute('disabled', '');
-      }
-
-      if (progressBar.value === progressBar.max) {
-        progressBarForward.setAttribute('disabled', '');
-      }
-
-      if (progressBar.value > progressBar.min) {
-        progressBarBackward.removeAttribute('disabled');
-      }
-
-      if (progressBar.value < progressBar.max) {
-        progressBarForward.removeAttribute('disabled');
-      }
-    });
-  });
-</script>
-{% endverbatim %}{% endset %}
 
 {% include "@pl/_progress-bar-demo.twig" with {
   name: "Stepper Example",
-  example: include(template_from_string(twigSource)) ~ include(template_from_string(jsSource)),
+  example: include("@pl/-15-progress-bar--stepper-example.twig"),
+  link: link["components-progress-bar--stepper-example"],
   panels: [
     {
       label: "Source",
       lang: "twig",
-      code: twigSource
+      code: source("@pl/-15-progress-bar--stepper-example.twig"),
     },
     {
-      lang: "js",
       label: "JavaScript",
-      code: jsSource,
+      lang: "js",
+      code: source("@pl/-15-progress-bar--stepper-example.js"),
     },
   ]
 } only %}
-
-
 <hr>
 
-
-
-{% set twigSource %}{% verbatim %}
-{% include "@bolt-components-button/button.twig" with {
-  text: "Click to reset",
-  icon: {
-    name: "refresh",
-    position: "after",
-  },
-  disabled: true,
-  attributes: {
-    class: [
-      "js-animated-progress-bar--reset"
-    ]
-  }
-} only %}
-
-{% include "@bolt-components-progress-bar/progress-bar.twig" with {
-  value: "50",
-  animated: true,
-  valuePosition: "top",
-  attributes: {
-    class: [
-      "js-animated-progress-bar"
-    ]
-  }
-} only %}
-{% endverbatim %}{% endset %}
-
-{% set jsSource %}{% verbatim %}
-<script>
-  window.addEventListener('load', function() {
-    const progressBar = document.querySelector('.js-animated-progress-bar');
-    const progressBarReset = document.querySelector('.js-animated-progress-bar--reset');
-    let progressBarInitialValue;
-
-    function autoIncrementProgressBar(){
-      progressBarInitialValue = progressBar.value;
-      const myVar = setInterval(myTimer, 250);
-
-      function myTimer() {
-        progressBar.value += 1;
-
-        if (progressBar.value >= progressBar.max){
-          clearInterval(myVar);
-          progressBar.animated = false;
-          progressBarReset.removeAttribute('disabled');
-        }
-      }
-    }
-    autoIncrementProgressBar();
-
-    if (progressBarReset){
-      progressBarReset.addEventListener('click', () => {
-        progressBar.value = progressBarInitialValue;
-        progressBar.animated = true;
-        progressBarReset.setAttribute('disabled', '');
-        autoIncrementProgressBar();
-      });
-    }
-  });
-</script>
-{% endverbatim %}{% endset %}
-
 {% include "@pl/_progress-bar-demo.twig" with {
-  name: "Programatically Updated Example",
-  example: include(template_from_string(twigSource)) ~ include(template_from_string(jsSource)),
+  name: "Programmatically Updated",
+  example: include("@pl/-10-progress-bar--programmatically-updated-example.twig"),
+  link: link["components-progress-bar--programmatically-updated-example"],
   panels: [
     {
       label: "Source",
       lang: "twig",
-      code: twigSource
+      code: source("@pl/-10-progress-bar--programmatically-updated-example.twig"),
     },
     {
       label: "JavaScript",
       lang: "js",
-      code: jsSource,
+      code: source("@pl/-10-progress-bar--programmatically-updated-example.js"),
     },
   ]
 } only %}

@@ -5,26 +5,50 @@
 
 <div class="u-bolt-shadow-level-10 u-bolt-margin-small u-bolt-margin-bottom-medium">
   <header class="t-bolt-light u-bolt-padding-small">
-    {% grid "o-bolt-grid--middle o-bolt-grid--flex u-bolt-flex-flow-none" %}
-      {% cell %}
+    {% grid "o-bolt-grid--middle o-bolt-grid--xsmall o-bolt-grid--flex u-bolt-flex-flow-none o-bolt-grid--right" %}
+      {% cell "u-bolt-margin-right-auto" %}
         {% include "@bolt-components-headline/headline.twig" with {
           text: name,
-          size: "medium"
+          size: "medium",
+          url: link | default(false),
+          icon: "none",
         } only %}
       {% endcell %}
 
+      {% if link %}
+        {% cell %}
+          {% include "@bolt-components-tooltip/tooltip.twig" with {
+            trigger: include("@bolt-components-button/button.twig", {
+              text: "Open Pattern In A New Window",
+              target: "_blank",
+              iconOnly: true,
+              url: link,
+              size: "small",
+              icon: {
+                name: "external-link",
+              },
+              style: "text",
+            }),
+            content: "Open Pattern In a New Window",
+          } only %}
+        {% endcell %}
+      {% endif %}
+
       {% if panels %}
-        {% cell "u-bolt-margin-left-auto" %}
-          {% include "@bolt-components-button/button.twig" with {
-            text: name,
-            iconOnly: true,
-            size: "small",
-            icon: {
-              name: "java",
-            },
-            onClick: "toggle",
-            onClickTarget: uuidTriggerTarget,
-            style: "text",
+        {% cell %}
+          {% include "@bolt-components-tooltip/tooltip.twig" with {
+            trigger: include("@bolt-components-button/button.twig", {
+              text: "Show / Hide Code",
+              iconOnly: true,
+              size: "small",
+              icon: {
+                name: "java",
+              },
+              onClick: "toggle",
+              onClickTarget: uuidTriggerTarget,
+              style: "text",
+            }),
+            content: "Show / Hide Code",
           } only %}
         {% endcell %}
       {% endif %}
