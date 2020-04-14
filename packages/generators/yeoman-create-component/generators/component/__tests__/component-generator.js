@@ -8,7 +8,7 @@ const dirs = {
     'packages/generators/yeoman-create-component/generators/component/tmp',
   js: 'test.js',
   scss: 'test.scss',
-  test: 'index.js',
+  test: 'test.js',
   package: 'package.json',
   readme: 'README.md',
   schema: 'test.schema.js',
