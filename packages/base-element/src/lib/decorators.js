@@ -1,5 +1,5 @@
-import { camelCase } from 'camel-case';
-import { paramCase } from 'param-case';
+import camelCase from 'camel-case';
+import paramCase from 'param-case';
 import styleInjector from './style-injector';
 import { getComponentRootElement, shouldUseShadowDom } from './utils';
 
