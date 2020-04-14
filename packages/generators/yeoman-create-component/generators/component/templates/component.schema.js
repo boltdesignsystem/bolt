@@ -12,6 +12,7 @@ module.exports = {
       type: 'boolean',
       description:
         'Default `disabled` prop supported globally by most Bolt components.',
+      default: false,
     },
   },
 };
