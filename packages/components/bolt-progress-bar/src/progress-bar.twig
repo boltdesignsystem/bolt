@@ -46,6 +46,6 @@
     <div class="c-bolt-progress-bar__track">
       <span class="{{ fillClasses | join(' ')}}" style="transform: translate3d({{valuePercent|abs}}%, 0, 0) translate3d(-100%, 0, 0);"></span>
     </div>
-    {% if this.data.value_position != 'none' %}<div class="c-bolt-progress-bar__value">{{ this.data.value_text ? this.data.value_text : valuePercent|abs  ~ "%" }}</div>{% endif %}
+    {% if this.data.value_position != 'none' %}<div class="c-bolt-progress-bar__value">{{ this.data.value_text ? this.data.value_text : valuePercent|round|abs  ~ "%" }}</div>{% endif %}
   </div>
 </bolt-progress-bar>
