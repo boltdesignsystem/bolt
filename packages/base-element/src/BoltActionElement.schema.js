@@ -15,6 +15,7 @@ module.exports = {
       description:
         'A valid HTML target attribute to modify the behavior when clicking this element.  Only valid when "url" is also present.',
       enum: ['_blank', '_self', '_parent', '_top', 'framename'],
+      default: '_self',
     },
     disabled: {
       type: 'boolean',

@@ -1,3 +1,5 @@
+import { camelCase } from 'camel-case';
+import { paramCase } from 'param-case';
 import styleInjector from './style-injector';
 import { getComponentRootElement, shouldUseShadowDom } from './utils';
 
@@ -12,8 +14,31 @@ import { getComponentRootElement, shouldUseShadowDom } from './utils';
  */
 const convertInitialClass = (tags, moveChildrenToRoot, clazz) => {
   return class extends clazz {
+    // returns a set of key:value pairs of component properties with an `alias` name defined
+    static get propAliases() {
+      if (!this.properties) return {};
+
+      // reuse aliases if this runs more than once
+      if (this.propertyAliases) {
+        return this.propertyAliases;
+      } else {
+        this.propertyAliases = {};
+        this.propertyAliases = Object.keys(this.properties).reduce(
+          (obj, key) => {
+            if (this.properties[key].alias) {
+              obj[this.properties[key].alias] = key;
+            }
+            return obj;
+          },
+          {},
+        );
+        return this.propertyAliases;
+      }
+    }
+
+    // one-time-only processing of SSR'd HTML -- mostly to retain any extra HTML attributes added
+    // + use original HTML attribute values to define component prop defaults
     connectedCallback() {
-      super.connectedCallback && super.connectedCallback();
       // Make sure the component ONLY ever reuses any existing HTML ONCE.
       if (
         (this._wasInitiallyRendered === false ||
@@ -24,6 +49,9 @@ const convertInitialClass = (tags, moveChildrenToRoot, clazz) => {
         let rootElement = getComponentRootElement(this.childNodes, tags);
 
         if (rootElement) {
+          // collect any extra HTML attributes from the rootElement to retain when rendering
+          this.rootElementAttributes = {};
+
           this.rootElement = document.createDocumentFragment();
 
           if (moveChildrenToRoot) {
@@ -35,8 +63,38 @@ const convertInitialClass = (tags, moveChildrenToRoot, clazz) => {
 
           this.rootElement.appendChild(rootElement);
           this._convertedInitialTags = true;
+
+          const attributes = Array.from(
+            this.rootElement.firstChild.attributes,
+          ).filter(attribute => attribute.name !== 'style');
+
+          // collect any original HTML attributes off of the rootElement
+          attributes.forEach(item => {
+            let propNameFromAttribute;
+
+            // rename any HTML attributes that match property aliases defined
+            if (
+              this.constructor.propAliases &&
+              Object.keys(this.constructor.propAliases).includes(item.name)
+            ) {
+              propNameFromAttribute = this.constructor.propAliases[item.name];
+            } else {
+              propNameFromAttribute = item.name;
+            }
+
+            // use the initial HTML elem's attribute value as prop default if not already defined
+            if (!this[propNameFromAttribute]) {
+              this[propNameFromAttribute] = item.value;
+            }
+
+            // extra HTML attributes to include on the rendered <a> tag
+            this.rootElementAttributes[item.name] = item.value;
+          });
         }
       }
+
+      // call super AFTER prep work so we can use this initial element within a component's connectedCallback
+      super.connectedCallback && super.connectedCallback();
     }
   };
 };
@@ -298,3 +356,115 @@ export const renderAndRenderedEvents = () => classOrDescriptor =>
   typeof classOrDescriptor === 'function'
     ? legacyRenderEventDecorator(classOrDescriptor)
     : standardRenderEventDecorator(classOrDescriptor);
+
+/**
+ * A Class decorator that extends the LitElement to support using a JSON schema for automatically configuring component props.
+ *
+ * @param {Class} clazz - The original Class to extend
+ * @returns {Class} - The extended Class with this.props + default props auto-added
+ */
+const jsonSchemaPropsDecorator = clazz => {
+  return class extends clazz {
+    constructor() {
+      super();
+
+      // set the WC's prop defaults based on the schema defaults
+      if (this.constructor.defaultProps) {
+        for (const key in this.constructor.defaultProps) {
+          let value = this.constructor.defaultProps[key];
+          this[key] = value;
+        }
+      }
+    }
+
+    // uses the static schema data passed to to generate default property data
+    static get props() {
+      this.defaultProps = this.defaultProps || {};
+
+      if (!this.schema) {
+        return {};
+      }
+
+      const props = {};
+      for (const key in this.schema.properties) {
+        let property = this.schema.properties[key];
+
+        // skip any schema properties marked as being deprecated
+        if (
+          !property.title ||
+          (!property.title.includes('deprecated') &&
+            !property.title.includes('DEPRECATED'))
+        ) {
+          // @todo: skip any twig only schema properties such as `attributes`, `content`, `items`
+          const propName = camelCase(key);
+
+          if (property.default) {
+            this.defaultProps[propName] = property.default;
+          }
+
+          let propType;
+
+          // map the JSON schema property type to LitElement property types
+          // see https://lit-element.polymer-project.org/guide/properties#declare for more info
+          switch (property.type) {
+            case 'boolean':
+              propType = Boolean;
+              break;
+            case 'string':
+              propType = String;
+              break;
+            case 'number':
+              propType = Number;
+              break;
+            case 'array':
+              propType = Array;
+              break;
+            case 'object':
+              propType = Object;
+              break;
+            case undefined:
+              propType = String;
+              break;
+
+            // @todo: re-evaluate this switch default for handling `any` + multi-types
+            default:
+              propType = Object;
+              break;
+          }
+
+          props[propName] = {
+            type: propType,
+            reflect: property.reflect ? true : false,
+            attribute: paramCase(propName),
+          };
+        }
+      }
+
+      return props;
+    }
+  };
+};
+
+const legacyJsonSchemaPropsDecorator = clazz => {
+  return jsonSchemaPropsDecorator(clazz);
+};
+
+const standardJsonSchemaPropsDecorator = descriptor => {
+  const { kind, elements } = descriptor;
+  return {
+    kind,
+    elements,
+    finisher(clazz) {
+      return jsonSchemaPropsDecorator(clazz);
+    },
+  };
+};
+
+/**
+ * Class decorator factory that adds JSON schema support to the LitElement-based web component
+ * Automatically uses the appropriate decorator syntax based on what's supported / how the code is being compiled.
+ */
+export const jsonSchemaProps = () => classOrDescriptor =>
+  typeof classOrDescriptor === 'function'
+    ? legacyJsonSchemaPropsDecorator(classOrDescriptor)
+    : standardJsonSchemaPropsDecorator(classOrDescriptor);
