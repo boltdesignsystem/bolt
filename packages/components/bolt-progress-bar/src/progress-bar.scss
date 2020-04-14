@@ -16,36 +16,32 @@ bolt-progress-bar {
   width: 100%;
   overflow: hidden;
   vertical-align: top;
-  grid-gap: 10px;
+  grid-gap: bolt-v-spacing(small);
   grid-auto-flow: dense;
   grid-template-columns: 1fr auto;
 }
 
 .c-bolt-progress-bar__track {
+  align-self: center;
   box-sizing: border-box;
   position: relative;
   width: 100%;
-  height: 11px;
+  height: 0.7rem;
   overflow: hidden;
   grid-column: 1 / 2;
-  grid-row-start: none;
-  border: 1px solid black;
-  border-radius: 20rem;
-  box-shadow: inset 0 2px 3px 0 rgba(0, 0, 0, 0.25), inset 0 1px 3px 0 rgba(0, 0, 0, 0.5);
+  grid-row: auto;
+  border: 1px solid bolt-color(black);
+  border-radius: bolt-border-radius(full);
+  box-shadow: inset 0 2px 3px 0 rgba(bolt-color(black), 0.25), inset 0 1px 3px 0 rgba(bolt-color(black), 0.5);
   background-color: rgba(bolt-color(gray, xdark), 0.5);
+
+  &:last-child {
+    grid-column: 1/3;
+  }
 
   .c-bolt-progress-bar--none,
   .c-bolt-progress-bar--top & {
     grid-column: 1 / 3;
-  }
-}
-
-@keyframes animatedProgressBarBackground {
-  0% {
-    background-position: 0 0;
-  }
-  100% {
-    background-position: 50px 50px;
   }
 }
 
@@ -58,10 +54,10 @@ bolt-progress-bar {
   display: block;
   transform: translate3d(0, 0, 0);
   width: 100%;
-  height: .5rem;
+  height: 100%;
   border-radius: 20rem;
-  box-shadow: 1px 0 1px 0 rgba(0, 0, 0, 0.22);
-  background-color: rgba(255, 255, 255, 0.75);
+  box-shadow: 1px 0 1px 0 rgba(bolt-color(black), 0.22);
+  background-color: rgba(bolt-color(white), 0.75);
   will-change: transform;
   transition: transform .2s linear, background-color .2s linear;
 
@@ -77,11 +73,11 @@ bolt-progress-bar {
     pointer-events: none;
     background-image: linear-gradient(
       -45deg,
-      rgba(0, 0, 0, 0.1) 25%,
+      rgba(bolt-color(black), 0.1) 25%,
       transparent 25%,
       transparent 50%,
-      rgba(0, 0, 0, 0.1) 50%,
-      rgba(0, 0, 0, 0.1) 75%,
+      rgba(bolt-color(black), 0.1) 50%,
+      rgba(bolt-color(black), 0.1) 75%,
       transparent 75%,
       transparent
     );
@@ -89,6 +85,7 @@ bolt-progress-bar {
     transition: all .2s linear;
   }
 
+  // @todo: refactor this once we have more fully baked variants (success, etc) since this technically shouldn't change color when it hits 100%...
   &--at-max {
     background-color: #6dd400;
   }
@@ -107,7 +104,11 @@ bolt-progress-bar {
 }
 
 .c-bolt-progress-bar__title {
-  margin-inline-emd: bolt-spacing(xsmall);
+  margin-inline-end: bolt-spacing(xsmall);
+  .c-bolt-progress-bar--none &,
+  .c-bolt-progress-bar--outside & {
+    grid-column: 1 / 3;
+  }
 }
 
 .c-bolt-progress-bar__title,
@@ -115,17 +116,25 @@ bolt-progress-bar {
   @include bolt-font-size(xsmall, tight);
   @include bolt-font-weight(semibold);
   align-self: center;
-  line-height: 1;
+  margin-bottom: 1px; // workaround to ~1px of text getting chopped off at the bottom
   text-align: start;
 }
 
 .c-bolt-progress-bar__value {
   margin-inline-start: bolt-spacing(xsmall);
-  grid-row: 2 / 2;
   grid-column: 2 / 2;
 
   .c-bolt-progress-bar--top & {
     grid-column: 2 / 2;
     grid-row: 1 / 2;
+  }
+}
+
+@keyframes animatedProgressBarBackground {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 50px 50px;
   }
 }

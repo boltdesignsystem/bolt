@@ -1,7 +1,13 @@
-import { unsafeCSS, html, customElement, BoltElement } from '@bolt/element';
+import {
+  unsafeCSS,
+  html,
+  customElement,
+  BoltElement,
+  ifDefined,
+} from '@bolt/element';
 import classNames from 'classnames/bind';
 import progressStyles from './progress-bar.scss';
-//import schema from '../progress-bar.schema.yml';
+import schema from '../progress-bar.schema.js';
 
 let cx = classNames.bind(progressStyles);
 
@@ -11,51 +17,21 @@ class BoltProgressBar extends BoltElement {
     return [unsafeCSS(progressStyles)];
   }
 
+  static schema = schema;
+
   static get properties() {
     return {
-      title: {
-        type: String,
-      },
-      min: {
-        type: Number,
-        default: 0,
-      },
-      max: {
-        type: Number,
-      },
-      value: {
-        type: Number,
-      },
-      indeterminate: {
-        type: Boolean,
-      },
-      animated: {
-        type: Boolean,
-      },
-      striped: {
-        type: Boolean,
-      },
-      valueText: {
-        type: String,
-        attribute: 'value-text',
-      },
-      valuePosition: {
-        type: String,
-        attribute: 'value-position',
-      },
+      ...this.props,
     };
   }
 
-  constructor() {
-    super();
-    this.min = 0;
-    this.max = 100;
-    this.value = 0;
+  connectedCallback(){
+    super.connectedCallback && super.connectedCallback();
+    this.innerHTML = ''; // everything gets rendered based on the props passed in so no need to use a boatload of replace-with-children helpers
   }
 
   render() {
     const classes = cx('c-bolt-progress-bar', {
-      [`c-bolt-progress-bar--indeterminate`]: this.indeterminate,
       [`c-bolt-progress-bar--striped`]: this.striped || this.animated,
       [`c-bolt-progress-bar--animated`]: this.animated,
       [`c-bolt-progress-bar--${this.valuePosition || 'outside'}`]: this
@@ -84,18 +60,16 @@ class BoltProgressBar extends BoltElement {
       <div
         role="progressbar"
         class="${classes}"
-        aria-valuemin="${this.min}"
+        aria-valuemin="${this.min || 0}"
         aria-valuemax="${this.max}"
         aria-valuenow="${this.value}"
-        aria-label="${this.title}"
+        aria-label="${ifDefined(this.title)}"
       >
-        ${this.title &&
-          html`
-            <div class="c-bolt-progress-bar__title">${this.title}</div>
-          `}
-        <div class="c-bolt-progress-bar__value">
-          ${this.valueText ? this.valueText : `${this.value}%`}
-        </div>
+        ${this.title !== undefined
+          ? html`
+              <div class="c-bolt-progress-bar__title">${this.title}</div>
+            `
+          : ''}
         <div class="c-bolt-progress-bar__track">
           <span
             class="${fillClasses}"
@@ -103,6 +77,16 @@ class BoltProgressBar extends BoltElement {
           >
           </span>
         </div>
+
+        ${this.valuePosition !== 'none'
+          ? html`
+              <div class="c-bolt-progress-bar__value">
+                ${this.valueText
+                  ? this.valueText
+                  : `${Math.round(valuePercent)}%`}
+              </div>
+            `
+          : ''}
       </div>
     `;
   }
