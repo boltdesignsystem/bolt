@@ -226,7 +226,9 @@ module.exports = class extends Generator {
     // basic component Jest tests
     this.fs.copyTpl(
       this.templatePath('component.test.js'),
-      this.destinationPath(`${this.props.dest}/__tests__/index.js`),
+      this.destinationPath(
+        `${this.props.dest}/__tests__/${this.props.name.kebabCase}.js`,
+      ),
       { props: this.props },
     );
 
