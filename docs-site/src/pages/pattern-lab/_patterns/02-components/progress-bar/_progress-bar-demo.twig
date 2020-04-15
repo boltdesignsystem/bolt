@@ -3,13 +3,17 @@
 {% set uuidTriggerTarget = "js-code-toggle--" ~ uuid %}
 {% set uuidTriggerTargetClass = "." ~ uuidTriggerTarget %}
 
-<div class="u-bolt-shadow-level-10 u-bolt-margin-small u-bolt-margin-bottom-medium">
-  <header class="t-bolt-light u-bolt-padding-small">
+{% set themeSwitcher = themeSwitcher | default("on") %}
+
+<div class="t-bolt-light u-bolt-shadow-level-10 u-bolt-margin-bottom-medium u-bolt-padding-medium u-bolt-border-radius-large">
+  <header class="u-bolt-padding-bottom-medium">
     {% grid "o-bolt-grid--middle o-bolt-grid--xsmall o-bolt-grid--flex u-bolt-flex-flow-none o-bolt-grid--right" %}
       {% cell "u-bolt-margin-right-auto" %}
         {% include "@bolt-components-headline/headline.twig" with {
           text: name,
           size: "medium",
+          transform: "none",
+          weight: "bold",
           url: link | default(false),
           icon: "none",
         } only %}
@@ -27,7 +31,7 @@
               icon: {
                 name: "external-link",
               },
-              style: "text",
+              style: "secondary",
             }),
             content: "Open Pattern In a New Window",
           } only %}
@@ -46,7 +50,7 @@
               },
               onClick: "toggle",
               onClickTarget: uuidTriggerTarget,
-              style: "text",
+              style: "secondary",
             }),
             content: "Show / Hide Code",
           } only %}
@@ -55,13 +59,24 @@
     {% endgrid %}
   </header>
 
-  <div class="t-bolt-xlight u-bolt-padding-small u-bolt-padding-top-medium u-bolt-padding-bottom-medium">
-    {{ example }}
-  </div>
+  {% if themeSwitcher == "off" %}
+    <div class="u-bolt-border-radius-small t-bolt-xlight u-bolt-padding-small u-bolt-padding-top-medium u-bolt-padding-bottom-medium u-bolt-shadow-level-10">
+      {{ example }}
+    </div>
+  {% else %}
+    <div class="u-bolt-shadow-level-10 u-bolt-border-radius-small">
+      <replace-with-children class="u-bolt-block t-bolt-xlight u-bolt-padding-small u-bolt-padding-top-medium u-bolt-padding-bottom-medium u-bolt-border-radius-small">
+        <bolt-theme-switcher class="u-bolt-border-radius-small u-bolt-overflow-hidden" theme="xlight" style="--bolt-theme-switcher-border-width: 0;">
+          <div class="u-bolt-padding-small">
+            {{ example }}
+          </div>
+        </bolt-theme-switcher>
+      </replace-with-children>
+    </div>
+  {% endif %}
 
   {% if panels %}
-    <section class="u-bolt-hidden">
-      <hr class="u-bolt-margin-top-none u-bolt-margin-bottom-small">
+    <section class="u-bolt-hidden t-bolt-xlight u-bolt-padding-small u-bolt-margin-top-medium u-bolt-shadow-level-10 u-bolt-border-radius-small">
 
       {% set tabPanels = [] %}
       {% for panel in panels %}
@@ -70,7 +85,12 @@
           content: include("@bolt-components-code-snippet/code-snippet.twig", {
             display: "block",
             lang: panel.lang | default("html"),
-            content: panel.code
+            content: panel.code,
+            attributes: {
+              class: [
+                "u-bolt-negative-margin-bottom-small"
+              ]
+            }
           }, with_context = false),
         }]) %}
       {% endfor %}
