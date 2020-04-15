@@ -16,6 +16,7 @@ window.addEventListener('load', function() {
         clearInterval(myVar);
         progressBar.animated = false;
         progressBarReset.removeAttribute('disabled');
+        progressBarReset.textContent = 'Click to reset';
       }
     }
   }
@@ -28,6 +29,7 @@ window.addEventListener('load', function() {
       progressBar.value = progressBarInitialValue;
       progressBar.animated = true;
       progressBarReset.setAttribute('disabled', '');
+      progressBarReset.textContent = 'Hang Tight Before Resetting...';
       autoIncrementProgressBar();
     });
   }
