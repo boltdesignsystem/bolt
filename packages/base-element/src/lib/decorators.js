@@ -398,7 +398,7 @@ const jsonSchemaPropsDecorator = clazz => {
           // @todo: skip any twig only schema properties such as `attributes`, `content`, `items`
           const propName = camelCase(key);
 
-          if (property.default) {
+          if (property.default || property.default === 0) {
             this.defaultProps[propName] = property.default;
           }
 
