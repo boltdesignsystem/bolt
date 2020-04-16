@@ -1,6 +1,11 @@
 {% import "@bolt-blueprints/macros.twig" as macros %}
 
 {% include "@bolt-blueprints/_mission-landing.twig" with {
+  mainBackgroundImage: mainBackgroundImage,
+  toolbarIcon: toolbarIcon,
+  heroTitle: heroTitle,
+  heroSubTitle: heroSubTitle,
+  trainingDescription: trainingDescription,
   breadcrumbs: [
     {
       "text": "Home",
@@ -100,4 +105,4 @@
     },
     macros.include("@bolt-blueprints/_badge.twig"),
   ]
-} %}
+} only %}

@@ -62,7 +62,9 @@
     {% include "@bolt-blueprints/_toolbar.twig" with {
       toolbarGradient: toolbarGradient | default("orange"),
       sticky: sideNav ? false : true,
-    } %}
+      breadcrumbs: breadcrumbs,
+      toolbarIcon: toolbarIcon,
+    } only %}
     {% include "@bolt-components-band/band.twig" with {
       theme: "xlight",
       size: "none",

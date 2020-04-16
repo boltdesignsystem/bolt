@@ -3,13 +3,14 @@
   theme: "none",
   sticky: sticky ?? true,
   gradientName: toolbarGradient | default(''),
+  breadcrumbs: breadcrumbs,
   title: {
     tag: "h2",
     icon: {
       name: toolbarIcon
     }
   },
-} %}
+} only %}
   {% if breadcrumbs %}
     {% block content_before %}
       {% import "@bolt-blueprints/macros.twig" as macros %}
