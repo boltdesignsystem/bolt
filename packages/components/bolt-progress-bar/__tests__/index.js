@@ -8,9 +8,6 @@ import {
 } from '../../../testing/testing-helpers';
 const timeout = 90000;
 
-import schema from '../progress-bar.schema';
-const { valuePosition } = schema.properties;
-
 describe('Progress Bar', () => {
   let page;
 
@@ -87,7 +84,6 @@ describe('Progress Bar', () => {
     const results = await render(
       '@bolt-components-progress-bar/progress-bar.twig',
       {
-        title: 'Percent Complete',
         value: 100,
       },
     );
@@ -113,10 +109,10 @@ describe('Progress Bar', () => {
       '@bolt-components-progress-bar/progress-bar.twig',
       {
         title: 'Current Progress',
-        labelText: 'Step 2 of 6',
         min: 1,
         max: 6,
         value: 2,
+        valueFormat: 'step',
       },
     );
     expect(results.ok).toBe(true);
@@ -134,35 +130,5 @@ describe('Progress Bar', () => {
 
     const image = await page.screenshot();
     expect(image).toMatchImageSnapshot(vrtDefaultConfig);
-  });
-
-  valuePosition.enum.forEach(position => {
-    test(`valuePosition: ${position}`, async () => {
-      const results = await render(
-        '@bolt-components-progress-bar/progress-bar.twig',
-        {
-          valuePosition: position,
-          title: 'Percent Downloaded',
-          value: 75,
-        },
-      );
-      expect(results.ok).toBe(true);
-      expect(results.html).toMatchSnapshot();
-
-      const renderedProgressBarMarkup = await page.evaluate(async results => {
-        document.body.insertAdjacentHTML('beforeend', results.html);
-        const progressBar = document.querySelector('bolt-progress-bar');
-        await progressBar.updateComplete;
-        return progressBar.renderRoot.innerHTML;
-      }, results);
-
-      const renderedHTML = await html(
-        `<div>${renderedProgressBarMarkup}</div>`,
-      );
-      expect(renderedHTML).toMatchSnapshot();
-
-      const image = await page.screenshot();
-      expect(image).toMatchImageSnapshot(vrtDefaultConfig);
-    });
   });
 });
