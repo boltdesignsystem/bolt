@@ -1,5 +1,15 @@
+<h2>Min <code>1</code>, Max <code>10</code></h2>
 {% include "@bolt-components-progress-bar/progress-bar.twig" with {
   min: 1,
   max: 10,
   value: 5,
+  valueFormat: "step"
+} only %}
+
+<h2>Min <code>0</code>, Max <code>10</code></h2>
+{% include "@bolt-components-progress-bar/progress-bar.twig" with {
+  min: 0,
+  max: 10,
+  value: 5,
+  valueFormat: "step"
 } only %}

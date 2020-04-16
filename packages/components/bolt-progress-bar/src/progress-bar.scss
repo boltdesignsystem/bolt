@@ -2,12 +2,8 @@
 
 @include bolt-custom-element("bolt-progress-bar", flex, medium);
 
-bolt-progress-bar {
-  min-width: 200px;
-}
-
-:host {
-  min-width: 200px;
+@include bolt-repeat-rule(('bolt-progress-bar', ':host')) {
+  min-width: 150px;
 }
 
 .c-bolt-progress-bar {
@@ -16,7 +12,7 @@ bolt-progress-bar {
   width: 100%;
   overflow: hidden;
   vertical-align: top;
-  grid-gap: bolt-v-spacing(small);
+  grid-gap: bolt-spacing(small);
   grid-auto-flow: dense;
   grid-template-columns: 1fr auto;
 }
@@ -30,11 +26,9 @@ bolt-progress-bar {
   overflow: hidden;
   grid-column: 1 / 2;
   grid-row: auto;
-  // was `border: 1px solid bolt-color(black);` before dark theme adjustments
   border: 1px solid rgba(bolt-color(gray, xdark), 0.8);
   border-radius: bolt-border-radius(full);
   box-shadow: inset 0 2px 3px 0 rgba(bolt-color(black), 0.25), inset 0 1px 3px 0 rgba(bolt-color(black), 0.5);
-  // was `background-color: rgba(bolt-color(gray, xdark), 0.5);` before dark theme adjustments
   background-color: rgba(bolt-color(gray, dark), 0.6);
 
   &:last-child {
@@ -92,28 +86,14 @@ bolt-progress-bar {
     background-color: #6dd400;
   }
 
-  .c-bolt-progress-bar--striped & {
-    &:after {
-      opacity: 1;
-    }
-  }
-
   .c-bolt-progress-bar--animated & {
     &:after {
-      animation: animatedProgressBarBackground 2s linear infinite;
+      opacity: 1;
+      animation: a-bolt-progress-bar-animated-background 2s linear infinite;
     }
   }
 }
 
-.c-bolt-progress-bar__title {
-  margin-inline-end: bolt-spacing(xsmall);
-  .c-bolt-progress-bar--none &,
-  .c-bolt-progress-bar--outside & {
-    grid-column: 1 / 3;
-  }
-}
-
-.c-bolt-progress-bar__title,
 .c-bolt-progress-bar__value {
   @include bolt-font-size(xsmall, tight);
   @include bolt-font-weight(semibold);
@@ -123,16 +103,10 @@ bolt-progress-bar {
 }
 
 .c-bolt-progress-bar__value {
-  margin-inline-start: bolt-spacing(xsmall);
   grid-column: 2 / 2;
-
-  .c-bolt-progress-bar--top & {
-    grid-column: 2 / 2;
-    grid-row: 1 / 2;
-  }
 }
 
-@keyframes animatedProgressBarBackground {
+@keyframes a-bolt-progress-bar-animated-background {
   0% {
     background-position: 0 0;
   }

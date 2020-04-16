@@ -15,8 +15,8 @@ import '@bolt/components-typeahead/__demos__/navigate-to-search-results/typeahea
 import '@bolt/components-typeahead/__demos__/navigate-to-exact-result/typeahead.navigate-to-exact-result';
 
 // Progress Bar Demos
-import './pages/pattern-lab/_patterns/02-components/progress-bar/40-advanced-usage--stepper/-progress-bar--stepper-example';
-import './pages/pattern-lab/_patterns/02-components/progress-bar/45-advanced-usage--programmatically-updated/-progress-bar--programmatically-updated-example';
+import './pages/pattern-lab/_patterns/02-components/progress-bar/30-advanced-usage--stepper/-progress-bar--stepper-example';
+import './pages/pattern-lab/_patterns/02-components/progress-bar/35-advanced-usage--programmatically-updated/-progress-bar--programmatically-updated-example';
 
 // demo to show how to add custom icons automatically
 import './assets/icons/custom-arrow-left-colored.svg';

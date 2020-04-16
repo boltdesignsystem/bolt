@@ -8,15 +8,10 @@ window.addEventListener('load', function() {
     '.js-progress-bar-stepper--forward',
   );
 
-  function updateProgressText() {
-    progressBar.valueText = `${progressBar.value} of ${progressBar.max}`;
-  }
-
   if (progressBarBackward) {
     progressBarBackward.addEventListener('click', () => {
       if (progressBar.value > progressBar.min) {
         progressBar.value -= 1;
-        updateProgressText();
       }
     });
   }
@@ -25,7 +20,6 @@ window.addEventListener('load', function() {
     progressBarForward.addEventListener('click', () => {
       if (progressBar.value < progressBar.max) {
         progressBar.value += 1;
-        updateProgressText();
       }
     });
   }

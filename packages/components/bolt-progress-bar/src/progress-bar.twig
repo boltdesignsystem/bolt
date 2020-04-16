@@ -1,3 +1,19 @@
+{% macro _normalizedValue(value, min, max) %}
+  {% set nV = '' %}
+
+  {% if (not value and value != 0) %}
+    {% set nV = 0 %}
+  {% elseif (min >= max) %}
+    {% set nV = max %}
+  {% else %}
+    {% set nV = (value - min) / (max - min) %}
+    {% set _max = max(nV, 0) %}
+    {% set nV = min(_max, 1) %}
+  {% endif %}
+
+  {{ (nV * 100)|round }}
+{% endmacro %}
+
 {% set schema = bolt.data.components["@bolt-components-progress-bar"].schema %}
 
 {% if enable_json_schema_validation %}
@@ -14,7 +30,6 @@
   this.data.value >= this.data.max ? "is-filled" : "",
   this.data.value <= this.data.min ? "is-empty" : "",
   this.data.animated ? "c-bolt-progress-bar--animated" : "",
-  this.data.striped or this.data.animated ? "c-bolt-progress-bar--striped" : "",
   "c-bolt-progress-bar--" ~ this.data.value_position,
 ] %}
 
@@ -34,18 +49,31 @@
   {% endif %}
 {% endfor %}
 
-{% set valuePercent = value == 0 or max == 0 ? value : value / max * 100 %}
+{% set percentComplete = _self._normalizedValue(this.data.value.value, this.data.min.value, this.data.max.value)|spaceless %}
+
+{% set adjustedValue = min(max(this.data.value.value, this.data.min.value), this.data.max.value) %}
+
+{% set displayedValue = this.data.value_format == 'percent' ? percentComplete ~ "%" : adjustedValue ~ " of " ~ this.data.max.value %}
 
 <bolt-progress-bar
   {% if outer_classes %} class="{{ outer_classes|join(' ') }}" {% endif %}
   {{ this.props|without("class") }}
 >
-
-  <div role="progressbar" class="{{ classes|join(' ') }}" aria-valuemin="{{ this.data.min }}" aria-valuemax="{{ this.data.max }}" aria-valuenow="{{ this.data.value }}" {% if this.data.title %}aria-label="{{ this.data.title }}"{% endif %}>
-    {% if title %}<div class="c-bolt-progress-bar__title">{{ title }}</div>{% endif %}
+  <div
+    role="progressbar"
+    class="{{ classes|join(' ') }}"
+    aria-valuemin="{{ this.data.min }}"
+    aria-valuemax="{{ this.data.max }}"
+    aria-valuenow="{{ adjustedValue }}"
+    aria-label="{{ displayedValue }}"
+  >
     <div class="c-bolt-progress-bar__track">
-      <span class="{{ fillClasses | join(' ')}}" style="transform: translate3d({{valuePercent|abs}}%, 0, 0) translate3d(-100%, 0, 0);"></span>
+      <span
+        class="{{ fillClasses | join(' ')}}"
+        style="transform: translate3d({{ percentComplete }}%, 0, 0) translate3d(-100%, 0, 0);"
+      >
+      </span>
     </div>
-    {% if this.data.value_position != 'none' %}<div class="c-bolt-progress-bar__value">{{ this.data.value_text ? this.data.value_text : valuePercent|round|abs  ~ "%" }}</div>{% endif %}
+    <div class="c-bolt-progress-bar__value">{{ displayedValue }}</div>
   </div>
 </bolt-progress-bar>

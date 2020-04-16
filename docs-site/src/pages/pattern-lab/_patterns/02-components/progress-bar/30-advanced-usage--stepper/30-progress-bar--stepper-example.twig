@@ -1,4 +1,4 @@
-{% grid "o-bolt-grid--flex u-bolt-flexwrap-nowrap" %}
+{% grid "o-bolt-grid--flex o-bolt-grid--middle u-bolt-flexwrap-nowrap" %}
   {% cell %}
     {% include "@bolt-components-button/button.twig" with {
       text: "Go Back",
@@ -21,8 +21,7 @@
       value: 1,
       min: 1,
       max: 5,
-      valueText: "1 of 5",
-      valuePosition: "top",
+      valueFormat: "step",
       attributes: {
         class: [
           "js-progress-bar-stepper"

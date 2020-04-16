@@ -3,6 +3,7 @@ module.exports = {
   title: 'Progress Bar',
   description: 'Visually indicates the quantity or progression of an activity.',
   type: 'object',
+  required: ['value'],
   properties: {
     attributes: {
       type: 'object',
@@ -13,7 +14,6 @@ module.exports = {
       type: 'number',
       description:
         'Typically represents the value (from 0 to 100) of the percentage progressed.',
-      default: 0,
     },
     min: {
       type: 'number',
@@ -27,30 +27,16 @@ module.exports = {
         "The maximum value allowed in the Progress Bar; used to calculate the amount that's filled in.",
       default: 100,
     },
-    title: {
-      description: 'Optional text that displays above the Progress Bar.',
+    valueFormat: {
+      enum: ['percent', 'step'],
+      default: 'percent',
       type: 'string',
-    },
-    valuePosition: {
-      description:
-        'The position where the value text is displayed -- to the side, on top, or hidden entirely.',
-      type: 'string',
-      default: 'outside',
-      enum: ['outside', 'top', 'none'],
-    },
-    valueText: {
-      description:
-        'Alternative text description of the current progress value to display instead of the percentage default. Ex. "1 out of 5"',
-      type: 'string',
+      description: 'The data format that the progress bar should display.',
     },
     animated: {
       type: 'boolean',
       description:
         'Enables the animated background to better indicate active progress. Note: this will also automatically set "striped" to true when enabled.',
-    },
-    striped: {
-      type: 'boolean',
-      description: 'Enables displaying a striped background.',
     },
   },
 };
