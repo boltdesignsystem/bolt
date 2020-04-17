@@ -1,10 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<bolt-action-blocks> Component Basic usage 1`] = `
-<bolt-action-blocks valign="start"
+<bolt-action-blocks spacing="medium"
+                    valign="start"
                     max-items-per-row="6"
 >
-  <ul class="c-bolt-action-blocks c-bolt-action-blocks--valign-start c-bolt-action-blocks--item-max-6">
+  <ul class="c-bolt-action-blocks c-bolt-action-blocks--spacing-medium c-bolt-action-blocks--valign-start c-bolt-action-blocks--item-max-6">
     <li class="c-bolt-action-blocks__item">
       <bolt-action-block>
         <a href="#!"
@@ -118,10 +119,11 @@ exports[`<bolt-action-blocks> Component Basic usage 1`] = `
 `;
 
 exports[`<bolt-action-blocks> Component Border in between each block: false 1`] = `
-<bolt-action-blocks valign="start"
+<bolt-action-blocks spacing="medium"
+                    valign="start"
                     max-items-per-row="6"
 >
-  <ul class="c-bolt-action-blocks c-bolt-action-blocks--valign-start c-bolt-action-blocks--item-max-6">
+  <ul class="c-bolt-action-blocks c-bolt-action-blocks--spacing-medium c-bolt-action-blocks--valign-start c-bolt-action-blocks--item-max-6">
     <li class="c-bolt-action-blocks__item">
       <bolt-action-block>
         <a href="#!"
@@ -235,11 +237,12 @@ exports[`<bolt-action-blocks> Component Border in between each block: false 1`] 
 `;
 
 exports[`<bolt-action-blocks> Component Border in between each block: true 1`] = `
-<bolt-action-blocks valign="start"
+<bolt-action-blocks spacing="medium"
+                    valign="start"
                     max-items-per-row="6"
                     borderless
 >
-  <ul class="c-bolt-action-blocks c-bolt-action-blocks--valign-start c-bolt-action-blocks--item-max-6 c-bolt-action-blocks--borderless">
+  <ul class="c-bolt-action-blocks c-bolt-action-blocks--spacing-medium c-bolt-action-blocks--valign-start c-bolt-action-blocks--item-max-6 c-bolt-action-blocks--borderless">
     <li class="c-bolt-action-blocks__item">
       <bolt-action-block>
         <a href="#!"
@@ -353,11 +356,12 @@ exports[`<bolt-action-blocks> Component Border in between each block: true 1`] =
 `;
 
 exports[`<bolt-action-blocks> Component Deprecated props still render as expected 1`] = `
-<bolt-action-blocks valign="center"
+<bolt-action-blocks spacing="medium"
+                    valign="center"
                     max-items-per-row="2"
                     borderless
 >
-  <ul class="c-bolt-action-blocks c-bolt-action-blocks--valign-center c-bolt-action-blocks--item-max-2 c-bolt-action-blocks--borderless">
+  <ul class="c-bolt-action-blocks c-bolt-action-blocks--spacing-medium c-bolt-action-blocks--valign-center c-bolt-action-blocks--item-max-2 c-bolt-action-blocks--borderless">
     <li class="c-bolt-action-blocks__item">
       <bolt-action-block>
         <a href="#!"
@@ -512,10 +516,247 @@ exports[`<bolt-action-blocks> Component Subcomponent renders as expected 1`] = `
 `;
 
 exports[`<bolt-action-blocks> Component Vertical alignment of each block's content: center 1`] = `
-<bolt-action-blocks valign="center"
+<bolt-action-blocks spacing="medium"
+                    valign="center"
                     max-items-per-row="6"
 >
-  <ul class="c-bolt-action-blocks c-bolt-action-blocks--valign-center c-bolt-action-blocks--item-max-6">
+  <ul class="c-bolt-action-blocks c-bolt-action-blocks--spacing-medium c-bolt-action-blocks--valign-center c-bolt-action-blocks--item-max-6">
+    <li class="c-bolt-action-blocks__item">
+      <bolt-action-block>
+        <a href="#!"
+           class="c-bolt-action-block"
+        >
+          <div class="c-bolt-action-block__item c-bolt-action-block__icon">
+            <bolt-icon name="download"
+                       size="large"
+            >
+              <span class="c-bolt-icon c-bolt-icon--download c-bolt-icon--large">
+                <svg class="c-bolt-icon__icon c-bolt-icon__icon--large"
+                     xmlns="http://www.w3.org/2000/svg"
+                     viewbox="0 0 24 24"
+                >
+                  <g fill="none"
+                     fill-rule="evenodd"
+                  >
+                    <path>
+                    </path>
+                    <path fill="var(--bolt-theme-icon, currentColor)"
+                          d="M15.023.049H.976A.978.978 0 000 1.025C0 1.56.44 2 .976 2h14.046a.978.978 0 00.976-.975.979.979 0 00-.975-.976"
+                          mask="url(#mask-2)"
+                          transform="translate(4 19.5)"
+                    >
+                    </path>
+                    <path fill="var(--bolt-theme-icon, currentColor)"
+                          d="M11.408 17.73a.77.77 0 00.59.27c.23 0 .451-.101.591-.27l5.25-6.283a.652.652 0 00.084-.733.76.76 0 00-.675-.393h-2.527V3H9.388v7.321H6.75a.76.76 0 00-.675.393.638.638 0 00-.075.306c0 .152.052.305.16.427l5.25 6.283z"
+                    >
+                    </path>
+                  </g>
+                </svg>
+              </span>
+            </bolt-icon>
+          </div>
+          <div class="c-bolt-action-block__item c-bolt-action-block__text">
+            Item 1
+          </div>
+        </a>
+      </bolt-action-block>
+    </li>
+    <li class="c-bolt-action-blocks__item">
+      <bolt-action-block>
+        <a href="#!"
+           class="c-bolt-action-block"
+        >
+          <div class="c-bolt-action-block__item c-bolt-action-block__icon">
+            <bolt-icon name="copy-to-clipboard"
+                       size="large"
+            >
+              <span class="c-bolt-icon c-bolt-icon--copy-to-clipboard c-bolt-icon--large">
+                <svg class="c-bolt-icon__icon c-bolt-icon__icon--large"
+                     xmlns="http://www.w3.org/2000/svg"
+                     viewbox="0 0 24 24"
+                >
+                  <g fill="none"
+                     fill-rule="evenodd"
+                  >
+                    <path>
+                    </path>
+                    <path fill="var(--bolt-theme-icon, currentColor)"
+                          d="M19 20c0 .55-.45 1-1 1H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h1c0 1.1.9 2 2 2h6c1.1 0 2-.9 2-2h1c.55 0 1 .45 1 1v14zM9 3h6v2H9V2.998 3zm9 0h-1c0-1.1-.9-2-2-2H9c-1.1 0-2 .9-2 2H6C4.344 3 3 4.344 3 6v14c0 1.656 1.344 3 3 3h12c1.656 0 3-1.344 3-3V6c0-1.656-1.344-3-3-3zM13 13v-2c0-.55-.45-1-1-1s-1 .45-1 1v2H9c-.55 0-1 .45-1 1s.45 1 1 1h2v2c0 .55.45 1 1 1s1-.45 1-1v-2h2c.55 0 1-.45 1-1s-.45-1-1-1h-2z"
+                    >
+                    </path>
+                  </g>
+                </svg>
+              </span>
+            </bolt-icon>
+          </div>
+          <div class="c-bolt-action-block__item c-bolt-action-block__text">
+            Item 2
+          </div>
+        </a>
+      </bolt-action-block>
+    </li>
+    <li class="c-bolt-action-blocks__item">
+      <bolt-action-block>
+        <a href="#!"
+           class="c-bolt-action-block"
+        >
+          <div class="c-bolt-action-block__item c-bolt-action-block__icon">
+            <bolt-icon name="calendar"
+                       size="large"
+            >
+              <span class="c-bolt-icon c-bolt-icon--calendar c-bolt-icon--large">
+                <svg class="c-bolt-icon__icon c-bolt-icon__icon--large"
+                     xmlns="http://www.w3.org/2000/svg"
+                     viewbox="0 0 24 24"
+                >
+                  <g fill="none"
+                     fill-rule="evenodd"
+                  >
+                    <path>
+                    </path>
+                    <g fill="var(--bolt-theme-icon, currentColor)">
+                      <path d="M4 20.125h16v-11H4v11zm16-17.5h-.938V1h-2v1.625H6.937V1h-2v1.625H4a2 2 0 00-2 2v15.5a2 2 0 002 2h16a2 2 0 002-2v-15.5a2 2 0 00-2-2zM6.292 13.125h11.416v-2H6.292zM6.292 17.458h9v-2h-9z">
+                      </path>
+                    </g>
+                  </g>
+                </svg>
+              </span>
+            </bolt-icon>
+          </div>
+          <div class="c-bolt-action-block__item c-bolt-action-block__text">
+            Item 3
+          </div>
+        </a>
+      </bolt-action-block>
+    </li>
+  </ul>
+</bolt-action-blocks>
+`;
+
+exports[`<bolt-action-blocks> Component Vertical alignment of each block's content: end 1`] = `
+<bolt-action-blocks spacing="medium"
+                    valign="end"
+                    max-items-per-row="6"
+>
+  <ul class="c-bolt-action-blocks c-bolt-action-blocks--spacing-medium c-bolt-action-blocks--valign-end c-bolt-action-blocks--item-max-6">
+    <li class="c-bolt-action-blocks__item">
+      <bolt-action-block>
+        <a href="#!"
+           class="c-bolt-action-block"
+        >
+          <div class="c-bolt-action-block__item c-bolt-action-block__icon">
+            <bolt-icon name="download"
+                       size="large"
+            >
+              <span class="c-bolt-icon c-bolt-icon--download c-bolt-icon--large">
+                <svg class="c-bolt-icon__icon c-bolt-icon__icon--large"
+                     xmlns="http://www.w3.org/2000/svg"
+                     viewbox="0 0 24 24"
+                >
+                  <g fill="none"
+                     fill-rule="evenodd"
+                  >
+                    <path>
+                    </path>
+                    <path fill="var(--bolt-theme-icon, currentColor)"
+                          d="M15.023.049H.976A.978.978 0 000 1.025C0 1.56.44 2 .976 2h14.046a.978.978 0 00.976-.975.979.979 0 00-.975-.976"
+                          mask="url(#mask-2)"
+                          transform="translate(4 19.5)"
+                    >
+                    </path>
+                    <path fill="var(--bolt-theme-icon, currentColor)"
+                          d="M11.408 17.73a.77.77 0 00.59.27c.23 0 .451-.101.591-.27l5.25-6.283a.652.652 0 00.084-.733.76.76 0 00-.675-.393h-2.527V3H9.388v7.321H6.75a.76.76 0 00-.675.393.638.638 0 00-.075.306c0 .152.052.305.16.427l5.25 6.283z"
+                    >
+                    </path>
+                  </g>
+                </svg>
+              </span>
+            </bolt-icon>
+          </div>
+          <div class="c-bolt-action-block__item c-bolt-action-block__text">
+            Item 1
+          </div>
+        </a>
+      </bolt-action-block>
+    </li>
+    <li class="c-bolt-action-blocks__item">
+      <bolt-action-block>
+        <a href="#!"
+           class="c-bolt-action-block"
+        >
+          <div class="c-bolt-action-block__item c-bolt-action-block__icon">
+            <bolt-icon name="copy-to-clipboard"
+                       size="large"
+            >
+              <span class="c-bolt-icon c-bolt-icon--copy-to-clipboard c-bolt-icon--large">
+                <svg class="c-bolt-icon__icon c-bolt-icon__icon--large"
+                     xmlns="http://www.w3.org/2000/svg"
+                     viewbox="0 0 24 24"
+                >
+                  <g fill="none"
+                     fill-rule="evenodd"
+                  >
+                    <path>
+                    </path>
+                    <path fill="var(--bolt-theme-icon, currentColor)"
+                          d="M19 20c0 .55-.45 1-1 1H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h1c0 1.1.9 2 2 2h6c1.1 0 2-.9 2-2h1c.55 0 1 .45 1 1v14zM9 3h6v2H9V2.998 3zm9 0h-1c0-1.1-.9-2-2-2H9c-1.1 0-2 .9-2 2H6C4.344 3 3 4.344 3 6v14c0 1.656 1.344 3 3 3h12c1.656 0 3-1.344 3-3V6c0-1.656-1.344-3-3-3zM13 13v-2c0-.55-.45-1-1-1s-1 .45-1 1v2H9c-.55 0-1 .45-1 1s.45 1 1 1h2v2c0 .55.45 1 1 1s1-.45 1-1v-2h2c.55 0 1-.45 1-1s-.45-1-1-1h-2z"
+                    >
+                    </path>
+                  </g>
+                </svg>
+              </span>
+            </bolt-icon>
+          </div>
+          <div class="c-bolt-action-block__item c-bolt-action-block__text">
+            Item 2
+          </div>
+        </a>
+      </bolt-action-block>
+    </li>
+    <li class="c-bolt-action-blocks__item">
+      <bolt-action-block>
+        <a href="#!"
+           class="c-bolt-action-block"
+        >
+          <div class="c-bolt-action-block__item c-bolt-action-block__icon">
+            <bolt-icon name="calendar"
+                       size="large"
+            >
+              <span class="c-bolt-icon c-bolt-icon--calendar c-bolt-icon--large">
+                <svg class="c-bolt-icon__icon c-bolt-icon__icon--large"
+                     xmlns="http://www.w3.org/2000/svg"
+                     viewbox="0 0 24 24"
+                >
+                  <g fill="none"
+                     fill-rule="evenodd"
+                  >
+                    <path>
+                    </path>
+                    <g fill="var(--bolt-theme-icon, currentColor)">
+                      <path d="M4 20.125h16v-11H4v11zm16-17.5h-.938V1h-2v1.625H6.937V1h-2v1.625H4a2 2 0 00-2 2v15.5a2 2 0 002 2h16a2 2 0 002-2v-15.5a2 2 0 00-2-2zM6.292 13.125h11.416v-2H6.292zM6.292 17.458h9v-2h-9z">
+                      </path>
+                    </g>
+                  </g>
+                </svg>
+              </span>
+            </bolt-icon>
+          </div>
+          <div class="c-bolt-action-block__item c-bolt-action-block__text">
+            Item 3
+          </div>
+        </a>
+      </bolt-action-block>
+    </li>
+  </ul>
+</bolt-action-blocks>
+`;
+
+exports[`<bolt-action-blocks> Component Vertical alignment of each block's content: medium 1`] = `
+<bolt-action-blocks spacing="medium"
+                    valign="start"
+                    max-items-per-row="6"
+>
+  <ul class="c-bolt-action-blocks c-bolt-action-blocks--spacing-medium c-bolt-action-blocks--valign-start c-bolt-action-blocks--item-max-6">
     <li class="c-bolt-action-blocks__item">
       <bolt-action-block>
         <a href="#!"
@@ -628,11 +869,12 @@ exports[`<bolt-action-blocks> Component Vertical alignment of each block's conte
 </bolt-action-blocks>
 `;
 
-exports[`<bolt-action-blocks> Component Vertical alignment of each block's content: end 1`] = `
-<bolt-action-blocks valign="end"
+exports[`<bolt-action-blocks> Component Vertical alignment of each block's content: small 1`] = `
+<bolt-action-blocks spacing="small"
+                    valign="start"
                     max-items-per-row="6"
 >
-  <ul class="c-bolt-action-blocks c-bolt-action-blocks--valign-end c-bolt-action-blocks--item-max-6">
+  <ul class="c-bolt-action-blocks c-bolt-action-blocks--spacing-small c-bolt-action-blocks--valign-start c-bolt-action-blocks--item-max-6">
     <li class="c-bolt-action-blocks__item">
       <bolt-action-block>
         <a href="#!"
@@ -746,10 +988,129 @@ exports[`<bolt-action-blocks> Component Vertical alignment of each block's conte
 `;
 
 exports[`<bolt-action-blocks> Component Vertical alignment of each block's content: start 1`] = `
-<bolt-action-blocks valign="start"
+<bolt-action-blocks spacing="medium"
+                    valign="start"
                     max-items-per-row="6"
 >
-  <ul class="c-bolt-action-blocks c-bolt-action-blocks--valign-start c-bolt-action-blocks--item-max-6">
+  <ul class="c-bolt-action-blocks c-bolt-action-blocks--spacing-medium c-bolt-action-blocks--valign-start c-bolt-action-blocks--item-max-6">
+    <li class="c-bolt-action-blocks__item">
+      <bolt-action-block>
+        <a href="#!"
+           class="c-bolt-action-block"
+        >
+          <div class="c-bolt-action-block__item c-bolt-action-block__icon">
+            <bolt-icon name="download"
+                       size="large"
+            >
+              <span class="c-bolt-icon c-bolt-icon--download c-bolt-icon--large">
+                <svg class="c-bolt-icon__icon c-bolt-icon__icon--large"
+                     xmlns="http://www.w3.org/2000/svg"
+                     viewbox="0 0 24 24"
+                >
+                  <g fill="none"
+                     fill-rule="evenodd"
+                  >
+                    <path>
+                    </path>
+                    <path fill="var(--bolt-theme-icon, currentColor)"
+                          d="M15.023.049H.976A.978.978 0 000 1.025C0 1.56.44 2 .976 2h14.046a.978.978 0 00.976-.975.979.979 0 00-.975-.976"
+                          mask="url(#mask-2)"
+                          transform="translate(4 19.5)"
+                    >
+                    </path>
+                    <path fill="var(--bolt-theme-icon, currentColor)"
+                          d="M11.408 17.73a.77.77 0 00.59.27c.23 0 .451-.101.591-.27l5.25-6.283a.652.652 0 00.084-.733.76.76 0 00-.675-.393h-2.527V3H9.388v7.321H6.75a.76.76 0 00-.675.393.638.638 0 00-.075.306c0 .152.052.305.16.427l5.25 6.283z"
+                    >
+                    </path>
+                  </g>
+                </svg>
+              </span>
+            </bolt-icon>
+          </div>
+          <div class="c-bolt-action-block__item c-bolt-action-block__text">
+            Item 1
+          </div>
+        </a>
+      </bolt-action-block>
+    </li>
+    <li class="c-bolt-action-blocks__item">
+      <bolt-action-block>
+        <a href="#!"
+           class="c-bolt-action-block"
+        >
+          <div class="c-bolt-action-block__item c-bolt-action-block__icon">
+            <bolt-icon name="copy-to-clipboard"
+                       size="large"
+            >
+              <span class="c-bolt-icon c-bolt-icon--copy-to-clipboard c-bolt-icon--large">
+                <svg class="c-bolt-icon__icon c-bolt-icon__icon--large"
+                     xmlns="http://www.w3.org/2000/svg"
+                     viewbox="0 0 24 24"
+                >
+                  <g fill="none"
+                     fill-rule="evenodd"
+                  >
+                    <path>
+                    </path>
+                    <path fill="var(--bolt-theme-icon, currentColor)"
+                          d="M19 20c0 .55-.45 1-1 1H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h1c0 1.1.9 2 2 2h6c1.1 0 2-.9 2-2h1c.55 0 1 .45 1 1v14zM9 3h6v2H9V2.998 3zm9 0h-1c0-1.1-.9-2-2-2H9c-1.1 0-2 .9-2 2H6C4.344 3 3 4.344 3 6v14c0 1.656 1.344 3 3 3h12c1.656 0 3-1.344 3-3V6c0-1.656-1.344-3-3-3zM13 13v-2c0-.55-.45-1-1-1s-1 .45-1 1v2H9c-.55 0-1 .45-1 1s.45 1 1 1h2v2c0 .55.45 1 1 1s1-.45 1-1v-2h2c.55 0 1-.45 1-1s-.45-1-1-1h-2z"
+                    >
+                    </path>
+                  </g>
+                </svg>
+              </span>
+            </bolt-icon>
+          </div>
+          <div class="c-bolt-action-block__item c-bolt-action-block__text">
+            Item 2
+          </div>
+        </a>
+      </bolt-action-block>
+    </li>
+    <li class="c-bolt-action-blocks__item">
+      <bolt-action-block>
+        <a href="#!"
+           class="c-bolt-action-block"
+        >
+          <div class="c-bolt-action-block__item c-bolt-action-block__icon">
+            <bolt-icon name="calendar"
+                       size="large"
+            >
+              <span class="c-bolt-icon c-bolt-icon--calendar c-bolt-icon--large">
+                <svg class="c-bolt-icon__icon c-bolt-icon__icon--large"
+                     xmlns="http://www.w3.org/2000/svg"
+                     viewbox="0 0 24 24"
+                >
+                  <g fill="none"
+                     fill-rule="evenodd"
+                  >
+                    <path>
+                    </path>
+                    <g fill="var(--bolt-theme-icon, currentColor)">
+                      <path d="M4 20.125h16v-11H4v11zm16-17.5h-.938V1h-2v1.625H6.937V1h-2v1.625H4a2 2 0 00-2 2v15.5a2 2 0 002 2h16a2 2 0 002-2v-15.5a2 2 0 00-2-2zM6.292 13.125h11.416v-2H6.292zM6.292 17.458h9v-2h-9z">
+                      </path>
+                    </g>
+                  </g>
+                </svg>
+              </span>
+            </bolt-icon>
+          </div>
+          <div class="c-bolt-action-block__item c-bolt-action-block__text">
+            Item 3
+          </div>
+        </a>
+      </bolt-action-block>
+    </li>
+  </ul>
+</bolt-action-blocks>
+`;
+
+exports[`<bolt-action-blocks> Component Vertical alignment of each block's content: xsmall 1`] = `
+<bolt-action-blocks spacing="xsmall"
+                    valign="start"
+                    max-items-per-row="6"
+>
+  <ul class="c-bolt-action-blocks c-bolt-action-blocks--spacing-xsmall c-bolt-action-blocks--valign-start c-bolt-action-blocks--item-max-6">
     <li class="c-bolt-action-blocks__item">
       <bolt-action-block>
         <a href="#!"
