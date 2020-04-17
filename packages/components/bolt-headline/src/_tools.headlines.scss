@@ -7,6 +7,8 @@
   @include bolt-headline-text-alignment;
   @include bolt-headline-text-transform;
 
+  display: block; // hotfix for http://vjira2:8080/browse/WWWD-4696 when Headlines are non-block elements (ex. <span> tags)
+
   // display: flex; // @todo: uncomment when fixing headline flex behavior
   // flex-flow: row nowrap; // @todo: uncomment when fixing headline flex behavior
 
