@@ -1,6 +1,7 @@
 {# Variables #}
 {% set base_class = "c-bolt-list-item" %}
-{% set attributes = create_attribute({}) %}
+{% set attributes = create_attribute(item.attributes|default({})) %}
+{% set inner_attributes = create_attribute({}) %}
 {% set tag = item_tag %}
 
 {% set last = loop.last %}
@@ -16,9 +17,10 @@
 
 <bolt-list-item
   {% if last %} last {% endif %}
+  {{ attributes }}
 >
   <replace-with-grandchildren>
-    <{{ tag }} {{ attributes.addClass(classes) }}>
+    <{{ tag }} {{ inner_attributes.addClass(classes) }}>
       {% if item.content %}
         {{ item.content }}
       {% else %}
