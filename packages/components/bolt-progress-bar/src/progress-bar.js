@@ -39,7 +39,7 @@ class BoltProgressBar extends BoltElement {
       [`c-bolt-progress-bar__fill--at-max`]: this.value >= this.max,
     });
 
-    const fillPosition = Math(((this.value - this.max) / this.max) * 100);
+    const fillPosition = Math.round(((this.value - this.max) / this.max) * 100);
 
     const percentComplete = Math.round(
       ((this.max - (this.max - this.value)) / this.max) * 100,
