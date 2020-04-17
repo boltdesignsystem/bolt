@@ -10,7 +10,7 @@ window.addEventListener('load', function() {
 
   if (progressBarBackward) {
     progressBarBackward.addEventListener('click', () => {
-      if (progressBar.value > progressBar.min) {
+      if (progressBar.value > 0) {
         progressBar.value -= 1;
       }
     });
@@ -26,7 +26,7 @@ window.addEventListener('load', function() {
 
   if (progressBar) {
     progressBar.addEventListener('rendered', function() {
-      if (progressBar.value === progressBar.min) {
+      if (progressBar.value === 1) {
         progressBarBackward.setAttribute('disabled', '');
       }
 
@@ -34,7 +34,7 @@ window.addEventListener('load', function() {
         progressBarForward.setAttribute('disabled', '');
       }
 
-      if (progressBar.value > progressBar.min) {
+      if (progressBar.value > 1) {
         progressBarBackward.removeAttribute('disabled');
       }
 

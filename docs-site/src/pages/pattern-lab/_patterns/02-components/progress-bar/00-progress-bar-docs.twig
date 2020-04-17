@@ -1,6 +1,6 @@
-{% set usage %}{% verbatim %}
-{% include '@bolt-components-progress-bar/progress-bar.twig' only %}
-{% endverbatim %}{% endset %}
+{% set usage %}{% verbatim %}{% include "@bolt-components-progress-bar/progress-bar.twig" with {
+  value: 65,
+} only %}{% endverbatim %}{% endset %}
 
 {% include "@utils/docs.twig" with {
   componentName: "progress-bar",
