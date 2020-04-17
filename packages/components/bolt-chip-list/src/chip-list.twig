@@ -1,18 +1,50 @@
+{% import "@bolt-components-chip-list/_chip-list-macros.twig" as macros %}
+
+{% set schema = bolt.data.components["@bolt-components-chip-list"].schema %}
+
 {% if enable_json_schema_validation %}
-  {{ validate_data_schema(bolt.data.components['@bolt-components-chip-list'].schema, _self) | raw }}
+  {{ validate_data_schema(schema, _self)|raw }}
 {% endif %}
+
+{# Variables #}
+{% set this = init(schema) %}
+{% set inner_attributes = create_attribute({}) %}
+{% set uuid = this.data.uuid|default(bolt.data.config.env == "test" ? "12345" : random()) %}
+{% set id = this.data.id|default("c-bolt-chip-list-#{uuid}") %}
+{% set inputId = "c-bolt-chip-list__input-#{ uuid }" %}
+{% set list = [] %}
 
 {% if contentItems %}
   {% set items = contentItems %}
 {% endif %}
 
+{# Array of classes based on the defined + default props #}
+{% set classes = [
+  "c-bolt-chip-list"
+] %}
+
+{#
+  Sort classes passed in via attributes into two groups:
+  1. Those that should be applied to the inner tag (namely, "is-" and "has-" classes)
+  2. Those that should be applied to the outer custom element (everything else EXCEPT c-bolt-* classes, which should never be passed in via attributes)
+#}
+{% set outer_classes = [] %}
+{% set inner_classes = classes %}
+
+{% for class in attributes["class"] %}
+  {% if class starts with "is-" or class starts with "has-" %}
+    {% set inner_classes = inner_classes|merge([class]) %}
+  {% elseif class starts with "c-bolt-" == false %}
+    {% set outer_classes = outer_classes|merge([class]) %}
+  {% endif %}
+{% endfor %}
+
+{# Create initial Chip list #}
 {% if items %}
-  {% set params = {} %}
-  {% set list = [] %}
   {% for item in items %}
     {# allow chip size to be passed along from the parent if it doesn't already exist #}
     {% if size and not item.size %}
-      {% set item = item | merge({
+      {% set item = item|merge({
         size: size
       }) %}
     {% endif %}
@@ -21,14 +53,59 @@
       {% include "@bolt/chip.twig" with item only %}
     {% endset %}
 
-    {% set list = list | merge([chip]) %}
+    {% set list = list|merge([chip]) %}
   {% endfor %}
-
-  {% set params = params | merge({
-    items: list,
-    display: "inline",
-  }) %}
-
-  {% include "@bolt-components-list/list.twig" with params only %}
-
 {% endif %}
+
+{# Check if list should be truncated #}
+{% set willTruncate = truncate > -1 and list|length > truncate %}
+
+{# If list should truncate, add expand/collapse triggers as list items. These items get special attributes ("[truncate-trigger]") used by CSS below and later by JS. #}
+{% if willTruncate %}
+  {% set list = list|merge([
+    {
+      content: macros.truncateTrigger("more", size, inputId),
+      attributes: {
+        "truncate-trigger": "",
+        "truncate-trigger-expand": ""
+      },
+    }
+  ]) %}
+
+  {% if canCollapse %}
+    {% set list = list|merge([
+      {
+        content: macros.truncateTrigger("close", size, inputId),
+        attributes: {
+          "truncate-trigger": "",
+          "truncate-trigger-collapse": ""
+        }
+      }
+    ]) %}
+  {% endif %}
+{% endif %}
+
+<bolt-chip-list
+  {% if outer_classes %} class="{{ outer_classes|join(' ') }}" {% endif %}
+  {{ this.props|without("class")|without("id") }}
+  id="{{ id }}"
+>
+  <replace-with-children {{ inner_attributes.addClass(inner_classes) }}>
+    {% if willTruncate %}
+      {% set nthSelector = truncate == 0 ? "" : "bolt-list-item:nth-child(n+#{truncate}) ~ " %}
+      <style class="c-bolt-chip-list--no-js">
+        #{{ id }} #{{ inputId }}:not(:checked) + bolt-list {{ nthSelector}} bolt-list-item:not([truncate-trigger-expand]),
+        #{{ id }} #{{ inputId }}:checked + bolt-list [truncate-trigger-expand] {
+          display: none;
+        }
+      </style>
+      </replace-with-children>
+      <input type="checkbox" id="{{ inputId }}" class="c-bolt-chip-list__input c-bolt-chip-list--no-js" {% if expanded %} checked {% endif %}/>
+    {% endif %}
+
+    {% include "@bolt-components-list/list.twig" with {
+      items: list,
+      display: "inline",
+    } only %}
+  </replace-with-children>
+</bolt-chip-list>
