@@ -39,7 +39,7 @@ class BoltProgressBar extends BoltElement {
       [`c-bolt-progress-bar__fill--at-max`]: this.value >= this.max,
     });
 
-    const fillPosition = Math.round(((this.value - this.max) / this.max) * 100);
+    const fillPosition = Math(((this.value - this.max) / this.max) * 100);
 
     const percentComplete = Math.round(
       ((this.max - (this.max - this.value)) / this.max) * 100,
@@ -48,7 +48,7 @@ class BoltProgressBar extends BoltElement {
     const displayedValue =
       this.valueFormat === 'percent'
         ? `${percentComplete}%`
-        : `${this.value} / ${this.max}`; // @todo: shouldn't `of` be translatable here? If so, how do we want to handle this?
+        : `${this.value} / ${this.max}`;
 
     return html`
       <div
@@ -56,7 +56,7 @@ class BoltProgressBar extends BoltElement {
         class="${classes}"
         aria-valuemin="${this.min}"
         aria-valuemax="${this.max}"
-        aria-valuenow="${this.value}%"
+        aria-valuenow="${this.value}"
         aria-label="${displayedValue}"
       >
         <div class="c-bolt-progress-bar__track">
