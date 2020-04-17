@@ -14,17 +14,17 @@ module.exports = {
       type: 'number',
       description:
         'Typically represents the value (from 0 to 100) of the percentage progressed.',
+      minimum: 0,
     },
     min: {
       type: 'number',
-      description:
-        "The minimum value allowed in the Progress Bar; used to calculate the amount that's currently filled in.",
+      description: 'The minimum value.',
       default: 0,
+      hidden: true,
     },
     max: {
       type: 'number',
-      description:
-        "The maximum value allowed in the Progress Bar; used to calculate the amount that's filled in.",
+      description: 'The maximum value allowed in the Progress Bar.',
       default: 100,
     },
     valueFormat: {
