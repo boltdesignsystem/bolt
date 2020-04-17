@@ -43,6 +43,12 @@ properties:
     ref: '@bolt-components-icon/icon.schema.json'
   tag:
     description: <mark>DEPRECATED</mark> - tag is automatically determined by URL.
+  iconOnly:
+    type: boolean
+    description: Display only the icon and hide the text. For accessibility purposes you are still required to provide text.
+    default: false,
+    required:
+      - icon
   no_shadow:
     title: 'Disable Shadow DOM (Twig-only)'
     description: 'Manually disables the component from rendering to the Shadow DOM in a Twig template. Useful for testing cross browser functionality / rendering behavior. By default this is handled globally based on browser support.'
