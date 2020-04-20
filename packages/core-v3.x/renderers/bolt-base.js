@@ -1,9 +1,10 @@
-import Ajv from 'ajv';
-import { props } from 'skatejs';
 import { withLifecycle } from 'skatejs/dist/esnext/with-lifecycle.js';
 import { withUpdate } from 'skatejs/dist/esnext/with-update.js';
 import { withRenderer } from 'skatejs/dist/esnext/with-renderer.js';
 import camelcase from 'camelcase';
+import { Validator } from 'jsonschema';
+const v = new Validator();
+
 import {
   shouldUseShadowDom,
   hasNativeShadowDomSupport,
@@ -22,6 +23,8 @@ export function shadow(elem) {
       }))
   );
 }
+
+const formattedSchemas = [];
 
 export const withComponent = (Base = HTMLElement) =>
   withLifecycle(withUpdate(withRenderer(Base)));
@@ -88,8 +91,11 @@ export class BoltBase extends withComponent(HTMLElement) {
   }
 
   validateProps(propData) {
-    var validatedData = propData;
-    const ajv = new Ajv({ useDefaults: 'shared', coerceTypes: true });
+    if (!this.schema) {
+      return propData;
+    }
+
+    const validatedData = propData;
 
     // remove default strings in prop data so schema validation can fill in the default
     for (let property in validatedData) {
@@ -98,29 +104,41 @@ export class BoltBase extends withComponent(HTMLElement) {
       }
     }
 
-    // Skip this if formatted schema data is already stored
-    if (this.schema && !this.formattedSchema) {
-      this.formattedSchema = {};
-      Object.assign(this.formattedSchema, this.schema);
-      Object.keys(this.formattedSchema.properties).map(key => {
-        this.formattedSchema.properties = renameKey(
-          key,
-          camelcase(key),
-          this.formattedSchema.properties,
-        );
-      });
+    this.formattedSchema = this.schema;
+
+    Object.keys(this.formattedSchema.properties).map((key) => {
+      this.formattedSchema.properties = renameKey(
+        key,
+        camelcase(key),
+        this.formattedSchema.properties,
+      );
+    });
+
+    const schemaDefaults = Object.keys(this.formattedSchema.properties).reduce(
+      (schemaProperties, propertyName) => {
+        if (this.formattedSchema.properties[propertyName].default) {
+          schemaProperties[propertyName] = this.formattedSchema.properties[
+            propertyName
+          ].default;
+        }
+        return schemaProperties;
+      },
+      {},
+    );
+
+    const propsWithDefaultData = Object.assign({}, schemaDefaults, propData);
+
+    const validationResult = v.validate(
+      propsWithDefaultData,
+      this.formattedSchema,
+    );
+
+    // bark at any schema validation errors
+    if (!validationResult.valid) {
+      console.log(validationResult);
     }
 
-    if (this.formattedSchema) {
-      let isValid = ajv.validate(this.formattedSchema, validatedData);
-
-      // bark at any schema validation errors
-      if (!isValid) {
-        console.log(ajv.errors);
-      }
-    }
-
-    return validatedData;
+    return validationResult.instance;
   }
 
   /**
@@ -137,7 +155,7 @@ export class BoltBase extends withComponent(HTMLElement) {
     }
 
     try {
-      propsToRemove.forEach(item => {
+      propsToRemove.forEach((item) => {
         if (modifiedSchema.properties && modifiedSchema.properties[item]) {
           // Delete property key from schema
           delete modifiedSchema.properties[item];
@@ -168,7 +186,7 @@ export class BoltBase extends withComponent(HTMLElement) {
   ssrHydrationPrep() {
     this.nodesToKeep = [];
 
-    this.ssrKeep.forEach(item => {
+    this.ssrKeep.forEach((item) => {
       while (item.firstChild) {
         this.nodesToKeep.push(item.firstChild); // track the nodes that will be preserved
         this.appendChild(item.firstChild);
@@ -177,8 +195,8 @@ export class BoltBase extends withComponent(HTMLElement) {
 
     // Remove all children not in the "keep" array
     Array.from(this.children)
-      .filter(item => !this.nodesToKeep.includes(item))
-      .forEach(node => {
+      .filter((item) => !this.nodesToKeep.includes(item))
+      .forEach((node) => {
         node.parentElement.removeChild(node);
       });
 
@@ -200,12 +218,12 @@ export class BoltBase extends withComponent(HTMLElement) {
    */
   addClassesToSlottedChildren(slotNames = ['default']) {
     if (this.slots) {
-      const applyClasses = slotName => {
+      const applyClasses = (slotName) => {
         if (!(slotName in this.slots)) return;
 
         const currentSlot = [];
 
-        this.slots[slotName].forEach(item => {
+        this.slots[slotName].forEach((item) => {
           if (item.tagName) {
             item.classList.remove('is-first-child');
             item.classList.remove('is-last-child'); // clean up existing classes
@@ -226,7 +244,7 @@ export class BoltBase extends withComponent(HTMLElement) {
         }
       };
 
-      slotNames.forEach(name => applyClasses(name));
+      slotNames.forEach((name) => applyClasses(name));
     }
   }
 
@@ -235,7 +253,7 @@ export class BoltBase extends withComponent(HTMLElement) {
     const slots = { default: [] };
 
     // Loop through nodelist
-    selector.forEach(function(child, index, nodelist) {
+    selector.forEach(function (child, index, nodelist) {
       const slotName = child.getAttribute ? child.getAttribute('slot') : null;
 
       if (!slotName) {
