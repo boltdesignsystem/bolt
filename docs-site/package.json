@@ -14,6 +14,7 @@
     "build:compat": "bolt build --compat",
     "build:lang": "bolt build --i18n",
     "build:noisy": "bolt build --verbosity 5",
+    "build:webpack": "bolt webpack --prod",
     "build:pl": "bolt prep && npx lerna exec --scope @bolt/uikit-workshop --loglevel=silent -- yarn run build",
     "build:prod": "bolt build --prod --no-ssr",
     "clean": "cd ../ && npm run clean",
