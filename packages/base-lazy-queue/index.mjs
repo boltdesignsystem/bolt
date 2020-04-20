@@ -22,7 +22,7 @@ HTMLElement.prototype.attachShadow = function(options) {
 
 // exports an async-friendly function allowing you lazily register and load one or more custom element tags on the fly
 export const lazyQueue = async (tagsToObserve = [], callback) => {
-  if (tagsToObserve) {
+  if (tagsToObserve && tagsToObserve.length > 0) {
     let tagFound = false;
 
     // check to see if a particular tag already exists on the page
