@@ -1,7 +1,7 @@
-import { polyfillLoader } from '@bolt/core-v3.x/polyfills';
+import { lazyQueue } from '@bolt/lazy-queue';
 
-polyfillLoader.then(() => {
-  import(
-    /* webpackMode: 'eager', webpackChunkName: 'bolt-ratio' */ './src/ratio.js'
-  );
+lazyQueue(['bolt-ratio'], async () => {
+  await Promise.all([
+    import(/* webpackChunkName: 'bolt-ratio' */ './src/ratio'),
+  ]);
 });

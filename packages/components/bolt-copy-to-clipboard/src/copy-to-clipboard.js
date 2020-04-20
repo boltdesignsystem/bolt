@@ -1,7 +1,9 @@
-import { polyfillLoader } from '@bolt/core-v3.x/polyfills';
+import { lazyQueue } from '@bolt/lazy-queue';
 
-polyfillLoader.then(res => {
-  import(
-    /* webpackMode: 'lazy', webpackChunkName: 'bolt-copy-to-clipboard' */ './copy-to-clipboard.standalone.js'
-  );
+lazyQueue(['bolt-copy-to-clipboard'], async () => {
+  await Promise.all([
+    import(
+      /* webpackChunkName: 'bolt-copy-to-clipboard' */ './copy-to-clipboard.standalone.js'
+    ),
+  ]);
 });

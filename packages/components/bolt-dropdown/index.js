@@ -1,17 +1,18 @@
-import { polyfillLoader } from '@bolt/core-v3.x/polyfills';
+import { lazyQueue } from '@bolt/lazy-queue';
 
-polyfillLoader.then(res => {
-  import(
-    /*
-    webpackMode: 'eager',
-    webpackChunkName: 'bolt-dropdown'
-  */ './dropdown.js'
-  ).then(BoltDropdown => {
-    if (!customElements.get('bolt-dropdown')) {
-      customElements.define(
-        BoltDropdown.BoltDropdown.is,
-        BoltDropdown.BoltDropdown,
-      );
-    }
-  });
+lazyQueue(['bolt-dropdown'], async () => {
+  await Promise.all([
+    import(
+      /*
+      webpackChunkName: 'bolt-dropdown'
+    */ './dropdown.js'
+    ).then(BoltDropdown => {
+      if (!customElements.get('bolt-dropdown')) {
+        customElements.define(
+          BoltDropdown.BoltDropdown.is,
+          BoltDropdown.BoltDropdown,
+        );
+      }
+    }),
+  ]);
 });
