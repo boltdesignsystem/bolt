@@ -1,11 +1,7 @@
-The `<bolt-progress-bar>` is a horizontal progress bar that visually indicates progress or activity completion.
+Progress Bar is part of the collection of components, visual styles, and build tools that power the the [Bolt Design System](https://www.boltdesignsystem.com).
 
 ###### Install via NPM
+
 ```
 npm install @bolt/components-progress-bar
 ```
-
-### Future config options (planned):
-- Size options (ex. `small` and `medium`)
-- Pre-defined color variants (ex. `success`, `error`, and `info`)
-- Additional states (ex. `indeterminate`)

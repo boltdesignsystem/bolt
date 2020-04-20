@@ -4,7 +4,7 @@
   {% for valueFormat in schema.properties.valueFormat.enum %}
     {% cell "u-bolt-width-12/12 u-bolt-width-6/12@small" %}
       <bolt-text headline>
-        {{ valueFormat|capitalize }} Format
+        {{ valueFormat|capitalize }} format
       </bolt-text>
       {% include "@bolt-components-progress-bar/progress-bar.twig" with {
         value: 65,

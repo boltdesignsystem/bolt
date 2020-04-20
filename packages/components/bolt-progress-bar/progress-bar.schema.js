@@ -12,19 +12,18 @@ module.exports = {
     },
     value: {
       type: 'number',
-      description:
-        'Typically represents the value (from 0 to 100) of the percentage progressed.',
+      description: 'The current value.',
       minimum: 0,
     },
     valueFormat: {
       enum: ['percent', 'step'],
       default: 'percent',
       type: 'string',
-      description: 'The data format that the progress bar should display.',
+      description: 'The data format that the current value should display.',
     },
     max: {
       type: 'number',
-      description: 'The maximum value allowed in the Progress Bar.',
+      description: 'The maximum value.',
       default: 100,
       minimum: 1,
     },
