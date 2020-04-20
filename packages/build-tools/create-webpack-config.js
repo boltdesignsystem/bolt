@@ -376,8 +376,12 @@ async function createWebpackConfig(buildConfig) {
               sourceMap: config.sourceMaps,
               cache: true,
               parallel: true,
+              extractComments: false,
               terserOptions: {
                 safari10: true,
+                output: {
+                  comments: false,
+                },
               },
             }),
           ]

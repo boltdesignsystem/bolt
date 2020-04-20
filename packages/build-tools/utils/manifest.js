@@ -142,21 +142,6 @@ async function getPkgInfo(pkgName) {
       deps: [],
     };
 
-    if (pkg.peerDependencies) {
-      for (dependencyPackageName in pkg.peerDependencies) {
-        if (dependencyPackageName.includes('bolt')) {
-          info.deps.push(dependencyPackageName);
-        }
-      }
-    }
-
-    if (pkg.dependencies) {
-      for (dependencyPackageName in pkg.dependencies) {
-        if (dependencyPackageName.includes('bolt')) {
-          info.deps.push(dependencyPackageName);
-        }
-      }
-    }
 
     info.twigNamespace = `@${info.basicName}`;
     if (pkg.style) {
@@ -255,9 +240,7 @@ async function buildBoltManifest() {
 
       // @todo: re-evaluate if we really should be doing this...
       // boltManifest.components.global = globalSrc;
-      boltManifest.components.global = await aggregateBoltDependencies(
-        globalSrc,
-      );
+      boltManifest.components.global = globalSrc;
     }
     if (config.components.individual) {
       const individualSrc = await Promise.all(
