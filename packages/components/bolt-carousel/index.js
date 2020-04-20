@@ -1,7 +1,7 @@
-import { polyfillLoader } from '@bolt/core-v3.x/polyfills';
+import { lazyQueue } from '@bolt/lazy-queue';
 
-polyfillLoader.then(res => {
-  import(
-    /* webpackMode: 'lazy', webpackChunkName: 'bolt-carousel' */ './src/carousel'
-  );
+lazyQueue(['bolt-carousel'], async () => {
+  await Promise.all([
+    import(/* webpackChunkName: 'bolt-carousel' */ './src/carousel'),
+  ]);
 });

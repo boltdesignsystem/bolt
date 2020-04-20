@@ -4,6 +4,7 @@
   id: id | default(''),
 } %}
 
+<bolt-editor>
 <div class="js-pega-editor">
   <script class="js-pega-editor__config" type="application/json">
     {% autoescape 'js' %}
@@ -17,3 +18,4 @@
     {{ content }}
   </div>
 </div>
+</bolt-editor>

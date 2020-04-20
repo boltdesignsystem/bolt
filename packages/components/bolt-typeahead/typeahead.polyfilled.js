@@ -1,7 +1,7 @@
-import { polyfillLoader } from '@bolt/core-v3.x/polyfills';
+import { lazyQueue } from '@bolt/lazy-queue';
 
-polyfillLoader.then(res => {
-  import(
-    /* webpackMode: 'eager', webpackChunkName: 'bolt-typeahead' */ './typeahead.js'
-  );
+lazyQueue(['bolt-typeahead'], async () => {
+  await Promise.all([
+    import(/* webpackChunkName: 'bolt-typeahead' */ './typeahead.js'),
+  ]);
 });
