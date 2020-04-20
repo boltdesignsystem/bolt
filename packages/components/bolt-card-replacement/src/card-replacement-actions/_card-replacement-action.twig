@@ -1,5 +1,5 @@
 <bolt-card-replacement-action {% if external %} external {% endif %} {% if url %} url="{{url}}" {% endif %}>
-  <replace-with-children class="c-bolt-card_replacement__action">
+  <ssr-keep for="bolt-card-replacement-action" class="c-bolt-card_replacement__action">
     {% block action_item %}
       {% if text %}
         {% set button_props = {
@@ -21,5 +21,5 @@
         {% include "@bolt-components-button/button.twig" with button_props only %}
       {% endif %}
     {% endblock %}
-  </replace-with-children>
+  </ssr-keep>
 </bolt-card-replacement-action>
