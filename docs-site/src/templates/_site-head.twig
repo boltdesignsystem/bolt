@@ -6,15 +6,9 @@
 
 
 {# @TODO: how do we get this to use the exact same values from our global .js config without having the source of truth live as a .yml or .json file...? #}
-{% set legacyManifestConfig = "@bolt-assets/bolt-webpack-manifest#{lang != "" ? "-" ~ lang : ""}.json" %}
 {% set modernManifestConfig = "@bolt-assets/bolt-webpack-manifest#{lang != "" ? "-" ~ lang : ""}.modern.json" %}
 
-{% set legacyAssets = [] %}
 {% set modernAssets = [] %}
-
-{% if fileExists(legacyManifestConfig) %}
-  {% set legacyAssets = get_data(legacyManifestConfig) %}
-{% endif %}
 
 {% if fileExists(modernManifestConfig) %}
   {% set modernAssets = get_data(modernManifestConfig) %}
@@ -35,6 +29,7 @@
 {% set cacheBuster = bolt.data.config.prod ? "?v=" ~ bolt.data.fullManifest.version : "" %}
 
 {% set htmlClasses = [
+  'js-fonts-loaded',
   bolt.data.config.prod ? '' : 'js-fonts-loaded',
   currentUrl == 'index.html' ? 'u-bolt-min-height-screen u-bolt-flex' : ''
 ] %}
@@ -50,28 +45,11 @@
     <link rel="preconnect dns-prefetch" href="https://www.google-analytics.com"/>
 
     <!-- async load PL's CSS -->
-    <link rel="stylesheet" href="{{ legacyAssets["bolt-global.css"] | default("/build/bolt-global.css") }}" media="all" />
+    <link rel="stylesheet" href="{{ modernAssets["bolt-global.css"] | default("/build/bolt-global.css") }}" media="all" />
     <link rel="preload" href="/pattern-lab/styleguide/css/pattern-lab.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-
-    {# critical path scripts for non-ES Module browsers #}
-    {% if bolt.data.config.compat == true %}
-      <script nomodule>
-        {% if fileExists("@bolt-assets/bolt-critical-path-polyfills.cjs.js") %}
-          {{ inline(legacyAssets["bolt-critical-path-polyfills.cjs.js"] | default("")) }}
-        {% endif %}
-
-        {% if fileExists("@bolt-assets/bolt-components-critical-css.js") %}
-          {{ inline( legacyAssets["bolt-components-critical-css-vars.js"] | default("") ) }}
-        {% endif %}
-      </script>
-    {% endif %}
 
     {# shared critical path scripts #}
     <script>
-      if (sessionStorage.fontsLoadedCriticalFoftPreloadPolyfill){
-        document.documentElement.classList.add('js-fonts-loaded');
-      }
-
       window.drupalSettings = {
         google_analytics: {
           trackCrossDomains: ['github.com']
@@ -84,16 +62,11 @@
       window.bolt.data.fullManifest.version = window.bolt.data.fullManifest.version || {{ bolt.data.fullManifest.version|json_encode|raw }};
     </script>
 
+    <script type="module" src="{{ modernAssets["bolt-global.js"] | default("/build/bolt-global.modern.js") }}" async></script>
+
     <noscript>
       <link href="/pattern-lab/styleguide/css/pattern-lab.css" rel="stylesheet">
     </noscript>
-
-    {# @TODO: wire this up to use Critical CSS #}
-    <style>
-      {% if fileExists("@bolt-assets/bolt-components-critical-fonts.css") %}
-        {# {{ inline( legacyAssets["bolt-components-critical-fonts.css"] | default("") ) }} #}
-      {% endif %}
-    </style>
 
     <link rel="image_src" href="/images/bolt-logo-480.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=LbyzAXRqNz">
