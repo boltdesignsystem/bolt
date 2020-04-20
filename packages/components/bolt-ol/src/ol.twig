@@ -15,7 +15,7 @@
 
 <bolt-ol {{ attributes | without("class") }}>
   <replace-with-grandchildren>
-    <ol {{ attributes.addClass(classes) }}>
+    <div {{ attributes.addClass(classes) }} role="list">
       {% for item in items %}
         {% if item is iterable %}
           {% for i in item %}
@@ -41,6 +41,6 @@
           {% include "@bolt-components-li/li.twig" with list_item only %}
         {% endif %}
       {% endfor %}
-    </ol>
+    </div>
   </replace-with-grandchildren>
 </bolt-ol>

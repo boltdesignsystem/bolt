@@ -145,7 +145,7 @@ module.exports = class extends Generator {
           typeof program.description === 'string'
             ? program.description
             : () => {
-                return `The ${this.name.noCase} component - part of the Bolt Design System.`;
+                return `[Describe the ${this.name.titleCase} component]`;
               },
         when: !program.test,
         validate: input => {
@@ -200,9 +200,9 @@ module.exports = class extends Generator {
 
     // component-specific schema
     this.fs.copyTpl(
-      this.templatePath('component.schema.yml'),
+      this.templatePath('component.schema.js'),
       this.destinationPath(
-        `${this.props.dest}/${this.props.name.kebabCase}.schema.yml`,
+        `${this.props.dest}/${this.props.name.kebabCase}.schema.js`,
       ),
       { props: this.props },
     );
@@ -226,7 +226,9 @@ module.exports = class extends Generator {
     // basic component Jest tests
     this.fs.copyTpl(
       this.templatePath('component.test.js'),
-      this.destinationPath(`${this.props.dest}/__tests__/index.js`),
+      this.destinationPath(
+        `${this.props.dest}/__tests__/${this.props.name.kebabCase}.js`,
+      ),
       { props: this.props },
     );
 
