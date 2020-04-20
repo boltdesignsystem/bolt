@@ -9,71 +9,89 @@
 @each $themeName, $themeOptions in $bolt-themes {
   $selector: '.t-bolt-#{$themeName}';
 
-  @if ($themeName == 'xlight') {
-    $selector: ':root, .t-bolt-#{$themeName}';
-  }
+  @if ($themeName == 'xlight' or $themeName == 'xdark'){
+    @if ($themeName == 'xlight') {
+      $selector: ':root, .t-bolt-light, .t-bolt-xlight';
+    }
 
-  @if ($themeName == 'xdark') {
-    $selector: '.t-bolt-xdark, .t-bolt-xxdark';
+    @if ($themeName == 'xdark') {
+      $selector: '.t-bolt-dark, .t-bolt-xdark, .t-bolt-xxdark';
+    }
+
+    #{unquote($selector)} {
+      @each $themeOptionName, $themeOptionValue in $themeOptions {
+        @if $themeOptionName != 'background' {
+          @if type-of($themeOptionValue) == color and type-of($themeOptionValue) != string {
+            $red: round(red($themeOptionValue));
+            $green: round(green($themeOptionValue));
+            $blue: round(blue($themeOptionValue));
+
+            --bolt-theme-#{$themeOptionName}: #{$red, $green, $blue};
+          } @else {
+            --bolt-theme-#{$themeOptionName}: #{$themeOptionValue};
+          }
+        }
+      }
+
+      // manually spec out the tertiary background + text colors vs using the original Theming
+      // system to auto-generate a ton of extra vars we don't need;
+      //
+      // Part of the broader initiative to move Bolt to CSS vars + simplify our CSS Architecture
+      //
+      // @todo: review this when working through the new CSS custom property / vars spec (ex. http://vjira2:8080/browse/BDS-2031)
+
+      @if $themeName == 'xlight' {
+        --bolt-theme--tertiary--background-color--default: #{rgba(bolt-color(gray), 0.15)};
+        --bolt-theme--tertiary--background-color--hover:   #{rgba(bolt-color(gray), 0.3)};
+        --bolt-theme--tertiary--background-color--focus:   #{rgba(bolt-color(gray), 0.4)};
+        --bolt-theme--tertiary--background-color--active:  #{rgba(bolt-color(gray), 0.5)};
+
+        --bolt-theme--tertiary--text-color--default: #{rgba(bolt-color(black), 0.9)};
+        --bolt-theme--tertiary--text-color--hover:   #{rgba(bolt-color(black), 1)};
+        --bolt-theme--tertiary--text-color--active:  var(--bolt-theme--tertiary--text-color--hover);
+        --bolt-theme--tertiary--text-color--focus:   var(--bolt-theme--tertiary--text-color--hover);
+      } @else {
+        --bolt-theme--tertiary--background-color--default:   #{rgba(bolt-color(white), 0.2)};
+        --bolt-theme--tertiary--background-color--hover:     #{rgba(bolt-color(white), 0.3)};
+        --bolt-theme--tertiary--background-color--focus:     #{rgba(bolt-color(white), 0.35)};
+        --bolt-theme--tertiary--background-color--active:    #{rgba(bolt-color(white), 0.4)};
+
+        --bolt-theme--tertiary--text-color--default: #{rgba(bolt-color(white), 0.9)};
+        --bolt-theme--tertiary--text-color--hover:   #{rgba(bolt-color(white), 1)};
+        --bolt-theme--tertiary--text-color--active:  var(--bolt-theme--tertiary--text-color--hover);
+        --bolt-theme--tertiary--text-color--focus:   var(--bolt-theme--tertiary--text-color--hover);
+      }
+
+      color: rgba(var(--bolt-theme-text), 1);
+      background-color: rgba(var(--bolt-theme-background), 1);
+    }
+  }
+}
+
+@each $themeName, $themeOptions in $bolt-themes {
+  $selector: '.t-bolt-#{$themeName}';
+  @if ($themeName == 'xlight') {
+    $selector: ':root, .t-bolt-xlight';
   }
 
   #{unquote($selector)} {
     @each $themeOptionName, $themeOptionValue in $themeOptions {
+      @if $themeOptionName == 'background' {
+        @if type-of($themeOptionValue) == color and type-of($themeOptionValue) != string {
+          $red: round(red($themeOptionValue));
+          $green: round(green($themeOptionValue));
+          $blue: round(blue($themeOptionValue));
 
-      @if type-of($themeOptionValue) == color and type-of($themeOptionValue) != string {
-        $red: round(red($themeOptionValue));
-        $green: round(green($themeOptionValue));
-        $blue: round(blue($themeOptionValue));
-
-        --bolt-theme-#{$themeOptionName}: #{$red, $green, $blue};
-      } @else {
-        --bolt-theme-#{$themeOptionName}: #{$themeOptionValue};
+          --bolt-theme-#{$themeOptionName}: #{$red, $green, $blue};
+        } @else {
+          --bolt-theme-#{$themeOptionName}: #{$themeOptionValue};
+        }
       }
     }
 
-    color: bolt-theme-prop-value($themeName, text);
-    color: rgba(var(--bolt-theme-text), 1);
-
-    background-color: bolt-theme-prop-value($themeName, background);
-    background-color: rgba(var(--bolt-theme-background), 1);
   }
 }
 
 .t-bolt-xxdark {
   --bolt-theme-background: 0, 0, 0;
-  background-color: black;
-}
-
-// manually spec out the tertiary background + text colors vs using the original Theming
-// system to auto-generate a ton of extra vars we don't need;
-//
-// Part of the broader initiative to move Bolt to CSS vars + simplify our CSS Architecture
-//
-// @todo: review this when working through the new CSS custom property / vars spec (ex. http://vjira2:8080/browse/BDS-2031)
-.t-bolt-light,
-.t-bolt-xlight,
-:root {
-  --bolt-theme--tertiary--background-color--default: #{rgba(bolt-color(gray), 0.15)};
-  --bolt-theme--tertiary--background-color--hover:   #{rgba(bolt-color(gray), 0.3)};
-  --bolt-theme--tertiary--background-color--focus:   #{rgba(bolt-color(gray), 0.4)};
-  --bolt-theme--tertiary--background-color--active:  #{rgba(bolt-color(gray), 0.5)};
-
-  --bolt-theme--tertiary--text-color--default: #{rgba(bolt-color(black), 0.9)};
-  --bolt-theme--tertiary--text-color--hover:   #{rgba(bolt-color(black), 1)};
-  --bolt-theme--tertiary--text-color--active:  var(--bolt-theme--tertiary--text-color--hover);
-  --bolt-theme--tertiary--text-color--focus:   var(--bolt-theme--tertiary--text-color--hover);
-}
-
-.t-bolt-dark,
-.t-bolt-xdark,
-.t-bolt-xxdark {
-  --bolt-theme--tertiary--background-color--default:   #{rgba(bolt-color(white), 0.2)};
-  --bolt-theme--tertiary--background-color--hover:     #{rgba(bolt-color(white), 0.3)};
-  --bolt-theme--tertiary--background-color--focus:     #{rgba(bolt-color(white), 0.35)};
-  --bolt-theme--tertiary--background-color--active:    #{rgba(bolt-color(white), 0.4)};
-
-  --bolt-theme--tertiary--text-color--default: #{rgba(bolt-color(white), 0.9)};
-  --bolt-theme--tertiary--text-color--hover:   #{rgba(bolt-color(white), 1)};
-  --bolt-theme--tertiary--text-color--active:  var(--bolt-theme--tertiary--text-color--hover);
-  --bolt-theme--tertiary--text-color--focus:   var(--bolt-theme--tertiary--text-color--hover);
 }
