@@ -1,12 +1,9 @@
-import { polyfillLoader } from '@bolt/core-v3.x/polyfills';
+import { lazyQueue } from '@bolt/lazy-queue';
 
-polyfillLoader.then(res => {
-  if (!window.customElements.get('bolt-trigger')) {
-    import(
-      /*
-      webpackMode: 'eager',
-      webpackChunkName: 'bolt-trigger'
-    */ './src/trigger'
-    );
-  }
-});
+if (!window.customElements.get('bolt-trigger')) {
+  lazyQueue(['bolt-trigger'], async () => {
+    await Promise.all([
+      import(/* webpackChunkName: 'bolt-trigger' */ './src/trigger'),
+    ]);
+  });
+}
