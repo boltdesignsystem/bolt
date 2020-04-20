@@ -1,8 +1,5 @@
 import { html, unsafeCSS, customElement, BoltElement } from '@bolt/element';
 import classNames from 'classnames/bind';
-
-import schema from '../carousel.schema.yml';
-
 // Import Swiper and modules
 import {
   Swiper,
@@ -16,6 +13,7 @@ import {
 // Install modules
 Swiper.use([Navigation, Pagination, Scrollbar, A11y, Autoplay]);
 
+import schema from '../carousel.schema.yml';
 import carouselStyles from '../index.scss';
 
 import '@bolt/core-v3.x/utils/optimized-resize';
@@ -33,7 +31,6 @@ const boltBreakpoints = {
   xxlarge: '1400px',
   xxxlarge: '1920px',
 };
-
 
 @customElement('bolt-carousel')
 class BoltCarousel extends BoltElement {
@@ -53,8 +50,8 @@ class BoltCarousel extends BoltElement {
       thumbs: {
         type: Object,
       },
-    }
-  };
+    };
+  }
 
   static useShadow = false;
 
@@ -199,18 +196,12 @@ class BoltCarousel extends BoltElement {
     if (this.swiper.params.slidesPerView === 'auto') {
       // If `slidesPerView` is still equal to 'auto', the carousel was probably hidden on load. Just set `slidesPerGroup` to `1` for now, must be an integer.
       this.swiper.params.slidesPerGroup = 1;
-    } else if (
-      this.slidesPerGroup &&
-      this.slidesPerGroup === 'auto'
-    ) {
+    } else if (this.slidesPerGroup && this.slidesPerGroup === 'auto') {
       this.swiper.params.slidesPerGroup = parseInt(
         this.swiper.params.slidesPerView,
         10,
       );
-    } else if (
-      this.slidesPerGroup &&
-      this.slidesPerGroup !== 'auto'
-    ) {
+    } else if (this.slidesPerGroup && this.slidesPerGroup !== 'auto') {
       // make sure slidesPerGroup can't be set to a number greater than total # of slides visible
       const slidesPerGroup = parseInt(this.slidesPerGroup, 10);
       if (slidesPerGroup <= parseInt(this.swiper.params.slidesPerView, 10)) {
@@ -232,7 +223,6 @@ class BoltCarousel extends BoltElement {
   }
 
   firstUpdated(props) {
-
     if (this.noJs) {
       return;
     }
@@ -494,8 +484,8 @@ class BoltCarousel extends BoltElement {
       'c-bolt-carousel__button--previous',
       {
         [`c-bolt-carousel__button--hidden`]: this.noNavButtons,
-        [`c-bolt-carousel__button--${this.navButtonPosition ||
-          'inner'}`]: this.navButtonPosition,
+        [`c-bolt-carousel__button--${this.navButtonPosition || 'inner'}`]: this
+          .navButtonPosition,
       },
     );
 
@@ -504,8 +494,8 @@ class BoltCarousel extends BoltElement {
       'c-bolt-carousel__button--next',
       {
         [`c-bolt-carousel__button--hidden`]: this.noNavButtons,
-        [`c-bolt-carousel__button--${this.navButtonPosition ||
-          'inner'}`]: this.navButtonPosition,
+        [`c-bolt-carousel__button--${this.navButtonPosition || 'inner'}`]: this
+          .navButtonPosition,
       },
     );
 
