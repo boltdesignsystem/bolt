@@ -1,3 +1,4 @@
+// @ts-ignore
 import { lazyQueue } from '@bolt/lazy-queue';
 
 lazyQueue(['bolt-editor'], async () => {
