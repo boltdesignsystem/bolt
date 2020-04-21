@@ -68,11 +68,11 @@
   {% endif %}
   uuid="{{ uuid }}"
 >
-  <div {% if inner_classes %} class="{{ inner_classes|join(' ') }}" {% endif %}>
+  <replace-with-children {% if inner_classes %} class="{{ inner_classes|join(' ') }}" {% endif %}>
     {% if trigger %}
       {# Start adapter for old trigger data #}
       {% if trigger.type == "text" %}
-        <ssr-keep for="bolt-tooltip"
+        <replace-with-children
           role="button"
           tabindex="0"
           aria-describedby="{{ tooltip_uuid }}"
@@ -84,9 +84,9 @@
           {% if trigger.text %}
             {{ trigger.text }}
           {% endif %}
-        </ssr-keep>
+        </replace-with-children>
       {% elseif trigger.type == "button" %}
-        <ssr-keep for="bolt-tooltip"
+        <replace-with-children
           role="button"
           tabindex="0"
           aria-describedby="{{ tooltip_uuid }}"
@@ -101,33 +101,31 @@
             },
             style: "secondary",
           } only %}
-        </ssr-keep>
+        </replace-with-children>
       {# End adapter for old trigger data #}
 
       {# Start new trigger #}
       {% else %}
-        <ssr-keep for="bolt-tooltip"
+        <replace-with-children
           role="button"
           tabindex="0"
           aria-describedby="{{ tooltip_uuid }}"
           aria-controls="{{ tooltip_uuid }}"
         >
           {{ trigger }}
-        </ssr-keep>
+        </replace-with-children>
       {% endif %}
       {# End new trigger #}
     {% endif %}
 
     {% if content %}
-      <div id="{{ tooltip_uuid }}" class="{{ "#{base_class}__content" }}" role="tooltip" aria-hidden="true">
-        <span class="{{ "#{base_class}__bubble" }}">
-          <ssr-keep for="bolt-tooltip">
-            <span slot="content">
-              {{ content }}
-            </span>
-          </ssr-keep>
-        </span>
-      </div>
+      <span slot="content">
+        <replace-with-grandchildren id="{{ tooltip_uuid }}" class="{{ "#{base_class}__content" }}" role="tooltip" aria-hidden="true">
+          <span class="{{ "#{base_class}__bubble" }}">
+            {{ content }}
+          </span>
+        </replace-with-grandchildren>
+      </span>
     {% endif %}
-  </div>
+  </replace-with-children>
 </bolt-tooltip>

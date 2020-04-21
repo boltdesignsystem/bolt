@@ -8,7 +8,7 @@
 {% set attributes = create_attribute(body.attributes|default({})) %}
 
 <bolt-card-replacement-body {{ attributes }}>
-  <ssr-keep for="bolt-card-replacement-body" class="c-bolt-card_replacement__body">
+  <replace-with-children class="c-bolt-card_replacement__body">
     {% block body %}
       {% if card_replacement_body_content %}
         {{ card_replacement_body_content }}
@@ -35,5 +35,5 @@
         {% endif %}
       {% endif %}
     {% endblock %}
-  </ssr-keep>
+  </replace-with-children>
 </bolt-card-replacement-body>

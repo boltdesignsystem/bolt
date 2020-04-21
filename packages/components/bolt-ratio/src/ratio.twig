@@ -24,9 +24,9 @@
 {% endif %}
 
 <bolt-ratio {{ attributes }}>
-  <ssr-keep for="bolt-ratio" class="c-bolt-ratio" style="{{ inline_styles | join(" ") }}">
+  <replace-with-children class="c-bolt-ratio" style="{{ inline_styles | join(" ") }}">
     {% block ratio_content %}
       {{ children }}
     {% endblock %}
-  </ssr-keep>
+  </replace-with-children>
 </bolt-ratio>
