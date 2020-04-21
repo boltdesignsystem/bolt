@@ -72,10 +72,10 @@
     }
   ]) %}
 
-  {% if canCollapse %}
+  {% if collapsible %}
     {% set list = list|merge([
       {
-        content: macros.truncateTrigger("close", size, inputId),
+        content: macros.truncateTrigger("chevron-left", size, inputId),
         attributes: {
           "truncate-trigger": "",
           "truncate-trigger-collapse": ""

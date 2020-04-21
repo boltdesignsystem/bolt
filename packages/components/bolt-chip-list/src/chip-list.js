@@ -96,7 +96,7 @@ class BoltChipList extends BoltElement {
     if (this.willTruncate && this.triggerElement) {
       render(
         html`
-          ${!this.expanded || (this.expanded && this.canCollapse)
+          ${!this.expanded || (this.expanded && this.collapsible)
             ? html`
                 <bolt-trigger
                   aria-label="${this.expanded ? 'Show less' : 'Show more'}"
@@ -108,7 +108,7 @@ class BoltChipList extends BoltElement {
                   >
                     <bolt-icon
                       slot="after"
-                      name="${this.expanded ? 'close' : 'more'}"
+                      name="${this.expanded ? 'chevron-left' : 'more'}"
                     >
                     </bolt-icon>
                   </bolt-chip>
