@@ -150,4 +150,55 @@ describe('<bolt-chip-list> Component', () => {
     expect(results.ok).toBe(true);
     expect(results.html).toMatchSnapshot();
   });
+
+  test('collapsible', async () => {
+    const results = await render('@bolt-components-chip-list/chip-list.twig', {
+      truncate: 3,
+      collapsible: true,
+      items: [
+        {
+          text: 'Chip link 1',
+          url: '#!',
+        },
+        {
+          text: 'Chip link 2',
+          url: '#!',
+        },
+        {
+          text: 'Chip link 3',
+          url: '#!',
+        },
+        {
+          text: 'Chip link 4',
+          url: '#!',
+        },
+        {
+          text: 'Chip link 5',
+          url: '#!',
+        },
+      ],
+    });
+
+    const twigRenderedHTML = results.html;
+
+    const renderedComponentHTML = await page.evaluate(
+      async twigRenderedHTML => {
+        document.body.insertAdjacentHTML('beforeend', `${twigRenderedHTML}`);
+        const el = document.querySelector('bolt-chip-list');
+        await el.updateComplete;
+        return el.outerHTML;
+      },
+      twigRenderedHTML,
+    );
+
+    // @todo: icons not showing up in image snapshot
+    // await page.waitFor(500);
+    // const image = await page.screenshot();
+    // expect(image).toMatchImageSnapshot(vrtDefaultConfig);
+
+    const renderedHTML = await html(renderedComponentHTML);
+    expect(renderedHTML).toMatchSnapshot();
+    expect(results.ok).toBe(true);
+    expect(results.html).toMatchSnapshot();
+  });
 });
