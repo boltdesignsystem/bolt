@@ -35,7 +35,7 @@
 {# Math! This calculates and converts the value to both percent and step formats. #}
 {% set fillPosition = ((this.data.value.value - this.data.max.value) / this.data.max.value * 100) %}
 {% set percentValue = ((this.data.max.value - (this.data.max.value - this.data.value.value)) / this.data.max.value * 100) %}
-{% set displayedValue = this.data.valueFormat == "percent" ? percentValue|round ~ "%" : this.data.value.value|round ~ " / " ~ this.data.max.value|round %}
+{% set displayedValue = this.data.value_format.value == "percent" ? percentValue|round ~ "%" : this.data.value.value|round ~ " / " ~ this.data.max.value|round %}
 
 <bolt-progress-bar
   {% if outerClasses %} class="{{ outerClasses|join(' ') }}" {% endif %}
