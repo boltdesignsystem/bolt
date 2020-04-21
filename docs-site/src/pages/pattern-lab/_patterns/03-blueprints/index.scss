@@ -215,3 +215,14 @@
 .c-bolt-rating__input--no-rating:focus ~ .c-bolt-rating__no-rating-outline {
   opacity: 1;
 }
+
+.c-bolt-badge {
+  position: relative;
+
+  &__lock {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
