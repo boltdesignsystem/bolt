@@ -1,6 +1,6 @@
-@import "@bolt/core-v3.x";
+@import '@bolt/core-v3.x';
 
-@include bolt-custom-element("bolt-progress-bar", flex, medium);
+@include bolt-custom-element('bolt-progress-bar', flex, medium);
 
 @include bolt-repeat-rule(('bolt-progress-bar', ':host')) {
   min-width: 150px;
@@ -28,7 +28,8 @@
   grid-row: auto;
   border: 1px solid rgba(bolt-color(gray, xdark), 0.8);
   border-radius: bolt-border-radius(full);
-  box-shadow: inset 0 2px 3px 0 rgba(bolt-color(black), 0.25), inset 0 1px 3px 0 rgba(bolt-color(black), 0.5);
+  box-shadow: inset 0 2px 3px 0 rgba(bolt-color(black), 0.25),
+    inset 0 1px 3px 0 rgba(bolt-color(black), 0.5);
   background-color: rgba(bolt-color(gray, dark), 0.6);
 
   &:last-child {
@@ -55,10 +56,10 @@
   box-shadow: 1px 0 1px 0 rgba(bolt-color(black), 0.22);
   background-color: rgba(bolt-color(white), 0.75);
   will-change: transform;
-  transition: transform .2s linear, background-color .2s linear;
+  transition: transform 0.2s linear, background-color 0.2s linear;
 
   &:after {
-    content: "";
+    content: '';
     opacity: 0;
     position: absolute;
     top: 0;
@@ -78,7 +79,7 @@
       transparent
     );
     background-size: 50px 50px;
-    transition: all .2s linear;
+    transition: all 0.2s linear;
   }
 
   // @todo: refactor this once we have more fully baked variants (success, etc) since this technically shouldn't change color when it hits 100%...
