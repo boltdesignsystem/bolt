@@ -2,13 +2,11 @@
 
 {% import "@bolt-blueprints/macros.twig" as macros %}
 
-{% block page_background %}
-  {% include "@bolt-components-background/background.twig" with {
-    opacity: "full",
-    fill: "radial-gradient",
-    fillColor: "indigo"
-  } only %}
-{% endblock %}
+{% set background = {
+  opacity: "full",
+  fill: "radial-gradient",
+  fillColor: "indigo"
+} %}
 
 {% block page_content %}
 
