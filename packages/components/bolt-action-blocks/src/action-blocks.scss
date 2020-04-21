@@ -16,7 +16,11 @@ bolt-action-blocks {
   @include bolt-padding(0);
   display: flex;
   flex-wrap: wrap;
-  transform: translate3d(0, 0, 0); //Force hardware accelerated rendering to cleanly remove extra border from showing up sometimes
+  transform: translate3d(
+    0,
+    0,
+    0
+  ); //Force hardware accelerated rendering to cleanly remove extra border from showing up sometimes
   list-style: none;
 }
 
@@ -76,10 +80,10 @@ bolt-action-blocks {
   }
 }
 
-
 .c-bolt-action-block__text {
   color: bolt-theme(headline-link);
-  transition: color $bolt-action-blocks-transition-timing $bolt-action-blocks-transition-ease;
+  transition: color $bolt-action-blocks-transition-timing
+    $bolt-action-blocks-transition-ease;
 
   .c-bolt-action-block:focus &,
   .c-bolt-action-block:hover &,

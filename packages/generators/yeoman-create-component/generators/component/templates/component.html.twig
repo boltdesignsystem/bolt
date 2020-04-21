@@ -11,6 +11,7 @@
 {# Array of classes based on the defined + default props #}
 {% set classes = [
   "c-bolt-<%= props.name.kebabCase %>",
+  disabled ? "c-bolt-<%= props.name.kebabCase %>--disabled" : "",
 ] %}
 
 {#
