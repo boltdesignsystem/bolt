@@ -3,6 +3,86 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.22.0](https://github.com/boltdesignsystem/bolt/compare/v2.21.1...v2.22.0) (2020-04-22)
+
+
+### Bug Fixes
+
+* add `only` keyword to footer so background doesn't pass through. ([4104889](https://github.com/boltdesignsystem/bolt/commit/41048895bb9e1fd7364bc09c7a1cf97d97c419ca))
+* add `only` per PR feedback ([2d89152](https://github.com/boltdesignsystem/bolt/commit/2d89152da9ab15a4f7ebcb9e909b6d1ddf9b4e98))
+* add `size` type to Chip List schema ([ddc4eaf](https://github.com/boltdesignsystem/bolt/commit/ddc4eaf894e1a333b8175510352161427b9f5f07))
+* add missing `_self` default prop value to to the target prop in BoltActionElement ([c7f75ee](https://github.com/boltdesignsystem/bolt/commit/c7f75ee51119c02aaaa76a72a0c3d18b7cf1aaf6))
+* Add missing only statements to various includes and embeds ([7ddc48c](https://github.com/boltdesignsystem/bolt/commit/7ddc48cfe04dedd8564c74633cb2cb7d3298bc64))
+* add only to twig includes ([6b44b65](https://github.com/boltdesignsystem/bolt/commit/6b44b65596863b4de771fd79efd88ed7e5127382))
+* add proper role attributes ([be0263f](https://github.com/boltdesignsystem/bolt/commit/be0263f58a26214a2e62408c087cab1bd878b57b))
+* border radius ([2567f31](https://github.com/boltdesignsystem/bolt/commit/2567f31e79516c435296a60b2790b27ee431a308))
+* border-radius logic ([894af29](https://github.com/boltdesignsystem/bolt/commit/894af29109d79fdbc9d080055413b3568e0ddd94))
+* card background stacking order ([c733d08](https://github.com/boltdesignsystem/bolt/commit/c733d08567ae77cba718544f363fa4e874bc6df2))
+* change rounded usage to borderRadius ([5bc6eb2](https://github.com/boltdesignsystem/bolt/commit/5bc6eb2c7bdcd3b3429a9d2a2151f4326d7535cc))
+* create tests for new props ([744a8ae](https://github.com/boltdesignsystem/bolt/commit/744a8ae923cdb976cda27cd7094a4d7f4070da8f))
+* css linting ([94d905a](https://github.com/boltdesignsystem/bolt/commit/94d905a1ed1e00f4cefd43efd69ae954018cd078))
+* docs ([daeecb8](https://github.com/boltdesignsystem/bolt/commit/daeecb804475b92377c865284a42126d25dbcd97))
+* math rounding ([fbf5c0e](https://github.com/boltdesignsystem/bolt/commit/fbf5c0e5d055c7a09b7f753234eddacbd92f5eac))
+* minor update to Link to elimninate extra whitespace + get default target auto-added ([378fa26](https://github.com/boltdesignsystem/bolt/commit/378fa268ec4df6320cf495a020099f2b5fa04788))
+* ommit options in the spacing css ([121272e](https://github.com/boltdesignsystem/bolt/commit/121272ebe788585692e7ad31b5f89332e50f0b4d))
+* Pass background params to band in landing page template ([4f25e0c](https://github.com/boltdesignsystem/bolt/commit/4f25e0c415ac1923b0758e99a9037f6bb0620c49))
+* remove dupe generator Jest test ([be63b55](https://github.com/boltdesignsystem/bolt/commit/be63b55befcf6f86973fee7a5c1a988eab3e9ada))
+* remove join ([3eddaf2](https://github.com/boltdesignsystem/bolt/commit/3eddaf24cfb6b0d63ecdf23f706916bc7f0cb012))
+* remove typo ([4c9ab67](https://github.com/boltdesignsystem/bolt/commit/4c9ab6721c99651fe388857ca5015be601526009))
+* remove unused `.spacing` property on card-replacement-body WC markup ([8aff9cc](https://github.com/boltdesignsystem/bolt/commit/8aff9cc4d202559a53fc32c4dd3fff3897f8f09d))
+* rename spacing page in nav ([8abdacb](https://github.com/boltdesignsystem/bolt/commit/8abdacb2fa6a5856b3a282b97fb7d7d03cbb4d1d))
+* resolve conflict ([e8d65d4](https://github.com/boltdesignsystem/bolt/commit/e8d65d4ecf2db18ac8b3745a4219a381c9067900))
+* round % by default ([d20c68e](https://github.com/boltdesignsystem/bolt/commit/d20c68e35568429ecbe997ec63f8c854a177c678))
+* set default `disabled` value in schema ([947b555](https://github.com/boltdesignsystem/bolt/commit/947b555e8916a8c77a5cb55f689b16e696e12bf0))
+* tests ([e5606cf](https://github.com/boltdesignsystem/bolt/commit/e5606cfc67e3b189f3ff493b1bfc6188b396f34c))
+* tests and snaps ([6a63426](https://github.com/boltdesignsystem/bolt/commit/6a63426ee115e40b702f39bcc7d4424b4cce7b28))
+* tests and twig error ([8b02d40](https://github.com/boltdesignsystem/bolt/commit/8b02d406b15525783526d7ead87405ffcb51bd66))
+* twig conventions ([f768047](https://github.com/boltdesignsystem/bolt/commit/f768047162e93628d38fc4d1a44ecba754cf1cc9))
+* typo in twig and js ([0b1265f](https://github.com/boltdesignsystem/bolt/commit/0b1265f8d490c40bf3a11485b24d58a45639c9d9))
+* update CI script ([dcf0b02](https://github.com/boltdesignsystem/bolt/commit/dcf0b0249043cd1d7a66441a211494f7f408abd1))
+* update css selector ([ea7b459](https://github.com/boltdesignsystem/bolt/commit/ea7b459d33a9d79d65bd4651c6b6bc1c8bbacfba))
+* update decorator covert-case lib path ([93470c6](https://github.com/boltdesignsystem/bolt/commit/93470c65a3ca51f3dc0102456e2132aea5a10f81))
+* update decorator to ensure backwards compat with non-LitElement components ([b105bb8](https://github.com/boltdesignsystem/bolt/commit/b105bb8a2db773c73bcee5641acd3495aa05cb7d))
+* update jsonSchemaPropsDecorator to handle props with a default value of zero ([660a2a7](https://github.com/boltdesignsystem/bolt/commit/660a2a777330058fecc16ebc0f7873edc8bb89fa))
+* update lit-helpers package + use default imports for camelCase and paramCase deps ([d2ecdfc](https://github.com/boltdesignsystem/bolt/commit/d2ecdfc33e9b44f344d45430407732b7c35d36b2))
+* Update test for component generator ([d723d58](https://github.com/boltdesignsystem/bolt/commit/d723d585068884c6d26c0c55a657773b346809e6))
+* update tests ([5de1a1b](https://github.com/boltdesignsystem/bolt/commit/5de1a1b3a2b489e0429858c096efd72e0ce0911e))
+* Update vertical card to use 'only' properly ([2c5dc6b](https://github.com/boltdesignsystem/bolt/commit/2c5dc6b7da49a5977ef7282338ddfc764340ffc7))
+* use spacing map for css ([4a04e4f](https://github.com/boltdesignsystem/bolt/commit/4a04e4f9270619442fd046a6c4aad1ac64c10136))
+* value and max math ([05357fe](https://github.com/boltdesignsystem/bolt/commit/05357fec00b3db673000777d1a9cb0846dfb939a))
+
+
+### Features
+
+* 1st pass adding favorite training dashboard ([730e5d3](https://github.com/boltdesignsystem/bolt/commit/730e5d35bab361e14f550c2f0b78868a66411be9))
+* add "locked" Badge template to Blueprints ([21eb2d8](https://github.com/boltdesignsystem/bolt/commit/21eb2d8b270932b8d86b901f1922658e9cf6a774))
+* add `iconOnly` prop to Chip ([b5a0533](https://github.com/boltdesignsystem/bolt/commit/b5a053387f159be3067e93b1f44080fb2b2c0eca))
+* add auto-prop support (copying Salem's work from separate branch) ([67e5c54](https://github.com/boltdesignsystem/bolt/commit/67e5c54835de4b8d01b44d26b5a1fb41f80da801))
+* add missing data on landing pages ([b16d457](https://github.com/boltdesignsystem/bolt/commit/b16d457e611bba388ac5964879cfce7430c88456))
+* add new 'alias' field to BoltElement properties ([7956fac](https://github.com/boltdesignsystem/bolt/commit/7956facc72be9d464bd0cac3c3b622f77e723adb))
+* add prop example to component Twig template ([b9d9851](https://github.com/boltdesignsystem/bolt/commit/b9d9851a3da6d4c92f36a780dfc43c3979f70fb8))
+* add spread support to BoltElement + demo usage in Link component ([e61a748](https://github.com/boltdesignsystem/bolt/commit/e61a7482d5c0b94efcf46fea934baa40e72ca6be))
+* add title comment to SCSS, fix formatting ([572f000](https://github.com/boltdesignsystem/bolt/commit/572f0007e94b5ba42cf91fbeb825294eb9f762ad))
+* add truncation to Chip List, supporting Twig + JS updates ([fe37a06](https://github.com/boltdesignsystem/bolt/commit/fe37a0670d6b8e267fd94f47d4a99ebce635f586))
+* change `canCollapse` to `collapsible`, use `chevron-left` not `close` icon ([4c5224d](https://github.com/boltdesignsystem/bolt/commit/4c5224d95da847981455c76737601ff3bbabf6f9))
+* convert menu component to use auto-props ([fd3df4f](https://github.com/boltdesignsystem/bolt/commit/fd3df4fed91094fcb9caec4a37db81078883d230))
+* convert schema from YML to JS ([bbdaa1a](https://github.com/boltdesignsystem/bolt/commit/bbdaa1a5bb3d79de571d0c05422e2b4da11bff14))
+* do not force booleans to reflect ([6cd783e](https://github.com/boltdesignsystem/bolt/commit/6cd783eafc9ccca02cea3d5d594112c7b922d216))
+* docs and demos updates ([c2a2c4d](https://github.com/boltdesignsystem/bolt/commit/c2a2c4dcd4eb3dfba636a315aff56655307e060d))
+* enable Twig's built-in StringLoaderExtension extension to allow us to use the `template_from_string` method in demos; add new demo helper + build out Progress Bar demos ([b834677](https://github.com/boltdesignsystem/bolt/commit/b834677ca4b5ddb68b29de77d595ab80f42bc7ac))
+* fix: address linting issues ([bda376b](https://github.com/boltdesignsystem/bolt/commit/bda376b61e8943f24e709dd8f3d6e13eb8674027))
+* pass `spacing` to card-replacement-action-item via context ([994a42f](https://github.com/boltdesignsystem/bolt/commit/994a42f0f9f42baec97cd99d91f357e708796cb7))
+* pass `spacing` via context from card-replacement to card-replacement-body ([7ab2b1c](https://github.com/boltdesignsystem/bolt/commit/7ab2b1cf16a45c2a59a2996f72b5df9b8d759a8a))
+* remove boilerplate component description ([01a951d](https://github.com/boltdesignsystem/bolt/commit/01a951dd8e0b350a420f8b289b68cd20808e0b7d))
+* remove description from schema ([68718ec](https://github.com/boltdesignsystem/bolt/commit/68718ec693a21e2ad5127241a4f533766b7dc32f))
+* remove polyfill loader ([fcaba24](https://github.com/boltdesignsystem/bolt/commit/fcaba2491cfed78e250d5f244154aee94b835924))
+* support passing attributes to list-items ([8a61de4](https://github.com/boltdesignsystem/bolt/commit/8a61de44ca876ba86428db775631718d83fa5110))
+* update component JS to use latest conventions, auto-props ([8623c68](https://github.com/boltdesignsystem/bolt/commit/8623c68db18f92d2773c7a7b8a173fd073cbc962))
+
+
+
+
+
 ## [2.21.1](https://github.com/boltdesignsystem/bolt/compare/v2.21.0...v2.21.1) (2020-04-10)
 
 **Note:** Version bump only for package bolt

@@ -3,6 +3,34 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.22.0](https://github.com/boltdesignsystem/bolt/tree/master/docs-site/src/pages/pattern-lab/_patterns/03-blueprints/compare/v2.21.1...v2.22.0) (2020-04-22)
+
+
+### Bug Fixes
+
+* add `only` keyword to footer so background doesn't pass through. ([4104889](https://github.com/boltdesignsystem/bolt/tree/master/docs-site/src/pages/pattern-lab/_patterns/03-blueprints/commit/41048895bb9e1fd7364bc09c7a1cf97d97c419ca))
+* add `only` per PR feedback ([2d89152](https://github.com/boltdesignsystem/bolt/tree/master/docs-site/src/pages/pattern-lab/_patterns/03-blueprints/commit/2d89152da9ab15a4f7ebcb9e909b6d1ddf9b4e98))
+* Add missing only statements to various includes and embeds ([7ddc48c](https://github.com/boltdesignsystem/bolt/tree/master/docs-site/src/pages/pattern-lab/_patterns/03-blueprints/commit/7ddc48cfe04dedd8564c74633cb2cb7d3298bc64))
+* add only to twig includes ([6b44b65](https://github.com/boltdesignsystem/bolt/tree/master/docs-site/src/pages/pattern-lab/_patterns/03-blueprints/commit/6b44b65596863b4de771fd79efd88ed7e5127382))
+* border-radius logic ([894af29](https://github.com/boltdesignsystem/bolt/tree/master/docs-site/src/pages/pattern-lab/_patterns/03-blueprints/commit/894af29109d79fdbc9d080055413b3568e0ddd94))
+* card background stacking order ([c733d08](https://github.com/boltdesignsystem/bolt/tree/master/docs-site/src/pages/pattern-lab/_patterns/03-blueprints/commit/c733d08567ae77cba718544f363fa4e874bc6df2))
+* change rounded usage to borderRadius ([5bc6eb2](https://github.com/boltdesignsystem/bolt/tree/master/docs-site/src/pages/pattern-lab/_patterns/03-blueprints/commit/5bc6eb2c7bdcd3b3429a9d2a2151f4326d7535cc))
+* Pass background params to band in landing page template ([4f25e0c](https://github.com/boltdesignsystem/bolt/tree/master/docs-site/src/pages/pattern-lab/_patterns/03-blueprints/commit/4f25e0c415ac1923b0758e99a9037f6bb0620c49))
+* resolve conflict ([e8d65d4](https://github.com/boltdesignsystem/bolt/tree/master/docs-site/src/pages/pattern-lab/_patterns/03-blueprints/commit/e8d65d4ecf2db18ac8b3745a4219a381c9067900))
+* Update vertical card to use 'only' properly ([2c5dc6b](https://github.com/boltdesignsystem/bolt/tree/master/docs-site/src/pages/pattern-lab/_patterns/03-blueprints/commit/2c5dc6b7da49a5977ef7282338ddfc764340ffc7))
+
+
+### Features
+
+* 1st pass adding favorite training dashboard ([730e5d3](https://github.com/boltdesignsystem/bolt/tree/master/docs-site/src/pages/pattern-lab/_patterns/03-blueprints/commit/730e5d35bab361e14f550c2f0b78868a66411be9))
+* add "locked" Badge template to Blueprints ([21eb2d8](https://github.com/boltdesignsystem/bolt/tree/master/docs-site/src/pages/pattern-lab/_patterns/03-blueprints/commit/21eb2d8b270932b8d86b901f1922658e9cf6a774))
+* add missing data on landing pages ([b16d457](https://github.com/boltdesignsystem/bolt/tree/master/docs-site/src/pages/pattern-lab/_patterns/03-blueprints/commit/b16d457e611bba388ac5964879cfce7430c88456))
+* fix: address linting issues ([bda376b](https://github.com/boltdesignsystem/bolt/tree/master/docs-site/src/pages/pattern-lab/_patterns/03-blueprints/commit/bda376b61e8943f24e709dd8f3d6e13eb8674027))
+
+
+
+
+
 ## [2.21.1](https://github.com/boltdesignsystem/bolt/tree/master/docs-site/src/pages/pattern-lab/_patterns/03-blueprints/compare/v2.21.0...v2.21.1) (2020-04-10)
 
 **Note:** Version bump only for package @bolt/blueprints

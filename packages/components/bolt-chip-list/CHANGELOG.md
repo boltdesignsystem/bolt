@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.22.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-chip-list/compare/v2.21.1...v2.22.0) (2020-04-22)
+
+
+### Bug Fixes
+
+* add `size` type to Chip List schema ([ddc4eaf](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-chip-list/commit/ddc4eaf894e1a333b8175510352161427b9f5f07))
+
+
+### Features
+
+* add truncation to Chip List, supporting Twig + JS updates ([fe37a06](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-chip-list/commit/fe37a0670d6b8e267fd94f47d4a99ebce635f586))
+* change `canCollapse` to `collapsible`, use `chevron-left` not `close` icon ([4c5224d](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-chip-list/commit/4c5224d95da847981455c76737601ff3bbabf6f9))
+
+
+
+
+
 # [2.21.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-chip-list/compare/v2.20.2...v2.21.0) (2020-04-08)
 
 **Note:** Version bump only for package @bolt/components-chip-list
