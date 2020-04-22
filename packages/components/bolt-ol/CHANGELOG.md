@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.22.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/lists/bolt-ol/compare/v2.21.1...v2.22.0) (2020-04-22)
+
+
+### Bug Fixes
+
+* add proper role attributes ([be0263f](https://github.com/bolt-design-system/bolt/tree/master/packages/components/lists/bolt-ol/commit/be0263f58a26214a2e62408c087cab1bd878b57b))
+* tests ([e5606cf](https://github.com/bolt-design-system/bolt/tree/master/packages/components/lists/bolt-ol/commit/e5606cfc67e3b189f3ff493b1bfc6188b396f34c))
+
+
+
+
+
 # [2.21.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/lists/bolt-ol/compare/v2.20.2...v2.21.0) (2020-04-08)
 
 **Note:** Version bump only for package @bolt/components-ol

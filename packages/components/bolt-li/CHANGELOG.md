@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.22.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/lists/bolt-li/compare/v2.21.1...v2.22.0) (2020-04-22)
+
+
+### Bug Fixes
+
+* add proper role attributes ([be0263f](https://github.com/bolt-design-system/bolt/tree/master/packages/components/lists/bolt-li/commit/be0263f58a26214a2e62408c087cab1bd878b57b))
+* update css selector ([ea7b459](https://github.com/bolt-design-system/bolt/tree/master/packages/components/lists/bolt-li/commit/ea7b459d33a9d79d65bd4651c6b6bc1c8bbacfba))
+
+
+
+
+
 # [2.21.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/lists/bolt-li/compare/v2.20.2...v2.21.0) (2020-04-08)
 
 **Note:** Version bump only for package @bolt/components-li
