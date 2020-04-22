@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.22.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-chip-list/compare/v2.22.0...v2.22.1) (2020-04-22)
+
+
+### Bug Fixes
+
+* remove dupe `replace-with-children` ([caa9892](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-chip-list/commit/caa9892b81a00a53b779180a5478f85323f93dc8))
+* update Chip List snapshots ([342e9c4](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-chip-list/commit/342e9c4e2e6c1c91c376dbca3bfb84ff7865d412))
+
+
+
+
+
 # [2.22.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-chip-list/compare/v2.21.1...v2.22.0) (2020-04-22)
 
 
