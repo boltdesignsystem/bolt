@@ -11,7 +11,11 @@
     z-index: 1;
     width: 100vw;
     height: 100%;
-    background-image: radial-gradient( 100% 109% at bottom 10% right 0%, #FF9B00 36%, rgba(0, 0, 0, 0) 67% );
+    background-image: radial-gradient(
+      100% 109% at bottom 10% right 0%,
+      #ff9b00 36%,
+      rgba(0, 0, 0, 0) 67%
+    );
     mix-blend-mode: multiply;
     background-position: bottom right;
     background-repeat: no-repeat;
@@ -22,7 +26,6 @@
 .c-bolt-featured-hero__image {
   filter: hue-rotate(345deg) contrast(1.3);
 }
-
 
 .c-bolt-horizontal-divider {
   display: flex;
@@ -48,7 +51,6 @@
   @include bolt-font-size(small);
 }
 
-
 // WIP Rating Component
 .c-bolt-rating {
   display: flex;
@@ -64,7 +66,7 @@
   display: inline-flex;
   color: bolt-color(gray);
   @include bolt-font-size(xsmall);
-  @include bolt-font-weight(600)
+  @include bolt-font-weight(600);
 
   & + * {
     @include bolt-margin-left(xsmall);
@@ -113,7 +115,6 @@
   background-color: bolt-color(gray, light);
   transition: all 0.01s linear;
 
-
   &:before,
   &:after {
     content: '';
@@ -155,27 +156,27 @@
   background-color: bolt-color(gray);
 
   &--0\/10 {
-    background-color: #D61219;
+    background-color: #d61219;
   }
 
   &--1\/10 {
-    background-color: #CE3900;
+    background-color: #ce3900;
   }
 
   &--2\/10 {
-    background-color: #C35000;
+    background-color: #c35000;
   }
 
   &--3\/10 {
-    background-color: #B66200;
+    background-color: #b66200;
   }
 
   &--4\/10 {
-    background-color: #A77100;
+    background-color: #a77100;
   }
 
   &--5\/10 {
-    background-color: #977E00;
+    background-color: #977e00;
   }
 
   &--6\/10 {
@@ -187,15 +188,15 @@
   }
 
   &--8\/10 {
-    background-color: #609B12;
+    background-color: #609b12;
   }
 
   &--9\/10 {
-    background-color: #47A334;
+    background-color: #47a334;
   }
 
   &--10\/10 {
-    background-color: #20AA50;
+    background-color: #20aa50;
   }
 }
 
@@ -214,4 +215,15 @@
 
 .c-bolt-rating__input--no-rating:focus ~ .c-bolt-rating__no-rating-outline {
   opacity: 1;
+}
+
+.c-bolt-badge {
+  position: relative;
+
+  &__lock {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 }

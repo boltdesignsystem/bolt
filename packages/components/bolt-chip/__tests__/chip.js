@@ -45,4 +45,16 @@ describe('chip', () => {
       expect(results.html).toMatchSnapshot();
     });
   });
+
+  test('icon only', async () => {
+    const results = await render('@bolt-components-chip/chip.twig', {
+      text: 'Show more',
+      icon: {
+        name: 'more',
+      },
+      iconOnly: true,
+    });
+    expect(results.ok).toBe(true);
+    expect(results.html).toMatchSnapshot();
+  });
 });

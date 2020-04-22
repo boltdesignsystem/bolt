@@ -105,7 +105,8 @@
       cardIcon: "brand-atom",
       cardDescription: bolt.faker.paragraph(3),
     },
-    macros.include("@bolt-blueprints/_badge.twig"),
-  ],
-  hideCompleted: hideCompleted
+    macros.include("@bolt-blueprints/_badge.twig", {
+      locked: hideCompleted
+    }),
+  ]
 } only %}
