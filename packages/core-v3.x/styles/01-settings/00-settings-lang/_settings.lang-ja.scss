@@ -26,10 +26,6 @@
   // Headline font-weight reduced to 700, so a combmination of English and Japanese can look harmonious.
   $bolt-font-weight--bold: 700 !global;
 
-  // Overall font-size reduced by 5%, because Japanese charaters are bigger than English.
-  $bolt-base-font-size--min: 14px !global;
-  $bolt-base-font-size--max: 17px !global;
-
   // Redefined headline sizes.
   $bolt-font-size--xxxlarge--max: 2.25rem !global;
   $bolt-font-size--xxxlarge--min: 2.25rem !global;
@@ -37,14 +33,22 @@
   $bolt-font-size--xlarge: 1.425rem !global;
   $bolt-font-size--large: 1.125rem !global;
 
-  $bolt-line-height--xxxlarge: (1.14 * 1.1) !global;
-  $bolt-line-height--xxlarge: (1.31 * 1.1) !global;
-  $bolt-line-height--xlarge: (1.35 * 1.1) !global;
-  $bolt-line-height--large: (1.45 * 1.1) !global;
-  $bolt-line-height--medium: (1.65 * 1.1) !global;
-  $bolt-line-height--small: (1.51 * 1.1) !global;
-  $bolt-line-height--xsmall: (1.45 * 1.1) !global;
-  $bolt-line-height--tight: (1.111 * 1.1) !global;
+  // Redefined line-height.
+  $bolt-line-height--xxxlarge: 1.25 !global;
+  $bolt-line-height--xxlarge: 1.44 !global;
+  $bolt-line-height--xlarge: 1.48 !global;
+  $bolt-line-height--large: 1.59 !global;
+  $bolt-line-height--medium: 1.82 !global;
+  $bolt-line-height--small: 1.66 !global;
+  $bolt-line-height--xsmall: 1.59 !global;
+  $bolt-line-height--tight: 1.2 !global;
+
+  // Redefined body size.
+  $bolt-base-font-sizes: (
+    bolt-breakpoint(xxsmall): 14px,
+    bolt-breakpoint(xsmall): 15px,
+    bolt-breakpoint(xxlarge): 17px,
+  ) !global;
 
   // Spacing values reduced to create more compact and monospace aesthetics.
   $bolt-spacing-values: (
