@@ -2,13 +2,11 @@
 
 {% import "@bolt-blueprints/macros.twig" as macros %}
 
-{% block page_background %}
-  {% include "@bolt-components-background/background.twig" with {
-    opacity: "full",
-    fill: "radial-gradient",
-    fillColor: "indigo"
-  } only %}
-{% endblock %}
+{% set background = {
+  opacity: "full",
+  fill: "radial-gradient",
+  fillColor: "indigo"
+} %}
 
 {% block page_content %}
 
@@ -78,7 +76,7 @@
       {% set trainingTopicList %}
         {% include "@bolt-components-card-replacement/card-replacement.twig" with {
           theme: "xlight",
-          rounded: true,
+          borderRadius: "large",
           height: "auto",
           attributes: {
             class: [
@@ -155,7 +153,7 @@
               })
             ] | join('')
           }
-        } %}
+        } only %}
       {% endset %}
 
       {% embed "@bolt-blueprints/_landing-page-main-2-col.twig" %}

@@ -1,0 +1,17 @@
+{% extends "@bolt-blueprints/toolbar-buttons/_toolbar-button.twig" %}
+
+{% set buttonIcon = "heart" %}
+{% set buttonText = "Unfavorite" %}
+{% set tooltip = "Remove from favorite training" %}
+{% set buttonAttributes = {
+  style: [
+    "--bolt-theme--tertiary--background-color--default: white;
+    --bolt-theme--tertiary--background-color--hover: var(--bolt-theme--tertiary--background-color--default);
+    --bolt-theme--tertiary--background-color--focus: var(--bolt-theme--tertiary--background-color--default);
+    --bolt-theme--tertiary--background-color--active: var(--bolt-theme--tertiary--background-color--default);
+    --bolt-theme--tertiary--text-color--default: rgba(180, 40, 24, 1);
+    --bolt-theme--tertiary--text-color--hover: var(--bolt-theme--tertiary--text-color--default);
+    --bolt-theme--tertiary--text-color--focus: var(--bolt-theme--tertiary--text-color--default);
+    --bolt-theme--tertiary--text-color--active: var(--bolt-theme--tertiary--text-color--default);"
+  ]
+} %}
