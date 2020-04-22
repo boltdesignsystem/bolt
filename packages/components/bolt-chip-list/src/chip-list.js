@@ -44,8 +44,8 @@ class BoltChipList extends BoltElement {
   connectedCallback() {
     super.connectedCallback && super.connectedCallback();
 
-    // Preserve state if expanded before component loads
-    if (this.querySelector('.c-bolt-chip-list__input').checked) {
+    // Preserve state if expanded before component loads + input exists
+    if (this.querySelector('.c-bolt-chip-list__input')?.checked) {
       this.expanded = true;
     }
 
