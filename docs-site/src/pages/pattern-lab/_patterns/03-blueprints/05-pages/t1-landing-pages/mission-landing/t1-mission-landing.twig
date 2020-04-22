@@ -1,6 +1,13 @@
 {% import "@bolt-blueprints/macros.twig" as macros %}
 
 {% include "@bolt-blueprints/_mission-landing.twig" with {
+  mainBackgroundImage: mainBackgroundImage,
+  toolbarIcon: toolbarIcon,
+  heroTitle: heroTitle,
+  heroSubTitle: heroSubTitle,
+  trainingMetaItems: trainingMetaItems,
+  trainingDescription: trainingDescription,
+  trainingTags: trainingTags,
   breadcrumbs: [
     {
       "text": "Home",
@@ -102,4 +109,4 @@
       locked: hideCompleted
     }),
   ]
-} %}
+} only %}
