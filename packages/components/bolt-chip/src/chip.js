@@ -14,6 +14,7 @@ class BoltChip extends BoltAction {
   static props = {
     ...BoltAction.props, // Provides: disabled, onClick, onClickTarget, target, url
     size: props.string,
+    iconOnly: props.boolean,
   };
 
   // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
@@ -29,11 +30,12 @@ class BoltChip extends BoltAction {
     // 2. Zero Width No-break Space (&#xfeff;) is needed to make the last word always stick with the icon, so the icon will never become an orphan.
 
     // Validate the original prop data passed along -- returns back the validated data w/ added default values
-    const { url, target, size } = this.validateProps(this.props);
+    const { url, target, size, iconOnly } = this.validateProps(this.props);
 
     const classes = cx('c-bolt-chip', {
       [`c-bolt-chip--link`]: url,
       [`c-bolt-chip--size-${size}`]: size,
+      [`c-bolt-chip--icon-only`]: iconOnly,
     });
 
     // Decide on if the rendered tag should be a <span> or <a> tag, based on if a URL exists
