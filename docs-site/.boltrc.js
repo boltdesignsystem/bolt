@@ -64,7 +64,8 @@ const config = deepmerge(baseConfig, {
         dist: '../www/images',
       },
       {
-        base: './src/pages/pattern-lab/_patterns/03-blueprints/00-assets/images',
+        base:
+          './src/pages/pattern-lab/_patterns/03-blueprints/00-assets/images',
         glob: '**',
         dist: '../www/images',
       },
@@ -89,7 +90,6 @@ const config = deepmerge(baseConfig, {
        */
 
       // helper components that are only used internally
-      '@bolt/analytics-autotrack',
       '@bolt/blueprints',
       '@bolt/components-radio-switch',
       '@bolt/components-page-footer',

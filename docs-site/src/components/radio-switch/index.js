@@ -1,17 +1,9 @@
-import { polyfillLoader } from '@bolt/core-v3.x/polyfills';
+import(/*
 
-polyfillLoader.then(res => {
-  import(
-    /*
-    webpackMode: 'eager',
     webpackChunkName: 'bolt-radio-switch'
-  */ './radio-switch.js'
-  );
+  */ './radio-switch.js');
 
-  import(
-    /*
-    webpackMode: 'eager',
+import(/*
+
     webpackChunkName: 'bolt-change-case'
-  */ './change-case.js'
-  );
-});
+  */ './change-case.js');

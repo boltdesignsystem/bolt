@@ -1,18 +1,26 @@
-import './components/version-selector/version-selector';
-// import './components/schema-form'; // Component Explorer is temporarily disabled until we're done migrating our Twig Rendering Service to Now.sh v2
-import './components/handle-iframe-height';
-import './pages/pattern-lab/_patterns/02-components/card-deprecated/__tests__';
-// import './pages/pattern-lab/_patterns/01-styleguide/100-rendering-performance/bolt-preact-test';
-// import './pages/pattern-lab/_patterns/01-styleguide/100-rendering-performance/bolt-lit-test';
-// import './pages/pattern-lab/_patterns/01-styleguide/100-rendering-performance/lazy-lit-test';
-import './pages/pattern-lab/_patterns/04-pages/99999-bolt-dev-sandbox/editor-integration';
-import { enableAnimDemos } from './pages/pattern-lab/_patterns/06-experiments/animate/animate-demo-helpers.js';
-enableAnimDemos();
+import(
+  /*  webpackChunkName: 'bolt-docs-site--version-selector' */ './components/version-selector/version-selector'
+);
+
+import(
+  /*  webpackChunkName: 'bolt-docs-site--deprecated-card-tests' */ './pages/pattern-lab/_patterns/02-components/card-deprecated/__tests__'
+);
+
+import(
+  /*  webpackChunkName: 'bolt-docs-site--editor-integration' */ './pages/pattern-lab/_patterns/04-pages/99999-bolt-dev-sandbox/editor-integration'
+);
 
 // Component-specific examples that need to get compiled:
-import '@bolt/components-typeahead/__demos__/dynamically-fetch-data/typeahead.dynamically-fetch-data';
-import '@bolt/components-typeahead/__demos__/navigate-to-search-results/typeahead.navigate-to-search-results';
-import '@bolt/components-typeahead/__demos__/navigate-to-exact-result/typeahead.navigate-to-exact-result';
+import(
+  /*  webpackChunkName: 'bolt-docs-site--typeahead-demos' */ './typeahead-demos'
+);
+import(
+  /*  webpackChunkName: 'bolt-docs-site--animate-demos' */ './animate-demos'
+);
+
+import(
+  /*  webpackChunkName: 'bolt-docs-site--analytics-autotrack' */ '@bolt/analytics-autotrack'
+);
 
 // demo to show how to add custom icons automatically
 import './assets/icons/custom-arrow-left-colored.svg';

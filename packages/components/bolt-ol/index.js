@@ -1,17 +1,9 @@
-import { polyfillLoader } from '@bolt/core-v3.x/polyfills';
+import(/*  webpackChunkName: 'bolt-unordered-list' */ './src/ol');
 
-polyfillLoader.then(res => {
+if (!window.customElements.get('bolt-li')) {
   import(
-    /* webpackMode: 'eager', webpackChunkName: 'bolt-unordered-list' */ './src/ol'
-  );
-
-  if (!window.customElements.get('bolt-li')) {
-    import(
-      /* 
-      webpackMode: 'eager', 
-      webpackChunkName: 'bolt-li' 
+    /*
+      webpackChunkName: 'bolt-li'
     */ '@bolt/components-li/src/li.js'
-    );
-  }
-  // import(/* webpackMode: 'eager', webpackChunkName: 'bolt-unordered-list-item' */ './src/_ordered-list-item');
-});
+  );
+}
