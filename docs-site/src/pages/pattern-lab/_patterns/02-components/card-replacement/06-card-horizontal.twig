@@ -1,4 +1,19 @@
-{% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
+{% set widths = [
+  "25%",
+  "50%",
+  "80px",
+  "150px",
+] %}
+
+{% set mediaWidthDemo %}{% verbatim %}media: {
+  image: image,
+  attributes: {
+    style: "min-width: 25%",
+  }
+}{% endverbatim %}
+{% endset %}
+
+{% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center u-bolt-margin-bottom-large" %}
   {% cell "u-bolt-width-12/12 u-bolt-width-8/12@small" %}
     {% include "@bolt-components-card-replacement/card-replacement.twig" with {
       horizontal: true,
@@ -8,14 +23,11 @@
           alt: "Image alt.",
           placeholder_color: "#afcde6",
         },
-        attributes: {
-          style: "width: 25%;"
-        }
       },
       body: {
         eyebrow: "This is an eyebrow",
         headline: "This card is horizontal",
-        paragraph: "This is a paragraph.",
+        paragraph: "This is a paragraph. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus.",
       },
       actions: [
         {
@@ -25,4 +37,48 @@
       ],
     } only %}
   {% endcell %}
+{% endgrid %}
+
+{% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
+  {% cell "u-bolt-width-12/12 u-bolt-width-8/12@small" %}
+    <bolt-text headline>
+      Advanced usage: manually override horizontal media size
+    </bolt-text>
+    <bolt-text>
+      To finely control the width of the card media based on your use case, set inline style of <bolt-code-snippet display="inline" lang="html">min-width</bolt-code-snippet> to the card media. Please use your best judgment when doing this, because absolute units such as px, em, and rem will break responsive layouts. % is the recommended unit to use.
+    </bolt-text>
+    <bolt-code-snippet syntax="dark" lang="html">{% spaceless %}
+      {{ mediaWidthDemo | trim | raw }}
+    {% endspaceless %}</bolt-code-snippet>
+    <bolt-banner align="start">
+      Note: video is not supported in horizontal cards.
+    </bolt-banner>
+  {% endcell %}
+  {% for width in widths %}
+    {% cell "u-bolt-width-12/12 u-bolt-width-8/12@small" %}
+      {% include "@bolt-components-card-replacement/card-replacement.twig" with {
+        horizontal: true,
+        media: {
+          image: {
+            src: "/images/placeholders/landscape-16x9-mountains.jpg",
+            alt: "Image alt.",
+            placeholder_color: "#afcde6",
+          },
+          attributes: {
+            style: "min-width:" ~ width,
+          }
+        },
+        body: {
+          headline: "This card's media is " ~ width ~ " wide",
+          paragraph: "This is a paragraph. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus.",
+        },
+        actions: [
+          {
+            text: "This is a button",
+            url: "https://pega.com",
+          },
+        ],
+      } only %}
+    {% endcell %}
+  {% endfor %}
 {% endgrid %}
