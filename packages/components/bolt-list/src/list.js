@@ -122,7 +122,9 @@ class BoltList extends withContext(withLitHtml) {
         `;
     }
 
-    return html` ${this.addStyles([styles, themes])} ${renderedList} `;
+    return html`
+      ${this.addStyles([styles, themes])} ${renderedList}
+    `;
   }
 }
 
