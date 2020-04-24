@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.22.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-chip/compare/v2.21.1...v2.22.0) (2020-04-22)
+
+
+### Features
+
+* add `iconOnly` prop to Chip ([b5a0533](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-chip/commit/b5a053387f159be3067e93b1f44080fb2b2c0eca))
+
+
+
+
+
 # [2.21.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-chip/compare/v2.20.2...v2.21.0) (2020-04-08)
 
 **Note:** Version bump only for package @bolt/components-chip

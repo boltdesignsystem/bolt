@@ -2,6 +2,7 @@
 import {
   render,
   stopServer,
+  renderWC,
   html,
   vrtDefaultConfig as vrtConfig,
 } from '../../../testing/testing-helpers';
@@ -131,9 +132,7 @@ describe('<bolt-modal> Component', () => {
       expect(ok).toBe(true);
       expect(html).toMatchSnapshot();
 
-      await page.evaluate(html => {
-        document.body.innerHTML = html;
-      }, html);
+      await renderWC('bolt-modal', html, page);
 
       const screenshots = [];
 
@@ -175,17 +174,17 @@ describe('<bolt-modal> Component', () => {
 
   modalContent.forEach(async contentChoice => {
     test(`${contentChoice.name} <bolt-modal> with Shadow DOM renders`, async () => {
-      const renderedModal = await page.evaluate(async contentChoice => {
-        const modal = document.createElement('bolt-modal');
-        modal.setAttribute('uuid', '12345');
-        modal.setAttribute('width', 'regular');
-        modal.innerHTML = `<bolt-text slot="header">Header slot</bolt-text>
+      const { outerHTML } = await renderWC(
+        'bolt-modal',
+        `
+        <bolt-modal uuid="12345" width="regular">
+          <bolt-text slot="header">Header slot</bolt-text>
           ${contentChoice.content}
-          <bolt-text slot="footer">Footer slot</bolt-text>`;
-        document.body.appendChild(modal);
-        modal.updated();
-        return modal.outerHTML;
-      }, contentChoice);
+          <bolt-text slot="footer">Footer slot</bolt-text>
+        </bolt-modal>
+      `,
+        page,
+      );
 
       const screenshots = [];
       for (const item of viewportSizes) {
@@ -210,25 +209,24 @@ describe('<bolt-modal> Component', () => {
         await page.waitFor(500);
       }
 
-      const renderedHTML = await html(renderedModal);
+      const renderedHTML = await html(outerHTML);
       expect(renderedHTML).toMatchSnapshot();
     });
   });
 
   modalContent.forEach(async contentChoice => {
     test(`${contentChoice.name} <bolt-modal> w/o Shadow DOM renders`, async () => {
-      const renderedModal = await page.evaluate(contentChoice => {
-        const modal = document.createElement('bolt-modal');
-        modal.setAttribute('uuid', '12345');
-        modal.setAttribute('width', 'regular');
-        modal.innerHTML = `<bolt-text slot="header">Header slot</bolt-text>
+      const { outerHTML } = await renderWC(
+        'bolt-modal',
+        `
+        <bolt-modal uuid="12345" width="regular" no-shadow>
+          <bolt-text slot="header">Header slot</bolt-text>
           ${contentChoice.content}
-          <bolt-text slot="footer">Footer slot</bolt-text>`;
-        document.body.appendChild(modal);
-        modal.useShadow = false;
-        modal.updated();
-        return modal.outerHTML;
-      }, contentChoice);
+          <bolt-text slot="footer">Footer slot</bolt-text>
+        </bolt-modal>
+      `,
+        page,
+      );
 
       const screenshots = [];
 
@@ -254,7 +252,7 @@ describe('<bolt-modal> Component', () => {
         await page.waitFor(500);
       }
 
-      const renderedHTML = await html(renderedModal);
+      const renderedHTML = await html(outerHTML);
       expect(renderedHTML).toMatchSnapshot();
     });
   });
@@ -272,9 +270,7 @@ describe('<bolt-modal> Component', () => {
         expect(ok).toBe(true);
         expect(html).toMatchSnapshot();
 
-        await page.evaluate(html => {
-          document.body.innerHTML = html;
-        }, html);
+        await renderWC('bolt-modal', html, page);
 
         const screenshots = [];
 
@@ -323,9 +319,7 @@ describe('<bolt-modal> Component', () => {
         expect(ok).toBe(true);
         expect(html).toMatchSnapshot();
 
-        await page.evaluate(html => {
-          document.body.innerHTML = html;
-        }, html);
+        await renderWC('bolt-modal', html, page);
 
         const screenshots = [];
 

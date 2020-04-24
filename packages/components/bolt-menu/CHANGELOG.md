@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.22.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-menu/compare/v2.21.1...v2.22.0) (2020-04-22)
+
+
+### Features
+
+* convert menu component to use auto-props ([fd3df4f](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-menu/commit/fd3df4fed91094fcb9caec4a37db81078883d230))
+
+
+
+
+
 # [2.21.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-menu/compare/v2.20.2...v2.21.0) (2020-04-08)
 
 **Note:** Version bump only for package @bolt/components-menu
