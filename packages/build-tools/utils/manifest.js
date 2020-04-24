@@ -142,7 +142,6 @@ async function getPkgInfo(pkgName) {
       deps: [],
     };
 
-
     info.twigNamespace = `@${info.basicName}`;
     if (pkg.style) {
       info.assets.style = path.join(dir, pkg.style);
