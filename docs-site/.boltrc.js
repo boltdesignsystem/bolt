@@ -64,7 +64,8 @@ const config = deepmerge(baseConfig, {
         dist: '../www/images',
       },
       {
-        base: './src/pages/pattern-lab/_patterns/03-blueprints/00-assets/images',
+        base:
+          './src/pages/pattern-lab/_patterns/03-blueprints/00-assets/images',
         glob: '**',
         dist: '../www/images',
       },
@@ -89,8 +90,12 @@ const config = deepmerge(baseConfig, {
        */
 
       // helper components that are only used internally
+
+      // @todo: look into removing these three lines once the lazy queue-related perf updates get in
+      '@bolt/analytics-autolink', // why isn't this in @bolt/starter-kit?!
       '@bolt/analytics-autotrack',
       '@bolt/blueprints',
+
       '@bolt/components-radio-switch',
       '@bolt/components-page-footer',
       '@bolt/components-page-header',
@@ -157,5 +162,8 @@ const config = deepmerge(baseConfig, {
     },
   ],
 });
+
+// removing here first before removing from @bolt/starter-kit directly
+delete config.components.individual;
 
 module.exports = config;

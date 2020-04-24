@@ -1,9 +1,3 @@
-{% if block("page_background") %}
-  {% set backgroundBlock %}
-    {{ block("page_background") }}
-  {% endset %}
-{% endif %}
-
 {% if block("page_content") %}
   {% set mainContentBlock %}
     {{ block("page_content") }}
@@ -19,26 +13,19 @@
 
   <main class="c-bolt-site__content u-bolt-flex u-bolt-flex-col">
     {% include "@bolt-blueprints/_toolbar.twig" %}
-    {% embed "@bolt-components-band/band.twig" with {
+    {% include "@bolt-components-band/band.twig" with {
       theme: pageTheme|default("xxdark"),
       size: "none",
       valign: "start",
-      content: mainContentBlock
-    } %}
-      {% block band_background %}
-        {% if backgroundBlock is not empty %}
-          {{ backgroundBlock }}
-        {% else %}
-          {{ parent() }}
-        {% endif %}
-      {% endblock %}
-    {% endembed %}
+      content: mainContentBlock,
+      background: background,
+    } only %}
 
   </main>
   <div class="c-bolt-site__footer c-bolt-page-footer">
     <div class="o-bolt-wrapper">
       {% block global_footer %}
-        {% include "@bolt/page-footer.twig" %}
+        {% include "@bolt/page-footer.twig" only %}
       {% endblock %}
     </div>
   </div>

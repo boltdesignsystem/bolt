@@ -2,15 +2,31 @@
   horizontal: false,
   theme: "xlight",
   link_url: cardUrl,
-} %}
+  cardGradient: cardGradient,
+  gradientStart: gradientStart,
+  gradientMiddle: gradientMiddle,
+  gradientEnd: gradientEnd,
+  cardIcon: cardIcon,
+  cardSubtitle: cardSubtitle,
+  horizontal: horizontal,
+  cardTitle: cardTitle,
+  cardMetaItems: cardMetaItems,
+  cardDescription: cardDescription,
+  cardStatusItems: cardStatusItems,
+} only %}
   {% block media %}
     {% include "@bolt-blueprints/_icon-banner.twig" with {
-      gradient: cardGradient
-    } %}
+      cardGradient: cardGradient,
+      gradientStart: gradientStart,
+      gradientMiddle: gradientMiddle,
+      gradientEnd: gradientEnd,
+      cardIcon: cardIcon,
+      horizontal: horizontal,
+    } only %}
     <div class="t-bolt-dark u-bolt-padding-medium u-bolt-border-radius-small">
       {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--xsmall u-bolt-negative-margin-top-small u-bolt-negative-margin-right-small" %}
         {% cell "u-bolt-margin-left-auto" %}
-          {% include "@bolt-blueprints/_toolbar-actions.twig" %}
+          {% include "@bolt-blueprints/_toolbar-actions.twig" only %}
         {% endcell %}
         {% cell "u-bolt-width-1/1" %}
           {% if cardSubtitle %}
@@ -42,7 +58,7 @@
               separator: "solid",
               tag: "ul",
               items: cardMetaItems
-            } %}
+            } only %}
           {% endif %}
         {% endcell %}
         {% if cardDescription %}
@@ -62,7 +78,7 @@
       {% block action_items %}
         {% if cardStatusItems %}
           {% for item in cardStatusItems %}
-            {% include "@bolt-components-card-replacement/_card-replacement-action-item.twig" with { item: item } %}
+            {% include "@bolt-components-card-replacement/_card-replacement-action-item.twig" with { item: item } only %}
           {% endfor %}
         {% endif %}
       {% endblock %}

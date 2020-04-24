@@ -85,7 +85,7 @@
       {% set trainingTopicList %}
         {% include "@bolt-components-card-replacement/card-replacement.twig" with {
           theme: "xlight",
-          rounded: true,
+          borderRadius: "large",
           height: "auto",
           attributes: {
             class: [
@@ -146,7 +146,7 @@
               }),
             ] | join('')
           }
-        } %}
+        } only %}
       {% endset %}
 
       {% embed "@bolt-blueprints/_landing-page-main-2-col.twig" %}

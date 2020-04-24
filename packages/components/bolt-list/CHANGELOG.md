@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.22.0](https://github.com/bolt-design-system/bolt/compare/v2.21.1...v2.22.0) (2020-04-22)
+
+
+### Features
+
+* support passing attributes to list-items ([8a61de4](https://github.com/bolt-design-system/bolt/commit/8a61de44ca876ba86428db775631718d83fa5110))
+
+
+
+
+
 # [2.21.0](https://github.com/bolt-design-system/bolt/compare/v2.20.2...v2.21.0) (2020-04-08)
 
 

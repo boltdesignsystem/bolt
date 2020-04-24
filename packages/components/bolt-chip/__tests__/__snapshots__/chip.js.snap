@@ -56,6 +56,43 @@ exports[`chip chip size: xsmall 1`] = `
 </bolt-chip>
 `;
 
+exports[`chip icon only 1`] = `
+<bolt-chip icon-only>
+  <replace-with-grandchildren>
+    <span class="c-bolt-chip c-bolt-chip--size-small c-bolt-chip--icon-only"
+          is="shadow-root"
+    >
+      <replace-with-children class="c-bolt-chip__text">
+        Show more
+      </replace-with-children>
+      <replace-with-children class="c-bolt-chip__icon">
+        <bolt-icon slot="after"
+                   name="more"
+        >
+          <span class="c-bolt-icon c-bolt-icon--more">
+            <svg class="c-bolt-icon__icon"
+                 xmlns="http://www.w3.org/2000/svg"
+                 viewbox="0 0 24 24"
+            >
+              <g fill="none"
+                 fill-rule="evenodd"
+              >
+                <path>
+                </path>
+                <g fill="var(--bolt-theme-icon, currentColor)">
+                  <path d="M14.07 12a2 2 0 11-4.002-.001 2 2 0 014.001.001M6 12A2 2 0 112 11.999 2 2 0 016 12M22.139 12a2 2 0 11-4.002-.001A2 2 0 0122.14 12">
+                  </path>
+                </g>
+              </g>
+            </svg>
+          </span>
+        </bolt-icon>
+      </replace-with-children>
+    </span>
+  </replace-with-grandchildren>
+</bolt-chip>
+`;
+
 exports[`chip icon usage 1`] = `
 <bolt-chip>
   <replace-with-grandchildren>

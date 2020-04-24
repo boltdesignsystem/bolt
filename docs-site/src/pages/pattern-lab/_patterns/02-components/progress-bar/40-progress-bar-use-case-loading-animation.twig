@@ -1,0 +1,75 @@
+{# Demo Variables #}
+{% set loadingJS %}
+<script type="text/javascript">
+  window.addEventListener('load', function() {
+    const progressBar = document.querySelector('.js-bolt-progress-bar-loading');
+    const progressBarReset = document.querySelector(
+      '.js-bolt-progress-bar-loading-reset',
+    );
+    let progressBarInitialValue;
+
+    function autoIncrementProgressBar() {
+      progressBarInitialValue = progressBar.value;
+      const myVar = setInterval(myTimer, 250);
+
+      function myTimer() {
+        progressBar.value += 1;
+
+        if (progressBar.value >= progressBar.max) {
+          clearInterval(myVar);
+          progressBar.animated = false;
+          progressBarReset.removeAttribute('disabled');
+          progressBarReset.textContent = 'Click to reset';
+        }
+      }
+    }
+    if (progressBar) {
+      autoIncrementProgressBar();
+    }
+
+    if (progressBarReset && progressBar) {
+      progressBarReset.addEventListener('click', () => {
+        progressBar.value = progressBarInitialValue;
+        progressBar.animated = true;
+        progressBarReset.setAttribute('disabled', '');
+        progressBarReset.textContent = 'Hang tight before resetting...';
+        autoIncrementProgressBar();
+      });
+    }
+  });
+</script>
+{% endset %}
+
+{# Demo Layout #}
+{{ loadingJS }}
+<bolt-text headline>Loading animation</bolt-text>
+<bolt-stack>
+  {% include "@bolt-components-progress-bar/progress-bar.twig" with {
+    value: 50,
+    animated: true,
+    attributes: {
+      class: [
+        "js-bolt-progress-bar-loading"
+      ]
+    }
+  } only %}
+</bolt-stack>
+<bolt-stack>
+  {% include "@bolt-components-button/button.twig" with {
+    text: "Hang tight before resetting...",
+    disabled: true,
+    attributes: {
+      class: [
+        "js-bolt-progress-bar-loading-reset"
+      ]
+    }
+  } only %}
+</bolt-stack>
+
+<bolt-text headline>Custom JavaScript</bolt-text>
+<bolt-code-snippet syntax="dark" lang="html">{% spaceless %}
+  {{ loadingJS | replace({
+    '<': '&lt;',
+    '>': '&gt;',
+  }) | trim | raw }}
+{% endspaceless %}</bolt-code-snippet>

@@ -1,6 +1,13 @@
 {% import "@bolt-blueprints/macros.twig" as macros %}
 
 {% include "@bolt-blueprints/_mission-landing.twig" with {
+  mainBackgroundImage: mainBackgroundImage,
+  toolbarIcon: toolbarIcon,
+  heroTitle: heroTitle,
+  heroSubTitle: heroSubTitle,
+  trainingMetaItems: trainingMetaItems,
+  trainingDescription: trainingDescription,
+  trainingTags: trainingTags,
   breadcrumbs: [
     {
       "text": "Home",
@@ -98,6 +105,8 @@
       cardIcon: "brand-atom",
       cardDescription: bolt.faker.paragraph(3),
     },
-    macros.include("@bolt-blueprints/_badge.twig"),
+    macros.include("@bolt-blueprints/_badge.twig", {
+      locked: hideCompleted
+    }),
   ]
-} %}
+} only %}

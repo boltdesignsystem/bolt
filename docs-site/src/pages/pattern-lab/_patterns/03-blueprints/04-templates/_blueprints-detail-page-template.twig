@@ -62,18 +62,20 @@
     {% include "@bolt-blueprints/_toolbar.twig" with {
       toolbarGradient: toolbarGradient | default("orange"),
       sticky: sideNav ? false : true,
-    } %}
+      breadcrumbs: breadcrumbs,
+      toolbarIcon: toolbarIcon,
+    } only %}
     {% include "@bolt-components-band/band.twig" with {
       theme: "xlight",
       size: "none",
       valign: "start",
       content: mainContentBlock,
-    } %}
+    } only %}
   </main>
   <div class="c-bolt-site__footer c-bolt-page-footer">
     <div class="o-bolt-wrapper">
       {% block global_footer %}
-        {% include "@bolt/page-footer.twig" %}
+        {% include "@bolt/page-footer.twig" only %}
       {% endblock %}
     </div>
   </div>
