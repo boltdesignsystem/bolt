@@ -2,12 +2,25 @@
   horizontal: true,
   theme: "xlight",
   link_url: cardUrl,
-} %}
+  cardGradient: cardGradient,
+  gradientStart: gradientStart,
+  gradientMiddle: gradientMiddle,
+  gradientEnd: gradientEnd,
+  cardIcon: cardIcon,
+  cardSubtitle: cardSubtitle,
+  cardTitle: cardTitle,
+  cardMetaItems: cardMetaItems,
+  cardDescription: cardDescription,
+} only %}
   {% block media %}
     {% include "@bolt-blueprints/_icon-banner.twig" with {
-      gradient: cardGradient,
+      cardGradient: cardGradient,
+      gradientStart: gradientStart,
+      gradientMiddle: gradientMiddle,
+      gradientEnd: gradientEnd,
+      cardIcon: cardIcon,
       horizontal: true
-    } %}
+    } only %}
   {% endblock %}
 
   {% block body %}
@@ -48,7 +61,7 @@
               separator: "solid",
               tag: "ul",
               items: cardMetaItems
-            } %}
+            } only %}
           {% endif %}
         {% endcell %}
 

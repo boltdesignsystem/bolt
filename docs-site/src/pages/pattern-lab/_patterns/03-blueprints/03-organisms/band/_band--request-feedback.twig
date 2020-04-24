@@ -1,7 +1,7 @@
 {% embed "@bolt-components-band/band.twig" with {
   theme: "dark",
   size: "small"
-} %}
+} only %}
   {% block band_content %}
     {% import "@bolt-blueprints/macros.twig" as macros %}
 
@@ -20,7 +20,7 @@
                     "u-bolt-align-middle",
                   ]
                 }
-              } %}
+              } only %}
             {% endcell %}
 
             {% cell %}

@@ -1,0 +1,45 @@
+<h3>Truncated chip list that can collapse after expanding</h3>
+
+{% include "@bolt-components-chip-list/chip-list.twig" with {
+  size: "xsmall",
+  truncate: 5,
+  collapsible: true,
+  items: [
+    {
+      text: "Beginner",
+      url: "#1"
+    },
+    {
+      text: "User Interface",
+      url: "#1"
+    },
+    {
+      text: "Reporting",
+      url: "#1"
+    },
+    {
+      text: "Mobile",
+      url: "#1"
+    },
+    {
+      text: "Pega Platform",
+      url: "#!"
+    },
+    {
+      text: "Application Development",
+      url: "#!"
+    },
+    {
+      text: "Case Management",
+      url: "#!"
+    },
+    {
+      text: "Robotic Process Automation",
+      url: "#!"
+    },
+    {
+      text: "Data Integration",
+      url: "#!"
+    },
+  ]
+} only %}

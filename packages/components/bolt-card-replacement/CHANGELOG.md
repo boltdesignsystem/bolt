@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.22.0](https://github.com/boltdesignsystem/bolt/compare/v2.21.1...v2.22.0) (2020-04-22)
+
+
+### Bug Fixes
+
+* border radius ([2567f31](https://github.com/boltdesignsystem/bolt/commit/2567f31e79516c435296a60b2790b27ee431a308))
+* border-radius logic ([894af29](https://github.com/boltdesignsystem/bolt/commit/894af29109d79fdbc9d080055413b3568e0ddd94))
+* card background stacking order ([c733d08](https://github.com/boltdesignsystem/bolt/commit/c733d08567ae77cba718544f363fa4e874bc6df2))
+* create tests for new props ([744a8ae](https://github.com/boltdesignsystem/bolt/commit/744a8ae923cdb976cda27cd7094a4d7f4070da8f))
+* remove join ([3eddaf2](https://github.com/boltdesignsystem/bolt/commit/3eddaf24cfb6b0d63ecdf23f706916bc7f0cb012))
+* remove unused `.spacing` property on card-replacement-body WC markup ([8aff9cc](https://github.com/boltdesignsystem/bolt/commit/8aff9cc4d202559a53fc32c4dd3fff3897f8f09d))
+* use spacing map for css ([4a04e4f](https://github.com/boltdesignsystem/bolt/commit/4a04e4f9270619442fd046a6c4aad1ac64c10136))
+
+
+### Features
+
+* pass `spacing` to card-replacement-action-item via context ([994a42f](https://github.com/boltdesignsystem/bolt/commit/994a42f0f9f42baec97cd99d91f357e708796cb7))
+* pass `spacing` via context from card-replacement to card-replacement-body ([7ab2b1c](https://github.com/boltdesignsystem/bolt/commit/7ab2b1cf16a45c2a59a2996f72b5df9b8d759a8a))
+
+
+
+
+
 ## [2.21.1](https://github.com/boltdesignsystem/bolt/compare/v2.21.0...v2.21.1) (2020-04-10)
 
 **Note:** Version bump only for package @bolt/components-card-replacement

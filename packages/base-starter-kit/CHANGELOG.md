@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.22.1](https://github.com/boltdesignsystem/bolt/compare/v2.22.0...v2.22.1) (2020-04-22)
+
+**Note:** Version bump only for package @bolt/starter-kit
+
+
+
+
+
+# [2.22.0](https://github.com/boltdesignsystem/bolt/compare/v2.21.1...v2.22.0) (2020-04-22)
+
+
+### Features
+
+* fix: address linting issues ([bda376b](https://github.com/boltdesignsystem/bolt/commit/bda376b61e8943f24e709dd8f3d6e13eb8674027))
+
+
+
+
+
 ## [2.21.1](https://github.com/boltdesignsystem/bolt/compare/v2.21.0...v2.21.1) (2020-04-10)
 
 **Note:** Version bump only for package @bolt/starter-kit
