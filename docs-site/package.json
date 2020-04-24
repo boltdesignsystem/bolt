@@ -16,6 +16,7 @@
     "build:noisy": "bolt build --verbosity 5",
     "build:pl": "bolt prep && npx lerna exec --scope @bolt/uikit-workshop --loglevel=silent -- yarn run build",
     "build:prod": "bolt build --prod --no-ssr",
+    "build:webpack": "bolt webpack --prod",
     "clean": "cd ../ && npm run clean",
     "prep": "bolt prep",
     "serve": "bolt serve",
