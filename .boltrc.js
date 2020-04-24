@@ -49,11 +49,6 @@ const nonImageFixtures = globby.sync([
 ]);
 const itemsToCopy = [];
 
-const allComponentPackages = globby
-  .sync(path.join(__dirname, './packages/components/*/package.json'))
-  .map(pkgPath => require(pkgPath))
-  .map(pkg => pkg.name);
-
 nonImageFixtures.forEach(fixturePath => {
   itemsToCopy.push({
     from: path.join(__dirname, fixturePath),
@@ -74,10 +69,7 @@ module.exports = {
   iconDir: [],
   components: {
     global: [
-      ...allComponentPackages,
-      '@bolt/components-animate',
-      '@bolt/micro-journeys',
-      '@bolt/analytics-autolink',
+      ...siteConfig.components.global,
     ],
   },
   images: {

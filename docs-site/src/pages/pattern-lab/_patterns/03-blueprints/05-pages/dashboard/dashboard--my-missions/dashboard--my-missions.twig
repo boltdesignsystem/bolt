@@ -15,7 +15,7 @@
         },
       ]
     }
-  } %}
+  } only %}
     {% block band_content %}
       {% include "@bolt-components-headline/headline.twig" with {
         url: "#",
@@ -32,6 +32,6 @@
     {% endblock %}
   {% endembed %}
 
-  {% include "@bolt-blueprints/_dashboard-band--my-missions.twig" with { showAll: true } %}
+  {% include "@bolt-blueprints/_dashboard-band--my-missions.twig" with { showAll: true } only %}
 
 {% endblock %}
