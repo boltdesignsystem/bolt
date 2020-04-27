@@ -55,8 +55,6 @@ async function createWebpackConfig(buildConfig) {
     path: config.dataDir,
   });
 
-  // map out Twig namespaces with the NPM package name
-
   // filename suffix to tack on based on lang being compiled for
   let langSuffix = `${config.lang ? '-' + config.lang : ''}`;
 

@@ -1,0 +1,17 @@
+{
+  "name": "@bolt/build-tools--test-peer-deps",
+  "version": "2.22.0",
+  "private": true,
+  "description": "Tests for @bolt/build-tools peer dependency behavior",
+  "license": "MIT",
+  "main": "index.js",
+  "scripts": {
+    "build": "bolt build --prod --config-file .boltrc.js",
+    "test": "npx jest index.js",
+    "posttest": "rm -rf dist/"
+  },
+  "dependencies": {
+    "@bolt/build-tools": "^2.22.0",
+    "@bolt/components-image": "^2.22.0"
+  }
+}
