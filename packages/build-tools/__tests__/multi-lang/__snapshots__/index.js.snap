@@ -1278,51 +1278,6 @@ bolt-inline-list:not(:last-child) {
 .o-bolt-island--large {
   padding: 2.31rem 2.8rem;
 }
-bolt-ratio {
-  display: block;
-  width: 100%;
-  overflow: hidden;
-}
-:host {
-  display: block;
-  overflow: hidden;
-}
-.c-bolt-ratio {
-  display: block;
-  position: relative;
-  width: 100%;
-  --aspect-ratio: 1;
-}
-@supports (--custom: property) {
-  bolt-ratio:not(:defined):before {
-    content: \\"\\";
-    display: block;
-    width: 100%;
-    padding-bottom: calc(100% / var(--aspect-ratio));
-  }
-  .c-bolt-ratio {
-    padding-bottom: calc(100% / var(--aspect-ratio));
-  }
-}
-.c-bolt-ratio > *,
-.c-bolt-ratio > noscript > * {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  min-width: 100%;
-  height: 100%;
-  min-height: 100%;
-}
-.c-bolt-ratio ::slotted(*) {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  min-width: 100%;
-  height: 100%;
-  min-height: 100%;
-}
 .o-bolt-ui-list {
   margin: 0;
   padding: 0;
@@ -18358,6 +18313,51 @@ bolt-icon:not(:resolved) {
   border: 1px solid rgba(92, 93, 102, 0.5);
   background-color: #a65389;
 }
+bolt-ratio {
+  display: block;
+  width: 100%;
+  overflow: hidden;
+}
+:host {
+  display: block;
+  overflow: hidden;
+}
+.c-bolt-ratio {
+  display: block;
+  position: relative;
+  width: 100%;
+  --aspect-ratio: 1;
+}
+@supports (--custom: property) {
+  bolt-ratio:not(:defined):before {
+    content: \\"\\";
+    display: block;
+    width: 100%;
+    padding-bottom: calc(100% / var(--aspect-ratio));
+  }
+  .c-bolt-ratio {
+    padding-bottom: calc(100% / var(--aspect-ratio));
+  }
+}
+.c-bolt-ratio > *,
+.c-bolt-ratio > noscript > * {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-width: 100%;
+  height: 100%;
+  min-height: 100%;
+}
+.c-bolt-ratio ::slotted(*) {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-width: 100%;
+  height: 100%;
+  min-height: 100%;
+}
 "
 `;
 
@@ -19549,51 +19549,6 @@ bolt-inline-list:not(:last-child) {
 }
 .o-bolt-island--large {
   padding: 3.3rem 4rem;
-}
-bolt-ratio {
-  display: block;
-  width: 100%;
-  overflow: hidden;
-}
-:host {
-  display: block;
-  overflow: hidden;
-}
-.c-bolt-ratio {
-  display: block;
-  position: relative;
-  width: 100%;
-  --aspect-ratio: 1;
-}
-@supports (--custom: property) {
-  bolt-ratio:not(:defined):before {
-    content: \\"\\";
-    display: block;
-    width: 100%;
-    padding-bottom: calc(100% / var(--aspect-ratio));
-  }
-  .c-bolt-ratio {
-    padding-bottom: calc(100% / var(--aspect-ratio));
-  }
-}
-.c-bolt-ratio > *,
-.c-bolt-ratio > noscript > * {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  min-width: 100%;
-  height: 100%;
-  min-height: 100%;
-}
-.c-bolt-ratio ::slotted(*) {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  min-width: 100%;
-  height: 100%;
-  min-height: 100%;
 }
 .o-bolt-ui-list {
   margin: 0;
@@ -36629,6 +36584,51 @@ bolt-icon:not(:resolved) {
   opacity: 1;
   border: 1px solid rgba(92, 93, 102, 0.5);
   background-color: #a65389;
+}
+bolt-ratio {
+  display: block;
+  width: 100%;
+  overflow: hidden;
+}
+:host {
+  display: block;
+  overflow: hidden;
+}
+.c-bolt-ratio {
+  display: block;
+  position: relative;
+  width: 100%;
+  --aspect-ratio: 1;
+}
+@supports (--custom: property) {
+  bolt-ratio:not(:defined):before {
+    content: \\"\\";
+    display: block;
+    width: 100%;
+    padding-bottom: calc(100% / var(--aspect-ratio));
+  }
+  .c-bolt-ratio {
+    padding-bottom: calc(100% / var(--aspect-ratio));
+  }
+}
+.c-bolt-ratio > *,
+.c-bolt-ratio > noscript > * {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-width: 100%;
+  height: 100%;
+  min-height: 100%;
+}
+.c-bolt-ratio ::slotted(*) {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-width: 100%;
+  height: 100%;
+  min-height: 100%;
 }
 "
 `;
