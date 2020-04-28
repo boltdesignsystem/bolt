@@ -1,31 +1,3 @@
-  {% if bolt.data.config.lang is iterable %}
-    {% set lang = bolt.data.config.lang[0] %}
-  {% else %}
-    {% set lang = bolt.data.config.lang %}
-  {% endif %}
-
-  {# @TODO: how do we get this to use the exact same values from our global .js config without having the source of truth live as a .yml or .json file...? #}
-  {% set manifestConfig = "@bolt-assets/bolt-webpack-manifest#{lang != "" ? "-" ~ lang : ""}.json" %}
-
-  {% set assets = [] %}
-
-  {% if fileExists(manifestConfig) %}
-    {% set assets = get_data(manifestConfig) %}
-  {% endif %}
-
-  <script type="module" src="{{ assets["bolt-global.js"]|default("/build/bolt-global.js") }}" async></script>
-
-  <script type="module">
-    if (!sessionStorage.fontsLoadedCriticalFoftPreloadPolyfill){
-      document.documentElement.classList.add('js-fonts-loaded');
-      sessionStorage.fontsLoadedCriticalFoftPreloadPolyfill = true;
-    }
-  </script>
-
-  <script nomodule>
-    document.documentElement.classList.add('js-fonts-loaded');
-  </script>
-
   <script src="https://www.google-analytics.com/analytics.js" async></script>
 
   {{ patternLabFoot | raw }}

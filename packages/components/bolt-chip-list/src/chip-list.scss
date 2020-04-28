@@ -1,0 +1,16 @@
+/* ------------------------------------ *\
+   Truncate Items
+\* ------------------------------------ */
+
+@import '@bolt/core-v3.x';
+
+// Register Custom Block Element
+@include bolt-custom-element('bolt-chip-list', block, medium);
+
+.c-bolt-chip-list {
+  display: block;
+}
+
+.c-bolt-chip-list__input {
+  @include bolt-visuallyhidden;
+}

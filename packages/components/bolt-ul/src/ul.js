@@ -62,9 +62,9 @@ class BoltUnorderedList extends withLitHtml {
 
     return html`
       ${this.addStyles([styles])}
-      <ul class="${classes}">
+      <div class="${classes}" role="list">
         ${this.slot('default')}
-      </ul>
+      </div>
     `;
   }
 }

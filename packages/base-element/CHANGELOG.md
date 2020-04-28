@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.22.0](https://github.com/boltdesignsystem/bolt/compare/v2.21.1...v2.22.0) (2020-04-22)
+
+
+### Bug Fixes
+
+* add missing `_self` default prop value to to the target prop in BoltActionElement ([c7f75ee](https://github.com/boltdesignsystem/bolt/commit/c7f75ee51119c02aaaa76a72a0c3d18b7cf1aaf6))
+* update decorator covert-case lib path ([93470c6](https://github.com/boltdesignsystem/bolt/commit/93470c65a3ca51f3dc0102456e2132aea5a10f81))
+* update decorator to ensure backwards compat with non-LitElement components ([b105bb8](https://github.com/boltdesignsystem/bolt/commit/b105bb8a2db773c73bcee5641acd3495aa05cb7d))
+* update jsonSchemaPropsDecorator to handle props with a default value of zero ([660a2a7](https://github.com/boltdesignsystem/bolt/commit/660a2a777330058fecc16ebc0f7873edc8bb89fa))
+* update lit-helpers package + use default imports for camelCase and paramCase deps ([d2ecdfc](https://github.com/boltdesignsystem/bolt/commit/d2ecdfc33e9b44f344d45430407732b7c35d36b2))
+
+
+### Features
+
+* add auto-prop support (copying Salem's work from separate branch) ([67e5c54](https://github.com/boltdesignsystem/bolt/commit/67e5c54835de4b8d01b44d26b5a1fb41f80da801))
+* add new 'alias' field to BoltElement properties ([7956fac](https://github.com/boltdesignsystem/bolt/commit/7956facc72be9d464bd0cac3c3b622f77e723adb))
+* add spread support to BoltElement + demo usage in Link component ([e61a748](https://github.com/boltdesignsystem/bolt/commit/e61a7482d5c0b94efcf46fea934baa40e72ca6be))
+* do not force booleans to reflect ([6cd783e](https://github.com/boltdesignsystem/bolt/commit/6cd783eafc9ccca02cea3d5d594112c7b922d216))
+
+
+
+
+
 # [2.21.0](https://github.com/boltdesignsystem/bolt/compare/v2.20.2...v2.21.0) (2020-04-08)
 
 

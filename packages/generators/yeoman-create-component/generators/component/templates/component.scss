@@ -1,6 +1,8 @@
-@import '@bolt/core-v3.x';
+/* ------------------------------------ *\
+   <%= props.name.titleCase %>
+\* ------------------------------------ */
 
-// Local <%= props.name.kebabCase %> Variables
+@import '@bolt/core-v3.x';
 
 // Register Custom Block Element
 @include bolt-custom-element('bolt-<%= props.name.kebabCase %>', block, medium);
@@ -14,6 +16,6 @@
  * 1. Provide line-comments like this.
  */
 .c-bolt-<%= props.name.kebabCase %> {
-  //Styles go here. /* [1] */
+  // Styles go here. /* [1] */
   display: block;
 }

@@ -3,6 +3,46 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.22.1](https://github.com/bolt-design-system/bolt/tree/master/packages/generator-bolt/compare/v2.22.0...v2.22.1) (2020-04-22)
+
+**Note:** Version bump only for package @bolt/generator-bolt
+
+
+
+
+
+# [2.22.0](https://github.com/bolt-design-system/bolt/tree/master/packages/generator-bolt/compare/v2.21.1...v2.22.0) (2020-04-22)
+
+
+### Bug Fixes
+
+* remove dupe generator Jest test ([be63b55](https://github.com/bolt-design-system/bolt/tree/master/packages/generator-bolt/commit/be63b55befcf6f86973fee7a5c1a988eab3e9ada))
+* set default `disabled` value in schema ([947b555](https://github.com/bolt-design-system/bolt/tree/master/packages/generator-bolt/commit/947b555e8916a8c77a5cb55f689b16e696e12bf0))
+* Update test for component generator ([d723d58](https://github.com/bolt-design-system/bolt/tree/master/packages/generator-bolt/commit/d723d585068884c6d26c0c55a657773b346809e6))
+
+
+### Features
+
+* add prop example to component Twig template ([b9d9851](https://github.com/bolt-design-system/bolt/tree/master/packages/generator-bolt/commit/b9d9851a3da6d4c92f36a780dfc43c3979f70fb8))
+* add title comment to SCSS, fix formatting ([572f000](https://github.com/bolt-design-system/bolt/tree/master/packages/generator-bolt/commit/572f0007e94b5ba42cf91fbeb825294eb9f762ad))
+* convert schema from YML to JS ([bbdaa1a](https://github.com/bolt-design-system/bolt/tree/master/packages/generator-bolt/commit/bbdaa1a5bb3d79de571d0c05422e2b4da11bff14))
+* remove boilerplate component description ([01a951d](https://github.com/bolt-design-system/bolt/tree/master/packages/generator-bolt/commit/01a951dd8e0b350a420f8b289b68cd20808e0b7d))
+* remove description from schema ([68718ec](https://github.com/bolt-design-system/bolt/tree/master/packages/generator-bolt/commit/68718ec693a21e2ad5127241a4f533766b7dc32f))
+* remove polyfill loader ([fcaba24](https://github.com/bolt-design-system/bolt/tree/master/packages/generator-bolt/commit/fcaba2491cfed78e250d5f244154aee94b835924))
+* update component JS to use latest conventions, auto-props ([8623c68](https://github.com/bolt-design-system/bolt/tree/master/packages/generator-bolt/commit/8623c68db18f92d2773c7a7b8a173fd073cbc962))
+
+
+
+
+
+## [2.21.1](https://github.com/bolt-design-system/bolt/tree/master/packages/generator-bolt/compare/v2.21.0...v2.21.1) (2020-04-10)
+
+**Note:** Version bump only for package @bolt/generator-bolt
+
+
+
+
+
 # [2.21.0](https://github.com/bolt-design-system/bolt/tree/master/packages/generator-bolt/compare/v2.20.2...v2.21.0) (2020-04-08)
 
 **Note:** Version bump only for package @bolt/generator-bolt
