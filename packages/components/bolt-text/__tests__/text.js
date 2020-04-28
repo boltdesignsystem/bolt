@@ -44,7 +44,7 @@ describe('<bolt-text> Component', () => {
     const image = await page.screenshot();
 
     expect(image).toMatchImageSnapshot({
-      failureThreshold: '0.01',
+      failureThreshold: '0.015',
       failureThresholdType: 'percent',
     });
 
@@ -95,7 +95,7 @@ describe('<bolt-text> Component', () => {
     const image = await page.screenshot();
 
     expect(image).toMatchImageSnapshot({
-      failureThreshold: '0.01',
+      failureThreshold: '0.015',
       failureThresholdType: 'percent',
     });
 
@@ -119,7 +119,7 @@ describe('<bolt-text> Component', () => {
     const image = await page.screenshot();
 
     expect(image).toMatchImageSnapshot({
-      failureThreshold: '0.01',
+      failureThreshold: '0.012',
       failureThresholdType: 'percent',
     });
 
@@ -157,7 +157,7 @@ describe('<bolt-text> Component', () => {
     ).toBe(false);
 
     expect(image).toMatchImageSnapshot({
-      failureThreshold: '0.01',
+      failureThreshold: '0.015',
       failureThresholdType: 'percent',
     });
 
@@ -181,7 +181,7 @@ describe('<bolt-text> Component', () => {
     const image = await page.screenshot();
 
     expect(image).toMatchImageSnapshot({
-      failureThreshold: '0.01',
+      failureThreshold: '0.015',
       failureThresholdType: 'percent',
     });
 
@@ -213,7 +213,7 @@ describe('<bolt-text> Component', () => {
     ).toBe(true);
 
     expect(image).toMatchImageSnapshot({
-      failureThreshold: '0.01',
+      failureThreshold: '0.015',
       failureThresholdType: 'percent',
     });
 
@@ -241,7 +241,7 @@ describe('<bolt-text> Component', () => {
     const image = await page.screenshot();
 
     expect(image).toMatchImageSnapshot({
-      failureThreshold: '0.01',
+      failureThreshold: '0.015',
       failureThresholdType: 'percent',
     });
 
@@ -284,7 +284,7 @@ describe('<bolt-text> Component', () => {
     ).toBe(true);
 
     expect(image).toMatchImageSnapshot({
-      failureThreshold: '0.01',
+      failureThreshold: '0.015',
       failureThresholdType: 'percent',
     });
 
