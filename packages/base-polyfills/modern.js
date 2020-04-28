@@ -13,4 +13,4 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
  * Used in all Modern Browsers
  */
 
-import '@webcomponents/custom-elements/src/custom-elements.js';
+import 'document-register-element';

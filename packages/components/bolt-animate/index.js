@@ -3,7 +3,7 @@ import meta from './animate.meta';
 
 polyfillLoader.then(res => {
   import(
-    /* webpackMode: 'eager', webpackChunkName: 'bolt-animate' */ './src/animate'
+    /* , webpackChunkName: 'bolt-animate' */ './src/animate'
   );
 });
 

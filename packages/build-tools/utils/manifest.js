@@ -45,7 +45,7 @@ let extraIndividualBoltDependenciesFound = [];
 // don't automatically include these Bolt packages as extra (undeclared) dependencies
 const extraBoltDependenciesBlacklist = [
   '@bolt/core',
-  '@bolt/core-v3.x',
+  '@bolt/polyfills',
   '@bolt/element',
 ];
 

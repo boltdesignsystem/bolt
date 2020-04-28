@@ -1,10 +1,3 @@
-import { polyfillLoader } from '@bolt/core-v3.x/polyfills';
-
-polyfillLoader.then(res => {
-  import(
-    /*
-    webpackMode: 'eager',
+import(/*
     webpackChunkName: 'bolt-theme-switcher'
-  */ './theme-switcher'
-  );
-});
+  */ './theme-switcher');

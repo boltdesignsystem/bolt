@@ -2,7 +2,7 @@
 
 import { props } from '@bolt/core-v3.x/utils';
 import { customElement, html } from '@bolt/element';
-import Choices from 'choices.js';
+import Choices from 'choices.js/src/scripts/choices';
 import { withLitHtml } from '@bolt/core-v3.x/renderers/renderer-lit-html';
 import { filterObject, isDefined, createSelectOptionData } from './utils';
 

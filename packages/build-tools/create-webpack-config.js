@@ -304,25 +304,8 @@ async function createWebpackConfig(buildConfig) {
             {
               use: [
                 {
-                  loader: 'babel-loader',
-                  options: {
-                    babelrc: false,
-                    presets: [legacyBabelConfig],
-                  },
-                },
-                {
                   loader: 'svg-sprite-loader',
                   options: {
-                    runtimeGenerator: require.resolve(
-                      './svg-to-icon-component-runtime-generator',
-                    ),
-                    runtimeOptions: {
-                      iconModule: path.join(
-                        path.dirname(require.resolve('@bolt/components-icon')),
-                        '/icon.jsx',
-                      ),
-                    },
-                    extract: true,
                     spriteFilename: svgPath =>
                       `bolt-svg-sprite${svgPath.substr(-4)}`,
                   },
@@ -367,6 +350,8 @@ async function createWebpackConfig(buildConfig) {
     },
     mode: config.prod ? 'production' : 'development',
     optimization: {
+      sideEffects: true,
+      usedExports: true,
       minimizer: config.prod
         ? [
             new TerserPlugin({
@@ -401,9 +386,6 @@ async function createWebpackConfig(buildConfig) {
 
   if (config.prod) {
     // https://webpack.js.org/plugins/module-concatenation-plugin/
-    sharedWebpackConfig.plugins.push(
-      new webpack.optimize.ModuleConcatenationPlugin(),
-    );
 
     // Optimize CSS - https://github.com/NMFR/optimize-css-assets-webpack-plugin
     sharedWebpackConfig.plugins.push(

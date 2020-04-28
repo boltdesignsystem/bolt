@@ -1,18 +1,23 @@
-import './components/version-selector/version-selector';
-// import './components/schema-form'; // Component Explorer is temporarily disabled until we're done migrating our Twig Rendering Service to Now.sh v2
-import './components/handle-iframe-height';
+import(
+  /* webpackChunkName: 'bolt-version-selector' */ './components/version-selector/version-selector'
+);
+import(/* webpackChunkName: 'bolt-autolink' */ '@bolt/analytics-autolink');
+
+import(
+  /* webpackChunkName: 'bolt-autotrack' */ '@bolt/analytics-autotrack'
+);
+
 import './pages/pattern-lab/_patterns/02-components/card-deprecated/__tests__';
-// import './pages/pattern-lab/_patterns/01-styleguide/100-rendering-performance/bolt-preact-test';
-// import './pages/pattern-lab/_patterns/01-styleguide/100-rendering-performance/bolt-lit-test';
-// import './pages/pattern-lab/_patterns/01-styleguide/100-rendering-performance/lazy-lit-test';
-import './pages/pattern-lab/_patterns/04-pages/99999-bolt-dev-sandbox/editor-integration';
+
+import(
+  /* webpackChunkName: 'bolt-editor-integration' */ './pages/pattern-lab/_patterns/04-pages/99999-bolt-dev-sandbox/editor-integration'
+);
+
 import { enableAnimDemos } from './pages/pattern-lab/_patterns/06-experiments/animate/animate-demo-helpers.js';
 enableAnimDemos();
 
 // Component-specific examples that need to get compiled:
-import '@bolt/components-typeahead/__demos__/dynamically-fetch-data/typeahead.dynamically-fetch-data';
-import '@bolt/components-typeahead/__demos__/navigate-to-search-results/typeahead.navigate-to-search-results';
-import '@bolt/components-typeahead/__demos__/navigate-to-exact-result/typeahead.navigate-to-exact-result';
+import(/* webpackChunkName: 'bolt-typeahead-demos' */ './typeahead-demos');
 
 // demo to show how to add custom icons automatically
 import './assets/icons/custom-arrow-left-colored.svg';

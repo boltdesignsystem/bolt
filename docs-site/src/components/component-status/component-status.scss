@@ -1,3 +1,5 @@
+@import '@bolt/core-v3.x';
+
 .c-bds-component-status {
   @include bolt-font-size(xsmall);
   @include bolt-padding(bolt-spacing(small) * 1.5);
@@ -38,7 +40,7 @@
     @include bolt-padding-bottom(xsmall);
     display: block;
     width: 40%;
-    
+
     @include bolt-mq($from: medium){
       width: 30%;
     }
@@ -58,7 +60,7 @@
     }
   }
 
-  dt, 
+  dt,
   dd {
     @include bolt-padding-top(xsmall);
     @include bolt-padding-left(small);

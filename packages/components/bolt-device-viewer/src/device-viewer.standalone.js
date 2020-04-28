@@ -1,5 +1,5 @@
 import { html, customElement } from '@bolt/element';
-import Drift from 'drift-zoom';
+import Drift from 'drift-zoom/es/Drift';
 import {
   props,
   css,

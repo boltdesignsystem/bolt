@@ -13,6 +13,8 @@ import themes from '@bolt/global/styles/06-themes/_themes.all.scss';
 import styles from './list.scss';
 import schema from '../list.schema.yml';
 
+delete schema.properties.items;
+
 let cx = classNames.bind(styles);
 
 // define which specific props to provide to children that subscribe
