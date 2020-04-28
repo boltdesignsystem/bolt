@@ -259,7 +259,7 @@ async function buildBoltManifest() {
         if (hasAlreadyWarned === false){
           console.warn(
             chalk.keyword('orange')(
-              `\nWarning: These Bolt packages were listed as dependencies of components that are currently being bundled as separate files but are NOT currently being included. If these components are required (which, they probably are), you'll need to add these to the global["components"] section in your .boltrc config.\n`,
+              `\nWarning: These Bolt packages were listed as dependencies of components that are currently being bundled as separate files but are NOT currently being included. If these components are required (which, they probably are), you'll need to add these to the \`components: { global: [] }\` array in your \`.boltrc\` config.\n`,
             ),
           );
 
