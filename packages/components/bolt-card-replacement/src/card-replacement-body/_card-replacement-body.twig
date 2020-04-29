@@ -22,7 +22,7 @@
 {% endif %}
 
 <bolt-card-replacement-body {{ attributes }}>
-  <replace-with-children {{ inner_attributes.addClass(classes) }}>
+  <ssr-keep for="bolt-card-replacement-body" {{ inner_attributes.addClass(classes) }}>
     {% block body %}
       {% if card_replacement_body_content %}
         {{ card_replacement_body_content }}
@@ -49,5 +49,5 @@
         {% endif %}
       {% endif %}
     {% endblock %}
-  </replace-with-children>
+  </ssr-keep>
 </bolt-card-replacement-body>
