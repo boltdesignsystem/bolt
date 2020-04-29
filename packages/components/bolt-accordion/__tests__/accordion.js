@@ -13,7 +13,7 @@ const { spacing } = schema.definitions;
 const timeout = 120000;
 
 const accordionHTML = `
-  <bolt-accordion>
+  <bolt-accordion single>
     <bolt-accordion-item>
       <bolt-text slot="trigger">Accordion item 1</bolt-text>
       <bolt-text>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</bolt-text>
@@ -156,7 +156,6 @@ describe('<bolt-accordion> Component', () => {
 
   test(`Inactive item`, async () => {
     const results = await render('@bolt-components-accordion/accordion.twig', {
-      single: true,
       items: [
         {
           trigger: 'Active accordion item',
@@ -229,10 +228,7 @@ describe('<bolt-accordion> Component', () => {
 
     const image = await page.screenshot();
 
-    expect(image).toMatchImageSnapshot({
-      failureThreshold: '0.01',
-      failureThresholdType: 'percent',
-    });
+    expect(image).toMatchImageSnapshot(vrtConfig);
 
     await page.click('bolt-accordion-item:nth-child(2) [slot="trigger"]');
 
@@ -240,10 +236,7 @@ describe('<bolt-accordion> Component', () => {
 
     const imageAfterOpeningSecondItem = await page.screenshot();
 
-    expect(imageAfterOpeningSecondItem).toMatchImageSnapshot({
-      failureThreshold: '0.01',
-      failureThresholdType: 'percent',
-    });
+    expect(imageAfterOpeningSecondItem).toMatchImageSnapshot(vrtConfig);
 
     await page.click('bolt-accordion-item:nth-child(3) [slot="trigger"]');
 
@@ -251,10 +244,7 @@ describe('<bolt-accordion> Component', () => {
 
     const imageAfterOpeningThirdItem = await page.screenshot();
 
-    expect(imageAfterOpeningThirdItem).toMatchImageSnapshot({
-      failureThreshold: '0.01',
-      failureThresholdType: 'percent',
-    });
+    expect(imageAfterOpeningThirdItem).toMatchImageSnapshot(vrtConfig);
   });
 
   test('Default <bolt-accordion> w/o Shadow DOM renders', async function() {
