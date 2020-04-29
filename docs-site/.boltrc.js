@@ -91,6 +91,7 @@ const config = deepmerge(baseConfig, {
 
       // helper components that are only used internally
       '@bolt/blueprints',
+
       '@bolt/components-radio-switch',
       '@bolt/components-page-footer',
       '@bolt/components-page-header',
@@ -157,5 +158,8 @@ const config = deepmerge(baseConfig, {
     },
   ],
 });
+
+// removing here first before removing from @bolt/starter-kit directly
+delete config.components.individual;
 
 module.exports = config;

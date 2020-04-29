@@ -121,7 +121,7 @@ Sort classes passed in via attributes into two groups:
 
 {% macro slottedIcon(icon, icon_position, slotName) %}
   {% if icon and icon_position == slotName %}
-    <replace-with-children class="c-bolt-button__icon c-bolt-button__icon-sizer">
+    <ssr-keep for="bolt-button" class="c-bolt-button__icon c-bolt-button__icon-sizer">
       {% set icon = icon | merge({
         attributes: {
           slot: slotName,
@@ -129,7 +129,7 @@ Sort classes passed in via attributes into two groups:
         }
       }) %}
       {% include "@bolt-components-icon/icon.twig" with icon only %}
-    </replace-with-children>
+    </ssr-keep>
   {% endif %}
 {% endmacro %}
 
@@ -162,7 +162,7 @@ Sort classes passed in via attributes into two groups:
     {% block slot_before %}
       {{ macros.slottedIcon(icon, icon_position, "before") }}
     {% endblock %}
-    <replace-with-children class="c-bolt-button__item">{{ text }}</replace-with-children>
+    <ssr-keep for="bolt-button" class="c-bolt-button__item">{{ text }}</ssr-keep>
     {% block slot_after %}
       {{ macros.slottedIcon(icon, icon_position, 'after') }}
     {% endblock %}

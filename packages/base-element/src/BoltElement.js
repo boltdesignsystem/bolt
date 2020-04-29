@@ -16,8 +16,9 @@ class BoltElement extends Slotify {
   async connectedCallback() {
     // wait for Bolt's SSR hydration-related helper elements to be ready before continuing
     await customElements.whenDefined('ssr-keep');
-    // await customElements.whenDefined('replace-with-children');
-    // await customElements.whenDefined('replace-with-grandchildren');
+
+    // for some very strange reason, waiting for `replace-with-grandchildren` AND `replace-with-children` fails but waiting for just one or the other works
+    await customElements.whenDefined('replace-with-grandchildren');
 
     // Check if any `<ssr-keep>` elements have registered themselves here. If so, kick off the one-time hydration prep task.
     if (this.ssrKeep && !this.ssrPrepped) {
