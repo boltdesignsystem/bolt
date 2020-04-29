@@ -206,9 +206,11 @@ exports[`link Link with an onClick attributes renders properly 1`] = `
      class="c-bolt-link  c-bolt-link--display-inline c-bolt-link--valign-center"
      on-click="on-click-test"
   >
-    <replace-with-children class="c-bolt-link__text">
+    <ssr-keep for="bolt-link"
+              class="c-bolt-link__text"
+    >
       Link w/ onClick via attributes
-    </replace-with-children>
+    </ssr-keep>
   </a>
 </bolt-link>
 `;
@@ -221,9 +223,11 @@ exports[`link Link with an onClick param renders properly 1`] = `
   <a is="shadow-root"
      class="c-bolt-link  c-bolt-link--display-inline c-bolt-link--valign-center"
   >
-    <replace-with-children class="c-bolt-link__text">
+    <ssr-keep for="bolt-link"
+              class="c-bolt-link__text"
+    >
       Link with onClick via param
-    </replace-with-children>
+    </ssr-keep>
   </a>
 </bolt-link>
 `;
@@ -235,9 +239,11 @@ exports[`link Link with c-bolt- class is thrown out 1`] = `
   <a is="shadow-root"
      class="c-bolt-link  c-bolt-link--display-inline c-bolt-link--valign-center"
   >
-    <replace-with-children class="c-bolt-link__text">
+    <ssr-keep for="bolt-link"
+              class="c-bolt-link__text"
+    >
       Link with outer JS-prefixed class
-    </replace-with-children>
+    </ssr-keep>
   </a>
 </bolt-link>
 `;
@@ -249,9 +255,11 @@ exports[`link Link with inner classes via Drupal Attributes 1`] = `
   <a is="shadow-root"
      class="c-bolt-link  c-bolt-link--display-inline c-bolt-link--valign-center is-active"
   >
-    <replace-with-children class="c-bolt-link__text">
+    <ssr-keep for="bolt-link"
+              class="c-bolt-link__text"
+    >
       Link with inner classes
-    </replace-with-children>
+    </ssr-keep>
   </a>
 </bolt-link>
 `;
@@ -264,9 +272,11 @@ exports[`link Link with outer JS-class via Drupal Attributes 1`] = `
   <a is="shadow-root"
      class="c-bolt-link  c-bolt-link--display-inline c-bolt-link--valign-center"
   >
-    <replace-with-children class="c-bolt-link__text">
+    <ssr-keep for="bolt-link"
+              class="c-bolt-link__text"
+    >
       Link with outer JS-prefixed class
-    </replace-with-children>
+    </ssr-keep>
   </a>
 </bolt-link>
 `;
@@ -279,9 +289,11 @@ exports[`link Link with outer classes via Drupal Attributes 1`] = `
   <a is="shadow-root"
      class="c-bolt-link  c-bolt-link--display-inline c-bolt-link--valign-center"
   >
-    <replace-with-children class="c-bolt-link__text">
+    <ssr-keep for="bolt-link"
+              class="c-bolt-link__text"
+    >
       Link with outer classes
-    </replace-with-children>
+    </ssr-keep>
   </a>
 </bolt-link>
 `;
@@ -293,9 +305,11 @@ exports[`link basic link 1`] = `
   <a is="shadow-root"
      class="c-bolt-link  c-bolt-link--display-inline c-bolt-link--valign-center"
   >
-    <replace-with-children class="c-bolt-link__text">
+    <ssr-keep for="bolt-link"
+              class="c-bolt-link__text"
+    >
       Hello World
-    </replace-with-children>
+    </ssr-keep>
   </a>
 </bolt-link>
 `;
@@ -307,9 +321,11 @@ exports[`link link display: block 1`] = `
   <a is="shadow-root"
      class="c-bolt-link  c-bolt-link--display-block c-bolt-link--valign-center"
   >
-    <replace-with-children class="c-bolt-link__text">
+    <ssr-keep for="bolt-link"
+              class="c-bolt-link__text"
+    >
       Hello World
-    </replace-with-children>
+    </ssr-keep>
   </a>
 </bolt-link>
 `;
@@ -321,9 +337,11 @@ exports[`link link display: flex 1`] = `
   <a is="shadow-root"
      class="c-bolt-link  c-bolt-link--display-flex c-bolt-link--valign-center"
   >
-    <replace-with-children class="c-bolt-link__text">
+    <ssr-keep for="bolt-link"
+              class="c-bolt-link__text"
+    >
       Hello World
-    </replace-with-children>
+    </ssr-keep>
   </a>
 </bolt-link>
 `;
@@ -335,9 +353,11 @@ exports[`link link display: inline 1`] = `
   <a is="shadow-root"
      class="c-bolt-link  c-bolt-link--display-inline c-bolt-link--valign-center"
   >
-    <replace-with-children class="c-bolt-link__text">
+    <ssr-keep for="bolt-link"
+              class="c-bolt-link__text"
+    >
       Hello World
-    </replace-with-children>
+    </ssr-keep>
   </a>
 </bolt-link>
 `;
@@ -349,9 +369,11 @@ exports[`link link valign: center 1`] = `
   <a is="shadow-root"
      class="c-bolt-link  c-bolt-link--display-inline c-bolt-link--valign-center"
   >
-    <replace-with-children class="c-bolt-link__text">
+    <ssr-keep for="bolt-link"
+              class="c-bolt-link__text"
+    >
       Hello World
-    </replace-with-children>
+    </ssr-keep>
   </a>
 </bolt-link>
 `;
@@ -363,9 +385,11 @@ exports[`link link valign: start 1`] = `
   <a is="shadow-root"
      class="c-bolt-link  c-bolt-link--display-inline c-bolt-link--valign-start"
   >
-    <replace-with-children class="c-bolt-link__text">
+    <ssr-keep for="bolt-link"
+              class="c-bolt-link__text"
+    >
       Hello World
-    </replace-with-children>
+    </ssr-keep>
   </a>
 </bolt-link>
 `;
