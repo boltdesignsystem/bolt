@@ -2,6 +2,7 @@ import {
   isConnected,
   render,
   renderString,
+  renderWC,
   stopServer,
   html,
 } from '../../../testing/testing-helpers';
@@ -90,17 +91,15 @@ describe('<bolt-band> Component', () => {
       } only %}
     `);
 
-    const renderedBandHTML = await page.evaluate(async html => {
-      const div = document.createElement('div');
-      div.style.padding = '40px';
-      div.innerHTML = `${html}`;
-      document.body.appendChild(div);
-      const band = document.querySelector('bolt-band');
-      await band.firstUpdated;
-      return band.outerHTML;
-    }, template.html);
+    const { outerHTML } = await renderWC(
+      'bolt-band',
+      `<div style="padding: 40px">
+        ${template.html}
+      </div>`,
+      page,
+    );
 
-    const renderedHTML = await html(renderedBandHTML);
+    const renderedHTML = await html(outerHTML);
     const image = await page.screenshot();
 
     expect(image).toMatchImageSnapshot({
@@ -170,16 +169,8 @@ describe('<bolt-band> Component', () => {
       } only %}
     `);
 
-    const renderedBandHTML = await page.evaluate(async html => {
-      const div = document.createElement('div');
-      div.innerHTML = `${html}`;
-      document.body.appendChild(div);
-      const band = document.querySelector('bolt-band');
-      await band.firstUpdated;
-      return band.outerHTML;
-    }, template.html);
-
-    const renderedHTML = await html(renderedBandHTML);
+    const { outerHTML } = await renderWC('bolt-band', `${template.html}`, page);
+    const renderedHTML = await html(outerHTML);
     const image = await page.screenshot();
 
     expect(image).toMatchImageSnapshot({
