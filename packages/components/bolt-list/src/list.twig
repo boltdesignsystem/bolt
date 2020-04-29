@@ -63,13 +63,13 @@
   ] %}
 
   <{{ tag }} {{ inner_attributes.addClass(classes) }}>
-    {# todo: is there an alternative, accessible way of handling this w/o requiring inline use of display: contents? #}
-    <ssr-keep for="bolt-list" style="display: contents;">
-        {% for item in items %}
-          {% if item %}
-            {% include "@bolt-components-list/_list-item.twig" %}
-          {% endif %}
-        {% endfor %}
+    {# todo: use proper `role=list` and `role=listitem` attributes when tag prop is set to ul or ol #}
+    <ssr-keep for="bolt-list">
+      {% for item in items %}
+        {% if item %}
+          {% include "@bolt-components-list/_list-item.twig" %}
+        {% endif %}
+      {% endfor %}
     </ssr-keep>
   </{{ tag }}>
 </bolt-list>
