@@ -27,7 +27,6 @@ try {
 } catch (err) {}
 
 /*
- * 1. @todo: remove SSR Hydration from this file, move to base
  * 2. role="list": declares that an element is a list.
  * 3. Aria lists reference: https://www.scottohara.me/blog/2018/05/26/aria-lists.html
  */
@@ -83,15 +82,6 @@ class BoltToc extends withContext(BoltElement) {
   connectedCallback() {
     super.connectedCallback && super.connectedCallback();
 
-    // Store ssr-id and get all related ssr elements
-    this.ssrId = this.getAttribute('ssr-id');
-    this.ssrEls = this.querySelectorAll(`[ssr-for="${this.ssrId}"]`);
-
-    // Trying out new approach to SSR hydration prep, as ssr-keep isn't working properly on this component.
-    if (this.ssrEls && !this.ssrPrepped) {
-      this.ssrHydrationPrep();
-    }
-
     this.addEventListener('toc:activate', this.onActivate);
 
     this.updateWaypoints = this.updateWaypoints.bind(this);
@@ -129,18 +119,6 @@ class BoltToc extends withContext(BoltElement) {
     document.removeEventListener('scrollStart', this.logScrollEvent, false);
     document.removeEventListener('scrollStop', this.logScrollEvent, false);
     document.removeEventListener('scrollCancel', this.logScrollEvent, false);
-  }
-
-  ssrHydrationPrep() {
-    Array.from(this.ssrEls).forEach(el => {
-      const ssrType = el.getAttribute('ssr-type');
-      switch (ssrType) {
-        case 'remove':
-        default:
-          el.parentNode.removeChild(el);
-      }
-    });
-    this.ssrPrepped = true;
   }
 
   addWaypointDebugger() {
