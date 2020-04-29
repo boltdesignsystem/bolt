@@ -228,7 +228,10 @@ describe('<bolt-accordion> Component', () => {
 
     const image = await page.screenshot();
 
-    expect(image).toMatchImageSnapshot(vrtConfig);
+    expect(image).toMatchImageSnapshot({
+      failureThreshold: '0.0025',
+      failureThresholdType: 'percent',
+    });
 
     await page.click('bolt-accordion-item:nth-child(2) [slot="trigger"]');
 
@@ -236,7 +239,10 @@ describe('<bolt-accordion> Component', () => {
 
     const imageAfterOpeningSecondItem = await page.screenshot();
 
-    expect(imageAfterOpeningSecondItem).toMatchImageSnapshot(vrtConfig);
+    expect(imageAfterOpeningSecondItem).toMatchImageSnapshot({
+      failureThreshold: '0.0025',
+      failureThresholdType: 'percent',
+    });
 
     await page.click('bolt-accordion-item:nth-child(3) [slot="trigger"]');
 
@@ -244,7 +250,10 @@ describe('<bolt-accordion> Component', () => {
 
     const imageAfterOpeningThirdItem = await page.screenshot();
 
-    expect(imageAfterOpeningThirdItem).toMatchImageSnapshot(vrtConfig);
+    expect(imageAfterOpeningThirdItem).toMatchImageSnapshot({
+      failureThreshold: '0.0025',
+      failureThresholdType: 'percent',
+    });
   });
 
   test('Default <bolt-accordion> w/o Shadow DOM renders', async function() {
