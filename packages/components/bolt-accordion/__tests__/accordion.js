@@ -229,30 +229,39 @@ describe('<bolt-accordion> Component', () => {
     const image = await page.screenshot();
 
     expect(image).toMatchImageSnapshot({
-      failureThreshold: 0.003,
+      failureThreshold: 0.02,
       failureThresholdType: 'percent',
+      customDiffConfig: {
+        threshold: 0.2,
+      },
     });
 
-    await page.click('bolt-accordion-item:nth-child(2) [slot="trigger"]');
+    await page.click('bolt-accordion-item:nth-child(2) > *');
 
     await page.waitFor(250);
 
     const imageAfterOpeningSecondItem = await page.screenshot();
 
     expect(imageAfterOpeningSecondItem).toMatchImageSnapshot({
-      failureThreshold: 0.003,
+      failureThreshold: 0.02,
       failureThresholdType: 'percent',
+      customDiffConfig: {
+        threshold: 0.2,
+      },
     });
 
-    await page.click('bolt-accordion-item:nth-child(3) [slot="trigger"]');
+    await page.click('bolt-accordion-item:nth-child(3) > *');
 
     await page.waitFor(250);
 
     const imageAfterOpeningThirdItem = await page.screenshot();
 
     expect(imageAfterOpeningThirdItem).toMatchImageSnapshot({
-      failureThreshold: 0.003,
+      failureThreshold: 0.02,
       failureThresholdType: 'percent',
+      customDiffConfig: {
+        threshold: 0.2,
+      },
     });
   });
 
