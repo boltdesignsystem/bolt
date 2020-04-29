@@ -229,7 +229,7 @@ describe('<bolt-accordion> Component', () => {
     const image = await page.screenshot();
 
     expect(image).toMatchImageSnapshot({
-      failureThreshold: 0.0025,
+      failureThreshold: 0.003,
       failureThresholdType: 'percent',
     });
 
@@ -240,7 +240,7 @@ describe('<bolt-accordion> Component', () => {
     const imageAfterOpeningSecondItem = await page.screenshot();
 
     expect(imageAfterOpeningSecondItem).toMatchImageSnapshot({
-      failureThreshold: 0.0025,
+      failureThreshold: 0.003,
       failureThresholdType: 'percent',
     });
 
@@ -251,7 +251,7 @@ describe('<bolt-accordion> Component', () => {
     const imageAfterOpeningThirdItem = await page.screenshot();
 
     expect(imageAfterOpeningThirdItem).toMatchImageSnapshot({
-      failureThreshold: 0.0025,
+      failureThreshold: 0.003,
       failureThresholdType: 'percent',
     });
   });
