@@ -1,6 +1,4 @@
-import(
-  /*
+import(/*
 
     webpackChunkName: 'bolt-theme-switcher'
-  */ './theme-switcher'
-);
+  */ './theme-switcher');

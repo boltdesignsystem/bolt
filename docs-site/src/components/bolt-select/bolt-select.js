@@ -1,6 +1,4 @@
-import(
-  /*
+import(/*
 
     webpackChunkName: 'bolt-select'
-  */ './bolt-select.standalone'
-);
+  */ './bolt-select.standalone');

@@ -1,6 +1,4 @@
-import(
-  /*
+import(/*
 
     webpackChunkName: 'bolt-shadow-toggle'
-  */ './shadow-toggle.js'
-);
+  */ './shadow-toggle.js');
