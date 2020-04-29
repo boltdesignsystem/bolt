@@ -67,3 +67,9 @@ $bolt-chip-sizes: (xsmall, small, medium);
 
   display: inline;
 }
+
+.c-bolt-chip--icon-only {
+  .c-bolt-chip__text {
+    @include bolt-visuallyhidden;
+  }
+}

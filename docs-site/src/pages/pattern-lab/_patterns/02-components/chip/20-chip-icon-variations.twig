@@ -22,4 +22,15 @@
     } only %}
     {# End component specific code #}
   </bolt-list-item>
+  <bolt-list-item>
+    {# Start component specific code #}
+    {% include "@bolt-components-chip/chip.twig" with {
+      text: "Show more",
+      icon: {
+        name: "more",
+      },
+      iconOnly: true
+    } only %}
+    {# End component specific code #}
+  </bolt-list-item>
 </bolt-list>

@@ -22,6 +22,7 @@
   theme: "none",
   size: "medium",
   valign: "start",
+  heroContentBlock: heroContentBlock,
   background: {
     overlay: "disabled",
     contentItems: mainBackgroundImage ? [
@@ -39,7 +40,7 @@
   inner_attributes: {
     style: "padding-bottom: #{backgroundOffsetSize};",
   }
-} %}
+} only %}
   {% block band_content %}
     {{ heroContentBlock }}
   {% endblock %}
@@ -50,6 +51,7 @@
   theme: "none",
   size: "medium",
   valign: "start",
+  mainContentBlock: mainContentBlock,
   inner_attributes: {
     style: "margin-top: -#{backgroundOffsetSize};",
     class: [
@@ -57,7 +59,7 @@
       "u-bolt-padding-bottom-xlarge"
     ]
   }
-} %}
+} only %}
   {% block band_content %}
     {{ mainContentBlock }}
   {% endblock %}

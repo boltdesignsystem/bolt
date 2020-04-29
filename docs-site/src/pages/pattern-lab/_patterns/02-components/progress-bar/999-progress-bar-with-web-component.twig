@@ -1,0 +1,39 @@
+{% macro codeExample(code) %}
+  <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
+    {% grid %}
+      {% cell "u-bolt-width-12/12" %}
+        {{ code }}
+      {% endcell %}
+    {% endgrid %}
+  </div>
+  <div class="u-bolt-margin-bottom-large">
+    <bolt-code-snippet syntax="dark" lang="html">{% spaceless %}
+      {{ code | replace({
+        '<': '&lt;',
+        '>': '&gt;',
+      }) | trim | raw }}
+    {% endspaceless %}</bolt-code-snippet>
+  </div>
+{% endmacro %}
+
+{% import _self as progressBarExample %}
+
+{% set progressBarDemo %}
+<bolt-progress-bar value=65></bolt-progress-bar>
+{% endset %}
+
+{% set progressBarPropDemo %}
+<bolt-progress-bar value=7 value-format="step" max=12 animated></bolt-progress-bar>
+{% endset %}
+
+<bolt-text headline>Web Component Usage</bolt-text>
+<bolt-text>
+  Bolt progress-bar is a web component, you can simply use <bolt-code-snippet display="inline" lang="html">&lt;bolt-progress-bar&gt;</bolt-code-snippet> in the markup to make it render.
+</bolt-text>
+{% include progressBarExample.codeExample(progressBarDemo) %}
+
+<bolt-text headline>Prop Usage</bolt-text>
+<bolt-text>
+  Configure the <bolt-code-snippet display="inline" lang="html">&lt;bolt-progress-bar&gt;</bolt-code-snippet> with the properties specified in the schema.
+</bolt-text>
+{% include progressBarExample.codeExample(progressBarPropDemo) %}

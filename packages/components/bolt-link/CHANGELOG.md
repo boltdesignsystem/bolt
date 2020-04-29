@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.22.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-link/compare/v2.21.1...v2.22.0) (2020-04-22)
+
+
+### Bug Fixes
+
+* minor update to Link to elimninate extra whitespace + get default target auto-added ([378fa26](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-link/commit/378fa268ec4df6320cf495a020099f2b5fa04788))
+
+
+### Features
+
+* add spread support to BoltElement + demo usage in Link component ([e61a748](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-link/commit/e61a7482d5c0b94efcf46fea934baa40e72ca6be))
+
+
+
+
+
 # [2.21.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-link/compare/v2.20.2...v2.21.0) (2020-04-08)
 
 

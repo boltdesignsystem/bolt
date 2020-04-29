@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.22.0](https://github.com/boltdesignsystem/bolt/tree/master/packages/components/bolt-hero/compare/v2.21.1...v2.22.0) (2020-04-22)
+
+**Note:** Version bump only for package @bolt/components-hero
+
+
+
+
+
 # [2.21.0](https://github.com/boltdesignsystem/bolt/tree/master/packages/components/bolt-hero/compare/v2.20.2...v2.21.0) (2020-04-08)
 
 

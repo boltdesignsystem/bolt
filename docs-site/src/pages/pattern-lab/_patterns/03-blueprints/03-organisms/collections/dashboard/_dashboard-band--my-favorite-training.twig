@@ -1,0 +1,132 @@
+{% import "@bolt-blueprints/macros.twig" as macros %}
+
+{% include "@bolt-blueprints/_dashboard-band.twig" with {
+  sectionTitle: "My Favorite Training",
+  sectionTitleAlignment: "center",
+  contentItems: [
+    {
+      cardUrl: "#!",
+      cardSubtitle: "Module",
+      cardTitle: "Business Process Modeling - Advanced Topics",
+      favoriteButton: true,
+      isFavorited: true,
+      removeButton: true,
+      cardMetaItems: [
+        macros.include("@bolt-components-headline/text.twig", {
+          size: "small",
+          weight: "bold",
+          text: "6 Topics",
+        }, false),
+        macros.include("@bolt-components-headline/text.twig", {
+          size: "small",
+          weight: "bold",
+          text: "40 mins remaining",
+          attributes: {
+            class: ["u-bolt-color-yellow-dark"]
+          }
+        }, false)
+      ],
+      cardGradient: "teal",
+      cardIcon: "brand-orbit",
+      cardDescription: bolt.faker.paragraph(2),
+      cardUtilityItems: [
+        macros.include("@bolt-components-button/button.twig", {
+          text: "Share",
+          size: "xsmall",
+          style: "tertiary",
+          icon: {
+            name: "share",
+            size: "small"
+          },
+          iconOnly: true
+        }, false ),
+        macros.include("@bolt-components-button/button.twig", {
+          text: "Favorited",
+          size: "xsmall",
+          style: "tertiary",
+          icon: {
+            name: "heart",
+            size: "small"
+          },
+          iconOnly: true
+        }, false )
+      ]
+    },
+    {
+      cardUrl: "#!",
+      cardSubtitle: "Challenge",
+      cardTitle: "Configuring a case type",
+      favoriteButton: true,
+      isFavorited: true,
+      addButton: true,
+      cardMetaItems: [
+        macros.include("@bolt-components-headline/text.twig", {
+          size: "small",
+          weight: "bold",
+          text: "14 Steps",
+        }, false),
+        macros.include("@bolt-components-headline/text.twig", {
+          size: "small",
+          weight: "bold",
+          text: "In progress",
+          attributes: {
+            class: ["u-bolt-color-yellow-dark"]
+          }
+        }, false)
+      ],
+      cardGradient: "orange",
+      cardIcon: "brand-meteor",
+      cardDescription: bolt.faker.paragraph(2),
+      cardUtilityItems: [
+        macros.include("@bolt-components-button/button.twig", {
+          text: "Share",
+          size: "xsmall",
+          style: "text",
+          icon: {
+            name: "share",
+            size: "small"
+          },
+          iconOnly: true
+        }, false )
+      ]
+    },
+    {
+      cardUrl: "#!",
+      cardSubtitle: "Module",
+      cardTitle: bolt.faker.sentence(3),
+      favoriteButton: true,
+      isFavorited: false,
+      addButton: true,
+      cardMetaItems: [
+        macros.include("@bolt-components-headline/text.twig", {
+          size: "small",
+          weight: "bold",
+          text: "#{bolt.faker.numberBetween(2,10)} Topics",
+        }, false),
+        macros.include("@bolt-components-headline/text.twig", {
+          size: "small",
+          weight: "bold",
+          text: "40 mins remaining",
+          attributes: {
+            class: ["u-bolt-color-yellow-dark"]
+          }
+        }, false)
+      ],
+      cardGradient: "teal",
+      cardIcon: "brand-orbit",
+      cardDescription: bolt.faker.paragraph(2),
+      cardUtilityItems: [
+        macros.include("@bolt-components-button/button.twig", {
+          text: "Share",
+          size: "xsmall",
+          style: "text",
+          icon: {
+            name: "share",
+            size: "small"
+          },
+          iconOnly: true
+        }, false )
+      ]
+    }
+  ]
+} only %}
