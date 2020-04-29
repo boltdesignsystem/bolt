@@ -62,13 +62,14 @@
     nowrap ? "#{base_class}--nowrap",
   ] %}
 
-  <replace-with-grandchildren>
-    <{{ tag }} {{ inner_attributes.addClass(classes) }}>
-      {% for item in items %}
-        {% if item %}
-          {% include "@bolt-components-list/_list-item.twig" %}
-        {% endif %}
-      {% endfor %}
-    </{{ tag }}>
-  </replace-with-grandchildren>
+  <{{ tag }} {{ inner_attributes.addClass(classes) }}>
+    {# todo: is there an alternative, accessible way of handling this w/o requiring inline use of display: contents? #}
+    <ssr-keep for="bolt-list" style="display: contents;">
+        {% for item in items %}
+          {% if item %}
+            {% include "@bolt-components-list/_list-item.twig" %}
+          {% endif %}
+        {% endfor %}
+    </ssr-keep>
+  </{{ tag }}>
 </bolt-list>

@@ -8,31 +8,33 @@ exports[`<bolt-list> Component basic usage 1`] = `
            align="start"
            valign="center"
 >
-  <replace-with-grandchildren>
-    <ul class="c-bolt-list c-bolt-list--display-block c-bolt-list--spacing-xsmall c-bolt-list--align-start c-bolt-list--valign-center">
+  <ul class="c-bolt-list c-bolt-list--display-block c-bolt-list--spacing-xsmall c-bolt-list--align-start c-bolt-list--valign-center">
+    <ssr-keep for="bolt-list"
+              style="display: contents;"
+    >
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+        <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+          <ssr-keep for="bolt-list-item">
             item 1
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+        <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+          <ssr-keep for="bolt-list-item">
             item 2
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
       <bolt-list-item last>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start c-bolt-list-item--last-item">
+        <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start c-bolt-list-item--last-item">
+          <ssr-keep for="bolt-list-item">
             item 3
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
-    </ul>
-  </replace-with-grandchildren>
+    </ssr-keep>
+  </ul>
 </bolt-list>
 `;
 
@@ -45,31 +47,33 @@ exports[`<bolt-list> Component list custom separator color 1`] = `
            valign="center"
            style="--bolt-list-item-border-color: red;"
 >
-  <replace-with-grandchildren>
-    <ul class="c-bolt-list c-bolt-list--display-block c-bolt-list--spacing-xsmall c-bolt-list--separator-solid c-bolt-list--align-start c-bolt-list--valign-center">
+  <ul class="c-bolt-list c-bolt-list--display-block c-bolt-list--spacing-xsmall c-bolt-list--separator-solid c-bolt-list--align-start c-bolt-list--valign-center">
+    <ssr-keep for="bolt-list"
+              style="display: contents;"
+    >
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-xsmall c-bolt-list-item--separator-solid c-bolt-list-item--align-start">
+        <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-xsmall c-bolt-list-item--separator-solid c-bolt-list-item--align-start">
+          <ssr-keep for="bolt-list-item">
             item 1
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-xsmall c-bolt-list-item--separator-solid c-bolt-list-item--align-start">
+        <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-xsmall c-bolt-list-item--separator-solid c-bolt-list-item--align-start">
+          <ssr-keep for="bolt-list-item">
             item 2
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
       <bolt-list-item last>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-xsmall c-bolt-list-item--separator-solid c-bolt-list-item--align-start c-bolt-list-item--last-item">
+        <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-xsmall c-bolt-list-item--separator-solid c-bolt-list-item--align-start c-bolt-list-item--last-item">
+          <ssr-keep for="bolt-list-item">
             item 3
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
-    </ul>
-  </replace-with-grandchildren>
+    </ssr-keep>
+  </ul>
 </bolt-list>
 `;
 
@@ -81,31 +85,33 @@ exports[`<bolt-list> Component list display: block 1`] = `
            align="start"
            valign="center"
 >
-  <replace-with-grandchildren>
-    <ul class="c-bolt-list c-bolt-list--display-block c-bolt-list--spacing-xsmall c-bolt-list--align-start c-bolt-list--valign-center">
+  <ul class="c-bolt-list c-bolt-list--display-block c-bolt-list--spacing-xsmall c-bolt-list--align-start c-bolt-list--valign-center">
+    <ssr-keep for="bolt-list"
+              style="display: contents;"
+    >
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+        <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+          <ssr-keep for="bolt-list-item">
             item 1
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+        <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+          <ssr-keep for="bolt-list-item">
             item 2
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
       <bolt-list-item last>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start c-bolt-list-item--last-item">
+        <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start c-bolt-list-item--last-item">
+          <ssr-keep for="bolt-list-item">
             item 3
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
-    </ul>
-  </replace-with-grandchildren>
+    </ssr-keep>
+  </ul>
 </bolt-list>
 `;
 
@@ -117,31 +123,33 @@ exports[`<bolt-list> Component list display: flex 1`] = `
            align="start"
            valign="center"
 >
-  <replace-with-grandchildren>
-    <ul class="c-bolt-list c-bolt-list--display-flex c-bolt-list--spacing-xsmall c-bolt-list--align-start c-bolt-list--valign-center">
+  <ul class="c-bolt-list c-bolt-list--display-flex c-bolt-list--spacing-xsmall c-bolt-list--align-start c-bolt-list--valign-center">
+    <ssr-keep for="bolt-list"
+              style="display: contents;"
+    >
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-flex c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+        <li class="c-bolt-list-item c-bolt-list-item--display-flex c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+          <ssr-keep for="bolt-list-item">
             item 1
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-flex c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+        <li class="c-bolt-list-item c-bolt-list-item--display-flex c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+          <ssr-keep for="bolt-list-item">
             item 2
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
       <bolt-list-item last>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-flex c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start c-bolt-list-item--last-item">
+        <li class="c-bolt-list-item c-bolt-list-item--display-flex c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start c-bolt-list-item--last-item">
+          <ssr-keep for="bolt-list-item">
             item 3
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
-    </ul>
-  </replace-with-grandchildren>
+    </ssr-keep>
+  </ul>
 </bolt-list>
 `;
 
@@ -153,31 +161,33 @@ exports[`<bolt-list> Component list display: inline 1`] = `
            align="start"
            valign="center"
 >
-  <replace-with-grandchildren>
-    <ul class="c-bolt-list c-bolt-list--display-inline c-bolt-list--spacing-xsmall c-bolt-list--align-start c-bolt-list--valign-center">
+  <ul class="c-bolt-list c-bolt-list--display-inline c-bolt-list--spacing-xsmall c-bolt-list--align-start c-bolt-list--valign-center">
+    <ssr-keep for="bolt-list"
+              style="display: contents;"
+    >
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+        <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+          <ssr-keep for="bolt-list-item">
             item 1
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+        <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+          <ssr-keep for="bolt-list-item">
             item 2
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
       <bolt-list-item last>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start c-bolt-list-item--last-item">
+        <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start c-bolt-list-item--last-item">
+          <ssr-keep for="bolt-list-item">
             item 3
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
-    </ul>
-  </replace-with-grandchildren>
+    </ssr-keep>
+  </ul>
 </bolt-list>
 `;
 
@@ -189,31 +199,33 @@ exports[`<bolt-list> Component list display: inline@medium 1`] = `
            align="start"
            valign="center"
 >
-  <replace-with-grandchildren>
-    <ul class="c-bolt-list c-bolt-list--display-inline@medium c-bolt-list--spacing-xsmall c-bolt-list--align-start c-bolt-list--valign-center">
+  <ul class="c-bolt-list c-bolt-list--display-inline@medium c-bolt-list--spacing-xsmall c-bolt-list--align-start c-bolt-list--valign-center">
+    <ssr-keep for="bolt-list"
+              style="display: contents;"
+    >
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-inline@medium c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+        <li class="c-bolt-list-item c-bolt-list-item--display-inline@medium c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+          <ssr-keep for="bolt-list-item">
             item 1
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-inline@medium c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+        <li class="c-bolt-list-item c-bolt-list-item--display-inline@medium c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+          <ssr-keep for="bolt-list-item">
             item 2
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
       <bolt-list-item last>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-inline@medium c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start c-bolt-list-item--last-item">
+        <li class="c-bolt-list-item c-bolt-list-item--display-inline@medium c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start c-bolt-list-item--last-item">
+          <ssr-keep for="bolt-list-item">
             item 3
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
-    </ul>
-  </replace-with-grandchildren>
+    </ssr-keep>
+  </ul>
 </bolt-list>
 `;
 
@@ -225,31 +237,33 @@ exports[`<bolt-list> Component list display: inline@small 1`] = `
            align="start"
            valign="center"
 >
-  <replace-with-grandchildren>
-    <ul class="c-bolt-list c-bolt-list--display-inline@small c-bolt-list--spacing-xsmall c-bolt-list--align-start c-bolt-list--valign-center">
+  <ul class="c-bolt-list c-bolt-list--display-inline@small c-bolt-list--spacing-xsmall c-bolt-list--align-start c-bolt-list--valign-center">
+    <ssr-keep for="bolt-list"
+              style="display: contents;"
+    >
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-inline@small c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+        <li class="c-bolt-list-item c-bolt-list-item--display-inline@small c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+          <ssr-keep for="bolt-list-item">
             item 1
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-inline@small c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+        <li class="c-bolt-list-item c-bolt-list-item--display-inline@small c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+          <ssr-keep for="bolt-list-item">
             item 2
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
       <bolt-list-item last>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-inline@small c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start c-bolt-list-item--last-item">
+        <li class="c-bolt-list-item c-bolt-list-item--display-inline@small c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start c-bolt-list-item--last-item">
+          <ssr-keep for="bolt-list-item">
             item 3
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
-    </ul>
-  </replace-with-grandchildren>
+    </ssr-keep>
+  </ul>
 </bolt-list>
 `;
 
@@ -261,31 +275,33 @@ exports[`<bolt-list> Component list display: inline@xsmall 1`] = `
            align="start"
            valign="center"
 >
-  <replace-with-grandchildren>
-    <ul class="c-bolt-list c-bolt-list--display-inline@xsmall c-bolt-list--spacing-xsmall c-bolt-list--align-start c-bolt-list--valign-center">
+  <ul class="c-bolt-list c-bolt-list--display-inline@xsmall c-bolt-list--spacing-xsmall c-bolt-list--align-start c-bolt-list--valign-center">
+    <ssr-keep for="bolt-list"
+              style="display: contents;"
+    >
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-inline@xsmall c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+        <li class="c-bolt-list-item c-bolt-list-item--display-inline@xsmall c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+          <ssr-keep for="bolt-list-item">
             item 1
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-inline@xsmall c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+        <li class="c-bolt-list-item c-bolt-list-item--display-inline@xsmall c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+          <ssr-keep for="bolt-list-item">
             item 2
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
       <bolt-list-item last>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-inline@xsmall c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start c-bolt-list-item--last-item">
+        <li class="c-bolt-list-item c-bolt-list-item--display-inline@xsmall c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start c-bolt-list-item--last-item">
+          <ssr-keep for="bolt-list-item">
             item 3
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
-    </ul>
-  </replace-with-grandchildren>
+    </ssr-keep>
+  </ul>
 </bolt-list>
 `;
 
@@ -297,31 +313,33 @@ exports[`<bolt-list> Component list display: inline@xxsmall 1`] = `
            align="start"
            valign="center"
 >
-  <replace-with-grandchildren>
-    <ul class="c-bolt-list c-bolt-list--display-inline@xxsmall c-bolt-list--spacing-xsmall c-bolt-list--align-start c-bolt-list--valign-center">
+  <ul class="c-bolt-list c-bolt-list--display-inline@xxsmall c-bolt-list--spacing-xsmall c-bolt-list--align-start c-bolt-list--valign-center">
+    <ssr-keep for="bolt-list"
+              style="display: contents;"
+    >
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-inline@xxsmall c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+        <li class="c-bolt-list-item c-bolt-list-item--display-inline@xxsmall c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+          <ssr-keep for="bolt-list-item">
             item 1
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-inline@xxsmall c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+        <li class="c-bolt-list-item c-bolt-list-item--display-inline@xxsmall c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+          <ssr-keep for="bolt-list-item">
             item 2
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
       <bolt-list-item last>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-inline@xxsmall c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start c-bolt-list-item--last-item">
+        <li class="c-bolt-list-item c-bolt-list-item--display-inline@xxsmall c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start c-bolt-list-item--last-item">
+          <ssr-keep for="bolt-list-item">
             item 3
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
-    </ul>
-  </replace-with-grandchildren>
+    </ssr-keep>
+  </ul>
 </bolt-list>
 `;
 
@@ -333,31 +351,33 @@ exports[`<bolt-list> Component list inset spacing: false 1`] = `
            align="start"
            valign="center"
 >
-  <replace-with-grandchildren>
-    <ul class="c-bolt-list c-bolt-list--display-block c-bolt-list--spacing-xsmall c-bolt-list--align-start c-bolt-list--valign-center">
+  <ul class="c-bolt-list c-bolt-list--display-block c-bolt-list--spacing-xsmall c-bolt-list--align-start c-bolt-list--valign-center">
+    <ssr-keep for="bolt-list"
+              style="display: contents;"
+    >
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+        <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+          <ssr-keep for="bolt-list-item">
             item 1
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+        <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+          <ssr-keep for="bolt-list-item">
             item 2
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
       <bolt-list-item last>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start c-bolt-list-item--last-item">
+        <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start c-bolt-list-item--last-item">
+          <ssr-keep for="bolt-list-item">
             item 3
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
-    </ul>
-  </replace-with-grandchildren>
+    </ssr-keep>
+  </ul>
 </bolt-list>
 `;
 
@@ -370,31 +390,33 @@ exports[`<bolt-list> Component list inset spacing: true 1`] = `
            valign="center"
            inset
 >
-  <replace-with-grandchildren>
-    <ul class="c-bolt-list c-bolt-list--display-block c-bolt-list--spacing-xsmall c-bolt-list--align-start c-bolt-list--valign-center c-bolt-list--inset">
+  <ul class="c-bolt-list c-bolt-list--display-block c-bolt-list--spacing-xsmall c-bolt-list--align-start c-bolt-list--valign-center c-bolt-list--inset">
+    <ssr-keep for="bolt-list"
+              style="display: contents;"
+    >
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start c-bolt-list-item--inset">
+        <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start c-bolt-list-item--inset">
+          <ssr-keep for="bolt-list-item">
             item 1
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start c-bolt-list-item--inset">
+        <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start c-bolt-list-item--inset">
+          <ssr-keep for="bolt-list-item">
             item 2
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
       <bolt-list-item last>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start c-bolt-list-item--last-item c-bolt-list-item--inset">
+        <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start c-bolt-list-item--last-item c-bolt-list-item--inset">
+          <ssr-keep for="bolt-list-item">
             item 3
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
-    </ul>
-  </replace-with-grandchildren>
+    </ssr-keep>
+  </ul>
 </bolt-list>
 `;
 
@@ -406,31 +428,33 @@ exports[`<bolt-list> Component list items horizontal alignment: center 1`] = `
            align="center"
            valign="center"
 >
-  <replace-with-grandchildren>
-    <ul class="c-bolt-list c-bolt-list--display-inline c-bolt-list--spacing-xsmall c-bolt-list--align-center c-bolt-list--valign-center">
+  <ul class="c-bolt-list c-bolt-list--display-inline c-bolt-list--spacing-xsmall c-bolt-list--align-center c-bolt-list--valign-center">
+    <ssr-keep for="bolt-list"
+              style="display: contents;"
+    >
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-center">
+        <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-center">
+          <ssr-keep for="bolt-list-item">
             item 1
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-center">
+        <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-center">
+          <ssr-keep for="bolt-list-item">
             item 2
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
       <bolt-list-item last>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-center c-bolt-list-item--last-item">
+        <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-center c-bolt-list-item--last-item">
+          <ssr-keep for="bolt-list-item">
             item 3
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
-    </ul>
-  </replace-with-grandchildren>
+    </ssr-keep>
+  </ul>
 </bolt-list>
 `;
 
@@ -442,31 +466,33 @@ exports[`<bolt-list> Component list items horizontal alignment: end 1`] = `
            align="end"
            valign="center"
 >
-  <replace-with-grandchildren>
-    <ul class="c-bolt-list c-bolt-list--display-inline c-bolt-list--spacing-xsmall c-bolt-list--align-end c-bolt-list--valign-center">
+  <ul class="c-bolt-list c-bolt-list--display-inline c-bolt-list--spacing-xsmall c-bolt-list--align-end c-bolt-list--valign-center">
+    <ssr-keep for="bolt-list"
+              style="display: contents;"
+    >
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-end">
+        <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-end">
+          <ssr-keep for="bolt-list-item">
             item 1
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-end">
+        <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-end">
+          <ssr-keep for="bolt-list-item">
             item 2
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
       <bolt-list-item last>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-end c-bolt-list-item--last-item">
+        <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-end c-bolt-list-item--last-item">
+          <ssr-keep for="bolt-list-item">
             item 3
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
-    </ul>
-  </replace-with-grandchildren>
+    </ssr-keep>
+  </ul>
 </bolt-list>
 `;
 
@@ -478,31 +504,33 @@ exports[`<bolt-list> Component list items horizontal alignment: justify 1`] = `
            align="justify"
            valign="center"
 >
-  <replace-with-grandchildren>
-    <ul class="c-bolt-list c-bolt-list--display-inline c-bolt-list--spacing-xsmall c-bolt-list--align-justify c-bolt-list--valign-center">
+  <ul class="c-bolt-list c-bolt-list--display-inline c-bolt-list--spacing-xsmall c-bolt-list--align-justify c-bolt-list--valign-center">
+    <ssr-keep for="bolt-list"
+              style="display: contents;"
+    >
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-justify">
+        <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-justify">
+          <ssr-keep for="bolt-list-item">
             item 1
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-justify">
+        <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-justify">
+          <ssr-keep for="bolt-list-item">
             item 2
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
       <bolt-list-item last>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-justify c-bolt-list-item--last-item">
+        <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-justify c-bolt-list-item--last-item">
+          <ssr-keep for="bolt-list-item">
             item 3
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
-    </ul>
-  </replace-with-grandchildren>
+    </ssr-keep>
+  </ul>
 </bolt-list>
 `;
 
@@ -514,31 +542,33 @@ exports[`<bolt-list> Component list items horizontal alignment: start 1`] = `
            align="start"
            valign="center"
 >
-  <replace-with-grandchildren>
-    <ul class="c-bolt-list c-bolt-list--display-inline c-bolt-list--spacing-xsmall c-bolt-list--align-start c-bolt-list--valign-center">
+  <ul class="c-bolt-list c-bolt-list--display-inline c-bolt-list--spacing-xsmall c-bolt-list--align-start c-bolt-list--valign-center">
+    <ssr-keep for="bolt-list"
+              style="display: contents;"
+    >
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+        <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+          <ssr-keep for="bolt-list-item">
             item 1
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+        <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+          <ssr-keep for="bolt-list-item">
             item 2
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
       <bolt-list-item last>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start c-bolt-list-item--last-item">
+        <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start c-bolt-list-item--last-item">
+          <ssr-keep for="bolt-list-item">
             item 3
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
-    </ul>
-  </replace-with-grandchildren>
+    </ssr-keep>
+  </ul>
 </bolt-list>
 `;
 
@@ -550,31 +580,33 @@ exports[`<bolt-list> Component list items vertical alignment: center 1`] = `
            align="start"
            valign="center"
 >
-  <replace-with-grandchildren>
-    <ul class="c-bolt-list c-bolt-list--display-inline c-bolt-list--spacing-xsmall c-bolt-list--align-start c-bolt-list--valign-center">
+  <ul class="c-bolt-list c-bolt-list--display-inline c-bolt-list--spacing-xsmall c-bolt-list--align-start c-bolt-list--valign-center">
+    <ssr-keep for="bolt-list"
+              style="display: contents;"
+    >
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+        <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+          <ssr-keep for="bolt-list-item">
             item 1
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+        <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+          <ssr-keep for="bolt-list-item">
             item 2
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
       <bolt-list-item last>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start c-bolt-list-item--last-item">
+        <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start c-bolt-list-item--last-item">
+          <ssr-keep for="bolt-list-item">
             item 3
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
-    </ul>
-  </replace-with-grandchildren>
+    </ssr-keep>
+  </ul>
 </bolt-list>
 `;
 
@@ -586,31 +618,33 @@ exports[`<bolt-list> Component list items vertical alignment: end 1`] = `
            align="start"
            valign="end"
 >
-  <replace-with-grandchildren>
-    <ul class="c-bolt-list c-bolt-list--display-inline c-bolt-list--spacing-xsmall c-bolt-list--align-start c-bolt-list--valign-end">
+  <ul class="c-bolt-list c-bolt-list--display-inline c-bolt-list--spacing-xsmall c-bolt-list--align-start c-bolt-list--valign-end">
+    <ssr-keep for="bolt-list"
+              style="display: contents;"
+    >
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+        <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+          <ssr-keep for="bolt-list-item">
             item 1
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+        <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+          <ssr-keep for="bolt-list-item">
             item 2
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
       <bolt-list-item last>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start c-bolt-list-item--last-item">
+        <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start c-bolt-list-item--last-item">
+          <ssr-keep for="bolt-list-item">
             item 3
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
-    </ul>
-  </replace-with-grandchildren>
+    </ssr-keep>
+  </ul>
 </bolt-list>
 `;
 
@@ -622,31 +656,33 @@ exports[`<bolt-list> Component list items vertical alignment: start 1`] = `
            align="start"
            valign="start"
 >
-  <replace-with-grandchildren>
-    <ul class="c-bolt-list c-bolt-list--display-inline c-bolt-list--spacing-xsmall c-bolt-list--align-start c-bolt-list--valign-start">
+  <ul class="c-bolt-list c-bolt-list--display-inline c-bolt-list--spacing-xsmall c-bolt-list--align-start c-bolt-list--valign-start">
+    <ssr-keep for="bolt-list"
+              style="display: contents;"
+    >
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+        <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+          <ssr-keep for="bolt-list-item">
             item 1
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+        <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+          <ssr-keep for="bolt-list-item">
             item 2
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
       <bolt-list-item last>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start c-bolt-list-item--last-item">
+        <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start c-bolt-list-item--last-item">
+          <ssr-keep for="bolt-list-item">
             item 3
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
-    </ul>
-  </replace-with-grandchildren>
+    </ssr-keep>
+  </ul>
 </bolt-list>
 `;
 
@@ -658,143 +694,145 @@ exports[`<bolt-list> Component list nowrap: false 1`] = `
            align="start"
            valign="center"
 >
-  <replace-with-grandchildren>
-    <ul class="c-bolt-list c-bolt-list--display-inline c-bolt-list--spacing-xsmall c-bolt-list--align-start c-bolt-list--valign-center">
+  <ul class="c-bolt-list c-bolt-list--display-inline c-bolt-list--spacing-xsmall c-bolt-list--align-start c-bolt-list--valign-center">
+    <ssr-keep for="bolt-list"
+              style="display: contents;"
+    >
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+        <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+          <ssr-keep for="bolt-list-item">
             item 1
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+        <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+          <ssr-keep for="bolt-list-item">
             item 2
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+        <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+          <ssr-keep for="bolt-list-item">
             item 3
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+        <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+          <ssr-keep for="bolt-list-item">
             item 4
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+        <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+          <ssr-keep for="bolt-list-item">
             item 5
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+        <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+          <ssr-keep for="bolt-list-item">
             item 6
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+        <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+          <ssr-keep for="bolt-list-item">
             item 7
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+        <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+          <ssr-keep for="bolt-list-item">
             item 8
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+        <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+          <ssr-keep for="bolt-list-item">
             item 9
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+        <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+          <ssr-keep for="bolt-list-item">
             item 10
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+        <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+          <ssr-keep for="bolt-list-item">
             item 11
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+        <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+          <ssr-keep for="bolt-list-item">
             item 12
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+        <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+          <ssr-keep for="bolt-list-item">
             item 13
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+        <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+          <ssr-keep for="bolt-list-item">
             item 14
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+        <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+          <ssr-keep for="bolt-list-item">
             item 15
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+        <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+          <ssr-keep for="bolt-list-item">
             item 16
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+        <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+          <ssr-keep for="bolt-list-item">
             item 17
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+        <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+          <ssr-keep for="bolt-list-item">
             item 18
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
       <bolt-list-item last>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start c-bolt-list-item--last-item">
+        <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start c-bolt-list-item--last-item">
+          <ssr-keep for="bolt-list-item">
             item 19
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
-    </ul>
-  </replace-with-grandchildren>
+    </ssr-keep>
+  </ul>
 </bolt-list>
 `;
 
@@ -807,143 +845,145 @@ exports[`<bolt-list> Component list nowrap: true 1`] = `
            valign="center"
            nowrap
 >
-  <replace-with-grandchildren>
-    <ul class="c-bolt-list c-bolt-list--display-inline c-bolt-list--spacing-xsmall c-bolt-list--align-start c-bolt-list--valign-center c-bolt-list--nowrap">
+  <ul class="c-bolt-list c-bolt-list--display-inline c-bolt-list--spacing-xsmall c-bolt-list--align-start c-bolt-list--valign-center c-bolt-list--nowrap">
+    <ssr-keep for="bolt-list"
+              style="display: contents;"
+    >
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+        <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+          <ssr-keep for="bolt-list-item">
             item 1
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+        <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+          <ssr-keep for="bolt-list-item">
             item 2
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+        <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+          <ssr-keep for="bolt-list-item">
             item 3
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+        <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+          <ssr-keep for="bolt-list-item">
             item 4
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+        <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+          <ssr-keep for="bolt-list-item">
             item 5
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+        <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+          <ssr-keep for="bolt-list-item">
             item 6
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+        <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+          <ssr-keep for="bolt-list-item">
             item 7
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+        <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+          <ssr-keep for="bolt-list-item">
             item 8
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+        <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+          <ssr-keep for="bolt-list-item">
             item 9
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+        <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+          <ssr-keep for="bolt-list-item">
             item 10
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+        <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+          <ssr-keep for="bolt-list-item">
             item 11
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+        <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+          <ssr-keep for="bolt-list-item">
             item 12
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+        <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+          <ssr-keep for="bolt-list-item">
             item 13
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+        <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+          <ssr-keep for="bolt-list-item">
             item 14
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+        <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+          <ssr-keep for="bolt-list-item">
             item 15
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+        <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+          <ssr-keep for="bolt-list-item">
             item 16
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+        <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+          <ssr-keep for="bolt-list-item">
             item 17
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+        <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+          <ssr-keep for="bolt-list-item">
             item 18
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
       <bolt-list-item last>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start c-bolt-list-item--last-item">
+        <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start c-bolt-list-item--last-item">
+          <ssr-keep for="bolt-list-item">
             item 19
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
-    </ul>
-  </replace-with-grandchildren>
+    </ssr-keep>
+  </ul>
 </bolt-list>
 `;
 
@@ -955,31 +995,33 @@ exports[`<bolt-list> Component list separator: dashed 1`] = `
            align="start"
            valign="center"
 >
-  <replace-with-grandchildren>
-    <ul class="c-bolt-list c-bolt-list--display-block c-bolt-list--spacing-xsmall c-bolt-list--separator-dashed c-bolt-list--align-start c-bolt-list--valign-center">
+  <ul class="c-bolt-list c-bolt-list--display-block c-bolt-list--spacing-xsmall c-bolt-list--separator-dashed c-bolt-list--align-start c-bolt-list--valign-center">
+    <ssr-keep for="bolt-list"
+              style="display: contents;"
+    >
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-xsmall c-bolt-list-item--separator-dashed c-bolt-list-item--align-start">
+        <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-xsmall c-bolt-list-item--separator-dashed c-bolt-list-item--align-start">
+          <ssr-keep for="bolt-list-item">
             item 1
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-xsmall c-bolt-list-item--separator-dashed c-bolt-list-item--align-start">
+        <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-xsmall c-bolt-list-item--separator-dashed c-bolt-list-item--align-start">
+          <ssr-keep for="bolt-list-item">
             item 2
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
       <bolt-list-item last>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-xsmall c-bolt-list-item--separator-dashed c-bolt-list-item--align-start c-bolt-list-item--last-item">
+        <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-xsmall c-bolt-list-item--separator-dashed c-bolt-list-item--align-start c-bolt-list-item--last-item">
+          <ssr-keep for="bolt-list-item">
             item 3
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
-    </ul>
-  </replace-with-grandchildren>
+    </ssr-keep>
+  </ul>
 </bolt-list>
 `;
 
@@ -991,31 +1033,33 @@ exports[`<bolt-list> Component list separator: none 1`] = `
            align="start"
            valign="center"
 >
-  <replace-with-grandchildren>
-    <ul class="c-bolt-list c-bolt-list--display-block c-bolt-list--spacing-xsmall c-bolt-list--align-start c-bolt-list--valign-center">
+  <ul class="c-bolt-list c-bolt-list--display-block c-bolt-list--spacing-xsmall c-bolt-list--align-start c-bolt-list--valign-center">
+    <ssr-keep for="bolt-list"
+              style="display: contents;"
+    >
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+        <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+          <ssr-keep for="bolt-list-item">
             item 1
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+        <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+          <ssr-keep for="bolt-list-item">
             item 2
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
       <bolt-list-item last>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start c-bolt-list-item--last-item">
+        <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start c-bolt-list-item--last-item">
+          <ssr-keep for="bolt-list-item">
             item 3
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
-    </ul>
-  </replace-with-grandchildren>
+    </ssr-keep>
+  </ul>
 </bolt-list>
 `;
 
@@ -1027,31 +1071,33 @@ exports[`<bolt-list> Component list separator: solid 1`] = `
            align="start"
            valign="center"
 >
-  <replace-with-grandchildren>
-    <ul class="c-bolt-list c-bolt-list--display-block c-bolt-list--spacing-xsmall c-bolt-list--separator-solid c-bolt-list--align-start c-bolt-list--valign-center">
+  <ul class="c-bolt-list c-bolt-list--display-block c-bolt-list--spacing-xsmall c-bolt-list--separator-solid c-bolt-list--align-start c-bolt-list--valign-center">
+    <ssr-keep for="bolt-list"
+              style="display: contents;"
+    >
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-xsmall c-bolt-list-item--separator-solid c-bolt-list-item--align-start">
+        <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-xsmall c-bolt-list-item--separator-solid c-bolt-list-item--align-start">
+          <ssr-keep for="bolt-list-item">
             item 1
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-xsmall c-bolt-list-item--separator-solid c-bolt-list-item--align-start">
+        <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-xsmall c-bolt-list-item--separator-solid c-bolt-list-item--align-start">
+          <ssr-keep for="bolt-list-item">
             item 2
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
       <bolt-list-item last>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-xsmall c-bolt-list-item--separator-solid c-bolt-list-item--align-start c-bolt-list-item--last-item">
+        <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-xsmall c-bolt-list-item--separator-solid c-bolt-list-item--align-start c-bolt-list-item--last-item">
+          <ssr-keep for="bolt-list-item">
             item 3
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
-    </ul>
-  </replace-with-grandchildren>
+    </ssr-keep>
+  </ul>
 </bolt-list>
 `;
 
@@ -1063,31 +1109,33 @@ exports[`<bolt-list> Component list spacing: large 1`] = `
            align="start"
            valign="center"
 >
-  <replace-with-grandchildren>
-    <ul class="c-bolt-list c-bolt-list--display-block c-bolt-list--spacing-large c-bolt-list--align-start c-bolt-list--valign-center">
+  <ul class="c-bolt-list c-bolt-list--display-block c-bolt-list--spacing-large c-bolt-list--align-start c-bolt-list--valign-center">
+    <ssr-keep for="bolt-list"
+              style="display: contents;"
+    >
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-large c-bolt-list-item--align-start">
+        <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-large c-bolt-list-item--align-start">
+          <ssr-keep for="bolt-list-item">
             item 1
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-large c-bolt-list-item--align-start">
+        <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-large c-bolt-list-item--align-start">
+          <ssr-keep for="bolt-list-item">
             item 2
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
       <bolt-list-item last>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-large c-bolt-list-item--align-start c-bolt-list-item--last-item">
+        <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-large c-bolt-list-item--align-start c-bolt-list-item--last-item">
+          <ssr-keep for="bolt-list-item">
             item 3
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
-    </ul>
-  </replace-with-grandchildren>
+    </ssr-keep>
+  </ul>
 </bolt-list>
 `;
 
@@ -1099,31 +1147,33 @@ exports[`<bolt-list> Component list spacing: medium 1`] = `
            align="start"
            valign="center"
 >
-  <replace-with-grandchildren>
-    <ul class="c-bolt-list c-bolt-list--display-block c-bolt-list--spacing-medium c-bolt-list--align-start c-bolt-list--valign-center">
+  <ul class="c-bolt-list c-bolt-list--display-block c-bolt-list--spacing-medium c-bolt-list--align-start c-bolt-list--valign-center">
+    <ssr-keep for="bolt-list"
+              style="display: contents;"
+    >
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-medium c-bolt-list-item--align-start">
+        <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-medium c-bolt-list-item--align-start">
+          <ssr-keep for="bolt-list-item">
             item 1
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-medium c-bolt-list-item--align-start">
+        <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-medium c-bolt-list-item--align-start">
+          <ssr-keep for="bolt-list-item">
             item 2
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
       <bolt-list-item last>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-medium c-bolt-list-item--align-start c-bolt-list-item--last-item">
+        <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-medium c-bolt-list-item--align-start c-bolt-list-item--last-item">
+          <ssr-keep for="bolt-list-item">
             item 3
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
-    </ul>
-  </replace-with-grandchildren>
+    </ssr-keep>
+  </ul>
 </bolt-list>
 `;
 
@@ -1135,31 +1185,33 @@ exports[`<bolt-list> Component list spacing: none 1`] = `
            align="start"
            valign="center"
 >
-  <replace-with-grandchildren>
-    <ul class="c-bolt-list c-bolt-list--display-block c-bolt-list--align-start c-bolt-list--valign-center">
+  <ul class="c-bolt-list c-bolt-list--display-block c-bolt-list--align-start c-bolt-list--valign-center">
+    <ssr-keep for="bolt-list"
+              style="display: contents;"
+    >
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--align-start">
+        <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--align-start">
+          <ssr-keep for="bolt-list-item">
             item 1
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--align-start">
+        <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--align-start">
+          <ssr-keep for="bolt-list-item">
             item 2
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
       <bolt-list-item last>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--align-start c-bolt-list-item--last-item">
+        <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--align-start c-bolt-list-item--last-item">
+          <ssr-keep for="bolt-list-item">
             item 3
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
-    </ul>
-  </replace-with-grandchildren>
+    </ssr-keep>
+  </ul>
 </bolt-list>
 `;
 
@@ -1171,31 +1223,33 @@ exports[`<bolt-list> Component list spacing: small 1`] = `
            align="start"
            valign="center"
 >
-  <replace-with-grandchildren>
-    <ul class="c-bolt-list c-bolt-list--display-block c-bolt-list--spacing-small c-bolt-list--align-start c-bolt-list--valign-center">
+  <ul class="c-bolt-list c-bolt-list--display-block c-bolt-list--spacing-small c-bolt-list--align-start c-bolt-list--valign-center">
+    <ssr-keep for="bolt-list"
+              style="display: contents;"
+    >
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-small c-bolt-list-item--align-start">
+        <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-small c-bolt-list-item--align-start">
+          <ssr-keep for="bolt-list-item">
             item 1
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-small c-bolt-list-item--align-start">
+        <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-small c-bolt-list-item--align-start">
+          <ssr-keep for="bolt-list-item">
             item 2
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
       <bolt-list-item last>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-small c-bolt-list-item--align-start c-bolt-list-item--last-item">
+        <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-small c-bolt-list-item--align-start c-bolt-list-item--last-item">
+          <ssr-keep for="bolt-list-item">
             item 3
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
-    </ul>
-  </replace-with-grandchildren>
+    </ssr-keep>
+  </ul>
 </bolt-list>
 `;
 
@@ -1207,31 +1261,33 @@ exports[`<bolt-list> Component list spacing: xlarge 1`] = `
            align="start"
            valign="center"
 >
-  <replace-with-grandchildren>
-    <ul class="c-bolt-list c-bolt-list--display-block c-bolt-list--spacing-xlarge c-bolt-list--align-start c-bolt-list--valign-center">
+  <ul class="c-bolt-list c-bolt-list--display-block c-bolt-list--spacing-xlarge c-bolt-list--align-start c-bolt-list--valign-center">
+    <ssr-keep for="bolt-list"
+              style="display: contents;"
+    >
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-xlarge c-bolt-list-item--align-start">
+        <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-xlarge c-bolt-list-item--align-start">
+          <ssr-keep for="bolt-list-item">
             item 1
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-xlarge c-bolt-list-item--align-start">
+        <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-xlarge c-bolt-list-item--align-start">
+          <ssr-keep for="bolt-list-item">
             item 2
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
       <bolt-list-item last>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-xlarge c-bolt-list-item--align-start c-bolt-list-item--last-item">
+        <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-xlarge c-bolt-list-item--align-start c-bolt-list-item--last-item">
+          <ssr-keep for="bolt-list-item">
             item 3
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
-    </ul>
-  </replace-with-grandchildren>
+    </ssr-keep>
+  </ul>
 </bolt-list>
 `;
 
@@ -1243,31 +1299,33 @@ exports[`<bolt-list> Component list spacing: xsmall 1`] = `
            align="start"
            valign="center"
 >
-  <replace-with-grandchildren>
-    <ul class="c-bolt-list c-bolt-list--display-block c-bolt-list--spacing-xsmall c-bolt-list--align-start c-bolt-list--valign-center">
+  <ul class="c-bolt-list c-bolt-list--display-block c-bolt-list--spacing-xsmall c-bolt-list--align-start c-bolt-list--valign-center">
+    <ssr-keep for="bolt-list"
+              style="display: contents;"
+    >
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+        <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+          <ssr-keep for="bolt-list-item">
             item 1
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+        <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+          <ssr-keep for="bolt-list-item">
             item 2
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
       <bolt-list-item last>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start c-bolt-list-item--last-item">
+        <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start c-bolt-list-item--last-item">
+          <ssr-keep for="bolt-list-item">
             item 3
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
-    </ul>
-  </replace-with-grandchildren>
+    </ssr-keep>
+  </ul>
 </bolt-list>
 `;
 
@@ -1279,31 +1337,33 @@ exports[`<bolt-list> Component list spacing: xxsmall 1`] = `
            align="start"
            valign="center"
 >
-  <replace-with-grandchildren>
-    <ul class="c-bolt-list c-bolt-list--display-block c-bolt-list--spacing-xxsmall c-bolt-list--align-start c-bolt-list--valign-center">
+  <ul class="c-bolt-list c-bolt-list--display-block c-bolt-list--spacing-xxsmall c-bolt-list--align-start c-bolt-list--valign-center">
+    <ssr-keep for="bolt-list"
+              style="display: contents;"
+    >
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-xxsmall c-bolt-list-item--align-start">
+        <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-xxsmall c-bolt-list-item--align-start">
+          <ssr-keep for="bolt-list-item">
             item 1
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-xxsmall c-bolt-list-item--align-start">
+        <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-xxsmall c-bolt-list-item--align-start">
+          <ssr-keep for="bolt-list-item">
             item 2
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
       <bolt-list-item last>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-xxsmall c-bolt-list-item--align-start c-bolt-list-item--last-item">
+        <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-xxsmall c-bolt-list-item--align-start c-bolt-list-item--last-item">
+          <ssr-keep for="bolt-list-item">
             item 3
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
-    </ul>
-  </replace-with-grandchildren>
+    </ssr-keep>
+  </ul>
 </bolt-list>
 `;
 
@@ -1315,31 +1375,33 @@ exports[`<bolt-list> Component list tag: div 1`] = `
            align="start"
            valign="center"
 >
-  <replace-with-grandchildren>
-    <div class="c-bolt-list c-bolt-list--display-block c-bolt-list--spacing-xsmall c-bolt-list--align-start c-bolt-list--valign-center">
+  <div class="c-bolt-list c-bolt-list--display-block c-bolt-list--spacing-xsmall c-bolt-list--align-start c-bolt-list--valign-center">
+    <ssr-keep for="bolt-list"
+              style="display: contents;"
+    >
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <span class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+        <span class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+          <ssr-keep for="bolt-list-item">
             item 1
-          </span>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </span>
       </bolt-list-item>
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <span class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+        <span class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+          <ssr-keep for="bolt-list-item">
             item 2
-          </span>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </span>
       </bolt-list-item>
       <bolt-list-item last>
-        <replace-with-grandchildren>
-          <span class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start c-bolt-list-item--last-item">
+        <span class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start c-bolt-list-item--last-item">
+          <ssr-keep for="bolt-list-item">
             item 3
-          </span>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </span>
       </bolt-list-item>
-    </div>
-  </replace-with-grandchildren>
+    </ssr-keep>
+  </div>
 </bolt-list>
 `;
 
@@ -1351,31 +1413,33 @@ exports[`<bolt-list> Component list tag: ol 1`] = `
            align="start"
            valign="center"
 >
-  <replace-with-grandchildren>
-    <ol class="c-bolt-list c-bolt-list--display-block c-bolt-list--spacing-xsmall c-bolt-list--align-start c-bolt-list--valign-center">
+  <ol class="c-bolt-list c-bolt-list--display-block c-bolt-list--spacing-xsmall c-bolt-list--align-start c-bolt-list--valign-center">
+    <ssr-keep for="bolt-list"
+              style="display: contents;"
+    >
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+        <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+          <ssr-keep for="bolt-list-item">
             item 1
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+        <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+          <ssr-keep for="bolt-list-item">
             item 2
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
       <bolt-list-item last>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start c-bolt-list-item--last-item">
+        <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start c-bolt-list-item--last-item">
+          <ssr-keep for="bolt-list-item">
             item 3
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
-    </ol>
-  </replace-with-grandchildren>
+    </ssr-keep>
+  </ol>
 </bolt-list>
 `;
 
@@ -1387,31 +1451,33 @@ exports[`<bolt-list> Component list tag: span 1`] = `
            align="start"
            valign="center"
 >
-  <replace-with-grandchildren>
-    <span class="c-bolt-list c-bolt-list--display-block c-bolt-list--spacing-xsmall c-bolt-list--align-start c-bolt-list--valign-center">
+  <span class="c-bolt-list c-bolt-list--display-block c-bolt-list--spacing-xsmall c-bolt-list--align-start c-bolt-list--valign-center">
+    <ssr-keep for="bolt-list"
+              style="display: contents;"
+    >
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <span class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+        <span class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+          <ssr-keep for="bolt-list-item">
             item 1
-          </span>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </span>
       </bolt-list-item>
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <span class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+        <span class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+          <ssr-keep for="bolt-list-item">
             item 2
-          </span>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </span>
       </bolt-list-item>
       <bolt-list-item last>
-        <replace-with-grandchildren>
-          <span class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start c-bolt-list-item--last-item">
+        <span class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start c-bolt-list-item--last-item">
+          <ssr-keep for="bolt-list-item">
             item 3
-          </span>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </span>
       </bolt-list-item>
-    </span>
-  </replace-with-grandchildren>
+    </ssr-keep>
+  </span>
 </bolt-list>
 `;
 
@@ -1423,30 +1489,32 @@ exports[`<bolt-list> Component list tag: ul 1`] = `
            align="start"
            valign="center"
 >
-  <replace-with-grandchildren>
-    <ul class="c-bolt-list c-bolt-list--display-block c-bolt-list--spacing-xsmall c-bolt-list--align-start c-bolt-list--valign-center">
+  <ul class="c-bolt-list c-bolt-list--display-block c-bolt-list--spacing-xsmall c-bolt-list--align-start c-bolt-list--valign-center">
+    <ssr-keep for="bolt-list"
+              style="display: contents;"
+    >
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+        <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+          <ssr-keep for="bolt-list-item">
             item 1
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
       <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+        <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+          <ssr-keep for="bolt-list-item">
             item 2
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
       <bolt-list-item last>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start c-bolt-list-item--last-item">
+        <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start c-bolt-list-item--last-item">
+          <ssr-keep for="bolt-list-item">
             item 3
-          </li>
-        </replace-with-grandchildren>
+          </ssr-keep>
+        </li>
       </bolt-list-item>
-    </ul>
-  </replace-with-grandchildren>
+    </ssr-keep>
+  </ul>
 </bolt-list>
 `;

@@ -19,13 +19,13 @@
   {% if last %} last {% endif %}
   {{ attributes }}
 >
-  <replace-with-grandchildren>
-    <{{ tag }} {{ inner_attributes.addClass(classes) }}>
+  <{{ tag }} {{ inner_attributes.addClass(classes) }}>
+    <ssr-keep for="bolt-list-item">
       {% if item.content %}
         {{ item.content }}
       {% else %}
         {{ item }}
       {% endif %}
-    </{{ tag }}>
-  </replace-with-grandchildren>
+    </ssr-keep>
+  </{{ tag }}>
 </bolt-list-item>
