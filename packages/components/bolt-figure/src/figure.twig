@@ -36,10 +36,9 @@
   {% if outer_classes %} class="{{ outer_classes|join(' ') }}" {% endif %}
   {{ attributes|without('class') }}
 >
-  <replace-with-grandchildren>
     <figure {{ inner_attributes.addClass(inner_classes) }}>
       {% if media %}
-        <replace-with-children class="{{ "#{base_class}__media" }}">
+        <ssr-keep for="bolt-figure" class="{{ "#{base_class}__media" }}">
           <div slot="media">
             {% set content = media.content %}
 
@@ -61,15 +60,14 @@
               {% include "@bolt-components-table/table.twig" with table only %}
             {% endif %}
           </div>
-        </replace-with-children>
+        </ssr-keep>
       {% endif %}
       {% if caption %}
-        <replace-with-grandchildren>
           <figcaption class="{{ "#{base_class}__caption" }}">
-            {{ caption }}
+            <ssr-keep for="bolt-figure">
+              {{ caption }}
+            </ssr-keep>
           </figcaption>
-        </replace-with-grandchildren>
       {% endif %}
     </figure>
-  </replace-with-grandchildren>
 </bolt-figure>
