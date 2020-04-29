@@ -12,7 +12,10 @@ export {
 } from './src/lib/utils';
 
 export { spread } from '@open-wc/lit-helpers';
-export { convertInitialTags } from './src/lib/decorators';
+export {
+  convertInitialTags,
+  slottedChildrenDecorator,
+} from './src/lib/decorators';
 export { css, html, unsafeCSS } from 'lit-element';
 export { render } from 'lit-html';
 export { ifDefined } from 'lit-html/directives/if-defined';
