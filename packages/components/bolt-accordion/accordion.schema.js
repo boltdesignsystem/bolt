@@ -13,8 +13,9 @@ module.exports = {
     single: {
       type: 'boolean',
       description: 'Allow only one section to open at a time.',
-      default: false,
+      // default: false,
       enum: [true, false],
+      reflect: true,
     },
     no_separator: {
       type: 'boolean',

@@ -156,6 +156,7 @@ describe('<bolt-accordion> Component', () => {
 
   test(`Inactive item`, async () => {
     const results = await render('@bolt-components-accordion/accordion.twig', {
+      single: true,
       items: [
         {
           trigger: 'Active accordion item',
@@ -181,14 +182,18 @@ describe('<bolt-accordion> Component', () => {
       const wrapper = document.createElement('div');
       wrapper.innerHTML = accordionHTML;
       document.body.appendChild(wrapper);
+      await customElements.whenDefined('ssr-keep');
+      await customElements.whenDefined('bolt-accordion');
+      await customElements.whenDefined('bolt-accordion-item');
 
       const accordion = document.querySelector('bolt-accordion');
+      await accordion.firstUpdated;
       const accordionItems = Array.from(
         document.querySelectorAll('bolt-accordion-item'),
       );
       const allElements = [accordion, ...accordionItems];
 
-      return await Promise.all(
+      await Promise.all(
         allElements.map(element => {
           if (element._wasInitiallyRendered) return;
           return new Promise((resolve, reject) => {
@@ -197,6 +202,8 @@ describe('<bolt-accordion> Component', () => {
           });
         }),
       );
+
+      return accordion.renderRoot.innerHTML;
     }, accordionHTML);
 
     // Wait for Handorgel to run, starts after component 'ready' event
@@ -223,6 +230,28 @@ describe('<bolt-accordion> Component', () => {
     const image = await page.screenshot();
 
     expect(image).toMatchImageSnapshot({
+      failureThreshold: '0.01',
+      failureThresholdType: 'percent',
+    });
+
+    await page.click('bolt-accordion-item:nth-child(2) [slot="trigger"]');
+
+    await page.waitFor(250);
+
+    const imageAfterOpeningSecondItem = await page.screenshot();
+
+    expect(imageAfterOpeningSecondItem).toMatchImageSnapshot({
+      failureThreshold: '0.01',
+      failureThresholdType: 'percent',
+    });
+
+    await page.click('bolt-accordion-item:nth-child(3) [slot="trigger"]');
+
+    await page.waitFor(250);
+
+    const imageAfterOpeningThirdItem = await page.screenshot();
+
+    expect(imageAfterOpeningThirdItem).toMatchImageSnapshot({
       failureThreshold: '0.01',
       failureThresholdType: 'percent',
     });
