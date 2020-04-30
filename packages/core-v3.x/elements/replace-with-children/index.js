@@ -1,6 +1,3 @@
-import { customElement } from '@bolt/element';
-
-@customElement('replace-with-children')
 class ReplaceWithChildren extends HTMLElement {
   connectedCallback() {
     const parentElement = this.parentElement;
@@ -23,6 +20,10 @@ class ReplaceWithChildren extends HTMLElement {
       parentElement.removeChild(this);
     }
   }
+}
+
+if (!customElements.get('replace-with-children')) {
+  customElements.define('replace-with-children', ReplaceWithChildren);
 }
 
 export { ReplaceWithChildren };
