@@ -123,10 +123,6 @@ const config = deepmerge(baseConfig, {
   },
   copy: [
     {
-      from: require.resolve(`@bolt/critical-path-polyfills`),
-      to: path.join(__dirname, '../www/build'),
-    },
-    {
       from: path.join(
         path.dirname(require.resolve(`@bolt/components-typeahead`)),
         '__demos__/typeahead.data.json',
