@@ -15,8 +15,7 @@
 
 <bolt-ol {{ attributes | without("class") }}>
   <div {{ attributes.addClass(classes) }} role="list">
-    {# @todo: does this need a role attribute? #}
-    <ssr-keep for="bolt-ol">
+    <ssr-keep for="bolt-ol" role="presentation">
       {% for item in items %}
         {% if item is iterable %}
           {% for i in item %}
