@@ -49,6 +49,7 @@ class BoltAccordion extends withContext(BoltElement) {
     this.updateComplete.then(() => {
       if (this.accordion && this.accordion.options) {
         this.accordion.options = this.accordionOptions;
+        this.accordion.update();
       }
 
       if (hasSpacingChanged) {
