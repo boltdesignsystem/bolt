@@ -1,30 +1,33 @@
-import(
-  /*  webpackChunkName: 'bolt-docs-site--version-selector' */ './components/version-selector/version-selector'
-);
+import { lazyQueue } from '@bolt/lazy-queue';
 
-import(
-  /*  webpackChunkName: 'bolt-docs-site--deprecated-card-tests' */ './pages/pattern-lab/_patterns/02-components/card-deprecated/__tests__'
-);
+lazyQueue([], async () => {
+  await import('./custom-icons');
 
-import(
-  /*  webpackChunkName: 'bolt-docs-site--editor-integration' */ './pages/pattern-lab/_patterns/04-pages/99999-bolt-dev-sandbox/editor-integration'
-);
+  import(
+    /*  webpackChunkName: 'bolt-docs-site--version-selector' */ './components/version-selector/version-selector'
+  );
 
-// Component-specific examples that need to get compiled:
-import(
-  /*  webpackChunkName: 'bolt-docs-site--typeahead-demos' */ './typeahead-demos'
-);
-import(
-  /*  webpackChunkName: 'bolt-docs-site--animate-demos' */ './animate-demos'
-);
+  import(
+    /*  webpackChunkName: 'bolt-docs-site--deprecated-card-tests' */ './pages/pattern-lab/_patterns/02-components/card-deprecated/__tests__'
+  );
 
-import(
-  /*  webpackChunkName: 'bolt-docs-site--analytics-autotrack' */ '@bolt/analytics-autotrack'
-);
+  import(
+    /*  webpackChunkName: 'bolt-docs-site--editor-integration' */ './pages/pattern-lab/_patterns/04-pages/99999-bolt-dev-sandbox/editor-integration'
+  );
 
-// demo to show how to add custom icons automatically
-import './assets/icons/custom-arrow-left-colored.svg';
-import './assets/icons/custom-users.svg';
+  // Component-specific examples that need to get compiled:
+  import(
+    /*  webpackChunkName: 'bolt-docs-site--typeahead-demos' */ './typeahead-demos'
+  );
+
+  import(
+    /*  webpackChunkName: 'bolt-docs-site--animate-demos' */ './animate-demos'
+  );
+
+  import(
+    /*  webpackChunkName: 'bolt-docs-site--analytics-autotrack' */ '@bolt/analytics-autotrack'
+  );
+});
 
 // Blueprint-specific JS demoing the Mission Completed form's button re-activating
 const missionRatingInputs = document.querySelectorAll(

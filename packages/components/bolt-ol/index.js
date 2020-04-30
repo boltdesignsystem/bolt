@@ -1,9 +1,12 @@
-import(/*  webpackChunkName: 'bolt-unordered-list' */ './src/ol');
+import { lazyQueue } from '@bolt/lazy-queue';
 
-if (!window.customElements.get('bolt-li')) {
-  import(
-    /*
-      webpackChunkName: 'bolt-li'
-    */ '@bolt/components-li/src/li.js'
-  );
-}
+lazyQueue(['bolt-ol'], async () => {
+  if (!window.customElements.get('bolt-li')) {
+    await Promise.all([
+      import(/* webpackChunkName: 'bolt-ol' */ './src/ol'),
+      import(/* webpackChunkName: 'bolt-li' */ '@bolt/components-li/src/li.js'),
+    ]);
+  } else {
+    await import(/* webpackChunkName: 'bolt-ol' */ './src/ol');
+  }
+});
