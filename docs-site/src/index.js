@@ -3,28 +3,28 @@ import { lazyQueue } from '@bolt/lazy-queue';
 lazyQueue([], async () => {
   await import('./custom-icons');
 
-  import(
+  await import(
     /*  webpackChunkName: 'bolt-docs-site--version-selector' */ './components/version-selector/version-selector'
   );
 
-  import(
+  await import(
     /*  webpackChunkName: 'bolt-docs-site--deprecated-card-tests' */ './pages/pattern-lab/_patterns/02-components/card-deprecated/__tests__'
   );
 
-  import(
+  await import(
     /*  webpackChunkName: 'bolt-docs-site--editor-integration' */ './pages/pattern-lab/_patterns/04-pages/99999-bolt-dev-sandbox/editor-integration'
   );
 
   // Component-specific examples that need to get compiled:
-  import(
+  await import(
     /*  webpackChunkName: 'bolt-docs-site--typeahead-demos' */ './typeahead-demos'
   );
 
-  import(
+  await import(
     /*  webpackChunkName: 'bolt-docs-site--animate-demos' */ './animate-demos'
   );
 
-  import(
+  await import(
     /*  webpackChunkName: 'bolt-docs-site--analytics-autotrack' */ '@bolt/analytics-autotrack'
   );
 });
