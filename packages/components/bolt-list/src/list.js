@@ -99,9 +99,9 @@ class BoltList extends withContext(withLitHtml) {
     switch (tag) {
       case 'ol':
         renderedList = html`
-          <ol class="${classes}">
+          <div class="${classes}" role="list">
             ${this.slot('default')}
-          </ol>
+          </div>
         `;
         break;
       case 'div':
@@ -116,9 +116,9 @@ class BoltList extends withContext(withLitHtml) {
         break;
       default:
         renderedList = html`
-          <ul class="${classes}">
+          <div class="${classes}" role="list">
             ${this.slot('default')}
-          </ul>
+          </div>
         `;
     }
 

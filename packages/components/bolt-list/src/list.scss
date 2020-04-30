@@ -30,16 +30,6 @@
   list-style: none;
   text-align: left; // [2]
   text-align: start; // [2]
-
-  > ssr-keep {
-    display: contents;
-
-    // Comparable CSS fallback behavior when `display: contents` isn't supported
-    display: inherit;
-    flex: 1;
-    flex-flow: inherit;
-    align-items: inherit;
-  }
 }
 
 // Display Prop
