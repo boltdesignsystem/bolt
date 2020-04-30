@@ -7,13 +7,14 @@ import {
   unsafeCSS,
 } from '@bolt/element';
 import classNames from 'classnames/bind';
-import iconStyles from './icon.scss';
-let cx = classNames.bind(iconStyles);
 
 // reuses the auto-injected SVG sprite markup to work around situations where we can't externally reference these symbols (ex. in the ShadowDOM)
 import BrowserSprite from 'svg-baker-runtime/src/browser-sprite';
 import { spacingSizes } from '@bolt/core-v3.x/data';
+import iconStyles from './icon.scss';
 import schema from '../icon.schema';
+
+let cx = classNames.bind(iconStyles);
 const svgIcons = require.context('@bolt/components-icons', true, /\.svg$/);
 
 const spriteNodeId = '__SVG_SPRITE_NODE__';
@@ -66,7 +67,7 @@ class BoltIcon extends BoltElement {
     const classes = cx('c-bolt-icon', {
       [`c-bolt-icon--${this.size}`]: this.size,
       [`c-bolt-icon--${this.name}`]: this.name,
-      ['has-background']:
+      'has-background':
         this.background !== 'none' &&
         schema.properties.background.enum.includes(this.background),
       [`has-${this.background}-background`]:

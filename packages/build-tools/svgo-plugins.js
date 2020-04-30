@@ -56,7 +56,7 @@ module.exports = [
       applyTransformsStroked: true,
       makeArcs: {
         threshold: 2.5, // coefficient of rounding error
-        tolerance: 0.5  // percentage of radius
+        tolerance: 0.5, // percentage of radius
       },
       straightCurves: true,
       lineShorthands: true,
@@ -69,22 +69,22 @@ module.exports = [
       leadingZero: true,
       negativeExtraSpace: true,
       noSpaceAfterFlags: true,
-      forceAbsolutePath: false
+      forceAbsolutePath: false,
     },
   },
   {
-    convertTransform:  {
+    convertTransform: {
       convertToShorts: true,
-        floatPrecision: 1,
-        transformPrecision: 1,
-        matrixToTransform: true,
-        shortTranslate: true,
-        shortScale: true,
-        shortRotate: true,
-        removeUseless: true,
-        collapseIntoOne: true,
-        leadingZero: true,
-        negativeExtraSpace: false
+      floatPrecision: 1,
+      transformPrecision: 1,
+      matrixToTransform: true,
+      shortTranslate: true,
+      shortScale: true,
+      shortRotate: true,
+      removeUseless: true,
+      collapseIntoOne: true,
+      leadingZero: true,
+      negativeExtraSpace: false,
     },
   },
   {
