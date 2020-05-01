@@ -2,6 +2,7 @@ import {
   isConnected,
   render,
   renderString,
+  renderWC,
   stopServer,
   html,
 } from '../../../testing/testing-helpers';
@@ -49,33 +50,15 @@ describe('<bolt-ratio> Component', () => {
   });
 
   test('Default <bolt-ratio> w/o Shadow DOM renders', async function() {
-    const renderedRatioHTML = await page.evaluate(async () => {
-      document.body.insertAdjacentHTML(
-        'beforeend',
-        `<bolt-ratio no-shadow ratio="1200/660">
+    const { outerHTML } = await renderWC(
+      'bolt-ratio',
+      `<bolt-ratio no-shadow ratio="1200/660">
           <img src="/fixtures/1200x660.jpg">
         </bolt-ratio>`,
-      );
-      const ratio = document.querySelector('bolt-ratio');
-      await ratio.firstUpdated;
-      return ratio.outerHTML;
-    });
-    expect(renderedRatioHTML).toMatchSnapshot();
+      page,
+    );
+    expect(outerHTML).toMatchSnapshot();
 
-    await page.evaluate(async () => {
-      const selectors = Array.from(document.querySelectorAll('bolt-ratio'));
-      return await Promise.all(
-        selectors.map(ratio => {
-          if (ratio._wasInitiallyRendered) return;
-          return new Promise((resolve, reject) => {
-            ratio.addEventListener('ready', resolve);
-            ratio.addEventListener('error', reject);
-          });
-        }),
-      );
-    });
-
-    await page.waitFor(500);
     const image = await page.screenshot();
     expect(image).toMatchImageSnapshot(imageVrtConfig);
 

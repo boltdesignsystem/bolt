@@ -2,6 +2,7 @@ import {
   isConnected,
   render,
   renderString,
+  renderWC,
   stopServer,
   html,
 } from '../../../testing/testing-helpers';
@@ -84,18 +85,13 @@ describe('button', () => {
     expect(results.ok).toBe(true);
     expect(results.html).toMatchSnapshot();
 
-    const buttonInnerHTML = await page.evaluate(async results => {
-      const wrapper = document.createElement('div');
-      wrapper.innerHTML = results.html;
-      document.body.appendChild(wrapper);
-      const button = document.querySelector('bolt-button');
-      await button.firstUpdated;
-      return button.renderRoot.innerHTML;
-    }, results);
+    const { innerHTML } = await renderWC('bolt-button', results.html, page);
 
-    const renderedHTML = await html(buttonInnerHTML);
-    expect(renderedHTML.hasAttribute('disabled')).toBe(true);
-    expect(renderedHTML).toMatchSnapshot();
+    const renderedHTML = await html(`<div>${innerHTML}</div>`);
+    expect(
+      renderedHTML.querySelector('.c-bolt-button').hasAttribute('disabled'),
+    ).toBe(true);
+    expect(renderedHTML.firstElementChild).toMatchSnapshot();
 
     const image = await page.screenshot();
     expect(image).toMatchImageSnapshot({
@@ -114,18 +110,15 @@ describe('button', () => {
     expect(results.ok).toBe(true);
     expect(results.html).toMatchSnapshot();
 
-    const buttonInnerHTML = await page.evaluate(async results => {
-      const wrapper = document.createElement('div');
-      wrapper.innerHTML = results.html;
-      document.body.appendChild(wrapper);
-      const button = document.querySelector('bolt-button');
-      await button.firstUpdated;
-      return button.renderRoot.innerHTML;
-    }, results);
+    const { innerHTML } = await renderWC('bolt-button', results.html, page);
+    const renderedHTML = await html(`<div>${innerHTML}</div>`);
+    expect(
+      renderedHTML
+        .querySelector('.c-bolt-button')
+        .hasAttribute('aria-disabled'),
+    ).toBe(true);
 
-    const renderedHTML = await html(buttonInnerHTML);
-    expect(renderedHTML.hasAttribute('aria-disabled')).toBe(true);
-    expect(renderedHTML).toMatchSnapshot();
+    expect(renderedHTML.firstElementChild).toMatchSnapshot();
 
     const image = await page.screenshot();
     expect(image).toMatchImageSnapshot({
@@ -199,17 +192,13 @@ describe('button', () => {
   });
 
   test('Default <bolt-button> w/o Shadow DOM renders', async function() {
-    const renderedButtonHTML = await page.evaluate(async () => {
-      document.body.insertAdjacentHTML(
-        'beforeend',
-        '<bolt-button no-shadow>This is a button</bolt-button>',
-      );
-      const btn = document.querySelector('bolt-button');
-      await btn.updateComplete;
-      return btn.outerHTML;
-    });
+    const { outerHTML } = await renderWC(
+      'bolt-button',
+      '<bolt-button no-shadow>This is a button</bolt-button>',
+      page,
+    );
 
-    const renderedHTML = await html(renderedButtonHTML);
+    const renderedHTML = await html(outerHTML);
 
     expect(
       renderedHTML
@@ -227,24 +216,20 @@ describe('button', () => {
   });
 
   test('Default <bolt-button> with Shadow DOM renders', async function() {
-    const defaultButtonShadowRoot = await page.evaluate(async () => {
-      const btn = document.createElement('bolt-button');
-      btn.textContent = 'Button Test -- Shadow Root HTML';
-      document.body.appendChild(btn);
-      await btn.firstUpdated;
-      return btn.renderRoot.innerHTML;
-    });
+    const { innerHTML } = await renderWC(
+      'bolt-button',
+      `<bolt-button>Button Test -- Shadow Root HTML</bolt-button>`,
+      page,
+    );
 
-    const defaultButtonOuter = await page.evaluate(async () => {
-      const btn = document.createElement('bolt-button');
-      btn.textContent = 'Button Test -- Outer HTML';
-      document.body.appendChild(btn);
-      await btn.firstUpdated;
-      return btn.outerHTML;
-    });
+    const { outerHTML } = await renderWC(
+      'bolt-button',
+      `<bolt-button>Button Test -- Outer HTML</bolt-button>`,
+      page,
+    );
 
-    const renderedShadowDomHTML = await html(defaultButtonShadowRoot);
-    const renderedHTML = await html(defaultButtonOuter);
+    const renderedShadowDomHTML = await html(innerHTML);
+    const renderedHTML = await html(outerHTML);
 
     expect(renderedHTML.textContent).toEqual('Button Test -- Outer HTML');
     // expect(
@@ -304,16 +289,9 @@ describe('button', () => {
     `);
 
     // Next, convert to a javascript node so we can evaluate it with js.
-    const renderedButtonHTML = await page.evaluate(html => {
-      const div = document.createElement('div');
-      div.innerHTML = `${html}`;
-      document.body.appendChild(div);
-      const button = document.querySelector('bolt-button');
-      return button.outerHTML;
-    }, template.html);
-
+    const { outerHTML } = await renderWC('bolt-button', template.html, page);
     const renderedHTML = await html('<div></div>');
-    renderedHTML.innerHTML = renderedButtonHTML;
+    renderedHTML.innerHTML = outerHTML;
 
     const button = document.getElementById('my-button');
 
