@@ -65,9 +65,5 @@ module.exports = {
       '@bolt/components-ul',
       '@bolt/components-video',
     ],
-    individual: [
-      '@bolt/components-critical-fonts',
-      '@bolt/components-critical-css',
-    ],
   },
 };
