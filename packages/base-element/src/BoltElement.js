@@ -6,12 +6,14 @@ import {
   lazyStyles,
   conditionalShadowDom,
   jsonSchemaProps,
+  slottedChildrenDecorator,
 } from './lib/decorators';
 
 @renderAndRenderedEvents()
 @lazyStyles()
 @conditionalShadowDom()
 @jsonSchemaProps()
+@slottedChildrenDecorator()
 class BoltElement extends Slotify {
   async connectedCallback() {
     // wait for Bolt's SSR hydration-related helper elements to be ready before continuing
