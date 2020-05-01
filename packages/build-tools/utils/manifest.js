@@ -39,14 +39,16 @@ try {
   ).version;
 }
 
-let extraGlobalBoltDependenciesFound = [];
-let extraIndividualBoltDependenciesFound = [];
+let missingBoltPkgs = [];
 
 // don't automatically include these Bolt packages as extra (undeclared) dependencies
-const extraBoltDependenciesBlacklist = [
+const missingBoltPkgsWhitelist = [
   '@bolt/core',
+  '@bolt/core-v3.x',
   '@bolt/polyfills',
   '@bolt/element',
+  '@bolt/lazy-queue',
+  '@bolt/components-icons',
 ];
 
 /**
@@ -56,6 +58,7 @@ const extraBoltDependenciesBlacklist = [
  * @returns {{name, basicName: string | * | void}} - Asset info
  */
 async function getPkgInfo(pkgName, isGlobalComponent = true) {
+  config = config || (await getConfig());
   if (typeof pkgName === 'object') {
     const info = {
       name: pkgName.name,
@@ -133,23 +136,19 @@ async function getPkgInfo(pkgName, isGlobalComponent = true) {
       assets: {},
     };
 
+    config.components.individual = config.components.individual || [];
+    config.components.global = config.components.global || [];
+
     if (pkg.dependencies) {
       for (const dependency in pkg.dependencies) {
         if (
           dependency.includes('@bolt/') &&
-          !extraBoltDependenciesBlacklist.includes(dependency) &&
-          !extraGlobalBoltDependenciesFound.includes(dependency)
+          !missingBoltPkgs.includes(dependency) && 
+          missingBoltPkgsWhitelist.indexOf(dependency) === -1 &&
+          !config.components.global.includes(dependency) &&
+          !config.components.individual.includes(dependency)
         ) {
-          if (isGlobalComponent) {
-            extraGlobalBoltDependenciesFound.push(dependency);
-          } else if (
-            !isGlobalComponent &&
-            !extraBoltDependenciesBlacklist.includes(dependency) &&
-            !extraGlobalBoltDependenciesFound.includes(dependency) &&
-            !extraIndividualBoltDependenciesFound.includes(dependency)
-          ) {
-            extraIndividualBoltDependenciesFound.push(dependency);
-          }
+          missingBoltPkgs.push(dependency);
         }
       }
     }
@@ -213,8 +212,6 @@ async function getPkgInfo(pkgName, isGlobalComponent = true) {
 let explicitBoltDependencies = [],
   implicitBoltDependencies = [];
 
-
-
 async function buildBoltManifest() {
   config = config || (await getConfig());
   try {
@@ -227,11 +224,6 @@ async function buildBoltManifest() {
       );
 
       // process any implicitly declared Bolt dependencies
-      implicitBoltDependencies = await Promise.all(
-        extraGlobalBoltDependenciesFound.map(async item => {
-          return await getPkgInfo(item, true);
-        }),
-      );
 
       // combine both sets of explicit and implicit dependencies and deduplicate
       boltManifest.components.global = deduplicateObjectsInArray(
@@ -250,26 +242,24 @@ async function buildBoltManifest() {
         [...explicitIndividualBoltDependencies],
         'name',
       );
+    }
 
-      if (extraIndividualBoltDependenciesFound.length > 0) {
-        extraIndividualBoltDependenciesFound.flatMap(function callback(item) {
-          return item.name;
-        });
+    if (missingBoltPkgs.length > 0 && !hasWarnedAboutMissingPkgs) {
+      missingBoltPkgs.flatMap(function callback(item) {
+        return item.name;
+      });
 
-        if (hasAlreadyWarned === false){
-          console.warn(
-            chalk.keyword('orange')(
-              `\nWarning: These Bolt packages were listed as dependencies of components that are currently being bundled as separate files but are NOT currently being included. If these components are required (which, they probably are), you'll need to add these to the \`components: { global: [] }\` array in your \`.boltrc\` config.\n`,
-            ),
-          );
+      console.warn(
+        chalk.keyword('orange')(
+          `\nWarning: Some of the components being compiled have Bolt dependencies that are missing from your build config. Please add these packages to the \`components: { global: [] }\` array in your \`.boltrc.js\` file to ensure that Twig namespaces are properly registered and any required Sass or JS code is compiled.\n`,
+        ),
+      );
 
-          console.warn(extraIndividualBoltDependenciesFound);
+      console.warn(missingBoltPkgs);
 
-          console.log('\n');
+      console.log('\n');
 
-          hasAlreadyWarned = true;
-        }
-      }
+      hasWarnedAboutMissingPkgs = true;
     }
   } catch (err) {
     log.errorAndExit('Error building Bolt Manifest', err);
@@ -278,7 +268,7 @@ async function buildBoltManifest() {
   return boltManifest;
 }
 
-let hasAlreadyWarned = false;
+let hasWarnedAboutMissingPkgs = false;
 async function getBoltManifest() {
   return await buildBoltManifest();
 }
