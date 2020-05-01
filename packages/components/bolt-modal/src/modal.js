@@ -12,10 +12,10 @@ import {
 } from '@bolt/core-v3.x/utils';
 import { withLitHtml } from '@bolt/core-v3.x/renderers/renderer-lit-html';
 import classNames from 'classnames/bind';
+import tabbable from 'tabbable';
 import styles from './modal.scss';
 import schema from '../modal.schema.yml';
 
-const tabbable = require('tabbable');
 import '../focus-trap';
 
 const ESCAPE_KEY = 27;

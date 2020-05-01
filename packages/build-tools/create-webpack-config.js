@@ -369,6 +369,8 @@ async function createWebpackConfig(buildConfig) {
     },
     mode: config.prod ? 'production' : 'development',
     optimization: {
+      sideEffects: true,
+      usedExports: true,
       minimizer: config.prod
         ? [
             new TerserPlugin({
@@ -376,8 +378,12 @@ async function createWebpackConfig(buildConfig) {
               sourceMap: config.sourceMaps,
               cache: true,
               parallel: true,
+              extractComments: false,
               terserOptions: {
                 safari10: true,
+                output: {
+                  comments: false,
+                },
               },
             }),
           ]
@@ -399,9 +405,6 @@ async function createWebpackConfig(buildConfig) {
 
   if (config.prod) {
     // https://webpack.js.org/plugins/module-concatenation-plugin/
-    sharedWebpackConfig.plugins.push(
-      new webpack.optimize.ModuleConcatenationPlugin(),
-    );
 
     // Optimize CSS - https://github.com/NMFR/optimize-css-assets-webpack-plugin
     sharedWebpackConfig.plugins.push(

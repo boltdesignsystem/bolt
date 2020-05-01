@@ -1,7 +1,8 @@
 import { props } from '@bolt/core-v3.x/utils';
 import { customElement, unsafeHTML, html } from '@bolt/element';
 import { withLitHtml } from '@bolt/core-v3.x/renderers/renderer-lit-html';
-import docsearch from 'docsearch.js/dist/npm/src/lib/main.js';
+import DocSearch from 'docsearch.js/src/lib/DocSearch';
+import version from 'docsearch.js/src/lib/version';
 import qs from 'querystring';
 
 @customElement('bds-docs-search')
@@ -40,7 +41,7 @@ class BoltDocsSearch extends withLitHtml {
   rendered() {
     const self = this;
     if (this.renderRoot.querySelector(this.inputSelector)) {
-      docsearch({
+      let docsearch = new DocSearch({
         apiKey: this.props.apiKey || '3ea0b745949a3c6ed2e0cf8650f62fc6',
         indexName: this.props.indexName || 'boltdesignsystem',
         inputSelector: this.inputSelector,
@@ -55,6 +56,7 @@ class BoltDocsSearch extends withLitHtml {
           }
         },
       });
+      docsearch.version = version;
     } else {
       const searchFormTemplate = `
         {% set label %}
