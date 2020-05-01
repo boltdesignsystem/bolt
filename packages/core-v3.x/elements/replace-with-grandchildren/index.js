@@ -1,7 +1,5 @@
-import { customElement } from '@bolt/element';
 import { ReplaceWithChildren } from '../replace-with-children';
 
-@customElement('replace-with-grandchildren')
 class ReplaceWithGrandchildren extends ReplaceWithChildren {
   connectedCallback() {
     if (bolt.isServer) {
@@ -21,4 +19,6 @@ class ReplaceWithGrandchildren extends ReplaceWithChildren {
   }
 }
 
-export { ReplaceWithGrandchildren };
+if (!window.customElements.get('replace-with-grandchildren')) {
+  customElements.define('replace-with-grandchildren', ReplaceWithGrandchildren);
+}

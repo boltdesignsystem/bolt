@@ -1,6 +1,3 @@
-import { customElement } from '@bolt/element';
-
-@customElement('ssr-keep')
 class ssrKeep extends HTMLElement {
   get for() {
     return this.getAttribute('for');
@@ -23,4 +20,6 @@ class ssrKeep extends HTMLElement {
   }
 }
 
-export { ssrKeep };
+if (!window.customElements.get('ssr-keep')) {
+  customElements.define('ssr-keep', ssrKeep);
+}
