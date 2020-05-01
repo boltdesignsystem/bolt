@@ -5,13 +5,13 @@
 @import '@bolt/core-v3.x';
 
 $bolt-height-props: (
-  'xxsmall': bolt-spacing(xxsmall),
-  'xsmall': bolt-spacing(xsmall),
-  'small': bolt-spacing(small),
-  'medium': bolt-spacing(medium),
-  'large': bolt-spacing(large),
-  'xlarge': bolt-spacing(xlarge),
-  'xxlarge': bolt-spacing(xxlarge),
+  // 'xxsmall': bolt-spacing(xxsmall),
+  // 'xsmall': bolt-spacing(xsmall),
+  // 'small': bolt-spacing(small),
+  // 'medium': bolt-spacing(medium),
+  // 'large': bolt-spacing(large),
+  // 'xlarge': bolt-spacing(xlarge),
+  // 'xxlarge': bolt-spacing(xxlarge),
   'none': 0,
   'auto': auto,
   'full': 100%,
@@ -31,12 +31,12 @@ $bolt-height-props: (
 @include bolt-height-utils;
 
 // Loop over our breakpoints
-@each $breakpoint in $bolt-breakpoints {
-  $breakpointName: nth($breakpoint, 1);
-  @include bolt-mq($breakpointName) {
-    @include bolt-height-utils(\@#{$breakpointName});
-  }
-}
+// @each $breakpoint in $bolt-breakpoints {
+//   $breakpointName: nth($breakpoint, 1);
+//   @include bolt-mq($breakpointName) {
+//     @include bolt-height-utils(\@#{$breakpointName});
+//   }
+// }
 
 
 // Min height
@@ -51,11 +51,11 @@ $bolt-height-props: (
 @include bolt-min-height-utils;
 
 // Loop over our breakpoints
-@each $breakpoint in $bolt-breakpoints {
-  $breakpointName: nth($breakpoint, 1);
-  @include bolt-mq($breakpointName) {
-    @include bolt-min-height-utils(\@#{$breakpointName});
-  }
-}
+// @each $breakpoint in $bolt-breakpoints {
+//   $breakpointName: nth($breakpoint, 1);
+//   @include bolt-mq($breakpointName) {
+//     @include bolt-min-height-utils(\@#{$breakpointName});
+//   }
+// }
 
 @include export-data('height.bolt.json', $bolt-height-props);

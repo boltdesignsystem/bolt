@@ -21,10 +21,11 @@ $bolt-spacing-sizes: map-merge($bolt-spacing-sizes-extras, $bolt-spacing-sizes);
     @for $i from 1 through length($bolt-spacing-directions) {
       $direction: nth($bolt-spacing-directions, $i);
 
-      @each $type in $bolt-spacing-types {
+      // @each $type in $bolt-spacing-types {
         @each $size, $value in $bolt-spacing-sizes {
           $sizeName: bolt-prefix-prop-name($size);
-          $typeName: bolt-prefix-prop-name($type);
+          // $typeName: bolt-prefix-prop-name($type);
+          $typeName: '';
           $directionName: bolt-prefix-prop-name($direction);
           $propName: '-' + $prop;
 
@@ -54,7 +55,7 @@ $bolt-spacing-sizes: map-merge($bolt-spacing-sizes-extras, $bolt-spacing-sizes);
             );
           }
         }
-      }
+      // }
     }
   }
 }
