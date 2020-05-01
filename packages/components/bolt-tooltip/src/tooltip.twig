@@ -68,64 +68,72 @@
   {% endif %}
   uuid="{{ uuid }}"
 >
-  <replace-with-children {% if inner_classes %} class="{{ inner_classes|join(' ') }}" {% endif %}>
+  <div {% if inner_classes %} class="{{ inner_classes|join(' ') }}" {% endif %}>
     {% if trigger %}
       {# Start adapter for old trigger data #}
       {% if trigger.type == "text" %}
-        <replace-with-children
+        <div
           role="button"
           tabindex="0"
           aria-describedby="{{ tooltip_uuid }}"
           aria-controls="{{ tooltip_uuid }}"
         >
-          {% if trigger.icon %}
-            {% include "@bolt-components-icon/icon.twig" with trigger.icon %}
-          {% endif %}
-          {% if trigger.text %}
-            {{ trigger.text }}
-          {% endif %}
-        </replace-with-children>
+          <ssr-keep for="bolt-tooltip">
+            {% if trigger.icon %}
+              {% include "@bolt-components-icon/icon.twig" with trigger.icon %}
+            {% endif %}
+            {% if trigger.text %}
+              {{ trigger.text }}
+            {% endif %}
+          </ssr-keep>
+        </div>
       {% elseif trigger.type == "button" %}
-        <replace-with-children
+        <div
           role="button"
           tabindex="0"
           aria-describedby="{{ tooltip_uuid }}"
           aria-controls="{{ tooltip_uuid }}"
         >
-          {% include "@bolt-components-button/button.twig" with {
-            text: trigger.text,
-            icon: {
-              name: trigger.icon.name,
-              size: trigger.icon.size,
-              position: "before",
-            },
-            style: "secondary",
-          } only %}
-        </replace-with-children>
+          <ssr-keep for="bolt-tooltip">
+            {% include "@bolt-components-button/button.twig" with {
+              text: trigger.text,
+              icon: {
+                name: trigger.icon.name,
+                size: trigger.icon.size,
+                position: "before",
+              },
+              style: "secondary",
+            } only %}
+          </ssr-keep>
+        </div>
       {# End adapter for old trigger data #}
 
       {# Start new trigger #}
       {% else %}
-        <replace-with-children
+        <div
           role="button"
           tabindex="0"
           aria-describedby="{{ tooltip_uuid }}"
           aria-controls="{{ tooltip_uuid }}"
         >
-          {{ trigger }}
-        </replace-with-children>
+          <ssr-keep for="bolt-tooltip">
+            {{ trigger }}
+          </ssr-keep>
+        </div>
       {% endif %}
       {# End new trigger #}
     {% endif %}
 
     {% if content %}
-      <span slot="content">
-        <replace-with-grandchildren id="{{ tooltip_uuid }}" class="{{ "#{base_class}__content" }}" role="tooltip" aria-hidden="true">
-          <span class="{{ "#{base_class}__bubble" }}">
-            {{ content }}
-          </span>
-        </replace-with-grandchildren>
-      </span>
+      <div id="{{ tooltip_uuid }}" class="{{ "#{base_class}__content" }}" role="tooltip" aria-hidden="true">
+        <span class="{{ "#{base_class}__bubble" }}">
+          <ssr-keep for="bolt-tooltip">
+            <span slot="content">
+              {{ content }}
+            </span>
+          </ssr-keep>
+        </span>
+      </div>
     {% endif %}
-  </replace-with-children>
+  </div>
 </bolt-tooltip>

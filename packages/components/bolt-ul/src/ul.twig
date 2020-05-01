@@ -14,8 +14,8 @@
 {% endif %}
 
 <bolt-ul {{ attributes | without("class") }}>
-  <replace-with-grandchildren>
-    <div {{ attributes.addClass(classes) }} role="list">
+  <div {{ attributes.addClass(classes) }} role="list">
+    <ssr-keep for="bolt-ul" role="presentation">
       {% for item in items %}
         {% if item is iterable %}
           {% for i in item %}
@@ -41,6 +41,6 @@
           {% include "@bolt-components-li/li.twig" with list_item only %}
         {% endif %}
       {% endfor %}
-    </div>
-  </replace-with-grandchildren>
+    </ssr-keep>
+  </div>
 </bolt-ul>

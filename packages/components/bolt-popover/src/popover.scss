@@ -71,7 +71,7 @@ $bolt-popover-transition: $bolt-transition-timing
   transition: opacity $bolt-popover-transition;
 
   .c-bolt-popover.is-expanded &,
-  bolt-popover:not([ready]) [slot='content']:target & {
+  bolt-popover:not([ready]) .c-bolt-popover__no-js-content:target & {
     visibility: visible;
     opacity: 1;
   }
@@ -83,7 +83,7 @@ $bolt-popover-transition: $bolt-transition-timing
     transform: translate3d(-50%, #{bolt-v-spacing(xxsmall)}, 0);
   }
 
-  bolt-popover:not([ready]) [slot='content']:target & {
+  bolt-popover:not([ready]) .c-bolt-popover__no-js-content:target & {
     display: block;
   }
 }
