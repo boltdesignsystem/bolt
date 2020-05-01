@@ -39,9 +39,9 @@
   {% if outer_classes %} class="{{ outer_classes|join(' ') }}" {% endif %}
   {{ this.props|without("content")|without("class") }}
 >
-  <replace-with-grandchildren>
-    <div {% if inner_classes %} class="{{ inner_classes|join(' ') }}" {% endif %}>
+  <div {% if inner_classes %} class="{{ inner_classes|join(' ') }}" {% endif %}>
+    <ssr-keep for="bolt-banner">
       {{ content }}
-    </div>
-  </replace-with-grandchildren>
+    </ssr-keep>
+  </div>
 </bolt-banner>

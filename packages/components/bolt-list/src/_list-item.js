@@ -48,7 +48,9 @@ class BoltListItem extends withContext(withLitHtml) {
       ${this.addStyles([styles])}
       ${tag === 'ul' || tag === 'ol'
         ? html`
-            <li class="${classes}">${this.slot('default')}</li>
+            <div class="${classes}" role="listitem">
+              ${this.slot('default')}
+            </div>
           `
         : html`
             <span class="${classes}">${this.slot('default')} </span>
