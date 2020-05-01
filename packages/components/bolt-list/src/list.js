@@ -9,7 +9,7 @@ import {
 import classNames from 'classnames/bind';
 import { withLitHtml } from '@bolt/core-v3.x/renderers/renderer-lit-html';
 
-import themes from '@bolt/global/styles/06-themes/_themes.all.scss';
+import themes from '@bolt/global/styles/06-themes/_themes.wc.scss';
 import styles from './list.scss';
 import schema from '../list.schema.yml';
 

@@ -10,6 +10,7 @@ import { ifDefined } from 'lit-html/directives/if-defined';
 import classNames from 'classnames/bind';
 import { createPopper } from '@popperjs/core';
 import Mousetrap from 'mousetrap';
+import themeStyles from '@bolt/global/styles/06-themes/_themes.wc.scss';
 import popoverStyles from './popover.scss';
 import schema from '../popover.schema';
 
@@ -50,7 +51,7 @@ class BoltPopover extends BoltElement {
   }
 
   static get styles() {
-    return [unsafeCSS(popoverStyles)];
+    return [unsafeCSS(popoverStyles), unsafeCSS(themeStyles)];
   }
 
   // removes any hashes from the URL while preserving any query string params

@@ -4,7 +4,6 @@
 
 @import '@bolt/core-v3.x';
 @import '../_card-replacement-settings-and-tools.scss';
-@import '@bolt/global/styles/06-themes/_themes.all.scss';
 
 // Custom element
 @include bolt-custom-element('bolt-card-replacement', block, medium);
@@ -131,6 +130,7 @@ bolt-card-replacement {
   position: relative;
   width: 100%; // Fix for IE 11 when height is set to full
   height: 100%;
+  background-color: bolt-theme(background);
 
   &:before,
   &:after {

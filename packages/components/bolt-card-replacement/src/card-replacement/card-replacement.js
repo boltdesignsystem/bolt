@@ -1,6 +1,7 @@
 import { unsafeCSS, BoltElement, customElement, html } from '@bolt/element';
 import classNames from 'classnames/bind';
 import { withContext } from 'wc-context';
+import themeStyles from '@bolt/global/styles/06-themes/_themes.wc.scss';
 import cardReplacementStyles from './card-replacement.scss';
 import schema from '../../card-replacement.schema.yml';
 let cx = classNames.bind(cardReplacementStyles);
@@ -26,7 +27,7 @@ class BoltCardReplacement extends withContext(BoltElement) {
   }
 
   static get styles() {
-    return [unsafeCSS(cardReplacementStyles)];
+    return [unsafeCSS(cardReplacementStyles), unsafeCSS(themeStyles)];
   }
 
   static get properties() {

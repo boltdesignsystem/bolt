@@ -7,7 +7,7 @@ import {
 import { withLitContext } from '@bolt/core-v3.x/renderers';
 import classNames from 'classnames/bind';
 import debounce from 'lodash.debounce';
-import themes from '@bolt/global/styles/06-themes/_themes.all.scss';
+import themes from '@bolt/global/styles/06-themes/_themes.wc.scss';
 import styles from './interactive-pathways.scss';
 import schema from './interactive-pathways.schema';
 // @TODO this default image should be located in schema
