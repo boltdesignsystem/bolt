@@ -126,7 +126,7 @@ class BoltIcon extends BoltElement {
         : ''}
       <span class="${classes}">
         <svg class="${iconClasses}">
-          <use xlink:href="#${this.name}" />
+          <use href="#${this.name}" />
         </svg>
         ${this.background && this.background !== 'none'
           ? html`
