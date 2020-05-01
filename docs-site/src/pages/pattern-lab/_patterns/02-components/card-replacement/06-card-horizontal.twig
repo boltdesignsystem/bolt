@@ -113,7 +113,7 @@
         {% grid "o-bolt-grid--flex o-bolt-grid--matrix" %}
           {% cell "o-bolt-grid__cell" %}
             {% include "@bolt-components-image/image.twig" with {
-              src: "/images/placeholders/thumb-square-ivy.jpg",
+              src: "/images/placeholders/thumb-square-abstract.jpg",
               alt: "Image alt",
               max_width: width,
             } only %}
@@ -122,7 +122,6 @@
             {% include "@bolt-components-headline/headline.twig" with {
               text: "This card's media is " ~ width ~ " wide",
               size: "large",
-              url: "https://pega.com",
             } only %}
             {% include "@bolt-components-headline/text.twig" with {
               text: "This is a paragraph. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus.",
@@ -132,9 +131,9 @@
       {% endset %}
     {% else %}
       {% if width == "25%" %}
-        {% set percentWidth = "u-bolt-width-4/12" %}
+        {% set percentWidth = "u-bolt-width-4/12@xsmall" %}
       {% else %}
-        {% set percentWidth = "u-bolt-width-6/12" %}
+        {% set percentWidth = "u-bolt-width-6/12@xsmall" %}
       {% endif %}
       {% set altHorizontalCardContent %}
         {% grid "o-bolt-grid--flex o-bolt-grid--matrix" %}
@@ -142,12 +141,13 @@
             attributes: {
               class: [
                 "o-bolt-grid__cell",
+                "u-bolt-width-12/12",
                 percentWidth,
               ]
             }
           } %}
             {% include "@bolt-components-image/image.twig" with {
-              src: "/images/placeholders/thumb-square-ivy.jpg",
+              src: "/images/placeholders/thumb-square-abstract.jpg",
               alt: "Image alt",
             } only %}
           {% endcell %}
@@ -155,7 +155,6 @@
             {% include "@bolt-components-headline/headline.twig" with {
               text: "This card's media is " ~ width ~ " wide",
               size: "large",
-              url: "https://pega.com",
             } only %}
             {% include "@bolt-components-headline/text.twig" with {
               text: "This is a paragraph. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus.",
