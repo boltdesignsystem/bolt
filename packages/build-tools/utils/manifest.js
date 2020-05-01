@@ -1,38 +1,20 @@
 /* eslint-disable no-await-in-loop */
 const { promisify } = require('util');
-const resolve = require('resolve');
 const fs = require('fs');
 const path = require('path');
 const $RefParser = require('json-schema-ref-parser');
+const chalk = require('chalk');
 const log = require('./log');
 const { ensureFileExists } = require('./general');
 const writeFile = promisify(fs.writeFile);
 const { getDataFile } = require('./yaml');
 const { validateSchemaSchema } = require('./schemas');
 const { getConfig } = require('./config-store');
+let config; // cached Bolt config
 
-// recursively flatten heavily nested arrays
-function flattenDeep(arr1) {
-  return arr1.reduce(
-    (acc, val) =>
-      Array.isArray(val) ? acc.concat(flattenDeep(val)) : acc.concat(val),
-    [],
-  );
-}
-
-// utility function to help with removing duplicate objects (like shared dependencies)
-function removeDuplicateObjectsFromArray(originalArray, prop) {
-  var newArray = [];
-  var lookupObject = {};
-
-  for (var i in originalArray) {
-    lookupObject[originalArray[i][prop]] = originalArray[i];
-  }
-
-  for (i in lookupObject) {
-    newArray.push(lookupObject[i]);
-  }
-  return newArray;
+// utility function to help with removing duplicate objects (like shared dependencies, extra Sass files included more than once, etc)
+function deduplicateObjectsInArray(arr, key) {
+  return [...new Map(arr.map(item => [item[key], item])).values()];
 }
 
 let boltManifest = {
@@ -57,13 +39,23 @@ try {
   ).version;
 }
 
+let extraGlobalBoltDependenciesFound = [];
+let extraIndividualBoltDependenciesFound = [];
+
+// don't automatically include these Bolt packages as extra (undeclared) dependencies
+const extraBoltDependenciesBlacklist = [
+  '@bolt/core',
+  '@bolt/polyfills',
+  '@bolt/element',
+];
+
 /**
  * Get information about a components assets
  * @param {string|object} pkgName - Name of a component i.e. `@bolt/button`
  * OR object - see `config.schema.yml` under `definitions.components.items`
  * @returns {{name, basicName: string | * | void}} - Asset info
  */
-async function getPkgInfo(pkgName) {
+async function getPkgInfo(pkgName, isGlobalComponent = true) {
   if (typeof pkgName === 'object') {
     const info = {
       name: pkgName.name,
@@ -139,21 +131,25 @@ async function getPkgInfo(pkgName) {
       basicName: normalizedPkgName,
       dir,
       assets: {},
-      deps: [],
     };
 
-    if (pkg.peerDependencies) {
-      for (dependencyPackageName in pkg.peerDependencies) {
-        if (dependencyPackageName.includes('bolt')) {
-          info.deps.push(dependencyPackageName);
-        }
-      }
-    }
-
     if (pkg.dependencies) {
-      for (dependencyPackageName in pkg.dependencies) {
-        if (dependencyPackageName.includes('bolt')) {
-          info.deps.push(dependencyPackageName);
+      for (const dependency in pkg.dependencies) {
+        if (
+          dependency.includes('@bolt/') &&
+          !extraBoltDependenciesBlacklist.includes(dependency) &&
+          !extraGlobalBoltDependenciesFound.includes(dependency)
+        ) {
+          if (isGlobalComponent) {
+            extraGlobalBoltDependenciesFound.push(dependency);
+          } else if (
+            !isGlobalComponent &&
+            !extraBoltDependenciesBlacklist.includes(dependency) &&
+            !extraGlobalBoltDependenciesFound.includes(dependency) &&
+            !extraIndividualBoltDependenciesFound.includes(dependency)
+          ) {
+            extraIndividualBoltDependenciesFound.push(dependency);
+          }
         }
       }
     }
@@ -214,56 +210,66 @@ async function getPkgInfo(pkgName) {
   }
 }
 
-// loop through package-specific dependencies to merge and dedupe
-async function aggregateBoltDependencies(data) {
-  let componentDependencies = [];
-  let componentsWithoutDeps = data;
+let explicitBoltDependencies = [],
+  implicitBoltDependencies = [];
 
-  componentsWithoutDeps.forEach(item => {
-    if (item.deps) {
-      componentDependencies.push([...item.deps]);
-    }
-  });
 
-  componentDependencies = flattenDeep(componentDependencies);
-
-  componentDependencies = componentDependencies.filter(function(x, i, a) {
-    if (x !== '@bolt/build-tools' && a.indexOf(x) === i) {
-      return x;
-    }
-  });
-
-  let globalDepsSrc = await Promise.all(componentDependencies.map(getPkgInfo));
-
-  componentsWithoutDeps = componentsWithoutDeps.concat(globalDepsSrc);
-
-  var uniqueComponentsWithDeps = removeDuplicateObjectsFromArray(
-    componentsWithoutDeps,
-    'name',
-  );
-
-  return uniqueComponentsWithDeps;
-}
 
 async function buildBoltManifest() {
-  const config = await getConfig();
+  config = config || (await getConfig());
   try {
     if (config.components.global) {
-      let globalSrc = await Promise.all(
-        config.components.global.map(getPkgInfo),
+      // process through Bolt packages explicitly listed in the user's .boltrc config
+      explicitBoltDependencies = await Promise.all(
+        config.components.global.map(async item => {
+          return await getPkgInfo(item, true);
+        }),
       );
 
-      // @todo: re-evaluate if we really should be doing this...
-      // boltManifest.components.global = globalSrc;
-      boltManifest.components.global = await aggregateBoltDependencies(
-        globalSrc,
+      // process any implicitly declared Bolt dependencies
+      implicitBoltDependencies = await Promise.all(
+        extraGlobalBoltDependenciesFound.map(async item => {
+          return await getPkgInfo(item, true);
+        }),
+      );
+
+      // combine both sets of explicit and implicit dependencies and deduplicate
+      boltManifest.components.global = deduplicateObjectsInArray(
+        [...explicitBoltDependencies, ...implicitBoltDependencies],
+        'name',
       );
     }
     if (config.components.individual) {
-      const individualSrc = await Promise.all(
-        config.components.individual.map(getPkgInfo),
+      const explicitIndividualBoltDependencies = await Promise.all(
+        config.components.individual.map(async item => {
+          return await getPkgInfo(item, false);
+        }),
       );
-      boltManifest.components.individual = individualSrc;
+
+      boltManifest.components.individual = deduplicateObjectsInArray(
+        [...explicitIndividualBoltDependencies],
+        'name',
+      );
+
+      if (extraIndividualBoltDependenciesFound.length > 0) {
+        extraIndividualBoltDependenciesFound.flatMap(function callback(item) {
+          return item.name;
+        });
+
+        if (hasAlreadyWarned === false){
+          console.warn(
+            chalk.keyword('orange')(
+              `\nWarning: These Bolt packages were listed as dependencies of components that are currently being bundled as separate files but are NOT currently being included. If these components are required (which, they probably are), you'll need to add these to the \`components: { global: [] }\` array in your \`.boltrc\` config.\n`,
+            ),
+          );
+
+          console.warn(extraIndividualBoltDependenciesFound);
+
+          console.log('\n');
+
+          hasAlreadyWarned = true;
+        }
+      }
     }
   } catch (err) {
     log.errorAndExit('Error building Bolt Manifest', err);
@@ -272,9 +278,9 @@ async function buildBoltManifest() {
   return boltManifest;
 }
 
+let hasAlreadyWarned = false;
 async function getBoltManifest() {
-  const boltManifest = await buildBoltManifest();
-  return boltManifest;
+  return await buildBoltManifest();
 }
 
 /**
