@@ -111,28 +111,17 @@ async function getPkgInfo(pkgName) {
     config.components.individual = config.components.individual || [];
     config.components.global = config.components.global || [];
 
+    // combine pkg.dependencies and pkg.peerDependencies
+    let deps = {};
     if (pkg.dependencies) {
-      for (const dependency in pkg.dependencies) {
-        if (
-          dependency.includes('@bolt/') &&
-          !missingBoltPkgs.includes(dependency) &&
-          missingBoltPkgsWhitelist.indexOf(dependency) === -1 &&
-          !config.components.global.includes(dependency) &&
-          !config.components.individual.includes(dependency)
-        ) {
-          missingBoltPkgs.push(dependency);
-        }
-
-        // @todo: remove with v3.0
-        if (dependency.includes('bolt')) {
-          info.deps.push(dependency);
-        }
-      }
+      deps = { ...deps, ...pkg.dependencies };
+    }
+    if (pkg.peerDependencies) {
+      deps = { ...deps, ...pkg.peerDependencies };
     }
 
-    // also check and include peerDependencies so we can safely start to use them
-    if (pkg.peerDependencies) {
-      for (const dependency in pkg.peerDependencies) {
+    if (Object.keys(deps).length > 0) {
+      for (const dependency in deps) {
         if (
           dependency.includes('@bolt/') &&
           !missingBoltPkgs.includes(dependency) &&
