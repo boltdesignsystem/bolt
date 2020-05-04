@@ -76,10 +76,10 @@ class BoltInteractivePathways extends withLitContext {
   }
 
   connectedCallback() {
-    super.connectedCallback();
+    super.connectedCallback && super.connectedCallback();
 
-    if (window.IntersectionObserver) {
-      const observer = new IntersectionObserver(
+    if (window.IntersectionObserver && !this._hasBeenInViewport) {
+      this.observer = new IntersectionObserver(
         entries => {
           entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -97,8 +97,8 @@ class BoltInteractivePathways extends withLitContext {
         },
       );
 
-      observer.observe(this);
-    } else {
+      this.observer.observe(this);
+    } else if (!window.IntersectionObserver && !this._hasBeenInViewport) {
       // If IntersectionObserver is not available (i.e. IE11) the alternative is debounced scroll event listeners that would add even more JS burden; it's not worth it - showing first step right away instead
       this._hasBeenInViewport = true;
       if (this._isReady) {
@@ -108,6 +108,15 @@ class BoltInteractivePathways extends withLitContext {
   }
 
   beginItAll() {
+    // if this micro journey's been triggered programmatically but hasn't been marked as "visible in the viewport", register it now
+    if (!this._hasBeenInViewport){
+      this._hasBeenInViewport = true;
+    }
+
+    // clean up any intersection observers (if present)
+    if (this.observer && this.observer.unobserve) {
+      this.observer.unobserve(this);
+    }
     this.showPathway(0);
   }
 
