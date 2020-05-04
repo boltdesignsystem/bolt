@@ -95,6 +95,7 @@ Sort classes passed in via attributes into two groups:
     {% else %}
       type="button"
     {% endif %}
+    is="shadow-root"
     class="{{ inner_classes|join(' ') }}"
     {{ filtered_attributes|without('id') }}
   >
