@@ -50,10 +50,12 @@ class BoltLink extends BoltActionElement {
       [`c-bolt-link--headline`]: this.isHeadline,
     });
 
+    const isAnchor = this.url || this?.rootElement?.firstChild?.tagName === 'A';
+
     const allAttributes = {
       ...this.rootElementAttributes,
       ...(this.url && { href: this.url }),
-      ...(this.target && { target: this.target }),
+      ...(isAnchor && this.target && { target: this.target }),
       class: classes,
     };
 
@@ -73,7 +75,7 @@ class BoltLink extends BoltActionElement {
 
     // [1]
     // prettier-ignore
-    return html`${this.url
+    return html`${isAnchor
       ? html`<a ...="${spread(allAttributes)}">${innerSlots}</a>`
       : html`<button ...="${spread(allAttributes)}">${innerSlots}</button>`}`;
   }
