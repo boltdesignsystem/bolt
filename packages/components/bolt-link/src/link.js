@@ -73,11 +73,9 @@ class BoltLink extends BoltActionElement {
 
     // [1]
     // prettier-ignore
-    return html`
-      ${this.url
-        ? html`<a ...="${spread(allAttributes)}">${innerSlots}</a>`
-        : html`<button ...="${spread(allAttributes)}">${innerSlots}</button>`}
-    `;
+    return html`${this.url
+      ? html`<a ...="${spread(allAttributes)}">${innerSlots}</a>`
+      : html`<button ...="${spread(allAttributes)}">${innerSlots}</button>`}`;
   }
 }
 
