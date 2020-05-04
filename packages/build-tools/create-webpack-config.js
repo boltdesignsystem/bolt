@@ -392,7 +392,7 @@ async function createWebpackConfig(buildConfig) {
         },
       }),
       new webpack.ProgressPlugin(boltWebpackProgress), // Ties together the Bolt custom Webpack messages + % complete
-      new WriteFilePlugin(),
+      // new WriteFilePlugin(),
       new webpack.NoEmitOnErrorsPlugin(),
     ],
   };
