@@ -4,53 +4,71 @@
 
 @import '@bolt/core-v3.x';
 
-@each $themeName, $themeOptions in $bolt-themes {
-  @if ($themeName == 'xdark') {
-    $selector: ':root, .t-bolt-xdark, .t-bolt-dark';
+@function bolt-list-contains($list, $var) {
+  $_out: false;
 
-    #{unquote($selector)} {
-      @each $themeOptionName, $themeOptionValue in $themeOptions {
-        @if $themeOptionName != 'background' {
-          @if type-of($themeOptionValue) == color and type-of($themeOptionValue) != string {
-            $red: round(red($themeOptionValue));
-            $green: round(green($themeOptionValue));
-            $blue: round(blue($themeOptionValue));
-
-            --bolt-theme-#{$themeOptionName}: #{$red, $green, $blue};
-          } @else {
-            --bolt-theme-#{$themeOptionName}: #{$themeOptionValue};
-          }
-        }
-      }
-
-      color: rgba(var(--bolt-theme-text), 1);
-      background-color: rgba(var(--bolt-theme-background), 1);
-
+  @each $item in $list {
+    @if $item == $var or str-index($item, $var) != null {
+      $_out: true;
     }
+  }
+  @return $_out;
+}
+
+@mixin bolt-theme-value($name, $value) {
+  @if type-of($value) == color and type-of($value) != string {
+    $red: round(red($value));
+    $green: round(green($value));
+    $blue: round(blue($value));
+    --bolt-theme-#{$name}: #{$red, $green, $blue};
+  }
+
+  @else {
+    --bolt-theme-#{$name}: #{$value};
   }
 }
 
+$uniquePerThemeType: 'text',
+'headline',
+'headline-link', 
+'link',
+'border',
+'primary';
+
 @each $themeName, $themeOptions in $bolt-themes {
-  $selector: '.t-bolt-#{$themeName}';
+  $themeTypeSelector: '';
+  $themeSpecificSelector: '.t-bolt-#{$themeName}';
+  
   @if ($themeName == 'xlight') {
-    $selector: ':root, .t-bolt-xlight';
+    $themeSpecificSelector: ':root, .t-bolt-xlight';
+  }
+  
+  @if ($themeName == 'xdark' or $themeName == 'dark') {
+    $themeTypeSelector: '.t-bolt-dark, .t-bolt-xdark';
+  } @else {
+    $themeTypeSelector: ':root, .t-bolt-xlight, .t-bolt-light';
   }
 
-  #{unquote($selector)} {
-    @each $themeOptionName, $themeOptionValue in $themeOptions {
-      @if $themeOptionName == 'background' or $themeOptionName == 'text' or $themeOptionName == 'headline' or $themeOptionName == 'link' or $themeOptionName == 'border' or $themeOptionName == 'headline-link' {
-        @if type-of($themeOptionValue) == color and type-of($themeOptionValue) != string {
-          $red: round(red($themeOptionValue));
-          $green: round(green($themeOptionValue));
-          $blue: round(blue($themeOptionValue));
-
-          --bolt-theme-#{$themeOptionName}: #{$red, $green, $blue};
-        } @else {
-          --bolt-theme-#{$themeOptionName}: #{$themeOptionValue};
+  @if ($themeName == 'xlight' or $themeName == 'xdark') {
+    #{unquote($themeTypeSelector)} {
+      @each $themeOptionName, $themeOptionValue in $themeOptions {
+        @if bolt-list-contains($uniquePerThemeType, $themeOptionName){
+          @include bolt-theme-value($themeOptionName, $themeOptionValue);
         }
       }
     }
+  }
 
+  #{unquote($themeSpecificSelector)} {
+    @each $themeOptionName, $themeOptionValue in $themeOptions {
+      @if $themeOptionName == 'background' {
+        @include bolt-theme-value($themeOptionName, $themeOptionValue);
+        background-color: rgba(var(--bolt-theme-background), 1);
+      } @elseif $themeOptionName == 'text' {
+        @include bolt-theme-value($themeOptionName, $themeOptionValue);
+        color: rgba(var(--bolt-theme-text), 1);
+      }
+    }
   }
 }
 
