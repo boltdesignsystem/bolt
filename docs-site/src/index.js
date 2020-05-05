@@ -1,28 +1,35 @@
 import { lazyQueue } from '@bolt/lazy-queue';
 
-lazyQueue([], async () => {
-  await import('./custom-icons');
-
-  await import(
-    /*  webpackChunkName: 'bolt-docs-site--version-selector' */ './components/version-selector/version-selector'
-  );
-
+// Component-specific examples and demos that need to get compiled:
+lazyQueue(['bolt-card'], async () => {
   await import(
     /*  webpackChunkName: 'bolt-docs-site--deprecated-card-tests' */ './pages/pattern-lab/_patterns/02-components/card-deprecated/__tests__'
   );
+});
 
-  await import(
-    /*  webpackChunkName: 'bolt-docs-site--editor-integration' */ './pages/pattern-lab/_patterns/04-pages/99999-bolt-dev-sandbox/editor-integration'
-  );
-
-  // Component-specific examples that need to get compiled:
+lazyQueue(['bolt-typeahead'], async () => {
   await import(
     /*  webpackChunkName: 'bolt-docs-site--typeahead-demos' */ './typeahead-demos'
   );
+});
 
+import './pages/pattern-lab/_patterns/04-pages/99999-bolt-dev-sandbox/editor-integration'; // lazy-queue used internally so not using it here
+
+lazyQueue(['bolt-select'], async () => {
+  await import(
+    /*  webpackChunkName: 'bolt-docs-site--version-selector' */ './components/version-selector/version-selector'
+  );
+});
+
+lazyQueue(['bolt-animate'], async () => {
   await import(
     /*  webpackChunkName: 'bolt-docs-site--animate-demos' */ './animate-demos'
   );
+});
+
+// remaining (misc) docs site-related code that isn't attached to a particular selector
+lazyQueue([], async () => {
+  await import('./custom-icons');
 
   await import(
     /*  webpackChunkName: 'bolt-docs-site--analytics-autotrack' */ '@bolt/analytics-autotrack'
