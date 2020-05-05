@@ -30,16 +30,13 @@ bolt-card-replacement,
   bolt-card-replacement-link + *,
   bolt-card-replacement-background + *,
   bolt-card-replacement-media:first-child > *,
-  bolt-card-replacement-media:first-child > replace-with-children > *,
+  bolt-card-replacement-media:first-child > ssr-keep > *,
   bolt-card-replacement-link + bolt-card-replacement-media > *,
-  bolt-card-replacement-link
-    + bolt-card-replacement-media
-    > replace-with-children
-    > *,
+  bolt-card-replacement-link + bolt-card-replacement-media > ssr-keep > *,
   bolt-card-replacement-background + bolt-card-replacement-media > *,
   bolt-card-replacement-background
     + bolt-card-replacement-media
-    > replace-with-children
+    > ssr-keep
     > * {
     border-top-right-radius: var(--c-bolt-card-border-radius);
     border-top-left-radius: var(--c-bolt-card-border-radius);
@@ -49,18 +46,18 @@ bolt-card-replacement,
   bolt-card-replacement-link + *:last-child,
   bolt-card-replacement-background + *:last-child,
   bolt-card-replacement-media:last-child > *,
-  bolt-card-replacement-media:last-child > replace-with-children > *,
+  bolt-card-replacement-media:last-child > ssr-keep > *,
   bolt-card-replacement-link + bolt-card-replacement-media:last-child > *,
   bolt-card-replacement-link
     + bolt-card-replacement-media:last-child
-    > replace-with-children
+    > ssr-keep
     > *,
   bolt-card-replacement-background
     + bolt-card-replacement-media:last-child
     bolt-image,
   bolt-card-replacement-background
     + bolt-card-replacement-media:last-child
-    > replace-with-children
+    > ssr-keep
     > * {
     border-bottom-right-radius: var(--c-bolt-card-border-radius);
     border-bottom-left-radius: var(--c-bolt-card-border-radius);

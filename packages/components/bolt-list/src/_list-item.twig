@@ -2,7 +2,6 @@
 {% set base_class = "c-bolt-list-item" %}
 {% set attributes = create_attribute(item.attributes|default({})) %}
 {% set inner_attributes = create_attribute({}) %}
-{% set tag = item_tag %}
 
 {% set last = loop.last %}
 {% set classes = [
@@ -17,15 +16,18 @@
 
 <bolt-list-item
   {% if last %} last {% endif %}
+  {% if list_item_role %} role="presentation" {% endif %}
   {{ attributes }}
 >
-  <replace-with-grandchildren>
-    <{{ tag }} {{ inner_attributes.addClass(classes) }}>
-      {% if item.content %}
-        {{ item.content }}
-      {% else %}
-        {{ item }}
-      {% endif %}
-    </{{ tag }}>
-  </replace-with-grandchildren>
+  <ssr-keep
+    for="bolt-list-item"
+    {% if list_item_role %} role="{{ list_item_role }}" {% endif %}
+    {{ inner_attributes.addClass(classes) }}
+  >
+    {% if item.content %}
+      {{ item.content }}
+    {% else %}
+      {{ item }}
+    {% endif %}
+  </ssr-keep>
 </bolt-list-item>

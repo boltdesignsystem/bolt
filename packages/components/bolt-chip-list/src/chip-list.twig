@@ -90,21 +90,23 @@
   {{ this.props|without("class")|without("id") }}
   id="{{ id }}"
 >
-  <replace-with-children {{ inner_attributes.addClass(inner_classes) }}>
+  <div {{ inner_attributes.addClass(inner_classes) }}>
     {% if willTruncate %}
       {% set nthSelector = truncate == 0 ? "" : "bolt-list-item:nth-child(n+#{truncate}) ~ " %}
       <style class="c-bolt-chip-list--no-js">
-        #{{ id }} #{{ inputId }}:not(:checked) + bolt-list {{ nthSelector}} bolt-list-item:not([truncate-trigger-expand]),
-        #{{ id }} #{{ inputId }}:checked + bolt-list [truncate-trigger-expand] {
+        #{{ id }} #{{ inputId }}:not(:checked) ~ .js-bolt-chip-list__container {{ nthSelector}} bolt-list-item:not([truncate-trigger-expand]),
+        #{{ id }} #{{ inputId }}:checked ~ .js-bolt-chip-list__container [truncate-trigger-expand] {
           display: none;
         }
       </style>
       <input type="checkbox" id="{{ inputId }}" class="c-bolt-chip-list__input c-bolt-chip-list--no-js" {% if expanded %} checked {% endif %}/>
     {% endif %}
 
-    {% include "@bolt-components-list/list.twig" with {
-      items: list,
-      display: "inline",
-    } only %}
-  </replace-with-children>
+    <ssr-keep for="bolt-chip-list" class="js-bolt-chip-list__container">
+      {% include "@bolt-components-list/list.twig" with {
+        items: list,
+        display: "inline",
+      } only %}
+    </ssr-keep>
+  </div>
 </bolt-chip-list>

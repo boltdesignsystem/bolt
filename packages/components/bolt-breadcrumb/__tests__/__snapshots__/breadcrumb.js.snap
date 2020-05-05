@@ -18,9 +18,11 @@ exports[`<bolt-breadcrumb> Component basic usage with attributes 1`] = `
              is="shadow-root"
              class="c-bolt-link  c-bolt-link--display-inline c-bolt-link--valign-center"
           >
-            <replace-with-children class="c-bolt-link__text">
+            <ssr-keep for="bolt-link"
+                      class="c-bolt-link__text"
+            >
               Home
-            </replace-with-children>
+            </ssr-keep>
           </a>
         </bolt-link>
       </li>
@@ -33,9 +35,11 @@ exports[`<bolt-breadcrumb> Component basic usage with attributes 1`] = `
              is="shadow-root"
              class="c-bolt-link  c-bolt-link--display-inline c-bolt-link--valign-center"
           >
-            <replace-with-children class="c-bolt-link__text">
+            <ssr-keep for="bolt-link"
+                      class="c-bolt-link__text"
+            >
               Other Page
-            </replace-with-children>
+            </ssr-keep>
           </a>
         </bolt-link>
       </li>
@@ -60,9 +64,11 @@ exports[`<bolt-breadcrumb> Component basic usage with contentItems including ren
              is="shadow-root"
              class="c-bolt-link  c-bolt-link--display-inline c-bolt-link--valign-center"
           >
-            <replace-with-children class="c-bolt-link__text">
+            <ssr-keep for="bolt-link"
+                      class="c-bolt-link__text"
+            >
               Home
-            </replace-with-children>
+            </ssr-keep>
           </a>
         </bolt-link>
       </li>
@@ -75,9 +81,11 @@ exports[`<bolt-breadcrumb> Component basic usage with contentItems including ren
              is="shadow-root"
              class="c-bolt-link  c-bolt-link--display-inline c-bolt-link--valign-center"
           >
-            <replace-with-children class="c-bolt-link__text">
+            <ssr-keep for="bolt-link"
+                      class="c-bolt-link__text"
+            >
               Landing Page
-            </replace-with-children>
+            </ssr-keep>
           </a>
         </bolt-link>
       </li>
@@ -90,9 +98,11 @@ exports[`<bolt-breadcrumb> Component basic usage with contentItems including ren
              is="shadow-root"
              class="c-bolt-link  c-bolt-link--display-inline c-bolt-link--valign-center"
           >
-            <replace-with-children class="c-bolt-link__text">
+            <ssr-keep for="bolt-link"
+                      class="c-bolt-link__text"
+            >
               Sub Page
-            </replace-with-children>
+            </ssr-keep>
           </a>
         </bolt-link>
       </li>
@@ -120,9 +130,11 @@ exports[`<bolt-breadcrumb> Component current page aria variation 1`] = `
              is="shadow-root"
              class="c-bolt-link  c-bolt-link--display-inline c-bolt-link--valign-center"
           >
-            <replace-with-children class="c-bolt-link__text">
+            <ssr-keep for="bolt-link"
+                      class="c-bolt-link__text"
+            >
               Home
-            </replace-with-children>
+            </ssr-keep>
           </a>
         </bolt-link>
       </li>
@@ -135,9 +147,11 @@ exports[`<bolt-breadcrumb> Component current page aria variation 1`] = `
              is="shadow-root"
              class="c-bolt-link  c-bolt-link--display-inline c-bolt-link--valign-center"
           >
-            <replace-with-children class="c-bolt-link__text">
+            <ssr-keep for="bolt-link"
+                      class="c-bolt-link__text"
+            >
               Landing Page
-            </replace-with-children>
+            </ssr-keep>
           </a>
         </bolt-link>
       </li>
@@ -150,9 +164,11 @@ exports[`<bolt-breadcrumb> Component current page aria variation 1`] = `
              is="shadow-root"
              class="c-bolt-link  c-bolt-link--display-inline c-bolt-link--valign-center"
           >
-            <replace-with-children class="c-bolt-link__text">
+            <ssr-keep for="bolt-link"
+                      class="c-bolt-link__text"
+            >
               Sub Page
-            </replace-with-children>
+            </ssr-keep>
           </a>
         </bolt-link>
       </li>
@@ -167,9 +183,11 @@ exports[`<bolt-breadcrumb> Component current page aria variation 1`] = `
              class="c-bolt-link  c-bolt-link--display-inline c-bolt-link--valign-center"
              aria-current
           >
-            <replace-with-children class="c-bolt-link__text">
+            <ssr-keep for="bolt-link"
+                      class="c-bolt-link__text"
+            >
               Current Page
-            </replace-with-children>
+            </ssr-keep>
           </a>
         </bolt-link>
       </li>
