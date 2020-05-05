@@ -1,10 +1,4 @@
-import { polyfillLoader } from '@bolt/core/polyfills';
+import(/*
 
-polyfillLoader.then(res => {
-  import(
-    /*
-    webpackMode: 'eager',
     webpackChunkName: 'bolt-shadow-toggle'
-  */ './shadow-toggle.js'
-  );
-});
+  */ './shadow-toggle.js');
