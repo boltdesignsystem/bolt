@@ -41,23 +41,23 @@ describe('<bolt-icon> Component', () => {
   });
 
   test('Default <bolt-icon> with Shadow DOM renders', async function() {
-    const defaultIconShadowRoot = await page.evaluate(() => {
+    const defaultIconShadowRoot = await page.evaluate(async () => {
       const icon = document.createElement('bolt-icon');
       icon.setAttribute('name', 'add-open');
       icon.setAttribute('background', 'circle');
       icon.setAttribute('size', 'large');
       document.body.appendChild(icon);
-      icon.updated();
+      await icon.updateComplete;
       return icon.renderRoot.innerHTML;
     });
 
-    const defaultIconOuter = await page.evaluate(() => {
+    const defaultIconOuter = await page.evaluate(async () => {
       const icon = document.createElement('bolt-icon');
       icon.setAttribute('name', 'add-open');
       icon.setAttribute('background', 'circle');
       icon.setAttribute('size', 'large');
       document.body.appendChild(icon);
-      icon.updated();
+      await icon.updateComplete;
       return icon.outerHTML;
     });
 

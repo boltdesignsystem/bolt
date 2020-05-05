@@ -1,1 +1,1 @@
-import(/*  webpackChunkName: 'bolt-icon' */ './icon.standalone.js');
+import(/* webpackChunkName: 'bolt-icon' */ './icon.standalone.js');
