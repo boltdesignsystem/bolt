@@ -146,10 +146,9 @@ describe('carousel', () => {
         page,
       );
 
-      const screenshots = [];
+      expect(outerHTML).toMatchSnapshot();
 
-      const renderedHTML = await html(`<div>${outerHTML}</div>`);
-      expect(renderedHTML.firstChild).toMatchSnapshot();
+      const screenshots = [];
 
       for (const item of viewportSizes) {
         const { height, width, size } = item;
@@ -191,8 +190,7 @@ describe('carousel', () => {
       );
 
       const screenshots = [];
-      const renderedHTML = await html(`<div>${outerHTML}</div>`);
-      expect(renderedHTML.firstChild).toMatchSnapshot();
+      expect(outerHTML).toMatchSnapshot();
 
       for (const item of viewportSizes) {
         const { height, width, size } = item;
@@ -234,8 +232,7 @@ describe('carousel', () => {
       );
 
       const screenshots = [];
-      const renderedHTML = await html(outerHTML);
-      expect(renderedHTML).toMatchSnapshot();
+      expect(outerHTML).toMatchSnapshot();
 
       for (const item of viewportSizes) {
         const { height, width, size } = item;
@@ -276,8 +273,7 @@ describe('carousel', () => {
       );
 
       const screenshots = [];
-      const renderedHTML = await html(outerHTML);
-      expect(renderedHTML).toMatchSnapshot();
+      expect(outerHTML).toMatchSnapshot();
 
       for (const item of viewportSizes) {
         const { height, width, size } = item;
@@ -334,8 +330,7 @@ describe('carousel', () => {
       );
 
       const screenshots = [];
-      const renderedHTML = await html(outerHTML);
-      expect(renderedHTML).toMatchSnapshot();
+      expect(outerHTML).toMatchSnapshot();
 
       for (const item of viewportSizes) {
         const { height, width, size } = item;
