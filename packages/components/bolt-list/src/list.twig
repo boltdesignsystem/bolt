@@ -28,10 +28,9 @@
 {% set nowrap = nowrap is sameas(true) or nowrap is sameas(false) ? nowrap : schema.properties.nowrap.default %}
 
 {# Conditions for the semantic tag usage #}
-{% if tag == "div" or tag == "span" %}
-  {% set item_tag = "span" %}
-{% else %}
-  {% set item_tag = "li" %}
+{% if tag == "ol" or tag == "ul" %}
+  {% set list_role = "list" %}
+  {% set list_item_role = "listitem" %}
 {% endif %}
 
 {# List component's custom element wrapper. #}
@@ -62,13 +61,15 @@
     nowrap ? "#{base_class}--nowrap",
   ] %}
 
-  <replace-with-grandchildren>
-    <{{ tag }} {{ inner_attributes.addClass(classes) }}>
-      {% for item in items %}
-        {% if item %}
-          {% include "@bolt-components-list/_list-item.twig" %}
-        {% endif %}
-      {% endfor %}
-    </{{ tag }}>
-  </replace-with-grandchildren>
+  <ssr-keep
+    for="bolt-list"
+    {% if list_role %} role="{{ list_role }}" {% endif %}
+    {{ inner_attributes.addClass(classes) }}
+  >
+    {% for item in items %}
+      {% if item %}
+        {% include "@bolt-components-list/_list-item.twig" %}
+      {% endif %}
+    {% endfor %}
+  </ssr-keep>
 </bolt-list>

@@ -1,21 +1,42 @@
-{% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
+{% set widths = [
+  "80px",
+  "150px",
+  "25%",
+  "50%",
+] %}
+
+{% set mediaWidthDemo %}{% verbatim %}media: {
+  image: image,
+  attributes: {
+    style: "min-width: 25%",
+  }
+}{% endverbatim %}
+{% endset %}
+
+{% set customBodyDemo %}{% verbatim %}body: {
+  content: customContentWithGrid,
+}{% endverbatim %}
+{% endset %}
+
+{% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center u-bolt-margin-bottom-large" %}
   {% cell "u-bolt-width-12/12 u-bolt-width-8/12@small" %}
+    <bolt-text headline>
+      Default horizontal card
+    </bolt-text>
     {% include "@bolt-components-card-replacement/card-replacement.twig" with {
       horizontal: true,
+      height: "auto",
       media: {
         image: {
           src: "/images/placeholders/landscape-16x9-mountains.jpg",
           alt: "Image alt.",
           placeholder_color: "#afcde6",
         },
-        attributes: {
-          style: "width: 25%;"
-        }
       },
       body: {
         eyebrow: "This is an eyebrow",
-        headline: "This card is horizontal",
-        paragraph: "This is a paragraph.",
+        headline: "This Is a Headline",
+        paragraph: "This is a paragraph. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus.",
       },
       actions: [
         {
@@ -24,5 +45,136 @@
         },
       ],
     } only %}
+    <bolt-banner align="start" status="warning">
+      <bolt-icon name="warning"></bolt-icon> The media container will crop the image and video is not supported.
+    </bolt-banner>
   {% endcell %}
+{% endgrid %}
+
+{% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center u-bolt-margin-bottom-large" %}
+  {% cell "u-bolt-width-12/12 u-bolt-width-8/12@small" %}
+    <bolt-text headline>
+      Advanced usage: manually override horizontal media size
+    </bolt-text>
+    <bolt-text>
+      To finely control the width of the card media based on your use case, set inline style of <bolt-code-snippet display="inline" lang="html">min-width</bolt-code-snippet> to the card media. Please use your best judgment when doing this, because absolute units such as px, em, and rem will break responsive layouts. % is the recommended unit to use.
+    </bolt-text>
+    <bolt-code-snippet syntax="dark" lang="html">{% spaceless %}
+      {{ mediaWidthDemo | trim | raw }}
+    {% endspaceless %}</bolt-code-snippet>
+    {% for width in widths %}
+      {% include "@bolt-components-card-replacement/card-replacement.twig" with {
+        horizontal: true,
+        height: "auto",
+        media: {
+          image: {
+            src: "/images/placeholders/landscape-16x9-mountains.jpg",
+            alt: "Image alt.",
+            placeholder_color: "#afcde6",
+          },
+          attributes: {
+            style: "min-width:" ~ width,
+          }
+        },
+        body: {
+          headline: "This card's media is " ~ width ~ " wide",
+          paragraph: "This is a paragraph. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus.",
+        },
+        actions: [
+          {
+            text: "This is a button",
+            url: "https://pega.com",
+          },
+        ],
+      } only %}
+    {% endfor %}
+  {% endcell %}
+{% endgrid %}
+
+{% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
+  {% cell "u-bolt-width-12/12 u-bolt-width-8/12@small" %}
+    <bolt-text headline>
+      DIY horizontal card
+    </bolt-text>
+    <bolt-text>
+      Utilize the custom body content to create a custom card that has horizontal content. A grid is used to create the content with an image on the side.
+    </bolt-text>
+    <bolt-code-snippet syntax="dark" lang="html">{% spaceless %}
+      {{ customBodyDemo | trim | raw }}
+    {% endspaceless %}</bolt-code-snippet>
+    <bolt-banner align="start">
+      <bolt-icon name="info-open"></bolt-icon> <strong>Design recommendations:</strong> 1) use a square image or video; 2) make the headline and/or the whole card clickable; 3) set spacing prop to small.
+    </bolt-banner>
+  {% endcell %}
+
+  {% for width in widths %}
+    {% if width == "80px" or width == "150px" %}
+      {% set altHorizontalCardContent %}
+        {% grid "o-bolt-grid--flex o-bolt-grid--matrix" %}
+          {% cell "o-bolt-grid__cell" %}
+            {% include "@bolt-components-image/image.twig" with {
+              src: "/images/placeholders/thumb-square-abstract.jpg",
+              alt: "Image alt",
+              max_width: width,
+            } only %}
+          {% endcell %}
+          {% cell "u-bolt-width-12/12 u-bolt-width-6/12@xsmall u-bolt-flex-grow u-bolt-margin-top-auto u-bolt-margin-bottom-auto" %}
+            {% include "@bolt-components-headline/headline.twig" with {
+              text: "This card's media is " ~ width ~ " wide",
+              size: "large",
+            } only %}
+            {% include "@bolt-components-headline/text.twig" with {
+              text: "This is a paragraph. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus.",
+            } only %}
+          {% endcell %}
+        {% endgrid %}
+      {% endset %}
+    {% else %}
+      {% if width == "25%" %}
+        {% set percentWidth = "u-bolt-width-4/12@xsmall" %}
+      {% else %}
+        {% set percentWidth = "u-bolt-width-6/12@xsmall" %}
+      {% endif %}
+      {% set altHorizontalCardContent %}
+        {% grid "o-bolt-grid--flex o-bolt-grid--matrix" %}
+          {% cell with {
+            attributes: {
+              class: [
+                "o-bolt-grid__cell",
+                "u-bolt-width-12/12",
+                percentWidth,
+              ]
+            }
+          } %}
+            {% include "@bolt-components-image/image.twig" with {
+              src: "/images/placeholders/thumb-square-abstract.jpg",
+              alt: "Image alt",
+            } only %}
+          {% endcell %}
+          {% cell "u-bolt-width-12/12 u-bolt-width-6/12@xsmall u-bolt-flex-grow u-bolt-margin-top-auto u-bolt-margin-bottom-auto" %}
+            {% include "@bolt-components-headline/headline.twig" with {
+              text: "This card's media is " ~ width ~ " wide",
+              size: "large",
+            } only %}
+            {% include "@bolt-components-headline/text.twig" with {
+              text: "This is a paragraph. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus.",
+            } only %}
+          {% endcell %}
+        {% endgrid %}
+      {% endset %}
+    {% endif %}
+    {% cell "u-bolt-width-12/12 u-bolt-width-8/12@small" %}
+      {% include "@bolt-components-card-replacement/card-replacement.twig" with {
+        link: {
+          url: "https://pega.com",
+          text: "Visit the Pega website"
+        },
+        spacing: "small",
+        height: "auto",
+        body: {
+          content: altHorizontalCardContent,
+        }
+      } only %}
+    {% endcell %}
+  {% endfor %}
 {% endgrid %}

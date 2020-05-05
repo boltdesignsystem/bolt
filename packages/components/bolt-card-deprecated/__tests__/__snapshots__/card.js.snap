@@ -20,8 +20,9 @@ exports[`<bolt-card> Component add clickable functionality 1`] = `
                     style="background-color: hsl(233, 33%, 97%);"
         >
           <bolt-ratio ratio="1151/638">
-            <replace-with-children class="c-bolt-ratio"
-                                   style="padding-bottom: calc((638 / 1151) * 100%); --aspect-ratio: 1.8040752351097;"
+            <ssr-keep for="bolt-ratio"
+                      class="c-bolt-ratio"
+                      style="padding-bottom: calc((638 / 1151) * 100%); --aspect-ratio: 1.8040752351097;"
             >
               <img class="c-bolt-image__image-placeholder"
                    alt="Anthem Video"
@@ -34,7 +35,7 @@ exports[`<bolt-card> Component add clickable functionality 1`] = `
                    sizes="auto"
                    src="/fixtures/landscape-16x9-mountains.jpg"
               >
-            </replace-with-children>
+            </ssr-keep>
           </bolt-ratio>
         </bolt-image>
       </a>
@@ -64,10 +65,14 @@ exports[`<bolt-card> Component add clickable functionality 1`] = `
              class="c-bolt-button c-bolt-button--medium c-bolt-button--text c-bolt-button--full c-bolt-button--border-radius-regular c-bolt-button--start"
              is="shadow-root"
           >
-            <replace-with-children class="c-bolt-button__item">
+            <ssr-keep for="bolt-button"
+                      class="c-bolt-button__item"
+            >
               Get the report
-            </replace-with-children>
-            <replace-with-children class="c-bolt-button__icon c-bolt-button__icon-sizer">
+            </ssr-keep>
+            <ssr-keep for="bolt-button"
+                      class="c-bolt-button__icon c-bolt-button__icon-sizer"
+            >
               <bolt-icon slot="after"
                          name="chevron-right"
               >
@@ -78,13 +83,13 @@ exports[`<bolt-card> Component add clickable functionality 1`] = `
                   >
                     <path fill="var(--bolt-theme-icon, currentColor)"
                           fill-rule="evenodd"
-                          d="M12.938 7.054a1.34 1.34 0 00-1.884 0 1.339 1.339 0 000 1.884l7.059 7.06-7.059 7.059a1.34 1.34 0 000 1.884 1.329 1.329 0 001.883 0l8-8a1.323 1.323 0 000-1.885l-7.999-8.002z"
+                          d="M13 7c-.6-.5-1.4-.5-2 0-.5.6-.5 1.4 0 2l7.1 7-7 7a1.3 1.3 0 00.9 2.3c.3 0 .7-.1 1-.4l8-8c.5-.5.5-1.3 0-1.8l-8-8z"
                     >
                     </path>
                   </svg>
                 </span>
               </bolt-icon>
-            </replace-with-children>
+            </ssr-keep>
           </a>
         </bolt-button>
       </div>
@@ -108,8 +113,9 @@ exports[`<bolt-card> Component basic usage 1`] = `
                   style="background-color: hsl(233, 33%, 97%);"
       >
         <bolt-ratio ratio="1151/638">
-          <replace-with-children class="c-bolt-ratio"
-                                 style="padding-bottom: calc((638 / 1151) * 100%); --aspect-ratio: 1.8040752351097;"
+          <ssr-keep for="bolt-ratio"
+                    class="c-bolt-ratio"
+                    style="padding-bottom: calc((638 / 1151) * 100%); --aspect-ratio: 1.8040752351097;"
           >
             <img class="c-bolt-image__image-placeholder"
                  alt="Anthem Video"
@@ -122,7 +128,7 @@ exports[`<bolt-card> Component basic usage 1`] = `
                  sizes="auto"
                  src="/fixtures/landscape-16x9-mountains.jpg"
             >
-          </replace-with-children>
+          </ssr-keep>
         </bolt-ratio>
       </bolt-image>
     </div>
@@ -151,10 +157,14 @@ exports[`<bolt-card> Component basic usage 1`] = `
              class="c-bolt-button c-bolt-button--medium c-bolt-button--text c-bolt-button--full c-bolt-button--border-radius-regular c-bolt-button--start"
              is="shadow-root"
           >
-            <replace-with-children class="c-bolt-button__item">
+            <ssr-keep for="bolt-button"
+                      class="c-bolt-button__item"
+            >
               Get the report
-            </replace-with-children>
-            <replace-with-children class="c-bolt-button__icon c-bolt-button__icon-sizer">
+            </ssr-keep>
+            <ssr-keep for="bolt-button"
+                      class="c-bolt-button__icon c-bolt-button__icon-sizer"
+            >
               <bolt-icon slot="after"
                          name="chevron-right"
               >
@@ -165,13 +175,13 @@ exports[`<bolt-card> Component basic usage 1`] = `
                   >
                     <path fill="var(--bolt-theme-icon, currentColor)"
                           fill-rule="evenodd"
-                          d="M12.938 7.054a1.34 1.34 0 00-1.884 0 1.339 1.339 0 000 1.884l7.059 7.06-7.059 7.059a1.34 1.34 0 000 1.884 1.329 1.329 0 001.883 0l8-8a1.323 1.323 0 000-1.885l-7.999-8.002z"
+                          d="M13 7c-.6-.5-1.4-.5-2 0-.5.6-.5 1.4 0 2l7.1 7-7 7a1.3 1.3 0 00.9 2.3c.3 0 .7-.1 1-.4l8-8c.5-.5.5-1.3 0-1.8l-8-8z"
                     >
                     </path>
                   </svg>
                 </span>
               </bolt-icon>
-            </replace-with-children>
+            </ssr-keep>
           </a>
         </bolt-button>
       </div>
@@ -195,8 +205,9 @@ exports[`<bolt-card> Component content tag variations: article 1`] = `
                   style="background-color: hsl(233, 33%, 97%);"
       >
         <bolt-ratio ratio="1151/638">
-          <replace-with-children class="c-bolt-ratio"
-                                 style="padding-bottom: calc((638 / 1151) * 100%); --aspect-ratio: 1.8040752351097;"
+          <ssr-keep for="bolt-ratio"
+                    class="c-bolt-ratio"
+                    style="padding-bottom: calc((638 / 1151) * 100%); --aspect-ratio: 1.8040752351097;"
           >
             <img class="c-bolt-image__image-placeholder"
                  alt="Anthem Video"
@@ -209,7 +220,7 @@ exports[`<bolt-card> Component content tag variations: article 1`] = `
                  sizes="auto"
                  src="/fixtures/landscape-16x9-mountains.jpg"
             >
-          </replace-with-children>
+          </ssr-keep>
         </bolt-ratio>
       </bolt-image>
     </div>
@@ -238,10 +249,14 @@ exports[`<bolt-card> Component content tag variations: article 1`] = `
              class="c-bolt-button c-bolt-button--medium c-bolt-button--text c-bolt-button--full c-bolt-button--border-radius-regular c-bolt-button--start"
              is="shadow-root"
           >
-            <replace-with-children class="c-bolt-button__item">
+            <ssr-keep for="bolt-button"
+                      class="c-bolt-button__item"
+            >
               Get the report
-            </replace-with-children>
-            <replace-with-children class="c-bolt-button__icon c-bolt-button__icon-sizer">
+            </ssr-keep>
+            <ssr-keep for="bolt-button"
+                      class="c-bolt-button__icon c-bolt-button__icon-sizer"
+            >
               <bolt-icon slot="after"
                          name="chevron-right"
               >
@@ -252,13 +267,13 @@ exports[`<bolt-card> Component content tag variations: article 1`] = `
                   >
                     <path fill="var(--bolt-theme-icon, currentColor)"
                           fill-rule="evenodd"
-                          d="M12.938 7.054a1.34 1.34 0 00-1.884 0 1.339 1.339 0 000 1.884l7.059 7.06-7.059 7.059a1.34 1.34 0 000 1.884 1.329 1.329 0 001.883 0l8-8a1.323 1.323 0 000-1.885l-7.999-8.002z"
+                          d="M13 7c-.6-.5-1.4-.5-2 0-.5.6-.5 1.4 0 2l7.1 7-7 7a1.3 1.3 0 00.9 2.3c.3 0 .7-.1 1-.4l8-8c.5-.5.5-1.3 0-1.8l-8-8z"
                     >
                     </path>
                   </svg>
                 </span>
               </bolt-icon>
-            </replace-with-children>
+            </ssr-keep>
           </a>
         </bolt-button>
       </div>
@@ -282,8 +297,9 @@ exports[`<bolt-card> Component content tag variations: div 1`] = `
                   style="background-color: hsl(233, 33%, 97%);"
       >
         <bolt-ratio ratio="1151/638">
-          <replace-with-children class="c-bolt-ratio"
-                                 style="padding-bottom: calc((638 / 1151) * 100%); --aspect-ratio: 1.8040752351097;"
+          <ssr-keep for="bolt-ratio"
+                    class="c-bolt-ratio"
+                    style="padding-bottom: calc((638 / 1151) * 100%); --aspect-ratio: 1.8040752351097;"
           >
             <img class="c-bolt-image__image-placeholder"
                  alt="Anthem Video"
@@ -296,7 +312,7 @@ exports[`<bolt-card> Component content tag variations: div 1`] = `
                  sizes="auto"
                  src="/fixtures/landscape-16x9-mountains.jpg"
             >
-          </replace-with-children>
+          </ssr-keep>
         </bolt-ratio>
       </bolt-image>
     </div>
@@ -325,10 +341,14 @@ exports[`<bolt-card> Component content tag variations: div 1`] = `
              class="c-bolt-button c-bolt-button--medium c-bolt-button--text c-bolt-button--full c-bolt-button--border-radius-regular c-bolt-button--start"
              is="shadow-root"
           >
-            <replace-with-children class="c-bolt-button__item">
+            <ssr-keep for="bolt-button"
+                      class="c-bolt-button__item"
+            >
               Get the report
-            </replace-with-children>
-            <replace-with-children class="c-bolt-button__icon c-bolt-button__icon-sizer">
+            </ssr-keep>
+            <ssr-keep for="bolt-button"
+                      class="c-bolt-button__icon c-bolt-button__icon-sizer"
+            >
               <bolt-icon slot="after"
                          name="chevron-right"
               >
@@ -339,13 +359,13 @@ exports[`<bolt-card> Component content tag variations: div 1`] = `
                   >
                     <path fill="var(--bolt-theme-icon, currentColor)"
                           fill-rule="evenodd"
-                          d="M12.938 7.054a1.34 1.34 0 00-1.884 0 1.339 1.339 0 000 1.884l7.059 7.06-7.059 7.059a1.34 1.34 0 000 1.884 1.329 1.329 0 001.883 0l8-8a1.323 1.323 0 000-1.885l-7.999-8.002z"
+                          d="M13 7c-.6-.5-1.4-.5-2 0-.5.6-.5 1.4 0 2l7.1 7-7 7a1.3 1.3 0 00.9 2.3c.3 0 .7-.1 1-.4l8-8c.5-.5.5-1.3 0-1.8l-8-8z"
                     >
                     </path>
                   </svg>
                 </span>
               </bolt-icon>
-            </replace-with-children>
+            </ssr-keep>
           </a>
         </bolt-button>
       </div>
@@ -369,8 +389,9 @@ exports[`<bolt-card> Component content tag variations: figcaption 1`] = `
                   style="background-color: hsl(233, 33%, 97%);"
       >
         <bolt-ratio ratio="1151/638">
-          <replace-with-children class="c-bolt-ratio"
-                                 style="padding-bottom: calc((638 / 1151) * 100%); --aspect-ratio: 1.8040752351097;"
+          <ssr-keep for="bolt-ratio"
+                    class="c-bolt-ratio"
+                    style="padding-bottom: calc((638 / 1151) * 100%); --aspect-ratio: 1.8040752351097;"
           >
             <img class="c-bolt-image__image-placeholder"
                  alt="Anthem Video"
@@ -383,7 +404,7 @@ exports[`<bolt-card> Component content tag variations: figcaption 1`] = `
                  sizes="auto"
                  src="/fixtures/landscape-16x9-mountains.jpg"
             >
-          </replace-with-children>
+          </ssr-keep>
         </bolt-ratio>
       </bolt-image>
     </div>
@@ -412,10 +433,14 @@ exports[`<bolt-card> Component content tag variations: figcaption 1`] = `
              class="c-bolt-button c-bolt-button--medium c-bolt-button--text c-bolt-button--full c-bolt-button--border-radius-regular c-bolt-button--start"
              is="shadow-root"
           >
-            <replace-with-children class="c-bolt-button__item">
+            <ssr-keep for="bolt-button"
+                      class="c-bolt-button__item"
+            >
               Get the report
-            </replace-with-children>
-            <replace-with-children class="c-bolt-button__icon c-bolt-button__icon-sizer">
+            </ssr-keep>
+            <ssr-keep for="bolt-button"
+                      class="c-bolt-button__icon c-bolt-button__icon-sizer"
+            >
               <bolt-icon slot="after"
                          name="chevron-right"
               >
@@ -426,13 +451,13 @@ exports[`<bolt-card> Component content tag variations: figcaption 1`] = `
                   >
                     <path fill="var(--bolt-theme-icon, currentColor)"
                           fill-rule="evenodd"
-                          d="M12.938 7.054a1.34 1.34 0 00-1.884 0 1.339 1.339 0 000 1.884l7.059 7.06-7.059 7.059a1.34 1.34 0 000 1.884 1.329 1.329 0 001.883 0l8-8a1.323 1.323 0 000-1.885l-7.999-8.002z"
+                          d="M13 7c-.6-.5-1.4-.5-2 0-.5.6-.5 1.4 0 2l7.1 7-7 7a1.3 1.3 0 00.9 2.3c.3 0 .7-.1 1-.4l8-8c.5-.5.5-1.3 0-1.8l-8-8z"
                     >
                     </path>
                   </svg>
                 </span>
               </bolt-icon>
-            </replace-with-children>
+            </ssr-keep>
           </a>
         </bolt-button>
       </div>
@@ -456,8 +481,9 @@ exports[`<bolt-card> Component content tag variations: section 1`] = `
                   style="background-color: hsl(233, 33%, 97%);"
       >
         <bolt-ratio ratio="1151/638">
-          <replace-with-children class="c-bolt-ratio"
-                                 style="padding-bottom: calc((638 / 1151) * 100%); --aspect-ratio: 1.8040752351097;"
+          <ssr-keep for="bolt-ratio"
+                    class="c-bolt-ratio"
+                    style="padding-bottom: calc((638 / 1151) * 100%); --aspect-ratio: 1.8040752351097;"
           >
             <img class="c-bolt-image__image-placeholder"
                  alt="Anthem Video"
@@ -470,7 +496,7 @@ exports[`<bolt-card> Component content tag variations: section 1`] = `
                  sizes="auto"
                  src="/fixtures/landscape-16x9-mountains.jpg"
             >
-          </replace-with-children>
+          </ssr-keep>
         </bolt-ratio>
       </bolt-image>
     </div>
@@ -499,10 +525,14 @@ exports[`<bolt-card> Component content tag variations: section 1`] = `
              class="c-bolt-button c-bolt-button--medium c-bolt-button--text c-bolt-button--full c-bolt-button--border-radius-regular c-bolt-button--start"
              is="shadow-root"
           >
-            <replace-with-children class="c-bolt-button__item">
+            <ssr-keep for="bolt-button"
+                      class="c-bolt-button__item"
+            >
               Get the report
-            </replace-with-children>
-            <replace-with-children class="c-bolt-button__icon c-bolt-button__icon-sizer">
+            </ssr-keep>
+            <ssr-keep for="bolt-button"
+                      class="c-bolt-button__icon c-bolt-button__icon-sizer"
+            >
               <bolt-icon slot="after"
                          name="chevron-right"
               >
@@ -513,13 +543,13 @@ exports[`<bolt-card> Component content tag variations: section 1`] = `
                   >
                     <path fill="var(--bolt-theme-icon, currentColor)"
                           fill-rule="evenodd"
-                          d="M12.938 7.054a1.34 1.34 0 00-1.884 0 1.339 1.339 0 000 1.884l7.059 7.06-7.059 7.059a1.34 1.34 0 000 1.884 1.329 1.329 0 001.883 0l8-8a1.323 1.323 0 000-1.885l-7.999-8.002z"
+                          d="M13 7c-.6-.5-1.4-.5-2 0-.5.6-.5 1.4 0 2l7.1 7-7 7a1.3 1.3 0 00.9 2.3c.3 0 .7-.1 1-.4l8-8c.5-.5.5-1.3 0-1.8l-8-8z"
                     >
                     </path>
                   </svg>
                 </span>
               </bolt-icon>
-            </replace-with-children>
+            </ssr-keep>
           </a>
         </bolt-button>
       </div>
@@ -562,8 +592,9 @@ exports[`<bolt-card> Component tag variations: article 1`] = `
                   style="background-color: hsl(233, 33%, 97%);"
       >
         <bolt-ratio ratio="1151/638">
-          <replace-with-children class="c-bolt-ratio"
-                                 style="padding-bottom: calc((638 / 1151) * 100%); --aspect-ratio: 1.8040752351097;"
+          <ssr-keep for="bolt-ratio"
+                    class="c-bolt-ratio"
+                    style="padding-bottom: calc((638 / 1151) * 100%); --aspect-ratio: 1.8040752351097;"
           >
             <img class="c-bolt-image__image-placeholder"
                  alt="Anthem Video"
@@ -576,7 +607,7 @@ exports[`<bolt-card> Component tag variations: article 1`] = `
                  sizes="auto"
                  src="/fixtures/landscape-16x9-mountains.jpg"
             >
-          </replace-with-children>
+          </ssr-keep>
         </bolt-ratio>
       </bolt-image>
     </div>
@@ -605,10 +636,14 @@ exports[`<bolt-card> Component tag variations: article 1`] = `
              class="c-bolt-button c-bolt-button--medium c-bolt-button--text c-bolt-button--full c-bolt-button--border-radius-regular c-bolt-button--start"
              is="shadow-root"
           >
-            <replace-with-children class="c-bolt-button__item">
+            <ssr-keep for="bolt-button"
+                      class="c-bolt-button__item"
+            >
               Get the report
-            </replace-with-children>
-            <replace-with-children class="c-bolt-button__icon c-bolt-button__icon-sizer">
+            </ssr-keep>
+            <ssr-keep for="bolt-button"
+                      class="c-bolt-button__icon c-bolt-button__icon-sizer"
+            >
               <bolt-icon slot="after"
                          name="chevron-right"
               >
@@ -619,13 +654,13 @@ exports[`<bolt-card> Component tag variations: article 1`] = `
                   >
                     <path fill="var(--bolt-theme-icon, currentColor)"
                           fill-rule="evenodd"
-                          d="M12.938 7.054a1.34 1.34 0 00-1.884 0 1.339 1.339 0 000 1.884l7.059 7.06-7.059 7.059a1.34 1.34 0 000 1.884 1.329 1.329 0 001.883 0l8-8a1.323 1.323 0 000-1.885l-7.999-8.002z"
+                          d="M13 7c-.6-.5-1.4-.5-2 0-.5.6-.5 1.4 0 2l7.1 7-7 7a1.3 1.3 0 00.9 2.3c.3 0 .7-.1 1-.4l8-8c.5-.5.5-1.3 0-1.8l-8-8z"
                     >
                     </path>
                   </svg>
                 </span>
               </bolt-icon>
-            </replace-with-children>
+            </ssr-keep>
           </a>
         </bolt-button>
       </div>
@@ -649,8 +684,9 @@ exports[`<bolt-card> Component tag variations: div 1`] = `
                   style="background-color: hsl(233, 33%, 97%);"
       >
         <bolt-ratio ratio="1151/638">
-          <replace-with-children class="c-bolt-ratio"
-                                 style="padding-bottom: calc((638 / 1151) * 100%); --aspect-ratio: 1.8040752351097;"
+          <ssr-keep for="bolt-ratio"
+                    class="c-bolt-ratio"
+                    style="padding-bottom: calc((638 / 1151) * 100%); --aspect-ratio: 1.8040752351097;"
           >
             <img class="c-bolt-image__image-placeholder"
                  alt="Anthem Video"
@@ -663,7 +699,7 @@ exports[`<bolt-card> Component tag variations: div 1`] = `
                  sizes="auto"
                  src="/fixtures/landscape-16x9-mountains.jpg"
             >
-          </replace-with-children>
+          </ssr-keep>
         </bolt-ratio>
       </bolt-image>
     </div>
@@ -692,10 +728,14 @@ exports[`<bolt-card> Component tag variations: div 1`] = `
              class="c-bolt-button c-bolt-button--medium c-bolt-button--text c-bolt-button--full c-bolt-button--border-radius-regular c-bolt-button--start"
              is="shadow-root"
           >
-            <replace-with-children class="c-bolt-button__item">
+            <ssr-keep for="bolt-button"
+                      class="c-bolt-button__item"
+            >
               Get the report
-            </replace-with-children>
-            <replace-with-children class="c-bolt-button__icon c-bolt-button__icon-sizer">
+            </ssr-keep>
+            <ssr-keep for="bolt-button"
+                      class="c-bolt-button__icon c-bolt-button__icon-sizer"
+            >
               <bolt-icon slot="after"
                          name="chevron-right"
               >
@@ -706,13 +746,13 @@ exports[`<bolt-card> Component tag variations: div 1`] = `
                   >
                     <path fill="var(--bolt-theme-icon, currentColor)"
                           fill-rule="evenodd"
-                          d="M12.938 7.054a1.34 1.34 0 00-1.884 0 1.339 1.339 0 000 1.884l7.059 7.06-7.059 7.059a1.34 1.34 0 000 1.884 1.329 1.329 0 001.883 0l8-8a1.323 1.323 0 000-1.885l-7.999-8.002z"
+                          d="M13 7c-.6-.5-1.4-.5-2 0-.5.6-.5 1.4 0 2l7.1 7-7 7a1.3 1.3 0 00.9 2.3c.3 0 .7-.1 1-.4l8-8c.5-.5.5-1.3 0-1.8l-8-8z"
                     >
                     </path>
                   </svg>
                 </span>
               </bolt-icon>
-            </replace-with-children>
+            </ssr-keep>
           </a>
         </bolt-button>
       </div>
@@ -736,8 +776,9 @@ exports[`<bolt-card> Component tag variations: figure 1`] = `
                   style="background-color: hsl(233, 33%, 97%);"
       >
         <bolt-ratio ratio="1151/638">
-          <replace-with-children class="c-bolt-ratio"
-                                 style="padding-bottom: calc((638 / 1151) * 100%); --aspect-ratio: 1.8040752351097;"
+          <ssr-keep for="bolt-ratio"
+                    class="c-bolt-ratio"
+                    style="padding-bottom: calc((638 / 1151) * 100%); --aspect-ratio: 1.8040752351097;"
           >
             <img class="c-bolt-image__image-placeholder"
                  alt="Anthem Video"
@@ -750,7 +791,7 @@ exports[`<bolt-card> Component tag variations: figure 1`] = `
                  sizes="auto"
                  src="/fixtures/landscape-16x9-mountains.jpg"
             >
-          </replace-with-children>
+          </ssr-keep>
         </bolt-ratio>
       </bolt-image>
     </div>
@@ -779,10 +820,14 @@ exports[`<bolt-card> Component tag variations: figure 1`] = `
              class="c-bolt-button c-bolt-button--medium c-bolt-button--text c-bolt-button--full c-bolt-button--border-radius-regular c-bolt-button--start"
              is="shadow-root"
           >
-            <replace-with-children class="c-bolt-button__item">
+            <ssr-keep for="bolt-button"
+                      class="c-bolt-button__item"
+            >
               Get the report
-            </replace-with-children>
-            <replace-with-children class="c-bolt-button__icon c-bolt-button__icon-sizer">
+            </ssr-keep>
+            <ssr-keep for="bolt-button"
+                      class="c-bolt-button__icon c-bolt-button__icon-sizer"
+            >
               <bolt-icon slot="after"
                          name="chevron-right"
               >
@@ -793,13 +838,13 @@ exports[`<bolt-card> Component tag variations: figure 1`] = `
                   >
                     <path fill="var(--bolt-theme-icon, currentColor)"
                           fill-rule="evenodd"
-                          d="M12.938 7.054a1.34 1.34 0 00-1.884 0 1.339 1.339 0 000 1.884l7.059 7.06-7.059 7.059a1.34 1.34 0 000 1.884 1.329 1.329 0 001.883 0l8-8a1.323 1.323 0 000-1.885l-7.999-8.002z"
+                          d="M13 7c-.6-.5-1.4-.5-2 0-.5.6-.5 1.4 0 2l7.1 7-7 7a1.3 1.3 0 00.9 2.3c.3 0 .7-.1 1-.4l8-8c.5-.5.5-1.3 0-1.8l-8-8z"
                     >
                     </path>
                   </svg>
                 </span>
               </bolt-icon>
-            </replace-with-children>
+            </ssr-keep>
           </a>
         </bolt-button>
       </div>
@@ -823,8 +868,9 @@ exports[`<bolt-card> Component tag variations: section 1`] = `
                   style="background-color: hsl(233, 33%, 97%);"
       >
         <bolt-ratio ratio="1151/638">
-          <replace-with-children class="c-bolt-ratio"
-                                 style="padding-bottom: calc((638 / 1151) * 100%); --aspect-ratio: 1.8040752351097;"
+          <ssr-keep for="bolt-ratio"
+                    class="c-bolt-ratio"
+                    style="padding-bottom: calc((638 / 1151) * 100%); --aspect-ratio: 1.8040752351097;"
           >
             <img class="c-bolt-image__image-placeholder"
                  alt="Anthem Video"
@@ -837,7 +883,7 @@ exports[`<bolt-card> Component tag variations: section 1`] = `
                  sizes="auto"
                  src="/fixtures/landscape-16x9-mountains.jpg"
             >
-          </replace-with-children>
+          </ssr-keep>
         </bolt-ratio>
       </bolt-image>
     </div>
@@ -866,10 +912,14 @@ exports[`<bolt-card> Component tag variations: section 1`] = `
              class="c-bolt-button c-bolt-button--medium c-bolt-button--text c-bolt-button--full c-bolt-button--border-radius-regular c-bolt-button--start"
              is="shadow-root"
           >
-            <replace-with-children class="c-bolt-button__item">
+            <ssr-keep for="bolt-button"
+                      class="c-bolt-button__item"
+            >
               Get the report
-            </replace-with-children>
-            <replace-with-children class="c-bolt-button__icon c-bolt-button__icon-sizer">
+            </ssr-keep>
+            <ssr-keep for="bolt-button"
+                      class="c-bolt-button__icon c-bolt-button__icon-sizer"
+            >
               <bolt-icon slot="after"
                          name="chevron-right"
               >
@@ -880,13 +930,13 @@ exports[`<bolt-card> Component tag variations: section 1`] = `
                   >
                     <path fill="var(--bolt-theme-icon, currentColor)"
                           fill-rule="evenodd"
-                          d="M12.938 7.054a1.34 1.34 0 00-1.884 0 1.339 1.339 0 000 1.884l7.059 7.06-7.059 7.059a1.34 1.34 0 000 1.884 1.329 1.329 0 001.883 0l8-8a1.323 1.323 0 000-1.885l-7.999-8.002z"
+                          d="M13 7c-.6-.5-1.4-.5-2 0-.5.6-.5 1.4 0 2l7.1 7-7 7a1.3 1.3 0 00.9 2.3c.3 0 .7-.1 1-.4l8-8c.5-.5.5-1.3 0-1.8l-8-8z"
                     >
                     </path>
                   </svg>
                 </span>
               </bolt-icon>
-            </replace-with-children>
+            </ssr-keep>
           </a>
         </bolt-button>
       </div>
@@ -912,8 +962,9 @@ exports[`<bolt-card> Component theme variations: dark 1`] = `
                   style="background-color: hsl(233, 33%, 97%);"
       >
         <bolt-ratio ratio="1151/638">
-          <replace-with-children class="c-bolt-ratio"
-                                 style="padding-bottom: calc((638 / 1151) * 100%); --aspect-ratio: 1.8040752351097;"
+          <ssr-keep for="bolt-ratio"
+                    class="c-bolt-ratio"
+                    style="padding-bottom: calc((638 / 1151) * 100%); --aspect-ratio: 1.8040752351097;"
           >
             <img class="c-bolt-image__image-placeholder"
                  alt="Anthem Video"
@@ -926,7 +977,7 @@ exports[`<bolt-card> Component theme variations: dark 1`] = `
                  sizes="auto"
                  src="/fixtures/landscape-16x9-mountains.jpg"
             >
-          </replace-with-children>
+          </ssr-keep>
         </bolt-ratio>
       </bolt-image>
     </div>
@@ -955,10 +1006,14 @@ exports[`<bolt-card> Component theme variations: dark 1`] = `
              class="c-bolt-button c-bolt-button--medium c-bolt-button--text c-bolt-button--full c-bolt-button--border-radius-regular c-bolt-button--start"
              is="shadow-root"
           >
-            <replace-with-children class="c-bolt-button__item">
+            <ssr-keep for="bolt-button"
+                      class="c-bolt-button__item"
+            >
               Get the report
-            </replace-with-children>
-            <replace-with-children class="c-bolt-button__icon c-bolt-button__icon-sizer">
+            </ssr-keep>
+            <ssr-keep for="bolt-button"
+                      class="c-bolt-button__icon c-bolt-button__icon-sizer"
+            >
               <bolt-icon slot="after"
                          name="chevron-right"
               >
@@ -969,13 +1024,13 @@ exports[`<bolt-card> Component theme variations: dark 1`] = `
                   >
                     <path fill="var(--bolt-theme-icon, currentColor)"
                           fill-rule="evenodd"
-                          d="M12.938 7.054a1.34 1.34 0 00-1.884 0 1.339 1.339 0 000 1.884l7.059 7.06-7.059 7.059a1.34 1.34 0 000 1.884 1.329 1.329 0 001.883 0l8-8a1.323 1.323 0 000-1.885l-7.999-8.002z"
+                          d="M13 7c-.6-.5-1.4-.5-2 0-.5.6-.5 1.4 0 2l7.1 7-7 7a1.3 1.3 0 00.9 2.3c.3 0 .7-.1 1-.4l8-8c.5-.5.5-1.3 0-1.8l-8-8z"
                     >
                     </path>
                   </svg>
                 </span>
               </bolt-icon>
-            </replace-with-children>
+            </ssr-keep>
           </a>
         </bolt-button>
       </div>
@@ -1001,8 +1056,9 @@ exports[`<bolt-card> Component theme variations: light 1`] = `
                   style="background-color: hsl(233, 33%, 97%);"
       >
         <bolt-ratio ratio="1151/638">
-          <replace-with-children class="c-bolt-ratio"
-                                 style="padding-bottom: calc((638 / 1151) * 100%); --aspect-ratio: 1.8040752351097;"
+          <ssr-keep for="bolt-ratio"
+                    class="c-bolt-ratio"
+                    style="padding-bottom: calc((638 / 1151) * 100%); --aspect-ratio: 1.8040752351097;"
           >
             <img class="c-bolt-image__image-placeholder"
                  alt="Anthem Video"
@@ -1015,7 +1071,7 @@ exports[`<bolt-card> Component theme variations: light 1`] = `
                  sizes="auto"
                  src="/fixtures/landscape-16x9-mountains.jpg"
             >
-          </replace-with-children>
+          </ssr-keep>
         </bolt-ratio>
       </bolt-image>
     </div>
@@ -1044,10 +1100,14 @@ exports[`<bolt-card> Component theme variations: light 1`] = `
              class="c-bolt-button c-bolt-button--medium c-bolt-button--text c-bolt-button--full c-bolt-button--border-radius-regular c-bolt-button--start"
              is="shadow-root"
           >
-            <replace-with-children class="c-bolt-button__item">
+            <ssr-keep for="bolt-button"
+                      class="c-bolt-button__item"
+            >
               Get the report
-            </replace-with-children>
-            <replace-with-children class="c-bolt-button__icon c-bolt-button__icon-sizer">
+            </ssr-keep>
+            <ssr-keep for="bolt-button"
+                      class="c-bolt-button__icon c-bolt-button__icon-sizer"
+            >
               <bolt-icon slot="after"
                          name="chevron-right"
               >
@@ -1058,13 +1118,13 @@ exports[`<bolt-card> Component theme variations: light 1`] = `
                   >
                     <path fill="var(--bolt-theme-icon, currentColor)"
                           fill-rule="evenodd"
-                          d="M12.938 7.054a1.34 1.34 0 00-1.884 0 1.339 1.339 0 000 1.884l7.059 7.06-7.059 7.059a1.34 1.34 0 000 1.884 1.329 1.329 0 001.883 0l8-8a1.323 1.323 0 000-1.885l-7.999-8.002z"
+                          d="M13 7c-.6-.5-1.4-.5-2 0-.5.6-.5 1.4 0 2l7.1 7-7 7a1.3 1.3 0 00.9 2.3c.3 0 .7-.1 1-.4l8-8c.5-.5.5-1.3 0-1.8l-8-8z"
                     >
                     </path>
                   </svg>
                 </span>
               </bolt-icon>
-            </replace-with-children>
+            </ssr-keep>
           </a>
         </bolt-button>
       </div>
@@ -1090,8 +1150,9 @@ exports[`<bolt-card> Component theme variations: xdark 1`] = `
                   style="background-color: hsl(233, 33%, 97%);"
       >
         <bolt-ratio ratio="1151/638">
-          <replace-with-children class="c-bolt-ratio"
-                                 style="padding-bottom: calc((638 / 1151) * 100%); --aspect-ratio: 1.8040752351097;"
+          <ssr-keep for="bolt-ratio"
+                    class="c-bolt-ratio"
+                    style="padding-bottom: calc((638 / 1151) * 100%); --aspect-ratio: 1.8040752351097;"
           >
             <img class="c-bolt-image__image-placeholder"
                  alt="Anthem Video"
@@ -1104,7 +1165,7 @@ exports[`<bolt-card> Component theme variations: xdark 1`] = `
                  sizes="auto"
                  src="/fixtures/landscape-16x9-mountains.jpg"
             >
-          </replace-with-children>
+          </ssr-keep>
         </bolt-ratio>
       </bolt-image>
     </div>
@@ -1133,10 +1194,14 @@ exports[`<bolt-card> Component theme variations: xdark 1`] = `
              class="c-bolt-button c-bolt-button--medium c-bolt-button--text c-bolt-button--full c-bolt-button--border-radius-regular c-bolt-button--start"
              is="shadow-root"
           >
-            <replace-with-children class="c-bolt-button__item">
+            <ssr-keep for="bolt-button"
+                      class="c-bolt-button__item"
+            >
               Get the report
-            </replace-with-children>
-            <replace-with-children class="c-bolt-button__icon c-bolt-button__icon-sizer">
+            </ssr-keep>
+            <ssr-keep for="bolt-button"
+                      class="c-bolt-button__icon c-bolt-button__icon-sizer"
+            >
               <bolt-icon slot="after"
                          name="chevron-right"
               >
@@ -1147,13 +1212,13 @@ exports[`<bolt-card> Component theme variations: xdark 1`] = `
                   >
                     <path fill="var(--bolt-theme-icon, currentColor)"
                           fill-rule="evenodd"
-                          d="M12.938 7.054a1.34 1.34 0 00-1.884 0 1.339 1.339 0 000 1.884l7.059 7.06-7.059 7.059a1.34 1.34 0 000 1.884 1.329 1.329 0 001.883 0l8-8a1.323 1.323 0 000-1.885l-7.999-8.002z"
+                          d="M13 7c-.6-.5-1.4-.5-2 0-.5.6-.5 1.4 0 2l7.1 7-7 7a1.3 1.3 0 00.9 2.3c.3 0 .7-.1 1-.4l8-8c.5-.5.5-1.3 0-1.8l-8-8z"
                     >
                     </path>
                   </svg>
                 </span>
               </bolt-icon>
-            </replace-with-children>
+            </ssr-keep>
           </a>
         </bolt-button>
       </div>
@@ -1179,8 +1244,9 @@ exports[`<bolt-card> Component theme variations: xlight 1`] = `
                   style="background-color: hsl(233, 33%, 97%);"
       >
         <bolt-ratio ratio="1151/638">
-          <replace-with-children class="c-bolt-ratio"
-                                 style="padding-bottom: calc((638 / 1151) * 100%); --aspect-ratio: 1.8040752351097;"
+          <ssr-keep for="bolt-ratio"
+                    class="c-bolt-ratio"
+                    style="padding-bottom: calc((638 / 1151) * 100%); --aspect-ratio: 1.8040752351097;"
           >
             <img class="c-bolt-image__image-placeholder"
                  alt="Anthem Video"
@@ -1193,7 +1259,7 @@ exports[`<bolt-card> Component theme variations: xlight 1`] = `
                  sizes="auto"
                  src="/fixtures/landscape-16x9-mountains.jpg"
             >
-          </replace-with-children>
+          </ssr-keep>
         </bolt-ratio>
       </bolt-image>
     </div>
@@ -1222,10 +1288,14 @@ exports[`<bolt-card> Component theme variations: xlight 1`] = `
              class="c-bolt-button c-bolt-button--medium c-bolt-button--text c-bolt-button--full c-bolt-button--border-radius-regular c-bolt-button--start"
              is="shadow-root"
           >
-            <replace-with-children class="c-bolt-button__item">
+            <ssr-keep for="bolt-button"
+                      class="c-bolt-button__item"
+            >
               Get the report
-            </replace-with-children>
-            <replace-with-children class="c-bolt-button__icon c-bolt-button__icon-sizer">
+            </ssr-keep>
+            <ssr-keep for="bolt-button"
+                      class="c-bolt-button__icon c-bolt-button__icon-sizer"
+            >
               <bolt-icon slot="after"
                          name="chevron-right"
               >
@@ -1236,13 +1306,13 @@ exports[`<bolt-card> Component theme variations: xlight 1`] = `
                   >
                     <path fill="var(--bolt-theme-icon, currentColor)"
                           fill-rule="evenodd"
-                          d="M12.938 7.054a1.34 1.34 0 00-1.884 0 1.339 1.339 0 000 1.884l7.059 7.06-7.059 7.059a1.34 1.34 0 000 1.884 1.329 1.329 0 001.883 0l8-8a1.323 1.323 0 000-1.885l-7.999-8.002z"
+                          d="M13 7c-.6-.5-1.4-.5-2 0-.5.6-.5 1.4 0 2l7.1 7-7 7a1.3 1.3 0 00.9 2.3c.3 0 .7-.1 1-.4l8-8c.5-.5.5-1.3 0-1.8l-8-8z"
                     >
                     </path>
                   </svg>
                 </span>
               </bolt-icon>
-            </replace-with-children>
+            </ssr-keep>
           </a>
         </bolt-button>
       </div>
@@ -1266,8 +1336,9 @@ exports[`<bolt-card> Component with two buttons in footer 1`] = `
                   style="background-color: hsl(233, 33%, 97%);"
       >
         <bolt-ratio ratio="1151/638">
-          <replace-with-children class="c-bolt-ratio"
-                                 style="padding-bottom: calc((638 / 1151) * 100%); --aspect-ratio: 1.8040752351097;"
+          <ssr-keep for="bolt-ratio"
+                    class="c-bolt-ratio"
+                    style="padding-bottom: calc((638 / 1151) * 100%); --aspect-ratio: 1.8040752351097;"
           >
             <img class="c-bolt-image__image-placeholder"
                  alt="Anthem Video"
@@ -1280,7 +1351,7 @@ exports[`<bolt-card> Component with two buttons in footer 1`] = `
                  sizes="auto"
                  src="/fixtures/landscape-16x9-mountains.jpg"
             >
-          </replace-with-children>
+          </ssr-keep>
         </bolt-ratio>
       </bolt-image>
     </div>
@@ -1309,10 +1380,14 @@ exports[`<bolt-card> Component with two buttons in footer 1`] = `
              class="c-bolt-button c-bolt-button--medium c-bolt-button--text c-bolt-button--full c-bolt-button--border-radius-regular c-bolt-button--start"
              is="shadow-root"
           >
-            <replace-with-children class="c-bolt-button__item">
+            <ssr-keep for="bolt-button"
+                      class="c-bolt-button__item"
+            >
               Get the report
-            </replace-with-children>
-            <replace-with-children class="c-bolt-button__icon c-bolt-button__icon-sizer">
+            </ssr-keep>
+            <ssr-keep for="bolt-button"
+                      class="c-bolt-button__icon c-bolt-button__icon-sizer"
+            >
               <bolt-icon slot="after"
                          name="chevron-right"
               >
@@ -1323,13 +1398,13 @@ exports[`<bolt-card> Component with two buttons in footer 1`] = `
                   >
                     <path fill="var(--bolt-theme-icon, currentColor)"
                           fill-rule="evenodd"
-                          d="M12.938 7.054a1.34 1.34 0 00-1.884 0 1.339 1.339 0 000 1.884l7.059 7.06-7.059 7.059a1.34 1.34 0 000 1.884 1.329 1.329 0 001.883 0l8-8a1.323 1.323 0 000-1.885l-7.999-8.002z"
+                          d="M13 7c-.6-.5-1.4-.5-2 0-.5.6-.5 1.4 0 2l7.1 7-7 7a1.3 1.3 0 00.9 2.3c.3 0 .7-.1 1-.4l8-8c.5-.5.5-1.3 0-1.8l-8-8z"
                     >
                     </path>
                   </svg>
                 </span>
               </bolt-icon>
-            </replace-with-children>
+            </ssr-keep>
           </a>
         </bolt-button>
       </div>
@@ -1346,10 +1421,14 @@ exports[`<bolt-card> Component with two buttons in footer 1`] = `
              class="c-bolt-button c-bolt-button--medium c-bolt-button--text c-bolt-button--full c-bolt-button--border-radius-regular c-bolt-button--start"
              is="shadow-root"
           >
-            <replace-with-children class="c-bolt-button__item">
+            <ssr-keep for="bolt-button"
+                      class="c-bolt-button__item"
+            >
               Get the second report
-            </replace-with-children>
-            <replace-with-children class="c-bolt-button__icon c-bolt-button__icon-sizer">
+            </ssr-keep>
+            <ssr-keep for="bolt-button"
+                      class="c-bolt-button__icon c-bolt-button__icon-sizer"
+            >
               <bolt-icon slot="after"
                          name="chevron-right"
               >
@@ -1360,13 +1439,13 @@ exports[`<bolt-card> Component with two buttons in footer 1`] = `
                   >
                     <path fill="var(--bolt-theme-icon, currentColor)"
                           fill-rule="evenodd"
-                          d="M12.938 7.054a1.34 1.34 0 00-1.884 0 1.339 1.339 0 000 1.884l7.059 7.06-7.059 7.059a1.34 1.34 0 000 1.884 1.329 1.329 0 001.883 0l8-8a1.323 1.323 0 000-1.885l-7.999-8.002z"
+                          d="M13 7c-.6-.5-1.4-.5-2 0-.5.6-.5 1.4 0 2l7.1 7-7 7a1.3 1.3 0 00.9 2.3c.3 0 .7-.1 1-.4l8-8c.5-.5.5-1.3 0-1.8l-8-8z"
                     >
                     </path>
                   </svg>
                 </span>
               </bolt-icon>
-            </replace-with-children>
+            </ssr-keep>
           </a>
         </bolt-button>
       </div>
@@ -1380,8 +1459,9 @@ exports[`<bolt-card> Component with video in header 1`] = `
   <div class="c-bolt-card">
     <div class="c-bolt-card__media">
       <bolt-ratio ratio="16/9">
-        <replace-with-children class="c-bolt-ratio"
-                               style="padding-bottom: calc((9 / 16) * 100%); --aspect-ratio: 1.7777777777778;"
+        <ssr-keep for="bolt-ratio"
+                  class="c-bolt-ratio"
+                  style="padding-bottom: calc((9 / 16) * 100%); --aspect-ratio: 1.7777777777778;"
         >
           <bolt-video class="js-bolt-video-uuid--3c"
                       video-id="5609376179001"
@@ -1392,7 +1472,7 @@ exports[`<bolt-card> Component with video in header 1`] = `
                       share-description="Share This Video"
           >
           </bolt-video>
-        </replace-with-children>
+        </ssr-keep>
       </bolt-ratio>
     </div>
     <div class="c-bolt-card__body">
@@ -1420,10 +1500,14 @@ exports[`<bolt-card> Component with video in header 1`] = `
           <button class="c-bolt-button c-bolt-button--medium c-bolt-button--text c-bolt-button--full c-bolt-button--border-radius-regular c-bolt-button--start"
                   is="shadow-root"
           >
-            <replace-with-children class="c-bolt-button__item">
+            <ssr-keep for="bolt-button"
+                      class="c-bolt-button__item"
+            >
               Play or Pause
-            </replace-with-children>
-            <replace-with-children class="c-bolt-button__icon c-bolt-button__icon-sizer">
+            </ssr-keep>
+            <ssr-keep for="bolt-button"
+                      class="c-bolt-button__icon c-bolt-button__icon-sizer"
+            >
               <bolt-icon slot="after"
                          name="chevron-right"
               >
@@ -1434,13 +1518,13 @@ exports[`<bolt-card> Component with video in header 1`] = `
                   >
                     <path fill="var(--bolt-theme-icon, currentColor)"
                           fill-rule="evenodd"
-                          d="M12.938 7.054a1.34 1.34 0 00-1.884 0 1.339 1.339 0 000 1.884l7.059 7.06-7.059 7.059a1.34 1.34 0 000 1.884 1.329 1.329 0 001.883 0l8-8a1.323 1.323 0 000-1.885l-7.999-8.002z"
+                          d="M13 7c-.6-.5-1.4-.5-2 0-.5.6-.5 1.4 0 2l7.1 7-7 7a1.3 1.3 0 00.9 2.3c.3 0 .7-.1 1-.4l8-8c.5-.5.5-1.3 0-1.8l-8-8z"
                     >
                     </path>
                   </svg>
                 </span>
               </bolt-icon>
-            </replace-with-children>
+            </ssr-keep>
           </button>
         </bolt-button>
       </div>
@@ -1464,8 +1548,9 @@ exports[`<bolt-card> Component without footer 1`] = `
                   style="background-color: hsl(233, 33%, 97%);"
       >
         <bolt-ratio ratio="1151/638">
-          <replace-with-children class="c-bolt-ratio"
-                                 style="padding-bottom: calc((638 / 1151) * 100%); --aspect-ratio: 1.8040752351097;"
+          <ssr-keep for="bolt-ratio"
+                    class="c-bolt-ratio"
+                    style="padding-bottom: calc((638 / 1151) * 100%); --aspect-ratio: 1.8040752351097;"
           >
             <img class="c-bolt-image__image-placeholder"
                  alt="Anthem Video"
@@ -1478,7 +1563,7 @@ exports[`<bolt-card> Component without footer 1`] = `
                  sizes="auto"
                  src="/fixtures/landscape-16x9-mountains.jpg"
             >
-          </replace-with-children>
+          </ssr-keep>
         </bolt-ratio>
       </bolt-image>
     </div>

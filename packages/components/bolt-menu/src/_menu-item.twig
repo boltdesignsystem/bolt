@@ -25,6 +25,7 @@
   {% set menu_item %}
     <ssr-keep
       for="bolt-menu-item"
+      role="presentation"
       {% if classes %} class="{{ classes|join(' ') }}" {% endif %}
     >
       {{ content }}
