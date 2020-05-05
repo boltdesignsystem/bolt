@@ -50,10 +50,18 @@ class BoltLink extends BoltActionElement {
       [`c-bolt-link--headline`]: this.isHeadline,
     });
 
+    const isAnchor = this.url || this?.rootElement?.firstChild?.tagName === 'A';
+
+    const allAttributes = {
+      ...this.rootElementAttributes,
+      ...(this.url && { href: this.url }),
+      ...(isAnchor && this.target && { target: this.target }),
+      class: classes,
+    };
+
     // 1. Remove line breaks before and after lit-html template tags, causes unwanted space inside and around inline links
     // 2. Zero Width No-break Space (&#xfeff;) is needed to make the last word always stick with the icon, so the icon will never become an orphan.
     // prettier-ignore
-
     const innerSlots = html`${
       this.slotMap.get('before')
         ? html`<span class="${cx(`c-bolt-link__icon`)}">&#xfeff;${this.slotify('before')}</span>`
@@ -67,11 +75,9 @@ class BoltLink extends BoltActionElement {
 
     // [1]
     // prettier-ignore
-    return html`<a
-      ...="${spread(this.rootElementAttributes)}"
-      href="${ifDefined(this.url ? this.url : undefined)}"
-      class="${classes}"
-      target="${ifDefined(this.target ? this.target : undefined)}">${innerSlots}</a>`;
+    return html`${isAnchor
+      ? html`<a ...="${spread(allAttributes)}">${innerSlots}</a>`
+      : html`<button ...="${spread(allAttributes)}">${innerSlots}</button>`}`;
   }
 }
 
