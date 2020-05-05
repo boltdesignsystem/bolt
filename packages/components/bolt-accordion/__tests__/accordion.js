@@ -270,6 +270,8 @@ describe('<bolt-accordion> Component', () => {
       const wrapper = document.createElement('div');
       wrapper.innerHTML = accordionNoShadowHTML;
       document.body.appendChild(wrapper);
+      await customElements.whenDefined('bolt-accordion');
+      await customElements.whenDefined('bolt-accordion-item');
 
       const accordion = document.querySelector('bolt-accordion');
       const accordionItems = Array.from(

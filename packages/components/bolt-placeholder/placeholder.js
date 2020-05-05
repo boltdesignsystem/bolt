@@ -1,6 +1,7 @@
-import(
-  /*  webpackChunkName: 'bolt-placeholder' */ './placeholder.standalone.js'
-);
-import(
-  /*  webpackChunkName: 'replace-with-children' */ '@bolt/core-v3.x/elements/replace-with-children'
-);
+import { lazyQueue } from '@bolt/lazy-queue';
+
+lazyQueue(['bolt-placeholder'], async () => {
+  await import(
+    /* webpackChunkName: 'bolt-placeholder' */ './placeholder.standalone.js'
+  );
+});

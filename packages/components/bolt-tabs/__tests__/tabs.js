@@ -83,6 +83,7 @@ describe('Bolt Tabs', () => {
       document.body.appendChild(wrapper);
 
       await customElements.whenDefined('ssr-keep');
+      await customElements.whenDefined('bolt-tabs');
       const tabs = document.querySelector('bolt-tabs');
       const tabPanels = Array.from(document.querySelectorAll('bolt-tab-panel'));
       [tabs, ...tabPanels].forEach(el => el.updated());
@@ -107,6 +108,7 @@ describe('Bolt Tabs', () => {
       document.body.appendChild(wrapper);
 
       await customElements.whenDefined('ssr-keep');
+      await customElements.whenDefined('bolt-tabs');
       const tabs = document.querySelector('bolt-tabs');
       const tabPanels = Array.from(document.querySelectorAll('bolt-tab-panel'));
       [tabs, ...tabPanels].forEach(el => {
@@ -136,6 +138,7 @@ describe('Bolt Tabs', () => {
           document.body.appendChild(wrapper);
 
           await customElements.whenDefined('ssr-keep');
+          await customElements.whenDefined('bolt-tabs');
           const tabs = document.querySelector('bolt-tabs');
           const tabPanels = Array.from(
             document.querySelectorAll('bolt-tab-panel'),
@@ -169,6 +172,7 @@ describe('Bolt Tabs', () => {
           document.body.appendChild(wrapper);
 
           await customElements.whenDefined('ssr-keep');
+          await customElements.whenDefined('bolt-tabs');
           const tabs = document.querySelector('bolt-tabs');
           const tabPanels = Array.from(
             document.querySelectorAll('bolt-tab-panel'),

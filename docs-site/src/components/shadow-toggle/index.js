@@ -1,4 +1,7 @@
-import(/*
+import { lazyQueue } from '@bolt/lazy-queue';
 
-    webpackChunkName: 'bolt-shadow-toggle'
-  */ './shadow-toggle.js');
+lazyQueue(['bolt-shadow-toggle'], async () => {
+  await import(
+    /* webpackChunkName: "bolt-shadow-toggle" */ './shadow-toggle.js'
+  );
+});

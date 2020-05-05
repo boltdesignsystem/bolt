@@ -141,6 +141,7 @@ describe('link', () => {
         '<div><bolt-link url="http://pega.com" no-shadow>This is a link</bolt-link></div>',
       );
       const link = document.querySelector('bolt-link');
+      await customElements.whenDefined('bolt-link');
       await link.updateComplete;
       return link.parentNode.outerHTML;
     });
@@ -170,6 +171,7 @@ describe('link', () => {
         '<bolt-link url="http://pega.com">Link Test -- Shadow Root HTML</bolt-link>',
       );
       const link = document.querySelector('bolt-link');
+      await customElements.whenDefined('bolt-link');
       await link.updateComplete;
       return link.renderRoot.innerHTML;
     });
@@ -180,6 +182,7 @@ describe('link', () => {
       link.setAttribute('url', 'http://pega.com');
       link.textContent = 'Link Test -- Outer HTML';
       document.body.appendChild(link);
+      await customElements.whenDefined('bolt-link');
       await link.updateComplete;
       return link.outerHTML;
     });
@@ -204,6 +207,7 @@ describe('link', () => {
           '</bolt-link></div>',
       );
       const link = document.querySelector('bolt-link');
+      await customElements.whenDefined('bolt-link');
       await link.updateComplete;
       return link.parentNode.outerHTML;
     });
@@ -234,6 +238,7 @@ describe('link', () => {
         '<bolt-link>Link Test without url prop -- Shadow Root HTML</bolt-link>',
       );
       const link = document.querySelector('bolt-link');
+      await customElements.whenDefined('bolt-link');
       await link.updateComplete;
       return link.renderRoot.innerHTML;
     });
@@ -243,6 +248,7 @@ describe('link', () => {
       const link = document.createElement('bolt-link');
       link.textContent = 'Link Test without url attr -- Outer HTML';
       document.body.appendChild(link);
+      await customElements.whenDefined('bolt-link');
       await link.updateComplete;
       return link.outerHTML;
     });
@@ -270,6 +276,7 @@ describe('link', () => {
         '<div style="font-size: 300%;">(<bolt-link url="http://pega.com">Link Test -- No extra whitespace</bolt-link>)</div>',
       );
       const link = document.querySelector('bolt-link').parentNode;
+      await customElements.whenDefined('bolt-link');
       await link.updateComplete;
       return link.outerHTML;
     });
@@ -309,6 +316,7 @@ describe('link', () => {
       const div = document.createElement('div');
       document.body.insertAdjacentHTML('beforeend', html);
       const link = document.querySelector('bolt-link');
+      await customElements.whenDefined('bolt-link');
       await link.updateComplete;
       return link.outerHTML;
     }, template.html);

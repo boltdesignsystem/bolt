@@ -17,6 +17,7 @@ const vrtDefaultConfig = Object.assign(vrtConfig, {
   customDiffConfig: {
     includeAA: true,
   },
+  allowSizeMismatch: true,
 });
 
 const timeout = 120000;
@@ -144,6 +145,7 @@ describe('<bolt-modal> Component', () => {
         await page.setViewport({ height, width });
         await page.evaluate(async () => {
           const modals = Array.from(document.querySelectorAll('bolt-modal'));
+          await customElements.whenDefined('bolt-modal');
           return await Promise.all(
             modals.map(elem => {
               if (elem._wasInitiallyRendered) return;

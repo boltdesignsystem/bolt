@@ -1,30 +1,40 @@
-import(
-  /*  webpackChunkName: 'bolt-docs-site--version-selector' */ './components/version-selector/version-selector'
-);
+import { lazyQueue } from '@bolt/lazy-queue';
 
-import(
-  /*  webpackChunkName: 'bolt-docs-site--deprecated-card-tests' */ './pages/pattern-lab/_patterns/02-components/card-deprecated/__tests__'
-);
+// Component-specific examples and demos that need to get compiled:
+lazyQueue(['bolt-card'], async () => {
+  await import(
+    /*  webpackChunkName: 'bolt-docs-site--deprecated-card-tests' */ './pages/pattern-lab/_patterns/02-components/card-deprecated/__tests__'
+  );
+});
 
-import(
-  /*  webpackChunkName: 'bolt-docs-site--editor-integration' */ './pages/pattern-lab/_patterns/04-pages/99999-bolt-dev-sandbox/editor-integration'
-);
+lazyQueue(['bolt-typeahead'], async () => {
+  await import(
+    /*  webpackChunkName: 'bolt-docs-site--typeahead-demos' */ './typeahead-demos'
+  );
+});
 
-// Component-specific examples that need to get compiled:
-import(
-  /*  webpackChunkName: 'bolt-docs-site--typeahead-demos' */ './typeahead-demos'
-);
-import(
-  /*  webpackChunkName: 'bolt-docs-site--animate-demos' */ './animate-demos'
-);
+import './pages/pattern-lab/_patterns/04-pages/99999-bolt-dev-sandbox/editor-integration'; // lazy-queue used internally so not using it here
 
-import(
-  /*  webpackChunkName: 'bolt-docs-site--analytics-autotrack' */ '@bolt/analytics-autotrack'
-);
+lazyQueue(['bolt-select'], async () => {
+  await import(
+    /*  webpackChunkName: 'bolt-docs-site--version-selector' */ './components/version-selector/version-selector'
+  );
+});
 
-// demo to show how to add custom icons automatically
-import './assets/icons/custom-arrow-left-colored.svg';
-import './assets/icons/custom-users.svg';
+lazyQueue(['bolt-animate'], async () => {
+  await import(
+    /*  webpackChunkName: 'bolt-docs-site--animate-demos' */ './animate-demos'
+  );
+});
+
+// remaining (misc) docs site-related code that isn't attached to a particular selector
+lazyQueue([], async () => {
+  await import('./custom-icons');
+
+  await import(
+    /*  webpackChunkName: 'bolt-docs-site--analytics-autotrack' */ '@bolt/analytics-autotrack'
+  );
+});
 
 // Blueprint-specific JS demoing the Mission Completed form's button re-activating
 const missionRatingInputs = document.querySelectorAll(
