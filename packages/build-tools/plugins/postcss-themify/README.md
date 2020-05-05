@@ -1,3 +1,5 @@
+> Note: This package will be removed in Bolt `v3.0` when we drop IE11 support, use CSS custom properties instead. See [Migrating to Bolt v3.x](http://boltdesignsystem.com/docs/guides/migrating-to-3.x.html) docs for more info.
+
 ![themify](https://i.imgur.com/JZyjWm6.png)
 
 [![Build Status](https://travis-ci.org/datorama/themify.svg?branch=master)](https://travis-ci.org/datorama/themify)

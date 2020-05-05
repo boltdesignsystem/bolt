@@ -48,7 +48,7 @@ describe('<bolt-icon> Component', () => {
       icon.setAttribute('size', 'large');
       document.body.appendChild(icon);
       await customElements.whenDefined('bolt-icon');
-      await icon.updated();
+      await icon.updateComplete;
       return icon.renderRoot.innerHTML;
     });
 
@@ -59,7 +59,7 @@ describe('<bolt-icon> Component', () => {
       icon.setAttribute('size', 'large');
       document.body.appendChild(icon);
       await customElements.whenDefined('bolt-icon');
-      await icon.updated();
+      await icon.updateComplete;
       return icon.outerHTML;
     });
 
