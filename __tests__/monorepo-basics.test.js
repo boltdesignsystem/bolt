@@ -87,21 +87,6 @@ describe('check the config for monorepo packages', () => {
     });
   });
 
-  test('non-private @bolt packages do not use peerDependencies', async () => {
-    pkgs.forEach(pkg => {
-      if (!pkg.private && pkg.name.includes('@bolt')) {
-        expect(
-          pkg.peerDependencies,
-          `Please move any of ${
-            pkg.name
-          }'s peerDependencies defined in ${chalk.underline(
-            pkg.pkgPath,
-          )} to dependeencies to avoid potential install issues downstream.`,
-        ).toBeUndefined();
-      }
-    });
-  });
-
   test('`@bolt` dependencies are symlinked to the packages folder', async () => {
     const baseDir = resolve(__dirname, '../node_modules/@bolt');
     readdir(baseDir)

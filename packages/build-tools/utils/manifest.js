@@ -1,38 +1,19 @@
 /* eslint-disable no-await-in-loop */
 const { promisify } = require('util');
-const resolve = require('resolve');
 const fs = require('fs');
 const path = require('path');
-const $RefParser = require('json-schema-ref-parser');
+const chalk = require('chalk');
 const log = require('./log');
-const { ensureFileExists } = require('./general');
 const writeFile = promisify(fs.writeFile);
-const { getDataFile } = require('./yaml');
-const { validateSchemaSchema } = require('./schemas');
 const { getConfig } = require('./config-store');
+let config; // cached Bolt config
 
-// recursively flatten heavily nested arrays
-function flattenDeep(arr1) {
-  return arr1.reduce(
-    (acc, val) =>
-      Array.isArray(val) ? acc.concat(flattenDeep(val)) : acc.concat(val),
-    [],
-  );
-}
+const { aggregateBoltDependencies } = require('./manifest.deprecated');
+const getPkgInfo = require('./manifest.get-pkg-info');
 
-// utility function to help with removing duplicate objects (like shared dependencies)
-function removeDuplicateObjectsFromArray(originalArray, prop) {
-  var newArray = [];
-  var lookupObject = {};
-
-  for (var i in originalArray) {
-    lookupObject[originalArray[i][prop]] = originalArray[i];
-  }
-
-  for (i in lookupObject) {
-    newArray.push(lookupObject[i]);
-  }
-  return newArray;
+// utility function to help with removing duplicate objects (like shared dependencies, extra Sass files included more than once, etc)
+function deduplicateObjectsInArray(arr, key) {
+  return [...new Map(arr.map(item => [item[key], item])).values()];
 }
 
 let boltManifest = {
@@ -57,213 +38,74 @@ try {
   ).version;
 }
 
-/**
- * Get information about a components assets
- * @param {string|object} pkgName - Name of a component i.e. `@bolt/button`
- * OR object - see `config.schema.yml` under `definitions.components.items`
- * @returns {{name, basicName: string | * | void}} - Asset info
- */
-async function getPkgInfo(pkgName) {
-  if (typeof pkgName === 'object') {
-    const info = {
-      name: pkgName.name,
-      basicName: pkgName.name,
-      assets: {},
-    };
-    if (pkgName.scss) {
-      info.assets.style = pkgName.scss;
-      info.dir = path.dirname(pkgName.scss);
-      ensureFileExists(pkgName.scss);
-    }
-    if (pkgName.js) {
-      info.assets.main = pkgName.js;
-      // yeah I know we're overwriting `dir`... got to have something though... and it's only used by PL to watch Twig
-      info.dir = path.dirname(pkgName.js);
-      ensureFileExists(pkgName.js);
-    }
-    return info;
-  }
+// let missingBoltPkgs = [];
 
-  if (pkgName.endsWith('.scss') || pkgName.endsWith('.js')) {
-    const pathInfo = path.parse(pkgName);
-    const name = pathInfo.name + pathInfo.ext.replace('.', '-');
-    const info = {
-      name,
-      basicName: name,
-      dir: path.dirname(pkgName),
-      assets: {},
-    };
-    if (pkgName.endsWith('.scss')) {
-      info.assets.style = pkgName;
-    }
-    if (pkgName.endsWith('.js')) {
-      info.assets.main = pkgName;
-    }
-    ensureFileExists(pkgName);
-    return info;
-  } else {
-    // package name
-    const pkgJsonPath = require.resolve(`${pkgName}/package.json`);
-    const dir = path.dirname(pkgJsonPath);
-    const pkg = require(pkgJsonPath);
-
-    // automatically convert scoped package names into Twig namespaces
-
-    // match NPM scoped package names
-    // borrowed from https://github.com/sindresorhus/scoped-regex
-    const regex = '@[a-z\\d][\\w-.]+/[a-z\\d][\\w-.]*';
-    const scopedRegex = options =>
-      options && options.exact
-        ? new RegExp(`^${regex}$`, 'i')
-        : new RegExp(regex, 'gi');
-
-    /**
-     * Strip out @ signs and the first dash in the package name.
-     *
-     * For example:
-     * @bolt/ -> bolt-
-     * @pegawww/ -> pegawww-
-     */
-    let normalizedPkgName;
-    if (pkg.name.match(scopedRegex())) {
-      const matchedName = pkg.name.match(scopedRegex())[0];
-      const pkgNamePrefix = matchedName.split('/')[0].replace('@', '');
-      const pkgNameSuffix = matchedName.split('/')[1];
-      normalizedPkgName = `${pkgNamePrefix}-${pkgNameSuffix}`;
-    } else {
-      normalizedPkgName = pkg.name.replace('@bolt/', 'bolt-');
-    }
-
-    const info = {
-      name: pkg.name,
-      basicName: normalizedPkgName,
-      dir,
-      assets: {},
-      deps: [],
-    };
-
-    if (pkg.peerDependencies) {
-      for (dependencyPackageName in pkg.peerDependencies) {
-        if (dependencyPackageName.includes('bolt')) {
-          info.deps.push(dependencyPackageName);
-        }
-      }
-    }
-
-    if (pkg.dependencies) {
-      for (dependencyPackageName in pkg.dependencies) {
-        if (dependencyPackageName.includes('bolt')) {
-          info.deps.push(dependencyPackageName);
-        }
-      }
-    }
-
-    info.twigNamespace = `@${info.basicName}`;
-    if (pkg.style) {
-      info.assets.style = path.join(dir, pkg.style);
-      ensureFileExists(info.assets.style);
-    }
-    if (pkg.main) {
-      info.assets.main = path.join(dir, pkg.main);
-      ensureFileExists(info.assets.main);
-    }
-    if (pkg.schema) {
-      if (typeof pkg.schema === 'object') {
-        if (info.schema === undefined) {
-          info.schema = [];
-        }
-
-        const schemas = pkg.schema;
-
-        for (const schemaPath of schemas) {
-          let schema;
-          const schemaFilePath = path.join(dir, schemaPath);
-          // eslint-disable-next-line
-          if (schemaFilePath.endsWith('.js')) {
-            schema = require(schemaFilePath);
-          } else {
-            schema = await getDataFile(schemaFilePath);
-          }
-          validateSchemaSchema(
-            schema,
-            `Schema not valid for: ${schemaFilePath}`,
-          );
-          const schemaMachineName = schema.title
-            .replace(/ /g, '-')
-            .toLowerCase();
-
-          const dereferencedSchema = await $RefParser.dereference(schema);
-          info.schema[schemaMachineName] = dereferencedSchema;
-        }
-      } else {
-        let schema;
-        const schemaFilePath = path.join(dir, pkg.schema);
-        if (schemaFilePath.endsWith('.js')) {
-          schema = require(schemaFilePath);
-        } else {
-          schema = await getDataFile(schemaFilePath);
-        }
-        validateSchemaSchema(schema, `Schema not valid for: ${schemaFilePath}`);
-        const dereferencedSchema = await $RefParser.dereference(schema);
-        info.schema = dereferencedSchema;
-      }
-    }
-    // @todo Allow verbosity settings
-    // console.log(assets);
-    return info;
-  }
-}
-
-// loop through package-specific dependencies to merge and dedupe
-async function aggregateBoltDependencies(data) {
-  let componentDependencies = [];
-  let componentsWithoutDeps = data;
-
-  componentsWithoutDeps.forEach(item => {
-    if (item.deps) {
-      componentDependencies.push([...item.deps]);
-    }
-  });
-
-  componentDependencies = flattenDeep(componentDependencies);
-
-  componentDependencies = componentDependencies.filter(function(x, i, a) {
-    if (x !== '@bolt/build-tools' && a.indexOf(x) === i) {
-      return x;
-    }
-  });
-
-  let globalDepsSrc = await Promise.all(componentDependencies.map(getPkgInfo));
-
-  componentsWithoutDeps = componentsWithoutDeps.concat(globalDepsSrc);
-
-  var uniqueComponentsWithDeps = removeDuplicateObjectsFromArray(
-    componentsWithoutDeps,
-    'name',
-  );
-
-  return uniqueComponentsWithDeps;
-}
+let explicitBoltDependencies = [];
 
 async function buildBoltManifest() {
-  const config = await getConfig();
+  config = config || (await getConfig());
+  let missingBoltPkgs = [];
   try {
     if (config.components.global) {
-      let globalSrc = await Promise.all(
-        config.components.global.map(getPkgInfo),
+      // process through Bolt packages explicitly listed in the user's .boltrc config
+      explicitBoltDependencies = await Promise.all(
+        config.components.global.map(async item => {
+          const { processedPkg, missingPkgs } = await getPkgInfo(item);
+          missingBoltPkgs = [...missingBoltPkgs, ...missingPkgs];
+          return processedPkg;
+        }),
       );
 
-      // @todo: re-evaluate if we really should be doing this...
-      // boltManifest.components.global = globalSrc;
-      boltManifest.components.global = await aggregateBoltDependencies(
-        globalSrc,
+      // combine both sets of explicit and implicit dependencies and deduplicate
+      boltManifest.components.global = deduplicateObjectsInArray(
+        [...explicitBoltDependencies],
+        'name',
       );
     }
     if (config.components.individual) {
-      const individualSrc = await Promise.all(
-        config.components.individual.map(getPkgInfo),
+      const explicitIndividualBoltDependencies = await Promise.all(
+        config.components.individual.map(async item => {
+          const { processedPkg, missingPkgs } = await getPkgInfo(item);
+          missingBoltPkgs = [...missingBoltPkgs, ...missingPkgs];
+          return processedPkg;
+        }),
       );
-      boltManifest.components.individual = individualSrc;
+
+      boltManifest.components.individual = deduplicateObjectsInArray(
+        [...explicitIndividualBoltDependencies],
+        'name',
+      );
+    }
+
+    // @todo: remove with v3.0 and warn that the config being used has issues
+    if (missingBoltPkgs.length > 0) {
+      boltManifest.components.global = await aggregateBoltDependencies(
+        explicitBoltDependencies,
+      );
+    }
+
+    if (missingBoltPkgs.length > 0 && !hasWarnedAboutMissingPkgs) {
+      missingBoltPkgs.flatMap(function callback(item) {
+        return item.name;
+      });
+
+      console.warn(
+        chalk.keyword('orange')(
+          `\nWarning! Some of the components being compiled have Bolt dependencies and/or peerDependencies that appear to be missing from your build configuration. \n\nTo prep for the upcoming Bolt v3.0 release, you'll need to add these packages to the `,
+        ) +
+          chalk.keyword('white')(`components: { global: [] } `) +
+          chalk.keyword('orange')(`section in your `) +
+          chalk.keyword('white')(`${config.configFileUsed} `) +
+          chalk.keyword('orange')(
+            `file to ensure that Twig namespaces are properly registered, any related Sass and JS code is compiled and loaded, and to have the fastest front-end web performance.\n`,
+          ),
+      );
+
+      console.warn(missingBoltPkgs);
+
+      console.log('\n');
+
+      hasWarnedAboutMissingPkgs = true;
     }
   } catch (err) {
     log.errorAndExit('Error building Bolt Manifest', err);
@@ -272,9 +114,9 @@ async function buildBoltManifest() {
   return boltManifest;
 }
 
+let hasWarnedAboutMissingPkgs = false;
 async function getBoltManifest() {
-  const boltManifest = await buildBoltManifest();
-  return boltManifest;
+  return await buildBoltManifest();
 }
 
 /**
@@ -468,4 +310,5 @@ module.exports = {
   getTwigNamespaceConfig,
   mapComponentNameToTwigNamespace,
   getAllDirs,
+  getPkgInfo,
 };
