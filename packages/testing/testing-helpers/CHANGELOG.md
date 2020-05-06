@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.23.0](https://github.com/bolt-design-system/bolt/tree/master/packages/testing-helpers/compare/v2.22.1...v2.23.0) (2020-05-06)
+
+
+### Features
+
+* add new Jest helper function to simplify testing WC rendered HTML ([4a8edb3](https://github.com/bolt-design-system/bolt/tree/master/packages/testing-helpers/commit/4a8edb3371e977e4c50b5ffbc4695745838b3176))
+
+
+
+
+
 # [2.22.0](https://github.com/bolt-design-system/bolt/tree/master/packages/testing-helpers/compare/v2.21.1...v2.22.0) (2020-04-22)
 
 **Note:** Version bump only for package @bolt/testing-helpers

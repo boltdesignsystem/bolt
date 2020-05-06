@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.23.0](https://github.com/boltdesignsystem/bolt/compare/v2.22.1...v2.23.0) (2020-05-06)
+
+
+### Bug Fixes
+
+* tweak <ssr-keep> support in BoltElement ([620cab5](https://github.com/boltdesignsystem/bolt/commit/620cab5e90ce4f44ee2466c79a15d3c56edeefd9))
+
+
+
+
+
 # [2.22.0](https://github.com/boltdesignsystem/bolt/compare/v2.21.1...v2.22.0) (2020-04-22)
 
 

@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.23.0](https://github.com/bolt-design-system/bolt/compare/v2.22.1...v2.23.0) (2020-05-06)
+
+
+### Bug Fixes
+
+* proper role attributes and card media border radius ([9b1b67e](https://github.com/bolt-design-system/bolt/commit/9b1b67e47114b2704605f1fadb72401800e86fa8))
+* ssr-keep and role attributes for list ([e024681](https://github.com/bolt-design-system/bolt/commit/e024681ef326313de875cbf078819329763ccdb0))
+* ssr-keep display issue in list ([caca146](https://github.com/bolt-design-system/bolt/commit/caca14604aec853f5099e83f8abfc737d873ab2a))
+* update VRT screenshot ([4ad4c6a](https://github.com/bolt-design-system/bolt/commit/4ad4c6a9f38c3eacd65b1b9febe8eae9df4c89b2))
+
+
+### Features
+
+* globally lazyload JS bundles to expose same existing issues as the ones found with the new lazy-queue functionality ([7cc4ce2](https://github.com/bolt-design-system/bolt/commit/7cc4ce2fa9ce28dc4f9f37078762f106ca87729f))
+* manually cherry pick ajv replacement updates ([c322d0e](https://github.com/bolt-design-system/bolt/commit/c322d0e38266ca5660d8c77868ec5f1203fbb5b7))
+
+
+
+
+
 # [2.22.0](https://github.com/bolt-design-system/bolt/compare/v2.21.1...v2.22.0) (2020-04-22)
 
 

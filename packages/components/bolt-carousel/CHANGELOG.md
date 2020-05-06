@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.23.0](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-carousel/compare/v2.22.1...v2.23.0) (2020-05-06)
+
+
+### Bug Fixes
+
+* update Jest tests to more reliably work with fully async-loaded components ([6b4c752](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-carousel/commit/6b4c752cfcf32a3d0d260d5e2f718be12fd3df50))
+* update SVG <use> tags ([5f10098](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-carousel/commit/5f100987030abb61e324e3ca2213727b488b14b7))
+
+
+### Features
+
+* globally lazyload JS bundles to expose same existing issues as the ones found with the new lazy-queue functionality ([7cc4ce2](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-carousel/commit/7cc4ce2fa9ce28dc4f9f37078762f106ca87729f))
+* migrate Carousel over to use lit-element; fixes rendering and rendering perf issues encountered in [#1836](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-carousel/issues/1836) ([a0bbc32](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-carousel/commit/a0bbc3243639cb2479110870012efc5b90a45432))
+* update Jest tests to use new renderWC helper + prep for upstream <ssr-keep> updates ([beb6b85](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-carousel/commit/beb6b85cfdb4d37359e0fcf1d4deaa7f1a0a25f1))
+
+
+
+
+
 # [2.22.0](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-carousel/compare/v2.21.1...v2.22.0) (2020-04-22)
 
 **Note:** Version bump only for package @bolt/components-carousel

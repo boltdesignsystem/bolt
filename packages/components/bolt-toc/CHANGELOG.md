@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.23.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-toc/compare/v2.22.1...v2.23.0) (2020-05-06)
+
+
+### Bug Fixes
+
+* add update snapshot for Table of Contents ([7c7d493](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-toc/commit/7c7d493a341af161b6be2ca30b28f003519a0dcb))
+* proper role attributes and card media border radius ([9b1b67e](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-toc/commit/9b1b67e47114b2704605f1fadb72401800e86fa8))
+* update Jest tests based on List / aria role updates ([e18a259](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-toc/commit/e18a2593e29312153e7661ae03bd94a2c4b41c2d))
+
+
+### Features
+
+* globally lazyload JS bundles to expose same existing issues as the ones found with the new lazy-queue functionality ([7cc4ce2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-toc/commit/7cc4ce2fa9ce28dc4f9f37078762f106ca87729f))
+
+
+
+
+
 # [2.21.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-toc/compare/v2.20.2...v2.21.0) (2020-04-08)
 
 **Note:** Version bump only for package @bolt/components-toc

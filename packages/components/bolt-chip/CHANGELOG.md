@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.23.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-chip/compare/v2.22.1...v2.23.0) (2020-05-06)
+
+
+### Features
+
+* update Chip and Video to use the new LazyQueue functionality ([bf7a77b](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-chip/commit/bf7a77b42184ccd9b29e00bc3140ace48f44badc))
+
+
+
+
+
 # [2.22.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-chip/compare/v2.21.1...v2.22.0) (2020-04-22)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.23.0](https://github.com/boltdesignsystem/bolt/tree/master/docs-site/src/pages/pattern-lab/_patterns/03-blueprints/compare/v2.22.1...v2.23.0) (2020-05-06)
+
+
+### Bug Fixes
+
+* layout hotfix for Firefox and Safari ([7fecc3b](https://github.com/boltdesignsystem/bolt/tree/master/docs-site/src/pages/pattern-lab/_patterns/03-blueprints/commit/7fecc3bc790b8c3081b2ff740cc880ca1efa418c))
+
+
+
+
+
 # [2.22.0](https://github.com/boltdesignsystem/bolt/tree/master/docs-site/src/pages/pattern-lab/_patterns/03-blueprints/compare/v2.21.1...v2.22.0) (2020-04-22)
 
 

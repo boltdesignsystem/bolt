@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.23.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-link/compare/v2.22.1...v2.23.0) (2020-05-06)
+
+
+### Bug Fixes
+
+* don't add `target` attribute to button ([aca1669](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-link/commit/aca1669b2e8e5d598b2dc0c39ab9a18c96cf4f19))
+* don't remove is="shadow-root" just yet, make that change separately ([0b2c39b](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-link/commit/0b2c39b09e61a0fa3b5a74aaee80a311983269de))
+* update Jest tests to more reliably work with fully async-loaded components ([6b4c752](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-link/commit/6b4c752cfcf32a3d0d260d5e2f718be12fd3df50))
+* whitespace around lit html template ([8543506](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-link/commit/8543506d64c6f769a41617f7e941dc159f011fc5))
+
+
+### Features
+
+* globally lazyload JS bundles to expose same existing issues as the ones found with the new lazy-queue functionality ([7cc4ce2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-link/commit/7cc4ce2fa9ce28dc4f9f37078762f106ca87729f))
+* manually cherry pick ajv replacement updates ([c322d0e](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-link/commit/c322d0e38266ca5660d8c77868ec5f1203fbb5b7))
+* output `<button>` if no `url` provided ([0050bcf](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-link/commit/0050bcf5528cbead9408dce2492cefc4e9588f48))
+
+
+
+
+
 # [2.22.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-link/compare/v2.21.1...v2.22.0) (2020-04-22)
 
 
