@@ -377,7 +377,6 @@ async function createWebpackConfig(buildConfig) {
         },
       }),
       new webpack.ProgressPlugin(boltWebpackProgress), // Ties together the Bolt custom Webpack messages + % complete
-      new WriteFilePlugin(),
       new webpack.NoEmitOnErrorsPlugin(),
     ],
   };
@@ -446,6 +445,7 @@ async function createWebpackConfig(buildConfig) {
       publicPath,
     },
     plugins: [
+      new WriteFilePlugin(),
       new webpack.DefinePlugin(getGlobalJSData(false)),
       new MiniCssExtractPlugin({
         filename: `[name]${langSuffix}.css`,
@@ -576,7 +576,7 @@ async function createWebpackConfig(buildConfig) {
       mainFields: ['esnext', 'jsnext:main', 'browser', 'module', 'main'],
     },
     output: {
-      // futureEmitAssets: true, // @todo: see if this is OK to re-enable if WriteFilePlugin is removed
+      futureEmitAssets: true,
       path: path.resolve(process.cwd(), config.buildDir),
       // @todo: switch this to output .client.js and .server.js file prefixes when we hit Bolt v3.0
       filename: `[name]${langSuffix}${
