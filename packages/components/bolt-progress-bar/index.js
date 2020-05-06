@@ -1,1 +1,1 @@
-import './src/progress-bar';
+import(/*  webpackChunkName: 'bolt-progress-bar' */ './src/progress-bar');

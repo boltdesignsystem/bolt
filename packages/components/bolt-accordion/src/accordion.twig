@@ -36,7 +36,7 @@
   {{ this.props|without("content")|without("class") }}
   >
   {% if items %}
-    <replace-with-children {{ inner_attributes.addClass(inner_classes) }}>
+    <ssr-keep for="bolt-accordion" {{ inner_attributes.addClass(inner_classes) }}>
       {% for item in items %}
         {% include "@bolt-components-accordion/AccordionItem/accordion-item.twig" with item|merge({
           first: loop.first,
@@ -46,6 +46,6 @@
           box_shadow: this.data.box_shadow.value,
           icon_valign: this.data.icon_valign.value }) only %}
       {% endfor %}
-    </replace-with-children>
+    </ssr-keep>
   {% endif %}
 </bolt-accordion>

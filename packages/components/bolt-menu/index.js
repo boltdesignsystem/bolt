@@ -1,13 +1,5 @@
-import { polyfillLoader } from '@bolt/core/polyfills';
+import { lazyQueue } from '@bolt/lazy-queue';
 
-polyfillLoader.then(res => {
-  import(
-    /* webpackMode: 'eager', webpackChunkName: 'bolt-menu' */ './src/menu'
-  );
-});
-
-polyfillLoader.then(res => {
-  import(
-    /* webpackMode: 'eager', webpackChunkName: 'bolt-menu-item' */ './src/_menu-item'
-  );
+lazyQueue(['bolt-menu'], async () => {
+  await import(/*  webpackChunkName: 'bolt-menu' */ './main');
 });

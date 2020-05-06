@@ -35,6 +35,7 @@ describe('figure', () => {
         '<bolt-figure><img slot="media" src="/fixtures/landscape-16x9-mountains.jpg"></bolt-figure>',
       );
       const figure = document.querySelector('bolt-figure');
+      await customElements.whenDefined('bolt-figure');
       await figure.updateComplete;
 
       // add a large border to the <bolt-figure> so an empty figcaption would better show up on the VRT
@@ -72,6 +73,7 @@ describe('figure', () => {
         '<bolt-figure><img slot="media" src="/fixtures/landscape-16x9-mountains.jpg">Caption text goes here</bolt-figure>',
       );
       const figure = document.querySelector('bolt-figure');
+      await customElements.whenDefined('bolt-figure');
       await figure.updateComplete;
 
       // add a large border to the <bolt-figure> so an empty figcaption would better show up on the VRT

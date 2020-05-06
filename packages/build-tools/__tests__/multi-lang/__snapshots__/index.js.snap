@@ -61,7 +61,6 @@ bolt-button[type=\\"submit\\"] {
 }
 :host {
   display: inline-flex;
-  outline: 0;
 }
 :host[type=\\"button\\"],
 :host[type=\\"reset\\"],
@@ -18313,6 +18312,100 @@ bolt-icon:not(:resolved) {
   border: 1px solid rgba(92, 93, 102, 0.5);
   background-color: #a65389;
 }
+bolt-figure {
+  display: block;
+}
+bolt-figure:not(:last-child) {
+  margin-bottom: 1.155rem;
+}
+.c-bolt-figure {
+  margin: 0;
+  padding: 0;
+  display: block;
+}
+.c-bolt-figure__media {
+  display: block;
+}
+.c-bolt-figure__caption {
+  padding-top: 0.412rem;
+  font-size: 0.8rem;
+  line-height: 1.595;
+  display: block;
+}
+bolt-link {
+  outline: 0;
+}
+:host {
+  outline: 0;
+}
+.c-bolt-link {
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, ヒラギノ角ゴ ProN,
+    Hiragino Kaku Gothic ProN, 游ゴシック, 游ゴシック体, YuGothic, Yu Gothic,
+    メイリオ, Meiryo, ＭＳ ゴシック, MS Gothic, HiraKakuProN-W3, TakaoExゴシック,
+    TakaoExGothic, MotoyaLCedar, Droid Sans Japanese, sans-serif;
+  font-family: var(--bolt-font-family-body);
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: 0 0;
+  display: inline;
+  opacity: 1;
+  margin-left: -0.25rem;
+  color: rgba(var(--bolt-theme-link), 1);
+  text-decoration: underline;
+  cursor: pointer;
+  border: none;
+  transition: 0.2s ease-in-out;
+}
+.js-fonts-loaded .c-bolt-link {
+  font-family: -apple-system, BlinkMacSystemFont, ヒラギノ角ゴ ProN,
+    Hiragino Kaku Gothic ProN, 游ゴシック, 游ゴシック体, YuGothic, Yu Gothic,
+    メイリオ, Meiryo, ＭＳ ゴシック, MS Gothic, HiraKakuProN-W3, TakaoExゴシック,
+    TakaoExGothic, MotoyaLCedar, Droid Sans Japanese, sans-serif;
+  font-family: var(--bolt-font-family-body);
+}
+.c-bolt-link:hover {
+  opacity: 0.8;
+}
+.c-bolt-link:active,
+.c-bolt-link:focus:active {
+  opacity: 0.6;
+}
+button.c-bolt-link {
+  font-size: inherit;
+}
+.c-bolt-link--display-flex {
+  display: inline-flex;
+}
+.c-bolt-link--display-flex.c-bolt-link--valign-start {
+  align-items: flex-start;
+}
+.c-bolt-link--display-flex.c-bolt-link--valign-center {
+  align-items: center;
+}
+.c-bolt-link--display-inline .c-bolt-link__icon {
+  display: inline;
+  white-space: nowrap;
+}
+.c-bolt-link--display-block {
+  display: block;
+}
+.c-bolt-link__icon,
+.c-bolt-link__text {
+  padding-left: 0.25rem;
+}
+.c-bolt-link__text {
+  display: inline;
+  max-width: 100%;
+}
+.c-bolt-link--headline {
+  color: rgba(var(--bolt-theme-headline-link), 1);
+  text-decoration: none;
+}
+.c-bolt-link--headline:hover {
+  text-decoration: underline;
+}
 bolt-ratio {
   display: block;
   width: 100%;
@@ -18375,7 +18468,6 @@ bolt-button[type=\\"submit\\"] {
 }
 :host {
   display: inline-flex;
-  outline: 0;
 }
 :host[type=\\"button\\"],
 :host[type=\\"reset\\"],
@@ -36584,6 +36676,95 @@ bolt-icon:not(:resolved) {
   opacity: 1;
   border: 1px solid rgba(92, 93, 102, 0.5);
   background-color: #a65389;
+}
+bolt-figure {
+  display: block;
+}
+bolt-figure:not(:last-child) {
+  margin-bottom: 1.65rem;
+}
+.c-bolt-figure {
+  margin: 0;
+  padding: 0;
+  display: block;
+}
+.c-bolt-figure__media {
+  display: block;
+}
+.c-bolt-figure__caption {
+  padding-top: 0.412rem;
+  font-size: 0.8rem;
+  line-height: 1.45;
+  display: block;
+}
+bolt-link {
+  outline: 0;
+}
+:host {
+  outline: 0;
+}
+.c-bolt-link {
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: var(--bolt-font-family-body);
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: 0 0;
+  display: inline;
+  opacity: 1;
+  margin-left: -0.25rem;
+  color: rgba(var(--bolt-theme-link), 1);
+  text-decoration: underline;
+  cursor: pointer;
+  border: none;
+  transition: 0.2s ease-in-out;
+}
+.js-fonts-loaded .c-bolt-link {
+  font-family: Open Sans, Helvetica Neue, sans-serif;
+  font-family: var(--bolt-font-family-body);
+}
+.c-bolt-link:hover {
+  opacity: 0.8;
+}
+.c-bolt-link:active,
+.c-bolt-link:focus:active {
+  opacity: 0.6;
+}
+button.c-bolt-link {
+  font-size: inherit;
+}
+.c-bolt-link--display-flex {
+  display: inline-flex;
+}
+.c-bolt-link--display-flex.c-bolt-link--valign-start {
+  align-items: flex-start;
+}
+.c-bolt-link--display-flex.c-bolt-link--valign-center {
+  align-items: center;
+}
+.c-bolt-link--display-inline .c-bolt-link__icon {
+  display: inline;
+  white-space: nowrap;
+}
+.c-bolt-link--display-block {
+  display: block;
+}
+.c-bolt-link__icon,
+.c-bolt-link__text {
+  padding-left: 0.25rem;
+}
+.c-bolt-link__text {
+  display: inline;
+  max-width: 100%;
+}
+.c-bolt-link--headline {
+  color: rgba(var(--bolt-theme-headline-link), 1);
+  text-decoration: none;
+}
+.c-bolt-link--headline:hover {
+  text-decoration: underline;
 }
 bolt-ratio {
   display: block;

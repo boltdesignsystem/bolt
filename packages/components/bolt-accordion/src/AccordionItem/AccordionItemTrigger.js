@@ -1,16 +1,17 @@
-import { css } from '@bolt/core-v3.x/utils';
-import { html } from '@bolt/core-v3.x/renderers/renderer-lit-html';
+import { html } from '@bolt/element';
+import classNames from 'classnames/bind';
+import accordionItemStyles from './accordion-item.scss';
 
-export const AccordionItemTrigger = (children, props, context) => {
-  const triggerClasses = css('c-bolt-accordion-item__trigger');
+let cx = classNames.bind(accordionItemStyles);
 
-  const labelClasses = css(
-    'c-bolt-accordion-item__trigger-label',
-    props.inactive ? `c-bolt-accordion-item__trigger-label--inactive` : '',
-    props.triggerSpacing || context.spacing
-      ? `c-bolt-accordion-spacing--${props.triggerSpacing || context.spacing}`
-      : '',
-  );
+export const AccordionItemTrigger = (children, self) => {
+  const triggerClasses = cx('c-bolt-accordion-item__trigger');
+
+  const labelClasses = cx('c-bolt-accordion-item__trigger-label', {
+    [`c-bolt-accordion-item__trigger-label--inactive`]: self.inactive,
+    [`c-bolt-accordion-spacing--${self.triggerSpacing || self.spacing}`]:
+      self.triggerSpacing || self.spacing,
+  });
 
   const labelInner = children => {
     return html`
@@ -26,7 +27,7 @@ export const AccordionItemTrigger = (children, props, context) => {
   };
 
   const innerTriggerTemplate = children => {
-    return props.inactive
+    return self.inactive
       ? html`
           <div class="${labelClasses}">${labelInner(children)}</div>
         `
@@ -39,7 +40,7 @@ export const AccordionItemTrigger = (children, props, context) => {
 
   const triggerTemplate = children => {
     return html`
-      ${props.open
+      ${self.open
         ? html`
             <div class="${triggerClasses}" data-open>
               ${children}

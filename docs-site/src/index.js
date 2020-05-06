@@ -1,22 +1,40 @@
-import './components/version-selector/version-selector';
-// import './components/schema-form'; // Component Explorer is temporarily disabled until we're done migrating our Twig Rendering Service to Now.sh v2
-import './components/handle-iframe-height';
-import './pages/pattern-lab/_patterns/02-components/card-deprecated/__tests__';
-// import './pages/pattern-lab/_patterns/01-styleguide/100-rendering-performance/bolt-preact-test';
-// import './pages/pattern-lab/_patterns/01-styleguide/100-rendering-performance/bolt-lit-test';
-// import './pages/pattern-lab/_patterns/01-styleguide/100-rendering-performance/lazy-lit-test';
-import './pages/pattern-lab/_patterns/04-pages/99999-bolt-dev-sandbox/editor-integration';
-import { enableAnimDemos } from './pages/pattern-lab/_patterns/06-experiments/animate/animate-demo-helpers.js';
-enableAnimDemos();
+import { lazyQueue } from '@bolt/lazy-queue';
 
-// Component-specific examples that need to get compiled:
-import '@bolt/components-typeahead/__demos__/dynamically-fetch-data/typeahead.dynamically-fetch-data';
-import '@bolt/components-typeahead/__demos__/navigate-to-search-results/typeahead.navigate-to-search-results';
-import '@bolt/components-typeahead/__demos__/navigate-to-exact-result/typeahead.navigate-to-exact-result';
+// Component-specific examples and demos that need to get compiled:
+lazyQueue(['bolt-card'], async () => {
+  await import(
+    /*  webpackChunkName: 'bolt-docs-site--deprecated-card-tests' */ './pages/pattern-lab/_patterns/02-components/card-deprecated/__tests__'
+  );
+});
 
-// demo to show how to add custom icons automatically
-import './assets/icons/custom-arrow-left-colored.svg';
-import './assets/icons/custom-users.svg';
+lazyQueue(['bolt-typeahead'], async () => {
+  await import(
+    /*  webpackChunkName: 'bolt-docs-site--typeahead-demos' */ './typeahead-demos'
+  );
+});
+
+import './pages/pattern-lab/_patterns/04-pages/99999-bolt-dev-sandbox/editor-integration'; // lazy-queue used internally so not using it here
+
+lazyQueue(['bolt-select'], async () => {
+  await import(
+    /*  webpackChunkName: 'bolt-docs-site--version-selector' */ './components/version-selector/version-selector'
+  );
+});
+
+lazyQueue(['bolt-animate'], async () => {
+  await import(
+    /*  webpackChunkName: 'bolt-docs-site--animate-demos' */ './animate-demos'
+  );
+});
+
+// remaining (misc) docs site-related code that isn't attached to a particular selector
+lazyQueue([], async () => {
+  await import('./custom-icons');
+
+  await import(
+    /*  webpackChunkName: 'bolt-docs-site--analytics-autotrack' */ '@bolt/analytics-autotrack'
+  );
+});
 
 // Blueprint-specific JS demoing the Mission Completed form's button re-activating
 const missionRatingInputs = document.querySelectorAll(

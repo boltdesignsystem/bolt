@@ -64,6 +64,7 @@ module.exports = {
       '@bolt/components-typeahead',
       '@bolt/components-ul',
       '@bolt/components-video',
+      '@bolt/analytics-autolink',
     ],
     individual: [
       '@bolt/components-critical-fonts',

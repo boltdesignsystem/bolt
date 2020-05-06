@@ -6,8 +6,8 @@ exports[`link Default <bolt-link> w/o Shadow DOM renders 1`] = `
              no-shadow
   >
     <a href="http://pega.com"
-       class="c-bolt-link c-bolt-link--display-inline c-bolt-link--valign-center"
        target="_self"
+       class="c-bolt-link c-bolt-link--display-inline c-bolt-link--valign-center"
     >
       <slot name="before">
       </slot>
@@ -30,6 +30,7 @@ exports[`link Default <bolt-link> w/o Shadow DOM renders 3`] = `
     style=""
     url="http://pega.com"
   >
+    <!---->
     <!---->
   </bolt-link>
   <a
@@ -64,15 +65,14 @@ exports[`link Default <bolt-link> w/o Shadow DOM renders 3`] = `
     <!---->
   </a>
   <!---->
+  <!---->
 </div>
 `;
 
 exports[`link Default <bolt-link> w/o Shadow DOM renders and without url prop 1`] = `
 <div>
   <bolt-link no-shadow>
-    <a class="c-bolt-link c-bolt-link--display-inline c-bolt-link--valign-center"
-       target="_self"
-    >
+    <button class="c-bolt-link c-bolt-link--display-inline c-bolt-link--valign-center">
       <slot name="before">
       </slot>
       <span class="c-bolt-link__text">
@@ -80,7 +80,7 @@ exports[`link Default <bolt-link> w/o Shadow DOM renders and without url prop 1`
       </span>
       <slot name="after">
       </slot>
-    </a>
+    </button>
   </bolt-link>
 </div>
 `;
@@ -94,11 +94,11 @@ exports[`link Default <bolt-link> w/o Shadow DOM renders and without url prop 3`
     style=""
   >
     <!---->
+    <!---->
   </bolt-link>
-  <a
+  <button
     class="c-bolt-link c-bolt-link--display-inline c-bolt-link--valign-center"
     style=""
-    target="_self"
   >
     <!---->
     <!---->
@@ -124,15 +124,16 @@ exports[`link Default <bolt-link> w/o Shadow DOM renders and without url prop 3`
     />
     <!---->
     <!---->
-  </a>
+  </button>
+  <!---->
   <!---->
 </div>
 `;
 
 exports[`link Default <bolt-link> with Shadow DOM renders 1`] = `
 <a href="http://pega.com"
-   class="c-bolt-link c-bolt-link--display-inline c-bolt-link--valign-center"
    target="_self"
+   class="c-bolt-link c-bolt-link--display-inline c-bolt-link--valign-center"
 >
   <slot name="before">
   </slot>
@@ -152,9 +153,7 @@ exports[`link Default <bolt-link> with Shadow DOM renders 2`] = `
 `;
 
 exports[`link Default <bolt-link> with Shadow DOM renders and without url prop 1`] = `
-<a class="c-bolt-link c-bolt-link--display-inline c-bolt-link--valign-center"
-   target="_self"
->
+<button class="c-bolt-link c-bolt-link--display-inline c-bolt-link--valign-center">
   <slot name="before">
   </slot>
   <span class="c-bolt-link__text">
@@ -163,7 +162,7 @@ exports[`link Default <bolt-link> with Shadow DOM renders and without url prop 1
   </span>
   <slot name="after">
   </slot>
-</a>
+</button>
 `;
 
 exports[`link Default <bolt-link> with Shadow DOM renders and without url prop 2`] = `
@@ -200,15 +199,19 @@ exports[`link Default <bolt-link> with Shadow DOM renders with no extra whitespa
 exports[`link Link with an onClick attributes renders properly 1`] = `
 <bolt-link display="inline"
            valign="center"
+           url="https://pega.com"
            on-click="on-click-test"
 >
-  <a is="shadow-root"
+  <a href="https://pega.com"
+     is="shadow-root"
      class="c-bolt-link  c-bolt-link--display-inline c-bolt-link--valign-center"
      on-click="on-click-test"
   >
-    <replace-with-children class="c-bolt-link__text">
+    <ssr-keep for="bolt-link"
+              class="c-bolt-link__text"
+    >
       Link w/ onClick via attributes
-    </replace-with-children>
+    </ssr-keep>
   </a>
 </bolt-link>
 `;
@@ -216,14 +219,18 @@ exports[`link Link with an onClick attributes renders properly 1`] = `
 exports[`link Link with an onClick param renders properly 1`] = `
 <bolt-link display="inline"
            valign="center"
+           url="https://pega.com"
            on-click="on-click-test"
 >
-  <a is="shadow-root"
+  <a href="https://pega.com"
+     is="shadow-root"
      class="c-bolt-link  c-bolt-link--display-inline c-bolt-link--valign-center"
   >
-    <replace-with-children class="c-bolt-link__text">
+    <ssr-keep for="bolt-link"
+              class="c-bolt-link__text"
+    >
       Link with onClick via param
-    </replace-with-children>
+    </ssr-keep>
   </a>
 </bolt-link>
 `;
@@ -231,13 +238,17 @@ exports[`link Link with an onClick param renders properly 1`] = `
 exports[`link Link with c-bolt- class is thrown out 1`] = `
 <bolt-link display="inline"
            valign="center"
+           url="https://pega.com"
 >
-  <a is="shadow-root"
+  <a href="https://pega.com"
+     is="shadow-root"
      class="c-bolt-link  c-bolt-link--display-inline c-bolt-link--valign-center"
   >
-    <replace-with-children class="c-bolt-link__text">
+    <ssr-keep for="bolt-link"
+              class="c-bolt-link__text"
+    >
       Link with outer JS-prefixed class
-    </replace-with-children>
+    </ssr-keep>
   </a>
 </bolt-link>
 `;
@@ -245,13 +256,17 @@ exports[`link Link with c-bolt- class is thrown out 1`] = `
 exports[`link Link with inner classes via Drupal Attributes 1`] = `
 <bolt-link display="inline"
            valign="center"
+           url="https://pega.com"
 >
-  <a is="shadow-root"
+  <a href="https://pega.com"
+     is="shadow-root"
      class="c-bolt-link  c-bolt-link--display-inline c-bolt-link--valign-center is-active"
   >
-    <replace-with-children class="c-bolt-link__text">
+    <ssr-keep for="bolt-link"
+              class="c-bolt-link__text"
+    >
       Link with inner classes
-    </replace-with-children>
+    </ssr-keep>
   </a>
 </bolt-link>
 `;
@@ -259,14 +274,18 @@ exports[`link Link with inner classes via Drupal Attributes 1`] = `
 exports[`link Link with outer JS-class via Drupal Attributes 1`] = `
 <bolt-link display="inline"
            valign="center"
+           url="https://pega.com"
            class="js-click-me"
 >
-  <a is="shadow-root"
+  <a href="https://pega.com"
+     is="shadow-root"
      class="c-bolt-link  c-bolt-link--display-inline c-bolt-link--valign-center"
   >
-    <replace-with-children class="c-bolt-link__text">
+    <ssr-keep for="bolt-link"
+              class="c-bolt-link__text"
+    >
       Link with outer JS-prefixed class
-    </replace-with-children>
+    </ssr-keep>
   </a>
 </bolt-link>
 `;
@@ -274,14 +293,18 @@ exports[`link Link with outer JS-class via Drupal Attributes 1`] = `
 exports[`link Link with outer classes via Drupal Attributes 1`] = `
 <bolt-link display="inline"
            valign="center"
+           url="https://pega.com"
            class="u-bolt-padding-medium"
 >
-  <a is="shadow-root"
+  <a href="https://pega.com"
+     is="shadow-root"
      class="c-bolt-link  c-bolt-link--display-inline c-bolt-link--valign-center"
   >
-    <replace-with-children class="c-bolt-link__text">
+    <ssr-keep for="bolt-link"
+              class="c-bolt-link__text"
+    >
       Link with outer classes
-    </replace-with-children>
+    </ssr-keep>
   </a>
 </bolt-link>
 `;
@@ -289,13 +312,17 @@ exports[`link Link with outer classes via Drupal Attributes 1`] = `
 exports[`link basic link 1`] = `
 <bolt-link display="inline"
            valign="center"
+           url="https://pega.com"
 >
-  <a is="shadow-root"
+  <a href="https://pega.com"
+     is="shadow-root"
      class="c-bolt-link  c-bolt-link--display-inline c-bolt-link--valign-center"
   >
-    <replace-with-children class="c-bolt-link__text">
+    <ssr-keep for="bolt-link"
+              class="c-bolt-link__text"
+    >
       Hello World
-    </replace-with-children>
+    </ssr-keep>
   </a>
 </bolt-link>
 `;
@@ -303,13 +330,17 @@ exports[`link basic link 1`] = `
 exports[`link link display: block 1`] = `
 <bolt-link display="block"
            valign="center"
+           url="https://pega.com"
 >
-  <a is="shadow-root"
+  <a href="https://pega.com"
+     is="shadow-root"
      class="c-bolt-link  c-bolt-link--display-block c-bolt-link--valign-center"
   >
-    <replace-with-children class="c-bolt-link__text">
+    <ssr-keep for="bolt-link"
+              class="c-bolt-link__text"
+    >
       Hello World
-    </replace-with-children>
+    </ssr-keep>
   </a>
 </bolt-link>
 `;
@@ -317,13 +348,17 @@ exports[`link link display: block 1`] = `
 exports[`link link display: flex 1`] = `
 <bolt-link display="flex"
            valign="center"
+           url="https://pega.com"
 >
-  <a is="shadow-root"
+  <a href="https://pega.com"
+     is="shadow-root"
      class="c-bolt-link  c-bolt-link--display-flex c-bolt-link--valign-center"
   >
-    <replace-with-children class="c-bolt-link__text">
+    <ssr-keep for="bolt-link"
+              class="c-bolt-link__text"
+    >
       Hello World
-    </replace-with-children>
+    </ssr-keep>
   </a>
 </bolt-link>
 `;
@@ -331,13 +366,17 @@ exports[`link link display: flex 1`] = `
 exports[`link link display: inline 1`] = `
 <bolt-link display="inline"
            valign="center"
+           url="https://pega.com"
 >
-  <a is="shadow-root"
+  <a href="https://pega.com"
+     is="shadow-root"
      class="c-bolt-link  c-bolt-link--display-inline c-bolt-link--valign-center"
   >
-    <replace-with-children class="c-bolt-link__text">
+    <ssr-keep for="bolt-link"
+              class="c-bolt-link__text"
+    >
       Hello World
-    </replace-with-children>
+    </ssr-keep>
   </a>
 </bolt-link>
 `;
@@ -345,13 +384,17 @@ exports[`link link display: inline 1`] = `
 exports[`link link valign: center 1`] = `
 <bolt-link display="inline"
            valign="center"
+           url="https://pega.com"
 >
-  <a is="shadow-root"
+  <a href="https://pega.com"
+     is="shadow-root"
      class="c-bolt-link  c-bolt-link--display-inline c-bolt-link--valign-center"
   >
-    <replace-with-children class="c-bolt-link__text">
+    <ssr-keep for="bolt-link"
+              class="c-bolt-link__text"
+    >
       Hello World
-    </replace-with-children>
+    </ssr-keep>
   </a>
 </bolt-link>
 `;
@@ -359,13 +402,17 @@ exports[`link link valign: center 1`] = `
 exports[`link link valign: start 1`] = `
 <bolt-link display="inline"
            valign="start"
+           url="https://pega.com"
 >
-  <a is="shadow-root"
+  <a href="https://pega.com"
+     is="shadow-root"
      class="c-bolt-link  c-bolt-link--display-inline c-bolt-link--valign-start"
   >
-    <replace-with-children class="c-bolt-link__text">
+    <ssr-keep for="bolt-link"
+              class="c-bolt-link__text"
+    >
       Hello World
-    </replace-with-children>
+    </ssr-keep>
   </a>
 </bolt-link>
 `;
