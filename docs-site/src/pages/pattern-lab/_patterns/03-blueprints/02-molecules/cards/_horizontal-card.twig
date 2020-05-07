@@ -11,6 +11,7 @@
   cardTitle: cardTitle,
   cardMetaItems: cardMetaItems,
   cardDescription: cardDescription,
+  cardToolbarActions: cardToolbarActions,
 } only %}
   {% block media %}
     {% include "@bolt-blueprints/_icon-banner.twig" with {
@@ -36,6 +37,13 @@
         <bolt-overflow-menu-item>list item 3</bolt-overflow-menu-item>
       </bolt-overflow-menu>
     </div> #}
+    {% if cardToolbarActions %}
+      {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--xsmall u-bolt-negative-margin-top-small u-bolt-negative-margin-right-small" %}
+        {% cell "u-bolt-margin-left-auto" %}
+          {% include "@bolt-blueprints/_toolbar-actions.twig" with cardToolbarActions only %}
+        {% endcell %}
+      {% endgrid %}
+    {% endif %}
 
     <div class="u-bolt-overflow-hidden">
       {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--border" %}
@@ -66,7 +74,7 @@
         {% endcell %}
 
         {% if cardDescription %}
-          {% cell "u-bolt-width-12/12 u-bolt-width-6/12@small" %}
+          {% cell "u-bolt-width-12/12 u-bolt-width-6/12@small u-bolt-flex u-bolt-align-items-center" %}
             {% include "@bolt-components-headline/text.twig" with {
               text: cardDescription,
               size: "small",

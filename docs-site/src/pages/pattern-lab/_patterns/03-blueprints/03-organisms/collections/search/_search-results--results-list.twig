@@ -4,6 +4,9 @@
     macros.include("@bolt-blueprints/_horizontal-card.twig", {
       cardUrl: "#!",
       cardSubtitle: "Mission",
+      cardToolbarActions: {
+        addButton: true
+      },
       cardTitle: bolt.faker.sentence(3),
       cardMetaItems: [
         macros.include("@bolt-components-headline/text.twig", {
@@ -40,6 +43,38 @@
       link: {
         url: "https://academy.pega.com/library/71/ui-specialist",
       },
+      cardDescription: bolt.faker.text(150),
+    }, false),
+    macros.include("@bolt-blueprints/_horizontal-card.twig", {
+      cardUrl: "#!",
+      cardSubtitle: "Mission",
+      cardToolbarActions: {
+        removeButton: true
+      },
+      cardTitle: bolt.faker.sentence(3),
+      cardMetaItems: [
+        macros.include("@bolt-components-headline/text.twig", {
+          size: "small",
+          weight: "bold",
+          text: "#{bolt.faker.numberBetween(2,30)} topics",
+        }, false),
+        macros.include("@bolt-components-headline/text.twig", {
+          size: "small",
+          weight: "bold",
+          text: "Completed",
+          icon: {
+            name: "check-solid",
+            position: "before"
+          },
+          attributes: {
+            style: [
+              'color: #3C9439;'
+            ]
+          }
+        }, false),
+      ],
+      cardGradient: "orange",
+      cardIcon: "brand-meteor",
       cardDescription: bolt.faker.text(150),
     }, false),
     macros.include("@bolt-blueprints/_horizontal-card.twig", {
