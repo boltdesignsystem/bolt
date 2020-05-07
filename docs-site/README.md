@@ -1,4 +1,4 @@
-# Unified Bolt Docs + Pattern Lab Site (Storefront)
+# Unified Bolt Docs + Pattern Lab Site
 
 ```bash
 yarn start # compiles, then start server and watches
