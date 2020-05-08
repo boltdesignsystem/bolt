@@ -70,9 +70,7 @@ class BoltTooltip extends BoltElement {
       this.isHovering = false;
     }
 
-    debounce(() => {
-      this.setOpen();
-    }, 100)();
+    this.setOpen();
   }
 
   sortChildren() {
