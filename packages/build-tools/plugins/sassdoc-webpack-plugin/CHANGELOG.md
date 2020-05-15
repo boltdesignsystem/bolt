@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.23.0](https://github.com/boltdesignsystem/bolt/compare/v2.22.1...v2.23.0) (2020-05-06)
+
+**Note:** Version bump only for package @bolt/sassdoc-webpack-plugin
+
+
+
+
+
 # [2.19.0](https://github.com/boltdesignsystem/bolt/compare/v2.18.1...v2.19.0) (2020-03-04)
 
 **Note:** Version bump only for package @bolt/sassdoc-webpack-plugin

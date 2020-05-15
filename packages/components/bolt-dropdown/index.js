@@ -1,11 +1,10 @@
-import { polyfillLoader } from '@bolt/core-v3.x/polyfills';
+import { lazyQueue } from '@bolt/lazy-queue';
 
-polyfillLoader.then(res => {
-  import(
+lazyQueue(['bolt-dropdown'], async () => {
+  await import(
     /*
-    webpackMode: 'eager',
-    webpackChunkName: 'bolt-dropdown'
-  */ './dropdown.js'
+      webpackChunkName: 'bolt-dropdown'
+    */ './dropdown.js'
   ).then(BoltDropdown => {
     if (!customElements.get('bolt-dropdown')) {
       customElements.define(

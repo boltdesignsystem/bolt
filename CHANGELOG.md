@@ -3,6 +3,64 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.23.0](https://github.com/boltdesignsystem/bolt/compare/v2.22.1...v2.23.0) (2020-05-06)
+
+
+### Bug Fixes
+
+* add missing autolink package to @bolt/starter-kit ([1038de5](https://github.com/boltdesignsystem/bolt/commit/1038de53567d57fb181069e282a41c6e5995e5b7))
+* add tiny style update so <ssr-keep> isn't rendered as inline initially ([fd168cb](https://github.com/boltdesignsystem/bolt/commit/fd168cb7e27b0ba3e3c492a6cf995733ca3ffee6))
+* add tiny style update so <ssr-keep> isn't rendered as inline initially ([2ad9c0c](https://github.com/boltdesignsystem/bolt/commit/2ad9c0c56d369ccc768cc3cf1acea21706e60ed0))
+* add update snapshot for Table of Contents ([7c7d493](https://github.com/boltdesignsystem/bolt/commit/7c7d493a341af161b6be2ca30b28f003519a0dcb))
+* address linting issue ([ea875ea](https://github.com/boltdesignsystem/bolt/commit/ea875ea42b4ee9de3a7f754ba2cac3e861ebf521))
+* address linting issues ([c1774b0](https://github.com/boltdesignsystem/bolt/commit/c1774b0af08db78ebbd0fd92bab69752814afb1d))
+* adjust logic for loading code not associated with any particular HTML tag(s) ([c97db03](https://github.com/boltdesignsystem/bolt/commit/c97db03b15c92b9f2f972f0f1ee64b6a0a32a69f))
+* body text color ([9b545b3](https://github.com/boltdesignsystem/bolt/commit/9b545b320bf2752ae29545b2f0e5ef9b43c8fcd0))
+* don't add `target` attribute to button ([aca1669](https://github.com/boltdesignsystem/bolt/commit/aca1669b2e8e5d598b2dc0c39ab9a18c96cf4f19))
+* don't remove is="shadow-root" just yet, make that change separately ([0b2c39b](https://github.com/boltdesignsystem/bolt/commit/0b2c39b09e61a0fa3b5a74aaee80a311983269de))
+* incorrect docs ([061d3bd](https://github.com/boltdesignsystem/bolt/commit/061d3bdf7df6292737be20bd2a6323a59d72a898))
+* layout hotfix for Firefox and Safari ([7fecc3b](https://github.com/boltdesignsystem/bolt/commit/7fecc3bc790b8c3081b2ff740cc880ca1efa418c))
+* more eagerly lazy load SSR helper elements + update docs site-specific lazy-queue callback to use async await ([7af6704](https://github.com/boltdesignsystem/bolt/commit/7af670470a64149dfc907abd1666e027a9a01411))
+* proper role attributes and card media border radius ([9b1b67e](https://github.com/boltdesignsystem/bolt/commit/9b1b67e47114b2704605f1fadb72401800e86fa8))
+* remove replace-with-children css ([553c0ef](https://github.com/boltdesignsystem/bolt/commit/553c0ef124085b411b28e8b6cd2ab20a7deb07ab))
+* schema ([ec0560a](https://github.com/boltdesignsystem/bolt/commit/ec0560a0357a2320f8fef0578fffb1988fd93a97))
+* ssr-keep and role attributes for list ([e024681](https://github.com/boltdesignsystem/bolt/commit/e024681ef326313de875cbf078819329763ccdb0))
+* ssr-keep display issue in list ([caca146](https://github.com/boltdesignsystem/bolt/commit/caca14604aec853f5099e83f8abfc737d873ab2a))
+* tweak <ssr-keep> support in BoltElement ([620cab5](https://github.com/boltdesignsystem/bolt/commit/620cab5e90ce4f44ee2466c79a15d3c56edeefd9))
+* update Accordion Jest test to confirm Accordion JS rendering / handlling single items correctly ([32e01f7](https://github.com/boltdesignsystem/bolt/commit/32e01f7e8da99399cd620e4b487f62f6a4407045))
+* update Accordion snapshots ([d3364f5](https://github.com/boltdesignsystem/bolt/commit/d3364f5130577630939eac7948ca5e9ff624e8af))
+* update additional snapshots ([2d33b89](https://github.com/boltdesignsystem/bolt/commit/2d33b89730d379daeb5d2b1d9971e0a74801124f))
+* update Jest tests based on List / aria role updates ([e18a259](https://github.com/boltdesignsystem/bolt/commit/e18a2593e29312153e7661ae03bd94a2c4b41c2d))
+* update Jest tests to more reliably work with fully async-loaded components ([6b4c752](https://github.com/boltdesignsystem/bolt/commit/6b4c752cfcf32a3d0d260d5e2f718be12fd3df50))
+* update JS to address linting issues ([7ee007e](https://github.com/boltdesignsystem/bolt/commit/7ee007ef087ddba89c1e4aac61399718b8743653))
+* update micro journey JS to fix intersection observer-related bug reported ([d1f24f8](https://github.com/boltdesignsystem/bolt/commit/d1f24f83012a97e5ac9020f31ce7063ee90e2bf9))
+* update remaining Jest snapshots; tweak Popover and Tabs tests to be more reliable ([ab0d7f0](https://github.com/boltdesignsystem/bolt/commit/ab0d7f084678e5b001e792d34908255b928ef770))
+* update SVG <use> tags ([5f10098](https://github.com/boltdesignsystem/bolt/commit/5f100987030abb61e324e3ca2213727b488b14b7))
+* update test config ([949b193](https://github.com/boltdesignsystem/bolt/commit/949b19355ff46189b46c9216589f56abf2fee35b))
+* update VRT failureThreshold ([653ea41](https://github.com/boltdesignsystem/bolt/commit/653ea41d46248b51c7d4a1ebc7a4588af086cdd4))
+* update VRT screenshot ([4ad4c6a](https://github.com/boltdesignsystem/bolt/commit/4ad4c6a9f38c3eacd65b1b9febe8eae9df4c89b2))
+* whitespace around lit html template ([8543506](https://github.com/boltdesignsystem/bolt/commit/8543506d64c6f769a41617f7e941dc159f011fc5))
+
+
+### Features
+
+* add migration to v3.x docs ([c8d29f2](https://github.com/boltdesignsystem/bolt/commit/c8d29f2aca40a3df84527d2ba9a0a7b7f1d5c7f9))
+* add new Jest helper function to simplify testing WC rendered HTML ([4a8edb3](https://github.com/boltdesignsystem/bolt/commit/4a8edb3371e977e4c50b5ffbc4695745838b3176))
+* add new lazy-queue MVP package to help with ongoing web performance optimization work ([3cbf5f7](https://github.com/boltdesignsystem/bolt/commit/3cbf5f7d646fbe321a103ff51269c4d3c512b1df))
+* add note to each deprecated package linking to migration docs ([2485a5c](https://github.com/boltdesignsystem/bolt/commit/2485a5c1238674ffc1fb4de4fd172b5c389b61da))
+* cherry pick misc monorepo updates from the broader lazy-queue related updates in [#1839](https://github.com/boltdesignsystem/bolt/issues/1839) ([727c13d](https://github.com/boltdesignsystem/bolt/commit/727c13db4923bdb80ca7791dde7c3767801cb3ff))
+* globally lazyload JS bundles to expose same existing issues as the ones found with the new lazy-queue functionality ([7cc4ce2](https://github.com/boltdesignsystem/bolt/commit/7cc4ce2fa9ce28dc4f9f37078762f106ca87729f))
+* manually cherry pick ajv replacement updates ([c322d0e](https://github.com/boltdesignsystem/bolt/commit/c322d0e38266ca5660d8c77868ec5f1203fbb5b7))
+* migrate Carousel over to use lit-element; fixes rendering and rendering perf issues encountered in [#1836](https://github.com/boltdesignsystem/bolt/issues/1836) ([a0bbc32](https://github.com/boltdesignsystem/bolt/commit/a0bbc3243639cb2479110870012efc5b90a45432))
+* output `<button>` if no `url` provided ([0050bcf](https://github.com/boltdesignsystem/bolt/commit/0050bcf5528cbead9408dce2492cefc4e9588f48))
+* split manifest up into smaller files + automatically retain existing behavior if issues are found. ([38f4e28](https://github.com/boltdesignsystem/bolt/commit/38f4e28775787e378452ea73d1a9c62f1db1945f))
+* update Chip and Video to use the new LazyQueue functionality ([bf7a77b](https://github.com/boltdesignsystem/bolt/commit/bf7a77b42184ccd9b29e00bc3140ace48f44badc))
+* update Jest tests to use new renderWC helper + prep for upstream <ssr-keep> updates ([beb6b85](https://github.com/boltdesignsystem/bolt/commit/beb6b85cfdb4d37359e0fcf1d4deaa7f1a0a25f1))
+
+
+
+
+
 ## [2.22.1](https://github.com/boltdesignsystem/bolt/compare/v2.22.0...v2.22.1) (2020-04-22)
 
 

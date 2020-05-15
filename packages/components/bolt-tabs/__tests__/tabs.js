@@ -77,11 +77,13 @@ describe('Bolt Tabs', () => {
   });
 
   test('Web Component usage (Shadow DOM)', async () => {
-    const tabsOuter = await page.evaluate(tabsInnerHTML => {
+    const tabsOuter = await page.evaluate(async tabsInnerHTML => {
       const wrapper = document.createElement('div');
       wrapper.innerHTML = tabsInnerHTML;
       document.body.appendChild(wrapper);
 
+      await customElements.whenDefined('ssr-keep');
+      await customElements.whenDefined('bolt-tabs');
       const tabs = document.querySelector('bolt-tabs');
       const tabPanels = Array.from(document.querySelectorAll('bolt-tab-panel'));
       [tabs, ...tabPanels].forEach(el => el.updated());
@@ -100,11 +102,13 @@ describe('Bolt Tabs', () => {
   });
 
   test('Web Component usage (Light DOM)', async () => {
-    const tabsOuter = await page.evaluate(tabsInnerHTML => {
+    const tabsOuter = await page.evaluate(async tabsInnerHTML => {
       const wrapper = document.createElement('div');
       wrapper.innerHTML = tabsInnerHTML;
       document.body.appendChild(wrapper);
 
+      await customElements.whenDefined('ssr-keep');
+      await customElements.whenDefined('bolt-tabs');
       const tabs = document.querySelector('bolt-tabs');
       const tabPanels = Array.from(document.querySelectorAll('bolt-tab-panel'));
       [tabs, ...tabPanels].forEach(el => {
@@ -128,11 +132,13 @@ describe('Bolt Tabs', () => {
   align.enum.forEach(async option => {
     test(`Align: ${option}`, async () => {
       const tabsOuter = await page.evaluate(
-        (option, tabsInnerHTML) => {
+        async (option, tabsInnerHTML) => {
           const wrapper = document.createElement('div');
           wrapper.innerHTML = tabsInnerHTML;
           document.body.appendChild(wrapper);
 
+          await customElements.whenDefined('ssr-keep');
+          await customElements.whenDefined('bolt-tabs');
           const tabs = document.querySelector('bolt-tabs');
           const tabPanels = Array.from(
             document.querySelectorAll('bolt-tab-panel'),
@@ -160,11 +166,13 @@ describe('Bolt Tabs', () => {
   inset.enum.forEach(async option => {
     test(`Inset: ${option}`, async () => {
       const tabsOuter = await page.evaluate(
-        (option, tabsInnerHTML) => {
+        async (option, tabsInnerHTML) => {
           const wrapper = document.createElement('div');
           wrapper.innerHTML = tabsInnerHTML;
           document.body.appendChild(wrapper);
 
+          await customElements.whenDefined('ssr-keep');
+          await customElements.whenDefined('bolt-tabs');
           const tabs = document.querySelector('bolt-tabs');
           const tabPanels = Array.from(
             document.querySelectorAll('bolt-tab-panel'),

@@ -1,10 +1,11 @@
 {
   "name": "@bolt/components-icon",
-  "version": "2.21.0",
+  "version": "2.23.0",
   "description": "Icon component in Bolt",
   "keywords": [
-    "eyeglass-module",
     "bolt design system",
+    "web component",
+    "lit-element",
     "bolt",
     "ui toolkit",
     "design system"
@@ -14,19 +15,24 @@
   "repository": "https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icon",
   "license": "MIT",
   "author": "Salem Ghoweri",
+  "sideEffects": [
+    "./src/icon.standalone.js",
+    "./src/icon.js",
+    "./src/icon.scss"
+  ],
   "main": "src/icon.js",
   "style": "src/icon.scss",
   "dependencies": {
-    "@bolt/components-icons": "^2.21.0",
-    "@bolt/core-v3.x": "^2.21.0",
-    "pubsub-js": "^1.6.0",
-    "svg-baker-runtime": "^1.4.3",
-    "uppercamelcase": "^3.0.0"
+    "@bolt/core-v3.x": "^2.23.0",
+    "@bolt/lazy-queue": "^2.23.0",
+    "svg-baker-runtime": "^1.4.3"
+  },
+  "optionalDependencies": {
+    "@bolt/components-icons": "^2.23.0"
   },
   "publishConfig": {
     "access": "public"
   },
   "gitHead": "d41aa75ae3d195d9d7fb3952eed5e0ae80988133",
-  "schema": "icon.schema.json",
-  "sourceFilesFrom": "0.10.2"
+  "schema": "icon.schema.json"
 }

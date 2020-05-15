@@ -10,28 +10,9 @@ exports[`<bolt-blockquote> component <bolt-blockquote> align variations: center 
 
     
     
+
+          
       
-
-
- 
-  
-
-
-
-
-  
-
-  
-
-
-
-
-
-
-
-
-
-    
   <p
     class="is-first-child is-last-child"
     style=""
@@ -39,13 +20,7 @@ exports[`<bolt-blockquote> component <bolt-blockquote> align variations: center 
     The greater danger for most of us lies not in setting our aim too high and falling short; but in setting our aim too low, and achieving our mark.
   </p>
   
-
-          
-        
-      
             
-                          
-                
 
 
  
@@ -74,10 +49,8 @@ exports[`<bolt-blockquote> component <bolt-blockquote> align variations: center 
     Michelangelo di Lodovico Buonarroti Simoni
   </cite>
   
-              
+          
             
-                          
-                
 
 
  
@@ -106,9 +79,7 @@ exports[`<bolt-blockquote> component <bolt-blockquote> align variations: center 
     Renaissance Artist
   </cite>
   
-              
-                    
-      
+          
 </bolt-blockquote>
 `;
 
@@ -117,31 +88,35 @@ exports[`<bolt-blockquote> component <bolt-blockquote> align variations: center 
   <blockquote class="c-bolt-blockquote c-bolt-blockquote--xlarge c-bolt-blockquote--semibold c-bolt-blockquote--align-items-center c-bolt-blockquote--bordered-vertical"
               is="shadow-root"
   >
-    <replace-with-grandchildren class="c-bolt-blockquote__quote">
+    <div class="c-bolt-blockquote__quote">
       <div class="c-bolt-text c-bolt-text--semibold c-bolt-text--normal c-bolt-text--xlarge">
-        <p>
-          The greater danger for most of us lies not in setting our aim too high and falling short; but in setting our aim too low, and achieving our mark.
-        </p>
+        <ssr-keep for="bolt-blockquote">
+          <p>
+            The greater danger for most of us lies not in setting our aim too high and falling short; but in setting our aim too low, and achieving our mark.
+          </p>
+        </ssr-keep>
       </div>
-    </replace-with-grandchildren>
-    <replace-with-grandchildren>
-      <footer class="c-bolt-blockquote__footer">
-        <replace-with-children class="c-bolt-blockquote__footer-item">
-          <cite slot="author-name"
-                class="c-bolt-text c-bolt-text--bold c-bolt-text--normal c-bolt-text--xsmall"
-          >
-            Michelangelo di Lodovico Buonarroti Simoni
-          </cite>
-        </replace-with-children>
-        <replace-with-children class="c-bolt-blockquote__footer-item">
-          <cite slot="author-title"
-                class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--xsmall"
-          >
-            Renaissance Artist
-          </cite>
-        </replace-with-children>
-      </footer>
-    </replace-with-grandchildren>
+    </div>
+    <footer class="c-bolt-blockquote__footer">
+      <ssr-keep for="bolt-blockquote"
+                class="c-bolt-blockquote__footer-item"
+      >
+        <cite slot="author-name"
+              class="c-bolt-text c-bolt-text--bold c-bolt-text--normal c-bolt-text--xsmall"
+        >
+          Michelangelo di Lodovico Buonarroti Simoni
+        </cite>
+      </ssr-keep>
+      <ssr-keep for="bolt-blockquote"
+                class="c-bolt-blockquote__footer-item"
+      >
+        <cite slot="author-title"
+              class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--xsmall"
+        >
+          Renaissance Artist
+        </cite>
+      </ssr-keep>
+    </footer>
   </blockquote>
 </bolt-blockquote>
 `;
@@ -153,10 +128,20 @@ exports[`<bolt-blockquote> component <bolt-blockquote> align variations: left 2`
 >
   
   
-
+  <blockquote
+    class="c-bolt-blockquote c-bolt-blockquote--xlarge c-bolt-blockquote--semibold c-bolt-blockquote--align-items-start c-bolt-blockquote--bordered-vertical"
+    is="shadow-root"
+    style=""
+  >
     
     
+    
+    <div
+      class="c-bolt-blockquote__quote"
+      style=""
+    >
       
+              
 
 
  
@@ -177,21 +162,41 @@ exports[`<bolt-blockquote> component <bolt-blockquote> align variations: left 2`
 
 
 
+      <div
+        class="c-bolt-text c-bolt-text--semibold c-bolt-text--normal c-bolt-text--xlarge"
+        style=""
+      >
+        <ssr-keep
+          for="bolt-blockquote"
+          style=""
+        >
+          <p
+            style=""
+          >
+            The greater danger for most of us lies not in setting our aim too high and falling short; but in setting our aim too low, and achieving our mark.
+          </p>
+        </ssr-keep>
+      </div>
+      
+          
+    </div>
     
-  <p
-    class="is-first-child is-last-child"
-    style=""
-  >
-    The greater danger for most of us lies not in setting our aim too high and falling short; but in setting our aim too low, and achieving our mark.
-  </p>
-  
 
           
+    <footer
+      class="c-bolt-blockquote__footer"
+      style=""
+    >
+      
         
-      
+                  
+      <ssr-keep
+        class="c-bolt-blockquote__footer-item"
+        for="bolt-blockquote"
+        style=""
+      >
+        
             
-                          
-                
 
 
  
@@ -212,18 +217,26 @@ exports[`<bolt-blockquote> component <bolt-blockquote> align variations: left 2`
 
 
 
-  <cite
-    class="c-bolt-text c-bolt-text--bold c-bolt-text--normal c-bolt-text--xsmall"
-    slot="author-name"
-    style=""
-  >
-    Michelangelo di Lodovico Buonarroti Simoni
-  </cite>
-  
-              
+        <cite
+          class="c-bolt-text c-bolt-text--bold c-bolt-text--normal c-bolt-text--xsmall"
+          slot="author-name"
+          style=""
+        >
+          Michelangelo di Lodovico Buonarroti Simoni
+        </cite>
+        
+          
+      </ssr-keep>
+      
+        
+                  
+      <ssr-keep
+        class="c-bolt-blockquote__footer-item"
+        for="bolt-blockquote"
+        style=""
+      >
+        
             
-                          
-                
 
 
  
@@ -244,17 +257,24 @@ exports[`<bolt-blockquote> component <bolt-blockquote> align variations: left 2`
 
 
 
-  <cite
-    class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--xsmall"
-    slot="author-title"
-    style=""
-  >
-    Renaissance Artist
-  </cite>
-  
-              
-                    
+        <cite
+          class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--xsmall"
+          slot="author-title"
+          style=""
+        >
+          Renaissance Artist
+        </cite>
+        
+          
+      </ssr-keep>
       
+              
+    </footer>
+    
+      
+  </blockquote>
+  
+
 </bolt-blockquote>
 `;
 
@@ -263,31 +283,35 @@ exports[`<bolt-blockquote> component <bolt-blockquote> align variations: left 3`
   <blockquote class="c-bolt-blockquote c-bolt-blockquote--xlarge c-bolt-blockquote--semibold c-bolt-blockquote--align-items-start c-bolt-blockquote--bordered-vertical"
               is="shadow-root"
   >
-    <replace-with-grandchildren class="c-bolt-blockquote__quote">
+    <div class="c-bolt-blockquote__quote">
       <div class="c-bolt-text c-bolt-text--semibold c-bolt-text--normal c-bolt-text--xlarge">
-        <p>
-          The greater danger for most of us lies not in setting our aim too high and falling short; but in setting our aim too low, and achieving our mark.
-        </p>
+        <ssr-keep for="bolt-blockquote">
+          <p>
+            The greater danger for most of us lies not in setting our aim too high and falling short; but in setting our aim too low, and achieving our mark.
+          </p>
+        </ssr-keep>
       </div>
-    </replace-with-grandchildren>
-    <replace-with-grandchildren>
-      <footer class="c-bolt-blockquote__footer">
-        <replace-with-children class="c-bolt-blockquote__footer-item">
-          <cite slot="author-name"
-                class="c-bolt-text c-bolt-text--bold c-bolt-text--normal c-bolt-text--xsmall"
-          >
-            Michelangelo di Lodovico Buonarroti Simoni
-          </cite>
-        </replace-with-children>
-        <replace-with-children class="c-bolt-blockquote__footer-item">
-          <cite slot="author-title"
-                class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--xsmall"
-          >
-            Renaissance Artist
-          </cite>
-        </replace-with-children>
-      </footer>
-    </replace-with-grandchildren>
+    </div>
+    <footer class="c-bolt-blockquote__footer">
+      <ssr-keep for="bolt-blockquote"
+                class="c-bolt-blockquote__footer-item"
+      >
+        <cite slot="author-name"
+              class="c-bolt-text c-bolt-text--bold c-bolt-text--normal c-bolt-text--xsmall"
+        >
+          Michelangelo di Lodovico Buonarroti Simoni
+        </cite>
+      </ssr-keep>
+      <ssr-keep for="bolt-blockquote"
+                class="c-bolt-blockquote__footer-item"
+      >
+        <cite slot="author-title"
+              class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--xsmall"
+        >
+          Renaissance Artist
+        </cite>
+      </ssr-keep>
+    </footer>
   </blockquote>
 </bolt-blockquote>
 `;
@@ -302,28 +326,9 @@ exports[`<bolt-blockquote> component <bolt-blockquote> align variations: right 2
 
     
     
+
+          
       
-
-
- 
-  
-
-
-
-
-  
-
-  
-
-
-
-
-
-
-
-
-
-    
   <p
     class="is-first-child is-last-child"
     style=""
@@ -331,13 +336,7 @@ exports[`<bolt-blockquote> component <bolt-blockquote> align variations: right 2
     The greater danger for most of us lies not in setting our aim too high and falling short; but in setting our aim too low, and achieving our mark.
   </p>
   
-
-          
-        
-      
             
-                          
-                
 
 
  
@@ -366,10 +365,8 @@ exports[`<bolt-blockquote> component <bolt-blockquote> align variations: right 2
     Michelangelo di Lodovico Buonarroti Simoni
   </cite>
   
-              
+          
             
-                          
-                
 
 
  
@@ -398,9 +395,7 @@ exports[`<bolt-blockquote> component <bolt-blockquote> align variations: right 2
     Renaissance Artist
   </cite>
   
-              
-                    
-      
+          
 </bolt-blockquote>
 `;
 
@@ -409,31 +404,35 @@ exports[`<bolt-blockquote> component <bolt-blockquote> align variations: right 3
   <blockquote class="c-bolt-blockquote c-bolt-blockquote--xlarge c-bolt-blockquote--semibold c-bolt-blockquote--align-items-end c-bolt-blockquote--bordered-vertical"
               is="shadow-root"
   >
-    <replace-with-grandchildren class="c-bolt-blockquote__quote">
+    <div class="c-bolt-blockquote__quote">
       <div class="c-bolt-text c-bolt-text--semibold c-bolt-text--normal c-bolt-text--xlarge">
-        <p>
-          The greater danger for most of us lies not in setting our aim too high and falling short; but in setting our aim too low, and achieving our mark.
-        </p>
+        <ssr-keep for="bolt-blockquote">
+          <p>
+            The greater danger for most of us lies not in setting our aim too high and falling short; but in setting our aim too low, and achieving our mark.
+          </p>
+        </ssr-keep>
       </div>
-    </replace-with-grandchildren>
-    <replace-with-grandchildren>
-      <footer class="c-bolt-blockquote__footer">
-        <replace-with-children class="c-bolt-blockquote__footer-item">
-          <cite slot="author-name"
-                class="c-bolt-text c-bolt-text--bold c-bolt-text--normal c-bolt-text--xsmall"
-          >
-            Michelangelo di Lodovico Buonarroti Simoni
-          </cite>
-        </replace-with-children>
-        <replace-with-children class="c-bolt-blockquote__footer-item">
-          <cite slot="author-title"
-                class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--xsmall"
-          >
-            Renaissance Artist
-          </cite>
-        </replace-with-children>
-      </footer>
-    </replace-with-grandchildren>
+    </div>
+    <footer class="c-bolt-blockquote__footer">
+      <ssr-keep for="bolt-blockquote"
+                class="c-bolt-blockquote__footer-item"
+      >
+        <cite slot="author-name"
+              class="c-bolt-text c-bolt-text--bold c-bolt-text--normal c-bolt-text--xsmall"
+        >
+          Michelangelo di Lodovico Buonarroti Simoni
+        </cite>
+      </ssr-keep>
+      <ssr-keep for="bolt-blockquote"
+                class="c-bolt-blockquote__footer-item"
+      >
+        <cite slot="author-title"
+              class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--xsmall"
+        >
+          Renaissance Artist
+        </cite>
+      </ssr-keep>
+    </footer>
   </blockquote>
 </bolt-blockquote>
 `;
@@ -443,31 +442,35 @@ exports[`<bolt-blockquote> component <bolt-blockquote> basic usage 1`] = `
   <blockquote class="c-bolt-blockquote c-bolt-blockquote--xlarge c-bolt-blockquote--semibold c-bolt-blockquote--align-items-start c-bolt-blockquote--bordered-vertical"
               is="shadow-root"
   >
-    <replace-with-grandchildren class="c-bolt-blockquote__quote">
+    <div class="c-bolt-blockquote__quote">
       <div class="c-bolt-text c-bolt-text--semibold c-bolt-text--normal c-bolt-text--xlarge">
-        <p>
-          The greater danger for most of us lies not in setting our aim too high and falling short; but in setting our aim too low, and achieving our mark.
-        </p>
+        <ssr-keep for="bolt-blockquote">
+          <p>
+            The greater danger for most of us lies not in setting our aim too high and falling short; but in setting our aim too low, and achieving our mark.
+          </p>
+        </ssr-keep>
       </div>
-    </replace-with-grandchildren>
-    <replace-with-grandchildren>
-      <footer class="c-bolt-blockquote__footer">
-        <replace-with-children class="c-bolt-blockquote__footer-item">
-          <cite slot="author-name"
-                class="c-bolt-text c-bolt-text--bold c-bolt-text--normal c-bolt-text--xsmall"
-          >
-            Michelangelo di Lodovico Buonarroti Simoni
-          </cite>
-        </replace-with-children>
-        <replace-with-children class="c-bolt-blockquote__footer-item">
-          <cite slot="author-title"
-                class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--xsmall"
-          >
-            Renaissance Artist
-          </cite>
-        </replace-with-children>
-      </footer>
-    </replace-with-grandchildren>
+    </div>
+    <footer class="c-bolt-blockquote__footer">
+      <ssr-keep for="bolt-blockquote"
+                class="c-bolt-blockquote__footer-item"
+      >
+        <cite slot="author-name"
+              class="c-bolt-text c-bolt-text--bold c-bolt-text--normal c-bolt-text--xsmall"
+        >
+          Michelangelo di Lodovico Buonarroti Simoni
+        </cite>
+      </ssr-keep>
+      <ssr-keep for="bolt-blockquote"
+                class="c-bolt-blockquote__footer-item"
+      >
+        <cite slot="author-title"
+              class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--xsmall"
+        >
+          Renaissance Artist
+        </cite>
+      </ssr-keep>
+    </footer>
   </blockquote>
 </bolt-blockquote>
 `;
@@ -477,13 +480,15 @@ exports[`<bolt-blockquote> component <bolt-blockquote> basic usage w/ author 1`]
   <blockquote class="c-bolt-blockquote c-bolt-blockquote--xlarge c-bolt-blockquote--semibold c-bolt-blockquote--align-items-start c-bolt-blockquote--bordered-vertical"
               is="shadow-root"
   >
-    <replace-with-grandchildren class="c-bolt-blockquote__quote">
+    <div class="c-bolt-blockquote__quote">
       <div class="c-bolt-text c-bolt-text--semibold c-bolt-text--normal c-bolt-text--xlarge">
-        <p>
-          The greater danger for most of us lies not in setting our aim too high and falling short; but in setting our aim too low, and achieving our mark.
-        </p>
+        <ssr-keep for="bolt-blockquote">
+          <p>
+            The greater danger for most of us lies not in setting our aim too high and falling short; but in setting our aim too low, and achieving our mark.
+          </p>
+        </ssr-keep>
       </div>
-    </replace-with-grandchildren>
+    </div>
   </blockquote>
 </bolt-blockquote>
 `;
@@ -493,31 +498,35 @@ exports[`<bolt-blockquote> component <bolt-blockquote> border variations with in
   <blockquote class="c-bolt-blockquote c-bolt-blockquote--xlarge c-bolt-blockquote--semibold c-bolt-blockquote--align-items-start c-bolt-blockquote--bordered-horizontal"
               is="shadow-root"
   >
-    <replace-with-grandchildren class="c-bolt-blockquote__quote">
+    <div class="c-bolt-blockquote__quote">
       <div class="c-bolt-text c-bolt-text--semibold c-bolt-text--normal c-bolt-text--xlarge">
-        <p>
-          The greater danger for most of us lies not in setting our aim too high and falling short; but in setting our aim too low, and achieving our mark.
-        </p>
+        <ssr-keep for="bolt-blockquote">
+          <p>
+            The greater danger for most of us lies not in setting our aim too high and falling short; but in setting our aim too low, and achieving our mark.
+          </p>
+        </ssr-keep>
       </div>
-    </replace-with-grandchildren>
-    <replace-with-grandchildren>
-      <footer class="c-bolt-blockquote__footer">
-        <replace-with-children class="c-bolt-blockquote__footer-item">
-          <cite slot="author-name"
-                class="c-bolt-text c-bolt-text--bold c-bolt-text--normal c-bolt-text--xsmall"
-          >
-            Michelangelo di Lodovico Buonarroti Simoni
-          </cite>
-        </replace-with-children>
-        <replace-with-children class="c-bolt-blockquote__footer-item">
-          <cite slot="author-title"
-                class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--xsmall"
-          >
-            Renaissance Artist
-          </cite>
-        </replace-with-children>
-      </footer>
-    </replace-with-grandchildren>
+    </div>
+    <footer class="c-bolt-blockquote__footer">
+      <ssr-keep for="bolt-blockquote"
+                class="c-bolt-blockquote__footer-item"
+      >
+        <cite slot="author-name"
+              class="c-bolt-text c-bolt-text--bold c-bolt-text--normal c-bolt-text--xsmall"
+        >
+          Michelangelo di Lodovico Buonarroti Simoni
+        </cite>
+      </ssr-keep>
+      <ssr-keep for="bolt-blockquote"
+                class="c-bolt-blockquote__footer-item"
+      >
+        <cite slot="author-title"
+              class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--xsmall"
+        >
+          Renaissance Artist
+        </cite>
+      </ssr-keep>
+    </footer>
   </blockquote>
 </bolt-blockquote>
 `;
@@ -527,31 +536,35 @@ exports[`<bolt-blockquote> component <bolt-blockquote> border variations with in
   <blockquote class="c-bolt-blockquote c-bolt-blockquote--xlarge c-bolt-blockquote--semibold c-bolt-blockquote--align-items-start c-bolt-blockquote--borderless"
               is="shadow-root"
   >
-    <replace-with-grandchildren class="c-bolt-blockquote__quote">
+    <div class="c-bolt-blockquote__quote">
       <div class="c-bolt-text c-bolt-text--semibold c-bolt-text--normal c-bolt-text--xlarge">
-        <p>
-          The greater danger for most of us lies not in setting our aim too high and falling short; but in setting our aim too low, and achieving our mark.
-        </p>
+        <ssr-keep for="bolt-blockquote">
+          <p>
+            The greater danger for most of us lies not in setting our aim too high and falling short; but in setting our aim too low, and achieving our mark.
+          </p>
+        </ssr-keep>
       </div>
-    </replace-with-grandchildren>
-    <replace-with-grandchildren>
-      <footer class="c-bolt-blockquote__footer">
-        <replace-with-children class="c-bolt-blockquote__footer-item">
-          <cite slot="author-name"
-                class="c-bolt-text c-bolt-text--bold c-bolt-text--normal c-bolt-text--xsmall"
-          >
-            Michelangelo di Lodovico Buonarroti Simoni
-          </cite>
-        </replace-with-children>
-        <replace-with-children class="c-bolt-blockquote__footer-item">
-          <cite slot="author-title"
-                class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--xsmall"
-          >
-            Renaissance Artist
-          </cite>
-        </replace-with-children>
-      </footer>
-    </replace-with-grandchildren>
+    </div>
+    <footer class="c-bolt-blockquote__footer">
+      <ssr-keep for="bolt-blockquote"
+                class="c-bolt-blockquote__footer-item"
+      >
+        <cite slot="author-name"
+              class="c-bolt-text c-bolt-text--bold c-bolt-text--normal c-bolt-text--xsmall"
+        >
+          Michelangelo di Lodovico Buonarroti Simoni
+        </cite>
+      </ssr-keep>
+      <ssr-keep for="bolt-blockquote"
+                class="c-bolt-blockquote__footer-item"
+      >
+        <cite slot="author-title"
+              class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--xsmall"
+        >
+          Renaissance Artist
+        </cite>
+      </ssr-keep>
+    </footer>
   </blockquote>
 </bolt-blockquote>
 `;
@@ -561,31 +574,35 @@ exports[`<bolt-blockquote> component <bolt-blockquote> border variations with in
   <blockquote class="c-bolt-blockquote c-bolt-blockquote--xlarge c-bolt-blockquote--semibold c-bolt-blockquote--align-items-start c-bolt-blockquote--bordered-vertical"
               is="shadow-root"
   >
-    <replace-with-grandchildren class="c-bolt-blockquote__quote">
+    <div class="c-bolt-blockquote__quote">
       <div class="c-bolt-text c-bolt-text--semibold c-bolt-text--normal c-bolt-text--xlarge">
-        <p>
-          The greater danger for most of us lies not in setting our aim too high and falling short; but in setting our aim too low, and achieving our mark.
-        </p>
+        <ssr-keep for="bolt-blockquote">
+          <p>
+            The greater danger for most of us lies not in setting our aim too high and falling short; but in setting our aim too low, and achieving our mark.
+          </p>
+        </ssr-keep>
       </div>
-    </replace-with-grandchildren>
-    <replace-with-grandchildren>
-      <footer class="c-bolt-blockquote__footer">
-        <replace-with-children class="c-bolt-blockquote__footer-item">
-          <cite slot="author-name"
-                class="c-bolt-text c-bolt-text--bold c-bolt-text--normal c-bolt-text--xsmall"
-          >
-            Michelangelo di Lodovico Buonarroti Simoni
-          </cite>
-        </replace-with-children>
-        <replace-with-children class="c-bolt-blockquote__footer-item">
-          <cite slot="author-title"
-                class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--xsmall"
-          >
-            Renaissance Artist
-          </cite>
-        </replace-with-children>
-      </footer>
-    </replace-with-grandchildren>
+    </div>
+    <footer class="c-bolt-blockquote__footer">
+      <ssr-keep for="bolt-blockquote"
+                class="c-bolt-blockquote__footer-item"
+      >
+        <cite slot="author-name"
+              class="c-bolt-text c-bolt-text--bold c-bolt-text--normal c-bolt-text--xsmall"
+        >
+          Michelangelo di Lodovico Buonarroti Simoni
+        </cite>
+      </ssr-keep>
+      <ssr-keep for="bolt-blockquote"
+                class="c-bolt-blockquote__footer-item"
+      >
+        <cite slot="author-title"
+              class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--xsmall"
+        >
+          Renaissance Artist
+        </cite>
+      </ssr-keep>
+    </footer>
   </blockquote>
 </bolt-blockquote>
 `;
@@ -595,31 +612,35 @@ exports[`<bolt-blockquote> component <bolt-blockquote> border variations: horizo
   <blockquote class="c-bolt-blockquote c-bolt-blockquote--xlarge c-bolt-blockquote--semibold c-bolt-blockquote--align-items-start c-bolt-blockquote--bordered-horizontal"
               is="shadow-root"
   >
-    <replace-with-grandchildren class="c-bolt-blockquote__quote">
+    <div class="c-bolt-blockquote__quote">
       <div class="c-bolt-text c-bolt-text--semibold c-bolt-text--normal c-bolt-text--xlarge">
-        <p>
-          The greater danger for most of us lies not in setting our aim too high and falling short; but in setting our aim too low, and achieving our mark.
-        </p>
+        <ssr-keep for="bolt-blockquote">
+          <p>
+            The greater danger for most of us lies not in setting our aim too high and falling short; but in setting our aim too low, and achieving our mark.
+          </p>
+        </ssr-keep>
       </div>
-    </replace-with-grandchildren>
-    <replace-with-grandchildren>
-      <footer class="c-bolt-blockquote__footer">
-        <replace-with-children class="c-bolt-blockquote__footer-item">
-          <cite slot="author-name"
-                class="c-bolt-text c-bolt-text--bold c-bolt-text--normal c-bolt-text--xsmall"
-          >
-            Michelangelo di Lodovico Buonarroti Simoni
-          </cite>
-        </replace-with-children>
-        <replace-with-children class="c-bolt-blockquote__footer-item">
-          <cite slot="author-title"
-                class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--xsmall"
-          >
-            Renaissance Artist
-          </cite>
-        </replace-with-children>
-      </footer>
-    </replace-with-grandchildren>
+    </div>
+    <footer class="c-bolt-blockquote__footer">
+      <ssr-keep for="bolt-blockquote"
+                class="c-bolt-blockquote__footer-item"
+      >
+        <cite slot="author-name"
+              class="c-bolt-text c-bolt-text--bold c-bolt-text--normal c-bolt-text--xsmall"
+        >
+          Michelangelo di Lodovico Buonarroti Simoni
+        </cite>
+      </ssr-keep>
+      <ssr-keep for="bolt-blockquote"
+                class="c-bolt-blockquote__footer-item"
+      >
+        <cite slot="author-title"
+              class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--xsmall"
+        >
+          Renaissance Artist
+        </cite>
+      </ssr-keep>
+    </footer>
   </blockquote>
 </bolt-blockquote>
 `;
@@ -629,31 +650,35 @@ exports[`<bolt-blockquote> component <bolt-blockquote> border variations: none 1
   <blockquote class="c-bolt-blockquote c-bolt-blockquote--xlarge c-bolt-blockquote--semibold c-bolt-blockquote--align-items-start c-bolt-blockquote--borderless"
               is="shadow-root"
   >
-    <replace-with-grandchildren class="c-bolt-blockquote__quote">
+    <div class="c-bolt-blockquote__quote">
       <div class="c-bolt-text c-bolt-text--semibold c-bolt-text--normal c-bolt-text--xlarge">
-        <p>
-          The greater danger for most of us lies not in setting our aim too high and falling short; but in setting our aim too low, and achieving our mark.
-        </p>
+        <ssr-keep for="bolt-blockquote">
+          <p>
+            The greater danger for most of us lies not in setting our aim too high and falling short; but in setting our aim too low, and achieving our mark.
+          </p>
+        </ssr-keep>
       </div>
-    </replace-with-grandchildren>
-    <replace-with-grandchildren>
-      <footer class="c-bolt-blockquote__footer">
-        <replace-with-children class="c-bolt-blockquote__footer-item">
-          <cite slot="author-name"
-                class="c-bolt-text c-bolt-text--bold c-bolt-text--normal c-bolt-text--xsmall"
-          >
-            Michelangelo di Lodovico Buonarroti Simoni
-          </cite>
-        </replace-with-children>
-        <replace-with-children class="c-bolt-blockquote__footer-item">
-          <cite slot="author-title"
-                class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--xsmall"
-          >
-            Renaissance Artist
-          </cite>
-        </replace-with-children>
-      </footer>
-    </replace-with-grandchildren>
+    </div>
+    <footer class="c-bolt-blockquote__footer">
+      <ssr-keep for="bolt-blockquote"
+                class="c-bolt-blockquote__footer-item"
+      >
+        <cite slot="author-name"
+              class="c-bolt-text c-bolt-text--bold c-bolt-text--normal c-bolt-text--xsmall"
+        >
+          Michelangelo di Lodovico Buonarroti Simoni
+        </cite>
+      </ssr-keep>
+      <ssr-keep for="bolt-blockquote"
+                class="c-bolt-blockquote__footer-item"
+      >
+        <cite slot="author-title"
+              class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--xsmall"
+        >
+          Renaissance Artist
+        </cite>
+      </ssr-keep>
+    </footer>
   </blockquote>
 </bolt-blockquote>
 `;
@@ -663,31 +688,35 @@ exports[`<bolt-blockquote> component <bolt-blockquote> border variations: vertic
   <blockquote class="c-bolt-blockquote c-bolt-blockquote--xlarge c-bolt-blockquote--semibold c-bolt-blockquote--align-items-start c-bolt-blockquote--bordered-vertical"
               is="shadow-root"
   >
-    <replace-with-grandchildren class="c-bolt-blockquote__quote">
+    <div class="c-bolt-blockquote__quote">
       <div class="c-bolt-text c-bolt-text--semibold c-bolt-text--normal c-bolt-text--xlarge">
-        <p>
-          The greater danger for most of us lies not in setting our aim too high and falling short; but in setting our aim too low, and achieving our mark.
-        </p>
+        <ssr-keep for="bolt-blockquote">
+          <p>
+            The greater danger for most of us lies not in setting our aim too high and falling short; but in setting our aim too low, and achieving our mark.
+          </p>
+        </ssr-keep>
       </div>
-    </replace-with-grandchildren>
-    <replace-with-grandchildren>
-      <footer class="c-bolt-blockquote__footer">
-        <replace-with-children class="c-bolt-blockquote__footer-item">
-          <cite slot="author-name"
-                class="c-bolt-text c-bolt-text--bold c-bolt-text--normal c-bolt-text--xsmall"
-          >
-            Michelangelo di Lodovico Buonarroti Simoni
-          </cite>
-        </replace-with-children>
-        <replace-with-children class="c-bolt-blockquote__footer-item">
-          <cite slot="author-title"
-                class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--xsmall"
-          >
-            Renaissance Artist
-          </cite>
-        </replace-with-children>
-      </footer>
-    </replace-with-grandchildren>
+    </div>
+    <footer class="c-bolt-blockquote__footer">
+      <ssr-keep for="bolt-blockquote"
+                class="c-bolt-blockquote__footer-item"
+      >
+        <cite slot="author-name"
+              class="c-bolt-text c-bolt-text--bold c-bolt-text--normal c-bolt-text--xsmall"
+        >
+          Michelangelo di Lodovico Buonarroti Simoni
+        </cite>
+      </ssr-keep>
+      <ssr-keep for="bolt-blockquote"
+                class="c-bolt-blockquote__footer-item"
+      >
+        <cite slot="author-title"
+              class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--xsmall"
+        >
+          Renaissance Artist
+        </cite>
+      </ssr-keep>
+    </footer>
   </blockquote>
 </bolt-blockquote>
 `;
@@ -697,31 +726,35 @@ exports[`<bolt-blockquote> component <bolt-blockquote> indent usage 1`] = `
   <blockquote class="c-bolt-blockquote c-bolt-blockquote--xlarge c-bolt-blockquote--semibold c-bolt-blockquote--align-items-start c-bolt-blockquote--bordered-vertical c-bolt-blockquote--indented"
               is="shadow-root"
   >
-    <replace-with-grandchildren class="c-bolt-blockquote__quote">
+    <div class="c-bolt-blockquote__quote">
       <div class="c-bolt-text c-bolt-text--semibold c-bolt-text--normal c-bolt-text--xlarge">
-        <p>
-          The greater danger for most of us lies not in setting our aim too high and falling short; but in setting our aim too low, and achieving our mark.
-        </p>
+        <ssr-keep for="bolt-blockquote">
+          <p>
+            The greater danger for most of us lies not in setting our aim too high and falling short; but in setting our aim too low, and achieving our mark.
+          </p>
+        </ssr-keep>
       </div>
-    </replace-with-grandchildren>
-    <replace-with-grandchildren>
-      <footer class="c-bolt-blockquote__footer">
-        <replace-with-children class="c-bolt-blockquote__footer-item">
-          <cite slot="author-name"
-                class="c-bolt-text c-bolt-text--bold c-bolt-text--normal c-bolt-text--xsmall"
-          >
-            Michelangelo di Lodovico Buonarroti Simoni
-          </cite>
-        </replace-with-children>
-        <replace-with-children class="c-bolt-blockquote__footer-item">
-          <cite slot="author-title"
-                class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--xsmall"
-          >
-            Renaissance Artist
-          </cite>
-        </replace-with-children>
-      </footer>
-    </replace-with-grandchildren>
+    </div>
+    <footer class="c-bolt-blockquote__footer">
+      <ssr-keep for="bolt-blockquote"
+                class="c-bolt-blockquote__footer-item"
+      >
+        <cite slot="author-name"
+              class="c-bolt-text c-bolt-text--bold c-bolt-text--normal c-bolt-text--xsmall"
+        >
+          Michelangelo di Lodovico Buonarroti Simoni
+        </cite>
+      </ssr-keep>
+      <ssr-keep for="bolt-blockquote"
+                class="c-bolt-blockquote__footer-item"
+      >
+        <cite slot="author-title"
+              class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--xsmall"
+        >
+          Renaissance Artist
+        </cite>
+      </ssr-keep>
+    </footer>
   </blockquote>
 </bolt-blockquote>
 `;
@@ -1098,31 +1131,35 @@ exports[`<bolt-blockquote> component <bolt-blockquote> size variations: large 1`
   <blockquote class="c-bolt-blockquote c-bolt-blockquote--large c-bolt-blockquote--semibold c-bolt-blockquote--align-items-start c-bolt-blockquote--bordered-vertical"
               is="shadow-root"
   >
-    <replace-with-grandchildren class="c-bolt-blockquote__quote">
+    <div class="c-bolt-blockquote__quote">
       <div class="c-bolt-text c-bolt-text--semibold c-bolt-text--normal c-bolt-text--large">
-        <p>
-          The greater danger for most of us lies not in setting our aim too high and falling short; but in setting our aim too low, and achieving our mark.
-        </p>
+        <ssr-keep for="bolt-blockquote">
+          <p>
+            The greater danger for most of us lies not in setting our aim too high and falling short; but in setting our aim too low, and achieving our mark.
+          </p>
+        </ssr-keep>
       </div>
-    </replace-with-grandchildren>
-    <replace-with-grandchildren>
-      <footer class="c-bolt-blockquote__footer">
-        <replace-with-children class="c-bolt-blockquote__footer-item">
-          <cite slot="author-name"
-                class="c-bolt-text c-bolt-text--bold c-bolt-text--normal c-bolt-text--xsmall"
-          >
-            Michelangelo di Lodovico Buonarroti Simoni
-          </cite>
-        </replace-with-children>
-        <replace-with-children class="c-bolt-blockquote__footer-item">
-          <cite slot="author-title"
-                class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--xsmall"
-          >
-            Renaissance Artist
-          </cite>
-        </replace-with-children>
-      </footer>
-    </replace-with-grandchildren>
+    </div>
+    <footer class="c-bolt-blockquote__footer">
+      <ssr-keep for="bolt-blockquote"
+                class="c-bolt-blockquote__footer-item"
+      >
+        <cite slot="author-name"
+              class="c-bolt-text c-bolt-text--bold c-bolt-text--normal c-bolt-text--xsmall"
+        >
+          Michelangelo di Lodovico Buonarroti Simoni
+        </cite>
+      </ssr-keep>
+      <ssr-keep for="bolt-blockquote"
+                class="c-bolt-blockquote__footer-item"
+      >
+        <cite slot="author-title"
+              class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--xsmall"
+        >
+          Renaissance Artist
+        </cite>
+      </ssr-keep>
+    </footer>
   </blockquote>
 </bolt-blockquote>
 `;
@@ -1132,31 +1169,35 @@ exports[`<bolt-blockquote> component <bolt-blockquote> size variations: xlarge 1
   <blockquote class="c-bolt-blockquote c-bolt-blockquote--xlarge c-bolt-blockquote--semibold c-bolt-blockquote--align-items-start c-bolt-blockquote--bordered-vertical"
               is="shadow-root"
   >
-    <replace-with-grandchildren class="c-bolt-blockquote__quote">
+    <div class="c-bolt-blockquote__quote">
       <div class="c-bolt-text c-bolt-text--semibold c-bolt-text--normal c-bolt-text--xlarge">
-        <p>
-          The greater danger for most of us lies not in setting our aim too high and falling short; but in setting our aim too low, and achieving our mark.
-        </p>
+        <ssr-keep for="bolt-blockquote">
+          <p>
+            The greater danger for most of us lies not in setting our aim too high and falling short; but in setting our aim too low, and achieving our mark.
+          </p>
+        </ssr-keep>
       </div>
-    </replace-with-grandchildren>
-    <replace-with-grandchildren>
-      <footer class="c-bolt-blockquote__footer">
-        <replace-with-children class="c-bolt-blockquote__footer-item">
-          <cite slot="author-name"
-                class="c-bolt-text c-bolt-text--bold c-bolt-text--normal c-bolt-text--xsmall"
-          >
-            Michelangelo di Lodovico Buonarroti Simoni
-          </cite>
-        </replace-with-children>
-        <replace-with-children class="c-bolt-blockquote__footer-item">
-          <cite slot="author-title"
-                class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--xsmall"
-          >
-            Renaissance Artist
-          </cite>
-        </replace-with-children>
-      </footer>
-    </replace-with-grandchildren>
+    </div>
+    <footer class="c-bolt-blockquote__footer">
+      <ssr-keep for="bolt-blockquote"
+                class="c-bolt-blockquote__footer-item"
+      >
+        <cite slot="author-name"
+              class="c-bolt-text c-bolt-text--bold c-bolt-text--normal c-bolt-text--xsmall"
+        >
+          Michelangelo di Lodovico Buonarroti Simoni
+        </cite>
+      </ssr-keep>
+      <ssr-keep for="bolt-blockquote"
+                class="c-bolt-blockquote__footer-item"
+      >
+        <cite slot="author-title"
+              class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--xsmall"
+        >
+          Renaissance Artist
+        </cite>
+      </ssr-keep>
+    </footer>
   </blockquote>
 </bolt-blockquote>
 `;
@@ -1166,31 +1207,35 @@ exports[`<bolt-blockquote> component <bolt-blockquote> size variations: xxlarge 
   <blockquote class="c-bolt-blockquote c-bolt-blockquote--xxlarge c-bolt-blockquote--semibold c-bolt-blockquote--align-items-start c-bolt-blockquote--bordered-vertical"
               is="shadow-root"
   >
-    <replace-with-grandchildren class="c-bolt-blockquote__quote">
+    <div class="c-bolt-blockquote__quote">
       <div class="c-bolt-text c-bolt-text--semibold c-bolt-text--normal c-bolt-text--xxlarge">
-        <p>
-          The greater danger for most of us lies not in setting our aim too high and falling short; but in setting our aim too low, and achieving our mark.
-        </p>
+        <ssr-keep for="bolt-blockquote">
+          <p>
+            The greater danger for most of us lies not in setting our aim too high and falling short; but in setting our aim too low, and achieving our mark.
+          </p>
+        </ssr-keep>
       </div>
-    </replace-with-grandchildren>
-    <replace-with-grandchildren>
-      <footer class="c-bolt-blockquote__footer">
-        <replace-with-children class="c-bolt-blockquote__footer-item">
-          <cite slot="author-name"
-                class="c-bolt-text c-bolt-text--bold c-bolt-text--normal c-bolt-text--xsmall"
-          >
-            Michelangelo di Lodovico Buonarroti Simoni
-          </cite>
-        </replace-with-children>
-        <replace-with-children class="c-bolt-blockquote__footer-item">
-          <cite slot="author-title"
-                class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--xsmall"
-          >
-            Renaissance Artist
-          </cite>
-        </replace-with-children>
-      </footer>
-    </replace-with-grandchildren>
+    </div>
+    <footer class="c-bolt-blockquote__footer">
+      <ssr-keep for="bolt-blockquote"
+                class="c-bolt-blockquote__footer-item"
+      >
+        <cite slot="author-name"
+              class="c-bolt-text c-bolt-text--bold c-bolt-text--normal c-bolt-text--xsmall"
+        >
+          Michelangelo di Lodovico Buonarroti Simoni
+        </cite>
+      </ssr-keep>
+      <ssr-keep for="bolt-blockquote"
+                class="c-bolt-blockquote__footer-item"
+      >
+        <cite slot="author-title"
+              class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--xsmall"
+        >
+          Renaissance Artist
+        </cite>
+      </ssr-keep>
+    </footer>
   </blockquote>
 </bolt-blockquote>
 `;
@@ -1334,7 +1379,9 @@ exports[`<bolt-blockquote> component advanced <bolt-blockquote> usage 1`] = `
   <blockquote class="c-bolt-blockquote c-bolt-blockquote--xlarge c-bolt-blockquote--semibold c-bolt-blockquote--align-items-start c-bolt-blockquote--bordered-horizontal"
               is="shadow-root"
   >
-    <replace-with-children class="c-bolt-blockquote__logo">
+    <ssr-keep for="bolt-blockquote"
+              class="c-bolt-blockquote__logo"
+    >
       <bolt-logo slot="logo"
                  class="c-bolt-logo--invert"
       >
@@ -1347,8 +1394,9 @@ exports[`<bolt-blockquote> component advanced <bolt-blockquote> usage 1`] = `
                     placeholder-image="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
         >
           <bolt-ratio ratio="124/33">
-            <replace-with-children class="c-bolt-ratio"
-                                   style="padding-bottom: calc((33 / 124) * 100%); --aspect-ratio: 3.7575757575758;"
+            <ssr-keep for="bolt-ratio"
+                      class="c-bolt-ratio"
+                      style="padding-bottom: calc((33 / 124) * 100%); --aspect-ratio: 3.7575757575758;"
             >
               <img class="c-bolt-image__image c-bolt-image__lazyload c-bolt-image__lazyload--fade js-lazyload"
                    data-srcset="/fixtures/paypal.svg"
@@ -1362,22 +1410,24 @@ exports[`<bolt-blockquote> component advanced <bolt-blockquote> usage 1`] = `
                      srcset="/fixtures/paypal.svg"
                 >
               </noscript>
-            </replace-with-children>
+            </ssr-keep>
           </bolt-ratio>
         </bolt-image>
       </bolt-logo>
-    </replace-with-children>
-    <replace-with-grandchildren class="c-bolt-blockquote__quote">
+    </ssr-keep>
+    <div class="c-bolt-blockquote__quote">
       <div class="c-bolt-text c-bolt-text--semibold c-bolt-text--normal c-bolt-text--xlarge">
-        <p>
-          The greater danger for most of us lies not in setting our aim too high and falling short; but in setting our aim too low, and achieving our mark.
-        </p>
+        <ssr-keep for="bolt-blockquote">
+          <p>
+            The greater danger for most of us lies not in setting our aim too high and falling short; but in setting our aim too low, and achieving our mark.
+          </p>
+        </ssr-keep>
       </div>
-    </replace-with-grandchildren>
-    <replace-with-grandchildren>
-      <footer class="c-bolt-blockquote__footer">
-        <replace-with-grandchildren class="c-bolt-blockquote__footer-item">
-          <div class="c-bolt-blockquote__image">
+    </div>
+    <footer class="c-bolt-blockquote__footer">
+      <div class="c-bolt-blockquote__footer-item">
+        <div class="c-bolt-blockquote__image">
+          <ssr-keep for="bolt-blockquote">
             <bolt-image slot="author-image"
                         src="/fixtures/author.jpg"
                         srcset="/fixtures/author-50.jpg 50w, /fixtures/author-100.jpg 100w, /fixtures/author-200.jpg 200w, /fixtures/author-320.jpg 320w, /fixtures/author-480.jpg 480w, /fixtures/author.jpg 500w"
@@ -1389,8 +1439,9 @@ exports[`<bolt-blockquote> component advanced <bolt-blockquote> usage 1`] = `
                         style="background-color: hsl(233, 33%, 97%);"
             >
               <bolt-ratio ratio="1/1">
-                <replace-with-children class="c-bolt-ratio"
-                                       style="padding-bottom: calc((1 / 1) * 100%); --aspect-ratio: 1;"
+                <ssr-keep for="bolt-ratio"
+                          class="c-bolt-ratio"
+                          style="padding-bottom: calc((1 / 1) * 100%); --aspect-ratio: 1;"
                 >
                   <img class="c-bolt-image__image-placeholder"
                        sizes="auto"
@@ -1401,27 +1452,31 @@ exports[`<bolt-blockquote> component advanced <bolt-blockquote> usage 1`] = `
                        sizes="auto"
                        src="/fixtures/author.jpg"
                   >
-                </replace-with-children>
+                </ssr-keep>
               </bolt-ratio>
             </bolt-image>
-          </div>
-        </replace-with-grandchildren>
-        <replace-with-children class="c-bolt-blockquote__footer-item">
-          <cite slot="author-name"
-                class="c-bolt-text c-bolt-text--bold c-bolt-text--normal c-bolt-text--xsmall"
-          >
-            Michelangelo di Lodovico Buonarroti Simoni
-          </cite>
-        </replace-with-children>
-        <replace-with-children class="c-bolt-blockquote__footer-item">
-          <cite slot="author-title"
-                class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--xsmall"
-          >
-            Renaissance Artist
-          </cite>
-        </replace-with-children>
-      </footer>
-    </replace-with-grandchildren>
+          </ssr-keep>
+        </div>
+      </div>
+      <ssr-keep for="bolt-blockquote"
+                class="c-bolt-blockquote__footer-item"
+      >
+        <cite slot="author-name"
+              class="c-bolt-text c-bolt-text--bold c-bolt-text--normal c-bolt-text--xsmall"
+        >
+          Michelangelo di Lodovico Buonarroti Simoni
+        </cite>
+      </ssr-keep>
+      <ssr-keep for="bolt-blockquote"
+                class="c-bolt-blockquote__footer-item"
+      >
+        <cite slot="author-title"
+              class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--xsmall"
+        >
+          Renaissance Artist
+        </cite>
+      </ssr-keep>
+    </footer>
   </blockquote>
 </bolt-blockquote>
 `;

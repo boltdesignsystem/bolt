@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.23.0](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/utils/compare/v2.22.1...v2.23.0) (2020-05-06)
+
+
+### Features
+
+* split manifest up into smaller files + automatically retain existing behavior if issues are found. ([38f4e28](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/utils/commit/38f4e28775787e378452ea73d1a9c62f1db1945f))
+
+
+
+
+
 # [2.19.0](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/utils/compare/v2.18.1...v2.19.0) (2020-03-04)
 
 **Note:** Version bump only for package @bolt/build-utils

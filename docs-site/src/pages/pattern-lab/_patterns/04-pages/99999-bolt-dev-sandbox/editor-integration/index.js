@@ -1,10 +1,7 @@
-import { polyfillLoader } from '@bolt/core-v3.x/polyfills';
+import { lazyQueue } from '@bolt/lazy-queue';
 
-polyfillLoader.then(res => {
-  import(
-    /*
-    webpackMode: 'lazy',
-    webpackChunkName: 'editor-integration'
-  */ './editor-integration'
+lazyQueue(['bolt-ck-editor'], async () => {
+  await import(
+    /*  webpackChunkName: 'bolt-docs-site--editor-integration' */ './editor-integration'
   );
 });

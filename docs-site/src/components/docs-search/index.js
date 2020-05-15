@@ -1,10 +1,5 @@
-import { polyfillLoader } from '@bolt/core-v3.x/polyfills';
+import { lazyQueue } from '@bolt/lazy-queue';
 
-polyfillLoader.then(res => {
-  import(
-    /*
-    webpackMode: 'eager',
-    webpackChunkName: 'bolt-docs-search'
-  */ './docs-search.js'
-  );
+lazyQueue(['bds-docs-search'], async () => {
+  await import(/* webpackChunkName: "bolt-docs-search" */ './docs-search.js');
 });

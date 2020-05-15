@@ -1,13 +1,11 @@
 {% macro truncateTrigger(iconName, size, inputId) %}
-  <replace-with-grandchildren>
-    <label class="c-bolt-chip-list__label" for="{{ inputId }}">
-      {% include "@bolt/chip.twig" with {
-        size: size,
-        icon: {
-          name: iconName
-        },
-        iconOnly: true
-      } only %}
-    </label>
-  </replace-with-grandchildren>
+  <label class="c-bolt-chip-list__label" for="{{ inputId }}">
+    {% include "@bolt-components-chip/chip.twig" with {
+      size: size,
+      icon: {
+        name: iconName
+      },
+      iconOnly: true
+    } only %}
+  </label>
 {% endmacro %}

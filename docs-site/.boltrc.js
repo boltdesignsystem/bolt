@@ -90,10 +90,6 @@ const config = deepmerge(baseConfig, {
        */
 
       // helper components that are only used internally
-
-      // @todo: look into removing these three lines once the lazy queue-related perf updates get in
-      '@bolt/analytics-autolink', // why isn't this in @bolt/starter-kit?!
-      '@bolt/analytics-autotrack',
       '@bolt/blueprints',
 
       '@bolt/components-radio-switch',
