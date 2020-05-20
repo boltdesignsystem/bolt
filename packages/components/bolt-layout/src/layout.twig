@@ -1,0 +1,16 @@
+{% set schema = bolt.data.components["@bolt-components-layout"].schema %}
+
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(schema, _self) | raw }}
+{% endif %}
+
+{# Variables #}
+{% set this = init(schema) %}
+
+<bolt-layout
+  {{ this.props|without("items") }}
+>
+  {% for item in items %}
+    {% include "@bolt-components-layout/_layout-item.twig" with item only %}
+  {% endfor %}
+</bolt-layout>
