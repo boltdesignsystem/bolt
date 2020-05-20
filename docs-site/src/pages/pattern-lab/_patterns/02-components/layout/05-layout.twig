@@ -13,7 +13,7 @@
 
 
 {% set paragraph %}
-  <p>1. Let's reduce bloated markup and kill <strong>all bands, wrappers, and grids.</strong> Layout component combines all of their features into one thing with simpler markup.</p>
+  <p>Item 1. Let's reduce bloated markup and kill <strong>all bands, wrappers, and grids.</strong> Layout component combines all of their features into one thing with simpler markup.</p>
   <p>Layout items can be set to common width options that are currently in used: 25%, 33%, 50%, 75%. If width is not set, a layout item will take up all available space of the layout.</p>
 {% endset %}
 {% include "@bolt-components-layout/layout.twig" with {
@@ -23,6 +23,27 @@
   items: [
     {
       content: paragraph,
+    },
+  ],
+  attributes: {
+    class: [
+      "t-bolt-dark",
+    ]
+  },
+} only %}
+
+
+{% set paragraph %}
+  <p>Item 1. Set <code>data-align-items="start | center | end"</code> to horizontally align the layout items (when not stacked).</p>
+{% endset %}
+{% include "@bolt-components-layout/layout.twig" with {
+  dataAlignItems: "center",
+  items: [
+    {
+      content: paragraph,
+      attributes: {
+        "data-width": "33%",
+      },
     },
   ],
   attributes: {
@@ -64,12 +85,12 @@
 
 
 {% set paragraph1 %}
-  <p>1. <strong>Set <code>data-valign-items="start | center | end"</code> to create auto height layout items</strong>. Vivamus hendrerit arcu sed erat molestie vehicula. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor. Ut in nulla enim. Phasellus molestie magna non est bibendum non venenatis nisl tempor. Suspendisse dictum feugiat nisl.</p>
+  <p>Item 1. <strong>Set <code>data-valign-items="start | center | end"</code> to create auto height layout items</strong>. Vivamus hendrerit arcu sed erat molestie vehicula. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor. Ut in nulla enim. Phasellus molestie magna non est bibendum non venenatis nisl tempor. Suspendisse dictum feugiat nisl.</p>
   <p><bolt-button>button</bolt-button></p>
 {% endset %}
 {% set paragraph2 %}
   <ul>
-    <li>2. This is a short item.</li>
+    <li>Item 2. This is a short item.</li>
     <li>Aliquam tincidunt mauris eu risus.</li>
     <li>Vestibulum auctor dapibus neque.</li>
   </ul>
@@ -84,13 +105,13 @@
     {
       content: paragraph1,
       attributes: {
-        "data-width": "50% 67%-from@small 75%-from@medium"
+        "data-width": "50% 67%-from@small 75%-from@medium",
       }
     },
     {
       content: paragraph2,
       attributes: {
-        "data-width": "50% 33%-from@small 25%-from@medium"
+        "data-width": "50% 33%-from@small 25%-from@medium",
       }
     },
   ],
@@ -104,17 +125,17 @@
 
 {% set paragraph1 %}
   {{ image }}
-  <p>1. <strong>Set <code>data-valign-items="unset"</code> to create equal height layout items</strong>, and each item will push its last child to the bottom.</p>
+  <p>Item 1. <strong>Set <code>data-valign-items="unset"</code> to create equal height layout items</strong>, and each item will push its last child to the bottom.</p>
   {{ fullbutton }}
 {% endset %}
 {% set paragraph2 %}
   {{ image }}
-  <p>2. This is a short item.</p>
+  <p>Item 2. This is a short item.</p>
   {{ fullbutton }}
 {% endset %}
 {% set paragraph3 %}
   {{ image }}
-  <p>3. This is a tall item. Phasellus molestie magna non est bibendum non venenatis nisl tempor. Suspendisse dictum feugiat nisl. Ut in nulla enim. Phasellus molestie magna non est bibendum non venenatis nisl tempor. Suspendisse dictum feugiat nisl ut dapibus. Mauris iaculis porttitor posuere. Praesent id metus massa, ut blandit odio. Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus.</p>
+  <p>Item 3. This is a tall item. Phasellus molestie magna non est bibendum non venenatis nisl tempor. Suspendisse dictum feugiat nisl. Ut in nulla enim. Phasellus molestie magna non est bibendum non venenatis nisl tempor. Suspendisse dictum feugiat nisl ut dapibus. Mauris iaculis porttitor posuere. Praesent id metus massa, ut blandit odio. Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus.</p>
   {{ fullbutton }}
 {% endset %}
 
@@ -172,6 +193,33 @@
   attributes: {
     class: [
       "t-bolt-light",
+    ]
+  },
+} only %}
+
+
+{% include "@bolt-components-layout/layout.twig" with {
+  items: [
+    {
+      content: "One layout.",
+    },
+  ],
+  attributes: {
+    class: [
+      "t-bolt-dark",
+    ]
+  },
+} only %}
+{% include "@bolt-components-layout/layout.twig" with {
+  dataPaddingTop: "none",
+  items: [
+    {
+      content: "Stack another layout of the same color and remove extra padding.",
+    },
+  ],
+  attributes: {
+    class: [
+      "t-bolt-dark",
     ]
   },
 } only %}
