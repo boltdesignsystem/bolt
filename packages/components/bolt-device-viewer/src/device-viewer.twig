@@ -61,10 +61,10 @@
           {% if image %}
             {% include "@bolt/image.twig" with image only %}
           {% endif %}
+          {% if video %}
+            {% include "@bolt-components-video/video.twig" with video only %}
+          {% endif %}
         {% endblock %}
-        {% if video %}
-          {% include "@bolt-components-video/video.twig" with video only %}
-        {% endif %}
 
         {% if magnify %}
           <div class="c-bolt-image-zoom__overlay">
