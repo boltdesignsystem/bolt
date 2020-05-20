@@ -12,7 +12,8 @@ $bolt-layout-item-widths: (
   '75%': calc(9 / 12 * 100%),
 );
 
-$bolt-layout-justify-options: (
+$bolt-layout-align-options: (
+  'unset': 'unset',
   'start': 'flex-start',
   'center': 'center',
   'end': 'flex-end',
@@ -40,6 +41,7 @@ $bolt-layout-justify-options: (
 bolt-layout {
   display: flex;
   justify-content: center;
+  align-items: center;
   margin: 0 auto;
   padding-top: var(
     --bolt-layout-padding-top,
@@ -57,7 +59,9 @@ bolt-layout {
   ); // This must always follow the wrapper rules. Only way to customize it is to change the global wrapper vars.
 
   > bolt-layout-item {
+    display: flex;
     flex: 0 1 100%;
+    flex-direction: column;
     margin-top: var(--bolt-layout-row-gutter, 0);
     margin-left: var(--bolt-layout-gutter, 0);
 
@@ -99,27 +103,9 @@ bolt-layout {
         }
       }
     }
-  }
 
-  @include bolt-mq($until: small) {
-    &[data-stack-items='until@small'] {
-      flex-wrap: wrap;
-
-      > bolt-layout-item:not(:first-of-type) {
-        --bolt-layout-row-gutter: var(--bolt-spacing-y-medium);
-        --bolt-layout-gutter: 0;
-      }
-    }
-  }
-
-  @include bolt-mq($until: medium) {
-    &[data-stack-items='until@medium'] {
-      flex-wrap: wrap;
-
-      > bolt-layout-item:not(:first-of-type) {
-        --bolt-layout-row-gutter: var(--bolt-spacing-y-medium);
-        --bolt-layout-gutter: 0;
-      }
+    > *:last-child:not(:only-child) {
+      margin-top: auto;
     }
   }
 
@@ -135,18 +121,22 @@ bolt-layout {
     }
 
     &[data-gutter='#{$size-name}'] {
-      > bolt-layout-item:not(:first-of-type) {
-        @include bolt-mq(small) {
-          &[data-width*='-from@small'] {
-            --bolt-layout-row-gutter: 0;
-            --bolt-layout-gutter: var(--bolt-spacing-x-#{$size-name});
-          }
-        }
+      > bolt-layout-item {
+        &:not(:first-of-type) {
+          --bolt-layout-gutter: var(--bolt-spacing-x-#{$size-name});
 
-        @include bolt-mq(medium) {
-          &[data-width*='-from@medium'] {
-            --bolt-layout-row-gutter: 0;
-            --bolt-layout-gutter: var(--bolt-spacing-x-#{$size-name});
+          @include bolt-mq(small) {
+            &[data-width*='-from@small'] {
+              --bolt-layout-row-gutter: 0;
+              --bolt-layout-gutter: var(--bolt-spacing-x-#{$size-name});
+            }
+          }
+
+          @include bolt-mq(medium) {
+            &[data-width*='-from@medium'] {
+              --bolt-layout-row-gutter: 0;
+              --bolt-layout-gutter: var(--bolt-spacing-x-#{$size-name});
+            }
           }
         }
       }
@@ -167,12 +157,104 @@ bolt-layout {
     }
   }
 
-  @each $option in $bolt-layout-justify-options {
+  // Horizontal and vertical alignments
+  @each $option in $bolt-layout-align-options {
     $option-name: nth($option, 1);
     $option-value: nth($option, 2);
 
-    &[data-justify-items='#{$option-name}'] {
+    &[data-align-items='#{$option-name}'] {
       justify-content: #{$option-value};
+    }
+
+    &[data-valign-items='#{$option-name}'] {
+      align-items: #{$option-value};
+    }
+  }
+
+  // Styles for stacked items need to be replicated manually for the two supported breakpoints because variables can't be used as a param for breakpoint mixin.
+  @include bolt-mq($until: small) {
+    &[data-stack-items='until@small'] {
+      flex-wrap: wrap;
+      align-content: flex-start;
+
+      > bolt-layout-item {
+        &:first-of-type ~ [data-stack-first] {
+          --bolt-layout-row-gutter: 0;
+          order: -1;
+        }
+
+        &:first-of-type:not([data-stack-first]) {
+          --bolt-layout-row-gutter: var(--bolt-spacing-y-medium);
+        }
+
+        &:not(:first-of-type) {
+          --bolt-layout-row-gutter: var(--bolt-spacing-y-medium);
+          --bolt-layout-gutter: 0;
+        }
+      }
+
+      @each $size in $bolt-spacing-multiplier {
+        $size-name: nth($size, 1);
+
+        &[data-row-gutter='#{$size-name}'] {
+          > bolt-layout-item {
+            &:first-of-type ~ [data-stack-first] {
+              --bolt-layout-row-gutter: 0;
+            }
+
+            &:first-of-type:not([data-stack-first]) {
+              --bolt-layout-row-gutter: var(--bolt-spacing-y-#{$size-name});
+            }
+
+            &:not(:first-of-type) {
+              --bolt-layout-row-gutter: var(--bolt-spacing-y-#{$size-name});
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @include bolt-mq($until: medium) {
+    &[data-stack-items='until@medium'] {
+      flex-wrap: wrap;
+      align-content: flex-start;
+
+      > bolt-layout-item {
+        &:first-of-type ~ [data-stack-first] {
+          --bolt-layout-row-gutter: 0;
+          order: -1;
+        }
+
+        &:first-of-type:not([data-stack-first]) {
+          --bolt-layout-row-gutter: var(--bolt-spacing-y-medium);
+        }
+
+        &:not(:first-of-type) {
+          --bolt-layout-row-gutter: var(--bolt-spacing-y-medium);
+          --bolt-layout-gutter: 0;
+        }
+      }
+
+      @each $size in $bolt-spacing-multiplier {
+        $size-name: nth($size, 1);
+
+        &[data-row-gutter='#{$size-name}'] {
+          > bolt-layout-item {
+            &:first-of-type ~ [data-stack-first] {
+              --bolt-layout-row-gutter: 0;
+            }
+
+            &:first-of-type:not([data-stack-first]) {
+              --bolt-layout-row-gutter: var(--bolt-spacing-y-#{$size-name});
+            }
+
+            &:not(:first-of-type) {
+              --bolt-layout-row-gutter: var(--bolt-spacing-y-#{$size-name});
+            }
+          }
+        }
+      }
     }
   }
 }

@@ -10,7 +10,13 @@ module.exports = {
     },
     dataGutter: {
       type: 'string',
-      description: 'The spacing in between layout items.',
+      description: 'The spacing in between layout items (when not stacked).',
+      enum: ['small', 'medium', 'large'],
+      default: 'medium',
+    },
+    dataRowGutter: {
+      type: 'string',
+      description: 'The spacing in between layout items (when stacked).',
       enum: ['small', 'medium', 'large'],
       default: 'medium',
     },
@@ -27,10 +33,22 @@ module.exports = {
       default: 'medium',
     },
     dataStackItems: {
-      type: 'boolean',
+      type: 'string',
       description: 'Stack items until the layout is at specified breakpoint.',
       enum: ['until@small', 'until@medium'],
       default: 'until@small',
+    },
+    dataAlignItems: {
+      type: 'string',
+      description: 'Horizontal alignment of layout items (when not stacked).',
+      enum: ['start', 'center', 'end'],
+      default: 'center',
+    },
+    dataValignItems: {
+      type: 'string',
+      description: 'Vertical alignment of layout items (when not stacked).',
+      enum: ['unset', 'start', 'center', 'end'],
+      default: 'unset',
     },
     items: {
       type: 'array',
@@ -49,6 +67,11 @@ module.exports = {
           type: 'string',
           description:
             'Percent number for the width of a particular layout item.',
+        },
+        dataStackFirst: {
+          type: 'boolean',
+          description:
+            'The order of the layout item will be prioritized when layout items are stacked. Only enabled when <code>stack-items</code> prop on <code>bolt-layout</code> is also in use.',
         },
       },
     },
