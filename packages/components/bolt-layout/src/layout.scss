@@ -1,0 +1,178 @@
+/* ------------------------------------ *\
+   Layout
+\* ------------------------------------ */
+
+@import '@bolt/core-v3.x';
+
+$bolt-layout-item-widths: (
+  '25%': calc(3 / 12 * 100%),
+  '33%': calc(4 / 12 * 100%),
+  '50%': calc(6 / 12 * 100%),
+  '67%': calc(8 / 12 * 100%),
+  '75%': calc(9 / 12 * 100%),
+);
+
+$bolt-layout-justify-options: (
+  'start': 'flex-start',
+  'center': 'center',
+  'end': 'flex-end',
+);
+
+:root {
+  // @todo: move these to global
+  --bolt-wrapper-max-width: #{bolt-breakpoint(xxlarge)};
+  --bolt-wrapper-spacing-x: 30px;
+  --bolt-wrapper-padding: var(--bolt-wrapper-spacing-x);
+  @include bolt-mq(medium) {
+    --bolt-wrapper-padding: calc(var(--bolt-wrapper-spacing-x) * 2);
+  }
+  @include bolt-mq(xxlarge) {
+    --bolt-wrapper-padding: calc(
+      var(--bolt-wrapper-spacing-x) * 2 +
+        (100vw - var(--bolt-wrapper-max-width)) / 2
+    );
+  }
+}
+
+/**
+ * Layout component
+ */
+bolt-layout {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  padding-top: var(
+    --bolt-layout-padding-top,
+    var(--bolt-spacing-y-medium)
+  ); // This is customizable on the component level.
+  padding-right: var(
+    --bolt-wrapper-padding
+  ); // This must always follow the wrapper rules. Only way to customize it is to change the global wrapper vars.
+  padding-bottom: var(
+    --bolt-layout-padding-bottom,
+    var(--bolt-spacing-y-medium)
+  ); // This is customizable on the component level.
+  padding-left: var(
+    --bolt-wrapper-padding
+  ); // This must always follow the wrapper rules. Only way to customize it is to change the global wrapper vars.
+
+  > bolt-layout-item {
+    flex: 0 1 100%;
+    margin-top: var(--bolt-layout-row-gutter, 0);
+    margin-left: var(--bolt-layout-gutter, 0);
+
+    &:not(:first-of-type) {
+      --bolt-layout-gutter: var(--bolt-spacing-x-medium);
+
+      @include bolt-mq(small) {
+        &[data-width*='-from@small'] {
+          --bolt-layout-row-gutter: 0;
+          --bolt-layout-gutter: var(--bolt-spacing-x-medium);
+        }
+      }
+
+      @include bolt-mq(medium) {
+        &[data-width*='-from@medium'] {
+          --bolt-layout-row-gutter: 0;
+          --bolt-layout-gutter: var(--bolt-spacing-x-medium);
+        }
+      }
+    }
+
+    @each $width in $bolt-layout-item-widths {
+      $width-name: nth($width, 1);
+      $width-value: nth($width, 2);
+
+      &[data-width='#{$width-name}'] {
+        flex-basis: #{$width-value};
+      }
+
+      @include bolt-mq(small) {
+        &[data-width*='#{$width-name}-from@small'] {
+          flex-basis: #{$width-value};
+        }
+      }
+
+      @include bolt-mq(medium) {
+        &[data-width*='#{$width-name}-from@medium'] {
+          flex-basis: #{$width-value};
+        }
+      }
+    }
+  }
+
+  @include bolt-mq($until: small) {
+    &[data-stack-items='until@small'] {
+      flex-wrap: wrap;
+
+      > bolt-layout-item:not(:first-of-type) {
+        --bolt-layout-row-gutter: var(--bolt-spacing-y-medium);
+        --bolt-layout-gutter: 0;
+      }
+    }
+  }
+
+  @include bolt-mq($until: medium) {
+    &[data-stack-items='until@medium'] {
+      flex-wrap: wrap;
+
+      > bolt-layout-item:not(:first-of-type) {
+        --bolt-layout-row-gutter: var(--bolt-spacing-y-medium);
+        --bolt-layout-gutter: 0;
+      }
+    }
+  }
+
+  @each $size in $bolt-spacing-multiplier {
+    $size-name: nth($size, 1);
+
+    &[data-padding-top='#{$size-name}'] {
+      --bolt-layout-padding-top: var(--bolt-spacing-y-#{$size-name});
+    }
+
+    &[data-padding-bottom='#{$size-name}'] {
+      --bolt-layout-padding-bottom: var(--bolt-spacing-y-#{$size-name});
+    }
+
+    &[data-gutter='#{$size-name}'] {
+      > bolt-layout-item:not(:first-of-type) {
+        @include bolt-mq(small) {
+          &[data-width*='-from@small'] {
+            --bolt-layout-row-gutter: 0;
+            --bolt-layout-gutter: var(--bolt-spacing-x-#{$size-name});
+          }
+        }
+
+        @include bolt-mq(medium) {
+          &[data-width*='-from@medium'] {
+            --bolt-layout-row-gutter: 0;
+            --bolt-layout-gutter: var(--bolt-spacing-x-#{$size-name});
+          }
+        }
+      }
+    }
+  }
+
+  &[data-padding-top='none'] {
+    --bolt-layout-padding-top: 0;
+  }
+
+  &[data-padding-bottom='none'] {
+    --bolt-layout-padding-bottom: 0;
+  }
+
+  &[data-gutter='none'] {
+    > bolt-layout-item:not(:first-of-type) {
+      --bolt-layout-gutter: 0;
+    }
+  }
+
+  @each $option in $bolt-layout-justify-options {
+    $option-name: nth($option, 1);
+    $option-value: nth($option, 2);
+
+    &[data-justify-items='#{$option-name}'] {
+      justify-content: #{$option-value};
+    }
+  }
+}
