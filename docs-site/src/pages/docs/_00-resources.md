@@ -1,4 +1,5 @@
 ## References + Sources of Inspiration
+
 - https://github.com/open-wc/open-wc
 - https://stenciljs.com/
 - https://www.duetds.com/
@@ -26,6 +27,7 @@
 - https://designsystem.morningstar.com/
 
 ## Important Links:
+
 - https://github.com/boltdesignsystem/bolt
 - https://travis-ci.com/github/boltdesignsystem/bolt
 - https://app.saucelabs.com/dashboard/tests
@@ -33,6 +35,7 @@
 - https://vercel.com/boltdesignsystem
 
 ### Github Repos:
+
 - https://packagist.org/packages/bolt-design-system/bolt_connect
 - https://github.com/boltdesignsystem/bolt_connect
 - https://packagist.org/packages/bolt-design-system/core-php
@@ -44,6 +47,7 @@
 ### Links to Docs / Resources of Heavily Used NPM Packages
 
 ### Tooling
+
 - https://webpack.js.org/
 - https://octokit.github.io/rest.js/v17/
 - https://github.com/tj/commander.js/
@@ -55,6 +59,7 @@
 - https://github.com/json-editor/json-editor
 
 ### Testing
+
 - https://jestjs.io/
 - https://jestjs.io/docs/en/getting-started.html#using-babel
 - https://github.com/americanexpress/jest-image-snapshot
@@ -62,6 +67,7 @@
 - https://nightwatchjs.org/
 
 ### Config
+
 - https://babeljs.io/
 - https://prettier.io/
 - https://stylelint.io/
@@ -69,24 +75,29 @@
 - https://github.com/browserslist/browserslist
 
 ### Continuous Deployment
+
 - https://vercel.com/
 
 ### Continuous Integration
+
 - https://travis-ci.com/
 
 ### Continuous Releases
+
 - https://intuit.github.io/auto/home.html
 - https://www.npmjs.com/package/semver
 
 ### Web Components
 
 #### Gen 2
+
 - https://open-wc.org/developing/lit-helpers.html
 - https://www.npmjs.com/package/wc-context
 - https://lit-element.polymer-project.org/
 - https://lit-html.polymer-project.org/
 
 #### Gen 1
+
 - https://preactjs.com/
 - https://github.com/skatejs/skatejs
 - https://github.com/skatejs/skatejs/tree/master/packages/element-lit-html
