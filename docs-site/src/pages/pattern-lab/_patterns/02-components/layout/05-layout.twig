@@ -1,5 +1,5 @@
 {% set image %}
-  {% include '@bolt-components-image/image.twig' with {
+  {% include "@bolt-components-image/image.twig" with {
     src: "/images/placeholders/landscape-16x9-mountains.jpg",
     alt: "Image alt.",
     attributes: {
@@ -220,6 +220,42 @@
   attributes: {
     class: [
       "t-bolt-dark",
+    ]
+  },
+} only %}
+
+{% set media %}
+  {% include "@bolt-components-image/image.twig" with {
+    src: "/images/placeholders/thumb-square-ivy.jpg",
+    alt: "Image alt",
+  } only %}
+{% endset %}
+{% set text %}
+  {% include "@bolt-components-headline/headline.twig" with {
+    text: "Create a flag by setting a pixel width on the media layout item, and not defining a width on the text layout item.",
+  } only %}
+  <p>Another paragraph. Suspendisse dictum feugiat nisl ut dapibus. Mauris iaculis porttitor posuere. Praesent id metus massa, ut blandit odio. Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus. In pellentesque faucibus vestibulum. Nulla at nulla justo, eget luctus tortor.</p>
+{% endset %}
+{% include "@bolt-components-layout/layout.twig" with {
+  dataGutter: "medium",
+  dataPaddingTop: "large",
+  dataPaddingBottom: "large",
+  dataValignItems: "start",
+  dataStackItems: "until@small",
+  items: [
+    {
+      content: media,
+      attributes: {
+        "data-width": "25% 150px-from@small",
+      }
+    },
+    {
+      content: text,
+    },
+  ],
+  attributes: {
+    class: [
+      "t-bolt-light",
     ]
   },
 } only %}

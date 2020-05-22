@@ -5,6 +5,8 @@
 @import '@bolt/core-v3.x';
 
 $bolt-layout-item-widths: (
+  '80px': 80px,
+  '150px': 150px,
   '25%': calc(3 / 12 * 100%),
   '33%': calc(4 / 12 * 100%),
   '50%': calc(6 / 12 * 100%),
@@ -87,19 +89,21 @@ bolt-layout {
       $width-name: nth($width, 1);
       $width-value: nth($width, 2);
 
-      &[data-width='#{$width-name}'] {
-        flex-basis: #{$width-value};
+      &[data-width='#{$width-name}'],
+      &[data-width^='#{$width-name} '],
+      &[data-width$=' #{$width-name}'] {
+        flex-basis: #{$width-value}; // Whitespace is used internationally in the selectors to account for multiple options defined within an attribute.
       }
 
       @include bolt-mq(small) {
         &[data-width*='#{$width-name}-from@small'] {
-          flex-basis: #{$width-value};
+          flex-basis: #{$width-value} !important; // Important is used here because breakpoint specific widths trumps regular widths.
         }
       }
 
       @include bolt-mq(medium) {
         &[data-width*='#{$width-name}-from@medium'] {
-          flex-basis: #{$width-value};
+          flex-basis: #{$width-value} !important; // Important is used here because breakpoint specific widths trumps regular widths.
         }
       }
     }

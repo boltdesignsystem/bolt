@@ -66,7 +66,9 @@ module.exports = {
         dataWidth: {
           type: 'string',
           description:
-            'Percent number for the width of a particular layout item.',
+            'Percent number or pixel value for the width of a particular layout item.',
+          enum: ['auto', '80px', '150px', '25%', '33%', '50%', '67%', '75%'],
+          default: 'auto',
         },
         dataStackFirst: {
           type: 'boolean',
