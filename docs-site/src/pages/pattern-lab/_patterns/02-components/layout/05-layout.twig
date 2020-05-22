@@ -105,13 +105,13 @@
     {
       content: paragraph1,
       attributes: {
-        "data-width": "50% 67%-from@small 75%-from@medium",
+        "data-width": "67%-from@small 75%-from@medium",
       }
     },
     {
       content: paragraph2,
       attributes: {
-        "data-width": "50% 33%-from@small 25%-from@medium",
+        "data-width": "33%-from@small 25%-from@medium",
       }
     },
   ],
@@ -224,6 +224,49 @@
   },
 } only %}
 
+
+{% set content %}
+  {% include "@bolt-components-headline/headline.twig" with {
+    text: "Special Hero!!!",
+  } only %}
+  <p>Create a special hero with bleeding image by setting <code>valign-self</code> on layout items. It includes offset options to make a layout item positioned to an edge.</p>
+  <p><bolt-button>button</bolt-button></p>
+{% endset %}
+{% set media %}
+  {% include "@bolt-components-image/image.twig" with {
+    src: "/images/placeholders/oliver-silouette.png",
+    alt: "Image alt",
+  } only %}
+{% endset %}
+{% include "@bolt-components-layout/layout.twig" with {
+  dataGutter: "large",
+  dataPaddingTop: "large",
+  dataPaddingBottom: "large",
+  dataStackItems: "until@small",
+  items: [
+    {
+      content: content,
+      attributes: {
+        "data-width": "67%-from@small 75%-from@medium",
+        "data-valign-self": "center",
+      }
+    },
+    {
+      content: media,
+      attributes: {
+        "data-width": "50% 33%-from@small 25%-from@medium",
+        "data-valign-self": "end-offset-large",
+      }
+    },
+  ],
+  attributes: {
+    class: [
+      "t-bolt-light",
+    ]
+  },
+} only %}
+
+
 {% set media %}
   {% include "@bolt-components-image/image.twig" with {
     src: "/images/placeholders/thumb-square-ivy.jpg",
@@ -255,7 +298,7 @@
   ],
   attributes: {
     class: [
-      "t-bolt-light",
+      "t-bolt-dark",
     ]
   },
 } only %}

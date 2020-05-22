@@ -4,6 +4,12 @@
 
 @import '@bolt/core-v3.x';
 
+/**
+ * Layout widths
+ * 1. The % values still follow the 12-column grid concept.
+ * 2. The px values are common numbers for existing use cases.
+ * 3. More options can be added on demand, just be mindful that each new option will generate quite a bit of CSS when accounting for breakpoints.
+ */
 $bolt-layout-item-widths: (
   '80px': 80px,
   '150px': 150px,
@@ -14,6 +20,10 @@ $bolt-layout-item-widths: (
   '75%': calc(9 / 12 * 100%),
 );
 
+/**
+ * Align options
+ * 1. The terminology is future proof for i18n. It acts accordingly to the writing mode of a page.
+ */
 $bolt-layout-align-options: (
   'unset': 'unset',
   'start': 'flex-start',
@@ -21,6 +31,10 @@ $bolt-layout-align-options: (
   'end': 'flex-end',
 );
 
+/**
+ * Global wrapper vars
+ * 1. The vars can be used on other components that acts like layout but doesn't use layout markup. For example: navbar.
+ */
 :root {
   // @todo: move these to global
   --bolt-wrapper-max-width: #{bolt-breakpoint(xxlarge)};
@@ -43,7 +57,6 @@ $bolt-layout-align-options: (
 bolt-layout {
   display: flex;
   justify-content: center;
-  align-items: center;
   margin: 0 auto;
   padding-top: var(
     --bolt-layout-padding-top,
@@ -64,9 +77,13 @@ bolt-layout {
     display: flex;
     flex: 0 1 100%;
     flex-direction: column;
-    margin-top: var(--bolt-layout-row-gutter, 0);
-    margin-left: var(--bolt-layout-gutter, 0);
+    margin-top: var(
+      --bolt-layout-row-gutter,
+      0
+    ); // Set up gutter vars to be used.
+    margin-left: var(--bolt-layout-gutter, 0); // Set up gutter vars to be used.
 
+    // Using gutter vars to set the defaults.
     &:not(:first-of-type) {
       --bolt-layout-gutter: var(--bolt-spacing-x-medium);
 
@@ -85,6 +102,7 @@ bolt-layout {
       }
     }
 
+    // Loop through the width map and generate regular widths and breakpoint widths.
     @each $width in $bolt-layout-item-widths {
       $width-name: nth($width, 1);
       $width-value: nth($width, 2);
@@ -108,11 +126,35 @@ bolt-layout {
       }
     }
 
+    // Loop through the align map to generate valign-self options.
+    @each $option in $bolt-layout-align-options {
+      $option-name: nth($option, 1);
+      $option-value: nth($option, 2);
+
+      &[data-valign-self*='#{$option-name}'] {
+        align-self: #{$option-value};
+      }
+
+      // Loop through the spacing map to generate valign-self offsets.
+      @each $size in $bolt-spacing-multiplier {
+        $size-name: nth($size, 1);
+
+        &[data-valign-self*='start-offset-#{$size-name}'] {
+          margin-top: calc(var(--bolt-spacing-y-#{$size-name}) * -1);
+        }
+
+        &[data-valign-self*='end-offset-#{$size-name}'] {
+          margin-bottom: calc(var(--bolt-spacing-y-#{$size-name}) * -1);
+        }
+      }
+    }
+
     > *:last-child:not(:only-child) {
-      margin-top: auto;
+      margin-top: auto; // Pushes the last child in a layout item to the bottom.
     }
   }
 
+  // Loop through the spacing map to generate padding options.
   @each $size in $bolt-spacing-multiplier {
     $size-name: nth($size, 1);
 
@@ -161,7 +203,7 @@ bolt-layout {
     }
   }
 
-  // Horizontal and vertical alignments
+  // Loop through the align map to generate horizontal and vertical alignments.
   @each $option in $bolt-layout-align-options {
     $option-name: nth($option, 1);
     $option-value: nth($option, 2);
@@ -175,7 +217,7 @@ bolt-layout {
     }
   }
 
-  // Styles for stacked items need to be replicated manually for the two supported breakpoints because variables can't be used as a param for breakpoint mixin.
+  // Styles for stacked items need to be replicated manually for the two supported breakpoints because variables can't be used as a param for media queries.
   @include bolt-mq($until: small) {
     &[data-stack-items='until@small'] {
       flex-wrap: wrap;

@@ -40,7 +40,7 @@ module.exports = {
     },
     dataAlignItems: {
       type: 'string',
-      description: 'Horizontal alignment of layout items (when not stacked).',
+      description: 'Horizontal alignment of layout items.',
       enum: ['start', 'center', 'end'],
       default: 'center',
     },
@@ -69,6 +69,28 @@ module.exports = {
             'Percent number or pixel value for the width of a particular layout item.',
           enum: ['auto', '80px', '150px', '25%', '33%', '50%', '67%', '75%'],
           default: 'auto',
+        },
+        dataValignSelf: {
+          type: 'string',
+          description:
+            'Vertical alignment of a particular layout item. This will ignore the vertical alignment of the whole layout.',
+          enum: [
+            'unset',
+            'start',
+            'center',
+            'end',
+            'start-offset-small',
+            'start-offset-medium',
+            'start-offset-large',
+            'start-offset-xlarge',
+            'start-offset-xxlarge',
+            'end-offset-small',
+            'end-offset-medium',
+            'end-offset-large',
+            'end-offset-xlarge',
+            'end-offset-xxlarge',
+          ],
+          default: 'unset',
         },
         dataStackFirst: {
           type: 'boolean',
