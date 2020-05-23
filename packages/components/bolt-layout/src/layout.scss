@@ -59,17 +59,17 @@ bolt-layout {
   justify-content: center;
   margin: 0 auto;
   padding-top: var(
-    --bolt-layout-padding-top,
+    --c-bolt-layout-padding-top,
     var(--bolt-spacing-y-medium)
   ); // This is customizable on the component level.
-  padding-right: var(
+  padding-inline-end: var(
     --bolt-wrapper-padding
   ); // This must always follow the wrapper rules. Only way to customize it is to change the global wrapper vars.
   padding-bottom: var(
-    --bolt-layout-padding-bottom,
+    --c-bolt-layout-padding-bottom,
     var(--bolt-spacing-y-medium)
   ); // This is customizable on the component level.
-  padding-left: var(
+  padding-inline-start: var(
     --bolt-wrapper-padding
   ); // This must always follow the wrapper rules. Only way to customize it is to change the global wrapper vars.
 
@@ -77,27 +77,26 @@ bolt-layout {
     display: flex;
     flex: 0 1 100%;
     flex-direction: column;
-    margin-top: var(
-      --bolt-layout-row-gutter,
+    margin-inline-start: var(
+      --c-bolt-layout-gutter,
       0
-    ); // Set up gutter vars to be used.
-    margin-left: var(--bolt-layout-gutter, 0); // Set up gutter vars to be used.
+    ); // Set up gutter var to be used.
 
     // Using gutter vars to set the defaults.
     &:not(:first-of-type) {
-      --bolt-layout-gutter: var(--bolt-spacing-x-medium);
+      --c-bolt-layout-gutter: var(--bolt-spacing-x-medium);
 
       @include bolt-mq(small) {
         &[data-width*='-from@small'] {
-          --bolt-layout-row-gutter: 0;
-          --bolt-layout-gutter: var(--bolt-spacing-x-medium);
+          --c-bolt-layout-row-gutter: 0;
+          --c-bolt-layout-gutter: var(--bolt-spacing-x-medium);
         }
       }
 
       @include bolt-mq(medium) {
         &[data-width*='-from@medium'] {
-          --bolt-layout-row-gutter: 0;
-          --bolt-layout-gutter: var(--bolt-spacing-x-medium);
+          --c-bolt-layout-row-gutter: 0;
+          --c-bolt-layout-gutter: var(--bolt-spacing-x-medium);
         }
       }
     }
@@ -126,25 +125,31 @@ bolt-layout {
       }
     }
 
-    // Loop through the align map to generate valign-self options.
+    // Loop through the align map to generate valign options.
     @each $option in $bolt-layout-align-options {
       $option-name: nth($option, 1);
       $option-value: nth($option, 2);
 
-      &[data-valign-self*='#{$option-name}'] {
+      &[data-valign*='#{$option-name}'] {
         align-self: #{$option-value};
       }
 
-      // Loop through the spacing map to generate valign-self offsets.
+      // Loop through the spacing map to generate valign offsets.
       @each $size in $bolt-spacing-multiplier {
         $size-name: nth($size, 1);
 
-        &[data-valign-self*='start-offset-#{$size-name}'] {
-          margin-top: calc(var(--bolt-spacing-y-#{$size-name}) * -1);
+        &[data-valign*='start-offset-#{$size-name}'] {
+          margin-top: var(
+            --c-bolt-layout-item-valign-start-offset,
+            calc(var(--bolt-spacing-y-#{$size-name}) * -1)
+          );
         }
 
-        &[data-valign-self*='end-offset-#{$size-name}'] {
-          margin-bottom: calc(var(--bolt-spacing-y-#{$size-name}) * -1);
+        &[data-valign*='end-offset-#{$size-name}'] {
+          margin-bottom: var(
+            --c-bolt-layout-item-valign-end-offset,
+            calc(var(--bolt-spacing-y-#{$size-name}) * -1)
+          );
         }
       }
     }
@@ -159,29 +164,29 @@ bolt-layout {
     $size-name: nth($size, 1);
 
     &[data-padding-top='#{$size-name}'] {
-      --bolt-layout-padding-top: var(--bolt-spacing-y-#{$size-name});
+      --c-bolt-layout-padding-top: var(--bolt-spacing-y-#{$size-name});
     }
 
     &[data-padding-bottom='#{$size-name}'] {
-      --bolt-layout-padding-bottom: var(--bolt-spacing-y-#{$size-name});
+      --c-bolt-layout-padding-bottom: var(--bolt-spacing-y-#{$size-name});
     }
 
     &[data-gutter='#{$size-name}'] {
       > bolt-layout-item {
         &:not(:first-of-type) {
-          --bolt-layout-gutter: var(--bolt-spacing-x-#{$size-name});
+          --c-bolt-layout-gutter: var(--bolt-spacing-x-#{$size-name});
 
           @include bolt-mq(small) {
             &[data-width*='-from@small'] {
-              --bolt-layout-row-gutter: 0;
-              --bolt-layout-gutter: var(--bolt-spacing-x-#{$size-name});
+              --c-bolt-layout-row-gutter: 0;
+              --c-bolt-layout-gutter: var(--bolt-spacing-x-#{$size-name});
             }
           }
 
           @include bolt-mq(medium) {
             &[data-width*='-from@medium'] {
-              --bolt-layout-row-gutter: 0;
-              --bolt-layout-gutter: var(--bolt-spacing-x-#{$size-name});
+              --c-bolt-layout-row-gutter: 0;
+              --c-bolt-layout-gutter: var(--bolt-spacing-x-#{$size-name});
             }
           }
         }
@@ -190,16 +195,16 @@ bolt-layout {
   }
 
   &[data-padding-top='none'] {
-    --bolt-layout-padding-top: 0;
+    --c-bolt-layout-padding-top: 0;
   }
 
   &[data-padding-bottom='none'] {
-    --bolt-layout-padding-bottom: 0;
+    --c-bolt-layout-padding-bottom: 0;
   }
 
   &[data-gutter='none'] {
     > bolt-layout-item:not(:first-of-type) {
-      --bolt-layout-gutter: 0;
+      --c-bolt-layout-gutter: 0;
     }
   }
 
@@ -224,18 +229,26 @@ bolt-layout {
       align-content: flex-start;
 
       > bolt-layout-item {
-        &:first-of-type ~ [data-stack-first] {
-          --bolt-layout-row-gutter: 0;
+        &:not(:first-of-type) {
+          --c-bolt-layout-gutter: 0;
+        }
+
+        &:not(:first-of-type),
+        &[data-stack-order='secondary'] {
+          padding-top: var(
+            --c-bolt-layout-row-gutter,
+            var(--bolt-spacing-y-medium)
+          );
+        }
+
+        &[data-stack-order='primary'] {
+          --c-bolt-layout-row-gutter: 0;
+          --c-bolt-layout-item-valign-end-offset: 0;
           order: -1;
         }
 
-        &:first-of-type:not([data-stack-first]) {
-          --bolt-layout-row-gutter: var(--bolt-spacing-y-medium);
-        }
-
-        &:not(:first-of-type) {
-          --bolt-layout-row-gutter: var(--bolt-spacing-y-medium);
-          --bolt-layout-gutter: 0;
+        &[data-stack-order='secondary'] {
+          --c-bolt-layout-item-valign-start-offset: 0;
         }
       }
 
@@ -244,16 +257,9 @@ bolt-layout {
 
         &[data-row-gutter='#{$size-name}'] {
           > bolt-layout-item {
-            &:first-of-type ~ [data-stack-first] {
-              --bolt-layout-row-gutter: 0;
-            }
-
-            &:first-of-type:not([data-stack-first]) {
-              --bolt-layout-row-gutter: var(--bolt-spacing-y-#{$size-name});
-            }
-
-            &:not(:first-of-type) {
-              --bolt-layout-row-gutter: var(--bolt-spacing-y-#{$size-name});
+            &:not(:first-of-type),
+            &[data-stack-order='secondary'] {
+              --c-bolt-layout-row-gutter: var(--bolt-spacing-y-#{$size-name});
             }
           }
         }
@@ -267,18 +273,26 @@ bolt-layout {
       align-content: flex-start;
 
       > bolt-layout-item {
-        &:first-of-type ~ [data-stack-first] {
-          --bolt-layout-row-gutter: 0;
+        &:not(:first-of-type) {
+          --c-bolt-layout-gutter: 0;
+        }
+
+        &:not(:first-of-type),
+        &[data-stack-order='secondary'] {
+          padding-top: var(
+            --c-bolt-layout-row-gutter,
+            var(--bolt-spacing-y-medium)
+          );
+        }
+
+        &[data-stack-order='primary'] {
+          --c-bolt-layout-row-gutter: 0;
+          --c-bolt-layout-item-valign-end-offset: 0;
           order: -1;
         }
 
-        &:first-of-type:not([data-stack-first]) {
-          --bolt-layout-row-gutter: var(--bolt-spacing-y-medium);
-        }
-
-        &:not(:first-of-type) {
-          --bolt-layout-row-gutter: var(--bolt-spacing-y-medium);
-          --bolt-layout-gutter: 0;
+        &[data-stack-order='secondary'] {
+          --c-bolt-layout-item-valign-start-offset: 0;
         }
       }
 
@@ -287,16 +301,9 @@ bolt-layout {
 
         &[data-row-gutter='#{$size-name}'] {
           > bolt-layout-item {
-            &:first-of-type ~ [data-stack-first] {
-              --bolt-layout-row-gutter: 0;
-            }
-
-            &:first-of-type:not([data-stack-first]) {
-              --bolt-layout-row-gutter: var(--bolt-spacing-y-#{$size-name});
-            }
-
-            &:not(:first-of-type) {
-              --bolt-layout-row-gutter: var(--bolt-spacing-y-#{$size-name});
+            &:not(:first-of-type),
+            &[data-stack-order='secondary'] {
+              --c-bolt-layout-row-gutter: var(--bolt-spacing-y-#{$size-name});
             }
           }
         }

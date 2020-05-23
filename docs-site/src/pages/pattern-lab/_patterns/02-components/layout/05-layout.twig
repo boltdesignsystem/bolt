@@ -13,8 +13,7 @@
 
 
 {% set paragraph %}
-  <p>Item 1. Let's reduce bloated markup and kill <strong>all bands, wrappers, and grids.</strong> Layout component combines all of their features into one thing with simpler markup.</p>
-  <p>Layout items can be set to common width options that are currently in used: 25%, 33%, 50%, 75%. If width is not set, a layout item will take up all available space of the layout.</p>
+  <p>Item 1. Let's reduce bloated markup and kill <strong>all bands, wrappers, and grids.</strong> Layout component combines all of their features into one thing with simpler markup. Layout items can be set to common width options that are currently in used: 25%, 33%, 50%, 75%. If width is not set, a layout item will take up all available space of the layout.</p>
 {% endset %}
 {% include "@bolt-components-layout/layout.twig" with {
   dataGutter: "medium",
@@ -42,7 +41,7 @@
     {
       content: paragraph,
       attributes: {
-        "data-width": "33%",
+        "data-width": "50%",
       },
     },
   ],
@@ -68,11 +67,14 @@
   items: [
     {
       content: paragraph1,
+      attributes: {
+        "data-stack-order": "secondary"
+      },
     },
     {
       content: paragraph2,
       attributes: {
-        "data-stack-first": true
+        "data-stack-order": "primary"
       },
     },
   ],
@@ -198,6 +200,85 @@
 } only %}
 
 
+{% set content %}
+  {% include "@bolt-components-headline/headline.twig" with {
+    text: "Special Hero!!!",
+    size: "xxxlarge",
+  } only %}
+  <p>Create a special hero with bleeding image by setting <code>data-valign</code> on layout items. It includes offset options to make a layout item positioned to an edge.</p>
+  <p><bolt-button>button</bolt-button></p>
+{% endset %}
+{% set media %}
+  {% include "@bolt-components-image/image.twig" with {
+    src: "/images/heros/hero-foreground--indigo.png",
+    alt: "Image alt",
+  } only %}
+{% endset %}
+{% include "@bolt-components-layout/layout.twig" with {
+  dataGutter: "xlarge",
+  dataPaddingTop: "large",
+  dataPaddingBottom: "large",
+  dataStackItems: "until@small",
+  items: [
+    {
+      content: content,
+      attributes: {
+        "data-width": "50%-from@small",
+        "data-valign": "center",
+        "data-stack-order": "secondary",
+      }
+    },
+    {
+      content: media,
+      attributes: {
+        "data-width": "50%-from@small",
+        "data-valign": "start-offset-large end-offset-large",
+        "data-stack-order": "primary",
+      }
+    },
+  ],
+  attributes: {
+    class: [
+      "t-bolt-dark",
+    ]
+  },
+} only %}
+{% set media %}
+  {% include "@bolt-components-image/image.twig" with {
+    src: "/images/heros/hero-foreground--yellow.png",
+    alt: "Image alt",
+  } only %}
+{% endset %}
+{% include "@bolt-components-layout/layout.twig" with {
+  dataGutter: "large",
+  dataPaddingTop: "large",
+  dataPaddingBottom: "large",
+  dataStackItems: "until@small",
+  dataAlignItems: "end",
+  items: [
+    {
+      content: content,
+      attributes: {
+        "data-width": "50%-from@small 67%-from@medium",
+        "data-valign": "center",
+      }
+    },
+    {
+      content: media,
+      attributes: {
+        "data-width": "75% 50%-from@small 33%-from@medium",
+        "data-valign": "end-offset-large",
+      }
+    },
+  ],
+  attributes: {
+    class: [
+      "t-bolt-light",
+    ]
+  },
+} only %}
+
+
 {% include "@bolt-components-layout/layout.twig" with {
   items: [
     {
@@ -220,48 +301,6 @@
   attributes: {
     class: [
       "t-bolt-dark",
-    ]
-  },
-} only %}
-
-
-{% set content %}
-  {% include "@bolt-components-headline/headline.twig" with {
-    text: "Special Hero!!!",
-  } only %}
-  <p>Create a special hero with bleeding image by setting <code>valign-self</code> on layout items. It includes offset options to make a layout item positioned to an edge.</p>
-  <p><bolt-button>button</bolt-button></p>
-{% endset %}
-{% set media %}
-  {% include "@bolt-components-image/image.twig" with {
-    src: "/images/placeholders/oliver-silouette.png",
-    alt: "Image alt",
-  } only %}
-{% endset %}
-{% include "@bolt-components-layout/layout.twig" with {
-  dataGutter: "large",
-  dataPaddingTop: "large",
-  dataPaddingBottom: "large",
-  dataStackItems: "until@small",
-  items: [
-    {
-      content: content,
-      attributes: {
-        "data-width": "67%-from@small 75%-from@medium",
-        "data-valign-self": "center",
-      }
-    },
-    {
-      content: media,
-      attributes: {
-        "data-width": "50% 33%-from@small 25%-from@medium",
-        "data-valign-self": "end-offset-large",
-      }
-    },
-  ],
-  attributes: {
-    class: [
-      "t-bolt-light",
     ]
   },
 } only %}
@@ -298,7 +337,7 @@
   ],
   attributes: {
     class: [
-      "t-bolt-dark",
+      "t-bolt-light",
     ]
   },
 } only %}

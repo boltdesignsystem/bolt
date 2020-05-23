@@ -11,13 +11,13 @@ module.exports = {
     dataGutter: {
       type: 'string',
       description: 'The spacing in between layout items (when not stacked).',
-      enum: ['small', 'medium', 'large'],
+      enum: ['small', 'medium', 'large', 'xlarge'],
       default: 'medium',
     },
     dataRowGutter: {
       type: 'string',
       description: 'The spacing in between layout items (when stacked).',
-      enum: ['small', 'medium', 'large'],
+      enum: ['small', 'medium', 'large', 'xlarge'],
       default: 'medium',
     },
     dataPaddingTop: {
@@ -70,7 +70,7 @@ module.exports = {
           enum: ['auto', '80px', '150px', '25%', '33%', '50%', '67%', '75%'],
           default: 'auto',
         },
-        dataValignSelf: {
+        dataValign: {
           type: 'string',
           description:
             'Vertical alignment of a particular layout item. This will ignore the vertical alignment of the whole layout.',
@@ -92,10 +92,12 @@ module.exports = {
           ],
           default: 'unset',
         },
-        dataStackFirst: {
-          type: 'boolean',
+        dataStackOrder: {
+          type: 'string',
           description:
-            'The order of the layout item will be prioritized when layout items are stacked. Only enabled when <code>stack-items</code> prop on <code>bolt-layout</code> is also in use.',
+            'The order of the layout item when layout items are stacked. Only enabled when <code>data-stack-items</code> prop is also in use.',
+          enum: ['auto', 'primary', 'secondary'],
+          default: 'auto',
         },
       },
     },
