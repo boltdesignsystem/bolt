@@ -1,0 +1,61 @@
+{% import "@bolt-components-link/_link-macros.twig" as macros %}
+
+{% set schema = bolt.data.components["@bolt-components-link"].schema %}
+
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(schema, _self) | raw }}
+{% endif %}
+
+{# Variables #}
+{% set this = init(schema) %}
+{% set attributes = create_attribute(attributes|default({})) %}
+
+{% if icon %}
+  {% set icon_position = icon.position in schema.properties.icon.properties.position.enum ? icon.position : schema.properties.icon.properties.position.default %}
+{% endif %}
+
+{% if url or attributes["url"] %}
+  {% set url = url|default(attributes["url"]) %}
+{% elseif href or attributes["href"] %}
+  {% set url = href|default(attributes["href"]) %}
+{% endif %}
+
+{% if target or attributes["target"] %}
+  {% set target = target|default(attributes["target"]) %}
+{% endif %}
+
+{% set classes = [
+  "c-bolt-link",
+  this.data.display.value ? "c-bolt-link--display-#{this.data.display.value}" : "",
+  this.data.valign.value ? "c-bolt-link--valign-#{this.data.valign.value}" : "",
+  isHeadline ? "c-bolt-link--headline" : "",
+] %}
+
+{# Filter out classes that begin with `c-bolt-*`. These should never be passed in via atttributes. #}
+{% for class in attributes["class"] %}
+  {% if class starts with "c-bolt-" == false %}
+    {% set classes = classes|merge([class]) %}
+  {% endif %}
+{% endfor %}
+
+{# For accessibility, use <a> tag if `url` provided. Otherwise use `<button type="button">`. #}
+{% set tagName = url ? "a" : "button" %}
+
+{# Use spaceless to trim unwanted whitespace #}
+{% spaceless %}<{{ tagName }}
+    {% if url %}
+      href="{{ url }}" 
+      {% if target %}target="{{ target }}" {% endif %}
+    {% else %}
+      type="button"
+    {% endif %}
+    class="{{ classes|join(' ') }}"
+    {{ attributes|without("url")|without("href")|without("target")|without("class") }}
+  >
+    {{ macros.slotted_icon(icon, icon_position, "before", true) }}
+    <span class="{{ "c-bolt-link__text" }}">
+      {{- text|default(label)|default("Learn More") -}}
+    </span>
+    {{ macros.slotted_icon(icon, icon_position, "after", true) }}
+  </{{ tagName }}>
+</span>{% endspaceless %}
