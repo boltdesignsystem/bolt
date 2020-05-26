@@ -40,12 +40,35 @@ describe('link', () => {
     expect(results.html).toMatchSnapshot();
   });
 
+  test('basic link (no WC)', async () => {
+    const results = await render('@bolt-components-link/link.twig', {
+      text: 'Hello World',
+      url: 'https://pega.com',
+      noWC: true,
+    });
+    expect(results.ok).toBe(true);
+    expect(results.html).toMatchSnapshot();
+  });
+
   display.enum.forEach(async option => {
     test(`link display: ${option}`, async () => {
       const results = await render('@bolt-components-link/link.twig', {
         text: 'Hello World',
         url: 'https://pega.com',
         display: option,
+      });
+      expect(results.ok).toBe(true);
+      expect(results.html).toMatchSnapshot();
+    });
+  });
+
+  display.enum.forEach(async option => {
+    test(`link display (no WC): ${option}`, async () => {
+      const results = await render('@bolt-components-link/link.twig', {
+        text: 'Hello World',
+        url: 'https://pega.com',
+        display: option,
+        noWC: true,
       });
       expect(results.ok).toBe(true);
       expect(results.html).toMatchSnapshot();
@@ -64,6 +87,19 @@ describe('link', () => {
     });
   });
 
+  valign.enum.forEach(async option => {
+    test(`link valign: ${option}`, async () => {
+      const results = await render('@bolt-components-link/link.twig', {
+        text: 'Hello World',
+        url: 'https://pega.com',
+        valign: option,
+        noWC: true,
+      });
+      expect(results.ok).toBe(true);
+      expect(results.html).toMatchSnapshot();
+    });
+  });
+
   test('Link with outer classes via Drupal Attributes', async () => {
     const results = await render('@bolt-components-link/link.twig', {
       text: 'Link with outer classes',
@@ -74,6 +110,37 @@ describe('link', () => {
     });
     expect(results.ok).toBe(true);
     expect(results.html).toMatchSnapshot();
+  });
+
+  test('Link (no WC) with classes and attributes via Drupal Attributes', async () => {
+    const results = await render('@bolt-components-link/link.twig', {
+      text: 'Link with outer classes',
+      url: 'https://pega.com',
+      attributes: {
+        class: ['u-bolt-padding-medium', 'c-bolt-foo'],
+        foo: 'bar',
+        target: '_blank',
+        url: 'https://boltdesignsystem.com/',
+        href: 'https://google.com/',
+      },
+      noWC: true,
+    });
+    expect(results.ok).toBe(true);
+    expect(results.html).toMatchSnapshot();
+
+    const renderedLink = await page.evaluate(async linkHTML => {
+      document.body.insertAdjacentHTML('beforeend', linkHTML);
+      const link = document.querySelector('.c-bolt-link');
+      return link.outerHTML;
+    }, results.html);
+
+    const renderedHTML = await html(renderedLink);
+
+    expect(renderedHTML.classList.contains('u-bolt-padding-medium')).toBe(true);
+    expect(renderedHTML.classList.contains('c-bolt-foo')).toBe(false);
+    expect(renderedHTML.getAttribute('href')).toBe('https://pega.com');
+    expect(renderedHTML.getAttribute('url')).toBe(null);
+    expect(renderedHTML.getAttribute('foo')).toBe('bar');
   });
 
   test('Link with inner classes via Drupal Attributes', async () => {
