@@ -196,6 +196,18 @@ exports[`link Default <bolt-link> with Shadow DOM renders with no extra whitespa
 </div>
 `;
 
+exports[`link Link (no WC) with classes and attributes via Drupal Attributes 1`] = `
+<a href="https://pega.com"
+   target="_blank"
+   class="c-bolt-link c-bolt-link--display-inline c-bolt-link--valign-center  u-bolt-padding-medium"
+   foo="bar"
+>
+  <span class="c-bolt-link__text">
+    Link with outer classes
+  </span>
+</a>
+`;
+
 exports[`link Link with an onClick attributes renders properly 1`] = `
 <bolt-link display="inline"
            valign="center"
@@ -309,6 +321,16 @@ exports[`link Link with outer classes via Drupal Attributes 1`] = `
 </bolt-link>
 `;
 
+exports[`link basic link (no WC) 1`] = `
+<a href="https://pega.com"
+   class="c-bolt-link c-bolt-link--display-inline c-bolt-link--valign-center "
+>
+  <span class="c-bolt-link__text">
+    Hello World
+  </span>
+</a>
+`;
+
 exports[`link basic link 1`] = `
 <bolt-link display="inline"
            valign="center"
@@ -325,6 +347,36 @@ exports[`link basic link 1`] = `
     </ssr-keep>
   </a>
 </bolt-link>
+`;
+
+exports[`link link display (no WC): block 1`] = `
+<a href="https://pega.com"
+   class="c-bolt-link c-bolt-link--display-block c-bolt-link--valign-center "
+>
+  <span class="c-bolt-link__text">
+    Hello World
+  </span>
+</a>
+`;
+
+exports[`link link display (no WC): flex 1`] = `
+<a href="https://pega.com"
+   class="c-bolt-link c-bolt-link--display-flex c-bolt-link--valign-center "
+>
+  <span class="c-bolt-link__text">
+    Hello World
+  </span>
+</a>
+`;
+
+exports[`link link display (no WC): inline 1`] = `
+<a href="https://pega.com"
+   class="c-bolt-link c-bolt-link--display-inline c-bolt-link--valign-center "
+>
+  <span class="c-bolt-link__text">
+    Hello World
+  </span>
+</a>
 `;
 
 exports[`link link display: block 1`] = `
@@ -399,6 +451,16 @@ exports[`link link valign: center 1`] = `
 </bolt-link>
 `;
 
+exports[`link link valign: center 2`] = `
+<a href="https://pega.com"
+   class="c-bolt-link c-bolt-link--display-inline c-bolt-link--valign-center "
+>
+  <span class="c-bolt-link__text">
+    Hello World
+  </span>
+</a>
+`;
+
 exports[`link link valign: start 1`] = `
 <bolt-link display="inline"
            valign="start"
@@ -415,4 +477,14 @@ exports[`link link valign: start 1`] = `
     </ssr-keep>
   </a>
 </bolt-link>
+`;
+
+exports[`link link valign: start 2`] = `
+<a href="https://pega.com"
+   class="c-bolt-link c-bolt-link--display-inline c-bolt-link--valign-start "
+>
+  <span class="c-bolt-link__text">
+    Hello World
+  </span>
+</a>
 `;
