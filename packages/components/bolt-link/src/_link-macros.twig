@@ -1,12 +1,19 @@
-{% macro slotted_icon(icon, icon_position, slot_name) %}
+{% macro slotted_icon(icon, icon_position, slot_name, noWC) %}
+  {% set tagName = noWC ? "span" : "ssr-keep" %}
+  {% set attributes = create_attribute({}) %}
+
+  {% if not noWC %}
+    {% set attributes = attributes.setAttribute("for", "bolt-link") %}
+  {% endif %}
+
   {% if icon and icon_position == slot_name %}
-    <ssr-keep for="bolt-link" class="c-bolt-link__icon">
+    <{{ tagName }} {{ attributes.addClass("c-bolt-link__icon") }}>
       {% set icon = icon | merge({
         attributes: {
           slot: slot_name
         }
       }) %}
       {% include "@bolt-components-icon/icon.twig" with icon only %}
-    </ssr-keep>
+    </{{ tagName }}>
   {% endif %}
 {% endmacro %}

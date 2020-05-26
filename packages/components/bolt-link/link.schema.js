@@ -63,6 +63,11 @@ module.exports = {
     },
     icon: iconSchema,
     ...onClickProps,
+    noWC: {
+      type: 'boolean',
+      description:
+        'If `true`, returns only a styled HTML element, not a Web component',
+    },
     href: {
       title: 'DEPRECATED',
       description: 'Use url instead.',
