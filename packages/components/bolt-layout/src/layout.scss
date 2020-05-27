@@ -135,7 +135,7 @@ bolt-layout {
       }
 
       // Loop through the spacing map to generate valign offsets.
-      @each $size in $bolt-spacing-multiplier {
+      @each $size in $bolt-spacing-multiplier-system {
         $size-name: nth($size, 1);
 
         &[data-valign*='start-offset-#{$size-name}'] {
@@ -160,7 +160,7 @@ bolt-layout {
   }
 
   // Loop through the spacing map to generate padding options.
-  @each $size in $bolt-spacing-multiplier {
+  @each $size in $bolt-spacing-multiplier-system {
     $size-name: nth($size, 1);
 
     &[data-padding-top='#{$size-name}'] {
@@ -252,7 +252,7 @@ bolt-layout {
         }
       }
 
-      @each $size in $bolt-spacing-multiplier {
+      @each $size in $bolt-spacing-multiplier-system {
         $size-name: nth($size, 1);
 
         &[data-row-gutter='#{$size-name}'] {
@@ -296,7 +296,7 @@ bolt-layout {
         }
       }
 
-      @each $size in $bolt-spacing-multiplier {
+      @each $size in $bolt-spacing-multiplier-system {
         $size-name: nth($size, 1);
 
         &[data-row-gutter='#{$size-name}'] {

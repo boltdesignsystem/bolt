@@ -19,7 +19,7 @@ bolt-grid {
   grid-template-columns: repeat(12, 1fr); // 12-column grid is Bolt's default.
   grid-auto-rows: minmax(min-content, max-content);
 
-  @each $size in $bolt-spacing-multiplier {
+  @each $size in $bolt-spacing-multiplier-system {
     $size-name: nth($size, 1);
 
     &[gutter='#{$size-name}'] {
