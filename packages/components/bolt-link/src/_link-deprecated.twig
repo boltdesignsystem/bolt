@@ -70,12 +70,10 @@ Sort classes passed in via attributes into two groups:
 {# Filter out attributes assigned above #}
 {% set filtered_attributes = attributes | without("url") | without("href") | without("target") | without("class") %}
 
-{% set outerTagname = noWC ? "span" : "bolt-link" %}
-
 {% set tagName = url ? "a" : "button" %}
 
 {# link component's custom element wrapper #}
-{% spaceless %}<{{ outerTagname }}
+{% spaceless %}<bolt-link
   {% if display %} display="{{ display }}" {% endif %}
   {% if valign %} valign="{{ valign }}" {% endif %}
   {% if url %} url="{{ url }}" {% endif %}
@@ -107,4 +105,4 @@ Sort classes passed in via attributes into two groups:
     </ssr-keep>
     {{ macros.slotted_icon(icon, icon_position, "after") }}
   </{{ tagName }}>
-</{{ outerTagname }}>{% endspaceless %}
+</bolt-link>{% endspaceless %}
