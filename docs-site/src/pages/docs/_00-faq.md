@@ -89,3 +89,7 @@ All Nightwatch tests can be run locally using the `*.e2e.js` test files in the B
 1. Do you want to run all of the Nightwatch tests available or just some of them?
 2. Do you want to test code that's being served on your machine locally or test code on an external server (ex. now.sh, boltdesignsystem.com, etc)?
 3. Which browser(s) do you want to test? Just Chrome (which will run the fastest), another browser (Safari, Firefox, Edge, etc), or all browsers we support?
+
+## My Jest or Nightwatch tests are failing on Travis even after I pushed up a fix
+
+Often, this is a sign that the problem is still not really fixed, but sometimes it's the cache. Try clearing the [caches on Travis](https://travis-ci.com/github/boltdesignsystem/bolt/caches) and restart your build.
