@@ -176,6 +176,7 @@ class BoltVideo extends withPreact {
     // If the option to show controls is set to false (meaning, no controls will be shown), make sure the video is also muted.
     if (elem.controls === false) {
       elem.player.muted(true);
+      elem.player.playsinline(true);
     }
 
     // auto-configure the social overlay config (loaded via the social plugin)
