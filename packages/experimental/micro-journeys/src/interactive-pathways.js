@@ -184,6 +184,14 @@ class BoltInteractivePathways extends withLitContext {
     newPathway.setActive(true);
     this.activePathwayIndex = index;
     this.triggerUpdate();
+
+    setTimeout(() => {
+      this.dispatchEvent(
+        new CustomEvent('bolt:layout-size-changed', {
+          bubbles: true,
+        }),
+      );
+    }, 0);
   }
 
   toggleDropdown(event) {
