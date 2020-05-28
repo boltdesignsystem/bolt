@@ -156,8 +156,7 @@ $bolt-themes-export: ();
     @if type-of($themeOptionValue) ==
       color and
       type-of($themeOptionValue) !=
-      string
-    {
+      string {
       $newColor: rgba($themeOptionValue, 1);
 
       $red: round(red($newColor));
@@ -187,8 +186,7 @@ $bolt-themes-export: ();
     type-of($themePropVal) ==
     color and
     type-of($themePropVal) !=
-    string
-  {
+    string {
     @return true;
   } @else {
     @return false;

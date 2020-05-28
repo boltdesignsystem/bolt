@@ -9,7 +9,7 @@ bolt-carousel[stacked] bolt-carousel-slide {
     background-color: bolt-theme(background);
   }
 
-  @include bolt-mq($from: small){
+  @include bolt-mq($from: small) {
     min-width: 320px;
   }
 
@@ -20,11 +20,11 @@ bolt-carousel[stacked] bolt-carousel-slide {
   &:not(:first-child):not(.is-ready) {
     margin-left: $smallOverlap * -1;
     
-    @include bolt-mq($from: small){
+    @include bolt-mq($from: small) {
       margin-left: $mediumOverlap * -1;
     }
 
-    @include bolt-mq($from: medium){
+    @include bolt-mq($from: medium) {
       margin-left: $largeOverlap * -1;
     }
   }
@@ -36,11 +36,11 @@ bolt-carousel[stacked] bolt-carousel-slide {
     & ~ bolt-carousel-slide {
       transform: translateX($smallOverlap / 2);
       
-      @include bolt-mq($from: small){
+      @include bolt-mq($from: small) {
         transform: translateX($mediumOverlap / 2);
       }
 
-      @include bolt-mq($from: medium){
+      @include bolt-mq($from: medium) {
         transform: translateX($largeOverlap / 2) translateX(bolt-spacing(small));
       }
     }

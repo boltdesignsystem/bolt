@@ -22,7 +22,6 @@ module.exports = {
     'function-comma-space-before': null,
     // 'plugin/declaration-block-order': null, @todo: swap for another stylelint plugin that isn't deprecated
     'scss/selector-no-redundant-nesting-selector': null,
-    'block-opening-brace-space-before': null,
     'declaration-block-no-shorthand-property-overrides': null,
     'property-no-vendor-prefix': null,
     indentation: null,

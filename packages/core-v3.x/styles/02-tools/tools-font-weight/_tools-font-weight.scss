@@ -35,7 +35,7 @@
 }
 
 @function bolt-font-weight($weight) {
-  @if bolt-map-deep-exists($bolt-font-weights, 'font-weights', $weight){
+  @if bolt-map-deep-exists($bolt-font-weights, 'font-weights', $weight) {
     @return map-get-deep($bolt-font-weights, 'font-weights', $weight);
   } @else {
     @return $weight;

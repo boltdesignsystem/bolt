@@ -13,12 +13,12 @@ bds-docs-search {
     justify-self: center;
   }
 
-  @include bolt-mq($from: small){
+  @include bolt-mq($from: small) {
     width: 50px;
     min-width: 100px;
   }
 
-  @include bolt-mq($from: medium){
+  @include bolt-mq($from: medium) {
     width: auto;
     min-width: none;
   }
@@ -27,13 +27,13 @@ bds-docs-search {
     width: 200px;
     transition: all 250ms;
 
-    @include bolt-mq($from: medium){
+    @include bolt-mq($from: medium) {
       width: auto;
     }
   }
 
   .c-bolt-navbar & {
-    @include bolt-mq($until: 420px){
+    @include bolt-mq($until: 420px) {
       -ms-grid-column: 3;
       -ms-grid-column-span: 2;
       grid-column: 3/span 2;
@@ -91,12 +91,12 @@ bds-docs-search {
   }
 
   .algolia-autocomplete .ds-dropdown-menu {
-    @include bolt-mq($until: small){
+    @include bolt-mq($until: small) {
       min-width: 250px;
       max-width: 95vw;
     }
 
-    @include bolt-mq($from: small, $until: medium){
+    @include bolt-mq($from: small, $until: medium) {
       min-width: 320px;
       max-width: 80vw;
     }

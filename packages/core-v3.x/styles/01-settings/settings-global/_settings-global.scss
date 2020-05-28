@@ -168,7 +168,7 @@ $bolt-all-custom-inline-elements: ();
 /// @example scss - Utility Mixin
 ///   @include bolt-register-element('bolt-ordered-list', 'block');
 @mixin bolt-register-element($element, $element-type) {
-  @if ($element-type != 'inline' and $element-type != 'inline-block' and $element-type != 'block'){
+  @if ($element-type != 'inline' and $element-type != 'inline-block' and $element-type != 'block') {
     @error 'Please register your #{$element} element as either an inline, inline-block or block.';
   }
 

@@ -15,13 +15,13 @@ bolt-carousel {
     overflow: visible;
   }
 
-  &:not(:last-child){
+  &:not(:last-child) {
     @include bolt-margin-bottom(medium);
   }
 
   // add custom scrollbar styling till JS kicks in
-  &:not(.is-ready){
-    &:not([no-pagination]){
+  &:not(.is-ready) {
+    &:not([no-pagination]) {
       @include bolt-carousel-scrollbar;
       padding-bottom: calc(#{$bolt-carousel-bullet-height} + #{bolt-v-spacing(xsmall)});
     }
@@ -29,7 +29,7 @@ bolt-carousel {
     overflow-x: auto;
     overflow-y: hidden;
 
-    @include bolt-mq($until: medium){
+    @include bolt-mq($until: medium) {
       overflow-x: visible;
     }
   }
