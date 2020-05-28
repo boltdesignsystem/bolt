@@ -340,17 +340,17 @@ $bolt-video-js-button-shadow-level-hover: 'level-40';
     }
   }
 
-  &.vjs-error{
-    .vjs-error-display{
+  &.vjs-error {
+    .vjs-error-display {
       background: rgba(bolt-color(blue), 1);
-      &:before{
+      &:before {
         content:'';
         display:none;
       }
-      .vjs-modal-dialog-content{
+      .vjs-modal-dialog-content {
         padding: 0;
       }
-      .vjs-errors-dialog{
+      .vjs-errors-dialog {
         top: 0;
         right: 0;
         bottom:0;
@@ -358,19 +358,19 @@ $bolt-video-js-button-shadow-level-hover: 'level-40';
         padding: 0;
         border:0;
       }
-      .vjs-errors-content-container{
+      .vjs-errors-content-container {
         @include bolt-padding(40px, 40px);
         display: flex;
         align-items: center;
         bottom: 15px;
         text-align: center;
       }
-      .vjs-errors-headline{
+      .vjs-errors-headline {
         @include bolt-font-size(medium);
         display: block;
         width: 100%;
         padding-right: 0;
-        &:after{
+        &:after {
           content: '. Refreshing the page may help resolve this issue.'
         }
         @include bolt-mq(medium) {
@@ -382,7 +382,7 @@ $bolt-video-js-button-shadow-level-hover: 'level-40';
       }
       .vjs-errors-ok-button-container,
       .vjs-errors-headline + div,
-      .vjs-errors-ref-id{
+      .vjs-errors-ref-id {
         @include bolt-visuallyhidden;
       }
     }
