@@ -47,7 +47,6 @@ module.exports = {
     'value-list-comma-space-after': null,
     'selector-combinator-space-after': null,
     'selector-combinator-space-before': null,
-    'function-max-empty-lines': null,
     'comment-empty-line-before': null,
     'block-closing-brace-newline-before': null,
     'max-empty-lines': null,
