@@ -343,13 +343,16 @@ $bolt-video-js-button-shadow-level-hover: 'level-40';
   &.vjs-error {
     .vjs-error-display {
       background: rgba(bolt-color(blue), 1);
+
       &:before {
         content:'';
         display:none;
       }
+
       .vjs-modal-dialog-content {
         padding: 0;
       }
+
       .vjs-errors-dialog {
         top: 0;
         right: 0;
@@ -358,6 +361,7 @@ $bolt-video-js-button-shadow-level-hover: 'level-40';
         padding: 0;
         border:0;
       }
+
       .vjs-errors-content-container {
         @include bolt-padding(40px, 40px);
         display: flex;
@@ -365,11 +369,13 @@ $bolt-video-js-button-shadow-level-hover: 'level-40';
         bottom: 15px;
         text-align: center;
       }
+
       .vjs-errors-headline {
         @include bolt-font-size(medium);
         display: block;
         width: 100%;
         padding-right: 0;
+
         &:after {
           content: '. Refreshing the page may help resolve this issue.'
         }
@@ -380,6 +386,7 @@ $bolt-video-js-button-shadow-level-hover: 'level-40';
           @include bolt-font-size(xlarge);
         }
       }
+
       .vjs-errors-ok-button-container,
       .vjs-errors-headline + div,
       .vjs-errors-ref-id {
