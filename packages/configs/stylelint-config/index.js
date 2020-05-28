@@ -34,7 +34,6 @@ module.exports = {
     'scss/dollar-variable-pattern': null,
     'color-hex-length': null,
     'declaration-colon-newline-after': null,
-    'declaration-colon-space-before': null,
     'function-calc-no-unspaced-operator': null,
     'block-no-empty': null,
     'declaration-block-trailing-semicolon': null,
