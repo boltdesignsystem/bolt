@@ -25,7 +25,6 @@ module.exports = {
     'block-opening-brace-space-before': null,
     'declaration-block-no-shorthand-property-overrides': null,
     'property-no-vendor-prefix': null,
-    'rule-empty-line-before': null,
     indentation: null,
     'number-no-trailing-zeros': null,
     'color-named': null,

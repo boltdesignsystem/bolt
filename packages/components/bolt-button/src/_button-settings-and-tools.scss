@@ -234,16 +234,19 @@ $bolt-button-translate--active: translate3d(0, 1px, 0);
     $button-background-color-default,
     $bolt-global-button-active-mix
   );
+
   &.c-bolt-button,
   &.c-bolt-button:visited {
     color: bolt-text-contrast($button-background-color-default);
     background-color: $button-background-color-default;
   }
+
   &:focus,
   &:hover {
     color: bolt-text-contrast($button-background-color-default);
     background-color: $button-background-color-hover;
   }
+
   &:active {
     color: bolt-text-contrast($button-background-color-default);
     background-color: $button-background-color-active;

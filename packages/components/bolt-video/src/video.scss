@@ -148,12 +148,14 @@ $bolt-video-background-max-height: 50.625vw;
     top: 0;
     right: 0;
     float: right;
+
     .c-#{$bolt-namespace}-video__close-button-icon {
       display: none;
     }
   }
   @media (min-width: bolt-breakpoint(small)) {
     position: absolute;
+
     .c-#{$bolt-namespace}-video__close-button-text {
       @include bolt-visuallyhidden;
     }
@@ -180,6 +182,7 @@ $bolt-video-background-max-height: 50.625vw;
   .video-js .vjs-control-bar {
     display: none;
   }
+
   .video-js {
     pointer-events: none;
   }

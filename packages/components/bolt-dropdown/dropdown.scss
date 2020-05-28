@@ -166,6 +166,7 @@ bolt-dropdown {
 .c-bolt-dropdown__state:checked + .c-bolt-dropdown .c-bolt-dropdown__header-link--close {
   display: block;
 }
+
 .c-bolt-dropdown__state:target + .c-bolt-dropdown .c-bolt-dropdown__header-link--close {
   top: 0;
   // height: 50px;
@@ -293,9 +294,11 @@ bolt-dropdown {
   .c-bolt-dropdown__header-icons-inner {
     transform: rotate(0deg);
   }
+
   .c-bolt-dropdown__header-icon--open {
     opacity: bolt-opacity(100);
   }
+
   .c-bolt-dropdown__header-icon--close {
     opacity: bolt-opacity(0);
   }
@@ -475,6 +478,7 @@ bolt-dropdown {
 
   @for $i from $quantity through 1 {
     $time: $time + 50;
+
     .c-bolt-nav__item:nth-last-child(n+#{$quantity}),
     .c-bolt-nav__item:nth-last-child(n+#{$quantity})~.c-bolt-nav__item:nth-child(#{$i}) {
       transition-delay: $time + ms;

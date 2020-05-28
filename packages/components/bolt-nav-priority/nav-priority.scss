@@ -190,6 +190,7 @@ bolt-nav-priority {
     opacity: bolt-opacity(0);
     transform: translateY(-1em);
   }
+
   100% {
     opacity: bolt-opacity(100);
     transform: translateY(0);
@@ -334,6 +335,7 @@ bolt-nav-priority {
 
   @for $i from $quantity through 1 {
     $time: $time + 50;
+
     bolt-nav-priority:not(.is-closing) .c-bolt-nav-priority__dropdown-list > .c-bolt-nav-priority__item:nth-last-child(n+#{$quantity}),
     bolt-nav-priority:not(.is-closing) .c-bolt-nav-priority__dropdown-list > .c-bolt-nav-priority__item:nth-last-child(n+#{$quantity}) ~ .c-bolt-nav-priority__item:nth-child(#{$i}) {
       transition-delay: $time + ms;
