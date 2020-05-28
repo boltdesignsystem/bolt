@@ -11,7 +11,6 @@ module.exports = {
     'at-rule-name-space-after': null,
     'function-comma-space-after': null,
     'max-nesting-depth': null,
-    'no-missing-end-of-source-newline': null,
     'number-leading-zero': null,
     'selector-list-comma-newline-after': null,
     'selector-max-class': null,
