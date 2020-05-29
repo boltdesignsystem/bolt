@@ -342,7 +342,7 @@ $bolt-video-js-button-shadow-level-hover: 'level-40';
 
   &.vjs-error{
     .vjs-error-display{
-      background: rgba(bolt-color(blue), 1);
+      background: rgba(bolt-color(indigo), 1);
       &:before{
         content:'';
         display:none;
@@ -357,27 +357,35 @@ $bolt-video-js-button-shadow-level-hover: 'level-40';
         left: 0;
         padding: 0;
         border:0;
+        background:0;
       }
       .vjs-errors-content-container{
-        @include bolt-padding(40px, 40px);
+        @include bolt-padding(medium);
         display: flex;
         align-items: center;
         bottom: 15px;
         text-align: center;
       }
       .vjs-errors-headline{
-        @include bolt-font-size(medium);
         display: block;
         width: 100%;
         padding-right: 0;
+        line-height:0;
+        font-size:0;
         &:after{
-          content: '. Refreshing the page may help resolve this issue.'
+          @include bolt-font-size(medium);
+          content: 'Hmmm, we seem to be having trouble loading this video for you. Reloading the page should fix the issue.';
+          display:block;
         }
         @include bolt-mq(medium) {
-          @include bolt-font-size(large);
+          &:after {
+            @include bolt-font-size(large);
+          }
         }
         @include bolt-mq(large) {
-          @include bolt-font-size(xlarge);
+          &:after {
+            @include bolt-font-size(xlarge);
+          }
         }
       }
       .vjs-errors-ok-button-container,
