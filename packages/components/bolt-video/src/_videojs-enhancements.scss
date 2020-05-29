@@ -374,6 +374,7 @@ $bolt-video-js-button-shadow-level-hover: 'level-40';
         font-size:0;
         &:after{
           @include bolt-font-size(medium);
+          // @todo: We need to come up with a better solution to handle this through the Brightcove JS API
           content: 'We seem to be having trouble loading this video for you. Reloading the page should fix the issue.';
           display:block;
         }
