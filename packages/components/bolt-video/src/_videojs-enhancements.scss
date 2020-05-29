@@ -375,19 +375,14 @@ $bolt-video-js-button-shadow-level-hover: 'level-40';
         line-height:0;
         font-size:0;
         &:after{
-          @include bolt-font-size(medium);
+          @include bolt-font-size(small);
           // @todo: We need to come up with a better solution to handle this through the Brightcove JS API
           content: "This video didn't load correctly. Refresh page to view.";
           display:block;
         }
         @include bolt-mq(medium) {
           &:after {
-            @include bolt-font-size(large);
-          }
-        }
-        @include bolt-mq(large) {
-          &:after {
-            @include bolt-font-size(xlarge);
+            @include bolt-font-size(medium);
           }
         }
       }
