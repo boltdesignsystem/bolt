@@ -369,21 +369,12 @@ $bolt-video-js-button-shadow-level-hover: 'level-40';
         text-align: center;
       }
       .vjs-errors-headline{
+        @include bolt-font-size(small);
         display: block;
         width: 100%;
         padding-right: 0;
-        line-height:0;
-        font-size:0;
-        &:after{
-          @include bolt-font-size(small);
-          // @todo: We need to come up with a better solution to handle this through the Brightcove JS API
-          content: "This video didn't load correctly. Refresh page to view.";
-          display:block;
-        }
         @include bolt-mq(medium) {
-          &:after {
-            @include bolt-font-size(medium);
-          }
+          @include bolt-font-size(medium);
         }
       }
 
