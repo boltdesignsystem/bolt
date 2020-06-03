@@ -14,7 +14,6 @@ module.exports = {
     'number-leading-zero': null,
     'selector-list-comma-newline-after': null,
     'selector-max-class': null,
-    // 'order/properties-order': null,
     'selector-no-qualifying-type': null,
     'plugin/selector-bem-pattern': null,
     'no-duplicate-selectors': null,
