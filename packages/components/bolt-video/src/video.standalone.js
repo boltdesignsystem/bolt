@@ -231,12 +231,12 @@ class BoltVideo extends withPreact {
     });
 
     player.on('error', () => {
-      let errorMessage = elem.getAttribute('error-message');
-      const headlineHTML = elem.querySelectorAll('.vjs-errors-headline')
-      if (!errorMessage) {
-        errorMessage = "This video didn't load correctly. Refresh page to view."
+      const headlineHTML = elem.querySelector('.vjs-errors-headline');
+      if (headlineHTML) {
+        headlineHTML.innerHTML =
+          elem.props.errorMessage ||
+          "This video didn't load correctly. Refresh page to view.";
       }
-      headlineHTML[0].innerHTML = errorMessage
     })
   }
 
