@@ -489,6 +489,44 @@ exports[`<bolt-blockquote> component <bolt-blockquote> basic usage w/ author 1`]
         </ssr-keep>
       </div>
     </div>
+    <footer class="c-bolt-blockquote__footer">
+      <ssr-keep for="bolt-blockquote"
+                class="c-bolt-blockquote__footer-item"
+      >
+        <cite slot="author-name"
+              class="c-bolt-text c-bolt-text--bold c-bolt-text--normal c-bolt-text--xsmall"
+        >
+          Michelangelo di Lodovico Buonarroti Simoni
+        </cite>
+      </ssr-keep>
+      <ssr-keep for="bolt-blockquote"
+                class="c-bolt-blockquote__footer-item"
+      >
+        <cite slot="author-title"
+              class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--xsmall"
+        >
+          Renaissance Artist
+        </cite>
+      </ssr-keep>
+    </footer>
+  </blockquote>
+</bolt-blockquote>
+`;
+
+exports[`<bolt-blockquote> component <bolt-blockquote> basic usage w/ author 2`] = `
+<bolt-blockquote>
+  <blockquote class="c-bolt-blockquote c-bolt-blockquote--xlarge c-bolt-blockquote--semibold c-bolt-blockquote--align-items-start c-bolt-blockquote--bordered-vertical"
+              is="shadow-root"
+  >
+    <div class="c-bolt-blockquote__quote">
+      <div class="c-bolt-text c-bolt-text--semibold c-bolt-text--normal c-bolt-text--xlarge">
+        <ssr-keep for="bolt-blockquote">
+          <p>
+            The greater danger for most of us lies not in setting our aim too high and falling short; but in setting our aim too low, and achieving our mark.
+          </p>
+        </ssr-keep>
+      </div>
+    </div>
   </blockquote>
 </bolt-blockquote>
 `;

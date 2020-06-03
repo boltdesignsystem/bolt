@@ -381,6 +381,24 @@ exports[`link link display: inline 1`] = `
 </bolt-link>
 `;
 
+exports[`link link display: inline 2`] = `
+<bolt-link display="inline"
+           valign="center"
+           url="https://pega.com"
+>
+  <a href="https://pega.com"
+     is="shadow-root"
+     class="c-bolt-link  c-bolt-link--display-inline c-bolt-link--valign-center"
+  >
+    <ssr-keep for="bolt-link"
+              class="c-bolt-link__text"
+    >
+      Hello World
+    </ssr-keep>
+  </a>
+</bolt-link>
+`;
+
 exports[`link link valign: center 1`] = `
 <bolt-link display="inline"
            valign="center"
