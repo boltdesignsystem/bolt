@@ -364,23 +364,32 @@ $bolt-video-js-button-shadow-level-hover: 'level-40';
       .vjs-errors-content-container{
         @include bolt-padding(medium);
         display: flex;
+        flex-wrap:wrap;
+        justify-content:center;
         align-items: center;
+        top:50%;
         bottom: 15px;
+        transform: translateY(-50%);
         text-align: center;
+      }
+      .vjs-errors-headline,
+      .vjs-errors-ref-id{
+        display:block;
+        width: 100%;
+        color:bolt-color(white);
       }
       .vjs-errors-headline{
         @include bolt-font-size(small);
-        display: block;
-        width: 100%;
         padding-right: 0;
         @include bolt-mq(medium) {
           @include bolt-font-size(medium);
         }
       }
-
+      .vjs-errors-ref-id{
+        align-self: flex-start;
+      }
       .vjs-errors-ok-button-container,
-      .vjs-errors-headline + div,
-      .vjs-errors-ref-id {
+      .vjs-errors-headline + div {
         @include bolt-visuallyhidden;
       }
     }
