@@ -8,7 +8,7 @@
 
 $bolt-color-button-text: bolt-color(white);
 $bolt-color-primary: bolt-color(yellow);
-$bolt-color-secondary: bolt-color(indigo, light);
+$bolt-color-secondary: bolt-color(navy, light);
 $bolt-button-shadow: $bolt-shadow--small;
 $bolt-button-shadow--hover: $bolt-shadow--large;
 $bolt-button-border-width: $bolt-border-width;
@@ -82,9 +82,9 @@ $bolt-button-translate--active: translate3d(0, 1px, 0);
   &.is-focus:not(.is-hover):not(.is-disabled) {
     box-shadow: 0 -1px 2px bolt-theme(background),
       0 1px 2px bolt-theme(background),
-      0 0 5px rgb(59, 153, 252),
+ 0 0 5px rgb(59, 153, 252),
       0 -1px 0.65rem rgb(59, 153, 252),
-      0 1px 0.65rem rgb(59, 153, 252); // @todo: This mimmicks the browser default blue. We will update it with our own colors later on.
+ 0 1px 0.65rem rgb(59, 153, 252); // @todo: This mimmicks the browser default blue. We will update it with our own colors later on.
   }
 }
 
@@ -112,13 +112,18 @@ $bolt-button-translate--active: translate3d(0, 1px, 0);
   }
 }
 
-
 /**
   @todo: how do we want to handle these global theming fallback values?
   **/
 @mixin bolt-button-style--tertiary() {
-  color: var(--bolt-theme--tertiary--text-color--default, #{rgba(bolt-color(black), 0.9)});
-  background-color: var(--bolt-theme--tertiary--background-color--default, #{rgba(bolt-color(gray), 0.15)});
+  color: var(
+    --bolt-theme--tertiary--text-color--default,
+    #{rgba(bolt-color(black), 0.9)}
+  );
+  background-color: var(
+    --bolt-theme--tertiary--background-color--default,
+    #{rgba(bolt-color(gray), 0.15)}
+  );
 
   &,
   &:before {
@@ -128,7 +133,10 @@ $bolt-button-translate--active: translate3d(0, 1px, 0);
   &:hover,
   &.is-hover {
     color: var(--bolt-theme--tertiary--text-color--hover, #{bolt-color(black)});
-    background-color: var(--bolt-theme--tertiary--background-color--hover, #{rgba(bolt-color(gray), 0.3)});
+    background-color: var(
+      --bolt-theme--tertiary--background-color--hover,
+      #{rgba(bolt-color(gray), 0.3)}
+    );
   }
 
   &:focus:hover:not(:active),
@@ -136,14 +144,23 @@ $bolt-button-translate--active: translate3d(0, 1px, 0);
   &:focus,
   &.is-focus {
     color: var(--bolt-theme--tertiary--text-color--focus, #{bolt-color(black)});
-    background-color: var(--bolt-theme--tertiary--background-color--focus, #{rgba(bolt-color(gray), 0.4)}); /* [1] */
+    background-color: var(
+      --bolt-theme--tertiary--background-color--focus,
+      #{rgba(bolt-color(gray), 0.4)}
+    ); /* [1] */
   }
 
   &:active:hover,
   &:active,
   &.is-active {
-    color: var(--bolt-theme--tertiary--text-color--active, #{bolt-color(black)});
-    background-color: var(--bolt-theme--tertiary--background-color--active, #{rgba(bolt-color(gray), 0.5)});
+    color: var(
+      --bolt-theme--tertiary--text-color--active,
+      #{bolt-color(black)}
+    );
+    background-color: var(
+      --bolt-theme--tertiary--background-color--active,
+      #{rgba(bolt-color(gray), 0.5)}
+    );
   }
 }
 
@@ -211,7 +228,7 @@ $bolt-button-translate--active: translate3d(0, 1px, 0);
     pointer-events: none;
   }
 
-  &:not(.c-bolt-button--text){
+  &:not(.c-bolt-button--text) {
     background-color: bolt-theme(disabled);
   }
 
@@ -223,7 +240,7 @@ $bolt-button-translate--active: translate3d(0, 1px, 0);
 
 // Teal-specific color. Needs refactoring to combine with primary button logic above ^
 @mixin bolt-button-color--teal {
-  $button-background-color-default: bolt-color(indigo, light);
+  $button-background-color-default: bolt-color(navy, light);
   $button-background-color-hover: mix(
     $bolt-global-button-hover-color,
     $button-background-color-default,
