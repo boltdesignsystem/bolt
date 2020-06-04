@@ -71,7 +71,7 @@
 {% set attributes = attributes.setAttribute("share-description", share_description|default('Share This Video'|t)) %}
 
 {% if errorMessage %}
-  {% set attributes = attributes.setAttribute("error-message", errorMessage) %}
+  {% set attributes = attributes.setAttribute("error-message", errorMessage|default("This video didn't load correctly. Refresh page to view."|t)) %}
 {% endif %}
 
 {# @todo: `isBackgroundVideo` will be removed with Bolt v3.0 #}
