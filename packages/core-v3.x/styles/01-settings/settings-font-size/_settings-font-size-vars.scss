@@ -5,8 +5,8 @@
 /**
  * Base value map
  */
-$bolt-font-size-system: (
-  'xxxxlarge': 3.083,
+$bolt-txt-font-size-system: (
+  'display': 3.083,
   'xxxlarge': 2.275,
   'xxlarge': 1.781,
   'xlarge': 1.417,
@@ -17,8 +17,8 @@ $bolt-font-size-system: (
   'xxsmall': 0.7,
 ) !default;
 
-$bolt-line-height-system: (
-  'xxxxlarge': 1.14,
+$bolt-txt-line-height-system: (
+  'display': 1.14,
   'xxxlarge': 1.14,
   'xxlarge': 1.31,
   'xlarge': 1.35,
@@ -27,16 +27,17 @@ $bolt-line-height-system: (
   'small': 1.51,
   'xsmall': 1.45,
   'xxsmall': 1.45,
+  'tight': 1.1,
 ) !default;
 
-$bolt-font-weight-system: (
+$bolt-txt-font-weight-system: (
   'light': 300,
   'regular': 400,
   'semibold': 600,
   'bold': 800,
 ) !default;
 
-$bolt-font-family-system: (
+$bolt-txt-font-family-system: (
   'body':
     "'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans','Helvetica Neue', sans-serif",
   'headline':
@@ -58,38 +59,38 @@ $bolt-font-family-system: (
     --bolt-txt-font-size: 18px;
   }
 
-  @each $size in $bolt-font-size-system {
+  @each $size in $bolt-txt-font-size-system {
     $size-name: nth($size, 1);
     $size-value: nth($size, 2);
 
     --bolt-txt-font-size-#{$size-name}: calc(#{$size-value} * 1rem);
   }
 
-  @each $size in $bolt-line-height-system {
+  @each $size in $bolt-txt-line-height-system {
     $size-name: nth($size, 1);
     $size-value: nth($size, 2);
 
     --bolt-txt-line-height-#{$size-name}: #{$size-value};
   }
 
-  @each $weight in $bolt-font-weight-system {
+  @each $weight in $bolt-txt-font-weight-system {
     $weight-name: nth($weight, 1);
     $weight-value: nth($weight, 2);
 
     --bolt-txt-font-weight-#{$weight-name}: #{$weight-value};
   }
 
-  @each $family in $bolt-font-family-system {
+  @each $family in $bolt-txt-font-family-system {
     $family-name: nth($family, 1);
     $family-value: nth($family, 2);
 
     --bolt-txt-font-family-#{$family-name}: #{$family-value};
   }
 
-  @each $size in $bolt-font-size-system {
+  @each $size in $bolt-txt-font-size-system {
     $size-name: nth($size, 1);
 
-    @each $family in $bolt-font-family-system {
+    @each $family in $bolt-txt-font-family-system {
       $family-name: nth($family, 1);
 
       --bolt-txt-preset-#{$family-name}-#{$size-name}: var(
