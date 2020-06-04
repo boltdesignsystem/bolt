@@ -31,8 +31,8 @@ before_install:
 # Stages run sequentially; the jobs in them run in parallel
 stages:
   - Pre-deploy
-  - Post-deploy
-  - Auto-release
+#  - Post-deploy
+#  - Auto-release
 #  Just an example of having a whole stage be branch conditional; see more conditions: https://docs.travis-ci.com/user/conditions-v1
 #  - name: Super Hard Tests
 #    if: branch = master
@@ -51,139 +51,139 @@ jobs:
 
       # after_success: ./scripts/check-run-success.js 'Jest Component Tests'
       # after_failure: ./scripts/check-run-failure.js 'Jest Component Tests'
-    - stage: Pre-deploy
-      name: 'Smoke Tests: Lint + Jest Unit Tests'
-      install:
-        - yarn run setup
-        - yarn workspace @bolt/website prep # creates data and manifest files
-      # before_script: ./scripts/check-run-queue.js 'Lint + Unit Tests'
-      script:
-        - yarn run lint
-        - yarn test:php
-        - yarn test:monorepo --maxWorkers=1
-        - yarn test:pkgs
-
-      # after_success: ./scripts/check-run-success.js 'Lint + Unit Tests'
-      # after_failure: ./scripts/check-run-failure.js 'Lint + Unit Tests'
-    #    - stage: Pre-deploy
-    #      if: (tag =~ ^v) OR (branch =~ /(master|release)/)
-    #      name: 'Build Drupal Lab'
-    #      script:
-    #        - cd example-integrations/drupal-lab
-    #        - npm run setup
-
-    # quicker build + Nightwatch tests for feature branches
-    - stage: Pre-deploy
-      name: 'Build + Deploy Website + Lighthouse CLI'
-      if: (NOT tag =~ ^v) AND (NOT branch =~ /(master|release|bug|fix)/)
-      install:
-        - yarn run setup
-        - npx lerna run postbootstrap
-        - export GIT_SHA=$(./scripts/get-git-sha.js)
-        - echo $GIT_SHA
-        # - yarn global add @lhci/cli@0.3.x
-      script:
-        # - cd example-integrations/drupal-lab
-        # - yarn run generate # generate static version of Drupal Lab in the integration folder
-        # - cd ../../
-        - yarn run build
-        - travis_retry yarn gds -a create -e ${TRAVIS_BRANCH}--${GIT_SHA}--commit-preview -r ${TRAVIS_BRANCH}
-        - travis_retry yarn gds -a in_progress -e ${TRAVIS_BRANCH}--${GIT_SHA}--commit-preview -r ${TRAVIS_BRANCH}
-        - yarn run deploy
-        - export NOW_URL=$(./scripts/get-latest-deploy.js)
-        - travis_retry yarn gds -a success -e ${TRAVIS_BRANCH}--${GIT_SHA}--commit-preview -r ${TRAVIS_BRANCH} -l ${NOW_URL}
-        - travis_retry yarn run test:e2e:quick-local
-        # - lhci autorun --collect.numberOfRuns=3 --collect.url=$NOW_URL --collect.url=$NOW_URL/pattern-lab/patterns/04-pages-10-d8-product-pages-product-t2/04-pages-10-d8-product-pages-product-t2.html --collect.url=$NOW_URL/pattern-lab/patterns/06-experiments-micro-journeys-90-micro-journeys/06-experiments-micro-journeys-90-micro-journeys.html
-      after_success:
-        - travis_retry yarn gds -a create -e ${TRAVIS_BRANCH}--branch-preview -r ${TRAVIS_BRANCH}
-        - travis_retry yarn gds -a in_progress -e ${TRAVIS_BRANCH}--branch-preview -r ${TRAVIS_BRANCH}
-        - ./scripts/deploy-branch-alias.js
-        - export NOW_BRANCH_URL=$(./scripts/get-branch-alias.js)
-        - travis_retry yarn gds -a success -e ${TRAVIS_BRANCH}--branch-preview -r ${TRAVIS_BRANCH} -l ${NOW_BRANCH_URL}
-      after_failure:
-        - travis_retry yarn gds -a failure -e ${TRAVIS_BRANCH}--${GIT_SHA}--commit-preview -r ${TRAVIS_BRANCH}
-        - travis_retry yarn gds -a failure -e ${TRAVIS_BRANCH}--branch-preview -r ${TRAVIS_BRANCH}
-      after_script:
-        - travis_retry yarn gds -a fail_if_unsuccessful -e ${TRAVIS_BRANCH}--${GIT_SHA}--commit-preview -r ${TRAVIS_BRANCH}
-        - travis_retry yarn gds -a fail_if_unsuccessful -e ${TRAVIS_BRANCH}--branch-preview -r ${TRAVIS_BRANCH}
-
-    # full build + Nightwatch tests for non-feature branches + tagged releases
-    - stage: Pre-deploy
-      name: 'Build + Deploy Website (Full)'
-      if: (tag =~ ^v) OR (branch =~ /(master|release|bug|fix)/)
-      install:
-        - yarn run setup
-        - export GIT_SHA=$(./scripts/get-git-sha.js)
-      before_script:
-        - find . -name '.incache' -exec rm -rf {} +
-      script:
-        # - cd example-integrations/drupal-lab
-        # - yarn run generate # generate static version of Drupal Lab in the integration folder
-        # - cd ../../
-        - travis_retry yarn gds -a create -e ${TRAVIS_BRANCH}--${GIT_SHA}--commit-preview -r ${TRAVIS_BRANCH}
-        - yarn run build
-        - travis_retry yarn gds -a in_progress -e ${TRAVIS_BRANCH}--${GIT_SHA}--commit-preview -r ${TRAVIS_BRANCH}
-        - yarn run deploy
-      after_success:
-        - export NOW_URL=$(./scripts/get-latest-deploy.js)
-        - travis_retry yarn gds -a success -e ${TRAVIS_BRANCH}--${GIT_SHA}--commit-preview -r ${TRAVIS_BRANCH} -l ${NOW_URL}
-      after_script:
-        - travis_retry yarn gds -a fail_if_unsuccessful -e ${TRAVIS_BRANCH}--${GIT_SHA}--commit-preview -r ${TRAVIS_BRANCH}
-
-    - stage: Post-deploy
-      name: 'Nightwatch End-to-End (Full)'
-      if: (tag =~ ^v) OR (branch =~ /(master|release|bug|fix)/)
-      install:
-        - yarn
-        - npx lerna run postbootstrap
-      # before_script: ./scripts/check-run-in-progress.js 'Nightwatch'
-      script:
-        - export NOW_URL=$(./scripts/get-latest-deploy.js)
-        - travis_retry yarn gds -a create -e ${TRAVIS_BRANCH}--branch-preview -r ${TRAVIS_BRANCH}
-        - travis_retry yarn gds -a in_progress -e ${TRAVIS_BRANCH}--branch-preview -r ${TRAVIS_BRANCH}
-        - travis_retry yarn run test:e2e:full
-      after_success:
-        - ./scripts/deploy-branch-alias.js
-        - export NOW_BRANCH_URL=$(./scripts/get-branch-alias.js)
-        - travis_retry yarn gds -a success -e ${TRAVIS_BRANCH}--branch-preview -r ${TRAVIS_BRANCH} -l ${NOW_BRANCH_URL}
-        - ./scripts/deploy-tagged-release.js
-        # - ./packages/testing/testing-nightwatch/nightwatch-report-results.js
-      after_script:
-        - travis_retry yarn gds -a fail_if_unsuccessful -e ${TRAVIS_BRANCH}--branch-preview -r ${TRAVIS_BRANCH}
-
-    - stage: Auto-release
-      name: 'Canary Release'
-      if: (branch =~ /(master)/)
-      before_script:
-        - git config --global user.email ${GITHUB_EMAIL}
-        - git config --global user.name ${GITHUB_USER}
-        - git remote set-url origin "https://${GITHUB_TOKEN}@github.com/boltdesignsystem/bolt.git" > /dev/null 2>&1
-        - echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
-        - git checkout master
-      install:
-        - yarn install --frozen-lockfile
-        - yarn run setup:php
-        - git reset --hard
-      script: yarn run release
-
-    - stage: Auto-release
-      name: 'Full Release'
-      if: (branch =~ /(release\/2.x)/)
-      before_script:
-        - git config --global user.email ${GITHUB_EMAIL}
-        - git config --global user.name ${GITHUB_USER}
-        - git remote set-url origin "https://${GITHUB_TOKEN}@github.com/boltdesignsystem/bolt.git" > /dev/null 2>&1
-        - echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
-        - git checkout release/2.x
-      install:
-        - yarn install --frozen-lockfile
-        - yarn run setup:php
-        - git reset --hard
-      script:
-        - yarn run release
-      after_success:
-        - cd "`git rev-parse --show-toplevel`" && git clean -fd && git reset --hard HEAD && cd -
-        - ./scripts/release/update-read-only-git-repos.sh
+#    - stage: Pre-deploy
+#      name: 'Smoke Tests: Lint + Jest Unit Tests'
+#      install:
+#        - yarn run setup
+#        - yarn workspace @bolt/website prep # creates data and manifest files
+#      # before_script: ./scripts/check-run-queue.js 'Lint + Unit Tests'
+#      script:
+#        - yarn run lint
+#        - yarn test:php
+#        - yarn test:monorepo --maxWorkers=1
+#        - yarn test:pkgs
+#
+#      # after_success: ./scripts/check-run-success.js 'Lint + Unit Tests'
+#      # after_failure: ./scripts/check-run-failure.js 'Lint + Unit Tests'
+#    #    - stage: Pre-deploy
+#    #      if: (tag =~ ^v) OR (branch =~ /(master|release)/)
+#    #      name: 'Build Drupal Lab'
+#    #      script:
+#    #        - cd example-integrations/drupal-lab
+#    #        - npm run setup
+#
+#    # quicker build + Nightwatch tests for feature branches
+#    - stage: Pre-deploy
+#      name: 'Build + Deploy Website + Lighthouse CLI'
+#      if: (NOT tag =~ ^v) AND (NOT branch =~ /(master|release|bug|fix)/)
+#      install:
+#        - yarn run setup
+#        - npx lerna run postbootstrap
+#        - export GIT_SHA=$(./scripts/get-git-sha.js)
+#        - echo $GIT_SHA
+#        # - yarn global add @lhci/cli@0.3.x
+#      script:
+#        # - cd example-integrations/drupal-lab
+#        # - yarn run generate # generate static version of Drupal Lab in the integration folder
+#        # - cd ../../
+#        - yarn run build
+#        - travis_retry yarn gds -a create -e ${TRAVIS_BRANCH}--${GIT_SHA}--commit-preview -r ${TRAVIS_BRANCH}
+#        - travis_retry yarn gds -a in_progress -e ${TRAVIS_BRANCH}--${GIT_SHA}--commit-preview -r ${TRAVIS_BRANCH}
+#        - yarn run deploy
+#        - export NOW_URL=$(./scripts/get-latest-deploy.js)
+#        - travis_retry yarn gds -a success -e ${TRAVIS_BRANCH}--${GIT_SHA}--commit-preview -r ${TRAVIS_BRANCH} -l ${NOW_URL}
+#        - travis_retry yarn run test:e2e:quick-local
+#        # - lhci autorun --collect.numberOfRuns=3 --collect.url=$NOW_URL --collect.url=$NOW_URL/pattern-lab/patterns/04-pages-10-d8-product-pages-product-t2/04-pages-10-d8-product-pages-product-t2.html --collect.url=$NOW_URL/pattern-lab/patterns/06-experiments-micro-journeys-90-micro-journeys/06-experiments-micro-journeys-90-micro-journeys.html
+#      after_success:
+#        - travis_retry yarn gds -a create -e ${TRAVIS_BRANCH}--branch-preview -r ${TRAVIS_BRANCH}
+#        - travis_retry yarn gds -a in_progress -e ${TRAVIS_BRANCH}--branch-preview -r ${TRAVIS_BRANCH}
+#        - ./scripts/deploy-branch-alias.js
+#        - export NOW_BRANCH_URL=$(./scripts/get-branch-alias.js)
+#        - travis_retry yarn gds -a success -e ${TRAVIS_BRANCH}--branch-preview -r ${TRAVIS_BRANCH} -l ${NOW_BRANCH_URL}
+#      after_failure:
+#        - travis_retry yarn gds -a failure -e ${TRAVIS_BRANCH}--${GIT_SHA}--commit-preview -r ${TRAVIS_BRANCH}
+#        - travis_retry yarn gds -a failure -e ${TRAVIS_BRANCH}--branch-preview -r ${TRAVIS_BRANCH}
+#      after_script:
+#        - travis_retry yarn gds -a fail_if_unsuccessful -e ${TRAVIS_BRANCH}--${GIT_SHA}--commit-preview -r ${TRAVIS_BRANCH}
+#        - travis_retry yarn gds -a fail_if_unsuccessful -e ${TRAVIS_BRANCH}--branch-preview -r ${TRAVIS_BRANCH}
+#
+#    # full build + Nightwatch tests for non-feature branches + tagged releases
+#    - stage: Pre-deploy
+#      name: 'Build + Deploy Website (Full)'
+#      if: (tag =~ ^v) OR (branch =~ /(master|release|bug|fix)/)
+#      install:
+#        - yarn run setup
+#        - export GIT_SHA=$(./scripts/get-git-sha.js)
+#      before_script:
+#        - find . -name '.incache' -exec rm -rf {} +
+#      script:
+#        # - cd example-integrations/drupal-lab
+#        # - yarn run generate # generate static version of Drupal Lab in the integration folder
+#        # - cd ../../
+#        - travis_retry yarn gds -a create -e ${TRAVIS_BRANCH}--${GIT_SHA}--commit-preview -r ${TRAVIS_BRANCH}
+#        - yarn run build
+#        - travis_retry yarn gds -a in_progress -e ${TRAVIS_BRANCH}--${GIT_SHA}--commit-preview -r ${TRAVIS_BRANCH}
+#        - yarn run deploy
+#      after_success:
+#        - export NOW_URL=$(./scripts/get-latest-deploy.js)
+#        - travis_retry yarn gds -a success -e ${TRAVIS_BRANCH}--${GIT_SHA}--commit-preview -r ${TRAVIS_BRANCH} -l ${NOW_URL}
+#      after_script:
+#        - travis_retry yarn gds -a fail_if_unsuccessful -e ${TRAVIS_BRANCH}--${GIT_SHA}--commit-preview -r ${TRAVIS_BRANCH}
+#
+#    - stage: Post-deploy
+#      name: 'Nightwatch End-to-End (Full)'
+#      if: (tag =~ ^v) OR (branch =~ /(master|release|bug|fix)/)
+#      install:
+#        - yarn
+#        - npx lerna run postbootstrap
+#      # before_script: ./scripts/check-run-in-progress.js 'Nightwatch'
+#      script:
+#        - export NOW_URL=$(./scripts/get-latest-deploy.js)
+#        - travis_retry yarn gds -a create -e ${TRAVIS_BRANCH}--branch-preview -r ${TRAVIS_BRANCH}
+#        - travis_retry yarn gds -a in_progress -e ${TRAVIS_BRANCH}--branch-preview -r ${TRAVIS_BRANCH}
+#        - travis_retry yarn run test:e2e:full
+#      after_success:
+#        - ./scripts/deploy-branch-alias.js
+#        - export NOW_BRANCH_URL=$(./scripts/get-branch-alias.js)
+#        - travis_retry yarn gds -a success -e ${TRAVIS_BRANCH}--branch-preview -r ${TRAVIS_BRANCH} -l ${NOW_BRANCH_URL}
+#        - ./scripts/deploy-tagged-release.js
+#        # - ./packages/testing/testing-nightwatch/nightwatch-report-results.js
+#      after_script:
+#        - travis_retry yarn gds -a fail_if_unsuccessful -e ${TRAVIS_BRANCH}--branch-preview -r ${TRAVIS_BRANCH}
+#
+#    - stage: Auto-release
+#      name: 'Canary Release'
+#      if: (branch =~ /(master)/)
+#      before_script:
+#        - git config --global user.email ${GITHUB_EMAIL}
+#        - git config --global user.name ${GITHUB_USER}
+#        - git remote set-url origin "https://${GITHUB_TOKEN}@github.com/boltdesignsystem/bolt.git" > /dev/null 2>&1
+#        - echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
+#        - git checkout master
+#      install:
+#        - yarn install --frozen-lockfile
+#        - yarn run setup:php
+#        - git reset --hard
+#      script: yarn run release
+#
+#    - stage: Auto-release
+#      name: 'Full Release'
+#      if: (branch =~ /(release\/2.x)/)
+#      before_script:
+#        - git config --global user.email ${GITHUB_EMAIL}
+#        - git config --global user.name ${GITHUB_USER}
+#        - git remote set-url origin "https://${GITHUB_TOKEN}@github.com/boltdesignsystem/bolt.git" > /dev/null 2>&1
+#        - echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
+#        - git checkout release/2.x
+#      install:
+#        - yarn install --frozen-lockfile
+#        - yarn run setup:php
+#        - git reset --hard
+#      script:
+#        - yarn run release
+#      after_success:
+#        - cd "`git rev-parse --show-toplevel`" && git clean -fd && git reset --hard HEAD && cd -
+#        - ./scripts/release/update-read-only-git-repos.sh
 
 notifications:
   email:
