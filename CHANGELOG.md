@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.24.0](https://github.com/boltdesignsystem/bolt/compare/v2.23.0...v2.24.0) (2020-06-05)
+
+
+### Bug Fixes
+
+* disable the Webpack WriteFilePlugin as workaround to font assets not getting copied over consistently ([114397f](https://github.com/boltdesignsystem/bolt/commit/114397f1fffe4d2835e9243907dcba60f82ac9d1))
+* force regenerating new Carousel VRT images ([5ab7612](https://github.com/boltdesignsystem/bolt/commit/5ab76128cde20aadb7736158d178772c153b7522))
+* ja values ([860d729](https://github.com/boltdesignsystem/bolt/commit/860d729199ac421441b8ef44d27f4be855efff5d))
+* mannually update each test ([5430e92](https://github.com/boltdesignsystem/bolt/commit/5430e92c6288e8a14190b1cf7d862a20867dd8d0))
+* tooltip flicker ([ddbcf74](https://github.com/boltdesignsystem/bolt/commit/ddbcf7493047addb80f65b99c61055149d2f8cb5))
+* update build tools Jest tests to reflect new spacing defaults ([b0b3429](https://github.com/boltdesignsystem/bolt/commit/b0b34292d2132d87bd3d4cef1c24d621a72686ae))
+* update comments ([40e984a](https://github.com/boltdesignsystem/bolt/commit/40e984ab00240c29a0fd035c01af87f8f9c7fbb8))
+* update JA-specific Sass to pull in breakpoint-specific Sass functions / vars that don't yet exist (normally) ([45ce051](https://github.com/boltdesignsystem/bolt/commit/45ce051238dea173c6603dab8c00529a60e21e10))
+* update Jest VRT snapshots ([0e1e91f](https://github.com/boltdesignsystem/bolt/commit/0e1e91fd843dc502568725c037a5b684523afd87))
+* update Modal VRT screenshots ([e8da2bf](https://github.com/boltdesignsystem/bolt/commit/e8da2bfba68de16fafa8cce00bbc726be0c5879b))
+* update now-storage config to use teamId ([3595df1](https://github.com/boltdesignsystem/bolt/commit/3595df1ce7b83b44a50fb4096c8bc811ea9b6027))
+
+
+
+
+
 # [2.23.0](https://github.com/boltdesignsystem/bolt/compare/v2.22.1...v2.23.0) (2020-05-06)
 
 

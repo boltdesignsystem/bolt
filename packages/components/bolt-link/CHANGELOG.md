@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.24.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-link/compare/v2.23.0...v2.24.0) (2020-06-05)
+
+
+### Bug Fixes
+
+* mannually update each test ([5430e92](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-link/commit/5430e92c6288e8a14190b1cf7d862a20867dd8d0))
+
+
+
+
+
 # [2.23.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-link/compare/v2.22.1...v2.23.0) (2020-05-06)
 
 
