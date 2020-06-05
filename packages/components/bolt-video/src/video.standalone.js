@@ -231,7 +231,6 @@ class BoltVideo extends withPreact {
     });
 
     player.on('error', () => {
-      console.log(player)
       const headlineHTML = elem.querySelector('.vjs-errors-headline');
       if (headlineHTML) {
         headlineHTML.innerHTML =
