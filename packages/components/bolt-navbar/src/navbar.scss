@@ -5,7 +5,6 @@
 \* ------------------------------------ */
 
 $bolt-navbar-title-transition: $bolt-transition;
-
 $bolt-navbar-vspacing-small: bolt-v-spacing(small);
 $bolt-navbar-vspacing-xsmall: bolt-v-spacing(xsmall);
 $bolt-navbar-xsmall-bp: 420px; // Slightly increase the default 400px xsmall breakpoint to be better optimized for larger plus-sized mobile devices -- value shared by the bolt-navbar, bolt-nav-priority, and bolt-navlink components
@@ -20,7 +19,7 @@ bolt-navbar {
   }
 
   // @todo: remove once Navbar refactored to have theming classes added to the `.c-bolt-navbar` inner.
-  &[width*=full] {
+  &[width*='full'] {
     @include bolt-full-bleed;
   }
 
@@ -30,29 +29,25 @@ bolt-navbar {
 }
 
 .c-bolt-navbar {
+  @include bolt-padding-top($bolt-navbar-vspacing-small);
+  @include bolt-padding-left(small);
+  @include bolt-padding-right(small);
   display: flex;
   justify-content: space-between;
   align-items: center;
   position: relative;
   width: 100%;
-
-  // @include bolt-padding-top($bolt-navbar-vspacing-small);
   max-width: bolt-breakpoint(xxlarge);
   margin: 0 auto;
-  margin: 0 auto;
-  @include bolt-padding-left(small);
-  @include bolt-padding-right(small);
 
   > *:not(:last-child) {
     @include bolt-margin-right(small);
   }
 
   @include bolt-mq($bolt-navbar-xsmall-bp) {
-    @include bolt-padding-left(medium);
-    @include bolt-padding-right(medium);
+    padding-right: $bolt-wrapper-padding;
+    padding-left: $bolt-wrapper-padding;
   }
-
-  @include bolt-padding-top($bolt-navbar-vspacing-small);
 
   @supports (--css: variables) {
     padding-top: var(--bolt-vspacing, $bolt-navbar-vspacing-small);
@@ -65,8 +60,8 @@ bolt-navbar {
   }
 
   @include bolt-mq(medium) {
-    @include bolt-padding-left(large);
-    @include bolt-padding-right(large);
+    padding-right: $bolt-wrapper-padding-at-medium-bp;
+    padding-left: $bolt-wrapper-padding-at-medium-bp;
   }
 
   /**
@@ -159,7 +154,6 @@ bolt-navbar {
   @supports (--css: variables) {
     padding-bottom: var(--bolt-vspacing, $bolt-navbar-vspacing-small);
   }
-
 
   &:only-child {
     @include bolt-margin-right(auto);

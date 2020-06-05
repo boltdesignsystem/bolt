@@ -131,7 +131,7 @@ describe('Tests to confirm that the latest upcoming release of the @bolt/build-t
     expect(prettyCss).toEqual(
       expect.stringContaining(
         await prettier.format(
-          `.u-bolt-margin-bottom {margin-bottom: 1.65rem !important;}`,
+          `.u-bolt-margin-bottom {margin-bottom: 1.35rem !important;}`,
           prettierConfig,
         ),
       ),
