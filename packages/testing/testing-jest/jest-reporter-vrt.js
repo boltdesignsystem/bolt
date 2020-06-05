@@ -13,7 +13,7 @@ async function uploadImage(name, content) {
   const { url } = await upload(process.env.NOW_TOKEN, {
     name,
     content,
-  });
+  }, { teamId: 'boltdesignsystem' });
   return url;
 }
 
