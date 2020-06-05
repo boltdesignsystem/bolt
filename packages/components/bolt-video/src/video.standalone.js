@@ -32,6 +32,7 @@ class BoltVideo extends withPreact {
     resetOnFinish: props.boolean,
     directToFullscreen: props.boolean,
     hideFullScreenButton: props.boolean,
+    errorMessage: props.string,
     overlayAlignment: {
       ...props.string,
       ...{ default: 'bottom' },
@@ -251,6 +252,15 @@ class BoltVideo extends withPreact {
     player.on('ended', function() {
       elem.onEnded(player);
     });
+
+    player.on('error', () => {
+      const headlineHTML = elem.querySelector('.vjs-errors-headline');
+      if (headlineHTML) {
+        headlineHTML.innerHTML =
+          elem.props.errorMessage ||
+          "This video didn't load correctly. Refresh page to view.";
+      }
+    })
   }
 
   static appendScript(s) {

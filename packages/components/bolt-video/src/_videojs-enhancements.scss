@@ -339,6 +339,62 @@ $bolt-video-js-button-shadow-level-hover: 'level-40';
       transform: translate3d(-50%, -50%, 0);
     }
   }
+
+  &.vjs-error{
+    .vjs-error-display{
+      background: bolt-color(indigo);
+      &:before{
+        content:'';
+        display:none;
+      }
+
+      .vjs-modal-dialog-content {
+        padding: 0;
+      }
+
+      .vjs-errors-dialog {
+        top: 0;
+        right: 0;
+        bottom:0;
+        left: 0;
+        padding: 0;
+        border:0;
+        background:0;
+      }
+      .vjs-errors-content-container{
+        @include bolt-padding(medium);
+        display: flex;
+        flex-wrap:wrap;
+        justify-content:center;
+        align-content:center;
+        align-items: center;
+        top:50%;
+        bottom: 15px;
+        transform: translateY(-50%);
+        text-align: center;
+      }
+      .vjs-errors-headline,
+      .vjs-errors-ref-id{
+        display:block;
+        width: 100%;
+        color:bolt-color(white);
+      }
+      .vjs-errors-headline{
+        @include bolt-font-size(small);
+        padding-right: 0;
+        @include bolt-mq(medium) {
+          @include bolt-font-size(medium);
+        }
+      }
+      .vjs-errors-ref-id{
+        align-self: flex-start;
+      }
+      .vjs-errors-ok-button-container,
+      .vjs-errors-headline + div {
+        @include bolt-visuallyhidden;
+      }
+    }
+  }
 }
 
 .vjs-subs-caps-button {
