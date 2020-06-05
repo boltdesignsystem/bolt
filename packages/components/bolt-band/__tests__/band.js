@@ -169,9 +169,21 @@ describe('<bolt-band> Component', () => {
       } only %}
     `);
 
-    const { outerHTML } = await renderWC('bolt-band', `${template.html}`, page);
-    const renderedHTML = await html(outerHTML);
+    const renderedBandHTML = await page.evaluate(async html => {
+      const div = document.createElement('div');
+      div.innerHTML = `${html}`;
+      document.body.appendChild(div);
+      const band = document.querySelector('bolt-band');
+      await band.firstUpdated;
+      return band.outerHTML;
+    }, template.html);
+
+    const renderedHTML = await html(renderedBandHTML);
     const image = await page.screenshot();
+
+    // const { outerHTML } = await renderWC('bolt-band', `${template.html}`, page);
+    // const renderedHTML = await html(outerHTML);
+    // const image = await page.screenshot();
 
     expect(image).toMatchImageSnapshot({
       failureThreshold: '0.01',
