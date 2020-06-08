@@ -30,12 +30,14 @@
   }
 }
 
-$bolt-text-v2--minus-letter-spacing: -0.025rem;
-$bolt-text-v2--plus-letter-spacing: 0.05rem;
-
 .c-bolt-text-v2 {
   margin: 0;
   padding: 0;
+  line-height: var(--c-bolt-text-line-height, unset);
+  letter-spacing: var(--c-bolt-text-letter-spacing, unset);
+  font: var(--c-bolt-text-font, unset);
+  font-size: var(--c-bolt-text-font-size, unset);
+  font-weight: var(--c-bolt-text-font-weight, unset);
   font-display: swap;
 
   a {
@@ -72,14 +74,12 @@ $bolt-text-v2--plus-letter-spacing: 0.05rem;
 
 .c-bolt-text-v2 {
   // Font-Family
-  &--headline {
-    font: var(--bolt-txt-preset-headline-medium);
-  }
-  &--body {
-    font: var(--bolt-txt-preset-body-medium);
-  }
-  &--code {
-    font: var(--bolt-txt-preset-code-medium);
+  @each $family in $bolt-txt-font-family-system {
+    $family-name: nth($family, 1);
+
+    &--#{$family-name} {
+      --c-bolt-text-font: var(--bolt-txt-preset-#{$family-name}-medium);
+    }
   }
 
   // Color
@@ -95,7 +95,7 @@ $bolt-text-v2--plus-letter-spacing: 0.05rem;
     $weight-name: nth($weight, 1);
 
     &--font-weight-#{$weight-name} {
-      font-weight: var(--bolt-txt-font-weight-#{$weight-name});
+      --c-bolt-text-font-weight: var(--bolt-txt-font-weight-#{$weight-name});
     }
   }
 
@@ -108,34 +108,12 @@ $bolt-text-v2--plus-letter-spacing: 0.05rem;
   }
 
   // Font size
-  &--font-size-xxxlarge {
-    letter-spacing: $bolt-text-v2--minus-letter-spacing;
-    font-size: var(--bolt-txt-font-size-display);
+  @each $size in $bolt-txt-font-size-system {
+    $size-name: nth($size, 1);
 
-    &.is-long {
-      font-size: var(--bolt-txt-font-size-xxxlarge);
+    &--font-size-#{$size-name} {
+      --c-bolt-text-font-size: var(--bolt-txt-font-size-#{$size-name});
     }
-  }
-  &--font-size-xxlarge {
-    letter-spacing: $bolt-text-v2--minus-letter-spacing;
-    font-size: var(--bolt-txt-font-size-xxlarge);
-  }
-  &--font-size-xlarge {
-    font-size: var(--bolt-txt-font-size-xlarge);
-  }
-  &--font-size-large {
-    font-size: var(--bolt-txt-font-size-large);
-  }
-  &--font-size-medium {
-    font-size: var(--bolt-txt-font-size-medium);
-  }
-  &--font-size-small {
-    letter-spacing: $bolt-text-v2--plus-letter-spacing;
-    font-size: var(--bolt-txt-font-size-small);
-  }
-  &--font-size-xsmall {
-    letter-spacing: $bolt-text-v2--plus-letter-spacing;
-    font-size: var(--bolt-txt-font-size-xsmall);
   }
 
   // Display type
@@ -175,25 +153,22 @@ $bolt-text-v2--plus-letter-spacing: 0.05rem;
   }
 
   // Letter spacing
-  &--letter-spacing-narrow {
-    letter-spacing: $bolt-text-v2--minus-letter-spacing;
-  }
-  &--letter-spacing-regular {
-    letter-spacing: normal;
-  }
-  &--letter-spacing-wide {
-    letter-spacing: $bolt-text-v2--plus-letter-spacing;
+  @each $spacing in $bolt-txt-letter-spacing-system {
+    $spacing-name: nth($spacing, 1);
+
+    &--letter-spacing-#{$spacing-name} {
+      --c-bolt-text-letter-spacing: var(
+        --bolt-txt-letter-spacing-#{$spacing-name}
+      );
+    }
   }
 
   // Line height
-  @each $size in $bolt-txt-line-height-system {
-    $size-name: nth($size, 1);
+  @each $height in $bolt-txt-line-height-system {
+    $height-name: nth($height, 1);
 
-    &--font-size-#{$size-name} {
-      line-height: var(
-        --c-bolt-text-line-height,
-        var(--bolt-txt-line-height-#{$size-name})
-      );
+    &--font-size-#{$height-name} {
+      --c-bolt-text-line-height: var(--bolt-txt-line-height-#{$height-name});
     }
   }
 
@@ -207,7 +182,7 @@ $bolt-text-v2--plus-letter-spacing: 0.05rem;
 
       &.c-bolt-text-v2--font-size-#{$size-name} {
         --c-bolt-text-line-height: calc(
-          var(--bolt-txt-line-height-#{$size-name}) + 0.2
+          var(--bolt-txt-line-height-#{$size-name}) * 1.13
         );
       }
     }

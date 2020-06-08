@@ -6,11 +6,10 @@
  * Base value map
  */
 $bolt-txt-font-size-system: (
-  'display': 3.083,
-  'xxxlarge': 2.275,
-  'xxlarge': 1.781,
-  'xlarge': 1.417,
-  'large': 1.111,
+  'xxxlarge': 2.35,
+  'xxlarge': 1.75,
+  'xlarge': 1.4,
+  'large': 1.15,
   'medium': 1,
   'small': 0.9,
   'xsmall': 0.8,
@@ -18,16 +17,15 @@ $bolt-txt-font-size-system: (
 ) !default;
 
 $bolt-txt-line-height-system: (
-  'display': 1.14,
-  'xxxlarge': 1.14,
-  'xxlarge': 1.31,
-  'xlarge': 1.35,
-  'large': 1.45,
-  'medium': 1.65,
-  'small': 1.51,
-  'xsmall': 1.45,
-  'xxsmall': 1.45,
-  'tight': 1.1,
+  'xxxlarge': 1.2,
+  'xxlarge': 1.35,
+  'xlarge': 1.4,
+  'large': 1.5,
+  'medium': 1.55,
+  'small': 1.45,
+  'xsmall': 1.4,
+  'xxsmall': 1.4,
+  'tight': 1.2,
 ) !default;
 
 $bolt-txt-font-weight-system: (
@@ -35,6 +33,12 @@ $bolt-txt-font-weight-system: (
   'regular': 400,
   'semibold': 600,
   'bold': 800,
+) !default;
+
+$bolt-txt-letter-spacing-system: (
+  'narrow': -0.025,
+  'regular': 0,
+  'wide': 0.05,
 ) !default;
 
 $bolt-txt-font-family-system: (
@@ -55,9 +59,6 @@ $bolt-txt-font-family-system: (
   @include bolt-mq(xxlarge) {
     --bolt-txt-font-size: 16px;
   }
-  @include bolt-mq(xxxxlarge) {
-    --bolt-txt-font-size: 18px;
-  }
 
   @each $size in $bolt-txt-font-size-system {
     $size-name: nth($size, 1);
@@ -66,11 +67,11 @@ $bolt-txt-font-family-system: (
     --bolt-txt-font-size-#{$size-name}: calc(#{$size-value} * 1rem);
   }
 
-  @each $size in $bolt-txt-line-height-system {
-    $size-name: nth($size, 1);
-    $size-value: nth($size, 2);
+  @each $height in $bolt-txt-line-height-system {
+    $height-name: nth($height, 1);
+    $height-value: nth($height, 2);
 
-    --bolt-txt-line-height-#{$size-name}: #{$size-value};
+    --bolt-txt-line-height-#{$height-name}: #{$height-value};
   }
 
   @each $weight in $bolt-txt-font-weight-system {
@@ -78,6 +79,13 @@ $bolt-txt-font-family-system: (
     $weight-value: nth($weight, 2);
 
     --bolt-txt-font-weight-#{$weight-name}: #{$weight-value};
+  }
+
+  @each $spacing in $bolt-txt-letter-spacing-system {
+    $spacing-name: nth($spacing, 1);
+    $spacing-value: nth($spacing, 2);
+
+    --bolt-txt-letter-spacing-#{$spacing-name}: calc(#{$spacing-value} * 1em);
   }
 
   @each $family in $bolt-txt-font-family-system {
