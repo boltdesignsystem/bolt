@@ -3,7 +3,9 @@
 // @todo: fixed size bullet will require some flex magic to line up a fixed height element to variable height text. If the need arises, we'll work on that.
 .c-bolt-headline__bullet {
   display: block;
-  margin-right: bolt-strip-unit(bolt-spacing(xsmall)) + em;
+  margin-right: calc(
+    var(--bolt-spacing-x) * var(--bolt-spacing-multiplier-xsmall) * 1em
+  );
 
   &-inner {
     display: flex;
