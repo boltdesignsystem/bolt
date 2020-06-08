@@ -33,12 +33,150 @@
 .c-bolt-text-v2 {
   margin: 0;
   padding: 0;
-  line-height: var(--c-bolt-text-line-height, unset);
   letter-spacing: var(--c-bolt-text-letter-spacing, unset);
   font: var(--c-bolt-text-font, unset);
   font-size: var(--c-bolt-text-font-size, unset);
   font-weight: var(--c-bolt-text-font-weight, unset);
   font-display: swap;
+
+  // Font preset
+  @each $family in $bolt-txt-font-family-system {
+    $family-name: nth($family, 1);
+
+    &--#{$family-name} {
+      --c-bolt-text-font: var(--bolt-txt-preset-#{$family-name}-medium);
+    }
+  }
+
+  // Font Weight Options
+  @each $weight in $bolt-txt-font-weight-system {
+    $weight-name: nth($weight, 1);
+
+    &--font-weight-#{$weight-name} {
+      --c-bolt-text-font-weight: var(--bolt-txt-font-weight-#{$weight-name});
+    }
+  }
+
+  // Font size
+  @each $size in $bolt-txt-font-size-system {
+    $size-name: nth($size, 1);
+
+    &--font-size-#{$size-name} {
+      --c-bolt-text-font-size: var(--bolt-txt-font-size-#{$size-name});
+    }
+  }
+
+  // Letter spacing
+  @each $spacing in $bolt-txt-letter-spacing-system {
+    $spacing-name: nth($spacing, 1);
+
+    &--letter-spacing-#{$spacing-name} {
+      --c-bolt-text-letter-spacing: var(
+        --bolt-txt-letter-spacing-#{$spacing-name}
+      );
+    }
+  }
+
+  // Line height
+  @each $size in $bolt-txt-font-size-system {
+    $size-name: nth($size, 1);
+
+    &--font-size-#{$size-name} {
+      &.c-bolt-text-v2--line-height-tight {
+        line-height: calc(var(--bolt-txt-line-height-#{$size-name}) * 0.77);
+      }
+
+      &.c-bolt-text-v2--line-height-loose {
+        line-height: calc(var(--bolt-txt-line-height-#{$size-name}) * 1.2);
+      }
+    }
+  }
+
+  // Display type
+  &--inline {
+    display: inline;
+  }
+
+  &--block {
+    display: block;
+  }
+
+  // Color
+  &--color-theme-headline {
+    color: bolt-theme(headline);
+  }
+
+  &--color-theme-body {
+    color: bolt-theme(text);
+  }
+
+  // Font style
+  &--font-style-regular {
+    font-style: normal;
+  }
+
+  &--font-style-italic {
+    font-style: italic;
+  }
+
+  // Text align
+  &--align-inherit {
+    text-align: inherit;
+  }
+
+  &--align-start {
+    text-align: start;
+  }
+
+  &--align-center {
+    text-align: center;
+  }
+
+  &--align-end {
+    text-align: end;
+  }
+
+  // Text transform
+  &--text-transform-regular {
+    text-transform: none;
+  }
+
+  &--text-transform-uppercase {
+    text-transform: uppercase;
+  }
+
+  &--text-transform-lowercase {
+    text-transform: lowercase;
+  }
+
+  &--text-transform-capitalize {
+    text-transform: capitalize;
+  }
+
+  // Quoted style
+  &--quoted {
+    &:before,
+    &:after {
+      font-family: 'Georgia', serif;
+    }
+
+    &:before {
+      content: '\201C';
+      position: absolute;
+      transform: translate3d(-110%, 0, 0);
+    }
+
+    &:after {
+      content: '\201D';
+    }
+  }
+
+  // Opacity
+  @each $key, $value in $bolt-opacities {
+    &--opacity-#{$key} {
+      opacity: bolt-opacity($key);
+    }
+  }
 
   a {
     opacity: bolt-opacity(100);
@@ -68,148 +206,6 @@
 
     a:hover {
       text-decoration: underline;
-    }
-  }
-}
-
-.c-bolt-text-v2 {
-  // Font-Family
-  @each $family in $bolt-txt-font-family-system {
-    $family-name: nth($family, 1);
-
-    &--#{$family-name} {
-      --c-bolt-text-font: var(--bolt-txt-preset-#{$family-name}-medium);
-    }
-  }
-
-  // Color
-  &--color-theme-headline {
-    color: bolt-theme(headline);
-  }
-  &--color-theme-body {
-    color: bolt-theme(text);
-  }
-
-  // Font Weight Options
-  @each $weight in $bolt-txt-font-weight-system {
-    $weight-name: nth($weight, 1);
-
-    &--font-weight-#{$weight-name} {
-      --c-bolt-text-font-weight: var(--bolt-txt-font-weight-#{$weight-name});
-    }
-  }
-
-  // Italic style
-  &--font-style-regular {
-    font-style: normal;
-  }
-  &--font-style-italic {
-    font-style: italic;
-  }
-
-  // Font size
-  @each $size in $bolt-txt-font-size-system {
-    $size-name: nth($size, 1);
-
-    &--font-size-#{$size-name} {
-      --c-bolt-text-font-size: var(--bolt-txt-font-size-#{$size-name});
-    }
-  }
-
-  // Display type
-  &--inline {
-    display: inline;
-  }
-  &--block {
-    display: block;
-  }
-
-  // Align content
-  &--align-inherit {
-    text-align: inherit;
-  }
-  &--align-start {
-    text-align: start;
-  }
-  &--align-center {
-    text-align: center;
-  }
-  &--align-end {
-    text-align: end;
-  }
-
-  // Transform text
-  &--text-transform-regular {
-    text-transform: none;
-  }
-  &--text-transform-uppercase {
-    text-transform: uppercase;
-  }
-  &--text-transform-lowercase {
-    text-transform: lowercase;
-  }
-  &--text-transform-capitalize {
-    text-transform: capitalize;
-  }
-
-  // Letter spacing
-  @each $spacing in $bolt-txt-letter-spacing-system {
-    $spacing-name: nth($spacing, 1);
-
-    &--letter-spacing-#{$spacing-name} {
-      --c-bolt-text-letter-spacing: var(
-        --bolt-txt-letter-spacing-#{$spacing-name}
-      );
-    }
-  }
-
-  // Line height
-  @each $height in $bolt-txt-line-height-system {
-    $height-name: nth($height, 1);
-
-    &--font-size-#{$height-name} {
-      --c-bolt-text-line-height: var(--bolt-txt-line-height-#{$height-name});
-    }
-  }
-
-  &--line-height-tight {
-    --c-bolt-text-line-height: var(--bolt-txt-line-height-tight);
-  }
-
-  &--line-height-loose {
-    @each $size in $bolt-txt-font-size-system {
-      $size-name: nth($size, 1);
-
-      &.c-bolt-text-v2--font-size-#{$size-name} {
-        --c-bolt-text-line-height: calc(
-          var(--bolt-txt-line-height-#{$size-name}) * 1.13
-        );
-      }
-    }
-  }
-
-  // Quoted style
-  &--quoted {
-    &:before,
-    &:after {
-      font-family: 'Georgia', serif;
-    }
-
-    &:before {
-      content: '\201C';
-      position: absolute;
-      transform: translate3d(-110%, 0, 0);
-    }
-
-    &:after {
-      content: '\201D';
-    }
-  }
-
-  // Opacity
-  @each $key, $value in $bolt-opacities {
-    &--opacity-#{$key} {
-      opacity: bolt-opacity($key);
     }
   }
 }
