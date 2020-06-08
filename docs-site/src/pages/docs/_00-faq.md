@@ -93,3 +93,7 @@ All Nightwatch tests can be run locally using the `*.e2e.js` test files in the B
 ## My Jest or Nightwatch tests are failing on Travis even after I pushed up a fix
 
 Often, this is a sign that the problem is still not really fixed, but sometimes it's the cache. Try clearing the [caches on Travis](https://travis-ci.com/github/boltdesignsystem/bolt/caches) and restart your build.
+
+## My Jest tests are hanging locally
+
+You may have a memory leak. Check Activity Monitor and search for "node". If a node task is taken up endless amounts of memory, you may have run out of ports, a [known issue with Twig Renderer](https://github.com/knapsack-cloud/twig-renderer/issues/55). Follow the instructions [in this comment](https://github.com/knapsack-cloud/twig-renderer/issues/55#issuecomment-640786016) to fix the issue.
