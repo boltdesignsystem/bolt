@@ -58,11 +58,10 @@
         {% endif %}
 
         {% block device_viewer_image %}
-          {% if image %}
+          {% if content %}
+            {{ content }}
+          {% elseif image %}
             {% include "@bolt/image.twig" with image only %}
-          {% endif %}
-          {% if video %}
-            {% include "@bolt-components-video/video.twig" with video only %}
           {% endif %}
         {% endblock %}
 

@@ -23,7 +23,7 @@ properties:
       - portrait
       - landscape
   magnify:
-    description: Add the magnifier effect.
+    description: Add the magnifier effect.  A value of 'true' is valid only if the device viewer contains an image.
     default: false
     type: boolean
   image:
@@ -32,6 +32,7 @@ properties:
       src:
         type: string
         description: Source url for the image.
-  media:
-    type: object
-    ref: '@bolt-components-video/video.schema.yml'
+    ref: '@bolt-components-image/image.schema.yml'
+  content:
+    type: any
+    description: Renderable content (i.e. a string, render array, or included pattern) to display within the device.  Usually represents an image or video.
