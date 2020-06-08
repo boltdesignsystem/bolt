@@ -33,18 +33,19 @@
 .c-bolt-text-v2 {
   margin: 0;
   padding: 0;
+  line-height: var(--c-bolt-text-line-height, unset);
   letter-spacing: var(--c-bolt-text-letter-spacing, unset);
-  font: var(--c-bolt-text-font, unset);
+  font-family: var(--c-bolt-text-font-family, unset);
   font-size: var(--c-bolt-text-font-size, unset);
   font-weight: var(--c-bolt-text-font-weight, unset);
   font-display: swap;
 
-  // Font preset
+  // Font family
   @each $family in $bolt-txt-font-family-system {
     $family-name: nth($family, 1);
 
     &--#{$family-name} {
-      --c-bolt-text-font: var(--bolt-txt-preset-#{$family-name}-medium);
+      --c-bolt-text-font-family: var(--bolt-txt-font-family-#{$family-name});
     }
   }
 
@@ -82,12 +83,18 @@
     $size-name: nth($size, 1);
 
     &--font-size-#{$size-name} {
+      --c-bolt-text-line-height: var(--bolt-txt-line-height-#{$size-name});
+
       &.c-bolt-text-v2--line-height-tight {
-        line-height: calc(var(--bolt-txt-line-height-#{$size-name}) * 0.77);
+        --c-bolt-text-line-height: calc(
+          var(--bolt-txt-line-height-#{$size-name}) * 0.77
+        );
       }
 
       &.c-bolt-text-v2--line-height-loose {
-        line-height: calc(var(--bolt-txt-line-height-#{$size-name}) * 1.2);
+        --c-bolt-text-line-height: calc(
+          var(--bolt-txt-line-height-#{$size-name}) * 1.2
+        );
       }
     }
   }

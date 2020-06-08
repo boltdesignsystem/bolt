@@ -97,15 +97,9 @@ $bolt-txt-font-family-system: (
   @each $size in $bolt-txt-font-size-system {
     $size-name: nth($size, 1);
 
-    @each $family in $bolt-txt-font-family-system {
-      $family-name: nth($family, 1);
-
-      --bolt-txt-preset-#{$family-name}-#{$size-name}: var(
-          --bolt-txt-font-weight-regular
-        )
-        var(--bolt-txt-font-size-#{$size-name}) /
-        var(--bolt-txt-line-height-#{$size-name})
-        var(--bolt-txt-font-family-#{$family-name});
-    }
+    --bolt-txt-preset-headline-#{$size-name}: var(--bolt-txt-font-weight-bold)
+      var(--bolt-txt-font-size-#{$size-name}) /
+      var(--bolt-txt-line-height-#{$size-name})
+      var(--bolt-txt-font-family-headline);
   }
 }
