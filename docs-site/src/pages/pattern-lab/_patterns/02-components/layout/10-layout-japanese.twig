@@ -1,0 +1,152 @@
+<style>
+  :root {
+    --bolt-spacing-x: 1.4;
+    --bolt-spacing-y: 1.155;
+
+    --bolt-txt-font-size-xxxlarge: 2.25rem;
+    --bolt-txt-font-size-xxlarge: 1.75rem;
+    --bolt-txt-font-size-xlarge: 1.425rem;
+    --bolt-txt-font-size-large: 1.125rem;
+    --bolt-txt-font-size-medium: 1rem;
+    --bolt-txt-font-size-small: 0.9rem;
+    --bolt-txt-font-size-xsmall: 0.8rem;
+    --bolt-txt-font-size-xxsmall: 0.7rem;
+
+    --bolt-txt-line-height-xxxlarge: 1.25;
+    --bolt-txt-line-height-xxlarge: 1.44;
+    --bolt-txt-line-height-xlarge: 1.48;
+    --bolt-txt-line-height-large: 1.59;
+    --bolt-txt-line-height-medium: 1.82;
+    --bolt-txt-line-height-small: 1.66;
+    --bolt-txt-line-height-xsmall: 1.59;
+    --bolt-txt-line-height-xxsmall: 1.5;
+
+    --bolt-txt-font-weight-bold: 700;
+
+    --bolt-txt-font-family-headline: -apple-system, BlinkMacSystemFont, 'ヒラギノ角ゴ ProN', 'Hiragino Kaku Gothic ProN', '游ゴシック', '游ゴシック体', YuGothic, 'Yu Gothic', 'メイリオ', Meiryo, 'ＭＳ ゴシック', 'MS Gothic', HiraKakuProN-W3, 'TakaoExゴシック', TakaoExGothic, 'MotoyaLCedar', 'Droid Sans Japanese', sans-serif;
+    --bolt-txt-font-family-body: -apple-system, BlinkMacSystemFont, 'ヒラギノ角ゴ ProN', 'Hiragino Kaku Gothic ProN', '游ゴシック', '游ゴシック体', YuGothic, 'Yu Gothic', 'メイリオ', Meiryo, 'ＭＳ ゴシック', 'MS Gothic', HiraKakuProN-W3, 'TakaoExゴシック', TakaoExGothic, 'MotoyaLCedar', 'Droid Sans Japanese', sans-serif;
+  }
+</style>
+
+
+{% set image %}
+  {% include "@bolt-components-image/image.twig" with {
+    src: "/images/placeholders/landscape-16x9-mountains.jpg",
+    alt: "Image alt",
+    attributes: {
+      class: "u-bolt-margin-bottom-medium",
+    }
+  } only %}
+{% endset %}
+
+
+{% set hero_content %}
+  <bolt-text headline tag="h1" font-size="xxxlarge">
+    今日の忍耐力を明日を生きる力に変えていくために
+  </bolt-text>
+  <bolt-text subheadline tag="h2" font-size="xxlarge">
+    将来性のあるミドルアウトプラットフォームがそれを可能にします。
+  </bolt-text>
+  <bolt-text>
+    Pega の緊急対応ソリューションポートフォリオが登場。 緊急の課題に対処する業種別ソリューションを、永続的な変革を実現するプラットフォーム上でご活用ください。
+  </bolt-text>
+  <bolt-button>
+    CEOからのメッセージを聞く
+  </bolt-button>
+{% endset %}
+
+{% include "@bolt-components-layout/layout.twig" with {
+  dataPaddingTop: "large",
+  dataPaddingBottom: "large",
+  dataAlignItems: "start",
+  items: [
+    {
+      content: hero_content,
+      attributes: {
+        "data-width": "67%-from@medium",
+      }
+    },
+  ],
+  attributes: {
+    class: [
+      "t-bolt-dark",
+    ]
+  },
+} only %}
+
+{% set headline %}
+  <bolt-text headline tag="h2" font-size="xxlarge" align="center">
+    皆さんのビジネスのために Pega に何ができるかをご覧ください。
+  </bolt-text>
+{% endset %}
+
+{% include "@bolt-components-layout/layout.twig" with {
+  dataPaddingTop: "large",
+  dataPaddingBottom: "small",
+  items: [
+    {
+      content: headline,
+      attributes: {
+        "data-width": "67%-from@medium",
+      }
+    },
+  ],
+} only %}
+
+
+{% set teaser1 %}
+  {{ image }}
+  <bolt-text eyebrow>
+    カスタマーエンゲージメント
+  </bolt-text>
+  <bolt-text headline tag="h3" font-size="large">
+    協調性の高いエンゲージメントと迅速な対応を実現
+  </bolt-text>
+  <bolt-button size="small" width="full" color="secondary">
+    紹介
+  </bolt-button>
+{% endset %}
+
+{% set teaser2 %}
+  {{ image }}
+  <bolt-text eyebrow>
+    カスタマーサービス
+  </bolt-text>
+  <bolt-text headline tag="h3" font-size="large">
+    大量のリクエストをトリアージしてコストを削減
+  </bolt-text>
+  <bolt-button size="small" width="full" color="secondary">
+    紹介
+  </bolt-button>
+{% endset %}
+
+{% set teaser3 %}
+  {{ image }}
+  <bolt-text eyebrow>
+    インテリジェントオートメーション
+  </bolt-text>
+  <bolt-text headline tag="h3" font-size="large">
+    アプリをすばやく開発し、すべてを自動化
+  </bolt-text>
+  <bolt-button size="small" width="full" color="secondary">
+    紹介
+  </bolt-button>
+{% endset %}
+
+{% include "@bolt-components-layout/layout.twig" with {
+  dataPaddingTop: "none",
+  dataPaddingBottom: "large",
+  dataGutter: "large",
+  dataStackItems: "until@medium",
+  items: [
+    {
+      content: teaser1,
+    },
+    {
+      content: teaser2,
+    },
+    {
+      content: teaser3,
+    },
+  ],
+} only %}
