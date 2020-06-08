@@ -1,0 +1,17 @@
+{% set content %}
+  {% include "@bolt/video.twig" with {
+    videoId: "3974147489001",
+    accountId: "1900410236",
+    playerId: "r1CAdLzTW",
+    showMeta: false,
+    showMetaTitle: false,
+  } only %}
+{% endset %}
+
+{% include "@bolt-components-device-viewer/device-viewer.twig" with {
+  device: "iphone8",
+  orientation: "landscape",
+  color: "silver",
+  content: content,
+  magnification: true,
+} only %}
