@@ -85,16 +85,15 @@
     &--font-size-#{$size-name} {
       --c-bolt-text-line-height: var(--bolt-type-line-height-#{$size-name});
 
-      &.c-bolt-text-v2--line-height-tight {
-        --c-bolt-text-line-height: calc(
-          var(--bolt-type-line-height-#{$size-name}) * 0.77
-        );
-      }
+      @each $height in $bolt-type-line-height-multiplier-system {
+        $height-name: nth($height, 1);
 
-      &.c-bolt-text-v2--line-height-loose {
-        --c-bolt-text-line-height: calc(
-          var(--bolt-type-line-height-#{$size-name}) * 1.2
-        );
+        &.c-bolt-text-v2--line-height-#{$height-name} {
+          --c-bolt-text-line-height: calc(
+            var(--bolt-type-line-height-#{$size-name}) *
+              var(--bolt-type-line-height-multiplier-#{$height-name})
+          );
+        }
       }
     }
   }
