@@ -3,20 +3,20 @@
 \* ------------------------------------ */
 
 /**
- * Base value map
+ * Typography token maps
  */
-$bolt-txt-font-size-system: (
-  'xxxlarge': 2.35,
-  'xxlarge': 1.75,
-  'xlarge': 1.4,
-  'large': 1.15,
-  'medium': 1,
-  'small': 0.9,
-  'xsmall': 0.8,
-  'xxsmall': 0.7,
+$bolt-type-font-size-system: (
+  'xxxlarge': 2.35rem,
+  'xxlarge': 1.75rem,
+  'xlarge': 1.4rem,
+  'large': 1.15rem,
+  'medium': 1rem,
+  'small': 0.9rem,
+  'xsmall': 0.8rem,
+  'xxsmall': 0.7rem,
 ) !default;
 
-$bolt-txt-line-height-system: (
+$bolt-type-line-height-system: (
   'xxxlarge': 1.2,
   'xxlarge': 1.35,
   'xlarge': 1.4,
@@ -27,20 +27,20 @@ $bolt-txt-line-height-system: (
   'xxsmall': 1.4,
 ) !default;
 
-$bolt-txt-font-weight-system: (
+$bolt-type-letter-spacing-system: (
+  'narrow': -0.025rem,
+  'regular': 0,
+  'wide': 0.05rem,
+) !default;
+
+$bolt-type-font-weight-system: (
   'light': 300,
   'regular': 400,
   'semibold': 600,
   'bold': 800,
 ) !default;
 
-$bolt-txt-letter-spacing-system: (
-  'narrow': -0.025,
-  'regular': 0,
-  'wide': 0.05,
-) !default;
-
-$bolt-txt-font-family-system: (
+$bolt-type-font-family-system: (
   'body':
     "'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans','Helvetica Neue', sans-serif",
   'headline':
@@ -48,64 +48,81 @@ $bolt-txt-font-family-system: (
   'code': 'monospace, monospace',
 ) !default;
 
+/**
+ * Line height multiplier
+ *
+ * This are used for mathematically increasing or decreasing line-height for every single font-size.
+ */
+$bolt-type-line-height-multiplier-system: (
+  'tight': 0.77,
+  'regular': 1,
+  'loose': 1.2,
+) !default;
+
+/**
+ * Generate global typography variables
+ *
+ * In order for the following to work, font-size must be defined in the <html>:
+ * html { font-size: var(--bolt-font-size); }
+ */
 :root {
-  /* font-size: var(--bolt-font-size, 14px); */
-  --bolt-txt-font-size: 14px;
+  --bolt-type-font-size: 14px;
 
   @include bolt-mq(xsmall) {
-    --bolt-txt-font-size: 15px;
+    --bolt-type-font-size: 15px;
   }
   @include bolt-mq(xxlarge) {
-    --bolt-txt-font-size: 16px;
+    --bolt-type-font-size: 16px;
   }
 
-  @each $size in $bolt-txt-font-size-system {
+  @each $size in $bolt-type-font-size-system {
     $size-name: nth($size, 1);
     $size-value: nth($size, 2);
 
-    --bolt-txt-font-size-#{$size-name}: calc(#{$size-value} * 1rem);
+    --bolt-type-font-size-#{$size-name}: #{$size-value};
   }
 
-  @each $height in $bolt-txt-line-height-system {
-    $height-name: nth($height, 1);
-    $height-value: nth($height, 2);
-
-    --bolt-txt-line-height-#{$height-name}: #{$height-value};
-  }
-
-  @each $weight in $bolt-txt-font-weight-system {
+  @each $weight in $bolt-type-font-weight-system {
     $weight-name: nth($weight, 1);
     $weight-value: nth($weight, 2);
 
-    --bolt-txt-font-weight-#{$weight-name}: #{$weight-value};
+    --bolt-type-font-weight-#{$weight-name}: #{$weight-value};
   }
 
-  @each $spacing in $bolt-txt-letter-spacing-system {
+  @each $height in $bolt-type-line-height-system {
+    $height-name: nth($height, 1);
+    $height-value: nth($height, 2);
+
+    --bolt-type-line-height-#{$height-name}: #{$height-value};
+  }
+
+  @each $height in $bolt-type-line-height-multiplier-system {
+    $height-name: nth($height, 1);
+    $height-value: nth($height, 2);
+
+    --bolt-type-line-height-multiplier-#{$height-name}: #{$height-value};
+  }
+
+  @each $spacing in $bolt-type-letter-spacing-system {
     $spacing-name: nth($spacing, 1);
     $spacing-value: nth($spacing, 2);
 
-    --bolt-txt-letter-spacing-#{$spacing-name}: calc(#{$spacing-value} * 1em);
+    --bolt-type-letter-spacing-#{$spacing-name}: #{$spacing-value};
   }
 
-  @each $family in $bolt-txt-font-family-system {
+  @each $family in $bolt-type-font-family-system {
     $family-name: nth($family, 1);
     $family-value: nth($family, 2);
 
-    --bolt-txt-font-family-#{$family-name}: #{$family-value};
+    --bolt-type-font-family-#{$family-name}: #{$family-value};
   }
 
-  @each $size in $bolt-txt-font-size-system {
+  @each $size in $bolt-type-font-size-system {
     $size-name: nth($size, 1);
 
-    @each $family in $bolt-txt-font-family-system {
-      $family-name: nth($family, 1);
-
-      --bolt-txt-preset-#{$family-name}-#{$size-name}: var(
-          --bolt-txt-font-weight-regular
-        )
-        var(--bolt-txt-font-size-#{$size-name}) /
-        var(--bolt-txt-line-height-#{$size-name})
-        var(--bolt-txt-font-family-#{$family-name});
-    }
+    --bolt-type-preset-headline-#{$size-name}: var(--bolt-type-font-weight-bold)
+      var(--bolt-type-font-size-#{$size-name}) /
+      var(--bolt-type-line-height-#{$size-name})
+      var(--bolt-type-font-family-headline);
   }
 }

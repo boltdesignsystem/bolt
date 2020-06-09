@@ -33,61 +33,67 @@
 .c-bolt-text-v2 {
   margin: 0;
   padding: 0;
+  line-height: var(--c-bolt-text-line-height, unset);
   letter-spacing: var(--c-bolt-text-letter-spacing, unset);
-  font: var(--c-bolt-text-font, unset);
+  font-family: var(--c-bolt-text-font-family, unset);
   font-size: var(--c-bolt-text-font-size, unset);
   font-weight: var(--c-bolt-text-font-weight, unset);
   font-display: swap;
 
-  // Font preset
-  @each $family in $bolt-txt-font-family-system {
+  // Font family
+  @each $family in $bolt-type-font-family-system {
     $family-name: nth($family, 1);
 
     &--#{$family-name} {
-      --c-bolt-text-font: var(--bolt-txt-preset-#{$family-name}-medium);
+      --c-bolt-text-font-family: var(--bolt-type-font-family-#{$family-name});
     }
   }
 
   // Font Weight Options
-  @each $weight in $bolt-txt-font-weight-system {
+  @each $weight in $bolt-type-font-weight-system {
     $weight-name: nth($weight, 1);
 
     &--font-weight-#{$weight-name} {
-      --c-bolt-text-font-weight: var(--bolt-txt-font-weight-#{$weight-name});
+      --c-bolt-text-font-weight: var(--bolt-type-font-weight-#{$weight-name});
     }
   }
 
   // Font size
-  @each $size in $bolt-txt-font-size-system {
+  @each $size in $bolt-type-font-size-system {
     $size-name: nth($size, 1);
 
     &--font-size-#{$size-name} {
-      --c-bolt-text-font-size: var(--bolt-txt-font-size-#{$size-name});
+      --c-bolt-text-font-size: var(--bolt-type-font-size-#{$size-name});
     }
   }
 
   // Letter spacing
-  @each $spacing in $bolt-txt-letter-spacing-system {
+  @each $spacing in $bolt-type-letter-spacing-system {
     $spacing-name: nth($spacing, 1);
 
     &--letter-spacing-#{$spacing-name} {
       --c-bolt-text-letter-spacing: var(
-        --bolt-txt-letter-spacing-#{$spacing-name}
+        --bolt-type-letter-spacing-#{$spacing-name}
       );
     }
   }
 
   // Line height
-  @each $size in $bolt-txt-font-size-system {
+  @each $size in $bolt-type-font-size-system {
     $size-name: nth($size, 1);
 
     &--font-size-#{$size-name} {
-      &.c-bolt-text-v2--line-height-tight {
-        line-height: calc(var(--bolt-txt-line-height-#{$size-name}) * 0.77);
-      }
+      --c-bolt-text-line-height: var(--bolt-type-line-height-#{$size-name});
 
-      &.c-bolt-text-v2--line-height-loose {
-        line-height: calc(var(--bolt-txt-line-height-#{$size-name}) * 1.2);
+      @each $height in $bolt-type-line-height-multiplier-system {
+        $height-name: nth($height, 1);
+
+        &.c-bolt-text-v2--line-height-#{$height-name} {
+          --c-bolt-text-line-height: calc(
+            var(--bolt-type-line-height-#{$size-name}) *
+              var(--bolt-type-line-height-multiplier-#{$height-name})
+          );
+        }
       }
     }
   }
