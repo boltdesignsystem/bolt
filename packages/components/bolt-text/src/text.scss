@@ -9,24 +9,24 @@
   display: block;
   margin-bottom: var(--c-bolt-text-margin-bottom, var(--bolt-spacing-y-medium));
 
-  &[display='inline'] {
-    display: inline;
-  }
-  &[display='block'] {
-    display: block;
-  }
-
-  // Adding vspacing here so that we can remove vspacing on last-child
-  &[headline],
+  // Block display has built-in spacing.
   &[eyebrow] {
     --c-bolt-text-margin-bottom: var(--bolt-spacing-y-xxsmall);
   }
+
+  &[headline],
   &[subheadline] {
     --c-bolt-text-margin-bottom: var(--bolt-spacing-y-xsmall);
   }
 
   &:last-child {
     --c-bolt-text-margin-bottom: 0;
+  }
+
+  // Inline display does not have built-in spacing.
+  &[display='inline'] {
+    --c-bolt-text-margin-bottom: 0;
+    display: inline;
   }
 }
 
