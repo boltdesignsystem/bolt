@@ -1,6 +1,10 @@
 $schema: http://json-schema.org/draft-04/schema#
 title: Device Viewer
 type: object
+not:
+  anyOf:
+    - required:
+        - image
 properties:
   deviceName:
     description: Name of the device.
@@ -23,16 +27,12 @@ properties:
       - portrait
       - landscape
   magnify:
-    description: Add the magnifier effect.  A value of 'true' is valid only if the device viewer contains an image.
+    description: 'Add the magnifier effect.  IMPORTANT: This is only supported if the value of `content` is an image.  You must pass the `zoom=true` boolean to the image component.'
     default: false
     type: boolean
-  image:
-    type: object
-    properties:
-      src:
-        type: string
-        description: Source url for the image.
-    ref: '@bolt-components-image/image.schema.yml'
   content:
     type: any
     description: Renderable content (i.e. a string, render array, or included pattern) to display within the device.  Usually represents an image or video.
+  image:
+    title: DEPRECATED
+    description: Pass a redendered image as `content` instead.

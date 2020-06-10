@@ -31,6 +31,13 @@
   }) %}
 {% endif %}
 
+{# DEPRECATED.  Don't use the `image` prop, use the `content` prop to pass a rendered image instead. #}
+{% if image %}
+  {% set content %}
+    {% include "@bolt/image.twig" with image only %}
+  {% endset %}
+{% endif %}
+
 {% set classes = [
   baseClass,
   "c-bolt-device-viewer",
@@ -57,11 +64,10 @@
           {% include "@bolt/_screen-tilt.twig" %}
         {% endif %}
 
+        {# DEPRECATED.  Don't use the twig block, just use the `content` prop instead. #}
         {% block device_viewer_image %}
           {% if content %}
             {{ content }}
-          {% elseif image %}
-            {% include "@bolt/image.twig" with image only %}
           {% endif %}
         {% endblock %}
 

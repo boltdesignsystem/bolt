@@ -2,49 +2,66 @@
 
 {% for color in schema.properties.color.enum %}
   <p>Color: {{ color }}<br />Orientation: 'portrait'</p>
+  {% set image_portrait %}
+    {% include "@bolt-components-image/image.twig" with {
+      placeholder_color: "#ececec",
+      src: "/images/content/screenshots/device-screenshot--phone.jpg",
+    } only %}
+  {% endset %}
+
   {% include "@bolt-components-device-viewer/device-viewer.twig" with {
     device: "iphone8",
     orientation: "portrait",
     color: color,
-    image: {
-      placeholder_color: "#ececec",
-      src: "/images/content/screenshots/device-screenshot--phone.jpg",
-    }
-  } %}
+    content: image_portrait,
+  } only %}
 
   <p>Color: {{ color }}<br />Orientation: 'landscape'</p>
+  {% set image_landscape %}
+    {% include "@bolt-components-image/image.twig" with {
+      placeholder_color: "#ececec",
+      src: "/images/content/screenshots/device-screenshot--tablet.jpg",
+    } only %}
+  {% endset %}
+
   {% include "@bolt-components-device-viewer/device-viewer.twig" with {
     device: "iphone8",
     orientation: "landscape",
     color: color,
-    image: {
-      placeholder_color: "#ececec",
-      src: "/images/content/screenshots/device-screenshot--tablet.jpg",
-    }
-  } %}
-
+    content: image_landscape,
+  } only %}
 {% endfor %}
 
-<p>Magnification: true<br />Orientation: 'portrait'</p>
+<p>Magnify: true<br />Orientation: 'portrait'</p>
+{% set image_portrait_zoom %}
+  {% include "@bolt-components-image/image.twig" with {
+    placeholder_color: "#ececec",
+    src: "/images/content/screenshots/device-screenshot--phone.jpg",
+    zoom: true,
+  } only %}
+{% endset %}
+
 {% include "@bolt-components-device-viewer/device-viewer.twig" with {
   device: "iphone8",
   orientation: "portrait",
   color: "silver",
-  image: {
-    placeholder_color: "#ececec",
-    src: "/images/content/screenshots/device-screenshot--phone.jpg",
-  },
+  content: image_portrait_zoom,
   magnify: true
-} %}
+} only %}
 
-<p>Magnification: true<br />Orientation: 'landscape'</p>
+<p>Magnify: true<br />Orientation: 'landscape'</p>
+{% set image_landscape_zoom %}
+  {% include "@bolt-components-image/image.twig" with {
+    placeholder_color: "#ececec",
+    src: "/images/content/screenshots/device-screenshot--tablet.jpg",
+    zoom: true,
+  } only %}
+{% endset %}
+
 {% include "@bolt-components-device-viewer/device-viewer.twig" with {
   device: "iphone8",
   orientation: "landscape",
   color: "black",
-  image: {
-    placeholder_color: "#ececec",
-    src: "/images/content/screenshots/device-screenshot--tablet.jpg",
-  },
+  content: image_landscape_zoom,
   magnify: true
-} %}
+} only %}
