@@ -8,46 +8,46 @@ module.exports = {
       description:
         'A Drupal attributes object. Applies extra HTML attributes to the &lt;bolt-layout&gt; tag.',
     },
-    dataGutter: {
+    gutter: {
       type: 'string',
       description: 'The spacing in between layout items (when not stacked).',
       enum: ['small', 'medium', 'large', 'xlarge'],
       default: 'medium',
     },
-    dataRowGutter: {
+    row_gutter: {
       type: 'string',
       description: 'The spacing in between layout items (when stacked).',
       enum: ['small', 'medium', 'large', 'xlarge'],
       default: 'medium',
     },
-    dataPaddingTop: {
+    padding_top: {
       type: 'string',
       description: 'Top padding of the layout.',
       enum: ['none', 'small', 'medium', 'large', 'xlarge', 'xxlarge'],
       default: 'medium',
     },
-    dataPaddingBottom: {
+    padding_bottom: {
       type: 'string',
       description: 'Bottom padding of the layout.',
       enum: ['none', 'small', 'medium', 'large', 'xlarge', 'xxlarge'],
       default: 'medium',
     },
-    dataStackItems: {
+    stack_items: {
       type: 'string',
       description: 'Stack items until the layout is at specified breakpoint.',
-      enum: ['until@small', 'until@medium'],
-      default: 'until@small',
+      enum: ['@until-small', '@until-medium'],
+      default: '@until-small',
     },
-    dataAlignItems: {
+    align_items: {
       type: 'string',
       description: 'Horizontal alignment of layout items.',
-      enum: ['start', 'center', 'end'],
+      enum: ['unset', 'justify', 'start', 'center', 'end'],
       default: 'center',
     },
-    dataValignItems: {
+    valign_items: {
       type: 'string',
       description: 'Vertical alignment of layout items (when not stacked).',
-      enum: ['unset', 'start', 'center', 'end'],
+      enum: ['unset', 'justify', 'start', 'center', 'end'],
       default: 'unset',
     },
     items: {
@@ -63,19 +63,39 @@ module.exports = {
           type: 'any',
           description: 'Content to render inside each layout item.',
         },
-        dataWidth: {
+        width: {
           type: 'string',
           description:
             'Percent number or pixel value for the width of a particular layout item.',
-          enum: ['auto', '80px', '150px', '25%', '33%', '50%', '67%', '75%'],
+          enum: [
+            'auto',
+            '80px',
+            '150px',
+            '50%',
+            '80px@from-small',
+            '150px@from-small',
+            '25%@from-small',
+            '33%@from-small',
+            '50%@from-small',
+            '67%@from-small',
+            '75%@from-small',
+            '80px@from-medium',
+            '150px@from-medium',
+            '25%@from-medium',
+            '33%@from-medium',
+            '50%@from-medium',
+            '67%@from-medium',
+            '75%@from-medium',
+          ],
           default: 'auto',
         },
-        dataValign: {
+        valign_self: {
           type: 'string',
           description:
             'Vertical alignment of a particular layout item. This will ignore the vertical alignment of the whole layout.',
           enum: [
             'unset',
+            'justify',
             'start',
             'center',
             'end',
@@ -92,7 +112,7 @@ module.exports = {
           ],
           default: 'unset',
         },
-        dataStackOrder: {
+        stack_order: {
           type: 'string',
           description:
             'The order of the layout item when layout items are stacked. Only enabled when <code>data-stack-items</code> prop is also in use.',

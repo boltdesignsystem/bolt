@@ -16,9 +16,9 @@
   <p>Item 1. Let's reduce bloated markup and kill <strong>all bands, wrappers, and grids.</strong> Layout component combines all of their features into one thing with simpler markup. Layout items can be set to common width options that are currently in used: 25%, 33%, 50%, 75%. If width is not set, a layout item will take up all available space of the layout.</p>
 {% endset %}
 {% include "@bolt-components-layout/layout.twig" with {
-  dataGutter: "medium",
-  dataPaddingTop: "small",
-  dataPaddingBottom: "small",
+  gutter: "medium",
+  padding_top: "small",
+  padding_bottom: "small",
   items: [
     {
       content: paragraph,
@@ -33,15 +33,15 @@
 
 
 {% set paragraph %}
-  <p>Item 1. Set <code>data-align-items="start | center | end"</code> to horizontally align the layout items (when not stacked).</p>
+  <p>Item 1. Set <code>align-items="start | center | end"</code> to horizontally align the layout items (when not stacked).</p>
 {% endset %}
 {% include "@bolt-components-layout/layout.twig" with {
-  dataAlignItems: "center",
+  align_items: "center",
   items: [
     {
       content: paragraph,
       attributes: {
-        "data-width": "50%",
+        "width": "50%",
       },
     },
   ],
@@ -60,21 +60,21 @@
   <p>Item 2: moves to 1st place when viewport is below small breakpoint.</p>
 {% endset %}
 {% include "@bolt-components-layout/layout.twig" with {
-  dataGutter: "medium",
-  dataPaddingTop: "medium",
-  dataPaddingBottom: "medium",
-  dataStackItems: "until@small",
+  gutter: "medium",
+  padding_top: "medium",
+  padding_bottom: "medium",
+  stack_items: "@until-small",
   items: [
     {
       content: paragraph1,
       attributes: {
-        "data-stack-order": "secondary"
+        "stack-order": "secondary"
       },
     },
     {
       content: paragraph2,
       attributes: {
-        "data-stack-order": "primary"
+        "stack-order": "primary"
       },
     },
   ],
@@ -87,7 +87,7 @@
 
 
 {% set paragraph1 %}
-  <p>Item 1. <strong>Set <code>data-valign-items="start | center | end"</code> to create auto height layout items</strong>. Vivamus hendrerit arcu sed erat molestie vehicula. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor. Ut in nulla enim. Phasellus molestie magna non est bibendum non venenatis nisl tempor. Suspendisse dictum feugiat nisl.</p>
+  <p>Item 1. <strong>Set <code>valign-items="start | center | end"</code> to create auto height layout items</strong>. Vivamus hendrerit arcu sed erat molestie vehicula. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor. Ut in nulla enim. Phasellus molestie magna non est bibendum non venenatis nisl tempor. Suspendisse dictum feugiat nisl.</p>
   <p><bolt-button>button</bolt-button></p>
 {% endset %}
 {% set paragraph2 %}
@@ -99,21 +99,21 @@
 {% endset %}
 
 {% include "@bolt-components-layout/layout.twig" with {
-  dataGutter: "large",
-  dataPaddingTop: "large",
-  dataPaddingBottom: "large",
-  dataStackItems: "until@small",
+  gutter: "large",
+  padding_top: "large",
+  padding_bottom: "large",
+  stack_items: "@until-small",
   items: [
     {
       content: paragraph1,
       attributes: {
-        "data-width": "67%-from@small 75%-from@medium",
+        "width": "67%@from-small 75%@from-medium",
       }
     },
     {
       content: paragraph2,
       attributes: {
-        "data-width": "33%-from@small 25%-from@medium",
+        "width": "33%@from-small 25%@from-medium",
       }
     },
   ],
@@ -127,7 +127,7 @@
 
 {% set paragraph1 %}
   {{ image }}
-  <p>Item 1. <strong>Set <code>data-valign-items="unset"</code> to create equal height layout items</strong>, and each item will push its last child to the bottom.</p>
+  <p>Item 1. <strong>Set <code>valign-items="unset"</code> to create equal height layout items</strong>, and each item will push its last child to the bottom.</p>
   {{ fullbutton }}
 {% endset %}
 {% set paragraph2 %}
@@ -142,12 +142,12 @@
 {% endset %}
 
 {% include "@bolt-components-layout/layout.twig" with {
-  dataGutter: "large",
-  dataRowGutter: "large",
-  dataPaddingTop: "xlarge",
-  dataPaddingBottom: "xlarge",
-  dataStackItems: "until@small",
-  dataValignItems: "unset",
+  gutter: "large",
+  row_gutter: "large",
+  padding_top: "xlarge",
+  padding_bottom: "xlarge",
+  stack_items: "@until-small",
+  valign_items: "unset",
   items: [
     {
       content: paragraph1,
@@ -171,10 +171,10 @@
   <p>By not setting a width on the layout items, you can create equal width and evenly spaced layout items in a row. As many items as you'd like but anything over 4 is probably not ideal though, text will get squished.</p>
 {% endset %}
 {% include "@bolt-components-layout/layout.twig" with {
-  dataGutter: "medium",
-  dataPaddingTop: "xxlarge",
-  dataPaddingBottom: "xxlarge",
-  dataStackItems: "until@medium",
+  gutter: "medium",
+  padding_top: "xxlarge",
+  padding_bottom: "xxlarge",
+  stack_items: "@until-medium",
   items: [
     {
       content: paragraph,
@@ -205,7 +205,7 @@
     text: "Special Hero!!!",
     size: "xxxlarge",
   } only %}
-  <p>Create a special hero with bleeding image by setting <code>data-valign</code> on layout items. It includes offset options to make a layout item positioned to an edge.</p>
+  <p>Create a special hero with bleeding image by setting <code>valign-self</code> on layout items. It includes offset options to make a layout item positioned to an edge.</p>
   <p><bolt-button>button</bolt-button></p>
 {% endset %}
 {% set media %}
@@ -215,25 +215,25 @@
   } only %}
 {% endset %}
 {% include "@bolt-components-layout/layout.twig" with {
-  dataGutter: "xlarge",
-  dataPaddingTop: "large",
-  dataPaddingBottom: "large",
-  dataStackItems: "until@small",
+  gutter: "xlarge",
+  padding_top: "large",
+  padding_bottom: "large",
+  stack_items: "@until-small",
   items: [
     {
       content: content,
       attributes: {
-        "data-width": "50%-from@small",
-        "data-valign": "center",
-        "data-stack-order": "secondary",
+        "width": "50%@from-small",
+        "valign-self": "center",
+        "stack-order": "secondary",
       }
     },
     {
       content: media,
       attributes: {
-        "data-width": "50%-from@small",
-        "data-valign": "start-offset-large end-offset-large",
-        "data-stack-order": "primary",
+        "width": "50%@from-small",
+        "valign-self": "start-offset-large",
+        "stack-order": "primary",
       }
     },
   ],
@@ -250,24 +250,23 @@
   } only %}
 {% endset %}
 {% include "@bolt-components-layout/layout.twig" with {
-  dataGutter: "large",
-  dataPaddingTop: "large",
-  dataPaddingBottom: "large",
-  dataStackItems: "until@small",
-  dataAlignItems: "end",
+  gutter: "large",
+  padding_top: "large",
+  padding_bottom: "large",
+  stack_items: "@until-small",
   items: [
     {
       content: content,
       attributes: {
-        "data-width": "50%-from@small 67%-from@medium",
-        "data-valign": "center",
+        "width": "50%@from-small 67%@from-medium",
+        "valign-self": "center",
       }
     },
     {
       content: media,
       attributes: {
-        "data-width": "75% 50%-from@small 33%-from@medium",
-        "data-valign": "end-offset-large",
+        "width": "50% 50%@from-small 33%@from-medium",
+        "valign-self": "end-offset-large",
       }
     },
   ],
@@ -292,7 +291,7 @@
   },
 } only %}
 {% include "@bolt-components-layout/layout.twig" with {
-  dataPaddingTop: "none",
+  padding_top: "none",
   items: [
     {
       content: "Stack another layout of the same color and remove extra padding.",
@@ -319,16 +318,16 @@
   <p>Another paragraph. Suspendisse dictum feugiat nisl ut dapibus. Mauris iaculis porttitor posuere. Praesent id metus massa, ut blandit odio. Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus. In pellentesque faucibus vestibulum. Nulla at nulla justo, eget luctus tortor.</p>
 {% endset %}
 {% include "@bolt-components-layout/layout.twig" with {
-  dataGutter: "medium",
-  dataPaddingTop: "large",
-  dataPaddingBottom: "large",
-  dataValignItems: "start",
-  dataStackItems: "until@small",
+  gutter: "medium",
+  padding_top: "large",
+  padding_bottom: "large",
+  valign_items: "start",
+  stack_items: "@until-small",
   items: [
     {
       content: media,
       attributes: {
-        "data-width": "25% 150px-from@small",
+        "width": "25% 150px@from-small",
       }
     },
     {

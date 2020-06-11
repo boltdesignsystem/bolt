@@ -32,9 +32,6 @@
   {% include "@bolt-components-image/image.twig" with {
     src: "/images/placeholders/landscape-16x9-mountains.jpg",
     alt: "Image alt",
-    attributes: {
-      class: "u-bolt-margin-bottom-medium",
-    }
   } only %}
 {% endset %}
 
@@ -55,14 +52,14 @@
 {% endset %}
 
 {% include "@bolt-components-layout/layout.twig" with {
-  dataPaddingTop: "large",
-  dataPaddingBottom: "large",
-  dataAlignItems: "start",
+  padding_top: "large",
+  padding_bottom: "large",
+  align_items: "start",
   items: [
     {
       content: hero_content,
       attributes: {
-        "data-width": "67%-from@medium",
+        "width": "67%@from-medium",
       }
     },
   ],
@@ -73,6 +70,7 @@
   },
 } only %}
 
+
 {% set headline %}
   <bolt-text headline tag="h2" font-size="xxlarge" align="center">
     皆さんのビジネスのために Pega に何ができるかをご覧ください。
@@ -80,13 +78,13 @@
 {% endset %}
 
 {% include "@bolt-components-layout/layout.twig" with {
-  dataPaddingTop: "large",
-  dataPaddingBottom: "small",
+  padding_top: "large",
+  padding_bottom: "medium",
   items: [
     {
       content: headline,
       attributes: {
-        "data-width": "67%-from@medium",
+        "width": "67%@from-medium",
       }
     },
   ],
@@ -94,7 +92,9 @@
 
 
 {% set teaser1 %}
-  {{ image }}
+  <div class="u-bolt-margin-bottom-medium">
+    {{ image }}
+  </div>
   <bolt-text eyebrow>
     カスタマーエンゲージメント
   </bolt-text>
@@ -107,7 +107,9 @@
 {% endset %}
 
 {% set teaser2 %}
-  {{ image }}
+  <div class="u-bolt-margin-bottom-medium">
+    {{ image }}
+  </div>
   <bolt-text eyebrow>
     カスタマーサービス
   </bolt-text>
@@ -120,7 +122,9 @@
 {% endset %}
 
 {% set teaser3 %}
-  {{ image }}
+  <div class="u-bolt-margin-bottom-medium">
+    {{ image }}
+  </div>
   <bolt-text eyebrow>
     インテリジェントオートメーション
   </bolt-text>
@@ -133,10 +137,11 @@
 {% endset %}
 
 {% include "@bolt-components-layout/layout.twig" with {
-  dataPaddingTop: "none",
-  dataPaddingBottom: "large",
-  dataGutter: "large",
-  dataStackItems: "until@small",
+  padding_top: "none",
+  padding_bottom: "large",
+  gutter: "xlarge",
+  row_gutter: "xlarge",
+  stack_items: "@until-small",
   items: [
     {
       content: teaser1,
@@ -148,4 +153,157 @@
       content: teaser3,
     },
   ],
+} only %}
+
+
+{% set content %}
+  <bolt-text headline tag="h2" font-size="xxlarge">
+    導入事例
+  </bolt-text>
+  <bolt-text tag="h3">
+    みずほ銀行: グローバルコーポレート業務のプロセス改革
+  </bolt-text>
+  <bolt-button>
+    導入事例を見る
+  </bolt-button>
+{% endset %}
+
+{% include "@bolt-components-layout/layout.twig" with {
+  padding_top: "large",
+  padding_bottom: "large",
+  gutter: "xlarge",
+  stack_items: "@until-small",
+  valign_items: "center",
+  items: [
+    {
+      content: content,
+      attributes: {
+        "width": "67%@from-small",
+        "stack-order": "secondary",
+      }
+    },
+    {
+      content: image,
+      attributes: {
+        "width": "33%@from-small",
+        "stack-order": "primary",
+      }
+    },
+  ],
+  attributes: {
+    class: [
+      "t-bolt-light",
+    ]
+  },
+} only %}
+
+
+
+{% set teaser1 %}
+  <div class="u-bolt-margin-bottom-medium">
+    {{ image }}
+  </div>
+  <bolt-text eyebrow>
+    カスタマーエンゲージメント
+  </bolt-text>
+  <bolt-text headline tag="h3" font-size="large">
+    協調性の高いエンゲージメントと迅速な対応を実現
+  </bolt-text>
+  <bolt-button size="small" width="full" color="secondary">
+    紹介
+  </bolt-button>
+{% endset %}
+
+{% set teaser2 %}
+  <div class="u-bolt-margin-bottom-medium">
+    {{ image }}
+  </div>
+  <bolt-text eyebrow>
+    カスタマーサービス
+  </bolt-text>
+  <bolt-text headline tag="h3" font-size="large">
+    大量のリクエストをトリアージしてコストを削減
+  </bolt-text>
+  <bolt-button size="small" width="full" color="secondary">
+    紹介
+  </bolt-button>
+{% endset %}
+
+{% set teaser3 %}
+  <div class="u-bolt-margin-bottom-medium">
+    {{ image }}
+  </div>
+  <bolt-text eyebrow>
+    インテリジェントオートメーション
+  </bolt-text>
+  <bolt-text headline tag="h3" font-size="large">
+    アプリをすばやく開発し、すべてを自動化
+  </bolt-text>
+  <bolt-button size="small" width="full" color="secondary">
+    紹介
+  </bolt-button>
+{% endset %}
+
+{% include "@bolt-components-layout/layout.twig" with {
+  padding_top: "large",
+  padding_bottom: "large",
+  gutter: "xlarge",
+  row_gutter: "xlarge",
+  stack_items: "@until-small",
+  items: [
+    {
+      content: teaser1,
+    },
+    {
+      content: teaser2,
+    },
+    {
+      content: teaser3,
+    },
+    {
+      content: teaser1,
+    },
+  ],
+} only %}
+
+
+{% set content %}
+  <bolt-text headline tag="h2" font-size="xxlarge">
+    導入事例
+  </bolt-text>
+  <bolt-text tag="h3">
+    みずほ銀行: グローバルコーポレート業務のプロセス改革
+  </bolt-text>
+  <bolt-button>
+    導入事例を見る
+  </bolt-button>
+{% endset %}
+
+{% include "@bolt-components-layout/layout.twig" with {
+  padding_top: "large",
+  padding_bottom: "large",
+  gutter: "xlarge",
+  stack_items: "@until-small",
+  valign_items: "center",
+  items: [
+    {
+      content: content,
+      attributes: {
+        "width": "75%@from-small",
+        "stack-order": "secondary",
+      }
+    },
+    {
+      content: image,
+      attributes: {
+        "width": "25%@from-small",
+        "stack-order": "primary",
+      }
+    },
+  ],
+  attributes: {
+    class: [
+      "t-bolt-light",
+    ]
+  },
 } only %}

@@ -13,11 +13,11 @@
 $bolt-layout-item-widths: (
   '80px': 80px,
   '150px': 150px,
-  '25%': calc(3 / 12 * 100%),
-  '33%': calc(4 / 12 * 100%),
-  '50%': calc(6 / 12 * 100%),
-  '67%': calc(8 / 12 * 100%),
-  '75%': calc(9 / 12 * 100%),
+  '25%': calc(3 / 12 * (100% - var(--c-bolt-layout-gutter) * 3)),
+  '33%': calc(4 / 12 * (100% - var(--c-bolt-layout-gutter) * 2)),
+  '50%': 50%,
+  '67%': calc(8 / 12 * (100% + var(--c-bolt-layout-gutter) * 2)),
+  '75%': calc(9 / 12 * (100% + var(--c-bolt-layout-gutter) * 3)),
 );
 
 /**
@@ -26,6 +26,7 @@ $bolt-layout-item-widths: (
  */
 $bolt-layout-align-options: (
   'unset': 'unset',
+  'justify': 'space-between',
   'start': 'flex-start',
   'center': 'center',
   'end': 'flex-end',
@@ -55,48 +56,42 @@ $bolt-layout-align-options: (
  * Layout component
  */
 bolt-layout {
+  // Setting up vars to be customized
+  --c-bolt-layout-gutter: var(--bolt-spacing-x-medium);
+  --c-bolt-layout-padding-top: var(--bolt-spacing-y-medium);
+  --c-bolt-layout-padding-bottom: var(--bolt-spacing-y-medium);
+
   display: flex;
   justify-content: center;
   margin: 0 auto;
-  padding-top: var(
-    --c-bolt-layout-padding-top,
-    var(--bolt-spacing-y-medium)
-  ); // This is customizable on the component level.
-  padding-inline-end: var(
-    --bolt-wrapper-padding
-  ); // This must always follow the wrapper rules. Only way to customize it is to change the global wrapper vars.
-  padding-bottom: var(
-    --c-bolt-layout-padding-bottom,
-    var(--bolt-spacing-y-medium)
-  ); // This is customizable on the component level.
-  padding-inline-start: var(
-    --bolt-wrapper-padding
-  ); // This must always follow the wrapper rules. Only way to customize it is to change the global wrapper vars.
+  padding-top: var(--c-bolt-layout-padding-top);
+  padding-bottom: var(--c-bolt-layout-padding-bottom);
+
+  // This must always follow the wrapper rules. Only way to customize it is to change the global wrapper vars.
+  padding-inline-end: var(--bolt-wrapper-padding);
+  padding-inline-start: var(--bolt-wrapper-padding);
 
   > bolt-layout-item {
     display: flex;
     flex: 0 1 100%;
     flex-direction: column;
-    margin-inline-start: var(
-      --c-bolt-layout-gutter,
-      0
-    ); // Set up gutter var to be used.
 
     // Using gutter vars to set the defaults.
     &:not(:first-of-type) {
-      --c-bolt-layout-gutter: var(--bolt-spacing-x-medium);
+      margin-inline-start: var(--c-bolt-layout-gutter);
+      padding-top: var(--c-bolt-layout-row-gutter, unset);
 
       @include bolt-mq(small) {
-        &[data-width*='-from@small'] {
+        &[width*='@from-small'] {
           --c-bolt-layout-row-gutter: 0;
-          --c-bolt-layout-gutter: var(--bolt-spacing-x-medium);
+          margin-inline-start: var(--c-bolt-layout-gutter);
         }
       }
 
       @include bolt-mq(medium) {
-        &[data-width*='-from@medium'] {
+        &[width*='@from-medium'] {
           --c-bolt-layout-row-gutter: 0;
-          --c-bolt-layout-gutter: var(--bolt-spacing-x-medium);
+          margin-inline-start: var(--c-bolt-layout-gutter);
         }
       }
     }
@@ -106,21 +101,32 @@ bolt-layout {
       $width-name: nth($width, 1);
       $width-value: nth($width, 2);
 
-      &[data-width='#{$width-name}'],
-      &[data-width^='#{$width-name} '],
-      &[data-width$=' #{$width-name}'] {
-        flex-basis: #{$width-value}; // Whitespace is used internationally in the selectors to account for multiple options defined within an attribute.
+      @if (
+        $width-name !=
+          '25%' and
+          $width-name !=
+          '33%' and
+          $width-name !=
+          '67%' and
+          $width-name !=
+          '75%'
+      ) {
+        &[width='#{$width-name}'],
+        &[width^='#{$width-name} '],
+        &[width$=' #{$width-name}'] {
+          max-width: #{$width-value}; // Whitespace is used internationally in the selectors to account for multiple options defined within an attribute.
+        }
       }
 
       @include bolt-mq(small) {
-        &[data-width*='#{$width-name}-from@small'] {
-          flex-basis: #{$width-value} !important; // Important is used here because breakpoint specific widths trumps regular widths.
+        &[width*='#{$width-name}@from-small'] {
+          max-width: #{$width-value} !important; // Important is used here because breakpoint specific widths trumps regular widths.
         }
       }
 
       @include bolt-mq(medium) {
-        &[data-width*='#{$width-name}-from@medium'] {
-          flex-basis: #{$width-value} !important; // Important is used here because breakpoint specific widths trumps regular widths.
+        &[width*='#{$width-name}@from-medium'] {
+          max-width: #{$width-value} !important; // Important is used here because breakpoint specific widths trumps regular widths.
         }
       }
     }
@@ -130,7 +136,7 @@ bolt-layout {
       $option-name: nth($option, 1);
       $option-value: nth($option, 2);
 
-      &[data-valign*='#{$option-name}'] {
+      &[valign-self*='#{$option-name}'] {
         align-self: #{$option-value};
       }
 
@@ -138,14 +144,14 @@ bolt-layout {
       @each $size in $bolt-spacing-multiplier-system {
         $size-name: nth($size, 1);
 
-        &[data-valign*='start-offset-#{$size-name}'] {
+        &[valign-self*='start-offset-#{$size-name}'] {
           margin-top: var(
             --c-bolt-layout-item-valign-start-offset,
             calc(var(--bolt-spacing-y-#{$size-name}) * -1)
           );
         }
 
-        &[data-valign*='end-offset-#{$size-name}'] {
+        &[valign-self*='end-offset-#{$size-name}'] {
           margin-bottom: var(
             --c-bolt-layout-item-valign-end-offset,
             calc(var(--bolt-spacing-y-#{$size-name}) * -1)
@@ -163,28 +169,28 @@ bolt-layout {
   @each $size in $bolt-spacing-multiplier-system {
     $size-name: nth($size, 1);
 
-    &[data-padding-top='#{$size-name}'] {
+    &[padding-top='#{$size-name}'] {
       --c-bolt-layout-padding-top: var(--bolt-spacing-y-#{$size-name});
     }
 
-    &[data-padding-bottom='#{$size-name}'] {
+    &[padding-bottom='#{$size-name}'] {
       --c-bolt-layout-padding-bottom: var(--bolt-spacing-y-#{$size-name});
     }
 
-    &[data-gutter='#{$size-name}'] {
+    &[gutter='#{$size-name}'] {
       > bolt-layout-item {
         &:not(:first-of-type) {
           --c-bolt-layout-gutter: var(--bolt-spacing-x-#{$size-name});
 
           @include bolt-mq(small) {
-            &[data-width*='-from@small'] {
+            &[width*='@from-small'] {
               --c-bolt-layout-row-gutter: 0;
               --c-bolt-layout-gutter: var(--bolt-spacing-x-#{$size-name});
             }
           }
 
           @include bolt-mq(medium) {
-            &[data-width*='-from@medium'] {
+            &[width*='@from-medium'] {
               --c-bolt-layout-row-gutter: 0;
               --c-bolt-layout-gutter: var(--bolt-spacing-x-#{$size-name});
             }
@@ -194,15 +200,15 @@ bolt-layout {
     }
   }
 
-  &[data-padding-top='none'] {
+  &[padding-top='none'] {
     --c-bolt-layout-padding-top: 0;
   }
 
-  &[data-padding-bottom='none'] {
+  &[padding-bottom='none'] {
     --c-bolt-layout-padding-bottom: 0;
   }
 
-  &[data-gutter='none'] {
+  &[gutter='none'] {
     > bolt-layout-item:not(:first-of-type) {
       --c-bolt-layout-gutter: 0;
     }
@@ -213,18 +219,18 @@ bolt-layout {
     $option-name: nth($option, 1);
     $option-value: nth($option, 2);
 
-    &[data-align-items='#{$option-name}'] {
+    &[align-items='#{$option-name}'] {
       justify-content: #{$option-value};
     }
 
-    &[data-valign-items='#{$option-name}'] {
+    &[valign-items='#{$option-name}'] {
       align-items: #{$option-value};
     }
   }
 
   // Styles for stacked items need to be replicated manually for the two supported breakpoints because variables can't be used as a param for media queries.
   @include bolt-mq($until: small) {
-    &[data-stack-items='until@small'] {
+    &[stack-items='@until-small'] {
       flex-wrap: wrap;
       align-content: flex-start;
 
@@ -234,20 +240,20 @@ bolt-layout {
         }
 
         &:not(:first-of-type),
-        &[data-stack-order='secondary'] {
+        &[stack-order='secondary'] {
           padding-top: var(
             --c-bolt-layout-row-gutter,
             var(--bolt-spacing-y-medium)
           );
         }
 
-        &[data-stack-order='primary'] {
+        &[stack-order='primary'] {
           --c-bolt-layout-row-gutter: 0;
           --c-bolt-layout-item-valign-end-offset: 0;
           order: -1;
         }
 
-        &[data-stack-order='secondary'] {
+        &[stack-order='secondary'] {
           --c-bolt-layout-item-valign-start-offset: 0;
         }
       }
@@ -255,10 +261,10 @@ bolt-layout {
       @each $size in $bolt-spacing-multiplier-system {
         $size-name: nth($size, 1);
 
-        &[data-row-gutter='#{$size-name}'] {
+        &[row-gutter='#{$size-name}'] {
           > bolt-layout-item {
             &:not(:first-of-type),
-            &[data-stack-order='secondary'] {
+            &[stack-order='secondary'] {
               --c-bolt-layout-row-gutter: var(--bolt-spacing-y-#{$size-name});
             }
           }
@@ -268,7 +274,7 @@ bolt-layout {
   }
 
   @include bolt-mq($until: medium) {
-    &[data-stack-items='until@medium'] {
+    &[stack-items='@until-medium'] {
       flex-wrap: wrap;
       align-content: flex-start;
 
@@ -278,20 +284,20 @@ bolt-layout {
         }
 
         &:not(:first-of-type),
-        &[data-stack-order='secondary'] {
+        &[stack-order='secondary'] {
           padding-top: var(
             --c-bolt-layout-row-gutter,
             var(--bolt-spacing-y-medium)
           );
         }
 
-        &[data-stack-order='primary'] {
+        &[stack-order='primary'] {
           --c-bolt-layout-row-gutter: 0;
           --c-bolt-layout-item-valign-end-offset: 0;
           order: -1;
         }
 
-        &[data-stack-order='secondary'] {
+        &[stack-order='secondary'] {
           --c-bolt-layout-item-valign-start-offset: 0;
         }
       }
@@ -299,10 +305,10 @@ bolt-layout {
       @each $size in $bolt-spacing-multiplier-system {
         $size-name: nth($size, 1);
 
-        &[data-row-gutter='#{$size-name}'] {
+        &[row-gutter='#{$size-name}'] {
           > bolt-layout-item {
             &:not(:first-of-type),
-            &[data-stack-order='secondary'] {
+            &[stack-order='secondary'] {
               --c-bolt-layout-row-gutter: var(--bolt-spacing-y-#{$size-name});
             }
           }
