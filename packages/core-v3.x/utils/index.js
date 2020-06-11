@@ -16,6 +16,7 @@ export * from './rgb2hex';
 export * from './rename-key';
 // export * from './sanitize-classes';
 export * from './scrollbar';
+export * from './smooth-scroll.js';
 export * from './supports-css-vars';
 export * from './supports-passive-event-listener';
 export * from './which-transition-event';

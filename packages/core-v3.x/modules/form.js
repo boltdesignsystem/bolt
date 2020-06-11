@@ -1,3 +1,4 @@
+console.log('@form');
 // TODO: limit to a .js class
 const inputs = document.querySelectorAll('.c-bolt-input');
 

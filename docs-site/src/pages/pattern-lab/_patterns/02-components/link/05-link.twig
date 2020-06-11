@@ -2,3 +2,16 @@
   text: "This is a text link",
   url: "https://pega.com",
 } only %}
+
+{% include "@bolt-components-link/link.twig" with {
+  text: "This is a text link",
+  noWC: true
+} only %}
+
+Use cases:
+- Launch modal
+- Play a video
+- Smooth scroll
+
+<button type="button" class="c-bolt-link c-bolt-link--display-inline c-bolt-link--valign-center js-click-handler" on-click="toggle" on-click-target="pega-video-4892122320001-a"><span class="c-bolt-link__text">This is a text link</span></button>
+<button type="button" class="c-bolt-link c-bolt-link--display-inline c-bolt-link--valign-center js-click-handler" on-click="toggle" on-click-target=".pega-video-4892122320001-a"><span class="c-bolt-link__text">This is a text link</span></button>

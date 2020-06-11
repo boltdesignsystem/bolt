@@ -51,7 +51,6 @@ const config = {
       '@bolt/components-ratio',
       '@bolt/components-share',
       '@bolt/components-site',
-      '@bolt/components-smooth-scroll',
       '@bolt/components-sticky',
       '@bolt/components-teaser',
       '@bolt/components-text',

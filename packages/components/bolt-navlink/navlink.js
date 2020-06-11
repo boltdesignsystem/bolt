@@ -1,14 +1,14 @@
 import { html, customElement } from '@bolt/element';
-import { props } from '@bolt/core-v3.x/utils';
-import { withLitHtml } from '@bolt/core-v3.x/renderers/renderer-lit-html';
-import isVisible from 'is-visible';
-
-// Used for attaching smooth scroll behavior to dynamically created <bolt-navlink> instances
 import {
+  props,
+  // Used for attaching smooth scroll behavior to dynamically created <bolt-navlink> instances
   smoothScroll,
   scrollOptions,
   getScrollTarget,
-} from '@bolt/components-smooth-scroll/src/smooth-scroll';
+} from '@bolt/core-v3.x/utils';
+import { withLitHtml } from '@bolt/core-v3.x/renderers/renderer-lit-html';
+import isVisible from 'is-visible';
+console.log(scrollOptions);
 
 @customElement('bolt-navlink')
 class BoltNavLink extends withLitHtml {

@@ -5,13 +5,13 @@ import {
   ifDefined,
   unsafeCSS,
 } from '@bolt/element';
-import classNames from 'classnames/bind';
-import { withContext } from 'wc-context';
 import {
   smoothScroll,
   scrollOptions,
   getScrollTarget,
-} from '@bolt/components-smooth-scroll/src/smooth-scroll';
+} from '@bolt/core-v3.x/utils';
+import classNames from 'classnames/bind';
+import { withContext } from 'wc-context';
 
 import tocItemStyles from './_toc-item.scss';
 import schema from '../toc.schema';

@@ -6,11 +6,11 @@ import {
   props,
   containsTagName,
   getUniqueId,
+  smoothScroll,
   whichTransitionEvent,
   waitForTransitionEnd,
 } from '@bolt/core-v3.x/utils';
 import { withLitHtml } from '@bolt/core-v3.x/renderers/renderer-lit-html';
-import { smoothScroll } from '@bolt/components-smooth-scroll/src/smooth-scroll';
 import URLSearchParams from '@ungap/url-search-params'; // URLSearchParams poly for older browsers
 import classNames from 'classnames/bind';
 import styles from './tabs.scss';

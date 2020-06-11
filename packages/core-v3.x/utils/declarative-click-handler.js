@@ -1,10 +1,13 @@
 export function declarativeClickHandler(element) {
   const clickMethod = element.onClick;
   const clickTarget = element.onClickTarget;
+  const clickSelector = element.onClickSelector;
 
   if (clickMethod) {
-    if (clickTarget) {
-      const elems = document.querySelectorAll(`.${clickTarget}`);
+    if (clickSelector || clickTarget) {
+      const elems = document.querySelectorAll(
+        clickSelector || `.${clickTarget}`,
+      );
       if (elems) {
         elems.forEach(function(elem) {
           if (elem[clickMethod]) {
