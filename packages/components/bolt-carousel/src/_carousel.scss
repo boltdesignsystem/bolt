@@ -15,21 +15,23 @@ bolt-carousel {
     overflow: visible;
   }
 
-  &:not(:last-child){
-    @include bolt-margin-bottom(medium);
+  &:not(:last-child) {
+    margin-bottom: var(--bolt-spacing-y-medium);
   }
 
   // add custom scrollbar styling till JS kicks in
-  &:not(.is-ready){
-    &:not([no-pagination]){
+  &:not(.is-ready) {
+    &:not([no-pagination]) {
       @include bolt-carousel-scrollbar;
-      padding-bottom: calc(#{$bolt-carousel-bullet-height} + #{bolt-v-spacing(xsmall)});
+      padding-bottom: calc(
+        #{$bolt-carousel-bullet-height} + var(--bolt-spacing-y-xsmall)
+      );
     }
 
     overflow-x: auto;
     overflow-y: hidden;
 
-    @include bolt-mq($until: medium){
+    @include bolt-mq($until: medium) {
       overflow-x: visible;
     }
   }
@@ -57,7 +59,7 @@ bolt-carousel {
     margin-right: calc(var(--bolt-carousel-space-around) * -1);
     margin-left: calc(var(--bolt-carousel-space-around) * -1);
     padding-right: var(--bolt-carousel-space-around);
-    padding-left:var(--bolt-carousel-space-around);
+    padding-left: var(--bolt-carousel-space-around);
   }
 }
 
@@ -67,7 +69,7 @@ bolt-carousel {
   transform: translate3d(0, 0, 0);
   width: 100%;
   height: auto;
-  transition-property:transform;
+  transition-property: transform;
 }
 
 .c-bolt-carousel--invisible-blank {
@@ -76,74 +78,68 @@ bolt-carousel {
 
 /* IE10 Windows Phone 8 Fixes */
 .c-bolt-carousel--wp8-horizontal {
-  &, & > .c-bolt-carousel__wrapper {
+  &,
+  & > .c-bolt-carousel__wrapper {
     touch-action: pan-y;
   }
 }
 .c-bolt-carousel--wp8-vertical {
-  &, & > .c-bolt-carousel__wrapper {
+  &,
+  & > .c-bolt-carousel__wrapper {
     touch-action: pan-x;
   }
 }
 
-
 // carousel's nav position-specific styles
 // if nav-position isn't specified, set to default
 bolt-carousel[no-nav-buttons].is-ready,
-bolt-carousel[nav-button-position="outside"].is-ready {
-  @include bolt-padding-left(bolt-spacing(medium));
-  @include bolt-padding-right(bolt-spacing(medium));
-  min-width: calc(100% + #{bolt-spacing(medium) * 2});
-  margin-right: (bolt-spacing(medium)) * -1;
-  margin-left: (bolt-spacing(medium)) * -1;
+bolt-carousel[nav-button-position='outside'].is-ready {
+  min-width: calc(100% + calc(var(--bolt-spacing-x-medium) * 2));
+  margin-right: calc(var(--bolt-spacing-x-medium) * -1);
+  margin-left: calc(var(--bolt-spacing-x-medium) * -1);
+  padding-right: var(--bolt-spacing-x-medium);
+  padding-left: var(--bolt-spacing-x-medium);
 
   // mirror approach used by Wrapper at larger screen sizes
   @include bolt-mq(medium) {
-    @include bolt-padding-left(large);
-    @include bolt-padding-right(large);
-    min-width: calc(100% + #{bolt-spacing(large) * 2});
-    margin-right: (bolt-spacing(large)) * -1;
-    margin-left: (bolt-spacing(large)) * -1;
+    min-width: calc(100% + calc(var(--bolt-spacing-x-large) * 2));
+    margin-right: calc(var(--bolt-spacing-x-large) * -1);
+    margin-left: calc(var(--bolt-spacing-x-large) * -1);
+    padding-right: var(--bolt-spacing-x-large);
+    padding-left: var(--bolt-spacing-x-large);
   }
 }
 
 // carousel space-between slides
 bolt-carousel {
-  &[space-between="none"] {
+  &[space-between='none'] {
     --bolt-carousel-space-between: 0rem;
   }
 
-  &[space-between="small"] {
-    --bolt-carousel-space-between: #{bolt-spacing(small)};
+  &[space-between='small'] {
+    --bolt-carousel-space-between: var(--bolt-spacing-x-small);
   }
 
   &,
-  &[space-between="medium"] {
-    --bolt-carousel-space-between: #{bolt-spacing(medium)};
+  &[space-between='medium'] {
+    --bolt-carousel-space-between: var(--bolt-spacing-x-medium);
   }
 
-  &[space-between="large"] {
-    --bolt-carousel-space-between: #{bolt-spacing(large)};
+  &[space-between='large'] {
+    --bolt-carousel-space-between: var(--bolt-spacing-x-large);
   }
 }
-
 
 // extra space around-specific styles
 bolt-carousel {
   --bolt-carousel-space-around: #{$bolt-carousel-space-around};
 
-  width: 100%;
-  width: calc(100% + #{$bolt-carousel-space-around} * 2);
   width: calc(100% + var(--bolt-carousel-space-around) * 2);
-  margin-right: calc(#{$bolt-carousel-space-around} * -1);
   margin-right: calc(var(--bolt-carousel-space-around) * -1);
-  margin-left: calc(#{$bolt-carousel-space-around} * -1);
   margin-left: calc(var(--bolt-carousel-space-around) * -1);
 
   &.is-ready {
-    padding-right: #{$bolt-carousel-space-around};
     padding-right: var(--bolt-carousel-space-around);
-    padding-left: #{$bolt-carousel-space-around};
     padding-left: var(--bolt-carousel-space-around);
   }
 }

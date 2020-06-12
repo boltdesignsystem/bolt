@@ -255,15 +255,13 @@ bolt-accordion-item {
 }
 
 .c-bolt-accordion-item__trigger-icons-inner {
-  @include bolt-padding(
-    xxsmall 0
-  ); // This is for aligning the icon with the text baseline.
 
   display: block;
   transform: rotate(0deg);
-  transform-origin: 50% 50%;
+  padding: var(--bolt-spacing-y-xxsmall) 0; // This is for aligning the icon with the text baseline.
   will-change: transform;
   transition: transform $bolt-transition;
+  transform-origin: 50% 50%;
 }
 
 [aria-expanded='false'] {
@@ -378,7 +376,7 @@ bolt-accordion-item {
 }
 
 // Spacing
-@each $spacing-value in $bolt-spacing-values {
+@each $spacing-value in $bolt-spacing-multiplier-system {
   $spacing-value-name: nth($spacing-value, 1);
 
   @if (
@@ -392,19 +390,20 @@ bolt-accordion-item {
       'xxlarge'
   ) {
     .c-bolt-accordion-spacing--#{$spacing-value-name} {
-      @include bolt-padding(#{$spacing-value-name}, squished);
-
+      padding: calc(var(--bolt-spacing-y-#{$spacing-value-name}) / 2)
+        var(--bolt-spacing-x-#{$spacing-value-name});
       // Applies only to js content
       &.c-bolt-accordion-item__content-inner.c-bolt-accordion-item__content-inner--offset,
       // Applies only to no-js trigger
       &.c-bolt-accordion-item__trigger-label.c-bolt-accordion-item__trigger-label--offset {
         padding-right: calc(
-          #{bolt-spacing($spacing-value-name) + $bolt-accordion-icon-size}
+          var(--bolt-spacing-x-#{$spacing-value-name}) +
+            #{$bolt-accordion-icon-size}
         );
       }
 
       &.c-bolt-accordion-item__content-inner {
-        @include bolt-padding-bottom(#{$spacing-value-name});
+        padding-bottom: var(--bolt-spacing-y-#{$spacing-value-name});
       }
     }
   }
