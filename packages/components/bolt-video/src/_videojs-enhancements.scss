@@ -386,11 +386,13 @@ $bolt-video-js-button-shadow-level-hover: 'level-40';
           @include bolt-font-size(medium);
         }
       }
+      .vjs-errors-headline+div{
+        @include bolt-font-size(xsmall);
+      }
       .vjs-errors-ref-id{
         align-self: flex-start;
       }
-      .vjs-errors-ok-button-container,
-      .vjs-errors-headline + div {
+      .vjs-errors-ok-button-container{
         @include bolt-visuallyhidden;
       }
     }
