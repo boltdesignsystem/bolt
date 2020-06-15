@@ -174,10 +174,33 @@ class BoltVideo extends withPreact {
 
     elem.setPlayer(player);
 
-    // If the option to show controls is set to false (meaning, no controls will be shown), make sure the video is also muted.
+    // The absence of controls is what determines whether a video should be
+    // muted and have autoplay compatibility in iOS.
+    //
+    // This makes some sense in the context of iOS-- if you provide controls,
+    // this video isn't just the equivalent of an animated gif and probably
+    // should play full screen in iOS.  iOS doesn't let a full screen video
+    // autoplay.  See https://webkit.org/blog/6784/new-video-policies-for-ios/.
     if (elem.controls === false) {
+      // If controls are hidden, the video should always be muted.
       elem.player.muted(true);
+
+      // Additionally, if a video doesn't have controls, it's only logical that
+      // it's autoplaying.  Since it will also be muted (see above), it already
+      // passes 2 out of 3 requirements for autoplaying in iOS.  This
+      // 'playsinline' prop is the third.
+      elem.player.playsinline(true);
     }
+    // @TODO If a video has controls and autoplay, it should also probably be
+    // muted initally-- not muting and auto playing is obnoxious.  If stakeholders
+    // insiste on unmuted autoplay, we should add a new prop to allow it
+    // (an "obnoxious" boolean?). The only thing keeping us from making that
+    // change now is respect for backwards compatibility.  Uncomment the
+    // following to enable that.
+    //
+    // else if (elem.autoplay) {
+    //   elem.player.muted(true);
+    // }
 
     // auto-configure the social overlay config (loaded via the social plugin)
     if (player.socialOverlay) {

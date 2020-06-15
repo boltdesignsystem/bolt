@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.24.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tooltip/compare/v2.23.0...v2.24.0) (2020-06-05)
+
+
+### Bug Fixes
+
+* tooltip flicker ([ddbcf74](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tooltip/commit/ddbcf7493047addb80f65b99c61055149d2f8cb5))
+
+
+
+
+
 # [2.23.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tooltip/compare/v2.22.1...v2.23.0) (2020-05-06)
 
 

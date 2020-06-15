@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.24.0](https://github.com/bolt-design-system/bolt/tree/master/packages/core/compare/v2.23.0...v2.24.0) (2020-06-05)
+
+
+### Bug Fixes
+
+* ja values ([860d729](https://github.com/bolt-design-system/bolt/tree/master/packages/core/commit/860d729199ac421441b8ef44d27f4be855efff5d))
+* resolve conflicts with master ([c4cc15b](https://github.com/bolt-design-system/bolt/tree/master/packages/core/commit/c4cc15bbb16a343108a4fb12a60788f3945d743b))
+* update comments ([40e984a](https://github.com/bolt-design-system/bolt/tree/master/packages/core/commit/40e984ab00240c29a0fd035c01af87f8f9c7fbb8))
+* update JA-specific Sass to pull in breakpoint-specific Sass functions / vars that don't yet exist (normally) ([45ce051](https://github.com/bolt-design-system/bolt/tree/master/packages/core/commit/45ce051238dea173c6603dab8c00529a60e21e10))
+
+
+
+
+
 # [2.23.0](https://github.com/bolt-design-system/bolt/tree/master/packages/core/compare/v2.22.1...v2.23.0) (2020-05-06)
 
 
