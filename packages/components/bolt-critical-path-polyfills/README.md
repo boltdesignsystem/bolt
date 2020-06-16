@@ -1,3 +1,5 @@
+> Note: This package will be removed in Bolt `v3.0` when we drop IE11 support. See [migrating to Bolt `v3.x`](http://boltdesignsystem.com/docs/guides/migrating-to-3.x.html) docs for more info.
+
 # Critical Path Polyfills
 A small batch of cross-browser polyfills (element.closest and element.matches) meant to be inlined and run at the the browser's [critical rendering path](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/).
 

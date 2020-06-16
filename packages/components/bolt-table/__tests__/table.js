@@ -67,6 +67,7 @@ describe('<bolt-table> Component', () => {
     const renderedTableHTML = await page.evaluate(async twigHTML => {
       document.getElementById('root').innerHTML = twigHTML;
       const table = document.querySelector('bolt-table');
+      await customElements.whenDefined('bolt-table');
       return await Promise.all([
         async () => {
           if (table._wasInitiallyRendered) return;
@@ -151,6 +152,7 @@ describe('<bolt-table> Component', () => {
     const renderedTableHTML = await page.evaluate(async staticHTML => {
       document.getElementById('root').innerHTML = staticHTML;
       const table = document.querySelector('bolt-table');
+      await customElements.whenDefined('bolt-table');
       return await Promise.all([
         async () => {
           if (table._wasInitiallyRendered) return;

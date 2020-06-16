@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.24.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-page-header/compare/v2.23.0...v2.24.0) (2020-06-05)
+
+
+### Bug Fixes
+
+* ja values ([860d729](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-page-header/commit/860d729199ac421441b8ef44d27f4be855efff5d))
+* resolve conflicts with master ([c4cc15b](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-page-header/commit/c4cc15bbb16a343108a4fb12a60788f3945d743b))
+
+
+
+
+
+# [2.23.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-page-header/compare/v2.22.1...v2.23.0) (2020-05-06)
+
+**Note:** Version bump only for package @bolt/components-page-header
+
+
+
+
+
 # [2.22.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-page-header/compare/v2.21.1...v2.22.0) (2020-04-22)
 
 **Note:** Version bump only for package @bolt/components-page-header

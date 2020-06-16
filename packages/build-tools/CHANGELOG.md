@@ -3,6 +3,36 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.24.0](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/compare/v2.23.0...v2.24.0) (2020-06-05)
+
+
+### Bug Fixes
+
+* disable the Webpack WriteFilePlugin as workaround to font assets not getting copied over consistently ([114397f](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/114397f1fffe4d2835e9243907dcba60f82ac9d1))
+* resolve conflicts with master ([c4cc15b](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/c4cc15bbb16a343108a4fb12a60788f3945d743b))
+* update build tools Jest tests to reflect new spacing defaults ([b0b3429](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/b0b34292d2132d87bd3d4cef1c24d621a72686ae))
+
+
+
+
+
+# [2.23.0](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/compare/v2.22.1...v2.23.0) (2020-05-06)
+
+
+### Bug Fixes
+
+* address linting issues ([c1774b0](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/c1774b0af08db78ebbd0fd92bab69752814afb1d))
+
+
+### Features
+
+* add note to each deprecated package linking to migration docs ([2485a5c](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/2485a5c1238674ffc1fb4de4fd172b5c389b61da))
+* split manifest up into smaller files + automatically retain existing behavior if issues are found. ([38f4e28](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/38f4e28775787e378452ea73d1a9c62f1db1945f))
+
+
+
+
+
 # [2.22.0](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/compare/v2.21.1...v2.22.0) (2020-04-22)
 
 **Note:** Version bump only for package @bolt/build-tools

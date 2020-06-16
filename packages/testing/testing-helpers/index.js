@@ -1,4 +1,5 @@
 export { isConnected } from './is-connected';
+import { v4 as uuidv4 } from 'uuid';
 import {
   render as renderServer,
   renderString as renderStringServer,
@@ -27,6 +28,45 @@ export const vrtDefaultConfig = {
     includeAA: false, // If true, disables detecting and ignoring anti-aliased pixels. false by default.
   },
 };
+
+/**
+ * Takes the web component markup passed in, waits for it to render, then returns back the rendered inner and outer HTML
+ * @param {*} componentTag - the web component HTML tag being rendered
+ * @param {String} html - the actual HTML being rendered
+ * @param {*} page - puppeteer page instance to render within
+ * @param {Array} extraSelectors - extra web component selectors to wait to finish rendering before returning
+ */
+export async function renderWC(componentTag, html, page) {
+  const uuid = uuidv4();
+  return await page.evaluate(
+    async (htmlResults, componentTag, uuid) => {
+      const uuidSelector = `js-${uuid}`;
+      document.body.insertAdjacentHTML(
+        'beforeend',
+        `<span class="${uuidSelector}">${htmlResults}</span>`,
+      );
+      const undefinedElements = document.querySelectorAll(
+        `${componentTag}, ssr-keep`,
+      );
+
+      const promises = [...undefinedElements].map(elem =>
+        customElements.whenDefined(elem.localName),
+      );
+      await Promise.all(promises);
+      const component = document.querySelector(
+        `.${uuidSelector} ${componentTag}`,
+      );
+      await component.firstUpdated;
+      return {
+        innerHTML: component.renderRoot.innerHTML,
+        outerHTML: component.outerHTML,
+      };
+    },
+    html,
+    componentTag,
+    uuid,
+  );
+}
 
 // import {
 //   // isConnected,

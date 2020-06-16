@@ -1,35 +1,50 @@
-import { html, customElement } from '@bolt/element';
-import { withContext, props, css } from '@bolt/core-v3.x/utils';
-import { withLitHtml } from '@bolt/core-v3.x/renderers/renderer-lit-html';
-import styles from './accordion-item.scss';
+import { html, customElement, BoltElement, unsafeCSS } from '@bolt/element';
+import { withContext } from 'wc-context';
+import classNames from 'classnames/bind';
+import accordionItemStyles from './accordion-item.scss';
+import accordionItemSchema from '../../accordion-item.schema';
 import { AccordionItemTrigger } from './AccordionItemTrigger';
 import { AccordionItemContent } from './AccordionItemContent';
-import { AccordionContext } from '../accordion';
+
+let cx = classNames.bind(accordionItemStyles);
 
 @customElement('bolt-accordion-item')
-class AccordionItem extends withContext(withLitHtml) {
-  static props = {
-    open: props.boolean,
-    contentSpacing: props.string,
-    triggerSpacing: props.string,
-    inactive: props.boolean,
-    uuid: props.string,
-  };
+class AccordionItem extends withContext(BoltElement) {
+  static schema = accordionItemSchema;
 
-  // subscribe to specific props that are defined and available on the parent container
-  // (context + subscriber idea originally from https://codepen.io/trusktr/project/editor/XbEOMk)
-  static get consumes() {
-    return [
-      [AccordionContext, 'noSeparator'],
-      [AccordionContext, 'boxShadow'],
-      [AccordionContext, 'spacing'],
-      [AccordionContext, 'iconValign'],
-    ];
+  static get styles() {
+    return [unsafeCSS(accordionItemStyles)];
   }
 
-  constructor(self) {
-    self = super(self);
-    return self;
+  static get properties() {
+    return {
+      ...this.props,
+
+      // context-specific props for bolt-accordion-item that aren't listed out in the schema
+      spacing: {
+        type: String,
+      },
+      noSeparator: {
+        type: Boolean,
+        attribute: 'no-separator',
+      },
+      boxShadow: {
+        type: Boolean,
+        attribute: 'box-shadow',
+      },
+      iconValign: {
+        type: String,
+        attribute: 'icon-valign',
+      },
+    };
+  }
+
+  static get observedContexts() {
+    return ['noSeparator', 'boxShadow', 'spacing', 'iconValign'];
+  }
+
+  contextChangedCallback(name, oldValue, value) {
+    this[name] = value;
   }
 
   get isFirstItem() {
@@ -43,9 +58,8 @@ class AccordionItem extends withContext(withLitHtml) {
     );
   }
 
-  connecting() {
-    super.connecting && super.connecting();
-
+  connectedCallback() {
+    super.connectedCallback && super.connectedCallback();
     const originalInput = this.querySelector('.c-bolt-accordion-item__state');
     const originalLinks = this.querySelectorAll(
       '.c-bolt-accordion-item__trigger-link',
@@ -62,11 +76,6 @@ class AccordionItem extends withContext(withLitHtml) {
     this.addEventListener('activateLink', this.close);
   }
 
-  connectedCallback() {
-    super.connectedCallback && super.connectedCallback();
-    this.context = this.contexts.get(AccordionContext);
-  }
-
   close() {
     const elem = this;
     setTimeout(function() {
@@ -75,35 +84,27 @@ class AccordionItem extends withContext(withLitHtml) {
   }
 
   template() {
-    const { noSeparator, boxShadow, iconValign } = this.context;
-
-    const accordionClasses = css(
-      'c-bolt-accordion-item',
-      !noSeparator ? 'c-bolt-accordion-item--separator' : '',
-      boxShadow ? 'c-bolt-accordion-item--box-shadow' : '',
-      iconValign && iconValign !== 'center'
-        ? `c-bolt-accordion-item--icon-valign-${iconValign}`
-        : '',
-      this.isFirstItem ? 'c-bolt-accordion-item--first-item' : '',
-      this.isLastItem ? 'c-bolt-accordion-item--last-item' : '',
-    );
+    const accordionClasses = cx('c-bolt-accordion-item', {
+      'c-bolt-accordion-item--separator': !this.noSeparator,
+      'c-bolt-accordion-item--box-shadow': this.boxShadow,
+      [`c-bolt-accordion-item--icon-valign-${this.iconValign}`]:
+        this.iconValign && this.iconValign !== 'center',
+      'c-bolt-accordion-item--first-item': this.isFirstItem,
+      'c-bolt-accordion-item--last-item': this.isLastItem,
+    });
 
     const slotMarkup = name => {
       switch (name) {
         case 'trigger':
-          return name in this.slots
-            ? AccordionItemTrigger(this.slot(name), this.props, this.context)
+          return this.slotMap.get(name)
+            ? AccordionItemTrigger(this.slotify(name), this)
             : html`
                 <slot name="${name}" />
               `;
 
         default:
-          return name in this.slots
-            ? AccordionItemContent(
-                this.slot('default'),
-                this.props,
-                this.context,
-              )
+          return this.slotMap.get(name)
+            ? AccordionItemContent(this.slotify('default'), this)
             : html`
                 <slot />
               `;
@@ -121,7 +122,7 @@ class AccordionItem extends withContext(withLitHtml) {
     this.addClassesToSlottedChildren(['default', 'trigger']);
 
     return html`
-      ${this.addStyles([styles])} ${this.template()}
+      ${this.template()}
     `;
   }
 }

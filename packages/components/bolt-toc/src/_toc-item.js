@@ -11,7 +11,7 @@ import {
   smoothScroll,
   scrollOptions,
   getScrollTarget,
-} from '@bolt/components-smooth-scroll';
+} from '@bolt/components-smooth-scroll/src/smooth-scroll';
 
 import tocItemStyles from './_toc-item.scss';
 import schema from '../toc.schema';

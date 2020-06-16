@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.24.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-band/compare/v2.23.0...v2.24.0) (2020-06-05)
+
+
+### Bug Fixes
+
+* resolve conflicts with master ([c4cc15b](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-band/commit/c4cc15bbb16a343108a4fb12a60788f3945d743b))
+* update Jest VRT snapshots ([0e1e91f](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-band/commit/0e1e91fd843dc502568725c037a5b684523afd87))
+
+
+
+
+
+# [2.23.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-band/compare/v2.22.1...v2.23.0) (2020-05-06)
+
+
+### Features
+
+* globally lazyload JS bundles to expose same existing issues as the ones found with the new lazy-queue functionality ([7cc4ce2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-band/commit/7cc4ce2fa9ce28dc4f9f37078762f106ca87729f))
+* update Jest tests to use new renderWC helper + prep for upstream <ssr-keep> updates ([beb6b85](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-band/commit/beb6b85cfdb4d37359e0fcf1d4deaa7f1a0a25f1))
+
+
+
+
+
 # [2.22.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-band/compare/v2.21.1...v2.22.0) (2020-04-22)
 
 **Note:** Version bump only for package @bolt/components-band

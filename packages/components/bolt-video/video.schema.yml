@@ -77,6 +77,9 @@ properties:
   disabled_plugins:
     type: string
     description: 'Space-separated list of any built-in `<bolt-video>` plugins for Brightcove to disable. Used to opt-out of any video plugins that are enabled by default (ex. the `playback` plugin). For example: `<bolt-video disabled-plugins="playback">`.'
+  errorMessage:
+    type: string
+    description: 'A custom message to be display upon a brigthcove error, will default to "This video didnt load correctly. Refresh page to view." is this field is left blank.'
   isBackgroundVideo:
     title: DEPRECATED
     description: Background video feature will be removed with Bolt v3.0
