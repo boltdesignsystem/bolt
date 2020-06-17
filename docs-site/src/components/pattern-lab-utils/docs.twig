@@ -20,48 +20,72 @@
 {% endspaceless %}
 {% endset %}
 
-{% set hero_content %}
-  <bolt-text headline font-size="xxxlarge" tag="h1">
-    {% if schema.title %}{{ schema.title }}{% else %}Component Title{% endif %}
-  </bolt-text>
-  {% if pkg.description %}
-    <bolt-text subheadline font-size="xlarge" tag="h2">
-      {{ pkg.description }}
-    </bolt-text>
-  {% endif %}
-  <bolt-list display="inline" separator="solid">
-    <bolt-list-item>
-      <bolt-text font-size="xsmall">
-        {% if is_private == true %}
-          <span class="u-bolt-color-error"><bolt-icon name="refresh"></bolt-icon> <strong>In Progress (Unreleased)</strong></span>
-        {% else %}
-          <span class="u-bolt-color-success"><bolt-icon name="check-solid"></bolt-icon> <strong>Published</strong></span>
-        {% endif %}
-      </bolt-text>
-    </bolt-list-item>
-    {% if is_private == false %}
-      <bolt-list-item>
-        <bolt-text font-size="xsmall">
-          Last updated: <strong>{{ component_version }}</strong>
-        </bolt-text>
-      </bolt-list-item>
-      <bolt-list-item>
-        <bolt-text font-size="xsmall">
-          <bolt-link target="_blank" url="{{ github_url(change_log_file) }}">Change log</bolt-link>
-        </bolt-text>
-      </bolt-list-item>
-      <bolt-list-item>
-        <bolt-text font-size="xsmall">
-          <bolt-link target="_blank" url="{{ github_url(readme_file) | replace({'README.md':''}) }}">Github</bolt-link>
-        </bolt-text>
-      </bolt-list-item>
-      <bolt-list-item>
-        <bolt-text font-size="xsmall">
-          <bolt-link target="_blank" url="https://www.npmjs.com/package/{{ component_title }}">NPM</bolt-link>
-        </bolt-text>
-      </bolt-list-item>
+
+{% set component_status %}
+  <bolt-text font-size="xsmall">
+    {% if is_private == true %}
+      <span class="u-bolt-color-error"><bolt-icon name="refresh"></bolt-icon> <strong>In Progress (Unreleased)</strong></span>
+    {% else %}
+      <span class="u-bolt-color-success"><bolt-icon name="check-solid"></bolt-icon> <strong>Published</strong></span>
     {% endif %}
-  </bolt-list>
+  </bolt-text>
+{% endset %}
+
+{% set component_last_updated %}
+  <bolt-text font-size="xsmall">
+    Last updated: <strong>{{ component_version }}</strong>
+  </bolt-text>
+{% endset %}
+
+{% set component_change_log %}
+  <bolt-text font-size="xsmall">
+    <bolt-link target="_blank" url="{{ github_url(change_log_file) }}">Change log</bolt-link>
+  </bolt-text>
+{% endset %}
+
+{% set component_github %}
+  <bolt-text font-size="xsmall">
+    <bolt-link target="_blank" url="{{ github_url(readme_file) | replace({'README.md':''}) }}">Github</bolt-link>
+  </bolt-text>
+{% endset %}
+
+{% set component_npm %}
+  <bolt-text font-size="xsmall">
+    <bolt-link target="_blank" url="https://www.npmjs.com/package/{{ component_title }}">NPM</bolt-link>
+  </bolt-text>
+{% endset %}
+
+{% set hero_content %}
+  {% include "@bolt-components-headline/headline.twig" with {
+    text: schema.title ? schema.title : "Component Name",
+    size: "xxxlarge",
+    tag: "h1",
+    attributes: {
+      class: "u-bolt-margin-bottom-small",
+    },
+  } only %}
+  {% if pkg.description %}
+    {% include "@bolt-components-headline/subheadline.twig" with {
+      text: pkg.description,
+      size: "xlarge",
+      tag: "h2",
+      attributes: {
+        class: "u-bolt-margin-bottom-small",
+      },
+    } only %}
+  {% endif %}
+
+  {% include "@bolt-components-list/list.twig" with {
+    display: "inline",
+    separator: "solid",
+    items: [
+      component_status,
+      is_private == false ? component_last_updated,
+      is_private == false ? component_change_log,
+      is_private == false ? component_github,
+      is_private == false ? component_npm,
+    ]
+  } only %}
 {% endset %}
 
 {% include "@bolt-components-band/band.twig" with {
