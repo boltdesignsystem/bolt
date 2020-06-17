@@ -74,7 +74,7 @@
 
     {# Overview #}
     <bolt-tab-panel>
-      <bolt-text slot="label">Overview</bolt-text>
+      <bolt-text slot="label" tag="h2">Overview</bolt-text>
 
       <bolt-text headline font-size="xlarge" tag="h3">
         Install
@@ -99,23 +99,25 @@
           {% endfor %}
         </bolt-list>
       {% endif %}
+    </bolt-tab-panel>
 
-      {% if usage_content %}
-        <bolt-text headline font-size="xlarge" tag="h3">
-          Usage
-        </bolt-text>
+    {# Twig Usage #}
+    {% if usage_content %}
+      <bolt-tab-panel>
+        <bolt-text slot="label" tag="h2">Twig Usage</bolt-text>
+
         {% include "@bolt-components-code-snippet/code-snippet.twig" with {
           display: "block",
           lang: "twig",
           content: usage_content
         } only %}
-      {% endif %}
-    </bolt-tab-panel>
+      </bolt-tab-panel>
+    {% endif %}
 
     {# Schema #}
     {% if schema and schema.properties %}
       <bolt-tab-panel>
-        <bolt-text slot="label">Schema</bolt-text>
+        <bolt-text slot="label" tag="h2">Schema</bolt-text>
 
         {% include "@utils/schema-docs.twig" with { schema: schema } only %}
       </bolt-tab-panel>
