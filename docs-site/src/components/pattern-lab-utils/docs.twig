@@ -72,9 +72,32 @@
 {% set body_content %}
   <bolt-tabs label-spacing="medium" panel-spacing="medium" inset="off">
 
-    {# Overview #}
+    {# Twig Usage #}
+    {% if usage_content %}
+      <bolt-tab-panel>
+        <bolt-text slot="label" tag="h2">Twig Usage</bolt-text>
+
+        {% include "@bolt-components-code-snippet/code-snippet.twig" with {
+          display: "block",
+          lang: "twig",
+          syntax: "dark",
+          content: usage_content
+        } only %}
+      </bolt-tab-panel>
+    {% endif %}
+
+    {# Schema #}
+    {% if schema and schema.properties %}
+      <bolt-tab-panel>
+        <bolt-text slot="label" tag="h2">Schema</bolt-text>
+
+        {% include "@utils/schema-docs.twig" with { schema: schema } only %}
+      </bolt-tab-panel>
+    {% endif %}
+
+    {# Install #}
     <bolt-tab-panel>
-      <bolt-text slot="label" tag="h2">Overview</bolt-text>
+      <bolt-text slot="label" tag="h2">Install</bolt-text>
 
       <bolt-text headline font-size="xlarge" tag="h3">
         Install
@@ -100,28 +123,6 @@
         </bolt-list>
       {% endif %}
     </bolt-tab-panel>
-
-    {# Twig Usage #}
-    {% if usage_content %}
-      <bolt-tab-panel>
-        <bolt-text slot="label" tag="h2">Twig Usage</bolt-text>
-
-        {% include "@bolt-components-code-snippet/code-snippet.twig" with {
-          display: "block",
-          lang: "twig",
-          content: usage_content
-        } only %}
-      </bolt-tab-panel>
-    {% endif %}
-
-    {# Schema #}
-    {% if schema and schema.properties %}
-      <bolt-tab-panel>
-        <bolt-text slot="label" tag="h2">Schema</bolt-text>
-
-        {% include "@utils/schema-docs.twig" with { schema: schema } only %}
-      </bolt-tab-panel>
-    {% endif %}
   </bolt-tabs>
 {% endset %}
 
