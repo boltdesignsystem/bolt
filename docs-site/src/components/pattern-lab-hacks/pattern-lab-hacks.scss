@@ -6,16 +6,9 @@
   padding-right: 0;
   padding-left: 0;
 
-  .pl-c-pattern:not([id*=pages-]) {
-    .pl-js-pattern-example {
-      @include bolt-padding-left(small);
-      @include bolt-padding-right(small);
-    }
-  }
-
   .pl-c-pattern__header {
-    padding-right: .5rem;
-    padding-left: .5rem;
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
   }
 
   // fix rendering bug when rendering pages on view all sections
@@ -74,25 +67,23 @@
   margin-left: auto;
 }
 
-.pl-c-category,
-.pl-c-category__title,
-.pl-c-pattern[id*=-docs] > .pl-c-pattern__header,
-.pl-c-pattern[id*=-docs] > .pl-c-pattern__extra {
-  display: none;
-}
-
-.pl-c-category:first-of-type {
-  margin: 0;
-}
-
-.pl-c-pattern[id*="-docs"] .pl-c-pattern__extra-wrapper {
-  display: none;
-}
-
 .pl-placeholder-fixed-element {
   position: fixed;
 
   @at-root .pl-c-pattern & {
     position: static; // Set to 'static' on the View All page
   }
+}
+
+.pl-c-category,
+.pl-c-category__title,
+.pl-c-pattern[id*='-docs'] > .pl-c-pattern__header,
+.pl-c-pattern[id*='-docs'] > .pl-c-pattern__extra,
+.pl-c-pattern[id*='-docs'] .pl-c-pattern__extra-wrapper,
+.pl-c-tabs__link[data-panelid='pl-panel-html'] {
+  display: none !important;
+}
+
+.pl-c-category:first-of-type {
+  margin: 0;
 }
