@@ -1,4 +1,4 @@
-Copy to Clipboard allows the user to copy the current page URL to clipbaord to paste and share.
+Copy to Clipboard allows the user to copy the current page URL to clipboard to paste and share.
 
 ###### Install via NPM
 

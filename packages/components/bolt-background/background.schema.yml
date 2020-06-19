@@ -1,4 +1,4 @@
-"$schema": http://json-schema.org/draft-04/schema#
+'$schema': http://json-schema.org/draft-04/schema#
 title: Bolt Background
 type: object
 properties:
@@ -62,16 +62,16 @@ properties:
         type: string
         description: Currently only reverses gradient on 'left'.
         enum:
-        - center
-        - left
-        - right
+          - center
+          - left
+          - right
       vertical:
         type: string
         description: Currently doesn't use this value. Intended future application.
         enum:
-        - center
-        - top
-        - bottom
+          - center
+          - top
+          - bottom
   contentItems:
     type: array
     description: An array of objects to place in the background. Works with Image and Shape components. Video option is deprecated.

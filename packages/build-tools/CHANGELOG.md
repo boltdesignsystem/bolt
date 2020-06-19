@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.24.1](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/compare/v2.24.0...v2.24.1) (2020-06-17)
+
+**Note:** Version bump only for package @bolt/build-tools
+
+
+
+
+
+# [2.24.0](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/compare/v2.23.0...v2.24.0) (2020-06-05)
+
+
+### Bug Fixes
+
+* disable the Webpack WriteFilePlugin as workaround to font assets not getting copied over consistently ([114397f](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/114397f1fffe4d2835e9243907dcba60f82ac9d1))
+* resolve conflicts with master ([c4cc15b](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/c4cc15bbb16a343108a4fb12a60788f3945d743b))
+* update build tools Jest tests to reflect new spacing defaults ([b0b3429](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/b0b34292d2132d87bd3d4cef1c24d621a72686ae))
+
+
+
+
+
 # [2.23.0](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/compare/v2.22.1...v2.23.0) (2020-05-06)
 
 
