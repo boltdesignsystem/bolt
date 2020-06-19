@@ -89,6 +89,7 @@
   .setAttribute('src', src)
 %}
 
+{# DEPRECATED.  'magnify' is deprecated for device viewer-- when it is removed, 'zoom' will be unnecessary. #}
 {% if zoom %}
   {% set image_attributes = image_attributes.setAttribute("data-zoom", src) %}
 {% endif %}
