@@ -9,18 +9,3 @@
   device: "macbook",
   content: image,
 } only %}
-
-<p>Magnify: true</p>
-{% set image_zoom %}
-  {% include "@bolt-components-image/image.twig" with {
-    placeholder_color: "#151619",
-    src: "/images/content/screenshots/device-screenshot--desktop.jpg",
-    zoom: true,
-  } only %}
-{% endset %}
-
-{% include "@bolt-components-device-viewer/device-viewer.twig" with {
-  device: "macbook",
-  content: image_zoom,
-  magnify: true
-} only %}
