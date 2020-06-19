@@ -10,6 +10,8 @@ not:
         - width
     - required:
         - height
+    - required:
+        - zoom
 anyOf:
   - required:
       - src
@@ -101,3 +103,9 @@ properties:
     type: string
     description: Allows the image's horizontal alignment behavior to be customized in certain situations (ex. background images). This can be configured via a pre-defined position (left | center | right) or via specific pixel or percent offset (ex. 30%).
     default: center
+  zoom:
+    title: DEPRECATED
+    type: boolean
+    description: Support will be dropped along with device viewer magnify.
+    hidden: true
+    default: false
