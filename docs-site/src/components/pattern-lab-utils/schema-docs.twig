@@ -26,7 +26,7 @@
       {% if prop.enum %}{{ enum }}{% endif -%}
 
       {% if (prop.type == "object" or prop.type == "array") and prop.properties or prop.ref %}
-        {% if prop.ref %}
+        {# {% if prop.ref %}
           {% set reference = get_data(prop.ref).properties %}
           <details>
             <summary><em>{{ prop.ref }} > Object details</em></summary>
@@ -34,7 +34,7 @@
           </details>
         {% else %}
           {{ macros.object(prop.properties) }}
-        {% endif %}
+        {% endif %} #}
       {% elseif prop.type == "array" and prop.items %}
         {% if prop.items.type == "object" or prop.items.type == "any" or prop.items.type is iterable %}
           {% set printableType = prop.items.type is iterable ? prop.items.type|join(', ') : prop.items.type %}

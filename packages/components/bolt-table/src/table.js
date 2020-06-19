@@ -8,7 +8,7 @@ import { parse, stringify } from 'himalaya';
 import classNames from 'classnames/bind';
 
 import styles from './table.scss';
-import schema from '../table.schema.yml';
+import schema from '../table.schema.js';
 
 let cx = classNames.bind(styles);
 

@@ -2,7 +2,7 @@ import { html, customElement } from '@bolt/element';
 import { props, css, hasNativeShadowDomSupport } from '@bolt/core-v3.x/utils';
 import { withLitHtml } from '@bolt/core-v3.x/renderers/renderer-lit-html';
 import styles from './text.scss';
-import schema from '../text.schema.yml';
+import schema from '../text.schema.js';
 
 @customElement('bolt-text')
 class BoltText extends withLitHtml {

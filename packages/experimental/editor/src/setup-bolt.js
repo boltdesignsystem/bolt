@@ -2,10 +2,10 @@ import * as grapesjs from 'grapesjs'; // eslint-disable-line no-unused-vars
 // @ts-ignore
 import buttonSchema from '@bolt/components-button/button.schema';
 // @ts-ignore
-import textSchema from '@bolt/components-text/text.schema.yml';
+import textSchema from '@bolt/components-text/text.schema.js';
 import iconSchema from '@bolt/components-icon/icon.schema.json';
 // @ts-ignore
-import listSchema from '@bolt/components-list/list.schema.yml';
+import listSchema from '@bolt/components-list/list.schema.js';
 import characterSchema from '@bolt/micro-journeys/src/character.schema';
 import connectionSchema from '@bolt/micro-journeys/src/connection.schema';
 import pathwaysSchema from '@bolt/micro-journeys/src/interactive-pathways.schema';
@@ -14,9 +14,9 @@ import svgAnimationsSchema from '@bolt/micro-journeys/src/bolt-svg-animations/sv
 // @ts-ignore
 import blockquoteSchema from '@bolt/components-blockquote/blockquote.schema.js';
 // @ts-ignore
-import chipSchema from '@bolt/components-chip/chip.schema.yml';
+import chipSchema from '@bolt/components-chip/chip.schema.js';
 // @ts-ignore
-import imageSchema from '@bolt/components-image/image.schema.yml';
+import imageSchema from '@bolt/components-image/image.schema.js';
 import animateSchema from '@bolt/components-animate/animate.schema';
 import * as starters from '@bolt/micro-journeys/starters';
 // @ts-ignore
