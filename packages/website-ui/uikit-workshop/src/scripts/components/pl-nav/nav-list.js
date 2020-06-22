@@ -60,13 +60,14 @@ export const NavList = props => {
 
       {((viewAllItems.length && nonViewAllItems.length) ||
         viewAllItems.length === 0) && (
+          <p>anything????????</p>
         <ol
           id={category}
           className={`pl-c-nav__list pl-c-nav__accordion pl-js-nav-accordion`}
         >
           {nonViewAllItems.map(patternSubtypeItem => (
             <li class="pl-c-nav__list-item">
-              <NavLink
+              {/* <NavLink
                 href={`patterns/${patternSubtypeItem.patternPath}`}
                 level={2}
                 onClick={e =>
@@ -78,7 +79,7 @@ export const NavList = props => {
                 {patternSubtypeItem.patternName === 'View All'
                   ? `${category} Overview`
                   : patternSubtypeItem.patternName}
-              </NavLink>
+              </NavLink> */}
             </li>
           ))}
         </ol>

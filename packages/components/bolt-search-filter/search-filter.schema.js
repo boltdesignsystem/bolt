@@ -5,15 +5,13 @@ module.exports = {
   properties: {
     attributes: {
       type: 'object',
-      description: 'A Drupal-style attributes object with extra attributes to append to this component.'
+      description:
+        'A Drupal-style attributes object with extra attributes to append to this component.',
     },
     content: {
-      tyoe: [
-        'string',
-        'object',
-        'array'
-      ],
-      description: 'Renderable content (e.g. a string, render array, or included pattern) to display within a modal at mobile breakpoints.  Typically, this is where the filters themselves go.'
-    }
-  }
-}
+      tyoe: ['string', 'object', 'array'],
+      description:
+        'Renderable content (e.g. a string, render array, or included pattern) to display within a modal at mobile breakpoints.  Typically, this is where the filters themselves go.',
+    },
+  },
+};

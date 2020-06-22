@@ -5,21 +5,22 @@ module.exports = {
   properties: {
     title: {
       type: 'string',
-      description: 'The toggle title text'
+      description: 'The toggle title text',
     },
     center: {
       type: 'boolean',
       description: '`True` to center the toggle title',
-      default: false
+      default: false,
     },
     collapse: {
       type: 'boolean',
       description: '`True` to hide toggle until mobile screen size',
-      default: false
+      default: false,
     },
     content: {
       type: 'any',
-      description: '**All of the items in the dropdown** -- generally works by including `@bolt-components-nav/nav.twig` with `links` array of objects containing `text` & `url`'
-    }
-  }
-}
+      description:
+        '**All of the items in the dropdown** -- generally works by including `@bolt-components-nav/nav.twig` with `links` array of objects containing `text` & `url`',
+    },
+  },
+};

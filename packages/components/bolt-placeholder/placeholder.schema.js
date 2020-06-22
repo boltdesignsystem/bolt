@@ -1,7 +1,8 @@
 module.exports = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'Bolt Placeholder',
-  description: 'Placeholders carve out space for other WIP content and components.',
+  description:
+    'Placeholders carve out space for other WIP content and components.',
   type: 'object',
   properties: {
     size: {
@@ -9,19 +10,13 @@ module.exports = {
       title: 'Placeholder Size',
       description: 'How large is this placeholder?',
       default: 'medium',
-      enum: [
-        'xsmall',
-        'small',
-        'medium',
-        'large',
-        'xlarge'
-      ]
+      enum: ['xsmall', 'small', 'medium', 'large', 'xlarge'],
     },
     animated: {
       type: 'boolean',
       title: 'Animated',
       description: 'Should this placeholder have an animated border?',
-      default: false
-    }
-  }
-}
+      default: false,
+    },
+  },
+};

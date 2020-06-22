@@ -236,6 +236,7 @@ class Nav extends BaseComponent {
     const patternTypes = window.navItems.patternTypes;
 
     return (
+      test
       <ol class="pl-c-nav__list">
         {patternTypes.map((item, i) => {
           const classes = classNames('pl-c-nav__list-item');
@@ -267,7 +268,7 @@ class Nav extends BaseComponent {
                   );
                 })}
 
-                {patternItems &&
+                {/* {patternItems &&
                   patternItems.map((patternItem, i) => {
                     return this.noViewAll &&
                       patternItem.patternPartial.includes('viewall') ? (
@@ -289,13 +290,13 @@ class Nav extends BaseComponent {
                         </NavLink>
                       </li>
                     );
-                  })}
+                  })} */}
               </ol>
             </li>
           );
         })}
 
-        {/* display the All link if window.ishControlsHide is undefined (for some reason) OR window.ishControls.ishControlsHide doesn't have `views-all` and/or `all` set to true */}
+        {/* display the All link if window.ishControlsHide is undefined (for some reason) OR window.ishControls.ishControlsHide doesn't have `views-all` and/or `all` set to true
         {(window.ishControls === undefined ||
           window.ishControls.ishControlsHide === undefined ||
           (window.ishControls.ishControlsHide['views-all'] !== true &&
@@ -310,7 +311,7 @@ class Nav extends BaseComponent {
               All
             </NavLink>
           </li>
-        )}
+        )} */}
       </ol>
     );
   }

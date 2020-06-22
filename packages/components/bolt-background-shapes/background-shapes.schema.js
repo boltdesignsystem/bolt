@@ -7,10 +7,7 @@ module.exports = {
       type: 'string',
       description: 'The shapeGroup to use to build the shapes layout.',
       default: 'A',
-      enum: [
-        'A',
-        'B'
-      ]
-    }
-  }
-}
+      enum: ['A', 'B'],
+    },
+  },
+};

@@ -5,7 +5,7 @@ module.exports = {
   properties: {
     icon_size: {
       description: 'Customize the size of the input icon used',
-      default: 'medium'
-    }
-  }
-}
+      default: 'medium',
+    },
+  },
+};

@@ -10,22 +10,24 @@ module.exports = {
         type: 'object',
         properties: {
           text: {
-            type: 'string'
+            type: 'string',
           },
           url: {
-            type: 'string'
-          }
-        }
-      }
+            type: 'string',
+          },
+        },
+      },
     },
     moreText: {
       type: 'string',
-      description: 'Button text that displays when the Priority+ Nav Dropdown is displayed',
-      default: 'More'
+      description:
+        'Button text that displays when the Priority+ Nav Dropdown is displayed',
+      default: 'More',
     },
     offset: {
       type: 'integer',
-      description: '(Inherited from nav-indicator) Number of pixels taken up by sticky items at the top of the page.  Used for smooth scroll and gumshoe.'
-    }
-  }
-}
+      description:
+        '(Inherited from nav-indicator) Number of pixels taken up by sticky items at the top of the page.  Used for smooth scroll and gumshoe.',
+    },
+  },
+};

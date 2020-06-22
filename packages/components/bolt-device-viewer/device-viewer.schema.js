@@ -6,42 +6,31 @@ module.exports = {
     deviceName: {
       description: 'Name of the device.',
       type: 'string',
-      enum: [
-        'ipad',
-        'iphone8',
-        'macbook'
-      ]
+      enum: ['ipad', 'iphone8', 'macbook'],
     },
     color: {
       description: 'Device color.',
       type: 'string',
-      enum: [
-        'black',
-        'silver',
-        'gold'
-      ]
+      enum: ['black', 'silver', 'gold'],
     },
     orientation: {
       description: 'Device orientation.',
       type: 'string',
-      enum: [
-        'portrait',
-        'landscape'
-      ]
+      enum: ['portrait', 'landscape'],
     },
     magnify: {
       description: 'Add the magnifier effect.',
       default: false,
-      type: 'boolean'
+      type: 'boolean',
     },
     image: {
       type: 'object',
       properties: {
         src: {
           type: 'string',
-          description: 'Source url for the image.'
-        }
-      }
-    }
-  }
-}
+          description: 'Source url for the image.',
+        },
+      },
+    },
+  },
+};
