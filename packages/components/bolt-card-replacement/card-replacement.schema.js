@@ -71,11 +71,11 @@ module.exports = {
       properties: {
         image: {
           type: 'object',
-          ref: '@bolt-components-image/image.schema.js',
+          ref: '@bolt-components-image/image.schema.json',
         },
         video: {
           type: 'object',
-          ref: '@bolt-components-video/video.schema.js',
+          ref: '@bolt-components-video/video.schema.json',
         },
         content: {
           type: ['string', 'array', 'object'],

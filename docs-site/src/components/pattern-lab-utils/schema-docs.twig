@@ -21,15 +21,9 @@
 
 {% macro loopThroughEnums(prop) %}
 	{% for x in prop.enum %}
-		<code>
-			{% if prop.type == "boolean" %}
-				{{ x ? "true" : "false" }}{% elseif x == null %}NULL
-			{% else %}
-				{{ x }}
-			{% endif %}
-		</code>
+		<code>{% if prop.type == "boolean" %}{{ x ? "true" : "false" }}{% elseif x == null %}NULL{% else %}{{- x -}}{% endif %}</code>
 		{%- if not loop.last %}
-			{{ prop.enum|length == 2 ? " or" : "," }}
+			{{ prop.enum|length == 2 ? " or " : ", " }}
 		{% endif -%}
 	{% endfor %}
 {% endmacro %}
@@ -46,23 +40,26 @@
 			{% endif -%}
 
 			{% if (prop.type == "object" or prop.type == "array") and prop.properties or prop.ref %}
-				{# {% if prop.ref %}
+				{% if prop.ref %}
 					{% set reference = get_data(prop.ref).properties %}
 					<details>
-						<summary><em>{{ prop.ref }} > Object details</em></summary>
+						<summary>
+							<em>{{ prop.ref }} > Object details</em>
+						</summary>
 						{{ macros.object(reference, true) }}
 					</details>
 				{% else %}
 					{{ macros.object(prop.properties) }}
-				{% endif %} #}
+				{% endif %}
 			{% elseif prop.type == "array" and prop.items %}
 				{% if prop.items.type == "object" or prop.items.type == "any" or prop.items.type is iterable %}
 					{% set printableType = prop.items.type is iterable ? prop.items.type|join(', ') : prop.items.type %}
 					[<em>items</em>]:
 					<ul class="c-bds-docs-list__child">
-						<li>Type:
-							<code>{{ printableType }}</code>
-							{{ macros.titleAndDescription(prop.items.title, prop.items.description, prop.minimum, prop.maximum) }}</li>
+						<li>
+							Type:<code>{{ printableType }}</code>
+							{{ macros.titleAndDescription(prop.items.title, prop.items.description, prop.minimum, prop.maximum) }}
+						</li>
 						{% if prop.items.properties is not empty %}
 							<li>Properties:
 								<ul class="c-bds-docs-list__child c-bds-docs-list__child--level-2">
@@ -76,9 +73,7 @@
 														Type:
 														{% if property.type is iterable %}
 															{% for type in property.type %}
-																<code>{{ type }}</code>
-																{% if not loop.last %},
-																{% endif %}
+																<code>{{ type }}</code>{% if not loop.last %}, {% endif %}
 															{% endfor %}
 														{% else %}
 															<code>{{ property.type }}</code>
@@ -149,13 +144,16 @@
 				{% for multiple in multiples %}
 					{% set type = multiple is iterable ? multiple.type : multiple %}
 					<code>{{ type }}</code>
-					{% if not loop.last %},
-					{% endif %}
+					{% if not loop.last %}, {% endif %}
 				{% endfor %}
 			</td>
 		{% else %}
 			<td class="c-bds-docs-table__col">
-				<code>{{ prop.type }}</code>
+				{% if prop.type %}
+					<code>{{ prop.type }}</code>
+				{% else %}
+					—
+				{% endif %}
 			{% endif %}
 
 			<!-- default value -->
@@ -187,8 +185,7 @@
 					<code>{{ key }}</code>
 					{{ macros.titleAndDescription(prop.title, prop.description, prop.minimum, prop.maximum) }}
 					{% if isRef %}
-						<p>Type:
-							{{ prop.type is iterable ? prop.type|join(", ") : prop.type }}</p>
+						<p>Type: {{ prop.type is iterable ? prop.type|join(", ") : prop.type }}</p>
 					{% endif %}
 					{{ macros.schemaProps(prop) }}
 				</li>
@@ -200,10 +197,10 @@
 	{% import _self as macros %}
 
 	{# {% if schema.description %}
-	  {% include "@bolt-components-headline/text.twig" with {
-	    text: schema.description
-	  } only %}
-	{% endif %} #}
+		  {% include "@bolt-components-headline/text.twig" with {
+		    text: schema.description
+		  } only %}
+		{% endif %} #}
 
 	{% set requiredProps = schema.required %}
 
@@ -234,9 +231,9 @@
 							{% for key, prop in schema.properties if schema.properties[key].flatten %}
 
 								{#
-								                TODO: Replace the following with the schemaTableRow macro to reduce duplication.
-								                This is postponed only because the following isn't currently in use, so it's difficult to test.
-								              #}
+																                TODO: Replace the following with the schemaTableRow macro to reduce duplication.
+																                This is postponed only because the following isn't currently in use, so it's difficult to test.
+																              #}
 								<tr
 									class="c-bds-docs-table__row c-bds-docs-table__row--twig-only {{ deprecated_class }}">
 
@@ -297,9 +294,9 @@
 									{% for key, prop in prefixedProperties if not prefixedProperties[key].hidden %}
 
 										{#
-										                  TODO: Replace the following with the schemaTableRow macro to reduce duplication.
-										                  This is postponed only because the following isn't currently in use, so it's difficult to test.
-										                #}
+																				                  TODO: Replace the following with the schemaTableRow macro to reduce duplication.
+																				                  This is postponed only because the following isn't currently in use, so it's difficult to test.
+																				                #}
 										<tr
 											class="c-bds-docs-table__row c-bds-docs-table__row--web-component-only {{ deprecated_class }}">
 

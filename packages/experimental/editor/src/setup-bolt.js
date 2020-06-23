@@ -16,7 +16,7 @@ import blockquoteSchema from '@bolt/components-blockquote/blockquote.schema.js';
 // @ts-ignore
 import chipSchema from '@bolt/components-chip/chip.schema.js';
 // @ts-ignore
-import imageSchema from '@bolt/components-image/image.schema.js';
+import imageSchema from '@bolt/components-image/image.schema.json';
 import animateSchema from '@bolt/components-animate/animate.schema';
 import * as starters from '@bolt/micro-journeys/starters';
 // @ts-ignore

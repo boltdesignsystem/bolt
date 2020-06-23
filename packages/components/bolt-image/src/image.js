@@ -8,7 +8,7 @@ import {
 import classNames from 'classnames/dedupe';
 import imageStyles from './image.scss';
 import { lazySizes } from './_image-lazy-sizes';
-import schemaFile from '../image.schema.js';
+import schemaFile from '../image.schema.json';
 import '@bolt/core-v3.x/utils/optimized-resize';
 
 let cx = classNames.bind(imageStyles);

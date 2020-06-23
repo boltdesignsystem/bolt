@@ -61,7 +61,7 @@ module.exports = {
     },
     copy_to_clipboard: {
       type: 'object',
-      ref: '@bolt-components-copy-to-clipboard/copy-to-clipboard.schema.js',
+      ref: '@bolt-components-copy-to-clipboard/copy-to-clipboard.schema.json',
     },
     inline: {
       title: 'DEPRECATED.',

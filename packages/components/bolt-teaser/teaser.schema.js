@@ -7,7 +7,7 @@ module.exports = {
     eyebrow: {
       type: 'object',
       description: 'Eyebrow text component',
-      ref: '@bolt-components-headline/headline.schema.js',
+      ref: '@bolt-components-headline/headline.schema.json',
     },
     headlines: {
       type: 'array',
@@ -15,13 +15,13 @@ module.exports = {
       items: {
         type: 'object',
         description: 'Headline text components',
-        ref: '@bolt-components-headline/headline.schema.js',
+        ref: '@bolt-components-headline/headline.schema.json',
       },
     },
     logo: {
       type: 'object',
       description: 'Bolt logo component',
-      ref: '@bolt-components-logo/logo.schema.js',
+      ref: '@bolt-components-logo/logo.schema.json',
     },
     content: {
       type: 'string',

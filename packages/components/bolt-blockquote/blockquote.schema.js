@@ -61,7 +61,7 @@ module.exports = {
     logo: {
       description: 'Add a logo component.',
       type: 'object',
-      ref: '@bolt-components-logo/logo.schema.js',
+      ref: '@bolt-components-logo/logo.schema.json',
     },
     author: {
       description: 'Author of the quote.',
@@ -77,7 +77,7 @@ module.exports = {
         },
         image: {
           type: 'object',
-          ref: '@bolt-components-image/image.schema.js',
+          ref: '@bolt-components-image/image.schema.json',
         },
       },
     },
