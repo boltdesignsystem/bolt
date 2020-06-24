@@ -8,6 +8,24 @@ module.exports = {
       description:
         'A Drupal-style attributes object with extra attributes to append to this component.',
     },
+    spacing: {
+      type: 'string',
+      description: 'Spacing surrounding each action block.',
+      default: 'medium',
+      enum: ['xsmall', 'small', 'medium']
+    },
+    valign: {
+      type: 'string',
+      description: 'Vertical alignment of the content inside each action block.',
+      default: 'start',
+      enum: ['start', 'center', 'end']
+    },
+    borderless: {
+      type: 'boolean',
+      description: 'Removes the border in between each action block.',
+      default: false,
+      enum: [true, false]
+    },
     opacity: {
       type: 'string',
       description: 'Overlay opacity',
