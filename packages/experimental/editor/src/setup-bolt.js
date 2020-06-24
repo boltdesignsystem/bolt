@@ -2,10 +2,10 @@ import * as grapesjs from 'grapesjs'; // eslint-disable-line no-unused-vars
 // @ts-ignore
 import buttonSchema from '@bolt/components-button/button.schema';
 // @ts-ignore
-import textSchema from '@bolt/components-text/text.schema.js';
+import textSchema from '@bolt/components-text/text.schema';
 import iconSchema from '@bolt/components-icon/icon.schema.json';
 // @ts-ignore
-import listSchema from '@bolt/components-list/list.schema.js';
+import listSchema from '@bolt/components-list/list.schema';
 import characterSchema from '@bolt/micro-journeys/src/character.schema';
 import connectionSchema from '@bolt/micro-journeys/src/connection.schema';
 import pathwaysSchema from '@bolt/micro-journeys/src/interactive-pathways.schema';

@@ -34,8 +34,6 @@ module.exports = {
         'inline@xsmall',
         'inline@small',
         'inline@medium',
-        'inline@large',
-        'inline@xxlarge',
       ],
     },
     spacing: {

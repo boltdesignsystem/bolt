@@ -8,7 +8,7 @@ import {
 import { render } from 'lit-html';
 import classNames from 'classnames/bind';
 import styles from './chip-list.scss';
-import schema from '../chip-list.schema.js';
+import schema from '../chip-list.schema';
 
 let cx = classNames.bind(styles);
 

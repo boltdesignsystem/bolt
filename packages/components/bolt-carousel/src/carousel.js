@@ -13,7 +13,7 @@ import {
 // Install modules
 Swiper.use([Navigation, Pagination, Scrollbar, A11y, Autoplay]);
 
-import schema from '../carousel.schema.js';
+import schema from '../carousel.schema';
 import carouselStyles from '../index.scss';
 
 import '@bolt/core-v3.x/utils/optimized-resize';

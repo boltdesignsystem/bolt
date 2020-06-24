@@ -9,7 +9,7 @@ import {
   customElement,
 } from '@bolt/element';
 import styles from './blockquote.scss';
-import schema from '../blockquote.schema.js';
+import schema from '../blockquote.schema';
 import { AuthorImage, AuthorName, AuthorTitle } from './Author';
 
 let cx = classNames.bind([styles, textStyles]);

@@ -14,7 +14,7 @@ import { smoothScroll } from '@bolt/components-smooth-scroll/src/smooth-scroll';
 import URLSearchParams from '@ungap/url-search-params'; // URLSearchParams poly for older browsers
 import classNames from 'classnames/bind';
 import styles from './tabs.scss';
-import schema from '../tabs.schema.js';
+import schema from '../tabs.schema';
 
 import '@bolt/core-v3.x/utils/optimized-resize';
 

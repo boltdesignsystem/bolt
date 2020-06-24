@@ -11,7 +11,7 @@ import { withLitHtml } from '@bolt/core-v3.x/renderers/renderer-lit-html';
 
 import themes from '@bolt/global/styles/06-themes/_themes.all.scss';
 import styles from './list.scss';
-import schema from '../list.schema.js';
+import schema from '../list.schema';
 
 let cx = classNames.bind(styles);
 
