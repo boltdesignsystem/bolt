@@ -8,7 +8,7 @@ import {
 } from '../../../testing/testing-helpers';
 import schema from '../blockquote.schema';
 const os = require('os');
-const { tag, size, alignItems, border } = schema.properties;
+const { size, alignItems, border } = schema.properties;
 const languages = ['en', 'de', 'fr', 'ja'];
 
 const vrtDefaultConfig = Object.assign(vrtConfig, {

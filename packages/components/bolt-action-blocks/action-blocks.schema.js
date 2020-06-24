@@ -2,6 +2,19 @@ module.exports = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'Bolt Background',
   type: 'object',
+  not: {
+    anyOf: [
+      {
+        required: ['maxItemsPerRow'],
+      },
+      {
+        required: ['align'],
+      },
+      {
+        required: ['border'],
+      }
+    ]
+  },
   properties: {
     attributes: {
       type: 'object',
