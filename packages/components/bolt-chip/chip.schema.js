@@ -44,7 +44,7 @@ module.exports = {
           enum: ['before', 'after'],
         },
       },
-      ref: '@bolt-components-icon/icon.schema.json',
+      ref: 'icon',
     },
     tag: {
       description:

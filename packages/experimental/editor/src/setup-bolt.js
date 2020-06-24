@@ -12,11 +12,11 @@ import pathwaysSchema from '@bolt/micro-journeys/src/interactive-pathways.schema
 import statusDialogueBarSchema from '@bolt/micro-journeys/src/status-dialogue-bar.schema';
 import svgAnimationsSchema from '@bolt/micro-journeys/src/bolt-svg-animations/svg-animations.schema';
 // @ts-ignore
-import blockquoteSchema from '@bolt/components-blockquote/blockquote.schema.js';
+import blockquoteSchema from '@bolt/components-blockquote/blockquote.schema'
 // @ts-ignore
-import chipSchema from '@bolt/components-chip/chip.schema.js';
+import chipSchema from '@bolt/components-chip/chip.schema';
 // @ts-ignore
-import imageSchema from '@bolt/components-image/image.schema.json';
+import imageSchema from '@bolt/components-image/image.schema';
 import animateSchema from '@bolt/components-animate/animate.schema';
 import * as starters from '@bolt/micro-journeys/starters';
 // @ts-ignore

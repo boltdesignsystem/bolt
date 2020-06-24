@@ -70,12 +70,12 @@ module.exports = {
         'Media section of the card-replacement, accepts either image and video, or custom content.',
       properties: {
         image: {
-          type: 'object',
-          ref: '@bolt-components-image/image.schema.json',
+          type: 'string',
+          ref: 'image',
         },
         video: {
-          type: 'object',
-          ref: '@bolt-components-video/video.schema.json',
+          type: 'string',
+          ref: 'video',
         },
         content: {
           type: ['string', 'array', 'object'],

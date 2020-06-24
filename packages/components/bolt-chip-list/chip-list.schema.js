@@ -8,9 +8,8 @@ module.exports = {
       type: 'array',
       description: 'An array of Chips.',
       items: {
-        type: 'object',
-        description: 'Chip.',
-        ref: '@bolt-components-chip/chip.schema.js',
+        type: 'string',
+        ref: 'chip',
       },
     },
     size: {
@@ -48,8 +47,7 @@ module.exports = {
         'Deprecated (will be removed in Bolt v3.0) - use the <code>items</code> prop instead.',
       items: {
         type: 'object',
-        description: 'Chip.',
-        ref: '@bolt-components-chip/chip.schema.js',
+        ref: 'chip',
       },
     },
   },

@@ -5,23 +5,20 @@ module.exports = {
   type: 'object',
   properties: {
     eyebrow: {
-      type: 'object',
-      description: 'Eyebrow text component',
-      ref: '@bolt-components-headline/headline.schema.json',
+      type: 'string',
+      ref: 'headline',
     },
     headlines: {
       type: 'array',
       description: 'An array of headline component objects',
       items: {
-        type: 'object',
-        description: 'Headline text components',
-        ref: '@bolt-components-headline/headline.schema.json',
+        type: 'string',
+        ref: 'headline',
       },
     },
     logo: {
-      type: 'object',
-      description: 'Bolt logo component',
-      ref: '@bolt-components-logo/logo.schema.json',
+      type: 'string',
+      ref: 'logo',
     },
     content: {
       type: 'string',
@@ -38,9 +35,8 @@ module.exports = {
       type: 'array',
       description: 'An array of button component objects',
       items: {
-        type: 'object',
-        description: 'A button',
-        ref: '@bolt-components-button/button.schema.js',
+        type: 'string',
+        ref: 'button',
       },
     },
   },

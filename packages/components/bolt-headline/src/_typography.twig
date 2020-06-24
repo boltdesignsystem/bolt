@@ -1,5 +1,5 @@
 {% if enable_json_schema_validation %}
-  {{ validate_data_schema('@bolt-components-headline/headline.schema.json', _self) | raw }}
+  {{ validate_data_schema('@bolt-components-headline/headline.schema.js', _self) | raw }}
 {% endif %}
 
 {% set schema = bolt.data.components['@bolt-components-headline'].schema %}
