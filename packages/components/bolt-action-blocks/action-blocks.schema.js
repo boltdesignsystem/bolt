@@ -97,8 +97,42 @@ module.exports = {
       description:
         'An array of objects to place in the background. Works with Image and Shape components. Video option is deprecated.',
       items: {
-        type: 'any',
+        type: 'object',
+        properties: {
+          text: {
+            type: 'string'
+          },
+          url: {
+            type: 'string'
+          },
+          icon: {
+            type: 'object',
+            properties: {
+              name:{
+                type: 'string'
+              },
+              size:{
+                type: 'string'
+              },
+              background:{
+                type: 'string'
+              }
+            }
+          }
+        }
       },
     },
+    maxItemsPerRow: {
+      title: 'DEPRECATED',
+      description: 'Use max_items_per_row prop instead.'
+    },
+    align: {
+      title: 'DEPRECATED',
+      description: 'Use valign prop instead.'
+    },
+    border: {
+      title: 'DEPRECATED',
+      description: 'Use borderless prop instead.'
+    }
   },
 };
