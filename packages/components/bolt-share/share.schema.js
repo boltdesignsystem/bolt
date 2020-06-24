@@ -60,7 +60,7 @@ module.exports = {
       },
     },
     copy_to_clipboard: {
-      type: 'string',
+      type: 'object',
       ref: 'copy-to-clipboard',
     },
     inline: {

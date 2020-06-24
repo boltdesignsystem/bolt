@@ -74,7 +74,7 @@ module.exports = {
      },
      logo: {
         description: 'Add a logo component.',
-        type: 'string',
+        type: 'object',
         ref: 'logo'
      },
      author: {
@@ -90,7 +90,7 @@ module.exports = {
               description: 'Author\'s title.'
            },
            image: {
-              type: 'string',
+              type: 'object',
               ref: 'image'
            }
         }

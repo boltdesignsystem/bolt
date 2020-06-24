@@ -5,19 +5,22 @@ module.exports = {
   type: 'object',
   properties: {
     eyebrow: {
-      type: 'string',
+      type: 'object',
+      description: 'Eyebrow text component',
       ref: 'headline',
     },
     headlines: {
       type: 'array',
       description: 'An array of headline component objects',
       items: {
-        type: 'string',
+        type: 'object',
+        description: 'Headline text components',
         ref: 'headline',
       },
     },
     logo: {
-      type: 'string',
+      type: 'object',
+      description: 'Bolt logo component',
       ref: 'logo',
     },
     content: {
@@ -35,7 +38,8 @@ module.exports = {
       type: 'array',
       description: 'An array of button component objects',
       items: {
-        type: 'string',
+        type: 'object',
+        description: 'A button',
         ref: 'button',
       },
     },

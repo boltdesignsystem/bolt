@@ -25,7 +25,8 @@ module.exports = {
         'A url to link to.  This may also be passed as part of `attributes`',
     },
     icon: {
-      type: 'string',
+      type: 'object',
+      description: 'Icon data as expected by the icon component.  Accepts an additional \'position\' parameter that determines placement within the Navlink.',
       ref: 'icon',
       properties: {
         position: {

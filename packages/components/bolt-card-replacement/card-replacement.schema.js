@@ -70,11 +70,11 @@ module.exports = {
         'Media section of the card-replacement, accepts either image and video, or custom content.',
       properties: {
         image: {
-          type: 'string',
+          type: 'object',
           ref: 'image',
         },
         video: {
-          type: 'string',
+          type: 'object',
           ref: 'video',
         },
         content: {

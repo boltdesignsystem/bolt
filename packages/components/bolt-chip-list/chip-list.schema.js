@@ -8,7 +8,7 @@ module.exports = {
       type: 'array',
       description: 'An array of Chips.',
       items: {
-        type: 'string',
+        type: 'object',
         ref: 'chip',
       },
     },
@@ -47,6 +47,7 @@ module.exports = {
         'Deprecated (will be removed in Bolt v3.0) - use the <code>items</code> prop instead.',
       items: {
         type: 'object',
+        description: 'Chip.',
         ref: 'chip',
       },
     },
