@@ -61,11 +61,12 @@ Next, with your `.zshrc` config updated, restart your iTerm instance:
 source ~/.zshrc
 ```
 
-Finally, finish installing nvm: 
+Finally, finish installing nvm:
 ```
-nvm install lts/carbon # v8.9 +
-nvm alias default lts/carbon
+nvm install 12.16
+nvm alias default 12.16
 ```
+Please note that Bolt currently does not support Node v12.18, we are currently working on a solution.
 
 ### 4. Install PHP and PHP Dependencies
 ```bash
