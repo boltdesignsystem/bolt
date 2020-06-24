@@ -1,17 +1,17 @@
 module.exports = {
   $schema: 'http://json-schema.org/draft-04/schema#',
-  title: 'Bolt Background',
+  title: 'Action blocks',
   type: 'object',
   not: {
     anyOf: [
       {
-        required: ['maxItemsPerRow'],
+        required: ['maxItemsPerRow']
       },
       {
-        required: ['align'],
+        required: ['align']
       },
       {
-        required: ['border'],
+        required: ['border']
       }
     ]
   },
@@ -19,7 +19,7 @@ module.exports = {
     attributes: {
       type: 'object',
       description:
-        'A Drupal-style attributes object with extra attributes to append to this component.',
+        'A Drupal-style attributes object with extra attributes to append to this component.'
     },
     spacing: {
       type: 'string',
@@ -27,9 +27,17 @@ module.exports = {
       default: 'medium',
       enum: ['xsmall', 'small', 'medium']
     },
+    max_items_per_row: {
+      type: 'number',
+      description:
+        'The max amount of items (action blocks) to be displayed in one row.',
+      default: 6,
+      enum: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+    },
     valign: {
       type: 'string',
-      description: 'Vertical alignment of the content inside each action block.',
+      description:
+        'Vertical alignment of the content inside each action block.',
       default: 'start',
       enum: ['start', 'center', 'end']
     },
@@ -39,63 +47,9 @@ module.exports = {
       default: false,
       enum: [true, false]
     },
-    opacity: {
-      type: 'string',
-      description: 'Overlay opacity',
-      default: 'medium',
-      enum: ['light', 'medium', 'heavy', 'full'],
-    },
-    overlay: {
-      type: 'string',
-      description: 'Should an overlay be used for this background.',
-      default: 'enabled',
-      enum: ['enabled', 'disabled'],
-    },
-    shapeGroup: {
-      type: 'string',
-      description: 'Add a Bolt Background Shapes group.',
-      default: 'none',
-      enum: ['A', 'B', 'none'],
-    },
-    shapeAlignment: {
-      type: 'string',
-      description: 'Alignment of shape group.',
-      default: 'right',
-      enum: ['left', 'right'],
-    },
-    fill: {
-      type: 'string',
-      description: 'Type of fill to use for the overlay.',
-      default: 'color',
-      enum: ['color', 'gradient', 'linear-gradient', 'radial-gradient'],
-    },
-    fillColor: {
-      type: 'string',
-      description: 'Color of the fill to use in the overlay.',
-      default: 'default',
-      enum: ['indigo', 'pink', 'default', 'black'],
-    },
-    focalPoint: {
-      type: 'object',
-      description: 'Where the opacity background should originate.',
-      properties: {
-        horizontal: {
-          type: 'string',
-          description: "Currently only reverses gradient on 'left'.",
-          enum: ['center', 'left', 'right'],
-        },
-        vertical: {
-          type: 'string',
-          description:
-            "Currently doesn't use this value. Intended future application.",
-          enum: ['center', 'top', 'bottom'],
-        },
-      },
-    },
     contentItems: {
       type: 'array',
-      description:
-        'An array of objects to place in the background. Works with Image and Shape components. Video option is deprecated.',
+      description: 'Content items to populate the action blocks.',
       items: {
         type: 'object',
         properties: {
@@ -108,19 +62,19 @@ module.exports = {
           icon: {
             type: 'object',
             properties: {
-              name:{
+              name: {
                 type: 'string'
               },
-              size:{
+              size: {
                 type: 'string'
               },
-              background:{
+              background: {
                 type: 'string'
               }
             }
           }
         }
-      },
+      }
     },
     maxItemsPerRow: {
       title: 'DEPRECATED',
@@ -134,5 +88,5 @@ module.exports = {
       title: 'DEPRECATED',
       description: 'Use borderless prop instead.'
     }
-  },
-};
+  }
+}
