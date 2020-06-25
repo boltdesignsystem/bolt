@@ -3,6 +3,7 @@ import { props, css, hasNativeShadowDomSupport } from '@bolt/core-v3.x/utils';
 import { h, withPreact, Markup } from '@bolt/core-v3.x/renderers';
 import Prism from 'prismjs/components/prism-core';
 import styles from './code-snippet.scss';
+import schema from '../code-snippet.schema';
 
 import 'prismjs/components/prism-markup';
 import 'prismjs/components/prism-twig';
@@ -54,7 +55,8 @@ class BoltCodeSnippetClass extends withPreact {
   }
 
   render() {
-    const { lang, display, syntax } = this.props;
+    const { display, syntax } = this.props;
+    const lang = this.props.lang || schema.properties.lang.default;
     const highlightedCode = this.highlightHTML(this.code, lang);
 
     const codeClasses = css(
