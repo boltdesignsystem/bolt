@@ -6,9 +6,7 @@ import {
   stopServer,
   html,
 } from '../../../testing/testing-helpers';
-const { readYamlFileSync } = require('@bolt/build-tools/utils/yaml');
-const { join } = require('path');
-const schema = readYamlFileSync(join(__dirname, '../band.schema.yml'));
+import schema from '../band.schema';
 const { size, theme, tag } = schema.properties;
 
 const timeout = 120000;

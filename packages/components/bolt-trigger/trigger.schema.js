@@ -1,4 +1,5 @@
 module.exports = {
+  $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'Bolt Trigger',
   description:
     'Triggers add button or link behavior to any content without the default button or link styles.',
