@@ -5,7 +5,7 @@
 \* ------------------------------------ */
 
 $bolt-pagination-transition: $bolt-transition;
-$bolt-pagination-item-size: bolt-spacing(medium);
+$bolt-pagination-item-size: var(--bolt-spacing-x-medium);
 
 
 
@@ -13,8 +13,8 @@ $bolt-pagination-item-size: bolt-spacing(medium);
 @include bolt-custom-element('bolt-pagination', block, medium);
 
 .c-bolt-pagination {
-  @include bolt-margin(0);
-  @include bolt-padding(0);
+  padding: 0;
+  margin: 0;
 
   display: flex;
   flex-wrap: wrap; // @todo: component needs better responsive design, for now just make sure it doesn't overflow the container
@@ -35,8 +35,8 @@ $bolt-pagination-item-size: bolt-spacing(medium);
 }
 
 .c-bolt-pagination__item {
-  @include bolt-margin(0);
-  @include bolt-padding(0 2px); // [Mai] This will give big numbers (over 3 digits) some padding left and right so it's not touching the edge.
+  margin: 0;
+  padding: 0 2px;
   @include bolt-font-family(body);
   @include bolt-font-weight(semibold);
   @include bolt-font-size(small);
@@ -82,21 +82,21 @@ $bolt-pagination-item-size: bolt-spacing(medium);
 }
 
 .c-bolt-pagination__item--prev {
-  @include bolt-margin-right(small);
+  margin-right: var(--bolt-spacing-x-small);
 
   @include bolt-mq(small) {
     .c-bolt-pagination__icon {
-      @include bolt-margin-right(xxsmall);
+      margin-right: var(--bolt-spacing-x-xxsmall);
     }
   }
 }
 
 .c-bolt-pagination__item--next {
-  @include bolt-margin-left(small);
+  margin-left: var(--bolt-spacing-x-small);
 
   @include bolt-mq(small) {
     .c-bolt-pagination__icon {
-      @include bolt-margin-left(xxsmall);
+      margin-left: var(--bolt-spacing-x-xxsmall);
     }
   }
 }
