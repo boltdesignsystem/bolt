@@ -52,7 +52,7 @@ describe('Tests to confirm that the latest upcoming release of the @bolt/build-t
     expect(colorData).toMatchSnapshot();
 
     expect(colorData.navy.xdark).toBe('rgb(9, 23, 52)');
-    expect(colorData.yellow.base).toBe('rgb(255, 204, 77)');
+    expect(colorData.yellow.base).toBe('rgb(255, 200, 54)');
   });
 
   test('Check that the Japanese-specific CSS bundle was generated and contains the correct font', async () => {
