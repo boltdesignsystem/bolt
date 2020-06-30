@@ -139,7 +139,8 @@ $bolt-button-transition: $bolt-transition;
 
 @mixin bolt-button-style--tertiary() {
   color: bolt-theme(headline);
-  background-color: rgba(bolt-color(gray), 0.2);
+  background-color: bolt-theme(neutral, 0.2);
+  box-shadow: 0 0 0.25rem bolt-theme(background, 0.2);
 
   &:before,
   &:after {
@@ -148,17 +149,17 @@ $bolt-button-transition: $bolt-transition;
 
   &:hover,
   &.is-hover {
-    background-color: rgba(bolt-color(gray), 0.4);
+    background-color: bolt-theme(neutral, 0.4);
   }
 
   &:focus,
   &.is-focus {
-    background-color: rgba(bolt-color(gray), 0.4);
+    background-color: bolt-theme(neutral, 0.4);
   }
 
   &:active,
   &.is-active {
-    background-color: rgba(bolt-color(gray), 0.6);
+    background-color: bolt-theme(neutral, 0.6);
   }
 }
 
