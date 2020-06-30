@@ -36,7 +36,7 @@ $bolt-pagination-item-size: var(--bolt-spacing-x-medium);
 
 .c-bolt-pagination__item {
   margin: 0;
-  padding: 0 2px;
+  padding: 0 2px; // [Mai] This will give big numbers (over 3 digits) some padding left and right so it's not touching the edge.
   @include bolt-font-family(body);
   @include bolt-font-weight(semibold);
   @include bolt-font-size(small);
