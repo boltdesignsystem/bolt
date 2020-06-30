@@ -6,11 +6,9 @@ import {
   html,
   vrtDefaultConfig as vrtConfig,
 } from '../../../testing/testing-helpers';
+import schema from '../blockquote.schema';
 const os = require('os');
-const { readYamlFileSync } = require('@bolt/build-tools/utils/yaml');
-const { join } = require('path');
-const schema = readYamlFileSync(join(__dirname, '../blockquote.schema.yml'));
-const { tag, size, alignItems, border } = schema.properties;
+const { size, alignItems, border } = schema.properties;
 const languages = ['en', 'de', 'fr', 'ja'];
 
 const vrtDefaultConfig = Object.assign(vrtConfig, {

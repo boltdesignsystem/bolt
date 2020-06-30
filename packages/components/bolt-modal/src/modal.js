@@ -13,7 +13,7 @@ import {
 import { withLitHtml } from '@bolt/core-v3.x/renderers/renderer-lit-html';
 import classNames from 'classnames/bind';
 import styles from './modal.scss';
-import schema from '../modal.schema.yml';
+import schema from '../modal.schema.js';
 
 const tabbable = require('tabbable');
 import '../focus-trap';
