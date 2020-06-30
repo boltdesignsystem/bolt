@@ -51,7 +51,7 @@ describe('Tests to confirm that the latest upcoming release of the @bolt/build-t
 
     expect(colorData).toMatchSnapshot();
 
-    expect(colorData.indigo.xdark).toBe('rgb(6, 9, 35)');
+    expect(colorData.navy.xdark).toBe('rgb(9, 23, 52)');
     expect(colorData.yellow.base).toBe('rgb(255, 204, 77)');
   });
 
