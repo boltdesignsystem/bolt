@@ -4,16 +4,12 @@ import {
   renderString,
   stopServer,
   html,
-  vrtDefaultConfig as vrtConfig,
+  vrtDefaultConfig,
 } from '../../../testing/testing-helpers';
 import schema from '../blockquote.schema';
 const os = require('os');
 const { size, alignItems, border } = schema.properties;
 const languages = ['en', 'de', 'fr', 'ja'];
-
-const vrtDefaultConfig = Object.assign(vrtConfig, {
-  failureThreshold: '0.02',
-});
 
 const timeout = 90000;
 
@@ -29,6 +25,7 @@ describe('<bolt-blockquote> component', () => {
     await page.evaluate(() => {
       document.body.innerHTML = '';
     });
+    await page.setViewport({ width: 800, height: 400 });
   }, timeout);
 
   beforeAll(async () => {
