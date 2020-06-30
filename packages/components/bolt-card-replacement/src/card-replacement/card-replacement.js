@@ -2,7 +2,7 @@ import { unsafeCSS, BoltElement, customElement, html } from '@bolt/element';
 import classNames from 'classnames/bind';
 import { withContext } from 'wc-context';
 import cardReplacementStyles from './card-replacement.scss';
-import schema from '../../card-replacement.schema.yml';
+import schema from '../../card-replacement.schema';
 let cx = classNames.bind(cardReplacementStyles);
 
 // define which specific props to provide to children that subscribe

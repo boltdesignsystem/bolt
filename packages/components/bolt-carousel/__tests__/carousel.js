@@ -8,9 +8,7 @@ import {
   html,
   //vrtDefaultConfig as vrtConfig,
 } from '../../../testing/testing-helpers';
-const { readYamlFileSync } = require('@bolt/build-tools/utils/yaml');
-const { join } = require('path');
-
+import schema from '../carousel.schema';
 const vrtDefaultConfig = {
   failureThreshold: '0.0028',
   failureThresholdType: 'percent',
