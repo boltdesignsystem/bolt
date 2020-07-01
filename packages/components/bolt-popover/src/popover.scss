@@ -80,7 +80,7 @@ $bolt-popover-transition: $bolt-transition-timing
     display: none;
     top: 100%;
     left: 50%;
-    transform: translate3d(-50%, #{bolt-v-spacing(xxsmall)}, 0);
+    transform: translate3d(-50%, #{var(--bolt-spacing-y-xxsmall)}, 0);
   }
 
   bolt-popover:not([ready]) .c-bolt-popover__no-js-content:target & {
@@ -101,6 +101,7 @@ $bolt-popover-transition: $bolt-transition-timing
     width: 1.25rem;
     height: 1.25rem;
     margin-bottom: bolt-v-spacing(xsmall);
+    margin-bottom: var(--bolt-spacing-y-xsmall);
     margin-left: auto;
     color: bolt-theme(link);
     line-height: 1;
@@ -126,8 +127,8 @@ $bolt-popover-transition: $bolt-transition-timing
  * - used for visual design of the bubble and the fly in effect
  */
 .c-bolt-popover__bubble {
-  @include bolt-margin(xxsmall);
-  @include bolt-padding(0);
+  margin: var(--bolt-spacing-y-xxsmall) var(--bolt-spacing-x-xxsmall);
+  padding: 0;
   @include bolt-font-family(body);
   @include bolt-font-size(xsmall);
   @include bolt-font-weight(regular);
@@ -250,13 +251,13 @@ $bolt-popover-transition: $bolt-transition-timing
 
   .c-bolt-popover--spacing-#{$spacing-value-name} {
     .c-bolt-popover__bubble {
-      @include bolt-padding(#{$spacing-value-name});
+      padding: var(--bolt-spacing-y-#{$spacing-value-name}) var(--bolt-spacing-x-#{$spacing-value-name});
     }
 
     @at-root bolt-popover:not([ready]) & {
       .c-bolt-popover__nojs-close {
-        margin-top: bolt-v-spacing(#{$spacing-value-name}) * -1;
-        margin-right: bolt-spacing(#{$spacing-value-name}) * -1;
+        margin-top: calc( var(--bolt-spacing-y-#{$spacing-value-name}) * -1 );
+        margin-right: calc( var(--bolt-spacing-x-#{$spacing-value-name}) * -1 );
       }
     }
   }
