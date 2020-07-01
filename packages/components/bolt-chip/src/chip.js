@@ -4,7 +4,7 @@ import { render } from '@bolt/core-v3.x/renderers/renderer-lit-html';
 import { BoltAction } from '@bolt/core-v3.x/elements/bolt-action';
 import classNames from 'classnames/bind';
 import styles from './chip.scss';
-import schema from '../chip.schema.yml';
+import schema from '../chip.schema';
 
 let cx = classNames.bind(styles);
 

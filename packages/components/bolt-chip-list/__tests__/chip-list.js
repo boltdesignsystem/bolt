@@ -6,9 +6,7 @@ import {
   html,
   vrtDefaultConfig,
 } from '../../../testing/testing-helpers';
-const { readYamlFileSync } = require('@bolt/build-tools/utils/yaml');
-const { join } = require('path');
-const schema = readYamlFileSync(join(__dirname, '../chip-list.schema.yml'));
+import schema from '../chip-list.schema';
 const timeout = 90000;
 
 describe('<bolt-chip-list> Component', () => {

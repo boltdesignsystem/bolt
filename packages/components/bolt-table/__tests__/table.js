@@ -6,9 +6,7 @@ import {
   stop as stopTwigRenderer,
 } from '@bolt/twig-renderer';
 import { html } from '../../../testing/testing-helpers';
-const { readYamlFileSync } = require('@bolt/build-tools/utils/yaml');
-const { join } = require('path');
-const schema = readYamlFileSync(join(__dirname, '../table.schema.yml'));
+import schema from '../table.schema';
 const { format, borderless, first_col_fixed_width } = schema.properties;
 
 async function renderTwig(template, data) {
