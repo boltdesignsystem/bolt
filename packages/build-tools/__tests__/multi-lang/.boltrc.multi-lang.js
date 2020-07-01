@@ -9,11 +9,15 @@ const config = {
   components: {
     global: [
       '@bolt/core',
-      '@bolt/components-button',
       '@bolt/global',
+      '@bolt/components-button',
+      '@bolt/components-icon',
+      '@bolt/components-figure',
+      '@bolt/components-link',
+      '@bolt/components-ratio',
     ],
     individual: [],
-  }
+  },
 };
 
 module.exports = config;
