@@ -5,11 +5,7 @@ import {
   stopServer,
   html,
 } from '../../../testing/testing-helpers';
-const { readYamlFileSync } = require('@bolt/build-tools/utils/yaml');
-const { join } = require('path');
-const schema = readYamlFileSync(
-  join(__dirname, '../background-shapes.schema.yml'),
-);
+import schema from '../background-shapes.schema';
 const { shapeGroup } = schema.properties;
 
 describe('background shapes', () => {

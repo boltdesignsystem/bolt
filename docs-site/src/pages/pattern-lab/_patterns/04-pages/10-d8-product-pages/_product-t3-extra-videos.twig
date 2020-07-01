@@ -241,13 +241,16 @@
       {% endcell %}
 
       {% cell "u-bolt-width-1/1 u-bolt-width-7/12@small" %}
+        {% set device_viewer_image %}
+          {% include "@bolt-components-image/image.twig" with {
+            src: "/images/content/screenshots/device-screenshot--tablet.jpg",
+          } only %}
+        {% endset %}
         {% include "@bolt/device-viewer.twig" with {
           device: "ipad",
           orientation: "landscape",
           color: "black",
-          image: {
-            src: "/images/content/screenshots/device-screenshot--tablet.jpg"
-          }
+          content: device_viewer_image,
         } only %}
       {% endcell %}
 
@@ -270,13 +273,16 @@
     {% grid "o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--middle o-bolt-grid--matrix" %}
 
       {% cell "u-bolt-width-1/1 u-bolt-width-7/12@small" %}
+        {% set device_viewer_image %}
+          {% include "@bolt-components-image/image.twig" with {
+            src: "/images/content/screenshots/device-screenshot--tablet-portrait.jpg",
+          } only %}
+        {% endset %}
         {% include "@bolt/device-viewer.twig" with {
           device: "ipad",
           orientation: "portrait",
           color: "black",
-          image: {
-            src: "/images/content/screenshots/device-screenshot--tablet-portrait.jpg"
-          }
+          content: device_viewer_image,
         } only %}
       {% endcell %}
 
@@ -389,48 +395,60 @@
       {% endcell %}
 
       {% cell "u-bolt-width-1/1 u-bolt-width-7/12@small" %}
+        {% set device_viewer_image %}
+          {% include "@bolt-components-image/image.twig" with {
+            src: "/images/content/screenshots/device-screenshot--phone.jpg",
+          } only %}
+        {% endset %}
         {% include "@bolt/device-viewer.twig" with {
           device: "iphone8",
           orientation: "portrait",
           color: "black",
-          image: {
-            src: "/images/content/screenshots/device-screenshot--phone.jpg"
-          }
+          content: device_viewer_image,
         } only %}
       {% endcell %}
 
        {% cell "u-bolt-width-1/1 u-bolt-width-7/12@small" %}
+         {% set device_viewer_image %}
+           {% include "@bolt-components-image/image.twig" with {
+             src: "/images/content/screenshots/device-screenshot--phone.jpg",
+           } only %}
+         {% endset %}
         {% include "@bolt/device-viewer.twig" with {
           device: "iphone8",
           orientation: "portrait",
           color: "gold",
-          image: {
-            src: "/images/content/screenshots/device-screenshot--phone.jpg"
-          }
+          content: device_viewer_image,
         } only %}
       {% endcell %}
 
       {% cell "u-bolt-width-1/1 u-bolt-width-7/12@small" %}
+        {% set device_viewer_image %}
+          {% include "@bolt-components-image/image.twig" with {
+            src: "/images/content/screenshots/device-screenshot--phone.jpg",
+          } only %}
+        {% endset %}
         {% include "@bolt/device-viewer.twig" with {
           device: "iphone8",
           orientation: "landscape",
           color: "gold",
-          image: {
-            src: "/images/content/screenshots/device-screenshot--phone.jpg"
-          }
+          content: device_viewer_image,
         } only %}
       {% endcell %}
 
 
        {% cell "u-bolt-width-1/1" %}
-        {% include "@bolt/device-viewer.twig" with {
-          device: "iphone8",
-          orientation: "landscape",
-          color: "black",
-          image: {
-            src: "/images/content/screenshots/device-screenshot--phone.jpg"
-          }
-        } only %}
+         {% set device_viewer_image %}
+           {% include "@bolt-components-image/image.twig" with {
+             src: "/images/content/screenshots/device-screenshot--phone.jpg",
+           } only %}
+         {% endset %}
+         {% include "@bolt/device-viewer.twig" with {
+           device: "iphone8",
+           orientation: "landscape",
+           color: "black",
+           content: device_viewer_image,
+         } only %}
       {% endcell %}
 
     {% endgrid %}
@@ -515,13 +533,16 @@
       {% endcell %}
 
       {% cell "u-bolt-width-1/1 u-bolt-width-6/12@small" %}
+        {% set device_viewer_image %}
+          {% include "@bolt-components-image/image.twig" with {
+            src: "/images/content/screenshots/device-screenshot--desktop.jpg",
+          } only %}
+        {% endset %}
         {% include "@bolt/device-viewer.twig" with {
           device: "macbook",
           orientation: "landscape",
           color: "black",
-          image: {
-            src: "/images/content/screenshots/device-screenshot--desktop.jpg"
-          }
+          content: device_viewer_image,
         } only %}
       {% endcell %}
     {% endgrid %}

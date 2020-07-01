@@ -5,7 +5,7 @@ import { withContext } from 'wc-context';
 import { withLitHtml } from '@bolt/core-v3.x/renderers/renderer-lit-html';
 import { html, customElement } from '@bolt/element';
 
-import schema from '../../card-replacement.schema.yml';
+import schema from '../../card-replacement.schema';
 import styles from './_card-replacement-action.scss';
 
 let cx = classNames.bind(styles);

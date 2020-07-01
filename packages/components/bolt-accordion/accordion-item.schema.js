@@ -1,4 +1,5 @@
 module.exports = {
+  $schema: 'http://json-schema.org/draft-04/schema#',
   type: 'object',
   properties: {
     trigger: {
@@ -18,8 +19,7 @@ module.exports = {
     },
     inactive: {
       type: 'boolean',
-      description:
-        'Display item trigger as an inactive element. Item content will be collapsed and the toggle icon hidden.',
+      description: 'Display item trigger as an inactive element. Item content will be collapsed and the toggle icon hidden.',
       default: false,
     },
     uuid: {
@@ -33,22 +33,19 @@ module.exports = {
     },
     close_label: {
       type: 'string',
-      description:
-        'Accessible label for the close trigger to collapse an item.',
+      description: 'Accessible label for the close trigger to collapse an item.',
       default: 'Close Accordion',
     },
     trigger_spacing: {
       type: 'string',
       hidden: true,
-      description:
-        'Overrides the default trigger spacing (by default, inherited from the parent bolt-accordion)',
+      description: 'Overrides the default trigger spacing (by default, inherited from the parent bolt-accordion)',
       $ref: '#/definitions/spacing',
     },
     content_spacing: {
       type: 'string',
       hidden: true,
-      description:
-        'Overrides the default content spacing (by default, inherited from the parent bolt-accordion)',
+      description: 'Overrides the default content spacing (by default, inherited from the parent bolt-accordion)',
       $ref: '#/definitions/spacing',
     },
   },
