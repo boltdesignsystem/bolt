@@ -189,10 +189,10 @@ bolt-nav-priority {
 }
 
 .c-bolt-nav-priority__show-button {
-  padding: var(--bolt-spacing-y-xxsmall) var(--bolt-spacing-x-xsmall);
+  padding: calc(var(--bolt-spacing-y-xsmall) / 2) var(--bolt-spacing-x-xsmall);
 
   @include bolt-mq($bolt-navbar-xsmall-bp){
-    padding: var(--bolt-spacing-y-xsmall) var(--bolt-spacing-x-small);
+    padding: calc(var(--bolt-spacing-y-small) / 2) var(--bolt-spacing-x-small);
   }
 
   position: relative;
