@@ -22,7 +22,7 @@ Many times, when creating a new component, it can be useful to leverage another 
 {% endif %}
 ```
 
-By looking at eyebrow's relevant [schema](https://boltdesignsystem.com/pattern-lab/?p=viewall-components-headline), you can see that it accepts an array of data including items variables like `text` and `weight`. This is important when passing data through your component's new twig include on to your leveraged component.
+By looking at the Headline [schema](https://boltdesignsystem.com/pattern-lab/?p=viewall-components-headline), you can see that Eyebrow accepts an array of data including variables like `text` and `weight`. It is important to pass only data specified in the schema to your leveraged component.
 
 Be sure to update the schema in your new component directory to include any relevant fields, and you can even reference your leveraged components like so:
 
