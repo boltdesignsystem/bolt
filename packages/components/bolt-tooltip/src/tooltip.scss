@@ -150,8 +150,8 @@ $bolt-tooltip-bubble-border-color: bolt-theme(background, bolt-opacity(20));
  * - used for visual design of the bubble and the fly in effect
  */
 .c-bolt-tooltip__bubble {
-  @include bolt-margin(xxsmall);
-  @include bolt-padding(xxsmall xsmall);
+  margin: var(--bolt-spacing-y-xxsmall) var(--bolt-spacing-x-xxsmall);
+  padding: var(--bolt-spacing-y-xxsmall) var(--bolt-spacing-x-xsmall);
   @include bolt-font-family(body);
   @include bolt-font-size(xsmall);
   @include bolt-font-weight(semibold);

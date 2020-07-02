@@ -33,8 +33,8 @@ bolt-toc {
 }
 
 .c-bolt-toc__header {
-  @include bolt-margin(0);
-  @include bolt-padding(xsmall small);
+  margin: 0;
+  padding: var(--bolt-spacing-y-xsmall) var(--bolt-spacing-x-small);
   @include bolt-font-family(heading);
   @include bolt-font-size(large);
   @include bolt-font-weight(bold);
@@ -48,10 +48,8 @@ bolt-toc {
 }
 
 .c-bolt-toc__list {
-  @include bolt-margin(0);
-  @include bolt-padding(0);
+  margin: 0;
+  padding: var(--bolt-spacing-y-small) 0;
   display: block;
   list-style: none;
-  @include bolt-padding-top(small);
-  @include bolt-padding-bottom(small);
 }

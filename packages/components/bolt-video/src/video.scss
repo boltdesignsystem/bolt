@@ -12,8 +12,8 @@ $bolt-video-background-max-height: 50.625vw;
 
   // @todo: `isBackgroundVideo` will be removed with Bolt v3.0
   &[is-background-video] {
-    @include bolt-margin-right(auto);
-    @include bolt-margin-left(auto);
+    margin-right: auto;
+    margin-left: auto;
     flex-grow: 1;
     opacity: bolt-opacity(0);
     z-index: 20;
@@ -36,7 +36,7 @@ $bolt-video-background-max-height: 50.625vw;
     }
 
     .video-js {
-      @include bolt-margin(0 auto);
+      margin: 0 auto;
       position: relative;
       width: 100%;
       min-width: 0;
@@ -88,7 +88,7 @@ $bolt-video-background-max-height: 50.625vw;
   &.c-#{$bolt-namespace}-video--background {
     display: block;
     position: relative;
-    max-width: calc(100% - #{bolt-spacing(large)});
+    max-width: calc( 100% - var(--bolt-spacing-x-large) );
     height: $bolt-video-background-max-height;
     max-height: 100%;
     margin: 0 auto;
@@ -111,15 +111,15 @@ $bolt-video-background-max-height: 50.625vw;
     0
   ); // Initial state before brightcove video player kicks in
   position: absolute;
-  top: bolt-spacing(xsmall);
-  right: bolt-spacing(xsmall);
+  top: var(--bolt-spacing-y-xsmall);
+  right: var(--bolt-spacing-x-xsmall);
   z-index: bolt-z-index('tooltip');
   color: bolt-color(orange);
   transition: all 0.3s ease;
   @include bolt-css-vars((--#{$bolt-namespace}-theme-icon: bolt-color(orange)));
 
   @include bolt-mq(small) {
-    right: (bolt-spacing(large) / -2) - bolt-spacing(xsmall);
+    right: calc( calc( var(--bolt-spacing-x-large) / -2 ) - var(--bolt-spacing-x-xsmall) );
   }
 
   &:hover {

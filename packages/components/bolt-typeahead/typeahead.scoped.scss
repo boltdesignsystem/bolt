@@ -6,7 +6,7 @@
 
 $bolt-clear-button-size: 1.7rem;
 $bolt-clear-button-size-at-med: 1.4rem;
-$bolt-typeahead-button-width: bolt-spacing(medium) + .75rem;
+$bolt-typeahead-button-width: calc( var(--bolt-spacing-x-medium) + .75rem );
 
 $bolt-typeahead-border-width: $bolt-border-width;
 $bolt-typeahead-border-style: $bolt-border-style;
@@ -54,9 +54,7 @@ bolt-autosuggest {
   -webkit-appearance: none; // removes default styling (ex. heavy box shadow) in Safari
   width: 100%;
   max-width: 100%;
-  @include bolt-padding(medium, squished);
-  padding-right: $bolt-typeahead-button-width;
-  padding-left: $bolt-typeahead-button-width;
+  padding: calc(var(--bolt-spacing-y-medium) / 2) $bolt-typeahead-button-width;
   color: bolt-theme(text-on-secondary);
   font-size: 16px; // prevent zooming in on mobile
   border-radius: $bolt-typeahead-border-radius;
@@ -160,8 +158,8 @@ bolt-autosuggest {
   list-style: none;
   border-bottom-right-radius: $bolt-typeahead-border-radius;
   border-bottom-left-radius: $bolt-typeahead-border-radius;
-  @include bolt-padding-top(xsmall);
-  @include bolt-padding-bottom(xsmall);
+  padding-top: var(--bolt-spacing-y-xsmall);
+  padding-bottom: var(--bolt-spacing-y-xsmall);
 
   &:empty {
     max-height: 0;
@@ -189,7 +187,7 @@ bolt-autosuggest {
 }
 
 .c-bolt-typeahead__result-text {
-  @include bolt-padding(medium, squished);
+  padding: calc(var(--bolt-spacing-y-medium) / 2) var(--bolt-spacing-x-medium);
   display: block;
   padding-left: $bolt-typeahead-button-width;
   color: inherit;
