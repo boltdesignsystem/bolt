@@ -24,7 +24,7 @@ Many times, when creating a new component, it can be useful to leverage another 
 
 By looking at the Headline [schema](https://boltdesignsystem.com/pattern-lab/?p=viewall-components-headline), you can see that Eyebrow accepts an array of data including variables like `text` and `weight`. It is important to pass only data specified in the schema to your leveraged component.
 
-Be sure to update the schema in your new component directory to include any relevant fields, and you can even reference your leveraged components like so:
+Be sure to update the schema in your new component directory to include any data you've added, and you can even reference your leveraged components like so:
 
 ```js
 eyebrow: {
