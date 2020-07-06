@@ -74,6 +74,7 @@ module.exports = class extends Generator {
       this.gitInfo.email = 'test@example.org';
       this.gitInfo.github = '';
       this.boltVersion = '0.0.0';
+      this.boltCoreVersion = '0.0.0';
     }
   }
 
