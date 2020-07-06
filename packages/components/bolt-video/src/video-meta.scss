@@ -6,7 +6,7 @@ $bolt-video-meta-transition: $bolt-transition;
 
 
 #{$bolt-namespace}-video-meta {
-  @include bolt-padding(xsmall);
+  padding: var(--bolt-spacing-y-xsmall) var(--bolt-spacing-x-xsmall);
 
   display: block;
   position: absolute;
@@ -26,7 +26,7 @@ $bolt-video-meta-transition: $bolt-transition;
 }
 
 .c-#{$bolt-namespace}-video-meta__item {
-  @include bolt-padding(xsmall, squished);
+  padding: calc( var(--bolt-spacing-x-xsmall) / 2 ) var(--bolt-spacing-x-xsmall);
 
   display: inline-block;
   opacity: bolt-opacity(100);

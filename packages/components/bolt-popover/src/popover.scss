@@ -245,7 +245,7 @@ $bolt-popover-transition: $bolt-transition-timing
 /**
  * Spacing prop
  */
-@each $size in $bolt-spacing-values {
+@each $size in $bolt-spacing-multiplier-system  {
   $size-name: nth($size, 1);
 
   .c-bolt-popover--spacing-#{$size-name} {
