@@ -39,7 +39,7 @@ bolt-accordion-item {
       position: absolute;
       right: 0;
       left: 0;
-      height: bolt-v-spacing(xxsmall);
+      height: var(--bolt-spacing-y-xxsmall);
       pointer-events: none;
       will-change: opacity;
       transition: opacity ($bolt-transition-timing / 2) $bolt-transition-ease;
@@ -243,7 +243,7 @@ bolt-accordion-item {
   display: flex;
   flex-shrink: 0; // for when there is a very long title - adds left/right spacing
   position: relative;
-  transform: translateX(bolt-spacing(xxsmall));
+  transform: translateX( var(--bolt-spacing-x-xxsmall) );
   overflow: hidden; // so transformed icons don't spill out
   color: bolt-theme(link);
   line-height: 0; // Workaround to line-height messing up icon alignment
@@ -376,34 +376,33 @@ bolt-accordion-item {
 }
 
 // Spacing
-@each $spacing-value in $bolt-spacing-multiplier-system {
-  $spacing-value-name: nth($spacing-value, 1);
+@each $size in $bolt-spacing-multiplier-system {
+  $size-name: nth($size, 1);
 
   @if (
-    $spacing-value-name !=
+    $size-name !=
       '' and
-      $spacing-value-name !=
+      $size-name !=
       'xxsmall' and
-      $spacing-value-name !=
+      $size-name !=
       'xlarge' and
-      $spacing-value-name !=
+      $size-name !=
       'xxlarge'
   ) {
-    .c-bolt-accordion-spacing--#{$spacing-value-name} {
-      padding: calc(var(--bolt-spacing-y-#{$spacing-value-name}) / 2)
-        var(--bolt-spacing-x-#{$spacing-value-name});
+    .c-bolt-accordion-spacing--#{$size-name} {
+      padding: calc(var(--bolt-spacing-y-#{$size-name}) / 2) var(--bolt-spacing-x-#{$size-name});
       // Applies only to js content
       &.c-bolt-accordion-item__content-inner.c-bolt-accordion-item__content-inner--offset,
       // Applies only to no-js trigger
       &.c-bolt-accordion-item__trigger-label.c-bolt-accordion-item__trigger-label--offset {
         padding-right: calc(
-          var(--bolt-spacing-x-#{$spacing-value-name}) +
+          var(--bolt-spacing-x-#{$size-name}) +
             #{$bolt-accordion-icon-size}
         );
       }
 
       &.c-bolt-accordion-item__content-inner {
-        padding-bottom: var(--bolt-spacing-y-#{$spacing-value-name});
+        padding-bottom: var(--bolt-spacing-y-#{$size-name});
       }
     }
   }

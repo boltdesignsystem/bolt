@@ -18,13 +18,13 @@
 // Spacing prop
 $bolt-card-replacement-spacing: small, medium;
 
-@each $spacing-value in $bolt-spacing-multiplier-system {
-  $spacing-value-name: nth($spacing-value, 1);
+@each $size in $bolt-spacing-multiplier-system {
+  $size-name: nth($size, 1);
 
-  @if index($bolt-card-replacement-spacing, $spacing-value-name) {
-    .c-bolt-card_replacement__body--spacing-#{$spacing-value-name} {
-      padding: var(--bolt-spacing-y-#{$spacing-value-name})
-        var(--bolt-spacing-x-#{$spacing-value-name});
+  @if index($bolt-card-replacement-spacing, $size-name) {
+    .c-bolt-card_replacement__body--spacing-#{$size-name} {
+      padding: var(--bolt-spacing-y-#{$size-name})
+        var(--bolt-spacing-x-#{$size-name});
     }
   }
 }
