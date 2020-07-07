@@ -38,10 +38,6 @@ $bolt-video-js-button-shadow-level-hover: 'level-40';
   }
 
   .vjs-big-play-button {
-    margin: 0;
-    padding: 0;
-    @include bolt-video-js-button($opacity: bolt-opacity(100));
-    @include bolt-shadow($key: $bolt-video-js-button-shadow-level, $base-color: $bolt-video-js-button-shadow-color);
 
     position: absolute;
     top: auto;
@@ -50,9 +46,13 @@ $bolt-video-js-button-shadow-level-hover: 'level-40';
     left: var(--bolt-spacing-x-xsmall);
     width: calc(1.2rem + 6%);
     height: calc(1rem + 6%);
+    margin: 0;
+    padding: 0;
     line-height: 1;
     border: none;
     border-radius: $bolt-video-js-button-border-radius;
+    @include bolt-video-js-button($opacity: bolt-opacity(100));
+    @include bolt-shadow($key: $bolt-video-js-button-shadow-level, $base-color: $bolt-video-js-button-shadow-color);
 
     .vjs-icon-placeholder {
       @include bolt-margin(0);
@@ -146,13 +146,13 @@ $bolt-video-js-button-shadow-level-hover: 'level-40';
     background: rgba(bolt-color(black), 0.9);
 
     .vjs-modal-dialog-content {
-      padding: var(--bolt-spacing-y-xsmall) 2.5rem var(--bolt-spacing-y-xsmall) var(--bolt-spacing-x-small);
-      @include bolt-font-size(medium, tight);
 
       display: flex;
       flex-wrap: wrap;
       align-items: center;
       overflow: auto;
+      padding: var(--bolt-spacing-y-xsmall) 2.5rem var(--bolt-spacing-y-xsmall) var(--bolt-spacing-x-small);
+      @include bolt-font-size(medium, tight);
 
       @supports(display: flex) { // [4]
         display: flex;
@@ -165,9 +165,9 @@ $bolt-video-js-button-shadow-level-hover: 'level-40';
 
       .vjs-social-description {
         margin-bottom: 0.5rem;
+        white-space: nowrap;
         @include bolt-font-size(small, tight);
         @include bolt-font-weight(bold);
-        white-space: nowrap;
       }
 
       .vjs-social-share-links {
@@ -189,19 +189,19 @@ $bolt-video-js-button-shadow-level-hover: 'level-40';
       }
 
       form {
-        margin: auto;
-        @include bolt-font-family(body);
         width: 100%;
         max-width: 40rem;
+        margin: auto;
+        @include bolt-font-family(body);
 
         input[type='text'] {
           font-size: 16px; // [2]
         }
 
         label {
-          padding: 0;
 
           width: 100%;
+          padding: 0;
         }
 
         > * {
@@ -246,11 +246,11 @@ $bolt-video-js-button-shadow-level-hover: 'level-40';
 
   // Cue Points
   .vjs-overlay-no-background {
-    margin: 0;
-    padding: 40px 9px;
 
     width: 100%;
     max-width: none;
+    margin: 0;
+    padding: 40px 9px;
     border-radius: 0;
     background-color: transparent;
 
@@ -290,18 +290,18 @@ $bolt-video-js-button-shadow-level-hover: 'level-40';
   }
 
   .vjs-overlay-background {
-    margin: 0;
-    padding: var(--bolt-spacing-y-xsmall) var(--bolt-spacing-x-xsmall);
-    @include bolt-font-family(body);
-    @include bolt-font-size(small);
 
     width: auto;
     max-width: 100%;
+    margin: 0;
+    padding: var(--bolt-spacing-y-xsmall) var(--bolt-spacing-x-xsmall);
     color: bolt-color(black);
     text-shadow: 0 0 0.25rem bolt-color(white);
     border-radius: $bolt-border-radius;
     box-shadow: inset 0 0 2rem bolt-color(white), 0 0 0.25rem bolt-color(gray, light);
     background-color: rgba(bolt-color(white), 0.9);
+    @include bolt-font-family(body);
+    @include bolt-font-size(small);
 
     &.vjs-overlay-top,
     &.vjs-overlay-top-right,
@@ -362,7 +362,6 @@ $bolt-video-js-button-shadow-level-hover: 'level-40';
         background:0;
       }
       .vjs-errors-content-container{
-        padding: var(--bolt-spacing-y-medium) var(--bolt-spacing-x-medium);
         display: flex;
         flex-wrap:wrap;
         justify-content:center;
@@ -371,6 +370,7 @@ $bolt-video-js-button-shadow-level-hover: 'level-40';
         top:50%;
         bottom: 15px;
         transform: translateY(-50%);
+        padding: var(--bolt-spacing-y-medium) var(--bolt-spacing-x-medium);
         text-align: center;
       }
       .vjs-errors-headline,

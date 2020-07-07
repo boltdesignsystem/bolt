@@ -154,12 +154,10 @@ bolt-autosuggest {
 .c-bolt-typeahead__results {
   overflow: hidden;
   margin: 0;
-  padding: 0;
+  padding: var(--bolt-spacing-y-xsmall) 0;
   list-style: none;
   border-bottom-right-radius: $bolt-typeahead-border-radius;
   border-bottom-left-radius: $bolt-typeahead-border-radius;
-  padding-top: var(--bolt-spacing-y-xsmall);
-  padding-bottom: var(--bolt-spacing-y-xsmall);
 
   &:empty {
     max-height: 0;
@@ -187,8 +185,8 @@ bolt-autosuggest {
 }
 
 .c-bolt-typeahead__result-text {
-  padding: calc(var(--bolt-spacing-y-medium) / 2) var(--bolt-spacing-x-medium);
   display: block;
+  padding: calc(var(--bolt-spacing-y-medium) / 2) var(--bolt-spacing-x-medium);
   padding-left: $bolt-typeahead-button-width;
   color: inherit;
   text-transform: initial; // fix for weird capitalization

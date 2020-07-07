@@ -223,8 +223,8 @@ bolt-tabs {
           padding-left: calc( var(--bolt-spacing-x-#{$size-name}) / 2 );
         }
         .c-bolt-tabs__label-text {
-          padding-left: 0;
           padding-right: 0;
+          padding-left: 0;
         }
         // first-of-type for no-JS
         &:first-child,
@@ -253,9 +253,9 @@ bolt-tabs {
 }
 
 .c-bolt-tabs__nav {
-  margin-bottom: 0;
   display: flex;
   flex-flow: row nowrap;
+  margin-bottom: 0;
 
   // Label align
   @at-root .c-bolt-tabs--align-center & {

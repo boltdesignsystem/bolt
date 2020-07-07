@@ -6,7 +6,6 @@ $bolt-video-meta-transition: $bolt-transition;
 
 
 #{$bolt-namespace}-video-meta {
-  padding: var(--bolt-spacing-y-xsmall) var(--bolt-spacing-x-xsmall);
 
   display: block;
   position: absolute;
@@ -14,6 +13,7 @@ $bolt-video-meta-transition: $bolt-transition;
   left: 0;
   width: 100%;
   height: 100%;
+  padding: var(--bolt-spacing-y-xsmall) var(--bolt-spacing-x-xsmall);
   pointer-events: none;
 }
 
@@ -26,12 +26,12 @@ $bolt-video-meta-transition: $bolt-transition;
 }
 
 .c-#{$bolt-namespace}-video-meta__item {
-  padding: calc( var(--bolt-spacing-x-xsmall) / 2 ) var(--bolt-spacing-x-xsmall);
 
   display: inline-block;
   opacity: bolt-opacity(100);
   position: absolute;
   max-width: 100%;
+  padding: calc( var(--bolt-spacing-x-xsmall) / 2 ) var(--bolt-spacing-x-xsmall);
   color: bolt-color(white);
   border-radius: $bolt-video-meta-border-radius;
   background-color: rgba(bolt-color(black), 0.8);

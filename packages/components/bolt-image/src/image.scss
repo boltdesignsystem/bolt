@@ -39,7 +39,6 @@ bolt-image {
 }
 
 .c-bolt-image--cover {
-  margin: auto;
   position: absolute;
   top: -9999px;
   right: -9999px;
@@ -48,6 +47,7 @@ bolt-image {
   min-width: 100%;
   max-width: none; //Required to handle instances where a max-width is previously set.
   min-height: 100%;
+  margin: auto;
 
   @supports (object-fit: cover) {
     display: block;

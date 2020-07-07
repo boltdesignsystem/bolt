@@ -28,10 +28,10 @@ bolt-code-snippet {
 }
 
 .c-bolt-code-snippet {
+  display: block;
   margin: 0 0 var(--bolt-spacing-y-medium) 0;
   padding: calc( var(--bolt-spacing-y-small) / 2) var(--bolt-spacing-x-small);
   @include bolt-horizontal-scroll;
-  display: block;
   background-color: $bolt-code-snippet-background-color;
 }
 
@@ -44,13 +44,13 @@ bolt-code-snippet {
 }
 
 .c-bolt-code-snippet__code--block {
-  padding: 0;
   display: block;
+  padding: 0;
   background-color: transparent;
 }
 
 .c-bolt-code-snippet__code--inline {
-  padding: 2px 0.25rem 2px 0.3rem; // [Mai] 0.25rem on the right offsets the 0.05rem letter-spacing.
   display: inline;
+  padding: 2px 0.25rem 2px 0.3rem; // [Mai] 0.25rem on the right offsets the 0.05rem letter-spacing.
   background-color: $bolt-code-snippet-background-color;
 }

@@ -22,9 +22,6 @@ bolt-navbar {
 }
 
 .c-bolt-navbar {
-  padding-top: var(--bolt-spacing-y-small);
-  padding-left: var(--bolt-spacing-x-small);
-  padding-right: var(--bolt-spacing-x-small);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -32,6 +29,9 @@ bolt-navbar {
   width: 100%;
   max-width: bolt-breakpoint(xxlarge);
   margin: 0 auto;
+  padding-top: var(--bolt-spacing-y-small);
+  padding-right: var(--bolt-spacing-x-small);
+  padding-left: var(--bolt-spacing-x-small);
 
   > *:not(:last-child) {
     margin-right: var(--bolt-spacing-x-small);
@@ -62,8 +62,6 @@ bolt-navbar {
 
   @include bolt-if-browser-supports-display-contents {
     @media screen and (max-width: $bolt-navbar-xsmall-bp) {
-      padding-left: 0;
-      padding-right: 0;
       display: grid;
       flex-direction: row;
       justify-content: center;
@@ -71,6 +69,8 @@ bolt-navbar {
       align-items: center;
       grid-template-columns: var(--bolt-spacing-x-small) auto 1fr var(--bolt-spacing-y-medium);
       grid-template-rows: 1fr auto;
+      padding-right: 0;
+      padding-left: 0;
     }
   }
 
@@ -81,8 +81,8 @@ bolt-navbar {
     }
 
     > *:first-child {
-      padding-top: var(--bolt-spacing-y-xsmall);
       align-self: center;
+      padding-top: var(--bolt-spacing-y-xsmall);
     }
 
     > *:only-child {
@@ -108,12 +108,12 @@ bolt-navbar {
 
 // Nav title
 .c-bolt-navbar__title {
-  margin-right: var(--bolt-spacing-x-small); // Maintain space between items
   display: flex;
   flex-shrink: 1; // make sure the title can wrap to multiple lines and shrink if needed, but only when absolutely necessary (prevents jumps when resizing)
   flex-wrap: nowrap;
   align-items: center;
   align-self: center;
+  margin-right: var(--bolt-spacing-x-small); // Maintain space between items
   padding-bottom: var(--bolt-spacing-y-small);
   color: bolt-theme(headline);
   white-space: nowrap;
@@ -136,11 +136,11 @@ bolt-navbar {
 
   .c-bolt-navbar--center & {
     @include bolt-mq(xsmall) {
-      margin-left: auto;
-      margin-right: auto;
       justify-content: center;
       align-items: center;
       width: 100%;
+      margin-right: auto;
+      margin-left: auto;
     }
   }
 
@@ -170,11 +170,10 @@ bolt-navbar {
 }
 
 .c-bolt-navbar__title-icon {
-  margin: 0 var(--bolt-spacing-x-small) 0 0;
   flex-basis: auto;
-
   // Fix cross-browser bug where icon shrinks below its minimum natural width - see https://github.com/philipwalton/flexbugs#flexbug-1
   flex-shrink: 0;
+  margin: 0 var(--bolt-spacing-x-small) 0 0;
   line-height: 0; // fix vertical alignment of icon + title
 }
 
@@ -194,9 +193,9 @@ bolt-navbar {
 
 // Nav items
 .c-bolt-navbar__nav {
-  margin: 0 0 0 var(--bolt-spacing-x-small);
   flex-shrink: 1;
   width: 100%;
+  margin: 0 0 0 var(--bolt-spacing-x-small);
   -webkit-overflow-scrolling: touch;
 }
 

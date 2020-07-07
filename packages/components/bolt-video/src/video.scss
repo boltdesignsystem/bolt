@@ -12,8 +12,6 @@ $bolt-video-background-max-height: 50.625vw;
 
   // @todo: `isBackgroundVideo` will be removed with Bolt v3.0
   &[is-background-video] {
-    margin-right: auto;
-    margin-left: auto;
     flex-grow: 1;
     opacity: bolt-opacity(0);
     z-index: 20;
@@ -22,6 +20,8 @@ $bolt-video-background-max-height: 50.625vw;
     max-width: 100vh;
     height: calc((90vw * (9 / 16)) - 4rem);
     max-height: 56.25vh;
+    margin-right: auto;
+    margin-left: auto;
     pointer-events: none;
     background-color: $bolt-video-background-color;
     transition: opacity 0.3s ease, min-height 0.3s ease;
@@ -36,11 +36,11 @@ $bolt-video-background-max-height: 50.625vw;
     }
 
     .video-js {
-      margin: 0 auto;
       position: relative;
       width: 100%;
       min-width: 0;
       height: 100%;
+      margin: 0 auto;
       pointer-events: none;
       background-color: transparent;
       transition: all 0.4s ease;

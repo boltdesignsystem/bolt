@@ -48,15 +48,15 @@ bolt-trigger {
 // Component styles
 .c-bolt-trigger {
   @include bolt-button-reset; // [1]
-  margin: 0; // [1]
-  @include bolt-font-family(body); // [1]
-  @include bolt-font-size(medium); // [2]
   display: inline; // Default to inline
   opacity: bolt-opacity(100);
+  margin: 0; // [1]
   color: inherit;
   text-align: inherit;
   text-decoration: initial;
   border: none; // [1]
+  @include bolt-font-family(body); // [1]
+  @include bolt-font-size(medium); // [2]
 }
 
 // Display styles

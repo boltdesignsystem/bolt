@@ -97,8 +97,8 @@ bolt-modal:not([ready]) {
     }
 
     .c-bolt-modal__container-header {
-      padding: var(--bolt-spacing-y-small) var(--bolt-spacing-x-large) var(--bolt-spacing-y-small) var(--bolt-spacing-x-small);
       flex-shrink: 0; // If header text is missing, this will partially collapse without setting flex-shrink
+      padding: var(--bolt-spacing-y-small) var(--bolt-spacing-x-large) var(--bolt-spacing-y-small) var(--bolt-spacing-x-small);
     }
 
     .c-bolt-modal__container-header--hidden {
@@ -107,10 +107,10 @@ bolt-modal:not([ready]) {
     }
 
     .c-bolt-modal__container-body {
+      flex: auto;
       margin-top: auto;
       margin-bottom: auto;
 
-      flex: auto;
       overflow-y: auto;
       -webkit-overflow-scrolling: touch;
 
@@ -187,10 +187,10 @@ bolt-modal:not([ready]) {
 @include bolt-mq($bolt-modal-breakpoint) {
   .c-bolt-modal--scroll-overall {
     .c-bolt-modal__content {
-      margin: 0 auto;
       position: relative;
       top: 50vh;
       transform: translateX(0) translateY(-50%);
+      margin: 0 auto;
     }
 
     &.is-open {
@@ -396,9 +396,9 @@ bolt-modal:not([ready]) {
 
 
   @include bolt-mq($bolt-modal-breakpoint) {
-    margin: 0;
     width: calc( var(--bolt-spacing-x-medium) - 0.2rem );
     height: calc( var(--bolt-spacing-y-medium) - 0.2rem );
+    margin: 0;
   }
 
   &:before,

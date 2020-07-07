@@ -105,10 +105,10 @@ bolt-nav-priority {
   width: 100%;
   overflow: hidden;
   margin: 0;
+  padding: var(--bolt-spacing-y-xsmall) var(--bolt-spacing-x-xsmall);
   list-style: none;
   pointer-events: none;
   transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1) 0s, opacity 0.2s cubic-bezier(0.23, 1, 0.32, 1) 0.1s;
-  padding: var(--bolt-spacing-y-xsmall) var(--bolt-spacing-x-xsmall);
 
   .c-bolt-nav-priority--show-dropdown & {
     opacity: bolt-opacity(100);
@@ -189,13 +189,8 @@ bolt-nav-priority {
 }
 
 .c-bolt-nav-priority__show-button {
-  padding: calc(var(--bolt-spacing-y-xsmall) / 2) var(--bolt-spacing-x-xsmall);
-
-  @include bolt-mq($bolt-navbar-xsmall-bp){
-    padding: calc(var(--bolt-spacing-y-small) / 2) var(--bolt-spacing-x-small);
-  }
-
   position: relative;
+  padding: calc(var(--bolt-spacing-y-xsmall) / 2) var(--bolt-spacing-x-xsmall);
   cursor: pointer;
   border-radius: 3px;
   border-radius: $bolt-border-radius;
@@ -207,6 +202,10 @@ bolt-nav-priority {
   background-color: bolt-theme(secondary, 0.05);
   transition: background-color 0.3s ease;
   white-space: nowrap;
+
+  @include bolt-mq($bolt-navbar-xsmall-bp){
+    padding: calc(var(--bolt-spacing-y-small) / 2) var(--bolt-spacing-x-small);
+  }
 
   @include bolt-mq($until: $bolt-navbar-xsmall-bp) {
     height: 100%; // fix for height: 100% causing issues on larger screen sizes
