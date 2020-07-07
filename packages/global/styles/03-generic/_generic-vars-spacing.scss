@@ -9,6 +9,7 @@
  */
 :root {
   // Base tokens are for public use and user overrides
+  // Note: user can customize these to generate their own spacing tokens. Spacing tokens are using formulas based on these.
   @each $size in $bolt-spacing-system {
     $size-dir: nth($size, 1);
     $size-value: nth($size, 2);
@@ -23,7 +24,7 @@
   }
 
   // Spacing tokens are for public use
-  // Note: while user overrides are possible but they are not encouraged. Customization should done through base tokens.
+  // Note: while user overrides are possible but they are not encouraged. Customization should be done through base tokens.
   @each $size in $bolt-spacing-x-system {
     $size-name: nth($size, 1);
     $size-value: nth($size, 2);
