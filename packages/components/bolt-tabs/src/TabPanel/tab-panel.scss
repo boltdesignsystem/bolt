@@ -10,6 +10,29 @@ bolt-tab-panel {
   [slot='label'] {
     display: none;
   }
+
+  // Prevent Brightcove from rendering a video as a 'vjs-layout-tiny' when in a inactive tab panel on load if on a tablet or desktop device
+  @include bolt-mq($from: medium) {
+    .video-js.vjs-layout-tiny:not(.vjs-fullscreen){
+      .vjs-audio-button,
+      .vjs-captions-button,
+      .vjs-chapters-button,
+      .vjs-current-time,
+      .vjs-descriptions-button,
+      .vjs-duration,
+      .vjs-mute-control,
+      .vjs-playback-rate,
+      .vjs-progress-control, 
+      .vjs-remaining-time,
+      .vjs-subs-caps-button,
+      .vjs-subtitles-button,
+      .vjs-time-divider,
+      .vjs-volume-control,
+      .vjs-volume-panel {
+        display: flex;
+      }
+    } 
+  }
 }
 
 .c-bolt-tab-panel__content {
