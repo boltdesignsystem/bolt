@@ -144,15 +144,7 @@ bolt-icon {
     );
     filter: drop-shadow(0px 0px 1px rgba(bolt-text-contrast($iconColor), 0.2));
 
-    &.has-background:not(.has-outline-background) {
-      color: bolt-text-contrast($backgroundColor);
-
-      .c-bolt-icon__background-shape {
-        opacity: bolt-opacity(100);
-        border: 1px solid rgba(bolt-color(gray, dark), 0.5);
-        background-color: $backgroundColor;
-      }
-
+    &.has-background {
       @include bolt-css-vars(
         (
           --bolt-theme-icon: bolt-text-contrast($backgroundColor),
@@ -160,6 +152,19 @@ bolt-icon {
           --bolt-theme-icon-background-opacity: bolt-opacity(100),
         )
       );
+
+      color: bolt-text-contrast($backgroundColor);
+
+      .c-bolt-icon__background-shape {
+        opacity: bolt-opacity(100);
+        background-color: $backgroundColor;
+      }
+
+      &.c-bolt-icon--white {
+        .c-bolt-icon__background-shape {
+          border: 1px solid rgba(bolt-color(gray, dark), 0.5);
+        }
+      }
     }
   }
 }
@@ -206,4 +211,9 @@ bolt-icon {
     #209952
   );
   @include bolt-icon-theme(pink, #b974a1, #a65389);
+}
+
+.test {
+  color: bolt-text-contrast(#ab81d5);
+  background-color: #ab81d5;
 }
