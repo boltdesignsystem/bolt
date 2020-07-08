@@ -1,0 +1,60 @@
+/* ------------------------------------ *\
+   New Maps for CSS vars
+\* ------------------------------------ */
+
+/**
+ * Typography token maps
+ */
+$bolt-type-font-size-system: (
+  'xxxlarge': 2.35rem,
+  'xxlarge': 1.75rem,
+  'xlarge': 1.4rem,
+  'large': 1.15rem,
+  'medium': 1rem,
+  'small': 0.9rem,
+  'xsmall': 0.8rem,
+  'xxsmall': 0.7rem
+) !default;
+
+$bolt-type-line-height-system: (
+  'xxxlarge': 1.25,
+  'xxlarge': 1.35,
+  'xlarge': 1.4,
+  'large': 1.5,
+  'medium': 1.55,
+  'small': 1.45,
+  'xsmall': 1.4,
+  'xxsmall': 1.4
+) !default;
+
+$bolt-type-letter-spacing-system: (
+  'narrow': -0.025rem,
+  'regular': 0,
+  'wide': 0.05rem
+) !default;
+
+$bolt-type-font-weight-system: (
+  'light': 300,
+  'regular': 400,
+  'semibold': 600,
+  'bold': 800
+) !default;
+
+$bolt-type-font-family-system: (
+  'body':
+    "'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans','Helvetica Neue', sans-serif",
+  'headline':
+    "'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans','Helvetica Neue', sans-serif",
+  'code': 'monospace, monospace'
+) !default;
+
+/**
+ * Line height multiplier
+ *
+ * This are used for mathematically increasing or decreasing line-height for every single font-size.
+ */
+$bolt-type-line-height-multiplier-system: (
+  'tight': 0.77,
+  'regular': 1,
+  'loose': 1.2
+) !default;
