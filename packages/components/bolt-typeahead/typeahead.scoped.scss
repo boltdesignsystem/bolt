@@ -6,14 +6,14 @@
 
 $bolt-clear-button-size: 1.7rem;
 $bolt-clear-button-size-at-med: 1.4rem;
-$bolt-typeahead-button-width: calc( var(--bolt-spacing-x-medium) + .75rem );
+$bolt-typeahead-button-width: calc( var(--bolt-spacing-x-medium) + 0.75rem );
 
 $bolt-typeahead-border-width: $bolt-border-width;
 $bolt-typeahead-border-style: $bolt-border-style;
 $bolt-typeahead-border-radius: 6px;
 $bolt-typeahead-placeholder-color: bolt-theme(text-on-secondary, 0.4);
 
-$bolt-typeahead-result-highlight-color: #F5F5FA;
+$bolt-typeahead-result-highlight-color: #f5f5fa;
 
 /**
  * 1. relative z-index so doesn't need to use bolt z-index mixin
@@ -60,7 +60,7 @@ bolt-autosuggest {
   border-radius: $bolt-typeahead-border-radius;
   border-width: $bolt-typeahead-border-width;
   border-style: $bolt-typeahead-border-style;
-  border-color: bolt-theme(link, .5);
+  border-color: bolt-theme(link, 0.5);
   background-color: bolt-theme(secondary, 1);
   text-overflow: ellipsis;
   transition: all 0.1s ease;
@@ -78,7 +78,8 @@ bolt-autosuggest {
   &:focus {
     border-color: rgba(84, 93, 166, 0.8);
     border-color: bolt-theme(link, 0.8);
-    box-shadow: 0 0 0 2px rgba(var(--bolt-theme-link), 0.5), inset 0 0 0 1px rgba(var(--bolt-theme-link), 1);
+    box-shadow: 0 0 0 2px rgba(var(--bolt-theme-link), 0.5),
+      inset 0 0 0 1px rgba(var(--bolt-theme-link), 1);
     outline: 0;
   }
 
@@ -97,19 +98,23 @@ bolt-autosuggest {
     transition: all 0.1s ease;
   }
 
-  &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  &::-webkit-input-placeholder {
+    /* Chrome/Opera/Safari */
     color: $bolt-typeahead-placeholder-color;
   }
 
-  &::-moz-placeholder { /* Firefox 19+ */
+  &::-moz-placeholder {
+    /* Firefox 19+ */
     color: $bolt-typeahead-placeholder-color;
   }
 
-  &:-ms-input-placeholder { /* IE 10+ */
+  &:-ms-input-placeholder {
+    /* IE 10+ */
     color: $bolt-typeahead-placeholder-color;
   }
 
-  &:-moz-placeholder { /* Firefox 18- */
+  &:-moz-placeholder {
+    /* Firefox 18- */
     color: $bolt-typeahead-placeholder-color;
   }
 }
@@ -139,16 +144,19 @@ bolt-autosuggest {
       xlight: secondary,
     )
   );
-  background-color: var(--bolt-typeahead-menu-background, rgba(var(--bolt-theme-secondary), 1));
-  transition: max-height 0.3s cubic-bezier(0.645,0.045,0.355,1), opacity 0.3s cubic-bezier(0.645,0.045,0.355,1);
+  background-color: var(
+    --bolt-typeahead-menu-background,
+    rgba(var(--bolt-theme-secondary), 1)
+  );
+  transition: max-height 0.3s cubic-bezier(0.645, 0.045, 0.355, 1),
+    opacity 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
 
   &.is-open {
     opacity: 1;
     overflow-y: auto;
     max-height: calc(100vh - #{$bolt-typeahead-button-width});
-    max-height: calc(100vh - var(--typeahead-height) );
+    max-height: calc(100vh - var(--typeahead-height));
   }
-
 }
 
 .c-bolt-typeahead__results {
@@ -176,7 +184,7 @@ bolt-autosuggest {
 
   &:active,
   &:focus {
-    background-color: rgba(bolt-color(indigo, xlight), .5);
+    background-color: rgba(bolt-color(navy, xlight), 0.5);
   }
 }
 
@@ -224,7 +232,7 @@ bolt-autosuggest {
 }
 
 .c-bolt-typeahead__icon {
-  color: bolt-color(indigo, light);
+  color: bolt-color(navy, light);
   --bolt-theme-background: 255, 255, 255; // workaround so dark themes don't wipe the inner icon color. @todo: remove once full theming support added
   line-height: 1;
   font-size: 1.5rem;
@@ -247,6 +255,7 @@ bolt-autosuggest {
   opacity: 1;
 }
 
-.c-bolt-typeahead__input--with-clear-button ~ .c-bolt-typeahead__button--submit {
+.c-bolt-typeahead__input--with-clear-button
+  ~ .c-bolt-typeahead__button--submit {
   opacity: 1;
 }

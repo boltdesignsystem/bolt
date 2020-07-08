@@ -1,6 +1,5 @@
 @import '@bolt/core-v3.x';
 
-
 // Dev Notes
 // 1. [Mai] Because these styles are overrides, they need to be repeated.
 // 2. [Mai] Input font-size needs to be 16px to prevent zooming.
@@ -11,8 +10,7 @@
 // 7. [Mai] This optically centers the triangle.
 // 8. [Denton] Hide the title when sharing to minimize the chances that you'll see a scrollbar, which is undesirable.  The description field will take its place.
 
-
-$bolt-video-js-button-text-color: bolt-color(indigo);
+$bolt-video-js-button-text-color: bolt-color(navy);
 $bolt-video-js-button-background-color: bolt-color(yellow);
 $bolt-video-js-button-transition: $bolt-transition;
 $bolt-video-js-button-border-radius: $bolt-border-radius;
@@ -38,7 +36,6 @@ $bolt-video-js-button-shadow-level-hover: 'level-40';
   }
 
   .vjs-big-play-button {
-
     position: absolute;
     top: auto;
     right: auto;
@@ -52,7 +49,10 @@ $bolt-video-js-button-shadow-level-hover: 'level-40';
     border: none;
     border-radius: $bolt-video-js-button-border-radius;
     @include bolt-video-js-button($opacity: bolt-opacity(100));
-    @include bolt-shadow($key: $bolt-video-js-button-shadow-level, $base-color: $bolt-video-js-button-shadow-color);
+    @include bolt-shadow(
+      $key: $bolt-video-js-button-shadow-level,
+      $base-color: $bolt-video-js-button-shadow-color
+    );
 
     .vjs-icon-placeholder {
       @include bolt-margin(0);
@@ -81,44 +81,57 @@ $bolt-video-js-button-shadow-level-hover: 'level-40';
       }
 
       &:before {
-        background:
-          linear-gradient(
-            -30deg,
-            $bolt-video-js-button-background-color 48%, // [6]
+        background: linear-gradient(
+          -30deg,
+          $bolt-video-js-button-background-color 48%,
+          // [6]
             transparent 50%
-          );
+        );
       }
 
       &:after {
-        background:
-          linear-gradient(
-            -150deg,
-            $bolt-video-js-button-background-color 48%, // [6]
+        background: linear-gradient(
+          -150deg,
+          $bolt-video-js-button-background-color 48%,
+          // [6]
             transparent 50%
-          );
+        );
       }
     }
 
     &:hover,
     &:focus {
-      @include bolt-video-js-button($opacity: $bolt-global-link-hover-opacity); // [1]
-      @include bolt-shadow($key: $bolt-video-js-button-shadow-level-hover, $base-color: $bolt-video-js-button-shadow-color);
+      @include bolt-video-js-button(
+        $opacity: $bolt-global-link-hover-opacity
+      ); // [1]
+      @include bolt-shadow(
+        $key: $bolt-video-js-button-shadow-level-hover,
+        $base-color: $bolt-video-js-button-shadow-color
+      );
     }
 
     &:active {
-      @include bolt-video-js-button($opacity: $bolt-global-link-active-opacity); // [1]
+      @include bolt-video-js-button(
+        $opacity: $bolt-global-link-active-opacity
+      ); // [1]
     }
-
   }
 
   &:hover .vjs-big-play-button,
   &:focus .vjs-big-play-button {
-    @include bolt-video-js-button($opacity: $bolt-global-link-hover-opacity); // [1]
-    @include bolt-shadow($key: $bolt-video-js-button-shadow-level-hover, $base-color: $bolt-video-js-button-shadow-color);
+    @include bolt-video-js-button(
+      $opacity: $bolt-global-link-hover-opacity
+    ); // [1]
+    @include bolt-shadow(
+      $key: $bolt-video-js-button-shadow-level-hover,
+      $base-color: $bolt-video-js-button-shadow-color
+    );
   }
 
   &:active .vjs-big-play-button {
-    @include bolt-video-js-button($opacity: $bolt-global-link-active-opacity); // [1]
+    @include bolt-video-js-button(
+      $opacity: $bolt-global-link-active-opacity
+    ); // [1]
   }
 
   .vjs-poster {
@@ -154,7 +167,8 @@ $bolt-video-js-button-shadow-level-hover: 'level-40';
       padding: var(--bolt-spacing-y-xsmall) 2.5rem var(--bolt-spacing-y-xsmall) var(--bolt-spacing-x-small);
       @include bolt-font-size(medium, tight);
 
-      @supports(display: flex) { // [4]
+      @supports (display: flex) {
+        // [4]
         display: flex;
         justify-content: center;
       }
@@ -298,7 +312,8 @@ $bolt-video-js-button-shadow-level-hover: 'level-40';
     color: bolt-color(black);
     text-shadow: 0 0 0.25rem bolt-color(white);
     border-radius: $bolt-border-radius;
-    box-shadow: inset 0 0 2rem bolt-color(white), 0 0 0.25rem bolt-color(gray, light);
+    box-shadow: inset 0 0 2rem bolt-color(white),
+      0 0 0.25rem bolt-color(gray, light);
     background-color: rgba(bolt-color(white), 0.9);
     @include bolt-font-family(body);
     @include bolt-font-size(small);

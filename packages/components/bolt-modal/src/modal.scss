@@ -26,7 +26,7 @@ dialog::backdrop {
 */
 
 $bolt-modal-overlay-bg-color-dark: rgba(
-  bolt-color(indigo, xdark),
+  bolt-color(navy, xdark),
   bolt-opacity(80)
 );
 $bolt-modal-overlay-bg-color-light: rgba(bolt-color(white), bolt-opacity(80));
@@ -411,7 +411,7 @@ bolt-modal:not([ready]) {
     width: var(--bolt-spacing-x-small);
     height: 2px;
     border-radius: $bolt-modal-border-radius;
-    background-color: bolt-color(indigo, light);
+    background-color: bolt-color(navy, light);
     transform-origin: 50% 50%;
 
     @include bolt-mq($bolt-modal-breakpoint) {
@@ -434,7 +434,7 @@ bolt-modal:not([ready]) {
     &:before,
     &:after {
       @include bolt-mq($bolt-modal-breakpoint) {
-        background-color: bolt-color(indigo, light);
+        background-color: bolt-color(navy, light);
       }
     }
   }

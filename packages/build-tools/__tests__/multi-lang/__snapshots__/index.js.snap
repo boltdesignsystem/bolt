@@ -13,34 +13,41 @@ Object {
     "xlight": "rgb(246, 246, 249)",
   },
   "indigo": Object {
-    "base": "rgb(31, 38, 86)",
-    "dark": "rgb(22, 26, 60)",
-    "light": "rgb(84, 93, 166)",
-    "xdark": "rgb(6, 9, 35)",
-    "xlight": "rgb(171, 179, 242)",
+    "base": "rgb(0, 31, 95)",
+    "dark": "rgb(11, 29, 65)",
+    "light": "rgb(62, 103, 187)",
+    "xdark": "rgb(9, 23, 52)",
+    "xlight": "rgb(171, 194, 242)",
+  },
+  "navy": Object {
+    "base": "rgb(0, 31, 95)",
+    "dark": "rgb(11, 29, 65)",
+    "light": "rgb(62, 103, 187)",
+    "xdark": "rgb(9, 23, 52)",
+    "xlight": "rgb(171, 194, 242)",
   },
   "orange": Object {
-    "base": "rgb(232, 75, 23)",
-    "dark": "rgb(181, 59, 18)",
-    "light": "rgb(255, 140, 102)",
-    "xdark": "rgb(102, 26, 0)",
-    "xlight": "rgb(255, 198, 179)",
+    "base": "rgb(247, 105, 35)",
+    "dark": "rgb(181, 72, 18)",
+    "light": "rgb(255, 152, 102)",
+    "xdark": "rgb(102, 34, 0)",
+    "xlight": "rgb(255, 204, 179)",
   },
   "teal": Object {
-    "base": "rgb(0, 153, 153)",
-    "dark": "rgb(10, 102, 102)",
-    "light": "rgb(122, 205, 205)",
-    "xdark": "rgb(0, 51, 51)",
-    "xlight": "rgb(183, 230, 230)",
+    "base": "rgb(16, 165, 172)",
+    "dark": "rgb(10, 98, 102)",
+    "light": "rgb(134, 202, 198)",
+    "xdark": "rgb(0, 81, 84)",
+    "xlight": "rgb(183, 228, 230)",
   },
   "white": Object {
     "base": "rgb(255, 255, 255)",
   },
   "yellow": Object {
-    "base": "rgb(255, 204, 77)",
-    "dark": "rgb(232, 173, 23)",
-    "light": "rgb(255, 226, 153)",
-    "xdark": "rgb(102, 73, 0)",
+    "base": "rgb(255, 200, 54)",
+    "dark": "rgb(232, 175, 23)",
+    "light": "rgb(255, 227, 153)",
+    "xdark": "rgb(102, 74, 0)",
     "xlight": "rgb(255, 241, 204)",
   },
 }
@@ -698,7 +705,7 @@ ul {
 }
 ::selection {
   text-shadow: none;
-  background-color: #abb3f2;
+  background-color: #abc2f2;
 }
 li > ol,
 li > ul {
@@ -861,7 +868,7 @@ pre {
   overflow-y: auto;
   overflow-x: auto;
   display: block;
-  background-color: rgba(84, 93, 166, 0.08);
+  background-color: rgba(62, 103, 187, 0.08);
 }
 code {
   margin: 0;
@@ -873,7 +880,7 @@ code {
   line-height: 1.66;
   display: inline;
   letter-spacing: 0.05rem;
-  background-color: rgba(84, 93, 166, 0.08);
+  background-color: rgba(62, 103, 187, 0.08);
 }
 .js-fonts-loaded code {
   font-family: monospace, monospace;
@@ -931,12 +938,12 @@ hr {
   margin-bottom: 1.155rem;
 }
 a:not([class]) {
-  color: #545da6;
+  color: #3e67bb;
   text-decoration: underline;
 }
 .t-bolt-light a:not([class]),
 .t-bolt-xlight a:not([class]) {
-  color: #545da6;
+  color: #3e67bb;
 }
 .t-bolt-dark a:not([class]),
 .t-bolt-medium a:not([class]),
@@ -1015,7 +1022,7 @@ body {
   line-height: 1.82;
   width: 100%;
   margin: 0;
-  color: #060923;
+  color: #091734;
   overflow-x: hidden;
 }
 .js-fonts-loaded body {
@@ -1448,41 +1455,41 @@ bolt-inline-list:not(:last-child) {
 .t-bolt-xlight,
 :root {
   --bolt-theme-background: 255, 255, 255;
-  --bolt-theme-border: 22, 26, 60;
+  --bolt-theme-border: 11, 29, 65;
   --bolt-theme-contrast-filter: none;
   --bolt-theme-disabled: 224, 226, 235;
-  --bolt-theme-headline-link: 84, 93, 166;
-  --bolt-theme-headline: 31, 38, 86;
-  --bolt-theme-link: 84, 93, 166;
-  --bolt-theme-primary: 84, 93, 166;
+  --bolt-theme-headline-link: 62, 103, 187;
+  --bolt-theme-headline: 0, 31, 95;
+  --bolt-theme-link: 62, 103, 187;
+  --bolt-theme-primary: 62, 103, 187;
   --bolt-theme-secondary: 255, 255, 255;
   --bolt-theme-text-disabled: 141, 142, 153;
   --bolt-theme-text: 21, 22, 25;
   --bolt-theme-neutral: 141, 142, 153;
-  --bolt-theme-brand: 31, 38, 86;
+  --bolt-theme-brand: 0, 31, 95;
   --bolt-theme-background-secondary: 255, 255, 255;
   --bolt-theme-text-on-primary: 255, 255, 255;
-  --bolt-theme-primary-lighten-5: 93, 101, 170;
+  --bolt-theme-primary-lighten-5: 72, 111, 190;
   --bolt-theme-text-on-primary-lighten-5: 255, 255, 255;
-  --bolt-theme-primary-lighten-10: 101, 109, 175;
+  --bolt-theme-primary-lighten-10: 81, 118, 194;
   --bolt-theme-text-on-primary-lighten-10: 255, 255, 255;
-  --bolt-theme-primary-lighten-15: 110, 117, 179;
+  --bolt-theme-primary-lighten-15: 91, 126, 197;
   --bolt-theme-text-on-primary-lighten-15: 255, 255, 255;
-  --bolt-theme-primary-lighten-20: 118, 125, 184;
+  --bolt-theme-primary-lighten-20: 101, 133, 201;
   --bolt-theme-text-on-primary-lighten-20: 255, 255, 255;
-  --bolt-theme-primary-lighten-25: 127, 134, 188;
+  --bolt-theme-primary-lighten-25: 110, 141, 204;
   --bolt-theme-text-on-primary-lighten-25: 255, 255, 255;
-  --bolt-theme-primary-darken-3: 82, 91, 162;
+  --bolt-theme-primary-darken-3: 61, 101, 182;
   --bolt-theme-text-on-primary-darken-3: 255, 255, 255;
-  --bolt-theme-primary-darken-5: 81, 89, 159;
+  --bolt-theme-primary-darken-5: 60, 99, 179;
   --bolt-theme-text-on-primary-darken-5: 255, 255, 255;
-  --bolt-theme-primary-darken-10: 78, 86, 152;
+  --bolt-theme-primary-darken-10: 58, 95, 171;
   --bolt-theme-text-on-primary-darken-10: 255, 255, 255;
-  --bolt-theme-primary-darken-15: 75, 82, 145;
+  --bolt-theme-primary-darken-15: 56, 91, 163;
   --bolt-theme-text-on-primary-darken-15: 255, 255, 255;
-  --bolt-theme-primary-darken-20: 71, 79, 138;
+  --bolt-theme-primary-darken-20: 54, 87, 155;
   --bolt-theme-text-on-primary-darken-20: 255, 255, 255;
-  --bolt-theme-primary-darken-25: 68, 75, 131;
+  --bolt-theme-primary-darken-25: 52, 83, 146;
   --bolt-theme-text-on-primary-darken-25: 255, 255, 255;
   --bolt-theme-text-on-secondary: 21, 22, 25;
   --bolt-theme-secondary-lighten-5: 255, 255, 255;
@@ -1508,27 +1515,27 @@ bolt-inline-list:not(:last-child) {
   --bolt-theme-secondary-darken-25: 197, 197, 197;
   --bolt-theme-text-on-secondary-darken-25: 21, 22, 25;
   --bolt-theme-text-on-brand: 255, 255, 255;
-  --bolt-theme-brand-lighten-5: 42, 49, 94;
+  --bolt-theme-brand-lighten-5: 13, 42, 103;
   --bolt-theme-text-on-brand-lighten-5: 255, 255, 255;
-  --bolt-theme-brand-lighten-10: 53, 60, 103;
+  --bolt-theme-brand-lighten-10: 26, 53, 111;
   --bolt-theme-text-on-brand-lighten-10: 255, 255, 255;
-  --bolt-theme-brand-lighten-15: 65, 71, 111;
+  --bolt-theme-brand-lighten-15: 38, 65, 119;
   --bolt-theme-text-on-brand-lighten-15: 255, 255, 255;
-  --bolt-theme-brand-lighten-20: 76, 81, 120;
+  --bolt-theme-brand-lighten-20: 51, 76, 127;
   --bolt-theme-text-on-brand-lighten-20: 255, 255, 255;
-  --bolt-theme-brand-lighten-25: 87, 92, 128;
+  --bolt-theme-brand-lighten-25: 64, 87, 135;
   --bolt-theme-text-on-brand-lighten-25: 255, 255, 255;
-  --bolt-theme-brand-darken-3: 31, 38, 84;
+  --bolt-theme-brand-darken-3: 1, 31, 93;
   --bolt-theme-text-on-brand-darken-3: 255, 255, 255;
-  --bolt-theme-brand-darken-5: 31, 37, 83;
+  --bolt-theme-brand-darken-5: 1, 31, 91;
   --bolt-theme-text-on-brand-darken-5: 255, 255, 255;
-  --bolt-theme-brand-darken-10: 30, 36, 80;
+  --bolt-theme-brand-darken-10: 2, 30, 88;
   --bolt-theme-text-on-brand-darken-10: 255, 255, 255;
-  --bolt-theme-brand-darken-15: 30, 36, 77;
+  --bolt-theme-brand-darken-15: 3, 30, 84;
   --bolt-theme-text-on-brand-darken-15: 255, 255, 255;
-  --bolt-theme-brand-darken-20: 29, 35, 74;
+  --bolt-theme-brand-darken-20: 4, 29, 81;
   --bolt-theme-text-on-brand-darken-20: 255, 255, 255;
-  --bolt-theme-brand-darken-25: 29, 34, 71;
+  --bolt-theme-brand-darken-25: 5, 29, 77;
   --bolt-theme-text-on-brand-darken-25: 255, 255, 255;
   --bolt-theme-text-on-background: 21, 22, 25;
   --bolt-theme-text-on-background-secondary: 21, 22, 25;
@@ -1539,41 +1546,41 @@ bolt-inline-list:not(:last-child) {
 }
 .t-bolt-light {
   --bolt-theme-background: 246, 246, 249;
-  --bolt-theme-border: 22, 26, 60;
+  --bolt-theme-border: 11, 29, 65;
   --bolt-theme-contrast-filter: none;
   --bolt-theme-disabled: 224, 226, 235;
-  --bolt-theme-headline-link: 84, 93, 166;
-  --bolt-theme-headline: 31, 38, 86;
-  --bolt-theme-link: 84, 93, 166;
-  --bolt-theme-primary: 84, 93, 166;
+  --bolt-theme-headline-link: 62, 103, 187;
+  --bolt-theme-headline: 0, 31, 95;
+  --bolt-theme-link: 62, 103, 187;
+  --bolt-theme-primary: 62, 103, 187;
   --bolt-theme-secondary: 255, 255, 255;
   --bolt-theme-text-disabled: 141, 142, 153;
   --bolt-theme-text: 21, 22, 25;
   --bolt-theme-neutral: 141, 142, 153;
-  --bolt-theme-brand: 31, 38, 86;
+  --bolt-theme-brand: 0, 31, 95;
   --bolt-theme-background-secondary: 255, 255, 255;
   --bolt-theme-text-on-primary: 255, 255, 255;
-  --bolt-theme-primary-lighten-5: 93, 101, 170;
+  --bolt-theme-primary-lighten-5: 72, 111, 190;
   --bolt-theme-text-on-primary-lighten-5: 255, 255, 255;
-  --bolt-theme-primary-lighten-10: 101, 109, 175;
+  --bolt-theme-primary-lighten-10: 81, 118, 194;
   --bolt-theme-text-on-primary-lighten-10: 255, 255, 255;
-  --bolt-theme-primary-lighten-15: 110, 117, 179;
+  --bolt-theme-primary-lighten-15: 91, 126, 197;
   --bolt-theme-text-on-primary-lighten-15: 255, 255, 255;
-  --bolt-theme-primary-lighten-20: 118, 125, 184;
+  --bolt-theme-primary-lighten-20: 101, 133, 201;
   --bolt-theme-text-on-primary-lighten-20: 255, 255, 255;
-  --bolt-theme-primary-lighten-25: 127, 134, 188;
+  --bolt-theme-primary-lighten-25: 110, 141, 204;
   --bolt-theme-text-on-primary-lighten-25: 255, 255, 255;
-  --bolt-theme-primary-darken-3: 82, 91, 162;
+  --bolt-theme-primary-darken-3: 61, 101, 182;
   --bolt-theme-text-on-primary-darken-3: 255, 255, 255;
-  --bolt-theme-primary-darken-5: 81, 89, 159;
+  --bolt-theme-primary-darken-5: 60, 99, 179;
   --bolt-theme-text-on-primary-darken-5: 255, 255, 255;
-  --bolt-theme-primary-darken-10: 78, 86, 152;
+  --bolt-theme-primary-darken-10: 58, 95, 171;
   --bolt-theme-text-on-primary-darken-10: 255, 255, 255;
-  --bolt-theme-primary-darken-15: 75, 82, 145;
+  --bolt-theme-primary-darken-15: 56, 91, 163;
   --bolt-theme-text-on-primary-darken-15: 255, 255, 255;
-  --bolt-theme-primary-darken-20: 71, 79, 138;
+  --bolt-theme-primary-darken-20: 54, 87, 155;
   --bolt-theme-text-on-primary-darken-20: 255, 255, 255;
-  --bolt-theme-primary-darken-25: 68, 75, 131;
+  --bolt-theme-primary-darken-25: 52, 83, 146;
   --bolt-theme-text-on-primary-darken-25: 255, 255, 255;
   --bolt-theme-text-on-secondary: 21, 22, 25;
   --bolt-theme-secondary-lighten-5: 255, 255, 255;
@@ -1599,27 +1606,27 @@ bolt-inline-list:not(:last-child) {
   --bolt-theme-secondary-darken-25: 197, 197, 197;
   --bolt-theme-text-on-secondary-darken-25: 21, 22, 25;
   --bolt-theme-text-on-brand: 255, 255, 255;
-  --bolt-theme-brand-lighten-5: 42, 49, 94;
+  --bolt-theme-brand-lighten-5: 13, 42, 103;
   --bolt-theme-text-on-brand-lighten-5: 255, 255, 255;
-  --bolt-theme-brand-lighten-10: 53, 60, 103;
+  --bolt-theme-brand-lighten-10: 26, 53, 111;
   --bolt-theme-text-on-brand-lighten-10: 255, 255, 255;
-  --bolt-theme-brand-lighten-15: 65, 71, 111;
+  --bolt-theme-brand-lighten-15: 38, 65, 119;
   --bolt-theme-text-on-brand-lighten-15: 255, 255, 255;
-  --bolt-theme-brand-lighten-20: 76, 81, 120;
+  --bolt-theme-brand-lighten-20: 51, 76, 127;
   --bolt-theme-text-on-brand-lighten-20: 255, 255, 255;
-  --bolt-theme-brand-lighten-25: 87, 92, 128;
+  --bolt-theme-brand-lighten-25: 64, 87, 135;
   --bolt-theme-text-on-brand-lighten-25: 255, 255, 255;
-  --bolt-theme-brand-darken-3: 31, 38, 84;
+  --bolt-theme-brand-darken-3: 1, 31, 93;
   --bolt-theme-text-on-brand-darken-3: 255, 255, 255;
-  --bolt-theme-brand-darken-5: 31, 37, 83;
+  --bolt-theme-brand-darken-5: 1, 31, 91;
   --bolt-theme-text-on-brand-darken-5: 255, 255, 255;
-  --bolt-theme-brand-darken-10: 30, 36, 80;
+  --bolt-theme-brand-darken-10: 2, 30, 88;
   --bolt-theme-text-on-brand-darken-10: 255, 255, 255;
-  --bolt-theme-brand-darken-15: 30, 36, 77;
+  --bolt-theme-brand-darken-15: 3, 30, 84;
   --bolt-theme-text-on-brand-darken-15: 255, 255, 255;
-  --bolt-theme-brand-darken-20: 29, 35, 74;
+  --bolt-theme-brand-darken-20: 4, 29, 81;
   --bolt-theme-text-on-brand-darken-20: 255, 255, 255;
-  --bolt-theme-brand-darken-25: 29, 34, 71;
+  --bolt-theme-brand-darken-25: 5, 29, 77;
   --bolt-theme-text-on-brand-darken-25: 255, 255, 255;
   --bolt-theme-text-on-background: 21, 22, 25;
   --bolt-theme-text-on-background-secondary: 21, 22, 25;
@@ -1629,42 +1636,42 @@ bolt-inline-list:not(:last-child) {
   background-color: rgba(var(--bolt-theme-background), 1);
 }
 .t-bolt-dark {
-  --bolt-theme-background: 31, 38, 86;
+  --bolt-theme-background: 0, 31, 95;
   --bolt-theme-border: 255, 255, 255;
   --bolt-theme-contrast-filter: grayscale(100%) invert(100%) brightness(150%);
   --bolt-theme-disabled: 224, 226, 235;
   --bolt-theme-headline-link: 255, 255, 255;
   --bolt-theme-headline: 255, 255, 255;
   --bolt-theme-link: 255, 255, 255;
-  --bolt-theme-primary: 255, 204, 77;
+  --bolt-theme-primary: 255, 200, 54;
   --bolt-theme-secondary: 255, 255, 255;
   --bolt-theme-text-disabled: 141, 142, 153;
   --bolt-theme-text: 255, 255, 255;
   --bolt-theme-neutral: 141, 142, 153;
-  --bolt-theme-brand: 31, 38, 86;
-  --bolt-theme-background-secondary: 48, 54, 99;
+  --bolt-theme-brand: 0, 31, 95;
+  --bolt-theme-background-secondary: 19, 48, 107;
   --bolt-theme-text-on-primary: 21, 22, 25;
-  --bolt-theme-primary-lighten-5: 255, 207, 86;
+  --bolt-theme-primary-lighten-5: 255, 203, 64;
   --bolt-theme-text-on-primary-lighten-5: 21, 22, 25;
-  --bolt-theme-primary-lighten-10: 255, 209, 95;
+  --bolt-theme-primary-lighten-10: 255, 206, 74;
   --bolt-theme-text-on-primary-lighten-10: 21, 22, 25;
-  --bolt-theme-primary-lighten-15: 255, 212, 104;
+  --bolt-theme-primary-lighten-15: 255, 208, 84;
   --bolt-theme-text-on-primary-lighten-15: 21, 22, 25;
-  --bolt-theme-primary-lighten-20: 255, 214, 113;
+  --bolt-theme-primary-lighten-20: 255, 211, 94;
   --bolt-theme-text-on-primary-lighten-20: 21, 22, 25;
-  --bolt-theme-primary-lighten-25: 255, 217, 122;
+  --bolt-theme-primary-lighten-25: 255, 214, 104;
   --bolt-theme-text-on-primary-lighten-25: 21, 22, 25;
-  --bolt-theme-primary-darken-3: 248, 199, 75;
+  --bolt-theme-primary-darken-3: 248, 195, 53;
   --bolt-theme-text-on-primary-darken-3: 21, 22, 25;
-  --bolt-theme-primary-darken-5: 243, 195, 74;
+  --bolt-theme-primary-darken-5: 243, 191, 53;
   --bolt-theme-text-on-primary-darken-5: 21, 22, 25;
-  --bolt-theme-primary-darken-10: 232, 186, 72;
+  --bolt-theme-primary-darken-10: 232, 182, 51;
   --bolt-theme-text-on-primary-darken-10: 21, 22, 25;
-  --bolt-theme-primary-darken-15: 220, 177, 69;
+  --bolt-theme-primary-darken-15: 220, 173, 50;
   --bolt-theme-text-on-primary-darken-15: 21, 22, 25;
-  --bolt-theme-primary-darken-20: 208, 168, 67;
+  --bolt-theme-primary-darken-20: 208, 164, 48;
   --bolt-theme-text-on-primary-darken-20: 21, 22, 25;
-  --bolt-theme-primary-darken-25: 197, 159, 64;
+  --bolt-theme-primary-darken-25: 197, 156, 47;
   --bolt-theme-text-on-primary-darken-25: 21, 22, 25;
   --bolt-theme-text-on-secondary: 21, 22, 25;
   --bolt-theme-secondary-lighten-5: 255, 255, 255;
@@ -1690,73 +1697,73 @@ bolt-inline-list:not(:last-child) {
   --bolt-theme-secondary-darken-25: 197, 197, 197;
   --bolt-theme-text-on-secondary-darken-25: 21, 22, 25;
   --bolt-theme-text-on-brand: 255, 255, 255;
-  --bolt-theme-brand-lighten-5: 42, 49, 94;
+  --bolt-theme-brand-lighten-5: 13, 42, 103;
   --bolt-theme-text-on-brand-lighten-5: 255, 255, 255;
-  --bolt-theme-brand-lighten-10: 53, 60, 103;
+  --bolt-theme-brand-lighten-10: 26, 53, 111;
   --bolt-theme-text-on-brand-lighten-10: 255, 255, 255;
-  --bolt-theme-brand-lighten-15: 65, 71, 111;
+  --bolt-theme-brand-lighten-15: 38, 65, 119;
   --bolt-theme-text-on-brand-lighten-15: 255, 255, 255;
-  --bolt-theme-brand-lighten-20: 76, 81, 120;
+  --bolt-theme-brand-lighten-20: 51, 76, 127;
   --bolt-theme-text-on-brand-lighten-20: 255, 255, 255;
-  --bolt-theme-brand-lighten-25: 87, 92, 128;
+  --bolt-theme-brand-lighten-25: 64, 87, 135;
   --bolt-theme-text-on-brand-lighten-25: 255, 255, 255;
-  --bolt-theme-brand-darken-3: 31, 38, 84;
+  --bolt-theme-brand-darken-3: 1, 31, 93;
   --bolt-theme-text-on-brand-darken-3: 255, 255, 255;
-  --bolt-theme-brand-darken-5: 31, 37, 83;
+  --bolt-theme-brand-darken-5: 1, 31, 91;
   --bolt-theme-text-on-brand-darken-5: 255, 255, 255;
-  --bolt-theme-brand-darken-10: 30, 36, 80;
+  --bolt-theme-brand-darken-10: 2, 30, 88;
   --bolt-theme-text-on-brand-darken-10: 255, 255, 255;
-  --bolt-theme-brand-darken-15: 30, 36, 77;
+  --bolt-theme-brand-darken-15: 3, 30, 84;
   --bolt-theme-text-on-brand-darken-15: 255, 255, 255;
-  --bolt-theme-brand-darken-20: 29, 35, 74;
+  --bolt-theme-brand-darken-20: 4, 29, 81;
   --bolt-theme-text-on-brand-darken-20: 255, 255, 255;
-  --bolt-theme-brand-darken-25: 29, 34, 71;
+  --bolt-theme-brand-darken-25: 5, 29, 77;
   --bolt-theme-text-on-brand-darken-25: 255, 255, 255;
   --bolt-theme-text-on-background: 255, 255, 255;
   --bolt-theme-text-on-background-secondary: 255, 255, 255;
   color: #fff;
   color: rgba(var(--bolt-theme-text), 1);
-  background-color: #1f2656;
+  background-color: #001f5f;
   background-color: rgba(var(--bolt-theme-background), 1);
 }
 .t-bolt-xdark,
 .t-bolt-xxdark {
-  --bolt-theme-background: 22, 26, 60;
+  --bolt-theme-background: 11, 29, 65;
   --bolt-theme-border: 255, 255, 255;
   --bolt-theme-contrast-filter: grayscale(100%) invert(100%) brightness(150%);
   --bolt-theme-disabled: 224, 226, 235;
   --bolt-theme-headline-link: 255, 255, 255;
   --bolt-theme-headline: 255, 255, 255;
   --bolt-theme-link: 255, 255, 255;
-  --bolt-theme-primary: 255, 204, 77;
+  --bolt-theme-primary: 255, 200, 54;
   --bolt-theme-secondary: 255, 255, 255;
   --bolt-theme-text-disabled: 141, 142, 153;
   --bolt-theme-text: 255, 255, 255;
   --bolt-theme-neutral: 141, 142, 153;
-  --bolt-theme-brand: 31, 38, 86;
-  --bolt-theme-background-secondary: 48, 54, 99;
+  --bolt-theme-brand: 0, 31, 95;
+  --bolt-theme-background-secondary: 19, 48, 107;
   --bolt-theme-text-on-primary: 21, 22, 25;
-  --bolt-theme-primary-lighten-5: 255, 207, 86;
+  --bolt-theme-primary-lighten-5: 255, 203, 64;
   --bolt-theme-text-on-primary-lighten-5: 21, 22, 25;
-  --bolt-theme-primary-lighten-10: 255, 209, 95;
+  --bolt-theme-primary-lighten-10: 255, 206, 74;
   --bolt-theme-text-on-primary-lighten-10: 21, 22, 25;
-  --bolt-theme-primary-lighten-15: 255, 212, 104;
+  --bolt-theme-primary-lighten-15: 255, 208, 84;
   --bolt-theme-text-on-primary-lighten-15: 21, 22, 25;
-  --bolt-theme-primary-lighten-20: 255, 214, 113;
+  --bolt-theme-primary-lighten-20: 255, 211, 94;
   --bolt-theme-text-on-primary-lighten-20: 21, 22, 25;
-  --bolt-theme-primary-lighten-25: 255, 217, 122;
+  --bolt-theme-primary-lighten-25: 255, 214, 104;
   --bolt-theme-text-on-primary-lighten-25: 21, 22, 25;
-  --bolt-theme-primary-darken-3: 248, 199, 75;
+  --bolt-theme-primary-darken-3: 248, 195, 53;
   --bolt-theme-text-on-primary-darken-3: 21, 22, 25;
-  --bolt-theme-primary-darken-5: 243, 195, 74;
+  --bolt-theme-primary-darken-5: 243, 191, 53;
   --bolt-theme-text-on-primary-darken-5: 21, 22, 25;
-  --bolt-theme-primary-darken-10: 232, 186, 72;
+  --bolt-theme-primary-darken-10: 232, 182, 51;
   --bolt-theme-text-on-primary-darken-10: 21, 22, 25;
-  --bolt-theme-primary-darken-15: 220, 177, 69;
+  --bolt-theme-primary-darken-15: 220, 173, 50;
   --bolt-theme-text-on-primary-darken-15: 21, 22, 25;
-  --bolt-theme-primary-darken-20: 208, 168, 67;
+  --bolt-theme-primary-darken-20: 208, 164, 48;
   --bolt-theme-text-on-primary-darken-20: 21, 22, 25;
-  --bolt-theme-primary-darken-25: 197, 159, 64;
+  --bolt-theme-primary-darken-25: 197, 156, 47;
   --bolt-theme-text-on-primary-darken-25: 21, 22, 25;
   --bolt-theme-text-on-secondary: 21, 22, 25;
   --bolt-theme-secondary-lighten-5: 255, 255, 255;
@@ -1782,33 +1789,33 @@ bolt-inline-list:not(:last-child) {
   --bolt-theme-secondary-darken-25: 197, 197, 197;
   --bolt-theme-text-on-secondary-darken-25: 21, 22, 25;
   --bolt-theme-text-on-brand: 255, 255, 255;
-  --bolt-theme-brand-lighten-5: 42, 49, 94;
+  --bolt-theme-brand-lighten-5: 13, 42, 103;
   --bolt-theme-text-on-brand-lighten-5: 255, 255, 255;
-  --bolt-theme-brand-lighten-10: 53, 60, 103;
+  --bolt-theme-brand-lighten-10: 26, 53, 111;
   --bolt-theme-text-on-brand-lighten-10: 255, 255, 255;
-  --bolt-theme-brand-lighten-15: 65, 71, 111;
+  --bolt-theme-brand-lighten-15: 38, 65, 119;
   --bolt-theme-text-on-brand-lighten-15: 255, 255, 255;
-  --bolt-theme-brand-lighten-20: 76, 81, 120;
+  --bolt-theme-brand-lighten-20: 51, 76, 127;
   --bolt-theme-text-on-brand-lighten-20: 255, 255, 255;
-  --bolt-theme-brand-lighten-25: 87, 92, 128;
+  --bolt-theme-brand-lighten-25: 64, 87, 135;
   --bolt-theme-text-on-brand-lighten-25: 255, 255, 255;
-  --bolt-theme-brand-darken-3: 31, 38, 84;
+  --bolt-theme-brand-darken-3: 1, 31, 93;
   --bolt-theme-text-on-brand-darken-3: 255, 255, 255;
-  --bolt-theme-brand-darken-5: 31, 37, 83;
+  --bolt-theme-brand-darken-5: 1, 31, 91;
   --bolt-theme-text-on-brand-darken-5: 255, 255, 255;
-  --bolt-theme-brand-darken-10: 30, 36, 80;
+  --bolt-theme-brand-darken-10: 2, 30, 88;
   --bolt-theme-text-on-brand-darken-10: 255, 255, 255;
-  --bolt-theme-brand-darken-15: 30, 36, 77;
+  --bolt-theme-brand-darken-15: 3, 30, 84;
   --bolt-theme-text-on-brand-darken-15: 255, 255, 255;
-  --bolt-theme-brand-darken-20: 29, 35, 74;
+  --bolt-theme-brand-darken-20: 4, 29, 81;
   --bolt-theme-text-on-brand-darken-20: 255, 255, 255;
-  --bolt-theme-brand-darken-25: 29, 34, 71;
+  --bolt-theme-brand-darken-25: 5, 29, 77;
   --bolt-theme-text-on-brand-darken-25: 255, 255, 255;
   --bolt-theme-text-on-background: 255, 255, 255;
   --bolt-theme-text-on-background-secondary: 255, 255, 255;
   color: #fff;
   color: rgba(var(--bolt-theme-text), 1);
-  background-color: #161a3c;
+  background-color: #0b1d41;
   background-color: rgba(var(--bolt-theme-background), 1);
 }
 .t-bolt-xxdark {
@@ -1865,64 +1872,79 @@ bolt-inline-list:not(:last-child) {
   clear: both !important;
 }
 .u-bolt-color-indigo-xdark {
-  color: #060923 !important;
+  color: #091734 !important;
 }
 .u-bolt-color-indigo-dark {
-  color: #161a3c !important;
+  color: #0b1d41 !important;
 }
 .u-bolt-color-indigo {
-  color: #1f2656 !important;
+  color: #001f5f !important;
 }
 .u-bolt-color-indigo-light {
-  color: #545da6 !important;
+  color: #3e67bb !important;
 }
 .u-bolt-color-indigo-xlight {
-  color: #abb3f2 !important;
+  color: #abc2f2 !important;
+}
+.u-bolt-color-navy-xdark {
+  color: #091734 !important;
+}
+.u-bolt-color-navy-dark {
+  color: #0b1d41 !important;
+}
+.u-bolt-color-navy {
+  color: #001f5f !important;
+}
+.u-bolt-color-navy-light {
+  color: #3e67bb !important;
+}
+.u-bolt-color-navy-xlight {
+  color: #abc2f2 !important;
 }
 .u-bolt-color-yellow-xdark {
-  color: #664900 !important;
+  color: #664a00 !important;
 }
 .u-bolt-color-yellow-dark {
-  color: #e8ad17 !important;
+  color: #e8af17 !important;
 }
 .u-bolt-color-yellow {
-  color: #ffcc4d !important;
+  color: #ffc836 !important;
 }
 .u-bolt-color-yellow-light {
-  color: #ffe299 !important;
+  color: #ffe399 !important;
 }
 .u-bolt-color-yellow-xlight {
   color: #fff1cc !important;
 }
 .u-bolt-color-teal-xdark {
-  color: #033 !important;
+  color: #005154 !important;
 }
 .u-bolt-color-teal-dark {
-  color: #0a6666 !important;
+  color: #0a6266 !important;
 }
 .u-bolt-color-teal {
-  color: #099 !important;
+  color: #10a5ac !important;
 }
 .u-bolt-color-teal-light {
-  color: #7acdcd !important;
+  color: #86cac6 !important;
 }
 .u-bolt-color-teal-xlight {
-  color: #b7e6e6 !important;
+  color: #b7e4e6 !important;
 }
 .u-bolt-color-orange-xdark {
-  color: #661a00 !important;
+  color: #620 !important;
 }
 .u-bolt-color-orange-dark {
-  color: #b53b12 !important;
+  color: #b54812 !important;
 }
 .u-bolt-color-orange {
-  color: #e84b17 !important;
+  color: #f76923 !important;
 }
 .u-bolt-color-orange-light {
-  color: #ff8c66 !important;
+  color: #ff9866 !important;
 }
 .u-bolt-color-orange-xlight {
-  color: #ffc6b3 !important;
+  color: #ffccb3 !important;
 }
 .u-bolt-color-gray-xdark {
   color: #2e2e33 !important;
@@ -1946,13 +1968,13 @@ bolt-inline-list:not(:last-child) {
   color: #fff !important;
 }
 .u-bolt-color-blue-dark {
-  color: #005380 !important;
+  color: #004880 !important;
 }
 .u-bolt-color-blue {
-  color: #0074b3 !important;
+  color: #0076d1 !important;
 }
 .u-bolt-color-blue-light {
-  color: #d6f1ff !important;
+  color: #d6edff !important;
 }
 .u-bolt-color-success-dark {
   color: #256940 !important;
@@ -17968,8 +17990,8 @@ bolt-icon:not(:resolved) {
 .t-bolt-light .c-bolt-icon--blue,
 .t-bolt-xlight .c-bolt-icon--blue,
 :root .c-bolt-icon--blue {
-  color: #0074b3;
-  --bolt-theme-icon: #0074b3;
+  color: #0076d1;
+  --bolt-theme-icon: #0076d1;
   filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.2));
 }
 .t-bolt-light .c-bolt-icon--blue.has-background:not(.has-outline-background),
@@ -17977,7 +17999,7 @@ bolt-icon:not(:resolved) {
 :root .c-bolt-icon--blue.has-background:not(.has-outline-background) {
   color: #fff;
   --bolt-theme-icon: #fff;
-  --bolt-theme-icon-background: #0074b3;
+  --bolt-theme-icon-background: #0076d1;
   --bolt-theme-icon-background-opacity: 1;
 }
 .t-bolt-light
@@ -17991,7 +18013,7 @@ bolt-icon:not(:resolved) {
   .c-bolt-icon__background-shape {
   opacity: 1;
   border: 1px solid rgba(92, 93, 102, 0.5);
-  background-color: #0074b3;
+  background-color: #0076d1;
 }
 .t-bolt-light .c-bolt-icon--gray,
 .t-bolt-xlight .c-bolt-icon--gray,
@@ -18024,8 +18046,8 @@ bolt-icon:not(:resolved) {
 .t-bolt-light .c-bolt-icon--indigo,
 .t-bolt-xlight .c-bolt-icon--indigo,
 :root .c-bolt-icon--indigo {
-  color: #545da6;
-  --bolt-theme-icon: #545da6;
+  color: #3e67bb;
+  --bolt-theme-icon: #3e67bb;
   filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.2));
 }
 .t-bolt-light .c-bolt-icon--indigo.has-background:not(.has-outline-background),
@@ -18033,7 +18055,7 @@ bolt-icon:not(:resolved) {
 :root .c-bolt-icon--indigo.has-background:not(.has-outline-background) {
   color: #fff;
   --bolt-theme-icon: #fff;
-  --bolt-theme-icon-background: #545da6;
+  --bolt-theme-icon-background: #3e67bb;
   --bolt-theme-icon-background-opacity: 1;
 }
 .t-bolt-light
@@ -18047,21 +18069,21 @@ bolt-icon:not(:resolved) {
   .c-bolt-icon__background-shape {
   opacity: 1;
   border: 1px solid rgba(92, 93, 102, 0.5);
-  background-color: #545da6;
+  background-color: #3e67bb;
 }
 .t-bolt-light .c-bolt-icon--orange,
 .t-bolt-xlight .c-bolt-icon--orange,
 :root .c-bolt-icon--orange {
-  color: #e84b17;
-  --bolt-theme-icon: #e84b17;
-  filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.2));
+  color: #f76923;
+  --bolt-theme-icon: #f76923;
+  filter: drop-shadow(0 0 1px rgba(21, 22, 25, 0.2));
 }
 .t-bolt-light .c-bolt-icon--orange.has-background:not(.has-outline-background),
 .t-bolt-xlight .c-bolt-icon--orange.has-background:not(.has-outline-background),
 :root .c-bolt-icon--orange.has-background:not(.has-outline-background) {
-  color: #fff;
-  --bolt-theme-icon: #fff;
-  --bolt-theme-icon-background: #e84b17;
+  color: #151619;
+  --bolt-theme-icon: #151619;
+  --bolt-theme-icon-background: #f76923;
   --bolt-theme-icon-background-opacity: 1;
 }
 .t-bolt-light
@@ -18075,21 +18097,21 @@ bolt-icon:not(:resolved) {
   .c-bolt-icon__background-shape {
   opacity: 1;
   border: 1px solid rgba(92, 93, 102, 0.5);
-  background-color: #e84b17;
+  background-color: #f76923;
 }
 .t-bolt-light .c-bolt-icon--teal,
 .t-bolt-xlight .c-bolt-icon--teal,
 :root .c-bolt-icon--teal {
-  color: #099;
-  --bolt-theme-icon: #099;
-  filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.2));
+  color: #10a5ac;
+  --bolt-theme-icon: #10a5ac;
+  filter: drop-shadow(0 0 1px rgba(21, 22, 25, 0.2));
 }
 .t-bolt-light .c-bolt-icon--teal.has-background:not(.has-outline-background),
 .t-bolt-xlight .c-bolt-icon--teal.has-background:not(.has-outline-background),
 :root .c-bolt-icon--teal.has-background:not(.has-outline-background) {
-  color: #fff;
-  --bolt-theme-icon: #fff;
-  --bolt-theme-icon-background: #099;
+  color: #151619;
+  --bolt-theme-icon: #151619;
+  --bolt-theme-icon-background: #10a5ac;
   --bolt-theme-icon-background-opacity: 1;
 }
 .t-bolt-light
@@ -18103,7 +18125,7 @@ bolt-icon:not(:resolved) {
   .c-bolt-icon__background-shape {
   opacity: 1;
   border: 1px solid rgba(92, 93, 102, 0.5);
-  background-color: #099;
+  background-color: #10a5ac;
 }
 .t-bolt-light .c-bolt-icon--white,
 .t-bolt-xlight .c-bolt-icon--white,
@@ -18145,7 +18167,7 @@ bolt-icon:not(:resolved) {
 :root .c-bolt-icon--yellow.has-background:not(.has-outline-background) {
   color: #151619;
   --bolt-theme-icon: #151619;
-  --bolt-theme-icon-background: #ffcc4d;
+  --bolt-theme-icon-background: #ffc836;
   --bolt-theme-icon-background-opacity: 1;
 }
 .t-bolt-light
@@ -18159,7 +18181,7 @@ bolt-icon:not(:resolved) {
   .c-bolt-icon__background-shape {
   opacity: 1;
   border: 1px solid rgba(92, 93, 102, 0.5);
-  background-color: #ffcc4d;
+  background-color: #ffc836;
 }
 .t-bolt-light .c-bolt-icon--green,
 .t-bolt-xlight .c-bolt-icon--green,
@@ -18227,7 +18249,7 @@ bolt-icon:not(:resolved) {
 .t-bolt-xdark .c-bolt-icon--blue.has-background:not(.has-outline-background) {
   color: #fff;
   --bolt-theme-icon: #fff;
-  --bolt-theme-icon-background: #0074b3;
+  --bolt-theme-icon-background: #0076d1;
   --bolt-theme-icon-background-opacity: 1;
 }
 .t-bolt-dark
@@ -18238,7 +18260,7 @@ bolt-icon:not(:resolved) {
   .c-bolt-icon__background-shape {
   opacity: 1;
   border: 1px solid rgba(92, 93, 102, 0.5);
-  background-color: #0074b3;
+  background-color: #0076d1;
 }
 .t-bolt-dark .c-bolt-icon--gray,
 .t-bolt-xdark .c-bolt-icon--gray {
@@ -18265,15 +18287,15 @@ bolt-icon:not(:resolved) {
 }
 .t-bolt-dark .c-bolt-icon--indigo,
 .t-bolt-xdark .c-bolt-icon--indigo {
-  color: #abb3f2;
-  --bolt-theme-icon: #abb3f2;
+  color: #abc2f2;
+  --bolt-theme-icon: #abc2f2;
   filter: drop-shadow(0 0 1px rgba(21, 22, 25, 0.2));
 }
 .t-bolt-dark .c-bolt-icon--indigo.has-background:not(.has-outline-background),
 .t-bolt-xdark .c-bolt-icon--indigo.has-background:not(.has-outline-background) {
   color: #fff;
   --bolt-theme-icon: #fff;
-  --bolt-theme-icon-background: #545da6;
+  --bolt-theme-icon-background: #3e67bb;
   --bolt-theme-icon-background-opacity: 1;
 }
 .t-bolt-dark
@@ -18284,19 +18306,19 @@ bolt-icon:not(:resolved) {
   .c-bolt-icon__background-shape {
   opacity: 1;
   border: 1px solid rgba(92, 93, 102, 0.5);
-  background-color: #545da6;
+  background-color: #3e67bb;
 }
 .t-bolt-dark .c-bolt-icon--orange,
 .t-bolt-xdark .c-bolt-icon--orange {
-  color: #ff8c66;
-  --bolt-theme-icon: #ff8c66;
+  color: #ff9866;
+  --bolt-theme-icon: #ff9866;
   filter: drop-shadow(0 0 1px rgba(21, 22, 25, 0.2));
 }
 .t-bolt-dark .c-bolt-icon--orange.has-background:not(.has-outline-background),
 .t-bolt-xdark .c-bolt-icon--orange.has-background:not(.has-outline-background) {
-  color: #fff;
-  --bolt-theme-icon: #fff;
-  --bolt-theme-icon-background: #e84b17;
+  color: #151619;
+  --bolt-theme-icon: #151619;
+  --bolt-theme-icon-background: #f76923;
   --bolt-theme-icon-background-opacity: 1;
 }
 .t-bolt-dark
@@ -18307,19 +18329,19 @@ bolt-icon:not(:resolved) {
   .c-bolt-icon__background-shape {
   opacity: 1;
   border: 1px solid rgba(92, 93, 102, 0.5);
-  background-color: #e84b17;
+  background-color: #f76923;
 }
 .t-bolt-dark .c-bolt-icon--teal,
 .t-bolt-xdark .c-bolt-icon--teal {
-  color: #7acdcd;
-  --bolt-theme-icon: #7acdcd;
+  color: #86cac6;
+  --bolt-theme-icon: #86cac6;
   filter: drop-shadow(0 0 1px rgba(21, 22, 25, 0.2));
 }
 .t-bolt-dark .c-bolt-icon--teal.has-background:not(.has-outline-background),
 .t-bolt-xdark .c-bolt-icon--teal.has-background:not(.has-outline-background) {
-  color: #fff;
-  --bolt-theme-icon: #fff;
-  --bolt-theme-icon-background: #099;
+  color: #151619;
+  --bolt-theme-icon: #151619;
+  --bolt-theme-icon-background: #10a5ac;
   --bolt-theme-icon-background-opacity: 1;
 }
 .t-bolt-dark
@@ -18330,7 +18352,7 @@ bolt-icon:not(:resolved) {
   .c-bolt-icon__background-shape {
   opacity: 1;
   border: 1px solid rgba(92, 93, 102, 0.5);
-  background-color: #099;
+  background-color: #10a5ac;
 }
 .t-bolt-dark .c-bolt-icon--white,
 .t-bolt-xdark .c-bolt-icon--white {
@@ -18357,15 +18379,15 @@ bolt-icon:not(:resolved) {
 }
 .t-bolt-dark .c-bolt-icon--yellow,
 .t-bolt-xdark .c-bolt-icon--yellow {
-  color: #ffcc4d;
-  --bolt-theme-icon: #ffcc4d;
+  color: #ffc836;
+  --bolt-theme-icon: #ffc836;
   filter: drop-shadow(0 0 1px rgba(21, 22, 25, 0.2));
 }
 .t-bolt-dark .c-bolt-icon--yellow.has-background:not(.has-outline-background),
 .t-bolt-xdark .c-bolt-icon--yellow.has-background:not(.has-outline-background) {
   color: #151619;
   --bolt-theme-icon: #151619;
-  --bolt-theme-icon-background: #ffcc4d;
+  --bolt-theme-icon-background: #ffc836;
   --bolt-theme-icon-background-opacity: 1;
 }
 .t-bolt-dark
@@ -18376,7 +18398,7 @@ bolt-icon:not(:resolved) {
   .c-bolt-icon__background-shape {
   opacity: 1;
   border: 1px solid rgba(92, 93, 102, 0.5);
-  background-color: #ffcc4d;
+  background-color: #ffc836;
 }
 .t-bolt-dark .c-bolt-icon--green,
 .t-bolt-xdark .c-bolt-icon--green {
@@ -19212,7 +19234,7 @@ ul {
 }
 ::selection {
   text-shadow: none;
-  background-color: #abb3f2;
+  background-color: #abc2f2;
 }
 li > ol,
 li > ul {
@@ -19375,7 +19397,7 @@ pre {
   overflow-y: auto;
   overflow-x: auto;
   display: block;
-  background-color: rgba(84, 93, 166, 0.08);
+  background-color: rgba(62, 103, 187, 0.08);
 }
 code {
   margin: 0;
@@ -19387,7 +19409,7 @@ code {
   line-height: 1.45;
   display: inline;
   letter-spacing: 0.05rem;
-  background-color: rgba(84, 93, 166, 0.08);
+  background-color: rgba(62, 103, 187, 0.08);
 }
 .js-fonts-loaded code {
   font-family: monospace, monospace;
@@ -19440,12 +19462,12 @@ hr {
   margin-bottom: 1.35rem;
 }
 a:not([class]) {
-  color: #545da6;
+  color: #3e67bb;
   text-decoration: underline;
 }
 .t-bolt-light a:not([class]),
 .t-bolt-xlight a:not([class]) {
-  color: #545da6;
+  color: #3e67bb;
 }
 .t-bolt-dark a:not([class]),
 .t-bolt-medium a:not([class]),
@@ -19500,7 +19522,7 @@ body {
   line-height: 1.55;
   width: 100%;
   margin: 0;
-  color: #060923;
+  color: #091734;
   overflow-x: hidden;
 }
 .js-fonts-loaded body {
@@ -19925,41 +19947,41 @@ bolt-inline-list:not(:last-child) {
 .t-bolt-xlight,
 :root {
   --bolt-theme-background: 255, 255, 255;
-  --bolt-theme-border: 22, 26, 60;
+  --bolt-theme-border: 11, 29, 65;
   --bolt-theme-contrast-filter: none;
   --bolt-theme-disabled: 224, 226, 235;
-  --bolt-theme-headline-link: 84, 93, 166;
-  --bolt-theme-headline: 31, 38, 86;
-  --bolt-theme-link: 84, 93, 166;
-  --bolt-theme-primary: 84, 93, 166;
+  --bolt-theme-headline-link: 62, 103, 187;
+  --bolt-theme-headline: 0, 31, 95;
+  --bolt-theme-link: 62, 103, 187;
+  --bolt-theme-primary: 62, 103, 187;
   --bolt-theme-secondary: 255, 255, 255;
   --bolt-theme-text-disabled: 141, 142, 153;
   --bolt-theme-text: 21, 22, 25;
   --bolt-theme-neutral: 141, 142, 153;
-  --bolt-theme-brand: 31, 38, 86;
+  --bolt-theme-brand: 0, 31, 95;
   --bolt-theme-background-secondary: 255, 255, 255;
   --bolt-theme-text-on-primary: 255, 255, 255;
-  --bolt-theme-primary-lighten-5: 93, 101, 170;
+  --bolt-theme-primary-lighten-5: 72, 111, 190;
   --bolt-theme-text-on-primary-lighten-5: 255, 255, 255;
-  --bolt-theme-primary-lighten-10: 101, 109, 175;
+  --bolt-theme-primary-lighten-10: 81, 118, 194;
   --bolt-theme-text-on-primary-lighten-10: 255, 255, 255;
-  --bolt-theme-primary-lighten-15: 110, 117, 179;
+  --bolt-theme-primary-lighten-15: 91, 126, 197;
   --bolt-theme-text-on-primary-lighten-15: 255, 255, 255;
-  --bolt-theme-primary-lighten-20: 118, 125, 184;
+  --bolt-theme-primary-lighten-20: 101, 133, 201;
   --bolt-theme-text-on-primary-lighten-20: 255, 255, 255;
-  --bolt-theme-primary-lighten-25: 127, 134, 188;
+  --bolt-theme-primary-lighten-25: 110, 141, 204;
   --bolt-theme-text-on-primary-lighten-25: 255, 255, 255;
-  --bolt-theme-primary-darken-3: 82, 91, 162;
+  --bolt-theme-primary-darken-3: 61, 101, 182;
   --bolt-theme-text-on-primary-darken-3: 255, 255, 255;
-  --bolt-theme-primary-darken-5: 81, 89, 159;
+  --bolt-theme-primary-darken-5: 60, 99, 179;
   --bolt-theme-text-on-primary-darken-5: 255, 255, 255;
-  --bolt-theme-primary-darken-10: 78, 86, 152;
+  --bolt-theme-primary-darken-10: 58, 95, 171;
   --bolt-theme-text-on-primary-darken-10: 255, 255, 255;
-  --bolt-theme-primary-darken-15: 75, 82, 145;
+  --bolt-theme-primary-darken-15: 56, 91, 163;
   --bolt-theme-text-on-primary-darken-15: 255, 255, 255;
-  --bolt-theme-primary-darken-20: 71, 79, 138;
+  --bolt-theme-primary-darken-20: 54, 87, 155;
   --bolt-theme-text-on-primary-darken-20: 255, 255, 255;
-  --bolt-theme-primary-darken-25: 68, 75, 131;
+  --bolt-theme-primary-darken-25: 52, 83, 146;
   --bolt-theme-text-on-primary-darken-25: 255, 255, 255;
   --bolt-theme-text-on-secondary: 21, 22, 25;
   --bolt-theme-secondary-lighten-5: 255, 255, 255;
@@ -19985,27 +20007,27 @@ bolt-inline-list:not(:last-child) {
   --bolt-theme-secondary-darken-25: 197, 197, 197;
   --bolt-theme-text-on-secondary-darken-25: 21, 22, 25;
   --bolt-theme-text-on-brand: 255, 255, 255;
-  --bolt-theme-brand-lighten-5: 42, 49, 94;
+  --bolt-theme-brand-lighten-5: 13, 42, 103;
   --bolt-theme-text-on-brand-lighten-5: 255, 255, 255;
-  --bolt-theme-brand-lighten-10: 53, 60, 103;
+  --bolt-theme-brand-lighten-10: 26, 53, 111;
   --bolt-theme-text-on-brand-lighten-10: 255, 255, 255;
-  --bolt-theme-brand-lighten-15: 65, 71, 111;
+  --bolt-theme-brand-lighten-15: 38, 65, 119;
   --bolt-theme-text-on-brand-lighten-15: 255, 255, 255;
-  --bolt-theme-brand-lighten-20: 76, 81, 120;
+  --bolt-theme-brand-lighten-20: 51, 76, 127;
   --bolt-theme-text-on-brand-lighten-20: 255, 255, 255;
-  --bolt-theme-brand-lighten-25: 87, 92, 128;
+  --bolt-theme-brand-lighten-25: 64, 87, 135;
   --bolt-theme-text-on-brand-lighten-25: 255, 255, 255;
-  --bolt-theme-brand-darken-3: 31, 38, 84;
+  --bolt-theme-brand-darken-3: 1, 31, 93;
   --bolt-theme-text-on-brand-darken-3: 255, 255, 255;
-  --bolt-theme-brand-darken-5: 31, 37, 83;
+  --bolt-theme-brand-darken-5: 1, 31, 91;
   --bolt-theme-text-on-brand-darken-5: 255, 255, 255;
-  --bolt-theme-brand-darken-10: 30, 36, 80;
+  --bolt-theme-brand-darken-10: 2, 30, 88;
   --bolt-theme-text-on-brand-darken-10: 255, 255, 255;
-  --bolt-theme-brand-darken-15: 30, 36, 77;
+  --bolt-theme-brand-darken-15: 3, 30, 84;
   --bolt-theme-text-on-brand-darken-15: 255, 255, 255;
-  --bolt-theme-brand-darken-20: 29, 35, 74;
+  --bolt-theme-brand-darken-20: 4, 29, 81;
   --bolt-theme-text-on-brand-darken-20: 255, 255, 255;
-  --bolt-theme-brand-darken-25: 29, 34, 71;
+  --bolt-theme-brand-darken-25: 5, 29, 77;
   --bolt-theme-text-on-brand-darken-25: 255, 255, 255;
   --bolt-theme-text-on-background: 21, 22, 25;
   --bolt-theme-text-on-background-secondary: 21, 22, 25;
@@ -20016,41 +20038,41 @@ bolt-inline-list:not(:last-child) {
 }
 .t-bolt-light {
   --bolt-theme-background: 246, 246, 249;
-  --bolt-theme-border: 22, 26, 60;
+  --bolt-theme-border: 11, 29, 65;
   --bolt-theme-contrast-filter: none;
   --bolt-theme-disabled: 224, 226, 235;
-  --bolt-theme-headline-link: 84, 93, 166;
-  --bolt-theme-headline: 31, 38, 86;
-  --bolt-theme-link: 84, 93, 166;
-  --bolt-theme-primary: 84, 93, 166;
+  --bolt-theme-headline-link: 62, 103, 187;
+  --bolt-theme-headline: 0, 31, 95;
+  --bolt-theme-link: 62, 103, 187;
+  --bolt-theme-primary: 62, 103, 187;
   --bolt-theme-secondary: 255, 255, 255;
   --bolt-theme-text-disabled: 141, 142, 153;
   --bolt-theme-text: 21, 22, 25;
   --bolt-theme-neutral: 141, 142, 153;
-  --bolt-theme-brand: 31, 38, 86;
+  --bolt-theme-brand: 0, 31, 95;
   --bolt-theme-background-secondary: 255, 255, 255;
   --bolt-theme-text-on-primary: 255, 255, 255;
-  --bolt-theme-primary-lighten-5: 93, 101, 170;
+  --bolt-theme-primary-lighten-5: 72, 111, 190;
   --bolt-theme-text-on-primary-lighten-5: 255, 255, 255;
-  --bolt-theme-primary-lighten-10: 101, 109, 175;
+  --bolt-theme-primary-lighten-10: 81, 118, 194;
   --bolt-theme-text-on-primary-lighten-10: 255, 255, 255;
-  --bolt-theme-primary-lighten-15: 110, 117, 179;
+  --bolt-theme-primary-lighten-15: 91, 126, 197;
   --bolt-theme-text-on-primary-lighten-15: 255, 255, 255;
-  --bolt-theme-primary-lighten-20: 118, 125, 184;
+  --bolt-theme-primary-lighten-20: 101, 133, 201;
   --bolt-theme-text-on-primary-lighten-20: 255, 255, 255;
-  --bolt-theme-primary-lighten-25: 127, 134, 188;
+  --bolt-theme-primary-lighten-25: 110, 141, 204;
   --bolt-theme-text-on-primary-lighten-25: 255, 255, 255;
-  --bolt-theme-primary-darken-3: 82, 91, 162;
+  --bolt-theme-primary-darken-3: 61, 101, 182;
   --bolt-theme-text-on-primary-darken-3: 255, 255, 255;
-  --bolt-theme-primary-darken-5: 81, 89, 159;
+  --bolt-theme-primary-darken-5: 60, 99, 179;
   --bolt-theme-text-on-primary-darken-5: 255, 255, 255;
-  --bolt-theme-primary-darken-10: 78, 86, 152;
+  --bolt-theme-primary-darken-10: 58, 95, 171;
   --bolt-theme-text-on-primary-darken-10: 255, 255, 255;
-  --bolt-theme-primary-darken-15: 75, 82, 145;
+  --bolt-theme-primary-darken-15: 56, 91, 163;
   --bolt-theme-text-on-primary-darken-15: 255, 255, 255;
-  --bolt-theme-primary-darken-20: 71, 79, 138;
+  --bolt-theme-primary-darken-20: 54, 87, 155;
   --bolt-theme-text-on-primary-darken-20: 255, 255, 255;
-  --bolt-theme-primary-darken-25: 68, 75, 131;
+  --bolt-theme-primary-darken-25: 52, 83, 146;
   --bolt-theme-text-on-primary-darken-25: 255, 255, 255;
   --bolt-theme-text-on-secondary: 21, 22, 25;
   --bolt-theme-secondary-lighten-5: 255, 255, 255;
@@ -20076,27 +20098,27 @@ bolt-inline-list:not(:last-child) {
   --bolt-theme-secondary-darken-25: 197, 197, 197;
   --bolt-theme-text-on-secondary-darken-25: 21, 22, 25;
   --bolt-theme-text-on-brand: 255, 255, 255;
-  --bolt-theme-brand-lighten-5: 42, 49, 94;
+  --bolt-theme-brand-lighten-5: 13, 42, 103;
   --bolt-theme-text-on-brand-lighten-5: 255, 255, 255;
-  --bolt-theme-brand-lighten-10: 53, 60, 103;
+  --bolt-theme-brand-lighten-10: 26, 53, 111;
   --bolt-theme-text-on-brand-lighten-10: 255, 255, 255;
-  --bolt-theme-brand-lighten-15: 65, 71, 111;
+  --bolt-theme-brand-lighten-15: 38, 65, 119;
   --bolt-theme-text-on-brand-lighten-15: 255, 255, 255;
-  --bolt-theme-brand-lighten-20: 76, 81, 120;
+  --bolt-theme-brand-lighten-20: 51, 76, 127;
   --bolt-theme-text-on-brand-lighten-20: 255, 255, 255;
-  --bolt-theme-brand-lighten-25: 87, 92, 128;
+  --bolt-theme-brand-lighten-25: 64, 87, 135;
   --bolt-theme-text-on-brand-lighten-25: 255, 255, 255;
-  --bolt-theme-brand-darken-3: 31, 38, 84;
+  --bolt-theme-brand-darken-3: 1, 31, 93;
   --bolt-theme-text-on-brand-darken-3: 255, 255, 255;
-  --bolt-theme-brand-darken-5: 31, 37, 83;
+  --bolt-theme-brand-darken-5: 1, 31, 91;
   --bolt-theme-text-on-brand-darken-5: 255, 255, 255;
-  --bolt-theme-brand-darken-10: 30, 36, 80;
+  --bolt-theme-brand-darken-10: 2, 30, 88;
   --bolt-theme-text-on-brand-darken-10: 255, 255, 255;
-  --bolt-theme-brand-darken-15: 30, 36, 77;
+  --bolt-theme-brand-darken-15: 3, 30, 84;
   --bolt-theme-text-on-brand-darken-15: 255, 255, 255;
-  --bolt-theme-brand-darken-20: 29, 35, 74;
+  --bolt-theme-brand-darken-20: 4, 29, 81;
   --bolt-theme-text-on-brand-darken-20: 255, 255, 255;
-  --bolt-theme-brand-darken-25: 29, 34, 71;
+  --bolt-theme-brand-darken-25: 5, 29, 77;
   --bolt-theme-text-on-brand-darken-25: 255, 255, 255;
   --bolt-theme-text-on-background: 21, 22, 25;
   --bolt-theme-text-on-background-secondary: 21, 22, 25;
@@ -20106,42 +20128,42 @@ bolt-inline-list:not(:last-child) {
   background-color: rgba(var(--bolt-theme-background), 1);
 }
 .t-bolt-dark {
-  --bolt-theme-background: 31, 38, 86;
+  --bolt-theme-background: 0, 31, 95;
   --bolt-theme-border: 255, 255, 255;
   --bolt-theme-contrast-filter: grayscale(100%) invert(100%) brightness(150%);
   --bolt-theme-disabled: 224, 226, 235;
   --bolt-theme-headline-link: 255, 255, 255;
   --bolt-theme-headline: 255, 255, 255;
   --bolt-theme-link: 255, 255, 255;
-  --bolt-theme-primary: 255, 204, 77;
+  --bolt-theme-primary: 255, 200, 54;
   --bolt-theme-secondary: 255, 255, 255;
   --bolt-theme-text-disabled: 141, 142, 153;
   --bolt-theme-text: 255, 255, 255;
   --bolt-theme-neutral: 141, 142, 153;
-  --bolt-theme-brand: 31, 38, 86;
-  --bolt-theme-background-secondary: 48, 54, 99;
+  --bolt-theme-brand: 0, 31, 95;
+  --bolt-theme-background-secondary: 19, 48, 107;
   --bolt-theme-text-on-primary: 21, 22, 25;
-  --bolt-theme-primary-lighten-5: 255, 207, 86;
+  --bolt-theme-primary-lighten-5: 255, 203, 64;
   --bolt-theme-text-on-primary-lighten-5: 21, 22, 25;
-  --bolt-theme-primary-lighten-10: 255, 209, 95;
+  --bolt-theme-primary-lighten-10: 255, 206, 74;
   --bolt-theme-text-on-primary-lighten-10: 21, 22, 25;
-  --bolt-theme-primary-lighten-15: 255, 212, 104;
+  --bolt-theme-primary-lighten-15: 255, 208, 84;
   --bolt-theme-text-on-primary-lighten-15: 21, 22, 25;
-  --bolt-theme-primary-lighten-20: 255, 214, 113;
+  --bolt-theme-primary-lighten-20: 255, 211, 94;
   --bolt-theme-text-on-primary-lighten-20: 21, 22, 25;
-  --bolt-theme-primary-lighten-25: 255, 217, 122;
+  --bolt-theme-primary-lighten-25: 255, 214, 104;
   --bolt-theme-text-on-primary-lighten-25: 21, 22, 25;
-  --bolt-theme-primary-darken-3: 248, 199, 75;
+  --bolt-theme-primary-darken-3: 248, 195, 53;
   --bolt-theme-text-on-primary-darken-3: 21, 22, 25;
-  --bolt-theme-primary-darken-5: 243, 195, 74;
+  --bolt-theme-primary-darken-5: 243, 191, 53;
   --bolt-theme-text-on-primary-darken-5: 21, 22, 25;
-  --bolt-theme-primary-darken-10: 232, 186, 72;
+  --bolt-theme-primary-darken-10: 232, 182, 51;
   --bolt-theme-text-on-primary-darken-10: 21, 22, 25;
-  --bolt-theme-primary-darken-15: 220, 177, 69;
+  --bolt-theme-primary-darken-15: 220, 173, 50;
   --bolt-theme-text-on-primary-darken-15: 21, 22, 25;
-  --bolt-theme-primary-darken-20: 208, 168, 67;
+  --bolt-theme-primary-darken-20: 208, 164, 48;
   --bolt-theme-text-on-primary-darken-20: 21, 22, 25;
-  --bolt-theme-primary-darken-25: 197, 159, 64;
+  --bolt-theme-primary-darken-25: 197, 156, 47;
   --bolt-theme-text-on-primary-darken-25: 21, 22, 25;
   --bolt-theme-text-on-secondary: 21, 22, 25;
   --bolt-theme-secondary-lighten-5: 255, 255, 255;
@@ -20167,73 +20189,73 @@ bolt-inline-list:not(:last-child) {
   --bolt-theme-secondary-darken-25: 197, 197, 197;
   --bolt-theme-text-on-secondary-darken-25: 21, 22, 25;
   --bolt-theme-text-on-brand: 255, 255, 255;
-  --bolt-theme-brand-lighten-5: 42, 49, 94;
+  --bolt-theme-brand-lighten-5: 13, 42, 103;
   --bolt-theme-text-on-brand-lighten-5: 255, 255, 255;
-  --bolt-theme-brand-lighten-10: 53, 60, 103;
+  --bolt-theme-brand-lighten-10: 26, 53, 111;
   --bolt-theme-text-on-brand-lighten-10: 255, 255, 255;
-  --bolt-theme-brand-lighten-15: 65, 71, 111;
+  --bolt-theme-brand-lighten-15: 38, 65, 119;
   --bolt-theme-text-on-brand-lighten-15: 255, 255, 255;
-  --bolt-theme-brand-lighten-20: 76, 81, 120;
+  --bolt-theme-brand-lighten-20: 51, 76, 127;
   --bolt-theme-text-on-brand-lighten-20: 255, 255, 255;
-  --bolt-theme-brand-lighten-25: 87, 92, 128;
+  --bolt-theme-brand-lighten-25: 64, 87, 135;
   --bolt-theme-text-on-brand-lighten-25: 255, 255, 255;
-  --bolt-theme-brand-darken-3: 31, 38, 84;
+  --bolt-theme-brand-darken-3: 1, 31, 93;
   --bolt-theme-text-on-brand-darken-3: 255, 255, 255;
-  --bolt-theme-brand-darken-5: 31, 37, 83;
+  --bolt-theme-brand-darken-5: 1, 31, 91;
   --bolt-theme-text-on-brand-darken-5: 255, 255, 255;
-  --bolt-theme-brand-darken-10: 30, 36, 80;
+  --bolt-theme-brand-darken-10: 2, 30, 88;
   --bolt-theme-text-on-brand-darken-10: 255, 255, 255;
-  --bolt-theme-brand-darken-15: 30, 36, 77;
+  --bolt-theme-brand-darken-15: 3, 30, 84;
   --bolt-theme-text-on-brand-darken-15: 255, 255, 255;
-  --bolt-theme-brand-darken-20: 29, 35, 74;
+  --bolt-theme-brand-darken-20: 4, 29, 81;
   --bolt-theme-text-on-brand-darken-20: 255, 255, 255;
-  --bolt-theme-brand-darken-25: 29, 34, 71;
+  --bolt-theme-brand-darken-25: 5, 29, 77;
   --bolt-theme-text-on-brand-darken-25: 255, 255, 255;
   --bolt-theme-text-on-background: 255, 255, 255;
   --bolt-theme-text-on-background-secondary: 255, 255, 255;
   color: #fff;
   color: rgba(var(--bolt-theme-text), 1);
-  background-color: #1f2656;
+  background-color: #001f5f;
   background-color: rgba(var(--bolt-theme-background), 1);
 }
 .t-bolt-xdark,
 .t-bolt-xxdark {
-  --bolt-theme-background: 22, 26, 60;
+  --bolt-theme-background: 11, 29, 65;
   --bolt-theme-border: 255, 255, 255;
   --bolt-theme-contrast-filter: grayscale(100%) invert(100%) brightness(150%);
   --bolt-theme-disabled: 224, 226, 235;
   --bolt-theme-headline-link: 255, 255, 255;
   --bolt-theme-headline: 255, 255, 255;
   --bolt-theme-link: 255, 255, 255;
-  --bolt-theme-primary: 255, 204, 77;
+  --bolt-theme-primary: 255, 200, 54;
   --bolt-theme-secondary: 255, 255, 255;
   --bolt-theme-text-disabled: 141, 142, 153;
   --bolt-theme-text: 255, 255, 255;
   --bolt-theme-neutral: 141, 142, 153;
-  --bolt-theme-brand: 31, 38, 86;
-  --bolt-theme-background-secondary: 48, 54, 99;
+  --bolt-theme-brand: 0, 31, 95;
+  --bolt-theme-background-secondary: 19, 48, 107;
   --bolt-theme-text-on-primary: 21, 22, 25;
-  --bolt-theme-primary-lighten-5: 255, 207, 86;
+  --bolt-theme-primary-lighten-5: 255, 203, 64;
   --bolt-theme-text-on-primary-lighten-5: 21, 22, 25;
-  --bolt-theme-primary-lighten-10: 255, 209, 95;
+  --bolt-theme-primary-lighten-10: 255, 206, 74;
   --bolt-theme-text-on-primary-lighten-10: 21, 22, 25;
-  --bolt-theme-primary-lighten-15: 255, 212, 104;
+  --bolt-theme-primary-lighten-15: 255, 208, 84;
   --bolt-theme-text-on-primary-lighten-15: 21, 22, 25;
-  --bolt-theme-primary-lighten-20: 255, 214, 113;
+  --bolt-theme-primary-lighten-20: 255, 211, 94;
   --bolt-theme-text-on-primary-lighten-20: 21, 22, 25;
-  --bolt-theme-primary-lighten-25: 255, 217, 122;
+  --bolt-theme-primary-lighten-25: 255, 214, 104;
   --bolt-theme-text-on-primary-lighten-25: 21, 22, 25;
-  --bolt-theme-primary-darken-3: 248, 199, 75;
+  --bolt-theme-primary-darken-3: 248, 195, 53;
   --bolt-theme-text-on-primary-darken-3: 21, 22, 25;
-  --bolt-theme-primary-darken-5: 243, 195, 74;
+  --bolt-theme-primary-darken-5: 243, 191, 53;
   --bolt-theme-text-on-primary-darken-5: 21, 22, 25;
-  --bolt-theme-primary-darken-10: 232, 186, 72;
+  --bolt-theme-primary-darken-10: 232, 182, 51;
   --bolt-theme-text-on-primary-darken-10: 21, 22, 25;
-  --bolt-theme-primary-darken-15: 220, 177, 69;
+  --bolt-theme-primary-darken-15: 220, 173, 50;
   --bolt-theme-text-on-primary-darken-15: 21, 22, 25;
-  --bolt-theme-primary-darken-20: 208, 168, 67;
+  --bolt-theme-primary-darken-20: 208, 164, 48;
   --bolt-theme-text-on-primary-darken-20: 21, 22, 25;
-  --bolt-theme-primary-darken-25: 197, 159, 64;
+  --bolt-theme-primary-darken-25: 197, 156, 47;
   --bolt-theme-text-on-primary-darken-25: 21, 22, 25;
   --bolt-theme-text-on-secondary: 21, 22, 25;
   --bolt-theme-secondary-lighten-5: 255, 255, 255;
@@ -20259,33 +20281,33 @@ bolt-inline-list:not(:last-child) {
   --bolt-theme-secondary-darken-25: 197, 197, 197;
   --bolt-theme-text-on-secondary-darken-25: 21, 22, 25;
   --bolt-theme-text-on-brand: 255, 255, 255;
-  --bolt-theme-brand-lighten-5: 42, 49, 94;
+  --bolt-theme-brand-lighten-5: 13, 42, 103;
   --bolt-theme-text-on-brand-lighten-5: 255, 255, 255;
-  --bolt-theme-brand-lighten-10: 53, 60, 103;
+  --bolt-theme-brand-lighten-10: 26, 53, 111;
   --bolt-theme-text-on-brand-lighten-10: 255, 255, 255;
-  --bolt-theme-brand-lighten-15: 65, 71, 111;
+  --bolt-theme-brand-lighten-15: 38, 65, 119;
   --bolt-theme-text-on-brand-lighten-15: 255, 255, 255;
-  --bolt-theme-brand-lighten-20: 76, 81, 120;
+  --bolt-theme-brand-lighten-20: 51, 76, 127;
   --bolt-theme-text-on-brand-lighten-20: 255, 255, 255;
-  --bolt-theme-brand-lighten-25: 87, 92, 128;
+  --bolt-theme-brand-lighten-25: 64, 87, 135;
   --bolt-theme-text-on-brand-lighten-25: 255, 255, 255;
-  --bolt-theme-brand-darken-3: 31, 38, 84;
+  --bolt-theme-brand-darken-3: 1, 31, 93;
   --bolt-theme-text-on-brand-darken-3: 255, 255, 255;
-  --bolt-theme-brand-darken-5: 31, 37, 83;
+  --bolt-theme-brand-darken-5: 1, 31, 91;
   --bolt-theme-text-on-brand-darken-5: 255, 255, 255;
-  --bolt-theme-brand-darken-10: 30, 36, 80;
+  --bolt-theme-brand-darken-10: 2, 30, 88;
   --bolt-theme-text-on-brand-darken-10: 255, 255, 255;
-  --bolt-theme-brand-darken-15: 30, 36, 77;
+  --bolt-theme-brand-darken-15: 3, 30, 84;
   --bolt-theme-text-on-brand-darken-15: 255, 255, 255;
-  --bolt-theme-brand-darken-20: 29, 35, 74;
+  --bolt-theme-brand-darken-20: 4, 29, 81;
   --bolt-theme-text-on-brand-darken-20: 255, 255, 255;
-  --bolt-theme-brand-darken-25: 29, 34, 71;
+  --bolt-theme-brand-darken-25: 5, 29, 77;
   --bolt-theme-text-on-brand-darken-25: 255, 255, 255;
   --bolt-theme-text-on-background: 255, 255, 255;
   --bolt-theme-text-on-background-secondary: 255, 255, 255;
   color: #fff;
   color: rgba(var(--bolt-theme-text), 1);
-  background-color: #161a3c;
+  background-color: #0b1d41;
   background-color: rgba(var(--bolt-theme-background), 1);
 }
 .t-bolt-xxdark {
@@ -20342,64 +20364,79 @@ bolt-inline-list:not(:last-child) {
   clear: both !important;
 }
 .u-bolt-color-indigo-xdark {
-  color: #060923 !important;
+  color: #091734 !important;
 }
 .u-bolt-color-indigo-dark {
-  color: #161a3c !important;
+  color: #0b1d41 !important;
 }
 .u-bolt-color-indigo {
-  color: #1f2656 !important;
+  color: #001f5f !important;
 }
 .u-bolt-color-indigo-light {
-  color: #545da6 !important;
+  color: #3e67bb !important;
 }
 .u-bolt-color-indigo-xlight {
-  color: #abb3f2 !important;
+  color: #abc2f2 !important;
+}
+.u-bolt-color-navy-xdark {
+  color: #091734 !important;
+}
+.u-bolt-color-navy-dark {
+  color: #0b1d41 !important;
+}
+.u-bolt-color-navy {
+  color: #001f5f !important;
+}
+.u-bolt-color-navy-light {
+  color: #3e67bb !important;
+}
+.u-bolt-color-navy-xlight {
+  color: #abc2f2 !important;
 }
 .u-bolt-color-yellow-xdark {
-  color: #664900 !important;
+  color: #664a00 !important;
 }
 .u-bolt-color-yellow-dark {
-  color: #e8ad17 !important;
+  color: #e8af17 !important;
 }
 .u-bolt-color-yellow {
-  color: #ffcc4d !important;
+  color: #ffc836 !important;
 }
 .u-bolt-color-yellow-light {
-  color: #ffe299 !important;
+  color: #ffe399 !important;
 }
 .u-bolt-color-yellow-xlight {
   color: #fff1cc !important;
 }
 .u-bolt-color-teal-xdark {
-  color: #033 !important;
+  color: #005154 !important;
 }
 .u-bolt-color-teal-dark {
-  color: #0a6666 !important;
+  color: #0a6266 !important;
 }
 .u-bolt-color-teal {
-  color: #099 !important;
+  color: #10a5ac !important;
 }
 .u-bolt-color-teal-light {
-  color: #7acdcd !important;
+  color: #86cac6 !important;
 }
 .u-bolt-color-teal-xlight {
-  color: #b7e6e6 !important;
+  color: #b7e4e6 !important;
 }
 .u-bolt-color-orange-xdark {
-  color: #661a00 !important;
+  color: #620 !important;
 }
 .u-bolt-color-orange-dark {
-  color: #b53b12 !important;
+  color: #b54812 !important;
 }
 .u-bolt-color-orange {
-  color: #e84b17 !important;
+  color: #f76923 !important;
 }
 .u-bolt-color-orange-light {
-  color: #ff8c66 !important;
+  color: #ff9866 !important;
 }
 .u-bolt-color-orange-xlight {
-  color: #ffc6b3 !important;
+  color: #ffccb3 !important;
 }
 .u-bolt-color-gray-xdark {
   color: #2e2e33 !important;
@@ -20423,13 +20460,13 @@ bolt-inline-list:not(:last-child) {
   color: #fff !important;
 }
 .u-bolt-color-blue-dark {
-  color: #005380 !important;
+  color: #004880 !important;
 }
 .u-bolt-color-blue {
-  color: #0074b3 !important;
+  color: #0076d1 !important;
 }
 .u-bolt-color-blue-light {
-  color: #d6f1ff !important;
+  color: #d6edff !important;
 }
 .u-bolt-color-success-dark {
   color: #256940 !important;
@@ -36445,8 +36482,8 @@ bolt-icon:not(:resolved) {
 .t-bolt-light .c-bolt-icon--blue,
 .t-bolt-xlight .c-bolt-icon--blue,
 :root .c-bolt-icon--blue {
-  color: #0074b3;
-  --bolt-theme-icon: #0074b3;
+  color: #0076d1;
+  --bolt-theme-icon: #0076d1;
   filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.2));
 }
 .t-bolt-light .c-bolt-icon--blue.has-background:not(.has-outline-background),
@@ -36454,7 +36491,7 @@ bolt-icon:not(:resolved) {
 :root .c-bolt-icon--blue.has-background:not(.has-outline-background) {
   color: #fff;
   --bolt-theme-icon: #fff;
-  --bolt-theme-icon-background: #0074b3;
+  --bolt-theme-icon-background: #0076d1;
   --bolt-theme-icon-background-opacity: 1;
 }
 .t-bolt-light
@@ -36468,7 +36505,7 @@ bolt-icon:not(:resolved) {
   .c-bolt-icon__background-shape {
   opacity: 1;
   border: 1px solid rgba(92, 93, 102, 0.5);
-  background-color: #0074b3;
+  background-color: #0076d1;
 }
 .t-bolt-light .c-bolt-icon--gray,
 .t-bolt-xlight .c-bolt-icon--gray,
@@ -36501,8 +36538,8 @@ bolt-icon:not(:resolved) {
 .t-bolt-light .c-bolt-icon--indigo,
 .t-bolt-xlight .c-bolt-icon--indigo,
 :root .c-bolt-icon--indigo {
-  color: #545da6;
-  --bolt-theme-icon: #545da6;
+  color: #3e67bb;
+  --bolt-theme-icon: #3e67bb;
   filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.2));
 }
 .t-bolt-light .c-bolt-icon--indigo.has-background:not(.has-outline-background),
@@ -36510,7 +36547,7 @@ bolt-icon:not(:resolved) {
 :root .c-bolt-icon--indigo.has-background:not(.has-outline-background) {
   color: #fff;
   --bolt-theme-icon: #fff;
-  --bolt-theme-icon-background: #545da6;
+  --bolt-theme-icon-background: #3e67bb;
   --bolt-theme-icon-background-opacity: 1;
 }
 .t-bolt-light
@@ -36524,21 +36561,21 @@ bolt-icon:not(:resolved) {
   .c-bolt-icon__background-shape {
   opacity: 1;
   border: 1px solid rgba(92, 93, 102, 0.5);
-  background-color: #545da6;
+  background-color: #3e67bb;
 }
 .t-bolt-light .c-bolt-icon--orange,
 .t-bolt-xlight .c-bolt-icon--orange,
 :root .c-bolt-icon--orange {
-  color: #e84b17;
-  --bolt-theme-icon: #e84b17;
-  filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.2));
+  color: #f76923;
+  --bolt-theme-icon: #f76923;
+  filter: drop-shadow(0 0 1px rgba(21, 22, 25, 0.2));
 }
 .t-bolt-light .c-bolt-icon--orange.has-background:not(.has-outline-background),
 .t-bolt-xlight .c-bolt-icon--orange.has-background:not(.has-outline-background),
 :root .c-bolt-icon--orange.has-background:not(.has-outline-background) {
-  color: #fff;
-  --bolt-theme-icon: #fff;
-  --bolt-theme-icon-background: #e84b17;
+  color: #151619;
+  --bolt-theme-icon: #151619;
+  --bolt-theme-icon-background: #f76923;
   --bolt-theme-icon-background-opacity: 1;
 }
 .t-bolt-light
@@ -36552,21 +36589,21 @@ bolt-icon:not(:resolved) {
   .c-bolt-icon__background-shape {
   opacity: 1;
   border: 1px solid rgba(92, 93, 102, 0.5);
-  background-color: #e84b17;
+  background-color: #f76923;
 }
 .t-bolt-light .c-bolt-icon--teal,
 .t-bolt-xlight .c-bolt-icon--teal,
 :root .c-bolt-icon--teal {
-  color: #099;
-  --bolt-theme-icon: #099;
-  filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.2));
+  color: #10a5ac;
+  --bolt-theme-icon: #10a5ac;
+  filter: drop-shadow(0 0 1px rgba(21, 22, 25, 0.2));
 }
 .t-bolt-light .c-bolt-icon--teal.has-background:not(.has-outline-background),
 .t-bolt-xlight .c-bolt-icon--teal.has-background:not(.has-outline-background),
 :root .c-bolt-icon--teal.has-background:not(.has-outline-background) {
-  color: #fff;
-  --bolt-theme-icon: #fff;
-  --bolt-theme-icon-background: #099;
+  color: #151619;
+  --bolt-theme-icon: #151619;
+  --bolt-theme-icon-background: #10a5ac;
   --bolt-theme-icon-background-opacity: 1;
 }
 .t-bolt-light
@@ -36580,7 +36617,7 @@ bolt-icon:not(:resolved) {
   .c-bolt-icon__background-shape {
   opacity: 1;
   border: 1px solid rgba(92, 93, 102, 0.5);
-  background-color: #099;
+  background-color: #10a5ac;
 }
 .t-bolt-light .c-bolt-icon--white,
 .t-bolt-xlight .c-bolt-icon--white,
@@ -36622,7 +36659,7 @@ bolt-icon:not(:resolved) {
 :root .c-bolt-icon--yellow.has-background:not(.has-outline-background) {
   color: #151619;
   --bolt-theme-icon: #151619;
-  --bolt-theme-icon-background: #ffcc4d;
+  --bolt-theme-icon-background: #ffc836;
   --bolt-theme-icon-background-opacity: 1;
 }
 .t-bolt-light
@@ -36636,7 +36673,7 @@ bolt-icon:not(:resolved) {
   .c-bolt-icon__background-shape {
   opacity: 1;
   border: 1px solid rgba(92, 93, 102, 0.5);
-  background-color: #ffcc4d;
+  background-color: #ffc836;
 }
 .t-bolt-light .c-bolt-icon--green,
 .t-bolt-xlight .c-bolt-icon--green,
@@ -36704,7 +36741,7 @@ bolt-icon:not(:resolved) {
 .t-bolt-xdark .c-bolt-icon--blue.has-background:not(.has-outline-background) {
   color: #fff;
   --bolt-theme-icon: #fff;
-  --bolt-theme-icon-background: #0074b3;
+  --bolt-theme-icon-background: #0076d1;
   --bolt-theme-icon-background-opacity: 1;
 }
 .t-bolt-dark
@@ -36715,7 +36752,7 @@ bolt-icon:not(:resolved) {
   .c-bolt-icon__background-shape {
   opacity: 1;
   border: 1px solid rgba(92, 93, 102, 0.5);
-  background-color: #0074b3;
+  background-color: #0076d1;
 }
 .t-bolt-dark .c-bolt-icon--gray,
 .t-bolt-xdark .c-bolt-icon--gray {
@@ -36742,15 +36779,15 @@ bolt-icon:not(:resolved) {
 }
 .t-bolt-dark .c-bolt-icon--indigo,
 .t-bolt-xdark .c-bolt-icon--indigo {
-  color: #abb3f2;
-  --bolt-theme-icon: #abb3f2;
+  color: #abc2f2;
+  --bolt-theme-icon: #abc2f2;
   filter: drop-shadow(0 0 1px rgba(21, 22, 25, 0.2));
 }
 .t-bolt-dark .c-bolt-icon--indigo.has-background:not(.has-outline-background),
 .t-bolt-xdark .c-bolt-icon--indigo.has-background:not(.has-outline-background) {
   color: #fff;
   --bolt-theme-icon: #fff;
-  --bolt-theme-icon-background: #545da6;
+  --bolt-theme-icon-background: #3e67bb;
   --bolt-theme-icon-background-opacity: 1;
 }
 .t-bolt-dark
@@ -36761,19 +36798,19 @@ bolt-icon:not(:resolved) {
   .c-bolt-icon__background-shape {
   opacity: 1;
   border: 1px solid rgba(92, 93, 102, 0.5);
-  background-color: #545da6;
+  background-color: #3e67bb;
 }
 .t-bolt-dark .c-bolt-icon--orange,
 .t-bolt-xdark .c-bolt-icon--orange {
-  color: #ff8c66;
-  --bolt-theme-icon: #ff8c66;
+  color: #ff9866;
+  --bolt-theme-icon: #ff9866;
   filter: drop-shadow(0 0 1px rgba(21, 22, 25, 0.2));
 }
 .t-bolt-dark .c-bolt-icon--orange.has-background:not(.has-outline-background),
 .t-bolt-xdark .c-bolt-icon--orange.has-background:not(.has-outline-background) {
-  color: #fff;
-  --bolt-theme-icon: #fff;
-  --bolt-theme-icon-background: #e84b17;
+  color: #151619;
+  --bolt-theme-icon: #151619;
+  --bolt-theme-icon-background: #f76923;
   --bolt-theme-icon-background-opacity: 1;
 }
 .t-bolt-dark
@@ -36784,19 +36821,19 @@ bolt-icon:not(:resolved) {
   .c-bolt-icon__background-shape {
   opacity: 1;
   border: 1px solid rgba(92, 93, 102, 0.5);
-  background-color: #e84b17;
+  background-color: #f76923;
 }
 .t-bolt-dark .c-bolt-icon--teal,
 .t-bolt-xdark .c-bolt-icon--teal {
-  color: #7acdcd;
-  --bolt-theme-icon: #7acdcd;
+  color: #86cac6;
+  --bolt-theme-icon: #86cac6;
   filter: drop-shadow(0 0 1px rgba(21, 22, 25, 0.2));
 }
 .t-bolt-dark .c-bolt-icon--teal.has-background:not(.has-outline-background),
 .t-bolt-xdark .c-bolt-icon--teal.has-background:not(.has-outline-background) {
-  color: #fff;
-  --bolt-theme-icon: #fff;
-  --bolt-theme-icon-background: #099;
+  color: #151619;
+  --bolt-theme-icon: #151619;
+  --bolt-theme-icon-background: #10a5ac;
   --bolt-theme-icon-background-opacity: 1;
 }
 .t-bolt-dark
@@ -36807,7 +36844,7 @@ bolt-icon:not(:resolved) {
   .c-bolt-icon__background-shape {
   opacity: 1;
   border: 1px solid rgba(92, 93, 102, 0.5);
-  background-color: #099;
+  background-color: #10a5ac;
 }
 .t-bolt-dark .c-bolt-icon--white,
 .t-bolt-xdark .c-bolt-icon--white {
@@ -36834,15 +36871,15 @@ bolt-icon:not(:resolved) {
 }
 .t-bolt-dark .c-bolt-icon--yellow,
 .t-bolt-xdark .c-bolt-icon--yellow {
-  color: #ffcc4d;
-  --bolt-theme-icon: #ffcc4d;
+  color: #ffc836;
+  --bolt-theme-icon: #ffc836;
   filter: drop-shadow(0 0 1px rgba(21, 22, 25, 0.2));
 }
 .t-bolt-dark .c-bolt-icon--yellow.has-background:not(.has-outline-background),
 .t-bolt-xdark .c-bolt-icon--yellow.has-background:not(.has-outline-background) {
   color: #151619;
   --bolt-theme-icon: #151619;
-  --bolt-theme-icon-background: #ffcc4d;
+  --bolt-theme-icon-background: #ffc836;
   --bolt-theme-icon-background-opacity: 1;
 }
 .t-bolt-dark
@@ -36853,7 +36890,7 @@ bolt-icon:not(:resolved) {
   .c-bolt-icon__background-shape {
   opacity: 1;
   border: 1px solid rgba(92, 93, 102, 0.5);
-  background-color: #ffcc4d;
+  background-color: #ffc836;
 }
 .t-bolt-dark .c-bolt-icon--green,
 .t-bolt-xdark .c-bolt-icon--green {
