@@ -381,13 +381,11 @@ bolt-accordion-item {
 
   @if (
     $size-name !=
-      '' and
-      $size-name !=
-      'xxsmall' and
-      $size-name !=
-      'xlarge' and
-      $size-name !=
-      'xxlarge'
+    'xxsmall' and
+    $size-name !=
+    'xlarge' and
+    $size-name !=
+    'xxlarge'
   ) {
     .c-bolt-accordion-spacing--#{$size-name} {
       padding: calc(var(--bolt-spacing-y-#{$size-name}) / 2) var(--bolt-spacing-x-#{$size-name});

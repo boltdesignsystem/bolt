@@ -28,18 +28,18 @@ bolt-code-snippet {
 }
 
 .c-bolt-code-snippet {
+  @include bolt-horizontal-scroll;
   display: block;
   margin: 0 0 var(--bolt-spacing-y-medium) 0;
   padding: calc( var(--bolt-spacing-y-small) / 2) var(--bolt-spacing-x-small);
-  @include bolt-horizontal-scroll;
   background-color: $bolt-code-snippet-background-color;
 }
 
 .c-bolt-code-snippet__code {
-  margin: 0;
   @include bolt-font-family(code);
   @include bolt-font-weight(regular);
   @include bolt-font-size(small);
+  margin: 0;
   letter-spacing: 0.05rem;
 }
 

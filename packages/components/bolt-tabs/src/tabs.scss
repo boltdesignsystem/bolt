@@ -206,15 +206,13 @@ bolt-tabs {
 
   @if (
     $size-name !=
-      '' and
-      $size-name !=
-      'xxsmall' and
-      $size-name !=
-      'large' and
-      $size-name !=
-      'xlarge' and
-      $size-name !=
-      'xxlarge'
+    'xxsmall' and
+    $size-name !=
+    'large' and
+    $size-name !=
+    'xlarge' and
+    $size-name !=
+    'xxlarge'
   ) {
     .c-bolt-tabs:not(.c-bolt-tabs--inset) {
       .c-bolt-tabs__label--spacing-#{$size-name} {
@@ -230,14 +228,14 @@ bolt-tabs {
         &:first-child,
         &:first-of-type {
           .c-bolt-tabs__label-inner {
-            margin-left: (calc( var(--bolt-spacing-x-#{$size-name}) / -2 ));
+            margin-left: calc( var(--bolt-spacing-x-#{$size-name}) / -2 );
           }
         }
         // last-of-type for no-JS
         &:last-child,
         &:last-of-type {
           .c-bolt-tabs__label-inner {
-            margin-right: (calc( var(--bolt-spacing-x-#{$size-name}) / -2 ));
+            margin-right: calc( var(--bolt-spacing-x-#{$size-name}) / -2 );
           }
         }
       }

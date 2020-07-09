@@ -94,7 +94,7 @@ bolt-carousel {
 // if nav-position isn't specified, set to default
 bolt-carousel[no-nav-buttons].is-ready,
 bolt-carousel[nav-button-position='outside'].is-ready {
-  min-width: calc(100% + calc(var(--bolt-spacing-x-medium) * 2));
+  min-width: calc( 100% + var(--bolt-spacing-x-medium) * 2 );
   margin-right: calc(var(--bolt-spacing-x-medium) * -1);
   margin-left: calc(var(--bolt-spacing-x-medium) * -1);
   padding-right: var(--bolt-spacing-x-medium);
@@ -102,7 +102,7 @@ bolt-carousel[nav-button-position='outside'].is-ready {
 
   // mirror approach used by Wrapper at larger screen sizes
   @include bolt-mq(medium) {
-    min-width: calc(100% + calc(var(--bolt-spacing-x-large) * 2));
+    min-width: calc( 100% + var(--bolt-spacing-x-large) * 2 );
     margin-right: calc(var(--bolt-spacing-x-large) * -1);
     margin-left: calc(var(--bolt-spacing-x-large) * -1);
     padding-right: var(--bolt-spacing-x-large);

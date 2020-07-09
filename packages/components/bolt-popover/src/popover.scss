@@ -126,6 +126,9 @@ $bolt-popover-transition: $bolt-transition-timing
  * - used for visual design of the bubble and the fly in effect
  */
 .c-bolt-popover__bubble {
+  @include bolt-font-family(body);
+  @include bolt-font-size(xsmall);
+  @include bolt-font-weight(regular);
   display: block;
   transform: scale3d(1, 1, 1) translate3d(0, 0, 0);
   overflow: hidden;
@@ -143,9 +146,6 @@ $bolt-popover-transition: $bolt-transition-timing
   will-change: transform;
   transition: transform $bolt-popover-transition;
   white-space: nowrap;
-  @include bolt-font-family(body);
-  @include bolt-font-size(xsmall);
-  @include bolt-font-weight(regular);
 
   @at-root .c-bolt-popover--text-wrap & {
     width: 250px; // If the content is long (more than 31 characters), the bubble will have this specific width and text will wrap. This logic is in the JS and Twig files.

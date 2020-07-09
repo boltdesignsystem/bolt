@@ -16,17 +16,17 @@ bolt-carousel[stacked] bolt-carousel-slide {
 
   $smallOverlap: var(--bolt-spacing-x-large);
   $mediumOverlap: calc(#{$smallOverlap} * 1.5);
-  $largeOverlap: var(#{$mediumOverlap} * 1.5);
+  $largeOverlap: calc(#{$mediumOverlap} * 1.5);
 
   &:not(:first-child):not(.is-ready) {
-    margin-left: calc(#{$smallOverlap} * -1);
+    margin-left: calc( #{$smallOverlap} * -1 );
 
     @include bolt-mq($from: small) {
-      margin-left: calc(#{$mediumOverlap} * -1);
+      margin-left: calc( #{$mediumOverlap} * -1 );
     }
 
     @include bolt-mq($from: medium) {
-      margin-left: calc(#{$largeOverlap} * -1);
+      margin-left: calc( #{$largeOverlap} * -1 );
     }
   }
 
@@ -35,14 +35,14 @@ bolt-carousel[stacked] bolt-carousel-slide {
     transform: translate(0, calc(var(--bolt-spacing-y-medium) * -1));
 
     & ~ bolt-carousel-slide {
-      transform: translateX($smallOverlap / 2);
+      transform: translateX( calc( #{$smallOverlap} / 2 ) );
 
       @include bolt-mq($from: small) {
-        transform: translateX($mediumOverlap / 2);
+        transform: translateX( calc( #{$mediumOverlap} / 2 ) );
       }
 
       @include bolt-mq($from: medium) {
-        transform: translateX($largeOverlap / 2)
+        transform: translateX( calc( #{$largeOverlap} / 2 ) )
           translateX(var(--bolt-spacing-x-small));
       }
     }

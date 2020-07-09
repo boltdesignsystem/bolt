@@ -35,7 +35,9 @@ $bolt-pagination-item-size: var(--bolt-spacing-x-medium);
 }
 
 .c-bolt-pagination__item {
-
+  @include bolt-font-family(body);
+  @include bolt-font-weight(semibold);
+  @include bolt-font-size(small);
   display: block;
   min-width: $bolt-pagination-item-size;
   height: $bolt-pagination-item-size;
@@ -50,9 +52,6 @@ $bolt-pagination-item-size: var(--bolt-spacing-x-medium);
   -webkit-backface-visibility: hidden; // Removes the 1px jump with opacity transition
   transition: opacity $bolt-pagination-transition;
   white-space: nowrap;
-  @include bolt-font-family(body);
-  @include bolt-font-weight(semibold);
-  @include bolt-font-size(small);
 
   &:hover {
     opacity: $bolt-global-link-hover-opacity;

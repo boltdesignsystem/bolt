@@ -103,7 +103,7 @@ bolt-modal:not([ready]) {
 
     .c-bolt-modal__container-header--hidden {
       @include bolt-padding(0);
-      height: calc( var(--bolt-spacing-y-medium) + calc( var(--bolt-spacing-y-small) * 2 ) ); // Match close button icon size and margin.
+      height: calc( var(--bolt-spacing-y-medium) + var(--bolt-spacing-y-small) * 2 ); // Match close button icon size and margin.
     }
 
     .c-bolt-modal__container-body {
@@ -167,7 +167,7 @@ bolt-modal:not([ready]) {
     top: 0;
     left: 0;
     min-width: 200px; // Prevents content without defined width (such as image and video) from falling below 200px.
-    max-width: calc( 100% - calc( var(--bolt-spacing-x-medium) * 2 ) );
+    max-width: calc( 100% - var(--bolt-spacing-x-medium) * 2 );
     max-height: $bolt-modal-max-height;
     transition: visibility $bolt-transition-timing $bolt-transition-ease
       $bolt-transition-timing;
@@ -247,7 +247,7 @@ bolt-modal:not([ready]) {
   }
 
   .c-bolt-modal__content--width-full {
-    width: calc( 100% - calc( var(--bolt-spacing-x-medium) * 2 ) );
+    width: calc( 100% - var(--bolt-spacing-x-medium) * 2 );
   }
 }
 

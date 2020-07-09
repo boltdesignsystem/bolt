@@ -119,7 +119,7 @@ $bolt-video-background-max-height: 50.625vw;
   @include bolt-css-vars((--#{$bolt-namespace}-theme-icon: bolt-color(orange)));
 
   @include bolt-mq(small) {
-    right: calc( calc( var(--bolt-spacing-x-large) / -2 ) - var(--bolt-spacing-x-xsmall) );
+    right: calc( var(--bolt-spacing-x-large) / -2 - var(--bolt-spacing-x-xsmall) );
   }
 
   &:hover {

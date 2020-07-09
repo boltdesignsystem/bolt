@@ -33,14 +33,14 @@ bolt-toc {
 }
 
 .c-bolt-toc__header {
+  @include bolt-font-family(heading);
+  @include bolt-font-size(large);
+  @include bolt-font-weight(bold);
   display: block;
   margin: 0;
   padding: var(--bolt-spacing-y-xsmall) var(--bolt-spacing-x-small);
   color: bolt-theme(background);
   background-color: bolt-theme(headline);
-  @include bolt-font-family(heading);
-  @include bolt-font-size(large);
-  @include bolt-font-weight(bold);
 
   &--hidden {
     @include bolt-visuallyhidden;
