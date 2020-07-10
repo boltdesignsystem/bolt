@@ -6,6 +6,10 @@
 
 // Custom element display and built-in spacing
 @include bolt-repeat-rule(('bolt-list', ':host')) {
+  // Clear-fix required to prevent margin collapse due to negative margin on Bolt List.
+  // Happens when List is inside Stack component, for example.
+  // https://css-tricks.com/snippets/css/clear-fix/
+  @include bolt-clearfix;
   @include bolt-margin-bottom(medium);
 
   display: block;
@@ -13,13 +17,6 @@
   &:last-child {
     @include bolt-margin-bottom(0);
   }
-}
-
-bolt-list {
-  // Clear-fix required to prevent margin collapse due to negative margin on Bolt List.
-  // Happens when List is inside Stack component, for example.
-  // https://css-tricks.com/snippets/css/clear-fix/
-  @include bolt-clearfix;
 }
 
 // List base styles
