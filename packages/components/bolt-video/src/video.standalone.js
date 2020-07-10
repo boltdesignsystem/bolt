@@ -260,7 +260,7 @@ class BoltVideo extends withPreact {
           elem.props.errorMessage ||
           "This video didn't load correctly. Refresh page to view.";
       }
-    })
+    });
   }
 
   static appendScript(s) {

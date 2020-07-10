@@ -10,10 +10,14 @@ const terminalLink = require('terminal-link');
 const vrtScreenshots = [];
 
 async function uploadImage(name, content) {
-  const { url } = await upload(process.env.NOW_TOKEN, {
-    name,
-    content,
-  }, { teamId: 'boltdesignsystem' });
+  const { url } = await upload(
+    process.env.NOW_TOKEN,
+    {
+      name,
+      content,
+    },
+    { teamId: 'boltdesignsystem' },
+  );
   return url;
 }
 

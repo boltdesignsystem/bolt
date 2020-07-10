@@ -4,7 +4,6 @@
 
 @import '@bolt/core-v3.x';
 
-
 /**
  * Search Field
  */
@@ -13,7 +12,6 @@ $bolt-search-field-placeholder-color: bolt-theme(text, 0.4);
 $bolt-search-field-border-width: $bolt-border-width;
 $bolt-search-field-border-style: $bolt-border-style;
 $bolt-search-field-icon-only-button-width: bolt-spacing(medium) + 1rem;
-
 
 .c-bolt-search-field {
   @include bolt-shadow('level-10');
@@ -53,7 +51,7 @@ $bolt-search-field-icon-only-button-width: bolt-spacing(medium) + 1rem;
     background-color: bolt-theme(background);
 
     &:focus {
-      border-color: rgba(bolt-color(indigo, light), 0.8);
+      border-color: rgba(bolt-color(navy, light), 0.8);
       box-shadow: 0 0 0 3px rgba(bolt-color(gray, light), 0.4);
     }
   }
@@ -68,19 +66,23 @@ $bolt-search-field-icon-only-button-width: bolt-spacing(medium) + 1rem;
     }
   }
 
-  &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  &::-webkit-input-placeholder {
+    /* Chrome/Opera/Safari */
     color: $bolt-search-field-placeholder-color;
   }
 
-  &::-moz-placeholder { /* Firefox 19+ */
+  &::-moz-placeholder {
+    /* Firefox 19+ */
     color: $bolt-search-field-placeholder-color;
   }
 
-  &:-ms-input-placeholder { /* IE 10+ */
+  &:-ms-input-placeholder {
+    /* IE 10+ */
     color: $bolt-search-field-placeholder-color;
   }
 
-  &:-moz-placeholder { /* Firefox 18- */
+  &:-moz-placeholder {
+    /* Firefox 18- */
     color: $bolt-search-field-placeholder-color;
   }
 
@@ -96,13 +98,16 @@ $bolt-search-field-icon-only-button-width: bolt-spacing(medium) + 1rem;
 
 .c-bolt-search-field__button--reset {
   order: 2;
-  transform: translate3d(($bolt-search-field-icon-only-button-width * -1), 0, 0);
+  transform: translate3d(
+    ($bolt-search-field-icon-only-button-width * -1),
+    0,
+    0
+  );
 
   @at-root .c-bolt-search-field__input:not(:valid) ~ #{&} {
     display: none;
   }
 }
-
 
 /**
  * Mega Nav
@@ -149,8 +154,8 @@ $bolt-search-field-icon-only-button-width: bolt-spacing(medium) + 1rem;
   overflow: hidden;
   text-indent: 99999px; // This hides trigger text.
   pointer-events: none;
-  background-color: bolt-color(indigo, xdark);
-  transition: opacity .1s ease;
+  background-color: bolt-color(navy, xdark);
+  transition: opacity 0.1s ease;
 
   @at-root .c-page-header--global-search-active #{&} {
     opacity: bolt-opacity(20);
@@ -163,12 +168,10 @@ $bolt-search-field-icon-only-button-width: bolt-spacing(medium) + 1rem;
 
   position: relative;
 
-
-
   @at-root .c-global-search-panel--floating #{&} {
     opacity: bolt-opacity(0);
     opacity: 0;
-    transform: translate3d(0, 0, 0) scale3d(1, .5, 1);
+    transform: translate3d(0, 0, 0) scale3d(1, 0.5, 1);
     transition: all $bolt-transition;
     @include bolt-shadow('level-40');
     transform-origin: 0 0;
@@ -184,10 +187,11 @@ $bolt-search-field-icon-only-button-width: bolt-spacing(medium) + 1rem;
         transform: translate3d(0, 0, 0);
       }
     }
-
   }
 
-  @at-root .c-page-header--global-search-active .c-global-search-panel--floating #{&} {
+  @at-root .c-page-header--global-search-active
+      .c-global-search-panel--floating
+      #{&} {
     opacity: bolt-opacity(100);
     transform: translate3d(0, 0, 0);
     z-index: 2; // This is self contained z-index within the search panel. Its only purpose is to define stacking order of elements in this specific container.
@@ -201,7 +205,9 @@ $bolt-search-field-icon-only-button-width: bolt-spacing(medium) + 1rem;
     transition: all $bolt-transition;
   }
 
-  @at-root .c-page-header--global-search-active .c-global-search-panel--floating #{&} {
+  @at-root .c-page-header--global-search-active
+      .c-global-search-panel--floating
+      #{&} {
     opacity: bolt-opacity(100);
     transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
     transition-delay: $bolt-transition-timing / 1.5;

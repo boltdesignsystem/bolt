@@ -25,7 +25,7 @@
 
 <div class="o-bolt-wrapper u-bolt-margin-top-large u-bolt-margin-bottom-large">
   {% grid "o-bolt-grid--flex o-bolt-grid--matrix" %}
-    {% cell "u-bolt-width-4/12" %}
+    {% cell "u-bolt-width-12/12 u-bolt-width-4/12@small" %}
       {# Start component specific code #}
       {% include "@bolt-components-toc/toc.twig" with {
         sticky: true,
@@ -49,7 +49,7 @@
       } only %}
       {# End component specific code #}
     {% endcell %}
-    {% cell "u-bolt-width-8/12" %}
+    {% cell "u-bolt-width-12/12 u-bolt-width-8/12@small" %}
       {% include "@bolt-components-headline/headline.twig" with {
         size: "xxlarge",
         text: "Phase One",
