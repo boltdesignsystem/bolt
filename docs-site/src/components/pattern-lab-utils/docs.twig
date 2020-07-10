@@ -11,8 +11,9 @@
 {% set has_js = pkg.main %}
 {% set has_scss = pkg.sass %}
 {% set component_title = pkg.name %}
+{% set has_changelog = fileExists(change_log_file) %}
 
-{% set is_private = pkg.private or fileExists(change_log_file) == false ? true : false %}
+{% set is_private = pkg.private or not has_changelog ? true : false %}
 
 {% set usage_content %}
 {% spaceless %}
@@ -38,9 +39,11 @@
 {% endset %}
 
 {% set component_change_log %}
-  <bolt-text font-size="xsmall">
-    <bolt-link target="_blank" url="{{ github_url(change_log_file) }}">Change log</bolt-link>
-  </bolt-text>
+  {% if has_changelog %}
+    <bolt-text font-size="xsmall">
+      <bolt-link target="_blank" url="{{ github_url(change_log_file) }}">Change log</bolt-link>
+    </bolt-text>
+  {% endif %}
 {% endset %}
 
 {% set component_github %}
@@ -82,7 +85,7 @@
       component_status,
       is_private == false ? component_last_updated,
       is_private == false ? component_change_log,
-      is_private == false ? component_github,
+      is_private == false and has_changelog ? component_github,
       is_private == false ? component_npm,
     ]
   } only %}
