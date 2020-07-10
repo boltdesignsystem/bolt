@@ -15,6 +15,13 @@
   }
 }
 
+bolt-list {
+  // Clear-fix required to prevent margin collapse due to negative margin on Bolt List.
+  // Happens when List is inside Stack component, for example.
+  // https://css-tricks.com/snippets/css/clear-fix/
+  @include bolt-clearfix;
+}
+
 // List base styles
 //
 // 1. Reset typography so it doesn't inherit from a higher level container.
@@ -34,8 +41,7 @@
 
 // Display Prop
 .c-bolt-list--display-block {
-  display: flex;
-  flex-flow: column wrap;
+  display: block;
 }
 
 .c-bolt-list--display-inline {
