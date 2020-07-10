@@ -53,9 +53,9 @@ $bolt-button-transition: $bolt-transition;
   border-style: $bolt-button-border-style;
   border-color: transparent;
   outline: none;
+  will-change: background-color, transform;
   transition: background-color $bolt-button-transition,
     transform $bolt-button-transition;
-  will-change: background-color, transform;
 
   &:before,
   &:after {
@@ -85,8 +85,10 @@ $bolt-button-transition: $bolt-transition;
   &:focus:not(:hover):not(.c-bolt-button--disabled),
   &.is-focus:not(.is-hover):not(.is-disabled) {
     box-shadow: 0 -1px 2px bolt-theme(background),
-      0 1px 2px bolt-theme(background), 0 0 5px rgb(59, 153, 252),
-      0 -1px 0.65rem rgb(59, 153, 252), 0 1px 0.65rem rgb(59, 153, 252); // @todo: This mimmicks the browser default blue. We will update it with our own colors later on.
+      0 1px 2px bolt-theme(background),
+ 0 0 5px rgb(59, 153, 252),
+      0 -1px 0.65rem rgb(59, 153, 252),
+ 0 1px 0.65rem rgb(59, 153, 252); // @todo: This mimmicks the browser default blue. We will update it with our own colors later on.
   }
 }
 
@@ -139,8 +141,8 @@ $bolt-button-transition: $bolt-transition;
 
 @mixin bolt-button-style--tertiary() {
   color: bolt-theme(headline);
-  background-color: bolt-theme(neutral, 0.2);
   box-shadow: 0 0 0.25rem bolt-theme(background, 0.2);
+  background-color: bolt-theme(neutral, 0.2);
 
   &:before,
   &:after {
