@@ -6,20 +6,9 @@
  * Settings
  */
 
-$bolt-color-button-text: bolt-color(white);
-$bolt-color-primary: bolt-color(yellow);
-$bolt-color-secondary: bolt-color(navy, light);
-$bolt-button-shadow: $bolt-shadow--small;
-$bolt-button-shadow--hover: $bolt-shadow--large;
 $bolt-button-border-width: $bolt-border-width;
 $bolt-button-border-style: $bolt-border-style;
-$bolt-button-border-radii: (
-  'regular': $bolt-border-radius,
-  'full': 50em,
-);
 $bolt-button-transition: $bolt-transition;
-$bolt-button-translate--hover: translate3d(0, -1px, 0);
-$bolt-button-translate--active: translate3d(0, 1px, 0);
 
 /**
  * Tools
@@ -30,14 +19,20 @@ $bolt-button-translate--active: translate3d(0, 1px, 0);
 }
 
 @mixin bolt-button-raised-effect {
-  &:hover:not([disabled]),
-  &.is-hover:not([disabled]) {
-    @include bolt-shadow('level-20', true);
+  &.c-bolt-button--primary:hover:not([disabled]),
+  &.c-bolt-button--secondary:hover:not([disabled]),
+  &.c-bolt-button--primary.is-hover:not([disabled]),
+  &.c-bolt-button--secondary.is-hover:not([disabled]) {
+    transform: translate3d(0, -1px, 0);
+
+    &:after {
+      opacity: 1;
+    }
   }
 
   &:active:not([disabled]),
   &.is-active:not([disabled]) {
-    transform: $bolt-button-translate--active;
+    transform: translate3d(0, 1px, 0);
   }
 }
 
@@ -45,6 +40,7 @@ $bolt-button-translate--active: translate3d(0, 1px, 0);
   @include bolt-button-reset;
   @include bolt-no-select;
   @include bolt-font-weight(semibold);
+
   display: flex;
   align-items: center;
   position: relative;
@@ -52,33 +48,41 @@ $bolt-button-translate--active: translate3d(0, 1px, 0);
   text-decoration: none;
   vertical-align: middle;
   cursor: pointer;
-  border-radius: bolt-button-border-radius('regular');
+  border-radius: bolt-border-radius(small);
   border-width: $bolt-button-border-width;
   border-style: $bolt-button-border-style;
   border-color: transparent;
-  @include bolt-shadow('level-20');
-  box-shadow: var(--bolt-button-box-shadow, #{bolt-shadow('level-20')});
   outline: none;
-  will-change: box-shadow;
+  will-change: background-color, transform;
+  transition: background-color $bolt-button-transition,
+    transform $bolt-button-transition;
 
-  &:before {
+  &:before,
+  &:after {
     content: '';
     display: block;
-    opacity: 0.2;
     position: absolute;
-    top: 0;
-    left: 0;
-    z-index: bolt-z-index('background') - 5;
-    width: 100%;
-    height: 100%;
+    top: -1px;
+    right: -1px;
+    bottom: -1px;
+    left: -1px;
+    z-index: 0;
     pointer-events: none;
-    border-radius: bolt-button-border-radius('regular');
-    @include bolt-shadow('level-10', true);
-    box-shadow: var(--bolt-button-box-shadow, #{bolt-shadow('level-10')});
-    will-change: box-shadow;
+    border-radius: bolt-border-radius(small);
   }
 
-  &:focus:not(:hover):not(.c-bolt-button--disabled):not(.c-bolt-button--inert),
+  &:before {
+    @include bolt-shadow('level-20');
+  }
+
+  &:after {
+    @include bolt-shadow('level-30');
+
+    opacity: 0;
+    will-change: opacity;
+  }
+
+  &:focus:not(:hover):not(.c-bolt-button--disabled),
   &.is-focus:not(.is-hover):not(.is-disabled) {
     box-shadow: 0 -1px 2px bolt-theme(background),
       0 1px 2px bolt-theme(background),
@@ -99,8 +103,8 @@ $bolt-button-translate--active: translate3d(0, 1px, 0);
     background-color: bolt-theme(primary-lighten-15);
   }
 
-  &:focus:not([disabled]):not(.c-bolt-button--disabled):not(.c-bolt-button--inert),
-  &.is-focus:not([disabled]):not(.c-bolt-button--disabled):not(.c-bolt-button--inert) {
+  &:focus,
+  &.is-focus {
     color: bolt-theme(text-on-primary-darken-15);
     background-color: bolt-theme(primary-darken-15);
   }
@@ -109,58 +113,6 @@ $bolt-button-translate--active: translate3d(0, 1px, 0);
   &.is-active {
     color: bolt-theme(text-on-primary-darken-25);
     background-color: bolt-theme(primary-darken-25);
-  }
-}
-
-/**
-  @todo: how do we want to handle these global theming fallback values?
-  **/
-@mixin bolt-button-style--tertiary() {
-  color: var(
-    --bolt-theme--tertiary--text-color--default,
-    #{rgba(bolt-color(black), 0.9)}
-  );
-  background-color: var(
-    --bolt-theme--tertiary--background-color--default,
-    #{rgba(bolt-color(gray), 0.15)}
-  );
-
-  &,
-  &:before {
-    box-shadow: none;
-  }
-
-  &:hover,
-  &.is-hover {
-    color: var(--bolt-theme--tertiary--text-color--hover, #{bolt-color(black)});
-    background-color: var(
-      --bolt-theme--tertiary--background-color--hover,
-      #{rgba(bolt-color(gray), 0.3)}
-    );
-  }
-
-  &:focus:hover:not(:active),
-  &:active:focus,
-  &:focus,
-  &.is-focus {
-    color: var(--bolt-theme--tertiary--text-color--focus, #{bolt-color(black)});
-    background-color: var(
-      --bolt-theme--tertiary--background-color--focus,
-      #{rgba(bolt-color(gray), 0.4)}
-    ); /* [1] */
-  }
-
-  &:active:hover,
-  &:active,
-  &.is-active {
-    color: var(
-      --bolt-theme--tertiary--text-color--active,
-      #{bolt-color(black)}
-    );
-    background-color: var(
-      --bolt-theme--tertiary--background-color--active,
-      #{rgba(bolt-color(gray), 0.5)}
-    );
   }
 }
 
@@ -174,8 +126,8 @@ $bolt-button-translate--active: translate3d(0, 1px, 0);
     background-color: bolt-theme(secondary-lighten-5);
   }
 
-  &:focus:not([disabled]):not(.c-bolt-button--disabled):not(.c-bolt-button--inert),
-  &.is-focus:not([disabled]):not(.c-bolt-button--disabled):not(.c-bolt-button--inert) {
+  &:focus,
+  &.is-focus {
     color: bolt-theme(text-on-secondary-darken-3);
     background-color: bolt-theme(secondary-darken-3);
   }
@@ -187,6 +139,32 @@ $bolt-button-translate--active: translate3d(0, 1px, 0);
   }
 }
 
+@mixin bolt-button-style--tertiary() {
+  color: bolt-theme(headline);
+  box-shadow: 0 0 0.25rem bolt-theme(background, 0.2);
+  background-color: bolt-theme(neutral, 0.2);
+
+  &:before,
+  &:after {
+    display: none;
+  }
+
+  &:hover,
+  &.is-hover {
+    background-color: bolt-theme(neutral, 0.4);
+  }
+
+  &:focus,
+  &.is-focus {
+    background-color: bolt-theme(neutral, 0.4);
+  }
+
+  &:active,
+  &.is-active {
+    background-color: bolt-theme(neutral, 0.6);
+  }
+}
+
 @mixin bolt-button-style--text() {
   // Remove box-shadow and background-color completely for text buttons.
 
@@ -194,24 +172,22 @@ $bolt-button-translate--active: translate3d(0, 1px, 0);
   color: bolt-theme(headline-link);
   text-decoration: none;
 
+  &:before,
+  &:after {
+    display: none;
+  }
+
   &,
   &[disabled],
   &.c-bolt-button--disabled {
     background-color: transparent;
   }
 
-  &,
-  &:before {
-    box-shadow: none;
-  }
-
-  &:hover:not([disabled]):not(.c-bolt-button--disabled):not(.c-bolt-button--inert),
-  &.is-hover:not([disabled]):not(.c-bolt-button--disabled):not(.c-bolt-button--inert) {
+  &:hover,
+  &.is-hover {
     opacity: $bolt-global-link-hover-opacity;
   }
 
-  &:focus:active:not([disabled]):not(.c-bolt-button--disabled):not(.c-bolt-button--inert),
-  &.is-focus.is-active:not([disabled]):not(.c-bolt-button--disabled):not(.c-bolt-button--inert),
   &:active,
   &.is-active {
     opacity: $bolt-global-link-active-opacity;
@@ -232,38 +208,9 @@ $bolt-button-translate--active: translate3d(0, 1px, 0);
     background-color: bolt-theme(disabled);
   }
 
-  &:before {
-    content: '';
+  &:before,
+  &:after {
     display: none;
-  }
-}
-
-// Teal-specific color. Needs refactoring to combine with primary button logic above ^
-@mixin bolt-button-color--teal {
-  $button-background-color-default: bolt-color(navy, light);
-  $button-background-color-hover: mix(
-    $bolt-global-button-hover-color,
-    $button-background-color-default,
-    $bolt-global-button-hover-mix
-  );
-  $button-background-color-active: mix(
-    $bolt-global-button-active-color,
-    $button-background-color-default,
-    $bolt-global-button-active-mix
-  );
-  &.c-bolt-button,
-  &.c-bolt-button:visited {
-    color: bolt-text-contrast($button-background-color-default);
-    background-color: $button-background-color-default;
-  }
-  &:focus,
-  &:hover {
-    color: bolt-text-contrast($button-background-color-default);
-    background-color: $button-background-color-hover;
-  }
-  &:active {
-    color: bolt-text-contrast($button-background-color-default);
-    background-color: $button-background-color-active;
   }
 }
 
