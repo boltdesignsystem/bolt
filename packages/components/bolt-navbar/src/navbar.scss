@@ -67,7 +67,9 @@ bolt-navbar {
       justify-content: center;
       align-content: center;
       align-items: center;
-      grid-template-columns: var(--bolt-spacing-x-small) auto 1fr var(--bolt-spacing-y-medium);
+      grid-template-columns: var(--bolt-spacing-x-small) auto 1fr var(
+          --bolt-spacing-y-medium
+        );
       grid-template-rows: 1fr auto;
       padding-right: 0;
       padding-left: 0;
@@ -118,20 +120,18 @@ bolt-navbar {
   color: bolt-theme(headline);
   white-space: nowrap;
 
-  > *:not(:last-child) {
-    margin-right: var(--bolt-spacing-x-small);
+  @include bolt-mq($until: xsmall) {
+    padding-top: var(--bolt-spacing-y-xsmall);
+    padding-bottom: var(--bolt-spacing-y-xsmall);
+    grid-column: 2 / span 1;
   }
-
 
   &:only-child {
     margin-right: auto;
   }
 
-  @include bolt-if-browser-supports-display-contents {
-    @media screen and (max-width: $bolt-navbar-xsmall-bp) {
-      padding-top: var(--bolt-spacing-y-small);
-      grid-column: 2 / span 1;
-    }
+  > *:not(:last-child) {
+    margin-right: var(--bolt-spacing-x-small);
   }
 
   .c-bolt-navbar--center & {
