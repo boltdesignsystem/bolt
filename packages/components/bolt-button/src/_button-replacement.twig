@@ -20,7 +20,7 @@
 
 {# DEPRECATED.  Use the values `start` and `end` insted of `left` and `right`. #}
 {% if align == "left" %}
- {% set align = "start" %}
+  {% set align = "start" %}
 {% elseif align == "right" %}
   {% set align = "end" %}
 {% endif %}
@@ -36,17 +36,18 @@
 {% endif %}
 
 {# Set up checks to validate that the component's prop values are allowed, based on the component's schema #}
-{% set size_options = schema.properties.size.enum %}
-{% set style_options = schema.properties.style.enum %}
-{% set width_options = schema.properties.width.enum %}
-{% set border_radius_options = schema.properties.border_radius.enum %}
-{% set align_options = schema.properties.align.enum %}
-{% set transform_options = schema.properties.transform.enum %}
-{% set icon_positions = schema.properties.icon.properties.position.enum %}
-{% set iconOnly_options = schema.properties.iconOnly.enum %}
-{% set type_options = schema.properties.type.enum %}
+{% set size_options = this.data.size.value %}
+{% set style_options = this.data.style.value %}
+{% set width_options = this.data.width.value %}
+{% set border_radius_options = this.data.border_radius.value %}
+{% set align_options = this.data.align.value %}
+{% set transform_options = this.data.transform.value %}
+{% set icon_positions = this.data.icon.properties.position.value %}
+{% set iconOnly_options = this.data.iconOnly.value %}
+{% set type_options = this.data.type.value %}
 
 {# Check that the component's current prop values are valid. if not, default to the schema default #}
+{{ this.data.size.default }}
 {% set size = size in size_options ? size : schema.properties.size.default %}
 {% set style = style in style_options ? style : schema.properties.style.default %}
 {% set width = width in width_options ? width : schema.properties.width.default %}
