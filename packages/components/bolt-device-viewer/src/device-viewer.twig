@@ -17,6 +17,8 @@
 {% set deviceName = device | default("ipad") %}
 {% set color = color | default("black") %}
 {% set orientation = orientation | default("portrait") %}
+
+{# DEPRECATED.  Support for magnify will be dropped in a future release. #}
 {% set magnify = magnify | default(false) %}
 
 {% set attributes = create_attribute(attributes|default({})) %}
@@ -29,6 +31,13 @@
   {% set image = image | merge({
     zoom: true
   }) %}
+{% endif %}
+
+{# DEPRECATED.  Don't use the `image` prop, use the `content` prop to pass a rendered image instead. #}
+{% if image %}
+  {% set content %}
+    {% include "@bolt/image.twig" with image only %}
+  {% endset %}
 {% endif %}
 
 {% set classes = [
@@ -57,9 +66,10 @@
           {% include "@bolt/_screen-tilt.twig" %}
         {% endif %}
 
+        {# DEPRECATED.  Don't use the twig block, just use the `content` prop instead. #}
         {% block device_viewer_image %}
-          {% if image %}
-            {% include "@bolt/image.twig" with image only %}
+          {% if content %}
+            {{ content }}
           {% endif %}
         {% endblock %}
 
