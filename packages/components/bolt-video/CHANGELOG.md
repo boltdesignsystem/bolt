@@ -3,6 +3,34 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.25.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-video/compare/v2.22.2...v2.25.0) (2020-07-13)
+
+
+### Bug Fixes
+
+* linting ([48f60b3](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-video/commit/48f60b38edfefbc44424e199b4a0b3e6fce7908b))
+* resolve conflicts ([92743cf](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-video/commit/92743cf5734703ccfb94bc6d49e0a3d667e81fe3))
+
+
+
+# [2.25.0-alpha-colors](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-video/compare/v2.24.1...v2.25.0-alpha-colors) (2020-06-18)
+
+
+### Bug Fixes
+
+* update componet descriptions ([b9fefe6](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-video/commit/b9fefe6106eb74e3d4794a51443a2b576d9651d9))
+* update remaining Jest snapshots; tweak Popover and Tabs tests to be more reliable ([ab0d7f0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-video/commit/ab0d7f084678e5b001e792d34908255b928ef770))
+
+
+### Features
+
+* globally lazyload JS bundles to expose same existing issues as the ones found with the new lazy-queue functionality ([7cc4ce2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-video/commit/7cc4ce2fa9ce28dc4f9f37078762f106ca87729f))
+* update Chip and Video to use the new LazyQueue functionality ([bf7a77b](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-video/commit/bf7a77b42184ccd9b29e00bc3140ace48f44badc))
+
+
+
+
+
 ## [2.24.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-video/compare/v2.24.0...v2.24.1) (2020-06-17)
 
 **Note:** Version bump only for package @bolt/components-video
