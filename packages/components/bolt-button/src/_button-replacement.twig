@@ -10,8 +10,8 @@
 {% set this = init(schema) %}
 {% set attributes = create_attribute(attributes|default({})) %}
 
-{# {% set attributes = create_attribute(attributes|default({})) %}
-{% set inner_attributes = create_attribute({}) %} #}
+{% set attributes = create_attribute(attributes|default({})) %}
+{% set inner_attributes = create_attribute({}) %}
 
 {# DEPRECATED.  Use the prooperty `align` instead of `itemAlignment`. #}
 {% if itemAlignment %}
@@ -153,8 +153,7 @@ Sort classes passed in via attributes into two groups:
   {% endif %}
   class="{{ classes|join(' ') }}"
   {{ attributes|without("url")|without("href")|without("target")|without("class") }}
-
-{# {{ inner_attributes|without("on-click")|without("on-click-target") }} #}
+  {{ inner_attributes|without("on-click")|without("on-click-target") }}
 >
 
   {% block slot_before %}
