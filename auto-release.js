@@ -119,9 +119,12 @@ async function init() {
     }
   } else if (isFullRelease) {
     try {
-      const version = await shell
-        .exec(`auto version --from v${currentVersion}`, { silent: true })
-        .stdout.trim();
+      // const version = await shell
+      //   .exec(`auto version --from v${currentVersion}`, { silent: true })
+      //   .stdout.trim();
+
+      // Temporarily hard-code 'version' since auto is failing.
+      const version = 'minor';
       const nextVersion = await semver.inc(currentVersion, version);
 
       if (
