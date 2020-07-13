@@ -98,12 +98,15 @@ bolt-modal:not([ready]) {
 
     .c-bolt-modal__container-header {
       flex-shrink: 0; // If header text is missing, this will partially collapse without setting flex-shrink
-      padding: var(--bolt-spacing-y-small) var(--bolt-spacing-x-large) var(--bolt-spacing-y-small) var(--bolt-spacing-x-small);
+      padding: var(--bolt-spacing-y-small) var(--bolt-spacing-x-large)
+        var(--bolt-spacing-y-small) var(--bolt-spacing-x-small);
     }
 
     .c-bolt-modal__container-header--hidden {
       @include bolt-padding(0);
-      height: calc( var(--bolt-spacing-y-medium) + var(--bolt-spacing-y-small) * 2 ); // Match close button icon size and margin.
+      height: calc(
+        var(--bolt-spacing-y-medium) + var(--bolt-spacing-y-small) * 2
+      ); // Match close button icon size and margin.
     }
 
     .c-bolt-modal__container-body {
@@ -167,7 +170,7 @@ bolt-modal:not([ready]) {
     top: 0;
     left: 0;
     min-width: 200px; // Prevents content without defined width (such as image and video) from falling below 200px.
-    max-width: calc( 100% - var(--bolt-spacing-x-medium) * 2 );
+    max-width: calc(100% - var(--bolt-spacing-x-medium) * 2);
     max-height: $bolt-modal-max-height;
     transition: visibility $bolt-transition-timing $bolt-transition-ease
       $bolt-transition-timing;
@@ -247,7 +250,7 @@ bolt-modal:not([ready]) {
   }
 
   .c-bolt-modal__content--width-full {
-    width: calc( 100% - var(--bolt-spacing-x-medium) * 2 );
+    width: calc(100% - var(--bolt-spacing-x-medium) * 2);
   }
 }
 
@@ -337,12 +340,14 @@ bolt-modal:not([ready]) {
   @include bolt-mq($bolt-modal-breakpoint) {
     .c-bolt-modal__container--spacing-#{$size-name} {
       .c-bolt-modal__container-body {
-        padding: var(--bolt-spacing-y-#{$size-name}) var(--bolt-spacing-x-#{$size-name});
+        padding: var(--bolt-spacing-y-#{$size-name})
+          var(--bolt-spacing-x-#{$size-name});
       }
 
       .c-bolt-modal__container-header,
       .c-bolt-modal__container-footer {
-        padding: calc(var(--bolt-spacing-y-#{$size-name}) / 2) var(--bolt-spacing-x-#{$size-name});
+        padding: calc(var(--bolt-spacing-y-#{$size-name}) / 2)
+          var(--bolt-spacing-x-#{$size-name});
       }
     }
   }
@@ -394,10 +399,9 @@ bolt-modal:not([ready]) {
   height: var(--bolt-spacing-y-medium);
   margin: var(--bolt-spacing-y-small) var(--bolt-spacing-x-small);
 
-
   @include bolt-mq($bolt-modal-breakpoint) {
-    width: calc( var(--bolt-spacing-x-medium) - 0.2rem );
-    height: calc( var(--bolt-spacing-y-medium) - 0.2rem );
+    width: calc(var(--bolt-spacing-x-medium) - 0.2rem);
+    height: calc(var(--bolt-spacing-y-medium) - 0.2rem);
     margin: 0;
   }
 

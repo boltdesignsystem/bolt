@@ -34,6 +34,7 @@
 // Spacing
 @each $value in $bolt-menu-spacing-values {
   .c-bolt-menu__title--spacing-#{$value} {
-    padding: calc(var(--bolt-spacing-y-#{$value}) / 2) var(--bolt-spacing-x-#{$value});
+    padding: calc(var(--bolt-spacing-y-#{$value}) / 2)
+      var(--bolt-spacing-x-#{$value});
   }
 }

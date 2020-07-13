@@ -243,7 +243,7 @@ bolt-accordion-item {
   display: flex;
   flex-shrink: 0; // for when there is a very long title - adds left/right spacing
   position: relative;
-  transform: translateX( var(--bolt-spacing-x-xxsmall) );
+  transform: translateX(var(--bolt-spacing-x-xxsmall));
   overflow: hidden; // so transformed icons don't spill out
   color: bolt-theme(link);
   line-height: 0; // Workaround to line-height messing up icon alignment
@@ -255,7 +255,6 @@ bolt-accordion-item {
 }
 
 .c-bolt-accordion-item__trigger-icons-inner {
-
   display: block;
   transform: rotate(0deg);
   padding: var(--bolt-spacing-y-xxsmall) 0; // This is for aligning the icon with the text baseline.
@@ -381,21 +380,21 @@ bolt-accordion-item {
 
   @if (
     $size-name !=
-    'xxsmall' and
-    $size-name !=
-    'xlarge' and
-    $size-name !=
-    'xxlarge'
+      'xxsmall' and
+      $size-name !=
+      'xlarge' and
+      $size-name !=
+      'xxlarge'
   ) {
     .c-bolt-accordion-spacing--#{$size-name} {
-      padding: calc(var(--bolt-spacing-y-#{$size-name}) / 2) var(--bolt-spacing-x-#{$size-name});
+      padding: calc(var(--bolt-spacing-y-#{$size-name}) / 2)
+        var(--bolt-spacing-x-#{$size-name});
       // Applies only to js content
       &.c-bolt-accordion-item__content-inner.c-bolt-accordion-item__content-inner--offset,
       // Applies only to no-js trigger
       &.c-bolt-accordion-item__trigger-label.c-bolt-accordion-item__trigger-label--offset {
         padding-right: calc(
-          var(--bolt-spacing-x-#{$size-name}) +
-            #{$bolt-accordion-icon-size}
+          var(--bolt-spacing-x-#{$size-name}) + #{$bolt-accordion-icon-size}
         );
       }
 

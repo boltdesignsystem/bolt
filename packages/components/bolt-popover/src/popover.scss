@@ -245,18 +245,19 @@ $bolt-popover-transition: $bolt-transition-timing
 /**
  * Spacing prop
  */
-@each $size in $bolt-spacing-multiplier-system  {
+@each $size in $bolt-spacing-multiplier-system {
   $size-name: nth($size, 1);
 
   .c-bolt-popover--spacing-#{$size-name} {
     .c-bolt-popover__bubble {
-      padding: var(--bolt-spacing-y-#{$size-name}) var(--bolt-spacing-x-#{$size-name});
+      padding: var(--bolt-spacing-y-#{$size-name})
+        var(--bolt-spacing-x-#{$size-name});
     }
 
     @at-root bolt-popover:not([ready]) & {
       .c-bolt-popover__nojs-close {
-        margin-top: calc( var(--bolt-spacing-y-#{$size-name}) * -1 );
-        margin-right: calc( var(--bolt-spacing-x-#{$size-name}) * -1 );
+        margin-top: calc(var(--bolt-spacing-y-#{$size-name}) * -1);
+        margin-right: calc(var(--bolt-spacing-x-#{$size-name}) * -1);
       }
     }
   }

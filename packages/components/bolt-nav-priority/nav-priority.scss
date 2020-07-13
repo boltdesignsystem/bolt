@@ -99,16 +99,16 @@ bolt-nav-priority {
 }
 
 .c-bolt-nav-priority__dropdown-list {
-
   opacity: bolt-opacity(0);
-  transform: translate3d(0, calc( var(--bolt-spacing-y-medium) * -1 ), 0);
+  transform: translate3d(0, calc(var(--bolt-spacing-y-medium) * -1), 0);
   width: 100%;
   overflow: hidden;
   margin: 0;
   padding: var(--bolt-spacing-y-xsmall) var(--bolt-spacing-x-xsmall);
   list-style: none;
   pointer-events: none;
-  transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1) 0s, opacity 0.2s cubic-bezier(0.23, 1, 0.32, 1) 0.1s;
+  transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1) 0s,
+    opacity 0.2s cubic-bezier(0.23, 1, 0.32, 1) 0.1s;
 
   .c-bolt-nav-priority--show-dropdown & {
     opacity: bolt-opacity(100);
@@ -139,7 +139,8 @@ bolt-nav-priority {
       xlight: secondary,
     )
   );
-  transition: max-height 0.3s cubic-bezier(0.28, 0.11, 0.32, 1) 0s, visibility 0s linear 0.3s;
+  transition: max-height 0.3s cubic-bezier(0.28, 0.11, 0.32, 1) 0s,
+    visibility 0s linear 0.3s;
 
   * {
     white-space: normal;
@@ -203,7 +204,7 @@ bolt-nav-priority {
   transition: background-color 0.3s ease;
   white-space: nowrap;
 
-  @include bolt-mq($bolt-navbar-xsmall-bp){
+  @include bolt-mq($bolt-navbar-xsmall-bp) {
     padding: calc(var(--bolt-spacing-y-small) / 2) var(--bolt-spacing-x-small);
   }
 
@@ -316,8 +317,9 @@ bolt-nav-priority {
 
 .c-bolt-nav-priority__dropdown-list > .c-bolt-nav-priority__item {
   opacity: bolt-opacity(0);
-  transform: translate3d(0, calc( var(--bolt-spacing-x-large) * -1 ), 0);
-  transition: opacity 0.3s cubic-bezier(0.28, 0.11, 0.32, 1), transform 0.3s cubic-bezier(0.28, 0.11, 0.32, 1); // transition:
+  transform: translate3d(0, calc(var(--bolt-spacing-x-large) * -1), 0);
+  transition: opacity 0.3s cubic-bezier(0.28, 0.11, 0.32, 1),
+    transform 0.3s cubic-bezier(0.28, 0.11, 0.32, 1); // transition:
   transition-property: transform, opacity;
 }
 
@@ -326,12 +328,19 @@ bolt-nav-priority {
 
   @for $i from $quantity through 1 {
     $time: $time + 50;
-    bolt-nav-priority:not(.is-closing) .c-bolt-nav-priority__dropdown-list > .c-bolt-nav-priority__item:nth-last-child(n+#{$quantity}),
-    bolt-nav-priority:not(.is-closing) .c-bolt-nav-priority__dropdown-list > .c-bolt-nav-priority__item:nth-last-child(n+#{$quantity}) ~ .c-bolt-nav-priority__item:nth-child(#{$i}) {
+    bolt-nav-priority:not(.is-closing)
+      .c-bolt-nav-priority__dropdown-list
+      > .c-bolt-nav-priority__item:nth-last-child(n + #{$quantity}),
+    bolt-nav-priority:not(.is-closing)
+      .c-bolt-nav-priority__dropdown-list
+      > .c-bolt-nav-priority__item:nth-last-child(n + #{$quantity})
+      ~ .c-bolt-nav-priority__item:nth-child(#{$i}) {
       transition-delay: $time + ms;
     }
 
-    .is-closing .c-bolt-nav-priority__dropdown-list > .c-bolt-nav-priority__item:nth-child(#{$i}) {
+    .is-closing
+      .c-bolt-nav-priority__dropdown-list
+      > .c-bolt-nav-priority__item:nth-child(#{$i}) {
       transition-delay: $i * 17 + ms;
     }
   }
@@ -339,7 +348,9 @@ bolt-nav-priority {
   $time: $time + 50;
 }
 
-.c-bolt-nav-priority--show-dropdown .c-bolt-nav-priority__dropdown-list > .c-bolt-nav-priority__item {
+.c-bolt-nav-priority--show-dropdown
+  .c-bolt-nav-priority__dropdown-list
+  > .c-bolt-nav-priority__item {
   opacity: bolt-opacity(100);
   transform: translate3d(0, 0, 0);
 }
