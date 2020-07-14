@@ -31,8 +31,10 @@
   border-bottom-width: $bolt-menu-border-width;
 }
 
+// Spacing
 @each $value in $bolt-menu-spacing-values {
   .c-bolt-menu__title--spacing-#{$value} {
-    @include bolt-padding(#{$value}, squished);
+    padding: calc(var(--bolt-spacing-y-#{$value}) / 2)
+      var(--bolt-spacing-x-#{$value});
   }
 }

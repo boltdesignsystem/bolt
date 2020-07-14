@@ -201,51 +201,50 @@ bolt-tabs {
 }
 
 // Label spacing
-@each $spacing-value in $bolt-spacing-values {
-  $spacing-value-name: nth($spacing-value, 1);
+@each $size in $bolt-spacing-multiplier-system {
+  $size-name: nth($size, 1);
 
   @if (
-    $spacing-value-name !=
-      '' and
-      $spacing-value-name !=
+    $size-name !=
       'xxsmall' and
-      $spacing-value-name !=
+      $size-name !=
       'large' and
-      $spacing-value-name !=
+      $size-name !=
       'xlarge' and
-      $spacing-value-name !=
+      $size-name !=
       'xxlarge'
   ) {
     .c-bolt-tabs:not(.c-bolt-tabs--inset) {
-      .c-bolt-tabs__label--spacing-#{$spacing-value-name} {
+      .c-bolt-tabs__label--spacing-#{$size-name} {
         .c-bolt-tabs__label-inner {
-          padding-right: bolt-spacing(#{$spacing-value-name}) / 2;
-          padding-left: bolt-spacing(#{$spacing-value-name}) / 2;
+          padding-right: calc(var(--bolt-spacing-x-#{$size-name}) / 2);
+          padding-left: calc(var(--bolt-spacing-x-#{$size-name}) / 2);
         }
         .c-bolt-tabs__label-text {
-          @include bolt-padding-left(0);
-          @include bolt-padding-right(0);
+          padding-right: 0;
+          padding-left: 0;
         }
         // first-of-type for no-JS
         &:first-child,
         &:first-of-type {
           .c-bolt-tabs__label-inner {
-            margin-left: -(bolt-spacing(#{$spacing-value-name}) / 2);
+            margin-left: calc(var(--bolt-spacing-x-#{$size-name}) / -2);
           }
         }
         // last-of-type for no-JS
         &:last-child,
         &:last-of-type {
           .c-bolt-tabs__label-inner {
-            margin-right: -(bolt-spacing(#{$spacing-value-name}) / 2);
+            margin-right: calc(var(--bolt-spacing-x-#{$size-name}) / -2);
           }
         }
       }
     }
     .c-bolt-tabs--inset {
-      .c-bolt-tabs__label--spacing-#{$spacing-value-name} {
+      .c-bolt-tabs__label--spacing-#{$size-name} {
         .c-bolt-tabs__label-text {
-          @include bolt-padding(#{$spacing-value-name}, squished);
+          padding: calc(var(--bolt-spacing-y-#{$size-name}) / 2)
+            var(--bolt-spacing-x-#{$size-name});
         }
       }
     }
@@ -253,9 +252,9 @@ bolt-tabs {
 }
 
 .c-bolt-tabs__nav {
-  @include bolt-margin-bottom(0);
   display: flex;
   flex-flow: row nowrap;
+  margin-bottom: 0;
 
   // Label align
   @at-root .c-bolt-tabs--align-center & {
