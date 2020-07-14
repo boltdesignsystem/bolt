@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.25.0](https://github.com/boltdesignsystem/bolt/compare/v2.22.2...v2.25.0) (2020-07-13)
+
+
+### Bug Fixes
+
+* linting ([48f60b3](https://github.com/boltdesignsystem/bolt/commit/48f60b38edfefbc44424e199b4a0b3e6fce7908b))
+* update now-storage config to use teamId ([3595df1](https://github.com/boltdesignsystem/bolt/commit/3595df1ce7b83b44a50fb4096c8bc811ea9b6027))
+
+
+
+
+
 ## [2.24.1](https://github.com/boltdesignsystem/bolt/compare/v2.24.0...v2.24.1) (2020-06-17)
 
 **Note:** Version bump only for package @bolt/jest-config

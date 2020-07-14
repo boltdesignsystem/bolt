@@ -3,6 +3,35 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.25.0](https://github.com/bolt-design-system/bolt/tree/master/packages/core/compare/v2.22.2...v2.25.0) (2020-07-13)
+
+
+### Bug Fixes
+
+* change blue ([29b5b11](https://github.com/bolt-design-system/bolt/tree/master/packages/core/commit/29b5b11f7d4a7158160418fbac6e0a7efda24f7a))
+* ja values ([860d729](https://github.com/bolt-design-system/bolt/tree/master/packages/core/commit/860d729199ac421441b8ef44d27f4be855efff5d))
+* line height ([ccdd0f3](https://github.com/bolt-design-system/bolt/tree/master/packages/core/commit/ccdd0f3c0d91fba33e791599313af51c2eec4d10))
+* more eagerly lazy load SSR helper elements + update docs site-specific lazy-queue callback to use async await ([7af6704](https://github.com/bolt-design-system/bolt/tree/master/packages/core/commit/7af670470a64149dfc907abd1666e027a9a01411))
+* move css vars to global ([a727fe0](https://github.com/bolt-design-system/bolt/tree/master/packages/core/commit/a727fe0c7dfeab5795f6cdff22415151ca3001c8))
+* move maps back into core ([885b3f4](https://github.com/bolt-design-system/bolt/tree/master/packages/core/commit/885b3f47a712dc186db4a9b394c568bd9fbcbb0d))
+* re-organize typography settings ([d086a9d](https://github.com/bolt-design-system/bolt/tree/master/packages/core/commit/d086a9d1fd9d2164c15a29b92f0c53ba9b00fd92))
+* resolve conflicts with master ([c4cc15b](https://github.com/bolt-design-system/bolt/tree/master/packages/core/commit/c4cc15bbb16a343108a4fb12a60788f3945d743b))
+* spacing and font vars ([1406a3e](https://github.com/bolt-design-system/bolt/tree/master/packages/core/commit/1406a3e5d7dbb957959870791ef40b4a503b0633))
+* update comments ([40e984a](https://github.com/bolt-design-system/bolt/tree/master/packages/core/commit/40e984ab00240c29a0fd035c01af87f8f9c7fbb8))
+* update JA-specific Sass to pull in breakpoint-specific Sass functions / vars that don't yet exist (normally) ([45ce051](https://github.com/bolt-design-system/bolt/tree/master/packages/core/commit/45ce051238dea173c6603dab8c00529a60e21e10))
+* update min contrast ratio to be 3 in text-contrast mixin ([c36f1dc](https://github.com/bolt-design-system/bolt/tree/master/packages/core/commit/c36f1dce1e3a3dff5da8de12470b41d6b527805d))
+* xxxl line-height ([cf3adea](https://github.com/bolt-design-system/bolt/tree/master/packages/core/commit/cf3adea4070abeb82c90ac4685266645930b2c49))
+
+
+### Features
+
+* globally lazyload JS bundles to expose same existing issues as the ones found with the new lazy-queue functionality ([7cc4ce2](https://github.com/bolt-design-system/bolt/tree/master/packages/core/commit/7cc4ce2fa9ce28dc4f9f37078762f106ca87729f))
+* manually cherry pick ajv replacement updates ([c322d0e](https://github.com/bolt-design-system/bolt/tree/master/packages/core/commit/c322d0e38266ca5660d8c77868ec5f1203fbb5b7))
+
+
+
+
+
 # [2.24.0](https://github.com/bolt-design-system/bolt/tree/master/packages/core/compare/v2.23.0...v2.24.0) (2020-06-05)
 
 
