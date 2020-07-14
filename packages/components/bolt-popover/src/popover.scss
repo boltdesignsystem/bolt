@@ -95,8 +95,6 @@ $bolt-popover-transition: $bolt-transition-timing
   display: none;
 
   bolt-popover:not([ready]) & {
-    @include bolt-font-family(body);
-    @include bolt-font-weight(semibold);
     display: block;
     width: 1.25rem;
     height: 1.25rem;
@@ -105,7 +103,9 @@ $bolt-popover-transition: $bolt-transition-timing
     color: bolt-theme(link);
     line-height: 1;
     text-align: center;
+    font-family: var(--bolt-type-font-family-body);
     font-size: 1rem;
+    font-weight: var(--bolt-type-font-weight-semibold);
     border-bottom-left-radius: bolt-border-radius(large);
 
     &:hover,
@@ -126,17 +126,18 @@ $bolt-popover-transition: $bolt-transition-timing
  * - used for visual design of the bubble and the fly in effect
  */
 .c-bolt-popover__bubble {
-  @include bolt-font-family(body);
-  @include bolt-font-size(xsmall);
-  @include bolt-font-weight(regular);
   display: block;
   transform: scale3d(1, 1, 1) translate3d(0, 0, 0);
   overflow: hidden;
   margin: var(--bolt-spacing-y-xxsmall) var(--bolt-spacing-x-xxsmall);
   padding: 0;
   color: bolt-theme(text);
+  line-height: var(--bolt-type-line-height-xsmall);
   text-align: left;
   text-align: start;
+  font-family: var(--bolt-type-font-family-body);
+  font-size: var(--bolt-type-font-size-xsmall);
+  font-weight: var(--bolt-type-font-weight-regular);
   border-radius: bolt-border-radius(small);
   border-width: $bolt-popover-border-width;
   border-style: $bolt-popover-border-style;
@@ -245,18 +246,19 @@ $bolt-popover-transition: $bolt-transition-timing
 /**
  * Spacing prop
  */
-@each $size in $bolt-spacing-multiplier-system  {
+@each $size in $bolt-spacing-multiplier-system {
   $size-name: nth($size, 1);
 
   .c-bolt-popover--spacing-#{$size-name} {
     .c-bolt-popover__bubble {
-      padding: var(--bolt-spacing-y-#{$size-name}) var(--bolt-spacing-x-#{$size-name});
+      padding: var(--bolt-spacing-y-#{$size-name})
+        var(--bolt-spacing-x-#{$size-name});
     }
 
     @at-root bolt-popover:not([ready]) & {
       .c-bolt-popover__nojs-close {
-        margin-top: calc( var(--bolt-spacing-y-#{$size-name}) * -1 );
-        margin-right: calc( var(--bolt-spacing-x-#{$size-name}) * -1 );
+        margin-top: calc(var(--bolt-spacing-y-#{$size-name}) * -1);
+        margin-right: calc(var(--bolt-spacing-x-#{$size-name}) * -1);
       }
     }
   }
