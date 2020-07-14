@@ -11,14 +11,14 @@
 }
 
 .c-bolt-menu-item {
-  @include bolt-font-family(body);
-  @include bolt-font-size(xsmall);
-  @include bolt-font-weight(regular);
-
   display: block;
   position: relative;
   transform: translate3d(0, 0, 0);
   color: bolt-theme(text);
+  line-height: var(--bolt-type-line-height-xsmall);
+  font-family: var(--bolt-type-font-family-body);
+  font-size: var(--bolt-type-font-size-xsmall);
+  font-weight: var(--bolt-type-font-weight-regular);
   border-bottom-color: $bolt-menu-border-color;
   border-bottom-style: $bolt-menu-border-style;
   border-bottom-width: $bolt-menu-border-width;
@@ -70,8 +70,8 @@
 
   /* This doesn't work in IE. Oh well. */
   @at-root bolt-trigger:focus-within & {
-    @include bolt-font-weight(semibold);
     color: bolt-theme(headline);
+    font-weight: var(--bolt-type-font-weight-semibold);
 
     &:before {
       width: 100%;
@@ -79,7 +79,7 @@
     }
 
     &:after {
-      height: calc( 100% - var(--bolt-spacing-y-xsmall) * 2  );
+      height: calc(100% - var(--bolt-spacing-y-xsmall) * 2);
     }
   }
 }
@@ -91,6 +91,7 @@
 // Spacing
 @each $value in $bolt-menu-spacing-values {
   .c-bolt-menu-item--spacing-#{$value} {
-    padding: calc(var(--bolt-spacing-y-#{$value}) / 2) var(--bolt-spacing-x-#{$value});
+    padding: calc(var(--bolt-spacing-y-#{$value}) / 2)
+      var(--bolt-spacing-x-#{$value});
   }
 }
