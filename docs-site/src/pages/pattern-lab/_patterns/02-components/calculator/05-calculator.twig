@@ -1,0 +1,35 @@
+{% include "@bolt-components-calculator/calculator.twig" with {
+  items: [
+    {
+      type: "amount",
+      label: "Amount",
+      placeholder: "$ Amount (Eg. $25,000,000,000)",
+    },
+    {
+      type: "percent",
+      label: "Percent",
+      placeholder: "% (Eg. 10%)",
+    },
+    {
+      type: "number",
+      label: "Number",
+      placeholder: "Number (Eg. 10,000,000)",
+    }
+  ],
+  submit: {
+    label: "Submit"
+  }
+} only %}
+<!-- 
+
+each 'item' would have their own schema (list item example)
+
+calculator/form
+calcultor/results
+calcultor/results/graph bloc
+calcultor/results/retsulst
+calcultor/results/restuls header
+calcultor/results/restuls header
+calcultor/results/restuls header
+calcultor/results/restuls header
+calcultor/results/restuls header -->

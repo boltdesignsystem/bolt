@@ -12,6 +12,7 @@ export * from './get-transition-duration';
 export * from './get-unique-id';
 export * from './is-focusable';
 export * from './is-valid-selector';
+export * from './modular';
 export * from './rgb2hex';
 export * from './rename-key';
 // export * from './sanitize-classes';
