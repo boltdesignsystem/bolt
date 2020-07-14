@@ -7,13 +7,10 @@
 $bolt-pagination-transition: $bolt-transition;
 $bolt-pagination-item-size: var(--bolt-spacing-x-medium);
 
-
-
 // Register Custom Block Element
 @include bolt-custom-element('bolt-pagination', block, medium);
 
 .c-bolt-pagination {
-
   display: flex;
   flex-wrap: wrap; // @todo: component needs better responsive design, for now just make sure it doesn't overflow the container
   margin: 0;
@@ -35,9 +32,6 @@ $bolt-pagination-item-size: var(--bolt-spacing-x-medium);
 }
 
 .c-bolt-pagination__item {
-  @include bolt-font-family(body);
-  @include bolt-font-weight(semibold);
-  @include bolt-font-size(small);
   display: block;
   min-width: $bolt-pagination-item-size;
   height: $bolt-pagination-item-size;
@@ -45,8 +39,12 @@ $bolt-pagination-item-size: var(--bolt-spacing-x-medium);
   padding: 0 2px; // [Mai] This will give big numbers (over 3 digits) some padding left and right so it's not touching the edge.
   color: bolt-theme(headline-link);
   line-height: $bolt-pagination-item-size;
+  line-height: var(--bolt-type-line-height-small);
   text-align: center;
   text-decoration: none;
+  font-family: var(--bolt-type-font-family-body);
+  font-size: var(--bolt-type-font-size-small);
+  font-weight: var(--bolt-type-font-weight-semibold);
   border-radius: $bolt-pagination-item-size;
   background-color: transparent;
   -webkit-backface-visibility: hidden; // Removes the 1px jump with opacity transition
@@ -63,7 +61,9 @@ $bolt-pagination-item-size: var(--bolt-spacing-x-medium);
   }
 
   &.is-current {
-    opacity: bolt-opacity(100);  // Current item is not a link so its styling shouldn't change based on state.
+    opacity: bolt-opacity(
+      100
+    ); // Current item is not a link so its styling shouldn't change based on state.
     color: bolt-theme(background);
     background-color: bolt-theme(headline-link);
   }
@@ -73,7 +73,8 @@ $bolt-pagination-item-size: var(--bolt-spacing-x-medium);
 .c-bolt-pagination__item--next {
   min-width: auto;
 
-  @include bolt-mq($until: small) { // [Mai] This is the opposite of @include bolt-mq(small).
+  @include bolt-mq($until: small) {
+    // [Mai] This is the opposite of @include bolt-mq(small).
     .c-bolt-pagination__text {
       @include bolt-visuallyhidden;
     }
