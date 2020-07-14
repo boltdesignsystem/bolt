@@ -6,7 +6,7 @@
 
 $bolt-clear-button-size: 1.7rem;
 $bolt-clear-button-size-at-med: 1.4rem;
-$bolt-typeahead-button-width: calc( var(--bolt-spacing-x-medium) + 0.75rem );
+$bolt-typeahead-button-width: calc(var(--bolt-spacing-x-medium) + 0.75rem);
 
 $bolt-typeahead-border-width: $bolt-border-width;
 $bolt-typeahead-border-style: $bolt-border-style;
@@ -189,7 +189,7 @@ bolt-autosuggest {
 }
 
 .c-bolt-typeahead__result-highlight {
-  @include bolt-font-weight(bold);
+  font-weight: var(--bolt-type-font-weight-bold);
 }
 
 .c-bolt-typeahead__result-text {
