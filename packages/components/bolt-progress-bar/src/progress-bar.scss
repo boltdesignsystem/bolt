@@ -96,11 +96,15 @@
 }
 
 .c-bolt-progress-bar__value {
-  @include bolt-font-size(xsmall, tight);
-  @include bolt-font-weight(semibold);
   align-self: center;
   margin-bottom: 1px; // workaround to ~1px of text getting chopped off at the bottom
+  line-height: calc(
+    var(--bolt-type-line-height-xsmall) *
+      var(--bolt-type-line-height-multiplier-tight)
+  );
   text-align: start;
+  font-size: var(--bolt-type-font-size-xsmall);
+  font-weight: var(--bolt-type-font-weight-semibold);
 }
 
 .c-bolt-progress-bar__value {
