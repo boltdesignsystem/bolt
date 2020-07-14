@@ -5,15 +5,16 @@
 @import '@bolt/core-v3.x';
 
 .c-bolt-toc-item {
-  @include bolt-font-family(heading);
-  @include bolt-font-size(small);
-  @include bolt-font-weight(regular);
   display: block;
   position: relative;
   transform: translate3d(0, 0, 0);
   padding: calc(var(--bolt-spacing-y-small) / 2) var(--bolt-spacing-x-small);
   color: bolt-theme(text);
+  line-height: var(--bolt-type-line-height-small);
   text-decoration: none;
+  font-family: var(--bolt-type-font-family-headline);
+  font-size: var(--bolt-type-font-size-small);
+  font-weight: var(--bolt-type-font-weight-regular);
   transition: color $bolt-transition;
 
   &:before,
@@ -62,8 +63,7 @@
   &:focus,
   &--current {
     color: bolt-theme(headline);
-    // @todo: replace this with the bolt-font-weight mixin when real "bold" is available.
-    font-weight: 700;
+    font-weight: var(--bolt-type-font-weight-semibold);
 
     &:before {
       width: 100%;
@@ -77,6 +77,6 @@
 }
 
 .c-bolt-toc-item--2nd-level {
-  padding-left: calc( var(--bolt-spacing-x-small) * 2 );
+  padding-left: calc(var(--bolt-spacing-x-small) * 2);
   background-color: rgba(bolt-color(gray), 0.06);
 }

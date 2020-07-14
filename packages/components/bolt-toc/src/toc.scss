@@ -8,7 +8,7 @@
 bolt-toc {
   display: block;
 
-  &[sticky]{
+  &[sticky] {
     position: sticky;
     top: 0;
   }
@@ -18,7 +18,7 @@ bolt-toc {
 :host {
   display: block;
 
-  &[sticky]{
+  &[sticky] {
     position: sticky;
     top: 0;
   }
@@ -33,13 +33,14 @@ bolt-toc {
 }
 
 .c-bolt-toc__header {
-  @include bolt-font-family(heading);
-  @include bolt-font-size(large);
-  @include bolt-font-weight(bold);
   display: block;
   margin: 0;
   padding: var(--bolt-spacing-y-xsmall) var(--bolt-spacing-x-small);
   color: bolt-theme(background);
+  line-height: var(--bolt-type-line-height-large);
+  font-family: var(--bolt-type-font-family-headline);
+  font-size: var(--bolt-type-font-size-large);
+  font-weight: var(--bolt-type-font-weight-bold);
   background-color: bolt-theme(headline);
 
   &--hidden {
