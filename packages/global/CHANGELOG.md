@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.25.0](https://github.com/bolt-design-system/bolt/tree/master/packages/global/compare/v2.22.2...v2.25.0) (2020-07-13)
+
+
+
+# [2.25.0-alpha-colors](https://github.com/bolt-design-system/bolt/tree/master/packages/global/compare/v2.24.1...v2.25.0-alpha-colors) (2020-06-18)
+
+
+### Bug Fixes
+
+* move css vars to global ([a727fe0](https://github.com/bolt-design-system/bolt/tree/master/packages/global/commit/a727fe0c7dfeab5795f6cdff22415151ca3001c8))
+* move maps back into core ([885b3f4](https://github.com/bolt-design-system/bolt/tree/master/packages/global/commit/885b3f47a712dc186db4a9b394c568bd9fbcbb0d))
+* resolve conflicts with master ([c4cc15b](https://github.com/bolt-design-system/bolt/tree/master/packages/global/commit/c4cc15bbb16a343108a4fb12a60788f3945d743b))
+
+
+
+
+
 ## [2.24.1](https://github.com/bolt-design-system/bolt/tree/master/packages/global/compare/v2.24.0...v2.24.1) (2020-06-17)
 
 **Note:** Version bump only for package @bolt/global

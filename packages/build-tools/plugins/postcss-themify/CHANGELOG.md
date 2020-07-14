@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.25.0](https://github.com/boltdesignsystem/bolt/compare/v2.22.2...v2.25.0) (2020-07-13)
+
+
+### Features
+
+* add note to each deprecated package linking to migration docs ([2485a5c](https://github.com/boltdesignsystem/bolt/commit/2485a5c1238674ffc1fb4de4fd172b5c389b61da))
+
+
+
+
+
 # [2.24.0](https://github.com/boltdesignsystem/bolt/compare/v2.23.0...v2.24.0) (2020-06-05)
 
 **Note:** Version bump only for package @bolt/postcss-themify
