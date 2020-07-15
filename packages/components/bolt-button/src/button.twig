@@ -3,11 +3,11 @@
   There is intentional duplication of code between these two templates,
   as we may deprecate the WC-version in the future.
 #}
-{# {% if noWC %}
+
+{# {% set noWC = true %} #}
+
+{% if noWC %}
   {% include "@bolt-components-button/_button-replacement.twig" %}
 {% else %}
   {% include "@bolt-components-button/_button-deprecated.twig" %}
-{% endif %} #}
-
-{# {% include "@bolt-components-button/_button-deprecated.twig" %} #}
-{% include "@bolt-components-button/_button-replacement.twig" %}
+{% endif %}
