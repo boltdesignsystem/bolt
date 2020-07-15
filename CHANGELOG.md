@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.25.1](https://github.com/boltdesignsystem/bolt/compare/v2.25.0...v2.25.1) (2020-07-14)
+
+
+### Reverts
+
+* Revert "Temporarily hard-code release type as 'minor'" ([8b25938](https://github.com/boltdesignsystem/bolt/commit/8b2593813af4a9628c20a1ab17a02358afe0cd74))
+
+
+
+
+
 # [2.25.0](https://github.com/boltdesignsystem/bolt/compare/v2.22.2...v2.25.0) (2020-07-13)
 
 
