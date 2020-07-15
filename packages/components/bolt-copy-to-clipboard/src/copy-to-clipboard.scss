@@ -12,7 +12,8 @@
 // 5. @todo: [Mai] This needs rework when we have animation library. This animation does not apply when custom transition is passed. Custom transition should take on its own animation.
 
 $bolt-copy-to-clipboard-animation-duration: 500ms;
-$bolt-copy-to-clipboard-transition: all $bolt-copy-to-clipboard-animation-duration ease-in-out;
+$bolt-copy-to-clipboard-transition: all
+  $bolt-copy-to-clipboard-animation-duration ease-in-out;
 
 @include bolt-custom-element('bolt-copy-to-clipboard', block, medium);
 

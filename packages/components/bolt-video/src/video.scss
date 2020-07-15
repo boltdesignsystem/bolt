@@ -88,7 +88,7 @@ $bolt-video-background-max-height: 50.625vw;
   &.c-#{$bolt-namespace}-video--background {
     display: block;
     position: relative;
-    max-width: calc( 100% - var(--bolt-spacing-x-large) );
+    max-width: calc(100% - var(--bolt-spacing-x-large));
     height: $bolt-video-background-max-height;
     max-height: 100%;
     margin: 0 auto;
@@ -119,7 +119,9 @@ $bolt-video-background-max-height: 50.625vw;
   @include bolt-css-vars((--#{$bolt-namespace}-theme-icon: bolt-color(orange)));
 
   @include bolt-mq(small) {
-    right: calc( var(--bolt-spacing-x-large) / -2 - var(--bolt-spacing-x-xsmall) );
+    right: calc(
+      var(--bolt-spacing-x-large) / -2 - var(--bolt-spacing-x-xsmall)
+    );
   }
 
   &:hover {
@@ -185,12 +187,12 @@ $bolt-video-background-max-height: 50.625vw;
   }
 }
 
-// Prevent Brightcove from rendering a video as a 'vjs-layout-tiny' 
+// Prevent Brightcove from rendering a video as a 'vjs-layout-tiny'
 // when in a inactive accordion or tab panel on load if on a tablet or desktop device
 bolt-accordion-item,
 bolt-tab-panel {
   @include bolt-mq($from: medium) {
-    .video-js.vjs-layout-tiny:not(.vjs-fullscreen){
+    .video-js.vjs-layout-tiny:not(.vjs-fullscreen) {
       .vjs-audio-button,
       .vjs-captions-button,
       .vjs-chapters-button,
@@ -199,7 +201,7 @@ bolt-tab-panel {
       .vjs-duration,
       .vjs-mute-control,
       .vjs-playback-rate,
-      .vjs-progress-control, 
+      .vjs-progress-control,
       .vjs-remaining-time,
       .vjs-subs-caps-button,
       .vjs-subtitles-button,
@@ -208,6 +210,6 @@ bolt-tab-panel {
       .vjs-volume-panel {
         display: flex;
       }
-    } 
+    }
   }
 }

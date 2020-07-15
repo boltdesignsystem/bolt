@@ -22,28 +22,27 @@ bolt-carousel-slide {
 
   &:not(.is-ready):not(:last-of-type) {
     margin-right: calc(
-      var(--bolt-carousel-space-between) -
-        calc(var(--bolt-carousel-space-around) * 2)
+      var(--bolt-carousel-space-between) - var(--bolt-carousel-space-around) * 2
     );
 
     bolt-carousel[space-between='small'] & {
       margin-right: calc(
-        var(--bolt-carousel-space-between) -
-          calc(var(--bolt-carousel-space-around) * 2)
+        var(--bolt-carousel-space-between) - var(--bolt-carousel-space-around) *
+          2
       );
     }
 
     bolt-carousel[space-between='none'] & {
       margin-right: calc(
-        var(--bolt-carousel-space-between) -
-          calc(var(--bolt-carousel-space-around) * 2)
+        var(--bolt-carousel-space-between) - var(--bolt-carousel-space-around) *
+          2
       );
     }
 
     bolt-carousel[space-between='large'] & {
       margin-right: calc(
-        var(--bolt-carousel-space-between) -
-          calc(var(--bolt-carousel-space-around) * 2)
+        var(--bolt-carousel-space-between) - var(--bolt-carousel-space-around) *
+          2
       );
     }
   }
