@@ -164,11 +164,11 @@ $bolt-video-js-button-shadow-level-hover: 'level-40';
       overflow: auto;
       padding: var(--bolt-spacing-y-xsmall) 2.5rem var(--bolt-spacing-y-xsmall)
         var(--bolt-spacing-x-small);
+      font-size: var(--bolt-type-font-size-medium);
       line-height: calc(
         var(--bolt-type-line-height-medium) *
           var(--bolt-type-line-height-multiplier-tight)
       );
-      font-size: var(--bolt-type-font-size-medium);
 
       @supports (display: flex) {
         // [4]
@@ -182,23 +182,23 @@ $bolt-video-js-button-shadow-level-hover: 'level-40';
 
       .vjs-social-description {
         margin-bottom: 0.5rem;
-        white-space: nowrap;
+        font-size: var(--bolt-type-font-size-small);
+        font-weight: var(--bolt-type-font-weight-bold);
         line-height: calc(
           var(--bolt-type-line-height-small) *
             var(--bolt-type-line-height-multiplier-tight)
         );
-        font-size: var(--bolt-type-font-size-small);
-        font-weight: var(--bolt-type-font-weight-bold);
+        white-space: nowrap;
       }
 
       .vjs-social-share-links {
         margin-right: -0.25rem;
         margin-left: -0.25rem;
+        font-size: var(--bolt-type-font-size-small);
         line-height: calc(
           var(--bolt-type-line-height-small) *
             var(--bolt-type-line-height-multiplier-tight)
         );
-        font-size: var(--bolt-type-font-size-small);
       }
 
       .vjs-social-share-link {
@@ -317,11 +317,11 @@ $bolt-video-js-button-shadow-level-hover: 'level-40';
     max-width: 100%;
     margin: 0;
     padding: var(--bolt-spacing-y-xsmall) var(--bolt-spacing-x-xsmall);
+    font-family: var(--bolt-type-font-family-body);
+    font-size: var(--bolt-type-font-size-small);
     color: bolt-color(black);
     line-height: var(--bolt-type-line-height-small);
     text-shadow: 0 0 0.25rem bolt-color(white);
-    font-family: var(--bolt-type-font-family-body);
-    font-size: var(--bolt-type-font-size-small);
     border-radius: $bolt-border-radius;
     box-shadow: inset 0 0 2rem bolt-color(white),
       0 0 0.25rem bolt-color(gray, light);
@@ -386,6 +386,7 @@ $bolt-video-js-button-shadow-level-hover: 'level-40';
         border: 0;
         background: 0;
       }
+
       .vjs-errors-content-container {
         display: flex;
         flex-wrap: wrap;

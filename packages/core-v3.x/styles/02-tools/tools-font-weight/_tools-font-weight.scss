@@ -30,13 +30,13 @@
 ///    font-weight: 800;
 /// }
 @mixin bolt-font-weight($weight) {
-  @warn 'This scss mixin is being deprecated. Please convert to use global CSS vars -> var(--bolt-type-font-weight-*)';
+  // @warn 'This scss mixin is being deprecated. Please convert to use global CSS vars -> var(--bolt-type-font-weight-*)';
 
   font-weight: bolt-font-weight($weight);
 }
 
 @function bolt-font-weight($weight) {
-  @warn 'This scss function is being deprecated. Please convert to use global CSS vars -> var(--bolt-type-font-weight-*)';
+  // @warn 'This scss function is being deprecated. Please convert to use global CSS vars -> var(--bolt-type-font-weight-*)';
 
   @if bolt-map-deep-exists($bolt-font-weights, 'font-weights', $weight) {
     @return map-get-deep($bolt-font-weights, 'font-weights', $weight);

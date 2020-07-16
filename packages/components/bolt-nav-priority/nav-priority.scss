@@ -183,6 +183,7 @@ bolt-nav-priority {
     opacity: bolt-opacity(0);
     transform: translateY(-1em);
   }
+
   100% {
     opacity: bolt-opacity(100);
     transform: translateY(0);
@@ -276,9 +277,9 @@ bolt-nav-priority {
 .c-bolt-nav-priority__show-text {
   position: relative;
   z-index: 10;
-  line-height: var(--bolt-type-line-height-small);
   font-size: var(--bolt-type-font-size-small);
   font-weight: var(--bolt-type-font-weight-semibold);
+  line-height: var(--bolt-type-line-height-small);
 
   @include bolt-mq($until: $bolt-navbar-xsmall-bp) {
     @include bolt-visuallyhidden;
@@ -289,8 +290,8 @@ bolt-nav-priority {
   display: inline-block;
   position: relative;
   z-index: 10;
-  line-height: 0;
   font-size: 1em;
+  line-height: 0;
   transition: transform 0.2s;
 
   @include bolt-mq($until: $bolt-navbar-xsmall-bp) {
@@ -329,6 +330,7 @@ bolt-nav-priority {
 
   @for $i from $quantity through 1 {
     $time: $time + 50;
+
     bolt-nav-priority:not(.is-closing)
       .c-bolt-nav-priority__dropdown-list
       > .c-bolt-nav-priority__item:nth-last-child(n + #{$quantity}),

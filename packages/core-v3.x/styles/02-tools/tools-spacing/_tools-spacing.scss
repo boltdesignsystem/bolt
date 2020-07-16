@@ -44,7 +44,7 @@ $bolt-spacing-sizes: _bolt-create-spacing-map($bolt-spacing-values);
 ///   min-height: bolt-spacing(large);
 /// }
 @function bolt-spacing($size) {
-  @warn 'This scss function is being deprecated. Please convert to use global CSS vars -> var(--bolt-spacing-x-*).';
+  // @warn 'This scss function is being deprecated. Please convert to use global CSS vars -> var(--bolt-spacing-x-*).';
   @return map-get($bolt-spacing-sizes, nth($size, 1));
 }
 
@@ -61,7 +61,7 @@ $bolt-spacing-sizes: _bolt-create-spacing-map($bolt-spacing-values);
 ///   width: bolt-v-spacing(xsmall);
 /// }
 @function bolt-v-spacing($size, $modifier: null) {
-  @warn 'This scss function is being deprecated. Please convert to use global CSS vars -> var(--bolt-spacing-y-*).';
+  // @warn 'This scss function is being deprecated. Please convert to use global CSS vars -> var(--bolt-spacing-y-*).';
 
   @if ($modifier == 'squished') {
     $modifier: $bolt-spacing-squished;
@@ -85,7 +85,7 @@ $bolt-spacing-sizes: _bolt-create-spacing-map($bolt-spacing-values);
 ///   width: bolt-vertical-spacing(xsmall);
 /// }
 @function bolt-vertical-spacing($size) {
-  @warn 'This scss function is being deprecated. Please convert to use global CSS vars -> var(--bolt-spacing-y-*).';
+  // @warn 'This scss function is being deprecated. Please convert to use global CSS vars -> var(--bolt-spacing-y-*).';
 
   @return bolt-v-spacing($size);
 }

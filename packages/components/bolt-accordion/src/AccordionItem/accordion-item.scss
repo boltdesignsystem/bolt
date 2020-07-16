@@ -124,15 +124,15 @@ bolt-accordion-item {
   width: 100%;
   margin: 0;
   padding: 0;
+  font-family: var(--bolt-type-font-family-headline);
+  font-size: var(--bolt-type-font-size-medium);
   color: inherit;
   text-align: left; // Fixes center aligned accordion items in the Shadow DOM.
   text-align: start; // For internationalization, will fall back to left if start is not supported.
   user-select: none;
-  outline-offset: $bolt-accordion-outline-offset;
-  font-family: var(--bolt-type-font-family-headline);
-  font-size: var(--bolt-type-font-size-medium);
   border: none;
   background-color: bolt-theme(background);
+  outline-offset: $bolt-accordion-outline-offset;
 
   .c-bolt-accordion-item--icon-valign-top & {
     align-items: flex-start;
@@ -244,9 +244,9 @@ bolt-accordion-item {
   position: relative;
   transform: translateX(var(--bolt-spacing-x-xxsmall));
   overflow: hidden; // so transformed icons don't spill out
+  font-size: $bolt-accordion-icon-size;
   color: bolt-theme(link);
   line-height: 0; // Workaround to line-height messing up icon alignment
-  font-size: $bolt-accordion-icon-size;
 
   @at-root .c-bolt-accordion-item__trigger-label--inactive & {
     visibility: hidden; // keep layout so inner content lines up

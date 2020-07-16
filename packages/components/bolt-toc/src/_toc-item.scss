@@ -9,12 +9,12 @@
   position: relative;
   transform: translate3d(0, 0, 0);
   padding: calc(var(--bolt-spacing-y-small) / 2) var(--bolt-spacing-x-small);
-  color: bolt-theme(text);
-  line-height: var(--bolt-type-line-height-small);
-  text-decoration: none;
   font-family: var(--bolt-type-font-family-headline);
   font-size: var(--bolt-type-font-size-small);
   font-weight: var(--bolt-type-font-weight-regular);
+  color: bolt-theme(text);
+  line-height: var(--bolt-type-line-height-small);
+  text-decoration: none;
   transition: color $bolt-transition;
 
   &:before,
@@ -62,8 +62,8 @@
 
   &:focus,
   &--current {
-    color: bolt-theme(headline);
     font-weight: var(--bolt-type-font-weight-semibold);
+    color: bolt-theme(headline);
 
     &:before {
       width: 100%;

@@ -98,13 +98,13 @@
 .c-bolt-progress-bar__value {
   align-self: center;
   margin-bottom: 1px; // workaround to ~1px of text getting chopped off at the bottom
+  font-size: var(--bolt-type-font-size-xsmall);
+  font-weight: var(--bolt-type-font-weight-semibold);
   line-height: calc(
     var(--bolt-type-line-height-xsmall) *
       var(--bolt-type-line-height-multiplier-tight)
   );
   text-align: start;
-  font-size: var(--bolt-type-font-size-xsmall);
-  font-weight: var(--bolt-type-font-weight-semibold);
 }
 
 .c-bolt-progress-bar__value {
@@ -115,6 +115,7 @@
   0% {
     background-position: 0 0;
   }
+
   100% {
     background-position: 50px 50px;
   }
