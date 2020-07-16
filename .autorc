@@ -5,10 +5,9 @@
   "plugins": [
     ["./scripts/auto-plugin.js"],
     [
-      "released",
+      "omit-commits",
       {
-        "label": "shipped :rocket:",
-        "message": "%TYPE was released with %VERSION"
+        "subject": ["chore: version bump", "chore: update .incache", "chore(release)", "Merge"],
       }
     ]
   ],
@@ -16,91 +15,54 @@
   "email": "me@salemghoweri.com",
   "labels": [
     {
-      "name": "pushToBaseBranch",
-      "changelogTitle": "Misc 🔧"
+      "name": "type: feature",
+      "description": "List this PR in the 'Features' section of the release notes.",
+      "changelogTitle": "Features",
     },
     {
-      "name": "documentation",
+      "name": "type: bugfix",
+      "description": "List this PR in the 'Bug Fixes' section of the release notes.",
+      "changelogTitle": "Bug Fixes",
+    },
+    {
+      "name": "type: docs",
+      "description": "List this PR in the 'Docs' section of the release notes.",
       "changelogTitle": "Docs",
-      "releaseType": "none"
-    },
-    {
-      "name": "internal",
-      "releaseType": "none"
-    },
-    {
-      "name": "wip",
-      "releaseType": "none"
-    },
-    {
-      "name": "devops",
-      "releaseType": "none"
-    },
-    {
-      "name": "chore",
-      "releaseType": "none"
-    },
-    {
-      "changelogTitle": "Deprecations ⚠️",
-      "name": "deprecation"
     },
     {
       "name": "breaking change",
-      "changelogTitle": "Major Breaking Changes 🛑",
       "description": "Add this label to a PR to create a major release when merged.",
-      "releaseType": "major"
+      "releaseType": "major",
+      "changelogTitle": "Breaking Changes",
     },
     {
-      "name": "major release",
-      "changelogTitle": "Major Breaking Changes 🛑",
-      "description": "Add this label to a PR to create a major release when merged.",
-      "releaseType": "major"
+      "name": "version: major",
+      "description": "Use only on PRs to the release branch.  Increments the major version when merged.",
+      "releaseType": "major",
+      "changelogTitle": "Misc",
     },
     {
-      "name": "new component",
-      "changelogTitle": "New Components 🎉",
-      "description": "Increments the minor version when merged",
-      "releaseType": "minor"
+      "name": "version: minor",
+      "releaseType": "minor",
+      "description": "Use only on PRs to the release branch.  Increments the minor version when merged.",
+      "changelogTitle": "Misc",
     },
     {
-      "name": "minor",
-      "description": "Increments the minor version when merged",
-      "releaseType": "minor"
-    },
-    {
-      "name": "enhancement",
-      "changelogTitle": "Features & Enhancements ✨",
-      "description": "Increments the minor version when merged",
-      "releaseType": "minor"
-    },
-    {
-      "name": "new feature",
-      "changelogTitle": "Features & Enhancements ✨",
-      "description": "Increments the minor version when merged",
-      "releaseType": "minor"
-    },
-    {
-      "name": "improvement",
-      "changelogTitle": "Features & Enhancements ✨",
-      "description": "Increments the minor version when merged",
-      "releaseType": "minor"
+      "name": "version: hotfix",
+      "description": "Use only on PRs to the release branch.  Increments the patch version when merged.",
+      "releaseType": "patch",
+      "changelogTitle": "Misc",
     },
     {
       "name": "patch",
-      "description": "Increment the patch version when merged",
-      "releaseType": "patch"
+      "description": "Default release notes grouping for unlabeled PRs",
+      "changelogTitle": "Features",
+      "overwrite": true,
     },
     {
-      "name": "bug",
-      "changelogTitle": "Bug Fixes 🐛",
-      "description": "Increment the patch version when merged",
-      "releaseType": "patch"
+      "name": "pushToBaseBranch",
+      "description": "Release notes grouping for commits made directly to the release branch.",
+      "changelogTitle": "Misc"
     },
-    {
-      "name": "hotfix",
-      "changelogTitle": "Bug Fixes 🐛",
-      "description": "Increment the patch version when merged",
-      "releaseType": "patch"
-    }
   ]
 }
