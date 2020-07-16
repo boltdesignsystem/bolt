@@ -59,15 +59,15 @@ $nav-circle-border-size: 2px;
 
 @mixin bolt-micro-journeys-nav-title($active: false) {
   @if $active {
+    font-weight: bolder;
     color: bolt-theme(primary);
     cursor: default;
-    font-weight: bolder;
   } @else {
     display: flex;
     align-items: center;
     padding-bottom: 1.65rem;
-    line-height: $header-text-line-height;
     font-size: $header-text-size;
+    line-height: $header-text-line-height;
     transition: color 0.5s ease, transform 0.5s ease;
 
     &:hover {
