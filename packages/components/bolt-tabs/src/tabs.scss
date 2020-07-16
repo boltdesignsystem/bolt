@@ -66,6 +66,7 @@ bolt-tabs {
         opacity: bolt-opacity(100);
         height: calc(100% - #{$bolt-tabs-selected-border-size * 2});
       }
+
       .c-bolt-tabs__label-text:after {
         display: none;
       }
@@ -125,6 +126,7 @@ bolt-tabs {
         &:before {
           left: -#{$bolt-tabs-selected-border-size * 2};
         }
+
         &:after {
           display: none;
         }
@@ -220,6 +222,7 @@ bolt-tabs {
           padding-right: calc(var(--bolt-spacing-x-#{$size-name}) / 2);
           padding-left: calc(var(--bolt-spacing-x-#{$size-name}) / 2);
         }
+
         .c-bolt-tabs__label-text {
           padding-right: 0;
           padding-left: 0;
@@ -240,6 +243,7 @@ bolt-tabs {
         }
       }
     }
+
     .c-bolt-tabs--inset {
       .c-bolt-tabs__label--spacing-#{$size-name} {
         .c-bolt-tabs__label-text {
@@ -299,9 +303,11 @@ bolt-tabs:not([ready]) {
   .c-bolt-tabs--align-center {
     justify-content: center;
   }
+
   .c-bolt-tabs--align-start {
     justify-content: flex-start;
   }
+
   .c-bolt-tabs--align-end {
     justify-content: flex-end;
   }

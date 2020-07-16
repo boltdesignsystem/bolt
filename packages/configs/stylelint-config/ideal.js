@@ -18,31 +18,6 @@ module.exports = {
         ignoreKeywords: ['currentColor', 'transparent', 'inherit'],
       },
     ],
-    // 'sh-waqar/declaration-use-variable': [
-    //   // '/color/',
-    //   // '((?!-webkit-tap-highlight-).*color)*',
-    //   // '/^((?!-webkit-tap-highlight-)color/',
-    //   'font-size',
-    //   'font-weight'
-    // ],
-
-    // @todo: replace with another plugin -- this one is deprecated!
-    // 'plugin/declaration-block-order': [
-    //   'custom-properties',
-    //   {
-    //     type: 'at-rule',
-    //     name: 'include',
-    //     hasBlock: false,
-    //   },
-    //   'declarations',
-    //   {
-    //     type: 'at-rule',
-    //     name: 'include',
-    //     hasBlock: true,
-    //   },
-    //   'rules',
-    // ],
-
     'color-hex-case': 'lower',
     'color-named': [
       'never',
@@ -186,26 +161,6 @@ module.exports = {
       'padding-bottom',
       'padding-left',
 
-      // Text
-      'list-style',
-      'list-style-image',
-      'list-style-position',
-      'list-style-type',
-      'counter-increment',
-      'counter-reset',
-      'color',
-      'line-height',
-      'text-align',
-      'text-indent',
-      'text-decoration',
-      'text-transform',
-      'text-shadow',
-      'letter-spacing',
-      'vertical-align',
-      'cursor',
-      'pointer-events',
-      'user-select',
-
       // Font
       'font',
       'font-family',
@@ -227,6 +182,26 @@ module.exports = {
       'font-variant-numeric',
       'font-variant-position',
       'font-variation-settings',
+
+      // Text
+      'list-style',
+      'list-style-image',
+      'list-style-position',
+      'list-style-type',
+      'counter-increment',
+      'counter-reset',
+      'color',
+      'line-height',
+      'text-align',
+      'text-indent',
+      'text-decoration',
+      'text-transform',
+      'text-shadow',
+      'letter-spacing',
+      'vertical-align',
+      'cursor',
+      'pointer-events',
+      'user-select',
 
       // Border
       'border',

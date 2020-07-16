@@ -114,6 +114,7 @@
   0% {
     background-position: 0 0;
   }
+
   100% {
     background-position: 10px 0px;
   }
@@ -123,6 +124,7 @@
   0% {
     background-position: 0 0;
   }
+
   100% {
     background-position: -10px 0px;
   }
@@ -132,6 +134,7 @@
   0% {
     background-position: 0 0;
   }
+
   100% {
     background-position: 0px -10px;
   }
@@ -141,6 +144,7 @@
   0% {
     background-position: 0 0;
   }
+
   100% {
     background-position: 0px 10px;
   }
@@ -152,9 +156,11 @@
     &:after {
       animation: move-left 1s linear infinite;
     }
+
     &:before {
       animation: move-right 1s linear infinite;
     }
+
     &:after,
     &:before {
       background-image: linear-gradient(to top, bolt-color(gray) 70%, rgba(bolt-color(black), 0) 0%);
@@ -165,9 +171,11 @@
     &:after {
       animation: move-top 1s linear infinite;
     }
+
     &:before {
       animation: move-bottom 1s linear infinite;
     }
+
     &:after,
     &:before {
       background-image: linear-gradient(to right, bolt-color(gray) 70%, rgba(bolt-color(black), 0) 0%);
