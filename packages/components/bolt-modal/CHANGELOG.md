@@ -3,6 +3,69 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.25.1](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-modal/compare/v2.25.0...v2.25.1) (2020-07-14)
+
+**Note:** Version bump only for package @bolt/components-modal
+
+
+
+
+
+# [2.25.0](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-modal/compare/v2.22.2...v2.25.0) (2020-07-13)
+
+
+### Bug Fixes
+
+* resolve conflicts ([92743cf](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-modal/commit/92743cf5734703ccfb94bc6d49e0a3d667e81fe3))
+
+
+
+# [2.25.0-alpha-colors](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-modal/compare/v2.24.1...v2.25.0-alpha-colors) (2020-06-18)
+
+
+### Bug Fixes
+
+* mannually update each test ([5430e92](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-modal/commit/5430e92c6288e8a14190b1cf7d862a20867dd8d0))
+* resolve conflicts with master ([c4cc15b](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-modal/commit/c4cc15bbb16a343108a4fb12a60788f3945d743b))
+* update additional snapshots ([2d33b89](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-modal/commit/2d33b89730d379daeb5d2b1d9971e0a74801124f))
+* update componet descriptions ([b9fefe6](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-modal/commit/b9fefe6106eb74e3d4794a51443a2b576d9651d9))
+* update Jest tests to more reliably work with fully async-loaded components ([6b4c752](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-modal/commit/6b4c752cfcf32a3d0d260d5e2f718be12fd3df50))
+* update Jest VRT snapshots ([0e1e91f](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-modal/commit/0e1e91fd843dc502568725c037a5b684523afd87))
+* update Modal VRT screenshots ([e8da2bf](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-modal/commit/e8da2bfba68de16fafa8cce00bbc726be0c5879b))
+* update SVG <use> tags ([5f10098](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-modal/commit/5f100987030abb61e324e3ca2213727b488b14b7))
+
+
+### Features
+
+* globally lazyload JS bundles to expose same existing issues as the ones found with the new lazy-queue functionality ([7cc4ce2](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-modal/commit/7cc4ce2fa9ce28dc4f9f37078762f106ca87729f))
+* update Jest tests to use new renderWC helper + prep for upstream <ssr-keep> updates ([beb6b85](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-modal/commit/beb6b85cfdb4d37359e0fcf1d4deaa7f1a0a25f1))
+
+
+
+
+
+## [2.24.1](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-modal/compare/v2.24.0...v2.24.1) (2020-06-17)
+
+**Note:** Version bump only for package @bolt/components-modal
+
+
+
+
+
+# [2.24.0](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-modal/compare/v2.23.0...v2.24.0) (2020-06-05)
+
+
+### Bug Fixes
+
+* mannually update each test ([5430e92](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-modal/commit/5430e92c6288e8a14190b1cf7d862a20867dd8d0))
+* resolve conflicts with master ([c4cc15b](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-modal/commit/c4cc15bbb16a343108a4fb12a60788f3945d743b))
+* update Jest VRT snapshots ([0e1e91f](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-modal/commit/0e1e91fd843dc502568725c037a5b684523afd87))
+* update Modal VRT screenshots ([e8da2bf](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-modal/commit/e8da2bfba68de16fafa8cce00bbc726be0c5879b))
+
+
+
+
+
 # [2.23.0](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-modal/compare/v2.22.1...v2.23.0) (2020-05-06)
 
 

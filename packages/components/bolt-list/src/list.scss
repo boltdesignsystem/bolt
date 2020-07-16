@@ -6,6 +6,10 @@
 
 // Custom element display and built-in spacing
 @include bolt-repeat-rule(('bolt-list', ':host')) {
+  // Clear-fix required to prevent margin collapse due to negative margin on Bolt List.
+  // Happens when List is inside Stack component, for example.
+  // https://css-tricks.com/snippets/css/clear-fix/
+  @include bolt-clearfix;
   @include bolt-margin-bottom(medium);
 
   display: block;
@@ -34,8 +38,7 @@
 
 // Display Prop
 .c-bolt-list--display-block {
-  display: flex;
-  flex-flow: column wrap;
+  display: block;
 }
 
 .c-bolt-list--display-inline {
@@ -99,6 +102,7 @@
         }
       }
     }
+
     .c-bolt-list--spacing-#{$spacing-value-name}:not(.c-bolt-list--inset) {
       // The inline here is talking about the items inside, the List component itself is still a block level element that would fill up the space of any container.
       &.c-bolt-list--display-inline,

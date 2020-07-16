@@ -229,6 +229,11 @@ class BoltInteractivePathway extends withLitContext {
     this.triggerUpdate();
     setTimeout(async () => {
       await newActiveStep.el.triggerAnimIns();
+      this.dispatchEvent(
+        new CustomEvent('bolt:layout-size-changed', {
+          bubbles: true,
+        }),
+      );
     });
   };
 

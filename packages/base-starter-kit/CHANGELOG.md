@@ -3,6 +3,46 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.25.1](https://github.com/boltdesignsystem/bolt/compare/v2.25.0...v2.25.1) (2020-07-14)
+
+**Note:** Version bump only for package @bolt/starter-kit
+
+
+
+
+
+# [2.25.0](https://github.com/boltdesignsystem/bolt/compare/v2.22.2...v2.25.0) (2020-07-13)
+
+
+### Bug Fixes
+
+* add missing autolink package to @bolt/starter-kit ([1038de5](https://github.com/boltdesignsystem/bolt/commit/1038de53567d57fb181069e282a41c6e5995e5b7))
+
+
+### Features
+
+* cherry pick misc monorepo updates from the broader lazy-queue related updates in [#1839](https://github.com/boltdesignsystem/bolt/issues/1839) ([727c13d](https://github.com/boltdesignsystem/bolt/commit/727c13db4923bdb80ca7791dde7c3767801cb3ff))
+
+
+
+
+
+## [2.24.1](https://github.com/boltdesignsystem/bolt/compare/v2.24.0...v2.24.1) (2020-06-17)
+
+**Note:** Version bump only for package @bolt/starter-kit
+
+
+
+
+
+# [2.24.0](https://github.com/boltdesignsystem/bolt/compare/v2.23.0...v2.24.0) (2020-06-05)
+
+**Note:** Version bump only for package @bolt/starter-kit
+
+
+
+
+
 # [2.23.0](https://github.com/boltdesignsystem/bolt/compare/v2.22.1...v2.23.0) (2020-05-06)
 
 

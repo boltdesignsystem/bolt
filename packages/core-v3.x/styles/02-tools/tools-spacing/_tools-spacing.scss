@@ -20,7 +20,12 @@
       $keyName: $char + $keyName;
     }
     $keyValue: $value * $bolt-spacing-gutter;
-    $map: map-merge($map, ($keyName: $keyValue));
+    $map: map-merge(
+      $map,
+      (
+        $keyName: $keyValue,
+      )
+    );
   }
   @return $map;
 }
@@ -39,9 +44,9 @@ $bolt-spacing-sizes: _bolt-create-spacing-map($bolt-spacing-values);
 ///   min-height: bolt-spacing(large);
 /// }
 @function bolt-spacing($size) {
+  // @warn 'This scss function is being deprecated. Please convert to use global CSS vars -> var(--bolt-spacing-x-*).';
   @return map-get($bolt-spacing-sizes, nth($size, 1));
 }
-
 
 /// Convert shirt sizes in baseline-optimized sizes
 /// @param {string} $size - T-shirt size
@@ -56,6 +61,8 @@ $bolt-spacing-sizes: _bolt-create-spacing-map($bolt-spacing-values);
 ///   width: bolt-v-spacing(xsmall);
 /// }
 @function bolt-v-spacing($size, $modifier: null) {
+  // @warn 'This scss function is being deprecated. Please convert to use global CSS vars -> var(--bolt-spacing-y-*).';
+
   @if ($modifier == 'squished') {
     $modifier: $bolt-spacing-squished;
   } @else if ($modifier == 'stretched') {
@@ -64,7 +71,8 @@ $bolt-spacing-sizes: _bolt-create-spacing-map($bolt-spacing-values);
     $modifier: 1;
   }
 
-  @return (bolt-spacing($size) / bolt-strip-unit($bolt-spacing-gutter)) * $bolt-spacing-leading * $modifier;
+  @return (bolt-spacing($size) / bolt-strip-unit($bolt-spacing-gutter)) *
+    $bolt-spacing-leading * $modifier;
 }
 
 /// An alias for @function bolt-v-spacing
@@ -77,5 +85,7 @@ $bolt-spacing-sizes: _bolt-create-spacing-map($bolt-spacing-values);
 ///   width: bolt-vertical-spacing(xsmall);
 /// }
 @function bolt-vertical-spacing($size) {
+  // @warn 'This scss function is being deprecated. Please convert to use global CSS vars -> var(--bolt-spacing-y-*).';
+
   @return bolt-v-spacing($size);
 }

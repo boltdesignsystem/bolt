@@ -133,8 +133,8 @@
 
 @media (min-width: 1000px) {
   .c-page-header__inner {
-    padding-right: 4rem;
-    padding-left: 4rem;
+    padding-right: $bolt-wrapper-padding-at-medium-bp;
+    padding-left: $bolt-wrapper-padding-at-medium-bp;
   }
 }
 
@@ -181,10 +181,10 @@
 .c-site-logo {
   display: inline-block;
   margin: 0;
+  font-size: 0.7rem;
   line-height: 1;
   text-decoration: none;
   vertical-align: middle;
-  font-size: 0.7rem;
   white-space: nowrap;
   -webkit-transform-origin: center left;
   transform-origin: center left;
@@ -300,10 +300,10 @@
 
 .c-page-header__utility-nav {
   z-index: 1;
-  color: #005a8b;
-  line-height: 17px;
   font-size: 11px;
   font-weight: 600;
+  color: #005a8b;
+  line-height: 17px;
   background-color: #f3f5f8;
 }
 
@@ -439,8 +439,8 @@
   }
 
   .go-back .c-mega-nav__link {
-    text-align: center;
     font-weight: bold;
+    text-align: center;
   }
 
   .has-children > .c-mega-nav__link {
@@ -481,9 +481,9 @@
     z-index: bolt-z-index('nav');
     width: 100%;
     padding: 15px 16px;
+    font-weight: 600;
     color: #fff;
     text-align: center;
-    font-weight: 600;
     background-color: #005a8b;
   }
 
@@ -502,8 +502,8 @@
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    padding-right: 4rem;
-    padding-left: 4rem;
+    padding-right: $bolt-wrapper-padding-at-medium-bp;
+    padding-left: $bolt-wrapper-padding-at-medium-bp;
   }
 }
 
@@ -582,10 +582,10 @@
     height: 89px;
     overflow: visible;
     padding: 16px 0;
-    line-height: 1.45;
-    line-height: 60px;
     font-size: 0.8rem;
     font-weight: 600;
+    line-height: 1.45;
+    line-height: 60px;
     border-bottom: solid 2px transparent;
     -ms-flex-preferred-size: auto;
   }
@@ -666,17 +666,17 @@
     > .c-mega-nav__link {
     margin: 0;
     padding: 0;
-    line-height: 1.51;
-    text-align: center;
     font-size: 0.9rem;
     font-weight: 600;
+    line-height: 1.51;
+    text-align: center;
   }
 
   .c-mega-nav__level-1.c-mega-nav__list
     .c-mega-nav__level-2.c-mega-nav__list
     > .c-mega-nav__item.c-mega-nav__promo {
     overflow: visible;
-    padding-left: 2rem;
+    padding-left: $bolt-wrapper-padding;
   }
 
   .c-mega-nav__level-1.c-mega-nav__list
@@ -771,7 +771,7 @@
 @media screen and (min-width: 1000px) {
   .c-mega-nav__level-2
     > .c-mega-nav__item:not(.c-mega-nav__promo):not(.c-mega-nav__wrap) {
-    padding-left: 2rem;
+    padding-left: $bolt-wrapper-padding;
     border-left: solid thin rgba(58, 65, 78, 0.1);
   }
 
@@ -783,15 +783,15 @@
 
   .c-mega-nav__level-2 > .c-mega-nav__item > .c-mega-nav__link {
     margin-bottom: 1rem;
-    line-height: 1.65;
     font-size: 1rem;
     font-weight: 800;
+    line-height: 1.65;
   }
 
   .c-mega-nav__level-3 > .c-mega-nav__item > .c-mega-nav__link {
-    line-height: 1.45;
     font-size: 0.8rem;
     font-weight: 600;
+    line-height: 1.45;
   }
 
   .c-mega-nav__level-4.c-mega-nav__list {
@@ -800,13 +800,13 @@
 
   .c-mega-nav__level-4 > .c-mega-nav__item > .c-mega-nav__link {
     margin-left: 1rem;
+    font-size: 0.8rem;
     color: #606a7d;
     line-height: 1.45;
-    font-size: 0.8rem;
   }
 
   .c-mega-nav {
-    padding-right: 2rem;
+    padding-right: $bolt-wrapper-padding;
   }
 }
 
@@ -844,10 +844,10 @@
   position: absolute;
   top: 100%;
   width: 160px;
+  font-size: 0.8rem;
   line-height: 1.45;
   text-align: center;
   text-transform: none;
-  font-size: 0.8rem;
   border-radius: 4px;
   -webkit-box-shadow: 0 1px 0 1px rgba(33, 40, 54, 0.05),
     0 10px 10px 0 rgba(33, 40, 54, 0.05),
@@ -1107,8 +1107,8 @@
   transform: translateY(-50%);
   z-index: bolt-z-index('content');
   padding: 12px;
-  line-height: 1;
   font-size: 1em;
+  line-height: 1;
 }
 
 .c-global-search__search-input {
@@ -1119,9 +1119,9 @@
   width: 50px;
   max-width: 100%;
   padding-left: 44px;
+  font-size: 16px;
   color: #56646f;
   line-height: 24px;
-  font-size: 16px;
   border-top-width: 0;
   border-right-width: 0;
   border-bottom-width: 0;

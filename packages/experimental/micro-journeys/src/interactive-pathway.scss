@@ -5,6 +5,7 @@
 @include bolt-custom-element('bolt-interactive-pathway', block, medium);
 
 $bolt-interactive-step--dot-size: 1.2rem;
+
 .c-bolt-interactive-pathway {
   display: none;
   position: relative;
@@ -37,7 +38,7 @@ $bolt-interactive-step--dot-size: 1.2rem;
 
     &__nav {
       display: block;
-      flex: 1 0 30%;
+      flex: 1 0 25%;
       position: relative;
       margin-right: bolt-spacing(small);
       @include bolt-micro-journeys-nav-items-wrapper;
@@ -47,14 +48,12 @@ $bolt-interactive-step--dot-size: 1.2rem;
       position: relative;
       @include bolt-micro-journeys-nav-title;
 
-
       &:after {
         @include bolt-micro-journeys-nav-line;
       }
 
       &--active {
         @include bolt-micro-journeys-nav-title($active: true);
-
       }
 
       &:last-of-type:after {
@@ -75,8 +74,4 @@ $bolt-interactive-step--dot-size: 1.2rem;
 bolt-interactive-pathway {
   position: relative;
   margin-bottom: 0 !important; // override the global vertical spacing rhythm, as only one is visible in any list
-}
-
-.c-bolt-interactive-pathway__nav-item:last-of-type {
-
 }

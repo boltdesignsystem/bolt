@@ -12,7 +12,7 @@
   width: 100%;
   overflow: hidden;
   vertical-align: top;
-  grid-gap: bolt-spacing(small);
+  grid-gap: var(--bolt-spacing-x-small);
   grid-auto-flow: dense;
   grid-template-columns: 1fr auto;
 }
@@ -111,6 +111,7 @@
   0% {
     background-position: 0 0;
   }
+
   100% {
     background-position: 50px 50px;
   }

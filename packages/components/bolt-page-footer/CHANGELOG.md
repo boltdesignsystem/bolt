@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.25.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-page-footer/compare/v2.25.0...v2.25.1) (2020-07-14)
+
+**Note:** Version bump only for package @bolt/components-page-footer
+
+
+
+
+
+# [2.25.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-page-footer/compare/v2.22.2...v2.25.0) (2020-07-13)
+
+
+### Bug Fixes
+
+* update componet descriptions ([b9fefe6](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-page-footer/commit/b9fefe6106eb74e3d4794a51443a2b576d9651d9))
+
+
+
+
+
+# [2.24.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-page-footer/compare/v2.23.0...v2.24.0) (2020-06-05)
+
+**Note:** Version bump only for package @bolt/components-page-footer
+
+
+
+
+
 # [2.23.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-page-footer/compare/v2.22.1...v2.23.0) (2020-05-06)
 
 **Note:** Version bump only for package @bolt/components-page-footer

@@ -109,7 +109,7 @@ class BoltInteractivePathways extends withLitContext {
 
   beginItAll() {
     // if this micro journey's been triggered programmatically but hasn't been marked as "visible in the viewport", register it now
-    if (!this._hasBeenInViewport){
+    if (!this._hasBeenInViewport) {
       this._hasBeenInViewport = true;
     }
 
@@ -184,14 +184,6 @@ class BoltInteractivePathways extends withLitContext {
     newPathway.setActive(true);
     this.activePathwayIndex = index;
     this.triggerUpdate();
-
-    setTimeout(() => {
-      this.dispatchEvent(
-        new CustomEvent('bolt:layout-size-changed', {
-          bubbles: true,
-        }),
-      );
-    }, 0);
   }
 
   toggleDropdown(event) {

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.25.0](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/compare/v2.22.2...v2.25.0) (2020-07-13)
+
+
+### Bug Fixes
+
+* remove pattern search ([7982938](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/798293852e470d965d9df8fd3e3b5db0aa6b1ee1))
+
+
+
+
+
 # [2.19.0](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/compare/v2.18.1...v2.19.0) (2020-03-04)
 
 
