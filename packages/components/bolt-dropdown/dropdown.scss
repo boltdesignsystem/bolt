@@ -10,7 +10,7 @@ bolt-dropdown {
     --bolt-nav-indicator-opacity: 0,
   ));
 
-  &[collapse]{
+  &[collapse] {
     @include bolt-mq(small) {
       @include bolt-css-vars((
         --bolt-nav-item-opacity: 1,
@@ -95,6 +95,7 @@ bolt-dropdown {
   width: 100%;
 
   margin-bottom: 0;
+  font: inherit;
   color: bolt-theme(headline-link);
   text-align: left; // otherwise some dropdown menus are center aligned in the Shadow DOM
   cursor: pointer;
@@ -102,7 +103,6 @@ bolt-dropdown {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  font: inherit;
   border: none;
   background-color: transparent;
   background-color: bolt-theme(background);
@@ -166,6 +166,7 @@ bolt-dropdown {
 .c-bolt-dropdown__state:checked + .c-bolt-dropdown .c-bolt-dropdown__header-link--close {
   display: block;
 }
+
 .c-bolt-dropdown__state:target + .c-bolt-dropdown .c-bolt-dropdown__header-link--close {
   top: 0;
   // height: 50px;
@@ -193,7 +194,7 @@ bolt-dropdown {
     transition: none;
   }
 
-  &:not([role="region"]){
+  &:not([role="region"]) {
     display: block;
     visibility: hidden;
     height: auto;
@@ -249,11 +250,11 @@ bolt-dropdown {
   display: inline-block;
   position: relative;
   padding: calc(1.5rem / 2);
+  font-size: 1.5rem;
   // height: 3rem;
   // width: 3rem;
   line-height: 0; // Workaround to line-height messing up icon alignment
   vertical-align: middle;
-  font-size: 1.5rem;
   transition: opacity .2s ease;
   // transform-style: preserve-3d;
   // transform-origin: center center;
@@ -293,15 +294,17 @@ bolt-dropdown {
   .c-bolt-dropdown__header-icons-inner {
     transform: rotate(0deg);
   }
+
   .c-bolt-dropdown__header-icon--open {
     opacity: bolt-opacity(100);
   }
+
   .c-bolt-dropdown__header-icon--close {
     opacity: bolt-opacity(0);
   }
 }
 
-[aria-expanded="true"]{
+[aria-expanded="true"] {
   .c-bolt-dropdown__header-icons-inner {
     transform: rotate(179.5deg);
   }
@@ -475,6 +478,7 @@ bolt-dropdown {
 
   @for $i from $quantity through 1 {
     $time: $time + 50;
+
     .c-bolt-nav__item:nth-last-child(n+#{$quantity}),
     .c-bolt-nav__item:nth-last-child(n+#{$quantity})~.c-bolt-nav__item:nth-child(#{$i}) {
       transition-delay: $time + ms;

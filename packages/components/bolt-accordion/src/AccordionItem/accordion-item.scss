@@ -245,9 +245,9 @@ bolt-accordion-item {
   position: relative;
   transform: translateX(var(--bolt-spacing-x-xxsmall));
   overflow: hidden; // so transformed icons don't spill out
+  font-size: $bolt-accordion-icon-size;
   color: bolt-theme(link);
   line-height: 0; // Workaround to line-height messing up icon alignment
-  font-size: $bolt-accordion-icon-size;
 
   @at-root .c-bolt-accordion-item__trigger-label--inactive & {
     visibility: hidden; // keep layout so inner content lines up
