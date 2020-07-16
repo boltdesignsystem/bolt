@@ -1,0 +1,54 @@
+{% set schema = bolt.data.components["@bolt-components-calculator"].schema %}
+
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(schema, _self) | raw }}
+{% endif %}
+
+{# Variables #}
+{% set this = init(schema) %}
+{% set inner_attributes = create_attribute({}) %}
+
+{% set classes = [
+  "c-bolt-calculator"
+] %}
+
+{# Filter out classes that begin with `c-bolt-*`. These should never be passed in via atttributes. #}
+{% for class in attributes["class"] %}
+  {% if class starts with "c-bolt-" == false %}
+    {% set classes = classes|merge([class]) %}
+  {% endif %}
+{% endfor %}
+
+<div class="c-bolt-calculator{% if classes %} {{ classes|join(' ') }}{% endif %}" data-module="Calculator">
+
+  <form class="c-bolt-calculator__form">
+    {% for item in items %}
+      {% set fieldsetChildren %}
+        {% include "@bolt-components-form/form-input.twig" with {
+          "attributes": {
+            "type": "text",
+            "id": item.id,
+            "placeholder": item.placeholder
+          }
+        } %}
+      {% endset %}
+      {% include "@bolt-components-form/form-fieldset.twig" with {
+        "fieldsetAttributes": {'data-type': item.type },
+        "legendTitle": item.label,
+        "children": fieldsetChildren
+      } only %}
+    {% endfor %}
+    {% set fieldsetSubmitChildren %}
+      {% include "@bolt-components-form/form-input.twig" with {
+        "attributes": {
+          "type": "submit",
+          "id": submit.id
+        }
+      } %}
+    {% endset %}
+    {% include "@bolt-components-form/form-fieldset.twig" with {
+      "legendTitle": '',
+      "children": fieldsetSubmitChildren
+    } only %}
+  </form>
+</div>
