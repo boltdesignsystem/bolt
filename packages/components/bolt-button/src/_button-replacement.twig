@@ -59,7 +59,7 @@
   {% set icon_position = icon.position ? icon.position : schema.properties.icon.properties.position.default %}
 {% endif %}
 
-{% macro slottedIcon(icon, icon_position, slotName) %}
+{% macro slotted_icon(icon, icon_position, slotName) %}
   {% if icon and icon_position == slotName %}
     <span class="c-bolt-button__icon c-bolt-button__icon-sizer">
       {% set icon = icon | merge({
@@ -85,11 +85,11 @@
 >
 
   {% block slot_before %}
-    {{ macros.slottedIcon(icon, icon_position, "before") }}
+    {{ macros.slotted_icon(icon, icon_position, "before") }}
   {% endblock %}
   <span class="c-bolt-button__item">{{ text }}</span>
   {% block slot_after %}
-    {{ macros.slottedIcon(icon, icon_position, 'after') }}
+    {{ macros.slotted_icon(icon, icon_position, 'after') }}
   {% endblock %}
 
 </{{ tag }}>
