@@ -13,3 +13,7 @@
 ## How to test
 
 (List clear steps to test that the changes are working)
+
+## Release notes
+
+(Optionally, add details that will be added to the release notes. Use this to call out deprecations. [Read more](https://intuit.github.io/auto/docs/generated/changelog#additional-release-notes))
