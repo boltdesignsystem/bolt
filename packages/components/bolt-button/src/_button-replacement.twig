@@ -8,26 +8,6 @@
 {% set this = init(schema) %}
 {% set attributes = create_attribute(attributes|default({})) %}
 
-{# Set up checks to validate that the component's prop values are allowed, based on the component's schema #}
-{% set size_options = this.data.size.value %}
-{% set style_options = this.data.style.value %}
-{% set width_options = this.data.width.value %}
-{% set border_radius_options = this.data.border_radius.value %}
-{% set align_options = this.data.align.value %}
-{% set transform_options = this.data.transform.value %}
-{% set icon_positions = this.data.icon.properties.position.value %}
-{% set iconOnly_options = this.data.iconOnly.value %}
-{% set type_options = this.data.type.value %}
-
-{# Check that the component's current prop values are valid. if not, default to the schema default #}
-{% set size = size in size_options ? size : schema.properties.size.default %}
-{% set style = style in style_options ? style : schema.properties.style.default %}
-{% set width = width in width_options ? width : schema.properties.width.default %}
-{% set border_radius = border_radius in border_radius_options ? border_radius : schema.properties.border_radius.default %}
-{% set align = align in align_options ? align : schema.properties.align.default %}
-{% set transform = transform in transform_options ? transform : schema.properties.transform.default %}
-{% set iconOnly = iconOnly is sameas(true) or iconOnly is sameas(false) ? iconOnly : scheuma.properties.iconOnly.default %}
-
 {# choose a semantic <a> tag or <button> tag for better accessibility, depending on whether or not a url is getting passed along #}
 {% if url != null %}
   {% set tag = "a" %}
@@ -48,16 +28,19 @@
   {% endif %}
 {% endif %}
 
+{# set boolean to match iconOnly #}
+{% set iconOnly = iconOnly is sameas(true) or iconOnly is sameas(false) ? iconOnly : scheuma.properties.iconOnly.default %}
+
 {# Array of classes based on the defined + default props #}
 {% set classes = [
   "c-bolt-button",
-  disabled ? "c-bolt-button--disabled" : "",
-  size ? "c-bolt-button--#{size}" : "",
-  style ? "c-bolt-button--#{style}" : "",
-  width != "auto" ? "c-bolt-button--#{width}" : "",
-  border_radius ? "c-bolt-button--border-radius-#{border_radius}" : "",
-  align ? "c-bolt-button--#{align}" : "",
-  transform != "none" ? "c-bolt-button--#{transform}" : "",
+  this.data.disabled.value ? "c-bolt-button--disabled",
+  this.data.size.value ? "c-bolt-button--" ~ this.data.size.value,
+  this.data.style.value ? "c-bolt-button--" ~ this.data.style.value,
+  this.data.width.value != "auto" ? "c-bolt-button--" ~ this.data.width.value,
+  this.data.border_radius.value ? "c-bolt-button--border-radius-" ~ this.data.border_radius.value,
+  this.data.align.value ? "c-bolt-button--" ~ this.data.align.value,
+  this.data.transform.value != "none" ? "c-bolt-button--" ~ this.data.transform.value,
   iconOnly ? "c-bolt-button--icon-only",
 ] %}
 
