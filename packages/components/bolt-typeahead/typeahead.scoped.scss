@@ -6,7 +6,7 @@
 
 $bolt-clear-button-size: 1.7rem;
 $bolt-clear-button-size-at-med: 1.4rem;
-$bolt-typeahead-button-width: bolt-spacing(medium) + 0.75rem;
+$bolt-typeahead-button-width: calc(var(--bolt-spacing-x-medium) + 0.75rem);
 
 $bolt-typeahead-border-width: $bolt-border-width;
 $bolt-typeahead-border-style: $bolt-border-style;
@@ -54,18 +54,16 @@ bolt-autosuggest {
   -webkit-appearance: none; // removes default styling (ex. heavy box shadow) in Safari
   width: 100%;
   max-width: 100%;
-  @include bolt-padding(medium, squished);
-  padding-right: $bolt-typeahead-button-width;
-  padding-left: $bolt-typeahead-button-width;
-  color: bolt-theme(text-on-secondary);
+  padding: calc(var(--bolt-spacing-y-medium) / 2) $bolt-typeahead-button-width;
   font-size: 16px; // prevent zooming in on mobile
+  color: bolt-theme(text-on-secondary);
   border-radius: $bolt-typeahead-border-radius;
   border-width: $bolt-typeahead-border-width;
   border-style: $bolt-typeahead-border-style;
   border-color: bolt-theme(link, 0.5);
   background-color: bolt-theme(secondary, 1);
-  text-overflow: ellipsis;
   transition: all 0.1s ease;
+  text-overflow: ellipsis;
   outline-offset: -3px;
   outline-width: 2px;
 
@@ -164,12 +162,10 @@ bolt-autosuggest {
 .c-bolt-typeahead__results {
   overflow: hidden;
   margin: 0;
-  padding: 0;
+  padding: var(--bolt-spacing-y-xsmall) 0;
   list-style: none;
   border-bottom-right-radius: $bolt-typeahead-border-radius;
   border-bottom-left-radius: $bolt-typeahead-border-radius;
-  @include bolt-padding-top(xsmall);
-  @include bolt-padding-bottom(xsmall);
 
   &:empty {
     max-height: 0;
@@ -197,13 +193,13 @@ bolt-autosuggest {
 }
 
 .c-bolt-typeahead__result-text {
-  @include bolt-padding(medium, squished);
   display: block;
+  padding: calc(var(--bolt-spacing-y-medium) / 2) var(--bolt-spacing-x-medium);
   padding-left: $bolt-typeahead-button-width;
+  font-size: 0.8rem;
   color: inherit;
   text-transform: initial; // fix for weird capitalization
   cursor: pointer;
-  font-size: 0.8rem;
 }
 
 .c-bolt-typeahead__wrapper {
@@ -236,10 +232,10 @@ bolt-autosuggest {
 }
 
 .c-bolt-typeahead__icon {
-  color: bolt-color(navy, light);
-  --bolt-theme-background: 255, 255, 255; // workaround so dark themes don't wipe the inner icon color. @todo: remove once full theming support added
-  line-height: 1;
   font-size: 1.5rem;
+  color: bolt-color(navy, light);
+  line-height: 1;
+  --bolt-theme-background: 255, 255, 255; // workaround so dark themes don't wipe the inner icon color. @todo: remove once full theming support added
 }
 
 .c-bolt-typeahead__icon--clear {

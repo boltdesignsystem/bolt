@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.25.1](https://github.com/bolt-design-system/bolt/compare/v2.25.0...v2.25.1) (2020-07-14)
+
+**Note:** Version bump only for package @bolt/components-share
+
+
+
+
+
+# [2.25.0](https://github.com/bolt-design-system/bolt/compare/v2.22.2...v2.25.0) (2020-07-13)
+
+
+### Bug Fixes
+
+* resolve conflicts ([92743cf](https://github.com/bolt-design-system/bolt/commit/92743cf5734703ccfb94bc6d49e0a3d667e81fe3))
+* share component description ([c48ef5b](https://github.com/bolt-design-system/bolt/commit/c48ef5bad34ddd123a29d50f066766d2ad8a0b12))
+* update additional snapshots ([2d33b89](https://github.com/bolt-design-system/bolt/commit/2d33b89730d379daeb5d2b1d9971e0a74801124f))
+* update Jest tests based on List / aria role updates ([e18a259](https://github.com/bolt-design-system/bolt/commit/e18a2593e29312153e7661ae03bd94a2c4b41c2d))
+* update remaining Jest snapshots; tweak Popover and Tabs tests to be more reliable ([ab0d7f0](https://github.com/bolt-design-system/bolt/commit/ab0d7f084678e5b001e792d34908255b928ef770))
+
+
+
+
+
 ## [2.24.1](https://github.com/bolt-design-system/bolt/compare/v2.24.0...v2.24.1) (2020-06-17)
 
 **Note:** Version bump only for package @bolt/components-share

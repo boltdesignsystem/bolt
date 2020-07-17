@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.25.1](https://github.com/boltdesignsystem/bolt/compare/v2.25.0...v2.25.1) (2020-07-14)
+
+**Note:** Version bump only for package @bolt/build-tools--test-multi-lang
+
+
+
+
+
+# [2.25.0](https://github.com/boltdesignsystem/bolt/compare/v2.22.2...v2.25.0) (2020-07-13)
+
+
+### Bug Fixes
+
+* multi-lang snap ([9d7b431](https://github.com/boltdesignsystem/bolt/commit/9d7b4312796aed07c14d3d654ad7f2574d7333a5))
+* multi-lang snap ([cf8fd9b](https://github.com/boltdesignsystem/bolt/commit/cf8fd9b85edfd71acda0e20d61d1d4f6bcb7376d))
+* multi-lang snap ([d6c854b](https://github.com/boltdesignsystem/bolt/commit/d6c854bc0d56d167d379fe7a812509b1e005f0e4))
+* resolve conflicts with master ([c4cc15b](https://github.com/boltdesignsystem/bolt/commit/c4cc15bbb16a343108a4fb12a60788f3945d743b))
+* update build tools Jest tests to reflect new spacing defaults ([b0b3429](https://github.com/boltdesignsystem/bolt/commit/b0b34292d2132d87bd3d4cef1c24d621a72686ae))
+* update multi-lang tests ([71604c1](https://github.com/boltdesignsystem/bolt/commit/71604c1cb8e5b359edbf0cbd9c5aadcf78eea742))
+
+
+
+
+
 ## [2.24.1](https://github.com/boltdesignsystem/bolt/compare/v2.24.0...v2.24.1) (2020-06-17)
 
 **Note:** Version bump only for package @bolt/build-tools--test-multi-lang

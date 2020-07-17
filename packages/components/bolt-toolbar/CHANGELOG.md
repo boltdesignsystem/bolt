@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.25.1](https://github.com/boltdesignsystem/bolt/compare/v2.25.0...v2.25.1) (2020-07-14)
+
+**Note:** Version bump only for package @bolt/components-toolbar
+
+
+
+
+
+# [2.25.0](https://github.com/boltdesignsystem/bolt/compare/v2.22.2...v2.25.0) (2020-07-13)
+
+
+### Bug Fixes
+
+* resolve conflicts with master ([c4cc15b](https://github.com/boltdesignsystem/bolt/commit/c4cc15bbb16a343108a4fb12a60788f3945d743b))
+
+
+
+
+
 ## [2.24.1](https://github.com/boltdesignsystem/bolt/compare/v2.24.0...v2.24.1) (2020-06-17)
 
 **Note:** Version bump only for package @bolt/components-toolbar

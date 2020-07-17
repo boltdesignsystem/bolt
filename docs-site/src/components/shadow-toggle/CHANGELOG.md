@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.25.1](https://github.com/boltdesignsystem/bolt/compare/v2.25.0...v2.25.1) (2020-07-14)
+
+**Note:** Version bump only for package @bolt/shadow-toggle
+
+
+
+
+
+# [2.25.0](https://github.com/boltdesignsystem/bolt/compare/v2.22.2...v2.25.0) (2020-07-13)
+
+
+### Bug Fixes
+
+* update JS to address linting issues ([7ee007e](https://github.com/boltdesignsystem/bolt/commit/7ee007ef087ddba89c1e4aac61399718b8743653))
+
+
+### Features
+
+* globally lazyload JS bundles to expose same existing issues as the ones found with the new lazy-queue functionality ([7cc4ce2](https://github.com/boltdesignsystem/bolt/commit/7cc4ce2fa9ce28dc4f9f37078762f106ca87729f))
+
+
+
+
+
 # [2.24.0](https://github.com/boltdesignsystem/bolt/compare/v2.23.0...v2.24.0) (2020-06-05)
 
 **Note:** Version bump only for package @bolt/shadow-toggle

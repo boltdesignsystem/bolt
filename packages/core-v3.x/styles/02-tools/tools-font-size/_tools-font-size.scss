@@ -16,7 +16,7 @@
 ///    @include bolt-font-size(large);
 /// }
 @mixin bolt-font-size($size, $leading: regular) {
-  @warn 'This scss mixin is being deprecated. Please convert to use global CSS vars -> var(--bolt-type-font-size-*)';
+  // @warn 'This scss mixin is being deprecated. Please convert to use global CSS vars -> var(--bolt-type-font-size-*)';
 
   $font-size: map-get-deep($bolt-font-sizes, 'font-sizes', $size, 'font-size');
 

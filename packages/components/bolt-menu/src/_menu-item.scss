@@ -79,7 +79,7 @@
     }
 
     &:after {
-      height: calc(100% - #{bolt-v-spacing(xsmall) * 2});
+      height: calc(100% - var(--bolt-spacing-y-xsmall) * 2);
     }
   }
 }
@@ -91,6 +91,7 @@
 // Spacing
 @each $value in $bolt-menu-spacing-values {
   .c-bolt-menu-item--spacing-#{$value} {
-    @include bolt-padding(#{$value}, squished);
+    padding: calc(var(--bolt-spacing-y-#{$value}) / 2)
+      var(--bolt-spacing-x-#{$value});
   }
 }

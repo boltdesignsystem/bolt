@@ -15,7 +15,7 @@
 ///    @include bolt-font-family(body);
 /// }
 @mixin bolt-font-family($type, $is_root: false) {
-  @warn 'This scss mixin is being deprecated. Please convert to use global CSS vars -> var(--bolt-type-font-family-*)';
+  // @warn 'This scss mixin is being deprecated. Please convert to use global CSS vars -> var(--bolt-type-font-family-*)';
 
   $fallback-font-family: map-get-deep(
     $bolt-font-families,
