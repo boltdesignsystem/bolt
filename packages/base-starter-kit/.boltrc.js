@@ -64,6 +64,8 @@ module.exports = {
       '@bolt/components-typeahead',
       '@bolt/components-ul',
       '@bolt/components-video',
+      '@bolt/elements-link',
+      '@bolt/layouts-list',
       '@bolt/analytics-autolink',
     ],
     individual: [
