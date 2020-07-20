@@ -29,6 +29,7 @@ class BoltModal extends withLitHtml {
     theme: props.string,
     scroll: props.string,
     uuid: props.string,
+    gated: props.boolean,
     // @todo: persistent - this is here to set up the future prop, which is commented out in the schema right now. For now, this will always be false until it's introduced. The same applies for all the other persistent logics below.
     persistent: {
       ...props.boolean,
@@ -223,7 +224,7 @@ class BoltModal extends withLitHtml {
    * @access private
    * @param {Event} event
    */
-  _handleKeyPresseskeypress = function(event) {
+  _handleKeyPresseskeypress = function (event) {
     // If the dialog is shown and the ESCAPE key is being pressed, prevent any
     // further effects from the ESCAPE key and hide the modal
     if (this.open && event.which === ESCAPE_KEY) {
@@ -243,9 +244,11 @@ class BoltModal extends withLitHtml {
       '.c-bolt-modal__content',
     );
 
-    // If event target contains modal content, assume it is an "outside" click and close
-    if (e.target.contains(modalContent) && !this.persistent) {
-      this.hide();
+    if (!this.gated) {
+      // If event target contains modal content, assume it is an "outside" click and close
+      if (e.target.contains(modalContent) && !this.persistent) {
+        this.hide();
+      }
     }
   }
 
@@ -304,10 +307,10 @@ class BoltModal extends withLitHtml {
    */
   addClassesToSlottedChildren() {
     if (this.slots) {
-      const applyClasses = slotName => {
+      const applyClasses = (slotName) => {
         const currentSlot = [];
 
-        this.slots[slotName].forEach(item => {
+        this.slots[slotName].forEach((item) => {
           if (item.tagName) {
             item.classList.remove('is-first-child');
             item.classList.remove('is-last-child'); // clean up existing classes
@@ -355,6 +358,7 @@ class BoltModal extends withLitHtml {
       spacing,
       theme,
       scroll,
+      gated,
       open,
       persistent,
       hideCloseButton,
@@ -364,6 +368,7 @@ class BoltModal extends withLitHtml {
 
     const classes = cx('c-bolt-modal', {
       [`is-open`]: open,
+      [`gated`]: gated,
       [`c-bolt-modal--scroll-${scroll}`]: scroll,
       [`c-bolt-modal--overlay-dark`]:
         theme && (theme === 'light' || theme === 'xlight'),
@@ -394,7 +399,7 @@ class BoltModal extends withLitHtml {
         theme && (theme === 'light' || theme === 'xlight'),
     });
 
-    const delegateFocus = e => {
+    const delegateFocus = (e) => {
       if (!this.useShadow) {
         const button = e.target.renderRoot.querySelector('button');
         button && button.focus();
@@ -408,10 +413,10 @@ class BoltModal extends withLitHtml {
     const defaultCloseButton = html`
       <bolt-trigger
         class="js-close-button-fallback"
-        @click=${e => this.hide(e)}
-        @focus=${e => delegateFocus(e)}
-        @trigger:focus=${e => this._handleTriggerFocus(e)}
-        @trigger:blur=${e => this._handleTriggerBlur(e)}
+        @click=${(e) => this.hide(e)}
+        @focus=${(e) => delegateFocus(e)}
+        @trigger:focus=${(e) => this._handleTriggerFocus(e)}
+        @trigger:blur=${(e) => this._handleTriggerBlur(e)}
         display="block"
         no-outline
         autofocus
@@ -424,7 +429,7 @@ class BoltModal extends withLitHtml {
       </bolt-trigger>
     `;
 
-    const handleModalClick = e => this._handleModalClick(e);
+    const handleModalClick = (e) => this._handleModalClick(e);
 
     // Cannot inline this logic so moved it outside of html template
     const footerTemplate = () => {
@@ -457,9 +462,15 @@ class BoltModal extends withLitHtml {
             class="${contentClasses}"
           >
             <article class="${containerClasses}">
-              <div class="${closeButtonClasses}">
-                ${this.slots.close ? this.slot('close') : defaultCloseButton}
-              </div>
+              ${!this.props.gated
+                ? html`
+                    <div class="${closeButtonClasses}">
+                      ${this.slots.close
+                        ? this.slot('close')
+                        : defaultCloseButton}
+                    </div>
+                  `
+                : ''}
               <header class="${headerClasses}">
                 <h1
                   id="dialog-title-${uuid}"

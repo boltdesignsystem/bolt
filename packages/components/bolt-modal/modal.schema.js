@@ -42,6 +42,11 @@ module.exports = {
       default: 'medium',
       enum: ['none', 'small', 'medium', 'large'],
     },
+    gated: {
+      description: 'Is this a gated form.',
+      type: 'boolean',
+      default: false,
+    },
     theme: {
       type: 'string',
       description: 'Controls the color theme of the modal container.',
