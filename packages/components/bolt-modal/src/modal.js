@@ -73,7 +73,6 @@ class BoltModal extends withLitHtml {
 
     if (this.open) {
       this.focusTrap.active = true;
-
       this.setFocusToFirstItem(this.renderRoot);
       this.ready = true;
     }
@@ -248,11 +247,9 @@ class BoltModal extends withLitHtml {
       '.c-bolt-modal__content',
     );
 
-    if (!this.persistent) {
-      // If event target contains modal content, assume it is an "outside" click and close
-      if (e.target.contains(modalContent) && !this.persistent) {
-        this.hide();
-      }
+    // If event target contains modal content, assume it is an "outside" click and close
+    if (e.target.contains(modalContent) && !this.persistent) {
+      this.hide();
     }
   }
 
