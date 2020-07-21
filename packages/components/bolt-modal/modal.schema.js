@@ -44,14 +44,14 @@ module.exports = {
     },
     persistent: {
       description:
-        'If true, hides the close button and prevents user from dismissing the modal by clicking outside modal content.',
+        'Enables the modal to be persistent. This will eliminate ways to close the modal and it is up to the author to provide a custom link to close the modal or redirect to another page within the modal content. Must be used in tandem with the <code>persistent_return_url</code> prop.',
       type: 'boolean',
       default: false,
     },
-    persistentReturnUrl: {
+    persistent_return_url: {
       type: 'string',
       description:
-        'If provided, redirects to given URL when user presses escape key. Must be a valid absolute or relative URL.',
+        'The URL to be used on a return link. If a modal is persistent, a return link is required to provide the user a way out. Must be used in tandem with the <code>persistent</code> prop.',
     },
     theme: {
       type: 'string',
