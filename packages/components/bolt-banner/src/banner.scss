@@ -10,13 +10,13 @@
   display: block;
 
   &:not(:last-child) {
-    @include bolt-margin-bottom(medium);
+    margin-bottom: var(--bolt-spacing-y-medium);
   }
 }
 
 .c-bolt-banner {
-  @include bolt-padding(medium, squished);
   display: block;
+  padding: calc(var(--bolt-spacing-y-medium) / 2) var(--bolt-spacing-x-medium);
 
   &--full {
     @include bolt-full-bleed;
@@ -66,11 +66,13 @@
   border-left-color: bolt-theme(link);
   border-left-style: $bolt-border-style;
   border-left-width: $bolt-border-width * 3;
-  box-shadow: 0 0 bolt-spacing(xxsmall) bolt-theme(neutral, bolt-opacity(20));
+  box-shadow: 0 0 var(--bolt-spacing-y-xxsmall)
+    bolt-theme(neutral, bolt-opacity(20));
   background-color: bolt-theme(background);
 
   @include bolt-ie11-only {
-    box-shadow: 0 0 bolt-spacing(xsmall) bolt-theme(neutral, bolt-opacity(40));
+    box-shadow: 0 0 var(--bolt-spacing-y-xsmall)
+      bolt-theme(neutral, bolt-opacity(20));
   }
 
   &:before {
