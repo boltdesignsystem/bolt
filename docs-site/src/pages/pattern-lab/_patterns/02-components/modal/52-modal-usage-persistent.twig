@@ -47,14 +47,6 @@
         {% include "@bolt-components-headline/text.twig" with {
           text: "This is a paragraph. Suspendisse dictum feugiat nisl ut dapibus. Mauris iaculis porttitor posuere. Praesent id metus massa, ut blandit odio. Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus. In pellentesque faucibus vestibulum. Nulla at nulla justo, eget luctus tortor. Nulla facilisi. Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante, ac egestas est urna sit amet arcu. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed molestie augue sit amet leo consequat posuere. Vestibulum ante.",
         } only %}
-        {% include "@bolt-components-link/link.twig" with {
-          text: "No thanks! Return to last page",
-          url: "https://pega.com",
-          icon: {
-            name: "chevron-left",
-            position: "before"
-          },
-        } only %}
       {% endcell %}
       {% cell "u-bolt-width-12/12 u-bolt-width-4/12@medium" %}
         {% include "@bolt-components-headline/headline.twig" with {
@@ -64,6 +56,16 @@
         {% include "@bolt-components-form/form.twig" with {
           children: form_children,
         } only  %}
+      {% endcell %}
+      {% cell "u-bolt-width-12/12" %}
+        {% include "@bolt-components-link/link.twig" with {
+          text: "No thanks! Return to last page",
+          url: "https://pega.com",
+          icon: {
+            name: "chevron-left",
+            position: "before"
+          },
+        } only %}
       {% endcell %}
     {% endgrid %}
   {% endset %}
@@ -87,15 +89,16 @@
       attributes: {
         class: "js-image-modal-advanced-complex-layout",
       },
+      persistentReturnUrl: "https://pega.com",
       content: modal_content,
       width: "full",
       spacing: "none",
       scroll: "overall",
-      gated: true,
+      persistent: true,
     } only %}
   {% endset %}
   {% set description %}
-    <bolt-text headline font-size="large">Show a complex layout</bolt-text>
+    <bolt-text headline font-size="large">Show a persisten modal</bolt-text>
     <bolt-text>Create complex layouts with components and layout objects inside the modal content and set the modal <bolt-code-snippet display="inline" lang="html">width</bolt-code-snippet> to <bolt-code-snippet display="inline" lang="html">full</bolt-code-snippet> to maximize space. For example, you can build a multi-column layout with the grid, band, and card components.</bolt-text>
   {% endset %}
   {% include "@bolt-components-grid/grid.twig" with {

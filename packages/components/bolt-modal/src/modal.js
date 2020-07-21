@@ -29,12 +29,8 @@ class BoltModal extends withLitHtml {
     theme: props.string,
     scroll: props.string,
     uuid: props.string,
-    gated: props.boolean,
-    // @todo: persistent - this is here to set up the future prop, which is commented out in the schema right now. For now, this will always be false until it's introduced. The same applies for all the other persistent logics below.
-    persistent: {
-      ...props.boolean,
-      ...{ default: false },
-    },
+    persistentReturnUrl: props.string,
+    persistent: props.boolean,
     open: {
       ...props.boolean,
       ...{ default: false },
@@ -77,6 +73,7 @@ class BoltModal extends withLitHtml {
 
     if (this.open) {
       this.focusTrap.active = true;
+
       this.setFocusToFirstItem(this.renderRoot);
       this.ready = true;
     }
@@ -229,7 +226,14 @@ class BoltModal extends withLitHtml {
     // further effects from the ESCAPE key and hide the modal
     if (this.open && event.which === ESCAPE_KEY) {
       event.preventDefault();
-      this.hide();
+      // Alter the behavior on a persistent modal to redirect to the return link value
+      if (this.props.persistent) {
+        if (this.props.persistentReturnUrl.length) {
+          window.location = this.props.persistentReturnUrl;
+        }
+      } else {
+        this.hide();
+      }
     }
   };
 
@@ -244,7 +248,7 @@ class BoltModal extends withLitHtml {
       '.c-bolt-modal__content',
     );
 
-    if (!this.gated) {
+    if (!this.persistent) {
       // If event target contains modal content, assume it is an "outside" click and close
       if (e.target.contains(modalContent) && !this.persistent) {
         this.hide();
@@ -358,7 +362,6 @@ class BoltModal extends withLitHtml {
       spacing,
       theme,
       scroll,
-      gated,
       open,
       persistent,
       hideCloseButton,
@@ -368,7 +371,7 @@ class BoltModal extends withLitHtml {
 
     const classes = cx('c-bolt-modal', {
       [`is-open`]: open,
-      [`gated`]: gated,
+      [`is-persistent`]: persistent,
       [`c-bolt-modal--scroll-${scroll}`]: scroll,
       [`c-bolt-modal--overlay-dark`]:
         theme && (theme === 'light' || theme === 'xlight'),
@@ -462,7 +465,7 @@ class BoltModal extends withLitHtml {
             class="${contentClasses}"
           >
             <article class="${containerClasses}">
-              ${!this.props.gated
+              ${!this.props.persistent
                 ? html`
                     <div class="${closeButtonClasses}">
                       ${this.slots.close

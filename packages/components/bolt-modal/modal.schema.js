@@ -42,10 +42,14 @@ module.exports = {
       default: 'medium',
       enum: ['none', 'small', 'medium', 'large'],
     },
-    gated: {
-      description: 'Is this a gated form.',
+    persistent: {
+      description: 'Make this form persistent.',
       type: 'boolean',
       default: false,
+    },
+    persistentReturnUrl: {
+      type: 'string',
+      description: 'Redirect url from a persistent modal',
     },
     theme: {
       type: 'string',
