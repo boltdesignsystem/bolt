@@ -29,8 +29,8 @@ class BoltModal extends withLitHtml {
     theme: props.string,
     scroll: props.string,
     uuid: props.string,
-    persistentReturnUrl: props.string,
     persistent: props.boolean,
+    persistentReturnUrl: props.string,
     open: {
       ...props.boolean,
       ...{ default: false },
