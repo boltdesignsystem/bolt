@@ -43,13 +43,15 @@ module.exports = {
       enum: ['none', 'small', 'medium', 'large'],
     },
     persistent: {
-      description: 'Make this form persistent.',
+      description:
+        'If true, hides the close button and prevents user from dismissing the modal by clicking outside modal content.',
       type: 'boolean',
       default: false,
     },
     persistentReturnUrl: {
       type: 'string',
-      description: 'Redirect url from a persistent modal',
+      description:
+        'If provided, redirects to given URL when user presses escape key. Must be a valid absolute or relative URL.',
     },
     theme: {
       type: 'string',
