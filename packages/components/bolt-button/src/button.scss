@@ -92,7 +92,7 @@
  * Button Sizes
  */
 .c-bolt-button--medium {
-  @include bolt-padding(medium, squished);
+  padding: calc(var(--bolt-spacing-y-medium) / 2) var(--bolt-spacing-x-medium);
   @include bolt-font-size(xsmall);
 
   &.c-bolt-button--icon-only {
@@ -102,7 +102,7 @@
 }
 
 .c-bolt-button--xsmall {
-  @include bolt-padding(xsmall, squished);
+  padding: calc(var(--bolt-spacing-y-xsmall) / 2) var(--bolt-spacing-x-xsmall);
   @include bolt-font-size(xsmall);
 
   &.c-bolt-button--icon-only {
@@ -112,7 +112,7 @@
 }
 
 .c-bolt-button--small {
-  @include bolt-padding(small, squished);
+  padding: calc(var(--bolt-spacing-y-small) / 2) var(--bolt-spacing-x-small);
   @include bolt-font-size(xsmall);
 
   &.c-bolt-button--icon-only {
@@ -122,7 +122,7 @@
 }
 
 .c-bolt-button--large {
-  @include bolt-padding(medium, squished);
+  padding: calc(var(--bolt-spacing-y-medium) / 2) var(--bolt-spacing-x-medium);
   @include bolt-font-size(medium);
 
   &.c-bolt-button--icon-only {
@@ -132,7 +132,7 @@
 }
 
 .c-bolt-button--xlarge {
-  @include bolt-padding(large, squished);
+  padding: calc(var(--bolt-spacing-y-large) / 2) var(--bolt-spacing-x-large);
   @include bolt-font-size(large);
 
   &.c-bolt-button--icon-only {
@@ -145,11 +145,11 @@
  * Icon Only Buttons
  */
 .c-bolt-button--icon-only {
-  @include bolt-padding(0);
+  padding: 0;
 
   .c-bolt-button__item,
   .c-bolt-button__icon {
-    @include bolt-margin(0);
+    margin: 0;
   }
 
   .c-bolt-button__item {
@@ -262,11 +262,11 @@ bolt-button[width='full@small'],
 // Spacing only applies when there are BOTH text and icon
 .c-bolt-button:not(.c-bolt-button--icon-only) {
   .c-bolt-button__item + .c-bolt-button__icon {
-    @include bolt-margin-left(xxsmall);
+    margin-left: var(--bolt-spacing-x-xxsmall);
   }
 
   .c-bolt-button__icon + .c-bolt-button__item {
-    @include bolt-margin-left(xxsmall);
+    margin-left: var(--bolt-spacing-x-xxsmall);
   }
 }
 
