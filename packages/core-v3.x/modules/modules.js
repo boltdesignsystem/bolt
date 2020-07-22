@@ -1,6 +1,6 @@
 // Note: These modules are included everywhere, so keep it light. Otherwise,
 // consider adding to a component where JS will be loaded only when needed.
-import ClickHandler from './click-handler';
+import ClickHandler from './src/click-handler';
 
 const Modules = { ClickHandler };
 const elements = document.querySelectorAll('[data-module]');
