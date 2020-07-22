@@ -68,6 +68,10 @@ bolt-modal:not([ready]) {
     pointer-events: auto;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
+
+    &.is-persistent {
+      cursor: default;
+    }
   }
 
   @include bolt-mq($until: $bolt-modal-breakpoint) {
@@ -97,21 +101,23 @@ bolt-modal:not([ready]) {
     }
 
     .c-bolt-modal__container-header {
-      @include bolt-padding(small large small small);
       flex-shrink: 0; // If header text is missing, this will partially collapse without setting flex-shrink
+      padding: var(--bolt-spacing-y-small) var(--bolt-spacing-x-large)
+        var(--bolt-spacing-y-small) var(--bolt-spacing-x-small);
     }
 
     .c-bolt-modal__container-header--hidden {
       @include bolt-padding(0);
-
-      height: bolt-v-spacing(medium) + (bolt-v-spacing(small) * 2); // Match close button icon size and margin.
+      height: calc(
+        var(--bolt-spacing-y-medium) + var(--bolt-spacing-y-small) * 2
+      ); // Match close button icon size and margin.
     }
 
     .c-bolt-modal__container-body {
-      @include bolt-margin-top(auto);
-      @include bolt-margin-bottom(auto);
-
       flex: auto;
+      margin-top: auto;
+      margin-bottom: auto;
+
       overflow-y: auto;
       -webkit-overflow-scrolling: touch;
 
@@ -124,12 +130,12 @@ bolt-modal:not([ready]) {
     }
 
     .c-bolt-modal__container-footer {
-      @include bolt-padding(small);
+      padding: var(--bolt-spacing-y-small) var(--bolt-spacing-x-small);
     }
 
     [class*='c-bolt-modal__container--spacing-'] {
       .c-bolt-modal__container-body {
-        @include bolt-padding(small);
+        padding: var(--bolt-spacing-y-small) var(--bolt-spacing-x-small);
       }
     }
 
@@ -168,7 +174,7 @@ bolt-modal:not([ready]) {
     top: 0;
     left: 0;
     min-width: 200px; // Prevents content without defined width (such as image and video) from falling below 200px.
-    max-width: calc(100% - #{bolt-spacing(medium) * 2});
+    max-width: calc(100% - var(--bolt-spacing-x-medium) * 2);
     max-height: $bolt-modal-max-height;
     transition: visibility $bolt-transition-timing $bolt-transition-ease
       $bolt-transition-timing;
@@ -188,10 +194,10 @@ bolt-modal:not([ready]) {
 @include bolt-mq($bolt-modal-breakpoint) {
   .c-bolt-modal--scroll-overall {
     .c-bolt-modal__content {
-      @include bolt-margin(0 auto);
       position: relative;
       top: 50vh;
       transform: translateX(0) translateY(-50%);
+      margin: 0 auto;
     }
 
     &.is-open {
@@ -248,7 +254,7 @@ bolt-modal:not([ready]) {
   }
 
   .c-bolt-modal__content--width-full {
-    width: calc(100% - #{bolt-spacing(medium) * 2});
+    width: calc(100% - var(--bolt-spacing-x-medium) * 2);
   }
 }
 
@@ -298,7 +304,7 @@ bolt-modal:not([ready]) {
     bottom: 0;
     left: 0;
     transform: translateY(100%);
-    height: bolt-v-spacing(xxsmall);
+    height: var(--bolt-spacing-y-xxsmall);
     pointer-events: none;
     background-image: linear-gradient(
       rgba(bolt-color(gray, light), 0.25),
@@ -322,7 +328,7 @@ bolt-modal:not([ready]) {
     right: 0;
     left: 0;
     transform: translateY(-100%);
-    height: bolt-v-spacing(xxsmall);
+    height: var(--bolt-spacing-y-xxsmall);
     pointer-events: none;
     background-image: linear-gradient(
       transparent,
@@ -332,18 +338,20 @@ bolt-modal:not([ready]) {
 }
 
 // Container spacing options
-@each $spacing-value in $bolt-spacing-values {
-  $spacing-value-name: nth($spacing-value, 1);
+@each $size in $bolt-spacing-multiplier-system {
+  $size-name: nth($size, 1);
 
   @include bolt-mq($bolt-modal-breakpoint) {
-    .c-bolt-modal__container--spacing-#{$spacing-value-name} {
+    .c-bolt-modal__container--spacing-#{$size-name} {
       .c-bolt-modal__container-body {
-        @include bolt-padding(#{$spacing-value-name});
+        padding: var(--bolt-spacing-y-#{$size-name})
+          var(--bolt-spacing-x-#{$size-name});
       }
 
       .c-bolt-modal__container-header,
       .c-bolt-modal__container-footer {
-        @include bolt-padding(#{$spacing-value-name}, squished);
+        padding: calc(var(--bolt-spacing-y-#{$size-name}) / 2)
+          var(--bolt-spacing-x-#{$size-name});
       }
     }
   }
@@ -391,15 +399,14 @@ bolt-modal:not([ready]) {
 .c-bolt-modal__close-button__icon {
   display: block;
   position: relative;
-  width: bolt-v-spacing(medium);
-  height: bolt-v-spacing(medium);
-  margin: bolt-v-spacing(small);
+  width: var(--bolt-spacing-x-medium);
+  height: var(--bolt-spacing-y-medium);
+  margin: var(--bolt-spacing-y-small) var(--bolt-spacing-x-small);
 
   @include bolt-mq($bolt-modal-breakpoint) {
-    @include bolt-margin(0);
-
-    width: bolt-spacing(medium) - 0.2rem;
-    height: bolt-spacing(medium) - 0.2rem;
+    width: calc(var(--bolt-spacing-x-medium) - 0.2rem);
+    height: calc(var(--bolt-spacing-y-medium) - 0.2rem);
+    margin: 0;
   }
 
   &:before,
@@ -409,7 +416,7 @@ bolt-modal:not([ready]) {
     position: absolute;
     top: 50%;
     left: 50%;
-    width: bolt-spacing(small);
+    width: var(--bolt-spacing-x-small);
     height: 2px;
     border-radius: $bolt-modal-border-radius;
     background-color: bolt-color(navy, light);

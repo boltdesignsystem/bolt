@@ -185,12 +185,12 @@ $bolt-input-transition: $bolt-transition;
   // state would only work intermittently.
   transform: translate3d(0, 0, 0);
   width: 100%;
+  font-size: $bolt-font-size--small;
   color: $bolt-input-text-color;
   line-height: calc(
     #{$bolt-line-height--xsmall + em} - 2px
   ); // [Mai] The line-height matches button's line-height, the 2px offsets the 1px border from the input.
   text-indent: 0.01px;
-  font-size: $bolt-font-size--small;
   border-radius: $bolt-input-border-radius;
   border-width: $bolt-input-border-width;
   border-style: $bolt-input-border-style;
@@ -201,10 +201,10 @@ $bolt-input-transition: $bolt-transition;
   text-overflow: '';
 
   @media (max-width: bolt-breakpoint(small)) {
+    font-size: 16px; // [Mai] Mobile Safari will zoom in when input is focused if the text is not at least 16px.
     line-height: calc(
       #{$bolt-line-height--xsmall + em} - 6px
     ); // [Mai] This is just magic number, if the font-size ever changes, this also needs to change by inspecting in the browser and push the px.
-    font-size: 16px; // [Mai] Mobile Safari will zoom in when input is focused if the text is not at least 16px.
   }
 
   &::-ms-expand {
