@@ -1,0 +1,33 @@
+{# Variables #}
+{% set base_class = "c-bolt-list-item" %}
+{% set attributes = create_attribute(item.attributes|default({})) %}
+{% set inner_attributes = create_attribute({}) %}
+
+{% set last = loop.last %}
+{% set classes = [
+  base_class,
+  display in display_options ? "#{base_class}--display-#{display}" : "",
+  spacing in spacing_options ? "#{base_class}--spacing-#{spacing}" : "",
+  separator in separator_options ? "#{base_class}--separator-#{separator}" : "",
+  align in align_options ? "#{base_class}--align-#{align}" : "",
+  last ? "#{base_class}--last-item",
+  inset ? "#{base_class}--inset",
+] %}
+
+<bolt-list-item
+  {% if last %} last {% endif %}
+  {% if list_item_role %} role="presentation" {% endif %}
+  {{ attributes }}
+>
+  <ssr-keep
+    for="bolt-list-item"
+    {% if list_item_role %} role="{{ list_item_role }}" {% endif %}
+    {{ inner_attributes.addClass(classes) }}
+  >
+    {% if item.content %}
+      {{ item.content }}
+    {% else %}
+      {{ item }}
+    {% endif %}
+  </ssr-keep>
+</bolt-list-item>
