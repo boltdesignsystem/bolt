@@ -69,6 +69,10 @@ bolt-modal:not([ready]) {
     pointer-events: auto;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
+
+    &.is-persistent {
+      cursor: default;
+    }
   }
 
   @include bolt-mq($until: $bolt-modal-breakpoint) {
