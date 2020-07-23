@@ -1,10 +1,6 @@
 {% macro code_example(code) %}
-  <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
-    {% grid "o-bolt-grid--center" %}
-      {% cell %}
-        {{ code }}
-      {% endcell %}
-    {% endgrid %}
+  <div class="u-bolt-margin-bottom-small">
+    {{ code }}
   </div>
   <div class="u-bolt-margin-bottom-large">
     <bolt-code-snippet syntax="dark" lang="html">{% spaceless %}
@@ -19,19 +15,11 @@
 {% import _self as code_snippet_example %}
 
 {% set code_snippet_demo %}
-<bolt-code-snippet lang="html">
-  <header>
-    <h1>Headline</h1>
-  </header>
-</bolt-code-snippet>
+<bolt-code-snippet lang="html"><h1>Headline</h1></bolt-code-snippet>
 {% endset %}
 
 {% set code_snippet_prop_demo %}
-<bolt-code-snippet lang="scss" display="block" syntax="light">
-  .my-scss {
-    @include my-mixin;
-  }
-</bolt-code-snippet>
+<bolt-code-snippet lang="scss" display="block" syntax="light">.my-scss { @include my-mixin; }</bolt-code-snippet>
 {% endset %}
 
 <bolt-text headline>Web Component Usage</bolt-text>
