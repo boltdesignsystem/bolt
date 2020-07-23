@@ -1,0 +1,37 @@
+{% extends "@pl/_default-page-template.twig" %}
+
+{% block main_content %}
+
+  {% embed "@bolt-components-band/band.twig" with {
+    size: "medium",
+    theme: "xdark",
+    full_bleed: true
+  } only %}
+    {% block band_content %}
+
+        {% grid "o-bolt-grid--matrix o-bolt-grid--large" %}
+          {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small" %}
+            <h1>top</h1>
+          {% endcell %}
+        {% endgrid %}
+
+        {% grid "o-bolt-grid--matrix o-bolt-grid--large" %}
+
+          {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small" %}
+            <h1>left</h1>
+            {# {% include "@bolt/image.twig" with {
+              src: "/images/content/promos/promo-16x9-salesforce-vs-pega.png"
+            } only %} #}
+          {% endcell %}
+
+          {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small" %}
+            <h1>right</h1>
+
+          {% endcell %}
+        {% endgrid %}
+
+    {% endblock %}
+  {% endembed %}
+
+
+{% endblock %}
