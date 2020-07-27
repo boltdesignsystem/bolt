@@ -2,19 +2,8 @@
   Body and heading declaration
 \* ------------------------------------ */
 
-html {
-  @include bolt-poly-fluid-sizing('font-size', $bolt-base-font-sizes);
-  @include bolt-font-family(body, true);
-}
-
 body {
-  @include bolt-font-family(body);
-  @include bolt-font-size(medium);
-
-  // help ensure short pages (those not using `.c-bolt-site`) are tall enough.  Super important when dealing with components with
-  // click event handlers on the body (and the body isn't automatically tall enough based on the content contained inside
-  width: 100%;
+  width: 100%; // help ensure short pages (those not using `.c-bolt-site`) are tall enough. Super important when dealing with components with click event handlers on the body (and the body isn't automatically tall enough based on the content contained inside)
   margin: 0;
-  color: bolt-color(navy, xdark);
   overflow-x: hidden; //Helps prevent horizontal scrolling in Chrome on Windows machines. Seems to be working fine w/ native position sticky at first glance.
 }

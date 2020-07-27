@@ -1,39 +1,33 @@
 /* ------------------------------------ *\
-   Font-size System (CSS Custom Props)
+   Typography Systems (CSS Custom Props)
 \* ------------------------------------ */
 
 /**
- * Generate global typography variables
- *
+ * Global typography variables:
  * 1. Maps are kept in core/settings.
- * 2. In order for the following to work, font-size must be defined in the <html>:
- * html { font-size: var(--bolt-font-size); }
+ * 2. Base tokens are for public use and user overrides. For example, the vars can be customized on the :root level to generate a different typographic system, such as Japanese typography, where font-size and line-height are completely different than English.
  */
 :root {
-  // Base tokens are for public use and user overrides
-  // Note: user can customize these to generate a different typography system, such as Japanese typography.
-  --bolt-type-font-size: 14px;
+  // var(--bolt-type-html-font-size) is limited to the <html> element, do not use it on any other element.
+  @each $size in $bolt-type-base-font-size-system {
+    $size-name: nth($size, 1);
+    $size-value: nth($size, 2);
 
-  @include bolt-mq(xsmall) {
-    --bolt-type-font-size: 15px;
+    @if $size-name == xxsmall {
+      --bolt-type-html-font-size: #{bolt-strip-unit($size-value) / 16 * 100%};
+    } @else {
+      @include bolt-mq(#{$size-name}) {
+        --bolt-type-html-font-size: #{bolt-strip-unit($size-value) / 16 * 100%};
+      }
+    }
   }
 
-  @include bolt-mq(xxlarge) {
-    --bolt-type-font-size: 16px;
-  }
-
+  // The following are vars that can be used in components.
   @each $family in $bolt-type-font-family-system {
     $family-name: nth($family, 1);
     $family-value: nth($family, 2);
 
     --bolt-type-font-family-#{$family-name}: #{$family-value};
-  }
-
-  @each $size in $bolt-type-font-size-system {
-    $size-name: nth($size, 1);
-    $size-value: nth($size, 2);
-
-    --bolt-type-font-size-#{$size-name}: #{$size-value};
   }
 
   @each $weight in $bolt-type-font-weight-system {
@@ -43,6 +37,16 @@
     --bolt-type-font-weight-#{$weight-name}: #{$weight-value};
   }
 
+  // Font-size and line-height must be used in tandem to optimize legibility. Each font-size is paired with an optimized line-height. For example, the following will ensure large text has proper line-height.
+  // font-size: var(--bolt-font-size-large);
+  // line-height: var(--bolt-type-line-height-large);
+  @each $size in $bolt-type-font-size-system {
+    $size-name: nth($size, 1);
+    $size-value: nth($size, 2);
+
+    --bolt-type-font-size-#{$size-name}: #{$size-value};
+  }
+
   @each $height in $bolt-type-line-height-system {
     $height-name: nth($height, 1);
     $height-value: nth($height, 2);
@@ -50,6 +54,9 @@
     --bolt-type-line-height-#{$height-name}: #{$height-value};
   }
 
+  // Line height multiplier can be used to tighten or loosen a line-height for a specific font-size. For example, the following will tighten up the line-height for small text.
+  // font-size: var(--bolt-font-size-small);
+  // line-height: calc(var(--bolt-type-line-height-small) * var(--bolt-type-line-height-multiplier-tight));
   @each $height in $bolt-type-line-height-multiplier-system {
     $height-name: nth($height, 1);
     $height-value: nth($height, 2);

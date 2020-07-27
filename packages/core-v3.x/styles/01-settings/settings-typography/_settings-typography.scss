@@ -5,6 +5,14 @@
 /**
  * Typography token maps
  */
+
+// Base font-size scales from xxsmall breakpoint to xxlarge breakpoint
+$bolt-type-base-font-size-system: (
+  'xxsmall': 14px,
+  'xsmall': 15px,
+  'xxlarge': 16px,
+) !default;
+
 $bolt-type-font-size-system: (
   'xxxlarge': 2.35rem,
   'xxlarge': 1.75rem,
@@ -13,7 +21,7 @@ $bolt-type-font-size-system: (
   'medium': 1rem,
   'small': 0.9rem,
   'xsmall': 0.8rem,
-  'xxsmall': 0.7rem
+  'xxsmall': 0.7rem,
 ) !default;
 
 $bolt-type-line-height-system: (
@@ -24,37 +32,35 @@ $bolt-type-line-height-system: (
   'medium': 1.55,
   'small': 1.45,
   'xsmall': 1.4,
-  'xxsmall': 1.4
+  'xxsmall': 1.4,
 ) !default;
 
 $bolt-type-letter-spacing-system: (
   'narrow': -0.025rem,
   'regular': 0,
-  'wide': 0.05rem
+  'wide': 0.05rem,
 ) !default;
 
 $bolt-type-font-weight-system: (
   'light': 300,
   'regular': 400,
   'semibold': 600,
-  'bold': 800
+  'bold': 800,
 ) !default;
+
+$bolt-type-system-font: "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans','Helvetica Neue', sans-serif";
 
 $bolt-type-font-family-system: (
-  'body':
-    "'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans','Helvetica Neue', sans-serif",
-  'headline':
-    "'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans','Helvetica Neue', sans-serif",
-  'code': 'monospace, monospace'
+  'system': '#{$bolt-type-system-font}',
+  'body': "'Open Sans', #{$bolt-type-system-font}",
+  'headline': "'Open Sans', #{$bolt-type-system-font}",
+  'code':
+    "'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace",
 ) !default;
 
-/**
- * Line height multiplier
- *
- * This are used for mathematically increasing or decreasing line-height for every single font-size.
- */
+// Line height multiplier is used for mathematically increasing or decreasing line-height for every single font-size.
 $bolt-type-line-height-multiplier-system: (
   'tight': 0.77,
   'regular': 1,
-  'loose': 1.2
+  'loose': 1.2,
 ) !default;

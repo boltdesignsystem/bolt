@@ -1,21 +1,39 @@
 /* ------------------------------------ *\
-  GENERIC - GLOBAL
+   GENERIC - GLOBAL
 \* ------------------------------------ */
 
 /**
- * 1. Global box-sizing reset
- * 2. Remove default "touch" color behavior globally
- * 3. Sharpens text to show true font styles
+ * Global resets:
+ * 1. Global box-sizing reset.
+ * 2. Kern text properly.
+ * 3. Remove default "touch" color behavior globally.
+ * 4. Sharpen text to show true font styles.
  */
-
 *,
 *:before,
 *:after {
-  @include bolt-font-kerning;
-
   box-sizing: border-box; /* [1] */
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0); /* [2] */
+  font-feature-settings: 'kern'; /* [2] */
+  font-kerning: normal; /* [2] */
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0); /* [3] */
+  -webkit-font-smoothing: antialiased; /* [4] */
+  -moz-osx-font-smoothing: grayscale; /* [4] */
+}
 
-  -webkit-font-smoothing: antialiased; /* [3] */
-  -moz-osx-font-smoothing: grayscale;
+/**
+ * Global font resets:
+ * 1. Reset HTML to use responsive font-size var.
+ * 2. Reset body to use brand font.
+ * 3. Reset body to follow HTML's font-size.
+ * 4. Optimize line-height for body font-size.
+ * Additional note: !important ensures these can't be overridden.
+ */
+html {
+  font-size: var(--bolt-type-html-font-size) !important; /* [1] */
+}
+
+body {
+  font-family: var(--bolt-type-font-family-body) !important; /* [2] */
+  font-size: var(--bolt-type-font-size-medium) !important; /* [3] */
+  line-height: var(--bolt-type-line-height-medium) !important; /* [4] */
 }
