@@ -23,7 +23,7 @@ module.exports = {
       type: 'string',
       description: 'Font weights.',
       default: 'regular',
-      enum: ['light', 'bold', 'regular', 'semibold'],
+      enum: ['bold', 'regular', 'semibold'],
     },
     style: {
       type: 'string',
