@@ -17,25 +17,33 @@ Available variables:
 {% set attributes = attributes.addClass('c-bolt-input-list__item') %}
 
 <div{{ attributes }}>
-  {% if labelDisplay in ['before', 'invisible'] %}
+  {% if labelDisplay == 'before' %}
     {{ label }}
-  {% endif %}
-
-  {{ children }}
-
-  {% if labelDisplay == 'after' %}
+    <div class="c-bolt-block-input-wrapper">
+      {{ children }}
+      {% if errors %}
+        <div class="c-bolt-input-message c-bolt-input-message--invalid">
+          {{ errors }}
+        </div>
+      {% endif %}
+      {% if descriptionText %}
+        <div class="c-bolt-input-message">
+          {{ descriptionText }}
+        </div>
+      {% endif %}
+    </div>
+  {% elseif labelDisplay == 'after'%}
+    {{ children }}
     {{ label }}
-  {% endif %}
-
-  {% if errors %}
-    <div class="c-bolt-input-message c-bolt-input-message--invalid">
-      {{ errors }}
-    </div>
-  {% endif %}
-
-  {% if descriptionText %}
-    <div class="c-bolt-input-message">
-      {{ descriptionText }}
-    </div>
+    {% if errors %}
+      <div class="c-bolt-input-message c-bolt-input-message--invalid">
+        {{ errors }}
+      </div>
+    {% endif %}
+    {% if descriptionText %}
+      <div class="c-bolt-input-message">
+        {{ descriptionText }}
+      </div>
+    {% endif %}
   {% endif %}
 </div>
