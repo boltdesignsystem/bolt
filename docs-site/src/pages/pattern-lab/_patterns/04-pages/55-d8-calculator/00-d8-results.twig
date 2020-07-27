@@ -5,10 +5,47 @@
 {% endblock %}
 
 {% block main_content %}
+
+  {% set pinned_recalculate %}
+    {% include "@bolt-components-button/button.twig" with {
+      text: "Recalculate",
+      style: "text",
+      size: "large",
+      url: "",
+      icon: {
+        name: "refresh",
+        position: "before"
+      }
+    } only %}
+  {% endset %}
+
+  {% set pinned_email %}
+    {% include "@bolt-components-button/button.twig" with {
+      text: "Email my results",
+      style: "text",
+      size: "large",
+      url: "",
+      icon: {
+        name: "email",
+        position: "before"
+      }
+    } only %}
+  {% endset %}
+
   {% embed "@bolt-components-band/band.twig" with {
     size: "large",
     theme: "light",
-    full_bleed: true
+    full_bleed: true,
+    pinned_content: {
+        upper: [
+          {
+            content: pinned_recalculate
+          },
+          {
+            content: pinned_email
+          },
+        ]
+      }
   } only %}
     {% block band_content %}
 
@@ -107,7 +144,25 @@
               } only %}
             {% endcell %}
             {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small" %}
-              [Right Content]
+              {% grid "o-bolt-grid--middle" %}
+                {% cell "u-bolt-width-1/12" %}
+                  {% include "@bolt-components-icon/icon.twig" with {
+                    name: "asset-data",
+                    size: "large",
+                    color: "teal"
+                  } only %}
+                {% endcell %}
+                {% cell "u-bolt-width-11/12" %}
+                    {% include "@bolt/headline.twig" with {
+                      text: "1.2%",
+                      size: "large",
+                      tag: "h4"
+                  } only %}
+                  {% include "@bolt-components-headline/text.twig" with {
+                    text: "Percent increase in customer value from improved upsell / cross-sell presentation and convcersion rates",
+                  } only %}
+                {% endcell %}
+              {% endgrid %}
             {% endcell %}
           {% endgrid %}
       {% endset %}
