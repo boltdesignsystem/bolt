@@ -3,7 +3,7 @@ const fs = require('fs-extra');
 const hexToRgba = require('hex-to-rgba');
 const rgb2hex = require('rgb2hex');
 const chokidar = require('chokidar');
-const { BoltCache, getFileHash } = require('@bolt/build-tools/utils/cache');
+const { BoltCache, getFileHash } = require('@bolt/build-utils/cache');
 const { minifyCSS } = require('./helpers/css.util');
 
 const THEMIFY = 'bolt-themify';

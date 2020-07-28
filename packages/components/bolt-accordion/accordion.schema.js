@@ -1,6 +1,7 @@
 const accordionItem = require('./accordion-item.schema');
 
 module.exports = {
+  $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'Accordion',
   type: 'object',
   properties: {

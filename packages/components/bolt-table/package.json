@@ -1,7 +1,7 @@
 {
   "name": "@bolt/components-table",
-  "version": "2.15.2",
-  "description": "Table Component in Bolt",
+  "version": "2.25.1",
+  "description": "Content container for tabular content.",
   "keywords": [
     "bolt design system",
     "bolt",
@@ -16,7 +16,8 @@
   "main": "index.js",
   "style": "index.scss",
   "dependencies": {
-    "@bolt/core-v3.x": "^2.15.2",
+    "@bolt/core-v3.x": "^2.25.1",
+    "@bolt/lazy-queue": "^2.23.0",
     "himalaya": "^1.1.0"
   },
   "publishConfig": {
@@ -35,6 +36,6 @@
       "web": "http://mikemai.net/"
     }
   ],
-  "schema": "table.schema.yml",
+  "schema": "table.schema.js",
   "twig": "src/table.twig"
 }

@@ -39,7 +39,7 @@
 {% endfor %}
 
 {% set panel_name = "tabs-#{uuid}" %}
-{% set panel_id = "tabs-#{uuid}-#{index}" %}
+{% set panel_id = id ? id : "tabs-#{uuid}-#{index}" %}
 {% set selected_tab = selected_tab ?? 1 %}
 
 <input type="radio" name="{{ panel_name }}" id="{{ panel_id }}" class="c-bolt-tabs__input" {% if index == selected_tab %} checked {% endif %}/>

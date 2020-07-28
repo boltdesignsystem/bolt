@@ -1,0 +1,32 @@
+{% if block("supplemental_content") %}
+  {% set supplementalContentBlock %}
+    {{ block("supplemental_content") }}
+  {% endset %}
+{% endif %}
+
+{% grid "o-bolt-grid--flex o-bolt-grid--matrix" %}
+  {% if trainingMetaItems %}
+    {% cell "u-bolt-width-1/1" %}
+      {% include "@bolt-blueprints/_training-meta-items.twig" with {
+        items: trainingMetaItems
+      } only %}
+    {% endcell %}
+  {% endif %}
+  {% cell "u-bolt-width-1/1" %}
+    {% if trainingDescription %}
+      {% include "@bolt-blueprints/_training-description.twig" with {
+        text: trainingDescription
+      } only %}
+    {% endif %}
+    {% if trainingTags %}
+      {% include "@bolt-blueprints/_training-tags.twig" with {
+        items: trainingTags
+      } only %}
+    {% endif %}
+  {% endcell %}
+  {% if supplementalContentBlock %}
+    {% cell "u-bolt-width-1/1" %}
+      {{ supplementalContentBlock }}
+    {% endcell %}
+  {% endif %}
+{% endgrid %}

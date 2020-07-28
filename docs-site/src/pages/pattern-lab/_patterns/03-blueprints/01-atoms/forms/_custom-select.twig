@@ -1,6 +1,8 @@
+{% import "@bolt-blueprints/macros.twig" as macros %}
+
 {% set children %}
   <bolt-select should-sort-items="true" item-select-text="">
-    {% include("@bolt-components-form/form-select.twig") with {
+    {% macros.include("@bolt-components-form/form-select.twig") with {
       options: [
         {
           label: "Pega Platform 8.4",
@@ -31,7 +33,7 @@
   </bolt-select>
 {% endset %}
 
-{% include("@bolt-components-form/form-element.twig") with {
+{% macros.include("@bolt-components-form/form-element.twig") with {
   children: children,
 } only %}
 

@@ -3,6 +3,89 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.25.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-site/compare/v2.25.0...v2.25.1) (2020-07-14)
+
+**Note:** Version bump only for package @bolt/components-site
+
+
+
+
+
+# [2.25.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-site/compare/v2.22.2...v2.25.0) (2020-07-13)
+
+**Note:** Version bump only for package @bolt/components-site
+
+
+
+
+
+# [2.24.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-site/compare/v2.23.0...v2.24.0) (2020-06-05)
+
+**Note:** Version bump only for package @bolt/components-site
+
+
+
+
+
+# [2.23.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-site/compare/v2.22.1...v2.23.0) (2020-05-06)
+
+**Note:** Version bump only for package @bolt/components-site
+
+
+
+
+
+# [2.21.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-site/compare/v2.20.2...v2.21.0) (2020-04-08)
+
+**Note:** Version bump only for package @bolt/components-site
+
+
+
+
+
+# [2.20.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-site/compare/v2.19.1...v2.20.0) (2020-03-18)
+
+**Note:** Version bump only for package @bolt/components-site
+
+
+
+
+
+# [2.19.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-site/compare/v2.18.1...v2.19.0) (2020-03-04)
+
+**Note:** Version bump only for package @bolt/components-site
+
+
+
+
+
+# [2.18.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-site/compare/v2.17.1...v2.18.0) (2020-02-19)
+
+**Note:** Version bump only for package @bolt/components-site
+
+
+
+
+
+# [2.17.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-site/compare/v2.16.3...v2.17.0) (2020-02-04)
+
+
+### Bug Fixes
+
+* workaround to make sure smooth scroll & waypoint functionality still works without breaking sticky footer and elements with position: sticky ([c80fdf8](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-site/commit/c80fdf8d80fcc98fea5a6aeb612281e295845dd8))
+
+
+
+
+
+# [2.16.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-site/compare/v2.15.2...v2.16.0) (2020-01-24)
+
+**Note:** Version bump only for package @bolt/components-site
+
+
+
+
+
 ## [2.15.2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-site/compare/v2.15.1...v2.15.2) (2020-01-21)
 
 **Note:** Version bump only for package @bolt/components-site

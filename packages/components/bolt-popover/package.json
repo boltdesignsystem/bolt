@@ -1,6 +1,6 @@
 {
   "name": "@bolt/components-popover",
-  "version": "2.15.2",
+  "version": "2.25.1",
   "description": "A small overlay that opens on demand.",
   "keywords": [
     "bolt design system",
@@ -18,8 +18,13 @@
   "main": "index.js",
   "style": "index.scss",
   "dependencies": {
-    "@bolt/core-v3.x": "^2.15.2",
-    "@popperjs/core": "^2.0.0-rc.2"
+    "@bolt/components-button": "^2.25.1",
+    "@bolt/components-link": "^2.25.1",
+    "@bolt/components-trigger": "^2.25.1",
+    "@bolt/core-v3.x": "^2.25.1",
+    "@bolt/lazy-queue": "^2.23.0",
+    "@popperjs/core": "^2.0.0",
+    "mousetrap": "^1.6.5"
   },
   "publishConfig": {
     "access": "public"
@@ -41,6 +46,6 @@
       "web": "https://github.com/danielamorse"
     }
   ],
-  "schema": "popover.schema.yml",
+  "schema": "popover.schema.js",
   "twig": "src/popover.twig"
 }

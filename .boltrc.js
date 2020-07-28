@@ -49,11 +49,6 @@ const nonImageFixtures = globby.sync([
 ]);
 const itemsToCopy = [];
 
-const allComponentPackages = globby
-  .sync(path.join(__dirname, './packages/components/*/package.json'))
-  .map(pkgPath => require(pkgPath))
-  .map(pkg => pkg.name);
-
 nonImageFixtures.forEach(fixturePath => {
   itemsToCopy.push({
     from: path.join(__dirname, fixturePath),
@@ -68,15 +63,13 @@ nonImageFixtures.forEach(fixturePath => {
 
 module.exports = {
   esModules: true,
+  compat: false, // Jest tests only run w/ ES Modules so this should speed things up
   wwwDir: adjustRelativePath(siteConfig.wwwDir),
   buildDir: adjustRelativePath(siteConfig.buildDir),
   iconDir: [],
   components: {
     global: [
-      ...allComponentPackages,
-      '@bolt/components-animate',
-      '@bolt/micro-journeys',
-      '@bolt/analytics-autolink',
+      ...siteConfig.components.global,
     ],
   },
   images: {
@@ -84,7 +77,7 @@ module.exports = {
   },
   prod: true,
   sourceMaps: false,
-  enableCache: false,
+  enableCache: true,
   verbosity: 1,
   copy: [...itemsToCopy],
   alterTwigEnv: [

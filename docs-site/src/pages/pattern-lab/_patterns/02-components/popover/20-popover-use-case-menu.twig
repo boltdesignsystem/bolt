@@ -1,0 +1,33 @@
+{# Setting variables for demo purposes #}
+{% set trigger %}
+  {% include "@bolt-components-button/button.twig" with {
+    text: "Menu",
+    size: "xsmall",
+  } only %}
+{% endset %}
+{% set content %}
+  {# Start component specific code #}
+  {% include "@bolt-components-menu/menu.twig" with {
+    title: "Choose one of these",
+    items: [
+      {
+        content: "Menu item 1",
+      },
+      {
+        content: "Menu item 2",
+      },
+      {
+        content: "Menu item 2",
+      },
+    ]
+  } only %}
+  {# End component specific code #}
+{% endset %}
+
+<bolt-text headline>Popover menu</bolt-text>
+<bolt-text>Create a popover menu by combining the Popover and Menu components.</bolt-text>
+{% include "@bolt-components-popover/popover.twig" with {
+  trigger: trigger,
+  content: content,
+  spacing: "none",
+} only %}

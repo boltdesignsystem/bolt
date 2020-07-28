@@ -130,6 +130,9 @@ async function init() {
         !nextVersion ||
         nextVersion === currentVersion
       ) {
+        console.log('current version', currentVersion);
+        console.log('upcoming version type', version);
+        console.log('next version', nextVersion);
         console.error(`Unknown version to publish to!`);
         return;
       } else {

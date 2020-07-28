@@ -11,15 +11,18 @@ const iconGenerator = require('@bolt/build-utils/icon-generator');
 
 let initialBuild = true;
 
-const startBuildingIconsMsg = 'Building Bolt SVG Icons for the first time...';
-const startRebuildingIconsMsg = 'Rebuilding Bolt SVG Icons...';
+const startBuildingIconsMsg = 'Generating the Bolt SVG Icon JSON schema...';
+const startRebuildingIconsMsg = 'Regenerating the Bolt SVG Icon JSON schema...';
 
-const finishedBuildingIconsMsg = 'Finished building Bolt SVG Icons and schema!';
+const finishedBuildingIconsMsg =
+  'Finished generating the Bolt SVG Icon schema!';
 const finishedRebuildingIconsMsg =
-  'Finished rebuilding Bolt SVG Icons and schema!';
+  'Finished regenerating the Bolt SVG Icon schema!';
 
-const failedBuildingIconsMsg = 'Initial build of the Bolt SVG Icons failed!';
-const failedRebuildingIconsMsg = 'Failed to rebuild Bolt SVG Icons!';
+const failedBuildingIconsMsg =
+  'Initially generating the Bolt SVG Icon schema failed!';
+const failedRebuildingIconsMsg =
+  'Failed to regenerate the Bolt SVG Icon schema!';
 
 async function build() {
   const iconSpinner = new Ora(
@@ -70,7 +73,7 @@ async function generateSchemaFile(icons) {
   const iconComponentSchema = path.join(iconComponentDir, 'icon.schema.json');
   const names = icons.map(icon => icon.id);
   const schema = await fs.readJson(iconComponentSchema);
-  schema.properties.name.enum = names;
+  schema.properties.name.anyOf[0].enum = names;
 
   // update bolt-icon schema with newest icons from svgs folder
   await fs.writeJson(iconComponentSchema, schema, { spaces: 2 });

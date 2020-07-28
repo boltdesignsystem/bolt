@@ -1,29 +1,35 @@
 {% set button %}
   {% include "@bolt-components-button/button.twig" with {
-    text: "Share",
+    text: buttonText,
     size: "small",
-    style: "secondary",
+    style: "tertiary",
     iconOnly: true,
     icon: {
-      name: iconName,
-    }
+      name: buttonIcon,
+    },
+    attributes: buttonAttributes | default({})
   } only %}
 {% endset %}
 
 {% if tooltip %}
   {% include "@bolt-components-tooltip/tooltip.twig" with {
     trigger: button,
-    content: tooltip
+    content: tooltip,
+    boundary: "bolt-card-replacement",
+    placement: "bottom-end",
   } only %}
 {% elseif popover %}
   {% include "@bolt-components-popover/popover.twig" with {
     trigger: button,
     content: popover,
-    placement: "bottom",
+    boundary: "bolt-card-replacement",
+    placement: "bottom-end",
+    fallbackPlacements: [
+      "bottom",
+      "bottom-start"
+    ],
     spacing: "none",
-    attributes: {
-      class: ["t-bolt-light"],
-    }
+    theme: "xlight",
   } only %}
 {% else %}
   {{ button }}

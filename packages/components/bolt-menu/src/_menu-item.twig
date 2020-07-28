@@ -20,10 +20,12 @@
 
 <bolt-menu-item
   {{ this.props|without("content")|without("class") }}
+  role="presentation"
 >
   {% set menu_item %}
     <ssr-keep
       for="bolt-menu-item"
+      role="presentation"
       {% if classes %} class="{{ classes|join(' ') }}" {% endif %}
     >
       {{ content }}

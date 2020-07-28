@@ -3,6 +3,168 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.25.1](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-carousel/compare/v2.25.0...v2.25.1) (2020-07-14)
+
+**Note:** Version bump only for package @bolt/components-carousel
+
+
+
+
+
+# [2.25.0](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-carousel/compare/v2.22.2...v2.25.0) (2020-07-13)
+
+
+### Bug Fixes
+
+* update Jest tests to more reliably work with fully async-loaded components ([6b4c752](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-carousel/commit/6b4c752cfcf32a3d0d260d5e2f718be12fd3df50))
+* update SVG <use> tags ([5f10098](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-carousel/commit/5f100987030abb61e324e3ca2213727b488b14b7))
+
+
+### Features
+
+* globally lazyload JS bundles to expose same existing issues as the ones found with the new lazy-queue functionality ([7cc4ce2](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-carousel/commit/7cc4ce2fa9ce28dc4f9f37078762f106ca87729f))
+* migrate Carousel over to use lit-element; fixes rendering and rendering perf issues encountered in [#1836](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-carousel/issues/1836) ([a0bbc32](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-carousel/commit/a0bbc3243639cb2479110870012efc5b90a45432))
+* update Jest tests to use new renderWC helper + prep for upstream <ssr-keep> updates ([beb6b85](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-carousel/commit/beb6b85cfdb4d37359e0fcf1d4deaa7f1a0a25f1))
+
+
+
+
+
+## [2.24.1](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-carousel/compare/v2.24.0...v2.24.1) (2020-06-17)
+
+**Note:** Version bump only for package @bolt/components-carousel
+
+
+
+
+
+# [2.24.0](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-carousel/compare/v2.23.0...v2.24.0) (2020-06-05)
+
+**Note:** Version bump only for package @bolt/components-carousel
+
+
+
+
+
+# [2.23.0](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-carousel/compare/v2.22.1...v2.23.0) (2020-05-06)
+
+
+### Bug Fixes
+
+* update Jest tests to more reliably work with fully async-loaded components ([6b4c752](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-carousel/commit/6b4c752cfcf32a3d0d260d5e2f718be12fd3df50))
+* update SVG <use> tags ([5f10098](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-carousel/commit/5f100987030abb61e324e3ca2213727b488b14b7))
+
+
+### Features
+
+* globally lazyload JS bundles to expose same existing issues as the ones found with the new lazy-queue functionality ([7cc4ce2](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-carousel/commit/7cc4ce2fa9ce28dc4f9f37078762f106ca87729f))
+* migrate Carousel over to use lit-element; fixes rendering and rendering perf issues encountered in [#1836](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-carousel/issues/1836) ([a0bbc32](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-carousel/commit/a0bbc3243639cb2479110870012efc5b90a45432))
+* update Jest tests to use new renderWC helper + prep for upstream <ssr-keep> updates ([beb6b85](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-carousel/commit/beb6b85cfdb4d37359e0fcf1d4deaa7f1a0a25f1))
+
+
+
+
+
+# [2.22.0](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-carousel/compare/v2.21.1...v2.22.0) (2020-04-22)
+
+**Note:** Version bump only for package @bolt/components-carousel
+
+
+
+
+
+# [2.21.0](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-carousel/compare/v2.20.2...v2.21.0) (2020-04-08)
+
+**Note:** Version bump only for package @bolt/components-carousel
+
+
+
+
+
+# [2.20.0](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-carousel/compare/v2.19.1...v2.20.0) (2020-03-18)
+
+**Note:** Version bump only for package @bolt/components-carousel
+
+
+
+
+
+# [2.19.0](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-carousel/compare/v2.18.1...v2.19.0) (2020-03-04)
+
+**Note:** Version bump only for package @bolt/components-carousel
+
+
+
+
+
+## [2.18.1](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-carousel/compare/v2.18.0...v2.18.1) (2020-02-21)
+
+**Note:** Version bump only for package @bolt/components-carousel
+
+
+
+
+
+# [2.18.0](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-carousel/compare/v2.17.1...v2.18.0) (2020-02-19)
+
+**Note:** Version bump only for package @bolt/components-carousel
+
+
+
+
+
+# [2.17.0](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-carousel/compare/v2.16.3...v2.17.0) (2020-02-04)
+
+
+### Bug Fixes
+
+* add missing Autoplay swiper module ([26444f3](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-carousel/commit/26444f30c7a8dab831d255462b4d88ea169c3652))
+* make sure overall carousel (perceived) width is consistent across the different variations ([3365705](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-carousel/commit/336570574b3117f459c7593f8a3b5c7d1b377b6c))
+* snap carousel widths calculated to the exact pixel ([dd59c1f](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-carousel/commit/dd59c1fafffa1d965440e6973d82d6282480cc34))
+* update Sass variable ([1faa2b7](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-carousel/commit/1faa2b780eb95374bcefa98f31ad41db620c5f36))
+* update snapshots ([05ab17d](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-carousel/commit/05ab17d2c122ac6cd64a06e249bc3dfb73181519))
+
+
+### Features
+
+* upgrade Swiper to the latest version; only pull in the modules being used ([11ade20](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-carousel/commit/11ade2064a97215457f6c2f76067ac05350945cb))
+
+
+
+
+
+## [2.16.2](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-carousel/compare/v2.16.1...v2.16.2) (2020-01-28)
+
+**Note:** Version bump only for package @bolt/components-carousel
+
+
+
+
+
+## [2.16.1](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-carousel/compare/v2.16.0...v2.16.1) (2020-01-27)
+
+**Note:** Version bump only for package @bolt/components-carousel
+
+
+
+
+
+# [2.16.0](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-carousel/compare/v2.15.2...v2.16.0) (2020-01-24)
+
+
+### Bug Fixes
+
+* update snapshots + fix prettier issues ([3eed559](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-carousel/commit/3eed559af2e4ca279ad3328157f822588e97e3a3))
+
+
+### Features
+
+* add new helper Webpack plugins ([7eb295c](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-carousel/commit/7eb295c4e934c4a1e10e44d5fbb072905d0a7efd))
+
+
+
+
+
 ## [2.15.2](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-carousel/compare/v2.15.1...v2.15.2) (2020-01-21)
 
 **Note:** Version bump only for package @bolt/components-carousel

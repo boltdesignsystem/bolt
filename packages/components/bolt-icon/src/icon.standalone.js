@@ -1,166 +1,141 @@
-import { customElement } from '@bolt/element';
 import {
-  colorContrast,
-  css,
-  props,
-  rgb2hex,
-  supportsCSSVars,
-} from '@bolt/core-v3.x/utils';
+  customElement,
+  BoltElement,
+  html,
+  hasNativeShadowDomSupport,
+  unsafeHTML,
+  unsafeCSS,
+} from '@bolt/element';
+import classNames from 'classnames/bind';
+
+// reuses the auto-injected SVG sprite markup to work around situations where we can't externally reference these symbols (ex. in the ShadowDOM)
+import BrowserSprite from 'svg-baker-runtime/src/browser-sprite';
 import { spacingSizes } from '@bolt/core-v3.x/data';
-import { h, withPreact } from '@bolt/core-v3.x/renderers';
+import iconStyles from './icon.scss';
+import schema from '../icon.schema';
 
-import PubSub from 'pubsub-js';
-import * as Icons from '../registry';
-import styles from './icon.scss';
+let cx = classNames.bind(iconStyles);
+const svgIcons = require.context('@bolt/components-icons', true, /\.svg$/);
 
-const backgroundStyles = ['circle', 'square'];
+const spriteNodeId = '__SVG_SPRITE_NODE__';
+const spriteGlobalVarName = '__SVG_SPRITE__';
+const isSpriteExists = !!window[spriteGlobalVarName];
 
-const colors = ['teal', 'blue'];
+svgIcons.keys().reduce((images, path) => {
+  const key = path.substring(path.lastIndexOf('/') + 1, path.lastIndexOf('.'));
+  images[key] = svgIcons(path).default;
+  return images;
+}, {});
 
 @customElement('bolt-icon')
-class BoltIcon extends withPreact {
-  static props = {
-    name: props.string,
-    size: props.string,
-    background: props.string,
-    color: props.string,
+class BoltIcon extends BoltElement {
+  static schema = schema;
 
-    // programatically spell out the contrast color that needs to get used
-    contrastColor: props.string,
-  };
-
-  connectedCallback() {
-    super.connectedCallback && super.connectedCallback();
-    const elem = this;
-    this.useCssVars = supportsCSSVars;
-
-    this.state = {
-      primaryColor: 'var(--bolt-theme-icon, currentColor)',
-      secondaryColor: 'rgba(var(--bolt-theme-background), 1)',
+  static get properties() {
+    return {
+      ...this.props,
     };
+  }
 
-    // listen for page changes to decide when colors need to get recalculated
-    if (!this.useCssVars) {
-      const checkIfColorChanged = function(msg, data) {
-        /**
-         * The container with the class change contains this particular icon element so
-         * we should double-check the color contrast values.
-         */
-        if (data.target.contains) {
-          if (data.target.contains(elem)) {
-            const recalculatedSecondaryColor = colorContrast(
-              window.getComputedStyle(elem).getPropertyValue('color'),
-            );
+  constructor() {
+    super();
+    this.svgSymbol = null;
 
-            elem.setAttribute('contrast-color', recalculatedSecondaryColor);
-            elem.state.secondaryColor = recalculatedSecondaryColor;
-          }
-        }
-      };
-
-      this.colorObserver = PubSub.subscribe(
-        'component.icon',
-        checkIfColorChanged,
-      );
+    if (isSpriteExists) {
+      this.sprite = window[spriteGlobalVarName];
+    } else {
+      this.sprite = new BrowserSprite({ attrs: { id: spriteNodeId } });
+      window[spriteGlobalVarName] = this.sprite;
     }
 
-    if (!this.useCssVars) {
-      this.state.primaryColor = 'currentColor';
+    const existing = document.getElementById(spriteNodeId);
 
-      if (this.contrastColor) {
-        this.state.secondaryColor = this.contrastColor;
-      } else {
-        this.state.secondaryColor = colorContrast(
-          rgb2hex(window.getComputedStyle(this).getPropertyValue('color')),
-        );
-      }
+    if (existing) {
+      this.sprite.attach(existing);
+    } else {
+      this.sprite.mount(document.body, true);
     }
   }
 
-  disconnectedCallback() {
-    super.disconnectedCallback && super.disconnectedCallback();
+  static useShadow = false;
 
-    if (this.colorObserver) {
-      PubSub.unsubscribe(this.colorObserver);
-    }
+  static get styles() {
+    return [unsafeCSS(iconStyles)];
   }
 
   render() {
-    const { size, name, color, background } = this.props;
-    const { primaryColor, secondaryColor } = this.state;
-
-    const classes = css(
-      'c-bolt-icon',
-      size && spacingSizes[size] && spacingSizes[size] !== ''
-        ? `c-bolt-icon--${size}`
-        : '',
-      name ? `c-bolt-icon--${name}` : '',
-      color && colors.includes(color) ? `c-bolt-icon--${color}` : '',
-    );
-
-    const iconClasses = css('c-bolt-icon__icon');
-
-    const backgroundClasses = css(
-      'c-bolt-icon__background-shape',
-      background && backgroundStyles.includes(background)
-        ? `c-bolt-icon__background-shape--${background}`
-        : '',
-    );
-
-    const Icon = name;
-    const IconTag = Icons.get(`${Icon}`);
-    const iconSize =
-      size && spacingSizes[size]
-        ? spacingSizes[size].replace('rem', '') * (16 / 2)
-        : spacingSizes.medium.replace('rem', '') * (16 / 2);
-
-    return (
-      <div className={classes}>
-        {this.useShadow && <style>{styles[0][1]}</style>}
-        <IconTag
-          className={iconClasses}
-          size={iconSize}
-          bgColor={primaryColor}
-          fgColor={secondaryColor}
-        />
-        {background && size === 'xlarge' && (
-          <span className={backgroundClasses} />
-        )}
-      </div>
-    );
-  }
-}
-
-/**
- * If CSS Vars are unsupported, listen for class changes on the page to selectively
- * decide when to check to see if an icon component's color should change.
- */
-const observedElements = [];
-
-// Observe body + children for changes, but only once.
-if (!supportsCSSVars && !observedElements.includes(document.body)) {
-  observedElements.push(document.body);
-
-  const observer = new MutationObserver(mutations => {
-    mutations.forEach(mutation => {
-      if (mutation.attributeName === 'class') {
-        // publish a topic asyncronously
-        PubSub.publish('component.icon', {
-          event: 'color-change',
-          target: mutation.target,
-        });
-      }
+    const classes = cx('c-bolt-icon', {
+      [`c-bolt-icon--${this.size}`]: this.size,
+      [`c-bolt-icon--${this.name}`]: this.name,
+      'has-background':
+        this.background !== 'none' &&
+        schema.properties.background.enum.includes(this.background),
+      [`has-${this.background}-background`]:
+        this.background !== 'none' &&
+        schema.properties.background.enum.includes(this.background),
+      [`c-bolt-icon--${this.color}`]: schema.properties.color.enum.includes(
+        this.color,
+      ),
     });
-  });
 
-  // Attach the mutation observer to the body to listen for className changes
-  observer.observe(document.body, {
-    attributes: true,
-    attributeFilter: ['class'],
-    attributeOldValue: false,
-    childList: false,
-    subtree: true,
-  });
+    const iconClasses = cx('c-bolt-icon__icon', {
+      [`c-bolt-icon__icon--${this.size}`]:
+        spacingSizes[this.size] && spacingSizes[this.size] !== '',
+    });
+
+    const backgroundClasses = cx('c-bolt-icon__background-shape', {
+      [`c-bolt-icon__background-shape--${this.background}`]: schema.properties.background.enum.includes(
+        this.background,
+      ),
+    });
+
+    const inShadowDom =
+      hasNativeShadowDomSupport && this.getRootNode() instanceof ShadowRoot;
+
+    const shouldRenderFallbackMarkup =
+      (inShadowDom || window.self !== window.top) && this.sprite?.node;
+
+    let svgSymbol;
+    if (shouldRenderFallbackMarkup) {
+      svgSymbol =
+        (this.name &&
+          this.sprite &&
+          this.sprite?.node?.querySelector(`#${this.name}`)?.outerHTML) ||
+        '';
+
+      // tweak the markup we grab from the SVG <symbol> in instances that we need to inline
+      if (svgSymbol) {
+        svgSymbol = svgSymbol
+          .replace(
+            '<symbol ',
+            '<svg style="position: absolute; width: 0; height: 0"',
+          )
+          .replace('</symbol>', '</svg>');
+      }
+    }
+
+    // auto-inject the SVG <symbol> when rendering inside of an iframe OR in a parent element that has a Shadow DOM
+    return html`
+      ${shouldRenderFallbackMarkup && svgSymbol
+        ? html`
+            <style>
+              ${unsafeCSS(iconStyles)}
+            </style>
+            ${unsafeHTML(svgSymbol)}
+          `
+        : ''}
+      <span class="${classes}">
+        <svg class="${iconClasses}">
+          <use href="#${this.name}" />
+        </svg>
+        ${this.background && this.background !== 'none'
+          ? html`
+              <span class="${backgroundClasses}"></span>
+            `
+          : ''}
+      </span>
+    `;
+  }
 }
 
 export { BoltIcon };

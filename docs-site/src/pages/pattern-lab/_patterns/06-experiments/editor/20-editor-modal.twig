@@ -5,6 +5,15 @@
   <bolt-link on-click-target="editor-demo__modal" on-click="show" url="#">
     This is a Link triggering an on-page Modal
   </bolt-link>
+  <bolt-cta>
+    <bolt-icon size="medium" slot="icon" name="asset-presentation">
+    </bolt-icon>
+    <bolt-link slot="link" display="inline" valign="center" on-click="show" url="javascript:void(0)" on-click-target="editor-demo__modal" is-headline="">
+      CTA Text
+      <bolt-icon name="chevron-right">
+      </bolt-icon>
+    </bolt-link>
+  </bolt-cta>
 {% endset %}
 
 {% include '@bolt-components-editor/editor-in-pl.twig' with {

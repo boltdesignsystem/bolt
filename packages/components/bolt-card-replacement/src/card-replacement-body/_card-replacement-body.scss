@@ -5,31 +5,26 @@
 @import '@bolt/core-v3.x';
 @import '../_card-replacement-settings-and-tools.scss';
 
-bolt-card-replacement-body {
-  position: relative; // this + z-index needed in order to handle a background layer
-  z-index: 2;
-  width: 100%;
-}
-
-:host {
+@include bolt-repeat-rule(('bolt-card-replacement-body', ':host')) {
   width: 100%;
 }
 
 .c-bolt-card_replacement__body {
-  @include bolt-margin(0);
-  @include bolt-padding(#{$bolt-card-replacement-body-spacing});
-
   display: block;
+  position: relative; // Position is needed to bring body's stacking order above background.
+  margin: 0;
 }
 
-// automatically raise the default z-index of nested bolt-links in the bolt-card-replacement-body so they aren't covered by the bolt-card-replacement-link layer
-.c-bolt-card_replacement__body ::slotted(bolt-link) {
-  position: relative;
-  z-index: $bolt-card-replacement-individual-link-z-index;
-}
+// Spacing prop
+$bolt-card-replacement-spacing: small, medium;
 
-// fallback version of the above styles -- used if shadow dom isn't supported or not getting used in certain situations
-.c-bolt-card_replacement__body bolt-link {
-  position: relative;
-  z-index: $bolt-card-replacement-individual-link-z-index;
+@each $size in $bolt-spacing-multiplier-system {
+  $size-name: nth($size, 1);
+
+  @if index($bolt-card-replacement-spacing, $size-name) {
+    .c-bolt-card_replacement__body--spacing-#{$size-name} {
+      padding: var(--bolt-spacing-y-#{$size-name})
+        var(--bolt-spacing-x-#{$size-name});
+    }
+  }
 }

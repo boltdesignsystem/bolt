@@ -3,6 +3,132 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.25.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-critical-css/compare/v2.25.0...v2.25.1) (2020-07-14)
+
+**Note:** Version bump only for package @bolt/components-critical-css
+
+
+
+
+
+# [2.25.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-critical-css/compare/v2.22.2...v2.25.0) (2020-07-13)
+
+
+### Features
+
+* add note to each deprecated package linking to migration docs ([2485a5c](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-critical-css/commit/2485a5c1238674ffc1fb4de4fd172b5c389b61da))
+
+
+
+
+
+## [2.24.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-critical-css/compare/v2.24.0...v2.24.1) (2020-06-17)
+
+**Note:** Version bump only for package @bolt/components-critical-css
+
+
+
+
+
+# [2.24.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-critical-css/compare/v2.23.0...v2.24.0) (2020-06-05)
+
+**Note:** Version bump only for package @bolt/components-critical-css
+
+
+
+
+
+# [2.23.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-critical-css/compare/v2.22.1...v2.23.0) (2020-05-06)
+
+
+### Features
+
+* add note to each deprecated package linking to migration docs ([2485a5c](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-critical-css/commit/2485a5c1238674ffc1fb4de4fd172b5c389b61da))
+
+
+
+
+
+# [2.22.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-critical-css/compare/v2.21.1...v2.22.0) (2020-04-22)
+
+**Note:** Version bump only for package @bolt/components-critical-css
+
+
+
+
+
+# [2.21.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-critical-css/compare/v2.20.2...v2.21.0) (2020-04-08)
+
+**Note:** Version bump only for package @bolt/components-critical-css
+
+
+
+
+
+# [2.20.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-critical-css/compare/v2.19.1...v2.20.0) (2020-03-18)
+
+**Note:** Version bump only for package @bolt/components-critical-css
+
+
+
+
+
+# [2.19.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-critical-css/compare/v2.18.1...v2.19.0) (2020-03-04)
+
+**Note:** Version bump only for package @bolt/components-critical-css
+
+
+
+
+
+## [2.18.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-critical-css/compare/v2.18.0...v2.18.1) (2020-02-21)
+
+**Note:** Version bump only for package @bolt/components-critical-css
+
+
+
+
+
+# [2.18.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-critical-css/compare/v2.17.1...v2.18.0) (2020-02-19)
+
+**Note:** Version bump only for package @bolt/components-critical-css
+
+
+
+
+
+# [2.17.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-critical-css/compare/v2.16.3...v2.17.0) (2020-02-04)
+
+**Note:** Version bump only for package @bolt/components-critical-css
+
+
+
+
+
+## [2.16.2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-critical-css/compare/v2.16.1...v2.16.2) (2020-01-28)
+
+**Note:** Version bump only for package @bolt/components-critical-css
+
+
+
+
+
+## [2.16.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-critical-css/compare/v2.16.0...v2.16.1) (2020-01-27)
+
+**Note:** Version bump only for package @bolt/components-critical-css
+
+
+
+
+
+# [2.16.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-critical-css/compare/v2.15.2...v2.16.0) (2020-01-24)
+
+**Note:** Version bump only for package @bolt/components-critical-css
+
+
+
+
+
 ## [2.15.2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-critical-css/compare/v2.15.1...v2.15.2) (2020-01-21)
 
 **Note:** Version bump only for package @bolt/components-critical-css

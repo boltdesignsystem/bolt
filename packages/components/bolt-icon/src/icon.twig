@@ -6,9 +6,48 @@
 
 {% set attributes = attributes
   .setAttribute("name", name)
-  .setAttribute("background", background)
   .setAttribute("size", size)
   .setAttribute("color", color)
 %}
 
-<bolt-icon {{ attributes }}>{% block icon_inner %}{% endblock %}</bolt-icon>
+{% if background and background != "none" %}
+  {% set attributes = attributes.setAttribute("background", background) %}
+{% endif %}
+
+{% set classes = [
+  "c-bolt-icon",
+  name ? "c-bolt-icon--#{name}" : "",
+  size ? "c-bolt-icon--#{size}" : "",
+  color and color != "auto" ? "c-bolt-icon--#{color}" : "",
+  background and background != "none" ? "has-background" : "",
+  background and background != "none" ? "has-" ~ background ~ "-background" : "",
+] %}
+
+{% set svg_classes = [
+  "c-bolt-icon__icon",
+  size ? "c-bolt-icon__icon--#{size}" : "",
+] %}
+
+<bolt-icon {{ attributes }}>
+  <span class="{{ classes|join(' ')|trim }}">
+
+    {% if fileExists("@bolt-assets/icons/" ~ name ~ ".svg") %}
+      {% set svg_source = source("@bolt-assets/icons/" ~ name ~ ".svg") %}
+
+      {% set svg_source = svg_source | replace({
+        "<svg ": '<svg class="' ~ svg_classes|join(" ")|trim ~ '" '
+      }) %}
+
+      {{ svg_source | raw }}
+
+    {% else %}
+     <svg class="{{ svg_classes|join(' ')|trim }}">
+        <use xlink:href="#{{ name }}"></use>
+     </svg>
+    {% endif %}
+
+    {% if background and background != "none" %}
+      <span class="c-bolt-icon__background-shape c-bolt-icon__background-shape--{{ background }}"></span>
+    {% endif %}
+  </span>
+</bolt-icon>

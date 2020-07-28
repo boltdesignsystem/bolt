@@ -16,6 +16,8 @@
 ///    @include bolt-font-size(large);
 /// }
 @mixin bolt-font-size($size, $leading: regular) {
+  // @warn 'This scss mixin is being deprecated. Please convert to use global CSS vars -> var(--bolt-type-font-size-*)';
+
   $font-size: map-get-deep($bolt-font-sizes, 'font-sizes', $size, 'font-size');
 
   @if (type-of($font-size) == 'map') {
@@ -30,11 +32,17 @@
     font-size: $font-size;
   }
 
-  @if ($leading != '' and  $leading != null) {
+  @if ($leading != '' and $leading != null) {
     @if (type-of($leading) == number) {
       $leading: $leading;
     } @else if (type-of($leading) == string) {
-      $leading: map-get-deep($bolt-font-sizes, 'font-sizes', $size, 'line-height', $leading);
+      $leading: map-get-deep(
+        $bolt-font-sizes,
+        'font-sizes',
+        $size,
+        'line-height',
+        $leading
+      );
     }
 
     @if (type-of($leading) == 'map') {
@@ -43,7 +51,6 @@
       @if ($length < 2) {
         line-height: nth($leading, 2);
       } @else {
-        @debug $leading;
         @include bolt-poly-fluid-sizing('line-height', $leading);
       }
     } @else {

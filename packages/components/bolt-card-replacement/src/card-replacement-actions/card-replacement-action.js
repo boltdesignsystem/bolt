@@ -1,24 +1,37 @@
 import { ifDefined } from 'lit-html/directives/if-defined';
 import { props, hasNativeShadowDomSupport } from '@bolt/core-v3.x/utils';
 import classNames from 'classnames/bind';
+import { withContext } from 'wc-context';
 import { withLitHtml } from '@bolt/core-v3.x/renderers/renderer-lit-html';
 import { html, customElement } from '@bolt/element';
 
-import schema from '../../card-replacement.schema.yml';
+import schema from '../../card-replacement.schema';
 import styles from './_card-replacement-action.scss';
 
 let cx = classNames.bind(styles);
 
 @customElement('bolt-card-replacement-action')
-class BoltCardReplacementAction extends withLitHtml {
+class BoltCardReplacementAction extends withContext(withLitHtml) {
   static props = {
-    url: props.string, // figure || div
+    url: props.string,
     external: props.boolean,
+    spacing: props.string,
   };
+
+  static get observedContexts() {
+    return ['spacing'];
+  }
+
+  contextChangedCallback(name, oldValue, value) {
+    if (name in this.props) {
+      // setAttibute will trigger re-render
+      this.setAttribute(name, value);
+    }
+  }
 
   render(props) {
     const classes = cx('c-bolt-card_replacement__action');
-    const { url, external } = this.props;
+    const { url, external, spacing } = this.props;
 
     return html`
       ${this.addStyles([styles])}
@@ -34,6 +47,7 @@ class BoltCardReplacementAction extends withLitHtml {
                 target="${ifDefined(
                   url ? (external ? '_blank' : '_self') : undefined,
                 )}"
+                size="${ifDefined(spacing ? spacing : undefined)}"
               >
                 ${this.slot('default')}
                 <bolt-icon

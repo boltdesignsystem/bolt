@@ -15,16 +15,16 @@ let setCheckRun, outputBanner, deployedUrlPretty, deployedUrl;
 async function init() {
   try {
     let config = await getConfig();
-    if (TRAVIS) {
-      setCheckRun = require('./check-run').setCheckRun;
-      outputBanner = require('ci-utils').outputBanner;
+    // if (TRAVIS) {
+    //   setCheckRun = require('./check-run').setCheckRun;
+    //   outputBanner = require('ci-utils').outputBanner;
 
-      await setCheckRun({
-        name: 'Deploy - now.sh (basic)',
-        status: 'in_progress',
-      });
-      outputBanner('Starting deploy...');
-    }
+    //   await setCheckRun({
+    //     name: 'Deploy - now.sh (basic)',
+    //     status: 'in_progress',
+    //   });
+    //   outputBanner('Starting deploy...');
+    // }
 
     try {
       // experimental approach for speeding up non-master / release / tagged version deploys
@@ -55,38 +55,38 @@ async function init() {
 
       deployedUrlPretty = deployedUrl.trim();
 
-      if (TRAVIS) {
-        await setCheckRun({
-          status: 'completed',
-          name: 'Deploy - now.sh (basic)',
-          conclusion: 'success',
-          output: {
-            title: 'Now.sh Basic Deploy',
-            summary: `
-      - ${deployedUrlPretty}
-            `.trim(),
-          },
-        });
-      }
+      // if (TRAVIS) {
+      //   await setCheckRun({
+      //     status: 'completed',
+      //     name: 'Deploy - now.sh (basic)',
+      //     conclusion: 'success',
+      //     output: {
+      //       title: 'Now.sh Basic Deploy',
+      //       summary: `
+      // - ${deployedUrlPretty}
+      //       `.trim(),
+      //     },
+      //   });
+      // }
     } catch (error) {
       console.log(error);
       console.error('Error deploying:');
       console.log(error.stdout, error.stderr);
 
-      if (TRAVIS) {
-        await setCheckRun({
-          status: 'completed',
-          name: 'Deploy - now.sh (basic)',
-          conclusion: 'failure',
-          output: {
-            title: 'Now.sh Deploy failure',
-            summary: `
-  ${error.stdout}
-  ${error.stderr}
-            `.trim(),
-          },
-        });
-      }
+      //     if (TRAVIS) {
+      //       await setCheckRun({
+      //         status: 'completed',
+      //         name: 'Deploy - now.sh (basic)',
+      //         conclusion: 'failure',
+      //         output: {
+      //           title: 'Now.sh Deploy failure',
+      //           summary: `
+      // ${error.stdout}
+      // ${error.stderr}
+      //           `.trim(),
+      //         },
+      //       });
+      //     }
       process.exit(1);
     }
   } catch (error) {

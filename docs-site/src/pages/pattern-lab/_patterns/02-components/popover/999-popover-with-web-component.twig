@@ -1,0 +1,64 @@
+{% macro code_example(code) %}
+  <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
+    {% grid "o-bolt-grid--center" %}
+      {% cell %}
+        {{ code }}
+      {% endcell %}
+    {% endgrid %}
+  </div>
+  <div class="u-bolt-margin-bottom-large">
+    <bolt-code-snippet syntax="dark" lang="html">{% spaceless %}
+      {{ code | replace({
+        '<': '&lt;',
+        '>': '&gt;',
+      }) | trim | raw }}
+    {% endspaceless %}</bolt-code-snippet>
+  </div>
+{% endmacro %}
+
+{% import _self as popover_example %}
+
+{% set popover_demo %}
+<bolt-popover>
+  <bolt-button size="small">
+    This triggers a popover
+  </bolt-button>
+  <div slot="content">
+    <bolt-text headline font-size="small">Content</bolt-text>
+    <bolt-text font-size="xsmall">This is the content of the popover with a <bolt-link url="https://pega.com">call to action</bolt-link>.</bolt-text>
+  </div>
+</bolt-popover>
+{% endset %}
+
+{% set popover_prop_demo %}
+<bolt-popover spacing="none" placement="top-start">
+  <bolt-button size="small">
+    Popover Menu
+  </bolt-button>
+  <div slot="content">
+    <bolt-menu>
+      <bolt-menu-item>
+        Menu Item 1
+      </bolt-menu-item>
+      <bolt-menu-item>
+        Menu Item 2
+      </bolt-menu-item>
+      <bolt-menu-item>
+        Menu Item 3
+      </bolt-menu-item>
+    </bolt-menu>
+  </div>
+</bolt-popover>
+{% endset %}
+
+<bolt-text headline>Web Component Usage</bolt-text>
+<bolt-text>
+  Bolt Popover is a web component, you can simply use <bolt-code-snippet display="inline" lang="html">&lt;bolt-popover&gt;</bolt-code-snippet> in the markup to make it render.
+</bolt-text>
+{% include popover_example.code_example(popover_demo) %}
+
+<bolt-text headline>Prop Usage</bolt-text>
+<bolt-text>
+  Configure the popover with the properties specified in the schema.
+</bolt-text>
+{% include popover_example.code_example(popover_prop_demo) %}

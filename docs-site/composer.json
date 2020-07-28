@@ -2,7 +2,6 @@
   "name": "bolt-design-system/pattern-lab",
   "description": "Hybrid PHP-powered Pattern Lab / Static Docs site for the Bolt Design System",
   "type": "project",
-  "minimum-stability": "dev",
   "repositories": [
     {
       "type": "path",
@@ -22,7 +21,8 @@
     },
     {
       "type": "vcs",
-      "url": "https://github.com/boltdesignsystem/patternlab-php-core"
+      "url": "https://github.com/boltdesignsystem/patternlab-php-core",
+      "no-api": true
     }
   ],
   "require": {
@@ -33,7 +33,9 @@
     "pattern-lab/core": "dev-develop as 2.9.0",
     "pattern-lab/patternengine-twig": "^2.2.2",
     "cweagans/composer-patches": "^1.6.4",
-    "evanlovely/plugin-twig-namespaces": "^1.1.1"
+    "evanlovely/plugin-twig-namespaces": "^1.1.1",
+    "cebe/markdown": "^1.2",
+    "hyn/frontmatter": "^1.1"
   },
   "autoload": {
     "psr-0": {

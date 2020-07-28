@@ -1,0 +1,57 @@
+{% macro code_example(code) %}
+  <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
+    {% grid "o-bolt-grid--center" %}
+      {% cell %}
+        {{ code }}
+      {% endcell %}
+    {% endgrid %}
+  </div>
+  <div class="u-bolt-margin-bottom-large">
+    <bolt-code-snippet syntax="dark" lang="html">{% spaceless %}
+      {{ code | replace({
+        '<': '&lt;',
+        '>': '&gt;',
+      }) | trim | raw }}
+    {% endspaceless %}</bolt-code-snippet>
+  </div>
+{% endmacro %}
+
+{% import _self as menu_example %}
+
+{% set menu_demo %}
+<bolt-menu>
+  <bolt-menu-item>
+    Menu item 1
+  </bolt-menu-item>
+  <bolt-menu-item>
+    Menu item 2
+  </bolt-menu-item>
+  <bolt-menu-item>
+    Menu item 3
+  </bolt-menu-item>
+</bolt-menu>
+{% endset %}
+
+{% set menu_prop_demo %}
+<bolt-menu spacing="medium">
+  <span slot="title">Menu Options</span>
+  <bolt-menu-item>
+    Menu item 1 is a button
+  </bolt-menu-item>
+  <bolt-menu-item url="https://pega.com">
+    Menu item 2 is a link
+  </bolt-menu-item>
+</bolt-menu>
+{% endset %}
+
+<bolt-text headline>Web Component Usage</bolt-text>
+<bolt-text>
+  Bolt Menu is a web component, you can simply use <bolt-code-snippet display="inline" lang="html">&lt;bolt-menu&gt;</bolt-code-snippet> in the markup to make it render.
+</bolt-text>
+{% include menu_example.code_example(menu_demo) %}
+
+<bolt-text headline>Prop Usage</bolt-text>
+<bolt-text>
+  Configure the menu with the properties specified in the schema.
+</bolt-text>
+{% include menu_example.code_example(menu_prop_demo) %}

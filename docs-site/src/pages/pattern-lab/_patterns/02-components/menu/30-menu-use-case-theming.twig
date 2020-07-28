@@ -1,0 +1,35 @@
+{# Setting variables for demo purposes #}
+{% set schema = bolt.data.components["@bolt-components-menu"].schema %}
+{% set themes = get_data("@bolt/themes.schema.json") %}
+
+<bolt-list spacing="large">
+  {% for theme in themes.properties.colors.enum %}
+    <bolt-list-item>
+      <bolt-text headline>Menu inside a {{ theme }} theme</bolt-text>
+      {% embed "@utils/theme-demo.twig" %}
+        {% block demo_content %}
+          {% grid "o-bolt-grid--center" %}
+            {% cell %}
+              {# Start component specific code #}
+              {% include "@bolt-components-menu/menu.twig" with {
+                title: "Choose one of these",
+                items: [
+                  {
+                    content: "Menu item 1",
+                  },
+                  {
+                    content: "Menu item 2",
+                  },
+                  {
+                    content: "Menu item 3",
+                  },
+                ]
+              } only %}
+              {# End component specific code #}
+            {% endcell %}
+          {% endgrid %}
+        {% endblock %}
+      {% endembed %}
+    </bolt-list-item>
+  {% endfor %}
+</bolt-list>

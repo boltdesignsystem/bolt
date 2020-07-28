@@ -1,57 +1,64 @@
-import './components/version-selector/version-selector';
-// import './components/schema-form'; // Component Explorer is temporarily disabled until we're done migrating our Twig Rendering Service to Now.sh v2
-import './components/handle-iframe-height';
-import './pages/pattern-lab/_patterns/02-components/card-deprecated/__tests__';
-// import './pages/pattern-lab/_patterns/01-styleguide/100-rendering-performance/bolt-preact-test';
-// import './pages/pattern-lab/_patterns/01-styleguide/100-rendering-performance/bolt-lit-test';
-// import './pages/pattern-lab/_patterns/01-styleguide/100-rendering-performance/lazy-lit-test';
-import './pages/pattern-lab/_patterns/04-pages/99999-bolt-dev-sandbox/editor-integration';
-import { enableAnimDemos } from './pages/pattern-lab/_patterns/06-experiments/animate/animate-demo-helpers.js';
-enableAnimDemos();
+import { lazyQueue } from '@bolt/lazy-queue';
 
-// Component-specific examples that need to get compiled:
-import '@bolt/components-typeahead/__demos__/dynamically-fetch-data/typeahead.dynamically-fetch-data';
-import '@bolt/components-typeahead/__demos__/navigate-to-search-results/typeahead.navigate-to-search-results';
-import '@bolt/components-typeahead/__demos__/navigate-to-exact-result/typeahead.navigate-to-exact-result';
+// Component-specific examples and demos that need to get compiled:
+lazyQueue(['bolt-card'], async () => {
+  await import(
+    /*  webpackChunkName: 'bolt-docs-site--deprecated-card-tests' */ './pages/pattern-lab/_patterns/02-components/card-deprecated/__tests__'
+  );
+});
 
-// here if you need pl only JS
-// document.addEventListener('DOMContentLoaded', () => {
-//   /**
-//    * Docs Edit README Link > Simple edit hover effect
-//    */
-//   const editLink = document.getElementsByClassName(
-//     'c-bds-docs__page-nav__link',
-//   );
-//   const editWrap = document.getElementsByClassName('c-bds-docs__lead');
+lazyQueue(['bolt-typeahead'], async () => {
+  await import(
+    /*  webpackChunkName: 'bolt-docs-site--typeahead-demos' */ './typeahead-demos'
+  );
+});
 
-//   function toggleEditOn() {
-//     editWrap[0].classList.add('edit-this-readme');
-//   }
+import './pages/pattern-lab/_patterns/04-pages/99999-bolt-dev-sandbox/editor-integration'; // lazy-queue used internally so not using it here
 
-//   function toggleEditOff() {
-//     editWrap[0].classList.remove('edit-this-readme');
-//   }
+lazyQueue(['bolt-select'], async () => {
+  await import(
+    /*  webpackChunkName: 'bolt-docs-site--version-selector' */ './components/version-selector/version-selector'
+  );
+});
 
-//   if (editLink[0]) {
-//     editLink[0].addEventListener('mouseover', toggleEditOn, false);
-//   }
+lazyQueue(['bolt-animate'], async () => {
+  await import(
+    /*  webpackChunkName: 'bolt-docs-site--animate-demos' */ './animate-demos'
+  );
+});
 
-//   if (editWrap[0]) {
-//     editLink[0].addEventListener('mouseout', toggleEditOff, false);
-//   }
+// remaining (misc) docs site-related code that isn't attached to a particular selector
+lazyQueue([], async () => {
+  await import('./custom-icons');
 
-//   /**
-//    * Make sure all external facing links open in a new tab in PL.
-//    * Important as external links can behave strangely within the iframe setup of PL.
-//    */
-//   const docsSiteLinks = document.querySelectorAll('a');
-//   for (var i = 0, len = docsSiteLinks.length; i < len; i++) {
-//     const linkElem = docsSiteLinks[i];
-//     const href = linkElem.getAttribute('href');
-//     if (href) {
-//       if (href.startsWith('http')) {
-//         linkElem.setAttribute('target', '_blank');
-//       }
-//     }
-//   }
-// });
+  await import(
+    /*  webpackChunkName: 'bolt-docs-site--analytics-autotrack' */ '@bolt/analytics-autotrack'
+  );
+});
+
+// Blueprint-specific JS demoing the Mission Completed form's button re-activating
+const missionRatingInputs = document.querySelectorAll(
+  '.js-mission-rating-input',
+);
+const missionRatingSubmit = document.querySelector('.js-mission-rating-submit');
+
+for (const missionRatingInput of missionRatingInputs) {
+  missionRatingInput.addEventListener('input', e => {
+    if (missionRatingInput.validity.valid && e.target.value !== 'on') {
+      missionRatingSubmit.removeAttribute('disabled');
+    } else {
+      missionRatingSubmit.setAttribute('disabled', '');
+    }
+  });
+}
+
+if (missionRatingSubmit) {
+  missionRatingSubmit.addEventListener('click', e => {
+    if (!missionRatingSubmit.hasAttribute('disabled')) {
+      e.preventDefault();
+
+      window.location.href =
+        '/pattern-lab/patterns/03-blueprints-05-pages-t1-landing-pages-mission-landing--test-with-modal-02-t1-mission-landing--test-with-modal--after-submit/03-blueprints-05-pages-t1-landing-pages-mission-landing--test-with-modal-02-t1-mission-landing--test-with-modal--after-submit.html';
+    }
+  });
+}

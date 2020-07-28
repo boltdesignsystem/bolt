@@ -1,5 +1,13 @@
 @import '@bolt/core-v3.x';
 
+bolt-two-character-layout {
+  bolt-animate[slot^="character--"] {
+    display: block;
+    flex: 1 0 100%;
+    width: 100%;
+  }
+}
+
 .c-bolt-two-character-layout {
   position: relative;
 
@@ -24,6 +32,10 @@
 
     @include bolt-mq(small) {
       max-width: 500px;
+    }
+
+    @include bolt-mq(large) {
+      max-width: 700px;
     }
   }
 
@@ -50,9 +62,5 @@
       width: 100%;
       height: 100%;
     }
-  }
-
-  .c-bolt-character {
-
   }
 }

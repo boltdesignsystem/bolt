@@ -3,7 +3,7 @@
 {% macro link(text, href, attributes) %}
   {% include "@bolt-components-link/link.twig" with {
     text: text,
-    href: href,
+    url: href,
     attributes: attributes | default({})
   } only %}
 {% endmacro %}

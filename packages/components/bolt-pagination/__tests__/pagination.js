@@ -5,9 +5,7 @@ import {
   stopServer,
   html,
 } from '../../../testing/testing-helpers';
-const { readYamlFileSync } = require('@bolt/build-tools/utils/yaml');
-const { join } = require('path');
-const schema = readYamlFileSync(join(__dirname, '../pagination.schema.yml'));
+import schema from '../pagination.schema';
 const { align } = schema.properties;
 
 const timeout = 120000;

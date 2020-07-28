@@ -52,7 +52,7 @@ expect.extend({ pkgToHaveDependenciesOn });
 /** @type {BoltPkg[]} */
 const boltPkgs = getPkgList();
 
-describe('Bolt Components declare dependencies in package.json if used in Twig files', () => {
+describe.skip('Bolt Components declare dependencies in package.json if used in Twig files', () => {
   const excludedPkgs = [
     '@bolt/generator-bolt',
     '@bolt/components-editor',
@@ -102,7 +102,7 @@ describe('Bolt Components declare dependencies in package.json if used in Twig f
 
             expect(boltPkg.name).pkgToHaveDependenciesOn([...twigDepPkgs]);
           }
-        }, 120000);
+        }, 240000);
       },
     );
 });

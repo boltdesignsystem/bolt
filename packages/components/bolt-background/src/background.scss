@@ -4,9 +4,13 @@
 
 @import '@bolt/core-v3.x';
 
-$bolt-test-color-background-gradient--primary: bolt-color(black); // This needs to map to the theme's background color.
-$bolt-test-color-background-gradient--secondary: rgba($bolt-test-color-background-gradient--primary, 0.1);
-
+$bolt-test-color-background-gradient--primary: bolt-color(
+  black
+); // This needs to map to the theme's background color.
+$bolt-test-color-background-gradient--secondary: rgba(
+  $bolt-test-color-background-gradient--primary,
+  0.1
+);
 
 $bolt-gradient-angle--default: -35deg;
 $bolt-gradient-angle--reversed: 180deg - abs($bolt-gradient-angle--default);
@@ -23,8 +27,6 @@ $bolt-bg-shape-offset-side-small: $bolt-bg-shape-offset-bottom-small * 1.2;
 $bolt-bg-shape-offset-bottom-large: -300px;
 $bolt-bg-shape-offset-side-large: $bolt-bg-shape-offset-bottom-large * 1.2;
 
-
-
 // Zoom animation treatment
 @keyframes a-bolt-zoom-in-out {
   0% {
@@ -40,7 +42,6 @@ $bolt-bg-shape-offset-side-large: $bolt-bg-shape-offset-bottom-large * 1.2;
   }
 }
 
-
 bolt-background {
   flex-grow: 1;
 }
@@ -53,7 +54,6 @@ bolt-background {
   height: 100%;
   overflow: hidden;
 }
-
 
 .c-bolt-background__item {
   display: block;
@@ -92,7 +92,7 @@ bolt-background {
 
   .is-ready & {
     pointer-events: none;
-    background-color: rgba(bolt-color(indigo, dark), 0.8);
+    background-color: rgba(bolt-color(navy, dark), 0.8);
     perspective: 500px;
     perspective-origin: 50% 150%;
   }
@@ -161,7 +161,6 @@ bolt-background {
 }
 
 .c-bolt-background__overlay {
-
   content: '';
   display: block;
   position: absolute;
@@ -169,7 +168,7 @@ bolt-background {
   // This overlay has a history of rounding errors (which can leave a stripe on one side of the background that's not
   // covered by the overlay).  The following is a hack that all but guarantees that can't happen.
   top: -1px;
-  right:  -1px;
+  right: -1px;
   bottom: -1px;
   left: -1px;
 }
@@ -186,26 +185,52 @@ bolt-background {
   opacity: $bolt-background-dark-overlay-opacity--light; // TODO: This number is only working for dark colors, it does not work for light colors. Therefore light and xlight themes with a background image would not be accessible yet.
 }
 
-
 .c-bolt-background__overlay--color-fill {
   background-color: bolt-theme(background);
 }
-
-
-
 
 // TODO: The gradient option is only working for the dark and xdark themes. It needs to map to the theme colors in order for it to work for the light and xlight themes.
 
 // Default gradient if the image focal point (point of interest) is in the center or on the right side
 .c-bolt-background__overlay--gradient-fill {
-  background: linear-gradient($bolt-gradient-angle--default, $bolt-test-color-background-gradient--secondary, $bolt-test-color-background-gradient--primary 50%);
-  background: linear-gradient($bolt-gradient-angle--default, var(--bolt-theme-background-gradient-primary, $bolt-test-color-background-gradient--secondary), var(--bolt-theme-background-gradient-primary, $bolt-test-color-background-gradient--primary) 50%);
+  background: linear-gradient(
+    $bolt-gradient-angle--default,
+    $bolt-test-color-background-gradient--secondary,
+    $bolt-test-color-background-gradient--primary 50%
+  );
+  background: linear-gradient(
+    $bolt-gradient-angle--default,
+    var(
+      --bolt-theme-background-gradient-primary,
+      $bolt-test-color-background-gradient--secondary
+    ),
+    var(
+        --bolt-theme-background-gradient-primary,
+        $bolt-test-color-background-gradient--primary
+      )
+      50%
+  );
 }
 
 // Alt gradient used if the image focal point (point of interest) is on the left side
 .c-bolt-background__overlay--gradient-reversed-fill {
-  background: linear-gradient($bolt-gradient-angle--reversed, $bolt-test-color-background-gradient--secondary, $bolt-test-color-background-gradient--primary 50%);
-  background: linear-gradient($bolt-gradient-angle--reversed, var(--bolt-theme-background-gradient-secondary, $bolt-test-color-background-gradient--secondary), var(--bolt-theme-background-gradient-primary, $bolt-test-color-background-gradient--primary) 50%);
+  background: linear-gradient(
+    $bolt-gradient-angle--reversed,
+    $bolt-test-color-background-gradient--secondary,
+    $bolt-test-color-background-gradient--primary 50%
+  );
+  background: linear-gradient(
+    $bolt-gradient-angle--reversed,
+    var(
+      --bolt-theme-background-gradient-secondary,
+      $bolt-test-color-background-gradient--secondary
+    ),
+    var(
+        --bolt-theme-background-gradient-primary,
+        $bolt-test-color-background-gradient--primary
+      )
+      50%
+  );
 }
 
 .c-bolt-background__shapes {
@@ -239,7 +264,6 @@ bolt-background {
   }
 }
 
-
 // @todo: move into Academy-specific styles
 .c-bolt-background-crop {
   display: flex;
@@ -255,7 +279,8 @@ bolt-background {
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
-  filter: drop-shadow(0 12px 55px #50e3c2) drop-shadow(-13px -22px 58px rgba(0,0,0,0.36));
+  filter: drop-shadow(0 12px 55px #50e3c2)
+    drop-shadow(-13px -22px 58px rgba(0, 0, 0, 0.36));
 
   @include bolt-mq(medium) {
     justify-content: flex-end;
@@ -279,22 +304,37 @@ bolt-background {
   background-size: 100% 100%;
 
   &.c-bolt-background__overlay-fill-color--indigo {
-    background-image: radial-gradient(circle at 80vh 10vw, rgba(255,255,255,0) 0%, rgba(4,4,4,0.5) 100%, rgba(0,0,0,0.5) 100%), radial-gradient(circle at 80% 40%, #545DA6 20%, #161A3C 70%);
+    background-image: radial-gradient(
+        circle at 80vh 10vw,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(4, 4, 4, 0.5) 100%,
+        rgba(0, 0, 0, 0.5) 100%
+      ),
+      radial-gradient(circle at 80% 40%, #545da6 20%, #161a3c 70%);
     background-position: top right;
   }
 
   &.c-bolt-background__overlay-fill-color--pink {
-    background-image: radial-gradient(54% 190% at top -20% left 10%, #C910AB 10%, rgba(0,0,0,0.00) 96%);
+    background-image: radial-gradient(
+      54% 190% at top -20% left 10%,
+      #c910ab 10%,
+      rgba(0, 0, 0, 0) 96%
+    );
     background-position: top left;
   }
 }
 
 .c-bolt-background__overlay--linear-gradient-fill {
   &.c-bolt-background__overlay-fill-color--pink {
-    background: linear-gradient(350.07deg, rgba(162,4,147,0.98) 0%, #A50494 6.56%, rgba(31,38,86,0) 100%);
+    background: linear-gradient(
+      350.07deg,
+      rgba(162, 4, 147, 0.98) 0%,
+      #a50494 6.56%,
+      rgba(31, 38, 86, 0) 100%
+    );
   }
 
   &.c-bolt-background__overlay-fill-color--black {
-    background: linear-gradient(0deg, rgba(0,0,0,0) 0.02%, #000000 100%);
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0) 0.02%, #000000 100%);
   }
 }

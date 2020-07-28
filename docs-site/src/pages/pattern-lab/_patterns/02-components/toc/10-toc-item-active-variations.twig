@@ -1,0 +1,34 @@
+<bolt-text headline>
+  Manually set an item as active
+</bolt-text>
+<bolt-text>
+  Any item can be set to <bolt-code-snippet display="inline" lang="html">active</bolt-code-snippet> to indicate that the page is anchored to the respective section.
+</bolt-text>
+
+{# Start component specific code #}
+{% include "@bolt-components-toc/toc.twig" with {
+  items: [
+    {
+      text: "Section One",
+      url: "#section-one",
+    },
+    {
+      text: "Section Two",
+      url: "#section-two",
+    },
+    {
+      text: "Section Three",
+      url: "#section-three",
+      active: true,
+    },
+    {
+      text: "Section Four",
+      url: "#section-four",
+    },
+    {
+      text: "Section Five",
+      url: "#section-five",
+    },
+  ]
+} only %}
+{# End component specific code #}

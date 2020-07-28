@@ -9,22 +9,22 @@
 
 {% if nested %}
   {% if index == 1 %}
-    <bolt-li {{ attributes }}>
-      <replace-with-grandchildren>
-        <li class="{{ classes|join(" ") }}">
+    <bolt-li {{ attributes }} role="presentation">
+      <div role="presentation">
+        <div class="{{ classes|join(" ") }}" role="listitem">
   {% endif %}
-  {{ children }}
+  <ssr-keep for="bolt-li">{{ children }}</ssr-keep>
   {% if length == index %}
-        </li>
-      </replace-with-grandchildren>
+        </div>
+      </div>
     </bolt-li>
   {% endif %}
 {% else %}
-  <bolt-li {{ attributes }}>
-    <replace-with-grandchildren>
-      <li class="{{ classes|join(" ") }}">
-        {{ children }}
-      </li>
-    </replace-with-grandchildren>
+  <bolt-li {{ attributes }} role="presentation">
+    <div role="presentation">
+      <div class="{{ classes|join(" ") }}" role="listitem">
+        <ssr-keep for="bolt-li">{{ children }}</ssr-keep>
+      </div>
+    </div>
   </bolt-li>
 {% endif %}

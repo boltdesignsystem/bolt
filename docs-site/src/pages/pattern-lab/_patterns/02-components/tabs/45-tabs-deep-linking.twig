@@ -1,0 +1,42 @@
+{% set tab_content_1 %}
+  {% include "@bolt-components-placeholder/placeholder.twig" with {
+      text: "Tab panel 1",
+      size: "large",
+    } only %}
+{% endset %}
+{% set tab_content_2 %}
+  {% include "@bolt-components-placeholder/placeholder.twig" with {
+      text: "Tab panel 2",
+      size: "large",
+    } only %}
+{% endset %}
+{% set tab_content_3 %}
+  {% include "@bolt-components-placeholder/placeholder.twig" with {
+      text: "Tab panel 3",
+      size: "large",
+    } only %}
+{% endset %}
+
+<bolt-text>
+  Deep link to a tab by adding a query string to the URL with "selected-tab" as the name and the tab ID as the value. For example: <bolt-link url="?selected-tab=tab-3">?selected-tab=tab-3</bolt-link>.
+</bolt-text>
+
+{% include "@bolt-components-tabs/tabs.twig" with {
+  panels: [
+    {
+      label: "Tab label 1",
+      content: tab_content_1,
+      id: "tab-1",
+    },
+    {
+      label: "Tab label 2",
+      content: tab_content_2,
+      id: "tab-2",
+    },
+    {
+      label: "Tab label 3",
+      content: tab_content_3,
+      id: "tab-3",
+    }
+  ]
+} only %}

@@ -3,6 +3,15 @@
 {% for size in exampleSizes %}
   {% include "@bolt-components-icon/icon.twig" with {
     name: "add-open",
+    size: size
+  }%}
+{% endfor %}
+
+<hr>
+
+{% for size in exampleSizes %}
+  {% include "@bolt-components-icon/icon.twig" with {
+    name: "add-open",
     background: "circle",
     size: size
   }%}

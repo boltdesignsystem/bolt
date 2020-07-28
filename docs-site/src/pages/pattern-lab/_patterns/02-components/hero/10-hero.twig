@@ -1,0 +1,23 @@
+<bolt-text class="u-bolt-margin-bottom-xsmall">This simple Hero demo only sets four props:</bolt-text>
+
+<bolt-ul>
+  <bolt-li>the Hero <code>content</code></bolt-li>
+  <bolt-li>the <code>image</code> path</bolt-li>
+  <bolt-li>the image's vertical alignment (set to bottom via the <code>imageValign</code> prop)</bolt-li>
+  <bolt-li>and the <code>theme</code> color (light)</bolt-li>
+</bolt-ul>
+
+{% set exampleContent %}
+  {% include "@bolt-components-headline/headline.twig" with {
+    size: "xxxlarge",
+    text: "Hero Title",
+  } %}
+{% endset %}
+
+{% include "@bolt-components-hero/hero.twig" with {
+  content: exampleContent,
+  image: "/images/heros/hero-foreground--yellow.png",
+  theme: "light",
+  imageValign: "bottom",
+} only %}
+

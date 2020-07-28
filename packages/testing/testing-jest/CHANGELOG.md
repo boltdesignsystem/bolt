@@ -3,6 +3,141 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.25.1](https://github.com/boltdesignsystem/bolt/compare/v2.25.0...v2.25.1) (2020-07-14)
+
+**Note:** Version bump only for package @bolt/jest-config
+
+
+
+
+
+# [2.25.0](https://github.com/boltdesignsystem/bolt/compare/v2.22.2...v2.25.0) (2020-07-13)
+
+
+### Bug Fixes
+
+* linting ([48f60b3](https://github.com/boltdesignsystem/bolt/commit/48f60b38edfefbc44424e199b4a0b3e6fce7908b))
+* update now-storage config to use teamId ([3595df1](https://github.com/boltdesignsystem/bolt/commit/3595df1ce7b83b44a50fb4096c8bc811ea9b6027))
+
+
+
+
+
+## [2.24.1](https://github.com/boltdesignsystem/bolt/compare/v2.24.0...v2.24.1) (2020-06-17)
+
+**Note:** Version bump only for package @bolt/jest-config
+
+
+
+
+
+# [2.24.0](https://github.com/boltdesignsystem/bolt/compare/v2.23.0...v2.24.0) (2020-06-05)
+
+
+### Bug Fixes
+
+* update now-storage config to use teamId ([3595df1](https://github.com/boltdesignsystem/bolt/commit/3595df1ce7b83b44a50fb4096c8bc811ea9b6027))
+
+
+
+
+
+# [2.23.0](https://github.com/boltdesignsystem/bolt/compare/v2.22.1...v2.23.0) (2020-05-06)
+
+**Note:** Version bump only for package @bolt/jest-config
+
+
+
+
+
+# [2.22.0](https://github.com/boltdesignsystem/bolt/compare/v2.21.1...v2.22.0) (2020-04-22)
+
+**Note:** Version bump only for package @bolt/jest-config
+
+
+
+
+
+# [2.21.0](https://github.com/boltdesignsystem/bolt/compare/v2.20.2...v2.21.0) (2020-04-08)
+
+**Note:** Version bump only for package @bolt/jest-config
+
+
+
+
+
+# [2.20.0](https://github.com/boltdesignsystem/bolt/compare/v2.19.1...v2.20.0) (2020-03-18)
+
+**Note:** Version bump only for package @bolt/jest-config
+
+
+
+
+
+# [2.19.0](https://github.com/boltdesignsystem/bolt/compare/v2.18.1...v2.19.0) (2020-03-04)
+
+**Note:** Version bump only for package @bolt/jest-config
+
+
+
+
+
+## [2.18.1](https://github.com/boltdesignsystem/bolt/compare/v2.18.0...v2.18.1) (2020-02-21)
+
+**Note:** Version bump only for package @bolt/jest-config
+
+
+
+
+
+# [2.18.0](https://github.com/boltdesignsystem/bolt/compare/v2.17.1...v2.18.0) (2020-02-19)
+
+**Note:** Version bump only for package @bolt/jest-config
+
+
+
+
+
+# [2.17.0](https://github.com/boltdesignsystem/bolt/compare/v2.16.3...v2.17.0) (2020-02-04)
+
+
+### Bug Fixes
+
+* update NPM dependencies to address Webpack SVG icon compile issues ([cfad6fc](https://github.com/boltdesignsystem/bolt/commit/cfad6fc99349d39cec2df583117bda64bda04020))
+
+
+### Features
+
+* cherry pick install & dependency related updates from https://github.com/boltdesignsystem/bolt/pull/1711 ([dfa3dd0](https://github.com/boltdesignsystem/bolt/commit/dfa3dd08d19a109736f64faef851e5516e3941e0))
+
+
+
+
+
+## [2.16.2](https://github.com/boltdesignsystem/bolt/compare/v2.16.1...v2.16.2) (2020-01-28)
+
+**Note:** Version bump only for package @bolt/jest-config
+
+
+
+
+
+## [2.16.1](https://github.com/boltdesignsystem/bolt/compare/v2.16.0...v2.16.1) (2020-01-27)
+
+**Note:** Version bump only for package @bolt/jest-config
+
+
+
+
+
+# [2.16.0](https://github.com/boltdesignsystem/bolt/compare/v2.15.2...v2.16.0) (2020-01-24)
+
+**Note:** Version bump only for package @bolt/jest-config
+
+
+
+
+
 ## [2.15.2](https://github.com/boltdesignsystem/bolt/compare/v2.15.1...v2.15.2) (2020-01-21)
 
 **Note:** Version bump only for package @bolt/jest-config

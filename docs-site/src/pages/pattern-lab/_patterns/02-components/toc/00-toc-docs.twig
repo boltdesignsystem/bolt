@@ -1,0 +1,19 @@
+{% set usage %}{% verbatim %}
+{% include "@bolt-components-toc/toc.twig" with {
+  items: [
+    {
+      text: "Section 1",
+      url: "#section-1"
+    },
+    {
+      text: "Section 2",
+      url: "#section-2"
+    },
+  ]
+} only %}
+{% endverbatim %}{% endset %}
+
+{% include "@utils/docs.twig" with {
+  componentName: "toc",
+  usage: usage
+} only %}

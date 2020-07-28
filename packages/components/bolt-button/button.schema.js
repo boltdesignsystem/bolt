@@ -1,4 +1,5 @@
 const iconSchema = require('@bolt/components-icon/icon.schema.json');
+const elementSchemas = require('@bolt/element/element.schemas');
 
 iconSchema.properties = {
   position: {
@@ -60,7 +61,7 @@ module.exports = {
       type: 'string',
       description: 'Style of the button determined by information hierarchy.',
       default: 'primary',
-      enum: ['primary', 'secondary', 'text'],
+      enum: ['primary', 'secondary', 'tertiary', 'text'],
     },
     width: {
       type: 'string',
@@ -89,6 +90,7 @@ module.exports = {
       default: false,
       required: ['icon'],
     },
+    ...elementSchemas.boltActionElement.properties,
     itemAlignment: {
       title: 'DEPRECATED',
       description: 'Use the align parameter instead.',

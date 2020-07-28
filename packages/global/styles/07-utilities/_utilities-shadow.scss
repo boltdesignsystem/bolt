@@ -17,9 +17,11 @@ $shadows: map-get($bolt-shadows, 'sets');
   .#{$prefix}#{$key} {
     @include bolt-shadow($key, $lifted: false, $utility: true);
   }
+
   .#{$prefix-deprecated}#{$key}--hoverable,
   .#{$prefix}#{$key}-hoverable {
     @include bolt-shadow($key, $lifted: false, $utility: true);
+
     &:hover {
       @include bolt-shadow($key, $lifted: true, $utility: true);
     }

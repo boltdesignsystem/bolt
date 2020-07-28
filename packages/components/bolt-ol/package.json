@@ -1,7 +1,7 @@
 {
   "name": "@bolt/components-ol",
-  "version": "2.15.2",
-  "description": "Ordered-list Component in Bolt",
+  "version": "2.25.1",
+  "description": "Vertical list of numbered items.",
   "keywords": [
     "bolt design system",
     "bolt",
@@ -16,8 +16,9 @@
   "main": "index.js",
   "style": "index.scss",
   "dependencies": {
-    "@bolt/components-li": "^2.15.2",
-    "@bolt/core-v3.x": "^2.15.2"
+    "@bolt/components-li": "^2.25.1",
+    "@bolt/core-v3.x": "^2.25.1",
+    "@bolt/lazy-queue": "^2.23.0"
   },
   "publishConfig": {
     "access": "public"
@@ -35,6 +36,6 @@
       "web": "http://mikemai.net/"
     }
   ],
-  "schema": "ol.schema.yml",
+  "schema": "ol.schema.js",
   "twig": "src/ol.twig"
 }

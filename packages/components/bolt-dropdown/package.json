@@ -1,7 +1,7 @@
 {
   "name": "@bolt/components-dropdown",
-  "version": "2.15.2",
-  "description": "Dropdown Component",
+  "version": "2.25.1",
+  "description": "A responsive menu.",
   "keywords": [
     "bolt design system",
     "bolt",
@@ -21,8 +21,9 @@
   "style": "dropdown.scss",
   "scripts": {},
   "dependencies": {
-    "@bolt/components-icon": "^2.15.2",
-    "@bolt/core-v3.x": "^2.15.2",
+    "@bolt/components-icon": "^2.25.1",
+    "@bolt/core-v3.x": "^2.25.1",
+    "@bolt/lazy-queue": "^2.23.0",
     "classnames": "^2.2.5",
     "ev-emitter": "^1.1.1",
     "handorgel": "^0.4.5"
@@ -31,6 +32,6 @@
     "access": "public"
   },
   "gitHead": "d41aa75ae3d195d9d7fb3952eed5e0ae80988133",
-  "schema": "dropdown.schema.yml",
+  "schema": "dropdown.schema.js",
   "twig": "dropdown.twig"
 }

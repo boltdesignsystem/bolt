@@ -17,6 +17,7 @@ describe('test-utils', () => {
       '@bolt/components-background',
       '@bolt/components-background-shapes',
       '@bolt/element',
+      '@bolt/lazy-queue',
       '@bolt/polyfills',
     ].sort();
     expect(deps.sort()).toEqual(expected);
@@ -25,8 +26,11 @@ describe('test-utils', () => {
   test('getPkgDependents', () => {
     const dependents = tu.getPkgDependents('@bolt/components-grid');
     expect(dependents).toEqual([
+      '@bolt/starter-kit',
       '@bolt/components-band',
+      '@bolt/generator-bolt',
       '@bolt/blueprints',
+      '@bolt/components-hero',
       '@bolt/components-page-footer',
     ]);
   });

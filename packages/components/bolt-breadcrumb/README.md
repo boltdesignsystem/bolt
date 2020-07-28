@@ -1,4 +1,4 @@
-Stylistic pull quote styles for all types of layout. Part of the Bolt “Components” CSS framework that powers the [Bolt Design System](https://www.boltdesignsystem.com).
+Breadcrumb is part of the collection of components, visual styles, and build tools that power the the [Bolt Design System](https://www.boltdesignsystem.com).
 
 ###### Install via NPM
 

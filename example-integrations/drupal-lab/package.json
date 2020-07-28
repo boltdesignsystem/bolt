@@ -2,14 +2,6 @@
   "name": "@bolt/drupal-lab-example",
   "version": "2.4.0",
   "private": true,
-  "scripts": {
-    "copy": "cp -fr web/themes/bolt-starter/dist/*-bundle-*.js ../../www/integrations/drupal-lab/themes/bolt-starter/dist",
-    "deploy": "now deploy --local-config=now.drupal-lab.json --team boltdesignsystem --no-verify",
-    "generate": "composer run setup && composer run static && yarn run copy",
-    "setup": "npx npm-run-all --serial setup:*",
-    "setup:js": "cd web/themes/bolt-starter && yarn && npm run build",
-    "setup:php": "composer install && composer run build"
-  },
   "contributors": [
     {
       "name": "Salem Ghoweri",
@@ -20,5 +12,13 @@
       "name": "Evan Lovely",
       "email": "evanlovely@gmail.com"
     }
-  ]
+  ],
+  "scripts": {
+    "copy": "cp -fr web/themes/bolt-starter/dist/*-bundle-*.js ../../www/integrations/drupal-lab/themes/bolt-starter/dist",
+    "deploy": "now deploy --local-config=now.drupal-lab.json --team boltdesignsystem --no-verify",
+    "generate": "composer run setup && composer run static && yarn run copy",
+    "setup": "npx npm-run-all --serial setup:*",
+    "setup:js": "cd web/themes/bolt-starter && yarn && npm run build",
+    "setup:php": "composer install && composer run build"
+  }
 }

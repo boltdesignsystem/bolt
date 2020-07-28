@@ -3,6 +3,147 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.25.1](https://github.com/bolt-design-system/bolt/compare/v2.25.0...v2.25.1) (2020-07-14)
+
+**Note:** Version bump only for package @bolt/components-text
+
+
+
+
+
+# [2.25.0](https://github.com/bolt-design-system/bolt/compare/v2.22.2...v2.25.0) (2020-07-13)
+
+
+### Bug Fixes
+
+* headline spacing ([77fa1fd](https://github.com/bolt-design-system/bolt/commit/77fa1fd96372f8a6f5674a50164639989ba5da75))
+* line height ([ccdd0f3](https://github.com/bolt-design-system/bolt/commit/ccdd0f3c0d91fba33e791599313af51c2eec4d10))
+* resolve conflicts ([92743cf](https://github.com/bolt-design-system/bolt/commit/92743cf5734703ccfb94bc6d49e0a3d667e81fe3))
+* resolve conflicts with master ([c4cc15b](https://github.com/bolt-design-system/bolt/commit/c4cc15bbb16a343108a4fb12a60788f3945d743b))
+* spacing and font vars ([1406a3e](https://github.com/bolt-design-system/bolt/commit/1406a3e5d7dbb957959870791ef40b4a503b0633))
+* update componet descriptions ([b9fefe6](https://github.com/bolt-design-system/bolt/commit/b9fefe6106eb74e3d4794a51443a2b576d9651d9))
+* update Jest VRT snapshots ([0e1e91f](https://github.com/bolt-design-system/bolt/commit/0e1e91fd843dc502568725c037a5b684523afd87))
+
+
+### Features
+
+* globally lazyload JS bundles to expose same existing issues as the ones found with the new lazy-queue functionality ([7cc4ce2](https://github.com/bolt-design-system/bolt/commit/7cc4ce2fa9ce28dc4f9f37078762f106ca87729f))
+
+
+
+
+
+## [2.24.1](https://github.com/bolt-design-system/bolt/compare/v2.24.0...v2.24.1) (2020-06-17)
+
+**Note:** Version bump only for package @bolt/components-text
+
+
+
+
+
+# [2.24.0](https://github.com/bolt-design-system/bolt/compare/v2.23.0...v2.24.0) (2020-06-05)
+
+
+### Bug Fixes
+
+* resolve conflicts with master ([c4cc15b](https://github.com/bolt-design-system/bolt/commit/c4cc15bbb16a343108a4fb12a60788f3945d743b))
+* update Jest VRT snapshots ([0e1e91f](https://github.com/bolt-design-system/bolt/commit/0e1e91fd843dc502568725c037a5b684523afd87))
+
+
+
+
+
+# [2.23.0](https://github.com/bolt-design-system/bolt/compare/v2.22.1...v2.23.0) (2020-05-06)
+
+
+### Features
+
+* globally lazyload JS bundles to expose same existing issues as the ones found with the new lazy-queue functionality ([7cc4ce2](https://github.com/bolt-design-system/bolt/commit/7cc4ce2fa9ce28dc4f9f37078762f106ca87729f))
+
+
+
+
+
+# [2.22.0](https://github.com/bolt-design-system/bolt/compare/v2.21.1...v2.22.0) (2020-04-22)
+
+**Note:** Version bump only for package @bolt/components-text
+
+
+
+
+
+# [2.21.0](https://github.com/bolt-design-system/bolt/compare/v2.20.2...v2.21.0) (2020-04-08)
+
+**Note:** Version bump only for package @bolt/components-text
+
+
+
+
+
+# [2.20.0](https://github.com/bolt-design-system/bolt/compare/v2.19.1...v2.20.0) (2020-03-18)
+
+**Note:** Version bump only for package @bolt/components-text
+
+
+
+
+
+# [2.19.0](https://github.com/bolt-design-system/bolt/compare/v2.18.1...v2.19.0) (2020-03-04)
+
+**Note:** Version bump only for package @bolt/components-text
+
+
+
+
+
+## [2.18.1](https://github.com/bolt-design-system/bolt/compare/v2.18.0...v2.18.1) (2020-02-21)
+
+**Note:** Version bump only for package @bolt/components-text
+
+
+
+
+
+# [2.18.0](https://github.com/bolt-design-system/bolt/compare/v2.17.1...v2.18.0) (2020-02-19)
+
+**Note:** Version bump only for package @bolt/components-text
+
+
+
+
+
+# [2.17.0](https://github.com/bolt-design-system/bolt/compare/v2.16.3...v2.17.0) (2020-02-04)
+
+**Note:** Version bump only for package @bolt/components-text
+
+
+
+
+
+## [2.16.2](https://github.com/bolt-design-system/bolt/compare/v2.16.1...v2.16.2) (2020-01-28)
+
+**Note:** Version bump only for package @bolt/components-text
+
+
+
+
+
+## [2.16.1](https://github.com/bolt-design-system/bolt/compare/v2.16.0...v2.16.1) (2020-01-27)
+
+**Note:** Version bump only for package @bolt/components-text
+
+
+
+
+
+# [2.16.0](https://github.com/bolt-design-system/bolt/compare/v2.15.2...v2.16.0) (2020-01-24)
+
+**Note:** Version bump only for package @bolt/components-text
+
+
+
+
+
 ## [2.15.2](https://github.com/bolt-design-system/bolt/compare/v2.15.1...v2.15.2) (2020-01-21)
 
 **Note:** Version bump only for package @bolt/components-text
