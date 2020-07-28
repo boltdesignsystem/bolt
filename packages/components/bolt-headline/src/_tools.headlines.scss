@@ -19,7 +19,7 @@
   }
 
   &:last-child {
-    @include bolt-margin-bottom(0);
+    margin-bottom: 0;
   }
 }
 
@@ -35,12 +35,12 @@
 
   &--position-before,
   &--position-left {
-    @include bolt-margin-right(xsmall);
+    margin-right: var(--bolt-spacing-x-xsmall);
   }
 
   &--position-after,
   &--position-right {
-    @include bolt-margin-left(xsmall);
+    margin-left: var(--bolt-spacing-x-xsmall);
   }
 }
 
