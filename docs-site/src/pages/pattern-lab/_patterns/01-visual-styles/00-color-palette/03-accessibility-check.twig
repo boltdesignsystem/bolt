@@ -20,7 +20,7 @@
 } %}
 
   <bolt-swatch class="c-bolt-swatch">
-    {% for tone, colorValue in palette | reverse %}
+    {% for tone, colorValue in palette %}
       <div class="c-bolt-accessibility-table" style="color: {{ colorValue | rgb2hex | text_contrast }}; background-color: {{ colorValue | rgb2hex }};">
 
         <ul class="c-bolt-accessibility-table__table" aria-label="Accessibility table for {{ colorName }} — {{ tone }}" role="table">

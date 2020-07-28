@@ -3,6 +3,63 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.22.0](https://github.com/boltdesignsystem/bolt/compare/v2.21.1...v2.22.0) (2020-04-22)
+
+**Note:** Version bump only for package @bolt/scripts
+
+
+
+
+
+# [2.21.0](https://github.com/boltdesignsystem/bolt/compare/v2.20.2...v2.21.0) (2020-04-08)
+
+**Note:** Version bump only for package @bolt/scripts
+
+
+
+
+
+# [2.20.0](https://github.com/boltdesignsystem/bolt/compare/v2.19.1...v2.20.0) (2020-03-18)
+
+
+### Bug Fixes
+
+* temporarily disable check-runs to work around bad creds error from Github ([de5b901](https://github.com/boltdesignsystem/bolt/commit/de5b901e1fffdd553d613907c95c40392266c0ed))
+
+
+
+
+
+# [2.19.0](https://github.com/boltdesignsystem/bolt/compare/v2.18.1...v2.19.0) (2020-03-04)
+
+**Note:** Version bump only for package @bolt/scripts
+
+
+
+
+
+# [2.18.0](https://github.com/boltdesignsystem/bolt/compare/v2.17.1...v2.18.0) (2020-02-19)
+
+
+### Bug Fixes
+
+* fix broken composer.json path in the update script + bump PHP dependencies to the latest version ([e5b9058](https://github.com/boltdesignsystem/bolt/commit/e5b90582582dd3d0939fd47fd8b24043f0178d49))
+
+
+
+
+
+# [2.17.0](https://github.com/boltdesignsystem/bolt/compare/v2.16.3...v2.17.0) (2020-02-04)
+
+
+### Features
+
+* cherry pick install & dependency related updates from https://github.com/boltdesignsystem/bolt/pull/1711 ([dfa3dd0](https://github.com/boltdesignsystem/bolt/commit/dfa3dd08d19a109736f64faef851e5516e3941e0))
+
+
+
+
+
 # [2.16.0](https://github.com/boltdesignsystem/bolt/compare/v2.15.2...v2.16.0) (2020-01-24)
 
 **Note:** Version bump only for package @bolt/scripts

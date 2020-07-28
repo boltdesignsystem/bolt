@@ -3,6 +3,144 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.25.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-popover/compare/v2.25.0...v2.25.1) (2020-07-14)
+
+**Note:** Version bump only for package @bolt/components-popover
+
+
+
+
+
+# [2.25.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-popover/compare/v2.22.2...v2.25.0) (2020-07-13)
+
+
+### Features
+
+* globally lazyload JS bundles to expose same existing issues as the ones found with the new lazy-queue functionality ([7cc4ce2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-popover/commit/7cc4ce2fa9ce28dc4f9f37078762f106ca87729f))
+
+
+
+
+
+## [2.24.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-popover/compare/v2.24.0...v2.24.1) (2020-06-17)
+
+**Note:** Version bump only for package @bolt/components-popover
+
+
+
+
+
+# [2.24.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-popover/compare/v2.23.0...v2.24.0) (2020-06-05)
+
+**Note:** Version bump only for package @bolt/components-popover
+
+
+
+
+
+# [2.23.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-popover/compare/v2.22.1...v2.23.0) (2020-05-06)
+
+
+### Features
+
+* globally lazyload JS bundles to expose same existing issues as the ones found with the new lazy-queue functionality ([7cc4ce2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-popover/commit/7cc4ce2fa9ce28dc4f9f37078762f106ca87729f))
+
+
+
+
+
+# [2.22.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-popover/compare/v2.21.1...v2.22.0) (2020-04-22)
+
+**Note:** Version bump only for package @bolt/components-popover
+
+
+
+
+
+# [2.21.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-popover/compare/v2.20.2...v2.21.0) (2020-04-08)
+
+**Note:** Version bump only for package @bolt/components-popover
+
+
+
+
+
+# [2.20.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-popover/compare/v2.19.1...v2.20.0) (2020-03-18)
+
+
+### Bug Fixes
+
+* address eslint + stylelint linter issues ([caea760](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-popover/commit/caea76028a4cca41dfefbc3e230f57ff0035d84d))
+* switch to vanilla window.location.hash ([e3cad3a](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-popover/commit/e3cad3ab0b1af905be3509bd7be4f54c84d33da7))
+* update Popover logic to strip query strings from hash when checking if the URL hash matches ([ad9880d](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-popover/commit/ad9880d6d5976a089763b42aa4de1f481fa5ae77))
+
+
+### Features
+
+* add E2E integration tests that cover Popover's new SSR / no-JS state restoration logic ([d1e6936](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-popover/commit/d1e6936dcdec42386cfa3540ad9737b7a63616c3))
+* update Popover to mirror it's internal state with the original page's no-JS / SSR state; clean up any existing URL hashes ([e981658](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-popover/commit/e9816587ad6a6d74859e486382c3000b3bc24d0c))
+
+
+
+
+
+# [2.19.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-popover/compare/v2.18.1...v2.19.0) (2020-03-04)
+
+
+### Bug Fixes
+
+* docs and theme class in twig ([f61fbec](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-popover/commit/f61fbec99b6c04358fa790e4e44e582e212abf89))
+* tests ([85dbd7b](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-popover/commit/85dbd7b0036fc66880092fa53215c23fdbdc8981))
+
+
+### Features
+
+* add built-in theming support to Popover ([d532c62](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-popover/commit/d532c62cb1cb7a67a32523d9de70e0f2bf9e663e))
+
+
+
+
+
+## [2.18.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-popover/compare/v2.18.0...v2.18.1) (2020-02-21)
+
+**Note:** Version bump only for package @bolt/components-popover
+
+
+
+
+
+# [2.18.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-popover/compare/v2.17.1...v2.18.0) (2020-02-19)
+
+
+### Bug Fixes
+
+* adding proper id to trigger ([00e4470](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-popover/commit/00e4470dcfd431ccd9d72b2475ad514fe969c6aa))
+* address PR feedback ([6f35b9b](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-popover/commit/6f35b9bb56d26e658f130f7ce0b925aea4dc37ed))
+* popover double-focus, must check 'default' slot not 'content' for focusable content ([6f3afc7](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-popover/commit/6f3afc75881ca41b431fe4fc3286b539224f45e8))
+* snaps update ([923979b](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-popover/commit/923979bf3400a0e0ce10da2a5565cf5844ec5e7d))
+* typos in twig ([a822a6e](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-popover/commit/a822a6e52885697410c6d5615f83dc2fccccb326))
+* update snaps ([09b442d](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-popover/commit/09b442dce1040a8af4fddb8613bbdec3c76b0d0e))
+
+
+
+
+
+# [2.17.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-popover/compare/v2.16.3...v2.17.0) (2020-02-04)
+
+
+### Bug Fixes
+
+* adjust no-JS behavior for Tooltip / Popover to reduce layout shifting when booting up / within carousels ([81768db](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-popover/commit/81768dbd75e1bda69cfe0b50622c13bb5af771a9))
+
+
+### Features
+
+* cherry pick install & dependency related updates from https://github.com/boltdesignsystem/bolt/pull/1711 ([dfa3dd0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-popover/commit/dfa3dd08d19a109736f64faef851e5516e3941e0))
+
+
+
+
+
 # [2.16.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-popover/compare/v2.15.2...v2.16.0) (2020-01-24)
 
 

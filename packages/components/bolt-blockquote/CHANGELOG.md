@@ -3,6 +3,166 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.25.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-blockquote/compare/v2.25.0...v2.25.1) (2020-07-14)
+
+**Note:** Version bump only for package @bolt/components-blockquote
+
+
+
+
+
+# [2.25.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-blockquote/compare/v2.22.2...v2.25.0) (2020-07-13)
+
+
+### Bug Fixes
+
+* mannually update each test ([5430e92](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-blockquote/commit/5430e92c6288e8a14190b1cf7d862a20867dd8d0))
+* resolve conflicts ([92743cf](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-blockquote/commit/92743cf5734703ccfb94bc6d49e0a3d667e81fe3))
+* resolve conflicts with master ([c4cc15b](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-blockquote/commit/c4cc15bbb16a343108a4fb12a60788f3945d743b))
+* update componet descriptions ([b9fefe6](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-blockquote/commit/b9fefe6106eb74e3d4794a51443a2b576d9651d9))
+* update Jest tests to more reliably work with fully async-loaded components ([6b4c752](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-blockquote/commit/6b4c752cfcf32a3d0d260d5e2f718be12fd3df50))
+* update Jest VRT snapshots ([0e1e91f](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-blockquote/commit/0e1e91fd843dc502568725c037a5b684523afd87))
+
+
+### Features
+
+* globally lazyload JS bundles to expose same existing issues as the ones found with the new lazy-queue functionality ([7cc4ce2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-blockquote/commit/7cc4ce2fa9ce28dc4f9f37078762f106ca87729f))
+
+
+
+
+
+## [2.24.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-blockquote/compare/v2.24.0...v2.24.1) (2020-06-17)
+
+**Note:** Version bump only for package @bolt/components-blockquote
+
+
+
+
+
+# [2.24.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-blockquote/compare/v2.23.0...v2.24.0) (2020-06-05)
+
+
+### Bug Fixes
+
+* mannually update each test ([5430e92](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-blockquote/commit/5430e92c6288e8a14190b1cf7d862a20867dd8d0))
+* resolve conflicts with master ([c4cc15b](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-blockquote/commit/c4cc15bbb16a343108a4fb12a60788f3945d743b))
+* update Jest VRT snapshots ([0e1e91f](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-blockquote/commit/0e1e91fd843dc502568725c037a5b684523afd87))
+
+
+
+
+
+# [2.23.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-blockquote/compare/v2.22.1...v2.23.0) (2020-05-06)
+
+
+### Bug Fixes
+
+* update Jest tests to more reliably work with fully async-loaded components ([6b4c752](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-blockquote/commit/6b4c752cfcf32a3d0d260d5e2f718be12fd3df50))
+
+
+### Features
+
+* globally lazyload JS bundles to expose same existing issues as the ones found with the new lazy-queue functionality ([7cc4ce2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-blockquote/commit/7cc4ce2fa9ce28dc4f9f37078762f106ca87729f))
+
+
+
+
+
+# [2.22.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-blockquote/compare/v2.21.1...v2.22.0) (2020-04-22)
+
+**Note:** Version bump only for package @bolt/components-blockquote
+
+
+
+
+
+## [2.21.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-blockquote/compare/v2.21.0...v2.21.1) (2020-04-10)
+
+**Note:** Version bump only for package @bolt/components-blockquote
+
+
+
+
+
+# [2.21.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-blockquote/compare/v2.20.2...v2.21.0) (2020-04-08)
+
+
+### Bug Fixes
+
+* update VRT test to conditionally adjust % diff allowed based on the OS ([80f6299](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-blockquote/commit/80f6299bae7b8452596170ef12591fb46c88e788))
+
+
+### Features
+
+* update VRT config for Blockquote to allow for <= a 20px VRT diff ([586bcaa](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-blockquote/commit/586bcaa5bebc46dc240c64869b8d658bf539af44))
+
+
+
+
+
+## [2.20.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-blockquote/compare/v2.20.0...v2.20.1) (2020-03-26)
+
+
+### Bug Fixes
+
+* update Blockquote snapshots ([7768711](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-blockquote/commit/776871167c2875ccab70de3058757f4378d23518))
+
+
+
+
+
+# [2.20.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-blockquote/compare/v2.19.1...v2.20.0) (2020-03-18)
+
+**Note:** Version bump only for package @bolt/components-blockquote
+
+
+
+
+
+# [2.19.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-blockquote/compare/v2.18.1...v2.19.0) (2020-03-04)
+
+
+### Bug Fixes
+
+* allow <bolt-blockquote> web component size to be adjustable ([219a7d7](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-blockquote/commit/219a7d7abce550b0fc79d27d140d696ec257fbd5))
+* swap order of classes applied ([b6f9f8a](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-blockquote/commit/b6f9f8aef9fb94fc72e77d8cb23b12ea32e43d22))
+* update Blockquote Jest snapshot ([5f2990d](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-blockquote/commit/5f2990d33ad7d1efbb8a2c3665eaa9e7f5bcdd0c))
+* update Jest snapshots for Blockquote ([565a4f4](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-blockquote/commit/565a4f4ce624bdd5711a55367668da27eef81f32))
+
+
+### Features
+
+* support customizing Blockquote font weight ([39198b2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-blockquote/commit/39198b26cf6bde7c3feb95cea2611e909201c13e))
+
+
+
+
+
+## [2.18.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-blockquote/compare/v2.18.0...v2.18.1) (2020-02-21)
+
+**Note:** Version bump only for package @bolt/components-blockquote
+
+
+
+
+
+# [2.18.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-blockquote/compare/v2.17.1...v2.18.0) (2020-02-19)
+
+**Note:** Version bump only for package @bolt/components-blockquote
+
+
+
+
+
+# [2.17.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-blockquote/compare/v2.16.3...v2.17.0) (2020-02-04)
+
+**Note:** Version bump only for package @bolt/components-blockquote
+
+
+
+
+
 ## [2.16.2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-blockquote/compare/v2.16.1...v2.16.2) (2020-01-28)
 
 **Note:** Version bump only for package @bolt/components-blockquote

@@ -1,10 +1,7 @@
-import { polyfillLoader } from '@bolt/core-v3.x/polyfills';
+import { lazyQueue } from '@bolt/lazy-queue';
 
-polyfillLoader.then(res => {
-  import(
-    /*
-    webpackMode: 'eager',
-    webpackChunkName: 'bolt-theme-switcher'
-  */ './theme-switcher'
+lazyQueue(['bolt-theme-switcher'], async () => {
+  await import(
+    /* webpackChunkName: 'bolt-theme-switcher' */ './theme-switcher'
   );
 });

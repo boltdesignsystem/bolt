@@ -142,7 +142,7 @@ class Utils {
       return "camelcase";
     }
   }
-  
+
   /**
    * Convert string to snake_case.
    *
@@ -175,8 +175,8 @@ class Utils {
    */
   public static function gitHubUrl($filePath) {
     $relFilePath = Path::makeRelative($filePath, self::repoRoot);
-    $repoBranchName = 'master';
-    $githubPath = Path::join('https://github.com/bolt-design-system/bolt/blob/', $repoBranchName, $relFilePath);
+    $repoBranchName = 'master/packages';
+    $githubPath = Path::join('https://github.com/boltdesignsystem/bolt/tree/', $repoBranchName, $relFilePath);
     return $githubPath;
   }
 

@@ -17,15 +17,19 @@ $bolt-tooltip-bubble-triangle-width: 8px;
     &.c-bolt-status-dialogue-bar--box-float--center {
       justify-content: center;
     }
+
     &.c-bolt-status-dialogue-bar--box-float--up {
       align-items: flex-start;
     }
+
     &.c-bolt-status-dialogue-bar--box-float--right {
       justify-content: flex-end;
     }
+
     &.c-bolt-status-dialogue-bar--box-float--down {
       align-items: flex-end;
     }
+
     &.c-bolt-status-dialogue-bar--box-float--left {
       justify-content: flex-start;
     }
@@ -83,10 +87,10 @@ $bolt-tooltip-bubble-triangle-width: 8px;
 
   &--arrow {
     z-index: 1;
+    font-size: 16px;
     color: white;
     line-height: 1;
     pointer-events: none;
-    font-size: 16px;
 
     &.c-bolt-status-dialogue-bar--alert {
       color: bolt-color(orange);

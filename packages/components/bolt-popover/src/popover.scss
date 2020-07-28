@@ -2,6 +2,10 @@
    Popover
 \* ------------------------------------ */
 @import '@bolt/core-v3.x';
+@import '@bolt/global/styles/06-themes/_themes.all.scss';
+
+// Dev Notes
+// 1. Any instance of bolt-popover:not([ready]) in this file is used to create NoJS fallback styles.
 
 /**
  * Component variables
@@ -9,6 +13,8 @@
 $bolt-popover-border-width: $bolt-border-width;
 $bolt-popover-border-style: $bolt-border-style;
 $bolt-popover-border-color: bolt-theme(border, 0.2);
+$bolt-popover-transition: $bolt-transition-timing
+  cubic-bezier(0.175, 0.885, 0.32, 1);
 
 @mixin bolt-popover-bubble-tip-point-to($where) {
   $radius: bolt-border-radius(large);
@@ -36,6 +42,23 @@ $bolt-popover-border-color: bolt-theme(border, 0.2);
 }
 
 /**
+ * NoJS fallback trigger
+ */
+.c-bolt-popover__nojs-trigger {
+  position: relative;
+}
+
+.c-bolt-popover__nojs-trigger-overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  color: inherit;
+  text-decoration: none;
+}
+
+/**
  * Content container
  * - used for fade effect and placement
  */
@@ -45,11 +68,56 @@ $bolt-popover-border-color: bolt-theme(border, 0.2);
   position: absolute;
   transform: translate3d(0, 0, 0);
   z-index: bolt-z-index(popover);
-  transition: opacity $bolt-transition;
+  transition: opacity $bolt-popover-transition;
 
-  @at-root .c-bolt-popover.is-expanded & {
+  .c-bolt-popover.is-expanded &,
+  bolt-popover:not([ready]) .c-bolt-popover__no-js-content:target & {
     visibility: visible;
     opacity: 1;
+  }
+
+  bolt-popover:not([ready]) & {
+    display: none;
+    top: 100%;
+    left: 50%;
+    transform: translate3d(-50%, #{var(--bolt-spacing-y-xxsmall)}, 0);
+  }
+
+  bolt-popover:not([ready]) .c-bolt-popover__no-js-content:target & {
+    display: block;
+  }
+}
+
+/**
+ * NoJS fallback close button
+ */
+.c-bolt-popover__nojs-close {
+  display: none;
+
+  bolt-popover:not([ready]) & {
+    @include bolt-font-family(body);
+    @include bolt-font-weight(semibold);
+    display: block;
+    width: 1.25rem;
+    height: 1.25rem;
+    margin-bottom: var(--bolt-spacing-y-xsmall);
+    margin-left: auto;
+    font-size: 1rem;
+    color: bolt-theme(link);
+    line-height: 1;
+    text-align: center;
+    border-bottom-left-radius: bolt-border-radius(large);
+
+    &:hover,
+    &:focus {
+      background-color: bolt-theme(link, 0.1);
+      outline-offset: -4px;
+    }
+
+    &:active {
+      color: bolt-theme(text);
+      background-color: bolt-theme(link, 0.15);
+    }
   }
 }
 
@@ -58,18 +126,17 @@ $bolt-popover-border-color: bolt-theme(border, 0.2);
  * - used for visual design of the bubble and the fly in effect
  */
 .c-bolt-popover__bubble {
-  @include bolt-margin(xxsmall);
-  @include bolt-padding(0);
   @include bolt-font-family(body);
   @include bolt-font-size(xsmall);
   @include bolt-font-weight(regular);
   display: block;
   transform: scale3d(1, 1, 1) translate3d(0, 0, 0);
   overflow: hidden;
+  margin: var(--bolt-spacing-y-xxsmall) var(--bolt-spacing-x-xxsmall);
+  padding: 0;
   color: bolt-theme(text);
   text-align: left;
   text-align: start;
-  white-space: nowrap;
   border-radius: bolt-border-radius(small);
   border-width: $bolt-popover-border-width;
   border-style: $bolt-popover-border-style;
@@ -77,8 +144,8 @@ $bolt-popover-border-color: bolt-theme(border, 0.2);
   box-shadow: bolt-shadow('level-20');
   background-color: bolt-theme(background);
   will-change: transform;
-  transition: transform $bolt-transition-timing
-    cubic-bezier(0.175, 0.885, 0.32, 1);
+  transition: transform $bolt-popover-transition;
+  white-space: nowrap;
 
   @at-root .c-bolt-popover--text-wrap & {
     width: 250px; // If the content is long (more than 31 characters), the bubble will have this specific width and text will wrap. This logic is in the JS and Twig files.
@@ -169,7 +236,8 @@ $bolt-popover-border-color: bolt-theme(border, 0.2);
     transform-origin: top left;
   }
 
-  @at-root .c-bolt-popover.is-expanded & {
+  .c-bolt-popover.is-expanded &,
+  bolt-popover:not([ready]) .c-bolt-popover__content & {
     transform: scale3d(1, 1, 1) translate3d(0, 0, 0);
   }
 }
@@ -177,12 +245,20 @@ $bolt-popover-border-color: bolt-theme(border, 0.2);
 /**
  * Spacing prop
  */
-@each $spacing-value in $bolt-spacing-values {
-  $spacing-value-name: nth($spacing-value, 1);
+@each $size in $bolt-spacing-multiplier-system {
+  $size-name: nth($size, 1);
 
-  .c-bolt-popover--spacing-#{$spacing-value-name} {
+  .c-bolt-popover--spacing-#{$size-name} {
     .c-bolt-popover__bubble {
-      @include bolt-padding(#{$spacing-value-name});
+      padding: var(--bolt-spacing-y-#{$size-name})
+        var(--bolt-spacing-x-#{$size-name});
+    }
+
+    @at-root bolt-popover:not([ready]) & {
+      .c-bolt-popover__nojs-close {
+        margin-top: calc(var(--bolt-spacing-y-#{$size-name}) * -1);
+        margin-right: calc(var(--bolt-spacing-x-#{$size-name}) * -1);
+      }
     }
   }
 }

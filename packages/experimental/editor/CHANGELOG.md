@@ -3,6 +3,111 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.25.1](https://github.com/bolt-design-system/bolt/compare/v2.25.0...v2.25.1) (2020-07-14)
+
+**Note:** Version bump only for package @bolt/components-editor
+
+
+
+
+
+# [2.25.0](https://github.com/bolt-design-system/bolt/compare/v2.22.2...v2.25.0) (2020-07-13)
+
+**Note:** Version bump only for package @bolt/components-editor
+
+
+
+
+
+# [2.24.0](https://github.com/bolt-design-system/bolt/compare/v2.23.0...v2.24.0) (2020-06-05)
+
+**Note:** Version bump only for package @bolt/components-editor
+
+
+
+
+
+# [2.23.0](https://github.com/bolt-design-system/bolt/compare/v2.22.1...v2.23.0) (2020-05-06)
+
+**Note:** Version bump only for package @bolt/components-editor
+
+
+
+
+
+# [2.21.0](https://github.com/bolt-design-system/bolt/compare/v2.20.2...v2.21.0) (2020-04-08)
+
+
+### Features
+
+* Update link component to use js schema ([351f2c8](https://github.com/bolt-design-system/bolt/commit/351f2c8bc51297218c6326ff39338494feaf2251))
+
+
+
+
+
+# [2.20.0](https://github.com/bolt-design-system/bolt/compare/v2.19.1...v2.20.0) (2020-03-18)
+
+
+### Bug Fixes
+
+* address eslint + stylelint linter issues ([caea760](https://github.com/bolt-design-system/bolt/commit/caea76028a4cca41dfefbc3e230f57ff0035d84d))
+
+
+
+
+
+# [2.19.0](https://github.com/bolt-design-system/bolt/compare/v2.18.1...v2.19.0) (2020-03-04)
+
+**Note:** Version bump only for package @bolt/components-editor
+
+
+
+
+
+# [2.18.0](https://github.com/bolt-design-system/bolt/compare/v2.17.1...v2.18.0) (2020-02-19)
+
+**Note:** Version bump only for package @bolt/components-editor
+
+
+
+
+
+## [2.17.1](https://github.com/bolt-design-system/bolt/compare/v2.17.0...v2.17.1) (2020-02-11)
+
+
+### Bug Fixes
+
+* **editor:** disable "Move Up/Down" buttons when appropriate ([93731aa](https://github.com/bolt-design-system/bolt/commit/93731aaef78a38dd68aeb3af1a42e4773c3b5ae3))
+* **editor:** pathway re-arrangement ([56307b1](https://github.com/bolt-design-system/bolt/commit/56307b195b02390d45b02d55e5afa7a3201c85a2))
+* **editor:** rearrange step w content ([e36185f](https://github.com/bolt-design-system/bolt/commit/e36185fa731c2a6b458affd30236a243b666826f))
+
+
+
+
+
+# [2.17.0](https://github.com/bolt-design-system/bolt/compare/v2.16.3...v2.17.0) (2020-02-04)
+
+
+### Bug Fixes
+
+* address prettier warnings on master ([51abac6](https://github.com/bolt-design-system/bolt/commit/51abac6cb034a3741e872efde17d5d00d3edca3b))
+
+
+
+
+
+## [2.16.3](https://github.com/bolt-design-system/bolt/compare/v2.16.2...v2.16.3) (2020-01-28)
+
+
+### Bug Fixes
+
+* **editor:** step removal event not completing when parent bolt-animate removed also ([21fccdc](https://github.com/bolt-design-system/bolt/commit/21fccdc42882c9f5f73581d6390c29c00ad10643))
+
+
+
+
+
 # [2.16.0](https://github.com/bolt-design-system/bolt/compare/v2.15.2...v2.16.0) (2020-01-24)
 
 

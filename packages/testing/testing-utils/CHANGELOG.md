@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.19.0](https://github.com/bolt-design-system/bolt/tree/master/packages/testing-utils/compare/v2.18.1...v2.19.0) (2020-03-04)
+
+
+### Bug Fixes
+
+* update Jest test ([2364f75](https://github.com/bolt-design-system/bolt/tree/master/packages/testing-utils/commit/2364f7514b50c5d9cef715bfd7a4b1ef4029aab3))
+
+
+
+
+
+# [2.17.0](https://github.com/bolt-design-system/bolt/tree/master/packages/testing-utils/compare/v2.16.3...v2.17.0) (2020-02-04)
+
+
+### Bug Fixes
+
+* update Jest test ([29d94cf](https://github.com/bolt-design-system/bolt/tree/master/packages/testing-utils/commit/29d94cf88c0fc6346bcec7fd85fee5de5e3d1566))
+
+
+
+
+
 # [2.16.0](https://github.com/bolt-design-system/bolt/tree/master/packages/testing-utils/compare/v2.15.2...v2.16.0) (2020-01-24)
 
 **Note:** Version bump only for package @bolt/testing-utils

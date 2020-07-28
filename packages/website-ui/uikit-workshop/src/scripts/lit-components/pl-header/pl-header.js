@@ -134,7 +134,6 @@ class Header extends BaseLitComponent {
             : ''}"
           role="navigation"
         >
-          <pl-search max-results="10" placeholder="Find a Pattern"></pl-search>
           <pl-nav></pl-nav>
         </nav>
         <pl-controls></pl-controls>

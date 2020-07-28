@@ -3,6 +3,134 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.25.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icon/compare/v2.25.0...v2.25.1) (2020-07-14)
+
+**Note:** Version bump only for package @bolt/components-icon
+
+
+
+
+
+# [2.25.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icon/compare/v2.22.2...v2.25.0) (2020-07-13)
+
+
+### Bug Fixes
+
+* remove border for icon background except when it's white ([28527d2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icon/commit/28527d24b35aa5541d0405974678d51ccbd971d9))
+* remove test code ([21734a0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icon/commit/21734a0dd75e4ab250f98fb4314ff90e74703b8d))
+* resolve conflicts ([92743cf](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icon/commit/92743cf5734703ccfb94bc6d49e0a3d667e81fe3))
+
+
+
+# [2.25.0-alpha-colors](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icon/compare/v2.24.1...v2.25.0-alpha-colors) (2020-06-18)
+
+
+### Bug Fixes
+
+* address linting issues ([c1774b0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icon/commit/c1774b0af08db78ebbd0fd92bab69752814afb1d))
+* update componet descriptions ([b9fefe6](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icon/commit/b9fefe6106eb74e3d4794a51443a2b576d9651d9))
+* update SVG <use> tags ([5f10098](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icon/commit/5f100987030abb61e324e3ca2213727b488b14b7))
+
+
+### Features
+
+* globally lazyload JS bundles to expose same existing issues as the ones found with the new lazy-queue functionality ([7cc4ce2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icon/commit/7cc4ce2fa9ce28dc4f9f37078762f106ca87729f))
+
+
+
+
+
+## [2.24.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icon/compare/v2.24.0...v2.24.1) (2020-06-17)
+
+**Note:** Version bump only for package @bolt/components-icon
+
+
+
+
+
+# [2.24.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icon/compare/v2.23.0...v2.24.0) (2020-06-05)
+
+**Note:** Version bump only for package @bolt/components-icon
+
+
+
+
+
+# [2.23.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icon/compare/v2.22.1...v2.23.0) (2020-05-06)
+
+
+### Bug Fixes
+
+* address linting issues ([c1774b0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icon/commit/c1774b0af08db78ebbd0fd92bab69752814afb1d))
+* update SVG <use> tags ([5f10098](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icon/commit/5f100987030abb61e324e3ca2213727b488b14b7))
+
+
+### Features
+
+* globally lazyload JS bundles to expose same existing issues as the ones found with the new lazy-queue functionality ([7cc4ce2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icon/commit/7cc4ce2fa9ce28dc4f9f37078762f106ca87729f))
+
+
+
+
+
+# [2.21.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icon/compare/v2.20.2...v2.21.0) (2020-04-08)
+
+**Note:** Version bump only for package @bolt/components-icon
+
+
+
+
+
+# [2.20.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icon/compare/v2.19.1...v2.20.0) (2020-03-18)
+
+
+### Bug Fixes
+
+* update Icons per PR feedback ([c3f5457](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icon/commit/c3f54575b0bbda56ad60f680bf8052ab648c7ae0))
+
+
+
+
+
+# [2.19.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icon/compare/v2.18.1...v2.19.0) (2020-03-04)
+
+**Note:** Version bump only for package @bolt/components-icon
+
+
+
+
+
+## [2.18.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icon/compare/v2.18.0...v2.18.1) (2020-02-21)
+
+
+### Bug Fixes
+
+* Correct icon color rules ([5cb7b52](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icon/commit/5cb7b5282ef0effd188295d4c56f2943cabd01a6))
+
+
+
+
+
+# [2.18.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icon/compare/v2.17.1...v2.18.0) (2020-02-19)
+
+
+### Bug Fixes
+
+* update CSS custom property styles to only use the original Icon component's styling API; fixes cross browser rendering issues encountered in Firefox and Safari ([efab5f5](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icon/commit/efab5f523190a7f6ee5509cd029bd1669ddb6837))
+* update Jest snapshots ([ffb309e](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icon/commit/ffb309edef66264d916d58e2e44d97a1152dd44e))
+
+
+
+
+
+# [2.17.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icon/compare/v2.16.3...v2.17.0) (2020-02-04)
+
+**Note:** Version bump only for package @bolt/components-icon
+
+
+
+
+
 ## [2.16.2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icon/compare/v2.16.1...v2.16.2) (2020-01-28)
 
 

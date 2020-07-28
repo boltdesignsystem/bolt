@@ -1,3 +1,4 @@
+import { renderWC } from '../../../testing/testing-helpers';
 const path = require('path');
 
 const timeout = 90000;
@@ -27,16 +28,13 @@ describe('analytics autolinker', () => {
       path: path.join(__dirname, 'fixtures/test-analytics-config.data.js'),
     });
 
-    await page.evaluate(() => {
-      const btn = document.createElement('bolt-button');
-      btn.textContent = 'External URL w/ existing GA Tracking';
-      btn.setAttribute('url', 'https://www.google.com/?_ga=1234');
-      document.body.appendChild(btn);
-    });
+    await renderWC(
+      'bolt-button',
+      `<bolt-button url="https://www.google.com/?_ga=1234">External URL w/ existing GA Tracking</bolt-button>`,
+      page,
+    );
 
-    const navigationPromise = page.waitForNavigation();
     await page.click('bolt-button');
-    await navigationPromise;
     const currentUrl = await page.url();
 
     expect(currentUrl).toContain('_ga=1234');
@@ -55,9 +53,7 @@ describe('analytics autolinker', () => {
       document.body.appendChild(btn);
     });
 
-    const navigationPromise = page.waitForNavigation();
     await page.click('bolt-button');
-    await navigationPromise;
     const currentUrl = await page.url();
 
     expect(currentUrl).toContain('_ga');
@@ -69,12 +65,11 @@ describe('analytics autolinker', () => {
       path: path.join(__dirname, 'fixtures/test-analytics-config.data.js'),
     });
 
-    await page.evaluate(() => {
-      const btn = document.createElement('bolt-button');
-      btn.textContent = 'External URL - Shadow DOM Test';
-      btn.setAttribute('url', 'https://developer.mozilla.org');
-      document.body.appendChild(btn);
-    });
+    await renderWC(
+      'bolt-button',
+      `<bolt-button url="https://developer.mozilla.org">External URL - Shadow DOM Test</bolt-button>`,
+      page,
+    );
 
     await page.evaluate(() => {
       const btn = document.querySelector('bolt-button');
@@ -83,14 +78,12 @@ describe('analytics autolinker', () => {
       return document.body.innerHTML;
     });
 
-    const navigationPromise = page.waitForNavigation();
     await page.click('bolt-button');
-    await navigationPromise;
     const currentUrl = await page.url();
 
     expect(currentUrl).toContain('_ga');
     expect(currentUrl).toContain('brightcove.com');
-  }, 120000);
+  }, 5000);
 
   test('autolinker updates the URLs of a <bolt-button> with an external url + rendering to the Shadow DOM', async function() {
     await page.addScriptTag({
@@ -98,16 +91,13 @@ describe('analytics autolinker', () => {
       path: path.join(__dirname, 'fixtures/test-analytics-config.data.js'),
     });
 
-    await page.evaluate(() => {
-      const btn = document.createElement('bolt-button');
-      btn.textContent = 'External URL - Shadow DOM Test';
-      btn.setAttribute('url', 'https://www.google.com');
-      document.body.appendChild(btn);
-    });
+    await renderWC(
+      'bolt-button',
+      `<bolt-button url="https://www.google.com">External URL - Shadow DOM Test</bolt-button>`,
+      page,
+    );
 
-    const navigationPromise = page.waitForNavigation();
     await page.click('bolt-button');
-    await navigationPromise;
     const currentUrl = await page.url();
 
     expect(currentUrl).toContain('_ga');
@@ -119,13 +109,11 @@ describe('analytics autolinker', () => {
       path: path.join(__dirname, 'fixtures/test-analytics-config.data.js'),
     });
 
-    await page.evaluate(() => {
-      const btn = document.createElement('bolt-button');
-      btn.textContent = 'External URL - Light DOM Test';
-      btn.setAttribute('no-shadow', '');
-      btn.setAttribute('url', 'https://www.google.com');
-      document.body.appendChild(btn);
-    });
+    await renderWC(
+      'bolt-button',
+      `<bolt-button url="https://www.google.com" no-shadow>External URL - Light DOM Test</bolt-button>`,
+      page,
+    );
 
     const navigationPromise = page.waitForNavigation();
     await page.click('bolt-button');
@@ -141,16 +129,13 @@ describe('analytics autolinker', () => {
       path: path.join(__dirname, 'fixtures/test-analytics-config.data.js'),
     });
 
-    await page.evaluate(() => {
-      const btn = document.createElement('bolt-button');
-      btn.textContent = 'External URL - Untracked Domain';
-      btn.setAttribute('url', 'https://developer.mozilla.org');
-      document.body.appendChild(btn);
-    });
+    await renderWC(
+      'bolt-button',
+      `<bolt-button url="https://developer.mozilla.org">External URL - Untracked Domain</bolt-button>`,
+      page,
+    );
 
-    const navigationPromise = page.waitForNavigation();
     await page.click('bolt-button');
-    await navigationPromise;
     const currentUrl = await page.url();
 
     expect(currentUrl).not.toContain('_ga');
@@ -162,17 +147,13 @@ describe('analytics autolinker', () => {
       path: path.join(__dirname, 'fixtures/test-analytics-config.data.js'),
     });
 
-    await page.evaluate(() => {
-      const link = document.createElement('bolt-link');
-      link.textContent = 'External URL - Shadow DOM Test';
-      link.style.display = 'inline-block'; // for some strange reason, without any :host styles or this, puppeteer can't seem to find this DOM node to click on
-      link.setAttribute('url', 'https://www.google.com');
-      document.body.appendChild(link);
-    });
+    await renderWC(
+      'bolt-link',
+      `<bolt-link style="display: inline-block;" url="https://www.google.com">External URL - Shadow DOM Test</bolt-link>`,
+      page,
+    );
 
-    const navigationPromise = page.waitForNavigation();
     await page.click('bolt-link');
-    await navigationPromise;
     const currentUrl = await page.url();
 
     expect(currentUrl).toContain('_ga');
@@ -184,17 +165,13 @@ describe('analytics autolinker', () => {
       path: path.join(__dirname, 'fixtures/test-analytics-config.data.js'),
     });
 
-    await page.evaluate(() => {
-      const link = document.createElement('bolt-link');
-      link.textContent = 'External URL - Light DOM Test';
-      link.useShadow = false;
-      link.setAttribute('url', 'https://www.google.com');
-      document.body.appendChild(link);
-    });
+    await renderWC(
+      'bolt-link',
+      `<bolt-link no-shadow url="https://www.google.com">External URL - Light DOM Test</bolt-link>`,
+      page,
+    );
 
-    const navigationPromise = page.waitForNavigation();
     await page.click('bolt-link');
-    await navigationPromise;
     const currentUrl = await page.url();
 
     expect(currentUrl).toContain('_ga');
@@ -206,17 +183,13 @@ describe('analytics autolinker', () => {
       path: path.join(__dirname, 'fixtures/test-analytics-config.data.js'),
     });
 
-    await page.evaluate(() => {
-      const link = document.createElement('bolt-link');
-      link.textContent = 'External URL - Untracked Domain';
-      link.style.display = 'inline-block'; // for some strange reason, without any :host styles or this, puppeteer can't seem to find this DOM node to click on
-      link.setAttribute('url', 'https://developer.mozilla.org');
-      document.body.appendChild(link);
-    });
+    await renderWC(
+      'bolt-link',
+      `<bolt-link style="display: inline-block;" url="https://developer.mozilla.org">External URL - Untracked Domain</bolt-link>`,
+      page,
+    );
 
-    const navigationPromise = page.waitForNavigation();
     await page.click('bolt-link');
-    await navigationPromise;
     const currentUrl = await page.url();
 
     expect(currentUrl).not.toContain('_ga');
@@ -249,17 +222,13 @@ describe('analytics autolinker', () => {
       ),
     });
 
-    await page.evaluate(() => {
-      const btn = document.createElement('bolt-button');
-      btn.textContent =
-        'External URL - Normally Untracked But Now Tracked Domain';
-      btn.setAttribute('url', 'https://developer.mozilla.org');
-      document.body.appendChild(btn);
-    });
+    await renderWC(
+      'bolt-button',
+      `<bolt-button style="display: inline-block;" url="https://developer.mozilla.org">External URL - Normally Untracked But Now Tracked Domain</bolt-button>`,
+      page,
+    );
 
-    const navigationPromise = page.waitForNavigation();
     await page.click('bolt-button');
-    await navigationPromise;
     const currentUrl = await page.url();
 
     expect(currentUrl).toContain('_ga');

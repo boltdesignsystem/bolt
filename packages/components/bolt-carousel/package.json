@@ -1,6 +1,6 @@
 {
   "name": "@bolt/components-carousel",
-  "version": "2.16.2",
+  "version": "2.25.1",
   "description": "A web-component powered carousel component for cycling through a series of content such as images, text, or cards.",
   "keywords": [
     "bolt design system",
@@ -21,14 +21,15 @@
   "main": "index.js",
   "style": "index.scss",
   "dependencies": {
-    "@bolt/components-button": "^2.16.2",
-    "@bolt/core-v3.x": "^2.16.0",
-    "swiper": "^4.5.0"
+    "@bolt/components-button": "^2.25.1",
+    "@bolt/core-v3.x": "^2.25.1",
+    "@bolt/lazy-queue": "^2.23.0",
+    "swiper": "^5.3.0"
   },
   "publishConfig": {
     "access": "public"
   },
   "gitHead": "d41aa75ae3d195d9d7fb3952eed5e0ae80988133",
-  "schema": "carousel.schema.yml",
+  "schema": "carousel.schema.js",
   "twig": "src/carousel.twig"
 }

@@ -1,3 +1,8 @@
+{% set link %}{% spaceless %}{% include "@bolt-components-link/link.twig" with {
+  text: "like this",
+  url: "https://yahoo.com",
+} only %}{% endspaceless %}{% endset %}
+
 {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
   {% cell "u-bolt-width-6/12 u-bolt-width-4/12@small" %}
     {% include "@bolt-components-card-replacement/card-replacement.twig" with {
@@ -14,7 +19,7 @@
       actions: [
         {
           text: "This is a button",
-          url: "http://pega.com",
+          url: "https://pega.com",
         }
       ],
     } only %}
@@ -23,7 +28,7 @@
   {% cell "u-bolt-width-6/12 u-bolt-width-4/12@small" %}
     {% include "@bolt-components-card-replacement/card-replacement.twig" with {
       link: {
-        url: "http://pega.com",
+        url: "https://pega.com",
         text: "Go to pega.com"
       },
       media: {
@@ -34,12 +39,12 @@
       },
       body: {
         headline: "With link",
-        paragraph: "This card has a link, which makes the whole card clickable, but you can still have the action button to link somewhere else if needed.",
+        paragraph: "This card has a url, which makes the whole card clickable, but you can still have text links in the body (" ~ link ~ ") or the action button to link somewhere else if needed.",
       },
       actions: [
         {
           text: "This button has a diffent link",
-          url: "http://google.com",
+          url: "https://google.com",
         }
       ],
     } only %}

@@ -5,7 +5,7 @@ const sortPackageJson = require('sort-package-json');
 
 const boltPackageJsonPath = path.resolve(
   __dirname,
-  '../../../../../docs-site/package.json',
+  '../../../../../packages/base-starter-kit/package.json',
 );
 const boltPackageJson = require(boltPackageJsonPath);
 

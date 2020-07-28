@@ -26,6 +26,9 @@ class BoltPopover extends BoltElement {
         type: Boolean,
         reflect: true,
       },
+      theme: {
+        type: String,
+      },
       hasPopup: Boolean,
       hasFocusableContent: Boolean,
       boundary: String,
@@ -50,8 +53,38 @@ class BoltPopover extends BoltElement {
     return [unsafeCSS(popoverStyles)];
   }
 
+  // removes any hashes from the URL while preserving any query string params
+  // todo: maybe worth sharing this + matchSSRState with other Bolt components?
+  clearURLHash() {
+    window.history.replaceState(
+      '',
+      document.title,
+      window.location.pathname + window.location.search,
+    );
+  }
+
+  // updates Popover's internal state to match any SSR / no-js interactions that have occurred
+  matchSSRState() {
+    const uuid = this.getAttribute('uuid');
+
+    const popoverOpenedHash = `#js-bolt-popover-${uuid}`;
+    const popoverClosedHash = `#js-bolt-popover-trigger-${uuid}`;
+
+    const currentHash = window.location.hash;
+
+    // if URL hash matches, auto-open or auto-close + clean up any existing URL hashes
+    if (currentHash === popoverOpenedHash) {
+      this.clearURLHash();
+      this.show();
+    } else if (currentHash === popoverClosedHash) {
+      this.clearURLHash();
+      this.hide();
+    }
+  }
+
   connectedCallback() {
     super.connectedCallback && super.connectedCallback();
+    this.matchSSRState();
     this.setAttribute('ready', '');
   }
 
@@ -120,8 +153,8 @@ class BoltPopover extends BoltElement {
       }
     };
 
-    this.slotMap.get('content') &&
-      this.slotMap.get('content').forEach(e => {
+    this.slotMap.get('default') &&
+      this.slotMap.get('default').forEach(e => {
         // Sorts through the content slot, figure out what kind of nodes it
         // contains, and sets variables accordingly
         recursivelySort(e);
@@ -215,6 +248,10 @@ class BoltPopover extends BoltElement {
       [`c-bolt-popover--text-wrap`]: this.textContentLength > 31,
     });
 
+    const bubbleClasses = cx('c-bolt-popover__bubble', {
+      [`t-bolt-${this.theme}`]: this.theme && this.theme !== 'none',
+    });
+
     return html`
       <span class="${classes}">
         ${this.slotMap.get('default') &&
@@ -239,7 +276,7 @@ class BoltPopover extends BoltElement {
               class="${cx(`c-bolt-popover__content`)}"
               aria-hidden="${!this.open}"
             >
-              <span class="${cx(`c-bolt-popover__bubble`)}">
+              <span class="${bubbleClasses}">
                 ${this.slotify('content')}
               </span>
             </span>

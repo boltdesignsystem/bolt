@@ -1,14 +1,27 @@
 import { render, stopServer, html } from '../../../testing/testing-helpers';
-
-const { readYamlFileSync } = require('@bolt/build-tools/utils/yaml');
-const { join } = require('path');
-const schema = readYamlFileSync(join(__dirname, '../headline.schema.yml'));
+import schema from '../headline.schema';
 const { tag, size, align, transform } = schema.properties;
 
 describe('<bolt-headline> Component', () => {
+  let page;
+
   afterAll(async () => {
     await stopServer();
-  }, 100);
+    await page.close();
+  });
+
+  beforeEach(async () => {
+    await page.evaluate(() => {
+      document.body.innerHTML = '';
+    });
+  });
+
+  beforeAll(async () => {
+    page = await global.__BROWSER__.newPage();
+    await page.goto('http://127.0.0.1:4444/', {
+      timeout: 0,
+    });
+  });
 
   test('basic usage headline', async () => {
     const results = await render('@bolt-components-headline/headline.twig', {
@@ -146,5 +159,63 @@ describe('<bolt-headline> Component', () => {
     });
     expect(results.ok).toBe(true);
     expect(results.html).toMatchSnapshot();
+  });
+
+  test('<span>-based Headlines do not overlap with neighboring <p> tags', async () => {
+    const results = await render('@bolt-components-headline/headline.twig', {
+      text: 'This is a Headline',
+      tag: 'span',
+    });
+
+    expect(results.ok).toBe(true);
+    expect(results.html).toMatchSnapshot();
+
+    const headlineHTML = await page.evaluate(async results => {
+      const wrapper = document.createElement('div');
+      wrapper.innerHTML = `
+        ${results.html}
+        <p>Example content next to Headline.</p>
+      `;
+      document.body.appendChild(wrapper);
+      return wrapper.innerHTML;
+    }, results);
+
+    const renderedHTML = await html(headlineHTML);
+    expect(renderedHTML).toMatchSnapshot();
+
+    const image = await page.screenshot();
+    expect(image).toMatchImageSnapshot({
+      failureThreshold: '0.01',
+      failureThresholdType: 'percent',
+    });
+  });
+
+  test('<span>-based Headlines horizontally align properly.', async () => {
+    const results = await render('@bolt-components-headline/headline.twig', {
+      text: 'This is a Headline',
+      tag: 'span',
+      align: 'center',
+    });
+
+    expect(results.ok).toBe(true);
+    expect(results.html).toMatchSnapshot();
+
+    const headlineHTML = await page.evaluate(async results => {
+      const wrapper = document.createElement('div');
+      wrapper.innerHTML = `
+        ${results.html}
+      `;
+      document.body.appendChild(wrapper);
+      return wrapper.innerHTML;
+    }, results);
+
+    const renderedHTML = await html(headlineHTML);
+    expect(renderedHTML).toMatchSnapshot();
+
+    const image = await page.screenshot();
+    expect(image).toMatchImageSnapshot({
+      failureThreshold: '0.01',
+      failureThresholdType: 'percent',
+    });
   });
 });

@@ -44,19 +44,19 @@ module.exports = function(content, map) {
     optimizedContent = content
       .replace(
         new RegExp(/ fill="(?!#fff|#FFF|#FFFFFF|none).*?"/, 'g'),
-        ' fill="var(--bolt-icon-primary-color)"',
+        ' fill="var(--bolt-theme-icon, currentColor)"',
       )
       .replace(
         new RegExp(/ stroke="(?!#fff|#FFF|#FFFFFF|none).*?"/, 'g'),
-        ' stroke="var(--bolt-icon-primary-color)"',
+        ' stroke="var(--bolt-theme-icon, currentColor)"',
       )
       .replace(
         new RegExp(/ fill="(#fff|#FFF|#FFFFFF).*?"/, 'g'),
-        ' fill="var(--bolt-icon-secondary-color)"',
+        ' fill="var(--bolt-theme-icon-background,var(--bolt-theme-primary-text-default, currentColor))"',
       )
       .replace(
         new RegExp(/ stroke="(#fff|#FFF|#FFFFFF).*?"/, 'g'),
-        ' stroke="var(--bolt-icon-secondary-color)"',
+        ' stroke="var(--bolt-theme-icon-background,var(--bolt-theme-primary-text-default, currentColor))"',
       )
       .replace('d="M0 0h24v24H0z"', '')
       .replace(/ width=".*?"/, ' width={size}')

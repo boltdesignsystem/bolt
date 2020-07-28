@@ -54,7 +54,7 @@ class BoltListItem extends withLitHtml {
 
     return html`
       ${this.addStyles([styles])}
-      <li class="${classes}">${this.slot('default')}</li>
+      <div class="${classes}" role="listitem">${this.slot('default')}</div>
     `;
   }
 }

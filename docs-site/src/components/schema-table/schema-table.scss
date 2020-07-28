@@ -5,7 +5,6 @@
 
   ul {
     p {
-      display: inline;
       margin: 0;
     }
 
@@ -17,12 +16,14 @@
       cursor: pointer;
 
       summary {
-        user-select: none;
         font-weight: bolt-font-weight(700);
+        user-select: none;
+
         &:focus {
           outline: none;
         }
       }
+
       &,
       summary {
         margin: 0;
@@ -60,8 +61,6 @@ bolt-schema-table.is-wc {
 // }
 
 .c-bds-schema-table {
-  border-radius: $bolt-border-radius;
-
   background-attachment: local, local, scroll, scroll;
   // background-image: -webkit-linear-gradient(left, bolt-color(white), bolt-color(black)),
   // -webkit-linear-gradient(right, bolt-color(white), bolt-color(black)),
@@ -73,12 +72,11 @@ bolt-schema-table.is-wc {
   //   linear-gradient(left, bolt-color(gray, xlight), bolt-color(gray, xdark)),
   //   linear-gradient(right, bolt-color(gray, xlight), bolt-color(gray, xdark));
 
-
   background-color: bolt-color(white);
   background-image: -webkit-linear-gradient(left, #fff, hsla(0, 0%, 100%, 0)),
-  -webkit-linear-gradient(right, #fff, hsla(0, 0%, 100%, 0)),
-  -webkit-linear-gradient(left, #eaf0f6, rgba(234, 240, 246, 0)),
-  -webkit-linear-gradient(right, #eaf0f6, rgba(234, 240, 246, 0));
+    -webkit-linear-gradient(right, #fff, hsla(0, 0%, 100%, 0)),
+    -webkit-linear-gradient(left, #eaf0f6, rgba(234, 240, 246, 0)),
+    -webkit-linear-gradient(right, #eaf0f6, rgba(234, 240, 246, 0));
   background-position: 0 0, 100% 0, 0 0, 100% 0;
   background-repeat: no-repeat;
   background-size: 4em 100%, 4em 100%, 1em 100%, 1em 100%;
@@ -105,7 +103,7 @@ bolt-schema-table.is-wc {
   tr {
     transition: background-color 0.1s ease;
 
-    &:not(:last-child){
+    &:not(:last-child) {
       border-bottom: 1px solid bolt-color(gray, light);
     }
   }
@@ -113,7 +111,6 @@ bolt-schema-table.is-wc {
   tr:hover {
     background-color: rgba(bolt-color(gray, xlight), 0.5);
   }
-
 
   th {
     @include bolt-padding(xsmall);

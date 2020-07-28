@@ -1,7 +1,7 @@
 {
   "name": "@bolt/components-chip",
-  "version": "2.16.2",
-  "description": "Chip Component in Bolt",
+  "version": "2.25.1",
+  "description": "Pill like container for displaying meta data text.",
   "keywords": [
     "bolt design system",
     "bolt",
@@ -15,8 +15,9 @@
   "main": "index.js",
   "style": "index.scss",
   "dependencies": {
-    "@bolt/components-icon": "^2.16.2",
-    "@bolt/core-v3.x": "^2.16.0"
+    "@bolt/components-icon": "^2.25.1",
+    "@bolt/core-v3.x": "^2.25.1",
+    "@bolt/lazy-queue": "^2.23.0"
   },
   "publishConfig": {
     "access": "public"
@@ -34,6 +35,6 @@
       "web": "http://mikemai.net/"
     }
   ],
-  "schema": "chip.schema.yml",
+  "schema": "chip.schema.js",
   "twig": "src/chip.twig"
 }

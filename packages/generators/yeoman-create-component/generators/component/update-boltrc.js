@@ -1,11 +1,9 @@
 const fs = require('fs');
 const path = require('path');
 const prettier = require('prettier');
+const resolve = require('resolve');
 
-const boltRcConfigPath = path.resolve(
-  __dirname,
-  '../../../../../docs-site/.boltrc.js',
-);
+const boltRcConfigPath = resolve.sync('@bolt/starter-kit/.boltrc.js');
 const boltRcConfig = require(boltRcConfigPath);
 
 function updateBoltRcConfig(newPackageName, testingPath) {

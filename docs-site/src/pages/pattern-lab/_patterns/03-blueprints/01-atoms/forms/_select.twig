@@ -3,15 +3,15 @@
 {% set label_display = 'after' %}
 
 {% set label %}
-  {% include("@bolt-components-form/form-label.twig") with {
-    "title": title,
-    "displayType": "floating"
-  } %}
+  {% include "@bolt-components-form/form-label.twig" with {
+    title: title,
+    displayType: "floating"
+  } only %}
 {% endset %}
 
 {% set children %}
-  {% include("@bolt-components-form/form-select.twig") with {
-    "attributes": selectAttributes,
-    "options": options
-  } %}
+  {% include "@bolt-components-form/form-select.twig" with {
+    attributes: selectAttributes,
+    options: options
+  } only %}
 {% endset %}

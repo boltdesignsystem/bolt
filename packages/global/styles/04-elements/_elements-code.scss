@@ -3,8 +3,7 @@
 \* ------------------------------------ */
 
 $bolt-code-border-radius: $bolt-border-radius;
-$bolt-code-background-color: rgba(bolt-color(indigo, light), 0.08);
-
+$bolt-code-background-color: rgba(bolt-color(navy, light), 0.08);
 
 pre,
 code {
@@ -30,7 +29,9 @@ pre {
 
 code {
   @include bolt-margin(0);
-  @include bolt-padding(2px 0.25rem 2px 0.3rem); // [Mai] 0.25rem on the right offsets the 0.05rem letter-spacing.
+  @include bolt-padding(
+    2px 0.25rem 2px 0.3rem
+  ); // [Mai] 0.25rem on the right offsets the 0.05rem letter-spacing.
   @include bolt-font-family(code);
   @include bolt-font-weight(regular);
   @include bolt-font-size(small);

@@ -4,6 +4,26 @@
 
 @import '@bolt/core-v3.x';
 
+// Older versions of Edge
+bolt-toc {
+  display: block;
+
+  &[sticky] {
+    position: sticky;
+    top: 0;
+  }
+}
+
+// newer versions of Edge + Chrome, Safari, and Firefox
+:host {
+  display: block;
+
+  &[sticky] {
+    position: sticky;
+    top: 0;
+  }
+}
+
 .c-bolt-toc {
   @include bolt-shadow('level-20');
   display: block;
@@ -13,12 +33,12 @@
 }
 
 .c-bolt-toc__header {
-  @include bolt-margin(0);
-  @include bolt-padding(xsmall small);
   @include bolt-font-family(heading);
   @include bolt-font-size(large);
   @include bolt-font-weight(bold);
   display: block;
+  margin: 0;
+  padding: var(--bolt-spacing-y-xsmall) var(--bolt-spacing-x-small);
   color: bolt-theme(background);
   background-color: bolt-theme(headline);
 
@@ -28,8 +48,8 @@
 }
 
 .c-bolt-toc__list {
-  @include bolt-margin(0);
-  @include bolt-padding(0);
   display: block;
+  margin: 0;
+  padding: var(--bolt-spacing-y-small) 0;
   list-style: none;
 }

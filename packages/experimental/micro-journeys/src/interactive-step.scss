@@ -39,27 +39,14 @@ bolt-interactive-step {
     &:before {
       @include bolt-micro-journeys-nav-dot;
 
-      .c-bolt-interactive-step.t-bolt-dark & {
-        background-color: bolt-color(indigo, light);
-      }
-
       .c-bolt-interactive-step--active & {
         @include bolt-micro-journeys-nav-dot($active: true);
-      }
-
-      .c-bolt-interactive-step--active.t-bolt-dark & {
-        border-color: bolt-color(white);
-        background-color: bolt-color(yellow);
       }
     }
 
     // The nav line on mobile
     &:after {
       @include bolt-micro-journeys-nav-line;
-
-      .c-bolt-interactive-step.t-bolt-dark & {
-        background-color: bolt-color(indigo, light);
-      }
 
       .c-bolt-interactive-step--last & {
         display: none;
@@ -83,11 +70,6 @@ bolt-interactive-step {
 
     .c-bolt-interactive-step--active & {
       position: static;
-
-      .c-bolt-interactive-step.t-bolt-dark & {
-        border-color: bolt-color(white);
-        background-color: bolt-color(yellow);
-      }
     }
 
     .c-bolt-interactive-step--last & {

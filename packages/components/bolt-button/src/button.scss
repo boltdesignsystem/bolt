@@ -41,6 +41,10 @@
   @include bolt-button-raised-effect;
 }
 
+.c-bolt-button--tertiary {
+  @include bolt-button-style(tertiary);
+}
+
 .c-bolt-button--text {
   @include bolt-button-style(text);
 }
@@ -229,15 +233,11 @@ bolt-button[width='full@small'],
 /**
  * Border Radius
  */
-@each $radius-name, $radius-value in $bolt-button-border-radii {
-  .c-bolt-button--border-radius-#{$radius_name} {
-    &,
-    &:before {
-      border-radius: $radius-value;
-    }
-  }
-
-  bolt-button[border-radius='#{$radius_name}'] {
+@each $radius-name, $radius-value in $bolt-border-radius-values {
+  .c-bolt-button--border-radius-#{$radius-name},
+  .c-bolt-button--border-radius-#{$radius-name}:before,
+  .c-bolt-button--border-radius-#{$radius-name}:after,
+  bolt-button[border-radius='#{$radius-name}'] {
     border-radius: $radius-value;
   }
 }

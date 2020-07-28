@@ -1,0 +1,38 @@
+{% import "@bolt/macros.twig" as macros %}
+{# ^ allows us to use inline includes that also work in Drupal #}
+
+<bolt-text>This demo uses the <code>reverseOrder</code> prop to reverse the Hero's default column order so that on larger screens, the Image shows up on the left and the Content shows up on the right.</bolt-text>
+
+{% include "@bolt-components-hero/hero.twig" with {
+  content: [
+    macros.include("@bolt-components-image/image.twig", {
+      src: "/images/heros/hero-foreground--orange--logo.svg",
+      alt: "PegaWorld iNspire logo",
+      lazyload: false,
+      attributes: {
+        class: [
+          "u-bolt-margin-bottom-medium",
+        ]
+      }
+    }),
+    macros.include("@bolt-components-headline/subheadline.twig", {
+      size: "xlarge",
+      text: "Boston Convention & Exhibition Center May&nbsp;31&nbsp;-&nbsp;June&nbsp;2,&nbsp;2020",
+      attributes: {
+        class: [
+          "u-bolt-line-length-medium"
+        ]
+      }
+    }),
+    macros.include("@bolt-components-button/button.twig", {
+      text: "See full agenda",
+      style: "secondary"
+    }),
+  ]|join(''),
+  background: "/images/heros/hero-background--orange.jpg",
+  image: "/images/heros/hero-foreground--orange--animated-gif.gif",
+  imageValign: "middle",
+  reverseOrder: true,
+  theme: "dark",
+} %}
+

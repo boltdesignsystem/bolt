@@ -6,7 +6,7 @@ import {
   html,
 } from '../../../testing/testing-helpers';
 import schema from '../popover.schema';
-const { placement, spacing, uuid } = schema.properties;
+const { placement, spacing, theme, uuid } = schema.properties;
 const timeout = 120000;
 
 describe('<bolt-popover> Component', () => {
@@ -46,6 +46,19 @@ describe('<bolt-popover> Component', () => {
         content:
           'This is the content of the popover with a <bolt-link url="https://pega.com">call to action</bolt-link>.',
         spacing: spacingChoice,
+      });
+      expect(results.ok).toBe(true);
+      expect(results.html).toMatchSnapshot();
+    });
+  });
+
+  theme.enum.forEach(async themeChoice => {
+    test(`content theme: ${themeChoice}`, async () => {
+      const results = await render('@bolt-components-popover/popover.twig', {
+        trigger: '<bolt-button>This triggers a popover</bolt-button>',
+        content:
+          'This is the content of the popover with a <bolt-link url="https://pega.com">call to action</bolt-link>.',
+        theme: themeChoice,
       });
       expect(results.ok).toBe(true);
       expect(results.html).toMatchSnapshot();

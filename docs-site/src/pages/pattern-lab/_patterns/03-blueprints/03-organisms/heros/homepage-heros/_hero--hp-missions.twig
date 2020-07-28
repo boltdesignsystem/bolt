@@ -1,3 +1,5 @@
+{% import "@bolt-blueprints/macros.twig" as macros %}
+
 {% set content %}
   {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--xlarge" %}
     {% cell "u-bolt-width-12/12" %}
@@ -56,14 +58,14 @@
               valign: "middle",
               url: item.url,
               figure: {
-                content: include("@bolt-components-icon/icon.twig", {
+                content: macros.include("@bolt-components-icon/icon.twig", {
                   name: item.icon,
                   size: "medium",
                   background: "circle",
                 }),
               },
-              content: include("@bolt-components-headline/text.twig", {
-                text: include("@bolt-components-link/link.twig", {
+              content: macros.include("@bolt-components-headline/text.twig", {
+                text: macros.include("@bolt-components-link/link.twig", {
                   isHeadline: true,
                   text: item.text,
                   url: item.url,
@@ -138,14 +140,14 @@
               url: item.url,
               valign: "middle",
               figure: {
-                content: include("@bolt-components-icon/icon.twig", {
+                content: macros.include("@bolt-components-icon/icon.twig", {
                   name: item.icon,
                   size: "medium",
                   background: "circle",
                 }),
               },
-              content: include("@bolt-components-headline/text.twig", {
-                text: include("@bolt-components-link/link.twig", {
+              content: macros.include("@bolt-components-headline/text.twig", {
+                text: macros.include("@bolt-components-link/link.twig", {
                   text: item.text,
                   url: item.url,
                   isHeadline: true,
@@ -172,14 +174,14 @@
         valign: "top",
         size: "medium",
         figure: {
-          content: include("@bolt-components-image/image.twig", {
+          content: macros.include("@bolt-components-image/image.twig", {
             src: "/images/homepage-promo-alt.jpg",
             max_width: "300px",
           }),
         },
         content: [
-          include("@bolt-components-headline/headline.twig", {
-            text: include("@bolt-components-link/link.twig", {
+          macros.include("@bolt-components-headline/headline.twig", {
+            text: macros.include("@bolt-components-link/link.twig", {
               text: "Technical Paths",
               url: "/",
               isHeadline: true,
@@ -187,11 +189,11 @@
             size: "xlarge",
             weight: "bold",
           }),
-          include("@bolt-components-headline/text.twig", {
+          macros.include("@bolt-components-headline/text.twig", {
             text: "Build strategic applications to help solve real-world problems for today’s fast-paced business environment.",
             size: "large",
           }),
-          include("@bolt-components-button/button.twig", {
+          macros.include("@bolt-components-button/button.twig", {
             style: "secondary",
             size: "small",
             border_radius: "full",
@@ -210,14 +212,14 @@
         valign: "top",
         size: "medium",
         figure: {
-          content: include("@bolt-components-image/image.twig", {
+          content: macros.include("@bolt-components-image/image.twig", {
             src: "/images/homepage-promo.jpg",
             max_width: "300px",
           }),
         },
         content: [
-          include("@bolt-components-headline/headline.twig", {
-            text: include("@bolt-components-link/link.twig", {
+          macros.include("@bolt-components-headline/headline.twig", {
+            text: macros.include("@bolt-components-link/link.twig", {
               text: "Business Paths",
               url: "/",
               isHeadline: true,
@@ -225,11 +227,11 @@
             size: "xlarge",
             weight: "bold",
           }),
-          include("@bolt-components-headline/text.twig", {
+          macros.include("@bolt-components-headline/text.twig", {
             text: "Ensure that business users align their strategic business goals with IT initiatives to ensure project success.",
             size: "large",
           }),
-          include("@bolt-components-button/button.twig", {
+          macros.include("@bolt-components-button/button.twig", {
             style: "secondary",
             size: "small",
             border_radius: "full",

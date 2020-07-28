@@ -2,8 +2,6 @@ const promiseLimit = require('promise-limit');
 
 const puppeteer = require('puppeteer');
 
-const localChrome = require('local-chrome');
-
 const waitForRender = function (options) {
   options = options || {};
   return new Promise((resolve, reject) => {
@@ -45,12 +43,6 @@ class PuppeteerRenderer {
       //   executablePath: localChrome
       // })
 
-
-      if (localChrome) {
-        this._rendererOptions = Object.assign(this._rendererOptions, {
-          executablePath: localChrome
-        });
-      }
 
       this._puppeteer = await puppeteer.launch(this._rendererOptions); // if (this._rendererOptions.useLocalChrome) {
       // }

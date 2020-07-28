@@ -1,4 +1,4 @@
-{% grid "o-bolt-grid--flex o-bolt-grid--small o-bolt-grid--middle #{viewed ? 'u-bolt-opacity-20' : ''}" %}
+{% grid "o-bolt-grid--flex o-bolt-grid--small o-bolt-grid--middle u-bolt-flex-nowrap #{viewed ? 'u-bolt-opacity-20' : ''}" %}
   {% cell "u-bolt-flex-grow u-bolt-margin-right-auto" %}
     {% include "@bolt-components-headline/text.twig" with {
       size: "xsmall",
@@ -10,7 +10,7 @@
     } only %}
   {% endcell %}
 
-  {% cell "u-bolt-flex u-bolt-align-items-center" %}
+  {% cell "u-bolt-flex u-bolt-flex-shrink-none u-bolt-align-items-center" %}
     {% include "@bolt-components-headline/text.twig" with {
       size: "xsmall",
       weight: "bold",

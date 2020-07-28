@@ -3,6 +3,102 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.25.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tabs/compare/v2.25.0...v2.25.1) (2020-07-14)
+
+**Note:** Version bump only for package @bolt/components-tabs
+
+
+
+
+
+# [2.25.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tabs/compare/v2.22.2...v2.25.0) (2020-07-13)
+
+
+### Bug Fixes
+
+* update componet descriptions ([b9fefe6](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tabs/commit/b9fefe6106eb74e3d4794a51443a2b576d9651d9))
+* update Jest tests to more reliably work with fully async-loaded components ([6b4c752](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tabs/commit/6b4c752cfcf32a3d0d260d5e2f718be12fd3df50))
+* update remaining Jest snapshots; tweak Popover and Tabs tests to be more reliable ([ab0d7f0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tabs/commit/ab0d7f084678e5b001e792d34908255b928ef770))
+
+
+### Features
+
+* globally lazyload JS bundles to expose same existing issues as the ones found with the new lazy-queue functionality ([7cc4ce2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tabs/commit/7cc4ce2fa9ce28dc4f9f37078762f106ca87729f))
+
+
+
+
+
+# [2.24.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tabs/compare/v2.23.0...v2.24.0) (2020-06-05)
+
+**Note:** Version bump only for package @bolt/components-tabs
+
+
+
+
+
+# [2.23.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tabs/compare/v2.22.1...v2.23.0) (2020-05-06)
+
+
+### Bug Fixes
+
+* update Jest tests to more reliably work with fully async-loaded components ([6b4c752](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tabs/commit/6b4c752cfcf32a3d0d260d5e2f718be12fd3df50))
+* update remaining Jest snapshots; tweak Popover and Tabs tests to be more reliable ([ab0d7f0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tabs/commit/ab0d7f084678e5b001e792d34908255b928ef770))
+
+
+### Features
+
+* globally lazyload JS bundles to expose same existing issues as the ones found with the new lazy-queue functionality ([7cc4ce2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tabs/commit/7cc4ce2fa9ce28dc4f9f37078762f106ca87729f))
+
+
+
+
+
+# [2.21.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tabs/compare/v2.20.2...v2.21.0) (2020-04-08)
+
+**Note:** Version bump only for package @bolt/components-tabs
+
+
+
+
+
+# [2.20.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tabs/compare/v2.19.1...v2.20.0) (2020-03-18)
+
+**Note:** Version bump only for package @bolt/components-tabs
+
+
+
+
+
+# [2.19.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tabs/compare/v2.18.1...v2.19.0) (2020-03-04)
+
+
+### Features
+
+* add `id` prop and enable deep linking via query param ([bfd521f](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tabs/commit/bfd521fb3bc99cd1ee5db947f8079737d62a6db9))
+* add smooth scrolling offset props to Tabs ([820df65](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tabs/commit/820df650d603d4d174ed542b2f764a6b99e59887))
+* switch from 'query-string' parser to 'url-search-params' polyfill ([77ed51f](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tabs/commit/77ed51fb71440eecc26b524892831ad21a9a1fe7))
+
+
+
+
+
+# [2.18.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tabs/compare/v2.17.1...v2.18.0) (2020-02-19)
+
+**Note:** Version bump only for package @bolt/components-tabs
+
+
+
+
+
+# [2.17.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tabs/compare/v2.16.3...v2.17.0) (2020-02-04)
+
+**Note:** Version bump only for package @bolt/components-tabs
+
+
+
+
+
 # [2.16.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tabs/compare/v2.15.2...v2.16.0) (2020-01-24)
 
 **Note:** Version bump only for package @bolt/components-tabs

@@ -3,6 +3,142 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.25.1](https://github.com/bolt-design-system/bolt/compare/v2.25.0...v2.25.1) (2020-07-14)
+
+**Note:** Version bump only for package @bolt/micro-journeys
+
+
+
+
+
+# [2.25.0](https://github.com/bolt-design-system/bolt/compare/v2.22.2...v2.25.0) (2020-07-13)
+
+
+### Bug Fixes
+
+* linting ([48f60b3](https://github.com/bolt-design-system/bolt/commit/48f60b38edfefbc44424e199b4a0b3e6fce7908b))
+
+
+
+# [2.25.0-alpha-colors](https://github.com/bolt-design-system/bolt/compare/v2.24.1...v2.25.0-alpha-colors) (2020-06-18)
+
+
+### Bug Fixes
+
+* update micro journey JS to fix intersection observer-related bug reported ([d1f24f8](https://github.com/bolt-design-system/bolt/commit/d1f24f83012a97e5ac9020f31ce7063ee90e2bf9))
+
+
+### Features
+
+* globally lazyload JS bundles to expose same existing issues as the ones found with the new lazy-queue functionality ([7cc4ce2](https://github.com/bolt-design-system/bolt/commit/7cc4ce2fa9ce28dc4f9f37078762f106ca87729f))
+
+
+
+
+
+## [2.24.1](https://github.com/bolt-design-system/bolt/compare/v2.24.0...v2.24.1) (2020-06-17)
+
+**Note:** Version bump only for package @bolt/micro-journeys
+
+
+
+
+
+# [2.24.0](https://github.com/bolt-design-system/bolt/compare/v2.23.0...v2.24.0) (2020-06-05)
+
+**Note:** Version bump only for package @bolt/micro-journeys
+
+
+
+
+
+# [2.23.0](https://github.com/bolt-design-system/bolt/compare/v2.22.1...v2.23.0) (2020-05-06)
+
+
+### Bug Fixes
+
+* update micro journey JS to fix intersection observer-related bug reported ([d1f24f8](https://github.com/bolt-design-system/bolt/commit/d1f24f83012a97e5ac9020f31ce7063ee90e2bf9))
+
+
+### Features
+
+* globally lazyload JS bundles to expose same existing issues as the ones found with the new lazy-queue functionality ([7cc4ce2](https://github.com/bolt-design-system/bolt/commit/7cc4ce2fa9ce28dc4f9f37078762f106ca87729f))
+
+
+
+
+
+# [2.21.0](https://github.com/bolt-design-system/bolt/compare/v2.20.2...v2.21.0) (2020-04-08)
+
+**Note:** Version bump only for package @bolt/micro-journeys
+
+
+
+
+
+# [2.20.0](https://github.com/bolt-design-system/bolt/compare/v2.19.1...v2.20.0) (2020-03-18)
+
+**Note:** Version bump only for package @bolt/micro-journeys
+
+
+
+
+
+# [2.19.0](https://github.com/bolt-design-system/bolt/compare/v2.18.1...v2.19.0) (2020-03-04)
+
+**Note:** Version bump only for package @bolt/micro-journeys
+
+
+
+
+
+## [2.18.1](https://github.com/bolt-design-system/bolt/compare/v2.18.0...v2.18.1) (2020-02-21)
+
+**Note:** Version bump only for package @bolt/micro-journeys
+
+
+
+
+
+# [2.18.0](https://github.com/bolt-design-system/bolt/compare/v2.17.1...v2.18.0) (2020-02-19)
+
+
+### Bug Fixes
+
+* Remove CSS workarounds for micro journeys in dark theme ([0e3ed89](https://github.com/bolt-design-system/bolt/commit/0e3ed89a12296e8c2a5575b1e1e366ed1d0bc0c8))
+
+
+
+
+
+## [2.17.1](https://github.com/bolt-design-system/bolt/compare/v2.17.0...v2.17.1) (2020-02-11)
+
+
+### Bug Fixes
+
+* **editor:** disable "Move Up/Down" buttons when appropriate ([93731aa](https://github.com/bolt-design-system/bolt/commit/93731aaef78a38dd68aeb3af1a42e4773c3b5ae3))
+* **editor:** rearrange step w content ([e36185f](https://github.com/bolt-design-system/bolt/commit/e36185fa731c2a6b458affd30236a243b666826f))
+
+
+
+
+
+# [2.17.0](https://github.com/bolt-design-system/bolt/compare/v2.16.3...v2.17.0) (2020-02-04)
+
+
+### Bug Fixes
+
+* address prettier warnings on master ([51abac6](https://github.com/bolt-design-system/bolt/commit/51abac6cb034a3741e872efde17d5d00d3edca3b))
+
+
+### Features
+
+* cherry pick install & dependency related updates from https://github.com/boltdesignsystem/bolt/pull/1711 ([dfa3dd0](https://github.com/bolt-design-system/bolt/commit/dfa3dd08d19a109736f64faef851e5516e3941e0))
+
+
+
+
+
 ## [2.16.2](https://github.com/bolt-design-system/bolt/compare/v2.16.1...v2.16.2) (2020-01-28)
 
 **Note:** Version bump only for package @bolt/micro-journeys
