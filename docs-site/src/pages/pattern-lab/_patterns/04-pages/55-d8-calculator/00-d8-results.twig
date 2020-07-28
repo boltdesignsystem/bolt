@@ -46,16 +46,16 @@
 
       {% set trigger %}
         {% include "@bolt-components-link/link.twig" with {
-          text: "$429,457,192.75",
+          text: "<strong>$429,457,192.75</strong>",
         } only %}
       {% endset %}
 
       {% set popover_content %}
-        Retention benefits: <br />
-        $207,500,000<br />
-        <br />
-        Upsell / Cross-sell benefit:<br />
-        $220,833,333
+        {% include "@bolt-components-headline/text.twig" with {
+          text: "Retention benefits: <br /><strong>$207,500,000</strong><br /><br />Upsell / Cross-sell benefit:<br /><strong>$220,833,333</strong>",
+          align: "center",
+          size: "small"
+        } only %}
       {% endset %}
 
       {% set calc_popover %}
@@ -82,16 +82,20 @@
             {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small" %}
               {% include "@bolt/headline.twig" with {
                 text: "Deeper relationships. Lasting benefits.",
-                size: "large",
+                size: "xlarge",
                 tag: "h3"
               } only %}
               {% include "@bolt-components-headline/text.twig" with {
                 text: "Pega protects your revenue by proactively predicting churn, then delivering hyper-personalized next best actions that retain customers, buiild long-term loyalty, and reduce discounts.",
               } only %}
+              {% include "@bolt-components-headline/text.twig" with {
+                text: "Total Retention Benefit: <strong>$207,500,000</strong>",
+                size: "xlarge"
+              } only %}
             {% endcell %}
             {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small" %}
               <div class="u-bolt-margin-bottom-small">
-                {% set graph_array = [
+                {% set graph_array_1 = [
                   {
                     number: '10%',
                     description: "Your churn rate today",
@@ -104,7 +108,9 @@
                   }
                 ]
                 %}
-                {% include 'results-graph/results-graph.twig' with graph_array %}
+                {% include 'results-graph/results-graph.twig' with {
+                  graph_array: graph_array_1
+                } only %}
               </div>
               {% grid "o-bolt-grid--middle" %}
                 {% cell "u-bolt-width-1/12" %}
@@ -171,29 +177,35 @@
             {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small" %}
               {% include "@bolt/headline.twig" with {
                 text: "Make selling more empathetic.",
-                size: "large",
+                size: "xlarge",
                 tag: "h3"
               } only %}
               {% include "@bolt-components-headline/text.twig" with {
                 text: "With Pega's real-time decisioning you'll know when a customer is in-market, and how to convert the sale. You'll trigger relevant offers at exactly the right time - increasing your accept rates and maximizing customer lifetime value.",
               } only %}
+              {% include "@bolt-components-headline/text.twig" with {
+                text: "Total Uppsell / Cross-sell Benefit: <strong>$220,833,333</strong>",
+                size: "xlarge"
+              } only %}
             {% endcell %}
             {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small" %}
               <div class="u-bolt-margin-bottom-small">
-                {% set graph_array = [
+                {% set graph_array_2 = [
                   {
-                    number: '10%',
-                    description: "Your churn rate today",
+                    number: '$1,875',
+                    description: "Your current value of a customer",
                     color: "gray"
                   },
                   {
-                    number: '9%',
-                    description: "Your churn rate with Pega Customer Decision Hub",
+                    number: '$1,897',
+                    description: "Your value of a customer with Pega Customer Decision Hub",
                     color: "indigo"
                   }
                 ]
                 %}
-                {% include 'results-graph/results-graph.twig' with graph_array %}
+                {% include 'results-graph/results-graph.twig' with {
+                  graph_array: graph_array_2
+                } only %}
               </div>
               {% grid "o-bolt-grid--middle" %}
                 {% cell "u-bolt-width-1/12" %}
