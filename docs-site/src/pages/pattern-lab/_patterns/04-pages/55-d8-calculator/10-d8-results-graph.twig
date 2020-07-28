@@ -1,26 +1,19 @@
 {% extends "@pl/_default-page-template.twig" %}
 
-{% set graph_array = [
-  {
-    number: 10,
-    description: "This is a description",
-    color: "indigo"
-  },
-  {
-    number: 15,
-    description: "This is a description that is a little longer",
-    color: "grey"
-  }
-] %}
-
 {% block main_content %}
-  <div class="bolt-results-graph">
-    {% for item in graph_array %}
-      {% set color_class = ' box-color--' ~ item.color %}
-      <div class="bolt-results-graph__box{{ color_class }}">
-        <h3>{{ item.number }}</h3>
-        <p>{{ item.description }}</p>
-      </div>
-    {% endfor %}
-  </div>
+  {% set graph_array = [
+    {
+      number: '10%',
+      description: "Your churn rate today",
+      color: "gray"
+    },
+    {
+      number: '9%',
+      description: "Your churn rate with Pega Customer Decision Hub",
+      color: "indigo"
+    }
+  ] 
+  %}
+
+  {% include 'results-graph/results-graph.twig' with graph_array %}
 {% endblock %}

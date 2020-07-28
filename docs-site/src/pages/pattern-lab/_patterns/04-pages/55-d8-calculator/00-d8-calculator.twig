@@ -2,33 +2,103 @@
 
 {% block main_content %}
 
+
   {% embed "@bolt-components-band/band.twig" with {
-    size: "medium",
-    theme: "xdark",
+    size: "large",
+    theme: "dark",
     full_bleed: true
   } only %}
     {% block band_content %}
 
-        {% grid "o-bolt-grid--matrix o-bolt-grid--large" %}
-          {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small" %}
-            <h1>top</h1>
-          {% endcell %}
-        {% endgrid %}
+      <div class="u-bolt-margin-bottom-medium">
+        <div class="calculator__icon">
+          <span>&#43;</span>
+          <span>&#8722;</span>
+          <span>&#215;</span>
+          <span>&#247;</span>
+        </div>
+      </div>
 
-        {% grid "o-bolt-grid--matrix o-bolt-grid--large" %}
+      {% include "@bolt/headline.twig" with {
+        text: "Real-time Decisioning Revenue Calculator",
+        size: "xxxlarge",
+        tag: "h2"
+      } only %}
 
-          {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small" %}
-            <h1>left</h1>
-            {# {% include "@bolt/image.twig" with {
-              src: "/images/content/promos/promo-16x9-salesforce-vs-pega.png"
-            } only %} #}
-          {% endcell %}
+      {% include "@bolt-components-headline/text.twig" with {
+        text: "Find out the total revenue benefit of taking a real-time, next-best-action approach to customer engagement, focused on retention and cross-sell.",
+        size: "xlarge"
+      } only %}
 
-          {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small" %}
-            <h1>right</h1>
+      {% set form_children %}
+        <ul class="o-bolt-grid o-bolt-grid--flex o-bolt-grid--matrix">
+          <li class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@small">
+            {% include "@pl/10-form-element-demo-input-element.twig" with {
+              title: "What is your company's total revenue?",
+              inputAttributes: {
+                placeholder: "$ Amount (E.g. $25,000,000,000)",
+                required: false,
+                type: "number"
+              },
+              labelDisplayType: "floating"
+            } only %}
+          </li>
+          <li class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@small">
+            {% include "@pl/10-form-element-demo-input-element.twig" with {
+              title: "What is your company's churn rate?",
+              inputAttributes: {
+                placeholder: "% (E.g. 10%)",
+                required: false,
+                type: "number"
+              },
+              labelDisplayType: "floating"
+            } only %}
+          </li>
+          <li class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@small">
+            {% include "@pl/10-form-element-demo-input-element.twig" with {
+              title: "How many customers does your company have?",
+              inputAttributes: {
+                placeholder: "Number (E.g. 10,000,000)",
+                required: false,
+                type: "number"
+              },
+              labelDisplayType: "floating"
+            } only %}
+          </li>
+          <li class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@small">
+            {% include "@pl/10-form-element-demo-input-element.twig" with {
+              title: "What is your company's average cost of customer acquisition?",
+              inputAttributes: {
+                placeholder: "$ Amount (E.g. $2,000)",
+                required: false,
+                type: "number"
+              },
+              labelDisplayType: "floating"
+            } only %}
+          </li>
+          <li class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@small">
+            {% include "@pl/10-form-element-demo-input-element.twig" with {
+              title: "How much is each customer worth (per year)?",
+              inputAttributes: {
+                placeholder: "$ Amount (E.g. $2,000)",
+                required: false,
+                type: "number"
+              },
+              labelDisplayType: "floating"
+            } only %}
+          </li>
+          <li class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@small">
+            {% include "@bolt-components-form/form-button.twig" with {
+              text: "Calculate my result",
+              width: "full",
+            } only %}
+          </li>
+        </ul>
+      {% endset %}
 
-          {% endcell %}
-        {% endgrid %}
+      {% include "@bolt-components-form/form.twig" with {
+        children: form_children
+      } only %}
 
     {% endblock %}
   {% endembed %}

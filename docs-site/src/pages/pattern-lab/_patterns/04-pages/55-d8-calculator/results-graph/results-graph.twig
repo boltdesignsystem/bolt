@@ -1,0 +1,34 @@
+{#
+  EXAMPLE SCEHMA
+
+  number: {
+    type: 'string',
+    description: 'The number value that the graph box will display.',
+  },
+  description: {
+    type: 'string',
+    description:
+      'The description that will display below the number in the graph box.',
+  },
+  color: {
+    type: 'string',
+    description: 'The background color of the graph box',
+    enum: ['gray', 'indigo', 'teal', 'orange'],
+  } 
+#}
+
+<div class="bolt-results-graph">
+  {% for item in graph_array %}
+    {% set color_class = ' box-color--' ~ item.color %}
+    <div class="bolt-results-graph__box{{ color_class }}">
+      <h3 class="bolt-results-graph__box__headline">{{ item.number }}</h3>
+      <p class="bolt-results-graph__box__text">{{ item.description }}</p>
+    </div>
+    {% if not loop.last %}
+      {% include "@bolt-components-icon/icon.twig" with {
+        name: "arrow-left",
+        size: "small"
+      }%}
+    {% endif %}
+  {% endfor %}
+</div>

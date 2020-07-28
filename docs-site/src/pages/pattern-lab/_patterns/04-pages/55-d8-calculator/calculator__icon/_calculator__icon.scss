@@ -1,0 +1,41 @@
+.demo-calculator-icon-container {
+  padding: 50px;
+  background-color: bolt-color(indigo);
+}
+
+.calculator__icon {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-content: space-around;
+  width: 75px;
+  height: 75px;
+  color: bolt-color(indigo);
+
+  &:hover {
+    span {
+      transform: rotate(180deg);
+    }
+  }
+
+  span {
+    display: block;
+    flex-basis: 44%;
+    max-width: 44%;
+    height: 33px;
+    font-size: 32px;
+    line-height: 32px;
+    text-align: center;
+    border-radius: 50%;
+    background-color: bolt-color(white);
+    transition: transform 0.3s ease-in-out;
+
+    &:nth-child(2) {
+      background-color: bolt-color(yellow);
+    }
+
+    &:nth-child(3) {
+      background-color: bolt-color(teal);
+    }
+  }
+}
