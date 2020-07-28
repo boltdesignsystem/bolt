@@ -1,0 +1,19 @@
+{% extends "@pl/_default-page-template.twig" %}
+
+{% block main_content %}
+  {% set graph_array = [
+    {
+      number: '10%',
+      description: "Your churn rate today",
+      color: "gray"
+    },
+    {
+      number: '9%',
+      description: "Your churn rate with Pega Customer Decision Hub",
+      color: "indigo"
+    }
+  ] 
+  %}
+
+  {% include 'results-graph/results-graph.twig' with graph_array %}
+{% endblock %}
