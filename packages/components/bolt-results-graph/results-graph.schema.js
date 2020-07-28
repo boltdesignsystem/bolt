@@ -11,7 +11,7 @@ module.exports = {
         type: 'object',
         properties: {
           number: {
-            type: 'string',
+            type: 'number',
             description: 'The number value that the graph box will display.',
           },
           description: {

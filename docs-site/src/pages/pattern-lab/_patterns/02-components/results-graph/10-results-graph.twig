@@ -1,0 +1,21 @@
+{# Setting variables for demo purposes #}
+{% set graph_array %}
+  [
+    {
+      number: 10,
+      description: "This is a description",
+      color: "indigo"
+    },
+    {
+      number: 15,
+      description: "This is a description that is a little longer",
+      color: "grey"
+    }
+  ]
+{% endset %}
+
+{# Start component specific code #}
+{% include "@bolt-components-results-graph/results-graph.twig" with {
+  graph_items: graph_array
+} only %}
+{# End component specific code #}

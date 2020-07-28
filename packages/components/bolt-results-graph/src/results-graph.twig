@@ -34,7 +34,13 @@
   {% if outer_classes %} class="{{ outer_classes|join(' ') }}" {% endif %}
   {{ this.props|without("class") }}
 >
-  <replace-with-children {{ inner_attributes.addClass(inner_classes) }}>
-  
-  </replace-with-children>
+  <ssr-keep for="bolt-results-graph" {{ inner_attributes.addClass(classes) }}> 
+    {% for item in graph_items %}
+      {% set color_class = ' box-color--' ~ item.color %}
+      <div class="bolt-results-graph__box{{ color_class }}">
+        <h3>{{ item.number }}</h3>
+        <p>{{ item.description }}</p>
+      </div>
+    {% endfor %}
+  </ssr-keep>
 </bolt-results-graph>
