@@ -3,6 +3,122 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.25.1](https://github.com/bolt-design-system/bolt/compare/v2.25.0...v2.25.1) (2020-07-14)
+
+**Note:** Version bump only for package @bolt/components-code-snippet
+
+
+
+
+
+# [2.25.0](https://github.com/bolt-design-system/bolt/compare/v2.22.2...v2.25.0) (2020-07-13)
+
+
+### Bug Fixes
+
+* text wrap and web component doc ([e6bcf2c](https://github.com/bolt-design-system/bolt/commit/e6bcf2c517212f512a7cf9082a1c7406abdca60d))
+* update componet descriptions ([b9fefe6](https://github.com/bolt-design-system/bolt/commit/b9fefe6106eb74e3d4794a51443a2b576d9651d9))
+
+
+### Features
+
+* globally lazyload JS bundles to expose same existing issues as the ones found with the new lazy-queue functionality ([7cc4ce2](https://github.com/bolt-design-system/bolt/commit/7cc4ce2fa9ce28dc4f9f37078762f106ca87729f))
+
+
+
+
+
+# [2.24.0](https://github.com/bolt-design-system/bolt/compare/v2.23.0...v2.24.0) (2020-06-05)
+
+**Note:** Version bump only for package @bolt/components-code-snippet
+
+
+
+
+
+# [2.23.0](https://github.com/bolt-design-system/bolt/compare/v2.22.1...v2.23.0) (2020-05-06)
+
+
+### Features
+
+* globally lazyload JS bundles to expose same existing issues as the ones found with the new lazy-queue functionality ([7cc4ce2](https://github.com/bolt-design-system/bolt/commit/7cc4ce2fa9ce28dc4f9f37078762f106ca87729f))
+
+
+
+
+
+# [2.21.0](https://github.com/bolt-design-system/bolt/compare/v2.20.2...v2.21.0) (2020-04-08)
+
+**Note:** Version bump only for package @bolt/components-code-snippet
+
+
+
+
+
+# [2.20.0](https://github.com/bolt-design-system/bolt/compare/v2.19.1...v2.20.0) (2020-03-18)
+
+**Note:** Version bump only for package @bolt/components-code-snippet
+
+
+
+
+
+# [2.19.0](https://github.com/bolt-design-system/bolt/compare/v2.18.1...v2.19.0) (2020-03-04)
+
+**Note:** Version bump only for package @bolt/components-code-snippet
+
+
+
+
+
+# [2.18.0](https://github.com/bolt-design-system/bolt/compare/v2.17.1...v2.18.0) (2020-02-19)
+
+**Note:** Version bump only for package @bolt/components-code-snippet
+
+
+
+
+
+# [2.17.0](https://github.com/bolt-design-system/bolt/compare/v2.16.3...v2.17.0) (2020-02-04)
+
+**Note:** Version bump only for package @bolt/components-code-snippet
+
+
+
+
+
+# [2.16.0](https://github.com/bolt-design-system/bolt/compare/v2.15.2...v2.16.0) (2020-01-24)
+
+**Note:** Version bump only for package @bolt/components-code-snippet
+
+
+
+
+
+## [2.15.2](https://github.com/bolt-design-system/bolt/compare/v2.15.1...v2.15.2) (2020-01-21)
+
+**Note:** Version bump only for package @bolt/components-code-snippet
+
+
+
+
+
+# [2.15.0](https://github.com/bolt-design-system/bolt/compare/v2.14.3...v2.15.0) (2020-01-17)
+
+
+### Bug Fixes
+
+* remove word wrap completely and use existing scrolling mixin ([d5b6c50](https://github.com/bolt-design-system/bolt/commit/d5b6c501b2cdc4352500222a0105948677528dde))
+
+
+### Features
+
+* code snippet scrolling updates from the original Card component branch ([22816b5](https://github.com/bolt-design-system/bolt/commit/22816b5001512e044c14701d53b3edf7f54f866d))
+
+
+
+
+
 # [2.14.0](https://github.com/bolt-design-system/bolt/compare/v2.13.3...v2.14.0) (2020-01-06)
 
 

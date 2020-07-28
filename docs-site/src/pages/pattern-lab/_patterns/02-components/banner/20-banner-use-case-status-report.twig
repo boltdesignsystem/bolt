@@ -1,0 +1,22 @@
+{# Setting variables for demo purposes #}
+{% set link %}
+{% include "@bolt-components-link/link.twig" with {
+  text: "View Details",
+  url: "https://pega.com",
+} only %}
+{% endset %}
+
+<bolt-text headline>
+  Academy Challenge Status
+</bolt-text>
+{# Start component specific code #}
+{% include "@bolt-components-banner/banner.twig" with {
+  content: "You passed this challenge on <strong>May 21, 2020</strong>. " ~ link,
+  status: "success"
+} only %}
+
+{% include "@bolt-components-banner/banner.twig" with {
+  content: "You failed this challenge on <strong>May 21, 2020</strong>. " ~ link,
+  status: "error"
+} only %}
+{# End component specific code #}

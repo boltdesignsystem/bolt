@@ -1,39 +1,62 @@
-import { html, customElement } from '@bolt/element';
-import { defineContext, withContext, props, css } from '@bolt/core-v3.x/utils';
-import { withLitHtml } from '@bolt/core-v3.x/renderers/renderer-lit-html';
-import styles from './accordion.scss';
+import { unsafeCSS, BoltElement, customElement, html } from '@bolt/element';
+import { withContext } from 'wc-context';
+import classNames from 'classnames/bind';
+import accordionStyles from './accordion.scss';
 import schema from '../accordion.schema';
 import { Accordion } from './_accordion-handorgel';
 
-// define which specific props to provide to children that subscribe
-export const AccordionContext = defineContext({
-  noSeparator: schema.properties.no_separator.default,
-  boxShadow: schema.properties.box_shadow.default,
-  spacing: schema.properties.spacing.default,
-  iconValign: schema.properties.icon_valign.default,
-});
+let cx = classNames.bind(accordionStyles);
+
+// Remove "items" from the Accordion schema since it doesn't apply to the web component.
+delete schema.properties['items'];
 
 @customElement('bolt-accordion')
-class BoltAccordion extends withContext(withLitHtml) {
-  static props = {
-    single: props.boolean,
-    noSeparator: props.boolean,
-    boxShadow: props.boolean,
-    spacing: props.string,
-    iconValign: props.string,
-  };
+class BoltAccordion extends withContext(BoltElement) {
+  static schema = schema;
 
-  constructor(self) {
-    self = super(self);
-    self.schema = this.getModifiedSchema(schema);
-
-    return self;
+  static get properties() {
+    return {
+      ...this.props,
+    };
   }
 
-  // provide context info to children that subscribe
-  // (context + subscriber idea originally from https://codepen.io/trusktr/project/editor/XbEOMk)
-  static get provides() {
-    return [AccordionContext];
+  static get styles() {
+    return [unsafeCSS(accordionStyles)];
+  }
+
+  static get providedContexts() {
+    return {
+      noSeparator: { value: schema.properties.no_separator.default },
+      boxShadow: { value: schema.properties.box_shadow.default },
+      spacing: { value: schema.properties.spacing.default },
+      iconValign: { value: schema.properties.icon_valign.default },
+    };
+  }
+
+  updated(changedProperties) {
+    super.updated && super.updated(changedProperties);
+    let hasSpacingChanged = false;
+
+    changedProperties.forEach((oldValue, propName) => {
+      this.updateProvidedContext(propName, this[propName]);
+
+      // is spacing has changed, wait for the updates to finish before updating handorgel
+      if (propName === 'spacing') {
+        hasSpacingChanged = true;
+      }
+    });
+
+    this.updateComplete.then(() => {
+      if (this.accordion && this.accordion.options) {
+        this.accordion.options = this.accordionOptions;
+        this.accordion.update();
+      }
+
+      if (hasSpacingChanged) {
+        this.accordion?.resize();
+        hasSpacingChanged = false;
+      }
+    });
   }
 
   get accordionOptions() {
@@ -42,7 +65,7 @@ class BoltAccordion extends withContext(withLitHtml) {
       items: this.accordionItems,
 
       // whether multiple folds can be opened at once
-      multiSelectable: !this.props.single,
+      multiSelectable: !this.single,
       // whether the folds are collapsible
       collapsible: true,
 
@@ -85,19 +108,6 @@ class BoltAccordion extends withContext(withLitHtml) {
   connectedCallback() {
     super.connectedCallback && super.connectedCallback();
     this.addEventListener('bolt:layout-size-changed', this.handleLayoutChanged);
-  }
-
-  getModifiedSchema(schema) {
-    var modifiedSchema = schema;
-
-    // Remove "items" from schema, does not apply to web component.
-    for (let property in modifiedSchema.properties) {
-      if (property === 'items') {
-        delete modifiedSchema.properties[property];
-      }
-    }
-
-    return modifiedSchema;
   }
 
   handleAccordionItemReady(item) {
@@ -257,20 +267,19 @@ class BoltAccordion extends withContext(withLitHtml) {
   }
 
   template() {
-    const classes = css(
-      'c-bolt-accordion',
-      this.props.boxShadow ? 'c-bolt-accordion--box-shadow' : '',
-    );
+    const classes = cx('c-bolt-accordion', {
+      'c-bolt-accordion--box-shadow': this.boxShadow,
+    });
 
     return html`
       <div class="${classes}">
-        ${this.slots.default ? this.slot('default') : ''}
+        ${this.slotify('default')}
       </div>
     `;
   }
 
-  rendered() {
-    super.rendered && super.rendered();
+  firstUpdated(changedProperties) {
+    super.firstUpdated && super.firstUpdated(changedProperties);
 
     if (this.accordion) {
       // If accordion already exists, update options
@@ -283,8 +292,8 @@ class BoltAccordion extends withContext(withLitHtml) {
     }
   }
 
-  disconnected() {
-    super.disconnected && super.disconnected();
+  disconnectedCallback() {
+    super.disconnectedCallback && super.disconnectedCallback();
 
     this.removeEventListener(
       'bolt:layout-size-changed',
@@ -298,17 +307,8 @@ class BoltAccordion extends withContext(withLitHtml) {
   }
 
   render() {
-    const { noSeparator, boxShadow, spacing, iconValign } = this.validateProps(
-      this.props,
-    );
-
-    this.contexts.get(AccordionContext).noSeparator = noSeparator;
-    this.contexts.get(AccordionContext).boxShadow = boxShadow;
-    this.contexts.get(AccordionContext).spacing = spacing;
-    this.contexts.get(AccordionContext).iconValign = iconValign;
-
     return html`
-      ${this.addStyles([styles])} ${this.template()}
+      ${this.template()}
     `;
   }
 }

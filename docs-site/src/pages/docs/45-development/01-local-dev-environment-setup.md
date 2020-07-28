@@ -61,11 +61,12 @@ Next, with your `.zshrc` config updated, restart your iTerm instance:
 source ~/.zshrc
 ```
 
-Finally, finish installing nvm: 
+Finally, finish installing nvm:
 ```
-nvm install lts/carbon # v8.9 +
-nvm alias default lts/carbon
+nvm install 12.16
+nvm alias default 12.16
 ```
+Please note that Bolt currently does not support Node v12.18, we are currently working on a solution.
 
 ### 4. Install PHP and PHP Dependencies
 ```bash
@@ -73,6 +74,12 @@ brew install php72
 ```
 
 After upgrading PHP, be sure to restart your iTerm instance. Otherwise, an old PHP version may still be linked, and composer will install mismatched packages.
+
+```
+brew install composer
+composer global require hirak/prestissimo
+```
+
 #### Attention PHP 7.3 users
 In you are using PHP 7.3 you will must update yours `php.ini` and disable PHP PCRE JIT compilation by replacing this line:
 ```bash
@@ -84,11 +91,6 @@ pcre.jit=0
 ```
 
 > Note: PHP 7.1 is technically fine if that's what you already have pre-installed.
-
-```
-brew install composer
-composer global require hirak/prestissimo
-```
 
 ### 5. Install GD and Imagick (used for generating responsive images in the build process)
 ```bash
@@ -123,20 +125,19 @@ git clone https://github.com/bolt-design-system/bolt.git
 cd bolt
 ```
 
-4. Now, run the `setup` npm script command.
+4. Now, run the `setup` command.
 
 ```bash
-npm run setup
+yarn setup
 ```
 
 This performs all the setup and install tasks needed to run the Bolt docs and Pattern Lab environments locally. Note: this'll probably take a couple minutes to run the very first time without having anything pre-installed or cached locally. It's much faster subsequently!
 
-5. Finally, assuming you didn't get any errors during Step 4, you should be able to `cd` into the `apps/pattern-lab` folder to get the code to compile, watch for changes, start up a local dev server, etc.
+5. Finally, assuming you didn't get any errors during Step 4, you can run the `start` command to get the code to compile, watch for changes, start up a local dev server, etc.
 ```bash
-cd docs-site
-npm start
+yarn start
 ```
 
-> Note: seeing an error after running the `npm start` command? Try clearing out your local dependencies by running `npm run clean` from the root of the repo and try running through the `npm run setup` and `npm start` commands. 
+> Note: seeing an error after running the `yarn start` command? Try clearing out your local dependencies by running `yarn clean` from the root of the repo and try running through the `yarn setup` and `yarn start` commands. 
 >
 > If you're still seeing issues, let us know!

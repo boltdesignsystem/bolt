@@ -85,22 +85,13 @@ module.exports = {
       desiredCapabilities: {
         browserName: 'chrome',
         platform: 'macOS 10.14',
-        version: '76',
+        version: '80',
         javascriptEnabled: true,
         acceptSslCerts: true,
         chromeOptions: {
           // args: ['headless'],
           w3c: false,
         },
-      },
-      build: `build-${process.env.TRAVIS_JOB_NUMBER}`,
-      'tunnel-identifier': `${process.env.TRAVIS_JOB_NUMBER || ''}`,
-    },
-    ie11: {
-      desiredCapabilities: {
-        browserName: 'internet explorer',
-        platform: 'Windows 10',
-        version: '11.285',
       },
       build: `build-${process.env.TRAVIS_JOB_NUMBER}`,
       'tunnel-identifier': `${process.env.TRAVIS_JOB_NUMBER || ''}`,

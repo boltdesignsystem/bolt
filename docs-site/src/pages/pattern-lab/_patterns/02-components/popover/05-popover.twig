@@ -1,0 +1,23 @@
+{# Setting variables for demo purposes #}
+{% set link %}
+  {% include "@bolt-components-link/link.twig" with {
+    text: "call to action",
+    url: "https://pega.com",
+  } only %}
+{% endset %}
+{% set trigger %}
+  {% include "@bolt-components-button/button.twig" with {
+    text: "This triggers a popover",
+    size: "small",
+  } only %}
+{% endset %}
+{% set content %}
+  This is the content of the popover with a {{ link }}.
+{% endset %}
+
+{# Start component specific code #}
+{% include "@bolt-components-popover/popover.twig" with {
+  trigger: trigger,
+  content: content,
+} only %}
+{# End component specific code #}

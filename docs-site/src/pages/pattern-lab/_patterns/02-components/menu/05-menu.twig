@@ -1,0 +1,19 @@
+<bolt-banner align="start">
+  Note: this component is usually used inside of a popover. <bolt-link url="{{ link['viewall-components-popover'] }}">View Popover<bolt-icon name="chevron-right" slot="after"></bolt-icon></bolt-link>
+</bolt-banner>
+
+{# Start component specific code #}
+{% include "@bolt-components-menu/menu.twig" with {
+  items: [
+    {
+      content: "Menu item 1",
+    },
+    {
+      content: "Menu item 2",
+    },
+    {
+      content: "Menu item 3",
+    },
+  ]
+} only %}
+{# End component specific code #}

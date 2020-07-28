@@ -1,0 +1,59 @@
+{% embed "@bolt-components-toolbar/toolbar.twig" with {
+  size: "xsmall",
+  theme: "none",
+  sticky: sticky ?? true,
+  gradientName: toolbarGradient | default(''),
+  breadcrumbs: breadcrumbs,
+  title: {
+    tag: "h2",
+    icon: {
+      name: toolbarIcon
+    }
+  },
+} only %}
+  {% if breadcrumbs %}
+    {% block content_before %}
+      {% import "@bolt-blueprints/macros.twig" as macros %}
+
+      {% include "@bolt-components-breadcrumb/breadcrumb.twig" with {
+        "contentItems": breadcrumbs | map(breadcrumb => breadcrumb.text and breadcrumb.url ? macros.include("@bolt-components-link/link.twig", {
+          text: breadcrumb.text,
+          url: breadcrumb.url,
+          isHeadline: true
+        }, false) : (breadcrumb.text ?
+          macros.include("@bolt-components-headline/text.twig", {
+            text: breadcrumb.text,
+            size: "small",
+            weight: "bold",
+            tag: "span",
+            attributes: {
+              class: [
+                "u-bolt-inline"
+              ]
+            }
+          }, false) : breadcrumb))
+      } only %}
+    {% endblock %}
+  {% endif %}
+
+  {% block content_after %}
+    {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--small o-bolt-grid--right" %}
+      {% if completion_percentage %}
+        {% cell 'o-bolt-grid__cell--middle' %}
+          {% include "@bolt-components-progress-bar/progress-bar.twig" with {
+            value: completion_percentage,
+          } only %}
+        {% endcell %}
+      {% endif %}
+
+      {% cell %}
+        {% include "@bolt-blueprints/_toolbar-actions.twig" with {
+          downloadButton: true
+        } only %}
+      {% endcell %}
+    {% endgrid %}
+  {% endblock %}
+{% endembed %}
+
+
+{# End Toolbar #}

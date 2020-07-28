@@ -1,0 +1,10 @@
+{% set usage %}{% verbatim %}
+{% include "@bolt-components-banner/banner.twig" with {
+  content: "This is the banner content."
+} only %}
+{% endverbatim %}{% endset %}
+
+{% include "@utils/docs.twig" with {
+  componentName: "banner",
+  usage: usage
+} only %}

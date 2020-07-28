@@ -10,6 +10,7 @@ let cx = classNames.bind(styles);
 @customElement('bolt-tab-panel')
 class TabPanel extends withContext(withLitHtml) {
   static props = {
+    id: props.string,
     selected: props.boolean,
   };
 
@@ -73,9 +74,10 @@ class TabPanel extends withContext(withLitHtml) {
     // Selected prop overrides selectedTab state set on parent
     const isSelected = index === selectedIndex;
 
-    // Use 1-based index for IDs
-    const labelledById = `tab-label-${uuid}-${index + 1}`;
-    const panelId = `tab-panel-${uuid}-${index + 1}`;
+    const labelledById = this.props.id
+      ? `tab-label-${this.props.id}`
+      : `tab-label-${uuid}-${index + 1}`; // Use 1-based Id's
+    const panelId = this.props.id || `tab-panel-${uuid}-${index + 1}`; // Use 1-based Id's
 
     const classes = cx('c-bolt-tab-panel', {
       [`c-bolt-tab-panel--spacing-${panelSpacing}`]: panelSpacing,

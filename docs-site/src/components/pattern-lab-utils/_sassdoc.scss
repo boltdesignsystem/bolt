@@ -14,8 +14,8 @@
 
 .c-bds-docs__return-label {
   @include bolt-font-weight(bold);
-  color: bolt-color(indigo, light);
   font-family: monospace;
+  color: bolt-color(navy, light);
 }
 
 .c-bds-docs__meta {
@@ -31,6 +31,7 @@
       @include bolt-font-weight(bold);
     }
   }
+
   summary {
     @include bolt-margin(0);
     user-select: none;
@@ -50,7 +51,8 @@
   max-height: calc(100vh - 4.5rem); // [1]
   overflow-y: auto;
 
-  bolt-dropdown { // [2]
+  bolt-dropdown {
+    // [2]
     width: calc(100% - 6px);
     margin: 0 auto;
   }

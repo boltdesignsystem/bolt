@@ -1,0 +1,25 @@
+{% import "@bolt/macros.twig" as macros %}
+{# ^ allows us to use inline includes that also work in Drupal #}
+
+<bolt-text>This demo shows that the <code>reverseOrder</code> prop still swaps the column order of Image / Content on larger screens, even if a Hero doesn't contain an image!</bolt-text>
+
+{% include "@bolt-components-hero/hero.twig" with {
+  content: [
+    macros.include("@bolt-components-headline/headline.twig", {
+      size: "xxxlarge",
+      text: "While Heros don't require an image...",
+    }),
+    macros.include("@bolt-components-headline/subheadline.twig", {
+      size: "large",
+      text: "Perhaps a Band would be a better fit for these types of use-cases?",
+    }),
+    macros.include("@bolt-components-button/button.twig", {
+      text: "Band Component Docs",
+      url: link["viewall-components-band"],
+      style: "secondary"
+    }),
+  ]|join(''),
+  reverseOrder: true,
+  background: "/images/content/backgrounds/background-night-sky.jpg",
+  theme: "dark"
+} %}

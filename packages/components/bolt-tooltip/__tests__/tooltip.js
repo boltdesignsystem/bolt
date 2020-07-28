@@ -5,10 +5,8 @@ import {
   stopServer,
   html,
 } from '../../../testing/testing-helpers';
-const { readYamlFileSync } = require('@bolt/build-tools/utils/yaml');
-const { join } = require('path');
-const schema = readYamlFileSync(join(__dirname, '../tooltip.schema.yml'));
-const { direction, noWrap, spacing } = schema.properties;
+import schema from '../tooltip.schema';
+const { placement, uuid } = schema.properties;
 const timeout = 120000;
 
 describe('<bolt-tooltip> Component', () => {
@@ -19,72 +17,43 @@ describe('<bolt-tooltip> Component', () => {
   // Basic Usage
   test('Basic usage', async () => {
     const results = await render('@bolt-components-tooltip/tooltip.twig', {
-      trigger: {
-        type: 'text',
-        text: 'Trigger text',
-        icon: {
-          name: 'info-open',
-        },
-      },
-      content: 'Tooltip content.',
+      trigger: 'CRM',
+      content: 'Customer relationship management',
+    });
+    expect(results.ok).toBe(true);
+    expect(results.html).toMatchSnapshot();
+  });
+
+  // Advanced Usage
+  test('Advanced usage: adding tooltip to button', async () => {
+    const results = await render('@bolt-components-tooltip/tooltip.twig', {
+      trigger: '<bolt-button>Download</bolt-button>',
+      content: 'File size: 25MB',
     });
     expect(results.ok).toBe(true);
     expect(results.html).toMatchSnapshot();
   });
 
   // Props
-  direction.enum.forEach(async directionChoice => {
-    test(`Direction of the tooltip bubble: ${directionChoice}`, async () => {
+  placement.enum.forEach(async placementChoice => {
+    test(`Placement of the tooltip bubble: ${placementChoice}`, async () => {
       const results = await render('@bolt-components-tooltip/tooltip.twig', {
-        trigger: {
-          type: 'button',
-          text: 'Trigger text',
-          icon: {
-            name: 'info-open',
-          },
-        },
-        content: 'Tooltip content.',
-        direction: directionChoice,
+        trigger: 'CRM',
+        content: 'Customer relationship management',
+        placement: placementChoice,
       });
       expect(results.ok).toBe(true);
       expect(results.html).toMatchSnapshot();
     });
   });
 
-  noWrap.enum.forEach(async noWrapChoice => {
-    test(`No wrapping for tooltip content: ${noWrapChoice}`, async () => {
-      const results = await render('@bolt-components-tooltip/tooltip.twig', {
-        trigger: {
-          type: 'text',
-          text: 'Trigger text',
-          icon: {
-            name: 'info-open',
-          },
-        },
-        content:
-          'Tooltip content. This text should wrap if noWrap is set to false, otherwise it should not wrap.',
-        noWrap: noWrapChoice,
-      });
-      expect(results.ok).toBe(true);
-      expect(results.html).toMatchSnapshot();
+  test(`UUID of the tooltip`, async () => {
+    const results = await render('@bolt-components-tooltip/tooltip.twig', {
+      trigger: 'CRM',
+      content: 'Customer relationship management',
+      uuid: 'custom-unique-id',
     });
-  });
-
-  spacing.enum.forEach(async spacingChoice => {
-    test(`Direction of the tooltip bubble: ${spacingChoice}`, async () => {
-      const results = await render('@bolt-components-tooltip/tooltip.twig', {
-        trigger: {
-          type: 'text',
-          text: 'Trigger text',
-          icon: {
-            name: 'info-open',
-          },
-        },
-        content: 'Tooltip content.',
-        spacing: spacingChoice,
-      });
-      expect(results.ok).toBe(true);
-      expect(results.html).toMatchSnapshot();
-    });
+    expect(results.ok).toBe(true);
+    expect(results.html).toMatchSnapshot();
   });
 });

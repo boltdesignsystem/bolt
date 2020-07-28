@@ -12,12 +12,15 @@ $bolt-blockquote-image-size: 4rem;
 
 @mixin bolt-lang-specific-quotes($type: 'open') {
   content: map-get-deep($bolt-quotation-marks, 'en', $type);
+
   [lang='de'] & {
     content: map-get-deep($bolt-quotation-marks, 'de', $type);
   }
+
   [lang='fr'] & {
     content: map-get-deep($bolt-quotation-marks, 'fr', $type);
   }
+
   [lang='ja'] & {
     content: map-get-deep($bolt-quotation-marks, 'ja', $type);
   }

@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const ejs = require('ejs');
 const webpack = require('webpack');
+const timer = require('@bolt/build-utils/timer');
 
 const data = {
   webpackVersion: webpack.version,
@@ -19,7 +20,7 @@ const data = {
 
 /** @type {WebpackDevServerWaitpageOptions} */
 const defaultOptions = {
-  title: 'Development Server',
+  title: 'Bolt Dev Server',
   theme: 'bolt',
   disableWhenValid: true,
 };
@@ -31,6 +32,8 @@ const defaultOptions = {
  * @returns {Function} Koa compatible middleware
  */
 const webpackDevServerWaitpage = (server, options) => {
+  const startTime = timer.start();
+
   if (!server)
     throw new Error(
       `webpack-dev-server's compilers argument must be supplied as first parameter.`,
@@ -71,6 +74,8 @@ const webpackDevServerWaitpage = (server, options) => {
   return async (req, res, next) => {
     const valid = data.progress.every(p => p[0] === 1);
     wasValid = wasValid || valid;
+
+    data.duration = timer.end(startTime, false);
 
     if (
       valid || // already valid

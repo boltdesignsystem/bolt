@@ -3,6 +3,131 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.25.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/lists/bolt-li/compare/v2.25.0...v2.25.1) (2020-07-14)
+
+**Note:** Version bump only for package @bolt/components-li
+
+
+
+
+
+# [2.25.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/lists/bolt-li/compare/v2.22.2...v2.25.0) (2020-07-13)
+
+
+### Features
+
+* globally lazyload JS bundles to expose same existing issues as the ones found with the new lazy-queue functionality ([7cc4ce2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/lists/bolt-li/commit/7cc4ce2fa9ce28dc4f9f37078762f106ca87729f))
+
+
+
+
+
+# [2.24.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/lists/bolt-li/compare/v2.23.0...v2.24.0) (2020-06-05)
+
+**Note:** Version bump only for package @bolt/components-li
+
+
+
+
+
+# [2.23.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/lists/bolt-li/compare/v2.22.1...v2.23.0) (2020-05-06)
+
+
+### Features
+
+* globally lazyload JS bundles to expose same existing issues as the ones found with the new lazy-queue functionality ([7cc4ce2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/lists/bolt-li/commit/7cc4ce2fa9ce28dc4f9f37078762f106ca87729f))
+
+
+
+
+
+# [2.22.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/lists/bolt-li/compare/v2.21.1...v2.22.0) (2020-04-22)
+
+
+### Bug Fixes
+
+* add proper role attributes ([be0263f](https://github.com/bolt-design-system/bolt/tree/master/packages/components/lists/bolt-li/commit/be0263f58a26214a2e62408c087cab1bd878b57b))
+* update css selector ([ea7b459](https://github.com/bolt-design-system/bolt/tree/master/packages/components/lists/bolt-li/commit/ea7b459d33a9d79d65bd4651c6b6bc1c8bbacfba))
+
+
+
+
+
+# [2.21.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/lists/bolt-li/compare/v2.20.2...v2.21.0) (2020-04-08)
+
+**Note:** Version bump only for package @bolt/components-li
+
+
+
+
+
+# [2.20.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/lists/bolt-li/compare/v2.19.1...v2.20.0) (2020-03-18)
+
+**Note:** Version bump only for package @bolt/components-li
+
+
+
+
+
+# [2.19.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/lists/bolt-li/compare/v2.18.1...v2.19.0) (2020-03-04)
+
+
+### Bug Fixes
+
+* list item vertical alignment ([79410ca](https://github.com/bolt-design-system/bolt/tree/master/packages/components/lists/bolt-li/commit/79410ca7b4370be9f133f3f86607fa9201e59b26))
+* position of OL number in FF ([f7f4ee2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/lists/bolt-li/commit/f7f4ee2a75ea552d6e2be6849bdf496cf7793e35))
+* switch from font-size to transform to fix vertical centering ([f31abe5](https://github.com/bolt-design-system/bolt/tree/master/packages/components/lists/bolt-li/commit/f31abe52a0b1f1cc65e6df63bc112eb18cab5976))
+
+
+### Features
+
+* refactor ul + ol bullet and styles so that spacing and bullet position are calculated not harcoded ([b6bb4e8](https://github.com/bolt-design-system/bolt/tree/master/packages/components/lists/bolt-li/commit/b6bb4e822e94f6cf7200983f74c5e1118311b3cf))
+* switch to using HTML entities for bullets so we don't have to use calc() ([82e77cc](https://github.com/bolt-design-system/bolt/tree/master/packages/components/lists/bolt-li/commit/82e77ccb97513367cce4896837f6863e1350f10b))
+
+
+
+
+
+# [2.18.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/lists/bolt-li/compare/v2.17.1...v2.18.0) (2020-02-19)
+
+**Note:** Version bump only for package @bolt/components-li
+
+
+
+
+
+# [2.17.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/lists/bolt-li/compare/v2.16.3...v2.17.0) (2020-02-04)
+
+**Note:** Version bump only for package @bolt/components-li
+
+
+
+
+
+# [2.16.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/lists/bolt-li/compare/v2.15.2...v2.16.0) (2020-01-24)
+
+**Note:** Version bump only for package @bolt/components-li
+
+
+
+
+
+## [2.15.2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/lists/bolt-li/compare/v2.15.1...v2.15.2) (2020-01-21)
+
+**Note:** Version bump only for package @bolt/components-li
+
+
+
+
+
+# [2.15.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/lists/bolt-li/compare/v2.14.3...v2.15.0) (2020-01-17)
+
+**Note:** Version bump only for package @bolt/components-li
+
+
+
+
+
 # [2.14.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/lists/bolt-li/compare/v2.13.3...v2.14.0) (2020-01-06)
 
 

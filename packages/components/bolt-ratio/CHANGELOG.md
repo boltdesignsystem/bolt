@@ -3,6 +3,124 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.25.1](https://github.com/bolt-design-system/bolt/tree/master/packages/ui/objects/bolt-ratio/compare/v2.25.0...v2.25.1) (2020-07-14)
+
+**Note:** Version bump only for package @bolt/components-ratio
+
+
+
+
+
+# [2.25.0](https://github.com/bolt-design-system/bolt/tree/master/packages/ui/objects/bolt-ratio/compare/v2.22.2...v2.25.0) (2020-07-13)
+
+
+### Bug Fixes
+
+* broken and confusing docs ([854375a](https://github.com/bolt-design-system/bolt/tree/master/packages/ui/objects/bolt-ratio/commit/854375a6cdbf43a39fc6985042aa35c29b2df1c9))
+* resolve conflicts ([92743cf](https://github.com/bolt-design-system/bolt/tree/master/packages/ui/objects/bolt-ratio/commit/92743cf5734703ccfb94bc6d49e0a3d667e81fe3))
+
+
+### Features
+
+* globally lazyload JS bundles to expose same existing issues as the ones found with the new lazy-queue functionality ([7cc4ce2](https://github.com/bolt-design-system/bolt/tree/master/packages/ui/objects/bolt-ratio/commit/7cc4ce2fa9ce28dc4f9f37078762f106ca87729f))
+* update Jest tests to use new renderWC helper + prep for upstream <ssr-keep> updates ([beb6b85](https://github.com/bolt-design-system/bolt/tree/master/packages/ui/objects/bolt-ratio/commit/beb6b85cfdb4d37359e0fcf1d4deaa7f1a0a25f1))
+
+
+
+
+
+# [2.24.0](https://github.com/bolt-design-system/bolt/tree/master/packages/ui/objects/bolt-ratio/compare/v2.23.0...v2.24.0) (2020-06-05)
+
+**Note:** Version bump only for package @bolt/components-ratio
+
+
+
+
+
+# [2.23.0](https://github.com/bolt-design-system/bolt/tree/master/packages/ui/objects/bolt-ratio/compare/v2.22.1...v2.23.0) (2020-05-06)
+
+
+### Features
+
+* globally lazyload JS bundles to expose same existing issues as the ones found with the new lazy-queue functionality ([7cc4ce2](https://github.com/bolt-design-system/bolt/tree/master/packages/ui/objects/bolt-ratio/commit/7cc4ce2fa9ce28dc4f9f37078762f106ca87729f))
+* update Jest tests to use new renderWC helper + prep for upstream <ssr-keep> updates ([beb6b85](https://github.com/bolt-design-system/bolt/tree/master/packages/ui/objects/bolt-ratio/commit/beb6b85cfdb4d37359e0fcf1d4deaa7f1a0a25f1))
+
+
+
+
+
+# [2.22.0](https://github.com/bolt-design-system/bolt/tree/master/packages/ui/objects/bolt-ratio/compare/v2.21.1...v2.22.0) (2020-04-22)
+
+**Note:** Version bump only for package @bolt/components-ratio
+
+
+
+
+
+# [2.21.0](https://github.com/bolt-design-system/bolt/tree/master/packages/ui/objects/bolt-ratio/compare/v2.20.2...v2.21.0) (2020-04-08)
+
+**Note:** Version bump only for package @bolt/components-ratio
+
+
+
+
+
+# [2.20.0](https://github.com/bolt-design-system/bolt/tree/master/packages/ui/objects/bolt-ratio/compare/v2.19.1...v2.20.0) (2020-03-18)
+
+**Note:** Version bump only for package @bolt/components-ratio
+
+
+
+
+
+# [2.19.0](https://github.com/bolt-design-system/bolt/tree/master/packages/ui/objects/bolt-ratio/compare/v2.18.1...v2.19.0) (2020-03-04)
+
+**Note:** Version bump only for package @bolt/components-ratio
+
+
+
+
+
+# [2.18.0](https://github.com/bolt-design-system/bolt/tree/master/packages/ui/objects/bolt-ratio/compare/v2.17.1...v2.18.0) (2020-02-19)
+
+**Note:** Version bump only for package @bolt/components-ratio
+
+
+
+
+
+# [2.17.0](https://github.com/bolt-design-system/bolt/tree/master/packages/ui/objects/bolt-ratio/compare/v2.16.3...v2.17.0) (2020-02-04)
+
+**Note:** Version bump only for package @bolt/components-ratio
+
+
+
+
+
+# [2.16.0](https://github.com/bolt-design-system/bolt/tree/master/packages/ui/objects/bolt-ratio/compare/v2.15.2...v2.16.0) (2020-01-24)
+
+**Note:** Version bump only for package @bolt/components-ratio
+
+
+
+
+
+## [2.15.2](https://github.com/bolt-design-system/bolt/tree/master/packages/ui/objects/bolt-ratio/compare/v2.15.1...v2.15.2) (2020-01-21)
+
+**Note:** Version bump only for package @bolt/components-ratio
+
+
+
+
+
+# [2.15.0](https://github.com/bolt-design-system/bolt/tree/master/packages/ui/objects/bolt-ratio/compare/v2.14.3...v2.15.0) (2020-01-17)
+
+**Note:** Version bump only for package @bolt/components-ratio
+
+
+
+
+
 # [2.14.0](https://github.com/bolt-design-system/bolt/tree/master/packages/ui/objects/bolt-ratio/compare/v2.13.3...v2.14.0) (2020-01-06)
 
 

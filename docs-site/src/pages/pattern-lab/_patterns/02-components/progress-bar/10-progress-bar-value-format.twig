@@ -1,0 +1,15 @@
+{% set schema = bolt.data.components["@bolt-components-progress-bar"].schema %}
+
+{% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--large" %}
+  {% for valueFormat in schema.properties.valueFormat.enum %}
+    {% cell "u-bolt-width-12/12 u-bolt-width-6/12@small" %}
+      <bolt-text headline>
+        {{ valueFormat|capitalize }} format
+      </bolt-text>
+      {% include "@bolt-components-progress-bar/progress-bar.twig" with {
+        value: 65,
+        valueFormat: valueFormat,
+      } only %}
+    {% endcell %}
+  {% endfor %}
+{% endgrid %}

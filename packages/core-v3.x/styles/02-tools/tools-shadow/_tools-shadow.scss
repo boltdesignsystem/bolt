@@ -16,7 +16,12 @@
 /// .element {
 ///    @include bolt-shadow('level-30', true);
 /// }
-@mixin bolt-shadow($key: 'G', $lifted: false, $base-color: false, $utility: false) {
+@mixin bolt-shadow(
+  $key: 'G',
+  $lifted: false,
+  $base-color: false,
+  $utility: false
+) {
   $shadows: map-get(bolt-get-shadows-map(), 'sets');
   @if $base-color {
     $shadows: map-get(bolt-get-shadows-map($base-color), 'sets');
@@ -31,10 +36,12 @@
   } @else {
     @if $lifted {
       transform: translateY(-2px) #{$important};
-      box-shadow: unquote(map-get(map-get($shadows, $key), 'raised')) #{$important};
+      box-shadow: unquote(map-get(map-get($shadows, $key), 'raised'))
+        #{$important};
     } @else {
-      box-shadow: unquote(map-get(map-get($shadows, $key), 'base')) #{$important};
-      transition: all 0.3s cubic-bezier(.25,.8,.25,1) #{$important};
+      box-shadow: unquote(map-get(map-get($shadows, $key), 'base'))
+        #{$important};
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) #{$important};
     }
   }
 }

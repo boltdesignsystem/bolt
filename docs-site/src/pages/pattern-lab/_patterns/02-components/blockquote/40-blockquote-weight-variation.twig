@@ -1,0 +1,14 @@
+{% set schema = bolt.data.components['@bolt-components-blockquote'].schema %}
+
+{% for weight in schema.properties.weight.enum %}
+  <p><code>weight</code>: {{ weight }}</p>
+  {% include '@bolt-components-blockquote/blockquote.twig' with {
+    weight: weight,
+    author: {
+      name: "Michelangelo di Lodovico Buonarroti Simoni",
+      title: "Renaissance Artist"
+    },
+    content: "<p>The greater danger for most of us lies not in setting our aim too high and falling short; but in setting our aim too low, and achieving our mark.</p>"
+  } %}
+
+{% endfor %}

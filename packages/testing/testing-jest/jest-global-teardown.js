@@ -18,7 +18,7 @@ module.exports = async function() {
   const config = await getConfig();
 
   config.iconDir = config.iconDir.filter(
-    item => !item.includes('test/jest-test-svgs'),
+    item => !item.includes('__tests__/fixtures'),
   );
 
   await iconTasks.build(); // cleaning icons after all tests

@@ -3,6 +3,15 @@
 \* ------------------------------------ */
 
 $bolt-font-stacks: (
+  openSansLight: (
+    fontFamily: 'Open Sans',
+    style: normal,
+    weight: 300,
+    src: (
+      woff2: '~@bolt/global/fonts/opensans-light.woff2',
+      woff: '~@bolt/global/fonts/opensans-light.woff',
+    )
+  ),
   openSansRegular: (
     fontFamily: 'Open Sans',
     style: normal,
@@ -37,6 +46,15 @@ $bolt-font-stacks: (
     src: (
       woff2: '~@bolt/global/fonts/opensans-semibolditalic.woff2',
       woff: '~@bolt/global/fonts/opensans-semibolditalic.woff',
+    )
+  ),
+  openSansBold: (
+    fontFamily: 'Open Sans',
+    style: normal,
+    weight: 700,
+    src: (
+      woff2: '~@bolt/global/fonts/opensans-bold.woff2',
+      woff: '~@bolt/global/fonts/opensans-bold.woff',
     )
   ),
   openSansExtraBold: (

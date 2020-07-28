@@ -70,6 +70,8 @@ Sort classes passed in via attributes into two groups:
 {# Filter out attributes assigned above #}
 {% set filtered_attributes = attributes | without("url") | without("href") | without("target") | without("class") %}
 
+{% set tagName = url ? "a" : "button" %}
+
 {# link component's custom element wrapper #}
 {% spaceless %}<bolt-link
   {% if display %} display="{{ display }}" {% endif %}
@@ -85,18 +87,22 @@ Sort classes passed in via attributes into two groups:
 
   {{ filtered_attributes }}
 >
-  {# Add semantic <a> tag for better accessibility #}
-  <a
-    {% if url %} href="{{ url }}" {% endif %}
-    {% if target %} target="{{ target }}" {% endif %}
+  {# For accessibility, use <a> tag if `url` provided. Otherwise use `<button type="button">`. #}
+  <{{ tagName }}
+    {% if url %}
+      href="{{ url }}" 
+      {% if target %}target="{{ target }}" {% endif %}
+    {% else %}
+      type="button"
+    {% endif %}
     is="shadow-root"
     class="{{ inner_classes|join(' ') }}"
     {{ filtered_attributes|without('id') }}
   >
     {{ macros.slotted_icon(icon, icon_position, "before") }}
-    <replace-with-children class="{{ "#{base_class}__text" }}">
+    <ssr-keep for="bolt-link" class="{{ "#{base_class}__text" }}">
       {{- text | default(label) | default("Learn More") -}}
-    </replace-with-children>
+    </ssr-keep>
     {{ macros.slotted_icon(icon, icon_position, "after") }}
-  </a>
+  </{{ tagName }}>
 </bolt-link>{% endspaceless %}

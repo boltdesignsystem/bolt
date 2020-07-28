@@ -36,8 +36,9 @@ exports[`<bolt-modal> Component Long content usage <bolt-modal> at various viewp
 </bolt-modal>
 `;
 
-exports[`<bolt-modal> Component Long content usage <bolt-modal> w/o Shadow DOM renders 3`] = `
+exports[`<bolt-modal> Component Long content usage <bolt-modal> w/o Shadow DOM renders 1`] = `
 <bolt-modal
+  no-shadow=""
   ready=""
   style=""
   uuid="12345"
@@ -77,12 +78,13 @@ exports[`<bolt-modal> Component Long content usage <bolt-modal> w/o Shadow DOM r
         >
           
               
+                    
           <div
             class="c-bolt-modal__close-button c-bolt-modal__close-button--light"
             style=""
           >
             
-                
+                      
       
             <bolt-trigger
               autofocus=""
@@ -111,9 +113,10 @@ exports[`<bolt-modal> Component Long content usage <bolt-modal> w/o Shadow DOM r
             </bolt-trigger>
             
     
-              
+                    
           </div>
           
+                  
               
           <header
             class="c-bolt-modal__container-header"
@@ -158,6 +161,9 @@ exports[`<bolt-modal> Component Long content usage <bolt-modal> w/o Shadow DOM r
             <!---->
             
           
+            <!---->
+            
+          
       
             <!---->
             <bolt-text
@@ -182,6 +188,9 @@ exports[`<bolt-modal> Component Long content usage <bolt-modal> w/o Shadow DOM r
             
     
           
+            <!---->
+            
+        
             <!---->
             <!---->
             
@@ -229,13 +238,15 @@ exports[`<bolt-modal> Component Long content usage <bolt-modal> w/o Shadow DOM r
 </bolt-modal>
 `;
 
-exports[`<bolt-modal> Component Long content usage <bolt-modal> with Shadow DOM renders 3`] = `
+exports[`<bolt-modal> Component Long content usage <bolt-modal> with Shadow DOM renders 1`] = `
 <bolt-modal
   ready=""
   style=""
   uuid="12345"
   width="regular"
 >
+  
+          
   <bolt-text
     class="is-first-child is-last-child"
     slot="header"
@@ -272,6 +283,8 @@ exports[`<bolt-modal> Component Long content usage <bolt-modal> with Shadow DOM 
   >
     Footer slot
   </bolt-text>
+  
+        
 </bolt-modal>
 `;
 
@@ -285,8 +298,9 @@ exports[`<bolt-modal> Component Long content usage<bolt-modal> with band at vari
   <bolt-band tag="div"
              size="medium"
              theme="none"
+             valign="middle"
   >
-    <div class="c-bolt-band c-bolt-band--medium">
+    <div class="c-bolt-band c-bolt-band--medium c-bolt-band--valign-middle">
       <div class="c-bolt-band__content">
         <bolt-wrapper size="xxlarge"
                       full="true"
@@ -329,8 +343,9 @@ exports[`<bolt-modal> Component Simple usage <bolt-modal> at various viewport si
 </bolt-modal>
 `;
 
-exports[`<bolt-modal> Component Simple usage <bolt-modal> w/o Shadow DOM renders 3`] = `
+exports[`<bolt-modal> Component Simple usage <bolt-modal> w/o Shadow DOM renders 1`] = `
 <bolt-modal
+  no-shadow=""
   ready=""
   style=""
   uuid="12345"
@@ -370,12 +385,13 @@ exports[`<bolt-modal> Component Simple usage <bolt-modal> w/o Shadow DOM renders
         >
           
               
+                    
           <div
             class="c-bolt-modal__close-button c-bolt-modal__close-button--light"
             style=""
           >
             
-                
+                      
       
             <bolt-trigger
               autofocus=""
@@ -404,9 +420,10 @@ exports[`<bolt-modal> Component Simple usage <bolt-modal> w/o Shadow DOM renders
             </bolt-trigger>
             
     
-              
+                    
           </div>
           
+                  
               
           <header
             class="c-bolt-modal__container-header"
@@ -452,6 +469,9 @@ exports[`<bolt-modal> Component Simple usage <bolt-modal> w/o Shadow DOM renders
             
           
             <!---->
+            
+          
+            <!---->
             <bolt-text
               class="is-first-child is-last-child"
               style=""
@@ -461,6 +481,9 @@ exports[`<bolt-modal> Component Simple usage <bolt-modal> w/o Shadow DOM renders
             <!---->
             
           
+            <!---->
+            
+        
             <!---->
             <!---->
             
@@ -508,13 +531,15 @@ exports[`<bolt-modal> Component Simple usage <bolt-modal> w/o Shadow DOM renders
 </bolt-modal>
 `;
 
-exports[`<bolt-modal> Component Simple usage <bolt-modal> with Shadow DOM renders 3`] = `
+exports[`<bolt-modal> Component Simple usage <bolt-modal> with Shadow DOM renders 1`] = `
 <bolt-modal
   ready=""
   style=""
   uuid="12345"
   width="regular"
 >
+  
+          
   <bolt-text
     class="is-first-child is-last-child"
     slot="header"
@@ -539,6 +564,8 @@ exports[`<bolt-modal> Component Simple usage <bolt-modal> with Shadow DOM render
   >
     Footer slot
   </bolt-text>
+  
+        
 </bolt-modal>
 `;
 
@@ -552,8 +579,9 @@ exports[`<bolt-modal> Component Simple usage<bolt-modal> with band at various vi
   <bolt-band tag="div"
              size="medium"
              theme="none"
+             valign="middle"
   >
-    <div class="c-bolt-band c-bolt-band--medium">
+    <div class="c-bolt-band c-bolt-band--medium c-bolt-band--valign-middle">
       <div class="c-bolt-band__content">
         <bolt-wrapper size="xxlarge"
                       full="true"

@@ -1,0 +1,105 @@
+/* ------------------------------------ *\
+   Banner
+\* ------------------------------------ */
+@import '@bolt/core-v3.x';
+
+/**
+ * Register custom element
+ */
+@include bolt-repeat-rule(('bolt-banner', ':host')) {
+  display: block;
+
+  &:not(:last-child) {
+    @include bolt-margin-bottom(medium);
+  }
+}
+
+.c-bolt-banner {
+  @include bolt-padding(medium, squished);
+  display: block;
+
+  &--full {
+    @include bolt-full-bleed;
+  }
+}
+
+/**
+ * Status prop
+ * @todo: we don't have a good way to create more themes on the fly. We should consider creating 'Light Mode' and 'Dark Mode', then background-color can be set separately.
+ * 1. Hacking the colors in modern browsers.
+ * 2. Hacking the colors in IE.
+ */
+.c-bolt-banner--status-error,
+.c-bolt-banner--status-success {
+  --bolt-theme-headline-link: bolt-color(black); /* [1] */
+  --bolt-theme-headline: bolt-color(black); /* [1] */
+  --bolt-theme-link: bolt-color(black); /* [1] */
+  --bolt-theme-text: bolt-color(black); /* [1] */
+
+  color: bolt-color(white);
+}
+
+.c-bolt-banner--status-error {
+  background-color: bolt-color(error);
+
+  &[class*='t-bolt-dark'] {
+    background-color: bolt-color(error); /* [2] */
+  }
+}
+
+.c-bolt-banner--status-warning {
+  color: bolt-color(black);
+  background-color: bolt-color(warning);
+}
+
+.c-bolt-banner--status-success {
+  background-color: bolt-color(success);
+
+  &[class*='t-bolt-dark'] {
+    background-color: bolt-color(success); /* [2] */
+  }
+}
+
+.c-bolt-banner--status-information {
+  position: relative;
+  color: bolt-theme(text);
+  border-left-color: bolt-theme(link);
+  border-left-style: $bolt-border-style;
+  border-left-width: $bolt-border-width * 3;
+  box-shadow: 0 0 bolt-spacing(xxsmall) bolt-theme(neutral, bolt-opacity(20));
+  background-color: bolt-theme(background);
+
+  @include bolt-ie11-only {
+    box-shadow: 0 0 bolt-spacing(xsmall) bolt-theme(neutral, bolt-opacity(40));
+  }
+
+  &:before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    pointer-events: none;
+    user-select: none;
+    background-color: rgba(bolt-color(white), bolt-opacity(20));
+  }
+}
+
+/**
+ * Align prop
+ */
+.c-bolt-banner--align-start {
+  text-align: left;
+  text-align: start;
+}
+
+.c-bolt-banner--align-center {
+  text-align: center;
+}
+
+.c-bolt-banner--align-end {
+  text-align: right;
+  text-align: end;
+}

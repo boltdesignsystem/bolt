@@ -1,92 +1,32 @@
-{% if enable_json_schema_validation %}
-  {{ validate_data_schema(bolt.data.components['@bolt-components-background'].schema, _self) | raw }}
-{% endif %}
+{% set schema = bolt.data.components["@bolt-components-background"].schema %}
 
-{% set prefix = "c-bolt-" %}
-{% set componentName = "background" %}
-{% set baseClass = prefix ~ componentName %}
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(schema, _self) | raw }}
+{% endif %}
 
 {% set attributes = create_attribute(attributes|default({})) %}
-{% set overlayAttributes = create_attribute({}) %}
-{% set shapeAttributes = create_attribute({}) %}
-
-{% set overlayStates = ["enabled", "disabled"] %}
-
-{% set opacities = ["light", "medium", "heavy"] %}
-
-{% set shapeGroups = ["A", "B"] %}
-
-{% set shapeAlignments = ["left", "right"] %}
-
-{% set fills = {
-  "color": "color",
-  "gradient": "gradient"
-} %}
-
-{% if focalPoint and focalPoint.horizontal == "left" %}
-  {% set fills = fills|merge({"gradient": "gradient-reversed"}) %}
-{% endif %}
-
-
-
-{% set overlay = overlay in overlayStates ? overlay : "enabled" %}
-
-{% set classes = [
-  baseClass,
-  
-] %}
-
-{% set overlayClasses = [
-  baseClass ~ "__overlay",
-  opacity in opacities ? baseClass ~ "__overlay--" ~ opacity ~ "-opacity" : baseClass ~ "__overlay--medium-opacity",
-  fill in fills|keys ? baseClass ~ "__overlay--" ~ fills[fill] ~ "-fill" : baseClass ~ "__overlay--color-fill",
-] %}
-
-{% set shapeGroup =  shapeGroup in shapeGroups ? shapeGroup : 'none' %}
-{% set shapeClasses = [
-  baseClass ~ "__shapes",
-  shapeAlignment in shapeAlignments ? baseClass ~ "__shapes--" ~ shapeAlignment : baseClass ~ "__shapes--right"
-] %}
+{% set baseClass = "c-bolt-background" %}
+{% set shapeGroup =  shapeGroup in schema.properties.shapeGroup.enum ? shapeGroup : schema.properties.shapeGroup.default %}
+{% set overlay = overlay in schema.properties.overlay.enum ? overlay : schema.properties.overlay.default %}
 
 <bolt-background bolt-component>
-  <div {{ attributes.addClass(classes) }}>
-    <div class="{{ "#{baseClass}__item" }}">
-      {% if contentItems %}
-        {% for item in contentItems %}
+  <div {{ attributes.addClass([baseClass]) }}>
+    {% if contentItems %}
+      {% for item in contentItems %}
+        {% include "@bolt-components-background/background-item.twig" %}
+      {% endfor %}
+    {% endif %}
 
-          {% set itemAttributes = item.pattern ~ "Attributes" %}
+    {% if overlay == "enabled" or shapeGroup != 'none'  %}
+      <div class="{{ "#{baseClass}__item" }}">
+        {% if overlay == "enabled" %}
+          {% include "@bolt-components-background/background-overlay.twig" %}
+        {% endif %}
 
-          {# todo: in v3.0 remove reference to Video, no longer supported #}
-          {# Image expects "ratio" to be passed as string, Video expects boolean #}
-          {% set ratioValue = item.pattern == "image" ? "none" : false %}
-
-          {% if item.pattern != "image" %}
-            {% set item = item | merge({
-              (itemAttributes): {
-                class: ["c-bolt-background__#{item.pattern}"]
-              }
-            }) %}
-          {% endif %}
-
-          {# todo: in v3.0 nix the pattern_template pattern? #}
-          {% include pattern_template(item.pattern) with item | merge({
-            ratio: ratioValue,
-            lazyload: item.lazyload ?? true,
-            cover: true
-          }) only %}
-        {% endfor %}
-      {% endif %}
-
-      {% if overlay == "enabled" %}
-        <div {{ overlayAttributes.addClass(overlayClasses) }} ></div>
-      {% endif %}
-
-      {% if shapeGroup != 'none' %}
-        <div {{ shapeAttributes.addClass(shapeClasses) }}>
-          {% include "@bolt/background-shapes.twig" with { "shapeGroup": shapeGroup } only %}
-        </div>
-
-      {% endif %}
-    </div>
+        {% if shapeGroup != 'none' %}
+          {% include "@bolt-components-background/background-shapes-wrapper.twig" %}
+        {% endif %}
+      </div>
+    {% endif %}
   </div>
 </bolt-background>

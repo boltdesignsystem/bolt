@@ -1,0 +1,39 @@
+{% macro code_example(code) %}
+  <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
+    {% grid "o-bolt-grid--center" %}
+      {% cell "u-bolt-flex-shrink" %}
+        {{ code }}
+      {% endcell %}
+    {% endgrid %}
+  </div>
+  <div class="u-bolt-margin-bottom-large">
+    <bolt-code-snippet syntax="dark" lang="html">{% spaceless %}
+      {{ code | replace({
+        '<': '&lt;',
+        '>': '&gt;',
+      }) | trim | raw }}
+    {% endspaceless %}</bolt-code-snippet>
+  </div>
+{% endmacro %}
+
+{% import _self as icon_example %}
+
+{% set icon_demo %}
+<bolt-icon name="calendar"></bolt-icon>
+{% endset %}
+
+{% set icon_prop_demo %}
+<bolt-icon name="calendar" size="xlarge" background="square" color="orange"></bolt-icon>
+{% endset %}
+
+<bolt-text headline>Web Component Usage</bolt-text>
+<bolt-text>
+  Bolt Icon is a web component. You can simply use <bolt-code-snippet display="inline" lang="html">&lt;bolt-icon&gt;</bolt-code-snippet> in the markup to make it render.
+</bolt-text>
+{% include icon_example.code_example(icon_demo) %}
+
+<bolt-text headline>Prop Usage</bolt-text>
+<bolt-text>
+  Configure the icon with the properties specified in the schema.
+</bolt-text>
+{% include icon_example.code_example(icon_prop_demo) %}

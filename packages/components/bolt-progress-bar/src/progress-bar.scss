@@ -1,0 +1,118 @@
+@import '@bolt/core-v3.x';
+
+@include bolt-custom-element('bolt-progress-bar', flex, medium);
+
+@include bolt-repeat-rule(('bolt-progress-bar', ':host')) {
+  min-width: 150px;
+}
+
+.c-bolt-progress-bar {
+  display: grid;
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  vertical-align: top;
+  grid-gap: var(--bolt-spacing-x-small);
+  grid-auto-flow: dense;
+  grid-template-columns: 1fr auto;
+}
+
+.c-bolt-progress-bar__track {
+  align-self: center;
+  box-sizing: border-box;
+  position: relative;
+  width: 100%;
+  height: 0.7rem;
+  overflow: hidden;
+  grid-column: 1 / 2;
+  grid-row: auto;
+  border: 1px solid rgba(bolt-color(gray, xdark), 0.8);
+  border-radius: bolt-border-radius(full);
+  box-shadow: inset 0 2px 3px 0 rgba(bolt-color(black), 0.25),
+    inset 0 1px 3px 0 rgba(bolt-color(black), 0.5);
+  background-color: rgba(bolt-color(gray, dark), 0.6);
+
+  &:last-child {
+    grid-column: 1/3;
+  }
+
+  .c-bolt-progress-bar--none,
+  .c-bolt-progress-bar--top & {
+    grid-column: 1 / 3;
+  }
+}
+
+.c-bolt-progress__inner {
+  display: flex;
+  width: 100%;
+}
+
+.c-bolt-progress-bar__fill {
+  display: block;
+  transform: translate3d(0, 0, 0);
+  width: 100%;
+  height: 100%;
+  border-radius: 20rem;
+  box-shadow: 1px 0 1px 0 rgba(bolt-color(black), 0.22);
+  background-color: rgba(bolt-color(white), 0.75);
+  will-change: transform;
+  transition: transform 0.2s linear, background-color 0.2s linear;
+
+  &:after {
+    content: '';
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    pointer-events: none;
+    background-image: linear-gradient(
+      -45deg,
+      rgba(bolt-color(black), 0.1) 25%,
+      transparent 25%,
+      transparent 50%,
+      rgba(bolt-color(black), 0.1) 50%,
+      rgba(bolt-color(black), 0.1) 75%,
+      transparent 75%,
+      transparent
+    );
+    background-size: 50px 50px;
+    transition: all 0.2s linear;
+  }
+
+  // @todo: refactor this once we have more fully baked variants (success, etc) since this technically shouldn't change color when it hits 100%...
+  &--at-max {
+    background-color: #6dd400;
+  }
+
+  .c-bolt-progress-bar--animated & {
+    &:after {
+      opacity: 1;
+      animation: a-bolt-progress-bar-animated-background 2s linear infinite;
+    }
+  }
+}
+
+.c-bolt-progress-bar__value {
+  @include bolt-font-size(xsmall, tight);
+  @include bolt-font-weight(semibold);
+  align-self: center;
+  margin-bottom: 1px; // workaround to ~1px of text getting chopped off at the bottom
+  text-align: start;
+}
+
+.c-bolt-progress-bar__value {
+  grid-column: 2 / 2;
+}
+
+@keyframes a-bolt-progress-bar-animated-background {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: 50px 50px;
+  }
+}

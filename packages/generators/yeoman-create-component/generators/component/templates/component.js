@@ -1,44 +1,32 @@
-import { html, customElement } from '@bolt/element';
-import { props } from '@bolt/core-v3.x/utils';
-import { withLitHtml } from '@bolt/core-v3.x/renderers/renderer-lit-html';
+import { html, customElement, BoltElement, unsafeCSS } from '@bolt/element';
 import classNames from 'classnames/bind';
 import styles from './<%= props.name.kebabCase %>.scss';
-import schema from '../<%= props.name.kebabCase %>.schema.yml';
+import schema from '../<%= props.name.kebabCase %>.schema';
 
 let cx = classNames.bind(styles);
 
 @customElement('bolt-<%= props.name.kebabCase %>')
-class Bolt<%= props.name.pascalCase %> extends withLitHtml {
-  static props = {
-    noShadow: {
-      ...props.boolean,
-      ...{ default: false },
-    },
-    disabled: {
-      ...props.boolean,
-      ...{ default: false },
-    },
-  };
+class Bolt<%= props.name.pascalCase %> extends BoltElement {
+  static schema = schema;
 
-  // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
-  constructor(self) {
-    self = super(self);
-    self.schema = this.getModifiedSchema(schema);
-    return self;
+  static get properties() {
+    return {
+      ...this.props,
+    }
+  }
+
+  static get styles() {
+    return [unsafeCSS(styles)];
   }
 
   render() {
-    // validate the original prop data passed along -- returns back the validated data w/ added default values
-    const { disabled } = this.validateProps(this.props);
-
     const classes = cx('c-bolt-<%= props.name.kebabCase %>', {
-      [`c-bolt-<%= props.name.kebabCase %>--disabled`]: disabled,
+      [`c-bolt-<%= props.name.kebabCase %>--disabled`]: this.disabled,
     });
 
     return html`
-      ${this.addStyles([styles])}
       <div class="${classes}">
-        ${this.slot('default')}
+        ${this.slotify('default')}
       </div>
     `;
   }

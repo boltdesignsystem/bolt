@@ -3,6 +3,163 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.25.1](https://github.com/bolt-design-system/bolt/compare/v2.25.0...v2.25.1) (2020-07-14)
+
+**Note:** Version bump only for package @bolt/components-list
+
+
+
+
+
+# [2.25.0](https://github.com/bolt-design-system/bolt/compare/v2.22.2...v2.25.0) (2020-07-13)
+
+
+### Bug Fixes
+
+* proper role attributes and card media border radius ([9b1b67e](https://github.com/bolt-design-system/bolt/commit/9b1b67e47114b2704605f1fadb72401800e86fa8))
+* resolve conflicts ([92743cf](https://github.com/bolt-design-system/bolt/commit/92743cf5734703ccfb94bc6d49e0a3d667e81fe3))
+* resolve conflicts with master ([c4cc15b](https://github.com/bolt-design-system/bolt/commit/c4cc15bbb16a343108a4fb12a60788f3945d743b))
+* ssr-keep and role attributes for list ([e024681](https://github.com/bolt-design-system/bolt/commit/e024681ef326313de875cbf078819329763ccdb0))
+* ssr-keep display issue in list ([caca146](https://github.com/bolt-design-system/bolt/commit/caca14604aec853f5099e83f8abfc737d873ab2a))
+* update componet descriptions ([b9fefe6](https://github.com/bolt-design-system/bolt/commit/b9fefe6106eb74e3d4794a51443a2b576d9651d9))
+* update Jest VRT snapshots ([0e1e91f](https://github.com/bolt-design-system/bolt/commit/0e1e91fd843dc502568725c037a5b684523afd87))
+* update VRT screenshot ([4ad4c6a](https://github.com/bolt-design-system/bolt/commit/4ad4c6a9f38c3eacd65b1b9febe8eae9df4c89b2))
+
+
+### Features
+
+* globally lazyload JS bundles to expose same existing issues as the ones found with the new lazy-queue functionality ([7cc4ce2](https://github.com/bolt-design-system/bolt/commit/7cc4ce2fa9ce28dc4f9f37078762f106ca87729f))
+* manually cherry pick ajv replacement updates ([c322d0e](https://github.com/bolt-design-system/bolt/commit/c322d0e38266ca5660d8c77868ec5f1203fbb5b7))
+
+
+
+
+
+# [2.24.0](https://github.com/bolt-design-system/bolt/compare/v2.23.0...v2.24.0) (2020-06-05)
+
+
+### Bug Fixes
+
+* resolve conflicts with master ([c4cc15b](https://github.com/bolt-design-system/bolt/commit/c4cc15bbb16a343108a4fb12a60788f3945d743b))
+* update Jest VRT snapshots ([0e1e91f](https://github.com/bolt-design-system/bolt/commit/0e1e91fd843dc502568725c037a5b684523afd87))
+
+
+
+
+
+# [2.23.0](https://github.com/bolt-design-system/bolt/compare/v2.22.1...v2.23.0) (2020-05-06)
+
+
+### Bug Fixes
+
+* proper role attributes and card media border radius ([9b1b67e](https://github.com/bolt-design-system/bolt/commit/9b1b67e47114b2704605f1fadb72401800e86fa8))
+* ssr-keep and role attributes for list ([e024681](https://github.com/bolt-design-system/bolt/commit/e024681ef326313de875cbf078819329763ccdb0))
+* ssr-keep display issue in list ([caca146](https://github.com/bolt-design-system/bolt/commit/caca14604aec853f5099e83f8abfc737d873ab2a))
+* update VRT screenshot ([4ad4c6a](https://github.com/bolt-design-system/bolt/commit/4ad4c6a9f38c3eacd65b1b9febe8eae9df4c89b2))
+
+
+### Features
+
+* globally lazyload JS bundles to expose same existing issues as the ones found with the new lazy-queue functionality ([7cc4ce2](https://github.com/bolt-design-system/bolt/commit/7cc4ce2fa9ce28dc4f9f37078762f106ca87729f))
+* manually cherry pick ajv replacement updates ([c322d0e](https://github.com/bolt-design-system/bolt/commit/c322d0e38266ca5660d8c77868ec5f1203fbb5b7))
+
+
+
+
+
+# [2.22.0](https://github.com/bolt-design-system/bolt/compare/v2.21.1...v2.22.0) (2020-04-22)
+
+
+### Features
+
+* support passing attributes to list-items ([8a61de4](https://github.com/bolt-design-system/bolt/commit/8a61de44ca876ba86428db775631718d83fa5110))
+
+
+
+
+
+# [2.21.0](https://github.com/bolt-design-system/bolt/compare/v2.20.2...v2.21.0) (2020-04-08)
+
+
+### Bug Fixes
+
+* scope `width` hack to FF-only ([3d09773](https://github.com/bolt-design-system/bolt/commit/3d09773f2bfb18948a54c805f3c5541dd95ea57e))
+* test bolt-list without FF `width` hack ([c24560a](https://github.com/bolt-design-system/bolt/commit/c24560ab2ebb23e9c414d757ab28f505e78ff106))
+
+
+
+
+
+# [2.20.0](https://github.com/bolt-design-system/bolt/compare/v2.19.1...v2.20.0) (2020-03-18)
+
+**Note:** Version bump only for package @bolt/components-list
+
+
+
+
+
+# [2.19.0](https://github.com/bolt-design-system/bolt/compare/v2.18.1...v2.19.0) (2020-03-04)
+
+
+### Features
+
+* add CSS var to override bolt-list border color ([e5b3bbb](https://github.com/bolt-design-system/bolt/commit/e5b3bbbc615ea0c020fb9747acd8cdc5be94a280))
+
+
+
+
+
+# [2.18.0](https://github.com/bolt-design-system/bolt/compare/v2.17.1...v2.18.0) (2020-02-19)
+
+**Note:** Version bump only for package @bolt/components-list
+
+
+
+
+
+# [2.17.0](https://github.com/bolt-design-system/bolt/compare/v2.16.3...v2.17.0) (2020-02-04)
+
+
+### Bug Fixes
+
+* remove padding on last list item ([d22258c](https://github.com/bolt-design-system/bolt/commit/d22258ca87fb2576d812bb7259e63895dd9adecd))
+
+
+
+
+
+# [2.16.0](https://github.com/bolt-design-system/bolt/compare/v2.15.2...v2.16.0) (2020-01-24)
+
+**Note:** Version bump only for package @bolt/components-list
+
+
+
+
+
+## [2.15.2](https://github.com/bolt-design-system/bolt/compare/v2.15.1...v2.15.2) (2020-01-21)
+
+**Note:** Version bump only for package @bolt/components-list
+
+
+
+
+
+# [2.15.0](https://github.com/bolt-design-system/bolt/compare/v2.14.3...v2.15.0) (2020-01-17)
+
+
+### Bug Fixes
+
+* use consistent border color ([99da773](https://github.com/bolt-design-system/bolt/commit/99da7731eade993720e66e7df5bcc5f9f4eb40e5))
+
+
+### Features
+
+* port list CSS update from epic/academy ([5b834b3](https://github.com/bolt-design-system/bolt/commit/5b834b3ffa8315f578ed6d8bbda890e46676aab6))
+
+
+
+
+
 # [2.14.0](https://github.com/bolt-design-system/bolt/compare/v2.13.3...v2.14.0) (2020-01-06)
 
 

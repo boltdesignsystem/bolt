@@ -1,7 +1,25 @@
-<footer role="contentinfo">
-    <small>
-      <p>
-        <strong>Copyright &copy; 2017 Pegasystems, Inc.</strong> | <a href="/styleguide/html/styleguide.html">Pattern Lab</a> | <a href="/sassdoc">Sass Docs</a>
-      </p>
-    </small>
+<footer role="contentinfo" class="c-bolt-page-footer c-bolt-site__footer">
+  {% embed "@bolt-components-band/band.twig" with {
+    theme: "xlight",
+    size: "xsmall"
+  } %}
+    {% block band_content %}
+      <small>
+        Footer Top
+      </small>
+    {% endblock %}
+  {% endembed %}
+
+  {% embed "@bolt-components-band/band.twig" with {
+    theme: "light",
+    size: "xsmall"
+  } %}
+    {% block band_content %}
+      <small>
+        <p>
+          Quick Links: <a href="https://github.com/boltdesignsystem/bolt">Github</a> | <a href="/">Docs</a> | <a href="/pattern-lab/">Pattern Lab</a>
+        </p>
+      </small>
+    {% endblock %}
+  {% endembed %}
 </footer>

@@ -10,13 +10,17 @@ $nav-circle-border-size: 2px;
     min-width: $nav-circle-size--active;
     height: $nav-circle-size--active;
     // Center the dot vertical to the first line of text.
-    margin-top: calc(((#{$header-text-line-height} * #{$header-text-size}) - (#{$nav-circle-size--active} + (#{$nav-circle-border-size} * 2))) / 2);
+    margin-top: calc(
+      (
+          (#{$header-text-line-height} * #{$header-text-size}) -
+            (#{$nav-circle-size--active} + (#{$nav-circle-border-size} * 2))
+        ) /
+        2
+    );
     margin-left: -$nav-circle-size--active / 2 - $nav-circle-border-size;
     border: $nav-circle-border-size solid bolt-theme(primary);
-    background-color: bolt-theme(secondary);
-  }
-
-  @else {
+    background-color: bolt-theme(background);
+  } @else {
     content: '';
     display: inline-block;
     align-self: flex-start;
@@ -26,11 +30,17 @@ $nav-circle-border-size: 2px;
     min-width: $nav-circle-size;
     height: $nav-circle-size;
     // Center the dot vertical to the first line of text.
-    margin-top: calc(((#{$header-text-line-height} * #{$header-text-size}) - #{$nav-circle-size}) / 2);
+    margin-top: calc(
+      (
+          (#{$header-text-line-height} * #{$header-text-size}) -
+            #{$nav-circle-size}
+        ) /
+        2
+    );
     margin-right: bolt-spacing(small);
     margin-left: -$nav-circle-size / 2;
     border-radius: 50%;
-    background-color: bolt-theme(primary);
+    background-color: bolt-color(navy, light);
   }
 }
 
@@ -44,25 +54,20 @@ $nav-circle-border-size: 2px;
   left: -$line-width / 2;
   width: $line-width;
   height: 100%;
-  background-color: bolt-theme(primary);
+  background-color: bolt-color(navy, light);
 }
 
 @mixin bolt-micro-journeys-nav-title($active: false) {
   @if $active {
+    font-weight: bolder;
     color: bolt-theme(primary);
     cursor: default;
-    font-weight: bolder;
-
-    .t-bolt-dark & {
-      color: bolt-color(yellow);
-    }
-  }
-  @else {
+  } @else {
     display: flex;
     align-items: center;
     padding-bottom: 1.65rem;
-    line-height: $header-text-line-height;
     font-size: $header-text-size;
+    line-height: $header-text-line-height;
     transition: color 0.5s ease, transform 0.5s ease;
 
     &:hover {

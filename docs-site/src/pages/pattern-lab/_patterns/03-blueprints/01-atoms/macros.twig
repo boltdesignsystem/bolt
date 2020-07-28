@@ -1,0 +1,7 @@
+{% macro include(path, args = {}, with_context = true) %}
+  {% if with_context %}
+    {% include path with args %}
+  {% else %}
+    {% include path with args only %}
+  {% endif %}
+{% endmacro %}

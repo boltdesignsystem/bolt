@@ -4,196 +4,307 @@ exports[`<bolt-ul> Component basic usage with attributes 1`] = `
 <bolt-ul data-attr="some attribute"
          onclick="location.href=&#039;https://pega.com&#039;"
 >
-  <replace-with-grandchildren>
-    <ul data-attr="some attribute"
-        onclick="location.href=&#039;https://pega.com&#039;"
-        class="c-bolt-ul"
+  <div data-attr="some attribute"
+       onclick="location.href=&#039;https://pega.com&#039;"
+       class="c-bolt-ul"
+       role="list"
+  >
+    <ssr-keep for="bolt-ul"
+              role="presentation"
     >
-      <bolt-li>
-        <replace-with-grandchildren>
-          <li class="c-bolt-li c-bolt-li--ul-item ">
-            Do not include any data or information in your posts that are confidential!
-          </li>
-        </replace-with-grandchildren>
+      <bolt-li role="presentation">
+        <div role="presentation">
+          <div class="c-bolt-li c-bolt-li--ul-item "
+               role="listitem"
+          >
+            <ssr-keep for="bolt-li">
+              Do not include any data or information in your posts that are confidential!
+            </ssr-keep>
+          </div>
+        </div>
       </bolt-li>
-      <bolt-li>
-        <replace-with-grandchildren>
-          <li class="c-bolt-li c-bolt-li--ul-item ">
-            Apply basic practices for collaborative work.
-          </li>
-        </replace-with-grandchildren>
+      <bolt-li role="presentation">
+        <div role="presentation">
+          <div class="c-bolt-li c-bolt-li--ul-item "
+               role="listitem"
+          >
+            <ssr-keep for="bolt-li">
+              Apply basic practices for collaborative work.
+            </ssr-keep>
+          </div>
+        </div>
       </bolt-li>
-      <bolt-li>
-        <replace-with-grandchildren>
-          <li class="c-bolt-li c-bolt-li--ul-item ">
-            Be honest, respectful, trustworthy and helpful.
-          </li>
-        </replace-with-grandchildren>
+      <bolt-li role="presentation">
+        <div role="presentation">
+          <div class="c-bolt-li c-bolt-li--ul-item "
+               role="listitem"
+          >
+            <ssr-keep for="bolt-li">
+              Be honest, respectful, trustworthy and helpful.
+            </ssr-keep>
+          </div>
+        </div>
       </bolt-li>
-      <bolt-li>
-        <replace-with-grandchildren>
-          <li class="c-bolt-li c-bolt-li--ul-item c-bolt-li--last-item">
-            Answer questions authoritatively and concisely. Avoid cluttering discussions with noise.
-          </li>
-        </replace-with-grandchildren>
+      <bolt-li role="presentation">
+        <div role="presentation">
+          <div class="c-bolt-li c-bolt-li--ul-item c-bolt-li--last-item"
+               role="listitem"
+          >
+            <ssr-keep for="bolt-li">
+              Answer questions authoritatively and concisely. Avoid cluttering discussions with noise.
+            </ssr-keep>
+          </div>
+        </div>
       </bolt-li>
-    </ul>
-  </replace-with-grandchildren>
+    </ssr-keep>
+  </div>
 </bolt-ul>
 `;
 
 exports[`<bolt-ul> Component with nested <bolt-ol> list compiles 1`] = `
 <bolt-ul>
-  <replace-with-grandchildren>
-    <ul class="c-bolt-ul">
-      <bolt-li>
-        <replace-with-grandchildren>
-          <li class="c-bolt-li c-bolt-li--ul-item ">
-            Do not include any data or information in your posts that are confidential!
-          </li>
-        </replace-with-grandchildren>
+  <div class="c-bolt-ul"
+       role="list"
+  >
+    <ssr-keep for="bolt-ul"
+              role="presentation"
+    >
+      <bolt-li role="presentation">
+        <div role="presentation">
+          <div class="c-bolt-li c-bolt-li--ul-item "
+               role="listitem"
+          >
+            <ssr-keep for="bolt-li">
+              Do not include any data or information in your posts that are confidential!
+            </ssr-keep>
+          </div>
+        </div>
       </bolt-li>
-      <bolt-li>
-        <replace-with-grandchildren>
-          <li class="c-bolt-li c-bolt-li--ul-item ">
-            Apply basic practices for collaborative work.
-          </li>
-        </replace-with-grandchildren>
+      <bolt-li role="presentation">
+        <div role="presentation">
+          <div class="c-bolt-li c-bolt-li--ul-item "
+               role="listitem"
+          >
+            <ssr-keep for="bolt-li">
+              Apply basic practices for collaborative work.
+            </ssr-keep>
+          </div>
+        </div>
       </bolt-li>
-      <bolt-li>
-        <replace-with-grandchildren>
-          <li class="c-bolt-li c-bolt-li--ul-item ">
-            Be honest, respectful, trustworthy and helpful.
-          </li>
-        </replace-with-grandchildren>
+      <bolt-li role="presentation">
+        <div role="presentation">
+          <div class="c-bolt-li c-bolt-li--ul-item "
+               role="listitem"
+          >
+            <ssr-keep for="bolt-li">
+              Be honest, respectful, trustworthy and helpful.
+            </ssr-keep>
+          </div>
+        </div>
       </bolt-li>
-      <bolt-li>
-        <replace-with-grandchildren>
-          <li class="c-bolt-li c-bolt-li--ul-item ">
-            Answer questions authoritatively and concisely. Avoid cluttering discussions with noise.
-          </li>
-        </replace-with-grandchildren>
+      <bolt-li role="presentation">
+        <div role="presentation">
+          <div class="c-bolt-li c-bolt-li--ul-item "
+               role="listitem"
+          >
+            <ssr-keep for="bolt-li">
+              Answer questions authoritatively and concisely. Avoid cluttering discussions with noise.
+            </ssr-keep>
+          </div>
+        </div>
       </bolt-li>
-      <bolt-li>
-        <replace-with-grandchildren>
-          <li class="c-bolt-li c-bolt-li--ul-item ">
-            Answer questions authoritatively and concisely.
-            <bolt-ol>
-              <replace-with-grandchildren>
-                <ol class="c-bolt-ol">
-                  <bolt-li>
-                    <replace-with-grandchildren>
-                      <li class="c-bolt-li c-bolt-li--ol-item ">
-                        Item 1
-                      </li>
-                    </replace-with-grandchildren>
-                  </bolt-li>
-                  <bolt-li>
-                    <replace-with-grandchildren>
-                      <li class="c-bolt-li c-bolt-li--ol-item ">
-                        Item 2
-                      </li>
-                    </replace-with-grandchildren>
-                  </bolt-li>
-                  <bolt-li>
-                    <replace-with-grandchildren>
-                      <li class="c-bolt-li c-bolt-li--ol-item ">
-                        Item 3
-                      </li>
-                    </replace-with-grandchildren>
-                  </bolt-li>
-                  <bolt-li>
-                    <replace-with-grandchildren>
-                      <li class="c-bolt-li c-bolt-li--ol-item c-bolt-li--last-item">
-                        Item 4
-                      </li>
-                    </replace-with-grandchildren>
-                  </bolt-li>
-                </ol>
-              </replace-with-grandchildren>
-            </bolt-ol>
-          </li>
-        </replace-with-grandchildren>
+      <bolt-li role="presentation">
+        <div role="presentation">
+          <div class="c-bolt-li c-bolt-li--ul-item "
+               role="listitem"
+          >
+            <ssr-keep for="bolt-li">
+              Answer questions authoritatively and concisely.
+            </ssr-keep>
+            <ssr-keep for="bolt-li">
+              <bolt-ol>
+                <div class="c-bolt-ol"
+                     role="list"
+                >
+                  <ssr-keep for="bolt-ol"
+                            role="presentation"
+                  >
+                    <bolt-li role="presentation">
+                      <div role="presentation">
+                        <div class="c-bolt-li c-bolt-li--ol-item "
+                             role="listitem"
+                        >
+                          <ssr-keep for="bolt-li">
+                            Item 1
+                          </ssr-keep>
+                        </div>
+                      </div>
+                    </bolt-li>
+                    <bolt-li role="presentation">
+                      <div role="presentation">
+                        <div class="c-bolt-li c-bolt-li--ol-item "
+                             role="listitem"
+                        >
+                          <ssr-keep for="bolt-li">
+                            Item 2
+                          </ssr-keep>
+                        </div>
+                      </div>
+                    </bolt-li>
+                    <bolt-li role="presentation">
+                      <div role="presentation">
+                        <div class="c-bolt-li c-bolt-li--ol-item "
+                             role="listitem"
+                        >
+                          <ssr-keep for="bolt-li">
+                            Item 3
+                          </ssr-keep>
+                        </div>
+                      </div>
+                    </bolt-li>
+                    <bolt-li role="presentation">
+                      <div role="presentation">
+                        <div class="c-bolt-li c-bolt-li--ol-item c-bolt-li--last-item"
+                             role="listitem"
+                        >
+                          <ssr-keep for="bolt-li">
+                            Item 4
+                          </ssr-keep>
+                        </div>
+                      </div>
+                    </bolt-li>
+                  </ssr-keep>
+                </div>
+              </bolt-ol>
+            </ssr-keep>
+          </div>
+        </div>
       </bolt-li>
-    </ul>
-  </replace-with-grandchildren>
+    </ssr-keep>
+  </div>
 </bolt-ul>
 `;
 
 exports[`<bolt-ul> Component with nested <bolt-ul> list compiles 1`] = `
 <bolt-ul>
-  <replace-with-grandchildren>
-    <ul class="c-bolt-ul">
-      <bolt-li>
-        <replace-with-grandchildren>
-          <li class="c-bolt-li c-bolt-li--ul-item ">
-            Do not include any data or information in your posts that are confidential!
-          </li>
-        </replace-with-grandchildren>
+  <div class="c-bolt-ul"
+       role="list"
+  >
+    <ssr-keep for="bolt-ul"
+              role="presentation"
+    >
+      <bolt-li role="presentation">
+        <div role="presentation">
+          <div class="c-bolt-li c-bolt-li--ul-item "
+               role="listitem"
+          >
+            <ssr-keep for="bolt-li">
+              Do not include any data or information in your posts that are confidential!
+            </ssr-keep>
+          </div>
+        </div>
       </bolt-li>
-      <bolt-li>
-        <replace-with-grandchildren>
-          <li class="c-bolt-li c-bolt-li--ul-item ">
-            Apply basic practices for collaborative work.
-          </li>
-        </replace-with-grandchildren>
+      <bolt-li role="presentation">
+        <div role="presentation">
+          <div class="c-bolt-li c-bolt-li--ul-item "
+               role="listitem"
+          >
+            <ssr-keep for="bolt-li">
+              Apply basic practices for collaborative work.
+            </ssr-keep>
+          </div>
+        </div>
       </bolt-li>
-      <bolt-li>
-        <replace-with-grandchildren>
-          <li class="c-bolt-li c-bolt-li--ul-item ">
-            Be honest, respectful, trustworthy and helpful.
-          </li>
-        </replace-with-grandchildren>
+      <bolt-li role="presentation">
+        <div role="presentation">
+          <div class="c-bolt-li c-bolt-li--ul-item "
+               role="listitem"
+          >
+            <ssr-keep for="bolt-li">
+              Be honest, respectful, trustworthy and helpful.
+            </ssr-keep>
+          </div>
+        </div>
       </bolt-li>
-      <bolt-li>
-        <replace-with-grandchildren>
-          <li class="c-bolt-li c-bolt-li--ul-item ">
-            Answer questions authoritatively and concisely. Avoid cluttering discussions with noise.
-          </li>
-        </replace-with-grandchildren>
+      <bolt-li role="presentation">
+        <div role="presentation">
+          <div class="c-bolt-li c-bolt-li--ul-item "
+               role="listitem"
+          >
+            <ssr-keep for="bolt-li">
+              Answer questions authoritatively and concisely. Avoid cluttering discussions with noise.
+            </ssr-keep>
+          </div>
+        </div>
       </bolt-li>
-      <bolt-li>
-        <replace-with-grandchildren>
-          <li class="c-bolt-li c-bolt-li--ul-item ">
-            Answer questions authoritatively and concisely.
-            <bolt-ul>
-              <replace-with-grandchildren>
-                <ul class="c-bolt-ul">
-                  <bolt-li>
-                    <replace-with-grandchildren>
-                      <li class="c-bolt-li c-bolt-li--ul-item ">
-                        Item 1
-                      </li>
-                    </replace-with-grandchildren>
-                  </bolt-li>
-                  <bolt-li>
-                    <replace-with-grandchildren>
-                      <li class="c-bolt-li c-bolt-li--ul-item ">
-                        Item 2
-                      </li>
-                    </replace-with-grandchildren>
-                  </bolt-li>
-                  <bolt-li>
-                    <replace-with-grandchildren>
-                      <li class="c-bolt-li c-bolt-li--ul-item ">
-                        Item 3
-                      </li>
-                    </replace-with-grandchildren>
-                  </bolt-li>
-                  <bolt-li>
-                    <replace-with-grandchildren>
-                      <li class="c-bolt-li c-bolt-li--ul-item c-bolt-li--last-item">
-                        Item 4
-                      </li>
-                    </replace-with-grandchildren>
-                  </bolt-li>
-                </ul>
-              </replace-with-grandchildren>
-            </bolt-ul>
-          </li>
-        </replace-with-grandchildren>
+      <bolt-li role="presentation">
+        <div role="presentation">
+          <div class="c-bolt-li c-bolt-li--ul-item "
+               role="listitem"
+          >
+            <ssr-keep for="bolt-li">
+              Answer questions authoritatively and concisely.
+            </ssr-keep>
+            <ssr-keep for="bolt-li">
+              <bolt-ul>
+                <div class="c-bolt-ul"
+                     role="list"
+                >
+                  <ssr-keep for="bolt-ul"
+                            role="presentation"
+                  >
+                    <bolt-li role="presentation">
+                      <div role="presentation">
+                        <div class="c-bolt-li c-bolt-li--ul-item "
+                             role="listitem"
+                        >
+                          <ssr-keep for="bolt-li">
+                            Item 1
+                          </ssr-keep>
+                        </div>
+                      </div>
+                    </bolt-li>
+                    <bolt-li role="presentation">
+                      <div role="presentation">
+                        <div class="c-bolt-li c-bolt-li--ul-item "
+                             role="listitem"
+                        >
+                          <ssr-keep for="bolt-li">
+                            Item 2
+                          </ssr-keep>
+                        </div>
+                      </div>
+                    </bolt-li>
+                    <bolt-li role="presentation">
+                      <div role="presentation">
+                        <div class="c-bolt-li c-bolt-li--ul-item "
+                             role="listitem"
+                        >
+                          <ssr-keep for="bolt-li">
+                            Item 3
+                          </ssr-keep>
+                        </div>
+                      </div>
+                    </bolt-li>
+                    <bolt-li role="presentation">
+                      <div role="presentation">
+                        <div class="c-bolt-li c-bolt-li--ul-item c-bolt-li--last-item"
+                             role="listitem"
+                        >
+                          <ssr-keep for="bolt-li">
+                            Item 4
+                          </ssr-keep>
+                        </div>
+                      </div>
+                    </bolt-li>
+                  </ssr-keep>
+                </div>
+              </bolt-ul>
+            </ssr-keep>
+          </div>
+        </div>
       </bolt-li>
-    </ul>
-  </replace-with-grandchildren>
+    </ssr-keep>
+  </div>
 </bolt-ul>
 `;

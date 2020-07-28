@@ -12,7 +12,8 @@
 // 5. @todo: [Mai] This needs rework when we have animation library. This animation does not apply when custom transition is passed. Custom transition should take on its own animation.
 
 $bolt-copy-to-clipboard-animation-duration: 500ms;
-$bolt-copy-to-clipboard-transition: all $bolt-copy-to-clipboard-animation-duration ease-in-out;
+$bolt-copy-to-clipboard-transition: all
+  $bolt-copy-to-clipboard-animation-duration ease-in-out;
 
 @include bolt-custom-element('bolt-copy-to-clipboard', block, medium);
 
@@ -46,6 +47,7 @@ $bolt-copy-to-clipboard-transition: all $bolt-copy-to-clipboard-animation-durati
       0% {
         transform: scale(0) rotate(0deg);
       }
+
       100% {
         transform: scale(1) rotate(900deg);
       }
@@ -73,12 +75,12 @@ $bolt-copy-to-clipboard-transition: all $bolt-copy-to-clipboard-animation-durati
   flex-wrap: nowrap;
   align-items: center;
   opacity: bolt-opacity(100);
-  color: inherit;
-  line-height: inherit;
-  cursor: pointer;
   font-family: inherit;
   font-size: inherit;
   font-weight: inherit;
+  color: inherit;
+  line-height: inherit;
+  cursor: pointer;
   border: none;
   background: none;
   transition: $bolt-copy-to-clipboard-transition;
@@ -91,7 +93,7 @@ $bolt-copy-to-clipboard-transition: all $bolt-copy-to-clipboard-animation-durati
   align-items: center;
 
   > *:first-child {
-    @include bolt-margin-right(xxsmall);
+    margin-right: var(--bolt-spacing-x-xxsmall);
   }
 }
 

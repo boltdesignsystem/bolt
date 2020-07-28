@@ -2,7 +2,7 @@
 
 @import '@bolt/core-v3.x';
 @import './tools.headlines';
-
+@import './_headline.numbered'; // numbered bullet variation
 
 /* ------------------------------------ *\
    Headlines
@@ -12,12 +12,25 @@
 $bolt-headline--minus-letter-spacing: -0.025rem;
 $bolt-headline--plus-letter-spacing: 0.05rem;
 
-
 .c-bolt-headline,
 .c-bolt-subheadline,
 .c-bolt-eyebrow,
 .c-bolt-text {
   @include bolt-headline;
+
+  strong {
+    @include bolt-font-weight(bold);
+  }
+}
+
+.c-bolt-headline,
+.c-bolt-subheadline,
+.c-bolt-eyebrow {
+  color: bolt-theme(headline);
+}
+
+.c-bolt-text {
+  color: bolt-theme(text);
 }
 
 .c-bolt-headline {
@@ -30,11 +43,12 @@ $bolt-headline--plus-letter-spacing: 0.05rem;
   }
 }
 
-
-
 // @TODO: grab the same shared values from the Blockquote component
 .c-bolt-headline--quoted > .c-bolt-headline__text,
 .c-bolt-subheadline--quoted > .c-bolt-subheadline__text {
+  // workaround to display: flex breaking quote styles
+  display: inline-block;
+
   &:first-child:before,
   &:last-child:after {
     font-family: 'Georgia', serif; // TODO: Replace with Noto Serif when it is added.
@@ -51,8 +65,6 @@ $bolt-headline--plus-letter-spacing: 0.05rem;
   }
 }
 
-
-
 .c-bolt-eyebrow {
   @include bolt-margin-bottom(0.1rem);
   @include bolt-font-size(xsmall);
@@ -60,9 +72,6 @@ $bolt-headline--plus-letter-spacing: 0.05rem;
   text-transform: uppercase;
   letter-spacing: $bolt-headline--plus-letter-spacing;
 }
-
-
-
 
 .c-bolt-headline__line {
   flex: 1 0 1rem;
@@ -83,6 +92,14 @@ $bolt-headline--plus-letter-spacing: 0.05rem;
   }
 }
 
+.c-bolt-headline__text {
+  display: inline-block;
+
+  &-inner {
+    display: inline-block;
+    vertical-align: middle;
+  }
+}
 
 // Subheadline styles.
 .c-bolt-subheadline {
@@ -94,7 +111,6 @@ $bolt-headline--plus-letter-spacing: 0.05rem;
     @include bolt-font-size(large);
   }
 }
-
 
 // Headline spacing with other elements.
 .c-bolt-headline:not(.c-bolt-headline--xxxlarge) + .c-bolt-headline,
@@ -118,14 +134,10 @@ $bolt-headline--plus-letter-spacing: 0.05rem;
   margin-top: (-1 * bolt-v-spacing(medium)) + bolt-v-spacing(xsmall);
 }
 
-
-
-
 .c-bolt-headline--xxxlarge,
 .c-bolt-headline--xxlarge {
   letter-spacing: $bolt-headline--minus-letter-spacing;
 }
-
 
 /**
   * 1. Only include max-width rule on larger font sizes
@@ -137,8 +149,8 @@ $bolt-headline--plus-letter-spacing: 0.05rem;
 
 // When headline is 60+ chars long
 .c-bolt-headline--xxxlarge-min {
-  line-height: $bolt-line-height--xxxlarge;
   font-size: $bolt-font-size--xxxlarge--min;
+  line-height: $bolt-line-height--xxxlarge;
 }
 
 .c-bolt-text--xxlarge,
@@ -146,7 +158,6 @@ $bolt-headline--plus-letter-spacing: 0.05rem;
 .c-bolt-headline--xxlarge {
   @include bolt-font-size(xxlarge);
 }
-
 
 .c-bolt-text--xlarge,
 .c-bolt-subheadline--xlarge,
@@ -159,7 +170,6 @@ $bolt-headline--plus-letter-spacing: 0.05rem;
   @include bolt-font-size(large);
 }
 
-
 .c-bolt-text--medium {
   @include bolt-font-size(medium);
 }
@@ -169,17 +179,19 @@ $bolt-headline--plus-letter-spacing: 0.05rem;
   @include bolt-font-size(small);
 }
 
-
 .c-bolt-text--uppercase {
   @include bolt-uppercase;
 }
-
 
 .c-bolt-text--xsmall,
 .c-bolt-headline--xsmall {
   @include bolt-font-size(xsmall);
 }
 
+.c-bolt-text--xxsmall,
+.c-bolt-headline--xxsmall {
+  @include bolt-font-size(xxsmall);
+}
 
 .c-bolt-headline--small,
 .c-bolt-headline--xsmall {

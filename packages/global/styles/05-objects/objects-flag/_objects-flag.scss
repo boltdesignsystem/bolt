@@ -79,6 +79,7 @@ $bolt-flag-alignments: (
 @each $size in $bolt-flag-sizes {
   .o-bolt-flag--#{$size} > .o-bolt-flag__figure {
     @include bolt-margin-right($size);
+    max-width: 50%; // ensure that Flag media is never wider than 50% the total component width
   }
 }
 

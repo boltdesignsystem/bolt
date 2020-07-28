@@ -1,7 +1,7 @@
 {
   "name": "@bolt/components-band",
-  "version": "2.14.0",
-  "description": "Band Component in Bolt",
+  "version": "2.25.1",
+  "description": "A general content container with spacing and background options.",
   "keywords": [
     "bolt design system",
     "bolt",
@@ -15,10 +15,11 @@
   "main": "index.js",
   "style": "index.scss",
   "dependencies": {
-    "@bolt/components-background": "^2.14.0",
-    "@bolt/components-grid": "^2.14.0",
-    "@bolt/core-v3.x": "^2.14.0",
-    "@bolt/element": "^2.14.0"
+    "@bolt/components-background": "^2.25.1",
+    "@bolt/components-grid": "^2.25.1",
+    "@bolt/core-v3.x": "^2.25.1",
+    "@bolt/element": "^2.25.1",
+    "@bolt/lazy-queue": "^2.23.0"
   },
   "publishConfig": {
     "access": "public"
@@ -36,6 +37,6 @@
       "web": "http://mikemai.net/"
     }
   ],
-  "schema": "band.schema.yml",
+  "schema": "band.schema.js",
   "twig": "src/band.twig"
 }

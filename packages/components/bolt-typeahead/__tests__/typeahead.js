@@ -4,9 +4,7 @@ import {
   stop as stopTwigRenderer,
 } from '@bolt/twig-renderer';
 import { fixture as html } from '@open-wc/testing-helpers';
-const { readYamlFileSync } = require('@bolt/build-tools/utils/yaml');
-const { join } = require('path');
-
+import schema from '../typeahead.schema';
 async function renderTwig(template, data) {
   return await render(template, data, true);
 }

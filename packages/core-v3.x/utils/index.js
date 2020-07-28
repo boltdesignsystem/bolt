@@ -10,6 +10,7 @@ export * from './find-parent-tag';
 // export * from './get-component-root-element';
 export * from './get-transition-duration';
 export * from './get-unique-id';
+export * from './is-focusable';
 export * from './is-valid-selector';
 export * from './rgb2hex';
 export * from './rename-key';

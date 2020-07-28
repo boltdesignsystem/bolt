@@ -1,0 +1,27 @@
+{% import "@bolt-blueprints/macros.twig" as macros %}
+
+{% set clear_filters_link %}
+  {% include "@bolt-components-link/link.twig" with {
+    text: "Clear filters"
+  } only %}
+{% endset %}
+
+{% include "@bolt-components-list/list.twig" with {
+  display: "inline",
+  items: [
+    macros.include("@bolt-components-chip/chip.twig", {
+      text: "Challenge",
+      url: "#!",
+      size: "xsmall",
+      icon: {
+        name: "close",
+        position: "after"
+      }
+    }),
+    macros.include("@bolt-components-headline/text.twig", {
+      text: "(" ~ clear_filters_link|trim ~ ")",
+      tag: "span",
+      size: "small"
+    })
+  ]
+} only %}

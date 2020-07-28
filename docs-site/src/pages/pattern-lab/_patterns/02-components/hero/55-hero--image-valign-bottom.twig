@@ -1,0 +1,25 @@
+{% import "@bolt/macros.twig" as macros %}
+{# ^ allows us to use inline includes that also work in Drupal #}
+
+<bolt-text>This demo sets the <code>imageValign</code> prop to <code>bottom</code> so the image is always flush with the bottom-edge of the Hero container.</bolt-text>
+
+<bolt-banner>
+	<p><strong>Note:</strong> this automatically adjusts the content order on smaller (mobile) screens so the Image displays <em>after</em> the main content instead of before.</p>
+</bolt-banner>
+
+{% include "@bolt-components-hero/hero.twig" with {
+  content: macros.include("@bolt-components-blockquote/blockquote.twig", {
+    size: "xxlarge",
+    weight: "bold",
+    border: "none",
+    "author": {
+      "name": "Oliver Zeeb",
+      "title": "Team Lead, Application Development <br>W&W-Gruppe"
+    },
+    "content": "<p>Pega is one of the key technologies that we are using to rebuild our application landscape.</p>"
+  }),
+  background: "/images/heros/hero-background--teal.jpg",
+  image: "/images/heros/hero-foreground--teal.png",
+  imageValign: "bottom",
+  theme: "dark",
+} %}

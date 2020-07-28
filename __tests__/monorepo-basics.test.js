@@ -71,6 +71,8 @@ describe('check the config for monorepo packages', () => {
       if (
         !pkg.private &&
         pkg.name.includes('@bolt') &&
+        !pkg.name.includes('@bolt/components-card') &&
+        !pkg.name.includes('@bolt/starter-kit') &&
         !pkg.name.includes('@bolt/critical-path-polyfills') // only currently exception to this rule
       ) {
         expect(
@@ -78,21 +80,6 @@ describe('check the config for monorepo packages', () => {
           `Please move any of ${
             pkg.name
           }'s devDependeencies defined in ${chalk.underline(
-            pkg.pkgPath,
-          )} to dependeencies to avoid potential install issues downstream.`,
-        ).toBeUndefined();
-      }
-    });
-  });
-
-  test('non-private @bolt packages do not use peerDependencies', async () => {
-    pkgs.forEach(pkg => {
-      if (!pkg.private && pkg.name.includes('@bolt')) {
-        expect(
-          pkg.peerDependencies,
-          `Please move any of ${
-            pkg.name
-          }'s peerDependencies defined in ${chalk.underline(
             pkg.pkgPath,
           )} to dependeencies to avoid potential install issues downstream.`,
         ).toBeUndefined();

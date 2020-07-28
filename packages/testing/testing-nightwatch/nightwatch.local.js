@@ -4,7 +4,7 @@ const seleniumServer = require('selenium-server');
 const chromeDriver = require('chromedriver');
 // const geckoDriver = require('geckodriver'); // temporarily disabling FF testing till self-signed cert issue (when installing geckodriver) is debugged
 const { NOW_URL } = process.env;
-
+const { startServer, stopServer } = require('@bolt/default-server/server.js');
 const testingUrl = NOW_URL ? NOW_URL : 'http://localhost:3000';
 
 console.log(`Nightwatch testingUrl is ${testingUrl}`);
@@ -24,7 +24,16 @@ module.exports = {
   globals: {
     waitForConditionTimeout: 5000,
     testingUrl,
+    before(cb) {
+      startServer(); // start local dev server automatically
+      cb();
+    },
+    after(cb) {
+      stopServer(); // stop local dev server automatically
+      cb();
+    },
   },
+  persist_globals: true,
   src_folders: srcFolders,
   selenium: {
     start_process: true,

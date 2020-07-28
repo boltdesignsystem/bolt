@@ -2,23 +2,25 @@ import * as grapesjs from 'grapesjs'; // eslint-disable-line no-unused-vars
 // @ts-ignore
 import buttonSchema from '@bolt/components-button/button.schema';
 // @ts-ignore
-import textSchema from '@bolt/components-text/text.schema.yml';
+import textSchema from '@bolt/components-text/text.schema';
 import iconSchema from '@bolt/components-icon/icon.schema.json';
+// @ts-ignore
+import listSchema from '@bolt/components-list/list.schema';
 import characterSchema from '@bolt/micro-journeys/src/character.schema';
 import connectionSchema from '@bolt/micro-journeys/src/connection.schema';
 import pathwaysSchema from '@bolt/micro-journeys/src/interactive-pathways.schema';
 import statusDialogueBarSchema from '@bolt/micro-journeys/src/status-dialogue-bar.schema';
 import svgAnimationsSchema from '@bolt/micro-journeys/src/bolt-svg-animations/svg-animations.schema';
 // @ts-ignore
-import blockquoteSchema from '@bolt/components-blockquote/blockquote.schema.yml';
+import blockquoteSchema from '@bolt/components-blockquote/blockquote.schema';
 // @ts-ignore
-import chipSchema from '@bolt/components-chip/chip.schema.yml';
+import chipSchema from '@bolt/components-chip/chip.schema';
 // @ts-ignore
-import imageSchema from '@bolt/components-image/image.schema.yml';
+import imageSchema from '@bolt/components-image/image.schema';
 import animateSchema from '@bolt/components-animate/animate.schema';
 import * as starters from '@bolt/micro-journeys/starters';
 // @ts-ignore
-import linkSchema from '@bolt/components-link/link.schema.yml';
+import linkSchema from '@bolt/components-link/link.schema';
 // import { animationNames } from '@bolt/components-animate/animation-meta';
 import { isChildOfEl, convertSchemaPropToTrait, getStepsLorem } from './utils';
 
@@ -426,13 +428,49 @@ export function setupBolt(editor) {
     ],
   });
 
+  const iconNameCompat = {
+    description: iconSchema.properties.name.description,
+    type: 'string',
+    // @ts-ignore
+    enum: iconSchema.properties.name.anyOf[0].enum,
+  };
+
+  iconSchema.properties.name.type = 'string';
+
+  registerBoltComponent({
+    name: 'bolt-list',
+    registerBlock: true,
+    schema: listSchema,
+    editable: true,
+    highlightable: true,
+    initialContent: [
+      '<bolt-list-item><bolt-text>Item 1<bolt-text></bolt-list-item>',
+    ],
+    propsToTraits: [
+      'tag',
+      'display',
+      'spacing',
+      'separator',
+      'inset',
+      'align',
+      'valign',
+      'nowrap',
+    ],
+  });
+
   registerBoltComponent({
     name: 'bolt-icon',
     registerBlock: true,
     schema: iconSchema,
     // draggable: '[slot]',
     initialContent: [`<span></span>`],
-    propsToTraits: ['size', 'name', 'background', 'color'],
+    propsToTraits: ['size', 'background', 'color'],
+    extraTraits: [
+      convertSchemaPropToTrait({
+        name: 'name',
+        prop: iconNameCompat,
+      }),
+    ],
   });
 
   registerBoltComponent({
@@ -673,7 +711,14 @@ export function setupBolt(editor) {
     draggable: false,
     editable: true,
     highlightable: true,
-    propsToTraits: ['size', 'characterImage', 'characterCustomUrl', 'useIcon'],
+    propsToTraits: [
+      'size',
+      'characterImage',
+      'characterCustomUrl',
+      'useIcon',
+      'constrainBottomSlot',
+      'addBackgroundPadding',
+    ],
     slots: {
       default: false,
       top: true,
@@ -747,7 +792,12 @@ export function setupBolt(editor) {
     draggable: true,
     editable: true,
     highlightable: true,
-    propsToTraits: ['iconName', 'isAlertMessage', 'dialogueArrowDirection'],
+    propsToTraits: [
+      'iconName',
+      'isAlertMessage',
+      'dialogueArrowDirection',
+      'boxFloatDirection',
+    ],
     slots: {
       default: false,
       // @todo consider changing `text` to `default`

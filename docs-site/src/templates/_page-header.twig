@@ -5,7 +5,7 @@
     width: "auto",
     title: {
       tag: "h1",
-      text: 'Bolt<span class="u-bolt-hidden u-bolt-inline@xlarge"> Design System</span></span>',
+      text: "<span aria-label='Bolt Design System'>Bolt</span>",
       url: "/",
       icon: {
         name: "bolt-logo-colored"
@@ -13,31 +13,31 @@
     },
     links: [
       {
+        text: "Visual Styles",
+        url: "/pattern-lab/?p=viewall-visual-styles-color-palette",
+      },
+      {
         text: "Components",
-        url: "/pattern-lab/index.html"
+        url: "/pattern-lab/index.html",
       },
       {
-        text: "Docs",
-        url: "/docs/getting-started/index.html"
-      },
-      {
-        text: "Releases",
-        url: "https://github.com/bolt-design-system/bolt/releases",
+        text: "Guidelines",
+        url: "https://github.com/boltdesignsystem/bolt/wiki",
         attributes: {
-          target: "_blank"
+          target: "_blank",
         },
       },
       {
-        text: 'Github',
+        text: "Github",
         url: "https://github.com/bolt-design-system/bolt",
         attributes: {
-          target: "_blank"
+          target: "_blank",
         },
         icon: {
           name: "github",
-          position: "after"
+          position: "after",
         }
-      }
+      },
     ],
   } only %}
 {% endset %}
@@ -45,6 +45,7 @@
 {% include "@bolt-components-sticky/sticky.twig" with {
   attributes: {
     class: [
+      "c-bolt-site__header",
       "c-bds-layout__header"
     ]
   },

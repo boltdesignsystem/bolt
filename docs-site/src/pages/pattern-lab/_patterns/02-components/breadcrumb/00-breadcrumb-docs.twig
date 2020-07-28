@@ -13,7 +13,13 @@
       text: "Sub Page",
       url: "#!"
     }),
-    "Current Page"
+    include("@bolt-components-link/link.twig", {
+      text: "Current Page",
+      url: "#!",
+      attributes: {
+        "aria-current": "page",
+      },
+    }),
   ]
 } only %}
 {% endverbatim %}{% endset %}

@@ -1,5 +1,5 @@
-import { polyfillLoader } from '@bolt/core-v3.x/polyfills';
+import { lazyQueue } from '@bolt/lazy-queue';
 
-polyfillLoader.then(() => {
-  import('./navlink.js');
+lazyQueue(['bolt-navlink'], async () => {
+  await import(/* webpackChunkName: 'bolt-navlink' */ './navlink.js');
 });

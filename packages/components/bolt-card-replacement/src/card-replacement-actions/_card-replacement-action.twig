@@ -1,18 +1,26 @@
 <bolt-card-replacement-action {% if external %} external {% endif %} {% if url %} url="{{url}}" {% endif %}>
-	<replace-with-children class="c-bolt-card_replacement__action">
-		{% if text %}
-			{% include "@bolt-components-button/button.twig" with {
-        text: text,
-        url: url,
-        style: "text",
-        width: "full",
-        align: "start",
-        target: external == true ? "_blank" : "_self",
-        icon: {
-          name: external == false or external == null ? "chevron-right" : "external-link",
-        },
-        attributes: attributes|default({})
-      } only %}
-		{% endif %}
-	</replace-with-children>
+  <ssr-keep for="bolt-card-replacement-action" class="c-bolt-card_replacement__action">
+    {% block action_item %}
+      {% if text %}
+        {% set button_props = {
+          text: text,
+          style: "text",
+          width: "full",
+          align: "start",
+          target: external == true ? "_blank" : "_self",
+          icon: {
+            name: external == false or external == null ? "chevron-right" : "external-link",
+          },
+          size: spacing,
+          attributes: attributes|default({})
+        } %}
+
+        {% if url is not empty %}
+          {% set button_props = button_props|merge({ url: url }) %}
+        {% endif %}
+
+        {% include "@bolt-components-button/button.twig" with button_props only %}
+      {% endif %}
+    {% endblock %}
+  </ssr-keep>
 </bolt-card-replacement-action>
