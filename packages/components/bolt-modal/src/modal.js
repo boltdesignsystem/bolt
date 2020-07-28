@@ -29,11 +29,8 @@ class BoltModal extends withLitHtml {
     theme: props.string,
     scroll: props.string,
     uuid: props.string,
-    // @todo: persistent - this is here to set up the future prop, which is commented out in the schema right now. For now, this will always be false until it's introduced. The same applies for all the other persistent logics below.
-    persistent: {
-      ...props.boolean,
-      ...{ default: false },
-    },
+    persistent: props.boolean,
+    persistentReturnUrl: props.string,
     open: {
       ...props.boolean,
       ...{ default: false },
@@ -228,7 +225,14 @@ class BoltModal extends withLitHtml {
     // further effects from the ESCAPE key and hide the modal
     if (this.open && event.which === ESCAPE_KEY) {
       event.preventDefault();
-      this.hide();
+      // Alter the behavior on a persistent modal to redirect to the return link value
+      if (this.props.persistent) {
+        if (this.props.persistentReturnUrl.length) {
+          window.location = this.props.persistentReturnUrl;
+        }
+      } else {
+        this.hide();
+      }
     }
   };
 
@@ -364,6 +368,7 @@ class BoltModal extends withLitHtml {
 
     const classes = cx('c-bolt-modal', {
       [`is-open`]: open,
+      [`is-persistent`]: persistent,
       [`c-bolt-modal--scroll-${scroll}`]: scroll,
       [`c-bolt-modal--overlay-dark`]:
         theme && (theme === 'light' || theme === 'xlight'),
@@ -457,9 +462,15 @@ class BoltModal extends withLitHtml {
             class="${contentClasses}"
           >
             <article class="${containerClasses}">
-              <div class="${closeButtonClasses}">
-                ${this.slots.close ? this.slot('close') : defaultCloseButton}
-              </div>
+              ${!this.props.persistent
+                ? html`
+                    <div class="${closeButtonClasses}">
+                      ${this.slots.close
+                        ? this.slot('close')
+                        : defaultCloseButton}
+                    </div>
+                  `
+                : ''}
               <header class="${headerClasses}">
                 <h1
                   id="dialog-title-${uuid}"
