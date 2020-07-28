@@ -1,10 +1,5 @@
-{% extends "@pl/_default-page-template.twig" %}
-
-{% block global_header %}
-  {% include "@bolt/page-header.twig" %}
-{% endblock %}
-
-{% block main_content %}
+{# {% extends "@pl/_default-page-template.twig" %}
+{% block main_content %} #}
 
   {% set pinned_recalculate %}
     {% include "@bolt-components-button/button.twig" with {
@@ -49,17 +44,41 @@
   } only %}
     {% block band_content %}
 
+      {% set trigger %}
+        {% include "@bolt-components-link/link.twig" with {
+          text: "$429,457,192.75",
+        } only %}
+      {% endset %}
+
+      {% set popover_content %}
+        Retention benefits: <br />
+        $207,500,000<br />
+        <br />
+        Upsell / Cross-sell benefit:<br />
+        $220,833,333
+      {% endset %}
+
+      {% set calc_popover %}
+        {% include "@bolt-components-popover/popover.twig" with {
+          trigger: trigger,
+          content: popover_content,
+          theme: "xdark",
+          attributes: {
+            "no-shadow": true,
+          }
+        } only %}
+      {% endset %}
+
       {% include "@bolt/headline.twig" with {
-        text: "Your total benefit from a real-time, next-best-action approach is",
+        text: "Your total benefit from a real-time, next-best-action approach is <br />" ~ calc_popover,
         size: "xxlarge",
         tag: "h2",
         align: "center",
         weight: "regular"
       } only %}
 
-
       {% set tab_content_1 %}
-          {% grid "o-bolt-grid--middle" %}
+          {% grid "o-bolt-grid--middle u-bolt-margin-top-medium" %}
             {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small" %}
               {% include "@bolt/headline.twig" with {
                 text: "Deeper relationships. Lasting benefits.",
@@ -71,6 +90,22 @@
               } only %}
             {% endcell %}
             {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small" %}
+              <div class="u-bolt-margin-bottom-small">
+                {% set graph_array = [
+                  {
+                    number: '10%',
+                    description: "Your churn rate today",
+                    color: "gray"
+                  },
+                  {
+                    number: '9%',
+                    description: "Your churn rate with Pega Customer Decision Hub",
+                    color: "indigo"
+                  }
+                ]
+                %}
+                {% include 'results-graph/results-graph.twig' with graph_array %}
+              </div>
               {% grid "o-bolt-grid--middle" %}
                 {% cell "u-bolt-width-1/12" %}
                   {% include "@bolt-components-icon/icon.twig" with {
@@ -132,7 +167,7 @@
           {% endgrid %}
       {% endset %}
       {% set tab_content_2 %}
-          {% grid "o-bolt-grid--middle" %}
+          {% grid "o-bolt-grid--middle u-bolt-margin-top-medium" %}
             {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small" %}
               {% include "@bolt/headline.twig" with {
                 text: "Make selling more empathetic.",
@@ -144,6 +179,22 @@
               } only %}
             {% endcell %}
             {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small" %}
+              <div class="u-bolt-margin-bottom-small">
+                {% set graph_array = [
+                  {
+                    number: '10%',
+                    description: "Your churn rate today",
+                    color: "gray"
+                  },
+                  {
+                    number: '9%',
+                    description: "Your churn rate with Pega Customer Decision Hub",
+                    color: "indigo"
+                  }
+                ]
+                %}
+                {% include 'results-graph/results-graph.twig' with graph_array %}
+              </div>
               {% grid "o-bolt-grid--middle" %}
                 {% cell "u-bolt-width-1/12" %}
                   {% include "@bolt-components-icon/icon.twig" with {
@@ -183,4 +234,5 @@
 
     {% endblock %}
   {% endembed %}
-{% endblock %}
+
+{# {% endblock %} #}

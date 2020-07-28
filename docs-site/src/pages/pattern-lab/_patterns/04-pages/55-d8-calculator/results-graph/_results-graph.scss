@@ -1,0 +1,66 @@
+.bolt-results-graph {
+  display: flex;
+  flex-direction: column;
+
+  @include bolt-mq(small) {
+    flex-direction: row;
+  }
+
+  &__box {
+    display: inline-block;
+    width: 100%;
+    padding: var(--bolt-spacing-y-medium) var(--bolt-spacing-x-medium);
+    border-radius: 3px;
+    @include bolt-mq(small) {
+      max-width: 230px;
+    }
+
+    &__headline {
+      @include bolt-font-size(xlarge);
+    }
+
+    &__text {
+      @include bolt-font-size(xsmall);
+    }
+
+    &.box-color--teal,
+    &.box-color--orange {
+      color: bolt-color(black);
+    }
+
+    &.box-color--gray,
+    &.box-color--indigo {
+      color: bolt-color(white);
+    }
+
+    &.box-color--gray {
+      background-color: bolt-color(gray, dark);
+    }
+
+    &.box-color--indigo {
+      background-color: bolt-color(indigo, light);
+    }
+
+    &.box-color--teal {
+      background-color: bolt-color(teal);
+    }
+
+    &.box-color--orange {
+      background-color: bolt-color(orange);
+    }
+  }
+
+  bolt-icon {
+    transform: rotate(270deg);
+    padding: var(--bolt-spacing-y-xsmall) var(--bolt-spacing-x-xsmall);
+    color: bolt-color(gray, dark);
+
+    @include bolt-mq(small) {
+      transform: rotate(180deg);
+    }
+
+    .c-bolt-icon {
+      height: auto;
+    }
+  }
+}
