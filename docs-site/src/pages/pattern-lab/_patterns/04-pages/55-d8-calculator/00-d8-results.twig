@@ -78,7 +78,7 @@
       } only %}
 
       {% set tab_content_1 %}
-          {% grid "o-bolt-grid--middle" %}
+          {% grid "o-bolt-grid--middle u-bolt-margin-top-medium" %}
             {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small" %}
               {% include "@bolt/headline.twig" with {
                 text: "Deeper relationships. Lasting benefits.",
@@ -90,6 +90,22 @@
               } only %}
             {% endcell %}
             {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small" %}
+              <div class="u-bolt-margin-bottom-small">
+                {% set graph_array = [
+                  {
+                    number: '10%',
+                    description: "Your churn rate today",
+                    color: "gray"
+                  },
+                  {
+                    number: '9%',
+                    description: "Your churn rate with Pega Customer Decision Hub",
+                    color: "indigo"
+                  }
+                ]
+                %}
+                {% include 'results-graph/results-graph.twig' with graph_array %}
+              </div>
               {% grid "o-bolt-grid--middle" %}
                 {% cell "u-bolt-width-1/12" %}
                   {% include "@bolt-components-icon/icon.twig" with {
@@ -151,7 +167,7 @@
           {% endgrid %}
       {% endset %}
       {% set tab_content_2 %}
-          {% grid "o-bolt-grid--middle" %}
+          {% grid "o-bolt-grid--middle u-bolt-margin-top-medium" %}
             {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small" %}
               {% include "@bolt/headline.twig" with {
                 text: "Make selling more empathetic.",
@@ -163,6 +179,22 @@
               } only %}
             {% endcell %}
             {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small" %}
+              <div class="u-bolt-margin-bottom-small">
+                {% set graph_array = [
+                  {
+                    number: '10%',
+                    description: "Your churn rate today",
+                    color: "gray"
+                  },
+                  {
+                    number: '9%',
+                    description: "Your churn rate with Pega Customer Decision Hub",
+                    color: "indigo"
+                  }
+                ]
+                %}
+                {% include 'results-graph/results-graph.twig' with graph_array %}
+              </div>
               {% grid "o-bolt-grid--middle" %}
                 {% cell "u-bolt-width-1/12" %}
                   {% include "@bolt-components-icon/icon.twig" with {
