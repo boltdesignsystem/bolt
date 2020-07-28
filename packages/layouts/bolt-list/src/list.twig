@@ -1,0 +1,75 @@
+{% set schema = bolt.data.components["@bolt-layouts-list"].schema %}
+
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(schema, _self) | raw }}
+{% endif %}
+
+{# Variables #}
+{% set base_class = "c-bolt-list" %}
+{% set attributes = create_attribute(attributes|default({})) %}
+{% set inner_attributes = create_attribute({}) %}
+
+{# Set up checks to validate that the component's prop values are allowed, based on the component's schema. #}
+{% set tag_options = schema.properties.tag.enum %}
+{% set display_options = schema.properties.display.enum %}
+{% set spacing_options = schema.properties.spacing.enum %}
+{% set separator_options = schema.properties.separator.enum %}
+{% set align_options = schema.properties.align.enum %}
+{% set valign_options = schema.properties.valign.enum %}
+
+{# Check that the component's current prop values are valid. If not, default to the schema default #}
+{% set tag = tag in tag_options ? tag : schema.properties.tag.default %}
+{% set display = display in display_options ? display : schema.properties.display.default %}
+{% set spacing = spacing in spacing_options ? spacing : schema.properties.spacing.default %}
+{% set separator = separator in separator_options ? separator : schema.properties.separator.default %}
+{% set align = align in align_options ? align : schema.properties.align.default %}
+{% set valign = valign in valign_options ? valign : schema.properties.valign.default %}
+{% set inset = inset is sameas(true) or inset is sameas(false) ? inset : schema.properties.inset.default %}
+{% set nowrap = nowrap is sameas(true) or nowrap is sameas(false) ? nowrap : schema.properties.nowrap.default %}
+
+{# Conditions for the semantic tag usage #}
+{% if tag == "ol" or tag == "ul" %}
+  {% set list_role = "list" %}
+  {% set list_item_role = "listitem" %}
+{% endif %}
+
+{# List component's custom element wrapper. #}
+<bolt-list
+  {% if tag %} tag="{{ tag }}" {% endif %}
+  {% if display %} display="{{ display }}" {% endif %}
+  {% if spacing %} spacing="{{ spacing }}" {% endif %}
+  {% if separator %} separator="{{ separator }}" {% endif %}
+  {% if align %} align="{{ align }}" {% endif %}
+  {% if valign %} valign="{{ valign }}" {% endif %}
+  {% if inset %} inset {% endif %}
+  {% if nowrap %} nowrap {% endif %}
+  {{ attributes }}
+>
+  {# This sets none values to not render anything. #}
+  {% set spacing = spacing == "none" ? false : spacing %}
+  {% set separator = separator == "none" ? false : separator %}
+
+  {# Array of classes based on the defined + default props. #}
+  {% set classes = [
+    base_class,
+    display in display_options ? "#{base_class}--display-#{display}" : "",
+    spacing in spacing_options ? "#{base_class}--spacing-#{spacing}" : "",
+    separator in separator_options ? "#{base_class}--separator-#{separator}" : "",
+    align in align_options ? "#{base_class}--align-#{align}" : "",
+    valign in valign_options ? "#{base_class}--valign-#{valign}" : "",
+    inset ? "#{base_class}--inset",
+    nowrap ? "#{base_class}--nowrap",
+  ] %}
+
+  <ssr-keep
+    for="bolt-list"
+    {% if list_role %} role="{{ list_role }}" {% endif %}
+    {{ inner_attributes.addClass(classes) }}
+  >
+    {% for item in items %}
+      {% if item %}
+        {% include "@bolt-layouts-list/_list-item.twig" %}
+      {% endif %}
+    {% endfor %}
+  </ssr-keep>
+</bolt-list>
