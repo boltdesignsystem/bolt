@@ -1,13 +1,10 @@
 // Documentation options can be found here https://github.com/nosir/cleave.js/blob/master/doc/options.md
 import Cleave from 'cleave.js';
 
-import styles from './calculator.scss';
-// import schema from '../calculator.schema';
-
 export default class Calculator {
   constructor(el) {
     this.el = el;
-    this.form = this.el.querySelector('form');
+    this.form = this.el.parentNode;
     this.config = {
       cleaveAmountOptions: {
         prefix: '$',
@@ -34,23 +31,20 @@ export default class Calculator {
     for (let i = 0; i < inputs.length; i++) {
       inputs[i].addEventListener('keyup', e => {
         let inputValue = inputs[i].value;
-        switch (inputs[i].closest('fieldset').dataset.type) {
+        switch (inputs[i].parentNode.dataset.type) {
           case 'amount':
-            console.log('amount');
             const cleaveAmount = new Cleave(
               e.currentTarget,
               this.config.cleaveAmountOptions,
             );
             break;
           case 'percent':
-            console.log('percent');
             const cleavePercent = new Cleave(
               e.currentTarget,
               this.config.cleavePercentOptions,
             );
             break;
           default:
-            console.log('number');
             const cleaveNumber = new Cleave(
               e.currentTarget,
               this.config.cleaveNumberOptions,
@@ -58,21 +52,6 @@ export default class Calculator {
         }
       });
     }
-
-    // On Submit
-    this.form.addEventListener('submit', e => {
-      e.preventDefault();
-      this.submit(e);
-    });
-  }
-
-  results() {
-    // Process the submit data and output in the results template
-  }
-
-  submit(e) {
-    // On submit grab all the data from the fields to be be submitted
-    console.log(e);
   }
 
   validation() {

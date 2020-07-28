@@ -1,8 +1,0 @@
-{% set usage %}{% verbatim %}
-{% include '@bolt-components-calculator/calculator.twig' only %}
-{% endverbatim %}{% endset %}
-
-{% include "@utils/docs.twig" with {
-  componentName: "calculator",
-  usage: usage
-} only %}
