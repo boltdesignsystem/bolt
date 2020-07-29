@@ -9,14 +9,12 @@ bolt-ol {
 
 // Styles
 .c-bolt-ol {
-  @include bolt-margin(0);
-  @include bolt-padding(0);
-
-  margin-bottom: bolt-spacing(xxsmall) * -1;
+  margin: 0 0 calc(var(--bolt-spacing-y-xxsmall) * -1) 0;
+  padding: 0;
   list-style: none;
 
   &--nested {
-    margin-top: bolt-spacing(xxsmall);
+    margin-top: var(--bolt-spacing-y-xxsmall);
   }
 }
 
@@ -24,6 +22,6 @@ bolt-ol {
 .c-bolt-ol {
   .c-bolt-ul,
   .c-bolt-ol {
-    margin-top: bolt-spacing(xxsmall);
+    margin-top: var(--bolt-spacing-y-xxsmall);
   }
 }
