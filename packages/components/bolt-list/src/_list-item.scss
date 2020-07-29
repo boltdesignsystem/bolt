@@ -10,27 +10,26 @@ $bolt-list-item-border-color: bolt-theme(border, 0.2);
 
 // Item base styles
 .c-bolt-list-item {
-  @include bolt-margin(0);
-  @include bolt-padding(0);
-
   display: block;
+  margin: 0;
+  padding: 0;
 }
 
 // Spacing Prop
-@each $spacing-value in $bolt-spacing-values {
-  $spacing-value-name: nth($spacing-value, 1);
+@each $size in $bolt-spacing-multiplier-system {
+  $size-name: nth($size, 1);
 
-  .c-bolt-list-item--spacing-#{$spacing-value-name} {
-    @include bolt-margin-left(#{$spacing-value-name});
-    @include bolt-margin-bottom(#{$spacing-value-name});
+  .c-bolt-list-item--spacing-#{$size-name} {
+    margin-bottom: var(--bolt-spacing-y-#{$size-name});
+    margin-left: var(--bolt-spacing-x-#{$size-name});
 
     &.c-bolt-list-item--inset {
-      @include bolt-margin-left(0);
-      @include bolt-margin-bottom(0);
-      @include bolt-padding-top(#{$spacing-value-name});
-      @include bolt-padding-right(#{$spacing-value-name});
-      @include bolt-padding-bottom(#{$spacing-value-name});
-      @include bolt-padding-left(#{$spacing-value-name});
+      margin-bottom: 0;
+      margin-left: 0;
+      padding-top: var(--bolt-spacing-y-#{$size-name});
+      padding-right: var(--bolt-spacing-x-#{$size-name});
+      padding-bottom: var(--bolt-spacing-y-#{$size-name});
+      padding-left: var(--bolt-spacing-x-#{$size-name});
     }
   }
 }
@@ -82,18 +81,18 @@ $bolt-list-separator-styles: solid, dashed;
 
 // Specific settings for when the separator prop interacts with other props. This is where things get really crazy.
 [class*='c-bolt-list-item--separator'] {
-  @each $spacing-value in $bolt-spacing-values {
-    $spacing-value-name: nth($spacing-value, 1);
+  @each $size in $bolt-spacing-multiplier-system {
+    $size-name: nth($size, 1);
 
-    &.c-bolt-list-item--spacing-#{$spacing-value-name} {
+    &.c-bolt-list-item--spacing-#{$size-name} {
       &:not(.c-bolt-list-item--last-item) {
         &.c-bolt-list-item--display-block {
-          @include bolt-padding-bottom(#{$spacing-value-name});
+          padding-bottom: var(--bolt-spacing-y-#{$size-name});
         }
 
         &.c-bolt-list-item--display-inline,
         &.c-bolt-list-item--display-flex {
-          @include bolt-padding-right(#{$spacing-value-name});
+          padding-right: var(--bolt-spacing-x-#{$size-name});
         }
       }
     }
@@ -102,13 +101,13 @@ $bolt-list-separator-styles: solid, dashed;
       @each $breakpoint in $bolt-breakpoints {
         $breakpoint-name: nth($breakpoint, 1);
 
-        &.c-bolt-list-item--spacing-#{$spacing-value-name} {
+        &.c-bolt-list-item--spacing-#{$size-name} {
           &.c-bolt-list-item--display-inline\@#{$breakpoint-name} {
-            @include bolt-padding-bottom(#{$spacing-value-name});
+            padding-bottom: var(--bolt-spacing-y-#{$size-name});
 
             @include bolt-mq($breakpoint-name) {
-              @include bolt-padding-right(#{$spacing-value-name});
-              @include bolt-padding-bottom(0);
+              padding-right: var(--bolt-spacing-x-#{$size-name});
+              padding-bottom: 0;
             }
           }
         }
