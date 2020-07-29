@@ -669,12 +669,19 @@ $bolt-strength-indicator-transition: $bolt-transition;
   transition: all $bolt-input-transition;
 }
 
-.c-bolt-block-label ~ .c-bolt-block-input-wrapper {
-  position: relative;
+.c-bolt-block-label {
+  display: block;
+  margin-bottom: var(--bolt-spacing-y-small);
+  font-family: var(--bolt-type-font-family-headline);
+  font-size: var(--bolt-type-font-size-small);
 
-  .c-bolt-input.is-filled,
-  .c-bolt-input:focus {
-    padding-top: var(--bolt-spacing-y-small);
-    padding-bottom: var(--bolt-spacing-y-small);
+  & ~ .c-bolt-block-input-wrapper {
+    position: relative;
+
+    .c-bolt-input.is-filled,
+    .c-bolt-input:focus {
+      padding-top: var(--bolt-spacing-y-small);
+      padding-bottom: var(--bolt-spacing-y-small);
+    }
   }
 }
