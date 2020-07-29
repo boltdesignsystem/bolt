@@ -553,7 +553,12 @@ $bolt-input-message-text-color--invalid: bolt-color(
 .c-bolt-input-message--invalid {
   @include bolt-font-weight(semibold);
   @include bolt-font-size(xsmall);
+
+  margin-top: var(--bolt-spacing-y-xxsmall);
   color: $bolt-input-message-text-color--invalid;
+  border-left: 3px solid bolt-color(error);
+  border-radius: bolt-border-radius(small);
+  background-color: bolt-color(error, light);
 }
 
 // Strength Indicator
