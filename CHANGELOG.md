@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.26.1](https://github.com/boltdesignsystem/bolt/compare/v2.26.0...v2.26.1) (2020-07-29)
+
+
+### Reverts
+
+* Revert "ds-170: spacing hotfix for Japanese" ([aa58d41](https://github.com/boltdesignsystem/bolt/commit/aa58d41bd8a73d2069e439fe72996fdb4a324e79))
+
+
+
+
+
 # [2.26.0](https://github.com/boltdesignsystem/bolt/compare/v2.25.1...v2.26.0) (2020-07-22)
 
 
