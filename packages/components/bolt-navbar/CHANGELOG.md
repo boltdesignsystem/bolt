@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.26.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-navbar/compare/v2.25.1...v2.26.0) (2020-07-22)
+
+
+### Bug Fixes
+
+* lint css ([71f8278](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-navbar/commit/71f82780c9019c74abef977ab31f3304282854fc))
+* mobile navbar spacing ([89bdb35](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-navbar/commit/89bdb35e9f6ae9a4e132b53a00f2d59dc442f963))
+
+
+
+
+
 ## [2.25.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-navbar/compare/v2.25.0...v2.25.1) (2020-07-14)
 
 **Note:** Version bump only for package @bolt/components-navbar

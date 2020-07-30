@@ -536,7 +536,12 @@ $bolt-input-message-text-color--invalid: bolt-color(
 .c-bolt-input-message--invalid {
   @include bolt-font-weight(semibold);
   @include bolt-font-size(xsmall);
+
+  margin-top: var(--bolt-spacing-y-xxsmall);
   color: $bolt-input-message-text-color--invalid;
+  border-left: 3px solid bolt-color(error);
+  border-radius: bolt-border-radius(small);
+  background-color: bolt-color(error, light);
 }
 
 // Strength Indicator
@@ -648,4 +653,22 @@ $bolt-strength-indicator-transition: $bolt-transition;
   border-style: $bolt-input-border-style;
   border-color: transparent;
   transition: all $bolt-input-transition;
+}
+
+.c-bolt-block-label {
+  display: block;
+  margin-bottom: var(--bolt-spacing-y-xxsmall);
+  font-family: var(--bolt-type-font-family-headline);
+  font-size: var(--bolt-type-font-size-small);
+  color: bolt-theme(headline);
+
+  & ~ .c-bolt-block-input-wrapper {
+    position: relative;
+
+    .c-bolt-input.is-filled,
+    .c-bolt-input:focus {
+      padding-top: var(--bolt-spacing-y-small);
+      padding-bottom: var(--bolt-spacing-y-small);
+    }
+  }
 }
