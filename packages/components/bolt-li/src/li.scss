@@ -13,11 +13,11 @@ bolt-li {
 }
 
 .c-bolt-li {
-  @include bolt-padding(0);
   box-sizing: border-box;
   position: relative;
   margin-bottom: bolt-spacing(xxsmall);
   margin-left: $bolt-li-spacing;
+  padding: 0;
 
   &--last-item {
     margin-bottom: 0;
