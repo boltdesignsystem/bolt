@@ -25,7 +25,7 @@ $bolt-link-spacing: 'xxsmall';
   @include bolt-button-reset; // [1]
   display: inline;
   opacity: bolt-opacity(100);
-  margin-left: bolt-spacing(#{$bolt-link-spacing}) * -1;
+  margin-left: calc(var(--bolt-spacing-x-#{$bolt-link-spacing}) * -1);
   color: bolt-theme(link);
   text-decoration: underline;
   cursor: pointer;

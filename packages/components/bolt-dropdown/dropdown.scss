@@ -6,7 +6,8 @@ bolt-dropdown {
   @include bolt-css-vars(
     (
       --bolt-nav-item-opacity: 0,
-      --bolt-nav-item-transform: translateY(bolt-spacing(large) * -1),
+      --bolt-nav-item-transform:
+        translateY(calc(var(--bolt-spacing-y-large) * -1)),
       --bolt-nav-indicator-opacity: 0,
     )
   );
@@ -223,9 +224,9 @@ bolt-dropdown {
   align-items: center;
   position: relative;
   overflow: hidden; // so transformed icons don't spill out
-  margin-top: bolt-spacing(xsmall) * -1;
-  margin-right: bolt-spacing(small) * -1;
-  margin-bottom: bolt-spacing(xsmall) * -1;
+  margin-top: calc(var(--bolt-spacing-y-xsmall) * -1);
+  margin-right: calc(var(--bolt-spacing-x-small) * -1);
+  margin-bottom: calc(var(--bolt-spacing-y-xsmall) * -1);
 
   &:before {
     content: '';

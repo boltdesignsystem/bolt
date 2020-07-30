@@ -50,7 +50,7 @@ $bolt-tabs-xsmall-bp: 420px; // Slightly increase the default 400px xsmall break
 .c-bolt-tabs__dropdown-list {
   box-sizing: border-box;
   opacity: bolt-opacity(0);
-  transform: translate3d(0, bolt-spacing(medium) * -1, 0);
+  transform: translate3d(0, calc(var(--bolt-spacing-y-medium) * -1), 0);
   width: 100%;
   overflow: hidden;
   margin: 0;
@@ -81,7 +81,7 @@ $bolt-tabs-xsmall-bp: 420px; // Slightly increase the default 400px xsmall break
   right: 0;
   width: auto;
   min-width: 12rem;
-  max-width: calc(100vw - #{bolt-spacing(large)});
+  max-width: calc(100vw - var(--bolt-spacing-x-large));
   max-height: 0;
   border-bottom-right-radius: $bolt-border-radius;
   border-bottom-left-radius: $bolt-border-radius;
@@ -227,7 +227,7 @@ $bolt-tabs-xsmall-bp: 420px; // Slightly increase the default 400px xsmall break
 
 .c-bolt-tabs__dropdown-list > .c-bolt-tabs__item {
   opacity: bolt-opacity(0);
-  transform: translate3d(0, bolt-spacing(large) * -1, 0);
+  transform: translate3d(0, calc(var(--bolt-spacing-y-large) * -1), 0);
   transition: opacity 0.3s cubic-bezier(0.28, 0.11, 0.32, 1),
     transform 0.3s cubic-bezier(0.28, 0.11, 0.32, 1); // transition:
   transition-property: transform, opacity;
