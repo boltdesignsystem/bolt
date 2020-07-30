@@ -33,13 +33,17 @@ const jsonSchemaPropsDecorator = clazz => {
       for (const key in this.schema.properties) {
         let property = this.schema.properties[key];
 
-        // skip any schema properties marked as being deprecated
-        if (
-          !property.title ||
-          (!property.title.includes('deprecated') &&
-            !property.title.includes('DEPRECATED'))
-        ) {
-          // @todo: skip any twig only schema properties such as `attributes`, `content`, `items`
+        // Bolt uses `title` to mark properties as deprecated
+        const isDeprecated = property.title
+          ?.toLowerCase()
+          .includes('deprecated');
+
+        // these schema props are never used by Web Components, only by Twig
+        const twigOnlyProps = ['attributes', 'content', 'items'];
+        const isTwigOnly = twigOnlyProps.includes(key.toLowerCase());
+
+        // skip deprecated and Twig-only props
+        if (!isDeprecated && !isTwigOnly) {
           const propName = camelCase(key);
 
           if (property.default || property.default === 0) {
