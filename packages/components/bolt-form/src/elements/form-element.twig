@@ -6,6 +6,7 @@ Available variables:
   - labelDisplay (enum) - Where the label should be displayed
       before
       after
+      invisible (Not yet supported, defaults to 'before')
   - children (renderable) - The form inputs .
   - errors (string) - Server-side errors
   - descriptionText (string) - An optional description for this element
@@ -16,7 +17,7 @@ Available variables:
 {% set attributes = attributes.addClass('c-bolt-input-list__item') %}
 
 <div{{ attributes }}>
-  {% if labelDisplay == 'before' %}
+  {% if labelDisplay in ['before', 'invisible'] %}
     {{ label }}
     <div class="c-bolt-block-input-wrapper">
       {{ children }}
