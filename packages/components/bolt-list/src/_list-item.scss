@@ -26,10 +26,8 @@ $bolt-list-item-border-color: bolt-theme(border, 0.2);
     &.c-bolt-list-item--inset {
       margin-bottom: 0;
       margin-left: 0;
-      padding-top: var(--bolt-spacing-y-#{$size-name});
-      padding-right: var(--bolt-spacing-x-#{$size-name});
-      padding-bottom: var(--bolt-spacing-y-#{$size-name});
-      padding-left: var(--bolt-spacing-x-#{$size-name});
+      padding: var(--bolt-spacing-y-#{$size-name})
+        var(--bolt-spacing-x-#{$size-name});
     }
   }
 }
