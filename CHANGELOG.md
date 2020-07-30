@@ -3,6 +3,38 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.26.2](https://github.com/boltdesignsystem/bolt/compare/v2.26.1...v2.26.2) (2020-07-30)
+
+**Note:** Version bump only for package bolt
+
+
+
+
+
+## [2.26.1](https://github.com/boltdesignsystem/bolt/compare/v2.26.0...v2.26.1) (2020-07-29)
+
+
+### Reverts
+
+* Revert "ds-170: spacing hotfix for Japanese" ([aa58d41](https://github.com/boltdesignsystem/bolt/commit/aa58d41bd8a73d2069e439fe72996fdb4a324e79))
+
+
+
+
+
+# [2.26.0](https://github.com/boltdesignsystem/bolt/compare/v2.25.1...v2.26.0) (2020-07-22)
+
+
+### Bug Fixes
+
+* lint css ([71f8278](https://github.com/boltdesignsystem/bolt/commit/71f82780c9019c74abef977ab31f3304282854fc))
+* mobile navbar spacing ([89bdb35](https://github.com/boltdesignsystem/bolt/commit/89bdb35e9f6ae9a4e132b53a00f2d59dc442f963))
+* multi-lang test ([abee771](https://github.com/boltdesignsystem/bolt/commit/abee771a227d99529ddeac611563b63cf9c6d935))
+
+
+
+
+
 ## [2.25.1](https://github.com/boltdesignsystem/bolt/compare/v2.25.0...v2.25.1) (2020-07-14)
 
 
