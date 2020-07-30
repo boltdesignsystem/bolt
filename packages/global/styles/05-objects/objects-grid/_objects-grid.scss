@@ -12,7 +12,7 @@
 .o-bolt-grid {
   flex: 1 1 auto; //Automatically auto fill any available space, in case a grid is nested inside of a flexbox-friendly parent container.
   margin: 0;
-  margin-left: bolt-spacing(medium) * -1;
+  margin-left: calc(var(--bolt-spacing-x-medium) * -1);
   padding: 0;
   font-size: 0; /* stylelint-disable-line */ /* [1] */
   list-style: none;
@@ -21,7 +21,7 @@
 .o-bolt-grid__cell {
   display: inline-block;
   position: relative;
-  padding-left: bolt-spacing(medium);
+  padding-left: var(--bolt-spacing-x-medium);
   font-size: 1rem; /* stylelint-disable-line */ /* [2] */
   vertical-align: top;
 }
@@ -37,17 +37,17 @@ $bolt-grid-border-color: bolt-theme(border, 0.2);
 .o-bolt-grid--matrix.o-bolt-grid--border {
   display: flex;
   flex-wrap: wrap;
-  margin-top: bolt-v-spacing(small) * -1;
-  margin-right: bolt-spacing(small) * -1;
-  margin-bottom: bolt-v-spacing(small) * -1;
-  margin-left: bolt-spacing(small) * -1;
+  margin-top: calc(var(--bolt-spacing-y-small) * -1);
+  margin-right: calc(var(--bolt-spacing-x-small) * -1);
+  margin-bottom: calc(var(--bolt-spacing-y-small) * -1);
+  margin-left: calc(var(--bolt-spacing-x-small) * -1);
   padding: 0;
   list-style: none;
 
   > .o-bolt-grid__cell {
-    @include bolt-padding(small);
-    @include bolt-margin-right($bolt-grid-border-width * -1);
-    @include bolt-margin-top($bolt-grid-border-width * -1);
+    margin-top: $bolt-grid-border-width * -1;
+    margin-right: $bolt-grid-border-width * -1;
+    padding: var(--bolt-spacing-y-small) var(--bolt-spacing-x-small);
     border-bottom-color: $bolt-grid-border-color;
     border-bottom-style: solid;
     border-bottom-width: $bolt-grid-border-width;
@@ -141,109 +141,31 @@ $bolt-grid-border-color: bolt-theme(border, 0.2);
   vertical-align: bottom;
 }
 
-// Grid gutter sizes
-// .o-bolt-grid--xsmall {
-//   margin-left: bolt-spacing(xsmall) * -1;
-//
-//   > .o-bolt-grid__cell {
-//     padding-left: bolt-spacing(xsmall);
-//   }
-// }
-.o-bolt-grid--xsmall {
-  margin-left: bolt-spacing(xsmall) * -1;
+$bolt-object-grid-sizes: xsmall, small, large, xlarge;
 
-  > .o-bolt-grid__cell {
-    padding-left: bolt-spacing(xsmall);
+@each $size in $bolt-object-grid-sizes {
+  .o-bolt-grid--#{$size} {
+    margin-left: calc(var(--bolt-spacing-x-#{$size}) * -1);
+
+    > .o-bolt-grid__cell {
+      padding-left: var(--bolt-spacing-x-#{$size});
+    }
   }
 }
 
-.o-bolt-grid--small {
-  margin-left: bolt-spacing(small) * -1;
+.o-bolt-grid--matrix {
+  @each $size in $bolt-object-grid-sizes {
+    &.o-bolt-grid--#{$size} {
+      margin-bottom: calc(var(--bolt-spacing-y-#{$size}) * -1);
 
-  > .o-bolt-grid__cell {
-    padding-left: bolt-spacing(small);
+      > .o-bolt-grid__cell {
+        padding-bottom: var(--bolt-spacing-y-#{$size});
+      }
+    }
   }
 }
-
-/**
- * Large gutters
- */
-.o-bolt-grid--large {
-  margin-left: bolt-spacing(large) * -1;
-
-  > .o-bolt-grid__cell {
-    padding-left: bolt-spacing(large);
-  }
-}
-
-/**
- * Extra wide gutters
- */
-.o-bolt-grid--xlarge {
-  margin-left: bolt-spacing(large) * -1;
-
-  > .o-bolt-grid__cell {
-    padding-left: bolt-spacing(large);
-  }
-}
-
-// /**
-//  * Extra extra wide gutters
-//  */
-// %o-grid--xxlarge,
-// .o-bolt-grid--xxlarge {
-//
-//   @include respond-to(small) {
-//     margin-left: -$spacing-unit-xlarge * 2;
-//   }
-//   margin-left: -$spacing-unit-large * 2;
-//
-//   > %o-grid__cell,
-//   > .o-bolt-grid__cell {
-//
-//     @include respond-to(small) {
-//       padding-left: $spacing-unit-xlarge * 2;
-//     }
-//     padding-left: $spacing-unit-large * 2;
-//   }
-// }
 
 .o-bolt-grid--flex {
   display: flex;
   flex-flow: row wrap;
-}
-
-.o-bolt-grid--matrix {
-  &.o-bolt-grid--xsmall {
-    margin-bottom: bolt-v-spacing(xsmall) * -1;
-
-    > .o-bolt-grid__cell {
-      padding-bottom: bolt-v-spacing(xsmall);
-    }
-  }
-
-  &.o-bolt-grid--small {
-    margin-bottom: bolt-v-spacing(small) * -1;
-
-    > .o-bolt-grid__cell {
-      padding-bottom: bolt-v-spacing(small);
-    }
-  }
-
-  &,
-  &.o-bolt-grid--medium {
-    margin-bottom: bolt-v-spacing(medium) * -1;
-
-    > .o-bolt-grid__cell {
-      padding-bottom: bolt-v-spacing(medium);
-    }
-  }
-
-  &.o-bolt-grid--large {
-    margin-bottom: bolt-v-spacing(large) * -1;
-
-    > .o-bolt-grid__cell {
-      padding-bottom: bolt-v-spacing(large);
-    }
-  }
 }
