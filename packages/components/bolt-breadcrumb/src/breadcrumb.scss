@@ -30,8 +30,8 @@
     position: relative;
     top: -1px; // [Mai] Offsets the 1px border to align the chevron with text.
     transform: rotate(45deg);
-    width: bolt-v-spacing(xsmall);
-    height: bolt-v-spacing(xsmall);
+    width: var(--bolt-spacing-y-xsmall); // This needs to be the same as height.
+    height: var(--bolt-spacing-y-xsmall);
     margin: 0 var(--bolt-spacing-x-xxsmall);
     vertical-align: baseline;
     border-width: 1px 1px 0 0;
