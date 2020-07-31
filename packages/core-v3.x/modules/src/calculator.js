@@ -30,8 +30,8 @@ export default class Calculator {
     const inputs = this.form.querySelectorAll('input');
     for (let i = 0; i < inputs.length; i++) {
       inputs[i].addEventListener('keyup', e => {
-        let inputValue = inputs[i].value;
-        switch (inputs[i].parentNode.dataset.type) {
+        const inputType = inputs[i].closest('[data-type]').dataset.type;
+        switch (inputType) {
           case 'amount':
             const cleaveAmount = new Cleave(
               e.currentTarget,
