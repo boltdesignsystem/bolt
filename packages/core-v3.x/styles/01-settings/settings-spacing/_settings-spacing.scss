@@ -113,3 +113,18 @@ $bolt-spacing-y-system: (
   'xxsmall':
     calc(var(--bolt-spacing-y) * var(--bolt-spacing-multiplier-xxsmall) * 1rem)
 ) !default;
+
+$bolt-spacing-direction-system: ('top', 'right', 'bottom', 'left') !default;
+$bolt-spacing-prop-system: ('padding', 'margin') !default;
+
+// Export spacing data
+@include export-data('spacing/base.bolt.json', $bolt-spacing-system);
+@include export-data(
+  'spacing/multipliers.bolt.json',
+  $bolt-spacing-multiplier-system
+);
+@include export-data(
+  'spacing/directions.bolt.json',
+  $bolt-spacing-direction-system
+);
+@include export-data('spacing/props.bolt.json', $bolt-spacing-prop-system);
