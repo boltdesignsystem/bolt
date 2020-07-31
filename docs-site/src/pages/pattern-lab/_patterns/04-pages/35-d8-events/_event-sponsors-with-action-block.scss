@@ -1,11 +1,11 @@
 .event-sponsors-proof-of-concept {
   .c-partner-card {
-    @include bolt-padding(medium, stretched);
     display: flex;
     flex-direction: column;
     position: relative;
     width: 100%;
     height: 100%;
+    padding: calc(var(--bolt-spacing-y-medium) * 2) var(--bolt-spacing-x-medium);
     transition: color 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
 
     &::before {
@@ -22,17 +22,16 @@
     }
 
     > * {
-      @include bolt-margin(0 auto small auto);
       @include bolt-font-size(xsmall);
       @include bolt-font-weight(bold);
       position: relative;
       width: 100%;
-
       max-width: 160px;
+      margin: 0 auto var(--bolt-spacing-y-small) auto;
       text-align: center;
 
       &:last-child {
-        @include bolt-margin-bottom(0);
+        margin-bottom: 0;
       }
     }
   }
