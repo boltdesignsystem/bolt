@@ -1,19 +1,19 @@
 @import '@bolt/core-v3.x';
 
 .c-bds-offcanvas {
-  @include bolt-padding(large medium);
+  padding: var(--bolt-spacing-y-large) var(--bolt-spacing-x-medium);
 }
 
 .c-bds-offcanvas__list {
-  @include bolt-margin-left(0);
-  @include bolt-margin-bottom(0);
+  margin-bottom: 0;
+  margin-left: 0;
   list-style: none;
 }
 
 .c-bds-offcanvas__link {
-  @include bolt-padding-top(xxsmall);
-  @include bolt-padding-bottom(xxsmall);
   @include bolt-font-size(small);
+  padding-top: var(--bolt-spacing-y-xxsmall);
+  padding-bottom: var(--bolt-spacing-y-xxsmall);
   text-decoration: none;
 
   &.is-active {
@@ -34,7 +34,7 @@
     &--active-path {
       // color: #545DA6;
       // font-weight: 600;
-      &+.c-bds-offcanvas__list--depth-3 {
+      & + .c-bds-offcanvas__list--depth-3 {
         // border-left: 2px solid #535ca6;
       }
     }
@@ -82,7 +82,7 @@
       // margin-top: 0.25rem;
       // margin-bottom: 0.25rem;
       // border-left: 2px solid transparent;
-      @include bolt-margin-left(small);
+      margin-left: var(--bolt-spacing-x-small);
       // padding-left: 2rem;
     }
   }
@@ -100,23 +100,22 @@
   // }
 }
 
-
 .c-bds-offcanvas__collapsible {
-  @include bolt-margin-bottom(0);
   overflow: hidden;
+  margin-bottom: 0;
   outline: none;
 }
 
 .c-bds-offcanvas__collapsible-header {
-  @include bolt-margin-bottom(0);
-  @include bolt-padding-top(xxsmall);
-  @include bolt-padding-bottom(xxsmall);
   @include bolt-font-size(small);
   display: flex;
   flex-direction: row-reverse;
   justify-content: space-between;
   align-items: center;
   position: relative;
+  margin-bottom: 0;
+  padding-top: var(--bolt-spacing-y-xxsmall);
+  padding-bottom: var(--bolt-spacing-y-xxsmall);
   outline: none;
 
   &:before {
