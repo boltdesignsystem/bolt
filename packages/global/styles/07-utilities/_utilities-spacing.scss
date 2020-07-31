@@ -12,11 +12,6 @@
       var(--bolt-spacing-x-#{$size-name}) !important;
   }
 
-  .u-bolt-negative-margin-#{$size-name} {
-    margin: calc(var(--bolt-spacing-y-#{$size-name}) * -1)
-      calc(var(--bolt-spacing-x-#{$size-name}) * -1) !important;
-  }
-
   // Responsive four directions
   @each $breakpoint in $bolt-breakpoints {
     $breakpoint-name: nth($breakpoint, 1);
