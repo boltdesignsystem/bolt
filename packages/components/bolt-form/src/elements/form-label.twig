@@ -8,6 +8,7 @@
  * - attributes (object) - A Drupal attributes object
  * - displayType (enum)
  *    - floating - display the label "floated" inside the input field
+      - block - display the label outside the input
  *    - inline-radio - display the label inline next to a radio button
  *    - inline-checkbox - display the label inline next to a checkbox
  *    - default - no special treatment
@@ -17,6 +18,8 @@
 
 {% if displayType == "floating" %}
   {% set _classes = ["c-bolt-floating-label"] %}
+{% elseif displayType == "block" %}
+  {% set _classes = ["c-bolt-block-label"] %}
 {% elseif displayType == "inline-radio" %}
   {% set _classes = ["c-bolt-inline-label", "c-bolt-inline-label--radio"] %}
 {% elseif displayType == "inline-checkbox" %}

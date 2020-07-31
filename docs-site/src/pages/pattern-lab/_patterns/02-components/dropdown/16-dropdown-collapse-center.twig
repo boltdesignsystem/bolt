@@ -4,41 +4,23 @@
   collaspe: true
 } %}
   {% block content %}
-    {% include "@bolt-components-block-list/block-list.twig" with {
-      "items": [
+    {% include "@bolt-components-list/list.twig" with {
+      inset: true,
+      spacing: "small",
+      items: [
         include("@bolt-components-link/link.twig", {
-          "text": "Link 1 Text",
-          "url": "#!"
+          text: "Link 1",
+          url: "#!"
         }),
         include("@bolt-components-link/link.twig", {
-          "text": "Link 2 Text",
-          "url": "#!"
+          text: "Link 2",
+          url: "#!"
         }),
         include("@bolt-components-link/link.twig", {
-          "text": "Link 3 Text",
-          "url": "#!"
-        }),
-        include("@bolt-components-link/link.twig", {
-          "text": "Link 4 Text",
-          "url": "#!"
-        }),
-        include("@bolt-components-link/link.twig", {
-          "text": "Link 5 Text",
-          "url": "#!"
-        }),
-        include("@bolt-components-link/link.twig", {
-          "text": "Link 6 Text",
-          "url": "#!"
-        }),
-        include("@bolt-components-link/link.twig", {
-          "text": "Link 7 Text",
-          "url": "#!"
-        }),
-        include("@bolt-components-link/link.twig", {
-          "text": "Link 8 Text",
-          "url": "#!"
+          text: "Link 3",
+          url: "#!"
         }),
       ]
-    } %}
+    } only %}
   {% endblock %}
 {% endembed %}
