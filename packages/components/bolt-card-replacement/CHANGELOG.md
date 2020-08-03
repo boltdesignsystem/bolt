@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.26.3](https://github.com/boltdesignsystem/bolt/compare/v2.26.2...v2.26.3) (2020-07-31)
+
+**Note:** Version bump only for package @bolt/components-card-replacement
+
+
+
+
+
 # [2.26.0](https://github.com/boltdesignsystem/bolt/compare/v2.25.1...v2.26.0) (2020-07-22)
 
 
