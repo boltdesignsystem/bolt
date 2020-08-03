@@ -11,7 +11,7 @@ $bolt-tooltip-bubble-triangle-width: 8px;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: bolt-spacing(xxsmall);
+  margin: var(--bolt-spacing-y-xxsmall) var(--bolt-spacing-x-xxsmall);
 
   &:not(.c-bolt-status-dialogue-bar--has-arrow) {
     &.c-bolt-status-dialogue-bar--box-float--center {
@@ -39,7 +39,7 @@ $bolt-tooltip-bubble-triangle-width: 8px;
     display: flex;
     flex-direction: column;
     max-width: 125px;
-    padding: bolt-spacing(xsmall) bolt-spacing(xsmall);
+    padding: var(--bolt-spacing-y-xsmall) var(--bolt-spacing-x-xsmall);
     color: bolt-color(black);
     border-radius: $bolt-border-radius;
     background-color: bolt-color(white);
