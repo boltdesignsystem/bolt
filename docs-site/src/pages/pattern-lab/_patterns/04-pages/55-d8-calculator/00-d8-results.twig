@@ -1,250 +1,245 @@
-{# {% extends "@pl/_default-page-template.twig" %}
-{% block main_content %} #}
-
-  {% set pinned_recalculate %}
-    {% include "@bolt-components-button/button.twig" with {
-      text: "Recalculate",
-      style: "text",
-      size: "medium",
-      url: "",
-      icon: {
-        name: "refresh",
-        position: "before"
-      }
-    } only %}
-  {% endset %}
-
-  {% set pinned_email %}
-    {% include "@bolt-components-button/button.twig" with {
-      text: "Email my results",
-      style: "text",
-      size: "medium",
-      url: "",
-      icon: {
-        name: "email",
-        position: "before"
-      }
-    } only %}
-  {% endset %}
-
-  {% embed "@bolt-components-band/band.twig" with {
-    size: "large",
-    theme: "light",
-    full_bleed: true,
-    pinned_content: {
-        upper: [
-          {
-            content: pinned_recalculate
-          },
-          {
-            content: pinned_email
-          },
-        ]
-      }
+{% set pinned_recalculate %}
+  {% include "@bolt-components-button/button.twig" with {
+    text: "Recalculate",
+    style: "text",
+    size: "medium",
+    url: "",
+    icon: {
+      name: "refresh",
+      position: "before"
+    }
   } only %}
-    {% block band_content %}
+{% endset %}
 
-      {% set trigger %}
-        {% include "@bolt-components-link/link.twig" with {
-          text: "<strong>$429,457,192.75</strong>",
-        } only %}
-      {% endset %}
+{% set pinned_email %}
+  {% include "@bolt-components-button/button.twig" with {
+    text: "Email my results",
+    style: "text",
+    size: "medium",
+    url: "",
+    icon: {
+      name: "email",
+      position: "before"
+    }
+  } only %}
+{% endset %}
 
-      {% set popover_content %}
-        {% include "@bolt-components-headline/text.twig" with {
-          text: "Retention benefits: <br /><strong>$207,500,000</strong><br /><br />Upsell / Cross-sell benefit:<br /><strong>$220,833,333</strong>",
-          align: "center",
-          size: "small"
-        } only %}
-      {% endset %}
+{% embed "@bolt-components-band/band.twig" with {
+  size: "large",
+  theme: "light",
+  full_bleed: true,
+  pinned_content: {
+      upper: [
+        {
+          content: pinned_recalculate
+        },
+        {
+          content: pinned_email
+        },
+      ]
+    }
+} only %}
+  {% block band_content %}
 
-      {% set calc_popover %}
-        {% include "@bolt-components-popover/popover.twig" with {
-          trigger: trigger,
-          content: popover_content,
-          theme: "xdark",
-          attributes: {
-            "no-shadow": true,
-          }
-        } only %}
-      {% endset %}
-
-      {% include "@bolt/headline.twig" with {
-        text: "Your total benefit from a real-time, next-best-action approach is <br />" ~ calc_popover,
-        size: "xxlarge",
-        tag: "h2",
-        align: "center",
-        weight: "regular"
+    {% set trigger %}
+      {% include "@bolt-components-link/link.twig" with {
+        text: "<strong>$429,457,192.75</strong>",
       } only %}
+    {% endset %}
 
-      {% set tab_content_1 %}
-          {% grid "o-bolt-grid--middle u-bolt-margin-top-medium" %}
-            {% cell "u-bolt-width-1/1 u-bolt-width-1/2@medium" %}
-              {% include "@bolt/headline.twig" with {
-                text: "Deeper relationships. Lasting benefits.",
-                size: "xlarge",
-                tag: "h3"
-              } only %}
-              {% include "@bolt-components-headline/text.twig" with {
-                text: "Pega protects your revenue by proactively predicting churn, then delivering hyper-personalized next best actions that retain customers, buiild long-term loyalty, and reduce discounts.",
-              } only %}
-              {% include "@bolt-components-headline/text.twig" with {
-                text: "Total Retention Benefit: <strong>$207,500,000</strong>",
-                size: "xlarge"
-              } only %}
-            {% endcell %}
-            {% cell "u-bolt-width-1/1 u-bolt-width-1/2@medium" %}
-              <div class="u-bolt-margin-bottom-small">
-                {% set graph_array_1 = [
-                  {
-                    number: '10%',
-                    description: "Your churn rate today",
-                    color: "gray"
-                  },
-                  {
-                    number: '9%',
-                    description: "Your churn rate with Pega Customer Decision Hub",
-                    color: "indigo"
-                  }
-                ]
-                %}
-                {% include 'results-graph/results-graph.twig' with {
-                  graph_array: graph_array_1
-                } only %}
-              </div>
-              {% grid "o-bolt-grid--middle" %}
-                {% cell "u-bolt-width-1/12" %}
-                  {% include "@bolt-components-icon/icon.twig" with {
-                    name: "partners",
-                    size: "large",
-                    color: "teal"
-                  } only %}
-                {% endcell %}
-                {% cell "u-bolt-width-11/12" %}
-                    {% include "@bolt/headline.twig" with {
-                      text: "100,000",
-                      size: "large",
-                      tag: "h4"
-                  } only %}
-                  {% include "@bolt-components-headline/text.twig" with {
-                    text: "Number of additional customers retained",
-                  } only %}
-                {% endcell %}
-              {% endgrid %}
-              {% grid "o-bolt-grid--middle" %}
-                {% cell "u-bolt-width-1/12" %}
-                  {% include "@bolt-components-icon/icon.twig" with {
-                    name: "add-open",
-                    size: "large",
-                    color: "teal"
-                  } only %}
-                {% endcell %}
-                {% cell "u-bolt-width-11/12" %}
-                    {% include "@bolt/headline.twig" with {
-                      text: "20,000,000",
-                      size: "large",
-                      tag: "h4"
-                  } only %}
-                  {% include "@bolt-components-headline/text.twig" with {
-                    text: "Cost avoidance of replacing churned customers",
-                  } only %}
-                {% endcell %}
-              {% endgrid %}
-              {% grid "o-bolt-grid--middle" %}
-                {% cell "u-bolt-width-1/12" %}
-                  {% include "@bolt-components-icon/icon.twig" with {
-                    name: "asset-data",
-                    size: "large",
-                    color: "teal"
-                  } only %}
-                {% endcell %}
-                {% cell "u-bolt-width-11/12" %}
-                    {% include "@bolt/headline.twig" with {
-                      text: "187,500,000",
-                      size: "large",
-                      tag: "h4"
-                  } only %}
-                  {% include "@bolt-components-headline/text.twig" with {
-                    text: "Revenue loss avoidance with Pega Customer Decision Hub",
-                  } only %}
-                {% endcell %}
-              {% endgrid %}
-            {% endcell %}
-          {% endgrid %}
-      {% endset %}
-      {% set tab_content_2 %}
-          {% grid "o-bolt-grid--middle u-bolt-margin-top-medium" %}
-            {% cell "u-bolt-width-1/1 u-bolt-width-1/2@medium" %}
-              {% include "@bolt/headline.twig" with {
-                text: "Make selling more empathetic.",
-                size: "xlarge",
-                tag: "h3"
-              } only %}
-              {% include "@bolt-components-headline/text.twig" with {
-                text: "With Pega's real-time decisioning you'll know when a customer is in-market, and how to convert the sale. You'll trigger relevant offers at exactly the right time - increasing your accept rates and maximizing customer lifetime value.",
-              } only %}
-              {% include "@bolt-components-headline/text.twig" with {
-                text: "Total Uppsell / Cross-sell Benefit: <strong>$220,833,333</strong>",
-                size: "xlarge"
-              } only %}
-            {% endcell %}
-            {% cell "u-bolt-width-1/1 u-bolt-width-1/2@medium" %}
-              <div class="u-bolt-margin-bottom-small">
-                {% set graph_array_2 = [
-                  {
-                    number: '$1,875',
-                    description: "Your current value of a customer",
-                    color: "gray"
-                  },
-                  {
-                    number: '$1,897',
-                    description: "Your value of a customer with Pega Customer Decision Hub",
-                    color: "indigo"
-                  }
-                ]
-                %}
-                {% include 'results-graph/results-graph.twig' with {
-                  graph_array: graph_array_2
-                } only %}
-              </div>
-              {% grid "o-bolt-grid--middle" %}
-                {% cell "u-bolt-width-1/12" %}
-                  {% include "@bolt-components-icon/icon.twig" with {
-                    name: "asset-data",
-                    size: "large",
-                    color: "teal"
-                  } only %}
-                {% endcell %}
-                {% cell "u-bolt-width-11/12" %}
-                    {% include "@bolt/headline.twig" with {
-                      text: "1.2%",
-                      size: "large",
-                      tag: "h4"
-                  } only %}
-                  {% include "@bolt-components-headline/text.twig" with {
-                    text: "Percent increase in customer value from improved upsell / cross-sell presentation and convcersion rates",
-                  } only %}
-                {% endcell %}
-              {% endgrid %}
-            {% endcell %}
-          {% endgrid %}
-      {% endset %}
-
-      {% include "@bolt-components-tabs/tabs.twig" with {
+    {% set popover_content %}
+      {% include "@bolt-components-headline/text.twig" with {
+        text: "Retention benefits: <br /><strong>$207,500,000</strong><br /><br />Upsell / Cross-sell benefit:<br /><strong>$220,833,333</strong>",
         align: "center",
-        panels: [
-          {
-            label: "The Value of Customer Retention",
-            content: tab_content_1,
-          },
-          {
-            label: "Upsell and Cross-Sell Benefits",
-            content: tab_content_2,
-          }
-        ]
+        size: "small"
       } only %}
+    {% endset %}
 
-    {% endblock %}
-  {% endembed %}
+    {% set calc_popover %}
+      {% include "@bolt-components-popover/popover.twig" with {
+        trigger: trigger,
+        content: popover_content,
+        theme: "xdark",
+        attributes: {
+          "no-shadow": true,
+        }
+      } only %}
+    {% endset %}
 
-{# {% endblock %} #}
+    {% include "@bolt/headline.twig" with {
+      text: "Your total benefit from a real-time, next-best-action approach is <br />" ~ calc_popover,
+      size: "xxlarge",
+      tag: "h2",
+      align: "center",
+      weight: "regular"
+    } only %}
+
+    {% set tab_content_1 %}
+        {% grid "o-bolt-grid--middle u-bolt-margin-top-medium" %}
+          {% cell "u-bolt-width-1/1 u-bolt-width-1/2@medium u-bolt-margin-bottom-medium" %}
+            {% include "@bolt/headline.twig" with {
+              text: "Deeper relationships. Lasting benefits.",
+              size: "xlarge",
+              tag: "h3"
+            } only %}
+            {% include "@bolt-components-headline/text.twig" with {
+              text: "Pega protects your revenue by proactively predicting churn, then delivering hyper-personalized next best actions that retain customers, buiild long-term loyalty, and reduce discounts.",
+            } only %}
+            {% include "@bolt-components-headline/text.twig" with {
+              text: "Total Retention Benefit: <strong>$207,500,000</strong>",
+              size: "xlarge"
+            } only %}
+          {% endcell %}
+          {% cell "u-bolt-width-1/1 u-bolt-width-1/2@medium" %}
+            <div class="u-bolt-margin-bottom-small">
+              {% set graph_array_1 = [
+                {
+                  number: '10%',
+                  description: "Your churn rate today",
+                  color: "gray"
+                },
+                {
+                  number: '9%',
+                  description: "Your churn rate with Pega Customer Decision Hub",
+                  color: "indigo"
+                }
+              ]
+              %}
+              {% include 'results-graph/results-graph.twig' with {
+                graph_array: graph_array_1
+              } only %}
+            </div>
+            {% grid "o-bolt-grid--middle" %}
+              {% cell "u-bolt-width-1/12" %}
+                {% include "@bolt-components-icon/icon.twig" with {
+                  name: "partners",
+                  size: "large",
+                  color: "teal"
+                } only %}
+              {% endcell %}
+              {% cell "u-bolt-width-11/12" %}
+                  {% include "@bolt/headline.twig" with {
+                    text: "100,000",
+                    size: "large",
+                    tag: "h4"
+                } only %}
+                {% include "@bolt-components-headline/text.twig" with {
+                  text: "Number of additional customers retained",
+                } only %}
+              {% endcell %}
+            {% endgrid %}
+            {% grid "o-bolt-grid--middle" %}
+              {% cell "u-bolt-width-1/12" %}
+                {% include "@bolt-components-icon/icon.twig" with {
+                  name: "add-open",
+                  size: "large",
+                  color: "teal"
+                } only %}
+              {% endcell %}
+              {% cell "u-bolt-width-11/12" %}
+                  {% include "@bolt/headline.twig" with {
+                    text: "20,000,000",
+                    size: "large",
+                    tag: "h4"
+                } only %}
+                {% include "@bolt-components-headline/text.twig" with {
+                  text: "Cost avoidance of replacing churned customers",
+                } only %}
+              {% endcell %}
+            {% endgrid %}
+            {% grid "o-bolt-grid--middle" %}
+              {% cell "u-bolt-width-1/12" %}
+                {% include "@bolt-components-icon/icon.twig" with {
+                  name: "asset-data",
+                  size: "large",
+                  color: "teal"
+                } only %}
+              {% endcell %}
+              {% cell "u-bolt-width-11/12" %}
+                  {% include "@bolt/headline.twig" with {
+                    text: "187,500,000",
+                    size: "large",
+                    tag: "h4"
+                } only %}
+                {% include "@bolt-components-headline/text.twig" with {
+                  text: "Revenue loss avoidance with Pega Customer Decision Hub",
+                } only %}
+              {% endcell %}
+            {% endgrid %}
+          {% endcell %}
+        {% endgrid %}
+    {% endset %}
+    {% set tab_content_2 %}
+        {% grid "o-bolt-grid--middle u-bolt-margin-top-medium" %}
+          {% cell "u-bolt-width-1/1 u-bolt-width-1/2@medium" %}
+            {% include "@bolt/headline.twig" with {
+              text: "Make selling more empathetic.",
+              size: "xlarge",
+              tag: "h3"
+            } only %}
+            {% include "@bolt-components-headline/text.twig" with {
+              text: "With Pega's real-time decisioning you'll know when a customer is in-market, and how to convert the sale. You'll trigger relevant offers at exactly the right time - increasing your accept rates and maximizing customer lifetime value.",
+            } only %}
+            {% include "@bolt-components-headline/text.twig" with {
+              text: "Total Uppsell / Cross-sell Benefit: <strong>$220,833,333</strong>",
+              size: "xlarge"
+            } only %}
+          {% endcell %}
+          {% cell "u-bolt-width-1/1 u-bolt-width-1/2@medium" %}
+            <div class="u-bolt-margin-bottom-small">
+              {% set graph_array_2 = [
+                {
+                  number: '$1,875',
+                  description: "Your current value of a customer",
+                  color: "gray"
+                },
+                {
+                  number: '$1,897',
+                  description: "Your value of a customer with Pega Customer Decision Hub",
+                  color: "indigo"
+                }
+              ]
+              %}
+              {% include 'results-graph/results-graph.twig' with {
+                graph_array: graph_array_2
+              } only %}
+            </div>
+            {% grid "o-bolt-grid--middle" %}
+              {% cell "u-bolt-width-1/12" %}
+                {% include "@bolt-components-icon/icon.twig" with {
+                  name: "asset-data",
+                  size: "large",
+                  color: "teal"
+                } only %}
+              {% endcell %}
+              {% cell "u-bolt-width-11/12" %}
+                  {% include "@bolt/headline.twig" with {
+                    text: "1.2%",
+                    size: "large",
+                    tag: "h4"
+                } only %}
+                {% include "@bolt-components-headline/text.twig" with {
+                  text: "Percent increase in customer value from improved upsell / cross-sell presentation and convcersion rates",
+                } only %}
+              {% endcell %}
+            {% endgrid %}
+          {% endcell %}
+        {% endgrid %}
+    {% endset %}
+
+    {% include "@bolt-components-tabs/tabs.twig" with {
+      align: "center",
+      panels: [
+        {
+          label: "The Value of Customer Retention",
+          content: tab_content_1,
+        },
+        {
+          label: "Upsell and Cross-Sell Benefits",
+          content: tab_content_2,
+        }
+      ]
+    } only %}
+
+  {% endblock %}
+{% endembed %}

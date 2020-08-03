@@ -53,8 +53,4 @@ export default class Calculator {
       });
     }
   }
-
-  validation() {
-    // Need to provide validation before the calcultor is submitted
-  }
 }
