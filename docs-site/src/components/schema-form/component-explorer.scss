@@ -415,12 +415,6 @@ bolt-component-explorer {
       background-color: $bolt-input-background-color--disabled;
     }
 
-    // &.is-filled,
-    // &:focus {
-    //   padding-top: calc(#{bolt-v-spacing(small)} + 0.55rem);
-    //   padding-bottom: calc(#{bolt-v-spacing(small)} - 0.55rem);
-    // }
-
     &:focus,
     &:hover {
       &:not(.is-disabled):not(:disabled) {
@@ -442,10 +436,6 @@ bolt-component-explorer {
     position: relative;
     cursor: pointer;
     user-select: none;
-  }
-
-  .control-label ~ .form-control {
-    // @include bolt-margin-left(small);
   }
 
   input[type='checkbox'] {
