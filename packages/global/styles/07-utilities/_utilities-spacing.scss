@@ -1,3 +1,158 @@
+@each $size in $bolt-spacing-multiplier-system {
+  $size-name: nth($size, 1);
+
+  // Four directions
+  .u-bolt-padding-#{$size-name} {
+    padding: var(--bolt-spacing-y-#{$size-name})
+      var(--bolt-spacing-x-#{$size-name}) !important;
+  }
+
+  .u-bolt-margin-#{$size-name} {
+    margin: var(--bolt-spacing-y-#{$size-name})
+      var(--bolt-spacing-x-#{$size-name}) !important;
+  }
+
+  // Responsive four directions
+  @each $breakpoint in $bolt-breakpoints {
+    $breakpoint-name: nth($breakpoint, 1);
+
+    @include bolt-mq(#{$breakpoint-name}) {
+      .u-bolt-padding-#{$size-name}\@#{$breakpoint-name} {
+        padding: var(--bolt-spacing-y-#{$size-name})
+          var(--bolt-spacing-x-#{$size-name}) !important;
+      }
+
+      .u-bolt-margin-#{$size-name}\@#{$breakpoint-name} {
+        margin: var(--bolt-spacing-y-#{$size-name})
+          var(--bolt-spacing-x-#{$size-name}) !important;
+      }
+    }
+  }
+
+  // One direction
+  @each $direction in $bolt-spacing-direction-system {
+    $axis: '';
+
+    @if $direction != top and $direction != bottom {
+      $axis: 'x';
+    } @else {
+      $axis: 'y';
+    }
+
+    .u-bolt-padding-#{$direction}-#{$size-name} {
+      padding-#{$direction}: var(
+        --bolt-spacing-#{$axis}-#{$size-name}
+      ) !important;
+    }
+
+    .u-bolt-margin-#{$direction}-#{$size-name} {
+      margin-#{$direction}: var(
+        --bolt-spacing-#{$axis}-#{$size-name}
+      ) !important;
+    }
+
+    .u-bolt-negative-margin-#{$direction}-#{$size-name} {
+      margin-#{$direction}: calc(
+        var(--bolt-spacing-#{$axis}-#{$size-name}) * -1
+      ) !important;
+    }
+
+    // Responsive one direction
+    @each $breakpoint in $bolt-breakpoints {
+      $breakpoint-name: nth($breakpoint, 1);
+
+      @include bolt-mq(#{$breakpoint-name}) {
+        .u-bolt-padding-#{$direction}-#{$size-name}\@#{$breakpoint-name} {
+          padding-#{$direction}: var(
+            --bolt-spacing-#{$axis}-#{$size-name}
+          ) !important;
+        }
+
+        .u-bolt-margin-#{$direction}-#{$size-name}\@#{$breakpoint-name} {
+          margin-#{$direction}: var(
+            --bolt-spacing-#{$axis}-#{$size-name}
+          ) !important;
+        }
+      }
+    }
+  }
+}
+
+// Extra options not in the spacing system
+$bolt-spacing-extra-sizes: (
+  'none': 0,
+  'auto': auto,
+);
+
+@each $size in $bolt-spacing-extra-sizes {
+  $size-name: nth($size, 1);
+  $size-value: nth($size, 2);
+
+  .u-bolt-margin-#{$size-name} {
+    margin: $size-value !important;
+  }
+
+  .u-bolt-padding-#{$size-name} {
+    padding: $size-value !important;
+  }
+
+  @each $direction in $bolt-spacing-direction-system {
+    $axis: '';
+
+    @if $direction != top and $direction != bottom {
+      $axis: 'x';
+    } @else {
+      $axis: 'y';
+    }
+
+    .u-bolt-padding-#{$direction}-#{$size-name} {
+      padding-#{$direction}: $size-value !important;
+    }
+
+    .u-bolt-margin-#{$direction}-#{$size-name} {
+      margin-#{$direction}: $size-value !important;
+    }
+
+    @each $breakpoint in $bolt-breakpoints {
+      $breakpoint-name: nth($breakpoint, 1);
+
+      @include bolt-mq(#{$breakpoint-name}) {
+        .u-bolt-padding-#{$direction}-#{$size-name}\@#{$breakpoint-name} {
+          padding-#{$direction}: $size-value !important;
+        }
+
+        .u-bolt-margin-#{$direction}-#{$size-name}\@#{$breakpoint-name} {
+          margin-#{$direction}: $size-value !important;
+        }
+      }
+    }
+  }
+}
+
+// @todo: deprecate these sizeless names.
+.u-bolt-margin {
+  /* stylelint-disable-next-line */
+  @extend .u-bolt-margin-medium;
+}
+
+.u-bolt-padding {
+  /* stylelint-disable-next-line */
+  @extend .u-bolt-padding-medium;
+}
+
+@each $direction in $bolt-spacing-direction-system {
+  .u-bolt-margin-#{$direction} {
+    /* stylelint-disable-next-line */
+    @extend .u-bolt-margin-medium;
+  }
+
+  .u-bolt-padding-#{$direction} {
+    /* stylelint-disable-next-line */
+    @extend .u-bolt-padding-medium;
+  }
+}
+
+// Old maps
 // Add additional spacing size rules for handling auto and zero'd rules
 $bolt-spacing-sizes-extras: (
   none: 0,
@@ -6,99 +161,6 @@ $bolt-spacing-sizes-extras: (
 
 // Merge extra size options into Sass Map of sizes that already exist, tacking on to the front
 $bolt-spacing-sizes: map-merge($bolt-spacing-sizes-extras, $bolt-spacing-sizes);
-
-// prefix prop name if value set
-@function bolt-prefix-prop-name($propName) {
-  @if ($propName != '') {
-    @return '-' + $propName;
-  } @else {
-    @return $propName;
-  }
-}
-
-@mixin bolt-spacing-sizes-utils($breakpoint: null) {
-  @each $prop in $bolt-spacing-properties {
-    @for $i from 1 through length($bolt-spacing-directions) {
-      $direction: nth($bolt-spacing-directions, $i);
-
-      @each $type in $bolt-spacing-types {
-        @each $size, $value in $bolt-spacing-sizes {
-          $sizeName: bolt-prefix-prop-name($size);
-          $typeName: bolt-prefix-prop-name($type);
-          $directionName: bolt-prefix-prop-name($direction);
-          $propName: '-' + $prop;
-
-          @if ($size== 'none' and $value == 0) {
-            $size: 0;
-          }
-
-          // Ex. .u-bolt-margin-left-large@small
-          // Ex. .u-bolt-margin-left-squish
-          // Ex. .u-bolt-margin-right
-
-          .u-bolt#{$propName}#{$directionName}#{$sizeName}#{$typeName}#{$breakpoint} {
-            $sizes: null null null null;
-            $size-index: index($bolt-spacing-directions, $direction);
-            @if ($direction != '') {
-              $sizes: set-nth($sizes, $size-index - 1, $size);
-            } @else {
-              $sizes: $size $size $size $size;
-            }
-            $normalizedSizes: _bolt-normalize-spacing-sizes($sizes, null);
-
-            @include _bolt-directional-property(
-              #{$prop},
-              false,
-              $normalizedSizes,
-              important
-            );
-          }
-        }
-      }
-    }
-  }
-}
-
-// Negative margins
-// Dev note: It takes regular margin spacing and multiply it by -1.
-@mixin bolt-negative-margin-utils($breakpoint: null) {
-  @for $direction from 1 through length($bolt-spacing-directions) {
-    $direction: nth($bolt-spacing-directions, $direction);
-
-    @each $spacing-value in $bolt-spacing-values {
-      $spacing-value-name: nth($spacing-value, 1);
-      $spacing: '';
-
-      @if $spacing-value-name != '' {
-        $spacing: '-' + $spacing-value-name;
-      }
-
-      @if $direction != top and $direction != bottom {
-        .u-bolt-negative-margin-#{$direction}#{$spacing}#{$breakpoint} {
-          margin-#{$direction}: bolt-spacing(#{$spacing-value-name}) *
-            -1 !important;
-        }
-      } @else {
-        .u-bolt-negative-margin-#{$direction}#{$spacing}#{$breakpoint} {
-          margin-#{$direction}: bolt-v-spacing(#{$spacing-value-name}) *
-            -1 !important;
-        }
-      }
-    }
-  }
-}
-
-// Generate regular and responsive spacing util classes
-@include bolt-spacing-sizes-utils;
-@include bolt-negative-margin-utils;
-
-@each $breakpoint in $bolt-breakpoints {
-  $breakpointName: nth($breakpoint, 1);
-  @include bolt-mq($breakpointName) {
-    @include bolt-spacing-sizes-utils(\@#{$breakpointName});
-    @include bolt-negative-margin-utils(\@#{$breakpointName});
-  }
-}
 
 // Export spacing data
 @include export-data('spacing-sizes.bolt.json', $bolt-spacing-sizes);
