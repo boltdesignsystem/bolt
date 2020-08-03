@@ -1,17 +1,17 @@
-.c-bds-spacing-square {
+.c-bds-spacing-bar {
   background-color: bolt-theme(neutral, 0.2);
 }
 
-@each $size in bolt-spacing-multiplier-system {
+@each $size in $bolt-spacing-multiplier-system {
   $size-name: nth($size, 1);
 
-  .c-bds-spacing-square--#{$size-name} {
+  .c-bds-spacing-bar--x-#{$size-name} {
     width: var(--bolt-spacing-x-#{$size-name});
     height: var(--bolt-spacing-y-medium);
   }
 
-  .c-bds-spacing-square--v-#{$size-name} {
-    width: 100%;
+  .c-bds-spacing-bar--y-#{$size-name} {
+    width: var(--bolt-spacing-x-medium);
     height: var(--bolt-spacing-y-#{$size-name});
   }
 }
