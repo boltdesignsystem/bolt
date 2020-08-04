@@ -2,33 +2,37 @@
   EXAMPLE SCEHMA
 
   number: {
-    type: 'string',
-    description: 'The number value that the graph box will display.',
+    type: "string",
+    description: "The number value that the graph box will display.",
   },
   description: {
-    type: 'string',
+    type: "string",
     description:
-      'The description that will display below the number in the graph box.',
+      "The description that will display below the number in the graph box.",
   },
   color: {
-    type: 'string',
-    description: 'The background color of the graph box',
-    enum: ['gray', 'indigo', 'teal', 'orange'],
-  } 
+    type: "string",
+    description: "The background color of the graph box",
+    enum: ["gray", "indigo", "teal", "orange"],
+  }
 #}
 
 <div class="c-www-results-graph">
   {% for item in graph_array %}
-    {% set color_class = ' box-color--' ~ item.color %}
-    <div class="c-www-results-graph__box{{ color_class }}">
-      <h3 class="c-www-results-graph__box__headline">{{ item.number }}</h3>
-      <p class="c-www-results-graph__box__text">{{ item.description }}</p>
+    {% set color_class = " c-www-results-graph__box--" ~ item.color %}
+    <div class="c-www-results-graph__box {{ color_class }}">
+      <p class="c-www-results-stat">
+        <span class="c-www-results-stat__text">{{ item.description }}</span>
+        <span class="c-www-results-stat__headline c-www-results-stat__headline--xxlarge">{{ item.number }}</span>
+      </p>
     </div>
     {% if not loop.last %}
-      {% include "@bolt-components-icon/icon.twig" with {
-        name: "arrow-left",
-        size: "small"
-      }%}
+      <div class="c-www-results-graph__icon">
+        {% include "@bolt-components-icon/icon.twig" with {
+          name: "arrow-left",
+          size: "small"
+        } only %}
+      </div>
     {% endif %}
   {% endfor %}
 </div>
