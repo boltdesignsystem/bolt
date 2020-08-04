@@ -1,9 +1,10 @@
 .c-www-results-graph {
   display: flex;
   flex-direction: column;
+  margin-bottom: var(--bolt-spacing-y-medium);
 
-  &:not(:last-child) {
-    margin-bottom: var(--bolt-spacing-y-medium);
+  &:last-child {
+    margin-bottom: 0;
   }
 
   @include bolt-mq(small) {
