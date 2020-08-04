@@ -48,10 +48,10 @@
     color: bolt-color(gray, dark);
 
     > * {
-      transform: rotate(270deg);
+      transform: rotate(270deg); // Rotating it to be arrow right
 
       @include bolt-mq(small) {
-        transform: rotate(180deg);
+        transform: rotate(180deg); // Rotating it to be arrow down
       }
     }
   }
