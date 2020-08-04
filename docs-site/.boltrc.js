@@ -65,7 +65,7 @@ const config = deepmerge(baseConfig, {
       },
       {
         base:
-          './src/pages/pattern-lab/_patterns/04-pages/60-academy00-assets/images',
+          './src/pages/pattern-lab/_patterns/04-pages/60-academy/00-assets/images',
         glob: '**',
         dist: '../www/images',
       },
