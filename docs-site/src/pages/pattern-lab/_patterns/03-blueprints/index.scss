@@ -1,6 +1,6 @@
 @import '@bolt/core-v3.x';
 
-.c-bolt-featured-hero {
+.c-acd-featured-hero {
   position: relative;
 
   &:after {
@@ -23,17 +23,17 @@
   }
 }
 
-.c-bolt-featured-hero__image {
+.c-acd-featured-hero__image {
   filter: hue-rotate(345deg) contrast(1.3);
 }
 
-.c-bolt-horizontal-divider {
+.c-acd-horizontal-divider {
   display: flex;
   width: 100%;
   text-align: center;
 }
 
-.c-bolt-horizontal-divider__border {
+.c-acd-horizontal-divider__border {
   flex-grow: 1;
   margin-top: 6px;
   margin-bottom: 6px;
@@ -44,7 +44,7 @@
   border-color: bolt-theme(border, 0.5);
 }
 
-.c-bolt-horizontal-divider__text {
+.c-acd-horizontal-divider__text {
   @include bolt-padding-left(xsmall);
   @include bolt-padding-right(xsmall);
   @include bolt-font-weight(bold);
@@ -52,18 +52,18 @@
 }
 
 // WIP Rating Component
-.c-bolt-rating {
+.c-acd-rating {
   display: flex;
 }
 
-.c-bolt-rating__inner {
+.c-acd-rating__inner {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%; // fix for Firefox and Safari wrapping behavior
 }
 
-.c-bolt-rating__helper-text {
+.c-acd-rating__helper-text {
   display: inline-flex;
   color: bolt-color(gray);
   @include bolt-font-size(xsmall);
@@ -78,14 +78,14 @@
   }
 }
 
-.c-bolt-rating__input {
+.c-acd-rating__input {
   opacity: 0;
   position: absolute;
   left: -100%;
   pointer-events: none;
 }
 
-.c-bolt-rating__inputs {
+.c-acd-rating__inputs {
   display: inline-flex;
   flex-flow: row wrap;
   justify-content: center;
@@ -96,7 +96,7 @@
   letter-spacing: -0.5rem;
 }
 
-.c-bolt-rating__label {
+.c-acd-rating__label {
   @include bolt-font-size(small);
   @include bolt-font-weight(bold);
   @include bolt-margin-bottom(xxsmall);
@@ -148,11 +148,11 @@
   }
 }
 
-.c-bolt-rating__input:focus + .c-bolt-rating__label:before {
+.c-acd-rating__input:focus + .c-acd-rating__label:before {
   opacity: 1;
 }
 
-.c-bolt-rating__input:checked + .c-bolt-rating__label {
+.c-acd-rating__input:checked + .c-acd-rating__label {
   color: bolt-color(white);
   background-color: bolt-color(gray);
 
@@ -201,7 +201,7 @@
   }
 }
 
-.c-bolt-rating__no-rating-outline {
+.c-acd-rating__no-rating-outline {
   display: block;
   opacity: 0;
   position: absolute;
@@ -214,11 +214,11 @@
   outline-offset: 2px;
 }
 
-.c-bolt-rating__input--no-rating:focus ~ .c-bolt-rating__no-rating-outline {
+.c-acd-rating__input--no-rating:focus ~ .c-acd-rating__no-rating-outline {
   opacity: 1;
 }
 
-.c-bolt-badge {
+.c-acd-badge {
   position: relative;
 
   &__lock {
