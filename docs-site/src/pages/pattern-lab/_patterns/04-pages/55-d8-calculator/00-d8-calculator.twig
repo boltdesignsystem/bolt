@@ -1,47 +1,42 @@
-{% embed "@bolt-components-band/band.twig" with {
-  size: "large",
-  theme: "dark",
-  full_bleed: true
-} only %}
-  {% block band_content %}
-
-  <div class="o-bolt-grid">
-
-    <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-margin-bottom-medium">
-      <div class="c-www-calculator-icon">
-        <span>&#43;</span>
-        <span>&#8722;</span>
-        <span>&#215;</span>
-        <span>&#247;</span>
-      </div>
+{% set content %}
+  <div class="u-bolt-margin-bottom-medium" aria-hidden="true">
+    <div class="c-www-calculator-icon">
+      <span>&#43;</span>
+      <span>&#8722;</span>
+      <span>&#215;</span>
+      <span>&#247;</span>
     </div>
+  </div>
 
-    <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-9/12@small u-bolt-margin-bottom-large">
-      {% include "@bolt/headline.twig" with {
+  <div class="o-bolt-grid o-bolt-grid--matrix o-bolt-grid--flex">
+
+    <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-9/12@small">
+      {% include "@bolt-components-headline/headline.twig" with {
         text: "Real-time Decisioning Revenue Calculator",
         size: "xxxlarge",
         tag: "h2"
       } only %}
 
-      {% include "@bolt-components-headline/text.twig" with {
+      {% include "@bolt-components-headline/subheadline.twig" with {
         text: "Find out the total revenue benefit of taking a real-time, next-best-action approach to customer engagement, focused on retention and cross-sell.",
-        size: "xlarge"
+        size: "xlarge",
+        tag: "h2",
       } only %}
     </div>
 
     <div class="o-bolt-grid__cell u-bolt-width-12/12">
       {% set form_children %}
-        <ul class="o-bolt-grid o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--bottom" data-module="Calculator">
+        <ul class="o-bolt-grid o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--top" data-module="Calculator">
           <li class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@medium">
             {% include "@pl/10-form-element-demo-input-element.twig" with {
-              title: "What is your company's total revenue?",
+              title: "What is your company&rsquo;s total revenue?",
               attributes: {
-                'data-type': 'amount'
+                "data-type": "amount"
               },
               inputAttributes: {
                 placeholder: "$ Amount (E.g. $25,000,000,000)",
                 required: true,
-                type: "text"
+                type: "number"
               },
               labelDisplayType: "block",
               labelDisplay: "before"
@@ -49,14 +44,14 @@
           </li>
           <li class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@medium">
             {% include "@pl/10-form-element-demo-input-element.twig" with {
-              title: "What is your company's churn rate?",
+              title: "What is your company&rsquo;s churn rate?",
               attributes: {
-                'data-type': 'percent'
+                "data-type": "percent"
               },
               inputAttributes: {
                 placeholder: "% (E.g. 10%)",
                 required: true,
-                type: "text"
+                type: "number"
               },
               labelDisplayType: "block",
               labelDisplay: "before"
@@ -66,7 +61,7 @@
             {% include "@pl/10-form-element-demo-input-element.twig" with {
               title: "How many customers does your company have?",
               attributes: {
-                'data-type': 'number'
+                "data-type": "number"
               },
               inputAttributes: {
                 placeholder: "Number (E.g. 10,000,000)",
@@ -79,14 +74,14 @@
           </li>
           <li class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@medium">
             {% include "@pl/10-form-element-demo-input-element.twig" with {
-              title: "What is your company's average cost of customer acquisition?",
+              title: "What is your company&rsquo;s average cost of customer acquisition?",
               attributes: {
-                'data-type': 'amount'
+                "data-type": "amount"
               },
               inputAttributes: {
                 placeholder: "$ Amount (E.g. $2,000)",
                 required: true,
-                type: "text"
+                type: "number"
               },
               labelDisplayType: "block",
               labelDisplay: "before"
@@ -96,18 +91,18 @@
             {% include "@pl/10-form-element-demo-input-element.twig" with {
               title: "How much is each customer worth (per year)?",
               attributes: {
-                'data-type': 'amount'
+                "data-type": "amount"
               },
               inputAttributes: {
                 placeholder: "$ Amount (E.g. $2,000)",
                 required: true,
-                type: "text"
+                type: "number"
               },
               labelDisplayType: "block",
               labelDisplay: "before"
             } only %}
           </li>
-          <li class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@medium" valign="end">
+          <li class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@medium u-bolt-margin-top-auto">
             {% include "@bolt-components-form/form-button.twig" with {
               text: "Calculate my result",
               width: "full",
@@ -121,6 +116,11 @@
       } only %}
     </div>
   </div>
+{% endset %}
 
-  {% endblock %}
-{% endembed %}
+{% include "@bolt-components-band/band.twig" with {
+  size: "large",
+  theme: "dark",
+  full_bleed: true,
+  content: content
+} only %}
