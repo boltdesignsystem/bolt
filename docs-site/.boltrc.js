@@ -37,7 +37,7 @@ const config = deepmerge(baseConfig, {
     },
     'bolt-blueprints': {
       recursive: true,
-      paths: ['./src/pages/pattern-lab/_patterns/03-blueprints'],
+      paths: ['./src/pages/pattern-lab/_patterns/04-pages/60-academy'],
     },
     pl: {
       recursive: true,
@@ -65,7 +65,7 @@ const config = deepmerge(baseConfig, {
       },
       {
         base:
-          './src/pages/pattern-lab/_patterns/03-blueprints/00-assets/images',
+          './src/pages/pattern-lab/_patterns/04-pages/60-academy00-assets/images',
         glob: '**',
         dist: '../www/images',
       },
