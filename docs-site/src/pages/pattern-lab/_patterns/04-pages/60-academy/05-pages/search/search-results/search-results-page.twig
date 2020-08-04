@@ -1,12 +1,12 @@
 {% set hideGlobalSearch = true %}
 
-{% import "@bolt-blueprints/macros.twig" as macros %}
+{% import "@bolt-blueprints/_macros.twig" as macros %}
 
 {% extends "@bolt-blueprints/_blueprints-default-page-template.twig" %}
 
 {% block page_content %}
   {% include "@bolt-blueprints/_search-bar.twig" %}
-  {% include "@bolt-blueprints/search-results-hero.twig" %}
+  {% include "@bolt-blueprints/_search-results-hero.twig" %}
   {% include "@bolt-blueprints/_nav--search.twig" %}
 
   {% set content %}

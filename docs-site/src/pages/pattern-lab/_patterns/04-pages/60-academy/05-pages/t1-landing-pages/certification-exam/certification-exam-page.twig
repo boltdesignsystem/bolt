@@ -1,6 +1,6 @@
 {% extends "@bolt-blueprints/_blueprints-landing-page-template.twig" %}
 
-{% import "@bolt-blueprints/macros.twig" as macros %}
+{% import "@bolt-blueprints/_macros.twig" as macros %}
 
 {% set background = {
   opacity: "full",
@@ -13,7 +13,7 @@
   {% embed "@bolt-blueprints/_landing-page-inner-layout.twig" %}
 
     {% block hero_content %}
-      {% include "@bolt-blueprints/landing-page-hero.twig" %}
+      {% include "@bolt-blueprints/_landing-page-hero.twig" %}
     {% endblock %}
 
     {% block main_content %}

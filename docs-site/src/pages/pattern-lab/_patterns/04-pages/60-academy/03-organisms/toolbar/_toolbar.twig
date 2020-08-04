@@ -13,7 +13,7 @@
 } only %}
   {% if breadcrumbs %}
     {% block content_before %}
-      {% import "@bolt-blueprints/macros.twig" as macros %}
+      {% import "@bolt-blueprints/_macros.twig" as macros %}
 
       {% include "@bolt-components-breadcrumb/breadcrumb.twig" with {
         "contentItems": breadcrumbs | map(breadcrumb => breadcrumb.text and breadcrumb.url ? macros.include("@bolt-components-link/link.twig", {
