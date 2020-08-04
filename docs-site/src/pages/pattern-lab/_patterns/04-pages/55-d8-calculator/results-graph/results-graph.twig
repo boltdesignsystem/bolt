@@ -17,12 +17,12 @@
   } 
 #}
 
-<div class="bolt-results-graph">
+<div class="c-www-results-graph">
   {% for item in graph_array %}
     {% set color_class = ' box-color--' ~ item.color %}
-    <div class="bolt-results-graph__box{{ color_class }}">
-      <h3 class="bolt-results-graph__box__headline">{{ item.number }}</h3>
-      <p class="bolt-results-graph__box__text">{{ item.description }}</p>
+    <div class="c-www-results-graph__box{{ color_class }}">
+      <h3 class="c-www-results-graph__box__headline">{{ item.number }}</h3>
+      <p class="c-www-results-graph__box__text">{{ item.description }}</p>
     </div>
     {% if not loop.last %}
       {% include "@bolt-components-icon/icon.twig" with {
