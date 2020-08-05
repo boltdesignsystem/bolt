@@ -1,3 +1,60 @@
+/// Calculator Icon
+
+$www-calculator-logo-icon-size: 38px; // Hard px is used to avoid subpixel issues on transition
+$www-calculator-logo-spacing-size: 3px; // Hard px is used to avoid subpixel issues on transition
+
+.c-www-calculator-logo {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-content: space-around;
+  width: calc(
+    #{$www-calculator-logo-icon-size} * 2 + #{$www-calculator-logo-spacing-size} *
+      4
+  );
+  height: calc(
+    #{$www-calculator-logo-icon-size} * 2 + #{$www-calculator-logo-spacing-size} *
+      4
+  );
+  margin-bottom: var(--bolt-spacing-y-medium);
+  color: bolt-color(indigo);
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  &:hover {
+    span {
+      transform: rotate(180deg);
+    }
+  }
+
+  span {
+    width: calc(
+      #{$www-calculator-logo-icon-size} + #{$www-calculator-logo-spacing-size}
+    );
+    height: calc(
+      #{$www-calculator-logo-icon-size} + #{$www-calculator-logo-spacing-size}
+    );
+    font-size: $www-calculator-logo-icon-size;
+    line-height: 1;
+    text-align: center;
+    border-radius: bolt-border-radius(full);
+    background-color: bolt-color(white);
+    transition: transform $bolt-transition;
+
+    &:nth-child(2) {
+      background-color: bolt-color(yellow);
+    }
+
+    &:nth-child(3) {
+      background-color: bolt-color(teal);
+    }
+  }
+}
+
+/// Results Graph
+
 .c-www-results-graph {
   display: flex;
   flex-direction: column;
