@@ -1,3 +1,7 @@
+/* ------------------------------------ *\
+   Spacing Utilities
+\* ------------------------------------ */
+
 @each $size in $bolt-spacing-multiplier-system {
   $size-name: nth($size, 1);
 
@@ -78,13 +82,15 @@
   }
 }
 
-// Extra options not in the spacing system
-$bolt-spacing-extra-sizes: (
+/**
+ * Extra options not in the spacing system
+ */
+$bolt-spacing-system-extras: (
   'none': 0,
   'auto': auto,
 );
 
-@each $size in $bolt-spacing-extra-sizes {
+@each $size in $bolt-spacing-system-extras {
   $size-name: nth($size, 1);
   $size-value: nth($size, 2);
 
@@ -129,7 +135,9 @@ $bolt-spacing-extra-sizes: (
   }
 }
 
-// @todo: deprecate these sizeless names.
+/**
+ * @todo: [Mai] deprecate these sizeless names.
+ */
 .u-bolt-margin {
   /* stylelint-disable-next-line */
   @extend .u-bolt-margin-medium;
@@ -151,18 +159,3 @@ $bolt-spacing-extra-sizes: (
     @extend .u-bolt-padding-medium;
   }
 }
-
-// Old maps
-// Add additional spacing size rules for handling auto and zero'd rules
-$bolt-spacing-sizes-extras: (
-  none: 0,
-  auto: auto,
-);
-
-// Merge extra size options into Sass Map of sizes that already exist, tacking on to the front
-$bolt-spacing-sizes: map-merge($bolt-spacing-sizes-extras, $bolt-spacing-sizes);
-
-// Export spacing data
-@include export-data('spacing-sizes.bolt.json', $bolt-spacing-sizes);
-@include export-data('spacing-properties.bolt.json', $bolt-spacing-properties);
-@include export-data('spacing-directions.bolt.json', $bolt-spacing-directions);
