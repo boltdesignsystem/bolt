@@ -16,6 +16,65 @@
 {% set customer_value_with_pega = 1897 %}
 {% set customer_value_increase = (customer_value_with_pega - customer_value) / customer_value * 100 %}
 
+{% set graph_array_1 = [
+  {
+    number: churn_rate ~ "%",
+    description: "Your churn rate today",
+    color: "gray"
+  },
+  {
+    number: churn_rate_with_pega ~ "%",
+    description: "Your churn rate with Pega Customer Decision Hub",
+    color: "indigo"
+  }
+] %}
+
+{% set graph_array_2 = [
+    {
+      number: "$" ~ customer_value|number_format,
+      description: "Your current value of a customer",
+      color: "gray"
+    },
+    {
+      number: "$" ~ customer_value_with_pega|number_format,
+      description: "Your value of a customer with Pega Customer Decision Hub",
+      color: "indigo"
+    }
+] %}
+
+{#
+/**
+ * Page macros
+ */
+#}
+{% macro resultsGraph(graph_array) %}
+  <div class="c-www-results-graph">
+    {% for item in graph_array %}
+      {% set color_class = " c-www-results-graph__box--" ~ item.color %}
+      <div class="c-www-results-graph__box {{ color_class }}">
+        <h4 class="c-www-results-stat">
+          <span class="c-www-results-stat__text">{{ item.description }}</span>
+          <span class="c-www-results-stat__headline c-www-results-stat__headline--xxlarge">{{ item.number }}</span>
+        </h4>
+      </div>
+      {% if not loop.last %}
+        <div class="c-www-results-graph__icon">
+          {% include "@bolt-components-icon/icon.twig" with {
+            name: "arrow-left",
+            size: "small",
+            attributes: {
+              "aria-hidden": "true",
+            }
+          } only %}
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+{% endmacro %}
+
+{% import _self as macros %}
+
+
 
 {#
 /**
@@ -151,20 +210,8 @@
         } only %}
       </div>
       <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@small">
-        {% include "results-graph/results-graph.twig" with {
-          graph_array: [
-            {
-              number: churn_rate ~ "%",
-              description: "Your churn rate today",
-              color: "gray"
-            },
-            {
-              number: churn_rate_with_pega ~ "%",
-              description: "Your churn rate with Pega Customer Decision Hub",
-              color: "indigo"
-            }
-          ]
-        } only %}
+
+        {{ macros.resultsGraph(graph_array_1) }}
 
         {# Flag 1 #}
         {% set flag_1_figure %}
@@ -270,20 +317,8 @@
         } only %}
       </div>
       <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@small">
-        {% include "results-graph/results-graph.twig" with {
-          graph_array: [
-            {
-              number: "$" ~ customer_value|number_format,
-              description: "Your current value of a customer",
-              color: "gray"
-            },
-            {
-              number: "$" ~ customer_value_with_pega|number_format,
-              description: "Your value of a customer with Pega Customer Decision Hub",
-              color: "indigo"
-            }
-          ]
-        } only %}
+
+        {{ macros.resultsGraph(graph_array_2) }}
 
         {# Flag 1 #}
         {% set flag_1_figure %}
