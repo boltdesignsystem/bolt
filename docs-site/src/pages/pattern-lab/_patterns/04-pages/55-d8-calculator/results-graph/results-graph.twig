@@ -30,7 +30,10 @@
       <div class="c-www-results-graph__icon">
         {% include "@bolt-components-icon/icon.twig" with {
           name: "arrow-left",
-          size: "small"
+          size: "small",
+          attributes: {
+            "aria-hidden": "true",
+          }
         } only %}
       </div>
     {% endif %}
