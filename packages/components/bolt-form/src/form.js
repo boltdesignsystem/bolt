@@ -1,5 +1,26 @@
+import AutoNumeric from 'autonumeric';
+
 // TODO: limit to a .js class
 const inputs = document.querySelectorAll('.c-bolt-input');
+
+const formatConfig = {
+  numberOptions: {
+    decimalCharacter: '.',
+    digitGroupSeparator: ',',
+    allowDecimalPadding: 'false',
+  },
+  currencyUSOptions: {
+    currencySymbol: '$',
+    currencySymbolPlacement: 'p',
+  },
+  currencyJAOptions: {
+    currencySymbol: '¥',
+    currencySymbolPlacement: 'p',
+  },
+  percentOptions: {
+    suffixText: '%',
+  },
+};
 
 for (let i = 0, len = inputs.length; i < len; i++) {
   const input = inputs[i];
@@ -7,6 +28,35 @@ for (let i = 0, len = inputs.length; i < len; i++) {
   // Check if the field has pre-filled text from the server side
   if (input.value) {
     input.classList.add('is-filled');
+  }
+
+  // Modify the input behavior to auto format based on the required format type
+  if (input.dataset.formatInput) {
+    const inputType = input.dataset.formatInput;
+    switch (inputType) {
+      case 'currency-us':
+        const currencyUS = new AutoNumeric(input, {
+          ...formatConfig.numberOptions,
+          ...formatConfig.currencyUSOptions,
+        });
+        break;
+      case 'currency-ja':
+        const currencyJA = new AutoNumeric(input, {
+          ...formatConfig.numberOptions,
+          ...formatConfig.currencyJAOptions,
+        });
+        break;
+      case 'percent':
+        const percent = new AutoNumeric(input, {
+          ...formatConfig.percentOptions,
+          ...formatConfig.numberOptions,
+        });
+        break;
+      default:
+        const number = new AutoNumeric(input, {
+          ...formatConfig.numberOptions,
+        });
+    }
   }
 
   input.onchange = function() {

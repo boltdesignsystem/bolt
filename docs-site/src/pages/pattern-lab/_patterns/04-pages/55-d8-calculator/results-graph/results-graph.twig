@@ -1,20 +1,23 @@
 {#
   EXAMPLE SCEHMA
-
-  number: {
-    type: "string",
-    description: "The number value that the graph box will display.",
-  },
-  description: {
-    type: "string",
-    description:
-      "The description that will display below the number in the graph box.",
-  },
-  color: {
-    type: "string",
-    description: "The background color of the graph box",
-    enum: ["gray", "indigo", "teal", "orange"],
-  }
+  graph_array: [
+    {
+      number: {
+        type: "string",
+        description: "The number value that the graph box will display.",
+      },
+      description: {
+        type: "string",
+        description:
+          "The description that will display below the number in the graph box.",
+      },
+      color: {
+        type: "string",
+        description: "The background color of the graph box",
+        enum: ["gray", "indigo", "teal", "orange"],
+      }
+    }
+  ]
 #}
 
 <div class="c-www-results-graph">
