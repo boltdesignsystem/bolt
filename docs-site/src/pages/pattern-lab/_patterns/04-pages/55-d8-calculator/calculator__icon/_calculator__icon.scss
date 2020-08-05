@@ -1,16 +1,19 @@
-.demo-calculator-icon-container {
-  padding: 50px;
-  background-color: bolt-color(indigo);
-}
+$www-calculator-logo-icon-size: 38px; // Hard px is used to avoid subpixel issues on transition
+$www-calculator-logo-spacing-size: 3px; // Hard px is used to avoid subpixel issues on transition
 
-.c-www-calculator-icon {
+.c-www-calculator-logo {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: space-between;
   align-content: space-around;
-  width: 75px;
-  height: 75px;
+  width: calc(#{$www-calculator-logo-icon-size} * 2 + #{$www-calculator-logo-spacing-size} * 4);
+  height: calc(#{$www-calculator-logo-icon-size} * 2 + #{$www-calculator-logo-spacing-size} * 4);
+  margin-bottom: var(--bolt-spacing-y-medium);
   color: bolt-color(indigo);
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 
   &:hover {
     span {
@@ -19,16 +22,14 @@
   }
 
   span {
-    display: block;
-    flex-basis: 44%;
-    max-width: 44%;
-    height: 33px;
-    font-size: 37px;
-    line-height: 32px;
+    width: calc(#{$www-calculator-logo-icon-size} + #{$www-calculator-logo-spacing-size});
+    height: calc(#{$www-calculator-logo-icon-size} + #{$www-calculator-logo-spacing-size});
+    font-size: $www-calculator-logo-icon-size;
+    line-height: 1;
     text-align: center;
-    border-radius: 50%;
+    border-radius: bolt-border-radius(full);
     background-color: bolt-color(white);
-    transition: transform 0.3s ease-in-out;
+    transition: transform $bolt-transition;
 
     &:nth-child(2) {
       background-color: bolt-color(yellow);
