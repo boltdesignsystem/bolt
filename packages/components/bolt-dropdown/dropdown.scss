@@ -1,33 +1,33 @@
 @import '@bolt/core-v3.x';
 
-
 bolt-dropdown {
   display: block;
 
-  @include bolt-css-vars((
-    --bolt-nav-item-opacity: 0,
-    --bolt-nav-item-transform: translateY(bolt-spacing(large) * -1),
-    --bolt-nav-indicator-opacity: 0,
-  ));
+  @include bolt-css-vars(
+    (
+      --c-bolt-nav-item-opacity: 0,
+      --c-bolt-nav-item-transform: translateY(bolt-spacing(large) * -1),
+      --c-bolt-nav-indicator-opacity: 0,
+    )
+  );
 
   &[collapse] {
     @include bolt-mq(small) {
-      @include bolt-css-vars((
-        --bolt-nav-item-opacity: 1,
-        --bolt-nav-item-transform: none,
-        --bolt-nav-indicator-opacity: 1
-      ));
+      @include bolt-css-vars(
+        (
+          --c-bolt-nav-item-opacity: 1,
+          --c-bolt-nav-item-transform: none,
+          --c-bolt-nav-indicator-opacity: 1,
+        )
+      );
     }
   }
 }
-
 
 // bolt-dropdown-content {
 //   display: block;
 //   background-color: #f5f5fa;
 // }
-
-
 
 .c-bolt-dropdown {
   position: relative;
@@ -38,7 +38,9 @@ bolt-dropdown {
 
 .c-bolt-dropdown__header {
   @include bolt-font-weight(semibold);
-  @include bolt-font-size(medium); // Normalizes line height so pre and post JS looks the same
+  @include bolt-font-size(
+    medium
+  ); // Normalizes line height so pre and post JS looks the same
   display: flex;
   position: relative;
   z-index: 10;
@@ -52,7 +54,7 @@ bolt-dropdown {
     }
   }
 
-   &:after {
+  &:after {
     content: '';
     display: block;
     opacity: bolt-opacity(0);
@@ -65,10 +67,9 @@ bolt-dropdown {
     pointer-events: none;
     background-color: transparent;
     background-color: bolt-theme(headline-link);
-    transition: opacity .1s ease;
+    transition: opacity 0.1s ease;
   }
 }
-
 
 .c-bolt-dropdown__header:hover:after {
   opacity: 0.05;
@@ -110,7 +111,8 @@ bolt-dropdown {
   outline-offset: -3px;
   outline-width: 2px;
 
-  &:-moz-focusring { // Firefox specific fix for removing the dotted outline
+  &:-moz-focusring {
+    // Firefox specific fix for removing the dotted outline
     outline: none;
   }
 
@@ -118,7 +120,6 @@ bolt-dropdown {
     justify-content: center;
   }
 }
-
 
 .c-bolt-dropdown__header-link {
   position: absolute;
@@ -136,7 +137,6 @@ bolt-dropdown {
   white-space: nowrap;
   outline-offset: -3px;
 
-
   &:focus,
   &:active {
     width: auto;
@@ -148,13 +148,16 @@ bolt-dropdown {
   }
 }
 
-
 .c-bolt-dropdown__toggle--open {
   display: block;
 }
 
-.c-bolt-dropdown__state:target + .c-bolt-dropdown .c-bolt-dropdown__header-link--open,
-.c-bolt-dropdown__state:checked + .c-bolt-dropdown .c-bolt-dropdown__header-link--open {
+.c-bolt-dropdown__state:target
+  + .c-bolt-dropdown
+  .c-bolt-dropdown__header-link--open,
+.c-bolt-dropdown__state:checked
+  + .c-bolt-dropdown
+  .c-bolt-dropdown__header-link--open {
   display: none;
 }
 
@@ -162,19 +165,24 @@ bolt-dropdown {
   display: none;
 }
 
-.c-bolt-dropdown__state:target + .c-bolt-dropdown .c-bolt-dropdown__header-link--close,
-.c-bolt-dropdown__state:checked + .c-bolt-dropdown .c-bolt-dropdown__header-link--close {
+.c-bolt-dropdown__state:target
+  + .c-bolt-dropdown
+  .c-bolt-dropdown__header-link--close,
+.c-bolt-dropdown__state:checked
+  + .c-bolt-dropdown
+  .c-bolt-dropdown__header-link--close {
   display: block;
 }
 
-.c-bolt-dropdown__state:target + .c-bolt-dropdown .c-bolt-dropdown__header-link--close {
+.c-bolt-dropdown__state:target
+  + .c-bolt-dropdown
+  .c-bolt-dropdown__header-link--close {
   top: 0;
   // height: 50px;
   left: 0;
   width: 100%;
   height: 100%;
 }
-
 
 .c-bolt-dropdown__content {
   display: none;
@@ -186,15 +194,15 @@ bolt-dropdown {
   height: 0;
   overflow: auto;
   box-shadow: 0 1px 2px 1px rgba(6, 10, 36, 0.1);
-  transition: all .2s cubic-bezier(0, 0, .3, 1) .1s;
+  transition: all 0.2s cubic-bezier(0, 0, 0.3, 1) 0.1s;
 
-  &[data-open]:not([style*="height"]) {
+  &[data-open]:not([style*='height']) {
     visibility: visible;
     height: auto;
     transition: none;
   }
 
-  &:not([role="region"]) {
+  &:not([role='region']) {
     display: block;
     visibility: hidden;
     height: auto;
@@ -212,7 +220,6 @@ bolt-dropdown {
   }
 }
 
-
 .c-bolt-dropdown__header-icons {
   display: inline-flex;
   flex-shrink: 0; // for when there is a very long title - adds left/right spacing
@@ -226,7 +233,7 @@ bolt-dropdown {
 
   &:before {
     content: '';
-    opacity: .1;
+    opacity: 0.1;
     position: absolute;
     top: 0;
     bottom: 0;
@@ -242,9 +249,8 @@ bolt-dropdown {
 
 .c-bolt-dropdown__header-icons-inner {
   transform: rotate(0deg);
-  transition: transform .2s ease;
+  transition: transform 0.2s ease;
 }
-
 
 .c-bolt-dropdown__header-icon {
   display: inline-block;
@@ -255,7 +261,7 @@ bolt-dropdown {
   // width: 3rem;
   line-height: 0; // Workaround to line-height messing up icon alignment
   vertical-align: middle;
-  transition: opacity .2s ease;
+  transition: opacity 0.2s ease;
   // transform-style: preserve-3d;
   // transform-origin: center center;
 
@@ -273,7 +279,6 @@ bolt-dropdown {
 //   z-index: 900;
 // }
 
-
 // .c-bolt-dropdown__header-icon--open {
 //   // opacity: bolt-opacity(0);
 //   // float: none;
@@ -290,7 +295,7 @@ bolt-dropdown {
 //   transform: rotate(0deg);
 // }
 
-[aria-expanded="false"] {
+[aria-expanded='false'] {
   .c-bolt-dropdown__header-icons-inner {
     transform: rotate(0deg);
   }
@@ -304,7 +309,7 @@ bolt-dropdown {
   }
 }
 
-[aria-expanded="true"] {
+[aria-expanded='true'] {
   .c-bolt-dropdown__header-icons-inner {
     transform: rotate(179.5deg);
   }
@@ -319,10 +324,6 @@ bolt-dropdown {
     // transform: translate3d(-50%, -50%, 0px) rotate(360deg);
   }
 }
-
-
-
-
 
 // .c-bolt-dropdown[role="presentation"]{
 //   .c-bolt-dropdown__header--open {
@@ -351,10 +352,9 @@ bolt-dropdown {
   visibility: visible;
   transform: translate3d(0, 0, 0);
   max-height: 250px;
-  transition: all .2s cubic-bezier(0, 0, .3, 1) .1s;
+  transition: all 0.2s cubic-bezier(0, 0, 0.3, 1) 0.1s;
   transition: transform 300ms ease, height 300ms ease;
 }
-
 
 .c-bolt-dropdown__content--open {
   display: block;
@@ -374,7 +374,7 @@ bolt-dropdown {
   opacity: bolt-opacity(0);
   position: relative;
   overflow: auto;
-  transition: opacity .1s ease;
+  transition: opacity 0.1s ease;
   -webkit-overflow-scrolling: touch;
 
   .c-bolt-dropdown--collapse\@small & {
@@ -403,14 +403,16 @@ bolt-dropdown {
   }
 }
 
-.c-bolt-dropdown__state:target + .c-bolt-dropdown .c-bolt-dropdown__content-inner,
-.c-bolt-dropdown__state:checked + .c-bolt-dropdown .c-bolt-dropdown__content-inner,
+.c-bolt-dropdown__state:target
+  + .c-bolt-dropdown
+  .c-bolt-dropdown__content-inner,
+.c-bolt-dropdown__state:checked
+  + .c-bolt-dropdown
+  .c-bolt-dropdown__content-inner,
 .c-bolt-dropdown__content--opened .c-bolt-dropdown__content-inner {
   opacity: bolt-opacity(100);
   transition: opacity 0.3s ease;
 }
-
-
 
 .c-bolt-dropdown__toggle-text {
   position: absolute;
@@ -425,7 +427,6 @@ bolt-dropdown {
   clip-path: inset(0 0 99.9% 99.9%);
 }
 
-
 // .c-bolt-dropdown_
 //   height: 44px;
 //   border-bottom: 1px solid #333;
@@ -435,12 +436,9 @@ bolt-dropdown {
 // transition: opacity .35s ease-out,
 // transform .35s ease-out;
 
-
 .c-bolt-dropdown__state {
   display: none;
 }
-
-
 
 .c-bolt-dropdown__content--open {
   overflow: hidden;
@@ -456,10 +454,9 @@ bolt-dropdown {
   z-index: 1;
 }
 
-
 .c-bolt-nav__item {
-  opacity: var(--bolt-nav-item-opacity, 1);
-  transform: var(--bolt-nav-item-transform, none);
+  opacity: var(--c-bolt-nav-item-opacity, 1);
+  transform: var(--c-bolt-nav-item-transform, none);
   transition: opacity 0.35s ease-out, transform 0.35s ease-out; // transition:
 
   .c-bolt-dropdown--collapse\@small & {
@@ -470,63 +467,61 @@ bolt-dropdown {
   }
 }
 
-
 @for $quantity from 1 through 12 {
   $time: 0;
-
-
 
   @for $i from $quantity through 1 {
     $time: $time + 50;
 
-    .c-bolt-nav__item:nth-last-child(n+#{$quantity}),
-    .c-bolt-nav__item:nth-last-child(n+#{$quantity})~.c-bolt-nav__item:nth-child(#{$i}) {
+    .c-bolt-nav__item:nth-last-child(n + #{$quantity}),
+    .c-bolt-nav__item:nth-last-child(n + #{$quantity})
+      ~ .c-bolt-nav__item:nth-child(#{$i}) {
       transition-delay: $time + ms;
     }
   }
 }
-  // $time: $time + 50;
-  //   transition-delay: $time + ms;
-  // }
+// $time: $time + 50;
+//   transition-delay: $time + ms;
 // }
-
-
-
+// }
 
 .c-bolt-dropdown__state:target + .c-bolt-dropdown .c-bolt-nav__item,
 .c-bolt-dropdown__state:checked + .c-bolt-dropdown .c-bolt-nav__item,
 .c-bolt-dropdown__content--opened .c-bolt-nav__item {
   // opacity: bolt-opacity(100);
   // transform: none;
-  @include bolt-css-vars((
-    --bolt-nav-item-opacity: 1,
-    --bolt-nav-item-transform: none,
-  ));
+  @include bolt-css-vars(
+    (
+      --c-bolt-nav-item-opacity: 1,
+      --c-bolt-nav-item-transform: none,
+    )
+  );
 }
 
 .c-bolt-dropdown__content--opened {
-  @include bolt-css-vars((
-    --bolt-nav-item-opacity: 1,
-    --bolt-nav-item-transform: none,
-    --bolt-nav-indicator-opacity: 1,
-  ));
+  @include bolt-css-vars(
+    (
+      --c-bolt-nav-item-opacity: 1,
+      --c-bolt-nav-item-transform: none,
+      --c-bolt-nav-indicator-opacity: 1,
+    )
+  );
 }
 
-
 .c-bolt-dropdown__content:not(.c-bolt-dropdown__content--open):not(.c-bolt-dropdown__content--opened) {
-  @include bolt-css-vars((
-    --bolt-nav-indicator-transform: -100px,
-  ));
+  @include bolt-css-vars(
+    (
+      --c-bolt-nav-indicator-transform: -100px,
+    )
+  );
 }
 
 // .c-bolt-dropdown__content--open:not(.c-bolt-dropdown__content--opened) {
-//    --bolt-nav-indicator-transform: -100px !important;
+//    --c-bolt-nav-indicator-transform: -100px !important;
 // }
 
-
-    /* transform: none; */
-    // height: 43px;
-
+/* transform: none; */
+// height: 43px;
 
 // @for $i from 1 through 10 {
 
@@ -545,7 +540,6 @@ bolt-dropdown {
 // #ac-globalnav .ac-gn-item-menu:nth-child(9) {
 //   transition-delay: 50ms;
 // }
-
 
 // .c-bolt-block-list__item {
 //   // height: 43px;
