@@ -2,7 +2,6 @@ module.exports = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'Navbar',
   type: 'object',
-  required: ['title'],
   properties: {
     theme: {
       type: 'string',
@@ -15,7 +14,6 @@ module.exports = {
       type: 'object',
       description:
         'Navbar title. Icon is optional. Tag can be set to h1 to h6 depending on the page.',
-      required: ['text'],
       properties: {
         tag: {
           type: 'string',
@@ -33,6 +31,13 @@ module.exports = {
               description: 'Name of the (optional) icon to be used.',
             },
           },
+        },
+        iconOnly: {
+          type: 'boolean',
+          description:
+            'Set this to true if you do not wish to show title text.',
+          default: false,
+          enum: [true, false],
         },
       },
     },

@@ -1,7 +1,9 @@
 {% set attributes = create_attribute(attributes|default({})) %}
+{% set iconOnly = iconOnly is sameas(true) or iconOnly is sameas(false) ? iconOnly : scheuma.properties.iconOnly.default %}
 {% if url %}
   {% set attributes = attributes.setAttribute("href", url) %}
 {% endif %}
+
 
 {% set navbar_title %}
   {% if icon %}
@@ -12,8 +14,8 @@
       } only %}
     </div>
   {% endif %}
-  <{{ tag }} class="c-bolt-navbar__title-text">
-    {{ text }}
+  <{{ tag }} class="c-bolt-navbar__title-text {{ ( not text or iconOnly) ? "c-bolt-navbar__title-text--mobileOnly" : "" }}">
+    {{ text ? text : "Go to" }}
   </{{ tag }}>
 {% endset %}
 

@@ -190,6 +190,12 @@ bolt-navbar {
     @include bolt-font-weight(bold);
     flex-wrap: nowrap; // fixes IE 11 flex-bug causing text to resist staying on one line and prematurely wraps to two-lines -- even if plenty of space is available
   }
+
+  @include bolt-mq($bolt-navbar-xsmall-bp) {
+    &--mobileOnly {
+      display: none;
+    }
+  }
 }
 
 // Nav items
