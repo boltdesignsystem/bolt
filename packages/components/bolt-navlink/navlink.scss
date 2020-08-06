@@ -25,7 +25,7 @@ bolt-navlink {
   opacity: 0.9;
 
   position: relative;
-  padding: calc(var(--bolt-spacing-y-small) / 2) var(--bolt-spacing-y-xsmall);
+  padding: calc(var(--bolt-spacing-y-small) / 2) var(--bolt-spacing-x-xsmall);
   color: bolt-theme(headline-link);
   text-decoration: none;
   border-radius: 3px;
@@ -38,7 +38,7 @@ bolt-navlink {
   transition: all $bolt-navlink-text-transition;
 
   @include bolt-mq($bolt-navbar-xsmall-bp) {
-    padding: calc(var(--bolt-spacing-y-small) / 2) var(--bolt-spacing-y-small);
+    padding: calc(var(--bolt-spacing-y-small) / 2) var(--bolt-spacing-x-small);
   }
 
   &:active,

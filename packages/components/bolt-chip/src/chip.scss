@@ -44,7 +44,7 @@ $bolt-chip-sizes: (xsmall, small, medium);
 @each $size in $bolt-chip-sizes {
   .c-bolt-chip--size-#{$size} {
     padding: calc(var(--bolt-spacing-y-#{$size}) / 2)
-      var(--bolt-spacing-y-#{$size});
+      var(--bolt-spacing-x-#{$size});
   }
 }
 
