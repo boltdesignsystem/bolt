@@ -2,7 +2,7 @@
 // consider adding to a component where JS will be loaded only when needed.
 import ClickHandler from './src/click-handler';
 
-const Modules = { ClickHandler, Calculator };
+const Modules = { ClickHandler };
 const elements = document.querySelectorAll('[data-module]');
 
 /**
