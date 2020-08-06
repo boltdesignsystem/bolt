@@ -11,7 +11,9 @@
 $bolt-search-field-placeholder-color: bolt-theme(text, 0.4);
 $bolt-search-field-border-width: $bolt-border-width;
 $bolt-search-field-border-style: $bolt-border-style;
-$bolt-search-field-icon-only-button-width: bolt-spacing(medium) + 1rem;
+$bolt-search-field-icon-only-button-width: calc(
+  var(--bolt-spacing-x-medium) + 1rem
+);
 
 .c-bolt-search-field {
   @include bolt-shadow('level-10');
@@ -31,14 +33,13 @@ $bolt-search-field-icon-only-button-width: bolt-spacing(medium) + 1rem;
 }
 
 .c-bolt-search-field__input {
-  @include bolt-padding(medium, squished);
-  @include bolt-padding-right(small);
-
   flex: 1;
   order: 1;
   appearance: none;
   opacity: bolt-opacity(100);
-  padding-left: $bolt-search-field-icon-only-button-width;
+  padding: calc(var(--bolt-spacing-y-medium) / 2) var(--bolt-spacing-x-small)
+    calc(var(--bolt-spacing-y-medium) / 2)
+    $bolt-search-field-icon-only-button-width;
   color: bolt-theme(text);
   border-radius: bolt-border-radius(small);
   border-width: $bolt-search-field-border-width;
@@ -99,7 +100,7 @@ $bolt-search-field-icon-only-button-width: bolt-spacing(medium) + 1rem;
 .c-bolt-search-field__button--reset {
   order: 2;
   transform: translate3d(
-    ($bolt-search-field-icon-only-button-width * -1),
+    calc(#{$bolt-search-field-icon-only-button-width} * -1),
     0,
     0
   );
@@ -164,9 +165,8 @@ $bolt-search-field-icon-only-button-width: bolt-spacing(medium) + 1rem;
 }
 
 .c-global-search-panel__content {
-  @include bolt-padding(small 0);
-
   position: relative;
+  padding: var(--bolt-spacing-y-small) 0;
 
   @at-root .c-global-search-panel--floating #{&} {
     opacity: bolt-opacity(0);

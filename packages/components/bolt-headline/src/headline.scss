@@ -7,7 +7,6 @@
 /* ------------------------------------ *\
    Headlines
 \* ------------------------------------ */
-/* stylelint-disable-next-line color-named */
 
 $bolt-headline--minus-letter-spacing: -0.025rem;
 $bolt-headline--plus-letter-spacing: 0.05rem;
@@ -35,7 +34,7 @@ $bolt-headline--plus-letter-spacing: 0.05rem;
 
 .c-bolt-headline {
   &:not(:last-child) {
-    @include bolt-margin-bottom(medium);
+    margin-bottom: var(--bolt-spacing-y-medium);
   }
 
   &:not([class*='c-bolt-headline--']) {
@@ -66,9 +65,10 @@ $bolt-headline--plus-letter-spacing: 0.05rem;
 }
 
 .c-bolt-eyebrow {
-  @include bolt-margin-bottom(0.1rem);
   @include bolt-font-size(xsmall);
   opacity: 0.8;
+
+  margin-bottom: 0.1rem;
   text-transform: uppercase;
   letter-spacing: $bolt-headline--plus-letter-spacing;
 }
@@ -80,15 +80,14 @@ $bolt-headline--plus-letter-spacing: 0.05rem;
   height: 1px;
   border-width: 0;
   border-style: none;
-  /* stylelint-disable-next-line scale-unlimited/declaration-strict-value */
   background-color: inherit;
 
   &:first-child {
-    @include bolt-margin(0 small 0 0);
+    margin: 0 var(--bolt-spacing-y-small) 0 0;
   }
 
   &:last-child {
-    @include bolt-margin(0 0 0 small);
+    margin: 0 0 0 var(--bolt-spacing-x-small);
   }
 }
 
@@ -103,9 +102,10 @@ $bolt-headline--plus-letter-spacing: 0.05rem;
 
 // Subheadline styles.
 .c-bolt-subheadline {
-  @include bolt-margin-bottom(medium);
   @include bolt-font-family(heading);
   @include bolt-font-weight(regular);
+
+  margin-bottom: var(--bolt-spacing-y-medium);
 
   &:not([class*='c-bolt-subheadline--']) {
     @include bolt-font-size(large);
@@ -118,7 +118,7 @@ $bolt-headline--plus-letter-spacing: 0.05rem;
 .c-bolt-headline:not(.c-bolt-headline--xxxlarge) + .c-bolt-text,
 .c-bolt-headline:not(.c-bolt-headline--xxxlarge) + bolt-inline-list,
 .c-bolt-headline:not(.c-bolt-headline--xxxlarge) + p:not([class]) {
-  margin-top: (-1 * bolt-v-spacing(medium)) + bolt-v-spacing(xsmall);
+  margin-top: calc(var(--bolt-spacing-y-xsmall) - var(--bolt-spacing-y-medium));
 }
 
 .c-bolt-headline--xxxlarge + .c-bolt-headline,
@@ -126,12 +126,12 @@ $bolt-headline--plus-letter-spacing: 0.05rem;
 .c-bolt-headline--xxxlarge + .c-bolt-text,
 .c-bolt-headline--xxxlarge + bolt-inline-list,
 .c-bolt-headline--xxxlarge + p:not([class]) {
-  margin-top: (-1 * bolt-v-spacing(medium)) + bolt-v-spacing(small);
+  margin-top: calc(var(--bolt-spacing-y-small) - var(--bolt-spacing-y-medium));
 }
 
 .c-bolt-subheadline + .c-bolt-text,
 .c-bolt-subheadline + p:not([class]) {
-  margin-top: (-1 * bolt-v-spacing(medium)) + bolt-v-spacing(xsmall);
+  margin-top: calc(var(--bolt-spacing-y-xsmall) - var(--bolt-spacing-y-medium));
 }
 
 .c-bolt-headline--xxxlarge,

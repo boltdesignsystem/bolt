@@ -69,12 +69,12 @@ Descr: A custom radio button with a switch element and two labels
 
   .c-bolt-radio-switch__item:first-of-type & {
     float: left; // flexbox fallback
-    @include bolt-margin-right(xsmall);
+    margin-right: var(--bolt-spacing-x-xsmall);
   }
 
   .c-bolt-radio-switch__item:last-of-type & {
     float: right; // flexbox fallback
-    @include bolt-margin-left(xsmall);
+    margin-left: var(--bolt-spacing-x-xsmall);
   }
 
   .c-bolt-radio-switch__input:checked ~ & {

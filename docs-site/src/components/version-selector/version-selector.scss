@@ -9,23 +9,23 @@
 }
 
 .#{$choices-selector}__heading {
-  @include bolt-padding(
-    bolt-v-spacing(small) bolt-spacing(small) 0 bolt-spacing(xsmall)
-  );
+  padding: var(--bolt-spacing-y-small) var(--bolt-spacing-x-small) 0
+    var(--bolt-spacing-x-xsmall);
   line-height: 1;
 }
 
 .#{$choices-selector}__group ~ .#{$choices-selector}__item {
-  @include bolt-padding(small, squished);
+  padding-left: calc(var(--bolt-spacing-y-small) / 2)
+    var(--bolt-spacing-x-small);
 }
 
 .#{$choices-selector}__list--dropdown .#{$choices-selector}__item--selectable {
-  @include bolt-padding-right(small);
-  @include bolt-padding-left(small);
+  padding-right: var(--bolt-spacing-x-small);
+  padding-left: var(--bolt-spacing-x-small);
 }
 
 .#{$choices-selector}__input {
-  @include bolt-margin-bottom(0);
+  margin-bottom: 0;
   font-size: 16px; // prevent input zoom on mobile
 }
 
@@ -38,14 +38,16 @@
 }
 
 .#{$choices-selector}__list--single {
-  padding-right: bolt-spacing(small) + bolt-spacing(xsmall);
+  padding-right: calc(
+    var(--bolt-spacing-x-small) + var(--bolt-spacing-x-xsmall)
+  );
 }
 
 .#{$choices-selector}__inner,
 .#{$choices-selector}[data-type*='select-one'] .#{$choices-selector}__inner {
-  @include bolt-padding-top(0);
-  @include bolt-padding-bottom(0);
-  @include bolt-padding-left(xsmall);
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: var(--bolt-spacing-x-xsmall);
 }
 
 .#{$choices-selector}__list--dropdown {

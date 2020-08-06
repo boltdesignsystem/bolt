@@ -24,7 +24,7 @@ $bolt-floating-label-text-color-active: bolt-color(
   navy,
   light
 ); // TODO: [Mai] This is the theme link color
-$bolt-floating-label-text-indent: calc(#{bolt-spacing(small)} + 2px);
+$bolt-floating-label-text-indent: calc(var(--bolt-spacing-x-small) + 2px);
 $bolt-floating-label-transition: $bolt-transition;
 
 $bolt-input-text-color: bolt-color(
@@ -75,7 +75,7 @@ $bolt-input-shadow-level: 'level-20';
 $bolt-input-transition: $bolt-transition;
 
 bolt-component-explorer {
-  @include bolt-margin-bottom(medium);
+  margin-bottom: var(--bolt-spacing-y-medium);
   display: block;
 }
 
@@ -113,7 +113,7 @@ bolt-component-explorer {
 }
 
 .range-view {
-  @include bolt-margin-left(xsmall);
+  margin-left: var(--bolt-spacing-x-xsmall);
   display: inline-block;
 }
 
@@ -188,7 +188,7 @@ bolt-component-explorer {
 
   legend {
     @include bolt-font-size(small);
-    @include bolt-margin-bottom(xsmall);
+    margin-bottom: var(--bolt-spacing-y-xsmall);
     @include bolt-font-weight(bold);
     color: bolt-color(gray, xdark);
     border-bottom: 1px solid bolt-color(gray);
@@ -348,16 +348,6 @@ bolt-component-explorer {
 
   input.form-control {
     // This should ONLY apply to <input> elements, NOT anything else like <label>, <div>, <span>, etc.
-    @include bolt-padding(
-      xsmall,
-      squished
-    ); // [Mai] This matches button vertical spacing.
-    @include bolt-padding-right(
-      small
-    ); // [Mai] This does not match the button horizontal spacing, which is what we want. We only want inputs to be as tall as buttons.
-    @include bolt-padding-left(
-      small
-    ); // [Mai] This does not match the button horizontal spacing, which is what we want. We only want inputs to be as tall as buttons.
     @include bolt-input-placeholder($bolt-input-placeholder-color);
 
     display: block;
@@ -375,6 +365,10 @@ bolt-component-explorer {
     border-radius: $bolt-input-border-radius;
     background-color: $bolt-input-background-color;
     opacity: 1; // [Mai] Reset mobile Safari browser default.
+    padding: calc(var(--bolt-spacing-y-xsmall) / 2) var(--bolt-spacing-x-small);
+    // [Mai] This matches button vertical spacing.
+    // [Mai] This does not match the button horizontal spacing, which is what we want. We only want inputs to be as tall as buttons.
+
     outline: none;
     transition: all $bolt-input-transition;
 
@@ -421,12 +415,6 @@ bolt-component-explorer {
       background-color: $bolt-input-background-color--disabled;
     }
 
-    // &.is-filled,
-    // &:focus {
-    //   padding-top: calc(#{bolt-v-spacing(small)} + 0.55rem);
-    //   padding-bottom: calc(#{bolt-v-spacing(small)} - 0.55rem);
-    // }
-
     &:focus,
     &:hover {
       &:not(.is-disabled):not(:disabled) {
@@ -450,10 +438,6 @@ bolt-component-explorer {
     user-select: none;
   }
 
-  .control-label ~ .form-control {
-    // @include bolt-margin-left(small);
-  }
-
   input[type='checkbox'] {
     position: absolute !important;
     width: 1px !important;
@@ -469,7 +453,7 @@ bolt-component-explorer {
   }
 
   .checkbox label > span {
-    @include bolt-padding-left(1.5em);
+    padding-left: 1.5em;
 
     &:before,
     &:after {

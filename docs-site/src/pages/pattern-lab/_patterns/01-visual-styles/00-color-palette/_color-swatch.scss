@@ -10,7 +10,7 @@
   display: block;
 
   &:not(.c-bolt-swatch__color--large) {
-    @include bolt-padding(small, stretched);
+    padding: calc(var(--bolt-spacing-y-small) * 2) var(--bolt-spacing-x-small);
   }
 }
 
@@ -20,10 +20,7 @@
 }
 
 .c-bolt-swatch__color--large {
-  @include bolt-padding-left(small);
-  @include bolt-padding-right(small);
-  @include bolt-padding-top(large);
-  @include bolt-padding-bottom(large);
+  padding: var(--bolt-spacing-y-large) var(--bolt-spacing-x-small);
 
   &:first-child {
     margin-top: auto;
@@ -60,10 +57,7 @@
 }
 
 .c-bolt-accessibility-table {
-  @include bolt-padding-top(xsmall);
-  @include bolt-padding-right(small);
-  @include bolt-padding-bottom(xsmall);
-  @include bolt-padding-left(small);
+  padding: var(--bolt-spacing-y-xsmall) var(--bolt-spacing-x-small);
 }
 
 .c-bolt-accessibility-table__table {
@@ -99,11 +93,11 @@
 
 .c-bolt-accessibility-table__column {
   @include bolt-font-size(xsmall);
-  @include bolt-padding-top(xsmall);
-  @include bolt-padding-bottom(xsmall);
   display: block;
   align-items: center;
   margin: 0;
+  padding-top: var(--bolt-spacing-y-xsmall);
+  padding-bottom: var(--bolt-spacing-y-xsmall);
 }
 
 .c-bolt-accessibility-table__column:nth-child(1) {
@@ -131,14 +125,12 @@
   justify-content: flex-end;
   align-items: flex-end;
   align-self: flex-end;
-  margin: 0 bolt-spacing(xsmall);
+  margin: 0 var(--bolt-spacing-x-xsmall);
   text-align: right;
 }
 
 .c-bolt-accessibility-table__results {
   @include bolt-font-size(small);
-  @include bolt-margin-right(xsmall);
-  @include bolt-padding(xsmall);
   display: inline-block;
   margin: 0;
   padding: 0;
@@ -161,11 +153,11 @@
 }
 
 .c-bolt-accessibility-table__text {
-  @include bolt-margin-right(xsmall);
   display: inline-block;
+  margin-right: var(--bolt-spacing-x-xsmall);
 
   &:last-child {
-    @include bolt-margin-right(0);
+    margin-right: 0;
   }
 }
 
