@@ -32,7 +32,7 @@ bolt-li {
     box-sizing: border-box;
     position: absolute;
     top: 0;
-    left: calc($bolt-li-spacing * -1);
+    left: calc(#{$bolt-li-spacing} * -1);
     transform: scale(0.8);
     width: $bolt-ol-bullet-size;
     height: $bolt-ol-bullet-size;
@@ -100,7 +100,7 @@ bolt-ol,
   display: block;
   position: absolute;
   top: 0.125em;
-  left: calc($bolt-li-spacing * -1);
+  left: calc(#{$bolt-li-spacing} * -1);
   width: $bolt-ol-bullet-size;
   height: $bolt-ol-bullet-size;
   color: bolt-theme(headline);
