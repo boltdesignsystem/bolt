@@ -1,9 +1,17 @@
 {% set attributes = create_attribute(attributes|default({})) %}
-{% set iconOnly = iconOnly is sameas(true) or iconOnly is sameas(false) ? iconOnly : scheuma.properties.iconOnly.default %}
+
+{% set title_attributes = create_attribute({}) %}
+{% set hide_title = hide_title is sameas(true) or hide_title is sameas(false) ? hide_title : scheuma.properties.hide_title.default %}
+
+{% set title_classes = ['c-bolt-navbar__title-text'] %}
+{% if hide_title %}
+  {% set title_classes = title_classes|merge(['c-bolt-navbar__title-text--hideTitle']) %}
+{% endif %}
+{% set title_attributes = title_attributes.addClass(title_classes) %}
+
 {% if url %}
   {% set attributes = attributes.setAttribute("href", url) %}
 {% endif %}
-
 
 {% set navbar_title %}
   {% if icon %}
@@ -14,8 +22,8 @@
       } only %}
     </div>
   {% endif %}
-  <{{ tag }} class="c-bolt-navbar__title-text {{ ( not text or iconOnly) ? "c-bolt-navbar__title-text--mobileOnly" : "" }}">
-    {{ text ? text : "Go to" }}
+  <{{ tag }} {{ title_attributes }}>
+    {{ text|default("Go to"|t) }}
   </{{ tag }}>
 {% endset %}
 

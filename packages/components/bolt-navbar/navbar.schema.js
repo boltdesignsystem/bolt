@@ -32,12 +32,11 @@ module.exports = {
             },
           },
         },
-        iconOnly: {
+        hide_title: {
           type: 'boolean',
           description:
-            'Set this to true if you do not wish to show title text.',
+            'Set this to true if you do not wish to show title text above the mobile breakpoint.',
           default: false,
-          enum: [true, false],
         },
       },
     },
