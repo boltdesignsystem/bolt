@@ -1,5 +1,3 @@
-/// Calculator Icon
-
 $www-calculator-logo-icon-size: 38px; // Hard px is used to avoid subpixel issues on transition
 $www-calculator-logo-spacing-size: 3px; // Hard px is used to avoid subpixel issues on transition
 
@@ -23,13 +21,8 @@ $www-calculator-logo-spacing-size: 3px; // Hard px is used to avoid subpixel iss
     margin-bottom: 0;
   }
 
-  &:hover {
-    span {
-      transform: rotate(180deg);
-    }
-  }
-
   span {
+    transform: scale(0) rotate(0deg);
     width: calc(
       #{$www-calculator-logo-icon-size} + #{$www-calculator-logo-spacing-size}
     );
@@ -42,6 +35,11 @@ $www-calculator-logo-spacing-size: 3px; // Hard px is used to avoid subpixel iss
     border-radius: bolt-border-radius(full);
     background-color: bolt-color(white);
     transition: transform $bolt-transition;
+    animation: 3s ease-in-out .5s forwards a-www-calculator-logo-spin;
+
+    @media (prefers-reduced-motion) {
+      animation: none; // Do not animate if the user has expressed their preference for reduced motion.
+    }
 
     &:nth-child(2) {
       background-color: bolt-color(yellow);
@@ -53,8 +51,45 @@ $www-calculator-logo-spacing-size: 3px; // Hard px is used to avoid subpixel iss
   }
 }
 
-/// Results Graph
+@keyframes a-www-calculator-logo-spin {
+  1% {
+    transform: scale(0) rotate(0deg);
+  }
 
+  6% {
+    transform: scale(1) rotate(90deg);
+  }
+
+  100% {
+    transform: scale(1) rotate(2160deg);
+  }
+}
+
+.c-www-calculator-fade-in-content {
+  .o-bolt-grid__cell {
+    opacity: 0;
+    transform: translate3d(0, -10px, 0);
+    animation: .5s ease-in-out .5s forwards a-www-calculator-fade-in-down;
+
+    @media (prefers-reduced-motion) {
+      animation: none; // Do not animate if the user has expressed their preference for reduced motion.
+    }
+  }
+}
+
+@keyframes a-www-calculator-fade-in-down {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, -10px, 0)
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0)
+  }
+}
+
+//Results Graph
 .c-www-results-graph {
   display: flex;
   flex-direction: column;
