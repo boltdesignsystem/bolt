@@ -55,16 +55,14 @@ $bolt-video-js-button-shadow-level-hover: 'level-40';
     border-radius: $bolt-video-js-button-border-radius;
 
     .vjs-icon-placeholder {
-      @include bolt-margin(0);
-      @include bolt-padding(0 0 65% 0);
-
       display: block;
       position: absolute;
       top: 18%; // [7]
       left: 42%; // [7]
       width: 40%;
       height: auto;
-      padding-bottom: 40%;
+      margin: 0;
+      padding: 0 0 40%;
       background-color: $bolt-video-js-button-text-color;
 
       &:before,
@@ -218,7 +216,7 @@ $bolt-video-js-button-shadow-level-hover: 'level-40';
         }
 
         > * {
-          @include bolt-margin-bottom(xsmall);
+          margin-bottom: var(--bolt-spacing-y-xsmall);
         }
       }
     }

@@ -107,10 +107,10 @@ bolt-modal:not([ready]) {
     }
 
     .c-bolt-modal__container-header--hidden {
-      @include bolt-padding(0);
       height: calc(
         var(--bolt-spacing-y-medium) + var(--bolt-spacing-y-small) * 2
       ); // Match close button icon size and margin.
+      padding: 0;
     }
 
     .c-bolt-modal__container-body {

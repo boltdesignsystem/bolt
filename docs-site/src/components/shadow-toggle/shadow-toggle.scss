@@ -88,12 +88,12 @@ bolt-shadow-toggle {
 
   .c-bolt-shadow-toggle__item:first-of-type & {
     float: left; // flexbox fallback
-    @include bolt-margin-right(xsmall);
+    margin-right: var(--bolt-spacing-x-xsmall);
   }
 
   .c-bolt-shadow-toggle__item:last-of-type & {
     float: right; // flexbox fallback
-    @include bolt-margin-left(xsmall);
+    margin-left: var(--bolt-spacing-x-xsmall);
   }
 
   .c-bolt-shadow-toggle__input:checked ~ & {
