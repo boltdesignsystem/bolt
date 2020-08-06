@@ -1,0 +1,30 @@
+<p>Setting <code>"iconOnly": true<code> will hide the title text on tablet and desktop.</p>
+
+{% include "@bolt-components-navbar/navbar.twig" with {
+  "title": {
+    "tag": "h2",
+    "text": "Title Text",
+    "iconOnly": true,
+    "icon": {
+      "name": "marketing-gray"
+    }
+  },
+  "links": [
+    {
+      "text": "Features",
+      "url": "#!"
+    },
+    {
+      "text": "Resources",
+      "url": "#!"
+    },
+    {
+      "text": "Industry Apps",
+      "url": "#!"
+    },
+    {
+      "text": "Customer Success",
+      "url": "#!"
+    }
+  ]
+} %}
