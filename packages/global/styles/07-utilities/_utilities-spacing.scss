@@ -145,11 +145,11 @@ $bolt-spacing-system-extras: (
 @each $direction in $bolt-spacing-direction-system {
   .u-bolt-margin-#{$direction} {
     /* stylelint-disable-next-line */
-    @extend .u-bolt-margin-medium;
+    @extend .u-bolt-margin-#{$direction}-medium;
   }
 
   .u-bolt-padding-#{$direction} {
     /* stylelint-disable-next-line */
-    @extend .u-bolt-padding-medium;
+    @extend .u-bolt-padding-#{$direction}-medium;
   }
 }
