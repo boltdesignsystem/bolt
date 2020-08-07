@@ -36,7 +36,7 @@ lazyQueue([], async () => {
   );
 });
 
-// Blueprint-specific JS demoing the Mission Completed form's button re-activating
+// Academy-specific JS demoing the Mission Completed form's button re-activating
 const missionRatingInputs = document.querySelectorAll(
   '.js-mission-rating-input',
 );
