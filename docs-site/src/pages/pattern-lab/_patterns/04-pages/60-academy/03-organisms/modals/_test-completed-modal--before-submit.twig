@@ -99,7 +99,7 @@
       // adjust which window is being checked against if inside an iframe
       // makes sure that this modal doesn't fire on the main viewall section
       var windowToSearch = window.self !== window.top ? window.top.location : window.location;
-      if (windowToSearch.search.includes('viewall-pages') === false && windowToSearch.search.includes('viewall-blueprints') === false){
+      if (windowToSearch.search.includes('viewall-pages') === false){
         el.show();
       }
     }, 100)
