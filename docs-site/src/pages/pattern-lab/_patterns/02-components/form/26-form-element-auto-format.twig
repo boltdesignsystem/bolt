@@ -1,0 +1,111 @@
+{% set for_value = "percent" %}
+{% set label %}
+  {% include "@bolt-components-form/form-label.twig" with {
+    title: "Example of percent auto formatting",
+    attributes: {
+      for: for_value
+    },
+    displayType: "block"
+  } only %}
+{% endset %}
+{% set input %}
+  {% include "@bolt-components-form/form-input.twig" with {
+    attributes: {
+      placeholder: "E.g. 10%",
+      required: true,
+      type: "text",
+      id: for_value,
+      "data-format-input": "percent",
+      inputmode: "decimal"
+    },
+  } only %}
+{% endset %}
+{% include "@bolt-components-form/form-element.twig" with {
+  labelDisplay: "before",
+  label: label,
+  children: input
+} only %}
+
+{% set for_value = "currency-us" %}
+{% set label %}
+  {% include "@bolt-components-form/form-label.twig" with {
+    title: "Example of US Currency auto formatting",
+    attributes: {
+      for: for_value
+    },
+    displayType: "block"
+  } only %}
+{% endset %}
+{% set input %}
+  {% include "@bolt-components-form/form-input.twig" with {
+    attributes: {
+      placeholder: "E.g. $25,000,000,000",
+      required: true,
+      type: "text",
+      id: for_value,
+      "data-format-input": "currency-us",
+      inputmode: "decimal"
+    },
+  } only %}
+{% endset %}
+{% include "@bolt-components-form/form-element.twig" with {
+  labelDisplay: "before",
+  label: label,
+  children: input
+} only %}
+
+{% set for_value = "currency-ja" %}
+{% set label %}
+  {% include "@bolt-components-form/form-label.twig" with {
+    title: "Example of US Currency auto formatting",
+    attributes: {
+      for: for_value
+    },
+    displayType: "block"
+  } only %}
+{% endset %}
+{% set input %}
+  {% include "@bolt-components-form/form-input.twig" with {
+    attributes: {
+      placeholder: "E.g. ¥25,000,000,000",
+      required: true,
+      type: "text",
+      id: for_value,
+      "data-format-input": "currency-ja",
+      inputmode: "decimal"
+    },
+  } only %}
+{% endset %}
+{% include "@bolt-components-form/form-element.twig" with {
+  labelDisplay: "before",
+  label: label,
+  children: input
+} only %}
+
+{% set for_value = "number" %}
+{% set label %}
+  {% include "@bolt-components-form/form-label.twig" with {
+    title: "Example of US Currency auto formatting",
+    attributes: {
+      for: for_value
+    },
+    displayType: "block"
+  } only %}
+{% endset %}
+{% set input %}
+  {% include "@bolt-components-form/form-input.twig" with {
+    attributes: {
+      placeholder: "E.g. 10,000,000",
+      required: true,
+      type: "text",
+      id: for_value,
+      "data-format-input": "number",
+      inputmode: "decimal"
+    },
+  } only %}
+{% endset %}
+{% include "@bolt-components-form/form-element.twig" with {
+  labelDisplay: "before",
+  label: label,
+  children: input
+} only %}
