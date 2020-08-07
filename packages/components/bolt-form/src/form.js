@@ -1,19 +1,5 @@
-import AutoNumeric from 'autonumeric';
-
 // TODO: limit to a .js class
 const inputs = document.querySelectorAll('.c-bolt-input');
-
-// const formatConfig = {
-//   numberOptions: {
-//     decimalCharacter: '.',
-//     digitGroupSeparator: ',',
-//     allowDecimalPadding: 'false',
-//     showOnlyNumbersOnFocus: true,
-//     emptyInputBehavior: 'press',
-//     unformatOnHover: false,
-//     formatOnPageLoad: false,
-//   },
-// };
 
 for (let i = 0, len = inputs.length; i < len; i++) {
   const input = inputs[i];
@@ -69,13 +55,6 @@ for (let i = 0, len = inputs.length; i < len; i++) {
     input.classList.add('is-filled');
   }
 
-  // Modify the input behavior to auto format based on the required format type
-  // if (inputType) {
-  //   const autoFormat = new AutoNumeric(input, {
-  //     ...formatConfig.numberOptions,
-  //   });
-  // }
-
   input.onchange = function() {
     if (input.value) {
       input.classList.add('is-filled');
@@ -86,7 +65,9 @@ for (let i = 0, len = inputs.length; i < len; i++) {
 
   input.onfocus = function() {
     input.classList.remove('is-touched');
-    typeBehaviors('remove', input, inputType);
+    if (inputType) {
+      typeBehaviors('remove', input, inputType);
+    }
     // In there were server-side errors, the 'is-invalid' class will be present
     // but should be removed on focus because the user is trying to fix them.
     input.classList.remove('is-invalid');
@@ -98,14 +79,9 @@ for (let i = 0, len = inputs.length; i < len; i++) {
 
   input.onblur = function(e) {
     if (inputType) {
-      // const autoFormat = new AutoNumeric(input, {
-      //   ...formatConfig.numberOptions,
-      // });
-      // console.log(input.value);
       input.value = addCommas(input.value);
-      // input.value = input.value.toLocaleString();
+      typeBehaviors('add', input, inputType);
     }
-    typeBehaviors('add', input, inputType);
     if (!e.isTrusted) {
       // This blur event was triggered by a script, not a human, so don't mark
       // the input as is-touched (because it actually wasn't) or show errors.
@@ -118,11 +94,6 @@ for (let i = 0, len = inputs.length; i < len; i++) {
 
     input.showErrors();
   };
-
-  // input.addEventListener('mouseover', e => {
-  //   e.preventDefault();
-  //   console.log('hover');
-  // });
 
   // A custom event listener that allows other scripts to manually show errors.
   input.addEventListener(
