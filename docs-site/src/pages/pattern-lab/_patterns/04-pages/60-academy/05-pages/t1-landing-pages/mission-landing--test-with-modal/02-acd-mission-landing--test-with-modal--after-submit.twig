@@ -1,10 +1,10 @@
-{% extends "@bolt-academy/t1-mission-landing--test.twig" %}
+{% extends "@bolt-academy/acd-mission-landing--test.twig" %}
 
 {% block page_content %}
   {{ parent() }}
 
   {# @todo: how do we / should we be passing along the Badge to this? #}
-  {% include "@bolt-academy/_test-completed-modal--before-submit.twig" with {
+  {% include "@bolt-academy/_test-completed-modal--after-submit.twig" with {
     userFirstName: "Justin",
     missionName: "Low-Code Application Mission"
   } only %}
