@@ -130,7 +130,7 @@ $bolt-spacing-system-extras: (
 }
 
 /**
- * @todo: [Mai] deprecate these sizeless names.
+ * @todo: [Mai] We need to deprecate these sizeless names.
  */
 @each $prop in $bolt-spacing-prop-system {
   $prop-name: nth($prop, 1);
@@ -153,6 +153,31 @@ $bolt-spacing-system-extras: (
       #{$prop-name}-#{$direction}: var(
         --bolt-spacing-#{$axis}-medium
       ) !important;
+    }
+  }
+}
+
+/**
+ * @todo: [Mai] We need to deprecate these magic options.
+ */
+@each $size in $bolt-spacing-multiplier-system {
+  $size-name: nth($size, 1);
+
+  // All directions
+  .u-bolt-padding-#{$size-name}-squished {
+    padding: calc(var(--bolt-spacing-y-#{$size-name}) / 2)
+      var(--bolt-spacing-x-#{$size-name}) !important;
+  }
+
+  // Responsive all directions
+  @each $breakpoint in $bolt-breakpoints {
+    $breakpoint-name: nth($breakpoint, 1);
+
+    @include bolt-mq(#{$breakpoint-name}) {
+      .u-bolt-padding-#{$size-name}-squished\@#{$breakpoint-name} {
+        padding: calc(var(--bolt-spacing-y-#{$size-name}) / 2)
+          var(--bolt-spacing-x-#{$size-name}) !important;
+      }
     }
   }
 }

@@ -142,11 +142,16 @@ $bolt-object-grid-sizes: xsmall, small, large, xlarge;
   }
 
   @each $size in $bolt-object-grid-sizes {
-    &.o-bolt-grid--#{$size} {
-      margin-bottom: calc(var(--bolt-spacing-y-#{$size}) * -1);
+    // @todo: [Mai] ommitting xlarge to prevent breaking changes. Grid will be reworked into the Layouts folder. Only introduce breaking changes then.
+    @if (
+      $size != 'xlarge'
+    ) {
+      &.o-bolt-grid--#{$size} {
+        margin-bottom: calc(var(--bolt-spacing-y-#{$size}) * -1);
 
-      > .o-bolt-grid__cell {
-        padding-bottom: var(--bolt-spacing-y-#{$size});
+        > .o-bolt-grid__cell {
+          padding-bottom: var(--bolt-spacing-y-#{$size});
+        }
       }
     }
   }
