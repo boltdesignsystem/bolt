@@ -3,6 +3,55 @@ const inputs = document.querySelectorAll('.c-bolt-input');
 
 for (let i = 0, len = inputs.length; i < len; i++) {
   const input = inputs[i];
+  const inputType = input.dataset.formatInput;
+
+  const typeBehaviors = (operator, input, inputType) => {
+    if (inputType && input.value.length > 0) {
+      input.value = input.value.replace(/[$]/g, '');
+      input.value = input.value.replace(/[¥]/g, '');
+      input.value = input.value.replace(/[%]/g, '');
+      if (operator === 'add') {
+        switch (inputType) {
+          case 'currency-us':
+            input.value = '$' + input.value;
+            break;
+          case 'currency-ja':
+            input.value = '¥' + input.value;
+            break;
+          case 'percent':
+            input.value += '%';
+            break;
+          default:
+        }
+      } else {
+        input.value = input.value.replace(/,/g, '');
+        switch (inputType) {
+          case 'currency-us':
+            input.value = input.value.replace('$', '');
+            break;
+          case 'currency-ja':
+            input.value = input.value.replace('¥', '');
+            break;
+          case 'percent':
+            input.value = input.value.replace('%', '');
+            break;
+          default:
+        }
+      }
+    }
+  };
+
+  const addCommas = string => {
+    const rgx = /(\d+)(\d{3})/;
+    string += '';
+    const x = string.split('.');
+    let x1 = x[0];
+    const x2 = x.length > 1 ? '.' + x[1] : '';
+    while (rgx.test(x1)) {
+      x1 = x1.replace(rgx, '$1,$2');
+    }
+    return x1 + x2;
+  };
 
   // Check if the field has pre-filled text from the server side
   if (input.value) {
@@ -19,7 +68,9 @@ for (let i = 0, len = inputs.length; i < len; i++) {
 
   input.onfocus = function() {
     input.classList.remove('is-touched');
-
+    if (inputType) {
+      typeBehaviors('remove', input, inputType);
+    }
     // In there were server-side errors, the 'is-invalid' class will be present
     // but should be removed on focus because the user is trying to fix them.
     input.classList.remove('is-invalid');
@@ -30,6 +81,10 @@ for (let i = 0, len = inputs.length; i < len; i++) {
   };
 
   input.onblur = function(e) {
+    if (inputType) {
+      typeBehaviors('add', input, inputType);
+      input.value = addCommas(input.value);
+    }
     if (!e.isTrusted) {
       // This blur event was triggered by a script, not a human, so don't mark
       // the input as is-touched (because it actually wasn't) or show errors.

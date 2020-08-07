@@ -12,8 +12,6 @@ bolt-action-blocks {
 }
 
 .c-bolt-action-blocks {
-  @include bolt-margin(0 -1px -1px 0);
-  @include bolt-padding(0);
   display: flex;
   flex-wrap: wrap;
   transform: translate3d(
@@ -21,6 +19,8 @@ bolt-action-blocks {
     0,
     0
   ); //Force hardware accelerated rendering to cleanly remove extra border from showing up sometimes
+  margin: 0 -1px -1px 0;
+  padding: 0;
   list-style: none;
 }
 

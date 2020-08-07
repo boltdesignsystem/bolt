@@ -145,12 +145,11 @@ bolt-background {
 
 .c-bolt-background__video,
 .c-bolt-background__image {
-  @include bolt-margin(auto);
-
   position: absolute;
   min-width: 100%;
   max-width: none; //Required to handle instances where a max-width is previously set.
   min-height: 100%;
+  margin: auto;
 
   @supports (object-fit: cover) {
     display: block;
@@ -274,7 +273,7 @@ bolt-background {
   right: 0;
   bottom: 0;
   left: 0;
-  margin-top: calc(#{bolt-v-spacing(xxxlarge)} * -100%);
+  margin-top: calc(var(--bolt-spacing-y-xxxlarge) * -100%);
   pointer-events: none;
   background-position: center center;
   background-repeat: no-repeat;

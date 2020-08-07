@@ -6,7 +6,8 @@ bolt-dropdown {
   @include bolt-css-vars(
     (
       --c-bolt-nav-item-opacity: 0,
-      --c-bolt-nav-item-transform: translateY(bolt-spacing(large) * -1),
+      --c-bolt-nav-item-transform:
+        translateY(calc(var(--bolt-spacing-y-large) * -1)),
       --c-bolt-nav-indicator-opacity: 0,
     )
   );
@@ -81,10 +82,6 @@ bolt-dropdown {
 
 .c-bolt-dropdown__header-button,
 .c-bolt-dropdown__header-label {
-  @include bolt-padding-top(small);
-  @include bolt-padding-bottom(small);
-  @include bolt-padding-right(small);
-  @include bolt-padding-left(small);
   @include bolt-font-size(medium);
   @include bolt-font-weight(semibold);
 
@@ -94,8 +91,8 @@ bolt-dropdown {
   -webkit-appearance: none;
   position: relative;
   width: 100%;
-
   margin-bottom: 0;
+  padding: var(--bolt-spacing-y-small) var(--bolt-spacing-x-small);
   font: inherit;
   color: bolt-theme(headline-link);
   text-align: left; // otherwise some dropdown menus are center aligned in the Shadow DOM
@@ -227,9 +224,9 @@ bolt-dropdown {
   align-items: center;
   position: relative;
   overflow: hidden; // so transformed icons don't spill out
-  margin-top: bolt-spacing(xsmall) * -1;
-  margin-right: bolt-spacing(small) * -1;
-  margin-bottom: bolt-spacing(xsmall) * -1;
+  margin-top: calc(var(--bolt-spacing-y-xsmall) * -1);
+  margin-right: calc(var(--bolt-spacing-x-small) * -1);
+  margin-bottom: calc(var(--bolt-spacing-y-xsmall) * -1);
 
   &:before {
     content: '';
@@ -364,16 +361,11 @@ bolt-dropdown {
 }
 
 .c-bolt-dropdown__content-inner {
-  @include bolt-padding-top(xsmall);
-  @include bolt-padding-bottom(xsmall);
-
-  // padding-top: 13px;
-  // padding-bottom: 13px;
-  // padding-left: 16px;
-  // padding-right: 16px;
   opacity: bolt-opacity(0);
   position: relative;
   overflow: auto;
+  padding-top: var(--bolt-spacing-y-xsmall);
+  padding-bottom: var(--bolt-spacing-y-xsmall);
   transition: opacity 0.1s ease;
   -webkit-overflow-scrolling: touch;
 

@@ -8,10 +8,9 @@
 @include bolt-custom-element('bolt-figure', block, medium);
 
 .c-bolt-figure {
-  @include bolt-margin(0);
-  @include bolt-padding(0);
-
   display: block;
+  margin: 0;
+  padding: 0;
 }
 
 .c-bolt-figure__media {
@@ -19,8 +18,8 @@
 }
 
 .c-bolt-figure__caption {
-  @include bolt-padding-top(xsmall);
   @include bolt-font-size(xsmall);
 
   display: block;
+  padding-top: var(--bolt-spacing-y-xsmall);
 }
