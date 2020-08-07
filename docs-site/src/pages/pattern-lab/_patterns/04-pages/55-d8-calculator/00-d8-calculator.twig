@@ -24,7 +24,7 @@
 
     <div class="o-bolt-grid__cell u-bolt-width-12/12">
       {% set form_children %}
-        <ul class="o-bolt-grid o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--top">
+        <ul class="o-bolt-grid o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--bottom">
           <li class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@medium">
             <div class="c-bolt-input-list__item">
               {% set for_value = "www-calculator-total-revenue" %}
@@ -45,6 +45,7 @@
                     type: "text",
                     id: for_value,
                     "data-format-input": "currency-us",
+                    pattern: "[0-9%$.,¥]+",
                     inputmode: "decimal"
                   },
                 } only %}
@@ -76,6 +77,7 @@
                     type: "text",
                     id: for_value,
                     "data-format-input": "percent",
+                    pattern: "[0-9%$.,¥]+",
                     inputmode: "decimal"
                   },
                 } only %}
@@ -107,6 +109,7 @@
                     type: "text",
                     id: for_value,
                     "data-format-input": "number",
+                    pattern: "[0-9%$.,¥]+",
                     inputmode: "decimal"
                   },
                 } only %}
@@ -138,6 +141,7 @@
                     type: "text",
                     id: for_value,
                     "data-format-input": "currency-us",
+                    pattern: "[0-9%$.,¥]+",
                     inputmode: "decimal"
                   },
                 } only %}
@@ -169,6 +173,7 @@
                     type: "text",
                     id: for_value,
                     "data-format-input": "currency-us",
+                    pattern: "[0-9%$.,¥]+",
                     inputmode: "decimal"
                   },
                 } only %}
