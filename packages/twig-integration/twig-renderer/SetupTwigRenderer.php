@@ -13,7 +13,7 @@ function addBoltCoreExtensions(\Twig\Environment &$env, $config) {
   }));
 
   // temporarily disable Twig schema validation for the static site generator till the unknown 500 error being thrown is troubleshooted
-  $env->addGlobal('enable_json_schema_validation', true);
+  $env->addGlobal('enable_json_schema_validation', false);
 }
 
 function addBoltExtraExtensions(\Twig\Environment &$env, $config) {
