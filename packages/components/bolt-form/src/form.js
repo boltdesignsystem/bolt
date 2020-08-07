@@ -7,6 +7,9 @@ for (let i = 0, len = inputs.length; i < len; i++) {
 
   const typeBehaviors = (operator, input, inputType) => {
     if (inputType && input.value.length > 0) {
+      input.value = input.value.replace(/[$]/g, '');
+      input.value = input.value.replace(/[¥]/g, '');
+      input.value = input.value.replace(/[%]/g, '');
       if (operator === 'add') {
         switch (inputType) {
           case 'currency-us':
@@ -79,8 +82,8 @@ for (let i = 0, len = inputs.length; i < len; i++) {
 
   input.onblur = function(e) {
     if (inputType) {
-      input.value = addCommas(input.value);
       typeBehaviors('add', input, inputType);
+      input.value = addCommas(input.value);
     }
     if (!e.isTrusted) {
       // This blur event was triggered by a script, not a human, so don't mark
