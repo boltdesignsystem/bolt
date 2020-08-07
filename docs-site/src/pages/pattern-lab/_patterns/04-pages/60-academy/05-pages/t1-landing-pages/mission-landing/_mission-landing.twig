@@ -1,13 +1,13 @@
-{% extends "@bolt-blueprints/_blueprints-landing-page-template.twig" %}
+{% extends "@bolt-academy/_academy-landing-page-template.twig" %}
 
-{% import "@bolt-blueprints/_macros.twig" as macros %}
+{% import "@bolt-academy/_macros.twig" as macros %}
 
 {% block page_content %}
 
-  {% embed "@bolt-blueprints/_landing-page-inner-layout.twig" %}
+  {% embed "@bolt-academy/_landing-page-inner-layout.twig" %}
 
     {% block hero_content %}
-      {% include "@bolt-blueprints/_landing-page-hero.twig" %}
+      {% include "@bolt-academy/_landing-page-hero.twig" %}
     {% endblock %}
 
     {% block main_content %}
@@ -15,7 +15,7 @@
       {% set trainingList %}
         {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
           {% cell "u-bolt-width-1/1 u-bolt-width-10/12@small u-bolt-width-10/12@medium" %}
-            {% include "@bolt-blueprints/_hide-show-completed.twig" with {
+            {% include "@bolt-academy/_hide-show-completed.twig" with {
               hideCompleted: hideCompleted | default(false)
             } only %}
           {% endcell %}
@@ -38,7 +38,7 @@
                       {% else %}
                         {% if numberOfCompletedItems != 0 %}
                           {% set contentItemsConsolidated = contentItemsConsolidated | merge([
-                            macros.include("@bolt-blueprints/_horizontal-divider.twig", { dividerText: "Completed (" ~ numberOfCompletedItems ~ ")" })
+                            macros.include("@bolt-academy/_horizontal-divider.twig", { dividerText: "Completed (" ~ numberOfCompletedItems ~ ")" })
                           ]) %}
                           {% set numberOfCompletedItems = 0 %}
                         {% endif %}
@@ -52,7 +52,7 @@
                   {% for item in contentItemsConsolidated %}
                     {% cell "u-bolt-width-12/12" %}
                       {% if item.cardTitle %}
-                        {% include "@bolt-blueprints/_horizontal-card.twig" with item %}
+                        {% include "@bolt-academy/_horizontal-card.twig" with item %}
                       {% else %}
                         {{ item }}
                       {% endif %}
@@ -60,7 +60,7 @@
 
                   {% if not loop.last %}
                     {% cell "u-bolt-width-12/12" %}
-                      {% include "@bolt-blueprints/_card-spacer.twig" %}
+                      {% include "@bolt-academy/_card-spacer.twig" %}
                     {% endcell %}
                   {% endif %}
                 {% endfor %}
@@ -70,7 +70,7 @@
         {% endgrid %}
       {% endset %}
 
-      {% embed "@bolt-blueprints/_landing-page-main-1-col.twig" %}
+      {% embed "@bolt-academy/_landing-page-main-1-col.twig" %}
         {% block supplemental_content %}
           {{ trainingList }}
         {% endblock %}

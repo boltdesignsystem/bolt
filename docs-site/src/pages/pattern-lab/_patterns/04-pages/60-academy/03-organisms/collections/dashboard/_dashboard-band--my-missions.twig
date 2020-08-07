@@ -1,4 +1,4 @@
-{% import "@bolt-blueprints/_macros.twig" as macros %}
+{% import "@bolt-academy/_macros.twig" as macros %}
 
 {% set cardContentItems = [
     {
@@ -768,7 +768,7 @@
 {% endif %}
 
 
-{% include "@bolt-blueprints/_dashboard-band.twig" with {
+{% include "@bolt-academy/_dashboard-band.twig" with {
   sectionTitle: sectionTitle|default("My Missions"),
   theme: "light",
   sectionButtons: sectionButtons ?? [

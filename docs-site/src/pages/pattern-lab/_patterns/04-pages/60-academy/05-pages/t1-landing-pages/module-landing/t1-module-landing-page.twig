@@ -1,6 +1,6 @@
-{% extends "@bolt-blueprints/_blueprints-landing-page-template.twig" %}
+{% extends "@bolt-academy/_academy-landing-page-template.twig" %}
 
-{% import "@bolt-blueprints/_macros.twig" as macros %}
+{% import "@bolt-academy/_macros.twig" as macros %}
 
 {% set breadcrumbs = [
   {
@@ -18,10 +18,10 @@
 
 {% block page_content %}
 
-  {% embed "@bolt-blueprints/_landing-page-inner-layout.twig" %}
+  {% embed "@bolt-academy/_landing-page-inner-layout.twig" %}
 
     {% block hero_content %}
-      {% include "@bolt-blueprints/_landing-page-hero.twig" %}
+      {% include "@bolt-academy/_landing-page-hero.twig" %}
     {% endblock %}
 
     {% block main_content %}
@@ -110,34 +110,34 @@
                   ],
                 },
                 items: [
-                  macros.include("@bolt-blueprints/_module-topic-item.twig", {
+                  macros.include("@bolt-academy/_module-topic-item.twig", {
                     text: "Data types",
                     duration: "10 mins",
                     viewed: true,
                   }),
-                  macros.include("@bolt-blueprints/_module-topic-item.twig", {
+                  macros.include("@bolt-academy/_module-topic-item.twig", {
                     text: "Low-code application development in consectetuer turpis",
                     duration: "10 mins",
                     viewed: true,
                   }),
-                  macros.include("@bolt-blueprints/_module-topic-item.twig", {
+                  macros.include("@bolt-academy/_module-topic-item.twig", {
                     text: "Creating a data type",
                     duration: "5 mins",
                   }),
-                  macros.include("@bolt-blueprints/_module-topic-item.twig", {
+                  macros.include("@bolt-academy/_module-topic-item.twig", {
                     text: "Creating a data type with a really long title donec quam felis",
                     duration: "5 mins",
                   }),
-                  macros.include("@bolt-blueprints/_module-quiz-item.twig", {
+                  macros.include("@bolt-academy/_module-quiz-item.twig", {
                     text: "Module Quiz",
                     numberOfQuestionsText: "3 Questions",
                   }),
-                  macros.include("@bolt-blueprints/_module-quiz-item.twig", {
+                  macros.include("@bolt-academy/_module-quiz-item.twig", {
                     text: "Module Quiz",
                     numberOfQuestionsText: "3 Questions",
                     status: "passed"
                   }),
-                  macros.include("@bolt-blueprints/_module-quiz-item.twig", {
+                  macros.include("@bolt-academy/_module-quiz-item.twig", {
                     text: "Module Quiz",
                     numberOfQuestionsText: "3 Questions",
                     status: "failed"
@@ -149,7 +149,7 @@
         } only %}
       {% endset %}
 
-      {% embed "@bolt-blueprints/_landing-page-main-2-col.twig" %}
+      {% embed "@bolt-academy/_landing-page-main-2-col.twig" %}
         {% block supplemental_content %}
           {{ trainingSupplementalContent }}
         {% endblock %}

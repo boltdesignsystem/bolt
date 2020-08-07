@@ -13,7 +13,7 @@
 } only %}
   {% if breadcrumbs %}
     {% block content_before %}
-      {% import "@bolt-blueprints/_macros.twig" as macros %}
+      {% import "@bolt-academy/_macros.twig" as macros %}
 
       {% include "@bolt-components-breadcrumb/breadcrumb.twig" with {
         "contentItems": breadcrumbs | map(breadcrumb => breadcrumb.text and breadcrumb.url ? macros.include("@bolt-components-link/link.twig", {
@@ -47,7 +47,7 @@
       {% endif %}
 
       {% cell %}
-        {% include "@bolt-blueprints/_toolbar-actions.twig" with {
+        {% include "@bolt-academy/_toolbar-actions.twig" with {
           downloadButton: true
         } only %}
       {% endcell %}

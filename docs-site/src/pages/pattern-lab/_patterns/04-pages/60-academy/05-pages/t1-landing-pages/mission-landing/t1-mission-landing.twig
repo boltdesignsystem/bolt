@@ -1,6 +1,6 @@
-{% import "@bolt-blueprints/_macros.twig" as macros %}
+{% import "@bolt-academy/_macros.twig" as macros %}
 
-{% include "@bolt-blueprints/_mission-landing.twig" with {
+{% include "@bolt-academy/_mission-landing.twig" with {
   mainBackgroundImage: mainBackgroundImage,
   toolbarIcon: toolbarIcon,
   heroTitle: heroTitle,
@@ -105,7 +105,7 @@
       cardIcon: "brand-atom",
       cardDescription: bolt.faker.paragraph(3),
     },
-    macros.include("@bolt-blueprints/_badge.twig", {
+    macros.include("@bolt-academy/_badge.twig", {
       locked: hideCompleted
     }),
   ]

@@ -2,9 +2,9 @@
 {% set editButton = true %}
 {% set toolbarShowProgress = false %}
 
-{% extends "@bolt-blueprints/_blueprints-detail-page-template.twig" %}
+{% extends "@bolt-academy/_academy-detail-page-template.twig" %}
 
-{% import "@bolt-blueprints/_macros.twig" as macros %}
+{% import "@bolt-academy/_macros.twig" as macros %}
 
 {% set breadcrumbs = [
   {
@@ -297,6 +297,6 @@
 {% endblock %}
 
 {% block global_footer %}
-  {% include "@bolt-blueprints/_band--request-feedback.twig" %}
+  {% include "@bolt-academy/_band--request-feedback.twig" %}
   {{ parent() }}
 {% endblock %}

@@ -1,6 +1,6 @@
-{% extends "@bolt-blueprints/_blueprints-default-page-template.twig" %}
+{% extends "@bolt-academy/_academy-default-page-template.twig" %}
 
-{% import "@bolt-blueprints/_macros.twig" as macros %}
+{% import "@bolt-academy/_macros.twig" as macros %}
 
 {% block page_content %}
   {% embed "@bolt-components-band/band.twig" with {
@@ -71,7 +71,7 @@
 
     {% cell "u-bolt-flex-grow" %}
       {% include "@bolt/form.twig" with {
-        children: macros.include("@bolt-blueprints/_select.twig", {
+        children: macros.include("@bolt-academy/_select.twig", {
           title: "Sort",
           options: [
             {
@@ -146,7 +146,7 @@
     spacing: "none",
     separator: "solid",
     items: [
-      macros.include("@bolt-blueprints/_completed-training-item.twig", {
+      macros.include("@bolt-academy/_completed-training-item.twig", {
         icon: {
           name: "brand-orbit",
           color: "teal",
@@ -160,7 +160,7 @@
         status: "Completed: August 1, 2019",
         lastUpdated: "Last Updated: July 12, 2019"
       }, false ),
-      macros.include("@bolt-blueprints/_completed-training-item.twig", {
+      macros.include("@bolt-academy/_completed-training-item.twig", {
         icon: {
           name: "brand-meteor",
           color: "orange",
@@ -175,7 +175,7 @@
         lastUpdated: "Last Updated: July 12, 2019",
         archived: true
       }, false ),
-      macros.include("@bolt-blueprints/_completed-training-item.twig", {
+      macros.include("@bolt-academy/_completed-training-item.twig", {
         icon: {
           name: "launchpad",
           color: "indigo",
@@ -202,7 +202,7 @@
         }, false ),
         badge: true,
       }, false ),
-      macros.include("@bolt-blueprints/_completed-training-item.twig", {
+      macros.include("@bolt-academy/_completed-training-item.twig", {
         icon: {
           name: "brand-orbit",
           color: "teal",
@@ -216,7 +216,7 @@
         status: "Completed: July 1, 2019",
         lastUpdated: "Last Updated: July 12, 2019"
       }, false ),
-      macros.include("@bolt-blueprints/_completed-training-item.twig", {
+      macros.include("@bolt-academy/_completed-training-item.twig", {
         icon: {
           name: "brand-meteor",
           color: "orange",
@@ -232,7 +232,7 @@
         archived: true,
         badge: true
       }, false ),
-      macros.include("@bolt-blueprints/_completed-training-item.twig", {
+      macros.include("@bolt-academy/_completed-training-item.twig", {
         icon: {
           name: "brand-orbit",
           color: "teal",
@@ -252,6 +252,6 @@
     }
   } only %}
 
-  {% include "@bolt-blueprints/_pagination.twig" %}
+  {% include "@bolt-academy/_pagination.twig" %}
 
 {% endblock %}

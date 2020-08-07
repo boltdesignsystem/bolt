@@ -1,24 +1,24 @@
 {% set hideGlobalSearch = true %}
 
-{% import "@bolt-blueprints/_macros.twig" as macros %}
+{% import "@bolt-academy/_macros.twig" as macros %}
 
-{% extends "@bolt-blueprints/_blueprints-default-page-template.twig" %}
+{% extends "@bolt-academy/_academy-default-page-template.twig" %}
 
 {% block page_content %}
-  {% include "@bolt-blueprints/_search-bar.twig" %}
-  {% include "@bolt-blueprints/_search-results-hero.twig" %}
-  {% include "@bolt-blueprints/_nav--search.twig" %}
+  {% include "@bolt-academy/_search-bar.twig" %}
+  {% include "@bolt-academy/_search-results-hero.twig" %}
+  {% include "@bolt-academy/_nav--search.twig" %}
 
   {% set content %}
-    {% include "@bolt-blueprints/_chips--search-filter.twig" %}
+    {% include "@bolt-academy/_chips--search-filter.twig" %}
 
     {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
       {% cell "u-bolt-width-1/1 u-bolt-width-3/12@medium" %}
-        {% include "@bolt-blueprints/_form--search-filter.twig" %}
+        {% include "@bolt-academy/_form--search-filter.twig" %}
       {% endcell %}
       {% cell "u-bolt-width-1/1 u-bolt-width-9/12@medium" %}
-        {% include "@bolt-blueprints/_search-results--results-list.twig" %}
-        {% include "@bolt-blueprints/_pagination.twig" %}
+        {% include "@bolt-academy/_search-results--results-list.twig" %}
+        {% include "@bolt-academy/_pagination.twig" %}
       {% endcell %}
     {% endgrid %}
   {% endset %}
@@ -32,7 +32,7 @@
 
 {% block global_footer %}
   <div class="o-bolt-wrapper u-bolt-flex-grow-none u-bolt-margin-top-auto">
-    {% include "@bolt-blueprints/_band--instructor-led-training.twig" %}
+    {% include "@bolt-academy/_band--instructor-led-training.twig" %}
   </div>
   {{ parent() }}
 {% endblock %}

@@ -1,6 +1,6 @@
-{% extends "@bolt-blueprints/_blueprints-landing-page-template.twig" %}
+{% extends "@bolt-academy/_academy-landing-page-template.twig" %}
 
-{% import "@bolt-blueprints/_macros.twig" as macros %}
+{% import "@bolt-academy/_macros.twig" as macros %}
 
 {% set background = {
   opacity: "full",
@@ -10,10 +10,10 @@
 
 {% block page_content %}
 
-  {% embed "@bolt-blueprints/_landing-page-inner-layout.twig" %}
+  {% embed "@bolt-academy/_landing-page-inner-layout.twig" %}
 
     {% block hero_content %}
-      {% include "@bolt-blueprints/_landing-page-hero.twig" %}
+      {% include "@bolt-academy/_landing-page-hero.twig" %}
     {% endblock %}
 
     {% block main_content %}
@@ -85,7 +85,7 @@
           },
           body: {
             content: [
-              macros.include("@bolt-blueprints/_headline-with-logo.twig", {
+              macros.include("@bolt-academy/_headline-with-logo.twig", {
                 headline: macros.include("@bolt-components-headline/headline.twig", {
                   size: "xlarge",
                   text: "Before you begin...",
@@ -156,7 +156,7 @@
         } only %}
       {% endset %}
 
-      {% embed "@bolt-blueprints/_landing-page-main-2-col.twig" %}
+      {% embed "@bolt-academy/_landing-page-main-2-col.twig" %}
         {% block supplemental_content %}
           {{ trainingSupplementalContent }}
         {% endblock %}
@@ -171,6 +171,6 @@
 {% endblock %}
 
 {% block global_footer %}
-  {% include "@bolt-blueprints/_band--request-feedback.twig" %}
+  {% include "@bolt-academy/_band--request-feedback.twig" %}
   {{ parent() }}
 {% endblock %}

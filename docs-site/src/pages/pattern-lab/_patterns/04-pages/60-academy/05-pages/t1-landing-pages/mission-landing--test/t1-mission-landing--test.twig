@@ -1,19 +1,19 @@
-{% extends "@bolt-blueprints/_blueprints-landing-page-template.twig" %}
+{% extends "@bolt-academy/_academy-landing-page-template.twig" %}
 
-{% import "@bolt-blueprints/_macros.twig" as macros %}
+{% import "@bolt-academy/_macros.twig" as macros %}
 
 {% block page_content %}
 
-  {% embed "@bolt-blueprints/_landing-page-inner-layout.twig" %}
+  {% embed "@bolt-academy/_landing-page-inner-layout.twig" %}
 
     {% block hero_content %}
-      {% include "@bolt-blueprints/_landing-page-hero.twig" %}
+      {% include "@bolt-academy/_landing-page-hero.twig" %}
     {% endblock %}
 
     {% block main_content %}
 
       {% set trainingSupplementalContent %}
-        {% include "@bolt-blueprints/_h5p-embed.twig" %}
+        {% include "@bolt-academy/_h5p-embed.twig" %}
         {% grid "o-bolt-grid--center o-bolt-grid--center o-bolt-grid--flex"  %}
           {% cell %}
             {% include "@bolt-components-button/button.twig" with {
@@ -33,7 +33,7 @@
         {% endgrid %}
       {% endset %}
 
-      {% embed "@bolt-blueprints/_landing-page-main-1-col.twig" %}
+      {% embed "@bolt-academy/_landing-page-main-1-col.twig" %}
         {% block supplemental_content %}
           {{ trainingSupplementalContent }}
         {% endblock %}

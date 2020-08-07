@@ -1,5 +1,5 @@
 {% set modalContent %}
-  {% import "@bolt-blueprints/_macros.twig" as macros %}
+  {% import "@bolt-academy/_macros.twig" as macros %}
 
   {% include "@bolt-components-card-replacement/card-replacement.twig" with {
     theme: "dark",
@@ -75,7 +75,7 @@
           ] | join('')
         },
       }),
-      macros.include("@bolt-blueprints/_test-completed-modal--return-to-mission.twig"),
+      macros.include("@bolt-academy/_test-completed-modal--return-to-mission.twig"),
       macros.include("@bolt-components-card-replacement/_card-replacement-body.twig", {
         body: {
           attributes: {
