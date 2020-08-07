@@ -1,0 +1,175 @@
+$www-calculator-logo-icon-size: 38px; // Hard px is used to avoid subpixel issues on transition
+$www-calculator-logo-spacing-size: 3px; // Hard px is used to avoid subpixel issues on transition
+
+.c-www-calculator-logo {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-content: space-around;
+  width: calc(
+    #{$www-calculator-logo-icon-size} * 2 + #{$www-calculator-logo-spacing-size} *
+      4
+  );
+  height: calc(
+    #{$www-calculator-logo-icon-size} * 2 + #{$www-calculator-logo-spacing-size} *
+      4
+  );
+  margin-bottom: var(--bolt-spacing-y-medium);
+  color: bolt-color(indigo);
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  span {
+    transform: scale(0) rotate(0deg);
+    width: calc(
+      #{$www-calculator-logo-icon-size} + #{$www-calculator-logo-spacing-size}
+    );
+    height: calc(
+      #{$www-calculator-logo-icon-size} + #{$www-calculator-logo-spacing-size}
+    );
+    font-size: $www-calculator-logo-icon-size;
+    line-height: 1;
+    text-align: center;
+    border-radius: bolt-border-radius(full);
+    background-color: bolt-color(white);
+    transition: transform $bolt-transition;
+    animation: 3s ease-in-out .5s forwards a-www-calculator-logo-spin;
+
+    @media (prefers-reduced-motion) {
+      animation: none; // Do not animate if the user has expressed their preference for reduced motion.
+    }
+
+    &:nth-child(2) {
+      background-color: bolt-color(yellow);
+    }
+
+    &:nth-child(3) {
+      background-color: bolt-color(teal);
+    }
+  }
+}
+
+@keyframes a-www-calculator-logo-spin {
+  1% {
+    transform: scale(0) rotate(0deg);
+  }
+
+  6% {
+    transform: scale(1) rotate(90deg);
+  }
+
+  100% {
+    transform: scale(1) rotate(2160deg);
+  }
+}
+
+.c-www-calculator-fade-in-content {
+  .o-bolt-grid__cell {
+    opacity: 0;
+    transform: translate3d(0, -10px, 0);
+    animation: .5s ease-in-out .5s forwards a-www-calculator-fade-in-down;
+
+    @media (prefers-reduced-motion) {
+      animation: none; // Do not animate if the user has expressed their preference for reduced motion.
+    }
+  }
+}
+
+@keyframes a-www-calculator-fade-in-down {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, -10px, 0)
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0)
+  }
+}
+
+//Results Graph
+.c-www-results-graph {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: var(--bolt-spacing-y-medium);
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  @include bolt-mq(small) {
+    flex-direction: row;
+  }
+
+  &__icon,
+  &__box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  &__box {
+    width: 100%;
+    padding: var(--bolt-spacing-y-medium) var(--bolt-spacing-x-medium);
+    border-radius: bolt-border-radius(small);
+
+    &--gray {
+      color: bolt-text-contrast(bolt-color(gray, dark));
+      background-color: bolt-color(gray, dark);
+    }
+
+    &--indigo {
+      color: bolt-text-contrast(bolt-color(indigo, light));
+      background-color: bolt-color(indigo, light);
+    }
+
+    &--teal {
+      color: bolt-text-contrast(bolt-color(teal));
+      background-color: bolt-color(teal);
+    }
+
+    &--orange {
+      color: bolt-text-contrast(bolt-color(orange));
+      background-color: bolt-color(orange);
+    }
+  }
+
+  &__icon {
+    padding: var(--bolt-spacing-y-xsmall) var(--bolt-spacing-x-xsmall);
+    color: bolt-color(gray, dark);
+
+    > * {
+      transform: rotate(270deg); // Rotating it to be arrow right
+
+      @include bolt-mq(small) {
+        transform: rotate(180deg); // Rotating it to be arrow down
+      }
+    }
+  }
+}
+
+.c-www-results-stat {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: center;
+
+  &__headline {
+    display: block;
+    font-size: var(--bolt-type-font-size-xlarge);
+    font-weight: var(--bolt-type-font-weight-bold);
+    line-height: var(--bolt-type-line-height-xlarge);
+
+    &--xxlarge {
+      font-size: var(--bolt-type-font-size-xxlarge);
+      line-height: var(--bolt-type-line-height-xxlarge);
+    }
+  }
+
+  &__text {
+    display: block;
+    font-size: var(--bolt-type-font-size-small);
+    line-height: var(--bolt-type-line-height-small);
+  }
+}

@@ -5,10 +5,10 @@ bolt-dropdown {
 
   @include bolt-css-vars(
     (
-      --bolt-nav-item-opacity: 0,
-      --bolt-nav-item-transform:
+      --c-bolt-nav-item-opacity: 0,
+      --c-bolt-nav-item-transform:
         translateY(calc(var(--bolt-spacing-y-large) * -1)),
-      --bolt-nav-indicator-opacity: 0,
+      --c-bolt-nav-indicator-opacity: 0,
     )
   );
 
@@ -16,9 +16,9 @@ bolt-dropdown {
     @include bolt-mq(small) {
       @include bolt-css-vars(
         (
-          --bolt-nav-item-opacity: 1,
-          --bolt-nav-item-transform: none,
-          --bolt-nav-indicator-opacity: 1,
+          --c-bolt-nav-item-opacity: 1,
+          --c-bolt-nav-item-transform: none,
+          --c-bolt-nav-indicator-opacity: 1,
         )
       );
     }
@@ -447,8 +447,8 @@ bolt-dropdown {
 }
 
 .c-bolt-nav__item {
-  opacity: var(--bolt-nav-item-opacity, 1);
-  transform: var(--bolt-nav-item-transform, none);
+  opacity: var(--c-bolt-nav-item-opacity, 1);
+  transform: var(--c-bolt-nav-item-transform, none);
   transition: opacity 0.35s ease-out, transform 0.35s ease-out; // transition:
 
   .c-bolt-dropdown--collapse\@small & {
@@ -484,8 +484,8 @@ bolt-dropdown {
   // transform: none;
   @include bolt-css-vars(
     (
-      --bolt-nav-item-opacity: 1,
-      --bolt-nav-item-transform: none,
+      --c-bolt-nav-item-opacity: 1,
+      --c-bolt-nav-item-transform: none,
     )
   );
 }
@@ -493,9 +493,9 @@ bolt-dropdown {
 .c-bolt-dropdown__content--opened {
   @include bolt-css-vars(
     (
-      --bolt-nav-item-opacity: 1,
-      --bolt-nav-item-transform: none,
-      --bolt-nav-indicator-opacity: 1,
+      --c-bolt-nav-item-opacity: 1,
+      --c-bolt-nav-item-transform: none,
+      --c-bolt-nav-indicator-opacity: 1,
     )
   );
 }
@@ -503,13 +503,13 @@ bolt-dropdown {
 .c-bolt-dropdown__content:not(.c-bolt-dropdown__content--open):not(.c-bolt-dropdown__content--opened) {
   @include bolt-css-vars(
     (
-      --bolt-nav-indicator-transform: -100px,
+      --c-bolt-nav-indicator-transform: -100px,
     )
   );
 }
 
 // .c-bolt-dropdown__content--open:not(.c-bolt-dropdown__content--opened) {
-//    --bolt-nav-indicator-transform: -100px !important;
+//    --c-bolt-nav-indicator-transform: -100px !important;
 // }
 
 /* transform: none; */

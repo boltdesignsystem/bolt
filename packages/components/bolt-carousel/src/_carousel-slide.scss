@@ -16,33 +16,34 @@ bolt-carousel-slide {
     flex-direction: column;
     flex-shrink: 1;
     box-sizing: content-box;
-    padding-right: var(--bolt-carousel-space-around);
-    padding-left: var(--bolt-carousel-space-around);
+    padding-right: var(--c-bolt-carousel-space-around);
+    padding-left: var(--c-bolt-carousel-space-around);
   }
 
   &:not(.is-ready):not(:last-of-type) {
     margin-right: calc(
-      var(--bolt-carousel-space-between) - var(--bolt-carousel-space-around) * 2
+      var(--c-bolt-carousel-space-between) - var(--c-bolt-carousel-space-around) *
+        2
     );
 
     bolt-carousel[space-between='small'] & {
       margin-right: calc(
-        var(--bolt-carousel-space-between) - var(--bolt-carousel-space-around) *
-          2
+        var(--c-bolt-carousel-space-between) -
+          var(--c-bolt-carousel-space-around) * 2
       );
     }
 
     bolt-carousel[space-between='none'] & {
       margin-right: calc(
-        var(--bolt-carousel-space-between) - var(--bolt-carousel-space-around) *
-          2
+        var(--c-bolt-carousel-space-between) -
+          var(--c-bolt-carousel-space-around) * 2
       );
     }
 
     bolt-carousel[space-between='large'] & {
       margin-right: calc(
-        var(--bolt-carousel-space-between) - var(--bolt-carousel-space-around) *
-          2
+        var(--c-bolt-carousel-space-between) -
+          var(--c-bolt-carousel-space-around) * 2
       );
     }
   }
