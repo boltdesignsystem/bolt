@@ -132,24 +132,27 @@ $bolt-spacing-system-extras: (
 /**
  * @todo: [Mai] deprecate these sizeless names.
  */
-.u-bolt-margin {
-  /* stylelint-disable-next-line */
-  @extend .u-bolt-margin-medium;
-}
+@each $prop in $bolt-spacing-prop-system {
+  $prop-name: nth($prop, 1);
 
-.u-bolt-padding {
-  /* stylelint-disable-next-line */
-  @extend .u-bolt-padding-medium;
-}
-
-@each $direction in $bolt-spacing-direction-system {
-  .u-bolt-margin-#{$direction} {
-    /* stylelint-disable-next-line */
-    @extend .u-bolt-margin-#{$direction}-medium;
+  .u-bolt-#{$prop-name} {
+    #{$prop-name}: var(--bolt-spacing-y-medium)
+        var(--bolt-spacing-x-medium) !important;
   }
 
-  .u-bolt-padding-#{$direction} {
-    /* stylelint-disable-next-line */
-    @extend .u-bolt-padding-#{$direction}-medium;
+  @each $direction in $bolt-spacing-direction-system {
+    $axis: '';
+
+    @if $direction != top and $direction != bottom {
+      $axis: 'x';
+    } @else {
+      $axis: 'y';
+    }
+
+    .u-bolt-#{$prop-name}-#{$direction} {
+      #{$prop-name}-#{$direction}: var(
+        --bolt-spacing-#{$axis}-medium
+      ) !important;
+    }
   }
 }
