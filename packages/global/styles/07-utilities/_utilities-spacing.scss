@@ -130,26 +130,54 @@ $bolt-spacing-system-extras: (
 }
 
 /**
- * @todo: [Mai] deprecate these sizeless names.
+ * @todo: [Mai] We need to deprecate these sizeless names.
  */
-.u-bolt-margin {
-  /* stylelint-disable-next-line */
-  @extend .u-bolt-margin-medium;
-}
+@each $prop in $bolt-spacing-prop-system {
+  $prop-name: nth($prop, 1);
 
-.u-bolt-padding {
-  /* stylelint-disable-next-line */
-  @extend .u-bolt-padding-medium;
-}
-
-@each $direction in $bolt-spacing-direction-system {
-  .u-bolt-margin-#{$direction} {
-    /* stylelint-disable-next-line */
-    @extend .u-bolt-margin-medium;
+  .u-bolt-#{$prop-name} {
+    #{$prop-name}: var(--bolt-spacing-y-medium)
+        var(--bolt-spacing-x-medium) !important;
   }
 
-  .u-bolt-padding-#{$direction} {
-    /* stylelint-disable-next-line */
-    @extend .u-bolt-padding-medium;
+  @each $direction in $bolt-spacing-direction-system {
+    $axis: '';
+
+    @if $direction != top and $direction != bottom {
+      $axis: 'x';
+    } @else {
+      $axis: 'y';
+    }
+
+    .u-bolt-#{$prop-name}-#{$direction} {
+      #{$prop-name}-#{$direction}: var(
+        --bolt-spacing-#{$axis}-medium
+      ) !important;
+    }
+  }
+}
+
+/**
+ * @todo: [Mai] We need to deprecate these magic options.
+ */
+@each $size in $bolt-spacing-multiplier-system {
+  $size-name: nth($size, 1);
+
+  // All directions
+  .u-bolt-padding-#{$size-name}-squished {
+    padding: calc(var(--bolt-spacing-y-#{$size-name}) / 2)
+      var(--bolt-spacing-x-#{$size-name}) !important;
+  }
+
+  // Responsive all directions
+  @each $breakpoint in $bolt-breakpoints {
+    $breakpoint-name: nth($breakpoint, 1);
+
+    @include bolt-mq(#{$breakpoint-name}) {
+      .u-bolt-padding-#{$size-name}-squished\@#{$breakpoint-name} {
+        padding: calc(var(--bolt-spacing-y-#{$size-name}) / 2)
+          var(--bolt-spacing-x-#{$size-name}) !important;
+      }
+    }
   }
 }
