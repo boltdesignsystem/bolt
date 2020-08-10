@@ -155,11 +155,10 @@ $bolt-tooltip-bubble-border-color: bolt-theme(background, bolt-opacity(20));
   overflow: hidden;
   margin: var(--bolt-spacing-y-xxsmall) var(--bolt-spacing-x-xxsmall);
   padding: var(--bolt-spacing-y-xxsmall) var(--bolt-spacing-x-xsmall);
-  font-family: var(--bolt-type-font-family-body);
-  font-size: var(--bolt-type-font-size-xsmall);
-  font-weight: var(--bolt-type-font-weight-semibold);
+  font: var(--bolt-type-preset-body-xsmall);
+  font-family: var(--bolt-type-font-family-body); // [Mai] reset font family here so it doesn't inherit from parent container.
+  font-weight: var(--bolt-type-font-weight-semibold); // [Mai] reset font weight here so it doesn't inherit from parent container.
   color: bolt-theme(background);
-  line-height: var(--bolt-type-line-height-xsmall);
   text-align: start;
   border-radius: bolt-border-radius(large);
   border-width: $bolt-tooltip-bubble-border-width;

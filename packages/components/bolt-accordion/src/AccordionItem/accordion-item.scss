@@ -116,9 +116,6 @@ bolt-accordion-item {
 }
 
 .c-bolt-accordion-item__trigger-label {
-  @include bolt-font-family(heading);
-  @include bolt-font-size(medium);
-
   display: flex;
   justify-content: space-between;
   align-items: center; // align center by default
@@ -127,6 +124,7 @@ bolt-accordion-item {
   width: 100%;
   margin: 0;
   padding: 0;
+  font: var(--bolt-type-preset-headline-medium);
   color: bolt-theme(text);
   text-align: left; // Fixes center aligned accordion items in the Shadow DOM.
   text-align: start; // For internationalization, will fall back to left if start is not supported.

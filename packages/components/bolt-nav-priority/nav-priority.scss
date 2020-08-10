@@ -277,9 +277,8 @@ bolt-nav-priority {
 .c-bolt-nav-priority__show-text {
   position: relative;
   z-index: 10;
-  font-size: var(--bolt-type-font-size-small);
+  font: var(--bolt-type-preset-body-small);
   font-weight: var(--bolt-type-font-weight-semibold);
-  line-height: var(--bolt-type-line-height-small);
 
   @include bolt-mq($until: $bolt-navbar-xsmall-bp) {
     @include bolt-visuallyhidden;

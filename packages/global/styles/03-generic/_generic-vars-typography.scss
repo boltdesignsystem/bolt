@@ -69,9 +69,16 @@
   @each $size in $bolt-type-font-size-system {
     $size-name: nth($size, 1);
 
-    --bolt-type-preset-headline-#{$size-name}: var(--bolt-type-font-weight-bold)
+    --bolt-type-preset-headline-#{$size-name}:
       var(--bolt-type-font-size-#{$size-name}) /
       var(--bolt-type-line-height-#{$size-name})
       var(--bolt-type-font-family-headline);
+    --bolt-type-preset-body-#{$size-name}:
+      var(--bolt-type-font-size-#{$size-name}) /
+      var(--bolt-type-line-height-#{$size-name});
+    --bolt-type-preset-code-#{$size-name}: var(--bolt-type-font-weight-regular)
+      var(--bolt-type-font-size-#{$size-name}) /
+      var(--bolt-type-line-height-#{$size-name})
+      var(--bolt-type-font-family-code);
   }
 }
