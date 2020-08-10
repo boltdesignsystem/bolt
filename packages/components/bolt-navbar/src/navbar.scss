@@ -41,12 +41,6 @@ bolt-navbar {
     padding-left: $bolt-wrapper-padding;
   }
 
-  @include bolt-if-browser-supports-display-contents {
-    @media screen and (max-width: $bolt-navbar-xsmall-bp) {
-      padding-top: 0;
-    }
-  }
-
   @include bolt-mq(medium) {
     padding-right: $bolt-wrapper-padding-at-medium-bp;
     padding-left: $bolt-wrapper-padding-at-medium-bp;
@@ -60,7 +54,7 @@ bolt-navbar {
   }
 
   @include bolt-if-browser-supports-display-contents {
-    @media screen and (max-width: $bolt-navbar-xsmall-bp) {
+    @include bolt-mq($until: $bolt-navbar-xsmall-bp) {
       display: grid;
       flex-direction: row;
       justify-content: center;
@@ -70,13 +64,14 @@ bolt-navbar {
           --bolt-spacing-y-medium
         );
       grid-template-rows: 1fr auto;
+      padding-top: 0;
       padding-right: 0;
       padding-left: 0;
     }
   }
 
   &--center {
-    @include bolt-mq(xsmall) {
+    @include bolt-mq($bolt-navbar-xsmall-bp) {
       flex-wrap: wrap;
       justify-content: center;
     }
@@ -120,7 +115,7 @@ bolt-navbar {
   color: bolt-theme(headline);
   white-space: nowrap;
 
-  @include bolt-mq($until: xsmall) {
+  @include bolt-mq($until: $bolt-navbar-xsmall-bp) {
     padding-top: var(--bolt-spacing-y-xsmall);
     padding-bottom: var(--bolt-spacing-y-xsmall);
     grid-column: 2 / span 1;
@@ -135,7 +130,7 @@ bolt-navbar {
   }
 
   .c-bolt-navbar--center & {
-    @include bolt-mq(xsmall) {
+    @include bolt-mq($bolt-navbar-xsmall-bp) {
       justify-content: center;
       align-items: center;
       width: 100%;
@@ -190,9 +185,10 @@ bolt-navbar {
     flex-wrap: nowrap; // fixes IE 11 flex-bug causing text to resist staying on one line and prematurely wraps to two-lines -- even if plenty of space is available
   }
 
-  @include bolt-mq($bolt-navbar-xsmall-bp) {
-    &--hideTitle {
-      display: none;
+  &--hideTitle {
+    display: none;
+    @include bolt-mq($until: $bolt-navbar-xsmall-bp) {
+      display: block;
     }
   }
 }
