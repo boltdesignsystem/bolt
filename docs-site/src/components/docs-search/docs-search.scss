@@ -9,7 +9,7 @@ bds-docs-search {
   transition: all 250ms;
 
   ~ bolt-nav-priority:not(.is-ready) {
-    grid-column: 1/span 4;
+    grid-column: 1 / span 4;
     justify-self: center;
   }
 
@@ -36,7 +36,7 @@ bds-docs-search {
     @include bolt-mq($until: 420px) {
       -ms-grid-column: 3;
       -ms-grid-column-span: 2;
-      grid-column: 3/span 2;
+      grid-column: 3 / span 2;
       padding-bottom: 0;
     }
   }
@@ -44,10 +44,8 @@ bds-docs-search {
   .c-bolt-input-icons,
   .c-bolt-input,
   .c-bolt-input:focus {
-    padding-top: bolt-v-spacing(xsmall);
-    padding-right: bolt-spacing(small);
-    padding-bottom: bolt-v-spacing(xsmall);
-    padding-left: bolt-spacing(medium);
+    padding: var(--bolt-spacing-y-xsmall) var(--bolt-spacing-x-small)
+      var(--bolt-spacing-y-xsmall) var(--bolt-spacing-x-medium);
     line-height: 1;
     border-radius: 50rem;
   }
@@ -61,13 +59,12 @@ bds-docs-search {
     right: auto;
     left: 0;
     transform: translateY(-50%) translateY(-1px) translateX(2px);
-    padding-right: bolt-spacing(xsmall);
-    padding-left: bolt-spacing(xsmall);
+    padding-right: var(--bolt-spacing-x-xsmall);
+    padding-left: var(--bolt-spacing-x-xsmall);
     line-height: 1;
     pointer-events: none;
     border-radius: 50rem;
     background-color: transparent;
-
 
     &:before {
       display: none;

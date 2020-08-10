@@ -5,33 +5,29 @@
 // 1. Sets the display (block, inline, etc.)
 // 2. Sets the spacing (block = margin-bottom; inline = margin-right)
 
-
 $bolt-blocky-elements: (block, flex, grid);
-
 
 // [Salem] @todo: move to separate function
 @function bolt-list-contains($list, $value) {
   @return not not index($list, $value);
 }
 
-
-@mixin bolt-custom-element(
-  $elementName,
-  $display: inline,
-  $spacing: null
-) {
+@mixin bolt-custom-element($elementName, $display: inline, $spacing: null) {
   #{$elementName} {
     display: $display;
 
     // inline-based elements by default try to get margin-right spacing, if a spacing size is specified
     @if (
-      $display == 'inline' or
-      $display == 'inline-block' or
-      $display == 'inline-flex'
+      $display ==
+        'inline' or
+        $display ==
+        'inline-block' or
+        $display ==
+        'inline-flex'
     ) {
       @if $spacing != null {
         &:not(:last-child) {
-          @include bolt-margin-right($spacing);
+          margin-right: var(--bolt-spacing-x-#{$spacing});
         }
       }
     }
@@ -40,7 +36,7 @@ $bolt-blocky-elements: (block, flex, grid);
     @else {
       @if $spacing != null {
         &:not(:last-child) {
-          @include bolt-margin-bottom($spacing);
+          margin-bottom: var(--bolt-spacing-y-#{$spacing});
         }
       }
     }

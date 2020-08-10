@@ -27,31 +27,30 @@ bolt-tab-panel {
 }
 
 // Panel spacing
-@each $spacing-value in $bolt-spacing-values {
-  $spacing-value-name: nth($spacing-value, 1);
+@each $size in $bolt-spacing-multiplier-system {
+  $size-name: nth($size, 1);
 
   @if (
-    $spacing-value-name !=
-      '' and
-      $spacing-value-name !=
+    $size-name !=
       'xxsmall' and
-      $spacing-value-name !=
+      $size-name !=
       'large' and
-      $spacing-value-name !=
+      $size-name !=
       'xlarge' and
-      $spacing-value-name !=
+      $size-name !=
       'xxlarge'
   ) {
-    .c-bolt-tab-panel--spacing-#{$spacing-value-name} {
+    .c-bolt-tab-panel--spacing-#{$size-name} {
       > .c-bolt-tab-panel__content {
-        @include bolt-padding(#{$spacing-value-name});
+        padding: var(--bolt-spacing-y-#{$size-name})
+          var(--bolt-spacing-x-#{$size-name});
       }
 
       &:not(.c-bolt-tab-panel--inset) {
         > .c-bolt-tab-panel__content {
-          @include bolt-padding-left(0);
-          @include bolt-padding-right(0);
-          @include bolt-padding-bottom(0);
+          padding-right: 0;
+          padding-bottom: 0;
+          padding-left: 0;
         }
       }
     }
