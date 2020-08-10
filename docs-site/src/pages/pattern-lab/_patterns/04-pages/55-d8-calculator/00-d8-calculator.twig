@@ -1,4 +1,9 @@
 {% set content %}
+  {#
+  /**
+   * Logo
+   */
+  #}
   <div class="c-www-calculator-logo" aria-hidden="true">
     <span>&#43;</span>
     <span>&#8722;</span>
@@ -7,7 +12,11 @@
   </div>
 
   <div class="o-bolt-grid o-bolt-grid--matrix o-bolt-grid--flex c-www-calculator-fade-in-content">
-
+    {#
+    /**
+     * Headings
+     */
+    #}
     <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-9/12@small">
       {% include "@bolt-components-headline/headline.twig" with {
         text: "Real-time Decisioning Revenue Calculator",
@@ -22,7 +31,18 @@
       } only %}
     </div>
 
+    {#
+    /**
+     * Content
+     */
+    #}
     <div class="o-bolt-grid__cell u-bolt-width-12/12">
+
+      {#
+      /**
+       * Multi-column form
+       */
+      #}
       {% set form_children %}
         <div role="list" class="o-bolt-grid o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--top">
           <div role="listitem" class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@medium">
@@ -56,7 +76,7 @@
                 children: input
               } only %}
             </div>
-          </li>
+          </div>
           <div role="listitem" class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@medium">
             <div class="c-bolt-input-list__item">
               {% set for_value = "www-calculator-churn-rate" %}
@@ -89,7 +109,7 @@
                 children: input
               } only %}
             </div>
-          </li>
+          </div>
           <div role="listitem" class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@medium">
             <div class="c-bolt-input-list__item">
               {% set for_value = "www-calculator-customers" %}
@@ -122,7 +142,7 @@
                 class: "u-bolt-margin-top-auto",
               } only %}
             </div>
-          </li>
+          </div>
           <div role="listitem" class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@medium">
             <div class="c-bolt-input-list__item">
               {% set for_value = "www-calculator-average-cost" %}
@@ -154,7 +174,7 @@
                 children: input
               } only %}
             </div>
-          </li>
+          </div>
           <div role="listitem" class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@medium">
             <div class="c-bolt-input-list__item">
               {% set for_value = "www-calculator-customer-worth" %}
@@ -186,7 +206,7 @@
                 children: input
               } only %}
             </div>
-          </li>
+          </div>
           <div role="listitem" class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@medium u-bolt-margin-top-auto">
             {% include "@bolt-components-form/form-button.twig" with {
               text: "Calculate my result",
@@ -195,17 +215,27 @@
                 type: "submit",
               }
             } only %}
-          </li>
+          </div>
         </div>
       {% endset %}
 
       {% include "@bolt-components-form/form.twig" with {
         children: form_children
       } only %}
+      {#
+      /**
+       * End multi-column form
+       */
+      #}
     </div>
   </div>
 {% endset %}
 
+{#
+/**
+ * Page band
+ */
+#}
 {% include "@bolt-components-band/band.twig" with {
   size: "large",
   theme: "dark",
