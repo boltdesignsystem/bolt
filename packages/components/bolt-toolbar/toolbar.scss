@@ -20,9 +20,9 @@
 .c-bolt-toolbar__inner {
   max-width: bolt-breakpoint(xxlarge);
   margin: 0 auto;
-  padding-top: bolt-v-spacing(small);
+  padding-top: var(--bolt-spacing-y-small);
   padding-right: $bolt-wrapper-padding;
-  padding-bottom: bolt-v-spacing(small);
+  padding-bottom: var(--bolt-spacing-y-small);
   padding-left: $bolt-wrapper-padding;
 
   @include bolt-mq(medium) {
@@ -46,7 +46,7 @@
 }
 
 .c-bolt-toolbar__title-icon {
-  @include bolt-margin-right(small);
+  margin-right: var(--bolt-spacing-x-small);
 }
 
 .c-bolt-toolbar__items {
@@ -56,11 +56,11 @@
   align-items: center;
   position: relative;
   width: 100%;
-  margin-bottom: bolt-v-spacing(small) * -1;
+  margin-bottom: calc(var(--bolt-spacing-y-small) * -1);
 }
 
 .c-bolt-toolbar__item {
-  margin-bottom: bolt-v-spacing(small);
+  margin-bottom: var(--bolt-spacing-y-small);
 
   &:not(:last-child) {
     margin-right: 1rem;

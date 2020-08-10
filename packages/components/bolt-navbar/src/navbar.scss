@@ -8,9 +8,6 @@ $bolt-navbar-title-transition: $bolt-transition;
 $bolt-navbar-xsmall-bp: 420px; // Slightly increase the default 400px xsmall breakpoint to be better optimized for larger plus-sized mobile devices -- value shared by the bolt-navbar, bolt-nav-priority, and bolt-navlink components
 
 bolt-navbar {
-  @include bolt-margin-top(0); // workaround to -.5px in bolt-full-bleed
-  @include bolt-margin-bottom(0); // workaround to -.5px in bolt-full-bleed
-
   // @todo: remove once Navbar refactored to have theming classes added to the `.c-bolt-navbar` inner.
   &[width*='full'] {
     @include bolt-full-bleed;
@@ -18,6 +15,8 @@ bolt-navbar {
 
   display: block;
   overflow: visible;
+  margin-top: 0; // workaround to -.5px in bolt-full-bleed
+  margin-bottom: 0; // workaround to -.5px in bolt-full-bleed
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2);
 }
 

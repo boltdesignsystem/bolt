@@ -13,8 +13,8 @@ $bolt-search-filter-transition: $bolt-transition;
 .c-bolt-search-filter__trigger {
   display: block;
   position: fixed;
-  right: bolt-spacing(medium);
-  bottom: bolt-v-spacing(medium);
+  right: var(--bolt-spacing-x-medium);
+  bottom: var(--bolt-spacing-y-medium);
   z-index: 99998;
 
   @include bolt-mq(medium) {
@@ -64,9 +64,9 @@ $bolt-search-filter-transition: $bolt-transition;
 
 .c-bolt-search-filter__panel-content {
   @media screen and (max-width: (bolt-breakpoint(medium) - 1px)) {
-    @include bolt-padding(medium);
     display: block;
     flex: 1;
+    padding: var(--bolt-spacing-y-medium) var(--bolt-spacing-x-medium);
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
     background-color: bolt-color(white);
@@ -90,16 +90,15 @@ $bolt-search-filter-transition: $bolt-transition;
 }
 
 .c-bolt-search-filter__panel-controls--submit {
-  @include bolt-padding(medium, squished);
   width: 100%;
+  padding: calc(var(--bolt-spacing-y-medium) / 2) var(--bolt-spacing-x-medium);
   background-color: bolt-color(white);
 }
 
 .c-bolt-search-inline-tags {
-  @include bolt-margin(0);
-  @include bolt-padding(0);
-
   display: inline;
+  margin: 0;
+  padding: 0;
 }
 
 .c-bolt-search-inline-tag {
