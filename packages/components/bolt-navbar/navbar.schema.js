@@ -36,17 +36,7 @@ module.exports = {
           type: 'string',
           description:
             'Set the breakpoint at which you wish to hide the title text.',
-          enum: [
-            'xxsmall',
-            'xsmall',
-            'small',
-            'medium',
-            'large',
-            'xlarge',
-            'xxlarge',
-            'xxxlarge',
-            'xxxxlarge',
-          ],
+          enum: ['xsmall', 'small', 'medium', 'large', 'xlarge'],
         },
       },
     },

@@ -188,10 +188,21 @@ bolt-navbar {
   @each $breakpoint in $bolt-breakpoints {
     $breakpoint-name: nth($breakpoint, 1);
 
-    &--hideTitle_#{$breakpoint-name} {
-      display: none;
-      @include bolt-mq($until: $breakpoint-name) {
-        display: block;
+    @if (
+      $breakpoint-name !=
+        'xxsmall' and
+        $breakpoint-name !=
+        'xxlarge' and
+        $breakpoint-name !=
+        'xxxlarge' and
+        $breakpoint-name !=
+        'xxxxlarge'
+    ) {
+      &--hideTitle_#{$breakpoint-name} {
+        display: none;
+        @include bolt-mq($until: $breakpoint-name) {
+          display: block;
+        }
       }
     }
   }
