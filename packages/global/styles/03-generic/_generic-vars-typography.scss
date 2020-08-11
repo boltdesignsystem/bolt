@@ -12,14 +12,14 @@
 :root {
   // Base tokens are for public use and user overrides
   // Note: user can customize these to generate a different typography system, such as Japanese typography.
-  --bolt-type-font-size: 14px;
+  --bolt-type-font-size: 87.5%;
 
   @include bolt-mq(xsmall) {
-    --bolt-type-font-size: 15px;
+    --bolt-type-font-size: 93.75%;
   }
 
-  @include bolt-mq(xxlarge) {
-    --bolt-type-font-size: 16px;
+  @include bolt-mq(xlarge) {
+    --bolt-type-font-size: 100%;
   }
 
   @each $family in $bolt-type-font-family-system {
@@ -69,13 +69,16 @@
   @each $size in $bolt-type-font-size-system {
     $size-name: nth($size, 1);
 
-    --bolt-type-preset-headline-#{$size-name}:
-      var(--bolt-type-font-size-#{$size-name}) /
+    --bolt-type-preset-headline-#{$size-name}: var(
+        --bolt-type-font-size-#{$size-name}
+      ) /
       var(--bolt-type-line-height-#{$size-name})
       var(--bolt-type-font-family-headline);
-    --bolt-type-preset-body-#{$size-name}:
-      var(--bolt-type-font-size-#{$size-name}) /
-      var(--bolt-type-line-height-#{$size-name});
+    --bolt-type-preset-body-#{$size-name}: var(
+        --bolt-type-font-size-#{$size-name}
+      ) /
+      var(--bolt-type-line-height-#{$size-name})
+      var(--bolt-type-font-family-body);
     --bolt-type-preset-code-#{$size-name}: var(--bolt-type-font-weight-regular)
       var(--bolt-type-font-size-#{$size-name}) /
       var(--bolt-type-line-height-#{$size-name})
