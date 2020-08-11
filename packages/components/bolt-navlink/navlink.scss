@@ -8,7 +8,6 @@ $bolt-navlink-bg-color: currentColor;
 $bolt-navlink-bg-border-radius: $bolt-border-radius;
 $bolt-navlink-bg-transition-timing: $bolt-transition-timing * 4;
 $bolt-navlink-text-transition: $bolt-transition;
-$bolt-navbar-xsmall-bp: 420px; // Slightly increase the default 400px xsmall breakpoint to be better optimized for larger plus-sized mobile devices -- value shared by the bolt-navbar, bolt-nav-priority, and bolt-navlink components
 
 // Navlink Component
 bolt-navlink {
@@ -37,7 +36,7 @@ bolt-navlink {
   border-color: transparent;
   transition: all $bolt-navlink-text-transition;
 
-  @include bolt-mq($bolt-navbar-xsmall-bp) {
+  @include bolt-mq(xsmall) {
     padding: calc(var(--bolt-spacing-y-small) / 2) var(--bolt-spacing-x-small);
   }
 
