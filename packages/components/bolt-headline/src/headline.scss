@@ -8,9 +8,6 @@
    Headlines
 \* ------------------------------------ */
 
-$bolt-headline--minus-letter-spacing: -0.025rem;
-$bolt-headline--plus-letter-spacing: 0.05rem;
-
 .c-bolt-headline,
 .c-bolt-subheadline,
 .c-bolt-eyebrow,
@@ -18,7 +15,7 @@ $bolt-headline--plus-letter-spacing: 0.05rem;
   @include bolt-headline;
 
   strong {
-    @include bolt-font-weight(bold);
+    font-weight: var(--bolt-type-font-weight-bold);
   }
 }
 
@@ -38,7 +35,7 @@ $bolt-headline--plus-letter-spacing: 0.05rem;
   }
 
   &:not([class*='c-bolt-headline--']) {
-    @include bolt-font-size(large);
+    font: var(--bolt-type-preset-headline-large);
   }
 }
 
@@ -65,12 +62,11 @@ $bolt-headline--plus-letter-spacing: 0.05rem;
 }
 
 .c-bolt-eyebrow {
-  @include bolt-font-size(xsmall);
   opacity: 0.8;
-
   margin-bottom: 0.1rem;
+  font: var(--bolt-type-preset-headline-small);
   text-transform: uppercase;
-  letter-spacing: $bolt-headline--plus-letter-spacing;
+  letter-spacing: var(--bolt-type-letter-spacing-wide);
 }
 
 .c-bolt-headline__line {
@@ -102,13 +98,12 @@ $bolt-headline--plus-letter-spacing: 0.05rem;
 
 // Subheadline styles.
 .c-bolt-subheadline {
-  @include bolt-font-family(heading);
-  @include bolt-font-weight(regular);
-
   margin-bottom: var(--bolt-spacing-y-medium);
+  font-family: var(--bolt-type-font-family-headline);
+  font-weight: var(--bolt-type-font-weight-regular);
 
   &:not([class*='c-bolt-subheadline--']) {
-    @include bolt-font-size(large);
+    font-size: var(--bolt-type-font-size-large);
   }
 }
 
@@ -136,7 +131,7 @@ $bolt-headline--plus-letter-spacing: 0.05rem;
 
 .c-bolt-headline--xxxlarge,
 .c-bolt-headline--xxlarge {
-  letter-spacing: $bolt-headline--minus-letter-spacing;
+  letter-spacing: var(--bolt-type-letter-spacing-narrow);
 }
 
 /**
@@ -144,56 +139,60 @@ $bolt-headline--plus-letter-spacing: 0.05rem;
   */
 .c-bolt-text--xxxlarge,
 .c-bolt-headline--xxxlarge {
-  @include bolt-font-size(xxxlarge);
+  font-size: calc(var(--bolt-type-font-size-xxxlarge) * 1.06);
+  line-height: var(--bolt-type-line-height-xxxlarge);
 }
 
-// When headline is 60+ chars long
+// [Mai] This needs to be deprecated.
 .c-bolt-headline--xxxlarge-min {
-  font-size: $bolt-font-size--xxxlarge--min;
-  line-height: $bolt-line-height--xxxlarge;
+  font-size: var(--bolt-type-font-size-xxxlarge);
+  line-height: var(--bolt-type-line-height-xxxlarge);
 }
 
 .c-bolt-text--xxlarge,
 .c-bolt-subheadline--xxlarge,
 .c-bolt-headline--xxlarge {
-  @include bolt-font-size(xxlarge);
+  font-size: var(--bolt-type-font-size-xxlarge);
+  line-height: var(--bolt-type-line-height-xxlarge);
 }
 
 .c-bolt-text--xlarge,
 .c-bolt-subheadline--xlarge,
 .c-bolt-headline--xlarge {
-  @include bolt-font-size(xlarge);
+  font-size: var(--bolt-type-font-size-xlarge);
+  line-height: var(--bolt-type-line-height-xlarge);
 }
 
 .c-bolt-text--large,
 .c-bolt-headline--large {
-  @include bolt-font-size(large);
+  font-size: var(--bolt-type-font-size-large);
+  line-height: var(--bolt-type-line-height-large);
 }
 
 .c-bolt-text--medium {
-  @include bolt-font-size(medium);
+  font-size: var(--bolt-type-font-size-medium);
+  line-height: var(--bolt-type-line-height-medium);
 }
 
 .c-bolt-text--small,
 .c-bolt-headline--small {
-  @include bolt-font-size(small);
-}
-
-.c-bolt-text--uppercase {
-  @include bolt-uppercase;
+  font-size: var(--bolt-type-font-size-small);
+  line-height: var(--bolt-type-line-height-small);
 }
 
 .c-bolt-text--xsmall,
 .c-bolt-headline--xsmall {
-  @include bolt-font-size(xsmall);
+  font-size: var(--bolt-type-font-size-xsmall);
+  line-height: var(--bolt-type-line-height-xsmall);
 }
 
 .c-bolt-text--xxsmall,
 .c-bolt-headline--xxsmall {
-  @include bolt-font-size(xxsmall);
+  font-size: var(--bolt-type-font-size-xxsmall);
+  line-height: var(--bolt-type-line-height-xxsmall);
 }
 
 .c-bolt-headline--small,
 .c-bolt-headline--xsmall {
-  letter-spacing: $bolt-headline--plus-letter-spacing;
+  letter-spacing: var(--bolt-type-letter-spacing-wide);
 }

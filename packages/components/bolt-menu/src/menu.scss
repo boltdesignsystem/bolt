@@ -12,9 +12,12 @@
 
 .c-bolt-menu {
   display: block;
-  font: var(--bolt-type-preset-body-xsmall);
-  font-family: var(--bolt-type-font-family-body); // [Mai] reset font family here so it doesn't inherit from parent container.
-  font-weight: var(--bolt-type-font-weight-regular); // [Mai] reset font weight here so it doesn't inherit from parent container.
+  font: var(
+    --bolt-type-preset-body-xsmall
+  ); // [Mai] reset font styles here so it doesn't inherit from parent container.
+  font-weight: var(
+    --bolt-type-font-weight-regular
+  ); // [Mai] reset font weight here so it doesn't inherit from parent container.
   text-align: start;
 }
 

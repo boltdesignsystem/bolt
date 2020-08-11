@@ -54,9 +54,12 @@ bolt-modal:not([ready]) {
   left: 0;
   width: 100%; // Use % instead of vh or modal scrollbar is hidden behind bold scrollbar in IE11
   height: 100vh;
-  font: var(--bolt-type-preset-body-medium);
-  font-family: var(--bolt-type-font-family-body); // [Mai] reset font family here so it doesn't inherit from parent container.
-  font-weight: var(--bolt-type-font-weight-regular); // [Mai] reset font weight here so it doesn't inherit from parent container.
+  font: var(
+    --bolt-type-preset-body-medium
+  ); // [Mai] reset font styles here so it doesn't inherit from parent container.
+  font-weight: var(
+    --bolt-type-font-weight-regular
+  ); // [Mai] reset font weight here so it doesn't inherit from parent container.
   pointer-events: none;
   transition: opacity $bolt-modal-transition;
   overflow-x: hidden;

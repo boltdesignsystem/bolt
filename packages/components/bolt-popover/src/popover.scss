@@ -131,9 +131,12 @@ $bolt-popover-transition: $bolt-transition-timing
   overflow: hidden;
   margin: var(--bolt-spacing-y-xxsmall) var(--bolt-spacing-x-xxsmall);
   padding: 0;
-  font: var(--bolt-type-preset-body-xsmall);
-  font-family: var(--bolt-type-font-family-body); // [Mai] reset font family here so it doesn't inherit from parent container.
-  font-weight: var(--bolt-type-font-weight-regular); // [Mai] reset font weight here so it doesn't inherit from parent container.
+  font: var(
+    --bolt-type-preset-body-xsmall
+  ); // [Mai] reset font styles here so it doesn't inherit from parent container.
+  font-weight: var(
+    --bolt-type-font-weight-regular
+  ); // [Mai] reset font weight here so it doesn't inherit from parent container.
   color: bolt-theme(text);
   text-align: left;
   text-align: start;

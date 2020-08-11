@@ -37,10 +37,10 @@
   }
 
   &-text {
-    @include bolt-font-family(heading);
-    @include bolt-font-weight(bold);
     display: block;
     transform: scale(0.65);
+    font-family: var(--bolt-type-font-family-headline);
+    font-weight: var(--bolt-type-font-weight-bold);
     text-align: center;
   }
 }

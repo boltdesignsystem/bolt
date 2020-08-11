@@ -70,25 +70,6 @@
   text-transform: capitalize;
 }
 
-@function bolt-button-icon-only-size($paddingSize, $fontSize: xsmall) {
-  $line-height: map-get-deep(
-    $bolt-font-sizes,
-    'font-sizes',
-    $fontSize,
-    'line-height',
-    'regular'
-  );
-  $font-size: map-get-deep(
-    $bolt-font-sizes,
-    'font-sizes',
-    $fontSize,
-    'font-size'
-  );
-  @return calc(
-    #{$line-height} * #{$font-size} + var(--bolt-spacing-y-#{$paddingSize})
-  );
-}
-
 /**
  * Button Sizes
  */
@@ -96,60 +77,43 @@
   @include bolt-font-size(xsmall);
 
   padding: calc(var(--bolt-spacing-y-medium) / 2) var(--bolt-spacing-x-medium);
-
-  &.c-bolt-button--icon-only {
-    width: bolt-button-icon-only-size(medium);
-    min-height: bolt-button-icon-only-size(medium);
-  }
 }
 
 .c-bolt-button--xsmall {
   @include bolt-font-size(xsmall);
 
   padding: calc(var(--bolt-spacing-y-xsmall) / 2) var(--bolt-spacing-x-xsmall);
-
-  &.c-bolt-button--icon-only {
-    width: bolt-button-icon-only-size(xsmall);
-    min-height: bolt-button-icon-only-size(xsmall);
-  }
 }
 
 .c-bolt-button--small {
   @include bolt-font-size(xsmall);
 
   padding: calc(var(--bolt-spacing-y-small) / 2) var(--bolt-spacing-x-small);
-
-  &.c-bolt-button--icon-only {
-    width: bolt-button-icon-only-size(small);
-    min-height: bolt-button-icon-only-size(small);
-  }
 }
 
 .c-bolt-button--large {
   @include bolt-font-size(medium);
 
   padding: calc(var(--bolt-spacing-y-medium) / 2) var(--bolt-spacing-x-medium);
-
-  &.c-bolt-button--icon-only {
-    width: bolt-button-icon-only-size(medium, medium);
-    min-height: bolt-button-icon-only-size(medium, medium);
-  }
 }
 
 .c-bolt-button--xlarge {
   @include bolt-font-size(large);
 
   padding: calc(var(--bolt-spacing-y-large) / 2) var(--bolt-spacing-x-large);
-
-  &.c-bolt-button--icon-only {
-    width: bolt-button-icon-only-size(large, large);
-    min-height: bolt-button-icon-only-size(large, large);
-  }
 }
 
 /**
  * Icon Only Buttons
  */
+@function bolt-button-icon-only-size($padding_size, $font_size: xsmall) {
+  @return calc(
+    var(--bolt-type-line-height-#{$font_size}) *
+      var(--bolt-type-font-size-#{$font_size}) +
+      var(--bolt-spacing-y-#{$padding_size})
+  );
+}
+
 .c-bolt-button--icon-only {
   padding: 0;
 
@@ -176,30 +140,45 @@
 
   // Scale icon only version's icon size based on button size
   &.c-bolt-button--xsmall {
+    width: bolt-button-icon-only-size(xsmall);
+    min-height: bolt-button-icon-only-size(xsmall);
+
     .c-bolt-button__icon-sizer {
       font-size: 1em;
     }
   }
 
   &.c-bolt-button--small {
+    width: bolt-button-icon-only-size(small);
+    min-height: bolt-button-icon-only-size(small);
+
     .c-bolt-button__icon-sizer {
       font-size: 1.25em;
     }
   }
 
   &.c-bolt-button--medium {
+    width: bolt-button-icon-only-size(medium);
+    min-height: bolt-button-icon-only-size(medium);
+
     .c-bolt-button__icon-sizer {
       font-size: 1.5em;
     }
   }
 
   &.c-bolt-button--large {
+    width: bolt-button-icon-only-size(medium, medium);
+    min-height: bolt-button-icon-only-size(medium, medium);
+
     .c-bolt-button__icon-sizer {
       font-size: 1.75em;
     }
   }
 
   &.c-bolt-button--xlarge {
+    width: bolt-button-icon-only-size(large, large);
+    min-height: bolt-button-icon-only-size(large, large);
+
     .c-bolt-button__icon-sizer {
       font-size: 2em;
     }
