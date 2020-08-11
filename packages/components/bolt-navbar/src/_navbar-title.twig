@@ -1,12 +1,9 @@
 {% set attributes = create_attribute(attributes|default({})) %}
-
 {% set title_attributes = create_attribute({}) %}
-{% set hide_title = hide_title is sameas(true) or hide_title is sameas(false) ? hide_title : scheuma.properties.hide_title.default %}
-
-{% set title_classes = ['c-bolt-navbar__title-text'] %}
-{% if hide_title %}
-  {% set title_classes = title_classes|merge(['c-bolt-navbar__title-text--hideTitle']) %}
-{% endif %}
+{% set title_classes = [
+  'c-bolt-navbar__title-text',
+  hide_title ? "c-bolt-navbar__title-text--hideTitle_#{hide_title}" : ""
+] %}
 {% set title_attributes = title_attributes.addClass(title_classes) %}
 
 {% if url %}

@@ -33,10 +33,20 @@ module.exports = {
           },
         },
         hide_title: {
-          type: 'boolean',
+          type: 'string',
           description:
-            'Set this to true if you do not wish to show title text above the mobile breakpoint.',
-          default: false,
+            'Set the breakpoint at which you wish to hide the title text.',
+          enum: [
+            'xxsmall',
+            'xsmall',
+            'small',
+            'medium',
+            'large',
+            'xlarge',
+            'xxlarge',
+            'xxxlarge',
+            'xxxxlarge',
+          ],
         },
       },
     },

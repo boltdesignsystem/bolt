@@ -185,10 +185,14 @@ bolt-navbar {
     flex-wrap: nowrap; // fixes IE 11 flex-bug causing text to resist staying on one line and prematurely wraps to two-lines -- even if plenty of space is available
   }
 
-  &--hideTitle {
-    display: none;
-    @include bolt-mq($until: $bolt-navbar-xsmall-bp) {
-      display: block;
+  @each $breakpoint in $bolt-breakpoints {
+    $breakpoint-name: nth($breakpoint, 1);
+
+    &--hideTitle_#{$breakpoint-name} {
+      display: none;
+      @include bolt-mq($until: $breakpoint-name) {
+        display: block;
+      }
     }
   }
 }
