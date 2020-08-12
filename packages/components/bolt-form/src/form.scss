@@ -130,6 +130,12 @@ $bolt-input-transition: $bolt-transition;
     var(--bolt-type-line-height-xsmall) * 1em - 1px
   ); // [Mai] The line-height matches button's line-height, the 1px offsets the 1px border from the input.
   background-color: $bolt-input-background-color;
+
+  @include bolt-mq($until: small) {
+    padding-top: calc(var(--bolt-spacing-y-medium) / 2 - 2px);
+    padding-bottom: calc(var(--bolt-spacing-y-medium) / 2 - 3px);
+    font-size: 16px; // [Mai] Mobile Safari will zoom in when input is focused if the text is not at least 16px.
+  }
 }
 
 .c-bolt-input {
@@ -154,12 +160,6 @@ $bolt-input-transition: $bolt-transition;
   outline: none;
   transition: all $bolt-input-transition;
   text-overflow: '';
-
-  @include bolt-mq($until: small) {
-    padding-top: calc(var(--bolt-spacing-y-medium) / 2 - 2px);
-    padding-bottom: calc(var(--bolt-spacing-y-medium) / 2 - 3px);
-    font-size: 16px; // [Mai] Mobile Safari will zoom in when input is focused if the text is not at least 16px.
-  }
 
   &::-ms-expand {
     display: none;
@@ -222,13 +222,6 @@ $bolt-input-transition: $bolt-transition;
     right: 1px;
     left: 1px;
     pointer-events: none;
-
-    @include bolt-mq($until: small) {
-      font-size: 16px; // [Mai] Mobile Safari will zoom in when input is focused if the text is not at least 16px.
-      line-height: calc(
-        var(--bolt-type-line-height-xsmall) * 1em - 6px
-      ); // [Mai] This is just magic number, if the font-size ever changes, this also needs to change by inspecting in the browser and push the px.
-    }
 
     &:before,
     &:after {
