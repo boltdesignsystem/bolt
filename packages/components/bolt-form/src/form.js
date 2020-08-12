@@ -8,17 +8,39 @@ for (let i = 0, len = inputs.length; i < len; i++) {
   const typeBehaviors = (input, inputType) => {
     if (inputType && input.value.length > 0) {
       const rawNumber = input.parentNode.getElementsByClassName('rawnumber')[0];
-      const currencyController = () => {
-        // US en-US
-        // UK en-GB
-        // FR fr-fr
-        // DE de-de
-        // IT it-it
-        // JP ja-jp
-        // ES es-es
-      };
-      const formatThousands = ',';
-      const formatDecimal = '.';
+      let formatThousands = ',';
+      let formatDecimal = '.';
+      // const currencyController = () => {
+      //   const langTag = elementNodeReference.lang;
+
+      //   console.log(langTag);
+      //   const periodComma = ['fr-fr'];
+      //   const spaceComma = ['pl-pl'];
+
+      //   switch (inputType) {
+      //     case 'percent':
+      //       formatThousands = ',';
+      //       formatDecimal = '.';
+      //       break;
+      //     case 'number':
+      //       formatThousands = ',';
+      //       formatDecimal = '.';
+      //       break;
+      //     default:
+      //       formatThousands = ',';
+      //       formatDecimal = '.';
+      //   }
+      //   // US en-US
+      //   // UK en-GB
+      //   // FR fr-fr
+      //   // DE de-de
+      //   // IT it-it
+      //   // JP ja-jp
+      //   // ES es-es
+      //   // PL pl-pl
+      // };
+      // const formatThousands = ',';
+      // const formatDecimal = '.';
       switch (inputType) {
         case 'currency-us':
           rawNumber.setAttribute('data-before-raw-value', '$');
