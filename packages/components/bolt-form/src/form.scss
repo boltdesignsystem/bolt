@@ -139,8 +139,8 @@ $bolt-input-transition: $bolt-transition;
   font-size: var(--bolt-type-font-size-small);
   color: $bolt-input-text-color;
   line-height: calc(
-    var(--bolt-type-line-height-xsmall) * 1em - 2px
-  ); // [Mai] The line-height matches button's line-height, the 2px offsets the 1px border from the input.
+    var(--bolt-type-line-height-xsmall) * 1em - 1px
+  ); // [Mai] The line-height matches button's line-height, the 1px offsets the 1px border from the input.
   text-indent: 0.01px;
   border-radius: $bolt-input-border-radius;
   border-width: $bolt-input-border-width;
@@ -151,11 +151,10 @@ $bolt-input-transition: $bolt-transition;
   transition: all $bolt-input-transition;
   text-overflow: '';
 
-  @media (max-width: bolt-breakpoint(small)) {
+  @include bolt-mq($until: small) {
+    padding-top: calc(var(--bolt-spacing-y-medium) / 2 - 2px);
+    padding-bottom: calc(var(--bolt-spacing-y-medium) / 2 - 3px);
     font-size: 16px; // [Mai] Mobile Safari will zoom in when input is focused if the text is not at least 16px.
-    line-height: calc(
-      var(--bolt-type-line-height-xsmall) * 1em - 6px
-    ); // [Mai] This is just magic number, if the font-size ever changes, this also needs to change by inspecting in the browser and push the px.
   }
 
   &::-ms-expand {
@@ -182,8 +181,8 @@ $bolt-input-transition: $bolt-transition;
 
   &.is-filled,
   &:focus {
-    padding-top: calc(var(--bolt-spacing-y-small) + 0.55rem);
-    padding-bottom: calc(var(--bolt-spacing-y-small) - 0.55rem);
+    padding-top: calc(var(--bolt-spacing-y-medium) / 2 + 0.55rem);
+    padding-bottom: calc(var(--bolt-spacing-y-medium) / 2 - 0.55rem);
   }
 
   &:hover {
@@ -205,7 +204,8 @@ $bolt-input-transition: $bolt-transition;
     }
   }
 
-  &.is-filled:not(:focus) ~ .rawnumber {
+  // [Mai] This is only used for displaying formatted numbers, it covers up the actual input field.
+  &.is-filled:not(:invalid):not(:focus) ~ .c-bolt-input__display-value {
     display: block;
     opacity: 1;
     position: absolute;
@@ -222,7 +222,7 @@ $bolt-input-transition: $bolt-transition;
     pointer-events: none;
     background-color: bolt-color(white);
 
-    @media (max-width: bolt-breakpoint(small)) {
+    @include bolt-mq($until: small) {
       font-size: 16px; // [Mai] Mobile Safari will zoom in when input is focused if the text is not at least 16px.
       line-height: calc(
         var(--bolt-type-line-height-xsmall) * 1em - 6px
@@ -235,11 +235,11 @@ $bolt-input-transition: $bolt-transition;
     }
 
     &:before {
-      content: attr(data-before-raw-value);
+      content: attr(data-bolt-form-display-value-before);
     }
 
     &:after {
-      content: attr(data-after-raw-value);
+      content: attr(data-bolt-form-display-value-after);
     }
   }
 }
@@ -258,7 +258,7 @@ $bolt-input-transition: $bolt-transition;
   left: calc(var(--bolt-spacing-x-small) + 2px);
   transform: translate3d(0, -50%, 0) translateY(0.4rem);
   color: $bolt-floating-label-text-color;
-  line-height: $bolt-floating-label-text-scale;
+  line-height: 1;
   pointer-events: none;
   user-select: none;
   transition: all $bolt-floating-label-transition;
