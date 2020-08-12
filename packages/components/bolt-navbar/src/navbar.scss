@@ -191,13 +191,19 @@ bolt-navbar {
       $breakpoint-name !=
         'xxsmall' and
         $breakpoint-name !=
+        'medium' and
+        $breakpoint-name !=
+        'large' and
+        $breakpoint-name !=
+        'xlarge' and
+        $breakpoint-name !=
         'xxlarge' and
         $breakpoint-name !=
         'xxxlarge' and
         $breakpoint-name !=
         'xxxxlarge'
     ) {
-      &--hideTitle_#{$breakpoint-name} {
+      &--hideTitle_from-#{$breakpoint-name}-bp {
         display: none;
         @include bolt-mq($until: $breakpoint-name) {
           display: block;
