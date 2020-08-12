@@ -1,76 +1,42 @@
 // TODO: limit to a .js class
 const inputs = document.querySelectorAll('.c-bolt-input');
 
+let thousandsDecimal = [',', '.'];
+
 for (let i = 0, len = inputs.length; i < len; i++) {
   const input = inputs[i];
   const inputType = input.dataset.boltFormatInput;
-
-  // const currencyController = () => {
-  //   const langTag = document.documentElement.lang;
-
-  //   console.log(langTag);
-  //   // .indexOf(25) > -1
-  //   const periodComma = ['fr-fr'];
-  //   const spaceComma = ['pl-pl'];
-
-  //   //   switch (inputType) {
-  //   //     case 'percent':
-  //   //       formatThousands = ',';
-  //   //       formatDecimal = '.';
-  //   //       break;
-  //   //     case 'number':
-  //   //       formatThousands = ',';
-  //   //       formatDecimal = '.';
-  //   //       break;
-  //   //     default:
-  //   //       formatThousands = ',';
-  //   //       formatDecimal = '.';
-  //   //   }
-  //   //   // US en-US
-  //   //   // UK en-GB
-  //   //   // FR fr-fr
-  //   //   // DE de-de
-  //   //   // IT it-it
-  //   //   // JP ja-jp
-  //   //   // ES es-es
-  //   //   // PL pl-pl
-  // };
-  // currencyController();
 
   const typeBehaviors = (input, inputType) => {
     if (inputType && input.value.length > 0) {
       const rawNumber = input.parentNode.getElementsByClassName('rawnumber')[0];
 
-      let formatThousands = ',';
-      let formatDecimal = '.';
-      // const formatThousands = ',';
-      // const formatDecimal = '.';
       switch (inputType) {
         case 'currency-us':
           rawNumber.setAttribute('data-before-raw-value', '$');
           rawNumber.setAttribute(
             'data-after-raw-value',
-            addThousands(input.value, formatThousands, formatDecimal),
+            addThousands(input.value, thousandsDecimal[0], thousandsDecimal[1]),
           );
           break;
         case 'currency-ja':
           rawNumber.setAttribute('data-before-raw-value', '¥');
           rawNumber.setAttribute(
             'data-after-raw-value',
-            addThousands(input.value, formatThousands, formatDecimal),
+            addThousands(input.value, thousandsDecimal[0], thousandsDecimal[1]),
           );
           break;
         case 'percent':
           rawNumber.setAttribute(
             'data-before-raw-value',
-            addThousands(input.value, formatThousands, formatDecimal),
+            addThousands(input.value, thousandsDecimal[0], thousandsDecimal[1]),
           );
           rawNumber.setAttribute('data-after-raw-value', '%');
           break;
         case 'number':
           rawNumber.setAttribute(
             'data-after-raw-value',
-            addThousands(input.value, formatThousands, formatDecimal),
+            addThousands(input.value, thousandsDecimal[0], thousandsDecimal[1]),
           );
           break;
         default:
@@ -84,8 +50,10 @@ for (let i = 0, len = inputs.length; i < len; i++) {
     const x = string.split(decimal);
     let x1 = x[0];
     const x2 = x.length > 1 ? decimal + x[1] : '';
-    while (rgx.test(x1)) {
-      x1 = x1.replace(rgx, '$1' + thousands + '$2');
+    if (thousands) {
+      while (rgx.test(x1)) {
+        x1 = x1.replace(rgx, '$1' + thousands + '$2');
+      }
     }
     return x1 + x2;
   };
@@ -96,8 +64,39 @@ for (let i = 0, len = inputs.length; i < len; i++) {
   }
 
   if (inputType) {
+    let langTag = document.documentElement.lang;
+    // Tempoarary until we have more direction on what we are covering
+    // const formLang = inputs[0].closest('form');
+
+    // if (formLang.dataset.boltLang) {
+    //   langTag = formLang.dataset.boltLang;
+    // }
+
+    // const periodComma = ['fr-fr', 'fr', 'de', 'de-de', 'it', 'it-it'];
+    // const spaceComma = ['pl-PL'];
+    // const commaPeriod = ['en-us', 'en', 'pt-br', 'es'];
+    // const nonePeriod = ['ja-jp', 'ja'];
+
+    // const determineFormat = lang => {
+    // Tempoarary until we have more direction on what we are covering
+    // const langCompare = (langArray, lang) => {
+    //   return langArray.indexOf(lang.toLowerCase()) > -1;
+    // };
+    // if (langCompare(periodComma, lang)) {
+    //   thousandsDecimal = ['.', ','];
+    // } else if (langCompare(spaceComma, lang)) {
+    //   thousandsDecimal = [' ', ','];
+    // } else if (langCompare(commaPeriod, lang)) {
+    //   thousandsDecimal = [',', '.'];
+    // } else if (langCompare(nonePeriod, lang)) {
+    //   thousandsDecimal = ['', '.'];
+    // }
+    // };
+
+    // determineFormat(langTag);
+
     const rawNumber = document.createElement('span');
-    rawNumber.className += 'rawnumber hide';
+    rawNumber.className += 'rawnumber';
     input.after(rawNumber);
   }
 
@@ -114,12 +113,6 @@ for (let i = 0, len = inputs.length; i < len; i++) {
 
   input.onfocus = function() {
     input.classList.remove('is-touched');
-
-    if (inputType) {
-      input.parentNode
-        .getElementsByClassName('rawnumber')[0]
-        .classList.add('hide');
-    }
     // In there were server-side errors, the 'is-invalid' class will be present
     // but should be removed on focus because the user is trying to fix them.
     input.classList.remove('is-invalid');
@@ -130,11 +123,6 @@ for (let i = 0, len = inputs.length; i < len; i++) {
   };
 
   input.onblur = function(e) {
-    if (inputType) {
-      input.parentNode
-        .getElementsByClassName('rawnumber')[0]
-        .classList.remove('hide');
-    }
     if (!e.isTrusted) {
       // This blur event was triggered by a script, not a human, so don't mark
       // the input as is-touched (because it actually wasn't) or show errors.
