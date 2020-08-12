@@ -1,0 +1,35 @@
+{% set shareButton = shareButton | default(true) %}
+
+{% import "@bolt-academy/_macros.twig" as macros %}
+
+{% include "@bolt-components-list/list.twig" with {
+  display: "flex",
+  align: "end",
+  spacing: "xsmall",
+  nowrap: true,
+  items: [
+    editButton ? macros.include("@bolt-components-button/button.twig", {
+      text: "Edit",
+      size: "small",
+      style: "tertiary",
+      iconOnly: true,
+      icon: {
+        name: "pencil",
+      }
+    }, false) : '',
+    downloadButton ? macros.include("@bolt-components-button/button.twig", {
+      text: "Download",
+      size: "small",
+      style: "tertiary",
+      iconOnly: true,
+      icon: {
+        name: "download",
+      }
+    }, false) : '',
+    shareButton ? macros.include("@bolt-academy/toolbar-buttons/_share.twig", {}, false) : '',
+    favoriteButton and isFavorited ? macros.include("@bolt-academy/toolbar-buttons/_unfavorite.twig", {}, false) : '',
+    favoriteButton and not isFavorited ? macros.include("@bolt-academy/toolbar-buttons/_favorite.twig", {}, false) : '',
+    addButton ? macros.include("@bolt-academy/toolbar-buttons/_add.twig", {}, false) : '',
+    removeButton ? macros.include("@bolt-academy/toolbar-buttons/_remove.twig", {}, false) : '',
+  ]
+} only %}
