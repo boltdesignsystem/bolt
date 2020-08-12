@@ -7,6 +7,7 @@
 // 2. [Mai] All the theming stuff is an interim fix until the bolt-text is refactored, which will cover all the text link styles as well.
 // 3. [Morse] This mixin outputs a separate ruleset for each selector to prevent IE from failing on unrecognized selectors like `:host`. It is not a substitute for comma-separated selectors.
 // 4. [Morse] Bolt-link delegates focus to inner element.
+// 5. [Mai] If a <button> tag is used, fonts styles need to reset to override browser defaults.
 
 @import '@bolt/core-v3.x';
 
@@ -43,7 +44,10 @@ $bolt-link-spacing: 'xxsmall';
 }
 
 button.c-bolt-link {
-  font-size: inherit;
+  font-family: inherit; // [5]
+  font-size: inherit; // [5]
+  font-weight: inherit; // [5]
+  line-height: inherit; // [5]
 }
 
 .c-bolt-link--display-flex {
