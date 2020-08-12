@@ -135,10 +135,11 @@ $bolt-input-transition: $bolt-transition;
   ); // Force browsers to render this using hardward acceleration. This resolves a rendering quirk seen in Chrome where the hover state would only work intermittently.
   width: 100%;
   padding: calc(var(--bolt-spacing-y-medium) / 2) var(--bolt-spacing-x-small); // [Mai] medium/2 matches button vertical spacing.
-  font-size: $bolt-font-size--small;
+  font-family: var(--bolt-type-font-family-body);
+  font-size: var(--bolt-type-font-size-small);
   color: $bolt-input-text-color;
   line-height: calc(
-    #{$bolt-line-height--xsmall + em} - 2px
+    var(--bolt-type-line-height-xsmall) * 1em - 2px
   ); // [Mai] The line-height matches button's line-height, the 2px offsets the 1px border from the input.
   text-indent: 0.01px;
   border-radius: $bolt-input-border-radius;
@@ -153,7 +154,7 @@ $bolt-input-transition: $bolt-transition;
   @media (max-width: bolt-breakpoint(small)) {
     font-size: 16px; // [Mai] Mobile Safari will zoom in when input is focused if the text is not at least 16px.
     line-height: calc(
-      #{$bolt-line-height--xsmall + em} - 6px
+      var(--bolt-type-line-height-xsmall) * 1em - 6px
     ); // [Mai] This is just magic number, if the font-size ever changes, this also needs to change by inspecting in the browser and push the px.
   }
 
@@ -204,33 +205,28 @@ $bolt-input-transition: $bolt-transition;
     }
   }
 
-  &:not(:focus) ~ .rawnumber {
+  &.is-filled:not(:focus) ~ .rawnumber {
     display: block;
     opacity: 1;
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 40px;
+    top: 1px;
+    right: 1px;
+    left: 1px;
     padding: calc(var(--bolt-spacing-y-medium) / 2) var(--bolt-spacing-x-small); // [Mai] medium/2 matches button vertical spacing.
-    font-family: sans-serif;
-    font-size: $bolt-font-size--small;
+    font-family: var(--bolt-type-font-family-body);
+    font-size: var(--bolt-type-font-size-small);
     color: $bolt-input-text-color;
-    line-height: calc(#{$bolt-line-height--xsmall + em} - 2px);
+    line-height: calc(
+      var(--bolt-type-line-height-xsmall) * 1em - 2px
+    ); // [Mai] The line-height matches button's line-height, the 2px offsets the 1px border from the input.
     pointer-events: none;
     background-color: bolt-color(white);
-    // transition: all $bolt-input-transition;
-    transition: opacity 0.2s ease-in-out;
 
     @media (max-width: bolt-breakpoint(small)) {
       font-size: 16px; // [Mai] Mobile Safari will zoom in when input is focused if the text is not at least 16px.
       line-height: calc(
-        #{$bolt-line-height--xsmall + em} - 6px
+        var(--bolt-type-line-height-xsmall) * 1em - 6px
       ); // [Mai] This is just magic number, if the font-size ever changes, this also needs to change by inspecting in the browser and push the px.
-    }
-
-    &.hide {
-      opacity: 0;
     }
 
     &:before,
@@ -289,12 +285,12 @@ $bolt-input-transition: $bolt-transition;
 }
 
 .c-bolt-inline-label {
-  @include bolt-font-size(small);
-
   display: inline-block;
   position: relative;
   padding-left: 1.5em;
+  font-size: var(--bolt-type-font-size-small);
   color: bolt-theme(text);
+  line-height: var(--bolt-type-line-height-small);
   cursor: pointer;
   user-select: none;
 
@@ -387,7 +383,7 @@ $bolt-input-transition: $bolt-transition;
     }
 
     .c-bolt-inline-label__emphasize {
-      @include bolt-font-weight(semibold);
+      font-weight: var(--bolt-type-font-weight-semibold);
     }
   }
 
@@ -415,18 +411,18 @@ $bolt-input-transition: $bolt-transition;
 }
 
 .c-bolt-input-icons {
-  // Icon size and padding should NOT adjust alongside font size because the height of the input
-  // is set to match the height of default buttons, which should have a fixed height.
-  @include bolt-font-size(small);
-
   position: absolute;
   top: 1px;
   right: 1px;
-  padding-top: calc(0.35 * var(--bolt-spacing-y-medium));
+  padding-top: calc(
+    var(--bolt-spacing-y-medium) / 2 - 3px
+  ); // [Mai] This 3px is a magic number that will make sure both English and Japanese spacing settings work with the icon's vertical alignment.
   padding-right: var(--bolt-spacing-x-small);
-  padding-bottom: calc(0.35 * var(--bolt-spacing-y-medium) / 2);
+  padding-bottom: 2px;
   padding-left: 0;
+  font-size: var(--bolt-type-font-size-small);
   color: $bolt-input-icon-color;
+  line-height: var(--bolt-type-line-height-small);
   pointer-events: none;
   border-radius: $bolt-input-border-radius;
   background-color: $bolt-input-background-color;
@@ -493,8 +489,6 @@ $bolt-input-transition: $bolt-transition;
 }
 
 .c-bolt-input-icon--link {
-  @include bolt-font-family(body);
-
   padding: 0;
   text-decoration: none;
   cursor: pointer;
@@ -543,17 +537,17 @@ $bolt-input-message-text-color--invalid: bolt-color(
 ); // TODO: [Mai] This is the theme error color
 
 .c-bolt-input-message {
-  @include bolt-font-size(medium);
-
   padding: var(--bolt-spacing-y-xxsmall) var(--bolt-spacing-x-small);
+  font-size: var(--bolt-type-font-size-medium);
+  line-height: var(--bolt-type-line-height-medium);
 }
 
 .c-bolt-input-message--invalid {
-  @include bolt-font-weight(semibold);
-  @include bolt-font-size(xsmall);
-
   margin-top: var(--bolt-spacing-y-xxsmall);
+  font-size: var(--bolt-type-font-size-xsmall);
+  font-weight: var(--bolt-type-font-weight-semibold);
   color: $bolt-input-message-text-color--invalid;
+  line-height: var(--bolt-type-line-height-xsmall);
   border-left: 3px solid bolt-color(error);
   border-radius: bolt-border-radius(small);
   background-color: bolt-color(error, light);
@@ -621,9 +615,9 @@ $bolt-strength-indicator-transition: $bolt-transition;
 }
 
 .c-bolt-strength-indicator__text {
-  @include bolt-font-size(xsmall);
-
   display: block;
+  font-size: var(--bolt-type-font-size-xsmall);
+  line-height: var(--bolt-type-line-height-xsmall);
 }
 
 // Toggle
@@ -673,6 +667,7 @@ $bolt-strength-indicator-transition: $bolt-transition;
   font-family: var(--bolt-type-font-family-headline);
   font-size: var(--bolt-type-font-size-small);
   color: bolt-theme(headline);
+  line-height: var(--bolt-type-line-height-small);
 
   & ~ .c-bolt-block-input-wrapper {
     position: relative;
