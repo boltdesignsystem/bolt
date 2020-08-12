@@ -36,7 +36,7 @@ lazyQueue([], async () => {
   );
 });
 
-// Blueprint-specific JS demoing the Mission Completed form's button re-activating
+// Academy-specific JS demoing the Mission Completed form's button re-activating
 const missionRatingInputs = document.querySelectorAll(
   '.js-mission-rating-input',
 );
@@ -58,7 +58,7 @@ if (missionRatingSubmit) {
       e.preventDefault();
 
       window.location.href =
-        '/pattern-lab/patterns/03-blueprints-05-pages-t1-landing-pages-mission-landing--test-with-modal-02-t1-mission-landing--test-with-modal--after-submit/03-blueprints-05-pages-t1-landing-pages-mission-landing--test-with-modal-02-t1-mission-landing--test-with-modal--after-submit.html';
+        '/pattern-lab/patterns/04-pages-60-academy-05-pages-t1-landing-pages-mission-landing--test-with-modal-02-t1-mission-landing--test-with-modal--after-submit/04-pages-60-academy-05-pages-t1-landing-pages-mission-landing--test-with-modal-02-t1-mission-landing--test-with-modal--after-submit.html';
     }
   });
 }
