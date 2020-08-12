@@ -203,10 +203,9 @@ bolt-navbar {
         $breakpoint-name !=
         'xxxxlarge'
     ) {
-      &--hideTitle_from-#{$breakpoint-name}-bp {
-        display: none;
-        @include bolt-mq($until: $breakpoint-name) {
-          display: block;
+      &--hide-from-#{$breakpoint-name}-bp {
+        @include bolt-mq(#{$breakpoint-name}) {
+          @include bolt-visuallyhidden;
         }
       }
     }
