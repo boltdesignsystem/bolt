@@ -54,12 +54,12 @@ bolt-carousel {
   }
 
   &--no-overflow {
-    min-width: calc(100% + var(--bolt-carousel-space-around) * 2);
+    min-width: calc(100% + var(--c-bolt-carousel-space-around) * 2);
     overflow: hidden;
-    margin-right: calc(var(--bolt-carousel-space-around) * -1);
-    margin-left: calc(var(--bolt-carousel-space-around) * -1);
-    padding-right: var(--bolt-carousel-space-around);
-    padding-left: var(--bolt-carousel-space-around);
+    margin-right: calc(var(--c-bolt-carousel-space-around) * -1);
+    margin-left: calc(var(--c-bolt-carousel-space-around) * -1);
+    padding-right: var(--c-bolt-carousel-space-around);
+    padding-left: var(--c-bolt-carousel-space-around);
   }
 }
 
@@ -114,33 +114,33 @@ bolt-carousel[nav-button-position='outside'].is-ready {
 // carousel space-between slides
 bolt-carousel {
   &[space-between='none'] {
-    --bolt-carousel-space-between: 0rem;
+    --c-bolt-carousel-space-between: 0rem;
   }
 
   &[space-between='small'] {
-    --bolt-carousel-space-between: var(--bolt-spacing-x-small);
+    --c-bolt-carousel-space-between: var(--bolt-spacing-x-small);
   }
 
   &,
   &[space-between='medium'] {
-    --bolt-carousel-space-between: var(--bolt-spacing-x-medium);
+    --c-bolt-carousel-space-between: var(--bolt-spacing-x-medium);
   }
 
   &[space-between='large'] {
-    --bolt-carousel-space-between: var(--bolt-spacing-x-large);
+    --c-bolt-carousel-space-between: var(--bolt-spacing-x-large);
   }
 }
 
 // extra space around-specific styles
 bolt-carousel {
-  --bolt-carousel-space-around: #{$bolt-carousel-space-around};
+  --c-bolt-carousel-space-around: #{$bolt-carousel-space-around};
 
-  width: calc(100% + var(--bolt-carousel-space-around) * 2);
-  margin-right: calc(var(--bolt-carousel-space-around) * -1);
-  margin-left: calc(var(--bolt-carousel-space-around) * -1);
+  width: calc(100% + var(--c-bolt-carousel-space-around) * 2);
+  margin-right: calc(var(--c-bolt-carousel-space-around) * -1);
+  margin-left: calc(var(--c-bolt-carousel-space-around) * -1);
 
   &.is-ready {
-    padding-right: var(--bolt-carousel-space-around);
-    padding-left: var(--bolt-carousel-space-around);
+    padding-right: var(--c-bolt-carousel-space-around);
+    padding-left: var(--c-bolt-carousel-space-around);
   }
 }
