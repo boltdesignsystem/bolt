@@ -9,33 +9,36 @@ for (let i = 0, len = inputs.length; i < len; i++) {
 
   const typeBehaviors = (input, inputType) => {
     if (inputType && input.value.length > 0) {
-      const rawNumber = input.parentNode.getElementsByClassName('rawnumber')[0];
+      const displayValue = input.parentNode.getElementsByClassName(
+        'c-bolt-input__display-value',
+      )[0];
 
+      // @todo need to refactor to prevent the duplication
       switch (inputType) {
         case 'currency-us':
-          rawNumber.setAttribute('data-before-raw-value', '$');
-          rawNumber.setAttribute(
-            'data-after-raw-value',
+          displayValue.setAttribute('data-bolt-form-display-value-before', '$');
+          displayValue.setAttribute(
+            'data-bolt-form-display-value-after',
             addThousands(input.value, thousandsDecimal[0], thousandsDecimal[1]),
           );
           break;
         case 'currency-ja':
-          rawNumber.setAttribute('data-before-raw-value', '¥');
-          rawNumber.setAttribute(
-            'data-after-raw-value',
+          displayValue.setAttribute('data-bolt-form-display-value-before', '¥');
+          displayValue.setAttribute(
+            'data-bolt-form-display-value-after',
             addThousands(input.value, thousandsDecimal[0], thousandsDecimal[1]),
           );
           break;
         case 'percent':
-          rawNumber.setAttribute(
-            'data-before-raw-value',
+          displayValue.setAttribute(
+            'data-bolt-form-display-value-before',
             addThousands(input.value, thousandsDecimal[0], thousandsDecimal[1]),
           );
-          rawNumber.setAttribute('data-after-raw-value', '%');
+          displayValue.setAttribute('data-bolt-form-display-value-after', '%');
           break;
         case 'number':
-          rawNumber.setAttribute(
-            'data-after-raw-value',
+          displayValue.setAttribute(
+            'data-bolt-form-display-value-after',
             addThousands(input.value, thousandsDecimal[0], thousandsDecimal[1]),
           );
           break;
@@ -65,7 +68,7 @@ for (let i = 0, len = inputs.length; i < len; i++) {
 
   if (inputType) {
     let langTag = document.documentElement.lang;
-    // Tempoarary until we have more direction on what we are covering
+    // @todo Tempoarary until we have more direction on what we are covering
     // const formLang = inputs[0].closest('form');
 
     // if (formLang.dataset.boltLang) {
@@ -95,9 +98,10 @@ for (let i = 0, len = inputs.length; i < len; i++) {
 
     // determineFormat(langTag);
 
-    const rawNumber = document.createElement('span');
-    rawNumber.className += 'rawnumber';
-    input.after(rawNumber);
+    const displayValue = document.createElement('span');
+    displayValue.className += 'c-bolt-input__display-value';
+    displayValue.setAttribute('aria-hidden', true);
+    input.after(displayValue);
   }
 
   input.onchange = function() {
