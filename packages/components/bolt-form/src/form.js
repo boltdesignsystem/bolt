@@ -3,52 +3,63 @@ const inputs = document.querySelectorAll('.c-bolt-input');
 
 for (let i = 0, len = inputs.length; i < len; i++) {
   const input = inputs[i];
-  const inputType = input.dataset.formatInput;
+  const inputType = input.dataset.boltFormatInput;
 
-  const typeBehaviors = (operator, input, inputType) => {
+  const typeBehaviors = (input, inputType) => {
     if (inputType && input.value.length > 0) {
-      input.value = input.value.replace(/[$]/g, '');
-      input.value = input.value.replace(/[¥]/g, '');
-      input.value = input.value.replace(/[%]/g, '');
-      if (operator === 'add') {
-        switch (inputType) {
-          case 'currency-us':
-            input.value = '$' + input.value;
-            break;
-          case 'currency-ja':
-            input.value = '¥' + input.value;
-            break;
-          case 'percent':
-            input.value += '%';
-            break;
-          default:
-        }
-      } else {
-        input.value = input.value.replace(/,/g, '');
-        switch (inputType) {
-          case 'currency-us':
-            input.value = input.value.replace('$', '');
-            break;
-          case 'currency-ja':
-            input.value = input.value.replace('¥', '');
-            break;
-          case 'percent':
-            input.value = input.value.replace('%', '');
-            break;
-          default:
-        }
+      const rawNumber = input.parentNode.getElementsByClassName('rawnumber')[0];
+      const currencyController = () => {
+        // US en-US
+        // UK en-GB
+        // FR fr-fr
+        // DE de-de
+        // IT it-it
+        // JP ja-jp
+        // ES es-es
+      };
+      const formatThousands = ',';
+      const formatDecimal = '.';
+      switch (inputType) {
+        case 'currency-us':
+          rawNumber.setAttribute('data-before-raw-value', '$');
+          rawNumber.setAttribute(
+            'data-after-raw-value',
+            addThousands(input.value, formatThousands, formatDecimal),
+          );
+          break;
+        case 'currency-ja':
+          rawNumber.setAttribute('data-before-raw-value', '¥');
+          rawNumber.setAttribute(
+            'data-after-raw-value',
+            addThousands(input.value, formatThousands, formatDecimal),
+          );
+          break;
+        case 'percent':
+          rawNumber.setAttribute(
+            'data-before-raw-value',
+            addThousands(input.value, formatThousands, formatDecimal),
+          );
+          rawNumber.setAttribute('data-after-raw-value', '%');
+          break;
+        case 'number':
+          rawNumber.setAttribute(
+            'data-after-raw-value',
+            addThousands(input.value, formatThousands, formatDecimal),
+          );
+          break;
+        default:
       }
     }
   };
 
-  const addCommas = string => {
+  const addThousands = (string, thousands, decimal) => {
     const rgx = /(\d+)(\d{3})/;
     string += '';
-    const x = string.split('.');
+    const x = string.split(decimal);
     let x1 = x[0];
-    const x2 = x.length > 1 ? '.' + x[1] : '';
+    const x2 = x.length > 1 ? decimal + x[1] : '';
     while (rgx.test(x1)) {
-      x1 = x1.replace(rgx, '$1,$2');
+      x1 = x1.replace(rgx, '$1' + thousands + '$2');
     }
     return x1 + x2;
   };
@@ -58,9 +69,18 @@ for (let i = 0, len = inputs.length; i < len; i++) {
     input.classList.add('is-filled');
   }
 
+  if (inputType) {
+    const rawNumber = document.createElement('span');
+    rawNumber.className += 'rawnumber hide';
+    input.after(rawNumber);
+  }
+
   input.onchange = function() {
     if (input.value) {
       input.classList.add('is-filled');
+      if (inputType) {
+        typeBehaviors(input, inputType);
+      }
     } else {
       input.classList.remove('is-filled');
     }
@@ -68,8 +88,11 @@ for (let i = 0, len = inputs.length; i < len; i++) {
 
   input.onfocus = function() {
     input.classList.remove('is-touched');
+
     if (inputType) {
-      typeBehaviors('remove', input, inputType);
+      input.parentNode
+        .getElementsByClassName('rawnumber')[0]
+        .classList.add('hide');
     }
     // In there were server-side errors, the 'is-invalid' class will be present
     // but should be removed on focus because the user is trying to fix them.
@@ -82,8 +105,9 @@ for (let i = 0, len = inputs.length; i < len; i++) {
 
   input.onblur = function(e) {
     if (inputType) {
-      typeBehaviors('add', input, inputType);
-      input.value = addCommas(input.value);
+      input.parentNode
+        .getElementsByClassName('rawnumber')[0]
+        .classList.remove('hide');
     }
     if (!e.isTrusted) {
       // This blur event was triggered by a script, not a human, so don't mark
