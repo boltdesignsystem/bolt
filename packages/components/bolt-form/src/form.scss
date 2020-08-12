@@ -69,62 +69,30 @@ $bolt-inline-label-input-border-style: $bolt-border-style;
 $bolt-inline-label-input-border-width: $bolt-border-width;
 
 // Data Inputs
+// Inputs do not follow theming, they always have white background and dark text.
 $bolt-floating-label-text-scale: bolt-strip-unit($bolt-font-size--xsmall);
-$bolt-floating-label-text-color: rgba(
-  bolt-color(gray, xdark),
-  0.5
-); // TODO: [Denton] This is the theme text color at 66%
-$bolt-floating-label-text-color-active: bolt-color(
-  navy,
-  light
-); // TODO: [Mai] This is the theme link color
+$bolt-floating-label-text-color: bolt-color(navy, light);
+$bolt-floating-label-text-color-active: bolt-color(navy, light);
 $bolt-floating-label-transition: $bolt-transition;
-
-$bolt-input-text-color: bolt-color(
-  gray,
-  xdark
-); // TODO: [Mai] This is the theme text color
-$bolt-input-text-color--invalid: bolt-color(
-  error
-); // TODO: [Mai] This is the theme error color
-$bolt-input-text-color--disabled: rgba(
-  bolt-color(gray, xdark),
-  0.5
-); // TODO: [Mai] This is the theme text color at 66%
-$bolt-input-background-color: bolt-color(
-  white
-); // TODO: [Mai] This is the theme input background color
+$bolt-input-text-color: bolt-color(black);
+$bolt-input-text-color--invalid: bolt-color(error);
+$bolt-input-text-color--disabled: bolt-color(gray);
+$bolt-input-background-color: bolt-color(white);
 $bolt-input-background-color--disabled: bolt-color(gray, xlight);
 $bolt-input-background-color--invalid: lighten(bolt-color(error), 58%);
-$bolt-input-placeholder-color: rgba(
-  bolt-color(gray, xdark),
-  0.5
-); // TODO: [Mai] This is the theme text color at 66%
-$bolt-input-placeholder-color--invalid: bolt-color(
-  error
-); // TODO: [Mai] This is the theme error color
-$bolt-input-placeholder-color--disabled: rgba(
-  bolt-color(gray, xdark),
-  0.5
-); // TODO: [Mai] This is the theme text color at 66%
+$bolt-input-placeholder-color: bolt-color(gray);
+$bolt-input-placeholder-color--invalid: bolt-color(error);
+$bolt-input-placeholder-color--disabled: bolt-color(gray);
 $bolt-input-icon-color: bolt-color(black);
 $bolt-input-icon-color--active: bolt-color(navy, light);
 $bolt-input-icon-color--invalid: bolt-color(error);
-$bolt-input-border-color: rgba(
-  bolt-color(navy, light),
-  0.25
-); // TODO: [Mai] This is the theme link color at 25%
-$bolt-input-border-color--focus: bolt-color(
-  navy,
-  light
-); // TODO: [Mai] This is the theme link color
-$bolt-input-border-color--invalid: bolt-color(
-  error
-); // TODO: [Mai] This is the theme error color
+$bolt-input-border-color: bolt-theme(link, 0.25);
+$bolt-input-border-color--focus: bolt-color(navy, light);
+$bolt-input-border-color--invalid: bolt-color(error);
 $bolt-input-border-width: $bolt-border-width;
 $bolt-input-border-style: $bolt-border-style;
 $bolt-input-border-radius: $bolt-border-radius;
-$bolt-input-box-shadow: bolt-color(navy, light);
+$bolt-input-box-shadow-color: bolt-color(navy, light);
 $bolt-input-shadow-level: 'level-20';
 $bolt-input-transition: $bolt-transition;
 
@@ -132,8 +100,7 @@ $bolt-input-transition: $bolt-transition;
   &::-webkit-input-placeholder {
     /* Chrome/Opera/Safari */
 
-    // Workaround for pega.com Drupal, which currently uses sanitize.css.  Once that's
-    // removed, the following line will be unnecessary.
+    // Workaround for pega.com Drupal, which currently uses sanitize.css. Once removed, the following line will be unnecessary.
     opacity: bolt-opacity(100);
     color: $color;
   }
@@ -218,13 +185,22 @@ $bolt-input-transition: $bolt-transition;
     padding-bottom: calc(var(--bolt-spacing-y-small) - 0.55rem);
   }
 
-  &:focus,
   &:hover {
     &:not(.is-disabled):not(:disabled) {
       @include bolt-shadow(
         $key: $bolt-input-shadow-level,
-        $base-color: $bolt-input-box-shadow
+        $base-color: $bolt-input-box-shadow-color
       );
+    }
+  }
+
+  &:focus {
+    border-color: $bolt-input-border-color--focus !important;
+
+    &:not(.is-disabled):not(:disabled) {
+      box-shadow: 0 0 0 2px bolt-color(white),
+        0 1px 4px 2px rgba($bolt-input-box-shadow-color, 0.1),
+        0 5px 12px 0 rgba($bolt-input-box-shadow-color, 0.08);
     }
   }
 
@@ -269,10 +245,6 @@ $bolt-input-transition: $bolt-transition;
     &:after {
       content: attr(data-after-raw-value);
     }
-  }
-
-  &:focus {
-    border-color: $bolt-input-border-color--focus !important;
   }
 }
 
@@ -391,7 +363,7 @@ $bolt-input-transition: $bolt-transition;
     &:before {
       @include bolt-shadow(
         $key: $bolt-input-shadow-level,
-        $base-color: $bolt-input-box-shadow
+        $base-color: $bolt-input-box-shadow-color
       );
     }
   }
@@ -400,7 +372,7 @@ $bolt-input-transition: $bolt-transition;
     &:before {
       @include bolt-shadow(
         $key: $bolt-input-shadow-level,
-        $base-color: $bolt-input-box-shadow
+        $base-color: $bolt-input-box-shadow-color
       );
     }
   }
@@ -667,9 +639,6 @@ $bolt-strength-indicator-transition: $bolt-transition;
   }
 }
 
-.c-bolt-toggle__item {
-}
-
 .c-bolt-toggle__item-input {
   @include bolt-visuallyhidden;
 
@@ -681,7 +650,7 @@ $bolt-strength-indicator-transition: $bolt-transition;
   &:focus + .c-bolt-toggle__item-label {
     @include bolt-shadow(
       $key: $bolt-input-shadow-level,
-      $base-color: $bolt-input-box-shadow
+      $base-color: $bolt-input-box-shadow-color
     );
   }
 }
