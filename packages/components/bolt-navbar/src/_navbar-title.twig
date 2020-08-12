@@ -1,4 +1,17 @@
 {% set attributes = create_attribute(attributes|default({})) %}
+{% set title_attributes = create_attribute({}) %}
+
+{% set schema = bolt.data.components["@bolt-components-navbar"].schema %}
+{% set hideOptions = schema.properties.title.properties.hide_title.enum %}
+{% set hide_title = hide_title in hideOptions ? hide_title %}
+
+{% set title_classes = [
+  'c-bolt-navbar__title-text',
+  hide_title ? "c-bolt-navbar__title-text--hide-#{hide_title}" : "",
+  (not hide_title and not text) ? "c-bolt-navbar__title-text--hide-from-xsmall-bp"
+] %}
+{% set title_attributes = title_attributes.addClass(title_classes) %}
+
 {% if url %}
   {% set attributes = attributes.setAttribute("href", url) %}
 {% endif %}
@@ -12,8 +25,8 @@
       } only %}
     </div>
   {% endif %}
-  <{{ tag }} class="c-bolt-navbar__title-text">
-    {{ text }}
+  <{{ tag }} {{ title_attributes }}>
+    {{ text|default("Go to"|t) }}
   </{{ tag }}>
 {% endset %}
 

@@ -32,6 +32,12 @@ module.exports = {
             },
           },
         },
+        hide_title: {
+          type: 'string',
+          description:
+            'Set the breakpoint at which you wish to hide the title text.',
+          enum: ['from-xsmall-bp', 'from-small-bp'],
+        },
       },
     },
     center: {
