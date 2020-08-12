@@ -34,7 +34,6 @@ class BoltNavPriority extends withLitHtml {
   connecting() {
     Promise.all([customElements.whenDefined('bolt-navlink')]).then(_ => {
       this.isOpen = false;
-      this.offsettolerance = 5; // Extra wiggle room when calculating how many items can fit
 
       this.containerTabs = this.querySelector('.c-bolt-nav-priority');
       this.primaryNav = this.querySelector('.c-bolt-nav-priority__primary');
@@ -121,7 +120,7 @@ class BoltNavPriority extends withLitHtml {
     this.primaryItems.forEach((item, i) => {
       // make sure the items fit + we haven't already started to encounter items that don't
       if (
-        primaryWidth + this.offsettolerance >= stopWidth + item.offsetWidth &&
+        primaryWidth >= stopWidth + item.offsetWidth &&
         hideTheRest !== true
       ) {
         stopWidth += item.offsetWidth;

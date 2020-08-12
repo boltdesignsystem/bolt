@@ -5,7 +5,6 @@
 \* ------------------------------------ */
 
 $bolt-navbar-title-transition: $bolt-transition;
-$bolt-navbar-xsmall-bp: 420px; // Slightly increase the default 400px xsmall breakpoint to be better optimized for larger plus-sized mobile devices -- value shared by the bolt-navbar, bolt-nav-priority, and bolt-navlink components
 
 bolt-navbar {
   // @todo: remove once Navbar refactored to have theming classes added to the `.c-bolt-navbar` inner.
@@ -36,15 +35,9 @@ bolt-navbar {
     margin-right: var(--bolt-spacing-x-small);
   }
 
-  @include bolt-mq($bolt-navbar-xsmall-bp) {
+  @include bolt-mq(xsmall) {
     padding-right: $bolt-wrapper-padding;
     padding-left: $bolt-wrapper-padding;
-  }
-
-  @include bolt-if-browser-supports-display-contents {
-    @media screen and (max-width: $bolt-navbar-xsmall-bp) {
-      padding-top: 0;
-    }
   }
 
   @include bolt-mq(medium) {
@@ -60,7 +53,7 @@ bolt-navbar {
   }
 
   @include bolt-if-browser-supports-display-contents {
-    @media screen and (max-width: $bolt-navbar-xsmall-bp) {
+    @include bolt-mq($until: xsmall) {
       display: grid;
       flex-direction: row;
       justify-content: center;
@@ -70,6 +63,7 @@ bolt-navbar {
           --bolt-spacing-y-medium
         );
       grid-template-rows: 1fr auto;
+      padding-top: 0;
       padding-right: 0;
       padding-left: 0;
     }
@@ -188,6 +182,33 @@ bolt-navbar {
     flex-wrap: nowrap; // fixes IE 11 flex-bug causing text to resist staying on one line and prematurely wraps to two-lines -- even if plenty of space is available
     font: var(--bolt-type-preset-headline-small);
     font-weight: var(--bolt-type-font-weight-bold);
+  }
+
+  @each $breakpoint in $bolt-breakpoints {
+    $breakpoint-name: nth($breakpoint, 1);
+
+    @if (
+      $breakpoint-name !=
+        'xxsmall' and
+        $breakpoint-name !=
+        'medium' and
+        $breakpoint-name !=
+        'large' and
+        $breakpoint-name !=
+        'xlarge' and
+        $breakpoint-name !=
+        'xxlarge' and
+        $breakpoint-name !=
+        'xxxlarge' and
+        $breakpoint-name !=
+        'xxxxlarge'
+    ) {
+      &--hide-from-#{$breakpoint-name}-bp {
+        @include bolt-mq(#{$breakpoint-name}) {
+          @include bolt-visuallyhidden;
+        }
+      }
+    }
   }
 }
 
