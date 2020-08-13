@@ -27,84 +27,86 @@
       <bolt-text slot="label">Fonts</bolt-text>
 
       {% for family_name, family_value in font_family_map %}
-        <bolt-stack spacing="medium">
-          <bolt-text headline font-size="xxlarge" tag="h2">
-            {{ family_name|capitalize }}: {{ family_value }}{% if family_name == "code" %}*{% endif %}
-          </bolt-text>
-        </bolt-stack>
-        <bolt-stack spacing="xsmall">
-          <bolt-text eyebrow tag="h3">
-            Characters
-          </bolt-text>
-        </bolt-stack>
-        <bolt-stack spacing="small">
-          <hr class="u-bolt-margin-none">
-        </bolt-stack>
-        <bolt-stack spacing="medium">
-          <bolt-text font-size="large" letter-spacing="wide" style="overflow-wrap: break-word;"
-            {% if family_name == "heading" %}
-              headline
-            {% elseif family_name == "code" %}
-              font-family="code"
-            {% endif %}
-          >
-            {{ characters_sample }}
-          </bolt-text>
-        </bolt-stack>
-        <bolt-stack spacing="xsmall">
-          <bolt-text eyebrow tag="h3">
-            Styles
-          </bolt-text>
-        </bolt-stack>
-        <bolt-stack spacing="small">
-          <hr class="u-bolt-margin-none">
-        </bolt-stack>
-        <bolt-stack spacing="large">
-          <bolt-list spacing="xsmall">
-            {% if family_name != "heading" %}
-              <bolt-list-item>
-                <bolt-text font-size="medium" font-weight="regular"
-                  {% if family_name == "code" %}
-                    font-family="code"
-                  {% endif %}
-                >
-                  Regular
-                </bolt-text>
-              </bolt-list-item>
-              <bolt-list-item>
-                <bolt-text font-size="medium" font-weight="regular" font-style="italic"
-                  {% if family_name == "code" %}
-                    font-family="code"
-                  {% endif %}
-                >
-                  Regular Italic
-                </bolt-text>
-              </bolt-list-item>
-            {% endif %}
-            {% if family_name != "code" %}
-              <bolt-list-item>
-                <bolt-text font-size="medium" font-weight="semibold">
-                  Semi-Bold
-                </bolt-text>
-              </bolt-list-item>
-              <bolt-list-item>
-                <bolt-text font-size="medium" font-weight="semibold" font-style="italic">
-                  Semi-Bold Italic
-                </bolt-text>
-              </bolt-list-item>
-              <bolt-list-item>
-                <bolt-text font-size="medium" font-weight="bold">
-                  Bold
-                </bolt-text>
-              </bolt-list-item>
-              <bolt-list-item>
-                <bolt-text font-size="medium" font-weight="bold" font-style="italic">
-                  Bold Italic
-                </bolt-text>
-              </bolt-list-item>
-            {% endif %}
-          </bolt-list>
-        </bolt-stack>
+        {% if family_name != "fallback" %}
+          <bolt-stack spacing="medium">
+            <bolt-text headline font-size="xxlarge" tag="h2">
+              {{ family_name|capitalize }}: {{ family_value }}{% if family_name == "code" %}*{% endif %}
+            </bolt-text>
+          </bolt-stack>
+          <bolt-stack spacing="xsmall">
+            <bolt-text eyebrow tag="h3">
+              Characters
+            </bolt-text>
+          </bolt-stack>
+          <bolt-stack spacing="small">
+            <hr class="u-bolt-margin-none">
+          </bolt-stack>
+          <bolt-stack spacing="medium">
+            <bolt-text font-size="large" letter-spacing="wide" style="overflow-wrap: break-word;"
+              {% if family_name == "headline" %}
+                headline
+              {% elseif family_name == "code" %}
+                font-family="code"
+              {% endif %}
+            >
+              {{ characters_sample }}
+            </bolt-text>
+          </bolt-stack>
+          <bolt-stack spacing="xsmall">
+            <bolt-text eyebrow tag="h3">
+              Styles
+            </bolt-text>
+          </bolt-stack>
+          <bolt-stack spacing="small">
+            <hr class="u-bolt-margin-none">
+          </bolt-stack>
+          <bolt-stack spacing="large">
+            <bolt-list spacing="xsmall">
+              {% if family_name != "heading" %}
+                <bolt-list-item>
+                  <bolt-text font-size="medium" font-weight="regular"
+                    {% if family_name == "code" %}
+                      font-family="code"
+                    {% endif %}
+                  >
+                    Regular
+                  </bolt-text>
+                </bolt-list-item>
+                <bolt-list-item>
+                  <bolt-text font-size="medium" font-weight="regular" font-style="italic"
+                    {% if family_name == "code" %}
+                      font-family="code"
+                    {% endif %}
+                  >
+                    Regular Italic
+                  </bolt-text>
+                </bolt-list-item>
+              {% endif %}
+              {% if family_name != "code" %}
+                <bolt-list-item>
+                  <bolt-text font-size="medium" font-weight="semibold">
+                    Semi-Bold
+                  </bolt-text>
+                </bolt-list-item>
+                <bolt-list-item>
+                  <bolt-text font-size="medium" font-weight="semibold" font-style="italic">
+                    Semi-Bold Italic
+                  </bolt-text>
+                </bolt-list-item>
+                <bolt-list-item>
+                  <bolt-text font-size="medium" font-weight="bold">
+                    Bold
+                  </bolt-text>
+                </bolt-list-item>
+                <bolt-list-item>
+                  <bolt-text font-size="medium" font-weight="bold" font-style="italic">
+                    Bold Italic
+                  </bolt-text>
+                </bolt-list-item>
+              {% endif %}
+            </bolt-list>
+          </bolt-stack>
+        {% endif %}
       {% endfor %}
       <bolt-stack spacing="large">
         <bolt-banner align="start">
