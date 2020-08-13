@@ -121,9 +121,27 @@ $bolt-input-transition: $bolt-transition;
   }
 }
 
+@mixin _bolt-input-text-and-background {
+  padding: calc(var(--bolt-spacing-y-medium) / 2) var(--bolt-spacing-x-small); // [Mai] medium/2 matches button vertical spacing.
+  font-family: var(--bolt-type-font-family-body);
+  font-size: var(--bolt-type-font-size-small);
+  color: $bolt-input-text-color;
+  line-height: calc(
+    var(--bolt-type-line-height-xsmall) * 1em - 1px
+  ); // [Mai] The line-height matches button's line-height, the 1px offsets the 1px border from the input.
+  background-color: $bolt-input-background-color;
+
+  @include bolt-mq($until: small) {
+    padding-top: calc(var(--bolt-spacing-y-medium) / 2 - 2px);
+    padding-bottom: calc(var(--bolt-spacing-y-medium) / 2 - 3px);
+    font-size: 16px; // [Mai] Mobile Safari will zoom in when input is focused if the text is not at least 16px.
+  }
+}
+
 .c-bolt-input {
   // This should ONLY apply to <input> elements, NOT anything else like <label>, <div>, <span>, etc.
   @include bolt-input-placeholder($bolt-input-placeholder-color);
+  @include _bolt-input-text-and-background;
 
   display: block;
   appearance: none !important; // Removing native controls
@@ -134,28 +152,14 @@ $bolt-input-transition: $bolt-transition;
     0
   ); // Force browsers to render this using hardward acceleration. This resolves a rendering quirk seen in Chrome where the hover state would only work intermittently.
   width: 100%;
-  padding: calc(var(--bolt-spacing-y-medium) / 2) var(--bolt-spacing-x-small); // [Mai] medium/2 matches button vertical spacing.
-  font-size: $bolt-font-size--small;
-  color: $bolt-input-text-color;
-  line-height: calc(
-    #{$bolt-line-height--xsmall + em} - 2px
-  ); // [Mai] The line-height matches button's line-height, the 2px offsets the 1px border from the input.
   text-indent: 0.01px;
   border-radius: $bolt-input-border-radius;
   border-width: $bolt-input-border-width;
   border-style: $bolt-input-border-style;
   border-color: $bolt-input-border-color;
   outline: none;
-  background-color: $bolt-input-background-color;
   transition: all $bolt-input-transition;
   text-overflow: '';
-
-  @media (max-width: bolt-breakpoint(small)) {
-    font-size: 16px; // [Mai] Mobile Safari will zoom in when input is focused if the text is not at least 16px.
-    line-height: calc(
-      #{$bolt-line-height--xsmall + em} - 6px
-    ); // [Mai] This is just magic number, if the font-size ever changes, this also needs to change by inspecting in the browser and push the px.
-  }
 
   &::-ms-expand {
     display: none;
@@ -181,8 +185,8 @@ $bolt-input-transition: $bolt-transition;
 
   &.is-filled,
   &:focus {
-    padding-top: calc(var(--bolt-spacing-y-small) + 0.55rem);
-    padding-bottom: calc(var(--bolt-spacing-y-small) - 0.55rem);
+    padding-top: calc(var(--bolt-spacing-y-medium) / 2 + 0.55rem);
+    padding-bottom: calc(var(--bolt-spacing-y-medium) / 2 - 0.55rem);
   }
 
   &:hover {
@@ -198,10 +202,38 @@ $bolt-input-transition: $bolt-transition;
     border-color: $bolt-input-border-color--focus !important;
 
     &:not(.is-disabled):not(:disabled) {
-      box-shadow:
-        0 0 0 2px bolt-color(white),
+      box-shadow: 0 0 0 2px bolt-color(white),
         0 1px 4px 2px rgba($bolt-input-box-shadow-color, 0.1),
         0 5px 12px 0 rgba($bolt-input-box-shadow-color, 0.08);
+    }
+  }
+
+  // [Mai] This is only used for displaying formatted numbers, it covers up the actual input field.
+  .c-bolt-input__display-value {
+    display: none;
+  }
+
+  &.is-filled:not(:invalid):not(:focus) ~ .c-bolt-input__display-value {
+    @include _bolt-input-text-and-background;
+
+    display: block;
+    position: absolute;
+    top: 1px;
+    right: 1px;
+    left: 1px;
+    pointer-events: none;
+
+    &:before,
+    &:after {
+      display: inline-block;
+    }
+
+    &:before {
+      content: attr(data-bolt-form-display-value-before);
+    }
+
+    &:after {
+      content: attr(data-bolt-form-display-value-after);
     }
   }
 }
@@ -220,7 +252,7 @@ $bolt-input-transition: $bolt-transition;
   left: calc(var(--bolt-spacing-x-small) + 2px);
   transform: translate3d(0, -50%, 0) translateY(0.4rem);
   color: $bolt-floating-label-text-color;
-  line-height: $bolt-floating-label-text-scale;
+  line-height: 1;
   pointer-events: none;
   user-select: none;
   transition: all $bolt-floating-label-transition;
@@ -247,12 +279,12 @@ $bolt-input-transition: $bolt-transition;
 }
 
 .c-bolt-inline-label {
-  @include bolt-font-size(small);
-
   display: inline-block;
   position: relative;
   padding-left: 1.5em;
+  font-size: var(--bolt-type-font-size-small);
   color: bolt-theme(text);
+  line-height: var(--bolt-type-line-height-small);
   cursor: pointer;
   user-select: none;
 
@@ -345,7 +377,7 @@ $bolt-input-transition: $bolt-transition;
     }
 
     .c-bolt-inline-label__emphasize {
-      @include bolt-font-weight(semibold);
+      font-weight: var(--bolt-type-font-weight-semibold);
     }
   }
 
@@ -373,18 +405,18 @@ $bolt-input-transition: $bolt-transition;
 }
 
 .c-bolt-input-icons {
-  // Icon size and padding should NOT adjust alongside font size because the height of the input
-  // is set to match the height of default buttons, which should have a fixed height.
-  @include bolt-font-size(small);
-
   position: absolute;
   top: 1px;
   right: 1px;
-  padding-top: calc(0.35 * var(--bolt-spacing-y-medium));
+  padding-top: calc(
+    var(--bolt-spacing-y-medium) / 2 - 3px
+  ); // [Mai] This 3px is a magic number that will make sure both English and Japanese spacing settings work with the icon's vertical alignment.
   padding-right: var(--bolt-spacing-x-small);
-  padding-bottom: calc(0.35 * var(--bolt-spacing-y-medium) / 2);
+  padding-bottom: 2px;
   padding-left: 0;
+  font-size: var(--bolt-type-font-size-small);
   color: $bolt-input-icon-color;
+  line-height: var(--bolt-type-line-height-small);
   pointer-events: none;
   border-radius: $bolt-input-border-radius;
   background-color: $bolt-input-background-color;
@@ -451,8 +483,6 @@ $bolt-input-transition: $bolt-transition;
 }
 
 .c-bolt-input-icon--link {
-  @include bolt-font-family(body);
-
   padding: 0;
   text-decoration: none;
   cursor: pointer;
@@ -501,17 +531,17 @@ $bolt-input-message-text-color--invalid: bolt-color(
 ); // TODO: [Mai] This is the theme error color
 
 .c-bolt-input-message {
-  @include bolt-font-size(medium);
-
   padding: var(--bolt-spacing-y-xxsmall) var(--bolt-spacing-x-small);
+  font-size: var(--bolt-type-font-size-medium);
+  line-height: var(--bolt-type-line-height-medium);
 }
 
 .c-bolt-input-message--invalid {
-  @include bolt-font-weight(semibold);
-  @include bolt-font-size(xsmall);
-
   margin-top: var(--bolt-spacing-y-xxsmall);
+  font-size: var(--bolt-type-font-size-xsmall);
+  font-weight: var(--bolt-type-font-weight-semibold);
   color: $bolt-input-message-text-color--invalid;
+  line-height: var(--bolt-type-line-height-xsmall);
   border-left: 3px solid bolt-color(error);
   border-radius: bolt-border-radius(small);
   background-color: bolt-color(error, light);
@@ -579,9 +609,9 @@ $bolt-strength-indicator-transition: $bolt-transition;
 }
 
 .c-bolt-strength-indicator__text {
-  @include bolt-font-size(xsmall);
-
   display: block;
+  font-size: var(--bolt-type-font-size-xsmall);
+  line-height: var(--bolt-type-line-height-xsmall);
 }
 
 // Toggle
@@ -631,6 +661,7 @@ $bolt-strength-indicator-transition: $bolt-transition;
   font-family: var(--bolt-type-font-family-headline);
   font-size: var(--bolt-type-font-size-small);
   color: bolt-theme(headline);
+  line-height: var(--bolt-type-line-height-small);
 
   & ~ .c-bolt-block-input-wrapper {
     position: relative;
