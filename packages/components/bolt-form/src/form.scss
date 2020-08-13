@@ -122,14 +122,8 @@ $bolt-input-transition: $bolt-transition;
 }
 
 @mixin _bolt-input-text-and-background {
-  padding-top: calc(
-    var(--bolt-spacing-y-medium) / 2 - 1px
-  ); // [Mai] medium/2 matches button vertical spacing.
-  padding-right: 5ch;
-  padding-bottom: calc(
-    var(--bolt-spacing-y-medium) / 2 - 1px
-  ); // [Mai] medium/2 matches button vertical spacing.
-  padding-left: var(--bolt-spacing-x-small);
+  padding: calc(var(--bolt-spacing-y-medium) / 2 - 1px)
+    var(--bolt-spacing-x-small); // [Mai] medium/2 matches button vertical spacing.
   font-family: var(--bolt-type-font-family-body);
   font-size: var(--bolt-type-font-size-small);
   color: $bolt-input-text-color;
@@ -176,6 +170,7 @@ $bolt-input-transition: $bolt-transition;
   &.is-touched:invalid {
     @include bolt-input-placeholder($bolt-input-placeholder-color--invalid);
 
+    padding-right: 5ch;
     color: $bolt-input-text-color--invalid;
     border-color: $bolt-input-border-color--invalid;
     background-color: $bolt-input-background-color--invalid;
