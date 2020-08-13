@@ -9,7 +9,7 @@ for (let i = 0, len = inputs.length; i < len; i++) {
 
   const onInputChange = (input, inputFormat) => {
     if (inputFormat && input.value.length > 0) {
-      input.value = cleanValue(input.value);
+      // input.value = cleanValue(input.value);
       const displayValue = input.parentNode.querySelector(
         '.c-bolt-input__display-value',
       );
@@ -135,7 +135,7 @@ for (let i = 0, len = inputs.length; i < len; i++) {
 
   input.onblur = function(e) {
     if (inputFormat) {
-      input.value = cleanValue(input.value);
+      // input.value = cleanValue(input.value);
     }
     if (!e.isTrusted) {
       // This blur event was triggered by a script, not a human, so don't mark
