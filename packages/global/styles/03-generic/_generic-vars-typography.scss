@@ -12,21 +12,32 @@
 :root {
   // Base tokens are for public use and user overrides
   // Note: user can customize these to generate a different typography system, such as Japanese typography.
-  --bolt-type-font-size: 87.5%;
+  --bolt-type-font-size: 87.5%; // 14px
 
   @include bolt-mq(xsmall) {
-    --bolt-type-font-size: 93.75%;
+    --bolt-type-font-size: 93.75%; // 15px
   }
 
   @include bolt-mq(xlarge) {
-    --bolt-type-font-size: 100%;
+    --bolt-type-font-size: 100%; // 16px
   }
 
   @each $family in $bolt-type-font-family-system {
     $family-name: nth($family, 1);
     $family-value: nth($family, 2);
 
-    --bolt-type-font-family-#{$family-name}: #{$family-value};
+    --bolt-type-font-family-#{$family-name}-origin: #{$family-value};
+
+    @if $family-name == code {
+      --bolt-type-font-family-#{$family-name}: var(
+        --bolt-type-font-family-#{$family-name}-origin
+      );
+    } @else {
+      --bolt-type-font-family-#{$family-name}: var(
+          --bolt-type-font-family-#{$family-name}-origin
+        ),
+        var(--bolt-type-font-family-fallback-origin);
+    }
   }
 
   @each $size in $bolt-type-font-size-system {
