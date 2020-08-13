@@ -26,17 +26,11 @@
     $family-name: nth($family, 1);
     $family-value: nth($family, 2);
 
-    --bolt-type-font-family-#{$family-name}-origin: #{$family-value};
-
-    @if $family-name == code {
-      --bolt-type-font-family-#{$family-name}: var(
-        --bolt-type-font-family-#{$family-name}-origin
-      );
+    @if $family-name == code or $family-name == fallback {
+      --bolt-type-font-family-#{$family-name}: #{$family-value};
     } @else {
-      --bolt-type-font-family-#{$family-name}: var(
-          --bolt-type-font-family-#{$family-name}-origin
-        ),
-        var(--bolt-type-font-family-fallback-origin);
+      --bolt-type-font-family-#{$family-name}: #{$family-value},
+        var(--bolt-type-font-family-fallback);
     }
   }
 
