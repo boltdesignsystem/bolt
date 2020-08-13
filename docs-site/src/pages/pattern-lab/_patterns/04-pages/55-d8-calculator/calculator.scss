@@ -35,9 +35,10 @@ $www-calculator-logo-spacing-size: 3px; // Hard px is used to avoid subpixel iss
     border-radius: bolt-border-radius(full);
     background-color: bolt-color(white);
     transition: transform $bolt-transition;
-    animation: 3s ease-in-out .5s forwards a-www-calculator-logo-spin;
+    animation: 3s ease-in-out 0.5s forwards a-www-calculator-logo-spin;
 
     @media (prefers-reduced-motion) {
+      transform: none;
       animation: none; // Do not animate if the user has expressed their preference for reduced motion.
     }
 
@@ -69,9 +70,11 @@ $www-calculator-logo-spacing-size: 3px; // Hard px is used to avoid subpixel iss
   .o-bolt-grid__cell {
     opacity: 0;
     transform: translate3d(0, -10px, 0);
-    animation: .5s ease-in-out .5s forwards a-www-calculator-fade-in-down;
+    animation: 0.5s ease-in-out 0.5s forwards a-www-calculator-fade-in-down;
 
     @media (prefers-reduced-motion) {
+      opacity: 1;
+      transform: none;
       animation: none; // Do not animate if the user has expressed their preference for reduced motion.
     }
   }
@@ -80,12 +83,12 @@ $www-calculator-logo-spacing-size: 3px; // Hard px is used to avoid subpixel iss
 @keyframes a-www-calculator-fade-in-down {
   0% {
     opacity: 0;
-    transform: translate3d(0, -10px, 0)
+    transform: translate3d(0, -10px, 0);
   }
 
   100% {
     opacity: 1;
-    transform: translate3d(0, 0, 0)
+    transform: translate3d(0, 0, 0);
   }
 }
 
