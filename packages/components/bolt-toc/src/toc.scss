@@ -36,9 +36,11 @@ bolt-toc {
   display: block;
   margin: 0;
   padding: var(--bolt-spacing-y-xsmall) var(--bolt-spacing-x-small);
-  font: var(--bolt-type-preset-headline-large);
+  font-family: var(--bolt-type-font-family-headline);
+  font-size: var(--bolt-type-font-size-large);
   font-weight: var(--bolt-type-font-weight-bold);
   color: bolt-theme(background);
+  line-height: var(--bolt-type-line-height-large);
   background-color: bolt-theme(headline);
 
   &--hidden {

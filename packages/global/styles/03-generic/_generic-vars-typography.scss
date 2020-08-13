@@ -63,25 +63,4 @@
 
     --bolt-type-letter-spacing-#{$spacing-name}: #{$spacing-value};
   }
-
-  // Headline tokens are for internal use
-  // Note: devs can use these to define headlines by using the `font:` shorthand.
-  @each $size in $bolt-type-font-size-system {
-    $size-name: nth($size, 1);
-
-    --bolt-type-preset-headline-#{$size-name}: var(
-        --bolt-type-font-size-#{$size-name}
-      ) /
-      var(--bolt-type-line-height-#{$size-name})
-      var(--bolt-type-font-family-headline);
-    --bolt-type-preset-body-#{$size-name}: var(
-        --bolt-type-font-size-#{$size-name}
-      ) /
-      var(--bolt-type-line-height-#{$size-name})
-      var(--bolt-type-font-family-body);
-    --bolt-type-preset-code-#{$size-name}: var(--bolt-type-font-weight-regular)
-      var(--bolt-type-font-size-#{$size-name}) /
-      var(--bolt-type-line-height-#{$size-name})
-      var(--bolt-type-font-family-code);
-  }
 }

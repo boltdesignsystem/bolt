@@ -35,7 +35,9 @@
   }
 
   &:not([class*='c-bolt-headline--']) {
-    font: var(--bolt-type-preset-headline-large);
+    font-family: var(--bolt-type-font-family-headline);
+    font-size: var(--bolt-type-font-size-large);
+    line-height: var(--bolt-type-line-height-large);
   }
 }
 
@@ -64,7 +66,9 @@
 .c-bolt-eyebrow {
   opacity: 0.8;
   margin-bottom: 0.1rem;
-  font: var(--bolt-type-preset-headline-small);
+  font-family: var(--bolt-type-font-family-headline);
+  font-size: var(--bolt-type-font-size-xsmall);
+  line-height: var(--bolt-type-line-height-small);
   text-transform: uppercase;
   letter-spacing: var(--bolt-type-letter-spacing-wide);
 }

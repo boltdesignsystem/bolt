@@ -173,15 +173,19 @@ bolt-navbar {
 
 .c-bolt-navbar__title-text {
   flex-flow: wrap;
-  font: var(--bolt-type-preset-headline-medium);
+  font-family: var(--bolt-type-font-family-headline);
+  font-size: var(--bolt-type-font-size-medium);
   font-weight: var(--bolt-type-font-weight-semibold);
+  line-height: var(--bolt-type-line-height-medium);
   white-space: normal; // wrap to multiple lines if needed
 
   // Adjust the Navbar Title size when being stacked vertically
   .c-bolt-navbar--center & {
     flex-wrap: nowrap; // fixes IE 11 flex-bug causing text to resist staying on one line and prematurely wraps to two-lines -- even if plenty of space is available
-    font: var(--bolt-type-preset-headline-small);
+    font-family: var(--bolt-type-font-family-headline);
+    font-size: var(--bolt-type-font-size-small);
     font-weight: var(--bolt-type-font-weight-bold);
+    line-height: var(--bolt-type-line-height-small);
   }
 
   @each $breakpoint in $bolt-breakpoints {

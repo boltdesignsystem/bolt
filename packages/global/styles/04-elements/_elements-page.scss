@@ -9,7 +9,9 @@ html {
 body {
   width: 100%;
   margin: 0;
-  font: var(--bolt-type-preset-body-medium);
+  font-family: var(--bolt-type-font-family-body);
+  font-size: var(--bolt-type-font-size-medium);
   color: bolt-color(black);
+  line-height: var(--bolt-type-line-height-medium);
   overflow-x: hidden; // Helps prevent horizontal scrolling in Chrome on Windows machines. Seems to be working fine w/ native position sticky at first glance.
 }
