@@ -4,7 +4,6 @@
 $bolt-blockquote-border-width: 4px;
 $bolt-blockquote-border-style: $bolt-border-style;
 $bolt-blockquote-border-color: bolt-color(teal);
-$bolt-blockquote-footer-line-height: $bolt-line-height--tight;
 $bolt-blockquote-image-border-width: $bolt-border-width;
 $bolt-blockquote-image-border-style: $bolt-border-style;
 $bolt-blockquote-image-border-color: rgba(bolt-color(gray), 0.2);
@@ -125,7 +124,10 @@ $bolt-blockquote-image-size: 4rem;
 
 .c-bolt-blockquote__footer {
   color: bolt-theme(text);
-  line-height: $bolt-blockquote-footer-line-height;
+  line-height: calc(
+    var(--bolt-type-line-height-medium) *
+      var(--bolt-type-line-height-multiplier-tight)
+  );
 }
 
 .c-bolt-blockquote__footer-item {

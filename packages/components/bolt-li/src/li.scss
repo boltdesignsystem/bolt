@@ -1,7 +1,7 @@
 @import '@bolt/core-v3.x';
 
 // Local Variables
-$bolt-ol-bullet-size: $bolt-line-height--xsmall + rem;
+$bolt-ol-bullet-size: calc(var(--bolt-type-line-height-xsmall) * 1rem);
 $bolt-ol-bullet-bg-color: rgba(bolt-color(gray), 0.2);
 $bolt-li-spacing: var(--bolt-spacing-x-medium);
 $bolt-li-bullet-level-1: '\25CF'; // black-circle
