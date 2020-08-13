@@ -5,41 +5,41 @@ let thousandsDecimal = [',', '.'];
 
 for (let i = 0, len = inputs.length; i < len; i++) {
   const input = inputs[i];
-  const inputType = input.dataset.boltFormatInput;
+  const inputFormat = input.dataset.boltFormatInput;
 
-  const typeBehaviors = (input, inputType) => {
-    if (inputType && input.value.length > 0) {
-      const displayValue = input.parentNode.getElementsByClassName(
-        'c-bolt-input__display-value',
-      )[0];
+  const onInputChange = (input, inputFormat) => {
+    if (inputFormat && input.value.length > 0) {
+      const displayValue = input.parentNode.querySelector(
+        '.c-bolt-input__display-value',
+      );
 
       // @todo need to refactor to prevent the duplication
-      switch (inputType) {
+      switch (inputFormat) {
         case 'currency-us':
           displayValue.setAttribute('data-bolt-form-display-value-before', '$');
           displayValue.setAttribute(
             'data-bolt-form-display-value-after',
-            addThousands(input.value, thousandsDecimal[0], thousandsDecimal[1]),
+            formatNumber(input.value, thousandsDecimal[0], thousandsDecimal[1]),
           );
           break;
         case 'currency-ja':
           displayValue.setAttribute('data-bolt-form-display-value-before', '¥');
           displayValue.setAttribute(
             'data-bolt-form-display-value-after',
-            addThousands(input.value, thousandsDecimal[0], thousandsDecimal[1]),
+            formatNumber(input.value, thousandsDecimal[0], thousandsDecimal[1]),
           );
           break;
         case 'percent':
           displayValue.setAttribute(
             'data-bolt-form-display-value-before',
-            addThousands(input.value, thousandsDecimal[0], thousandsDecimal[1]),
+            formatNumber(input.value, thousandsDecimal[0], thousandsDecimal[1]),
           );
           displayValue.setAttribute('data-bolt-form-display-value-after', '%');
           break;
         case 'number':
           displayValue.setAttribute(
             'data-bolt-form-display-value-after',
-            addThousands(input.value, thousandsDecimal[0], thousandsDecimal[1]),
+            formatNumber(input.value, thousandsDecimal[0], thousandsDecimal[1]),
           );
           break;
         default:
@@ -47,7 +47,7 @@ for (let i = 0, len = inputs.length; i < len; i++) {
     }
   };
 
-  const addThousands = (string, thousands, decimal) => {
+  const formatNumber = (string, thousands, decimal) => {
     const rgx = /(\d+)(\d{3})/;
     string += '';
     const x = string.split(decimal);
@@ -66,7 +66,7 @@ for (let i = 0, len = inputs.length; i < len; i++) {
     input.classList.add('is-filled');
   }
 
-  if (inputType) {
+  if (inputFormat) {
     let langTag = document.documentElement.lang;
     // @todo Tempoarary until we have more direction on what we are covering
     // const formLang = inputs[0].closest('form');
@@ -99,7 +99,7 @@ for (let i = 0, len = inputs.length; i < len; i++) {
     // determineFormat(langTag);
 
     const displayValue = document.createElement('span');
-    displayValue.className += 'c-bolt-input__display-value';
+    displayValue.classList.add('c-bolt-input__display-value');
     displayValue.setAttribute('aria-hidden', true);
     input.after(displayValue);
   }
@@ -107,8 +107,8 @@ for (let i = 0, len = inputs.length; i < len; i++) {
   input.onchange = function() {
     if (input.value) {
       input.classList.add('is-filled');
-      if (inputType) {
-        typeBehaviors(input, inputType);
+      if (inputFormat) {
+        onInputChange(input, inputFormat);
       }
     } else {
       input.classList.remove('is-filled');
