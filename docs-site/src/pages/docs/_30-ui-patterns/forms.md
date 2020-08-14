@@ -39,7 +39,7 @@ Below are the most common elements and their considerations.
 Use a text input for a single line of text that doesn’t require formatting. Input data displays as plain text. Example uses include asking for names or inputting the title of a post.
 
 <figure>
-<iframe src="/pattern-lab/patterns/02-components-form-form-element-demo-input-element/02-components-form-form-element-demo-input-element.html" frameborder="0" width="100%"></iframe>
+<iframe src="/pattern-lab/patterns/40-components-form-form-element-demo-input-element/40-components-form-form-element-demo-input-element.html" frameborder="0" width="100%"></iframe>
 <figcaption>A static input contains helper text within the field.</figcaption>
 </figure>
 
@@ -53,7 +53,7 @@ Use a text input for a single line of text that doesn’t require formatting. In
 Use a textarea for longer passages of text, such as blog posts, descriptions or comments. Textareas generally support WYSIWYG editors, in-line images and standard formatting such as bold or italic text.
 
 <figure>
-<iframe src="/pattern-lab/patterns/02-components-form-form-element-demo-textarea/02-components-form-form-element-demo-textarea.html" frameborder="0" width="100%"></iframe>
+<iframe src="/pattern-lab/patterns/40-components-form-form-element-demo-textarea/40-components-form-form-element-demo-textarea.html" frameborder="0" width="100%"></iframe>
 <figcaption>Static input</figcaption>
 </figure>
 
@@ -82,7 +82,7 @@ Use a select list whenever you have a list longer than 7 items to choose from. B
 When disabled, form fields take on the `xlight` color as their background and lose the ability to interact with it.
 
 <figure>
-<iframe src="/pattern-lab/patterns/02-components-form-form-element-demo-input-element-disabled/02-components-form-form-element-demo-input-element-disabled.html" frameborder="0" width="100%"></iframe>
+<iframe src="/pattern-lab/patterns/40-components-form-form-element-demo-input-element-disabled/40-components-form-form-element-demo-input-element-disabled.html" frameborder="0" width="100%"></iframe>
 <figcaption>Form fields that are disabled take on a light background.</figcaption>
 </figure>
 

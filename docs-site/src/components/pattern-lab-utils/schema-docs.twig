@@ -41,7 +41,7 @@
 
 			{% if (prop.type == "object" or prop.type == "array") and prop.properties or prop.ref %}
 				{% if prop.ref %}
-					<a href="/pattern-lab/patterns/02-components-{{ prop.ref }}/index.html">Refer to the {{ prop.ref | capitalize }} Component Schema for options</a>
+					<a href="/pattern-lab/patterns/40-components-{{ prop.ref }}/index.html">Refer to the {{ prop.ref | capitalize }} Component Schema for options</a>
 				{% else %}
 					{{ macros.object(prop.properties) }}
 				{% endif %}

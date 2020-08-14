@@ -10,7 +10,7 @@ module.exports = {
 
     browser
       .url(
-        `${testingUrl}/pattern-lab/patterns/02-components-popover-25-popover-theme-variations/02-components-popover-25-popover-theme-variations.html#js-bolt-popover-theme-demo-xdark-5`,
+        `${testingUrl}/pattern-lab/patterns/40-components-popover-25-popover-theme-variations/40-components-popover-25-popover-theme-variations.html#js-bolt-popover-theme-demo-xdark-5`,
       )
       .waitForElementVisible('bolt-popover[uuid="theme-demo-xdark-5"]', 1000)
       .pause(1000)
@@ -31,7 +31,7 @@ module.exports = {
 
     browser
       .url(
-        `${testingUrl}/pattern-lab/patterns/02-components-popover-25-popover-theme-variations/02-components-popover-25-popover-theme-variations.html#js-bolt-popover-trigger-theme-demo-xdark-5`,
+        `${testingUrl}/pattern-lab/patterns/40-components-popover-25-popover-theme-variations/40-components-popover-25-popover-theme-variations.html#js-bolt-popover-trigger-theme-demo-xdark-5`,
       )
       .waitForElementVisible('bolt-popover[uuid="theme-demo-xdark-5"]', 1000)
       .pause(1000)
@@ -50,7 +50,7 @@ module.exports = {
 
     browser
       .url(
-        `${testingUrl}/pattern-lab/patterns/02-components-popover-25-popover-theme-variations/02-components-popover-25-popover-theme-variations.html?foo=bar#js-bolt-popover-theme-demo-xdark-5`,
+        `${testingUrl}/pattern-lab/patterns/40-components-popover-25-popover-theme-variations/40-components-popover-25-popover-theme-variations.html?foo=bar#js-bolt-popover-theme-demo-xdark-5`,
       )
       .waitForElementVisible('bolt-popover[uuid="theme-demo-xdark-5"]', 1000)
       .pause(1000)
