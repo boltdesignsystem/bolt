@@ -2,7 +2,7 @@
 
 ## Logo renders as expected (functionally and visually)
 
-View the [Lazyload Variations page](https://master.boltdesignsystem.com/pattern-lab/patterns/02-components-logo/index.html) and verify the following assertions:
+View the [Lazyload Variations page](https://master.boltdesignsystem.com/pattern-lab/patterns/40-components-logo/index.html) and verify the following assertions:
 
 - Logos have the proper aspect ratio. They are not distorted or taking up more space than necessary.
 - Inverted logos have the class `c-bolt-logo--inverted` and their colors are inverted, i.e. a light logo on a dark background.
@@ -21,12 +21,12 @@ Functional testing should be performed manually by the QA team across the standa
 
 ## Scenario: Basic Logo
 
-[Basic Logo page](https://master.boltdesignsystem.com/pattern-lab/patterns/02-components-logo-05-logo/02-components-logo-05-logo.html)
+[Basic Logo page](https://master.boltdesignsystem.com/pattern-lab/patterns/40-components-logo-05-logo/40-components-logo-05-logo.html)
 
 `// This is a purely visual test, use VRT`
 
 ## Scenario: Invert Variation
 
-[Logo Size Variation page](https://master.boltdesignsystem.com/pattern-lab/patterns/02-components-logo-10-logo-invert-variation/02-components-logo-10-logo-invert-variation.html)
+[Logo Size Variation page](https://master.boltdesignsystem.com/pattern-lab/patterns/40-components-logo-10-logo-invert-variation/40-components-logo-10-logo-invert-variation.html)
 
 `// This is a purely visual test, use VRT`

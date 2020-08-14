@@ -10,7 +10,7 @@ module.exports = {
 
     browser
       .url(
-        `${testingUrl}/pattern-lab/patterns/02-components-modal-05-modal/02-components-modal-05-modal.html`,
+        `${testingUrl}/pattern-lab/patterns/40-components-modal-05-modal/40-components-modal-05-modal.html`,
       )
       .waitForElementVisible('bolt-button', 1000)
       .click('bolt-button')
