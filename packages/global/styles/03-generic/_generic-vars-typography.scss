@@ -12,21 +12,26 @@
 :root {
   // Base tokens are for public use and user overrides
   // Note: user can customize these to generate a different typography system, such as Japanese typography.
-  --bolt-type-font-size: 14px;
+  --bolt-type-font-size: 87.5%; // 14px
 
   @include bolt-mq(xsmall) {
-    --bolt-type-font-size: 15px;
+    --bolt-type-font-size: 93.75%; // 15px
   }
 
-  @include bolt-mq(xxlarge) {
-    --bolt-type-font-size: 16px;
+  @include bolt-mq(xlarge) {
+    --bolt-type-font-size: 100%; // 16px
   }
 
   @each $family in $bolt-type-font-family-system {
     $family-name: nth($family, 1);
     $family-value: nth($family, 2);
 
-    --bolt-type-font-family-#{$family-name}: #{$family-value};
+    @if $family-name == code or $family-name == fallback {
+      --bolt-type-font-family-#{$family-name}: #{$family-value};
+    } @else {
+      --bolt-type-font-family-#{$family-name}: #{$family-value},
+        var(--bolt-type-font-family-fallback);
+    }
   }
 
   @each $size in $bolt-type-font-size-system {
@@ -62,16 +67,5 @@
     $spacing-value: nth($spacing, 2);
 
     --bolt-type-letter-spacing-#{$spacing-name}: #{$spacing-value};
-  }
-
-  // Headline tokens are for internal use
-  // Note: devs can use these to define headlines by using the `font:` shorthand.
-  @each $size in $bolt-type-font-size-system {
-    $size-name: nth($size, 1);
-
-    --bolt-type-preset-headline-#{$size-name}: var(--bolt-type-font-weight-bold)
-      var(--bolt-type-font-size-#{$size-name}) /
-      var(--bolt-type-line-height-#{$size-name})
-      var(--bolt-type-font-family-headline);
   }
 }

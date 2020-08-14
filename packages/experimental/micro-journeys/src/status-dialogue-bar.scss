@@ -74,7 +74,10 @@ $bolt-tooltip-bubble-triangle-width: 8px;
 
   &__slot {
     &--text {
-      line-height: ($bolt-line-height--xsmall + 0.2);
+      line-height: calc(
+        var(--bolt-type-line-height-xsmall) *
+          var(--bolt-type-line-height-multiplier-loose)
+      );
       text-align: left;
       @include bolt-font-weight(regular);
       @include bolt-font-size(xsmall);

@@ -39,12 +39,12 @@ $bolt-button-transition: $bolt-transition;
 @mixin bolt-button {
   @include bolt-button-reset;
   @include bolt-no-select;
-  @include bolt-font-weight(semibold);
 
   display: flex;
   align-items: center;
   position: relative;
   transform: translate3d(0, 0, 0);
+  font-weight: var(--bolt-type-font-weight-semibold);
   text-decoration: none;
   vertical-align: middle;
   cursor: pointer;
@@ -85,10 +85,8 @@ $bolt-button-transition: $bolt-transition;
   &:focus:not(:hover):not(.c-bolt-button--disabled),
   &.is-focus:not(.is-hover):not(.is-disabled) {
     box-shadow: 0 -1px 2px bolt-theme(background),
-      0 1px 2px bolt-theme(background),
- 0 0 5px rgb(59, 153, 252),
-      0 -1px 0.65rem rgb(59, 153, 252),
- 0 1px 0.65rem rgb(59, 153, 252); // @todo: This mimmicks the browser default blue. We will update it with our own colors later on.
+      0 1px 2px bolt-theme(background), 0 0 5px rgb(59, 153, 252),
+      0 -1px 0.65rem rgb(59, 153, 252), 0 1px 0.65rem rgb(59, 153, 252); // @todo: This mimmicks the browser default blue. We will update it with our own colors later on.
   }
 }
 

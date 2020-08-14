@@ -1,24 +1,35 @@
 {% set usage %}{% verbatim %}
-{% extends "@bolt-components-form/form.twig" %}
-{% set children %}
-  {% set form_field %}
-    {% include "@pl/10-form-element-demo-input-element.twig" with {
-      title: "Email Address",
-      inputAttributes: {
-        placeholder: "Enter Email Address",
+{% set form_children %}
+  {% set label %}
+    {% include "@bolt-components-form/form-label.twig" with {
+      title: "This is the label",
+      displayType: "block"
+    } only %}
+  {% endset %}
+  {% set input %}
+    {% include "@bolt-components-form/form-input.twig" with {
+      attributes: {
+        placeholder: "This is the placeholder text.",
         required: true,
-        type: "email"
+        type: "text",
       },
-      labelDisplayType: "floating"
     } only %}
   {% endset %}
-  {% set submit_button %}
-    {% include "@bolt-components-form/form-button.twig" with {
-      text: "Sign up now",
-      tag: "submit"
-    } only %}
-  {% endset %}
+  {% include "@bolt-components-form/form-element.twig" with {
+    labelDisplay: "before",
+    label: label,
+    children: input
+  } only %}
+  {% include "@bolt-components-form/form-button.twig" with {
+    text: "Submit",
+    attributes: {
+      type: "submit",
+    }
+  } only %}
 {% endset %}
+{% include "@bolt-components-form/form.twig" with {
+  children: form_children
+} only %}
 {% endverbatim %}{% endset %}
 
 {% include "@utils/docs.twig" with {
