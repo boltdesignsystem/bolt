@@ -1,46 +1,71 @@
-import { props, hasNativeShadowDomSupport } from '@bolt/core-v3.x/utils';
-import { withLitHtml } from '@bolt/core-v3.x/renderers/renderer-lit-html';
+import {
+  customElement,
+  BoltElement,
+  html,
+  ifDefined,
+  unsafeCSS,
+  convertInitialTags,
+} from '@bolt/element';
+
 import classNames from 'classnames/bind';
 import textStyles from '@bolt/components-text/index.scss';
-import {
-  ifDefined,
-  html,
-  convertInitialTags,
-  customElement,
-} from '@bolt/element';
 import styles from './blockquote.scss';
-import schema from '../blockquote.schema';
 import { AuthorImage, AuthorName, AuthorTitle } from './Author';
-
 let cx = classNames.bind([styles, textStyles]);
+import schemaFile from '../blockquote.schema';
 
 @customElement('bolt-blockquote')
 @convertInitialTags('blockquote') // The first matching tag will have its attributes converted to component props
-class BoltBlockquote extends withLitHtml {
-  static props = {
-    size: props.string,
-    weight: props.string,
-    alignItems: props.string,
-    border: props.string,
-    indent: props.boolean,
-    fullBleed: props.boolean,
-    noQuotes: props.boolean,
-    lang: props.string,
-    authorName: props.string,
-    authorTitle: props.string,
-    authorImage: props.string,
-  };
-
-  // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
-  constructor(self) {
-    self = super(self);
-    self.useShadow = hasNativeShadowDomSupport;
-    self.schema = self.getModifiedSchema(schema);
-    return self;
+class BoltBlockquote extends BoltElement {
+  static get styles() {
+    return [unsafeCSS(imageStyles)];
   }
 
-  rendered() {
-    super.rendered && super.rendered();
+  static get properties() {
+    return {
+      size: {
+        type: String,
+        attribute: 'size',
+      },
+      weight: {
+        type: String,
+        attribute: 'weight',
+      },
+      alignItems: {
+        type: String,
+        attribute: 'align-items',
+      },
+      border: {
+        type: String,
+        attribute: 'border',
+      },
+      indent: {
+        type: Boolean,
+        attribute: 'indent',
+      },
+      noQuotes: {
+        type: Boolean,
+        attribute: 'no-quotes',
+      },
+      lang: {
+        type: String,
+        attribute: 'lang',
+      },
+      fullBleed: Boolean,
+      authorName: String,
+      authorTitle: String,
+      authorImage: String,
+    };
+  }
+
+  // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
+  constructor() {
+    super();
+    // this.useShadow = hasNativeShadowDomSupport;
+    // this.schema = this.getModifiedSchema(schema);
+  }
+
+  firstUpdated() {
     const self = this;
 
     // @todo: I've added this.useShadow here to exclude IE.
@@ -74,7 +99,7 @@ class BoltBlockquote extends withLitHtml {
     }
   }
 
-  disconnected() {
+  disconnectedCallback() {
     super.disconnected && super.disconnected();
 
     // remove MutationObserver if supported + exists
@@ -137,33 +162,18 @@ class BoltBlockquote extends withLitHtml {
   }
 
   render() {
-    // validate the original prop data passed along -- returns back the validated data w/ added default values
-    const {
-      size,
-      weight,
-      alignItems,
-      border,
-      indent,
-      fullBleed,
-      noQuotes,
-      lang,
-      authorName,
-      authorTitle,
-      authorImage,
-    } = this.validateProps(this.props);
-
     const classes = cx('c-bolt-blockquote', {
-      [`c-bolt-blockquote--${size}`]: size,
-      [`c-bolt-blockquote--${weight}`]: weight,
+      [`c-bolt-blockquote--${size}`]: this.size,
+      [`c-bolt-blockquote--${weight}`]: this.weight,
       [`c-bolt-blockquote--align-items-${this.getAlignItemsOption(
-        alignItems,
+        this.alignItems,
       )}`]: this.getAlignItemsOption(alignItems),
       [`c-bolt-blockquote--${this.getBorderOption(
-        border,
-      )}`]: this.getBorderOption(border),
-      [`c-bolt-blockquote--indented`]: indent,
-      [`c-bolt-blockquote--full`]: fullBleed,
-      [`c-bolt-blockquote--no-quotes`]: noQuotes,
+        this.border,
+      )}`]: this.getBorderOption(this.border),
+      [`c-bolt-blockquote--indented`]: this.indent,
+      [`c-bolt-blockquote--full`]: this.fullBleed,
+      [`c-bolt-blockquote--no-quotes`]: this.noQuotes,
     });
 
     let footerItems = [];
@@ -175,8 +185,8 @@ class BoltBlockquote extends withLitHtml {
       'c-bolt-text-v2',
       'c-bolt-text-v2--block',
       'c-bolt-text-v2--body',
-      `c-bolt-text-v2--font-size-${size}`,
-      `c-bolt-text-v2--font-weight-${weight}`,
+      `c-bolt-text-v2--font-size-${this.size}`,
+      `c-bolt-text-v2--font-weight-${this.weight}`,
       'c-bolt-text-v2--font-style-regular',
       'c-bolt-text-v2--color-theme-headline',
       'c-bolt-text-v2--letter-spacing-regular',
@@ -191,8 +201,8 @@ class BoltBlockquote extends withLitHtml {
       <blockquote
         class="${classes}"
         lang="${ifDefined(
-          lang
-            ? lang
+          this.lang
+            ? this.lang
             : this.closest('[lang]')
             ? this.closest('[lang]')
                 .getAttribute('lang')
