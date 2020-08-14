@@ -18,7 +18,7 @@ Whenever possible, lead with Indigo or White, and use the accent colors primaril
 
 <!-- ![Pega's brand colors default to Base; use shades to create visual hierarchy where needed.](/images/docs/color_brand.png) -->
 
-<iframe src="/pattern-lab/patterns/01-visual-styles-00-color-palette-01-brand-colors/01-visual-styles-00-color-palette-01-brand-colors.html" frameborder="0" width="100%"></iframe>
+<iframe src="/pattern-lab/patterns/10-visual-styles-00-color-palette-01-brand-colors/10-visual-styles-00-color-palette-01-brand-colors.html" frameborder="0" width="100%"></iframe>
 
 ## Color themes
 
@@ -46,4 +46,4 @@ For body copy, such as articles, always use the x-light theme.
 
 Use status colors to indicate system information, success or error, or provide system warnings. Avoid using status colors in other contexts.
 
-<iframe src="/pattern-lab/patterns/01-visual-styles-00-color-palette-02-status-colors/01-visual-styles-00-color-palette-02-status-colors.html" frameborder="0" width="100%"></iframe>
+<iframe src="/pattern-lab/patterns/10-visual-styles-00-color-palette-02-status-colors/10-visual-styles-00-color-palette-02-status-colors.html" frameborder="0" width="100%"></iframe>

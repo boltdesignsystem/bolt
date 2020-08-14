@@ -73,7 +73,7 @@ Functional testing should be performed manually by the QA team across the standa
 ## Scenario: Link hover state
 
 1. Given I am using a "desktop" browser
-1. And I am viewing the [Basic Link page](https://master.boltdesignsystem.com/pattern-lab/patterns/02-components-link-05-link/02-components-link-05-link.html)
+1. And I am viewing the [Basic Link page](https://master.boltdesignsystem.com/pattern-lab/patterns/40-components-link-05-link/40-components-link-05-link.html)
 1. Then I should see a link with the text "This is a text link"
 1. When I mouse over the link
 1. Then the link text-color should lighten
@@ -81,7 +81,7 @@ Functional testing should be performed manually by the QA team across the standa
 ## Scenario: Inline link wrapping
 
 1. Given I am using a "desktop" browser
-1. And I am viewing the [Link Display Variations page](https://master.boltdesignsystem.com/pattern-lab/patterns/02-components-link-10-link-display-variations/02-components-link-10-link-display-variations.html)
+1. And I am viewing the [Link Display Variations page](https://master.boltdesignsystem.com/pattern-lab/patterns/40-components-link-10-link-display-variations/40-components-link-10-link-display-variations.html)
 1. And I am looking at the section "Inline link"
 1. Then I should see a paragraph that contains two links
 1. When I resize the browser to less than 600px wide
@@ -90,7 +90,7 @@ Functional testing should be performed manually by the QA team across the standa
 ## Scenario: Flex link icon position
 
 1. Given I am using a "desktop" browser
-1. And I am viewing the [Link Display Variations page](https://master.boltdesignsystem.com/pattern-lab/patterns/02-components-link-10-link-display-variations/02-components-link-10-link-display-variations.html)
+1. And I am viewing the [Link Display Variations page](https://master.boltdesignsystem.com/pattern-lab/patterns/40-components-link-10-link-display-variations/40-components-link-10-link-display-variations.html)
 1. And I am looking at the section "Flex link"
 1. Then I should see two links
 1. And each link has an icon to the left or right
@@ -100,7 +100,7 @@ Functional testing should be performed manually by the QA team across the standa
 
 ## Scenario: Link vertical-alignment variations (start)
 
-1. Given I am viewing the [Link Valign Variations page](https://master.boltdesignsystem.com/pattern-lab/patterns/02-components-link-20-link-valign-variations/02-components-link-20-link-valign-variations.html)
+1. Given I am viewing the [Link Valign Variations page](https://master.boltdesignsystem.com/pattern-lab/patterns/40-components-link-20-link-valign-variations/40-components-link-20-link-valign-variations.html)
 1. And I am looking at the section "Link Valign Variations"
 1. And I am looking at the sub-section "Valign: start"
 1. Then I should see a link with an icon "fixed" to the left
@@ -108,7 +108,7 @@ Functional testing should be performed manually by the QA team across the standa
 
 ## Scenario: Link vertical-alignment variations (center)
 
-1. Given I am viewing the [Link Valign Variations page](https://master.boltdesignsystem.com/pattern-lab/patterns/02-components-link-20-link-valign-variations/02-components-link-20-link-valign-variations.html)
+1. Given I am viewing the [Link Valign Variations page](https://master.boltdesignsystem.com/pattern-lab/patterns/40-components-link-20-link-valign-variations/40-components-link-20-link-valign-variations.html)
 1. And I am looking at the section "Link Valign Variations"
 1. And I am looking at the sub-section "Valign: center"
 1. Then I should see a link with an icon "fixed" to the left
@@ -116,6 +116,6 @@ Functional testing should be performed manually by the QA team across the standa
 
 ## Scenario: Link icon variations
 
-[Link Icon Variations page](https://master.boltdesignsystem.com/pattern-lab/patterns/02-components-link-25-link-theme-variations/02-components-link-25-link-theme-variations.html)
+[Link Icon Variations page](https://master.boltdesignsystem.com/pattern-lab/patterns/40-components-link-25-link-theme-variations/40-components-link-25-link-theme-variations.html)
 
 `// This is a purely visual test, use VRT`

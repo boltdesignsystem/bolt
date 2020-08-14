@@ -50,14 +50,14 @@ Functional testing should be performed manually by the QA team across the standa
 ## Scenario: Standard card
 
 1. Given I am using a "desktop" browser
-1. And I am viewing the [Basic Card page](https://master.boltdesignsystem.com/pattern-lab/patterns/02-components-card-05-card/02-components-card-05-card.html)
+1. And I am viewing the [Basic Card page](https://master.boltdesignsystem.com/pattern-lab/patterns/40-components-card-05-card/40-components-card-05-card.html)
 1. Then I should see card component with image on the top, eyebrow, headline and text elemnts in the middle and button on the bottom
 1. When I click in the button i will be redirected to "pega.com"
 
 ## Scenario: Two buttons
 
 1. Given I am using a "desktop" browser
-1. And I am viewing the [Card with Two Buttons page](https://master.boltdesignsystem.com/pattern-lab/patterns/02-components-card-10-card-with-two-buttons/02-components-card-10-card-with-two-buttons.html)
+1. And I am viewing the [Card with Two Buttons page](https://master.boltdesignsystem.com/pattern-lab/patterns/40-components-card-10-card-with-two-buttons/40-components-card-10-card-with-two-buttons.html)
 1. And I am looking at the footer section (section with buttons)
 1. Then I should see two buttons next to each other
 
@@ -65,7 +65,7 @@ Functional testing should be performed manually by the QA team across the standa
 ## Scenario: Card with video
 
 1. Given I am using a "desktop" browser
-1. And I am viewing the [Card with Video page](https://master.boltdesignsystem.com/pattern-lab/patterns/02-components-card-15-card-with-video/02-components-card-15-card-with-video.html)
+1. And I am viewing the [Card with Video page](https://master.boltdesignsystem.com/pattern-lab/patterns/40-components-card-15-card-with-video/40-components-card-15-card-with-video.html)
 1. And I am looking at the media section
 1. Then I should see video player
 1. After click on play button video should start playing
@@ -75,6 +75,6 @@ Functional testing should be performed manually by the QA team across the standa
 
 ## Scenario: Card elements variations
 
-[Card Elements Variations page](https://master.boltdesignsystem.com/pattern-lab/patterns/02-components-card-25-card-band-variation/02-components-card-25-card-band-variation.html)
+[Card Elements Variations page](https://master.boltdesignsystem.com/pattern-lab/patterns/40-components-card-25-card-band-variation/40-components-card-25-card-band-variation.html)
 
 `// This is a purely visual test, use VRT`
