@@ -70,7 +70,7 @@ $bolt-inline-label-input-border-width: $bolt-border-width;
 
 // Data Inputs
 // Inputs do not follow theming, they always have white background and dark text.
-$bolt-floating-label-text-scale: bolt-strip-unit($bolt-font-size--xsmall);
+$bolt-floating-label-text-scale: 0.8;
 $bolt-floating-label-text-color: bolt-color(navy, light);
 $bolt-floating-label-text-color-active: bolt-color(navy, light);
 $bolt-floating-label-transition: $bolt-transition;
@@ -122,7 +122,8 @@ $bolt-input-transition: $bolt-transition;
 }
 
 @mixin _bolt-input-text-and-background {
-  padding: calc(var(--bolt-spacing-y-medium) / 2) var(--bolt-spacing-x-small); // [Mai] medium/2 matches button vertical spacing.
+  padding: calc(var(--bolt-spacing-y-medium) / 2 - 1px)
+    var(--bolt-spacing-x-small); // [Mai] medium/2 matches button vertical spacing.
   font-family: var(--bolt-type-font-family-body);
   font-size: var(--bolt-type-font-size-small);
   color: $bolt-input-text-color;
@@ -132,8 +133,8 @@ $bolt-input-transition: $bolt-transition;
   background-color: $bolt-input-background-color;
 
   @include bolt-mq($until: small) {
-    padding-top: calc(var(--bolt-spacing-y-medium) / 2 - 2px);
-    padding-bottom: calc(var(--bolt-spacing-y-medium) / 2 - 3px);
+    padding-top: calc(var(--bolt-spacing-y-medium) / 2 - 0.1875rem);
+    padding-bottom: calc(var(--bolt-spacing-y-medium) / 2 - 0.25rem);
     font-size: 16px; // [Mai] Mobile Safari will zoom in when input is focused if the text is not at least 16px.
   }
 }
@@ -169,6 +170,7 @@ $bolt-input-transition: $bolt-transition;
   &.is-touched:invalid {
     @include bolt-input-placeholder($bolt-input-placeholder-color--invalid);
 
+    padding-right: 5ch;
     color: $bolt-input-text-color--invalid;
     border-color: $bolt-input-border-color--invalid;
     background-color: $bolt-input-background-color--invalid;
@@ -185,8 +187,8 @@ $bolt-input-transition: $bolt-transition;
 
   &.is-filled,
   &:focus {
-    padding-top: calc(var(--bolt-spacing-y-medium) / 2 + 0.55rem);
-    padding-bottom: calc(var(--bolt-spacing-y-medium) / 2 - 0.55rem);
+    padding-top: calc(var(--bolt-spacing-y-medium) / 2 + 0.55rem - 1px);
+    padding-bottom: calc(var(--bolt-spacing-y-medium) / 2 - 0.55rem - 1px);
   }
 
   &:hover {
@@ -409,17 +411,16 @@ $bolt-input-transition: $bolt-transition;
   top: 1px;
   right: 1px;
   padding-top: calc(
-    var(--bolt-spacing-y-medium) / 2 - 3px
-  ); // [Mai] This 3px is a magic number that will make sure both English and Japanese spacing settings work with the icon's vertical alignment.
+    var(--bolt-spacing-y-medium) / 2 - 0.25rem
+  ); // [Mai] This 0.3125rem is a magic number that will make sure both English and Japanese spacing settings work with the icon's vertical alignment.
   padding-right: var(--bolt-spacing-x-small);
-  padding-bottom: 2px;
+  padding-bottom: 1px;
   padding-left: 0;
   font-size: var(--bolt-type-font-size-small);
   color: $bolt-input-icon-color;
   line-height: var(--bolt-type-line-height-small);
   pointer-events: none;
   border-radius: $bolt-input-border-radius;
-  background-color: $bolt-input-background-color;
 
   &:before {
     content: '';
@@ -439,8 +440,6 @@ $bolt-input-transition: $bolt-transition;
 .c-bolt-input.is-invalid,
 .c-bolt-input.is-touched:invalid {
   & ~ .c-bolt-input-icons {
-    background-color: $bolt-input-background-color--invalid;
-
     &:before {
       background: linear-gradient(
         to left,
@@ -454,8 +453,6 @@ $bolt-input-transition: $bolt-transition;
 .c-bolt-input.is-disabled,
 .c-bolt-input:disabled {
   & ~ .c-bolt-input-icons {
-    background-color: $bolt-input-background-color--disabled;
-
     &:before {
       background: linear-gradient(
         to left,
@@ -470,11 +467,6 @@ $bolt-input-transition: $bolt-transition;
 .c-bolt-custom-input.is-active {
   & ~ .c-bolt-input-icons {
     color: $bolt-input-icon-color--active;
-    @include bolt-css-vars(
-      (
-        --bolt-theme-icon: $bolt-input-icon-color--active,
-      )
-    );
   }
 }
 
@@ -494,11 +486,6 @@ $bolt-input-transition: $bolt-transition;
 .c-bolt-input-icon--invalid {
   display: none; // The invalid icon will always be present and simply un-hidden when a field becomes invalid
   color: $bolt-input-icon-color--invalid;
-  @include bolt-css-vars(
-    (
-      --bolt-theme-icon: $bolt-input-icon-color--invalid,
-    )
-  );
 }
 
 .c-bolt-input.is-invalid ~ .c-bolt-input-icons,

@@ -41,11 +41,12 @@ $bolt-type-font-weight-system: (
 ) !default;
 
 $bolt-type-font-family-system: (
-  'body':
-    "'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans','Helvetica Neue', sans-serif",
-  'headline':
-    "'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans','Helvetica Neue', sans-serif",
-  'code': 'monospace, monospace'
+  'body': 'Open Sans',
+  'headline': 'Open Sans',
+  'code':
+    "'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace",
+  'fallback':
+    "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans','Helvetica Neue', sans-serif"
 ) !default;
 
 /**
@@ -58,3 +59,33 @@ $bolt-type-line-height-multiplier-system: (
   'regular': 1,
   'loose': 1.2
 ) !default;
+
+/**
+ * Export typography data
+ *
+ * json files are available for use. Located in www/build/data
+ */
+@include export-data(
+  'typography/font-size-tokens.bolt.json',
+  $bolt-type-font-size-system
+);
+@include export-data(
+  'typography/line-height-tokens.bolt.json',
+  $bolt-type-line-height-system
+);
+@include export-data(
+  'typography/letter-spacing-tokens.bolt.json',
+  $bolt-type-letter-spacing-system
+);
+@include export-data(
+  'typography/font-weight-tokens.bolt.json',
+  $bolt-type-font-weight-system
+);
+@include export-data(
+  'typography/font-family-tokens.bolt.json',
+  $bolt-type-font-family-system
+);
+@include export-data(
+  'typography/line-height-multiplier-tokens.bolt.json',
+  $bolt-type-line-height-multiplier-system
+);

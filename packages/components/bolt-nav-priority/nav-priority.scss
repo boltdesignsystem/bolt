@@ -274,10 +274,12 @@ bolt-nav-priority {
 }
 
 .c-bolt-nav-priority__show-text {
-  @include bolt-font-size(small);
-  @include bolt-font-weight(semibold);
   position: relative;
   z-index: 10;
+  font-family: var(--bolt-type-font-family-body);
+  font-size: var(--bolt-type-font-size-small);
+  font-weight: var(--bolt-type-font-weight-semibold);
+  line-height: var(--bolt-type-line-height-small);
 
   @include bolt-mq($until: xsmall) {
     @include bolt-visuallyhidden;

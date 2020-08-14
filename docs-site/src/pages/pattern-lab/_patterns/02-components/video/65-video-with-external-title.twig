@@ -11,31 +11,31 @@
   "text": "Figure and Figcaption"
 } only %}
 
-{% set content %}
-  <figure>
-    {% include "@bolt/video.twig" with {
-      "videoId": "5813325981001",
-      "accountId": "1900410236",
-      "playerId": "r1CAdLzTW",
-      "showMeta": true,
-      "showMetaTitle": false,
-      "attributes": {
-        "class": "u-bolt-margin-bottom-small"
-      }
-    } only %}
-    <figcaption>
-      {% include "@bolt/text.twig" with {
-        "size": "xsmall",
-        "text": "Pega Adaptive Decision Manager"
-      } only %}
-    </figcaption>
-  </figure>
+{% set video %}
+  {% include "@bolt/video.twig" with {
+    "videoId": "5813325981001",
+    "accountId": "1900410236",
+    "playerId": "r1CAdLzTW",
+    "showMeta": true,
+    "showMetaTitle": false,
+    "attributes": {
+      "class": "u-bolt-margin-bottom-small"
+    }
+  } only %}
+{% endset %}
+{% set figure %}
+  {% include "@bolt-components-figure/figure.twig" with {
+    media: {
+      content: video
+    },
+    caption: "Pega Adaptive Decision Manager."
+  } only %}
 {% endset %}
 
 {% include "@bolt-components-band/band.twig" with {
   "size": "medium",
   "theme": "light",
-  "content": content,
+  "content": figure,
   "attributes": {
     "class": "u-bolt-margin-bottom-medium"
   }
