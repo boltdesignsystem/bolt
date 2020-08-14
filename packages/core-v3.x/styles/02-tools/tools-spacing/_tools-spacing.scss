@@ -1,26 +1,63 @@
+@function _bolt-create-spacing-map($sizes, $char: '') {
+  $map: ();
+  @each $name, $value in $sizes {
+    $keyName: $name;
+    @if ($char != '' and $keyName != null) {
+      $keyName: $char + $keyName;
+    }
+    $keyValue: $value * $bolt-spacing-gutter;
+    $map: map-merge(
+      $map,
+      (
+        $keyName: $keyValue,
+      )
+    );
+  }
+  @return $map;
+}
+
+$bolt-spacing-sizes: _bolt-create-spacing-map($bolt-spacing-values);
+
 @function bolt-spacing($size) {
-  // @warn 'This scss function is being deprecated. Please convert to use global CSS vars -> var(--bolt-spacing-x-*).';
-  @return var(--bolt-spacing-x-#{$size});
+  @return map-get($bolt-spacing-sizes, nth($size, 1));
 }
 
 @function bolt-v-spacing($size, $modifier: null) {
-  // @warn 'This scss function is being deprecated. Please convert to use global CSS vars -> var(--bolt-spacing-y-*).';
-
-  $v-spacing: '';
-
   @if ($modifier == 'squished') {
-    $v-spacing: calc(var(--bolt-spacing-y-#{$size}) * 0.5);
+    $modifier: $bolt-spacing-squished;
   } @else if ($modifier == 'stretched') {
-    $v-spacing: calc(var(--bolt-spacing-y-#{$size}) * 1.5);
+    $modifier: $bolt-spacing-stretched;
   } @else {
-    $v-spacing: var(--bolt-spacing-y-#{$size});
+    $modifier: 1;
   }
 
-  @return $v-spacing;
+  @return (bolt-spacing($size) / bolt-strip-unit($bolt-spacing-gutter)) *
+    $bolt-spacing-leading * $modifier;
 }
 
 @function bolt-vertical-spacing($size) {
-  // @warn 'This scss function is being deprecated. Please convert to use global CSS vars -> var(--bolt-spacing-y-*).';
-
   @return bolt-v-spacing($size);
 }
+
+// New functions to be used once no scss math is being done with these functions
+// @function bolt-spacing($size) {
+//   @return var(--bolt-spacing-x-#{$size});
+// }
+//
+// @function bolt-v-spacing($size, $modifier: null) {
+//   $v-spacing: '';
+//
+//   @if ($modifier == 'squished') {
+//     $v-spacing: calc(var(--bolt-spacing-y-#{$size}) * 0.5);
+//   } @else if ($modifier == 'stretched') {
+//     $v-spacing: calc(var(--bolt-spacing-y-#{$size}) * 1.5);
+//   } @else {
+//     $v-spacing: var(--bolt-spacing-y-#{$size});
+//   }
+//
+//   @return $v-spacing;
+// }
+//
+// @function bolt-vertical-spacing($size) {
+//   @return bolt-v-spacing($size);
+// }
