@@ -2,7 +2,7 @@
 
 ## Lazyloading expected behavior
 
-View the [Lazyload Variations page](https://master.boltdesignsystem.com/pattern-lab/patterns/02-components-image-20-image-lazyload-variations/02-components-image-20-image-lazyload-variations.html) and verify the following assertions:
+View the [Lazyload Variations page](https://master.boltdesignsystem.com/pattern-lab/patterns/40-components-image-20-image-lazyload-variations/40-components-image-20-image-lazyload-variations.html) and verify the following assertions:
 
 - Lazyloaded images have the class `c-bolt-image__lazyload`. The class `is-lazyloaded` is added after the image is loaded.
 - Lazyloaded images have a `<noscript>` fallback that contains an image that loads normally.
@@ -25,38 +25,38 @@ Functional testing should be performed manually by the QA team across the standa
 
 ## Scenario: Basic Image
 
-[Basic Image page](https://master.boltdesignsystem.com/pattern-lab/patterns/02-components-image-05-image/02-components-image-05-image.html)
+[Basic Image page](https://master.boltdesignsystem.com/pattern-lab/patterns/40-components-image-05-image/40-components-image-05-image.html)
 
 `// This is a purely visual test, use VRT`
 
 ## Scenario: Size Variation
 
-[Image Size Variation page](https://master.boltdesignsystem.com/pattern-lab/patterns/02-components-image-10-image-size-variations/02-components-image-10-image-size-variations.html)
+[Image Size Variation page](https://master.boltdesignsystem.com/pattern-lab/patterns/40-components-image-10-image-size-variations/40-components-image-10-image-size-variations.html)
 
 `// This is a purely visual test, use VRT`
 
 ## Scenario: Source Variation
 
-[Image Source Variation page](https://master.boltdesignsystem.com/pattern-lab/patterns/02-components-image-15-image-source-variations/02-components-image-15-image-source-variations.html)
+[Image Source Variation page](https://master.boltdesignsystem.com/pattern-lab/patterns/40-components-image-15-image-source-variations/40-components-image-15-image-source-variations.html)
 
 `// This is a purely visual test, use VRT`
 
 ## Scenario: Lazyload Variations
 
-[Image Lazyload Variation page](https://master.boltdesignsystem.com/pattern-lab/patterns/02-components-image-20-image-lazyload-variations/02-components-image-20-image-lazyload-variations.html)
+[Image Lazyload Variation page](https://master.boltdesignsystem.com/pattern-lab/patterns/40-components-image-20-image-lazyload-variations/40-components-image-20-image-lazyload-variations.html)
 
 `// This is a purely visual test, use VRT`
 
 ## Scenario: Image Custom Width and Height Variations
 
-[Image Custom Width and Height Variations page](https://master.boltdesignsystem.com/pattern-lab/patterns/02-components-image-25-image-custom-width-height-variations/02-components-image-25-image-custom-width-height-variations.html)
+[Image Custom Width and Height Variations page](https://master.boltdesignsystem.com/pattern-lab/patterns/40-components-image-25-image-custom-width-height-variations/40-components-image-25-image-custom-width-height-variations.html)
 
 `// This is a purely visual test, use VRT`
 
 ## Scenario: Image Zoom (desktop)
 
 1. Given I am using a "desktop" browser
-1. And I am viewing the [Image Zoom page](https://master.boltdesignsystem.com/pattern-lab/patterns/02-components-image-30-image-zoom-variation/02-components-image-30-image-zoom-variation.html)
+1. And I am viewing the [Image Zoom page](https://master.boltdesignsystem.com/pattern-lab/patterns/40-components-image-30-image-zoom-variation/40-components-image-30-image-zoom-variation.html)
 1. Then I should see an image of a tablet
 1. And I should see a "magnifying glass" icon over the tablet
 1. When I mouse over the tablet image
@@ -71,7 +71,7 @@ Functional testing should be performed manually by the QA team across the standa
 ## Scenario: Image Zoom (mobile)
 
 1. Given I am using a "mobile" browser
-1. And I am viewing the [Image Zoom page](https://master.boltdesignsystem.com/pattern-lab/patterns/02-components-image-30-image-zoom-variation/02-components-image-30-image-zoom-variation.html)
+1. And I am viewing the [Image Zoom page](https://master.boltdesignsystem.com/pattern-lab/patterns/40-components-image-30-image-zoom-variation/40-components-image-30-image-zoom-variation.html)
 1. Then I should see an image of a tablet
 1. And I should see a "magnifying glass" icon over the tablet
 1. When I tap on the tablet image

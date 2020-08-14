@@ -4,7 +4,7 @@
 
 The server-side pre-rendered `bolt-list` component should look almost identical to the client-side rendered version. To verify:
 
-1. Disable javascript and view the [List Demo page](https://boltdesignsystem.com/pattern-lab/patterns/02-components-list-05-list/02-components-list-05-list.html).
+1. Disable javascript and view the [List Demo page](https://boltdesignsystem.com/pattern-lab/patterns/40-components-list-05-list/40-components-list-05-list.html).
 2. Then, enable javascript and watch as the List re-renders on the client-side.
 3. The layout should not shift, e.g. the spacing in between each list item should be identical before and after the web component re-renders.
 
@@ -20,7 +20,7 @@ Functional testing should be performed manually by the QA team across the standa
 
 ## Scenario: display variations
 
-1. Given I am viewing the [display variations page](https://boltdesignsystem.com/pattern-lab/patterns/02-components-list-15-list-display-variations/02-components-list-15-list-display-variations.html).
+1. Given I am viewing the [display variations page](https://boltdesignsystem.com/pattern-lab/patterns/40-components-list-15-list-display-variations/40-components-list-15-list-display-variations.html).
 2. When I am viewing the "Block" section.
 3. Then I should see a vertical list of items.
 4. When I am viewing the "Flex" section.
@@ -34,7 +34,7 @@ Note: Reference the breakpoint sizes on the [Breakpoints page](https://boltdesig
 
 ## Scenario: spacing variations
 
-1. Given I am viewing the [spacing variations page](https://boltdesignsystem.com/pattern-lab/patterns/02-components-list-20-list-spacing-variations/02-components-list-20-list-spacing-variations.html).
+1. Given I am viewing the [spacing variations page](https://boltdesignsystem.com/pattern-lab/patterns/40-components-list-20-list-spacing-variations/40-components-list-20-list-spacing-variations.html).
 2. When I am viewing each of the "Block list with spacing" sections.
 3. Then I should see a vertical list of items spaced out to the specific size.
 4. When I am viewing each of the "Flex list with spacing" sections.
@@ -46,13 +46,13 @@ Note: Reference the spacing sizes on the [Spacing page](https://boltdesignsystem
 
 ## Scenario: separator variations
 
-[Separator variations page](https://boltdesignsystem.com/pattern-lab/patterns/02-components-list-25-list-separator-variations/02-components-list-25-list-separator-variations.html).
+[Separator variations page](https://boltdesignsystem.com/pattern-lab/patterns/40-components-list-25-list-separator-variations/40-components-list-25-list-separator-variations.html).
 
 `// This is a purely visual test, use VRT`
 
 ## Scenario: inset variations
 
-1. Given I am viewing the [inset variations page](https://boltdesignsystem.com/pattern-lab/patterns/02-components-list-30-list-inset-variations/02-components-list-30-list-inset-variations.html).
+1. Given I am viewing the [inset variations page](https://boltdesignsystem.com/pattern-lab/patterns/40-components-list-30-list-inset-variations/40-components-list-30-list-inset-variations.html).
 2. When I am viewing each of the "Regular spacing" sections.
 3. Then I should see spacing only in between items.
 4. When I am viewing each of the "Inset spacing" sections.
@@ -62,18 +62,18 @@ Note: Reference the spacing sizes on the [Spacing page](https://boltdesignsystem
 
 ## Scenario: align variations
 
-[Align variations page](https://boltdesignsystem.com/pattern-lab/patterns/02-components-list-40-list-align-variations/02-components-list-40-list-align-variations.html).
+[Align variations page](https://boltdesignsystem.com/pattern-lab/patterns/40-components-list-40-list-align-variations/40-components-list-40-list-align-variations.html).
 
 `// This is a purely visual test, use VRT`
 
 ## Scenario: valign variations
 
-[Valign variations page](https://boltdesignsystem.com/pattern-lab/patterns/02-components-list-45-list-valign-variations/02-components-list-45-list-valign-variations.html).
+[Valign variations page](https://boltdesignsystem.com/pattern-lab/patterns/40-components-list-45-list-valign-variations/40-components-list-45-list-valign-variations.html).
 
 `// This is a purely visual test, use VRT`
 
 ## Scenario: List with Web Components
 
-[List with Web Components](https://master.boltdesignsystem.com/pattern-lab/patterns/02-components-list-999-list-with-web-component/02-components-list-999-list-with-web-component.html)
+[List with Web Components](https://master.boltdesignsystem.com/pattern-lab/patterns/40-components-list-999-list-with-web-component/40-components-list-999-list-with-web-component.html)
 
 `// This is a purely visual test, use VRT`
