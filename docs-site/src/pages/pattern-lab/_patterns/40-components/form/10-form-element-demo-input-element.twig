@@ -1,15 +1,22 @@
 {% extends "@bolt-components-form/form-element.twig" %}
 
+{# Default element_id, which ties the label and chilren together.  Random if not provided. #}
+{% set element_id = element_id|default(random()) %}
+
 {% set label %}
   {% include("@bolt-components-form/form-label.twig") with {
     "title": title,
-    "displayType": labelDisplayType
+    "displayType": labelDisplayType,
+    "attributes": {
+      for: element_id
+    }
   } only %}
 {% endset %}
 
 {% set children %}
   {# Default input type is text #}
   {% set inputAttributes = inputAttributes|merge({'type': inputAttributes.type|default('text')}) %}
+  {% set inputAttributes = inputAttributes|merge({'id': inputAttributes.id|default(element_id)}) %}
 
   {% include("@bolt-components-form/form-input.twig") with {
     "attributes": inputAttributes,
