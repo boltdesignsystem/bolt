@@ -1,3 +1,18 @@
+{#
+A complete form element intended for use in form demos.
+
+Extends @bolt-components-form/form-element.twig, so most of the varialbes
+accepted there are also valid.  'label' and 'form' are propopulated using
+the following variables:
+  - title - (string) A title to use for the label.
+  - labelDisplayType - (string) One of 'floating', 'block', 'inline-radio', or 'inline-checkbox'.
+  - inputAttributes (object) - An attributes object with attributes to be applied to the form input.
+  - errors - (string) Server-side errors.
+  - form_element_id - (string) A string representing the id of the element (used to connect )
+
+@see @bolt-components-form/form-element.twig
+#}
+
 {% extends "@bolt-components-form/form-element.twig" %}
 
 {# Default element_id, which ties the label and chilren together.  Random if not provided. #}
