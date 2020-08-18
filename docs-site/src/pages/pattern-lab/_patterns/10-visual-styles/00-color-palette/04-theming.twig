@@ -1,4 +1,4 @@
-{% set content %}
+{% set themed_content %}
   {% include "@bolt-components-headline/subheadline.twig" with {
     tag: "h2",
     size: "xlarge",
@@ -315,15 +315,47 @@
       <bolt-button color="secondary">
         Secondary
       </bolt-button>
+      <bolt-button color="tertiary">
+        Secondary
+      </bolt-button>
     </bolt-card-replacement-body>
   </bolt-card-replacement>
 {% endset %}
 
-<bolt-list display="inline@xxlarge" spacing="large" align="center" inset nowrap>
-  <bolt-list-item class="t-bolt-xlight">
-    {{ content }}
-  </bolt-list-item>
-  <bolt-list-item class="t-bolt-xdark">
-    {{ content }}
-  </bolt-list-item>
-</bolt-list>
+{% set content %}
+  <bolt-stack spacing="large">
+    <bolt-text headline font-size="xxxlarge" tag="h1">
+      Theming System
+    </bolt-text>
+    <bolt-text subheadline font-size="xxlarge" tag="h2">
+      The color theming foundation of Bolt.
+    </bolt-text>
+  </bolt-stack>
+
+  <bolt-tabs label-spacing="medium" panel-spacing="medium" inset="off">
+
+    {# Light #}
+    <bolt-tab-panel>
+      <bolt-text slot="label">Light</bolt-text>
+
+      <div class="t-bolt-xlight">
+        {{ themed_content }}
+      </div>
+    </bolt-tab-panel>
+
+    {# Dark #}
+    <bolt-tab-panel>
+      <bolt-text slot="label">Dark</bolt-text>
+
+      <div class="t-bolt-xdark u-bolt-padding-small">
+        {{ themed_content }}
+      </div>
+    </bolt-tab-panel>
+  </bolt-tabs>
+{% endset %}
+
+{% include "@bolt-components-band/band.twig" with {
+  content: content,
+  theme: "none",
+  size: "large",
+} only %}
