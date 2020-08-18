@@ -18,7 +18,7 @@ const dirs = {
 dirs.component = `${dirs.global}/packages/components/bolt-test`;
 dirs.src = `${dirs.component}/src`;
 dirs.testing = `${dirs.component}/__tests__`;
-dirs.patternLab = `${dirs.global}/docs-site/src/pages/pattern-lab/_patterns/02-components/test/00-test-docs.twig`;
+dirs.patternLab = `${dirs.global}/docs-site/src/pages/pattern-lab/_patterns/40-components/test/00-test-docs.twig`;
 
 describe('Yeoman component generator', () => {
   beforeAll(async () => {

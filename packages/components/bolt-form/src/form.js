@@ -6,10 +6,9 @@ let thousandsDecimal = [',', '.'];
 for (let i = 0, len = inputs.length; i < len; i++) {
   const input = inputs[i];
   const inputFormat = input.dataset.boltFormatInput;
-
   const onInputChange = (input, inputFormat) => {
     if (inputFormat && input.value.length > 0) {
-      // input.value = cleanValue(input.value);
+      input.value = cleanValue(input.value);
       const displayValue = input.parentNode.querySelector(
         '.c-bolt-input__display-value',
       );
@@ -134,9 +133,6 @@ for (let i = 0, len = inputs.length; i < len; i++) {
   // we need to strip special characters once the input is out of focus, if the user types with formatting right now such as $25, the error message comes up and says it's not a number.
 
   input.onblur = function(e) {
-    if (inputFormat) {
-      // input.value = cleanValue(input.value);
-    }
     if (!e.isTrusted) {
       // This blur event was triggered by a script, not a human, so don't mark
       // the input as is-touched (because it actually wasn't) or show errors.
