@@ -1,0 +1,209 @@
+{% set font_family_map = bolt.data.typography.fontFamilyTokens %}
+{% set font_size_map = bolt.data.typography.fontSizeTokens %}
+{% set font_weight_map = bolt.data.typography.fontWeightTokens %}
+{% set line_height_map = bolt.data.typography.lineHeightTokens %}
+{% set letter_spacing_map = bolt.data.typography.letterSpacingTokens %}
+
+{# To make sure these numbers are up to date, make sure to check vars-typography.scss #}
+{% set base_pixel = 15 %}
+{% set smallbp_pixel = 14 %}
+{% set largebp_pixel = 16 %}
+
+{% set characters_sample = "ABCČĆDĐEFGHIJKLMNOPQRSŠTUVWXYZŽabcčćdđefghijklmnopqrsštuvwxyzžАБВГҐДЂЕЁЄЖЗЅИІЇЙЈКЛЉМНЊОПРСТЋУЎФХЦЧЏШЩЪЫЬЭЮЯабвгґдђеёєжзѕиіїйјклљмнњопрстћуўфхцчџшщъыьэюяΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩαβγδεζηθικλμνξοπρστυφχψωάΆέΈέΉίϊΐΊόΌύΰϋΎΫΏĂÂÊÔƠƯăâêôơư1234567890‘?’“!”(%)[#]{@}/&\<-+÷×=>®©$€£¥¢:;,.*" %}
+{% set text_sample = "Every second he kept glancing at the clock." %}
+
+{% set content %}
+  <bolt-stack spacing="large">
+    <bolt-text headline font-size="xxxlarge" tag="h1">
+      Typography Tokens
+    </bolt-text>
+    <bolt-text subheadline font-size="xxlarge" tag="h2">
+      Design tokens for Bolt&rsquo;s typography system, available as CSS custom properties.
+    </bolt-text>
+  </bolt-stack>
+
+  <bolt-tabs label-spacing="medium" panel-spacing="medium" inset="off">
+
+    {# Font-family #}
+    <bolt-tab-panel>
+      <bolt-text slot="label">Font-family</bolt-text>
+      <bolt-table>
+        <table>
+          <thead>
+            <tr>
+              <td></td>
+              <th>CSS custom property</th>
+              <th>Value</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for family_name, family_value in font_family_map %}
+              <tr>
+                <th>
+                  {{ family_name }}
+                </th>
+                <td>
+                  <span style="white-space: nowrap">var(--bolt-type-font-family-{{ family_name }})</span>
+                </td>
+                <td>
+                  {{ family_value }}
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </bolt-table>
+    </bolt-tab-panel>
+
+    {# Font-size #}
+    <bolt-tab-panel>
+      <bolt-text slot="label">Font-size</bolt-text>
+      <bolt-table>
+        <table>
+          <thead>
+            <tr>
+              <td></td>
+              <th>CSS custom property</th>
+              <th>Value in rem</th>
+              <th>Value in px (at 1400px viewport)*</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for size_name, size_value in font_size_map %}
+              <tr>
+                <th>
+                  {{ size_name }}
+                </th>
+                <td>
+                  <span style="white-space: nowrap">var(--bolt-type-font-size-{{ size_name }})</span>
+                </td>
+                <td>
+                  {{ size_value }}
+                </td>
+                <td>
+                  <bolt-tooltip>
+                    {{ (size_value|replace({"rem": ""}) * base_pixel)|round(0, "ceil") ~ "px" }}
+                    <span slot="content">scales from {{ (size_value|replace({"rem": ""}) * smallbp_pixel)|round(0, "ceil") ~ "px" }} to {{ (size_value|replace({"rem": ""}) * largebp_pixel)|round(0, "ceil") ~ "px" }}</span>
+                  </bolt-tooltip>
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </bolt-table>
+      <bolt-banner align="start">
+        <bolt-list>
+          <bolt-list-item>
+            *Font-sizes in Bolt are responsive from 320px viewport to 1920px viewport. <bolt-link url="{{ link['viewall-visual-styles-breakpoints'] }}">View Breakpoint System<bolt-icon name="chevron-right" slot="after"></bolt-icon></bolt-link>
+          </bolt-list-item>
+        </bolt-list>
+      </bolt-banner>
+    </bolt-tab-panel>
+
+    {# Font-weight #}
+    <bolt-tab-panel>
+      <bolt-text slot="label">Font-weight</bolt-text>
+      <bolt-table>
+        <table>
+          <thead>
+            <tr>
+              <td></td>
+              <th>CSS custom property</th>
+              <th>Value</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for weight_name, weight_value in font_weight_map %}
+              <tr>
+                <th>
+                  {{ weight_name }}
+                </th>
+                <td>
+                  <span style="white-space: nowrap">var(--bolt-type-font-weight-{{ weight_name }})</span>
+                </td>
+                <td>
+                  {{ weight_value }}
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </bolt-table>
+    </bolt-tab-panel>
+
+    {# Line-height #}
+    <bolt-tab-panel>
+      <bolt-text slot="label">Line-height</bolt-text>
+      <bolt-table>
+        <table>
+          <thead>
+            <tr>
+              <td></td>
+              <th>CSS custom property</th>
+              <th>Value</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for height_name, height_value in line_height_map %}
+              <tr>
+                <th>
+                  {{ height_name }}
+                </th>
+                <td>
+                  <span style="white-space: nowrap">var(--bolt-type-font-weight-{{ height_name }})</span>
+                </td>
+                <td>
+                  {{ height_value }}
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </bolt-table>
+    </bolt-tab-panel>
+
+    {# Letter-spacing #}
+    <bolt-tab-panel>
+      <bolt-text slot="label">Letter-spacing</bolt-text>
+      <bolt-table>
+        <table>
+          <thead>
+            <tr>
+              <td></td>
+              <th>CSS custom property</th>
+              <th>Value in rem</th>
+              <th>Value in px</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for spacing_name, spacing_value in letter_spacing_map %}
+              <tr>
+                <th>
+                  {{ spacing_name }}
+                </th>
+                <td>
+                  <span style="white-space: nowrap">var(--bolt-type-font-weight-{{ spacing_name }})</span>
+                </td>
+                <td>
+                  {{ spacing_value }}
+                </td>
+                <td>
+                  <bolt-tooltip>
+                    {{ (spacing_value|replace({"rem": ""}) * base_pixel)|round(4, "ceil") ~ "px" }}
+                    <span slot="content">scales from {{ (spacing_value|replace({"rem": ""}) * smallbp_pixel)|round(4, "ceil") ~ "px" }} to {{ (spacing_value|replace({"rem": ""}) * largebp_pixel)|round(4, "ceil") ~ "px" }}</span>
+                  </bolt-tooltip>
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </bolt-table>
+    </bolt-tab-panel>
+  </bolt-tabs>
+{% endset %}
+
+{% include "@bolt-components-band/band.twig" with {
+  content: content,
+  theme: "none",
+  size: "large",
+} only %}

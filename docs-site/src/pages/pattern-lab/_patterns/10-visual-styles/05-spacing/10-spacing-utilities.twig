@@ -1,0 +1,110 @@
+{% set spacing_size_map = bolt.data.spacing.base %}
+{% set spacing_multiplier_map = bolt.data.spacing.multipliers %}
+{% set spacing_property_map = bolt.data.spacing.props %}
+{% set spacing_direction_map = bolt.data.spacing.directions %}
+
+{% set content %}
+  <bolt-stack spacing="large">
+    <bolt-text headline font-size="xxxlarge" tag="h1">
+      Spacing Utilities
+    </bolt-text>
+    <bolt-text subheadline font-size="xxlarge" tag="h2">
+      Utility classes based on Bolt&rsquo;s spacing system.
+    </bolt-text>
+  </bolt-stack>
+
+  <bolt-tabs label-spacing="medium" panel-spacing="medium" inset="off">
+    {# Properties #}
+    {% for property in spacing_property_map %}
+      <bolt-tab-panel>
+        <bolt-text slot="label">{{ property|capitalize }}</bolt-text>
+
+        <bolt-text headline font-size="xlarge" tag="h3">
+          All directions
+        </bolt-text>
+        <bolt-table>
+          <table>
+            <thead>
+              <tr>
+                <th>Class name</th>
+                <th>CSS declaration</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for multiplier_name, multiplier_value in spacing_multiplier_map %}
+                <tr>
+                  <td>.u-bolt-{{ property }}-{{ direction }}-{{ multiplier_name }}</td>
+                  <td>{{ property }}:
+                    {% for size_name, size_value in spacing_size_map %}
+                      var(--bolt-spacing-{{ size_name }}-{{ multiplier_name }})
+                    {% endfor %}
+                  </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </bolt-table>
+
+        {% for direction in spacing_direction_map %}
+          {% for size_name, size_value in spacing_size_map %}
+            {% if size_name == "x" %}
+              {% if direction == "right" or direction == "left" %}
+                <bolt-text headline font-size="xlarge" tag="h3">
+                  {{ direction|capitalize }}
+                </bolt-text>
+                <bolt-table>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Class name</th>
+                        <th>CSS declaration</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for multiplier_name, multiplier_value in spacing_multiplier_map %}
+                        <tr>
+                          <td>.u-bolt-{{ property }}-{{ direction }}-{{ multiplier_name }}</td>
+                          <td>{{ property }}-{{ direction }}: var(--bolt-spacing-{{ size_name }}-{{ multiplier_name }})</td>
+                        </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                </bolt-table>
+              {% endif %}
+            {% else %}
+              {% if direction == "top" or direction == "bottom" %}
+                <bolt-text headline font-size="xlarge" tag="h3">
+                  {{ direction|capitalize }}
+                </bolt-text>
+                <bolt-table>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Class name</th>
+                        <th>CSS declaration</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for multiplier_name, multiplier_value in spacing_multiplier_map %}
+                        <tr>
+                          <td>.u-bolt-{{ property }}-{{ direction }}-{{ multiplier_name }}</td>
+                          <td>{{ property }}-{{ direction }}: var(--bolt-spacing-{{ size_name }}-{{ multiplier_name }})</td>
+                        </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                </bolt-table>
+              {% endif %}
+            {% endif %}
+          {% endfor %}
+        {% endfor %}
+      </bolt-tab-panel>
+    {% endfor %}
+  </bolt-tabs>
+{% endset %}
+
+{% include "@bolt-components-band/band.twig" with {
+  content: content,
+  theme: "none",
+  size: "large",
+} only %}
