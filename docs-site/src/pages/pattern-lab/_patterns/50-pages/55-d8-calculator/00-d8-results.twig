@@ -25,21 +25,21 @@
   {
     number: churn_rate_with_pega ~ "%",
     description: "Your churn rate with Pega Customer Decision Hub",
-    color: "indigo"
+    color: "navy"
   }
 ] %}
 
 {% set graph_array_2 = [
-    {
-      number: "$" ~ customer_value|number_format,
-      description: "Your current value of a customer",
-      color: "gray"
-    },
-    {
-      number: "$" ~ customer_value_with_pega|number_format,
-      description: "Your value of a customer with Pega Customer Decision Hub",
-      color: "indigo"
-    }
+  {
+    number: "$" ~ customer_value|number_format,
+    description: "Your current value of a customer",
+    color: "gray"
+  },
+  {
+    number: "$" ~ customer_value_with_pega|number_format,
+    description: "Your value of a customer with Pega Customer Decision Hub",
+    color: "navy"
+  }
 ] %}
 
 {#
@@ -168,11 +168,18 @@
       </bolt-stack>
     </div>
   {% endset %}
+  {% set info_icon %}
+    {% include "@bolt-components-icon/icon.twig" with {
+      name: "info-open",
+      size: "small",
+    } only %}
+  {% endset %}
   {% set total_benefit_tooltip %}
     {% include "@bolt-components-tooltip/tooltip.twig" with {
       trigger: "$" ~ total_benefit|number_format(2, ".", ","),
       content: tooltip_content,
     } only %}
+    <sup>{{ info_icon }}</sup>
   {% endset %}
   {% include "@bolt-components-headline/headline.twig" with {
     text: total_benefit_tooltip,
@@ -180,7 +187,7 @@
     tag: "div",
     align: "center",
     attributes: {
-      class: "u-bolt-color-indigo-light",
+      class: "u-bolt-color-navy-light",
       "aria-hidden": "true",
     }
   } only %}
@@ -241,7 +248,7 @@
         {# Flag 2 #}
         {% set flag_2_figure %}
           {% include "@bolt-components-icon/icon.twig" with {
-            name: "add-open",
+            name: "dollar-open",
             size: "large",
             color: "teal",
             attributes: {

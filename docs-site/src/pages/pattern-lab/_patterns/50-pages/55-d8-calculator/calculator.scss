@@ -15,7 +15,7 @@ $www-calculator-logo-spacing-size: 3px; // Hard px is used to avoid subpixel iss
       4
   );
   margin-bottom: var(--bolt-spacing-y-medium);
-  color: bolt-color(indigo);
+  color: bolt-color(navy);
 
   &:last-child {
     margin-bottom: 0;
@@ -123,9 +123,9 @@ $www-calculator-logo-spacing-size: 3px; // Hard px is used to avoid subpixel iss
       background-color: bolt-color(gray, dark);
     }
 
-    &--indigo {
-      color: bolt-text-contrast(bolt-color(indigo, light));
-      background-color: bolt-color(indigo, light);
+    &--navy {
+      color: bolt-text-contrast(bolt-color(navy, light));
+      background-color: bolt-color(navy, light);
     }
 
     &--teal {
@@ -173,6 +173,35 @@ $www-calculator-logo-spacing-size: 3px; // Hard px is used to avoid subpixel iss
   &__text {
     display: block;
     font-size: var(--bolt-type-font-size-small);
+    font-weight: var(--bolt-type-font-weight-regular);
     line-height: var(--bolt-type-line-height-small);
+  }
+}
+
+.c-www-calculator-background {
+  position: absolute;
+  top: 0;
+  right: -150vw;
+  z-index: 0;
+  width: 300vw;
+  max-width: 1000px;
+  pointer-events: none;
+
+  @include bolt-mq(xsmall) {
+    right: -80vw;
+    width: 300vw;
+    max-width: 1020px;
+  }
+
+  @include bolt-mq(small) {
+    right: -50vw;
+    width: 200vw;
+    max-width: 1040px;
+  }
+
+  @include bolt-mq(medium) {
+    right: 0;
+    width: 75vw;
+    max-width: 1080px;
   }
 }

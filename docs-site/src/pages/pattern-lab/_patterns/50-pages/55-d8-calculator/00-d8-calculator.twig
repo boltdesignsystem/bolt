@@ -1,3 +1,8 @@
+{#
+/**
+ * Content band and custom background block
+ */
+#}
 {% set content %}
   {#
   /**
@@ -99,62 +104,36 @@
           </div>
           <div role="listitem" class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@medium">
             <div class="c-bolt-input-list__item">
-              {% set for_value = "www-calculator-average-cost" %}
-              {% set label %}
-                {% include "@bolt-components-form/form-label.twig" with {
-                  title: "What is your company&rsquo;s average cost of customer acquisition?",
-                  attributes: {
-                    for: for_value
-                  },
-                  displayType: "block"
-                } only %}
-              {% endset %}
-              {% set input %}
-                {% include "@bolt-components-form/form-input.twig" with {
-                  attributes: {
-                    placeholder: "E.g. $2,000",
-                    required: true,
-                    type: "number",
-                    id: for_value,
-                    "data-bolt-format-input": "currency-us"
-                  },
-                } only %}
-              {% endset %}
-              {% include "@bolt-components-form/form-element.twig" with {
+              {% include "@pl/10-form-element-demo-input-element.twig" with {
+                title: "What is your company&rsquo;s average cost of customer acquisition?",
+                labelDisplayType: "block",
                 labelDisplay: "before",
-                label: label,
-                children: input
-              } only %}
+                inputAttributes: {
+                  placeholder: "E.g. 2000",
+                  required: true,
+                  type: "number",
+                  id: for_value,
+                  "data-bolt-format-input": "currency-us"
+                },
+                element_id: "www-calculator-average-cost",
+              } %}
             </div>
           </div>
           <div role="listitem" class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@medium">
             <div class="c-bolt-input-list__item">
-              {% set for_value = "www-calculator-customer-worth" %}
-              {% set label %}
-                {% include "@bolt-components-form/form-label.twig" with {
-                  title: "How much is each customer worth (per year)?",
-                  attributes: {
-                    for: for_value
-                  },
-                  displayType: "block"
-                } only %}
-              {% endset %}
-              {% set input %}
-                {% include "@bolt-components-form/form-input.twig" with {
-                  attributes: {
-                    placeholder: "E.g. $2,000",
-                    required: true,
-                    type: "number",
-                    id: for_value,
-                    "data-bolt-format-input": "currency-us"
-                  },
-                } only %}
-              {% endset %}
-              {% include "@bolt-components-form/form-element.twig" with {
+              {% include "@pl/10-form-element-demo-input-element.twig" with {
+                title: "How much is each customer worth (per year)?",
+                labelDisplayType: "block",
                 labelDisplay: "before",
-                label: label,
-                children: input
-              } only %}
+                inputAttributes: {
+                  placeholder: "E.g. 2000",
+                  required: true,
+                  type: "number",
+                  id: for_value,
+                  "data-bolt-format-input": "currency-us"
+                },
+                element_id: "www-calculator-customer-worth",
+              } %}
             </div>
           </div>
           <div role="listitem" class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@medium u-bolt-margin-top-auto">
@@ -180,15 +159,17 @@
     </div>
   </div>
 {% endset %}
-
-{#
-/**
- * Page band
- */
-#}
-{% include "@bolt-components-band/band.twig" with {
+{% embed "@bolt-components-band/band.twig" with {
   size: "large",
   theme: "dark",
-  full_bleed: true,
-  content: content
+  content: content,
 } only %}
+  {% block band_background %}
+    <div class="c-www-calculator-background" aria-hidden="true">
+      {% include "@bolt-components-image/image.twig" with {
+        src: "/images/backgrounds/calculator-landing-shapes-transparent.png",
+        alt: "Decorative shapes.",
+      } only %}
+    </div>
+  {% endblock %}
+{% endembed %}
