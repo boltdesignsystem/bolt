@@ -3,127 +3,108 @@ const fs = require('fs');
 const { getConfig } = require('@bolt/build-utils/config-store');
 const path = require('path');
 const shell = require('shelljs');
-const { getBoltTags } = require('./bolt-versions');
 
 async function generateVrtUrls() {
   const config = await getConfig();
 
+  // Get all PL data
   const data = require(path.resolve(
     path.join(
       config.wwwDir,
       'pattern-lab/styleguide/data/patternlab-data-all.js',
     ),
   ));
-  let boltUrls = data.globalData.link;
+
+  // Get just the links, the paths to each page in PL
+  let demoUrls = data.globalData.link;
 
   const filteredUrls = {
-    patterns: {},
-    // pages: [],
+    components: [],
   };
 
+  // Get every Bolt package in the repo
   const boltPackages = JSON.parse(
-    shell.exec('lerna ls --json --all', { silent: true }).stdout,
+    shell.exec('npx lerna ls --json --all', { silent: true }).stdout,
   );
 
-  const allPackages = boltPackages.filter(
+  // Get just the "components", filters out build tools, etc.
+  const allComponents = boltPackages.filter(
     pkg =>
-      pkg.name.includes('@bolt/components-image') ||
-      pkg.name.includes('@bolt/components-band') ||
-      pkg.name.includes('@bolt/components-blockquote') ||
-      pkg.name.includes('@bolt/components-teaser') ||
-      pkg.name.includes('@bolt/components-video'),
+      pkg.name.includes('@bolt/elements-') ||
+      pkg.name.includes('@bolt/layouts-') ||
+      pkg.name.includes('@bolt/components-'),
   );
 
-  getBoltTags().then(versions => {
-    const latestVersion = versions[0].name.replace(/\./g, '-');
-    const previousVersion = versions[1].name.replace(/\./g, '-');
+  // Components we do not want to test for various reasons
+  const excludePackages = [
+    '@bolt/components-radio-switch',
+    '@bolt/components-animate',
+    '@bolt/components-card',
+    '@bolt/components-critical-css-vars',
+    '@bolt/components-critical-css',
+    '@bolt/components-critical-fonts',
+    '@bolt/components-dropdown',
+    '@bolt/components-grid',
+    '@bolt/components-icons',
+    '@bolt/components-page-footer',
+    '@bolt/components-page-header',
+    '@bolt/components-placeholder',
+    '@bolt/components-search-filter',
+    '@bolt/components-site',
+    '@bolt/components-smooth-scroll',
+    '@bolt/components-toolbar',
+    '@bolt/elements-link',
+    '@bolt/components-editor',
+    '@bolt/layouts-list',
+  ];
 
-    console.log(latestVersion);
-    console.log(previousVersion);
+  const filteredComponents = allComponents.filter(
+    pkg => !excludePackages.includes(pkg.name),
+  );
 
-    // @todo: double-check each url path generated to make sure the URL path actually exists
-    // @todo: update to reference bolt-version data -- comparing the current version (already wired up) + the previous version (not yet wired up) of the design system.
-    Object.keys(boltUrls).forEach(function(url) {
-      const urlName = url;
-      const urlAddress = boltUrls[url];
+  // @todo: double-check each url path generated to make sure the URL path actually exists
+  Object.keys(demoUrls).forEach(url => {
+    const urlName = url;
+    const urlAddress = demoUrls[url];
 
-      allPackages.forEach(function(individualPackage) {
-        const name = individualPackage.name;
-        const packageName = name.replace('@bolt/', '');
+    filteredComponents.forEach(pkg => {
+      const name = pkg.name;
+      const componentName = name.replace('@bolt/', '');
 
-        if (
-          urlName.includes(packageName) &&
-          // urlName.includes('viewall') &&
-          !urlName.includes('docs')
-        ) {
-          // filteredUrls.patterns = filteredUrls.patterns
-          //   ? filteredUrls.patterns
-          //   : [];
-          filteredUrls.patterns[name] = filteredUrls.patterns[name]
-            ? filteredUrls.patterns[name]
-            : [];
-
-          if (
-            urlName.includes(packageName) &&
-            // urlName.includes('viewall') &&
-            !urlName.includes('viewall') &&
-            !urlName.includes('docs')
-          ) {
-            if (!boltUrls[url].added) {
-              filteredUrls.patterns[name].push({
-                patternVariation: urlName,
-                previousReleaseUrl: urlAddress.replace(
-                  '../../',
-                  `https://${previousVersion}.boltdesignsystem.com/pattern-lab/`,
-                ),
-                currentReleaseUrl: urlAddress.replace(
-                  '../../',
-                  `https://${latestVersion}.boltdesignsystem.com/pattern-lab/`,
-                ),
-                // nextReleaseUrl: urlAddress.replace(
-                //   '../../',
-                //   `https://master.boltdesignsystem.com/pattern-lab/`,
-                // ),
-              });
-
-              boltUrls[url].added = true;
-            }
-          } else if (urlName.includes('viewall')) {
-            if (!boltUrls[url].added) {
-              // filteredUrls.pages = filteredUrls.pages || [];
-              filteredUrls.patterns[name].push({
-                patternVariation: urlName,
-                previousReleaseUrl: urlAddress.replace(
-                  '../../',
-                  `https://${previousVersion}.boltdesignsystem.com/pattern-lab/`,
-                ),
-                currentReleaseUrl: urlAddress.replace(
-                  '../../',
-                  `https://${latestVersion}.boltdesignsystem.com/pattern-lab/`,
-                ),
-                // nextReleaseUrl: urlAddress.replace(
-                //   '../../',
-                //   `https://master.boltdesignsystem.com/pattern-lab/`,
-                // ),
-              });
-
-              boltUrls[url].added = true;
-            }
-          }
+      if (
+        // Check for exact match because of components like 'chip' and 'chip-list'
+        urlName === `viewall-${componentName}`
+      ) {
+        if (urlName.includes('viewall') && !demoUrls[url].added) {
+          filteredUrls.components.push(
+            urlAddress.replace(
+              '../../',
+              `https://qa.boltdesignsystem.com/pattern-lab/`,
+            ),
+          );
+          demoUrls[url].added = true;
         }
-      });
+      }
     });
-
-    writeResults(latestVersion, previousVersion);
   });
 
-  async function writeResults(latestVersion, previousVersion) {
+  filteredUrls.components.push(
+    'https://qa.boltdesignsystem.com/pattern-lab/patterns/40-components-backgrounds-shapes/index.html',
+  );
+  filteredUrls.components.push(
+    'https://qa.boltdesignsystem.com/pattern-lab/patterns/40-components-chips-list/index.html',
+  );
+
+  // Sorting only necessary because we're tacking on the components above, remove once we fix pattern names above
+  filteredUrls.components = filteredUrls.components.sort();
+
+  writeResults();
+
+  async function writeResults() {
     const config = await getConfig();
+
     fs.writeFile(
-      path.join(
-        config.dataDir,
-        `bolt-vrt-urls--${latestVersion}-vs-${previousVersion}.json`,
-      ),
+      path.join(config.dataDir, `vrt-urls.bolt.json`),
       JSON.stringify(filteredUrls),
       'utf8',
       function(err) {
@@ -132,18 +113,11 @@ async function generateVrtUrls() {
           return console.log(err);
         }
         console.log('VRT testing URLs have been generated.');
-        console.log(
-          path.join(
-            config.dataDir,
-            `bolt-vrt-urls--${latestVersion}-vs-${previousVersion}.json`,
-          ),
-        );
+        console.log(path.join(config.dataDir, `vrt-urls.bolt.json`));
       },
     );
   }
 }
-
-generateVrtUrls();
 
 module.exports = {
   generateVrtUrls,
