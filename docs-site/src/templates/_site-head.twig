@@ -33,7 +33,7 @@
 ] %}
 
 <!DOCTYPE html>
-<html lang="en-US" class="{{ htmlClasses|join(' ') }}">
+<html lang="{{ html_lang|default('en-US') }}" class="{{ htmlClasses|join(' ') }}">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width" />
