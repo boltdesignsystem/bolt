@@ -65,6 +65,21 @@ $bolt-blockquote-image-size: 4rem;
   margin-bottom: var(--bolt-spacing-y-medium);
   color: bolt-theme(headline);
 
+  $sizes: 'large', 'xlarge', 'xxlarge';
+  @each $size in $sizes {
+    &--#{$size} {
+      font-size: var(--bolt-type-font-size-#{$size});
+      line-height: var(--bolt-type-line-height-#{$size});
+    }
+  }
+
+  $weights: 'semibold', 'bold';
+  @each $weight in $weights {
+    &--#{$weight} {
+      font-weight: var(--bolt-type-font-weight-#{$weight});
+    }
+  }
+
   p:not([slot]):first-child:before,
   p:not([slot]):last-child:after {
     font-family: 'Georgia', serif; // TODO: Replace with Noto Serif when it is added.
@@ -104,6 +119,19 @@ $bolt-blockquote-image-size: 4rem;
 }
 
 // Attribution
+.c-bolt-blockquote__author-name {
+  font-size: var(--bolt-type-font-size-xsmall);
+  font-weight: var(--bolt-type-font-weight-bold);
+  color: bolt-theme(headline-link);
+  line-height: var(--bolt-type-line-height-xsmall);
+}
+
+.c-bolt-blockquote__author-title {
+  font-size: var(--bolt-type-font-size-xsmall);
+  color: bolt-theme(headline-link);
+  line-height: var(--bolt-type-line-height-xsmall);
+}
+
 .c-bolt-blockquote__image {
   display: inline-block;
   box-sizing: border-box;

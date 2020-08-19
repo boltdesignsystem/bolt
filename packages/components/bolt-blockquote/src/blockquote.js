@@ -8,50 +8,23 @@ import {
 } from '@bolt/element';
 
 import classNames from 'classnames/bind';
-import textStyles from '@bolt/components-text/index.scss';
 import styles from './blockquote.scss';
 import { AuthorImage, AuthorName, AuthorTitle } from './Author';
-let cx = classNames.bind([styles, textStyles]);
-import schemaFile from '../blockquote.schema';
+let cx = classNames.bind([styles]);
+import schema from '../blockquote.schema';
 
 @customElement('bolt-blockquote')
 @convertInitialTags('blockquote') // The first matching tag will have its attributes converted to component props
 class BoltBlockquote extends BoltElement {
+  static schema = schema;
+
   static get styles() {
-    return [unsafeCSS(imageStyles)];
+    return [unsafeCSS(styles)];
   }
 
   static get properties() {
     return {
-      size: {
-        type: String,
-        attribute: 'size',
-      },
-      weight: {
-        type: String,
-        attribute: 'weight',
-      },
-      alignItems: {
-        type: String,
-        attribute: 'align-items',
-      },
-      border: {
-        type: String,
-        attribute: 'border',
-      },
-      indent: {
-        type: Boolean,
-        attribute: 'indent',
-      },
-      noQuotes: {
-        type: Boolean,
-        attribute: 'no-quotes',
-      },
-      lang: {
-        type: String,
-        attribute: 'lang',
-      },
-      fullBleed: Boolean,
+      ...this.props,
       authorName: String,
       authorTitle: String,
       authorImage: String,
@@ -66,21 +39,19 @@ class BoltBlockquote extends BoltElement {
   }
 
   firstUpdated() {
-    const self = this;
-
     // @todo: I've added this.useShadow here to exclude IE.
     // In IE-only this mutation callback causes multiple re-renders
     // and causes component to disappear.
     if (window.MutationObserver && this.useShadow) {
       // Re-generate slots + re-render when mutations are observed
       const mutationCallback = function(mutationsList, observer) {
-        self.slots = self._checkSlots();
-        self.triggerUpdate();
+        this.slots = this.slotMap;
+        this.triggerUpdate();
 
         // todo: refactor to check for slotted content, light OR shadow DOM
         // mutationsList.forEach(mutation => {
         //   if (mutation.type === 'childList') {
-        //     if (mutation.target.parentNode === self) {
+        //     if (mutation.target.parentNode === this) {
         //       console.log(mutation.target);
         //     }
         //   }
@@ -88,10 +59,10 @@ class BoltBlockquote extends BoltElement {
       };
 
       // Create an observer instance linked to the callback function
-      self.observer = new MutationObserver(mutationCallback);
+      this.observer = new MutationObserver(mutationCallback);
 
       // Start observing the target node for configured mutations
-      self.observer.observe(this, {
+      this.observer.observe(this, {
         attributes: false,
         childList: true,
         subtree: true,
@@ -134,11 +105,11 @@ class BoltBlockquote extends BoltElement {
 
   // automatically adds classes for the first and last slotted item (in the default slot) to help with tricky ::slotted selectors
   addClassesToSlottedChildren() {
-    if (this.slots) {
-      if (this.slots.default) {
+    if (this.slotMap) {
+      if (this.slotMap.get('default')) {
         const defaultSlot = [];
 
-        this.slots.default.forEach(item => {
+        this.slotMap.get('default').forEach(item => {
           if (item.tagName) {
             item.classList.remove('is-first-child');
             item.classList.remove('is-last-child'); // clean up existing classes
@@ -163,11 +134,9 @@ class BoltBlockquote extends BoltElement {
 
   render() {
     const classes = cx('c-bolt-blockquote', {
-      [`c-bolt-blockquote--${size}`]: this.size,
-      [`c-bolt-blockquote--${weight}`]: this.weight,
       [`c-bolt-blockquote--align-items-${this.getAlignItemsOption(
         this.alignItems,
-      )}`]: this.getAlignItemsOption(alignItems),
+      )}`]: this.getAlignItemsOption(this.alignItems),
       [`c-bolt-blockquote--${this.getBorderOption(
         this.border,
       )}`]: this.getBorderOption(this.border),
@@ -176,28 +145,17 @@ class BoltBlockquote extends BoltElement {
       [`c-bolt-blockquote--no-quotes`]: this.noQuotes,
     });
 
+    const textClasses = cx(
+      `c-bolt-blockquote__quote--${this.size}`,
+      `c-bolt-blockquote__quote--${this.weight}`,
+    );
+
     let footerItems = [];
     footerItems.push(AuthorImage(this), AuthorName(this), AuthorTitle(this));
 
     this.addClassesToSlottedChildren();
 
-    const textClasses = cx(
-      'c-bolt-text-v2',
-      'c-bolt-text-v2--block',
-      'c-bolt-text-v2--body',
-      `c-bolt-text-v2--font-size-${this.size}`,
-      `c-bolt-text-v2--font-weight-${this.weight}`,
-      'c-bolt-text-v2--font-style-regular',
-      'c-bolt-text-v2--color-theme-headline',
-      'c-bolt-text-v2--letter-spacing-regular',
-      'c-bolt-text-v2--align-inherit',
-      'c-bolt-text-v2--text-transform-regular',
-      'c-bolt-text-v2--line-height-regular',
-      'c-bolt-text-v2--opacity-100',
-    );
-
     return html`
-      ${this.addStyles([styles, textStyles])}
       <blockquote
         class="${classes}"
         lang="${ifDefined(
@@ -210,17 +168,15 @@ class BoltBlockquote extends BoltElement {
             : undefined,
         )}"
       >
-        ${this.slots.logo
+        ${this.slotMap.get('logo')
           ? html`
               <div class="${cx('c-bolt-blockquote__logo')}">
-                ${this.slot('logo')}
+                ${this.slotify('logo')}
               </div>
             `
           : ''}
-        <div class="${cx('c-bolt-blockquote__quote')}">
-          <div class="${textClasses}">
-            ${this.slot('default')}
-          </div>
+        <div class="${cx('c-bolt-blockquote__quote')} ${textClasses}">
+          ${this.slotify('default')}
         </div>
         ${footerItems.length > 0
           ? html`
