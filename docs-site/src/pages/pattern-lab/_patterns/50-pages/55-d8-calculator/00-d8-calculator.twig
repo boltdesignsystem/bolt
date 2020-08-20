@@ -1,3 +1,8 @@
+{#
+/**
+ * Content band and custom background block
+ */
+#}
 {% set content %}
   {#
   /**
@@ -60,7 +65,7 @@
               {% set input %}
                 {% include "@bolt-components-form/form-input.twig" with {
                   attributes: {
-                    placeholder: "E.g. $25,000,000,000",
+                    placeholder: "E.g. 25000000000",
                     required: true,
                     type: "number",
                     id: for_value,
@@ -90,7 +95,7 @@
               {% set input %}
                 {% include "@bolt-components-form/form-input.twig" with {
                   attributes: {
-                    placeholder: "E.g. 10%",
+                    placeholder: "E.g. 10",
                     required: true,
                     type: "number",
                     id: for_value,
@@ -122,7 +127,7 @@
               {% set input %}
                 {% include "@bolt-components-form/form-input.twig" with {
                   attributes: {
-                    placeholder: "E.g. 10,000,000",
+                    placeholder: "E.g. 10000000",
                     required: true,
                     type: "number",
                     id: for_value,
@@ -152,7 +157,7 @@
               {% set input %}
                 {% include "@bolt-components-form/form-input.twig" with {
                   attributes: {
-                    placeholder: "E.g. $2,000",
+                    placeholder: "E.g. 2000",
                     required: true,
                     type: "number",
                     id: for_value,
@@ -182,7 +187,7 @@
               {% set input %}
                 {% include "@bolt-components-form/form-input.twig" with {
                   attributes: {
-                    placeholder: "E.g. $2,000",
+                    placeholder: "E.g. 2000",
                     required: true,
                     type: "number",
                     id: for_value,
@@ -220,15 +225,17 @@
     </div>
   </div>
 {% endset %}
-
-{#
-/**
- * Page band
- */
-#}
-{% include "@bolt-components-band/band.twig" with {
+{% embed "@bolt-components-band/band.twig" with {
   size: "large",
   theme: "dark",
-  full_bleed: true,
-  content: content
+  content: content,
 } only %}
+  {% block band_background %}
+    <div class="c-www-calculator-background" aria-hidden="true">
+      {% include "@bolt-components-image/image.twig" with {
+        src: "/images/backgrounds/calculator-landing-shapes-transparent.png",
+        alt: "Decorative shapes.",
+      } only %}
+    </div>
+  {% endblock %}
+{% endembed %}
