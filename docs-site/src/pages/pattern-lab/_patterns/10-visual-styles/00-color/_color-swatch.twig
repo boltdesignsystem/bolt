@@ -1,4 +1,4 @@
-{% set colorName = color_swatch.colorName %}
+{% set color_name = color_swatch.color_name %}
 {% set palette = color_swatch.palette %}
 
 {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small u-bolt-width-1/3@medium u-bolt-width-1/4@large" %}
@@ -11,7 +11,7 @@
           <li role="row" class="c-bolt-accessibility-table__row c-bolt-accessibility-table__row--header">
             <div class="c-bolt-accessibility-table__column">
               <span class="c-bolt-accessibility-table__title">
-                {{ colorName }}{% if tone != "base" %}, {{ tone }}{% endif %}
+                {{ color_name }}{% if tone != "base" %}, {{ tone }}{% endif %}
               </span>
             </div>
             <div class="c-bolt-accessibility-table__column">
@@ -26,7 +26,7 @@
               Scss function
             </div>
             <div class="c-bolt-accessibility-table__column">
-              bolt-color({{ colorName }}{% if tone != "base" %}, {{ tone }}{% endif %})
+              bolt-color({{ color_name }}{% if tone != "base" %}, {{ tone }}{% endif %})
             </div>
           </li>
 
@@ -42,7 +42,7 @@
             </div>
           </li>
 
-          <li role="row" class="c-bolt-accessibility-table__row" aria-label="Accessibility row for white text on {{ colorName }} — {{ tone }}">
+          <li role="row" class="c-bolt-accessibility-table__row" aria-label="Accessibility row for white text on {{ color_name }} — {{ tone }}">
 
             {% set color = colorValue | rgb2hex | replace({'#': ''}) %}
             {% set results = color_contrast(color, 'ffffff') %}
@@ -94,7 +94,7 @@
             </div>
           </li>
 
-          <li role="row" class="c-bolt-accessibility-table__row" aria-label="Accessibility row for black text on {{ colorName }} — {{ tone }}">
+          <li role="row" class="c-bolt-accessibility-table__row" aria-label="Accessibility row for black text on {{ color_name }} — {{ tone }}">
             {% set color = colorValue | rgb2hex | replace({'#': ''}) %}
             {% set results = color_contrast(color, '000000') %}
 
