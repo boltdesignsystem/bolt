@@ -641,7 +641,7 @@
       contentItems: [
         {
           pattern: "image",
-          src: "/images/content/backgrounds/background-tall-3.jpg",
+          src: "/images/backgrounds/pw19-hp-bg2.jpg",
           lazyload: false
         }
       ]
@@ -680,7 +680,7 @@
                 size: "small"
               },
               {
-                text: "Vision & Key Concepts",
+                text: "ビジョンと主要な概念",
                 style: "secondary",
                 size: "small"
               }
@@ -763,7 +763,7 @@
         contentItems: [
           {
             pattern: "image",
-            src: "/images/placeholders/1200x660.jpg"
+            src: "/images/content/promos/promo-16x9-forrester.jpg"
           },
           {
             pattern: "headline",
@@ -853,13 +853,13 @@
     full_bleed: true
   } only %}
     {% block band_content %}
-        {% grid "o-bolt-grid--matrix o-bolt-grid--large o-bolt-grid--middle" %}
-          {% cell "u-bolt-width-1/1 u-bolt-width-5/12@small" %}
+        {% grid "o-bolt-grid--matrix o-bolt-grid--large o-bolt-grid--middle o-bolt-grid--center" %}
+          {% cell "u-bolt-width-1/1 u-bolt-width-4/12@small" %}
             {% include "@bolt/image.twig" with {
               src: "/images/content/promos/promo-16x9-salesforce-vs-pega.png"
             } only %}
           {% endcell %}
-          {% cell "u-bolt-width-1/1 u-bolt-width-7/12@small" %}
+          {% cell "u-bolt-width-1/1 u-bolt-width-6/12@small" %}
             {% include "@bolt/headline.twig" with {
               text: "誇大広告のSalesforce.comの本当に代わりとなるもの：Pega CRM",
               size: "xlarge",

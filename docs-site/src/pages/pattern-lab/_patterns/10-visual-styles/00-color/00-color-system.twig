@@ -1,0 +1,49 @@
+{% set content %}
+  <bolt-stack spacing="large">
+    <bolt-text headline font-size="xxxlarge" tag="h1">
+      Color System
+    </bolt-text>
+    <bolt-text subheadline font-size="xxlarge" tag="h2">
+      The color foundation of Bolt, based on Pegasystem branding.
+    </bolt-text>
+  </bolt-stack>
+
+  <bolt-tabs label-spacing="medium" panel-spacing="medium" inset="off">
+    <bolt-tab-panel>
+      <bolt-text slot="label">Brand Colors</bolt-text>
+
+      {% grid "o-bolt-grid--flex o-bolt-grid--small o-bolt-grid--matrix" %}
+        {% for colorName, palette in bolt.data.colors.brand %}
+          {% if colorName != "indigo" %}
+            {% include "_color-swatch.twig" with {
+              color_swatch: {
+                colorName: colorName,
+                palette: palette
+              }
+            } %}
+          {% endif %}
+        {% endfor %}
+      {% endgrid %}
+    </bolt-tab-panel>
+    <bolt-tab-panel>
+      <bolt-text slot="label">Status Colors</bolt-text>
+
+      {% grid "o-bolt-grid--flex o-bolt-grid--small o-bolt-grid--matrix" %}
+        {% for colorName, palette in bolt.data.colors.status %}
+          {% include "_color-swatch.twig" with {
+            color_swatch: {
+              colorName: colorName,
+              palette: palette
+            }
+          } %}
+        {% endfor %}
+      {% endgrid %}
+    </bolt-tab-panel>
+  </bolt-tabs>
+{% endset %}
+
+{% include "@bolt-components-band/band.twig" with {
+  content: content,
+  theme: "none",
+  size: "large",
+} only %}
