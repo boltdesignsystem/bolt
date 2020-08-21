@@ -7,7 +7,7 @@ import {
   convertInitialTags,
 } from '@bolt/element';
 import classNames from 'classnames/bind';
-import { AuthorImage, AuthorName, AuthorTitle } from './Author';
+import { AuthorImage, AuthorName, AuthorTitle } from './_blockquote-author';
 import schema from '../blockquote.schema';
 import styles from './blockquote.scss';
 
