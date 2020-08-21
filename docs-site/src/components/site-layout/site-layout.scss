@@ -660,6 +660,10 @@ $bds-sidebar-width: 320px;
   @include bolt-mq(small) {
     grid-template-columns: repeat(3, 1fr);
   }
+
+  @include bolt-mq(large) {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
 
 .c-bds-home-highlights__item {

@@ -3,8 +3,8 @@
 
 {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small u-bolt-width-1/3@medium u-bolt-width-1/4@large" %}
   <bolt-swatch class="c-bolt-swatch">
-    {% for tone, colorValue in palette %}
-      <div class="c-bolt-accessibility-table" style="color: {{ colorValue | rgb2hex | text_contrast }}; background-color: {{ colorValue | rgb2hex }};">
+    {% for tone, color_value in palette %}
+      <div class="c-bolt-accessibility-table" style="color: {{ color_value | rgb2hex | text_contrast }}; background-color: {{ color_value | rgb2hex }};">
 
         <ul class="c-bolt-accessibility-table__table" role="table">
 
@@ -16,7 +16,7 @@
             </div>
             <div class="c-bolt-accessibility-table__column">
               <span class="c-bolt-accessibility-table__title">
-                {{ colorValue | rgb2hex }}
+                {{ color_value | rgb2hex }}
               </span>
             </div>
           </li>
@@ -44,7 +44,7 @@
 
           <li role="row" class="c-bolt-accessibility-table__row" aria-label="Accessibility row for white text on {{ color_name }} — {{ tone }}">
 
-            {% set color = colorValue | rgb2hex | replace({'#': ''}) %}
+            {% set color = color_value | rgb2hex | replace({'#': ''}) %}
             {% set results = color_contrast(color, 'ffffff') %}
 
 
@@ -80,7 +80,7 @@
             </div>
 
             <div class="c-bolt-accessibility-table__column">
-              {% set color = colorValue | rgb2hex | replace({'#': ''}) %}
+              {% set color = color_value | rgb2hex | replace({'#': ''}) %}
               {% set results = color_contrast(color, 'ffffff') %}
               <span class="c-bolt-accessibility-table__results">
                 {{ results["levelAANormal"] }}
@@ -95,7 +95,7 @@
           </li>
 
           <li role="row" class="c-bolt-accessibility-table__row" aria-label="Accessibility row for black text on {{ color_name }} — {{ tone }}">
-            {% set color = colorValue | rgb2hex | replace({'#': ''}) %}
+            {% set color = color_value | rgb2hex | replace({'#': ''}) %}
             {% set results = color_contrast(color, '000000') %}
 
             <div class="c-bolt-accessibility-table__column c-bolt-accessibility-table__column--black">
@@ -128,7 +128,7 @@
             </div>
 
             <div class="c-bolt-accessibility-table__column">
-              {% set color = colorValue | rgb2hex | replace({'#': ''}) %}
+              {% set color = color_value | rgb2hex | replace({'#': ''}) %}
               {% set results = color_contrast(color, '000000') %}
               <span class="c-bolt-accessibility-table__results">
                 {{ results["levelAANormal"] }}
