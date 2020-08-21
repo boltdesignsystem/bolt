@@ -6,12 +6,12 @@ import {
   unsafeCSS,
   convertInitialTags,
 } from '@bolt/element';
-
 import classNames from 'classnames/bind';
-import styles from './blockquote.scss';
 import { AuthorImage, AuthorName, AuthorTitle } from './Author';
-let cx = classNames.bind([styles]);
 import schema from '../blockquote.schema';
+import styles from './blockquote.scss';
+
+let cx = classNames.bind([styles]);
 
 @customElement('bolt-blockquote')
 @convertInitialTags('blockquote') // The first matching tag will have its attributes converted to component props
@@ -29,13 +29,6 @@ class BoltBlockquote extends BoltElement {
       authorTitle: String,
       authorImage: String,
     };
-  }
-
-  // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
-  constructor() {
-    super();
-    // this.useShadow = hasNativeShadowDomSupport;
-    // this.schema = this.getModifiedSchema(schema);
   }
 
   firstUpdated() {
