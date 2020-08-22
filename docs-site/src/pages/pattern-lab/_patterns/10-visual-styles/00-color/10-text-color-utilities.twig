@@ -31,6 +31,8 @@
                 {% for shade, color_value in palette %}
                   {% if shade != "base" %}
                     {% set shade_modifier = "-" ~ shade %}
+                  {% else %}
+                    {% set shade_modifier = "" %}
                   {% endif %}
                   <tr>
                     <td>.u-bolt-color-{{ color_name }}{{ shade_modifier }}</td>
@@ -67,6 +69,8 @@
                 {% for shade, color_value in palette %}
                   {% if shade != "base" %}
                     {% set shade_modifier = "-" ~ shade %}
+                  {% else %}
+                    {% set shade_modifier = "" %}
                   {% endif %}
                   <tr>
                     <td>.u-bolt-color-{{ color_name }}{{ shade_modifier }}</td>
