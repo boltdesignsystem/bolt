@@ -733,6 +733,10 @@ $bds-sidebar-width: 320px;
   }
 }
 
+[data-bds-animate*='delayed'] {
+  animation-delay: 1s;
+}
+
 [data-bds-animate*='long'] {
   animation-duration: 2s;
 }
@@ -767,6 +771,22 @@ $bds-sidebar-width: 320px;
   0% {
     opacity: 0;
     transform: translate3d(0, -100%, 0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+[data-bds-animate*='fade-in-up'] {
+  animation-name: a-bds-fade-in-up;
+}
+
+@keyframes a-bds-fade-in-up {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 100%, 0);
   }
 
   100% {

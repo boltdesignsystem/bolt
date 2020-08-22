@@ -54,13 +54,13 @@
       {% include "@bolt-components-sticky/sticky.twig" with {
         content: navbar,
         attributes: {
-          "data-bds-animate": "fade-in-down"
+          "data-bds-animate": "fade-in-down long delayed"
         }
       } only %}
 
       <div class="c-bds-home-page__content">
         <div class="o-bolt-wrapper">
-          <bolt-stack spacing="xlarge">
+          <bolt-stack spacing="xlarge" data-bds-animate="fade-in-down">
             {% include "@bolt-components-headline/headline.twig" with {
               text: "A System of Systems",
               size: "xxxlarge",
@@ -73,7 +73,7 @@
             } only %}
           </bolt-stack>
 
-          <ul class="c-bds-home-highlights">
+          <ul class="c-bds-home-highlights" data-bds-animate="fade-in-up long">
             <li class="c-bds-home-highlights__item c-bds-home-highlights__item--color">
               <svg data-bds-animate="pulse long infinite" xmlns="http://www.w3.org/2000/svg" class="c-bds-home-highlights__item__media" viewBox="0 0 257.92 211.05"><path d="M1,148.5c-2-31.37-3.7-67.85,36.39-62.91,50.26,6.18,46.88-15.43,48.11-43.18S92.25-11.87,128.64,6s41.94,19.75,74.64,8.64,62.29,8,53,39.48-22.82,38.24-19.12,69.7-20.36,29.61-44.41,16-54.28-17.89-58,9.87-19.12,56.74-45.65,26.52S46,175,37.35,200.32,4.66,206.48,1,148.5" transform="translate(-0.12 -0.19)"/></svg>
               <div class="c-bds-home-highlights__item__heading">
