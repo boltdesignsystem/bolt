@@ -89,29 +89,25 @@ class BoltBlockquote extends BoltElement {
 
   // automatically adds classes for the first and last slotted item (in the default slot) to help with tricky ::slotted selectors
   addClassesToSlottedChildren() {
-    if (this.slotMap) {
-      if (this.slotMap.get('default')) {
-        const defaultSlot = [];
+    if (!this.slotMap?.get('default')) return;
 
-        this.slotMap.get('default').forEach(item => {
-          if (item.tagName) {
-            item.classList.remove('is-first-child');
-            item.classList.remove('is-last-child'); // clean up existing classes
-            defaultSlot.push(item);
-          }
-        });
+    const defaultSlot = [];
 
-        if (defaultSlot[0]) {
-          defaultSlot[0].classList.add('is-first-child');
+    this.slotMap.get('default').forEach(item => {
+      if (item.tagName) {
+        item.classList.remove('is-first-child');
+        item.classList.remove('is-last-child'); // clean up existing classes
+        defaultSlot.push(item);
+      }
+    });
 
-          if (defaultSlot.length === 1) {
-            defaultSlot[0].classList.add('is-last-child');
-          }
-        }
+    if (defaultSlot.length) {
+      defaultSlot[0].classList.add('is-first-child');
 
-        if (defaultSlot[defaultSlot.length - 1]) {
-          defaultSlot[defaultSlot.length - 1].classList.add('is-last-child');
-        }
+      if (defaultSlot.length === 1) {
+        defaultSlot[0].classList.add('is-last-child');
+      } else {
+        defaultSlot[defaultSlot.length - 1].classList.add('is-last-child');
       }
     }
   }
