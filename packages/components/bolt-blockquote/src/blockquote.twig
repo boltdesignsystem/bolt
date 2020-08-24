@@ -20,13 +20,6 @@
 {# Blockquote content is not required to be wrapped in a <p> tag, but if it is, update variables accordingly #}
 {% set text_tag = "<p>" in content ? "div" : "p" %}
 
-
-{% set size_options = schema.properties.size.enum %}
-
-{% set size = size in size_options ? size : schema.properties.size.default %}
-
-
-
 {# Array of classes based on the defined + default props #}
 {% set classes = [
   base_class,
@@ -80,7 +73,7 @@
       {% else %}
         <ssr-keep for="bolt-blockquote">
           <p>
-              {{content}}
+            {{content}}
           </p>
         </ssr-keep>
       {% endif %}
