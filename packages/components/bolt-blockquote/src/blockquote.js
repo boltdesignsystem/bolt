@@ -35,20 +35,11 @@ class BoltBlockquote extends BoltElement {
     // @todo: I've added this.useShadow here to exclude IE.
     // In IE-only this mutation callback causes multiple re-renders
     // and causes component to disappear.
-    if (window.MutationObserver && this.useShadow) {
+    if (window.MutationObserver && this.useShadow && !this.observer) {
       // Re-generate slots + re-render when mutations are observed
-      const mutationCallback = function(mutationsList, observer) {
-        this.slots = this.slotMap;
-        this.triggerUpdate();
-
-        // todo: refactor to check for slotted content, light OR shadow DOM
-        // mutationsList.forEach(mutation => {
-        //   if (mutation.type === 'childList') {
-        //     if (mutation.target.parentNode === this) {
-        //       console.log(mutation.target);
-        //     }
-        //   }
-        // });
+      const mutationCallback = (mutationsList, observer) => {
+        this.saveSlots();
+        this.requestUpdate();
       };
 
       // Create an observer instance linked to the callback function
