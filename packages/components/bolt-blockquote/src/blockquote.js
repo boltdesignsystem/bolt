@@ -25,9 +25,9 @@ class BoltBlockquote extends BoltElement {
   static get properties() {
     return {
       ...this.props,
-      authorName: String,
-      authorTitle: String,
-      authorImage: String,
+      authorName: { type: String, attribute: 'author-name' },
+      authorTitle: { type: String, attribute: 'author-title' },
+      authorImage: { type: String, attribute: 'author-image' },
     };
   }
 
