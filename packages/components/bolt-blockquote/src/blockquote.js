@@ -130,8 +130,11 @@ class BoltBlockquote extends BoltElement {
       `c-bolt-blockquote__quote--${this.weight}`,
     );
 
-    let footerItems = [];
-    footerItems.push(AuthorImage(this), AuthorName(this), AuthorTitle(this));
+    const footerItems = [
+      AuthorImage(this),
+      AuthorName(this),
+      AuthorTitle(this),
+    ].filter(el => el);
 
     this.addClassesToSlottedChildren();
 
