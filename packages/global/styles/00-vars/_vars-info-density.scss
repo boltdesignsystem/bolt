@@ -1,43 +1,8 @@
 /* ------------------------------------ *\
-   Spacing System (CSS Custom Props)
+   Information Density
+   Note: this overrides spacing and
+   typography vars.
 \* ------------------------------------ */
-
-/**
- * Generate global spacing variables
- *
- * 1. Maps are kept in core/settings.
- */
-:root {
-  // Base tokens are for public use and user overrides
-  // Note: user can customize these to generate their own spacing tokens. Spacing tokens are using formulas based on these.
-  @each $size in $bolt-spacing-system {
-    $size-dir: nth($size, 1);
-    $size-value: nth($size, 2);
-
-    --bolt-spacing-#{$size-dir}: #{$size-value};
-  }
-  @each $size in $bolt-spacing-multiplier-system {
-    $size-name: nth($size, 1);
-    $size-value: nth($size, 2);
-
-    --bolt-spacing-multiplier-#{$size-name}: #{$size-value};
-  }
-
-  // Spacing tokens are for public use
-  // Note: while user overrides are possible but they are not encouraged. Customization should be done through base tokens.
-  @each $size in $bolt-spacing-x-system {
-    $size-name: nth($size, 1);
-    $size-value: nth($size, 2);
-
-    --bolt-spacing-x-#{$size-name}: #{$size-value};
-  }
-  @each $size in $bolt-spacing-y-system {
-    $size-name: nth($size, 1);
-    $size-value: nth($size, 2);
-
-    --bolt-spacing-y-#{$size-name}: #{$size-value};
-  }
-}
 
 /**
  * Compact Spacing System
@@ -72,8 +37,8 @@
   --bolt-spacing-x: 1.75;
   --bolt-spacing-y: 1.6;
 
-  --bolt-type-font-size-xxxlarge: 2.5rem;
-  --bolt-type-font-size-xxlarge: 1.85rem;
+  --bolt-type-font-size-xxxlarge: 2.75rem;
+  --bolt-type-font-size-xxlarge: 1.9rem;
   --bolt-type-font-size-xlarge: 1.4rem;
   --bolt-type-font-size-large: 1.2rem;
   --bolt-type-font-size-medium: 1rem;
