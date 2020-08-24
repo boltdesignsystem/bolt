@@ -119,17 +119,16 @@ $bolt-blockquote-image-size: 4rem;
 }
 
 // Attribution
-.c-bolt-blockquote__author-name {
+.c-bolt-blockquote__author-name,
+.c-bolt-blockquote__author-title {
+  font-style: normal; // required by WC-only version
   font-size: var(--bolt-type-font-size-xsmall);
-  font-weight: var(--bolt-type-font-weight-bold);
-  color: bolt-theme(headline-link);
+  color: bolt-theme(headline);
   line-height: var(--bolt-type-line-height-xsmall);
 }
 
-.c-bolt-blockquote__author-title {
-  font-size: var(--bolt-type-font-size-xsmall);
-  color: bolt-theme(headline-link);
-  line-height: var(--bolt-type-line-height-xsmall);
+.c-bolt-blockquote__author-name {
+  font-weight: var(--bolt-type-font-weight-bold);
 }
 
 .c-bolt-blockquote__image {
