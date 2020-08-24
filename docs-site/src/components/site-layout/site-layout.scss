@@ -603,18 +603,17 @@ $bds-sidebar-width: 320px;
 }
 
 .c-bds-home-shape {
-  opacity: bolt-opacity(60);
+  opacity: bolt-opacity(40);
   position: absolute;
   top: 0;
   z-index: 0;
   width: 100vw;
-  min-width: 900px;
+  min-width: 951.5px;
   pointer-events: none;
   animation-duration: 12s;
   animation-fill-mode: both;
   animation-iteration-count: infinite;
-  animation-name: a-bds-home-shape-fade;
-  fill: bolt-color(teal);
+  fill: bolt-color(navy, light);
 
   @media (prefers-reduced-motion) {
     animation: none !important;
@@ -624,27 +623,46 @@ $bds-sidebar-width: 320px;
 .c-bds-home-shape--01 {
   right: 0;
   transform: translate3d(30%, -30%, 0);
+  animation-name: a-bds-home-shape-01-fade;
 }
 
 .c-bds-home-shape--02 {
   left: 0;
-  transform: translate3d(-60%, 50vh, 0);
+  transform: translate3d(-60%, 55vh, 0);
+  animation-name: a-bds-home-shape-02-fade;
 }
 
-@keyframes a-bds-home-shape-fade {
+@keyframes a-bds-home-shape-01-fade {
   0% {
-    opacity: bolt-opacity(60);
-    top: 0;
+    opacity: bolt-opacity(40);
+    transform: translate3d(30%, -30%, 0);
   }
 
   50% {
     opacity: 1;
-    top: 2vh;
+    transform: translate3d(30%, calc(-30% + 2vh), 0) scale(1.02);
   }
 
   100% {
-    opacity: bolt-opacity(60);
-    top: 0;
+    opacity: bolt-opacity(40);
+    transform: translate3d(30%, -30%, 0);
+  }
+}
+
+@keyframes a-bds-home-shape-02-fade {
+  0% {
+    opacity: bolt-opacity(40);
+    transform: translate3d(-55%, 55vh, 0);
+  }
+
+  50% {
+    opacity: 1;
+    transform: translate3d(-55%, calc(55vh + 2vh), 0) scale(1.02);
+  }
+
+  100% {
+    opacity: bolt-opacity(40);
+    transform: translate3d(-55%, 55vh, 0);
   }
 }
 
