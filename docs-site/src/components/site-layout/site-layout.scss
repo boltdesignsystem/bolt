@@ -593,7 +593,7 @@ $bds-sidebar-width: 320px;
 
 .c-bds-home-page {
   position: relative;
-  min-height: 100%;
+  min-height: 100vh;
   overflow: hidden;
 }
 
@@ -743,6 +743,7 @@ $bds-sidebar-width: 320px;
 }
 
 [data-bds-animate] {
+  transform: translate3d(0, 0, 0);
   animation-duration: 1s;
   animation-fill-mode: both;
 
@@ -781,6 +782,20 @@ $bds-sidebar-width: 320px;
   }
 }
 
+[data-bds-animate*='fade-in'] {
+  animation-name: a-bds-fade-in;
+}
+
+@keyframes a-bds-fade-in {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
 [data-bds-animate*='fade-in-down'] {
   animation-name: a-bds-fade-in-down;
 }
@@ -793,7 +808,7 @@ $bds-sidebar-width: 320px;
 
   100% {
     opacity: 1;
-    transform: none;
+    transform: translate3d(0, 0, 0);
   }
 }
 
@@ -809,6 +824,6 @@ $bds-sidebar-width: 320px;
 
   100% {
     opacity: 1;
-    transform: none;
+    transform: translate3d(0, 0, 0);
   }
 }
