@@ -27,6 +27,11 @@ module.exports = {
       type: 'string',
       description: 'Unique ID for an item, randomly generated if not provided.',
     },
+    id: {
+      type: 'string',
+      description:
+        'Unique identifier for each item, may be used for deep linking.',
+    },
     open_label: {
       type: 'string',
       description: 'Accessible label for the open trigger to expand an item.',
