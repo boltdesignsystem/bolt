@@ -30,7 +30,7 @@
   this.data.no_quotes.value ? base_class ~ "--no-quotes" : ""
 ] %}
 
-{% set textClasses = [
+{% set text_classes = [
   "c-bolt-blockquote__quote",
   this.data.size.value ? "c-bolt-blockquote__quote--" ~ this.data.size.value : "",
   this.data.weight.value ? "c-bolt-blockquote__quote--" ~ this.data.weight.value : ""
@@ -65,7 +65,7 @@
       </ssr-keep>
     {% endif %}
 
-    <div {{ text_attributes.addClass(textClasses) }}>
+    <div {{ text_attributes.addClass(text_classes) }}>
       {% if "<p>" in content %}
         <ssr-keep for="bolt-blockquote">
           {{content}}
