@@ -1,3 +1,5 @@
+{% set info_density = info_density %}
+
 {% extends "@pl/_default-page-template.twig" %}
 
 {% block global_header %}
@@ -5,7 +7,21 @@
 {% endblock %}
 
 {% block main_content %}
-  {% set info_density = info_density %}
+  {% set content %}
+    {% include "@bolt-components-headline/text.twig" with {
+      text: 'A page&rsquo;s information density can be changed by setting the <code>data-bolt-info-density</code> attribute on the <code>&lt;html&gt;</code> element. Information density is controlled by the spacing and typography systems. The following layout is set to <code>data-bolt-info-density="' ~ info_density ~ '"</code>.',
+      weight: "bold",
+      tag: "p",
+      icon: {
+        name: "documentation",
+        position: "before",
+      },
+    } only %}
+  {% endset %}
+  {% include "@bolt-components-band/band.twig" with {
+    theme: "xdark",
+    content: content,
+  } only %}
 
   {% set content %}
     {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--xlarge o-bolt-grid--middle" %}
@@ -16,7 +32,7 @@
         } only %}
 
         {% include "@bolt-components-headline/headline.twig" with {
-          text: "Automation to Get Work Done",
+          text: info_density|capitalize ~ " Information Density",
           size: "xxxlarge",
           tag: "h1",
         } only %}
@@ -70,53 +86,6 @@
     content: content,
   } only %}
 
-  {% include "@bolt-components-action-blocks/action-blocks.twig" with {
-    contentItems: [
-      {
-        text: "Item 1 with a long line of text",
-        url: "#!",
-        icon: {
-          name: "download",
-        }
-      },
-      {
-        text: "Item 2 with a long line of text",
-        url: "#!",
-        icon: {
-          name: "copy-to-clipboard",
-        }
-      },
-      {
-        text: "Item 3 with a long line of text",
-        url: "#!",
-        icon: {
-          name: "calendar",
-        }
-      },
-      {
-        text: "Item 4 with a long line of text",
-        url: "#!",
-        icon: {
-          name: "external-link",
-        }
-      },
-      {
-        text: "Item 5 with a long line of text",
-        url: "#!",
-        icon: {
-          name: "launchpad",
-        }
-      },
-      {
-        text: "Item 6 with a long line of text",
-        url: "#!",
-        icon: {
-          name: "info-open",
-        }
-      },
-    ]
-  } only %}
-
   {% set content %}
     {% grid "o-bolt-grid--large o-bolt-grid--matrix" %}
       {% cell "u-bolt-width-12/12 u-bolt-width-8/12@medium" %}
@@ -165,6 +134,53 @@
     size: "large",
     theme: "light",
     content: content,
+  } only %}
+
+  {% include "@bolt-components-action-blocks/action-blocks.twig" with {
+    contentItems: [
+      {
+        text: "Item 1 with a long line of text",
+        url: "#!",
+        icon: {
+          name: "download",
+        }
+      },
+      {
+        text: "Item 2 with a long line of text",
+        url: "#!",
+        icon: {
+          name: "copy-to-clipboard",
+        }
+      },
+      {
+        text: "Item 3 with a long line of text",
+        url: "#!",
+        icon: {
+          name: "calendar",
+        }
+      },
+      {
+        text: "Item 4 with a long line of text",
+        url: "#!",
+        icon: {
+          name: "external-link",
+        }
+      },
+      {
+        text: "Item 5 with a long line of text",
+        url: "#!",
+        icon: {
+          name: "launchpad",
+        }
+      },
+      {
+        text: "Item 6 with a long line of text",
+        url: "#!",
+        icon: {
+          name: "info-open",
+        }
+      },
+    ]
   } only %}
 
   {% set content %}
