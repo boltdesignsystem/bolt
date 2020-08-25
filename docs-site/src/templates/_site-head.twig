@@ -33,7 +33,7 @@
 ] %}
 
 <!DOCTYPE html>
-<html lang="en-US" class="{{ htmlClasses|join(' ') }}">
+<html lang="{{ html_lang|default('en-US') }}" class="{{ htmlClasses|join(' ') }}">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width" />
@@ -99,7 +99,6 @@
 
   {% set bodyClasses = [
     patternData.patternBreadcrumb.patternType == 'pages' ? 'c-bolt-site' : '',
-    currentUrl == 'index.html' ? 't-bolt-xdark' : '',
     hasSidebar and patternLabFoot is not defined ? 'c-bds-layout--has-sidebar' : '',
     patternLabFoot is not defined ? 'c-bolt-site' : '',
     patternLabFoot is not defined ? 'c-bds-layout' : '',

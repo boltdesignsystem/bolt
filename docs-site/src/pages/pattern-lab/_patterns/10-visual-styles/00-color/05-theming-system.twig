@@ -1,0 +1,238 @@
+{% set themes = [
+  "xlight",
+  "light",
+  "dark",
+  "xdark",
+] %}
+
+{% set content %}
+  <bolt-stack spacing="large">
+    <bolt-text headline font-size="xxxlarge" tag="h1">
+      Theming System
+    </bolt-text>
+    <bolt-text subheadline font-size="xxlarge" tag="h2">
+      The color theming foundation of Bolt.
+    </bolt-text>
+  </bolt-stack>
+
+  <bolt-tabs label-spacing="medium" panel-spacing="medium" inset="off">
+    {% for theme in themes %}
+      <bolt-tab-panel>
+        <bolt-text slot="label">{{ theme|capitalize }}</bolt-text>
+
+        <div class="{{ "t-bolt-#{theme}" }} u-bolt-padding-top-small u-bolt-padding-bottom-small u-bolt-padding-right-medium u-bolt-padding-left-medium">
+          {% include "@bolt-components-headline/subheadline.twig" with {
+            tag: "h2",
+            size: "xlarge",
+            text: "Theme Color Tokens",
+            icon: {
+              name: "bolt-logo-colored",
+              position: "before",
+            },
+            attributes: {
+              class: [
+                "u-bolt-margin-bottom-xsmall",
+              ],
+            },
+          } only %}
+          <hr class="u-bolt-margin-top-none">
+          <bolt-table>
+            <table>
+              <thead>
+                <tr>
+                  <td></td>
+                  <th>Scss function</th>
+                  <th>Value</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th>Text</th>
+                  <td>bolt-theme(text)</td>
+                  <td>
+                    <span class="c-bds-color-chip c-bds-color-chip--text"></span>&nbsp;&nbsp;{% if theme == "xlight" or theme == "light" %}black{% else %}white{% endif %}
+                  </td>
+                </tr>
+                <tr>
+                  <th>Background</th>
+                  <td>bolt-theme(background)</td>
+                  <td>
+                    <span class="c-bds-color-chip c-bds-color-chip--background"></span>&nbsp;&nbsp;{% if theme == "xlight" %}white{% elseif theme == "light" %}gray, xlight{% elseif theme == "dark" %}navy{% else %}navy, dark{% endif %}
+                  </td>
+                </tr>
+                <tr>
+                  <th>Primary</th>
+                  <td>bolt-theme(primary)</td>
+                  <td>
+                    <span class="c-bds-color-chip c-bds-color-chip--primary"></span>&nbsp;&nbsp;{% if theme == "xlight" or theme == "light" %}navy, light{% else %}yellow{% endif %}
+                  </td>
+                </tr>
+                <tr>
+                  <th>Secondary</th>
+                  <td>bolt-theme(secondary)</td>
+                  <td>
+                    <span class="c-bds-color-chip c-bds-color-chip--secondary"></span>&nbsp;&nbsp;{% if theme == "xlight" or theme == "light" %}white{% else %}white{% endif %}
+                  </td>
+                </tr>
+                <tr>
+                  <th>Link Text</th>
+                  <td>bolt-theme(link)</td>
+                  <td>
+                    <span class="c-bds-color-chip c-bds-color-chip--link"></span>&nbsp;&nbsp;{% if theme == "xlight" or theme == "light" %}navy, light{% else %}white{% endif %}
+                  </td>
+                </tr>
+                <tr>
+                  <th>Disabled Text</th>
+                  <td>bolt-theme(text-disabled)</td>
+                  <td>
+                    <span class="c-bds-color-chip c-bds-color-chip--text-disabled"></span>&nbsp;&nbsp;{% if theme == "xlight" or theme == "light" %}gray{% else %}gray{% endif %}
+                  </td>
+                </tr>
+                <tr>
+                  <th>Disabled Background</th>
+                  <td>bolt-theme(disabled)</td>
+                  <td>
+                    <span class="c-bds-color-chip c-bds-color-chip--disabled"></span>&nbsp;&nbsp;{% if theme == "xlight" or theme == "light" %}gray, light{% else %}gray, light{% endif %}
+                  </td>
+                </tr>
+                <tr>
+                  <th>Headline Text</th>
+                  <td>bolt-theme(headline)</td>
+                  <td>
+                    <span class="c-bds-color-chip c-bds-color-chip--headline"></span>&nbsp;&nbsp;{% if theme == "xlight" or theme == "light" %}navy{% else %}white{% endif %}
+                  </td>
+                </tr>
+                <tr>
+                  <th>Headline Link</th>
+                  <td>bolt-theme(headline-link)</td>
+                  <td>
+                    <span class="c-bds-color-chip c-bds-color-chip--headline-link"></span>&nbsp;&nbsp;{% if theme == "xlight" or theme == "light" %}navy, light{% else %}white{% endif %}
+                  </td>
+                </tr>
+                <tr>
+                  <th>Border</th>
+                  <td>bolt-theme(border, 0.2)</td>
+                  <td>
+                    <span class="c-bds-color-chip c-bds-color-chip--border"></span>&nbsp;&nbsp;{% if theme == "xlight" or theme == "light" %}navy, dark, 20%{% else %}white, 20%{% endif %}
+                  </td>
+                </tr>
+                <tr>
+                  <th>Neutral</th>
+                  <td>bolt-theme(neutral)</td>
+                  <td>
+                    <span class="c-bds-color-chip c-bds-color-chip--neutral"></span>&nbsp;&nbsp;{% if theme == "xlight" or theme == "light" %}gray{% else %}gray{% endif %}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </bolt-table>
+
+          {% include "@bolt-components-headline/subheadline.twig" with {
+            tag: "h2",
+            size: "xlarge",
+            text: "Content Type Overview",
+            icon: {
+              name: "documentation",
+              position: "before",
+            },
+            attributes: {
+              class: [
+                "u-bolt-margin-top-large",
+                "u-bolt-margin-bottom-xsmall",
+              ],
+            },
+          } only %}
+          <hr class="u-bolt-margin-top-none">
+          {% include "@bolt-components-headline/headline.twig" with {
+            tag: "h3",
+            size: "small",
+            text: "Headline",
+            attributes: {
+              class: "u-bolt-margin-bottom-xsmall"
+            },
+          } only %}
+          <bolt-card-replacement>
+            <bolt-card-replacement-body>
+              {% include "@bolt-components-headline/headline.twig" with {
+                size: "xxxlarge",
+                text: "Headline Text",
+              } only %}
+              {% include "@bolt-components-headline/headline.twig" with {
+                size: "xxxlarge",
+                text: "Headline Text Link",
+                url: "https://pega.com",
+              } only %}
+            </bolt-card-replacement-body>
+          </bolt-card-replacement>
+          {% include "@bolt-components-headline/headline.twig" with {
+            tag: "h3",
+            size: "small",
+            text: "Text",
+            attributes: {
+              class: "u-bolt-margin-bottom-xsmall"
+            },
+          } only %}
+          <bolt-card-replacement>
+            <bolt-card-replacement-body>
+              {% include "@bolt-components-headline/text.twig" with {
+                text: "Body text",
+              } only %}
+              {% include "@bolt-components-headline/text.twig" with {
+                text: "Body text link",
+                url: "https://pega.com",
+              } only %}
+            </bolt-card-replacement-body>
+          </bolt-card-replacement>
+          {% include "@bolt-components-headline/headline.twig" with {
+            tag: "h3",
+            size: "small",
+            text: "Border",
+            attributes: {
+              class: "u-bolt-margin-bottom-xsmall"
+            },
+          } only %}
+          <bolt-card-replacement>
+            <bolt-card-replacement-body>
+              <hr>
+            </bolt-card-replacement-body>
+          </bolt-card-replacement>
+          {% include "@bolt-components-headline/headline.twig" with {
+            tag: "h3",
+            size: "small",
+            text: "Button",
+            attributes: {
+              class: "u-bolt-margin-bottom-xsmall"
+            },
+          } only %}
+          <bolt-card-replacement>
+            <bolt-card-replacement-body>
+              <bolt-list display="inline">
+                <bolt-list-item>
+                  <bolt-button>
+                    Primary
+                  </bolt-button>
+                </bolt-list-item>
+                <bolt-list-item>
+                  <bolt-button color="secondary">
+                    Secondary
+                  </bolt-button>
+                </bolt-list-item>
+                <bolt-list-item>
+                  <bolt-button color="tertiary">
+                    Secondary
+                  </bolt-button>
+                </bolt-list-item>
+              </bolt-list>
+            </bolt-card-replacement-body>
+          </bolt-card-replacement>
+        </div>
+      </bolt-tab-panel>
+    {% endfor %}
+  </bolt-tabs>
+{% endset %}
+
+{% include "@bolt-components-band/band.twig" with {
+  content: content,
+  theme: "none",
+  size: "large",
+} only %}

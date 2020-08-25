@@ -1,3 +1,9 @@
+{% if japanese %}
+  <script type="text/javascript">
+    document.getElementsByTagName("HTML")[0].setAttribute("lang", "ja");
+  </script>
+{% endif %}
+
 {% block global_header %}
   {% include "@bolt/page-header.twig" %}
 {% endblock %}

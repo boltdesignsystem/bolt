@@ -2,8 +2,6 @@
   display: flex;
   flex: 1;
   flex-direction: column;
-  justify-content: center;
-  height: 100%; // So vertical centering works -- same update we had to make for cards since teaking how flex grid behaves
 }
 
 .c-bolt-swatch__color {
@@ -37,27 +35,35 @@
 }
 
 .c-bolt-swatch__meta {
-  @include bolt-font-size(xsmall);
-  @include bolt-font-weight(bold);
   display: block;
   width: 100%;
+  font-size: var(--bolt-type-font-size-xsmall);
+  font-weight: var(--bolt-type-font-weight-bold);
+  line-height: var(--bolt-type-line-height-xsmall);
   text-transform: uppercase;
 }
 
 .c-bolt-swatch__name {
-  @include bolt-font-size(large);
-  @include bolt-font-weight(bold);
+  font-size: var(--bolt-type-font-size-large);
+  font-weight: var(--bolt-type-font-weight-bold);
+  line-height: var(--bolt-type-line-height-large);
 }
 
 .c-bolt-swatch__value {
-  @include bolt-font-size(large);
-  @include bolt-font-weight(bold);
   margin-left: auto;
+  font-size: var(--bolt-type-font-size-large);
+  font-weight: var(--bolt-type-font-weight-bold);
+  line-height: var(--bolt-type-line-height-large);
   text-transform: uppercase;
 }
 
 .c-bolt-accessibility-table {
   padding: var(--bolt-spacing-y-xsmall) var(--bolt-spacing-x-small);
+  border-radius: bolt-border-radius(large);
+
+  &:not(:last-child) {
+    margin-bottom: var(--bolt-spacing-y-small);
+  }
 }
 
 .c-bolt-accessibility-table__table {
@@ -92,12 +98,13 @@
 }
 
 .c-bolt-accessibility-table__column {
-  @include bolt-font-size(xsmall);
   display: block;
   align-items: center;
   margin: 0;
   padding-top: var(--bolt-spacing-y-xsmall);
   padding-bottom: var(--bolt-spacing-y-xsmall);
+  font-size: var(--bolt-type-font-size-xsmall);
+  line-height: var(--bolt-type-line-height-xsmall);
 }
 
 .c-bolt-accessibility-table__column:nth-child(1) {
@@ -105,17 +112,22 @@
 }
 
 .c-bolt-accessibility-table__title {
-  @include bolt-font-weight(semibold);
+  padding: var(--bolt-spacing-y-medium) 0;
+  font-size: var(--bolt-type-font-size-medium);
+  font-weight: var(--bolt-type-font-weight-bold);
+  line-height: var(--bolt-type-line-height-medium);
 }
 
 .c-bolt-accessibility-table__text--large {
-  @include bolt-font-size(xxlarge);
-  @include bolt-font-weight(normal);
+  font-size: var(--bolt-type-font-size-xxlarge);
+  font-weight: var(--bolt-type-font-weight-regular);
+  line-height: 1;
 }
 
 .c-bolt-accessibility-table__text--medium {
-  @include bolt-font-size(large);
-  @include bolt-font-weight(normal);
+  font-size: var(--bolt-type-font-size-large);
+  font-weight: var(--bolt-type-font-weight-regular);
+  line-height: 1;
 }
 
 .c-bolt-accessibility-table__column:nth-child(2),
@@ -130,13 +142,12 @@
 }
 
 .c-bolt-accessibility-table__results {
-  @include bolt-font-size(small);
   display: inline-block;
   margin: 0;
   padding: 0;
+  font-size: var(--bolt-type-font-size-small);
   color: bolt-color(gray, xdark);
-  line-height: 1.65;
-  line-height: 1.375;
+  line-height: var(--bolt-type-line-height-small);
   border: solid 1px bolt-color(gray, light);
   border-radius: 4px;
   background-color: bolt-color(gray, light);
@@ -161,10 +172,6 @@
   }
 }
 
-.c-bolt-accessibility-table__small-text {
-  @include bolt-font-size(xsmall);
-}
-
 .c-bolt-accessibility-table__column--white {
   color: bolt-color(white);
 }
@@ -173,57 +180,55 @@
   color: bolt-color(black);
 }
 
-.c-bds-color-square {
-  @include bolt-shadow('level-10');
-  display: inline-flex;
-  width: 0.8em;
-  height: 0.8em;
-  border-width: 1px;
-  border-style: solid;
-  border-color: bolt-theme(border, 0.2);
+.c-bds-color-chip {
+  display: inline-block;
+  width: 3ch;
+  height: 0.85em;
+  line-height: 1;
+  border-radius: 1em;
+  box-shadow: 0 0 2px bolt-color(gray);
 }
 
-.c-bds-color-square--border {
-  border-color: transparent;
+.c-bds-color-chip--border {
   background-color: bolt-theme(border, 0.2);
 }
 
-.c-bds-color-square--text {
+.c-bds-color-chip--text {
   background-color: bolt-theme(text);
 }
 
-.c-bds-color-square--background {
+.c-bds-color-chip--background {
   background-color: bolt-theme(background);
 }
 
-.c-bds-color-square--primary {
+.c-bds-color-chip--primary {
   background-color: bolt-theme(primary);
 }
 
-.c-bds-color-square--secondary {
+.c-bds-color-chip--secondary {
   background-color: bolt-theme(secondary);
 }
 
-.c-bds-color-square--link {
+.c-bds-color-chip--link {
   background-color: bolt-theme(link);
 }
 
-.c-bds-color-square--text-disabled {
+.c-bds-color-chip--text-disabled {
   background-color: bolt-theme(text-disabled);
 }
 
-.c-bds-color-square--disabled {
+.c-bds-color-chip--disabled {
   background-color: bolt-theme(disabled);
 }
 
-.c-bds-color-square--headline {
+.c-bds-color-chip--headline {
   background-color: bolt-theme(headline);
 }
 
-.c-bds-color-square--headline-link {
+.c-bds-color-chip--headline-link {
   background-color: bolt-theme(headline-link);
 }
 
-.c-bds-color-square--neutral {
+.c-bds-color-chip--neutral {
   background-color: bolt-theme(neutral);
 }
