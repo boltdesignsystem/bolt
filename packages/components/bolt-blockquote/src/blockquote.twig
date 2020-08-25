@@ -68,12 +68,12 @@
     <div {{ text_attributes.addClass(text_classes) }}>
       {% if "<p>" in content %}
         <ssr-keep for="bolt-blockquote">
-          {{content}}
+          {{ content }}
         </ssr-keep>
       {% else %}
         <ssr-keep for="bolt-blockquote">
           <p>
-            {{content}}
+            {{ content }}
           </p>
         </ssr-keep>
       {% endif %}
