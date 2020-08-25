@@ -1,9 +1,3 @@
-{% if japanese %}
-  <script type="text/javascript">
-    document.getElementsByTagName("HTML")[0].setAttribute("lang", "ja");
-  </script>
-{% endif %}
-
 {% block global_header %}
   {% include "@bolt/page-header.twig" %}
 {% endblock %}
@@ -23,3 +17,19 @@
 {% block global_footer %}
   {% include "@bolt/page-footer.twig" %}
 {% endblock %}
+
+{% if japanese %}
+  <script type="text/javascript">
+    document.getElementsByTagName("HTML")[0].setAttribute("lang", "ja");
+  </script>
+{% endif %}
+
+{% if info_density == "compact" %}
+  <script type="text/javascript">
+    document.getElementsByTagName("HTML")[0].setAttribute("data-bolt-info-density", "compact");
+  </script>
+{% elseif info_density == "comfortable" %}
+  <script type="text/javascript">
+    document.getElementsByTagName("HTML")[0].setAttribute("data-bolt-info-density", "comfortable");
+  </script>
+{% endif %}
