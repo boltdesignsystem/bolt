@@ -58,7 +58,7 @@
 >
   <blockquote {{ inner_attributes.addClass(inner_classes) }}>
     {% if logo %}
-      <ssr-keep for="bolt-blockquote" class="{{ "c-bolt-blockquote__logo" }}">
+      <ssr-keep for="bolt-blockquote" class="c-bolt-blockquote__logo">
         {% include "@bolt/logo.twig" with logo|merge({
           slot: "logo",
         }) only %}
@@ -80,10 +80,10 @@
     </div>
 
     {% if author %}
-      <footer class="{{ "c-bolt-blockquote__footer" }}">
+      <footer class="c-bolt-blockquote__footer">
         {% if author.image %}
-          <div class="{{ "c-bolt-blockquote__footer-item" }}">
-            <div class="{{ "c-bolt-blockquote__image" }}">
+          <div class="c-bolt-blockquote__footer-item">
+            <div class="c-bolt-blockquote__image">
               <ssr-keep for="bolt-blockquote">
                 {% include "@bolt/image.twig" with author.image|merge({ slot:"author-image"}) only %}
               </ssr-keep>
@@ -92,7 +92,7 @@
         {% endif %}
 
         {% if author.name %}
-          <ssr-keep for="bolt-blockquote" class="{{ "c-bolt-blockquote__footer-item" }}">
+          <ssr-keep for="bolt-blockquote" class="c-bolt-blockquote__footer-item">
             {% include "@bolt-components-headline/text.twig" with {
               text: author.name,
               tag: "cite",
@@ -104,7 +104,7 @@
         {% endif %}
 
         {% if author.title %}
-          <ssr-keep for="bolt-blockquote" class="{{ "c-bolt-blockquote__footer-item" }}">
+          <ssr-keep for="bolt-blockquote" class="c-bolt-blockquote__footer-item">
             {% include "@bolt-components-headline/text.twig" with {
               text: author.title,
               tag: "cite",
