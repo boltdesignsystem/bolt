@@ -94,7 +94,10 @@ bolt-navbar {
   // }
 
   &--small {
-    padding-top: var(--bolt-spacing-y-xsmall);
+    @include bolt-mq(xsmall) {
+      // Below xsmall this causes unwanted space above mobile menu.
+      padding-top: var(--bolt-spacing-y-xsmall);
+    }
 
     > * {
       padding-bottom: var(--bolt-spacing-y-xsmall);
