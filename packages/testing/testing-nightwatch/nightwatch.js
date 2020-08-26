@@ -84,8 +84,8 @@ module.exports = {
     chrome: {
       desiredCapabilities: {
         browserName: 'chrome',
-        platform: 'macOS 10.14',
-        version: '85',
+        platform: 'macOS 10.15',
+        version: '84',
         javascriptEnabled: true,
         acceptSslCerts: true,
         chromeOptions: {
