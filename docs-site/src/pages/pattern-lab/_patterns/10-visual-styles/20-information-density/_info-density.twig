@@ -1,4 +1,7 @@
-{% set info_density = info_density %}
+{% set info_density = info_density|default("regular") %}
+{% if info_density == "regular" %}
+  {% set regular_density_extra_copy = "Data attribute is not needed." %}
+{% endif %}
 
 {% extends "@pl/_default-page-template.twig" %}
 
@@ -9,7 +12,7 @@
 {% block main_content %}
   {% set content %}
     {% include "@bolt-components-headline/text.twig" with {
-      text: 'A page&rsquo;s information density can be changed by setting the <code>data-bolt-info-density</code> attribute on the <code>&lt;html&gt;</code> element. Information density is controlled by the spacing and typography systems. The following layout is set to <code>data-bolt-info-density="' ~ info_density ~ '"</code>.',
+      text: 'A page&rsquo;s information density can be changed by setting the <code>data-bolt-info-density</code> attribute on the <code>&lt;html&gt;</code> element. Information density is controlled by the spacing and typography systems. The following layout is set to "' ~ info_density ~ '". ' ~ regular_density_extra_copy,
       weight: "bold",
       tag: "p",
       icon: {
