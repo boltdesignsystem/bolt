@@ -133,14 +133,13 @@
   line-height: 1;
 }
 
-.c-bolt-accessibility-table__column:nth-child(2),
-.c-bolt-accessibility-table__column:nth-child(3) {
+.c-bolt-accessibility-table__column:not(:first-child) {
   display: flex;
   flex: 1;
   justify-content: flex-end;
   align-items: flex-end;
   align-self: flex-end;
-  margin: 0 var(--bolt-spacing-x-xsmall);
+  margin: 0 0 0 var(--bolt-spacing-x-xsmall);
   text-align: right;
 }
 

@@ -23,10 +23,10 @@
 
           <li role="row" class="c-bolt-accessibility-table__row">
             <div class="c-bolt-accessibility-table__column">
-              Scss function
+              CSS
             </div>
             <div class="c-bolt-accessibility-table__column">
-              bolt-color({{ color_name }}{% if shade != "base" %}, {{ shade }}{% endif %})
+              var(--bolt-color-{{ color_name }}{% if shade != "base" %}-{{ shade }}{% endif %})
             </div>
           </li>
 
