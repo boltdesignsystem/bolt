@@ -1,5 +1,7 @@
 import { unsafeCSS, BoltElement, customElement, html } from '@bolt/element';
 import { withContext } from 'wc-context';
+import { smoothScroll } from '@bolt/components-smooth-scroll/src/smooth-scroll';
+import URLSearchParams from '@ungap/url-search-params'; // URLSearchParams poly for older browsers
 import classNames from 'classnames/bind';
 import accordionStyles from './accordion.scss';
 import schema from '../accordion.schema';
@@ -107,6 +109,21 @@ class BoltAccordion extends withContext(BoltElement) {
 
   connectedCallback() {
     super.connectedCallback && super.connectedCallback();
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const selectedItemParam = urlParams.get('selected-item');
+    this.deepLinkTarget = this.querySelector(
+      `#${selectedItemParam}:not([inactive])`,
+    );
+
+    if (this.single && this.deepLinkTarget) {
+      // When in "single" mode, a deep link should override any items set to auto-open.
+      // Unset these items immediately or we face race conditions as Handorgel initializes.
+      this.querySelectorAll('bolt-accordion-item[open]').forEach(el =>
+        el.removeAttribute('open'),
+      );
+    }
+
     this.addEventListener('bolt:layout-size-changed', this.handleLayoutChanged);
   }
 
@@ -219,6 +236,7 @@ class BoltAccordion extends withContext(BoltElement) {
       this.accordionItemElements.forEach(item => {
         this.handleAccordionItemReady(item);
       });
+      this.handleDeepLink();
       this._wasMutated = false;
     });
   }
@@ -276,6 +294,50 @@ class BoltAccordion extends withContext(BoltElement) {
         ${this.slotify('default')}
       </div>
     `;
+  }
+
+  handleDeepLink() {
+    if (!this.deepLinkTarget) return;
+
+    const deepLinkTargetIndex = this.accordionItemElements.indexOf(
+      this.deepLinkTarget,
+    );
+    let shouldScrollIntoView;
+
+    if (deepLinkTargetIndex !== -1) {
+      this.accordion.folds[deepLinkTargetIndex].open();
+      shouldScrollIntoView = true;
+    }
+
+    if (shouldScrollIntoView) {
+      let shouldResetScroll;
+
+      if (window.history?.scrollRestoration === 'auto') {
+        // If you are refreshing the page and using a browser with `scrollRestoration`,
+        // temporarily disable `scrollRestoration` while we scroll to the element, avoids janky scroll.
+        // https://developers.google.com/web/updates/2015/09/history-api-scroll-restoration
+        window.history.scrollRestoration = 'manual';
+        shouldResetScroll = true;
+      }
+
+      setTimeout(() => {
+        smoothScroll.animateScroll(this.deepLinkTarget, 0, {
+          header: this.scrollOffsetSelector,
+          offset: this.scrollOffset || 0,
+          speed: 750,
+          easing: 'easeInOutCubic',
+          updateURL: false,
+        });
+
+        shouldScrollIntoView = false;
+
+        if (shouldResetScroll) {
+          setTimeout(() => {
+            window.history.scrollRestoration = 'auto';
+          }, 1000); // wait another second to turn 'scrollRestoration' back on, just to be safe
+        }
+      }, 750); // Must let the page load or scroll is not at all "smooth", can reduce to 500ms but not much less
+    }
   }
 
   firstUpdated(changedProperties) {

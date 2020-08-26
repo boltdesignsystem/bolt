@@ -11,6 +11,7 @@
 {% set label_attributes = create_attribute({}) %}
 {% set content_attributes = create_attribute({}) %}
 
+{# @todo: `uuid` will be deprecated, made for internal use only #}
 {% set _uuid = this.data.uuid.value|default(bolt.data.config.env == "test" ? "12345" : random()) %}
 {% set primary_uuid = base_class ~ "-#{_uuid}" %}
 {% set secondary_uuid = base_class ~ "-inner-#{_uuid}" %}
