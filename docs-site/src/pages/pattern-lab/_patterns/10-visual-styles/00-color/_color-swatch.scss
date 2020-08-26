@@ -1,7 +1,11 @@
 .c-bolt-swatch {
   display: flex;
   flex: 1;
-  flex-direction: column;
+  flex-wrap: wrap;
+
+  > * {
+    width: 100%;
+  }
 }
 
 .c-bolt-swatch__color {
@@ -58,12 +62,10 @@
 }
 
 .c-bolt-accessibility-table {
+  margin-bottom: var(--bolt-spacing-y-small);
   padding: var(--bolt-spacing-y-xsmall) var(--bolt-spacing-x-small);
   border-radius: bolt-border-radius(large);
-
-  &:not(:last-child) {
-    margin-bottom: var(--bolt-spacing-y-small);
-  }
+  box-shadow: bolt-shadow('level-10');
 }
 
 .c-bolt-accessibility-table__table {
@@ -77,6 +79,7 @@
   align-items: center;
   position: relative;
   width: 100%;
+  white-space: nowrap;
 
   &:after {
     content: '';
@@ -231,4 +234,75 @@
 
 .c-bds-color-chip--neutral {
   background-color: bolt-theme(neutral);
+}
+
+[data-bds-color-shade] {
+  display: none;
+}
+
+.c-bds-color-shade-toggle__label {
+  display: inline-flex;
+  position: relative;
+  margin-bottom: var(--bolt-spacing-y-medium);
+  padding-left: 5.5ch;
+  font-size: var(--bolt-type-font-size-xsmall);
+  font-weight: var(--bolt-type-font-weight-semibold);
+  color: bolt-theme(text);
+  line-height: 2ch;
+  text-transform: uppercase;
+  letter-spacing: var(--bolt-type-letter-spacing-wide);
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+
+  &:before,
+  &:after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 2px;
+    height: 2ch;
+    border-radius: bolt-border-radius(full);
+    box-shadow: 0 0 0 2px rgba(bolt-color(gray), 0.2);
+    transition: all $bolt-transition;
+  }
+
+  &:before {
+    width: 4ch;
+    background-color: rgba(bolt-color(gray), 0.2);
+  }
+
+  &:after {
+    width: 2ch;
+    background-color: bolt-color(white);
+  }
+}
+
+.c-bds-color-shade-toggle {
+  @include bolt-visuallyhidden;
+}
+
+.c-bds-color-shade-toggle:checked ~ * [data-bds-color-shade] {
+  display: block;
+}
+
+.c-bds-color-shade-toggle:checked ~ .c-bds-color-shade-toggle__label {
+  &:before {
+    box-shadow: 0 0 0 2px bolt-color(success);
+    background-color: bolt-color(success);
+  }
+
+  &:after {
+    transform: translate3d(100%, 0, 0);
+  }
+}
+
+.c-bds-color-shade-toggle:focus ~ .c-bds-color-shade-toggle__label,
+.c-bds-color-shade-toggle__label:hover {
+  text-decoration: underline;
+
+  &:before {
+    box-shadow: 0 0 0.5em bolt-theme(link);
+  }
 }
