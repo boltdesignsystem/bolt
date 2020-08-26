@@ -24,12 +24,8 @@
   </script>
 {% endif %}
 
-{% if info_density == "compact" %}
+{% if info_density %}
   <script type="text/javascript">
-    document.getElementsByTagName("HTML")[0].setAttribute("data-bolt-info-density", "compact");
-  </script>
-{% elseif info_density == "comfortable" %}
-  <script type="text/javascript">
-    document.getElementsByTagName("HTML")[0].setAttribute("data-bolt-info-density", "comfortable");
+    document.getElementsByTagName("HTML")[0].setAttribute("data-bolt-info-density", "{{ info_density }}");
   </script>
 {% endif %}
