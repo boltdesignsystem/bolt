@@ -111,19 +111,24 @@ class BoltNavPriority extends withLitHtml {
       item.classList.remove('is-hidden');
     });
 
+    // Note: below we use `getBoundingClientRect()` because it returns a decimal.
+    // Whereas `offsetWidth` returns an integer, leading to rounding errors in
+    // Safari and older Edge < 80.
+
     // hide items that won't fit in the Primary
-    let stopWidth = this.dropdownButton.offsetWidth;
+    let stopWidth = this.dropdownButton.getBoundingClientRect().width;
     let hiddenItems = [];
-    const primaryWidth = this.primaryNav.offsetWidth;
+    const primaryWidth = this.primaryNav.getBoundingClientRect().width;
 
     let hideTheRest = false; // keep track when the items in the nav stop fitting
     this.primaryItems.forEach((item, i) => {
+      // For Edge < 80 we still must round down. Otherwise, "More" menu shows
+      // when it ought to be hidden.
+      const itemWidth = item.getBoundingClientRect().width - 1;
+
       // make sure the items fit + we haven't already started to encounter items that don't
-      if (
-        primaryWidth >= stopWidth + item.offsetWidth &&
-        hideTheRest !== true
-      ) {
-        stopWidth += item.offsetWidth;
+      if (primaryWidth >= stopWidth + itemWidth && hideTheRest !== true) {
+        stopWidth += itemWidth;
       } else {
         hideTheRest = true;
         item.classList.add('is-hidden');
