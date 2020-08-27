@@ -122,8 +122,9 @@ class BoltNavPriority extends withLitHtml {
 
     let hideTheRest = false; // keep track when the items in the nav stop fitting
     this.primaryItems.forEach((item, i) => {
-      // For Edge < 80 we still must round down. Otherwise, "More" menu shows
-      // when it ought to be hidden.
+      // Subtract 1 from the width of each item to fix a bug in Edge version < 80 where
+      // it miscalculates the size of the items and/or container and always adds at least
+      // 1 item to the "More" dropdown menu.
       const itemWidth = item.getBoundingClientRect().width - 1;
 
       // make sure the items fit + we haven't already started to encounter items that don't
