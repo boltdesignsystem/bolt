@@ -111,7 +111,7 @@ class BoltAccordion extends withContext(BoltElement) {
     super.connectedCallback && super.connectedCallback();
 
     const urlParams = new URLSearchParams(window.location.search);
-    const selectedItemParam = urlParams.get('selected-item');
+    const selectedItemParam = urlParams.get('selected-accordion-item');
     this.deepLinkTarget = this.querySelector(
       `#${selectedItemParam}:not([inactive])`,
     );
