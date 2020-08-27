@@ -12,7 +12,11 @@
     <bolt-tab-panel>
       <bolt-text slot="label">Brand Colors</bolt-text>
 
-      {% grid "o-bolt-grid--flex o-bolt-grid--top o-bolt-grid--small o-bolt-grid--matrix" %}
+      <input class="c-bds-color-shade-toggle" type="checkbox" id="bds-brand-color-shade-toggle">
+      <label class="c-bds-color-shade-toggle__label" for="bds-brand-color-shade-toggle">
+        Show shades
+      </label>
+      {% grid "o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--small" %}
         {% for color_name, palette in bolt.data.colors.brand %}
           {% if color_name != "indigo" %}
             {% include "_color-swatch.twig" with {
@@ -28,7 +32,11 @@
     <bolt-tab-panel>
       <bolt-text slot="label">Status Colors</bolt-text>
 
-      {% grid "o-bolt-grid--flex o-bolt-grid--top o-bolt-grid--small o-bolt-grid--matrix" %}
+      <input class="c-bds-color-shade-toggle" type="checkbox" id="bds-status-color-shade-toggle">
+      <label class="c-bds-color-shade-toggle__label" for="bds-status-color-shade-toggle">
+        Show shades
+      </label>
+      {% grid "o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--small" %}
         {% for color_name, palette in bolt.data.colors.status %}
           {% include "_color-swatch.twig" with {
             color_swatch: {
