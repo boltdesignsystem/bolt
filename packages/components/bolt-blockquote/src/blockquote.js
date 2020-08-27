@@ -32,6 +32,8 @@ class BoltBlockquote extends BoltElement {
   }
 
   firstUpdated() {
+    super.firstUpdated && super.firstUpdated();
+
     // @todo: I've added this.useShadow here to exclude IE.
     // In IE-only this mutation callback causes multiple re-renders
     // and causes component to disappear.
