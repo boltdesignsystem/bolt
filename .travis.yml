@@ -143,7 +143,6 @@ jobs:
         - travis_retry yarn gds -a create -e ${TRAVIS_BRANCH}--branch-preview -r ${TRAVIS_BRANCH}
         - travis_retry yarn gds -a in_progress -e ${TRAVIS_BRANCH}--branch-preview -r ${TRAVIS_BRANCH}
         - travis_retry yarn run test:e2e:full
-        - travis_retry yarn run test:vrt-urls
       after_success:
         - ./scripts/deploy-branch-alias.js
         - export NOW_BRANCH_URL=$(./scripts/get-branch-alias.js)
