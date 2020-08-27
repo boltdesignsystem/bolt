@@ -45,6 +45,16 @@ module.exports = {
       default: 'center',
       enum: ['top', 'center'],
     },
+    scroll_offset_selector: {
+      type: 'string',
+      description:
+        'Selects a fixed element on the page, offsets smooth scrolling by the height of that element. Must be a valid CSS selector.',
+    },
+    scroll_offset: {
+      type: 'integer',
+      description:
+        'Additional offset for smooth scrolling, integer converted to pixel value.',
+    },
   },
   definitions: {
     spacing: {
