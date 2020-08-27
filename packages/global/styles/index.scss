@@ -1,15 +1,15 @@
 @import '@bolt/core-v3.x';
 
+@import '00-vars/_vars-spacing';
+@import '00-vars/_vars-typography';
+@import '00-vars/_vars-info-density'; /* Info density config must come after all other global vars */
+@import '00-vars/_vars-japanese'; /* Japanese config must come last to override everything else */
+
 @import '03-generic/_generic-font-stacks';
 @import '03-generic/_generic-global';
-
-// [Mai] Normalize.css is already included in generic.
 @import '03-generic/_generic-normalize';
 @import '03-generic/_generic-reset';
 @import '03-generic/_generic-shared';
-@import '03-generic/_generic-vars-spacing';
-@import '03-generic/_generic-vars-typography';
-@import '03-generic/_generic-vars-japanese';
 
 @import '04-elements/_elements-code';
 @import '04-elements/_elements-headings';
