@@ -79,33 +79,6 @@
         } only %}
       </main>
     </div>
-
-    {# <footer role="contentinfo" class="c-bds-layout__footer c-bolt-site__footer">
-      {% set band_content %}
-        {% set gitBranch = 'master' %}
-
-        <nav>
-          <ul class="o-bolt-bare-list" style="flex-flow: row wrap; display: flex; justify-content: space-between; align-items: center;">
-            <li class="u-bolt-margin-right@small">
-              {% include "@bolt-components-headline/text.twig" with {
-                size: "xsmall",
-                weight: "bold",
-                tag: "p",
-                text: "Copyright &copy;" ~ "now"|date("Y") ~ " Pegasystems, Inc."
-              } only %}
-            </li>
-          </ul>
-        </nav>
-      {% endset %}
-
-      {% include "@bolt-components-band/band.twig" with {
-        theme: "xlight",
-        size: "xsmall",
-        full_bleed: false,
-        page: page,
-        content: band_content
-      } only %}
-    </footer> #}
   </div>
 
 {% endblock %}

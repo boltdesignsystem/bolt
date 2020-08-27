@@ -1,0 +1,96 @@
+{% embed "@utils/utilities.twig" with {
+  utility_name: "Bolt Margin and Padding Utilities",
+} only %}
+
+  {% set spacing_size_map = bolt.data.spacing.base %}
+  {% set spacing_multiplier_map = bolt.data.spacing.multipliers %}
+  {% set spacing_property_map = bolt.data.spacing.props %}
+  {% set spacing_direction_map = bolt.data.spacing.directions %}
+
+  {% set properties %}
+    {% for property in spacing_property_map %}
+      <code>{{ property }}</code>{% if not loop.last %}, {% endif %}
+    {% endfor %}
+  {% endset %}
+
+  {% set directions %}
+    {% for direction in spacing_direction_map %}
+      <code>{{ direction }}</code>{% if not loop.last %}, {% endif %}
+    {% endfor %}
+  {% endset %}
+
+  {% set sizes %}
+    {% for multiplier_name, multiplier_value in spacing_multiplier_map %}
+      <code>{{ multiplier_name }}</code>{% if not loop.last %}, {% endif %}
+    {% endfor %}
+  {% endset %}
+
+  {% block utility_description %}
+    <p>Spacing utility classes are composed of 3 variables, <code>property</code>, <code>direction</code>, and <code>size</code>. A class should be written as such: <strong>.u-bolt-[property]-[direction]-[size]</strong>.</p>
+    {% include "@bolt-components-table/table.twig" with {
+      first_col_fixed_width: true,
+      headers: {
+        side: {
+          cells: [
+            "Property",
+            "Direction",
+            "Size",
+          ]
+        }
+      },
+      rows: [
+        {
+          cells: [
+            properties,
+          ]
+        },
+        {
+          cells: [
+            directions,
+          ]
+        },
+        {
+          cells: [
+            sizes,
+          ]
+        },
+      ],
+    } only %}
+    <p>Note: <code>direction</code> can be omitted to define spacing for all directions.</p>
+  {% endblock %}
+
+  {% block utility_demo %}
+    <h3>All-direction examples</h3>
+    <div class="c-bds-docs__spacing-demo">
+      <h4>Class: <code>.u-bolt-margin-large</code></h4>
+      <div class="c-bds-docs__spacing-item u-bolt-inline-block u-bolt-margin-large">
+        <strong>demo</strong>
+      </div>
+    </div>
+    <div class="c-bds-docs__spacing-demo">
+      <h4>Class: <code>.u-bolt-padding-large</code></h4>
+      <div class="c-bds-docs__spacing-item u-bolt-inline-block u-bolt-padding-large">
+        <strong>demo</strong>
+      </div>
+    </div>
+    <h3>One-direction examples</h3>
+    <div class="c-bds-docs__spacing-demo">
+      <h4>Class: <code>.u-bolt-margin-left-xxlarge</code></h4>
+      <div class="c-bds-docs__spacing-item u-bolt-inline-block u-bolt-margin-left-xxlarge">
+        <strong>demo</strong>
+      </div>
+    </div>
+    <div class="c-bds-docs__spacing-demo">
+      <h4>Classes:<br>
+        <code>.u-bolt-padding-top-small</code><br>
+        <code>.u-bolt-padding-right-xlarge</code><br>
+        <code>.u-bolt-padding-bottom-medium</code><br>
+        <code>.u-bolt-padding-left-large</code>
+      </h4>
+      <div class="c-bds-docs__spacing-item u-bolt-inline-block u-bolt-padding-top-small u-bolt-padding-right-xlarge u-bolt-padding-bottom-medium u-bolt-padding-left-large">
+        <strong>demo</strong>
+      </div>
+    </div>
+  {% endblock %}
+
+{% endembed %}

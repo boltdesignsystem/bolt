@@ -1,52 +1,5 @@
-////
-/// @group Settings: Layout
-/// @author Mike Mai
-////
-
 /* ------------------------------------ *\
-  Spacing Scale
-\* ------------------------------------ */
-
-// Unit on which all spacing is based
-/// Bolt gutter spacing value
-$bolt-spacing-gutter: 1.55rem !default;
-/// Bolt default leading spacing value
-$bolt-spacing-leading: 1.35 !default;
-/// Bolt squished spacing value
-$bolt-spacing-squished: 0.5 !default;
-/// Bolt stretched spacing value
-$bolt-spacing-stretched: 1.5 !default;
-
-/// Bolt's definition of spacing scale. Used within 'export-data()' to JSON.
-/// @type Map
-$bolt-spacing-values: (
-  '': 1,
-  'xxsmall': 0.125,
-  'xsmall': 0.25,
-  'small': 0.5,
-  'medium': 1,
-  'large': 2,
-  'xlarge': 4,
-  'xxlarge': 8,
-  'xxxlarge': 16
-) !default;
-
-@include bolt-export-data('spacing/scale.bolt.json', $bolt-spacing-values);
-
-/// Bolt's definition of available spacing properties.
-/// @type Map
-$bolt-spacing-properties: ('padding', 'margin') !default;
-
-/// Bolt's definition of spacing directions.
-/// @type Map
-$bolt-spacing-directions: ('', 'top', 'right', 'bottom', 'left') !default;
-
-/// Bolt's definition of spacing types.
-/// @type Map
-$bolt-spacing-types: ('', 'squished', 'stretched') !default;
-
-/* ------------------------------------ *\
-   New Maps for CSS vars
+   Spacing Maps
 \* ------------------------------------ */
 
 /**
@@ -66,13 +19,14 @@ $bolt-spacing-system: (
  * Base multiplier map
  */
 $bolt-spacing-multiplier-system: (
-  'xxlarge': 8,
-  'xlarge': 4,
-  'large': 2,
-  'medium': 1,
-  'small': 0.5,
+  'xxsmall': 0.125,
   'xsmall': 0.25,
-  'xxsmall': 0.125
+  'small': 0.5,
+  'medium': 1,
+  'large': 2,
+  'xlarge': 4,
+  'xxlarge': 8,
+  'xxxlarge': 16
 ) !default;
 
 /**
@@ -81,35 +35,92 @@ $bolt-spacing-multiplier-system: (
  * Token values are kept as formulas so they can be updated by changing base values and multipliers alone.
  */
 $bolt-spacing-x-system: (
-  'xxlarge':
-    calc(var(--bolt-spacing-x) * var(--bolt-spacing-multiplier-xxlarge) * 1rem),
-  'xlarge':
-    calc(var(--bolt-spacing-x) * var(--bolt-spacing-multiplier-xlarge) * 1rem),
-  'large':
-    calc(var(--bolt-spacing-x) * var(--bolt-spacing-multiplier-large) * 1rem),
-  'medium':
-    calc(var(--bolt-spacing-x) * var(--bolt-spacing-multiplier-medium) * 1rem),
-  'small':
-    calc(var(--bolt-spacing-x) * var(--bolt-spacing-multiplier-small) * 1rem),
+  'xxsmall':
+    calc(var(--bolt-spacing-x) * var(--bolt-spacing-multiplier-xxsmall) * 1rem),
   'xsmall':
     calc(var(--bolt-spacing-x) * var(--bolt-spacing-multiplier-xsmall) * 1rem),
-  'xxsmall':
-    calc(var(--bolt-spacing-x) * var(--bolt-spacing-multiplier-xxsmall) * 1rem)
+  'small':
+    calc(var(--bolt-spacing-x) * var(--bolt-spacing-multiplier-small) * 1rem),
+  'medium':
+    calc(var(--bolt-spacing-x) * var(--bolt-spacing-multiplier-medium) * 1rem),
+  'large':
+    calc(var(--bolt-spacing-x) * var(--bolt-spacing-multiplier-large) * 1rem),
+  'xlarge':
+    calc(var(--bolt-spacing-x) * var(--bolt-spacing-multiplier-xlarge) * 1rem),
+  'xxlarge':
+    calc(var(--bolt-spacing-x) * var(--bolt-spacing-multiplier-xxlarge) * 1rem),
+  'xxxlarge':
+    calc(var(--bolt-spacing-x) * var(--bolt-spacing-multiplier-xxxlarge) * 1rem)
 ) !default;
 
 $bolt-spacing-y-system: (
-  'xxlarge':
-    calc(var(--bolt-spacing-y) * var(--bolt-spacing-multiplier-xxlarge) * 1rem),
-  'xlarge':
-    calc(var(--bolt-spacing-y) * var(--bolt-spacing-multiplier-xlarge) * 1rem),
-  'large':
-    calc(var(--bolt-spacing-y) * var(--bolt-spacing-multiplier-large) * 1rem),
-  'medium':
-    calc(var(--bolt-spacing-y) * var(--bolt-spacing-multiplier-medium) * 1rem),
-  'small':
-    calc(var(--bolt-spacing-y) * var(--bolt-spacing-multiplier-small) * 1rem),
+  'xxsmall':
+    calc(var(--bolt-spacing-y) * var(--bolt-spacing-multiplier-xxsmall) * 1rem),
   'xsmall':
     calc(var(--bolt-spacing-y) * var(--bolt-spacing-multiplier-xsmall) * 1rem),
-  'xxsmall':
-    calc(var(--bolt-spacing-y) * var(--bolt-spacing-multiplier-xxsmall) * 1rem)
+  'small':
+    calc(var(--bolt-spacing-y) * var(--bolt-spacing-multiplier-small) * 1rem),
+  'medium':
+    calc(var(--bolt-spacing-y) * var(--bolt-spacing-multiplier-medium) * 1rem),
+  'large':
+    calc(var(--bolt-spacing-y) * var(--bolt-spacing-multiplier-large) * 1rem),
+  'xlarge':
+    calc(var(--bolt-spacing-y) * var(--bolt-spacing-multiplier-xlarge) * 1rem),
+  'xxlarge':
+    calc(var(--bolt-spacing-y) * var(--bolt-spacing-multiplier-xxlarge) * 1rem),
+  'xxxlarge':
+    calc(var(--bolt-spacing-y) * var(--bolt-spacing-multiplier-xxxlarge) * 1rem)
 ) !default;
+
+/**
+ * Extra maps
+ *
+ * These are used for generating utility classes.
+ */
+$bolt-spacing-direction-system: ('top', 'right', 'bottom', 'left') !default;
+$bolt-spacing-prop-system: ('margin', 'padding') !default;
+
+/**
+ * Export spacing data
+ *
+ * json files are available for use. Located in www/build/data
+ */
+@include export-data('spacing/base.bolt.json', $bolt-spacing-system);
+@include export-data(
+  'spacing/multipliers.bolt.json',
+  $bolt-spacing-multiplier-system
+);
+@include export-data(
+  'spacing/directions.bolt.json',
+  $bolt-spacing-direction-system
+);
+@include export-data('spacing/props.bolt.json', $bolt-spacing-prop-system);
+
+/* ------------------------------------ *\
+   Old Spacing Maps (deprecated)
+\* ------------------------------------ */
+
+$bolt-spacing-gutter: 1.55rem !default;
+$bolt-spacing-leading: 1.35 !default;
+$bolt-spacing-squished: 0.5 !default;
+$bolt-spacing-stretched: 1.5 !default;
+
+$bolt-spacing-values: (
+  '': 1,
+  'xxsmall': 0.125,
+  'xsmall': 0.25,
+  'small': 0.5,
+  'medium': 1,
+  'large': 2,
+  'xlarge': 4,
+  'xxlarge': 8,
+  'xxxlarge': 16
+) !default;
+
+@include bolt-export-data('spacing/scale.bolt.json', $bolt-spacing-values);
+
+$bolt-spacing-properties: ('padding', 'margin') !default;
+
+$bolt-spacing-directions: ('', 'top', 'right', 'bottom', 'left') !default;
+
+$bolt-spacing-types: ('', 'squished', 'stretched') !default;

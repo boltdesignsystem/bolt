@@ -45,10 +45,10 @@
 }
 
 .c-bolt-horizontal-divider__text {
-  @include bolt-padding-left(xsmall);
-  @include bolt-padding-right(xsmall);
   @include bolt-font-weight(bold);
   @include bolt-font-size(small);
+  padding-right: var(--bolt-spacing-x-xsmall);
+  padding-left: var(--bolt-spacing-x-xsmall);
 }
 
 // WIP Rating Component
@@ -70,11 +70,11 @@
   @include bolt-font-weight(600);
 
   & + * {
-    @include bolt-margin-left(xsmall);
+    margin-left: var(--bolt-spacing-x-xsmall);
   }
 
   * + & {
-    @include bolt-margin-left(xsmall);
+    margin-left: var(--bolt-spacing-x-xsmall);
   }
 }
 
@@ -91,22 +91,22 @@
   justify-content: center;
   align-items: center;
   position: relative;
-  margin-right: bolt-spacing(xxsmall) * -1;
-  margin-bottom: bolt-v-spacing(xxsmall) * -1;
+  margin-right: calc(var(--bolt-spacing-x-xxsmall) * -1);
+  margin-bottom: calc(var(--bolt-spacing-y-xxsmall) * -1);
   letter-spacing: -0.5rem;
 }
 
 .c-bolt-rating__label {
   @include bolt-font-size(small);
   @include bolt-font-weight(bold);
-  @include bolt-margin-bottom(xxsmall);
-  @include bolt-margin-right(xxsmall);
   display: inline-flex;
   justify-content: center;
   align-items: center;
   position: relative;
   width: 31px;
   height: 31px;
+  margin-right: var(--bolt-spacing-x-xxsmall);
+  margin-bottom: var(--bolt-spacing-y-xxsmall);
   color: bolt-color(navy);
   text-align: center;
   letter-spacing: normal;

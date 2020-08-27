@@ -20,20 +20,12 @@ bolt-navlink {
 }
 
 .c-bolt-navlink {
-  @include bolt-padding(small, squished);
-  @include bolt-padding-left(xsmall);
-  @include bolt-padding-right(xsmall);
-
   @include bolt-font-size(small);
   @include bolt-font-weight(semibold);
-
-  @include bolt-mq($bolt-navbar-xsmall-bp) {
-    @include bolt-padding(small, squished);
-  }
   opacity: 0.9;
 
   position: relative;
-  position: relative;
+  padding: calc(var(--bolt-spacing-y-small) / 2) var(--bolt-spacing-x-xsmall);
   color: bolt-theme(headline-link);
   text-decoration: none;
   border-radius: 3px;
@@ -43,8 +35,11 @@ bolt-navlink {
   border-width: thin;
   border-style: dotted;
   border-color: transparent;
-  transition: opacity $bolt-navlink-text-transition;
-  transition: all 0.1s ease;
+  transition: all $bolt-navlink-text-transition;
+
+  @include bolt-mq($bolt-navbar-xsmall-bp) {
+    padding: calc(var(--bolt-spacing-y-small) / 2) var(--bolt-spacing-x-small);
+  }
 
   &:active,
   &.is-active {
@@ -107,11 +102,11 @@ bolt-navlink {
 
 // Text and icon spacing
 .c-bolt-navlink__text + .c-bolt-navlink__icon {
-  @include bolt-margin-left(xxsmall);
+  margin-left: var(--bolt-spacing-x-xxsmall);
 }
 
 .c-bolt-navlink__icon + .c-bolt-navlink__text {
-  @include bolt-margin-left(xxsmall);
+  margin-left: var(--bolt-spacing-x-xxsmall);
 }
 
 // Icon styles
