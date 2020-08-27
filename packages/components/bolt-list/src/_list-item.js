@@ -1,59 +1,74 @@
-import { html, customElement } from '@bolt/element';
-import { withContext, props } from '@bolt/core-v3.x/utils';
+import { customElement, BoltElement, html, unsafeCSS } from '@bolt/element';
+import { props } from '@bolt/core-v3.x/utils';
+import { withContext } from 'wc-context';
 import classNames from 'classnames/bind';
-import { withLitHtml } from '@bolt/core-v3.x/renderers/renderer-lit-html';
 import styles from './_list-item.scss';
-import { ListContext } from './list';
+import schema from '../list.schema';
 
 let cx = classNames.bind(styles);
 
 @customElement('bolt-list-item')
-class BoltListItem extends withContext(withLitHtml) {
-  static props = {
-    last: props.boolean,
-  };
+class BoltListItem extends withContext(BoltElement) {
+  static get properties() {
+    return {
+      align: { type: String },
+      display: { type: String },
+      inset: { type: String },
+      separator: { type: String },
+      spacing: { type: String },
+      tag: { type: String },
+      isLast: props.boolean,
+    };
+  }
 
-  // subscribe to specific props that are defined and available on the parent container
-  // (context + subscriber idea originally from https://codepen.io/trusktr/project/editor/XbEOMk)
-  static get consumes() {
-    return [
-      [ListContext, 'spacing'],
-      [ListContext, 'tag'],
-      [ListContext, 'inset'],
-      [ListContext, 'separator'],
-      [ListContext, 'display'],
-      [ListContext, 'align'],
-    ];
+  static get observedContexts() {
+    return ['align', 'display', 'inset', 'separator', 'spacing', 'tag'];
+  }
+
+  contextChangedCallback(name, oldValue, value) {
+    this[name] = value;
+  }
+
+  static get styles() {
+    return [unsafeCSS(styles)];
   }
 
   connectedCallback() {
-    super.connectedCallback();
-    this.context = this.contexts.get(ListContext);
+    super.connectedCallback && super.connectedCallback();
+  }
+
+  get parentComponent() {
+    return this.closest('bolt-list');
+  }
+
+  get allListItems() {
+    return this.parentComponent.querySelectorAll('bolt-list-item');
   }
 
   render() {
-    const { tag, spacing, inset, separator, display, align } = this.context;
-    const { last } = this.props;
+    const isLast =
+      this.allListItems &&
+      this.allListItems.item(this.allListItems.length - 1) === this;
 
     const classes = cx('c-bolt-list-item', {
-      [`c-bolt-list-item--display-${display}`]: display,
-      [`c-bolt-list-item--spacing-${spacing}`]: spacing !== 'none',
-      [`c-bolt-list-item--separator-${separator}`]: separator !== 'none',
-      [`c-bolt-list-item--align-${align}`]: align,
-      [`c-bolt-list-item--last-item`]: last,
-      [`c-bolt-list-item--inset`]: inset,
+      [`c-bolt-list-item--align-${this.align}`]: this.align,
+      [`c-bolt-list-item--display-${this.display}`]: this.display,
+      [`c-bolt-list-item--inset`]: this.inset,
+      [`c-bolt-list-item--last-item`]: isLast,
+      [`c-bolt-list-item--separator-${this.separator}`]:
+        this.separator !== 'none',
+      [`c-bolt-list-item--spacing-${this.spacing}`]: this.spacing !== 'none',
     });
 
     return html`
-      ${this.addStyles([styles])}
-      ${tag === 'ul' || tag === 'ol'
+      ${this.tag === 'ul' || this.tag === 'ol'
         ? html`
             <div class="${classes}" role="listitem">
-              ${this.slot('default')}
+              ${this.slotify('default')}
             </div>
           `
         : html`
-            <span class="${classes}">${this.slot('default')} </span>
+            <span class="${classes}">${this.slotify('default')} </span>
           `}
     `;
   }

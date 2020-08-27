@@ -1,39 +1,14 @@
-import { html, customElement, BoltElement, ifDefined } from '@bolt/element';
-import {
-  defineContext,
-  withContext,
-  props,
-  define,
-  hasNativeShadowDomSupport,
-} from '@bolt/core-v3.x/utils';
+import { html, customElement, BoltElement, unsafeCSS } from '@bolt/element';
 import classNames from 'classnames/bind';
-
-import themes from '@bolt/global/styles/06-themes/_themes.all.scss';
+import { withContext } from 'wc-context';
 import styles from './list.scss';
 import schema from '../list.schema';
 
 let cx = classNames.bind(styles);
 
-// define which specific props to provide to children that subscribe
-export const ListContext = defineContext({
-  tag: 'ul',
-  display: 'inline',
-  spacing: 'none',
-  inset: false,
-  nowrap: false,
-  align: 'start',
-  separator: 'none',
-});
-
 @customElement('bolt-list')
 class BoltList extends withContext(BoltElement) {
   static schema = schema;
-
-  // provide context info to children that subscribe
-  // (context + subscriber idea originally from https://codepen.io/trusktr/project/editor/XbEOMk)
-  static get provides() {
-    return [ListContext];
-  }
 
   static get properties() {
     return {
@@ -41,35 +16,49 @@ class BoltList extends withContext(BoltElement) {
     };
   }
 
+  static get providedContexts() {
+    return {
+      align: { align: schema.properties.align.default },
+      display: { value: schema.properties.display.default },
+      inset: { inset: schema.properties.inset.default },
+      separator: { separator: schema.properties.separator.default },
+      spacing: { value: schema.properties.spacing.default },
+      tag: { tag: schema.properties.tag.default },
+    };
+  }
+
+  static get styles() {
+    return [unsafeCSS(styles)];
+  }
+
   render() {
-    this.contexts.get(ListContext).tag =
-      this.tag || schema.properties.tag.default;
-    this.contexts.get(ListContext).display =
-      this.display || schema.properties.display.default;
-    this.contexts.get(ListContext).spacing =
-      this.spacing || schema.properties.spacing.default;
-    this.contexts.get(ListContext).inset =
-      this.inset || schema.properties.inset.default;
-    this.contexts.get(ListContext).nowrap =
-      this.nowrap || schema.properties.nowrap.default;
-    this.contexts.get(ListContext).align =
-      this.align || schema.properties.align.default;
-    this.contexts.get(ListContext).valign =
-      this.valign || schema.properties.valign.default;
-    this.contexts.get(ListContext).separator =
-      this.separator || schema.properties.separator.default;
+    const align = this.align || schema.properties.align.default;
+    const display = this.display || schema.properties.display.default;
+    const inset = this.inset || schema.properties.inset.default;
+    const nowrap = this.nowrap || schema.properties.nowrap.default;
+    const separator = this.separator || schema.properties.separator.default;
+    const spacing = this.spacing || schema.properties.spacing.default;
+    const tag = this.tag || schema.properties.tag.default;
+    const valign = this.valign || schema.properties.valign.default;
+
+    this.updateProvidedContext('align', align);
+    this.updateProvidedContext('display', display);
+    this.updateProvidedContext('inset', inset);
+    this.updateProvidedContext('separator', separator);
+    this.updateProvidedContext('spacing', spacing);
+    this.updateProvidedContext('tag', tag);
 
     const classes = cx('c-bolt-list', {
-      [`c-bolt-list--display-${this.display}`]: this.display,
-      [`c-bolt-list--spacing-${this.spacing}`]: this.spacing !== 'none',
-      [`c-bolt-list--separator-${this.separator}`]: this.separator !== 'none',
-      [`c-bolt-list--align-${this.align}`]: this.align,
-      [`c-bolt-list--valign-${this.valign}`]: this.valign,
-      [`c-bolt-list--inset`]: this.inset,
-      [`c-bolt-list--nowrap`]: this.nowrap,
+      [`c-bolt-list--align-${align}`]: align,
+      [`c-bolt-list--display-${display}`]: display,
+      [`c-bolt-list--inset`]: inset,
+      [`c-bolt-list--nowrap`]: nowrap,
+      [`c-bolt-list--separator-${separator}`]: separator !== 'none',
+      [`c-bolt-list--spacing-${spacing}`]: spacing !== 'none',
+      [`c-bolt-list--valign-${valign}`]: valign,
     });
 
-    if (this.slotMap?.get('default')) {
+    if (this.slotMap.get('default')) {
       const updatedDefaultSlot = this.slotMap
         ?.get('default')
         .filter(item => item.tagName);
