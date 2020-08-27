@@ -1,7 +1,6 @@
 import { stopServer, html } from '../../../testing/testing-helpers';
 const { getDataFile } = require('@bolt/build-tools/utils/yaml');
 const { join } = require('path');
-
 const timeout = 992000;
 jest.setTimeout(timeout);
 
