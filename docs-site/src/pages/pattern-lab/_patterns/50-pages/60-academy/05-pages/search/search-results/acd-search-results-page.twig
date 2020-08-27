@@ -1,0 +1,36 @@
+{% set hideGlobalSearch = true %}
+
+{% import "@bolt-academy/_macros.twig" as macros %}
+
+{% extends "@bolt-academy/_academy-default-page-template.twig" %}
+
+{% block page_content %}
+  {% include "@bolt-academy/_search-bar.twig" %}
+  {% include "@bolt-academy/_search-results-hero.twig" %}
+  {% include "@bolt-academy/_nav--search.twig" %}
+
+  {% set content %}
+    {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
+      {% cell "u-bolt-width-1/1 u-bolt-width-3/12@medium" %}
+        {% include "@bolt-academy/_form--search-filter.twig" %}
+      {% endcell %}
+      {% cell "u-bolt-width-1/1 u-bolt-width-9/12@medium" %}
+        {% include "@bolt-academy/_search-results--results-list.twig" %}
+        {% include "@bolt-academy/_pagination.twig" %}
+      {% endcell %}
+    {% endgrid %}
+  {% endset %}
+
+  {% include "@bolt-components-band/band.twig" with {
+    theme: "light",
+    size: "small",
+    content: content,
+  } only %}
+{% endblock %}
+
+{% block global_footer %}
+  <div class="o-bolt-wrapper u-bolt-flex-grow-none u-bolt-margin-top-auto">
+    {% include "@bolt-academy/_band--instructor-led-training.twig" %}
+  </div>
+  {{ parent() }}
+{% endblock %}

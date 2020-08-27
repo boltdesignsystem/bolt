@@ -1,15 +1,15 @@
 /* ------------------------------------ *\
   ELEMENTS - HEADINGS
 \* ------------------------------------ */
-/* stylelint-disable selector-list-comma-newline-after */
+
 #{$bolt-all-heading-elements} {
-  @include bolt-margin-bottom(xsmall);
   @include bolt-font-family(heading);
   @include bolt-font-size(large);
   @include bolt-font-weight(bold);
 
+  margin-bottom: var(--bolt-spacing-y-xsmall);
+
   &:last-child {
-    @include bolt-margin-bottom(0);
+    margin-bottom: 0;
   }
 }
-/* stylelint-enable selector-list-comma-newline-after */

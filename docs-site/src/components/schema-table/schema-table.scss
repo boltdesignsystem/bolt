@@ -1,6 +1,6 @@
 .c-bds-schema-table {
   &:not(:last-child) {
-    @include bolt-margin-bottom(medium);
+    margin-bottom: var(--bolt-spacing-y-medium);
   }
 
   ul {
@@ -16,7 +16,7 @@
       cursor: pointer;
 
       summary {
-        font-weight: bolt-font-weight(700);
+        font-weight: var(--bolt-type-font-weight-semibold);
         user-select: none;
 
         &:focus {
@@ -89,9 +89,9 @@ bolt-schema-table.is-wc {
   table {
     @include bolt-font-size(xsmall);
     @include bolt-font-family(body);
-    @include bolt-margin-bottom(0);
     transform: translate3d(0, 0, 0);
     width: 100%;
+    margin-bottom: 0;
     border: 1px solid bolt-color(gray, light);
     table-layout: auto;
   }
@@ -113,9 +113,9 @@ bolt-schema-table.is-wc {
   }
 
   th {
-    @include bolt-padding(xsmall);
     @include bolt-font-size(xsmall);
     @include bolt-font-weight(semibold);
+    padding: var(--bolt-spacing-y-xsmall) var(--bolt-spacing-x-xsmall);
     color: bolt-color(gray, dark);
     text-align: left;
     vertical-align: bottom;
@@ -123,7 +123,7 @@ bolt-schema-table.is-wc {
   }
 
   td {
-    @include bolt-padding(xsmall);
+    padding: var(--bolt-spacing-y-xsmall) var(--bolt-spacing-x-xsmall);
     vertical-align: top;
   }
 

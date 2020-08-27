@@ -12,7 +12,7 @@ module.exports = {
 
     browser
       .url(
-        `${testingUrl}/pattern-lab/patterns/02-components-tabs--40-tabs-no-shadow/02-components-tabs--40-tabs-no-shadow.html`,
+        `${testingUrl}/pattern-lab/patterns/40-components-tabs--40-tabs-no-shadow/40-components-tabs--40-tabs-no-shadow.html`,
       )
       .waitForElementVisible('bolt-tabs', 1000)
       .assert.elementPresent(secondTabSelector)
@@ -40,7 +40,7 @@ module.exports = {
   //
   //   browser
   //     .url(
-  //       `${testingUrl}/pattern-lab/patterns/02-components-tabs--40-tabs-no-shadow/02-components-tabs--40-tabs-no-shadow.html`,
+  //       `${testingUrl}/pattern-lab/patterns/40-components-tabs--40-tabs-no-shadow/40-components-tabs--40-tabs-no-shadow.html`,
   //     )
   //     .waitForElementVisible('bolt-tabs', 1000)
   //     .resizeWindow(600, 400)
@@ -68,7 +68,7 @@ module.exports = {
 
     browser
       .url(
-        `${testingUrl}/pattern-lab/patterns/02-components-tabs-30-tabs-content/02-components-tabs-30-tabs-content.html`,
+        `${testingUrl}/pattern-lab/patterns/40-components-tabs-30-tabs-content/40-components-tabs-30-tabs-content.html`,
       )
       .waitForElementVisible('bolt-tabs', 1000)
       .assert.elementPresent(video)

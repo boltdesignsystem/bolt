@@ -1,17 +1,18 @@
 .c-bds-component-status {
   @include bolt-font-size(xsmall);
-  @include bolt-padding(bolt-spacing(small) * 1.5);
-  @include bolt-margin-bottom(medium);
-  @include bolt-shadow("level-10");
+  @include bolt-shadow('level-10');
+  margin-bottom: var(--bolt-spacing-y-medium);
+  padding: calc(var(--bolt-spacing-y-small) * 1.5)
+    calc(var(--bolt-spacing-x-small) * 1.5);
   border-radius: 12px;
-  background: #FFFFFF;
+  background: #ffffff;
 }
 
 .c-bds-component-status__title {
   @include bolt-font-size(large);
-  @include bolt-margin-bottom(xsmall);
   display: block;
   position: relative;
+  margin-bottom: var(--bolt-spacing-y-xsmall);
 
   > *,
   > .c-bolt-headline {
@@ -24,33 +25,33 @@
 
   .c-bds-component-status--inprogress & {
     @include bolt-font-weight(semibold);
-    color: bolt-color(yellow, dark);
+    color: bolt-color(warning, dark);
   }
 }
 
 .c-bds-component-status__definition {
   @include bolt-clearfix;
-  @include bolt-margin-bottom(0);
-  margin-left: bolt-spacing(small) * -1;
+  margin-bottom: 0;
+  margin-left: calc(var(--bolt-spacing-x-small) * -1);
 
   dt {
     @include bolt-font-weight(semibold);
-    @include bolt-padding-bottom(xsmall);
     display: block;
     width: 40%;
-    
+    padding-bottom: var(--bolt-spacing-y-xsmall);
+
     @include bolt-mq($from: medium) {
       width: 30%;
     }
   }
 
   dd {
-    @include bolt-margin-left(0);
     @include bolt-font-weight(bold);
-    @include bolt-padding-top(xsmall);
-    @include bolt-padding-bottom(xsmall);
     display: block;
     width: 60%;
+    margin-left: 0;
+    padding-top: var(--bolt-spacing-y-xsmall);
+    padding-bottom: var(--bolt-spacing-y-xsmall);
     border-left: none;
 
     @include bolt-mq($from: medium) {
@@ -58,12 +59,12 @@
     }
   }
 
-  dt, 
+  dt,
   dd {
-    @include bolt-padding-top(xsmall);
-    @include bolt-padding-left(small);
     display: block;
     float: left;
-    color: #4A4A4A;
+    padding-top: var(--bolt-spacing-y-xsmall);
+    padding-left: var(--bolt-spacing-x-small);
+    color: #4a4a4a;
   }
 }

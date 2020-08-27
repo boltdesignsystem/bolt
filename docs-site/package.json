@@ -1,6 +1,6 @@
 {
   "name": "@bolt/website",
-  "version": "2.25.1",
+  "version": "2.26.3",
   "private": true,
   "description": "Bolt Design System Website",
   "repository": {
@@ -26,19 +26,24 @@
     "start:lang": "bolt start --i18n",
     "start:prod": "bolt start --prod",
     "test:links": "blc http://localhost:3000 --recursive --ordered --filter-level 2",
+    "test:vrt-urls": "npx jest ./vrt-urls.js",
     "watch": "bolt watch"
+  },
+  "jest": {
+    "setupFilesAfterEnv": [
+      "jest-expect-message"
+    ]
   },
   "dependencies": {
     "@bolt/analytics-autotrack": "^2.19.0",
-    "@bolt/blueprints": "^2.25.1",
-    "@bolt/components-page-footer": "^2.25.1",
-    "@bolt/components-page-header": "^2.25.1",
-    "@bolt/components-search-filter": "^2.25.1",
+    "@bolt/components-page-footer": "^2.26.0",
+    "@bolt/components-page-header": "^2.26.3",
+    "@bolt/components-search-filter": "^2.26.3",
     "@bolt/lazy-queue": "^2.23.0",
-    "@bolt/micro-journeys": "^2.25.1",
-    "@bolt/shadow-toggle": "^2.25.1",
-    "@bolt/starter-kit": "^2.25.1",
-    "@bolt/theme-switcher": "^2.25.1"
+    "@bolt/micro-journeys": "^2.26.0",
+    "@bolt/shadow-toggle": "^2.26.2",
+    "@bolt/starter-kit": "^2.26.3",
+    "@bolt/theme-switcher": "^2.26.2"
   },
   "devDependencies": {
     "@ckeditor/ckeditor5-build-classic": "^12.1.0",
@@ -46,6 +51,7 @@
     "choices.js": "^7.0.0",
     "deepmerge": "^4.2.2",
     "iframe-resizer": "^4.1.1",
+    "jest-expect-message": "^1.0.2",
     "list.js": "^1.5.0",
     "resolve": "^1.15.0",
     "yargs": "^15.1.0"

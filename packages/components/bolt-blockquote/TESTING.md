@@ -2,11 +2,11 @@
 
 ## Simple Use Case
 
-As a user, I view a simple Blockquote. [View example &raquo;](http://boltdesignsystem.com/pattern-lab/patterns/02-components-blockquote-05-blockquote/02-components-blockquote-05-blockquote.html)
+As a user, I view a simple Blockquote. [View example &raquo;](http://boltdesignsystem.com/pattern-lab/patterns/40-components-blockquote-05-blockquote/40-components-blockquote-05-blockquote.html)
 
 ### Quotation
 
-Blockquotes must have quotation marks. [View example &raquo;](http://boltdesignsystem.com/pattern-lab/patterns/02-components-blockquote-05-blockquote/02-components-blockquote-05-blockquote.html)
+Blockquotes must have quotation marks. [View example &raquo;](http://boltdesignsystem.com/pattern-lab/patterns/40-components-blockquote-05-blockquote/40-components-blockquote-05-blockquote.html)
 
 I verify that:
 
@@ -18,7 +18,7 @@ I verify that:
 
 ### Author information
 
-Blockquotes may include the author's photo, name, and title after the quotation. [View example &raquo;](http://boltdesignsystem.com/pattern-lab/patterns/02-components-blockquote-10-blockquote-alignItems-variation/02-components-blockquote-10-blockquote-alignItems-variation.html)
+Blockquotes may include the author's photo, name, and title after the quotation. [View example &raquo;](http://boltdesignsystem.com/pattern-lab/patterns/40-components-blockquote-10-blockquote-alignItems-variation/40-components-blockquote-10-blockquote-alignItems-variation.html)
 
 If there is information about the author, I verify that:
 
@@ -28,7 +28,7 @@ If there is information about the author, I verify that:
 
 ### Decoration
 
-Blockquotes may have decorative borders. [View example &raquo;](http://boltdesignsystem.com/pattern-lab/patterns/02-components-blockquote-20-blockquote-border-variation/02-components-blockquote-20-blockquote-border-variation.html)
+Blockquotes may have decorative borders. [View example &raquo;](http://boltdesignsystem.com/pattern-lab/patterns/40-components-blockquote-20-blockquote-border-variation/40-components-blockquote-20-blockquote-border-variation.html)
 
 If there is a decorative border, I verify that:
 
@@ -40,7 +40,7 @@ If there is a decorative border, I verify that:
 
 ### Indention
 
-Blockquotes may have indent. [View example &raquo;](http://boltdesignsystem.com/pattern-lab/patterns/02-components-blockquote-15-blockquote-indent-variation/02-components-blockquote-15-blockquote-indent-variation.html)
+Blockquotes may have indent. [View example &raquo;](http://boltdesignsystem.com/pattern-lab/patterns/40-components-blockquote-15-blockquote-indent-variation/40-components-blockquote-15-blockquote-indent-variation.html)
 
 If there is an indent applied, I verify that:
 

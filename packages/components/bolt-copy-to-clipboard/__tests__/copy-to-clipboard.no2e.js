@@ -10,7 +10,7 @@ module.exports = {
 
     browser
       .url(
-        `${testingUrl}/pattern-lab/patterns/02-components-copy-to-clipboard-05-copy-to-clipboard/02-components-copy-to-clipboard-05-copy-to-clipboard.html`,
+        `${testingUrl}/pattern-lab/patterns/40-components-copy-to-clipboard-05-copy-to-clipboard/40-components-copy-to-clipboard-05-copy-to-clipboard.html`,
       )
       .waitForElementVisible('bolt-copy-to-clipboard', 1000)
       .click(

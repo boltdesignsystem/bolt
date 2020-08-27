@@ -18,8 +18,8 @@ $bolt-tabs-selected-border-transition-timing: $bolt-transition-timing;
 // @todo: copied from tabs, consider refactoring?
 @mixin bolt-tabs-scrollbar() {
   &::-webkit-scrollbar {
-    width: bolt-v-spacing(xsmall);
-    height: bolt-v-spacing(xsmall);
+    width: var(--bolt-spacing-y-xsmall);
+    height: var(--bolt-spacing-y-xsmall);
   }
 
   &::-webkit-scrollbar-thumb {

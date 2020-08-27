@@ -4,7 +4,6 @@
 $bolt-blockquote-border-width: 4px;
 $bolt-blockquote-border-style: $bolt-border-style;
 $bolt-blockquote-border-color: bolt-color(teal);
-$bolt-blockquote-footer-line-height: $bolt-line-height--tight;
 $bolt-blockquote-image-border-width: $bolt-border-width;
 $bolt-blockquote-image-border-style: $bolt-border-style;
 $bolt-blockquote-image-border-color: rgba(bolt-color(gray), 0.2);
@@ -31,7 +30,7 @@ $bolt-blockquote-image-size: 4rem;
 
 // Blockquote container
 .c-bolt-blockquote {
-  @include bolt-margin(0);
+  margin: 0;
 
   &:before,
   &:after {
@@ -44,27 +43,42 @@ $bolt-blockquote-image-size: 4rem;
   }
 
   &:before {
-    @include bolt-margin-bottom(medium);
+    margin-bottom: var(--bolt-spacing-y-medium);
   }
 
   &:after {
-    @include bolt-margin-top(medium);
+    margin-top: var(--bolt-spacing-y-medium);
   }
 }
 
 // Logo
 .c-bolt-blockquote__logo {
-  @include bolt-margin-bottom(small);
   display: block;
+  margin-bottom: var(--bolt-spacing-y-small);
 }
 
 // Quotation
 .c-bolt-blockquote__quote {
-  @include bolt-margin-bottom(medium);
   display: block;
   position: relative;
   max-width: 44rem;
+  margin-bottom: var(--bolt-spacing-y-medium);
   color: bolt-theme(headline);
+
+  $sizes: 'large', 'xlarge', 'xxlarge';
+  @each $size in $sizes {
+    &--#{$size} {
+      font-size: var(--bolt-type-font-size-#{$size});
+      line-height: var(--bolt-type-line-height-#{$size});
+    }
+  }
+
+  $weights: 'semibold', 'bold';
+  @each $weight in $weights {
+    &--#{$weight} {
+      font-weight: var(--bolt-type-font-weight-#{$weight});
+    }
+  }
 
   p:not([slot]):first-child:before,
   p:not([slot]):last-child:after {
@@ -105,13 +119,25 @@ $bolt-blockquote-image-size: 4rem;
 }
 
 // Attribution
+.c-bolt-blockquote__author-name,
+.c-bolt-blockquote__author-title {
+  font-style: normal; // required by WC-only version
+  font-size: var(--bolt-type-font-size-xsmall);
+  color: bolt-theme(headline);
+  line-height: var(--bolt-type-line-height-xsmall);
+}
+
+.c-bolt-blockquote__author-name {
+  font-weight: var(--bolt-type-font-weight-bold);
+}
+
 .c-bolt-blockquote__image {
-  @include bolt-margin-bottom(small);
   display: inline-block;
   box-sizing: border-box;
   width: $bolt-blockquote-image-size;
   height: $bolt-blockquote-image-size;
   overflow: hidden;
+  margin-bottom: var(--bolt-spacing-y-small);
   vertical-align: middle;
   border-radius: 50%;
   border-width: $bolt-blockquote-image-border-width;
@@ -125,14 +151,17 @@ $bolt-blockquote-image-size: 4rem;
 
 .c-bolt-blockquote__footer {
   color: bolt-theme(text);
-  line-height: $bolt-blockquote-footer-line-height;
+  line-height: calc(
+    var(--bolt-type-line-height-medium) *
+      var(--bolt-type-line-height-multiplier-tight)
+  );
 }
 
 .c-bolt-blockquote__footer-item {
   display: block;
 
   &:last-child {
-    @include bolt-margin-bottom(0);
+    margin-bottom: 0;
   }
 }
 
@@ -142,8 +171,8 @@ $bolt-blockquote-image-size: 4rem;
 
   .c-bolt-blockquote__quote,
   .c-bolt-blockquote__logo > * {
-    @include bolt-margin-right(auto);
-    @include bolt-margin-left(0);
+    margin-right: auto;
+    margin-left: 0;
   }
 }
 
@@ -152,13 +181,13 @@ $bolt-blockquote-image-size: 4rem;
 
   .c-bolt-blockquote__quote,
   .c-bolt-blockquote__logo > * {
-    @include bolt-margin-right(auto);
-    @include bolt-margin-left(auto);
+    margin-right: auto;
+    margin-left: auto;
   }
 
   .c-bolt-blockquote__logo > *::slotted(*) {
-    @include bolt-margin-right(auto);
-    @include bolt-margin-left(auto);
+    margin-right: auto;
+    margin-left: auto;
   }
 }
 
@@ -167,19 +196,19 @@ $bolt-blockquote-image-size: 4rem;
 
   .c-bolt-blockquote__quote,
   .c-bolt-blockquote__logo > * {
-    @include bolt-margin-right(0);
-    @include bolt-margin-left(auto);
+    margin-right: 0;
+    margin-left: auto;
   }
 
   .c-bolt-blockquote__logo > *::slotted(*) {
-    @include bolt-margin-right(0);
-    @include bolt-margin-left(auto);
+    margin-right: 0;
+    margin-left: auto;
   }
 }
 
 // Border Options
 .c-bolt-blockquote--bordered-vertical {
-  @include bolt-padding(0 medium);
+  padding: 0 var(--bolt-spacing-x-medium);
   border-style: $bolt-blockquote-border-style;
   border-color: $bolt-blockquote-border-color;
   border-color: var(
@@ -238,14 +267,14 @@ $bolt-blockquote-image-size: 4rem;
 
 // Indent options
 .c-bolt-blockquote--indented {
-  @include bolt-margin(0 medium);
+  margin: 0 var(--bolt-spacing-x-medium);
 
   &.c-bolt-blockquote--align-items-start {
-    @include bolt-margin-right(0);
+    margin-right: 0;
   }
 
   &.c-bolt-blockquote--align-items-end {
-    @include bolt-margin-left(0);
+    margin-left: 0;
   }
 }
 
@@ -270,13 +299,13 @@ $bolt-blockquote-image-size: 4rem;
 .c-bolt-blockquote--align-items-center {
   .c-bolt-blockquote__quote {
     p:first-child:before {
-      @include bolt-padding(0 2px);
+      padding: 0 2px;
     }
 
     ::slotted(p:first-child),
     ::slotted(p.is-first-child) {
       &:before {
-        @include bolt-padding(0 2px);
+        padding: 0 2px;
       }
     }
   }
@@ -285,13 +314,13 @@ $bolt-blockquote-image-size: 4rem;
 .c-bolt-blockquote--align-items-end {
   .c-bolt-blockquote__quote {
     p:first-child:before {
-      @include bolt-padding(0 2px);
+      padding: 0 2px;
     }
 
     ::slotted(p:first-child),
     ::slotted(p.is-first-child) {
       &:before {
-        @include bolt-padding(0 2px);
+        padding: 0 2px;
       }
     }
 

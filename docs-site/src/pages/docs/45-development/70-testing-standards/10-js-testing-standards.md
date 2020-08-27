@@ -359,7 +359,7 @@ Nightwatch tests are not reusable and must be written for a specific use case. D
 
   browser
     .url(
-      `${testingUrl}/pattern-lab/patterns/02-components-image-30-image-zoom-variation/02-components-image-30-image-zoom-variation.html`,
+      `${testingUrl}/pattern-lab/patterns/40-components-image-30-image-zoom-variation/40-components-image-30-image-zoom-variation.html`,
     )
     .waitForElementVisible('.c-bolt-image-zoom__overlay-icon', 1000)
     .saveScreenshot(
@@ -381,7 +381,7 @@ Nightwatch tests are not reusable and must be written for a specific use case. D
 
   browser
     .url(
-      `${testingUrl}/pattern-lab/patterns/02-components-image-05-image/02-components-image-05-image.html`,
+      `${testingUrl}/pattern-lab/patterns/40-components-image-05-image/40-components-image-05-image.html`,
     )
     .waitForElementVisible('body', 1000)
     .getElementSize('body', function(result) {
@@ -423,7 +423,7 @@ Nightwatch tests are not reusable and must be written for a specific use case. D
 
   browser
     .url(
-      `${testingUrl}/pattern-lab/patterns/02-components-blockquote-10-blockquote-alignItems-variation/02-components-blockquote-10-blockquote-alignItems-variation.html`,
+      `${testingUrl}/pattern-lab/patterns/40-components-blockquote-10-blockquote-alignItems-variation/40-components-blockquote-10-blockquote-alignItems-variation.html`,
     )
     .waitForElementVisible('bolt-blockquote', 1000)
     .assert.elementPresent('bolt-logo[slot="logo"]')
@@ -464,7 +464,7 @@ Nightwatch tests are not reusable and must be written for a specific use case. D
 
   browser
     .url(
-      `${testingUrl}/pattern-lab/patterns/02-components-video-35-video-with-inline-script-and-external-controls/02-components-video-35-video-with-inline-script-and-external-controls.html`,
+      `${testingUrl}/pattern-lab/patterns/40-components-video-35-video-with-inline-script-and-external-controls/40-components-video-35-video-with-inline-script-and-external-controls.html`,
     )
     .waitForElementVisible('.video-js', 1000)
     .click('.vjs-big-play-button')

@@ -19,7 +19,7 @@
   }
 
   &:last-child {
-    @include bolt-margin-bottom(0);
+    margin-bottom: 0;
   }
 }
 
@@ -35,31 +35,31 @@
 
   &--position-before,
   &--position-left {
-    @include bolt-margin-right(xsmall);
+    margin-right: var(--bolt-spacing-x-xsmall);
   }
 
   &--position-after,
   &--position-right {
-    @include bolt-margin-left(xsmall);
+    margin-left: var(--bolt-spacing-x-xsmall);
   }
 }
 
 /** Headline Font Weight Options **/
 @mixin bolt-headline-font-weight {
-  &--semibold {
-    @include bolt-font-weight(semibold);
+  &--light {
+    font-weight: var(--bolt-type-font-weight-light);
   }
 
   &--regular {
-    @include bolt-font-weight(regular);
+    font-weight: var(--bolt-type-font-weight-regular);
+  }
+
+  &--semibold {
+    font-weight: var(--bolt-type-font-weight-semibold);
   }
 
   &--bold {
-    @include bolt-font-weight(bold);
-  }
-
-  &--light {
-    @include bolt-font-weight(light);
+    font-weight: var(--bolt-type-font-weight-bold);
   }
 }
 
@@ -96,6 +96,7 @@
 @mixin bolt-headline-text-transform {
   &--uppercase {
     text-transform: uppercase;
+    letter-spacing: var(--bolt-type-letter-spacing-wide);
   }
 
   &--lowercase {
