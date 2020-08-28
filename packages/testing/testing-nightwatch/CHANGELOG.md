@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.27.0](https://github.com/boltdesignsystem/bolt/compare/v2.27.0-alpha-calculator-2...v2.27.0) (2020-08-28)
+
+**Note:** Version bump only for package @bolt/nightwatch-config
+
+
+
+
+
 # [2.24.0](https://github.com/boltdesignsystem/bolt/compare/v2.23.0...v2.24.0) (2020-06-05)
 
 **Note:** Version bump only for package @bolt/nightwatch-config
