@@ -120,7 +120,7 @@ async function init() {
   } else if (isFullRelease) {
     const version =
       (await shell
-        .exec(`auto version --from v${currentVersion}`)
+        .exec(`auto version --from v${currentVersion}`, { silent: true })
         .stdout.trim()) || 'minor';
 
     try {
