@@ -118,20 +118,16 @@ async function init() {
       console.error(error);
     }
   } else if (isFullRelease) {
-    try {
-      const version = await shell
-        .exec(`npx auto version --from v${currentVersion}`, { silent: true })
-        .stdout.trim();
-
-      const testing = await shell
+    const version =
+      (await shell
         .exec(`auto version --from v${currentVersion}`)
-        .stdout.trim();
+        .stdout.trim()) || 'minor';
 
-      const nextVersion = await semver.inc(currentVersion, version || 'minor');
+    try {
+      const nextVersion = await semver.inc(currentVersion, version);
 
       console.log('current version', currentVersion);
       console.log('upcoming version type', version);
-      console.log('upcoming version type debug', testing);
       console.log('next version', nextVersion);
 
       if (!currentVersion || !nextVersion || nextVersion === currentVersion) {
