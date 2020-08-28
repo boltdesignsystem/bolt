@@ -10,17 +10,17 @@ Functional testing should be performed manually by the QA team across the standa
 
 ## Scenario: size variations
 
-1. Given I am viewing the [size variations page](https://boltdesignsystem.com/pattern-lab/patterns/02-components-share-10-share-size-variations/02-components-share-10-share-size-variations.html).
+1. Given I am viewing the [size variations page](https://boltdesignsystem.com/pattern-lab/patterns/40-components-share-10-share-size-variations/40-components-share-10-share-size-variations.html).
 2. The share tool should be presented in 2 sizes: small and medium.
 
 ## Scenario: opacity variations
 
-1. Given I am viewing the [opacity variations page](https://boltdesignsystem.com/pattern-lab/patterns/02-components-share-15-share-opacity-variations/02-components-share-15-share-opacity-variations.html).
+1. Given I am viewing the [opacity variations page](https://boltdesignsystem.com/pattern-lab/patterns/40-components-share-15-share-opacity-variations/40-components-share-15-share-opacity-variations.html).
 2. The share tool should be presented in 5 opacity values: 20, 40, 60, 80, and 100.
 
 ## Scenario: align variations
 
-1. Given I am viewing the [align variations page](https://boltdesignsystem.com/pattern-lab/patterns/02-components-share-20-share-align-variations/02-components-share-20-share-align-variations.html).
+1. Given I am viewing the [align variations page](https://boltdesignsystem.com/pattern-lab/patterns/40-components-share-20-share-align-variations/40-components-share-20-share-align-variations.html).
 2. Start align should show share items aligned to the left (start of the share).
 3. Center align should show share items aligned to the center.
 4. End align should show share items aligned to the right (end of the share).

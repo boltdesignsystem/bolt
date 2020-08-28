@@ -4,7 +4,7 @@
 
 The server-side pre-rendered Button component should look almost identical to the client-side rendered version. To verify:
 
-1. Disable javascript and view the [Button Demo page](https://boltdesignsystem.com/pattern-lab/patterns/02-components-button-05-button/02-components-button-05-button.html).
+1. Disable javascript and view the [Button Demo page](https://boltdesignsystem.com/pattern-lab/patterns/40-components-button-05-button/40-components-button-05-button.html).
 2. Then, enable javascript and watch as the Button re-renders on the client-side.
 3. The spacing, color, and shadow of the button should be identical before and after the web component re-renders.
 
@@ -20,7 +20,7 @@ Functional testing should be performed manually by the QA team across the standa
 
 ## Scenario: basic
 
-1. Given I am viewing the [basic button page](https://boltdesignsystem.com/pattern-lab/patterns/02-components-button-05-button/02-components-button-05-button.html).
+1. Given I am viewing the [basic button page](https://boltdesignsystem.com/pattern-lab/patterns/40-components-button-05-button/40-components-button-05-button.html).
 2. And I see a button that reads "This is a button".
 3. When I hover over the button.
 4. Then I should see the button raises up.
@@ -30,25 +30,25 @@ Functional testing should be performed manually by the QA team across the standa
 
 ## Scenario: size variations
 
-[Size demo](https://boltdesignsystem.com/pattern-lab/patterns/02-components-button-10-button-size-variations/02-components-button-10-button-size-variations.html)
+[Size demo](https://boltdesignsystem.com/pattern-lab/patterns/40-components-button-10-button-size-variations/40-components-button-10-button-size-variations.html)
 
 `// This is a purely visual test, use VRT`
 
 ## Scenario: style variations
 
-[Style demo](https://boltdesignsystem.com/pattern-lab/patterns/02-components-button-15-button-style-variations/02-components-button-15-button-style-variations.html)
+[Style demo](https://boltdesignsystem.com/pattern-lab/patterns/40-components-button-15-button-style-variations/40-components-button-15-button-style-variations.html)
 
 `// This is a purely visual test, use VRT`
 
 ## Scenario: theme variations
 
-[Theme demo](https://boltdesignsystem.com/pattern-lab/patterns/02-components-button-20-button-theme-variations/02-components-button-20-button-theme-variations.html)
+[Theme demo](https://boltdesignsystem.com/pattern-lab/patterns/40-components-button-20-button-theme-variations/40-components-button-20-button-theme-variations.html)
 
 `// This is a purely visual test, use VRT`
 
 ## Scenario: width variations
 
-1. Given I am viewing the [width demo page](https://boltdesignsystem.com/pattern-lab/patterns/02-components-button-25-button-width-variations/02-components-button-25-button-width-variations.html).
+1. Given I am viewing the [width demo page](https://boltdesignsystem.com/pattern-lab/patterns/40-components-button-25-button-width-variations/40-components-button-25-button-width-variations.html).
 2. And I see three buttons on the page.
 3. Then the "auto width button" should be as wide as the button's text.
 4. And the "full width button" should be as wide as the browser's width.
@@ -59,25 +59,25 @@ Functional testing should be performed manually by the QA team across the standa
 
 ## Scenario: border radius variations
 
-[Border radius demo](https://boltdesignsystem.com/pattern-lab/patterns/02-components-button-30-button-border-radius-variations/02-components-button-30-button-border-radius-variations.html)
+[Border radius demo](https://boltdesignsystem.com/pattern-lab/patterns/40-components-button-30-button-border-radius-variations/40-components-button-30-button-border-radius-variations.html)
 
 `// This is a purely visual test, use VRT`
 
 ## Scenario: item alignment variations
 
-[Item alignment demo](https://boltdesignsystem.com/pattern-lab/patterns/02-components-button-35-button-align-variations/02-components-button-35-button-align-variations.html)
+[Item alignment demo](https://boltdesignsystem.com/pattern-lab/patterns/40-components-button-35-button-align-variations/40-components-button-35-button-align-variations.html)
 
 `// This is a purely visual test, use VRT`
 
 ## Scenario: text transform variations
 
-[Text transform demo](https://boltdesignsystem.com/pattern-lab/patterns/02-components-button-40-button-transform-variations/02-components-button-40-button-transform-variations.html)
+[Text transform demo](https://boltdesignsystem.com/pattern-lab/patterns/40-components-button-40-button-transform-variations/40-components-button-40-button-transform-variations.html)
 
 `// This is a purely visual test, use VRT`
 
 ## Scenario: tag variations
 
-1. Given I am viewing the [tag demo page](https://boltdesignsystem.com/pattern-lab/patterns/02-components-button-45-button-tag-variations/02-components-button-45-button-tag-variations.html).
+1. Given I am viewing the [tag demo page](https://boltdesignsystem.com/pattern-lab/patterns/40-components-button-45-button-tag-variations/40-components-button-45-button-tag-variations.html).
 2. And I have the browser's developer tool open.
 3. When I inspect the button with its tag defined as `a`.
 4. Then the element with the `.c-bolt-button` should be an `a` tag.
@@ -94,19 +94,19 @@ Functional testing should be performed manually by the QA team across the standa
 
 ## Scenario: text and icon variations
 
-[Text and icon demo](https://boltdesignsystem.com/pattern-lab/patterns/02-components-button-50-button-with-text-and-icon/02-components-button-50-button-with-text-and-icon.html)
+[Text and icon demo](https://boltdesignsystem.com/pattern-lab/patterns/40-components-button-50-button-with-text-and-icon/40-components-button-50-button-with-text-and-icon.html)
 
 `// This is a purely visual test, use VRT`
 
 ## Scenario: icon only variations
 
-[Icon only demo](https://boltdesignsystem.com/pattern-lab/patterns/02-components-button-55-button-icon-only/02-components-button-55-button-icon-only.html)
+[Icon only demo](https://boltdesignsystem.com/pattern-lab/patterns/40-components-button-55-button-icon-only/40-components-button-55-button-icon-only.html)
 
 `// This is a purely visual test, use VRT`
 
 ## Scenario: 3rd party JS
 
-1. Given I am viewing the [3rd party JS page](https://boltdesignsystem.com/pattern-lab/patterns/02-components-button-60-button-with-3rd-party-js/02-components-button-60-button-with-3rd-party-js.html).
+1. Given I am viewing the [3rd party JS page](https://boltdesignsystem.com/pattern-lab/patterns/40-components-button-60-button-with-3rd-party-js/40-components-button-60-button-with-3rd-party-js.html).
 2. And I see a button that reads "toggle theme with javascript".
 3. When I click on this button.
 4. Then I should see the page change from xlight theme to xdark theme.
@@ -115,6 +115,6 @@ Functional testing should be performed manually by the QA team across the standa
 
 ## Scenario: web component
 
-[Web component demo](https://boltdesignsystem.com/pattern-lab/patterns/02-components-button-999-button-with-web-component/02-components-button-999-button-with-web-component.html)
+[Web component demo](https://boltdesignsystem.com/pattern-lab/patterns/40-components-button-999-button-with-web-component/40-components-button-999-button-with-web-component.html)
 
 `// This is a purely visual test, use VRT`

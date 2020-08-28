@@ -5,12 +5,8 @@
 \* ------------------------------------ */
 
 $bolt-navbar-title-transition: $bolt-transition;
-$bolt-navbar-xsmall-bp: 420px; // Slightly increase the default 400px xsmall breakpoint to be better optimized for larger plus-sized mobile devices -- value shared by the bolt-navbar, bolt-nav-priority, and bolt-navlink components
 
 bolt-navbar {
-  @include bolt-margin-top(0); // workaround to -.5px in bolt-full-bleed
-  @include bolt-margin-bottom(0); // workaround to -.5px in bolt-full-bleed
-
   // @todo: remove once Navbar refactored to have theming classes added to the `.c-bolt-navbar` inner.
   &[width*='full'] {
     @include bolt-full-bleed;
@@ -18,6 +14,8 @@ bolt-navbar {
 
   display: block;
   overflow: visible;
+  margin-top: 0; // workaround to -.5px in bolt-full-bleed
+  margin-bottom: 0; // workaround to -.5px in bolt-full-bleed
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2);
 }
 
@@ -37,15 +35,9 @@ bolt-navbar {
     margin-right: var(--bolt-spacing-x-small);
   }
 
-  @include bolt-mq($bolt-navbar-xsmall-bp) {
+  @include bolt-mq(xsmall) {
     padding-right: $bolt-wrapper-padding;
     padding-left: $bolt-wrapper-padding;
-  }
-
-  @include bolt-if-browser-supports-display-contents {
-    @media screen and (max-width: $bolt-navbar-xsmall-bp) {
-      padding-top: 0;
-    }
   }
 
   @include bolt-mq(medium) {
@@ -61,7 +53,7 @@ bolt-navbar {
   }
 
   @include bolt-if-browser-supports-display-contents {
-    @media screen and (max-width: $bolt-navbar-xsmall-bp) {
+    @include bolt-mq($until: xsmall) {
       display: grid;
       flex-direction: row;
       justify-content: center;
@@ -71,6 +63,7 @@ bolt-navbar {
           --bolt-spacing-y-medium
         );
       grid-template-rows: 1fr auto;
+      padding-top: 0;
       padding-right: 0;
       padding-left: 0;
     }
@@ -101,7 +94,10 @@ bolt-navbar {
   // }
 
   &--small {
-    padding-top: var(--bolt-spacing-y-xsmall);
+    @include bolt-mq(xsmall) {
+      // Below xsmall this causes unwanted space above mobile menu.
+      padding-top: var(--bolt-spacing-y-xsmall);
+    }
 
     > * {
       padding-bottom: var(--bolt-spacing-y-xsmall);
@@ -179,16 +175,47 @@ bolt-navbar {
 }
 
 .c-bolt-navbar__title-text {
-  white-space: normal; // wrap to multiple lines if needed
   flex-flow: wrap;
-  @include bolt-font-size(medium);
-  @include bolt-font-weight(semibold);
+  font-family: var(--bolt-type-font-family-headline);
+  font-size: var(--bolt-type-font-size-medium);
+  font-weight: var(--bolt-type-font-weight-semibold);
+  line-height: var(--bolt-type-line-height-medium);
+  white-space: normal; // wrap to multiple lines if needed
 
   // Adjust the Navbar Title size when being stacked vertically
   .c-bolt-navbar--center & {
-    @include bolt-font-size(small);
-    @include bolt-font-weight(bold);
     flex-wrap: nowrap; // fixes IE 11 flex-bug causing text to resist staying on one line and prematurely wraps to two-lines -- even if plenty of space is available
+    font-family: var(--bolt-type-font-family-headline);
+    font-size: var(--bolt-type-font-size-small);
+    font-weight: var(--bolt-type-font-weight-bold);
+    line-height: var(--bolt-type-line-height-small);
+  }
+
+  @each $breakpoint in $bolt-breakpoints {
+    $breakpoint-name: nth($breakpoint, 1);
+
+    @if (
+      $breakpoint-name !=
+        'xxsmall' and
+        $breakpoint-name !=
+        'medium' and
+        $breakpoint-name !=
+        'large' and
+        $breakpoint-name !=
+        'xlarge' and
+        $breakpoint-name !=
+        'xxlarge' and
+        $breakpoint-name !=
+        'xxxlarge' and
+        $breakpoint-name !=
+        'xxxxlarge'
+    ) {
+      &--hide-from-#{$breakpoint-name}-bp {
+        @include bolt-mq(#{$breakpoint-name}) {
+          @include bolt-visuallyhidden;
+        }
+      }
+    }
   }
 }
 

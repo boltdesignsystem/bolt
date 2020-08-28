@@ -26,11 +26,16 @@
     "start:lang": "bolt start --i18n",
     "start:prod": "bolt start --prod",
     "test:links": "blc http://localhost:3000 --recursive --ordered --filter-level 2",
+    "test:vrt-urls": "npx jest ./vrt-urls.js",
     "watch": "bolt watch"
+  },
+  "jest": {
+    "setupFilesAfterEnv": [
+      "jest-expect-message"
+    ]
   },
   "dependencies": {
     "@bolt/analytics-autotrack": "^2.19.0",
-    "@bolt/blueprints": "^2.26.3",
     "@bolt/components-page-footer": "^2.26.0",
     "@bolt/components-page-header": "^2.26.3",
     "@bolt/components-search-filter": "^2.26.3",
@@ -46,6 +51,7 @@
     "choices.js": "^7.0.0",
     "deepmerge": "^4.2.2",
     "iframe-resizer": "^4.1.1",
+    "jest-expect-message": "^1.0.2",
     "list.js": "^1.5.0",
     "resolve": "^1.15.0",
     "yargs": "^15.1.0"

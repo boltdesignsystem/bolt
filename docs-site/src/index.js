@@ -3,7 +3,7 @@ import { lazyQueue } from '@bolt/lazy-queue';
 // Component-specific examples and demos that need to get compiled:
 lazyQueue(['bolt-card'], async () => {
   await import(
-    /*  webpackChunkName: 'bolt-docs-site--deprecated-card-tests' */ './pages/pattern-lab/_patterns/02-components/card-deprecated/__tests__'
+    /*  webpackChunkName: 'bolt-docs-site--deprecated-card-tests' */ './pages/pattern-lab/_patterns/40-components/card-deprecated/__tests__'
   );
 });
 
@@ -13,7 +13,7 @@ lazyQueue(['bolt-typeahead'], async () => {
   );
 });
 
-import './pages/pattern-lab/_patterns/04-pages/99999-bolt-dev-sandbox/editor-integration'; // lazy-queue used internally so not using it here
+import './pages/pattern-lab/_patterns/50-pages/99999-bolt-dev-sandbox/editor-integration'; // lazy-queue used internally so not using it here
 
 lazyQueue(['bolt-select'], async () => {
   await import(
@@ -36,7 +36,7 @@ lazyQueue([], async () => {
   );
 });
 
-// Blueprint-specific JS demoing the Mission Completed form's button re-activating
+// Academy-specific JS demoing the Mission Completed form's button re-activating
 const missionRatingInputs = document.querySelectorAll(
   '.js-mission-rating-input',
 );
@@ -58,7 +58,7 @@ if (missionRatingSubmit) {
       e.preventDefault();
 
       window.location.href =
-        '/pattern-lab/patterns/03-blueprints-05-pages-t1-landing-pages-mission-landing--test-with-modal-02-t1-mission-landing--test-with-modal--after-submit/03-blueprints-05-pages-t1-landing-pages-mission-landing--test-with-modal-02-t1-mission-landing--test-with-modal--after-submit.html';
+        '/pattern-lab/patterns/50-pages-60-academy-05-pages-t1-landing-pages-mission-landing--test-with-modal-02-t1-mission-landing--test-with-modal--after-submit/50-pages-60-academy-05-pages-t1-landing-pages-mission-landing--test-with-modal-02-t1-mission-landing--test-with-modal--after-submit.html';
     }
   });
 }

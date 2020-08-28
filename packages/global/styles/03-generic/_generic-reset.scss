@@ -2,19 +2,16 @@
   GENERIC - RESET
 \* ------------------------------------ */
 
-/* stylelint-disable-next-line color-no-hex */
 $bolt-color-selection-background-color: bolt-color(navy, xlight);
 
-/* stylelint-disable selector-list-comma-newline-after */
 body,
 dd,
 figure,
 #{$bolt-all-block-elements},
 #{$bolt-all-heading-elements} {
-  @include bolt-margin(0);
-  @include bolt-padding(0);
+  margin: 0;
+  padding: 0;
 }
-/* stylelint-enable selector-list-comma-newline-after */
 
 /*
 * Remove text-shadow in selection highlight:
@@ -39,7 +36,7 @@ figure,
 li > {
   ol,
   ul {
-    @include bolt-margin-bottom(0);
+    margin-bottom: 0;
   }
 }
 

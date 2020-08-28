@@ -4,13 +4,16 @@
 
 @import '@bolt/core-v3.x';
 
-
-$bolt-global-shadow-depth-xsmall: 0  1px  3px rgba(bolt-color(black), 0.12), 0 1px  2px  rgba(bolt-color(black), 0.24); // Buttons - default
-$bolt-global-shadow-depth-small:  0  3px  6px rgba(bolt-color(black), 0.16), 0 3px  6px  rgba(bolt-color(black), 0.23); // Buttons - hover
-$bolt-global-shadow-depth-medium: 0 10px 20px rgba(bolt-color(black), 0.19), 0 6px  6px  rgba(bolt-color(black), 0.23); // Cards - default
-$bolt-global-shadow-depth-large:  0 14px 28px rgba(bolt-color(black), 0.25), 0 10px 10px rgba(bolt-color(black), 0.22); // Cards - hover
-$bolt-global-shadow-depth-xlarge: 0 19px 38px rgba(bolt-color(black), 0.3),  0 15px 12px rgba(bolt-color(black), 0.22); // Modals
-
+$bolt-global-shadow-depth-xsmall: 0 1px 3px rgba(bolt-color(black), 0.12),
+  0 1px 2px rgba(bolt-color(black), 0.24); // Buttons - default
+$bolt-global-shadow-depth-small: 0 3px 6px rgba(bolt-color(black), 0.16),
+  0 3px 6px rgba(bolt-color(black), 0.23); // Buttons - hover
+$bolt-global-shadow-depth-medium: 0 10px 20px rgba(bolt-color(black), 0.19),
+  0 6px 6px rgba(bolt-color(black), 0.23); // Cards - default
+$bolt-global-shadow-depth-large: 0 14px 28px rgba(bolt-color(black), 0.25),
+  0 10px 10px rgba(bolt-color(black), 0.22); // Cards - hover
+$bolt-global-shadow-depth-xlarge: 0 19px 38px rgba(bolt-color(black), 0.3),
+  0 15px 12px rgba(bolt-color(black), 0.22); // Modals
 
 // $bolt-card-shadow: $bolt-shadow--small;
 $bolt-card-shadow: $bolt-global-shadow-depth-small;
@@ -23,12 +26,9 @@ $bolt-card-transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
 $bolt-card-translate--hover: $bolt-translate-raised--large;
 $bolt-card-translate--active: $bolt-translate-raised--medium;
 
-
-
 /**
   * Card background: 80% theme background color + 20% white
   */
-
 
 bolt-card {
   display: flex;
@@ -47,13 +47,14 @@ bolt-card {
   border-radius: $bolt-card-border-radius;
   transition: $bolt-card-transition;
 
-  @supports (backdrop-filter: blur(10px)) or (-webkit-backdrop-filter: blur(10px)) {
+  @supports (backdrop-filter: blur(10px)) or
+    (-webkit-backdrop-filter: blur(10px)) {
     background-color: rgba(bolt-color(white), 0.3);
     -webkit-backdrop-filter: blur(10px) saturate(30%) brightness(300%);
     backdrop-filter: blur(10px) saturate(30%) brightness(300%);
   }
 
-  bolt-card[class*=t-bolt] & {
+  bolt-card[class*='t-bolt'] & {
     color: bolt-theme(text);
     background-color: bolt-theme(background, 0.8);
 
@@ -61,7 +62,8 @@ bolt-card {
       opacity: bolt-opacity(100);
     }
 
-    @supports (backdrop-filter: blur(10px)) or (-webkit-backdrop-filter: blur(10px)) {
+    @supports (backdrop-filter: blur(10px)) or
+      (-webkit-backdrop-filter: blur(10px)) {
       background-color: rgba(bolt-color(white), 0.3);
       -webkit-backdrop-filter: blur(10px) saturate(30%) brightness(300%);
       backdrop-filter: blur(10px) saturate(30%) brightness(300%);
@@ -80,7 +82,11 @@ bolt-card {
     position: absolute;
     top: 0;
     left: 0;
-    transform: translate3d(0, 0, 0); //Help prevent rounding errors in Chrome so bg doesn't spill out
+    transform: translate3d(
+      0,
+      0,
+      0
+    ); //Help prevent rounding errors in Chrome so bg doesn't spill out
     z-index: bolt-z-index('background') - 5;
     width: 100%;
     height: 100%;
@@ -93,11 +99,11 @@ bolt-card {
   }
 
   &:after {
-
     box-shadow: none;
     background-color: rgba(bolt-color(white), 0.1);
     transition: $bolt-card-transition;
-    @supports (backdrop-filter: blur(10px)) or (-webkit-backdrop-filter: blur(10px)) {
+    @supports (backdrop-filter: blur(10px)) or
+      (-webkit-backdrop-filter: blur(10px)) {
       background-color: transparent;
     }
   }
@@ -135,10 +141,10 @@ bolt-card {
 }
 
 .c-bolt-card__body {
-  @include bolt-padding(medium);
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+  padding: var(--bolt-spacing-y-medium) var(--bolt-spacing-x-medium);
 }
 
 .c-bolt-card__footer {

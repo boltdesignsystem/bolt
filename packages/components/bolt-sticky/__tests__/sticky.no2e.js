@@ -10,7 +10,7 @@ module.exports = {
 
     browser
       .url(
-        `${testingUrl}/pattern-lab/patterns/02-components-sticky--10-sticky-simple-example/02-components-sticky--10-sticky-simple-example.html`,
+        `${testingUrl}/pattern-lab/patterns/40-components-sticky--10-sticky-simple-example/40-components-sticky--10-sticky-simple-example.html`,
       )
       .waitForElementVisible('bolt-sticky', 1000)
       .moveToElement('#endOfDocument', 0, 0)

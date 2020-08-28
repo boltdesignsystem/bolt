@@ -10,7 +10,7 @@ module.exports = {
 
     browser
       .url(
-        `${testingUrl}/pattern-lab/patterns/02-components-blockquote-10-blockquote-alignItems-variation/02-components-blockquote-10-blockquote-alignItems-variation.html`,
+        `${testingUrl}/pattern-lab/patterns/40-components-blockquote-10-blockquote-alignItems-variation/40-components-blockquote-10-blockquote-alignItems-variation.html`,
       )
       .waitForElementVisible('bolt-blockquote', 1000)
       .assert.elementPresent('bolt-logo[slot="logo"]')

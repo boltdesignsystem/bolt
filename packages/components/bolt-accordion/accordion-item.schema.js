@@ -23,9 +23,10 @@ module.exports = {
         'Display item trigger as an inactive element. Item content will be collapsed and the toggle icon hidden.',
       default: false,
     },
-    uuid: {
+    id: {
       type: 'string',
-      description: 'Unique ID for an item, randomly generated if not provided.',
+      description:
+        'Unique identifier for each item, may be used for deep linking.',
     },
     open_label: {
       type: 'string',
@@ -51,6 +52,12 @@ module.exports = {
       description:
         'Overrides the default content spacing (by default, inherited from the parent bolt-accordion)',
       $ref: '#/definitions/spacing',
+    },
+    uuid: {
+      type: 'string',
+      title: 'DEPRECATED',
+      description:
+        'Internal use only. Unique ID for an item, randomly generated if not provided.',
     },
   },
   definitions: {

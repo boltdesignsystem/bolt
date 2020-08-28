@@ -18,6 +18,9 @@ bolt-code-snippet {
 
 .c-bolt-code-snippet,
 .c-bolt-code-snippet__code {
+  font-family: var(--bolt-type-font-family-code);
+  font-size: var(--bolt-type-font-size-small);
+  font-weight: var(--bolt-type-font-weight-regular);
   white-space: pre-wrap;
   word-spacing: normal;
   word-break: normal;
@@ -36,9 +39,6 @@ bolt-code-snippet {
 }
 
 .c-bolt-code-snippet__code {
-  @include bolt-font-family(code);
-  @include bolt-font-weight(regular);
-  @include bolt-font-size(small);
   margin: 0;
   letter-spacing: 0.05rem;
 }
@@ -46,6 +46,7 @@ bolt-code-snippet {
 .c-bolt-code-snippet__code--block {
   display: block;
   padding: 0;
+  line-height: var(--bolt-type-line-height-small);
   background-color: transparent;
 }
 

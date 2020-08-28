@@ -1,17 +1,119 @@
 // TODO: limit to a .js class
 const inputs = document.querySelectorAll('.c-bolt-input');
 
+let thousandsDecimal = [',', '.'];
+
 for (let i = 0, len = inputs.length; i < len; i++) {
   const input = inputs[i];
+  const inputFormat = input.dataset.boltFormatInput;
+  const onInputChange = (input, inputFormat) => {
+    if (inputFormat && input.value.length > 0) {
+      input.value = cleanValue(input.value);
+      const displayValue = input.parentNode.querySelector(
+        '.c-bolt-input__display-value',
+      );
+
+      // @todo need to refactor to prevent the duplication
+      switch (inputFormat) {
+        case 'currency-us':
+          displayValue.setAttribute('data-bolt-form-display-value-before', '$');
+          displayValue.setAttribute(
+            'data-bolt-form-display-value-after',
+            formatNumber(input.value, thousandsDecimal[0], thousandsDecimal[1]),
+          );
+          break;
+        case 'currency-ja':
+          displayValue.setAttribute('data-bolt-form-display-value-before', '¥');
+          displayValue.setAttribute(
+            'data-bolt-form-display-value-after',
+            formatNumber(input.value, thousandsDecimal[0], thousandsDecimal[1]),
+          );
+          break;
+        case 'percent':
+          displayValue.setAttribute(
+            'data-bolt-form-display-value-before',
+            formatNumber(input.value, thousandsDecimal[0], thousandsDecimal[1]),
+          );
+          displayValue.setAttribute('data-bolt-form-display-value-after', '%');
+          break;
+        case 'number':
+          displayValue.setAttribute(
+            'data-bolt-form-display-value-after',
+            formatNumber(input.value, thousandsDecimal[0], thousandsDecimal[1]),
+          );
+          break;
+        default:
+      }
+    }
+  };
+
+  const cleanValue = value => {
+    return value.replace(/([$¥%])+/g, '');
+  };
+
+  const formatNumber = (string, thousands, decimal) => {
+    const rgx = /(\d+)(\d{3})/;
+    string += '';
+    const x = string.split(decimal);
+    let x1 = x[0];
+    const x2 = x.length > 1 ? decimal + x[1] : '';
+    if (thousands) {
+      while (rgx.test(x1)) {
+        x1 = x1.replace(rgx, '$1' + thousands + '$2');
+      }
+    }
+    return x1 + x2;
+  };
 
   // Check if the field has pre-filled text from the server side
   if (input.value) {
     input.classList.add('is-filled');
   }
 
+  if (inputFormat) {
+    let langTag = document.documentElement.lang;
+    // @todo Tempoarary until we have more direction on what we are covering
+    // const formLang = inputs[0].closest('form');
+
+    // if (formLang.dataset.boltLang) {
+    //   langTag = formLang.dataset.boltLang;
+    // }
+
+    // const periodComma = ['fr-fr', 'fr', 'de', 'de-de', 'it', 'it-it'];
+    // const spaceComma = ['pl-PL'];
+    // const commaPeriod = ['en-us', 'en', 'pt-br', 'es'];
+    // const nonePeriod = ['ja-jp', 'ja'];
+
+    // const determineFormat = lang => {
+    // Tempoarary until we have more direction on what we are covering
+    // const langCompare = (langArray, lang) => {
+    //   return langArray.indexOf(lang.toLowerCase()) > -1;
+    // };
+    // if (langCompare(periodComma, lang)) {
+    //   thousandsDecimal = ['.', ','];
+    // } else if (langCompare(spaceComma, lang)) {
+    //   thousandsDecimal = [' ', ','];
+    // } else if (langCompare(commaPeriod, lang)) {
+    //   thousandsDecimal = [',', '.'];
+    // } else if (langCompare(nonePeriod, lang)) {
+    //   thousandsDecimal = ['', '.'];
+    // }
+    // };
+
+    // determineFormat(langTag);
+
+    const displayValue = document.createElement('span');
+    displayValue.classList.add('c-bolt-input__display-value');
+    displayValue.setAttribute('aria-hidden', true);
+    input.after(displayValue);
+  }
+
   input.onchange = function() {
     if (input.value) {
       input.classList.add('is-filled');
+      if (inputFormat) {
+        onInputChange(input, inputFormat);
+      }
     } else {
       input.classList.remove('is-filled');
     }
@@ -19,7 +121,6 @@ for (let i = 0, len = inputs.length; i < len; i++) {
 
   input.onfocus = function() {
     input.classList.remove('is-touched');
-
     // In there were server-side errors, the 'is-invalid' class will be present
     // but should be removed on focus because the user is trying to fix them.
     input.classList.remove('is-invalid');
@@ -28,6 +129,8 @@ for (let i = 0, len = inputs.length; i < len; i++) {
       input.errors.remove();
     }
   };
+
+  // we need to strip special characters once the input is out of focus, if the user types with formatting right now such as $25, the error message comes up and says it's not a number.
 
   input.onblur = function(e) {
     if (!e.isTrusted) {

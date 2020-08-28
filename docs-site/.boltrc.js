@@ -35,9 +35,9 @@ const config = deepmerge(baseConfig, {
       recursive: true,
       paths: ['src/templates', '../packages/components'],
     },
-    'bolt-blueprints': {
+    'bolt-academy': {
       recursive: true,
-      paths: ['./src/pages/pattern-lab/_patterns/03-blueprints'],
+      paths: ['./src/pages/pattern-lab/_patterns/50-pages/60-academy'],
     },
     pl: {
       recursive: true,
@@ -65,7 +65,7 @@ const config = deepmerge(baseConfig, {
       },
       {
         base:
-          './src/pages/pattern-lab/_patterns/03-blueprints/00-assets/images',
+          './src/pages/pattern-lab/_patterns/50-pages/60-academy/00-assets/images',
         glob: '**',
         dist: '../www/images',
       },
@@ -88,9 +88,6 @@ const config = deepmerge(baseConfig, {
        * outside of the docs site-- those should instead be pulled in through
        * baseConfig.  Use this only for internal components.
        */
-
-      // helper components that are only used internally
-      '@bolt/blueprints',
 
       '@bolt/components-radio-switch',
       '@bolt/components-page-footer',

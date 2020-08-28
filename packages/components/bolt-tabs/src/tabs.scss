@@ -29,15 +29,16 @@ bolt-tabs {
 
 .c-bolt-tabs__label {
   // @todo: copied from navlink, refactor into shared styles
-  @include bolt-font-size(medium);
-  @include bolt-font-weight(semibold);
-
   display: flex;
   flex-shrink: 0;
   opacity: 0.9;
   position: relative;
   padding-bottom: $bolt-tabs-selected-border-size; // add space for negative margin of active tab underline
+  font-family: var(--bolt-type-font-family-headline);
+  font-size: var(--bolt-type-font-size-medium);
+  font-weight: var(--bolt-type-font-weight-semibold);
   color: bolt-theme(headline-link);
+  line-height: var(--bolt-type-line-height-medium);
   text-decoration: none;
   cursor: pointer;
   border-radius: $bolt-tabs-bg-border-radius;
@@ -147,11 +148,11 @@ bolt-tabs {
 
 // extra wrapping SPAN to help with inset padding
 .c-bolt-tabs__label-inner {
-  @include bolt-font-weight(
-    semibold
-  ); // include font-weight here to override Trigger defaults
   display: block;
   position: relative;
+  font-weight: var(
+    --bolt-type-font-weight-semibold
+  ); // include font-weight here to override Trigger defaults
 
   &:before {
     content: '';
@@ -247,8 +248,11 @@ bolt-tabs {
     .c-bolt-tabs--inset {
       .c-bolt-tabs__label--spacing-#{$size-name} {
         .c-bolt-tabs__label-text {
-          padding: calc(var(--bolt-spacing-y-#{$size-name}) / 2)
-            var(--bolt-spacing-x-#{$size-name});
+          // Use longhand instead of short hand to fix a bug with older versions of Edge (e.g. 42, 17).
+          padding-top: calc(var(--bolt-spacing-y-#{$size-name}) / 2);
+          padding-right: var(--bolt-spacing-x-#{$size-name});
+          padding-bottom: calc(var(--bolt-spacing-y-#{$size-name}) / 2);
+          padding-left: var(--bolt-spacing-x-#{$size-name});
         }
       }
     }

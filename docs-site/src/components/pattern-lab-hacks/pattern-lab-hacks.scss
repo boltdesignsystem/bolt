@@ -24,7 +24,7 @@
 }
 
 .sg-main {
-  @include bolt-padding(medium);
+  padding: var(--bolt-spacing-y-medium) var(--bolt-spacing-x-medium);
 }
 
 // Remove double padding in PL when top level wrapper exists
@@ -34,20 +34,20 @@
 }
 
 .sg-pattern-head.sg-pattern-head {
-  @include bolt-padding(medium, squished);
   position: sticky;
   top: 0;
   z-index: bolt-z-index('nav');
-  margin-right: -1 * bolt-spacing(medium);
+  margin-right: calc(-1 * var(--bolt-spacing-x-medium));
   margin-bottom: 0;
-  margin-left: -1 * bolt-spacing(medium);
+  margin-left: calc(-1 * var(--bolt-spacing-x-medium));
+  padding: calc(var(--bolt-spacing-y-medium) / 2) var(--bolt-spacing-x-medium);
   box-shadow: 0 2px 3px rgba(0, 0, 0, 0.12);
   background-color: bolt-color(white);
 }
 
 .sg-pattern-extra.sg-pattern-extra.sg-pattern-extra {
-  @include bolt-margin-top(medium);
   max-width: 1400px;
+  margin-top: var(--bolt-spacing-y-medium);
   margin-right: auto;
   margin-left: auto;
   border-top: 0;

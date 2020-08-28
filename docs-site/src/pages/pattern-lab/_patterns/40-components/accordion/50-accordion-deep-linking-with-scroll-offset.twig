@@ -1,0 +1,33 @@
+<div class="pl-placeholder-fixed-element" style="background: yellow; padding: 2rem; text-align: center; top: 0; height: 100px; width: 100%;">
+  Placeholder "fixed" element, should not overlap active accordion item when page first loads.
+</div>
+
+<div style="padding-top: 100px;">
+  <bolt-text class="u-bolt-margin-top">
+    Deep linking will auto-scroll to your selected accordion item. If there is a "fixed" element on the page, it may overlap your tabs. To fix this, use <code>scroll_offset_selector</code> to select the "fixed" element. That will offset the scroll position by the "fixed" element's height. Use <code>scroll_offset</code> for any additional adjstments. See a demo: <bolt-link url="?selected-accordion-item=item-3">?selected-accordion-item=item-3</bolt-link>.
+  </bolt-text>
+
+  <div style="margin-top: 100vh; margin-bottom: 100vh;">
+    {% include "@bolt-components-accordion/accordion.twig" with {
+      scroll_offset_selector: '.pl-placeholder-fixed-element',
+      scroll_offset: 5,
+      items: [
+        {
+          trigger: "Accordion item 1",
+          content: "This is the accordion content.",
+          id: "item-1",
+        },
+        {
+          trigger: "Accordion item 2",
+          content: "This is the accordion content.",
+          id: "item-2",
+        },
+        {
+          trigger: "Accordion item 3",
+          content: "This is the accordion content.",
+          id: "item-3"
+        }
+      ]
+    } only %}
+  </div>
+</div>

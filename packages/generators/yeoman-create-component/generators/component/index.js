@@ -41,7 +41,7 @@ module.exports = class extends Generator {
     this.folders = {
       src: 'packages/components',
       patternLabFolder:
-        'docs-site/src/pages/pattern-lab/_patterns/02-components',
+        'docs-site/src/pages/pattern-lab/_patterns/40-components',
       test: '__tests__',
     };
 

@@ -22,12 +22,12 @@ $bolt-table-row-hover-background-color: bolt-theme(text, 0.025);
 @include bolt-custom-element('bolt-table', block, medium);
 
 .c-bolt-table {
-  @include bolt-margin(0);
-  @include bolt-padding(0);
   @include bolt-horizontal-scroll;
 
   display: inline-block;
   max-width: 100%;
+  margin: 0;
+  padding: 0;
   vertical-align: top;
   @include bolt-table-border(right);
   @include bolt-table-border(left);
@@ -99,9 +99,8 @@ $bolt-table-row-hover-background-color: bolt-theme(text, 0.025);
   }
 
   @at-root .c-bolt-table__head #{&} {
-    @include bolt-padding(small, squished);
-
     width: 1%;
+    padding: calc(var(--bolt-spacing-y-small) / 2) var(--bolt-spacing-x-small);
     background-color: $bolt-table-header-background-color;
   }
 
@@ -110,7 +109,7 @@ $bolt-table-row-hover-background-color: bolt-theme(text, 0.025);
   }
 
   @at-root .c-bolt-table > *:not(.c-bolt-table__head) #{&} {
-    @include bolt-padding(small);
+    padding: var(--bolt-spacing-y-small) var(--bolt-spacing-x-small);
   }
 
   @at-root .c-bolt-table__foot #{&} {

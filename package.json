@@ -22,7 +22,6 @@
   "author": "Salem Ghoweri",
   "workspaces": {
     "packages": [
-      "docs-site/src/pages/pattern-lab/_patterns/03-blueprints",
       "docs-site",
       "docs-site/src/components/banner",
       "docs-site/src/components/theme-switcher",
@@ -86,7 +85,8 @@
     "test:monorepo": "jest ./__tests__/monorepo -c jest.config.quick.js --noStackTrace",
     "test:php": "cd packages/twig-integration/twig-extensions-shared && composer run test",
     "test:pkgs": "npx lerna run test --ignore=@bolt/uikit-* --ignore=@bolt/build-tools--* --stream",
-    "test:types": "tsc"
+    "test:types": "tsc",
+    "test:vrt-urls": "cd docs-site && yarn run test:vrt-urls"
   },
   "husky": {
     "hooks": {

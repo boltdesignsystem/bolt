@@ -1,71 +1,30 @@
 @import '@bolt/core-v3.x';
 
 bolt-button-group:not(:last-child) {
-  @include bolt-margin-bottom(medium);
+  margin-bottom: var(--bolt-spacing-y-medium);
 }
 
 .c-bolt-button-group {
-  @include bolt-margin-bottom(0);
   display: inline-flex;
   flex-flow: row wrap;
-  margin-left: bolt-spacing(small) * -1;
+  margin-bottom: 0;
+  margin-left: calc(var(--bolt-spacing-x-small) * -1);
   list-style: none;
   list-style: none;
   letter-spacing: -0.35em;
 
   &:last-child {
-    margin-bottom: bolt-v-spacing(small) * -1;
+    margin-bottom: calc(var(--bolt-spacing-y-small) * -1);
   }
 }
 
 .c-bolt-button-group__item {
-  @include bolt-padding-left(small);
-  @include bolt-padding-bottom(small);
   display: inline-block;
   display: inline-flex;
   flex-basis: auto;
   flex-grow: 1;
   flex-shrink: 1;
+  padding-bottom: var(--bolt-spacing-y-small);
+  padding-left: var(--bolt-spacing-x-small);
   letter-spacing: normal;
 }
-
-
-// // Button group
-// .c-bolt-button-group {
-//   display: flex;
-
-//   > * + * {
-//     @include bolt-margin-left(xsmall);
-//   }
-// }
-
-// .c-bolt-button-group--even {
-//   > * {
-//     flex: 1;
-//   }
-// }
-
-// @mixin bolt-button-group--stacked {
-//   flex-wrap: wrap;
-
-//   > * {
-//     @include bolt-margin(0, horizontal);
-
-//     flex: none;
-//     width: 100%;
-
-//     &:not(:last-child) {
-//       @include bolt-margin-bottom(xsmall);
-//     }
-//   }
-// }
-
-// .c-bolt-button-group--stacked {
-//   @include bolt-button-group--stacked;
-// }
-
-// .c-bolt-button-group--stacked\@bp-xsmall {
-//   @media screen and (max-width: map-get($bolt-breakpoints, xsmall)) {
-//     @include bolt-button-group--stacked;
-//   }
-// }
