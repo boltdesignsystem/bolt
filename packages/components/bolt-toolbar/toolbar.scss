@@ -77,21 +77,34 @@
 }
 
 .c-bolt-toolbar--purple {
-  background-image: linear-gradient(90deg, #0f0664 0%, #751b84 100%);
+  background-image: linear-gradient(
+    90deg,
+    var(--bolt-color-wine) 0%,
+    var(--bolt-color-berry) 100%
+  );
 }
 
-.c-bolt-toolbar--purple-solid {
-  background-image: linear-gradient(90deg, #751b84 0%, #751b84 100%);
-}
-
+.c-bolt-toolbar--navy,
 .c-bolt-toolbar--indigo {
-  background-image: linear-gradient(90deg, #161a3c 0%, #545da6 100%);
+  background-image: linear-gradient(
+    90deg,
+    var(--bolt-color-navy) 0%,
+    var(--bolt-color-navy-light) 100%
+  );
 }
 
 .c-bolt-toolbar--teal {
-  background-image: linear-gradient(270deg, #009999 0%, #1f2656 100%);
+  background-image: linear-gradient(
+    270deg,
+    var(--bolt-color-teal) 0%,
+    var(--bolt-color-teal-light) 100%
+  );
 }
 
 .c-bolt-toolbar--orange {
-  background-image: linear-gradient(270deg, #da6c28 0%, #b33a12 100%);
+  background-image: linear-gradient(
+    270deg,
+    var(--bolt-color-orange) 0%,
+    var(--bolt-color-orange-dark) 100%
+  );
 }

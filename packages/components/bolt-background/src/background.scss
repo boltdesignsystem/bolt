@@ -302,6 +302,7 @@ bolt-background {
   background-repeat: no-repeat;
   background-size: 100% 100%;
 
+  &.c-bolt-background__overlay-fill-color--navy,
   &.c-bolt-background__overlay-fill-color--indigo {
     background-image: radial-gradient(
         circle at 80vh 10vw,
@@ -309,27 +310,41 @@ bolt-background {
         rgba(4, 4, 4, 0.5) 100%,
         rgba(0, 0, 0, 0.5) 100%
       ),
-      radial-gradient(circle at 80% 40%, #545da6 20%, #161a3c 70%);
+      radial-gradient(
+        circle at 80% 40%,
+        var(--bolt-color-navy-light) 20%,
+        var(--bolt-color-navy-dark) 60%
+      );
     background-position: top right;
   }
 
   &.c-bolt-background__overlay-fill-color--pink {
     background-image: radial-gradient(
       54% 190% at top -20% left 10%,
-      #c910ab 10%,
-      rgba(0, 0, 0, 0) 96%
+      var(--bolt-color-pink) 10%,
+      var(--bolt-color-berry) 96%
     );
     background-position: top left;
   }
 }
 
 .c-bolt-background__overlay--linear-gradient-fill {
+  &.c-bolt-background__overlay-fill-color--navy,
+  &.c-bolt-background__overlay-fill-color--indigo {
+    background: linear-gradient(
+      350.07deg,
+      var(--bolt-color-navy-light) 0%,
+      var(--bolt-color-navy) 6.56%,
+      var(--bolt-color-navy-dark) 100%
+    );
+  }
+
   &.c-bolt-background__overlay-fill-color--pink {
     background: linear-gradient(
       350.07deg,
-      rgba(162, 4, 147, 0.98) 0%,
-      #a50494 6.56%,
-      rgba(31, 38, 86, 0) 100%
+      var(--bolt-color-pink) 0%,
+      var(--bolt-color-berry) 6.56%,
+      var(--bolt-color-wine) 100%
     );
   }
 
