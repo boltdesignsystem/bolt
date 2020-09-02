@@ -173,19 +173,15 @@ bolt-icon {
 :root,
 .t-bolt-light,
 .t-bolt-xlight {
-  @include bolt-icon-theme(blue, bolt-color(blue));
   @include bolt-icon-theme(gray, bolt-color(gray, dark));
   @include bolt-icon-theme(navy, bolt-color(navy, light));
-  @include bolt-icon-theme(indigo, bolt-color(navy, light));
   @include bolt-icon-theme(orange, bolt-color(orange));
   @include bolt-icon-theme(teal, bolt-color(teal));
-  @include bolt-icon-theme(white, bolt-color(gray, dark), bolt-color(white));
   @include bolt-icon-theme(
     yellow,
     bolt-color(yellow, dark),
     bolt-color(yellow)
   );
-  @include bolt-icon-theme(green, bolt-color(success));
   @include bolt-icon-theme(pink, bolt-color(pink));
   @include bolt-icon-theme(berry, bolt-color(berry));
   @include bolt-icon-theme(wine, bolt-color(wine));
@@ -194,15 +190,9 @@ bolt-icon {
 
 .t-bolt-dark,
 .t-bolt-xdark {
-  @include bolt-icon-theme(blue, #0095e6, bolt-color(blue));
   @include bolt-icon-theme(gray, bolt-color(gray), bolt-color(gray, dark));
   @include bolt-icon-theme(
     navy,
-    bolt-color(navy, xlight),
-    bolt-color(navy, light)
-  );
-  @include bolt-icon-theme(
-    indigo,
     bolt-color(navy, xlight),
     bolt-color(navy, light)
   );
@@ -212,9 +202,7 @@ bolt-icon {
     bolt-color(orange)
   );
   @include bolt-icon-theme(teal, bolt-color(teal, light), bolt-color(teal));
-  @include bolt-icon-theme(white, bolt-color(white));
   @include bolt-icon-theme(yellow, bolt-color(yellow), bolt-color(yellow));
-  @include bolt-icon-theme(green, bolt-color(success));
   @include bolt-icon-theme(pink, bolt-color(pink));
   @include bolt-icon-theme(berry, bolt-color(berry));
   @include bolt-icon-theme(wine, bolt-color(wine));
