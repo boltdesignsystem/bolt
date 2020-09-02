@@ -1,35 +1,50 @@
-import { html, customElement } from '@bolt/element';
-import { withContext, props } from '@bolt/core-v3.x/utils';
-import { withLitHtml } from '@bolt/core-v3.x/renderers/renderer-lit-html';
+import { html, customElement, BoltElement, unsafeCSS } from '@bolt/element';
+import { props } from '@bolt/core-v3.x/utils';
+import { withContext } from 'wc-context';
 import classNames from 'classnames/bind';
 import styles from './tab-panel.scss';
-import { TabsContext } from '../tabs';
+// import { TabsContext } from '../tabs';
+import schema from '../../tabs.schema';
 
 let cx = classNames.bind(styles);
 
 @customElement('bolt-tab-panel')
-class TabPanel extends withContext(withLitHtml) {
-  static props = {
-    id: props.string,
-    selected: props.boolean,
-  };
+class TabPanel extends withContext(BoltElement) {
+  // static props = {
+  //   id: props.string,
+  //   selected: props.boolean,
+  // };
 
   // subscribe to specific props that are defined and available on the parent container
   // (context + subscriber idea originally from https://codepen.io/trusktr/project/editor/XbEOMk)
-  static get consumes() {
-    return [
-      [TabsContext, 'inset'],
-      [TabsContext, 'panelSpacing'],
-      [TabsContext, 'uuid'],
-      [TabsContext, 'selectedIndex'],
-      [TabsContext, 'tabPanels'],
-    ];
+  // static get consumes() {
+  //   return [
+  //     [TabsContext, 'inset'],
+  //     [TabsContext, 'panel_spacing'],
+  //     [TabsContext, 'uuid'],
+  //     [TabsContext, 'selectedIndex'],
+  //     [TabsContext, 'tabPanels'],
+  //   ];
+  // }
+
+  // constructor(self) {
+  //   self = super(self);
+
+  //   return self;
+  // }
+
+  static get properties() {
+    return {
+      inset: { type: String },
+      panel_spacing: { type: String },
+      id: { type: String },
+      uuid: { type: String },
+      selectedIndex: { type: Number },
+    };
   }
 
-  constructor(self) {
-    self = super(self);
-
-    return self;
+  static get styles() {
+    return [unsafeCSS(styles)];
   }
 
   get panelIndex() {
@@ -41,7 +56,6 @@ class TabPanel extends withContext(withLitHtml) {
 
   connectedCallback() {
     super.connectedCallback && super.connectedCallback();
-    this.context = this.contexts.get(TabsContext);
   }
 
   setSelectedTab() {
@@ -67,21 +81,21 @@ class TabPanel extends withContext(withLitHtml) {
   }
 
   template() {
-    const { uuid, selectedIndex, panelSpacing, inset } = this.context;
+    // const { uuid, selectedIndex, panel_spacing, inset } = this.context;
 
     const index = this.panelIndex;
 
     // Selected prop overrides selectedTab state set on parent
-    const isSelected = index === selectedIndex;
+    const isSelected = index === this.selectedIndex;
 
-    const labelledById = this.props.id
-      ? `tab-label-${this.props.id}`
-      : `tab-label-${uuid}-${index + 1}`; // Use 1-based Id's
-    const panelId = this.props.id || `tab-panel-${uuid}-${index + 1}`; // Use 1-based Id's
+    const labelledById = this.id
+      ? `tab-label-${this.id}`
+      : `tab-label-${this.uuid}-${index + 1}`; // Use 1-based Id's
+    const panelId = this.id || `tab-panel-${this.uuid}-${index + 1}`; // Use 1-based Id's
 
     const classes = cx('c-bolt-tab-panel', {
-      [`c-bolt-tab-panel--spacing-${panelSpacing}`]: panelSpacing,
-      [`c-bolt-tab-panel--inset`]: inset === 'on',
+      [`c-bolt-tab-panel--spacing-${this.panel_spacing}`]: this.panel_spacing,
+      [`c-bolt-tab-panel--inset`]: this.inset === 'on',
     });
 
     const contentClasses = cx('c-bolt-tab-panel__content');
@@ -89,14 +103,14 @@ class TabPanel extends withContext(withLitHtml) {
     const slotMarkup = name => {
       switch (name) {
         case 'label':
-          return name in this.slots
-            ? this.slot(name)
+          return this.slotMap.get(name)
+            ? this.slotMap.get(name)
             : html`
                 <slot name="${name}" />
               `;
 
         default:
-          return name in this.slots
+          return this.slotMap.get(name)
             ? html`
                 <div
                   class="${contentClasses}"
@@ -106,7 +120,7 @@ class TabPanel extends withContext(withLitHtml) {
                   tabindex="0"
                   aria-labelledby="${labelledById}"
                 >
-                  ${this.slot('default')}
+                  ${this.slotify('default')}
                 </div>
               `
             : html`
@@ -135,7 +149,7 @@ class TabPanel extends withContext(withLitHtml) {
 
   render() {
     return html`
-      ${this.addStyles([styles])} ${this.template()}
+      ${this.template()}
     `;
   }
 }

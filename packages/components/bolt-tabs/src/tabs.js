@@ -1,15 +1,13 @@
-import { html, customElement } from '@bolt/element';
+import { customElement, BoltElement, html, unsafeCSS } from '@bolt/element';
 import {
-  defineContext,
-  withContext,
-  define,
   props,
   containsTagName,
   getUniqueId,
   whichTransitionEvent,
   waitForTransitionEnd,
 } from '@bolt/core-v3.x/utils';
-import { withLitHtml } from '@bolt/core-v3.x/renderers/renderer-lit-html';
+import { withContext } from 'wc-context';
+
 import { smoothScroll } from '@bolt/components-smooth-scroll/src/smooth-scroll';
 import URLSearchParams from '@ungap/url-search-params'; // URLSearchParams poly for older browsers
 import classNames from 'classnames/bind';
@@ -19,27 +17,21 @@ import schema from '../tabs.schema';
 import '@bolt/core-v3.x/utils/optimized-resize';
 
 // define which specific props to provide to children that subscribe
-export const TabsContext = defineContext({
-  inset: 'auto',
-  panelSpacing: 'small', // no need to pass `labelSpacing`, only used in this template
-  uuid: '',
-  selectedIndex: 0,
-});
+// export const TabsContext = defineContext({
+//   inset: 'auto',
+//   panelSpacing: 'small', // no need to pass `labelSpacing`, only used in this template
+//   uuid: '',
+//   selectedIndex: 0,
+// });
 
 let cx = classNames.bind(styles);
 
 @customElement('bolt-tabs')
-class BoltTabs extends withContext(withLitHtml) {
+class BoltTabs extends withContext(BoltElement) {
+  static schema = schema;
+
   static props = {
-    align: props.string,
-    inset: props.string,
-    labelSpacing: props.string,
-    panelSpacing: props.string,
-    variant: props.string,
-    scrollOffset: props.number,
-    scrollOffsetSelector: props.string,
-    // uuid: props.string, @todo: make `uuid` a prop, for now internal only
-    // `selectedTab` is a 1-based index, everywhere else is 0-based
+    ...this.props,
     selectedTab: {
       ...props.number,
       ...{ default: schema.properties.selected_tab.default },
@@ -50,9 +42,9 @@ class BoltTabs extends withContext(withLitHtml) {
     },
   };
 
-  constructor(self) {
-    self = super(self);
-    self.schema = this.getModifiedSchema(schema);
+  constructor() {
+    super();
+    // this.schema = this.getModifiedSchema(schema);
 
     this.transitionEvent = whichTransitionEvent();
     this._resizeMenu = this._resizeMenu.bind(this);
@@ -62,19 +54,34 @@ class BoltTabs extends withContext(withLitHtml) {
       this,
     );
 
-    return self;
+    return this;
   }
 
   // provide context info to children that subscribe
   // (context + subscriber idea originally from https://codepen.io/trusktr/project/editor/XbEOMk)
-  static get provides() {
-    return [TabsContext];
+  // static get provides() {
+  //   return [TabsContext];
+  // }
+
+  static get providedContexts() {
+    return {
+      inset: { inset: schema.properties.inset.default },
+      panelSpacing: { inset: schema.properties.panel_spacing.default }, // no need to pass `labelSpacing`, only used in this template
+      uuid: '',
+      selectedIndex: 0,
+    };
+  }
+
+  static get styles() {
+    return [unsafeCSS(styles)];
   }
 
   connectedCallback() {
     super.connectedCallback && super.connectedCallback();
 
-    const { selectedTab } = this.validateProps(this.props);
+    // const { selectedTab } = this.validateProps(this.props);
+    const selectedTab =
+      this.selectedTab || schema.properties.selected_tab.default;
 
     const panels = this.tabPanels;
 
@@ -131,8 +138,8 @@ class BoltTabs extends withContext(withLitHtml) {
       return Array.from(this.children).filter(
         child => child.tagName === 'BOLT-TAB-PANEL',
       );
-    } else if (this.slots && this.slots.default !== undefined) {
-      return Array.from(this.slots.default).filter(
+    } else if (this.slots && this.slotMap('default') !== undefined) {
+      return Array.from(this.slotMap('default')).filter(
         child => child.tagName === 'BOLT-TAB-PANEL',
       );
     } else {
@@ -161,8 +168,6 @@ class BoltTabs extends withContext(withLitHtml) {
   }
 
   addMutationObserver() {
-    const self = this;
-
     // todo: this.useShadow is a temporary workaround until mutation observer works better with light DOM
     if (window.MutationObserver && this.useShadow) {
       // Re-generate slots + re-render when mutations are observed
@@ -171,7 +176,7 @@ class BoltTabs extends withContext(withLitHtml) {
           if (mutation.type === 'childList') {
             // @todo: add, remove, reorder
             if (containsTagName(mutation.addedNodes, 'BOLT-TAB-PANEL')) {
-              self.triggerUpdate();
+              this.triggerUpdate();
             }
           } else if (mutation.type === 'attributes') {
             // @todo: see `bolt-accordion` as reference for WIP attribute mutation handler
@@ -180,10 +185,10 @@ class BoltTabs extends withContext(withLitHtml) {
       };
 
       // Create an observer instance linked to the callback function
-      self.observer = new MutationObserver(mutationCallback);
+      this.observer = new MutationObserver(mutationCallback);
 
       // Start observing the target node for configured mutations
-      self.observer.observe(this, {
+      this.observer.observe(this, {
         attributes: true,
         childList: true,
         subtree: true,
@@ -199,7 +204,8 @@ class BoltTabs extends withContext(withLitHtml) {
       this.selectedIndex = newIndex;
 
       this.setAttribute('selected-tab', newIndex + 1); // Convert `selectedTab` back to 1-based scale
-      this.contexts.get(TabsContext).selectedIndex = newIndex; // Keep context 0-based
+      // this.contexts.get(TabsContext).selectedIndex = newIndex; // Keep context 0-based
+      this.updateProvidedContext('selectedIndex', newIndex);
 
       // set timeout allows time for sub component to re-render, better that than putting this on the sub component where it'll be fired many more times than needed
       setTimeout(() => {
@@ -272,9 +278,12 @@ class BoltTabs extends withContext(withLitHtml) {
   }
 
   template() {
-    const { align, labelSpacing, panelSpacing, inset } = this.validateProps(
-      this.props,
-    );
+    const align = this.align || schema.properties.align.default;
+    const labelSpacing =
+      this.labelSpacing || schema.properties.label_spacing.default;
+    const panelSpacing =
+      this.panelSpacing || schema.properties.panel_spacing.default;
+    const inset = this.inset || schema.properties.inset.default;
 
     const classes = cx('c-bolt-tabs', {
       [`c-bolt-tabs--align-${align}`]: align,
@@ -372,7 +381,7 @@ class BoltTabs extends withContext(withLitHtml) {
           ${tabButtons()} ${dropdown()}
         </div>
         <div class="${panelsClasses}">
-          ${this.slots.default ? this.slot('default') : ''}
+          ${this.slotify('default') ? this.slotify('default') : ''}
         </div>
       </div>
     `;
@@ -546,8 +555,16 @@ class BoltTabs extends withContext(withLitHtml) {
     this._resizeMenu();
   }
 
-  rendered() {
-    super.rendered && super.rendered();
+  createRenderRoot() {
+    /**
+     * Render template without shadow DOM. Note that shadow DOM features like
+     * encapsulated CSS and slots are unavailable.
+     */
+    return this;
+  }
+
+  firstUpdated() {
+    super.firstUpdated && super.firstUpdated();
 
     if (!this.ready) {
       // Now that the template has rendered, we can query the page for the parts we need to update after the fact
@@ -638,18 +655,28 @@ class BoltTabs extends withContext(withLitHtml) {
   }
 
   render() {
-    const { inset, panelSpacing, selectedTab } = this.validateProps(this.props);
+    const inset = this.inset || schema.properties.inset.default;
+    const panelSpacing =
+      this.panelSpacing || schema.properties.panel_spacing.default;
+    const selectedTab =
+      this.selectedTab || schema.properties.selected_tab.default;
 
     this.selectedIndex = this.validateIndex(selectedTab - 1);
 
-    this.contexts.get(TabsContext).inset = inset;
-    this.contexts.get(TabsContext).panelSpacing = panelSpacing;
-    this.contexts.get(TabsContext).uuid = this.tabsId;
-    this.contexts.get(TabsContext).selectedIndex = this.selectedIndex;
-    this.contexts.get(TabsContext).tabPanels = this.tabPanels;
+    // this.contexts.get(TabsContext).inset = inset;
+    // this.contexts.get(TabsContext).panelSpacing = panelSpacing;
+    // this.contexts.get(TabsContext).uuid = this.tabsId;
+    // this.contexts.get(TabsContext).selectedIndex = this.selectedIndex;
+    // this.contexts.get(TabsContext).tabPanels = this.tabPanels;
+
+    this.updateProvidedContext('inset', inset);
+    this.updateProvidedContext('panelSpacing', panelSpacing);
+    this.updateProvidedContext('uuid', this.uuid);
+    this.updateProvidedContext('selectedIndex', this.selectedIndex);
+    this.updateProvidedContext('tabPanels', this.tabPanels);
 
     return html`
-      ${this.addStyles([styles])} ${this.template()}
+      ${this.template()}
     `;
   }
 }
