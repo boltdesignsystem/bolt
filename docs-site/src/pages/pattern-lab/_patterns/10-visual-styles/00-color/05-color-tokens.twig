@@ -71,8 +71,10 @@
                 {% for shade, color_value in palette %}
                   {% if shade != "base" %}
                     {% set shade_modifier = "-" ~ shade %}
+                    {% set shade_name = ", " ~ shade %}
                   {% else %}
                     {% set shade_modifier = "" %}
+                    {% set shade_name = "" %}
                   {% endif %}
                   <tr>
                     <th>{{ color_name|capitalize }}{{ shade_name }}</th>

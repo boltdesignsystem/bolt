@@ -4,6 +4,16 @@
 
 {% set attributes = create_attribute(attributes | default({})) %}
 
+{# White, blue, and green are deprecated because they are not brand colors. #}
+{% if color %}
+  {% if color == "white" or color == "blue" or color == "green" %}
+    {% set color = "auto" %}
+  {% elseif color == "indigo" %}
+    {% set color = "navy" %}
+  {% endif %}
+  {% set color = color %}
+{% endif %}
+
 {% set attributes = attributes
   .setAttribute("name", name)
   .setAttribute("size", size)

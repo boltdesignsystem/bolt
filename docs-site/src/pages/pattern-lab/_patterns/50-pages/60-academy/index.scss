@@ -1,32 +1,5 @@
 @import '@bolt/core-v3.x';
 
-.c-acd-featured-hero {
-  position: relative;
-
-  &:after {
-    content: '';
-    position: absolute;
-    top: -5rem;
-    right: -16vw;
-    z-index: 1;
-    width: 100vw;
-    height: 100%;
-    background-image: radial-gradient(
-      100% 109% at bottom 10% right 0%,
-      #ff9b00 36%,
-      rgba(0, 0, 0, 0) 67%
-    );
-    mix-blend-mode: multiply;
-    background-position: bottom right;
-    background-repeat: no-repeat;
-    background-size: 70% 100%;
-  }
-}
-
-.c-acd-featured-hero__image {
-  filter: hue-rotate(345deg) contrast(1.3);
-}
-
 .c-acd-horizontal-divider {
   display: flex;
   width: 100%;
