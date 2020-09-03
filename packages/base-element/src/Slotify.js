@@ -29,6 +29,9 @@ export class Slotify extends LitElement {
     Array.from(this.childNodes).forEach(child => {
       const slot = this.assignSlotToContent(child);
 
+      // Prevent dupes when `saveSlots` is run multiple times
+      if (this.slotMap.get(slot)?.includes(child)) return;
+
       if (!child.textContent || child.textContent.trim().length > 0) {
         this.addChildToSlotMap(slot, child);
       } else if (slot && child instanceof HTMLElement) {

@@ -17,3 +17,15 @@
 {% block global_footer %}
   {% include "@bolt/page-footer.twig" %}
 {% endblock %}
+
+{% if japanese %}
+  <script type="text/javascript">
+    document.getElementsByTagName("HTML")[0].setAttribute("lang", "ja");
+  </script>
+{% endif %}
+
+{% if info_density %}
+  <script type="text/javascript">
+    document.getElementsByTagName("HTML")[0].setAttribute("data-bolt-info-density", "{{ info_density }}");
+  </script>
+{% endif %}

@@ -1,0 +1,278 @@
+{% set info_density = info_density|default("regular") %}
+{% if info_density == "regular" %}
+  {% set regular_density_extra_copy = "Data attribute is not needed." %}
+{% endif %}
+
+{% extends "@pl/_default-page-template.twig" %}
+
+{% block global_header %}
+  {# No header #}
+{% endblock %}
+
+{% block main_content %}
+  {% set content %}
+    {% include "@bolt-components-headline/text.twig" with {
+      text: 'A page&rsquo;s information density can be changed by setting the <code>data-bolt-info-density</code> attribute on the <code>&lt;html&gt;</code> element. Information density is controlled by the spacing and typography systems. The following layout is set to "' ~ info_density ~ '". ' ~ regular_density_extra_copy,
+      weight: "bold",
+      tag: "p",
+      icon: {
+        name: "documentation",
+        position: "before",
+      },
+    } only %}
+  {% endset %}
+  {% include "@bolt-components-band/band.twig" with {
+    theme: "dark",
+    content: content,
+  } only %}
+
+  {% set content %}
+    {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--xlarge o-bolt-grid--middle o-bolt-grid--center" %}
+      {% cell "u-bolt-width-12/12 u-bolt-width-8/12@medium" %}
+        {% include "@bolt-components-headline/eyebrow.twig" with {
+          text: "Robotic Automation",
+          tag: "span",
+        } only %}
+        {% include "@bolt-components-headline/headline.twig" with {
+          text: info_density|capitalize ~ " Information Density",
+          size: "xxxlarge",
+          tag: "h1",
+        } only %}
+        {% include "@bolt-components-headline/subheadline.twig" with {
+          text: "Robotic Process Automation (RPA) is not going to transform your business by itself. Up to half of initial RPA projects fail. Combine robotics with powerful end-to-end automation and you can jump on the RPA bandwagon without becoming a statistic.",
+          size: "xlarge",
+          tag: "p",
+        } only %}
+        {% include "@bolt-components-button/button.twig" with {
+          text: "Call to action",
+          size: "large",
+          border_radius: "full",
+        } only %}
+      {% endcell %}
+      {% cell "u-bolt-width-12/12 u-bolt-width-4/12@medium" %}
+        {% set block_list_item_1 %}
+          {% include "@bolt-components-headline/headline.twig" with {
+            text: "Engage with empathy & adapt instantly",
+            url: "#!",
+            size: "medium",
+            tag: "h2"
+          } only %}
+        {% endset %}
+        {% set block_list_item_2 %}
+          {% include "@bolt-components-headline/headline.twig" with {
+            text: "Triage volume, take out cost",
+            url: "#!",
+            size: "medium",
+            tag: "h2"
+          } only %}
+        {% endset %}
+        {% set block_list_item_3 %}
+          {% include "@bolt-components-headline/headline.twig" with {
+            text: "Build apps fast, automate anything",
+            url: "#!",
+            size: "medium",
+            tag: "h2"
+          } only %}
+        {% endset %}
+        {% include "@bolt-components-list/list.twig" with {
+          separator: "solid",
+          spacing: "medium",
+          items: [
+            block_list_item_1,
+            block_list_item_2,
+            block_list_item_3,
+          ]
+        } only %}
+      {% endcell %}
+    {% endgrid %}
+  {% endset %}
+  {% include "@bolt-components-band/band.twig" with {
+    size: "large",
+    theme: "xlight",
+    content: content,
+  } only %}
+
+  {% set content %}
+    {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--xlarge o-bolt-grid--center" %}
+      {% cell "u-bolt-width-12/12 u-bolt-width-7/12@medium" %}
+        {% include "@bolt-components-headline/headline.twig" with {
+          text: "Automation is a Journey",
+          size: "xxlarge",
+          tag: "h2"
+        } only %}
+        {% include "@bolt-components-headline/text.twig" with {
+          text: "At Pega, we’re obsessed with being unified. Our mobility, real-time AI, robotic automation, BPM, and case management are best in breed – go ask the analysts. But we didn’t cobble this together from pieces of dead companies – we built it from the ground up on a unified, enterprise-ready architecture.",
+          tag: "p"
+        } only %}
+        {% include "@bolt-components-headline/text.twig" with {
+          text: "When you don’t have to waste time feeding the Frankenstack, you can focus on stuff that matters: designing awesome customer experiences. Automating your most complicated processes. Innovating in ways that disrupt the market.",
+          tag: "p"
+        } only %}
+        {% include "@bolt-components-headline/text.twig" with {
+          text: "Sed molestie augue sit amet leo consequat posuere. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Proin vel ante a orci tempus eleifend ut et magna. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus luctus urna sed urna ultricies ac tempor dui sagittis. In condimentum facilisis porta. Sed nec diam eu diam mattis viverra. Nulla fringilla, orci ac euismod semper, magna diam porttitor mauris, quis sollicitudin sapien justo in libero. Vestibulum mollis mauris enim. Morbi euismod magna ac lorem rutrum elementum. Donec viverra auctor lobortis. Pellentesque eu est a nulla placerat dignissim. Morbi a enim in magna semper bibendum. Etiam scelerisque, nunc ac egestas consequat, odio nibh euismod nulla, eget auctor orci nibh vel nisi. Aliquam erat volutpat. Mauris vel neque sit amet nunc gravida congue sed sit amet purus. Quisque lacus quam, egestas ac tincidunt a, lacinia vel velit. Aenean facilisis nulla vitae urna tincidunt congue sed ut dui. Morbi malesuada nulla nec purus convallis consequat. Vivamus id mollis quam. Morbi ac commodo nulla. In condimentum orci id nisl volutpat bibendum. Quisque commodo hendrerit lorem quis egestas. Maecenas quis tortor arcu. Vivamus rutrum nunc non neque consectetur quis placerat neque lobortis. Nam vestibulum, arcu sodales feugiat consectetur.",
+          tag: "p"
+        } only %}
+      {% endcell %}
+      {% cell "u-bolt-width-1/1 u-bolt-width-5/12@medium" %}
+        {% include "@bolt-components-card-replacement/card-replacement.twig" with {
+          borderRadius: "large",
+          height: "auto",
+          media: {
+            image: {
+              src: "/images/content/promos/promo-16x9-forrester.jpg",
+              alt: "Image alt.",
+            },
+          },
+          body: {
+            eyebrow: "Whitepaper",
+            headline: "Anthem: Service Desktop",
+            paragraph: "Anthem debuts its next-generation service desktop, driving frictionless customer experiences.",
+          },
+          actions: [
+            {
+              text: "Get the report",
+              url: "https://pega.com",
+            },
+          ],
+        } only %}
+      {% endcell %}
+    {% endgrid %}
+  {% endset %}
+  {% include "@bolt-components-band/band.twig" with {
+    theme: "light",
+    size: "large",
+    content: content,
+  } only %}
+
+  {% set content %}
+    {% include "@bolt-components-action-blocks/action-blocks.twig" with {
+      contentItems: [
+        {
+          text: "Item 1 with a long line of text",
+          url: "#!",
+          icon: {
+            name: "download",
+          }
+        },
+        {
+          text: "Item 2 with a long line of text",
+          url: "#!",
+          icon: {
+            name: "copy-to-clipboard",
+          }
+        },
+        {
+          text: "Item 3 with a long line of text",
+          url: "#!",
+          icon: {
+            name: "calendar",
+          }
+        },
+        {
+          text: "Item 4 with a long line of text",
+          url: "#!",
+          icon: {
+            name: "external-link",
+          }
+        },
+        {
+          text: "Item 5 with a long line of text",
+          url: "#!",
+          icon: {
+            name: "launchpad",
+          }
+        },
+        {
+          text: "Item 6 with a long line of text",
+          url: "#!",
+          icon: {
+            name: "info-open",
+          }
+        },
+      ]
+    } only %}
+  {% endset %}
+  {% include "@bolt-components-band/band.twig" with {
+    theme: "xdark",
+    content: content,
+  } only %}
+
+  {% set content %}
+    {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--large o-bolt-grid--center" %}
+      {% cell "u-bolt-width-12/12 u-bolt-width-4/12@small" %}
+        {% include "@bolt-components-card-replacement/card-replacement.twig" with {
+          borderRadius: "large",
+          media: {
+            image: {
+              src: "/images/placeholders/landscape-16x9-mountains.jpg",
+              alt: "Image alt.",
+            },
+          },
+          body: {
+            eyebrow: "Lorem Ipsum",
+            headline: "In Pellentesque Faucibus Vestibulum Nulla",
+            paragraph: "Nullam in dui mauris. Vivamus hendrerit arcu sed erat molestie vehicula. Sed.",
+          },
+          actions: [
+            {
+              text: "Call to action",
+              url: "https://pega.com",
+            },
+          ]
+        } only %}
+      {% endcell %}
+      {% cell "u-bolt-width-12/12 u-bolt-width-4/12@small" %}
+        {% include "@bolt-components-card-replacement/card-replacement.twig" with {
+          borderRadius: "large",
+          media: {
+            image: {
+              src: "/images/placeholders/landscape-16x9-mountains.jpg",
+              alt: "Image alt.",
+            },
+          },
+          body: {
+            eyebrow: "In Pellentesque",
+            headline: "Class Aptent Taciti Sociosqu Ad",
+            paragraph: "Quisque eget odio ac lectus vestibulum faucibus eget in metus. In pellentesque faucibus vestibulum. Nulla at nulla justo, eget.",
+          },
+          actions: [
+            {
+              text: "Call to action",
+              url: "https://pega.com",
+            },
+          ]
+        } only %}
+      {% endcell %}
+      {% cell "u-bolt-width-12/12 u-bolt-width-4/12@small" %}
+        {% include "@bolt-components-card-replacement/card-replacement.twig" with {
+          borderRadius: "large",
+          media: {
+            image: {
+              src: "/images/placeholders/landscape-16x9-mountains.jpg",
+              alt: "Image alt.",
+            },
+          },
+          body: {
+            eyebrow: "Proin Quis Tortor",
+            headline: "Sed Auctor Neque Eu Tellus",
+            paragraph: "Nulla at nulla justo, eget luctus tortor. Nulla facilisi. Duis aliquet egestas purus in blandit. Curabitur.",
+          },
+          actions: [
+            {
+              text: "Call to action",
+              url: "https://pega.com",
+            },
+          ]
+        } only %}
+      {% endcell %}
+    {% endgrid %}
+  {% endset %}
+
+  {% include "@bolt-components-band/band.twig" with {
+    content: content,
+  } only %}
+{% endblock %}
+
+{% block global_footer %}
+  {# No footer #}
+{% endblock %}

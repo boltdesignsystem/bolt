@@ -1,7 +1,17 @@
 {% include "@bolt-site/_site-head.twig" with {
-  inline_global_data: true
+  inline_global_data: true,
 } %}
 
 {% block site_body %}{% endblock %}
 
 {% include "@bolt-site/_site-footer.twig" %}
+
+{% if info_density == "compact" %}
+  <script type="text/javascript">
+    document.getElementsByTagName("HTML")[0].setAttribute("data-bolt-info-density", "compact");
+  </script>
+{% elseif info_density == "comfortable" %}
+  <script type="text/javascript">
+    document.getElementsByTagName("HTML")[0].setAttribute("data-bolt-info-density", "comfortable");
+  </script>
+{% endif %}

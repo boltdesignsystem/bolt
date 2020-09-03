@@ -1,7 +1,6 @@
 {% set navbar %}
-  {% include "@bolt-site/release-banner.twig" only %}
   {% include "@bolt-site/_navbar-with-version-selector.twig" with {
-    theme: "xdark",
+    theme: "light",
     width: "auto",
     title: {
       tag: "h1",
@@ -14,7 +13,7 @@
     links: [
       {
         text: "Visual Styles",
-        url: "/pattern-lab/?p=viewall-visual-styles-color-palette",
+        url: "/pattern-lab/?p=viewall-visual-styles-color",
       },
       {
         text: "Components",
