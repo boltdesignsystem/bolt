@@ -19,13 +19,13 @@
   ],
   contentItems: [
     {
-      cardSubtitle: "Mission",
+      cardSubtitle: "Challenge",
       cardTitle: bolt.faker.sentence(3),
       cardMetaItems: [
         macros.include("@bolt-components-headline/text.twig", {
           size: "small",
           weight: "bold",
-          text: "#{bolt.faker.numberBetween(2,30)} topics",
+          text: "#{bolt.faker.numberBetween(2,15)} tasks",
         }, false),
         macros.include("@bolt-components-headline/text.twig", {
           size: "small",
@@ -86,9 +86,9 @@
     {
       cardSubtitle: "Challenge",
       cardTitle: bolt.faker.sentence(3),
-      cardGradient: "pink",
+      cardGradient: "orange",
       completed: true,
-      cardIcon: "brand-orbit",
+      cardIcon: "brand-meteor",
       cardDescription: bolt.faker.paragraph(3),
     },
     {
@@ -101,8 +101,8 @@
     {
       cardSubtitle: "Module",
       cardTitle: bolt.faker.sentence(3),
-      cardGradient: "pink",
-      cardIcon: "brand-atom",
+      cardGradient: "teal",
+      cardIcon: "brand-orbit",
       cardDescription: bolt.faker.paragraph(3),
     },
     macros.include("@bolt-academy/_badge.twig", {
