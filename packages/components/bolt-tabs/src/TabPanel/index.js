@@ -36,30 +36,38 @@ class TabPanel extends withContext(BoltElement) {
   static get properties() {
     return {
       inset: { type: String },
-      panel_spacing: { type: String },
-      id: { type: String },
+      panelSpacing: { type: String },
+      tabPanels: { type: Object },
       uuid: { type: String },
       selectedIndex: { type: Number },
+      id: props.string,
+      selected: props.boolean,
     };
   }
 
-  static get styles() {
-    return [unsafeCSS(styles)];
+  static get observedContexts() {
+    return ['inset', 'panelSpacing', 'tabPanels', 'uuid', 'selectedIndex'];
   }
 
-  get panelIndex() {
-    // Will return undefined until parent context is ready, e.g. if you call from `connectedCallback()`
-    return (
-      this.context.tabPanels && Array.from(this.context.tabPanels).indexOf(this)
-    );
+  // contextChangedCallback(name, oldValue, value) {
+  //   this[name] = value;
+  // }
+
+  static get styles() {
+    return [unsafeCSS(styles)];
   }
 
   connectedCallback() {
     super.connectedCallback && super.connectedCallback();
   }
 
+  get panelIndex() {
+    // Will return undefined until parent context is ready, e.g. if you call from `connectedCallback()`
+    return this.tabPanels && Array.from(this.tabPanels).indexOf(this);
+  }
+
   setSelectedTab() {
-    Array.from(this.context.tabPanels).forEach(item => {
+    Array.from(this.tabPanels).forEach(item => {
       if (item !== this) {
         item.removeAttribute('selected');
         item.selected = false;
@@ -81,7 +89,7 @@ class TabPanel extends withContext(BoltElement) {
   }
 
   template() {
-    // const { uuid, selectedIndex, panel_spacing, inset } = this.context;
+    // const { uuid, selectedIndex, panelSpacing, inset } = this;
 
     const index = this.panelIndex;
 
@@ -94,7 +102,7 @@ class TabPanel extends withContext(BoltElement) {
     const panelId = this.id || `tab-panel-${this.uuid}-${index + 1}`; // Use 1-based Id's
 
     const classes = cx('c-bolt-tab-panel', {
-      [`c-bolt-tab-panel--spacing-${this.panel_spacing}`]: this.panel_spacing,
+      [`c-bolt-tab-panel--spacing-${this.panelSpacing}`]: this.panelSpacing,
       [`c-bolt-tab-panel--inset`]: this.inset === 'on',
     });
 
@@ -136,13 +144,17 @@ class TabPanel extends withContext(BoltElement) {
     `;
   }
 
-  rendered() {
+  firstUpdated() {
     super.rendered && super.rendered();
 
-    const { selected } = this.validateProps(this.props);
+    // const { selected } = this.validateProps(this.props);
+
+    const selected = this.selected;
+    this.updateProvidedContext('selected', selected);
 
     // Keep selected attr in sync with context, triggers re-render
-    if (!selected && this.panelIndex === this.context.selectedIndex) {
+    if (!selected && this.panelIndex === this.selectedIndex) {
+      // console.log(this.tabPanels);
       this.setSelectedTab();
     }
   }

@@ -67,6 +67,7 @@ class BoltTabs extends withContext(BoltElement) {
     return {
       inset: { inset: schema.properties.inset.default },
       panelSpacing: { inset: schema.properties.panel_spacing.default }, // no need to pass `labelSpacing`, only used in this template
+      tabPanels: { inset: schema.properties.panels.default },
       uuid: '',
       selectedIndex: 0,
     };
@@ -199,6 +200,8 @@ class BoltTabs extends withContext(BoltElement) {
   // 0-based
   setSelectedTab(index) {
     const newIndex = this.validateIndex(index);
+
+    // console.log('selectedIndex: ' + this.selectedIndex);
 
     if (newIndex !== this.selectedIndex) {
       this.selectedIndex = newIndex;
@@ -360,7 +363,7 @@ class BoltTabs extends withContext(BoltElement) {
             @keyup=${e => this.handleOnKeyup(e)}
           >
             <span class="${cx('c-bolt-tabs__show-text')}">
-              ${this.props.moreText ? this.props.moreText : 'More'}
+              ${this.moreText ? this.moreText : 'More'}
             </span>
             <span class="${cx('c-bolt-tabs__show-icon')}">
               <bolt-icon name="chevron-down"></bolt-icon>
@@ -551,17 +554,9 @@ class BoltTabs extends withContext(BoltElement) {
     );
   }
 
-  update() {
-    this._resizeMenu();
-  }
-
-  createRenderRoot() {
-    /**
-     * Render template without shadow DOM. Note that shadow DOM features like
-     * encapsulated CSS and slots are unavailable.
-     */
-    return this;
-  }
+  // update() {
+  //   this._resizeMenu();
+  // }
 
   firstUpdated() {
     super.firstUpdated && super.firstUpdated();
@@ -655,13 +650,11 @@ class BoltTabs extends withContext(BoltElement) {
   }
 
   render() {
-    const inset = this.inset || schema.properties.inset.default;
-    const panelSpacing =
-      this.panelSpacing || schema.properties.panel_spacing.default;
-    const selectedTab =
-      this.selectedTab || schema.properties.selected_tab.default;
+    // const inset = this.inset || schema.properties.inset.default;
+    // const panelSpacing = this.panelSpacing || schema.properties.panel_spacing.default;
+    // const selectedTab = this.selectedTab || schema.properties.selected_tab.default;
 
-    this.selectedIndex = this.validateIndex(selectedTab - 1);
+    // this.selectedIndex = this.validateIndex(selectedTab - 1);
 
     // this.contexts.get(TabsContext).inset = inset;
     // this.contexts.get(TabsContext).panelSpacing = panelSpacing;
@@ -669,10 +662,26 @@ class BoltTabs extends withContext(BoltElement) {
     // this.contexts.get(TabsContext).selectedIndex = this.selectedIndex;
     // this.contexts.get(TabsContext).tabPanels = this.tabPanels;
 
-    this.updateProvidedContext('inset', inset);
-    this.updateProvidedContext('panelSpacing', panelSpacing);
+    this.updateProvidedContext(
+      'inset',
+      this.inset || schema.properties.inset.default,
+    );
+
+    this.updateProvidedContext(
+      'panelSpacing',
+      this.panelSpacing || schema.properties.panel_spacing.default,
+    );
+
     this.updateProvidedContext('uuid', this.uuid);
-    this.updateProvidedContext('selectedIndex', this.selectedIndex);
+
+    this.updateProvidedContext(
+      'selectedIndex',
+      this.validateIndex(
+        (this.selectedTab || schema.properties.selected_tab.default) - 1,
+      ),
+    );
+
+    // console.log(this.tabPanels);
     this.updateProvidedContext('tabPanels', this.tabPanels);
 
     return html`
