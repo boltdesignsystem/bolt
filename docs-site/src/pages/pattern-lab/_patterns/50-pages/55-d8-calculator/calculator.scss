@@ -6,14 +6,10 @@ $www-calculator-logo-spacing-size: 3px; // Hard px is used to avoid subpixel iss
   flex-wrap: wrap;
   justify-content: space-between;
   align-content: space-around;
-  width: calc(
-    #{$www-calculator-logo-icon-size} * 2 + #{$www-calculator-logo-spacing-size} *
-      4
-  );
-  height: calc(
-    #{$www-calculator-logo-icon-size} * 2 + #{$www-calculator-logo-spacing-size} *
-      4
-  );
+  width: $www-calculator-logo-icon-size * 2 + $www-calculator-logo-spacing-size *
+    4;
+  height: $www-calculator-logo-icon-size * 2 + $www-calculator-logo-spacing-size *
+    4;
   margin-bottom: var(--bolt-spacing-y-medium);
   color: bolt-color(navy);
 
@@ -23,23 +19,22 @@ $www-calculator-logo-spacing-size: 3px; // Hard px is used to avoid subpixel iss
 
   span {
     transform: scale(0) rotate(0deg);
-    width: calc(
-      #{$www-calculator-logo-icon-size} + #{$www-calculator-logo-spacing-size}
-    );
-    height: calc(
-      #{$www-calculator-logo-icon-size} + #{$www-calculator-logo-spacing-size}
-    );
+    width: $www-calculator-logo-icon-size + $www-calculator-logo-spacing-size;
+    height: $www-calculator-logo-icon-size + $www-calculator-logo-spacing-size;
     font-size: $www-calculator-logo-icon-size;
     line-height: 1;
     text-align: center;
     border-radius: bolt-border-radius(full);
     background-color: bolt-color(white);
     transition: transform $bolt-transition;
-    animation: 3s ease-in-out 0.5s forwards a-www-calculator-logo-spin;
+
+    @at-root body.js-loaded #{&} {
+      animation: 3s ease-in-out 0.5s forwards a-www-calculator-logo-spin;
+    }
 
     @media (prefers-reduced-motion) {
-      transform: none;
-      animation: none; // Do not animate if the user has expressed their preference for reduced motion.
+      transform: none !important;
+      animation: none !important; // Do not animate if the user has expressed their preference for reduced motion.
     }
 
     &:nth-child(2) {
@@ -70,12 +65,15 @@ $www-calculator-logo-spacing-size: 3px; // Hard px is used to avoid subpixel iss
   .o-bolt-grid__cell {
     opacity: 0;
     transform: translate3d(0, -10px, 0);
-    animation: 0.5s ease-in-out 0.5s forwards a-www-calculator-fade-in-down;
+
+    @at-root body.js-loaded #{&} {
+      animation: 0.5s ease-in-out 0.5s forwards a-www-calculator-fade-in-down;
+    }
 
     @media (prefers-reduced-motion) {
       opacity: 1;
-      transform: none;
-      animation: none; // Do not animate if the user has expressed their preference for reduced motion.
+      transform: none !important;
+      animation: none !important; // Do not animate if the user has expressed their preference for reduced motion.
     }
   }
 }
