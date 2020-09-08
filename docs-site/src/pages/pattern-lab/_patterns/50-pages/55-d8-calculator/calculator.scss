@@ -30,6 +30,7 @@ $www-calculator-logo-spacing-size: 3px; // Hard px is used to avoid subpixel iss
 
     @at-root bolt-band.is-ready #{&} {
       animation: 3s ease-in-out 0.5s forwards a-www-calculator-logo-spin;
+      animation-delay: 250ms;
     }
 
     @media (prefers-reduced-motion) {
@@ -65,6 +66,7 @@ $www-calculator-logo-spacing-size: 3px; // Hard px is used to avoid subpixel iss
   .o-bolt-grid__cell {
     opacity: 0;
     transform: translate3d(0, -10px, 0);
+    transition: transform $bolt-transition, opacity $bolt-transition;
 
     @at-root bolt-band.is-ready #{&} {
       animation: 0.5s ease-in-out 0.5s forwards a-www-calculator-fade-in-down;
@@ -202,4 +204,22 @@ $www-calculator-logo-spacing-size: 3px; // Hard px is used to avoid subpixel iss
     width: 75vw;
     max-width: 1080px;
   }
+}
+
+.c-www-calculator-nojs-alert {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  right: var(--bolt-spacing-x-medium);
+  bottom: 0;
+  left: var(--bolt-spacing-x-medium);
+  z-index: 1; // Moves the stacking order above the band content.
+  padding: var(--bolt-spacing-y-medium) var(--bolt-spacing-x-medium);
+  color: bolt-color(black);
+  text-align: center;
+  border-left: 3px solid bolt-color(warning);
+  border-radius: bolt-border-radius(small);
+  background-color: bolt-color(warning, light);
 }
