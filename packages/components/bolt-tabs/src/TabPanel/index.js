@@ -49,9 +49,9 @@ class TabPanel extends withContext(BoltElement) {
     return ['inset', 'panelSpacing', 'tabPanels', 'uuid', 'selectedIndex'];
   }
 
-  // contextChangedCallback(name, oldValue, value) {
-  //   this[name] = value;
-  // }
+  contextChangedCallback(name, oldValue, value) {
+    this[name] = value;
+  }
 
   static get styles() {
     return [unsafeCSS(styles)];
@@ -89,7 +89,7 @@ class TabPanel extends withContext(BoltElement) {
   }
 
   template() {
-    // const { uuid, selectedIndex, panelSpacing, inset } = this;
+    // const { uuid, selectedIndex, panelSpacing, inset } = this.context;
 
     const index = this.panelIndex;
 
@@ -112,7 +112,7 @@ class TabPanel extends withContext(BoltElement) {
       switch (name) {
         case 'label':
           return this.slotMap.get(name)
-            ? this.slotMap.get(name)
+            ? this.slotify(name)
             : html`
                 <slot name="${name}" />
               `;
@@ -145,16 +145,13 @@ class TabPanel extends withContext(BoltElement) {
   }
 
   firstUpdated() {
-    super.rendered && super.rendered();
+    super.firstUpdated && super.firstUpdated();
 
     // const { selected } = this.validateProps(this.props);
-
     const selected = this.selected;
-    this.updateProvidedContext('selected', selected);
 
     // Keep selected attr in sync with context, triggers re-render
     if (!selected && this.panelIndex === this.selectedIndex) {
-      // console.log(this.tabPanels);
       this.setSelectedTab();
     }
   }

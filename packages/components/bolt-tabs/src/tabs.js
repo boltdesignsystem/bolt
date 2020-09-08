@@ -30,17 +30,19 @@ let cx = classNames.bind(styles);
 class BoltTabs extends withContext(BoltElement) {
   static schema = schema;
 
-  static props = {
-    ...this.props,
-    selectedTab: {
-      ...props.number,
-      ...{ default: schema.properties.selected_tab.default },
-    },
-    menuIsOpen: {
-      ...props.boolean,
-      ...{ default: false },
-    },
-  };
+  static get properties() {
+    return {
+      ...this.props,
+      selectedTab: {
+        ...props.number,
+        ...{ default: schema.properties.selected_tab.default },
+      },
+      menuIsOpen: {
+        ...props.boolean,
+        ...{ default: false },
+      },
+    };
+  }
 
   constructor() {
     super();
@@ -200,8 +202,6 @@ class BoltTabs extends withContext(BoltElement) {
   // 0-based
   setSelectedTab(index) {
     const newIndex = this.validateIndex(index);
-
-    // console.log('selectedIndex: ' + this.selectedIndex);
 
     if (newIndex !== this.selectedIndex) {
       this.selectedIndex = newIndex;
@@ -681,7 +681,6 @@ class BoltTabs extends withContext(BoltElement) {
       ),
     );
 
-    // console.log(this.tabPanels);
     this.updateProvidedContext('tabPanels', this.tabPanels);
 
     return html`
