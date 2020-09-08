@@ -248,8 +248,11 @@ bolt-tabs {
     .c-bolt-tabs--inset {
       .c-bolt-tabs__label--spacing-#{$size-name} {
         .c-bolt-tabs__label-text {
-          padding: calc(var(--bolt-spacing-y-#{$size-name}) / 2)
-            var(--bolt-spacing-x-#{$size-name});
+          // Use longhand instead of short hand to fix a bug with older versions of Edge (e.g. 42, 17).
+          padding-top: calc(var(--bolt-spacing-y-#{$size-name}) / 2);
+          padding-right: var(--bolt-spacing-x-#{$size-name});
+          padding-bottom: calc(var(--bolt-spacing-y-#{$size-name}) / 2);
+          padding-left: var(--bolt-spacing-x-#{$size-name});
         }
       }
     }

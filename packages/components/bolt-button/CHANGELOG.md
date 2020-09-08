@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.27.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button/compare/v2.27.0-alpha-calculator-2...v2.27.0) (2020-08-28)
+
+
+### Bug Fixes
+
+* snaps ([de9bc5b](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button/commit/de9bc5b4ca625ec4abbabb129cbcfdef144c38c2))
+* snaps ([557c961](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button/commit/557c961a25a7b6377485ea29969d3153e8f6cee5))
+
+
+
+
+
 ## [2.26.2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button/compare/v2.26.1...v2.26.2) (2020-07-30)
 
 **Note:** Version bump only for package @bolt/components-button

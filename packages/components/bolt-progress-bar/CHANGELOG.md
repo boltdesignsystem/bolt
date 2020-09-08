@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.27.0](http://github.com/boltdesignsystem/bolt/tree/master/packages/components/bolt-progress-bar/compare/v2.27.0-alpha-calculator-2...v2.27.0) (2020-08-28)
+
+
+### Bug Fixes
+
+* snaps ([557c961](http://github.com/boltdesignsystem/bolt/tree/master/packages/components/bolt-progress-bar/commit/557c961a25a7b6377485ea29969d3153e8f6cee5))
+
+
+
+
+
 # [2.26.0](http://github.com/boltdesignsystem/bolt/tree/master/packages/components/bolt-progress-bar/compare/v2.25.1...v2.26.0) (2020-07-22)
 
 

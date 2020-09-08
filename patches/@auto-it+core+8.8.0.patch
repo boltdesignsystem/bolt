@@ -1,0 +1,12 @@
+diff --git a/node_modules/@auto-it/core/dist/git.js b/node_modules/@auto-it/core/dist/git.js
+index 6cbb7a5..2fbf862 100644
+--- a/node_modules/@auto-it/core/dist/git.js
++++ b/node_modules/@auto-it/core/dist/git.js
+@@ -205,6 +205,7 @@ class Git {
+             }));
+         }
+         catch (error) {
++            console.log(error);
+             const tag = error.match(/ambiguous argument '(\S+)\.\.\S+'/);
+             if (tag) {
+                 this.logger.log.error(endent_1.default `
