@@ -1,11 +1,3 @@
-<script>
-  window.addEventListener('load', showPage);
-
-  function showPage() {
-    document.body.classList.add('js-loaded');
-  }
-</script>
-
 {#
 /**
  * Content band and custom background block
@@ -31,6 +23,8 @@
      */
     #}
     <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-9/12@small">
+      <noscript><p>JS is not enabled</p></noscript>
+
       {% include "@bolt-components-headline/headline.twig" with {
         text: "Real-time Decisioning Revenue Calculator",
         size: "xxxlarge",
