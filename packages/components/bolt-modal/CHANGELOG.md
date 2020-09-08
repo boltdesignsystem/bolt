@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.27.0](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-modal/compare/v2.27.0-alpha-calculator-2...v2.27.0) (2020-08-28)
+
+
+### Bug Fixes
+
+* snaps ([de9bc5b](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-modal/commit/de9bc5b4ca625ec4abbabb129cbcfdef144c38c2))
+* snaps ([557c961](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-modal/commit/557c961a25a7b6377485ea29969d3153e8f6cee5))
+
+
+
+
+
 # [2.26.0](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-modal/compare/v2.25.1...v2.26.0) (2020-07-22)
 
 **Note:** Version bump only for package @bolt/components-modal
