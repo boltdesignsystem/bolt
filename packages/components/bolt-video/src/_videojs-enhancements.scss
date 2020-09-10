@@ -6,9 +6,7 @@
 // 3. [Mai] Hide close captions button.
 // 4. [Mai] Flexbox messes up IE layout, this prevents IE from loading display: flex.
 // 5. Required so videos with intrinsic ratio (used in the <bolt-ratio> object) properly fill the space available in IE 11.
-// 6. [Mai] These gradients cover up part of the squre to form a triangle. A triangle had to be formed this way because % width has to be used to determine a flexible triangle based on the video size.
-// 7. [Mai] This optically centers the triangle.
-// 8. [Denton] Hide the title when sharing to minimize the chances that you'll see a scrollbar, which is undesirable.  The description field will take its place.
+// 6. [Denton] Hide the title when sharing to minimize the chances that you'll see a scrollbar, which is undesirable.  The description field will take its place.
 
 $bolt-video-js-button-text-color: bolt-color(navy);
 $bolt-video-js-button-background-color: bolt-color(yellow);
@@ -57,43 +55,13 @@ $bolt-video-js-button-shadow-level-hover: 'level-40';
     .vjs-icon-placeholder {
       display: block;
       position: absolute;
-      top: 18%; // [7]
-      left: 42%; // [7]
-      width: 40%;
-      height: auto;
-      margin: 0;
-      padding: 0 0 40%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 23%;
+      height: 45%;
       background-color: $bolt-video-js-button-text-color;
-
-      &:before,
-      &:after {
-        content: '';
-        display: block;
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        width: calc(100% + 4px);
-        height: calc(100% + 4px);
-        font-family: var(--bolt-type-font-family-body);
-      }
-
-      &:before {
-        background: linear-gradient(
-          -30deg,
-          $bolt-video-js-button-background-color 48%,
-          // [6]
-            transparent 50%
-        );
-      }
-
-      &:after {
-        background: linear-gradient(
-          -150deg,
-          $bolt-video-js-button-background-color 48%,
-          // [6]
-            transparent 50%
-        );
-      }
+      clip-path: polygon(0 0, 0 100%, 100% 50%);
     }
 
     &:hover,
@@ -175,7 +143,7 @@ $bolt-video-js-button-shadow-level-hover: 'level-40';
       }
 
       .vjs-social-title {
-        @include bolt-visuallyhidden; // [8]
+        @include bolt-visuallyhidden; // [6]
       }
 
       .vjs-social-description {
