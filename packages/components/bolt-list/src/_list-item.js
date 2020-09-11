@@ -29,10 +29,6 @@ class BoltListItem extends withContext(BoltElement) {
     return [unsafeCSS(styles)];
   }
 
-  connectedCallback() {
-    super.connectedCallback && super.connectedCallback();
-  }
-
   render() {
     const classes = cx('c-bolt-list-item', {
       [`c-bolt-list-item--align-${this.align}`]: this.align,
