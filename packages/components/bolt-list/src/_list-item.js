@@ -1,5 +1,4 @@
 import { customElement, BoltElement, html, unsafeCSS } from '@bolt/element';
-import { props } from '@bolt/core-v3.x/utils';
 import { withContext } from 'wc-context';
 import classNames from 'classnames/bind';
 import styles from './_list-item.scss';
@@ -9,15 +8,12 @@ let cx = classNames.bind(styles);
 
 @customElement('bolt-list-item')
 class BoltListItem extends withContext(BoltElement) {
+  static schema = schema;
+
   static get properties() {
     return {
-      align: { type: String },
-      display: { type: String },
-      inset: { type: String },
-      separator: { type: String },
-      spacing: { type: String },
-      tag: { type: String },
-      isLast: props.boolean,
+      ...this.props,
+      last: { type: Boolean },
     };
   }
 
