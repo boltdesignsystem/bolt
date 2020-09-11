@@ -1,0 +1,25 @@
+/* ------------------------------------ *\
+   Color System (CSS Custom Props)
+\* ------------------------------------ */
+
+/**
+ * Generate global color variables
+ *
+ * 1. Maps are kept in core/settings.
+ */
+:root {
+  @each $color in $bolt-colors {
+    $color-name: nth($color, 1);
+
+    @each $color-shade, $color-value in nth($color, 2) {
+      @if ($color-shade == $bolt-color-default) {
+        --bolt-color-#{$color-name}: #{bolt-color($color-name)};
+      } @else {
+        --bolt-color-#{$color-name}-#{$color-shade}: #{bolt-color(
+            $color-name,
+            $color-shade
+          )};
+      }
+    }
+  }
+}

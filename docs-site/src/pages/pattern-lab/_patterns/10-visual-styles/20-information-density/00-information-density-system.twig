@@ -1,0 +1,81 @@
+{% set content %}
+  <bolt-stack spacing="large">
+    <bolt-text headline font-size="xxxlarge" tag="h1">
+      Information Density System
+    </bolt-text>
+    <bolt-text subheadline font-size="xxlarge" tag="h2">
+      Various spacing and typography configurations based on information density.
+    </bolt-text>
+  </bolt-stack>
+
+  <bolt-table>
+    <table first-col-fixed-width>
+      <thead>
+        <tr>
+          <td></td>
+          <th>Data attribute*</th>
+          <th>Note</th>
+          <th>Demo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>
+            Comfortable
+          </th>
+          <td>
+            data-bolt-info-density="comfortable"
+          </td>
+          <td>
+            The comfortable density increases font-size and spacing.
+          </td>
+          <td>
+            <bolt-link url="{{ link['visual-styles-comfortable-density'] }}">View<bolt-icon name="chevron-right" slot="after"></bolt-icon></bolt-link>
+          </td>
+        </tr>
+        <tr>
+          <th>
+            Regular
+          </th>
+          <td>
+            data-bolt-info-density="regular"
+          </td>
+          <td>
+            The default density.
+          </td>
+          <td>
+            <bolt-link url="{{ link['visual-styles-regular-density'] }}">View<bolt-icon name="chevron-right" slot="after"></bolt-icon></bolt-link>
+          </td>
+        </tr>
+        <tr>
+          <th>
+            Compact
+          </th>
+          <td>
+            data-bolt-info-density="compact"
+          </td>
+          <td>
+            The compact density decreases font-size and spacing.
+          </td>
+          <td>
+            <bolt-link url="{{ link['visual-styles-compact-density'] }}">View<bolt-icon name="chevron-right" slot="after"></bolt-icon></bolt-link>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </bolt-table>
+  <bolt-banner align="start">
+    <bolt-list>
+      <bolt-list-item>
+        *The data attribute can only be used on the <code>&lt;html&gt;</code> element of a page.
+      </bolt-list-item>
+    </bolt-list>
+  </bolt-banner>
+{% endset %}
+
+{% include "@bolt-components-band/band.twig" with {
+  content: content,
+  theme: "none",
+  size: "large",
+} only %}
+

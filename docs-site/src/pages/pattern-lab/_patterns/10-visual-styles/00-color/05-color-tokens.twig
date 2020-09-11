@@ -1,12 +1,10 @@
-
-
 {% set content %}
   <bolt-stack spacing="large">
     <bolt-text headline font-size="xxxlarge" tag="h1">
-      Text Color Utilities
+      Color Tokens
     </bolt-text>
     <bolt-text subheadline font-size="xxlarge" tag="h2">
-      Utility classes based on Bolt&rsquo;s color system.
+      Design tokens for Bolt&rsquo;s color system, available as CSS custom properties.
     </bolt-text>
   </bolt-stack>
 
@@ -23,19 +21,23 @@
             <table>
               <thead>
                 <tr>
-                  <th>Class name</th>
-                  <th>CSS value</th>
+                  <td></td>
+                  <th>CSS custom property</th>
+                  <th>Value</th>
                 </tr>
               </thead>
               <tbody>
                 {% for shade, color_value in palette %}
                   {% if shade != "base" %}
                     {% set shade_modifier = "-" ~ shade %}
+                    {% set shade_name = ", " ~ shade %}
                   {% else %}
                     {% set shade_modifier = "" %}
+                    {% set shade_name = "" %}
                   {% endif %}
                   <tr>
-                    <td>.u-bolt-color-{{ color_name }}{{ shade_modifier }}</td>
+                    <th>{{ color_name|capitalize }}{{ shade_name }}</th>
+                    <td>var(--bolt-color-{{ color_name }}{{ shade_modifier }})</td>
                     <td style="white-space: nowrap">
                       <span class="c-bds-color-chip" style="background: {{ color_value|rgb2hex }};"></span>&nbsp;&nbsp;{{ color_value|rgb2hex }}
                     </td>
@@ -60,19 +62,23 @@
             <table>
               <thead>
                 <tr>
-                  <th>Class name</th>
-                  <th>CSS value</th>
+                  <td></td>
+                  <th>CSS custom property</th>
+                  <th>Value</th>
                 </tr>
               </thead>
               <tbody>
                 {% for shade, color_value in palette %}
                   {% if shade != "base" %}
                     {% set shade_modifier = "-" ~ shade %}
+                    {% set shade_name = ", " ~ shade %}
                   {% else %}
                     {% set shade_modifier = "" %}
+                    {% set shade_name = "" %}
                   {% endif %}
                   <tr>
-                    <td>.u-bolt-color-{{ color_name }}{{ shade_modifier }}</td>
+                    <th>{{ color_name|capitalize }}{{ shade_name }}</th>
+                    <td>var(--bolt-color-{{ color_name }}{{ shade_modifier }})</td>
                     <td style="white-space: nowrap">
                       <span class="c-bds-color-chip" style="background: {{ color_value|rgb2hex }};"></span>&nbsp;&nbsp;{{ color_value|rgb2hex }}
                     </td>
