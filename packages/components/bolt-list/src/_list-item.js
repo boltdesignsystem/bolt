@@ -33,24 +33,12 @@ class BoltListItem extends withContext(BoltElement) {
     super.connectedCallback && super.connectedCallback();
   }
 
-  get parentComponent() {
-    return this.closest('bolt-list');
-  }
-
-  get allListItems() {
-    return this.parentComponent.querySelectorAll('bolt-list-item');
-  }
-
   render() {
-    const isLast =
-      this.allListItems &&
-      this.allListItems.item(this.allListItems.length - 1) === this;
-
     const classes = cx('c-bolt-list-item', {
       [`c-bolt-list-item--align-${this.align}`]: this.align,
       [`c-bolt-list-item--display-${this.display}`]: this.display,
       [`c-bolt-list-item--inset`]: this.inset,
-      [`c-bolt-list-item--last-item`]: isLast,
+      [`c-bolt-list-item--last-item`]: this.last,
       [`c-bolt-list-item--separator-${this.separator}`]:
         this.separator !== 'none',
       [`c-bolt-list-item--spacing-${this.spacing}`]: this.spacing !== 'none',
