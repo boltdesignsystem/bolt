@@ -118,21 +118,19 @@ async function init() {
       console.error(error);
     }
   } else if (isFullRelease) {
-    try {
-      const version = await shell
+    const version =
+      (await shell
         .exec(`auto version --from v${currentVersion}`, { silent: true })
-        .stdout.trim();
+        .stdout.trim()) || 'minor';
+
+    try {
       const nextVersion = await semver.inc(currentVersion, version);
 
-      if (
-        !version ||
-        !currentVersion ||
-        !nextVersion ||
-        nextVersion === currentVersion
-      ) {
-        console.log('current version', currentVersion);
-        console.log('upcoming version type', version);
-        console.log('next version', nextVersion);
+      console.log('current version', currentVersion);
+      console.log('upcoming version type', version);
+      console.log('next version', nextVersion);
+
+      if (!currentVersion || !nextVersion || nextVersion === currentVersion) {
         console.error(`Unknown version to publish to!`);
         return;
       } else {
