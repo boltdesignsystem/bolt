@@ -20,7 +20,7 @@ class BoltStack extends BoltElement {
   }
 
   render() {
-    const classes = cx('c-bolt-stack', {});
+    const classes = cx('c-bolt-stack');
 
     return html`
       <div class="${classes}">
