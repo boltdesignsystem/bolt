@@ -33,14 +33,7 @@ class BoltTabs extends withContext(BoltElement) {
   static get properties() {
     return {
       ...this.props,
-      selectedTab: {
-        ...props.number,
-        ...{ default: schema.properties.selected_tab.default },
-      },
-      menuIsOpen: {
-        ...props.boolean,
-        ...{ default: false },
-      },
+      menuIsOpen: { type: Boolean },
     };
   }
 
@@ -69,9 +62,9 @@ class BoltTabs extends withContext(BoltElement) {
     return {
       inset: { inset: schema.properties.inset.default },
       panelSpacing: { inset: schema.properties.panel_spacing.default }, // no need to pass `labelSpacing`, only used in this template
-      tabPanels: { inset: schema.properties.panels.default },
       uuid: '',
       selectedIndex: 0,
+      tabPanels: {},
     };
   }
 
@@ -207,8 +200,7 @@ class BoltTabs extends withContext(BoltElement) {
       this.selectedIndex = newIndex;
 
       this.setAttribute('selected-tab', newIndex + 1); // Convert `selectedTab` back to 1-based scale
-      // this.contexts.get(TabsContext).selectedIndex = newIndex; // Keep context 0-based
-      this.updateProvidedContext('selectedIndex', newIndex);
+      this.updateProvidedContext('selectedIndex', newIndex); // Keep context 0-based
 
       // set timeout allows time for sub component to re-render, better that than putting this on the sub component where it'll be fired many more times than needed
       setTimeout(() => {
