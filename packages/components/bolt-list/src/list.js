@@ -60,7 +60,7 @@ class BoltList extends withContext(BoltElement) {
 
     if (this.slotMap.get('default')) {
       const updatedDefaultSlot = this.slotMap
-        ?.get('default')
+        .get('default')
         .filter(item => item.tagName);
       const updatedSlotsLength = updatedDefaultSlot.length;
       const lastSlotItem = updatedDefaultSlot[updatedDefaultSlot.length - 1];
