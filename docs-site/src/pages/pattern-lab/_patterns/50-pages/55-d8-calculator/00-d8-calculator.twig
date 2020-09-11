@@ -6,6 +6,17 @@
 {% set content %}
   {#
   /**
+   * NO-JS alert
+   */
+  #}
+  <noscript>
+    <div class="c-www-calculator-nojs-alert">
+      <p><strong>Note: the calculator requires JavaScript to run, please turn it on and reload the page.</strong></p>
+    </div>
+  </noscript>
+
+  {#
+  /**
    * Logo
    */
   #}
@@ -69,6 +80,7 @@
                     required: true,
                     type: "number",
                     id: for_value,
+                    pattern: "/\d/",
                     "data-bolt-format-input": "currency-us"
                   },
                 } only %}
@@ -99,6 +111,7 @@
                     required: true,
                     type: "number",
                     id: for_value,
+                    pattern: "/\d/",
                     "data-bolt-format-input": "percent",
                     min: 0,
                     max: 100
@@ -131,6 +144,7 @@
                     required: true,
                     type: "number",
                     id: for_value,
+                    pattern: "/\d/",
                     "data-bolt-format-input": "number"
                   },
                 } only %}
@@ -161,6 +175,7 @@
                     required: true,
                     type: "number",
                     id: for_value,
+                    pattern: "/\d/",
                     "data-bolt-format-input": "currency-us"
                   },
                 } only %}
@@ -191,6 +206,7 @@
                     required: true,
                     type: "number",
                     id: for_value,
+                    pattern: "/\d/",
                     "data-bolt-format-input": "currency-us"
                   },
                 } only %}
