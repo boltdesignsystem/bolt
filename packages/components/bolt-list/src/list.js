@@ -18,12 +18,12 @@ class BoltList extends withContext(BoltElement) {
 
   static get providedContexts() {
     return {
-      align: { align: schema.properties.align.default },
-      display: { value: schema.properties.display.default },
-      inset: { inset: schema.properties.inset.default },
-      separator: { separator: schema.properties.separator.default },
-      spacing: { value: schema.properties.spacing.default },
-      tag: { tag: schema.properties.tag.default },
+      align: { property: 'align' },
+      display: { property: 'display' },
+      inset: { property: 'inset' },
+      separator: { property: 'separator' },
+      spacing: { property: 'spacing' },
+      tag: { property: 'tag' },
     };
   }
 
@@ -40,13 +40,6 @@ class BoltList extends withContext(BoltElement) {
     const spacing = this.spacing || schema.properties.spacing.default;
     const tag = this.tag || schema.properties.tag.default;
     const valign = this.valign || schema.properties.valign.default;
-
-    this.updateProvidedContext('align', align);
-    this.updateProvidedContext('display', display);
-    this.updateProvidedContext('inset', inset);
-    this.updateProvidedContext('separator', separator);
-    this.updateProvidedContext('spacing', spacing);
-    this.updateProvidedContext('tag', tag);
 
     const classes = cx('c-bolt-list', {
       [`c-bolt-list--align-${align}`]: align,
