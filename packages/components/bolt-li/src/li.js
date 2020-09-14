@@ -1,29 +1,45 @@
-import { props, mapWithDepth } from '@bolt/core-v3.x/utils';
+import { html, customElement, BoltElement, unsafeCSS } from '@bolt/element';
+import { mapWithDepth } from '@bolt/core-v3.x/utils';
 import classNames from 'classnames/bind';
-import { withLitHtml } from '@bolt/core-v3.x/renderers/renderer-lit-html';
-import { html, customElement } from '@bolt/element';
 import styles from './li.scss';
+import schema from '../li.schema';
 
 let cx = classNames.bind(styles);
 
 @customElement('bolt-li')
-class BoltListItem extends withLitHtml {
-  static props = {
-    last: {
-      ...props.boolean,
-      ...{ default: false },
-    },
-    level: {
-      ...props.number,
-      ...{ default: 0 },
-    },
-    type: {
-      ...props.string,
-      ...{ default: 'ul' },
-    },
-  };
+class BoltListItem extends BoltElement {
+  static schema = schema;
 
-  connected() {
+  // static props = {
+  //   last: {
+  //     ...props.boolean,
+  //     ...{ default: false },
+  //   },
+  //   level: {
+  //     ...props.number,
+  //     ...{ default: 0 },
+  //   },
+  //   type: {
+  //     ...props.string,
+  //     ...{ default: 'ul' },
+  //   },
+  // };
+  static get properties() {
+    return {
+      last: { type: Boolean },
+      level: { type: Number },
+      type: { type: String },
+    };
+  }
+
+  static get styles() {
+    return [unsafeCSS(styles)];
+  }
+
+  connectedCallback() {
+    super.connectedCallback && super.connectedCallback();
+    // @DAN lets talk about this
+
     this.type =
       this.parentNode.tagName === 'BOLT-OL' || this.parentNode.tagName === 'OL'
         ? 'ol'
@@ -31,7 +47,8 @@ class BoltListItem extends withLitHtml {
     this.level =
       this.parentNode.level && this.type === 'ul'
         ? this.parentNode.level
-        : this.props.level;
+        : this.level;
+    // @DAN WHAT DO I DO
   }
 
   render() {
@@ -48,13 +65,14 @@ class BoltListItem extends withLitHtml {
       childNode.level = depth + 1;
     }
 
-    this.slots.default = this.slots.default.map(
-      mapWithDepth(this.level, addNestedLevelProps),
-    );
+    // this.slotMap.get('default') = this.slotMap
+    //   .get('default')
+    //   .map(mapWithDepth(this.level, addNestedLevelProps));
 
     return html`
-      ${this.addStyles([styles])}
-      <div class="${classes}" role="listitem">${this.slot('default')}</div>
+      <div class="${classes}" role="listitem">
+        ${this.slotify('default')}
+      </div>
     `;
   }
 }

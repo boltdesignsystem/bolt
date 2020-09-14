@@ -1,8 +1,8 @@
-import { html, customElement } from '@bolt/element';
-import { props, mapWithDepth } from '@bolt/core-v3.x/utils';
+import { html, customElement, BoltElement, unsafeCSS } from '@bolt/element';
+import { mapWithDepth } from '@bolt/core-v3.x/utils';
 import classNames from 'classnames/bind';
-import { withLitHtml } from '@bolt/core-v3.x/renderers/renderer-lit-html';
 import styles from './ul.scss';
+import schema from '../ul.schema';
 
 let cx = classNames.bind(styles);
 
@@ -18,13 +18,30 @@ function addNestedLevelProps(childNode, level) {
 }
 
 @customElement('bolt-ul')
-class BoltUnorderedList extends withLitHtml {
-  static props = {
-    level: {
-      ...props.number,
-      ...{ default: 1 },
-    },
-  };
+class BoltUnorderedList extends BoltElement {
+  static schema = schema;
+
+  // static props = {
+  //   level: {
+  //     ...props.number,
+  //     ...{ default: 1 },
+  //   },
+  // };
+  static get properties() {
+    return {
+      level: { type: Number },
+    };
+  }
+
+  static get styles() {
+    return [unsafeCSS(styles)];
+  }
+
+  connectedCallback() {
+    super.connectedCallback && super.connectedCallback();
+
+    this.level = 1;
+  }
 
   render() {
     let level = this.level;
@@ -46,12 +63,14 @@ class BoltUnorderedList extends withLitHtml {
       [`c-bolt-ul--nested`]: nested,
     });
 
-    this.slots.default.map(mapWithDepth(level, addNestedLevelProps));
+    // console.log(classes);
 
-    if (this.slots.default) {
-      const updatedDefaultSlot = this.slots.default.filter(
-        item => item.tagName,
-      );
+    this.slotMap.get('default').map(mapWithDepth(level, addNestedLevelProps));
+
+    if (this.slotMap.get('default')) {
+      const updatedDefaultSlot = this.slotMap
+        .get('default')
+        .filter(item => item.tagName);
       const updatedSlotsLength = updatedDefaultSlot.length;
       const lastSlotItem = updatedDefaultSlot[updatedSlotsLength - 1];
 
@@ -61,9 +80,8 @@ class BoltUnorderedList extends withLitHtml {
     }
 
     return html`
-      ${this.addStyles([styles])}
       <div class="${classes}" role="list">
-        ${this.slot('default')}
+        ${this.slotify('default')}
       </div>
     `;
   }
