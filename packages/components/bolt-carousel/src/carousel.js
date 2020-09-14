@@ -409,6 +409,11 @@ class BoltCarousel extends BoltElement {
     }
   }
 
+  // Public method called by Tabs and Accordion when DOM changes and Carousel needs to update
+  updateLayout() {
+    this.swiper?.update();
+  }
+
   onSlideChange() {
     this.disableSwipingIfAllSlidesAreVisible();
   }
