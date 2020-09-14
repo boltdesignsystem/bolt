@@ -1,3 +1,10 @@
-<bolt-banner status="warning" class="u-bolt-margin-top-large">
-  <strong>This is a placeholder element only used in Pattern Lab demos.</strong>
-</bolt-banner>
+{% set usage %}{% verbatim %}
+{% include "@bolt-components-page-header/page-header.twig" with {
+  TBD
+} only %}
+{% endverbatim %}{% endset %}
+
+{% include "@utils/docs.twig" with {
+  componentName: "page-header",
+  usage: usage
+} only %}
