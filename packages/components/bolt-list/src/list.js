@@ -32,23 +32,14 @@ class BoltList extends withContext(BoltElement) {
   }
 
   render() {
-    const align = this.align || schema.properties.align.default;
-    const display = this.display || schema.properties.display.default;
-    const inset = this.inset || schema.properties.inset.default;
-    const nowrap = this.nowrap || schema.properties.nowrap.default;
-    const separator = this.separator || schema.properties.separator.default;
-    const spacing = this.spacing || schema.properties.spacing.default;
-    const tag = this.tag || schema.properties.tag.default;
-    const valign = this.valign || schema.properties.valign.default;
-
     const classes = cx('c-bolt-list', {
-      [`c-bolt-list--align-${align}`]: align,
-      [`c-bolt-list--display-${display}`]: display,
-      [`c-bolt-list--inset`]: inset,
-      [`c-bolt-list--nowrap`]: nowrap,
-      [`c-bolt-list--separator-${separator}`]: separator !== 'none',
-      [`c-bolt-list--spacing-${spacing}`]: spacing !== 'none',
-      [`c-bolt-list--valign-${valign}`]: valign,
+      [`c-bolt-list--align-${this.align}`]: this.align,
+      [`c-bolt-list--display-${this.display}`]: this.display,
+      [`c-bolt-list--inset`]: this.inset,
+      [`c-bolt-list--nowrap`]: this.nowrap,
+      [`c-bolt-list--separator-${this.separator}`]: this.separator !== 'none',
+      [`c-bolt-list--spacing-${this.spacing}`]: this.spacing !== 'none',
+      [`c-bolt-list--valign-${this.valign}`]: this.valign,
     });
 
     if (this.slotMap.get('default')) {
