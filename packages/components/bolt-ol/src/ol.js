@@ -21,12 +21,6 @@ function addNestedLevelProps(childNode, level) {
 class BoltOrderedList extends BoltElement {
   static schema = schema;
 
-  // static props = {
-  //   level: {
-  //     ...props.number,
-  //     ...{ default: 0 },
-  //   },
-  // };
   static get properties() {
     return {
       level: { type: Number },
@@ -35,6 +29,12 @@ class BoltOrderedList extends BoltElement {
 
   static get styles() {
     return [unsafeCSS(styles)];
+  }
+
+  connectedCallback() {
+    super.connectedCallback && super.connectedCallback();
+
+    this.level = 1;
   }
 
   render() {

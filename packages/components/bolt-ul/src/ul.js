@@ -21,12 +21,6 @@ function addNestedLevelProps(childNode, level) {
 class BoltUnorderedList extends BoltElement {
   static schema = schema;
 
-  // static props = {
-  //   level: {
-  //     ...props.number,
-  //     ...{ default: 1 },
-  //   },
-  // };
   static get properties() {
     return {
       level: { type: Number },
@@ -62,8 +56,6 @@ class BoltUnorderedList extends BoltElement {
       [`c-bolt-ul--level-${level}`]: level,
       [`c-bolt-ul--nested`]: nested,
     });
-
-    // console.log(classes);
 
     this.slotMap.get('default').map(mapWithDepth(level, addNestedLevelProps));
 

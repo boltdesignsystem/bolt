@@ -10,20 +10,6 @@ let cx = classNames.bind(styles);
 class BoltListItem extends BoltElement {
   static schema = schema;
 
-  // static props = {
-  //   last: {
-  //     ...props.boolean,
-  //     ...{ default: false },
-  //   },
-  //   level: {
-  //     ...props.number,
-  //     ...{ default: 0 },
-  //   },
-  //   type: {
-  //     ...props.string,
-  //     ...{ default: 'ul' },
-  //   },
-  // };
   static get properties() {
     return {
       last: { type: Boolean },
@@ -65,9 +51,10 @@ class BoltListItem extends BoltElement {
       childNode.level = depth + 1;
     }
 
-    // this.slotMap.get('default') = this.slotMap
-    //   .get('default')
-    //   .map(mapWithDepth(this.level, addNestedLevelProps));
+    // @DAN look at this
+    this.slotMap
+      .get('default')
+      .map(mapWithDepth(this.level, addNestedLevelProps));
 
     return html`
       <div class="${classes}" role="listitem">
