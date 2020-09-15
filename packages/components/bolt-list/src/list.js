@@ -18,7 +18,6 @@ class BoltList extends withContext(BoltElement) {
 
   static get providedContexts() {
     return {
-      align: { property: 'align' },
       display: { property: 'display' },
       inset: { property: 'inset' },
       separator: { property: 'separator' },

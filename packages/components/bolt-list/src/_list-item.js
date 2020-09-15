@@ -18,7 +18,7 @@ class BoltListItem extends withContext(BoltElement) {
   }
 
   static get observedContexts() {
-    return ['align', 'display', 'inset', 'separator', 'spacing', 'tag'];
+    return ['display', 'inset', 'separator', 'spacing', 'tag'];
   }
 
   contextChangedCallback(name, oldValue, value) {
@@ -31,7 +31,6 @@ class BoltListItem extends withContext(BoltElement) {
 
   render() {
     const classes = cx('c-bolt-list-item', {
-      [`c-bolt-list-item--align-${this.align}`]: this.align,
       [`c-bolt-list-item--display-${this.display}`]: this.display,
       [`c-bolt-list-item--inset`]: this.inset,
       [`c-bolt-list-item--last-item`]: this.last,
