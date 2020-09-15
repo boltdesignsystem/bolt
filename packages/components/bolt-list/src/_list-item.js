@@ -11,8 +11,13 @@ class BoltListItem extends withContext(BoltElement) {
   static schema = schema;
 
   static get properties() {
+    const { display, inset, separator, spacing, tag } = this.props;
     return {
-      ...this.props,
+      display,
+      inset,
+      separator,
+      spacing,
+      tag,
       last: { type: Boolean },
     };
   }
