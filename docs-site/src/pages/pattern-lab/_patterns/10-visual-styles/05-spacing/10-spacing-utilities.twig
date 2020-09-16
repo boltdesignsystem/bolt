@@ -33,7 +33,7 @@
             <tbody>
               {% for multiplier_name, multiplier_value in spacing_multiplier_map %}
                 <tr>
-                  <td>.u-bolt-{{ property }}-{{ direction }}-{{ multiplier_name }}</td>
+                  <td>.u-bolt-{{ property }}-{{ multiplier_name }}</td>
                   <td>{{ property }}:
                     {% for size_name, size_value in spacing_size_map %}
                       {{ size_value|number_format(2,".",",") * multiplier_value|number_format(2,".",",") ~ "rem" }}

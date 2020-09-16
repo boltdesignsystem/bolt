@@ -1,36 +1,30 @@
-import { html, customElement } from '@bolt/element';
-import { props } from '@bolt/core-v3.x/utils';
-import { withLitHtml } from '@bolt/core-v3.x/renderers/renderer-lit-html';
+import { html, customElement, BoltElement, unsafeCSS } from '@bolt/element';
 import classNames from 'classnames/bind';
 import styles from './stack.scss';
+import schema from '../stack.schema';
 
 let cx = classNames.bind(styles);
 
 @customElement('bolt-stack')
-class BoltStack extends withLitHtml {
-  static props = {
-    noShadow: {
-      ...props.boolean,
-      ...{ default: false },
-    },
-    disabled: {
-      ...props.boolean,
-      ...{ default: false },
-    },
-  };
+class BoltStack extends BoltElement {
+  static schema = schema;
+
+  static get properties() {
+    return {
+      ...this.props,
+    };
+  }
+
+  static get styles() {
+    return [unsafeCSS(styles)];
+  }
 
   render() {
-    // validate the original prop data passed along -- returns back the validated data w/ added default values
-    const { disabled } = this.validateProps(this.props);
-
-    const classes = cx('c-bolt-stack', {
-      [`c-bolt-stack--disabled`]: disabled,
-    });
+    const classes = cx('c-bolt-stack');
 
     return html`
-      ${this.addStyles([styles])}
       <div class="${classes}">
-        ${this.slot('default')}
+        ${this.slotify('default')}
       </div>
     `;
   }
