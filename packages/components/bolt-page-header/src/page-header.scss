@@ -1,19 +1,55 @@
+@import '@bolt/core-v3.x';
+
+/* ------------------------------------ *\
+   Page Padding
+
+   Note: the padding alone will create a max-width for the content, there's no need for a wrapper element when using these vars.
+
+   @todo: move these to global
+\* ------------------------------------ */
+:root {
+  --bolt-page-max-width: #{bolt-breakpoint(xxlarge)};
+  --bolt-page-padding-inline: $bolt-wrapper-padding;
+
+  @include bolt-mq(medium) {
+    --bolt-page-padding-inline: $bolt-wrapper-padding-at-medium-bp;
+  }
+
+  @include bolt-mq(xxlarge) {
+    --bolt-page-padding-inline: calc(
+      var(--bolt-wrapper-spacing-x) * 2 + (100vw - var(--bolt-page-max-width)) /
+        2
+    );
+  }
+}
+
 /* ------------------------------------ *\
    Page Header
 \* ------------------------------------ */
 
-@import '@bolt/core-v3.x';
+$bolt-page-header-mobile-trigger-height: 48px;
+$bolt-page-header-mobile-padding-block: 4px;
+
+// Calculate page header height for offsetting other sticky elements
+:root {
+  --bolt-page-header-height-mobile: calc(
+    #{$bolt-page-header-mobile-trigger-height} + #{$bolt-page-header-mobile-padding-block} *
+      2
+  );
+}
 
 @mixin bolt-page-header-action-trigger {
   @include bolt-button-reset;
 
-  min-height: 48px;
+  display: block;
+  min-height: $bolt-page-header-mobile-trigger-height;
   padding: var(--bolt-spacing-y-small) var(--bolt-spacing-x-small);
   color: bolt-theme(link);
+  text-align: inherit;
   cursor: pointer;
   border: none;
-  border-radius: bolt-border-radius(large);
   outline: none;
+  background-color: bolt-theme(background);
   transition: background-color $bolt-transition;
 
   &:hover,
@@ -28,26 +64,21 @@
   &:active {
     background-color: rgba(bolt-color(gray), 0.3);
   }
-}
 
-/**
- * Global wrapper vars
- * 1. The vars can be used on other components that acts like layout but doesn't use layout markup. For example: navbar.
- */
-:root {
-  // @todo: move these to global
-  --bolt-wrapper-max-width: #{bolt-breakpoint(xxlarge)};
-  --bolt-wrapper-spacing-x: 30px;
-  --bolt-wrapper-padding: var(--bolt-wrapper-spacing-x);
-
-  @include bolt-mq(medium) {
-    --bolt-wrapper-padding: calc(var(--bolt-wrapper-spacing-x) * 2);
+  &[aria-expanded='false'] {
+    &.c-bolt-page-header__action-trigger__icon--close {
+      display: none;
+    }
   }
-  @include bolt-mq(xxlarge) {
-    --bolt-wrapper-padding: calc(
-      var(--bolt-wrapper-spacing-x) * 2 +
-        (100vw - var(--bolt-wrapper-max-width)) / 2
-    );
+
+  &[aria-expanded='true'] {
+    .c-bolt-page-header__action-trigger__icon:not(.c-bolt-page-header__action-trigger__icon--close) {
+      display: none;
+    }
+
+    &.c-bolt-page-header__action-trigger__icon--close {
+      display: grid;
+    }
   }
 }
 
@@ -63,6 +94,9 @@
   background-color: bolt-theme(background);
 }
 
+/**
+ * Primary section container
+ */
 .c-bolt-page-header__primary {
   display: grid;
   grid-template-columns: minmax(120px, 150px) 1fr;
@@ -73,29 +107,38 @@
   left: 50%;
   width: 100vw;
   margin: 0 -50vw;
-  padding-top: 2px;
-  padding-bottom: 2px;
-
-  // This must always follow the wrapper rules. Only way to customize it is to change the global wrapper vars.
-  padding-inline-end: var(--bolt-wrapper-padding);
-  padding-inline-start: var(--bolt-wrapper-padding);
+  padding-top: $bolt-page-header-mobile-padding-block;
+  padding-bottom: $bolt-page-header-mobile-padding-block;
+  padding-inline-end: var(--bolt-spacing-x-small);
+  padding-inline-start: var(--bolt-spacing-x-small);
 }
 
+/**
+ * Logo
+ */
 .c-bolt-page-header__logo {
   @include bolt-page-header-action-trigger;
 
-  margin-inline-start: calc(var(--bolt-spacing-x-small) * -1);
+  border-radius: bolt-border-radius(large);
 }
 
-.c-bolt-page-header__actions {
+/**
+ * Toolbar
+ */
+.c-bolt-page-header__toolbar {
   display: flex;
   align-items: center;
   margin-inline-start: auto;
-  margin-inline-end: calc(var(--bolt-spacing-x-small) * -1);
 }
 
 .c-bolt-page-header__action-trigger {
   @include bolt-page-header-action-trigger;
+
+  border-radius: bolt-border-radius(large);
+
+  & ~ #{&} {
+    margin-inline-start: var(--bolt-spacing-x-xxsmall);
+  }
 }
 
 .c-bolt-page-header__action-trigger__text {
@@ -109,36 +152,131 @@
   place-items: center;
 }
 
-.c-bolt-page-header__cta {
-  display: none;
-  /* padding: var(--bolt-spacing-y-xsmall) var(--bolt-spacing-x-small);
-  color: bolt-theme(text-on-primary);
-  text-decoration: none;
-  border-radius: bolt-border-radius(small);
-  background-color: bolt-theme(primary); */
-}
-
-.c-bolt-page-header__search,
-.c-bolt-page-header__nav {
+/**
+ * Dropdown search panel
+ */
+.c-bolt-page-header__search {
   display: none;
 }
 
+/**
+ * Off-canvas primary nav
+ */
 .c-bolt-page-header__nav {
   @include bolt-vertical-scroll;
 
+  display: none;
+  flex-direction: column;
   position: fixed;
-  top: 0;
+  top: var(--bolt-page-header-height-mobile);
   right: 0;
-  bottom: 0;
+  bottom: $bolt-page-header-mobile-trigger-height;
   left: 0;
-  z-index: bolt-z-index(navFixed);
-  width: 100%;
-  height: 100%;
-  padding: var(--bolt-spacing-y-medium) var(--bolt-spacing-x-medium);
-  color: bolt-theme(text);
-  background-color: bolt-theme(background);
+  z-index: bolt-z-index(nav);
+  background-color: bolt-color(gray, xlight);
+
+  &:before,
+  &:after {
+    content: '';
+    display: block;
+    opacity: bolt-opacity(100);
+    position: sticky;
+    right: 0;
+    left: 0;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  &:before {
+    top: 0;
+    height: var(--bolt-spacing-y-xsmall);
+    background: linear-gradient(
+      to bottom,
+      rgba(bolt-color(gray), 0.1) 0%,
+      rgba(bolt-color(gray), 0) 100%
+    );
+  }
+
+  &:after {
+    bottom: 0;
+    height: var(--bolt-spacing-y-medium);
+    margin-top: auto;
+    background: linear-gradient(
+      to bottom,
+      rgba(bolt-color(white), 0) 0%,
+      rgba(bolt-color(white), 1) 100%
+    );
+  }
 
   &.is-expanded {
+    display: flex;
+  }
+}
+
+.c-bolt-page-header__nav-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  @at-root .c-bolt-page-header__nav-list-item.has-subnav > #{&} {
+    display: none;
+  }
+
+  &--user {
+    margin-top: calc(var(--bolt-spacing-y-xsmall) * -1);
+  }
+
+  &--site,
+  &--utils {
+    margin-top: var(--bolt-spacing-y-small);
+  }
+}
+
+.c-bolt-page-header__nav-list-item {
+  @include bolt-shadow('level-10');
+
+  margin-top: 1px;
+  /*  border-top: 1px solid bolt-theme(border, 0.2);
+
+  @at-root .c-bolt-page-header__nav-list--user > #{&}:first-of-type {
+    border-top: none;
+  } */
+}
+
+.c-bolt-page-header__nav-link {
+  @include bolt-page-header-action-trigger;
+
+  width: 100%;
+  padding-inline-start: calc(var(--bolt-spacing-x-small) * 2);
+  padding-inline-end: calc(var(--bolt-spacing-x-small) * 2);
+  font-family: var(--bolt-type-font-family-body);
+  font-size: var(--bolt-type-font-size-medium);
+  font-weight: var(--bolt-type-font-weight-semibold);
+}
+
+/**
+ * Main CTA
+ */
+.c-bolt-page-header__cta {
+  display: none;
+
+  @at-root .c-bolt-page-header__nav.is-expanded ~ #{&} {
     display: block;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: bolt-z-index(navFixed);
+    height: $bolt-page-header-mobile-trigger-height;
+    padding: 0 var(--bolt-spacing-x-medium);
+    font-family: var(--bolt-type-font-family-body);
+    font-size: var(--bolt-type-font-size-medium);
+    font-weight: var(--bolt-type-font-weight-semibold);
+    color: bolt-theme(text-on-primary);
+    line-height: $bolt-page-header-mobile-trigger-height;
+    text-align: center;
+    text-decoration: none;
+    background-color: bolt-theme(primary);
+    white-space: nowrap;
   }
 }

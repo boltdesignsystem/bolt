@@ -1,3 +1,7 @@
+<script>
+  document.body.classList.add('u-bolt-overflow-hidden');
+</script>
+
 <header class="c-bolt-page-header">
   <div class="c-bolt-page-header__primary">
     <a class="c-bolt-page-header__logo" href="#!" aria-label="Pegasystems">
@@ -7,7 +11,7 @@
         ratio: 'none'
       } only %}
     </a>
-    <div class="c-bolt-page-header__actions">
+    <div class="c-bolt-page-header__toolbar">
       <button class="c-bolt-page-header__action-trigger c-bolt-page-header__action-trigger--search" aria-haspopup="true" aria-expanded="false">
         <span class="c-bolt-page-header__action-trigger__text">
           Toggle Search Panel
@@ -30,95 +34,232 @@
             name: 'menu'
           } only %}
         </span>
+        <span class="c-bolt-page-header__action-trigger__icon c-bolt-page-header__action-trigger__icon--close" aria-hidden="true">
+          {% include '@bolt-components-icon/icon.twig' with {
+            name: 'close'
+          } only %}
+        </span>
       </button>
-      <nav class="c-bolt-page-header__nav" aria-label="Main Site Navigation">
-        <ul class="c-bolt-page-header__nav-list">
+      <nav class="c-bolt-page-header__nav is-expanded" aria-label="Main Site Navigation">
+        <ul class="c-bolt-page-header__nav-list c-bolt-page-header__nav-list--user">
           <li class="c-bolt-page-header__nav-list-item has-subnav">
-            <a href="#!" aria-haspopup="true" aria-expanded="false">
+            <button href="#!" class="c-bolt-page-header__nav-link" aria-haspopup="true" aria-expanded="false">
               Hello Mike
-            </a>
+            </button>
             <ul class="c-bolt-page-header__nav-list">
-              <li class="c-bolt-page-header__nav-list-item"><a href="#!">My Pega</a></li>
-              <li class="c-bolt-page-header__nav-list-item"><a href="#!">My Profile</a></li>
-              <li class="c-bolt-page-header__nav-list-item"><a href="#!">Contact</a></li>
-              <li class="c-bolt-page-header__nav-list-item"><a href="#!">Log Out</a></li>
+              <li class="c-bolt-page-header__nav-list-item">
+                <a href="#!" class="c-bolt-page-header__nav-link">
+                  My Pega
+                </a>
+              </li>
+              <li class="c-bolt-page-header__nav-list-item">
+                <a href="#!" class="c-bolt-page-header__nav-link">
+                  My Profile
+                </a>
+              </li>
+              <li class="c-bolt-page-header__nav-list-item">
+                <a href="#!" class="c-bolt-page-header__nav-link">
+                  Contact
+                </a>
+              </li>
+              <li class="c-bolt-page-header__nav-list-item">
+                <a href="#!" class="c-bolt-page-header__nav-link">
+                  Log Out
+                </a>
+              </li>
             </ul>
           </li>
         </ul>
-        <ul class="c-bolt-page-header__nav-list">
-          <li class="c-bolt-page-header__nav-list-item"><a href="#!">Products</a></li>
-          <li class="c-bolt-page-header__nav-list-item"><a href="#!">Solutions</a></li>
+        <ul class="c-bolt-page-header__nav-list c-bolt-page-header__nav-list--site">
+          <li class="c-bolt-page-header__nav-list-item">
+            <a href="#!" class="c-bolt-page-header__nav-link">
+              Products
+            </a>
+          </li>
+          <li class="c-bolt-page-header__nav-list-item">
+            <a href="#!" class="c-bolt-page-header__nav-link">
+              Solutions
+            </a>
+          </li>
           <li class="c-bolt-page-header__nav-list-item has-subnav">
-            <a href="#!" aria-haspopup="true" aria-expanded="false">
+            <button href="#!" class="c-bolt-page-header__nav-link" aria-haspopup="true" aria-expanded="false">
               Customers
-            </a>
+            </button>
             <ul class="c-bolt-page-header__nav-list">
               <li class="c-bolt-page-header__nav-list-item has-subnav">
-                <a href="#!" aria-haspopup="true" aria-expanded="false">
+                <button href="#!" class="c-bolt-page-header__nav-link" aria-haspopup="true" aria-expanded="false">
                   Customers by Industry
-                </a>
+                </button>
                 <ul class="c-bolt-page-header__nav-list">
-                  <li class="c-bolt-page-header__nav-list-item"><a href="#!">Financial Services</a></li>
-                  <li class="c-bolt-page-header__nav-list-item"><a href="#!">Insurance</a></li>
-                  <li class="c-bolt-page-header__nav-list-item"><a href="#!">Health-care &amp; Life Sciences</a></li>
-                  <li class="c-bolt-page-header__nav-list-item"><a href="#!">Communication Service Providers</a></li>
-                  <li class="c-bolt-page-header__nav-list-item"><a href="#!">Government</a></li>
-                  <li class="c-bolt-page-header__nav-list-item"><a href="#!">View all customer success stories</a></li>
+                  <li class="c-bolt-page-header__nav-list-item">
+                    <a href="#!" class="c-bolt-page-header__nav-link">
+                      Financial Services
+                    </a>
+                  </li>
+                  <li class="c-bolt-page-header__nav-list-item">
+                    <a href="#!" class="c-bolt-page-header__nav-link">
+                      Insurance
+                    </a>
+                  </li>
+                  <li class="c-bolt-page-header__nav-list-item">
+                    <a href="#!" class="c-bolt-page-header__nav-link">
+                      Health-care &amp; Life Sciences
+                    </a>
+                  </li>
+                  <li class="c-bolt-page-header__nav-list-item">
+                    <a href="#!" class="c-bolt-page-header__nav-link">
+                      Communication Service Providers
+                    </a>
+                  </li>
+                  <li class="c-bolt-page-header__nav-list-item">
+                    <a href="#!" class="c-bolt-page-header__nav-link">
+                      Government
+                    </a>
+                  </li>
+                  <li class="c-bolt-page-header__nav-list-item">
+                    <a href="#!" class="c-bolt-page-header__nav-link">
+                      View all customer success stories
+                    </a>
+                  </li>
                 </ul>
               </li>
               <li class="c-bolt-page-header__nav-list-item has-subnav">
-                <a href="#!" aria-haspopup="true" aria-expanded="false">
+                <button href="#!" class="c-bolt-page-header__nav-link" aria-haspopup="true" aria-expanded="false">
                   Customers by Solution
-                </a>
+                </button>
                 <ul class="c-bolt-page-header__nav-list">
-                  <li class="c-bolt-page-header__nav-list-item"><a href="#!">1:1 Customer Engagement</a></li>
-                  <li class="c-bolt-page-header__nav-list-item"><a href="#!">Proactive Customer Service</a></li>
-                  <li class="c-bolt-page-header__nav-list-item"><a href="#!">Intelligent Automation</a></li>
-                  <li class="c-bolt-page-header__nav-list-item"><a href="#!">View all customer success stories</a></li>
+                  <li class="c-bolt-page-header__nav-list-item">
+                    <a href="#!" class="c-bolt-page-header__nav-link">
+                      1:1 Customer Engagement
+                    </a>
+                  </li>
+                  <li class="c-bolt-page-header__nav-list-item">
+                    <a href="#!" class="c-bolt-page-header__nav-link">
+                      Proactive Customer Service
+                    </a>
+                  </li>
+                  <li class="c-bolt-page-header__nav-list-item">
+                    <a href="#!" class="c-bolt-page-header__nav-link">
+                      Intelligent Automation
+                    </a>
+                  </li>
+                  <li class="c-bolt-page-header__nav-list-item">
+                    <a href="#!" class="c-bolt-page-header__nav-link">
+                      View all customer success stories
+                    </a>
+                  </li>
                 </ul>
               </li>
-              <li class="c-bolt-page-header__nav-list-item"><a href="#!">Advertising goes here</a></li>
+              <li class="c-bolt-page-header__nav-list-item">
+                <a href="#!" class="c-bolt-page-header__nav-link">
+                  Advertising goes here
+                </a>
+              </li>
             </ul>
           </li>
-          <li class="c-bolt-page-header__nav-list-item"><a href="#!">Service &amp; Partners</a></li>
-          <li class="c-bolt-page-header__nav-list-item"><a href="#!">Events</a></li>
-          <li class="c-bolt-page-header__nav-list-item"><a href="#!">About</a></li>
+          <li class="c-bolt-page-header__nav-list-item">
+            <a href="#!" class="c-bolt-page-header__nav-link">
+              Service &amp; Partners
+            </a>
+          </li>
+          <li class="c-bolt-page-header__nav-list-item">
+            <a href="#!" class="c-bolt-page-header__nav-link">
+              Events
+            </a>
+          </li>
+          <li class="c-bolt-page-header__nav-list-item">
+            <a href="#!" class="c-bolt-page-header__nav-link">
+              About
+            </a>
+          </li>
         </ul>
-        <ul class="c-bolt-page-header__nav-list">
+        <ul class="c-bolt-page-header__nav-list c-bolt-page-header__nav-list--utils">
           <li class="c-bolt-page-header__nav-list-item has-subnav">
-            <a href="#!" aria-haspopup="true" aria-expanded="false">
+            <button href="#!" class="c-bolt-page-header__nav-link" aria-haspopup="true" aria-expanded="false">
               Pega Sites
-            </a>
+            </button>
             <ul class="c-bolt-page-header__nav-list">
-              <li class="c-bolt-page-header__nav-list-item"><a href="#!">Training</a></li>
-              <li class="c-bolt-page-header__nav-list-item"><a href="#!">Support</a></li>
-              <li class="c-bolt-page-header__nav-list-item"><a href="#!">Knowledge</a></li>
-              <li class="c-bolt-page-header__nav-list-item has-subnav">
-                <a href="#!" aria-haspopup="true" aria-expanded="false">
-                  More
+              <li class="c-bolt-page-header__nav-list-item">
+                <a href="#!" class="c-bolt-page-header__nav-link">
+                  Training
                 </a>
+              </li>
+              <li class="c-bolt-page-header__nav-list-item">
+                <a href="#!" class="c-bolt-page-header__nav-link">
+                  Support
+                </a>
+              </li>
+              <li class="c-bolt-page-header__nav-list-item">
+                <a href="#!" class="c-bolt-page-header__nav-link">
+                  Knowledge
+                </a>
+              </li>
+              <li class="c-bolt-page-header__nav-list-item has-subnav">
+                <button href="#!" class="c-bolt-page-header__nav-link" aria-haspopup="true" aria-expanded="false">
+                  More
+                </button>
                 <ul class="c-bolt-page-header__nav-list">
-                  <li class="c-bolt-page-header__nav-list-item"><a href="#!">PegaWorld</a></li>
-                  <li class="c-bolt-page-header__nav-list-item"><a href="#!">Product Design</a></li>
-                  <li class="c-bolt-page-header__nav-list-item"><a href="#!">Partners</a></li>
-                  <li class="c-bolt-page-header__nav-list-item"><a href="#!">Consulting</a></li>
-                  <li class="c-bolt-page-header__nav-list-item"><a href="#!">Blog</a></li>
-                  <li class="c-bolt-page-header__nav-list-item"><a href="#!">Careers</a></li>
-                  <li class="c-bolt-page-header__nav-list-item"><a href="#!">My Pega</a></li>
+                  <li class="c-bolt-page-header__nav-list-item">
+                    <a href="#!" class="c-bolt-page-header__nav-link">
+                      PegaWorld
+                    </a>
+                  </li>
+                  <li class="c-bolt-page-header__nav-list-item">
+                    <a href="#!" class="c-bolt-page-header__nav-link">
+                      Product Design
+                    </a>
+                  </li>
+                  <li class="c-bolt-page-header__nav-list-item">
+                    <a href="#!" class="c-bolt-page-header__nav-link">
+                      Partners
+                    </a>
+                  </li>
+                  <li class="c-bolt-page-header__nav-list-item">
+                    <a href="#!" class="c-bolt-page-header__nav-link">
+                      Consulting
+                    </a>
+                  </li>
+                  <li class="c-bolt-page-header__nav-list-item">
+                    <a href="#!" class="c-bolt-page-header__nav-link">
+                      Blog
+                    </a>
+                  </li>
+                  <li class="c-bolt-page-header__nav-list-item">
+                    <a href="#!" class="c-bolt-page-header__nav-link">
+                      Careers
+                    </a>
+                  </li>
+                  <li class="c-bolt-page-header__nav-list-item">
+                    <a href="#!" class="c-bolt-page-header__nav-link">
+                      My Pega
+                    </a>
+                  </li>
                 </ul>
               </li>
             </ul>
           </li>
         </ul>
-        <ul class="c-bolt-page-header__nav-list">
+        <ul class="c-bolt-page-header__nav-list c-bolt-page-header__nav-list--lang">
           <li class="c-bolt-page-header__nav-list-item has-subnav">
-            <a href="#!" aria-haspopup="true" aria-expanded="false">
+            <button href="#!" class="c-bolt-page-header__nav-link" aria-haspopup="true" aria-expanded="false">
               Select a language
-            </a>
+            </button>
             <ul class="c-bolt-page-header__nav-list">
-              <li class="c-bolt-page-header__nav-list-item"><a href="#!">English</a></li>
-              <li class="c-bolt-page-header__nav-list-item"><a href="#!">Japanese</a></li>
-              <li class="c-bolt-page-header__nav-list-item"><a href="#!">German</a></li>
+              <li class="c-bolt-page-header__nav-list-item">
+                <a href="#!" class="c-bolt-page-header__nav-link">
+                  English
+                </a>
+              </li>
+              <li class="c-bolt-page-header__nav-list-item">
+                <a href="#!" class="c-bolt-page-header__nav-link">
+                  Japanese
+                </a>
+              </li>
+              <li class="c-bolt-page-header__nav-list-item">
+                <a href="#!" class="c-bolt-page-header__nav-link">
+                  German
+                </a>
+              </li>
             </ul>
           </li>
         </ul>
