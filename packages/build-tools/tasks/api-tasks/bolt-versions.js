@@ -171,19 +171,20 @@ async function gatherBoltVersionUrls() {
 
     const newSiteUrl = `https://${tagString}.boltdesignsystem.com`;
     const oldSiteUrl = `https://${tagString}.bolt-design-system.com`;
-
-    if (results[newSiteUrl].status === 'alive') {
-      tagUrls.push({
-        label: tag,
-        type: 'option',
-        value: newSiteUrl,
-      });
-    } else if (results[oldSiteUrl].status === 'alive') {
-      tagUrls.push({
-        label: tag,
-        type: 'option',
-        value: oldSiteUrl,
-      });
+    if (semver.valid(tag)) {
+      if (results[newSiteUrl].status === 'alive') {
+        tagUrls.push({
+          label: tag,
+          type: 'option',
+          value: newSiteUrl,
+        });
+      } else if (results[oldSiteUrl].status === 'alive') {
+        tagUrls.push({
+          label: tag,
+          type: 'option',
+          value: oldSiteUrl,
+        });
+      }
     }
   }
 
