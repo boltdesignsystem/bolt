@@ -181,8 +181,18 @@ $www-calculator-logo-spacing-size: 3px; // Hard px is used to avoid subpixel iss
 .c-www-calculator-background {
   position: absolute;
   top: 0;
-  right: -150vw;
+  right: 0;
+  bottom: 0;
+  left: 0;
   z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.c-www-calculator-background__image {
+  position: absolute;
+  top: 0;
+  right: -150vw;
   width: 300vw;
   max-width: 1000px;
   pointer-events: none;
