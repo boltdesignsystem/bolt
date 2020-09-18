@@ -180,7 +180,7 @@ class BoltAccordion extends withContext(BoltElement) {
       const elementsToUpdate = this.querySelectorAll('[will-update]');
       if (elementsToUpdate.length) {
         elementsToUpdate.forEach(el => {
-          el.update && el.update();
+          el.updateLayout && el.updateLayout();
         });
       }
     });
