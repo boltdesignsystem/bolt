@@ -53,8 +53,7 @@ $bolt-page-header-mobile-padding-block: 4px;
   transition: background-color $bolt-transition;
 
   &:hover,
-  &:focus,
-  &[aria-expanded='true'] {
+  &:focus {
     background-color: rgba(bolt-color(gray), 0.1);
   }
 
@@ -62,7 +61,8 @@ $bolt-page-header-mobile-padding-block: 4px;
     box-shadow: inset 0 0 0 1px bolt-theme(link);
   }
 
-  &:active {
+  &:active,
+  &[aria-expanded='true'] {
     background-color: rgba(bolt-color(gray), 0.3);
   }
 
@@ -162,15 +162,15 @@ $bolt-page-header-mobile-padding-block: 4px;
   display: flex;
   flex-direction: column;
   visibility: hidden;
-  opacity: 0;
   position: fixed;
   top: calc(var(--bolt-page-header-height-mobile) + 1px);
   right: 0;
   bottom: $bolt-page-header-mobile-click-target-size;
   left: 0;
   transform: translate3d(100%, 0, 0);
-  z-index: bolt-z-index(nav);
+  z-index: bolt-z-index(navFixed);
   background-color: bolt-theme(background);
+  will-change: transform, visibility;
   transition: all $bolt-transition;
 
   &:before {
@@ -193,9 +193,7 @@ $bolt-page-header-mobile-padding-block: 4px;
 
   &.is-expanded {
     visibility: visible;
-    opacity: 1;
     transform: translate3d(0, 0, 0);
-    /* animation: 0.25s ease-in-out 0.25s forwards a-bolt-page-header-fade-in-right; */
   }
 }
 
@@ -238,42 +236,46 @@ $bolt-page-header-mobile-padding-block: 4px;
  * Main CTA
  */
 .c-bolt-page-header__cta {
-  display: none;
+  display: block;
+  visibility: hidden;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transform: translate3d(100%, 0, 0);
+  z-index: bolt-z-index(navFixed);
+  height: $bolt-page-header-mobile-click-target-size;
+  padding: 0 var(--bolt-spacing-x-medium);
+  font-family: var(--bolt-type-font-family-body);
+  font-size: var(--bolt-type-font-size-medium);
+  font-weight: var(--bolt-type-font-weight-semibold);
+  color: bolt-theme(text-on-primary);
+  line-height: $bolt-page-header-mobile-click-target-size;
+  text-align: center;
+  text-decoration: none;
+  box-shadow: 0 0 var(--bolt-spacing-y-small) bolt-theme(primary);
+  outline: none;
+  background-color: bolt-theme(primary);
+  will-change: transform, visibility;
+  transition: all $bolt-transition;
+  white-space: nowrap;
+
+  &:hover,
+  &:focus {
+    filter: brightness(110%);
+  }
+
+  &:focus {
+    box-shadow: inset 0 0 0 3px bolt-theme(primary),
+      inset 0 0 0 4px bolt-color(text-on-primary);
+  }
+
+  &:active {
+    filter: brightness(95%);
+  }
 
   @at-root .c-bolt-page-header__nav.is-expanded ~ #{&} {
-    display: block;
-    position: fixed;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: bolt-z-index(navFixed);
-    height: $bolt-page-header-mobile-click-target-size;
-    padding: 0 var(--bolt-spacing-x-medium);
-    font-family: var(--bolt-type-font-family-body);
-    font-size: var(--bolt-type-font-size-medium);
-    font-weight: var(--bolt-type-font-weight-semibold);
-    color: bolt-theme(text-on-primary);
-    line-height: $bolt-page-header-mobile-click-target-size;
-    text-align: center;
-    text-decoration: none;
-    box-shadow: 0 0 var(--bolt-spacing-y-small) bolt-theme(primary);
-    outline: none;
-    background-color: bolt-theme(primary);
-    transition: filter $bolt-transition;
-    white-space: nowrap;
-
-    &:hover,
-    &:focus {
-      filter: brightness(110%);
-    }
-
-    &:focus {
-      box-shadow: inset 0 0 0 3px bolt-theme(primary),
-        inset 0 0 0 4px bolt-color(text-on-primary);
-    }
-
-    &:active {
-      filter: brightness(95%);
-    }
+    visibility: visible;
+    transform: translate3d(0, 0, 0);
   }
 }
