@@ -30,6 +30,14 @@ class BoltModal extends BoltElement {
     };
   }
 
+  constructor() {
+    super();
+    this.show = this.show.bind(this);
+    this.hide = this.hide.bind(this);
+    this._handleKeyPresseskeypress = this._handleKeyPresseskeypress.bind(this);
+    this._noBodyScroll = false; // Internal switch to enable 'no-body-scroll' feature which is not ready for release
+  }
+
   static get styles() {
     return [unsafeCSS(styles)];
   }
