@@ -62,3 +62,29 @@ if (missionRatingSubmit) {
     }
   });
 }
+
+// PAGE HEADER WIP CODE (REMOVE LATER)
+//
+// Expanded button
+const expandedButtons = document.querySelectorAll('.js-bolt-expanded-button');
+expandedButtons.forEach(el => {
+  el.addEventListener('click', e => {
+    e.target.setAttribute(
+      'aria-expanded',
+      e.target.getAttribute('aria-expanded') === 'true' ? 'false' : 'true',
+    );
+  });
+});
+
+// Main nav toggle
+const mainNavToggle = document.getElementById(
+  'js-bolt-page-header-main-nav-toggle',
+);
+if (mainNavToggle) {
+  mainNavToggle.addEventListener('click', e => {
+    const mainNav = document.getElementById('js-bolt-page-header-main-nav');
+    if (mainNav) {
+      mainNav.classList.toggle('is-expanded');
+    }
+  });
+}

@@ -8,11 +8,11 @@
       {% include '@bolt-components-image/image.twig' with {
         src: '/images/logos/pega-logo.svg',
         alt: 'Pegasystems Logo',
-        ratio: 'none'
+        ratio: 'none',
       } only %}
     </a>
     <div class="c-bolt-page-header__toolbar">
-      <button class="c-bolt-page-header__action-trigger c-bolt-page-header__action-trigger--search" aria-haspopup="true" aria-expanded="false">
+      <button class="c-bolt-page-header__action-trigger c-bolt-page-header__action-trigger--search js-bolt-expanded-button" aria-haspopup="true" aria-expanded="false">
         <span class="c-bolt-page-header__action-trigger__text">
           Toggle Search Panel
         </span>
@@ -25,7 +25,7 @@
       <div class="c-bolt-page-header__search">
         {% include '@bolt-components-typeahead/typeahead.twig' %}
       </div>
-      <button class="c-bolt-page-header__action-trigger c-bolt-page-header__action-trigger--nav" aria-haspopup="true" aria-expanded="true">
+      <button class="c-bolt-page-header__action-trigger c-bolt-page-header__action-trigger--nav js-bolt-expanded-button" aria-haspopup="true" aria-expanded="false" id="js-bolt-page-header-main-nav-toggle">
         <span class="c-bolt-page-header__action-trigger__text">
           Toggle Main Site Navigation
         </span>
@@ -34,13 +34,8 @@
             name: 'menu'
           } only %}
         </span>
-        <span class="c-bolt-page-header__action-trigger__icon c-bolt-page-header__action-trigger__icon--close" aria-hidden="true">
-          {% include '@bolt-components-icon/icon.twig' with {
-            name: 'close'
-          } only %}
-        </span>
       </button>
-      <nav class="c-bolt-page-header__nav is-expanded" aria-label="Main Site Navigation">
+      <nav class="c-bolt-page-header__nav" id="js-bolt-page-header-main-nav" aria-label="Main Site Navigation">
         <ul class="c-bolt-page-header__nav-list c-bolt-page-header__nav-list--user">
           <li class="c-bolt-page-header__nav-list-item has-subnav">
             <button href="#!" class="c-bolt-page-header__nav-link" aria-haspopup="true" aria-expanded="false">
@@ -238,8 +233,6 @@
               </li>
             </ul>
           </li>
-        </ul>
-        <ul class="c-bolt-page-header__nav-list c-bolt-page-header__nav-list--lang">
           <li class="c-bolt-page-header__nav-list-item has-subnav">
             <button href="#!" class="c-bolt-page-header__nav-link" aria-haspopup="true" aria-expanded="false">
               Select a language

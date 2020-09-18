@@ -27,13 +27,13 @@
    Page Header
 \* ------------------------------------ */
 
-$bolt-page-header-mobile-trigger-height: 48px;
+$bolt-page-header-mobile-click-target-size: 44px;
 $bolt-page-header-mobile-padding-block: 4px;
 
 // Calculate page header height for offsetting other sticky elements
 :root {
   --bolt-page-header-height-mobile: calc(
-    #{$bolt-page-header-mobile-trigger-height} + #{$bolt-page-header-mobile-padding-block} *
+    #{$bolt-page-header-mobile-click-target-size} + #{$bolt-page-header-mobile-padding-block} *
       2
   );
 }
@@ -42,7 +42,7 @@ $bolt-page-header-mobile-padding-block: 4px;
   @include bolt-button-reset;
 
   display: block;
-  min-height: $bolt-page-header-mobile-trigger-height;
+  min-height: $bolt-page-header-mobile-click-target-size;
   padding: var(--bolt-spacing-y-small) var(--bolt-spacing-x-small);
   color: bolt-theme(link);
   text-align: inherit;
@@ -53,32 +53,21 @@ $bolt-page-header-mobile-padding-block: 4px;
   transition: background-color $bolt-transition;
 
   &:hover,
-  &:focus {
+  &:focus,
+  &[aria-expanded='true'] {
     background-color: rgba(bolt-color(gray), 0.1);
   }
 
   &:focus {
-    box-shadow: 0 0 0 1px bolt-theme(link);
+    box-shadow: inset 0 0 0 1px bolt-theme(link);
   }
 
   &:active {
     background-color: rgba(bolt-color(gray), 0.3);
   }
 
-  &[aria-expanded='false'] {
-    &.c-bolt-page-header__action-trigger__icon--close {
-      display: none;
-    }
-  }
-
   &[aria-expanded='true'] {
-    .c-bolt-page-header__action-trigger__icon:not(.c-bolt-page-header__action-trigger__icon--close) {
-      display: none;
-    }
-
-    &.c-bolt-page-header__action-trigger__icon--close {
-      display: grid;
-    }
+    color: bolt-theme(headline);
   }
 }
 
@@ -91,6 +80,9 @@ $bolt-page-header-mobile-padding-block: 4px;
   left: 0;
   z-index: bolt-z-index(navFixed);
   color: bolt-theme(text);
+  border-bottom-color: $bolt-border-color;
+  border-bottom-style: $bolt-border-style;
+  border-bottom-width: $bolt-border-width;
   background-color: bolt-theme(background);
 }
 
@@ -119,6 +111,7 @@ $bolt-page-header-mobile-padding-block: 4px;
 .c-bolt-page-header__logo {
   @include bolt-page-header-action-trigger;
 
+  height: $bolt-page-header-mobile-click-target-size;
   border-radius: bolt-border-radius(large);
 }
 
@@ -134,6 +127,7 @@ $bolt-page-header-mobile-padding-block: 4px;
 .c-bolt-page-header__action-trigger {
   @include bolt-page-header-action-trigger;
 
+  height: $bolt-page-header-mobile-click-target-size;
   border-radius: bolt-border-radius(large);
 
   & ~ #{&} {
@@ -165,51 +159,43 @@ $bolt-page-header-mobile-padding-block: 4px;
 .c-bolt-page-header__nav {
   @include bolt-vertical-scroll;
 
-  display: none;
+  display: flex;
   flex-direction: column;
+  visibility: hidden;
+  opacity: 0;
   position: fixed;
-  top: var(--bolt-page-header-height-mobile);
+  top: calc(var(--bolt-page-header-height-mobile) + 1px);
   right: 0;
-  bottom: $bolt-page-header-mobile-trigger-height;
+  bottom: $bolt-page-header-mobile-click-target-size;
   left: 0;
+  transform: translate3d(100%, 0, 0);
   z-index: bolt-z-index(nav);
-  background-color: bolt-color(gray, xlight);
+  background-color: bolt-theme(background);
+  transition: all $bolt-transition;
 
-  &:before,
-  &:after {
+  &:before {
     content: '';
     display: block;
     opacity: bolt-opacity(100);
-    position: sticky;
+    position: absolute;
+    top: 0;
     right: 0;
+    bottom: 0;
     left: 0;
     z-index: 0;
     pointer-events: none;
+    background-color: rgba(bolt-color(gray), 0.2);
   }
 
-  &:before {
-    top: 0;
-    height: var(--bolt-spacing-y-xsmall);
-    background: linear-gradient(
-      to bottom,
-      rgba(bolt-color(gray), 0.1) 0%,
-      rgba(bolt-color(gray), 0) 100%
-    );
-  }
-
-  &:after {
-    bottom: 0;
-    height: var(--bolt-spacing-y-medium);
-    margin-top: auto;
-    background: linear-gradient(
-      to bottom,
-      rgba(bolt-color(white), 0) 0%,
-      rgba(bolt-color(white), 1) 100%
-    );
+  > * {
+    position: relative;
   }
 
   &.is-expanded {
-    display: flex;
+    visibility: visible;
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    /* animation: 0.25s ease-in-out 0.25s forwards a-bolt-page-header-fade-in-right; */
   }
 }
 
@@ -218,29 +204,23 @@ $bolt-page-header-mobile-padding-block: 4px;
   padding: 0;
   list-style: none;
 
+  & + #{&} {
+    margin-top: var(--bolt-spacing-y-small);
+  }
+
   @at-root .c-bolt-page-header__nav-list-item.has-subnav > #{&} {
     display: none;
-  }
-
-  &--user {
-    margin-top: calc(var(--bolt-spacing-y-xsmall) * -1);
-  }
-
-  &--site,
-  &--utils {
-    margin-top: var(--bolt-spacing-y-small);
   }
 }
 
 .c-bolt-page-header__nav-list-item {
   @include bolt-shadow('level-10');
 
-  margin-top: 1px;
-  /*  border-top: 1px solid bolt-theme(border, 0.2);
+  background-color: bolt-theme(background);
 
-  @at-root .c-bolt-page-header__nav-list--user > #{&}:first-of-type {
-    border-top: none;
-  } */
+  & + #{&} {
+    margin-top: 1px;
+  }
 }
 
 .c-bolt-page-header__nav-link {
@@ -267,16 +247,33 @@ $bolt-page-header-mobile-padding-block: 4px;
     bottom: 0;
     left: 0;
     z-index: bolt-z-index(navFixed);
-    height: $bolt-page-header-mobile-trigger-height;
+    height: $bolt-page-header-mobile-click-target-size;
     padding: 0 var(--bolt-spacing-x-medium);
     font-family: var(--bolt-type-font-family-body);
     font-size: var(--bolt-type-font-size-medium);
     font-weight: var(--bolt-type-font-weight-semibold);
     color: bolt-theme(text-on-primary);
-    line-height: $bolt-page-header-mobile-trigger-height;
+    line-height: $bolt-page-header-mobile-click-target-size;
     text-align: center;
     text-decoration: none;
+    box-shadow: 0 0 var(--bolt-spacing-y-small) bolt-theme(primary);
+    outline: none;
     background-color: bolt-theme(primary);
+    transition: filter $bolt-transition;
     white-space: nowrap;
+
+    &:hover,
+    &:focus {
+      filter: brightness(110%);
+    }
+
+    &:focus {
+      box-shadow: inset 0 0 0 3px bolt-theme(primary),
+        inset 0 0 0 4px bolt-color(text-on-primary);
+    }
+
+    &:active {
+      filter: brightness(95%);
+    }
   }
 }
