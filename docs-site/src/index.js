@@ -69,10 +69,17 @@ if (missionRatingSubmit) {
 const expandedButtons = document.querySelectorAll('.js-bolt-expanded-button');
 expandedButtons.forEach(el => {
   el.addEventListener('click', e => {
-    el.setAttribute(
-      'aria-expanded',
-      el.getAttribute('aria-expanded') === 'true' ? 'false' : 'true',
-    );
+    if (el.getAttribute('aria-expanded') !== 'true') {
+      const self = el;
+      expandedButtons.forEach(el => {
+        if (el !== self) {
+          el.setAttribute('aria-expanded', 'false');
+        }
+      });
+      el.setAttribute('aria-expanded', 'true');
+    } else {
+      el.setAttribute('aria-expanded', 'false');
+    }
   });
 });
 
