@@ -211,7 +211,7 @@ class BoltTabs extends withContext(withLitHtml) {
         const elementsToUpdate = this.querySelectorAll('[will-update]');
         if (elementsToUpdate.length) {
           elementsToUpdate.forEach(el => {
-            el.update && el.update();
+            el.updateLayout && el.updateLayout();
           });
         }
       }, 0);
@@ -542,7 +542,8 @@ class BoltTabs extends withContext(withLitHtml) {
     );
   }
 
-  update() {
+  // Public method called by Accordion when DOM changes and Tabs needs to update
+  updateLayout() {
     this._resizeMenu();
   }
 
