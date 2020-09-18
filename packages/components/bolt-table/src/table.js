@@ -132,7 +132,7 @@ class BoltTable extends BoltElement {
     const parseCode = this.removeComments(
       this.removeWhitespace(parse(this.innerHTML)),
     );
-    // const { format, borderless, firstColFixedWidth } = this.props;
+
     const tableClasses = cx('c-bolt-table', {
       [`c-bolt-table--format-${this.format}`]: this.format !== 'regular',
       [`c-bolt-table--borderless`]: this.borderless,
