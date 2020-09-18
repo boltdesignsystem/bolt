@@ -54,16 +54,26 @@ class BoltModal extends BoltElement {
     this.setAttribute('ready', '');
   }
 
+  updated(changedProperties) {
+    super.updated && super.updated(changedProperties);
+
+    changedProperties.forEach((oldValue, propName) => {
+      if (propName === 'open') {
+        if (this.open) {
+          this.focusTrap.active = true;
+          this.setFocusToFirstItem(this.renderRoot);
+          this.ready = true;
+        }
+      }
+    });
+  }
+
   // Initialise everything needed for the dialog to work properly
   firstUpdated() {
     super.firstUpdated && super.firstUpdated();
-    this.focusTrap = this.renderRoot.querySelector('focus-trap'); // reference to the focus trap element inside -- handles focus binding when enabled
 
-    if (this.open) {
-      this.focusTrap.active = true;
-      this.setFocusToFirstItem(this.renderRoot);
-      this.ready = true;
-    }
+    // reference to the focus trap element inside -- handles focus binding when enabled
+    this.focusTrap = this.renderRoot.querySelector('focus-trap');
 
     this.dialog = this.renderRoot.querySelector(
       'dialog, [role="dialog"], [role="alertdialog"]',
