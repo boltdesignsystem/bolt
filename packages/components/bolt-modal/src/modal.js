@@ -280,12 +280,16 @@ class BoltModal extends BoltElement {
    *
    * @param {Element} node
    */
-  setFocusToFirstItem(node) {
+  async setFocusToFirstItem(node) {
     const focusableChildren = this.getFocusableChildren(node);
     const childToBeFocused =
       node.querySelector('[autofocus]') || focusableChildren[0];
 
     if (childToBeFocused) {
+      // If child is Bolt Element, wait for it to finish updating, or it will not receive focus.
+      if (typeof childToBeFocused.render === 'function') {
+        await childToBeFocused.updateComplete;
+      }
       childToBeFocused.focus();
     }
   }
