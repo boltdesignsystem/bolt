@@ -32,10 +32,9 @@ class BoltModal extends BoltElement {
 
   constructor() {
     super();
-    this.show = this.show.bind(this);
-    this.hide = this.hide.bind(this);
-    this._handleKeyPresseskeypress = this._handleKeyPresseskeypress.bind(this);
-    this._noBodyScroll = false; // Internal switch to enable 'no-body-scroll' feature which is not ready for release
+
+    // Internal switch to enable 'no-body-scroll' feature which is not ready for release
+    this._noBodyScroll = false;
   }
 
   static get styles() {
@@ -50,7 +49,10 @@ class BoltModal extends BoltElement {
 
   connectedCallback() {
     super.connectedCallback && super.connectedCallback();
+
+    this._handleKeyPresseskeypress = this._handleKeyPresseskeypress.bind(this);
     document.addEventListener('keydown', this._handleKeyPresseskeypress);
+
     this.setAttribute('ready', '');
   }
 
