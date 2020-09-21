@@ -84,14 +84,14 @@ expandedButtons.forEach(el => {
 });
 
 // Main nav toggle
-const mainNavToggle = document.getElementById(
-  'js-bolt-page-header-main-nav-toggle',
-);
-if (mainNavToggle) {
-  mainNavToggle.addEventListener('click', e => {
-    const mainNav = document.getElementById('js-bolt-page-header-main-nav');
-    if (mainNav) {
-      mainNav.classList.toggle('is-expanded');
-    }
-  });
-}
+// const mainNavToggle = document.getElementById(
+//   'js-bolt-page-header-main-nav-toggle',
+// );
+// if (mainNavToggle) {
+//   mainNavToggle.addEventListener('click', e => {
+//     const mainNav = document.getElementById('js-bolt-page-header-main-nav');
+//     if (mainNav) {
+//       mainNav.classList.toggle('is-expanded');
+//     }
+//   });
+// }

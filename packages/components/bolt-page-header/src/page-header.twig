@@ -21,9 +21,25 @@
             name: 'search'
           } only %}
         </span>
+        <span class="c-bolt-page-header__action-trigger__icon c-bolt-page-header__action-trigger__icon--close" aria-hidden="true">
+          {% include '@bolt-components-icon/icon.twig' with {
+            name: 'close'
+          } only %}
+        </span>
       </button>
       <div class="c-bolt-page-header__search">
-        {% include '@bolt-components-typeahead/typeahead.twig' %}
+        <form class="u-bolt-margin-bottom-small">
+          {% include '@bolt-components-typeahead/typeahead.demo.twig' only %}
+        </form>
+        {% include '@bolt-components-headline/text.twig' with {
+          text: 'Placeholder for helper text and did-you-mean text.',
+          size: 'small',
+          align: 'center',
+          icon: {
+            name: 'info-open',
+            position: 'before',
+          }
+        } only %}
       </div>
       <button aria-haspopup="true" aria-expanded="true" class="c-bolt-page-header__action-trigger c-bolt-page-header__action-trigger--nav js-bolt-expanded-button" id="js-bolt-page-header-main-nav-toggle">
         <span class="c-bolt-page-header__action-trigger__text">
@@ -34,8 +50,13 @@
             name: 'menu'
           } only %}
         </span>
+        <span class="c-bolt-page-header__action-trigger__icon c-bolt-page-header__action-trigger__icon--close" aria-hidden="true">
+          {% include '@bolt-components-icon/icon.twig' with {
+            name: 'close'
+          } only %}
+        </span>
       </button>
-      <nav class="c-bolt-page-header__nav is-expanded" id="js-bolt-page-header-main-nav" aria-label="Main Site Navigation">
+      <nav class="c-bolt-page-header__nav" id="js-bolt-page-header-main-nav" aria-label="Main Site Navigation">
         <ul class="c-bolt-page-header__nav-list c-bolt-page-header__nav-list--user">
           <li class="c-bolt-page-header__nav-list-item has-subnav">
             <button href="#!" class="c-bolt-page-header__nav-link" aria-haspopup="true" aria-expanded="false">
