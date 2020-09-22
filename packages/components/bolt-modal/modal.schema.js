@@ -48,21 +48,5 @@ module.exports = {
       type: 'string',
       description: 'Unique ID for modal, randomly generated if not provided.',
     },
-    slots: {
-      type: 'object',
-      description:
-        'There are 3 sections (slots) within the modal container. By assigning the appropriate slot name, content will be passed into the respective section.',
-      properties: {
-        default: {
-          description: 'The body section of the modal container.',
-        },
-        header: {
-          description: 'The header section of the modal container.',
-        },
-        footer: {
-          description: 'The footer section of the modal container.',
-        },
-      },
-    },
   },
 };
