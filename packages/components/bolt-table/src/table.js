@@ -105,8 +105,8 @@ class BoltTable extends BoltElement {
     return boltedObject;
   }
 
-  firstUpdated() {
-    super.firstUpdated && super.firstUpdated();
+  updated(changedProperties) {
+    super.updated && super.updated();
 
     const nodesToUpdate = this.renderRoot.querySelectorAll('*[data-attrs]');
     const tdInThead = this.renderRoot.querySelectorAll('thead td');
