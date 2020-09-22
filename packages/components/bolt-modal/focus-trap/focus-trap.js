@@ -1,6 +1,4 @@
-import { html, customElement } from '@bolt/element';
-import { props } from '@bolt/core-v3.x/utils';
-import { withLitHtml } from '@bolt/core-v3.x/renderers/renderer-lit-html';
+import { html, customElement, BoltElement, unsafeCSS } from '@bolt/element';
 import { isFocusable, isHidden } from './focusable';
 import { queryShadowRoot } from './shadow';
 
@@ -10,15 +8,14 @@ import { queryShadowRoot } from './shadow';
  */
 
 @customElement('focus-trap')
-class FocusTrap extends withLitHtml {
-  static props = {
-    readonly: props.boolean,
-    focused: props.boolean,
-    active: {
-      ...props.boolean,
-      ...{ default: false },
-    },
-  };
+class FocusTrap extends BoltElement {
+  static get properties() {
+    return {
+      readonly: { type: Boolean },
+      focused: { type: Boolean },
+      active: { type: Boolean },
+    };
+  }
 
   // The backup element is only used if there are no other focusable children
   $backup;
@@ -27,14 +24,8 @@ class FocusTrap extends withLitHtml {
 
   $end;
 
-  // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
-  constructor(self) {
-    self = super(self);
-    return self;
-  }
-
-  connecting() {
-    super.connecting && super.connecting();
+  connectedCallback() {
+    super.connectedCallback && super.connectedCallback();
 
     this.focusLastElement = this.focusLastElement.bind(this);
     this.focusFirstElement = this.focusFirstElement.bind(this);
@@ -47,8 +38,8 @@ class FocusTrap extends withLitHtml {
   /**
    * Hooks up the element.
    */
-  rendered() {
-    super.rendered && super.rendered();
+  firstUpdated() {
+    super.firstUpdated && super.firstUpdated();
     this.$backup = this.renderRoot.querySelector('#backup');
     this.$start = this.renderRoot.querySelector('#start');
     this.$end = this.renderRoot.querySelector('#end');
@@ -57,9 +48,9 @@ class FocusTrap extends withLitHtml {
   /**
    * Tears down the element.
    */
-  disconnecting() {
-    super.disconnecting && super.disconnecting();
-    // Check that $start and $end are defined. In IE, disconnecting() can be called while $start and $end are still undefined, which throws an error.
+  disconnectedCallback() {
+    super.disconnectedCallback && super.disconnectedCallback();
+    // Check that $start and $end are defined. In IE, disconnectedCallback() can be called while $start and $end are still undefined, which throws an error.
     this.$start &&
       this.$start.removeEventListener('focus', this.focusLastElement);
     this.$end && this.$end.removeEventListener('focus', this.focusFirstElement);
@@ -164,7 +155,7 @@ class FocusTrap extends withLitHtml {
         tabindex="${this.active === true ? `0` : `-1`}"
         @focus=${e => this.focusLastElement(e)}
       ></div>
-      ${this.slot('default')}
+      ${this.slotify('default')}
       <div id="backup"></div>
       <div
         id="end"
