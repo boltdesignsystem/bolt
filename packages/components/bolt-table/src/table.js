@@ -44,7 +44,6 @@ class BoltTable extends BoltElement {
       }
       return node.content.length;
     });
-    return nodes;
   }
 
   stripWhitespace(nodes) {
