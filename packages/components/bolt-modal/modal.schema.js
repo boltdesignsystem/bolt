@@ -16,20 +16,6 @@ module.exports = {
         'Default `disabled` prop supported globally by most Bolt components.',
       hidden: true,
     },
-    no_shadow: {
-      type: 'boolean',
-      title: 'Disable Shadow DOM (Twig-only)',
-      description:
-        'Manually disables the component from rendering to the Shadow DOM in a Twig template. Useful for testing cross browser functionality / rendering behavior. By default this is handled globally based on browser support.',
-      hidden: true,
-    },
-    'no-shadow': {
-      type: 'boolean',
-      title: 'Disable Shadow DOM (Web Component-only)',
-      description:
-        'Manually disables the web component from rendering to the Shadow DOM. Useful for testing cross browser functionality / rendering behavior. By default this is handled globally based on browser support.',
-      hidden: true,
-    },
     width: {
       type: 'string',
       description: 'Controls the width of the modal container.',
