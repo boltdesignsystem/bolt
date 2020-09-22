@@ -18,6 +18,8 @@ class BoltTable extends BoltElement {
     };
   }
 
+  static useShadow = false;
+
   static get styles() {
     return [unsafeCSS(styles)];
   }
