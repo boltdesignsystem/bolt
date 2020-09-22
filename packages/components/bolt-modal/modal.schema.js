@@ -9,13 +9,6 @@ module.exports = {
       description:
         'A Drupal attributes object. Used to apply additional HTML attributes to the outer &lt;bolt-modal&gt; tag.',
     },
-    disabled: {
-      type: 'boolean',
-      title: 'Disabled',
-      description:
-        'Default `disabled` prop supported globally by most Bolt components.',
-      hidden: true,
-    },
     width: {
       type: 'string',
       description: 'Controls the width of the modal container.',
