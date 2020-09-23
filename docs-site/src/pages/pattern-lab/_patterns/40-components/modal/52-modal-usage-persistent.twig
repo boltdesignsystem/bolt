@@ -9,8 +9,7 @@
     inputAttributes: {
       placeholder: "Enter your email address",
       type: "email",
-      required: true,
-      autofocus: true,
+      required: true
     },
     labelDisplayType: "floating"
   } only %}
@@ -68,6 +67,9 @@
           name: "chevron-left",
           position: "before"
         },
+        attributes: {
+          "autofocus": ""
+        }
       } only %}
     {% endcell %}
   {% endgrid %}
