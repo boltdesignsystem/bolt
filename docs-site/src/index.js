@@ -65,7 +65,7 @@ if (missionRatingSubmit) {
 
 // PAGE HEADER WIP CODE (REMOVE LATER)
 //
-// Expanded button
+// Expanded buttons
 const pageHeaderExpandedButtons = document.querySelectorAll(
   '.js-bolt-page-header-expanded-button',
 );
@@ -110,42 +110,29 @@ pageHeaderNestedNavListTriggers.forEach(el => {
       closestListItem?.classList.remove('is-expanded');
     }
 
-    // Set aria-hidden attributes on list-items
-    const allListItems = document.querySelectorAll(
-      '.js-bolt-page-header-nav-list-item',
-    );
-    const expandedItems = document.querySelectorAll(
-      '.js-bolt-page-header-nav-list-item.is-expanded',
-    );
+    // @todo: Set aria-hidden attributes on other list-items if current one is expanded
+    // const allListItems = document.querySelectorAll(
+    //   '.js-bolt-page-header-nav-list-item',
+    // );
+    // const expandedItems = document.querySelectorAll(
+    //   '.js-bolt-page-header-nav-list-item.is-expanded',
+    // );
 
-    if (expandedItems.length) {
-      allListItems.forEach(el => {
-        if (
-          el.classList.contains('is-expanded') ||
-          el.closest('.is-expanded')
-        ) {
-          el.removeAttribute('aria-hidden');
-        } else {
-          el.setAttribute('aria-hidden', true);
-        }
-      });
-    } else {
-      allListItems.forEach(el => {
-        el.removeAttribute('aria-hidden');
-      });
-    }
+    // if (expandedItems.length) {
+    //   allListItems.forEach(el => {
+    //     if (
+    //       el.classList.contains('is-expanded') ||
+    //       el.closest('.is-expanded')
+    //     ) {
+    //       el.removeAttribute('aria-hidden');
+    //     } else {
+    //       el.setAttribute('aria-hidden', true);
+    //     }
+    //   });
+    // } else {
+    //   allListItems.forEach(el => {
+    //     el.removeAttribute('aria-hidden');
+    //   });
+    // }
   });
 });
-
-// Main nav toggle
-// const mainNavToggle = document.getElementById(
-//   'js-bolt-page-header-main-nav-toggle',
-// );
-// if (mainNavToggle) {
-//   mainNavToggle.addEventListener('click', e => {
-//     const mainNav = document.getElementById('js-bolt-page-header-main-nav');
-//     if (mainNav) {
-//       mainNav.classList.toggle('is-expanded');
-//     }
-//   });
-// }
