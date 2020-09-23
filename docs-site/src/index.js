@@ -83,6 +83,20 @@ expandedButtons.forEach(el => {
   });
 });
 
+// Expanded nav link
+const expandedNavLinks = document.querySelectorAll(
+  '.js-bolt-expanded-nav-link',
+);
+expandedNavLinks.forEach(el => {
+  el.addEventListener('click', e => {
+    if (el.getAttribute('aria-expanded') !== 'true') {
+      el.setAttribute('aria-expanded', 'true');
+    } else {
+      el.setAttribute('aria-expanded', 'false');
+    }
+  });
+});
+
 // Main nav toggle
 // const mainNavToggle = document.getElementById(
 //   'js-bolt-page-header-main-nav-toggle',

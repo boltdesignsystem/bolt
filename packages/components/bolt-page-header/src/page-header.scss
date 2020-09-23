@@ -29,7 +29,7 @@
 \* ------------------------------------ */
 
 $bolt-page-header-mobile-click-target-size: 44px;
-$bolt-page-header-mobile-padding-block: 4px;
+$bolt-page-header-mobile-padding-block: 3px;
 
 // Calculate page header height for offsetting other sticky elements
 :root {
@@ -43,37 +43,76 @@ $bolt-page-header-mobile-padding-block: 4px;
   @include bolt-button-reset;
 
   display: block;
+  position: relative;
   min-width: $bolt-page-header-mobile-click-target-size;
   min-height: $bolt-page-header-mobile-click-target-size;
   padding: var(--bolt-spacing-y-small) var(--bolt-spacing-x-small);
+  font-family: var(--bolt-type-font-family-body);
+  font-size: var(--bolt-type-font-size-medium);
+  font-weight: var(--bolt-type-font-weight-semibold);
   color: bolt-theme(link);
   text-align: inherit;
   cursor: pointer;
   border: none;
   outline: none;
   background-color: bolt-theme(background);
-  transition: background-color $bolt-transition;
+
+  &:before {
+    content: '';
+    display: block;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transform: scale(1);
+    z-index: 0;
+    pointer-events: none;
+    border-radius: inherit;
+    background-color: rgba(bolt-color(gray), 0.1);
+    will-change: opacity, transform, background-color, box-shadow;
+    transition: opacity $bolt-transition, transform $bolt-transition,
+      box-shadow $bolt-transition;
+  }
 
   &:hover,
   &:focus {
-    background-color: rgba(bolt-color(gray), 0.1);
+    &:before {
+      opacity: 1;
+    }
   }
 
   &:focus {
     box-shadow: inset 0 0 0 1px bolt-theme(link);
   }
 
-  &:active,
-  &[aria-expanded='true'] {
-    background-color: rgba(bolt-color(gray), 0.3);
+  &:active {
+    &:before {
+      background-color: rgba(bolt-color(gray), 0.3);
+    }
   }
 
   &[aria-expanded='true'] {
     color: bolt-theme(headline);
+  }
+}
 
-    &:hover {
-      box-shadow: inset 0 0 0 1px bolt-theme(link);
-    }
+@mixin bolt-page-header-nav-background {
+  background-color: bolt-theme(background);
+
+  &:before {
+    content: '';
+    display: block;
+    opacity: 1;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-color: rgba(bolt-color(gray), 0.2);
   }
 }
 
@@ -136,6 +175,12 @@ $bolt-page-header-mobile-padding-block: 4px;
   height: $bolt-page-header-mobile-click-target-size;
   border-radius: bolt-border-radius(large);
 
+  &:active {
+    &:before {
+      transform: scale(0.8);
+    }
+  }
+
   & ~ #{&} {
     margin-inline-start: var(--bolt-spacing-x-xxsmall);
   }
@@ -148,7 +193,7 @@ $bolt-page-header-mobile-padding-block: 4px;
 .c-bolt-page-header__action-trigger__icon {
   display: grid;
   transform: scale(1) rotate(0deg);
-  font-size: var(--bolt-type-font-size-xlarge);
+  font-size: var(--bolt-type-font-size-xxlarge);
   line-height: 1;
   will-change: transform;
   transition: transform $bolt-transition;
@@ -189,7 +234,7 @@ $bolt-page-header-mobile-padding-block: 4px;
   padding: var(--bolt-spacing-y-small) var(--bolt-page-padding-inline);
   background-color: bolt-theme(background);
   will-change: visibility, transform;
-  transition: all $bolt-transition;
+  transition: visibility $bolt-transition, transform $bolt-transition;
 
   &:before {
     content: '';
@@ -199,6 +244,13 @@ $bolt-page-header-mobile-padding-block: 4px;
     left: 0;
     height: 100vh;
     background-color: rgba(bolt-color(navy, xdark), 0.8);
+  }
+
+  @at-root .c-bolt-page-header__action-trigger--search[aria-expanded='false']
+      ~ #{&} {
+    * {
+      visibility: hidden; // This will hide any currently expanded subnav from keyboard.
+    }
   }
 
   @at-root .c-bolt-page-header__action-trigger--search[aria-expanded='true']
@@ -226,12 +278,12 @@ $bolt-page-header-mobile-padding-block: 4px;
   z-index: bolt-z-index(navFixed);
   background-color: bolt-theme(background);
   will-change: visibility, transform;
-  transition: all $bolt-transition;
+  transition: visibility $bolt-transition, transform $bolt-transition;
 
   &:before {
     content: '';
     display: block;
-    opacity: bolt-opacity(100);
+    opacity: 1;
     position: absolute;
     top: 0;
     right: 0;
@@ -244,6 +296,13 @@ $bolt-page-header-mobile-padding-block: 4px;
 
   > * {
     position: relative;
+  }
+
+  @at-root .c-bolt-page-header__action-trigger--nav[aria-expanded='false']
+      ~ #{&} {
+    * {
+      visibility: hidden; // This will hide any currently expanded subnav from keyboard.
+    }
   }
 
   @at-root .c-bolt-page-header__action-trigger--nav[aria-expanded='true']
@@ -261,19 +320,77 @@ $bolt-page-header-mobile-padding-block: 4px;
   & + #{&} {
     margin-top: var(--bolt-spacing-y-small);
   }
-
-  @at-root .c-bolt-page-header__nav-list-item.has-subnav > #{&} {
-    display: none;
-  }
 }
 
 .c-bolt-page-header__nav-list-item {
   @include bolt-shadow('level-10');
 
+  position: relative;
+  margin-top: 1px;
   background-color: bolt-theme(background);
+}
 
-  & + #{&} {
-    margin-top: 1px;
+.c-bolt-page-header__nav-list-item--nested {
+  > .c-bolt-page-header__nav-link[aria-expanded] {
+    will-change: text-align;
+    transition: text-align $bolt-transition;
+  }
+
+  > .c-bolt-page-header__nav-link[aria-expanded='true'] {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1;
+    height: $bolt-page-header-mobile-click-target-size;
+    text-align: center;
+    white-space: nowrap;
+    border-bottom-color: $bolt-border-color;
+    border-bottom-style: $bolt-border-style;
+    border-bottom-width: $bolt-border-width;
+    background-color: bolt-theme(background);
+
+    &:after {
+      content: '';
+      position: fixed;
+      top: $bolt-page-header-mobile-click-target-size;
+      right: 0;
+      left: 0;
+      z-index: 0;
+      height: 100vh;
+      background-color: bolt-theme(secondary);
+    }
+  }
+
+  > .c-bolt-page-header__nav-list {
+    @include bolt-page-header-nav-background;
+    @include bolt-vertical-scroll;
+
+    visibility: hidden;
+    position: fixed;
+    top: $bolt-page-header-mobile-click-target-size;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transform: translate3d(100%, 0, 0);
+    z-index: 2;
+    background-color: bolt-theme(background);
+    will-change: visibility, transform;
+    transition: visibility $bolt-transition, transform $bolt-transition;
+
+    &.is-covered {
+      top: 0;
+    }
+
+    .c-bolt-page-header__nav-list-item:first-of-type {
+      margin-top: var(--bolt-spacing-y-small);
+    }
+  }
+
+  > .c-bolt-page-header__nav-link[aria-expanded='true']
+    ~ .c-bolt-page-header__nav-list {
+    visibility: visible;
+    transform: translate3d(0, 0, 0);
   }
 }
 
@@ -283,9 +400,6 @@ $bolt-page-header-mobile-padding-block: 4px;
   width: 100%;
   padding-inline-start: calc(var(--bolt-spacing-x-small) * 2);
   padding-inline-end: calc(var(--bolt-spacing-x-small) * 2);
-  font-family: var(--bolt-type-font-family-body);
-  font-size: var(--bolt-type-font-size-medium);
-  font-weight: var(--bolt-type-font-weight-semibold);
 }
 
 /**
@@ -313,7 +427,7 @@ $bolt-page-header-mobile-padding-block: 4px;
   outline: none;
   background-color: bolt-theme(primary);
   will-change: visibility, transform;
-  transition: all $bolt-transition;
+  transition: visibility $bolt-transition, transform $bolt-transition;
   white-space: nowrap;
 
   &:hover,
