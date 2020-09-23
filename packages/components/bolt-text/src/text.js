@@ -1,5 +1,5 @@
 import { html, customElement, BoltElement, unsafeCSS } from '@bolt/element';
-import { css, hasNativeShadowDomSupport } from '@bolt/core-v3.x/utils';
+import { css } from '@bolt/core-v3.x/utils';
 import styles from './text.scss';
 import schema from '../text.schema';
 
@@ -18,34 +18,22 @@ class BoltText extends BoltElement {
   }
 
   subComponentValues(propVal, defaultVal) {
-    return propVal ? propVal : defaultVal;
+    const attr = this.getAttribute(propVal);
+    return attr ? attr : defaultVal;
   }
 
   render() {
-    // let quoted = !!this.props.quoted;
-    // let url = this.props.url ? this.props.url : false;
-    // let util = this.props.util ? this.props.util : false;
-
     let longText = false; // Right now we are only checking this for headline (below)
 
     // Headline defaults
     if (this.headline) {
-      console.log(this.tag);
-      this.tag = this.subComponentValues(this.tag, 'h2');
-      // this.tag = this.tag ? this.tag : 'h2';
-      this.color = this.subComponentValues(this.color, 'theme-headline');
-      this.letterSpacing = this.subComponentValues(
-        this.letterSpacing,
-        'narrow',
-      );
-      this.fontFamily = this.subComponentValues(this.fontFamily, 'headline');
-      this.fontSize = this.subComponentValues(this.fontSize, 'xlarge');
-      this.fontWeight = this.subComponentValues(this.fontWeight, 'bold');
+      this.tag = this.subComponentValues('tag', 'h2');
+      this.color = this.subComponentValues('color', 'theme-headline');
+      this.letterSpacing = this.subComponentValues('letter-pacing', 'narrow');
+      this.fontFamily = this.subComponentValues('font-family', 'headline');
+      this.fontSize = this.subComponentValues('font-size', 'xlarge');
+      this.fontWeight = this.subComponentValues('font-weight', 'bold');
 
-      // @todo: remove below once icon + text component decoupled
-      // if (icon !== 'undefined' && icon !== 'false') {
-      //   iconName = true;
-      // }
       if (this.textContent.trim().length >= 60 && fontSize === 'xxxlarge') {
         longText = true;
       }
@@ -53,23 +41,23 @@ class BoltText extends BoltElement {
 
     // Subheadline defaults
     if (this.subheadline) {
-      this.color = this.subComponentValues(this.color, 'theme-headline');
-      this.fontFamily = this.subComponentValues(this.fontFamily, 'headline');
-      this.fontSize = this.subComponentValues(this.fontSize, 'large');
+      this.color = this.subComponentValues('color', 'theme-headline');
+      this.fontFamily = this.subComponentValues('font-family', 'headline');
+      this.fontSize = this.subComponentValues('font-size', 'large');
     }
 
     // Eyebrow defaults
     if (this.eyebrow) {
-      this.color = this.subComponentValues(this.color, 'theme-headline');
+      this.color = this.subComponentValues('color', 'theme-headline');
       this.textTransform = this.subComponentValues(
-        this.textTransform,
+        'text-transform',
         'uppercase',
       );
-      this.letterSpacing = this.subComponentValues(this.letterSpacing, 'wide');
-      this.lineHeight = this.subComponentValues(this.lineHeight, 'tight');
-      this.fontFamily = this.subComponentValues(this.fontFamily, 'headline');
-      this.fontSize = this.subComponentValues(this.fontSize, 'xsmall');
-      this.opacity = this.subComponentValues(this.opacity, 80);
+      this.letterSpacing = this.subComponentValues('letter-spacing', 'wide');
+      this.lineHeight = this.subComponentValues('line-height', 'tight');
+      this.fontFamily = this.subComponentValues('font-family', 'headline');
+      this.fontSize = this.subComponentValues('font-size', 'xsmall');
+      this.opacity = this.subComponentValues('opacity', 80);
     }
 
     // Important classes
