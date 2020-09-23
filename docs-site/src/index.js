@@ -91,18 +91,49 @@ expandedButtons.forEach(el => {
 const expandedNavLinks = document.querySelectorAll(
   '.js-bolt-page-header-expanded-nav-link',
 );
+
 expandedNavLinks.forEach(el => {
   el.addEventListener('click', e => {
+    const closestList = e.currentTarget.closest(
+      '.js-bolt-page-header-expanded-nav-list',
+    );
+    const closestListItem = e.currentTarget.closest(
+      '.c-bolt-page-header__nav-list-item',
+    );
+
     if (el.getAttribute('aria-expanded') !== 'true') {
       el.setAttribute('aria-expanded', 'true');
-      e.currentTarget
-        .closest('.js-bolt-page-header-expanded-nav-list')
-        .classList.add('is-covered');
+      closestList?.classList.add('is-covered');
+      closestListItem?.classList.add('is-expanded');
     } else {
       el.setAttribute('aria-expanded', 'false');
-      e.currentTarget
-        .closest('.js-bolt-page-header-expanded-nav-list')
-        .classList.remove('is-covered');
+      closestList?.classList.remove('is-covered');
+      closestListItem?.classList.remove('is-expanded');
+    }
+
+    // Set aria-hidden attributes on list-items
+    const allListItems = document.querySelectorAll(
+      '.c-bolt-page-header__nav-list-item',
+    );
+    const expandedItems = document.querySelectorAll(
+      '.c-bolt-page-header__nav-list-item.is-expanded',
+    );
+
+    if (expandedItems.length) {
+      allListItems.forEach(el => {
+        if (
+          el.classList.contains('is-expanded') ||
+          el.closest('.is-expanded')
+        ) {
+          el.removeAttribute('aria-hidden');
+        } else {
+          el.setAttribute('aria-hidden', true);
+        }
+      });
+    } else {
+      allListItems.forEach(el => {
+        el.removeAttribute('aria-hidden');
+      });
     }
   });
 });
