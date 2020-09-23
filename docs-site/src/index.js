@@ -66,14 +66,14 @@ if (missionRatingSubmit) {
 // PAGE HEADER WIP CODE (REMOVE LATER)
 //
 // Expanded button
-const expandedButtons = document.querySelectorAll(
+const pageHeaderExpandedButtons = document.querySelectorAll(
   '.js-bolt-page-header-expanded-button',
 );
-expandedButtons.forEach(el => {
+pageHeaderExpandedButtons.forEach(el => {
   el.addEventListener('click', e => {
     if (el.getAttribute('aria-expanded') !== 'true') {
       const self = el;
-      expandedButtons.forEach(el => {
+      pageHeaderExpandedButtons.forEach(el => {
         if (el !== self) {
           el.setAttribute('aria-expanded', 'false');
         }
@@ -87,18 +87,17 @@ expandedButtons.forEach(el => {
   });
 });
 
-// Expanded nav link
-const expandedNavLinks = document.querySelectorAll(
-  '.js-bolt-page-header-expanded-nav-link',
+// Nested nav links
+const pageHeaderNestedNavListTriggers = document.querySelectorAll(
+  '.js-bolt-page-header-nested-nav-list-trigger',
 );
-
-expandedNavLinks.forEach(el => {
+pageHeaderNestedNavListTriggers.forEach(el => {
   el.addEventListener('click', e => {
     const closestList = e.currentTarget.closest(
-      '.js-bolt-page-header-expanded-nav-list',
+      '.js-bolt-page-header-nested-nav-list',
     );
     const closestListItem = e.currentTarget.closest(
-      '.c-bolt-page-header__nav-list-item',
+      '.js-bolt-page-header-nav-list-item',
     );
 
     if (el.getAttribute('aria-expanded') !== 'true') {
@@ -113,10 +112,10 @@ expandedNavLinks.forEach(el => {
 
     // Set aria-hidden attributes on list-items
     const allListItems = document.querySelectorAll(
-      '.c-bolt-page-header__nav-list-item',
+      '.js-bolt-page-header-nav-list-item',
     );
     const expandedItems = document.querySelectorAll(
-      '.c-bolt-page-header__nav-list-item.is-expanded',
+      '.js-bolt-page-header-nav-list-item.is-expanded',
     );
 
     if (expandedItems.length) {
