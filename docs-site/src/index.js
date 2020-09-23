@@ -66,7 +66,9 @@ if (missionRatingSubmit) {
 // PAGE HEADER WIP CODE (REMOVE LATER)
 //
 // Expanded button
-const expandedButtons = document.querySelectorAll('.js-bolt-expanded-button');
+const expandedButtons = document.querySelectorAll(
+  '.js-bolt-page-header-expanded-button',
+);
 expandedButtons.forEach(el => {
   el.addEventListener('click', e => {
     if (el.getAttribute('aria-expanded') !== 'true') {
@@ -77,22 +79,30 @@ expandedButtons.forEach(el => {
         }
       });
       el.setAttribute('aria-expanded', 'true');
+      document.querySelector('body').classList.add('u-bolt-overflow-hidden');
     } else {
       el.setAttribute('aria-expanded', 'false');
+      document.querySelector('body').classList.remove('u-bolt-overflow-hidden');
     }
   });
 });
 
 // Expanded nav link
 const expandedNavLinks = document.querySelectorAll(
-  '.js-bolt-expanded-nav-link',
+  '.js-bolt-page-header-expanded-nav-link',
 );
 expandedNavLinks.forEach(el => {
   el.addEventListener('click', e => {
     if (el.getAttribute('aria-expanded') !== 'true') {
       el.setAttribute('aria-expanded', 'true');
+      e.currentTarget
+        .closest('.js-bolt-page-header-expanded-nav-list')
+        .classList.add('is-covered');
     } else {
       el.setAttribute('aria-expanded', 'false');
+      e.currentTarget
+        .closest('.js-bolt-page-header-expanded-nav-list')
+        .classList.remove('is-covered');
     }
   });
 });
