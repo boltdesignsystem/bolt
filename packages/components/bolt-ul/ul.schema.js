@@ -1,4 +1,4 @@
-module.schema = {
+module.exports = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'Unordered List',
   type: 'object',

@@ -1,37 +1,36 @@
-import { props, mapWithDepth } from '@bolt/core-v3.x/utils';
+import { html, customElement, BoltElement, unsafeCSS } from '@bolt/element';
 import classNames from 'classnames/bind';
-import { withLitHtml } from '@bolt/core-v3.x/renderers/renderer-lit-html';
-import { html, customElement } from '@bolt/element';
 import styles from './li.scss';
+import schema from '../li.schema';
 
 let cx = classNames.bind(styles);
 
 @customElement('bolt-li')
-class BoltListItem extends withLitHtml {
-  static props = {
-    last: {
-      ...props.boolean,
-      ...{ default: false },
-    },
-    level: {
-      ...props.number,
-      ...{ default: 0 },
-    },
-    type: {
-      ...props.string,
-      ...{ default: 'ul' },
-    },
-  };
+class BoltListItem extends BoltElement {
+  static schema = schema;
 
-  connected() {
-    this.type =
-      this.parentNode.tagName === 'BOLT-OL' || this.parentNode.tagName === 'OL'
-        ? 'ol'
-        : 'ul';
-    this.level =
-      this.parentNode.level && this.type === 'ul'
-        ? this.parentNode.level
-        : this.props.level;
+  static get properties() {
+    return {
+      last: { type: Boolean },
+      level: { type: Number },
+      type: { type: String },
+    };
+  }
+
+  static get styles() {
+    return [unsafeCSS(styles)];
+  }
+
+  connectedCallback() {
+    super.connectedCallback && super.connectedCallback();
+
+    // Defaults to 1, incremented as necessary by parent OL/UL.
+    this.level = 1;
+
+    const closestList = this.parentNode.closest('bolt-ul, bolt-ol');
+    if (closestList) {
+      this.type = closestList.tagName === 'BOLT-OL' ? 'ol' : 'ul';
+    }
   }
 
   render() {
@@ -43,18 +42,10 @@ class BoltListItem extends withLitHtml {
         .level, // allow up to 3 levels of nested styles before repeating
     });
 
-    // helper function called by the mapWithDepth util to increment the depth of nested children
-    function addNestedLevelProps(childNode, depth) {
-      childNode.level = depth + 1;
-    }
-
-    this.slots.default = this.slots.default.map(
-      mapWithDepth(this.level, addNestedLevelProps),
-    );
-
     return html`
-      ${this.addStyles([styles])}
-      <div class="${classes}" role="listitem">${this.slot('default')}</div>
+      <div class="${classes}" role="listitem">
+        ${this.slotify('default')}
+      </div>
     `;
   }
 }
