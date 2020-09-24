@@ -81,7 +81,6 @@ class BoltTable extends BoltElement {
       switch (element.tagName) {
         case 'caption':
           this.createProp(boltedObject, 'caption', element.children[0].content);
-          // this.convertElements(element.children, boltedObject, 'caption');
           break;
         case 'thead':
           this.createProp(boltedObject, 'head', []);
@@ -156,9 +155,9 @@ class BoltTable extends BoltElement {
       switch (tag) {
         case 'caption':
           return html`
-            <caption class=${captionClasses}>
+            <!-- <caption class=${captionClasses}>
               ${boltTable[tag]}
-            </caption>
+            </caption> -->
           `;
         case 'head':
           return html`
