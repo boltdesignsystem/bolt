@@ -79,6 +79,10 @@ class BoltTable extends BoltElement {
 
     element.map(element => {
       switch (element.tagName) {
+        case 'caption':
+          this.createProp(boltedObject, 'caption', element.children[0].content);
+          // this.convertElements(element.children, boltedObject, 'caption');
+          break;
         case 'thead':
           this.createProp(boltedObject, 'head', []);
           this.convertElements(element.children, boltedObject, 'head');
@@ -141,6 +145,7 @@ class BoltTable extends BoltElement {
     });
     const bodyClasses = cx('c-bolt-table__body');
     const headClasses = cx('c-bolt-table__head');
+    const captionClasses = cx('c-bolt-table__caption');
     const footClasses = cx('c-bolt-table__foot');
     const rowClasses = cx('c-bolt-table__row');
     let boltTableMarkup = [];
@@ -149,6 +154,12 @@ class BoltTable extends BoltElement {
 
     function setSectionTag(tag) {
       switch (tag) {
+        case 'caption':
+          return html`
+            <caption class=${captionClasses}>
+              caption here
+            </caption>
+          `;
         case 'head':
           return html`
             <thead class=${headClasses}>
