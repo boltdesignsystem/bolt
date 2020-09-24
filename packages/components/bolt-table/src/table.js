@@ -157,7 +157,7 @@ class BoltTable extends BoltElement {
         case 'caption':
           return html`
             <caption class=${captionClasses}>
-              caption here
+              ${boltTable[tag]}
             </caption>
           `;
         case 'head':
