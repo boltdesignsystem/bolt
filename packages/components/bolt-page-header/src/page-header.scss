@@ -126,6 +126,25 @@ $bolt-page-header-mobile-padding-block: 3px;
   border-bottom-style: $bolt-border-style;
   border-bottom-width: $bolt-border-width;
   background-color: bolt-theme(background);
+
+  *::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--bolt-color-gray) var(--bolt-color-gray-xlight);
+  }
+
+  *::-webkit-scrollbar-track {
+    background: var(--bolt-color-gray-xlight);
+  }
+
+  *::-webkit-scrollbar-thumb {
+    border: 2px solid var(--bolt-color-gray-xlight);
+    border-radius: 6px;
+    background-color: var(--bolt-color-gray);
+  }
 }
 
 /**
@@ -199,7 +218,7 @@ $bolt-page-header-mobile-padding-block: 3px;
   font-size: var(--bolt-type-font-size-xxlarge);
   line-height: 1;
   will-change: transform;
-  transition: transform $bolt-transition;
+  transition: transform ease-out 500ms;
   place-items: center;
 
   > * {
@@ -250,13 +269,6 @@ $bolt-page-header-mobile-padding-block: 3px;
     background-color: rgba(bolt-color(navy, xdark), 0.8);
   }
 
-  @at-root .c-bolt-page-header__action-trigger--search[aria-expanded='false']
-      ~ #{&} {
-    * {
-      visibility: hidden; // This will hide any currently expanded subnav from keyboard.
-    }
-  }
-
   @at-root .c-bolt-page-header__action-trigger--search[aria-expanded='true']
       ~ #{&} {
     visibility: visible;
@@ -282,17 +294,6 @@ $bolt-page-header-mobile-padding-block: 3px;
   overflow: hidden;
   will-change: visibility, transform;
   transition: visibility $bolt-transition, transform $bolt-transition;
-
-  > * {
-    position: relative;
-  }
-
-  @at-root .c-bolt-page-header__action-trigger--nav[aria-expanded='false']
-      ~ #{&} {
-    * {
-      visibility: hidden; // This will hide any currently expanded subnav from keyboard.
-    }
-  }
 
   @at-root .c-bolt-page-header__action-trigger--nav[aria-expanded='true']
       ~ #{&} {
@@ -323,7 +324,6 @@ $bolt-page-header-mobile-padding-block: 3px;
 .c-bolt-page-header__nav-list-item {
   @include bolt-shadow('level-10');
 
-  position: relative;
   margin-top: 1px;
   background-color: bolt-theme(background);
 }
@@ -360,18 +360,22 @@ $bolt-page-header-mobile-padding-block: 3px;
     @include bolt-vertical-scroll;
 
     visibility: hidden;
+    opacity: 0;
     position: fixed;
-    top: $bolt-page-header-mobile-click-target-size;
+    top: 0;
     right: 0;
     bottom: 0;
     left: 0;
     transform: translate3d(100%, 0, 0);
     z-index: 2;
-    will-change: visibility, transform;
-    transition: visibility $bolt-transition, transform $bolt-transition;
+    margin-top: $bolt-page-header-mobile-click-target-size;
+    will-change: margin-top, opacity, visibility, transform;
+    transition: margin-top $bolt-transition, opacity $bolt-transition,
+      visibility $bolt-transition, transform $bolt-transition;
 
     &.is-covered {
-      top: 0;
+      overflow: visible;
+      margin-top: 0;
     }
 
     .c-bolt-page-header__nav-list-item:first-of-type {
@@ -382,7 +386,9 @@ $bolt-page-header-mobile-padding-block: 3px;
   > .c-bolt-page-header__nav-link[aria-expanded='true']
     ~ .c-bolt-page-header__nav-list {
     visibility: visible;
+    opacity: 1;
     transform: translate3d(0, 0, 0);
+    transition-delay: $bolt-transition-timing;
   }
 }
 
@@ -393,12 +399,6 @@ $bolt-page-header-mobile-padding-block: 3px;
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  padding-inline-start: calc(
-    var(--bolt-spacing-x-small) + var(--bolt-spacing-x-xsmall)
-  );
-  padding-inline-end: calc(
-    var(--bolt-spacing-x-small) + var(--bolt-spacing-x-xsmall)
-  );
 }
 
 .c-bolt-page-header__nav-link__text {
@@ -412,21 +412,94 @@ $bolt-page-header-mobile-padding-block: 3px;
   align-items: center;
   line-height: 1;
 
+  &:before {
+    content: '';
+    display: block;
+    width: 0.5em;
+    height: 0.5em;
+    border-top: 1px solid;
+    border-right: 1px solid;
+    will-change: border;
+    transition: border $bolt-transition;
+    transform-origin: center center;
+  }
+
   &--prev {
     display: none;
-    padding-inline-end: var(--bolt-spacing-x-xsmall);
+
+    &:before {
+      transform: rotate(-135deg);
+    }
 
     @at-root .c-bolt-page-header__nav-link[aria-expanded='true'] #{&} {
       display: grid;
+    }
+
+    @at-root .c-bolt-page-header__nav-link:hover #{&} {
+      &:before {
+        border-top-width: 2px;
+        border-right-width: 2px;
+      }
     }
   }
 
   &--next {
     opacity: 1;
-    padding-inline-start: var(--bolt-spacing-x-xsmall);
+
+    &:before {
+      transform: rotate(45deg);
+    }
 
     @at-root .c-bolt-page-header__nav-link[aria-expanded='true'] #{&} {
       opacity: 0;
+    }
+
+    @at-root .c-bolt-page-header__nav-link:hover #{&} {
+      &:before {
+        border-top-width: 2px;
+        border-right-width: 2px;
+      }
+    }
+  }
+}
+
+.c-bolt-page-header__nav-link,
+.c-bolt-page-header__nav-content {
+  padding-inline-start: calc(
+    var(--bolt-spacing-x-small) + var(--bolt-spacing-x-xsmall)
+  );
+  padding-inline-end: calc(
+    var(--bolt-spacing-x-small) + var(--bolt-spacing-x-xsmall)
+  );
+}
+
+.c-bolt-page-header__nav-content {
+  padding-top: var(--bolt-spacing-y-medium);
+  padding-bottom: var(--bolt-spacing-y-medium);
+}
+
+.c-bolt-page-header__nav-list--utils {
+  .c-bolt-page-header__nav-list {
+    .c-bolt-page-header__nav-link[aria-expanded] {
+      display: none;
+
+      & ~ .c-bolt-page-header__nav-list {
+        visibility: visible;
+        opacity: unset;
+        position: unset;
+        top: unset;
+        right: unset;
+        bottom: unset;
+        left: unset;
+        transform: unset;
+        z-index: unset;
+        overflow: unset;
+        margin-top: unset;
+
+        .c-bolt-page-header__nav-list-item:first-of-type {
+          margin-top: 0;
+        }
+      }
     }
   }
 }
