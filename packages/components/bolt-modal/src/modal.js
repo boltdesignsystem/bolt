@@ -63,7 +63,7 @@ class BoltModal extends BoltElement {
       if (propName === 'open') {
         if (this.open) {
           this.focusTrap.active = true;
-          this.setFocusToFirstItem(this.renderRoot);
+          this.setFocusToFirstItem();
           this.ready = true;
         }
       }
@@ -253,16 +253,6 @@ class BoltModal extends BoltElement {
     }
   }
 
-  _handleTriggerFocus(e) {
-    const closeButton = e.target.closest('.c-bolt-modal__close-button');
-    closeButton.classList.add('c-bolt-modal__close-button--focus-within');
-  }
-
-  _handleTriggerBlur(e) {
-    const closeButton = e.target.closest('.c-bolt-modal__close-button');
-    closeButton.classList.remove('c-bolt-modal__close-button--focus-within');
-  }
-
   _setScrollbar() {
     BoltModal.bodyHasScrollbar &&
       setScrollbarPadding(document.body, BoltModal.scrollbarWidth);
@@ -277,33 +267,30 @@ class BoltModal extends BoltElement {
   }
 
   /**
-   * Set the focus to the first element with `autofocus` or the first focusable
-   * child of the given element
-   *
-   * @param {Element} node
+   * Set focus on the close button, the first element with `data-bolt-autofocus`,
+   * `autofocus`, or the first focusable element in the modal (in that order)
    */
-  async setFocusToFirstItem(node) {
-    const focusableChildren = this.getFocusableChildren(node);
-    const childToBeFocused =
-      node.querySelector('[autofocus]') || focusableChildren[0];
+  async setFocusToFirstItem() {
+    const closeButton = this.renderRoot.querySelector(
+      '.js-close-button-fallback',
+    );
+    const boltAutofocusEl = this.querySelector('[data-bolt-autofocus]');
+    const autofocusEl = this.querySelector('[autofocus]');
 
-    if (childToBeFocused) {
-      // If child is Bolt Element, wait for it to finish updating, or it will not receive focus.
-      if (typeof childToBeFocused.render === 'function') {
-        await childToBeFocused.updateComplete;
-      }
-      childToBeFocused.focus();
+    const initialEl =
+      closeButton || boltAutofocusEl || autofocusEl || tabbable(this)[0];
+
+    if (!initialEl) return;
+
+    const tagName = initialEl.tagName.toLowerCase();
+
+    if (tagName.includes('bolt-') && customElements.get(tagName)) {
+      // Wait for component to update or renderRoot can be undefined.
+      await initialEl.updateComplete;
+      tabbable(initialEl.renderRoot)[0].focus();
+    } else {
+      initialEl.focus();
     }
-  }
-
-  /**
-   * Get the focusable children of the given element
-   *
-   * @param {Element} node
-   * @return {Array<Element>}
-   */
-  getFocusableChildren(node) {
-    return tabbable(node);
   }
 
   /**
@@ -395,28 +382,12 @@ class BoltModal extends BoltElement {
         this.theme && (this.theme === 'light' || this.theme === 'xlight'),
     });
 
-    const delegateFocus = e => {
-      if (!this.useShadow) {
-        const button = e.target.renderRoot.querySelector('button');
-        button && button.focus();
-      }
-    };
-
-    // <button> element is included here to set a required style inside the Shadow DOM.
-    // Button's default transition 'all' property delays 'visibility: visible'
-    // and thus prevents it from getting focus on 'rendered'.
-    // @todo: Can we safely fix this from within the button component itself?
     const defaultCloseButton = html`
       <bolt-trigger
         class="js-close-button-fallback"
         @click=${e => this.hide(e)}
-        @focus=${e => delegateFocus(e)}
-        @trigger:focus=${e => this._handleTriggerFocus(e)}
-        @trigger:blur=${e => this._handleTriggerBlur(e)}
         display="block"
         no-outline
-        autofocus
-        tabindex="0"
       >
         <span class="c-bolt-modal__close-button__text"
           >Close this dialog window</span
