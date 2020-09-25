@@ -274,9 +274,11 @@ class BoltModal extends BoltElement {
     const closeButton = this.renderRoot.querySelector(
       '.js-close-button-fallback',
     );
+    const boltAutofocusEl = this.querySelector('[data-bolt-autofocus]');
     const autofocusEl = this.querySelector('[autofocus]');
 
-    const initialEl = closeButton || autofocusEl || tabbable(this)[0];
+    const initialEl =
+      closeButton || boltAutofocusEl || autofocusEl || tabbable(this)[0];
 
     if (!initialEl) return;
 
