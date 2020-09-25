@@ -1,0 +1,59 @@
+/* ------------------------------------ *\
+   Page Header (desktop mega nav)
+\* ------------------------------------ */
+
+@include bolt-mq($from: large) {
+  .c-bolt-page-header {
+    position: sticky;
+  }
+
+  // Primary section container
+  .c-bolt-page-header__primary {
+    grid-template-columns: minmax(166px, 275px) 1fr;
+    margin-inline-start: calc(
+      #{$bolt-page-header-action-trigger-spacing-x} * -1
+    );
+    padding-top: $bolt-page-header-desktop-spacing-y;
+    padding-bottom: $bolt-page-header-desktop-spacing-y;
+    padding-inline-end: $bolt-page-header-desktop-primary-nav-spacing-x;
+    padding-inline-start: $bolt-page-header-desktop-primary-nav-spacing-x;
+  }
+
+  // Logo
+  .c-bolt-page-header__logo {
+  }
+
+  // Toolbar
+  .c-bolt-page-header__toolbar {
+  }
+
+  .c-bolt-page-header__action-trigger {
+  }
+
+  .c-bolt-page-header__action-trigger__text {
+  }
+
+  .c-bolt-page-header__action-trigger__icon {
+  }
+
+  .c-bolt-page-header__action-trigger__icon--close {
+  }
+
+  .c-bolt-page-header__action-trigger[aria-expanded='true'] {
+  }
+
+  .c-bolt-page-header__action-trigger--nav {
+    display: none;
+  }
+
+  // Dropdown search panel
+  .c-bolt-page-header__search {
+    padding-inline-end: $bolt-page-header-desktop-expanded-content-spacing-x;
+    padding-inline-start: $bolt-page-header-desktop-expanded-content-spacing-x;
+  }
+
+  // Mega primary nav
+  .c-bolt-page-header__nav {
+    display: none;
+  }
+}
