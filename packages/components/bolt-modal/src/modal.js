@@ -267,8 +267,8 @@ class BoltModal extends BoltElement {
   }
 
   /**
-   * Set focus on the close button, the first element with `autofocus`, or the
-   * first focusable element in the modal (in that order)
+   * Set focus on the close button, the first element with `data-bolt-autofocus`,
+   * `autofocus`, or the first focusable element in the modal (in that order)
    */
   async setFocusToFirstItem() {
     const closeButton = this.renderRoot.querySelector(
