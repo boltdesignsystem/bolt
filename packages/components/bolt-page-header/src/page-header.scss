@@ -68,8 +68,6 @@ $bolt-page-header-mobile-expanded-content-spacing-x: calc(
   min-height: $bolt-page-header-click-target-size;
   padding-top: var(--bolt-spacing-y-xsmall);
   padding-bottom: var(--bolt-spacing-y-xsmall);
-  padding-inline-end: $spacing-x;
-  padding-inline-start: $spacing-x;
   font-family: var(--bolt-type-font-family-body);
   font-size: var(--bolt-type-font-size-medium);
   font-weight: var(--bolt-type-font-weight-semibold);
@@ -78,8 +76,11 @@ $bolt-page-header-mobile-expanded-content-spacing-x: calc(
   text-align: inherit;
   cursor: pointer;
   border: none;
+  border-radius: bolt-border-radius(large);
   outline: none;
   background-color: bolt-theme(background);
+  padding-inline-end: $spacing-x;
+  padding-inline-start: $spacing-x;
 
   &:before {
     content: '';
@@ -108,6 +109,7 @@ $bolt-page-header-mobile-expanded-content-spacing-x: calc(
 
   &:focus {
     box-shadow: inset 0 0 0 1px bolt-theme(link);
+    outline: none; // Remove Firefox default outline.
   }
 
   &:active {
@@ -173,27 +175,38 @@ $bolt-page-header-mobile-expanded-content-spacing-x: calc(
 // Primary section container
 .c-bolt-page-header__primary {
   display: grid;
+  grid-template-columns: minmax(166px, 275px) 1fr;
   grid-gap: var(--bolt-spacing-x-medium);
   align-items: center;
 }
 
 // Logo
 .c-bolt-page-header__logo {
+  display: flex;
+}
+
+.c-bolt-page-header__logo__link {
   @include bolt-page-header-action-trigger(
     $bolt-page-header-action-trigger-spacing-x
   );
 
-  display: grid;
-  grid-template-columns: 100% 1fr;
+  display: inline-flex;
   align-items: center;
-  border-radius: bolt-border-radius(large);
+  height: $bolt-page-header-click-target-size;
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+
+.c-bolt-page-header__logo__img {
+  height: 32px;
+  object-fit: contain;
+  object-position: 0% 50%;
 }
 
 // Toolbar
 .c-bolt-page-header__toolbar {
   display: flex;
   align-items: center;
-  margin-inline-start: auto;
 }
 
 .c-bolt-page-header__action-trigger {
@@ -202,11 +215,10 @@ $bolt-page-header-mobile-expanded-content-spacing-x: calc(
   );
 
   height: $bolt-page-header-click-target-size;
-  border-radius: bolt-border-radius(large);
 
   &:active {
     &:before {
-      transform: scale(0.8);
+      transform: scale(0.85);
     }
   }
 
@@ -284,5 +296,36 @@ $bolt-page-header-mobile-expanded-content-spacing-x: calc(
       ~ #{&} {
     visibility: visible;
     transform: translate3d(0, 0, 0);
+  }
+}
+
+// Main CTA
+.c-bolt-page-header__cta {
+  display: block;
+  font-family: var(--bolt-type-font-family-body);
+  font-weight: var(--bolt-type-font-weight-semibold);
+  color: bolt-theme(text-on-primary);
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  background-color: bolt-theme(primary);
+  filter: none;
+  will-change: transform, filter, box-shadow;
+  transition: transform $bolt-transition, filter $bolt-transition,
+    box-shadow $bolt-transition;
+  white-space: nowrap;
+
+  &:hover,
+  &:focus {
+    filter: brightness(110%);
+  }
+
+  &:focus {
+    box-shadow: inset 0 0 0 3px bolt-theme(primary),
+      inset 0 0 0 4px bolt-color(text-on-primary);
+  }
+
+  &:active {
+    filter: brightness(95%);
   }
 }

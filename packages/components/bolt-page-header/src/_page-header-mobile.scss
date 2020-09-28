@@ -10,7 +10,6 @@
 
   // Primary section container
   .c-bolt-page-header__primary {
-    grid-template-columns: minmax(142px, 166px) 1fr;
     padding-top: $bolt-page-header-mobile-spacing-y;
     padding-bottom: $bolt-page-header-mobile-spacing-y;
     padding-inline-end: $bolt-page-header-mobile-primary-nav-spacing-x;
@@ -19,13 +18,17 @@
 
   // Logo
   .c-bolt-page-header__logo {
-    height: $bolt-page-header-click-target-size;
-    padding-top: 0;
-    padding-bottom: 0;
+  }
+
+  .c-bolt-page-header__logo__link {
+  }
+
+  .c-bolt-page-header__logo__img {
   }
 
   // Toolbar
   .c-bolt-page-header__toolbar {
+    margin-inline-start: auto;
   }
 
   .c-bolt-page-header__action-trigger {
@@ -187,6 +190,7 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
+    border-radius: 0;
   }
 
   .c-bolt-page-header__nav-link--current {
@@ -308,7 +312,6 @@
 
   // Main CTA
   .c-bolt-page-header__cta {
-    display: block;
     visibility: hidden;
     position: fixed;
     right: 0;
@@ -318,35 +321,12 @@
     z-index: bolt-z-index(navFixed);
     height: $bolt-page-header-click-target-size;
     padding: 0 var(--bolt-spacing-x-medium);
-    font-family: var(--bolt-type-font-family-body);
     font-size: var(--bolt-type-font-size-medium);
-    font-weight: var(--bolt-type-font-weight-semibold);
-    color: bolt-theme(text-on-primary);
     line-height: $bolt-page-header-click-target-size;
-    text-align: center;
-    text-decoration: none;
     box-shadow: 0 0 var(--bolt-spacing-y-small) bolt-theme(primary);
-    outline: none;
-    background-color: bolt-theme(primary);
-    filter: none;
     will-change: visibility, transform, filter, box-shadow;
     transition: visibility $bolt-transition, transform $bolt-transition,
       filter $bolt-transition, box-shadow $bolt-transition;
-    white-space: nowrap;
-
-    &:hover,
-    &:focus {
-      filter: brightness(110%);
-    }
-
-    &:focus {
-      box-shadow: inset 0 0 0 3px bolt-theme(primary),
-        inset 0 0 0 4px bolt-color(text-on-primary);
-    }
-
-    &:active {
-      filter: brightness(95%);
-    }
 
     @at-root .c-bolt-page-header__action-trigger--nav[aria-expanded='true']
         ~ #{&} {
