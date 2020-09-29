@@ -64,9 +64,8 @@ $bolt-page-header-mobile-expanded-content-spacing-x: calc(
 }
 
 @mixin bolt-page-header-action-trigger($spacing-x) {
-  @include bolt-button-reset;
-
   display: block;
+  appearance: none;
   position: relative;
   min-width: $bolt-page-header-click-target-size;
   min-height: $bolt-page-header-click-target-size;

@@ -180,8 +180,10 @@
     font-weight: var(--bolt-type-font-weight-semibold);
 
     .c-bolt-page-header__nav-link {
+      display: block;
       appearance: none;
-      padding: 0;
+      padding: var(--bolt-spacing-y-xsmall) var(--bolt-spacing-x-xsmall);
+      font: var(--bolt-type-font-family-headline);
       color: bolt-theme(link);
       line-height: var(--bolt-type-line-height-xxsmall);
       cursor: pointer;
@@ -200,14 +202,14 @@
       > .c-bolt-page-header__nav-link {
         display: none;
       }
+
+      > .c-bolt-page-header__nav-list {
+        margin-inline-start: calc(var(--bolt-spacing-x-xsmall) * -1);
+      }
     }
 
     .c-bolt-page-header__nav-list {
       display: flex;
-
-      .c-bolt-page-header__nav-list-item {
-        margin-inline-end: var(--bolt-spacing-x-xsmall);
-      }
     }
   }
 
