@@ -30,7 +30,11 @@
 $bolt-page-header-action-trigger-spacing-x: var(--bolt-spacing-x-small);
 $bolt-page-header-click-target-size: 44px;
 
-$bolt-page-header-desktop-spacing-y: var(--bolt-spacing-y-medium);
+$bolt-page-header-desktop-util-nav-height: var(--bolt-spacing-y-medium);
+$bolt-page-header-desktop-padding-top: calc(
+  var(--bolt-spacing-y-medium) + #{$bolt-page-header-desktop-util-nav-height}
+);
+$bolt-page-header-desktop-padding-bottom: var(--bolt-spacing-y-medium);
 $bolt-page-header-desktop-primary-nav-spacing-x: var(
   --bolt-page-padding-inline
 );
@@ -53,8 +57,8 @@ $bolt-page-header-mobile-expanded-content-spacing-x: calc(
 
   @include bolt-mq($from: large) {
     --bolt-page-header-height: calc(
-      #{$bolt-page-header-click-target-size} + #{$bolt-page-header-desktop-spacing-y} *
-        2
+      #{$bolt-page-header-click-target-size} + #{$bolt-page-header-desktop-padding-top} +
+        #{$bolt-page-header-desktop-padding-bottom}
     );
   }
 }
@@ -68,7 +72,7 @@ $bolt-page-header-mobile-expanded-content-spacing-x: calc(
   min-height: $bolt-page-header-click-target-size;
   padding-top: var(--bolt-spacing-y-xsmall);
   padding-bottom: var(--bolt-spacing-y-xsmall);
-  font-family: var(--bolt-type-font-family-body);
+  font-family: var(--bolt-type-font-family-headline);
   font-size: var(--bolt-type-font-size-medium);
   font-weight: var(--bolt-type-font-weight-semibold);
   color: bolt-theme(link);
@@ -174,10 +178,6 @@ $bolt-page-header-mobile-expanded-content-spacing-x: calc(
 
 // Primary section container
 .c-bolt-page-header__primary {
-  display: grid;
-  grid-template-columns: minmax(166px, 275px) 1fr;
-  grid-gap: var(--bolt-spacing-x-medium);
-  align-items: center;
 }
 
 // Logo
@@ -198,7 +198,7 @@ $bolt-page-header-mobile-expanded-content-spacing-x: calc(
 }
 
 .c-bolt-page-header__logo__img {
-  height: 32px;
+  height: 34px;
   object-fit: contain;
   object-position: 0% 50%;
 }
@@ -271,7 +271,7 @@ $bolt-page-header-mobile-expanded-content-spacing-x: calc(
   display: block;
   visibility: hidden;
   position: fixed;
-  top: calc(var(--bolt-page-header-height) + 1px);
+  top: var(--bolt-page-header-height);
   right: 0;
   left: 0;
   transform: translate3d(-100%, 0, 0);
