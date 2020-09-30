@@ -17,9 +17,10 @@ class BoltText extends BoltElement {
     return [unsafeCSS(styles)];
   }
 
-  subComponentValues(propVal, defaultVal) {
-    const attr = this.getAttribute(propVal);
-    return attr ? attr : defaultVal;
+  setDefaultValue(propName, propVal) {
+    // Unless prop is explicitly set with an attribute, override default value from schema with `propVal`.
+    const attr = this.getAttribute(propName);
+    return attr ? attr : propVal;
   }
 
   render() {
@@ -27,12 +28,12 @@ class BoltText extends BoltElement {
 
     // Headline defaults
     if (this.headline) {
-      this.tag = this.subComponentValues('tag', 'h2');
-      this.color = this.subComponentValues('color', 'theme-headline');
-      this.letterSpacing = this.subComponentValues('letter-pacing', 'narrow');
-      this.fontFamily = this.subComponentValues('font-family', 'headline');
-      this.fontSize = this.subComponentValues('font-size', 'xlarge');
-      this.fontWeight = this.subComponentValues('font-weight', 'bold');
+      this.tag = this.setDefaultValue('tag', 'h2');
+      this.color = this.setDefaultValue('color', 'theme-headline');
+      this.letterSpacing = this.setDefaultValue('letter-pacing', 'narrow');
+      this.fontFamily = this.setDefaultValue('font-family', 'headline');
+      this.fontSize = this.setDefaultValue('font-size', 'xlarge');
+      this.fontWeight = this.setDefaultValue('font-weight', 'bold');
 
       if (this.textContent.trim().length >= 60 && fontSize === 'xxxlarge') {
         longText = true;
@@ -41,23 +42,20 @@ class BoltText extends BoltElement {
 
     // Subheadline defaults
     if (this.subheadline) {
-      this.color = this.subComponentValues('color', 'theme-headline');
-      this.fontFamily = this.subComponentValues('font-family', 'headline');
-      this.fontSize = this.subComponentValues('font-size', 'large');
+      this.color = this.setDefaultValue('color', 'theme-headline');
+      this.fontFamily = this.setDefaultValue('font-family', 'headline');
+      this.fontSize = this.setDefaultValue('font-size', 'large');
     }
 
     // Eyebrow defaults
     if (this.eyebrow) {
-      this.color = this.subComponentValues('color', 'theme-headline');
-      this.textTransform = this.subComponentValues(
-        'text-transform',
-        'uppercase',
-      );
-      this.letterSpacing = this.subComponentValues('letter-spacing', 'wide');
-      this.lineHeight = this.subComponentValues('line-height', 'tight');
-      this.fontFamily = this.subComponentValues('font-family', 'headline');
-      this.fontSize = this.subComponentValues('font-size', 'xsmall');
-      this.opacity = this.subComponentValues('opacity', 80);
+      this.color = this.setDefaultValue('color', 'theme-headline');
+      this.textTransform = this.setDefaultValue('text-transform', 'uppercase');
+      this.letterSpacing = this.setDefaultValue('letter-spacing', 'wide');
+      this.lineHeight = this.setDefaultValue('line-height', 'tight');
+      this.fontFamily = this.setDefaultValue('font-family', 'headline');
+      this.fontSize = this.setDefaultValue('font-size', 'xsmall');
+      this.opacity = this.setDefaultValue('opacity', 80);
     }
 
     // Important classes
