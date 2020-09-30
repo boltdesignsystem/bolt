@@ -53,37 +53,26 @@
       <nav class="c-bolt-page-header__nav" id="js-bolt-page-header-primary-nav" aria-label="Main Site Navigation">
         <div class="c-bolt-page-header__nav-list-group">
           <ul class="c-bolt-page-header__nav-list c-bolt-page-header__nav-list--user">
-            <li class="c-bolt-page-header__nav-list-item c-bolt-page-header__nav-list-item--nested js-bolt-page-header-nav-list-item js-bolt-page-header-nav-list-item">
+            <li class="c-bolt-page-header__nav-list-item c-bolt-page-header__nav-list-item--nested c-bolt-page-header__nav-list-item--popover t-bolt-dark js-bolt-page-header-nav-list-item">
               <button aria-haspopup="true" aria-expanded="false" class="c-bolt-page-header__nav-link js-bolt-page-header-nested-nav-list-trigger">
-                <span class="c-bolt-page-header__nav-link__icon c-bolt-page-header__nav-link__icon--prev" aria-hidden="true"></span>
-                <span class="c-bolt-page-header__nav-link__text">
-                  User Profile
+                <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--collapse" aria-hidden="true"></span>
+                <span class="c-bolt-page-header__nav-link__content">
+                  {% include '@bolt-components-icon/icon.twig' with {
+                    name: 'user',
+                  } only %}
+                  Hello, Bill
                 </span>
-                <span class="c-bolt-page-header__nav-link__icon c-bolt-page-header__nav-link__icon--next" aria-hidden="true"></span>
+                <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--expand" aria-hidden="true"></span>
               </button>
               <ul class="c-bolt-page-header__nav-list js-bolt-page-header-nested-nav-list">
                 <li class="c-bolt-page-header__nav-list-item js-bolt-page-header-nav-list-item">
                   <div class="c-bolt-page-header__nav-content">
-                    <div class="o-bolt-grid o-bolt-grid--small o-bolt-grid--center o-bolt-grid--matrix">
-                      <div class="o-bolt-grid__cell">
-                        {% include '@bolt-components-image/image.twig' with {
-                          src: '/images/docs/500x500.jpg',
-                          alt: 'Bill',
-                          ratio: 'none',
-                          max_width: '48px',
-                          attributes: {
-                            class: [
-                              'u-bolt-border-radius-full',
-                              'u-bolt-overflow-hidden',
-                            ]
-                          },
-                        } only %}
-                      </div>
-                      <div class="o-bolt-grid__cell u-bolt-width-12/12">
+                    <div class="c-bolt-page-header__user-flag">
+                      <img src="/images/docs/500x500.jpg" alt="Portrait of Bill" class="c-bolt-page-header__user-flag__img">
+                      <div class="c-bolt-page-header__user-flag__content">
                         {% include '@bolt-components-headline/headline.twig' with {
-                          text: 'Hello, Bill.',
+                          text: 'Bill Murray',
                           size: 'large',
-                          align: 'center',
                         } only %}
                       </div>
                     </div>
@@ -111,33 +100,72 @@
                 </li>
               </ul>
             </li>
+            <li class="c-bolt-page-header__nav-list-item c-bolt-page-header__nav-list-item--nested c-bolt-page-header__nav-list-item--popover js-bolt-page-header-nav-list-item">
+              <button aria-haspopup="true" aria-expanded="false" class="c-bolt-page-header__nav-link js-bolt-page-header-nested-nav-list-trigger">
+                <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--collapse" aria-hidden="true"></span>
+                <span class="c-bolt-page-header__nav-link__content">
+                  {% include '@bolt-components-icon/icon.twig' with {
+                    name: 'global',
+                  } only %}
+                  English
+                </span>
+                <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--expand" aria-hidden="true"></span>
+              </button>
+              <ul class="c-bolt-page-header__nav-list js-bolt-page-header-nested-nav-list">
+                <li class="c-bolt-page-header__nav-list-item js-bolt-page-header-nav-list-item">
+                  <a href="#!" class="c-bolt-page-header__nav-link c-bolt-page-header__nav-link--current">
+                    English
+                  </a>
+                </li>
+                <li class="c-bolt-page-header__nav-list-item js-bolt-page-header-nav-list-item">
+                  <a href="#!" class="c-bolt-page-header__nav-link">
+                    Japanese
+                  </a>
+                </li>
+                <li class="c-bolt-page-header__nav-list-item js-bolt-page-header-nav-list-item">
+                  <a href="#!" class="c-bolt-page-header__nav-link">
+                    German
+                  </a>
+                </li>
+                <li class="c-bolt-page-header__nav-list-item js-bolt-page-header-nav-list-item">
+                  <button class="c-bolt-page-header__nav-link">
+                    <span class="c-bolt-page-header__nav-link__content">
+                      {% include '@bolt-components-icon/icon.twig' with {
+                        name: 'global',
+                      } only %}
+                      Set your preferred language
+                    </span>
+                  </button>
+                </li>
+              </ul>
+            </li>
           </ul>
           <ul class="c-bolt-page-header__nav-list c-bolt-page-header__nav-list--site">
             <li class="c-bolt-page-header__nav-list-item c-bolt-page-header__nav-list-item--nested js-bolt-page-header-nav-list-item">
               <button aria-haspopup="true" aria-expanded="true" class="c-bolt-page-header__nav-link js-bolt-page-header-nested-nav-list-trigger">
-                <span class="c-bolt-page-header__nav-link__icon c-bolt-page-header__nav-link__icon--prev" aria-hidden="true"></span>
-                <span class="c-bolt-page-header__nav-link__text">
+                <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--collapse" aria-hidden="true"></span>
+                <span class="c-bolt-page-header__nav-link__content">
                   Products
                 </span>
-                <span class="c-bolt-page-header__nav-link__icon c-bolt-page-header__nav-link__icon--next" aria-hidden="true"></span>
+                <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--expand" aria-hidden="true"></span>
               </button>
               <ul class="c-bolt-page-header__nav-list js-bolt-page-header-nested-nav-list">
                 <li class="c-bolt-page-header__nav-list-item c-bolt-page-header__nav-list-item--nested js-bolt-page-header-nav-list-item">
                   <button aria-haspopup="true" aria-expanded="false" class="c-bolt-page-header__nav-link js-bolt-page-header-nested-nav-list-trigger">
-                    <span class="c-bolt-page-header__nav-link__icon c-bolt-page-header__nav-link__icon--prev" aria-hidden="true"></span>
-                    <span class="c-bolt-page-header__nav-link__text">
+                    <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--collapse" aria-hidden="true"></span>
+                    <span class="c-bolt-page-header__nav-link__content">
                       Products
                     </span>
-                    <span class="c-bolt-page-header__nav-link__icon c-bolt-page-header__nav-link__icon--next" aria-hidden="true"></span>
+                    <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--expand" aria-hidden="true"></span>
                   </button>
                   <ul class="c-bolt-page-header__nav-list js-bolt-page-header-nested-nav-list">
                     <li class="c-bolt-page-header__nav-list-item c-bolt-page-header__nav-list-item--nested js-bolt-page-header-nav-list-item">
                       <button aria-haspopup="true" aria-expanded="false" class="c-bolt-page-header__nav-link js-bolt-page-header-nested-nav-list-trigger">
-                        <span class="c-bolt-page-header__nav-link__icon c-bolt-page-header__nav-link__icon--prev" aria-hidden="true"></span>
-                        <span class="c-bolt-page-header__nav-link__text">
+                        <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--collapse" aria-hidden="true"></span>
+                        <span class="c-bolt-page-header__nav-link__content">
                           Intelligent Automation
                         </span>
-                        <span class="c-bolt-page-header__nav-link__icon c-bolt-page-header__nav-link__icon--next" aria-hidden="true"></span>
+                        <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--expand" aria-hidden="true"></span>
                       </button>
                       <ul class="c-bolt-page-header__nav-list js-bolt-page-header-nested-nav-list">
                         <li class="c-bolt-page-header__nav-list-item js-bolt-page-header-nav-list-item">
@@ -158,20 +186,20 @@
             </li>
             <li class="c-bolt-page-header__nav-list-item c-bolt-page-header__nav-list-item--nested js-bolt-page-header-nav-list-item">
               <button aria-haspopup="true" aria-expanded="false" class="c-bolt-page-header__nav-link js-bolt-page-header-nested-nav-list-trigger">
-                <span class="c-bolt-page-header__nav-link__icon c-bolt-page-header__nav-link__icon--prev" aria-hidden="true"></span>
-                <span class="c-bolt-page-header__nav-link__text">
+                <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--collapse" aria-hidden="true"></span>
+                <span class="c-bolt-page-header__nav-link__content">
                   Customers
                 </span>
-                <span class="c-bolt-page-header__nav-link__icon c-bolt-page-header__nav-link__icon--next" aria-hidden="true"></span>
+                <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--expand" aria-hidden="true"></span>
               </button>
               <ul class="c-bolt-page-header__nav-list js-bolt-page-header-nested-nav-list">
                 <li class="c-bolt-page-header__nav-list-item c-bolt-page-header__nav-list-item--nested js-bolt-page-header-nav-list-item">
                   <button aria-haspopup="true" aria-expanded="false" class="c-bolt-page-header__nav-link js-bolt-page-header-nested-nav-list-trigger">
-                    <span class="c-bolt-page-header__nav-link__icon c-bolt-page-header__nav-link__icon--prev" aria-hidden="true"></span>
-                    <span class="c-bolt-page-header__nav-link__text">
+                    <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--collapse" aria-hidden="true"></span>
+                    <span class="c-bolt-page-header__nav-link__content">
                       Customers by Industry
                     </span>
-                    <span class="c-bolt-page-header__nav-link__icon c-bolt-page-header__nav-link__icon--next" aria-hidden="true"></span>
+                    <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--expand" aria-hidden="true"></span>
                   </button>
                   <ul class="c-bolt-page-header__nav-list js-bolt-page-header-nested-nav-list">
                     <li class="c-bolt-page-header__nav-list-item js-bolt-page-header-nav-list-item">
@@ -218,11 +246,11 @@
                 </li>
                 <li class="c-bolt-page-header__nav-list-item c-bolt-page-header__nav-list-item--nested js-bolt-page-header-nav-list-item">
                   <button aria-haspopup="true" aria-expanded="false" class="c-bolt-page-header__nav-link js-bolt-page-header-nested-nav-list-trigger">
-                    <span class="c-bolt-page-header__nav-link__icon c-bolt-page-header__nav-link__icon--prev" aria-hidden="true"></span>
-                    <span class="c-bolt-page-header__nav-link__text">
+                    <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--collapse" aria-hidden="true"></span>
+                    <span class="c-bolt-page-header__nav-link__content">
                       Customers by Solution
                     </span>
-                    <span class="c-bolt-page-header__nav-link__icon c-bolt-page-header__nav-link__icon--next" aria-hidden="true"></span>
+                    <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--expand" aria-hidden="true"></span>
                   </button>
                   <ul class="c-bolt-page-header__nav-list js-bolt-page-header-nested-nav-list">
                     <li class="c-bolt-page-header__nav-list-item js-bolt-page-header-nav-list-item">
@@ -249,20 +277,20 @@
                 </li>
                 <li class="c-bolt-page-header__nav-list-item js-bolt-page-header-nav-list-item">
                   <div class="c-bolt-page-header__nav-content">
-                    {% include "@bolt-components-card-replacement/card-replacement.twig" with {
+                    {% include '@bolt-components-card-replacement/card-replacement.twig' with {
                       link: {
-                        url: "https://pega.com",
-                        text: "Go to pega.com"
+                        url: 'https://pega.com',
+                        text: 'Go to pega.com'
                       },
                       media: {
                         image: {
-                          src: "/images/placeholders/landscape-16x9-mountains.jpg",
-                          alt: "Image alt.",
+                          src: '/images/placeholders/landscape-16x9-mountains.jpg',
+                          alt: 'Image alt.',
                         },
                       },
                       body: {
-                        eyebrow: "Case Study",
-                        headline: "CBA: Exceeding customer expectations",
+                        eyebrow: 'Case Study',
+                        headline: 'CBA: Exceeding customer expectations',
                       },
                     } only %}
                   </div>
@@ -285,14 +313,14 @@
               </a>
             </li>
           </ul>
-          <ul class="c-bolt-page-header__nav-list c-bolt-page-header__nav-list--utils">
+          <ul class="c-bolt-page-header__nav-list c-bolt-page-header__nav-list--pega-sites">
             <li class="c-bolt-page-header__nav-list-item c-bolt-page-header__nav-list-item--nested js-bolt-page-header-nav-list-item">
               <button aria-haspopup="true" aria-expanded="false" class="c-bolt-page-header__nav-link js-bolt-page-header-nested-nav-list-trigger">
-                <span class="c-bolt-page-header__nav-link__icon c-bolt-page-header__nav-link__icon--prev" aria-hidden="true"></span>
-                <span class="c-bolt-page-header__nav-link__text">
+                <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--collapse" aria-hidden="true"></span>
+                <span class="c-bolt-page-header__nav-link__content">
                   Pega Sites
                 </span>
-                <span class="c-bolt-page-header__nav-link__icon c-bolt-page-header__nav-link__icon--next" aria-hidden="true"></span>
+                <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--expand" aria-hidden="true"></span>
               </button>
               <ul class="c-bolt-page-header__nav-list js-bolt-page-header-nested-nav-list">
                 <li class="c-bolt-page-header__nav-list-item js-bolt-page-header-nav-list-item">
@@ -307,19 +335,26 @@
                 </li>
                 <li class="c-bolt-page-header__nav-list-item js-bolt-page-header-nav-list-item">
                   <a href="#!" class="c-bolt-page-header__nav-link">
-                    Knowledge
+                    Knowledgebase
                   </a>
                 </li>
-                <li class="c-bolt-page-header__nav-list-item c-bolt-page-header__nav-list-item--nested js-bolt-page-header-nav-list-item">
+                <li class="c-bolt-page-header__nav-list-item js-bolt-page-header-nav-list-item">
+                  <a href="#!" class="c-bolt-page-header__nav-link">
+                    PegaWorld
+                  </a>
+                </li>
+                <li class="c-bolt-page-header__nav-list-item c-bolt-page-header__nav-list-item--nested c-bolt-page-header__nav-list-item--popover js-bolt-page-header-nav-list-item">
                   <button aria-haspopup="true" aria-expanded="false" class="c-bolt-page-header__nav-link js-bolt-page-header-nested-nav-list-trigger">
-                    More
+                    <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--collapse" aria-hidden="true"></span>
+                    <span class="c-bolt-page-header__nav-link__content">
+                      More
+                      {% include '@bolt-components-icon/icon.twig' with {
+                        name: 'menu',
+                      } only %}
+                    </span>
+                    <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--expand" aria-hidden="true"></span>
                   </button>
                   <ul class="c-bolt-page-header__nav-list">
-                    <li class="c-bolt-page-header__nav-list-item js-bolt-page-header-nav-list-item">
-                      <a href="#!" class="c-bolt-page-header__nav-link">
-                        PegaWorld
-                      </a>
-                    </li>
                     <li class="c-bolt-page-header__nav-list-item js-bolt-page-header-nav-list-item">
                       <a href="#!" class="c-bolt-page-header__nav-link">
                         Product Design
@@ -351,32 +386,6 @@
                       </a>
                     </li>
                   </ul>
-                </li>
-              </ul>
-            </li>
-            <li class="c-bolt-page-header__nav-list-item c-bolt-page-header__nav-list-item--nested js-bolt-page-header-nav-list-item">
-              <button aria-haspopup="true" aria-expanded="false" class="c-bolt-page-header__nav-link js-bolt-page-header-nested-nav-list-trigger">
-                <span class="c-bolt-page-header__nav-link__icon c-bolt-page-header__nav-link__icon--prev" aria-hidden="true"></span>
-                <span class="c-bolt-page-header__nav-link__text">
-                  Select a language
-                </span>
-                <span class="c-bolt-page-header__nav-link__icon c-bolt-page-header__nav-link__icon--next" aria-hidden="true"></span>
-              </button>
-              <ul class="c-bolt-page-header__nav-list js-bolt-page-header-nested-nav-list">
-                <li class="c-bolt-page-header__nav-list-item js-bolt-page-header-nav-list-item">
-                  <a href="#!" class="c-bolt-page-header__nav-link c-bolt-page-header__nav-link--current">
-                    English
-                  </a>
-                </li>
-                <li class="c-bolt-page-header__nav-list-item js-bolt-page-header-nav-list-item">
-                  <a href="#!" class="c-bolt-page-header__nav-link">
-                    Japanese
-                  </a>
-                </li>
-                <li class="c-bolt-page-header__nav-list-item js-bolt-page-header-nav-list-item">
-                  <a href="#!" class="c-bolt-page-header__nav-link">
-                    German
-                  </a>
                 </li>
               </ul>
             </li>

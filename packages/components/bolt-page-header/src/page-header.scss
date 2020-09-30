@@ -298,6 +298,26 @@ $bolt-page-header-mobile-expanded-content-spacing-x: calc(
   }
 }
 
+// Off-canvas/mega primary nav
+.c-bolt-page-header__nav-link__content {
+  display: flex;
+  align-items: center;
+
+  > * {
+    transform: translateY(
+      0.5px
+    ); // Fixes subpixel issue with icon and text vertical alignment.
+  }
+
+  > *:first-child {
+    margin-inline-end: var(--bolt-spacing-x-xxsmall);
+  }
+
+  > *:last-child {
+    margin-inline-start: var(--bolt-spacing-x-xxsmall);
+  }
+}
+
 // Main CTA
 .c-bolt-page-header__cta {
   display: block;
@@ -327,4 +347,15 @@ $bolt-page-header-mobile-expanded-content-spacing-x: calc(
   &:active {
     filter: brightness(95%);
   }
+}
+
+// User flag
+.c-bolt-page-header__user-flag {
+  display: grid;
+  white-space: nowrap;
+}
+
+.c-bolt-page-header__user-flag__img {
+  overflow: hidden;
+  border-radius: bolt-border-radius(full);
 }
