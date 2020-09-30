@@ -99,12 +99,17 @@ class BoltText extends BoltElement {
     // but they need to be wrapped in other semantic elements.
 
     const wrapInnerHTML = innerHTML => {
-      // function wrapInnerHTML(innerHTML) {
       switch (this.tag) {
         case 'a':
-          return html`
-            <a href="${this.url}" class="${classes}">${innerHTML}</a>
-          `;
+          if (this.url) {
+            return html`
+              <a href="${this.url}" class="${classes}">${innerHTML}</a>
+            `;
+          } else {
+            return html`
+              <span class="${classes}">${innerHTML}</span>
+            `;
+          }
         case 'h1':
           return html`
             <h1 class="${classes}">${innerHTML}</h1>
