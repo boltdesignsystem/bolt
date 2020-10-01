@@ -317,8 +317,8 @@ class BoltTabs extends withContext(BoltElement) {
   }
 
   _handleExternalClicks(e) {
-    // use path not target, target won't work in shadow dom
-    const el = this.useShadow ? e.path[0] : e.target;
+    // use composedPath not target, target won't work in shadow dom
+    const el = this.useShadow ? e.composedPath()[0] : e.target;
 
     // If not inside "show more" container OR you clicked on a different set of tabs
     if (
