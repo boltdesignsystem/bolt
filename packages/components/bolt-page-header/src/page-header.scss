@@ -34,7 +34,7 @@ $bolt-page-header-desktop-util-nav-height: var(--bolt-spacing-y-medium);
 $bolt-page-header-desktop-padding-top: calc(
   var(--bolt-spacing-y-medium) + #{$bolt-page-header-desktop-util-nav-height}
 );
-$bolt-page-header-desktop-padding-bottom: var(--bolt-spacing-y-medium);
+$bolt-page-header-desktop-padding-bottom: var(--bolt-spacing-y-small);
 $bolt-page-header-desktop-primary-nav-spacing-x: var(
   --bolt-page-padding-inline
 );
@@ -352,10 +352,14 @@ $bolt-page-header-mobile-expanded-content-spacing-x: calc(
 // User flag
 .c-bolt-page-header__user-flag {
   display: grid;
-  white-space: nowrap;
 }
 
 .c-bolt-page-header__user-flag__img {
   overflow: hidden;
   border-radius: bolt-border-radius(full);
+}
+
+.c-bolt-page-header__user-flag__content {
+  word-break: break-word;
+  hyphens: auto;
 }
