@@ -55,8 +55,8 @@ class TabPanel extends withContext(BoltElement) {
   updated(changedProperties) {
     super.updated && super.updated(changedProperties);
     changedProperties.forEach((oldValue, propName) => {
-      if (propName === 'selectedTab') {
-        // Keep selected attr in sync with context, triggers re-render
+      if (propName === 'selectedTab' || propName === 'panels') {
+        // Triger if either `selectedTab` or `panels` updates to keep selected attr in sync with context, triggers re-render
         if (!this.selected && this.panelIndex === this.selectedTab - 1) {
           this.setSelectedTab();
         }
