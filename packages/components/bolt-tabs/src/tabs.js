@@ -34,6 +34,7 @@ class BoltTabs extends withContext(BoltElement) {
     super();
     this.uuid = bolt.config.env === 'test' ? '12345' : getUniqueId(); // Set a unique identifier for each Tabs instance
     this.menuIsOpen = false;
+    this.panels = [];
     this.transitionEvent = whichTransitionEvent();
   }
 
@@ -60,21 +61,9 @@ class BoltTabs extends withContext(BoltElement) {
     this._waitForDropdownToFinishAnimating = this._waitForDropdownToFinishAnimating.bind(
       this,
     );
-
-    this.setInitialTab();
   }
 
-  async setInitialTab() {
-    // Wait for `bolt-tab-panel` to finish loading or `this.tabPanels` will return empty
-    const panel = this.querySelector('bolt-tab-panel');
-    if (panel) {
-      await panel.updateComplete;
-    }
-
-    this.panels = Array.from(this.children).filter(
-      child => child.tagName === 'BOLT-TAB-PANEL',
-    );
-
+  setInitialTab() {
     // Check if any panels have `selected` prop set, return index
     // const preselectedIndex = Array.from(panels).findIndex(element => {
     //   return element.hasAttribute('selected');
@@ -396,41 +385,39 @@ class BoltTabs extends withContext(BoltElement) {
     this._resizeMenu();
   }
 
-  firstUpdated() {
-    super.firstUpdated && super.firstUpdated();
+  setupDropdown() {
+    this.container = this.renderRoot.querySelector('.c-bolt-tabs');
+    this.primaryMenu = this.renderRoot.querySelector('.c-bolt-tabs__nav');
+    this.allItems = this.renderRoot.querySelectorAll('.c-bolt-tabs__item');
+    this.primaryItems = this.renderRoot.querySelectorAll(
+      '.c-bolt-tabs__nav > .c-bolt-tabs__item:not(.c-bolt-tabs__show-more)',
+    );
+    this.dropdownItems = this.renderRoot.querySelectorAll(
+      '.c-bolt-tabs__dropdown .c-bolt-tabs__item',
+    );
+    this.showMoreItem = this.renderRoot.querySelector(
+      '.c-bolt-tabs__show-more',
+    );
+    this.dropdownButton = this.renderRoot.querySelector(
+      '.c-bolt-tabs__show-button',
+    );
+    this.priorityDropdown = this.renderRoot.querySelector(
+      '.c-bolt-tabs__dropdown',
+    );
+    customElements.whenDefined('bolt-trigger').then(() => {
+      this._resizeMenu();
+    });
 
-    if (!this.ready) {
-      // Now that the template has rendered, we can query the page for the parts we need to update after the fact
-      this.container = this.renderRoot.querySelector('.c-bolt-tabs');
-      this.primaryMenu = this.renderRoot.querySelector('.c-bolt-tabs__nav');
-      this.allItems = this.renderRoot.querySelectorAll('.c-bolt-tabs__item');
-      this.primaryItems = this.renderRoot.querySelectorAll(
-        '.c-bolt-tabs__nav > .c-bolt-tabs__item:not(.c-bolt-tabs__show-more)',
-      );
-      this.dropdownItems = this.renderRoot.querySelectorAll(
-        '.c-bolt-tabs__dropdown .c-bolt-tabs__item',
-      );
-      this.showMoreItem = this.renderRoot.querySelector(
-        '.c-bolt-tabs__show-more',
-      );
-      this.dropdownButton = this.renderRoot.querySelector(
-        '.c-bolt-tabs__show-button',
-      );
-      this.priorityDropdown = this.renderRoot.querySelector(
-        '.c-bolt-tabs__dropdown',
-      );
-      customElements.whenDefined('bolt-trigger').then(() => {
-        this._resizeMenu();
-      });
+    // This typically fires only once, but it's possible for it to fire twice. Remove event handlers just in case.
+    window.removeEventListener('throttledResize', this._resizeMenu);
+    document.removeEventListener('click', this._handleExternalClicks);
 
-      window.addEventListener('throttledResize', this._resizeMenu);
-      this.dropdownButton.addEventListener('click', this._handleDropdownToggle);
+    // Then, add resize event handlers
+    window.addEventListener('throttledResize', this._resizeMenu);
+    this.dropdownButton.addEventListener('click', this._handleDropdownToggle);
+  }
 
-      this.ready = true;
-      this.setAttribute('ready', '');
-      this.dispatchEvent(new CustomEvent('tabs:ready'));
-    }
-
+  setupAutoscroll() {
     if (this.shouldScrollIntoView) {
       let shouldResetScroll;
 
@@ -466,10 +453,42 @@ class BoltTabs extends withContext(BoltElement) {
         }
       }, 750); // Must let the page load or scroll is not at all "smooth", can reduce to 500ms but not much less
     }
+  }
 
-    if (!this.observer) {
-      this.addMutationObserver();
-    }
+  updated(changedProperties) {
+    super.updated && super.updated(changedProperties);
+
+    changedProperties.forEach((oldValue, propName) => {
+      if (propName === 'panels') {
+        if (this.panels.length) {
+          // Wait for panels to be set (and have length) before proceeding with the rest of the Tabs setup.
+          this.setupDropdown();
+          this.setupAutoscroll();
+
+          if (!this.observer) {
+            this.addMutationObserver();
+          }
+
+          if (!this.ready) {
+            this.ready = true;
+            this.setAttribute('ready', '');
+            this.dispatchEvent(new CustomEvent('tabs:ready'));
+          }
+        }
+      }
+    });
+  }
+
+  firstUpdated() {
+    super.firstUpdated && super.firstUpdated();
+
+    // Use `slotMap` not `querySelectorAll` so that we don't get nested panels
+    this.panels = this.slotMap
+      .get('default')
+      .filter(child => child.tagName === 'BOLT-TAB-PANEL');
+
+    // Wait to set initial tab until after `this.panels` has been properly set
+    this.setInitialTab();
   }
 
   disconnectedCallback() {
