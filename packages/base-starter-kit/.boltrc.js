@@ -71,7 +71,6 @@ module.exports = {
     individual: [
       '@bolt/components-critical-fonts',
       '@bolt/components-critical-css',
-      '@bolt/components-critical-css-vars',
     ],
   },
 };

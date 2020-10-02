@@ -23,10 +23,7 @@ const {
   statsPreset,
 } = require('@bolt/build-utils/webpack-verbosity');
 
-const {
-  modernBabelConfig,
-  legacyBabelConfig,
-} = require('@bolt/babel-preset-bolt');
+const babelConfig = require('@bolt/babel-preset-bolt');
 
 const {
   getBoltManifest,
@@ -63,33 +60,18 @@ async function createWebpackConfig(buildConfig) {
   /**
    * Build WebPack config's `entry` object
    * @link https://webpack.js.org/configuration/entry-context/#entry
-   * @param {boolean} isModern - specifies if the config returned should be for modern browsers or not
    * @returns {object} entry - WebPack config `entry`
    */
-  async function buildWebpackEntry(isModern) {
+  async function buildWebpackEntry() {
     const { components } = await getBoltManifest();
     const entry = {};
     const globalEntryName = 'bolt-global';
 
     if (components.global) {
-      if (config.esModules) {
-        if (isModern) {
-          entry[globalEntryName] = [
-            '@bolt/polyfills/modern.js',
-            '@bolt/core-v3.x/styles/main.scss',
-          ];
-        } else {
-          entry[globalEntryName] = [
-            '@bolt/polyfills',
-            '@bolt/core-v3.x/styles/main.scss',
-          ];
-        }
-      } else {
-        entry[globalEntryName] = [
-          '@bolt/polyfills',
-          '@bolt/core-v3.x/styles/main.scss',
-        ];
-      }
+      entry[globalEntryName] = [
+        '@bolt/polyfills',
+        '@bolt/core-v3.x/styles/main.scss',
+      ];
 
       components.global.forEach(component => {
         if (component.assets.style) {
@@ -119,51 +101,10 @@ async function createWebpackConfig(buildConfig) {
     return entry;
   }
 
-  let themifyOptions = {
-    watchForChanges: config.watch && config.mode !== 'server',
-    classPrefix: 't-bolt-',
-    screwIE11: false,
-    fallback: {
-      filename: 'bolt-css-vars-fallback',
-      jsonDataExport: 'theming-css-vars',
-    },
-  };
-
-  const legacyThemifyOptions = deepmerge(themifyOptions, {
-    fallback: {
-      jsonPath: path.resolve(
-        config.buildDir,
-        `data/${themifyOptions.fallback.jsonDataExport}.json`,
-      ),
-      cssPath: path.resolve(
-        config.buildDir,
-        `${themifyOptions.fallback.filename}.css`,
-      ),
-    },
-  });
-
-  const modernThemifyOptions = deepmerge(themifyOptions, {
-    fallback: {
-      jsonPath: path.resolve(
-        config.buildDir,
-        `data/${themifyOptions.fallback.jsonDataExport}.json`,
-      ),
-      cssPath: path.resolve(
-        config.buildDir,
-        `${themifyOptions.fallback.filename}.modern.css`,
-      ),
-    },
-  });
-
-  function getSassLoaders(isModern = false) {
+  function getSassLoaders() {
     // Default global Sass data defined
     let globalSassData = [
       `$bolt-namespace: ${config.namespace};`,
-      `$bolt-css-vars-json-data-export: ${
-        isModern
-          ? modernThemifyOptions.fallback.jsonDataExport
-          : legacyThemifyOptions.fallback.jsonDataExport
-      };`,
       // output $bolt-lang variable in Sass even if not specified so things fall back accordingly.
       `${config.lang ? `$bolt-lang: ${config.lang};` : '$bolt-lang: null;'}`,
     ];
@@ -199,9 +140,6 @@ async function createWebpackConfig(buildConfig) {
         options: {
           sourceMap: config.sourceMaps,
           plugins: () => [
-            require('@bolt/postcss-themify')(
-              isModern ? modernThemifyOptions : legacyThemifyOptions,
-            ),
             postcssDiscardDuplicates,
             autoprefixer({
               grid: true,
@@ -305,6 +243,13 @@ async function createWebpackConfig(buildConfig) {
             },
             {
               use: [
+                {
+                  loader: 'babel-loader',
+                  options: {
+                    babelrc: false,
+                    presets: [babelConfig],
+                  },
+                },
                 {
                   loader: 'svg-sprite-loader',
                   options: {
@@ -433,117 +378,18 @@ async function createWebpackConfig(buildConfig) {
     sharedWebpackConfig = merge(sharedWebpackConfig, config.configureWebpack);
   }
 
-  const legacyWebpackConfig = merge(sharedWebpackConfig, {
-    entry: await buildWebpackEntry(false),
-    output: {
-      path: path.resolve(process.cwd(), config.buildDir),
-      // @todo: switch this to output .client.js and .server.js file prefixes when we hit Bolt v3.0
-      filename: `[name]${langSuffix}${
-        config.mode !== 'client' ? `.${config.mode}` : ''
-      }.js`,
-      chunkFilename: `[name]-bundle${langSuffix}-[chunkhash].js`,
-      publicPath,
-    },
-    plugins: [
-      new WriteFilePlugin(),
-      new webpack.DefinePlugin(getGlobalJSData(false)),
-      new MiniCssExtractPlugin({
-        filename: `[name]${langSuffix}.css`,
-        chunkFilename: `[id]${langSuffix}.css`,
-      }),
-      // @todo This needs to be in `config.dataDir`
-      new ManifestPlugin({
-        fileName: `bolt-webpack-manifest${langSuffix}${
-          config.mode === 'client' ? '' : `.${config.mode}`
-        }.json`,
-        publicPath,
-        writeToFileEmit: true,
-        seed: {
-          name: 'Bolt Manifest',
-        },
-      }),
-      new CopyWebpackPlugin(config.copy ? config.copy : []),
-      new SassDocPlugin(
-        {
-          src: `${path.dirname(resolve.sync('@bolt/core-v3.x'))}/styles/`,
-          dest: path.resolve(`${config.dataDir}/sassdoc.bolt.json`),
-        },
-        {
-          outputPath: config.buildDir,
-        },
-      ),
-    ],
-    module: {
-      rules: [
-        {
-          test: /\.(js|jsx|tsx|mjs)$/,
-          exclude: thePath => {
-            if (
-              thePath.includes('custom-elements-es5-adapter.js') ||
-              thePath.includes('grapesjs/dist') ||
-              thePath.includes('core-js') ||
-              thePath.includes('regenerator-runtime') ||
-              thePath.includes('critical-path-polyfills')
-            ) {
-              return true;
-            }
-
-            return false;
-          },
-          use: [
-            {
-              loader: 'babel-loader',
-              options: {
-                babelrc: false,
-                presets: [legacyBabelConfig],
-              },
-            },
-          ],
-        },
-        {
-          test: /\.scss$/,
-          oneOf: [
-            {
-              issuer: /\.js$/,
-              use: [getSassLoaders(false)].reduce(
-                (acc, val) => acc.concat(val),
-                [],
-              ),
-            },
-            {
-              // no issuer here as it has a bug when its an entry point - https://github.com/webpack/webpack/issues/5906
-              use: [
-                // 'css-hot-loader',
-                MiniCssExtractPlugin.loader,
-                getSassLoaders(false),
-              ].reduce((acc, val) => acc.concat(val), []),
-            },
-          ],
-        },
-      ],
-    },
-  });
-
   // Generate global JS data based on if the build is for ES Module-supporting browsers or not
-  function getGlobalJSData(isModern = false) {
+  function getGlobalJSData() {
     let globalJsData = {
       'process.env.NODE_ENV': config.prod
         ? JSON.stringify('production')
         : JSON.stringify('development'),
       bolt: {
-        esModules: JSON.stringify(config.esModules),
         publicPath: JSON.stringify(publicPath),
         mode: JSON.stringify(config.mode),
         isClient: config.mode === 'client',
         isServer: config.mode === 'server',
         namespace: JSON.stringify(config.namespace),
-        themingFallbackCSS: JSON.stringify(
-          `${publicPath}${
-            isModern
-              ? `${modernThemifyOptions.fallback.filename}.modern.css`
-              : `${legacyThemifyOptions.fallback.filename}.css`
-          }`,
-        ),
         config: {
           prod: config.prod,
           lang: JSON.stringify(config.lang),
@@ -570,8 +416,8 @@ async function createWebpackConfig(buildConfig) {
     return globalJsData;
   }
 
-  const modernWebpackConfig = merge(sharedWebpackConfig, {
-    entry: await buildWebpackEntry(true),
+  const webpackConfig = merge(sharedWebpackConfig, {
+    entry: await buildWebpackEntry(),
     resolve: {
       mainFields: ['esnext', 'jsnext:main', 'browser', 'module', 'main'],
     },
@@ -581,12 +427,12 @@ async function createWebpackConfig(buildConfig) {
       // @todo: switch this to output .client.js and .server.js file prefixes when we hit Bolt v3.0
       filename: `[name]${langSuffix}${
         config.mode !== 'client' ? `.${config.mode}` : ''
-      }.modern.js`,
-      chunkFilename: `[name]-bundle${langSuffix}-[chunkhash].modern.js`,
+      }.js`,
+      chunkFilename: `[name]-bundle${langSuffix}-[chunkhash].js`,
       publicPath,
     },
     plugins: [
-      new webpack.DefinePlugin(getGlobalJSData(true)),
+      new webpack.DefinePlugin(getGlobalJSData()),
       new CopyWebpackPlugin(config.copy ? config.copy : []),
       new MiniCssExtractPlugin({
         filename: `[name]${langSuffix}.css`,
@@ -596,7 +442,7 @@ async function createWebpackConfig(buildConfig) {
       new ManifestPlugin({
         fileName: `bolt-webpack-manifest${langSuffix}${
           config.mode === 'client' ? '' : `.${config.mode}`
-        }.modern.json`,
+        }.json`,
         publicPath,
         writeToFileEmit: true,
         seed: {
@@ -614,7 +460,7 @@ async function createWebpackConfig(buildConfig) {
               loader: 'babel-loader',
               options: {
                 babelrc: false,
-                presets: [modernBabelConfig],
+                presets: [babelConfig],
               },
             },
           ],
@@ -624,17 +470,14 @@ async function createWebpackConfig(buildConfig) {
           oneOf: [
             {
               issuer: /\.js$/,
-              use: [getSassLoaders(true)].reduce(
-                (acc, val) => acc.concat(val),
-                [],
-              ),
+              use: [getSassLoaders()].reduce((acc, val) => acc.concat(val), []),
             },
             {
               // no issuer here as it has a bug when its an entry point - https://github.com/webpack/webpack/issues/5906
               use: [
                 // 'css-hot-loader',
                 MiniCssExtractPlugin.loader,
-                getSassLoaders(true),
+                getSassLoaders(),
               ].reduce((acc, val) => acc.concat(val), []),
             },
           ],
@@ -645,30 +488,12 @@ async function createWebpackConfig(buildConfig) {
 
   // cache mode significantly speeds up subsequent build times
   if (config.enableCache) {
-    legacyWebpackConfig.plugins.push(
+    webpackConfig.plugins.push(
       new HardSourceWebpackPlugin({
         info: {
           level: 'warn',
         },
-        cacheDirectory: path.join(process.cwd(), `./cache/webpack-legacy`),
-        // Clean up large, old caches automatically.
-        cachePrune: {
-          // Caches younger than `maxAge` are not considered for deletion. They must
-          // be at least this (default: 2 days) old in milliseconds.
-          maxAge: 2 * 24 * 60 * 60 * 1000,
-          // All caches together must be larger than `sizeThreshold` before any
-          // caches will be deleted. Together they must be at least 300MB in size
-          sizeThreshold: 300 * 1024 * 1024,
-        },
-      }),
-    );
-
-    modernWebpackConfig.plugins.push(
-      new HardSourceWebpackPlugin({
-        info: {
-          level: 'warn',
-        },
-        cacheDirectory: path.join(process.cwd(), `./cache/webpack-modern`),
+        cacheDirectory: path.join(process.cwd(), `./cache/webpack`),
         // Clean up large, old caches automatically.
         cachePrune: {
           // Caches younger than `maxAge` are not considered for deletion. They must
@@ -681,27 +506,10 @@ async function createWebpackConfig(buildConfig) {
       }),
     );
   }
-
-  /** if esModules support is enabled in the .boltrc config?
-   *  - for dev builds, compile only the modern bundle (unless the compat flag is enabled
-   *  - for prod builds...
-   *    - compile the modern + legacy builds if compat is undefined OR enabled
-   *    - compile ONLY the modern builds if compat mode is specifically disabled (ex. Jest)
-   *
-   * if esModules are NOT enabled, ONLY compile the legacy build (original build process)
-   */
 
   let outputConfig = [];
 
-  // If compat is enabled, it means we need the legacy bundle (regardless of whether the modern bundle is also built).
-  if (config.compat) {
-    outputConfig.push(legacyWebpackConfig);
-  }
-
-  // If esModules support is enabled, we'll compile the modern bundle.
-  if (config.esModules) {
-    outputConfig.push(modernWebpackConfig);
-  }
+  outputConfig.push(webpackConfig);
 
   return outputConfig;
 }
