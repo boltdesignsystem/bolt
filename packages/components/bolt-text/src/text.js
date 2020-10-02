@@ -30,7 +30,7 @@ class BoltText extends BoltElement {
     if (this.headline) {
       this.tag = this.setDefaultValue('tag', 'h2');
       this.color = this.setDefaultValue('color', 'theme-headline');
-      this.letterSpacing = this.setDefaultValue('letter-pacing', 'narrow');
+      this.letterSpacing = this.setDefaultValue('letter-spacing', 'narrow');
       this.fontFamily = this.setDefaultValue('font-family', 'headline');
       this.fontSize = this.setDefaultValue('font-size', 'xlarge');
       this.fontWeight = this.setDefaultValue('font-weight', 'bold');
