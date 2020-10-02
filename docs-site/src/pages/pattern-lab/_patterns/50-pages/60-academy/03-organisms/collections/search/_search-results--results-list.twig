@@ -1,6 +1,176 @@
+{% set trigger %}
+  {% include "@bolt-components-button/button.twig" with {
+    text: "Pega Customer Decision Hub 8.5",
+    size: "xsmall",
+    style: "tertiary",
+    icon: {
+      name: "chevron-down",
+      position: "after",
+      size: "xsmall"
+    }
+  } only %}
+{% endset %}
+
+{% set popoverContent %}
+  {# <bolt-list tag="ul" display="block" spacing="xsmall" separator="none" align="start" valign="center">
+    <bolt-list-item last="" role="presentation">
+      <bolt-link display="inline" valign="center" url="/mission/seans-multi-version-test-mission/v1">
+        Pega Customer Decision Hub 8.3</bolt-link>
+    </bolt-list-item>
+  </bolt-list> #}
+
+  {% include "@bolt-components-list/list.twig" with {
+    spacing: "xsmall",
+    items: [
+      "test"
+    ]
+  } only %}
+{% endset %}
+
+{% set testItem %}
+<bolt-card-replacement tag="article" spacing="medium" border-radius="small" theme="xlight" height="full" url="/mission/seans-multi-version-test-mission/v2" horizontal="">
+	<ssr-keep for="bolt-card-replacement" class="c-bolt-card-replacement c-bolt-card-replacement--horizontal c-bolt-card-replacement--border-radius-small t-bolt-xlight">
+		<bolt-card-replacement-media>
+			<ssr-keep for="bolt-card-replacement-media" class="c-bolt-card_replacement__media">
+				<div style="background: linear-gradient(180deg, var(--bolt-color-berry) 0%, var(--bolt-color-wine) 100%); position: relative;" class="u-bolt-height-full u-bolt-padding-small">
+					<bolt-icon name="launchpad" style="font-size: 3.125rem; color: white; height: 3rem; width: 3rem; position: absolute; left: 50%; transform: translateX(-50%);"></bolt-icon>
+				</div>
+			</ssr-keep>
+		</bolt-card-replacement-media>
+		<div class="c-bolt-card-replacement__horizontal-wrapper">
+			<bolt-card-replacement-body>
+				<ssr-keep for="bolt-card-replacement-body" class="c-bolt-card_replacement__body c-bolt-card_replacement__body--spacing-medium">
+					<div class="o-bolt-grid o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--xsmall u-bolt-negative-margin-top-small u-bolt-negative-margin-right-small">
+						<div class="o-bolt-grid__cell u-bolt-margin-left-auto"></div>
+					</div>
+					<div class="u-bolt-overflow-hidden">
+						<div class="o-bolt-grid o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--border">
+							<div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@small">
+								<bolt-stack spacing="xsmall">
+									<ssr-keep for="bolt-stack" class="c-bolt-stack c-bolt-example--spacing-xsmall">
+										<p class="c-bolt-eyebrow c-bolt-eyebrow--semibold">Mission</p>
+										<h2>
+											Sean's Multi-Version Test Mission
+										</h2>
+									</ssr-keep>
+								</bolt-stack>
+								<bolt-stack spacing="xsmall">
+									<ssr-keep for="bolt-stack" class="c-bolt-stack c-bolt-example--spacing-xsmall">
+										<bolt-list tag="ul" display="inline" spacing="xsmall" separator="solid" align="start" valign="center" style="--bolt-list-item-border-color: rgba(var(--bolt-theme-border), 0.4);">
+											<ssr-keep for="bolt-list" role="list" class="c-bolt-list c-bolt-list--display-inline c-bolt-list--spacing-xsmall c-bolt-list--separator-solid c-bolt-list--align-start c-bolt-list--valign-center">
+												<bolt-list-item role="presentation">
+													<ssr-keep for="bolt-list-item" role="listitem" class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--separator-solid c-bolt-list-item--align-start">
+														<p class="c-bolt-text c-bolt-text--semibold c-bolt-text--normal c-bolt-text--small">1 Module</p>
+													</ssr-keep>
+												</bolt-list-item>
+												<bolt-list-item role="presentation">
+													<ssr-keep for="bolt-list-item" role="listitem" class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--separator-solid c-bolt-list-item--align-start">
+														<p class="stats-item c-bolt-text c-bolt-text--semibold c-bolt-text--normal c-bolt-text--small" id="stats-item--15351-completion">10 mins</p>
+													</ssr-keep>
+												</bolt-list-item>
+												<bolt-list-item last="" role="presentation">
+													<ssr-keep for="bolt-list-item" role="listitem" class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--separator-solid c-bolt-list-item--align-start c-bolt-list-item--last-item">
+														<bolt-popover uuid="1827225220">
+															<div class="c-bolt-popover c-bolt-popover--bottom c-bolt-popover--text-wrap c-bolt-popover--spacing-small">
+																<span id="js-bolt-popover-trigger-1827225220">
+																	<a href="#js-bolt-popover-1827225220" class="c-bolt-popover__nojs-trigger" tabindex="-1">
+																		<ssr-keep for="bolt-popover">
+																			<bolt-button size="xsmall" color="tertiary" width="auto" border-radius="regular" align="center" transform="none">
+																				<button class="c-bolt-button c-bolt-button--xsmall c-bolt-button--tertiary c-bolt-button--border-radius-regular c-bolt-button--center" is="shadow-root">
+																					<ssr-keep for="bolt-button" class="c-bolt-button__item">Pega Customer Decision Hub 8.5</ssr-keep>
+																					<ssr-keep for="bolt-button" class="c-bolt-button__icon c-bolt-button__icon-sizer">
+																						<bolt-icon slot="after" name="chevron-down" size="xsmall">
+																							<span class="c-bolt-icon c-bolt-icon--chevron-down c-bolt-icon--xsmall">
+																								<svg class="c-bolt-icon__icon c-bolt-icon__icon--xsmall" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 32 32">
+																									<path fill="var(--bolt-theme-icon, currentColor)" fill-rule="evenodd" d="M25 13c.5-.6.5-1.4 0-2-.6-.5-1.4-.5-2 0l-7 7.1-7-7a1.3 1.3 0 00-2.3.9c0 .3.1.7.4 1l8 8c.5.5 1.3.5 1.8 0l8-8z"></path>
+																								</svg>
+																							</span>
+																						</bolt-icon>
+																					</ssr-keep>
+																				</button>
+																			</bolt-button>
+																		</ssr-keep>
+																	</a>
+																</span>
+																<span class="c-bolt-popover__no-js-content" id="js-bolt-popover-1827225220">
+																	<div class="c-bolt-popover__content">
+																		<span class="c-bolt-popover__bubble ">
+																			<a href="#js-bolt-popover-trigger-1827225220" class="c-bolt-popover__nojs-close">
+																				<span aria-hidden="true">×</span>
+																				<span class="u-bolt-visuallyhidden">Close popover</span>
+																			</a>
+																			<ssr-keep for="bolt-popover">
+																				<span slot="content">
+																					<bolt-list tag="ul" display="block" spacing="xsmall" separator="none" align="start" valign="center">
+																						<ssr-keep for="bolt-list" role="list" class="c-bolt-list c-bolt-list--display-block c-bolt-list--spacing-xsmall c-bolt-list--align-start c-bolt-list--valign-center">
+																							<bolt-list-item last="" role="presentation">
+																								<ssr-keep for="bolt-list-item" role="listitem" class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start c-bolt-list-item--last-item">
+																									<bolt-link display="inline" valign="center" url="/mission/seans-multi-version-test-mission/v1">
+																										<a href="/mission/seans-multi-version-test-mission/v1" is="shadow-root" class="c-bolt-link  c-bolt-link--display-inline c-bolt-link--valign-center">
+																											<ssr-keep for="bolt-link" class="c-bolt-link__text">Pega Customer Decision Hub 8.3</ssr-keep>
+																										</a>
+																									</bolt-link>
+																								</ssr-keep>
+																							</bolt-list-item>
+																						</ssr-keep>
+																					</bolt-list>
+																				</span>
+																			</ssr-keep>
+																		</span>
+																	</div>
+																</span>
+															</div>
+														</bolt-popover>
+													</ssr-keep>
+												</bolt-list-item>
+											</ssr-keep>
+										</bolt-list>
+									</ssr-keep>
+								</bolt-stack>
+							</div>
+							<div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@small u-bolt-flex u-bolt-align-items-center">
+								<div class="u-bolt-padding-top-xsmall@small u-bolt-padding-bottom-xsmall@small c-bolt-text--small"></div>
+							</div>
+						</div>
+					</div>
+				</ssr-keep>
+			</bolt-card-replacement-body>
+		</div>
+	</ssr-keep>
+</bolt-card-replacement>
+{% endset %}
+
 {% include "@bolt-components-list/list.twig" with {
   spacing: "medium",
   items: [
+    testItem,
+    macros.include("@bolt-academy/_horizontal-card.twig", {
+      cardUrl: "/mission/seans-multi-version-test-mission/v2",
+      cardSubtitle: "Mission",
+      cardTitle: "Sean's Multi-Version Test Mission",
+      cardMetaItems: [
+        macros.include("@bolt-components-headline/text.twig", {
+          size: "small",
+          text: "1 Module",
+          weight: "semibold"
+        }, false),
+        macros.include("@bolt-components-headline/text.twig", {
+          size: "small",
+          text: "10 mins",
+          weight: "semibold",
+          attributes: {
+            class: "stats-item",
+          },
+        }, false),
+        macros.include("@bolt-components-popover/popover.twig", {
+          trigger: trigger,
+          content: popoverContent,
+        }, false),
+      ],
+      cardGradient: "purple",
+      cardIcon: "launchpad",
+      cardDescription: ' ',
+    }, false),
     macros.include("@bolt-academy/_horizontal-card.twig", {
       cardUrl: "#!",
       cardSubtitle: "Challenge",
