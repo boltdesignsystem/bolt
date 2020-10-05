@@ -197,6 +197,7 @@
     border-radius: 0;
   }
 
+  // Nav link
   .c-bolt-page-header__nav-link--current {
     padding-inline-end: calc(
       #{$bolt-page-header-mobile-expanded-content-spacing-x} + var(
@@ -217,6 +218,7 @@
   }
 
   .c-bolt-page-header__nav-link__content {
+    grid-gap: var(--bolt-spacing-x-xsmall);
     flex-grow: auto;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -312,6 +314,10 @@
         }
       }
     }
+  }
+
+  .c-bolt-page-header__nav-heading {
+    display: none;
   }
 
   // Main CTA

@@ -10,14 +10,14 @@
 :root {
   --bolt-page-max-width: #{bolt-breakpoint(xxlarge)};
   --bolt-wrapper-spacing-x: #{$bolt-wrapper-padding};
-  --bolt-page-padding-inline: var(--bolt-wrapper-spacing-x);
+  --bolt-page-padding-x: var(--bolt-wrapper-spacing-x);
 
   @include bolt-mq(medium) {
-    --bolt-page-padding-inline: #{$bolt-wrapper-padding-at-medium-bp};
+    --bolt-page-padding-x: #{$bolt-wrapper-padding-at-medium-bp};
   }
 
   @include bolt-mq(xxlarge) {
-    --bolt-page-padding-inline: calc(
+    --bolt-page-padding-x: calc(
       var(--bolt-wrapper-spacing-x) * 2 + (100vw - var(--bolt-page-max-width)) /
         2
     );
@@ -35,12 +35,6 @@ $bolt-page-header-desktop-padding-top: calc(
   var(--bolt-spacing-y-medium) + #{$bolt-page-header-desktop-util-nav-height}
 );
 $bolt-page-header-desktop-padding-bottom: var(--bolt-spacing-y-small);
-$bolt-page-header-desktop-primary-nav-spacing-x: var(
-  --bolt-page-padding-inline
-);
-$bolt-page-header-desktop-expanded-content-spacing-x: calc(
-  #{$bolt-page-header-desktop-primary-nav-spacing-x} + 8vw
-);
 
 $bolt-page-header-mobile-spacing-y: 3px;
 $bolt-page-header-mobile-primary-nav-spacing-x: var(--bolt-spacing-x-xsmall);
@@ -63,9 +57,21 @@ $bolt-page-header-mobile-expanded-content-spacing-x: calc(
   }
 }
 
-@mixin bolt-page-header-action-trigger($spacing-x) {
-  display: block;
+@mixin bolt-page-header-button-reset {
   appearance: none;
+  padding: unset;
+  font: var(--bolt-type-font-family-body);
+  line-height: unset;
+  text-align: unset;
+  cursor: pointer;
+  border: 0;
+  background: transparent;
+}
+
+@mixin bolt-page-header-action-trigger($spacing-x) {
+  @include bolt-page-header-button-reset;
+
+  display: block;
   position: relative;
   min-width: $bolt-page-header-click-target-size;
   min-height: $bolt-page-header-click-target-size;
@@ -77,8 +83,6 @@ $bolt-page-header-mobile-expanded-content-spacing-x: calc(
   color: bolt-theme(link);
   line-height: var(--bolt-type-line-height-medium);
   text-align: inherit;
-  cursor: pointer;
-  border: none;
   border-radius: bolt-border-radius(large);
   outline: none;
   background-color: bolt-theme(background);
@@ -298,30 +302,19 @@ $bolt-page-header-mobile-expanded-content-spacing-x: calc(
   }
 }
 
-// Off-canvas/mega primary nav
+// Nav link
 .c-bolt-page-header__nav-link__content {
-  display: flex;
+  display: grid;
+  grid-template-columns: auto 1fr;
   align-items: center;
-
-  > * {
-    transform: translateY(
-      0.5px
-    ); // Fixes subpixel issue with icon and text vertical alignment.
-  }
-
-  > *:first-child {
-    margin-inline-end: var(--bolt-spacing-x-xxsmall);
-  }
-
-  > *:last-child {
-    margin-inline-start: var(--bolt-spacing-x-xxsmall);
-  }
 }
 
 // Main CTA
 .c-bolt-page-header__cta {
+  @include bolt-page-header-button-reset;
+
   display: block;
-  font-family: var(--bolt-type-font-family-body);
+  font-family: var(--bolt-type-font-family-headline);
   font-weight: var(--bolt-type-font-weight-semibold);
   color: bolt-theme(text-on-primary);
   text-align: center;
