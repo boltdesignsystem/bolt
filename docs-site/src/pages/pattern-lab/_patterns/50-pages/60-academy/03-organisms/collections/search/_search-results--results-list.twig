@@ -11,19 +11,36 @@
   } only %}
 {% endset %}
 
-{% set popoverContent %}
-  {# <bolt-list tag="ul" display="block" spacing="xsmall" separator="none" align="start" valign="center">
-    <bolt-list-item last="" role="presentation">
-      <bolt-link display="inline" valign="center" url="/mission/seans-multi-version-test-mission/v1">
-        Pega Customer Decision Hub 8.3</bolt-link>
-    </bolt-list-item>
-  </bolt-list> #}
+{% set placeholderLink %}
+  {% include "@bolt-components-link/link.twig" with {
+    text: "Pega Customer Decision Hub 8.3",
+    url: "https://pega.com"
+  } only %}
+{% endset %}
+{% set placeholderLink2 %}
+  {% include "@bolt-components-link/link.twig" with {
+    text: "Pega Customer Decision Hub 8.1",
+    url: "https://pega.com"
+  } only %}
+{% endset %}
 
+{% set popoverContent %}
   {% include "@bolt-components-list/list.twig" with {
-    spacing: "xsmall",
     items: [
-      "test"
+      placeholderLink,
+      placeholderLink2
     ]
+  } only %}
+{% endset %}
+
+{% set popoverContent2 %}
+  {% include "@bolt-components-stack/stack.twig" with {
+    content: placeholderLink2,
+    spacing: "xsmall"
+  } only %}
+  {% include "@bolt-components-stack/stack.twig" with {
+    content: placeholderLink,
+    spacing: "xsmall"
   } only %}
 {% endset %}
 
@@ -170,6 +187,35 @@
       cardGradient: "purple",
       cardIcon: "launchpad",
       cardDescription: ' ',
+    }, false),
+    macros.include("@bolt-academy/_horizontal-card.twig", {
+      cardUrl: "/mission/seans-multi-version-test-mission/v2",
+      cardSubtitle: "Mission",
+      cardTitle: "Sean's Multi-Version Test Mission",
+      cardMetaItems: [
+        macros.include("@bolt-components-headline/text.twig", {
+          size: "small",
+          text: "1 Module",
+          weight: "semibold"
+        }, false),
+        macros.include("@bolt-components-headline/text.twig", {
+          size: "small",
+          text: "10 mins",
+          weight: "semibold",
+          attributes: {
+            class: "stats-item",
+          },
+        }, false),
+        macros.include("@bolt-components-popover/popover.twig", {
+          trigger: trigger,
+          content: popoverContent2,
+          placement: "top-start",
+          theme: "light"
+        }, false),
+      ],
+      cardGradient: "purple",
+      cardIcon: "launchpad",
+      cardDescription: 'This one behaves the way I assume we want it to.',
     }, false),
     macros.include("@bolt-academy/_horizontal-card.twig", {
       cardUrl: "#!",

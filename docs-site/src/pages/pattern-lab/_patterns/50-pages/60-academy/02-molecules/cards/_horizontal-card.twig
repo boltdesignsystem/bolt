@@ -24,83 +24,79 @@
   {% endblock %}
 
   {% block body %}
-    {# <div class="c-bolt-card__overflow-menu c-bolt-card__overflow-menu--top c-bolt-card__overflow-menu--right">
-      <bolt-overflow-menu
-        flip-menu
-        label="Oveflow menu"
-        tip-position="left"
-        tip-alignment="center"
-      >
-        <bolt-overflow-menu-item>list item 1</bolt-overflow-menu-item>
-        <bolt-overflow-menu-item>list item 2</bolt-overflow-menu-item>
-        <bolt-overflow-menu-item>list item 3</bolt-overflow-menu-item>
-      </bolt-overflow-menu>
-    </div> #}
-
-    <div class="o-bolt-grid o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--xsmall u-bolt-negative-margin-top-small u-bolt-negative-margin-right-small">
-      <div class="o-bolt-grid__cell u-bolt-margin-left-auto">
-      </div>
-    </div>
-
-    <div class="u-bolt-overflow-hidden">
-      {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--border" %}
-        {% cell "u-bolt-width-12/12 u-bolt-width-6/12@small" %}
-
-          {% set cardTextContent %}
-            {% if cardSubtitle %}
-              {% include "@bolt-components-headline/eyebrow.twig" with {
-                text: cardSubtitle,
-                weight: "semibold"
-              } only %}
-            {% endif %}
-
-            {% if cardTitle %}
-              {# {% include "@bolt-components-headline/headline.twig" with {
-                text: cardTitle,
-                size: "large",
-              } only %} #}
-              <h2>{{ cardTitle }}</h2>
-            {% endif %}
-          {% endset %}
-
-          {% include "@bolt-components-stack/stack.twig" with {
-            content: cardTextContent,
-            spacing: "xsmall"
+    {% set leftContent %}
+      {% set cardTextContent %}
+        {% if cardSubtitle %}
+          {% include "@bolt-components-headline/eyebrow.twig" with {
+            text: cardSubtitle,
+            weight: "semibold"
           } only %}
-
-          {% if cardMetaItems %}
-            {% set cardMetaContent %}
-              {% include "@bolt-components-list/list.twig" with {
-                display: "inline",
-                separator: "solid",
-                tag: "ul",
-                items: cardMetaItems
-              } only %}
-            {% endset %}
-
-            {% include "@bolt-components-stack/stack.twig" with {
-              content: cardMetaContent,
-              spacing: "xsmall"
-            } only %}
-          {% endif %}
-        {% endcell %}
-
-        {% if cardDescription %}
-          {% cell "u-bolt-width-12/12 u-bolt-width-6/12@small" %}
-            {% include "@bolt-components-headline/text.twig" with {
-              text: cardDescription,
-              size: "small",
-              attributes: {
-                class: [
-                  "u-bolt-padding-top-xsmall@small",
-                  "u-bolt-padding-bottom-xsmall@small",
-                ]
-              }
-            } only %}
-          {% endcell %}
         {% endif %}
-      {% endgrid %}
-    </div>
+
+        {% if cardTitle %}
+          <h2>{{ cardTitle }}</h2>
+        {% endif %}
+      {% endset %}
+
+      {% include "@bolt-components-stack/stack.twig" with {
+        content: cardTextContent,
+        spacing: "xsmall"
+      } only %}
+
+      {% if cardMetaItems %}
+        {% set cardMetaContent %}
+          {% include "@bolt-components-list/list.twig" with {
+            display: "inline",
+            separator: "solid",
+            tag: "ul",
+            items: cardMetaItems
+          } only %}
+        {% endset %}
+
+        {% include "@bolt-components-stack/stack.twig" with {
+          content: cardMetaContent,
+          spacing: "xsmall"
+        } only %}
+      {% endif %}
+    {% endset %}
+
+    {% set rightContent %}
+      {% if cardDescription %}
+        {% include "@bolt-components-headline/text.twig" with {
+          text: cardDescription,
+          size: "small",
+          attributes: {
+            class: [
+              "u-bolt-padding-top-xsmall@small",
+              "u-bolt-padding-bottom-xsmall@small",
+            ]
+          }
+        } only %}
+      {% endif %}
+    {% endset %}
+
+    {% include "@bolt-components-list/list.twig" with {
+      display: "inline@small",
+      separator: "solid",
+      spacing: "small",
+      attributes: {
+        class: 'o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--border'
+      },
+      items: [
+        {
+          content: leftContent,
+          attributes: {
+            class: 'u-bolt-width-12/12 u-bolt-width-6/12@small'
+          }
+        },
+        {
+          content: rightContent,
+          attributes: {
+            class: 'u-bolt-width-12/12 u-bolt-width-6/12@small'
+          }
+        },
+      ]
+    } only %}
   {% endblock %}
 
 {% endembed %}
