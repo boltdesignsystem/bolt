@@ -4,7 +4,7 @@
 
 The server-side pre-rendered `bolt-pagination` component should look almost identical to the client-side rendered version. To verify:
 
-1. Disable javascript and view the [Pagination Demo page](https://boltdesignsystem.com/pattern-lab/patterns/02-components-pagination-05-pagination/02-components-pagination-05-pagination.html).
+1. Disable javascript and view the [Pagination Demo page](https://boltdesignsystem.com/pattern-lab/patterns/40-components-pagination-05-pagination/40-components-pagination-05-pagination.html).
 2. Then, enable javascript and watch as the Pagination re-renders on the client-side.
 3. The layout should not shift, e.g. the spacing in between each pagination item should be identical before and after the web component re-renders.
 
@@ -20,7 +20,7 @@ Functional testing should be performed manually by the QA team across the standa
 
 ## Scenario: align variations
 
-1. Given I am viewing the [align variations page](https://boltdesignsystem.com/pattern-lab/patterns/02-components-pagination-20-pagination-align-variations/02-components-pagination-20-pagination-align-variations.html).
+1. Given I am viewing the [align variations page](https://boltdesignsystem.com/pattern-lab/patterns/40-components-pagination-20-pagination-align-variations/40-components-pagination-20-pagination-align-variations.html).
 2. Start align should show items aligned to the left (start of the pagination).
 3. Center align should show items aligned to the center.
 4. End align should show items aligned to the right (end of the pagination).

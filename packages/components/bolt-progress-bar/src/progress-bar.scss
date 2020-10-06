@@ -12,7 +12,7 @@
   width: 100%;
   overflow: hidden;
   vertical-align: top;
-  grid-gap: bolt-spacing(small);
+  grid-gap: var(--bolt-spacing-x-small);
   grid-auto-flow: dense;
   grid-template-columns: 1fr auto;
 }
@@ -96,10 +96,15 @@
 }
 
 .c-bolt-progress-bar__value {
-  @include bolt-font-size(xsmall, tight);
-  @include bolt-font-weight(semibold);
   align-self: center;
   margin-bottom: 1px; // workaround to ~1px of text getting chopped off at the bottom
+  font-family: var(--bolt-type-font-family-body);
+  font-size: var(--bolt-type-font-size-xsmall);
+  font-weight: var(--bolt-type-font-weight-semibold);
+  line-height: calc(
+    var(--bolt-type-line-height-xsmall) *
+      var(--bolt-type-line-height-multiplier-tight)
+  );
   text-align: start;
 }
 
@@ -111,6 +116,7 @@
   0% {
     background-position: 0 0;
   }
+
   100% {
     background-position: 50px 50px;
   }

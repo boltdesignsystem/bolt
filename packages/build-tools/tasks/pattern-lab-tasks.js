@@ -197,6 +197,7 @@ async function watch() {
     path.join(plSource, globPattern),
     path.join(config.dataDir, '**/*'),
     `!${path.join(config.dataDir, 'sassdoc.bolt.json')}`,
+    `!${path.join(config.dataDir, 'vrt-urls.bolt.json')}`, // ignore to prevent PL from regenerating when this file is output
     `!${dirs.map(dir => path.join(dir, '**/*.schema.yml'))}`, // ignore watching schema files since the new schema file watcher below handles this
   ];
 

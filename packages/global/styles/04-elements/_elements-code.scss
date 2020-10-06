@@ -3,8 +3,7 @@
 \* ------------------------------------ */
 
 $bolt-code-border-radius: $bolt-border-radius;
-$bolt-code-background-color: rgba(bolt-color(indigo, light), 0.08);
-
+$bolt-code-background-color: rgba(bolt-color(navy, light), 0.08);
 
 pre,
 code {
@@ -20,29 +19,26 @@ code {
 }
 
 pre {
-  @include bolt-padding(small, squished);
-  overflow-y: auto;
-  overflow-x: auto;
-
   display: block;
+  overflow: auto;
+  padding: calc(var(--bolt-spacing-y-small) / 2) var(--bolt-spacing-x-small);
   background-color: $bolt-code-background-color;
 }
 
 code {
-  @include bolt-margin(0);
-  @include bolt-padding(2px 0.25rem 2px 0.3rem); // [Mai] 0.25rem on the right offsets the 0.05rem letter-spacing.
   @include bolt-font-family(code);
   @include bolt-font-weight(regular);
   @include bolt-font-size(small);
 
   display: inline;
+  margin: 0;
+  padding: 2px 0.25rem 2px 0.3rem; // [Mai] 0.25rem on the right offsets the 0.05rem letter-spacing.
   letter-spacing: 0.05rem;
   background-color: $bolt-code-background-color;
 }
 
 pre code {
-  @include bolt-padding(0);
-
   display: block;
+  padding: 0;
   background-color: transparent;
 }

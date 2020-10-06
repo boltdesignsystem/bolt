@@ -253,16 +253,6 @@ async function createWebpackConfig(buildConfig) {
                 {
                   loader: 'svg-sprite-loader',
                   options: {
-                    runtimeGenerator: require.resolve(
-                      './svg-to-icon-component-runtime-generator',
-                    ),
-                    runtimeOptions: {
-                      iconModule: path.join(
-                        path.dirname(require.resolve('@bolt/components-icon')),
-                        '/icon.jsx',
-                      ),
-                    },
-                    extract: true,
                     spriteFilename: svgPath =>
                       `bolt-svg-sprite${svgPath.substr(-4)}`,
                   },
@@ -307,6 +297,8 @@ async function createWebpackConfig(buildConfig) {
     },
     mode: config.prod ? 'production' : 'development',
     optimization: {
+      sideEffects: true,
+      usedExports: true,
       minimizer: config.prod
         ? [
             new TerserPlugin({
@@ -330,7 +322,6 @@ async function createWebpackConfig(buildConfig) {
         },
       }),
       new webpack.ProgressPlugin(boltWebpackProgress), // Ties together the Bolt custom Webpack messages + % complete
-      new WriteFilePlugin(),
       new webpack.NoEmitOnErrorsPlugin(),
     ],
   };
@@ -431,7 +422,7 @@ async function createWebpackConfig(buildConfig) {
       mainFields: ['esnext', 'jsnext:main', 'browser', 'module', 'main'],
     },
     output: {
-      // futureEmitAssets: true, // @todo: see if this is OK to re-enable if WriteFilePlugin is removed
+      futureEmitAssets: true,
       path: path.resolve(process.cwd(), config.buildDir),
       // @todo: switch this to output .client.js and .server.js file prefixes when we hit Bolt v3.0
       filename: `[name]${langSuffix}${

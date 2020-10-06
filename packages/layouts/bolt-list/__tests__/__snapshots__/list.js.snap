@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<bolt-list> Component basic usage 1`] = `
+<bolt-list tag="ul"
+           display="block"
+           spacing="xsmall"
+           separator="none"
+           align="start"
+           valign="center"
+>
+  <ssr-keep for="bolt-list"
+            role="list"
+            class="c-bolt-list c-bolt-list--display-block c-bolt-list--spacing-xsmall c-bolt-list--align-start c-bolt-list--valign-center"
+  >
+    <bolt-list-item role="presentation">
+      <ssr-keep for="bolt-list-item"
+                role="listitem"
+                class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start"
+      >
+        item 1
+      </ssr-keep>
+    </bolt-list-item>
+    <bolt-list-item role="presentation">
+      <ssr-keep for="bolt-list-item"
+                role="listitem"
+                class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start"
+      >
+        item 2
+      </ssr-keep>
+    </bolt-list-item>
+    <bolt-list-item last
+                    role="presentation"
+    >
+      <ssr-keep for="bolt-list-item"
+                role="listitem"
+                class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start c-bolt-list-item--last-item"
+      >
+        item 3
+      </ssr-keep>
+    </bolt-list-item>
+  </ssr-keep>
+</bolt-list>
+`;

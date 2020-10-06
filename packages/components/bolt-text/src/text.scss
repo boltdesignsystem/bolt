@@ -5,67 +5,184 @@
 \* ------------------------------------ */
 
 // Attribute selectors for parent bolt-text
-bolt-text {
-  @include bolt-margin-bottom(medium); // Default vspacing
-  @include bolt-font-size(medium); // Default font-size
+@include bolt-repeat-rule(('bolt-text', ':host')) {
   display: block;
+  margin-bottom: var(--c-bolt-text-margin-bottom, var(--bolt-spacing-y-medium));
 
-  &[display='inline'] {
-    display: inline;
-  }
-  &[display='block'] {
-    display: block;
-  }
-
-  // Adding vspacing here so that we can remove vspacing on last-child
-  &[headline],
+  // Block display has built-in spacing.
   &[eyebrow] {
-    @include bolt-margin-bottom(xxsmall);
+    --c-bolt-text-margin-bottom: var(--bolt-spacing-y-xxsmall);
   }
+
+  &[headline],
   &[subheadline] {
-    @include bolt-margin-bottom(xsmall);
+    --c-bolt-text-margin-bottom: var(--bolt-spacing-y-xsmall);
   }
 
   &:last-child {
-    @include bolt-margin-bottom(0);
+    --c-bolt-text-margin-bottom: 0;
+  }
+
+  // Inline display does not have built-in spacing.
+  &[display='inline'] {
+    --c-bolt-text-margin-bottom: 0;
+    display: inline;
   }
 }
 
-// when fully encapsulated in the Shadow DOM
-:host {
-  @include bolt-margin-bottom(medium); // Default vspacing
-  @include bolt-font-size(medium); // Default font-size
-  display: block;
-}
-
-:host([display='inline']) {
-  display: inline;
-}
-
-:host([display='block']) {
-  display: block;
-}
-
-// Adding vspacing here so that we can remove vspacing on last-child
-:host([headline]),
-:host([eyebrow]) {
-  @include bolt-margin-bottom(xxsmall);
-}
-
-:host([subheadline]) {
-  @include bolt-margin-bottom(xsmall);
-}
-
-:host(:last-child) {
-  @include bolt-margin-bottom(0);
-}
-
-$bolt-text-v2--minus-letter-spacing: -0.025rem;
-$bolt-text-v2--plus-letter-spacing: 0.05rem;
-
 .c-bolt-text-v2 {
-  @include bolt-margin(0);
-  @include bolt-padding(0);
+  margin: 0;
+  padding: 0;
+  font-family: var(--c-bolt-text-font-family, unset);
+  font-size: var(--c-bolt-text-font-size, unset);
+  font-weight: var(--c-bolt-text-font-weight, unset);
+  line-height: var(--c-bolt-text-line-height, unset);
+  letter-spacing: var(--c-bolt-text-letter-spacing, unset);
+  font-display: swap;
+
+  // Font family
+  @each $family in $bolt-type-font-family-system {
+    $family-name: nth($family, 1);
+
+    &--#{$family-name} {
+      --c-bolt-text-font-family: var(--bolt-type-font-family-#{$family-name});
+    }
+  }
+
+  // Font Weight Options
+  @each $weight in $bolt-type-font-weight-system {
+    $weight-name: nth($weight, 1);
+
+    &--font-weight-#{$weight-name} {
+      --c-bolt-text-font-weight: var(--bolt-type-font-weight-#{$weight-name});
+    }
+  }
+
+  // Font size
+  @each $size in $bolt-type-font-size-system {
+    $size-name: nth($size, 1);
+
+    &--font-size-#{$size-name} {
+      --c-bolt-text-font-size: var(--bolt-type-font-size-#{$size-name});
+    }
+  }
+
+  // Letter spacing
+  @each $spacing in $bolt-type-letter-spacing-system {
+    $spacing-name: nth($spacing, 1);
+
+    &--letter-spacing-#{$spacing-name} {
+      --c-bolt-text-letter-spacing: var(
+        --bolt-type-letter-spacing-#{$spacing-name}
+      );
+    }
+  }
+
+  // Line height
+  @each $size in $bolt-type-font-size-system {
+    $size-name: nth($size, 1);
+
+    &--font-size-#{$size-name} {
+      --c-bolt-text-line-height: var(--bolt-type-line-height-#{$size-name});
+
+      @each $height in $bolt-type-line-height-multiplier-system {
+        $height-name: nth($height, 1);
+
+        &.c-bolt-text-v2--line-height-#{$height-name} {
+          --c-bolt-text-line-height: calc(
+            var(--bolt-type-line-height-#{$size-name}) *
+              var(--bolt-type-line-height-multiplier-#{$height-name})
+          );
+        }
+      }
+    }
+  }
+
+  // Display type
+  &--inline {
+    display: inline;
+  }
+
+  &--block {
+    display: block;
+  }
+
+  // Color
+  &--color-theme-headline {
+    color: bolt-theme(headline);
+  }
+
+  &--color-theme-body {
+    color: bolt-theme(text);
+  }
+
+  // Font style
+  &--font-style-regular {
+    font-style: normal;
+  }
+
+  &--font-style-italic {
+    font-style: italic;
+  }
+
+  // Text align
+  &--align-inherit {
+    text-align: inherit;
+  }
+
+  &--align-start {
+    text-align: start;
+  }
+
+  &--align-center {
+    text-align: center;
+  }
+
+  &--align-end {
+    text-align: end;
+  }
+
+  // Text transform
+  &--text-transform-regular {
+    text-transform: none;
+  }
+
+  &--text-transform-uppercase {
+    text-transform: uppercase;
+  }
+
+  &--text-transform-lowercase {
+    text-transform: lowercase;
+  }
+
+  &--text-transform-capitalize {
+    text-transform: capitalize;
+  }
+
+  // Quoted style
+  &--quoted {
+    &:before,
+    &:after {
+      font-family: 'Georgia', serif;
+    }
+
+    &:before {
+      content: '\201C';
+      position: absolute;
+      transform: translate3d(-110%, 0, 0);
+    }
+
+    &:after {
+      content: '\201D';
+    }
+  }
+
+  // Opacity
+  @each $key, $value in $bolt-opacities {
+    &--opacity-#{$key} {
+      opacity: bolt-opacity($key);
+    }
+  }
 
   a {
     opacity: bolt-opacity(100);
@@ -97,281 +214,4 @@ $bolt-text-v2--plus-letter-spacing: 0.05rem;
       text-decoration: underline;
     }
   }
-}
-
-.c-bolt-text-v2 {
-  // Font-Family
-  &--headline {
-    @include bolt-font-family(heading);
-  }
-  &--body {
-    @include bolt-font-family(body);
-  }
-  &--code {
-    @include bolt-font-family(code);
-  }
-
-  // Color
-  &--color-theme-headline {
-    color: bolt-theme(headline);
-  }
-  &--color-theme-body {
-    color: bolt-theme(text);
-  }
-
-  // Font Weight Options
-  &--font-weight-semibold {
-    @include bolt-font-weight(semibold);
-  }
-  &--font-weight-regular {
-    @include bolt-font-weight(regular);
-  }
-  &--font-weight-bold {
-    @include bolt-font-weight(bold);
-  }
-
-  // Italic style
-  &--font-style-regular {
-    font-style: normal;
-  }
-  &--font-style-italic {
-    font-style: italic;
-  }
-
-  // Font size
-  &--font-size-xxxlarge {
-    @include bolt-font-size(xxxlarge);
-    letter-spacing: $bolt-text-v2--minus-letter-spacing;
-
-    &.is-long {
-      font-size: $bolt-font-size--xxxlarge--min;
-    }
-  }
-  &--font-size-xxlarge {
-    @include bolt-font-size(xxlarge);
-    letter-spacing: $bolt-text-v2--minus-letter-spacing;
-  }
-  &--font-size-xlarge {
-    @include bolt-font-size(xlarge);
-  }
-  &--font-size-large {
-    @include bolt-font-size(large);
-  }
-  &--font-size-medium {
-    @include bolt-font-size(medium);
-  }
-  &--font-size-small {
-    @include bolt-font-size(small);
-    letter-spacing: $bolt-text-v2--plus-letter-spacing;
-  }
-  &--font-size-xsmall {
-    @include bolt-font-size(xsmall);
-    letter-spacing: $bolt-text-v2--plus-letter-spacing;
-  }
-
-  // Display type
-  &--inline {
-    display: inline;
-  }
-  &--block {
-    display: block;
-  }
-
-  // Align content
-  &--align-inherit {
-    text-align: inherit;
-  }
-  &--align-start {
-    text-align: left;
-    text-align: start;
-  }
-  &--align-center {
-    text-align: center;
-  }
-  &--align-end {
-    text-align: right;
-    text-align: end;
-  }
-
-  // Transform text
-  &--text-transform-regular {
-    text-transform: none;
-  }
-  &--text-transform-uppercase {
-    text-transform: uppercase;
-  }
-  &--text-transform-lowercase {
-    text-transform: lowercase;
-  }
-  &--text-transform-capitalize {
-    text-transform: capitalize;
-  }
-
-  // Letter spacing
-  &--letter-spacing-narrow {
-    letter-spacing:  $bolt-text-v2--minus-letter-spacing;
-  }
-  &--letter-spacing-regular {
-    letter-spacing: normal;
-  }
-  &--letter-spacing-wide {
-    letter-spacing:  $bolt-text-v2--plus-letter-spacing;
-  }
-
-  // Line height
-  $bolt-line-height--add-loose: 0.2;
-
-  &--line-height-tight {
-    line-height: $bolt-line-height--tight;
-  }
-  // These are already defined with the font-size mixin. Only here for reference.
-  // &--line-height-regular {
-  //   &.c-bolt-text-v2--font-size-xxxlarge {
-  //     line-height: $bolt-line-height--xxxlarge;
-  //   }
-  //   &.c-bolt-text-v2--font-size-xxlarge {
-  //     line-height: $bolt-line-height--xxlarge;
-  //   }
-  //   &.c-bolt-text-v2--font-size-xlarge {
-  //     line-height: $bolt-line-height--xlarge;
-  //   }
-  //   &.c-bolt-text-v2--font-size-large {
-  //     line-height: $bolt-line-height--large;
-  //   }
-  //   &.c-bolt-text-v2--font-size-medium {
-  //     line-height: $bolt-line-height--medium;
-  //   }
-  //   &.c-bolt-text-v2--font-size-small {
-  //     line-height: $bolt-line-height--small;
-  //   }
-  //   &.c-bolt-text-v2--font-size-xsmall {
-  //     line-height: $bolt-line-height--xsmall;
-  //   }
-  // }
-  &--line-height-loose {
-    &.c-bolt-text-v2--font-size-xxxlarge {
-      line-height: ($bolt-line-height--xxxlarge + $bolt-line-height--add-loose);
-    }
-    &.c-bolt-text-v2--font-size-xxlarge {
-      line-height: ($bolt-line-height--xxlarge + $bolt-line-height--add-loose);
-    }
-    &.c-bolt-text-v2--font-size-xlarge {
-      line-height: ($bolt-line-height--xlarge + $bolt-line-height--add-loose);
-    }
-    &.c-bolt-text-v2--font-size-large {
-      line-height: ($bolt-line-height--large + $bolt-line-height--add-loose);
-    }
-    &.c-bolt-text-v2--font-size-medium {
-      line-height: ($bolt-line-height--medium + $bolt-line-height--add-loose);
-    }
-    &.c-bolt-text-v2--font-size-small {
-      line-height: ($bolt-line-height--small + $bolt-line-height--add-loose);
-    }
-    &.c-bolt-text-v2--font-size-xsmall {
-      line-height: ($bolt-line-height--xsmall + $bolt-line-height--add-loose);
-    }
-  }
-
-  // Quoted style
-  &--quoted {
-    &:before,
-    &:after {
-      font-family: 'Georgia', serif;
-    }
-
-    &:before {
-      content: '\201C';
-      position: absolute;
-      transform: translate3d(-110%, 0, 0);
-    }
-
-    &:after {
-      content: '\201D';
-    }
-  }
-
-  // Opacity
-  @each $key, $value in $bolt-opacities {
-    &--opacity-#{$key} {
-      opacity: bolt-opacity($key);
-    }
-  }
-
-  // Icon Alignment
-
-  // @todo: uncomment once icon component decoupled and we can target wrapper around the icon.
-  // &.has-icon:not(.has-url) {
-
-  //   &.c-bolt-text-v2--icon-align-left-hang,
-  //   &.c-bolt-text-v2--icon-align-right-hang {
-  //     display: flex;
-  //     justify-content: space-between;
-  //   }
-  //   &.c-bolt-text-v2--icon-align-left,
-  //   &.c-bolt-text-v2--icon-align-left-hang {
-  //     bolt-icon {
-  //       margin-right: 0.25rem;
-  //     }
-  //   }
-  //   &.c-bolt-text-v2--icon-align-right,
-  //   &.c-bolt-text-v2--icon-align-right-hang  {
-  //     bolt-icon {
-  //       margin-left: 0.25rem;
-  //     }
-  //   }
-  // }
-  // &.has-icon.has-url { // If we have an <a> tag we need that to be the flex parent
-
-  //   &.c-bolt-text-v2--icon-align-left-hang,
-  //   &.c-bolt-text-v2--icon-align-right-hang {
-  //     > a {
-  //       display: flex;
-  //       justify-content: space-between;
-  //     }
-  //   }
-  //   &.c-bolt-text-v2--icon-align-left,
-  //   &.c-bolt-text-v2--icon-align-left-hang {
-  //     > a bolt-icon {
-  //       margin-right: 0.25rem;
-  //     }
-  //   }
-  //   &.c-bolt-text-v2--icon-align-right,
-  //   &.c-bolt-text-v2--icon-align-right-hang {
-  //     > a bolt-icon {
-  //       margin-left: 0.25rem;
-  //     }
-  //   }
-  // }
-
-  // &--vertical-align-top.has-icon {
-  //   &.c-bolt-text-v2--font-size-xxxlarge bolt-icon {
-  //     margin-top: 0.06em;
-  //   }
-  //   &.c-bolt-text-v2--font-size-xxlarge bolt-icon {
-  //     margin-top: 0.13em;
-  //   }
-  //   &.c-bolt-text-v2--font-size-xlarge bolt-icon {
-  //     margin-top: 0.15em;
-  //   }
-  //   &.c-bolt-text-v2--font-size-large bolt-icon {
-  //     margin-top: 0.18em;
-  //   }
-  //   &.c-bolt-text-v2--font-size-medium bolt-icon {
-  //     margin-top: 0.3em;
-  //   }
-  //   &.c-bolt-text-v2--font-size-small bolt-icon {
-  //     margin-top: 0.25em;
-  //   }
-  //   &.c-bolt-text-v2--font-size-xsmall bolt-icon {
-  //     margin-top: 0.15em;
-  //   }
-  //   bolt-icon {
-  //     vertical-align: top;
-  //   }
-  // }
-  // &--vertical-align-center.has-icon {
-  //   bolt-icon {
-  //     align-self: center;
-  //   }
-  // }
 }

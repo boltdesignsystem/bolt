@@ -11,10 +11,6 @@ class BoltBanner extends BoltElement {
     return {
       status: String,
       align: String,
-      full: {
-        type: Boolean,
-        reflect: true,
-      },
     };
   }
 
@@ -29,14 +25,12 @@ class BoltBanner extends BoltElement {
   render() {
     const status = this.status || schema.properties.status.default;
     const align = this.align || schema.properties.align.default;
-    const full = this.full || schema.properties.full.default;
 
     const classes = cx('c-bolt-banner', {
       [`c-bolt-banner--status-${status}`]: status,
       [`t-bolt-dark`]:
         (status && status === 'error') || (status && status === 'success'),
       [`c-bolt-banner--align-${align}`]: align,
-      [`c-bolt-banner--full`]: full,
     });
 
     return html`

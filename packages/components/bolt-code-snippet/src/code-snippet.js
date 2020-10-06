@@ -1,7 +1,7 @@
-import { polyfillLoader } from '@bolt/core-v3.x/polyfills';
+import { lazyQueue } from '@bolt/lazy-queue';
 
-polyfillLoader.then(() => {
-  import(
+lazyQueue(['bolt-code-snippet'], async () => {
+  await import(
     /* webpackChunkName: 'bolt-code-snippet' */ './code-snippet.standalone.js'
   );
 });

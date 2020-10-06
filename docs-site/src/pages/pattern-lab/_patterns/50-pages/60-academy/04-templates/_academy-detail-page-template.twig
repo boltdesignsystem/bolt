@@ -1,0 +1,114 @@
+{% set pageControls = block("page_controls") %}
+{% set sideNav = block("side_nav") %}
+{% set breadcrumbs = [
+  {
+    "text": "Home",
+    "url": link["pages-acd-dashboard"]
+  },
+  {
+    "text": "Mission Name Goes Here",
+    "url": link["pages-acd-mission-landing"]
+  },
+  {
+    "text": "Module name goes here",
+    "url": link["pages-acd-module-landing-page"]
+  },
+  {
+    "text": "How to update a rule"
+  }
+] %}
+
+{% set mainContentBlock %}
+  {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--medium" %}
+    {% cell "u-bolt-width-12/12 u-bolt-text-align-right" %}
+      {% include "@bolt-components-band/band.twig" with {
+        content: pageControls,
+        size: "small",
+        theme: "none",
+      } only %}
+    {% endcell %}
+  {% endgrid %}
+
+  {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center o-bolt-grid--medium" %}
+    {% if sideNav %}
+      {% cell "u-bolt-width-1/1 u-bolt-width-3/12@medium" %}
+        {{ sideNav }}
+      {% endcell %}
+    {% endif %}
+
+    {% cell "u-bolt-width-1/1 u-bolt-width-9/12@medium u-bolt-padding-left-large@medium" %}
+
+      {% if showBanner %}
+        {% set banner_content %}
+          <div class="u-bolt-overflow-hidden">
+            {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--border" %}
+              {% cell "u-bolt-width-12/12 u-bolt-width-4/12@small" %}
+                <div class="u-bolt-flex u-bolt-align-items-center u-bolt-justify-content-center u-bolt-height-full u-bolt-padding-xsmall">
+                  {% include '@bolt-components-image/image.twig' with {
+                    src: "/images/pega-community.svg",
+                    alt: "Pega Community logo",
+                    max_width: "250px",
+                  } only %}
+                </div>
+              {% endcell %}
+              {% cell "u-bolt-width-12/12 u-bolt-width-8/12@small" %}
+                <div class="u-bolt-flex u-bolt-align-items-center u-bolt-height-full u-bolt-padding-xsmall u-bolt-padding-xsmall">
+                  {% include "@bolt-components-headline/text.twig" with {
+                    text: "<strong>Note:</strong> The following content, referenced from Pega Community, is included here to help you better achieve the module learning objectives.",
+                    size: "small"
+                  } only %}
+                </div>
+              {% endcell %}
+            {% endgrid %}
+          </div>
+        {% endset %}
+
+        {% include "@bolt-components-banner/banner.twig" with {
+          content: banner_content,
+          align: "start"
+        } only %}
+      {% endif %}
+
+      {% include "@bolt-academy/_details-page-hero.twig" %}
+      {{ block("page_content") }}
+    {% endcell %}
+
+    {% cell "u-bolt-width-1/1 u-bolt-text-align-right" %}
+      {% include "@bolt-components-band/band.twig" with {
+        content: pageControls,
+        size: "medium",
+        theme: "none",
+      } only %}
+    {% endcell %}
+  {% endgrid %}
+{% endset %}
+
+<div class="c-bolt-site">
+  {% block global_header %}
+    {% include "@bolt-components-page-header/page-header.twig" with {
+      sticky: true
+    } only %}
+  {% endblock %}
+
+  <main class="c-bolt-site__content u-bolt-flex u-bolt-flex-col">
+    {% include "@bolt-academy/_toolbar.twig" with {
+      toolbarGradient: toolbarGradient | default("orange"),
+      sticky: sideNav ? false : true,
+      breadcrumbs: breadcrumbs,
+      toolbarIcon: toolbarIcon,
+    } only %}
+    {% include "@bolt-components-band/band.twig" with {
+      theme: "xlight",
+      size: "none",
+      valign: "start",
+      content: mainContentBlock,
+    } only %}
+  </main>
+  <div class="c-bolt-site__footer c-bolt-page-footer">
+    <div class="o-bolt-wrapper">
+      {% block global_footer %}
+        {% include "@bolt/page-footer.twig" only %}
+      {% endblock %}
+    </div>
+  </div>
+</div>

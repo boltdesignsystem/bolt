@@ -9,7 +9,7 @@ bolt-ratio {
   width: 100%;
   overflow: hidden; // Hide placeholder blurred images from leaking through
 
-  &:not(:defined){
+  &:not(:defined) {
     @supports (--custom: property) {
       &:before {
         content: '';

@@ -10,11 +10,11 @@ import {
   waitForTransitionEnd,
 } from '@bolt/core-v3.x/utils';
 import { withLitHtml } from '@bolt/core-v3.x/renderers/renderer-lit-html';
-import { smoothScroll } from '@bolt/components-smooth-scroll';
+import { smoothScroll } from '@bolt/components-smooth-scroll/src/smooth-scroll';
 import URLSearchParams from '@ungap/url-search-params'; // URLSearchParams poly for older browsers
 import classNames from 'classnames/bind';
 import styles from './tabs.scss';
-import schema from '../tabs.schema.yml';
+import schema from '../tabs.schema';
 
 import '@bolt/core-v3.x/utils/optimized-resize';
 
@@ -211,7 +211,7 @@ class BoltTabs extends withContext(withLitHtml) {
         const elementsToUpdate = this.querySelectorAll('[will-update]');
         if (elementsToUpdate.length) {
           elementsToUpdate.forEach(el => {
-            el.update && el.update();
+            el.updateLayout && el.updateLayout();
           });
         }
       }, 0);
@@ -542,7 +542,8 @@ class BoltTabs extends withContext(withLitHtml) {
     );
   }
 
-  update() {
+  // Public method called by Accordion when DOM changes and Tabs needs to update
+  updateLayout() {
     this._resizeMenu();
   }
 

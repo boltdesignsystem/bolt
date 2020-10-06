@@ -1,0 +1,23 @@
+{% set schema = bolt.data.components["@bolt-components-icon"].schema %}
+{% set themes = get_data("@bolt/themes.schema.json") %}
+
+{% for theme in themes.properties.colors.enum %}
+  <h3>Icons inside a {{ theme }} theme</h3>
+  <div class="u-bolt-margin-bottom-medium">
+    {% embed "@utils/theme-demo.twig" %}
+      {% block demo_content %}
+        <bolt-list display="inline" spacing="medium">
+          {% for background in schema.properties.background.enum %}
+            <bolt-list-item>
+              {% include "@bolt-components-icon/icon.twig" with {
+                name: "asset-podcast",
+                size: "large",
+                background: background
+              } only %}
+            </bolt-list-item>
+          {% endfor %}
+        </bolt-list>
+      {% endblock %}
+    {% endembed %}
+  </div>
+{% endfor %}

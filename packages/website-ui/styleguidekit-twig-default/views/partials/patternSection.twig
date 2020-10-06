@@ -10,8 +10,8 @@
       </a>
 
       <button class="pl-c-pattern__extra-toggle pl-js-pattern-extra-toggle" id="pl-pattern-extra-toggle-{{partial.patternPartial}}" data-patternpartial="{{ partial.patternPartial }}" title="View Pattern Info">
-        <span class="pl-c-pattern__extra-toggle-text pl-c-pattern__extra-toggle-text--expand">Expand</span>
-        <span class="pl-c-pattern__extra-toggle-text pl-c-pattern__extra-toggle-text--collapse">Collapse</span>
+        <span class="pl-c-pattern__extra-toggle-text pl-c-pattern__extra-toggle-text--expand">Show Code</span>
+        <span class="pl-c-pattern__extra-toggle-text pl-c-pattern__extra-toggle-text--collapse">Hide Code</span>
         <div class="pl-c-pattern__toggle-icon-wrapper">
           <svg viewBox="0 0 16 16" width="20" height="20" class="pl-c-pattern__toggle-icon pl-c-pattern__toggle-icon--expand">
             <path fill="currentColor" d="M9 11.5l1.5 1.5 5-5-5-5-1.5 1.5 3.5 3.5z"></path>
@@ -26,7 +26,7 @@
         </div>
       </button>
     </h3>
-    
+
     <!-- @todo: why doesn't PL node have breadcrumbs?? keeping in the Twig version -->
     {# {% set breadcrumbs = partial.patternData|json_decode %} #}
     {# {% if breadcrumbs.patternBreadcrumb.patternType %}
@@ -53,13 +53,13 @@
   </div>
 
   <div class="pl-js-pattern-example">
-    {{ partial.patternPartialCode | raw }}
+    {{ partial.patternPartialCode|raw }}
   </div>
 
   <script type="text/json" id="pl-pattern-data-{{partial.patternPartial}}" class="pl-js-pattern-data">
     {{ partial.patternData | raw }}
   </script>
-  
+
   <script type="text/json">
     window.bolt = window.bolt || {};
     window.bolt.patterns = window.bolt.patterns || {};

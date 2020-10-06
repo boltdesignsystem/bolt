@@ -71,7 +71,7 @@ $bolt-popover-transition: $bolt-transition-timing
   transition: opacity $bolt-popover-transition;
 
   .c-bolt-popover.is-expanded &,
-  bolt-popover:not([ready]) [slot='content']:target & {
+  bolt-popover:not([ready]) .c-bolt-popover__no-js-content:target & {
     visibility: visible;
     opacity: 1;
   }
@@ -80,10 +80,10 @@ $bolt-popover-transition: $bolt-transition-timing
     display: none;
     top: 100%;
     left: 50%;
-    transform: translate3d(-50%, #{bolt-v-spacing(xxsmall)}, 0);
+    transform: translate3d(-50%, #{var(--bolt-spacing-y-xxsmall)}, 0);
   }
 
-  bolt-popover:not([ready]) [slot='content']:target & {
+  bolt-popover:not([ready]) .c-bolt-popover__no-js-content:target & {
     display: block;
   }
 }
@@ -95,17 +95,17 @@ $bolt-popover-transition: $bolt-transition-timing
   display: none;
 
   bolt-popover:not([ready]) & {
-    @include bolt-font-family(body);
-    @include bolt-font-weight(semibold);
     display: block;
     width: 1.25rem;
     height: 1.25rem;
-    margin-bottom: bolt-v-spacing(xsmall);
+    margin-bottom: var(--bolt-spacing-y-xsmall);
     margin-left: auto;
+    font-family: var(--bolt-type-font-family-body);
+    font-size: 1rem;
+    font-weight: var(--bolt-type-font-weight-semibold);
     color: bolt-theme(link);
     line-height: 1;
     text-align: center;
-    font-size: 1rem;
     border-bottom-left-radius: bolt-border-radius(large);
 
     &:hover,
@@ -126,18 +126,19 @@ $bolt-popover-transition: $bolt-transition-timing
  * - used for visual design of the bubble and the fly in effect
  */
 .c-bolt-popover__bubble {
-  @include bolt-margin(xxsmall);
-  @include bolt-padding(0);
-  @include bolt-font-family(body);
-  @include bolt-font-size(xsmall);
-  @include bolt-font-weight(regular);
   display: block;
   transform: scale3d(1, 1, 1) translate3d(0, 0, 0);
   overflow: hidden;
+  margin: var(--bolt-spacing-y-xxsmall) var(--bolt-spacing-x-xxsmall);
+  padding: 0;
+  // [Mai] reset font styles here so it doesn't inherit from parent container.
+  font-family: var(--bolt-type-font-family-body);
+  font-size: var(--bolt-type-font-size-xsmall);
+  font-weight: var(--bolt-type-font-weight-regular);
   color: bolt-theme(text);
+  line-height: var(--bolt-type-line-height-xsmall);
   text-align: left;
   text-align: start;
-  white-space: nowrap;
   border-radius: bolt-border-radius(small);
   border-width: $bolt-popover-border-width;
   border-style: $bolt-popover-border-style;
@@ -146,6 +147,7 @@ $bolt-popover-transition: $bolt-transition-timing
   background-color: bolt-theme(background);
   will-change: transform;
   transition: transform $bolt-popover-transition;
+  white-space: nowrap;
 
   @at-root .c-bolt-popover--text-wrap & {
     width: 250px; // If the content is long (more than 31 characters), the bubble will have this specific width and text will wrap. This logic is in the JS and Twig files.
@@ -245,18 +247,19 @@ $bolt-popover-transition: $bolt-transition-timing
 /**
  * Spacing prop
  */
-@each $spacing-value in $bolt-spacing-values {
-  $spacing-value-name: nth($spacing-value, 1);
+@each $size in $bolt-spacing-multiplier-system {
+  $size-name: nth($size, 1);
 
-  .c-bolt-popover--spacing-#{$spacing-value-name} {
+  .c-bolt-popover--spacing-#{$size-name} {
     .c-bolt-popover__bubble {
-      @include bolt-padding(#{$spacing-value-name});
+      padding: var(--bolt-spacing-y-#{$size-name})
+        var(--bolt-spacing-x-#{$size-name});
     }
 
     @at-root bolt-popover:not([ready]) & {
       .c-bolt-popover__nojs-close {
-        margin-top: bolt-v-spacing(#{$spacing-value-name}) * -1;
-        margin-right: bolt-spacing(#{$spacing-value-name}) * -1;
+        margin-top: calc(var(--bolt-spacing-y-#{$size-name}) * -1);
+        margin-right: calc(var(--bolt-spacing-x-#{$size-name}) * -1);
       }
     }
   }

@@ -3,6 +3,90 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.28.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-chip-list/compare/v2.27.1...v2.28.0) (2020-09-16)
+
+**Note:** Version bump only for package @bolt/components-chip-list
+
+
+
+
+
+# [2.27.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-chip-list/compare/v2.27.0-alpha-calculator-2...v2.27.0) (2020-08-28)
+
+**Note:** Version bump only for package @bolt/components-chip-list
+
+
+
+
+
+# [2.26.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-chip-list/compare/v2.25.1...v2.26.0) (2020-07-22)
+
+**Note:** Version bump only for package @bolt/components-chip-list
+
+
+
+
+
+## [2.25.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-chip-list/compare/v2.25.0...v2.25.1) (2020-07-14)
+
+**Note:** Version bump only for package @bolt/components-chip-list
+
+
+
+
+
+# [2.25.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-chip-list/compare/v2.22.2...v2.25.0) (2020-07-13)
+
+
+### Bug Fixes
+
+* resolve conflicts ([92743cf](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-chip-list/commit/92743cf5734703ccfb94bc6d49e0a3d667e81fe3))
+* update additional snapshots ([2d33b89](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-chip-list/commit/2d33b89730d379daeb5d2b1d9971e0a74801124f))
+* update componet descriptions ([b9fefe6](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-chip-list/commit/b9fefe6106eb74e3d4794a51443a2b576d9651d9))
+* update Jest tests based on List / aria role updates ([e18a259](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-chip-list/commit/e18a2593e29312153e7661ae03bd94a2c4b41c2d))
+
+
+### Features
+
+* globally lazyload JS bundles to expose same existing issues as the ones found with the new lazy-queue functionality ([7cc4ce2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-chip-list/commit/7cc4ce2fa9ce28dc4f9f37078762f106ca87729f))
+
+
+
+
+
+## [2.24.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-chip-list/compare/v2.24.0...v2.24.1) (2020-06-17)
+
+**Note:** Version bump only for package @bolt/components-chip-list
+
+
+
+
+
+# [2.24.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-chip-list/compare/v2.23.0...v2.24.0) (2020-06-05)
+
+**Note:** Version bump only for package @bolt/components-chip-list
+
+
+
+
+
+# [2.23.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-chip-list/compare/v2.22.1...v2.23.0) (2020-05-06)
+
+
+### Bug Fixes
+
+* update additional snapshots ([2d33b89](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-chip-list/commit/2d33b89730d379daeb5d2b1d9971e0a74801124f))
+* update Jest tests based on List / aria role updates ([e18a259](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-chip-list/commit/e18a2593e29312153e7661ae03bd94a2c4b41c2d))
+
+
+### Features
+
+* globally lazyload JS bundles to expose same existing issues as the ones found with the new lazy-queue functionality ([7cc4ce2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-chip-list/commit/7cc4ce2fa9ce28dc4f9f37078762f106ca87729f))
+
+
+
+
+
 ## [2.22.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-chip-list/compare/v2.22.0...v2.22.1) (2020-04-22)
 
 

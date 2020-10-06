@@ -6,16 +6,9 @@
   padding-right: 0;
   padding-left: 0;
 
-  .pl-c-pattern:not([id*=pages-]) {
-    .pl-js-pattern-example {
-      @include bolt-padding-left(small);
-      @include bolt-padding-right(small);
-    }
-  }
-
   .pl-c-pattern__header {
-    padding-right: .5rem;
-    padding-left: .5rem;
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
   }
 
   // fix rendering bug when rendering pages on view all sections
@@ -31,7 +24,7 @@
 }
 
 .sg-main {
-  @include bolt-padding(medium);
+  padding: var(--bolt-spacing-y-medium) var(--bolt-spacing-x-medium);
 }
 
 // Remove double padding in PL when top level wrapper exists
@@ -41,20 +34,20 @@
 }
 
 .sg-pattern-head.sg-pattern-head {
-  @include bolt-padding(medium, squished);
   position: sticky;
   top: 0;
   z-index: bolt-z-index('nav');
-  margin-right: -1 * bolt-spacing(medium);
+  margin-right: calc(-1 * var(--bolt-spacing-x-medium));
   margin-bottom: 0;
-  margin-left: -1 * bolt-spacing(medium);
+  margin-left: calc(-1 * var(--bolt-spacing-x-medium));
+  padding: calc(var(--bolt-spacing-y-medium) / 2) var(--bolt-spacing-x-medium);
   box-shadow: 0 2px 3px rgba(0, 0, 0, 0.12);
   background-color: bolt-color(white);
 }
 
 .sg-pattern-extra.sg-pattern-extra.sg-pattern-extra {
-  @include bolt-margin-top(medium);
   max-width: 1400px;
+  margin-top: var(--bolt-spacing-y-medium);
   margin-right: auto;
   margin-left: auto;
   border-top: 0;
@@ -74,25 +67,23 @@
   margin-left: auto;
 }
 
-.pl-c-category,
-.pl-c-category__title,
-.pl-c-pattern[id*=-docs] > .pl-c-pattern__header,
-.pl-c-pattern[id*=-docs] > .pl-c-pattern__extra {
-  display: none;
-}
-
-.pl-c-category:first-of-type {
-  margin: 0;
-}
-
-.pl-c-pattern[id*="-docs"] .pl-c-pattern__extra-wrapper {
-  display: none;
-}
-
 .pl-placeholder-fixed-element {
   position: fixed;
 
   @at-root .pl-c-pattern & {
     position: static; // Set to 'static' on the View All page
   }
+}
+
+.pl-c-category,
+.pl-c-category__title,
+.pl-c-pattern[id*='-docs'] > .pl-c-pattern__header,
+.pl-c-pattern[id*='-docs'] > .pl-c-pattern__extra,
+.pl-c-pattern[id*='-docs'] .pl-c-pattern__extra-wrapper,
+.pl-c-tabs__link[data-panelid='pl-panel-html'] {
+  display: none !important;
+}
+
+.pl-c-category:first-of-type {
+  margin: 0;
 }

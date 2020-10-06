@@ -1,0 +1,112 @@
+{% include "@bolt-components-list/list.twig" with {
+  spacing: "medium",
+  items: [
+    macros.include("@bolt-academy/_horizontal-card.twig", {
+      cardUrl: "#!",
+      cardSubtitle: "Challenge",
+      cardTitle: bolt.faker.sentence(3),
+      cardMetaItems: [
+        macros.include("@bolt-components-headline/text.twig", {
+          size: "small",
+          weight: "bold",
+          text: "#{bolt.faker.numberBetween(2,15)} tasks",
+        }, false),
+        macros.include("@bolt-components-headline/text.twig", {
+          size: "small",
+          weight: "bold",
+          text: "Completed",
+          icon: {
+            name: "check-solid",
+            position: "before"
+          },
+          attributes: {
+            style: [
+              'color: #3C9439;'
+            ]
+          }
+        }, false),
+      ],
+      cardGradient: "orange",
+      cardIcon: "brand-meteor",
+      cardDescription: bolt.faker.paragraph(3),
+    }, false),
+    macros.include("@bolt-academy/_horizontal-card.twig", {
+      cardUrl: "#!",
+      completed: true,
+      cardSubtitle: "Module",
+      cardTitle: bolt.faker.sentence(3),
+      cardGradient: "teal",
+      cardIcon: "brand-orbit",
+      link: {
+        url: "https://academy.pega.com/library/71/ui-specialist",
+      },
+      cardDescription: bolt.faker.paragraph(3),
+    }, false),
+    macros.include("@bolt-academy/_horizontal-card.twig", {
+      cardUrl: "#!",
+      completed: true,
+      cardSubtitle: "Certification",
+      cardTitle: bolt.faker.sentence(3),
+      cardGradient: "navy",
+      cardIcon: "academy",
+      link: {
+        url: "https://academy.pega.com/library/71/ui-specialist",
+      },
+      cardDescription: bolt.faker.paragraph(3),
+    }, false),
+    macros.include("@bolt-academy/_horizontal-card.twig", {
+      cardUrl: "#!",
+      cardSubtitle: "Module",
+      cardTitle: "Name of module that will take up two lines of text",
+      cardGradient: "teal",
+      cardIcon: "brand-orbit",
+      link: {
+        url: "https://academy.pega.com/library/71/ui-specialist",
+      },
+      cardDescription: bolt.faker.paragraph(3),
+    }, false),
+    macros.include("@bolt-academy/_horizontal-card.twig", {
+      cardUrl: "#!",
+      cardSubtitle: "Mission Test",
+      cardTitle: bolt.faker.sentence(3),
+      cardGradient: "pink",
+      cardIcon: "launchpad",
+      status: "complete",
+      cardDescription: bolt.faker.paragraph(3),
+    }, false),
+    macros.include("@bolt-academy/_horizontal-card.twig", {
+      cardUrl: "#!",
+      cardSubtitle: "Mission Exercise",
+      cardTitle: bolt.faker.sentence(3),
+      cardGradient: "pink",
+      completed: true,
+      cardIcon: "brand-triangle",
+      cardDescription: bolt.faker.paragraph(3),
+    }, false),
+    macros.include("@bolt-academy/_horizontal-card.twig", {
+      cardUrl: "#!",
+      cardSubtitle: "Challenge",
+      cardTitle: bolt.faker.sentence(3),
+      cardGradient: "orange",
+      completed: true,
+      cardIcon: "brand-meteor",
+      cardDescription: bolt.faker.paragraph(3),
+    }, false),
+    macros.include("@bolt-academy/_horizontal-card.twig", {
+      cardUrl: "#!",
+      cardSubtitle: "Mission",
+      cardTitle: bolt.faker.sentence(3),
+      cardGradient: "pink",
+      cardIcon: "brand-molecule",
+      cardDescription: bolt.faker.paragraph(3),
+    }, false),
+    macros.include("@bolt-academy/_horizontal-card.twig", {
+      cardUrl: "#!",
+      cardSubtitle: "Module",
+      cardTitle: bolt.faker.sentence(3),
+      cardGradient: "teal",
+      cardIcon: "brand-orbit",
+      cardDescription: bolt.faker.paragraph(3),
+    }, false),
+  ]
+} only %}

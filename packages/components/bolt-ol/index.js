@@ -1,17 +1,12 @@
-import { polyfillLoader } from '@bolt/core-v3.x/polyfills';
+import { lazyQueue } from '@bolt/lazy-queue';
 
-polyfillLoader.then(res => {
-  import(
-    /* webpackMode: 'eager', webpackChunkName: 'bolt-unordered-list' */ './src/ol'
-  );
-
+lazyQueue(['bolt-ol'], async () => {
   if (!window.customElements.get('bolt-li')) {
-    import(
-      /* 
-      webpackMode: 'eager', 
-      webpackChunkName: 'bolt-li' 
-    */ '@bolt/components-li/src/li.js'
-    );
+    await Promise.all([
+      import(/* webpackChunkName: 'bolt-ol' */ './src/ol'),
+      import(/* webpackChunkName: 'bolt-li' */ '@bolt/components-li/src/li.js'),
+    ]);
+  } else {
+    await import(/* webpackChunkName: 'bolt-ol' */ './src/ol');
   }
-  // import(/* webpackMode: 'eager', webpackChunkName: 'bolt-unordered-list-item' */ './src/_ordered-list-item');
 });

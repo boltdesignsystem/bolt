@@ -39,10 +39,14 @@ exports[`<bolt-typeahead> Component Typeahead Twig Template Renders 1`] = `
                 class="c-bolt-button c-bolt-button--medium c-bolt-button--text c-bolt-button--border-radius-regular c-bolt-button--center c-bolt-button--icon-only"
                 is="shadow-root"
         >
-          <replace-with-children class="c-bolt-button__item">
+          <ssr-keep for="bolt-button"
+                    class="c-bolt-button__item"
+          >
             Clear search results
-          </replace-with-children>
-          <replace-with-children class="c-bolt-button__icon">
+          </ssr-keep>
+          <ssr-keep for="bolt-typeahead"
+                    class="c-bolt-button__icon"
+          >
             <bolt-icon class="c-bolt-typeahead__icon"
                        name="close-solid"
             >
@@ -53,13 +57,13 @@ exports[`<bolt-typeahead> Component Typeahead Twig Template Renders 1`] = `
                      viewbox="0 0 22 22"
                 >
                   <path fill="var(--bolt-theme-icon, currentColor)"
-                        d="M11 0a11 11 0 1011 11A11 11 0 0011 0zm3.54 13.12a1 1 0 010 1.42 1 1 0 01-1.42 0L11 12.41l-2.12 2.13a1 1 0 01-1.42 0 1 1 0 010-1.42L9.59 11 7.46 8.88a1 1 0 011.42-1.41L11 9.59l2.12-2.12a1 1 0 011.42 1.41L12.41 11z"
+                        d="M11 0a11 11 0 1011 11A11 11 0 0011 0zm3.5 13.1a1 1 0 010 1.4 1 1 0 01-1.4 0l-2.1-2-2.1 2a1 1 0 01-1.4 0 1 1 0 010-1.4l2-2.1-2-2.1a1 1 0 011.4-1.4l2.1 2 2.1-2a1 1 0 011.4 1.4l-2 2.1z"
                   >
                   </path>
                 </svg>
               </span>
             </bolt-icon>
-          </replace-with-children>
+          </ssr-keep>
         </button>
       </bolt-button>
       <div class="c-bolt-typeahead__button c-bolt-typeahead__button--submit">
@@ -76,10 +80,14 @@ exports[`<bolt-typeahead> Component Typeahead Twig Template Renders 1`] = `
                   class="c-bolt-button c-bolt-button--medium c-bolt-button--text c-bolt-button--border-radius-regular c-bolt-button--center c-bolt-button--icon-only"
                   is="shadow-root"
           >
-            <replace-with-children class="c-bolt-button__item">
+            <ssr-keep for="bolt-button"
+                      class="c-bolt-button__item"
+            >
               Submit search query
-            </replace-with-children>
-            <replace-with-children class="c-bolt-button__icon">
+            </ssr-keep>
+            <ssr-keep for="bolt-typeahead"
+                      class="c-bolt-button__icon"
+            >
               <bolt-icon class="c-bolt-typeahead__icon"
                          name="search"
               >
@@ -94,14 +102,14 @@ exports[`<bolt-typeahead> Component Typeahead Twig Template Renders 1`] = `
                       <path>
                       </path>
                       <path fill="var(--bolt-theme-icon, currentColor)"
-                            d="M9.518 15.035A5.524 5.524 0 014 9.517 5.524 5.524 0 019.518 4a5.524 5.524 0 015.518 5.517 5.524 5.524 0 01-5.518 5.518m12.189 5.258l-6.221-6.222a7.469 7.469 0 001.55-4.554C17.036 5.372 13.664 2 9.518 2S2 5.372 2 9.517c0 4.145 3.372 7.518 7.518 7.518a7.471 7.471 0 004.554-1.55l6.22 6.222a1 1 0 001.415-1.414"
+                            d="M9.5 15a5.5 5.5 0 110-11 5.5 5.5 0 010 11m12.2 5.3L15.5 14c1-1.3 1.5-2.9 1.5-4.6a7.5 7.5 0 10-3 6l6.3 6.2a1 1 0 001.4-1.4"
                       >
                       </path>
                     </g>
                   </svg>
                 </span>
               </bolt-icon>
-            </replace-with-children>
+            </ssr-keep>
           </button>
         </bolt-button>
       </div>

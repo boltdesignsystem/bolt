@@ -5,8 +5,8 @@ $bolt-carousel-space-around: 5.1px; // vs 5px to work around sub-pixel rendering
 
 @mixin bolt-carousel-scrollbar() {
   &::-webkit-scrollbar {
-    width: bolt-v-spacing(xsmall);
-    height: bolt-v-spacing(xsmall);
+    width: var(--bolt-spacing-y-xsmall);
+    height: var(--bolt-spacing-y-xsmall);
   }
 
   &::-webkit-scrollbar-thumb {

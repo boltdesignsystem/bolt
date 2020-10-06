@@ -5,32 +5,36 @@
  * Based on dabblet (http://dabblet.com)
  * @author Lea Verou
  */
-code[class*="language-"],
-pre[class*="language-"] {
+code[class*='language-'],
+pre[class*='language-'] {
   tab-size: 4;
   hyphens: none;
 }
 
-pre[class*="language-"]::-moz-selection, pre[class*="language-"] ::-moz-selection,
-code[class*="language-"]::-moz-selection, code[class*="language-"] ::-moz-selection {
+pre[class*='language-']::-moz-selection,
+pre[class*='language-'] ::-moz-selection,
+code[class*='language-']::-moz-selection,
+code[class*='language-'] ::-moz-selection {
   text-shadow: none;
 }
 
-pre[class*="language-"]::selection, pre[class*="language-"] ::selection,
-code[class*="language-"]::selection, code[class*="language-"] ::selection {
+pre[class*='language-']::selection,
+pre[class*='language-'] ::selection,
+code[class*='language-']::selection,
+code[class*='language-'] ::selection {
   text-shadow: none;
 }
 
 @media print {
-  code[class*="language-"],
-  pre[class*="language-"] {
+  code[class*='language-'],
+  pre[class*='language-'] {
     text-shadow: none;
   }
 }
 
 .token.important,
 .token.bold {
-  @include bolt-font-weight(semibold);
+  font-weight: var(--bolt-type-font-weight-semibold);
 }
 
 .token.italic {
@@ -56,10 +60,10 @@ pre.line-numbers > code {
   top: 0;
   left: -3.8em;
   width: 3em; /* works for line-numbers below 1000 lines */
+  font-size: 100%;
   letter-spacing: -1px;
   pointer-events: none;
   user-select: none;
-  font-size: 100%;
   border-right: 0;
 }
 
@@ -75,4 +79,3 @@ pre.line-numbers > code {
   padding-right: 0.8em;
   text-align: right;
 }
-

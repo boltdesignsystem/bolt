@@ -1,0 +1,57 @@
+{% set spacing_size_map = bolt.data.spacing.base %}
+{% set spacing_multiplier_map = bolt.data.spacing.multipliers %}
+
+{# To make sure these numbers are up to date, make sure to check vars-typography.scss #}
+{% set base_pixel = 15 %}
+{% set smallbp_pixel = 14 %}
+{% set largebp_pixel = 16 %}
+
+{% set content %}
+  <bolt-stack spacing="large">
+    <bolt-text headline font-size="xxxlarge" tag="h1">
+      Spacing System
+    </bolt-text>
+    <bolt-text subheadline font-size="xxlarge" tag="h2">
+      The spacing foundation of Bolt.
+    </bolt-text>
+  </bolt-stack>
+
+  <bolt-tabs label-spacing="medium" panel-spacing="medium" inset="off">
+    {% for size_name, size_value in spacing_size_map %}
+      {% if size_name == "x" %}
+        {% set type = "Horizontal" %}
+        {% set description = "The base value of vertical spacing is based on the leading of base body text." %}
+      {% else %}
+        {% set type = "Vertical" %}
+        {% set description = "The base value of horizontal spacing is based on the gutter of the grid." %}
+      {% endif %}
+
+      <bolt-tab-panel>
+        <bolt-text slot="label">{{ type|capitalize }}</bolt-text>
+
+        <bolt-list spacing="medium">
+          {% for multiplier_name, multiplier_value in spacing_multiplier_map %}
+            <bolt-list-item>
+              <bolt-list display="inline" spacing="small">
+                <bolt-list-item>
+                  <div class="{{ "c-bds-spacing-bar c-bds-spacing-bar--#{size_name}-#{multiplier_name}" }}"></div>
+                </bolt-list-item>
+                <bolt-list-item>
+                  <bolt-text headline font-size="small">
+                    {{ multiplier_name }}: {{ size_value|number_format(2,".",",") * multiplier_value|number_format(2,".",",") ~ "rem" }}
+                  </bolt-text>
+                </bolt-list-item>
+              </bolt-list>
+            </bolt-list-item>
+          {% endfor %}
+        </bolt-list>
+      </bolt-tab-panel>
+    {% endfor %}
+  </bolt-tabs>
+{% endset %}
+
+{% include "@bolt-components-band/band.twig" with {
+  content: content,
+  theme: "none",
+  size: "large",
+} only %}

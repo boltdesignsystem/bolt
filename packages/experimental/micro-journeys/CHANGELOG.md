@@ -3,6 +3,98 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.28.0](https://github.com/bolt-design-system/bolt/compare/v2.27.1...v2.28.0) (2020-09-16)
+
+**Note:** Version bump only for package @bolt/micro-journeys
+
+
+
+
+
+# [2.27.0](https://github.com/bolt-design-system/bolt/compare/v2.27.0-alpha-calculator-2...v2.27.0) (2020-08-28)
+
+**Note:** Version bump only for package @bolt/micro-journeys
+
+
+
+
+
+# [2.26.0](https://github.com/bolt-design-system/bolt/compare/v2.25.1...v2.26.0) (2020-07-22)
+
+
+### Bug Fixes
+
+* lint css ([71f8278](https://github.com/bolt-design-system/bolt/commit/71f82780c9019c74abef977ab31f3304282854fc))
+
+
+
+
+
+## [2.25.1](https://github.com/bolt-design-system/bolt/compare/v2.25.0...v2.25.1) (2020-07-14)
+
+**Note:** Version bump only for package @bolt/micro-journeys
+
+
+
+
+
+# [2.25.0](https://github.com/bolt-design-system/bolt/compare/v2.22.2...v2.25.0) (2020-07-13)
+
+
+### Bug Fixes
+
+* linting ([48f60b3](https://github.com/bolt-design-system/bolt/commit/48f60b38edfefbc44424e199b4a0b3e6fce7908b))
+
+
+
+# [2.25.0-alpha-colors](https://github.com/bolt-design-system/bolt/compare/v2.24.1...v2.25.0-alpha-colors) (2020-06-18)
+
+
+### Bug Fixes
+
+* update micro journey JS to fix intersection observer-related bug reported ([d1f24f8](https://github.com/bolt-design-system/bolt/commit/d1f24f83012a97e5ac9020f31ce7063ee90e2bf9))
+
+
+### Features
+
+* globally lazyload JS bundles to expose same existing issues as the ones found with the new lazy-queue functionality ([7cc4ce2](https://github.com/bolt-design-system/bolt/commit/7cc4ce2fa9ce28dc4f9f37078762f106ca87729f))
+
+
+
+
+
+## [2.24.1](https://github.com/bolt-design-system/bolt/compare/v2.24.0...v2.24.1) (2020-06-17)
+
+**Note:** Version bump only for package @bolt/micro-journeys
+
+
+
+
+
+# [2.24.0](https://github.com/bolt-design-system/bolt/compare/v2.23.0...v2.24.0) (2020-06-05)
+
+**Note:** Version bump only for package @bolt/micro-journeys
+
+
+
+
+
+# [2.23.0](https://github.com/bolt-design-system/bolt/compare/v2.22.1...v2.23.0) (2020-05-06)
+
+
+### Bug Fixes
+
+* update micro journey JS to fix intersection observer-related bug reported ([d1f24f8](https://github.com/bolt-design-system/bolt/commit/d1f24f83012a97e5ac9020f31ce7063ee90e2bf9))
+
+
+### Features
+
+* globally lazyload JS bundles to expose same existing issues as the ones found with the new lazy-queue functionality ([7cc4ce2](https://github.com/bolt-design-system/bolt/commit/7cc4ce2fa9ce28dc4f9f37078762f106ca87729f))
+
+
+
+
+
 # [2.21.0](https://github.com/bolt-design-system/bolt/compare/v2.20.2...v2.21.0) (2020-04-08)
 
 **Note:** Version bump only for package @bolt/micro-journeys

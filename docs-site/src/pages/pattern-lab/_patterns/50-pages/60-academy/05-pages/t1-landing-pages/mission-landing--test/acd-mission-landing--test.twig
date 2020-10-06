@@ -1,0 +1,45 @@
+{% extends "@bolt-academy/_academy-landing-page-template.twig" %}
+
+{% import "@bolt-academy/_macros.twig" as macros %}
+
+{% block page_content %}
+
+  {% embed "@bolt-academy/_landing-page-inner-layout.twig" %}
+
+    {% block hero_content %}
+      {% include "@bolt-academy/_landing-page-hero.twig" %}
+    {% endblock %}
+
+    {% block main_content %}
+
+      {% set trainingSupplementalContent %}
+        {% include "@bolt-academy/_h5p-embed.twig" %}
+        {% grid "o-bolt-grid--center o-bolt-grid--center o-bolt-grid--flex"  %}
+          {% cell %}
+            {% include "@bolt-components-button/button.twig" with {
+              size: "small",
+              text: "Return to mission",
+              url: "#!",
+              border_radius: "full",
+              attributes: {
+                class: [
+                  "u-bolt-margin-top-medium",
+                  "u-bolt-margin-left-auto",
+                  "u-bolt-margin-right-auto",
+                ]
+              }
+            } only %}
+          {% endcell %}
+        {% endgrid %}
+      {% endset %}
+
+      {% embed "@bolt-academy/_landing-page-main-1-col.twig" %}
+        {% block supplemental_content %}
+          {{ trainingSupplementalContent }}
+        {% endblock %}
+      {% endembed %}
+
+    {% endblock %}
+  {% endembed %}
+
+{% endblock %}

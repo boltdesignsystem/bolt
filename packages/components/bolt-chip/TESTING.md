@@ -16,7 +16,7 @@ Functional testing should be performed manually by the QA team across the standa
 
 ## Scenario: basic
 
-1. Given I am viewing the [basic chip page](https://boltdesignsystem.com/pattern-lab/patterns/02-components-chip-05-chip/02-components-chip-05-chip.html)
+1. Given I am viewing the [basic chip page](https://boltdesignsystem.com/pattern-lab/patterns/40-components-chip-05-chip/40-components-chip-05-chip.html)
 2. And I see a piece of text in a pill like container that reads "Chip"
 3. When I click on the chip
 4. Then nothing should happen because default chips are not links
@@ -25,7 +25,7 @@ Functional testing should be performed manually by the QA team across the standa
 
 ## Scenario: url variations
 
-1. Given I am viewing the URL section of the [URL demo page](https://boltdesignsystem.com/pattern-lab/patterns/02-components-chip-10-chip-url-variations/02-components-chip-10-chip-url-variations.html)
+1. Given I am viewing the URL section of the [URL demo page](https://boltdesignsystem.com/pattern-lab/patterns/40-components-chip-10-chip-url-variations/40-components-chip-10-chip-url-variations.html)
 2. And I see two chips, one reads "No URL", the other reads "Has URL"
 3. When I click on the "No URL" chip
 4. Then nothing should happen
@@ -36,7 +36,7 @@ Functional testing should be performed manually by the QA team across the standa
 
 ## Scenario: target variations
 
-1. Given I am viewing the Target section of the [URL demo page](https://boltdesignsystem.com/pattern-lab/patterns/02-components-chip-10-chip-url-variations/02-components-chip-10-chip-url-variations.html)
+1. Given I am viewing the Target section of the [URL demo page](https://boltdesignsystem.com/pattern-lab/patterns/40-components-chip-10-chip-url-variations/40-components-chip-10-chip-url-variations.html)
 2. And I see two chips, one reads "Open link in current tab", the other reads "Open link in new tab"
 3. When I click on the "Open link in current tab" chip
 4. Then the page will be directed to https://pega.com
@@ -45,18 +45,18 @@ Functional testing should be performed manually by the QA team across the standa
 
 ## Scenario: spacing variations
 
-[Spacing demo](https://boltdesignsystem.com/pattern-lab/patterns/02-components-chip-15-chip-spacing-variations/02-components-chip-15-chip-spacing-variations.html)
+[Spacing demo](https://boltdesignsystem.com/pattern-lab/patterns/40-components-chip-15-chip-spacing-variations/40-components-chip-15-chip-spacing-variations.html)
 
 `// This is a purely visual test, use VRT`
 
 ## Scenario: icon variations
 
-[Icon usage demo](https://boltdesignsystem.com/pattern-lab/patterns/02-components-chip-20-chip-icon-variations/02-components-chip-20-chip-icon-variations.html)
+[Icon usage demo](https://boltdesignsystem.com/pattern-lab/patterns/40-components-chip-20-chip-icon-variations/40-components-chip-20-chip-icon-variations.html)
 
 `// This is a purely visual test, use VRT`
 
 ## Scenario: chip with web components
 
-[Web components demo](https://boltdesignsystem.com/pattern-lab/patterns/02-components-chip-999-chip-with-web-component/02-components-chip-999-chip-with-web-component.html)
+[Web components demo](https://boltdesignsystem.com/pattern-lab/patterns/40-components-chip-999-chip-with-web-component/40-components-chip-999-chip-with-web-component.html)
 
 `// This is a purely visual test, use VRT`

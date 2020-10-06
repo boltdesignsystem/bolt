@@ -13,7 +13,7 @@ $bolt-table-border-color: bolt-theme(disabled);
 $bolt-table-header-background-color: bolt-theme(text, 0.04375);
 $bolt-table-row-hover-background-color: bolt-theme(text, 0.025);
 
-@mixin bolt-table-border($direction){
+@mixin bolt-table-border($direction) {
   border-#{$direction}-color: $bolt-table-border-color;
   border-#{$direction}-style: $bolt-table-border-style;
   border-#{$direction}-width: $bolt-table-border-width;
@@ -22,32 +22,32 @@ $bolt-table-row-hover-background-color: bolt-theme(text, 0.025);
 @include bolt-custom-element('bolt-table', block, medium);
 
 .c-bolt-table {
-  @include bolt-margin(0);
-  @include bolt-padding(0);
   @include bolt-horizontal-scroll;
 
   display: inline-block;
   max-width: 100%;
+  margin: 0;
+  padding: 0;
   vertical-align: top;
   @include bolt-table-border(right);
   @include bolt-table-border(left);
-  background:
+  background: -webkit-radial-gradient(
+        left,
+        ellipse,
+        bolt-theme(text, 0.25) 0%,
+        bolt-theme(text, 0) 75%
+      )
+      0 center,
     -webkit-radial-gradient(
-      left,
-      ellipse,
-      bolt-theme(text, 0.25) 0%,
-      bolt-theme(text, 0) 75%
-    ) 0 center,
-    -webkit-radial-gradient(
-      right,
-      ellipse,
-      bolt-theme(text, 0.25) 0%,
-      bolt-theme(text, 0) 75%
-    ) 100% center;
+        right,
+        ellipse,
+        bolt-theme(text, 0.25) 0%,
+        bolt-theme(text, 0) 75%
+      ) 100% center;
   background-attachment: scroll, scroll;
   background-color: bolt-theme(background);
   background-repeat: no-repeat;
-  background-size: .5em 100%, .5em 100%;
+  background-size: 0.5em 100%, 0.5em 100%;
   overflow-x: auto;
   border-collapse: collapse;
   border-spacing: 0;
@@ -67,14 +67,13 @@ $bolt-table-row-hover-background-color: bolt-theme(text, 0.025);
 .c-bolt-table__head,
 .c-bolt-table__body,
 .c-bolt-table__foot {
-  background:
-    linear-gradient(
-      to right,
-      bolt-theme(background, 1) 0.75em,
-      bolt-theme(background, 0) 2em,
-      bolt-theme(background, 0) calc(100% - 2em),
-      bolt-theme(background, 1) calc(100% - 0.75em)
-    );
+  background: linear-gradient(
+    to right,
+    bolt-theme(background, 1) 0.75em,
+    bolt-theme(background, 0) 2em,
+    bolt-theme(background, 0) calc(100% - 2em),
+    bolt-theme(background, 1) calc(100% - 0.75em)
+  );
 }
 
 .c-bolt-table__row {
@@ -100,9 +99,8 @@ $bolt-table-row-hover-background-color: bolt-theme(text, 0.025);
   }
 
   @at-root .c-bolt-table__head #{&} {
-    @include bolt-padding(small, squished);
-
     width: 1%;
+    padding: calc(var(--bolt-spacing-y-small) / 2) var(--bolt-spacing-x-small);
     background-color: $bolt-table-header-background-color;
   }
 
@@ -111,7 +109,7 @@ $bolt-table-row-hover-background-color: bolt-theme(text, 0.025);
   }
 
   @at-root .c-bolt-table > *:not(.c-bolt-table__head) #{&} {
-    @include bolt-padding(small);
+    padding: var(--bolt-spacing-y-small) var(--bolt-spacing-x-small);
   }
 
   @at-root .c-bolt-table__foot #{&} {
@@ -142,7 +140,7 @@ $bolt-table-row-hover-background-color: bolt-theme(text, 0.025);
 }
 
 .c-bolt-table__cell--data {
-  @include bolt-font-family(code);
+  @include bolt-font-family(body);
   @include bolt-font-size(small);
   @include bolt-font-weight(regular);
 
@@ -171,6 +169,10 @@ $bolt-table-row-hover-background-color: bolt-theme(text, 0.025);
   .c-bolt-table__cell {
     text-align: center;
     white-space: nowrap;
+  }
+
+  .c-bolt-table__cell--data {
+    @include bolt-font-family(code);
   }
 
   > *:not(.c-bolt-table__head) .c-bolt-table__cell--header:first-child {

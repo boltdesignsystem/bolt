@@ -10,7 +10,7 @@ module.exports = {
 
     browser
       .url(
-        `${testingUrl}/pattern-lab/patterns/02-components-typeahead-typeahead--dynamically-fetch-data/02-components-typeahead-typeahead--dynamically-fetch-data.html`,
+        `${testingUrl}/pattern-lab/patterns/40-components-typeahead-typeahead--dynamically-fetch-data/40-components-typeahead-typeahead--dynamically-fetch-data.html`,
       )
       .waitForElementVisible('.js-c-typeahead__input', 3000)
       .assert.elementPresent('.js-typeahead-hook--dynamically-fetch-data')

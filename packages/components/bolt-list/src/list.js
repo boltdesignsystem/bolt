@@ -1,91 +1,50 @@
-import { html, customElement } from '@bolt/element';
-import {
-  defineContext,
-  withContext,
-  props,
-  define,
-  hasNativeShadowDomSupport,
-} from '@bolt/core-v3.x/utils';
+import { html, customElement, BoltElement, unsafeCSS } from '@bolt/element';
+import { withContext } from 'wc-context/lit-element';
 import classNames from 'classnames/bind';
-import { withLitHtml } from '@bolt/core-v3.x/renderers/renderer-lit-html';
-
-import themes from '@bolt/global/styles/06-themes/_themes.all.scss';
 import styles from './list.scss';
-import schema from '../list.schema.yml';
+import schema from '../list.schema';
 
 let cx = classNames.bind(styles);
 
-// define which specific props to provide to children that subscribe
-export const ListContext = defineContext({
-  tag: 'ul',
-  display: 'inline',
-  spacing: 'none',
-  inset: false,
-  nowrap: false,
-  align: 'start',
-  separator: 'none',
-});
-
 @customElement('bolt-list')
-class BoltList extends withContext(withLitHtml) {
-  // provide context info to children that subscribe
-  // (context + subscriber idea originally from https://codepen.io/trusktr/project/editor/XbEOMk)
-  static get provides() {
-    return [ListContext];
+class BoltList extends withContext(BoltElement) {
+  static schema = schema;
+
+  static get properties() {
+    return {
+      ...this.props,
+    };
   }
 
-  static props = {
-    tag: props.string, // ul | ol | div | span
-    display: props.string, // inline | block | flex | inline@xxsmall | inline@xsmall | inline@small | inline@medium
-    spacing: props.string, // none | xsmall | small | medium | large | xlarge
-    separator: props.string, // none | solid | dashed
-    inset: props.boolean, // true | false
-    nowrap: props.boolean, // true | false
-    align: props.string, // start | center | end
-    valign: props.string, // start | center | end
-  };
+  static get providedContexts() {
+    return {
+      display: { property: 'display' },
+      inset: { property: 'inset' },
+      separator: { property: 'separator' },
+      spacing: { property: 'spacing' },
+      tag: { property: 'tag' },
+    };
+  }
 
-  constructor(self) {
-    self = super(self);
-    self.useShadow = hasNativeShadowDomSupport;
-    this.schema = schema;
-    return self;
+  static get styles() {
+    return [unsafeCSS(styles)];
   }
 
   render() {
-    const {
-      tag,
-      display,
-      spacing,
-      separator,
-      inset,
-      nowrap,
-      align,
-      valign,
-    } = this.validateProps(this.props);
-    this.contexts.get(ListContext).tag = tag || this.props.tag;
-    this.contexts.get(ListContext).display = display || this.props.display;
-    this.contexts.get(ListContext).spacing = spacing || this.props.spacing;
-    this.contexts.get(ListContext).inset = inset || this.props.inset;
-    this.contexts.get(ListContext).nowrap = nowrap || this.props.nowrap;
-    this.contexts.get(ListContext).align = align || this.props.align;
-    this.contexts.get(ListContext).separator =
-      separator || this.props.separator;
-
     const classes = cx('c-bolt-list', {
-      [`c-bolt-list--display-${display}`]: display,
-      [`c-bolt-list--spacing-${spacing}`]: spacing !== 'none',
-      [`c-bolt-list--separator-${separator}`]: separator !== 'none',
-      [`c-bolt-list--align-${align}`]: align,
-      [`c-bolt-list--valign-${valign}`]: valign,
-      [`c-bolt-list--inset`]: inset,
-      [`c-bolt-list--nowrap`]: nowrap,
+      [`c-bolt-list--align-${this.align}`]: this.align,
+      [`c-bolt-list--display-${this.display}`]: this.display,
+      [`c-bolt-list--inset`]: this.inset,
+      [`c-bolt-list--nowrap`]: this.nowrap,
+      [`c-bolt-list--separator-${this.separator}`]: this.separator !== 'none',
+      [`c-bolt-list--spacing-${this.spacing}`]: this.spacing !== 'none',
+      [`c-bolt-list--valign-${this.valign}`]: this.valign,
     });
 
-    if (this.slots.default) {
-      const updatedDefaultSlot = this.slots.default.filter(
-        item => item.tagName,
-      );
+    if (this.slotMap.get('default')) {
+      const updatedDefaultSlot = this.slotMap
+        .get('default')
+        .filter(item => item.tagName);
       const updatedSlotsLength = updatedDefaultSlot.length;
       const lastSlotItem = updatedDefaultSlot[updatedDefaultSlot.length - 1];
 
@@ -96,34 +55,34 @@ class BoltList extends withContext(withLitHtml) {
 
     let renderedList;
 
-    switch (tag) {
+    switch (this.tag) {
       case 'ol':
         renderedList = html`
-          <ol class="${classes}">
-            ${this.slot('default')}
-          </ol>
+          <div class="${classes}" role="list">
+            ${this.slotify('default')}
+          </div>
         `;
         break;
       case 'div':
         renderedList = html`
-          <div class="${classes}">${this.slot('default')}</div>
+          <div class="${classes}">${this.slotify('default')}</div>
         `;
         break;
       case 'span':
         renderedList = html`
-          <span class="${classes}"> ${this.slot('default')} </span>
+          <span class="${classes}"> ${this.slotify('default')} </span>
         `;
         break;
       default:
         renderedList = html`
-          <ul class="${classes}">
-            ${this.slot('default')}
-          </ul>
+          <div class="${classes}" role="list">
+            ${this.slotify('default')}
+          </div>
         `;
     }
 
     return html`
-      ${this.addStyles([styles, themes])} ${renderedList}
+      ${renderedList}
     `;
   }
 }

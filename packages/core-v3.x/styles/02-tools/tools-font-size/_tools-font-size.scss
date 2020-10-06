@@ -2,51 +2,16 @@
   TOOLS - FONT SIZE
 \* ------------------------------------ */
 
-////
-/// @group Tools: Typography
-/// @author Mike Mai
-////
+@mixin bolt-font-size($name, $custom_line_height: regular) {
+  // @warn 'This scss mixin is being deprecated. Please convert to use global CSS vars -> var(--bolt-type-font-size-*)';
 
-/// This returns the font-size and relevant line-height for a specific element.
-/// @param {string} $size - Defines the size of the text: xsmall, small, base, medium, large, xlarge, or xxlarge.
-/// @param {string} $leading [regular] - Defines the line-height of the text: regular or tight.
-/// @requires {mixin} bolt-poly-fluid-sizing
-/// @example scss
-/// .element {
-///    @include bolt-font-size(large);
-/// }
-@mixin bolt-font-size($size, $leading: regular) {
-  $font-size: map-get-deep($bolt-font-sizes, 'font-sizes', $size, 'font-size');
+  font-size: var(--bolt-type-font-size-#{$name});
+  line-height: var(--bolt-type-line-height-#{$name});
 
-  @if (type-of($font-size) == 'map') {
-    $length: length(map-keys($font-size));
-
-    @if ($length < 2) {
-      font-size: nth($font-size, 2);
-    } @else {
-      @include bolt-poly-fluid-sizing('font-size', $font-size);
-    }
-  } @else {
-    font-size: $font-size;
-  }
-
-  @if ($leading != '' and  $leading != null) {
-    @if (type-of($leading) == number) {
-      $leading: $leading;
-    } @else if (type-of($leading) == string) {
-      $leading: map-get-deep($bolt-font-sizes, 'font-sizes', $size, 'line-height', $leading);
-    }
-
-    @if (type-of($leading) == 'map') {
-      $length: length(map-keys($leading));
-
-      @if ($length < 2) {
-        line-height: nth($leading, 2);
-      } @else {
-        @include bolt-poly-fluid-sizing('line-height', $leading);
-      }
-    } @else {
-      line-height: $leading;
-    }
+  @if $custom_line_height {
+    line-height: calc(
+      var(--bolt-type-line-height-#{$name}) *
+        var(--bolt-type-line-height-multiplier-#{$custom_line_height})
+    );
   }
 }

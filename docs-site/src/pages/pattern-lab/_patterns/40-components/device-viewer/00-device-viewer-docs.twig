@@ -1,0 +1,19 @@
+{% set usage %}{% verbatim %}
+{% set content %}
+  {% include "@bolt-components-image/image.twig" with {
+    src: "/images/sample/product-device-screenshot--phone.jpg"
+  } only %}
+{% endset %}
+
+{% include "@bolt-components-device-viewer/device-viewer.twig" with {
+  device: "iphone8",
+  orientation: "portrait",
+  color: "white",
+  content: content,
+} only %}
+{% endverbatim %}{% endset %}
+
+{% include "@utils/docs.twig" with {
+  componentName: "device-viewer",
+  usage: usage
+} only %}

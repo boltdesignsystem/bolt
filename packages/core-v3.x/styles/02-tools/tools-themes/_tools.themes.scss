@@ -158,6 +158,7 @@ $PSEUDO_CLASSES: (
   }
 
   $unquoteVar: unquote($var);
+
   .#{$unquoteVar}-#{$selector} {
     #{$prop}: bolt-themify($unquoteVar);
   }

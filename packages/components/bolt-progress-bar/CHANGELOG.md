@@ -3,6 +3,85 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.28.0](http://github.com/boltdesignsystem/bolt/tree/master/packages/components/bolt-progress-bar/compare/v2.27.1...v2.28.0) (2020-09-16)
+
+**Note:** Version bump only for package @bolt/components-progress-bar
+
+
+
+
+
+# [2.27.0](http://github.com/boltdesignsystem/bolt/tree/master/packages/components/bolt-progress-bar/compare/v2.27.0-alpha-calculator-2...v2.27.0) (2020-08-28)
+
+
+### Bug Fixes
+
+* snaps ([557c961](http://github.com/boltdesignsystem/bolt/tree/master/packages/components/bolt-progress-bar/commit/557c961a25a7b6377485ea29969d3153e8f6cee5))
+
+
+
+
+
+# [2.26.0](http://github.com/boltdesignsystem/bolt/tree/master/packages/components/bolt-progress-bar/compare/v2.25.1...v2.26.0) (2020-07-22)
+
+
+### Bug Fixes
+
+* lint css ([71f8278](http://github.com/boltdesignsystem/bolt/tree/master/packages/components/bolt-progress-bar/commit/71f82780c9019c74abef977ab31f3304282854fc))
+
+
+
+
+
+## [2.25.1](http://github.com/boltdesignsystem/bolt/tree/master/packages/components/bolt-progress-bar/compare/v2.25.0...v2.25.1) (2020-07-14)
+
+**Note:** Version bump only for package @bolt/components-progress-bar
+
+
+
+
+
+# [2.25.0](http://github.com/boltdesignsystem/bolt/tree/master/packages/components/bolt-progress-bar/compare/v2.22.2...v2.25.0) (2020-07-13)
+
+
+### Bug Fixes
+
+* resolve conflicts with master ([c4cc15b](http://github.com/boltdesignsystem/bolt/tree/master/packages/components/bolt-progress-bar/commit/c4cc15bbb16a343108a4fb12a60788f3945d743b))
+* update componet descriptions ([b9fefe6](http://github.com/boltdesignsystem/bolt/tree/master/packages/components/bolt-progress-bar/commit/b9fefe6106eb74e3d4794a51443a2b576d9651d9))
+* update Jest VRT snapshots ([0e1e91f](http://github.com/boltdesignsystem/bolt/tree/master/packages/components/bolt-progress-bar/commit/0e1e91fd843dc502568725c037a5b684523afd87))
+
+
+### Features
+
+* globally lazyload JS bundles to expose same existing issues as the ones found with the new lazy-queue functionality ([7cc4ce2](http://github.com/boltdesignsystem/bolt/tree/master/packages/components/bolt-progress-bar/commit/7cc4ce2fa9ce28dc4f9f37078762f106ca87729f))
+
+
+
+
+
+# [2.24.0](http://github.com/boltdesignsystem/bolt/tree/master/packages/components/bolt-progress-bar/compare/v2.23.0...v2.24.0) (2020-06-05)
+
+
+### Bug Fixes
+
+* resolve conflicts with master ([c4cc15b](http://github.com/boltdesignsystem/bolt/tree/master/packages/components/bolt-progress-bar/commit/c4cc15bbb16a343108a4fb12a60788f3945d743b))
+* update Jest VRT snapshots ([0e1e91f](http://github.com/boltdesignsystem/bolt/tree/master/packages/components/bolt-progress-bar/commit/0e1e91fd843dc502568725c037a5b684523afd87))
+
+
+
+
+
+# [2.23.0](http://github.com/boltdesignsystem/bolt/tree/master/packages/components/bolt-progress-bar/compare/v2.22.1...v2.23.0) (2020-05-06)
+
+
+### Features
+
+* globally lazyload JS bundles to expose same existing issues as the ones found with the new lazy-queue functionality ([7cc4ce2](http://github.com/boltdesignsystem/bolt/tree/master/packages/components/bolt-progress-bar/commit/7cc4ce2fa9ce28dc4f9f37078762f106ca87729f))
+
+
+
+
+
 # [2.22.0](http://github.com/boltdesignsystem/bolt/tree/master/packages/components/bolt-progress-bar/compare/v2.21.1...v2.22.0) (2020-04-22)
 
 

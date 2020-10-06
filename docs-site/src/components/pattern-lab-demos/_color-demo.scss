@@ -1,21 +1,22 @@
 .c-bds-docs-color-demo {
   &__type {
-    @include bolt-margin-bottom(1rem);
+    margin-bottom: 1rem;
     padding: 0 1rem 1rem;
-    border-bottom: 1px dashed bolt-color(indigo, light);
+    border-bottom: 1px dashed bolt-color(navy, light);
 
     h5 {
-      @include bolt-margin-bottom(1.5rem);
+      margin-bottom: 1.5rem;
     }
 
     &:last-of-type {
-      @include bolt-margin-bottom(0);
+      margin-bottom: 0;
       padding-bottom: 0;
       border-bottom: 0;
     }
   }
+
   &__color {
-    @include bolt-margin-bottom(2rem);
+    margin-bottom: 2rem;
 
     .o-bolt-wrapper {
       padding: 0;

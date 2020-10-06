@@ -324,18 +324,6 @@ export function enableEditor({ space, uiWrapper, config }) {
               },
             },
             {
-              id: 'submit-bug',
-              label: 'Submit Bug',
-              togglable: false,
-              className: 'gjs-pega-editor-panels-btn--bug',
-              command: {
-                run: () => {
-                  if (!window['usersnapApi']) return;
-                  window['usersnapApi'].open();
-                },
-              },
-            },
-            {
               id: 'move-up',
               label: 'Move Up',
               togglable: false,

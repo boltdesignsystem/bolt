@@ -3,6 +3,120 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.28.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-accordion/compare/v2.27.1...v2.28.0) (2020-09-16)
+
+**Note:** Version bump only for package @bolt/components-accordion
+
+
+
+
+
+# [2.27.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-accordion/compare/v2.27.0-alpha-calculator-2...v2.27.0) (2020-08-28)
+
+**Note:** Version bump only for package @bolt/components-accordion
+
+
+
+
+
+# [2.26.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-accordion/compare/v2.25.1...v2.26.0) (2020-07-22)
+
+
+### Bug Fixes
+
+* lint css ([71f8278](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-accordion/commit/71f82780c9019c74abef977ab31f3304282854fc))
+
+
+
+
+
+## [2.25.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-accordion/compare/v2.25.0...v2.25.1) (2020-07-14)
+
+**Note:** Version bump only for package @bolt/components-accordion
+
+
+
+
+
+# [2.25.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-accordion/compare/v2.22.2...v2.25.0) (2020-07-13)
+
+
+### Bug Fixes
+
+* accordion tests ([b217050](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-accordion/commit/b21705054d0dd21a6c9e6040a70f935724093e81))
+* add tiny style update so <ssr-keep> isn't rendered as inline initially ([fd168cb](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-accordion/commit/fd168cb7e27b0ba3e3c492a6cf995733ca3ffee6))
+* add tiny style update so <ssr-keep> isn't rendered as inline initially ([2ad9c0c](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-accordion/commit/2ad9c0c56d369ccc768cc3cf1acea21706e60ed0))
+* address linting issue ([ea875ea](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-accordion/commit/ea875ea42b4ee9de3a7f754ba2cac3e861ebf521))
+* proper role attributes and card media border radius ([9b1b67e](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-accordion/commit/9b1b67e47114b2704605f1fadb72401800e86fa8))
+* remove replace-with-children css ([553c0ef](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-accordion/commit/553c0ef124085b411b28e8b6cd2ab20a7deb07ab))
+* resolve conflicts ([92743cf](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-accordion/commit/92743cf5734703ccfb94bc6d49e0a3d667e81fe3))
+* resolve conflicts with master ([c4cc15b](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-accordion/commit/c4cc15bbb16a343108a4fb12a60788f3945d743b))
+* schema ([ec0560a](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-accordion/commit/ec0560a0357a2320f8fef0578fffb1988fd93a97))
+* update Accordion Jest test to confirm Accordion JS rendering / handlling single items correctly ([32e01f7](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-accordion/commit/32e01f7e8da99399cd620e4b487f62f6a4407045))
+* update Accordion snapshots ([d3364f5](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-accordion/commit/d3364f5130577630939eac7948ca5e9ff624e8af))
+* update componet descriptions ([b9fefe6](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-accordion/commit/b9fefe6106eb74e3d4794a51443a2b576d9651d9))
+* update Jest tests to more reliably work with fully async-loaded components ([6b4c752](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-accordion/commit/6b4c752cfcf32a3d0d260d5e2f718be12fd3df50))
+* update Jest VRT snapshots ([0e1e91f](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-accordion/commit/0e1e91fd843dc502568725c037a5b684523afd87))
+* update SVG <use> tags ([5f10098](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-accordion/commit/5f100987030abb61e324e3ca2213727b488b14b7))
+* update test config ([949b193](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-accordion/commit/949b19355ff46189b46c9216589f56abf2fee35b))
+* update VRT failureThreshold ([653ea41](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-accordion/commit/653ea41d46248b51c7d4a1ebc7a4588af086cdd4))
+
+
+### Features
+
+* globally lazyload JS bundles to expose same existing issues as the ones found with the new lazy-queue functionality ([7cc4ce2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-accordion/commit/7cc4ce2fa9ce28dc4f9f37078762f106ca87729f))
+
+
+
+
+
+## [2.24.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-accordion/compare/v2.24.0...v2.24.1) (2020-06-17)
+
+**Note:** Version bump only for package @bolt/components-accordion
+
+
+
+
+
+# [2.24.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-accordion/compare/v2.23.0...v2.24.0) (2020-06-05)
+
+
+### Bug Fixes
+
+* resolve conflicts with master ([c4cc15b](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-accordion/commit/c4cc15bbb16a343108a4fb12a60788f3945d743b))
+* update Jest VRT snapshots ([0e1e91f](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-accordion/commit/0e1e91fd843dc502568725c037a5b684523afd87))
+
+
+
+
+
+# [2.23.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-accordion/compare/v2.22.1...v2.23.0) (2020-05-06)
+
+
+### Bug Fixes
+
+* add tiny style update so <ssr-keep> isn't rendered as inline initially ([fd168cb](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-accordion/commit/fd168cb7e27b0ba3e3c492a6cf995733ca3ffee6))
+* add tiny style update so <ssr-keep> isn't rendered as inline initially ([2ad9c0c](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-accordion/commit/2ad9c0c56d369ccc768cc3cf1acea21706e60ed0))
+* address linting issue ([ea875ea](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-accordion/commit/ea875ea42b4ee9de3a7f754ba2cac3e861ebf521))
+* proper role attributes and card media border radius ([9b1b67e](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-accordion/commit/9b1b67e47114b2704605f1fadb72401800e86fa8))
+* remove replace-with-children css ([553c0ef](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-accordion/commit/553c0ef124085b411b28e8b6cd2ab20a7deb07ab))
+* schema ([ec0560a](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-accordion/commit/ec0560a0357a2320f8fef0578fffb1988fd93a97))
+* update Accordion Jest test to confirm Accordion JS rendering / handlling single items correctly ([32e01f7](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-accordion/commit/32e01f7e8da99399cd620e4b487f62f6a4407045))
+* update Accordion snapshots ([d3364f5](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-accordion/commit/d3364f5130577630939eac7948ca5e9ff624e8af))
+* update Jest tests to more reliably work with fully async-loaded components ([6b4c752](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-accordion/commit/6b4c752cfcf32a3d0d260d5e2f718be12fd3df50))
+* update SVG <use> tags ([5f10098](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-accordion/commit/5f100987030abb61e324e3ca2213727b488b14b7))
+* update test config ([949b193](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-accordion/commit/949b19355ff46189b46c9216589f56abf2fee35b))
+* update VRT failureThreshold ([653ea41](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-accordion/commit/653ea41d46248b51c7d4a1ebc7a4588af086cdd4))
+
+
+### Features
+
+* globally lazyload JS bundles to expose same existing issues as the ones found with the new lazy-queue functionality ([7cc4ce2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-accordion/commit/7cc4ce2fa9ce28dc4f9f37078762f106ca87729f))
+
+
+
+
+
 # [2.21.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-accordion/compare/v2.20.2...v2.21.0) (2020-04-08)
 
 **Note:** Version bump only for package @bolt/components-accordion

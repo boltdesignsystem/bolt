@@ -8,25 +8,31 @@ $bolt-nav-indicator-border-size: 4px;
 $bolt-nav-indicator-border-transition-ease: ease;
 $bolt-nav-indicator-border-transition-timing: $bolt-transition-timing / 2;
 
-
 bolt-nav-indicator {
   display: block;
   display: contents;
 }
 
 .c-bolt-nav-indicator {
-  opacity: bolt-opacity(100); // [Mai] This is interrelated with the dropdown component.
-  opacity: var(--bolt-nav-indicator-opacity, 1); // [Mai] This is interrelated with the dropdown component.
+  opacity: bolt-opacity(
+    100
+  ); // [Mai] This is interrelated with the dropdown component.
+  opacity: var(
+    --c-bolt-nav-indicator-opacity,
+    1
+  ); // [Mai] This is interrelated with the dropdown component.
   position: absolute;
   bottom: 0; // Automatically align the indicator line to the bottom of the container itself (so size changes will just work -- no modifiers required)
   left: 0; // required so animated position is correct in IE11
-  transform: translateY(var(--bolt-nav-indicator-transform)); // [Mai] This is interrelated with the dropdown component.
+  transform: translateY(
+    var(--c-bolt-nav-indicator-transform)
+  ); // [Mai] This is interrelated with the dropdown component.
   transform: scaleX(0);
   width: 0;
   height: ($bolt-nav-indicator-border-size);
   background-color: bolt-theme(primary);
   will-change: width, height, opacity, transform;
-  transition:
-    all $bolt-nav-indicator-border-transition-timing $bolt-nav-indicator-border-transition-ease,
+  transition: all $bolt-nav-indicator-border-transition-timing
+      $bolt-nav-indicator-border-transition-ease,
     opacity 0.35s ease-out; // [Mai] This is interrelated with the dropdown component.
 }
