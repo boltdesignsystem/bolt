@@ -24,7 +24,8 @@
   {% endblock %}
 
   {% block body %}
-    {% set leftContent %}
+  <ul class="c-acd-horizontal-card">
+    <li>
       {% set cardTextContent %}
         {% if cardSubtitle %}
           {% include "@bolt-components-headline/eyebrow.twig" with {
@@ -58,10 +59,10 @@
           spacing: "xsmall"
         } only %}
       {% endif %}
-    {% endset %}
+    </li>
 
-    {% set rightContent %}
-      {% if cardDescription %}
+    {% if cardDescription %}
+      <li class="u-bolt-flex@small u-bolt-align-items-center">
         {% include "@bolt-components-headline/text.twig" with {
           text: cardDescription,
           size: "small",
@@ -72,31 +73,9 @@
             ]
           }
         } only %}
-      {% endif %}
-    {% endset %}
-
-    {% include "@bolt-components-list/list.twig" with {
-      display: "inline@small",
-      separator: "solid",
-      spacing: "small",
-      attributes: {
-        class: 'o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--border'
-      },
-      items: [
-        {
-          content: leftContent,
-          attributes: {
-            class: 'u-bolt-width-12/12 u-bolt-width-6/12@small'
-          }
-        },
-        {
-          content: rightContent,
-          attributes: {
-            class: 'u-bolt-width-12/12 u-bolt-width-6/12@small'
-          }
-        },
-      ]
-    } only %}
+      </li>
+    {% endif %}
+  </ul>
   {% endblock %}
 
 {% endembed %}

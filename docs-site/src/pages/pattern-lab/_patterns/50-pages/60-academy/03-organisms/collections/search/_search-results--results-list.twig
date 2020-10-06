@@ -26,6 +26,7 @@
 
 {% set popoverContent %}
   {% include "@bolt-components-list/list.twig" with {
+    spacing: "xsmall",
     items: [
       placeholderLink,
       placeholderLink2
@@ -34,13 +35,15 @@
 {% endset %}
 
 {% set popoverContent2 %}
-  {% include "@bolt-components-stack/stack.twig" with {
-    content: placeholderLink2,
-    spacing: "xsmall"
-  } only %}
-  {% include "@bolt-components-stack/stack.twig" with {
-    content: placeholderLink,
-    spacing: "xsmall"
+  {% include "@bolt-components-menu/menu.twig" with {
+    items: [
+      {
+        content: placeholderLink2,
+      },
+      {
+        content: placeholderLink,
+      },
+    ]
   } only %}
 {% endset %}
 
@@ -186,7 +189,6 @@
       ],
       cardGradient: "purple",
       cardIcon: "launchpad",
-      cardDescription: ' ',
     }, false),
     macros.include("@bolt-academy/_horizontal-card.twig", {
       cardUrl: "/mission/seans-multi-version-test-mission/v2",

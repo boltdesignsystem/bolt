@@ -201,3 +201,36 @@
     transform: translate(-50%, -50%);
   }
 }
+
+.c-acd-horizontal-card {
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  @media (min-width: 600px) {
+    grid-template-columns: 50% 1fr;
+  }
+
+  li {
+    height: 100%;
+    padding: 0 0 1rem;
+
+    + li {
+      padding: 1rem 0 0;
+      border-top: 2px solid rgba(var(--bolt-theme-border), 0.2);
+    }
+
+    @media (min-width: 600px) {
+      padding: 0 1rem 0 0;
+
+      + li {
+        padding: 0 0 0 1rem;
+        border-top: none;
+        border-left: 2px solid rgba(var(--bolt-theme-border), 0.2);
+      }
+    }
+  }
+}
