@@ -28,11 +28,11 @@
    Page Header settings and tools
 \* ------------------------------------ */
 $bolt-page-header-action-trigger-spacing-x: var(--bolt-spacing-x-small);
-$bolt-page-header-click-target-size: 44px;
+$bolt-page-header-click-target-size: 48px;
 
 $bolt-page-header-desktop-util-nav-height: var(--bolt-spacing-y-medium);
 $bolt-page-header-desktop-padding-top: calc(
-  var(--bolt-spacing-y-medium) + #{$bolt-page-header-desktop-util-nav-height}
+  var(--bolt-spacing-y-small) + #{$bolt-page-header-desktop-util-nav-height}
 );
 $bolt-page-header-desktop-padding-bottom: var(--bolt-spacing-y-small);
 
@@ -68,7 +68,7 @@ $bolt-page-header-mobile-expanded-content-spacing-x: calc(
   background: transparent;
 }
 
-@mixin bolt-page-header-action-trigger($spacing-x) {
+@mixin bolt-page-header-action-trigger($spacing-x: null) {
   @include bolt-page-header-button-reset;
 
   display: block;
@@ -83,11 +83,14 @@ $bolt-page-header-mobile-expanded-content-spacing-x: calc(
   color: bolt-theme(link);
   line-height: var(--bolt-type-line-height-medium);
   text-align: inherit;
-  border-radius: bolt-border-radius(large);
+  border-radius: bolt-border-radius(small);
   outline: none;
   background-color: bolt-theme(background);
-  padding-inline-end: $spacing-x;
-  padding-inline-start: $spacing-x;
+
+  @if $spacing-x {
+    padding-inline-end: $spacing-x;
+    padding-inline-start: $spacing-x;
+  }
 
   &:before {
     content: '';
@@ -102,7 +105,7 @@ $bolt-page-header-mobile-expanded-content-spacing-x: calc(
     z-index: 0;
     pointer-events: none;
     border-radius: inherit;
-    background-color: bolt-color(gray);
+    background-color: bolt-theme(link);
     will-change: opacity, transform;
     transition: opacity $bolt-transition, transform $bolt-transition;
   }
@@ -110,7 +113,7 @@ $bolt-page-header-mobile-expanded-content-spacing-x: calc(
   &:hover,
   &:focus {
     &:before {
-      opacity: 0.2;
+      opacity: 0.1;
     }
   }
 
@@ -154,9 +157,6 @@ $bolt-page-header-mobile-expanded-content-spacing-x: calc(
   left: 0;
   z-index: bolt-z-index(navFixed);
   color: bolt-theme(text);
-  border-bottom-color: $bolt-border-color;
-  border-bottom-style: $bolt-border-style;
-  border-bottom-width: $bolt-border-width;
   background-color: bolt-theme(background);
 
   *::-webkit-scrollbar {
@@ -181,6 +181,22 @@ $bolt-page-header-mobile-expanded-content-spacing-x: calc(
 
 // Primary section container
 .c-bolt-page-header__primary {
+  display: grid;
+  grid-gap: var(--bolt-spacing-x-small);
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+// Secondary section container
+.c-bolt-page-header__secondary {
+  position: relative;
+  z-index: 1;
+}
+
+.c-bolt-page-header__primary,
+.c-bolt-page-header__secondary {
+  /* @include bolt-full-bleed; */
 }
 
 // Logo
@@ -227,7 +243,7 @@ $bolt-page-header-mobile-expanded-content-spacing-x: calc(
 
   &[aria-expanded='true'] {
     &:before {
-      opacity: 0.2;
+      opacity: 0.1;
     }
   }
 
@@ -279,8 +295,11 @@ $bolt-page-header-mobile-expanded-content-spacing-x: calc(
   left: 0;
   transform: translate3d(-100%, 0, 0);
   z-index: bolt-z-index(navFixed);
-  padding-top: var(--bolt-spacing-y-small);
-  padding-bottom: var(--bolt-spacing-y-small);
+  padding-top: var(--bolt-spacing-y-medium);
+  padding-bottom: var(--bolt-spacing-y-medium);
+  border-top-color: $bolt-border-color;
+  border-top-style: $bolt-border-style;
+  border-top-width: $bolt-border-width;
   background-color: bolt-theme(background);
   will-change: visibility, transform;
   transition: visibility $bolt-transition, transform $bolt-transition;
@@ -307,6 +326,14 @@ $bolt-page-header-mobile-expanded-content-spacing-x: calc(
   display: grid;
   grid-template-columns: auto 1fr;
   align-items: center;
+
+  @include bolt-mq(xlarge) {
+    > bolt-icon {
+      transform: translateY(
+        0.5px
+      ); // Temporary fix for icon + text bad vertical alignment above xlarge breakpoint.
+    }
+  }
 }
 
 // Main CTA

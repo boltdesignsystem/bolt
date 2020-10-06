@@ -9,11 +9,7 @@
 
   // Primary section container
   .c-bolt-page-header__primary {
-    @include bolt-full-bleed;
-
-    display: flex;
-    flex-wrap: nowrap;
-    align-items: center;
+    grid-template-columns: auto 1fr;
     padding-top: $bolt-page-header-desktop-padding-top;
     padding-bottom: $bolt-page-header-desktop-padding-bottom;
     padding-inline-end: var(--bolt-page-padding-x);
@@ -43,7 +39,6 @@
   .c-bolt-page-header__toolbar {
     flex: 1;
     justify-content: flex-end;
-    margin-inline-start: var(--bolt-spacing-x-xxsmall);
     margin-inline-end: calc(#{$bolt-page-header-action-trigger-spacing-x} * -1);
 
     > * {
@@ -168,9 +163,7 @@
         }
 
         .c-bolt-page-header__nav-link {
-          @include bolt-page-header-action-trigger(
-            $bolt-page-header-action-trigger-spacing-x
-          );
+          @include bolt-page-header-action-trigger;
 
           padding: var(--bolt-spacing-y-small) var(--bolt-spacing-x-small);
           font-size: var(--bolt-type-font-size-small);
@@ -253,47 +246,29 @@
   }
 
   .c-bolt-page-header__nav-list--site {
-    order: 1;
-  }
-
-  .c-bolt-page-header__nav-list--site {
     display: flex;
+    flex-wrap: wrap;
+    order: 1;
 
     > .c-bolt-page-header__nav-list-item {
-      margin: 0 var(--bolt-spacing-x-xxsmall);
+      margin: 1px;
 
       > .c-bolt-page-header__nav-link {
-        @include bolt-page-header-action-trigger(
-          $bolt-page-header-action-trigger-spacing-x
-        );
+        @include bolt-page-header-action-trigger;
 
         display: flex;
         justify-content: space-between;
         align-items: center;
         width: 100%;
+        min-height: calc(#{$bolt-page-header-click-target-size} / 2 - 4px);
+        padding: 0 var(--bolt-spacing-x-small);
         font-size: var(--bolt-type-font-size-small);
-        line-height: var(--bolt-type-line-height-small);
+        line-height: calc(#{$bolt-page-header-click-target-size} / 2 - 4px);
         white-space: nowrap;
 
-        &:after {
-          content: '';
-          position: absolute;
-          right: 0;
-          bottom: 0;
-          left: 0;
-          transform: translate3d(
-            0,
-            $bolt-page-header-desktop-padding-bottom,
-            0
-          );
-          height: 0;
-          background-color: bolt-theme(link);
-          transition: height $bolt-transition;
-        }
-
         &[aria-expanded='true'] {
-          &:after {
-            height: var(--bolt-spacing-y-xxsmall);
+          &:before {
+            opacity: 0.1;
           }
         }
       }
@@ -301,8 +276,6 @@
 
     > .c-bolt-page-header__nav-list-item--nested {
       > .c-bolt-page-header__nav-list {
-        @include bolt-shadow('level-10');
-
         display: flex;
         flex-wrap: wrap;
         visibility: hidden;
@@ -313,8 +286,12 @@
         left: 0;
         transform: translate3d(0, calc(var(--bolt-spacing-y-xxsmall) * -1), 0);
         z-index: bolt-z-index(navFixed);
+        width: 100%;
         padding-top: var(--bolt-spacing-y-medium);
         padding-bottom: var(--bolt-spacing-y-medium);
+        border-top-color: $bolt-border-color;
+        border-top-style: $bolt-border-style;
+        border-top-width: $bolt-border-width;
         border-bottom-color: $bolt-border-color;
         border-bottom-style: $bolt-border-style;
         border-bottom-width: $bolt-border-width;
@@ -342,12 +319,33 @@
             border-left-width: 0;
           }
 
-          .c-bolt-page-header__nav-list-item {
-            margin-bottom: var(--bolt-spacing-y-xxsmall);
+          > .c-bolt-page-header__nav-link--heading {
+            margin-bottom: var(--bolt-spacing-y-xsmall);
+            font-family: var(--bolt-type-font-family-headline);
+            font-size: var(--bolt-type-font-size-medium);
+            font-weight: var(--bolt-type-font-weight-bold);
+            color: bolt-theme(headline);
+            line-height: var(--bolt-type-line-height-medium);
+          }
+        }
 
-            &:last-of-type {
-              margin-bottom: 0;
-            }
+        .c-bolt-page-header__nav-list {
+          .c-bolt-page-header__nav-list {
+            margin-inline-start: var(--bolt-spacing-x-small);
+          }
+        }
+
+        .c-bolt-page-header__nav-link {
+          @include bolt-page-header-button-reset;
+
+          font-size: var(--bolt-type-font-size-xsmall);
+          font-weight: var(--bolt-type-font-weight-semibold);
+          color: bolt-theme(link);
+          line-height: var(--bolt-type-line-height-xsmall);
+
+          &:hover,
+          &:focus {
+            text-decoration: underline;
           }
         }
 
@@ -356,6 +354,12 @@
           margin-bottom: 0;
           text-align: center;
           border-left-width: 0;
+        }
+
+        .c-bolt-page-header__nav-list-item--nested {
+          .c-bolt-page-header__nav-link[aria-expanded] {
+            display: none;
+          }
         }
       }
 
@@ -368,38 +372,8 @@
         transform: translate3d(0, 0, 0);
         transition-delay: $bolt-transition-timing;
         max-height: calc(100vh - var(--bolt-page-header-height));
-
-        .c-bolt-page-header__nav-link {
-          @include bolt-page-header-button-reset;
-
-          font-size: var(--bolt-type-font-size-small);
-          font-weight: var(--bolt-type-font-weight-semibold);
-          color: bolt-theme(link);
-          line-height: var(--bolt-type-line-height-small);
-
-          &:hover,
-          &:focus {
-            text-decoration: underline;
-          }
-        }
-      }
-
-      .c-bolt-page-header__nav-list-item--nested {
-        > .c-bolt-page-header__nav-link {
-          display: none;
-        }
       }
     }
-  }
-
-  .c-bolt-page-header__nav-heading {
-    display: block;
-    margin-bottom: var(--bolt-spacing-y-xsmall);
-    font-family: var(--bolt-type-font-family-headline);
-    font-size: var(--bolt-type-font-size-medium);
-    font-weight: var(--bolt-type-font-weight-bold);
-    color: bolt-theme(headline);
-    line-height: var(--bolt-type-line-height-medium);
   }
 
   // Main CTA

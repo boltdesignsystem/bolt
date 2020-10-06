@@ -10,10 +10,7 @@
 
   // Primary section container
   .c-bolt-page-header__primary {
-    display: grid;
     grid-template-columns: minmax(166px, 275px) 1fr;
-    grid-gap: var(--bolt-spacing-x-medium);
-    align-items: center;
     padding-top: $bolt-page-header-mobile-spacing-y;
     padding-bottom: $bolt-page-header-mobile-spacing-y;
     padding-inline-end: $bolt-page-header-mobile-primary-nav-spacing-x;
@@ -70,6 +67,9 @@
     transform: translate3d(100%, 0, 0);
     z-index: bolt-z-index(navFixed);
     overflow: hidden;
+    border-top-color: $bolt-border-color;
+    border-top-style: $bolt-border-style;
+    border-top-width: $bolt-border-width;
     will-change: visibility, transform;
     transition: visibility $bolt-transition, transform $bolt-transition;
 
@@ -102,14 +102,16 @@
   .c-bolt-page-header__nav-list-item {
     @include bolt-shadow('level-10');
 
-    margin-top: 1px;
+    border-bottom-color: $bolt-border-color;
+    border-bottom-style: $bolt-border-style;
+    border-bottom-width: $bolt-border-width;
     background-color: bolt-theme(background);
   }
 
   .c-bolt-page-header__nav-list-item--nested {
     > .c-bolt-page-header__nav-link[aria-expanded='true'] {
       position: fixed;
-      top: 1px;
+      top: 0;
       right: 0;
       left: 0;
       z-index: 1;
@@ -185,6 +187,7 @@
     padding-inline-end: $bolt-page-header-mobile-expanded-content-spacing-x;
   }
 
+  // Nav link
   .c-bolt-page-header__nav-link {
     @include bolt-page-header-action-trigger(
       $bolt-page-header-mobile-expanded-content-spacing-x
@@ -197,7 +200,6 @@
     border-radius: 0;
   }
 
-  // Nav link
   .c-bolt-page-header__nav-link--current {
     padding-inline-end: calc(
       #{$bolt-page-header-mobile-expanded-content-spacing-x} + var(
@@ -316,7 +318,7 @@
     }
   }
 
-  .c-bolt-page-header__nav-heading {
+  .c-bolt-page-header__nav-link--heading {
     display: none;
   }
 
