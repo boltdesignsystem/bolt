@@ -1,0 +1,38 @@
+{% set content_1 %}
+  {% include "@bolt-components-icon/icon.twig" with {
+    name: "add-open",
+    background: "circle",
+    size: "medium"
+  }%}
+{% endset %}
+
+{% set content_2 %}
+  {% include '@bolt-components-image/image.twig' with {
+    src: "/images/placeholders/tout-4x3-climber.jpg",
+    alt: "A Rock Climber",
+  } only %}
+{% endset %}
+
+{% set content_3 %}
+  <img src="https://www.fillmurray.com/300/200" alt="Bill Murray"/>
+{% endset %}
+
+{% include "@bolt-components-action-blocks/action-blocks.twig" with {
+  contentItems: [
+    {
+      text: "Item 1",
+      url: "#!",
+      content: content_1,
+    },
+    {
+      text: "Item 2",
+      url: "#!",
+      content: content_2,
+    },
+    {
+      text: "Item 3",
+      url: "#!",
+      content: content_3
+    }
+  ]
+} only %}
