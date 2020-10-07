@@ -304,50 +304,80 @@
     full_bleed: true
   } only %}
     {% block band_content %}
+      {% set icon_1 %}
+        {% include "@bolt-components-icon/icon.twig" with {
+          name: "product",
+          size: "xlarge"
+        } %}
+      {% endset %}
+
+      {% set icon_2 %}
+        {% include "@bolt-components-icon/icon.twig" with {
+          name: "industries",
+          size: "xlarge"
+        } %}
+      {% endset %}
+
+      {% set icon_3 %}
+        {% include "@bolt-components-icon/icon.twig" with {
+          name: "training",
+          size: "xlarge"
+        }%}
+      {% endset %}
+
+      {% set icon_4 %}
+        {% include "@bolt-components-icon/icon.twig" with {
+          name: "vision",
+          size: "xlarge"
+        } %}
+      {% endset %}
+
+      {% set icon_5 %}
+        {% include "@bolt-components-icon/icon.twig" with {
+          name: "partners",
+          size: "xlarge"
+        } %}
+      {% endset %}
+
+      {% set icon_6 %}
+        {% include "@bolt-components-icon/icon.twig" with {
+          name: "careers",
+          size: "xlarge"
+        }%}
+      {% endset %}
+
       {% include "@bolt-components-action-blocks/action-blocks.twig" with {
         max_items_per_row: 8,
         contentItems: [
           {
             text: "Product Information",
             url: "#!",
-            icon: {
-              name: "product"
-            }
+            content: icon_1,
           },
           {
             text: "Industry Solutions",
             url: "#!",
-            icon: {
-              name: "industries"
-            }
+            content: icon_2,
           },
           {
             text: "Training and Certification",
             url: "#!",
-            icon: {
-              name: "training",
-            }
+            content: icon_3,
           },
           {
             text: "Vision and Technology",
             url: "#!",
-            icon: {
-              name: "vision",
-            }
+            content: icon_4,
           },
           {
             text: "Services and Partners",
             url: "#!",
-            icon: {
-              name: "partners",
-            }
+            content: icon_5,
           },
           {
             text: "Career Opportunities",
             url: "#!",
-            icon: {
-              name: "careers",
-            }
+            content: icon_6,
           }
         ]
       } only %}

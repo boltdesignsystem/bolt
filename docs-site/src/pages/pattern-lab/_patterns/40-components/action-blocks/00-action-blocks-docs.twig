@@ -1,32 +1,28 @@
 {% set usage %}{% verbatim %}
+{% set icon %}
+  {% include "@bolt-components-icon/icon.twig" with {
+    name: "icon-name",
+    background: "circle",
+    size: "large"
+  }%}
+{% endset %}
+
 {% include "@bolt-components-action-blocks/action-blocks.twig" with {
   contentItems: [
     {
       text: "Item 1",
       url: "#!",
-      icon: {
-        name: "icon-name",
-        size: "large",
-        background: "circle"
-      }
+      content: icon,
     },
     {
       text: "Item 2",
       url: "#!",
-      icon: {
-        name: "icon-name",
-        size: "large",
-        background: "circle"
-      }
+      content: icon,
     },
     {
       text: "Item 3",
       url: "#!",
-      icon: {
-        name: "icon-name",
-        size: "large",
-        background: "circle"
-      }
+      content: icon,
     }
   ]
 } only %}
