@@ -11,7 +11,7 @@ module.exports = {
 
     browser
       .url(
-        `${testingUrl}/pattern-lab/patterns/02-components-image--40-image-no-shadow/02-components-image--40-image-no-shadow.html`,
+        `${testingUrl}/pattern-lab/patterns/40-components-image--40-image-no-shadow/40-components-image--40-image-no-shadow.html`,
       )
       .waitForElementVisible('body', 1000)
       .getElementSize('body', function(result) {
@@ -62,7 +62,7 @@ module.exports = {
 
     browser
       .url(
-        `${testingUrl}/pattern-lab/patterns/02-components-card-deprecated-__tests__-personalized-card--client-rendered--personalized-card-example--client-rendered-tests/02-components-card-deprecated-__tests__-personalized-card--client-rendered--personalized-card-example--client-rendered-tests.html`,
+        `${testingUrl}/pattern-lab/patterns/40-components-card-deprecated-__tests__-personalized-card--client-rendered--personalized-card-example--client-rendered-tests/40-components-card-deprecated-__tests__-personalized-card--client-rendered--personalized-card-example--client-rendered-tests.html`,
       )
       .waitForElementPresent(
         '.js-no-shadow-image-test bolt-image[src="/images/placeholders/landscape-16x9-skyline.jpg"] img.is-lazyloaded',
@@ -78,23 +78,6 @@ module.exports = {
         'srcset',
         '/images/placeholders/landscape-16x9-skyline.jpg 50w, /images/placeholders/landscape-16x9-skyline.jpg 100w, /images/placeholders/landscape-16x9-skyline.jpg 200w, /images/placeholders/landscape-16x9-skyline.jpg 320w, /images/placeholders/landscape-16x9-skyline.jpg 480w',
       )
-      .saveScreenshot(
-        `screenshots/bolt-image/${testName}--${currentBrowser}.png`,
-      )
-      .end();
-  },
-
-  'Bolt Image zoom': function(browser) {
-    const { testingUrl } = browser.globals;
-    console.log(`global browser url: ${testingUrl}`);
-    currentBrowser = '--' + browser.currentEnv || 'chrome';
-    let testName = 'bolt-image-zoom';
-
-    browser
-      .url(
-        `${testingUrl}/pattern-lab/patterns/02-components-image-30-image-zoom-variation/02-components-image-30-image-zoom-variation.html`,
-      )
-      .waitForElementVisible('.c-bolt-image-zoom__overlay-icon', 1000)
       .saveScreenshot(
         `screenshots/bolt-image/${testName}--${currentBrowser}.png`,
       )

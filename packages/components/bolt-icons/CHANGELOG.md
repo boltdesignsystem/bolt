@@ -3,6 +3,78 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.28.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/compare/v2.27.1...v2.28.0) (2020-09-16)
+
+**Note:** Version bump only for package @bolt/components-icons
+
+
+
+
+
+# [2.27.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/compare/v2.27.0-alpha-calculator-2...v2.27.0) (2020-08-28)
+
+**Note:** Version bump only for package @bolt/components-icons
+
+
+
+
+
+# [2.26.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/compare/v2.25.1...v2.26.0) (2020-07-22)
+
+**Note:** Version bump only for package @bolt/components-icons
+
+
+
+
+
+## [2.25.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/compare/v2.25.0...v2.25.1) (2020-07-14)
+
+**Note:** Version bump only for package @bolt/components-icons
+
+
+
+
+
+# [2.25.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/compare/v2.22.2...v2.25.0) (2020-07-13)
+
+
+### Bug Fixes
+
+* update Jest tests to more reliably work with fully async-loaded components ([6b4c752](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/commit/6b4c752cfcf32a3d0d260d5e2f718be12fd3df50))
+* update SVG <use> tags ([5f10098](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/commit/5f100987030abb61e324e3ca2213727b488b14b7))
+
+
+
+
+
+## [2.24.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/compare/v2.24.0...v2.24.1) (2020-06-17)
+
+**Note:** Version bump only for package @bolt/components-icons
+
+
+
+
+
+# [2.24.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/compare/v2.23.0...v2.24.0) (2020-06-05)
+
+**Note:** Version bump only for package @bolt/components-icons
+
+
+
+
+
+# [2.23.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/compare/v2.22.1...v2.23.0) (2020-05-06)
+
+
+### Bug Fixes
+
+* update Jest tests to more reliably work with fully async-loaded components ([6b4c752](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/commit/6b4c752cfcf32a3d0d260d5e2f718be12fd3df50))
+* update SVG <use> tags ([5f10098](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/commit/5f100987030abb61e324e3ca2213727b488b14b7))
+
+
+
+
+
 # [2.21.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/compare/v2.20.2...v2.21.0) (2020-04-08)
 
 **Note:** Version bump only for package @bolt/components-icons

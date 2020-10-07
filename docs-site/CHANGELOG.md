@@ -3,6 +3,203 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.28.0](https://github.com/bolt-design-system/bolt/compare/v2.27.1...v2.28.0) (2020-09-16)
+
+**Note:** Version bump only for package @bolt/website
+
+
+
+
+
+# [2.27.0](https://github.com/bolt-design-system/bolt/compare/v2.27.0-alpha-calculator-2...v2.27.0) (2020-08-28)
+
+
+### Bug Fixes
+
+* remove unused css ([19eed61](https://github.com/bolt-design-system/bolt/commit/19eed61843ed5777d26ed8e1c7d25a772c81c208))
+
+
+
+
+
+## [2.26.3](https://github.com/bolt-design-system/bolt/compare/v2.26.2...v2.26.3) (2020-07-31)
+
+**Note:** Version bump only for package @bolt/website
+
+
+
+
+
+## [2.26.2](https://github.com/bolt-design-system/bolt/compare/v2.26.1...v2.26.2) (2020-07-30)
+
+**Note:** Version bump only for package @bolt/website
+
+
+
+
+
+# [2.26.0](https://github.com/bolt-design-system/bolt/compare/v2.25.1...v2.26.0) (2020-07-22)
+
+
+### Bug Fixes
+
+* lint css ([71f8278](https://github.com/bolt-design-system/bolt/commit/71f82780c9019c74abef977ab31f3304282854fc))
+
+
+
+
+
+## [2.25.1](https://github.com/bolt-design-system/bolt/compare/v2.25.0...v2.25.1) (2020-07-14)
+
+**Note:** Version bump only for package @bolt/website
+
+
+
+
+
+# [2.25.0](https://github.com/bolt-design-system/bolt/compare/v2.22.2...v2.25.0) (2020-07-13)
+
+
+### Bug Fixes
+
+* deprecated props in schema table ([9452237](https://github.com/bolt-design-system/bolt/commit/945223741e7e34f4642fa62fea9197d6fbcf966c))
+* remove broken doc ([b432049](https://github.com/bolt-design-system/bolt/commit/b432049b9f76cf2e068ad90f3b23905e102c2fc5))
+* text wrap and web component doc ([e6bcf2c](https://github.com/bolt-design-system/bolt/commit/e6bcf2c517212f512a7cf9082a1c7406abdca60d))
+
+
+
+# [2.25.0-alpha-colors](https://github.com/bolt-design-system/bolt/compare/v2.24.1...v2.25.0-alpha-colors) (2020-06-18)
+
+
+### Bug Fixes
+
+* broken and confusing docs ([854375a](https://github.com/bolt-design-system/bolt/commit/854375a6cdbf43a39fc6985042aa35c29b2df1c9))
+* card replacement name ([da56579](https://github.com/bolt-design-system/bolt/commit/da5657947cd687ad644041fc23cde5b64e0117a6))
+* remove pattern search ([7982938](https://github.com/bolt-design-system/bolt/commit/798293852e470d965d9df8fd3e3b5db0aa6b1ee1))
+* toc demo mobile layout ([8408797](https://github.com/bolt-design-system/bolt/commit/8408797554b8a07b3835f6a979310c6c4ace6d8a))
+
+
+
+## [2.24.1](https://github.com/bolt-design-system/bolt/compare/v2.24.0...v2.24.1) (2020-06-17)
+
+
+### Bug Fixes
+
+* misc doc quirks ([62741ad](https://github.com/bolt-design-system/bolt/commit/62741adaf87bac799f9ee5d00a9762543c15e678))
+* remove confusing docs ([099ed1d](https://github.com/bolt-design-system/bolt/commit/099ed1db3ee3a766ba2416f777807199493ea6f6))
+* remove PL layout hacks ([8b1c635](https://github.com/bolt-design-system/bolt/commit/8b1c635179a7e91425f0c208afbe12b60e69b22b))
+* required asterisk in table ([e41ef01](https://github.com/bolt-design-system/bolt/commit/e41ef01ef0458a83f8a473b669094036bf41a034))
+* typo ([8e6694f](https://github.com/bolt-design-system/bolt/commit/8e6694fff5efb4b7235ae796203ead3372f412c5))
+* update componet descriptions ([b9fefe6](https://github.com/bolt-design-system/bolt/commit/b9fefe6106eb74e3d4794a51443a2b576d9651d9))
+
+
+
+# [2.24.0](https://github.com/bolt-design-system/bolt/compare/v2.23.0...v2.24.0) (2020-06-05)
+
+
+
+# [2.23.0](https://github.com/bolt-design-system/bolt/compare/v2.22.1...v2.23.0) (2020-05-06)
+
+
+### Bug Fixes
+
+* incorrect docs ([061d3bd](https://github.com/bolt-design-system/bolt/commit/061d3bdf7df6292737be20bd2a6323a59d72a898))
+* layout hotfix for Firefox and Safari ([7fecc3b](https://github.com/bolt-design-system/bolt/commit/7fecc3bc790b8c3081b2ff740cc880ca1efa418c))
+* more eagerly lazy load SSR helper elements + update docs site-specific lazy-queue callback to use async await ([7af6704](https://github.com/bolt-design-system/bolt/commit/7af670470a64149dfc907abd1666e027a9a01411))
+* update JS to address linting issues ([7ee007e](https://github.com/bolt-design-system/bolt/commit/7ee007ef087ddba89c1e4aac61399718b8743653))
+* update remaining Jest snapshots; tweak Popover and Tabs tests to be more reliable ([ab0d7f0](https://github.com/bolt-design-system/bolt/commit/ab0d7f084678e5b001e792d34908255b928ef770))
+
+
+### Features
+
+* add migration to v3.x docs ([c8d29f2](https://github.com/bolt-design-system/bolt/commit/c8d29f2aca40a3df84527d2ba9a0a7b7f1d5c7f9))
+* cherry pick misc monorepo updates from the broader lazy-queue related updates in [#1839](https://github.com/bolt-design-system/bolt/issues/1839) ([727c13d](https://github.com/bolt-design-system/bolt/commit/727c13db4923bdb80ca7791dde7c3767801cb3ff))
+* globally lazyload JS bundles to expose same existing issues as the ones found with the new lazy-queue functionality ([7cc4ce2](https://github.com/bolt-design-system/bolt/commit/7cc4ce2fa9ce28dc4f9f37078762f106ca87729f))
+
+
+
+
+
+## [2.24.1](https://github.com/bolt-design-system/bolt/compare/v2.24.0...v2.24.1) (2020-06-17)
+
+**Note:** Version bump only for package @bolt/website
+
+
+
+
+
+# [2.24.0](https://github.com/bolt-design-system/bolt/compare/v2.23.0...v2.24.0) (2020-06-05)
+
+**Note:** Version bump only for package @bolt/website
+
+
+
+
+
+# [2.23.0](https://github.com/bolt-design-system/bolt/compare/v2.22.1...v2.23.0) (2020-05-06)
+
+
+### Bug Fixes
+
+* incorrect docs ([061d3bd](https://github.com/bolt-design-system/bolt/commit/061d3bdf7df6292737be20bd2a6323a59d72a898))
+* layout hotfix for Firefox and Safari ([7fecc3b](https://github.com/bolt-design-system/bolt/commit/7fecc3bc790b8c3081b2ff740cc880ca1efa418c))
+* more eagerly lazy load SSR helper elements + update docs site-specific lazy-queue callback to use async await ([7af6704](https://github.com/bolt-design-system/bolt/commit/7af670470a64149dfc907abd1666e027a9a01411))
+* update JS to address linting issues ([7ee007e](https://github.com/bolt-design-system/bolt/commit/7ee007ef087ddba89c1e4aac61399718b8743653))
+* update remaining Jest snapshots; tweak Popover and Tabs tests to be more reliable ([ab0d7f0](https://github.com/bolt-design-system/bolt/commit/ab0d7f084678e5b001e792d34908255b928ef770))
+
+
+### Features
+
+* add migration to v3.x docs ([c8d29f2](https://github.com/bolt-design-system/bolt/commit/c8d29f2aca40a3df84527d2ba9a0a7b7f1d5c7f9))
+* cherry pick misc monorepo updates from the broader lazy-queue related updates in [#1839](https://github.com/bolt-design-system/bolt/issues/1839) ([727c13d](https://github.com/bolt-design-system/bolt/commit/727c13db4923bdb80ca7791dde7c3767801cb3ff))
+* globally lazyload JS bundles to expose same existing issues as the ones found with the new lazy-queue functionality ([7cc4ce2](https://github.com/bolt-design-system/bolt/commit/7cc4ce2fa9ce28dc4f9f37078762f106ca87729f))
+
+
+
+
+
+## [2.22.1](https://github.com/bolt-design-system/bolt/compare/v2.22.0...v2.22.1) (2020-04-22)
+
+**Note:** Version bump only for package @bolt/website
+
+
+
+
+
+# [2.22.0](https://github.com/bolt-design-system/bolt/compare/v2.21.1...v2.22.0) (2020-04-22)
+
+
+### Bug Fixes
+
+* add `only` keyword to footer so background doesn't pass through. ([4104889](https://github.com/bolt-design-system/bolt/commit/41048895bb9e1fd7364bc09c7a1cf97d97c419ca))
+* add `only` per PR feedback ([2d89152](https://github.com/bolt-design-system/bolt/commit/2d89152da9ab15a4f7ebcb9e909b6d1ddf9b4e98))
+* Add missing only statements to various includes and embeds ([7ddc48c](https://github.com/bolt-design-system/bolt/commit/7ddc48cfe04dedd8564c74633cb2cb7d3298bc64))
+* add only to twig includes ([6b44b65](https://github.com/bolt-design-system/bolt/commit/6b44b65596863b4de771fd79efd88ed7e5127382))
+* border-radius logic ([894af29](https://github.com/bolt-design-system/bolt/commit/894af29109d79fdbc9d080055413b3568e0ddd94))
+* card background stacking order ([c733d08](https://github.com/bolt-design-system/bolt/commit/c733d08567ae77cba718544f363fa4e874bc6df2))
+* change rounded usage to borderRadius ([5bc6eb2](https://github.com/bolt-design-system/bolt/commit/5bc6eb2c7bdcd3b3429a9d2a2151f4326d7535cc))
+* docs ([daeecb8](https://github.com/bolt-design-system/bolt/commit/daeecb804475b92377c865284a42126d25dbcd97))
+* ommit options in the spacing css ([121272e](https://github.com/bolt-design-system/bolt/commit/121272ebe788585692e7ad31b5f89332e50f0b4d))
+* Pass background params to band in landing page template ([4f25e0c](https://github.com/bolt-design-system/bolt/commit/4f25e0c415ac1923b0758e99a9037f6bb0620c49))
+* rename spacing page in nav ([8abdacb](https://github.com/bolt-design-system/bolt/commit/8abdacb2fa6a5856b3a282b97fb7d7d03cbb4d1d))
+* resolve conflict ([e8d65d4](https://github.com/bolt-design-system/bolt/commit/e8d65d4ecf2db18ac8b3745a4219a381c9067900))
+* Update vertical card to use 'only' properly ([2c5dc6b](https://github.com/bolt-design-system/bolt/commit/2c5dc6b7da49a5977ef7282338ddfc764340ffc7))
+
+
+### Features
+
+* 1st pass adding favorite training dashboard ([730e5d3](https://github.com/bolt-design-system/bolt/commit/730e5d35bab361e14f550c2f0b78868a66411be9))
+* add "locked" Badge template to Blueprints ([21eb2d8](https://github.com/bolt-design-system/bolt/commit/21eb2d8b270932b8d86b901f1922658e9cf6a774))
+* add missing data on landing pages ([b16d457](https://github.com/bolt-design-system/bolt/commit/b16d457e611bba388ac5964879cfce7430c88456))
+* add spread support to BoltElement + demo usage in Link component ([e61a748](https://github.com/bolt-design-system/bolt/commit/e61a7482d5c0b94efcf46fea934baa40e72ca6be))
+* change `canCollapse` to `collapsible`, use `chevron-left` not `close` icon ([4c5224d](https://github.com/bolt-design-system/bolt/commit/4c5224d95da847981455c76737601ff3bbabf6f9))
+* enable Twig's built-in StringLoaderExtension extension to allow us to use the `template_from_string` method in demos; add new demo helper + build out Progress Bar demos ([b834677](https://github.com/bolt-design-system/bolt/commit/b834677ca4b5ddb68b29de77d595ab80f42bc7ac))
+* fix: address linting issues ([bda376b](https://github.com/bolt-design-system/bolt/commit/bda376b61e8943f24e709dd8f3d6e13eb8674027))
+
+
+
+
+
 ## [2.21.1](https://github.com/bolt-design-system/bolt/compare/v2.21.0...v2.21.1) (2020-04-10)
 
 **Note:** Version bump only for package @bolt/website

@@ -35,9 +35,9 @@ const config = deepmerge(baseConfig, {
       recursive: true,
       paths: ['src/templates', '../packages/components'],
     },
-    'bolt-blueprints': {
+    'bolt-academy': {
       recursive: true,
-      paths: ['./src/pages/pattern-lab/_patterns/03-blueprints'],
+      paths: ['./src/pages/pattern-lab/_patterns/50-pages/60-academy'],
     },
     pl: {
       recursive: true,
@@ -64,7 +64,8 @@ const config = deepmerge(baseConfig, {
         dist: '../www/images',
       },
       {
-        base: './src/pages/pattern-lab/_patterns/03-blueprints/00-assets/images',
+        base:
+          './src/pages/pattern-lab/_patterns/50-pages/60-academy/00-assets/images',
         glob: '**',
         dist: '../www/images',
       },
@@ -88,9 +89,6 @@ const config = deepmerge(baseConfig, {
        * baseConfig.  Use this only for internal components.
        */
 
-      // helper components that are only used internally
-      '@bolt/analytics-autotrack',
-      '@bolt/blueprints',
       '@bolt/components-radio-switch',
       '@bolt/components-page-footer',
       '@bolt/components-page-header',
@@ -157,5 +155,8 @@ const config = deepmerge(baseConfig, {
     },
   ],
 });
+
+// removing here first before removing from @bolt/starter-kit directly
+delete config.components.individual;
 
 module.exports = config;

@@ -10,7 +10,7 @@ bolt-svg-animations {
 }
 
 bolt-character > bolt-animate,
-bolt-animate[slot="connection"] {
+bolt-animate[slot='connection'] {
   display: block;
 }
 
@@ -20,7 +20,7 @@ bolt-animate[slot="connection"] {
   justify-content: center;
   align-items: center;
   max-width: 425px;
-  margin-bottom:bolt-spacing(xsmall);
+  margin-bottom: var(--bolt-spacing-y-xsmall);
 
   // IE 11 collapses flexible width, but we need flex for alignment.
   @include bolt-ie11-only {
@@ -41,7 +41,7 @@ bolt-animate[slot="connection"] {
   }
 
   @include bolt-mq(small) {
-    margin-bottom: bolt-spacing(small);
+    margin-bottom: var(--bolt-spacing-y-small);
   }
 
   &--small {
@@ -134,6 +134,7 @@ bolt-animate[slot="connection"] {
     }
 
     $ie-connection-width: 343px;
+
     &--connection {
       position: absolute;
       top: 50%;
@@ -162,8 +163,9 @@ bolt-animate[slot="connection"] {
       z-index: 2;
     }
 
-    $mobilePadding: bolt-spacing(xxsmall);
-    $desktopPadding: bolt-spacing(xsmall);
+    $mobilePadding: var(--bolt-spacing-y-xxsmall);
+    $desktopPadding: var(--bolt-spacing-y-xsmall);
+
     &--top {
       flex: 1 0 100%;
       min-width: 100%;

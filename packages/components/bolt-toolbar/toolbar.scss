@@ -18,24 +18,17 @@
 }
 
 .c-bolt-toolbar__inner {
-  @include bolt-padding(medium, squished);
-  @include bolt-padding-left(small);
-  @include bolt-padding-right(small);
-  max-width: calc(1400px);
-
-  @include bolt-mq(large) {
-    @include bolt-padding-left(large);
-    @include bolt-padding-right(large);
-  }
-
-  // @include bolt-mq(large){
-  //   max-width: calc(1400px - 14rem);
-  //   @include bolt-padding-left(medium);
-  //   @include bolt-padding-right(medium);
-  // }
-
-  // max-width: calc(1400px - 4rem);
+  max-width: bolt-breakpoint(xxlarge);
   margin: 0 auto;
+  padding-top: var(--bolt-spacing-y-small);
+  padding-right: $bolt-wrapper-padding;
+  padding-bottom: var(--bolt-spacing-y-small);
+  padding-left: $bolt-wrapper-padding;
+
+  @include bolt-mq(medium) {
+    padding-right: $bolt-wrapper-padding-at-medium-bp;
+    padding-left: $bolt-wrapper-padding-at-medium-bp;
+  }
 }
 
 .c-bolt-toolbar__title {
@@ -53,7 +46,7 @@
 }
 
 .c-bolt-toolbar__title-icon {
-  @include bolt-margin-right(small);
+  margin-right: var(--bolt-spacing-x-small);
 }
 
 .c-bolt-toolbar__items {
@@ -63,11 +56,11 @@
   align-items: center;
   position: relative;
   width: 100%;
-  margin-bottom: bolt-v-spacing(small) * -1;
+  margin-bottom: calc(var(--bolt-spacing-y-small) * -1);
 }
 
 .c-bolt-toolbar__item {
-  margin-bottom: bolt-v-spacing(small);
+  margin-bottom: var(--bolt-spacing-y-small);
 
   &:not(:last-child) {
     margin-right: 1rem;
@@ -83,22 +76,36 @@
   }
 }
 
-.c-bolt-toolbar--purple {
-  background-image: linear-gradient(90deg, #0f0664 0%, #751b84 100%);
+.c-bolt-toolbar--purple,
+.c-bolt-toolbar--pink {
+  background-image: linear-gradient(
+    90deg,
+    var(--bolt-color-wine) 0%,
+    var(--bolt-color-berry) 100%
+  );
 }
 
-.c-bolt-toolbar--purple-solid {
-  background-image: linear-gradient(90deg, #751b84 0%, #751b84 100%);
-}
-
+.c-bolt-toolbar--navy,
 .c-bolt-toolbar--indigo {
-  background-image: linear-gradient(90deg, #161a3c 0%, #545da6 100%);
+  background-image: linear-gradient(
+    90deg,
+    var(--bolt-color-navy) 0%,
+    var(--bolt-color-navy-light) 100%
+  );
 }
 
 .c-bolt-toolbar--teal {
-  background-image: linear-gradient(270deg, #009999 0%, #1f2656 100%);
+  background-image: linear-gradient(
+    90deg,
+    var(--bolt-color-navy-dark) 0%,
+    var(--bolt-color-teal) 100%
+  );
 }
 
 .c-bolt-toolbar--orange {
-  background-image: linear-gradient(270deg, #da6c28 0%, #b33a12 100%);
+  background-image: linear-gradient(
+    270deg,
+    var(--bolt-color-orange) 0%,
+    var(--bolt-color-orange-dark) 100%
+  );
 }

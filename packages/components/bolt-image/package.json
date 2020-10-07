@@ -1,7 +1,7 @@
 {
   "name": "@bolt/components-image",
-  "version": "2.21.0",
-  "description": "Image Component in Bolt",
+  "version": "2.28.0",
+  "description": "A container for displaying responsive image.",
   "keywords": [
     "bolt design system",
     "bolt",
@@ -17,9 +17,10 @@
   "main": "index.js",
   "style": "index.scss",
   "dependencies": {
-    "@bolt/components-ratio": "^2.21.0",
-    "@bolt/core-v3.x": "^2.21.0",
-    "@bolt/element": "^2.21.0",
+    "@bolt/components-ratio": "^2.28.0",
+    "@bolt/core-v3.x": "^2.28.0",
+    "@bolt/element": "^2.28.0",
+    "@bolt/lazy-queue": "^2.23.0",
     "lazysizes": "5.1.0"
   },
   "publishConfig": {
@@ -39,6 +40,6 @@
       "web": "http://mikemai.net/"
     }
   ],
-  "schema": "image.schema.yml",
+  "schema": "image.schema.js",
   "twig": "src/image.twig"
 }

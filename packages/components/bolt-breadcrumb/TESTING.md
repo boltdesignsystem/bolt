@@ -4,7 +4,7 @@
                                  
 The server-side pre-rendered `bolt-breadcrumb` component should look almost identical to the client-side rendered version. To verify:
 
-1. Disable javascript and view the [Breadcrumb Demo page](https://boltdesignsystem.com/pattern-lab/patterns/02-components-breadcrumb-05-breadcrumb/02-components-breadcrumb-05-breadcrumb.html).
+1. Disable javascript and view the [Breadcrumb Demo page](https://boltdesignsystem.com/pattern-lab/patterns/40-components-breadcrumb-05-breadcrumb/40-components-breadcrumb-05-breadcrumb.html).
 2. Then, enable javascript and watch the Breadcrumb re-renders on the client-side.
 3. The layout and styling should not change. The spacing in between each breadcrumb segment should be identical before and after enabling javascript.
 
@@ -20,17 +20,17 @@ Functional testing should be performed manually by the QA team across the standa
 
 ## Scenario: basic variation
 
-1. Given I am viewing the [basic variation](https://www.boltdesignsystem.com/pattern-lab/patterns/02-components-breadcrumb-05-breadcrumb/02-components-breadcrumb-05-breadcrumb.html).
+1. Given I am viewing the [basic variation](https://www.boltdesignsystem.com/pattern-lab/patterns/40-components-breadcrumb-05-breadcrumb/40-components-breadcrumb-05-breadcrumb.html).
 2. Four segments of text should be visible, with segments seperated by a right facing chevron (">").
 3. The first three segments are links and are styled as links (colored text and underlined).
 
 ## Scenario: "aria-current" variation
 
-1. Given I am viewing the ["aria-current" variation](https://www.boltdesignsystem.com/pattern-lab/patterns/02-components-breadcrumb-10-breadcrumb-current-page-aria-variation/02-components-breadcrumb-10-breadcrumb-current-page-aria-variation.html).
+1. Given I am viewing the ["aria-current" variation](https://www.boltdesignsystem.com/pattern-lab/patterns/40-components-breadcrumb-10-breadcrumb-current-page-aria-variation/40-components-breadcrumb-10-breadcrumb-current-page-aria-variation.html).
 2. Four segments of text should be visible, with segments seperated by a right facing chevron (">").
 3. All four segments are links and are styled as links (colored text and underlined).
 
 ## Scenario: keyboard navigation
 
-1. Given I am viewing the [basic variation](https://www.boltdesignsystem.com/pattern-lab/patterns/02-components-breadcrumb-05-breadcrumb/02-components-breadcrumb-05-breadcrumb.html).
+1. Given I am viewing the [basic variation](https://www.boltdesignsystem.com/pattern-lab/patterns/40-components-breadcrumb-05-breadcrumb/40-components-breadcrumb-05-breadcrumb.html).
 2. Each link segment can be focused using the keyboard (by pressing tab).

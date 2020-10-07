@@ -15,6 +15,10 @@ const { addBoltPackage } = require('./add-bolt-package');
 const currentBoltVersion = require('../../../../../docs-site/package.json')
   .version;
 
+// When there's a hotfix, Core may not match current Bolt version
+const currentBoltCoreVersion = require('../../../../../packages/core-v3.x/package.json')
+  .version;
+
 program
   .version(currentBoltVersion)
   .option('-N, --name [name]', 'button')
@@ -37,7 +41,7 @@ module.exports = class extends Generator {
     this.folders = {
       src: 'packages/components',
       patternLabFolder:
-        'docs-site/src/pages/pattern-lab/_patterns/02-components',
+        'docs-site/src/pages/pattern-lab/_patterns/40-components',
       test: '__tests__',
     };
 
@@ -54,6 +58,7 @@ module.exports = class extends Generator {
     };
 
     this.boltVersion = currentBoltVersion;
+    this.boltCoreVersion = currentBoltCoreVersion;
 
     if (program.test) {
       this.testData = {
@@ -69,6 +74,7 @@ module.exports = class extends Generator {
       this.gitInfo.email = 'test@example.org';
       this.gitInfo.github = '';
       this.boltVersion = '0.0.0';
+      this.boltCoreVersion = '0.0.0';
     }
   }
 
@@ -163,6 +169,7 @@ module.exports = class extends Generator {
         : this.updateComponentName(this.testData.componentName);
       this.props.gitUrl = this.gitUrl;
       this.props.boltVersion = this.boltVersion;
+      this.props.boltCoreVersion = this.boltCoreVersion;
       this.props.gitInfo = this.gitInfo;
       this.props.packageName = `@bolt/components-${this.props.name.kebabCase}`;
       this.props.dest = `${this.folders.src}/bolt-${this.props.name.kebabCase}`;

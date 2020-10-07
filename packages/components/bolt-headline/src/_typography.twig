@@ -1,7 +1,3 @@
-{% if enable_json_schema_validation %}
-  {{ validate_data_schema('@bolt-components-headline/headline.schema.yml', _self) | raw }}
-{% endif %}
-
 {% set schema = bolt.data.components['@bolt-components-headline'].schema %}
 
 {% if enable_json_schema_validation %}

@@ -1,72 +1,54 @@
-import { props, hasNativeShadowDomSupport } from '@bolt/core-v3.x/utils';
-import { withLitHtml } from '@bolt/core-v3.x/renderers/renderer-lit-html';
-import classNames from 'classnames/bind';
-import textStyles from '@bolt/components-text/index.scss';
 import {
-  ifDefined,
-  html,
-  convertInitialTags,
   customElement,
+  BoltElement,
+  html,
+  ifDefined,
+  unsafeCSS,
+  convertInitialTags,
 } from '@bolt/element';
+import classNames from 'classnames/bind';
+import { AuthorImage, AuthorName, AuthorTitle } from './_blockquote-author';
+import schema from '../blockquote.schema';
 import styles from './blockquote.scss';
-import schema from '../blockquote.schema.yml';
-import { AuthorImage, AuthorName, AuthorTitle } from './Author';
 
-let cx = classNames.bind([styles, textStyles]);
+let cx = classNames.bind([styles]);
 
 @customElement('bolt-blockquote')
 @convertInitialTags('blockquote') // The first matching tag will have its attributes converted to component props
-class BoltBlockquote extends withLitHtml {
-  static props = {
-    size: props.string,
-    weight: props.string,
-    alignItems: props.string,
-    border: props.string,
-    indent: props.boolean,
-    fullBleed: props.boolean,
-    noQuotes: props.boolean,
-    lang: props.string,
-    authorName: props.string,
-    authorTitle: props.string,
-    authorImage: props.string,
-  };
+class BoltBlockquote extends BoltElement {
+  static schema = schema;
 
-  // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
-  constructor(self) {
-    self = super(self);
-    self.useShadow = hasNativeShadowDomSupport;
-    self.schema = self.getModifiedSchema(schema);
-    return self;
+  static get styles() {
+    return [unsafeCSS(styles)];
   }
 
-  rendered() {
-    super.rendered && super.rendered();
-    const self = this;
+  static get properties() {
+    return {
+      ...this.props,
+      authorName: { type: String, attribute: 'author-name' },
+      authorTitle: { type: String, attribute: 'author-title' },
+      authorImage: { type: String, attribute: 'author-image' },
+    };
+  }
+
+  firstUpdated() {
+    super.firstUpdated && super.firstUpdated();
 
     // @todo: I've added this.useShadow here to exclude IE.
     // In IE-only this mutation callback causes multiple re-renders
     // and causes component to disappear.
-    if (window.MutationObserver && this.useShadow) {
+    if (window.MutationObserver && this.useShadow && !this.observer) {
       // Re-generate slots + re-render when mutations are observed
-      const mutationCallback = function(mutationsList, observer) {
-        self.slots = self._checkSlots();
-        self.triggerUpdate();
-
-        // todo: refactor to check for slotted content, light OR shadow DOM
-        // mutationsList.forEach(mutation => {
-        //   if (mutation.type === 'childList') {
-        //     if (mutation.target.parentNode === self) {
-        //       console.log(mutation.target);
-        //     }
-        //   }
-        // });
+      const mutationCallback = (mutationsList, observer) => {
+        this.saveSlots();
+        this.requestUpdate();
       };
 
       // Create an observer instance linked to the callback function
-      self.observer = new MutationObserver(mutationCallback);
+      this.observer = new MutationObserver(mutationCallback);
 
       // Start observing the target node for configured mutations
-      self.observer.observe(this, {
+      this.observer.observe(this, {
         attributes: false,
         childList: true,
         subtree: true,
@@ -74,7 +56,7 @@ class BoltBlockquote extends withLitHtml {
     }
   }
 
-  disconnected() {
+  disconnectedCallback() {
     super.disconnected && super.disconnected();
 
     // remove MutationObserver if supported + exists
@@ -109,90 +91,61 @@ class BoltBlockquote extends withLitHtml {
 
   // automatically adds classes for the first and last slotted item (in the default slot) to help with tricky ::slotted selectors
   addClassesToSlottedChildren() {
-    if (this.slots) {
-      if (this.slots.default) {
-        const defaultSlot = [];
+    if (!this.slotMap?.get('default')) return;
 
-        this.slots.default.forEach(item => {
-          if (item.tagName) {
-            item.classList.remove('is-first-child');
-            item.classList.remove('is-last-child'); // clean up existing classes
-            defaultSlot.push(item);
-          }
-        });
+    const defaultSlot = [];
 
-        if (defaultSlot[0]) {
-          defaultSlot[0].classList.add('is-first-child');
+    this.slotMap.get('default').forEach(item => {
+      if (item.tagName) {
+        item.classList.remove('is-first-child');
+        item.classList.remove('is-last-child'); // clean up existing classes
+        defaultSlot.push(item);
+      }
+    });
 
-          if (defaultSlot.length === 1) {
-            defaultSlot[0].classList.add('is-last-child');
-          }
-        }
+    if (defaultSlot.length) {
+      defaultSlot[0].classList.add('is-first-child');
 
-        if (defaultSlot[defaultSlot.length - 1]) {
-          defaultSlot[defaultSlot.length - 1].classList.add('is-last-child');
-        }
+      if (defaultSlot.length === 1) {
+        defaultSlot[0].classList.add('is-last-child');
+      } else {
+        defaultSlot[defaultSlot.length - 1].classList.add('is-last-child');
       }
     }
   }
 
   render() {
-    // validate the original prop data passed along -- returns back the validated data w/ added default values
-    const {
-      size,
-      weight,
-      alignItems,
-      border,
-      indent,
-      fullBleed,
-      noQuotes,
-      lang,
-      authorName,
-      authorTitle,
-      authorImage,
-    } = this.validateProps(this.props);
-
     const classes = cx('c-bolt-blockquote', {
-      [`c-bolt-blockquote--${size}`]: size,
-      [`c-bolt-blockquote--${weight}`]: weight,
       [`c-bolt-blockquote--align-items-${this.getAlignItemsOption(
-        alignItems,
-      )}`]: this.getAlignItemsOption(alignItems),
+        this.alignItems,
+      )}`]: this.getAlignItemsOption(this.alignItems),
       [`c-bolt-blockquote--${this.getBorderOption(
-        border,
-      )}`]: this.getBorderOption(border),
-      [`c-bolt-blockquote--indented`]: indent,
-      [`c-bolt-blockquote--full`]: fullBleed,
-      [`c-bolt-blockquote--no-quotes`]: noQuotes,
+        this.border,
+      )}`]: this.getBorderOption(this.border),
+      [`c-bolt-blockquote--indented`]: this.indent,
+      [`c-bolt-blockquote--full`]: this.fullBleed,
+      [`c-bolt-blockquote--no-quotes`]: this.noQuotes,
     });
 
-    let footerItems = [];
-    footerItems.push(AuthorImage(this), AuthorName(this), AuthorTitle(this));
+    const textClasses = cx(
+      `c-bolt-blockquote__quote--${this.size}`,
+      `c-bolt-blockquote__quote--${this.weight}`,
+    );
+
+    const footerItems = [
+      AuthorImage(this),
+      AuthorName(this),
+      AuthorTitle(this),
+    ].filter(el => el);
 
     this.addClassesToSlottedChildren();
 
-    const textClasses = cx(
-      'c-bolt-text-v2',
-      'c-bolt-text-v2--block',
-      'c-bolt-text-v2--body',
-      `c-bolt-text-v2--font-size-${size}`,
-      `c-bolt-text-v2--font-weight-${weight}`,
-      'c-bolt-text-v2--font-style-regular',
-      'c-bolt-text-v2--color-theme-headline',
-      'c-bolt-text-v2--letter-spacing-regular',
-      'c-bolt-text-v2--align-inherit',
-      'c-bolt-text-v2--text-transform-regular',
-      'c-bolt-text-v2--line-height-regular',
-      'c-bolt-text-v2--opacity-100',
-    );
-
     return html`
-      ${this.addStyles([styles, textStyles])}
       <blockquote
         class="${classes}"
         lang="${ifDefined(
-          lang
-            ? lang
+          this.lang
+            ? this.lang
             : this.closest('[lang]')
             ? this.closest('[lang]')
                 .getAttribute('lang')
@@ -200,17 +153,15 @@ class BoltBlockquote extends withLitHtml {
             : undefined,
         )}"
       >
-        ${this.slots.logo
+        ${this.slotMap.get('logo')
           ? html`
               <div class="${cx('c-bolt-blockquote__logo')}">
-                ${this.slot('logo')}
+                ${this.slotify('logo')}
               </div>
             `
           : ''}
-        <div class="${cx('c-bolt-blockquote__quote')}">
-          <div class="${textClasses}">
-            ${this.slot('default')}
-          </div>
+        <div class="${cx('c-bolt-blockquote__quote')} ${textClasses}">
+          ${this.slotify('default')}
         </div>
         ${footerItems.length > 0
           ? html`
@@ -231,42 +182,3 @@ class BoltBlockquote extends withLitHtml {
 }
 
 export { BoltBlockquote };
-
-// @todo: Original return statement - backing this out until `bolt-text` is ready for release
-// See: https://github.com/bolt-design-system/bolt/pull/1167
-// return html`
-// ${this.addStyles([styles])}
-// <blockquote class="${classes}" is="shadow-root">
-//   ${this.slots.logo
-//     ? html`
-//         <div class="${cx('c-bolt-blockquote__logo')}">
-//           ${this.slot('logo')}
-//         </div>
-//       `
-//     : ''}
-//   <div class="${cx('c-bolt-blockquote__quote')}">
-//     <bolt-text
-//       tag="div"
-//       font-size="${size}"
-//       font-weight="semibold"
-//       color="theme-headline"
-//     >
-//       ${this.slot('default')}
-//     </bolt-text>
-//   </div>
-//   ${footerItems.length > 0
-//     ? html`
-//         <footer class="${cx('c-bolt-blockquote__footer')}">
-//           ${footerItems.map(
-//             footerItem => html`
-//               <div class="${cx('c-bolt-blockquote__footer-item')}">
-//                 ${footerItem}
-//               </div>
-//             `,
-//           )}
-//         </footer>
-//       `
-//     : ''}
-// </blockquote>
-// `;
-// }

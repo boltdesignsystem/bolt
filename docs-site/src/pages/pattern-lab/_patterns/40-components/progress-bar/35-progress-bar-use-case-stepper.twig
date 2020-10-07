@@ -1,0 +1,120 @@
+{# Demo Variables #}
+{% set stepperJS %}
+<script type="text/javascript">
+  window.addEventListener('load', function() {
+    const progressBar = document.querySelector('.js-bolt-progress-bar-stepper');
+
+    const progressBarBackward = document.querySelector(
+      '.js-bolt-progress-bar-stepper-back',
+    );
+    const progressBarForward = document.querySelector(
+      '.js-bolt-progress-bar-stepper-forward',
+    );
+
+    if (progressBarBackward) {
+      progressBarBackward.addEventListener('click', () => {
+        if (progressBar.value > 0) {
+          progressBar.value -= 1;
+        }
+      });
+    }
+
+    if (progressBarForward) {
+      progressBarForward.addEventListener('click', () => {
+        if (progressBar.value < progressBar.max) {
+          progressBar.value += 1;
+        }
+      });
+    }
+
+    if (progressBar) {
+      progressBar.addEventListener('rendered', function() {
+        if (progressBar.value === 1) {
+          progressBarBackward.setAttribute('disabled', '');
+        }
+
+        if (progressBar.value === progressBar.max) {
+          progressBarForward.setAttribute('disabled', '');
+        }
+
+        if (progressBar.value > 1) {
+          progressBarBackward.removeAttribute('disabled');
+        }
+
+        if (progressBar.value < progressBar.max) {
+          progressBarForward.removeAttribute('disabled');
+        }
+      });
+    }
+  });
+</script>
+{% endset %}
+
+{% set prevButton %}
+  {% include "@bolt-components-button/button.twig" with {
+    text: "Go Back",
+    icon: {
+      name: "chevron-left"
+    },
+    disabled: true,
+    iconOnly: true,
+    size: "small",
+    attributes: {
+      class: [
+        "js-bolt-progress-bar-stepper-back"
+      ]
+    }
+  } only %}
+{% endset %}
+
+{% set nextButton %}
+  {% include "@bolt-components-button/button.twig" with {
+    text: "Go Forward",
+    icon: {
+      name: "chevron-right"
+    },
+    iconOnly: true,
+    size: "small",
+    attributes: {
+      class: [
+        "js-bolt-progress-bar-stepper-forward"
+      ]
+    }
+  } only %}
+{% endset %}
+
+{% set progressBar %}
+  {% include "@bolt-components-progress-bar/progress-bar.twig" with {
+    title: "Step",
+    value: 1,
+    max: 5,
+    valueFormat: "step",
+    attributes: {
+      class: [
+        "js-bolt-progress-bar-stepper"
+      ]
+    }
+  } only %}
+{% endset %}
+
+{# Demo Layout #}
+{{ stepperJS }}
+<bolt-text headline>Stepper progress</bolt-text>
+{% include "@bolt-components-list/list.twig" with {
+  display: "inline",
+  nowrap: true,
+  spacing: "small",
+  items: [
+    prevButton,
+    progressBar,
+    nextButton,
+  ]
+} only %}
+
+<bolt-text headline>Custom JavaScript</bolt-text>
+<bolt-code-snippet syntax="dark" lang="html">{% spaceless %}
+  {{ stepperJS | replace({
+    '<': '&lt;',
+    '>': '&gt;',
+  }) | trim | raw }}
+{% endspaceless %}</bolt-code-snippet>

@@ -3,6 +3,107 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.28.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-headline/compare/v2.27.1...v2.28.0) (2020-09-16)
+
+**Note:** Version bump only for package @bolt/components-headline
+
+
+
+
+
+# [2.27.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-headline/compare/v2.27.0-alpha-calculator-2...v2.27.0) (2020-08-28)
+
+**Note:** Version bump only for package @bolt/components-headline
+
+
+
+
+
+## [2.26.3](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-headline/compare/v2.26.2...v2.26.3) (2020-07-31)
+
+**Note:** Version bump only for package @bolt/components-headline
+
+
+
+
+
+# [2.26.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-headline/compare/v2.25.1...v2.26.0) (2020-07-22)
+
+
+### Bug Fixes
+
+* lint css ([71f8278](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-headline/commit/71f82780c9019c74abef977ab31f3304282854fc))
+
+
+
+
+
+## [2.25.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-headline/compare/v2.25.0...v2.25.1) (2020-07-14)
+
+**Note:** Version bump only for package @bolt/components-headline
+
+
+
+
+
+# [2.25.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-headline/compare/v2.22.2...v2.25.0) (2020-07-13)
+
+
+### Bug Fixes
+
+* resolve conflicts ([92743cf](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-headline/commit/92743cf5734703ccfb94bc6d49e0a3d667e81fe3))
+
+
+
+# [2.25.0-alpha-colors](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-headline/compare/v2.24.1...v2.25.0-alpha-colors) (2020-06-18)
+
+
+### Bug Fixes
+
+* body text color ([9b545b3](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-headline/commit/9b545b320bf2752ae29545b2f0e5ef9b43c8fcd0))
+* update componet descriptions ([b9fefe6](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-headline/commit/b9fefe6106eb74e3d4794a51443a2b576d9651d9))
+* update remaining Jest snapshots; tweak Popover and Tabs tests to be more reliable ([ab0d7f0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-headline/commit/ab0d7f084678e5b001e792d34908255b928ef770))
+
+
+
+
+
+## [2.24.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-headline/compare/v2.24.0...v2.24.1) (2020-06-17)
+
+**Note:** Version bump only for package @bolt/components-headline
+
+
+
+
+
+# [2.24.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-headline/compare/v2.23.0...v2.24.0) (2020-06-05)
+
+**Note:** Version bump only for package @bolt/components-headline
+
+
+
+
+
+# [2.23.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-headline/compare/v2.22.1...v2.23.0) (2020-05-06)
+
+
+### Bug Fixes
+
+* body text color ([9b545b3](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-headline/commit/9b545b320bf2752ae29545b2f0e5ef9b43c8fcd0))
+* update remaining Jest snapshots; tweak Popover and Tabs tests to be more reliable ([ab0d7f0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-headline/commit/ab0d7f084678e5b001e792d34908255b928ef770))
+
+
+
+
+
+# [2.22.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-headline/compare/v2.21.1...v2.22.0) (2020-04-22)
+
+**Note:** Version bump only for package @bolt/components-headline
+
+
+
+
+
 ## [2.21.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-headline/compare/v2.21.0...v2.21.1) (2020-04-10)
 
 **Note:** Version bump only for package @bolt/components-headline

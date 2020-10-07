@@ -1,7 +1,7 @@
 .c-bds-docs__visually-hidden-demo {
   @extend %bolt-demo-wrapper;
 
-  input[type='checkbox']{
+  input[type='checkbox'] {
     display: none;
     visibility: hidden;
     width: 0;
@@ -32,8 +32,11 @@
   }
 
   input:checked + label {
-    background: bolt-color(indigo, light);
-    & + .c-bds-docs__visually-hidden-inner > .c-bds-docs__visually-hidden-content {
+    background: bolt-color(navy, light);
+
+    &
+      + .c-bds-docs__visually-hidden-inner
+      > .c-bds-docs__visually-hidden-content {
       @include bolt-visuallyhidden(important);
       opacity: 0;
     }
@@ -50,7 +53,7 @@
 }
 
 .c-bds-docs__visually-hidden-inner {
-  @include bolt-margin-top(1rem);
+  margin-top: 1rem;
 }
 
 .c-bds-docs__visually-hidden-content {

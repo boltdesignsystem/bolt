@@ -1,0 +1,25 @@
+{% extends "@bolt-academy/_academy-default-page-template.twig" %}
+
+{% block page_content %}
+  {% embed "@bolt-components-band/band.twig" with {
+    theme: "light",
+    size: "small",
+  } %}
+    {% block band_content %}
+      {% include "@bolt-components-headline/headline.twig" with {
+        url: "#",
+        text: "Dashboard",
+        size: "small",
+        weight: "regular",
+        transform: "uppercase",
+        icon: {
+          name: "arrow-left",
+          position: "before",
+        }
+      } only %}
+    {% endblock %}
+  {% endembed %}
+
+  {% include "@bolt-academy/_dashboard-band--my-favorite-training.twig" %}
+
+{% endblock %}

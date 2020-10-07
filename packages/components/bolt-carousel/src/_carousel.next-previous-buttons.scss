@@ -32,7 +32,9 @@ bolt-carousel:not(.is-ready) > [slot='next-btn'] {
   }
 
   &.c-bolt-carousel__button--outside {
-    top: calc(50% - #{bolt-v-spacing(medium)} + #{$bolt-carousel-bullet-height});
+    top: calc(
+      50% - var(--bolt-spacing-y-medium) + #{$bolt-carousel-bullet-height}
+    );
 
     @at-root bolt-carousel[no-pagination] & {
       top: 50%;
@@ -49,20 +51,19 @@ bolt-carousel:not(.is-ready) > [slot='next-btn'] {
     }
 
     &:focus:not(:hover) {
-      box-shadow:
-        0 -1px 2px bolt-theme(background),
+      box-shadow: 0 -1px 2px bolt-theme(background),
         0 1px 2px bolt-theme(background),
-        0 0 5px rgb(59, 153, 252),
+ 0 0 5px rgb(59, 153, 252),
         0 -1px 0.65rem rgb(59, 153, 252),
-        0 1px 0.65rem rgb(59, 153, 252);
+ 0 1px 0.65rem rgb(59, 153, 252);
     }
 
     &.c-bolt-carousel__button--previous {
-      left: bolt-spacing(medium);
+      left: var(--bolt-spacing-x-medium);
       transform: translateX(-50%) translateY(-50%);
 
       @include bolt-mq(medium) {
-        left: bolt-spacing(large);
+        left: var(--bolt-spacing-x-large);
       }
 
       &.is-pressed {
@@ -71,11 +72,11 @@ bolt-carousel:not(.is-ready) > [slot='next-btn'] {
     }
 
     &.c-bolt-carousel__button--next {
-      right: bolt-spacing(medium);
+      right: var(--bolt-spacing-x-medium);
       transform: translateX(50%) translateY(-50%);
 
       @include bolt-mq(medium) {
-        right: bolt-spacing(large);
+        right: var(--bolt-spacing-x-large);
       }
 
       &.is-pressed {
@@ -94,7 +95,8 @@ bolt-carousel:not(.is-ready) > [slot='next-btn'] {
       width: 4px;
       height: 0.9rem; // This is a magic number for fixing the subpixel issue with the CSS chevron. Don't change this unless you have a completely different method for drawing the chevron.
       border-radius: 1px;
-      box-shadow: 3px -1px 3px 0px rgba(bolt-color(black), 0.025), 3px 1px 3px 0px rgba(bolt-color(black), 0.025);
+      box-shadow: 3px -1px 3px 0px rgba(bolt-color(black), 0.025),
+        3px 1px 3px 0px rgba(bolt-color(black), 0.025);
       background-color: bolt-color(white);
       will-change: box-shadow;
       transition: box-shadow $bolt-transition;
@@ -111,12 +113,14 @@ bolt-carousel:not(.is-ready) > [slot='next-btn'] {
 
       &:before {
         left: calc(50% - 0.5rem);
-        transform: rotate(135deg) translateX(150%) translateY(0) translateZ(0) perspective(1px);
+        transform: rotate(135deg) translateX(150%) translateY(0) translateZ(0)
+          perspective(1px);
       }
 
       &:after {
         left: calc(50% - 0.5rem);
-        transform: rotate(-135deg) translateX(150%) translateY(0) translateZ(0) perspective(1px);
+        transform: rotate(-135deg) translateX(150%) translateY(0) translateZ(0)
+          perspective(1px);
       }
     }
 
@@ -126,12 +130,14 @@ bolt-carousel:not(.is-ready) > [slot='next-btn'] {
 
       &:before {
         right: calc(50% - 0.5rem);
-        transform: rotate(45deg) translateX(150%) translateY(0) translateZ(0) perspective(1px);
+        transform: rotate(45deg) translateX(150%) translateY(0) translateZ(0)
+          perspective(1px);
       }
 
       &:after {
         right: calc(50% - 0.5rem);
-        transform: rotate(-45deg) translateX(150%) translateY(0) translateZ(0) perspective(1px);
+        transform: rotate(-45deg) translateX(150%) translateY(0) translateZ(0)
+          perspective(1px);
       }
     }
 
@@ -144,7 +150,7 @@ bolt-carousel:not(.is-ready) > [slot='next-btn'] {
       top: 0;
       transform: none;
       width: 3.5rem;
-      height: calc(100% - #{bolt-v-spacing(medium)} - 8px);
+      height: calc(100% - var(--bolt-spacing-y-medium) - 8px);
       border-radius: 0;
 
       @at-root bolt-carousel[no-pagination] & {
@@ -156,7 +162,8 @@ bolt-carousel:not(.is-ready) > [slot='next-btn'] {
     &:focus {
       &:before,
       &:after {
-        box-shadow: 3px -1px 3px 0px rgba(bolt-color(black), 0.1), 3px 1px 3px 0px rgba(bolt-color(black), 0.1);
+        box-shadow: 3px -1px 3px 0px rgba(bolt-color(black), 0.1),
+          3px 1px 3px 0px rgba(bolt-color(black), 0.1);
       }
     }
 

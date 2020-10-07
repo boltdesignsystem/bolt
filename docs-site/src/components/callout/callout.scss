@@ -1,15 +1,15 @@
 .c-bds-callout {
-  @include bolt-padding(medium, squished);
-  @include bolt-margin-top(small);
-  @include bolt-margin-bottom(small);
+  margin-top: var(--bolt-spacing-y-small);
+  margin-bottom: var(--bolt-spacing-y-small);
+  padding: calc(var(--bolt-spacing-y-medium) / 2) var(--bolt-spacing-x-medium);
   border: 1px solid bolt-color(gray, light);
-  border-left-width: .25rem;
-  border-radius: .25rem;
+  border-left-width: 0.25rem;
+  border-radius: 0.25rem;
 
   @include bolt-font-size(small);
 
   > p:not(:last-child) {
-    @include bolt-margin-bottom(small);
+    margin-bottom: var(--bolt-spacing-y-small);
   }
 }
 

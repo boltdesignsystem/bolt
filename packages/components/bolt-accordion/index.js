@@ -1,17 +1,5 @@
-import { polyfillLoader } from '@bolt/core-v3.x/polyfills';
+import { lazyQueue } from '@bolt/lazy-queue';
 
-polyfillLoader.then(res => {
-  import(
-    /*
-    webpackMode: 'eager',
-    webpackChunkName: 'bolt-accordion'
-  */ './src/accordion'
-  );
-
-  import(
-    /*
-    webpackMode: 'eager',
-    webpackChunkName: 'bolt-accordion-item'
-  */ './src/AccordionItem'
-  );
+lazyQueue(['bolt-accordion'], async () => {
+  await import(/* webpackChunkName: 'bolt-accordion' */ './main');
 });

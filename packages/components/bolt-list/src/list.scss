@@ -6,12 +6,16 @@
 
 // Custom element display and built-in spacing
 @include bolt-repeat-rule(('bolt-list', ':host')) {
-  @include bolt-margin-bottom(medium);
+  // Clear-fix required to prevent margin collapse due to negative margin on Bolt List.
+  // Happens when List is inside Stack component, for example.
+  // https://css-tricks.com/snippets/css/clear-fix/
+  @include bolt-clearfix;
 
   display: block;
+  margin-bottom: var(--bolt-spacing-y-medium);
 
   &:last-child {
-    @include bolt-margin-bottom(0);
+    margin: 0;
   }
 }
 
@@ -19,14 +23,15 @@
 //
 // 1. Reset typography so it doesn't inherit from a higher level container.
 // 2. Reset text-align so it doesn't conflict with the align prop which handles the horizontal alignment of inline items in a list, not the text-align within.
-// 3. Width must be defined in order for the list to dislay correctly in Firefox.
+// 3. Full width must be defined in order for the list to dislay correctly in Firefox.
+// 4. Full width and 1px offset must be defined in order for the list to dislay correctly in Safari.
 .c-bolt-list {
-  @include bolt-margin(0);
-  @include bolt-padding(0);
   @include bolt-font-family(body); // [1]
   @include bolt-font-size(medium); // [1]
   @include bolt-font-weight(regular); // [1]
 
+  margin: 0;
+  padding: 0;
   list-style: none;
   text-align: left; // [2]
   text-align: start; // [2]
@@ -34,8 +39,7 @@
 
 // Display Prop
 .c-bolt-list--display-block {
-  display: flex;
-  flex-flow: column wrap;
+  display: block;
 }
 
 .c-bolt-list--display-inline {
@@ -71,22 +75,58 @@
   }
 }
 
+// The inline here is talking about the items inside, the List component itself is still a block level element that would fill up the space of any container.
+.c-bolt-list--display-inline,
+.c-bolt-list--display-flex {
+  width: 100%; // [3]
+}
+
+@each $breakpoint in $bolt-breakpoints {
+  $breakpoint-name: nth($breakpoint, 1);
+
+  &.c-bolt-list--display-inline\@#{$breakpoint-name} {
+    @include bolt-mq($breakpoint-name) {
+      width: 100%; // [3]
+    }
+  }
+}
+
 // Spacing Prop
-@each $spacing-value in $bolt-spacing-values {
-  $spacing-value-name: nth($spacing-value, 1);
+@each $size in $bolt-spacing-multiplier-system {
+  $size-name: nth($size, 1);
 
-  .c-bolt-list--spacing-#{$spacing-value-name}:not(.c-bolt-list--inset) {
-    margin-bottom: bolt-v-spacing(#{$spacing-value-name}) * -1;
-    margin-left: bolt-spacing(#{$spacing-value-name}) * -1;
+  .c-bolt-list--spacing-#{$size-name}:not(.c-bolt-list--inset) {
+    margin-bottom: calc(var(--bolt-spacing-y-#{$size-name}) * -1);
+    margin-left: calc(var(--bolt-spacing-x-#{$size-name}) * -1);
   }
 
-  // CSS hack targeting any Firefox version: https://css-tricks.com/snippets/css/css-hacks-targeting-firefox/
-  @-moz-document url-prefix('') {
-    .c-bolt-list--spacing-#{$spacing-value-name}.c-bolt-list--inset {
-      // The inline here is talking about the items inside, the List component itself is still a block level element that would fill up the space of any container.
+  .c-bolt-list--spacing-#{$size-name}.c-bolt-list--inset {
+    margin-bottom: 0;
+    margin-left: 0;
+  }
+
+  .c-bolt-list--spacing-#{$size-name}:not(.c-bolt-list--inset) {
+    &.c-bolt-list--display-inline,
+    &.c-bolt-list--display-flex {
+      width: calc(100% + var(--bolt-spacing-x-#{$size-name})); // [3]
+    }
+
+    @each $breakpoint in $bolt-breakpoints {
+      $breakpoint-name: nth($breakpoint, 1);
+
+      &.c-bolt-list--display-inline\@#{$breakpoint-name} {
+        @include bolt-mq($breakpoint-name) {
+          width: calc(100% + var(--bolt-spacing-x-#{$size-name})); // [3]
+        }
+      }
+    }
+  }
+
+  @media not all and (min-resolution: 0.001dpcm) {
+    .c-bolt-list--spacing-#{$size-name}:not(.c-bolt-list--inset) {
       &.c-bolt-list--display-inline,
       &.c-bolt-list--display-flex {
-        width: 100%; // [3]
+        width: calc(100% + var(--bolt-spacing-x-#{$size-name}) + 1px); // [4]
       }
 
       @each $breakpoint in $bolt-breakpoints {
@@ -94,33 +134,13 @@
 
         &.c-bolt-list--display-inline\@#{$breakpoint-name} {
           @include bolt-mq($breakpoint-name) {
-            width: 100%; // [3]
+            width: calc(
+              100% + var(--bolt-spacing-x-#{$size-name}) + 1px
+            ); // [4]
           }
         }
       }
     }
-    .c-bolt-list--spacing-#{$spacing-value-name}:not(.c-bolt-list--inset) {
-      // The inline here is talking about the items inside, the List component itself is still a block level element that would fill up the space of any container.
-      &.c-bolt-list--display-inline,
-      &.c-bolt-list--display-flex {
-        width: calc(100% + #{bolt-spacing($spacing-value-name)}); // [3]
-      }
-
-      @each $breakpoint in $bolt-breakpoints {
-        $breakpoint-name: nth($breakpoint, 1);
-
-        &.c-bolt-list--display-inline\@#{$breakpoint-name} {
-          @include bolt-mq($breakpoint-name) {
-            width: calc(100% + #{bolt-spacing($spacing-value-name)}); // [3]
-          }
-        }
-      }
-    }
-  }
-
-  .c-bolt-list--spacing-#{$spacing-value-name}.c-bolt-list--inset {
-    @include bolt-margin-bottom(0);
-    @include bolt-margin-left(0);
   }
 }
 

@@ -22,7 +22,6 @@
   "author": "Salem Ghoweri",
   "workspaces": {
     "packages": [
-      "docs-site/src/pages/pattern-lab/_patterns/03-blueprints",
       "docs-site",
       "docs-site/src/components/banner",
       "docs-site/src/components/theme-switcher",
@@ -80,13 +79,14 @@
     "test:e2e:quick-local": "NOW_URL=http://localhost:3000 ./node_modules/.bin/nightwatch --config packages/testing/testing-nightwatch/nightwatch.local.js",
     "test:e2e:quick-master": " NOW_URL=https://master.boltdesignsystem.com ./node_modules/.bin/nightwatch --config packages/testing/testing-nightwatch/nightwatch.local.js",
     "pretest:js": "npm run setup:php",
-    "test:js": "NODE_ENV='test' jest --all --colors 'packages|scripts' --bail --passWithNoTests ",
+    "test:js": "NODE_ENV='test' jest --all --colors 'packages|scripts' --passWithNoTests ",
     "test:js:quick": "NODE_ENV='test' jest --colors \"$(bolt-list-pkg-paths-changed)\" --passWithNoTests",
     "test:js:update": "yarn run test:js -u",
     "test:monorepo": "jest ./__tests__/monorepo -c jest.config.quick.js --noStackTrace",
     "test:php": "cd packages/twig-integration/twig-extensions-shared && composer run test",
     "test:pkgs": "npx lerna run test --ignore=@bolt/uikit-* --ignore=@bolt/build-tools--* --stream",
-    "test:types": "tsc"
+    "test:types": "tsc",
+    "test:vrt-urls": "cd docs-site && yarn run test:vrt-urls"
   },
   "husky": {
     "hooks": {
@@ -146,7 +146,7 @@
     "github-deploy-status": "^1.4.1",
     "globby": "^10.0.1",
     "haunted": "^4.4.0",
-    "husky": "^4.2.1",
+    "husky": "3.1.0",
     "jest": "^24.8.0",
     "jsonwebtoken": "^8.5.1",
     "lerna": "^3.20.2",
@@ -157,7 +157,6 @@
     "patch-package": "^6.1.2",
     "postinstall-postinstall": "^2.0.0",
     "proxy-polyfill": "^0.3.0",
-    "release-it": "^12.3.2",
     "semantic-release": "^15.13.18",
     "semver": "^7.1.1",
     "shelljs": "^0.8.3",

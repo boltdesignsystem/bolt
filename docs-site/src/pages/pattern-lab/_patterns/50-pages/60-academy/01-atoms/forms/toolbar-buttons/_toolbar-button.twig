@@ -1,0 +1,37 @@
+{% set button %}
+  {% include "@bolt-components-button/button.twig" with {
+    text: buttonText,
+    size: "small",
+    style: "tertiary",
+    iconOnly: true,
+    icon: {
+      name: buttonIcon,
+    },
+    attributes: buttonAttributes | default({})
+  } only %}
+{% endset %}
+
+{% if tooltip %}
+  {% include "@bolt-components-tooltip/tooltip.twig" with {
+    trigger: button,
+    content: tooltip,
+    boundary: "bolt-card-replacement",
+    placement: "bottom-end",
+  } only %}
+{% elseif popover %}
+  {% include "@bolt-components-popover/popover.twig" with {
+    trigger: button,
+    content: popover,
+    boundary: "bolt-card-replacement",
+    placement: "bottom-end",
+    fallbackPlacements: [
+      "bottom",
+      "bottom-start"
+    ],
+    spacing: "none",
+    theme: "xlight",
+  } only %}
+{% else %}
+  {{ button }}
+{% endif %}
+

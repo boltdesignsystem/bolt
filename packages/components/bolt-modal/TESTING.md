@@ -16,7 +16,7 @@ Functional testing should be performed manually by the QA team across the standa
 
 ## Scenario: basic
 
-1. Given I am viewing the [basic modal page](http://localhost:3000/pattern-lab/patterns/02-components-modal-05-modal/02-components-modal-05-modal.html)
+1. Given I am viewing the [basic modal page](http://localhost:3000/pattern-lab/patterns/40-components-modal-05-modal/40-components-modal-05-modal.html)
 2. And I see a button with the text "Open Modal"
 3. When I click on the button
 4. A modal overlay appears
@@ -40,7 +40,7 @@ Functional testing should be performed manually by the QA team across the standa
 
 ## Scenario: scroll variations
 
-1. Given I am viewing the [scroll variations page](http://localhost:3000/pattern-lab/patterns/02-components-modal-25-modal-scroll-variations/02-components-modal-25-modal-scroll-variations.html)
+1. Given I am viewing the [scroll variations page](http://localhost:3000/pattern-lab/patterns/40-components-modal-25-modal-scroll-variations/40-components-modal-25-modal-scroll-variations.html)
 2. And I see a button under the heading "Scroll Area: Overall"
 3. When I click on that button
 4. Then a very tall modal opens
@@ -59,7 +59,7 @@ Functional testing should be performed manually by the QA team across the standa
 
 ## Scenario: advanced usage
 
-1. Given I am viewing the [advanced usage page](http://localhost:3000/pattern-lab/patterns/02-components-modal-35-modal-advanced-usage/02-components-modal-35-modal-advanced-usage.html)
+1. Given I am viewing the [advanced usage page](http://localhost:3000/pattern-lab/patterns/40-components-modal-35-modal-advanced-usage/40-components-modal-35-modal-advanced-usage.html)
 2. And I see a button with the text "Activate Timed Modal JS"
 3. When I click on that button
 4. Then the page reloads
@@ -68,7 +68,7 @@ Functional testing should be performed manually by the QA team across the standa
 
 ## Scenario: trigger variations
 
-1. Given I am viewing the [advanced usage page](http://localhost:3000/patterns/02-components-modal-40-modal-trigger-variations/02-components-modal-40-modal-trigger-variations.html)
+1. Given I am viewing the [advanced usage page](http://localhost:3000/patterns/40-components-modal-40-modal-trigger-variations/40-components-modal-40-modal-trigger-variations.html)
 2. And I click on the button and link modal trigger buttons
 3. Then a modal should appear
 4. And when I hover over the image
@@ -81,7 +81,7 @@ Functional testing should be performed manually by the QA team across the standa
 
 ## Scenario: web component
 
-1. Given I am viewing the [web component page](http://localhost:3000/pattern-lab/patterns/02-components-modal-999-modal-with-web-component/02-components-modal-999-modal-with-web-component.html)
+1. Given I am viewing the [web component page](http://localhost:3000/pattern-lab/patterns/40-components-modal-999-modal-with-web-component/40-components-modal-999-modal-with-web-component.html)
 2. And I click on each modal trigger button
 3. Then a modal should appear and behave according to the default modal behavior
 4. And each modal should have the same visual style as its Twig-rendered counterpart

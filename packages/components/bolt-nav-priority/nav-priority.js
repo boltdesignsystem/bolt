@@ -34,7 +34,6 @@ class BoltNavPriority extends withLitHtml {
   connecting() {
     Promise.all([customElements.whenDefined('bolt-navlink')]).then(_ => {
       this.isOpen = false;
-      this.offsettolerance = 5; // Extra wiggle room when calculating how many items can fit
 
       this.containerTabs = this.querySelector('.c-bolt-nav-priority');
       this.primaryNav = this.querySelector('.c-bolt-nav-priority__primary');
@@ -112,19 +111,25 @@ class BoltNavPriority extends withLitHtml {
       item.classList.remove('is-hidden');
     });
 
+    // Note: below we use `getBoundingClientRect()` because it returns a decimal.
+    // Whereas `offsetWidth` returns an integer, leading to rounding errors in
+    // Safari and older Edge < 80.
+
     // hide items that won't fit in the Primary
-    let stopWidth = this.dropdownButton.offsetWidth;
+    let stopWidth = this.dropdownButton.getBoundingClientRect().width;
     let hiddenItems = [];
-    const primaryWidth = this.primaryNav.offsetWidth;
+    const primaryWidth = this.primaryNav.getBoundingClientRect().width;
 
     let hideTheRest = false; // keep track when the items in the nav stop fitting
     this.primaryItems.forEach((item, i) => {
+      // Subtract 1 from the width of each item to fix a bug in Edge version < 80 where
+      // it miscalculates the size of the items and/or container and always adds at least
+      // 1 item to the "More" dropdown menu.
+      const itemWidth = item.getBoundingClientRect().width - 1;
+
       // make sure the items fit + we haven't already started to encounter items that don't
-      if (
-        primaryWidth + this.offsettolerance >= stopWidth + item.offsetWidth &&
-        hideTheRest !== true
-      ) {
-        stopWidth += item.offsetWidth;
+      if (primaryWidth >= stopWidth + itemWidth && hideTheRest !== true) {
+        stopWidth += itemWidth;
       } else {
         hideTheRest = true;
         item.classList.add('is-hidden');

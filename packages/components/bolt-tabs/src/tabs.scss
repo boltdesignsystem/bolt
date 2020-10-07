@@ -29,15 +29,16 @@ bolt-tabs {
 
 .c-bolt-tabs__label {
   // @todo: copied from navlink, refactor into shared styles
-  @include bolt-font-size(medium);
-  @include bolt-font-weight(semibold);
-
   display: flex;
   flex-shrink: 0;
   opacity: 0.9;
   position: relative;
   padding-bottom: $bolt-tabs-selected-border-size; // add space for negative margin of active tab underline
+  font-family: var(--bolt-type-font-family-headline);
+  font-size: var(--bolt-type-font-size-medium);
+  font-weight: var(--bolt-type-font-weight-semibold);
   color: bolt-theme(headline-link);
+  line-height: var(--bolt-type-line-height-medium);
   text-decoration: none;
   cursor: pointer;
   border-radius: $bolt-tabs-bg-border-radius;
@@ -66,6 +67,7 @@ bolt-tabs {
         opacity: bolt-opacity(100);
         height: calc(100% - #{$bolt-tabs-selected-border-size * 2});
       }
+
       .c-bolt-tabs__label-text:after {
         display: none;
       }
@@ -125,6 +127,7 @@ bolt-tabs {
         &:before {
           left: -#{$bolt-tabs-selected-border-size * 2};
         }
+
         &:after {
           display: none;
         }
@@ -145,11 +148,11 @@ bolt-tabs {
 
 // extra wrapping SPAN to help with inset padding
 .c-bolt-tabs__label-inner {
-  @include bolt-font-weight(
-    semibold
-  ); // include font-weight here to override Trigger defaults
   display: block;
   position: relative;
+  font-weight: var(
+    --bolt-type-font-weight-semibold
+  ); // include font-weight here to override Trigger defaults
 
   &:before {
     content: '';
@@ -201,51 +204,55 @@ bolt-tabs {
 }
 
 // Label spacing
-@each $spacing-value in $bolt-spacing-values {
-  $spacing-value-name: nth($spacing-value, 1);
+@each $size in $bolt-spacing-multiplier-system {
+  $size-name: nth($size, 1);
 
   @if (
-    $spacing-value-name !=
-      '' and
-      $spacing-value-name !=
+    $size-name !=
       'xxsmall' and
-      $spacing-value-name !=
+      $size-name !=
       'large' and
-      $spacing-value-name !=
+      $size-name !=
       'xlarge' and
-      $spacing-value-name !=
+      $size-name !=
       'xxlarge'
   ) {
     .c-bolt-tabs:not(.c-bolt-tabs--inset) {
-      .c-bolt-tabs__label--spacing-#{$spacing-value-name} {
+      .c-bolt-tabs__label--spacing-#{$size-name} {
         .c-bolt-tabs__label-inner {
-          padding-right: bolt-spacing(#{$spacing-value-name}) / 2;
-          padding-left: bolt-spacing(#{$spacing-value-name}) / 2;
+          padding-right: calc(var(--bolt-spacing-x-#{$size-name}) / 2);
+          padding-left: calc(var(--bolt-spacing-x-#{$size-name}) / 2);
         }
+
         .c-bolt-tabs__label-text {
-          @include bolt-padding-left(0);
-          @include bolt-padding-right(0);
+          padding-right: 0;
+          padding-left: 0;
         }
         // first-of-type for no-JS
         &:first-child,
         &:first-of-type {
           .c-bolt-tabs__label-inner {
-            margin-left: -(bolt-spacing(#{$spacing-value-name}) / 2);
+            margin-left: calc(var(--bolt-spacing-x-#{$size-name}) / -2);
           }
         }
         // last-of-type for no-JS
         &:last-child,
         &:last-of-type {
           .c-bolt-tabs__label-inner {
-            margin-right: -(bolt-spacing(#{$spacing-value-name}) / 2);
+            margin-right: calc(var(--bolt-spacing-x-#{$size-name}) / -2);
           }
         }
       }
     }
+
     .c-bolt-tabs--inset {
-      .c-bolt-tabs__label--spacing-#{$spacing-value-name} {
+      .c-bolt-tabs__label--spacing-#{$size-name} {
         .c-bolt-tabs__label-text {
-          @include bolt-padding(#{$spacing-value-name}, squished);
+          // Use longhand instead of short hand to fix a bug with older versions of Edge (e.g. 42, 17).
+          padding-top: calc(var(--bolt-spacing-y-#{$size-name}) / 2);
+          padding-right: var(--bolt-spacing-x-#{$size-name});
+          padding-bottom: calc(var(--bolt-spacing-y-#{$size-name}) / 2);
+          padding-left: var(--bolt-spacing-x-#{$size-name});
         }
       }
     }
@@ -253,9 +260,9 @@ bolt-tabs {
 }
 
 .c-bolt-tabs__nav {
-  @include bolt-margin-bottom(0);
   display: flex;
   flex-flow: row nowrap;
+  margin-bottom: 0;
 
   // Label align
   @at-root .c-bolt-tabs--align-center & {
@@ -300,9 +307,11 @@ bolt-tabs:not([ready]) {
   .c-bolt-tabs--align-center {
     justify-content: center;
   }
+
   .c-bolt-tabs--align-start {
     justify-content: flex-start;
   }
+
   .c-bolt-tabs--align-end {
     justify-content: flex-end;
   }

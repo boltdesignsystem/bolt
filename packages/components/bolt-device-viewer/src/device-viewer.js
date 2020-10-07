@@ -1,7 +1,7 @@
-import { polyfillLoader } from '@bolt/core-v3.x/polyfills';
+import { lazyQueue } from '@bolt/lazy-queue';
 
-polyfillLoader.then(res => {
-  import(
+lazyQueue(['bolt-device-viewer'], async () => {
+  await import(
     /* webpackChunkName: 'bolt-device-viewer' */ './device-viewer.standalone.js'
   );
 });

@@ -1,17 +1,16 @@
-import { polyfillLoader } from '@bolt/core-v3.x/polyfills';
+import { lazyQueue } from '@bolt/lazy-queue';
 
-polyfillLoader.then(res => {
-  import(
-    /*
-    webpackMode: 'eager',
-    webpackChunkName: 'bolt-radio-switch'
-  */ './radio-switch.js'
-  );
-
-  import(
-    /*
-    webpackMode: 'eager',
-    webpackChunkName: 'bolt-change-case'
-  */ './change-case.js'
-  );
+lazyQueue(['bolt-radio-switch'], async () => {
+  await Promise.all([
+    import(
+      /*
+      webpackChunkName: 'bolt-radio-switch'
+    */ './radio-switch.js'
+    ),
+    import(
+      /*
+      webpackChunkName: 'bolt-change-case'
+    */ './change-case.js'
+    ),
+  ]);
 });

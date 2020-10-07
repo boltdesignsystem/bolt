@@ -8,7 +8,7 @@ import {
 import classNames from 'classnames/dedupe';
 import imageStyles from './image.scss';
 import { lazySizes } from './_image-lazy-sizes';
-import schemaFile from '../image.schema.yml';
+import schemaFile from '../image.schema';
 import '@bolt/core-v3.x/utils/optimized-resize';
 
 let cx = classNames.bind(imageStyles);
@@ -93,6 +93,7 @@ class BoltImage extends BoltElement {
   disconnectedCallback() {
     super.disconnectedCallback && super.disconnectedCallback();
     window.removeEventListener('debouncedResize', this.onResize);
+    this.isLazyLoaded = false;
   }
 
   connectedCallback() {

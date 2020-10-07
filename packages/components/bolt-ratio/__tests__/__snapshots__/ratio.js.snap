@@ -2,21 +2,23 @@
 
 exports[`<bolt-ratio> Component <bolt-ratio> compiles 1`] = `
 <bolt-ratio ratio="20/11">
-  <replace-with-children class="c-bolt-ratio"
-                         style="padding-bottom: calc((11 / 20) * 100%); --aspect-ratio: 1.8181818181818;"
+  <ssr-keep for="bolt-ratio"
+            class="c-bolt-ratio"
+            style="padding-bottom: calc((11 / 20) * 100%); --aspect-ratio: 1.8181818181818;"
   >
     <img src="/fixtures/1200x660.jpg">
-  </replace-with-children>
+  </ssr-keep>
 </bolt-ratio>
 `;
 
 exports[`<bolt-ratio> Component <bolt-ratio> twig - ratio prop fraction containing a decimal 1`] = `
 <bolt-ratio ratio="12/8.5">
-  <replace-with-children class="c-bolt-ratio"
-                         style="padding-bottom: calc((8.5 / 12) * 100%); --aspect-ratio: 1.4117647058824;"
+  <ssr-keep for="bolt-ratio"
+            class="c-bolt-ratio"
+            style="padding-bottom: calc((8.5 / 12) * 100%); --aspect-ratio: 1.4117647058824;"
   >
     <img src="/fixtures/1200x850-alt.jpg">
-  </replace-with-children>
+  </ssr-keep>
 </bolt-ratio>
 `;
 

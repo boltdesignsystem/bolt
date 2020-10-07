@@ -11,21 +11,25 @@ $bolt-tooltip-bubble-triangle-width: 8px;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: bolt-spacing(xxsmall);
+  margin: var(--bolt-spacing-y-xxsmall) var(--bolt-spacing-x-xxsmall);
 
   &:not(.c-bolt-status-dialogue-bar--has-arrow) {
     &.c-bolt-status-dialogue-bar--box-float--center {
       justify-content: center;
     }
+
     &.c-bolt-status-dialogue-bar--box-float--up {
       align-items: flex-start;
     }
+
     &.c-bolt-status-dialogue-bar--box-float--right {
       justify-content: flex-end;
     }
+
     &.c-bolt-status-dialogue-bar--box-float--down {
       align-items: flex-end;
     }
+
     &.c-bolt-status-dialogue-bar--box-float--left {
       justify-content: flex-start;
     }
@@ -35,7 +39,7 @@ $bolt-tooltip-bubble-triangle-width: 8px;
     display: flex;
     flex-direction: column;
     max-width: 125px;
-    padding: bolt-spacing(xsmall) bolt-spacing(xsmall);
+    padding: var(--bolt-spacing-y-xsmall) var(--bolt-spacing-x-xsmall);
     color: bolt-color(black);
     border-radius: $bolt-border-radius;
     background-color: bolt-color(white);
@@ -58,10 +62,10 @@ $bolt-tooltip-bubble-triangle-width: 8px;
   }
 
   &__icon {
-    @include bolt-padding-right(xsmall);
     display: block;
     box-sizing: content-box;
-    margin-bottom: .25rem;
+    margin-bottom: 0.25rem;
+    padding-right: var(--bolt-spacing-x-xsmall);
 
     @include bolt-mq(small) {
       margin-bottom: 0;
@@ -70,7 +74,10 @@ $bolt-tooltip-bubble-triangle-width: 8px;
 
   &__slot {
     &--text {
-      line-height: ($bolt-line-height--xsmall + 0.2);
+      line-height: calc(
+        var(--bolt-type-line-height-xsmall) *
+          var(--bolt-type-line-height-multiplier-loose)
+      );
       text-align: left;
       @include bolt-font-weight(regular);
       @include bolt-font-size(xsmall);
@@ -83,10 +90,10 @@ $bolt-tooltip-bubble-triangle-width: 8px;
 
   &--arrow {
     z-index: 1;
+    font-size: 16px;
     color: white;
     line-height: 1;
     pointer-events: none;
-    font-size: 16px;
 
     &.c-bolt-status-dialogue-bar--alert {
       color: bolt-color(orange);
@@ -112,13 +119,12 @@ $bolt-tooltip-bubble-triangle-width: 8px;
 
   &--arrow--up {
     .c-bolt-status-dialogue-bar__content {
-      bottom: .5px;
+      bottom: 0.5px;
     }
 
     .c-bolt-status-dialogue-bar--arrow {
       text-shadow: 0 -3px 3px rgba(6, 10, 36, 0.18);
     }
-
   }
 
   &--arrow--right {

@@ -1,0 +1,18 @@
+{% set schema = bolt.data.components['@bolt-components-headline'].schema %}
+
+{% for weight in schema.properties.weight.enum %}
+  {% for style in schema.properties.style.enum %}
+    <bolt-stack spacing="small">
+      {% include "@bolt-components-headline/text.twig" with {
+        text: "This is " ~ weight ~ " weight and " ~ style ~ " text",
+        weight: weight,
+        style: style,
+        size: "large",
+      } only %}
+    </bolt-stack>
+  {% endfor %}
+{% endfor %}
+
+<bolt-banner align="start" status="warning">
+  <bolt-icon name="warning"></bolt-icon> Headline and subheadline have predefined weights, do not modify them without consulting a designer.
+</bolt-banner>

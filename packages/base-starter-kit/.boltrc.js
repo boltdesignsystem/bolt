@@ -1,6 +1,7 @@
 module.exports = {
   components: {
     global: [
+      '@bolt/components-progress-bar',
       '@bolt/core-v3.x',
       '@bolt/global',
       '@bolt/components-accordion',
@@ -30,6 +31,7 @@ module.exports = {
       '@bolt/components-grid',
       '@bolt/components-headline',
       '@bolt/components-hero',
+      '@bolt/components-li',
       '@bolt/components-icon',
       '@bolt/components-image',
       '@bolt/components-link',
@@ -50,6 +52,7 @@ module.exports = {
       '@bolt/components-smooth-scroll',
       '@bolt/components-stack',
       '@bolt/components-sticky',
+      '@bolt/components-ratio',
       '@bolt/components-table',
       '@bolt/components-tabs',
       '@bolt/components-teaser',
@@ -61,6 +64,9 @@ module.exports = {
       '@bolt/components-typeahead',
       '@bolt/components-ul',
       '@bolt/components-video',
+      '@bolt/elements-link',
+      '@bolt/layouts-list',
+      '@bolt/analytics-autolink',
     ],
     individual: [
       '@bolt/components-critical-fonts',

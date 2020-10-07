@@ -4,8 +4,8 @@
 @import '../../02-tools/tools-map-recursive-merge/tools-map-recursive-merge';
 
 // pre-defined theming system values
+// @todo: light and dark names are reversed here
 $bolt-theme-ui-colors: (
-  // This is actually dark.
   light: (
     border: bolt-color(white),
     contrast-filter: grayscale(100%) invert(100%) brightness(150%),
@@ -18,23 +18,22 @@ $bolt-theme-ui-colors: (
     text-disabled: bolt-color(gray),
     text: bolt-color(white),
     neutral: bolt-color(gray),
-    brand: bolt-color(indigo),
-    background-secondary: mix(bolt-color(white), bolt-color(indigo), 7.5%),
+    brand: bolt-color(navy),
+    background-secondary: mix(bolt-color(white), bolt-color(navy), 7.5%),
   ),
-  // This is actually light.
   dark: (
-    border: bolt-color(indigo, dark),
+    border: bolt-color(navy, dark),
     contrast-filter: none,
     disabled: bolt-color(gray, light),
-    headline-link: bolt-color(indigo, light),
-    headline: bolt-color(indigo),
-    link: bolt-color(indigo, light),
-    primary: bolt-color(indigo, light),
+    headline-link: bolt-color(navy, light),
+    headline: bolt-color(navy),
+    link: bolt-color(navy, light),
+    primary: bolt-color(navy, light),
     secondary: bolt-color(white),
     text-disabled: bolt-color(gray),
     text: bolt-color(black),
     neutral: bolt-color(gray),
-    brand: bolt-color(indigo),
+    brand: bolt-color(navy),
     background-secondary: bolt-color(white),
   ),
 ) !default;
@@ -73,10 +72,10 @@ $bolt-themes: (
     background: bolt-color(gray, xlight),
   ),
   dark: (
-    background: bolt-color(indigo),
+    background: bolt-color(navy),
   ),
   xdark: (
-    background: bolt-color(indigo, dark),
+    background: bolt-color(navy, dark),
   ),
 ) !default;
 
@@ -156,8 +155,7 @@ $bolt-themes-export: ();
     @if type-of($themeOptionValue) ==
       color and
       type-of($themeOptionValue) !=
-      string
-    {
+      string {
       $newColor: rgba($themeOptionValue, 1);
 
       $red: round(red($newColor));
@@ -166,8 +164,7 @@ $bolt-themes-export: ();
 
       $bolt-themes-export: map-set-deep(
         $bolt-themes-export,
-        ($themeName,
-        $themeOptionName),
+        ($themeName, $themeOptionName),
         rgb($red, $green, $blue)
       );
     }
@@ -187,8 +184,7 @@ $bolt-themes-export: ();
     type-of($themePropVal) ==
     color and
     type-of($themePropVal) !=
-    string
-  {
+    string {
     @return true;
   } @else {
     @return false;

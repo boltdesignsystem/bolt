@@ -7,6 +7,7 @@
 // 2. [Mai] All the theming stuff is an interim fix until the bolt-text is refactored, which will cover all the text link styles as well.
 // 3. [Morse] This mixin outputs a separate ruleset for each selector to prevent IE from failing on unrecognized selectors like `:host`. It is not a substitute for comma-separated selectors.
 // 4. [Morse] Bolt-link delegates focus to inner element.
+// 5. [Mai] If a <button> tag is used, fonts styles need to reset to override browser defaults.
 
 @import '@bolt/core-v3.x';
 
@@ -25,7 +26,7 @@ $bolt-link-spacing: 'xxsmall';
   @include bolt-button-reset; // [1]
   display: inline;
   opacity: bolt-opacity(100);
-  margin-left: bolt-spacing(#{$bolt-link-spacing}) * -1;
+  margin-left: calc(var(--bolt-spacing-x-#{$bolt-link-spacing}) * -1);
   color: bolt-theme(link);
   text-decoration: underline;
   cursor: pointer;
@@ -40,6 +41,13 @@ $bolt-link-spacing: 'xxsmall';
   &:focus:active {
     opacity: $bolt-global-link-active-opacity;
   }
+}
+
+button.c-bolt-link {
+  font-family: inherit; // [5]
+  font-size: inherit; // [5]
+  font-weight: inherit; // [5]
+  line-height: inherit; // [5]
 }
 
 .c-bolt-link--display-flex {
@@ -67,7 +75,7 @@ $bolt-link-spacing: 'xxsmall';
 
 .c-bolt-link__icon,
 .c-bolt-link__text {
-  @include bolt-padding-left(#{$bolt-link-spacing});
+  padding-left: var(--bolt-spacing-x-#{$bolt-link-spacing});
 }
 
 .c-bolt-link__text {

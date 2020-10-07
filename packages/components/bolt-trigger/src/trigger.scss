@@ -48,12 +48,13 @@ bolt-trigger {
 // Component styles
 .c-bolt-trigger {
   @include bolt-button-reset; // [1]
-  @include bolt-margin(0); // [1]
-  @include bolt-font-family(body); // [1]
-  @include bolt-font-size(medium); // [2]
   display: inline; // Default to inline
   opacity: bolt-opacity(100);
+  margin: 0; // [1]
+  font-family: var(--bolt-type-font-family-body); // [1]
+  font-size: var(--bolt-type-font-size-medium); // [2]
   color: inherit;
+  line-height: var(--bolt-type-line-height-medium); // [2]
   text-align: inherit;
   text-decoration: initial;
   border: none; // [1]
@@ -85,7 +86,8 @@ $bolt-trigger-cursor-values: auto pointer zoom-in zoom-out; // These values need
       }
     } @else if $cursor == zoom-out {
       @include bolt-ie11-only {
-        cursor: url('~@bolt/components-trigger/src/cursor-zoom-out.cur'), pointer;
+        cursor: url('~@bolt/components-trigger/src/cursor-zoom-out.cur'),
+          pointer;
       }
     }
   }

@@ -136,18 +136,15 @@ async function gatherBoltVersionUrls() {
   let tags = await getBoltTags();
   const tagUrls = [];
 
-  for (index = 0; index < tags.length; index++) {
+  for (let index = 0; index < tags.length; index++) {
     let tag = tags[index].name;
     let tagString = tag
       .replace(/\//g, '-') // `/` => `-`
       .replace('--', '-') // `--` => `-`
       .replace(/\./g, '-'); // `.` => `-`
 
-    const newSiteUrl = `https://${tagString}.boltdesignsystem.com`;
-    const oldSiteUrl = `https://${tagString}.bolt-design-system.com`;
-
-    urlsToCheck.push(newSiteUrl);
-    urlsToCheck.push(oldSiteUrl);
+    const siteUrl = `https://${tagString}.boltdesignsystem.com`;
+    urlsToCheck.push(siteUrl);
   }
 
   let results;
@@ -162,27 +159,24 @@ async function gatherBoltVersionUrls() {
     await store.save();
   }
 
-  for (index = 0; index < tags.length; index++) {
+  for (let index = 0; index < tags.length; index++) {
     let tag = tags[index].name;
     let tagString = tag
       .replace(/\//g, '-') // `/` => `-`
       .replace('--', '-') // `--` => `-`
       .replace(/\./g, '-'); // `.` => `-`
 
-    const newSiteUrl = `https://${tagString}.boltdesignsystem.com`;
-    const oldSiteUrl = `https://${tagString}.bolt-design-system.com`;
+    const siteUrl = `https://${tagString}.boltdesignsystem.com`;
 
-    if (results[newSiteUrl].status === 'alive') {
+    if (
+      semver.valid(tag) &&
+      results[siteUrl] !== undefined &&
+      results[siteUrl].status === 'alive'
+    ) {
       tagUrls.push({
         label: tag,
         type: 'option',
-        value: newSiteUrl,
-      });
-    } else if (results[oldSiteUrl].status === 'alive') {
-      tagUrls.push({
-        label: tag,
-        type: 'option',
-        value: oldSiteUrl,
+        value: siteUrl,
       });
     }
   }

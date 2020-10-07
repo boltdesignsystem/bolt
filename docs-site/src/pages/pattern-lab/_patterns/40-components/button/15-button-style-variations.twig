@@ -1,0 +1,25 @@
+{% set schema = bolt.data.components["@bolt-components-button"].schema %}
+
+{% for style in schema.properties.style.enum %}
+  {% set button %}
+    {% include "@bolt-components-button/button.twig" with {
+      text: style|capitalize ~ " button",
+      style: style
+    } only %}
+  {% endset %}
+  {% set button_disabled %}
+    {% include "@bolt-components-button/button.twig" with {
+      text: style|capitalize ~ " button (disabled)",
+      disabled: true,
+      style: style
+    } only %}
+  {% endset %}
+
+  {% include "@bolt-components-list/list.twig" with {
+    display: "inline",
+    items: [
+      button,
+      button_disabled,
+    ]
+  } only %}
+{% endfor %}

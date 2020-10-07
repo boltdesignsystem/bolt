@@ -3,9 +3,7 @@ import {
   renderString,
   stopServer,
 } from '../../../testing/testing-helpers';
-const { readYamlFileSync } = require('@bolt/build-tools/utils/yaml');
-const { join } = require('path');
-const schema = readYamlFileSync(join(__dirname, '../device-viewer.schema.yml'));
+import schema from '../device-viewer.schema';
 const { deviceName, color, orientation } = schema.properties;
 
 describe('<bolt-device-viewer> Component', () => {

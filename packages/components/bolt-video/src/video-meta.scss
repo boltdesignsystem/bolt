@@ -1,19 +1,16 @@
 @import '@bolt/core-v3.x';
 
-
 $bolt-video-meta-border-radius: $bolt-border-radius;
 $bolt-video-meta-transition: $bolt-transition;
 
-
 #{$bolt-namespace}-video-meta {
-  @include bolt-padding(xsmall);
-
   display: block;
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
+  padding: var(--bolt-spacing-y-xsmall) var(--bolt-spacing-x-xsmall);
   pointer-events: none;
 }
 
@@ -26,12 +23,11 @@ $bolt-video-meta-transition: $bolt-transition;
 }
 
 .c-#{$bolt-namespace}-video-meta__item {
-  @include bolt-padding(xsmall, squished);
-
   display: inline-block;
   opacity: bolt-opacity(100);
   position: absolute;
   max-width: 100%;
+  padding: calc(var(--bolt-spacing-x-xsmall) / 2) var(--bolt-spacing-x-xsmall);
   color: bolt-color(white);
   border-radius: $bolt-video-meta-border-radius;
   background-color: rgba(bolt-color(black), 0.8);
@@ -39,15 +35,17 @@ $bolt-video-meta-transition: $bolt-transition;
 }
 
 .c-#{$bolt-namespace}-video-meta__item--title {
-  @include bolt-font-size(small);
   top: 0;
   left: 0;
+  font-size: var(--bolt-type-font-size-small);
+  line-height: var(--bolt-type-line-height-small);
 }
 
 .c-#{$bolt-namespace}-video-meta__item--duration {
-  @include bolt-font-size(xsmall);
   right: 0;
   bottom: 0;
+  font-size: var(--bolt-type-font-size-xsmall);
+  line-height: var(--bolt-type-line-height-xsmall);
 }
 
 // [Mai] Hide the duration (which covers the controls) video is started or when paused.

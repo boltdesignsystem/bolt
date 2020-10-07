@@ -41,23 +41,25 @@ describe('<bolt-icon> Component', () => {
   });
 
   test('Default <bolt-icon> with Shadow DOM renders', async function() {
-    const defaultIconShadowRoot = await page.evaluate(() => {
+    const defaultIconShadowRoot = await page.evaluate(async () => {
       const icon = document.createElement('bolt-icon');
       icon.setAttribute('name', 'add-open');
       icon.setAttribute('background', 'circle');
       icon.setAttribute('size', 'large');
       document.body.appendChild(icon);
-      icon.updated();
+      await customElements.whenDefined('bolt-icon');
+      await icon.updateComplete;
       return icon.renderRoot.innerHTML;
     });
 
-    const defaultIconOuter = await page.evaluate(() => {
+    const defaultIconOuter = await page.evaluate(async () => {
       const icon = document.createElement('bolt-icon');
       icon.setAttribute('name', 'add-open');
       icon.setAttribute('background', 'circle');
       icon.setAttribute('size', 'large');
       document.body.appendChild(icon);
-      icon.updated();
+      await customElements.whenDefined('bolt-icon');
+      await icon.updateComplete;
       return icon.outerHTML;
     });
 
@@ -76,13 +78,14 @@ describe('<bolt-icon> Component', () => {
   });
 
   test('Additional <bolt-icon> with Shadow DOM renders', async function() {
-    const defaultIconShadowRoot = await page.evaluate(() => {
+    const defaultIconShadowRoot = await page.evaluate(async () => {
       const icon = document.createElement('bolt-icon');
       icon.setAttribute('name', 'yeti');
       icon.setAttribute('background', 'circle');
       icon.setAttribute('size', 'large');
       document.body.appendChild(icon);
-      icon.updated();
+      await customElements.whenDefined('bolt-icon');
+      await icon.updateComplete;
       return icon.renderRoot.innerHTML;
     });
 
@@ -92,7 +95,7 @@ describe('<bolt-icon> Component', () => {
       icon.setAttribute('background', 'circle');
       icon.setAttribute('size', 'large');
       document.body.appendChild(icon);
-      icon.updated();
+      icon.updateComplete;
       return icon.outerHTML;
     });
 

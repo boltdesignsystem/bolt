@@ -3,6 +3,122 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.28.0](https://github.com/boltdesignsystem/bolt/compare/v2.27.1...v2.28.0) (2020-09-16)
+
+**Note:** Version bump only for package @bolt/components-card-replacement
+
+
+
+
+
+# [2.27.0](https://github.com/boltdesignsystem/bolt/compare/v2.27.0-alpha-calculator-2...v2.27.0) (2020-08-28)
+
+**Note:** Version bump only for package @bolt/components-card-replacement
+
+
+
+
+
+## [2.26.3](https://github.com/boltdesignsystem/bolt/compare/v2.26.2...v2.26.3) (2020-07-31)
+
+**Note:** Version bump only for package @bolt/components-card-replacement
+
+
+
+
+
+# [2.26.0](https://github.com/boltdesignsystem/bolt/compare/v2.25.1...v2.26.0) (2020-07-22)
+
+
+### Bug Fixes
+
+* lint css ([71f8278](https://github.com/boltdesignsystem/bolt/commit/71f82780c9019c74abef977ab31f3304282854fc))
+
+
+
+
+
+## [2.25.1](https://github.com/boltdesignsystem/bolt/compare/v2.25.0...v2.25.1) (2020-07-14)
+
+**Note:** Version bump only for package @bolt/components-card-replacement
+
+
+
+
+
+# [2.25.0](https://github.com/boltdesignsystem/bolt/compare/v2.22.2...v2.25.0) (2020-07-13)
+
+
+### Bug Fixes
+
+* proper role attributes and card media border radius ([9b1b67e](https://github.com/boltdesignsystem/bolt/commit/9b1b67e47114b2704605f1fadb72401800e86fa8))
+* resolve conflicts ([92743cf](https://github.com/boltdesignsystem/bolt/commit/92743cf5734703ccfb94bc6d49e0a3d667e81fe3))
+* update componet descriptions ([b9fefe6](https://github.com/boltdesignsystem/bolt/commit/b9fefe6106eb74e3d4794a51443a2b576d9651d9))
+
+
+### Features
+
+* globally lazyload JS bundles to expose same existing issues as the ones found with the new lazy-queue functionality ([7cc4ce2](https://github.com/boltdesignsystem/bolt/commit/7cc4ce2fa9ce28dc4f9f37078762f106ca87729f))
+
+
+
+
+
+## [2.24.1](https://github.com/boltdesignsystem/bolt/compare/v2.24.0...v2.24.1) (2020-06-17)
+
+**Note:** Version bump only for package @bolt/components-card-replacement
+
+
+
+
+
+# [2.24.0](https://github.com/boltdesignsystem/bolt/compare/v2.23.0...v2.24.0) (2020-06-05)
+
+**Note:** Version bump only for package @bolt/components-card-replacement
+
+
+
+
+
+# [2.23.0](https://github.com/boltdesignsystem/bolt/compare/v2.22.1...v2.23.0) (2020-05-06)
+
+
+### Bug Fixes
+
+* proper role attributes and card media border radius ([9b1b67e](https://github.com/boltdesignsystem/bolt/commit/9b1b67e47114b2704605f1fadb72401800e86fa8))
+
+
+### Features
+
+* globally lazyload JS bundles to expose same existing issues as the ones found with the new lazy-queue functionality ([7cc4ce2](https://github.com/boltdesignsystem/bolt/commit/7cc4ce2fa9ce28dc4f9f37078762f106ca87729f))
+
+
+
+
+
+# [2.22.0](https://github.com/boltdesignsystem/bolt/compare/v2.21.1...v2.22.0) (2020-04-22)
+
+
+### Bug Fixes
+
+* border radius ([2567f31](https://github.com/boltdesignsystem/bolt/commit/2567f31e79516c435296a60b2790b27ee431a308))
+* border-radius logic ([894af29](https://github.com/boltdesignsystem/bolt/commit/894af29109d79fdbc9d080055413b3568e0ddd94))
+* card background stacking order ([c733d08](https://github.com/boltdesignsystem/bolt/commit/c733d08567ae77cba718544f363fa4e874bc6df2))
+* create tests for new props ([744a8ae](https://github.com/boltdesignsystem/bolt/commit/744a8ae923cdb976cda27cd7094a4d7f4070da8f))
+* remove join ([3eddaf2](https://github.com/boltdesignsystem/bolt/commit/3eddaf24cfb6b0d63ecdf23f706916bc7f0cb012))
+* remove unused `.spacing` property on card-replacement-body WC markup ([8aff9cc](https://github.com/boltdesignsystem/bolt/commit/8aff9cc4d202559a53fc32c4dd3fff3897f8f09d))
+* use spacing map for css ([4a04e4f](https://github.com/boltdesignsystem/bolt/commit/4a04e4f9270619442fd046a6c4aad1ac64c10136))
+
+
+### Features
+
+* pass `spacing` to card-replacement-action-item via context ([994a42f](https://github.com/boltdesignsystem/bolt/commit/994a42f0f9f42baec97cd99d91f357e708796cb7))
+* pass `spacing` via context from card-replacement to card-replacement-body ([7ab2b1c](https://github.com/boltdesignsystem/bolt/commit/7ab2b1cf16a45c2a59a2996f72b5df9b8d759a8a))
+
+
+
+
+
 ## [2.21.1](https://github.com/boltdesignsystem/bolt/compare/v2.21.0...v2.21.1) (2020-04-10)
 
 **Note:** Version bump only for package @bolt/components-card-replacement

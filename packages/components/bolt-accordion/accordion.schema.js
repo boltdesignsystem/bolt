@@ -1,6 +1,7 @@
 const accordionItem = require('./accordion-item.schema');
 
 module.exports = {
+  $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'Accordion',
   type: 'object',
   properties: {
@@ -43,6 +44,16 @@ module.exports = {
         'Vertically align the accordion trigger content and trigger icon.',
       default: 'center',
       enum: ['top', 'center'],
+    },
+    scroll_offset_selector: {
+      type: 'string',
+      description:
+        'Selects a fixed element on the page, offsets smooth scrolling by the height of that element. Must be a valid CSS selector.',
+    },
+    scroll_offset: {
+      type: 'integer',
+      description:
+        'Additional offset for smooth scrolling, integer converted to pixel value.',
     },
   },
   definitions: {

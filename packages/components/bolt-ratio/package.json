@@ -1,7 +1,7 @@
 {
   "name": "@bolt/components-ratio",
-  "version": "2.21.0",
-  "description": "A small helper-component that display's nested content / other components at a specific aspect ratio.",
+  "version": "2.28.0",
+  "description": "A small helper-component that displays image or video children at a specific aspect ratio.",
   "keywords": [
     "bolt design system",
     "bolt",
@@ -16,8 +16,9 @@
   "main": "index.js",
   "style": "index.scss",
   "dependencies": {
-    "@bolt/core-v3.x": "^2.21.0",
-    "@bolt/element": "^2.21.0"
+    "@bolt/core-v3.x": "^2.28.0",
+    "@bolt/element": "^2.28.0",
+    "@bolt/lazy-queue": "^2.23.0"
   },
   "publishConfig": {
     "access": "public"
@@ -35,5 +36,5 @@
       "web": "http://mikemai.net/"
     }
   ],
-  "schema": "bolt-ratio.schema.yml"
+  "schema": "ratio.schema.js"
 }
