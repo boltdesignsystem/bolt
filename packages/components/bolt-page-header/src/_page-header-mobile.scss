@@ -1,13 +1,7 @@
-@import '@bolt/core-v3.x';
-
 /* ------------------------------------ *\
    Page Header (mobile hamburger menu)
 \* ------------------------------------ */
 @include bolt-mq($until: large) {
-  .c-bolt-page-header {
-    position: fixed;
-  }
-
   // Primary section container
   .c-bolt-page-header__primary {
     grid-template-columns: minmax(166px, 275px) 1fr;
@@ -17,40 +11,18 @@
     padding-inline-start: $bolt-page-header-mobile-primary-nav-spacing-x;
   }
 
-  // Logo
-  .c-bolt-page-header__logo {
-  }
-
-  .c-bolt-page-header__logo__link {
-  }
-
-  .c-bolt-page-header__logo__img {
-  }
-
   // Toolbar
   .c-bolt-page-header__toolbar {
     margin-inline-start: auto;
   }
 
-  .c-bolt-page-header__action-trigger {
-  }
-
-  .c-bolt-page-header__action-trigger__text {
-  }
-
-  .c-bolt-page-header__action-trigger__icon {
-  }
-
-  .c-bolt-page-header__action-trigger__icon--close {
-  }
-
-  .c-bolt-page-header__action-trigger[aria-expanded='true'] {
-  }
-
-  // Dropdown search panel
+  // Search panel
   .c-bolt-page-header__search {
     padding-inline-end: $bolt-page-header-mobile-expanded-content-spacing-x;
     padding-inline-start: $bolt-page-header-mobile-expanded-content-spacing-x;
+    transform: translate3d(-100%, 0, 0);
+    will-change: visibility, transform;
+    transition: visibility $bolt-transition, transform $bolt-transition;
   }
 
   // Off-canvas primary nav
@@ -189,14 +161,14 @@
 
   // Nav link
   .c-bolt-page-header__nav-link {
-    @include bolt-page-header-action-trigger(
-      $bolt-page-header-mobile-expanded-content-spacing-x
-    );
+    @include bolt-page-header-action-trigger;
 
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
+    padding-inline-end: $bolt-page-header-mobile-expanded-content-spacing-x;
+    padding-inline-start: $bolt-page-header-mobile-expanded-content-spacing-x;
     border-radius: 0;
   }
 
