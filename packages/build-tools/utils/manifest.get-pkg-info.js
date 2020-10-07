@@ -10,7 +10,6 @@ let config; // cached Bolt config
 
 // don't automatically include these Bolt packages as extra (undeclared) dependencies
 const missingBoltPkgsWhitelist = [
-  '@bolt/core',
   '@bolt/core-v3.x',
   '@bolt/polyfills',
   '@bolt/element',
@@ -133,6 +132,7 @@ async function getPkgInfo(pkgName) {
         }
 
         // @todo: remove with v3.0
+        // @note: I don't completely understand what might break if we remove this, going to wait until 4.0 to remove it
         if (dependency.includes('bolt')) {
           info.deps.push(dependency);
         }
