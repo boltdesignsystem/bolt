@@ -13,6 +13,9 @@ module.exports = {
       {
         required: ['border'],
       },
+      {
+        required: ['contentItems'],
+      },
     ],
   },
   properties: {
@@ -47,7 +50,7 @@ module.exports = {
       default: false,
       enum: [true, false],
     },
-    contentItems: {
+    items: {
       type: 'array',
       description: 'Content items to populate the action blocks.',
       items: {
