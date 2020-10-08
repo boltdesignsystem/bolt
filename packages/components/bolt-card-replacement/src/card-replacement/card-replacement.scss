@@ -159,6 +159,7 @@ bolt-card-replacement {
   // Non-themed card-replacement color settings.
   &:not([class*='t-bolt']) {
     color: bolt-theme(text);
+    // Note: as of v3.0 no longer uses themify to set variable token
     background-color: bolt-theme(background, 0.85);
     background-image: linear-gradient(
       to bottom,

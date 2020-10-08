@@ -13,8 +13,6 @@ const config = deepmerge(baseConfig, {
   openServerAtStart: true,
   // Environmental variable / preset to use
   env: 'pwa',
-  compat: false,
-  esModules: true,
   srcDir: './src/pages',
   buildDir: '../www/build',
   dataDir: '../www/build/data',
@@ -117,10 +115,6 @@ const config = deepmerge(baseConfig, {
     individual: [],
   },
   copy: [
-    {
-      from: require.resolve(`@bolt/critical-path-polyfills`),
-      to: path.join(__dirname, '../www/build'),
-    },
     {
       from: path.join(
         path.dirname(require.resolve(`@bolt/components-typeahead`)),

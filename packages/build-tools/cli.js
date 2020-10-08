@@ -28,7 +28,6 @@ program
     'Pass in a specific config file instead of default of ".boltrc.js/json".',
   )
   .option('--prod', configSchema.properties.prod.description)
-  .option('--compat', configSchema.properties.compat.description)
   .option(
     '-v, --verbosity <amount>',
     configSchema.properties.verbosity.description,
@@ -125,11 +124,6 @@ if (program.configFile) {
         config.prod =
           typeof program.prod === 'undefined' ? config.prod : program.prod;
 
-        config.compat =
-          typeof program.compat === 'undefined'
-            ? config.compat
-            : program.compat;
-
         // automatically set enableSSR to true in prod mode and false in dev mode, unless manually set.
         config.enableSSR = false;
 
@@ -156,10 +150,6 @@ if (program.configFile) {
 Logging Verbosity: ${config.verbosity}
 Environment: ${config.prod ? 'Production' : 'Development'}
 Multi-lang: ${config.i18n}
-
-Bundling for...
-  - Modern Browsers? ${config.esModules ? '✅' : '❌'}
-  - Legacy Browsers? ${config.compat ? '✅' : '❌'}
 `);
 
       console.log(

@@ -68,10 +68,5 @@ module.exports = {
       '@bolt/layouts-list',
       '@bolt/analytics-autolink',
     ],
-    individual: [
-      '@bolt/components-critical-fonts',
-      '@bolt/components-critical-css',
-      '@bolt/components-critical-css-vars',
-    ],
   },
 };
