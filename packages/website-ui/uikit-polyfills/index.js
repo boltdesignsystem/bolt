@@ -9,30 +9,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 */
 
 /*
- * Polyfills loaded: HTML Imports, Custom Elements, platform polyfills, template
- * Used in: IE 11
+ * Polyfills loaded: Custom Elements (for Edge only)
  */
 
-import 'regenerator-runtime/runtime';
-import '@webcomponents/template/template.js';
-import 'core-js/modules/es.array.find';
-
-import 'element-closest';
-import 'core-js/modules/es.string.includes';
-import 'core-js/modules/es.array.includes';
-import './platform/remove-polyfill.js';
-import './platform/es6-misc';
-import './platform/custom-event';
-import './platform/promise';
-import './platform/symbol';
-import './platform/flag-parser';
-import '@webcomponents/custom-elements/src/custom-elements.js';
-import '@webcomponents/url/url.js';
-import './platform/baseuri';
-import './platform/unresolved';
-import 'core-js/modules/es.array.for-each';
-import 'core-js/modules/es.array.from';
-
-if (window.NodeList && !NodeList.prototype.forEach) {
-  NodeList.prototype.forEach = Array.prototype.forEach;
-}
+import '@webcomponents/custom-elements';
