@@ -208,6 +208,15 @@ $bolt-page-header-mobile-expanded-content-spacing-x: calc(
     border-radius: 6px;
     background-color: var(--bolt-color-gray);
   }
+
+  @media (prefers-reduced-motion) {
+    &,
+    *,
+    *:before,
+    *:after {
+      transition: none !important;
+    }
+  }
 }
 
 // Primary section container

@@ -266,9 +266,39 @@
         line-height: calc(#{$bolt-page-header-click-target-size} / 2 - 4px);
         white-space: nowrap;
 
+        &:after {
+          content: '';
+          opacity: 0;
+          position: absolute;
+          top: -4px;
+          left: 0;
+          transform: translateY(3px);
+          width: 100%;
+          height: calc(#{$bolt-page-header-click-target-size} + 4px);
+          background: linear-gradient(
+            transparent 0%,
+            transparent calc(100% - 3px),
+            bolt-theme(link) calc(100% - 3px),
+            bolt-theme(link) 100%
+          );
+          will-change: opacity, transform;
+          transition: opacity $bolt-transition, transform $bolt-transition;
+        }
+
+        &:hover {
+          &:before {
+            opacity: 0;
+          }
+        }
+
         &[aria-expanded='true'] {
           &:before {
             opacity: 0.1;
+          }
+
+          &:after {
+            opacity: 1;
+            transform: none;
           }
         }
       }
@@ -284,7 +314,7 @@
         top: var(--bolt-page-header-height);
         right: 0;
         left: 0;
-        transform: translate3d(0, calc(var(--bolt-spacing-y-small) * -1), 0);
+        transform: translate3d(0, calc(var(--bolt-spacing-y-xsmall) * -1), 0);
         z-index: bolt-z-index(navFixed);
         width: 100%;
         padding-top: var(--bolt-spacing-y-medium);
@@ -323,6 +353,10 @@
 
           .c-bolt-page-header__nav-link--heading {
             margin-bottom: var(--bolt-spacing-y-xsmall);
+
+            > * {
+              font-weight: inherit;
+            }
           }
 
           > .c-bolt-page-header__nav-link--heading {
@@ -390,7 +424,8 @@
       }
 
       > .c-bolt-page-header__nav-link[aria-expanded='true']
-        ~ .c-bolt-page-header__nav-list {
+        ~ .c-bolt-page-header__nav-list,
+      &:hover > .c-bolt-page-header__nav-list {
         @include bolt-vertical-scroll;
 
         visibility: visible;
@@ -398,6 +433,17 @@
         transform: translate3d(0, 0, 0);
         transition-delay: $bolt-transition-timing;
         max-height: calc(100vh - var(--bolt-page-header-height));
+      }
+
+      &:hover > .c-bolt-page-header__nav-link[aria-expanded] {
+        &:after {
+          opacity: 1;
+          transform: none;
+        }
+      }
+
+      &:hover > .c-bolt-page-header__nav-list {
+        z-index: bolt-z-index(modal);
       }
     }
   }
