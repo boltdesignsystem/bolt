@@ -86,7 +86,7 @@
     {% else %}
       {% for item in items %}
         <li class="{{ "#{base_class}__item" }}">
-          {% include "@bolt-components-action-blocks/_action-blocks-item.twig" with item only %}
+          {% include "@bolt-components-action-blocks/action-block.twig" with item only %}
         </li>
       {% endfor %}
     {% endif %}
