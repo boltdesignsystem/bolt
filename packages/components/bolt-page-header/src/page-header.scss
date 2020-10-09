@@ -241,13 +241,10 @@ $bolt-page-header-mobile-expanded-content-spacing-x: calc(
 
 // Logo
 .c-bolt-page-header__logo {
-  display: flex;
-}
-
-.c-bolt-page-header__logo__link {
   @include bolt-page-header-action-trigger;
 
-  display: inline-flex;
+  display: flex;
+  justify-content: flex-start;
   align-items: center;
   height: $bolt-page-header-click-target-size;
   padding-top: 2px;
@@ -255,10 +252,9 @@ $bolt-page-header-mobile-expanded-content-spacing-x: calc(
 }
 
 .c-bolt-page-header__logo__img {
+  display: block;
   max-width: var(--c-bolt-page-header-logo-max-width);
   height: 30px;
-  object-fit: contain;
-  object-position: 0% 50%;
 }
 
 // Toolbar

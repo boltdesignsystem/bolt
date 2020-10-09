@@ -42,13 +42,14 @@
 
   // Search panel
   .c-bolt-page-header__search {
-    padding-inline-end: calc(var(--bolt-page-padding-x) + 8vw);
-    padding-inline-start: calc(var(--bolt-page-padding-x) + 8vw);
     opacity: 0;
     transform: translate3d(0, calc(var(--bolt-spacing-y-small) * -1), 0);
+    z-index: bolt-z-index(navFixed);
     will-change: opacity, visibility, transform;
     transition: opacity $bolt-transition, visibility $bolt-transition,
       transform $bolt-transition;
+    padding-inline-end: calc(var(--bolt-page-padding-x) + 8vw);
+    padding-inline-start: calc(var(--bolt-page-padding-x) + 8vw);
 
     @at-root .c-bolt-page-header__action-trigger--search[aria-expanded='true']
         ~ #{&} {
@@ -315,7 +316,7 @@
         right: 0;
         left: 0;
         transform: translate3d(0, calc(var(--bolt-spacing-y-xsmall) * -1), 0);
-        z-index: bolt-z-index(navFixed);
+        z-index: 1;
         width: 100%;
         padding-top: var(--bolt-spacing-y-medium);
         padding-bottom: var(--bolt-spacing-y-medium);
@@ -443,7 +444,7 @@
       }
 
       &:hover > .c-bolt-page-header__nav-list {
-        z-index: bolt-z-index(modal);
+        z-index: 2;
       }
     }
   }
