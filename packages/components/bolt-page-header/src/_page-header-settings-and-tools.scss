@@ -1,0 +1,158 @@
+/* ------------------------------------ *\
+   Page Header settings and tools
+\* ------------------------------------ */
+
+// Component CSS Vars: can be customized by the consumer
+// 1. var(--c-bolt-page-header-desktop-spacing-y)
+// 2. var(--c-bolt-page-header-desktop-primary-nav-link-spacing-x)
+// 3. var(--c-bolt-page-header-desktop-primary-nav-link-font-size)
+// 4. var(--c-bolt-page-header-logo-max-width)
+//
+// Example:
+// :root {
+//   /* Above large breakpoint, this sets the spacing-y (padding top/bottom) of the page header to be 60px */
+//   --c-bolt-page-header-desktop-spacing-y: 60px;
+//   /* Above large breakpoint, this sets the spacing-x (padding left/right) of any primary nav link to be 5px */
+//   --c-bolt-page-header-desktop-primary-nav-link-spacing-x: 5px;
+//   /* Above large breakpoint, this sets the font-size of any primary nav link to be 14px */
+//   --c-bolt-page-header-desktop-primary-nav-link-font-size: 14px;
+//   /* At any breakpoint, this limits the logo to be no wider than 200px */
+//   --c-bolt-page-header-logo-max-width: 200px;
+// }
+//
+//
+// Global CSS Var: can be used by other fixed/sticky components to figure out offset value, NOT for customization
+// 1. var(--bolt-page-header-height)
+//
+// Example:
+// .something-sticky {
+//   position: fixed;
+//   top: var(--bolt-page-header-height);
+// }
+
+$bolt-page-header-action-trigger-spacing-x: var(--bolt-spacing-x-small);
+$bolt-page-header-click-target-size: 48px;
+
+$bolt-page-header-desktop-util-nav-height: var(--bolt-spacing-y-medium);
+$bolt-page-header-desktop-spacing-y: var(
+  --c-bolt-page-header-desktop-spacing-y,
+  0.9rem
+);
+$bolt-page-header-desktop-padding-top: calc(
+  #{$bolt-page-header-desktop-spacing-y} + #{$bolt-page-header-desktop-util-nav-height}
+);
+$bolt-page-header-desktop-padding-bottom: #{$bolt-page-header-desktop-spacing-y};
+
+$bolt-page-header-mobile-spacing-y: 3px;
+$bolt-page-header-mobile-primary-nav-spacing-x: var(--bolt-spacing-x-xsmall);
+$bolt-page-header-mobile-expanded-content-spacing-x: calc(
+  #{$bolt-page-header-mobile-primary-nav-spacing-x} + #{$bolt-page-header-action-trigger-spacing-x}
+);
+
+:root {
+  --bolt-page-header-height: calc(
+    #{$bolt-page-header-click-target-size} + #{$bolt-page-header-mobile-spacing-y} *
+      2
+  );
+  --c-bolt-page-header-desktop-primary-nav-link-spacing-x: var(
+    --bolt-spacing-x-xsmall
+  );
+
+  @include bolt-mq($from: large) {
+    --bolt-page-header-height: calc(
+      #{$bolt-page-header-click-target-size} + #{$bolt-page-header-desktop-padding-top} +
+        #{$bolt-page-header-desktop-padding-bottom}
+    );
+  }
+
+  @include bolt-mq($from: xlarge) {
+    --c-bolt-page-header-desktop-primary-nav-link-spacing-x: var(
+      --bolt-spacing-x-small
+    );
+  }
+}
+
+@mixin bolt-page-header-button-reset {
+  appearance: none;
+  padding: unset;
+  font: var(--bolt-type-font-family-body);
+  line-height: unset;
+  text-align: unset;
+  cursor: pointer;
+  border: 0;
+  background: transparent;
+}
+
+@mixin bolt-page-header-action-trigger {
+  @include bolt-page-header-button-reset;
+
+  display: block;
+  position: relative;
+  min-width: $bolt-page-header-click-target-size;
+  min-height: $bolt-page-header-click-target-size;
+  padding-top: var(--bolt-spacing-y-xsmall);
+  padding-bottom: var(--bolt-spacing-y-xsmall);
+  font-family: var(--bolt-type-font-family-headline);
+  font-size: var(--bolt-type-font-size-medium);
+  font-weight: var(--bolt-type-font-weight-semibold);
+  color: bolt-theme(link);
+  line-height: var(--bolt-type-line-height-medium);
+  text-align: inherit;
+  border-radius: bolt-border-radius(small);
+  outline: none;
+  background-color: bolt-theme(background);
+  padding-inline-end: $bolt-page-header-action-trigger-spacing-x;
+  padding-inline-start: $bolt-page-header-action-trigger-spacing-x;
+
+  &:before {
+    content: '';
+    display: block;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transform: scale(1);
+    z-index: 0;
+    pointer-events: none;
+    border-radius: inherit;
+    background-color: bolt-theme(link);
+    will-change: opacity, transform;
+    transition: opacity $bolt-transition, transform $bolt-transition;
+  }
+
+  &:hover,
+  &:focus {
+    &:before {
+      opacity: 0.1;
+    }
+  }
+
+  &:focus {
+    box-shadow: inset 0 0 0 1px bolt-theme(link);
+    outline: none; // Repeated here to remove Firefox default outline.
+  }
+
+  &:active {
+    &:before {
+      opacity: 0.4;
+    }
+  }
+
+  &[aria-expanded='true'] {
+    color: bolt-theme(headline);
+  }
+
+  > * {
+    position: relative;
+  }
+}
+
+@mixin bolt-page-header-nav-background {
+  background: linear-gradient(
+      rgba(bolt-color(gray), 0.4),
+      rgba(bolt-color(gray), 0.2)
+    ),
+    linear-gradient(bolt-theme(background), bolt-theme(background));
+}

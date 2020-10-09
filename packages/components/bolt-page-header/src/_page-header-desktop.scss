@@ -136,8 +136,8 @@
         visibility: hidden;
         opacity: 0;
         position: fixed;
-        top: var(--bolt-spacing-x-medium);
-        transform: translate3d(0, calc(var(--bolt-spacing-x-medium) * -1), 0);
+        top: var(--bolt-spacing-y-medium);
+        transform: translate3d(0, calc(var(--bolt-spacing-y-medium) * -1), 0);
         z-index: bolt-z-index(modal);
         width: 180px;
         overflow: hidden;
@@ -214,7 +214,7 @@
   .c-bolt-page-header__nav-list--user {
     order: 3;
     right: calc(var(--bolt-page-padding-x) - var(--bolt-spacing-x-xsmall));
-    height: var(--bolt-spacing-x-medium);
+    height: var(--bolt-spacing-y-medium);
 
     > .c-bolt-page-header__nav-list-item:first-of-type {
       order: 2;
@@ -466,7 +466,7 @@
   // Main CTA
   .c-bolt-page-header__cta {
     transform: translate3d(0, 0, 0);
-    padding: var(--bolt-spacing-x-xsmall) var(--bolt-spacing-x-small);
+    padding: var(--bolt-spacing-y-xsmall) var(--bolt-spacing-x-small);
     font-size: var(--bolt-type-font-size-small);
     line-height: var(--bolt-type-line-height-small);
     border-radius: bolt-border-radius(small);
