@@ -1,72 +1,80 @@
-import { html, customElement } from '@bolt/element';
-import { props, mapWithDepth } from '@bolt/core-v3.x/utils';
+import { html, customElement, BoltElement, unsafeCSS } from '@bolt/element';
 import classNames from 'classnames/bind';
-import { withLitHtml } from '@bolt/core-v3.x/renderers/renderer-lit-html';
 import styles from './ol.scss';
+import schema from '../ol.schema';
 
 let cx = classNames.bind(styles);
 
-// list-specific helper function to set nested children's `level` prop automatically
-function addNestedLevelProps(childNode, level) {
-  let currentLevel = level;
+@customElement('bolt-ol')
+class BoltOrderedList extends BoltElement {
+  static schema = schema;
 
-  if (childNode.tagName) {
-    childNode.level = currentLevel;
+  static get properties() {
+    return {
+      level: { type: Number },
+      nested: { type: Boolean },
+    };
   }
 
-  return currentLevel;
-}
+  static get styles() {
+    return [unsafeCSS(styles)];
+  }
 
-@customElement('bolt-ol')
-class BoltOrderedList extends withLitHtml {
-  static props = {
-    level: {
-      ...props.number,
-      ...{ default: 0 },
-    },
-  };
+  connectedCallback() {
+    super.connectedCallback && super.connectedCallback();
+
+    this.level = 1;
+    this.setNested();
+  }
+
+  async setNested() {
+    // Check if this is a nested list and set level accordingly.
+    const closestList = this.parentNode.closest('bolt-ol, bolt-ul');
+    const closestListItem = this.parentNode.closest('bolt-li');
+    if (closestList && closestListItem) {
+      // Wait for closest LI to be ready. Then check if grandparent is OL/UL.
+      // If we don't wait for LI to be ready, parentNode is sometimes "ssr-keep".
+      // We must be sure OL/UL is parent of LI. Otherwise do not mark as nested.
+      await closestListItem.updateComplete;
+      const parentList = this.parentNode.parentNode;
+      if (
+        parentList.tagName === 'BOLT-OL' ||
+        parentList.tagName === 'BOLT-UL'
+      ) {
+        this.nested = true;
+      }
+    }
+  }
+
+  updateListItems() {
+    if (this.slotMap.get('default')) {
+      const slottedListItems = this.slotMap
+        .get('default')
+        .filter(item => item.tagName && item.tagName === 'BOLT-LI');
+
+      if (slottedListItems.length) {
+        const lastItem = slottedListItems[slottedListItems.length - 1];
+
+        if (!lastItem.attributes.last) {
+          lastItem.setAttribute('last', '');
+        }
+      }
+    }
+  }
+
+  firstUpdated() {
+    super.firstUpdated && super.firstUpdated();
+    this.updateListItems();
+  }
 
   render() {
-    let level = this.level;
-    let nested = false;
-
-    if (this.parentNode.tagName) {
-      if (
-        this.parentNode.tagName === 'BOLT-LI' &&
-        this.parentNode.parentNode.tagName === 'BOLT-OL'
-      ) {
-        level = this.parentNode.level - 1;
-      } else {
-        level = this.parentNode.level;
-      }
-
-      if (this.parentNode.tagName === 'BOLT-LI') {
-        nested = true;
-      }
-    }
-
     const classes = cx('c-bolt-ol', {
-      [`c-bolt-ol--nested`]: nested,
+      [`c-bolt-ol--nested`]: this.nested,
     });
 
-    this.slots.default.map(mapWithDepth(level, addNestedLevelProps));
-
-    if (this.slots.default) {
-      const updatedDefaultSlot = this.slots.default.filter(
-        item => item.tagName,
-      );
-      const updatedSlotsLength = updatedDefaultSlot.length;
-      const lastSlotItem = updatedDefaultSlot[updatedSlotsLength - 1];
-
-      if (updatedSlotsLength > 0 && !lastSlotItem.attributes.last) {
-        lastSlotItem.setAttribute('last', '');
-      }
-    }
-
     return html`
-      ${this.addStyles([styles])}
       <div class="${classes}" role="list">
-        ${this.slot('default')}
+        ${this.slotify('default')}
       </div>
     `;
   }

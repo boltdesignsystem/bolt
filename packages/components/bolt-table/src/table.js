@@ -1,39 +1,27 @@
-import { html, customElement } from '@bolt/element';
-import { props } from '@bolt/core-v3.x/utils';
-import { withLitHtml } from '@bolt/core-v3.x/renderers/renderer-lit-html';
+import { html, customElement, BoltElement, unsafeCSS } from '@bolt/element';
 import { unsafeHTML } from 'lit-html/directives/unsafe-html';
 import { ifDefined } from 'lit-html/directives/if-defined';
 import { parse, stringify } from 'himalaya';
-
 import classNames from 'classnames/bind';
-
 import styles from './table.scss';
 import schema from '../table.schema';
 
 let cx = classNames.bind(styles);
 
 @customElement('bolt-table')
-class BoltTable extends withLitHtml {
-  static props = {
-    format: {
-      ...props.string,
-      ...{ default: 'regular' },
-    },
-    borderless: {
-      ...props.boolean,
-      ...{ default: false },
-    },
-    firstColFixedWidth: {
-      ...props.boolean,
-      ...{ default: false },
-    },
-  };
+class BoltTable extends BoltElement {
+  static schema = schema;
 
-  constructor(self) {
-    self = super(self);
-    self.schema = schema;
-    self.useShadow = false;
-    return self;
+  static get properties() {
+    return {
+      ...this.props,
+    };
+  }
+
+  static useShadow = false;
+
+  static get styles() {
+    return [unsafeCSS(styles)];
   }
 
   removeEmptyNodes(nodes) {
@@ -56,7 +44,6 @@ class BoltTable extends withLitHtml {
       }
       return node.content.length;
     });
-    return nodes;
   }
 
   stripWhitespace(nodes) {
@@ -117,8 +104,8 @@ class BoltTable extends withLitHtml {
     return boltedObject;
   }
 
-  rendered() {
-    super.rendered && super.rendered();
+  updated(changedProperties) {
+    super.updated && super.updated();
 
     const nodesToUpdate = this.renderRoot.querySelectorAll('*[data-attrs]');
     const tdInThead = this.renderRoot.querySelectorAll('thead td');
@@ -146,11 +133,11 @@ class BoltTable extends withLitHtml {
     const parseCode = this.removeComments(
       this.removeWhitespace(parse(this.innerHTML)),
     );
-    const { format, borderless, firstColFixedWidth } = this.props;
+
     const tableClasses = cx('c-bolt-table', {
-      [`c-bolt-table--format-${format}`]: format !== 'regular',
-      [`c-bolt-table--borderless`]: borderless,
-      [`c-bolt-table--first-col-fixed-width`]: firstColFixedWidth,
+      [`c-bolt-table--format-${this.format}`]: this.format !== 'regular',
+      [`c-bolt-table--borderless`]: this.borderless,
+      [`c-bolt-table--first-col-fixed-width`]: this.firstColFixedWidth,
     });
     const bodyClasses = cx('c-bolt-table__body');
     const headClasses = cx('c-bolt-table__head');
@@ -287,7 +274,6 @@ class BoltTable extends withLitHtml {
     injectClasses(tableClasses, parseCode[0].attributes);
 
     return html`
-      ${this.addStyles([styles])}
       <table data-attrs=${ifDefined(setAttr(parseCode[0].attributes))}>
         ${boltTableMarkup}
       </table>
