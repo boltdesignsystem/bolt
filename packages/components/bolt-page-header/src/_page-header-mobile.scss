@@ -1,10 +1,12 @@
 /* ------------------------------------ *\
    Page Header (mobile hamburger menu)
 \* ------------------------------------ */
+
 @include bolt-mq($until: large) {
   // Primary section container
   .c-bolt-page-header__primary {
     grid-template-columns: minmax(166px, 275px) 1fr;
+    grid-gap: var(--bolt-spacing-x-small);
     padding-top: $bolt-page-header-mobile-spacing-y;
     padding-bottom: $bolt-page-header-mobile-spacing-y;
     padding-inline-end: $bolt-page-header-mobile-primary-nav-spacing-x;

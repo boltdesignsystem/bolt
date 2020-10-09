@@ -5,7 +5,8 @@
 @include bolt-mq($from: large) {
   // Primary section container
   .c-bolt-page-header__primary {
-    grid-template-columns: auto 1fr;
+    grid-template-columns: minmax(82px, auto) 1fr;
+    grid-gap: var(--bolt-spacing-x-xsmall);
     padding-top: $bolt-page-header-desktop-padding-top;
     padding-bottom: $bolt-page-header-desktop-padding-bottom;
     padding-inline-end: var(--bolt-page-padding-x);
@@ -241,7 +242,6 @@
 
   .c-bolt-page-header__nav-list--site {
     display: flex;
-    flex-wrap: wrap;
     order: 1;
 
     > .c-bolt-page-header__nav-list-item {
@@ -255,11 +255,7 @@
         align-items: center;
         width: 100%;
         min-height: calc(#{$bolt-page-header-click-target-size} / 2 - 4px);
-        padding: 0
-          var(
-            --c-bolt-page-header-desktop-primary-nav-link-spacing-x,
-            var(--bolt-spacing-x-small)
-          );
+        padding: 0 var(--c-bolt-page-header-desktop-primary-nav-link-spacing-x);
         font-size: var(
           --c-bolt-page-header-desktop-primary-nav-link-font-size,
           var(--bolt-type-font-size-small)
@@ -445,6 +441,24 @@
 
       &:hover > .c-bolt-page-header__nav-list {
         z-index: 2;
+      }
+    }
+  }
+
+  .c-bolt-page-header__nav-list--site--wrap-links {
+    flex-wrap: wrap;
+
+    > .c-bolt-page-header__nav-list-item {
+      > .c-bolt-page-header__nav-link {
+        &:after {
+          display: none;
+        }
+
+        &:hover {
+          &:before {
+            opacity: 0.1;
+          }
+        }
       }
     }
   }

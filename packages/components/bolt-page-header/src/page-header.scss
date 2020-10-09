@@ -75,17 +75,25 @@ $bolt-page-header-mobile-expanded-content-spacing-x: calc(
   #{$bolt-page-header-mobile-primary-nav-spacing-x} + #{$bolt-page-header-action-trigger-spacing-x}
 );
 
-// Calculate page header height for offsetting other sticky elements
 :root {
   --bolt-page-header-height: calc(
     #{$bolt-page-header-click-target-size} + #{$bolt-page-header-mobile-spacing-y} *
       2
+  );
+  --c-bolt-page-header-desktop-primary-nav-link-spacing-x: var(
+    --bolt-spacing-x-xsmall
   );
 
   @include bolt-mq($from: large) {
     --bolt-page-header-height: calc(
       #{$bolt-page-header-click-target-size} + #{$bolt-page-header-desktop-padding-top} +
         #{$bolt-page-header-desktop-padding-bottom}
+    );
+  }
+
+  @include bolt-mq($from: xlarge) {
+    --c-bolt-page-header-desktop-primary-nav-link-spacing-x: var(
+      --bolt-spacing-x-small
     );
   }
 }
@@ -222,7 +230,6 @@ $bolt-page-header-mobile-expanded-content-spacing-x: calc(
 // Primary section container
 .c-bolt-page-header__primary {
   display: grid;
-  grid-gap: var(--bolt-spacing-x-small);
   align-items: center;
   position: relative;
   z-index: 2;
@@ -252,9 +259,14 @@ $bolt-page-header-mobile-expanded-content-spacing-x: calc(
 }
 
 .c-bolt-page-header__logo__img {
-  display: block;
-  max-width: var(--c-bolt-page-header-logo-max-width);
   height: 30px;
+
+  img {
+    max-width: var(--c-bolt-page-header-logo-max-width, 100%);
+    height: inherit;
+    object-fit: contain;
+    object-position: left center;
+  }
 }
 
 // Toolbar
