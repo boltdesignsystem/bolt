@@ -1,9 +1,4 @@
-{% set action_block_base_class = "c-bolt-action-block" %}
-{% set attributes = create_attribute(attributes|default({})) %}
-
-{% set action_block_classes = [
-  action_block_base_class
-] %}
+{% set attributes = create_attribute(attributes|default({})).addClass('c-bolt-action-block') %}
 
 {# DEPRECATED. Use 'content' instead of 'icon'. #}
 {% if icon and not content %}
@@ -16,18 +11,26 @@
   {% set content = icon %}
 {% endif %}
 
+{% set tag = 'div' %}
+
+{% if url %}
+  {% set tag = 'a' %}
+  {% set attributes = attributes.setAttribute('href', url) %}
+  {% set attributes = attributes.addClass('c-bolt-action-block--link') %}
+{% endif %}
+
 <bolt-action-block>
-  <a href="{{ url }}" {{ attributes.addClass(action_block_classes | raw) }}>
+  <{{ tag }} {{ attributes }}>
     {% if content %}
-      <div class="{{ "#{action_block_base_class}__item" }}">
+      <div class="c-bolt-action-block__item">
         {{ content }}
       </div>
     {% endif %}
 
     {% if text %}
-      <div class="{{ "#{action_block_base_class}__item #{action_block_base_class}__text" }}">
+      <div class="c-bolt-action-block__item c-bolt-action-block__text">
         {{ text }}
       </div>
     {% endif %}
-  </a>
+  </{{ tag }}>
 </bolt-action-block>

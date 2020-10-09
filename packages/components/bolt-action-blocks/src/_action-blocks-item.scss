@@ -18,7 +18,9 @@
   outline: none;
   transition: color $bolt-action-blocks-transition-timing
     $bolt-action-blocks-transition-ease;
+}
 
+.c-bolt-action-block--link {
   &:hover,
   &:active,
   &:focus {
@@ -67,6 +69,18 @@
 
   &:last-child {
     margin-bottom: 0;
+  }
+}
+
+.c-bolt-action-block__text {
+  color: bolt-theme(headline-link);
+  transition: color $bolt-action-blocks-transition-timing
+  $bolt-action-blocks-transition-ease;
+
+  .c-bolt-action-block--link:focus &,
+  .c-bolt-action-block--link:hover &,
+  .c-bolt-action-block--link:active & {
+    color: bolt-theme(secondary);
   }
 }
 
