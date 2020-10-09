@@ -7,10 +7,8 @@
   {% set items = [] %}
   {% for logoImage in logoImages %}
     {% set content %}
-      <div class="c-partner-card">
-        <div class="c-partner-card__logo">
-          <img src="/images/content/logos/480x160/{{ logoImage }}">
-        </div>
+      <div class="c-partner-card__logo">
+        <img src="/images/content/logos/480x160/{{ logoImage }}">
       </div>
     {% endset %}
     {% set items = items|merge([{ content: content }]) %}
