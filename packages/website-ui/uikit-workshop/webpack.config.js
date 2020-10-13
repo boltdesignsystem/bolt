@@ -53,24 +53,22 @@ module.exports = function(apiConfig) {
     // Allow external flags for modifying PL's prod mode, on top of the .patternlabrc config file
     const config = Object.assign({}, defaultConfig, customConfig, apiConfig);
 
-    function getBabelConfig(isModern = false) {
+    function getBabelConfig() {
       return {
         presets: [
           [
             '@babel/preset-env',
             {
               targets: {
-                browsers: isModern
-                  ? [
-                      // NOTE: I'm not using the `esmodules` target due to this issue:
-                      // https://github.com/babel/babel/issues/8809
-                      'last 2 Chrome versions',
-                      'last 2 Safari versions',
-                      'last 2 iOS versions',
-                      'last 2 Edge versions',
-                      'Firefox ESR',
-                    ]
-                  : ['ie 11'],
+                browsers: [
+                  // NOTE: I'm not using the `esmodules` target due to this issue:
+                  // https://github.com/babel/babel/issues/8809
+                  'last 2 Chrome versions',
+                  'last 2 Safari versions',
+                  'last 2 iOS versions',
+                  'last 2 Edge versions',
+                  'Firefox ESR',
+                ],
               },
               useBuiltIns: 'entry',
               corejs: 3,
@@ -83,7 +81,6 @@ module.exports = function(apiConfig) {
           '@babel/plugin-proposal-optional-chaining',
           ['@babel/plugin-proposal-decorators', { legacy: true }],
           ['@babel/plugin-proposal-class-properties', { loose: true }],
-          '@babel/plugin-syntax-dynamic-import',
           '@babel/plugin-syntax-jsx' /* [1] */,
           [
             '@babel/plugin-transform-react-jsx' /* [1] */,
@@ -145,15 +142,38 @@ module.exports = function(apiConfig) {
           'react-dom/test-utils': 'preact/test-utils',
           'react-dom': 'preact/compat',
         },
+        mainFields: ['esnext', 'jsnext:main', 'browser', 'module', 'main'],
+      },
+      entry: {
+        'js/patternlab-pattern': path.join(
+          __dirname,
+          './src/scripts/patternlab-pattern.js',
+        ),
+        'js/patternlab-viewer': path.join(
+          __dirname,
+          './src/scripts/patternlab-viewer.js',
+        ),
+        'css/pattern-lab': path.join(__dirname, './src/sass/pattern-lab.scss'),
       },
       output: {
-        path: path.resolve(config.rootDir, `${config.buildDir}/styleguide`),
+        // @todo: do we need this to be configurable?
+        // path: path.resolve(config.rootDir, `${config.buildDir}/styleguide`),
+        path: path.resolve(process.cwd(), `${config.buildDir}/styleguide`),
         publicPath: `${config.publicPath}`,
         filename: '[name].js',
         chunkFilename: `js/[name]-chunk-[chunkhash].js`,
       },
+
       module: {
         rules: [
+          {
+            test: /\.js$/,
+            exclude: /(node_modules)/,
+            use: {
+              loader: 'babel-loader',
+              options: getBabelConfig(true),
+            },
+          },
           {
             test: /\.(ts|tsx)$/,
             use: [
@@ -216,7 +236,7 @@ module.exports = function(apiConfig) {
                 // otherwise extract the result and write out a .css file per usual
                 use: [MiniCssExtractPlugin.loader, scssLoaders].reduce(
                   (acc, val) => acc.concat(val),
-                  []
+                  [],
                 ),
               },
             ],
@@ -261,93 +281,20 @@ module.exports = function(apiConfig) {
         new WebpackBar(),
         new CopyPlugin(config.copy),
         new NoEmitPlugin(['css/pattern-lab.js']),
-      ],
-    };
-
-    webpackConfig.plugins.push(
-      new HardSourceWebpackPlugin({
-        info: {
-          level: 'warn',
-        },
-        // Clean up large, old caches automatically.
-        cachePrune: {
-          // Caches younger than `maxAge` are not considered for deletion. They must
-          // be at least this (default: 2 days) old in milliseconds.
-          maxAge: 2 * 24 * 60 * 60 * 1000,
-          // All caches together must be larger than `sizeThreshold` before any
-          // caches will be deleted. Together they must be at least 300MB in size
-          sizeThreshold: 300 * 1024 * 1024,
-        },
-      })
-    );
-
-    const legacyConfig = merge(webpackConfig, {
-      entry: {
-        'js/patternlab-pattern': path.join(
-          __dirname,
-          './src/scripts/patternlab-pattern.js'
-        ),
-        'js/patternlab-viewer': path.join(
-          __dirname,
-          './src/scripts/patternlab-viewer.js'
-        ),
-        'css/pattern-lab': path.join(__dirname, './src/sass/pattern-lab.scss'),
-      },
-      module: {
-        rules: [
-          {
-            test: /\.js$/,
-            exclude: /(bower_components|document-register-element)/,
-            use: {
-              loader: 'babel-loader',
-              options: getBabelConfig(false),
-            },
+        new HardSourceWebpackPlugin({
+          info: {
+            level: 'warn',
           },
-        ],
-      },
-      plugins: [
-        new MiniCssExtractPlugin({
-          filename: `[name].css`,
-          chunkFilename: `[id].css`,
-          allChunks: true,
+          // Clean up large, old caches automatically.
+          cachePrune: {
+            // Caches younger than `maxAge` are not considered for deletion. They must
+            // be at least this (default: 2 days) old in milliseconds.
+            maxAge: 2 * 24 * 60 * 60 * 1000,
+            // All caches together must be larger than `sizeThreshold` before any
+            // caches will be deleted. Together they must be at least 300MB in size
+            sizeThreshold: 300 * 1024 * 1024,
+          },
         }),
-      ],
-    });
-
-    const modernConfig = merge(webpackConfig, {
-      resolve: {
-        mainFields: ['esnext', 'jsnext:main', 'browser', 'module', 'main'],
-      },
-      entry: {
-        'js/patternlab-pattern': path.join(
-          __dirname,
-          './src/scripts/patternlab-pattern.modern.js'
-        ),
-        'js/patternlab-viewer': path.join(
-          __dirname,
-          './src/scripts/patternlab-viewer.modern.js'
-        ),
-        'css/pattern-lab': path.join(__dirname, './src/sass/pattern-lab.scss'),
-      },
-      output: {
-        path: path.resolve(process.cwd(), `${config.buildDir}/styleguide`),
-        publicPath: `${config.publicPath}`,
-        filename: '[name].modern.js',
-        chunkFilename: `js/[name]-chunk-[chunkhash].modern.js`,
-      },
-      module: {
-        rules: [
-          {
-            test: /\.js$/,
-            exclude: /(node_modules)/,
-            use: {
-              loader: 'babel-loader',
-              options: getBabelConfig(true),
-            },
-          },
-        ],
-      },
-      plugins: [
         // clear out the buildDir on every fresh Webpack build
         new CleanWebpackPlugin(
           config.watch
@@ -363,7 +310,7 @@ module.exports = function(apiConfig) {
 
             // perform clean just before files are emitted to the output dir
             beforeEmit: false,
-          }
+          },
         ),
         new PrerenderSPAPlugin({
           // Required - The path to the webpack-outputted app to prerender.
@@ -398,7 +345,7 @@ module.exports = function(apiConfig) {
           allChunks: true,
         }),
       ],
-    });
+    };
 
     // if (localChrome) {
     //   const browserPromise = puppeteer.launch({
@@ -449,6 +396,6 @@ module.exports = function(apiConfig) {
     //   );
     // }
 
-    return resolve([modernConfig, legacyConfig]);
+    return resolve(webpackConfig);
   });
 };
