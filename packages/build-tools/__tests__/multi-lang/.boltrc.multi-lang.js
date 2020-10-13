@@ -6,13 +6,9 @@ const config = {
   dataDir: './dist-lang/build/data',
   wwwDir: './dist-lang',
   components: {
-    global: [
-      '@bolt/core',
-      '@bolt/components-button',
-      '@bolt/global',
-    ],
+    global: ['@bolt/core-v3.x', '@bolt/components-button', '@bolt/global'],
     individual: [],
-  }
+  },
 };
 
 module.exports = config;
