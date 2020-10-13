@@ -51,7 +51,7 @@
   display: grid;
   align-items: center;
   position: relative;
-  z-index: 2;
+  z-index: 2; // Primary nav (with dropdowns) has a higher stacking order than secondary.
 }
 
 // Secondary section container
@@ -157,7 +157,6 @@
   top: var(--bolt-page-header-height);
   right: 0;
   left: 0;
-  z-index: bolt-z-index(navFixed);
   padding-top: var(--bolt-spacing-y-medium);
   padding-bottom: var(--bolt-spacing-y-medium);
   border-top-color: $bolt-border-color;

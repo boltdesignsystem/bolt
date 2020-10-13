@@ -45,7 +45,6 @@
   .c-bolt-page-header__search {
     opacity: 0;
     transform: translate3d(0, calc(var(--bolt-spacing-y-small) * -1), 0);
-    z-index: bolt-z-index(navFixed);
     will-change: opacity, visibility, transform;
     transition: opacity $bolt-transition, visibility $bolt-transition,
       transform $bolt-transition;
