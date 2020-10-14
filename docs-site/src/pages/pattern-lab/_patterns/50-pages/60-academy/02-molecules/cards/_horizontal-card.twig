@@ -24,58 +24,61 @@
   {% endblock %}
 
   {% block body %}
-  <ul class="c-acd-horizontal-card">
-    <li>
-      {% set cardTextContent %}
-        {% if cardSubtitle %}
-          {% include "@bolt-components-headline/eyebrow.twig" with {
-            text: cardSubtitle,
-            weight: "semibold"
-          } only %}
-        {% endif %}
+    <ul class="c-acd-horizontal-card-grid">
+      <li>
+        {% set cardTextContent %}
+          {% if cardSubtitle %}
+            {% include "@bolt-components-headline/eyebrow.twig" with {
+              text: cardSubtitle,
+              weight: "semibold"
+            } only %}
+          {% endif %}
 
-        {% if cardTitle %}
-          <h2>{{ cardTitle }}</h2>
-        {% endif %}
-      {% endset %}
-
-      {% include "@bolt-components-stack/stack.twig" with {
-        content: cardTextContent,
-        spacing: "xsmall"
-      } only %}
-
-      {% if cardMetaItems %}
-        {% set cardMetaContent %}
-          {% include "@bolt-components-list/list.twig" with {
-            display: "inline",
-            separator: "solid",
-            tag: "ul",
-            items: cardMetaItems
-          } only %}
+          {% if cardTitle %}
+            {% include "@bolt-components-headline/headline.twig" with {
+              text: cardTitle,
+              size: "xlarge"
+            } only %}
+          {% endif %}
         {% endset %}
 
         {% include "@bolt-components-stack/stack.twig" with {
-          content: cardMetaContent,
+          content: cardTextContent,
           spacing: "xsmall"
         } only %}
-      {% endif %}
-    </li>
 
-    {% if cardDescription %}
-      <li class="u-bolt-flex@small u-bolt-align-items-center">
-        {% include "@bolt-components-headline/text.twig" with {
-          text: cardDescription,
-          size: "small",
-          attributes: {
-            class: [
-              "u-bolt-padding-top-xsmall@small",
-              "u-bolt-padding-bottom-xsmall@small",
-            ]
-          }
-        } only %}
+        {% if cardMetaItems %}
+          {% set cardMetaContent %}
+            {% include "@bolt-components-list/list.twig" with {
+              display: "inline",
+              separator: "solid",
+              tag: "ul",
+              items: cardMetaItems
+            } only %}
+          {% endset %}
+
+          {% include "@bolt-components-stack/stack.twig" with {
+            content: cardMetaContent,
+            spacing: "xsmall"
+          } only %}
+        {% endif %}
       </li>
-    {% endif %}
-  </ul>
+
+      {% if cardDescription %}
+        <li class="u-bolt-flex@small u-bolt-align-items-center">
+          {% include "@bolt-components-headline/text.twig" with {
+            text: cardDescription,
+            size: "small",
+            attributes: {
+              class: [
+                "u-bolt-padding-top-xsmall@small",
+                "u-bolt-padding-bottom-xsmall@small",
+              ]
+            }
+          } only %}
+        </li>
+      {% endif %}
+    </ul>
   {% endblock %}
 
 {% endembed %}
