@@ -1,0 +1,30 @@
+/* ------------------------------------ *\
+   TOOLS - Text Link
+\* ------------------------------------ */
+
+@mixin bolt-text-link {
+  text-decoration: underline;
+  will-change: color, text-decoration, filter;
+  transition: color var(--bolt-transition),
+    text-decoration var(--bolt-transition), filter var(--bolt-transition);
+
+  &:visited {
+    text-decoration-color: bolt-theme(neutral);
+  }
+
+  &:hover,
+  &:focus {
+    filter: brightness(120%);
+  }
+
+  &:focus {
+    color: bolt-theme(headline);
+    text-decoration: none;
+    box-shadow: var(--bolt-focus-ring);
+    outline: none;
+  }
+
+  &:active {
+    filter: brightness(80%);
+  }
+}

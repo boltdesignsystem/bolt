@@ -1,0 +1,40 @@
+{% set link %}
+  {% include '@bolt-elements-link/link.twig' with {
+    content: 'This is a text link',
+    attributes: {
+      href: 'javascript:',
+      target: '_blank',
+    }
+  } only %}
+{% endset %}
+
+{% set visited_link %}
+  {% include '@bolt-elements-link/link.twig' with {
+    content: 'This is a visited text link',
+    attributes: {
+      href: '/',
+      target: '_blank',
+    }
+  } only %}
+{% endset %}
+
+{% set image %}
+  {% include '@bolt-components-image/image.twig' with {
+    src: '/images/placeholders/tout-4x3-climber.jpg',
+    alt: 'A Rock Climber',
+  } only %}
+{% endset %}
+
+{% set image_link %}
+  {% include '@bolt-elements-link/link.twig' with {
+    content: image,
+    attributes: {
+      href: 'https://pega.com',
+      target: '_blank',
+    }
+  } only %}
+{% endset %}
+
+<p>In condimentum facilisis porta. <a href="#!" class="e-bolt-link e-bolt-link--with-icon"><bolt-icon name="chevron-left"></bolt-icon> link with icon <bolt-icon name="chevron-right"></bolt-icon></a> Sed nec diam eu diam mattis viverra. {{ link }}. Nulla fringilla, orci ac euismod semper, magna diam porttitor mauris, quis sollicitudin sapien justo in libero. Vestibulum mollis mauris enim. Morbi euismod magna ac lorem rutrum elementum. Donec viverra auctor lobortis. Pellentesque eu est a nulla placerat dignissim. {{ visited_link }}. Morbi a enim in magna semper bibendum. Etiam scelerisque, nunc ac egestas consequat, odio nibh euismod nulla.</p>
+
+{{ image_link }}

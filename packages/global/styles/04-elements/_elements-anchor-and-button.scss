@@ -1,34 +1,19 @@
-@import '@bolt/core-v3.x';
-
 /* ------------------------------------ *\
-   Link
+   <a> and <button>
 \* ------------------------------------ */
 
-.e-bolt-link {
-  @include bolt-button-native-styles-reset;
-  @include bolt-text-link;
-
+a {
   color: bolt-theme(link);
 }
 
-.e-bolt-link--with-icon {
-  display: inline-grid;
-  grid-template-columns: auto 1fr auto;
-  grid-column-gap: var(--bolt-spacing-x-xxsmall);
-  align-items: center;
-
-  > bolt-icon {
-    transform: translateY(
-      0.5px
-    ); // Temporary fix for icon + text bad vertical alignment above xlarge breakpoint.
-  }
+a:not([class]) {
+  @include bolt-text-link;
 }
 
-// These are error messages for when a developer uses <a> and <button> incorrect with .e-bolt-link.
-a.e-bolt-link[type],
-a.e-bolt-link:not([href]),
-button.e-bolt-link[href],
-button.e-bolt-link[target] {
+a[type],
+a:not([href]),
+button[href],
+button[target] {
   &:after {
     display: inline-block;
     transform: scale(0.8);
@@ -42,25 +27,25 @@ button.e-bolt-link[target] {
   }
 }
 
-a.e-bolt-link[type] {
+a[type] {
   &:after {
     content: 'This <a> element should not have the "type" attribute.';
   }
 }
 
-a.e-bolt-link:not([href]):not([name]) {
+a:not([href]):not([name]) {
   &:after {
     content: 'This <a> element is missing the "href" attribute.';
   }
 }
 
-button.e-bolt-link[href] {
+button[href] {
   &:after {
     content: 'This <button> element should not have the "href" attribute.';
   }
 }
 
-button.e-bolt-link[target] {
+button[target] {
   &:after {
     content: 'This <button> element should not have the "target" attribute.';
   }
