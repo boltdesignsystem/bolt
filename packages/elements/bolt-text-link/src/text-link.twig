@@ -1,4 +1,4 @@
-{% set schema = bolt.data.elements['@bolt-elements-link'].schema %}
+{% set schema = bolt.data.elements['@bolt-elements-text-link'].schema %}
 
 {% if enable_json_schema_validation %}
   {{ validate_data_schema(schema, _self) | raw }}

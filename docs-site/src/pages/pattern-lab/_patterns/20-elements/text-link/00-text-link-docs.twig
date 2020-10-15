@@ -1,5 +1,5 @@
-{% set usage %}{% verbatim %}
-{% include '@bolt-elements-link/link.twig' with {
+{# {% set usage %}{% verbatim %}
+{% include '@bolt-elements-text-link/text-link.twig' with {
   content: 'This is a text link',
   attributes: {
     href: 'https://pega.com'
@@ -8,6 +8,7 @@
 {% endverbatim %}{% endset %}
 
 {% include '@utils/docs.twig' with {
-  componentName: 'link',
+  componentName: 'text-link',
   usage: usage
 } only %}
+ #}

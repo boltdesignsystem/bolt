@@ -11,7 +11,7 @@
 {% endset %}
 
 <p>
-  {% include '@bolt-elements-link/link.twig' with {
+  {% include '@bolt-elements-text-link/text-link.twig' with {
     content: icon_chevron_left|spaceless ~ 'This is a text link with icons before and after' ~ icon_chevron_right|spaceless,
     icon_position: 'before-and-after',
     attributes: {
@@ -22,7 +22,7 @@
 </p>
 
 <p>
-  {% include '@bolt-elements-link/link.twig' with {
+  {% include '@bolt-elements-text-link/text-link.twig' with {
     content: icon_chevron_left|spaceless ~ 'This is a text link with an icon before',
     icon_position: 'before',
     attributes: {
@@ -33,7 +33,7 @@
 </p>
 
 <p>
-  {% include '@bolt-elements-link/link.twig' with {
+  {% include '@bolt-elements-text-link/text-link.twig' with {
     content: 'This is a text link with an icon after' ~ icon_chevron_right|spaceless,
     icon_position: 'after',
     attributes: {
@@ -44,7 +44,7 @@
 </p>
 
 {% set link %}
-  {% include '@bolt-elements-link/link.twig' with {
+  {% include '@bolt-elements-text-link/text-link.twig' with {
     content: 'This is a text link',
     attributes: {
       href: 'javascript:',
@@ -54,7 +54,7 @@
 {% endset %}
 
 {% set visited_link %}
-  {% include '@bolt-elements-link/link.twig' with {
+  {% include '@bolt-elements-text-link/text-link.twig' with {
     content: 'This is a visited text link',
     attributes: {
       href: '/',

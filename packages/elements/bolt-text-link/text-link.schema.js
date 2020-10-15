@@ -4,7 +4,7 @@ const { ...onClickProps } = elementSchemas.boltActionElement.properties;
 
 module.exports = {
   $schema: 'http://json-schema.org/draft-04/schema#',
-  title: 'Link',
+  title: 'Text Link',
   description: 'An underlined text link.',
   type: 'object',
   properties: {
@@ -15,12 +15,12 @@ module.exports = {
     },
     content: {
       type: ['string', 'object', 'array'],
-      description: 'Content of the link.',
+      description: 'Content of the text link.',
     },
     display: {
       type: 'string',
       description:
-        'Display either an inline link or block link (takes up full width of its parent container).',
+        'Display either an inline text link or block text link (takes up full width of its parent container).',
       enum: ['inline', 'block'],
       default: 'inline',
     },
