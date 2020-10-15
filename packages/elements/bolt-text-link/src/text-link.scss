@@ -41,6 +41,14 @@
   }
 }
 
+.e-bolt-link--reversed-underline {
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
 // These are error messages for when a developer uses <a> and <button> incorrectly with `.e-bolt-link`.
 a.e-bolt-link[type],
 a.e-bolt-link:not([href]),

@@ -9,7 +9,8 @@
 
 {% set classes = [
   'e-bolt-link',
-  icon_position ? 'e-bolt-link--icon-' ~ icon_position : '',
+  icon_position ? 'e-bolt-link--icon-' ~ icon_position,
+  reversed_underline ? 'e-bolt-link--reversed-underline',
 ] %}
 
 {# All of this is written in one line to avoid any unwanted white-space. #}

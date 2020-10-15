@@ -30,5 +30,11 @@ module.exports = {
         "When passing icon as part of the content, use this prop to properly indicate the icon's position.",
       enum: ['before', 'after', 'before-and-after'],
     },
+    reversed_underline: {
+      type: 'boolean',
+      description:
+        'Reversed underline sets the underline to appear on hover instead of regular state.',
+      default: 'false',
+    },
   },
 };

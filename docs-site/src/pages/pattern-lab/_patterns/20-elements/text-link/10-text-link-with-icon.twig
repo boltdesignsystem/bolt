@@ -26,7 +26,7 @@
     content: icon_chevron_left|spaceless ~ 'This is a text link with an icon before',
     icon_position: 'before',
     attributes: {
-      href: 'javascript:',
+      href: 'https//pega.com',
       target: '_blank',
     }
   } only %}
@@ -37,7 +37,7 @@
     content: 'This is a text link with an icon after' ~ icon_chevron_right|spaceless,
     icon_position: 'after',
     attributes: {
-      href: 'javascript:',
+      href: 'https//pega.com',
       target: '_blank',
     }
   } only %}
@@ -48,7 +48,6 @@
     content: 'This is a text link',
     attributes: {
       href: 'javascript:',
-      target: '_blank',
     }
   } only %}
 {% endset %}
@@ -63,4 +62,19 @@
   } only %}
 {% endset %}
 
+{% set reversed_underline_link %}
+  <h1>
+    {% include '@bolt-elements-text-link/text-link.twig' with {
+      content: 'This is a text link with reversed underline' ~ icon_chevron_right|spaceless,
+      icon_position: 'after',
+      reversed_underline: true,
+      attributes: {
+        href: 'javascript:',
+      }
+    } only %}
+  </h1>
+{% endset %}
+
 <p>In condimentum facilisis porta. <a href="#!" class="e-bolt-link e-bolt-link--icon-before-and-after"><bolt-icon name="arrow-left"></bolt-icon>A really long link phasellus molestie magna non est bibendum non venenatis nisl tempor Suspendisse dictum feugiat nisl ut dapibus Mauris iaculis porttitor posuere Praesent id metus massa ut blandit odio Proin<bolt-icon name="info-open"></bolt-icon></a>. Sed nec diam eu diam mattis viverra. {{ link }}. Nulla fringilla, orci ac euismod semper, magna diam porttitor mauris, quis sollicitudin sapien justo in libero. Vestibulum mollis mauris enim. Morbi euismod magna ac lorem rutrum elementum. Donec viverra auctor lobortis. Pellentesque eu est a nulla placerat dignissim. {{ visited_link }}. Morbi a enim in magna semper bibendum. Etiam scelerisque, nunc ac egestas consequat, odio nibh euismod nulla.</p>
+
+{{ reversed_underline_link }}
