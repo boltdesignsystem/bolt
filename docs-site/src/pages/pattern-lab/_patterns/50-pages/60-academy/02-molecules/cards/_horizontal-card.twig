@@ -25,7 +25,7 @@
 
   {% block body %}
     <ul class="c-acd-horizontal-card-grid">
-      <li>
+      <li class="c-acd-horizontal-card-grid-item">
         {% set cardTextContent %}
           {% if cardSubtitle %}
             {% include "@bolt-components-headline/eyebrow.twig" with {
@@ -65,7 +65,7 @@
       </li>
 
       {% if cardDescription %}
-        <li class="u-bolt-flex@small u-bolt-align-items-center">
+        <li class="c-acd-horizontal-card-grid-item u-bolt-flex@small u-bolt-align-items-center">
           {% include "@bolt-components-headline/text.twig" with {
             text: cardDescription,
             size: "small",

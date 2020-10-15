@@ -205,7 +205,6 @@
 .c-acd-horizontal-card-grid {
   display: grid;
   grid-template-columns: 1fr;
-  align-items: center;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -214,22 +213,28 @@
     grid-template-columns: 50% 1fr;
   }
 
-  li {
-    height: 100%;
-    padding: 0 0 1rem;
+  .c-acd-horizontal-card-grid-item {
+    padding-bottom: var(--bolt-spacing-y-small);
+    border-width: 0;
+    border-style: solid;
+    border-color: bolt-theme(border, 0.2);
 
-    + li {
-      padding: 1rem 0 0;
-      border-top: 2px solid rgba(var(--bolt-theme-border), 0.2);
+    + .c-acd-horizontal-card-grid-item {
+      padding-top: var(--bolt-spacing-y-small);
+      padding-bottom: 0;
+      border-top-width: 2px;
     }
 
-    @media (min-width: 600px) {
-      padding: 0 1rem 0 0;
+    @include bolt-mq($from: small) {
+      padding-right: var(--bolt-spacing-x-small);
+      padding-bottom: 0;
 
-      + li {
-        padding: 0 0 0 1rem;
-        border-top: none;
-        border-left: 2px solid rgba(var(--bolt-theme-border), 0.2);
+      + .c-acd-horizontal-card-grid-item {
+        padding-top: 0;
+        padding-right: 0;
+        padding-left: var(--bolt-spacing-x-small);
+        border-top-width: 0;
+        border-left-width: 2px;
       }
     }
   }
