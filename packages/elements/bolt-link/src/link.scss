@@ -8,23 +8,40 @@
   @include bolt-button-native-styles-reset;
   @include bolt-text-link;
 
-  color: bolt-theme(link);
-}
-
-.e-bolt-link--with-icon {
-  display: inline-grid;
-  grid-template-columns: auto 1fr auto;
-  grid-column-gap: var(--bolt-spacing-x-xxsmall);
-  align-items: center;
-
   > bolt-icon {
+    display: inline-flex;
     transform: translateY(
-      0.5px
-    ); // Temporary fix for icon + text bad vertical alignment above xlarge breakpoint.
+      0.2em
+    ); // Temporary fix for icon + text bad vertical alignment.
+    vertical-align: baseline;
   }
 }
 
-// These are error messages for when a developer uses <a> and <button> incorrect with .e-bolt-link.
+.e-bolt-link--icon-before-and-after {
+  > bolt-icon {
+    &:first-child {
+      margin-right: var(--bolt-spacing-x-xxsmall);
+    }
+
+    &:last-child {
+      margin-left: var(--bolt-spacing-x-xxsmall);
+    }
+  }
+}
+
+.e-bolt-link--icon-before {
+  > bolt-icon {
+    margin-right: var(--bolt-spacing-x-xxsmall);
+  }
+}
+
+.e-bolt-link--icon-after {
+  > bolt-icon {
+    margin-left: var(--bolt-spacing-x-xxsmall);
+  }
+}
+
+// These are error messages for when a developer uses <a> and <button> incorrectly with `.e-bolt-link`.
 a.e-bolt-link[type],
 a.e-bolt-link:not([href]),
 button.e-bolt-link[href],

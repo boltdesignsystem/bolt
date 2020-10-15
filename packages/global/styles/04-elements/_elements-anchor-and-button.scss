@@ -10,43 +10,9 @@ a:not([class]) {
   @include bolt-text-link;
 }
 
-a[type],
-a:not([href]),
-button[href],
-button[target] {
-  &:after {
-    display: inline-block;
-    transform: scale(0.8);
-    padding: 0 var(--bolt-spacing-x-xsmall);
-    font-weight: var(--bolt-type-font-weight-semibold);
-    color: var(--bolt-color-error);
-    border-radius: bolt-border-radius(small);
-    box-shadow: 0 0 0 1px currentColor;
-    background-color: var(--bolt-color-error-light);
-    transform-origin: 0 50%;
-  }
-}
-
-a[type] {
-  &:after {
-    content: 'This <a> element should not have the "type" attribute.';
-  }
-}
-
-a:not([href]):not([name]) {
-  &:after {
-    content: 'This <a> element is missing the "href" attribute.';
-  }
-}
-
-button[href] {
-  &:after {
-    content: 'This <button> element should not have the "href" attribute.';
-  }
-}
-
-button[target] {
-  &:after {
-    content: 'This <button> element should not have the "target" attribute.';
-  }
+button,
+input[type='submit'],
+input[type='reset'],
+input[type='button'] {
+  @include bolt-button-native-styles-reset;
 }

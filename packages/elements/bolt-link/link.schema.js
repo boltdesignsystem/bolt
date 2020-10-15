@@ -15,8 +15,20 @@ module.exports = {
     },
     content: {
       type: ['string', 'object', 'array'],
+      description: 'Content of the link.',
+    },
+    display: {
+      type: 'string',
       description:
-        'Renderable content (i.e. a string, render array, or included pattern) for the link.',
+        'Display either an inline link or block link (takes up full width of its parent container).',
+      enum: ['inline', 'block'],
+      default: 'inline',
+    },
+    icon_position: {
+      type: 'string',
+      description:
+        "When passing icon as part of the content, use this prop to properly indicate the icon's position.",
+      enum: ['before', 'after', 'before-and-after'],
     },
   },
 };
