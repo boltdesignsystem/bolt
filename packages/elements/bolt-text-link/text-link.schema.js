@@ -7,6 +7,7 @@ module.exports = {
   title: 'Text Link',
   description: 'An underlined text link.',
   type: 'object',
+  required: ['content'],
   properties: {
     attributes: {
       type: 'object',
@@ -24,11 +25,13 @@ module.exports = {
       enum: ['inline', 'block'],
       default: 'inline',
     },
-    icon_position: {
-      type: 'string',
-      description:
-        "When passing icon as part of the content, use this prop to properly indicate the icon's position.",
-      enum: ['before', 'after', 'before-and-after'],
+    icon_before: {
+      type: 'any',
+      description: 'Render an icon before the text.',
+    },
+    icon_after: {
+      type: 'any',
+      description: 'Render an icon after the text.',
     },
     reversed_underline: {
       type: 'boolean',

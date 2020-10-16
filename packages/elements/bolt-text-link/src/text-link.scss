@@ -8,16 +8,28 @@
   @include bolt-button-native-styles-reset;
   @include bolt-text-link;
 
+  > img {
+    width: 1em;
+    height: 1em;
+  }
+
+  > img,
   > bolt-icon {
     display: inline-flex;
     transform: translateY(
-      0.2em
+      0.18em
     ); // Temporary fix for icon + text bad vertical alignment.
     vertical-align: baseline;
+  }
+
+  > bolt-icon[size] {
+    transform: none;
+    vertical-align: middle;
   }
 }
 
 .e-bolt-link--icon-before-and-after {
+  > img,
   > bolt-icon {
     &:first-child {
       margin-right: var(--bolt-spacing-x-xxsmall);
@@ -30,12 +42,14 @@
 }
 
 .e-bolt-link--icon-before {
+  > img,
   > bolt-icon {
     margin-right: var(--bolt-spacing-x-xxsmall);
   }
 }
 
 .e-bolt-link--icon-after {
+  > img,
   > bolt-icon {
     margin-left: var(--bolt-spacing-x-xxsmall);
   }

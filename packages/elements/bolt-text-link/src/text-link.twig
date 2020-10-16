@@ -6,12 +6,40 @@
 
 {# Variables #}
 {% set this = init(schema) %}
+{% set attributes = create_attribute(attributes|default({})) %}
+
+{% if icon_before.name %}
+  {% set icon_before_slot %}
+    {% include '@bolt-components-icon/icon.twig' with {
+      name: icon_before.name,
+      size: icon_before.size,
+    } only %}
+  {% endset %}
+{% else %}
+  {% set icon_before_slot = icon_before %}
+{% endif %}
+
+{% if icon_after.name %}
+  {% set icon_after_slot %}
+    {% include '@bolt-components-icon/icon.twig' with {
+      name: icon_after.name,
+      size: icon_after.size,
+    } only %}
+  {% endset %}
+{% else %}
+  {% set icon_after_slot = icon_after %}
+{% endif %}
 
 {% set classes = [
   'e-bolt-link',
-  icon_position ? 'e-bolt-link--icon-' ~ icon_position,
+  icon_before ? 'e-bolt-link--icon-before',
+  icon_after ? 'e-bolt-link--icon-after',
+  icon_before and icon_after ? 'e-bolt-link--icon-before-and-after',
   reversed_underline ? 'e-bolt-link--reversed-underline',
+  display ? 'e-bolt-link--' ~ display,
 ] %}
 
 {# All of this is written in one line to avoid any unwanted white-space. #}
-{% spaceless %}<a class="{{ classes|join(' ') }}" {{ this.props|without('content')|without('class') }}>{{ content }}</a>{% endspaceless %}
+<a {{ attributes.addClass(classes) }}>
+  {{ icon_before_slot|spaceless }}{{ content }}{{ icon_after_slot|spaceless }}
+</a>
