@@ -1,7 +1,9 @@
 import { html, customElement, BoltElement, unsafeCSS } from '@bolt/element';
-import { css } from '@bolt/core-v3.x/utils';
+import classNames from 'classnames/bind';
 import styles from './text.scss';
 import schema from '../text.schema';
+
+let cx = classNames.bind(styles);
 
 @customElement('bolt-text')
 class BoltText extends BoltElement {
@@ -59,27 +61,24 @@ class BoltText extends BoltElement {
     }
 
     // Important classes
-    const classes = css(
-      this.url ? 'has-url' : '',
-      longText ? 'is-long' : '',
-      'c-bolt-text-v2',
-      `c-bolt-text-v2--${this.display}`,
-      `c-bolt-text-v2--${this.fontFamily}`,
-      `c-bolt-text-v2--font-size-${this.fontSize}`,
-      `c-bolt-text-v2--font-weight-${this.fontWeight}`,
-      `c-bolt-text-v2--font-style-${this.fontStyle}`,
-      `c-bolt-text-v2--color-${this.color}`,
-      this.letterSpacing
-        ? `c-bolt-text-v2--letter-spacing-${this.letterSpacing}`
-        : '',
-      this.align ? `c-bolt-text-v2--align-${this.align}` : '',
-      this.textTransform
-        ? `c-bolt-text-v2--text-transform-${this.textTransform}`
-        : '',
-      this.lineHeight ? `c-bolt-text-v2--line-height-${this.lineHeight}` : '',
-      this.opacity ? `c-bolt-text-v2--opacity-${this.opacity}` : '',
-      this.quoted ? 'c-bolt-text-v2--quoted' : '',
-    );
+    const classes = cx('c-bolt-text-v2', {
+      [`has-url`]: this.url,
+      [`is-long`]: longText,
+      [`c-bolt-text-v2--${this.display}`]: this.display,
+      [`c-bolt-text-v2--${this.fontFamily}`]: this.fontFamily,
+      [`c-bolt-text-v2--font-size-${this.fontSize}`]: this.fontSize,
+      [`c-bolt-text-v2--font-weight-${this.fontWeight}`]: this.fontWeight,
+      [`c-bolt-text-v2--font-style-${this.fontStyle}`]: this.fontStyle,
+      [`c-bolt-text-v2--color-${this.color}`]: this.color,
+      [`c-bolt-text-v2--letter-spacing-${this.letterSpacing}`]: this
+        .letterSpacing,
+      [`c-bolt-text-v2--align-${this.align}`]: this.align,
+      [`c-bolt-text-v2--text-transform-${this.textTransform}`]: this
+        .textTransform,
+      [`c-bolt-text-v2--line-height-${this.lineHeight}`]: this.lineHeight,
+      [`c-bolt-text-v2--opacity-${this.opacity}`]: this.opacity,
+      [`c-bolt-text-v2--quoted`]: this.quoted,
+    });
 
     // Adds our utilities to the outer parent <bolt-text />
     if (this.util && this.util.indexOf(',') > -1) {
