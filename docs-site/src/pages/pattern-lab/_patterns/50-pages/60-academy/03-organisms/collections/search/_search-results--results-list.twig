@@ -15,16 +15,12 @@
   {% include "@bolt-components-menu/menu.twig" with {
     items: [
       {
-        content: macros.include("@bolt-components-link/link.twig", {
-          text: "Pega Customer Decision Hub 8.1",
-          url: "https://pega.com"
-        }, false),
+        content: "Pega Customer Decision Hub 8.1",
+        url: "https://pega.com"
       },
       {
-        content: macros.include("@bolt-components-link/link.twig", {
-          text: "Pega Customer Decision Hub 8.3",
-          url: "https://pega.com"
-        }, false),
+        content: "Pega Customer Decision Hub 8.3",
+        url: "https://pega.com"
       },
     ]
   } only %}
@@ -54,6 +50,7 @@
         macros.include("@bolt-components-popover/popover.twig", {
           trigger: trigger,
           content: popoverContent,
+          spacing: "none",
           placement: "top-start",
           fallbackPlacements: [
             "top",
