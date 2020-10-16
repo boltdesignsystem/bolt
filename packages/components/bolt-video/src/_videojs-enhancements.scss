@@ -367,6 +367,7 @@ $bolt-video-js-button-shadow-level-hover: 'level-40';
       }
 
       .vjs-errors-headline,
+      .vjs-errors-message,
       .vjs-errors-ref-id {
         display: block;
         width: 100%;
@@ -384,6 +385,19 @@ $bolt-video-js-button-shadow-level-hover: 'level-40';
 
       .vjs-errors-headline + div {
         font-size: var(--bolt-type-font-size-xsmall);
+      }
+
+      .vjs-errors-details {
+        margin-top: 4px;
+        font-size: 0;
+      }
+
+      .vjs-errors-message {
+        margin: 0;
+        padding: 0;
+        font-size: var(--bolt-type-font-size-xsmall);
+        border: 0;
+        background-color: transparent;
       }
 
       .vjs-errors-ref-id {
