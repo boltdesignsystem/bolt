@@ -36,7 +36,12 @@ module.exports = {
     reversed_underline: {
       type: 'boolean',
       description:
-        'Reversed underline sets the underline to appear on hover instead of regular state.',
+        'Set the underline style to appear on hover instead of regular state.',
+      default: 'false',
+    },
+    button: {
+      type: 'boolean',
+      description: 'Set the semantic HTML tag to <button>.',
       default: 'false',
     },
   },

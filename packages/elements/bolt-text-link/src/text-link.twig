@@ -30,16 +30,21 @@
   {% set icon_after_slot = icon_after %}
 {% endif %}
 
+{% if button %}
+  {% set tag = 'button' %}
+{% else %}
+  {% set tag = 'a' %}
+{% endif %}
+
 {% set classes = [
   'e-bolt-link',
   icon_before ? 'e-bolt-link--icon-before',
   icon_after ? 'e-bolt-link--icon-after',
-  icon_before and icon_after ? 'e-bolt-link--icon-before-and-after',
   reversed_underline ? 'e-bolt-link--reversed-underline',
-  display ? 'e-bolt-link--' ~ display,
+  display == 'block' ? 'e-bolt-link--block',
 ] %}
 
 {# All of this is written in one line to avoid any unwanted white-space. #}
-<a {{ attributes.addClass(classes) }}>
+<{{ tag }} {{ attributes.addClass(classes) }}>
   {{ icon_before_slot|spaceless }}{{ content }}{{ icon_after_slot|spaceless }}
-</a>
+</{{ tag }}>

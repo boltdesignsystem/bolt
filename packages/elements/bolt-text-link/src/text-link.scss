@@ -7,37 +7,21 @@
 .e-bolt-link {
   @include bolt-button-native-styles-reset;
   @include bolt-text-link;
+}
 
+[class*='e-bolt-link--icon'] {
   > img {
     width: 1em;
     height: 1em;
   }
 
   > img,
-  > bolt-icon {
+  > bolt-icon:not([size]) {
     display: inline-flex;
     transform: translateY(
       0.18em
     ); // Temporary fix for icon + text bad vertical alignment.
     vertical-align: baseline;
-  }
-
-  > bolt-icon[size] {
-    transform: none;
-    vertical-align: middle;
-  }
-}
-
-.e-bolt-link--icon-before-and-after {
-  > img,
-  > bolt-icon {
-    &:first-child {
-      margin-right: var(--bolt-spacing-x-xxsmall);
-    }
-
-    &:last-child {
-      margin-left: var(--bolt-spacing-x-xxsmall);
-    }
   }
 }
 
@@ -55,6 +39,21 @@
   }
 }
 
+.e-bolt-link--icon-before.e-bolt-link--icon-after {
+  > img,
+  > bolt-icon {
+    &:first-child {
+      margin-right: var(--bolt-spacing-x-xxsmall);
+      margin-left: 0;
+    }
+
+    &:last-child {
+      margin-right: 0;
+      margin-left: var(--bolt-spacing-x-xxsmall);
+    }
+  }
+}
+
 .e-bolt-link--reversed-underline {
   text-decoration: none;
 
@@ -63,11 +62,16 @@
   }
 }
 
+.e-bolt-link--block {
+  display: block;
+}
+
 // These are error messages for when a developer uses <a> and <button> incorrectly with `.e-bolt-link`.
 a.e-bolt-link[type],
 a.e-bolt-link:not([href]),
 button.e-bolt-link[href],
-button.e-bolt-link[target] {
+button.e-bolt-link[target],
+button.e-bolt-link:not([type]) {
   &:after {
     display: inline-block;
     transform: scale(0.8);
@@ -102,5 +106,11 @@ button.e-bolt-link[href] {
 button.e-bolt-link[target] {
   &:after {
     content: 'This <button> element should not have the "target" attribute.';
+  }
+}
+
+button.e-bolt-link:not([type]) {
+  &:after {
+    content: 'This <button> element is missing the "type" attribute.';
   }
 }
