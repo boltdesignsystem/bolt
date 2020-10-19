@@ -12,7 +12,7 @@ module.exports = {
 
     browser
       .url(
-        `${testingUrl}/pattern-lab/patterns/40-components-tabs--40-tabs-no-shadow/40-components-tabs--40-tabs-no-shadow.html`,
+        `${testingUrl}/pattern-lab/patterns/60-tests-tabs-00-tabs-no-shadow/60-tests-tabs-00-tabs-no-shadow.html`,
       )
       .waitForElementVisible('bolt-tabs', 1000)
       .assert.elementPresent(secondTabSelector)
