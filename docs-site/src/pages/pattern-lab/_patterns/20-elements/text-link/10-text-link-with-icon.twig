@@ -2,26 +2,6 @@
   <img src="/images/placeholders/500x500.jpg" alt="Bill">
 {% endset %}
 
-{% set link %}
-  {% include '@bolt-elements-text-link/text-link.twig' with {
-    content: 'This is a text link',
-    attributes: {
-      href: 'javascript:',
-      target: '_blank',
-    }
-  } only %}
-{% endset %}
-
-{% set visited_link %}
-  {% include '@bolt-elements-text-link/text-link.twig' with {
-    content: 'This is a visited text link',
-    attributes: {
-      href: '/',
-      target: '_blank',
-    }
-  } only %}
-{% endset %}
-
 {% set reversed_underline_link %}
   {% include '@bolt-elements-text-link/text-link.twig' with {
     content: 'This is a text link with reversed underline',
@@ -40,10 +20,10 @@
   {% include '@bolt-elements-text-link/text-link.twig' with {
     content: 'This is a text link with icons before and after',
     icon_before: {
-      name: 'chevron-left',
+      name: 'global',
     },
     icon_after: {
-      name: 'chevron-right',
+      name: 'chevron-down',
     },
     attributes: {
       href: 'https//pega.com',
@@ -54,7 +34,7 @@
   {% include '@bolt-elements-text-link/text-link.twig' with {
     content: 'This is a text link with an icon before',
     icon_before: {
-      name: 'chevron-left',
+      name: 'info-open',
     },
     attributes: {
       href: 'https//pega.com',
@@ -65,88 +45,8 @@
   {% include '@bolt-elements-text-link/text-link.twig' with {
     content: 'This is a text link with an icon after',
     icon_after: {
-      name: 'chevron-right',
-    },
-    attributes: {
-      href: 'https//pega.com',
-    }
-  } only %}
-</p>
-
-<bolt-text headline>Icon Size</bolt-text>
-<p>
-  {% include '@bolt-elements-text-link/text-link.twig' with {
-    content: 'This is a text link with a small icon before',
-    icon_before: {
       name: 'info-open',
-      size: 'small'
     },
-    attributes: {
-      href: 'https//pega.com',
-    }
-  } only %}
-</p>
-<p>
-  {% include '@bolt-elements-text-link/text-link.twig' with {
-    content: 'This is a text link with a medium icon before',
-    icon_before: {
-      name: 'info-open',
-      size: 'medium'
-    },
-    attributes: {
-      href: 'https//pega.com',
-    }
-  } only %}
-</p>
-<p>
-  {% include '@bolt-elements-text-link/text-link.twig' with {
-    content: 'This is a text link with a large icon before',
-    icon_before: {
-      name: 'info-open',
-      size: 'large'
-    },
-    attributes: {
-      href: 'https//pega.com',
-    }
-  } only %}
-</p>
-<p>
-  {% include '@bolt-elements-text-link/text-link.twig' with {
-    content: 'This is a text link with a xlarge icon before',
-    icon_before: {
-      name: 'info-open',
-      size: 'xlarge'
-    },
-    attributes: {
-      href: 'https//pega.com',
-    }
-  } only %}
-</p>
-
-<bolt-text headline>Custom Icons</bolt-text>
-<p>
-  {% include '@bolt-elements-text-link/text-link.twig' with {
-    content: 'This is a text link with custom icons before and after',
-    icon_before: icon_custom|spaceless,
-    icon_after: icon_custom|spaceless,
-    attributes: {
-      href: 'https//pega.com',
-    }
-  } only %}
-</p>
-<p>
-  {% include '@bolt-elements-text-link/text-link.twig' with {
-    content: 'This is a text link with a custom icon before',
-    icon_before: icon_custom|spaceless,
-    attributes: {
-      href: 'https//pega.com',
-    }
-  } only %}
-</p>
-<p>
-  {% include '@bolt-elements-text-link/text-link.twig' with {
-    content: 'This is a text link with a custom icon after',
-    icon_after: icon_custom|spaceless,
     attributes: {
       href: 'https//pega.com',
     }
@@ -189,6 +89,137 @@
   } only %}
 </p>
 
+
+<bolt-banner status="warning">
+  <bolt-icon name="warning"></bolt-icon> <strong>Use the following with caution.</strong>
+</bolt-banner>
+
+{% set link %}
+  {% include '@bolt-elements-text-link/text-link.twig' with {
+    content: 'This is a text link',
+    attributes: {
+      href: 'javascript:',
+      target: '_blank',
+    }
+  } only %}
+{% endset %}
+
+{% set visited_link %}
+  {% include '@bolt-elements-text-link/text-link.twig' with {
+    content: 'This is a visited text link',
+    attributes: {
+      href: '/',
+      target: '_blank',
+    }
+  } only %}
+{% endset %}
+
+{% set a_really_long_link %}
+  {% include '@bolt-elements-text-link/text-link.twig' with {
+    content: 'A really long link phasellus molestie magna non est bibendum non venenatis nisl tempor Suspendisse dictum feugiat nisl ut dapibus Mauris iaculis porttitor posuere Praesent id metus massa ut blandit odio Proin',
+    icon_before: {
+      name: 'brand-meteor'
+    },
+    icon_after: {
+      name: 'brand-triangle'
+    },
+    attributes: {
+      href: 'javascript:',
+    }
+  } only %}
+{% endset %}
+
+<bolt-text headline>Icon Size</bolt-text>
+<p>
+  {% include '@bolt-elements-text-link/text-link.twig' with {
+    content: 'This is a text link with a auto sized icon before',
+    icon_before: {
+      name: 'arrow-left',
+    },
+    attributes: {
+      href: 'https//pega.com',
+    }
+  } only %}
+</p>
+<p>
+  {% include '@bolt-elements-text-link/text-link.twig' with {
+    content: 'This is a text link with a small icon before',
+    icon_before: {
+      name: 'arrow-left',
+      size: 'small'
+    },
+    attributes: {
+      href: 'https//pega.com',
+    }
+  } only %}
+</p>
+<p>
+  {% include '@bolt-elements-text-link/text-link.twig' with {
+    content: 'This is a text link with a medium icon before',
+    icon_before: {
+      name: 'arrow-left',
+      size: 'medium'
+    },
+    attributes: {
+      href: 'https//pega.com',
+    }
+  } only %}
+</p>
+<p>
+  {% include '@bolt-elements-text-link/text-link.twig' with {
+    content: 'This is a text link with a large icon before',
+    icon_before: {
+      name: 'arrow-left',
+      size: 'large'
+    },
+    attributes: {
+      href: 'https//pega.com',
+    }
+  } only %}
+</p>
+<p>
+  {% include '@bolt-elements-text-link/text-link.twig' with {
+    content: 'This is a text link with a xlarge icon before',
+    icon_before: {
+      name: 'arrow-left',
+      size: 'xlarge'
+    },
+    attributes: {
+      href: 'https//pega.com',
+    }
+  } only %}
+</p>
+
+<bolt-text headline>Custom Icons</bolt-text>
+<p>
+  {% include '@bolt-elements-text-link/text-link.twig' with {
+    content: 'This is a text link with custom icons before and after',
+    icon_before: icon_custom,
+    icon_after: icon_custom,
+    attributes: {
+      href: 'https//pega.com',
+    }
+  } only %}
+</p>
+<p>
+  {% include '@bolt-elements-text-link/text-link.twig' with {
+    content: 'This is a text link with a custom icon before',
+    icon_before: icon_custom,
+    attributes: {
+      href: 'https//pega.com',
+    }
+  } only %}
+</p>
+<p>
+  {% include '@bolt-elements-text-link/text-link.twig' with {
+    content: 'This is a text link with a custom icon after',
+    icon_after: icon_custom,
+    attributes: {
+      href: 'https//pega.com',
+    }
+  } only %}
+</p>
+
 <bolt-text headline>Sandbox</bolt-text>
-<p>In condimentum facilisis porta. <a href="#!" class="e-bolt-text-link e-bolt-text-link--icon-before e-bolt-text-link--icon-after"><bolt-icon name="arrow-left"></bolt-icon>A really long link phasellus molestie magna non est bibendum non venenatis nisl tempor Suspendisse dictum feugiat nisl ut dapibus Mauris iaculis porttitor posuere Praesent id metus massa ut blandit odio Proin<bolt-icon name="info-open"></bolt-icon></a>. Sed nec diam eu diam mattis viverra. {{ link }}. Nulla fringilla, orci ac euismod semper, magna diam porttitor mauris, quis sollicitudin sapien justo in libero. Vestibulum mollis mauris enim. Morbi euismod magna ac lorem rutrum elementum. Donec viverra auctor lobortis. Pellentesque eu est a nulla placerat dignissim. {{ visited_link }}. Morbi a enim in magna semper bibendum. Etiam scelerisque, nunc ac egestas consequat, odio nibh euismod nulla.</p>
+<p>In condimentum facilisis porta. {{ a_really_long_link }}. Sed nec diam eu diam mattis viverra. {{ link }}. Nulla fringilla, orci ac euismod semper, magna diam porttitor mauris, quis sollicitudin sapien justo in libero. Vestibulum mollis mauris enim. Morbi euismod magna ac lorem rutrum elementum. Donec viverra auctor lobortis. Pellentesque eu est a nulla placerat dignissim. {{ visited_link }}. Morbi a enim in magna semper bibendum. Etiam scelerisque, nunc ac egestas consequat, odio nibh euismod nulla.</p>
 

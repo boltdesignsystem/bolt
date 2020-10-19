@@ -1,3 +1,16 @@
+{#
+/**
+ * Text Link Element
+ *
+ * Available variables:
+ * - Check text-link.schema.js
+ *
+ * Dev notes
+ * 1. The markup is written in one line (combined with spaceless) to avoid any unwanted white-space.
+ * 2. Zero width non-breaking space (&#xfeff;) inside the icon-wrapper with nowrap white-space are needed to make sure that an icon never wraps to the next line by itself, it will always wrap with the final word of the text. See: https://codepen.io/snookca/pen/JBdBVZ?editors=0100
+ */
+#}
+
 {% set schema = bolt.data.elements['@bolt-elements-text-link'].schema %}
 
 {% if enable_json_schema_validation %}
@@ -9,25 +22,35 @@
 {% set attributes = create_attribute(attributes|default({})) %}
 
 {% if icon_before.name %}
-  {% set icon_before_slot %}
+  {% set icon_before_template %}
     {% include '@bolt-components-icon/icon.twig' with {
       name: icon_before.name,
       size: icon_before.size,
     } only %}
   {% endset %}
-{% else %}
-  {% set icon_before_slot = icon_before %}
+  {% set icon_before_slot %}
+    <span class="e-bolt-text-link__icon-wrapper">{{ icon_before_template|spaceless }}&#xfeff;</span>
+  {% endset %}
+{% elseif icon_before %}
+  {% set icon_before_slot %}
+    <span class="e-bolt-text-link__icon-wrapper">{{ icon_before|spaceless }}&#xfeff;</span>
+  {% endset %}
 {% endif %}
 
 {% if icon_after.name %}
-  {% set icon_after_slot %}
+  {% set icon_after_template %}
     {% include '@bolt-components-icon/icon.twig' with {
       name: icon_after.name,
       size: icon_after.size,
     } only %}
   {% endset %}
-{% else %}
-  {% set icon_after_slot = icon_after %}
+  {% set icon_after_slot %}
+    <span class="e-bolt-text-link__icon-wrapper">&#xfeff;{{ icon_after_template|spaceless }}</span>
+  {% endset %}
+{% elseif icon_after %}
+  {% set icon_after_slot %}
+    <span class="e-bolt-text-link__icon-wrapper">&#xfeff;{{ icon_after|spaceless }}</span>
+  {% endset %}
 {% endif %}
 
 {% if button %}
@@ -44,5 +67,4 @@
   display == 'block' ? 'e-bolt-text-link--block',
 ] %}
 
-{# All of this is written in one line (combined with spaceless) to avoid any unwanted white-space. #}
-{% spaceless %}<{{ tag }} {{ attributes.addClass(classes) }}>{{ icon_before_slot|spaceless }}{{- content -}}{{ icon_after_slot|spaceless }}</{{ tag }}>{% endspaceless %}
+<{{ tag }} {{ attributes.addClass(classes) }}>{{ icon_before_slot|spaceless }}{{ content }}{{ icon_after_slot|spaceless }}</{{ tag }}>

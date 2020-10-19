@@ -10,46 +10,74 @@
 }
 
 [class*='e-bolt-text-link--icon'] {
-  > img {
-    width: 1em;
-    height: 1em;
-  }
-
-  > img,
-  > bolt-icon:not([size]) {
-    display: inline-flex;
-    transform: translateY(
-      0.18em
-    ); // Temporary fix for icon + text bad vertical alignment.
+  > .e-bolt-text-link__icon-wrapper {
+    white-space: nowrap;
     vertical-align: baseline;
+
+    > img {
+      width: 1em;
+      height: 1em;
+    }
+
+    > img,
+    > bolt-icon:not([size]) {
+      display: inline-flex;
+      transform: translateY(
+        0.18em
+      ); // Temporary fix for icon + text bad vertical alignment.
+      vertical-align: baseline;
+    }
   }
 }
 
 .e-bolt-text-link--icon-before {
-  > img,
-  > bolt-icon {
-    margin-right: var(--bolt-spacing-x-xxsmall);
+  > .e-bolt-text-link__icon-wrapper {
+    margin-right: calc(
+      var(--bolt-spacing-x) * var(--bolt-spacing-multiplier-xxsmall) * 1em
+    );
+
+    > bolt-icon[size] {
+      margin-right: var(--bolt-spacing-x-xsmall);
+    }
   }
 }
 
 .e-bolt-text-link--icon-after {
-  > img,
-  > bolt-icon {
-    margin-left: var(--bolt-spacing-x-xxsmall);
+  > .e-bolt-text-link__icon-wrapper {
+    margin-left: calc(
+      var(--bolt-spacing-x) * var(--bolt-spacing-multiplier-xxsmall) * 1em
+    );
+
+    > bolt-icon[size] {
+      margin-left: var(--bolt-spacing-x-xsmall);
+    }
   }
 }
 
 .e-bolt-text-link--icon-before.e-bolt-text-link--icon-after {
-  > img,
-  > bolt-icon {
+  > .e-bolt-text-link__icon-wrapper {
     &:first-child {
-      margin-right: var(--bolt-spacing-x-xxsmall);
+      margin-right: calc(
+        var(--bolt-spacing-x) * var(--bolt-spacing-multiplier-xxsmall) * 1em
+      );
       margin-left: 0;
+
+      > bolt-icon[size] {
+        margin-right: var(--bolt-spacing-x-xsmall);
+        margin-left: 0;
+      }
     }
 
     &:last-child {
       margin-right: 0;
-      margin-left: var(--bolt-spacing-x-xxsmall);
+      margin-left: calc(
+        var(--bolt-spacing-x) * var(--bolt-spacing-multiplier-xxsmall) * 1em
+      );
+
+      > bolt-icon[size] {
+        margin-right: 0;
+        margin-left: var(--bolt-spacing-x-xsmall);
+      }
     }
   }
 }
