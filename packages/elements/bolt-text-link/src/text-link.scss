@@ -1,8 +1,14 @@
 @import '@bolt/core-v3.x';
 
-/* ------------------------------------ *\
-   Text Link
-\* ------------------------------------ */
+/**
+ * Text Link
+ *
+ * Dev notes:
+ * 1. Zero width no-break space is passed to icon-wrapper's :before and :after pseudo elements, combine that with nowrap white-space on icon-wrapper, and it will make sure that an icon never wraps to the next line by itself, it will always wrap with the final word of the text. See: https://codepen.io/snookca/pen/JBdBVZ?editors=0100
+ * 2. Custom icons must be a square and the height must equal the text's font-size, hence 1em.
+ * 3. Temporary fix for icon + text bad vertical alignment.
+ * 4. `em` unit is used to make sure the spacing between icon and text is relative to the text's font-size.
+ */
 
 .e-bolt-text-link {
   @include bolt-button-native-styles-reset;
@@ -14,17 +20,20 @@
     white-space: nowrap;
     vertical-align: baseline;
 
+    &:before,
+    &:after {
+      content: '\FEFF'; /* [1] */
+    }
+
     > img {
-      width: 1em;
-      height: 1em;
+      width: 1em; /* [2] */
+      height: 1em; /* [2] */
     }
 
     > img,
     > bolt-icon:not([size]) {
       display: inline-flex;
-      transform: translateY(
-        0.18em
-      ); // Temporary fix for icon + text bad vertical alignment.
+      transform: translateY(0.18em); /* [3] */
       vertical-align: baseline;
     }
   }
@@ -34,7 +43,7 @@
   > .e-bolt-text-link__icon-wrapper {
     margin-right: calc(
       var(--bolt-spacing-x) * var(--bolt-spacing-multiplier-xxsmall) * 1em
-    );
+    ); /* [4] */
 
     > bolt-icon[size] {
       margin-right: var(--bolt-spacing-x-xsmall);
@@ -46,7 +55,7 @@
   > .e-bolt-text-link__icon-wrapper {
     margin-left: calc(
       var(--bolt-spacing-x) * var(--bolt-spacing-multiplier-xxsmall) * 1em
-    );
+    ); /* [4] */
 
     > bolt-icon[size] {
       margin-left: var(--bolt-spacing-x-xsmall);
@@ -59,7 +68,7 @@
     &:first-child {
       margin-right: calc(
         var(--bolt-spacing-x) * var(--bolt-spacing-multiplier-xxsmall) * 1em
-      );
+      ); /* [4] */
       margin-left: 0;
 
       > bolt-icon[size] {
@@ -72,7 +81,7 @@
       margin-right: 0;
       margin-left: calc(
         var(--bolt-spacing-x) * var(--bolt-spacing-multiplier-xxsmall) * 1em
-      );
+      ); /* [4] */
 
       > bolt-icon[size] {
         margin-right: 0;
@@ -98,7 +107,9 @@
   }
 }
 
-// These are error messages for when a developer uses <a> and <button> incorrectly with `.e-bolt-text-link`.
+/**
+ * These are error messages for when a developer uses <a> and <button> incorrectly with `.e-bolt-text-link`.
+ */
 a.e-bolt-text-link[type],
 a.e-bolt-text-link:not([href]),
 button.e-bolt-text-link[href],
