@@ -64,6 +64,10 @@
 
 .e-bolt-link--block {
   display: block;
+
+  &:not(:last-child) {
+    margin-bottom: var(--bolt-spacing-y-medium);
+  }
 }
 
 // These are error messages for when a developer uses <a> and <button> incorrectly with `.e-bolt-link`.

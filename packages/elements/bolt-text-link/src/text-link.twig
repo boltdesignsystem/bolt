@@ -1,7 +1,7 @@
 {% set schema = bolt.data.elements['@bolt-elements-text-link'].schema %}
 
 {% if enable_json_schema_validation %}
-  {{ validate_data_schema(schema, _self) | raw }}
+  {{ validate_data_schema(schema, _self)|raw }}
 {% endif %}
 
 {# Variables #}
@@ -44,7 +44,5 @@
   display == 'block' ? 'e-bolt-link--block',
 ] %}
 
-{# All of this is written in one line to avoid any unwanted white-space. #}
-<{{ tag }} {{ attributes.addClass(classes) }}>
-  {{ icon_before_slot|spaceless }}{{ content }}{{ icon_after_slot|spaceless }}
-</{{ tag }}>
+{# All of this is written in one line (combined with spaceless) to avoid any unwanted white-space. #}
+{% spaceless %}<{{ tag }} {{ attributes.addClass(classes) }}>{{ icon_before_slot|spaceless }}{{- content -}}{{ icon_after_slot|spaceless }}</{{ tag }}>{% endspaceless %}
