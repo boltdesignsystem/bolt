@@ -1,15 +1,15 @@
 @import '@bolt/core-v3.x';
 
 /* ------------------------------------ *\
-   Link
+   Text Link
 \* ------------------------------------ */
 
-.e-bolt-link {
+.e-bolt-text-link {
   @include bolt-button-native-styles-reset;
   @include bolt-text-link;
 }
 
-[class*='e-bolt-link--icon'] {
+[class*='e-bolt-text-link--icon'] {
   > img {
     width: 1em;
     height: 1em;
@@ -25,21 +25,21 @@
   }
 }
 
-.e-bolt-link--icon-before {
+.e-bolt-text-link--icon-before {
   > img,
   > bolt-icon {
     margin-right: var(--bolt-spacing-x-xxsmall);
   }
 }
 
-.e-bolt-link--icon-after {
+.e-bolt-text-link--icon-after {
   > img,
   > bolt-icon {
     margin-left: var(--bolt-spacing-x-xxsmall);
   }
 }
 
-.e-bolt-link--icon-before.e-bolt-link--icon-after {
+.e-bolt-text-link--icon-before.e-bolt-text-link--icon-after {
   > img,
   > bolt-icon {
     &:first-child {
@@ -54,7 +54,7 @@
   }
 }
 
-.e-bolt-link--reversed-underline {
+.e-bolt-text-link--reversed-underline {
   text-decoration: none;
 
   &:hover {
@@ -62,7 +62,7 @@
   }
 }
 
-.e-bolt-link--block {
+.e-bolt-text-link--block {
   display: block;
 
   &:not(:last-child) {
@@ -70,12 +70,12 @@
   }
 }
 
-// These are error messages for when a developer uses <a> and <button> incorrectly with `.e-bolt-link`.
-a.e-bolt-link[type],
-a.e-bolt-link:not([href]),
-button.e-bolt-link[href],
-button.e-bolt-link[target],
-button.e-bolt-link:not([type]) {
+// These are error messages for when a developer uses <a> and <button> incorrectly with `.e-bolt-text-link`.
+a.e-bolt-text-link[type],
+a.e-bolt-text-link:not([href]),
+button.e-bolt-text-link[href],
+button.e-bolt-text-link[target],
+button.e-bolt-text-link:not([type]) {
   &:after {
     display: inline-block;
     transform: scale(0.8);
@@ -89,31 +89,31 @@ button.e-bolt-link:not([type]) {
   }
 }
 
-a.e-bolt-link[type] {
+a.e-bolt-text-link[type] {
   &:after {
     content: 'This <a> element should not have the "type" attribute.';
   }
 }
 
-a.e-bolt-link:not([href]):not([name]) {
+a.e-bolt-text-link:not([href]):not([name]) {
   &:after {
     content: 'This <a> element is missing the "href" attribute.';
   }
 }
 
-button.e-bolt-link[href] {
+button.e-bolt-text-link[href] {
   &:after {
     content: 'This <button> element should not have the "href" attribute.';
   }
 }
 
-button.e-bolt-link[target] {
+button.e-bolt-text-link[target] {
   &:after {
     content: 'This <button> element should not have the "target" attribute.';
   }
 }
 
-button.e-bolt-link:not([type]) {
+button.e-bolt-text-link:not([type]) {
   &:after {
     content: 'This <button> element is missing the "type" attribute.';
   }
