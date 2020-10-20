@@ -1,0 +1,62 @@
+<div class="c-bolt-video" style="max-width: 1000px;position:relative;display:block;padding-bottom:33.85%;height:0;">
+  <video-js
+    data-account="1900410236"
+    data-player="4fVA8Ojzs"
+    data-embed="default"
+    data-video-id="3974147489001"
+    controls
+    data-application-id=""
+    data-email-subject="Email Subject"
+    data-email-body="Email Body"
+    data-email-videourl="Video Url"
+    data-default-resolution="540p"
+    class="video-js"></video-js>
+</div>
+<div class="c-bolt-video" style="max-width: 1000px;position:relative;display:block;padding-bottom:33.85%;height:0;">
+  <video-js
+    data-account="1900410236"
+    data-player="4fVA8Ojzs"
+    data-embed="default"
+    data-video-id="6196035205001"
+    controls="false"
+    data-application-id=""
+    data-email-subject="Email Subject"
+    data-email-body="Email Body"
+    data-email-videourl="Video Url"
+    class="video-js"></video-js>
+</div>
+<script src="https://players.brightcove.net/1900410236/4fVA8Ojzs_default/index.min.js"></script>
+<script>
+  var players = document.querySelectorAll('.video-js');
+  players.forEach(function(player) {
+    var thisPlayer = videojs.getPlayer(player.id);
+    thisPlayer.on('ready', function() {
+      socialOptions = {
+        "title": "{{ video_name }}",
+        "description": "{{ video_description }}",
+        "url": "{{ page_url }}",
+        "removeEmbed": true,
+        "services": {
+          "facebook": true,
+          "twitter": false,
+          "tumblr": false,
+          "pinterest": false,
+          "linkedin": false
+        },
+        "displayAfterVideo": true,
+        "buttonParent": "controlBar"
+      };
+      qualityOptions = {
+        "useResolutionLabels": true,
+        "defaultResolution": this.getAttribute('data-default-resolution') || "270p",
+      };
+      this.social(socialOptions);
+      this.ga();
+      this.qualityMenu(qualityOptions);
+      this.emailSocialShare();
+      this.on('loadstart', function(player) {
+        this.metaData(this.mediainfo.name, this.mediainfo.duration, this);
+      })
+    });
+  });
+</script>

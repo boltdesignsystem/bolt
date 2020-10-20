@@ -78,17 +78,20 @@ async function createWebpackConfig(buildConfig) {
             '@bolt/polyfills/modern.js',
             '@bolt/core-v3.x/styles/main.scss',
           ];
+          entry['brightcove'] = ['@bolt/components-video/brightcove.scss'];
         } else {
           entry[globalEntryName] = [
             '@bolt/polyfills',
             '@bolt/core-v3.x/styles/main.scss',
           ];
+          entry['brightcove'] = ['@bolt/components-video/brightcove.scss'];
         }
       } else {
         entry[globalEntryName] = [
           '@bolt/polyfills',
           '@bolt/core-v3.x/styles/main.scss',
         ];
+        entry['brightcove'] = ['@bolt/components-video/brightcove.scss'];
       }
 
       components.global.forEach(component => {
