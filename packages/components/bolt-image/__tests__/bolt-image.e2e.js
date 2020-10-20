@@ -11,7 +11,7 @@ module.exports = {
 
     browser
       .url(
-        `${testingUrl}/pattern-lab/patterns/60-tests-image-00-image-no-shadow/60-tests-image-00-image-no-shadow.html`,
+        `${testingUrl}/pattern-lab/patterns/999-tests-image-00-image-no-shadow/999-tests-image-00-image-no-shadow.html`,
       )
       .waitForElementVisible('body', 1000)
       .getElementSize('body', function(result) {
