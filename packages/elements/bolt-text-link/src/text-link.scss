@@ -4,8 +4,8 @@
  * Text Link
  *
  * Dev notes:
- * 1. Zero width no-break space is passed to icon-wrapper's :before and :after pseudo elements, combine that with nowrap white-space on icon-wrapper, and it will make sure that an icon never wraps to the next line by itself, it will always wrap with the final word of the text. See: https://codepen.io/snookca/pen/JBdBVZ?editors=0100
- * 2. Custom icons must be a square and the height must equal the text's font-size, hence 1em.
+ * 1. Custom icons must be a square and the height must equal the text's font-size, hence 1em.
+ * 2. Zero width no-break space is passed to the icon container's :before and :after pseudo elements, combine that with nowrap white-space on the icon container, and it will make sure that an icon never wraps to the next line by itself, it will always wrap with the final word of the text. See: https://codepen.io/snookca/pen/JBdBVZ?editors=0100
  * 3. Temporary fix for icon + text bad vertical alignment.
  * 4. `em` unit is used to make sure the spacing between icon and text is relative to the text's font-size.
  */
@@ -15,79 +15,44 @@
   @include bolt-text-link;
 }
 
-[class*='e-bolt-text-link--icon'] {
-  > .e-bolt-text-link__icon-wrapper {
-    white-space: nowrap;
+[class*='e-bolt-text-link__icon'] {
+  white-space: nowrap;
+
+  &:before,
+  &:after {
+    content: '\FEFF'; /* [2] */
+  }
+
+  > img {
+    width: 1em; /* [1] */
+    height: 1em; /* [1] */
+  }
+
+  > img,
+  > bolt-icon:not([size]) {
+    display: inline-flex;
+    transform: translateY(0.18em); /* [3] */
     vertical-align: baseline;
-
-    &:before,
-    &:after {
-      content: '\FEFF'; /* [1] */
-    }
-
-    > img {
-      width: 1em; /* [2] */
-      height: 1em; /* [2] */
-    }
-
-    > img,
-    > bolt-icon:not([size]) {
-      display: inline-flex;
-      transform: translateY(0.18em); /* [3] */
-      vertical-align: baseline;
-    }
   }
 }
 
-.e-bolt-text-link--icon-before {
-  > .e-bolt-text-link__icon-wrapper {
-    margin-right: calc(
-      var(--bolt-spacing-x) * var(--bolt-spacing-multiplier-xxsmall) * 1em
-    ); /* [4] */
+.e-bolt-text-link__icon-before {
+  margin-right: calc(
+    var(--bolt-spacing-x) * var(--bolt-spacing-multiplier-xxsmall) * 1em
+  ); /* [4] */
 
-    > bolt-icon[size] {
-      margin-right: var(--bolt-spacing-x-xsmall);
-    }
+  > bolt-icon[size] {
+    margin-right: var(--bolt-spacing-x-xxsmall);
   }
 }
 
-.e-bolt-text-link--icon-after {
-  > .e-bolt-text-link__icon-wrapper {
-    margin-left: calc(
-      var(--bolt-spacing-x) * var(--bolt-spacing-multiplier-xxsmall) * 1em
-    ); /* [4] */
+.e-bolt-text-link__icon-after {
+  margin-left: calc(
+    var(--bolt-spacing-x) * var(--bolt-spacing-multiplier-xxsmall) * 1em
+  ); /* [4] */
 
-    > bolt-icon[size] {
-      margin-left: var(--bolt-spacing-x-xsmall);
-    }
-  }
-}
-
-.e-bolt-text-link--icon-before.e-bolt-text-link--icon-after {
-  > .e-bolt-text-link__icon-wrapper {
-    &:first-child {
-      margin-right: calc(
-        var(--bolt-spacing-x) * var(--bolt-spacing-multiplier-xxsmall) * 1em
-      ); /* [4] */
-      margin-left: 0;
-
-      > bolt-icon[size] {
-        margin-right: var(--bolt-spacing-x-xsmall);
-        margin-left: 0;
-      }
-    }
-
-    &:last-child {
-      margin-right: 0;
-      margin-left: calc(
-        var(--bolt-spacing-x) * var(--bolt-spacing-multiplier-xxsmall) * 1em
-      ); /* [4] */
-
-      > bolt-icon[size] {
-        margin-right: 0;
-        margin-left: var(--bolt-spacing-x-xsmall);
-      }
-    }
+  > bolt-icon[size] {
+    margin-left: var(--bolt-spacing-x-xxsmall);
   }
 }
 

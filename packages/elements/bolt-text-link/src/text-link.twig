@@ -7,7 +7,7 @@
  *
  * Dev notes
  * 1. The markup is written in one line (combined with spaceless) to avoid any unwanted white-space.
- * 2. Zero width no-break space is passed to icon-wrapper's :before and :after pseudo elements, combine that with nowrap white-space on icon-wrapper, and it will make sure that an icon never wraps to the next line by itself, it will always wrap with the final word of the text. Do not remove the icon-wrapper spans. See: https://codepen.io/snookca/pen/JBdBVZ?editors=0100
+ * 2. Zero width no-break space is passed to the icon container's :before and :after pseudo elements, combine that with nowrap white-space on the icon container, and it will make sure that an icon never wraps to the next line by itself, it will always wrap with the final word of the text. Do not remove the icon container spans. See: https://codepen.io/snookca/pen/JBdBVZ?editors=0100
  */
 #}
 
@@ -29,11 +29,11 @@
     } only %}
   {% endset %}
   {% set icon_before_slot %}
-    <span class="e-bolt-text-link__icon-wrapper">{{ icon_before_template|spaceless }}</span>
+    <span class="e-bolt-text-link__icon-before">{{ icon_before_template|spaceless }}</span>
   {% endset %}
 {% elseif icon_before %}
   {% set icon_before_slot %}
-    <span class="e-bolt-text-link__icon-wrapper">{{ icon_before|spaceless }}</span>
+    <span class="e-bolt-text-link__icon-before">{{ icon_before|spaceless }}</span>
   {% endset %}
 {% endif %}
 
@@ -45,11 +45,11 @@
     } only %}
   {% endset %}
   {% set icon_after_slot %}
-    <span class="e-bolt-text-link__icon-wrapper">{{ icon_after_template|spaceless }}</span>
+    <span class="e-bolt-text-link__icon-after">{{ icon_after_template|spaceless }}</span>
   {% endset %}
 {% elseif icon_after %}
   {% set icon_after_slot %}
-    <span class="e-bolt-text-link__icon-wrapper">{{ icon_after|spaceless }}</span>
+    <span class="e-bolt-text-link__icon-after">{{ icon_after|spaceless }}</span>
   {% endset %}
 {% endif %}
 
@@ -61,12 +61,10 @@
 
 {% set classes = [
   'e-bolt-text-link',
-  icon_before ? 'e-bolt-text-link--icon-before',
-  icon_after ? 'e-bolt-text-link--icon-after',
   reversed_underline ? 'e-bolt-text-link--reversed-underline',
   display == 'block' ? 'e-bolt-text-link--block',
 ] %}
 
 {# Template #}
-{# @devs: [1], [2] #}
+{# [1], [2] #}
 {% spaceless %}<{{ tag }} {{ attributes.addClass(classes) }}>{{ icon_before_slot|spaceless }}{{ content }}{{ icon_after_slot|spaceless }}</{{ tag }}>{% endspaceless %}

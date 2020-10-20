@@ -2,6 +2,12 @@
   <img src="/images/placeholders/500x500.jpg" alt="Bill">
 {% endset %}
 
+{% set icon_custom_2 %}
+  {% include '@bolt-components-icon/icon.twig' with {
+    name: 'add-open',
+  }%}
+{% endset %}
+
 {% set reversed_underline_link %}
   {% include '@bolt-elements-text-link/text-link.twig' with {
     content: 'This is a text link with reversed underline',
@@ -195,7 +201,7 @@
   {% include '@bolt-elements-text-link/text-link.twig' with {
     content: 'This is a text link with custom icons before and after',
     icon_before: icon_custom,
-    icon_after: icon_custom,
+    icon_after: icon_custom_2,
     attributes: {
       href: 'https//pega.com',
     }
