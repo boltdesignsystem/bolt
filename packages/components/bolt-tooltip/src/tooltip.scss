@@ -47,89 +47,14 @@ $bolt-tooltip-bubble-border-color: bolt-theme(background, bolt-opacity(20));
   z-index: bolt-z-index(tooltip);
   transition: opacity $bolt-transition;
   white-space: nowrap;
-
-  // @todo: Placement does not work without JS.
-  // @at-root .c-bolt-tooltip--top-end & {
-  //   right: 0;
-  //   bottom: 100%;
-  //   transform: translate3d(0, 0, 0);
-  // }
-
-  // @at-root .c-bolt-tooltip--top & {
-  //   bottom: 100%;
-  //   left: 50%;
-  //   transform: translate3d(-50%, 0, 0);
-  // }
-
-  // @at-root .c-bolt-tooltip--top-start & {
-  //   bottom: 100%;
-  //   left: 0;
-  //   transform: translate3d(0, 0, 0);
-  // }
-
-  // @at-root .c-bolt-tooltip--left-start & {
-  //   top: 0;
-  //   right: 100%;
-  //   transform: translate3d(0, 0, 0);
-  // }
-
-  // @at-root .c-bolt-tooltip--left & {
-  //   top: 50%;
-  //   right: 100%;
-  //   transform: translate3d(0, -50%, 0);
-  // }
-
-  // @at-root .c-bolt-tooltip--left-end & {
-  //   right: 100%;
-  //   bottom: 0;
-  //   transform: translate3d(0, 0, 0);
-  // }
-
-  // @at-root .c-bolt-tooltip--right-start & {
-  //   top: 0;
-  //   left: 100%;
-  //   transform: translate3d(0, 0, 0);
-  // }
-
-  // @at-root .c-bolt-tooltip--right & {
-  //   top: 50%;
-  //   left: 100%;
-  //   transform: translate3d(0, -50%, 0);
-  // }
-
-  // @at-root .c-bolt-tooltip--right-end & {
-  //   bottom: 0;
-  //   left: 100%;
-  //   transform: translate3d(0, 0, 0);
-  // }
-
-  // @at-root .c-bolt-tooltip--bottom-end & {
-  //   top: 100%;
-  //   right: 0;
-  //   transform: translate3d(0, 0, 0);
-  // }
-
-  // @at-root .c-bolt-tooltip--bottom & {
-  //   top: 100%;
-  //   left: 50%;
-  //   transform: translate3d(-50%, 0, 0);
-  // }
-
-  // @at-root .c-bolt-tooltip--bottom-start & {
-  //   top: 100%;
-  //   left: 0;
-  //   transform: translate3d(0, 0, 0);
-  // }
 }
 
 @include bolt-repeat-rule(
   (
-    'bolt-tooltip:not([ready]) [role=' button
-      ']:hover ~ .c-bolt-tooltip__content',
-    ':host:not([ready]) [role=' button ']:hover ~ .c-bolt-tooltip__content',
-    'bolt-tooltip:not([ready]) [role=' button
-      ']:focus ~ .c-bolt-tooltip__content',
-    ':host:not([ready]) [role=' button ']:focus ~ .c-bolt-tooltip__content',
+    'bolt-tooltip:not([ready]) [role=button]:hover ~ .c-bolt-tooltip__content',
+    ':host:not([ready]) [role=button]:hover ~ .c-bolt-tooltip__content',
+    'bolt-tooltip:not([ready]) [role=button]:focus ~ .c-bolt-tooltip__content',
+    ':host:not([ready]) [role=button]:focus ~ .c-bolt-tooltip__content',
     '.c-bolt-tooltip.is-expanded .c-bolt-tooltip__content'
   )
 ) {
@@ -140,12 +65,10 @@ $bolt-tooltip-bubble-border-color: bolt-theme(background, bolt-opacity(20));
 // @todo: Since placement doesn't work without JS, this defaults to bottom placement when there is no JS.
 @include bolt-repeat-rule(
   (
-    'bolt-tooltip:not([ready]) [role=' button
-      ']:hover ~ .c-bolt-tooltip__content',
-    ':host:not([ready]) [role=' button ']:hover ~ .c-bolt-tooltip__content',
-    'bolt-tooltip:not([ready]) [role=' button
-      ']:focus ~ .c-bolt-tooltip__content',
-    ':host:not([ready]) [role=' button ']:focus ~ .c-bolt-tooltip__content'
+    'bolt-tooltip:not([ready]) [role=button]:hover ~ .c-bolt-tooltip__content',
+    ':host:not([ready]) [role=button]:hover ~ .c-bolt-tooltip__content',
+    'bolt-tooltip:not([ready]) [role=button]:focus ~ .c-bolt-tooltip__content',
+    ':host:not([ready]) [role=button]:focus ~ .c-bolt-tooltip__content'
   )
 ) {
   top: 100%;
