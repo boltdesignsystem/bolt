@@ -1,4 +1,4 @@
-{# {% set usage %}{% verbatim %}
+{% set usage %}{% verbatim %}
 {% include '@bolt-elements-text-link/text-link.twig' with {
   content: 'This is a text link',
   attributes: {
@@ -9,6 +9,7 @@
 
 {% include '@utils/docs.twig' with {
   componentName: 'text-link',
+  componentGroup: 'elements',
   usage: usage
 } only %}
- #}
+
