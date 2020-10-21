@@ -1,52 +1,41 @@
-import { props, css, hasNativeShadowDomSupport } from '@bolt/core-v3.x/utils';
-import { withLitHtml } from '@bolt/core-v3.x/renderers/renderer-lit-html';
-import { html, customElement } from '@bolt/element';
-import placeholderStyles from './placeholder.scss';
+import { html, customElement, BoltElement, unsafeCSS } from '@bolt/element';
+import classNames from 'classnames/bind';
+import styles from './placeholder.scss';
+import schema from './placeholder.schema';
+
+let cx = classNames.bind(styles);
 
 @customElement('bolt-placeholder')
-class BoltPlaceholder extends withLitHtml {
-  static props = {
-    animated: props.boolean,
-    size: props.string,
-  };
+class BoltPlaceholder extends BoltElement {
+  static schema = schema;
 
-  // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
-  constructor(self) {
-    self = super(self);
-    self.useShadow = hasNativeShadowDomSupport;
-    return self;
+  static get properties() {
+    return {
+      ...this.props,
+    };
   }
 
-  connecting() {
-    // this.addEventListener('click', this.clickHandler);
+  static get styles() {
+    return [unsafeCSS(styles)];
   }
 
-  disconnecting() {
-    // this.removeEventListener('click', this.clickHandler);
-  }
+  render() {
+    const classes = cx('c-bolt-placeholder');
 
-  render({ props, state }) {
-    const classes = css('c-bolt-placeholder');
+    const wrapperClasses = cx('c-bolt-placeholder__wrapper', {
+      [`c-bolt-placeholder__wrapper--animated`]: this.animated,
+    });
 
-    const wrapperClasses = css(
-      'c-bolt-placeholder__wrapper ',
-      this.props.animated ? 'c-bolt-placeholder__wrapper--animated' : '',
-    );
-
-    const contentClasses = css(
-      'c-bolt-placeholder__content',
-      this.props.size
-        ? `c-bolt-placeholder__content--${this.props.size}`
-        : 'c-bolt-placeholder__content--medium',
-    );
+    const contentClasses = cx('c-bolt-placeholder__content', {
+      [`c-bolt-placeholder__content--${this.size}`]: this.size,
+    });
 
     return html`
-      ${this.addStyles([placeholderStyles])}
       <div class="${classes}">
         <div class="${wrapperClasses}">
           <div class="c-bolt-placeholder__wrapper-y"></div>
           <div class="c-bolt-placeholder__wrapper-x"></div>
-          <div class="${contentClasses}">${this.slot('default')}</div>
+          <div class="${contentClasses}">${this.slotify('default')}</div>
         </div>
       </div>
     `;
