@@ -149,7 +149,7 @@ class BoltText extends BoltElement {
       }
     };
 
-    const innerHTML = wrapInnerHTML(this.slotMap.get('default'));
+    const innerHTML = wrapInnerHTML(this.slotify('default'));
 
     return html`
       ${this.isServer
