@@ -5,7 +5,7 @@ const { ...onClickProps } = elementSchemas.boltActionElement.properties;
 module.exports = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'Text Link',
-  description: 'An underlined text link.',
+  description: 'Underlined text that indicates interactivity.',
   type: 'object',
   required: ['content'],
   properties: {
@@ -26,12 +26,14 @@ module.exports = {
       default: 'inline',
     },
     icon_before: {
-      type: 'any',
-      description: 'Render an icon before the text.',
+      type: 'object',
+      description:
+        'Render an icon before the text. Icon component is recommended.',
     },
     icon_after: {
-      type: 'any',
-      description: 'Render an icon after the text.',
+      type: 'object',
+      description:
+        'Render an icon after the text. Icon component is recommended.',
     },
     reversed_underline: {
       type: 'boolean',

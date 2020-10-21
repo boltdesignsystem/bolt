@@ -1,36 +1,36 @@
-{% set icon_custom %}
-  <img src="/images/placeholders/500x500.jpg" alt="Bill">
-{% endset %}
-
-{% set icon_custom_2 %}
+{% set icon_chevron_down %}
   {% include '@bolt-components-icon/icon.twig' with {
-    name: 'add-open',
-  }%}
-{% endset %}
-
-{% set reversed_underline_link %}
-  {% include '@bolt-elements-text-link/text-link.twig' with {
-    content: 'This is a text link with reversed underline',
-    icon_after: {
-      name: 'chevron-right'
-    },
-    reversed_underline: true,
-    attributes: {
-      href: 'javascript:',
-    }
+    name: 'chevron-down',
   } only %}
 {% endset %}
 
-<bolt-text headline>Icon Before and After</bolt-text>
+{% set icon_info_open %}
+  {% include '@bolt-components-icon/icon.twig' with {
+    name: 'info-open',
+  } only %}
+{% endset %}
+
+{% set icon_custom %}
+  <img src="/images/placeholders/500x500.jpg">
+{% endset %}
+
+{% set description %}
+  Icons can be used in tandem with a text link. An icon can be placed before and/or after the text. <a href="{{ link['viewall-components-icon'] }}">The icon component</a> is recommended for appending icons, however, an <bolt-code-snippet display="inline" lang="html">&lt;img&gt;</bolt-code-snippet> element is also acceptable.
+{% endset %}
+
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>Icons are set inline with text so icon size will grow or shrink with text size. The <bolt-code-snippet display="inline">size</bolt-code-snippet> and <bolt-code-snippet display="inline">background</bolt-code-snippet> props for the icon component are not well supported in this scenario.</bolt-li>
+    <bolt-li>When writing in plain HTML, all white space must be eliminated to have the underline display correctly on text. The markup must be written all in one line and spaces between HTML elements must be removed.</bolt-li>
+  </bolt-ol>
+{% endset %}
+
+{% set demo %}
 <p>
   {% include '@bolt-elements-text-link/text-link.twig' with {
     content: 'This is a text link with icons before and after',
-    icon_before: {
-      name: 'global',
-    },
-    icon_after: {
-      name: 'chevron-down',
-    },
+    icon_before: icon_custom,
+    icon_after: icon_chevron_down,
     attributes: {
       href: 'https//pega.com',
     }
@@ -39,9 +39,7 @@
 <p>
   {% include '@bolt-elements-text-link/text-link.twig' with {
     content: 'This is a text link with an icon before',
-    icon_before: {
-      name: 'info-open',
-    },
+    icon_before: icon_info_open,
     attributes: {
       href: 'https//pega.com',
     }
@@ -50,182 +48,47 @@
 <p>
   {% include '@bolt-elements-text-link/text-link.twig' with {
     content: 'This is a text link with an icon after',
-    icon_after: {
-      name: 'info-open',
-    },
+    icon_after: icon_info_open,
     attributes: {
       href: 'https//pega.com',
     }
   } only %}
 </p>
+{% endset %}
 
-<bolt-text headline>Reversed Underline</bolt-text>
-<bolt-text headline font-size="xxxlarge">
-  {{ reversed_underline_link }}
-</bolt-text>
-<bolt-text headline font-size="xxlarge">
-  {{ reversed_underline_link }}
-</bolt-text>
-<bolt-text headline font-size="xlarge">
-  {{ reversed_underline_link }}
-</bolt-text>
-<p>
-  {{ reversed_underline_link }}
-</p>
-
-<bolt-text headline>Text Link with &lt;button&gt; Tag</bolt-text>
-<p>
-  {% include '@bolt-elements-text-link/text-link.twig' with {
-    content: 'This is a text link button',
-    button: true,
-    attributes: {
-      type: 'button',
-    }
-  } only %}
-</p>
-
-<bolt-text headline>Block Text Link</bolt-text>
-<p>
-  {% include '@bolt-elements-text-link/text-link.twig' with {
-    content: 'This is a block text link',
-    display: 'block',
-    attributes: {
-      href: 'https//pega.com',
-    }
-  } only %}
-</p>
-
-
-<bolt-banner status="warning">
-  <bolt-icon name="warning"></bolt-icon> <strong>Use the following with caution.</strong>
-</bolt-banner>
-
-{% set link %}
-  {% include '@bolt-elements-text-link/text-link.twig' with {
-    content: 'This is a text link',
-    attributes: {
-      href: 'javascript:',
-      target: '_blank',
-    }
+{% set twig_markup %}
+{% verbatim %}
+{% set icon_custom %}
+  <img src="/images/placeholders/500x500.jpg">
+{% endset %}
+{% set icon_chevron_down %}
+  {% include '@bolt-components-icon/icon.twig' with {
+    name: 'chevron-down',
   } only %}
 {% endset %}
 
-{% set visited_link %}
-  {% include '@bolt-elements-text-link/text-link.twig' with {
-    content: 'This is a visited text link',
-    attributes: {
-      href: '/',
-      target: '_blank',
-    }
-  } only %}
+{% include '@bolt-elements-text-link/text-link.twig' with {
+  content: 'This is a text link with icons before and after',
+  icon_before: icon_custom,
+  icon_after: icon_chevron_down,
+  attributes: {
+    href: 'https//pega.com',
+  }
+} only %}
+{% endverbatim %}
 {% endset %}
 
-{% set a_really_long_link %}
-  {% include '@bolt-elements-text-link/text-link.twig' with {
-    content: 'A really long link phasellus molestie magna non est bibendum non venenatis nisl tempor Suspendisse dictum feugiat nisl ut dapibus Mauris iaculis porttitor posuere Praesent id metus massa ut blandit odio Proin',
-    icon_before: {
-      name: 'brand-meteor'
-    },
-    icon_after: {
-      name: 'brand-triangle'
-    },
-    attributes: {
-      href: 'javascript:',
-    }
-  } only %}
+{% set html_markup %}
+{% verbatim %}
+<a href="https://pega.com" class="e-bolt-text-link"><span class="e-bolt-text-link__icon-before"><img src="/images/placeholders/500x500.jpg"></span>This is a text link with icons before and after<span class="e-bolt-text-link__icon-before"><bolt-icon name="chevron-down"></bolt-icon></span></a>
+{% endverbatim %}
 {% endset %}
 
-<bolt-text headline>Icon Size</bolt-text>
-<p>
-  {% include '@bolt-elements-text-link/text-link.twig' with {
-    content: 'This is a text link with a auto sized icon before',
-    icon_before: {
-      name: 'arrow-left',
-    },
-    attributes: {
-      href: 'https//pega.com',
-    }
-  } only %}
-</p>
-<p>
-  {% include '@bolt-elements-text-link/text-link.twig' with {
-    content: 'This is a text link with a small icon before',
-    icon_before: {
-      name: 'arrow-left',
-      size: 'small'
-    },
-    attributes: {
-      href: 'https//pega.com',
-    }
-  } only %}
-</p>
-<p>
-  {% include '@bolt-elements-text-link/text-link.twig' with {
-    content: 'This is a text link with a medium icon before',
-    icon_before: {
-      name: 'arrow-left',
-      size: 'medium'
-    },
-    attributes: {
-      href: 'https//pega.com',
-    }
-  } only %}
-</p>
-<p>
-  {% include '@bolt-elements-text-link/text-link.twig' with {
-    content: 'This is a text link with a large icon before',
-    icon_before: {
-      name: 'arrow-left',
-      size: 'large'
-    },
-    attributes: {
-      href: 'https//pega.com',
-    }
-  } only %}
-</p>
-<p>
-  {% include '@bolt-elements-text-link/text-link.twig' with {
-    content: 'This is a text link with a xlarge icon before',
-    icon_before: {
-      name: 'arrow-left',
-      size: 'xlarge'
-    },
-    attributes: {
-      href: 'https//pega.com',
-    }
-  } only %}
-</p>
-
-<bolt-text headline>Custom Icons</bolt-text>
-<p>
-  {% include '@bolt-elements-text-link/text-link.twig' with {
-    content: 'This is a text link with custom icons before and after',
-    icon_before: icon_custom,
-    icon_after: icon_custom_2,
-    attributes: {
-      href: 'https//pega.com',
-    }
-  } only %}
-</p>
-<p>
-  {% include '@bolt-elements-text-link/text-link.twig' with {
-    content: 'This is a text link with a custom icon before',
-    icon_before: icon_custom,
-    attributes: {
-      href: 'https//pega.com',
-    }
-  } only %}
-</p>
-<p>
-  {% include '@bolt-elements-text-link/text-link.twig' with {
-    content: 'This is a text link with a custom icon after',
-    icon_after: icon_custom,
-    attributes: {
-      href: 'https//pega.com',
-    }
-  } only %}
-</p>
-
-<bolt-text headline>Sandbox</bolt-text>
-<p>In condimentum facilisis porta. {{ a_really_long_link }}. Sed nec diam eu diam mattis viverra. {{ link }}. Nulla fringilla, orci ac euismod semper, magna diam porttitor mauris, quis sollicitudin sapien justo in libero. Vestibulum mollis mauris enim. Morbi euismod magna ac lorem rutrum elementum. Donec viverra auctor lobortis. Pellentesque eu est a nulla placerat dignissim. {{ visited_link }}. Morbi a enim in magna semper bibendum. Etiam scelerisque, nunc ac egestas consequat, odio nibh euismod nulla.</p>
-
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Text Link with Icon',
+  description: description,
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+  html_markup: html_markup,
+} only %}

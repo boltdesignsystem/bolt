@@ -12,7 +12,7 @@
 #}
 
 {# Schema Validation #}
-{% set schema = bolt.data.elements['@bolt-elements-text-link'].schema %}
+{% set schema = bolt.data.components['@bolt-elements-text-link'].schema %}
 {% if enable_json_schema_validation %}
   {{ validate_data_schema(schema, _self)|raw }}
 {% endif %}
@@ -20,38 +20,6 @@
 {# Variables #}
 {% set this = init(schema) %}
 {% set attributes = create_attribute(attributes|default({})) %}
-
-{% if icon_before.name %}
-  {% set icon_before_template %}
-    {% include '@bolt-components-icon/icon.twig' with {
-      name: icon_before.name,
-      size: icon_before.size,
-    } only %}
-  {% endset %}
-  {% set icon_before_slot %}
-    <span class="e-bolt-text-link__icon-before">{{ icon_before_template|spaceless }}</span>
-  {% endset %}
-{% elseif icon_before %}
-  {% set icon_before_slot %}
-    <span class="e-bolt-text-link__icon-before">{{ icon_before|spaceless }}</span>
-  {% endset %}
-{% endif %}
-
-{% if icon_after.name %}
-  {% set icon_after_template %}
-    {% include '@bolt-components-icon/icon.twig' with {
-      name: icon_after.name,
-      size: icon_after.size,
-    } only %}
-  {% endset %}
-  {% set icon_after_slot %}
-    <span class="e-bolt-text-link__icon-after">{{ icon_after_template|spaceless }}</span>
-  {% endset %}
-{% elseif icon_after %}
-  {% set icon_after_slot %}
-    <span class="e-bolt-text-link__icon-after">{{ icon_after|spaceless }}</span>
-  {% endset %}
-{% endif %}
 
 {% if button %}
   {% set tag = 'button' %}
@@ -67,4 +35,4 @@
 
 {# Template #}
 {# [1], [2] #}
-{% spaceless %}<{{ tag }} {{ attributes.addClass(classes) }}>{{ icon_before_slot|spaceless }}{{ content }}{{ icon_after_slot|spaceless }}</{{ tag }}>{% endspaceless %}
+{% spaceless %}<{{ tag }} {{ attributes.addClass(classes) }}>{% if icon_before %}<span class="e-bolt-text-link__icon-before" aria-hidden="true">{{ icon_before|spaceless }}</span>{% endif %}{{ content }}{% if icon_after %}<span class="e-bolt-text-link__icon-after" aria-hidden="true">{{ icon_after|spaceless }}</span>{% endif %}</{{ tag }}>{% endspaceless %}

@@ -1,9 +1,9 @@
 {% set description %}
-  A text link is generally an inline interactive element that is styled as underlined text. Its main purpose is to help the user navigate. Both <bolt-code-snippet display="inline" lang="html">&lt;a&gt;</bolt-code-snippet> and <bolt-code-snippet display="inline" lang="html">&lt;a class="e-bolt-text-link"&gt;</bolt-code-snippet> are acceptable at rendering a text link, though the Twig template is the recommended usage for Drupal.
+  A text link is generally an inline interactive element that is styled as underlined text. Its main purpose is to help the user navigate (sometimes perform a function). Both <bolt-code-snippet display="inline" lang="html">&lt;a&gt;</bolt-code-snippet> and <bolt-code-snippet display="inline" lang="html">&lt;a class="e-bolt-text-link"&gt;</bolt-code-snippet> are acceptable at rendering a text link, though the Twig template is the recommended usage for Drupal.
 {% endset %}
 
 {% set notes %}
-  There are advanced features with the text link element, the class <bolt-code-snippet display="inline" lang="html">e-bolt-text-link</bolt-code-snippet> is required to get those features. Reference respective doc page for each feature.
+  There are advanced features with the text link element, <bolt-code-snippet display="inline" lang="html">class="e-bolt-text-link"</bolt-code-snippet> is required to get those features. Reference respective doc page for each feature.
 {% endset %}
 
 {% set demo %}
@@ -30,9 +30,7 @@
 
 {% set html_markup %}
 {% verbatim %}
-<a href="https://pega.com" target="_blank" class="e-bolt-text-link">
-  Click me to go to pega.com
-</a>
+<a href="https://pega.com" target="_blank" class="e-bolt-text-link">Click me to go to pega.com</a>
 {% endverbatim %}
 {% endset %}
 
@@ -41,6 +39,6 @@
   description: description,
   notes: notes,
   demo: demo,
-  twig_markup: twig_markup|spaceless,
-  html_markup: html_markup|spaceless,
+  twig_markup: twig_markup,
+  html_markup: html_markup,
 } only %}
