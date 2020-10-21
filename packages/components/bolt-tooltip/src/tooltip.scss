@@ -20,11 +20,6 @@ $bolt-tooltip-bubble-border-color: bolt-theme(background, bolt-opacity(20));
 .c-bolt-tooltip {
   display: inline-flex;
   position: relative;
-
-  // apply overflow hidden when not being interacted with to avoid no-js layout issues
-  &:not([ready]):not(:hover):not(:focus-within) {
-    overflow: hidden;
-  }
 }
 
 /**
@@ -198,9 +193,14 @@ $bolt-tooltip-bubble-border-color: bolt-theme(background, bolt-opacity(20));
   transform: scale3d(1, 1, 1) translate3d(0, 0, 0);
 }
 
-// Add the border indicator when JS is disabled
-bolt-tooltip:not([ready]) {
-  ssr-keep {
-    border-bottom: 1px dotted rgba(var(--bolt-theme-border), 0.4);
-  }
+/**
+ * Apply overflow hidden when not being interacted with to avoid no-js layout issues
+ */
+@include bolt-repeat-rule(
+  (
+    'bolt-tooltip:not([ready]):not(:hover):not(:focus-within)',
+    ':host:not([ready]):not(:hover):not(:focus-within)'
+  )
+) {
+  overflow: hidden;
 }
