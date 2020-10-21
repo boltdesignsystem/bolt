@@ -22,7 +22,7 @@ $bolt-tooltip-bubble-border-color: bolt-theme(background, bolt-opacity(20));
   position: relative;
 
   // apply overflow hidden when not being interacted with to avoid no-js layout issues
-  @at-root bolt-tooltip:not([ready]):not(:hover) {
+  &:not([ready]):not(:hover):not(:focus-within) {
     overflow: hidden;
   }
 }
@@ -124,8 +124,12 @@ $bolt-tooltip-bubble-border-color: bolt-theme(background, bolt-opacity(20));
 
 @include bolt-repeat-rule(
   (
-    'bolt-tooltip:not([ready]) .c-bolt-tooltip:hover .c-bolt-tooltip__content',
-    ':host:not([ready]) .c-bolt-tooltip:hover .c-bolt-tooltip__content',
+    'bolt-tooltip:not([ready]) [role=' button
+      ']:hover ~ .c-bolt-tooltip__content',
+    ':host:not([ready]) [role=' button ']:hover ~ .c-bolt-tooltip__content',
+    'bolt-tooltip:not([ready]) [role=' button
+      ']:focus ~ .c-bolt-tooltip__content',
+    ':host:not([ready]) [role=' button ']:focus ~ .c-bolt-tooltip__content',
     '.c-bolt-tooltip.is-expanded .c-bolt-tooltip__content'
   )
 ) {
@@ -136,8 +140,12 @@ $bolt-tooltip-bubble-border-color: bolt-theme(background, bolt-opacity(20));
 // @todo: Since placement doesn't work without JS, this defaults to bottom placement when there is no JS.
 @include bolt-repeat-rule(
   (
-    'bolt-tooltip:not([ready]) .c-bolt-tooltip:hover .c-bolt-tooltip__content',
-    ':host:not([ready]) .c-bolt-tooltip:hover .c-bolt-tooltip__content'
+    'bolt-tooltip:not([ready]) [role=' button
+      ']:hover ~ .c-bolt-tooltip__content',
+    ':host:not([ready]) [role=' button ']:hover ~ .c-bolt-tooltip__content',
+    'bolt-tooltip:not([ready]) [role=' button
+      ']:focus ~ .c-bolt-tooltip__content',
+    ':host:not([ready]) [role=' button ']:focus ~ .c-bolt-tooltip__content'
   )
 ) {
   top: 100%;
