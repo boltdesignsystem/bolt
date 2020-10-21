@@ -18,14 +18,4 @@
 
     {% include text_code.code_example(text_demo, true) %}
   {% endfor %}
-
-
-{% set anchor_demo %}
-<bolt-text tag="a" url="https://www.google.com">
-  This text has its tag prop defined as: a
-</bolt-text>
-{% endset %}
-{% include text_code.code_example(anchor_demo, true) %}
-
-
 {% endblock %}

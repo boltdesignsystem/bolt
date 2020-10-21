@@ -37,7 +37,10 @@ class BoltText extends BoltElement {
       this.fontSize = this.setDefaultValue('font-size', 'xlarge');
       this.fontWeight = this.setDefaultValue('font-weight', 'bold');
 
-      if (this.textContent.trim().length >= 60 && fontSize === 'xxxlarge') {
+      if (
+        this.textContent.trim().length >= 60 &&
+        this.fontSize === 'xxxlarge'
+      ) {
         longText = true;
       }
     }
@@ -138,10 +141,6 @@ class BoltText extends BoltElement {
         case 'span':
           return html`
             <span class="${classes}">${innerHTML}</span>
-          `;
-        case 'cite':
-          return html`
-            <cite class="${classes}">${innerHTML}</cite>
           `;
         default:
           return html`
