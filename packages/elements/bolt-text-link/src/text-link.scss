@@ -5,7 +5,7 @@
  *
  * Dev notes:
  * 1. Custom icons must be a square and the height must equal the text's font-size, hence 1em.
- * 2. Zero width no-break space is passed to the icon container's :before and :after pseudo elements, combine that with nowrap white-space on the icon container, and it will make sure that an icon never wraps to the next line by itself, it will always wrap with the final word of the text. See: https://codepen.io/snookca/pen/JBdBVZ?editors=0100
+ * 2. Zero width no-break space is passed to the icon container's :before and :after pseudo elements, combine that with nowrap white-space on the icon container, and it will make sure that an icon never wraps to the next line by itself, it will always wrap with the final word of the text. See: https://codepen.io/mikemai2awesome/pen/OJXbqwe?editors=0100
  * 3. Temporary fix for icon + text bad vertical alignment.
  * 4. `em` unit is used to make sure the spacing between icon and text is relative to the text's font-size.
  */
@@ -65,10 +65,13 @@
 }
 
 .e-bolt-text-link--block {
-  display: block;
-
-  &:not(:last-child) {
-    margin-bottom: var(--bolt-spacing-y-medium);
+  &:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
   }
 }
 
