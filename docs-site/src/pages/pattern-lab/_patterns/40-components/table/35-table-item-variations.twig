@@ -1,8 +1,8 @@
 {% set inline_image %}
-    {% include "@bolt-components-placeholder/placeholder.twig" with {
-      text: "Placeholder",
-      size: "large",
-    } only %}
+  {% include '@bolt-components-image/image.twig' with {
+    src: "/images/placeholders/tout-4x3-climber.jpg",
+    alt: "A Rock Climber"
+  } only %}
 {% endset %}
 
 <h3>Pass different items into cells</h3>
@@ -63,9 +63,10 @@
       cells: [
         "SR-43163",
         "This hotfix adds a list of post-update tasks to the <span>RuntimeConfig.xml </span>file. These tasks are run after files that match a pattern you specify are updated.",
-        include("@bolt-components-placeholder/placeholder.twig", {
-          text: "Placeholder",
-          size: "large",
+        include("@bolt-components-image/image.twig", {
+          src: "/images/placeholders/tout-4x3-climber.jpg",
+          alt: "A Rock Climber",
+          lazyload: false,
         }),
       ]
     },
