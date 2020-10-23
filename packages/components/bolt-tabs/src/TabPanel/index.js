@@ -1,51 +1,47 @@
-import { html, customElement } from '@bolt/element';
-import { withContext, props } from '@bolt/core-v3.x/utils';
-import { withLitHtml } from '@bolt/core-v3.x/renderers/renderer-lit-html';
+import { html, customElement, BoltElement, unsafeCSS } from '@bolt/element';
+import { withContext } from 'wc-context/lit-element';
 import classNames from 'classnames/bind';
 import styles from './tab-panel.scss';
-import { TabsContext } from '../tabs';
 
 let cx = classNames.bind(styles);
 
 @customElement('bolt-tab-panel')
-class TabPanel extends withContext(withLitHtml) {
-  static props = {
-    id: props.string,
-    selected: props.boolean,
-  };
-
-  // subscribe to specific props that are defined and available on the parent container
-  // (context + subscriber idea originally from https://codepen.io/trusktr/project/editor/XbEOMk)
-  static get consumes() {
-    return [
-      [TabsContext, 'inset'],
-      [TabsContext, 'panelSpacing'],
-      [TabsContext, 'uuid'],
-      [TabsContext, 'selectedIndex'],
-      [TabsContext, 'tabPanels'],
-    ];
+class TabPanel extends withContext(BoltElement) {
+  static get properties() {
+    return {
+      id: { type: String },
+      inset: { type: String },
+      panels: { type: Object },
+      panelSpacing: { type: String },
+      selected: { type: Boolean },
+      selectedTab: { type: Number },
+      uuid: { type: String },
+    };
   }
 
-  constructor(self) {
-    self = super(self);
-
-    return self;
+  static get observedContexts() {
+    return ['inset', 'panels', 'panelSpacing', 'selectedTab', 'uuid'];
   }
 
-  get panelIndex() {
-    // Will return undefined until parent context is ready, e.g. if you call from `connectedCallback()`
-    return (
-      this.context.tabPanels && Array.from(this.context.tabPanels).indexOf(this)
-    );
+  contextChangedCallback(name, oldValue, value) {
+    this[name] = value;
+  }
+
+  static get styles() {
+    return [unsafeCSS(styles)];
   }
 
   connectedCallback() {
     super.connectedCallback && super.connectedCallback();
-    this.context = this.contexts.get(TabsContext);
+  }
+
+  get panelIndex() {
+    // Will return undefined until parent context is ready, e.g. if you call from `connectedCallback()`
+    return this.panels && this.panels.indexOf(this);
   }
 
   setSelectedTab() {
-    Array.from(this.context.tabPanels).forEach(item => {
+    this.panels.forEach(item => {
       if (item !== this) {
         item.removeAttribute('selected');
         item.selected = false;
@@ -54,88 +50,53 @@ class TabPanel extends withContext(withLitHtml) {
         item.selected = true;
       }
     });
-
-    // @todo: Do we need this? For now, let data flow always from parent.
-    // this.dispatchEvent(
-    //   new CustomEvent('tabs:setSelectedTab', {
-    //     detail: {
-    //       selectedIndex: this.panelIndex,
-    //     },
-    //     bubbles: true,
-    //   }),
-    // );
   }
 
-  template() {
-    const { uuid, selectedIndex, panelSpacing, inset } = this.context;
-
-    const index = this.panelIndex;
-
-    // Selected prop overrides selectedTab state set on parent
-    const isSelected = index === selectedIndex;
-
-    const labelledById = this.props.id
-      ? `tab-label-${this.props.id}`
-      : `tab-label-${uuid}-${index + 1}`; // Use 1-based Id's
-    const panelId = this.props.id || `tab-panel-${uuid}-${index + 1}`; // Use 1-based Id's
-
-    const classes = cx('c-bolt-tab-panel', {
-      [`c-bolt-tab-panel--spacing-${panelSpacing}`]: panelSpacing,
-      [`c-bolt-tab-panel--inset`]: inset === 'on',
-    });
-
-    const contentClasses = cx('c-bolt-tab-panel__content');
-
-    const slotMarkup = name => {
-      switch (name) {
-        case 'label':
-          return name in this.slots
-            ? this.slot(name)
-            : html`
-                <slot name="${name}" />
-              `;
-
-        default:
-          return name in this.slots
-            ? html`
-                <div
-                  class="${contentClasses}"
-                  id="${panelId}"
-                  role="tabpanel"
-                  aria-expanded="${isSelected}"
-                  tabindex="0"
-                  aria-labelledby="${labelledById}"
-                >
-                  ${this.slot('default')}
-                </div>
-              `
-            : html`
-                <slot />
-              `;
+  updated(changedProperties) {
+    super.updated && super.updated(changedProperties);
+    changedProperties.forEach((oldValue, propName) => {
+      if (propName === 'selectedTab' || propName === 'panels') {
+        // Triger if either `selectedTab` or `panels` updates to keep selected attr in sync with context, triggers re-render
+        if (!this.selected && this.panelIndex === this.selectedTab - 1) {
+          this.setSelectedTab();
+        }
       }
-    };
-
-    const innerSlots = [slotMarkup('label'), slotMarkup('default')];
-
-    return html`
-      <div class="${classes}">${innerSlots}</div>
-    `;
-  }
-
-  rendered() {
-    super.rendered && super.rendered();
-
-    const { selected } = this.validateProps(this.props);
-
-    // Keep selected attr in sync with context, triggers re-render
-    if (!selected && this.panelIndex === this.context.selectedIndex) {
-      this.setSelectedTab();
-    }
+    });
   }
 
   render() {
+    const index = this.panelIndex;
+
+    // Selected prop overrides selectedTab state set on parent
+    const isSelected = index === this.selectedTab - 1;
+
+    const labelledById = this.id
+      ? `tab-label-${this.id}`
+      : `tab-label-${this.uuid}-${index + 1}`; // Use 1-based Id's
+    const panelId = this.id || `tab-panel-${this.uuid}-${index + 1}`; // Use 1-based Id's
+
+    const classes = cx('c-bolt-tab-panel', {
+      [`c-bolt-tab-panel--spacing-${this.panelSpacing}`]: this.panelSpacing,
+      [`c-bolt-tab-panel--inset`]: this.inset === 'on',
+    });
+
     return html`
-      ${this.addStyles([styles])} ${this.template()}
+      <div class="${classes}">
+        ${this.slotMap.get('label') && this.slotify('label')}
+        ${this.slotMap.get('default') &&
+          html`
+            <div
+              class="${cx('c-bolt-tab-panel__content')}"
+              id="${panelId}"
+              role="tabpanel"
+              aria-expanded="${isSelected}"
+              tabindex="0"
+              aria-labelledby="${labelledById}"
+            >
+              ${this.slotify('default')}
+            </div>
+          `}
+      </div>
     `;
   }
 }
