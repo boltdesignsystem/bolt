@@ -15,6 +15,9 @@ class BoltTable extends BoltElement {
   static get properties() {
     return {
       ...this.props,
+      caption: {
+        type: Object,
+      },
     };
   }
 
@@ -76,12 +79,8 @@ class BoltTable extends BoltElement {
 
   convertElements(element, object, parent = 'body') {
     const boltedObject = object !== undefined ? object : {};
-
     element.map(element => {
       switch (element.tagName) {
-        case 'caption':
-          this.createProp(boltedObject, 'caption', element.children[0].content);
-          break;
         case 'thead':
           this.createProp(boltedObject, 'head', []);
           this.convertElements(element.children, boltedObject, 'head');
@@ -96,11 +95,16 @@ class BoltTable extends BoltElement {
           break;
         case 'tr':
           const elements = element.children.map(child => child);
-
           boltedObject[`${parent}`].push(elements);
           break;
+        case 'caption':
+          // If we encounter a `<caption>` tag, save as prop and deal with it separately later on.
+          this.caption = element;
+          break;
         default:
-          this.convertElements(element.children, boltedObject);
+          if (element.children) {
+            this.convertElements(element.children, boltedObject);
+          }
       }
     });
 
@@ -133,9 +137,16 @@ class BoltTable extends BoltElement {
   }
 
   render() {
-    const parseCode = this.removeComments(
-      this.removeWhitespace(parse(this.innerHTML)),
-    );
+    const slottedTable = this.querySelector('table');
+
+    // If there's no table inside stop here, only errors lie ahead
+    if (!slottedTable) return;
+
+    const parseCode =
+      slottedTable &&
+      this.removeComments(
+        this.removeWhitespace(parse(slottedTable.parentNode.innerHTML)),
+      );
 
     const tableClasses = cx('c-bolt-table', {
       [`c-bolt-table--format-${this.format}`]: this.format !== 'regular',
@@ -144,9 +155,10 @@ class BoltTable extends BoltElement {
     });
     const bodyClasses = cx('c-bolt-table__body');
     const headClasses = cx('c-bolt-table__head');
-    const captionClasses = cx('c-bolt-table__caption');
     const footClasses = cx('c-bolt-table__foot');
     const rowClasses = cx('c-bolt-table__row');
+    const figureClasses = cx('c-bolt-table__figure');
+    const captionClasses = cx('c-bolt-table__caption');
     let boltTableMarkup = [];
 
     const boltTable = this.convertElements(parseCode);
@@ -283,10 +295,29 @@ class BoltTable extends BoltElement {
 
     injectClasses(tableClasses, parseCode[0].attributes);
 
+    // Caption should be passed in as table content, except when coming from
+    // our Twig template, where it is slotted content for SSR purposes.
+    const tableCaption = this.caption
+      ? stringify(this.caption.children)
+      : this.slotMap.get('caption')
+      ? this.slotify('caption')
+      : '';
+
     return html`
-      <table data-attrs=${ifDefined(setAttr(parseCode[0].attributes))}>
-        ${boltTableMarkup}
-      </table>
+      ${tableCaption
+        ? html`
+            <figure class="${figureClasses}">
+              <table data-attrs=${ifDefined(setAttr(parseCode[0].attributes))}>
+                ${boltTableMarkup}
+              </table>
+            </figure>
+            <figcaption class="${captionClasses}">${tableCaption}</figcaption>
+          `
+        : html`
+            <table data-attrs=${ifDefined(setAttr(parseCode[0].attributes))}>
+              ${boltTableMarkup}
+            </table>
+          `}
     `;
   }
 }

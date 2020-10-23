@@ -126,7 +126,7 @@ module.exports = {
     },
     caption: {
       type: 'string',
-      description: '',
+      description: 'Set a table caption, displayed below the table content.',
     },
   },
 };

@@ -192,6 +192,15 @@ $bolt-table-row-hover-background-color: bolt-theme(text, 0.025);
   }
 }
 
-figure > bolt-table {
-  margin-bottom: var(--bolt-spacing-y-small);
+.c-bolt-table__figure {
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+.c-bolt-table__caption {
+  @include bolt-font-size(xsmall);
+
+  display: block;
+  padding-top: var(--bolt-spacing-y-xsmall);
 }

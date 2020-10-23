@@ -20,108 +20,75 @@
 {% set top_headers = headers.top %}
 {% set side_headers = headers.side %}
 
-{% if caption %}
-<figure>
-{% endif %}
-  {# Table component's custom element wrapper #}
-  <bolt-table
-    {% if format %} format="{{ format }}" {% endif %}
-    {% if borderless %} borderless {% endif %}
-    {% if first_col_fixed_width %} first-col-fixed-width {% endif %}
-    {{ attributes }}
-  >
-    {# Array of classes based on the defined + default props #}
-    {% set classes = [
-      base_class,
-      format != "regular" ? "#{base_class}--format-#{format}",
-      borderless ? "#{base_class}--borderless",
-      first_col_fixed_width ? "#{base_class}--first-col-fixed-width",
-    ] %}
+{# Table component's custom element wrapper #}
+<bolt-table
+  {% if format %} format="{{ format }}" {% endif %}
+  {% if borderless %} borderless {% endif %}
+  {% if first_col_fixed_width %} first-col-fixed-width {% endif %}
+  {{ attributes }}
+>
+  {# Array of classes based on the defined + default props #}
+  {% set classes = [
+    base_class,
+    format != "regular" ? "#{base_class}--format-#{format}",
+    borderless ? "#{base_class}--borderless",
+    first_col_fixed_width ? "#{base_class}--first-col-fixed-width",
+  ] %}
 
-    <table {{ inner_attributes.addClass(classes) }}>
-      {% if top_headers %}
-        <thead class="{{ "#{base_class}__head" }}">
+  {% if caption %}
+    <figure class="{{ "#{base_class}__figure" }}">
+      <ssr-keep for="bolt-table">
+  {% endif %}
+
+  <table {{ inner_attributes.addClass(classes) }}>
+    {% if top_headers %}
+      <thead class="{{ "#{base_class}__head" }}">
+        <tr class="{{ "#{base_class}__row" }}">
+          {% if side_headers %}
+            <td class="{{ "#{base_class}__cell" }}"></td>
+          {% endif %}
+          {% for cell in top_headers.cells %}
+            {% set cell_attributes = create_attribute(cell.attributes|default({})) %}
+            {% set cell_classes = [
+                "#{base_class}__cell",
+                "#{base_class}__cell--header",
+              ]
+            %}
+            <th {{ cell_attributes.addClass(cell_classes) }} scope="col">
+              {% if cell.content %}
+                {{ cell.content }}
+              {% else %}
+                {{ cell }}
+              {% endif %}
+            </th>
+          {% endfor %}
+        </tr>
+      </thead>
+    {% endif %}
+    {% if rows %}
+      <tbody class="{{ "#{base_class}__body" }}">
+        {% for row in rows %}
           <tr class="{{ "#{base_class}__row" }}">
-            {% if side_headers %}
-              <td class="{{ "#{base_class}__cell" }}"></td>
-            {% endif %}
-            {% for cell in top_headers.cells %}
+            {% if side_headers.cells %}
+              {% set index = loop.index0 %}
+              {% set cell = side_headers.cells[index] %}
               {% set cell_attributes = create_attribute(cell.attributes|default({})) %}
               {% set cell_classes = [
                   "#{base_class}__cell",
                   "#{base_class}__cell--header",
                 ]
               %}
-              <th {{ cell_attributes.addClass(cell_classes) }} scope="col">
-                {% if cell.content %}
-                  {{ cell.content }}
-                {% else %}
-                  {{ cell }}
-                {% endif %}
-              </th>
-            {% endfor %}
-          </tr>
-        </thead>
-      {% endif %}
-      {% if rows %}
-        <tbody class="{{ "#{base_class}__body" }}">
-          {% for row in rows %}
-            <tr class="{{ "#{base_class}__row" }}">
-              {% if side_headers.cells %}
-                {% set index = loop.index0 %}
-                {% set cell = side_headers.cells[index] %}
-                {% set cell_attributes = create_attribute(cell.attributes|default({})) %}
-                {% set cell_classes = [
-                    "#{base_class}__cell",
-                    "#{base_class}__cell--header",
-                  ]
-                %}
-                {% if cell is not empty %}
-                  <th {{ cell_attributes.addClass(cell_classes) }} scope="row">
-                    {% if cell.content %}
-                      {{ cell.content }}
-                    {% else %}
-                      {{ cell }}
-                    {% endif %}
-                  </th>
-                {% endif %}
-              {% endif %}
-              {% for cell in row.cells %}
-                {% set cell_attributes = create_attribute(cell.attributes|default({})) %}
-                {% set cell_classes = [
-                    "#{base_class}__cell",
-                    "#{base_class}__cell--data",
-                  ]
-                %}
-                <td {{ cell_attributes.addClass(cell_classes) }}>
-                  {% if cell is iterable %}
+              {% if cell is not empty %}
+                <th {{ cell_attributes.addClass(cell_classes) }} scope="row">
+                  {% if cell.content %}
                     {{ cell.content }}
                   {% else %}
                     {{ cell }}
                   {% endif %}
-                </td>
-              {% endfor %}
-            </tr>
-          {% endfor %}
-        </tbody>
-      {% endif %}
-      {% if footer %}
-        <tfoot class="{{ "#{base_class}__foot" }}">
-          <tr class="{{ "#{base_class}__row" }}">
-            {% if side_headers.cells %}
-              {% for cell in side_headers.cells %}
-                {% if loop.last %}
-                  <th class="{{ "#{base_class}__cell #{base_class}__cell--header" }}">
-                    {% if cell.content %}
-                      {{ cell.content }}
-                    {% else %}
-                      {{ cell }}
-                    {% endif %}
-                  </th>
-                {% endif %}
-              {% endfor %}
+                </th>
+              {% endif %}
             {% endif %}
-            {% for cell in footer.cells %}
+            {% for cell in row.cells %}
               {% set cell_attributes = create_attribute(cell.attributes|default({})) %}
               {% set cell_classes = [
                   "#{base_class}__cell",
@@ -129,7 +96,7 @@
                 ]
               %}
               <td {{ cell_attributes.addClass(cell_classes) }}>
-                {% if cell.content %}
+                {% if cell is iterable %}
                   {{ cell.content }}
                 {% else %}
                   {{ cell }}
@@ -137,11 +104,53 @@
               </td>
             {% endfor %}
           </tr>
-        </tfoot>
-      {% endif %}
-    </table>
-  </bolt-table>
-{% if caption %}
-  <figcaption>{{ caption }}</figcaption>
-</figure>
-{% endif %}
+        {% endfor %}
+      </tbody>
+    {% endif %}
+    {% if footer %}
+      <tfoot class="{{ "#{base_class}__foot" }}">
+        <tr class="{{ "#{base_class}__row" }}">
+          {% if side_headers.cells %}
+            {% for cell in side_headers.cells %}
+              {% if loop.last %}
+                <th class="{{ "#{base_class}__cell #{base_class}__cell--header" }}">
+                  {% if cell.content %}
+                    {{ cell.content }}
+                  {% else %}
+                    {{ cell }}
+                  {% endif %}
+                </th>
+              {% endif %}
+            {% endfor %}
+          {% endif %}
+          {% for cell in footer.cells %}
+            {% set cell_attributes = create_attribute(cell.attributes|default({})) %}
+            {% set cell_classes = [
+                "#{base_class}__cell",
+                "#{base_class}__cell--data",
+              ]
+            %}
+            <td {{ cell_attributes.addClass(cell_classes) }}>
+              {% if cell.content %}
+                {{ cell.content }}
+              {% else %}
+                {{ cell }}
+              {% endif %}
+            </td>
+          {% endfor %}
+        </tr>
+      </tfoot>
+    {% endif %}
+  </table>
+
+  {% if caption %}
+      <replace-with-grandchildren>
+        <figcaption class="{{ "#{base_class}__caption" }}">
+          <div slot="caption">{{ caption }}</div>
+        </figcaption>
+      </replace-with-grandchildren>
+    </ssr-keep>
+  </figure>
+  {% endif %}
+
+</bolt-table>
