@@ -1,4 +1,4 @@
-<h3>Twig Include with Caption</h3>
+<h3>With Caption</h3>
 {% include "@bolt-components-table/table.twig" with {
   rows: [
     {
@@ -23,27 +23,5 @@
       ]
     }
   ],
-  caption: "lorem ipsum"
+  caption: "This is a table caption"
 } only %}
-
-<h3>Web Component with Caption</h3>
-<bolt-table>
-  <table>
-      <caption>lorem ipsum</caption>
-      <tr>
-          <td>R1C1</td>
-          <td>R1C2</td>
-          <td>R1C3</td>
-      </tr>
-      <tr>
-          <td>R2C1</td>
-          <td>R2C2</td>
-          <td>R2C3</td>
-      </tr>
-      <tr>
-          <td>R3C1</td>
-          <td>R3C2</td>
-          <td>R3C3</td>
-      </tr>
-  </table>
-</bolt-table>

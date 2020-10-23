@@ -236,6 +236,29 @@
 </bolt-table>
 {% endset %}
 
+{% set table_caption_demo %}
+<bolt-table>
+  <table>
+      <caption>This is a table caption</caption>
+      <tr>
+          <td>R1C1</td>
+          <td>R1C2</td>
+          <td>R1C3</td>
+      </tr>
+      <tr>
+          <td>R2C1</td>
+          <td>R2C2</td>
+          <td>R2C3</td>
+      </tr>
+      <tr>
+          <td>R3C1</td>
+          <td>R3C2</td>
+          <td>R3C3</td>
+      </tr>
+  </table>
+</bolt-table>
+{% endset %}
+
 
 <bolt-text headline>Web Component Usage</bolt-text>
 <bolt-text>
@@ -260,3 +283,9 @@
   Each table header or cell can accept any Bolt web components, HTML markup, or just plain text.
 </bolt-text>
 {% include table_example.code_example(table_data_demo) %}
+
+<bolt-text headline>Table Caption</bolt-text>
+<bolt-text>
+  Use the <bolt-code-snippet display="inline" lang="html">&lt;caption&gt;</bolt-code-snippet> tag to add a caption to your table.
+</bolt-text>
+{% include table_example.code_example(table_caption_demo) %}
