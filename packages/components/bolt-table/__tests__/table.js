@@ -296,6 +296,25 @@ describe('<bolt-table> Component', () => {
     expect(results.html).toMatchSnapshot();
   });
 
+  test('table with caption', async () => {
+    const results = await renderTwig('@bolt-components-table/table.twig', {
+      rows: [
+        {
+          cells: ['R1C1', 'R1C2', 'R1C3'],
+        },
+        {
+          cells: ['R2C1', 'R2C2', 'R2C3'],
+        },
+        {
+          cells: ['R3C1', 'R3C2', 'R3C3'],
+        },
+      ],
+      caption: 'lorem ipsum',
+    });
+    expect(results.ok).toBe(true);
+    expect(results.html).toMatchSnapshot();
+  });
+
   format.enum.forEach(async option => {
     test(`table format: ${option}`, async () => {
       const results = await renderTwig('@bolt-components-table/table.twig', {
