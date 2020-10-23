@@ -5,9 +5,9 @@
 @mixin bolt-text-link {
   color: bolt-theme(link);
   text-decoration: underline;
-  will-change: color, text-decoration, filter;
+  will-change: color, text-decoration, box-shadow;
   transition: color var(--bolt-transition),
-    text-decoration var(--bolt-transition), filter var(--bolt-transition);
+    text-decoration var(--bolt-transition), box-shadow var(--bolt-transition);
 
   &:visited {
     text-decoration-color: bolt-theme(neutral);
@@ -15,17 +15,16 @@
 
   &:hover,
   &:focus {
-    filter: brightness(120%);
+    color: bolt-theme(headline);
   }
 
   &:focus {
-    color: bolt-theme(headline);
     text-decoration: none;
     box-shadow: var(--bolt-focus-ring);
     outline: none;
   }
 
   &:active {
-    filter: brightness(80%);
+    color: bolt-theme(text);
   }
 }
