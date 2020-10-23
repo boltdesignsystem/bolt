@@ -1,9 +1,9 @@
 // Same as max-width of wrapper container
-$bolt-video-wrapper--max-width: bolt-breakpoint(xxlarge);
-$bolt-video-background-color: rgba(22, 26, 60, 0.8);
-$bolt-video-background-max-height: 50.625vw;
+$base-video-wrapper--max-width: bolt-breakpoint(xxlarge);
+$base-video-background-color: rgba(22, 26, 60, 0.8);
+$base-video-background-max-height: 50.625vw;
 
-#{$bolt-namespace}-video {
+.base-video {
   display: block;
   width: 100%;
   background-color: bolt-color(
@@ -23,11 +23,11 @@ $bolt-video-background-max-height: 50.625vw;
     margin-right: auto;
     margin-left: auto;
     pointer-events: none;
-    background-color: $bolt-video-background-color;
+    background-color: $base-video-background-color;
     transition: opacity 0.3s ease, min-height 0.3s ease;
 
     @media (max-width: (bolt-breakpoint(small) - 1px)) {
-      min-height: calc(#{$bolt-video-background-max-height} + 2.5rem);
+      min-height: calc(#{$base-video-background-max-height} + 2.5rem);
     }
 
     .is-expanded & {
@@ -61,7 +61,7 @@ $bolt-video-background-max-height: 50.625vw;
   * doesn't spill outside of the video container in IE 11 /
   * on Windows
   */
-.c-#{$bolt-namespace}-video {
+.c-base-video {
   z-index: bolt-z-index('tooltip');
   width: 100%;
   max-width: none;
@@ -85,11 +85,11 @@ $bolt-video-background-max-height: 50.625vw;
     }
   }
 
-  &.c-#{$bolt-namespace}-video--background {
+  &.c-base-video--background {
     display: block;
     position: relative;
     max-width: calc(100% - var(--bolt-spacing-x-large));
-    height: $bolt-video-background-max-height;
+    height: $base-video-background-max-height;
     max-height: 100%;
     margin: 0 auto;
 
@@ -106,7 +106,7 @@ $bolt-video-background-max-height: 50.625vw;
   }
 }
 
-.c-#{$bolt-namespace}-video__close-button {
+.c-base-video__close-button {
   opacity: bolt-opacity(
     0
   ); // Initial state before brightcove video player kicks in
@@ -116,7 +116,11 @@ $bolt-video-background-max-height: 50.625vw;
   z-index: bolt-z-index('tooltip');
   color: bolt-color(orange);
   transition: all 0.3s ease;
-  @include bolt-css-vars((--#{$bolt-namespace}-theme-icon: bolt-color(orange)));
+  @include bolt-css-vars(
+    (
+      --base-theme-icon: bolt-color(orange),
+    )
+  );
 
   @include bolt-mq(small) {
     right: calc(
@@ -143,7 +147,7 @@ $bolt-video-background-max-height: 50.625vw;
   }
 }
 
-.c-#{$bolt-namespace}-video__close-button--icon-to-text {
+.c-base-video__close-button--icon-to-text {
   @media (max-width: (bolt-breakpoint(small) - 1px)) {
     display: block;
     position: relative;
@@ -151,36 +155,36 @@ $bolt-video-background-max-height: 50.625vw;
     right: 0;
     float: right;
 
-    .c-#{$bolt-namespace}-video__close-button-icon {
+    .c-base-video__close-button-icon {
       display: none;
     }
   }
   @media (min-width: bolt-breakpoint(small)) {
     position: absolute;
 
-    .c-#{$bolt-namespace}-video__close-button-text {
+    .c-base-video__close-button-text {
       @include bolt-visuallyhidden;
     }
   }
 }
 
-.c-#{$bolt-namespace}-video__close-button:not(.c-#{$bolt-namespace}-video__close-button--icon-to-text) {
-  .c-#{$bolt-namespace}-video__close-button-text {
+.c-base-video__close-button:not(.c-base-video__close-button--icon-to-text) {
+  .c-base-video__close-button-text {
     @include bolt-visuallyhidden;
   }
 }
 
-.c-#{$bolt-namespace}-video__close-button-icon,
-.c-#{$bolt-namespace}-video__close-button-text {
+.c-base-video__close-button-icon,
+.c-base-video__close-button-text {
   cursor: pointer;
 }
 
-.c-#{$bolt-namespace}-video__close-button-text {
+.c-base-video__close-button-text {
   color: bolt-color(white);
   text-decoration: underline;
 }
 
-.c-#{$bolt-namespace}-video--hide-controls {
+.c-base-video--hide-controls {
   .video-js .vjs-control-bar {
     display: none;
   }
