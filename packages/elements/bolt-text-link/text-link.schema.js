@@ -15,35 +15,35 @@ module.exports = {
         'A Drupal-style attributes object with extra attributes to append to this component.',
     },
     content: {
-      type: ['string', 'object', 'array'],
+      type: 'string',
       description: 'Content of the text link.',
     },
     display: {
       type: 'string',
       description:
-        'Display either an inline text link or block text link (takes up full width of its parent container).',
+        'Display either an inline text link or block text link (the click target covers up the entire area of its closest container that is not positioned static).',
       enum: ['inline', 'block'],
       default: 'inline',
     },
     icon_before: {
       type: 'object',
       description:
-        'Render an icon before the text. Icon component is recommended.',
+        'Append an icon before the text. Icon component is recommended, however, &lt;img&gt; elements are also acceptable.',
     },
     icon_after: {
       type: 'object',
       description:
-        'Render an icon after the text. Icon component is recommended.',
+        'Append an icon after the text. Icon component is recommended, however, &lt;img&gt; elements are also acceptable.',
     },
     reversed_underline: {
       type: 'boolean',
       description:
-        'Set the underline style to appear on hover instead of regular state.',
+        'Set the underline style to appear on hover instead of being always visible.',
       default: 'false',
     },
     button: {
       type: 'boolean',
-      description: 'Set the semantic HTML tag to <button>.',
+      description: 'Set the semantic HTML tag to &lt;button&gt;.',
       default: 'false',
     },
   },
