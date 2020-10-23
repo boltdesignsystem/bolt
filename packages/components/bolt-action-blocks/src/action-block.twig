@@ -1,14 +1,14 @@
 {% set attributes = create_attribute(attributes|default({})).addClass('c-bolt-action-block') %}
 
-{# DEPRECATED. Use 'content' instead of 'icon'. #}
-{% if icon and not content %}
+{# DEPRECATED. Use 'media' instead of 'icon'. #}
+{% if icon and not media %}
   {% set icon %}
     {% set icon = icon | merge({
       size: icon.size | default('xlarge')
     }) %}
     {% include '@bolt/icon.twig' with icon only %}
   {% endset %}
-  {% set content = icon %}
+  {% set media = icon %}
 {% endif %}
 
 {% set tag = 'div' %}
@@ -21,9 +21,9 @@
 
 <bolt-action-block>
   <{{ tag }} {{ attributes }}>
-  {% if content %}
+  {% if media %}
     <div class="c-bolt-action-block__item">
-      {{ content }}
+      {{ media }}
     </div>
   {% endif %}
 

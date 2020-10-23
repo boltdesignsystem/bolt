@@ -76,15 +76,15 @@ module.exports = {
           url: {
             type: 'string',
           },
-          content: {
+          media: {
             type: ['string', 'object', 'array'],
             description:
-              'Renderable content (i.e. a string, render array, or included pattern) for this item',
+              'Renderable media content (i.e. a string, render array, or included pattern) for this item, usually an icon or an image',
           },
           icon: {
             title: 'DEPRECATED',
             description:
-              'Use content prop instead and pass a fully rendered icon',
+              'Use media prop instead and pass a fully rendered icon',
           },
         },
       },

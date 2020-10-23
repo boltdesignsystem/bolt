@@ -43,17 +43,17 @@ describe('<bolt-action-blocks> Component', () => {
           {
             text: 'Item 1',
             url: '#!',
-            content: icon_1,
+            media: icon_1,
           },
           {
             text: 'Item 2',
             url: '#!',
-            content: icon_2,
+            media: icon_2,
           },
           {
             text: 'Item 3',
             url: '#!',
-            content: icon_3,
+            media: icon_3,
           },
         ],
       } %}
@@ -75,7 +75,7 @@ describe('<bolt-action-blocks> Component', () => {
       {% include '@bolt-components-action-blocks/action-block.twig' with {
         text: 'Item 1',
         url: '#!',
-        content: icon,
+        media: icon,
       } %}
     `);
     expect(results.ok).toBe(true);
@@ -112,17 +112,17 @@ describe('<bolt-action-blocks> Component', () => {
             {
               text: 'Item 1',
               url: '#!',
-              content: icon_1,
+              media: icon_1,
             },
             {
               text: 'Item 2: this item has more text, so it can demonstrate the vertical alignment',
               url: '#!',
-              content: icon_2,
+              media: icon_2,
             },
             {
               text: 'Item 3',
               url: '#!',
-              content: icon_3,
+              media: icon_3,
             },
           ],
         } %}
@@ -161,17 +161,17 @@ describe('<bolt-action-blocks> Component', () => {
             {
               text: 'Item 1',
               url: '#!',
-              content: icon_1,
+              media: icon_1,
             },
             {
               text: 'Item 2',
               url: '#!',
-              content: icon_2,
+              media: icon_2,
             },
             {
               text: 'Item 3',
               url: '#!',
-              content: icon_3,
+              media: icon_3,
             },
           ],
         } %}
@@ -210,17 +210,17 @@ describe('<bolt-action-blocks> Component', () => {
             {
               text: 'Item 1',
               url: '#!',
-              content: icon_1,
+              media: icon_1,
             },
             {
               text: 'Item 2',
               url: '#!',
-              content: icon_2,
+              media: icon_2,
             },
             {
               text: 'Item 3',
               url: '#!',
-              content: icon_3,
+              media: icon_3,
             },
           ],
         } %}
