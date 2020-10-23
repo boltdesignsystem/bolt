@@ -4,10 +4,8 @@
  * Text Link
  *
  * Dev notes:
- * 1. Custom icons must be a square and the height must equal the text's font-size, hence 1em.
- * 2. Zero width no-break space is passed to the icon container's :before and :after pseudo elements, combine that with nowrap white-space on the icon container, and it will make sure that an icon never wraps to the next line by itself, it will always wrap with the final word of the text. See: https://codepen.io/mikemai2awesome/pen/OJXbqwe?editors=0100
- * 3. Temporary fix for icon + text bad vertical alignment.
- * 4. `em` unit is used to make sure the spacing between icon and text is relative to the text's font-size.
+ * 1. Special tricks are used here to make inline icon work, reference the mixin scss to understand it.
+ * 2. `em` unit is used to make sure the spacing between icon and text is relative to the text's font-size.
  */
 
 .e-bolt-text-link {
@@ -16,30 +14,13 @@
 }
 
 [class*='e-bolt-text-link__icon'] {
-  white-space: nowrap;
-
-  &:before,
-  &:after {
-    content: '\FEFF'; /* [2] */
-  }
-
-  > img {
-    width: 1em; /* [1] */
-    height: 1em; /* [1] */
-  }
-
-  > img,
-  > bolt-icon:not([size]) {
-    display: inline-flex;
-    transform: translateY(0.18em); /* [3] */
-    vertical-align: baseline;
-  }
+  @include bolt-inline-icon-wrapper; /* [1] */
 }
 
 .e-bolt-text-link__icon-before {
   margin-right: calc(
     var(--bolt-spacing-x) * var(--bolt-spacing-multiplier-xxsmall) * 1em
-  ); /* [4] */
+  ); /* [2] */
 
   > bolt-icon[size] {
     margin-right: var(--bolt-spacing-x-xxsmall);
@@ -49,7 +30,7 @@
 .e-bolt-text-link__icon-after {
   margin-left: calc(
     var(--bolt-spacing-x) * var(--bolt-spacing-multiplier-xxsmall) * 1em
-  ); /* [4] */
+  ); /* [2] */
 
   > bolt-icon[size] {
     margin-left: var(--bolt-spacing-x-xxsmall);
@@ -73,10 +54,6 @@
     bottom: 0;
     left: 0;
   }
-}
-
-button.e-bolt-text-link--block {
-  width: 100%;
 }
 
 /**

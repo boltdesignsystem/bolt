@@ -21,7 +21,7 @@
 
   {% if notes %}
   <bolt-banner align="start">
-    <bolt-text headline tag="p" font-size="medium">Important Notes:</bolt-text>
+    <bolt-text headline tag="h3" font-size="medium">Important Notes:</bolt-text>
     <bolt-stack>
       {{ notes }}
     </bolt-stack>
@@ -45,6 +45,15 @@
       {% include snippet.code_example(html_markup) %}
     </bolt-tab-panel>
   </bolt-tabs>
+
+  {% if warning %}
+    <bolt-text headline tag="h3" font-size="large">
+      Warning!
+    </bolt-text>
+    <bolt-stack>
+      {{ warning }}
+    </bolt-stack>
+  {% endif %}
 {% endset %}
 
 {% include '@bolt-components-band/band.twig' with {

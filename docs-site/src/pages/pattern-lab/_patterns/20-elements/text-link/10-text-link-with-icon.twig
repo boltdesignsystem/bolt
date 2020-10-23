@@ -22,7 +22,7 @@
   <bolt-ol>
     <bolt-li>Icons are set inline with text so icon size will grow or shrink with text size. The <bolt-code-snippet display="inline">size</bolt-code-snippet> and <bolt-code-snippet display="inline">background</bolt-code-snippet> props for the icon component are not well supported in this scenario.</bolt-li>
     <bolt-li>When writing in plain HTML, all white space must be eliminated to have the underline display correctly on text. The markup must be written all in one line and spaces between HTML elements must be removed.</bolt-li>
-    <bolt-li>An icon will always wrap with the final word of the text, it will never wrap to the next line on its own.</bolt-li>
+    <bolt-li>When writing in plain HTML, <bolt-code-snippet display="inline" lang="html">&lt;span class="e-bolt-text-link__icon-before"&gt;</bolt-code-snippet> and <bolt-code-snippet display="inline" lang="html">&lt;span class="e-bolt-text-link__icon-after"&gt;</bolt-code-snippet> are required to wrap around the icon markup. The wrapper ensures that the icon will always wrap with the final word of the text, it will never wrap to the next line on its own.</bolt-li>
   </bolt-ol>
 {% endset %}
 

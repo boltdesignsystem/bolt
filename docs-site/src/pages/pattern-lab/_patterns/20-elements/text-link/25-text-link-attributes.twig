@@ -1,0 +1,69 @@
+{% set description %}
+  Depending on if the <bolt-code-snippet display="inline" lang="html">&lt;a&gt;</bolt-code-snippet> element or the <bolt-code-snippet display="inline" lang="html">&lt;button&gt;</bolt-code-snippet> element is being used, the proper HTML attributes should be passed.
+{% endset %}
+
+{% set notes %}
+  <bolt-ol>
+    <bolt-li><bolt-code-snippet display="inline" lang="html">&lt;a&gt;</bolt-code-snippet> requires the <bolt-code-snippet display="inline">href</bolt-code-snippet> attribute.</bolt-li>
+    <bolt-li><bolt-code-snippet display="inline" lang="html">&lt;button&gt;</bolt-code-snippet> requires the <bolt-code-snippet display="inline">type</bolt-code-snippet> attribute.</bolt-li>
+  </bolt-ol>
+{% endset %}
+
+{% set demo %}
+{% include '@bolt-elements-text-link/text-link.twig' with {
+  content: 'This text link has the "href", "target", and "id" attributes',
+  attributes: {
+    href: 'https://pega.com',
+    target: '_blank',
+    id: 'js-bolt-some-unique-id'
+  }
+} only %}
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% include '@bolt-elements-text-link/text-link.twig' with {
+  content: 'This text link has the "href", "target", and "id" attributes',
+  attributes: {
+    href: 'https://pega.com',
+    target: '_blank',
+    id: 'js-bolt-some-unique-id'
+  }
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% set html_markup %}
+{% verbatim %}
+<a href="https://pega.com" target="_blank" id="js-bolt-some-unique-id" class="e-bolt-text-link">This text link has the "href", "target", and "id" attributes</a>
+{% endverbatim %}
+{% endset %}
+
+{% set warning %}
+  <bolt-text>
+    If proper attributes are not passed, the link element will produce an error message.
+  </bolt-text>
+  <bolt-ul>
+    <bolt-li>
+      {% include '@bolt-elements-text-link/text-link.twig' with {
+        content: 'Oops',
+      } only %}
+    </bolt-li>
+    <bolt-li>
+      {% include '@bolt-elements-text-link/text-link.twig' with {
+        content: 'Oops, I did it again',
+        button: true,
+      } only %}
+    </bolt-li>
+  </bolt-ul>
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'HTML Attributes for Text Link',
+  description: description,
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+  html_markup: html_markup,
+  warning: warning
+} only %}
