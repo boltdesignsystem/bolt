@@ -1,0 +1,77 @@
+{
+  // will put these first in this order if present
+  "sortToTop": [
+    "name",
+    "description",
+    "version",
+    "author",
+    "keywords",
+    "homepage",
+    "bugs",
+    "license",
+    "contributors",
+    "files",
+    "main",
+    "bin",
+    "man",
+    "directories",
+    "repository",
+    "scripts",
+    "config",
+    "dependencies",
+    "devDependencies",
+    "peerDependencies",
+    "bundledDependencies",
+    "optionalDependencies",
+    "engines",
+    "engineStrict",
+    "os",
+    "cpu",
+    "preferGlobal",
+    "private",
+    "publishConfig"
+  ],
+  // will error if these not present
+  "required": ["name", "version"],
+  // will warn if these not present
+  "warn": [
+    "description",
+    "author",
+    "repository",
+    "keywords",
+    "main",
+    "bugs",
+    "homepage",
+    "license"
+  ],
+  // if `private: true` in package.json will use the next two lists instead
+  "requiredOnPrivate": [],
+  "warnOnPrivate": ["name", "version", "description", "main"],
+  // sub items to sort by default
+  "sortedSubItems": [
+    "dependencies",
+    "devDependencies",
+    "jshintConfig",
+    "scripts",
+    "keywords"
+  ],
+  // if you set quiet to true it won't do output anything to the console
+  "quiet": false,
+  // files to scrub
+  "files": ["package.json"],
+  // Will set all deps to '*'
+  // this may be useful because then you can
+  // run npm update --save && npm update --save-dev
+  // to install latest stable releases of everything.
+  "wipe": false,
+  // Sets the expected indentation. If number, is number of spaces,
+  // otherwise can be string to use as indentation (like a tab).
+  // if undefined/null (default), indentation is detected from file and preserved.
+  "indent": null,
+  // Sets line endings to be either "LF" or "CRLF"
+  // if undefined/null (default), newLine is detected from file and preserved.
+  "newLine": null,
+  // Boolean if there should be an empty line at the end of the file.
+  // if undefined/null (default), finalNewLine is detected from file and preserved.
+  "finalNewLine": null
+}

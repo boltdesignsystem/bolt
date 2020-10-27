@@ -36,7 +36,7 @@
     "jest": "jest --maxWorkers=3 --all --colors",
     "lint": "npm-run-all --parallel lint:*",
     "lint:js": "eslint '**/*.js' --ignore-pattern example-integrations",
-    "lint:pack": "npmPkgJsonLint ./package.json && npmPkgJsonLint ./packages/components/**/package.json",
+    "lint:pack": "npmPkgJsonLint ./package.json ./packages/**/**/package.json !./packages/website-ui/**/*",
     "lint:scss": "stylelint '**/*.scss' --config .stylelintrc",
     "postinstall": "patch-package && npx lerna run postbootstrap",
     "pretest:js": "npm run setup:php",
