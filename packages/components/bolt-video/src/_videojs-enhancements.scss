@@ -3,7 +3,6 @@
 // Dev Notes
 // 1. [Mai] Because these styles are overrides, they need to be repeated.
 // 2. [Mai] Input font-size needs to be 16px to prevent zooming.
-// 3. [Mai] Hide close captions button.
 // 4. [Mai] Flexbox messes up IE layout, this prevents IE from loading display: flex.
 // 5. Required so videos with intrinsic ratio (used in the <bolt-ratio> object) properly fill the space available in IE 11.
 // 6. [Denton] Hide the title when sharing to minimize the chances that you'll see a scrollbar, which is undesirable.  The description field will take its place.
@@ -409,8 +408,4 @@ $bolt-video-js-button-shadow-level-hover: 'level-40';
       }
     }
   }
-}
-
-.vjs-subs-caps-button {
-  display: none; // [3]
 }
