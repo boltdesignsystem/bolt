@@ -1,7 +1,8 @@
 {
   "name": "@bolt/build-tools",
-  "version": "2.28.0",
   "description": "Curated collection of front-end build tools in the Bolt Design System.",
+  "version": "2.28.0",
+  "author": "Bolt Team",
   "keywords": [
     "bolt",
     "bolt design system",
@@ -9,12 +10,12 @@
   ],
   "homepage": "https://boltdesignsystem.com",
   "bugs": "https://github.com/bolt-design-system/bolt/issues",
-  "repository": "https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools",
   "license": "MIT",
   "main": "index.js",
   "bin": {
     "bolt": "index.js"
   },
+  "repository": "https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools",
   "scripts": {
     "test": "FORCE_COLOR=1 npx lerna exec --scope @bolt/build-tools--test* --concurrency 1 -- yarn run test"
   },

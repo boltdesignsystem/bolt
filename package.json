@@ -1,8 +1,8 @@
 {
   "name": "bolt",
-  "version": "0.0.0-development",
-  "private": true,
   "description": "Bolt Design System",
+  "version": "0.0.0-development",
+  "author": "Bolt Team",
   "keywords": [
     "bolt",
     "bolt design system",
@@ -14,32 +14,10 @@
   "bugs": {
     "url": "https://github.com/boltdesignsystem/bolt/issues"
   },
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/boltdesignsystem/bolt.git"
-  },
-  "license": "MIT",
-  "author": "Salem Ghoweri",
-  "workspaces": {
-    "packages": [
-      "docs-site",
-      "docs-site/src/components/banner",
-      "docs-site/src/components/theme-switcher",
-      "docs-site/src/components/docs-search",
-      "docs-site/src/components/radio-switch",
-      "docs-site/src/components/shadow-toggle",
-      "packages/*",
-      "packages/*/*",
-      "packages/build-tools/__tests__/*",
-      "packages/build-tools/plugins/*",
-      "scripts"
-    ],
-    "nohoist": [
-      "lazysizes",
-      "**/lazysizes",
-      "get-own-property-symbols",
-      "**/get-own-property-symbols"
-    ]
   },
   "scripts": {
     "build": "cd docs-site && yarn run build:prod",
@@ -55,12 +33,13 @@
     "deploy": "./scripts/deploy.js",
     "fix": "yarn lint:js --fix; yarn lint:scss --fix",
     "gds": "github-deploy-status -u boltdesignsystem -p bolt --token ${GITHUB_TOKEN}",
-    "postinstall": "patch-package && npx lerna run postbootstrap",
     "jest": "jest --maxWorkers=3 --all --colors",
     "lint": "npm-run-all --parallel lint:*",
     "lint:js": "eslint '**/*.js' --ignore-pattern example-integrations",
-    "lint:pack": "npmPkgJsonLint ./packages/components/**/package.json",
+    "lint:pack": "npmPkgJsonLint ./package.json && npmPkgJsonLint ./packages/components/**/package.json",
     "lint:scss": "stylelint '**/*.scss' --config .stylelintrc",
+    "postinstall": "patch-package && npx lerna run postbootstrap",
+    "pretest:js": "npm run setup:php",
     "release": "node ./auto-release.js",
     "serve": "node packages/servers/default-server",
     "setup": "yarn && yarn run setup:php",
@@ -79,7 +58,6 @@
     "test:e2e:quick-live": " NOW_URL=https://boltdesignsystem.com ./node_modules/.bin/nightwatch --config packages/testing/testing-nightwatch/nightwatch.local.js",
     "test:e2e:quick-local": "NOW_URL=http://localhost:3000 ./node_modules/.bin/nightwatch --config packages/testing/testing-nightwatch/nightwatch.local.js",
     "test:e2e:quick-master": " NOW_URL=https://master.boltdesignsystem.com ./node_modules/.bin/nightwatch --config packages/testing/testing-nightwatch/nightwatch.local.js",
-    "pretest:js": "npm run setup:php",
     "test:js": "NODE_ENV='test' jest --all --colors 'packages|scripts' --passWithNoTests ",
     "test:js:quick": "NODE_ENV='test' jest --colors \"$(bolt-list-pkg-paths-changed)\" --passWithNoTests",
     "test:js:update": "yarn run test:js -u",
@@ -89,37 +67,11 @@
     "test:types": "tsc",
     "test:vrt-urls": "cd docs-site && yarn run test:vrt-urls"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged",
-      "pre-push": "jest ./__tests__/monorepo-basics.test.js -c jest.config.quick.js --noStackTrace",
-      "commitmsg": "commitlint -E $GIT_PARAMS"
-    }
-  },
-  "commitlint": {
-    "extends": [
-      "@commitlint/config-conventional"
-    ]
-  },
-  "lint-staged": {
-    "*.js": [
-      "eslint"
-    ],
-    "*.scss": [
-      "stylelint --config .stylelintrc"
-    ],
-    "package.json": [
-      "npmPkgJsonLint"
-    ]
-  },
   "config": {
     "commitizen": {
       "path": "./node_modules/@instructure/cz-lerna-changelog"
     }
   },
-  "browserslist": [
-    "extends @bolt/browserslist-config"
-  ],
   "dependencies": {
     "@auto-it/npm": "^8.7.3",
     "@auto-it/omit-commits": "^8.7.3",
@@ -141,7 +93,6 @@
     "eslint-plugin-prettier": "^3.1.0",
     "eslint-plugin-react": "^7.14.2",
     "find-pkg": "^2.0.0",
-    "fixpack": "^3.0.6",
     "fs-extra": "^8.1.0",
     "get-port": "^5.0.0",
     "github-deploy-status": "^1.4.1",
@@ -175,7 +126,55 @@
   "optionalDependencies": {
     "prettier": ">= 1.13.0"
   },
+  "private": true,
   "publishConfig": {
     "access": "public"
+  },
+  "browserslist": [
+    "extends @bolt/browserslist-config"
+  ],
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "pre-push": "jest ./__tests__/monorepo-basics.test.js -c jest.config.quick.js --noStackTrace",
+      "commitmsg": "commitlint -E $GIT_PARAMS"
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint"
+    ],
+    "*.scss": [
+      "stylelint --config .stylelintrc"
+    ],
+    "package.json": [
+      "npmPkgJsonLint"
+    ]
+  },
+  "workspaces": {
+    "packages": [
+      "docs-site",
+      "docs-site/src/components/banner",
+      "docs-site/src/components/theme-switcher",
+      "docs-site/src/components/docs-search",
+      "docs-site/src/components/radio-switch",
+      "docs-site/src/components/shadow-toggle",
+      "packages/*",
+      "packages/*/*",
+      "packages/build-tools/__tests__/*",
+      "packages/build-tools/plugins/*",
+      "scripts"
+    ],
+    "nohoist": [
+      "lazysizes",
+      "**/lazysizes",
+      "get-own-property-symbols",
+      "**/get-own-property-symbols"
+    ]
   }
 }
