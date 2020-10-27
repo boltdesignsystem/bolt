@@ -1,20 +1,8 @@
 {
   "name": "@bolt/components-typeahead",
-  "version": "2.28.0",
   "description": "Typeahead is an input field with dropdown-like listbox that displays suggested results that most closely match a user's given search term.",
-  "keywords": [
-    "bolt design system",
-    "bolt",
-    "design system",
-    "web component"
-  ],
-  "homepage": "https://boltdesignsystem.com",
+  "version": "2.28.0",
   "bugs": "https://github.com/bolt-design-system/bolt/issues",
-  "repository": "https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-typeahead",
-  "license": "MIT",
-  "main": "typeahead.polyfilled.js",
-  "module": "typeahead.js",
-  "style": "typeahead.scoped.scss",
   "dependencies": {
     "@bolt/components-button": "^2.28.0",
     "@bolt/components-form": "^2.28.0",
@@ -26,12 +14,15 @@
     "react-autosuggest": "^9.4.3",
     "react-html-parser": "^2.0.2"
   },
-  "optionalDependencies": {
-    "react": ">=0.14.7 || ^15.0.0 || ^16.0.0-0"
-  },
-  "publishConfig": {
-    "access": "public"
-  },
+  "homepage": "https://boltdesignsystem.com",
+  "keywords": [
+    "bolt",
+    "bolt design system",
+    "design system",
+    "web component"
+  ],
+  "license": "MIT",
+  "main": "typeahead.polyfilled.js",
   "maintainers": [
     {
       "name": "Salem Ghoweri",
@@ -47,5 +38,14 @@
       "name": "Dan Morse"
     }
   ],
-  "schema": "typeahead.schema.js"
+  "module": "typeahead.js",
+  "optionalDependencies": {
+    "react": ">=0.14.7 || ^15.0.0 || ^16.0.0-0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": "https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-typeahead",
+  "schema": "typeahead.schema.js",
+  "style": "typeahead.scoped.scss"
 }
