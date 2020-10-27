@@ -169,8 +169,7 @@
             "dist": {
                 "type": "path",
                 "url": "../packages/twig-integration/twig-extensions-shared",
-                "reference": "2e6c3ad00892d403575b6012c46fc20a96ff0d55",
-                "shasum": null
+                "reference": "2e6c3ad00892d403575b6012c46fc20a96ff0d55"
             },
             "require": {
                 "asm89/twig-lint": "^1.0",
@@ -225,8 +224,7 @@
             "dist": {
                 "type": "path",
                 "url": "../packages/twig-integration/twig-extensions-compat",
-                "reference": "82abac38d04f72d0814c66c01aed8a6cb29b42ca",
-                "shasum": null
+                "reference": "82abac38d04f72d0814c66c01aed8a6cb29b42ca"
             },
             "require": {
                 "drupal/core-render": "^8.0.0",
@@ -263,8 +261,7 @@
             "dist": {
                 "type": "path",
                 "url": "../packages/website-ui/styleguidekit-twig-default",
-                "reference": "cc4cd4351d2aa7dabfee0bcd1027e778888dde58",
-                "shasum": null
+                "reference": "cc4cd4351d2aa7dabfee0bcd1027e778888dde58"
             },
             "type": "patternlab-styleguidekit",
             "license": [
@@ -285,8 +282,7 @@
             "dist": {
                 "type": "path",
                 "url": "../packages/twig-integration/twig-renderer",
-                "reference": "234598fba82daf1e242ec99577fb8c6b5ba35001",
-                "shasum": null
+                "reference": "234598fba82daf1e242ec99577fb8c6b5ba35001"
             },
             "require": {
                 "bolt-design-system/core-php": "*",
@@ -368,24 +364,24 @@
         },
         {
             "name": "cweagans/composer-patches",
-            "version": "1.6.7",
+            "version": "1.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cweagans/composer-patches.git",
-                "reference": "2e6f72a2ad8d59cd7e2b729f218bf42adb14f590"
+                "reference": "ae02121445ad75f4eaff800cc532b5e6233e2ddf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cweagans/composer-patches/zipball/2e6f72a2ad8d59cd7e2b729f218bf42adb14f590",
-                "reference": "2e6f72a2ad8d59cd7e2b729f218bf42adb14f590",
+                "url": "https://api.github.com/repos/cweagans/composer-patches/zipball/ae02121445ad75f4eaff800cc532b5e6233e2ddf",
+                "reference": "ae02121445ad75f4eaff800cc532b5e6233e2ddf",
                 "shasum": ""
             },
             "require": {
-                "composer-plugin-api": "^1.0",
+                "composer-plugin-api": "^1.0 || ^2.0",
                 "php": ">=5.3.0"
             },
             "require-dev": {
-                "composer/composer": "~1.0",
+                "composer/composer": "~1.0 || ~2.0",
                 "phpunit/phpunit": "~4.6"
             },
             "type": "composer-plugin",
@@ -408,7 +404,11 @@
                 }
             ],
             "description": "Provides a way to patch Composer packages.",
-            "time": "2019-08-29T20:11:49+00:00"
+            "support": {
+                "issues": "https://github.com/cweagans/composer-patches/issues",
+                "source": "https://github.com/cweagans/composer-patches/tree/1.7.0"
+            },
+            "time": "2020-09-30T17:56:20+00:00"
         },
         {
             "name": "doctrine/collections",
@@ -2107,10 +2107,10 @@
     "packages-dev": [],
     "aliases": [
         {
-            "alias": "2.9.0",
-            "alias_normalized": "2.9.0.0",
+            "package": "pattern-lab/core",
             "version": "dev-develop",
-            "package": "pattern-lab/core"
+            "alias": "2.9.0",
+            "alias_normalized": "2.9.0.0"
         }
     ],
     "minimum-stability": "stable",
@@ -2120,5 +2120,6 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],
-    "platform-dev": []
+    "platform-dev": [],
+    "plugin-api-version": "2.0.0"
 }
