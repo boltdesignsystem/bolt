@@ -28,7 +28,9 @@
       role="presentation"
       {% if classes %} class="{{ classes|join(' ') }}" {% endif %}
     >
+      {% if icon_before %}<span class="{{ base_class ~ '__icon-before'}}">{{ icon_before }}</span>{% endif %}
       {{ content }}
+      {% if icon_after %}<span class="{{ base_class ~ '__icon-after'}}">{{ icon_after }}</span>{% endif %}
     </ssr-keep>
   {% endset %}
   {% set trigger_options = {

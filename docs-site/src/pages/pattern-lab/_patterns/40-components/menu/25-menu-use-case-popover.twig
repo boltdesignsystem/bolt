@@ -1,4 +1,25 @@
 {# Setting variables for demo purposes #}
+{% set icon_facebook %}
+  {% include "@bolt-components-icon/icon.twig" with {
+    name: "facebook-solid",
+    size: "small",
+  } only %}
+{% endset %}
+
+{% set icon_twitter %}
+  {% include "@bolt-components-icon/icon.twig" with {
+    name: "twitter-solid",
+    size: "small",
+  } only %}
+{% endset %}
+
+{% set icon_linkedin %}
+  {% include "@bolt-components-icon/icon.twig" with {
+    name: "linkedin-solid",
+    size: "small",
+  } only %}
+{% endset %}
+
 {% set trigger %}
   {% include "@bolt-components-button/button.twig" with {
     text: "Menu",
@@ -13,12 +34,15 @@
     items: [
       {
         content: "Menu item 1",
+        icon_before: icon_facebook,
       },
       {
         content: "Menu item 2",
+        icon_before: icon_twitter,
       },
       {
-        content: "Menu item 2",
+        content: "Menu item 3",
+        icon_before: icon_linkedin,
       },
     ]
   } only %}
