@@ -94,6 +94,15 @@
 
 [class*='c-bolt-menu-item__icon-'] {
   transform: translateY(-0.05em);
+
+  > * {
+    display: grid;
+    place-items: center;
+  }
+
+  bolt-icon {
+    display: block;
+  }
 }
 
 .c-bolt-menu-item__icon-after {

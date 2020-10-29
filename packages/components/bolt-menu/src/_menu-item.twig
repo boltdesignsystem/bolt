@@ -28,9 +28,9 @@
       role="presentation"
       {% if classes %} class="{{ classes|join(' ') }}" {% endif %}
     >
-      {% if icon_before %}<span class="{{ base_class ~ '__icon-before'}}">{{ icon_before }}</span>{% endif %}
+      {% if icon_before %}<replace-with-children class="{{ base_class ~ '__icon-before'}}"><span slot="icon-before">{{ icon_before }}</span></replace-with-children>{% endif %}
       {{ content }}
-      {% if icon_after %}<span class="{{ base_class ~ '__icon-after'}}">{{ icon_after }}</span>{% endif %}
+      {% if icon_after %}<replace-with-children class="{{ base_class ~ '__icon-after'}}"><span slot="icon-before">{{ icon_after }}</span></replace-with-children>{% endif %}
     </ssr-keep>
   {% endset %}
   {% set trigger_options = {

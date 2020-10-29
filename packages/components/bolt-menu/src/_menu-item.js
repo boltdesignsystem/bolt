@@ -71,7 +71,19 @@ class BoltMenuItem extends withContext(BoltElement) {
         role="menuitem"
       >
         <div class="${classes}">
+          ${this.slotMap.get('icon-before') &&
+            html`
+              <span class="${cx('c-bolt-menu-item__icon-before')}">
+                ${this.slotify('icon-before')}
+              </span>
+            `}
           ${this.slotify('default')}
+          ${this.slotMap.get('icon-after') &&
+            html`
+              <span class="${cx('c-bolt-menu-item__icon-after')}">
+                ${this.slotify('icon-after')}
+              </span>
+            `}
         </div>
       </bolt-trigger>
     `;
