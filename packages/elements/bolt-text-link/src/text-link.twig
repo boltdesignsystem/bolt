@@ -21,16 +21,12 @@
 {% set this = init(schema) %}
 {% set attributes = create_attribute(attributes|default({})) %}
 
-{% if button %}
-  {% set tag = 'button' %}
-{% else %}
-  {% set tag = 'a' %}
-{% endif %}
+{% set tag = button ? 'button' : 'a' %}
 
 {% set classes = [
   'e-bolt-text-link',
-  reversed_underline ? 'e-bolt-text-link--reversed-underline',
-  display == 'block' ? 'e-bolt-text-link--block',
+  this.data.reversed_underline.value ? 'e-bolt-text-link--reversed-underline',
+  this.data.display.value == 'block' ? 'e-bolt-text-link--block',
 ] %}
 
 {# Template #}

@@ -15,7 +15,7 @@ module.exports = {
         'A Drupal-style attributes object with extra attributes to append to this component.',
     },
     content: {
-      type: 'string',
+      type: 'object',
       description: 'Content of the text link.',
     },
     display: {

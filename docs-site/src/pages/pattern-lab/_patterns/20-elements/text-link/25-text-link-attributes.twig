@@ -39,25 +39,6 @@
 {% endverbatim %}
 {% endset %}
 
-{% set warning %}
-  <bolt-text>
-    If proper attributes are not passed, the link element will produce an error message.
-  </bolt-text>
-  <bolt-ul>
-    <bolt-li>
-      {% include '@bolt-elements-text-link/text-link.twig' with {
-        content: 'Oops',
-      } only %}
-    </bolt-li>
-    <bolt-li>
-      {% include '@bolt-elements-text-link/text-link.twig' with {
-        content: 'Oops, I did it again',
-        button: true,
-      } only %}
-    </bolt-li>
-  </bolt-ul>
-{% endset %}
-
 {% include '@utils/pattern-doc-page.twig' with {
   title: 'HTML Attributes for Text Link',
   description: description,
@@ -65,5 +46,4 @@
   demo: demo,
   twig_markup: twig_markup,
   html_markup: html_markup,
-  warning: warning
 } only %}
