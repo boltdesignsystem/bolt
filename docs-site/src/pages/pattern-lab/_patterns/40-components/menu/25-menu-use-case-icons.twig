@@ -1,0 +1,51 @@
+<bolt-text headline>Icon before and after menu item text</bolt-text>
+<bolt-text>Use the <bolt-code-snippet display="inline">icon_before</bolt-code-snippet> and <bolt-code-snippet display="inline">icon_after</bolt-code-snippet> props to append icons before or after the menu item text.</bolt-text>
+
+{# Setting variables for demo purposes #}
+{% set icon_facebook %}
+  {% include "@bolt-components-icon/icon.twig" with {
+    name: "facebook-solid",
+    size: "small",
+  } only %}
+{% endset %}
+
+{% set icon_twitter %}
+  {% include "@bolt-components-icon/icon.twig" with {
+    name: "twitter-solid",
+    size: "small",
+  } only %}
+{% endset %}
+
+{% set icon_linkedin %}
+  {% include "@bolt-components-icon/icon.twig" with {
+    name: "linkedin-solid",
+    size: "small",
+  } only %}
+{% endset %}
+
+{% set trigger %}
+  {% include "@bolt-components-button/button.twig" with {
+    text: "Menu",
+    size: "xsmall",
+  } only %}
+{% endset %}
+
+{# Start component specific code #}
+{% include "@bolt-components-menu/menu.twig" with {
+  title: "Choose one of these",
+  items: [
+    {
+      content: "Share to Facebook",
+      icon_before: icon_facebook,
+    },
+    {
+      content: "Share to Twitter",
+      icon_before: icon_twitter,
+    },
+    {
+      content: "Share to LinkedIn",
+      icon_before: icon_linkedin,
+    },
+  ]
+} only %}
+{# End component specific code #}
