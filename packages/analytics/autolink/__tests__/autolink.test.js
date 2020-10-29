@@ -49,7 +49,7 @@ describe('analytics autolinker', () => {
     await page.evaluate(() => {
       const btn = document.createElement('bolt-button');
       btn.textContent = 'External URL - Shadow DOM Test';
-      btn.setAttribute('url', 'https://www.brightcove.com');
+      btn.setAttribute('url', 'https://www.boltdesignsystem.com');
       document.body.appendChild(btn);
     });
 
@@ -73,7 +73,7 @@ describe('analytics autolinker', () => {
 
     await page.evaluate(() => {
       const btn = document.querySelector('bolt-button');
-      btn.setAttribute('url', 'https://www.brightcove.com');
+      btn.setAttribute('url', 'https://www.boltdesignsystem.com');
       btn.setAttribute('color', 'secondary');
       return document.body.innerHTML;
     });
@@ -82,7 +82,7 @@ describe('analytics autolinker', () => {
     const currentUrl = await page.url();
 
     expect(currentUrl).toContain('_ga');
-    expect(currentUrl).toContain('brightcove.com');
+    expect(currentUrl).toContain('boltdesignsystem.com');
   }, 5000);
 
   test('autolinker updates the URLs of a <bolt-button> with an external url + rendering to the Shadow DOM', async function() {

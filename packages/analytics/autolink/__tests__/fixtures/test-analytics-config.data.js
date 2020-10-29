@@ -1,6 +1,6 @@
 window.bolt = window.bolt || {};
 window.bolt.autolink = {
-  domains: ['google.com', 'brightcove.com'],
+  domains: ['google.com', 'boltdesignsystem.com'],
 };
 
 // or an inline script

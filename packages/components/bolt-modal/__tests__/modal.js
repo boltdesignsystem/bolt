@@ -36,12 +36,12 @@ const viewportSizes = [
 const modalContent = [
   {
     name: 'Simple usage',
-    content: `<bolt-text>Default slot.</bolt-text>`,
+    content: `<div>Default slot.</div>`,
   },
   {
     name: 'Long content usage',
     content: `
-      <bolt-text subheadline font-size="xlarge">This is very long content.</bolt-text>
+      <div>This is very long content.</div>
       <bolt-image src="/fixtures/1200x2500.jpg" alt="Placeholder"></bolt-image>
     `,
   },
@@ -124,7 +124,7 @@ describe('<bolt-modal> Component', () => {
     `<bolt-modal> slots`,
     async () => {
       const { html, ok } = await render('@bolt-components-modal/modal.twig', {
-        content: `<bolt-text slot="header">Header slot</bolt-text>Default slot<bolt-text slot="footer">Footer slot</bolt-text>`,
+        content: `<div slot="header">Header slot</div>Default slot<div slot="footer">Footer slot</div>`,
         width: 'regular',
       });
       expect(ok).toBe(true);
@@ -178,9 +178,9 @@ describe('<bolt-modal> Component', () => {
         'bolt-modal',
         `
         <bolt-modal uuid="12345" width="regular">
-          <bolt-text slot="header">Header slot</bolt-text>
+          <div slot="header">Header slot</div>
           ${contentChoice.content}
-          <bolt-text slot="footer">Footer slot</bolt-text>
+          <div slot="footer">Footer slot</div>
         </bolt-modal>
       `,
         page,
@@ -221,9 +221,9 @@ describe('<bolt-modal> Component', () => {
         'bolt-modal',
         `
         <bolt-modal uuid="12345" width="regular" no-shadow>
-          <bolt-text slot="header">Header slot</bolt-text>
+          <div slot="header">Header slot</div>
           ${contentChoice.content}
-          <bolt-text slot="footer">Footer slot</bolt-text>
+          <div slot="footer">Footer slot</div>
         </bolt-modal>
       `,
         page,
@@ -264,9 +264,9 @@ describe('<bolt-modal> Component', () => {
       `${contentChoice.name} <bolt-modal> at various viewport sizes`,
       async () => {
         const { html, ok } = await render('@bolt-components-modal/modal.twig', {
-          content: `<bolt-text slot="header">Header slot</bolt-text>
+          content: `<div slot="header">Header slot</div>
             ${contentChoice.content}
-            <bolt-text slot="footer">Footer slot</bolt-text>`,
+            <div slot="footer">Footer slot</div>`,
           width: 'regular',
         });
         expect(ok).toBe(true);
@@ -314,9 +314,9 @@ describe('<bolt-modal> Component', () => {
         });
 
         const { html, ok } = await render('@bolt-components-modal/modal.twig', {
-          content: `<bolt-text slot="header">Header slot</bolt-text>
+          content: `<div slot="header">Header slot</div>
             ${renderedBand.html}
-            <bolt-text slot="footer">Footer slot</bolt-text>`,
+            <div slot="footer">Footer slot</div>`,
           width: 'regular',
         });
         expect(ok).toBe(true);

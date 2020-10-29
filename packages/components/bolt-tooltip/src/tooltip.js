@@ -81,6 +81,12 @@ class BoltTooltip extends BoltElement {
     this.setOpen();
   }
 
+  handleKeyup(e) {
+    if (e.keyCode === 27 || e.key === 'Escape' || e.key === 'Esc') {
+      this.open = false;
+    }
+  }
+
   sortChildren() {
     // @todo: add mutation observer and call this when content changes
     let hasText, hasAllowedContent, hasDisallowedContent, hasFocusableContent;
@@ -231,6 +237,7 @@ class BoltTooltip extends BoltElement {
     return html`
       <span
         class="${classes}"
+        @keyup="${this.handleKeyup}"
         @mouseenter="${this.handleHover}"
         @mouseleave="${this.handleHover}"
         @focusin="${this.handleFocus}"
