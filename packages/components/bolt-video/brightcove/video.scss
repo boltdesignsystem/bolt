@@ -3,7 +3,7 @@ $base-video-wrapper--max-width: bolt-breakpoint(xxlarge);
 $base-video-background-color: rgba(22, 26, 60, 0.8);
 $base-video-background-max-height: 50.625vw;
 
-.base-video {
+.c-base-video {
   display: block;
   width: 100%;
   background-color: bolt-color(
@@ -62,9 +62,13 @@ $base-video-background-max-height: 50.625vw;
   * on Windows
   */
 .c-base-video {
+  display: block;
+  position: relative;
   z-index: bolt-z-index('tooltip');
   width: 100%;
   max-width: none;
+  height: 0;
+  //padding-bottom: 33.85%;
   transition: transform 0.4s cubic-bezier(0.645, 0, 0.355, 1);
 
   // Force control icons to be visible at smaller layout sizes, commented out names are shown here to indicate which ones are hidden.
