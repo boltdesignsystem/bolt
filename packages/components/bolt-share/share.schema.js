@@ -63,19 +63,19 @@ module.exports = {
       type: 'string',
       default: 'inline',
       description: 'Controls the display of the share options.',
-      enum: ['block-menu', 'inline'],
+      enum: ['inline', 'menu'],
     },
     copy_to_clipboard: {
       type: 'object',
       ref: 'copy-to-clipboard',
     },
     inline: {
-      title: 'DEPRECATED.',
+      title: 'DEPRECATED',
       description:
         'Button version has been removed so this prop is no longer needed.',
     },
     copyToClipboard: {
-      title: 'DEPRECATED.',
+      title: 'DEPRECATED',
       description: 'Please use copy_to_clipboard.',
     },
   },
