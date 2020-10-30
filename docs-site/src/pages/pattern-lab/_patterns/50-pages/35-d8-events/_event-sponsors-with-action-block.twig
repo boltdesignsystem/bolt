@@ -6,12 +6,12 @@
 
   {% set items = [] %}
   {% for logoImage in logoImages %}
-    {% set content %}
+    {% set media %}
       <div class="c-partner-card__logo">
         <img src="/images/content/logos/480x160/{{ logoImage }}">
       </div>
     {% endset %}
-    {% set items = items|merge([{ content: content }]) %}
+    {% set items = items|merge([{ media: media }]) %}
   {% endfor %}
 
   {% include "@bolt-components-action-blocks/action-blocks.twig" with {
