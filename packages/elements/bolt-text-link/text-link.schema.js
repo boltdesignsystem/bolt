@@ -18,13 +18,6 @@ module.exports = {
       type: 'object',
       description: 'Content of the text link.',
     },
-    display: {
-      type: 'string',
-      description:
-        'Display either an inline text link or block text link (the click target covers up the entire area of its closest container that is not positioned static).',
-      enum: ['inline', 'block'],
-      default: 'inline',
-    },
     icon_before: {
       type: 'object',
       description:
@@ -39,12 +32,18 @@ module.exports = {
       type: 'boolean',
       description:
         'Set the underline style to appear on hover instead of being always visible.',
-      default: 'false',
+      default: false,
     },
     button: {
       type: 'boolean',
       description: 'Set the semantic HTML tag to &lt;button&gt;.',
-      default: 'false',
+      default: false,
+    },
+    expand_click_target: {
+      type: 'boolean',
+      description:
+        'Expands the click target to cover up the entire area of its closest container that is not positioned static.',
+      default: false,
     },
   },
 };
