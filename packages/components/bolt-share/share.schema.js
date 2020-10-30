@@ -59,6 +59,12 @@ module.exports = {
         },
       },
     },
+    display: {
+      type: 'string',
+      default: 'inline',
+      description: 'Controls the display of the share options.',
+      enum: ['block-menu', 'inline'],
+    },
     copy_to_clipboard: {
       type: 'object',
       ref: 'copy-to-clipboard',
