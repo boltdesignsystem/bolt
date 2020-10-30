@@ -65,6 +65,7 @@ module.exports = {
       '@bolt/components-ul',
       '@bolt/components-video',
       '@bolt/elements-link',
+      '@bolt/layouts-layout',
       '@bolt/layouts-list',
       '@bolt/analytics-autolink',
     ],
