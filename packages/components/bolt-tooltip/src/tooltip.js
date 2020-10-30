@@ -52,6 +52,14 @@ class BoltTooltip extends BoltElement {
 
   setOpen() {
     if (this.isHovering || this.hasFocus) {
+      // `reference` is Popper's stored reference to the trigger.
+      const ref = this.popper?.state.rects.reference;
+
+      if (ref.width === 0 && ref.height === 0) {
+        // If trigger was hidden initially, call update() to recalculate Popper position
+        this.popper.update();
+      }
+
       this.open = true;
     } else {
       this.open = false;
@@ -71,6 +79,12 @@ class BoltTooltip extends BoltElement {
     }
 
     this.setOpen();
+  }
+
+  handleKeyup(e) {
+    if (e.keyCode === 27 || e.key === 'Escape' || e.key === 'Esc') {
+      this.open = false;
+    }
   }
 
   sortChildren() {
@@ -223,6 +237,7 @@ class BoltTooltip extends BoltElement {
     return html`
       <span
         class="${classes}"
+        @keyup="${this.handleKeyup}"
         @mouseenter="${this.handleHover}"
         @mouseleave="${this.handleHover}"
         @focusin="${this.handleFocus}"
