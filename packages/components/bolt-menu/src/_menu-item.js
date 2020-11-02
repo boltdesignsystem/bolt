@@ -60,7 +60,6 @@ class BoltMenuItem extends withContext(BoltElement) {
 
     const classes = cx('c-bolt-menu-item', {
       [`c-bolt-menu-item--spacing-${this.spacing}`]: this.spacing,
-      [`c-bolt-menu-item--last-item`]: isLast,
     });
 
     return html`

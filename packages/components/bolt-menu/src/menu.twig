@@ -54,7 +54,6 @@
           {% if item %}
             {% include "@bolt-components-menu/_menu-item.twig" with item|merge({
               spacing: this.data.spacing.value,
-              last: loop.last,
             }) only %}
           {% endif %}
         {% endfor %}
