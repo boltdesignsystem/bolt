@@ -42,6 +42,10 @@ module.exports = {
         },
       },
     },
+    content: {
+      type: ['string', 'array', 'object'],
+      description: 'Custom content for menu items.',
+    },
     title: {
       type: 'string',
       description: 'Controls the inset spacing of each menu item.',

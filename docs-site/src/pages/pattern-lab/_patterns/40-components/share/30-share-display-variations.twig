@@ -1,6 +1,17 @@
 {% extends "@pl/_share-variables.twig" %}
 
 {% block content %}
+  <bolt-banner status="warning">
+    Note: menu display does not work with size, align, and opacity props.
+  </bolt-banner>
+
+  <bolt-text headline>Inline Display</bolt-text>
+  {% include "@bolt-components-share/share.twig" with {
+    sources: sources,
+    copy_to_clipboard: copy_to_clipboard,
+  } only %}
+
+  <bolt-text headline>Menu Display</bolt-text>
   {% include "@bolt-components-share/share.twig" with {
     display: "menu",
     sources: sources,

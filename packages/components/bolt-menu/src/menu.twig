@@ -47,14 +47,18 @@
       </ssr-keep>
     {% endif %}
     <ssr-keep for="bolt-menu" role="presentation">
-      {% for item in items %}
-        {% if item %}
-          {% include "@bolt-components-menu/_menu-item.twig" with item|merge({
-            spacing: this.data.spacing.value,
-            last: loop.last,
-          }) only %}
-        {% endif %}
-      {% endfor %}
+      {% if content %}
+        {{ content }}
+      {% else %}
+        {% for item in items %}
+          {% if item %}
+            {% include "@bolt-components-menu/_menu-item.twig" with item|merge({
+              spacing: this.data.spacing.value,
+              last: loop.last,
+            }) only %}
+          {% endif %}
+        {% endfor %}
+      {% endif %}
     </ssr-keep>
   </div>
 </bolt-menu>

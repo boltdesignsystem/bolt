@@ -8,6 +8,12 @@
 // Register Custom Block Element
 @include bolt-repeat-rule(('bolt-menu-item', ':host')) {
   display: block;
+
+  & + * {
+    border-top-color: $bolt-menu-border-color;
+    border-top-style: $bolt-menu-border-style;
+    border-top-width: $bolt-menu-border-width;
+  }
 }
 
 .c-bolt-menu-item {
@@ -23,9 +29,6 @@
   font-weight: var(--bolt-type-font-weight-regular);
   color: bolt-theme(text);
   line-height: var(--bolt-type-line-height-small);
-  border-bottom-color: $bolt-menu-border-color;
-  border-bottom-style: $bolt-menu-border-style;
-  border-bottom-width: $bolt-menu-border-width;
   transition: background-color $bolt-transition;
 
   &:before,
@@ -59,7 +62,8 @@
     transition: height $bolt-transition;
   }
 
-  @at-root bolt-trigger:hover & {
+  bolt-trigger:hover &,
+  button:hover & {
     color: bolt-theme(link);
 
     &:before {
@@ -68,12 +72,14 @@
     }
   }
 
-  @at-root bolt-trigger:active & {
+  bolt-trigger:active &,
+  button:active & {
     background-color: bolt-theme(link, 0.1);
   }
 
   /* This doesn't work in IE. Oh well. */
-  @at-root bolt-trigger:focus-within & {
+  bolt-trigger:focus-within &,
+  button:focus-within & {
     font-weight: var(--bolt-type-font-weight-semibold);
     color: bolt-theme(headline);
 
@@ -85,6 +91,10 @@
     &:after {
       height: calc(100% - var(--bolt-spacing-y-xsmall) * 2);
     }
+  }
+
+  bolt-copy-to-clipboard & {
+    width: 100%;
   }
 }
 
