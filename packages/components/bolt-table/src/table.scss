@@ -54,14 +54,14 @@ $bolt-table-row-hover-background-color: bolt-theme(text, 0.025);
   -ms-overflow-style: -ms-autohiding-scrollbar;
 
   // Caption is not offered in the component. These generic styles are in place in case there are some legacy tables out there that used <caption>.
-  caption {
-    @include bolt-font-size(small);
-    color: bolt-theme(text, 0.65);
-    text-align: center;
-    background-color: bolt-theme(background);
+  // caption {
+  //   @include bolt-font-size(small);
+  //   color: bolt-theme(text, 0.65);
+  //   text-align: center;
+  //   background-color: bolt-theme(background);
 
-    caption-side: bottom;
-  }
+  //   caption-side: bottom;
+  // }
 }
 
 .c-bolt-table__head,
@@ -190,4 +190,17 @@ $bolt-table-row-hover-background-color: bolt-theme(text, 0.025);
       width: auto;
     }
   }
+}
+
+.c-bolt-table__figure {
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+.c-bolt-table__caption {
+  @include bolt-font-size(xsmall);
+
+  display: block;
+  padding-top: var(--bolt-spacing-y-xsmall);
 }

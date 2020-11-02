@@ -13,6 +13,9 @@ module.exports = {
       {
         required: ['border'],
       },
+      {
+        required: ['contentItems'],
+      },
     ],
   },
   properties: {
@@ -47,31 +50,41 @@ module.exports = {
       default: false,
       enum: [true, false],
     },
-    contentItems: {
+    items: {
       type: 'array',
       description: 'Content items to populate the action blocks.',
       items: {
-        type: 'object',
+        type: ['string', 'object', 'array'],
+        description:
+          'Either a renderable item (string or render array) or an object with specific properties.',
+        not: {
+          anyOf: [
+            {
+              required: ['icon'],
+            },
+          ],
+        },
         properties: {
+          attributes: {
+            type: 'object',
+            description:
+              'A Drupal-style attributes object with extra attributes to append to this component.',
+          },
           text: {
             type: 'string',
           },
           url: {
             type: 'string',
           },
+          media: {
+            type: ['string', 'object', 'array'],
+            description:
+              'Renderable media content (i.e. a string, render array, or included pattern) for this item, usually an icon or an image',
+          },
           icon: {
-            type: 'object',
-            properties: {
-              name: {
-                type: 'string',
-              },
-              size: {
-                type: 'string',
-              },
-              background: {
-                type: 'string',
-              },
-            },
+            title: 'DEPRECATED',
+            description:
+              'Use media prop instead and pass a fully rendered icon',
           },
         },
       },

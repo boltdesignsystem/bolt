@@ -159,47 +159,67 @@
     {% endgrid %}
   {% endset %}
   {% set action_band_content %}
+    {% set icon_1 %}
+      {% include "@bolt-components-icon/icon.twig" with {
+        name: "asset-interactive",
+        size: "large"
+      } %}
+    {% endset %}
+
+    {% set icon_2 %}
+      {% include "@bolt-components-icon/icon.twig" with {
+        name: "asset-media",
+        size: "large"
+      } %}
+    {% endset %}
+
+    {% set icon_3 %}
+      {% include "@bolt-components-icon/icon.twig" with {
+        name: "asset-data",
+        size: "large"
+      }%}
+    {% endset %}
+
+    {% set icon_4 %}
+      {% include "@bolt-components-icon/icon.twig" with {
+        name: "asset-data",
+        size: "large"
+      }%}
+    {% endset %}
+
+    {% set icon_5 %}
+      {% include "@bolt-components-icon/icon.twig" with {
+        name: "asset-data",
+        size: "large"
+      }%}
+    {% endset %}
+
     {% include "@bolt-components-action-blocks/action-blocks.twig" with {
-      contentItems: [
+      items: [
         {
           text: "Item 1",
           url: "#!",
-          icon: {
-            name: "asset-interactive",
-            size: "large",
-          }
+          media: icon_1,
         },
         {
           text: "Item 2",
           url: "#!",
-          icon: {
-            name: "asset-media",
-            size: "large",
-          }
+          media: icon_2,
         },
         {
           text: "Item 3",
           url: "#!",
-          icon: {
-            name: "asset-data",
-            size: "large",
-          }
+          media: icon_3,
         },
         {
           text: "Item 4",
           url: "#!",
-          icon: {
-            name: "asset-presentation",
-            size: "large",
-          }
+          media: icon_4,
         },
         {
           text: "Item 5",
           url: "#!",
-          icon: {
-            name: "asset-podcast",
-            size: "large",
-          }
+          media: icon_5,
         }
       ]
     } only %}

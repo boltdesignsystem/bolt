@@ -1,34 +1,46 @@
 {% set schema = bolt.data.components["@bolt-components-action-blocks"].schema %}
 
+{% set icon_1 %}
+  {% include "@bolt-components-icon/icon.twig" with {
+    name: "download",
+    size: "large"
+  } %}
+{% endset %}
+
+{% set icon_2 %}
+  {% include "@bolt-components-icon/icon.twig" with {
+    name: "copy-to-clipboard",
+    size: "large"
+  } %}
+{% endset %}
+
+{% set icon_3 %}
+  {% include "@bolt-components-icon/icon.twig" with {
+    name: "calendar",
+    size: "large"
+  }%}
+{% endset %}
+
 {% for valign in schema.properties.valign.enum %}
   <h3>Vertical alignment: {{ valign }}</h3>
   <div class="u-bolt-margin-bottom-medium">
     {% include "@bolt-components-action-blocks/action-blocks.twig" with {
       valign: valign,
-      contentItems: [
+      items: [
         {
           text: "Item 1",
           url: "#!",
-          icon: {
-            name: "download",
-            size: "large",
-          }
+          media: icon_1,
         },
         {
           text: "Item 2: this item has more text, so it can demonstrate the vertical alignment",
           url: "#!",
-          icon: {
-            name: "copy-to-clipboard",
-            size: "large",
-          }
+          media: icon_2,
         },
         {
           text: "Item 3",
           url: "#!",
-          icon: {
-            name: "calendar",
-            size: "large",
-          }
+          media: icon_3,
         },
       ]
     } only %}

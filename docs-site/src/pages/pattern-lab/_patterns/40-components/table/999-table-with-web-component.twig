@@ -208,7 +208,7 @@
         <th>Build 2.0.1.0 — SR-49969</th>
         <td>SR-44869</td>
         <td>
-          <img src="http://fillmurray.com/200/200">
+          <bolt-image src="/images/placeholders/tout-4x3-climber.jpg" srcset="/images/placeholders/tout-4x3-climber-50.jpg 50w, /images/placeholders/tout-4x3-climber-100.jpg 100w, /images/placeholders/tout-4x3-climber-200.jpg 200w, /images/placeholders/tout-4x3-climber-320.jpg 320w, /images/placeholders/tout-4x3-climber-480.jpg 480w, /images/placeholders/tout-4x3-climber-640.jpg 640w" alt="A Rock Climber" ratio="64/48"></bolt-image>
         </td>
         <td>OpenSpan.Updater.Git.dll</td>
       </tr>
@@ -232,6 +232,31 @@
         <td>ManagedOpenSsl.dll</td>
       </tr>
     </tbody>
+  </table>
+</bolt-table>
+{% endset %}
+
+{% set table_caption_demo %}
+<bolt-table>
+  <table>
+    <tbody>
+      <tr>
+        <td>R1C1</td>
+        <td>R1C2</td>
+        <td>R1C3</td>
+      </tr>
+      <tr>
+        <td>R2C1</td>
+        <td>R2C2</td>
+        <td>R2C3</td>
+      </tr>
+      <tr>
+        <td>R3C1</td>
+        <td>R3C2</td>
+        <td>R3C3</td>
+      </tr>
+    </tbody>
+    <caption>This is a table caption</caption>
   </table>
 </bolt-table>
 {% endset %}
@@ -260,3 +285,9 @@
   Each table header or cell can accept any Bolt web components, HTML markup, or just plain text.
 </bolt-text>
 {% include table_example.code_example(table_data_demo) %}
+
+<bolt-text headline>Table Caption</bolt-text>
+<bolt-text>
+  Use the <bolt-code-snippet display="inline" lang="html">&lt;caption&gt;</bolt-code-snippet> tag to add a caption to your table.
+</bolt-text>
+{% include table_example.code_example(table_caption_demo) %}
