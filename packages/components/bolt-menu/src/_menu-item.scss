@@ -24,6 +24,11 @@
     border-top-style: $bolt-menu-border-style;
     border-top-width: $bolt-menu-border-width;
   }
+
+  bolt-icon[size] {
+    display: block;
+    place-items: center;
+  }
 }
 
 .c-bolt-menu-item {
@@ -110,16 +115,8 @@
 }
 
 [class*='c-bolt-menu-item__icon-'] {
-  transform: translateY(-0.05em); /* [6] */
-
-  > * {
-    display: grid;
-    place-items: center;
-  }
-
-  bolt-icon {
-    display: block;
-  }
+  display: inline-flex;
+  place-items: center;
 }
 
 .c-bolt-menu-item__icon-after {
