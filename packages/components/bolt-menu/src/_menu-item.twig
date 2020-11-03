@@ -10,11 +10,11 @@
 {% set item_attributes = create_attribute(attributes|default({})|merge({
   "role": "menuitem",
 })) %}
+{% set this = init(schema.properties.items.items) %}
 
 {# Array of classes based on the defined + default props #}
 {% set classes = [
   base_class,
-  spacing ? base_class ~ "--spacing-" ~ spacing,
 ] %}
 
 <bolt-menu-item

@@ -17,19 +17,14 @@ class BoltMenuItem extends withContext(BoltElement) {
   static schema = schema;
 
   static get properties() {
-    const { url, spacing } = this.props;
+    const { url } = this.props;
     return {
       url,
-      spacing,
       role: {
         type: String,
         reflect: true,
       },
     };
-  }
-
-  static get observedContexts() {
-    return ['spacing'];
   }
 
   contextChangedCallback(name, oldValue, value) {
@@ -69,7 +64,7 @@ class BoltMenuItem extends withContext(BoltElement) {
         url="${ifDefined(this.url ? this.url : undefined)}"
         role="menuitem"
       >
-        <div class="${classes}">
+        <span class="${cx('c-bolt-menu-item')}">
           ${this.slotMap.get('icon-before') &&
             html`
               <span class="${cx('c-bolt-menu-item__icon-before')}">
@@ -83,7 +78,7 @@ class BoltMenuItem extends withContext(BoltElement) {
                 ${this.slotify('icon-after')}
               </span>
             `}
-        </div>
+        </span>
       </bolt-trigger>
     `;
   }

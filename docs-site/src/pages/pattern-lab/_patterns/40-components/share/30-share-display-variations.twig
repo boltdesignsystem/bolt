@@ -2,19 +2,41 @@
 
 {% block content %}
   <bolt-banner status="warning">
-    Note: menu display does not work with size, align, and opacity props.
+    Note: menu display does not work with align and opacity props.
   </bolt-banner>
 
-  <bolt-text headline>Inline Display</bolt-text>
+  <bolt-text headline>Inline display</bolt-text>
   {% include "@bolt-components-share/share.twig" with {
     sources: sources,
     copy_to_clipboard: copy_to_clipboard,
   } only %}
 
-  <bolt-text headline>Menu Display</bolt-text>
+  <bolt-text headline>Menu display</bolt-text>
   {% include "@bolt-components-share/share.twig" with {
     display: "menu",
     sources: sources,
     copy_to_clipboard: copy_to_clipboard,
+  } only %}
+
+  {% set trigger %}
+    {% include "@bolt-components-button/button.twig" with {
+      text: "Share",
+      size: "xsmall",
+    } only %}
+  {% endset %}
+
+  {% set content %}
+    {% include "@bolt-components-share/share.twig" with {
+      display: "menu",
+      sources: sources,
+      copy_to_clipboard: copy_to_clipboard,
+    } only %}
+  {% endset %}
+
+  <bolt-text headline>Combine menu display with popover</bolt-text>
+  {% include "@bolt-components-popover/popover.twig" with {
+    trigger: trigger,
+    content: content,
+    spacing: "none",
   } only %}
 {% endblock %}

@@ -80,7 +80,7 @@
     {% set icon_before %}
       {% include "@bolt-components-icon/icon.twig" with {
         name: source_icon,
-        size: "small",
+        size: size,
       } only %}
     {% endset %}
     {% set source_menu_items %}
@@ -88,7 +88,6 @@
         content: source_text,
         url: source_url,
         icon_before: icon_before,
-        spacing: "small",
         attributes: {
           class: "js-bolt-share__link--" ~ source_name,
           target: "_blank",
@@ -158,7 +157,7 @@
       <span class="c-bolt-menu-item__icon-before" aria-hidden="true">
         {% include "@bolt-components-icon/icon.twig" with {
           name: "asset-link",
-          size: "small",
+          size: size,
         } only %}
       </span>
       {{ trigger_text }}
@@ -169,7 +168,7 @@
       <span class="c-bolt-menu-item__icon-before u-bolt-opacity-0" aria-hidden="true">
         {% include "@bolt-components-icon/icon.twig" with {
           name: "asset-link",
-          size: "small",
+          size: size,
         } only %}
       </span>
       {{ transition_text }}
@@ -180,7 +179,7 @@
       <span class="c-bolt-menu-item__icon-before" aria-hidden="true">
         {% include "@bolt-components-icon/icon.twig" with {
           name: "check",
-          size: "small",
+          size: size,
         } only %}
       </span>
       {{ confirmation_text }}
@@ -226,6 +225,7 @@
       {% include "@bolt-components-menu/menu.twig" with {
         title: text,
         content: menu_items|join,
+        spacing: size == "small" ? "xsmall" : "medium",
       } only %}
     {% endif %}
   </div>
