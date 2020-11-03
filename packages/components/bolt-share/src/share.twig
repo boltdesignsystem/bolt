@@ -1,7 +1,6 @@
-{% set schema = bolt.data.components["@bolt-components-share"].schema %}
-
+{% set schema = bolt.data.components['@bolt-components-share'].schema %}
 {% if enable_json_schema_validation %}
-  {{ validate_data_schema(schema, _self) | raw }}
+  {{ validate_data_schema(schema, _self)|raw }}
 {% endif %}
 
 {# DEPRECATED. Prop has been renamed. #}
@@ -15,7 +14,7 @@
 {% endif %}
 
 {# Variables #}
-{% set base_class = "c-bolt-share" %}
+{% set base_class = 'c-bolt-share' %}
 {% set attributes = create_attribute(attributes|default({})) %}
 {% set inner_attributes = create_attribute({}) %}
 
@@ -32,12 +31,12 @@
 {% set display = display in display_options ? display : schema.properties.display.default %}
 
 {# Default text can't be pulled from the schema because it must be translatable. #}
-{% set text = text | default("Share this page"|t) %}
+{% set text = text|default('Share this page'|t) %}
 
 {# Items #}
 {% set inline_items = [] %}
 {% set inline_label %}
-  <span class="{{ "#{base_class}__label #{base_class}__label--#{size}" }}">{{ text }}</span>
+  <span class="{{ base_class }}__label {{ base_class }}__label--{{ size }}">{{ text }}</span>
 {% endset %}
 {% set inline_items = inline_items|merge([inline_label]) %}
 
@@ -47,30 +46,30 @@
   {% set source_name = source.name %}
   {% set source_url = source.url %}
 
-  {% if "facebook" == source_name %}
-    {% set source_text = "Share via Facebook"|t %}
-    {% set source_icon = "facebook-solid" %}
-  {% elseif "twitter" == source_name  %}
-    {% set source_text = "Share via Twitter"|t %}
-    {% set source_icon = "twitter" %}
-  {% elseif "linkedin" == source_name  %}
-    {% set source_text = "Share via LinkedIn"|t %}
-    {% set source_icon = "linkedin" %}
-  {% elseif "email" == source_name  %}
-    {% set source_text = "Share via Email"|t %}
-    {% set source_icon = "email" %}
+  {% if 'facebook' == source_name %}
+    {% set source_text = 'Share via Facebook'|t %}
+    {% set source_icon = 'facebook-solid' %}
+  {% elseif 'twitter' == source_name  %}
+    {% set source_text = 'Share via Twitter'|t %}
+    {% set source_icon = 'twitter' %}
+  {% elseif 'linkedin' == source_name  %}
+    {% set source_text = 'Share via LinkedIn'|t %}
+    {% set source_icon = 'linkedin' %}
+  {% elseif 'email' == source_name  %}
+    {% set source_text = 'Share via Email'|t %}
+    {% set source_icon = 'email' %}
   {% else %}
     {% set source_text = false %}
   {% endif %}
 
   {% if source_text %}
     {% set source_inline_items %}
-      <a class="{{ "#{base_class}__link js-bolt-share__link--#{source_name}" }}" href="{{ source_url }}" target="_blank">
-        {% include "@bolt-components-icon/icon.twig" with {
+      <a class="{{ base_class }}__link js-bolt-share__link--{{ source_name }}" href="{{ source_url }}" target="_blank">
+        {% include '@bolt-components-icon/icon.twig' with {
           name: source_icon,
           size: size,
         } only %}
-        <span class="{{ "#{base_class}__link-text" }}">
+        <span class="{{ base_class }}__link-text">
           {{ source_text }}
         </span>
       </a>
@@ -78,19 +77,19 @@
     {% set inline_items = inline_items|merge([source_inline_items]) %}
 
     {% set icon_before %}
-      {% include "@bolt-components-icon/icon.twig" with {
+      {% include '@bolt-components-icon/icon.twig' with {
         name: source_icon,
-        size: size == "medium" ? "small",
+        size: size == 'medium' ? 'small',
       } only %}
     {% endset %}
     {% set source_menu_items %}
-      {% include "@bolt-components-menu/_menu-item.twig" with {
+      {% include '@bolt-components-menu/_menu-item.twig' with {
         content: source_text,
         url: source_url,
         icon_before: icon_before,
         attributes: {
-          class: "js-bolt-share__link--" ~ source_name,
-          target: "_blank",
+          class: 'js-bolt-share__link--' ~ source_name,
+          target: '_blank',
         }
       } only %}
     {% endset %}
@@ -99,30 +98,30 @@
 {% endfor %}
 
 {% if copy_to_clipboard %}
-  {% set trigger_text = copy_to_clipboard.trigger_text | default("Copy share link"|t) %}
-  {% set transition_text = "Copying..."|t %}
-  {% set confirmation_text = "Copied!"|t %}
+  {% set trigger_text = copy_to_clipboard.trigger_text|default('Copy share link'|t) %}
+  {% set transition_text = 'Copying...'|t %}
+  {% set confirmation_text = 'Copied!'|t %}
   {% set text_to_copy = copy_to_clipboard.text_to_copy %}
 
   {# Custom content is used here because the icon size and text styles are all different than the defaults from Copy to Clipboard. #}
   {% set inline_custom_trigger %}
-    <span class="{{ "#{base_class}__link" }}">
-      {% include "@bolt-components-icon/icon.twig" with {
-        name: "asset-link",
+    <span class="{{ base_class }}__link">
+      {% include '@bolt-components-icon/icon.twig' with {
+        name: 'asset-link',
         size: size,
       } only %}
-      <span class="{{ "#{base_class}__link-text" }}">
+      <span class="{{ base_class }}__link-text">
         {{ trigger_text }}
       </span>
     </span>
   {% endset %}
   {% set inline_custom_transition %}
-    <span class="{{ "#{base_class}__link" }}">
-      {% include "@bolt-components-icon/icon.twig" with {
-        name: "refresh",
+    <span class="{{ base_class }}__link">
+      {% include '@bolt-components-icon/icon.twig' with {
+        name: 'refresh',
         size: size,
         attributes: {
-          class: "#{base_class}__copy-animation"
+          class: base_class ~ '__copy-animation',
         }
       } only %}
       <span class="u-bolt-visuallyhidden">
@@ -131,18 +130,18 @@
     </span>
   {% endset %}
   {% set inline_custom_confirmation %}
-    <div class="{{ "#{base_class}__link" }}">
-      {% include "@bolt-components-icon/icon.twig" with {
-        name: "check",
+    <div class="{{ base_class }}__link">
+      {% include '@bolt-components-icon/icon.twig' with {
+        name: 'check',
         size: size,
       } only %}
-      <span class="{{ "#{base_class}__link-text" }}">
+      <span class="{{ base_class }}__link-text">
         {{ confirmation_text }}
       </span>
     </div>
   {% endset %}
   {% set inline_copy_to_clipboard_include %}
-    {% include "@bolt-components-copy-to-clipboard/copy-to-clipboard.twig" with {
+    {% include '@bolt-components-copy-to-clipboard/copy-to-clipboard.twig' with {
       text_to_copy: text_to_copy,
       custom_trigger: inline_custom_trigger,
       custom_transition: inline_custom_transition,
@@ -155,44 +154,44 @@
   {% set menu_custom_trigger %}
     <span class="c-bolt-menu-item c-bolt-menu-item--spacing-small">
       <span class="c-bolt-menu-item__icon-before" aria-hidden="true">
-        {% include "@bolt-components-icon/icon.twig" with {
-          name: "asset-link",
-          size: size == "medium" ? "small",
+        {% include '@bolt-components-icon/icon.twig' with {
+          name: 'asset-link',
+          size: size == 'medium' ? 'small',
         } only %}
       </span>
       {{ trigger_text }}
     </span>
   {% endset %}
   {% set menu_custom_transition %}
-    <span class="c-bolt-menu-item c-bolt-menu-item--spacing-small" style="pointer-events: none;">
+    <span class="c-bolt-menu-item c-bolt-menu-item--spacing-small">
       <span class="c-bolt-menu-item__icon-before u-bolt-opacity-0" aria-hidden="true">
-        {% include "@bolt-components-icon/icon.twig" with {
-          name: "asset-link",
-          size: size == "medium" ? "small",
+        {% include '@bolt-components-icon/icon.twig' with {
+          name: 'asset-link',
+          size: size == 'medium' ? 'small',
         } only %}
       </span>
       {{ transition_text }}
     </span>
   {% endset %}
   {% set menu_custom_confirmation %}
-    <span class="c-bolt-menu-item c-bolt-menu-item--spacing-small" style="pointer-events: none;">
+    <span class="c-bolt-menu-item c-bolt-menu-item--spacing-small">
       <span class="c-bolt-menu-item__icon-before" aria-hidden="true">
-        {% include "@bolt-components-icon/icon.twig" with {
-          name: "check",
-          size: size == "medium" ? "small",
+        {% include '@bolt-components-icon/icon.twig' with {
+          name: 'check',
+          size: size == 'medium' ? 'small',
         } only %}
       </span>
       {{ confirmation_text }}
     </span>
   {% endset %}
   {% set menu_copy_to_clipboard_include %}
-    {% include "@bolt-components-copy-to-clipboard/copy-to-clipboard.twig" with {
+    {% include '@bolt-components-copy-to-clipboard/copy-to-clipboard.twig' with {
       text_to_copy: text_to_copy,
       custom_trigger: menu_custom_trigger,
       custom_transition: menu_custom_transition,
       custom_confirmation: menu_custom_confirmation,
       attributes: {
-        role: "menu-item",
+        role: 'menu-item',
       }
     } only %}
   {% endset %}
@@ -210,19 +209,19 @@
   {# Array of classes based on the defined + default props. #}
   {% set classes = [
     base_class,
-    opacity in opacity_options ? "#{base_class}--opacity-#{opacity}" : "",
+    opacity in opacity_options ? base_class ~ '--opacity-' ~ opacity : '',
   ] %}
 
   <div {{ inner_attributes.addClass(classes) }}>
-    {% if display == "inline" %}
-      {% include "@bolt-components-list/list.twig" with {
-        display: "inline",
-        spacing: size == "small" ? "xsmall" : "small",
+    {% if display == 'inline' %}
+      {% include '@bolt-components-list/list.twig' with {
+        display: 'inline',
+        spacing: size == 'small' ? 'xsmall' : 'small',
         items: inline_items,
         align: align,
       } only %}
-    {% elseif display == "menu" %}
-      {% include "@bolt-components-menu/menu.twig" with {
+    {% elseif display == 'menu' %}
+      {% include '@bolt-components-menu/menu.twig' with {
         title: text,
         content: menu_items|join,
         spacing: size,

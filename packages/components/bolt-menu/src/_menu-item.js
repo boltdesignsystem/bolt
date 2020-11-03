@@ -67,14 +67,20 @@ class BoltMenuItem extends withContext(BoltElement) {
         <span class="${cx('c-bolt-menu-item')}">
           ${this.slotMap.get('icon-before') &&
             html`
-              <span class="${cx('c-bolt-menu-item__icon-before')}">
+              <span
+                class="${cx('c-bolt-menu-item__icon-before')}"
+                aria-hidden="true"
+              >
                 ${this.slotify('icon-before')}
               </span>
             `}
           ${this.slotify('default')}
           ${this.slotMap.get('icon-after') &&
             html`
-              <span class="${cx('c-bolt-menu-item__icon-after')}">
+              <span
+                class="${cx('c-bolt-menu-item__icon-after')}"
+                aria-hidden="true"
+              >
                 ${this.slotify('icon-after')}
               </span>
             `}

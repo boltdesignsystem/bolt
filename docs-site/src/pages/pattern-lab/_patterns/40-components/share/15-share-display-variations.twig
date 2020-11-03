@@ -1,0 +1,59 @@
+{% set schema = bolt.data.components['@bolt-components-share'].schema %}
+{% extends '@pl/_share-variables.twig' %}
+{% block content %}
+
+{% set description %}
+  Share can be turned into a menu and used in a popover.
+{% endset %}
+
+{% set demo %}
+  {% set popover_trigger %}
+    {% include '@bolt-components-button/button.twig' with {
+      text: 'Share menu',
+    } only %}
+  {% endset %}
+  {% set popover_content %}
+    {% include '@bolt-components-share/share.twig' with {
+      display: 'menu',
+      sources: demo_sources,
+      copy_to_clipboard: demo_copy_to_clipboard,
+    } only %}
+  {% endset %}
+  {% include '@bolt-components-popover/popover.twig' with {
+    trigger: popover_trigger,
+    content: popover_content,
+    spacing: 'none',
+  } only %}
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% set popover_trigger %}
+  {% include '@bolt-components-button/button.twig' with {
+    text: 'Share menu',
+  } only %}
+{% endset %}
+{% set popover_content %}
+  {% include '@bolt-components-share/share.twig' with {
+    display: 'menu',
+    sources: var_foo,
+    copy_to_clipboard: var_bar,
+  } only %}
+{% endset %}
+{% include '@bolt-components-popover/popover.twig' with {
+  trigger: popover_trigger,
+  content: popover_content,
+  spacing: 'none',
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Menu display',
+  description: description,
+  demo: demo,
+  twig_markup: twig_markup,
+  html_markup: html_markup,
+} only %}
+
+{% endblock %}

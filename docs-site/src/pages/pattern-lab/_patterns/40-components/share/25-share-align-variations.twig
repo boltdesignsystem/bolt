@@ -3,13 +3,20 @@
 {% block content %}
 
 {% set description %}
-  Share is available in small and medium sizes. Use the <bolt-code-snippet display="inline">size</bolt-code-snippet> prop to control the title text size, the icon size, and the spacing between the icons.
+  Inline share is available in various horizontal alignments. Use the <bolt-code-snippet display="inline">align</bolt-code-snippet> prop to control it.
+{% endset %}
+
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>Share is a block level component and it takes up the full width of its parent container, horizontal alignment is depended on that width.</bolt-li>
+    <bolt-li>Align does not work with menu display.</bolt-li>
+  </bolt-ol>
 {% endset %}
 
 {% set demo %}
-  {% for size in schema.properties.size.enum %}
+  {% for align in schema.properties.align.enum %}
     {% include '@bolt-components-share/share.twig' with {
-      size: size,
+      align: align,
       sources: demo_sources,
       copy_to_clipboard: demo_copy_to_clipboard,
     } only %}
@@ -19,7 +26,7 @@
 {% set twig_markup %}
 {% verbatim %}
 {% include '@bolt-components-share/share.twig' with {
-  size: 'small',
+  align: 'center',
   sources: var_foo,
   copy_to_clipboard: var_bar,
 } only %}
@@ -27,8 +34,9 @@
 {% endset %}
 
 {% include '@utils/pattern-doc-page.twig' with {
-  title: 'Title, icon, and spacing size',
+  title: 'Horizontal alignment',
   description: description,
+  notes: notes,
   demo: demo,
   twig_markup: twig_markup,
   html_markup: html_markup,

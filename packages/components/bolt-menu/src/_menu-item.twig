@@ -1,14 +1,13 @@
-{% set schema = bolt.data.components["@bolt-components-menu"].schema %}
-
+{% set schema = bolt.data.components['@bolt-components-menu'].schema %}
 {% if enable_json_schema_validation %}
-  {{ validate_data_schema(schema, _self) | raw }}
+  {{ validate_data_schema(schema, _self)|raw }}
 {% endif %}
 
 {# Variables #}
-{% set base_class = "c-bolt-menu-item" %}
+{% set base_class = 'c-bolt-menu-item' %}
 {% set this = init(schema.properties.items.items) %}
 {% set item_attributes = create_attribute(attributes|default({})|merge({
-  "role": "menuitem",
+  role: 'menuitem',
 })) %}
 {% set this = init(schema.properties.items.items) %}
 
@@ -18,7 +17,7 @@
 ] %}
 
 <bolt-menu-item
-  {{ this.props|without("content")|without("class") }}
+  {{ this.props|without('content')|without('class') }}
   role="presentation"
 >
   {% set menu_item %}
@@ -27,19 +26,19 @@
       role="presentation"
       {% if classes %} class="{{ classes|join(' ') }}" {% endif %}
     >
-      {% if icon_before %}<replace-with-children class="{{ base_class ~ '__icon-before'}}"><span slot="icon-before">{{ icon_before }}</span></replace-with-children>{% endif %}
+      {% if icon_before %}<replace-with-children class="{{ base_class ~ '__icon-before'}}" aria-hidden="true"><span slot="icon-before">{{ icon_before }}</span></replace-with-children>{% endif %}
       {{ content }}
-      {% if icon_after %}<replace-with-children class="{{ base_class ~ '__icon-after'}}"><span slot="icon-before">{{ icon_after }}</span></replace-with-children>{% endif %}
+      {% if icon_after %}<replace-with-children class="{{ base_class ~ '__icon-after'}}" aria-hidden="true"><span slot="icon-before">{{ icon_after }}</span></replace-with-children>{% endif %}
     </ssr-keep>
   {% endset %}
   {% set trigger_options = {
     content: menu_item,
-    display: "block",
+    display: 'block',
     no_outline: true,
     attributes: item_attributes
   } %}
   {% if url %}
     {% set trigger_options = trigger_options|merge({url: url}) %}
   {% endif %}
-  {% include "@bolt-components-trigger/trigger.twig" with trigger_options only %}
+  {% include '@bolt-components-trigger/trigger.twig' with trigger_options only %}
 </bolt-menu-item>
