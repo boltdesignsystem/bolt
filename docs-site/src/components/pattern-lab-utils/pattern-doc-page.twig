@@ -1,0 +1,62 @@
+{% macro code_example(code) %}
+  <bolt-code-snippet syntax="dark" lang="twig">{% spaceless %}
+    {{ code|replace({
+      '<': '&lt;',
+      '>': '&gt;',
+      '{': '&lbrace;',
+      '}': '&rbrace;',
+      '%': '&percnt;',
+    })|trim|raw }}
+  {% endspaceless %}</bolt-code-snippet>
+{% endmacro %}
+{% import _self as snippet %}
+
+{% set band_content %}
+  <bolt-text headline tag="h2" font-size="xlarge">
+    {{ title }}
+  </bolt-text>
+  <bolt-stack>
+    {{ description }}
+  </bolt-stack>
+
+  {% if notes %}
+  <bolt-banner align="start">
+    <bolt-text headline tag="h3" font-size="medium">Important Notes:</bolt-text>
+    <bolt-stack>
+      {{ notes }}
+    </bolt-stack>
+  </bolt-banner>
+  {% endif %}
+
+  <bolt-text headline tag="h3" font-size="large">
+    Demo
+  </bolt-text>
+  <bolt-stack>
+    {{ demo }}
+  </bolt-stack>
+
+  <bolt-tabs inset="off">
+    <bolt-tab-panel>
+      <div slot="label">Twig</div>
+      {% include snippet.code_example(twig_markup) %}
+    </bolt-tab-panel>
+    <bolt-tab-panel>
+      <div slot="label">HTML</div>
+      {% include snippet.code_example(html_markup) %}
+    </bolt-tab-panel>
+  </bolt-tabs>
+
+  {% if warning %}
+    <bolt-text headline tag="h3" font-size="large">
+      Warning!
+    </bolt-text>
+    <bolt-stack>
+      {{ warning }}
+    </bolt-stack>
+  {% endif %}
+{% endset %}
+
+{% include '@bolt-components-band/band.twig' with {
+  theme: 'none',
+  content: band_content,
+} only %}

@@ -1,16 +1,17 @@
 {% if componentName %}
   {% set data = getBoltData() %} {# grab a fresh copy of the full manifest data to reflect schema.yml file changes, etc #}
-  {% set schema = data.components["@bolt-components-#{componentName}"].schema %}
-  {% set readme_file = "@bolt-components-#{componentName}/README.md" %}
-  {% set change_log_file = "@bolt-components-#{componentName}/CHANGELOG.md" %}
-  {% set testing_file = "@bolt-components-#{componentName}/TESTING.md" %}
-  {% set pkg = get_data("@bolt-components-#{componentName}/package.json") %}
+  {% set componentGroup = componentGroup|default("components") %}
+  {% set schema = data.components["@bolt-#{componentGroup}-#{componentName}"].schema %}
+  {% set readme_file = "@bolt-#{componentGroup}-#{componentName}/README.md" %}
+  {% set change_log_file = "@bolt-#{componentGroup}-#{componentName}/CHANGELOG.md" %}
+  {% set pkg = get_data("@bolt-#{componentGroup}-#{componentName}/package.json") %}
 {% endif %}
 
 {% set component_version = pkg.version %}
 {% set has_js = pkg.main %}
 {% set has_scss = pkg.sass %}
 {% set component_title = pkg.name %}
+{% set has_readme = fileExists(readme_file) %}
 {% set has_changelog = fileExists(change_log_file) %}
 
 {% set is_private = pkg.private or not has_changelog ? true : false %}
@@ -47,9 +48,11 @@
 {% endset %}
 
 {% set component_github %}
-  <bolt-text font-size="xsmall">
-    <bolt-link target="_blank" url="{{ github_url(readme_file) | replace({'README.md':''}) }}">Github</bolt-link>
-  </bolt-text>
+  {% if has_readme %}
+    <bolt-text font-size="xsmall">
+      <bolt-link target="_blank" url="{{ github_url(readme_file) | replace({'README.md':''}) }}">Github</bolt-link>
+    </bolt-text>
+  {% endif %}
 {% endset %}
 
 {% set component_npm %}
