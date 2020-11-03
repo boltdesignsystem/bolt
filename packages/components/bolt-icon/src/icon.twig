@@ -1,63 +1,59 @@
 {% if enable_json_schema_validation %}
-  {{ validate_data_schema(bolt.data.components['@bolt-components-icon'].schema, _self) | raw }}
+  {{ validate_data_schema(bolt.data.components['@bolt-components-icon'].schema, _self)|raw }}
 {% endif %}
 
 {% set attributes = create_attribute(attributes | default({})) %}
 
 {# White, blue, and green are deprecated because they are not brand colors. #}
 {% if color %}
-  {% if color == "white" or color == "blue" or color == "green" %}
-    {% set color = "auto" %}
-  {% elseif color == "indigo" %}
-    {% set color = "navy" %}
+  {% if color == 'white' or color == 'blue' or color == 'green' %}
+    {% set color = 'auto' %}
+  {% elseif color == 'indigo' %}
+    {% set color = 'navy' %}
   {% endif %}
   {% set color = color %}
 {% endif %}
 
 {% set attributes = attributes
-  .setAttribute("name", name)
-  .setAttribute("size", size)
-  .setAttribute("color", color)
+  .setAttribute('name', name)
+  .setAttribute('size', size)
+  .setAttribute('color', color)
 %}
 
-{% if background and background != "none" %}
-  {% set attributes = attributes.setAttribute("background", background) %}
+{% if background and background != 'none' %}
+  {% set attributes = attributes.setAttribute('background', background) %}
 {% endif %}
 
 {% set classes = [
-  "c-bolt-icon",
-  name ? "c-bolt-icon--#{name}" : "",
-  size ? "c-bolt-icon--#{size}" : "",
-  color and color != "auto" ? "c-bolt-icon--#{color}" : "",
-  background and background != "none" ? "has-background" : "",
-  background and background != "none" ? "has-" ~ background ~ "-background" : "",
+  'c-bolt-icon',
+  name ? 'c-bolt-icon--#{name}' : '',
+  size ? 'c-bolt-icon--#{size}' : '',
+  color and color != 'auto' ? 'c-bolt-icon--#{color}' : '',
+  background and background != 'none' ? 'has-background' : '',
+  background and background != 'none' ? 'has-' ~ background ~ '-background' : '',
 ] %}
 
 {% set svg_classes = [
-  "c-bolt-icon__icon",
-  size ? "c-bolt-icon__icon--#{size}" : "",
+  'c-bolt-icon__icon',
+  size ? 'c-bolt-icon__icon--#{size}' : '',
 ] %}
 
-<bolt-icon {{ attributes }}>
+<bolt-icon {{ attributes }} aria-hidden="true">
   <span class="{{ classes|join(' ')|trim }}">
-
-    {% if fileExists("@bolt-assets/icons/" ~ name ~ ".svg") %}
-      {% set svg_source = source("@bolt-assets/icons/" ~ name ~ ".svg") %}
-
-      {% set svg_source = svg_source | replace({
-        "<svg ": '<svg class="' ~ svg_classes|join(" ")|trim ~ '" '
-      }) %}
-
-      {{ svg_source | raw }}
-
-    {% else %}
-     <svg class="{{ svg_classes|join(' ')|trim }}">
-        <use xlink:href="#{{ name }}"></use>
-     </svg>
+    {% if background and background != 'none' %}
+      <span class="c-bolt-icon__background-shape c-bolt-icon__background-shape--{{ background }}"></span>
     {% endif %}
 
-    {% if background and background != "none" %}
-      <span class="c-bolt-icon__background-shape c-bolt-icon__background-shape--{{ background }}"></span>
+    {% if fileExists('@bolt-assets/icons/' ~ name ~ '.svg') %}
+      {% set svg_source = source('@bolt-assets/icons/' ~ name ~ '.svg') %}
+      {% set svg_source = svg_source | replace({
+        '<svg ': '<svg class="' ~ svg_classes|join(" ")|trim ~ '" '
+      }) %}
+      {{ svg_source | raw }}
+    {% else %}
+      <svg class='{{ svg_classes|join(' ')|trim }}'>
+        <use xlink:href='#{{ name }}'></use>
+      </svg>
     {% endif %}
   </span>
 </bolt-icon>
