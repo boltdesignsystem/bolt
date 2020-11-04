@@ -14,12 +14,16 @@ let cx = classNames.bind(menuStyles);
 
 @customElement('bolt-menu-item')
 class BoltMenuItem extends withContext(BoltElement) {
-  static schema = schema;
+  static schema = schema.properties.items.items;
 
   static get properties() {
-    const { url } = this.props;
+    const { url, target } = this.props;
     return {
       url,
+      target,
+      spacing: {
+        type: String,
+      },
       role: {
         type: String,
         reflect: true,
@@ -62,6 +66,7 @@ class BoltMenuItem extends withContext(BoltElement) {
         display="block"
         no-outline
         url="${ifDefined(this.url ? this.url : undefined)}"
+        target="${ifDefined(this.target ? this.target : undefined)}"
         role="menuitem"
       >
         <span class="${cx('c-bolt-menu-item')}">
