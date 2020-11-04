@@ -47,12 +47,12 @@ $bolt-border-color: rgba(bolt-color(gray), 0.2) !default;
 $bolt-border-radius: 3px !default;
 
 // Transition
-/// Bolt transition
-$bolt-transition: ease-in-out 200ms !default;
 /// Bolt transition ease
 $bolt-transition-ease: ease-in-out !default;
 /// Bolt transition timing
 $bolt-transition-timing: 200ms !default;
+/// Bolt transition
+$bolt-transition: $bolt-transition-ease $bolt-transition-timing !default;
 
 // Effects
 /// Bolt translate none effect

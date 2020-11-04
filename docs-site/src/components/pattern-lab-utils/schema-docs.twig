@@ -199,9 +199,10 @@
 	{% set requiredProps = schema.required %}
 
 	{% if schema.properties %}
-		{% include "@bolt-components-banner/banner.twig" with {
-    content: "Note: when assigning component props as HTML attributes on a web component, make sure to use <code>kebab-case</code>.",
-  } only %}
+		{% include '@bolt-components-banner/banner.twig' with {
+	    content: 'Note: when assigning component props as HTML attributes on a web component, make sure to use <code>kebab-case</code>.',
+	    align: 'start',
+	  } only %}
 
 		<div class="c-bds-schema-table">
 			<bolt-schema-table>

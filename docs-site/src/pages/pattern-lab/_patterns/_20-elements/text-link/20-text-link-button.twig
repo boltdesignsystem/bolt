@@ -1,0 +1,44 @@
+{% set description %}
+  When appropriate, a <bolt-code-snippet display="inline" lang="html">&lt;button&gt;</bolt-code-snippet> element can use the text link style. For example, the text link performs a function such as opening a modal or popover.
+{% endset %}
+
+{% set notes %}
+  If a text link serves no navigational purpose, the <bolt-code-snippet display="inline">button</bolt-code-snippet> prop must be used, and the proper <bolt-code-snippet display="inline">type</bolt-code-snippet> attribute must be set: button, submit, or reset.
+{% endset %}
+
+{% set demo %}
+{% include '@bolt-elements-text-link/text-link.twig' with {
+  content: 'This looks like a text link but semantically is a reset button',
+  button: true,
+  attributes: {
+    type: 'reset',
+  }
+} only %}
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% include '@bolt-elements-text-link/text-link.twig' with {
+  content: 'This looks like a text link but semantically is a reset button',
+  button: true,
+  attributes: {
+    type: 'reset',
+  }
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% set html_markup %}
+{% verbatim %}
+<button type="reset" class="e-bolt-text-link">This looks like a text link but semantically is a reset button</button>
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Text Link as a &lt;button&gt; element',
+  description: description,
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+  html_markup: html_markup,
+} only %}

@@ -5,12 +5,12 @@ import {
   stopServer,
   html,
 } from '../../../testing/testing-helpers';
-import schema from '../link.schema';
+import schema from '../text-link.schema';
 const { display, valign } = schema.properties;
 
 const timeout = 90000;
 
-describe('link', () => {
+describe('textLink', () => {
   let page;
 
   afterAll(async () => {
@@ -31,10 +31,13 @@ describe('link', () => {
     });
   }, timeout);
 
-  test('basic link', async () => {
-    const results = await render('@bolt-elements-link/link.twig', {
-      text: 'Hello World',
-      url: 'https://pega.com',
+  test('basic text link', async () => {
+    const results = await render('@bolt-elements-text-link/text-link.twig', {
+      content: 'This is a text link',
+      attributes: {
+        href: 'https://pega.com',
+        target: '_blank',
+      },
     });
     expect(results.ok).toBe(true);
     expect(results.html).toMatchSnapshot();

@@ -1,0 +1,39 @@
+/* ------------------------------------ *\
+   TOOLS - Text Link
+\* ------------------------------------ */
+
+@mixin bolt-text-link {
+  color: bolt-theme(link);
+  text-decoration: underline;
+  text-decoration-color: currentColor;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+  will-change: color, text-decoration, box-shadow;
+  transition: color var(--bolt-transition),
+    text-decoration var(--bolt-transition),
+    text-decoration-color var(--bolt-transition),
+    text-decoration-thickness var(--bolt-transition),
+    text-decoration-offset var(--bolt-transition),
+    box-shadow var(--bolt-transition);
+
+  &:visited {
+    text-decoration-color: rgba(bolt-color(gray), 0.2);
+  }
+
+  &:hover,
+  &:focus {
+    color: bolt-theme(headline);
+    text-decoration-color: bolt-theme(link);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 3px;
+  }
+
+  &:focus {
+    text-decoration: none;
+    outline: var(--bolt-focus-ring);
+  }
+
+  &:active {
+    color: bolt-theme(text);
+  }
+}

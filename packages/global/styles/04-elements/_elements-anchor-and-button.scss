@@ -1,0 +1,18 @@
+/* ------------------------------------ *\
+   <a> and <button>
+\* ------------------------------------ */
+
+a {
+  color: bolt-theme(link);
+}
+
+a:not([class]) {
+  @include bolt-text-link;
+}
+
+button,
+input[type='submit'],
+input[type='reset'],
+input[type='button'] {
+  @include bolt-button-native-styles-reset;
+}

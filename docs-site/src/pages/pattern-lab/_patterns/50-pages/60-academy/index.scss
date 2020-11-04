@@ -201,3 +201,41 @@
     transform: translate(-50%, -50%);
   }
 }
+
+.c-acd-horizontal-card-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  @media (min-width: 600px) {
+    grid-template-columns: 50% 1fr;
+  }
+
+  .c-acd-horizontal-card-grid-item {
+    padding-bottom: var(--bolt-spacing-y-small);
+    border-width: 0;
+    border-style: solid;
+    border-color: bolt-theme(border, 0.2);
+
+    + .c-acd-horizontal-card-grid-item {
+      padding-top: var(--bolt-spacing-y-small);
+      padding-bottom: 0;
+      border-top-width: 2px;
+    }
+
+    @include bolt-mq($from: small) {
+      padding-right: var(--bolt-spacing-x-small);
+      padding-bottom: 0;
+
+      + .c-acd-horizontal-card-grid-item {
+        padding-top: 0;
+        padding-right: 0;
+        padding-left: var(--bolt-spacing-x-small);
+        border-top-width: 0;
+        border-left-width: 2px;
+      }
+    }
+  }
+}

@@ -17,6 +17,7 @@
   this.data.placement.value != "auto" ? base_class ~ "--" ~ this.data.placement.value,
   this.data.content.value|length > 31 ? base_class ~ "--text-wrap",
   this.data.content.value|length > 31 and this.data.content.value|length < 62 ? base_class ~ "--text-align-center",
+  "c-bolt-tooltip--dotted"
 ] %}
 
 {#
