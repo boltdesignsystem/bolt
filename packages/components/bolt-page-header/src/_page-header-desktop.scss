@@ -420,8 +420,8 @@
       }
 
       > .c-bolt-page-header__nav-link[aria-expanded='true']
-        ~ .c-bolt-page-header__nav-list,
-      &:hover > .c-bolt-page-header__nav-list {
+        ~ .c-bolt-page-header__nav-list {
+        /* @todo: remove this comment after hover JS is done. &:hover > .c-bolt-page-header__nav-list */
         @include bolt-vertical-scroll;
 
         visibility: visible;
@@ -438,9 +438,11 @@
         }
       }
 
+      /* @todo: remove this selector after hover JS is done.
       &:hover > .c-bolt-page-header__nav-list {
         z-index: 2;
       }
+      */
     }
   }
 
