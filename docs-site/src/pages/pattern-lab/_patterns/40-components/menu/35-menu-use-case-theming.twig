@@ -1,35 +1,75 @@
-{# Setting variables for demo purposes #}
-{% set schema = bolt.data.components["@bolt-components-menu"].schema %}
-{% set themes = get_data("@bolt/themes.schema.json") %}
+{% set themes = get_data('@bolt/themes.schema.json') %}
 
-<bolt-list spacing="large">
+{% set description %}
+  Menu can be used in various themes.
+{% endset %}
+
+{% set demo %}
   {% for theme in themes.properties.colors.enum %}
-    <bolt-list-item>
-      <bolt-text headline>Menu inside a {{ theme }} theme</bolt-text>
-      {% embed "@utils/theme-demo.twig" %}
-        {% block demo_content %}
-          {% grid "o-bolt-grid--center" %}
-            {% cell %}
-              {# Start component specific code #}
-              {% include "@bolt-components-menu/menu.twig" with {
-                title: "Choose one of these",
-                items: [
-                  {
-                    content: "Menu item 1",
-                  },
-                  {
-                    content: "Menu item 2",
-                  },
-                  {
-                    content: "Menu item 3",
-                  },
-                ]
-              } only %}
-              {# End component specific code #}
-            {% endcell %}
-          {% endgrid %}
-        {% endblock %}
-      {% endembed %}
-    </bolt-list-item>
+    {% embed "@utils/theme-demo.twig" %}
+      {% block demo_content %}
+        {% include '@bolt-components-menu/menu.twig' with {
+          items: [
+            {
+              content: 'Menu item 1',
+            },
+            {
+              content: 'Menu item 2',
+            },
+            {
+              content: 'Menu item 3',
+            },
+          ]
+        } only %}
+      {% endblock %}
+    {% endembed %}
   {% endfor %}
-</bolt-list>
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+<div class="t-bolt-dark">
+  // Put the component inside a themed container
+  {% include '@bolt-components-menu/menu.twig' with {
+    items: [
+      {
+        content: 'Menu item 1',
+      },
+      {
+        content: 'Menu item 2',
+      },
+      {
+        content: 'Menu item 3',
+      },
+    ]
+  } only %}
+</div>
+{% endverbatim %}
+{% endset %}
+
+{% set html_markup %}
+{% verbatim %}
+<div class="t-bolt-dark">
+  // Put the component inside a themed container
+  <bolt-menu>
+    <bolt-menu-item>
+      Menu Item 1
+    </bolt-menu-item>
+    <bolt-menu-item>
+      Menu Item 2
+    </bolt-menu-item>
+    <bolt-menu-item>
+      Menu Item 3
+    </bolt-menu-item>
+  </bolt-menu>
+</div>
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Theme compatibility',
+  description: description,
+  demo: demo,
+  twig_markup: twig_markup,
+  html_markup: html_markup,
+} only %}

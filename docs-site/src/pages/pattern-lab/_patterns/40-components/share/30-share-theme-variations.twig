@@ -8,7 +8,7 @@
 
 {% set demo %}
   {% for theme in themes.properties.colors.enum %}
-    {% embed "@utils/theme-demo.twig" %}
+    {% embed '@utils/theme-demo.twig' %}
       {% block demo_content %}
         {% include '@bolt-components-share/share.twig' with {
           sources: demo_sources,
@@ -22,6 +22,7 @@
 {% set twig_markup %}
 {% verbatim %}
 <div class="t-bolt-dark">
+  // Put the component inside a themed container
   {% include '@bolt-components-share/share.twig' with {
     sources: var_foo,
     copy_to_clipboard: var_bar,
@@ -31,11 +32,10 @@
 {% endset %}
 
 {% include '@utils/pattern-doc-page.twig' with {
-  title: 'Theme compatitble',
+  title: 'Theme compatibility',
   description: description,
   demo: demo,
   twig_markup: twig_markup,
-  html_markup: html_markup,
 } only %}
 
 {% endblock %}
