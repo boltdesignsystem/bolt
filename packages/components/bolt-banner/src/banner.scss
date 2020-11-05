@@ -30,13 +30,31 @@
  * 1. Hacking the colors in modern browsers.
  * 2. Hacking the colors in IE.
  */
+@include bolt-repeat-rule(
+  (
+    'bolt-banner[status=error]',
+    ':host[status=error]',
+    'bolt-banner[status=success]',
+    ':host[status=success]'
+  )
+) {
+  --bolt-theme-headline-link: 255, 255, 255; /* [1] */
+  --bolt-theme-headline: 255, 255, 255; /* [1] */
+  --bolt-theme-link: 255, 255, 255; /* [1] */
+  --bolt-theme-text: 255, 255, 255; /* [1] */
+}
+
+@include bolt-repeat-rule(
+  ('bolt-banner[status=warning]', ':host[status=warning]')
+) {
+  --bolt-theme-headline-link: 0, 0, 0; /* [1] */
+  --bolt-theme-headline: 0, 0, 0; /* [1] */
+  --bolt-theme-link: 0, 0, 0; /* [1] */
+  --bolt-theme-text: 0, 0, 0; /* [1] */
+}
+
 .c-bolt-banner--status-error,
 .c-bolt-banner--status-success {
-  --bolt-theme-headline-link: bolt-color(white); /* [1] */
-  --bolt-theme-headline: bolt-color(white); /* [1] */
-  --bolt-theme-link: bolt-color(white); /* [1] */
-  --bolt-theme-text: bolt-color(white); /* [1] */
-
   color: bolt-color(white);
 }
 
@@ -57,11 +75,6 @@
 }
 
 .c-bolt-banner--status-warning {
-  --bolt-theme-headline-link: bolt-color(black); /* [1] */
-  --bolt-theme-headline: bolt-color(black); /* [1] */
-  --bolt-theme-link: bolt-color(black); /* [1] */
-  --bolt-theme-text: bolt-color(black); /* [1] */
-
   color: bolt-color(black);
   background-color: bolt-color(warning);
 }
