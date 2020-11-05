@@ -334,8 +334,11 @@ exports[`<bolt-device-viewer> Component usage with magnification 1`] = `
                      name="search"
                      size="xlarge"
                      background="circle"
+                     aria-hidden="true"
           >
             <span class="c-bolt-icon c-bolt-icon--search c-bolt-icon--xlarge  has-background has-circle-background">
+              <span class="c-bolt-icon__background-shape c-bolt-icon__background-shape--circle">
+              </span>
               <svg class="c-bolt-icon__icon c-bolt-icon__icon--xlarge"
                    xmlns="http://www.w3.org/2000/svg"
                    viewbox="0 0 24 24"
@@ -351,8 +354,6 @@ exports[`<bolt-device-viewer> Component usage with magnification 1`] = `
                   </path>
                 </g>
               </svg>
-              <span class="c-bolt-icon__background-shape c-bolt-icon__background-shape--circle">
-              </span>
             </span>
           </bolt-icon>
         </div>
