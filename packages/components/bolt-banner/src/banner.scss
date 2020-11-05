@@ -32,10 +32,10 @@
  */
 .c-bolt-banner--status-error,
 .c-bolt-banner--status-success {
-  --bolt-theme-headline-link: bolt-color(black); /* [1] */
-  --bolt-theme-headline: bolt-color(black); /* [1] */
-  --bolt-theme-link: bolt-color(black); /* [1] */
-  --bolt-theme-text: bolt-color(black); /* [1] */
+  --bolt-theme-headline-link: bolt-color(white); /* [1] */
+  --bolt-theme-headline: bolt-color(white); /* [1] */
+  --bolt-theme-link: bolt-color(white); /* [1] */
+  --bolt-theme-text: bolt-color(white); /* [1] */
 
   color: bolt-color(white);
 }
@@ -48,17 +48,22 @@
   }
 }
 
-.c-bolt-banner--status-warning {
-  color: bolt-color(black);
-  background-color: bolt-color(warning);
-}
-
 .c-bolt-banner--status-success {
   background-color: bolt-color(success);
 
   &[class*='t-bolt-dark'] {
     background-color: bolt-color(success); /* [2] */
   }
+}
+
+.c-bolt-banner--status-warning {
+  --bolt-theme-headline-link: bolt-color(black); /* [1] */
+  --bolt-theme-headline: bolt-color(black); /* [1] */
+  --bolt-theme-link: bolt-color(black); /* [1] */
+  --bolt-theme-text: bolt-color(black); /* [1] */
+
+  color: bolt-color(black);
+  background-color: bolt-color(warning);
 }
 
 .c-bolt-banner--status-information {
