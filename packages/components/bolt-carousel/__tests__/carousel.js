@@ -129,15 +129,15 @@ describe('carousel', () => {
         `<bolt-carousel>
             <bolt-carousel-slide>
               ${carouselSlideImage}
-              <bolt-text headline>Slide 1</bolt-text>
+              <div>Slide 1</div>
             </bolt-carousel-slide>
             <bolt-carousel-slide>
               ${carouselSlideImage}
-              <bolt-text headline>Slide 2</bolt-text>
+              <div>Slide 2</div>
             </bolt-carousel-slide>
             <bolt-carousel-slide>
               ${carouselSlideImage}
-              <bolt-text headline>Slide 3</bolt-text>
+              <div>Slide 3</div>
             </bolt-carousel-slide>
           </bolt-carousel>
         `,
@@ -171,15 +171,15 @@ describe('carousel', () => {
         `<bolt-carousel>
             <bolt-carousel-slide>
               ${carouselSlideImage}
-              <bolt-text headline>Slide 1</bolt-text>
+              <div>Slide 1</div>
             </bolt-carousel-slide>
             <bolt-carousel-slide>
               ${carouselSlideImage}
-              <bolt-text headline>Slide 2</bolt-text>
+              <div>Slide 2</div>
             </bolt-carousel-slide>
             <bolt-carousel-slide>
               ${carouselSlideImage}
-              <bolt-text headline>Slide 3</bolt-text>
+              <div>Slide 3</div>
             </bolt-carousel-slide>
             ${carouselButtonControls}
           </bolt-carousel>
@@ -215,15 +215,15 @@ describe('carousel', () => {
         `<bolt-carousel nav-button-position="outside">
           <bolt-carousel-slide>
             ${carouselSlideImage}
-            <bolt-text headline>Slide 1</bolt-text>
+            <div>Slide 1</div>
           </bolt-carousel-slide>
           <bolt-carousel-slide>
             ${carouselSlideImage}
-            <bolt-text headline>Slide 2</bolt-text>
+            <div>Slide 2</div>
           </bolt-carousel-slide>
           <bolt-carousel-slide>
             ${carouselSlideImage}
-            <bolt-text headline>Slide 3</bolt-text>
+            <div>Slide 3</div>
           </bolt-carousel-slide>
           ${carouselButtonControls}
         </bolt-carousel>
@@ -258,15 +258,15 @@ describe('carousel', () => {
         `<bolt-carousel slides-per-view="auto">
           <bolt-carousel-slide>
             ${carouselSlideImage}
-            <bolt-text headline>Slide 1</bolt-text>
+            <div>Slide 1</div>
           </bolt-carousel-slide>
           <bolt-carousel-slide>
             ${carouselSlideImage}
-            <bolt-text headline>Slide 2</bolt-text>
+            <div>Slide 2</div>
           </bolt-carousel-slide>
           <bolt-carousel-slide>
             ${carouselSlideImage}
-            <bolt-text headline>Slide 3</bolt-text>
+            <div>Slide 3</div>
           </bolt-carousel-slide>
         </bolt-carousel>
         `,
@@ -300,31 +300,31 @@ describe('carousel', () => {
         `<bolt-carousel>
           <bolt-carousel-slide>
             ${carouselSlideImage}
-            <bolt-text headline>Slide 1</bolt-text>
+            <div>Slide 1</div>
           </bolt-carousel-slide>
           <bolt-carousel-slide>
             ${carouselSlideImage}
-            <bolt-text headline>Slide 2</bolt-text>
+            <div>Slide 2</div>
           </bolt-carousel-slide>
           <bolt-carousel-slide>
             ${carouselSlideImage}
-            <bolt-text headline>Slide 3</bolt-text>
+            <div>Slide 3</div>
           </bolt-carousel-slide>
           <bolt-carousel-slide>
             ${carouselSlideImage}
-            <bolt-text headline>Slide 4</bolt-text>
+            <div>Slide 4</div>
           </bolt-carousel-slide>
           <bolt-carousel-slide>
             ${carouselSlideImage}
-            <bolt-text headline>Slide 5</bolt-text>
+            <div>Slide 5</div>
           </bolt-carousel-slide>
           <bolt-carousel-slide>
             ${carouselSlideImage}
-            <bolt-text headline>Slide 6</bolt-text>
+            <div>Slide 6</div>
           </bolt-carousel-slide>
           <bolt-carousel-slide>
             ${carouselSlideImage}
-            <bolt-text headline>Slide 7</bolt-text>
+            <div>Slide 7</div>
           </bolt-carousel-slide>
         </bolt-carousel>
         `,

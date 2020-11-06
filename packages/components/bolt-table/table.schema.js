@@ -124,5 +124,9 @@ module.exports = {
       default: false,
       enum: [true, false],
     },
+    caption: {
+      type: 'string',
+      description: 'Set a table caption, displayed below the table content.',
+    },
   },
 };

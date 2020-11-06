@@ -35,6 +35,11 @@
     first_col_fixed_width ? "#{base_class}--first-col-fixed-width",
   ] %}
 
+  {% if caption %}
+    <figure class="{{ "#{base_class}__figure" }}">
+      <ssr-keep for="bolt-table">
+  {% endif %}
+
   <table {{ inner_attributes.addClass(classes) }}>
     {% if top_headers %}
       <thead class="{{ "#{base_class}__head" }}">
@@ -137,4 +142,15 @@
       </tfoot>
     {% endif %}
   </table>
+
+  {% if caption %}
+      <replace-with-grandchildren>
+        <figcaption class="{{ "#{base_class}__caption" }}">
+          <div slot="caption">{{ caption }}</div>
+        </figcaption>
+      </replace-with-grandchildren>
+    </ssr-keep>
+  </figure>
+  {% endif %}
+
 </bolt-table>

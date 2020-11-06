@@ -4,13 +4,13 @@ exports[`<bolt-modal> Component <bolt-modal> slots 1`] = `
 <bolt-modal width="regular"
             uuid="12345"
 >
-  <bolt-text slot="header">
+  <div slot="header">
     Header slot
-  </bolt-text>
+  </div>
   Default slot
-  <bolt-text slot="footer">
+  <div slot="footer">
     Footer slot
-  </bolt-text>
+  </div>
 </bolt-modal>
 `;
 
@@ -18,21 +18,19 @@ exports[`<bolt-modal> Component Long content usage <bolt-modal> at various viewp
 <bolt-modal width="regular"
             uuid="12345"
 >
-  <bolt-text slot="header">
+  <div slot="header">
     Header slot
-  </bolt-text>
-  <bolt-text subheadline
-             font-size="xlarge"
-  >
+  </div>
+  <div>
     This is very long content.
-  </bolt-text>
+  </div>
   <bolt-image src="/fixtures/1200x2500.jpg"
               alt="Placeholder"
   >
   </bolt-image>
-  <bolt-text slot="footer">
+  <div slot="footer">
     Footer slot
-  </bolt-text>
+  </div>
 </bolt-modal>
 `;
 
@@ -130,13 +128,13 @@ exports[`<bolt-modal> Component Long content usage <bolt-modal> w/o Shadow DOM r
             
                 
             <!---->
-            <bolt-text
+            <div
               class="is-first-child is-last-child"
               slot="header"
               style=""
             >
               Header slot
-            </bolt-text>
+            </div>
             <!---->
             
               
@@ -150,14 +148,12 @@ exports[`<bolt-modal> Component Long content usage <bolt-modal> w/o Shadow DOM r
             
                 
             <!---->
-            <bolt-text
+            <div
               class="is-first-child"
-              font-size="xlarge"
               style=""
-              subheadline=""
             >
               This is very long content.
-            </bolt-text>
+            </div>
             <!---->
             <bolt-image
               alt="Placeholder"
@@ -179,13 +175,13 @@ exports[`<bolt-modal> Component Long content usage <bolt-modal> w/o Shadow DOM r
             
             
             <!---->
-            <bolt-text
+            <div
               class="is-first-child is-last-child"
               slot="footer"
               style=""
             >
               Footer slot
-            </bolt-text>
+            </div>
             <!---->
             
           
@@ -218,24 +214,22 @@ exports[`<bolt-modal> Component Long content usage <bolt-modal> with Shadow DOM 
 >
   
           
-  <bolt-text
+  <div
     class="is-first-child is-last-child"
     slot="header"
     style=""
   >
     Header slot
-  </bolt-text>
+  </div>
   
           
       
-  <bolt-text
+  <div
     class="is-first-child"
-    font-size="xlarge"
     style=""
-    subheadline=""
   >
     This is very long content.
-  </bolt-text>
+  </div>
   
       
   <bolt-image
@@ -247,13 +241,13 @@ exports[`<bolt-modal> Component Long content usage <bolt-modal> with Shadow DOM 
   
     
           
-  <bolt-text
+  <div
     class="is-first-child is-last-child"
     slot="footer"
     style=""
   >
     Footer slot
-  </bolt-text>
+  </div>
   
         
 </bolt-modal>
@@ -263,9 +257,9 @@ exports[`<bolt-modal> Component Long content usage<bolt-modal> with band at vari
 <bolt-modal width="regular"
             uuid="12345"
 >
-  <bolt-text slot="header">
+  <div slot="header">
     Header slot
-  </bolt-text>
+  </div>
   <bolt-band tag="div"
              size="medium"
              theme="none"
@@ -278,11 +272,9 @@ exports[`<bolt-modal> Component Long content usage<bolt-modal> with band at vari
                       bolt-object
         >
           <div class="o-bolt-wrapper o-bolt-wrapper--xxlarge o-bolt-wrapper--full">
-            <bolt-text subheadline
-                       font-size="xlarge"
-            >
+            <div>
               This is very long content.
-            </bolt-text>
+            </div>
             <bolt-image src="/fixtures/1200x2500.jpg"
                         alt="Placeholder"
             >
@@ -292,9 +284,9 @@ exports[`<bolt-modal> Component Long content usage<bolt-modal> with band at vari
       </div>
     </div>
   </bolt-band>
-  <bolt-text slot="footer">
+  <div slot="footer">
     Footer slot
-  </bolt-text>
+  </div>
 </bolt-modal>
 `;
 
@@ -302,15 +294,15 @@ exports[`<bolt-modal> Component Simple usage <bolt-modal> at various viewport si
 <bolt-modal width="regular"
             uuid="12345"
 >
-  <bolt-text slot="header">
+  <div slot="header">
     Header slot
-  </bolt-text>
-  <bolt-text>
+  </div>
+  <div>
     Default slot.
-  </bolt-text>
-  <bolt-text slot="footer">
+  </div>
+  <div slot="footer">
     Footer slot
-  </bolt-text>
+  </div>
 </bolt-modal>
 `;
 
@@ -408,13 +400,13 @@ exports[`<bolt-modal> Component Simple usage <bolt-modal> w/o Shadow DOM renders
             
                 
             <!---->
-            <bolt-text
+            <div
               class="is-first-child is-last-child"
               slot="header"
               style=""
             >
               Header slot
-            </bolt-text>
+            </div>
             <!---->
             
               
@@ -428,12 +420,12 @@ exports[`<bolt-modal> Component Simple usage <bolt-modal> w/o Shadow DOM renders
             
                 
             <!---->
-            <bolt-text
+            <div
               class="is-first-child is-last-child"
               style=""
             >
               Default slot.
-            </bolt-text>
+            </div>
             <!---->
             
               
@@ -448,13 +440,13 @@ exports[`<bolt-modal> Component Simple usage <bolt-modal> w/o Shadow DOM renders
             
             
             <!---->
-            <bolt-text
+            <div
               class="is-first-child is-last-child"
               slot="footer"
               style=""
             >
               Footer slot
-            </bolt-text>
+            </div>
             <!---->
             
           
@@ -487,30 +479,30 @@ exports[`<bolt-modal> Component Simple usage <bolt-modal> with Shadow DOM render
 >
   
           
-  <bolt-text
+  <div
     class="is-first-child is-last-child"
     slot="header"
     style=""
   >
     Header slot
-  </bolt-text>
+  </div>
   
           
-  <bolt-text
+  <div
     class="is-first-child is-last-child"
     style=""
   >
     Default slot.
-  </bolt-text>
+  </div>
   
           
-  <bolt-text
+  <div
     class="is-first-child is-last-child"
     slot="footer"
     style=""
   >
     Footer slot
-  </bolt-text>
+  </div>
   
         
 </bolt-modal>
@@ -520,9 +512,9 @@ exports[`<bolt-modal> Component Simple usage<bolt-modal> with band at various vi
 <bolt-modal width="regular"
             uuid="12345"
 >
-  <bolt-text slot="header">
+  <div slot="header">
     Header slot
-  </bolt-text>
+  </div>
   <bolt-band tag="div"
              size="medium"
              theme="none"
@@ -535,17 +527,17 @@ exports[`<bolt-modal> Component Simple usage<bolt-modal> with band at various vi
                       bolt-object
         >
           <div class="o-bolt-wrapper o-bolt-wrapper--xxlarge o-bolt-wrapper--full">
-            <bolt-text>
+            <div>
               Default slot.
-            </bolt-text>
+            </div>
           </div>
         </bolt-wrapper>
       </div>
     </div>
   </bolt-band>
-  <bolt-text slot="footer">
+  <div slot="footer">
     Footer slot
-  </bolt-text>
+  </div>
 </bolt-modal>
 `;
 
