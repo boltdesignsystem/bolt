@@ -11,6 +11,6 @@
   {{ this.props|without("items") }}
 >
   {% for item in items %}
-    {% include "@bolt-layouts-layout/_layout-item.twig" with item only %}
+    {% include "@bolt-layouts-layout/layout-item.twig" with item only %}
   {% endfor %}
 </bolt-layout>
