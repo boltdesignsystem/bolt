@@ -1,0 +1,19 @@
+<bolt-banner class="u-bolt-margin-top-large">
+  <h1>Deprecated</h1>
+  <p>This component will be eventually retired, for any new instances of a video please use the <strong>Drupal intergrated Brigthcove video component</strong>. Futher features will not be added to this component.</p>
+</bolt-banner>
+
+{% set usage %}{% verbatim %}
+{% include "@bolt-components-video/video.twig" with {
+  videoId: "5609376179001",
+  accountId: "1900410236", d
+  playerId: "r1CAdLzTW",
+  showMeta: true,
+  showMetaTitle: false
+} only %}
+{% endverbatim %}{% endset %}
+
+{% include "@utils/docs.twig" with {
+  componentName: "video",
+  usage: usage
+} only %}

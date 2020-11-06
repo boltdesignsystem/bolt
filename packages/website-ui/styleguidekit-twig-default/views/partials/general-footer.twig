@@ -7,3 +7,93 @@
 </script>
 
 <script src="/pattern-lab/styleguide/js/patternlab-pattern.js" async></script>
+
+<!-- Brightcove  Init-->
+<script src="https://players.brightcove.net/1900410236/4fVA8Ojzs_default/index.min.js"></script>
+<script>
+  var players = document.querySelectorAll('.video-js');
+
+  // EXTERNAL CONTROLS
+  // Button requires a 'brightcove-toggle' class (how the functionality will be hooked up)
+  // Button requires 'data-video-target' attribute (this is how the video is targeted on click)
+  var externalControlButtons = document.querySelectorAll(".brightcove-toggle");
+  for(var eb = 0; eb < externalControlButtons.length; eb++){
+    externalControlButtons[eb].addEventListener('click', function(e){
+      e.preventDefault();
+      var videoTarget = videojs.getPlayer(e.currentTarget.dataset.videoTarget)
+      var isPlaying = videoTarget.el_.classList.contains('vjs-playing');
+      if (isPlaying) {
+        videoTarget.pause()
+      } else {
+        videoTarget.play()
+      }
+    })
+  } 
+  
+  players.forEach(function(player) {
+    var thisPlayer = videojs.getPlayer(player.id);
+    thisPlayer.on('error', function(err) {
+      // OPTIONS
+      // data-custom-error-message (optional) [string]: Pass in a acustom message to be displayed on errors
+      this.customError(this.getAttribute('data-custom-error-message'))
+    })
+    thisPlayer.on('ready', function() {
+      // OPTIONS
+      // data-playback-rates (optional) [array]: Sets the playback rates on the player controls
+      if(this.el().dataset.playbackRates){
+        var playbackRateOptions = this.getAttribute('data-playback-rates').replace(/(\[*\]*)/g, "")
+        playbackRateOptions = playbackRateOptions.split(',')
+        console.log(playbackRateOptions)
+        thisPlayer.controlBar.playbackRateMenuButton = thisPlayer.controlBar.addChild('PlaybackRateMenuButton', {
+          playbackRates: playbackRateOptions
+        })
+      }
+      // OPTIONS
+      // data-social-title (optional) [string]: CURRENT NOT BEING DISPLAYED
+      // data-social-description (optional) [string]: Social Panel title
+      // data-social-url (optional[default: the page url]) [string]: change the shared social url
+      // data-social-facebook (optional [default: true]) [boolean]: Displays the Facebook button
+      // data-social-twitter (optional [default: true]) [boolean]: Displays the Twitter button
+      // data-social-tumblr (optional [default: false]) [boolean]: Displays the tumblr button
+      // data-social-pinterest (optional [default: false]) [boolean]: Displays the Pinterest button
+      // data-social-linkedin (optional [default: true]) [boolean]: Displays the Linkedin button
+      socialOptions = {
+        "title": this.getAttribute('data-social-title') || "Share This Video",
+        "description": this.getAttribute('data-social-description') || "",
+        "url": this.getAttribute('data-social-url') || window.location.href,
+        "removeEmbed": true,
+        "services": {
+          "facebook": this.getAttribute('data-social-facebook') == "false" || this.getAttribute('data-social-facebook') == false ? false : true,
+          "twitter": this.getAttribute('data-social-twitter') == "false" || this.getAttribute('data-social-twitter') == false ? false : true,
+          "tumblr": this.getAttribute('data-social-tumblr') == "true" || this.getAttribute('data-social-tumblr') == true ? true : false,
+          "pinterest": this.getAttribute('data-social-pinterest') == "true" || this.getAttribute('data-social-pinterest') == true ? true : false,
+          "linkedin": this.getAttribute('data-social-linkedin') == "false" || this.getAttribute('data-social-linkedin') == false ? false : true
+        },
+        "displayAfterVideo": true,
+        "buttonParent": "controlBar"
+      };
+      // OPTIONS
+      // data-default-resolution (optional) [string]: Adjusts the default resolution for the videos (ex. 720p)
+      qualityOptions = {
+        "useResolutionLabels": true,
+        "defaultResolution": this.getAttribute('data-default-resolution') || "720p",
+      };
+      this.social(socialOptions);
+      this.ga();
+      this.qualityMenu(qualityOptions);
+      // OPTIONS
+      // data-email-videoid (required) [string]: Video ID
+      // data-email-videotitle (required) [string]: Video email title
+      // data-email-body (required) [string]: Video email body
+      // data-email-subject (required) [string]: Video email subject line
+      // data-email-videourl (optional) [string]: Video URL to share in email
+      this.emailSocialShare(this.getAttribute('data-social-email') == "false" || this.getAttribute('data-social-email') == false ? false : true);
+      this.on('loadstart', function(player) {
+        // OPTIONS
+        // data-media-title (optional [default: true]) [boolean]: hide the title
+        // data-media-duration (optional [default: true]) [boolean]: hide the duration
+        this.metaData(this.getAttribute('data-media-title') == "false" || this.getAttribute('data-media-title') == false ? "" : this.mediainfo.name, this.getAttribute('data-media-duration') == "false" || this.getAttribute('data-media-duration') == false ? "" : this.mediainfo.duration, this);
+      })
+    });
+  });
+</script>

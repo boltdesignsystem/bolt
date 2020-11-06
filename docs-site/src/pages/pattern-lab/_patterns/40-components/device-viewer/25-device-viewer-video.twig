@@ -1,10 +1,19 @@
 {% set content %}
-  {% include "@bolt/video.twig" with {
-    videoId: "3974147489001",
-    accountId: "1900410236",
-    playerId: "r1CAdLzTW",
-    showMeta: false,
-    showMetaTitle: false,
+  {% set video %}
+    <video-js
+      data-account="1900410236"
+      data-player="4fVA8Ojzs"
+      data-embed="default"
+      data-video-id="3974147489001"
+      controls
+      data-media-title="false"
+      data-media-duration="false"
+      class="video-js"></video-js>
+  {% endset %}
+
+  {% include "@bolt-components-ratio/ratio.twig" with {
+    children: video,
+    ratio: "16/9"
   } only %}
 {% endset %}
 

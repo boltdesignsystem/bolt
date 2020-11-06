@@ -199,13 +199,20 @@
       cover: true
     } only %}
     <div class="c-pega-careers-background-video__video">
-      {% include "@bolt-components-video/video.twig" with {
-        videoId: hero_background_video_id,
-        accountId: "1900410236",
-        playerId: "r1CAdLzTW",
-        autoplay: true,
-        loop: true,
-        controls: false,
+      {% set video %}
+        <video-js
+          data-account="1900410236"
+          data-player="4fVA8Ojzs"
+          data-embed="default"
+          data-video-id="{{ hero_background_video_id }}"
+          controls="false"
+          autoplay loop
+          class="video-js"></video-js>
+      {% endset %}
+
+      {% include "@bolt-components-ratio/ratio.twig" with {
+        children: video,
+        ratio: "16/9"
       } only %}
     </div>
   </div>

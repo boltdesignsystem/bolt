@@ -12,12 +12,19 @@
 {% endset %}
 
 {% set video %}
-  {% include "@bolt-components-video/video.twig" with {
-    "videoId": "4892122320001",
-    "accountId": "1900410236",
-    "playerId": "r1CAdLzTW",
-    "showMeta": true,
-    "showMetaTitle": true,
+  {% set video %}
+    <video-js
+      data-account="1900410236"
+      data-player="4fVA8Ojzs"
+      data-embed="default"
+      data-video-id="4892122320001"
+      controls
+      class="video-js"></video-js>
+  {% endset %}
+
+  {% include "@bolt-components-ratio/ratio.twig" with {
+    children: video,
+    ratio: "16/9"
   } only %}
 {% endset %}
 
@@ -92,7 +99,7 @@
 <h3>Video Figure</h3>
 {% include "@bolt-components-figure/figure.twig" with {
   media: {
-    content: figure
+    content: video
   },
   caption: "Fig. 3: This is a video."
 } only %}

@@ -1,19 +1,58 @@
 {% set videoUuid1 = "js-bolt-video-uuid-card-replacement" %}
 {% set videoUuid2 = "js-bolt-video-uuid-card-replacement-with-link" %}
 
+{% set videoRatio1 %}
+  {% set video %}
+    <video-js
+      data-account="1900410236"
+      data-player="4fVA8Ojzs"
+      data-embed="default"
+      data-video-id="3974147489001"
+      id="{{ videoUuid1 }}"
+      controls
+      class="video-js"></video-js>
+  {% endset %}
+
+  {% include "@bolt-components-ratio/ratio.twig" with {
+    children: video,
+    ratio: "16/9",
+    attributes: {
+      style: [
+        "z-index: 2"
+      ]
+    }
+  } only %}
+{% endset %}
+
+{% set videoRatio2 %}
+  {% set video %}
+    <video-js
+      data-account="1900410236"
+      data-player="4fVA8Ojzs"
+      data-embed="default"
+      data-video-id="3974147489001"
+      id="{{ videoUuid2 }}"
+      controls
+      class="video-js"></video-js>
+  {% endset %}
+
+  {% include "@bolt-components-ratio/ratio.twig" with {
+    children: video,
+    ratio: "16/9",
+    attributes: {
+      style: [
+        "z-index: 2"
+      ]
+    }
+  } only %}
+{% endset %}
+
 {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
   {% cell "u-bolt-width-6/12 u-bolt-width-4/12@small" %}
     {% include "@bolt-components-card-replacement/card-replacement.twig" with {
       tag: "article",
       media: {
-        video: {
-          videoId: "5780495299001",
-          accountId: "1900410236",
-          playerId: "r1CAdLzTW",
-          videoUuid: videoUuid1,
-          showMeta: true,
-          showMetaTitle: false,
-        },
+        content: videoRatio1
       },
       body: {
         eyebrow: "Video",
@@ -24,8 +63,8 @@
         {
           text: "Play or Pause",
           attributes: {
-            "on-click": "toggle",
-            "on-click-target": videoUuid1
+            "data-video-target": videoUuid1,
+            "class": "brightcove-toggle"
           }
         },
       ],
@@ -34,20 +73,11 @@
   {% cell "u-bolt-width-6/12 u-bolt-width-4/12@small" %}
     {% include "@bolt-components-card-replacement/card-replacement.twig" with {
       link: {
-        attributes: {
-          "on-click": "toggle",
-          "on-click-target": videoUuid2,
-        },
+        url: "https://pega.com",
+        text: "Go to pega.com"
       },
       media: {
-        video: {
-          videoId: "5609376179001",
-          accountId: "1900410236",
-          playerId: "r1CAdLzTW",
-          videoUuid: videoUuid2,
-          showMeta: true,
-          showMetaTitle: false,
-        },
+        content: videoRatio2
       },
       body: {
         headline: "With link and video",
@@ -57,8 +87,8 @@
         {
           text: "This button is video control",
           attributes: {
-            "on-click": "toggle",
-            "on-click-target": videoUuid2,
+            "data-video-target": videoUuid2,
+            "class": "brightcove-toggle"
           },
         }
       ],
