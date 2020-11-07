@@ -1,0 +1,64 @@
+/* ------------------------------------ *\
+   Light and Dark Mode System
+\* ------------------------------------ */
+
+:root,
+.m-bolt-light {
+  --m-bolt-text: var(--bolt-color-black);
+  --m-bolt-text-disabled: var(--bolt-color-gray);
+  --m-bolt-bg: var(--bolt-color-white);
+  --m-bolt-bg-disabled: var(--bolt-color-gray-light);
+  --m-bolt-headline: var(--bolt-color-navy);
+  --m-bolt-link: var(--bolt-color-navy-light);
+  --m-bolt-border: var(--bolt-color-gray-xlight);
+  --m-bolt-primary: var(--bolt-color-navy-light);
+  --m-bolt-text-on-primary: var(--m-bolt-bg);
+  --m-bolt-secondary: var(--m-bolt-bg);
+  --m-bolt-text-on-secondary: var(--m-bolt-text);
+  --m-bolt-tertiary: rgba(128, 128, 128, 0.2);
+  --m-bolt-text-on-tertiary: var(--m-bolt-text);
+  --m-bolt-neutral: var(--bolt-color-gray);
+}
+
+.m-bolt-dark {
+  --m-bolt-text: var(--bolt-color-white);
+  --m-bolt-text-disabled: var(--bolt-color-gray);
+  --m-bolt-bg: var(--bolt-color-navy);
+  --m-bolt-bg-disabled: var(--bolt-color-gray-light);
+  --m-bolt-headline: var(--bolt-color-white);
+  --m-bolt-link: var(--bolt-color-white);
+  --m-bolt-border: var(--bolt-color-navy-xlight);
+  --m-bolt-primary: var(--bolt-color-yellow);
+  --m-bolt-text-on-primary: var(--bolt-color-black);
+  --m-bolt-secondary: var(--m-bolt-text);
+  --m-bolt-text-on-secondary: var(--m-bolt-bg);
+  --m-bolt-tertiary: rgba(128, 128, 128, 0.2);
+  --m-bolt-text-on-tertiary: var(--m-bolt-text);
+  --m-bolt-neutral: var(--bolt-color-gray);
+}
+
+[class*='m-bolt-'] {
+  color: var(--m-bolt-text);
+  background-color: var(--m-bolt-bg);
+}
+
+/* .t-bolt-xlight {
+  @extend .m-bolt-light;
+}
+
+.t-bolt-light {
+  @extend .m-bolt-light;
+
+  --m-bolt-bg: var(--bolt-color-gray-xlight);
+}
+
+.t-bolt-dark {
+  @extend .m-bolt-dark;
+}
+
+.t-bolt-xdark {
+  @extend .m-bolt-dark;
+
+  --m-bolt-bg: var(--bolt-color-navy-dark);
+}
+*/

@@ -1,0 +1,76 @@
+{% set description %}
+  A button is generally an inline interactive graphical element. Its main purpose is to help the user perform a function (sometimes navigate).
+{% endset %}
+
+{% set demo %}
+<bolt-stack class="m-bolt-light u-bolt-padding-medium">
+  {% include '@bolt-elements-button/button.twig' with {
+    content: 'Click this button',
+    attributes: {
+      type: 'button'
+    }
+  } only %}
+  {% include '@bolt-elements-button/button.twig' with {
+    content: 'Click this button',
+    attributes: {
+      type: 'button',
+      class: 'e-bolt-button--secondary'
+    }
+  } only %}
+  {% include '@bolt-elements-button/button.twig' with {
+    content: 'Click this button',
+    attributes: {
+      type: 'button',
+      class: 'e-bolt-button--tertiary'
+    }
+  } only %}
+</bolt-stack>
+<bolt-stack class="m-bolt-dark u-bolt-padding-medium">
+  {% include '@bolt-elements-button/button.twig' with {
+    content: 'Click this button',
+    attributes: {
+      type: 'button'
+    }
+  } only %}
+  {% include '@bolt-elements-button/button.twig' with {
+    content: 'Click this button',
+    attributes: {
+      type: 'button',
+      class: 'e-bolt-button--secondary'
+    }
+  } only %}
+  {% include '@bolt-elements-button/button.twig' with {
+    content: 'Click this button',
+    attributes: {
+      type: 'button',
+      class: 'e-bolt-button--tertiary'
+    }
+  } only %}
+</bolt-stack>
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% include '@bolt-elements-button/button.twig' with {
+  content: 'Click this button',
+  attributes: {
+    type: 'button'
+  }
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% set html_markup %}
+{% verbatim %}
+<button type="button" class="e-bolt-button">Click this button</button>
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Basic Button',
+  description: description,
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+  html_markup: html_markup,
+} only %}

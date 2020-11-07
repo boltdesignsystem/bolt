@@ -1,0 +1,139 @@
+@import '@bolt/core-v3.x';
+
+/**
+ * Text Link
+ *
+ * Dev notes:
+ * 1. Special tricks are used here to make inline icon work, reference the mixin scss to understand it.
+ * 2. `em` unit is used to make sure the spacing between icon and text is relative to the text's font-size.
+ */
+
+.e-bolt-button {
+  @include bolt-button-native-styles-reset;
+
+  display: inline-grid;
+  position: relative;
+  padding: var(
+      --e-bolt-button-spacing-y,
+      calc(var(--bolt-spacing-y-medium) * 0.5)
+    )
+    var(--e-bolt-button-spacing-x, var(--bolt-spacing-x-medium));
+  font-family: var(--bolt-type-font-family-headline);
+  font-size: var(--e-bolt-button-font-size, var(--bolt-type-font-size-small));
+  font-weight: var(--bolt-type-font-weight-semibold);
+  color: var(--e-bolt-button-text-color, var(--m-bolt-bg));
+  line-height: var(--bolt-type-line-height-small);
+  border-radius: var(
+    --e-bolt-button-border-radius,
+    #{bolt-border-radius(small)}
+  );
+  background-color: var(--e-bolt-button-bg-color, var(--m-bolt-primary));
+  will-change: top;
+  transition: top var(--bolt-transition);
+
+  &:before,
+  &:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    pointer-events: none;
+    border-radius: inherit;
+    will-change: opacity, box-shadow;
+    transition: opacity var(--bolt-transition),
+      box-shadow var(--bolt-transition);
+  }
+
+  &:before {
+    opacity: bolt-opacity(80);
+    box-shadow: 0 var(--bolt-spacing-y-xxsmall) var(--bolt-spacing-y-small)
+      var(--m-bolt-neutral);
+  }
+
+  &:after {
+    opacity: 0;
+  }
+
+  &:hover {
+    top: -1px;
+
+    &:after {
+      opacity: bolt-opacity(40);
+      box-shadow: 0 var(--bolt-spacing-y-xsmall) var(--bolt-spacing-y-medium)
+        var(--m-bolt-primary);
+    }
+  }
+
+  &:focus {
+    outline: var(--bolt-focus-ring);
+    outline-offset: 2px;
+  }
+}
+
+$_bolt-button-hierarchy: primary, secondary, tertiary;
+
+@each $hierarchy-name in $_bolt-button-hierarchy {
+  .e-bolt-button--#{$hierarchy-name} {
+    --e-bolt-button-text-color: var(--m-bolt-text-on-#{$hierarchy-name});
+    --e-bolt-button-bg-color: var(--m-bolt-#{$hierarchy-name});
+
+    @if $hierarchy-name == secondary {
+      &:before {
+        opacity: bolt-opacity(40);
+      }
+    }
+
+    @if $hierarchy-name == tertiary {
+      backdrop-filter: blur(0.1em);
+
+      &:before {
+        opacity: 0;
+      }
+
+      &:after {
+        box-shadow: 0 0 0 2px var(--m-bolt-primary);
+      }
+
+      &:hover {
+        top: 0;
+
+        &:after {
+          opacity: bolt-opacity(20);
+          box-shadow: 0 0 0 2px var(--m-bolt-primary);
+        }
+      }
+    }
+  }
+}
+
+@each $radius-name, $radius-value in $bolt-border-radius-values {
+  .e-bolt-button--border-radius-#{$radius-name} {
+    --e-bolt-button-border-radius: #{$radius-value};
+  }
+}
+
+[class*='e-bolt-button__icon'] {
+  @include bolt-inline-icon-wrapper; /* [1] */
+}
+
+.e-bolt-button__icon-before {
+  margin-right: calc(
+    var(--bolt-spacing-x) * var(--bolt-spacing-multiplier-xxsmall) * 1em
+  ); /* [2] */
+
+  > bolt-icon[size] {
+    margin-right: var(--bolt-spacing-x-xxsmall);
+  }
+}
+
+.e-bolt-button__icon-after {
+  margin-left: calc(
+    var(--bolt-spacing-x) * var(--bolt-spacing-multiplier-xxsmall) * 1em
+  ); /* [2] */
+
+  > bolt-icon[size] {
+    margin-left: var(--bolt-spacing-x-xxsmall);
+  }
+}
