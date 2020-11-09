@@ -8,6 +8,7 @@
 
 <script src="/pattern-lab/styleguide/js/patternlab-pattern.js" async></script>
 
+
 <!-- Brightcove  Init-->
 <script src="https://players.brightcove.net/1900410236/4fVA8Ojzs_default/index.min.js"></script>
 <script>
@@ -28,7 +29,7 @@
         videoTarget.play()
       }
     })
-  } 
+  }
   
   players.forEach(function(player) {
     var thisPlayer = videojs.getPlayer(player.id);
@@ -93,6 +94,15 @@
         // data-media-title (optional [default: true]) [boolean]: hide the title
         // data-media-duration (optional [default: true]) [boolean]: hide the duration
         this.metaData(this.getAttribute('data-media-title') == "false" || this.getAttribute('data-media-title') == false ? "" : this.mediainfo.name, this.getAttribute('data-media-duration') == "false" || this.getAttribute('data-media-duration') == false ? "" : this.mediainfo.duration, this);
+      })
+      this.on('loadedmetadata', function(player) {
+        if (this.getAttribute('data-autoplay-on-viewport') == "true" || this.getAttribute('data-autoplay-on-viewport') == true ? true : false) {
+          //OPTIONS
+          // data-autoplay-on-viewport (optional [default: false]) [boolean]: will play the video when it comes into view
+          // REQUIRES the "muted" attribute to be placed on the video-js
+          this.autoplayOnViewport();
+        }
+        //this.chaptering();
       })
     });
   });
