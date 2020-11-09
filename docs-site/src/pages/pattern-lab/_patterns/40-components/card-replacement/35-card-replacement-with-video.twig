@@ -1,7 +1,7 @@
 {% set video_uuid1 = "js-bolt-video-uuid-card-replacement" %}
 {% set video_uuid2 = "js-bolt-video-uuid-card-replacement-with-link" %}
 
-{% set video_ratio1 %}
+{% set video_1 %}
   {% set video %}
     <video-js
       data-account="1900410236"
@@ -19,13 +19,13 @@
   } only %}
 {% endset %}
 
-{% set video_ratio2 %}
-  {# {% set video %}
+{% set video_2 %}
+  {% set video %}
     <video-js
       data-account="1900410236"
       data-player="4fVA8Ojzs"
       data-embed="default"
-      data-video-id="3974147489001"
+      data-video-id="5609376179001"
       id="{{ video_uuid2 }}"
       controls
       class="video-js"></video-js>
@@ -34,7 +34,7 @@
   {% include "@bolt-components-ratio/ratio.twig" with {
     children: video,
     ratio: "16/9"
-  } only %} #}
+  } only %}
 {% endset %}
 
 {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
@@ -42,7 +42,7 @@
     {% include "@bolt-components-card-replacement/card-replacement.twig" with {
       tag: "article",
       media: {
-        video: video_ratio1
+        video: video_1
       },
       body: {
         eyebrow: "Video",
@@ -62,33 +62,18 @@
   {% endcell %}
   {% cell "u-bolt-width-6/12 u-bolt-width-4/12@small" %}
     {% include "@bolt-components-card-replacement/card-replacement.twig" with {
+      height: "auto",
       link: {
         url: "https://pega.com",
-        text: "Go to pega.com"
+        text: "Go to pega.com",
       },
       media: {
-        video: {
-          videoId: "5609376179001",
-          accountId: "1900410236",
-          playerId: "r1CAdLzTW",
-          videoUuid: video_uuid2,
-          showMeta: true,
-          showMetaTitle: false,
-        }
+        video: video_2
       },
       body: {
-        headline: "Old Video Example",
-        paragraph: "This card has a link, which makes the whole card-replacement clickable, and you can make it play/pause the video. Action button is optional in this case.",
-      },
-      actions: [
-        {
-          text: "This button is video control",
-          attributes: {
-            "data-video-target": video_uuid2,
-            class: "js-base-video-toggle"
-          },
-        }
-      ],
+        headline: "With link and video",
+        paragraph: "This card has a link, which makes the whole card clickable. The link navigates to another page. The video in this card can still play/pause inline. The link does not cover it.",
+      }
     } only %}
   {% endcell %}
 {% endgrid %}

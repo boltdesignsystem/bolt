@@ -1,19 +1,8 @@
-<bolt-banner class="u-bolt-margin-top-large">
-  <h1>Deprecated</h1>
-  <p>This component will be eventually retired, for any new instances of a video please use the <strong>Drupal intergrated Brigthcove video component</strong>. Futher features will not be added to this component.</p>
+<bolt-banner status="warning" align="start" class="u-bolt-margin-top-large">
+  <bolt-text headline>Warning! The Video component is deprecated.</bolt-text>
+  <bolt-ol>
+    <bolt-li>No new features will not be added to this component.</bolt-li>
+    <bolt-li>See each page under Video section in the navigation to reference old documentations.</bolt-li>
+    <bolt-li>For any new instances of a video please use the <strong>Drupal integrated Brigthcove video component</strong>. Consult a Drupal dev and reference the Drupal documentations.</bolt-li>
+  </bolt-ol>
 </bolt-banner>
-
-{% set usage %}{% verbatim %}
-{% include "@bolt-components-video/video.twig" with {
-  videoId: "5609376179001",
-  accountId: "1900410236", d
-  playerId: "r1CAdLzTW",
-  showMeta: true,
-  showMetaTitle: false
-} only %}
-{% endverbatim %}{% endset %}
-
-{% include "@utils/docs.twig" with {
-  componentName: "video",
-  usage: usage
-} only %}
