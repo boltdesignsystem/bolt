@@ -14,9 +14,9 @@
   var players = document.querySelectorAll('.video-js');
 
   // EXTERNAL CONTROLS
-  // Button requires a 'brightcove-toggle' class (how the functionality will be hooked up)
+  // Button requires a 'js-base-video-toggle' class (how the functionality will be hooked up)
   // Button requires 'data-video-target' attribute (this is how the video is targeted on click)
-  var externalControlButtons = document.querySelectorAll(".brightcove-toggle");
+  var externalControlButtons = document.querySelectorAll(".js-base-video-toggle");
   for(var eb = 0; eb < externalControlButtons.length; eb++){
     externalControlButtons[eb].addEventListener('click', function(e){
       e.preventDefault();

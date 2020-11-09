@@ -19,28 +19,11 @@
 {% import _self as card_replacement_code %}
 
 {% macro video() %}
-  {% spaceless %}
-    {% set video %}
-      {% spaceless %}
-        <video-js
-          data-account="1900410236"
-          data-player="4fVA8Ojzs"
-          data-embed="default"
-          data-video-id="3974147489001"
-          controls
-          class="video-js"></video-js>
-        {% endspaceless %}
-    {% endset %}
-    {% include "@bolt-components-ratio/ratio.twig" with {
-      children: video,
-      ratio: "16/9",
-      attributes: {
-        style: [
-          "z-index: 2"
-        ]
-      }
-    } only %}
-  {% endspaceless %}
+  <bolt-ratio ratio="16/9">
+    <ssr-keep for="bolt-ratio" class="c-bolt-ratio" style="padding-bottom: calc((9 / 16) * 100%); --aspect-ratio: 1.7777777777778;">
+      <video-js data-account="1900410236" data-player="4fVA8Ojzs" data-embed="default" data-video-id="3974147489001" controls class="video-js"></video-js>
+    </ssr-keep>
+  </bolt-ratio>
 {% endmacro %}
 
 {% macro image() %}

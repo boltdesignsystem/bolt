@@ -1,49 +1,39 @@
-{% set videoUuid1 = "js-bolt-video-uuid-card-replacement" %}
-{% set videoUuid2 = "js-bolt-video-uuid-card-replacement-with-link" %}
+{% set video_uuid1 = "js-bolt-video-uuid-card-replacement" %}
+{% set video_uuid2 = "js-bolt-video-uuid-card-replacement-with-link" %}
 
-{% set videoRatio1 %}
+{% set video_ratio1 %}
   {% set video %}
     <video-js
       data-account="1900410236"
       data-player="4fVA8Ojzs"
       data-embed="default"
       data-video-id="3974147489001"
-      id="{{ videoUuid1 }}"
+      id="{{ video_uuid1 }}"
       controls
       class="video-js"></video-js>
   {% endset %}
 
   {% include "@bolt-components-ratio/ratio.twig" with {
     children: video,
-    ratio: "16/9",
-    attributes: {
-      style: [
-        "z-index: 2"
-      ]
-    }
+    ratio: "16/9"
   } only %}
 {% endset %}
 
-{% set videoRatio2 %}
+{% set video_ratio2 %}
   {% set video %}
     <video-js
       data-account="1900410236"
       data-player="4fVA8Ojzs"
       data-embed="default"
       data-video-id="3974147489001"
-      id="{{ videoUuid2 }}"
+      id="{{ video_uuid2 }}"
       controls
       class="video-js"></video-js>
   {% endset %}
 
   {% include "@bolt-components-ratio/ratio.twig" with {
     children: video,
-    ratio: "16/9",
-    attributes: {
-      style: [
-        "z-index: 2"
-      ]
-    }
+    ratio: "16/9"
   } only %}
 {% endset %}
 
@@ -52,7 +42,7 @@
     {% include "@bolt-components-card-replacement/card-replacement.twig" with {
       tag: "article",
       media: {
-        content: videoRatio1
+        video: video_ratio1
       },
       body: {
         eyebrow: "Video",
@@ -63,8 +53,8 @@
         {
           text: "Play or Pause",
           attributes: {
-            "data-video-target": videoUuid1,
-            "class": "brightcove-toggle"
+            "data-video-target": video_uuid1,
+            class: "js-base-video-toggle"
           }
         },
       ],
@@ -77,7 +67,7 @@
         text: "Go to pega.com"
       },
       media: {
-        content: videoRatio2
+        video: video_ratio2
       },
       body: {
         headline: "With link and video",
@@ -87,8 +77,8 @@
         {
           text: "This button is video control",
           attributes: {
-            "data-video-target": videoUuid2,
-            "class": "brightcove-toggle"
+            "data-video-target": video_uuid2,
+            class: "js-base-video-toggle"
           },
         }
       ],
