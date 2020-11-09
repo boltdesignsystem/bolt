@@ -45,9 +45,8 @@
         video: video_1
       },
       body: {
-        eyebrow: "Video",
-        headline: "New Video Example.",
-        paragraph: "Anthem debuts its next-generation service desktop, driving frictionless customer experiences.",
+        headline: "With a video as the media",
+        paragraph: "This card has a video as the media and the card action can also play/pause the video.",
       },
       actions: [
         {
@@ -62,7 +61,6 @@
   {% endcell %}
   {% cell "u-bolt-width-6/12 u-bolt-width-4/12@small" %}
     {% include "@bolt-components-card-replacement/card-replacement.twig" with {
-      height: "auto",
       link: {
         url: "https://pega.com",
         text: "Go to pega.com",
@@ -71,7 +69,7 @@
         video: video_2
       },
       body: {
-        headline: "With link and video",
+        headline: "With a video as the media and an overall link",
         paragraph: "This card has a link, which makes the whole card clickable. The link navigates to another page. The video in this card can still play/pause inline. The link does not cover it.",
       }
     } only %}
