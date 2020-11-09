@@ -20,7 +20,7 @@
 {% endset %}
 
 {% set video_ratio2 %}
-  {% set video %}
+  {# {% set video %}
     <video-js
       data-account="1900410236"
       data-player="4fVA8Ojzs"
@@ -34,7 +34,7 @@
   {% include "@bolt-components-ratio/ratio.twig" with {
     children: video,
     ratio: "16/9"
-  } only %}
+  } only %} #}
 {% endset %}
 
 {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
@@ -46,7 +46,7 @@
       },
       body: {
         eyebrow: "Video",
-        headline: "Video Meta Title Goes Here.",
+        headline: "New Video Example.",
         paragraph: "Anthem debuts its next-generation service desktop, driving frictionless customer experiences.",
       },
       actions: [
@@ -67,10 +67,17 @@
         text: "Go to pega.com"
       },
       media: {
-        video: video_ratio2
+        video: {
+          videoId: "5609376179001",
+          accountId: "1900410236",
+          playerId: "r1CAdLzTW",
+          videoUuid: video_uuid2,
+          showMeta: true,
+          showMetaTitle: false,
+        }
       },
       body: {
-        headline: "With link and video",
+        headline: "Old Video Example",
         paragraph: "This card has a link, which makes the whole card-replacement clickable, and you can make it play/pause the video. Action button is optional in this case.",
       },
       actions: [
