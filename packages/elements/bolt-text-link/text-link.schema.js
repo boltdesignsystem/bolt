@@ -1,7 +1,3 @@
-const elementSchemas = require('@bolt/element/element.schemas');
-
-const { ...onClickProps } = elementSchemas.boltActionElement.properties;
-
 module.exports = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'Text Link',
@@ -42,7 +38,7 @@ module.exports = {
     expand_click_target: {
       type: 'boolean',
       description:
-        'Expands the click target to cover up the entire area of its closest container that is not positioned static.',
+        'Expand the click target to cover up the entire area of its closest container that is not positioned static.',
       default: false,
     },
   },

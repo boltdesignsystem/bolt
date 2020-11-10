@@ -25,8 +25,13 @@
 
 {% set classes = [
   'e-bolt-button',
+  this.data.hierarchy.value != schema.properties.hierarchy.default ? 'e-bolt-button--' ~ this.data.hierarchy.value,
+  this.data.size.value != schema.properties.size.default ? 'e-bolt-button--' ~ this.data.size.value,
+  this.data.width.value != schema.properties.width.default ? 'e-bolt-button--width-' ~ this.data.width.value,
+  this.data.border_radius.value != schema.properties.border_radius.default ? 'e-bolt-button--border-radius-' ~ this.data.border_radius.value,
+  icon_only ? 'e-bolt-button--icon-only',
 ] %}
 
 {# Template #}
 {# [1], [2] #}
-{% spaceless %}<{{ tag }} {{ attributes.addClass(classes) }}>{% if icon_before %}<span class="e-bolt-button__icon-before" aria-hidden="true">{{ icon_before|spaceless }}</span>{% endif %}{{ content }}{% if icon_after %}<span class="e-bolt-button__icon-after" aria-hidden="true">{{ icon_after|spaceless }}</span>{% endif %}</{{ tag }}>{% endspaceless %}
+{% spaceless %}<{{ tag }} {{ attributes.addClass(classes) }} {% if icon_only %}aria-label="{{ content|striptags }}"{% endif %}>{% if icon_only %}<span class="e-bolt-button__icon-center" aria-hidden="true">{{ icon_only|spaceless }}</span>{% else %}{% if icon_before %}<span class="e-bolt-button__icon-before" aria-hidden="true">{{ icon_before|spaceless }}</span>{% endif %}{{ content }}{% if icon_after %}<span class="e-bolt-button__icon-after" aria-hidden="true">{{ icon_after|spaceless }}</span>{% endif %}{% endif %}</{{ tag }}>{% endspaceless %}

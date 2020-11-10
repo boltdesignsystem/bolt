@@ -8,41 +8,64 @@
       name: 'chevron-right',
     } only %}
   {% endset %}
+  {% set icon_download %}
+    {% include '@bolt-components-icon/icon.twig' with {
+      name: 'download',
+    } only %}
+  {% endset %}
   {% set buttons %}
     {% include '@bolt-elements-button/button.twig' with {
-      content: 'Click this button',
+      content: 'Primary (link)',
+      link: true,
       attributes: {
-        type: 'button'
+        href: 'https://pega.com'
       }
     } only %}
     {% include '@bolt-elements-button/button.twig' with {
-      content: 'Click this button',
-      attributes: {
-        type: 'button',
-        class: 'e-bolt-button--secondary'
-      }
-    } only %}
-    {% include '@bolt-elements-button/button.twig' with {
-      content: 'Click this button',
+      content: 'Secondary',
+      hierarchy: 'secondary',
       attributes: {
         type: 'button',
-        class: 'e-bolt-button--tertiary'
       }
     } only %}
     {% include '@bolt-elements-button/button.twig' with {
-      content: 'Click this button',
+      content: 'Tertiary',
+      hierarchy: 'tertiary',
+      attributes: {
+        type: 'button',
+      }
+    } only %}
+    {% include '@bolt-elements-button/button.twig' with {
+      content: 'Transparent',
+      hierarchy: 'transparent',
+      attributes: {
+        type: 'button',
+      }
+    } only %}
+    {% include '@bolt-elements-button/button.twig' with {
+      content: 'Disabled',
       attributes: {
         type: 'button',
         disabled: true
       }
     } only %}
     {% include '@bolt-elements-button/button.twig' with {
-      content: 'Click this button',
+      content: 'Text and icon after',
       icon_after: icon_chevron_right,
       attributes: {
         type: 'button'
       }
     } only %}
+    <bolt-tooltip>
+      {% include '@bolt-elements-button/button.twig' with {
+        content: 'Download',
+        icon_only: icon_download,
+        attributes: {
+          type: 'button'
+        }
+      } only %}
+      <span slot="content">File size: 25MB</span>
+    </bolt-tooltip>
   {% endset %}
 
   <bolt-stack class="m-bolt-light u-bolt-padding-medium">
