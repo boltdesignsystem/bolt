@@ -27,11 +27,11 @@ module.exports = {
       default: 'medium',
       enum: ['xsmall', 'small', 'medium', 'large', 'xlarge'],
     },
-    width: {
+    display: {
       type: 'string',
-      description: 'Control the width of the button.',
-      default: 'auto',
-      enum: ['auto', 'full', 'full@until-small'],
+      description: 'Control the display of the button.',
+      default: 'inline',
+      enum: ['inline', 'block', 'inline@from-small'],
     },
     border_radius: {
       type: 'string',

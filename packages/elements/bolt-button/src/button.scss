@@ -182,26 +182,27 @@ $_bolt-button-hierarchy: primary, secondary, tertiary, transparent;
   }
 }
 
-.e-bolt-button--width-full {
+.e-bolt-button--block {
   display: block;
   width: 100%;
 }
 
-.e-bolt-button--width-full\@until-small {
-  @include bolt-mq($until: small) {
-    display: block;
-    width: 100%;
+.e-bolt-button--inline\@from-small {
+  display: block;
+  width: 100%;
+
+  @include bolt-mq(small) {
+    display: inline-block;
+    width: auto;
   }
 }
 
 .e-bolt-button--icon-only {
   width: calc(
-    var(--e-bolt-button-padding-y) * 2 + var(--e-bolt-button-line-height) * 1em -
-      1px
+    var(--e-bolt-button-padding-y) * 2 + var(--e-bolt-button-line-height) * 1em
   );
   height: calc(
-    var(--e-bolt-button-padding-y) * 2 + var(--e-bolt-button-line-height) * 1em -
-      1px
+    var(--e-bolt-button-padding-y) * 2 + var(--e-bolt-button-line-height) * 1em
   );
   padding: 0;
 }
