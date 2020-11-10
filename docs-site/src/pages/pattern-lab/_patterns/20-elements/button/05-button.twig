@@ -3,50 +3,54 @@
 {% endset %}
 
 {% set demo %}
-<bolt-stack class="m-bolt-light u-bolt-padding-medium">
-  {% include '@bolt-elements-button/button.twig' with {
-    content: 'Click this button',
-    attributes: {
-      type: 'button'
-    }
-  } only %}
-  {% include '@bolt-elements-button/button.twig' with {
-    content: 'Click this button',
-    attributes: {
-      type: 'button',
-      class: 'e-bolt-button--secondary'
-    }
-  } only %}
-  {% include '@bolt-elements-button/button.twig' with {
-    content: 'Click this button',
-    attributes: {
-      type: 'button',
-      class: 'e-bolt-button--tertiary'
-    }
-  } only %}
-</bolt-stack>
-<bolt-stack class="m-bolt-dark u-bolt-padding-medium">
-  {% include '@bolt-elements-button/button.twig' with {
-    content: 'Click this button',
-    attributes: {
-      type: 'button'
-    }
-  } only %}
-  {% include '@bolt-elements-button/button.twig' with {
-    content: 'Click this button',
-    attributes: {
-      type: 'button',
-      class: 'e-bolt-button--secondary'
-    }
-  } only %}
-  {% include '@bolt-elements-button/button.twig' with {
-    content: 'Click this button',
-    attributes: {
-      type: 'button',
-      class: 'e-bolt-button--tertiary'
-    }
-  } only %}
-</bolt-stack>
+  {% set icon_chevron_right %}
+    {% include '@bolt-components-icon/icon.twig' with {
+      name: 'chevron-right',
+    } only %}
+  {% endset %}
+  {% set buttons %}
+    {% include '@bolt-elements-button/button.twig' with {
+      content: 'Click this button',
+      attributes: {
+        type: 'button'
+      }
+    } only %}
+    {% include '@bolt-elements-button/button.twig' with {
+      content: 'Click this button',
+      attributes: {
+        type: 'button',
+        class: 'e-bolt-button--secondary'
+      }
+    } only %}
+    {% include '@bolt-elements-button/button.twig' with {
+      content: 'Click this button',
+      attributes: {
+        type: 'button',
+        class: 'e-bolt-button--tertiary'
+      }
+    } only %}
+    {% include '@bolt-elements-button/button.twig' with {
+      content: 'Click this button',
+      attributes: {
+        type: 'button',
+        disabled: true
+      }
+    } only %}
+    {% include '@bolt-elements-button/button.twig' with {
+      content: 'Click this button',
+      icon_after: icon_chevron_right,
+      attributes: {
+        type: 'button'
+      }
+    } only %}
+  {% endset %}
+
+  <bolt-stack class="m-bolt-light u-bolt-padding-medium">
+    {{ buttons }}
+  </bolt-stack>
+  <bolt-stack class="m-bolt-dark u-bolt-padding-medium">
+    {{ buttons }}
+  </bolt-stack>
 {% endset %}
 
 {% set twig_markup %}
