@@ -447,6 +447,8 @@ $base-video-meta-transition: $bolt-transition;
   }
 
   .vjs-controls-disabled {
+    pointer-events: none;
+
     .video-meta__item--title,
     .video-meta__item--duration {
       opacity: bolt-opacity(0);
