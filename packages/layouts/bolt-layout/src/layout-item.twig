@@ -1,7 +1,7 @@
 {% set item_attributes = create_attribute(attributes|default({})) %}
 
 <bolt-layout-item
-  {{ columns ? 'columns="' ~ columns ~ '"' : '' }}
+  {# {{ columns ? 'columns="' ~ columns ~ '"' : '' }} #}
   {{ item_attributes }}
 >
   {{ content }}

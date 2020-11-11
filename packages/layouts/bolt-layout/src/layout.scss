@@ -20,6 +20,51 @@ $bolt-layout-item-widths: (
   '75%': calc(9 / 12 * (100% + var(--c-bolt-layout-gutter) * 3)),
 );
 
+$bolt-layout-breakpoints: ('small', 'medium');
+
+$bolt-layout-mobile-options: (
+  'half width': 50%,
+  'full width': 100%,
+);
+
+$bolt-layout-larger-options: (
+  'small flag': 80px 1fr,
+  'large flag': 150px 1fr,
+  '25/75': 25% 75%,
+  '75/25': 75% 25%,
+);
+
+bolt-layout {
+  @each $breakpoint in $bolt-breakpoints {
+    $breakpoint-name: nth($breakpoint, 1);
+
+    @if (
+      $breakpoint-name !=
+        'xxsmall' and
+        $breakpoint-name !=
+        'xsmall' and
+        $breakpoint-name !=
+        'large' and
+        $breakpoint-name !=
+        'xlarge' and
+        $breakpoint-name !=
+        'xxlarge' and
+        $breakpoint-name !=
+        'xxxlarge' and
+        $breakpoint-name !=
+        'xxxxlarge'
+    ) {
+      @each $layout in $bolt-layout-larger-options {
+        @include bolt-mq($breakpoint-name) {
+          > bolt-layout-item[layout='#{$layout}'] {
+            grid-template-columns: $layout;
+          }
+        }
+      }
+    }
+  }
+}
+
 /**
  * Align options
  * 1. The terminology is future proof for i18n. It acts accordingly to the writing mode of a page.
@@ -81,24 +126,24 @@ bolt-layout {
     flex-direction: column;
 
     // Using gutter vars to set the defaults.
-    // &:not(:first-of-type) {
-    //   margin-inline-start: var(--c-bolt-layout-gutter);
-    //   padding-top: var(--c-bolt-layout-row-gutter, unset);
+    &:not(:first-of-type) {
+      margin-inline-start: var(--c-bolt-layout-gutter);
+      padding-top: var(--c-bolt-layout-row-gutter, unset);
 
-    //   @include bolt-mq(small) {
-    //     &[width*='@from-small'] {
-    //       --c-bolt-layout-row-gutter: 0;
-    //       margin-inline-start: var(--c-bolt-layout-gutter);
-    //     }
-    //   }
+      @include bolt-mq(small) {
+        &[width*='@from-small'] {
+          --c-bolt-layout-row-gutter: 0;
+          margin-inline-start: var(--c-bolt-layout-gutter);
+        }
+      }
 
-    //   @include bolt-mq(medium) {
-    //     &[width*='@from-medium'] {
-    //       --c-bolt-layout-row-gutter: 0;
-    //       margin-inline-start: var(--c-bolt-layout-gutter);
-    //     }
-    //   }
-    // }
+      @include bolt-mq(medium) {
+        &[width*='@from-medium'] {
+          --c-bolt-layout-row-gutter: 0;
+          margin-inline-start: var(--c-bolt-layout-gutter);
+        }
+      }
+    }
 
     // Loop through the width map and generate regular widths and breakpoint widths.
     @each $width in $bolt-layout-item-widths {
@@ -231,78 +276,93 @@ bolt-layout {
       align-items: #{$option-value};
     }
   }
-}
 
-bolt-layout {
-  flex-wrap: wrap;
+  // Styles for stacked items need to be replicated manually for the two supported breakpoints because variables can't be used as a param for media queries.
+  @include bolt-mq($until: small) {
+    &[stack-items='@until-small'] {
+      flex-wrap: wrap;
+      align-content: flex-start;
 
-  > bolt-layout-item {
-    &[stack-order='primary'] {
-      order: -1;
-    }
+      > bolt-layout-item {
+        &:not(:first-of-type) {
+          --c-bolt-layout-gutter: 0;
+        }
 
-    &[stack-order='secondary'] {
-      // margin-inline-start: 0;
-      // margin-inline-start: var(--c-bolt-layout-gutter);
-    }
-  }
+        &:not(:first-of-type),
+        &[stack-order='secondary'] {
+          padding-top: var(
+            --c-bolt-layout-row-gutter,
+            var(--bolt-spacing-y-medium)
+          );
+        }
 
-  // @each $size in $bolt-spacing-multiplier-system {
-  //   $size-name: nth($size, 1);
+        &[stack-order='primary'] {
+          --c-bolt-layout-row-gutter: 0;
+          --c-bolt-layout-item-valign-end-offset: 0;
+          order: -1;
+        }
 
-  //   &[row-gutter='#{$size-name}'] {
-  //     > bolt-layout-item {
-  //       &:not(:first-of-type),
-  //       &[stack-order='secondary'] {
-  //         --c-bolt-layout-row-gutter: var(--bolt-spacing-y-#{$size-name});
-  //       }
-  //     }
-  //   }
-  // }
-
-  @each $breakpoint in $bolt-breakpoints {
-    $breakpoint-name: nth($breakpoint, 1);
-
-    @include bolt-mq($breakpoint-name) {
-      &[breakpoints~='@from-#{$breakpoint-name}'] {
-        flex-wrap: nowrap;
-
-        > bolt-layout-item {
-          &:not(:first-of-type) {
-            margin-inline-start: var(--c-bolt-layout-gutter);
-          }
-
-          &[stack-order='primary'] {
-            order: 0;
-          }
+        &[stack-order='secondary'] {
+          --c-bolt-layout-item-valign-start-offset: 0;
         }
       }
-    }
 
-    @for $bolt-grid-columns from 1 through 12 {
-      @include bolt-mq($breakpoint-name) {
-        &[breakpoints~='#{$bolt-grid-columns}@from-#{$breakpoint-name}'] {
-          flex-wrap: nowrap;
+      @each $size in $bolt-spacing-multiplier-system {
+        $size-name: nth($size, 1);
 
+        &[row-gutter='#{$size-name}'] {
           > bolt-layout-item {
-            max-width: calc(#{100% / 12 * $bolt-grid-columns});
-
-            &:not(:first-of-type) {
-              margin-inline-start: var(--c-bolt-layout-gutter);
-            }
-
-            &[stack-order='primary'] {
-              order: 0;
+            &:not(:first-of-type),
+            &[stack-order='secondary'] {
+              --c-bolt-layout-row-gutter: var(--bolt-spacing-y-#{$size-name});
             }
           }
+        }
+      }
+    }
+  }
 
-          &[columns~='#{$bolt-grid-columns}@from-#{$breakpoint-name}'] {
-            max-width: calc(#{100% / 12 * $bolt-grid-columns});
+  @include bolt-mq($until: medium) {
+    &[stack-items='@until-medium'] {
+      flex-wrap: wrap;
+      align-content: flex-start;
+
+      > bolt-layout-item {
+        &:not(:first-of-type) {
+          --c-bolt-layout-gutter: 0;
+        }
+
+        &:not(:first-of-type),
+        &[stack-order='secondary'] {
+          padding-top: var(
+            --c-bolt-layout-row-gutter,
+            var(--bolt-spacing-y-medium)
+          );
+        }
+
+        &[stack-order='primary'] {
+          --c-bolt-layout-row-gutter: 0;
+          --c-bolt-layout-item-valign-end-offset: 0;
+          order: -1;
+        }
+
+        &[stack-order='secondary'] {
+          --c-bolt-layout-item-valign-start-offset: 0;
+        }
+      }
+
+      @each $size in $bolt-spacing-multiplier-system {
+        $size-name: nth($size, 1);
+
+        &[row-gutter='#{$size-name}'] {
+          > bolt-layout-item {
+            &:not(:first-of-type),
+            &[stack-order='secondary'] {
+              --c-bolt-layout-row-gutter: var(--bolt-spacing-y-#{$size-name});
+            }
           }
         }
       }
     }
   }
 }
-
-// TODO:

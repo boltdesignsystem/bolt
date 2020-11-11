@@ -63,7 +63,7 @@
   gutter: "medium",
   padding_top: "medium",
   padding_bottom: "medium",
-  breakpoints: "@from-small",
+  stack_items: "@until-small",
   items: [
     {
       content: paragraph1,
@@ -102,7 +102,7 @@
   gutter: "large",
   padding_top: "large",
   padding_bottom: "large",
-  breakpoints: "@from-small",
+  stack_items: "@until-small",
   items: [
     {
       content: paragraph1,
@@ -146,7 +146,7 @@
   row_gutter: "large",
   padding_top: "xlarge",
   padding_bottom: "xlarge",
-  breakpoints: "@from-small",
+  stack_items: "@until-small",
   valign_items: "unset",
   items: [
     {
@@ -174,7 +174,7 @@
   gutter: "medium",
   padding_top: "xxlarge",
   padding_bottom: "xxlarge",
-  breakpoints: "@from-medium",
+  stack_items: "@until-medium",
   items: [
     {
       content: paragraph,
@@ -218,7 +218,7 @@
   gutter: "xlarge",
   padding_top: "large",
   padding_bottom: "large",
-  breakpoints: "@from-small",
+  stack_items: "@until-small",
   items: [
     {
       content: content,
@@ -253,7 +253,7 @@
   gutter: "large",
   padding_top: "large",
   padding_bottom: "large",
-  breakpoints: "@from-small",
+  stack_items: "@until-small",
   items: [
     {
       content: content,
@@ -313,7 +313,7 @@
 {% endset %}
 {% set text %}
   {% include "@bolt-components-headline/headline.twig" with {
-    text: "Create a flag by setting columns on the item.",
+    text: "Create a flag by setting a pixel width on the media layout item, and not defining a width on the text layout item.",
   } only %}
   <p>Another paragraph. Suspendisse dictum feugiat nisl ut dapibus. Mauris iaculis porttitor posuere. Praesent id metus massa, ut blandit odio. Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus. In pellentesque faucibus vestibulum. Nulla at nulla justo, eget luctus tortor.</p>
 {% endset %}
@@ -322,11 +322,13 @@
   padding_top: "large",
   padding_bottom: "large",
   valign_items: "start",
-  breakpoints: "@from-small",
+  stack_items: "@until-small",
   items: [
     {
       content: media,
-      columns: "3@from-small",
+      attributes: {
+        "width": "25% 150px@from-small",
+      }
     },
     {
       content: text,
@@ -335,42 +337,6 @@
   attributes: {
     class: [
       "t-bolt-light",
-    ]
-  },
-} only %}
-
-
-
-
-{% set paragraph1 %}
-  <p><strong>Item 1:</strong> Magna nisi ex excepteur minim dolore laborum.</p>
-{% endset %}
-{% set paragraph2 %}
-  <p><strong>Item 2:</strong> Aute deserunt sit consequat laboris anim sint eu duis minim elit.</p>
-{% endset %}
-{% set paragraph3 %}
-  <p><strong>Item 3:</strong> Dolor aliquip ullamco minim quis culpa dolor fugiat aute aliqua et et et.</p>
-{% endset %}
-{% include "@bolt-layouts-layout/layout.twig" with {
-  gutter: "small",
-  padding_top: "medium",
-  padding_bottom: "medium",
-  breakpoints: "4@from-medium",
-  items: [
-    {
-      content: paragraph1,
-    },
-    {
-      content: paragraph2,
-    },
-    {
-      content: paragraph3,
-
-    },
-  ],
-  attributes: {
-    class: [
-      "t-bolt-dark",
     ]
   },
 } only %}

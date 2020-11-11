@@ -1,1 +1,21 @@
-{% include "@bolt-layouts-layout/layout.twig" only %}
+{# {% include "@bolt-layouts-layout/layout.twig" only %} #}
+
+
+{% include "@bolt-layouts-layout/layout.twig" with {
+  stack_items: "@until-small",
+  layout: "80px",
+  items: [
+    {
+      content: "Column.",
+    },
+    {
+      content: "Column.",
+    },
+    {
+      content: "Column.",
+    },
+    {
+      content: "Column.",
+    },
+  ],
+} only %}

@@ -50,12 +50,6 @@ module.exports = {
       enum: ['unset', 'justify', 'start', 'center', 'end'],
       default: 'unset',
     },
-    breakpoints: {
-      type: 'string',
-      description: 'Stack items until the layout is at specified breakpoint.',
-      enum: ['@until-small', '@until-medium'],
-      default: '@until-small',
-    },
     items: {
       type: 'array',
       description: 'Array of layout items to render inside the layout.',
@@ -68,12 +62,6 @@ module.exports = {
         content: {
           type: 'any',
           description: 'Content to render inside each layout item.',
-        },
-        columns: {
-          type: 'string',
-          description:
-            'Stack items until the layout is at specified breakpoint.',
-          default: '@until-small',
         },
         width: {
           type: 'string',
