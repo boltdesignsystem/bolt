@@ -3,7 +3,9 @@
 \* ------------------------------------ */
 
 :root,
-.m-bolt-light {
+.m-bolt-light,
+.t-bolt-light,
+.t-bolt-xlight {
   --m-bolt-text: var(--bolt-color-black);
   --m-bolt-bg: var(--bolt-color-white);
   --m-bolt-headline: var(--bolt-color-navy);
@@ -20,7 +22,9 @@
   --m-bolt-neutral: var(--bolt-color-gray);
 }
 
-.m-bolt-dark {
+.m-bolt-dark,
+.t-bolt-dark,
+.t-bolt-xdark {
   --m-bolt-text: var(--bolt-color-white);
   --m-bolt-bg: var(--bolt-color-navy);
   --m-bolt-headline: var(--bolt-color-white);
@@ -37,28 +41,15 @@
   --m-bolt-neutral: var(--bolt-color-gray);
 }
 
+.t-bolt-light {
+  --m-bolt-bg: var(--bolt-color-gray-xlight);
+}
+
+.t-bolt-xdark {
+  --m-bolt-bg: var(--bolt-color-navy-dark);
+}
+
 [class*='m-bolt-'] {
   color: var(--m-bolt-text);
   background-color: var(--m-bolt-bg);
 }
-
-/* .t-bolt-xlight {
-  @extend .m-bolt-light;
-}
-
-.t-bolt-light {
-  @extend .m-bolt-light;
-
-  --m-bolt-bg: var(--bolt-color-gray-xlight);
-}
-
-.t-bolt-dark {
-  @extend .m-bolt-dark;
-}
-
-.t-bolt-xdark {
-  @extend .m-bolt-dark;
-
-  --m-bolt-bg: var(--bolt-color-navy-dark);
-}
-*/

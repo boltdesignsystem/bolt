@@ -1,0 +1,142 @@
+{% set description %}
+  A button is generally an inline interactive graphical element. Its main purpose is to help the user perform a function (sometimes navigate).
+{% endset %}
+
+{% set demo %}
+  {% set icon_chevron_right %}
+    {% include '@bolt-components-icon/icon.twig' with {
+      name: 'chevron-right',
+    } only %}
+  {% endset %}
+  {% set icon_download %}
+    {% include '@bolt-components-icon/icon.twig' with {
+      name: 'download',
+    } only %}
+  {% endset %}
+
+  <bolt-stack>
+    {% include '@bolt-elements-button/button.twig' with {
+      content: 'Display inline from small',
+      icon_after: icon_chevron_right,
+      display: 'inline@from-small',
+      attributes: {
+        type: 'button'
+      }
+    } only %}
+  </bolt-stack>
+
+  <bolt-stack>
+    {% include '@bolt-elements-button/button.twig' with {
+      content: 'Display block',
+      icon_after: icon_chevron_right,
+      display: 'block',
+      attributes: {
+        type: 'button'
+      }
+    } only %}
+  </bolt-stack>
+
+  {% set buttons %}
+    <bolt-list display="inline" spacing="small">
+      <bolt-list-item>
+        {% include '@bolt-elements-button/button.twig' with {
+          content: 'Primary (link)',
+          link: true,
+          attributes: {
+            href: 'https://pega.com'
+          }
+        } only %}
+      </bolt-list-item>
+      <bolt-list-item>
+        {% include '@bolt-elements-button/button.twig' with {
+          content: 'Secondary',
+          hierarchy: 'secondary',
+          attributes: {
+            type: 'button',
+          }
+        } only %}
+      </bolt-list-item>
+      <bolt-list-item>
+        {% include '@bolt-elements-button/button.twig' with {
+          content: 'Tertiary',
+          hierarchy: 'tertiary',
+          attributes: {
+            type: 'button',
+          }
+        } only %}
+      </bolt-list-item>
+      <bolt-list-item>
+        {% include '@bolt-elements-button/button.twig' with {
+          content: 'Transparent',
+          hierarchy: 'transparent',
+          attributes: {
+            type: 'button',
+          }
+        } only %}
+      </bolt-list-item>
+      <bolt-list-item>
+        {% include '@bolt-elements-button/button.twig' with {
+          content: 'Disabled',
+          attributes: {
+            type: 'button',
+            disabled: true
+          }
+        } only %}
+      </bolt-list-item>
+      <bolt-list-item>
+        {% include '@bolt-elements-button/button.twig' with {
+          content: 'Text and icon after',
+          icon_after: icon_chevron_right,
+          attributes: {
+            type: 'button'
+          }
+        } only %}
+      </bolt-list-item>
+      <bolt-list-item>
+        <bolt-tooltip>
+          {% include '@bolt-elements-button/button.twig' with {
+            content: 'Download',
+            icon_only: icon_download,
+            attributes: {
+              type: 'button'
+            }
+          } only %}
+          <span slot="content">File size: 25MB</span>
+        </bolt-tooltip>
+      </bolt-list-item>
+    </bolt-list>
+  {% endset %}
+
+  <bolt-stack class="m-bolt-light u-bolt-padding-medium">
+    {{ buttons }}
+  </bolt-stack>
+  <bolt-stack class="m-bolt-dark u-bolt-padding-medium">
+    {{ buttons }}
+  </bolt-stack>
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% include '@bolt-elements-button/button.twig' with {
+  content: 'Click this button',
+  attributes: {
+    type: 'button'
+  }
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% set html_markup %}
+{% verbatim %}
+<button type="button" class="e-bolt-button">Click this button</button>
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Basic Button',
+  description: description,
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+  html_markup: html_markup,
+} only %}

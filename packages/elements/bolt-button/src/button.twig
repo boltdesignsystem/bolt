@@ -34,4 +34,4 @@
 
 {# Template #}
 {# [1], [2] #}
-{% spaceless %}<{{ tag }} {{ attributes.addClass(classes) }} {% if icon_only %}aria-label="{{ content|striptags }}"{% endif %}>{% if icon_only %}<span class="e-bolt-button__icon-center" aria-hidden="true">{{ icon_only|spaceless }}</span>{% else %}{% if icon_before %}<span class="e-bolt-button__icon-before" aria-hidden="true">{{ icon_before|spaceless }}</span>{% endif %}{{ content }}{% if icon_after %}<span class="e-bolt-button__icon-after" aria-hidden="true">{{ icon_after|spaceless }}</span>{% endif %}{% endif %}</{{ tag }}>{% endspaceless %}
+{% spaceless %}<{{ tag }} {{ attributes.addClass(classes) }} {% if icon_only %}aria-label="{{ content|striptags|spaceless }}"{% endif %}>{% if icon_only %}<span class="e-bolt-button__icon-center" aria-hidden="true">{{ icon_only|spaceless }}</span>{% else %}{% if icon_before %}<span class="e-bolt-button__icon-before" aria-hidden="true">{{ icon_before|spaceless }}</span>{% endif %}{{ content|spaceless }}{% if icon_after %}<span class="e-bolt-button__icon-after" aria-hidden="true">{{ icon_after|spaceless }}</span>{% endif %}{% endif %}</{{ tag }}>{% endspaceless %}

@@ -1,7 +1,6 @@
 module.exports = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'Text Link',
-  description: 'Underlined text that indicates interactivity.',
   type: 'object',
   required: ['content'],
   properties: {

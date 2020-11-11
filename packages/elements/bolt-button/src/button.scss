@@ -7,6 +7,8 @@
  * 1. Special tricks are used here to make inline icon work, reference the mixin scss to understand it.
  * 2. `em` unit is used to make sure the spacing between icon and text is relative to the text's font-size.
  * 3. Offsets the white space around chevron icons' SVG files.
+ * 4. Focusing the button with a keyboard will show the outline.
+ * 5. Focusing the button with a mouse, touch, or stylus will not show the outline.
  */
 
 .e-bolt-button {
@@ -52,7 +54,7 @@
   }
 
   &:before {
-    opacity: bolt-opacity(80);
+    opacity: 0.8;
     box-shadow: 0 var(--bolt-spacing-y-xxsmall) var(--bolt-spacing-y-small)
       var(--m-bolt-neutral);
   }
@@ -62,18 +64,31 @@
   }
 
   &:hover {
-    transform: translate3d(0, -1px, 0);
+    transform: translate3d(0, -2px, 0);
 
     &:after {
-      opacity: bolt-opacity(40);
+      opacity: 0.4;
       box-shadow: 0 var(--bolt-spacing-y-xsmall) var(--bolt-spacing-y-medium)
         var(--m-bolt-primary);
     }
   }
 
-  &:focus {
+  /* [4] */
+  &:focus-visible {
     outline: var(--bolt-focus-ring);
     outline-offset: 2px;
+  }
+
+  /* [5] */
+  &:focus:not(:focus-visible),
+  &:active:not(:disabled) {
+    transform: translate3d(0, 0, 0);
+    outline: none;
+
+    &:after {
+      opacity: 0.2;
+      background-color: currentColor;
+    }
   }
 
   &:disabled {
@@ -98,7 +113,7 @@ $_bolt-button-hierarchy: primary, secondary, tertiary, transparent;
         transform: translate3d(0, 0, 0);
 
         &:after {
-          opacity: bolt-opacity(20);
+          opacity: 0.2;
           box-shadow: none;
           background-color: var(--bolt-color-gray);
         }
@@ -111,7 +126,7 @@ $_bolt-button-hierarchy: primary, secondary, tertiary, transparent;
 
       @if $hierarchy-name == secondary {
         &:before {
-          opacity: bolt-opacity(40);
+          opacity: 0.4;
         }
       }
 

@@ -1,7 +1,6 @@
 module.exports = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'Button',
-  description: 'A graphical element that indicates interactivity.',
   type: 'object',
   required: ['content'],
   properties: {
@@ -14,30 +13,16 @@ module.exports = {
       type: 'object',
       description: 'Content of the button.',
     },
-    hierarchy: {
-      type: 'string',
-      description:
-        'Style the button appropriately based on information hierarchy.',
-      default: 'primary',
-      enum: ['primary', 'secondary', 'tertiary', 'transparent'],
-    },
-    size: {
-      type: 'string',
-      description: 'Control the font-size and padding of the button.',
-      default: 'medium',
-      enum: ['xsmall', 'small', 'medium', 'large', 'xlarge'],
+    link: {
+      type: 'boolean',
+      description: 'Set the semantic HTML tag to &lt;a&gt;.',
+      default: false,
     },
     display: {
       type: 'string',
       description: 'Control the display of the button.',
       default: 'inline',
       enum: ['inline', 'block', 'inline@from-small'],
-    },
-    border_radius: {
-      type: 'string',
-      description: 'Control the border radius of the button.',
-      default: 'small',
-      enum: ['small', 'large', 'full'],
     },
     icon_only: {
       type: 'object',
@@ -54,10 +39,24 @@ module.exports = {
       description:
         'Append an icon after the button content. Icon component is recommended, however, &lt;img&gt; elements are also acceptable.',
     },
-    link: {
-      type: 'boolean',
-      description: 'Set the semantic HTML tag to &lt;a&gt;.',
-      default: false,
+    hierarchy: {
+      type: 'string',
+      description:
+        'Style the button appropriately based on information hierarchy.',
+      default: 'primary',
+      enum: ['primary', 'secondary', 'tertiary', 'transparent'],
+    },
+    size: {
+      type: 'string',
+      description: 'Control the font-size and padding of the button.',
+      default: 'medium',
+      enum: ['xsmall', 'small', 'medium', 'large', 'xlarge'],
+    },
+    border_radius: {
+      type: 'string',
+      description: 'Control the border radius of the button.',
+      default: 'small',
+      enum: ['small', 'large', 'full'],
     },
   },
 };
