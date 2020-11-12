@@ -3,7 +3,7 @@
 \* ------------------------------------ */
 
 @mixin bolt-text-link {
-  color: bolt-theme(link);
+  color: var(--m-bolt-link);
   text-decoration: underline;
   text-decoration-color: currentColor;
   text-decoration-thickness: 1px;
@@ -21,8 +21,8 @@
 
   &:hover,
   &:focus {
-    color: bolt-theme(headline);
-    text-decoration-color: bolt-theme(link);
+    color: var(--m-bolt-headline);
+    text-decoration-color: var(--m-bolt-link);
     text-decoration-thickness: 2px;
     text-underline-offset: 3px;
   }
@@ -33,6 +33,6 @@
   }
 
   &:active {
-    color: bolt-theme(text);
+    color: var(--m-bolt-text);
   }
 }

@@ -18,12 +18,6 @@ module.exports = {
       description: 'Set the semantic HTML tag to &lt;a&gt;.',
       default: false,
     },
-    display: {
-      type: 'string',
-      description: 'Control the display of the button.',
-      default: 'inline',
-      enum: ['inline', 'block', 'inline@from-small'],
-    },
     icon_only: {
       type: 'object',
       description:
@@ -50,13 +44,19 @@ module.exports = {
       type: 'string',
       description: 'Control the font-size and padding of the button.',
       default: 'medium',
-      enum: ['xsmall', 'small', 'medium', 'large', 'xlarge'],
+      enum: ['xsmall', 'small', 'medium', 'large'],
     },
     border_radius: {
       type: 'string',
       description: 'Control the border radius of the button.',
       default: 'small',
       enum: ['small', 'large', 'full'],
+    },
+    display: {
+      type: 'string',
+      description: 'Control the display of the button.',
+      default: 'inline',
+      enum: ['inline', 'block', 'inline@from-small'],
     },
   },
 };

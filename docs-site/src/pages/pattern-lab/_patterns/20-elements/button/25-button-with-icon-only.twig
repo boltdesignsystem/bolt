@@ -1,139 +1,90 @@
 {% set description %}
-  A button is generally an inline interactive graphical element. Its main purpose is to help the user perform a function (sometimes navigate).
+  Icon only button visually hides the text content of the button. Such button should be used sparingly and only in places where screen real estate is a concern.
 {% endset %}
 
 {% set demo %}
-  {% set icon_chevron_right %}
-    {% include '@bolt-components-icon/icon.twig' with {
-      name: 'chevron-right',
-    } only %}
-  {% endset %}
-  {% set icon_download %}
-    {% include '@bolt-components-icon/icon.twig' with {
-      name: 'download',
-    } only %}
-  {% endset %}
-
-  <bolt-stack>
-    {% include '@bolt-elements-button/button.twig' with {
-      content: 'Display inline from small',
-      icon_after: icon_chevron_right,
-      display: 'inline@from-small',
-      attributes: {
-        type: 'button'
-      }
-    } only %}
-  </bolt-stack>
-
-  <bolt-stack>
-    {% include '@bolt-elements-button/button.twig' with {
-      content: 'Display block',
-      icon_after: icon_chevron_right,
-      display: 'block',
-      attributes: {
-        type: 'button'
-      }
-    } only %}
-  </bolt-stack>
-
-  {% set buttons %}
-    <bolt-list display="inline" spacing="small">
-      <bolt-list-item>
+  <bolt-list display="inline" spacing="small">
+    <bolt-list-item>
+      <bolt-tooltip>
+        {% set icon_download %}
+          {% include '@bolt-components-icon/icon.twig' with {
+            name: 'download',
+          } only %}
+        {% endset %}
         {% include '@bolt-elements-button/button.twig' with {
-          content: 'Primary (link)',
-          link: true,
-          attributes: {
-            href: 'https://pega.com'
-          }
-        } only %}
-      </bolt-list-item>
-      <bolt-list-item>
-        {% include '@bolt-elements-button/button.twig' with {
-          content: 'Secondary',
-          hierarchy: 'secondary',
-          attributes: {
-            type: 'button',
-          }
-        } only %}
-      </bolt-list-item>
-      <bolt-list-item>
-        {% include '@bolt-elements-button/button.twig' with {
-          content: 'Tertiary',
-          hierarchy: 'tertiary',
-          attributes: {
-            type: 'button',
-          }
-        } only %}
-      </bolt-list-item>
-      <bolt-list-item>
-        {% include '@bolt-elements-button/button.twig' with {
-          content: 'Transparent',
-          hierarchy: 'transparent',
-          attributes: {
-            type: 'button',
-          }
-        } only %}
-      </bolt-list-item>
-      <bolt-list-item>
-        {% include '@bolt-elements-button/button.twig' with {
-          content: 'Disabled',
-          attributes: {
-            type: 'button',
-            disabled: true
-          }
-        } only %}
-      </bolt-list-item>
-      <bolt-list-item>
-        {% include '@bolt-elements-button/button.twig' with {
-          content: 'Text and icon after',
-          icon_after: icon_chevron_right,
+          content: 'Download',
+          icon_only: icon_download,
           attributes: {
             type: 'button'
           }
         } only %}
-      </bolt-list-item>
-      <bolt-list-item>
-        <bolt-tooltip>
-          {% include '@bolt-elements-button/button.twig' with {
-            content: 'Download',
-            icon_only: icon_download,
-            attributes: {
-              type: 'button'
-            }
+        <span slot="content">File size: 25MB</span>
+      </bolt-tooltip>
+    </bolt-list-item>
+    <bolt-list-item>
+      <bolt-tooltip>
+        {% set icon_add %}
+          {% include '@bolt-components-icon/icon.twig' with {
+            name: 'add',
           } only %}
-          <span slot="content">File size: 25MB</span>
-        </bolt-tooltip>
-      </bolt-list-item>
-    </bolt-list>
-  {% endset %}
+        {% endset %}
+        {% include '@bolt-elements-button/button.twig' with {
+          content: 'Add',
+          icon_only: icon_add,
+          attributes: {
+            type: 'button'
+          }
+        } only %}
+        <span slot="content">Add another row</span>
+      </bolt-tooltip>
+    </bolt-list-item>
+  </bolt-list>
+{% endset %}
 
-  <bolt-stack class="m-bolt-light u-bolt-padding-medium">
-    {{ buttons }}
-  </bolt-stack>
-  <bolt-stack class="m-bolt-dark u-bolt-padding-medium">
-    {{ buttons }}
-  </bolt-stack>
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>It is recommended that icon only buttons to be used in tandem with tooltip to give the user more context about the button&rsquo;s function.</bolt-li>
+    <bolt-li>When writing in plain HTML, <bolt-code-snippet display="inline">aria-label</bolt-code-snippet> is required, and it must equal to the button text. For example: <bolt-code-snippet display="inline" lang="html">&lt;button type="button" class="e-bolt-button" aria-label="Download"&gt;</bolt-code-snippet>. Text should not be used inside the button when using <bolt-code-snippet display="inline">aria-label</bolt-code-snippet>.</bolt-li>
+    <bolt-li>When writing in plain HTML, <bolt-code-snippet display="inline" lang="html">&lt;span class="e-bolt-button__icon-center"&gt;</bolt-code-snippet> is required to wrap around the icon markup. The wrapper ensures that the icon will always center within the button.</bolt-li>
+  </bolt-ol>
 {% endset %}
 
 {% set twig_markup %}
 {% verbatim %}
-{% include '@bolt-elements-button/button.twig' with {
-  content: 'Click this button',
-  attributes: {
-    type: 'button'
-  }
+// Icon only button combined with tooltip
+{% set icon_download %}
+  {% include '@bolt-components-icon/icon.twig' with {
+    name: 'download',
+  } only %}
+{% endset %}
+{% set tooltip_trigger %}
+  {% include '@bolt-elements-button/button.twig' with {
+    content: 'Download',
+    icon_only: icon_download,
+    attributes: {
+      type: 'button'
+    }
+  } only %}
+{% endset %}
+{% include '@bolt-components-tooltip/tooltip.twig' with {
+  trigger: tooltip_trigger,
+  content: 'File size: 25MB',
 } only %}
 {% endverbatim %}
 {% endset %}
 
 {% set html_markup %}
 {% verbatim %}
-<button type="button" class="e-bolt-button">Click this button</button>
+// Icon only button combined with tooltip
+<bolt-tooltip>
+  <button type="button" class="e-bolt-button" aria-label="Download"><span class="e-bolt-button__icon-center"><bolt-icon name="download"></bolt-icon></span></button>
+  <span slot="content">File size: 25MB</span>
+</bolt-tooltip>
 {% endverbatim %}
 {% endset %}
 
 {% include '@utils/pattern-doc-page.twig' with {
-  title: 'Basic Button',
+  title: 'Icon Only Button',
   description: description,
   notes: notes,
   demo: demo,
