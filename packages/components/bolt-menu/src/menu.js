@@ -36,20 +36,20 @@ class BoltMenu extends withContext(BoltElement) {
   }
 
   render() {
-    const classes = cx('c-bolt-menu__title', {
-      [`c-bolt-menu__title--spacing-${this.spacing}`]: this.spacing,
+    const classes = cx('c-bolt-menu', {
+      [`c-bolt-menu--spacing-${this.spacing}`]: this.spacing,
     });
 
     return html`
-      <div class="${cx(`c-bolt-menu`)}" role="presentation">
+      <span class="${classes}" role="presentation">
         ${this.slotMap.get('title') &&
           html`
-            <div class="${classes}">
+            <span class="${cx('c-bolt-menu__title')}">
               ${this.slotify('title')}
-            </div>
+            </span>
           `}
         ${this.slotify('default')}
-      </div>
+      </span>
     `;
   }
 }

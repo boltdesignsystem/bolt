@@ -2,27 +2,48 @@
    Menu
 \* ------------------------------------ */
 
+/**
+ * Dev notes:
+ * 1. [Mai] This CSS var is defined in menu.scss.
+ * 2. [Mai] Reset font styles here so it doesn't inherit from parent container.
+ * 3. [Mai] Reset the stacking order to be the lowest within the item container.
+ * 4. [Mai] Repeat the interactive styles for when the copy-to-clipboard component is used as a menu-item.
+ * 5. [Mai] Set the menu-item width to 100% when the copy-to-clipboard component is used as a menu-item.
+ * 6. [Mai] Fix icon and text vertical alignment.
+*/
+
 @import '@bolt/core-v3.x';
 @import './_menu-settings-and-tools.scss';
 
 // Register Custom Block Element
 @include bolt-repeat-rule(('bolt-menu-item', ':host')) {
   display: block;
+
+  & + * {
+    border-top-color: $bolt-menu-border-color;
+    border-top-style: $bolt-menu-border-style;
+    border-top-width: $bolt-menu-border-width;
+  }
+
+  bolt-icon[size] {
+    display: block;
+    place-items: center;
+  }
 }
 
 .c-bolt-menu-item {
-  display: block;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  grid-gap: var(--bolt-spacing-x-xsmall);
+  align-items: center;
   position: relative;
   transform: translate3d(0, 0, 0);
-  // [Mai] reset font styles here so it doesn't inherit from parent container.
-  font-family: var(--bolt-type-font-family-body);
-  font-size: var(--bolt-type-font-size-xsmall);
-  font-weight: var(--bolt-type-font-weight-regular);
+  padding: var(--c-bolt-menu-item-spacing); /* [1] */
+  font-family: var(--bolt-type-font-family-body); /* [2] */
+  font-size: var(--bolt-type-font-size-small); /* [2] */
+  font-weight: var(--bolt-type-font-weight-regular); /* [2] */
   color: bolt-theme(text);
-  line-height: var(--bolt-type-line-height-xsmall);
-  border-bottom-color: $bolt-menu-border-color;
-  border-bottom-style: $bolt-menu-border-style;
-  border-bottom-width: $bolt-menu-border-width;
+  line-height: var(--bolt-type-line-height-small); /* [2] */
   transition: background-color $bolt-transition;
 
   &:before,
@@ -30,7 +51,7 @@
     content: '';
     display: block;
     position: absolute;
-    z-index: 0; // Resets the stacking order to be the lowest within the item container.
+    z-index: 0; /* [3] */
     user-select: none;
   }
 
@@ -56,7 +77,9 @@
     transition: height $bolt-transition;
   }
 
-  @at-root bolt-trigger:hover & {
+  /* [4] */
+  bolt-trigger:hover &,
+  .c-bolt-copy-to-clipboard__trigger:hover & {
     color: bolt-theme(link);
 
     &:before {
@@ -65,14 +88,16 @@
     }
   }
 
-  @at-root bolt-trigger:active & {
+  bolt-trigger:active &,
+  .c-bolt-copy-to-clipboard__trigger:active & {
     background-color: bolt-theme(link, 0.1);
   }
 
-  /* This doesn't work in IE. Oh well. */
-  @at-root bolt-trigger:focus-within & {
+  bolt-trigger:focus-within &,
+  .c-bolt-copy-to-clipboard__trigger:focus-within & {
     font-weight: var(--bolt-type-font-weight-semibold);
     color: bolt-theme(headline);
+    outline: none;
 
     &:before {
       width: 100%;
@@ -83,16 +108,17 @@
       height: calc(100% - var(--bolt-spacing-y-xsmall) * 2);
     }
   }
-}
 
-.c-bolt-menu-item--last-item {
-  border-bottom-width: 0;
-}
-
-// Spacing
-@each $value in $bolt-menu-spacing-values {
-  .c-bolt-menu-item--spacing-#{$value} {
-    padding: calc(var(--bolt-spacing-y-#{$value}) / 2)
-      var(--bolt-spacing-x-#{$value});
+  bolt-copy-to-clipboard & {
+    width: 100%; /* [5] */
   }
+}
+
+[class*='c-bolt-menu-item__icon-'] {
+  display: inline-flex;
+  place-items: center;
+}
+
+.c-bolt-menu-item__icon-after {
+  margin-left: auto;
 }
