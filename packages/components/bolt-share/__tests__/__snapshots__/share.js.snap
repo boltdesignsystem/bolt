@@ -4,6 +4,7 @@ exports[`<bolt-share> Component basic usage 1`] = `
 <bolt-share size="medium"
             opacity="100"
             align="start"
+            display="inline"
 >
   <div class="c-bolt-share c-bolt-share--opacity-100">
     <bolt-list tag="ul"
@@ -38,6 +39,7 @@ exports[`<bolt-share> Component basic usage 1`] = `
             >
               <bolt-icon name="facebook-solid"
                          size="medium"
+                         aria-hidden="true"
               >
                 <span class="c-bolt-icon c-bolt-icon--facebook-solid c-bolt-icon--medium">
                   <svg class="c-bolt-icon__icon c-bolt-icon__icon--medium"
@@ -53,7 +55,7 @@ exports[`<bolt-share> Component basic usage 1`] = `
                 </span>
               </bolt-icon>
               <span class="c-bolt-share__link-text">
-                Facebook
+                Share via Facebook
               </span>
             </a>
           </ssr-keep>
@@ -69,6 +71,7 @@ exports[`<bolt-share> Component basic usage 1`] = `
             >
               <bolt-icon name="twitter"
                          size="medium"
+                         aria-hidden="true"
               >
                 <span class="c-bolt-icon c-bolt-icon--twitter c-bolt-icon--medium">
                   <svg class="c-bolt-icon__icon c-bolt-icon__icon--medium"
@@ -84,7 +87,7 @@ exports[`<bolt-share> Component basic usage 1`] = `
                 </span>
               </bolt-icon>
               <span class="c-bolt-share__link-text">
-                Twitter
+                Share via Twitter
               </span>
             </a>
           </ssr-keep>
@@ -100,6 +103,7 @@ exports[`<bolt-share> Component basic usage 1`] = `
             >
               <bolt-icon name="linkedin"
                          size="medium"
+                         aria-hidden="true"
               >
                 <span class="c-bolt-icon c-bolt-icon--linkedin c-bolt-icon--medium">
                   <svg class="c-bolt-icon__icon c-bolt-icon__icon--medium"
@@ -115,7 +119,7 @@ exports[`<bolt-share> Component basic usage 1`] = `
                 </span>
               </bolt-icon>
               <span class="c-bolt-share__link-text">
-                LinkedIn
+                Share via LinkedIn
               </span>
             </a>
           </ssr-keep>
@@ -131,6 +135,7 @@ exports[`<bolt-share> Component basic usage 1`] = `
             >
               <bolt-icon name="email"
                          size="medium"
+                         aria-hidden="true"
               >
                 <span class="c-bolt-icon c-bolt-icon--email c-bolt-icon--medium">
                   <svg class="c-bolt-icon__icon c-bolt-icon__icon--medium"
@@ -151,7 +156,7 @@ exports[`<bolt-share> Component basic usage 1`] = `
                 </span>
               </bolt-icon>
               <span class="c-bolt-share__link-text">
-                Email
+                Share via Email
               </span>
             </a>
           </ssr-keep>
@@ -171,6 +176,7 @@ exports[`<bolt-share> Component basic usage 1`] = `
                   <span class="c-bolt-share__link">
                     <bolt-icon name="asset-link"
                                size="medium"
+                               aria-hidden="true"
                     >
                       <span class="c-bolt-icon c-bolt-icon--asset-link c-bolt-icon--medium">
                         <svg class="c-bolt-icon__icon c-bolt-icon__icon--medium"
@@ -199,6 +205,7 @@ exports[`<bolt-share> Component basic usage 1`] = `
                     <bolt-icon class="c-bolt-share__copy-animation"
                                name="refresh"
                                size="medium"
+                               aria-hidden="true"
                     >
                       <span class="c-bolt-icon c-bolt-icon--refresh c-bolt-icon--medium">
                         <svg class="c-bolt-icon__icon c-bolt-icon__icon--medium"
@@ -220,12 +227,16 @@ exports[`<bolt-share> Component basic usage 1`] = `
                         </svg>
                       </span>
                     </bolt-icon>
+                    <span class="u-bolt-visuallyhidden">
+                      Copying...
+                    </span>
                   </span>
                 </span>
                 <span class="c-bolt-copy-to-clipboard__confirmation">
                   <div class="c-bolt-share__link">
                     <bolt-icon name="check"
                                size="medium"
+                               aria-hidden="true"
                     >
                       <span class="c-bolt-icon c-bolt-icon--check c-bolt-icon--medium">
                         <svg class="c-bolt-icon__icon c-bolt-icon__icon--medium"
@@ -264,6 +275,7 @@ exports[`<bolt-share> Component share align: center 1`] = `
 <bolt-share size="medium"
             opacity="100"
             align="center"
+            display="inline"
 >
   <div class="c-bolt-share c-bolt-share--opacity-100">
     <bolt-list tag="ul"
@@ -298,6 +310,7 @@ exports[`<bolt-share> Component share align: center 1`] = `
             >
               <bolt-icon name="facebook-solid"
                          size="medium"
+                         aria-hidden="true"
               >
                 <span class="c-bolt-icon c-bolt-icon--facebook-solid c-bolt-icon--medium">
                   <svg class="c-bolt-icon__icon c-bolt-icon__icon--medium"
@@ -313,7 +326,7 @@ exports[`<bolt-share> Component share align: center 1`] = `
                 </span>
               </bolt-icon>
               <span class="c-bolt-share__link-text">
-                Facebook
+                Share via Facebook
               </span>
             </a>
           </ssr-keep>
@@ -329,6 +342,7 @@ exports[`<bolt-share> Component share align: center 1`] = `
             >
               <bolt-icon name="twitter"
                          size="medium"
+                         aria-hidden="true"
               >
                 <span class="c-bolt-icon c-bolt-icon--twitter c-bolt-icon--medium">
                   <svg class="c-bolt-icon__icon c-bolt-icon__icon--medium"
@@ -344,7 +358,7 @@ exports[`<bolt-share> Component share align: center 1`] = `
                 </span>
               </bolt-icon>
               <span class="c-bolt-share__link-text">
-                Twitter
+                Share via Twitter
               </span>
             </a>
           </ssr-keep>
@@ -360,6 +374,7 @@ exports[`<bolt-share> Component share align: center 1`] = `
             >
               <bolt-icon name="linkedin"
                          size="medium"
+                         aria-hidden="true"
               >
                 <span class="c-bolt-icon c-bolt-icon--linkedin c-bolt-icon--medium">
                   <svg class="c-bolt-icon__icon c-bolt-icon__icon--medium"
@@ -375,7 +390,7 @@ exports[`<bolt-share> Component share align: center 1`] = `
                 </span>
               </bolt-icon>
               <span class="c-bolt-share__link-text">
-                LinkedIn
+                Share via LinkedIn
               </span>
             </a>
           </ssr-keep>
@@ -393,6 +408,7 @@ exports[`<bolt-share> Component share align: center 1`] = `
             >
               <bolt-icon name="email"
                          size="medium"
+                         aria-hidden="true"
               >
                 <span class="c-bolt-icon c-bolt-icon--email c-bolt-icon--medium">
                   <svg class="c-bolt-icon__icon c-bolt-icon__icon--medium"
@@ -413,7 +429,7 @@ exports[`<bolt-share> Component share align: center 1`] = `
                 </span>
               </bolt-icon>
               <span class="c-bolt-share__link-text">
-                Email
+                Share via Email
               </span>
             </a>
           </ssr-keep>
@@ -428,6 +444,7 @@ exports[`<bolt-share> Component share align: end 1`] = `
 <bolt-share size="medium"
             opacity="100"
             align="end"
+            display="inline"
 >
   <div class="c-bolt-share c-bolt-share--opacity-100">
     <bolt-list tag="ul"
@@ -462,6 +479,7 @@ exports[`<bolt-share> Component share align: end 1`] = `
             >
               <bolt-icon name="facebook-solid"
                          size="medium"
+                         aria-hidden="true"
               >
                 <span class="c-bolt-icon c-bolt-icon--facebook-solid c-bolt-icon--medium">
                   <svg class="c-bolt-icon__icon c-bolt-icon__icon--medium"
@@ -477,7 +495,7 @@ exports[`<bolt-share> Component share align: end 1`] = `
                 </span>
               </bolt-icon>
               <span class="c-bolt-share__link-text">
-                Facebook
+                Share via Facebook
               </span>
             </a>
           </ssr-keep>
@@ -493,6 +511,7 @@ exports[`<bolt-share> Component share align: end 1`] = `
             >
               <bolt-icon name="twitter"
                          size="medium"
+                         aria-hidden="true"
               >
                 <span class="c-bolt-icon c-bolt-icon--twitter c-bolt-icon--medium">
                   <svg class="c-bolt-icon__icon c-bolt-icon__icon--medium"
@@ -508,7 +527,7 @@ exports[`<bolt-share> Component share align: end 1`] = `
                 </span>
               </bolt-icon>
               <span class="c-bolt-share__link-text">
-                Twitter
+                Share via Twitter
               </span>
             </a>
           </ssr-keep>
@@ -524,6 +543,7 @@ exports[`<bolt-share> Component share align: end 1`] = `
             >
               <bolt-icon name="linkedin"
                          size="medium"
+                         aria-hidden="true"
               >
                 <span class="c-bolt-icon c-bolt-icon--linkedin c-bolt-icon--medium">
                   <svg class="c-bolt-icon__icon c-bolt-icon__icon--medium"
@@ -539,7 +559,7 @@ exports[`<bolt-share> Component share align: end 1`] = `
                 </span>
               </bolt-icon>
               <span class="c-bolt-share__link-text">
-                LinkedIn
+                Share via LinkedIn
               </span>
             </a>
           </ssr-keep>
@@ -557,6 +577,7 @@ exports[`<bolt-share> Component share align: end 1`] = `
             >
               <bolt-icon name="email"
                          size="medium"
+                         aria-hidden="true"
               >
                 <span class="c-bolt-icon c-bolt-icon--email c-bolt-icon--medium">
                   <svg class="c-bolt-icon__icon c-bolt-icon__icon--medium"
@@ -577,7 +598,7 @@ exports[`<bolt-share> Component share align: end 1`] = `
                 </span>
               </bolt-icon>
               <span class="c-bolt-share__link-text">
-                Email
+                Share via Email
               </span>
             </a>
           </ssr-keep>
@@ -592,6 +613,7 @@ exports[`<bolt-share> Component share align: start 1`] = `
 <bolt-share size="medium"
             opacity="100"
             align="start"
+            display="inline"
 >
   <div class="c-bolt-share c-bolt-share--opacity-100">
     <bolt-list tag="ul"
@@ -626,6 +648,7 @@ exports[`<bolt-share> Component share align: start 1`] = `
             >
               <bolt-icon name="facebook-solid"
                          size="medium"
+                         aria-hidden="true"
               >
                 <span class="c-bolt-icon c-bolt-icon--facebook-solid c-bolt-icon--medium">
                   <svg class="c-bolt-icon__icon c-bolt-icon__icon--medium"
@@ -641,7 +664,7 @@ exports[`<bolt-share> Component share align: start 1`] = `
                 </span>
               </bolt-icon>
               <span class="c-bolt-share__link-text">
-                Facebook
+                Share via Facebook
               </span>
             </a>
           </ssr-keep>
@@ -657,6 +680,7 @@ exports[`<bolt-share> Component share align: start 1`] = `
             >
               <bolt-icon name="twitter"
                          size="medium"
+                         aria-hidden="true"
               >
                 <span class="c-bolt-icon c-bolt-icon--twitter c-bolt-icon--medium">
                   <svg class="c-bolt-icon__icon c-bolt-icon__icon--medium"
@@ -672,7 +696,7 @@ exports[`<bolt-share> Component share align: start 1`] = `
                 </span>
               </bolt-icon>
               <span class="c-bolt-share__link-text">
-                Twitter
+                Share via Twitter
               </span>
             </a>
           </ssr-keep>
@@ -688,6 +712,7 @@ exports[`<bolt-share> Component share align: start 1`] = `
             >
               <bolt-icon name="linkedin"
                          size="medium"
+                         aria-hidden="true"
               >
                 <span class="c-bolt-icon c-bolt-icon--linkedin c-bolt-icon--medium">
                   <svg class="c-bolt-icon__icon c-bolt-icon__icon--medium"
@@ -703,7 +728,7 @@ exports[`<bolt-share> Component share align: start 1`] = `
                 </span>
               </bolt-icon>
               <span class="c-bolt-share__link-text">
-                LinkedIn
+                Share via LinkedIn
               </span>
             </a>
           </ssr-keep>
@@ -721,6 +746,7 @@ exports[`<bolt-share> Component share align: start 1`] = `
             >
               <bolt-icon name="email"
                          size="medium"
+                         aria-hidden="true"
               >
                 <span class="c-bolt-icon c-bolt-icon--email c-bolt-icon--medium">
                   <svg class="c-bolt-icon__icon c-bolt-icon__icon--medium"
@@ -741,7 +767,7 @@ exports[`<bolt-share> Component share align: start 1`] = `
                 </span>
               </bolt-icon>
               <span class="c-bolt-share__link-text">
-                Email
+                Share via Email
               </span>
             </a>
           </ssr-keep>
@@ -756,6 +782,7 @@ exports[`<bolt-share> Component share opacity: 20 1`] = `
 <bolt-share size="medium"
             opacity="20"
             align="start"
+            display="inline"
 >
   <div class="c-bolt-share c-bolt-share--opacity-20">
     <bolt-list tag="ul"
@@ -790,6 +817,7 @@ exports[`<bolt-share> Component share opacity: 20 1`] = `
             >
               <bolt-icon name="facebook-solid"
                          size="medium"
+                         aria-hidden="true"
               >
                 <span class="c-bolt-icon c-bolt-icon--facebook-solid c-bolt-icon--medium">
                   <svg class="c-bolt-icon__icon c-bolt-icon__icon--medium"
@@ -805,7 +833,7 @@ exports[`<bolt-share> Component share opacity: 20 1`] = `
                 </span>
               </bolt-icon>
               <span class="c-bolt-share__link-text">
-                Facebook
+                Share via Facebook
               </span>
             </a>
           </ssr-keep>
@@ -821,6 +849,7 @@ exports[`<bolt-share> Component share opacity: 20 1`] = `
             >
               <bolt-icon name="twitter"
                          size="medium"
+                         aria-hidden="true"
               >
                 <span class="c-bolt-icon c-bolt-icon--twitter c-bolt-icon--medium">
                   <svg class="c-bolt-icon__icon c-bolt-icon__icon--medium"
@@ -836,7 +865,7 @@ exports[`<bolt-share> Component share opacity: 20 1`] = `
                 </span>
               </bolt-icon>
               <span class="c-bolt-share__link-text">
-                Twitter
+                Share via Twitter
               </span>
             </a>
           </ssr-keep>
@@ -852,6 +881,7 @@ exports[`<bolt-share> Component share opacity: 20 1`] = `
             >
               <bolt-icon name="linkedin"
                          size="medium"
+                         aria-hidden="true"
               >
                 <span class="c-bolt-icon c-bolt-icon--linkedin c-bolt-icon--medium">
                   <svg class="c-bolt-icon__icon c-bolt-icon__icon--medium"
@@ -867,7 +897,7 @@ exports[`<bolt-share> Component share opacity: 20 1`] = `
                 </span>
               </bolt-icon>
               <span class="c-bolt-share__link-text">
-                LinkedIn
+                Share via LinkedIn
               </span>
             </a>
           </ssr-keep>
@@ -885,6 +915,7 @@ exports[`<bolt-share> Component share opacity: 20 1`] = `
             >
               <bolt-icon name="email"
                          size="medium"
+                         aria-hidden="true"
               >
                 <span class="c-bolt-icon c-bolt-icon--email c-bolt-icon--medium">
                   <svg class="c-bolt-icon__icon c-bolt-icon__icon--medium"
@@ -905,7 +936,7 @@ exports[`<bolt-share> Component share opacity: 20 1`] = `
                 </span>
               </bolt-icon>
               <span class="c-bolt-share__link-text">
-                Email
+                Share via Email
               </span>
             </a>
           </ssr-keep>
@@ -920,6 +951,7 @@ exports[`<bolt-share> Component share opacity: 40 1`] = `
 <bolt-share size="medium"
             opacity="40"
             align="start"
+            display="inline"
 >
   <div class="c-bolt-share c-bolt-share--opacity-40">
     <bolt-list tag="ul"
@@ -954,6 +986,7 @@ exports[`<bolt-share> Component share opacity: 40 1`] = `
             >
               <bolt-icon name="facebook-solid"
                          size="medium"
+                         aria-hidden="true"
               >
                 <span class="c-bolt-icon c-bolt-icon--facebook-solid c-bolt-icon--medium">
                   <svg class="c-bolt-icon__icon c-bolt-icon__icon--medium"
@@ -969,7 +1002,7 @@ exports[`<bolt-share> Component share opacity: 40 1`] = `
                 </span>
               </bolt-icon>
               <span class="c-bolt-share__link-text">
-                Facebook
+                Share via Facebook
               </span>
             </a>
           </ssr-keep>
@@ -985,6 +1018,7 @@ exports[`<bolt-share> Component share opacity: 40 1`] = `
             >
               <bolt-icon name="twitter"
                          size="medium"
+                         aria-hidden="true"
               >
                 <span class="c-bolt-icon c-bolt-icon--twitter c-bolt-icon--medium">
                   <svg class="c-bolt-icon__icon c-bolt-icon__icon--medium"
@@ -1000,7 +1034,7 @@ exports[`<bolt-share> Component share opacity: 40 1`] = `
                 </span>
               </bolt-icon>
               <span class="c-bolt-share__link-text">
-                Twitter
+                Share via Twitter
               </span>
             </a>
           </ssr-keep>
@@ -1016,6 +1050,7 @@ exports[`<bolt-share> Component share opacity: 40 1`] = `
             >
               <bolt-icon name="linkedin"
                          size="medium"
+                         aria-hidden="true"
               >
                 <span class="c-bolt-icon c-bolt-icon--linkedin c-bolt-icon--medium">
                   <svg class="c-bolt-icon__icon c-bolt-icon__icon--medium"
@@ -1031,7 +1066,7 @@ exports[`<bolt-share> Component share opacity: 40 1`] = `
                 </span>
               </bolt-icon>
               <span class="c-bolt-share__link-text">
-                LinkedIn
+                Share via LinkedIn
               </span>
             </a>
           </ssr-keep>
@@ -1049,6 +1084,7 @@ exports[`<bolt-share> Component share opacity: 40 1`] = `
             >
               <bolt-icon name="email"
                          size="medium"
+                         aria-hidden="true"
               >
                 <span class="c-bolt-icon c-bolt-icon--email c-bolt-icon--medium">
                   <svg class="c-bolt-icon__icon c-bolt-icon__icon--medium"
@@ -1069,7 +1105,7 @@ exports[`<bolt-share> Component share opacity: 40 1`] = `
                 </span>
               </bolt-icon>
               <span class="c-bolt-share__link-text">
-                Email
+                Share via Email
               </span>
             </a>
           </ssr-keep>
@@ -1084,6 +1120,7 @@ exports[`<bolt-share> Component share opacity: 60 1`] = `
 <bolt-share size="medium"
             opacity="60"
             align="start"
+            display="inline"
 >
   <div class="c-bolt-share c-bolt-share--opacity-60">
     <bolt-list tag="ul"
@@ -1118,6 +1155,7 @@ exports[`<bolt-share> Component share opacity: 60 1`] = `
             >
               <bolt-icon name="facebook-solid"
                          size="medium"
+                         aria-hidden="true"
               >
                 <span class="c-bolt-icon c-bolt-icon--facebook-solid c-bolt-icon--medium">
                   <svg class="c-bolt-icon__icon c-bolt-icon__icon--medium"
@@ -1133,7 +1171,7 @@ exports[`<bolt-share> Component share opacity: 60 1`] = `
                 </span>
               </bolt-icon>
               <span class="c-bolt-share__link-text">
-                Facebook
+                Share via Facebook
               </span>
             </a>
           </ssr-keep>
@@ -1149,6 +1187,7 @@ exports[`<bolt-share> Component share opacity: 60 1`] = `
             >
               <bolt-icon name="twitter"
                          size="medium"
+                         aria-hidden="true"
               >
                 <span class="c-bolt-icon c-bolt-icon--twitter c-bolt-icon--medium">
                   <svg class="c-bolt-icon__icon c-bolt-icon__icon--medium"
@@ -1164,7 +1203,7 @@ exports[`<bolt-share> Component share opacity: 60 1`] = `
                 </span>
               </bolt-icon>
               <span class="c-bolt-share__link-text">
-                Twitter
+                Share via Twitter
               </span>
             </a>
           </ssr-keep>
@@ -1180,6 +1219,7 @@ exports[`<bolt-share> Component share opacity: 60 1`] = `
             >
               <bolt-icon name="linkedin"
                          size="medium"
+                         aria-hidden="true"
               >
                 <span class="c-bolt-icon c-bolt-icon--linkedin c-bolt-icon--medium">
                   <svg class="c-bolt-icon__icon c-bolt-icon__icon--medium"
@@ -1195,7 +1235,7 @@ exports[`<bolt-share> Component share opacity: 60 1`] = `
                 </span>
               </bolt-icon>
               <span class="c-bolt-share__link-text">
-                LinkedIn
+                Share via LinkedIn
               </span>
             </a>
           </ssr-keep>
@@ -1213,6 +1253,7 @@ exports[`<bolt-share> Component share opacity: 60 1`] = `
             >
               <bolt-icon name="email"
                          size="medium"
+                         aria-hidden="true"
               >
                 <span class="c-bolt-icon c-bolt-icon--email c-bolt-icon--medium">
                   <svg class="c-bolt-icon__icon c-bolt-icon__icon--medium"
@@ -1233,7 +1274,7 @@ exports[`<bolt-share> Component share opacity: 60 1`] = `
                 </span>
               </bolt-icon>
               <span class="c-bolt-share__link-text">
-                Email
+                Share via Email
               </span>
             </a>
           </ssr-keep>
@@ -1248,6 +1289,7 @@ exports[`<bolt-share> Component share opacity: 80 1`] = `
 <bolt-share size="medium"
             opacity="80"
             align="start"
+            display="inline"
 >
   <div class="c-bolt-share c-bolt-share--opacity-80">
     <bolt-list tag="ul"
@@ -1282,6 +1324,7 @@ exports[`<bolt-share> Component share opacity: 80 1`] = `
             >
               <bolt-icon name="facebook-solid"
                          size="medium"
+                         aria-hidden="true"
               >
                 <span class="c-bolt-icon c-bolt-icon--facebook-solid c-bolt-icon--medium">
                   <svg class="c-bolt-icon__icon c-bolt-icon__icon--medium"
@@ -1297,7 +1340,7 @@ exports[`<bolt-share> Component share opacity: 80 1`] = `
                 </span>
               </bolt-icon>
               <span class="c-bolt-share__link-text">
-                Facebook
+                Share via Facebook
               </span>
             </a>
           </ssr-keep>
@@ -1313,6 +1356,7 @@ exports[`<bolt-share> Component share opacity: 80 1`] = `
             >
               <bolt-icon name="twitter"
                          size="medium"
+                         aria-hidden="true"
               >
                 <span class="c-bolt-icon c-bolt-icon--twitter c-bolt-icon--medium">
                   <svg class="c-bolt-icon__icon c-bolt-icon__icon--medium"
@@ -1328,7 +1372,7 @@ exports[`<bolt-share> Component share opacity: 80 1`] = `
                 </span>
               </bolt-icon>
               <span class="c-bolt-share__link-text">
-                Twitter
+                Share via Twitter
               </span>
             </a>
           </ssr-keep>
@@ -1344,6 +1388,7 @@ exports[`<bolt-share> Component share opacity: 80 1`] = `
             >
               <bolt-icon name="linkedin"
                          size="medium"
+                         aria-hidden="true"
               >
                 <span class="c-bolt-icon c-bolt-icon--linkedin c-bolt-icon--medium">
                   <svg class="c-bolt-icon__icon c-bolt-icon__icon--medium"
@@ -1359,7 +1404,7 @@ exports[`<bolt-share> Component share opacity: 80 1`] = `
                 </span>
               </bolt-icon>
               <span class="c-bolt-share__link-text">
-                LinkedIn
+                Share via LinkedIn
               </span>
             </a>
           </ssr-keep>
@@ -1377,6 +1422,7 @@ exports[`<bolt-share> Component share opacity: 80 1`] = `
             >
               <bolt-icon name="email"
                          size="medium"
+                         aria-hidden="true"
               >
                 <span class="c-bolt-icon c-bolt-icon--email c-bolt-icon--medium">
                   <svg class="c-bolt-icon__icon c-bolt-icon__icon--medium"
@@ -1397,7 +1443,7 @@ exports[`<bolt-share> Component share opacity: 80 1`] = `
                 </span>
               </bolt-icon>
               <span class="c-bolt-share__link-text">
-                Email
+                Share via Email
               </span>
             </a>
           </ssr-keep>
@@ -1412,6 +1458,7 @@ exports[`<bolt-share> Component share opacity: 100 1`] = `
 <bolt-share size="medium"
             opacity="100"
             align="start"
+            display="inline"
 >
   <div class="c-bolt-share c-bolt-share--opacity-100">
     <bolt-list tag="ul"
@@ -1446,6 +1493,7 @@ exports[`<bolt-share> Component share opacity: 100 1`] = `
             >
               <bolt-icon name="facebook-solid"
                          size="medium"
+                         aria-hidden="true"
               >
                 <span class="c-bolt-icon c-bolt-icon--facebook-solid c-bolt-icon--medium">
                   <svg class="c-bolt-icon__icon c-bolt-icon__icon--medium"
@@ -1461,7 +1509,7 @@ exports[`<bolt-share> Component share opacity: 100 1`] = `
                 </span>
               </bolt-icon>
               <span class="c-bolt-share__link-text">
-                Facebook
+                Share via Facebook
               </span>
             </a>
           </ssr-keep>
@@ -1477,6 +1525,7 @@ exports[`<bolt-share> Component share opacity: 100 1`] = `
             >
               <bolt-icon name="twitter"
                          size="medium"
+                         aria-hidden="true"
               >
                 <span class="c-bolt-icon c-bolt-icon--twitter c-bolt-icon--medium">
                   <svg class="c-bolt-icon__icon c-bolt-icon__icon--medium"
@@ -1492,7 +1541,7 @@ exports[`<bolt-share> Component share opacity: 100 1`] = `
                 </span>
               </bolt-icon>
               <span class="c-bolt-share__link-text">
-                Twitter
+                Share via Twitter
               </span>
             </a>
           </ssr-keep>
@@ -1508,6 +1557,7 @@ exports[`<bolt-share> Component share opacity: 100 1`] = `
             >
               <bolt-icon name="linkedin"
                          size="medium"
+                         aria-hidden="true"
               >
                 <span class="c-bolt-icon c-bolt-icon--linkedin c-bolt-icon--medium">
                   <svg class="c-bolt-icon__icon c-bolt-icon__icon--medium"
@@ -1523,7 +1573,7 @@ exports[`<bolt-share> Component share opacity: 100 1`] = `
                 </span>
               </bolt-icon>
               <span class="c-bolt-share__link-text">
-                LinkedIn
+                Share via LinkedIn
               </span>
             </a>
           </ssr-keep>
@@ -1541,6 +1591,7 @@ exports[`<bolt-share> Component share opacity: 100 1`] = `
             >
               <bolt-icon name="email"
                          size="medium"
+                         aria-hidden="true"
               >
                 <span class="c-bolt-icon c-bolt-icon--email c-bolt-icon--medium">
                   <svg class="c-bolt-icon__icon c-bolt-icon__icon--medium"
@@ -1561,7 +1612,7 @@ exports[`<bolt-share> Component share opacity: 100 1`] = `
                 </span>
               </bolt-icon>
               <span class="c-bolt-share__link-text">
-                Email
+                Share via Email
               </span>
             </a>
           </ssr-keep>
@@ -1576,6 +1627,7 @@ exports[`<bolt-share> Component share size: medium 1`] = `
 <bolt-share size="medium"
             opacity="100"
             align="start"
+            display="inline"
 >
   <div class="c-bolt-share c-bolt-share--opacity-100">
     <bolt-list tag="ul"
@@ -1610,6 +1662,7 @@ exports[`<bolt-share> Component share size: medium 1`] = `
             >
               <bolt-icon name="facebook-solid"
                          size="medium"
+                         aria-hidden="true"
               >
                 <span class="c-bolt-icon c-bolt-icon--facebook-solid c-bolt-icon--medium">
                   <svg class="c-bolt-icon__icon c-bolt-icon__icon--medium"
@@ -1625,7 +1678,7 @@ exports[`<bolt-share> Component share size: medium 1`] = `
                 </span>
               </bolt-icon>
               <span class="c-bolt-share__link-text">
-                Facebook
+                Share via Facebook
               </span>
             </a>
           </ssr-keep>
@@ -1641,6 +1694,7 @@ exports[`<bolt-share> Component share size: medium 1`] = `
             >
               <bolt-icon name="twitter"
                          size="medium"
+                         aria-hidden="true"
               >
                 <span class="c-bolt-icon c-bolt-icon--twitter c-bolt-icon--medium">
                   <svg class="c-bolt-icon__icon c-bolt-icon__icon--medium"
@@ -1656,7 +1710,7 @@ exports[`<bolt-share> Component share size: medium 1`] = `
                 </span>
               </bolt-icon>
               <span class="c-bolt-share__link-text">
-                Twitter
+                Share via Twitter
               </span>
             </a>
           </ssr-keep>
@@ -1672,6 +1726,7 @@ exports[`<bolt-share> Component share size: medium 1`] = `
             >
               <bolt-icon name="linkedin"
                          size="medium"
+                         aria-hidden="true"
               >
                 <span class="c-bolt-icon c-bolt-icon--linkedin c-bolt-icon--medium">
                   <svg class="c-bolt-icon__icon c-bolt-icon__icon--medium"
@@ -1687,7 +1742,7 @@ exports[`<bolt-share> Component share size: medium 1`] = `
                 </span>
               </bolt-icon>
               <span class="c-bolt-share__link-text">
-                LinkedIn
+                Share via LinkedIn
               </span>
             </a>
           </ssr-keep>
@@ -1705,6 +1760,7 @@ exports[`<bolt-share> Component share size: medium 1`] = `
             >
               <bolt-icon name="email"
                          size="medium"
+                         aria-hidden="true"
               >
                 <span class="c-bolt-icon c-bolt-icon--email c-bolt-icon--medium">
                   <svg class="c-bolt-icon__icon c-bolt-icon__icon--medium"
@@ -1725,7 +1781,7 @@ exports[`<bolt-share> Component share size: medium 1`] = `
                 </span>
               </bolt-icon>
               <span class="c-bolt-share__link-text">
-                Email
+                Share via Email
               </span>
             </a>
           </ssr-keep>
@@ -1740,6 +1796,7 @@ exports[`<bolt-share> Component share size: small 1`] = `
 <bolt-share size="small"
             opacity="100"
             align="start"
+            display="inline"
 >
   <div class="c-bolt-share c-bolt-share--opacity-100">
     <bolt-list tag="ul"
@@ -1774,6 +1831,7 @@ exports[`<bolt-share> Component share size: small 1`] = `
             >
               <bolt-icon name="facebook-solid"
                          size="small"
+                         aria-hidden="true"
               >
                 <span class="c-bolt-icon c-bolt-icon--facebook-solid c-bolt-icon--small">
                   <svg class="c-bolt-icon__icon c-bolt-icon__icon--small"
@@ -1789,7 +1847,7 @@ exports[`<bolt-share> Component share size: small 1`] = `
                 </span>
               </bolt-icon>
               <span class="c-bolt-share__link-text">
-                Facebook
+                Share via Facebook
               </span>
             </a>
           </ssr-keep>
@@ -1805,6 +1863,7 @@ exports[`<bolt-share> Component share size: small 1`] = `
             >
               <bolt-icon name="twitter"
                          size="small"
+                         aria-hidden="true"
               >
                 <span class="c-bolt-icon c-bolt-icon--twitter c-bolt-icon--small">
                   <svg class="c-bolt-icon__icon c-bolt-icon__icon--small"
@@ -1820,7 +1879,7 @@ exports[`<bolt-share> Component share size: small 1`] = `
                 </span>
               </bolt-icon>
               <span class="c-bolt-share__link-text">
-                Twitter
+                Share via Twitter
               </span>
             </a>
           </ssr-keep>
@@ -1836,6 +1895,7 @@ exports[`<bolt-share> Component share size: small 1`] = `
             >
               <bolt-icon name="linkedin"
                          size="small"
+                         aria-hidden="true"
               >
                 <span class="c-bolt-icon c-bolt-icon--linkedin c-bolt-icon--small">
                   <svg class="c-bolt-icon__icon c-bolt-icon__icon--small"
@@ -1851,7 +1911,7 @@ exports[`<bolt-share> Component share size: small 1`] = `
                 </span>
               </bolt-icon>
               <span class="c-bolt-share__link-text">
-                LinkedIn
+                Share via LinkedIn
               </span>
             </a>
           </ssr-keep>
@@ -1869,6 +1929,7 @@ exports[`<bolt-share> Component share size: small 1`] = `
             >
               <bolt-icon name="email"
                          size="small"
+                         aria-hidden="true"
               >
                 <span class="c-bolt-icon c-bolt-icon--email c-bolt-icon--small">
                   <svg class="c-bolt-icon__icon c-bolt-icon__icon--small"
@@ -1889,7 +1950,7 @@ exports[`<bolt-share> Component share size: small 1`] = `
                 </span>
               </bolt-icon>
               <span class="c-bolt-share__link-text">
-                Email
+                Share via Email
               </span>
             </a>
           </ssr-keep>
