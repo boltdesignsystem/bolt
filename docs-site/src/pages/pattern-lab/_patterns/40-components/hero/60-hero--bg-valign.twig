@@ -1,0 +1,58 @@
+{% import "@bolt/macros.twig" as macros %}
+{# ^ allows us to use inline includes that also work in Drupal #}
+
+<bolt-text>This demo passes a <code>bolt-image</code> into the <code>customBackground</code> prop. Because of that, you can set any of <code>bolt-image</code>'s props like <code>align</code> or <code>valign</code>.</bolt-text>
+
+<bolt-banner>
+	<p><strong>Note:</strong> for more information, check out the <a href="{{ link["viewall-components-image"] }}">bolt-image</a> component. </p>
+</bolt-banner>
+
+{% set content %}
+    <bolt-text eyebrow>
+      This Is the Eyebrow
+    </bolt-text>
+    <bolt-text headline font-size="xxxlarge">
+      This Is the XXXLarge Headline
+    </bolt-text>
+    <bolt-text>
+      This is regular text, and some lorem ipsum. Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante.
+    </bolt-text>
+    {% include "@bolt-components-button/button.twig" with {
+      text: "This is a button"
+    } only %}
+{% endset %}
+
+<bolt-text>This demo set's the image's <code>valign</code> prop to <code>top</code>.</bolt-text>
+
+{% set background_image_top %}
+  {% include '@bolt-components-image/image.twig' with {
+    src: "/images/placeholders/landscape-16x9-mountains.jpg",
+    alt: "A mountainous landscape",
+    valign: "top",
+    cover: "true"
+  } only %}
+{% endset %}
+
+{% include "@bolt-components-hero/hero.twig" with {
+  content: content,
+  theme: "light",
+  customBackground: background_image_top
+} %}
+
+<br>
+<bolt-text>This demo set's the image's <code>valign</code> prop to <code>bottom</code>.</bolt-text>
+
+{% set background_image_btm %}
+  {% include '@bolt-components-image/image.twig' with {
+    src: "/images/placeholders/landscape-16x9-mountains.jpg",
+    alt: "A mountainous landscape",
+    valign: "bottom",
+    cover: "true"
+  } only %}
+{% endset %}
+
+{% include "@bolt-components-hero/hero.twig" with {
+  content: content,
+  theme: "dark",
+  customBackground: background_image_btm
+} %}
