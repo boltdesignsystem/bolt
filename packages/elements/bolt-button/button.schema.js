@@ -26,12 +26,12 @@ module.exports = {
     icon_before: {
       type: 'object',
       description:
-        'Append an icon before the button content. Icon component is recommended, however, &lt;img&gt; elements are also acceptable.',
+        'Append an icon before the button content. Icon component is recommended. However, &lt;img&gt; elements are also acceptable.',
     },
     icon_after: {
       type: 'object',
       description:
-        'Append an icon after the button content. Icon component is recommended, however, &lt;img&gt; elements are also acceptable.',
+        'Append an icon after the button content. Icon component is recommended. However, &lt;img&gt; elements are also acceptable.',
     },
     hierarchy: {
       type: 'string',
