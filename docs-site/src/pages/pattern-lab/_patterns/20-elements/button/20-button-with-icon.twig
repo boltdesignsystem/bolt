@@ -59,6 +59,7 @@
 
 {% set twig_markup %}
 {% verbatim %}
+// Icon vars
 {% set icon_custom %}
   <img src="/images/placeholders/500x500.jpg">
 {% endset %}
@@ -68,6 +69,7 @@
   } only %}
 {% endset %}
 
+// Button include
 {% include '@bolt-elements-button/button.twig' with {
   content: 'This is a button with icons before and after',
   icon_before: icon_custom,

@@ -18,11 +18,6 @@ module.exports = {
       description: 'Set the semantic HTML tag to &lt;a&gt;.',
       default: false,
     },
-    icon_only: {
-      type: 'object',
-      description:
-        'Append an icon to the button content and visually hide the text content.',
-    },
     icon_before: {
       type: 'object',
       description:
@@ -32,6 +27,11 @@ module.exports = {
       type: 'object',
       description:
         'Append an icon after the button content. Icon component is recommended. However, &lt;img&gt; elements are also acceptable.',
+    },
+    icon_only: {
+      type: 'object',
+      description:
+        'Append an icon to the button content and visually hide the text content. This prop trumps icon_before and icon_after.',
     },
     hierarchy: {
       type: 'string',
