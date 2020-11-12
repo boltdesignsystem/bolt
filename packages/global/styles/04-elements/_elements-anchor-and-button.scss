@@ -3,16 +3,9 @@
 \* ------------------------------------ */
 
 a {
-  color: bolt-theme(link);
+  color: var(--m-bolt-link);
 }
 
 a:not([class]) {
   @include bolt-text-link;
-}
-
-button,
-input[type='submit'],
-input[type='reset'],
-input[type='button'] {
-  @include bolt-button-native-styles-reset;
 }
