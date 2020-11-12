@@ -454,6 +454,24 @@ $base-video-meta-transition: $bolt-transition;
       opacity: bolt-opacity(0);
     }
   }
+
+  // Force control icons to be visible at smaller layout sizes, commented out names are shown here to indicate which ones are hidden.
+  .vjs-layout-tiny,
+  .vjs-layout-x-small,
+  .vjs-layout-small {
+    &:not(.vjs-fullscreen) {
+      /* .vjs-time-divider, */
+      /* .vjs-duration, */
+      /* .vjs-volume-panel, */
+      /* .vjs-volume-control, */
+      .vjs-mute-control,
+      .vjs-playback-rate,
+      .vjs-current-time,
+      .vjs-button.vjs-share-control {
+        display: flex;
+      }
+    }
+  }
 }
 
 // Prevent Brightcove from rendering a video as a 'vjs-layout-tiny'
