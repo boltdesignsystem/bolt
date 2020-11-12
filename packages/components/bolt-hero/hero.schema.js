@@ -19,10 +19,10 @@ module.exports = {
       description:
         'The path to a background image that displays underneath the content / foreground image in the Hero.',
     },
-    customBackground: {
+    custom_background: {
       type: ['string', 'object', 'array'],
       description:
-        'Renderable media content (i.e. an included pattern) for this item, usually bolt-image.',
+        'Renderable media content (i.e. a render array or included pattern) for this item, usually bolt-image.',
     },
     image: {
       type: 'string',

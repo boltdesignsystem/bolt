@@ -84,10 +84,10 @@
   {% endgrid %}
 {% endset %}
 
-{% if customBackground %}
-  {% set backgroundContent = [customBackground] %}
+{% if custom_background %}
+  {% set background_content = [custom_background] %}
 {% else %}
-  {% set backgroundContent = [
+  {% set background_content = [
     {
       pattern: "image",
       lazyload: false,
@@ -102,6 +102,6 @@
   size: "none",
   background: {
     overlay: "disabled",
-    contentItems: backgroundContent
+    contentItems: background_content
   }
 } only %}

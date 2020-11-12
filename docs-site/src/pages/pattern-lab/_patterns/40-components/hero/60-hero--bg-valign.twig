@@ -1,7 +1,7 @@
 {% import "@bolt/macros.twig" as macros %}
 {# ^ allows us to use inline includes that also work in Drupal #}
 
-<bolt-text>This demo passes a <code>bolt-image</code> into the <code>customBackground</code> prop. Because of that, you can set any of <code>bolt-image</code>'s props like <code>align</code> or <code>valign</code>.</bolt-text>
+<bolt-text>This demo passes a <code>bolt-image</code> into the <code>custom_background</code> prop. Because of that, you can set any of <code>bolt-image</code>'s props like <code>align</code> or <code>valign</code>.</bolt-text>
 
 <bolt-banner>
 	<p><strong>Note:</strong> for more information, check out the <a href="{{ link["viewall-components-image"] }}">bolt-image</a> component. </p>
@@ -36,7 +36,7 @@
 {% include "@bolt-components-hero/hero.twig" with {
   content: content,
   theme: "light",
-  customBackground: background_image_top
+  custom_background: background_image_top
 } %}
 
 <br>
@@ -54,5 +54,5 @@
 {% include "@bolt-components-hero/hero.twig" with {
   content: content,
   theme: "dark",
-  customBackground: background_image_btm
+  custom_background: background_image_btm
 } %}
