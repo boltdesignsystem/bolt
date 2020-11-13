@@ -84,18 +84,24 @@
   {% endgrid %}
 {% endset %}
 
+{% if custom_background %}
+  {% set background_content = [custom_background] %}
+{% else %}
+  {% set background_content = [
+    {
+      pattern: "image",
+      lazyload: false,
+      src: this.data["background"].value | default('data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=='),
+    },
+  ] %}
+{% endif %}
+
 {% include "@bolt-components-band/band.twig" with {
   theme: this.data.theme.value,
   content: content,
   size: "none",
   background: {
     overlay: "disabled",
-    contentItems: [
-      {
-        pattern: "image",
-        lazyload: false,
-        src: this.data["background"].value | default('data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=='),
-      },
-    ]
+    contentItems: background_content
   }
 } only %}

@@ -42,7 +42,14 @@
     </bolt-tab-panel>
     <bolt-tab-panel>
       <div slot="label">HTML</div>
-      {% include snippet.code_example(html_markup) %}
+      {% if html_markup %}
+        {% include snippet.code_example(html_markup) %}
+      {% else %}
+        <bolt-banner align="start" status="warning">
+          <bolt-icon name="warning" size="small" aria-hidden="true"></bolt-icon>
+          <strong>Not available in plain HTML. Please use Twig.</strong>
+        </bolt-banner>
+      {% endif %}
     </bolt-tab-panel>
   </bolt-tabs>
 

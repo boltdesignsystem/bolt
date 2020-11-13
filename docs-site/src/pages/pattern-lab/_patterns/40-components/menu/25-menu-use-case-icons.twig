@@ -1,0 +1,108 @@
+{% set description %}
+  Use the <bolt-code-snippet display="inline">icon_before</bolt-code-snippet> and <bolt-code-snippet display="inline">icon_after</bolt-code-snippet> props to append icons before or after the menu item text.
+{% endset %}
+
+{% set demo %}
+{% set icon_facebook %}
+  {% include '@bolt-components-icon/icon.twig' with {
+    name: 'facebook-solid',
+    size: 'small',
+  } only %}
+{% endset %}
+{% set icon_twitter %}
+  {% include '@bolt-components-icon/icon.twig' with {
+    name: 'twitter-solid',
+    size: 'small',
+  } only %}
+{% endset %}
+{% set icon_linkedin %}
+  {% include '@bolt-components-icon/icon.twig' with {
+    name: 'linkedin-solid',
+    size: 'small',
+  } only %}
+{% endset %}
+
+{% include '@bolt-components-menu/menu.twig' with {
+  items: [
+    {
+      content: 'Share via Facebook',
+      icon_before: icon_facebook,
+    },
+    {
+      content: 'Share via Twitter',
+      icon_before: icon_twitter,
+    },
+    {
+      content: 'Share via LinkedIn',
+      icon_before: icon_linkedin,
+    },
+  ]
+} only %}
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% set icon_facebook %}
+  {% include '@bolt-components-icon/icon.twig' with {
+    name: 'facebook-solid',
+    size: 'small',
+  } only %}
+{% endset %}
+{% set icon_twitter %}
+  {% include '@bolt-components-icon/icon.twig' with {
+    name: 'twitter-solid',
+    size: 'small',
+  } only %}
+{% endset %}
+{% set icon_linkedin %}
+  {% include '@bolt-components-icon/icon.twig' with {
+    name: 'linkedin-solid',
+    size: 'small',
+  } only %}
+{% endset %}
+
+{% include '@bolt-components-menu/menu.twig' with {
+  items: [
+    {
+      content: 'Share via Facebook',
+      icon_before: icon_facebook,
+    },
+    {
+      content: 'Share via Twitter',
+      icon_before: icon_twitter,
+    },
+    {
+      content: 'Share via LinkedIn',
+      icon_before: icon_linkedin,
+    },
+  ]
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% set html_markup %}
+{% verbatim %}
+<bolt-menu>
+  <bolt-menu-item>
+    <bolt-icon name="facebook-solid" size="small" slot="icon-before"></bolt-icon>
+    Share via Facebook
+  </bolt-menu-item>
+  <bolt-menu-item>
+    <bolt-icon name="twitter-solid" size="small" slot="icon-before"></bolt-icon>
+    Share via Twitter
+  </bolt-menu-item>
+  <bolt-menu-item>
+    <bolt-icon name="linkedin-solid" size="small" slot="icon-before"></bolt-icon>
+    Share via LinkedIn
+  </bolt-menu-item>
+</bolt-menu>
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Icon before and after menu item text',
+  description: description,
+  demo: demo,
+  twig_markup: twig_markup,
+  html_markup: html_markup,
+} only %}

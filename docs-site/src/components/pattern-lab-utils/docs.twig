@@ -35,14 +35,14 @@
 
 {% set component_last_updated %}
   <bolt-text font-size="xsmall">
-    Last updated: <strong>{{ component_version }}</strong>
+    <span style="white-space: nowrap">Last updated: <strong>{{ component_version }}</strong></span>
   </bolt-text>
 {% endset %}
 
 {% set component_change_log %}
   {% if has_changelog %}
     <bolt-text font-size="xsmall">
-      <bolt-link target="_blank" url="{{ github_url(change_log_file) }}">Change log</bolt-link>
+      <a target="_blank" href="{{ github_url(change_log_file) }}">Change log</a>
     </bolt-text>
   {% endif %}
 {% endset %}
@@ -50,14 +50,14 @@
 {% set component_github %}
   {% if has_readme %}
     <bolt-text font-size="xsmall">
-      <bolt-link target="_blank" url="{{ github_url(readme_file) | replace({'README.md':''}) }}">Github</bolt-link>
+      <a target="_blank" href="{{ github_url(readme_file) | replace({'README.md':''}) }}">Github</a>
     </bolt-text>
   {% endif %}
 {% endset %}
 
 {% set component_npm %}
   <bolt-text font-size="xsmall">
-    <bolt-link target="_blank" url="https://www.npmjs.com/package/{{ component_title }}">NPM</bolt-link>
+    <a target="_blank" href="https://www.npmjs.com/package/{{ component_title }}">NPM</a>
   </bolt-text>
 {% endset %}
 
@@ -146,7 +146,7 @@
           {% for key, value in pkg.dependencies %}
             <bolt-list-item>
               <bolt-text>
-                <bolt-link target="_blank" url="https://www.npmjs.com/package/{{ key }}">{{ key }}</bolt-link>
+                <a target="_blank" href="https://www.npmjs.com/package/{{ key }}">{{ key }}</a>
               </bolt-text>
             </bolt-list-item>
           {% endfor %}

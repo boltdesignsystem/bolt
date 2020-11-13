@@ -17,7 +17,8 @@ class BoltBand extends BoltElement {
   }
 
   firstUpdated() {
-    // super.connectedCallback && super.connectedCallback();
+    super.firstUpdated && super.firstUpdated();
+
     this.state = {
       ready: false,
     };
