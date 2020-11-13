@@ -1,0 +1,138 @@
+<ul class="c-bolt-page-header__nav-list c-bolt-page-header__nav-list--user">
+  <li class="c-bolt-page-header__nav-list-item c-bolt-page-header__nav-list-item--nested c-bolt-page-header__nav-list-item--popover t-bolt-dark js-bolt-page-header-nav-list-item">
+    <button aria-haspopup="true" aria-expanded="false" class="c-bolt-page-header__nav-link js-bolt-page-header-nested-nav-list-trigger">
+      <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--collapse" aria-hidden="true"></span>
+      <span class="c-bolt-page-header__nav-link__content">
+        {% include '@bolt-components-icon/icon.twig' with {
+          name: 'user',
+          attributes: {
+            'aria-hidden': true,
+          },
+        } only %}
+        User: Bill
+      </span>
+      <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--expand" aria-hidden="true"></span>
+    </button>
+    <ul class="c-bolt-page-header__nav-list c-bolt-page-header__nav-list--edge-end js-bolt-page-header-nested-nav-list">
+      <li class="c-bolt-page-header__nav-list-item js-bolt-page-header-nav-list-item">
+        <div class="c-bolt-page-header__nav-content">
+          <div class="c-bolt-page-header__user-flag">
+            <img src="/images/docs/500x500.jpg" alt="Portrait of Bill" class="c-bolt-page-header__user-flag__img">
+            <div class="c-bolt-page-header__user-flag__content">
+              {% include '@bolt-components-headline/eyebrow.twig' with {
+                text: 'Hello',
+                tag: 'p',
+              } only %}
+              {% include '@bolt-components-headline/headline.twig' with {
+                text: 'Bill',
+                size: 'xlarge',
+                tag: 'p',
+              } only %}
+            </div>
+          </div>
+        </div>
+      </li>
+      <li class="c-bolt-page-header__nav-list-item js-bolt-page-header-nav-list-item">
+        <a href="#!" class="c-bolt-page-header__nav-link">
+          <span class="c-bolt-page-header__nav-link__content">
+            My Pega
+          </span>
+        </a>
+      </li>
+      <li class="c-bolt-page-header__nav-list-item js-bolt-page-header-nav-list-item">
+        <a href="#!" class="c-bolt-page-header__nav-link">
+          <span class="c-bolt-page-header__nav-link__content">
+            My Profile
+          </span>
+        </a>
+      </li>
+      <li class="c-bolt-page-header__nav-list-item js-bolt-page-header-nav-list-item">
+        <a href="#!" class="c-bolt-page-header__nav-link">
+          <span class="c-bolt-page-header__nav-link__content">
+            Contact
+          </span>
+        </a>
+      </li>
+      <li class="c-bolt-page-header__nav-list-item js-bolt-page-header-nav-list-item t-bolt-xdark">
+        <a href="#!" class="c-bolt-page-header__nav-link">
+          <span class="c-bolt-page-header__nav-link__content">
+            Log Out
+          </span>
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li class="c-bolt-page-header__nav-list-item c-bolt-page-header__nav-list-item--nested c-bolt-page-header__nav-list-item--popover js-bolt-page-header-nav-list-item">
+    <button aria-haspopup="true" aria-expanded="false" class="c-bolt-page-header__nav-link js-bolt-page-header-nested-nav-list-trigger">
+      <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--collapse" aria-hidden="true"></span>
+      <span class="c-bolt-page-header__nav-link__content">
+        {% include '@bolt-components-icon/icon.twig' with {
+          name: 'global',
+          attributes: {
+            'aria-hidden': true,
+          },
+        } only %}
+        Language: English
+      </span>
+      <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--expand" aria-hidden="true"></span>
+    </button>
+    <ul class="c-bolt-page-header__nav-list js-bolt-page-header-nested-nav-list">
+      <li class="c-bolt-page-header__nav-list-item js-bolt-page-header-nav-list-item">
+        <a href="#!" class="c-bolt-page-header__nav-link c-bolt-page-header__nav-link--current">
+          <span class="c-bolt-page-header__nav-link__content">
+            English
+          </span>
+        </a>
+      </li>
+      <li class="c-bolt-page-header__nav-list-item js-bolt-page-header-nav-list-item">
+        <a href="#!" class="c-bolt-page-header__nav-link">
+          <span class="c-bolt-page-header__nav-link__content">
+            Français
+          </span>
+        </a>
+      </li>
+      <li class="c-bolt-page-header__nav-list-item js-bolt-page-header-nav-list-item">
+        <a href="#!" class="c-bolt-page-header__nav-link">
+          <span class="c-bolt-page-header__nav-link__content">
+            Deutsch
+          </span>
+        </a>
+      </li>
+      <li class="c-bolt-page-header__nav-list-item js-bolt-page-header-nav-list-item">
+        <a href="#!" class="c-bolt-page-header__nav-link">
+          <span class="c-bolt-page-header__nav-link__content">
+            Italiano
+          </span>
+        </a>
+      </li>
+      <li class="c-bolt-page-header__nav-list-item js-bolt-page-header-nav-list-item">
+        <a href="#!" class="c-bolt-page-header__nav-link">
+          <span class="c-bolt-page-header__nav-link__content">
+            日本語
+          </span>
+        </a>
+      </li>
+      <li class="c-bolt-page-header__nav-list-item js-bolt-page-header-nav-list-item">
+        <a href="#!" class="c-bolt-page-header__nav-link">
+          <span class="c-bolt-page-header__nav-link__content">
+            Português
+          </span>
+        </a>
+      </li>
+      <li class="c-bolt-page-header__nav-list-item js-bolt-page-header-nav-list-item">
+        <a href="#!" class="c-bolt-page-header__nav-link">
+          <span class="c-bolt-page-header__nav-link__content">
+            Español
+          </span>
+        </a>
+      </li>
+      <li class="c-bolt-page-header__nav-list-item js-bolt-page-header-nav-list-item t-bolt-light">
+        <button class="c-bolt-page-header__nav-link">
+          <span class="c-bolt-page-header__nav-link__content">
+            Set your preferred language
+          </span>
+        </button>
+      </li>
+    </ul>
+  </li>
+</ul>

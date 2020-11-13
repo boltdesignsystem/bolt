@@ -1,1 +1,87 @@
-{% include "@bolt-components-page-header/page-header.twig" %}
+{# Primary Nav #}
+{% set user_nav %}
+  {% include '@bolt-components-page-header/page-header-user-nav.twig' only %}
+{% endset %}
+{% set site_nav %}
+  {% include '@bolt-components-page-header/page-header-site-nav.twig' only %}
+{% endset %}
+{% set related_sites_nav %}
+  {% include '@bolt-components-page-header/page-header-related-sites-nav.twig' only %}
+{% endset %}
+
+{% set primary_nav %}
+  {% include '@bolt-components-page-header/page-header-primary-nav.twig' with {
+    user_nav: user_nav,
+    site_nav: site_nav,
+    related_sites_nav: related_sites_nav,
+  } only %}
+{% endset %}
+
+{# Search Panel #}
+{% set search_input %}
+  <form>
+    {% include '@bolt-components-typeahead/typeahead.demo.twig' only %}
+  </form>
+{% endset %}
+
+{% set search_panel %}
+  {% include '@bolt-components-page-header/page-header-search-panel.twig' with {
+    search_input: search_input,
+    helper_text: 'Placeholder for helper text.',
+  } only %}
+{% endset %}
+
+{# Secondary Nav #}
+{% set secondary_nav %}
+  {% include '@bolt-components-navbar/navbar.twig' with {
+    title: {
+      tag: 'div',
+      text: 'Subnav',
+      icon: {
+        name: 'marketing-gray'
+      }
+    },
+    links: [
+      {
+        text: 'Real-Time AI',
+        url: '#!'
+      },
+      {
+        text: 'End-to-end Automation',
+        url: '#!'
+      },
+      {
+        text: 'Journey-centric Delivery',
+        url: '#!'
+      },
+      {
+        text: 'Low Code',
+        url: '#!'
+      },
+      {
+        text: 'Multi-dimensional Power Long Title',
+        url: '#!'
+      },
+      {
+        text: 'Cloud Choice',
+        url: '#!'
+      }
+    ]
+  } only %}
+{% endset %}
+
+{# Page Header #}
+{% include '@bolt-components-page-header/page-header.twig' with {
+  logo: {
+    image_src: '/images/logos/pega-logo.svg',
+    label: 'Pegasystems',
+    url: 'https://pega.com',
+  },
+  search_panel: search_panel,
+  primary_nav: primary_nav,
+  secondary_nav: secondary_nav,
+  cta: {
+    url: 'https://pega.com/products/try-now',
+    content: 'Try Pega',
+  }
+} only %}

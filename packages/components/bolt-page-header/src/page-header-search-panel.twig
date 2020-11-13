@@ -1,0 +1,50 @@
+{% set schema = bolt.data.components['@bolt-components-page-header'].schema %}
+
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(schema, _self)|raw }}
+{% endif %}
+
+{# Variables #}
+{% set this = init(schema) %}
+{% set attributes = create_attribute(attributes|default({})) %}
+
+{% set classes = [
+  'c-bolt-page-header__search',
+] %}
+
+<button aria-haspopup="true" aria-expanded="false" class="c-bolt-page-header__action-trigger c-bolt-page-header__action-trigger--search js-bolt-page-header-expanded-button" id="js-bolt-page-header-search-toggle">
+  <span class="c-bolt-page-header__action-trigger__text">
+    Toggle Search Panel
+  </span>
+  <span class="c-bolt-page-header__action-trigger__icon" aria-hidden="true">
+    {% include '@bolt-components-icon/icon.twig' with {
+      name: 'search'
+    } only %}
+  </span>
+  <span class="c-bolt-page-header__action-trigger__icon c-bolt-page-header__action-trigger__icon--close" aria-hidden="true">
+    {% include '@bolt-components-icon/icon.twig' with {
+      name: 'close'
+    } only %}
+  </span>
+</button>
+<div {{ attributes.addClass(classes) }}>
+  <bolt-stack spacing="small">
+    {{ search_input }}
+    {#
+      <form>
+        {% include '@bolt-components-typeahead/typeahead.demo.twig' only %}
+      </form>
+    #}
+  </bolt-stack>
+  {% if helper_text %}
+    {% include '@bolt-components-headline/text.twig' with {
+      text: helper_text,
+      size: 'small',
+      align: 'center',
+      icon: {
+        name: 'info-open',
+        position: 'before',
+      }
+    } only %}
+  {% endif %}
+</div>
