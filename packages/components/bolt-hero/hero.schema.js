@@ -22,7 +22,7 @@ module.exports = {
     custom_background: {
       type: ['string', 'object', 'array'],
       description:
-        'Renderable media content (i.e. a render array or included pattern) for this item, usually bolt-image.',
+        'Renderable background image for this item, should use the Image or Shape component.
     },
     image: {
       type: 'string',
