@@ -7,7 +7,7 @@ module.exports = {
       title: 'Attributes (Twig-only)',
       type: 'object',
       description:
-        'A Drupal attributes object. Used to apply with extra HTML attributes to the outer &lt;bolt-stack&gt; tag.',
+        'A Drupal attributes object. Applies extra HTML attributes to the outer &lt;bolt-stack&gt; tag.',
     },
     spacing: {
       type: 'string',
@@ -18,20 +18,6 @@ module.exports = {
     content: {
       type: ['string', 'array', 'object'],
       description: 'Content of the stack.',
-    },
-    no_shadow: {
-      title: 'Disable Shadow DOM (Twig-only)',
-      description:
-        'Manually disables the component from rendering to the Shadow DOM in a Twig template. Useful for testing cross browser functionality / rendering behavior. By default this is handled globally based on browser support.',
-      hidden: true,
-      type: 'boolean',
-    },
-    'no-shadow': {
-      title: 'Disable Shadow DOM (Web Component-only)',
-      description:
-        'Manually disables the web component from rendering to the Shadow DOM. Useful for testing cross browser functionality / rendering behavior. By default this is handled globally based on browser support.',
-      hidden: true,
-      type: 'boolean',
     },
   },
 };

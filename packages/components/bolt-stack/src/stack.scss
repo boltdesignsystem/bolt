@@ -15,11 +15,16 @@
 @each $size in $bolt-spacing-multiplier-system {
   $size-name: nth($size, 1);
 
-  bolt-stack:not(:last-child)[spacing='#{$size-name}'] {
+  @include bolt-repeat-rule(
+    (
+      'bolt-stack:not(:last-child)[spacing=#{$size-name}]',
+      ':host:not(:last-child)[spacing=#{$size-name}]'
+    )
+  ) {
     margin-bottom: var(--bolt-spacing-y-#{$size-name});
   }
 }
 
-bolt-stack[spacing='none'] {
+@include bolt-repeat-rule(('bolt-stack[spacing=none]', ':host[spacing=none]')) {
   margin-bottom: 0;
 }
