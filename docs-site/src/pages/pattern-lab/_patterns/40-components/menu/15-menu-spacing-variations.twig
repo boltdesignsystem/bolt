@@ -1,26 +1,63 @@
-{# Setting variables for demo purposes #}
-{% set schema = bolt.data.components["@bolt-components-menu"].schema %}
+{% set description %}
+  Control the spacing around each menu item by using the <bolt-code-snippet display="inline">spacing</bolt-code-snippet> prop. Reference spacing options <bolt-link url="{{ link['components-menu-docs'] }}">in the schema</bolt-link>.
+{% endset %}
 
-<bolt-list spacing="large">
-  {% for spacing in schema.properties.spacing.enum %}
-    <bolt-list-item>
-      <bolt-text headline>Menu with {{ spacing }} spacing</bolt-text>
-      {# Start component specific code #}
-      {% include "@bolt-components-menu/menu.twig" with {
-        spacing: spacing,
-        items: [
-          {
-            content: "Menu item 1",
-          },
-          {
-            content: "Menu item 2",
-          },
-          {
-            content: "Menu item 3",
-          },
-        ]
-      } only %}
-      {# End component specific code #}
-    </bolt-list-item>
-  {% endfor %}
-</bolt-list>
+{% set demo %}
+{% include '@bolt-components-menu/menu.twig' with {
+  spacing: 'medium',
+  items: [
+    {
+      content: 'Menu item 1',
+    },
+    {
+      content: 'Menu item 2',
+    },
+    {
+      content: 'Menu item 3',
+    },
+  ]
+} only %}
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% include '@bolt-components-menu/menu.twig' with {
+  spacing: 'medium',
+  items: [
+    {
+      content: 'Menu item 1',
+    },
+    {
+      content: 'Menu item 2',
+    },
+    {
+      content: 'Menu item 3',
+    },
+  ]
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% set html_markup %}
+{% verbatim %}
+<bolt-menu spacing="medium">
+  <bolt-menu-item>
+    Menu item 1
+  </bolt-menu-item>
+  <bolt-menu-item>
+    Menu item 2
+  </bolt-menu-item>
+  <bolt-menu-item>
+    Menu item 3
+  </bolt-menu-item>
+</bolt-menu>
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Menu spacing',
+  description: description,
+  demo: demo,
+  twig_markup: twig_markup,
+  html_markup: html_markup,
+} only %}

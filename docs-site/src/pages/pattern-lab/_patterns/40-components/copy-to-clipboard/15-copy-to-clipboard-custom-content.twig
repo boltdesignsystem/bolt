@@ -1,5 +1,4 @@
 {% set attributes = create_attribute({}) %}
-{% set icon_size = "medium" %}
 
 {% set custom_trigger %}
   {% include "@bolt-components-headline/text.twig" with {
@@ -8,7 +7,6 @@
     icon: {
       name: "warning",
       position: "before",
-      size: icon_size
     }
   } only %}
 {% endset %}
@@ -23,7 +21,6 @@
     icon: {
       name: "check",
       position: "before",
-      size: icon_size
     }
   } only %}
 {% endset %}
@@ -35,7 +32,6 @@
     icon: {
       name: "warning",
       position: "before",
-      size: icon_size
     }
   } only %}
 {% endset %}
