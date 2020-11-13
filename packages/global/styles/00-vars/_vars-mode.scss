@@ -3,7 +3,7 @@
 \* ------------------------------------ */
 
 :root,
-.m-bolt-light,
+[data-bolt-mode='light'],
 .t-bolt-light,
 .t-bolt-xlight {
   --m-bolt-text: var(--bolt-color-black);
@@ -22,7 +22,7 @@
   --m-bolt-neutral: var(--bolt-color-gray);
 }
 
-.m-bolt-dark,
+[data-bolt-mode='dark'],
 .t-bolt-dark,
 .t-bolt-xdark {
   --m-bolt-text: var(--bolt-color-white);
@@ -49,7 +49,7 @@
   --m-bolt-bg: var(--bolt-color-navy-dark);
 }
 
-[class*='m-bolt-'] {
+[data-bolt-mode] {
   color: var(--m-bolt-text);
   background-color: var(--m-bolt-bg);
 }
