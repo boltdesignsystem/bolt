@@ -32,7 +32,18 @@
     Demo
   </bolt-text>
   <bolt-stack>
-    {{ demo }}
+    {% if demo_light_dark %}
+      <div class="u-bolt-padding-medium t-bolt-xlight">
+        <bolt-text headline font-size="xxsmall" text-transform="uppercase" letter-spacing="wide">Light</bolt-text>
+        {{ demo }}
+      </div>
+      <div class="u-bolt-padding-medium t-bolt-dark">
+        <bolt-text headline font-size="xxsmall" text-transform="uppercase" letter-spacing="wide">Dark</bolt-text>
+        {{ demo }}
+      </div>
+    {% else %}
+      {{ demo }}
+    {% endif %}
   </bolt-stack>
 
   <bolt-tabs inset="off">

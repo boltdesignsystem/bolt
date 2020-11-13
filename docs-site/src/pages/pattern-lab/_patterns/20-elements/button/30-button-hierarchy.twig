@@ -3,53 +3,43 @@
 {% endset %}
 
 {% set demo %}
-  {% set buttons %}
-    <bolt-list display="inline" spacing="small">
-      <bolt-list-item>
-        {% include '@bolt-elements-button/button.twig' with {
-          content: 'Primary',
-          attributes: {
-            type: 'button',
-          }
-        } only %}
-      </bolt-list-item>
-      <bolt-list-item>
-        {% include '@bolt-elements-button/button.twig' with {
-          content: 'Secondary',
-          hierarchy: 'secondary',
-          attributes: {
-            type: 'button',
-          }
-        } only %}
-      </bolt-list-item>
-      <bolt-list-item>
-        {% include '@bolt-elements-button/button.twig' with {
-          content: 'Tertiary',
-          hierarchy: 'tertiary',
-          attributes: {
-            type: 'button',
-          }
-        } only %}
-      </bolt-list-item>
-      <bolt-list-item>
-        {% include '@bolt-elements-button/button.twig' with {
-          content: 'Transparent',
-          hierarchy: 'transparent',
-          attributes: {
-            type: 'button',
-          }
-        } only %}
-      </bolt-list-item>
-    </bolt-list>
-  {% endset %}
-  <div class="u-bolt-padding-medium t-bolt-xlight">
-    <bolt-text headline font-size="xxsmall" text-transform="uppercase" letter-spacing="wide">Light</bolt-text>
-    {{ buttons }}
-  </div>
-  <div class="u-bolt-padding-medium t-bolt-dark">
-    <bolt-text headline font-size="xxsmall" text-transform="uppercase" letter-spacing="wide">Dark</bolt-text>
-    {{ buttons }}
-  </div>
+  <bolt-list display="inline" spacing="small">
+    <bolt-list-item>
+      {% include '@bolt-elements-button/button.twig' with {
+        content: 'Primary',
+        attributes: {
+          type: 'button',
+        }
+      } only %}
+    </bolt-list-item>
+    <bolt-list-item>
+      {% include '@bolt-elements-button/button.twig' with {
+        content: 'Secondary',
+        hierarchy: 'secondary',
+        attributes: {
+          type: 'button',
+        }
+      } only %}
+    </bolt-list-item>
+    <bolt-list-item>
+      {% include '@bolt-elements-button/button.twig' with {
+        content: 'Tertiary',
+        hierarchy: 'tertiary',
+        attributes: {
+          type: 'button',
+        }
+      } only %}
+    </bolt-list-item>
+    <bolt-list-item>
+      {% include '@bolt-elements-button/button.twig' with {
+        content: 'Transparent',
+        hierarchy: 'transparent',
+        attributes: {
+          type: 'button',
+        }
+      } only %}
+    </bolt-list-item>
+  </bolt-list>
 {% endset %}
 
 {% set notes %}
@@ -79,6 +69,7 @@
   description: description,
   notes: notes,
   demo: demo,
+  demo_light_dark: true,
   twig_markup: twig_markup,
   html_markup: html_markup,
 } only %}
