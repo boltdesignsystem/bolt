@@ -3,8 +3,8 @@
 
 <bolt-text>This demo passes an image into the <code>custom_background</code> prop. This allows you to customize any of the available Image component props, such as <code>align</code> or <code>valign</code>.</bolt-text>
 
-<bolt-banner>
-	<p><strong>Note:</strong> for more information, check out the <a href="{{ link["viewall-components-image"] }}">bolt-image</a> component. </p>
+<bolt-banner align="start">
+	<p><strong>Note:</strong> Please be sure to set <code>cover</code> to <code>true</code>, otherwise <code>align</code> and <code>valign</code> will not work in this instance. For more information, check out the <a href="{{ link["viewall-components-image"] }}">bolt-image</a> component. </p>
 </bolt-banner>
 
 {% set content %}
@@ -29,7 +29,7 @@
     src: "/images/placeholders/landscape-16x9-mountains.jpg",
     alt: "A mountainous landscape",
     valign: "top",
-    cover: "true"
+    cover: true
   } only %}
 {% endset %}
 
@@ -47,7 +47,7 @@
     src: "/images/placeholders/landscape-16x9-mountains.jpg",
     alt: "A mountainous landscape",
     valign: "bottom",
-    cover: "true"
+    cover: true
   } only %}
 {% endset %}
 

@@ -22,7 +22,7 @@ module.exports = {
     custom_background: {
       type: ['string', 'object', 'array'],
       description:
-        'Renderable background image for this item, should use the Image or Shape component.
+        'Renderable background image for this item, should use the Image or Shape component.',
     },
     image: {
       type: 'string',
