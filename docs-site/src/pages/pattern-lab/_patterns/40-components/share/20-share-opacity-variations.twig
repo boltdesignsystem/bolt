@@ -3,13 +3,20 @@
 {% block content %}
 
 {% set description %}
-  Share is available in small and medium sizes. Use the <bolt-code-snippet display="inline">size</bolt-code-snippet> prop to control the title text size, the icon size, and the spacing between the icons.
+  Inline share is available in various opacities. Use the <bolt-code-snippet display="inline">opacity</bolt-code-snippet> prop to control it.
+{% endset %}
+
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>Opacity will make the share tool semi-transparent, and transparency goes away if user hovers over it. This should be used if you don't want the share tool to create too much distractions on first impression.</bolt-li>
+    <bolt-li>Opacity does not work with menu display.</bolt-li>
+  </bolt-ol>
 {% endset %}
 
 {% set demo %}
-  {% for size in schema.properties.size.enum %}
+  {% for opacity in schema.properties.opacity.enum %}
     {% include '@bolt-components-share/share.twig' with {
-      size: size,
+      opacity: opacity,
       sources: demo_sources,
       copy_to_clipboard: demo_copy_to_clipboard,
     } only %}
@@ -19,7 +26,7 @@
 {% set twig_markup %}
 {% verbatim %}
 {% include '@bolt-components-share/share.twig' with {
-  size: 'small',
+  opacity: 60,
   sources: var_foo,
   copy_to_clipboard: var_bar,
 } only %}
@@ -27,8 +34,9 @@
 {% endset %}
 
 {% include '@utils/pattern-doc-page.twig' with {
-  title: 'Title, icon, and spacing size',
+  title: 'Opacity',
   description: description,
+  notes: notes,
   demo: demo,
   twig_markup: twig_markup,
 } only %}

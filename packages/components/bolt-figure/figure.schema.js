@@ -64,7 +64,7 @@ module.exports = {
       description: 'Caption for the figure.',
     },
     content: {
-      title: 'DEPRECATED.',
+      title: 'DEPRECATED',
       description: 'Figure contains no content. Only media and caption.',
     },
   },

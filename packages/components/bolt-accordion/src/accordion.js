@@ -296,7 +296,7 @@ class BoltAccordion extends withContext(BoltElement) {
     `;
   }
 
-  handleDeepLink() {
+  async handleDeepLink() {
     if (!this.deepLinkTarget) return;
 
     const deepLinkTargetIndex = this.accordionItemElements.indexOf(
@@ -305,6 +305,21 @@ class BoltAccordion extends withContext(BoltElement) {
     let shouldScrollIntoView;
 
     if (deepLinkTargetIndex !== -1) {
+      // This Promise is a workaround for a bug that sometimes happens when you
+      // put an accordion in a band and use deep linking. When the band first
+      // renders, it interrupts the initial accordion animation and causes
+      // Handorgel's 'transitionend' event to not fire. @see DS-253 for more.
+      const closestBand = this.closest('bolt-band');
+      if (closestBand) {
+        await new Promise((resolve, reject) => {
+          closestBand._wasInitiallyRendered && resolve();
+          closestBand.addEventListener('ready', e => {
+            e.target === closestBand && resolve();
+          });
+          closestBand.addEventListener('error', reject);
+        });
+      }
+
       this.accordion.folds[deepLinkTargetIndex].open();
       shouldScrollIntoView = true;
     }
