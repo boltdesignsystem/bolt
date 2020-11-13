@@ -19,6 +19,11 @@ module.exports = {
       description:
         'The path to a background image that displays underneath the content / foreground image in the Hero.',
     },
+    custom_background: {
+      type: ['string', 'object', 'array'],
+      description:
+        'Renderable background image for this item, should use the Image or Shape component.',
+    },
     image: {
       type: 'string',
       description:
