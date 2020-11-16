@@ -1,18 +1,88 @@
-{# Primary Nav #}
-{% set user_nav %}
-  {% include '@bolt-components-page-header/page-header-user-nav.twig' only %}
+{% set site_nav_l2_list_items = [
+  {
+    link: {
+      text: 'Level 2 item 1',
+      attributes: {
+        href: 'https://pega.com/products',
+      },
+    },
+    nested: {
+      desktop_heading: true,
+    },
+  },
+  {
+    link: {
+      text: 'Level 2 item 2',
+      attributes: {
+        href: 'https://pega.com/customers',
+      },
+    },
+    nested: {
+      desktop_heading: true,
+    },
+  },
+] %}
+
+{% set l2_nav_content = [] %}
+
+{% for list_item in site_nav_l2_list_items %}
+  {% set site_nav_li %}
+    {% include '@bolt-components-page-header/page-header-nav-li.twig' with list_item only %}
+  {% endset %}
+  {% set l2_nav_content = l2_nav_content|merge([site_nav_li]) %}
+{% endfor %}
+
+{% set l2_nav %}
+  {% include '@bolt-components-page-header/page-header-nav-ul.twig' with {
+    content: l2_nav_content|join,
+  } only %}
 {% endset %}
+
+{% set site_nav_l1_list_items = [
+  {
+    link: {
+      text: 'Products',
+      attributes: {
+        href: 'https://pega.com/products',
+      },
+    },
+    nested: {
+      content: l2_nav,
+    },
+  },
+  {
+    link: {
+      text: 'Customers',
+      attributes: {
+        href: 'https://pega.com/customers',
+      },
+    },
+    nested: {
+      content: l2_nav,
+    },
+  },
+] %}
+
+{% set site_nav_content = [] %}
+
+{% for list_item in site_nav_l1_list_items %}
+  {% set site_nav_li %}
+    {% include '@bolt-components-page-header/page-header-nav-li.twig' with list_item only %}
+  {% endset %}
+  {% set site_nav_content = site_nav_content|merge([site_nav_li]) %}
+{% endfor %}
+
 {% set site_nav %}
-  {% include '@bolt-components-page-header/page-header-site-nav.twig' only %}
-{% endset %}
-{% set related_sites_nav %}
-  {% include '@bolt-components-page-header/page-header-related-sites-nav.twig' only %}
+  {% include '@bolt-components-page-header/page-header-nav-ul.twig' with {
+    content: site_nav_content|join,
+    category: 'site',
+  } only %}
 {% endset %}
 
 {% set primary_nav %}
   {% include '@bolt-components-page-header/page-header-primary-nav.twig' with {
-    user_nav: user_nav,
     site_nav: site_nav,
+    user_nav: user_nav,
     related_sites_nav: related_sites_nav,
   } only %}
 {% endset %}

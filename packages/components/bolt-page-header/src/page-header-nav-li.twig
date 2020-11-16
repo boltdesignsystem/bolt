@@ -1,0 +1,61 @@
+{% set schema = bolt.data.components['@bolt-components-page-header'].schema %}
+
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(schema, _self)|raw }}
+{% endif %}
+
+{# Variables #}
+{% set this = init(schema) %}
+{% set attributes = create_attribute(attributes|default({})) %}
+{% set link_attributes = create_attribute(link.attributes|default({})) %}
+{% set link_tag = link_attributes.type ? 'button' : link_attributes.href ? 'a' : 'span' %}
+
+{% set classes = [
+  'c-bolt-page-header__nav-list-item',
+  nested ? 'c-bolt-page-header__nav-list-item--nested'
+] %}
+
+<li {{ attributes.addClass(classes) }}>
+  {% if nested %}
+    {% if nested.desktop_heading %}
+      {% set desktop_heading_classes = [
+        'c-bolt-page-header__nav-link',
+        'c-bolt-page-header__nav-link--heading',
+      ] %}
+      <{{ link_tag }} {{ link_attributes.addClass(desktop_heading_classes) }}>
+        <strong class="c-bolt-page-header__nav-link__content">
+          {{ link.text }}
+          {% if link_attributes.href %}
+            {% include '@bolt-components-icon/icon.twig' with {
+              name: 'chevron-right',
+            } only %}
+          {% endif %}
+        </strong>
+      </{{ link_tag }}>
+    {% endif %}
+
+    {% set trigger_classes = [
+      'c-bolt-page-header__nav-link',
+      'js-bolt-page-header-nested-nav-list-trigger',
+    ] %}
+    {% set trigger_a11y_attributes = [
+      'type',
+      'aria-haspopup',
+      'aria-expanded',
+    ] %}
+    <button type="button" aria-haspopup="true" aria-expanded="false" {{ link_attributes.addClass(trigger_classes) }}>
+      <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--collapse" aria-hidden="true"></span>
+      <span class="c-bolt-page-header__nav-link__content">
+        {{ link.text }}
+      </span>
+      <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--expand" aria-hidden="true"></span>
+    </button>
+    {{ nested.content }}
+  {% else %}
+    <{{ link_tag }} {{ link_attributes.addClass('c-bolt-page-header__nav-link') }}>
+      <span class="c-bolt-page-header__nav-link__content">
+        {{ link.text }}
+      </span>
+    </{{ link_tag }}>
+  {% endif %}
+</li>
