@@ -1,0 +1,34 @@
+.video-js {
+  .vjs-big-play-button {
+    .vjs-icon-placeholder {
+      @supports (
+        not
+          (
+            (-webkit-clip-path: polygon(0 0, 0 100%, 100% 50%)) or
+              (clip-path: polygon(0 0, 0 100%, 100% 50%))
+          )
+      ) {
+        top: 40% !important;
+        left: 40% !important;
+        transform: translate(-50%, -50%);
+        font-size: 40%;
+
+        @include bolt-mq(xsmall) {
+          font-size: 50%;
+        }
+
+        @include bolt-mq(small) {
+          font-size: 60%;
+        }
+
+        @include bolt-mq(medium) {
+          font-size: 70%;
+        }
+
+        @include bolt-mq(large) {
+          font-size: 80%;
+        }
+      }
+    }
+  }
+}

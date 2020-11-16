@@ -54,13 +54,17 @@ $bolt-video-js-button-shadow-level-hover: 'level-40';
     .vjs-icon-placeholder {
       display: block;
       position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
       width: 23%;
       height: 45%;
-      background-color: $bolt-video-js-button-text-color;
-      clip-path: polygon(0 0, 0 100%, 100% 50%);
+
+      @supports (-webkit-clip-path: polygon(0 0, 0 100%, 100% 50%)) or
+        (clip-path: polygon(0 0, 0 100%, 100% 50%)) {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: $bolt-video-js-button-text-color;
+        clip-path: polygon(0 0, 0 100%, 100% 50%);
+      }
     }
 
     &:hover,
