@@ -1,0 +1,15 @@
+.c-bolt-navlink {
+  @supports (
+    not
+      (
+        (-webkit-clip-path: polygon(0 0, 0 100%, 100% 50%)) or
+          (clip-path: polygon(0 0, 0 100%, 100% 50%))
+      )
+  ) {
+    padding: var(--bolt-spacing-y-xsmall) var(--bolt-spacing-x-xsmall);
+
+    @include bolt-mq(xsmall) {
+      padding: var(--bolt-spacing-y-xsmall) var(--bolt-spacing-x-small);
+    }
+  }
+}
