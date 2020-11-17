@@ -10,7 +10,11 @@
 <bolt-layout
   {{ this.props|without("items") }}
 >
+  {% if background %}
+    {{ background }}
+  {% endif %}
+
   {% for item in items %}
-    {% include "@bolt-layouts-layout/layout-item.twig" with item only %}
+    {{ item }}
   {% endfor %}
 </bolt-layout>

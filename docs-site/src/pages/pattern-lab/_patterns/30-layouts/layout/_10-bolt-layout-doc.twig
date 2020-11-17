@@ -311,13 +311,11 @@
     },
   ],
   attributes: {
-    style: "--flag-width: 300px"
+    style: "--bolt-layout-flag-width: 200px"
   }
 } only %}
 
-
-
-<bolt-layout class="t-bolt-dark" template="thirds@from-small">
+{% set background %}
   {% include "@bolt-components-background/background.twig" with {
     opacity: "heavy",
     fill: "gradient",
@@ -332,7 +330,27 @@
       }
     ]
   } only %}
-  <bolt-layout-item><p>Ut ipsum eiusmod eu incididunt consectetur est veniam magna et deserunt voluptate dolor ea cupidatat. Exercitation sunt eiusmod amet adipisicing do pariatur enim. Quis deserunt Lorem quis consectetur aliquip labore deserunt. Nulla ex ut deserunt incididunt nostrud ipsum occaecat magna consequat.</p></bolt-layout-item>
-  <bolt-layout-item><p>Cupidatat culpa cillum ipsum tempor laboris sunt deserunt veniam. Lorem Lorem excepteur id esse ea eu nulla ullamco mollit ullamco laboris. Amet et eiusmod sunt mollit consectetur aliqua excepteur.</p></bolt-layout-item>
-  <bolt-layout-item><p>Nulla pariatur ea cillum nulla culpa ad quis deserunt do consequat occaecat magna sint. Qui occaecat quis ut est excepteur voluptate aliqua do Lorem aliquip nisi id Lorem voluptate. Ad velit consequat Lorem proident irure ex. Dolor do nisi est veniam nisi nostrud nulla.</p></bolt-layout-item>
-</bolt-layout>
+{% endset %}
+
+{% include "@bolt-layouts-layout/layout.twig" with {
+  padding_top: "xlarge",
+  padding_bottom: "xlarge",
+  template: "tiles@from-small",
+  background: background,
+  items: [
+    {
+      content: 'Et elit id qui duis commodo Lorem sint voluptate dolor. Est do minim laborum veniam pariatur pariatur. Fugiat velit velit nisi incididunt esse elit sit voluptate in tempor consequat. Velit sint velit exercitation qui consequat anim laboris.',
+    },
+    {
+      content: 'Sit sint dolor elit veniam voluptate ex qui incididunt excepteur. Aute et mollit do qui eu ut incididunt dolore labore. Pariatur pariatur in duis in Lorem. Culpa eiusmod minim culpa amet velit pariatur ipsum anim do dolore officia officia officia.',
+    },
+    {
+      content: 'Et id deserunt anim labore. Nostrud non exercitation labore culpa ea sit reprehenderit cupidatat. Elit laborum Lorem excepteur ea. Voluptate adipisicing occaecat Lorem sunt fugiat amet nisi sunt ullamco. Occaecat qui magna ipsum ullamco cillum sunt. Sit non id irure laborum proident.',
+    },
+  ],
+  attributes: {
+    class: [
+      "t-bolt-dark",
+    ]
+  },
+} only %}

@@ -42,7 +42,7 @@ $bolt-layout-templates: (
   '75': minmax(#{$col-min-width-large}, 75%),
   '75/25': minmax(#{$col-min-width-large}, 75%)
     minmax(#{$col-min-width-small}, 25%),
-  'flag': minmax(80px, var(--flag-width, 150px)) 1fr,
+  'flag': minmax(80px, var(--bolt-layout-flag-width, 150px)) 1fr,
   'fourths': repeat(4, minmax(#{$col-min-width-small}, 1fr)),
   'halves': repeat(2, minmax(#{$col-min-width-small}, 1fr)),
   'thirds': repeat(3, minmax(#{$col-min-width-small}, 1fr)),
@@ -81,7 +81,6 @@ bolt-layout {
 
   display: grid;
   grid-gap: var(--c-bolt-layout-gutter);
-  grid-row-gap: var(--c-bolt-layout-padding-bottom);
 
   position: relative;
   right: 50%;
@@ -132,7 +131,7 @@ bolt-layout {
   }
 
   > bolt-background {
-    // ignore
+    grid-area: none;
   }
 
   > bolt-layout-item {

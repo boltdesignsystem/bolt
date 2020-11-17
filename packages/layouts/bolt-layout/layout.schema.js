@@ -69,6 +69,9 @@ module.exports = {
       enum: ['unset', 'justify', 'start', 'center', 'end'],
       default: 'unset',
     },
+    background: {
+      type: 'string',
+    },
     items: {
       type: 'array',
       description: 'Array of layout items to render inside the layout.',
