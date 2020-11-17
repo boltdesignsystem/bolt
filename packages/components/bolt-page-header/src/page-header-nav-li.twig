@@ -11,8 +11,10 @@
 {% set link_tag = link_attributes.type ? 'button' : link_attributes.href ? 'a' : 'span' %}
 
 {% set classes = [
+  'js-bolt-page-header-nav-list-item',
   'c-bolt-page-header__nav-list-item',
-  nested ? 'c-bolt-page-header__nav-list-item--nested'
+  nested ? 'c-bolt-page-header__nav-list-item--nested',
+  popover ? 'c-bolt-page-header__nav-list-item--popover',
 ] %}
 
 <li {{ attributes.addClass(classes) }}>
@@ -24,7 +26,7 @@
       ] %}
       <{{ link_tag }} {{ link_attributes.addClass(desktop_heading_classes) }}>
         <strong class="c-bolt-page-header__nav-link__content">
-          {{ link.text }}
+          {{ link.content }}
           {% if link_attributes.href %}
             {% include '@bolt-components-icon/icon.twig' with {
               name: 'chevron-right',
@@ -34,19 +36,14 @@
       </{{ link_tag }}>
     {% endif %}
 
-    {% set trigger_classes = [
+    {% set nested_link_classes = [
       'c-bolt-page-header__nav-link',
       'js-bolt-page-header-nested-nav-list-trigger',
     ] %}
-    {% set trigger_a11y_attributes = [
-      'type',
-      'aria-haspopup',
-      'aria-expanded',
-    ] %}
-    <button type="button" aria-haspopup="true" aria-expanded="false" {{ link_attributes.addClass(trigger_classes) }}>
+    <button type="button" aria-haspopup="true" aria-expanded="false" {{ link_attributes.addClass(nested_link_classes)|without('type')|without('aria-haspopup')|without('aria-expanded') }}>
       <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--collapse" aria-hidden="true"></span>
       <span class="c-bolt-page-header__nav-link__content">
-        {{ link.text }}
+        {{ link.content }}
       </span>
       <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--expand" aria-hidden="true"></span>
     </button>
@@ -54,7 +51,7 @@
   {% else %}
     <{{ link_tag }} {{ link_attributes.addClass('c-bolt-page-header__nav-link') }}>
       <span class="c-bolt-page-header__nav-link__content">
-        {{ link.text }}
+        {{ link.content }}
       </span>
     </{{ link_tag }}>
   {% endif %}

@@ -9,8 +9,10 @@
 {% set attributes = create_attribute(attributes|default({})) %}
 
 {% set classes = [
+  nested ? 'js-bolt-page-header-nested-nav-list',
   'c-bolt-page-header__nav-list',
-  category ? 'c-bolt-page-header__nav-list--' ~ category
+  category ? 'c-bolt-page-header__nav-list--' ~ category,
+  popover_position ? 'c-bolt-page-header__nav-list--' ~ popover_position,
 ] %}
 
 <ul {{ attributes.addClass(classes) }}>

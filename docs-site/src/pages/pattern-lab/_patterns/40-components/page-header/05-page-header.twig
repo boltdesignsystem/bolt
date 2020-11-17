@@ -1,7 +1,8 @@
-{% set site_nav_l2_list_items = [
+{# Site nav #}
+{% set site_nav_lv2_list_items = [
   {
     link: {
-      text: 'Level 2 item 1',
+      content: 'Level 2 item 1',
       attributes: {
         href: 'https://pega.com/products',
       },
@@ -12,7 +13,7 @@
   },
   {
     link: {
-      text: 'Level 2 item 2',
+      content: 'Level 2 item 2',
       attributes: {
         href: 'https://pega.com/customers',
       },
@@ -23,62 +24,140 @@
   },
 ] %}
 
-{% set l2_nav_content = [] %}
-
-{% for list_item in site_nav_l2_list_items %}
-  {% set site_nav_li %}
+{% set site_nav_lv2_ul_content = [] %}
+{% for list_item in site_nav_lv2_list_items %}
+  {% set site_nav_lv2_li %}
     {% include '@bolt-components-page-header/page-header-nav-li.twig' with list_item only %}
   {% endset %}
-  {% set l2_nav_content = l2_nav_content|merge([site_nav_li]) %}
+  {% set site_nav_lv2_ul_content = site_nav_lv2_ul_content|merge([site_nav_lv2_li]) %}
 {% endfor %}
 
-{% set l2_nav %}
+{% set site_nav_lv2 %}
   {% include '@bolt-components-page-header/page-header-nav-ul.twig' with {
-    content: l2_nav_content|join,
+    content: site_nav_lv2_ul_content|join,
   } only %}
 {% endset %}
 
-{% set site_nav_l1_list_items = [
+{% set site_nav_lv1_list_items = [
   {
     link: {
-      text: 'Products',
-      attributes: {
-        href: 'https://pega.com/products',
-      },
+      content: 'Products',
     },
     nested: {
-      content: l2_nav,
+      content: site_nav_lv2,
     },
   },
   {
     link: {
-      text: 'Customers',
-      attributes: {
-        href: 'https://pega.com/customers',
-      },
+      content: 'Customers',
     },
     nested: {
-      content: l2_nav,
+      content: site_nav_lv2,
+    },
+  },
+  {
+    link: {
+      content: 'Not Nested',
+      attributes: {
+        href: 'https://pega.com/',
+      },
     },
   },
 ] %}
 
-{% set site_nav_content = [] %}
-
-{% for list_item in site_nav_l1_list_items %}
-  {% set site_nav_li %}
+{% set site_nav_lv1_ul_content = [] %}
+{% for list_item in site_nav_lv1_list_items %}
+  {% set site_nav_lv1_li %}
     {% include '@bolt-components-page-header/page-header-nav-li.twig' with list_item only %}
   {% endset %}
-  {% set site_nav_content = site_nav_content|merge([site_nav_li]) %}
+  {% set site_nav_lv1_ul_content = site_nav_lv1_ul_content|merge([site_nav_lv1_li]) %}
 {% endfor %}
 
 {% set site_nav %}
   {% include '@bolt-components-page-header/page-header-nav-ul.twig' with {
-    content: site_nav_content|join,
+    content: site_nav_lv1_ul_content|join,
     category: 'site',
   } only %}
 {% endset %}
 
+{# User nav #}
+{% set icon_user %}
+  {% include '@bolt-components-icon/icon.twig' with {
+    name: 'user',
+  } only %}
+{% endset %}
+{% set icon_global %}
+  {% include '@bolt-components-icon/icon.twig' with {
+    name: 'global',
+  } only %}
+{% endset %}
+
+{% set user_popover_list_items = [
+  {
+    link: {
+      content: 'Level 2 item 1',
+    },
+  },
+  {
+    link: {
+      content: 'Level 2 item 2',
+    },
+  },
+] %}
+
+{% set user_popover_ul_content = [] %}
+{% for list_item in user_popover_list_items %}
+  {% set user_popover_li %}
+    {% include '@bolt-components-page-header/page-header-nav-li.twig' with list_item only %}
+  {% endset %}
+  {% set user_popover_ul_content = user_popover_ul_content|merge([user_popover_li]) %}
+{% endfor %}
+
+{% set user_popover %}
+  {% include '@bolt-components-page-header/page-header-nav-ul.twig' with {
+    content: user_popover_ul_content|join,
+    nested: true,
+    popover_position: 'edge-end',
+  } only %}
+{% endset %}
+
+{% set user_nav_lv1_list_items = [
+  {
+    link: {
+      content: icon_user ~ 'User: Bill',
+    },
+    nested: {
+      content: user_popover,
+    },
+    popover: true,
+  },
+  {
+    link: {
+      content: icon_global ~ 'Language: English',
+    },
+    nested: {
+      content: user_nav_lv2,
+    },
+    popover: true,
+  },
+] %}
+
+{% set user_nav_lv1_ul_content = [] %}
+{% for list_item in user_nav_lv1_list_items %}
+  {% set user_nav_lv1_li %}
+    {% include '@bolt-components-page-header/page-header-nav-li.twig' with list_item only %}
+  {% endset %}
+  {% set user_nav_lv1_ul_content = user_nav_lv1_ul_content|merge([user_nav_lv1_li]) %}
+{% endfor %}
+
+{% set user_nav %}
+  {% include '@bolt-components-page-header/page-header-nav-ul.twig' with {
+    content: user_nav_lv1_ul_content|join,
+    category: 'user',
+  } only %}
+{% endset %}
+
+{# Put all the navs together #}
 {% set primary_nav %}
   {% include '@bolt-components-page-header/page-header-primary-nav.twig' with {
     site_nav: site_nav,
