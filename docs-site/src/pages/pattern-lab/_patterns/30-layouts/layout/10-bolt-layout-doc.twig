@@ -37,19 +37,12 @@
 {% endset %}
 {% include "@bolt-layouts-layout/layout.twig" with {
   align_items: "center",
+  template: "67@from-small",
   items: [
     {
       content: paragraph,
-      attributes: {
-        "width": "50%",
-      },
     },
   ],
-  attributes: {
-    class: [
-      "t-bolt-light",
-    ]
-  },
 } only %}
 
 
@@ -63,19 +56,15 @@
   gutter: "medium",
   padding_top: "medium",
   padding_bottom: "medium",
-  stack_items: "@until-small",
+  template: "tiles@from-small",
   items: [
     {
       content: paragraph1,
-      attributes: {
-        "stack-order": "secondary"
-      },
+      source_order: "secondary@until-small"
     },
     {
       content: paragraph2,
-      attributes: {
-        "stack-order": "primary"
-      },
+      source_order: "primary@until-small"
     },
   ],
   attributes: {
@@ -102,19 +91,13 @@
   gutter: "large",
   padding_top: "large",
   padding_bottom: "large",
-  stack_items: "@until-small",
+  template: "67/33@from-small",
   items: [
     {
       content: paragraph1,
-      attributes: {
-        "width": "67%@from-small 75%@from-medium",
-      }
     },
     {
       content: paragraph2,
-      attributes: {
-        "width": "33%@from-small 25%@from-medium",
-      }
     },
   ],
   attributes: {
@@ -146,7 +129,7 @@
   row_gutter: "large",
   padding_top: "xlarge",
   padding_bottom: "xlarge",
-  stack_items: "@until-small",
+  template: "tiles@from-small",
   valign_items: "unset",
   items: [
     {
@@ -174,7 +157,7 @@
   gutter: "medium",
   padding_top: "xxlarge",
   padding_bottom: "xxlarge",
-  stack_items: "@until-medium",
+  template: "tiles@from-medium",
   items: [
     {
       content: paragraph,
@@ -218,22 +201,20 @@
   gutter: "xlarge",
   padding_top: "large",
   padding_bottom: "large",
-  stack_items: "@until-small",
+  template: "halves@from-small",
   items: [
     {
       content: content,
       attributes: {
-        "width": "50%@from-small",
         "valign-self": "center",
-        "stack-order": "secondary",
+        source_order: "secondary@until-small"
       }
     },
     {
       content: media,
       attributes: {
-        "width": "50%@from-small",
         "valign-self": "start-offset-large",
-        "stack-order": "primary",
+        source_order: "primary@until-small"
       }
     },
   ],
@@ -253,19 +234,17 @@
   gutter: "large",
   padding_top: "large",
   padding_bottom: "large",
-  stack_items: "@until-small",
+  template: "halves@from-small 67/33@from-medium",
   items: [
     {
       content: content,
       attributes: {
-        "width": "50%@from-small 67%@from-medium",
         "valign-self": "center",
       }
     },
     {
       content: media,
       attributes: {
-        "width": "50% 50%@from-small 33%@from-medium",
         "valign-self": "end-offset-large",
       }
     },
@@ -322,21 +301,38 @@
   padding_top: "large",
   padding_bottom: "large",
   valign_items: "start",
-  stack_items: "@until-small",
+  template: "flag@from-small",
   items: [
     {
       content: media,
-      attributes: {
-        "width": "25% 150px@from-small",
-      }
     },
     {
       content: text,
     },
   ],
   attributes: {
-    class: [
-      "t-bolt-light",
-    ]
-  },
+    style: "--flag-width: 300px"
+  }
 } only %}
+
+
+
+<bolt-layout class="t-bolt-dark" template="thirds@from-small">
+  {% include "@bolt-components-background/background.twig" with {
+    opacity: "heavy",
+    fill: "gradient",
+    focalPoint: {
+      vertical: "center",
+      horizontal: "center"
+    },
+    contentItems: [
+      {
+        pattern: "image",
+        src: "/images/content/backgrounds/background-tall-4.jpg"
+      }
+    ]
+  } only %}
+  <bolt-layout-item><p>Ut ipsum eiusmod eu incididunt consectetur est veniam magna et deserunt voluptate dolor ea cupidatat. Exercitation sunt eiusmod amet adipisicing do pariatur enim. Quis deserunt Lorem quis consectetur aliquip labore deserunt. Nulla ex ut deserunt incididunt nostrud ipsum occaecat magna consequat.</p></bolt-layout-item>
+  <bolt-layout-item><p>Cupidatat culpa cillum ipsum tempor laboris sunt deserunt veniam. Lorem Lorem excepteur id esse ea eu nulla ullamco mollit ullamco laboris. Amet et eiusmod sunt mollit consectetur aliqua excepteur.</p></bolt-layout-item>
+  <bolt-layout-item><p>Nulla pariatur ea cillum nulla culpa ad quis deserunt do consequat occaecat magna sint. Qui occaecat quis ut est excepteur voluptate aliqua do Lorem aliquip nisi id Lorem voluptate. Ad velit consequat Lorem proident irure ex. Dolor do nisi est veniam nisi nostrud nulla.</p></bolt-layout-item>
+</bolt-layout>

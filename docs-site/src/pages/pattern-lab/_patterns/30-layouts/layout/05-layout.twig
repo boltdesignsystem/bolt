@@ -2,8 +2,19 @@
 
 
 {% include "@bolt-layouts-layout/layout.twig" with {
-  stack_items: "@until-small",
-  layout: "80px",
+  template: "halves@from-small",
+  items: [
+    {
+      content: "Column.",
+    },
+    {
+      content: "Column.",
+    },
+  ],
+} only %}
+
+{% include "@bolt-layouts-layout/layout.twig" with {
+  template: "thirds@from-small",
   items: [
     {
       content: "Column.",
@@ -14,8 +25,41 @@
     {
       content: "Column.",
     },
+  ],
+  attributes: {
+    class: [
+      "t-bolt-dark",
+    ]
+  },
+} only %}
+
+{% include "@bolt-layouts-layout/layout.twig" with {
+  template: "fourths@from-small",
+  items: [
     {
-      content: "Column.",
+      content: "Quis cupidatat aliquip ex officia incididunt ut enim aliqua ex sint sit sunt laboris proident.",
+    },
+    {
+      content: "Consectetur nulla adipisicing consequat ipsum eu ullamco aliquip aliqua amet et.",
+    },
+    {
+      content: "Aliqua aute laboris magna anim ea eu ullamco et proident laborum ipsum.",
+    },
+    {
+      content: "Id incididunt tempor voluptate labore ut ex duis nisi.",
+    },
+    {
+      content: "Nostrud qui labore eu laboris et incididunt anim qui irure deserunt mollit aliquip.",
+    },
+    {
+      content: "Aliquip in ipsum commodo amet nisi pariatur esse labore voluptate ullamco.",
+    },
+    {
+      content: "Deserunt minim irure qui aliquip enim ad.",
+    },
+    {
+      content: "Elit velit adipisicing id esse anim occaecat velit sint esse.",
     },
   ],
 } only %}
+

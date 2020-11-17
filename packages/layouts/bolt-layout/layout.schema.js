@@ -8,6 +8,25 @@ module.exports = {
       description:
         'A Drupal attributes object. Applies extra HTML attributes to the &lt;bolt-layout&gt; tag.',
     },
+    template: {
+      type: 'string',
+      description: '',
+      enum: [
+        '25/25/50',
+        '25/50/25',
+        '25/75',
+        '33/67',
+        '50/25/25',
+        '67/33',
+        '75/25',
+        'flag-80px',
+        'flag-150px',
+        'fourths',
+        'halves',
+        'thirds',
+        'tiles',
+      ],
+    },
     gutter: {
       type: 'string',
       description: 'The spacing in between layout items (when not stacked).',
@@ -112,11 +131,11 @@ module.exports = {
           ],
           default: 'unset',
         },
-        stack_order: {
+        source_order: {
           type: 'string',
           description:
             'The order of the layout item when layout items are stacked. Only enabled when <code>data-stack-items</code> prop is also in use.',
-          enum: ['auto', 'primary', 'secondary'],
+          enum: ['auto', 'primary@until-small', 'primary@until-medium'],
           default: 'auto',
         },
       },

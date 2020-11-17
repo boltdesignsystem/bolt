@@ -2,68 +2,13 @@
    Layout
 \* ------------------------------------ */
 
+// TODO:
+// - variable name conventions
+// - ignore background as grid item
+// - refactor css and update demos and schema
+// - separate bolt-layout-item
+
 @import '@bolt/core-v3.x';
-
-/**
- * Layout widths
- * 1. The % values still follow the 12-column grid concept.
- * 2. The px values are common numbers for existing use cases.
- * 3. More options can be added on demand, just be mindful that each new option will generate quite a bit of CSS when accounting for breakpoints.
- */
-$bolt-layout-item-widths: (
-  '80px': 80px,
-  '150px': 150px,
-  '25%': calc(3 / 12 * (100% - var(--c-bolt-layout-gutter) * 3)),
-  '33%': calc(4 / 12 * (100% - var(--c-bolt-layout-gutter) * 2)),
-  '50%': 50%,
-  '67%': calc(8 / 12 * (100% + var(--c-bolt-layout-gutter) * 2)),
-  '75%': calc(9 / 12 * (100% + var(--c-bolt-layout-gutter) * 3)),
-);
-
-$bolt-layout-breakpoints: ('small', 'medium');
-
-$bolt-layout-mobile-options: (
-  'half width': 50%,
-  'full width': 100%,
-);
-
-$bolt-layout-larger-options: (
-  'small flag': 80px 1fr,
-  'large flag': 150px 1fr,
-  '25/75': 25% 75%,
-  '75/25': 75% 25%,
-);
-
-bolt-layout {
-  @each $breakpoint in $bolt-breakpoints {
-    $breakpoint-name: nth($breakpoint, 1);
-
-    @if (
-      $breakpoint-name !=
-        'xxsmall' and
-        $breakpoint-name !=
-        'xsmall' and
-        $breakpoint-name !=
-        'large' and
-        $breakpoint-name !=
-        'xlarge' and
-        $breakpoint-name !=
-        'xxlarge' and
-        $breakpoint-name !=
-        'xxxlarge' and
-        $breakpoint-name !=
-        'xxxxlarge'
-    ) {
-      @each $layout in $bolt-layout-larger-options {
-        @include bolt-mq($breakpoint-name) {
-          > bolt-layout-item[layout='#{$layout}'] {
-            grid-template-columns: $layout;
-          }
-        }
-      }
-    }
-  }
-}
 
 /**
  * Align options
@@ -77,6 +22,33 @@ $bolt-layout-align-options: (
   'end': 'flex-end',
 );
 
+$col-min-width-large: map-get($bolt-breakpoints, small) / 2;
+$col-min-width-small: $col-min-width-large / 3;
+
+$bolt-layout-templates: (
+  '25/25/50': minmax(#{$col-min-width-small}, 25%)
+    minmax(#{$col-min-width-small}, 25%) minmax(#{$col-min-width-small}, 50%),
+  '25/50/25': minmax(#{$col-min-width-small}, 25%)
+    minmax(#{$col-min-width-small}, 50%) minmax(#{$col-min-width-small}, 25%),
+  '25/75': minmax(#{$col-min-width-small}, 25%)
+    minmax(#{$col-min-width-large}, 75%),
+  '33/67': minmax(#{$col-min-width-small}, 33%)
+    minmax(#{$col-min-width-small}, 67%),
+  '50/25/25': minmax(#{$col-min-width-small}, 50%)
+    minmax(#{$col-min-width-small}, 25%) minmax(#{$col-min-width-small}, 25%),
+  '67': minmax(#{$col-min-width-small}, 67%),
+  '67/33': minmax(#{$col-min-width-small}, 67%)
+    minmax(#{$col-min-width-small}, 33%),
+  '75': minmax(#{$col-min-width-large}, 75%),
+  '75/25': minmax(#{$col-min-width-large}, 75%)
+    minmax(#{$col-min-width-small}, 25%),
+  'flag': minmax(80px, var(--flag-width, 150px)) 1fr,
+  'fourths': repeat(4, minmax(#{$col-min-width-small}, 1fr)),
+  'halves': repeat(2, minmax(#{$col-min-width-small}, 1fr)),
+  'thirds': repeat(3, minmax(#{$col-min-width-small}, 1fr)),
+  'tiles': repeat(auto-fit, minmax(#{$col-min-width-small}, 1fr)),
+);
+
 /**
  * Global wrapper vars
  * 1. The vars can be used on other components that acts like layout but doesn't use layout markup. For example: navbar.
@@ -86,6 +58,7 @@ $bolt-layout-align-options: (
   --bolt-wrapper-max-width: #{bolt-breakpoint(xxlarge)};
   --bolt-wrapper-spacing-x: 30px;
   --bolt-wrapper-padding: var(--bolt-wrapper-spacing-x);
+  --col-min-width: 250px;
   @include bolt-mq(medium) {
     --bolt-wrapper-padding: calc(var(--bolt-wrapper-spacing-x) * 2);
   }
@@ -106,8 +79,10 @@ bolt-layout {
   --c-bolt-layout-padding-top: var(--bolt-spacing-y-medium);
   --c-bolt-layout-padding-bottom: var(--bolt-spacing-y-medium);
 
-  display: flex;
-  justify-content: center;
+  display: grid;
+  grid-gap: var(--c-bolt-layout-gutter);
+  grid-row-gap: var(--c-bolt-layout-padding-bottom);
+
   position: relative;
   right: 50%;
   left: 50%;
@@ -120,62 +95,97 @@ bolt-layout {
   padding-inline-end: var(--bolt-wrapper-padding);
   padding-inline-start: var(--bolt-wrapper-padding);
 
+  &[template~='halves'] {
+    grid-template-columns: map-get($bolt-layout-templates, 'halves');
+  }
+
+  @each $layout-name, $layout-value in $bolt-layout-templates {
+    &[template~='#{$layout-name}'] {
+      grid-template-columns: $layout-value;
+    }
+  }
+
+  @each $breakpoint in $bolt-breakpoints {
+    $breakpoint-name: nth($breakpoint, 1);
+    @each $layout-name, $layout-value in $bolt-layout-templates {
+      @if ($breakpoint-name == small or $breakpoint-name == medium) {
+        @include bolt-mq($breakpoint-name) {
+          &[template~='#{$layout-name}@from-#{$breakpoint-name}'] {
+            grid-template-columns: $layout-value;
+          }
+        }
+      }
+    }
+  }
+
+  @each $option in $bolt-layout-align-options {
+    $option-name: nth($option, 1);
+    $option-value: nth($option, 2);
+
+    &[align-items='#{$option-name}'] {
+      justify-content: #{$option-value};
+    }
+
+    &[valign-items='#{$option-name}'] {
+      align-items: #{$option-value};
+    }
+  }
+
+  > bolt-background {
+    // ignore
+  }
+
   > bolt-layout-item {
     display: flex;
     flex: 0 1 100%;
     flex-direction: column;
+    order: 1;
+    position: relative;
+
+    &[source-order='primary@until-small'] {
+      order: 0;
+      @include bolt-mq(small) {
+        order: 1;
+      }
+    }
+
+    &[source-order='primary@until-medium'] {
+      order: 0;
+      @include bolt-mq(medium) {
+        order: 1;
+      }
+    }
+
+    &[source-order='seconday@until-small'] {
+      order: 2;
+      @include bolt-mq(small) {
+        order: 1;
+      }
+    }
+
+    &[source-order='seconday@until-medium'] {
+      order: 2;
+      @include bolt-mq(medium) {
+        order: 1;
+      }
+    }
 
     // Using gutter vars to set the defaults.
     &:not(:first-of-type) {
-      margin-inline-start: var(--c-bolt-layout-gutter);
+      // margin-inline-start: var(--c-bolt-layout-gutter);
       padding-top: var(--c-bolt-layout-row-gutter, unset);
 
       @include bolt-mq(small) {
         &[width*='@from-small'] {
           --c-bolt-layout-row-gutter: 0;
-          margin-inline-start: var(--c-bolt-layout-gutter);
+          // margin-inline-start: var(--c-bolt-layout-gutter);
         }
       }
 
       @include bolt-mq(medium) {
         &[width*='@from-medium'] {
           --c-bolt-layout-row-gutter: 0;
-          margin-inline-start: var(--c-bolt-layout-gutter);
-        }
-      }
-    }
-
-    // Loop through the width map and generate regular widths and breakpoint widths.
-    @each $width in $bolt-layout-item-widths {
-      $width-name: nth($width, 1);
-      $width-value: nth($width, 2);
-
-      @if (
-        $width-name !=
-          '25%' and
-          $width-name !=
-          '33%' and
-          $width-name !=
-          '67%' and
-          $width-name !=
-          '75%'
-      ) {
-        &[width='#{$width-name}'],
-        &[width^='#{$width-name} '],
-        &[width$=' #{$width-name}'] {
-          max-width: #{$width-value}; // Whitespace is used internationally in the selectors to account for multiple options defined within an attribute.
-        }
-      }
-
-      @include bolt-mq(small) {
-        &[width*='#{$width-name}@from-small'] {
-          max-width: #{$width-value} !important; // Important is used here because breakpoint specific widths trumps regular widths.
-        }
-      }
-
-      @include bolt-mq(medium) {
-        &[width*='#{$width-name}@from-medium'] {
-          max-width: #{$width-value} !important; // Important is used here because breakpoint specific widths trumps regular widths.
+          // margin-inline-start: var(--c-bolt-layout-gutter);
         }
       }
     }
@@ -260,109 +270,6 @@ bolt-layout {
   &[gutter='none'] {
     > bolt-layout-item:not(:first-of-type) {
       --c-bolt-layout-gutter: 0;
-    }
-  }
-
-  // Loop through the align map to generate horizontal and vertical alignments.
-  @each $option in $bolt-layout-align-options {
-    $option-name: nth($option, 1);
-    $option-value: nth($option, 2);
-
-    &[align-items='#{$option-name}'] {
-      justify-content: #{$option-value};
-    }
-
-    &[valign-items='#{$option-name}'] {
-      align-items: #{$option-value};
-    }
-  }
-
-  // Styles for stacked items need to be replicated manually for the two supported breakpoints because variables can't be used as a param for media queries.
-  @include bolt-mq($until: small) {
-    &[stack-items='@until-small'] {
-      flex-wrap: wrap;
-      align-content: flex-start;
-
-      > bolt-layout-item {
-        &:not(:first-of-type) {
-          --c-bolt-layout-gutter: 0;
-        }
-
-        &:not(:first-of-type),
-        &[stack-order='secondary'] {
-          padding-top: var(
-            --c-bolt-layout-row-gutter,
-            var(--bolt-spacing-y-medium)
-          );
-        }
-
-        &[stack-order='primary'] {
-          --c-bolt-layout-row-gutter: 0;
-          --c-bolt-layout-item-valign-end-offset: 0;
-          order: -1;
-        }
-
-        &[stack-order='secondary'] {
-          --c-bolt-layout-item-valign-start-offset: 0;
-        }
-      }
-
-      @each $size in $bolt-spacing-multiplier-system {
-        $size-name: nth($size, 1);
-
-        &[row-gutter='#{$size-name}'] {
-          > bolt-layout-item {
-            &:not(:first-of-type),
-            &[stack-order='secondary'] {
-              --c-bolt-layout-row-gutter: var(--bolt-spacing-y-#{$size-name});
-            }
-          }
-        }
-      }
-    }
-  }
-
-  @include bolt-mq($until: medium) {
-    &[stack-items='@until-medium'] {
-      flex-wrap: wrap;
-      align-content: flex-start;
-
-      > bolt-layout-item {
-        &:not(:first-of-type) {
-          --c-bolt-layout-gutter: 0;
-        }
-
-        &:not(:first-of-type),
-        &[stack-order='secondary'] {
-          padding-top: var(
-            --c-bolt-layout-row-gutter,
-            var(--bolt-spacing-y-medium)
-          );
-        }
-
-        &[stack-order='primary'] {
-          --c-bolt-layout-row-gutter: 0;
-          --c-bolt-layout-item-valign-end-offset: 0;
-          order: -1;
-        }
-
-        &[stack-order='secondary'] {
-          --c-bolt-layout-item-valign-start-offset: 0;
-        }
-      }
-
-      @each $size in $bolt-spacing-multiplier-system {
-        $size-name: nth($size, 1);
-
-        &[row-gutter='#{$size-name}'] {
-          > bolt-layout-item {
-            &:not(:first-of-type),
-            &[stack-order='secondary'] {
-              --c-bolt-layout-row-gutter: var(--bolt-spacing-y-#{$size-name});
-            }
-          }
-        }
-      }
     }
   }
 }
