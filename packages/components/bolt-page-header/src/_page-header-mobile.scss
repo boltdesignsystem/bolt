@@ -330,4 +330,34 @@
   .c-bolt-page-header__user-flag__img {
     width: 48px;
   }
+
+  // JS-related list styles
+  .c-bolt-page-header__nav:not(.is-open) {
+    .c-bolt-page-header__nav-list-group
+      > .c-bolt-page-header__nav-list
+      .c-bolt-page-header__nav-list {
+      visibility: hidden;
+    }
+  }
+
+  .c-bolt-page-header__nav.is-open {
+    .c-bolt-page-header__nav-list:not(.is-active-trail),
+    .c-bolt-page-header__nav-list-item:not(.is-active-trail) {
+      visibility: hidden;
+    }
+
+    .c-bolt-page-header__nav-list.is-active {
+      > .c-bolt-page-header__nav-list-item {
+        visibility: visible;
+      }
+    }
+  }
+
+  .c-bolt-page-header__nav-list--pega-sites
+    .c-bolt-page-header__nav-list.is-active {
+    .c-bolt-page-header__nav-list,
+    .c-bolt-page-header__nav-list-item {
+      visibility: visible;
+    }
+  }
 }
