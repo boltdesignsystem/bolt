@@ -18,41 +18,46 @@
 ] %}
 
 <li {{ attributes.addClass(classes) }}>
-  {% if nested %}
-    {% if nested.desktop_heading %}
-      {% set desktop_heading_classes = [
+  {% if content %}
+    <div class="c-bolt-page-header__nav-content">
+      {{ content }}
+    </div>
+  {% else %}
+    {% if nested %}
+      {% if nested.desktop_heading %}
+        {% set desktop_heading_classes = [
+          'c-bolt-page-header__nav-link',
+          'c-bolt-page-header__nav-link--heading',
+        ] %}
+        <{{ link_tag }} {{ link_attributes.addClass(desktop_heading_classes) }}>
+          <strong class="c-bolt-page-header__nav-link__content">
+            {{ link.content }}
+          </strong>
+        </{{ link_tag }}>
+      {% endif %}
+
+      {% set nested_link_classes = [
         'c-bolt-page-header__nav-link',
-        'c-bolt-page-header__nav-link--heading',
+        'js-bolt-page-header-nested-nav-list-trigger',
       ] %}
-      <{{ link_tag }} {{ link_attributes.addClass(desktop_heading_classes) }}>
-        <strong class="c-bolt-page-header__nav-link__content">
+      <button type="button" aria-haspopup="true" aria-expanded="false" {{ link_attributes.addClass(nested_link_classes)|without('type')|without('aria-haspopup')|without('aria-expanded') }}>
+        <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--collapse" aria-hidden="true"></span>
+        <span class="c-bolt-page-header__nav-link__content">
           {{ link.content }}
-          {% if link_attributes.href %}
-            {% include '@bolt-components-icon/icon.twig' with {
-              name: 'chevron-right',
-            } only %}
-          {% endif %}
-        </strong>
+        </span>
+        <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--expand" aria-hidden="true"></span>
+      </button>
+      {{ nested.content }}
+    {% else %}
+      {% set link_classes = [
+        'c-bolt-page-header__nav-link',
+        link.selected ? 'c-bolt-page-header__nav-link--selected',
+      ] %}
+      <{{ link_tag }} {{ link_attributes.addClass(link_classes) }}>
+        <span class="c-bolt-page-header__nav-link__content">
+          {{ link.content }}
+        </span>
       </{{ link_tag }}>
     {% endif %}
-
-    {% set nested_link_classes = [
-      'c-bolt-page-header__nav-link',
-      'js-bolt-page-header-nested-nav-list-trigger',
-    ] %}
-    <button type="button" aria-haspopup="true" aria-expanded="false" {{ link_attributes.addClass(nested_link_classes)|without('type')|without('aria-haspopup')|without('aria-expanded') }}>
-      <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--collapse" aria-hidden="true"></span>
-      <span class="c-bolt-page-header__nav-link__content">
-        {{ link.content }}
-      </span>
-      <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--expand" aria-hidden="true"></span>
-    </button>
-    {{ nested.content }}
-  {% else %}
-    <{{ link_tag }} {{ link_attributes.addClass('c-bolt-page-header__nav-link') }}>
-      <span class="c-bolt-page-header__nav-link__content">
-        {{ link.content }}
-      </span>
-    </{{ link_tag }}>
   {% endif %}
 </li>

@@ -72,19 +72,8 @@ $bolt-page-header-mobile-expanded-content-spacing-x: calc(
   }
 }
 
-@mixin bolt-page-header-button-reset {
-  appearance: none;
-  padding: unset;
-  font: var(--bolt-type-font-family-body);
-  line-height: unset;
-  text-align: unset;
-  cursor: pointer;
-  border: 0;
-  background: transparent;
-}
-
 @mixin bolt-page-header-action-trigger {
-  @include bolt-page-header-button-reset;
+  @include bolt-button-native-styles-reset;
 
   display: block;
   position: relative;

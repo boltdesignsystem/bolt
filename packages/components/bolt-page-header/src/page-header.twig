@@ -7,6 +7,10 @@
 {# Variables #}
 {% set this = init(schema) %}
 {% set attributes = create_attribute(attributes|default({})) %}
+{% set logo_attributes = create_attribute(logo.attributes|default({})) %}
+{% set logo_tag = logo_attributes.type ? 'button' : logo_attributes.href ? 'a' : 'span' %}
+{% set cta_attributes = create_attribute(cta.attributes|default({})) %}
+{% set cta_tag = cta_attributes.type ? 'button' : cta_attributes.href ? 'a' : 'span' %}
 
 {% set classes = [
   'c-bolt-page-header',
@@ -15,27 +19,22 @@
 <header {{ attributes.addClass(classes) }}>
   <div class="c-bolt-page-header__primary">
     {% if logo %}
-      <a class="c-bolt-page-header__logo" href="{{ logo.url }}" aria-label="{{ logo.label }}" {{ logo.attributes }}>
+      <{{ logo_tag }} {{ logo_attributes.addClass('c-bolt-page-header__logo') }} aria-label="{{ logo.label }}">
         <span class="c-bolt-page-header__logo__img" aria-hidden="true">
           <img src="{{ logo.image_src }}">
         </span>
-      </a>
+      </{{ logo_tag }}>
     {% endif %}
     <div class="c-bolt-page-header__toolbar">
-      {% if search_panel %}
-        {{ search_panel }}
-      {% endif %}
-      {% if primary_nav %}
-        {{ primary_nav }}
-      {% endif %}
+      {{ content }}
       {% if cta %}
-        <a class="c-bolt-page-header__cta" href="{{ cta.url }}">
+        <{{ cta_tag }} {{ cta_attributes.addClass('c-bolt-page-header__cta') }}>
           {{ cta.content }}
-        </a>
+        </{{ cta_tag }}>
       {% endif %}
     </div>
   </div>
   <div class="c-bolt-page-header__secondary">
-    {{ secondary_nav }}
+    {{ secondary_content }}
   </div>
 </header>

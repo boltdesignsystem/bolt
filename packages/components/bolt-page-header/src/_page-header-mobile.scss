@@ -173,13 +173,14 @@
     border-radius: 0;
   }
 
-  .c-bolt-page-header__nav-link--current {
+  .c-bolt-page-header__nav-link--selected {
     padding-inline-end: calc(
       #{$bolt-page-header-mobile-expanded-content-spacing-x} + var(
           --bolt-spacing-x-small
         ) * 2
     );
     color: bolt-theme(headline);
+    cursor: default;
 
     &:after {
       content: '';

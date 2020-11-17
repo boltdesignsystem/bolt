@@ -28,23 +28,5 @@
   </span>
 </button>
 <div {{ attributes.addClass(classes) }}>
-  <bolt-stack spacing="small">
-    {{ search_input }}
-    {#
-      <form>
-        {% include '@bolt-components-typeahead/typeahead.demo.twig' only %}
-      </form>
-    #}
-  </bolt-stack>
-  {% if helper_text %}
-    {% include '@bolt-components-headline/text.twig' with {
-      text: helper_text,
-      size: 'small',
-      align: 'center',
-      icon: {
-        name: 'info-open',
-        position: 'before',
-      }
-    } only %}
-  {% endif %}
+  {{ content }}
 </div>

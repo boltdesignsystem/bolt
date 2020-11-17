@@ -87,7 +87,7 @@
     line-height: var(--bolt-type-line-height-xxsmall);
 
     .c-bolt-page-header__nav-link {
-      @include bolt-page-header-button-reset;
+      @include bolt-button-native-styles-reset;
 
       display: block;
       padding: 0 var(--bolt-spacing-x-xsmall);
@@ -170,8 +170,9 @@
           }
         }
 
-        .c-bolt-page-header__nav-link--current {
+        .c-bolt-page-header__nav-link--selected {
           color: bolt-theme(headline);
+          cursor: default;
           padding-inline-end: calc(
             var(--bolt-spacing-x-small) + var(--bolt-spacing-x-small) * 2
           );
@@ -370,7 +371,7 @@
         }
 
         a.c-bolt-page-header__nav-link {
-          @include bolt-page-header-button-reset;
+          @include bolt-button-native-styles-reset;
 
           display: block;
           padding: 1px;
