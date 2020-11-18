@@ -13,8 +13,8 @@
 {% set classes = [
   'js-bolt-page-header-nav-list-item',
   'c-bolt-page-header__nav-list-item',
-  nested ? 'c-bolt-page-header__nav-list-item--nested',
   popover ? 'c-bolt-page-header__nav-list-item--popover',
+  children ? 'has-children',
 ] %}
 
 <li {{ attributes.addClass(classes) }}>
@@ -23,32 +23,31 @@
       {{ content }}
     </div>
   {% else %}
-    {% if nested %}
-      {% if nested.desktop_heading %}
-        {% set desktop_heading_classes = [
-          'c-bolt-page-header__nav-link',
-          'c-bolt-page-header__nav-link--heading',
-        ] %}
-        <{{ link_tag }} {{ link_attributes.addClass(desktop_heading_classes) }}>
+    {% if children %}
+      {# Visible desktop heading #}
+      {% if children.desktop_heading %}
+        <{{ link_tag }} {{ link_attributes }} class="c-bolt-page-header__nav-link c-bolt-page-header__nav-link--heading">
           <strong class="c-bolt-page-header__nav-link__content">
             {{ link.content }}
           </strong>
         </{{ link_tag }}>
       {% endif %}
 
-      {% set nested_link_classes = [
+      {# Trigger and content for nested children #}
+      {% set children_link_classes = [
         'c-bolt-page-header__nav-link',
         'js-bolt-page-header-nested-nav-list-trigger',
       ] %}
-      <button type="button" aria-haspopup="true" aria-expanded="false" {{ link_attributes.addClass(nested_link_classes)|without('type')|without('aria-haspopup')|without('aria-expanded') }}>
+      <button type="button" aria-haspopup="true" aria-expanded="false" {{ link_attributes.addClass(children_link_classes)|without('href')|without('target')|without('type')|without('aria-haspopup')|without('aria-expanded') }}>
         <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--collapse" aria-hidden="true"></span>
         <span class="c-bolt-page-header__nav-link__content">
           {{ link.content }}
         </span>
         <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--expand" aria-hidden="true"></span>
       </button>
-      {{ nested.content }}
+      {{ children.content }}
     {% else %}
+      {# Simple link without children #}
       {% set link_classes = [
         'c-bolt-page-header__nav-link',
         link.selected ? 'c-bolt-page-header__nav-link--selected',

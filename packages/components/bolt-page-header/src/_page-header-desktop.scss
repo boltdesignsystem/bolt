@@ -75,7 +75,7 @@
   }
 
   .c-bolt-page-header__nav-list--user,
-  .c-bolt-page-header__nav-list--pega-sites {
+  .c-bolt-page-header__nav-list--related-sites {
     display: flex;
     position: absolute;
     top: 0;
@@ -225,7 +225,7 @@
     }
   }
 
-  .c-bolt-page-header__nav-list--pega-sites {
+  .c-bolt-page-header__nav-list--related-sites {
     order: 2;
     left: calc(var(--bolt-page-padding-x) - var(--bolt-spacing-x-xsmall));
 
@@ -301,7 +301,7 @@
       }
     }
 
-    > .c-bolt-page-header__nav-list-item--nested {
+    > .c-bolt-page-header__nav-list-item.has-children {
       > .c-bolt-page-header__nav-list {
         display: flex;
         flex-wrap: wrap;
@@ -350,6 +350,7 @@
 
           .c-bolt-page-header__nav-link--heading {
             margin-bottom: var(--bolt-spacing-y-xsmall);
+            font-weight: var(--bolt-type-font-weight-semibold);
           }
 
           > .c-bolt-page-header__nav-link--heading {
@@ -361,24 +362,45 @@
             line-height: var(--bolt-type-line-height-medium);
           }
 
-          > .c-bolt-page-header__nav-list {
-            > .c-bolt-page-header__nav-list-item {
-              > .c-bolt-page-header__nav-link {
-                font-weight: var(--bolt-type-font-weight-semibold);
-              }
+          > a.c-bolt-page-header__nav-link--heading,
+          > button.c-bolt-page-header__nav-link--heading {
+            .c-bolt-page-header__nav-link__content:after {
+              content: '';
+              display: block;
+              transform: rotate(-45deg) scale(0.4) translate3d(0.1em, 0.1em, 0);
+              width: 1em;
+              height: 1em;
+              border-right: 2.5px solid; /* 2.5 x 0.4 (scale) = 1 */
+              border-bottom: 2.5px solid;
             }
+          }
+
+          .c-bolt-page-header__nav-list {
+            font-size: var(--bolt-type-font-size-xsmall);
+            font-weight: var(--bolt-type-font-weight-regular);
+            line-height: var(--bolt-type-line-height-xsmall);
           }
         }
 
-        a.c-bolt-page-header__nav-link {
-          @include bolt-button-native-styles-reset;
-
+        .c-bolt-page-header__nav-link {
           display: block;
           padding: 1px;
-          font-size: var(--bolt-type-font-size-xsmall);
-          font-weight: var(--bolt-type-font-weight-regular);
+          color: bolt-theme(headline);
+
+          > .c-bolt-page-header__nav-link__content {
+            font-family: inherit;
+            font-size: inherit;
+            font-weight: inherit;
+            color: inherit;
+            line-height: inherit;
+          }
+        }
+
+        a.c-bolt-page-header__nav-link,
+        button.c-bolt-page-header__nav-link {
+          @include bolt-button-native-styles-reset;
+
           color: bolt-theme(link);
-          line-height: var(--bolt-type-line-height-xsmall);
           outline: none;
 
           &:hover,
@@ -391,10 +413,6 @@
             box-shadow: 0 0 0 1px bolt-theme(link);
             outline: none; // Repeated here to remove Firefox default outline.
           }
-
-          > * {
-            font-weight: inherit;
-          }
         }
 
         .c-bolt-page-header__nav-list {
@@ -402,7 +420,7 @@
             margin-bottom: var(--bolt-spacing-y-xsmall);
           }
 
-          .c-bolt-page-header__nav-list-item--nested
+          .c-bolt-page-header__nav-list-item.has-children
             + .c-bolt-page-header__nav-list-item {
             margin-top: var(--bolt-spacing-y-small);
           }
@@ -421,7 +439,7 @@
           border-left-width: 0;
         }
 
-        .c-bolt-page-header__nav-list-item--nested {
+        .c-bolt-page-header__nav-list-item.has-children {
           .c-bolt-page-header__nav-link[aria-expanded] {
             display: none;
           }
