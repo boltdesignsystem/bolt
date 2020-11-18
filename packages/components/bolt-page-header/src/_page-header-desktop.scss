@@ -5,32 +5,30 @@
 @include bolt-mq($from: large) {
   // Primary section container
   .c-bolt-page-header__primary {
-    grid-template-columns: minmax(82px, auto) 1fr;
-    grid-gap: var(--bolt-spacing-x-xsmall);
     padding-top: $bolt-page-header-desktop-padding-top;
+    padding-right: var(--bolt-page-padding-x);
     padding-bottom: $bolt-page-header-desktop-padding-bottom;
-    padding-inline-end: var(--bolt-page-padding-x);
-    padding-inline-start: var(--bolt-page-padding-x);
+    padding-left: var(--bolt-page-padding-x);
     background: linear-gradient(
       rgba(bolt-color(gray), 0.1) 0%,
       rgba(bolt-color(gray), 0.1) $bolt-page-header-desktop-util-nav-height,
       bolt-color(white) $bolt-page-header-desktop-util-nav-height,
       bolt-color(white) 100%
     );
+    grid-template-columns: minmax(82px, auto) 1fr;
+    grid-gap: var(--bolt-spacing-x-xsmall);
   }
 
   // Logo
   .c-bolt-page-header__logo {
-    margin-inline-start: calc(
-      #{$bolt-page-header-action-trigger-spacing-x} * -1
-    );
+    margin-left: calc(#{$bolt-page-header-action-trigger-spacing-x} * -1);
   }
 
   // Toolbar
   .c-bolt-page-header__toolbar {
     flex: 1;
     justify-content: flex-end;
-    margin-inline-end: calc(#{$bolt-page-header-action-trigger-spacing-x} * -1);
+    margin-right: calc(#{$bolt-page-header-action-trigger-spacing-x} * -1);
 
     > * {
       order: 2;
@@ -45,11 +43,11 @@
   .c-bolt-page-header__search {
     opacity: 0;
     transform: translate3d(0, calc(var(--bolt-spacing-y-small) * -1), 0);
+    padding-right: calc(var(--bolt-page-padding-x) + 8vw);
+    padding-left: calc(var(--bolt-page-padding-x) + 8vw);
     will-change: opacity, visibility, transform;
     transition: opacity $bolt-transition, visibility $bolt-transition,
       transform $bolt-transition;
-    padding-inline-end: calc(var(--bolt-page-padding-x) + 8vw);
-    padding-inline-start: calc(var(--bolt-page-padding-x) + 8vw);
 
     @at-root .c-bolt-page-header__action-trigger--search[aria-expanded='true']
         ~ #{&} {
@@ -60,7 +58,7 @@
   // Mega primary nav
   .c-bolt-page-header__nav {
     order: 1;
-    margin-inline-end: auto;
+    margin-right: auto;
   }
 
   .c-bolt-page-header__nav-list-group {
@@ -171,11 +169,11 @@
         }
 
         .c-bolt-page-header__nav-link--selected {
-          color: bolt-theme(headline);
-          cursor: default;
-          padding-inline-end: calc(
+          padding-right: calc(
             var(--bolt-spacing-x-small) + var(--bolt-spacing-x-small) * 2
           );
+          color: bolt-theme(headline);
+          cursor: default;
 
           &:after {
             content: '';
@@ -315,7 +313,13 @@
         z-index: 1;
         width: 100%;
         padding-top: var(--bolt-spacing-y-medium);
+        padding-right: calc(
+          var(--bolt-page-padding-x) - var(--bolt-spacing-x-medium)
+        );
         padding-bottom: var(--bolt-spacing-y-medium);
+        padding-left: calc(
+          var(--bolt-page-padding-x) - var(--bolt-spacing-x-medium)
+        );
         border-top-color: $bolt-border-color;
         border-top-style: $bolt-border-style;
         border-top-width: $bolt-border-width;
@@ -328,18 +332,12 @@
         will-change: opacity, visibility, transform;
         transition: opacity $bolt-transition, visibility $bolt-transition,
           transform $bolt-transition;
-        padding-inline-start: calc(
-          var(--bolt-page-padding-x) - var(--bolt-spacing-x-medium)
-        );
-        padding-inline-end: calc(
-          var(--bolt-page-padding-x) - var(--bolt-spacing-x-medium)
-        );
 
         > .c-bolt-page-header__nav-list-item {
           flex: 1;
           margin-bottom: var(--bolt-spacing-y-medium);
-          padding-inline-start: var(--bolt-spacing-x-medium);
-          padding-inline-end: var(--bolt-spacing-x-medium);
+          padding-right: var(--bolt-spacing-x-medium);
+          padding-left: var(--bolt-spacing-x-medium);
           border-left-color: $bolt-border-color;
           border-left-style: $bolt-border-style;
           border-left-width: $bolt-border-width;
@@ -426,17 +424,18 @@
           }
 
           .c-bolt-page-header__nav-list {
-            margin-inline-start: var(--bolt-spacing-x-small);
+            margin-left: var(--bolt-spacing-x-small);
           }
         }
 
         .c-bolt-page-header__nav-list-item--full-width {
           display: grid;
-          place-items: center;
           flex-basis: 100%;
           margin-bottom: 0;
+          font-weight: var(--bolt-type-font-weight-bold);
           text-align: center;
           border-left-width: 0;
+          place-items: center;
         }
 
         .c-bolt-page-header__nav-list-item.has-children {
@@ -494,6 +493,8 @@
   // Main CTA
   .c-bolt-page-header__cta {
     transform: translate3d(0, 0, 0);
+    margin-right: $bolt-page-header-action-trigger-spacing-x;
+    margin-left: $bolt-page-header-action-trigger-spacing-x;
     padding: var(--bolt-spacing-y-xsmall) var(--bolt-spacing-x-small);
     font-size: var(--bolt-type-font-size-small);
     line-height: var(--bolt-type-line-height-small);
@@ -502,8 +503,6 @@
     will-change: transform, filter, box-shadow;
     transition: transform $bolt-transition, filter $bolt-transition,
       box-shadow $bolt-transition;
-    margin-inline-start: $bolt-page-header-action-trigger-spacing-x;
-    margin-inline-end: $bolt-page-header-action-trigger-spacing-x;
     white-space: nowrap;
 
     &:hover {

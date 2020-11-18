@@ -5,24 +5,24 @@
 @include bolt-mq($until: large) {
   // Primary section container
   .c-bolt-page-header__primary {
-    grid-template-columns: minmax(166px, 275px) 1fr;
-    grid-gap: var(--bolt-spacing-x-small);
     padding-top: $bolt-page-header-mobile-spacing-y;
+    padding-right: $bolt-page-header-mobile-primary-nav-spacing-x;
     padding-bottom: $bolt-page-header-mobile-spacing-y;
-    padding-inline-end: $bolt-page-header-mobile-primary-nav-spacing-x;
-    padding-inline-start: $bolt-page-header-mobile-primary-nav-spacing-x;
+    padding-left: $bolt-page-header-mobile-primary-nav-spacing-x;
+    grid-template-columns: minmax(166px, auto) 1fr;
+    grid-gap: var(--bolt-spacing-x-small);
   }
 
   // Toolbar
   .c-bolt-page-header__toolbar {
-    margin-inline-start: auto;
+    margin-left: auto;
   }
 
   // Search panel
   .c-bolt-page-header__search {
-    padding-inline-end: $bolt-page-header-mobile-expanded-content-spacing-x;
-    padding-inline-start: $bolt-page-header-mobile-expanded-content-spacing-x;
     transform: translate3d(-100%, 0, 0);
+    padding-right: $bolt-page-header-mobile-expanded-content-spacing-x;
+    padding-left: $bolt-page-header-mobile-expanded-content-spacing-x;
     will-change: visibility, transform;
     transition: visibility $bolt-transition, transform $bolt-transition;
   }
@@ -155,9 +155,9 @@
 
   .c-bolt-page-header__nav-content {
     padding-top: var(--bolt-spacing-y-medium);
+    padding-right: $bolt-page-header-mobile-expanded-content-spacing-x;
     padding-bottom: var(--bolt-spacing-y-medium);
-    padding-inline-start: $bolt-page-header-mobile-expanded-content-spacing-x;
-    padding-inline-end: $bolt-page-header-mobile-expanded-content-spacing-x;
+    padding-left: $bolt-page-header-mobile-expanded-content-spacing-x;
   }
 
   // Nav link
@@ -168,13 +168,13 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    padding-inline-end: $bolt-page-header-mobile-expanded-content-spacing-x;
-    padding-inline-start: $bolt-page-header-mobile-expanded-content-spacing-x;
+    padding-right: $bolt-page-header-mobile-expanded-content-spacing-x;
+    padding-left: $bolt-page-header-mobile-expanded-content-spacing-x;
     border-radius: 0;
   }
 
   .c-bolt-page-header__nav-link--selected {
-    padding-inline-end: calc(
+    padding-right: calc(
       #{$bolt-page-header-mobile-expanded-content-spacing-x} + var(
           --bolt-spacing-x-small
         ) * 2

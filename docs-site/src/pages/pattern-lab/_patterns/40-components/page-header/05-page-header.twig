@@ -181,6 +181,16 @@
   {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
     content: card,
   } only %}
+
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'View all',
+      attributes: {
+        href: 'https://pega.com',
+      }
+    },
+    full_width: true,
+  } only %}
 {% endset %}
 
 {% set products_lv2 %}
