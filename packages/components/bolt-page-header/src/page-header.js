@@ -1,39 +1,7 @@
-import { BoltPageHeaderMenu } from './page-header-menu.js';
-
-class BoltPageHeaderMenuTertiary extends BoltPageHeaderMenu {
-  setupDesktopMenu() {
-    this.addClickHandlers(this.menu);
-    this.state.desktopIsSetup = true;
-  }
-
-  resetDesktopMenu() {
-    this.removeClickHandlers(this.menu);
-    this.state.desktopIsSetup = false;
-  }
-}
-
-//   search and hamburger
-//   aria-expanded only on click on mobile
-//   only one at a time
-
-// main menu
-//   click on button, button get aria-expanded
-//   parent LI gets is-expanded class
-//   parent UL gets is-covered
-//   only one can be expanded at a time
-
-// on desktop
-//   on hover show by setting aria-expanded not :hover pseudo class
-//   should also open on keyboard press enter/space
-//   on hover and click open utility dropdown
-//   add click-off to close
-//   only one main menu open at a time
-
-// hover intent
-
-// tab order
-
-// aria-hidden on mobile stay in current section, closest parent and siblings should be hidden
+import {
+  BoltPageHeaderNav,
+  BoltPageHeaderActionNav,
+} from './page-header-nav.js';
 
 class BoltPageHeader {
   constructor(el) {
@@ -43,39 +11,105 @@ class BoltPageHeader {
   }
 
   init() {
-    this.primaryButtons = this.el.querySelectorAll(
-      '.js-bolt-page-header-primary-button',
+    // Site Nav
+    const siteMenuTriggers = this.el.querySelectorAll(
+      '.js-bolt-page-header-nav--site > .js-bolt-page-header-nav-item > .js-bolt-page-header-trigger',
     );
-    this.secondaryButtons = this.el.querySelectorAll(
-      '.js-bolt-page-header-hover-trigger',
-    );
-
-    this.navListTriggers = this.el.querySelectorAll(
-      '.c-bolt-page-header__nav-list button[aria-haspopup]',
-    );
-
-    this.primaryMenus = new BoltPageHeaderMenu(this.primaryButtons, {
+    const siteMenuArray = this.getMenusArray(siteMenuTriggers);
+    this.siteMenu = new BoltPageHeaderNav(siteMenuArray, {
       mobile: false,
     });
-    this.secondaryMenus = new BoltPageHeaderMenu(this.secondaryButtons, {
-      mobile: false,
-    });
-    this.navListMenus = new BoltPageHeaderMenu(this.navListTriggers, {
+
+    // Nested Site Nav
+    const siteNestedMenuTriggers = this.el.querySelectorAll(
+      '.js-bolt-page-header-nav--site-nested .js-bolt-page-header-trigger',
+    );
+    const siteNestedMenuArray = this.getMenusArray(siteNestedMenuTriggers);
+    this.siteNestedMenu = new BoltPageHeaderNav(siteNestedMenuArray, {
       desktop: false,
       isNested: true,
+      onNestedNavToggle: open => {
+        const primaryNav = this.el.querySelector(
+          '#js-bolt-page-header-primary-nav',
+        );
+        if (open) {
+          primaryNav.classList.add('is-open');
+        } else {
+          primaryNav.classList.remove('is-open');
+        }
+      },
     });
 
-    this.tertiaryButtons = this.el.querySelectorAll(
-      '.c-bolt-page-header__toolbar > button[aria-haspopup]',
+    // Utility Nav
+    const utilityTriggers = this.el.querySelectorAll(
+      '.js-bolt-page-header-nav--utility .js-bolt-page-header-trigger',
     );
-
-    this.tertiaryMenus = new BoltPageHeaderMenuTertiary(this.tertiaryButtons, {
-      externalClick: true,
-      // desktop: false,
+    const utilityMenuArray = this.getMenusArray(utilityTriggers);
+    this.utilityMenu = new BoltPageHeaderNav(utilityMenuArray, {
+      mobile: false,
     });
 
-    this.el.querySelector('.c-bolt-page-header__action-trigger--nav').click();
+    // Action Nav
+    const actionMenuArray = this.getActionMenuArray();
+    this.actionMenu = new BoltPageHeaderActionNav(actionMenuArray);
   }
+
+  getMenusArray(triggers = []) {
+    const menuArray = [];
+
+    triggers.forEach(el => {
+      const trigger = el;
+      const menu = this.nextElementWithClass(el, 'js-bolt-page-header-nav');
+      const ul = el.closest('.js-bolt-page-header-nav');
+      const li = el.closest('.js-bolt-page-header-nav-item');
+      const isTopLevel = ul.parentNode.tagName !== 'LI';
+
+      if (menu) {
+        menuArray.push({ trigger, menu, ul, li, isTopLevel });
+      }
+    });
+
+    return menuArray;
+  }
+
+  getActionMenuArray = () => {
+    const searchToggle = this.el.querySelector(
+      '#js-bolt-page-header-search-toggle',
+    );
+    const search = this.el.querySelector('#js-bolt-page-header-search');
+    const primaryNavToggle = this.el.querySelector(
+      '#js-bolt-page-header-primary-nav-toggle',
+    );
+    const primaryNav = this.el.querySelector(
+      '#js-bolt-page-header-primary-nav',
+    );
+    const menu = [];
+
+    if (searchToggle && search) {
+      menu.push({
+        trigger: searchToggle,
+        menu: search,
+      });
+    }
+
+    if (primaryNavToggle && primaryNav) {
+      menu.push({
+        trigger: primaryNavToggle,
+        menu: primaryNav,
+      });
+    }
+
+    return menu;
+  };
+
+  nextElementWithClass = (el, className) => {
+    if (!el || !className) return;
+    let nextSibling = el.nextElementSibling;
+    while (nextSibling && !nextSibling.classList.contains(className)) {
+      nextSibling = nextSibling.nextElementSibling;
+    }
+    return nextSibling;
+  };
 }
 
 const boltPageHeader = new BoltPageHeader(
