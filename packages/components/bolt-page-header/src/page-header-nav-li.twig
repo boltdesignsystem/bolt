@@ -51,7 +51,6 @@
     {% else %}
       {# Simple link without children #}
       {% set link_classes = [
-        'js-bolt-page-header-trigger',
         'c-bolt-page-header__nav-link',
       ] %}
       <{{ link_tag }} {{ link_attributes.addClass(link_classes) }}>
