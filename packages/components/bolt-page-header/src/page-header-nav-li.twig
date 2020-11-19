@@ -17,6 +17,7 @@
   full_width ? 'c-bolt-page-header__nav-list-item--full-width',
   children ? 'has-children',
   selected ? 'is-selected',
+  current ? 'is-current',
 ] %}
 
 <li {{ attributes.addClass(classes) }}>
@@ -40,7 +41,7 @@
         'js-bolt-page-header-trigger',
         'c-bolt-page-header__nav-link',
       ] %}
-      <button type="button" aria-haspopup="true" aria-expanded="false" {{ link_attributes.addClass(children_link_classes)|without('href')|without('target')|without('type')|without('aria-haspopup')|without('aria-expanded') }}>
+      <button {% if current %}aria-current="page"{% endif %} type="button" aria-haspopup="true" aria-expanded="false" {{ link_attributes.addClass(children_link_classes)|without('href')|without('target')|without('type')|without('aria-haspopup')|without('aria-expanded')|without('aria-current') }}>
         <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--collapse" aria-hidden="true"></span>
         <span class="c-bolt-page-header__nav-link__content">
           {{ link.content }}
@@ -53,7 +54,7 @@
       {% set link_classes = [
         'c-bolt-page-header__nav-link',
       ] %}
-      <{{ link_tag }} {{ link_attributes.addClass(link_classes) }}>
+      <{{ link_tag }} {{ link_attributes.addClass(link_classes)|without('aria-current') }} {% if current and not selected %}aria-current="page"{% endif %} {% if selected and not current %}aria-current="true"{% endif %}>
         <span class="c-bolt-page-header__nav-link__content">
           {{ link.content }}
         </span>

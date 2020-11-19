@@ -246,6 +246,12 @@
     > .c-bolt-page-header__nav-list-item {
       margin: 1px;
 
+      &.is-current {
+        > .c-bolt-page-header__nav-link {
+          color: bolt-theme(headline);
+        }
+      }
+
       > .c-bolt-page-header__nav-link {
         @include bolt-page-header-action-trigger;
 
@@ -281,15 +287,10 @@
           transition: opacity $bolt-transition, transform $bolt-transition;
         }
 
-        &:hover {
-          &:before {
-            opacity: 0;
-          }
-        }
-
+        &:hover,
         &[aria-expanded='true'] {
           &:before {
-            opacity: 0.1;
+            opacity: 0;
           }
 
           &:after {
@@ -369,8 +370,8 @@
               transform: rotate(-45deg) scale(0.4) translate3d(0.1em, 0.1em, 0);
               width: 1em;
               height: 1em;
-              border-right: 2.5px solid; /* 2.5 x 0.4 (scale) = 1 */
-              border-bottom: 2.5px solid;
+              border-right: 5px solid; /* 5 x 0.4 (scale) = 2 */
+              border-bottom: 5px solid;
             }
           }
 
