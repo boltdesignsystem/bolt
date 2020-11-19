@@ -1,0 +1,5 @@
+@mixin bolt-ms-edge-42-only {
+  @supports (-ms-ime-align: auto) {
+    @content;
+  }
+}
