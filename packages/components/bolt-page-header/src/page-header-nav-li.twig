@@ -16,6 +16,7 @@
   popover ? 'c-bolt-page-header__nav-list-item--popover',
   full_width ? 'c-bolt-page-header__nav-list-item--full-width',
   children ? 'has-children',
+  selected ? 'is-selected',
 ] %}
 
 <li {{ attributes.addClass(classes) }}>
@@ -36,8 +37,9 @@
 
       {# Trigger and content for nested children #}
       {% set children_link_classes = [
-        'c-bolt-page-header__nav-link',
+        'js-bolt-page-header-trigger',
         'js-bolt-page-header-nested-nav-list-trigger',
+        'c-bolt-page-header__nav-link',
       ] %}
       <button type="button" aria-haspopup="true" aria-expanded="false" {{ link_attributes.addClass(children_link_classes)|without('href')|without('target')|without('type')|without('aria-haspopup')|without('aria-expanded') }}>
         <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--collapse" aria-hidden="true"></span>
@@ -50,8 +52,8 @@
     {% else %}
       {# Simple link without children #}
       {% set link_classes = [
+        'js-bolt-page-header-trigger',
         'c-bolt-page-header__nav-link',
-        link.selected ? 'c-bolt-page-header__nav-link--selected',
       ] %}
       <{{ link_tag }} {{ link_attributes.addClass(link_classes) }}>
         <span class="c-bolt-page-header__nav-link__content">

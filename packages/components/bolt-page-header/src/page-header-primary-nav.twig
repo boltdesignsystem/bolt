@@ -27,7 +27,7 @@
     } only %}
   </span>
 </button>
-<nav {{ attributes.addClass(classes) }} id="js-bolt-page-header-primary-nav" aria-label="Main Site Navigation">
+<nav {{ attributes.addClass(classes)|without('id')|without('aria-label') }} id="js-bolt-page-header-primary-nav" aria-label="Main Site Navigation">
   <div class="c-bolt-page-header__nav-list-group">
     {{ content }}
   </div>

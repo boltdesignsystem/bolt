@@ -9,6 +9,8 @@
 {% set attributes = create_attribute(attributes|default({})) %}
 
 {% set classes = [
+  'js-bolt-page-header-nav',
+  category == 'user' or category == 'related-sites' ? 'js-bolt-page-header-nav--utility' : 'js-bolt-page-header-nav--' ~ category,
   nested ? 'js-bolt-page-header-nested-nav-list',
   'c-bolt-page-header__nav-list',
   category ? 'c-bolt-page-header__nav-list--' ~ category,

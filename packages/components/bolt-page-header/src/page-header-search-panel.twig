@@ -27,6 +27,6 @@
     } only %}
   </span>
 </button>
-<div {{ attributes.addClass(classes) }}>
+<div {{ attributes.addClass(classes)|without('id') }} id="js-bolt-page-header-search">
   {{ content }}
 </div>
