@@ -21,12 +21,12 @@
 ] %}
 
 <li {{ attributes.addClass(classes) }}>
-  {% if content %}
+  {% if content and not link %}
     <div class="c-bolt-page-header__nav-content">
       {{ content }}
     </div>
-  {% else %}
-    {% if children %}
+  {% elseif link and not content %}
+    {% if link and children %}
       {# Visible desktop heading #}
       {% if children.desktop_heading %}
         <{{ link_tag }} {{ link_attributes }} class="c-bolt-page-header__nav-link c-bolt-page-header__nav-link--heading">
