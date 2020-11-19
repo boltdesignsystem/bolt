@@ -11,7 +11,7 @@
 {% set link_tag = link_attributes.type ? 'button' : link_attributes.href ? 'a' : 'span' %}
 
 {% set classes = [
-  'js-bolt-page-header-nav-list-item',
+  'js-bolt-page-header-nav-item',
   'c-bolt-page-header__nav-list-item',
   popover ? 'c-bolt-page-header__nav-list-item--popover',
   full_width ? 'c-bolt-page-header__nav-list-item--full-width',
@@ -38,7 +38,6 @@
       {# Trigger and content for nested children #}
       {% set children_link_classes = [
         'js-bolt-page-header-trigger',
-        'js-bolt-page-header-nested-nav-list-trigger',
         'c-bolt-page-header__nav-link',
       ] %}
       <button type="button" aria-haspopup="true" aria-expanded="false" {{ link_attributes.addClass(children_link_classes)|without('href')|without('target')|without('type')|without('aria-haspopup')|without('aria-expanded') }}>

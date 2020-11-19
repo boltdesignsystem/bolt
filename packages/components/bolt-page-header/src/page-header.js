@@ -15,7 +15,7 @@ export class BoltPageHeader {
       '.js-bolt-page-header-nav--site > .js-bolt-page-header-nav-item > .js-bolt-page-header-trigger',
     );
     const siteNestedMenuTriggers = this.el.querySelectorAll(
-      '.js-bolt-page-header-nav--site-nested .js-bolt-page-header-trigger',
+      '.js-bolt-page-header-nav-item.has-children .js-bolt-page-header-trigger',
     );
     const utilityTriggers = this.el.querySelectorAll(
       '.js-bolt-page-header-nav--utility .js-bolt-page-header-trigger',
