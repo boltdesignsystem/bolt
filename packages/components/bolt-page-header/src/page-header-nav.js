@@ -181,7 +181,6 @@ export class BoltPageHeaderNav {
   }
 
   toggleMenu(el) {
-    console.log(el);
     if (el.getAttribute('aria-expanded') !== 'true') {
       this.showMenu(el);
     } else {
@@ -262,13 +261,16 @@ export class BoltPageHeaderNav {
       }
       if (this.state.activeTrail.length) {
         this.handleNestedNavToggle();
+
         trail.forEach(el => el?.classList.add('is-active-trail'));
       }
     } else {
       this.state.activeTrail = this.state.activeTrail.filter(
         el => el !== target,
       );
+
       trail.forEach(el => el?.classList.remove('is-active-trail'));
+
       if (this.state.activeTrail.length) {
         this.showMenu(
           this.state.activeTrail[this.state.activeTrail.length - 1],
@@ -287,12 +289,14 @@ export class BoltPageHeaderNav {
 
   handleExternalClick(e) {
     let el = e.target;
-    const clickIsAllowed =
+
+    if (
       this.state.activeMenu.trigger?.contains(el) ||
-      this.state.activeMenu.menu?.contains(el);
-    if (clickIsAllowed) {
+      this.state.activeMenu.menu?.contains(el)
+    ) {
       return;
     }
+
     this.hideMenu(this.state.activeMenu.trigger);
   }
 }
