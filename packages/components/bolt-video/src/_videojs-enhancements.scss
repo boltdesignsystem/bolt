@@ -61,6 +61,33 @@ $bolt-video-js-button-shadow-level-hover: 'level-40';
       height: 45%;
       background-color: $bolt-video-js-button-text-color;
       clip-path: polygon(0 0, 0 100%, 100% 50%);
+
+      /**
+        * Temporary Microsoft Edge .v~40 work around due to lack of 'clip-path' support
+        */
+      @include bolt-ms-edge-42-only {
+        top: 40%;
+        left: 40%;
+        transform: translate(-50%, -50%);
+        font-size: 40%;
+        background-color: transparent;
+
+        @include bolt-mq(xsmall) {
+          font-size: 50%;
+        }
+
+        @include bolt-mq(small) {
+          font-size: 60%;
+        }
+
+        @include bolt-mq(medium) {
+          font-size: 70%;
+        }
+
+        @include bolt-mq(large) {
+          font-size: 80%;
+        }
+      }
     }
 
     &:hover,
