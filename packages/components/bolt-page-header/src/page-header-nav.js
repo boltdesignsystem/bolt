@@ -112,16 +112,14 @@ export class BoltPageHeaderNav {
   addKeypressHandler(menus = []) {
     menus.forEach(menu => {
       const { trigger } = menu;
-      if (!trigger) return;
-      trigger.addEventListener('keydown', this.handleKeypress);
+      trigger?.addEventListener('keydown', this.handleKeypress);
     });
   }
 
   removeKeypressHandler(menus = []) {
     menus.forEach(menu => {
       const { trigger } = menu;
-      if (!trigger) return;
-      trigger.addEventListener('keydown', this.handleKeypress);
+      trigger?.removeEventListener('keydown', this.handleKeypress);
     });
   }
 
