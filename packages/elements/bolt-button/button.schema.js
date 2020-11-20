@@ -13,11 +13,6 @@ module.exports = {
       type: 'object',
       description: 'Content of the button.',
     },
-    link: {
-      type: 'boolean',
-      description: 'Set the semantic HTML tag to &lt;a&gt;.',
-      default: false,
-    },
     icon_before: {
       type: 'object',
       description:

@@ -20,8 +20,7 @@
 {# Variables #}
 {% set this = init(schema) %}
 {% set attributes = create_attribute(attributes|default({})) %}
-
-{% set tag = button ? 'button' : 'a' %}
+{% set tag = attributes.type and not attributes.href ? 'button' : attributes.href and not attributes.type ? 'a' %}
 
 {% set classes = [
   'e-bolt-text-link',

@@ -29,11 +29,6 @@ module.exports = {
         'Set the underline style to appear on hover instead of being always visible.',
       default: false,
     },
-    button: {
-      type: 'boolean',
-      description: 'Set the semantic HTML tag to &lt;button&gt;.',
-      default: false,
-    },
     expand_click_target: {
       type: 'boolean',
       description:

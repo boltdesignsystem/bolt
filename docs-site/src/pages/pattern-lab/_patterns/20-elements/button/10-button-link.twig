@@ -2,12 +2,15 @@
   When appropriate, an <bolt-code-snippet display="inline" lang="html">&lt;a&gt;</bolt-code-snippet> element can use the button style. For example, the button helps to navigate to another page.
 {% endset %}
 
+{% set notes %}
+  If a button serves navigational purpose, the proper URL must be set with the <bolt-code-snippet display="inline">href</bolt-code-snippet> attribute.
+{% endset %}
+
 {% set demo %}
   {% include '@bolt-elements-button/button.twig' with {
     content: 'This looks like a button but semantically is an anchor',
-    link: true,
     attributes: {
-      href: 'https://pega.com'
+      href: 'https://pega.com',
     }
   } only %}
 {% endset %}
@@ -16,9 +19,8 @@
 {% verbatim %}
 {% include '@bolt-elements-button/button.twig' with {
   content: 'This looks like a button but semantically is an anchor',
-  link: true,
   attributes: {
-    href: 'https://pega.com'
+    href: 'https://pega.com',
   }
 } only %}
 {% endverbatim %}
@@ -33,6 +35,7 @@
 {% include '@utils/pattern-doc-page.twig' with {
   title: 'Button as an &lt;a&gt; element',
   description: description,
+  notes: notes,
   demo: demo,
   twig_markup: twig_markup,
   html_markup: html_markup,
