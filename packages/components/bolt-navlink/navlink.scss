@@ -23,6 +23,7 @@ bolt-navlink {
   @include bolt-font-weight(semibold);
   opacity: 0.9;
   position: relative;
+  padding: calc(var(--bolt-spacing-y-small) / 2) var(--bolt-spacing-x-xsmall);
   color: bolt-theme(headline-link);
   text-decoration: none;
   border-radius: 3px;
@@ -34,13 +35,15 @@ bolt-navlink {
   border-color: transparent;
   transition: all $bolt-navlink-text-transition;
 
-  @supports (-webkit-clip-path: polygon(0 0, 0 100%, 100% 50%)) or
-    (clip-path: polygon(0 0, 0 100%, 100% 50%)) {
-    padding: calc(var(--bolt-spacing-y-small) / 2) var(--bolt-spacing-x-xsmall);
+  @include bolt-mq(xsmall) {
+    padding: calc(var(--bolt-spacing-y-small) / 2) var(--bolt-spacing-x-small);
+  }
 
-    @include bolt-mq(xsmall) {
-      padding: calc(var(--bolt-spacing-y-small) / 2) var(--bolt-spacing-x-small);
-    }
+  @include bolt-ms-edge-42-only {
+    padding-top: var(--bolt-spacing-y-xsmall);
+    padding-right: var(--bolt-spacing-x-xsmall);
+    padding-bottom: var(--bolt-spacing-y-xsmall);
+    padding-left: var(--bolt-spacing-x-xsmall);
   }
 
   &:active,
@@ -143,5 +146,3 @@ bolt-navlink {
     transform: scale3d(1, 1, 1);
   }
 }
-
-@import '_edge-bolt-navlink';
