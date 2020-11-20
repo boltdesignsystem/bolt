@@ -52,7 +52,9 @@ export class BoltPageHeader {
     });
 
     // Action Nav
-    this.actionMenu = new BoltPageHeaderActionNav(actionMenuArray);
+    this.actionMenu = new BoltPageHeaderActionNav(actionMenuArray, {
+      escapeKey: true,
+    });
   }
 
   getMenusArray(triggers = []) {

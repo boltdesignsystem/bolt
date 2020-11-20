@@ -8,6 +8,7 @@ export class BoltPageHeaderNav {
       desktop: true,
       isNested: false,
       onNestedNavToggle: null,
+      escapeKey: false,
       ...options,
     };
 
@@ -29,9 +30,10 @@ export class BoltPageHeaderNav {
 
   init() {
     this.handleKeypress = this.handleKeypress.bind(this);
-    this.updateResponsiveMenu = this.updateResponsiveMenu.bind(this);
+    this.handleEscapeKeypress = this.handleEscapeKeypress.bind(this);
     this.clickHandler = this.clickHandler.bind(this);
     this.handleExternalClick = this.handleExternalClick.bind(this);
+    this.updateResponsiveMenu = this.updateResponsiveMenu.bind(this);
     this.updateResponsiveMenu();
     window.addEventListener('throttledResize', this.updateResponsiveMenu);
   }
@@ -123,16 +125,16 @@ export class BoltPageHeaderNav {
     });
   }
 
-  handleKeypress(e) {
-    const getKey = e => {
-      if (e.key !== undefined) {
-        return e.key;
-      } else if (e.keyCode !== undefined) {
-        return e.keyCode;
-      }
-    };
+  getKey(e) {
+    if (e.key !== undefined) {
+      return e.key;
+    } else if (e.keyCode !== undefined) {
+      return e.keyCode;
+    }
+  }
 
-    switch (getKey(e)) {
+  handleKeypress(e) {
+    switch (this.getKey(e)) {
       case 'Enter' || 13: // enter key
         this.toggleMenu(e.target);
         break;
@@ -142,6 +144,12 @@ export class BoltPageHeaderNav {
       case 'Escape' || 27: // escape key
         this.hideMenu(e.target);
         break;
+    }
+  }
+
+  handleEscapeKeypress(e) {
+    if (this.getKey(e) === 'Escape' || this.getKey(e) === 27) {
+      this.hideMenu(this.state.activeMenu.trigger);
     }
   }
 
@@ -193,8 +201,13 @@ export class BoltPageHeaderNav {
     el.setAttribute('aria-expanded', 'true');
     this.setState(el);
     this.options.isNested && this.setActiveMenu(el);
+
     if (!this.state.isMobile) {
       document.addEventListener('click', this.handleExternalClick);
+    }
+
+    if (this.options.escapeKey) {
+      document.addEventListener('keydown', this.handleEscapeKeypress);
     }
   }
 
@@ -205,6 +218,10 @@ export class BoltPageHeaderNav {
 
     if (!this.state.isMobile) {
       document.removeEventListener('click', this.handleExternalClick);
+    }
+
+    if (this.options.escapeKey) {
+      document.removeEventListener('keydown', this.handleEscapeKeypress);
     }
   }
 
