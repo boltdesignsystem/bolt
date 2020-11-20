@@ -23,7 +23,6 @@
     transform: translate3d(-100%, 0, 0);
     padding-right: $bolt-page-header-mobile-expanded-content-spacing-x;
     padding-left: $bolt-page-header-mobile-expanded-content-spacing-x;
-    will-change: visibility, transform;
     transition: visibility $bolt-transition, transform $bolt-transition;
   }
 
@@ -43,7 +42,6 @@
     border-top-color: $bolt-border-color;
     border-top-style: $bolt-border-style;
     border-top-width: $bolt-border-width;
-    will-change: visibility, transform;
     transition: visibility $bolt-transition, transform $bolt-transition;
 
     @at-root .c-bolt-page-header__action-trigger--nav[aria-expanded='true']
@@ -121,7 +119,6 @@
       transform: translate3d(100%, 0, 0);
       z-index: 2;
       margin-top: $bolt-page-header-click-target-size;
-      will-change: margin-top, visibility, transform;
       transition: margin-top $bolt-transition, visibility $bolt-transition,
         transform $bolt-transition;
 
@@ -212,7 +209,6 @@
       height: 0.5em;
       border-top: 1px solid;
       border-right: 1px solid;
-      will-change: border;
       transition: border $bolt-transition;
       transform-origin: center center;
     }
@@ -310,7 +306,6 @@
     font-size: var(--bolt-type-font-size-medium);
     line-height: $bolt-page-header-click-target-size;
     box-shadow: 0 0 var(--bolt-spacing-y-small) bolt-theme(primary);
-    will-change: visibility, transform, filter, box-shadow;
     transition: visibility $bolt-transition, transform $bolt-transition,
       filter $bolt-transition, box-shadow $bolt-transition;
 

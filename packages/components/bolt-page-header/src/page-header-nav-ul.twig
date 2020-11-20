@@ -16,6 +16,6 @@
   popover_position ? 'c-bolt-page-header__nav-list--' ~ popover_position,
 ] %}
 
-<ul {{ attributes.addClass(classes) }}>
+<ul {{ attributes.addClass(classes) }} {% if category == 'site' and nav_link_spacing %}style="--c-bolt-page-header-desktop-site-nav-link-spacing-x: {{ nav_link_spacing }}"{% endif %}>
   {{ content }}
 </ul>

@@ -16,10 +16,20 @@
   'c-bolt-page-header',
 ] %}
 
+{% set primary_classes = [
+  'c-bolt-page-header__primary',
+  hide_primary_on_scroll or hide_all_on_scroll ? 'is-hidden-on-scroll'
+] %}
+
+{% set secondary_classes = [
+  'c-bolt-page-header__secondary',
+  hide_all_on_scroll ? 'is-hidden-on-scroll'
+] %}
+
 <header {{ attributes.addClass(classes) }}>
-  <div class="c-bolt-page-header__primary">
+  <div class="{{ primary_classes|join(' ') }}">
     {% if logo %}
-      <{{ logo_tag }} {{ logo_attributes.addClass('c-bolt-page-header__logo') }} aria-label="{{ logo.label }}">
+      <{{ logo_tag }} {{ logo_attributes.addClass('c-bolt-page-header__logo')|without('aria-label')|without('style') }} aria-label="{{ logo.label }}" {% if logo.max_width %}style="--c-bolt-page-header-logo-max-width: {{ logo.max_width }};"{% endif %}>
         <span class="c-bolt-page-header__logo__img" aria-hidden="true">
           <img src="{{ logo.image_src }}">
         </span>
@@ -34,7 +44,7 @@
       {% endif %}
     </div>
   </div>
-  <div class="c-bolt-page-header__secondary">
+  <div class="{{ secondary_classes|join(' ') }}">
     {{ secondary_content }}
   </div>
 </header>

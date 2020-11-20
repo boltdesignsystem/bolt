@@ -46,23 +46,29 @@
   }
 }
 
+.c-bolt-page-header__primary,
+.c-bolt-page-header__secondary {
+  @include bolt-full-bleed;
+
+  &.is-hidden-on-scroll {
+    position: absolute;
+    transform: translate3d(0, -100%, 0);
+  }
+}
+
 // Primary section container
 .c-bolt-page-header__primary {
   display: grid;
   align-items: center;
   position: relative;
   z-index: 2; // Primary nav (with dropdowns) has a higher stacking order than secondary.
+  transition: transform $bolt-transition;
 }
 
 // Secondary section container
 .c-bolt-page-header__secondary {
   position: relative;
   z-index: 1;
-}
-
-.c-bolt-page-header__primary,
-.c-bolt-page-header__secondary {
-  /* @include bolt-full-bleed; */
 }
 
 // Logo
@@ -125,7 +131,6 @@
   transform: scale(1) rotate(0deg);
   font-size: var(--bolt-type-font-size-xxlarge);
   line-height: 1;
-  will-change: transform;
   transition: transform ease-out 500ms;
   place-items: center;
 
@@ -214,7 +219,6 @@
   outline: none;
   background-color: bolt-theme(primary);
   filter: none;
-  will-change: transform, filter, box-shadow;
   transition: transform $bolt-transition, filter $bolt-transition,
     box-shadow $bolt-transition;
   white-space: nowrap;

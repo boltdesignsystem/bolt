@@ -45,7 +45,6 @@
     transform: translate3d(0, calc(var(--bolt-spacing-y-small) * -1), 0);
     padding-right: calc(var(--bolt-page-padding-x) + 8vw);
     padding-left: calc(var(--bolt-page-padding-x) + 8vw);
-    will-change: opacity, visibility, transform;
     transition: opacity $bolt-transition, visibility $bolt-transition,
       transform $bolt-transition;
 
@@ -94,8 +93,7 @@
       line-height: $bolt-page-header-desktop-util-nav-height;
       outline: none;
 
-      &:hover,
-      &:focus {
+      &:hover {
         text-decoration: underline;
       }
 
@@ -143,7 +141,6 @@
         border-style: $bolt-border-style;
         border-color: $bolt-border-color;
         background-color: bolt-theme(background);
-        will-change: opacity, visibility, transform;
         transition: opacity $bolt-transition, visibility $bolt-transition,
           transform $bolt-transition;
 
@@ -260,7 +257,7 @@
         align-items: center;
         width: 100%;
         min-height: calc(#{$bolt-page-header-click-target-size} / 2 - 4px);
-        padding: 0 var(--c-bolt-page-header-desktop-primary-nav-link-spacing-x);
+        padding: 0 var(--c-bolt-page-header-desktop-site-nav-link-spacing-x);
         font-size: var(
           --c-bolt-page-header-desktop-primary-nav-link-font-size,
           var(--bolt-type-font-size-small)
@@ -283,7 +280,6 @@
             bolt-theme(link) calc(100% - 3px),
             bolt-theme(link) 100%
           );
-          will-change: opacity, transform;
           transition: opacity $bolt-transition, transform $bolt-transition;
         }
 
@@ -331,7 +327,6 @@
         box-shadow: 0 var(--bolt-spacing-y-medium) var(--bolt-spacing-y-medium)
           rgba(bolt-color(black), 0.4);
         background-color: bolt-theme(background);
-        will-change: opacity, visibility, transform;
         transition: opacity $bolt-transition, visibility $bolt-transition,
           transform $bolt-transition;
 
@@ -403,8 +398,7 @@
           color: bolt-theme(link);
           outline: none;
 
-          &:hover,
-          &:focus {
+          &:hover {
             text-decoration: underline;
           }
 
@@ -502,7 +496,6 @@
     line-height: var(--bolt-type-line-height-small);
     border-radius: bolt-border-radius(small);
     box-shadow: 0 3px var(--bolt-spacing-y-xsmall) rgba(bolt-color(gray), 0.4);
-    will-change: transform, filter, box-shadow;
     transition: transform $bolt-transition, filter $bolt-transition,
       box-shadow $bolt-transition;
     white-space: nowrap;
