@@ -1,5 +1,5 @@
+{# Schema Validation #}
 {% set schema = bolt.data.components['@bolt-components-page-header'].schema %}
-
 {% if enable_json_schema_validation %}
   {{ validate_data_schema(schema, _self)|raw }}
 {% endif %}
@@ -16,6 +16,6 @@
   popover_position ? 'c-bolt-page-header__nav-list--' ~ popover_position,
 ] %}
 
-<ul {{ attributes.addClass(classes) }} {% if category == 'site' and nav_link_spacing %}style="--c-bolt-page-header-desktop-site-nav-link-spacing-x: {{ nav_link_spacing }}"{% endif %}>
+<ul {{ attributes.addClass(classes) }}>
   {{ content }}
 </ul>
