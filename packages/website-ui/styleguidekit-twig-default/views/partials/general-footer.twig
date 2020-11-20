@@ -7,3 +7,104 @@
 </script>
 
 <script src="/pattern-lab/styleguide/js/patternlab-pattern.js" async></script>
+
+<!-- Brightcove  Init-->
+<script src="https://players.brightcove.net/1900410236/4fVA8Ojzs_default/index.min.js"></script>
+<script>
+  var players = document.querySelectorAll('.c-base-video');
+  // EXTERNAL CONTROLS
+  // Button requires a 'js-base-video-toggle' class (how the functionality will be hooked up)
+  // Button requires 'data-video-target' attribute (this is how the video is targeted on click)
+  var externalControlButtons = document.querySelectorAll(".js-base-video-toggle");
+  for(var eb = 0; eb < externalControlButtons.length; eb++){
+    externalControlButtons[eb].addEventListener('click', function(e){
+      e.preventDefault();
+      var videoTarget = videojs.getPlayer(e.currentTarget.dataset.videoTarget)
+      var isPlaying = videoTarget.el_.classList.contains('vjs-playing');
+      if (isPlaying) {
+        videoTarget.pause()
+      } else {
+        videoTarget.play()
+      }
+    })
+  }
+  
+  players.forEach(function(player) {
+    var thisPlayer = videojs.getPlayer(player.id);
+    thisPlayer.on('error', function(err) {
+      // OPTIONS
+      // data-custom-error-message (optional) [string]: Pass in a acustom message to be displayed on errors
+      this.customError(this.getAttribute('data-custom-error-message'))
+    })
+    thisPlayer.ready(function() {
+      // OPTIONS
+      // data-playback-rates (optional) [array]: Sets the playback rates on the player controls
+      if(this.el().dataset.playbackRates){
+        var playbackRateOptions = this.getAttribute('data-playback-rates').replace(/(\[*\]*)/g, "")
+        playbackRateOptions = playbackRateOptions.split(',')
+        thisPlayer.controlBar.playbackRateMenuButton = thisPlayer.controlBar.addChild('PlaybackRateMenuButton', {
+          playbackRates: playbackRateOptions
+        }, 10)
+      }
+      // OPTIONS
+      // data-default-resolution (optional) [string]: Adjusts the default resolution for the videos (ex. 720p)
+      qualityOptions = {
+        "useResolutionLabels": true,
+        "defaultResolution": this.getAttribute('data-default-resolution') || "720p",
+      };
+      this.qualityMenu(qualityOptions);
+      // OPTIONS
+      // data-social-title (optional) [string]: CURRENT NOT BEING DISPLAYED
+      // data-social-description (optional) [string]: Social Panel title
+      // data-social-url (optional[default: the page url]) [string]: change the shared social url
+      // data-social-facebook (optional [default: true]) [boolean]: Displays the Facebook button
+      // data-social-twitter (optional [default: true]) [boolean]: Displays the Twitter button
+      // data-social-tumblr (optional [default: false]) [boolean]: Displays the tumblr button
+      // data-social-pinterest (optional [default: false]) [boolean]: Displays the Pinterest button
+      // data-social-linkedin (optional [default: true]) [boolean]: Displays the Linkedin button
+      socialOptions = {
+        "title": this.getAttribute('data-social-title') || "Share This Video",
+        "description": "Share This Video",
+        "url": this.getAttribute('data-social-url') || window.location.href,
+        "removeEmbed": true,
+        "services": {
+          "facebook": this.el_.hasAttribute('data-social-facebook') ? true : false,
+          "twitter": this.el_.hasAttribute('data-social-twitter') ? true : false,
+          "tumblr": this.el_.hasAttribute('data-social-tumblr') ? true : false,
+          "pinterest": this.el_.hasAttribute('data-social-pinterest') ? true : false,
+          "linkedin": this.el_.hasAttribute('data-social-linkedin') ? true : false
+        },
+        "displayAfterVideo": true,
+        "buttonParent": "controlBar"
+      };
+      this.social(socialOptions);
+      this.ga();
+      // OPTIONS
+      // data-social-email (required) [boolean]: option to display the email icon
+      // data-email-videoid (required) [string]: Video ID
+      // data-email-videotitle (required) [string]: Video email title
+      // data-email-body (required) [string]: Video email body
+      // data-email-subject (required) [string]: Video email subject line
+      // data-email-videourl (optional) [string]: Video URL to share in email
+      this.emailSocialShare(this.el_.hasAttribute('data-social-email') ? true : false);
+      // Move the fullscreen button to the far right of the controlbar
+      var fullScreenButton = thisPlayer.controlBar.getChild("FullscreenToggle").el_;
+      thisPlayer.controlBar.el_.appendChild(fullScreenButton)
+    });
+    thisPlayer.on('loadstart', function(player) {
+      // OPTIONS
+      // data-media-title (optional [default: true]) [boolean]: hide the title
+      // data-media-duration (optional [default: true]) [boolean]: hide the duration
+      this.metaData(this.el_.hasAttribute('data-media-title') ? this.mediainfo.name : "", this.el_.hasAttribute('data-media-duration') ? this.mediainfo.duration : "", this);
+    })
+    thisPlayer.on('loadedmetadata', function(player) {
+      //OPTIONS
+      // data-autoplay-on-viewport (optional [default: false]) [boolean]: will play the video when it comes into view
+      // REQUIRES the "muted" attribute to be placed on the video-js
+      if (this.el_.hasAttribute('data-autoplay-on-viewport') ? true : false) {
+        this.autoplayOnViewport();
+      }
+      // this.chaptering();
+    })
+  });
+</script>

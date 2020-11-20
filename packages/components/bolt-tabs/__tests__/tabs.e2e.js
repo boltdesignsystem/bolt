@@ -63,8 +63,7 @@ module.exports = {
     console.log(`global browser url: ${testingUrl}`);
     currentBrowser = '--' + browser.currentEnv || 'chrome';
     let testName = 'tabs-adaptive-menu';
-    const video = 'bolt-video';
-    const videoPlayer = 'bolt-video video-js'; // click on video element not button itself
+    const video = 'video-js';
 
     browser
       .url(
@@ -89,21 +88,21 @@ module.exports = {
         // Opens video tab
         document.querySelector('bolt-tabs').setAttribute('selected-tab', 4);
       })
-      .click(videoPlayer)
+      .click(video)
       .pause(4000)
-      .assert.cssClassPresent(videoPlayer, ['vjs-has-started', 'vjs-playing'])
-      .click(videoPlayer)
+      .assert.cssClassPresent(video, ['vjs-has-started', 'vjs-playing'])
+      .click(video)
       .pause(1000)
-      .assert.cssClassPresent(videoPlayer, ['vjs-paused'])
+      .assert.cssClassPresent(video, ['vjs-paused'])
       .execute(
         function(data) {
-          return document.querySelector('bolt-video').player.currentTime();
+          return document.querySelector('video-js').player.currentTime();
         },
         [],
         function(result) {
           browser.assert.ok(
             result.value > 1,
-            `<bolt-video> starts playing when <bolt-button> is clicked -- verified since the current video's play time is ${result.value} seconds`,
+            `<video-js> starts playing when <bolt-button> is clicked -- verified since the current video's play time is ${result.value} seconds`,
           );
         },
       )
