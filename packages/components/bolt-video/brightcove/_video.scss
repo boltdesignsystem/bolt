@@ -3,26 +3,28 @@
 // Dev Notes
 // 1. [Mai] Because these styles are overrides, they need to be repeated.
 // 2. [Mai] Input font-size needs to be 16px to prevent zooming.
-// 4. [Mai] Flexbox messes up IE layout, this prevents IE from loading display: flex.
-// 5. Required so videos with intrinsic ratio (used in the <bolt-ratio> object) properly fill the space available in IE 11.
-// 6. [Denton] Hide the title when sharing to minimize the chances that you'll see a scrollbar, which is undesirable.  The description field will take its place.
+// 3. [Mai] Flexbox messes up IE layout, this prevents IE from loading display: flex.
+// 4. Required so videos with intrinsic ratio (used in the <bolt-ratio> object) properly fill the space available in IE 11.
+// 5. [Denton] Hide the title when sharing to minimize the chances that you'll see a scrollbar, which is undesirable.  The description field will take its place.
 
-$bolt-video-js-button-text-color: bolt-color(navy);
-$bolt-video-js-button-background-color: bolt-color(yellow);
-$bolt-video-js-button-transition: $bolt-transition;
-$bolt-video-js-button-border-radius: $bolt-border-radius;
-$bolt-video-js-button-shadow-color: bolt-color(black);
-$bolt-video-js-button-shadow-level: 'level-20';
-$bolt-video-js-button-shadow-level-hover: 'level-40';
+$base-video-js-button-text-color: bolt-color(navy);
+$base-video-js-button-background-color: bolt-color(yellow);
+$base-video-js-button-transition: $bolt-transition;
+$base-video-js-button-border-radius: $bolt-border-radius;
+$base-video-js-button-shadow-color: bolt-color(black);
+$base-video-js-button-shadow-level: 'level-20';
+$base-video-js-button-shadow-level-hover: 'level-40';
+$base-video-meta-border-radius: $bolt-border-radius;
+$base-video-meta-transition: $bolt-transition;
 
 @mixin bolt-video-js-button($opacity: bolt-opacity(100)) {
   opacity: $opacity;
-  color: $bolt-video-js-button-text-color;
-  background-color: $bolt-video-js-button-background-color;
-  transition: all $bolt-video-js-button-transition;
+  color: $base-video-js-button-text-color;
+  background-color: $base-video-js-button-background-color;
+  transition: all $base-video-js-button-transition;
 }
 
-.video-js {
+.c-base-video {
   position: absolute; // [5]
   width: 100%;
   height: 100%;
@@ -35,8 +37,8 @@ $bolt-video-js-button-shadow-level-hover: 'level-40';
   .vjs-big-play-button {
     @include bolt-video-js-button($opacity: bolt-opacity(100));
     @include bolt-shadow(
-      $key: $bolt-video-js-button-shadow-level,
-      $base-color: $bolt-video-js-button-shadow-color
+      $key: $base-video-js-button-shadow-level,
+      $base-color: $base-video-js-button-shadow-color
     );
     position: absolute;
     top: auto;
@@ -49,7 +51,7 @@ $bolt-video-js-button-shadow-level-hover: 'level-40';
     padding: 0;
     line-height: 1;
     border: none;
-    border-radius: $bolt-video-js-button-border-radius;
+    border-radius: $base-video-js-button-border-radius;
 
     .vjs-icon-placeholder {
       display: block;
@@ -59,35 +61,8 @@ $bolt-video-js-button-shadow-level-hover: 'level-40';
       transform: translate(-50%, -50%);
       width: 23%;
       height: 45%;
-      background-color: $bolt-video-js-button-text-color;
+      background-color: $base-video-js-button-text-color;
       clip-path: polygon(0 0, 0 100%, 100% 50%);
-
-      /**
-        * Temporary Microsoft Edge .v~40 work around due to lack of 'clip-path' support
-        */
-      @include bolt-ms-edge-42-only {
-        top: 40%;
-        left: 40%;
-        transform: translate(-50%, -50%);
-        font-size: 40%;
-        background-color: transparent;
-
-        @include bolt-mq(xsmall) {
-          font-size: 50%;
-        }
-
-        @include bolt-mq(small) {
-          font-size: 60%;
-        }
-
-        @include bolt-mq(medium) {
-          font-size: 70%;
-        }
-
-        @include bolt-mq(large) {
-          font-size: 80%;
-        }
-      }
     }
 
     &:hover,
@@ -96,8 +71,8 @@ $bolt-video-js-button-shadow-level-hover: 'level-40';
         $opacity: $bolt-global-link-hover-opacity
       ); // [1]
       @include bolt-shadow(
-        $key: $bolt-video-js-button-shadow-level-hover,
-        $base-color: $bolt-video-js-button-shadow-color
+        $key: $base-video-js-button-shadow-level-hover,
+        $base-color: $base-video-js-button-shadow-color
       );
     }
 
@@ -114,8 +89,8 @@ $bolt-video-js-button-shadow-level-hover: 'level-40';
       $opacity: $bolt-global-link-hover-opacity
     ); // [1]
     @include bolt-shadow(
-      $key: $bolt-video-js-button-shadow-level-hover,
-      $base-color: $bolt-video-js-button-shadow-color
+      $key: $base-video-js-button-shadow-level-hover,
+      $base-color: $base-video-js-button-shadow-color
     );
   }
 
@@ -130,19 +105,19 @@ $bolt-video-js-button-shadow-level-hover: 'level-40';
   }
 
   .vjs-slider {
-    background: rgba($bolt-video-js-button-background-color, 0.15);
+    background: rgba($base-video-js-button-background-color, 0.15);
   }
 
   .vjs-load-progress,
   .vjs-load-progress div {
-    background: rgba($bolt-video-js-button-background-color, 0.25);
+    background: rgba($base-video-js-button-background-color, 0.25);
   }
 
   .vjs-playlist-sidebar .vjs-playlist-show-hide button:hover,
   .vjs-menu-button-popup .vjs-menu .vjs-menu-item.vjs-selected,
   .vjs-play-progress,
   .vjs-volume-level {
-    background-color: $bolt-video-js-button-background-color;
+    background-color: $base-video-js-button-background-color;
   }
 
   .vjs-modal-dialog {
@@ -432,6 +407,95 @@ $bolt-video-js-button-shadow-level-hover: 'level-40';
 
       .vjs-errors-ok-button-container {
         @include bolt-visuallyhidden;
+      }
+    }
+  }
+
+  .video-meta__item {
+    display: inline-block;
+    opacity: bolt-opacity(100);
+    position: absolute;
+    z-index: 10;
+    max-width: calc(100% - (var(--bolt-spacing-x-small)));
+    padding: calc(var(--bolt-spacing-x-xsmall) / 2) var(--bolt-spacing-x-xsmall);
+    color: bolt-color(white);
+    pointer-events: none;
+    border-radius: $base-video-meta-border-radius;
+    background-color: rgba(bolt-color(black), 0.8);
+    transition: opacity $base-video-meta-transition;
+
+    &.video-meta__item--title {
+      top: var(--bolt-spacing-y-xsmall);
+      left: var(--bolt-spacing-y-xsmall);
+      font-size: var(--bolt-type-font-size-small);
+      line-height: var(--bolt-type-line-height-small);
+    }
+
+    &.video-meta__item--duration {
+      right: var(--bolt-spacing-y-xsmall);
+      bottom: var(--bolt-spacing-y-xsmall);
+      font-size: var(--bolt-type-font-size-xsmall);
+      line-height: var(--bolt-type-line-height-xsmall);
+    }
+
+    &.is-playing {
+      &.video-meta__item--title,
+      &.video-meta__item--duration {
+        opacity: bolt-opacity(0);
+      }
+    }
+  }
+
+  .vjs-controls-disabled {
+    pointer-events: none;
+
+    .video-meta__item--title,
+    .video-meta__item--duration {
+      opacity: bolt-opacity(0);
+    }
+  }
+
+  // Force control icons to be visible at smaller layout sizes, commented out names are shown here to indicate which ones are hidden.
+  .vjs-layout-tiny,
+  .vjs-layout-x-small,
+  .vjs-layout-small {
+    &:not(.vjs-fullscreen) {
+      /* .vjs-time-divider, */
+      /* .vjs-duration, */
+      /* .vjs-volume-panel, */
+      /* .vjs-volume-control, */
+      .vjs-mute-control,
+      .vjs-playback-rate,
+      .vjs-current-time,
+      .vjs-button.vjs-share-control {
+        display: flex;
+      }
+    }
+  }
+}
+
+// Prevent Brightcove from rendering a video as a 'vjs-layout-tiny'
+// when in a inactive accordion or tab panel on load if on a tablet or desktop device
+bolt-accordion-item,
+bolt-tab-panel {
+  @include bolt-mq($from: medium) {
+    .video-js.vjs-layout-tiny:not(.vjs-fullscreen) {
+      .vjs-audio-button,
+      .vjs-captions-button,
+      .vjs-chapters-button,
+      .vjs-current-time,
+      .vjs-descriptions-button,
+      .vjs-duration,
+      .vjs-mute-control,
+      .vjs-playback-rate,
+      .vjs-progress-control,
+      .vjs-remaining-time,
+      .vjs-subs-caps-button,
+      .vjs-subtitles-button,
+      .vjs-time-divider,
+      .vjs-volume-control,
+      .vjs-volume-panel {
+        display: flex;
       }
     }
   }

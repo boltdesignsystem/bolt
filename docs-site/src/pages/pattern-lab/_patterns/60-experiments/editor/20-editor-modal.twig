@@ -21,12 +21,19 @@
 } only %}
 
 {% set video_content %}
-  {% include "@bolt-components-video/video.twig" with {
-    videoId: "3861325118001",
-    accountId: "1900410236",
-    playerId: "r1CAdLzTW",
-    showMeta: true,
-    showMetaTitle: true,
+  {% set video %}
+    <video-js
+      data-account="1900410236"
+      data-player="4fVA8Ojzs"
+      data-embed="default"
+      data-video-id="3861325118001"
+      controls
+      class="c-base-video"></video-js>
+  {% endset %}
+
+  {% include "@bolt-components-ratio/ratio.twig" with {
+    children: video,
+    ratio: "16/9",
     attributes: {
       class: "editor-demo__modal"
     }
