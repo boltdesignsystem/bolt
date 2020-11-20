@@ -40,9 +40,14 @@
   }
 
   // Search panel
+  .c-bolt-page-header__action-trigger--search {
+    z-index: 2;
+  }
+
   .c-bolt-page-header__search {
     opacity: 0;
     transform: translate3d(0, calc(var(--bolt-spacing-y-small) * -1), 0);
+    z-index: 1;
     padding-right: calc(var(--bolt-page-padding-x) + 8vw);
     padding-left: calc(var(--bolt-page-padding-x) + 8vw);
     transition: opacity $bolt-transition, visibility $bolt-transition,
@@ -51,6 +56,17 @@
     @at-root .c-bolt-page-header__action-trigger--search[aria-expanded='true']
         ~ #{&} {
       opacity: 1;
+    }
+
+    &:before {
+      content: '';
+      opacity: 0.8;
+      position: fixed;
+      top: calc(var(--bolt-page-header-height) * -1);
+      right: 0;
+      left: 0;
+      height: var(--bolt-page-header-height);
+      background-color: bolt-theme(background);
     }
   }
 
@@ -468,7 +484,7 @@
     }
   }
 
-  .c-bolt-page-header__nav-list--site--wrap-links {
+  .c-bolt-page-header__nav-list--site.c-bolt-page-header__nav-list--wrap-items {
     flex-wrap: wrap;
 
     > .c-bolt-page-header__nav-list-item {

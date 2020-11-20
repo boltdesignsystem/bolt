@@ -14,6 +14,7 @@
   'c-bolt-page-header__nav-list',
   category ? 'c-bolt-page-header__nav-list--' ~ category,
   popover_position ? 'c-bolt-page-header__nav-list--' ~ popover_position,
+  wrap_site_nav_items and category == 'site' ? 'c-bolt-page-header__nav-list--wrap-items',
 ] %}
 
 <ul {{ attributes.addClass(classes) }}>
