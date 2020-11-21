@@ -8,7 +8,7 @@ export class BoltPageHeaderNav {
       desktop: true,
       isNested: false,
       onNestedNavToggle: null,
-      escapeKey: false,
+      closeOnEscape: false,
       ...options,
     };
 
@@ -28,13 +28,30 @@ export class BoltPageHeaderNav {
     this.init();
   }
 
+  static allMenus = [];
+
+  addToAllMenus() {
+    const activeMenus = BoltPageHeaderNav.allMenus;
+    if (!activeMenus.includes(this)) {
+      activeMenus.push(this);
+    }
+  }
+
+  getAllActiveMenus() {
+    return BoltPageHeaderNav.allMenus.filter(
+      menu => menu.state.activeTrail.trigger || menu.state.activeMenu.trigger,
+    );
+  }
+
   init() {
     this.handleKeypress = this.handleKeypress.bind(this);
     this.handleEscapeKeypress = this.handleEscapeKeypress.bind(this);
     this.clickHandler = this.clickHandler.bind(this);
     this.handleExternalClick = this.handleExternalClick.bind(this);
     this.updateResponsiveMenu = this.updateResponsiveMenu.bind(this);
+
     this.updateResponsiveMenu();
+    this.addToAllMenus();
     window.addEventListener('throttledResize', this.updateResponsiveMenu);
   }
 
@@ -43,6 +60,7 @@ export class BoltPageHeaderNav {
   }
 
   updateResponsiveMenu() {
+    // todo: data json breakpoints
     if (window.matchMedia('(max-width: 62.499em)').matches) {
       if (this.state.desktopIsSetup) {
         this.resetDesktopMenu();
@@ -113,15 +131,13 @@ export class BoltPageHeaderNav {
 
   addKeypressHandler(menus = []) {
     menus.forEach(menu => {
-      const { trigger } = menu;
-      trigger?.addEventListener('keydown', this.handleKeypress);
+      menu.trigger.addEventListener('keydown', this.handleKeypress);
     });
   }
 
   removeKeypressHandler(menus = []) {
     menus.forEach(menu => {
-      const { trigger } = menu;
-      trigger?.removeEventListener('keydown', this.handleKeypress);
+      menu.trigger.removeEventListener('keydown', this.handleKeypress);
     });
   }
 
@@ -149,7 +165,11 @@ export class BoltPageHeaderNav {
 
   handleEscapeKeypress(e) {
     if (this.getKey(e) === 'Escape' || this.getKey(e) === 27) {
+      this.state.activeMenu.trigger.focus();
       this.hideMenu(this.state.activeMenu.trigger);
+      if (!this.state.activeTrail.length) {
+        document.removeEventListener('keyup', this.handleEscapeKeypress);
+      }
     }
   }
 
@@ -205,8 +225,8 @@ export class BoltPageHeaderNav {
       document.addEventListener('click', this.handleExternalClick);
     }
 
-    if (this.options.escapeKey) {
-      document.addEventListener('keydown', this.handleEscapeKeypress);
+    if (this.options.closeOnEscape) {
+      document.addEventListener('keyup', this.handleEscapeKeypress);
     }
   }
 
@@ -217,10 +237,6 @@ export class BoltPageHeaderNav {
 
     if (!this.state.isMobile) {
       document.removeEventListener('click', this.handleExternalClick);
-    }
-
-    if (this.options.escapeKey) {
-      document.removeEventListener('keydown', this.handleEscapeKeypress);
     }
   }
 
@@ -310,5 +326,68 @@ export class BoltPageHeaderActionNav extends BoltPageHeaderNav {
   resetDesktopMenu() {
     this.removeClickHandler(this.menu);
     this.state.desktopIsSetup = false;
+  }
+
+  showMenu(el) {
+    super.showMenu(el);
+
+    const searchInput = this.state.activeMenu.menu.querySelector(
+      '.js-c-typeahead__input',
+    );
+
+    if (searchInput) {
+      setTimeout(() => {
+        searchInput.focus();
+      }, 250);
+    }
+  }
+
+  canHideSearch() {
+    const typeahead = this.state.activeMenu.menu.querySelector(
+      'bolt-typeahead',
+    );
+    const searchInput = this.state.activeMenu.menu.querySelector(
+      '.js-c-typeahead__input',
+    );
+
+    let canHideSearch = true;
+
+    if (!(typeahead && searchInput)) {
+      return canHideSearch;
+    }
+
+    const currentLength = searchInput.value.length;
+
+    if (this.searchLength > 0 && !currentLength) {
+      this.searchWasCleared = true;
+    }
+
+    this.searchLength = currentLength;
+
+    canHideSearch =
+      (!currentLength && !this.searchWasCleared) ||
+      !typeahead.contains(document.activeElement);
+
+    if (this.searchWasCleared) {
+      this.searchWasCleared = false;
+    }
+
+    return canHideSearch;
+  }
+
+  handleEscapeKeypress(e) {
+    const allActiveMenus = this.getAllActiveMenus();
+    const canHideActionMenu =
+      allActiveMenus.length === 1 && allActiveMenus[0] === this;
+
+    if (!canHideActionMenu || !this.canHideSearch()) return;
+
+    if (this.getKey(e) === 'Escape' || this.getKey(e) === 27) {
+      this.state.activeMenu.trigger.focus();
+      this.hideMenu(this.state.activeMenu.trigger);
+      if (!this.state.activeTrail.length) {
+        document.removeEventListener('keyup', this.handleEscapeKeypress);
+      }
+    }
   }
 }
