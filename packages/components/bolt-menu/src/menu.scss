@@ -2,39 +2,55 @@
    Menu
 \* ------------------------------------ */
 
-@import '@bolt/core';
+/**
+ * Dev notes:
+ * 1. [Mai] This must change if the default in the schema changes. Small is the current default.
+ * 2. [Mai] Reset the outline coming from the copy-to-clipboard component. This is needed for when the copy-to-clipboard component is used as a menu-item.
+ * 3. [Mai] Reset font styles here so it doesn't inherit from parent container.
+ * 4. [Mai] CSS vars must be set outside the shadow dom to penetrate other shadow doms. So this must be set on the custom element and not the class. Both element selector and :host selector are needed in order for this to work.
+*/
+
+@import '@bolt/core-v3.x';
 @import './_menu-settings-and-tools.scss';
 
 // Register Custom Block Element
 @include bolt-repeat-rule(('bolt-menu', ':host')) {
+  --c-bolt-menu-item-spacing: calc(var(--bolt-spacing-y-small) / 2)
+    var(--bolt-spacing-x-small); /* [1] */
   display: block;
+
+  .c-bolt-copy-to-clipboard__trigger {
+    outline: none; /* [2] */
+  }
 }
 
 .c-bolt-menu {
   display: block;
-  // [Mai] reset font styles here so it doesn't inherit from parent container.
-  font-family: var(--bolt-type-font-family-body);
-  font-size: var(--bolt-type-font-size-xsmall);
-  font-weight: var(--bolt-type-font-weight-regular);
-  line-height: var(--bolt-type-line-height-xsmall);
-  text-align: start;
+  font-family: var(--bolt-type-font-family-body); /* [3] */
+  font-size: var(--bolt-type-font-size-xsmall); /* [3] */
+  font-weight: var(--bolt-type-font-weight-regular); /* [3] */
+  line-height: var(--bolt-type-line-height-xsmall); /* [3] */
+  text-align: start; /* [3] */
+}
+
+// Spacing
+@each $value in $bolt-menu-spacing-values {
+  @include bolt-repeat-rule(
+    ('bolt-menu[spacing="#{$value}"]', ':host[spacing="#{$value}"]')
+  ) {
+    --c-bolt-menu-item-spacing: calc(var(--bolt-spacing-y-#{$value}) / 2)
+      var(--bolt-spacing-x-#{$value}); /* [4] */
+  }
 }
 
 // Title
 .c-bolt-menu__title {
   display: block;
+  padding: var(--c-bolt-menu-item-spacing);
   font-weight: var(--bolt-type-font-weight-semibold);
   color: bolt-theme(headline);
   letter-spacing: 1px;
   border-bottom-color: $bolt-menu-border-color;
   border-bottom-style: $bolt-menu-border-style;
   border-bottom-width: $bolt-menu-border-width;
-}
-
-// Spacing
-@each $value in $bolt-menu-spacing-values {
-  .c-bolt-menu__title--spacing-#{$value} {
-    padding: calc(var(--bolt-spacing-y-#{$value}) / 2)
-      var(--bolt-spacing-x-#{$value});
-  }
 }

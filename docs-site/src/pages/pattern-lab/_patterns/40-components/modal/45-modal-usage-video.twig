@@ -7,15 +7,15 @@
 {% set javascript_1 %}
 <script>
   // Play the video on modal show, pause on hide
-  const modal1 = document.querySelector('.js-modal-123');
+  const modal1 = document.querySelector('.js-bolt-modal-123');
   const video1 = document.querySelector('.js-modal-video-123');
 
   modal1.addEventListener('modal:show', function() {
-    video1.play();
+    videojs.getPlayer(video1).play();
   });
 
   modal1.addEventListener('modal:hide', function() {
-    video1.pause();
+    videojs.getPlayer(video1).pause();
   });
 </script>
 {% endset %}
@@ -23,15 +23,21 @@
 <bolt-text headline font-size="large">Demo</bolt-text>
 <div class="t-bolt-light u-bolt-padding-medium u-bolt-margin-bottom-small">
   {% set modal_content_1 %}
-    {% include "@bolt-components-video/video.twig" with {
-      videoId: "4892122320001",
-      accountId: "1900410236",
-      playerId: "r1CAdLzTW",
-      showMeta: true,
-      showMetaTitle: true,
-      attributes: {
-        class: "js-modal-video-123"
-      }
+    {% set video %}
+      <video-js
+        data-account="1900410236"
+        data-player="4fVA8Ojzs"
+        data-embed="default"
+        data-video-id="4892122320001"
+        controls
+        data-media-title
+        data-media-duration
+        class="c-base-video js-modal-video-123"></video-js>
+    {% endset %}
+
+    {% include "@bolt-components-ratio/ratio.twig" with {
+      children: video,
+      ratio: "16/9"
     } only %}
   {% endset %}
 
@@ -39,13 +45,13 @@
     text: "Play the video",
     attributes: {
       "on-click": "show",
-      "on-click-target": "js-modal-123"
+      "on-click-target": "js-bolt-modal-123"
     }
   } only %}
 
   {% include "@bolt-components-modal/modal.twig" with {
     attributes: {
-      class: "js-modal-123"
+      class: "js-bolt-modal-123"
     },
     content: modal_content_1,
     width: "optimal",
@@ -71,15 +77,15 @@
 {% set javascript_2 %}
 <script>
   // Show modal on video toggle, pause on modal hide
-  const modal2 = document.querySelector('.js-modal-456');
+  const modal2 = document.querySelector('.js-bolt-modal-456');
   const video2 = document.querySelector('.js-modal-video-456');
-
+\
   video2.addEventListener('playing', function() {
-    modal2.show();
+    videojs.getPlayer(video2).show();
   });
 
   modal2.addEventListener('modal:hide', function() {
-    video2.pause();
+    videojs.getPlayer(video2).pause();
   });
 </script>
 {% endset %}
@@ -87,15 +93,21 @@
 <bolt-text headline font-size="large">Demo</bolt-text>
 <div class="t-bolt-light u-bolt-padding-medium u-bolt-margin-bottom-small">
   {% set modal_content_2 %}
-    {% include "@bolt-components-video/video.twig" with {
-      videoId: "4892122320001",
-      accountId: "1900410236",
-      playerId: "r1CAdLzTW",
-      showMeta: true,
-      showMetaTitle: true,
-      attributes: {
-        class: "js-modal-video-456"
-      }
+    {% set video %}
+      <video-js
+        data-account="1900410236"
+        data-player="4fVA8Ojzs"
+        data-embed="default"
+        data-video-id="4892122320001"
+        data-media-title
+        data-media-duration
+        controls
+        class="c-base-video js-modal-video-456"></video-js>
+    {% endset %}
+
+    {% include "@bolt-components-ratio/ratio.twig" with {
+      children: video,
+      ratio: "16/9"
     } only %}
   {% endset %}
 
@@ -103,13 +115,13 @@
     text: "Play the video",
     attributes: {
       "on-click": "toggle",
-      "on-click-target": "js-modal-video-456"
+      "on-click-target": "js-bolt-modal-456"
     }
   } only %}
 
   {% include "@bolt-components-modal/modal.twig" with {
     attributes: {
-      class: "js-modal-456"
+      class: "js-bolt-modal-456"
     },
     content: modal_content_2,
     width: "optimal",

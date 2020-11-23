@@ -8,10 +8,10 @@ exports[`<bolt-copy-to-clipboard> Component basic usage with attributes 1`] = `
     >
       <div class="c-bolt-copy-to-clipboard__action">
         <bolt-icon name="asset-link"
-                   size="medium"
+                   aria-hidden="true"
         >
-          <span class="c-bolt-icon c-bolt-icon--asset-link c-bolt-icon--medium">
-            <svg class="c-bolt-icon__icon c-bolt-icon__icon--medium"
+          <span class="c-bolt-icon c-bolt-icon--asset-link">
+            <svg class="c-bolt-icon__icon"
                  xmlns="http://www.w3.org/2000/svg"
                  viewbox="0 0 24 24"
             >
@@ -35,10 +35,10 @@ exports[`<bolt-copy-to-clipboard> Component basic usage with attributes 1`] = `
     <span class="c-bolt-copy-to-clipboard__transition">
       <span class="c-bolt-copy-to-clipboard__transition-animation">
         <bolt-icon name="refresh"
-                   size="medium"
+                   aria-hidden="true"
         >
-          <span class="c-bolt-icon c-bolt-icon--refresh c-bolt-icon--medium">
-            <svg class="c-bolt-icon__icon c-bolt-icon__icon--medium"
+          <span class="c-bolt-icon c-bolt-icon--refresh">
+            <svg class="c-bolt-icon__icon"
                  xmlns="http://www.w3.org/2000/svg"
                  viewbox="0 0 24 24"
             >
@@ -62,10 +62,10 @@ exports[`<bolt-copy-to-clipboard> Component basic usage with attributes 1`] = `
     <span class="c-bolt-copy-to-clipboard__confirmation">
       <div class="c-bolt-copy-to-clipboard__info js-bolt-copy-to-clipboard__trigger">
         <bolt-icon name="check"
-                   size="medium"
+                   aria-hidden="true"
         >
-          <span class="c-bolt-icon c-bolt-icon--check c-bolt-icon--medium">
-            <svg class="c-bolt-icon__icon c-bolt-icon__icon--medium"
+          <span class="c-bolt-icon c-bolt-icon--check">
+            <svg class="c-bolt-icon__icon"
                  xmlns="http://www.w3.org/2000/svg"
                  viewbox="0 0 24 24"
             >
@@ -97,10 +97,10 @@ exports[`<bolt-copy-to-clipboard> Component custom confirmation text 1`] = `
     >
       <div class="c-bolt-copy-to-clipboard__action">
         <bolt-icon name="asset-link"
-                   size="medium"
+                   aria-hidden="true"
         >
-          <span class="c-bolt-icon c-bolt-icon--asset-link c-bolt-icon--medium">
-            <svg class="c-bolt-icon__icon c-bolt-icon__icon--medium"
+          <span class="c-bolt-icon c-bolt-icon--asset-link">
+            <svg class="c-bolt-icon__icon"
                  xmlns="http://www.w3.org/2000/svg"
                  viewbox="0 0 24 24"
             >
@@ -124,10 +124,10 @@ exports[`<bolt-copy-to-clipboard> Component custom confirmation text 1`] = `
     <span class="c-bolt-copy-to-clipboard__transition">
       <span class="c-bolt-copy-to-clipboard__transition-animation">
         <bolt-icon name="refresh"
-                   size="medium"
+                   aria-hidden="true"
         >
-          <span class="c-bolt-icon c-bolt-icon--refresh c-bolt-icon--medium">
-            <svg class="c-bolt-icon__icon c-bolt-icon__icon--medium"
+          <span class="c-bolt-icon c-bolt-icon--refresh">
+            <svg class="c-bolt-icon__icon"
                  xmlns="http://www.w3.org/2000/svg"
                  viewbox="0 0 24 24"
             >
@@ -163,10 +163,10 @@ exports[`<bolt-copy-to-clipboard> Component custom transition text 1`] = `
     >
       <div class="c-bolt-copy-to-clipboard__action">
         <bolt-icon name="asset-link"
-                   size="medium"
+                   aria-hidden="true"
         >
-          <span class="c-bolt-icon c-bolt-icon--asset-link c-bolt-icon--medium">
-            <svg class="c-bolt-icon__icon c-bolt-icon__icon--medium"
+          <span class="c-bolt-icon c-bolt-icon--asset-link">
+            <svg class="c-bolt-icon__icon"
                  xmlns="http://www.w3.org/2000/svg"
                  viewbox="0 0 24 24"
             >
@@ -193,10 +193,10 @@ exports[`<bolt-copy-to-clipboard> Component custom transition text 1`] = `
     <span class="c-bolt-copy-to-clipboard__confirmation">
       <div class="c-bolt-copy-to-clipboard__info js-bolt-copy-to-clipboard__trigger">
         <bolt-icon name="check"
-                   size="medium"
+                   aria-hidden="true"
         >
-          <span class="c-bolt-icon c-bolt-icon--check c-bolt-icon--medium">
-            <svg class="c-bolt-icon__icon c-bolt-icon__icon--medium"
+          <span class="c-bolt-icon c-bolt-icon--check">
+            <svg class="c-bolt-icon__icon"
                  xmlns="http://www.w3.org/2000/svg"
                  viewbox="0 0 24 24"
             >
@@ -229,8 +229,11 @@ exports[`<bolt-copy-to-clipboard> Component custom trigger component 1`] = `
       <bolt-icon name="add-open"
                  size="medium"
                  background="circle"
+                 aria-hidden="true"
       >
         <span class="c-bolt-icon c-bolt-icon--add-open c-bolt-icon--medium  has-background has-circle-background">
+          <span class="c-bolt-icon__background-shape c-bolt-icon__background-shape--circle">
+          </span>
           <svg class="c-bolt-icon__icon c-bolt-icon__icon--medium"
                xmlns="http://www.w3.org/2000/svg"
                viewbox="0 0 24 24"
@@ -246,18 +249,16 @@ exports[`<bolt-copy-to-clipboard> Component custom trigger component 1`] = `
               </g>
             </g>
           </svg>
-          <span class="c-bolt-icon__background-shape c-bolt-icon__background-shape--circle">
-          </span>
         </span>
       </bolt-icon>
     </button>
     <span class="c-bolt-copy-to-clipboard__transition">
       <span class="c-bolt-copy-to-clipboard__transition-animation">
         <bolt-icon name="refresh"
-                   size="medium"
+                   aria-hidden="true"
         >
-          <span class="c-bolt-icon c-bolt-icon--refresh c-bolt-icon--medium">
-            <svg class="c-bolt-icon__icon c-bolt-icon__icon--medium"
+          <span class="c-bolt-icon c-bolt-icon--refresh">
+            <svg class="c-bolt-icon__icon"
                  xmlns="http://www.w3.org/2000/svg"
                  viewbox="0 0 24 24"
             >
@@ -281,10 +282,10 @@ exports[`<bolt-copy-to-clipboard> Component custom trigger component 1`] = `
     <span class="c-bolt-copy-to-clipboard__confirmation">
       <div class="c-bolt-copy-to-clipboard__info js-bolt-copy-to-clipboard__trigger">
         <bolt-icon name="check"
-                   size="medium"
+                   aria-hidden="true"
         >
-          <span class="c-bolt-icon c-bolt-icon--check c-bolt-icon--medium">
-            <svg class="c-bolt-icon__icon c-bolt-icon__icon--medium"
+          <span class="c-bolt-icon c-bolt-icon--check">
+            <svg class="c-bolt-icon__icon"
                  xmlns="http://www.w3.org/2000/svg"
                  viewbox="0 0 24 24"
             >
@@ -316,10 +317,10 @@ exports[`<bolt-copy-to-clipboard> Component custom trigger text 1`] = `
     >
       <div class="c-bolt-copy-to-clipboard__action">
         <bolt-icon name="asset-link"
-                   size="medium"
+                   aria-hidden="true"
         >
-          <span class="c-bolt-icon c-bolt-icon--asset-link c-bolt-icon--medium">
-            <svg class="c-bolt-icon__icon c-bolt-icon__icon--medium"
+          <span class="c-bolt-icon c-bolt-icon--asset-link">
+            <svg class="c-bolt-icon__icon"
                  xmlns="http://www.w3.org/2000/svg"
                  viewbox="0 0 24 24"
             >
@@ -343,10 +344,10 @@ exports[`<bolt-copy-to-clipboard> Component custom trigger text 1`] = `
     <span class="c-bolt-copy-to-clipboard__transition">
       <span class="c-bolt-copy-to-clipboard__transition-animation">
         <bolt-icon name="refresh"
-                   size="medium"
+                   aria-hidden="true"
         >
-          <span class="c-bolt-icon c-bolt-icon--refresh c-bolt-icon--medium">
-            <svg class="c-bolt-icon__icon c-bolt-icon__icon--medium"
+          <span class="c-bolt-icon c-bolt-icon--refresh">
+            <svg class="c-bolt-icon__icon"
                  xmlns="http://www.w3.org/2000/svg"
                  viewbox="0 0 24 24"
             >
@@ -370,10 +371,10 @@ exports[`<bolt-copy-to-clipboard> Component custom trigger text 1`] = `
     <span class="c-bolt-copy-to-clipboard__confirmation">
       <div class="c-bolt-copy-to-clipboard__info js-bolt-copy-to-clipboard__trigger">
         <bolt-icon name="check"
-                   size="medium"
+                   aria-hidden="true"
         >
-          <span class="c-bolt-icon c-bolt-icon--check c-bolt-icon--medium">
-            <svg class="c-bolt-icon__icon c-bolt-icon__icon--medium"
+          <span class="c-bolt-icon c-bolt-icon--check">
+            <svg class="c-bolt-icon__icon"
                  xmlns="http://www.w3.org/2000/svg"
                  viewbox="0 0 24 24"
             >
@@ -423,10 +424,10 @@ exports[`<bolt-copy-to-clipboard> Component multiple instances 1`] = `
     >
       <div class="c-bolt-copy-to-clipboard__action">
         <bolt-icon name="asset-link"
-                   size="medium"
+                   aria-hidden="true"
         >
-          <span class="c-bolt-icon c-bolt-icon--asset-link c-bolt-icon--medium">
-            <svg class="c-bolt-icon__icon c-bolt-icon__icon--medium"
+          <span class="c-bolt-icon c-bolt-icon--asset-link">
+            <svg class="c-bolt-icon__icon"
                  xmlns="http://www.w3.org/2000/svg"
                  viewbox="0 0 24 24"
             >
@@ -450,10 +451,10 @@ exports[`<bolt-copy-to-clipboard> Component multiple instances 1`] = `
     <span class="c-bolt-copy-to-clipboard__transition">
       <span class="c-bolt-copy-to-clipboard__transition-animation">
         <bolt-icon name="refresh"
-                   size="medium"
+                   aria-hidden="true"
         >
-          <span class="c-bolt-icon c-bolt-icon--refresh c-bolt-icon--medium">
-            <svg class="c-bolt-icon__icon c-bolt-icon__icon--medium"
+          <span class="c-bolt-icon c-bolt-icon--refresh">
+            <svg class="c-bolt-icon__icon"
                  xmlns="http://www.w3.org/2000/svg"
                  viewbox="0 0 24 24"
             >
@@ -477,10 +478,10 @@ exports[`<bolt-copy-to-clipboard> Component multiple instances 1`] = `
     <span class="c-bolt-copy-to-clipboard__confirmation">
       <div class="c-bolt-copy-to-clipboard__info js-bolt-copy-to-clipboard__trigger">
         <bolt-icon name="check"
-                   size="medium"
+                   aria-hidden="true"
         >
-          <span class="c-bolt-icon c-bolt-icon--check c-bolt-icon--medium">
-            <svg class="c-bolt-icon__icon c-bolt-icon__icon--medium"
+          <span class="c-bolt-icon c-bolt-icon--check">
+            <svg class="c-bolt-icon__icon"
                  xmlns="http://www.w3.org/2000/svg"
                  viewbox="0 0 24 24"
             >
@@ -509,10 +510,10 @@ exports[`<bolt-copy-to-clipboard> Component multiple instances 1`] = `
     >
       <div class="c-bolt-copy-to-clipboard__action">
         <bolt-icon name="asset-link"
-                   size="medium"
+                   aria-hidden="true"
         >
-          <span class="c-bolt-icon c-bolt-icon--asset-link c-bolt-icon--medium">
-            <svg class="c-bolt-icon__icon c-bolt-icon__icon--medium"
+          <span class="c-bolt-icon c-bolt-icon--asset-link">
+            <svg class="c-bolt-icon__icon"
                  xmlns="http://www.w3.org/2000/svg"
                  viewbox="0 0 24 24"
             >
@@ -536,10 +537,10 @@ exports[`<bolt-copy-to-clipboard> Component multiple instances 1`] = `
     <span class="c-bolt-copy-to-clipboard__transition">
       <span class="c-bolt-copy-to-clipboard__transition-animation">
         <bolt-icon name="refresh"
-                   size="medium"
+                   aria-hidden="true"
         >
-          <span class="c-bolt-icon c-bolt-icon--refresh c-bolt-icon--medium">
-            <svg class="c-bolt-icon__icon c-bolt-icon__icon--medium"
+          <span class="c-bolt-icon c-bolt-icon--refresh">
+            <svg class="c-bolt-icon__icon"
                  xmlns="http://www.w3.org/2000/svg"
                  viewbox="0 0 24 24"
             >
@@ -563,10 +564,10 @@ exports[`<bolt-copy-to-clipboard> Component multiple instances 1`] = `
     <span class="c-bolt-copy-to-clipboard__confirmation">
       <div class="c-bolt-copy-to-clipboard__info js-bolt-copy-to-clipboard__trigger">
         <bolt-icon name="check"
-                   size="medium"
+                   aria-hidden="true"
         >
-          <span class="c-bolt-icon c-bolt-icon--check c-bolt-icon--medium">
-            <svg class="c-bolt-icon__icon c-bolt-icon__icon--medium"
+          <span class="c-bolt-icon c-bolt-icon--check">
+            <svg class="c-bolt-icon__icon"
                  xmlns="http://www.w3.org/2000/svg"
                  viewbox="0 0 24 24"
             >

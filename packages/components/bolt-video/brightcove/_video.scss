@@ -1,0 +1,502 @@
+@import '@bolt/core-v3.x';
+
+// Dev Notes
+// 1. [Mai] Because these styles are overrides, they need to be repeated.
+// 2. [Mai] Input font-size needs to be 16px to prevent zooming.
+// 3. [Mai] Flexbox messes up IE layout, this prevents IE from loading display: flex.
+// 4. Required so videos with intrinsic ratio (used in the <bolt-ratio> object) properly fill the space available in IE 11.
+// 5. [Denton] Hide the title when sharing to minimize the chances that you'll see a scrollbar, which is undesirable.  The description field will take its place.
+
+$base-video-js-button-text-color: bolt-color(navy);
+$base-video-js-button-background-color: bolt-color(yellow);
+$base-video-js-button-transition: $bolt-transition;
+$base-video-js-button-border-radius: $bolt-border-radius;
+$base-video-js-button-shadow-color: bolt-color(black);
+$base-video-js-button-shadow-level: 'level-20';
+$base-video-js-button-shadow-level-hover: 'level-40';
+$base-video-meta-border-radius: $bolt-border-radius;
+$base-video-meta-transition: $bolt-transition;
+
+@mixin bolt-video-js-button($opacity: bolt-opacity(100)) {
+  opacity: $opacity;
+  color: $base-video-js-button-text-color;
+  background-color: $base-video-js-button-background-color;
+  transition: all $base-video-js-button-transition;
+}
+
+.c-base-video {
+  position: absolute; // [5]
+  width: 100%;
+  height: 100%;
+
+  video,
+  .vjs-big-play-button {
+    cursor: pointer;
+  }
+
+  .vjs-big-play-button {
+    @include bolt-video-js-button($opacity: bolt-opacity(100));
+    @include bolt-shadow(
+      $key: $base-video-js-button-shadow-level,
+      $base-color: $base-video-js-button-shadow-color
+    );
+    position: absolute;
+    top: auto;
+    right: auto;
+    bottom: var(--bolt-spacing-y-xsmall);
+    left: var(--bolt-spacing-x-xsmall);
+    width: calc(1.2rem + 6%);
+    height: calc(1rem + 6%);
+    margin: 0;
+    padding: 0;
+    line-height: 1;
+    border: none;
+    border-radius: $base-video-js-button-border-radius;
+
+    .vjs-icon-placeholder {
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 23%;
+      height: 45%;
+      background-color: $base-video-js-button-text-color;
+      clip-path: polygon(0 0, 0 100%, 100% 50%);
+    }
+
+    &:hover,
+    &:focus {
+      @include bolt-video-js-button(
+        $opacity: $bolt-global-link-hover-opacity
+      ); // [1]
+      @include bolt-shadow(
+        $key: $base-video-js-button-shadow-level-hover,
+        $base-color: $base-video-js-button-shadow-color
+      );
+    }
+
+    &:active {
+      @include bolt-video-js-button(
+        $opacity: $bolt-global-link-active-opacity
+      ); // [1]
+    }
+  }
+
+  &:hover .vjs-big-play-button,
+  &:focus .vjs-big-play-button {
+    @include bolt-video-js-button(
+      $opacity: $bolt-global-link-hover-opacity
+    ); // [1]
+    @include bolt-shadow(
+      $key: $base-video-js-button-shadow-level-hover,
+      $base-color: $base-video-js-button-shadow-color
+    );
+  }
+
+  &:active .vjs-big-play-button {
+    @include bolt-video-js-button(
+      $opacity: $bolt-global-link-active-opacity
+    ); // [1]
+  }
+
+  .vjs-poster {
+    background-color: transparent;
+  }
+
+  .vjs-slider {
+    background: rgba($base-video-js-button-background-color, 0.15);
+  }
+
+  .vjs-load-progress,
+  .vjs-load-progress div {
+    background: rgba($base-video-js-button-background-color, 0.25);
+  }
+
+  .vjs-playlist-sidebar .vjs-playlist-show-hide button:hover,
+  .vjs-menu-button-popup .vjs-menu .vjs-menu-item.vjs-selected,
+  .vjs-play-progress,
+  .vjs-volume-level {
+    background-color: $base-video-js-button-background-color;
+  }
+
+  .vjs-modal-dialog {
+    overflow: hidden;
+    background: rgba(bolt-color(black), 0.9);
+
+    .vjs-modal-dialog-content {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      overflow: auto;
+      padding: var(--bolt-spacing-y-xsmall) 2.5rem var(--bolt-spacing-y-xsmall)
+        var(--bolt-spacing-x-small);
+      font-size: var(--bolt-type-font-size-medium);
+      line-height: calc(
+        var(--bolt-type-line-height-medium) *
+          var(--bolt-type-line-height-multiplier-tight)
+      );
+
+      @supports (display: flex) {
+        // [4]
+        display: flex;
+        justify-content: center;
+      }
+
+      .vjs-social-title {
+        @include bolt-visuallyhidden; // [6]
+      }
+
+      .vjs-social-description {
+        margin-bottom: 0.5rem;
+        font-size: var(--bolt-type-font-size-small);
+        font-weight: var(--bolt-type-font-weight-bold);
+        line-height: calc(
+          var(--bolt-type-line-height-small) *
+            var(--bolt-type-line-height-multiplier-tight)
+        );
+        white-space: nowrap;
+      }
+
+      .vjs-social-share-links {
+        margin-right: -0.25rem;
+        margin-left: -0.25rem;
+        font-size: var(--bolt-type-font-size-small);
+        line-height: calc(
+          var(--bolt-type-line-height-small) *
+            var(--bolt-type-line-height-multiplier-tight)
+        );
+      }
+
+      .vjs-social-share-link {
+        margin-bottom: 0.25rem;
+      }
+
+      .vjs-social-label-text {
+        font-size: var(--bolt-type-font-size-xsmall);
+      }
+
+      .vjs-social-embed-code {
+        display: none;
+      }
+
+      form {
+        width: 100%;
+        max-width: 40rem;
+        margin: auto;
+        font-family: var(--bolt-type-font-family-body);
+
+        input[type='text'] {
+          font-size: 16px; // [2]
+        }
+
+        label {
+          width: 100%;
+          padding: 0;
+        }
+
+        > * {
+          margin-bottom: var(--bolt-spacing-y-xsmall);
+        }
+      }
+    }
+  }
+
+  .vjs-control.vjs-close-button {
+    width: 2.5rem;
+    height: 2.5rem;
+
+    > * {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+
+      &:before {
+        position: relative;
+        width: auto;
+        height: auto;
+        font-size: 1.4rem;
+      }
+    }
+  }
+
+  .vjs-overlay {
+    opacity: 1;
+    transition: opacity 0.2s ease;
+  }
+
+  .vjs-overlay--hidden {
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+
+  // Cue Points
+  .vjs-overlay-no-background {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 40px 9px;
+    border-radius: 0;
+    background-color: transparent;
+
+    &.vjs-overlay-top,
+    &.vjs-overlay-top-right,
+    &.vjs-overlay-top-left {
+      top: 0;
+    }
+
+    &.vjs-overlay-bottom,
+    &.vjs-overlay-bottom-right,
+    &.vjs-overlay-bottom-left {
+      bottom: 0;
+    }
+
+    &.vjs-overlay-right,
+    &.vjs-overlay-top-right,
+    &.vjs-overlay-bottom-right {
+      right: 0;
+      text-align: right;
+      text-align: end;
+    }
+
+    &.vjs-overlay-left,
+    &.vjs-overlay-top-left,
+    &.vjs-overlay-bottom-left {
+      left: 0;
+      text-align: left;
+      text-align: start;
+    }
+
+    &.vjs-overlay-top,
+    &.vjs-overlay-center,
+    &.vjs-overlay-bottom {
+      left: 0;
+    }
+  }
+
+  .vjs-overlay-background {
+    width: auto;
+    max-width: 100%;
+    margin: 0;
+    padding: var(--bolt-spacing-y-xsmall) var(--bolt-spacing-x-xsmall);
+    font-family: var(--bolt-type-font-family-body);
+    font-size: var(--bolt-type-font-size-small);
+    color: bolt-color(black);
+    line-height: var(--bolt-type-line-height-small);
+    text-shadow: 0 0 0.25rem bolt-color(white);
+    border-radius: $bolt-border-radius;
+    box-shadow: inset 0 0 2rem bolt-color(white),
+      0 0 0.25rem bolt-color(gray, light);
+    background-color: rgba(bolt-color(white), 0.9);
+
+    &.vjs-overlay-top,
+    &.vjs-overlay-top-right,
+    &.vjs-overlay-top-left {
+      top: 40px;
+    }
+
+    &.vjs-overlay-bottom,
+    &.vjs-overlay-bottom-right,
+    &.vjs-overlay-bottom-left {
+      bottom: 40px;
+    }
+
+    &.vjs-overlay-right,
+    &.vjs-overlay-top-right,
+    &.vjs-overlay-bottom-right {
+      right: 9px;
+    }
+
+    &.vjs-overlay-left,
+    &.vjs-overlay-top-left,
+    &.vjs-overlay-bottom-left {
+      left: 9px;
+    }
+
+    &.vjs-overlay-top,
+    &.vjs-overlay-bottom {
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    &.vjs-overlay-center {
+      top: 50%;
+      left: 50%;
+      transform: translate3d(-50%, -50%, 0);
+    }
+  }
+
+  &.vjs-error {
+    .vjs-error-display {
+      background: bolt-color(indigo);
+
+      &:before {
+        content: '';
+        display: none;
+      }
+
+      .vjs-modal-dialog-content {
+        padding: 0;
+      }
+
+      .vjs-errors-dialog {
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        padding: 0;
+        border: 0;
+        background: 0;
+      }
+
+      .vjs-errors-content-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-content: center;
+        align-items: center;
+        top: 50%;
+        bottom: 15px;
+        transform: translateY(-50%);
+        padding: var(--bolt-spacing-y-medium) var(--bolt-spacing-x-medium);
+        text-align: center;
+      }
+
+      .vjs-errors-headline,
+      .vjs-errors-message,
+      .vjs-errors-ref-id {
+        display: block;
+        width: 100%;
+        color: bolt-color(white);
+      }
+
+      .vjs-errors-headline {
+        padding-right: 0;
+        font-size: var(--bolt-type-font-size-small);
+
+        @include bolt-mq(medium) {
+          font-size: var(--bolt-type-font-size-medium);
+        }
+      }
+
+      .vjs-errors-headline + div {
+        font-size: var(--bolt-type-font-size-xsmall);
+      }
+
+      .vjs-errors-details {
+        margin-top: 4px;
+        font-size: 0;
+      }
+
+      .vjs-errors-message {
+        margin: 0;
+        padding: 0;
+        font-size: var(--bolt-type-font-size-xsmall);
+        border: 0;
+        background-color: transparent;
+      }
+
+      .vjs-errors-ref-id {
+        align-self: flex-start;
+      }
+
+      .vjs-errors-ok-button-container {
+        @include bolt-visuallyhidden;
+      }
+    }
+  }
+
+  .video-meta__item {
+    display: inline-block;
+    opacity: bolt-opacity(100);
+    position: absolute;
+    z-index: 10;
+    max-width: calc(100% - (var(--bolt-spacing-x-small)));
+    padding: calc(var(--bolt-spacing-x-xsmall) / 2) var(--bolt-spacing-x-xsmall);
+    color: bolt-color(white);
+    pointer-events: none;
+    border-radius: $base-video-meta-border-radius;
+    background-color: rgba(bolt-color(black), 0.8);
+    transition: opacity $base-video-meta-transition;
+
+    &.video-meta__item--title {
+      top: var(--bolt-spacing-y-xsmall);
+      left: var(--bolt-spacing-y-xsmall);
+      font-size: var(--bolt-type-font-size-small);
+      line-height: var(--bolt-type-line-height-small);
+    }
+
+    &.video-meta__item--duration {
+      right: var(--bolt-spacing-y-xsmall);
+      bottom: var(--bolt-spacing-y-xsmall);
+      font-size: var(--bolt-type-font-size-xsmall);
+      line-height: var(--bolt-type-line-height-xsmall);
+    }
+
+    &.is-playing {
+      &.video-meta__item--title,
+      &.video-meta__item--duration {
+        opacity: bolt-opacity(0);
+      }
+    }
+  }
+
+  .vjs-controls-disabled {
+    pointer-events: none;
+
+    .video-meta__item--title,
+    .video-meta__item--duration {
+      opacity: bolt-opacity(0);
+    }
+  }
+
+  // Force control icons to be visible at smaller layout sizes, commented out names are shown here to indicate which ones are hidden.
+  .vjs-layout-tiny,
+  .vjs-layout-x-small,
+  .vjs-layout-small {
+    &:not(.vjs-fullscreen) {
+      /* .vjs-time-divider, */
+      /* .vjs-duration, */
+      /* .vjs-volume-panel, */
+      /* .vjs-volume-control, */
+      .vjs-mute-control,
+      .vjs-playback-rate,
+      .vjs-current-time,
+      .vjs-button.vjs-share-control {
+        display: flex;
+      }
+    }
+  }
+}
+
+// Prevent Brightcove from rendering a video as a 'vjs-layout-tiny'
+// when in a inactive accordion or tab panel on load if on a tablet or desktop device
+bolt-accordion-item,
+bolt-tab-panel {
+  @include bolt-mq($from: medium) {
+    .video-js.vjs-layout-tiny:not(.vjs-fullscreen) {
+      .vjs-audio-button,
+      .vjs-captions-button,
+      .vjs-chapters-button,
+      .vjs-current-time,
+      .vjs-descriptions-button,
+      .vjs-duration,
+      .vjs-mute-control,
+      .vjs-playback-rate,
+      .vjs-progress-control,
+      .vjs-remaining-time,
+      .vjs-subs-caps-button,
+      .vjs-subtitles-button,
+      .vjs-time-divider,
+      .vjs-volume-control,
+      .vjs-volume-panel {
+        display: flex;
+      }
+    }
+  }
+}

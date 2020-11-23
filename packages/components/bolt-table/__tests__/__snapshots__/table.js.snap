@@ -53,13 +53,13 @@ exports[`<bolt-table> Component Twig-rendered Table with HTML comments 2`] = `
   <!---->
   
       
-      
+            
   <table
     class="c-bolt-table c-bolt-table--first-col-fixed-width"
     style=""
   >
     
-        
+              
     <!---->
     
         
@@ -283,9 +283,10 @@ exports[`<bolt-table> Component Twig-rendered Table with HTML comments 2`] = `
       
     <!---->
     
-      
+            
   </table>
   
+          
     
   <!---->
 </bolt-table>
@@ -299,13 +300,13 @@ exports[`<bolt-table> Component Web Component-rendered Table with HTML comments 
   <!---->
   
       
-      
+            
   <table
     class="c-bolt-table c-bolt-table--first-col-fixed-width"
     style=""
   >
     
-        
+              
     <!---->
     
         
@@ -607,9 +608,10 @@ exports[`<bolt-table> Component Web Component-rendered Table with HTML comments 
       
     <!---->
     
-      
+            
   </table>
   
+          
     
   <!---->
 </bolt-table>
@@ -1156,6 +1158,59 @@ exports[`<bolt-table> Component table format: regular 1`] = `
       </tr>
     </tfoot>
   </table>
+</bolt-table>
+`;
+
+exports[`<bolt-table> Component table with caption 1`] = `
+<bolt-table format="regular">
+  <figure class="c-bolt-table__figure">
+    <ssr-keep for="bolt-table">
+      <table class="c-bolt-table">
+        <tbody class="c-bolt-table__body">
+          <tr class="c-bolt-table__row">
+            <td class="c-bolt-table__cell c-bolt-table__cell--data">
+              R1C1
+            </td>
+            <td class="c-bolt-table__cell c-bolt-table__cell--data">
+              R1C2
+            </td>
+            <td class="c-bolt-table__cell c-bolt-table__cell--data">
+              R1C3
+            </td>
+          </tr>
+          <tr class="c-bolt-table__row">
+            <td class="c-bolt-table__cell c-bolt-table__cell--data">
+              R2C1
+            </td>
+            <td class="c-bolt-table__cell c-bolt-table__cell--data">
+              R2C2
+            </td>
+            <td class="c-bolt-table__cell c-bolt-table__cell--data">
+              R2C3
+            </td>
+          </tr>
+          <tr class="c-bolt-table__row">
+            <td class="c-bolt-table__cell c-bolt-table__cell--data">
+              R3C1
+            </td>
+            <td class="c-bolt-table__cell c-bolt-table__cell--data">
+              R3C2
+            </td>
+            <td class="c-bolt-table__cell c-bolt-table__cell--data">
+              R3C3
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <replace-with-grandchildren>
+        <figcaption class="c-bolt-table__caption">
+          <div slot="caption">
+            lorem ipsum
+          </div>
+        </figcaption>
+      </replace-with-grandchildren>
+    </ssr-keep>
+  </figure>
 </bolt-table>
 `;
 

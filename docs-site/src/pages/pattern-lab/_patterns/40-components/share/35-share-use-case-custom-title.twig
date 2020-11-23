@@ -1,0 +1,33 @@
+{% extends '@pl/_share-variables.twig' %}
+{% block content %}
+
+{% set description %}
+  Title can be customized to display whatever text is needed. Use the <bolt-code-snippet display="inline">text</bolt-code-snippet> prop to control it.
+{% endset %}
+
+{% set demo %}
+  {% include '@bolt-components-share/share.twig' with {
+    text: 'This is a custom title',
+    sources: demo_sources,
+    copy_to_clipboard: demo_copy_to_clipboard,
+  } only %}
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% include '@bolt-components-share/share.twig' with {
+  text: 'This is a custom title',
+  sources: var_foo,
+  copy_to_clipboard: var_bar,
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Custom title',
+  description: description,
+  demo: demo,
+  twig_markup: twig_markup,
+} only %}
+
+{% endblock %}

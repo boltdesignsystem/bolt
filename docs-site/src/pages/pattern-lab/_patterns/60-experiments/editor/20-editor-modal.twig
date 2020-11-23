@@ -1,0 +1,52 @@
+{% set content %}
+  <bolt-button size="medium" width="auto" border-radius="regular" color="primary" on-click-target="editor-demo__modal" on-click="show">
+    <span>This is a Button triggering an on-page Modal</span>
+  </bolt-button>
+  <bolt-link on-click-target="editor-demo__modal" on-click="show" url="#">
+    This is a Link triggering an on-page Modal
+  </bolt-link>
+  <bolt-cta>
+    <bolt-icon size="medium" slot="icon" name="asset-presentation">
+    </bolt-icon>
+    <bolt-link slot="link" display="inline" valign="center" on-click="show" url="javascript:void(0)" on-click-target="editor-demo__modal" is-headline="">
+      CTA Text
+      <bolt-icon name="chevron-right">
+      </bolt-icon>
+    </bolt-link>
+  </bolt-cta>
+{% endset %}
+
+{% include '@bolt-components-editor/editor-in-pl.twig' with {
+  content: content,
+} only %}
+
+{% set video_content %}
+  {% set video %}
+    <video-js
+      data-account="1900410236"
+      data-player="4fVA8Ojzs"
+      data-embed="default"
+      data-video-id="3861325118001"
+      controls
+      class="c-base-video"></video-js>
+  {% endset %}
+
+  {% include "@bolt-components-ratio/ratio.twig" with {
+    children: video,
+    ratio: "16/9",
+    attributes: {
+      class: "editor-demo__modal"
+    }
+  } only %}
+{% endset %}
+
+{% include "@bolt-components-modal/modal.twig" with {
+  attributes: {
+    class: "editor-demo__modal"
+  },
+  content: video_content,
+  width: "optimal",
+  spacing: "none",
+  theme: "none",
+  scroll: "overall",
+} only %}

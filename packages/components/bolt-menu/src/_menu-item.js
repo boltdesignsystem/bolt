@@ -2,27 +2,28 @@ import {
   customElement,
   BoltElement,
   html,
-  styleMap,
   unsafeCSS,
   ifDefined,
 } from '@bolt/element';
 import classNames from 'classnames/dedupe';
-import { withContext } from 'wc-context';
+import { withContext } from 'wc-context/lit-element';
 import menuStyles from './_menu-item.scss';
 import schema from '../menu.schema';
 
 let cx = classNames.bind(menuStyles);
 
-/*
- * 1 - @todo: remove SSR Hydration from this file, move to base
- */
-
 @customElement('bolt-menu-item')
 class BoltMenuItem extends withContext(BoltElement) {
+  static schema = schema.properties.items.items;
+
   static get properties() {
+    const { url, target } = this.props;
     return {
-      url: String,
-      spacing: String,
+      url,
+      target,
+      spacing: {
+        type: String,
+      },
       role: {
         type: String,
         reflect: true,
@@ -30,53 +31,17 @@ class BoltMenuItem extends withContext(BoltElement) {
     };
   }
 
-  static get observedContexts() {
-    return ['spacing'];
-  }
-
   contextChangedCallback(name, oldValue, value) {
     this[name] = value;
-  }
-
-  constructor() {
-    super();
-    this.role = 'presentation';
   }
 
   static get styles() {
     return [unsafeCSS(menuStyles)];
   }
 
-  /* [1] */
-  connectedCallback() {
-    super.connectedCallback && super.connectedCallback();
-
-    // Check if any `<ssr-keep>` elements have registered themselves here. If so, kick off the one-time hydration prep task.
-    if (this.ssrKeep && !this.ssrPrepped) {
-      this.ssrHydrationPrep();
-    }
-  }
-
-  /* [1] */
-  ssrHydrationPrep() {
-    // @todo: Move this to base-element, possibly as decorator
-    this.nodesToKeep = [];
-
-    this.ssrKeep.forEach(item => {
-      while (item.firstChild) {
-        this.nodesToKeep.push(item.firstChild); // track the nodes that will be preserved
-        this.appendChild(item.firstChild);
-      }
-    });
-
-    // Remove all children not in the "keep" array
-    Array.from(this.children)
-      .filter(item => !this.nodesToKeep.includes(item))
-      .forEach(node => {
-        node.parentElement.removeChild(node);
-      });
-
-    this.ssrPrepped = true;
+  constructor() {
+    super();
+    this.role = 'presentation';
   }
 
   get parentComponent() {
@@ -94,7 +59,6 @@ class BoltMenuItem extends withContext(BoltElement) {
 
     const classes = cx('c-bolt-menu-item', {
       [`c-bolt-menu-item--spacing-${this.spacing}`]: this.spacing,
-      [`c-bolt-menu-item--last-item`]: isLast,
     });
 
     return html`
@@ -102,11 +66,30 @@ class BoltMenuItem extends withContext(BoltElement) {
         display="block"
         no-outline
         url="${ifDefined(this.url ? this.url : undefined)}"
+        target="${ifDefined(this.target ? this.target : undefined)}"
         role="menuitem"
       >
-        <div class="${classes}">
+        <span class="${cx('c-bolt-menu-item')}">
+          ${this.slotMap.get('icon-before') &&
+            html`
+              <span
+                class="${cx('c-bolt-menu-item__icon-before')}"
+                aria-hidden="true"
+              >
+                ${this.slotify('icon-before')}
+              </span>
+            `}
           ${this.slotify('default')}
-        </div>
+          ${this.slotMap.get('icon-after') &&
+            html`
+              <span
+                class="${cx('c-bolt-menu-item__icon-after')}"
+                aria-hidden="true"
+              >
+                ${this.slotify('icon-after')}
+              </span>
+            `}
+        </span>
       </bolt-trigger>
     `;
   }

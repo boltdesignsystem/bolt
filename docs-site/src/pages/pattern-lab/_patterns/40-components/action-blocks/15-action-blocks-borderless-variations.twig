@@ -12,6 +12,27 @@
   ]
 %}
 
+{% set icon_1 %}
+  {% include "@bolt-components-icon/icon.twig" with {
+    name: "download",
+    size: "large"
+  } %}
+{% endset %}
+
+{% set icon_2 %}
+  {% include "@bolt-components-icon/icon.twig" with {
+    name: "copy-to-clipboard",
+    size: "large"
+  } %}
+{% endset %}
+
+{% set icon_3 %}
+  {% include "@bolt-components-icon/icon.twig" with {
+    name: "calendar",
+    size: "large"
+  }%}
+{% endset %}
+
 {# {% for borderless_option in borderless_options %} #}
 {% for borderless in schema.properties.borderless.enum %}
   <h3>
@@ -20,29 +41,21 @@
   <div class="u-bolt-margin-bottom-medium">
     {% include "@bolt-components-action-blocks/action-blocks.twig" with {
       borderless: borderless,
-      contentItems: [
+      items: [
         {
           text: "Item 1",
-          icon: {
-            name: "download",
-            size: "large",
-          }
+          url: "#!",
+          media: icon_1,
         },
         {
           text: "Item 2",
           url: "#!",
-          icon: {
-            name: "copy-to-clipboard",
-            size: "large",
-          }
+          media: icon_2,
         },
         {
           text: "Item 3",
           url: "#!",
-          icon: {
-            name: "calendar",
-            size: "large",
-          }
+          media: icon_3,
         }
       ]
     } only %}

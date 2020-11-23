@@ -1,59 +1,56 @@
-{% set schema = bolt.data.components["@bolt-components-copy-to-clipboard"].schema %}
+{% set schema = bolt.data.components['@bolt-components-copy-to-clipboard'].schema %}
 {% if enable_json_schema_validation %}
-  {{ validate_data_schema(schema, _self) | raw }}
+  {{ validate_data_schema(schema, _self)|raw }}
 {% endif %}
 
 {# Variables #}
-{% set base_class = "c-bolt-copy-to-clipboard" %}
+{% set base_class = 'c-bolt-copy-to-clipboard' %}
 {% set attributes = create_attribute(attributes|default({})) %}
 {% set inner_attributes = create_attribute({}) %}
 
 {# DEPRECATED. Use the custom_confirmation property instead if you need to change the confirmation text. #}
-{% set copiedText = copiedText | default("Copied!"|t) %}
+{% set copiedText = copiedText|default('Copied!'|t) %}
 
 {# DEPRECATED. Use custom_trigger, custom_transition, and custom_confirmation properties if you need to change icon size. #}
-{% set iconSize = iconSize | default(schema.properties.iconSize.default) %}
+{% set iconSize = iconSize|default(schema.properties.iconSize.default) %}
 
-{# DEPRECATED. "url" has been renamed "text_to_copy" #}
+{# DEPRECATED. 'url' has been renamed 'text_to_copy' #}
 {% if url %}
   {% set text_to_copy = url %}
 {% endif %}
 
-{# DEPRECATED. "text" has been renamed "trigger_text" #}
+{# DEPRECATED. 'text' has been renamed 'trigger_text' #}
 {% if text %}
   {% set trigger_text = text %}
 {% endif %}
 
-{% set trigger_text = trigger_text | default("Copy Link"|t) %}
+{% set trigger_text = trigger_text|default('Copy Link'|t) %}
 
 {% set default_trigger %}
-  <div class="{{ "#{base_class}__action" }}">
-    {% include "@bolt-components-icon/icon.twig" with {
-      name: "asset-link",
-      position: "before",
-      size: iconSize
+  <div class="{{ base_class }}__action">
+    {% include '@bolt-components-icon/icon.twig' with {
+      name: 'asset-link',
+      position: 'before',
     } only %}
-    <span class="{{ "#{base_class}__action-text" }}">
+    <span class="{{ base_class }}__action-text">
       {{ trigger_text }}
     </span>
   </div>
 {% endset %}
 
 {% set default_transition %}
-  <span class="{{ "#{base_class}__transition-animation" }}">
-    {% include "@bolt-components-icon/icon.twig" with {
-      "name": "refresh",
-      "size": iconSize,
+  <span class="{{ base_class }}__transition-animation">
+    {% include '@bolt-components-icon/icon.twig' with {
+      name: 'refresh',
     } only %}
   </span>
 {% endset %}
 
 {% set default_confirmation %}
-  <div class="{{ "#{base_class}__info js-bolt-copy-to-clipboard__trigger" }}">
-    {% include "@bolt-components-icon/icon.twig" with {
-      name: "check",
-      position: "before",
-      size: iconSize
+  <div class="{{ base_class }}__info js-bolt-copy-to-clipboard__trigger">
+    {% include '@bolt-components-icon/icon.twig' with {
+      name: 'check',
+      position: 'before',
     } only %}
     {{ copiedText }}
   </div>
@@ -63,18 +60,18 @@
 <bolt-copy-to-clipboard {{ attributes }}>
   {% set classes = [
     base_class,
-    "js-bolt-copy-to-clipboard",
+    'js-bolt-copy-to-clipboard',
   ] %}
   <span {{ inner_attributes.addClass(classes) }}>
-    <button class="{{ "#{base_class}__trigger" }}" data-clipboard-text="{{ text_to_copy }}">
+    <button class="{{ base_class }}__trigger" data-clipboard-text="{{ text_to_copy }}">
       {{ custom_trigger|default(default_trigger) }}
     </button>
 
-    <span class="{{ "#{base_class}__transition" }}">
+    <span class="{{ base_class }}__transition">
       {{ custom_transition|default(default_transition) }}
     </span>
 
-    <span class="{{ "#{base_class}__confirmation" }}">
+    <span class="{{ base_class }}__confirmation">
       {{ custom_confirmation|default(default_confirmation) }}
     </span>
   </span>

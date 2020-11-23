@@ -1,0 +1,75 @@
+{% set description %}
+  A button can be assigned to various levels of the content hierarchy based on the information architecture of the layout.
+{% endset %}
+
+{% set demo %}
+  <bolt-list display="inline" spacing="small">
+    <bolt-list-item>
+      {% include '@bolt-elements-button/button.twig' with {
+        content: 'Primary',
+        attributes: {
+          type: 'button',
+        }
+      } only %}
+    </bolt-list-item>
+    <bolt-list-item>
+      {% include '@bolt-elements-button/button.twig' with {
+        content: 'Secondary',
+        hierarchy: 'secondary',
+        attributes: {
+          type: 'button',
+        }
+      } only %}
+    </bolt-list-item>
+    <bolt-list-item>
+      {% include '@bolt-elements-button/button.twig' with {
+        content: 'Tertiary',
+        hierarchy: 'tertiary',
+        attributes: {
+          type: 'button',
+        }
+      } only %}
+    </bolt-list-item>
+    <bolt-list-item>
+      {% include '@bolt-elements-button/button.twig' with {
+        content: 'Transparent',
+        hierarchy: 'transparent',
+        attributes: {
+          type: 'button',
+        }
+      } only %}
+    </bolt-list-item>
+  </bolt-list>
+{% endset %}
+
+{% set notes %}
+  Transparent button is the lowest in the hierarchy level. This style has the lowest affordances and it should NEVER be used alone. Always pair it with a primary, secondary, or tertiary button.
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% include '@bolt-elements-button/button.twig' with {
+  content: 'This is a secondary button',
+  hierarchy: 'secondary',
+  attributes: {
+    type: 'button'
+  }
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% set html_markup %}
+{% verbatim %}
+<button type="button" class="e-bolt-button e-bolt-button--secondary">This is a secondary button</button>
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Button Hierarchy',
+  description: description,
+  notes: notes,
+  demo: demo,
+  demo_light_dark: true,
+  twig_markup: twig_markup,
+  html_markup: html_markup,
+} only %}

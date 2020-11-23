@@ -1,13 +1,6 @@
-import { supportsCSSVars } from '@bolt/core/utils';
 import classNames from 'classnames/dedupe';
-import {
-  customElement,
-  BoltElement,
-  html,
-  styleMap,
-  unsafeCSS,
-} from '@bolt/element';
-import { withContext } from 'wc-context';
+import { customElement, BoltElement, html, unsafeCSS } from '@bolt/element';
+import { withContext } from 'wc-context/lit-element';
 import menuStyles from './menu.scss';
 import schema from '../menu.schema';
 
@@ -29,8 +22,12 @@ class BoltMenu extends withContext(BoltElement) {
 
   static get providedContexts() {
     return {
-      spacing: { value: schema.properties.spacing.default },
+      spacing: { property: 'spacing' },
     };
+  }
+
+  static get styles() {
+    return [unsafeCSS(menuStyles)];
   }
 
   constructor() {
@@ -38,38 +35,21 @@ class BoltMenu extends withContext(BoltElement) {
     this.role = 'menu';
   }
 
-  static get styles() {
-    return [unsafeCSS(menuStyles)];
-  }
-
-  connectedCallback() {
-    super.connectedCallback && super.connectedCallback();
-
-    this.updateProvidedContext(
-      'spacing',
-      this.spacing || schema.properties.spacing.default,
-    );
-  }
-
   render() {
-    // @todo: automatic schema validation?
-    const spacing = this.spacing || schema.properties.spacing.default;
-    this.updateProvidedContext('spacing', spacing);
-
-    const classes = cx('c-bolt-menu__title', {
-      [`c-bolt-menu__title--spacing-${spacing}`]: spacing,
+    const classes = cx('c-bolt-menu', {
+      [`c-bolt-menu--spacing-${this.spacing}`]: this.spacing,
     });
 
     return html`
-      <div class="${cx(`c-bolt-menu`)}" role="presentation">
+      <span class="${classes}" role="presentation">
         ${this.slotMap.get('title') &&
           html`
-            <div class="${classes}">
+            <span class="${cx('c-bolt-menu__title')}">
               ${this.slotify('title')}
-            </div>
+            </span>
           `}
         ${this.slotify('default')}
-      </div>
+      </span>
     `;
   }
 }
