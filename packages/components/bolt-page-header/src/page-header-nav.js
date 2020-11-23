@@ -4,6 +4,7 @@ import hoverintent from 'hoverintent';
 export class BoltPageHeaderNav {
   constructor(menu, options = {}) {
     this.options = {
+      breakpoint: '1000px',
       mobile: true,
       desktop: true,
       isNested: false,
@@ -60,8 +61,7 @@ export class BoltPageHeaderNav {
   }
 
   updateResponsiveMenu() {
-    // todo: data json breakpoints
-    if (window.matchMedia('(max-width: 62.499em)').matches) {
+    if (window.matchMedia(`(max-width: ${this.options.breakpoint})`).matches) {
       if (this.state.desktopIsSetup) {
         this.resetDesktopMenu();
       }

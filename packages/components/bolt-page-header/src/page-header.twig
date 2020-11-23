@@ -12,6 +12,11 @@
 {% set cta_attributes = create_attribute(cta.attributes|default({})) %}
 {% set cta_tag = cta_attributes.type ? 'button' : cta_attributes.href ? 'a' : 'span' %}
 
+{% set breakpoint = bolt.data.breakpoints.large %}
+{% if breakpoint %}
+  {% set attributes = attributes.setAttribute("data-bolt-breakpoint", breakpoint) %}
+{% endif %}
+
 {% set classes = [
   'c-bolt-page-header',
 ] %}

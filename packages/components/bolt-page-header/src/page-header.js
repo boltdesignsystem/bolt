@@ -25,13 +25,22 @@ export class BoltPageHeader {
     const utilityMenuArray = this.getMenusArray(utilityTriggers);
     const actionMenuArray = this.getActionMenuArray();
 
+    let opts = {};
+    const breakpoint = this.el.dataset.boltBreakpoint;
+
+    if (breakpoint) {
+      opts = { breakpoint };
+    }
+
     // Site Nav
     this.siteMenu = new BoltPageHeaderNav(siteMenuArray, {
+      ...opts,
       mobile: false,
     });
 
     // Nested Site Nav
     this.siteNestedMenu = new BoltPageHeaderNav(siteNestedMenuArray, {
+      ...opts,
       desktop: false,
       isNested: true,
       closeOnEscape: true,
@@ -49,11 +58,13 @@ export class BoltPageHeader {
 
     // Utility Nav
     this.utilityMenu = new BoltPageHeaderNav(utilityMenuArray, {
+      ...opts,
       mobile: false,
     });
 
     // Action Nav
     this.actionMenu = new BoltPageHeaderActionNav(actionMenuArray, {
+      ...opts,
       closeOnEscape: true,
     });
   }
