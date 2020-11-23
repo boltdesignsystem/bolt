@@ -13,7 +13,6 @@ module.exports = {
   description:
     'A vertical list of menu items. This component is usually used inside a popover container to provide additional actions.',
   type: 'object',
-  // required: ['items'],
   properties: {
     attributes: {
       type: 'object',
@@ -30,8 +29,22 @@ module.exports = {
           'A Drupal attributes object. Applies extra HTML attributes to the outer &lt;bolt-menu&gt; tag.',
         properties: {
           ...modifiedTriggerProps,
+          icon_before: {
+            type: 'object',
+            description:
+              'Append an icon before the text. Icon component is recommended.',
+          },
+          icon_after: {
+            type: 'object',
+            description:
+              'Append an icon after the text. Icon component is recommended.',
+          },
         },
       },
+    },
+    content: {
+      type: ['string', 'array', 'object'],
+      description: 'Custom content for menu items.',
     },
     title: {
       type: 'string',

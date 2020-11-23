@@ -19,10 +19,20 @@ module.exports = {
       description:
         'The path to a background image that displays underneath the content / foreground image in the Hero.',
     },
+    custom_background: {
+      type: ['string', 'object', 'array'],
+      description:
+        'Renderable background image for this item, should use the Image or Shape component.',
+    },
     image: {
       type: 'string',
       description:
         'The path to a foreground image that  displays along-side the other Hero content.',
+    },
+    image_srcset: {
+      type: 'string',
+      description:
+        'A valid image srcset value with different cuts of the image for different breakpoints',
     },
     imageAlign: {
       type: 'string',

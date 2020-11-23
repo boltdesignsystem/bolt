@@ -1,41 +1,50 @@
+{% set icon_1 %}
+  {% include "@bolt-components-icon/icon.twig" with {
+    name: "download",
+    size: "large"
+  } %}
+{% endset %}
+
+{% set icon_2 %}
+  {% include "@bolt-components-icon/icon.twig" with {
+    name: "copy-to-clipboard",
+    size: "large"
+  } %}
+{% endset %}
+
+{% set icon_3 %}
+  {% include "@bolt-components-icon/icon.twig" with {
+    name: "calendar",
+    size: "large"
+  }%}
+{% endset %}
+
 {% for theme in ["xlight", "light", "dark", "xdark"] %}
   <h3>Action Blocks inside a {{ theme }} themed container</h3>
   <div class="u-bolt-margin-bottom-medium">
     {% embed "@utils/theme-demo.twig" %}
       {% block demo_content %}
         {% include "@bolt-components-action-blocks/action-blocks.twig" with {
-          contentItems: [
+          items: [
             {
               text: "Item 1",
               url: "#!",
-              icon: {
-                name: "download",
-                size: "large",
-              }
+              media: icon_1,
             },
             {
               text: "Item 2",
               url: "#!",
-              icon: {
-                name: "copy-to-clipboard",
-                size: "large",
-              }
+              media: icon_2,
             },
             {
               text: "Item 3",
               url: "#!",
-              icon: {
-                name: "calendar",
-                size: "large",
-              }
+              media: icon_3,
             },
             {
               text: "Item 4",
               url: "#!",
-              icon: {
-                name: "copy-to-clipboard",
-                size: "large",
-              }
+              media: icon_1,
             }
           ]
         } only %}

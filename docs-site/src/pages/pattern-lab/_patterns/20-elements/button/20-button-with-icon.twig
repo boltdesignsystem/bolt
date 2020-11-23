@@ -1,0 +1,97 @@
+{% set icon_chevron_down %}
+  {% include '@bolt-components-icon/icon.twig' with {
+    name: 'chevron-down',
+  } only %}
+{% endset %}
+
+{% set icon_info_open %}
+  {% include '@bolt-components-icon/icon.twig' with {
+    name: 'info-open',
+  } only %}
+{% endset %}
+
+{% set icon_custom %}
+  <img src="/images/placeholders/500x500.jpg">
+{% endset %}
+
+{% set description %}
+  Icons can be used in tandem with a button. An icon can be placed before and/or after the button text. <a href="{{ link['viewall-components-icon'] }}">The icon component</a> is recommended for appending icons. However, an <bolt-code-snippet display="inline" lang="html">&lt;img&gt;</bolt-code-snippet> element is also acceptable.
+{% endset %}
+
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>Icons are set inline with text so icon size will grow or shrink with text size. The <bolt-code-snippet display="inline">size</bolt-code-snippet> and <bolt-code-snippet display="inline">background</bolt-code-snippet> props for the icon component are not well supported in this scenario.</bolt-li>
+    <bolt-li>When writing in plain HTML, all white space must be eliminated to have the icon display correctly next to text (in terms of spacing and wrapping). The markup must be written all in one line and spaces between HTML elements must be removed.</bolt-li>
+    <bolt-li>When writing in plain HTML, <bolt-code-snippet display="inline" lang="html">&lt;span class="e-bolt-button__icon-before"&gt;</bolt-code-snippet> and <bolt-code-snippet display="inline" lang="html">&lt;span class="e-bolt-button__icon-after"&gt;</bolt-code-snippet> are required to wrap around the icon markup. The wrapper ensures that the icon will always wrap with the final word of the text. It will never wrap to the next line on its own.</bolt-li>
+  </bolt-ol>
+{% endset %}
+
+{% set demo %}
+  <p>
+    {% include '@bolt-elements-button/button.twig' with {
+      content: 'This is a button with icons before and after',
+      icon_before: icon_custom,
+      icon_after: icon_chevron_down,
+      attributes: {
+        type: 'button'
+      }
+    } only %}
+  </p>
+  <p>
+    {% include '@bolt-elements-button/button.twig' with {
+      content: 'This is a button with icon before',
+      icon_before: icon_info_open,
+      attributes: {
+        type: 'button'
+      }
+    } only %}
+  </p>
+  <p>
+    {% include '@bolt-elements-button/button.twig' with {
+      content: 'This is a button with icon after',
+      icon_after: icon_info_open,
+      attributes: {
+        type: 'button'
+      }
+    } only %}
+  </p>
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+// Icon vars
+{% set icon_custom %}
+  <img src="/images/placeholders/500x500.jpg">
+{% endset %}
+{% set icon_chevron_down %}
+  {% include '@bolt-components-icon/icon.twig' with {
+    name: 'chevron-down',
+  } only %}
+{% endset %}
+
+// Button include
+{% include '@bolt-elements-button/button.twig' with {
+  content: 'This is a button with icons before and after',
+  icon_before: icon_custom,
+  icon_after: icon_chevron_down,
+  attributes: {
+    type: 'button'
+  }
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% set html_markup %}
+{% verbatim %}
+<button type="button" class="e-bolt-button"><span class="e-bolt-button__icon-before"><img src="/images/placeholders/500x500.jpg"></span>This is a button with icons before and after<span class="e-bolt-button__icon-before"><bolt-icon name="chevron-down"></bolt-icon></span></button>
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Button with Icon',
+  description: description,
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+  html_markup: html_markup,
+} only %}

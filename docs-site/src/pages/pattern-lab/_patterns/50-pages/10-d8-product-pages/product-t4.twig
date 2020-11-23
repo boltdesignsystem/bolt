@@ -75,10 +75,19 @@
           text: "Move past traditional CRM systems to a true journey-enabled, customer engagement suite. Learn how Pega is helping enterprises revolutionize their customer engagement with end-to-end automation and real-time AI on the only unified CRM platform.",
           size: "medium"
         } only %}
-        {% include "@bolt/video.twig" with {
-          "videoId": "5609376179001",
-          "accountId": "1900410236",
-          "playerId": "r1CAdLzTW"
+        {% set video %}
+          <video-js
+            data-account="1900410236"
+            data-player="4fVA8Ojzs"
+            data-embed="default"
+            data-video-id="5609376179001"
+            controls
+            class="c-base-video"></video-js>
+        {% endset %}
+
+        {% include "@bolt-components-ratio/ratio.twig" with {
+          children: video,
+          ratio: "16/9"
         } only %}
       {% endcell %}
 
@@ -327,11 +336,20 @@
       {% grid "o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--middle o-bolt-grid--matrix" %}
         {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small" %}
           {% set videoUuid3 = "js-bolt-video-uuid--3c" %}
-          {% include "@bolt/video.twig" with {
-            "videoId": "5609376179001",
-            "accountId": "1900410236",
-            "playerId": "r1CAdLzTW",
-            "videoUuid": videoUuid3
+          {% set video %}
+            <video-js
+              data-account="1900410236"
+              data-player="4fVA8Ojzs"
+              data-embed="default"
+              data-video-id="5609376179001"
+              controls
+              id="{{ videoUuid3 }}"
+              class="c-base-video"></video-js>
+          {% endset %}
+
+          {% include "@bolt-components-ratio/ratio.twig" with {
+            children: video,
+            ratio: "16/9"
           } only %}
         {% endcell %}
         {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small" %}
@@ -349,8 +367,8 @@
             text: "Toggle video",
             tag: "button",
             attributes: {
-              "on-click": "toggle",
-              "on-click-target": videoUuid3
+              class: "js-base-video-toggle",
+              "data-video-target": videoUuid3
             }
           } only %}
         {% endcell %}
@@ -601,17 +619,26 @@
             text: "Toggle video",
             tag: "button",
             attributes: {
-              "on-click": "toggle",
-              "on-click-target": videoUuid3
+              class: "js-base-video-toggle",
+              "data-video-target": videoUuid3
             }
           } only %}
         {% endcell %}
         {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small" %}
-          {% include "@bolt/video.twig" with {
-            "videoId": "5609376179001",
-            "accountId": "1900410236",
-            "playerId": "r1CAdLzTW",
-            "videoUuid": videoUuid3
+          {% set video %}
+            <video-js
+              data-account="1900410236"
+              data-player="4fVA8Ojzs"
+              data-embed="default"
+              data-video-id="5609376179001"
+              controls
+              id="{{ videoUuid3 }}"
+              class="c-base-video"></video-js>
+          {% endset %}
+
+          {% include "@bolt-components-ratio/ratio.twig" with {
+            children: video,
+            ratio: "16/9"
           } only %}
         {% endcell %}
       {% endgrid %}
@@ -680,12 +707,21 @@
     {% grid "o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--middle o-bolt-grid--matrix" %}
       {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small" %}
         {% set videoUuid3 = "js-bolt-video-uuid--3b" %}
-        {% include "@bolt/video.twig" with {
-          "videoId": "5609376179001",
-          "accountId": "1900410236",
-          "playerId": "r1CAdLzTW",
-          "videoUuid": videoUuid3
-        } only %}
+          {% set video %}
+            <video-js
+              data-account="1900410236"
+              data-player="4fVA8Ojzs"
+              data-embed="default"
+              data-video-id="5609376179001"
+              controls
+              id="{{ videoUuid3 }}"
+              class="c-base-video"></video-js>
+          {% endset %}
+
+          {% include "@bolt-components-ratio/ratio.twig" with {
+            children: video,
+            ratio: "16/9"
+          } only %}
         {% endcell %}
         {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small" %}
           {% include "@bolt/subheadline.twig" with {
@@ -702,8 +738,8 @@
             text: "Toggle video",
             tag: "button",
             attributes: {
-              "on-click": "toggle",
-              "on-click-target": videoUuid3
+              class: "js-base-video-toggle",
+              "data-video-target": videoUuid3
             }
           } only %}
         {% endcell %}

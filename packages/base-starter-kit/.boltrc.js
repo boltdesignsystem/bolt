@@ -64,8 +64,13 @@ module.exports = {
       '@bolt/components-typeahead',
       '@bolt/components-ul',
       '@bolt/components-video',
+<<<<<<< HEAD
       '@bolt/elements-link',
       '@bolt/layouts-layout',
+=======
+      '@bolt/elements-text-link',
+      '@bolt/elements-button',
+>>>>>>> master
       '@bolt/layouts-list',
       '@bolt/analytics-autolink',
     ],

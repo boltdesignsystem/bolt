@@ -1,0 +1,70 @@
+@import '@bolt/core-v3.x';
+
+/**
+ * Text Link
+ *
+ * Dev notes:
+ * 1. Special tricks are used here to make inline icon work, reference the mixin scss to understand it.
+ * 2. `em` unit is used to make sure the spacing between icon and text is relative to the text's font-size.
+ * 3. Offsets the white space around chevron icons' SVG files.
+ */
+
+.e-bolt-text-link {
+  @include bolt-button-native-styles-reset;
+  @include bolt-text-link;
+}
+
+[class*='e-bolt-text-link__icon'] {
+  @include bolt-inline-icon-wrapper; /* [1] */
+}
+
+.e-bolt-text-link__icon-before {
+  margin-right: calc(
+    var(--bolt-spacing-x) * var(--bolt-spacing-multiplier-xxsmall) * 1em
+  ); /* [2] */
+
+  > bolt-icon[size] {
+    margin-right: var(--bolt-spacing-x-xxsmall);
+  }
+
+  > bolt-icon[name*='chevron-'] {
+    margin-left: calc(
+      var(--bolt-spacing-x) * var(--bolt-spacing-multiplier-xxsmall) * -2em
+    ); /* [3] */
+  }
+}
+
+.e-bolt-text-link__icon-after {
+  margin-left: calc(
+    var(--bolt-spacing-x) * var(--bolt-spacing-multiplier-xxsmall) * 1em
+  ); /* [2] */
+
+  > bolt-icon[size] {
+    margin-left: var(--bolt-spacing-x-xxsmall);
+  }
+
+  > bolt-icon[name*='chevron-'] {
+    margin-right: calc(
+      var(--bolt-spacing-x) * var(--bolt-spacing-multiplier-xxsmall) * -2em
+    ); /* [3] */
+  }
+}
+
+.e-bolt-text-link--reversed-underline {
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.e-bolt-text-link--expand-click-target {
+  &:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+}

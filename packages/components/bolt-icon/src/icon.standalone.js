@@ -125,14 +125,14 @@ class BoltIcon extends BoltElement {
           `
         : ''}
       <span class="${classes}">
-        <svg class="${iconClasses}">
-          <use href="#${this.name}" />
-        </svg>
         ${this.background && this.background !== 'none'
           ? html`
               <span class="${backgroundClasses}"></span>
             `
           : ''}
+        <svg class="${iconClasses}">
+          <use href="#${this.name}" />
+        </svg>
       </span>
     `;
   }

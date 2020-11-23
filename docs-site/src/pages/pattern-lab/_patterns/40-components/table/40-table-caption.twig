@@ -1,0 +1,27 @@
+<h3>With Caption</h3>
+{% include "@bolt-components-table/table.twig" with {
+  rows: [
+    {
+      cells: [
+        "R1C1",
+        "R1C2",
+        "R1C3",
+      ]
+    },
+    {
+      cells: [
+        "R2C1",
+        "R2C2",
+        "R2C3",
+      ]
+    },
+    {
+      cells: [
+        "R3C1",
+        "R3C2",
+        "R3C3",
+      ]
+    }
+  ],
+  caption: "This is a table caption"
+} only %}

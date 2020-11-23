@@ -1,0 +1,50 @@
+{% set schema = bolt.data.components['@bolt-elements-button'].schema %}
+
+{% set description %}
+  The display of a button can be changed from inline to block (full width), and there is an extra option to make it transform from inline to block at the small breakpoint.
+{% endset %}
+
+{% set notes %}
+  When <bolt-code-snippet display="inline">display</bolt-code-snippet> prop is set to <bolt-code-snippet display="inline">inline@from-small</bolt-code-snippet>, it means the button is block display below the small breakpoint, and transform to inline display from small breakpoint and up. Resize the browser to see the demo below.
+{% endset %}
+
+{% set demo %}
+  {% for display in schema.properties.display.enum %}
+    <bolt-stack>
+      {% include '@bolt-elements-button/button.twig' with {
+        content: display|capitalize,
+        display: display,
+        attributes: {
+          type: 'button',
+        }
+      } only %}
+    </bolt-stack>
+  {% endfor %}
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% include '@bolt-elements-button/button.twig' with {
+  content: 'This is a full width button',
+  display: 'block',
+  attributes: {
+    type: 'button'
+  }
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% set html_markup %}
+{% verbatim %}
+<button type="button" class="e-bolt-button e-bolt-button--block">This is a full width button</button>
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Button Display',
+  description: description,
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+  html_markup: html_markup,
+} only %}
