@@ -8,13 +8,13 @@
 {% set this = init(schema) %}
 
 <bolt-layout
-  {{ this.props|without("items") }}
+  {{ this.props|without("content") }}
 >
   {% if background %}
     {{ background }}
   {% endif %}
 
-  {% for item in items %}
-    {{ item }}
-  {% endfor %}
+  {% if content %}
+    {{ content }}
+  {% endif %}
 </bolt-layout>

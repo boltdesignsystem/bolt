@@ -41,7 +41,10 @@
   } only %}
 {% endset %}
 
-{% set content %}
+
+<bolt-text font-size="large" font-weight="semibold" class="u-bolt-margin-bottom-none u-bolt-margin-top-medium">Layouts Based in Quarters</bolt-text>
+
+{% set sampleContent %}
   {% include "@bolt-layouts-layout/layout-item.twig" with {
     content: placeholder25
   } only %}
@@ -49,16 +52,17 @@
     content: placeholder25
   } only %}
   {% include "@bolt-layouts-layout/layout-item.twig" with {
-    content: placeholder50
+    content: placeholder50,
+    source_order: "secondary@from-small"
   } only %}
 {% endset %}
 <bolt-text font-size="small" font-weight="semibold" class="u-bolt-margin-bottom-none u-bolt-margin-top-medium">25/25/50@from-small</bolt-text>
 {% include "@bolt-layouts-layout/layout.twig" with {
   template: "25/25/50@from-small",
-  items: [content]
+  content: sampleContent
 } only %}
 
-{% set content %}
+{% set sampleContent %}
   {% include "@bolt-layouts-layout/layout-item.twig" with {
     content: placeholder25
   } only %}
@@ -72,10 +76,10 @@
 <bolt-text font-size="small" font-weight="semibold" class="u-bolt-margin-bottom-none u-bolt-margin-top-medium">25/50/25@from-small</bolt-text>
 {% include "@bolt-layouts-layout/layout.twig" with {
   template: "25/50/25@from-small",
-  items: [content]
+  content: sampleContent
 } only %}
 
-{% set content %}
+{% set sampleContent %}
   {% include "@bolt-layouts-layout/layout-item.twig" with {
     content: placeholder25
   } only %}
@@ -86,24 +90,10 @@
 <bolt-text font-size="small" font-weight="semibold" class="u-bolt-margin-bottom-none u-bolt-margin-top-medium">25/75@from-small</bolt-text>
 {% include "@bolt-layouts-layout/layout.twig" with {
   template: "25/75@from-small",
-  items: [content]
+  content: sampleContent
 } only %}
 
-{% set content %}
-  {% include "@bolt-layouts-layout/layout-item.twig" with {
-    content: placeholder33
-  } only %}
-  {% include "@bolt-layouts-layout/layout-item.twig" with {
-    content: placeholder67
-  } only %}
-{% endset %}
-<bolt-text font-size="small" font-weight="semibold" class="u-bolt-margin-bottom-none u-bolt-margin-top-medium">33/67@from-small</bolt-text>
-{% include "@bolt-layouts-layout/layout.twig" with {
-  template: "33/67@from-small",
-  items: [content]
-} only %}
-
-{% set content %}
+{% set sampleContent %}
   {% include "@bolt-layouts-layout/layout-item.twig" with {
     content: placeholder50
   } only %}
@@ -117,46 +107,22 @@
 <bolt-text font-size="small" font-weight="semibold" class="u-bolt-margin-bottom-none u-bolt-margin-top-medium">50/25/25@from-small</bolt-text>
 {% include "@bolt-layouts-layout/layout.twig" with {
   template: "50/25/25@from-small",
-  items: [content]
+  content: sampleContent
 } only %}
 
-{% set content %}
-  {% include "@bolt-layouts-layout/layout-item.twig" with {
-    content: placeholder67
-  } only %}
-{% endset %}
-<bolt-text font-size="small" font-weight="semibold" class="u-bolt-margin-bottom-none u-bolt-margin-top-medium">67@from-small, can be aligned</bolt-text>
-{% include "@bolt-layouts-layout/layout.twig" with {
-  template: "67@from-small",
-  items: [content]
-} only %}
-
-{% set content %}
-  {% include "@bolt-layouts-layout/layout-item.twig" with {
-    content: placeholder67
-  } only %}
-  {% include "@bolt-layouts-layout/layout-item.twig" with {
-    content: placeholder33
-  } only %}
-{% endset %}
-<bolt-text font-size="small" font-weight="semibold" class="u-bolt-margin-bottom-none u-bolt-margin-top-medium">67/33@from-small</bolt-text>
-{% include "@bolt-layouts-layout/layout.twig" with {
-  template: "67/33@from-small",
-  items: [content]
-} only %}
-
-{% set content %}
+{% set sampleContent %}
   {% include "@bolt-layouts-layout/layout-item.twig" with {
     content: placeholder75
   } only %}
 {% endset %}
 <bolt-text font-size="small" font-weight="semibold" class="u-bolt-margin-bottom-none u-bolt-margin-top-medium">75@from-small, can be aligned</bolt-text>
 {% include "@bolt-layouts-layout/layout.twig" with {
+  align_items: "end",
   template: "75@from-small",
-  items: [content]
+  content: sampleContent
 } only %}
 
-{% set content %}
+{% set sampleContent %}
   {% include "@bolt-layouts-layout/layout-item.twig" with {
     content: placeholder75
   } only %}
@@ -167,24 +133,10 @@
 <bolt-text font-size="small" font-weight="semibold" class="u-bolt-margin-bottom-none u-bolt-margin-top-medium">75/25@from-small</bolt-text>
 {% include "@bolt-layouts-layout/layout.twig" with {
   template: "75/25@from-small",
-  items: [content]
+  content: sampleContent
 } only %}
 
-{% set content %}
-  {% include "@bolt-layouts-layout/layout-item.twig" with {
-    content: placeholderFlag
-  } only %}
-  {% include "@bolt-layouts-layout/layout-item.twig" with {
-    content: placeholderFlag
-  } only %}
-{% endset %}
-<bolt-text font-size="small" font-weight="semibold" class="u-bolt-margin-bottom-none u-bolt-margin-top-medium">flag@from-small</bolt-text>
-{% include "@bolt-layouts-layout/layout.twig" with {
-  template: "flag@from-small",
-  items: [content]
-} only %}
-
-{% set content %}
+{% set sampleContent %}
   {% include "@bolt-layouts-layout/layout-item.twig" with {
     content: placeholder25
   } only %}
@@ -201,10 +153,10 @@
 <bolt-text font-size="small" font-weight="semibold" class="u-bolt-margin-bottom-none u-bolt-margin-top-medium">fourths@from-small</bolt-text>
 {% include "@bolt-layouts-layout/layout.twig" with {
   template: "fourths@from-small",
-  items: [content]
+  content: sampleContent
 } only %}
 
-{% set content %}
+{% set sampleContent %}
   {% include "@bolt-layouts-layout/layout-item.twig" with {
     content: placeholder50
   } only %}
@@ -215,10 +167,60 @@
 <bolt-text font-size="small" font-weight="semibold" class="u-bolt-margin-bottom-none u-bolt-margin-top-medium">halves@from-small</bolt-text>
 {% include "@bolt-layouts-layout/layout.twig" with {
   template: "halves@from-small",
-  items: [content]
+  content: sampleContent
 } only %}
 
-{% set content %}
+
+
+
+
+
+
+
+
+
+<bolt-text font-size="large" font-weight="semibold" class="u-bolt-margin-bottom-none u-bolt-margin-top-medium">Layouts Based in Thirds</bolt-text>
+
+{% set sampleContent %}
+  {% include "@bolt-layouts-layout/layout-item.twig" with {
+    content: placeholder33
+  } only %}
+  {% include "@bolt-layouts-layout/layout-item.twig" with {
+    content: placeholder67
+  } only %}
+{% endset %}
+<bolt-text font-size="small" font-weight="semibold" class="u-bolt-margin-bottom-none u-bolt-margin-top-medium">33/67@from-small</bolt-text>
+{% include "@bolt-layouts-layout/layout.twig" with {
+  template: "33/67@from-small",
+  content: sampleContent
+} only %}
+
+{% set sampleContent %}
+  {% include "@bolt-layouts-layout/layout-item.twig" with {
+    content: placeholder67
+  } only %}
+{% endset %}
+<bolt-text font-size="small" font-weight="semibold" class="u-bolt-margin-bottom-none u-bolt-margin-top-medium">67@from-small, can be aligned</bolt-text>
+{% include "@bolt-layouts-layout/layout.twig" with {
+  template: "67@from-small",
+  content: sampleContent
+} only %}
+
+{% set sampleContent %}
+  {% include "@bolt-layouts-layout/layout-item.twig" with {
+    content: placeholder67
+  } only %}
+  {% include "@bolt-layouts-layout/layout-item.twig" with {
+    content: placeholder33
+  } only %}
+{% endset %}
+<bolt-text font-size="small" font-weight="semibold" class="u-bolt-margin-bottom-none u-bolt-margin-top-medium">67/33@from-small</bolt-text>
+{% include "@bolt-layouts-layout/layout.twig" with {
+  template: "67/33@from-small",
+  content: sampleContent
+} only %}
+
+{% set sampleContent %}
   {% include "@bolt-layouts-layout/layout-item.twig" with {
     content: placeholder33
   } only %}
@@ -232,10 +234,30 @@
 <bolt-text font-size="small" font-weight="semibold" class="u-bolt-margin-bottom-none u-bolt-margin-top-medium">thirds@from-small</bolt-text>
 {% include "@bolt-layouts-layout/layout.twig" with {
   template: "thirds@from-small",
-  items: [content]
+  content: sampleContent
 } only %}
 
-{% set content %}
+
+
+
+
+<bolt-text font-size="large" font-weight="semibold" class="u-bolt-margin-bottom-none u-bolt-margin-top-medium">Other Layouts</bolt-text>
+
+{% set sampleContent %}
+  {% include "@bolt-layouts-layout/layout-item.twig" with {
+    content: placeholderFlag
+  } only %}
+  {% include "@bolt-layouts-layout/layout-item.twig" with {
+    content: placeholderFlag
+  } only %}
+{% endset %}
+<bolt-text font-size="small" font-weight="semibold" class="u-bolt-margin-bottom-none u-bolt-margin-top-medium">flag@from-small</bolt-text>
+{% include "@bolt-layouts-layout/layout.twig" with {
+  template: "flag@from-small",
+  content: sampleContent
+} only %}
+
+{% set sampleContent %}
   {% include "@bolt-layouts-layout/layout-item.twig" with {
     content: placeholderTile
   } only %}
@@ -255,5 +277,5 @@
 <bolt-text font-size="small" font-weight="semibold" class="u-bolt-margin-bottom-none u-bolt-margin-top-medium">tiles@from-small</bolt-text>
 {% include "@bolt-layouts-layout/layout.twig" with {
   template: "tiles@from-small",
-  items: [content]
+  content: sampleContent
 } only %}

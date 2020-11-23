@@ -1,8 +1,18 @@
+{% set schema = bolt.data.components["@bolt-layouts-layout"].schema %}
+
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(schema, _self) | raw }}
+{% endif %}
+
+{# Variables #}
+{% set this = init(schema.properties.content) %}
 {% set item_attributes = create_attribute(attributes|default({})) %}
 
 <bolt-layout-item
   {{ source_order ? 'source-order="' ~ source_order ~ '"' : '' }}
   {{ item_attributes }}
 >
-  {{ content }}
+  {% if content %}
+    {{ content }}
+  {% endif %}
 </bolt-layout-item>

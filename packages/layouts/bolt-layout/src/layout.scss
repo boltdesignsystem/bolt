@@ -4,9 +4,7 @@
 
 // TODO:
 // - variable name conventions
-// - ignore background as grid item
 // - refactor css and update demos and schema
-// - separate bolt-layout-item
 
 @import '@bolt/core-v3.x';
 
@@ -26,22 +24,38 @@ $col-min-width-large: map-get($bolt-breakpoints, small) / 2;
 $col-min-width-small: $col-min-width-large / 3;
 
 $bolt-layout-templates: (
-  '25/25/50': minmax(#{$col-min-width-small}, 25%)
-    minmax(#{$col-min-width-small}, 25%) minmax(#{$col-min-width-small}, 50%),
-  '25/50/25': minmax(#{$col-min-width-small}, 25%)
-    minmax(#{$col-min-width-small}, 50%) minmax(#{$col-min-width-small}, 25%),
-  '25/75': minmax(#{$col-min-width-small}, 25%)
-    minmax(#{$col-min-width-large}, 75%),
-  '33/67': minmax(#{$col-min-width-small}, 33%)
-    minmax(#{$col-min-width-small}, 67%),
-  '50/25/25': minmax(#{$col-min-width-small}, 50%)
-    minmax(#{$col-min-width-small}, 25%) minmax(#{$col-min-width-small}, 25%),
-  '67': minmax(#{$col-min-width-small}, 67%),
-  '67/33': minmax(#{$col-min-width-small}, 67%)
-    minmax(#{$col-min-width-small}, 33%),
-  '75': minmax(#{$col-min-width-large}, 75%),
-  '75/25': minmax(#{$col-min-width-large}, 75%)
-    minmax(#{$col-min-width-small}, 25%),
+  '25/25/50': minmax(#{$col-min-width-small}, 1fr)
+    minmax(#{$col-min-width-small}, 1fr)
+    minmax(#{$col-min-width-small}, calc(50% - var(--c-bolt-layout-gutter) / 2)),
+  '25/50/25': minmax(#{$col-min-width-small}, 1fr)
+    minmax(#{$col-min-width-small}, calc(50% - var(--c-bolt-layout-gutter) / 2))
+    minmax(#{$col-min-width-small}, 1fr),
+  '25/75': minmax(#{$col-min-width-small}, 1fr)
+    minmax(#{$col-min-width-large}, calc(75% - var(--c-bolt-layout-gutter) / 3)),
+  '33/67': minmax(#{$col-min-width-small}, 1fr)
+    minmax(
+      #{$col-min-width-large},
+      calc(100% / 3 * 2 - var(--c-bolt-layout-gutter) / 3)
+    ),
+  '50/25/25':
+    minmax(#{$col-min-width-small}, calc(50% - var(--c-bolt-layout-gutter) / 2))
+    minmax(#{$col-min-width-small}, 1fr) minmax(#{$col-min-width-small}, 1fr),
+  '67':
+    minmax(
+      #{$col-min-width-large},
+      calc(100% / 3 * 2 - var(--c-bolt-layout-gutter) / 3)
+    ),
+  '67/33':
+    minmax(
+      #{$col-min-width-large},
+      calc(100% / 3 * 2 - var(--c-bolt-layout-gutter) / 3)
+    )
+    minmax(#{$col-min-width-small}, 1fr),
+  '75':
+    minmax(#{$col-min-width-large}, calc(75% - var(--c-bolt-layout-gutter) / 3)),
+  '75/25':
+    minmax(#{$col-min-width-large}, calc(75% - var(--c-bolt-layout-gutter) / 3))
+    minmax(#{$col-min-width-small}, 1fr),
   'flag': minmax(80px, var(--bolt-layout-flag-width, 150px)) 1fr,
   'fourths': repeat(4, minmax(#{$col-min-width-small}, 1fr)),
   'halves': repeat(2, minmax(#{$col-min-width-small}, 1fr)),
