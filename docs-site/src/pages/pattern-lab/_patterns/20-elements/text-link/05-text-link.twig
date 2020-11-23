@@ -3,7 +3,10 @@
 {% endset %}
 
 {% set notes %}
-  There are advanced features with the text link element, <bolt-code-snippet display="inline" lang="html">class="e-bolt-text-link"</bolt-code-snippet> is required to get those features. Reference respective doc page for each feature.
+  <bolt-ol>
+    <bolt-li>There are advanced features with the text link element, <bolt-code-snippet display="inline" lang="html">class="e-bolt-text-link"</bolt-code-snippet> is required to get those features. Reference respective doc page for each feature.</bolt-li>
+    <bolt-li>Only text should be passed to the <bolt-code-snippet display="inline">content</bolt-code-snippet> prop. <bolt-code-snippet display="inline" lang="html">&lt;span&gt;</bolt-code-snippet>, <bolt-code-snippet display="inline" lang="html">&lt;em&gt;</bolt-code-snippet>, and <bolt-code-snippet display="inline" lang="html">&lt;strong&gt;</bolt-code-snippet> tags are allowed.</bolt-li>
+  </bolt-ol>
 {% endset %}
 
 {% set demo %}
@@ -39,6 +42,7 @@
   description: description,
   notes: notes,
   demo: demo,
+  demo_light_dark: true,
   twig_markup: twig_markup,
   html_markup: html_markup,
 } only %}

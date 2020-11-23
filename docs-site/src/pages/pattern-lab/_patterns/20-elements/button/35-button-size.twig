@@ -1,0 +1,47 @@
+{% set schema = bolt.data.components['@bolt-elements-button'].schema %}
+
+{% set description %}
+  A button&rsquo;s size can be modified per use case.
+{% endset %}
+
+{% set demo %}
+  <bolt-list display="inline" spacing="small">
+    {% for size in schema.properties.size.enum %}
+      <bolt-list-item>
+        {% include '@bolt-elements-button/button.twig' with {
+          content: size|capitalize,
+          size: size,
+          attributes: {
+            type: 'button',
+          }
+        } only %}
+      </bolt-list-item>
+    {% endfor %}
+  </bolt-list>
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% include '@bolt-elements-button/button.twig' with {
+  content: 'This is a small button',
+  size: 'small',
+  attributes: {
+    type: 'button'
+  }
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% set html_markup %}
+{% verbatim %}
+<button type="button" class="e-bolt-button e-bolt-button--small">This is a small button</button>
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Button Size',
+  description: description,
+  demo: demo,
+  twig_markup: twig_markup,
+  html_markup: html_markup,
+} only %}

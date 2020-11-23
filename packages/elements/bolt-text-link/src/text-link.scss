@@ -6,6 +6,7 @@
  * Dev notes:
  * 1. Special tricks are used here to make inline icon work, reference the mixin scss to understand it.
  * 2. `em` unit is used to make sure the spacing between icon and text is relative to the text's font-size.
+ * 3. Offsets the white space around chevron icons' SVG files.
  */
 
 .e-bolt-text-link {
@@ -25,6 +26,12 @@
   > bolt-icon[size] {
     margin-right: var(--bolt-spacing-x-xxsmall);
   }
+
+  > bolt-icon[name*='chevron-'] {
+    margin-left: calc(
+      var(--bolt-spacing-x) * var(--bolt-spacing-multiplier-xxsmall) * -2em
+    ); /* [3] */
+  }
 }
 
 .e-bolt-text-link__icon-after {
@@ -34,6 +41,12 @@
 
   > bolt-icon[size] {
     margin-left: var(--bolt-spacing-x-xxsmall);
+  }
+
+  > bolt-icon[name*='chevron-'] {
+    margin-right: calc(
+      var(--bolt-spacing-x) * var(--bolt-spacing-multiplier-xxsmall) * -2em
+    ); /* [3] */
   }
 }
 

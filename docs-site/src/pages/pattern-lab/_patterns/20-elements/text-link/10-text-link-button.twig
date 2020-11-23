@@ -3,13 +3,12 @@
 {% endset %}
 
 {% set notes %}
-  If a text link serves no navigational purpose, the <bolt-code-snippet display="inline">button</bolt-code-snippet> prop must be used, and the proper <bolt-code-snippet display="inline">type</bolt-code-snippet> attribute must be set: button, submit, or reset.
+  If a text link serves no navigational purpose, the proper <bolt-code-snippet display="inline">type</bolt-code-snippet> attribute must be set: button, submit, or reset.
 {% endset %}
 
 {% set demo %}
 {% include '@bolt-elements-text-link/text-link.twig' with {
   content: 'This looks like a text link but semantically is a reset button',
-  button: true,
   attributes: {
     type: 'reset',
   }
@@ -20,7 +19,6 @@
 {% verbatim %}
 {% include '@bolt-elements-text-link/text-link.twig' with {
   content: 'This looks like a text link but semantically is a reset button',
-  button: true,
   attributes: {
     type: 'reset',
   }
@@ -35,7 +33,7 @@
 {% endset %}
 
 {% include '@utils/pattern-doc-page.twig' with {
-  title: 'Text Link as a &lt;button&gt; element',
+  title: 'Text Link as a &lt;button&gt; Element',
   description: description,
   notes: notes,
   demo: demo,

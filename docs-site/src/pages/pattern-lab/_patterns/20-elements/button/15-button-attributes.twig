@@ -1,0 +1,49 @@
+{% set description %}
+  Depending on if the <bolt-code-snippet display="inline" lang="html">&lt;a&gt;</bolt-code-snippet> element or the <bolt-code-snippet display="inline" lang="html">&lt;button&gt;</bolt-code-snippet> element is being used, the proper HTML attributes should be passed.
+{% endset %}
+
+{% set demo %}
+  {% include '@bolt-elements-button/button.twig' with {
+    content: 'This button has the "href", "target", and "id" attributes',
+    attributes: {
+      href: 'https://pega.com',
+      target: '_blank',
+      id: 'js-bolt-some-unique-id'
+    }
+  } only %}
+{% endset %}
+
+{% set notes %}
+  <bolt-ol>
+    <bolt-li><bolt-code-snippet display="inline" lang="html">&lt;a&gt;</bolt-code-snippet> requires the <bolt-code-snippet display="inline">href</bolt-code-snippet> attribute.</bolt-li>
+    <bolt-li><bolt-code-snippet display="inline" lang="html">&lt;button&gt;</bolt-code-snippet> requires the <bolt-code-snippet display="inline">type</bolt-code-snippet> attribute.</bolt-li>
+  </bolt-ol>
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% include '@bolt-elements-button/button.twig' with {
+  content: 'This button has the "href", "target", and "id" attributes',
+  attributes: {
+    href: 'https://pega.com',
+    target: '_blank',
+    id: 'js-bolt-some-unique-id'
+  }
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% set html_markup %}
+{% verbatim %}
+<a href="https://pega.com" target="_blank" id="js-bolt-some-unique-id" class="e-bolt-button">This button has the "href", "target", and "id" attributes</a>
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'HTML Attributes for Button',
+  description: description,
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+  html_markup: html_markup,
+} only %}
