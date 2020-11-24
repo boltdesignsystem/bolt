@@ -3,8 +3,8 @@
 \* ------------------------------------ */
 
 // TODO:
-// - variable name conventions
-// - refactor css and update demos and schema
+// - make appropriate docs.
+// - background inclusion errors
 
 @import '@bolt/core-v3.x';
 
@@ -12,7 +12,7 @@
  * Align options
  * 1. The terminology is future proof for i18n. It acts accordingly to the writing mode of a page.
  */
-$bolt-layout-align-options: (
+$_bolt-layout-align-options: (
   'unset': 'unset',
   'justify': 'space-between',
   'start': 'flex-start',
@@ -20,47 +20,66 @@ $bolt-layout-align-options: (
   'end': 'flex-end',
 );
 
-$col-min-width-large: map-get($bolt-breakpoints, small) / 2;
-$col-min-width-small: $col-min-width-large / 3;
+$_bolt-layout-col-min-width-large: map-get($bolt-breakpoints, small) / 2;
+$_bolt-layout-col-min-width-small: $_bolt-layout-col-min-width-large / 3;
 
 $bolt-layout-templates: (
-  '25/25/50': minmax(#{$col-min-width-small}, 1fr)
-    minmax(#{$col-min-width-small}, 1fr)
-    minmax(#{$col-min-width-small}, calc(50% - var(--c-bolt-layout-gutter) / 2)),
-  '25/50/25': minmax(#{$col-min-width-small}, 1fr)
-    minmax(#{$col-min-width-small}, calc(50% - var(--c-bolt-layout-gutter) / 2))
-    minmax(#{$col-min-width-small}, 1fr),
-  '25/75': minmax(#{$col-min-width-small}, 1fr)
-    minmax(#{$col-min-width-large}, calc(75% - var(--c-bolt-layout-gutter) / 3)),
-  '33/67': minmax(#{$col-min-width-small}, 1fr)
+  '25/25/50': minmax(#{$_bolt-layout-col-min-width-small}, 1fr)
+    minmax(#{$_bolt-layout-col-min-width-small}, 1fr)
     minmax(
-      #{$col-min-width-large},
+      #{$_bolt-layout-col-min-width-small},
+      calc(50% - var(--c-bolt-layout-gutter) / 2)
+    ),
+  '25/50/25': minmax(#{$_bolt-layout-col-min-width-small}, 1fr)
+    minmax(
+      #{$_bolt-layout-col-min-width-small},
+      calc(50% - var(--c-bolt-layout-gutter) / 2)
+    )
+    minmax(#{$_bolt-layout-col-min-width-small}, 1fr),
+  '25/75': minmax(#{$_bolt-layout-col-min-width-small}, 1fr)
+    minmax(
+      #{$_bolt-layout-col-min-width-large},
+      calc(75% - var(--c-bolt-layout-gutter) / 3)
+    ),
+  '33/67': minmax(#{$_bolt-layout-col-min-width-small}, 1fr)
+    minmax(
+      #{$_bolt-layout-col-min-width-large},
       calc(100% / 3 * 2 - var(--c-bolt-layout-gutter) / 3)
     ),
   '50/25/25':
-    minmax(#{$col-min-width-small}, calc(50% - var(--c-bolt-layout-gutter) / 2))
-    minmax(#{$col-min-width-small}, 1fr) minmax(#{$col-min-width-small}, 1fr),
+    minmax(
+      #{$_bolt-layout-col-min-width-small},
+      calc(50% - var(--c-bolt-layout-gutter) / 2)
+    )
+    minmax(#{$_bolt-layout-col-min-width-small}, 1fr)
+    minmax(#{$_bolt-layout-col-min-width-small}, 1fr),
   '67':
     minmax(
-      #{$col-min-width-large},
+      #{$_bolt-layout-col-min-width-large},
       calc(100% / 3 * 2 - var(--c-bolt-layout-gutter) / 3)
     ),
   '67/33':
     minmax(
-      #{$col-min-width-large},
+      #{$_bolt-layout-col-min-width-large},
       calc(100% / 3 * 2 - var(--c-bolt-layout-gutter) / 3)
     )
-    minmax(#{$col-min-width-small}, 1fr),
+    minmax(#{$_bolt-layout-col-min-width-small}, 1fr),
   '75':
-    minmax(#{$col-min-width-large}, calc(75% - var(--c-bolt-layout-gutter) / 3)),
+    minmax(
+      #{$_bolt-layout-col-min-width-large},
+      calc(75% - var(--c-bolt-layout-gutter) / 3)
+    ),
   '75/25':
-    minmax(#{$col-min-width-large}, calc(75% - var(--c-bolt-layout-gutter) / 3))
-    minmax(#{$col-min-width-small}, 1fr),
+    minmax(
+      #{$_bolt-layout-col-min-width-large},
+      calc(75% - var(--c-bolt-layout-gutter) / 3)
+    )
+    minmax(#{$_bolt-layout-col-min-width-small}, 1fr),
   'flag': minmax(80px, var(--bolt-layout-flag-width, 150px)) 1fr,
-  'fourths': repeat(4, minmax(#{$col-min-width-small}, 1fr)),
-  'halves': repeat(2, minmax(#{$col-min-width-small}, 1fr)),
-  'thirds': repeat(3, minmax(#{$col-min-width-small}, 1fr)),
-  'tiles': repeat(auto-fit, minmax(#{$col-min-width-small}, 1fr)),
+  'fourths': repeat(4, minmax(#{$_bolt-layout-col-min-width-small}, 1fr)),
+  'halves': repeat(2, minmax(#{$_bolt-layout-col-min-width-small}, 1fr)),
+  'thirds': repeat(3, minmax(#{$_bolt-layout-col-min-width-small}, 1fr)),
+  'tiles': repeat(auto-fit, minmax(#{$_bolt-layout-col-min-width-small}, 1fr)),
 );
 
 /**
@@ -90,12 +109,13 @@ $bolt-layout-templates: (
 bolt-layout {
   // Setting up vars to be customized
   --c-bolt-layout-gutter: var(--bolt-spacing-x-medium);
+  --c-bolt-layout-row-gutter: var(--bolt-spacing-y-medium);
   --c-bolt-layout-padding-top: var(--bolt-spacing-y-medium);
   --c-bolt-layout-padding-bottom: var(--bolt-spacing-y-medium);
 
   display: grid;
   grid-gap: var(--c-bolt-layout-gutter);
-
+  row-gap: var(--c-bolt-layout-row-gutter);
   position: relative;
   right: 50%;
   left: 50%;
@@ -108,16 +128,13 @@ bolt-layout {
   padding-inline-end: var(--bolt-wrapper-padding);
   padding-inline-start: var(--bolt-wrapper-padding);
 
-  &[template~='halves'] {
-    grid-template-columns: map-get($bolt-layout-templates, 'halves');
-  }
-
   @each $layout-name, $layout-value in $bolt-layout-templates {
     &[template~='#{$layout-name}'] {
       grid-template-columns: $layout-value;
     }
   }
 
+  // loop through breakpoints and templates to set template options.
   @each $breakpoint in $bolt-breakpoints {
     $breakpoint-name: nth($breakpoint, 1);
     @each $layout-name, $layout-value in $bolt-layout-templates {
@@ -131,7 +148,7 @@ bolt-layout {
     }
   }
 
-  @each $option in $bolt-layout-align-options {
+  @each $option in $_bolt-layout-align-options {
     $option-name: nth($option, 1);
     $option-value: nth($option, 2);
 
@@ -155,56 +172,28 @@ bolt-layout {
     order: 1;
     position: relative;
 
-    &[source-order='primary@until-small'] {
-      order: 0;
-      @include bolt-mq(small) {
-        order: 1;
-      }
-    }
-
-    &[source-order='primary@until-medium'] {
-      order: 0;
-      @include bolt-mq(medium) {
-        order: 1;
-      }
-    }
-
-    &[source-order='seconday@until-small'] {
-      order: 2;
-      @include bolt-mq(small) {
-        order: 1;
-      }
-    }
-
-    &[source-order='seconday@until-medium'] {
-      order: 2;
-      @include bolt-mq(medium) {
-        order: 1;
-      }
-    }
-
-    // Using gutter vars to set the defaults.
-    &:not(:first-of-type) {
-      // margin-inline-start: var(--c-bolt-layout-gutter);
-      padding-top: var(--c-bolt-layout-row-gutter, unset);
-
-      @include bolt-mq(small) {
-        &[width*='@from-small'] {
-          --c-bolt-layout-row-gutter: 0;
-          // margin-inline-start: var(--c-bolt-layout-gutter);
+    // loop through breakpoints and set source order options.
+    @each $breakpoint in $bolt-breakpoints {
+      $breakpoint-name: nth($breakpoint, 1);
+      @if ($breakpoint-name == small or $breakpoint-name == medium) {
+        &[source-order='primary@until-#{$breakpoint-name}'] {
+          order: 0;
+          @include bolt-mq(#{$breakpoint-name}) {
+            order: 1;
+          }
         }
-      }
 
-      @include bolt-mq(medium) {
-        &[width*='@from-medium'] {
-          --c-bolt-layout-row-gutter: 0;
-          // margin-inline-start: var(--c-bolt-layout-gutter);
+        &[source-order='secondary@until-#{$breakpoint-name}'] {
+          order: 2;
+          @include bolt-mq(#{$breakpoint-name}) {
+            order: 1;
+          }
         }
       }
     }
 
     // Loop through the align map to generate valign options.
-    @each $option in $bolt-layout-align-options {
+    @each $option in $_bolt-layout-align-options {
       $option-name: nth($option, 1);
       $option-value: nth($option, 2);
 
@@ -237,7 +226,7 @@ bolt-layout {
     }
   }
 
-  // Loop through the spacing map to generate padding options.
+  // Loop through the spacing map to generate padding and gutter options.
   @each $size in $bolt-spacing-multiplier-system {
     $size-name: nth($size, 1);
 
@@ -250,25 +239,11 @@ bolt-layout {
     }
 
     &[gutter='#{$size-name}'] {
-      > bolt-layout-item {
-        &:not(:first-of-type) {
-          --c-bolt-layout-gutter: var(--bolt-spacing-x-#{$size-name});
+      --c-bolt-layout-gutter: var(--bolt-spacing-x-#{$size-name});
+    }
 
-          @include bolt-mq(small) {
-            &[width*='@from-small'] {
-              --c-bolt-layout-row-gutter: 0;
-              --c-bolt-layout-gutter: var(--bolt-spacing-x-#{$size-name});
-            }
-          }
-
-          @include bolt-mq(medium) {
-            &[width*='@from-medium'] {
-              --c-bolt-layout-row-gutter: 0;
-              --c-bolt-layout-gutter: var(--bolt-spacing-x-#{$size-name});
-            }
-          }
-        }
-      }
+    &[row-gutter='#{$size-name}'] {
+      --c-bolt-layout-row-gutter: var(--bolt-spacing-y-#{$size-name});
     }
   }
 
@@ -281,8 +256,10 @@ bolt-layout {
   }
 
   &[gutter='none'] {
-    > bolt-layout-item:not(:first-of-type) {
-      --c-bolt-layout-gutter: 0;
-    }
+    --c-bolt-layout-gutter: 0;
+  }
+
+  &[row-gutter='none'] {
+    --c-bolt-layout-row-gutter: 0;
   }
 }

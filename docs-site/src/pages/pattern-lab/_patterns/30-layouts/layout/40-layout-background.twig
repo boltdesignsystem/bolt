@@ -1,0 +1,42 @@
+{% set background %}
+  {% include "@bolt-components-background/background.twig" with {
+    opacity: "heavy",
+    fill: "gradient",
+    focalPoint: {
+      vertical: "center",
+      horizontal: "center"
+    },
+    contentItems: [
+      {
+        pattern: "image",
+        src: "/images/content/backgrounds/background-tall-4.jpg"
+      }
+    ]
+  } only %}
+{% endset %}
+{% set content %}
+  {% include "@bolt-layouts-layout/layout-item.twig" with {
+    content: "Ex consectetur enim aliquip culpa amet labore anim sint est excepteur incididunt exercitation. Aliquip esse sint culpa nulla in incididunt fugiat enim in do reprehenderit nulla mollit. Ullamco aliqua adipisicing aliqua aute veniam enim sunt ad Lorem nisi et.",
+  } only %}
+  {% include "@bolt-layouts-layout/layout-item.twig" with {
+    content: "Sit aliqua mollit dolor in nisi occaecat. Commodo sint et sit et eiusmod sint. Lorem eiusmod elit occaecat occaecat culpa. Consectetur do reprehenderit do ad ad.",
+  } only %}
+  {% include "@bolt-layouts-layout/layout-item.twig" with {
+    content: "Labore aute qui commodo ex quis aliqua tempor eiusmod enim. Nostrud incididunt nisi pariatur exercitation adipisicing cupidatat. Ex laborum nisi laborum id cupidatat in veniam do voluptate.",
+  } only %}
+  {% include "@bolt-layouts-layout/layout-item.twig" with {
+    content: "Labore aute qui commodo ex quis aliqua tempor eiusmod enim. Nostrud incididunt nisi pariatur exercitation adipisicing cupidatat. Ex laborum nisi laborum id cupidatat in veniam do voluptate.",
+  } only %}
+{% endset %}
+{% include "@bolt-layouts-layout/layout.twig" with {
+  padding_top: "xlarge",
+  padding_bottom: "xlarge",
+  template: "thirds@from-small",
+  background: background,
+  content: content,
+  attributes: {
+    class: [
+      "t-bolt-dark",
+    ]
+  },
+} only %}

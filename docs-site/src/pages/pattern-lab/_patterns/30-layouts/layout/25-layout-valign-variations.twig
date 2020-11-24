@@ -1,0 +1,31 @@
+{% set schema = bolt.data.components["@bolt-layouts-layout"].schema %}
+
+{% set placeholder1 %}
+  {% include "@bolt-components-placeholder/placeholder.twig" with {
+      text: "Column",
+      size: "xsmall"
+  } only %}
+{% endset %}
+{% set placeholder2 %}
+  {% include "@bolt-components-placeholder/placeholder.twig" with {
+      text: "Column",
+      size: "medium"
+  } only %}
+{% endset %}
+{% set content %}
+  {% include "@bolt-layouts-layout/layout-item.twig" with {
+    content: placeholder1
+  } only %}
+  {% include "@bolt-layouts-layout/layout-item.twig" with {
+    content: placeholder2
+  } only %}
+{% endset %}
+
+{% for alignment in schema.properties.valign_items.enum %}
+  <bolt-text font-size="small" font-weight="semibold" class="u-bolt-margin-bottom-none u-bolt-margin-top-medium">This <code>valign_items</code> is set to <code>{{ alignment }}</code>.</bolt-text>
+  {% include "@bolt-layouts-layout/layout.twig" with {
+    template: 'halves@from-small',
+    content: content,
+    valign_items: alignment,
+  } only %}
+{% endfor %}

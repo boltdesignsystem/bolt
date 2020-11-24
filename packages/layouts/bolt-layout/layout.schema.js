@@ -47,13 +47,13 @@ module.exports = {
     gutter: {
       type: 'string',
       description: 'The spacing in between layout items (when not stacked).',
-      enum: ['small', 'medium', 'large', 'xlarge'],
+      enum: ['none', 'small', 'medium', 'large', 'xlarge'],
       default: 'medium',
     },
     row_gutter: {
       type: 'string',
       description: 'The spacing in between layout items (when stacked).',
-      enum: ['small', 'medium', 'large', 'xlarge'],
+      enum: ['none', 'small', 'medium', 'large', 'xlarge'],
       default: 'medium',
     },
     padding_top: {
@@ -84,7 +84,7 @@ module.exports = {
       type: 'string',
       ...backgroundSchema,
     },
-    items: {
+    content: {
       type: 'array',
       description: 'Array of layout items to render inside the layout.',
       ...layoutItemSchema,
