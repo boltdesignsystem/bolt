@@ -1,6 +1,8 @@
 @import '@bolt/core-v3.x';
 
-bolt-icon {
+// @todo: in next minor release (v2.30) test removing ':host' altogether.
+// Icon always renders to light dom, so ':host' should not be necessary.
+@include bolt-repeat-rule(('bolt-icon', ':host(bolt-icon)')) {
   display: inline-grid;
   place-items: center;
   vertical-align: middle;
@@ -15,11 +17,6 @@ bolt-icon {
     height: 0;
     padding-bottom: 100%; // Default square icons
   }
-}
-
-:host {
-  display: inline-block;
-  vertical-align: middle;
 }
 
 .c-bolt-icon {
