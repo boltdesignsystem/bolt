@@ -52,6 +52,12 @@ module.exports = {
         'Automatically shrink the font size used in the `xxxlarge` headline size when 60 or more characters are used.',
       default: true,
     },
+    target: {
+      type: 'string',
+      description: '',
+      default: '_self',
+      enum: ['_blank', '_self'],
+    },
     transform: {
       type: 'string',
       description: 'Text transformation.',
