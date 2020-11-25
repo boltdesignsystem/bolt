@@ -2,9 +2,6 @@
    Layout
 \* ------------------------------------ */
 
-// TODO:
-// - background inclusion errors
-
 @import '@bolt/core-v3.x';
 
 /**
@@ -160,10 +157,6 @@ bolt-layout {
     }
   }
 
-  > bolt-background {
-    grid-area: none;
-  }
-
   > bolt-layout-item {
     display: flex;
     flex: 0 1 100%;
@@ -260,5 +253,10 @@ bolt-layout {
 
   &[row-gutter='none'] {
     --c-bolt-layout-row-gutter: 0;
+  }
+
+  > *:not(bolt-layout-item) {
+    // not supported by Edge 17/18
+    display: contents;
   }
 }
