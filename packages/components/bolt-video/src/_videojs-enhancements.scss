@@ -66,39 +66,35 @@ $bolt-video-js-button-shadow-level-hover: 'level-40';
         * Temporary Microsoft Edge .v~40 work around due to lack of 'clip-path' support
         */
       @include bolt-ms-edge-42-only {
-        font-size: 40%;
-        background-color: transparent;
+        left: 60%;
+        width: 43%;
 
-        @include bolt-mq(xsmall) {
-          font-size: 50%;
-        }
-
-        @include bolt-mq(small) {
-          font-size: 60%;
-        }
-
-        @include bolt-mq(medium) {
-          font-size: 70%;
-        }
-
-        @include bolt-mq(large) {
-          font-size: 80%;
-        }
-
-        @include bolt-mq(xlarge) {
-          font-size: 90%;
-        }
-
-        @include bolt-mq(xxlarge) {
-          font-size: 100%;
+        &:before,
+        &:after {
+          content: '';
+          display: block;
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          width: calc(100% + 4px);
+          height: calc(100% + 4px);
+          font-family: var(--bolt-type-font-family-body);
         }
 
         &:before {
-          position: absolute;
-          top: -33%;
-          left: -50%;
-          width: 100%;
-          height: 100%;
+          background: linear-gradient(
+                          -30deg,
+                          $bolt-video-js-button-background-color 48%,
+                          transparent 50%
+          );
+        }
+
+        &:after {
+          background: linear-gradient(
+                          -150deg,
+                          $bolt-video-js-button-background-color 48%,
+                          transparent 50%
+          );
         }
       }
     }
