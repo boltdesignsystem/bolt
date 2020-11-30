@@ -107,6 +107,7 @@
   {% endif %}
   {%- if url -%}
     {% set linkVars = {
+      target: target,
       text: text,
       url: url,
       isHeadline: (type != "text")
