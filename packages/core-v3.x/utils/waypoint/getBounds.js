@@ -5,6 +5,7 @@ import { computeOffsetPixels } from './computeOffsetPixels';
  * @param {Element} context The scrollable context in which the element may appear
  * @param {string|number} topOffset An offset amount for the top boundary, use `px or %`
  * @param {string|number} bottomOffset An offset amount for the bottom boundary, use `px or %`
+ * @param {string|number} stickyOffset An offset amount for sticky elements, use `px or %`
  * @return {object} An object with bounds data for the waypoint and scrollable parent
  */
 export function getBounds(
@@ -12,6 +13,7 @@ export function getBounds(
   context = window,
   topOffset = 0,
   bottomOffset = 0,
+  stickyOffset = 0,
 ) {
   if (!element) return;
 
@@ -23,12 +25,18 @@ export function getBounds(
 
   const topOffsetPx = computeOffsetPixels(topOffset, contextHeight);
   const bottomOffsetPx = computeOffsetPixels(bottomOffset, contextHeight);
+  const stickyOffsetPx = computeOffsetPixels(stickyOffset, contextHeight);
   const contextBottom = contextScrollTop + contextHeight;
+
+  // Set a ceiling for the "bottom" viewport value to ensure it's always within the visible viewport.
+  // If requirements change and we want a negative "bottom", this can be remove or reworked.
+  const stickyOffsetBottomPx =
+    bottomOffsetPx > stickyOffsetPx ? stickyOffsetPx : 0;
 
   return {
     waypointTop: top,
     waypointBottom: bottom,
-    viewportTop: contextScrollTop + topOffsetPx,
-    viewportBottom: contextBottom - bottomOffsetPx,
+    viewportTop: contextScrollTop + topOffsetPx + stickyOffsetPx,
+    viewportBottom: contextBottom - bottomOffsetPx + stickyOffsetBottomPx,
   };
 }
