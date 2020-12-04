@@ -2,7 +2,7 @@
 
 <p><mark>Note: auto is the default source order setting.</mark></p>
 
-<bolt-text font-size="small" font-weight="semibold" class="u-bolt-margin-bottom-none u-bolt-margin-top-medium">The second column's <code>source_order</code> is set to <code>primary@until-small</code>. Resize the screen to be less than the small breakpoint to see the columns change order.</bolt-text>
+<bolt-text font-size="small" font-weight="semibold" class="u-bolt-margin-bottom-none u-bolt-margin-top-medium">The second column's <code>order</code> is set to <code>primary@until-small</code>. Resize the screen to be less than the small breakpoint to see the columns change order.</bolt-text>
 
 {% set placeholder1 %}
   {% include "@bolt-components-placeholder/placeholder.twig" with {
@@ -23,7 +23,7 @@
   } only %}
   {% include "@bolt-layouts-layout/layout-item.twig" with {
     content: placeholder2,
-    source_order: "primary@until-small"
+    order: "primary@until-small"
   } only %}
 {% endset %}
 

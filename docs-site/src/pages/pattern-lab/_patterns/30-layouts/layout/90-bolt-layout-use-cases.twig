@@ -137,12 +137,11 @@
   {% include "@bolt-layouts-layout/layout-item.twig" with {
     content: itemContent,
     valign_self: "center",
-    source_order: "secondary@until-small"
   } only %}
   {% include "@bolt-layouts-layout/layout-item.twig" with {
     content: media,
     valign_self: "start-offset-large",
-    source_order: "primary@until-small"
+    order: "primary@until-small"
   } only %}
 {% endset %}
 {% include "@bolt-layouts-layout/layout.twig" with {

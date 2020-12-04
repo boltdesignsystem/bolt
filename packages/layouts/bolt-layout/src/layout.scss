@@ -117,17 +117,14 @@ bolt-layout {
   width: 100vw;
   margin: 0 -50vw;
   padding-top: var(--c-bolt-layout-padding-top);
-
-  // This must always follow the wrapper rules. Only way to customize it is to change the global wrapper vars.
-  padding-right: var(--bolt-wrapper-padding);
+  padding-right: var(
+    --bolt-wrapper-padding
+  ); // This must always follow the wrapper rules. Only way to customize it is to change the global wrapper vars.
   padding-bottom: var(--c-bolt-layout-padding-bottom);
   padding-left: var(--bolt-wrapper-padding);
   grid-gap: var(--c-bolt-layout-gutter);
   grid-row-gap: var(--c-bolt-layout-row-gutter);
-  grid-template-columns: repeat(
-    auto-fit,
-    minmax(#{$_bolt-layout-col-min-width-small}, 1fr)
-  );
+  grid-template-columns: 1fr;
 
   @each $layout-name, $layout-value in $bolt-layout-templates {
     &[template~='#{$layout-name}'] {
