@@ -10,14 +10,15 @@
  */
 $_bolt-layout-align-options: (
   'unset': 'unset',
-  'justify': 'space-between',
-  'start': 'flex-start',
+  'start': 'start',
   'center': 'center',
-  'end': 'flex-end',
+  'end': 'end',
 );
 
-$_bolt-layout-col-min-width-large: map-get($bolt-breakpoints, small) / 2;
-$_bolt-layout-col-min-width-small: $_bolt-layout-col-min-width-large / 3;
+$_bolt-layout-col-min-width-large: calc(#{bolt-breakpoint(small)} / 2);
+$_bolt-layout-col-min-width-small: calc(
+  #{$_bolt-layout-col-min-width-large} / 3
+);
 
 $bolt-layout-templates: (
   '25/25/50': minmax(#{$_bolt-layout-col-min-width-small}, 1fr)
@@ -71,11 +72,11 @@ $bolt-layout-templates: (
       calc(75% - var(--c-bolt-layout-gutter) / 3)
     )
     minmax(#{$_bolt-layout-col-min-width-small}, 1fr),
-  'flag': minmax(80px, var(--bolt-layout-flag-width, 150px)) 1fr,
   'fourths': repeat(4, minmax(#{$_bolt-layout-col-min-width-small}, 1fr)),
-  'halves': repeat(2, minmax(#{$_bolt-layout-col-min-width-small}, 1fr)),
   'thirds': repeat(3, minmax(#{$_bolt-layout-col-min-width-small}, 1fr)),
+  'halves': repeat(2, minmax(#{$_bolt-layout-col-min-width-small}, 1fr)),
   'tiles': repeat(auto-fit, minmax(#{$_bolt-layout-col-min-width-small}, 1fr)),
+  'flag': minmax(80px, var(--bolt-layout-flag-width, 150px)) 1fr,
 );
 
 /**
@@ -110,19 +111,23 @@ bolt-layout {
   --c-bolt-layout-padding-bottom: var(--bolt-spacing-y-medium);
 
   display: grid;
-  grid-gap: var(--c-bolt-layout-gutter);
-  row-gap: var(--c-bolt-layout-row-gutter);
   position: relative;
   right: 50%;
   left: 50%;
   width: 100vw;
   margin: 0 -50vw;
   padding-top: var(--c-bolt-layout-padding-top);
-  padding-bottom: var(--c-bolt-layout-padding-bottom);
 
   // This must always follow the wrapper rules. Only way to customize it is to change the global wrapper vars.
-  padding-inline-end: var(--bolt-wrapper-padding);
-  padding-inline-start: var(--bolt-wrapper-padding);
+  padding-right: var(--bolt-wrapper-padding);
+  padding-bottom: var(--c-bolt-layout-padding-bottom);
+  padding-left: var(--bolt-wrapper-padding);
+  grid-gap: var(--c-bolt-layout-gutter);
+  grid-row-gap: var(--c-bolt-layout-row-gutter);
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(#{$_bolt-layout-col-min-width-small}, 1fr)
+  );
 
   @each $layout-name, $layout-value in $bolt-layout-templates {
     &[template~='#{$layout-name}'] {
@@ -164,21 +169,13 @@ bolt-layout {
     order: 1;
     position: relative;
 
-    // loop through breakpoints and set source order options.
+    // Loop through breakpoints and set the order of the layout item.
     @each $breakpoint in $bolt-breakpoints {
       $breakpoint-name: nth($breakpoint, 1);
       @if ($breakpoint-name == small or $breakpoint-name == medium) {
-        &[source-order='primary@until-#{$breakpoint-name}'] {
-          order: 0;
-          @include bolt-mq(#{$breakpoint-name}) {
-            order: 1;
-          }
-        }
-
-        &[source-order='secondary@until-#{$breakpoint-name}'] {
-          order: 2;
-          @include bolt-mq(#{$breakpoint-name}) {
-            order: 1;
+        &[order='primary@until-#{$breakpoint-name}'] {
+          @include bolt-mq($until: #{$breakpoint-name}) {
+            order: 0;
           }
         }
       }
@@ -253,18 +250,5 @@ bolt-layout {
 
   &[row-gutter='none'] {
     --c-bolt-layout-row-gutter: 0;
-  }
-
-  > *:not(bolt-layout-item) {
-    // not supported by Edge 17/18
-    display: contents;
-  }
-
-  > bolt-background {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 100%;
-    height: 100%;
   }
 }

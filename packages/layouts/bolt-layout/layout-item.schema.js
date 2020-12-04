@@ -10,15 +10,14 @@ module.exports = {
     },
     content: {
       type: 'any',
-      description: 'Content to render inside each layout item.',
+      description: 'Content of the layout item.',
     },
     valign_self: {
       type: 'string',
       description:
-        'Vertical alignment of a particular layout item. This will ignore the vertical alignment of the whole layout.',
+        'Control the vertical alignment of the layout item. This will ignore the vertical alignment set on the layout.',
       enum: [
         'unset',
-        'justify',
         'start',
         'center',
         'end',
@@ -26,27 +25,19 @@ module.exports = {
         'start-offset-medium',
         'start-offset-large',
         'start-offset-xlarge',
-        'start-offset-xxlarge',
         'end-offset-small',
         'end-offset-medium',
         'end-offset-large',
         'end-offset-xlarge',
-        'end-offset-xxlarge',
       ],
       default: 'unset',
     },
-    source_order: {
+    order: {
       type: 'string',
       description:
-        'The order of the layout item when layout items are stacked.',
-      enum: [
-        'auto',
-        'primary@until-small',
-        'primary@until-medium',
-        'secondary@until-small',
-        'secondary@until-medium',
-      ],
-      default: 'auto',
+        'Bring the layout item to the start of the layout. Only use this if the order of layout items need to be adjusted at specific breakpoints. The @until-* keywords mean "starting at 0px until a particular breakpoint".',
+      enum: ['unset', 'primary@until-small', 'primary@until-medium'],
+      default: 'unset',
     },
   },
 };

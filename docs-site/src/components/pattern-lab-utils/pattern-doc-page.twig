@@ -58,7 +58,7 @@
         </bolt-banner>
       {% endif %}
     </bolt-tab-panel>
-    <bolt-tab-panel>
+    <bolt-tab-panel {% if html_markup and not twig_markup %}selected{% endif %}>
       <div slot="label">HTML</div>
       {% if html_markup %}
         {% include snippet.code_example(html_markup) %}

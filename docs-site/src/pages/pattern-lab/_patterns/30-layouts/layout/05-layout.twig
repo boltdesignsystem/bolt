@@ -1,0 +1,34 @@
+{% set description %}
+  A layout is...
+{% endset %}
+
+{% set demo %}
+<bolt-layout>
+  <bolt-layout-item>
+    Layout item content
+  </bolt-layout-item>
+  <bolt-layout-item>
+    Layout item content
+  </bolt-layout-item>
+</bolt-layout>
+{% endset %}
+
+{% set html_markup %}
+{% verbatim %}
+<bolt-layout>
+  <bolt-layout-item>
+    Layout item content
+  </bolt-layout-item>
+  <bolt-layout-item>
+    Layout item content
+  </bolt-layout-item>
+</bolt-layout>
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Layout',
+  description: description,
+  demo: demo,
+  html_markup: html_markup,
+} only %}
