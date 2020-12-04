@@ -1,29 +1,14 @@
 import { unsafeCSS, BoltElement, customElement, html } from '@bolt/element';
+import { withContext } from 'wc-context/lit-element';
 import classNames from 'classnames/bind';
-import { withContext } from 'wc-context';
 import cardReplacementStyles from './card-replacement.scss';
 import schema from '../../card-replacement.schema';
-let cx = classNames.bind(cardReplacementStyles);
 
-// define which specific props to provide to children that subscribe
-// export const card-replacementContext = defineContext({
-//   tag: 'div',
-// });
+let cx = classNames.bind(cardReplacementStyles);
 
 @customElement('bolt-card-replacement')
 class BoltCardReplacement extends withContext(BoltElement) {
-  // provide context info to children that subscribe
-  // (context + subscriber idea originally from https://codepen.io/trusktr/project/editor/XbEOMk)
-  // static get provides() {
-  //   return [card-replacementContext];
-  // }
-
-  static get providedContexts() {
-    return {
-      horizontal: { value: this.horizontal },
-      spacing: { value: schema.properties.spacing.default },
-    };
-  }
+  static schema = schema;
 
   static get styles() {
     return [unsafeCSS(cardReplacementStyles)];
@@ -51,31 +36,23 @@ class BoltCardReplacement extends withContext(BoltElement) {
     };
   }
 
-  connectedCallback() {
-    super.connectedCallback && super.connectedCallback();
-
-    this.updateProvidedContext(
-      'spacing',
-      this.spacing || schema.properties.spacing.default,
-    );
+  static get providedContexts() {
+    return {
+      horizontal: { value: this.horizontal },
+      spacing: { value: schema.properties.spacing.default },
+    };
   }
 
   render() {
-    const spacing = this.spacing || schema.properties.spacing.default;
-    this.updateProvidedContext('spacing', spacing);
-
     const isRaised =
       (this.raised && this.raised === true) ||
       (this.url && this.url.length > 0) ||
       this.querySelector('bolt-card-replacement-link');
 
-    // validate the original prop data passed along -- returns back the validated data w/ added default values
-    // const { theme, tag } = this.validateProps(this.props);
-
     const classes = cx('c-bolt-card-replacement', {
       [`c-bolt-card-replacement--raised`]: isRaised,
       [`c-bolt-card-replacement--horizontal`]: this.horizontal,
-      [`c-bolt-card-replacement--spacing-${spacing}`]: spacing,
+      [`c-bolt-card-replacement--spacing-${this.spacing}`]: this.spacing,
       [`c-bolt-card-replacement--border-radius-${this.borderRadius}`]: this
         .borderRadius,
       [`t-bolt-${this.theme}`]: this.theme && this.theme !== 'none',

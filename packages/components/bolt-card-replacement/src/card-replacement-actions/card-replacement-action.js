@@ -1,63 +1,65 @@
+import { unsafeCSS, BoltElement, customElement, html } from '@bolt/element';
+import { withContext } from 'wc-context/lit-element';
 import { ifDefined } from 'lit-html/directives/if-defined';
-import { props, hasNativeShadowDomSupport } from '@bolt/core-v3.x/utils';
 import classNames from 'classnames/bind';
-import { withContext } from 'wc-context';
-import { withLitHtml } from '@bolt/core-v3.x/renderers/renderer-lit-html';
-import { html, customElement } from '@bolt/element';
-
-import schema from '../../card-replacement.schema';
 import styles from './_card-replacement-action.scss';
+import schema from '../../card-replacement.schema';
 
 let cx = classNames.bind(styles);
 
 @customElement('bolt-card-replacement-action')
-class BoltCardReplacementAction extends withContext(withLitHtml) {
-  static props = {
-    url: props.string,
-    external: props.boolean,
-    spacing: props.string,
-  };
+class BoltCardReplacementAction extends withContext(BoltElement) {
+  static schema = schema;
+
+  static get properties() {
+    return {
+      url: {
+        type: String,
+      },
+      external: {
+        type: Boolean,
+      },
+      spacing: {
+        type: String,
+      },
+    };
+  }
+
+  static get styles() {
+    return [unsafeCSS(styles)];
+  }
 
   static get observedContexts() {
     return ['spacing'];
   }
 
-  contextChangedCallback(name, oldValue, value) {
-    if (name in this.props) {
-      // setAttibute will trigger re-render
-      this.setAttribute(name, value);
-    }
-  }
-
-  render(props) {
+  render() {
     const classes = cx('c-bolt-card_replacement__action');
-    const { url, external, spacing } = this.props;
 
     return html`
-      ${this.addStyles([styles])}
       <div class="${classes}">
-        ${this.slots.default.length === 1 &&
-        this.slots.default[0].tagName === undefined
+        ${this.slotMap.get('default').length === 1 &&
+        this.slotMap.get('default')[0].tagName === undefined
           ? html`
               <bolt-button
                 color="text"
                 width="full"
                 align="start"
-                url="${ifDefined(url ? url : undefined)}"
+                url="${ifDefined(this.url ? this.url : undefined)}"
                 target="${ifDefined(
-                  url ? (external ? '_blank' : '_self') : undefined,
+                  this.url ? (this.external ? '_blank' : '_self') : undefined,
                 )}"
-                size="${ifDefined(spacing ? spacing : undefined)}"
+                size="${ifDefined(this.spacing ? this.spacing : undefined)}"
               >
-                ${this.slot('default')}
+                ${this.slotify('default')}
                 <bolt-icon
                   slot="after"
-                  name="${external ? 'external-link' : 'chevron-right'}"
+                  name="${this.external ? 'external-link' : 'chevron-right'}"
                 ></bolt-icon>
               </bolt-button>
             `
           : html`
-              ${this.slot('default')}
+              ${this.slotify('default')}
             `}
       </div>
     `;
