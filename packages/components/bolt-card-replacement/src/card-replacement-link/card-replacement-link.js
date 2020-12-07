@@ -5,7 +5,6 @@ import {
   BoltActionElement,
   convertInitialTags,
 } from '@bolt/element';
-import { BoltAction } from '@bolt/core-v3.x/elements/bolt-action';
 import classNames from 'classnames/bind';
 import visuallyhiddenUtils from '@bolt/global/styles/07-utilities/_utilities-visuallyhidden.scss';
 import styles from './_card-replacement-link.scss';
