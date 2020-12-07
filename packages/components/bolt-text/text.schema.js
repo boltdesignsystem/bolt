@@ -120,10 +120,6 @@ module.exports = {
       default: false,
       enum: [true, false],
     },
-    url: {
-      type: 'string',
-      description: 'If provided, turns headline into a link to given url.',
-    },
     util: {
       type: 'array',
       description:
