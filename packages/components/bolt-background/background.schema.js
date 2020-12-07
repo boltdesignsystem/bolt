@@ -4,7 +4,6 @@ module.exports = {
   description:
     'A content container that delivers important messages to the user.',
   type: 'object',
-  required: ['content'],
   properties: {
     attributes: {
       type: 'object',
