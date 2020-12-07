@@ -11,9 +11,12 @@
           icon: {
             name: external == false or external == null ? "chevron-right" : "external-link",
           },
-          size: spacing,
           attributes: attributes|default({})
         } %}
+
+        {% if spacing is not empty %}
+          {% set button_props = button_props|merge({ size: spacing }) %}
+        {% endif %}
 
         {% if url is not empty %}
           {% set button_props = button_props|merge({ url: url }) %}
