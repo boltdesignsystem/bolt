@@ -79,7 +79,7 @@
     {% set icon_before %}
       {% include '@bolt-components-icon/icon.twig' with {
         name: source_icon,
-        size: size == 'medium' ? 'small',
+        size: 'small',
       } only %}
     {% endset %}
     {% set source_menu_items %}
@@ -156,7 +156,7 @@
       <span class="c-bolt-menu-item__icon-before" aria-hidden="true">
         {% include '@bolt-components-icon/icon.twig' with {
           name: 'asset-link',
-          size: size == 'medium' ? 'small',
+          size: 'small',
         } only %}
       </span>
       {{ trigger_text }}
@@ -167,7 +167,7 @@
       <span class="c-bolt-menu-item__icon-before u-bolt-opacity-0" aria-hidden="true">
         {% include '@bolt-components-icon/icon.twig' with {
           name: 'asset-link',
-          size: size == 'medium' ? 'small',
+          size: 'small',
         } only %}
       </span>
       {{ transition_text }}
@@ -178,7 +178,7 @@
       <span class="c-bolt-menu-item__icon-before" aria-hidden="true">
         {% include '@bolt-components-icon/icon.twig' with {
           name: 'check',
-          size: size == 'medium' ? 'small',
+          size: 'small',
         } only %}
       </span>
       {{ confirmation_text }}
