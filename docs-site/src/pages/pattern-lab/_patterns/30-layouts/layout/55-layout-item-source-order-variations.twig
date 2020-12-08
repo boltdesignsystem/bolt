@@ -6,14 +6,14 @@
 
 {% set placeholder1 %}
   {% include "@bolt-components-placeholder/placeholder.twig" with {
-      text: "Column 1",
-      size: "xsmall"
+    text: "Column 1",
+    size: "xsmall"
   } only %}
 {% endset %}
 {% set placeholder2 %}
   {% include "@bolt-components-placeholder/placeholder.twig" with {
-      text: "Column 2",
-      size: "xsmall"
+    text: "Column 2",
+    size: "xsmall"
   } only %}
 {% endset %}
 
@@ -28,6 +28,6 @@
 {% endset %}
 
 {% include "@bolt-layouts-layout/layout.twig" with {
-  template: "tiles@from-small",
+  template: "75/25@from-small",
   content: content
 } only %}

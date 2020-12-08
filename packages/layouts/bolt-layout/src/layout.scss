@@ -21,50 +21,24 @@ $_bolt-layout-col-min-width-small: calc(
 );
 
 $bolt-layout-templates: (
-  '25/25/50': minmax(#{$_bolt-layout-col-min-width-small}, 1fr)
-    minmax(#{$_bolt-layout-col-min-width-small}, 1fr)
-    minmax(
-      #{$_bolt-layout-col-min-width-small},
-      calc(50% - var(--c-bolt-layout-gutter) / 2)
-    ),
-  '25/50/25': minmax(#{$_bolt-layout-col-min-width-small}, 1fr)
-    minmax(
-      #{$_bolt-layout-col-min-width-small},
-      calc(50% - var(--c-bolt-layout-gutter) / 2)
-    )
-    minmax(#{$_bolt-layout-col-min-width-small}, 1fr),
-  '25/75': minmax(#{$_bolt-layout-col-min-width-small}, 1fr)
+  'full': 1fr,
+  'fourths': repeat(4, minmax(#{$_bolt-layout-col-min-width-small}, 1fr)),
+  'thirds': repeat(3, minmax(#{$_bolt-layout-col-min-width-small}, 1fr)),
+  'halves': repeat(2, minmax(#{$_bolt-layout-col-min-width-small}, 1fr)),
+  '75':
     minmax(
       #{$_bolt-layout-col-min-width-large},
       calc(75% - var(--c-bolt-layout-gutter) / 3)
     ),
-  '33/67': minmax(#{$_bolt-layout-col-min-width-small}, 1fr)
-    minmax(
-      #{$_bolt-layout-col-min-width-large},
-      calc(100% / 3 * 2 - var(--c-bolt-layout-gutter) / 3)
-    ),
-  '50/25/25':
-    minmax(
-      #{$_bolt-layout-col-min-width-small},
-      calc(50% - var(--c-bolt-layout-gutter) / 2)
-    )
-    minmax(#{$_bolt-layout-col-min-width-small}, 1fr)
-    minmax(#{$_bolt-layout-col-min-width-small}, 1fr),
   '67':
     minmax(
       #{$_bolt-layout-col-min-width-large},
       calc(100% / 3 * 2 - var(--c-bolt-layout-gutter) / 3)
     ),
-  '67/33':
+  '50':
     minmax(
       #{$_bolt-layout-col-min-width-large},
-      calc(100% / 3 * 2 - var(--c-bolt-layout-gutter) / 3)
-    )
-    minmax(#{$_bolt-layout-col-min-width-small}, 1fr),
-  '75':
-    minmax(
-      #{$_bolt-layout-col-min-width-large},
-      calc(75% - var(--c-bolt-layout-gutter) / 3)
+      calc(50% - var(--c-bolt-layout-gutter) / 2)
     ),
   '75/25':
     minmax(
@@ -72,9 +46,41 @@ $bolt-layout-templates: (
       calc(75% - var(--c-bolt-layout-gutter) / 3)
     )
     minmax(#{$_bolt-layout-col-min-width-small}, 1fr),
-  'fourths': repeat(4, minmax(#{$_bolt-layout-col-min-width-small}, 1fr)),
-  'thirds': repeat(3, minmax(#{$_bolt-layout-col-min-width-small}, 1fr)),
-  'halves': repeat(2, minmax(#{$_bolt-layout-col-min-width-small}, 1fr)),
+  '67/33':
+    minmax(
+      #{$_bolt-layout-col-min-width-large},
+      calc(100% / 3 * 2 - var(--c-bolt-layout-gutter) / 3)
+    )
+    minmax(#{$_bolt-layout-col-min-width-small}, 1fr),
+  '50/25/25':
+    minmax(
+      #{$_bolt-layout-col-min-width-small},
+      calc(50% - var(--c-bolt-layout-gutter) / 2)
+    )
+    minmax(#{$_bolt-layout-col-min-width-small}, 1fr)
+    minmax(#{$_bolt-layout-col-min-width-small}, 1fr),
+  '33/67': minmax(#{$_bolt-layout-col-min-width-small}, 1fr)
+    minmax(
+      #{$_bolt-layout-col-min-width-large},
+      calc(100% / 3 * 2 - var(--c-bolt-layout-gutter) / 3)
+    ),
+  '25/75': minmax(#{$_bolt-layout-col-min-width-small}, 1fr)
+    minmax(
+      #{$_bolt-layout-col-min-width-large},
+      calc(75% - var(--c-bolt-layout-gutter) / 3)
+    ),
+  '25/50/25': minmax(#{$_bolt-layout-col-min-width-small}, 1fr)
+    minmax(
+      #{$_bolt-layout-col-min-width-small},
+      calc(50% - var(--c-bolt-layout-gutter) / 2)
+    )
+    minmax(#{$_bolt-layout-col-min-width-small}, 1fr),
+  '25/25/50': minmax(#{$_bolt-layout-col-min-width-small}, 1fr)
+    minmax(#{$_bolt-layout-col-min-width-small}, 1fr)
+    minmax(
+      #{$_bolt-layout-col-min-width-small},
+      calc(50% - var(--c-bolt-layout-gutter) / 2)
+    ),
   'tiles': repeat(auto-fit, minmax(#{$_bolt-layout-col-min-width-small}, 1fr)),
   'flag': minmax(80px, var(--bolt-layout-flag-width, 150px)) 1fr,
 );
@@ -126,20 +132,20 @@ bolt-layout {
   grid-row-gap: var(--c-bolt-layout-row-gutter);
   grid-template-columns: 1fr;
 
-  @each $layout-name, $layout-value in $bolt-layout-templates {
-    &[template~='#{$layout-name}'] {
-      grid-template-columns: $layout-value;
+  @each $template-name, $template-value in $bolt-layout-templates {
+    &[template~='#{$template-name}'] {
+      grid-template-columns: $template-value;
     }
   }
 
   // loop through breakpoints and templates to set template options.
   @each $breakpoint in $bolt-breakpoints {
     $breakpoint-name: nth($breakpoint, 1);
-    @each $layout-name, $layout-value in $bolt-layout-templates {
+    @each $template-name, $template-value in $bolt-layout-templates {
       @if ($breakpoint-name == small or $breakpoint-name == medium) {
         @include bolt-mq($breakpoint-name) {
-          &[template~='#{$layout-name}@from-#{$breakpoint-name}'] {
-            grid-template-columns: $layout-value;
+          &[template~='#{$template-name}@from-#{$breakpoint-name}'] {
+            grid-template-columns: $template-value;
           }
         }
       }
