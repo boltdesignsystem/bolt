@@ -1,18 +1,21 @@
 {% set usage %}{% verbatim %}
-{% set sampleContent %}
-  {% include "@bolt-layouts-layout/layout-item.twig" with {
-    content: "Sample content."
+{% set content %}
+  {% include '@bolt-layouts-layout/layout-item.twig' with {
+    content: 'Layout item'
+  } only %}
+  {% include '@bolt-layouts-layout/layout-item.twig' with {
+    content: 'Layout item'
   } only %}
 {% endset %}
-{% include "@bolt-layouts-layout/layout.twig" with {
-  align_items: "end",
-  template: "75@from-small",
-  content: sampleContent
+{% include '@bolt-layouts-layout/layout.twig' with {
+  align_items: 'end',
+  template: '75/25@from-small',
+  content: content
 } only %}
 {% endverbatim %}{% endset %}
 
-{% include "@utils/docs.twig" with {
-  componentName: "layout",
-  componentGroup: "layouts",
+{% include '@utils/docs.twig' with {
+  componentName: 'layout',
+  componentGroup: 'layouts',
   usage: usage
 } only %}
