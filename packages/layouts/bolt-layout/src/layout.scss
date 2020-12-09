@@ -14,8 +14,6 @@ $_bolt-layout-align-options: (
   'end': 'end',
 );
 
-$_bolt-layout-col-min-width: calc(#{bolt-breakpoint(small)} / 2.5);
-
 $bolt-layout-templates: (
   'fourths': repeat(4, 1fr),
   'thirds': repeat(3, 1fr),
@@ -30,8 +28,8 @@ $bolt-layout-templates: (
   '25/75': 1fr calc(75% - var(--l-bolt-layout-gutter) / 3),
   '25/50/25': 1fr calc(50% - var(--l-bolt-layout-gutter) / 2) 1fr,
   '25/25/50': 1fr 1fr calc(50% - var(--l-bolt-layout-gutter) / 2),
-  'tiles': repeat(auto-fit, minmax(#{$_bolt-layout-col-min-width}, 1fr)),
-  'flag': minmax(80px, var(--l-bolt-layout-flag-media-width, 150px)) 1fr,
+  'tiles': repeat(auto-fit, minmax(var(--l-bolt-layout-tile-min-width), 1fr)),
+  'flag': var(--l-bolt-layout-flag-media-width, 9.375rem) 1fr,
 );
 
 /**
