@@ -16,30 +16,20 @@ class BoltCardReplacement extends withContext(BoltElement) {
 
   static get properties() {
     return {
-      horizontal: {
-        type: Boolean,
-        reflect: true,
-      },
-      theme: String, // xdark | dark | light | xlight
-      tag: String, // div | figure | article
-      height: String, // full | auto
-      raised: Boolean,
-      url: String,
-      urlText: String,
-      spacing: {
+      ...this.props,
+      url: {
         type: String,
       },
-      borderRadius: {
+      urlText: {
         type: String,
-        attribute: 'border-radius',
       },
     };
   }
 
   static get providedContexts() {
     return {
-      horizontal: { value: this.horizontal },
-      spacing: { value: schema.properties.spacing.default },
+      horizontal: { property: 'horizontal' },
+      spacing: { property: 'spacing' },
     };
   }
 

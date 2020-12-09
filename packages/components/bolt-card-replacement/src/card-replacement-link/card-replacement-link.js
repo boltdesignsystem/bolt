@@ -5,8 +5,8 @@ import {
   BoltActionElement,
   convertInitialTags,
 } from '@bolt/element';
+import { render } from 'lit-html';
 import classNames from 'classnames/bind';
-import visuallyhiddenUtils from '@bolt/global/styles/07-utilities/_utilities-visuallyhidden.scss';
 import styles from './_card-replacement-link.scss';
 import schema from '../../card-replacement.schema';
 
@@ -18,7 +18,6 @@ class BoltCardReplacementLink extends BoltActionElement {
   static schema = schema;
 
   static get styles() {
-    // how do we use the visuallyhiddenUtils
     return [unsafeCSS(styles)];
   }
 
@@ -54,7 +53,6 @@ class BoltCardReplacementLink extends BoltActionElement {
       }
       renderedLink.className += ' ' + classes;
 
-      //what is this?
       render(slotMarkup(), renderedLink);
     } else {
       if (hasUrl) {
