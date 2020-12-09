@@ -1,6 +1,7 @@
-{% set exampleSizes = ["small", "medium", "large", "xlarge"] %}
+{% set schema = bolt.data.components["@bolt-components-icon"].schema %}
+{% set sizes = schema.properties.size.enum %}
 
-{% for size in exampleSizes %}
+{% for size in sizes %}
   {% include "@bolt-components-icon/icon.twig" with {
     name: "add-open",
     size: size
@@ -9,7 +10,7 @@
 
 <hr>
 
-{% for size in exampleSizes %}
+{% for size in sizes %}
   {% include "@bolt-components-icon/icon.twig" with {
     name: "add-open",
     background: "circle",
