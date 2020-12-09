@@ -131,13 +131,13 @@
 {% endset %}
 {% set content %}
   {% include "@bolt-layouts-layout/layout-item.twig" with {
-    content: itemContent,
-    valign_self: "center",
+    content: media,
+    valign_self: "start-offset",
+    order: "last@from-small"
   } only %}
   {% include "@bolt-layouts-layout/layout-item.twig" with {
-    content: media,
-    valign_self: "start-offset-large",
-    order: "primary@until-small"
+    content: itemContent,
+    valign_self: "center",
   } only %}
 {% endset %}
 {% include "@bolt-layouts-layout/layout.twig" with {
@@ -167,7 +167,7 @@
   } only %}
   {% include "@bolt-layouts-layout/layout-item.twig" with {
     content: media,
-    valign_self: "end-offset-large",
+    valign_self: "end-offset",
   } only %}
 {% endset %}
 {% include "@bolt-layouts-layout/layout.twig" with {
