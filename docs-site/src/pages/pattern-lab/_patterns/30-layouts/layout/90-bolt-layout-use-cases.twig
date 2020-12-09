@@ -12,42 +12,14 @@
 {% endset %}
 
 
-{% set paragraph1 %}
-  <p>Item 1. <strong>Set <code>valign-items="start | center | end"</code> to create auto height layout items</strong>. Vivamus hendrerit arcu sed erat molestie vehicula. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor. Ut in nulla enim. Phasellus molestie magna non est bibendum non venenatis nisl tempor. Suspendisse dictum feugiat nisl.</p>
-  <p><bolt-button>button</bolt-button></p>
-{% endset %}
-{% set paragraph2 %}
-  <ul>
-    <li>Item 2. This is a short item.</li>
-    <li>Aliquam tincidunt mauris eu risus.</li>
-    <li>Vestibulum auctor dapibus neque.</li>
-  </ul>
-{% endset %}
-{% set content %}
-  {% include "@bolt-layouts-layout/layout-item.twig" with {
-    content: paragraph1,
-  } only %}
-  {% include "@bolt-layouts-layout/layout-item.twig" with {
-    content: paragraph2,
-  } only %}
-{% endset %}
-{% include "@bolt-layouts-layout/layout.twig" with {
-  gutter: "large",
-  padding_top: "large",
-  padding_bottom: "large",
-  template: "67/33@from-small",
-  content: content,
-  attributes: {
-    class: [
-      "t-bolt-light",
-    ]
-  },
-} only %}
-
-
-{% set paragraph1 %}
+{% set paragraph1_unset %}
   {{ image }}
-  <p>Item 1. <strong>Set <code>valign-items="unset"</code> to create equal height layout items</strong>, and each item will push its last child to the bottom.</p>
+  <p>Item 1. <strong>Do not set <code>valign-items</code> to any values, if the intention is to create equal height layout items</strong>, and each item will push its last child to the bottom.</p>
+  {{ fullbutton }}
+{% endset %}
+{% set paragraph1_other %}
+  {{ image }}
+  <p>Item 1. <strong>Set <code>valign-items="start | center | end"</code> to create auto height layout items</strong>. Vivamus hendrerit arcu sed erat molestie vehicula. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor. Ut in nulla enim. Phasellus molestie magna non est bibendum non venenatis nisl tempor. Suspendisse dictum feugiat nisl.</p>
   {{ fullbutton }}
 {% endset %}
 {% set paragraph2 %}
@@ -62,7 +34,7 @@
 {% endset %}
 {% set content %}
   {% include "@bolt-layouts-layout/layout-item.twig" with {
-    content: paragraph1,
+    content: paragraph1_unset,
   } only %}
   {% include "@bolt-layouts-layout/layout-item.twig" with {
     content: paragraph2,
@@ -77,7 +49,31 @@
   padding_top: "xlarge",
   padding_bottom: "xlarge",
   template: "tiles@from-small",
-  valign_items: "unset",
+  content: content,
+  attributes: {
+    class: [
+      "t-bolt-xdark",
+    ]
+  },
+} only %}
+{% set content %}
+  {% include "@bolt-layouts-layout/layout-item.twig" with {
+    content: paragraph1_other,
+  } only %}
+  {% include "@bolt-layouts-layout/layout-item.twig" with {
+    content: paragraph2,
+  } only %}
+  {% include "@bolt-layouts-layout/layout-item.twig" with {
+    content: paragraph3,
+  } only %}
+{% endset %}
+{% include "@bolt-layouts-layout/layout.twig" with {
+  gutter: "large",
+  row_gutter: "large",
+  padding_top: "xlarge",
+  padding_bottom: "xlarge",
+  template: "tiles@from-small",
+  valign_items: "start",
   content: content,
   attributes: {
     class: [

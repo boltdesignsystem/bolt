@@ -16,28 +16,20 @@ module.exports = {
       type: 'string',
       description:
         'Control the vertical alignment of the layout item. This will ignore the vertical alignment set on the layout.',
-      enum: [
-        'unset',
-        'start',
-        'center',
-        'end',
-        'start-offset-small',
-        'start-offset-medium',
-        'start-offset-large',
-        'start-offset-xlarge',
-        'end-offset-small',
-        'end-offset-medium',
-        'end-offset-large',
-        'end-offset-xlarge',
-      ],
-      default: 'unset',
+      enum: ['start', 'center', 'end', 'start-offset', 'end-offset'],
     },
     order: {
       type: 'string',
       description:
-        'Bring the layout item to the start of the layout. Only use this if the order of layout items need to be adjusted at specific breakpoints. The @until-* keywords mean "starting at 0px until a particular breakpoint".',
-      enum: ['unset', 'primary@until-small', 'primary@until-medium'],
-      default: 'unset',
+        'Bring the layout item to the start or the end of the layout. Only use this if the order of layout items need to be adjusted at specific breakpoints. The @from-* keywords mean "starting from a particular breakpoint".',
+      enum: [
+        'first',
+        'last',
+        'first@from-small',
+        'first@from-medium',
+        'last@from-small',
+        'last@from-medium',
+      ],
     },
   },
 };
