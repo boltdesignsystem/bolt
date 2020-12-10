@@ -324,6 +324,7 @@ export class BoltPageHeaderActionNav extends BoltPageHeaderNav {
   }
 
   resetDesktopMenu() {
+    this.resetActiveMenus();
     this.removeClickHandler(this.menu);
     this.state.desktopIsSetup = false;
   }
