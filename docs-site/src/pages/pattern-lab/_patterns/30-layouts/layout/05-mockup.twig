@@ -20,17 +20,16 @@
     </bolt-button>
   </bolt-layout-item>
   <bolt-layout-item valign-self="end-offset">
-    <bolt-image src="/images/heros/hero-foreground-woman-1.png" alt="Woman in a business suit glancing to her right" class="u-bolt-margin-right-auto u-bolt-margin-left-auto" style="max-width: 450px;"></bolt-image>
+    <bolt-image src="/images/heros/hero-foreground-woman-1.png" alt="Woman in a business suit glancing to her right" class="u-bolt-margin-right-auto u-bolt-margin-left-auto" max-width="450px"></bolt-image>
   </bolt-layout-item>
 </bolt-layout>
 
-<bolt-layout padding-top="large">
-  <bolt-text headline tag="h2" font-size="xxlarge" align="center">
-    Discover what Pega can do for your business
-  </bolt-text>
-</bolt-layout>
-
-<bolt-layout template="thirds@from-small" padding-top="none" padding-bottom="large">
+<bolt-layout template="thirds@from-small" padding-top="large" padding-bottom="large">
+  <bolt-layout-item exclude-from-template>
+    <bolt-text headline tag="h2" font-size="xxlarge" align="center">
+      Discover what Pega can do for your business
+    </bolt-text>
+  </bolt-layout-item>
   <bolt-layout-item>
     <bolt-card-replacement url="https://pega.com" url-text="Go to pega.com" height="full">
       <bolt-card-replacement-media>
@@ -85,19 +84,55 @@
     </bolt-text>
   </bolt-layout-item>
   <bolt-layout-item>
-    <bolt-text headline tag="h3" font-size="xxxlarge">
-      481% ROI
-    </bolt-text>
+    <bolt-layout template="flag" gutter="small" padding-top="none" padding-bottom="small" style="--l-bolt-layout-flag-media-width:40px">
+      <bolt-layout-item>
+        <bolt-icon name="chevron-up" size="medium" color="yellow" background="circle"></bolt-icon>
+      </bolt-layout-item>
+      <bolt-layout-item>
+        <bolt-text headline tag="h3" font-size="xxxlarge">
+          481% ROI
+        </bolt-text>
+      </bolt-layout-item>
+    </bolt-layout>
     <bolt-text>
-      <a href="#!" class="e-bolt-text-link">Create personalized experience<span class="e-bolt-link__icon"><bolt-icon name="chevron-right"></bolt-icon></span></a>
+      {% set icon_chevron_right %}
+        {% include '@bolt-components-icon/icon.twig' with {
+          name: 'chevron-right',
+        } only %}
+      {% endset %}
+      {% include '@bolt-elements-text-link/text-link.twig' with {
+        content: 'Create personalized experience',
+        icon_after: icon_chevron_right,
+        attributes: {
+          href: 'https://pega.com',
+        }
+      } only %}
     </bolt-text>
   </bolt-layout-item>
   <bolt-layout-item>
-    <bolt-text headline tag="h3" font-size="xxxlarge">
-      186% ROI
-    </bolt-text>
+    <bolt-layout template="flag" gutter="small" padding-top="none" padding-bottom="small" style="--l-bolt-layout-flag-media-width:40px">
+      <bolt-layout-item>
+        <bolt-icon name="chevron-up" size="medium" color="yellow" background="circle"></bolt-icon>
+      </bolt-layout-item>
+      <bolt-layout-item>
+        <bolt-text headline tag="h3" font-size="xxxlarge">
+          186% ROI
+        </bolt-text>
+      </bolt-layout-item>
+    </bolt-layout>
     <bolt-text>
-      <a href="#!" class="e-bolt-text-link">Automate &amp; save<span class="e-bolt-link__icon"><bolt-icon name="chevron-right"></bolt-icon></span></a>
+      {% set icon_chevron_right %}
+        {% include '@bolt-components-icon/icon.twig' with {
+          name: 'chevron-right',
+        } only %}
+      {% endset %}
+      {% include '@bolt-elements-text-link/text-link.twig' with {
+        content: 'Automate &amp; save',
+        icon_after: icon_chevron_right,
+        attributes: {
+          href: 'https://pega.com',
+        }
+      } only %}
     </bolt-text>
   </bolt-layout-item>
 </bolt-layout>

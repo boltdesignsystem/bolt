@@ -14,7 +14,7 @@ $_bolt-layout-align-options: (
   'end': 'end',
 );
 
-$bolt-layout-templates: (
+$_bolt-layout-templates: (
   'fourths': repeat(4, 1fr),
   'thirds': repeat(3, 1fr),
   'halves': repeat(2, 1fr),
@@ -28,9 +28,8 @@ $bolt-layout-templates: (
   '25/75': 1fr calc(75% - var(--l-bolt-layout-gutter) / 3),
   '25/50/25': 1fr calc(50% - var(--l-bolt-layout-gutter) / 2) 1fr,
   '25/25/50': 1fr 1fr calc(50% - var(--l-bolt-layout-gutter) / 2),
-  'tiles':
-    repeat(auto-fit, minmax(var(--l-bolt-layout-tile-min-width, 150px), 1fr)),
-  'flag': var(--l-bolt-layout-flag-media-width, 150px) 1fr,
+  'tiles': repeat(auto-fit, minmax(var(--l-bolt-layout-tile-min-width), 1fr)),
+  'flag': var(--l-bolt-layout-flag-media-width) 1fr,
 );
 
 /**
@@ -63,13 +62,19 @@ bolt-layout {
   --l-bolt-layout-gutter: var(--bolt-spacing-x-medium);
   --l-bolt-layout-row-gutter: var(--bolt-spacing-y-medium);
   --l-bolt-layout-padding-top: var(--bolt-spacing-y-medium);
+  --l-bolt-layout-padding-right: var(
+    --bolt-wrapper-padding
+  ); // This must always follow the wrapper rules. Only way to customize it is to change the global wrapper vars.
   --l-bolt-layout-padding-bottom: var(--bolt-spacing-y-medium);
+  --l-bolt-layout-padding-left: var(--bolt-wrapper-padding);
   --l-bolt-layout-align-items: unset;
   --l-bolt-layout-valign-items: unset;
   --l-bolt-layout-item-valign-self: unset;
   --l-bolt-layout-item-valign-self-start-offset: 0;
   --l-bolt-layout-item-valign-self-end-offset: 0;
   --l-bolt-layout-item-order: 1;
+  --l-bolt-layout-flag-media-width: 150px;
+  --l-bolt-layout-tile-min-width: 150px;
 
   display: grid;
   justify-content: var(--l-bolt-layout-align-items);
@@ -80,11 +85,9 @@ bolt-layout {
   width: 100vw;
   margin: 0 -50vw;
   padding-top: var(--l-bolt-layout-padding-top);
-  padding-right: var(
-    --bolt-wrapper-padding
-  ); // This must always follow the wrapper rules. Only way to customize it is to change the global wrapper vars.
+  padding-right: var(--l-bolt-layout-padding-right);
   padding-bottom: var(--l-bolt-layout-padding-bottom);
-  padding-left: var(--bolt-wrapper-padding);
+  padding-left: var(--l-bolt-layout-padding-left);
   grid-gap: var(--l-bolt-layout-gutter);
   grid-row-gap: var(--l-bolt-layout-row-gutter);
   grid-template-columns: var(--l-bolt-layout-template);
@@ -96,6 +99,7 @@ bolt-layout {
     align-self: var(--l-bolt-layout-item-valign-self);
     order: var(--l-bolt-layout-item-order);
     position: relative;
+    max-width: calc(100vw - var(--bolt-wrapper-padding) * 2);
     margin-top: var(--l-bolt-layout-item-valign-self-start-offset);
     margin-bottom: var(--l-bolt-layout-item-valign-self-end-offset);
 
@@ -136,12 +140,16 @@ bolt-layout {
       }
     }
 
+    &[exclude-from-template] {
+      grid-column: var(--l-bolt-layout-exclude-from-template);
+    }
+
     > *:last-child:not(:only-child) {
       margin-top: auto; // Pushes the last child in a layout item (when all items are equal in height) to the bottom.
     }
   }
 
-  @each $template-name, $template-value in $bolt-layout-templates {
+  @each $template-name, $template-value in $_bolt-layout-templates {
     @if (
       $template-name ==
         halves or
@@ -163,7 +171,7 @@ bolt-layout {
     $breakpoint-name: nth($breakpoint, 1);
 
     @if ($breakpoint-name == small or $breakpoint-name == medium) {
-      @each $template-name, $template-value in $bolt-layout-templates {
+      @each $template-name, $template-value in $_bolt-layout-templates {
         @include bolt-mq($breakpoint-name) {
           &[template~='#{$template-name}@from-#{$breakpoint-name}'] {
             --l-bolt-layout-template: #{$template-value};
@@ -244,5 +252,69 @@ bolt-layout {
 
   &[row-gutter='none'] {
     --l-bolt-layout-row-gutter: 0;
+  }
+
+  // Sub-layout resets default padding all around.
+  bolt-layout {
+    --l-bolt-layout-padding-top: 0;
+    --l-bolt-layout-padding-right: 0;
+    --l-bolt-layout-padding-bottom: 0;
+    --l-bolt-layout-padding-left: 0;
+
+    right: unset;
+    left: unset;
+    width: 100%;
+    margin: 0;
+  }
+}
+
+bolt-layout[template~='halves'],
+bolt-layout[template~='flag'] {
+  > bolt-layout-item[exclude-from-template] {
+    --l-bolt-layout-exclude-from-template: 1/3;
+  }
+}
+
+@each $size in $bolt-spacing-multiplier-system {
+  $size-name: nth($size, 1);
+
+  @if (
+    $size-name ==
+      small or
+      $size-name ==
+      medium or
+      $size-name ==
+      large or
+      $size-name ==
+      xlarge
+  ) {
+    bolt-layout[template~='halves@from-#{$size-name}'],
+    bolt-layout[template~='33/67@from-#{$size-name}'],
+    bolt-layout[template~='67/33@from-#{$size-name}'] {
+      > bolt-layout-item[exclude-from-template] {
+        @include bolt-mq(small) {
+          --l-bolt-layout-exclude-from-template: 1/3;
+        }
+      }
+    }
+
+    bolt-layout[template~='thirds@from-#{$size-name}'],
+    bolt-layout[template~='25/25/50@from-#{$size-name}'],
+    bolt-layout[template~='25/50/25@from-#{$size-name}'],
+    bolt-layout[template~='50/25/25@from-#{$size-name}'] {
+      > bolt-layout-item[exclude-from-template] {
+        @include bolt-mq(small) {
+          --l-bolt-layout-exclude-from-template: 1/4;
+        }
+      }
+    }
+
+    bolt-layout[template~='fourths@from-#{$size-name}'] {
+      > bolt-layout-item[exclude-from-template] {
+        @include bolt-mq(small) {
+          --l-bolt-layout-exclude-from-template: 1/5;
+        }
+      }
+    }
   }
 }
