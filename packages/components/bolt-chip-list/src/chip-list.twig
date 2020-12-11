@@ -64,7 +64,7 @@
 {% if willTruncate %}
   {% set list = list|merge([
     {
-      content: macros.truncateTrigger("more", size, inputId),
+      content: macros.truncateTrigger("more", size, inputId, "Show more"|t),
       attributes: {
         "truncate-trigger": "",
         "truncate-trigger-expand": ""
@@ -75,7 +75,7 @@
   {% if collapsible %}
     {% set list = list|merge([
       {
-        content: macros.truncateTrigger("chevron-left", size, inputId),
+        content: macros.truncateTrigger("chevron-left", size, inputId, "Show less"|t),
         attributes: {
           "truncate-trigger": "",
           "truncate-trigger-collapse": ""

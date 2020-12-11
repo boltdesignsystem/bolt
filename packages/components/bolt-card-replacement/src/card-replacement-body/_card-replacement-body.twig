@@ -1,9 +1,5 @@
 {% set schema = bolt.data.components["@bolt-components-card-replacement"].schema %}
 
-{% if enable_json_schema_validation %}
-  {{ validate_data_schema(schema, _self) | raw }}
-{% endif %}
-
 {% set attributes = create_attribute(body.attributes|default({})) %}
 {% set inner_attributes = create_attribute({}) %}
 {% set card_replacement_body_content = body.content %}

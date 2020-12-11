@@ -16,7 +16,7 @@ index 4526c2ce7..87a76068e 100644
  		$twigLoader = new \Twig_Loader_Chain($loaders);
 -		$instance   = new \Twig_Environment($twigLoader, array("debug" => $twigDebug));
 +		$instance   = new \Twig_Environment($twigLoader, array(
-+			"debug" => false,
++			"debug" => $twigDebug,
 +			"cache" => $twigCache,
 +			"auto_reload" => true,
 +		));
