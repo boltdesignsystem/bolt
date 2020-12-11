@@ -53,6 +53,7 @@ class BoltCore extends \Twig_Extension implements \Twig_Extension_InitRuntimeInt
       Bolt\TwigFunctions::ratio(),
       Bolt\TwigFunctions::getBoltData(),
       Bolt\TwigFunctions::getImageData(),
+      Bolt\TwigFunctions::getFlattenedSchemaData(),
       Bolt\TwigFunctions::fileExists(),
       Bolt\TwigFunctions::inlineFile(),
       Bolt\TwigFunctions::gcd(),

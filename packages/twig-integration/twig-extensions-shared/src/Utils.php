@@ -266,6 +266,45 @@ class Utils {
     return $props;
   }
 
+  public static function buildFlattenedSchemaArray($schema) {
+    $flattenedSchema = array();
+    $schemaLayer = array();
+
+    if (!empty($schema["properties"])) {
+      // @todo don't hardcode "items"
+      $title = isset($schema["title"]) ? $schema["title"] : "items";
+      $props = array();
+      $nestedLayer = array();
+
+      foreach ($schema["properties"] as $propName => $propValue) {
+        if (isset($propValue["items"])) {
+          $props[$propName] = $propValue;
+          unset($props[$propName]["items"]);
+          $props[$propName]["enum"] = ["See below"];
+          $nestedLayer[] = $propValue["items"];
+        } else {
+          $props[$propName] = $propValue;
+        }
+      }
+
+      $schemaLayer["title"] = $title;
+      $schemaLayer["properties"] = $props;
+    }
+
+
+    if (!empty($schemaLayer)) {
+      $flattenedSchema[] = $schemaLayer;
+    }
+
+    if (!empty($nestedLayer)) {
+      foreach ($nestedLayer as $schema) {
+        $flattenedSchema = array_merge($flattenedSchema, self::buildFlattenedSchemaArray($schema));
+      }
+    }
+
+    return $flattenedSchema;
+  }
+
   /**
    * Return greatest common denominator of two numbers
    * https://www.php.net/manual/en/function.gmp-gcd.php#69189

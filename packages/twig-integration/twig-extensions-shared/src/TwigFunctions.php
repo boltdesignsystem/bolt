@@ -357,6 +357,12 @@ class TwigFunctions {
     ]);
   }
 
+  public static function getFlattenedSchemaData() {
+    return new Twig_SimpleFunction('getSchemaData', function($schema) {
+      return Utils::buildFlattenedSchemaArray($schema);
+    });
+  }
+
   public static function github_url() {
     return new Twig_SimpleFunction('github_url', function(\Twig\Environment $env, $twigPath) {
       $filePath = TwigTools\Utils::resolveTwigPath($env, $twigPath);
