@@ -32,6 +32,8 @@ $_bolt-layout-templates: (
   'flag': var(--l-bolt-layout-flag-media-width) 1fr,
 );
 
+$_bolt-layout-item-min-width: calc(#{bolt-breakpoint(xxsmall)} / 3);
+
 /**
  * Global wrapper vars
  * 1. The vars can be used on other components that acts like layout but doesn't use layout markup. For example: navbar.
@@ -73,8 +75,8 @@ bolt-layout {
   --l-bolt-layout-item-valign-self-start-offset: 0;
   --l-bolt-layout-item-valign-self-end-offset: 0;
   --l-bolt-layout-item-order: 1;
-  --l-bolt-layout-flag-media-width: 150px;
-  --l-bolt-layout-tile-min-width: 150px;
+  --l-bolt-layout-flag-media-width: #{$_bolt-layout-item-min-width};
+  --l-bolt-layout-tile-min-width: #{$_bolt-layout-item-min-width};
 
   display: grid;
   justify-content: var(--l-bolt-layout-align-items);
@@ -254,12 +256,23 @@ bolt-layout {
     --l-bolt-layout-row-gutter: 0;
   }
 
-  // Sub-layout resets default padding all around.
+  // Sub-layout resets all defaults. Everything stays the same except for padding getting zeroed out.
   bolt-layout {
+    --l-bolt-layout-template: 1fr;
+    --l-bolt-layout-gutter: var(--bolt-spacing-x-medium);
+    --l-bolt-layout-row-gutter: var(--bolt-spacing-y-medium);
     --l-bolt-layout-padding-top: 0;
     --l-bolt-layout-padding-right: 0;
     --l-bolt-layout-padding-bottom: 0;
     --l-bolt-layout-padding-left: 0;
+    --l-bolt-layout-align-items: unset;
+    --l-bolt-layout-valign-items: unset;
+    --l-bolt-layout-item-valign-self: unset;
+    --l-bolt-layout-item-valign-self-start-offset: 0;
+    --l-bolt-layout-item-valign-self-end-offset: 0;
+    --l-bolt-layout-item-order: 1;
+    --l-bolt-layout-flag-media-width: #{$_bolt-layout-item-min-width};
+    --l-bolt-layout-tile-min-width: #{$_bolt-layout-item-min-width};
 
     right: unset;
     left: unset;
@@ -268,6 +281,7 @@ bolt-layout {
   }
 }
 
+// Exclude a particular item from the template layout, this item will take up full width.
 bolt-layout[template~='halves'],
 bolt-layout[template~='flag'] {
   > bolt-layout-item[exclude-from-template] {

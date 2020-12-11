@@ -65,7 +65,7 @@
   </bolt-layout-item>
 </bolt-layout>
 
-<bolt-layout template="thirds@from-small" gutter="large" padding-top="xlarge" padding-bottom="xlarge" valign-items="center" class="t-bolt-dark">
+<bolt-layout template="thirds@from-small" valign-items="start" gutter="large" padding-top="xlarge" padding-bottom="xlarge" valign-items="center" class="t-bolt-dark">
   {% include '@bolt-components-background/background.twig' with {
     overlay: 'disabled',
     contentItems: [
@@ -84,7 +84,7 @@
     </bolt-text>
   </bolt-layout-item>
   <bolt-layout-item>
-    <bolt-layout template="flag" gutter="small" padding-top="none" padding-bottom="small" style="--l-bolt-layout-flag-media-width:40px">
+    <bolt-layout template="flag" valign-items="center" gutter="small" padding-top="none" padding-bottom="small" style="--l-bolt-layout-flag-media-width:40px">
       <bolt-layout-item>
         <bolt-icon name="chevron-up" size="medium" color="yellow" background="circle"></bolt-icon>
       </bolt-layout-item>
@@ -95,22 +95,11 @@
       </bolt-layout-item>
     </bolt-layout>
     <bolt-text>
-      {% set icon_chevron_right %}
-        {% include '@bolt-components-icon/icon.twig' with {
-          name: 'chevron-right',
-        } only %}
-      {% endset %}
-      {% include '@bolt-elements-text-link/text-link.twig' with {
-        content: 'Create personalized experience',
-        icon_after: icon_chevron_right,
-        attributes: {
-          href: 'https://pega.com',
-        }
-      } only %}
+      <a href="https://pega.com" class="e-bolt-text-link">Create personalized experience<span class="e-bolt-text-link__icon-after"><bolt-icon name="chevron-right"></bolt-icon></span></a>
     </bolt-text>
   </bolt-layout-item>
   <bolt-layout-item>
-    <bolt-layout template="flag" gutter="small" padding-top="none" padding-bottom="small" style="--l-bolt-layout-flag-media-width:40px">
+    <bolt-layout template="flag" valign-items="center" gutter="small" padding-top="none" padding-bottom="small" style="--l-bolt-layout-flag-media-width:40px">
       <bolt-layout-item>
         <bolt-icon name="chevron-up" size="medium" color="yellow" background="circle"></bolt-icon>
       </bolt-layout-item>
@@ -121,29 +110,17 @@
       </bolt-layout-item>
     </bolt-layout>
     <bolt-text>
-      {% set icon_chevron_right %}
-        {% include '@bolt-components-icon/icon.twig' with {
-          name: 'chevron-right',
-        } only %}
-      {% endset %}
-      {% include '@bolt-elements-text-link/text-link.twig' with {
-        content: 'Automate &amp; save',
-        icon_after: icon_chevron_right,
-        attributes: {
-          href: 'https://pega.com',
-        }
-      } only %}
+      <a href="https://pega.com" class="e-bolt-text-link">Automate &amp; save<span class="e-bolt-text-link__icon-after"><bolt-icon name="chevron-right"></bolt-icon></span></a>
     </bolt-text>
   </bolt-layout-item>
 </bolt-layout>
 
-<bolt-layout padding-top="large">
-  <bolt-text headline tag="h2" font-size="xxlarge" align="center">
-    What&rsquo;s trending
-  </bolt-text>
-</bolt-layout>
-
-<bolt-layout template="thirds@from-small" padding-top="none" padding-bottom="large">
+<bolt-layout template="thirds@from-small" padding-top="large" padding-bottom="large">
+  <bolt-layout-item exclude-from-template>
+    <bolt-text headline tag="h2" font-size="xxlarge" align="center">
+      What&rsquo;s trending
+    </bolt-text>
+  </bolt-layout-item>
   <bolt-layout-item>
     <bolt-card-replacement url="https://pega.com" url-text="Go to pega.com" height="full">
       <bolt-card-replacement-media>
@@ -151,6 +128,7 @@
       </bolt-card-replacement-media>
       <bolt-card-replacement-body>
         <bolt-text headline>Forrester RTIM 2020</bolt-text>
+        <bolt-text>The Forrester Wave™: Real-Time Interaction Management, Q4 2020 names Pegasystems a Leader.</bolt-text>
       </bolt-card-replacement-body>
     </bolt-card-replacement>
   </bolt-layout-item>
@@ -161,6 +139,7 @@
       </bolt-card-replacement-media>
       <bolt-card-replacement-body>
         <bolt-text headline>Inside our latest release</bolt-text>
+        <bolt-text>Pega 8.5 is faster, friendlier, and more flexible, so you can simplify how work gets done.</bolt-text>
       </bolt-card-replacement-body>
     </bolt-card-replacement>
   </bolt-layout-item>
@@ -170,7 +149,8 @@
         <bolt-image src="/images/content/promos/promo-pega-ai.jpg" alt="Pega AI"></bolt-image>
       </bolt-card-replacement-media>
       <bolt-card-replacement-body>
-        <bolt-text headline>How responsible is your AI?</bolt-text>
+        <bolt-text headline>Ten golden rules for RPA success</bolt-text>
+        <bolt-text>Getting RPA right has its challenges. Explore this report from Forrester to learn how to create lasting value.</bolt-text>
       </bolt-card-replacement-body>
     </bolt-card-replacement>
   </bolt-layout-item>
