@@ -187,23 +187,8 @@
 		</ul>
 	{% endmacro %}
 
-
-	{% import _self as macros %}
-
-	{# {% if schema.description %}
-		  {% include "@bolt-components-headline/text.twig" with {
-		    text: schema.description
-		  } only %}
-		{% endif %} #}
-
-	{% set requiredProps = schema.required %}
-
-	{% if schema.properties %}
-		{% include '@bolt-components-banner/banner.twig' with {
-	    content: 'Note: when assigning component props as HTML attributes on a web component, make sure to use <code>kebab-case</code>.',
-	    align: 'start',
-	  } only %}
-
+	{% macro schemaTable(schemaProps) %}
+		{% import _self as macros %}
 		<div class="c-bds-schema-table">
 			<bolt-schema-table>
 				<div class="c-bds-docs-table">
@@ -219,16 +204,16 @@
 						</thead>
 
 						<tbody>
-							{% for key, prop in schema.properties if not schema.properties[key].hidden and not schema.properties[key].flatten %}
+							{% for key, prop in schemaProps if not schemaProps[key].hidden and not schemaProps[key].flatten %}
 								{{ macros.schemaTableRow(key, prop, key in requiredProps) }}
 							{% endfor %}
 
-							{% for key, prop in schema.properties if schema.properties[key].flatten %}
+							{% for key, prop in schemaProps if schemaProps[key].flatten %}
 
 								{#
-																                TODO: Replace the following with the schemaTableRow macro to reduce duplication.
-																                This is postponed only because the following isn't currently in use, so it's difficult to test.
-																              #}
+																								TODO: Replace the following with the schemaTableRow macro to reduce duplication.
+																								This is postponed only because the following isn't currently in use, so it's difficult to test.
+																							#}
 								<tr
 									class="c-bds-docs-table__row c-bds-docs-table__row--twig-only {{ deprecated_class }}">
 
@@ -284,14 +269,14 @@
 									</tr>
 
 									{% set prefix = key %}
-									{% set prefixedProperties = schema.properties[key].properties %}
+									{% set prefixedProperties = schemaProps[key].properties %}
 
 									{% for key, prop in prefixedProperties if not prefixedProperties[key].hidden %}
 
 										{#
-																				                  TODO: Replace the following with the schemaTableRow macro to reduce duplication.
-																				                  This is postponed only because the following isn't currently in use, so it's difficult to test.
-																				                #}
+																													TODO: Replace the following with the schemaTableRow macro to reduce duplication.
+																													This is postponed only because the following isn't currently in use, so it's difficult to test.
+																												#}
 										<tr
 											class="c-bds-docs-table__row c-bds-docs-table__row--web-component-only {{ deprecated_class }}">
 
@@ -356,7 +341,40 @@
 				</div>
 			</bolt-schema-table>
 		</div>
+	{% endmacro %}
 
+
+	{% import _self as macros %}
+
+	{# {% if schema.description %}
+		  {% include "@bolt-components-headline/text.twig" with {
+		    text: schema.description
+		  } only %}
+		{% endif %} #}
+
+	{% set requiredProps = schema.required %}
+
+	{% if schema.properties %}
+		{% include '@bolt-components-banner/banner.twig' with {
+	    content: 'Note: when assigning component props as HTML attributes on a web component, make sure to use <code>kebab-case</code>.',
+	    align: 'start',
+	  } only %}
+
+		{% set flattenedSchema = getSchemaData(schema) %}
+		{# <script>console.log({{flattenedSchema|json_encode}})</script> #}
+
+		{% if flattenedSchema|length %}
+			{% for item in flattenedSchema %}
+				{% if loop.first %}
+					{{ macros.schemaTable(item['properties']) }}
+				{% else %}
+					<details>
+						<summary><strong>{{ item['title'] }}</strong></summary>
+						{{ macros.schemaTable(item['properties']) }}
+					</details>
+				{% endif %}
+			{% endfor %}
+		{% endif %}
 
 		{% set advanced_table %}
 		{% for key, prop in schema.properties if schema.properties[key].hidden %}
