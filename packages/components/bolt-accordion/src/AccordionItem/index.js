@@ -1,5 +1,5 @@
 import { html, customElement, BoltElement, unsafeCSS } from '@bolt/element';
-import { withContext } from 'wc-context';
+import { withContext } from 'wc-context/lit-element';
 import classNames from 'classnames/bind';
 import accordionItemStyles from './accordion-item.scss';
 import accordionItemSchema from '../../accordion-item.schema';
