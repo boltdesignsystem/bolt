@@ -196,6 +196,11 @@ bolt-accordion-item,
 bolt-tab-panel {
   @include bolt-mq($from: medium) {
     .video-js.vjs-layout-tiny:not(.vjs-fullscreen) {
+      // Remaining time should never be shown.  Other controls that shouldn't be forced to show, but sometimes do show--
+      // such as the subs-caps button-- are typically hidden with an !important declaration when they should be hidden.
+      // This seems to be the exception.
+      //
+      // .vjs-remaining-time,
       .vjs-audio-button,
       .vjs-captions-button,
       .vjs-chapters-button,
@@ -205,7 +210,6 @@ bolt-tab-panel {
       .vjs-mute-control,
       .vjs-playback-rate,
       .vjs-progress-control,
-      .vjs-remaining-time,
       .vjs-subs-caps-button,
       .vjs-subtitles-button,
       .vjs-time-divider,
