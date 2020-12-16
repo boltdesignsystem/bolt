@@ -1,41 +1,23 @@
 import { html, customElement, BoltElement, unsafeCSS } from '@bolt/element';
 import { withContext } from 'wc-context/lit-element';
 import classNames from 'classnames/bind';
-import accordionItemStyles from './accordion-item.scss';
-import accordionItemSchema from '../../accordion-item.schema';
+import styles from './accordion-item.scss';
+import schema from '../../accordion-item.schema';
 import { AccordionItemTrigger } from './AccordionItemTrigger';
 import { AccordionItemContent } from './AccordionItemContent';
 
-let cx = classNames.bind(accordionItemStyles);
+let cx = classNames.bind(styles);
 
 @customElement('bolt-accordion-item')
 class AccordionItem extends withContext(BoltElement) {
-  static schema = accordionItemSchema;
-
-  static get styles() {
-    return [unsafeCSS(accordionItemStyles)];
-  }
+  static schema = schema;
 
   static get properties() {
     return {
-      ...this.props,
-
-      // context-specific props for bolt-accordion-item that aren't listed out in the schema
-      spacing: {
-        type: String,
-      },
-      noSeparator: {
-        type: Boolean,
-        attribute: 'no-separator',
-      },
-      boxShadow: {
-        type: Boolean,
-        attribute: 'box-shadow',
-      },
-      iconValign: {
-        type: String,
-        attribute: 'icon-valign',
-      },
+      noSeparator: { type: Boolean },
+      boxShadow: { type: Boolean },
+      spacing: { type: String },
+      iconValign: { type: String },
     };
   }
 
@@ -45,6 +27,10 @@ class AccordionItem extends withContext(BoltElement) {
 
   contextChangedCallback(name, oldValue, value) {
     this[name] = value;
+  }
+
+  static get styles() {
+    return [unsafeCSS(styles)];
   }
 
   get isFirstItem() {
