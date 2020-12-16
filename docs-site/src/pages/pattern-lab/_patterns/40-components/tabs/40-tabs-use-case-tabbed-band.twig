@@ -34,16 +34,17 @@
       } only %}
     {% endcell %}
     {% cell "u-bolt-width-12/12 u-bolt-width-7/12@small" %}
+      {% set device_viewer_image %}
+        {% include '@bolt-components-image/image.twig' with {
+          src: "/images/content/screenshots/device-screenshot--tablet.jpg",
+          placeholder_color: "#ececec"
+        } only %}
+      {% endset %}
       {% include "@bolt-components-device-viewer/device-viewer.twig" with {
         device: "ipad",
         orientation: "landscape",
         color: "black",
-        image: {
-          src: "/images/content/screenshots/device-screenshot--tablet.jpg",
-          lazyload: true,
-          _sizes: "(min-width: 1400px) 40.64285714vw, (min-width: 600px) 41vw, 72.5vw",
-          placeholder_color: "#ececec"
-        }
+        content: device_viewer_image,
       } only %}
     {% endcell %}
   {% endgrid %}
@@ -51,14 +52,17 @@
 {% set tab_content_2 %}
   {% grid "o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--middle o-bolt-grid--matrix" %}
     {% cell "u-bolt-width-12/12 u-bolt-width-7/12@small" %}
+      {% set device_viewer_image %}
+        {% include '@bolt-components-image/image.twig' with {
+          src: "/images/content/screenshots/device-screenshot--tablet-portrait.jpg",
+          placeholder_color: "#1c1c1c"
+        } only %}
+      {% endset %}
       {% include "@bolt-components-device-viewer/device-viewer.twig" with {
         device: "ipad",
         orientation: "portrait",
         color: "black",
-        image: {
-          src: "/images/content/screenshots/device-screenshot--tablet-portrait.jpg",
-          placeholder_color: "#1c1c1c"
-        }
+        content: device_viewer_image,
       } only %}
     {% endcell %}
     {% cell "u-bolt-width-12/12 u-bolt-width-5/12@small" %}
