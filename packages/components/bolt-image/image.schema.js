@@ -16,6 +16,9 @@ module.exports = {
       {
         required: ['height'],
       },
+      {
+        required: ['zoom'],
+      },
     ],
   },
   anyOf: [
@@ -96,6 +99,24 @@ module.exports = {
       description:
         "Set the max-width of the image as a valid CSS value, e.g. '300px' or '50%'.",
     },
+    valign: {
+      type: 'string',
+      description:
+        "Allows the image's vertical alignment behavior to be customized in certain situations (ex. background images). This can be configured via a pre-defined position (top | center | bottom) or via specific pixel or percent offset (ex. 30%).",
+      default: 'center',
+    },
+    align: {
+      type: 'string',
+      description:
+        "Allows the image's horizontal alignment behavior to be customized in certain situations (ex. background images). This can be configured via a pre-defined position (left | center | right) or via specific pixel or percent offset (ex. 30%).",
+      default: 'center',
+    },
+    cover: {
+      type: 'boolean',
+      description: 'Set an image to fill its container.',
+      default: false,
+      enum: [true, false],
+    },
     width: {
       title: 'DEPRECATED',
       oneOf: [
@@ -116,29 +137,18 @@ module.exports = {
       description:
         'Override the default height of the image. If no width is provided, aspect ratio will be maintained.',
     },
-    cover: {
-      type: 'boolean',
-      description: 'Set an image to fill its container.',
-      default: false,
-      enum: [true, false],
-    },
     imageAttributes: {
       title: 'DEPRECATED',
       type: 'object',
       description:
         'A Drupal-style attributes object with extra attributes to append to this component.',
     },
-    valign: {
-      type: 'string',
-      description:
-        "Allows the image's vertical alignment behavior to be customized in certain situations (ex. background images). This can be configured via a pre-defined position (top | center | bottom) or via specific pixel or percent offset (ex. 30%).",
-      default: 'center',
-    },
-    align: {
-      type: 'string',
-      description:
-        "Allows the image's horizontal alignment behavior to be customized in certain situations (ex. background images). This can be configured via a pre-defined position (left | center | right) or via specific pixel or percent offset (ex. 30%).",
-      default: 'center',
+    zoom: {
+      title: 'DEPRECATED',
+      type: 'boolean',
+      description: 'Support will be dropped along with device viewer magnify',
+      hidden: true,
+      default: false,
     },
   },
 };

@@ -210,7 +210,7 @@ describe('analytics autolinker', () => {
       return window.drupalSettings.google_analytics.trackCrossDomains[0];
     });
 
-    expect(config).toBe('developer.mozilla.org');
+    expect(config).toBe('nytimes.com');
   }, 120000);
 
   test('allow Drupal to configure which domains get configured / tracked by autolink.', async function() {
@@ -224,7 +224,7 @@ describe('analytics autolinker', () => {
 
     await renderWC(
       'bolt-button',
-      `<bolt-button style="display: inline-block;" url="https://developer.mozilla.org">External URL - Normally Untracked But Now Tracked Domain</bolt-button>`,
+      `<bolt-button style="display: inline-block;" url="https://www.nytimes.com">External URL - Normally Untracked But Now Tracked Domain</bolt-button>`,
       page,
     );
 
