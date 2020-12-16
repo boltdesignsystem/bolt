@@ -65,7 +65,6 @@ class BoltText extends BoltElement {
 
     // Important classes
     const classes = cx('c-bolt-text-v2', {
-      [`has-url`]: this.url,
       [`is-long`]: longText,
       [`c-bolt-text-v2--${this.display}`]: this.display,
       [`c-bolt-text-v2--${this.fontFamily}`]: this.fontFamily,
@@ -100,16 +99,6 @@ class BoltText extends BoltElement {
 
     const wrapInnerHTML = innerHTML => {
       switch (this.tag) {
-        case 'a':
-          if (this.url) {
-            return html`
-              <a href="${this.url}" class="${classes}">${innerHTML}</a>
-            `;
-          } else {
-            return html`
-              <span class="${classes}">${innerHTML}</span>
-            `;
-          }
         case 'h1':
           return html`
             <h1 class="${classes}">${innerHTML}</h1>

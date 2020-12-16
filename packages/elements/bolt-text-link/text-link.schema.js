@@ -1,11 +1,6 @@
-const elementSchemas = require('@bolt/element/element.schemas');
-
-const { ...onClickProps } = elementSchemas.boltActionElement.properties;
-
 module.exports = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'Text Link',
-  description: 'Underlined text that indicates interactivity.',
   type: 'object',
   required: ['content'],
   properties: {
@@ -15,18 +10,18 @@ module.exports = {
         'A Drupal-style attributes object with extra attributes to append to this component.',
     },
     content: {
-      type: 'object',
+      type: 'any',
       description: 'Content of the text link.',
     },
     icon_before: {
-      type: 'object',
+      type: 'any',
       description:
-        'Append an icon before the text. Icon component is recommended, however, &lt;img&gt; elements are also acceptable.',
+        'Append an icon before the text. Icon component is recommended. However, &lt;img&gt; elements are also acceptable.',
     },
     icon_after: {
-      type: 'object',
+      type: 'any',
       description:
-        'Append an icon after the text. Icon component is recommended, however, &lt;img&gt; elements are also acceptable.',
+        'Append an icon after the text. Icon component is recommended. However, &lt;img&gt; elements are also acceptable.',
     },
     reversed_underline: {
       type: 'boolean',
@@ -34,15 +29,10 @@ module.exports = {
         'Set the underline style to appear on hover instead of being always visible.',
       default: false,
     },
-    button: {
-      type: 'boolean',
-      description: 'Set the semantic HTML tag to &lt;button&gt;.',
-      default: false,
-    },
     expand_click_target: {
       type: 'boolean',
       description:
-        'Expands the click target to cover up the entire area of its closest container that is not positioned static.',
+        'Expand the click target to cover up the entire area of its closest container that is not positioned static.',
       default: false,
     },
   },

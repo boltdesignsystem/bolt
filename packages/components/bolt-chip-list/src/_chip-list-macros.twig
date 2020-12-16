@@ -1,6 +1,7 @@
-{% macro truncateTrigger(iconName, size, inputId) %}
+{% macro truncateTrigger(iconName, size, inputId, text) %}
   <label class="c-bolt-chip-list__label" for="{{ inputId }}">
     {% include "@bolt-components-chip/chip.twig" with {
+      text: text,
       size: size,
       icon: {
         name: iconName

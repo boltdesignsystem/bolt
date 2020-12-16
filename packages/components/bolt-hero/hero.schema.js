@@ -29,6 +29,11 @@ module.exports = {
       description:
         'The path to a foreground image that  displays along-side the other Hero content.',
     },
+    image_srcset: {
+      type: 'string',
+      description:
+        'A valid image srcset value with different cuts of the image for different breakpoints',
+    },
     imageAlign: {
       type: 'string',
       enum: ['left', 'center', 'right'],

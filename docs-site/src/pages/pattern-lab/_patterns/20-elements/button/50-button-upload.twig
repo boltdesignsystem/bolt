@@ -1,0 +1,29 @@
+{% set description %}
+  The button classes can also be used on a file input.
+{% endset %}
+
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>This is an advanced use case and the Twig template does not support this.</bolt-li>
+    <bolt-li>Hierarchy should be set to tertiary.</bolt-li>
+    <bolt-li>Size should be set to small.</bolt-li>
+  </bolt-ol>
+{% endset %}
+
+{% set demo %}
+  <input id="unique-file-id" type="file" class="e-bolt-button e-bolt-button--small e-bolt-button--tertiary">
+{% endset %}
+
+{% set html_markup %}
+{% verbatim %}
+<input id="unique-file-id" type="file" class="e-bolt-button e-bolt-button--small e-bolt-button--tertiary">
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Upload Button',
+  description: description,
+  notes: notes,
+  demo: demo,
+  html_markup: html_markup,
+} only %}

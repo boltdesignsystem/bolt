@@ -1,0 +1,93 @@
+{% set description %}
+  Icon only button visually hides the text content of the button. Such a button should be used sparingly and only in places where screen real estate is a concern.
+{% endset %}
+
+{% set demo %}
+  <bolt-list display="inline" spacing="small">
+    <bolt-list-item>
+      <bolt-tooltip>
+        {% set icon_download %}
+          {% include '@bolt-components-icon/icon.twig' with {
+            name: 'download',
+          } only %}
+        {% endset %}
+        {% include '@bolt-elements-button/button.twig' with {
+          content: 'Download',
+          icon_only: icon_download,
+          attributes: {
+            type: 'button'
+          }
+        } only %}
+        <span slot="content">File size: 25MB</span>
+      </bolt-tooltip>
+    </bolt-list-item>
+    <bolt-list-item>
+      <bolt-tooltip>
+        {% set icon_add %}
+          {% include '@bolt-components-icon/icon.twig' with {
+            name: 'add',
+          } only %}
+        {% endset %}
+        {% include '@bolt-elements-button/button.twig' with {
+          content: 'Add',
+          icon_only: icon_add,
+          attributes: {
+            type: 'button'
+          }
+        } only %}
+        <span slot="content">Add another row</span>
+      </bolt-tooltip>
+    </bolt-list-item>
+  </bolt-list>
+{% endset %}
+
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>It is recommended that icon only buttons to be used in tandem with tooltip to give the user more context about the button&rsquo;s function.</bolt-li>
+    <bolt-li>When writing in plain HTML, <bolt-code-snippet display="inline">aria-label</bolt-code-snippet> is required, and it must equal to the button text. For example: <bolt-code-snippet display="inline" lang="html">&lt;button type="button" class="e-bolt-button" aria-label="Download"&gt;</bolt-code-snippet>. Text should not be used inside the button when using <bolt-code-snippet display="inline">aria-label</bolt-code-snippet>.</bolt-li>
+    <bolt-li>When writing in plain HTML, <bolt-code-snippet display="inline" lang="html">&lt;span class="e-bolt-button__icon-center"&gt;</bolt-code-snippet> is required to wrap around the icon markup. The wrapper ensures that the icon will always center within the button.</bolt-li>
+  </bolt-ol>
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+// Icon only button combined with tooltip
+{% set icon_download %}
+  {% include '@bolt-components-icon/icon.twig' with {
+    name: 'download',
+  } only %}
+{% endset %}
+{% set tooltip_trigger %}
+  {% include '@bolt-elements-button/button.twig' with {
+    content: 'Download',
+    icon_only: icon_download,
+    attributes: {
+      type: 'button'
+    }
+  } only %}
+{% endset %}
+{% include '@bolt-components-tooltip/tooltip.twig' with {
+  trigger: tooltip_trigger,
+  content: 'File size: 25MB',
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% set html_markup %}
+{% verbatim %}
+// Icon only button combined with tooltip
+<bolt-tooltip>
+  <button type="button" class="e-bolt-button" aria-label="Download"><span class="e-bolt-button__icon-center"><bolt-icon name="download"></bolt-icon></span></button>
+  <span slot="content">File size: 25MB</span>
+</bolt-tooltip>
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Icon Only Button',
+  description: description,
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+  html_markup: html_markup,
+} only %}

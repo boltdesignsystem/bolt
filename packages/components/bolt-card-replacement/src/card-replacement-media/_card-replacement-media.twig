@@ -25,10 +25,16 @@
       </ssr-keep>
     </bolt-card-replacement-media>
   {% endif %}
+
+  {% if (card_replacement_video.videoId) %}
+    {% set card_replacement_video %}
+      {% include "@bolt-components-video/video.twig" with card_replacement_video only %}
+    {% endset %}
+  {% endif %}
   {% if card_replacement_video %}
     <bolt-card-replacement-media {{ attributes }}>
       <ssr-keep for="bolt-card-replacement-media" class="c-bolt-card_replacement__media c-bolt-card_replacement__media--video">
-        {% include "@bolt-components-video/video.twig" with card_replacement_video only %}
+        {{ card_replacement_video }}
       </ssr-keep>
     </bolt-card-replacement-media>
   {% endif %}

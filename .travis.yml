@@ -153,21 +153,6 @@ jobs:
         - travis_retry yarn gds -a fail_if_unsuccessful -e ${TRAVIS_BRANCH}--branch-preview -r ${TRAVIS_BRANCH}
 
     - stage: Auto-release
-      name: 'Canary Release'
-      if: (branch =~ /(master)/)
-      before_script:
-        - git config --global user.email ${GITHUB_EMAIL}
-        - git config --global user.name ${GITHUB_USER}
-        - git remote set-url origin "https://${GITHUB_TOKEN}@github.com/boltdesignsystem/bolt.git" > /dev/null 2>&1
-        - echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
-        - git checkout master
-      install:
-        - yarn install --frozen-lockfile
-        - yarn run setup:php
-        - git reset --hard
-      script: yarn run release
-
-    - stage: Auto-release
       name: 'Full Release'
       if: (branch =~ /(release\/2.x)/)
       before_script:

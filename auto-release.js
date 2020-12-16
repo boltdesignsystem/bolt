@@ -8,7 +8,6 @@ const { normalizeUrlAlias } = require('./scripts/utils/normalize-url-alias');
 const { branchName } = require('./scripts/utils/branch-name');
 const { NOW_TOKEN } = process.env;
 
-const isCanaryRelease = branchName === 'master';
 const isFullRelease =
   branchName === 'release-2.x' || branchName === 'release/2.x';
 
@@ -16,12 +15,6 @@ const lernaConfig = require('./lerna.json');
 const currentVersion = lernaConfig.version;
 
 const SLACK_WEBHOOK_URL = process.env.SLACK_WEBHOOK_URL;
-const SLACK_WEBPACK_URL_CANARY = process.env.SLACK_WEBPACK_URL_CANARY;
-
-// figure out what a canary release version would be
-const canaryVersion = `.${process.env.TRAVIS_PULL_REQUEST_SHA ||
-  process.env.TRAVIS_JOB_NUMBER ||
-  gitSha}`;
 
 // force color output in CLI
 // @ts-ignore
@@ -44,80 +37,7 @@ async function getLernaPackages() {
 }
 
 async function init() {
-  if (isCanaryRelease) {
-    try {
-      const version = await shell
-        .exec(`auto version --from v${currentVersion}`, { silent: true })
-        .stdout.trim();
-
-      console.log('current version', currentVersion);
-      console.log('upcoming version type', version);
-      console.log('canary version', canaryVersion);
-
-      await shell.exec(
-        `lerna publish pre${version} --dist-tag canary --preid canary${canaryVersion} --no-git-reset --no-git-tag-version --exact --ignore-scripts --no-push --force-publish --yes -m "[skip travis] chore(release): pre-release %s"`,
-      );
-
-      const packages = await getLernaPackages();
-      const versioned = packages.find(p => p.version.includes('canary'));
-      if (!versioned) {
-        console.log(
-          'No packages were changed so no canary version was published.',
-        );
-
-        return;
-      } else {
-        console.log(
-          'Canary release successfully published to NPM. Doing a fresh build + deploying to now.sh.',
-        );
-      }
-
-      // get the version we just published
-      const canaryReleaseVersion = `v${versioned.version.split('+')[0].trim()}`; // ex. 2.9.0-canary.6b70020b5.0
-
-      const branchSpecificUrl = await normalizeUrlAlias(branchName);
-      const tagSpecificUrl = await normalizeUrlAlias(canaryReleaseVersion);
-
-      const nowAliases = [];
-      nowAliases.push(branchSpecificUrl);
-      nowAliases.push(await normalizeUrlAlias('canary'));
-      nowAliases.push(tagSpecificUrl);
-
-      await shell.exec(`
-        git reset --hard HEAD
-        npx json -I -f docs-site/.incache -e 'this["bolt-tags"].expiresOn = "2019-06-14T12:30:26.377Z"'
-        npx json -I -f docs-site/.incache -e 'this["bolt-urls-to-test"].expiresOn = "2019-06-14T12:30:26.377Z"'
-        npx now alias boltdesignsystem.com ${tagSpecificUrl} --token=${NOW_TOKEN}
-        npm run build
-        npx now deploy --meta gitSha='${gitSha}' --token=${NOW_TOKEN}
-      `);
-
-      const latestUrl = await getLatestDeploy();
-
-      nowAliases.forEach(alias => {
-        shell.exec(`npx now alias ${latestUrl} ${alias} --token=${NOW_TOKEN}`);
-      });
-
-      await shell.exec('git reset --hard HEAD').stdout;
-
-      if (SLACK_WEBPACK_URL_CANARY) {
-        const webhook = new IncomingWebhook(SLACK_WEBPACK_URL_CANARY);
-        await webhook.send({
-          text: `Bolt canary release, *${canaryReleaseVersion}*, has successfully published!
-            - <https://canary.boltdesignsystem.com|Shared Canary URL>
-            - <${tagSpecificUrl}|Unique Canary URL>`,
-        });
-      } else {
-        console.log(
-          chalk.yellow(
-            'Skipped sending Slack notification about upcoming Canary release -- missing `SLACK_WEBPACK_URL_CANARY` env variable!',
-          ),
-        );
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  } else if (isFullRelease) {
+  if (isFullRelease) {
     const version =
       (await shell
         .exec(`auto version --from v${currentVersion}`, { silent: true })
