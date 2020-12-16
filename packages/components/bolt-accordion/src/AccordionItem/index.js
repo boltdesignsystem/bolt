@@ -14,10 +14,7 @@ class AccordionItem extends withContext(BoltElement) {
 
   static get properties() {
     return {
-      noSeparator: { type: Boolean },
-      boxShadow: { type: Boolean },
-      spacing: { type: String },
-      iconValign: { type: String },
+      ...this.props,
     };
   }
 
