@@ -1,0 +1,86 @@
+{% set description %}
+  Page header is the global header that contains the global search, primary navigation, and secondary navigation.
+{% endset %}
+
+{% set notes %}
+{% endset %}
+
+{% set demo %}
+<bolt-table>
+  <table>
+    <tbody>
+      <tr>
+        <th>Pega.com</th>
+        <td><a href="{{ link['components-example-main-site'] }}" class="e-bolt-text-link">View</a></td>
+      </tr>
+      <tr>
+        <th>Community</th>
+        <td><a href="{{ link['components-example-community'] }}" class="e-bolt-text-link">View</a></td>
+      </tr>
+      <tr>
+        <th>Collaboration Center</th>
+        <td><a href="{{ link['components-example-collaboration-center'] }}" class="e-bolt-text-link">View</a></td>
+      </tr>
+    </tbody>
+  </table>
+</bolt-table>
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+// The main template
+{% include '@bolt-components-page-header/page-header.twig' with {
+  logo: {
+    image_src: '/images/logos/pega-logo.svg',
+    label: 'Pegasystems',
+    attributes: {
+      href: 'https://pega.com',
+    }
+  },
+  content: content,
+  secondary_content: secondary_content,
+  cta: {
+    content: 'Try Pega',
+    attributes: {
+      href: 'https://pega.com/products/try-now',
+    }
+  },
+} only %}
+
+// Search panel template
+{% include '@bolt-components-page-header/page-header-search-panel.twig' with {
+  content: content,
+} only %}
+
+// Primary nav template
+{% include '@bolt-components-page-header/page-header-primary-nav.twig' with {
+  content: content,
+} only %}
+
+// Nav ul template
+{% include '@bolt-components-page-header/page-header-nav-ul.twig' with {
+  content: content,
+  category: category,
+} only %}
+
+// Nav li template
+{% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+  link: {
+    content: 'Products',
+    attributes: {
+      href: 'https://pega.com/products',
+    },
+  },
+  children: children,
+  current: true,
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Basic Page Header',
+  description: description,
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+} only %}
