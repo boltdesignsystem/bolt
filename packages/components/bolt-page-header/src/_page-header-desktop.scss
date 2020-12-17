@@ -18,7 +18,10 @@
       bolt-color(white) $bolt-page-header-desktop-util-nav-height,
       bolt-color(white) 100%
     );
-    grid-template-columns: minmax(82px, auto) 1fr;
+    grid-template-columns: minmax(
+        82px,
+        var(--c-bolt-page-header-logo-max-width, auto)
+      ) 1fr;
     grid-gap: var(--bolt-spacing-x-xsmall);
   }
 
@@ -364,7 +367,6 @@
 
           .c-bolt-page-header__nav-link--heading {
             margin-bottom: var(--bolt-spacing-y-xsmall);
-            font-weight: var(--bolt-type-font-weight-semibold);
           }
 
           > .c-bolt-page-header__nav-link--heading {
@@ -391,7 +393,7 @@
 
           .c-bolt-page-header__nav-list {
             font-size: var(--bolt-type-font-size-xsmall);
-            font-weight: var(--bolt-type-font-weight-regular);
+            font-weight: var(--bolt-type-font-weight-semibold);
             line-height: var(--bolt-type-line-height-xsmall);
           }
         }

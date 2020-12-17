@@ -125,7 +125,7 @@ export class BoltPageHeaderNav {
   }
 
   clickHandler(e) {
-    const el = e.target.closest('button[aria-haspopup]');
+    const el = e.target.closest('.js-bolt-page-header-trigger');
     this.toggleMenu(el);
   }
 
@@ -176,7 +176,7 @@ export class BoltPageHeaderNav {
   addHoverHandler(menus = []) {
     // https://github.com/tristen/hoverintent#custom-options
     const opts = {
-      timeout: 250,
+      timeout: 500,
     };
 
     this.hoverListeners = this.hoverListeners || [];

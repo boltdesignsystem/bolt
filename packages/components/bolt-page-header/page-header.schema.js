@@ -12,7 +12,7 @@ module.exports = {
     content: {
       type: ['string', 'array', 'object'],
       description:
-        'Primary content of page header (primary nav, utility nav, etc.).',
+        'Primary content of page header. Primary nav and search panel are expected here.',
     },
     secondary_content: {
       type: ['string', 'array', 'object'],
@@ -22,7 +22,7 @@ module.exports = {
     logo: {
       type: 'object',
       description:
-        'Set the site logo. This can be turned into a link by passing the proper attributes such as "href" and "target".',
+        'Set the site logo. This can be turned into a link by passing the "href" attribute.',
       properties: {
         attributes: {
           type: 'object',
@@ -51,7 +51,7 @@ module.exports = {
         },
         content: {
           type: 'string',
-          description: 'Content of the call-to-action.',
+          description: 'Text content of the call-to-action.',
         },
       },
     },

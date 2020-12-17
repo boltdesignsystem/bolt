@@ -10,7 +10,8 @@ module.exports = {
     },
     link: {
       type: 'object',
-      description: 'Link of the nav li.',
+      description:
+        'Link of the nav li. Passing the "href" attribute will turn it into a semantic link. This prop will be overridden by the content prop.',
       properties: {
         attributes: {
           type: 'object',
@@ -24,7 +25,7 @@ module.exports = {
         desktop_heading: {
           type: 'boolean',
           description:
-            'Indicate if the link should also act as a heading in desktop view. This has no effects in mobile view. This only applies if children is passed and nav ul category is set to "site".',
+            'Indicate if the link should also act as a heading for the children in desktop view. This has no effects in mobile view. This only applies if children is passed and nav ul category is set to "site".',
         },
       },
     },
@@ -36,19 +37,7 @@ module.exports = {
     content: {
       type: ['string', 'array', 'object'],
       description:
-        'Content of the nav li. Use this only if the nav li is not a link, instead it is some kind of layouts such as a card.',
-    },
-    popover: {
-      type: 'boolean',
-      description:
-        'Indicate if the nav li is a popover. This only applies if nav ul category is set to "related-sites" or "user".',
-      default: false,
-    },
-    selected: {
-      type: 'boolean',
-      description:
-        'Set the nav li as the selected item. This only applies if nav ul category is set to "user" and the nav li is rendering the language select.',
-      default: false,
+        'Content of the nav li. Use this only if the nav li is not a link, instead it is some kind of layouts such as a card. This prop will override the link prop.',
     },
     current: {
       type: 'boolean',
@@ -60,6 +49,18 @@ module.exports = {
       type: 'boolean',
       description:
         'Set the nav li width to full. This only applies if nav ul category is set to "site".',
+      default: false,
+    },
+    popover: {
+      type: 'boolean',
+      description:
+        'Indicate if the nav li is a popover. This only applies if nav ul category is set to "related-sites" or "user".',
+      default: false,
+    },
+    selected: {
+      type: 'boolean',
+      description:
+        'Set the nav li as the selected item. This only applies if nav ul category is set to "user" and the nav li is rendering the language select.',
       default: false,
     },
   },

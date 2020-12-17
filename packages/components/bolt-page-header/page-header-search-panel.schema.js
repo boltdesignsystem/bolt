@@ -11,7 +11,8 @@ module.exports = {
     },
     content: {
       type: ['string', 'array', 'object'],
-      description: 'Content of page header search panel.',
+      description:
+        'Content of page header search panel. Typeahead or some kind of search input is expected here.',
     },
   },
 };

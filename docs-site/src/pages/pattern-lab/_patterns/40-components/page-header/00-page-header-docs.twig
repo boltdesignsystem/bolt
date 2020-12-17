@@ -1,10 +1,53 @@
 {% set usage %}{% verbatim %}
-{% include "@bolt-components-page-header/page-header.twig" with {
-  TBD
+// The main template
+{% include '@bolt-components-page-header/page-header.twig' with {
+  logo: {
+    image_src: '/images/logos/pega-logo.svg',
+    label: 'Pegasystems',
+    attributes: {
+      href: 'https://pega.com',
+    }
+  },
+  content: content,
+  secondary_content: secondary_content,
+  cta: {
+    content: 'Try Pega',
+    attributes: {
+      href: 'https://pega.com/products/try-now',
+    }
+  },
+} only %}
+
+// Search panel template
+{% include '@bolt-components-page-header/page-header-search-panel.twig' with {
+  content: content,
+} only %}
+
+// Primary nav template
+{% include '@bolt-components-page-header/page-header-primary-nav.twig' with {
+  content: content,
+} only %}
+
+// Nav ul template
+{% include '@bolt-components-page-header/page-header-nav-ul.twig' with {
+  content: content,
+  category: category,
+} only %}
+
+// Nav li template
+{% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+  link: {
+    content: 'Products',
+    attributes: {
+      href: 'https://pega.com/products',
+    },
+  },
+  children: children,
+  current: true,
 } only %}
 {% endverbatim %}{% endset %}
 
-{% include "@utils/docs.twig" with {
-  componentName: "page-header",
+{% include '@utils/docs.twig' with {
+  componentName: 'page-header',
   usage: usage
 } only %}

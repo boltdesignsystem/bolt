@@ -11,7 +11,8 @@ module.exports = {
     },
     content: {
       type: ['string', 'array', 'object'],
-      description: 'Content of page header primary nav.',
+      description:
+        'Content of page header primary nav. Nav ul are expected here.',
     },
   },
 };

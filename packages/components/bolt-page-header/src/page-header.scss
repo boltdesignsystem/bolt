@@ -84,10 +84,12 @@
 }
 
 .c-bolt-page-header__logo__img {
+  display: block;
   height: 30px;
 
   img {
-    max-width: var(--c-bolt-page-header-logo-max-width, 100%);
+    width: var(--c-bolt-page-header-logo-max-width);
+    max-width: 100%;
     height: inherit;
     object-fit: contain;
     object-position: left center;
