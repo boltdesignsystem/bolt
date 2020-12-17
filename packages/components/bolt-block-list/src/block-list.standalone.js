@@ -5,23 +5,22 @@ import {
   customElement,
   unsafeHTML,
 } from '@bolt/element';
-import blockListStyles from './block-list.scss';
+
+import styles from './block-list.scss';
+import schema from '../block-list.schema';
 
 @customElement('bolt-block-list')
 class BoltBlockList extends BoltElement {
+  static schema = schema;
+
   static get properties() {
     return {
-      items: Array,
+      ...this.props,
     };
   }
 
   static get styles() {
-    return [unsafeCSS(blockListStyles)];
-  }
-
-  connectedCallback() {
-    super.connectedCallback && super.connectedCallback();
-    this.items = this.items || [];
+    return [unsafeCSS(styles)];
   }
 
   render() {
