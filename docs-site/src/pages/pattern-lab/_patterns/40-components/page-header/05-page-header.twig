@@ -54,7 +54,6 @@
 {% set intelligent_automation_lv4 %}
   {% include '@bolt-components-page-header/page-header-nav-ul.twig' with {
     content: intelligent_automation_lv4_ul_content,
-    nested: true,
   } only %}
 {% endset %}
 
@@ -96,7 +95,6 @@
 {% set customer_engagement_crm_lv4 %}
   {% include '@bolt-components-page-header/page-header-nav-ul.twig' with {
     content: customer_engagement_crm_lv4_ul_content,
-    nested: true,
   } only %}
 {% endset %}
 
@@ -104,30 +102,25 @@
   {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
     link: {
       content: 'Intelligent Automation',
-    },
-    children: {
-      content: intelligent_automation_lv4,
       desktop_heading: true,
     },
+    children: intelligent_automation_lv4,
   } only %}
   {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
     link: {
       content: 'Customer Engagement &amp; CRM',
+      desktop_heading: true,
       attributes: {
         href: 'https://pega.com/',
       },
     },
-    children: {
-      content: customer_engagement_crm_lv4,
-      desktop_heading: true,
-    },
+    children: customer_engagement_crm_lv4,
   } only %}
 {% endset %}
 
 {% set products_lv3 %}
   {% include '@bolt-components-page-header/page-header-nav-ul.twig' with {
     content: products_lv3_ul_content,
-    nested: true,
   } only %}
 {% endset %}
 
@@ -135,23 +128,19 @@
   {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
     link: {
       content: 'Products',
+      desktop_heading: true,
       attributes: {
         href: 'https://pega.com',
       },
     },
-    children: {
-      content: products_lv3,
-      desktop_heading: true,
-    },
+    children: products_lv3,
   } only %}
   {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
     link: {
       content: 'Capabilities',
-    },
-    children: {
-      content: capabilities_lv3,
       desktop_heading: true,
     },
+    children: capabilities_lv3,
   } only %}
 
   {% set card %}
@@ -196,7 +185,6 @@
 {% set products_lv2 %}
   {% include '@bolt-components-page-header/page-header-nav-ul.twig' with {
     content: products_lv2_ul_content,
-    nested: true,
   } only %}
 {% endset %}
 
@@ -205,9 +193,7 @@
     link: {
       content: 'Products',
     },
-    children: {
-      content: products_lv2,
-    },
+    children: products_lv2,
   },
   {
     link: {
@@ -302,7 +288,6 @@
 {% set user_popover_lv2 %}
   {% include '@bolt-components-page-header/page-header-nav-ul.twig' with {
     content: user_popover_lv2_ul_content,
-    nested: true,
     popover_position: 'edge-end',
   } only %}
 {% endset %}
@@ -378,7 +363,6 @@
 {% set language_popover_lv2 %}
   {% include '@bolt-components-page-header/page-header-nav-ul.twig' with {
     content: language_popover_lv2_ul_content,
-    nested: true,
   } only %}
 {% endset %}
 
@@ -387,18 +371,14 @@
     link: {
       content: icon_user ~ 'User: Bill',
     },
-    children: {
-      content: user_popover_lv2,
-    },
+    children: user_popover_lv2,
     popover: true,
   } only %}
   {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
     link: {
       content: icon_global ~ 'Language: English',
     },
-    children: {
-      content: language_popover_lv2,
-    },
+    children: language_popover_lv2,
     popover: true,
   } only %}
 {% endset %}
@@ -473,7 +453,6 @@
 {% set more_pega_sites_nav_lv3 %}
   {% include '@bolt-components-page-header/page-header-nav-ul.twig' with {
     content: more_pega_sites_nav_lv3_ul_content,
-    nested: true,
   } only %}
 {% endset %}
 
@@ -506,9 +485,7 @@
     link: {
       content: icon_menu ~ 'More Pega Sites',
     },
-    children: {
-      content: more_pega_sites_nav_lv3,
-    },
+    children: more_pega_sites_nav_lv3,
     popover: true,
   } only %}
 {% endset %}
@@ -516,7 +493,6 @@
 {% set pega_sites_nav_lv2 %}
   {% include '@bolt-components-page-header/page-header-nav-ul.twig' with {
     content: pega_sites_nav_lv2_ul_content,
-    nested: true,
   } only %}
 {% endset %}
 
@@ -525,9 +501,7 @@
     link: {
       content: 'Pega Sites',
     },
-    children: {
-      content: pega_sites_nav_lv2,
-    },
+    children: pega_sites_nav_lv2,
   } only %}
 {% endset %}
 

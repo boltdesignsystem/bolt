@@ -28,7 +28,7 @@
   {% elseif link and not content %}
     {% if link and children %}
       {# Visible desktop heading #}
-      {% if children.desktop_heading %}
+      {% if link.desktop_heading %}
         <{{ link_tag }} {{ link_attributes }} class="c-bolt-page-header__nav-link c-bolt-page-header__nav-link--heading">
           <strong class="c-bolt-page-header__nav-link__content">
             {{ link.content }}
@@ -41,14 +41,14 @@
         'js-bolt-page-header-trigger',
         'c-bolt-page-header__nav-link',
       ] %}
-      <button type="button" aria-haspopup="true" aria-expanded="false" {{ link_attributes.addClass(children_link_classes)|without('href')|without('target')|without('type')|without('aria-haspopup')|without('aria-expanded') }}>
+      <button type="button" aria-expanded="false" {{ link_attributes.addClass(children_link_classes)|without('href')|without('target')|without('type')|without('aria-expanded') }}>
         <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--collapse" aria-hidden="true"></span>
         <span class="c-bolt-page-header__nav-link__content">
           {{ link.content }}
         </span>
         <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--expand" aria-hidden="true"></span>
       </button>
-      {{ children.content }}
+      {{ children }}
     {% else %}
       {# Simple link without children #}
       {% set link_classes = [
