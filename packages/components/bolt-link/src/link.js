@@ -9,28 +9,25 @@ import {
   spread,
 } from '@bolt/element';
 import classNames from 'classnames/bind';
-import linkStyles from './link.scss';
+import styles from './link.scss';
 import schema from '../link.schema';
 
-let cx = classNames.bind(linkStyles);
+let cx = classNames.bind(styles);
 
 @customElement('bolt-link')
 @convertInitialTags(['button', 'a'])
 class BoltLink extends BoltActionElement {
-  static get styles() {
-    return [unsafeCSS(linkStyles)];
-  }
+  static schema = schema;
 
   static get properties() {
     return {
       ...BoltActionElement.properties,
-      display: String,
-      valign: String,
-      isHeadline: {
-        type: Boolean,
-        attribute: 'is-headline',
-      },
+      ...this.props,
     };
+  }
+
+  static get styles() {
+    return [unsafeCSS(styles)];
   }
 
   // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
