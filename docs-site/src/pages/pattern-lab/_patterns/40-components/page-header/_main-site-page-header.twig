@@ -1,3 +1,5 @@
+{# This is used for PL demos, do not rename or remove. #}
+
 {# Icons #}
 {% set icon_user %}
   {% include '@bolt-components-icon/icon.twig' with {
@@ -749,6 +751,18 @@
   {{ primary_nav }}
 {% endset %}
 
+{% set cta %}
+  {% include '@bolt-elements-button/button.twig' with {
+    content: 'Try Pega',
+    display: 'block',
+    size: 'small',
+    attributes: {
+      href: 'https://pega.com/products/try-now',
+      target: '_blank',
+    }
+  } only %}
+{% endset %}
+
 {% include '@bolt-components-page-header/page-header.twig' with {
   logo: {
     image_src: '/images/logos/pega-logo.svg',
@@ -758,11 +772,5 @@
     }
   },
   content: page_header_content,
-  cta: {
-    content: 'Try Pega',
-    attributes: {
-      href: 'https://pega.com/products/try-now',
-      target: '_blank',
-    }
-  },
+  cta: cta,
 } only %}

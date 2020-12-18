@@ -54,37 +54,32 @@
       href: 'https://pega.com',
     }
   },
-  content: content,
-  secondary_content: secondary_content,
-  cta: {
-    content: 'Try Pega',
-    attributes: {
-      href: 'https://pega.com/products/try-now',
-    }
-  },
+  content: primary_nav_and_search_panel,
+  secondary_content: secondary_nav,
+  cta: cta_button,
   attributes: {
     style: '--c-bolt-page-header-logo-max-width: 150px',
   },
   static: true,
 } only %}
 
-// Search panel template
+// Search panel template (pass to main template's content prop)
 {% include '@bolt-components-page-header/page-header-search-panel.twig' with {
   content: content,
 } only %}
 
-// Primary nav template
+// Primary nav template (pass to main template's content prop)
 {% include '@bolt-components-page-header/page-header-primary-nav.twig' with {
   content: content,
 } only %}
 
-// Nav ul template
+// Nav ul template (pass to primary nav template's content prop)
 {% include '@bolt-components-page-header/page-header-nav-ul.twig' with {
   content: content,
   category: category,
 } only %}
 
-// Nav li template
+// Nav li template (pass to nav ul template's content prop)
 {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
   link: {
     content: 'Products',

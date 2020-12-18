@@ -14,8 +14,8 @@
   right: 0;
   left: 0;
   z-index: bolt-z-index(navFixed);
-  color: bolt-theme(text);
-  background-color: bolt-theme(background);
+  color: var(--m-bolt-text);
+  background-color: var(--m-bolt-bg);
 
   *::-webkit-scrollbar {
     width: 11px;
@@ -171,7 +171,7 @@
   border-top-color: $bolt-border-color;
   border-top-style: $bolt-border-style;
   border-top-width: $bolt-border-width;
-  background-color: bolt-theme(background);
+  background-color: var(--m-bolt-bg);
 
   &:after {
     content: '';
@@ -181,7 +181,7 @@
     right: 0;
     left: 0;
     height: 100vh;
-    background-color: bolt-theme(headline);
+    background-color: var(--m-bolt-headline);
   }
 
   @at-root .c-bolt-page-header__action-trigger--search[aria-expanded='true']
@@ -214,32 +214,8 @@
 .c-bolt-page-header__cta {
   @include bolt-button-native-styles-reset;
 
-  display: block;
-  font-family: var(--bolt-type-font-family-headline);
-  font-weight: var(--bolt-type-font-weight-semibold);
-  color: bolt-theme(text-on-primary);
-  text-align: center;
-  text-decoration: none;
-  outline: none;
-  background-color: bolt-theme(primary);
-  filter: none;
-  transition: transform $bolt-transition, filter $bolt-transition,
-    box-shadow $bolt-transition;
+  display: grid;
   white-space: nowrap;
-
-  &:hover,
-  &:focus {
-    filter: brightness(110%);
-  }
-
-  &:focus {
-    box-shadow: inset 0 0 0 3px bolt-theme(primary),
-      inset 0 0 0 4px bolt-color(text-on-primary);
-  }
-
-  &:active {
-    filter: brightness(95%);
-  }
 }
 
 // User flag

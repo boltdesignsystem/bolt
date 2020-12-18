@@ -86,7 +86,7 @@
     border-bottom-color: $bolt-border-color;
     border-bottom-style: $bolt-border-style;
     border-bottom-width: $bolt-border-width;
-    background-color: bolt-theme(background);
+    background-color: var(--m-bolt-bg);
   }
 
   .c-bolt-page-header__nav-list-item.has-children {
@@ -102,7 +102,7 @@
       border-bottom-color: $bolt-border-color;
       border-bottom-style: $bolt-border-style;
       border-bottom-width: $bolt-border-width;
-      background-color: bolt-theme(background);
+      background-color: var(--m-bolt-bg);
 
       &:after {
         content: '';
@@ -112,7 +112,7 @@
         left: 0;
         z-index: 0;
         height: 100vh;
-        background-color: bolt-theme(secondary);
+        background-color: var(--m-bolt-secondary);
       }
     }
 
@@ -186,7 +186,7 @@
           --bolt-spacing-x-small
         ) * 2
     );
-    color: bolt-theme(headline);
+    color: var(--m-bolt-headline);
     cursor: default;
 
     &:after {
@@ -312,17 +312,18 @@
     transform: translate3d(100%, 0, 0);
     z-index: bolt-z-index(navFixed);
     height: $bolt-page-header-click-target-size;
-    padding: 0 var(--bolt-spacing-x-medium);
-    font-size: var(--bolt-type-font-size-medium);
-    line-height: $bolt-page-header-click-target-size;
-    box-shadow: 0 0 var(--bolt-spacing-y-small) bolt-theme(primary);
-    transition: visibility $bolt-transition, transform $bolt-transition,
-      filter $bolt-transition, box-shadow $bolt-transition;
+    transition: visibility $bolt-transition, transform $bolt-transition;
 
     @at-root .c-bolt-page-header__action-trigger--nav[aria-expanded='true']
         ~ #{&} {
       visibility: visible;
       transform: translate3d(0, 0, 0);
+    }
+
+    > * {
+      display: grid;
+      place-items: center;
+      border-radius: 0;
     }
   }
 

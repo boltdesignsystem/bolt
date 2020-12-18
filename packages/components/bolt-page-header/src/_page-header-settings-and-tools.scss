@@ -86,12 +86,12 @@ $bolt-page-header-mobile-expanded-content-spacing-x: calc(
   font-family: var(--bolt-type-font-family-headline);
   font-size: var(--bolt-type-font-size-medium);
   font-weight: var(--bolt-type-font-weight-semibold);
-  color: bolt-theme(link);
+  color: var(--m-bolt-link);
   line-height: var(--bolt-type-line-height-medium);
   text-align: inherit;
   border-radius: bolt-border-radius(small);
   outline: none;
-  background-color: bolt-theme(background);
+  background-color: var(--m-bolt-bg);
 
   &:before {
     content: '';
@@ -106,14 +106,14 @@ $bolt-page-header-mobile-expanded-content-spacing-x: calc(
     z-index: 0;
     pointer-events: none;
     border-radius: inherit;
-    background-color: bolt-theme(link);
+    background-color: var(--m-bolt-link);
     will-change: opacity, transform;
     transition: opacity $bolt-transition, transform $bolt-transition;
   }
 
   &:hover,
   &:focus {
-    color: bolt-theme(headline);
+    color: var(--m-bolt-headline);
 
     &:before {
       opacity: 0.1;
@@ -121,7 +121,7 @@ $bolt-page-header-mobile-expanded-content-spacing-x: calc(
   }
 
   &:focus {
-    box-shadow: inset 0 0 0 1px bolt-theme(link);
+    box-shadow: inset 0 0 0 1px var(--m-bolt-link);
     outline: none; // Repeated here to remove Firefox default outline.
   }
 
@@ -132,7 +132,7 @@ $bolt-page-header-mobile-expanded-content-spacing-x: calc(
   }
 
   &[aria-expanded='true'] {
-    color: bolt-theme(headline);
+    color: var(--m-bolt-headline);
   }
 
   > * {
@@ -142,8 +142,7 @@ $bolt-page-header-mobile-expanded-content-spacing-x: calc(
 
 @mixin bolt-page-header-nav-background {
   background: linear-gradient(
-      rgba(bolt-color(gray), 0.4),
-      rgba(bolt-color(gray), 0.2)
-    ),
-    linear-gradient(bolt-theme(background), bolt-theme(background));
+    var(--bolt-color-gray-light),
+    var(--bolt-color-gray-xlight)
+  );
 }

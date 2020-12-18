@@ -42,18 +42,7 @@ module.exports = {
     cta: {
       type: 'object',
       description:
-        'Set the main call-to-action. This can be either a semantic link or button. Passing the "href" attribute will turn it into a link while the "type" attribute will turn it into a button.',
-      properties: {
-        attributes: {
-          type: 'object',
-          description:
-            'A Drupal attributes object. Applies extra HTML attributes to the parent element.',
-        },
-        content: {
-          type: 'string',
-          description: 'Text content of the call-to-action.',
-        },
-      },
+        'Set the main call-to-action. Button element is expected here.',
     },
     static: {
       type: 'boolean',

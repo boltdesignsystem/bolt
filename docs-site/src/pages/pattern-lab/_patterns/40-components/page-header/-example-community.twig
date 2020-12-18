@@ -267,35 +267,115 @@
   } only %}
 {% endset %}
 
-{% set my_collaboration_lv2_ul_content %}
+{% set documentation_lv2_ul_content %}
   {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
     link: {
-      content: 'my collaboration placeholder',
+      content: 'documentation placeholder',
       attributes: {
         href: 'https://pega.com',
       }
     },
   } only %}
 {% endset %}
-{% set my_collaboration_lv2 %}
+{% set documentation_lv2 %}
   {% include '@bolt-components-page-header/page-header-nav-ul.twig' with {
-    content: my_collaboration_lv2_ul_content,
+    content: documentation_lv2_ul_content,
   } only %}
 {% endset %}
 
-{% set about_lv2_ul_content %}
+{% set training_lv2_ul_content %}
   {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
     link: {
-      content: 'about placeholder',
+      content: 'training placeholder',
       attributes: {
         href: 'https://pega.com',
       }
     },
   } only %}
 {% endset %}
-{% set about_lv2 %}
+{% set training_lv2 %}
   {% include '@bolt-components-page-header/page-header-nav-ul.twig' with {
-    content: about_lv2_ul_content,
+    content: training_lv2_ul_content,
+  } only %}
+{% endset %}
+
+{% set collaborate_lv2_ul_content %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'collaborate placeholder',
+      attributes: {
+        href: 'https://pega.com',
+      }
+    },
+  } only %}
+{% endset %}
+{% set collaborate_lv2 %}
+  {% include '@bolt-components-page-header/page-header-nav-ul.twig' with {
+    content: collaborate_lv2_ul_content,
+  } only %}
+{% endset %}
+
+{% set support_lv2_ul_content %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'support placeholder',
+      attributes: {
+        href: 'https://pega.com',
+      }
+    },
+  } only %}
+{% endset %}
+{% set support_lv2 %}
+  {% include '@bolt-components-page-header/page-header-nav-ul.twig' with {
+    content: support_lv2_ul_content,
+  } only %}
+{% endset %}
+
+{% set marketplace_lv2_ul_content %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'marketplace placeholder',
+      attributes: {
+        href: 'https://pega.com',
+      }
+    },
+  } only %}
+{% endset %}
+{% set marketplace_lv2 %}
+  {% include '@bolt-components-page-header/page-header-nav-ul.twig' with {
+    content: marketplace_lv2_ul_content,
+  } only %}
+{% endset %}
+
+{% set partners_lv2_ul_content %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'partners placeholder',
+      attributes: {
+        href: 'https://pega.com',
+      }
+    },
+  } only %}
+{% endset %}
+{% set partners_lv2 %}
+  {% include '@bolt-components-page-header/page-header-nav-ul.twig' with {
+    content: partners_lv2_ul_content,
+  } only %}
+{% endset %}
+
+{% set clients_lv2_ul_content %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'clients placeholder',
+      attributes: {
+        href: 'https://pega.com',
+      }
+    },
+  } only %}
+{% endset %}
+{% set clients_lv2 %}
+  {% include '@bolt-components-page-header/page-header-nav-ul.twig' with {
+    content: clients_lv2_ul_content,
   } only %}
 {% endset %}
 
@@ -308,15 +388,45 @@
   },
   {
     link: {
-      content: 'My Collaboration',
+      content: 'Documentation',
     },
-    children: my_collaboration_lv2,
+    children: documentation_lv2,
   },
   {
     link: {
-      content: 'About Collaboration Center',
+      content: 'Training',
     },
-    children: about_lv2,
+    children: training_lv2,
+  },
+  {
+    link: {
+      content: 'Collaborate',
+    },
+    children: collaborate_lv2,
+  },
+  {
+    link: {
+      content: 'Support',
+    },
+    children: support_lv2,
+  },
+  {
+    link: {
+      content: 'Marketplace',
+    },
+    children: marketplace_lv2,
+  },
+  {
+    link: {
+      content: 'Partners',
+    },
+    children: partners_lv2,
+  },
+  {
+    link: {
+      content: 'Clients',
+    },
+    children: clients_lv2,
   },
 ] %}
 
@@ -382,7 +492,7 @@
   } only %}
   {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
     link: {
-      content: 'Product Design',
+      content: 'Pega Cosmos',
       attributes: {
         href: 'https://pega.com/',
       },
@@ -439,7 +549,7 @@
   } only %}
   {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
     link: {
-      content: 'Pega Community',
+      content: 'Collaboration Center',
       attributes: {
         href: 'https://pega.com/',
       },
@@ -513,45 +623,6 @@
   } only %}
 {% endset %}
 
-{# Secondary Nav #}
-{% set secondary_nav %}
-  {% include '@bolt-components-navbar/navbar.twig' with {
-    title: {
-      tag: 'div',
-      text: 'Subnav',
-      icon: {
-        name: 'marketing-gray'
-      }
-    },
-    links: [
-      {
-        text: 'Real-Time AI',
-        url: '#!'
-      },
-      {
-        text: 'End-to-end Automation',
-        url: '#!'
-      },
-      {
-        text: 'Journey-centric Delivery',
-        url: '#!'
-      },
-      {
-        text: 'Low Code',
-        url: '#!'
-      },
-      {
-        text: 'Multi-dimensional Power Long Title',
-        url: '#!'
-      },
-      {
-        text: 'Cloud Choice',
-        url: '#!'
-      }
-    ]
-  } only %}
-{% endset %}
-
 {# Page Header #}
 {% set page_header_content %}
   {{ search_panel }}
@@ -560,11 +631,14 @@
 
 {% include '@bolt-components-page-header/page-header.twig' with {
   logo: {
-    image_src: '/images/logos/pega-logo-cc.svg',
-    label: 'Pega Collaboration Center',
+    image_src: '/images/logos/pega-logo-com.svg',
+    label: 'Pega Community',
     attributes: {
-      href: 'https://collaborate.pega.com',
+      href: 'https://community.pega.com',
     }
   },
   content: page_header_content,
+  attributes: {
+    style: '--c-bolt-page-header-logo-max-width: 250px'
+  }
 } only %}

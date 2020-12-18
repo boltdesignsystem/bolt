@@ -13,10 +13,10 @@
     padding-bottom: $bolt-page-header-desktop-padding-bottom;
     padding-left: var(--bolt-page-padding-x);
     background: linear-gradient(
-      rgba(bolt-color(gray), 0.1) 0%,
-      rgba(bolt-color(gray), 0.1) $bolt-page-header-desktop-util-nav-height,
-      bolt-color(white) $bolt-page-header-desktop-util-nav-height,
-      bolt-color(white) 100%
+      var(--bolt-color-gray-xlight) 0%,
+      var(--bolt-color-gray-xlight) $bolt-page-header-desktop-util-nav-height,
+      var(--bolt-color-white) $bolt-page-header-desktop-util-nav-height,
+      var(--bolt-color-white) 100%
     );
     grid-template-columns:
       minmax(82px, var(--c-bolt-page-header-logo-max-width, auto))
@@ -78,7 +78,7 @@
       left: 0;
       z-index: 0;
       height: var(--bolt-page-header-height);
-      background-color: bolt-theme(background);
+      background-color: var(--m-bolt-bg);
     }
   }
 
@@ -158,8 +158,8 @@
         visibility: hidden;
         opacity: 0;
         position: absolute;
-        top: var(--bolt-spacing-y-medium);
-        transform: translate3d(0, calc(var(--bolt-spacing-y-medium) * -1), 0);
+        top: 0;
+        transform: translate3d(0, 0, 0);
         z-index: bolt-z-index(modal);
         width: 180px;
         overflow: hidden;
@@ -167,7 +167,7 @@
         border-width: $bolt-border-width;
         border-style: $bolt-border-style;
         border-color: $bolt-border-color;
-        background-color: bolt-theme(background);
+        background-color: var(--m-bolt-bg);
         transition: opacity $bolt-transition, visibility $bolt-transition,
           transform $bolt-transition;
 
@@ -197,7 +197,7 @@
           padding-right: calc(
             var(--bolt-spacing-x-small) + var(--bolt-spacing-x-small) * 2
           );
-          color: bolt-theme(headline);
+          color: var(--m-bolt-headline);
           cursor: default;
 
           &:after {
@@ -221,7 +221,11 @@
         ~ .c-bolt-page-header__nav-list {
         visibility: visible;
         opacity: 1;
-        transform: translate3d(0, 0, 0);
+        transform: translate3d(
+          0,
+          calc(var(--bolt-spacing-y-medium) * 1 - 2px),
+          0
+        );
       }
 
       > .c-bolt-page-header__nav-list--edge-start {
@@ -235,17 +239,10 @@
   }
 
   .c-bolt-page-header__nav-list--user {
+    flex-flow: row-reverse;
     order: 3;
     right: calc(var(--bolt-page-padding-x) - var(--bolt-spacing-x-xsmall));
     height: var(--bolt-spacing-y-medium);
-
-    > .c-bolt-page-header__nav-list-item:first-of-type {
-      order: 2;
-    }
-
-    > .c-bolt-page-header__nav-list-item:last-of-type {
-      order: 1;
-    }
   }
 
   .c-bolt-page-header__nav-list--related-sites {
@@ -272,7 +269,7 @@
 
       &.is-current {
         > .c-bolt-page-header__nav-link {
-          color: bolt-theme(headline);
+          color: var(--m-bolt-headline);
         }
       }
 
@@ -353,8 +350,8 @@
         border-bottom-style: $bolt-border-style;
         border-bottom-width: $bolt-border-width;
         box-shadow: 0 var(--bolt-spacing-y-medium) var(--bolt-spacing-y-medium)
-          rgba(bolt-color(black), 0.4);
-        background-color: bolt-theme(background);
+          rgba(black, 0.4);
+        background-color: var(--m-bolt-bg);
         transition: opacity $bolt-transition, visibility $bolt-transition,
           transform $bolt-transition;
 
@@ -380,7 +377,7 @@
             font-family: var(--bolt-type-font-family-headline);
             font-size: var(--bolt-type-font-size-medium);
             font-weight: var(--bolt-type-font-weight-bold);
-            color: bolt-theme(headline);
+            color: var(--m-bolt-headline);
             line-height: var(--bolt-type-line-height-medium);
           }
 
@@ -407,7 +404,7 @@
         .c-bolt-page-header__nav-link {
           display: block;
           padding: 1px;
-          color: bolt-theme(headline);
+          color: var(--m-bolt-headline);
 
           > .c-bolt-page-header__nav-link__content {
             font-family: inherit;
@@ -470,7 +467,6 @@
 
       > .c-bolt-page-header__nav-link[aria-expanded='true']
         ~ .c-bolt-page-header__nav-list {
-        /* @todo: remove this comment after hover JS is done. &:hover > .c-bolt-page-header__nav-list */
         @include bolt-vertical-scroll;
 
         visibility: visible;
@@ -486,12 +482,6 @@
           transform: none;
         }
       }
-
-      /* @todo: remove this selector after hover JS is done.
-      &:hover > .c-bolt-page-header__nav-list {
-        z-index: 2;
-      }
-      */
     }
   }
 
@@ -518,18 +508,6 @@
     transform: translate3d(0, 0, 0);
     margin-right: $bolt-page-header-action-trigger-spacing-x;
     margin-left: $bolt-page-header-action-trigger-spacing-x;
-    padding: var(--bolt-spacing-y-xsmall) var(--bolt-spacing-x-small);
-    font-size: var(--bolt-type-font-size-small);
-    line-height: var(--bolt-type-line-height-small);
-    border-radius: bolt-border-radius(small);
-    box-shadow: 0 3px var(--bolt-spacing-y-xsmall) rgba(bolt-color(gray), 0.4);
-    transition: transform $bolt-transition, filter $bolt-transition,
-      box-shadow $bolt-transition;
-    white-space: nowrap;
-
-    &:hover {
-      transform: translate3d(0, -1px, 0);
-    }
   }
 
   // User flag
