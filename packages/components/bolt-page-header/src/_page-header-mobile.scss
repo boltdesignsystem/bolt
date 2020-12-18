@@ -13,12 +13,18 @@
     padding-bottom: $bolt-page-header-mobile-spacing-y;
     padding-left: $bolt-page-header-mobile-primary-nav-spacing-x;
     grid-template-columns: minmax(166px, auto) 1fr;
-    grid-gap: var(--bolt-spacing-x-small);
+    grid-gap: 1px;
   }
 
   // Toolbar
   .c-bolt-page-header__toolbar {
     margin-left: auto;
+  }
+
+  .c-bolt-page-header__action-trigger {
+    & ~ #{&} {
+      margin-left: 1px;
+    }
   }
 
   // Search panel
@@ -38,10 +44,11 @@
     position: fixed;
     top: var(--bolt-page-header-height);
     right: 0;
-    bottom: $bolt-page-header-click-target-size;
+    bottom: 0;
     left: 0;
     transform: translate3d(100%, 0, 0);
     overflow: hidden;
+    padding-bottom: $bolt-page-header-click-target-size;
     border-top-color: $bolt-border-color;
     border-top-style: $bolt-border-style;
     border-top-width: $bolt-border-width;

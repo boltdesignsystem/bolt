@@ -44,6 +44,12 @@
     display: none;
   }
 
+  .c-bolt-page-header__action-trigger {
+    & ~ #{&} {
+      margin-left: var(--bolt-spacing-x-xxsmall);
+    }
+  }
+
   // Search panel
   .c-bolt-page-header__action-trigger--search {
     z-index: 2;

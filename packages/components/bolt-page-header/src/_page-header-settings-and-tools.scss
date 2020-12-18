@@ -31,7 +31,7 @@
 // }
 
 $bolt-page-header-action-trigger-spacing-x: var(--bolt-spacing-x-small);
-$bolt-page-header-click-target-size: 48px;
+$bolt-page-header-click-target-size: 44px;
 
 $bolt-page-header-desktop-util-nav-height: var(--bolt-spacing-y-medium);
 $bolt-page-header-desktop-spacing-y: var(
@@ -80,7 +80,9 @@ $bolt-page-header-mobile-expanded-content-spacing-x: calc(
   min-width: $bolt-page-header-click-target-size;
   min-height: $bolt-page-header-click-target-size;
   padding-top: var(--bolt-spacing-y-xsmall);
+  padding-right: $bolt-page-header-action-trigger-spacing-x;
   padding-bottom: var(--bolt-spacing-y-xsmall);
+  padding-left: $bolt-page-header-action-trigger-spacing-x;
   font-family: var(--bolt-type-font-family-headline);
   font-size: var(--bolt-type-font-size-medium);
   font-weight: var(--bolt-type-font-weight-semibold);
@@ -90,8 +92,6 @@ $bolt-page-header-mobile-expanded-content-spacing-x: calc(
   border-radius: bolt-border-radius(small);
   outline: none;
   background-color: bolt-theme(background);
-  padding-inline-end: $bolt-page-header-action-trigger-spacing-x;
-  padding-inline-start: $bolt-page-header-action-trigger-spacing-x;
 
   &:before {
     content: '';

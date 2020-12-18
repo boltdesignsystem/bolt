@@ -83,18 +83,17 @@
   justify-content: flex-start;
   align-items: center;
   height: $bolt-page-header-click-target-size;
-  padding-top: 2px;
-  padding-bottom: 2px;
 }
 
 .c-bolt-page-header__logo__img {
   display: block;
   height: 30px;
+  max-height: 100%;
 
   img {
     width: var(--c-bolt-page-header-logo-max-width);
     max-width: 100%;
-    height: inherit;
+    height: 100%;
     object-fit: contain;
     object-position: left center;
   }
@@ -122,10 +121,6 @@
       opacity: 0.1;
     }
   }
-
-  & ~ #{&} {
-    margin-inline-start: var(--bolt-spacing-x-xxsmall);
-  }
 }
 
 .c-bolt-page-header__action-trigger__text {
@@ -142,6 +137,9 @@
 
   > * {
     position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0);
     z-index: 0;
   }
 }

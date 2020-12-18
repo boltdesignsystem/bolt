@@ -271,7 +271,9 @@
   {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
     link: {
       content: 'my collaboration placeholder',
-      desktop_heading: true,
+      attributes: {
+        href: 'https://pega.com',
+      }
     },
   } only %}
 {% endset %}
@@ -285,7 +287,9 @@
   {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
     link: {
       content: 'about placeholder',
-      desktop_heading: true,
+      attributes: {
+        href: 'https://pega.com',
+      }
     },
   } only %}
 {% endset %}
