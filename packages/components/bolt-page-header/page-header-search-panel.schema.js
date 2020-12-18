@@ -2,7 +2,7 @@ module.exports = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'Page Header Search Panel',
   type: 'object',
-  required: 'content',
+  // required: 'content',
   properties: {
     attributes: {
       type: 'object',

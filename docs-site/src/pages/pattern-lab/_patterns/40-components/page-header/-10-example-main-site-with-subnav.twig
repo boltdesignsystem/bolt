@@ -731,6 +731,45 @@
   } only %}
 {% endset %}
 
+{# Secondary Nav #}
+{% set secondary_nav %}
+  {% include '@bolt-components-navbar/navbar.twig' with {
+    title: {
+      tag: 'div',
+      text: 'Subnav',
+      icon: {
+        name: 'marketing-gray'
+      }
+    },
+    links: [
+      {
+        text: 'Real-Time AI',
+        url: '#!'
+      },
+      {
+        text: 'End-to-end Automation',
+        url: '#!'
+      },
+      {
+        text: 'Journey-centric Delivery',
+        url: '#!'
+      },
+      {
+        text: 'Low Code',
+        url: '#!'
+      },
+      {
+        text: 'Multi-dimensional Power Long Title',
+        url: '#!'
+      },
+      {
+        text: 'Cloud Choice',
+        url: '#!'
+      }
+    ]
+  } only %}
+{% endset %}
+
 {# Page Header #}
 {% set page_header_content %}
   {{ search_panel }}
@@ -753,4 +792,5 @@
       target: '_blank',
     }
   },
+  secondary_content: secondary_nav,
 } only %}

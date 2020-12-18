@@ -1,5 +1,4 @@
 {% set usage %}{% verbatim %}
-// The main template
 {% include '@bolt-components-page-header/page-header.twig' with {
   logo: {
     image_src: '/images/logos/pega-logo.svg',
@@ -16,34 +15,7 @@
       href: 'https://pega.com/products/try-now',
     }
   },
-} only %}
-
-// Search panel template
-{% include '@bolt-components-page-header/page-header-search-panel.twig' with {
-  content: content,
-} only %}
-
-// Primary nav template
-{% include '@bolt-components-page-header/page-header-primary-nav.twig' with {
-  content: content,
-} only %}
-
-// Nav ul template
-{% include '@bolt-components-page-header/page-header-nav-ul.twig' with {
-  content: content,
-  category: category,
-} only %}
-
-// Nav li template
-{% include '@bolt-components-page-header/page-header-nav-li.twig' with {
-  link: {
-    content: 'Products',
-    attributes: {
-      href: 'https://pega.com/products',
-    },
-  },
-  children: children,
-  current: true,
+  static: true,
 } only %}
 {% endverbatim %}{% endset %}
 

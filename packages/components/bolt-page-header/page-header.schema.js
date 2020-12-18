@@ -2,7 +2,7 @@ module.exports = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'Page Header',
   type: 'object',
-  required: ['content', 'logo'],
+  // required: ['content', 'logo'],
   properties: {
     attributes: {
       type: 'object',
@@ -54,6 +54,11 @@ module.exports = {
           description: 'Text content of the call-to-action.',
         },
       },
+    },
+    static: {
+      type: 'boolean',
+      description: 'Set the page header to be static instead of sticky.',
+      default: false,
     },
   },
 };
