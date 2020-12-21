@@ -1,11 +1,14 @@
-{# Schema Validation #}
-{% set schema = bolt.data.components['@bolt-components-page-header'].schema %}
-{% if enable_json_schema_validation %}
-  {{ validate_data_schema(schema, _self)|raw }}
-{% endif %}
+{#
+  Schema Validation @todo: find a way to validate multiple schemas within one component.
+
+  {% set schema = bolt.data.components['@bolt-components-page-header'].schema %}
+  {% if enable_json_schema_validation %}
+    {{ validate_data_schema(schema, _self)|raw }}
+  {% endif %}
+  {% set this = init(schema) %}
+#}
 
 {# Variables #}
-{% set this = init(schema) %}
 {% set attributes = create_attribute(attributes|default({})) %}
 {% set link_attributes = create_attribute(link.attributes|default({})) %}
 {% set link_tag = link_attributes.type ? 'button' : link_attributes.href ? 'a' : 'span' %}
@@ -20,6 +23,7 @@
   current ? 'is-current',
 ] %}
 
+{# Template #}
 <li {{ attributes.addClass(classes) }}>
   {% if content and not link %}
     <div class="c-bolt-page-header__nav-content">

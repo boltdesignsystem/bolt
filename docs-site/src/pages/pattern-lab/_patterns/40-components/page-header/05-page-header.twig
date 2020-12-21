@@ -28,7 +28,11 @@
     <tbody>
       <tr>
         <th>Pega.com</th>
-        <td><a href="{{ link['components-example-main-site'] }}" class="e-bolt-text-link">View</a></td>
+        <td><a href="{{ link['components-example-main-site-with-subnav'] }}" class="e-bolt-text-link">View</a></td>
+      </tr>
+      <tr>
+        <th>Academy</th>
+        <td><a href="{{ link['components-example-academy'] }}" class="e-bolt-text-link">View</a></td>
       </tr>
       <tr>
         <th>Community</th>
@@ -57,10 +61,10 @@
   content: primary_nav_and_search_panel,
   secondary_content: secondary_nav,
   cta: cta_button,
+  static: true,
   attributes: {
     style: '--c-bolt-page-header-logo-max-width: 150px',
   },
-  static: true,
 } only %}
 
 // Search panel template (pass to main template's content prop)

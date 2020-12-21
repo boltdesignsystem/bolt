@@ -10,16 +10,18 @@
 {% set logo_attributes = create_attribute(logo.attributes|default({})) %}
 {% set logo_tag = logo_attributes.type ? 'button' : logo_attributes.href ? 'a' : 'span' %}
 
-{% set breakpoint = bolt.data.breakpoints.large %}
-{% if breakpoint %}
-  {% set attributes = attributes.setAttribute("data-bolt-breakpoint", breakpoint) %}
-{% endif %}
-
 {% set classes = [
   'c-bolt-page-header',
   static ? 'c-bolt-page-header--static',
 ] %}
 
+{# Setting the desktop breakpoint to work with JS #}
+{% set breakpoint = bolt.data.breakpoints.large %}
+{% if breakpoint %}
+  {% set attributes = attributes.setAttribute('data-bolt-breakpoint', breakpoint) %}
+{% endif %}
+
+{# Template #}
 <header {{ attributes.addClass(classes) }}>
   <div class="c-bolt-page-header__primary">
     {% if logo %}

@@ -1,17 +1,21 @@
-{# Schema Validation #}
-{% set schema = bolt.data.components['@bolt-components-page-header'].schema %}
-{% if enable_json_schema_validation %}
-  {{ validate_data_schema(schema, _self)|raw }}
-{% endif %}
+{#
+  Schema Validation @todo: find a way to validate multiple schemas within one component.
+
+  {% set schema = bolt.data.components['@bolt-components-page-header'].schema %}
+  {% if enable_json_schema_validation %}
+    {{ validate_data_schema(schema, _self)|raw }}
+  {% endif %}
+  {% set this = init(schema) %}
+#}
 
 {# Variables #}
-{% set this = init(schema) %}
 {% set attributes = create_attribute(attributes|default({})) %}
 
 {% set classes = [
   'c-bolt-page-header__nav',
 ] %}
 
+{# Template #}
 <button aria-expanded="false" class="c-bolt-page-header__action-trigger c-bolt-page-header__action-trigger--nav js-bolt-page-header-trigger" id="js-bolt-page-header-primary-nav-toggle">
   <span class="c-bolt-page-header__action-trigger__text">
     Toggle Main Site Navigation
