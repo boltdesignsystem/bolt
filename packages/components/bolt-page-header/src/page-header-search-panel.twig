@@ -16,9 +16,9 @@
 ] %}
 
 {# Template #}
-<button aria-haspopup="true" aria-expanded="false" class="c-bolt-page-header__action-trigger c-bolt-page-header__action-trigger--search js-bolt-page-header-trigger" id="js-bolt-page-header-search-toggle">
+<button aria-expanded="false" class="c-bolt-page-header__action-trigger c-bolt-page-header__action-trigger--search js-bolt-page-header-trigger" id="js-bolt-page-header-search-toggle">
   <span class="c-bolt-page-header__action-trigger__text">
-    Toggle Search Panel
+    {{ 'Toggle Search Panel'|t }}
   </span>
   <span class="c-bolt-page-header__action-trigger__icon" aria-hidden="true">
     {% include '@bolt-components-icon/icon.twig' with {

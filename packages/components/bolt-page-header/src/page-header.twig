@@ -25,7 +25,7 @@
 <header {{ attributes.addClass(classes) }}>
   <div class="c-bolt-page-header__primary">
     {% if logo %}
-      <{{ logo_tag }} {{ logo_attributes.addClass('c-bolt-page-header__logo')|without('aria-label')|without('style') }} aria-label="{{ logo.label }}">
+      <{{ logo_tag }} {{ logo_attributes.addClass('c-bolt-page-header__logo')|without('aria-label')|without('style') }} aria-label="{{ logo.label|t }}">
         <span class="c-bolt-page-header__logo__img" aria-hidden="true">
           <img src="{{ logo.image_src }}">
         </span>
