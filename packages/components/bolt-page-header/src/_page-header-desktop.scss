@@ -506,8 +506,8 @@
   // Main CTA
   .c-bolt-page-header__cta {
     transform: translate3d(0, 0, 0);
-    margin-right: $bolt-page-header-action-trigger-spacing-x;
-    margin-left: $bolt-page-header-action-trigger-spacing-x;
+    margin-right: #{$bolt-page-header-action-trigger-spacing-x};
+    margin-left: calc(#{$bolt-page-header-action-trigger-spacing-x} * 2);
   }
 
   // User flag

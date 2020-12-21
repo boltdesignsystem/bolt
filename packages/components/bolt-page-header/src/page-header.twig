@@ -15,17 +15,14 @@
   static ? 'c-bolt-page-header--static',
 ] %}
 
-{# Setting the desktop breakpoint to work with JS #}
+{# Setting the desktop breakpoint to work with JS. See page-header.js #}
 {% set breakpoint = bolt.data.breakpoints.large %}
-{% if breakpoint %}
-  {% set attributes = attributes.setAttribute('data-bolt-breakpoint', breakpoint) %}
-{% endif %}
 
 {# Template #}
-<header {{ attributes.addClass(classes) }}>
+<header {{ attributes.addClass(classes)|without('data-bolt-page-header-desktop-bp') }} data-bolt-page-header-desktop-bp="{{ breakpoint }}">
   <div class="c-bolt-page-header__primary">
     {% if logo %}
-      <{{ logo_tag }} {{ logo_attributes.addClass('c-bolt-page-header__logo')|without('aria-label')|without('style') }} aria-label="{{ logo.label|t }}">
+      <{{ logo_tag }} {{ logo_attributes.addClass('c-bolt-page-header__logo')|without('aria-label') }} aria-label="{{ logo.label|t }}">
         <span class="c-bolt-page-header__logo__img" aria-hidden="true">
           <img src="{{ logo.image_src }}">
         </span>

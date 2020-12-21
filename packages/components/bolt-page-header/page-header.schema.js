@@ -2,7 +2,7 @@ module.exports = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'Page Header',
   type: 'object',
-  // required: ['content', 'logo'],
+  required: ['content', 'logo'],
   properties: {
     attributes: {
       type: 'object',

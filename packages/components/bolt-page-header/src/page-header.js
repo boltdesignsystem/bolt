@@ -26,7 +26,7 @@ export class BoltPageHeader {
     const actionMenuArray = this.getActionMenuArray();
 
     let opts = {};
-    const breakpoint = this.el.dataset.boltBreakpoint;
+    const breakpoint = this.el.dataset.boltPageHeaderDesktopBp;
 
     if (breakpoint) {
       opts = { breakpoint };

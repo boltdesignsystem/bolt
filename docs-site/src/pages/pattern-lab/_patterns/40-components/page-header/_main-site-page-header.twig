@@ -368,43 +368,43 @@
 {% set site_nav_lv1_list_items = [
   {
     link: {
-      content: 'Products',
+      content: japanese ? '製品' : 'Products',
     },
     children: products_lv2,
   },
   {
     link: {
-      content: 'Solutions',
+      content: japanese ? 'ソリューション' : 'Solutions',
     },
     children: solutions_lv2,
   },
   {
     link: {
-      content: 'Customers',
+      content: japanese ? '企業' : 'Customers',
     },
     children: customers_lv2,
   },
   {
     link: {
-      content: 'Why Pega?',
+      content: japanese ? 'ペガが選ばれる理由' : 'Why Pega?',
     },
     children: why_pega_lv2,
   },
   {
     link: {
-      content: 'Services &amp; Partners',
+      content: japanese ? 'サービスとパートナー' : 'Services &amp; Partners',
     },
     children: services_and_partners_lv2,
   },
   {
     link: {
-      content: 'Events',
+      content: japanese ? 'イベント' : 'Events',
     },
     children: events_lv2,
   },
   {
     link: {
-      content: 'About',
+      content: japanese ? 'ペガについて' : 'About',
     },
     children: about_lv2,
   },
@@ -773,4 +773,5 @@
   },
   content: page_header_content,
   cta: cta,
+  static: static_header ? true : false
 } only %}
