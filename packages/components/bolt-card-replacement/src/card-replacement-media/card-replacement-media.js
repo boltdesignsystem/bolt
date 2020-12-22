@@ -1,19 +1,19 @@
-import { props, hasNativeShadowDomSupport } from '@bolt/core-v3.x/utils';
+import { html, customElement, BoltElement, unsafeCSS } from '@bolt/element';
 import classNames from 'classnames/bind';
-import { withLitHtml } from '@bolt/core-v3.x/renderers/renderer-lit-html';
-import { html, customElement } from '@bolt/element';
-
-import schema from '../../card-replacement.schema';
 import styles from './_card-replacement-media.scss';
 
 let cx = classNames.bind(styles);
 
 @customElement('bolt-card-replacement-media')
-class BoltCardReplacementMedia extends withLitHtml {
+class BoltCardReplacementMedia extends BoltElement {
+  static get styles() {
+    return [unsafeCSS(styles)];
+  }
+
   render() {
     let containsVideo = false; // check if bolt-card-replacement-media contains a bolt-video or video element.
 
-    this.slots.default.map((child, item, array) => {
+    this.slotMap.get('default').map((child, item, array) => {
       if (child.tagName) {
         if (child.querySelector('bolt-video') || child.querySelector('video')) {
           containsVideo = true;
@@ -26,8 +26,7 @@ class BoltCardReplacementMedia extends withLitHtml {
     });
 
     return html`
-      ${this.addStyles([styles])}
-      <div class="${classes}">${this.slot('default')}</div>
+      <div class="${classes}">${this.slotify('default')}</div>
     `;
   }
 }
