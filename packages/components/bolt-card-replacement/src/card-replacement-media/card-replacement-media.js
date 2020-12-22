@@ -1,20 +1,11 @@
 import { html, customElement, BoltElement, unsafeCSS } from '@bolt/element';
 import classNames from 'classnames/bind';
 import styles from './_card-replacement-media.scss';
-import schema from '../../card-replacement.schema';
 
 let cx = classNames.bind(styles);
 
 @customElement('bolt-card-replacement-media')
 class BoltCardReplacementMedia extends BoltElement {
-  static schema = schema;
-
-  static get properties() {
-    return {
-      ...this.props,
-    };
-  }
-
   static get styles() {
     return [unsafeCSS(styles)];
   }

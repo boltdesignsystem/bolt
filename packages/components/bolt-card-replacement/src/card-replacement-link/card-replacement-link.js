@@ -8,15 +8,12 @@ import {
 import { render } from 'lit-html';
 import classNames from 'classnames/bind';
 import styles from './_card-replacement-link.scss';
-import schema from '../../card-replacement.schema';
 
 let cx = classNames.bind(styles);
 
 @customElement('bolt-card-replacement-link')
 @convertInitialTags('a') // The first matching tag will have its attributes converted to component props
 class BoltCardReplacementLink extends BoltActionElement {
-  static schema = schema;
-
   static get styles() {
     return [unsafeCSS(styles)];
   }

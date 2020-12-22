@@ -3,14 +3,11 @@ import { withContext } from 'wc-context/lit-element';
 import { ifDefined } from 'lit-html/directives/if-defined';
 import classNames from 'classnames/bind';
 import styles from './_card-replacement-action.scss';
-import schema from '../../card-replacement.schema';
 
 let cx = classNames.bind(styles);
 
 @customElement('bolt-card-replacement-action')
 class BoltCardReplacementAction extends withContext(BoltElement) {
-  static schema = schema;
-
   static get properties() {
     return {
       url: {
