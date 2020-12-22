@@ -62,6 +62,7 @@ class BoltCardReplacement extends withContext(BoltElement) {
           `
         : '';
 
+    // @todo do we need to support "media" and "body" slots? I dont see these in use in the Bolt codebase. If not, can we remove them here?
     const cardReplacementContent = html`
       ${cardReplacementLink}
       ${this.slotMap.get('media') &&

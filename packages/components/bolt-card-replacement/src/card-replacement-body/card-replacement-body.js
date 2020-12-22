@@ -31,6 +31,8 @@ class BoltCardReplacementBody extends withContext(BoltElement) {
     const classes = cx('c-bolt-card_replacement__body', {
       [`c-bolt-card_replacement__body--spacing-${this.spacing}`]: this.spacing,
     });
+
+    // @todo `tag` appears to be always undefined. Can we remove this? @see `cardReplacementContent` in `card-replacement.js` where `.tag` property binding happens.
     const { tag } = this.tag || 'div'; // fallback if the `tag` context isn't available for some reason
 
     return html`

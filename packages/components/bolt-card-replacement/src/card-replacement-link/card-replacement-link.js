@@ -21,6 +21,7 @@ class BoltCardReplacementLink extends BoltActionElement {
   render() {
     const classes = cx('c-bolt-card_replacement__link');
 
+    // Inherits `url` and `target` props from `BoltActionElement`
     const hasUrl = this.url.length > 0 && this.url !== 'null';
     const urlTarget = this.target && hasUrl ? this.target : '_self';
 
