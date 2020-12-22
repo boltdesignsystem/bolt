@@ -87,7 +87,10 @@ $bolt-page-header-mobile-expanded-content-spacing-x: calc(
   font-size: var(--bolt-type-font-size-medium);
   font-weight: var(--bolt-type-font-weight-semibold);
   color: var(--m-bolt-link);
-  line-height: var(--bolt-type-line-height-medium);
+  line-height: calc(
+    var(--bolt-type-line-height-medium) *
+      var(--bolt-type-line-height-multiplier-tight)
+  );
   text-align: inherit;
   border-radius: bolt-border-radius(small);
   outline: none;

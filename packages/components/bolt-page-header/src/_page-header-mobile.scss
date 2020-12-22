@@ -97,8 +97,6 @@
       left: 0;
       z-index: 1;
       height: $bolt-page-header-click-target-size;
-      text-align: center;
-      white-space: nowrap;
       border-bottom-color: $bolt-border-color;
       border-bottom-style: $bolt-border-style;
       border-bottom-width: $bolt-border-width;
@@ -202,7 +200,6 @@
 
   .c-bolt-page-header__nav-link__content {
     grid-gap: var(--bolt-spacing-x-xsmall);
-    flex-grow: auto;
     overflow: hidden;
     text-overflow: ellipsis;
   }
@@ -226,6 +223,7 @@
 
   .c-bolt-page-header__nav-link__nested-indicator--collapse {
     display: none;
+    margin-right: var(--bolt-spacing-x-xsmall);
 
     &:before {
       transform: rotate(-135deg);
@@ -250,6 +248,7 @@
 
   .c-bolt-page-header__nav-link__nested-indicator--expand {
     opacity: 1;
+    margin-left: var(--bolt-spacing-x-xsmall);
 
     &:before {
       transform: rotate(45deg);
@@ -257,6 +256,8 @@
 
     @at-root .c-bolt-page-header__nav-link[aria-expanded='true'] #{&} {
       opacity: 0;
+      width: 0;
+      margin-left: 0;
     }
 
     @at-root .c-bolt-page-header__nav-link:hover #{&} {
