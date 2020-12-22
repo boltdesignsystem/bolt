@@ -10,21 +10,21 @@ module.exports = {
         'A Drupal-style attributes object with extra attributes to append to this component.',
     },
     content: {
-      type: 'object',
+      type: 'any',
       description: 'Content of the button.',
     },
     icon_before: {
-      type: 'object',
+      type: 'any',
       description:
         'Append an icon before the button content. Icon component is recommended. However, &lt;img&gt; elements are also acceptable.',
     },
     icon_after: {
-      type: 'object',
+      type: 'any',
       description:
         'Append an icon after the button content. Icon component is recommended. However, &lt;img&gt; elements are also acceptable.',
     },
     icon_only: {
-      type: 'object',
+      type: 'any',
       description:
         'Append an icon to the button content and visually hide the text content. This prop trumps icon_before and icon_after.',
     },

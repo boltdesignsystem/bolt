@@ -69,11 +69,11 @@
   {% endif %}
   uuid="{{ uuid }}"
 >
-  <div {% if inner_classes %} class="{{ inner_classes|join(' ') }}" {% endif %}>
+  <span {% if inner_classes %} class="{{ inner_classes|join(' ') }}" {% endif %}>
     {% if trigger %}
       {# Start adapter for old trigger data #}
       {% if trigger.type == "text" %}
-        <div
+        <span
           role="button"
           tabindex="0"
           aria-describedby="{{ tooltip_uuid }}"
@@ -87,9 +87,9 @@
               {{ trigger.text }}
             {% endif %}
           </ssr-keep>
-        </div>
+        </span>
       {% elseif trigger.type == "button" %}
-        <div
+        <span
           role="button"
           tabindex="0"
           aria-describedby="{{ tooltip_uuid }}"
@@ -106,12 +106,12 @@
               style: "secondary",
             } only %}
           </ssr-keep>
-        </div>
+        </span>
       {# End adapter for old trigger data #}
 
       {# Start new trigger #}
       {% else %}
-        <div
+        <span
           role="button"
           tabindex="0"
           aria-describedby="{{ tooltip_uuid }}"
@@ -120,13 +120,13 @@
           <ssr-keep for="bolt-tooltip">
             {{ trigger }}
           </ssr-keep>
-        </div>
+        </span>
       {% endif %}
       {# End new trigger #}
     {% endif %}
 
     {% if content %}
-      <div id="{{ tooltip_uuid }}" class="{{ "#{base_class}__content" }}" role="tooltip" aria-hidden="true">
+      <span id="{{ tooltip_uuid }}" class="{{ "#{base_class}__content" }}" role="tooltip" aria-hidden="true">
         <span class="{{ "#{base_class}__bubble" }}">
           <ssr-keep for="bolt-tooltip">
             <span slot="content">
@@ -134,7 +134,7 @@
             </span>
           </ssr-keep>
         </span>
-      </div>
+      </span>
     {% endif %}
-  </div>
+  </span>
 </bolt-tooltip>

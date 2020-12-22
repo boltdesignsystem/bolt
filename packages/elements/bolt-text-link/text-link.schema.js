@@ -10,16 +10,16 @@ module.exports = {
         'A Drupal-style attributes object with extra attributes to append to this component.',
     },
     content: {
-      type: 'object',
+      type: 'any',
       description: 'Content of the text link.',
     },
     icon_before: {
-      type: 'object',
+      type: 'any',
       description:
         'Append an icon before the text. Icon component is recommended. However, &lt;img&gt; elements are also acceptable.',
     },
     icon_after: {
-      type: 'object',
+      type: 'any',
       description:
         'Append an icon after the text. Icon component is recommended. However, &lt;img&gt; elements are also acceptable.',
     },

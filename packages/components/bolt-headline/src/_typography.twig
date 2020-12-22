@@ -107,11 +107,13 @@
   {% endif %}
   {%- if url -%}
     {% set linkVars = {
-      target: target,
       text: text,
       url: url,
       isHeadline: (type != "text")
     } %}
+    {% if target %}
+      {% set linkVars = linkVars | merge({ target: target }) %}
+    {% endif %}
     {% if icon %}
       {% set linkVars = linkVars | merge({ icon: icon }) %}
     {% endif %}
