@@ -13,19 +13,13 @@ let cx = classNames.bind(styles);
 @customElement('bolt-trigger')
 @convertInitialTags(['button', 'a']) // The first matching tag will have its attributes converted to component props
 class BoltTrigger extends BoltAction {
-  static props = {
-    ...BoltAction.props, // Provides: disabled, onClick, onClickTarget, target, url
-    type: props.string,
-    cursor: props.string,
-    display: props.string,
-    noOutline: props.boolean,
-  };
+  static schema = schema;
 
-  // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
-  constructor(self) {
-    self = super(self);
-    self.schema = schema;
-    return self;
+  static get properties() {
+    return {
+      ...BoltAction.props, // Provides: disabled, onClick, onClickTarget, target, url
+      ...this.props,
+    };
   }
 
   _handleFocus() {
