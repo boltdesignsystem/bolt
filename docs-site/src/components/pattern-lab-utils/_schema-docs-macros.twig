@@ -352,11 +352,12 @@
   </div>
 
   {% if nested_props|length %}
+    {% set title = schema.title %}
     {% for key, property in nested_props %}
       {% if property.properties %}
         <details>
           <summary>
-            <strong>{{ key }}</strong>
+            <strong>{% if title %}{{ title }} > {% endif %}{{ key }}</strong>
           </summary>
           {{ macros.schemaTable(property) }}
         </details>
