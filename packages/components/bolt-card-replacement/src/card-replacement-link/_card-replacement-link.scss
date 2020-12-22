@@ -8,7 +8,6 @@
 // https://www.w3.org/TR/CSS21/visudet.html#abs-replaced-width
 
 .c-bolt-card_replacement__link {
-  @include bolt-visuallyhidden;
   display: block;
   position: absolute;
   top: 0;
@@ -29,4 +28,8 @@ button.c-bolt-card_replacement__link {
   &:focus {
     outline: none;
   }
+}
+
+.c-bolt-card_replacement__link-text {
+  @include bolt-visuallyhidden;
 }
