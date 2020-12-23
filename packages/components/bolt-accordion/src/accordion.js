@@ -9,9 +9,6 @@ import { Accordion } from './_accordion-handorgel';
 
 let cx = classNames.bind(styles);
 
-// Remove "items" from the Accordion schema since it doesn't apply to the web component.
-delete schema.properties['items'];
-
 @customElement('bolt-accordion')
 class BoltAccordion extends withContext(BoltElement) {
   static schema = schema;
