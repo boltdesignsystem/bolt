@@ -28,8 +28,6 @@ class BoltBanner extends BoltElement {
 
     const classes = cx('c-bolt-banner', {
       [`c-bolt-banner--status-${status}`]: status,
-      [`t-bolt-dark`]:
-        (status && status === 'error') || (status && status === 'success'),
       [`c-bolt-banner--align-${align}`]: align,
     });
 

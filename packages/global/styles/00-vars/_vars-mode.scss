@@ -6,11 +6,11 @@
 [data-bolt-mode='light'],
 .t-bolt-light,
 .t-bolt-xlight {
+  --m-bolt-neutral: var(--bolt-color-gray);
   --m-bolt-text: var(--bolt-color-black);
   --m-bolt-bg: var(--bolt-color-white);
   --m-bolt-headline: var(--bolt-color-navy);
   --m-bolt-link: var(--bolt-color-navy-light);
-  --m-bolt-border: var(--bolt-color-gray-xlight);
   --m-bolt-primary: var(--bolt-color-navy-light);
   --m-bolt-text-on-primary: var(--m-bolt-bg);
   --m-bolt-secondary: var(--m-bolt-bg);
@@ -19,17 +19,17 @@
   --m-bolt-text-on-tertiary: var(--m-bolt-headline);
   --m-bolt-disabled: var(--bolt-color-gray-light);
   --m-bolt-text-on-disabled: var(--bolt-color-gray);
-  --m-bolt-neutral: var(--bolt-color-gray);
+  --m-bolt-border: var(--m-bolt-tertiary);
 }
 
 [data-bolt-mode='dark'],
 .t-bolt-dark,
 .t-bolt-xdark {
+  --m-bolt-neutral: var(--bolt-color-gray);
   --m-bolt-text: var(--bolt-color-white);
   --m-bolt-bg: var(--bolt-color-navy);
   --m-bolt-headline: var(--bolt-color-white);
   --m-bolt-link: var(--bolt-color-white);
-  --m-bolt-border: var(--bolt-color-navy-xlight);
   --m-bolt-primary: var(--bolt-color-yellow);
   --m-bolt-text-on-primary: var(--bolt-color-black);
   --m-bolt-secondary: var(--m-bolt-headline);
@@ -38,7 +38,7 @@
   --m-bolt-text-on-tertiary: var(--m-bolt-headline);
   --m-bolt-disabled: var(--bolt-color-gray-light);
   --m-bolt-text-on-disabled: var(--bolt-color-gray);
-  --m-bolt-neutral: var(--bolt-color-gray);
+  --m-bolt-border: var(--m-bolt-tertiary);
 }
 
 .t-bolt-light {
