@@ -1,35 +1,35 @@
 {% import "@utils/_schema-docs-macros.twig" as macros %}
 
 {% if schema.properties %}
-	{% include '@bolt-components-banner/banner.twig' with {
-		content: 'Note: when assigning component props as HTML attributes on a web component, make sure to use <code>kebab-case</code>.',
-		align: 'start',
-	} only %}
+  {% include '@bolt-components-banner/banner.twig' with {
+    content: 'Note: when assigning component props as HTML attributes on a web component, make sure to use <code>kebab-case</code>.',
+    align: 'start',
+  } only %}
 
-	{{ macros.schemaTable(schema) }}
+  {{ macros.schemaTable(schema) }}
 
-	{% set advanced_table %}
-	{% for key, prop in schema.properties if schema.properties[key].hidden %}
-		{{ macros.schemaTableRow(key, prop, key in schema.required) }}
-	{% endfor %}
-	{% endset %}
+  {% set advanced_table %}
+  {% for key, prop in schema.properties if schema.properties[key].hidden %}
+    {{ macros.schemaTableRow(key, prop, key in schema.required) }}
+  {% endfor %}
+  {% endset %}
 
-	{% if advanced_table|trim %}
-		<details>
-			<summary>
-				<strong>Advanced Schema Options</strong>
-			</summary>
-			<div class="c-bds-schema-table">
-				<bolt-schema-table>
-					<div class="c-bds-docs-table">
-						<table>
-							<tbody>
-								{{ advanced_table }}
-							</tbody>
-						</table>
-					</div>
-				</bolt-schema-table>
-			</div>
-		</details>
-	{% endif %}
+  {% if advanced_table|trim %}
+    <details>
+      <summary>
+        <strong>Advanced Schema Options</strong>
+      </summary>
+      <div class="c-bds-schema-table">
+        <bolt-schema-table>
+          <div class="c-bds-docs-table">
+            <table>
+              <tbody>
+                {{ advanced_table }}
+              </tbody>
+            </table>
+          </div>
+        </bolt-schema-table>
+      </div>
+    </details>
+  {% endif %}
 {% endif %}
