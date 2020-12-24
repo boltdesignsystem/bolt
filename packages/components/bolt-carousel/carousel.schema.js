@@ -102,7 +102,6 @@ module.exports = {
       description:
         'Allows the carousel to automatically rotate through its slides until the user interacts with it.',
       default: false,
-      enum: [true, false],
     },
     loop: {
       type: 'boolean',
@@ -110,7 +109,6 @@ module.exports = {
         'Enables continuous loop mode.Not: the loop option is temporarily disabled and will be re-enabled in a future Bolt release.',
       hidden: true,
       default: false,
-      enum: [true, false],
     },
     free_scroll: {
       type: 'boolean',

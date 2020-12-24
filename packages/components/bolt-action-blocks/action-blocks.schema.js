@@ -48,7 +48,6 @@ module.exports = {
       type: 'boolean',
       description: 'Removes the border in between each action block.',
       default: false,
-      enum: [true, false],
     },
     items: {
       type: 'array',
