@@ -15,10 +15,11 @@
 }
 
 .c-bolt-breadcrumb__list {
-  @include bolt-font-size(small);
   margin: 0;
   padding: 0;
+  font-size: var(--bolt-type-font-size-small);
   list-style: none;
+  line-height: var(--bolt-type-line-height-small);
 }
 
 .c-bolt-breadcrumb__item {
@@ -36,6 +37,6 @@
     vertical-align: baseline;
     border-width: 1px 1px 0 0;
     border-style: solid;
-    border-color: bolt-theme(text);
+    border-color: var(--m-bolt-text);
   }
 }
