@@ -1,9 +1,15 @@
 /* ------------------------------------ *\
    Light and Dark Mode System
+
+   @todo: the `theme` attributes and `.t-bolt-theme` classes are for backward compatibility. They can be removed once we completely deprecate themes.
 \* ------------------------------------ */
 
 :root,
 [data-bolt-mode='light'],
+[theme='light'],
+:host[theme='light'],
+[theme='xlight'],
+:host[theme='xlight'],
 .t-bolt-light,
 .t-bolt-xlight {
   --m-bolt-neutral: var(--bolt-color-gray);
@@ -15,7 +21,7 @@
   --m-bolt-text-on-primary: var(--m-bolt-bg);
   --m-bolt-secondary: var(--m-bolt-bg);
   --m-bolt-text-on-secondary: var(--m-bolt-headline);
-  --m-bolt-tertiary: hsla(220.4, 80%, 15%, 0.15);
+  --m-bolt-tertiary: hsla(220.4, 80%, 15%, 0.2);
   --m-bolt-text-on-tertiary: var(--m-bolt-headline);
   --m-bolt-disabled: var(--bolt-color-gray-light);
   --m-bolt-text-on-disabled: var(--bolt-color-gray);
@@ -23,6 +29,10 @@
 }
 
 [data-bolt-mode='dark'],
+[theme='dark'],
+:host[theme='dark'],
+[theme='xdark'],
+:host[theme='xdark'],
 .t-bolt-dark,
 .t-bolt-xdark {
   --m-bolt-neutral: var(--bolt-color-gray);
@@ -41,11 +51,15 @@
   --m-bolt-border: var(--m-bolt-tertiary);
 }
 
-.t-bolt-light {
+.t-bolt-light,
+[theme='light'],
+:host[theme='light'] {
   --m-bolt-bg: var(--bolt-color-gray-xlight);
 }
 
-.t-bolt-xdark {
+.t-bolt-xdark,
+[theme='xdark'],
+:host[theme='xdark'] {
   --m-bolt-bg: var(--bolt-color-navy-dark);
 }
 

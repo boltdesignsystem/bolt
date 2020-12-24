@@ -1,3 +1,5 @@
+{% set attributes = create_attribute(actions.attributes|default({})) %}
+
 <bolt-card-replacement-action {% if external %} external {% endif %} {% if url %} url="{{url}}" {% endif %}>
   <ssr-keep for="bolt-card-replacement-action" class="c-bolt-card_replacement__action">
     {% block action_item %}
@@ -11,7 +13,7 @@
           icon: {
             name: external == false or external == null ? "chevron-right" : "external-link",
           },
-          attributes: attributes|default({})
+          attributes: attributes
         } %}
 
         {% if spacing is not empty %}

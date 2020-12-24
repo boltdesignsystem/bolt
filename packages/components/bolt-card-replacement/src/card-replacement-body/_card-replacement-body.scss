@@ -6,12 +6,12 @@
 @import '../_card-replacement-settings-and-tools.scss';
 
 @include bolt-repeat-rule(('bolt-card-replacement-body', ':host')) {
+  position: relative; // Position is needed to bring body's stacking order above background.
   width: 100%;
 }
 
 .c-bolt-card_replacement__body {
   display: block;
-  position: relative; // Position is needed to bring body's stacking order above background.
   margin: 0;
 }
 

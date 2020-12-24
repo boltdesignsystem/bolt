@@ -11,6 +11,7 @@
 
 // Border radius prop
 // @todo: the massive conditions used here are due to the inability of using overflow hidden.
+bolt-card-replacement,
 .c-bolt-card-replacement {
   --c-bolt-card-border-radius: #{bolt-border-radius(small)};
   border-radius: var(--c-bolt-card-border-radius);
@@ -145,7 +146,6 @@ bolt-card-replacement {
   }
 
   &:before {
-    @include bolt-card-replacement-border-reset;
     @include bolt-shadow(
       'level-20',
       false,
@@ -154,17 +154,24 @@ bolt-card-replacement {
 
     content: '';
     border-width: $bolt-card-replacement-border-width;
+    border-style: $bolt-card-replacement-border-style;
+    border-color: $bolt-card-replacement-border-color;
   }
 
   // Non-themed card-replacement color settings.
   &:not([class*='t-bolt']) {
-    color: bolt-theme(text);
-    background-color: bolt-theme(background, 0.85);
-    background-image: linear-gradient(
-      to bottom,
-      rgba(bolt-color(white), 0.05),
-      rgba(bolt-color(white), 0.05)
-    );
+    color: var(--m-bolt-text);
+
+    &:before {
+      opacity: 0.85;
+      background: linear-gradient(rgba(white, 0.05), rgba(white, 0.05));
+      background-color: var(--m-bolt-bg);
+    }
+  }
+
+  > *:not(bolt-card-replacement-link),
+  > *::slotted(*:not(bolt-card-replacement-link)) {
+    position: relative;
   }
 }
 
@@ -236,8 +243,8 @@ bolt-card-replacement {
 
 // Old card-replacement footer
 .c-bolt-card_replacement__footer {
-  @include bolt-card-replacement-border-reset;
-
   display: block;
+  border-top-color: $bolt-card-replacement-border-color;
+  border-top-style: $bolt-card-replacement-border-style;
   border-top-width: $bolt-card-replacement-border-width;
 }

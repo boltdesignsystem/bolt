@@ -6,7 +6,13 @@
 @import '../card-replacement-settings-and-tools.scss';
 
 bolt-card-replacement-action {
+  display: block;
   flex: 1;
+  position: relative;
+  margin-top: calc(#{$bolt-card-replacement-border-width} * -1.5);
+  border-top-color: $bolt-card-replacement-border-color;
+  border-top-style: $bolt-card-replacement-border-style;
+  border-top-width: $bolt-card-replacement-border-width;
 
   // [Mai] When there are 2 actions, the text is likely to be short, that's a situation where it would benefit from text not wrapping to another line. Instead, if it runs out of room, the actions stack on top of each other.
   &:not(:only-child) {
@@ -15,12 +21,7 @@ bolt-card-replacement-action {
 }
 
 .c-bolt-card_replacement__action {
-  @include bolt-card-replacement-border-reset;
-
   display: block;
-  position: relative;
-  top: $bolt-card-replacement-border-width * -1;
-  border-top-width: $bolt-card-replacement-border-width;
 
   &:before {
     content: '';
