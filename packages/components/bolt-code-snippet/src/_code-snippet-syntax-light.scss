@@ -4,22 +4,22 @@ $bolt-syntax-light: 'c-bolt-code-snippet-syntax--light';
 
 code.#{$bolt-syntax-light},
 pre.#{$bolt-syntax-light} {
-  color: black;
-  background: lighten(bolt-color(navy, xlight), 17%);
+  color: var(--bolt-color-black);
+  background: var(--bolt-color-gray-xlight);
 }
 
 pre.#{$bolt-syntax-light}::-moz-selection,
 pre.#{$bolt-syntax-light} ::-moz-selection,
 code.#{$bolt-syntax-light}::-moz-selection,
 code.#{$bolt-syntax-light} ::-moz-selection {
-  background: bolt-color(navy, xlight);
+  background: var(--bolt-color-navy-xlight);
 }
 
 pre.#{$bolt-syntax-light}::selection,
 pre.#{$bolt-syntax-light} ::selection,
 code.#{$bolt-syntax-light}::selection,
 code.#{$bolt-syntax-light} ::selection {
-  background: bolt-color(navy, xlight);
+  background: var(--bolt-color-navy-xlight);
 }
 
 .#{$bolt-syntax-light} {
