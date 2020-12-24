@@ -2,7 +2,7 @@
 
 // Local Variables
 $bolt-ol-bullet-size: calc(var(--bolt-type-line-height-xsmall) * 1rem);
-$bolt-ol-bullet-bg-color: rgba(bolt-color(gray), 0.2);
+$bolt-ol-bullet-bg-color: var(--m-bolt-tertiary);
 $bolt-li-spacing: calc(#{$bolt-ol-bullet-size} + var(--bolt-spacing-x-xsmall));
 $bolt-li-bullet-level-1: '\25CF'; // black-circle
 $bolt-li-bullet-level-2: '\26AC'; // white-circle
@@ -107,7 +107,7 @@ bolt-ol,
   left: calc(#{$bolt-li-spacing} * -1);
   width: $bolt-ol-bullet-size;
   height: $bolt-ol-bullet-size;
-  color: bolt-theme(headline);
+  color: var(--m-bolt-headline);
   line-height: $bolt-ol-bullet-size;
   border-radius: $bolt-ol-bullet-size;
   background-color: $bolt-ol-bullet-bg-color;

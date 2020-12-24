@@ -27,7 +27,7 @@ $bolt-link-spacing: 'xxsmall';
   display: inline;
   opacity: bolt-opacity(100);
   margin-left: calc(var(--bolt-spacing-x-#{$bolt-link-spacing}) * -1);
-  color: bolt-theme(link);
+  color: var(--m-bolt-link);
   text-decoration: underline;
   cursor: pointer;
   border: none; // [1]
@@ -85,7 +85,7 @@ button.c-bolt-link {
 
 // Changes the underline styles when a link is also a headline, chevrons are added to headline links by default.
 .c-bolt-link--headline {
-  color: bolt-theme(headline-link);
+  color: var(--m-bolt-link);
   text-decoration: none;
 
   &:hover {

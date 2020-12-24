@@ -42,9 +42,9 @@
   font-family: var(--bolt-type-font-family-body); /* [2] */
   font-size: var(--bolt-type-font-size-small); /* [2] */
   font-weight: var(--bolt-type-font-weight-regular); /* [2] */
-  color: bolt-theme(text);
+  color: var(--m-bolt-text);
   line-height: var(--bolt-type-line-height-small); /* [2] */
-  transition: background-color $bolt-transition;
+  transition: background-color var(--bolt-transition);
 
   &:before,
   &:after {
@@ -56,13 +56,15 @@
   }
 
   &:before {
+    opacity: 0.05;
     top: 0;
     left: 0;
     transform: translate3d(0, 0, 0);
     width: 0;
     height: 100%;
-    background-color: bolt-theme(link, 0.05);
-    transition: width $bolt-transition, border-radius $bolt-transition;
+    background-color: var(--m-bolt-link);
+    transition: width var(--bolt-transition),
+      border-radius var(--bolt-transition);
   }
 
   &:after {
@@ -73,14 +75,14 @@
     width: 3px;
     height: 0;
     border-radius: bolt-border-radius(small);
-    background-color: bolt-color(teal);
-    transition: height $bolt-transition;
+    background-color: var(--bolt-color-teal);
+    transition: height var(--bolt-transition);
   }
 
   /* [4] */
   bolt-trigger:hover &,
   .c-bolt-copy-to-clipboard__trigger:hover & {
-    color: bolt-theme(link);
+    color: var(--m-bolt-link);
 
     &:before {
       width: 100%;
@@ -90,13 +92,13 @@
 
   bolt-trigger:active &,
   .c-bolt-copy-to-clipboard__trigger:active & {
-    background-color: bolt-theme(link, 0.1);
+    background-color: var(--m-bolt-tertiary);
   }
 
   bolt-trigger:focus-within &,
   .c-bolt-copy-to-clipboard__trigger:focus-within & {
     font-weight: var(--bolt-type-font-weight-semibold);
-    color: bolt-theme(headline);
+    color: var(--m-bolt-headline);
     outline: none;
 
     &:before {
