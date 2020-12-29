@@ -1,10 +1,11 @@
-import { classMap, styleMap, html, customElement } from '@bolt/element';
 import {
-  props,
-  hasNativeShadowDomSupport,
-  convertSchemaToProps,
-} from '@bolt/core-v3.x/utils';
-import { withLitHtml } from '@bolt/core-v3.x/renderers';
+  unsafeCSS,
+  BoltElement,
+  classMap,
+  styleMap,
+  html,
+  customElement,
+} from '@bolt/element';
 import styles from './animate.scss';
 import schema from '../animate.schema';
 
@@ -29,32 +30,45 @@ export const ANIM_STAGES = {
 };
 
 @customElement('bolt-animate')
-class BoltAnimate extends withLitHtml {
-  static props = convertSchemaToProps(schema);
+class BoltAnimate extends BoltElement {
+  static schema = schema;
 
-  constructor(self) {
-    self = super(self);
-    self.useShadow = hasNativeShadowDomSupport;
-    self.schema = schema;
-    self._animStage = ANIM_STAGES.INITIAL;
+  static get properties() {
+    return {
+      ...this.props,
+      // internal only props
+      _animStage: {
+        type: Object,
+      },
+      _animStyle: {
+        type: Object,
+      },
+    };
+  }
+
+  static get styles() {
+    return [unsafeCSS(styles)];
+  }
+
+  constructor() {
+    super();
+    this._animStage = ANIM_STAGES.INITIAL;
     /** @type {CSSStyleDeclaration} */
-    self._animStyle = {};
-    self.hasAnimIn = false;
-    self.hasAnimIdle = false;
-    self.hasAnimOut = false;
-
-    return self;
+    this.hasAnimIn = false;
+    this.hasAnimIdle = false;
+    this.hasAnimOut = false;
   }
 
   _processProps() {
-    const { in: inAnim, idle, out } = this.props;
+    const { in: inAnim, idle, out } = this;
+    // can this be handled in update?
     this.hasAnimIn = typeof inAnim === 'string' && inAnim !== 'none';
     this.hasAnimIdle = typeof idle === 'string' && idle !== 'none';
     this.hasAnimOut = typeof out === 'string' && out !== 'none';
   }
 
   connectedCallback() {
-    super.connectedCallback();
+    super.connectedCallback && super.connectedCallback();
     this._processProps();
 
     if (this._animStage === ANIM_STAGES.INITIAL) {
@@ -68,10 +82,10 @@ class BoltAnimate extends withLitHtml {
       case ANIM_STAGES.IN:
         if (this.hasAnimIn) {
           this._applyAnim({
-            animationName: this.props.in,
-            animationDuration: this.props.inDuration,
-            animationDelay: this.props.inDelay,
-            animationTimingFunction: this.props.inEasing,
+            animationName: this.in,
+            animationDuration: this.inDuration,
+            animationDelay: this.inDelay,
+            animationTimingFunction: this.inEasing,
           });
           isTriggered = true;
         }
@@ -79,9 +93,9 @@ class BoltAnimate extends withLitHtml {
       case ANIM_STAGES.IDLE:
         if (this.hasAnimIdle) {
           this._applyAnim({
-            animationName: this.props.idle,
-            animationDuration: this.props.idleDuration,
-            animationDelay: this.props.idleDelay,
+            animationName: this.idle,
+            animationDuration: this.idleDuration,
+            animationDelay: this.idleDelay,
             animationTimingFunction: 'linear',
             animationFillMode: 'none',
             animationIterationCount: 'infinite',
@@ -92,10 +106,10 @@ class BoltAnimate extends withLitHtml {
       case ANIM_STAGES.OUT:
         if (this.hasAnimOut) {
           this._applyAnim({
-            animationName: this.props.out,
-            animationDuration: this.props.outDuration,
-            animationDelay: this.props.outDelay,
-            animationTimingFunction: this.props.outEasing,
+            animationName: this.out,
+            animationDuration: this.outDuration,
+            animationDelay: this.outDelay,
+            animationTimingFunction: this.outEasing,
           });
           isTriggered = true;
         } else {
@@ -106,9 +120,8 @@ class BoltAnimate extends withLitHtml {
 
     if (isTriggered) {
       this._animStage = ANIM_STAGES[id];
-      this.triggerUpdate();
     }
-    if (this.props.showMeta) {
+    if (this.showMeta) {
       this.setAttribute('meta-stage', this._animStage);
     }
     return isTriggered;
@@ -139,19 +152,16 @@ class BoltAnimate extends withLitHtml {
 
   triggerAnimIn() {
     const hadAnim = this._triggerAnim(ANIM_STAGES.IN);
-    // console.log(`triggered in`, { hadAnim });
     return hadAnim;
   }
 
   triggerAnimOut() {
     const hadAnim = this._triggerAnim(ANIM_STAGES.OUT);
-    // console.log(`triggered out`, { hadAnim });
     return hadAnim;
   }
 
   _triggerAnimIdle() {
     const hadAnim = this._triggerAnim(ANIM_STAGES.IDLE);
-    // console.log(`triggered idle`, { hadAnim });
     return hadAnim;
   }
 
@@ -160,7 +170,7 @@ class BoltAnimate extends withLitHtml {
     this._animStyle = {};
 
     if (this.hasAnimIn) {
-      if (this.props.initialAppearance === 'hidden') {
+      if (this.initialAppearance === 'hidden') {
         this._animStyle.opacity = 0;
       }
     } else {
@@ -168,8 +178,6 @@ class BoltAnimate extends withLitHtml {
         this._triggerAnimIdle();
       }
     }
-
-    this.triggerUpdate();
   }
 
   /**
@@ -190,9 +198,9 @@ class BoltAnimate extends withLitHtml {
 
   _handleAnimEndEvent(event) {
     const { animationName } = event;
-    const isAnimIn = this.props.in === animationName;
-    const isAnimIdle = this.props.idle === animationName;
-    const isAnimOut = this.props.out === animationName;
+    const isAnimIn = this.in === animationName;
+    const isAnimIdle = this.idle === animationName;
+    const isAnimOut = this.out === animationName;
 
     const animatedEls = event.target.children;
     if (isAnimIn) {
@@ -211,7 +219,6 @@ class BoltAnimate extends withLitHtml {
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
-    // console.debug('attributeChangedCallback', { name, oldValue, newValue });
     // can trigger re-render
     super.attributeChangedCallback(name, oldValue, newValue);
     this._processProps();
@@ -234,13 +241,12 @@ class BoltAnimate extends withLitHtml {
     };
 
     return html`
-      ${this.addStyles([styles])}
       <div
         class="${classMap(classes)}"
         @animationend=${e => this._handleAnimEndEvent(e)}
         style=${styleMap(this._animStyle)}
       >
-        ${this.slot('default')}
+        ${this.slotify('default')}
       </div>
     `;
   }
