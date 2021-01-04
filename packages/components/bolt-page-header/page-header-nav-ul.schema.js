@@ -2,7 +2,7 @@ module.exports = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'Page Header Nav Ul',
   type: 'object',
-  // required: ['content', 'category'],
+  required: ['content', 'category'],
   properties: {
     attributes: {
       type: 'object',
