@@ -22,7 +22,6 @@ class BoltButton extends BoltActionElement {
 
   static get properties() {
     return {
-      ...BoltActionElement.properties, // Provides: disabled, onClick, onClickTarget, target, url
       ...this.props,
       color: { type: String },
       tabindex: { type: Number },
