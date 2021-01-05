@@ -85,6 +85,11 @@ const jsonSchemaPropsDecorator = clazz => {
             reflect: property.reflect ? true : false,
             attribute: paramCase(propName),
           };
+
+          // BoltActionElement props use the `alias` key for `convertInitialTags` decorator
+          if (property.alias) {
+            props[propName].alias = property.alias;
+          }
         }
       }
 
