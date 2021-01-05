@@ -20,9 +20,9 @@ class BoltLink extends BoltActionElement {
   static schema = schema;
 
   static get properties() {
+    const { text, icon, ...filteredProps } = this.props;
     return {
-      ...BoltActionElement.properties,
-      ...this.props,
+      ...filteredProps,
     };
   }
 
