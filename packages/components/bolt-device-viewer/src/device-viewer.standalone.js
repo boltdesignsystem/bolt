@@ -49,7 +49,9 @@ class BoltDeviceViewer extends BoltElement {
     `;
   }
 
-  connecting() {
+  connectedCallback() {
+    super.connectedCallback && super.connectedCallback();
+
     if (this.querySelector('bolt-image-zoom')) {
       const drift = new Drift(this.querySelector('bolt-image-zoom'), {
         containInline: false,
@@ -118,7 +120,9 @@ class BoltImageZoom extends BoltElement {
     }
   }
 
-  connecting() {
+  connectedCallback() {
+    super.connectedCallback && super.connectedCallback();
+
     let driftZoomImageUrl;
     if (this.querySelector('img')) {
       driftZoomImageUrl = this.querySelector('img').getAttribute('data-zoom');
@@ -138,12 +142,8 @@ class BoltImageZoom extends BoltElement {
     );
   }
 
-  /**
-   * `disconnecting()` fires when the element is removed from the DOM.
-   * It's a good place to do clean up work like releasing references and
-   * removing event listeners.
-   */
-  disconnecting() {
+  disconnectedCallback() {
+    super.disconnectedCallback && super.disconnectedCallback();
     this.removeEventListener('mouseenter', this._mouseEnter);
     this.removeEventListener('mouseleave', this._mouseLeave);
   }
