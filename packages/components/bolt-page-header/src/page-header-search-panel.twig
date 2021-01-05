@@ -1,0 +1,36 @@
+{#
+  Schema Validation @todo: find a way to validate multiple schemas within one component.
+
+  {% set schema = bolt.data.components['@bolt-components-page-header'].schema %}
+  {% if enable_json_schema_validation %}
+    {{ validate_data_schema(schema, _self)|raw }}
+  {% endif %}
+  {% set this = init(schema) %}
+#}
+
+{# Variables #}
+{% set attributes = create_attribute(attributes|default({})) %}
+
+{% set classes = [
+  'c-bolt-page-header__search',
+] %}
+
+{# Template #}
+<button aria-expanded="false" class="c-bolt-page-header__action-trigger c-bolt-page-header__action-trigger--search js-bolt-page-header-trigger" id="js-bolt-page-header-search-toggle">
+  <span class="c-bolt-page-header__action-trigger__text">
+    {{ 'Toggle Search Panel'|t }}
+  </span>
+  <span class="c-bolt-page-header__action-trigger__icon" aria-hidden="true">
+    {% include '@bolt-components-icon/icon.twig' with {
+      name: 'search'
+    } only %}
+  </span>
+  <span class="c-bolt-page-header__action-trigger__icon c-bolt-page-header__action-trigger__icon--close" aria-hidden="true">
+    {% include '@bolt-components-icon/icon.twig' with {
+      name: 'close'
+    } only %}
+  </span>
+</button>
+<div {{ attributes.addClass(classes)|without('id') }} id="js-bolt-page-header-search">
+  {{ content }}
+</div>
