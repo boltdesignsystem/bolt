@@ -1,9 +1,5 @@
 {% extends "@pl/_default-page-template.twig" %}
 
-{% block global_header %}
-  {% include "@bolt/page-header.twig" %}
-{% endblock %}
-
 {% block main_content %}
 
   {% embed "@bolt-components-band/band.twig" with {
@@ -36,7 +32,7 @@
           <p>
           <strong>LAS VEGAS – June 5, 2018</strong> – <a href="#">Pegasystems Inc.</a> (NASDAQ: PEGA), the software company empowering customer engagement at the world’s leading enterprises, today announced <a href="#">Pega Community</a>, an open online community empowering Pega users of all experience levels to build better software without coding. This new community allows anyone – from novice to expert – to access the latest resources and tutorials to unlock the power of <a href="#">Pega Infinity</a>™, Pega’s next generation digital transformation suite.
           </p>
-          
+
         <div class="u-bolt-margin-bottom-medium">
           {% include '@bolt-components-image/image.twig' with {
             src: "https://pbs.twimg.com/media/De8QS1iUwAEHfJu.jpg",
@@ -69,12 +65,12 @@
           </div>
 
           {% set complexText %}
-              Pega Community will be debuted during today’s keynote presentation at PegaWorld — Pega’s annual conference being held through June 6 in Las Vegas. To join Pega Community, please visit <a href="https://community.pega.com/">https://community.pega.com/</a>.          
+              Pega Community will be debuted during today’s keynote presentation at PegaWorld — Pega’s annual conference being held through June 6 in Las Vegas. To join Pega Community, please visit <a href="https://community.pega.com/">https://community.pega.com/</a>.
           {% endset %}
           {% include "@bolt-components-headline/text.twig" with {
             "text": complexText,
           } only %}
-          
+
 
           {% include "@bolt-components-headline/headline.twig" with {
             "text": "Quotes & Commentary",
@@ -134,7 +130,7 @@
                   ]
                 } only %}
               </div>
-              
+
               <div class="c-bolt-card">
                 <div class="c-bolt-card__body">
                   <div class="u-bolt-margin-bottom-xsmall">
@@ -143,7 +139,7 @@
                       "size": "large",
                     } only %}
                   </div>
-                  
+
 
                   {% include "@bolt/ui-list.twig" with {
                     "size": "small",

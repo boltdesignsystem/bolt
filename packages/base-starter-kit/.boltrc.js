@@ -45,6 +45,7 @@ module.exports = {
       '@bolt/components-navlink',
       '@bolt/components-ol',
       '@bolt/components-pagination',
+      '@bolt/components-page-header',
       '@bolt/components-placeholder',
       '@bolt/components-popover',
       '@bolt/components-share',
