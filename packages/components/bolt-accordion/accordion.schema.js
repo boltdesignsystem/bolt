@@ -22,6 +22,7 @@ module.exports = {
       title: 'no_separator (twig) / no-separator (web component)',
       description: 'Hides the separator in between items.',
       default: false,
+      enum: [true, false],
     },
     box_shadow: {
       type: 'boolean',
