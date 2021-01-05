@@ -3,7 +3,13 @@ import { passiveSupported } from '@bolt/core-v3.x/utils';
 import Drift from 'drift-zoom';
 import classNames from 'classnames/bind';
 import styles from './device-viewer.scss';
-import schema from '../device-viewer.schema';
+
+/**
+ * 1. This web component does not currently use props, so these lines of code are not required.
+ *    Uncomment if we later decide to rebuild this as a full-featured web component.
+ */
+
+// import schema from '../device-viewer.schema'; /* [1] */
 
 let cx = classNames.bind(styles);
 
@@ -33,13 +39,13 @@ const animationEvent = whichAnimationEvent();
  */
 @customElement('bolt-device-viewer')
 class BoltDeviceViewer extends BoltElement {
-  static schema = schema;
+  // static schema = schema; /* [1] */
 
-  static get properties() {
-    return {
-      ...this.props,
-    };
-  }
+  // static get properties() {
+  //   return {
+  //     ...this.props,
+  //   };
+  // } /* [1] */
 
   render() {
     const classes = cx('c-bolt-image-magnifier');
@@ -69,13 +75,13 @@ class BoltDeviceViewer extends BoltElement {
  */
 @customElement('bolt-image-zoom')
 class BoltImageZoom extends BoltElement {
-  static get properties() {
-    return {
-      mangify: {
-        type: Boolean,
-      },
-    };
-  }
+  // static schema = schema; /* [1] */
+
+  // static get properties() {
+  //   return {
+  //     ...this.props,
+  //   };
+  // } /* [1] */
 
   // `screenElem` returns the screen element inside the device viewer
   screenElem() {
