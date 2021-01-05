@@ -85,9 +85,7 @@
 
 <div class="c-bolt-site">
   {% block global_header %}
-    {% include "@bolt-components-page-header/page-header.twig" with {
-      sticky: true
-    } only %}
+    {% include '@pl/_main-site-page-header.twig' with { static_header: true } only %}
   {% endblock %}
 
   <main class="c-bolt-site__content u-bolt-flex u-bolt-flex-col">
