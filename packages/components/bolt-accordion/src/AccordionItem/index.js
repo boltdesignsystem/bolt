@@ -15,6 +15,23 @@ class AccordionItem extends withContext(BoltElement) {
   static get properties() {
     return {
       ...this.props,
+
+      // context-only props, intentionally omitted from schema
+      spacing: {
+        type: String,
+      },
+      noSeparator: {
+        type: Boolean,
+        attribute: 'no-separator',
+      },
+      boxShadow: {
+        type: Boolean,
+        attribute: 'box-shadow',
+      },
+      iconValign: {
+        type: String,
+        attribute: 'icon-valign',
+      },
     };
   }
 
