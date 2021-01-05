@@ -14,11 +14,11 @@ import {
 Swiper.use([Navigation, Pagination, Scrollbar, A11y, Autoplay]);
 
 import schema from '../carousel.schema';
-import carouselStyles from '../index.scss';
+import styles from '../index.scss';
 
 import '@bolt/core-v3.x/utils/optimized-resize';
 
-let cx = classNames.bind(carouselStyles);
+let cx = classNames.bind(styles);
 
 // @todo: re-wire to point to actual breakpoint data
 const boltBreakpoints = {
@@ -563,7 +563,7 @@ class BoltCarousel extends BoltElement {
 @customElement('bolt-carousel-slide')
 class BoltCarouselSlide extends BoltElement {
   static get styles() {
-    return [unsafeCSS(carouselStyles)];
+    return [unsafeCSS(styles)];
   }
 
   render() {

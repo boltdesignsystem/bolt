@@ -13,6 +13,16 @@ let cx = classNames.bind(styles);
 @customElement('bolt-trigger')
 @convertInitialTags(['button', 'a']) // The first matching tag will have its attributes converted to component props
 class BoltTrigger extends BoltAction {
+  // @todo update to BoltActionElement and then use schema, properties below
+  // static schema = schema;
+
+  // static get properties() {
+  //   return {
+  //     ...BoltAction.props, // Provides: disabled, onClick, onClickTarget, target, url
+  //     ...this.props,
+  //   };
+  // }
+
   static props = {
     ...BoltAction.props, // Provides: disabled, onClick, onClickTarget, target, url
     type: props.string,
