@@ -2,8 +2,8 @@
     ELEMENTS - CODE
 \* ------------------------------------ */
 
-$bolt-code-border-radius: $bolt-border-radius;
-$bolt-code-background-color: rgba(bolt-color(navy, light), 0.08);
+$bolt-code-border-radius: bolt-border-radius(small);
+$bolt-code-background-color: var(--bolt-color-gray-xlight);
 
 pre,
 code {
@@ -13,7 +13,7 @@ code {
   word-spacing: normal;
   word-break: normal;
   word-wrap: break-word;
-  color: bolt-theme(text);
+  color: var(--m-bolt-text);
   text-align: left;
   border-radius: $bolt-code-border-radius;
 }
@@ -26,13 +26,13 @@ pre {
 }
 
 code {
-  @include bolt-font-family(code);
-  @include bolt-font-weight(regular);
-  @include bolt-font-size(small);
-
   display: inline;
   margin: 0;
   padding: 2px 0.25rem 2px 0.3rem; // [Mai] 0.25rem on the right offsets the 0.05rem letter-spacing.
+  font-family: var(--bolt-type-font-family-code);
+  font-size: var(--bolt-type-font-size-small);
+  font-weight: var(--bolt-type-font-weight-regular);
+  line-height: var(--bolt-type-line-height-small);
   letter-spacing: 0.05rem;
   background-color: $bolt-code-background-color;
 }

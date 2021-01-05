@@ -5,7 +5,7 @@
 @import '@bolt/core-v3.x';
 
 $bolt-grid-border-width: 2px;
-$bolt-grid-border-color: bolt-theme(border, 0.2);
+$bolt-grid-border-color: var(--m-bolt-border);
 
 /**
  * 1. Workaround to Safari layout getting thrown off when using a negative letter-spacing to remove inline-block whitespace
@@ -143,9 +143,7 @@ $bolt-object-grid-sizes: xsmall, small, large, xlarge;
 
   @each $size in $bolt-object-grid-sizes {
     // @todo: [Mai] ommitting xlarge to prevent breaking changes. Grid will be reworked into the Layouts folder. Only introduce breaking changes then.
-    @if (
-      $size != 'xlarge'
-    ) {
+    @if ($size != 'xlarge') {
       &.o-bolt-grid--#{$size} {
         margin-bottom: calc(var(--bolt-spacing-y-#{$size}) * -1);
 
