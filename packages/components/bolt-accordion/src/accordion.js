@@ -279,18 +279,6 @@ class BoltAccordion extends withContext(BoltElement) {
     }
   }
 
-  template() {
-    const classes = cx('c-bolt-accordion', {
-      'c-bolt-accordion--box-shadow': this.boxShadow,
-    });
-
-    return html`
-      <div class="${classes}">
-        ${this.slotify('default')}
-      </div>
-    `;
-  }
-
   async handleDeepLink() {
     if (!this.deepLinkTarget) return;
 
@@ -379,8 +367,14 @@ class BoltAccordion extends withContext(BoltElement) {
   }
 
   render() {
+    const classes = cx('c-bolt-accordion', {
+      'c-bolt-accordion--box-shadow': this.boxShadow,
+    });
+
     return html`
-      ${this.template()}
+      <div class="${classes}">
+        ${this.slotify('default')}
+      </div>
     `;
   }
 }

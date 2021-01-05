@@ -83,7 +83,9 @@ class AccordionItem extends withContext(BoltElement) {
     }, 300);
   }
 
-  template() {
+  render() {
+    this.addClassesToSlottedChildren(['default', 'trigger']);
+
     const accordionClasses = cx('c-bolt-accordion-item', {
       'c-bolt-accordion-item--separator': !this.noSeparator,
       'c-bolt-accordion-item--box-shadow': this.boxShadow,
@@ -115,14 +117,6 @@ class AccordionItem extends withContext(BoltElement) {
 
     return html`
       <div class="${accordionClasses}">${innerSlots}</div>
-    `;
-  }
-
-  render() {
-    this.addClassesToSlottedChildren(['default', 'trigger']);
-
-    return html`
-      ${this.template()}
     `;
   }
 }
