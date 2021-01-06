@@ -508,6 +508,12 @@ bolt-dropdown {
   );
 }
 
+// here so we don't have to call the whole height utils library
+.c-bolt-dropdown--height-auto {
+  // !important to overwrite inline styles
+  height: auto !important;
+}
+
 // .c-bolt-dropdown__content--open:not(.c-bolt-dropdown__content--opened) {
 //    --c-bolt-nav-indicator-transform: -100px !important;
 // }
