@@ -16,9 +16,6 @@ class BoltDropdown extends BoltElement {
       autoOpen: {
         type: Boolean,
       },
-      toggleText: {
-        type: String,
-      },
       primaryUuid: {
         type: String,
       },
