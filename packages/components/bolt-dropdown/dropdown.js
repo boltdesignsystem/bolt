@@ -160,8 +160,8 @@ class BoltDropdown extends BoltElement {
     `;
   }
 
-  updated() {
-    super.updated && super.updated();
+  firstUpdated() {
+    super.firstUpdated && super.firstUpdated();
 
     this.contentElem = this.renderRoot.querySelector(
       '.c-bolt-dropdown__content',
