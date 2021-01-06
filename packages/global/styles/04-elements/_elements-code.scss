@@ -2,9 +2,6 @@
     ELEMENTS - CODE
 \* ------------------------------------ */
 
-$bolt-code-border-radius: bolt-border-radius(small);
-$bolt-code-background-color: var(--bolt-color-gray-xlight);
-
 pre,
 code {
   white-space: -moz-pre-wrap;
@@ -15,14 +12,15 @@ code {
   word-wrap: break-word;
   color: var(--m-bolt-text);
   text-align: left;
-  border-radius: $bolt-code-border-radius;
+  border-radius: bolt-border-radius(small);
 }
 
 pre {
   display: block;
   overflow: auto;
   padding: calc(var(--bolt-spacing-y-small) / 2) var(--bolt-spacing-x-small);
-  background-color: $bolt-code-background-color;
+  border: 1px solid var(--bolt-color-white);
+  background-color: var(--bolt-color-gray-xlight);
 }
 
 code {
@@ -34,11 +32,13 @@ code {
   font-weight: var(--bolt-type-font-weight-regular);
   line-height: var(--bolt-type-line-height-small);
   letter-spacing: 0.05rem;
-  background-color: $bolt-code-background-color;
+  border: 1px solid var(--bolt-color-white);
+  background-color: var(--bolt-color-gray-xlight);
 }
 
 pre code {
   display: block;
   padding: 0;
+  border: none;
   background-color: transparent;
 }
