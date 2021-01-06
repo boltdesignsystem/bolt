@@ -1,12 +1,17 @@
-import { html, customElement } from '@bolt/element';
+import { BoltElement, customElement, html } from '@bolt/element';
+import { passiveSupported } from '@bolt/core-v3.x/utils';
 import Drift from 'drift-zoom';
-import {
-  props,
-  css,
-  hasNativeShadowDomSupport,
-  passiveSupported,
-} from '@bolt/core-v3.x/utils';
-import { withLitHtml } from '@bolt/core-v3.x/renderers/renderer-lit-html';
+import classNames from 'classnames/bind';
+import styles from './device-viewer.scss';
+
+/**
+ * 1. This web component does not currently use props, so these lines of code are not required.
+ *    Uncomment if we later decide to rebuild this as a full-featured web component.
+ */
+
+// import schema from '../device-viewer.schema'; /* [1] */
+
+let cx = classNames.bind(styles);
 
 /* From Modernizr */
 function whichAnimationEvent() {
@@ -26,29 +31,33 @@ function whichAnimationEvent() {
     }
   }
 }
+
 const animationEvent = whichAnimationEvent();
 
+/**
+ * BoltDeviceViewer
+ */
 @customElement('bolt-device-viewer')
-class BoltDeviceViewer extends withLitHtml {
-  static props = {
-    // name: props.string,
-  };
+class BoltDeviceViewer extends BoltElement {
+  // static schema = schema; /* [1] */
 
-  constructor(self) {
-    self = super(self);
-    self.useShadow = hasNativeShadowDomSupport;
-    return self;
-  }
+  // static get properties() {
+  //   return {
+  //     ...this.props,
+  //   };
+  // } /* [1] */
 
-  render({ props }) {
-    const classes = css('c-bolt-image-magnifier');
+  render() {
+    const classes = cx('c-bolt-image-magnifier');
 
     return html`
-      <div class="${classes}">${this.slot('default')}</div>
+      <div class="${classes}">${this.slotify('default')}</div>
     `;
   }
 
-  connecting() {
+  connectedCallback() {
+    super.connectedCallback && super.connectedCallback();
+
     if (this.querySelector('bolt-image-zoom')) {
       const drift = new Drift(this.querySelector('bolt-image-zoom'), {
         containInline: false,
@@ -61,27 +70,25 @@ class BoltDeviceViewer extends withLitHtml {
   }
 }
 
+/**
+ * BoltImageZoom
+ */
 @customElement('bolt-image-zoom')
-class BoltImageZoom extends withLitHtml {
-  static props = {
-    mangify: props.boolean,
-  };
+class BoltImageZoom extends BoltElement {
+  // static schema = schema; /* [1] */
 
-  constructor(self) {
-    self = super(self);
-    return self;
-  }
+  // static get properties() {
+  //   return {
+  //     ...this.props,
+  //   };
+  // } /* [1] */
 
-  /**
-   * `screenElem` returns the screen element inside the device viewer
-   */
+  // `screenElem` returns the screen element inside the device viewer
   screenElem() {
     return this;
   }
 
-  /**
-   * `iconElem` returns the bolt icon element inside the device viewer
-   */
+  // `iconElem` returns the bolt icon element inside the device viewer
   iconElem() {
     if (this.querySelector('bolt-icon')) {
       return this.querySelector('bolt-icon');
@@ -119,7 +126,9 @@ class BoltImageZoom extends withLitHtml {
     }
   }
 
-  connecting() {
+  connectedCallback() {
+    super.connectedCallback && super.connectedCallback();
+
     let driftZoomImageUrl;
     if (this.querySelector('img')) {
       driftZoomImageUrl = this.querySelector('img').getAttribute('data-zoom');
@@ -139,19 +148,15 @@ class BoltImageZoom extends withLitHtml {
     );
   }
 
-  /**
-   * `disconnecting()` fires when the element is removed from the DOM.
-   * It's a good place to do clean up work like releasing references and
-   * removing event listeners.
-   */
-  disconnecting() {
+  disconnectedCallback() {
+    super.disconnectedCallback && super.disconnectedCallback();
     this.removeEventListener('mouseenter', this._mouseEnter);
     this.removeEventListener('mouseleave', this._mouseLeave);
   }
 
   render() {
     return html`
-      ${this.slot('default')}
+      ${this.slotify('default')}
     `;
   }
 }

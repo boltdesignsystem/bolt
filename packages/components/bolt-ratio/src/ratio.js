@@ -1,5 +1,4 @@
 import { supportsCSSVars } from '@bolt/core-v3.x/utils';
-import classNames from 'classnames/dedupe';
 import {
   customElement,
   BoltElement,
@@ -7,28 +6,34 @@ import {
   styleMap,
   unsafeCSS,
 } from '@bolt/element';
-import ratioStyles from './ratio.scss';
+import classNames from 'classnames/dedupe';
+import styles from './ratio.scss';
+import schema from '../ratio.schema';
 
-let cx = classNames.bind(ratioStyles);
+let cx = classNames.bind(styles);
 
 @customElement('bolt-ratio')
 class BoltRatio extends BoltElement {
+  static schema = schema;
+
   static get properties() {
     return {
-      ratio: String,
-      _ratioW: String, // internal only prop for handling the width-specific data from the ratio prop
-      _ratioH: String, // internal only prop for handling the height-specific data from the ratio prop
+      ...this.props,
+      //internal only props
+      _ratioW: {
+        type: String,
+      },
+      _ratioH: {
+        type: String,
+      },
+      // deprecated - will be removed in Bolt v3.0
       aspectRatioHeight: {
-        type: Number, // deprecated - will be removed in Bolt v3.0
+        type: Number,
         attribute: 'aspect-ratio-height',
       },
       aspectRatioWidth: {
-        type: Number, // deprecated - will be removed in Bolt v3.0
+        type: Number,
         attribute: 'aspect-ratio-width',
-      },
-      noCssVars: {
-        type: Boolean,
-        attribute: 'no-css-vars',
       },
     };
   }
@@ -39,7 +44,7 @@ class BoltRatio extends BoltElement {
   }
 
   static get styles() {
-    return [unsafeCSS(ratioStyles)];
+    return [unsafeCSS(styles)];
   }
 
   /**
