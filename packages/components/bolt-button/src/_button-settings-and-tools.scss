@@ -8,31 +8,19 @@
 
 $bolt-button-border-width: $bolt-border-width;
 $bolt-button-border-style: $bolt-border-style;
-$bolt-button-transition: $bolt-transition;
 
 /**
  * Tools
  */
 
-@function bolt-button-border-radius($name) {
-  @return map-get($bolt-button-border-radii, $name);
-}
-
 @mixin bolt-button-raised-effect {
-  &.c-bolt-button--primary:hover:not([disabled]),
-  &.c-bolt-button--secondary:hover:not([disabled]),
-  &.c-bolt-button--primary.is-hover:not([disabled]),
-  &.c-bolt-button--secondary.is-hover:not([disabled]) {
-    transform: translate3d(0, -1px, 0);
+  &:hover {
+    transform: translate3d(0, -2px, 0);
 
     &:after {
-      opacity: 1;
+      opacity: 0.4;
+      box-shadow: 0 0.4em 1.5em var(--m-bolt-primary);
     }
-  }
-
-  &:active:not([disabled]),
-  &.is-active:not([disabled]) {
-    transform: translate3d(0, 1px, 0);
   }
 }
 
@@ -53,9 +41,8 @@ $bolt-button-transition: $bolt-transition;
   border-style: $bolt-button-border-style;
   border-color: transparent;
   outline: none;
-  will-change: background-color, transform;
-  transition: background-color $bolt-button-transition,
-    transform $bolt-button-transition;
+  transition: background-color var(--bolt-transition),
+    color var(--bolt-transition), transform var(--bolt-transition);
 
   &:before,
   &:after {
@@ -68,134 +55,93 @@ $bolt-button-transition: $bolt-transition;
     left: -1px;
     z-index: 0;
     pointer-events: none;
-    border-radius: bolt-border-radius(small);
+    border-radius: inherit;
+    transition: opacity var(--bolt-transition),
+      box-shadow var(--bolt-transition), background-color var(--bolt-transition);
   }
 
   &:before {
-    @include bolt-shadow('level-20');
+    opacity: 0.8;
+    box-shadow: 0 0.2em 0.75em var(--m-bolt-neutral);
   }
 
   &:after {
-    @include bolt-shadow('level-30');
-
     opacity: 0;
-    will-change: opacity;
   }
 
-  &:focus:not(:hover):not(.c-bolt-button--disabled),
-  &.is-focus:not(.is-hover):not(.is-disabled) {
-    box-shadow: 0 -1px 2px bolt-theme(background),
-      0 1px 2px bolt-theme(background), 0 0 5px rgb(59, 153, 252),
-      0 -1px 0.65rem rgb(59, 153, 252), 0 1px 0.65rem rgb(59, 153, 252); // @todo: This mimmicks the browser default blue. We will update it with our own colors later on.
+  &:focus,
+  &.is-focus,
+  &:active:not(:disabled) {
+    transform: translate3d(0, 0, 0);
+    outline: var(--bolt-focus-ring);
+    outline-offset: 2px;
   }
 }
 
 // Button Colors / Types
 @mixin bolt-button-style--primary() {
-  color: bolt-theme(text-on-primary);
-  background-color: bolt-theme(primary);
+  @include bolt-button-raised-effect;
 
-  &:hover,
-  &.is-hover {
-    color: bolt-theme(text-on-primary-lighten-15);
-    background-color: bolt-theme(primary-lighten-15);
-  }
-
-  &:focus,
-  &.is-focus {
-    color: bolt-theme(text-on-primary-darken-15);
-    background-color: bolt-theme(primary-darken-15);
-  }
-
-  &:active,
-  &.is-active {
-    color: bolt-theme(text-on-primary-darken-25);
-    background-color: bolt-theme(primary-darken-25);
-  }
+  color: var(--m-bolt-text-on-primary);
+  background-color: var(--m-bolt-primary);
 }
 
 @mixin bolt-button-style--secondary() {
-  color: bolt-theme(text-on-secondary);
-  background-color: bolt-theme(secondary);
+  @include bolt-button-raised-effect;
 
-  &:hover,
-  &.is-hover {
-    color: bolt-theme(text-on-secondary-lighten-5);
-    background-color: bolt-theme(secondary-lighten-5);
-  }
+  color: var(--m-bolt-text-on-secondary);
+  background-color: var(--m-bolt-secondary);
 
-  &:focus,
-  &.is-focus {
-    color: bolt-theme(text-on-secondary-darken-3);
-    background-color: bolt-theme(secondary-darken-3);
-  }
-
-  &:active,
-  &.is-active {
-    color: bolt-theme(text-on-secondary-darken-10);
-    background-color: bolt-theme(secondary-darken-10);
+  &:before {
+    opacity: 0.4;
   }
 }
 
 @mixin bolt-button-style--tertiary() {
-  color: bolt-theme(headline);
-  box-shadow: 0 0 0.25rem bolt-theme(background, 0.2);
-  background-color: bolt-theme(neutral, 0.2);
+  color: var(--m-bolt-text-on-tertiary);
+  background-color: var(--m-bolt-tertiary);
+  backdrop-filter: blur(0.1em);
 
-  &:before,
-  &:after {
-    display: none;
+  &:before {
+    opacity: 0;
   }
 
-  &:hover,
-  &.is-hover {
-    background-color: bolt-theme(neutral, 0.4);
-  }
+  &:hover {
+    transform: translate3d(0, 0, 0);
 
-  &:focus,
-  &.is-focus {
-    background-color: bolt-theme(neutral, 0.4);
-  }
-
-  &:active,
-  &.is-active {
-    background-color: bolt-theme(neutral, 0.6);
+    &:after {
+      opacity: 0.2;
+      box-shadow: none;
+      background-color: var(--bolt-color-gray);
+    }
   }
 }
 
 @mixin bolt-button-style--text() {
-  // Remove box-shadow and background-color completely for text buttons.
-
   opacity: bolt-opacity(100);
-  color: bolt-theme(headline-link);
-  text-decoration: none;
+  color: var(--m-bolt-link);
 
   &:before,
   &:after {
     display: none;
   }
 
-  &,
-  &[disabled],
-  &.c-bolt-button--disabled {
-    background-color: transparent;
-  }
+  &:hover {
+    transform: translate3d(0, 0, 0);
+    color: var(--m-bolt-headline);
 
-  &:hover,
-  &.is-hover {
-    opacity: $bolt-global-link-hover-opacity;
-  }
-
-  &:active,
-  &.is-active {
-    opacity: $bolt-global-link-active-opacity;
+    &:after {
+      opacity: 0.2;
+      box-shadow: none;
+      background-color: var(--bolt-color-gray);
+    }
   }
 }
 
 @mixin bolt-button-style--disabled() {
   opacity: 1;
   transform: none;
-  color: bolt-theme(text-disabled);
+  color: var(--m-bolt-text-on-disabled);
   cursor: not-allowed;
 
   * {
@@ -203,25 +149,18 @@ $bolt-button-transition: $bolt-transition;
   }
 
   &:not(.c-bolt-button--text) {
-    background-color: bolt-theme(disabled);
+    background-color: var(--m-bolt-disabled);
   }
 
   &:before,
   &:after {
     display: none;
   }
-}
 
-// @todo: refactor and revive state color options
-// .c-bolt-button--success {
-//   @include bolt-button-color(success);
-// }
-// .c-bolt-button--warning {
-//   @include bolt-button-color(warning);
-// }
-// .c-bolt-button--error {
-//   @include bolt-button-color(error);
-// }
+  &:hover {
+    text-decoration: none;
+  }
+}
 
 @mixin bolt-button-style($style) {
   @if ($style == 'primary') {
