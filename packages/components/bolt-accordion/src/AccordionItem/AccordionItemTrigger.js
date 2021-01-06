@@ -1,8 +1,8 @@
 import { html } from '@bolt/element';
 import classNames from 'classnames/bind';
-import accordionItemStyles from './accordion-item.scss';
+import styles from './accordion-item.scss';
 
-let cx = classNames.bind(accordionItemStyles);
+let cx = classNames.bind(styles);
 
 export const AccordionItemTrigger = (children, self) => {
   const triggerClasses = cx('c-bolt-accordion-item__trigger');

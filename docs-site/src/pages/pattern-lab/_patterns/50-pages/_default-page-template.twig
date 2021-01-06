@@ -1,5 +1,9 @@
 {% block global_header %}
-  {% include "@bolt/page-header.twig" %}
+  {# Located inside components/page-header in PL #}
+  {% include '@pl/_main-site-page-header.twig' with {
+    static_header: static_header,
+    japanese: japanese,
+  } only %}
 {% endblock %}
 
 <div class="c-bolt-site__content c-bolt-site__content--middle"><!-- vertically center -->

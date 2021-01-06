@@ -1,16 +1,13 @@
 import { unsafeCSS, BoltElement, customElement, html } from '@bolt/element';
-import { withContext } from 'wc-context';
+import { withContext } from 'wc-context/lit-element';
 import { smoothScroll } from '@bolt/components-smooth-scroll/src/smooth-scroll';
 import URLSearchParams from '@ungap/url-search-params'; // URLSearchParams poly for older browsers
 import classNames from 'classnames/bind';
-import accordionStyles from './accordion.scss';
+import styles from './accordion.scss';
 import schema from '../accordion.schema';
 import { Accordion } from './_accordion-handorgel';
 
-let cx = classNames.bind(accordionStyles);
-
-// Remove "items" from the Accordion schema since it doesn't apply to the web component.
-delete schema.properties['items'];
+let cx = classNames.bind(styles);
 
 @customElement('bolt-accordion')
 class BoltAccordion extends withContext(BoltElement) {
@@ -22,17 +19,17 @@ class BoltAccordion extends withContext(BoltElement) {
     };
   }
 
-  static get styles() {
-    return [unsafeCSS(accordionStyles)];
-  }
-
   static get providedContexts() {
     return {
-      noSeparator: { value: schema.properties.no_separator.default },
-      boxShadow: { value: schema.properties.box_shadow.default },
-      spacing: { value: schema.properties.spacing.default },
-      iconValign: { value: schema.properties.icon_valign.default },
+      noSeparator: { property: 'noSeparator' },
+      boxShadow: { property: 'boxShadow' },
+      spacing: { property: 'spacing' },
+      iconValign: { property: 'iconValign' },
     };
+  }
+
+  static get styles() {
+    return [unsafeCSS(styles)];
   }
 
   updated(changedProperties) {
@@ -40,8 +37,6 @@ class BoltAccordion extends withContext(BoltElement) {
     let hasSpacingChanged = false;
 
     changedProperties.forEach((oldValue, propName) => {
-      this.updateProvidedContext(propName, this[propName]);
-
       // is spacing has changed, wait for the updates to finish before updating handorgel
       if (propName === 'spacing') {
         hasSpacingChanged = true;
@@ -284,18 +279,6 @@ class BoltAccordion extends withContext(BoltElement) {
     }
   }
 
-  template() {
-    const classes = cx('c-bolt-accordion', {
-      'c-bolt-accordion--box-shadow': this.boxShadow,
-    });
-
-    return html`
-      <div class="${classes}">
-        ${this.slotify('default')}
-      </div>
-    `;
-  }
-
   async handleDeepLink() {
     if (!this.deepLinkTarget) return;
 
@@ -384,8 +367,14 @@ class BoltAccordion extends withContext(BoltElement) {
   }
 
   render() {
+    const classes = cx('c-bolt-accordion', {
+      'c-bolt-accordion--box-shadow': this.boxShadow,
+    });
+
     return html`
-      ${this.template()}
+      <div class="${classes}">
+        ${this.slotify('default')}
+      </div>
     `;
   }
 }

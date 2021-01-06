@@ -1,9 +1,8 @@
 {% extends "@pl/_default-page-template.twig" %}
 
 {% block global_header %}
-  {% include "@pl/_page-header.twig" %}
+  {% include '@pl/_main-site-page-header.twig' with { static_header: true } %}
 {% endblock %}
-
 
 {% block main_content %}
   {% embed "@bolt-components-sticky/sticky.twig" %}

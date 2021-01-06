@@ -1,0 +1,69 @@
+{#
+  Schema Validation @todo: find a way to validate multiple schemas within one component.
+
+  {% set schema = bolt.data.components['@bolt-components-page-header'].schema %}
+  {% if enable_json_schema_validation %}
+    {{ validate_data_schema(schema, _self)|raw }}
+  {% endif %}
+  {% set this = init(schema) %}
+#}
+
+{# Variables #}
+{% set attributes = create_attribute(attributes|default({})) %}
+{% set link_attributes = create_attribute(link.attributes|default({})) %}
+{% set link_tag = link_attributes.type ? 'button' : link_attributes.href ? 'a' : 'span' %}
+
+{% set classes = [
+  'js-bolt-page-header-nav-item',
+  'c-bolt-page-header__nav-list-item',
+  popover ? 'c-bolt-page-header__nav-list-item--popover',
+  full_width ? 'c-bolt-page-header__nav-list-item--full-width',
+  children ? 'has-children',
+  selected ? 'is-selected',
+  current ? 'is-current',
+] %}
+
+{# Template #}
+<li {{ attributes.addClass(classes) }}>
+  {% if content and not link %}
+    <div class="c-bolt-page-header__nav-content">
+      {{ content }}
+    </div>
+  {% elseif link and not content %}
+    {% if link and children %}
+      {# Visible desktop heading #}
+      {% if link.desktop_heading %}
+        <{{ link_tag }} {{ link_attributes }} class="c-bolt-page-header__nav-link c-bolt-page-header__nav-link--heading">
+          <strong class="c-bolt-page-header__nav-link__content">
+            {{ link.content }}
+          </strong>
+        </{{ link_tag }}>
+      {% endif %}
+
+      {# Trigger and content for nested children #}
+      {% set children_link_classes = [
+        'js-bolt-page-header-trigger',
+        'c-bolt-page-header__nav-link',
+      ] %}
+      <button type="button" aria-expanded="false" {{ link_attributes.addClass(children_link_classes)|without('href')|without('target')|without('type')|without('aria-expanded') }}>
+        <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--collapse" aria-hidden="true"></span>
+        <span class="c-bolt-page-header__nav-link__content">
+          {{ link.content }}
+        </span>
+        <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--expand" aria-hidden="true"></span>
+      </button>
+      {{ children }}
+    {% else %}
+      {# Simple link without children #}
+      {% set link_classes = [
+        'c-bolt-page-header__nav-link',
+        link.desktop_heading ? 'c-bolt-page-header__nav-link--heading'
+      ] %}
+      <{{ link_tag }} {{ link_attributes.addClass(link_classes) }} {% if selected and not current %}aria-current="true"{% endif %}>
+        <span class="c-bolt-page-header__nav-link__content">
+          {{ link.content }}
+        </span>
+      </{{ link_tag }}>
+    {% endif %}
+  {% endif %}
+</li>

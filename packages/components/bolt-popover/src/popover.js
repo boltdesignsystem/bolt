@@ -10,31 +10,27 @@ import { ifDefined } from 'lit-html/directives/if-defined';
 import classNames from 'classnames/bind';
 import { createPopper } from '@popperjs/core';
 import Mousetrap from 'mousetrap';
-import popoverStyles from './popover.scss';
+import styles from './popover.scss';
 import schema from '../popover.schema';
 
-let cx = classNames.bind(popoverStyles);
+let cx = classNames.bind(styles);
 
 @customElement('bolt-popover')
 class BoltPopover extends BoltElement {
+  static schema = schema;
+
   static get properties() {
     return {
-      spacing: String,
-      placement: String,
-      uuid: String,
+      ...this.props,
       open: {
         type: Boolean,
         reflect: true,
       },
-      theme: {
-        type: String,
+      hasPopup: {
+        type: Boolean,
       },
-      hasPopup: Boolean,
-      hasFocusableContent: Boolean,
-      boundary: String,
-      fallbackPlacements: {
-        attribute: 'fallback-placements',
-        type: Array,
+      hasFocusableContent: {
+        type: Boolean,
       },
     };
   }
@@ -50,7 +46,7 @@ class BoltPopover extends BoltElement {
   }
 
   static get styles() {
-    return [unsafeCSS(popoverStyles)];
+    return [unsafeCSS(styles)];
   }
 
   // removes any hashes from the URL while preserving any query string params
@@ -238,13 +234,10 @@ class BoltPopover extends BoltElement {
       this.getTextContentLength();
     }
 
-    const spacing = this.spacing || schema.properties.spacing.default;
-    const placement = this.placement || schema.properties.placement.default;
-
     const classes = cx('c-bolt-popover', {
       [`is-expanded`]: this.open,
-      [`c-bolt-popover--spacing-${spacing}`]: spacing,
-      [`c-bolt-popover--${placement}`]: placement,
+      [`c-bolt-popover--spacing-${this.spacing}`]: this.spacing,
+      [`c-bolt-popover--${this.placement}`]: this.placement,
       [`c-bolt-popover--text-wrap`]: this.textContentLength > 31,
     });
 
