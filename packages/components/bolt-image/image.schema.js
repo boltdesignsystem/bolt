@@ -48,14 +48,12 @@ module.exports = {
       description:
         'Lazyload can boost performance by loading images on demand, instead of on initial page load.',
       default: true,
-      enum: [true, false],
     },
     no_lazy: {
       type: 'boolean',
       description:
         'Override the default lazyload behavior. Used only on the web component, where the presence of a boolean property always equates to `true`.',
       default: false,
-      enum: [true, false],
     },
     placeholder_color: {
       type: 'string',
@@ -85,7 +83,6 @@ module.exports = {
       type: 'boolean',
       description: 'Use the <code>ratio</code> prop instead.',
       default: true,
-      enum: [true, false],
     },
     ratio: {
       type: ['string', 'boolean'],
@@ -115,7 +112,6 @@ module.exports = {
       type: 'boolean',
       description: 'Set an image to fill its container.',
       default: false,
-      enum: [true, false],
     },
     width: {
       title: 'DEPRECATED',

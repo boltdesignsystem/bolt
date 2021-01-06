@@ -15,7 +15,6 @@ module.exports = {
       type: 'boolean',
       description: 'Automatically expand an item on page load.',
       default: false,
-      enum: [true, false],
     },
     inactive: {
       type: 'boolean',

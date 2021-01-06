@@ -44,7 +44,6 @@ module.exports = {
       type: 'boolean',
       description:
         'Determines if you want the Navbar content to be center aligned or not',
-      enum: [true, false],
     },
     width: {
       type: 'string',
