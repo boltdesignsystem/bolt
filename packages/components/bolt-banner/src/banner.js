@@ -1,34 +1,28 @@
 import { customElement, BoltElement, html, unsafeCSS } from '@bolt/element';
 import classNames from 'classnames/dedupe';
-import bannerStyles from './banner.scss';
+import styles from './banner.scss';
 import schema from '../banner.schema';
 
-let cx = classNames.bind(bannerStyles);
+let cx = classNames.bind(styles);
 
 @customElement('bolt-banner')
 class BoltBanner extends BoltElement {
+  static schema = schema;
+
   static get properties() {
     return {
-      status: String,
-      align: String,
+      ...this.props,
     };
   }
 
-  constructor() {
-    super();
-  }
-
   static get styles() {
-    return [unsafeCSS(bannerStyles)];
+    return [unsafeCSS(styles)];
   }
 
   render() {
-    const status = this.status || schema.properties.status.default;
-    const align = this.align || schema.properties.align.default;
-
     const classes = cx('c-bolt-banner', {
-      [`c-bolt-banner--status-${status}`]: status,
-      [`c-bolt-banner--align-${align}`]: align,
+      [`c-bolt-banner--status-${this.status}`]: this.status,
+      [`c-bolt-banner--align-${this.align}`]: this.align,
     });
 
     return html`
