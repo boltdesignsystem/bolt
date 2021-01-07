@@ -122,12 +122,16 @@ async function init() {
             );
           }
 
-          await shell.exec(`
-            git checkout master
-            git pull
-            git merge ${branchName}
-            git push --no-verify
-          `);
+          // Temporarily, only merge back to master if this is the release/2.x branch.
+          if (branchName === 'release/2.x') {
+            await shell.exec(`
+              git fetch --depth=50 origin master:master
+              git checkout master
+              git pull
+              git merge ${branchName}
+              git push --no-verify
+            `);
+          }
         }
       }
     } catch (error) {
