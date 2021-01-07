@@ -48,77 +48,77 @@
               <tbody>
                 <tr>
                   <th>Text</th>
-                  <td>bolt-theme(text)</td>
+                  <td>var(--m-bolt-text)</td>
                   <td>
                     <span class="c-bds-color-chip c-bds-color-chip--text"></span>&nbsp;&nbsp;{% if theme == "xlight" or theme == "light" %}black{% else %}white{% endif %}
                   </td>
                 </tr>
                 <tr>
                   <th>Background</th>
-                  <td>bolt-theme(background)</td>
+                  <td>var(--m-bolt-bg)</td>
                   <td>
                     <span class="c-bds-color-chip c-bds-color-chip--background"></span>&nbsp;&nbsp;{% if theme == "xlight" %}white{% elseif theme == "light" %}gray, xlight{% elseif theme == "dark" %}navy{% else %}navy, dark{% endif %}
                   </td>
                 </tr>
                 <tr>
                   <th>Primary</th>
-                  <td>bolt-theme(primary)</td>
+                  <td>var(--m-bolt-primary)</td>
                   <td>
                     <span class="c-bds-color-chip c-bds-color-chip--primary"></span>&nbsp;&nbsp;{% if theme == "xlight" or theme == "light" %}navy, light{% else %}yellow{% endif %}
                   </td>
                 </tr>
                 <tr>
                   <th>Secondary</th>
-                  <td>bolt-theme(secondary)</td>
+                  <td>var(--m-bolt-secondary)</td>
                   <td>
                     <span class="c-bds-color-chip c-bds-color-chip--secondary"></span>&nbsp;&nbsp;{% if theme == "xlight" or theme == "light" %}white{% else %}white{% endif %}
                   </td>
                 </tr>
                 <tr>
+                  <th>Tertiary</th>
+                  <td>var(--m-bolt-tertiary)</td>
+                  <td>
+                    <span class="c-bds-color-chip c-bds-color-chip--tertiary"></span>&nbsp;&nbsp;{% if theme == "xlight" or theme == "light" %}gray, 15%{% else %}white, 15%{% endif %}
+                  </td>
+                </tr>
+                <tr>
                   <th>Link Text</th>
-                  <td>bolt-theme(link)</td>
+                  <td>var(--m-bolt-link)</td>
                   <td>
                     <span class="c-bds-color-chip c-bds-color-chip--link"></span>&nbsp;&nbsp;{% if theme == "xlight" or theme == "light" %}navy, light{% else %}white{% endif %}
                   </td>
                 </tr>
                 <tr>
                   <th>Disabled Text</th>
-                  <td>bolt-theme(text-disabled)</td>
+                  <td>var(--m-bolt-text-on-disabled)</td>
                   <td>
                     <span class="c-bds-color-chip c-bds-color-chip--text-disabled"></span>&nbsp;&nbsp;{% if theme == "xlight" or theme == "light" %}gray{% else %}gray{% endif %}
                   </td>
                 </tr>
                 <tr>
                   <th>Disabled Background</th>
-                  <td>bolt-theme(disabled)</td>
+                  <td>var(--m-bolt-disabled)</td>
                   <td>
                     <span class="c-bds-color-chip c-bds-color-chip--disabled"></span>&nbsp;&nbsp;{% if theme == "xlight" or theme == "light" %}gray, light{% else %}gray, light{% endif %}
                   </td>
                 </tr>
                 <tr>
                   <th>Headline Text</th>
-                  <td>bolt-theme(headline)</td>
+                  <td>var(--m-bolt-headline)</td>
                   <td>
                     <span class="c-bds-color-chip c-bds-color-chip--headline"></span>&nbsp;&nbsp;{% if theme == "xlight" or theme == "light" %}navy{% else %}white{% endif %}
                   </td>
                 </tr>
                 <tr>
-                  <th>Headline Link</th>
-                  <td>bolt-theme(headline-link)</td>
-                  <td>
-                    <span class="c-bds-color-chip c-bds-color-chip--headline-link"></span>&nbsp;&nbsp;{% if theme == "xlight" or theme == "light" %}navy, light{% else %}white{% endif %}
-                  </td>
-                </tr>
-                <tr>
                   <th>Border</th>
-                  <td>bolt-theme(border, 0.2)</td>
+                  <td>var(--m-bolt-border)</td>
                   <td>
-                    <span class="c-bds-color-chip c-bds-color-chip--border"></span>&nbsp;&nbsp;{% if theme == "xlight" or theme == "light" %}navy, dark, 20%{% else %}white, 20%{% endif %}
+                    <span class="c-bds-color-chip c-bds-color-chip--border"></span>&nbsp;&nbsp;{% if theme == "xlight" or theme == "light" %}gray, 15%{% else %}white, 15%{% endif %}
                   </td>
                 </tr>
                 <tr>
                   <th>Neutral</th>
-                  <td>bolt-theme(neutral)</td>
+                  <td>var(--m-bolt-neutral)</td>
                   <td>
                     <span class="c-bds-color-chip c-bds-color-chip--neutral"></span>&nbsp;&nbsp;{% if theme == "xlight" or theme == "light" %}gray{% else %}gray{% endif %}
                   </td>
@@ -219,7 +219,7 @@
                 </bolt-list-item>
                 <bolt-list-item>
                   <bolt-button color="tertiary">
-                    Secondary
+                    Tertiary
                   </bolt-button>
                 </bolt-list-item>
               </bolt-list>
