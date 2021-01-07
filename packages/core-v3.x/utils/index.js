@@ -27,10 +27,4 @@ export * from './validate-props';
 export * from './mode';
 export * from './query';
 
-// https://www.polymer-project.org/3.0/docs/devguide/custom-elements#defer-work
-export {
-  beforeNextRender,
-  afterNextRender,
-} from '@polymer/polymer/lib/utils/render-status.js';
-
 export { shadow, withComponent, props, define } from 'skatejs';
