@@ -1,9 +1,7 @@
 import {
   BoltActionElement,
   unsafeCSS,
-  render,
   html,
-  ifDefined,
   customElement,
   convertInitialTags,
   spread,
@@ -28,16 +26,6 @@ class BoltLink extends BoltActionElement {
 
   static get styles() {
     return [unsafeCSS(styles)];
-  }
-
-  // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
-  constructor(self) {
-    self = super(self);
-    self.schema = schema;
-    self.display = schema.properties.display.default;
-    self.valign = schema.properties.valign.default;
-    self.target = schema.properties.target.default; // @todo: remove once https://github.com/boltdesignsystem/bolt/pull/1795 lands
-    return self;
   }
 
   render() {

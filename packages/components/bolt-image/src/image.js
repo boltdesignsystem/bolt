@@ -40,6 +40,7 @@ class BoltImage extends BoltElement {
   static get properties() {
     return {
       ...this.props,
+      // deprecated
       ratio: {
         type: String,
       },
@@ -54,18 +55,13 @@ class BoltImage extends BoltElement {
     return [unsafeCSS(styles)];
   }
 
-  constructor(self) {
-    self = super(self);
-    self.onResize = self.onResize.bind(self);
-    self.onLazyLoaded = self.onLazyLoaded.bind(self);
-    self.initialClasses = [];
-    self.valign = 'center';
-    self.align = 'center';
-    self.placeholderImage =
-      'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';
-    self.sizes = 'auto';
-    self.ratio = 'auto';
-    return self;
+  constructor() {
+    super();
+    this.onResize = this.onResize.bind(this);
+    this.onLazyLoaded = this.onLazyLoaded.bind(this);
+    this.initialClasses = [];
+    // Must manually set default because ratio is "deprecated" and will be filtered out by `json-schema-props` decorator
+    this.ratio = 'auto';
   }
 
   disconnectedCallback() {
