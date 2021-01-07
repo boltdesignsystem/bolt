@@ -140,8 +140,6 @@ class BoltImage extends BoltElement {
         this.lazyImage.addEventListener('lazyloaded', this.onLazyLoaded);
         // `lazySizes.elements` may be undefined on first load. That's ok - the line below is just to catch JS injected images.
 
-        // const self = this; // required so checkIfLazySizesReady has the right scope
-
         // wait until lazySizes.elements is available
         const waitForLazySizes = setInterval(checkIfLazySizesReady, 50);
         // eslint-disable-next-line no-inner-declarations
