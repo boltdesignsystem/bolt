@@ -92,7 +92,6 @@ module.exports = {
       default: true,
       description:
         'If set to true, the band will take the full width of the page.',
-      enum: [true, false],
     },
     theme: {
       type: 'any',

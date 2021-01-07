@@ -22,7 +22,6 @@ bolt-navlink {
   @include bolt-font-size(small);
   @include bolt-font-weight(semibold);
   opacity: 0.9;
-
   position: relative;
   padding: calc(var(--bolt-spacing-y-small) / 2) var(--bolt-spacing-x-xsmall);
   color: bolt-theme(headline-link);
@@ -38,6 +37,13 @@ bolt-navlink {
 
   @include bolt-mq(xsmall) {
     padding: calc(var(--bolt-spacing-y-small) / 2) var(--bolt-spacing-x-small);
+  }
+
+  @include bolt-ms-edge-42-only {
+    padding-top: var(--bolt-spacing-y-xsmall);
+    padding-right: var(--bolt-spacing-x-xsmall);
+    padding-bottom: var(--bolt-spacing-y-xsmall);
+    padding-left: var(--bolt-spacing-x-xsmall);
   }
 
   &:active,

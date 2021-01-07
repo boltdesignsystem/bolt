@@ -1,0 +1,38 @@
+/* ------------------------------------ *\
+   TOOLS - Text Link
+\* ------------------------------------ */
+
+@mixin bolt-text-link {
+  color: var(--m-bolt-link);
+  text-decoration: underline;
+  text-decoration-color: currentColor;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+  transition: color var(--bolt-transition),
+    text-decoration var(--bolt-transition),
+    text-decoration-color var(--bolt-transition),
+    text-decoration-thickness var(--bolt-transition),
+    text-decoration-offset var(--bolt-transition),
+    box-shadow var(--bolt-transition);
+
+  &:visited {
+    text-decoration-color: var(--m-bolt-neutral);
+  }
+
+  &:hover,
+  &:focus {
+    color: var(--m-bolt-headline);
+    text-decoration-color: var(--m-bolt-link);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 3px;
+  }
+
+  &:focus {
+    text-decoration: none;
+    outline: var(--bolt-focus-ring);
+  }
+
+  &:active {
+    color: var(--m-bolt-text);
+  }
+}

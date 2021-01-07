@@ -17,7 +17,7 @@ module.exports = {
       type: 'string',
       description: 'HTML semantic tags.',
       default: 'p',
-      enum: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'div', 'span', 'cite'],
+      enum: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'div', 'span'],
     },
     display: {
       type: 'string',
@@ -47,7 +47,6 @@ module.exports = {
       type: 'boolean',
       description: 'Quoted text.',
       default: false,
-      enum: [true, false],
     },
     'line-height': {
       type: 'string',
@@ -105,24 +104,17 @@ module.exports = {
       description:
         'A preset for headlines in context of the typographic design.',
       default: false,
-      enum: [true, false],
     },
     subheadline: {
       type: 'boolean',
       description:
         'A preset for subheadlines in context of the typographic design.',
       default: false,
-      enum: [true, false],
     },
     eyebrow: {
       type: 'boolean',
       description: 'A preset for eyebrow in context of the typographic design.',
       default: false,
-      enum: [true, false],
-    },
-    url: {
-      type: 'string',
-      description: 'If provided, turns headline into a link to given url.',
     },
     util: {
       type: 'array',

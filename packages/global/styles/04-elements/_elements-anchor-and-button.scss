@@ -1,0 +1,11 @@
+/* ------------------------------------ *\
+   <a> and <button>
+\* ------------------------------------ */
+
+a {
+  color: var(--m-bolt-link);
+}
+
+a:not([class]) {
+  @include bolt-text-link;
+}

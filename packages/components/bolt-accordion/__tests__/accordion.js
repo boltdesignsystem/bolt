@@ -7,7 +7,6 @@ import {
 import schema from '../accordion.schema';
 
 const { readYamlFileSync } = require('@bolt/build-tools/utils/yaml');
-const { single } = schema.properties;
 const { spacing } = schema.definitions;
 
 const timeout = 120000;
@@ -15,16 +14,16 @@ const timeout = 120000;
 const accordionHTML = `
   <bolt-accordion single>
     <bolt-accordion-item>
-      <bolt-text slot="trigger">Accordion item 1</bolt-text>
-      <bolt-text>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</bolt-text>
+      <div slot="trigger">Accordion item 1</div>
+      <div>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</div>
     </bolt-accordion-item>
     <bolt-accordion-item>
-      <bolt-text slot="trigger">Accordion item 2</bolt-text>
-      <bolt-text>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</bolt-text>
+      <div slot="trigger">Accordion item 2</div>
+      <div>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</div>
     </bolt-accordion-item>
     <bolt-accordion-item>
-      <bolt-text slot="trigger">Accordion item 3</bolt-text>
-      <bolt-text>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</bolt-text>
+      <div slot="trigger">Accordion item 3</div>
+      <div>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</div>
     </bolt-accordion-item>
   </bolt-accordion>
 `;
@@ -32,16 +31,16 @@ const accordionHTML = `
 const accordionNoShadowHTML = `
   <bolt-accordion no-shadow>
     <bolt-accordion-item no-shadow>
-      <bolt-text slot="trigger">Accordion item 1</bolt-text>
-      <bolt-text>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</bolt-text>
+      <div slot="trigger">Accordion item 1</div>
+      <div>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</div>
     </bolt-accordion-item>
     <bolt-accordion-item no-shadow>
-      <bolt-text slot="trigger">Accordion item 2</bolt-text>
-      <bolt-text>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</bolt-text>
+      <div slot="trigger">Accordion item 2</div>
+      <div>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</div>
     </bolt-accordion-item>
     <bolt-accordion-item no-shadow>
-      <bolt-text slot="trigger">Accordion item 3</bolt-text>
-      <bolt-text>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</bolt-text>
+      <div slot="trigger">Accordion item 3</div>
+      <div>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</div>
     </bolt-accordion-item>
   </bolt-accordion>
 `;
@@ -90,7 +89,7 @@ describe('<bolt-accordion> Component', () => {
     expect(results.html).toMatchSnapshot();
   });
 
-  single.enum.forEach(async singleChoice => {
+  [true, false].forEach(async singleChoice => {
     test(`expand single items: ${singleChoice}`, async () => {
       const results = await render(
         '@bolt-components-accordion/accordion.twig',

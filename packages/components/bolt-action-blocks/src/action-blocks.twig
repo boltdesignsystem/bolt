@@ -30,6 +30,11 @@
   {% set borderless = true %}
 {% endif %}
 
+{# DEPRECATED: 'contentItems' has been renamed 'items'. #}
+{% if contentItems %}
+  {% set items = contentItems %}
+{% endif %}
+
 {# Set up checks to validate that the component's prop values are allowed, based on the component's schema #}
 {% set spacing_options = schema.properties.spacing.enum %}
 {% set valign_options = schema.properties.valign.enum %}
@@ -79,9 +84,9 @@
     {% if children %}
       {{ children }}
     {% else %}
-      {% for item in contentItems %}
+      {% for item in items %}
         <li class="{{ "#{base_class}__item" }}">
-          {% include "@bolt-components-action-blocks/_action-blocks-item.twig" with item only %}
+          {% include "@bolt-components-action-blocks/action-block.twig" with item only %}
         </li>
       {% endfor %}
     {% endif %}

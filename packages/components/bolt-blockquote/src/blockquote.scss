@@ -3,25 +3,41 @@
 // Local Variables
 $bolt-blockquote-border-width: 4px;
 $bolt-blockquote-border-style: $bolt-border-style;
-$bolt-blockquote-border-color: bolt-color(teal);
+$bolt-blockquote-border-color: var(--bolt-color-teal);
 $bolt-blockquote-image-border-width: $bolt-border-width;
 $bolt-blockquote-image-border-style: $bolt-border-style;
-$bolt-blockquote-image-border-color: rgba(bolt-color(gray), 0.2);
+$bolt-blockquote-image-border-color: var(--m-bolt-border);
 $bolt-blockquote-image-size: 4rem;
 
 @mixin bolt-lang-specific-quotes($type: 'open') {
-  content: map-get-deep($bolt-quotation-marks, 'en', $type);
-
-  [lang='de'] & {
-    content: map-get-deep($bolt-quotation-marks, 'de', $type);
+  $quote-selector: 'p:not([slot]):first-of-type:before';
+  @if ($type == 'close') {
+    $quote-selector: 'p:not([slot]):last-of-type:after';
   }
 
-  [lang='fr'] & {
-    content: map-get-deep($bolt-quotation-marks, 'fr', $type);
+  #{$quote-selector} {
+    content: map-get-deep($bolt-quotation-marks, 'en', $type);
   }
 
-  [lang='ja'] & {
-    content: map-get-deep($bolt-quotation-marks, 'ja', $type);
+  @at-root [lang='de'] &,
+    &[lang='de'] {
+    #{$quote-selector} {
+      content: map-get-deep($bolt-quotation-marks, 'de', $type);
+    }
+  }
+
+  @at-root [lang='fr'] &,
+    &[lang='fr'] {
+    #{$quote-selector} {
+      content: map-get-deep($bolt-quotation-marks, 'fr', $type);
+    }
+  }
+
+  @at-root [lang='ja'] &,
+    &[lang='ja'] {
+    #{$quote-selector} {
+      content: map-get-deep($bolt-quotation-marks, 'ja', $type);
+    }
   }
 }
 
@@ -63,7 +79,7 @@ $bolt-blockquote-image-size: 4rem;
   position: relative;
   max-width: 44rem;
   margin-bottom: var(--bolt-spacing-y-medium);
-  color: bolt-theme(headline);
+  color: var(--m-bolt-headline);
 
   $sizes: 'large', 'xlarge', 'xxlarge';
   @each $size in $sizes {
@@ -79,41 +95,60 @@ $bolt-blockquote-image-size: 4rem;
       font-weight: var(--bolt-type-font-weight-#{$weight});
     }
   }
+}
 
-  p:not([slot]):first-child:before,
-  p:not([slot]):last-child:after {
+// Quotes
+bolt-blockquote {
+  @include bolt-lang-specific-quotes('open');
+  @include bolt-lang-specific-quotes('close');
+
+  p:not([slot]):first-of-type:before,
+  p:not([slot]):last-of-type:after {
     font-family: 'Georgia', serif; // TODO: Replace with Noto Serif when it is added.
   }
 
-  p:not([slot]):first-child:before {
-    @include bolt-lang-specific-quotes('open');
+  // Prop-specific styles
+  // Note: Ordinarily we would use classes not attribute selectors, but we must use attribute selectors here
+  // because Safari does not support ::slotted + pseudo-selectors, like this: `::slotted(p):before { }`.
+
+  // "left" is default alignment
+  &,
+  &[align-items='left'] {
+    p:not([slot]):first-of-type:before {
+      position: absolute;
+      transform: translate3d(-110%, 0, 0);
+    }
   }
 
-  p:not([slot]):last-child:after {
-    @include bolt-lang-specific-quotes('close');
+  &[align-items='center'] {
+    p:not([slot]):first-of-type:before {
+      padding: 0 2px;
+    }
   }
 
-  ::slotted(p:first-child),
-  ::slotted(p.is-first-child),
-  ::slotted(p:last-child),
-  ::slotted(p.is-last-child) {
+  &[align-items='right'] {
+    p:not([slot]):first-of-type:before {
+      padding: 0 2px;
+    }
+
+    p:not([slot]):last-of-type:after {
+      position: absolute;
+      transform: translate3d(10%, 0, 0);
+    }
+  }
+
+  &[no-quotes] {
+    p:not([slot]):before,
+    p:not([slot]):after {
+      display: none;
+    }
+  }
+
+  // Just in case user puts <p> in 'author' or 'cite' slot
+  [slot] p {
     &:before,
     &:after {
-      font-family: 'Georgia', serif; // TODO: Replace with Noto Serif when it is added.
-    }
-  }
-
-  ::slotted(p:first-child),
-  ::slotted(p.is-first-child) {
-    &:before {
-      @include bolt-lang-specific-quotes('open');
-    }
-  }
-
-  ::slotted(p:last-child),
-  ::slotted(p.is-last-child) {
-    &:after {
-      @include bolt-lang-specific-quotes('close');
+      display: none;
     }
   }
 }
@@ -123,7 +158,7 @@ $bolt-blockquote-image-size: 4rem;
 .c-bolt-blockquote__author-title {
   font-style: normal; // required by WC-only version
   font-size: var(--bolt-type-font-size-xsmall);
-  color: bolt-theme(headline);
+  color: var(--m-bolt-headline);
   line-height: var(--bolt-type-line-height-xsmall);
 }
 
@@ -150,7 +185,7 @@ $bolt-blockquote-image-size: 4rem;
 }
 
 .c-bolt-blockquote__footer {
-  color: bolt-theme(text);
+  color: var(--m-bolt-text);
   line-height: calc(
     var(--bolt-type-line-height-medium) *
       var(--bolt-type-line-height-multiplier-tight)
@@ -211,10 +246,6 @@ $bolt-blockquote-image-size: 4rem;
   padding: 0 var(--bolt-spacing-x-medium);
   border-style: $bolt-blockquote-border-style;
   border-color: $bolt-blockquote-border-color;
-  border-color: var(
-    --bolt-theme-blockquote-border,
-    $bolt-blockquote-border-color
-  );
 
   &:before,
   &:after {
@@ -275,80 +306,5 @@ $bolt-blockquote-image-size: 4rem;
 
   &.c-bolt-blockquote--align-items-end {
     margin-left: 0;
-  }
-}
-
-// Perfecting the hanging quotation mark's position in all browsers.
-.c-bolt-blockquote--align-items-start {
-  .c-bolt-blockquote__quote {
-    p:first-child:before {
-      position: absolute;
-      transform: translate3d(-110%, 0, 0);
-    }
-
-    ::slotted(p:first-child),
-    ::slotted(p.is-first-child) {
-      &:before {
-        position: absolute;
-        transform: translate3d(-110%, 0, 0);
-      }
-    }
-  }
-}
-
-.c-bolt-blockquote--align-items-center {
-  .c-bolt-blockquote__quote {
-    p:first-child:before {
-      padding: 0 2px;
-    }
-
-    ::slotted(p:first-child),
-    ::slotted(p.is-first-child) {
-      &:before {
-        padding: 0 2px;
-      }
-    }
-  }
-}
-
-.c-bolt-blockquote--align-items-end {
-  .c-bolt-blockquote__quote {
-    p:first-child:before {
-      padding: 0 2px;
-    }
-
-    ::slotted(p:first-child),
-    ::slotted(p.is-first-child) {
-      &:before {
-        padding: 0 2px;
-      }
-    }
-
-    p:last-child:after {
-      position: absolute;
-      transform: translate3d(10%, 0, 0);
-    }
-
-    ::slotted(p:last-child),
-    ::slotted(p.is-last-child) {
-      &:after {
-        position: absolute;
-        transform: translate3d(10%, 0, 0);
-      }
-    }
-  }
-}
-
-.c-bolt-blockquote--no-quotes {
-  .c-bolt-blockquote__quote {
-    p:before,
-    p:after {
-      display: none;
-    }
-
-    ::slotted(p):before,
-    ::slotted(p):after {
-      display: none;
-    }
   }
 }

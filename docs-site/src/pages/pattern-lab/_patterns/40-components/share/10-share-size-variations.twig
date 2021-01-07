@@ -1,13 +1,36 @@
-{% set schema = bolt.data.components["@bolt-components-share"].schema %}
-{% extends "@pl/_share-variables.twig" %}
-
+{% set schema = bolt.data.components['@bolt-components-share'].schema %}
+{% extends '@pl/_share-variables.twig' %}
 {% block content %}
+
+{% set description %}
+  Share is available in small and medium sizes. Use the <bolt-code-snippet display="inline">size</bolt-code-snippet> prop to control the title text size, the icon size, and the spacing between the icons.
+{% endset %}
+
+{% set demo %}
   {% for size in schema.properties.size.enum %}
-    <h3>{{ size|capitalize }} Size</h3>
-    {% include "@bolt-components-share/share.twig" with {
+    {% include '@bolt-components-share/share.twig' with {
       size: size,
-      sources: sources,
-      copy_to_clipboard: copy_to_clipboard,
+      sources: demo_sources,
+      copy_to_clipboard: demo_copy_to_clipboard,
     } only %}
   {% endfor %}
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% include '@bolt-components-share/share.twig' with {
+  size: 'small',
+  sources: var_foo,
+  copy_to_clipboard: var_bar,
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Title, icon, and spacing size',
+  description: description,
+  demo: demo,
+  twig_markup: twig_markup,
+} only %}
+
 {% endblock %}

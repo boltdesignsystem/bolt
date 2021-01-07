@@ -1,0 +1,91 @@
+{% macro code_example(code) %}
+  <bolt-code-snippet syntax="dark" lang="twig">{% spaceless %}
+    {{ code|replace({
+      '<': '&lt;',
+      '>': '&gt;',
+      '{': '&lbrace;',
+      '}': '&rbrace;',
+      '%': '&percnt;',
+    })|trim|raw }}
+  {% endspaceless %}</bolt-code-snippet>
+{% endmacro %}
+{% import _self as snippet %}
+
+{% set band_content %}
+  <bolt-text headline tag="h2" font-size="xlarge">
+    {{ title|default('Insert title') }}
+  </bolt-text>
+  <bolt-stack>
+    {{ description|default('Insert description.') }}
+  </bolt-stack>
+
+  {% if notes %}
+    <bolt-banner align="start">
+      <bolt-text headline tag="h3" font-size="medium">Important Notes:</bolt-text>
+      <bolt-stack>
+        {{ notes }}
+      </bolt-stack>
+    </bolt-banner>
+  {% endif %}
+
+  {% if demo %}
+    <bolt-text headline tag="h3" font-size="large">
+      Demo
+    </bolt-text>
+    <bolt-stack>
+      {% if demo_light_dark %}
+        <div class="u-bolt-padding-medium t-bolt-xlight">
+          <bolt-text headline font-size="xxsmall" text-transform="uppercase" letter-spacing="wide">Light</bolt-text>
+          {{ demo }}
+        </div>
+        <div class="u-bolt-padding-medium t-bolt-dark">
+          <bolt-text headline font-size="xxsmall" text-transform="uppercase" letter-spacing="wide">Dark</bolt-text>
+          {{ demo }}
+        </div>
+      {% else %}
+        {{ demo }}
+      {% endif %}
+    </bolt-stack>
+  {% endif %}
+
+  {% if html_markup or twig_markup %}
+    <bolt-tabs inset="off">
+      <bolt-tab-panel>
+        <div slot="label">Twig</div>
+        {% if twig_markup %}
+          {% include snippet.code_example(twig_markup) %}
+        {% else %}
+          <bolt-banner align="start" status="warning">
+            <bolt-icon name="warning" size="small" aria-hidden="true"></bolt-icon>
+            <strong>Not available in Twig. Please use plain HTML.</strong>
+          </bolt-banner>
+        {% endif %}
+      </bolt-tab-panel>
+      <bolt-tab-panel {% if html_markup and not twig_markup %}selected{% endif %}>
+        <div slot="label">HTML</div>
+        {% if html_markup %}
+          {% include snippet.code_example(html_markup) %}
+        {% else %}
+          <bolt-banner align="start" status="warning">
+            <bolt-icon name="warning" size="small" aria-hidden="true"></bolt-icon>
+            <strong>Not available in plain HTML. Please use Twig.</strong>
+          </bolt-banner>
+        {% endif %}
+      </bolt-tab-panel>
+    </bolt-tabs>
+  {% endif %}
+
+  {% if warning %}
+    <bolt-text headline tag="h3" font-size="large">
+      Warning!
+    </bolt-text>
+    <bolt-stack>
+      {{ warning }}
+    </bolt-stack>
+  {% endif %}
+{% endset %}
+
+{% include '@bolt-components-band/band.twig' with {
+  theme: 'none',
+  content: band_content,
+} only %}

@@ -1,0 +1,31 @@
+/* ------------------------------------ *\
+   Inline Icon Wrapper
+\* ------------------------------------ */
+
+/**
+ * Dev notes:
+ * 1. Custom icons must be a square and the height must equal the text's font-size, hence 1em.
+ * 2. Zero width no-break space is passed to the icon container's :before and :after pseudo elements, combine that with nowrap white-space on the icon container, and it will make sure that an icon never wraps to the next line by itself, it will always wrap with the final word of the text. See: https://codepen.io/mikemai2awesome/pen/OJXbqwe?editors=0100
+ * 3. Temporary fix for icon + text bad vertical alignment.
+*/
+
+@mixin bolt-inline-icon-wrapper {
+  white-space: nowrap;
+
+  &:before,
+  &:after {
+    content: '\FEFF'; /* [2] */
+  }
+
+  > img {
+    width: 1em; /* [1] */
+    height: 1em; /* [1] */
+  }
+
+  > img,
+  > bolt-icon:not([size]) {
+    display: inline-flex;
+    transform: translateY(0.18em); /* [3] */
+    vertical-align: baseline;
+  }
+}

@@ -1,16 +1,35 @@
-import { html, customElement } from '@bolt/element';
+import { html, customElement, BoltElement, unsafeCSS } from '@bolt/element';
 import ClipboardJS from 'clipboard';
-import { withLitHtml } from '@bolt/core-v3.x/renderers/renderer-lit-html';
+
+/**
+ * 1. This web component does not currently use props or the shadow dom, so these lines of code are not required.
+ *    Uncomment if we later decide to rebuild this as a full-featured web component.
+ */
+
+// import classNames from 'classnames/bind'; /* [1] */
+// import styles from './copy-to-clipboard.scss'; /* [1] */
+// import schema from '../copy-to-clipboard.schema'; /* [1] */
+
+// let cx = classNames.bind(styles); /* [1] */
 
 @customElement('bolt-copy-to-clipboard')
-class BoltCopyToClipboard extends withLitHtml {
-  constructor(self) {
-    self = super(self);
-    self.useShadow = false;
-    return self;
-  }
+class BoltCopyToClipboard extends BoltElement {
+  // static schema = schema; /* [1] */
 
-  connecting() {
+  // static get properties() {
+  //   return {
+  //     ...this.props,
+  //   };
+  // } /* [1] */
+
+  static useShadow = false;
+
+  // static get styles() {
+  //   return [unsafeCSS(styles)];
+  // } /* [1] */
+
+  connectedCallback() {
+    super.connectedCallback && super.connectedCallback();
     this.copyTrigger = this.querySelector('[data-clipboard-text]');
     this.parentElem = this.querySelector('.js-bolt-copy-to-clipboard');
 
@@ -35,13 +54,14 @@ class BoltCopyToClipboard extends withLitHtml {
     });
   }
 
-  disconnecting() {
+  disconnectedCallback() {
+    super.disconnectedCallback && super.disconnectedCallback();
     this.clipboardInstance.destroy();
   }
 
   render() {
     return html`
-      ${this.slot('default')}
+      ${this.slotify('default')}
     `;
   }
 }

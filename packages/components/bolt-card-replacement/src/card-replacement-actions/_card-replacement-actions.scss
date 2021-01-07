@@ -6,7 +6,7 @@
 @import '../_card-replacement-settings-and-tools.scss';
 
 bolt-card-replacement-actions {
-  @include bolt-card-replacement-border-reset;
+  position: relative;
   overflow: hidden;
 
   &:last-child {
@@ -19,10 +19,14 @@ bolt-card-replacement-actions {
   }
 
   &:not(:last-child) {
+    border-bottom-color: $bolt-card-replacement-border-color;
+    border-bottom-style: $bolt-card-replacement-border-style;
     border-bottom-width: $bolt-card-replacement-border-width;
   }
 
   @at-root * + #{&} {
+    border-top-color: $bolt-card-replacement-border-color;
+    border-top-style: $bolt-card-replacement-border-style;
     border-top-width: $bolt-card-replacement-border-width;
   }
 }

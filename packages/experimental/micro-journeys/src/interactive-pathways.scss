@@ -62,8 +62,8 @@
     position: relative;
     z-index: 10;
     margin: 0;
-    border-bottom: 2px solid bolt_theme(text);
-    background-color: bolt-theme(background);
+    border-bottom: 2px solid var(--m-bolt-text);
+    background-color: var(--m-bolt-bg);
 
     &--active {
       border-color: transparent;
@@ -75,11 +75,11 @@
   }
 
   &__dropdown-trigger {
-    @include bolt-font-weight(semibold);
     display: block;
     padding: 0;
     font-size: 1.75rem;
-    color: bolt_theme(primary);
+    font-weight: var(--bolt-type-font-weight-semibold);
+    color: var(--m-bolt-primary);
     line-height: 1.65;
     letter-spacing: 0.03em;
     cursor: pointer;
@@ -106,7 +106,7 @@
     padding-left: 0;
     list-style-type: none;
     border-radius: 0.35rem;
-    background-color: bolt-color(white);
+    background-color: var(--bolt-color-white);
     transition: opacity 200ms ease;
 
     &.active {
@@ -119,7 +119,7 @@
 
       // Fix for IE 11
       & .c-bolt-text-v2 {
-        color: bolt-color(black) !important;
+        color: var(--bolt-color-black) !important;
       }
 
       & + & {
@@ -151,7 +151,7 @@
     &--active {
       bolt-icon,
       p {
-        color: bolt-color(blue);
+        color: var(--bolt-color-blue);
       }
     }
 

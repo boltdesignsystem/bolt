@@ -4,8 +4,10 @@
     Bolt Code Snippet
 \* ------------------------------------ */
 
-$bolt-code-snippet-border-radius: $bolt-border-radius;
-$bolt-code-snippet-background-color: rgba(bolt-color(navy, light), 0.08);
+$bolt-code-snippet-border-radius: bolt-border-radius(small);
+$bolt-code-snippet-border: 1px solid var(--bolt-color-white);
+$bolt-code-snippet-background-color: var(--bolt-color-gray-xlight);
+$bolt-code-snippet-shadow: 0 0 6px var(--bolt-color-gray-xlight);
 
 // Custom element default styles
 bolt-code-snippet {
@@ -25,7 +27,7 @@ bolt-code-snippet {
   word-spacing: normal;
   word-break: normal;
   word-wrap: break-word;
-  color: bolt-theme(headline);
+  color: var(--bolt-color-black);
   text-align: left;
   border-radius: $bolt-code-snippet-border-radius;
 }
@@ -35,6 +37,8 @@ bolt-code-snippet {
   display: block;
   margin: 0 0 var(--bolt-spacing-y-medium) 0;
   padding: calc(var(--bolt-spacing-y-small) / 2) var(--bolt-spacing-x-small);
+  border: $bolt-code-snippet-border;
+  box-shadow: $bolt-code-snippet-shadow;
   background-color: $bolt-code-snippet-background-color;
 }
 
@@ -53,5 +57,7 @@ bolt-code-snippet {
 .c-bolt-code-snippet__code--inline {
   display: inline;
   padding: 2px 0.25rem 2px 0.3rem; // [Mai] 0.25rem on the right offsets the 0.05rem letter-spacing.
+  border: $bolt-code-snippet-border;
+  box-shadow: $bolt-code-snippet-shadow;
   background-color: $bolt-code-snippet-background-color;
 }

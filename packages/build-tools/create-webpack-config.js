@@ -72,6 +72,8 @@ async function createWebpackConfig(buildConfig) {
         '@bolt/core-v3.x/styles/main.scss',
       ];
 
+      entry['brightcove'] = ['@bolt/components-video/brightcove.scss'];
+
       components.global.forEach(component => {
         if (component.assets.style) {
           entry[globalEntryName].push(component.assets.style);

@@ -1,0 +1,64 @@
+{% set description %}
+  Text link has a style variant called reversed underline. This is commonly used in headlines with icons because an icon may already indicate interactivity, reducing the need for the underline. The underline will appear on hover instead of being visible always.
+{% endset %}
+
+{% set notes %}
+  It is recommended to use this style variant while having either an icon before or after.
+{% endset %}
+
+{% set icon_chevron_right %}
+  {% include '@bolt-components-icon/icon.twig' with {
+    name: 'chevron-right',
+  } only %}
+{% endset %}
+
+{% set demo %}
+<bolt-text headline font-size="xxxlarge">
+  {% include '@bolt-elements-text-link/text-link.twig' with {
+    content: 'This is a reversed underline headline text link',
+    icon_after: icon_chevron_right,
+    reversed_underline: true,
+    attributes: {
+      href: 'https://pega.com',
+    }
+  } only %}
+</bolt-text>
+<bolt-text>
+  {% include '@bolt-elements-text-link/text-link.twig' with {
+    content: 'This is a reversed underline body text link',
+    icon_after: icon_chevron_right,
+    reversed_underline: true,
+    attributes: {
+      href: 'https://pega.com',
+    }
+  } only %}
+</bolt-text>
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% include '@bolt-elements-text-link/text-link.twig' with {
+  content: 'This is a reversed underline text link',
+  icon_after: icon_chevron_right,
+  reversed_underline: true,
+  attributes: {
+    href: 'https://pega.com',
+  }
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% set html_markup %}
+{% verbatim %}
+<a href="https://pega.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline">This is a reversed underline text link</a>
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Reversed Underline Text Link',
+  description: description,
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+  html_markup: html_markup,
+} only %}

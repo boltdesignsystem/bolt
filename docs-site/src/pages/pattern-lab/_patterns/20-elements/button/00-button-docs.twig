@@ -1,0 +1,15 @@
+{% set usage %}{% verbatim %}
+{% include '@bolt-elements-button/button.twig' with {
+  content: 'This is a button',
+  attributes: {
+    type: 'submit'
+  }
+} only %}
+{% endverbatim %}{% endset %}
+
+{% include '@utils/docs.twig' with {
+  componentName: 'button',
+  componentGroup: 'elements',
+  usage: usage
+} only %}
+

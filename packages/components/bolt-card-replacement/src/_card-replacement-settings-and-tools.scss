@@ -1,22 +1,13 @@
 @import '@bolt/core-v3.x';
 
 // Settings
-
-$bolt-card-replacement-shadow-color: bolt-color(gray, dark);
+$bolt-card-replacement-shadow-color: var(--bolt-color-gray-dark);
 $bolt-card-replacement-border-width: $bolt-border-width;
 $bolt-card-replacement-border-style: $bolt-border-style;
-$bolt-card-replacement-border-color: bolt-theme(border, 0.2);
+$bolt-card-replacement-border-color: var(--m-bolt-border);
 
 // Don't set z-index on body, because body can have links that need to set its own z-index. We'd want to keep z-index usage at a minimum to avoid endless conflicts. Background should be set to 0 because it's the lowest in the stacking order and 0 will not cover up body as long as body is set to position:relative.
 // @todo: also note, setting inner link to 2 is prone to conflicts, but there's no other way currently.
 $bolt-card-replacement-z-index-background: 0;
 $bolt-card-replacement-z-index-outer-link: 1;
 $bolt-card-replacement-z-index-inner-link: 2;
-
-// Tools
-
-@mixin bolt-card-replacement-border-reset {
-  border: 0;
-  border-style: $bolt-card-replacement-border-style;
-  border-color: $bolt-card-replacement-border-color;
-}

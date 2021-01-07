@@ -28,7 +28,7 @@ bolt-toc {
   @include bolt-shadow('level-20');
   display: block;
   overflow: hidden;
-  border: 1px solid $bolt-border-color;
+  border: 1px solid var(--m-bolt-border);
   border-radius: bolt-border-radius(large);
 }
 
@@ -39,9 +39,9 @@ bolt-toc {
   font-family: var(--bolt-type-font-family-headline);
   font-size: var(--bolt-type-font-size-large);
   font-weight: var(--bolt-type-font-weight-bold);
-  color: bolt-theme(background);
+  color: var(--m-bolt-bg);
   line-height: var(--bolt-type-line-height-large);
-  background-color: bolt-theme(headline);
+  background-color: var(--m-bolt-headline);
 
   &--hidden {
     @include bolt-visuallyhidden;

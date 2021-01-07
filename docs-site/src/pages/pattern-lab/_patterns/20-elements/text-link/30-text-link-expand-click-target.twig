@@ -1,0 +1,75 @@
+{% set icon_chevron_right %}
+  {% include '@bolt-components-icon/icon.twig' with {
+    name: 'chevron-right',
+  } only %}
+{% endset %}
+
+{% set description %}
+  The text link will increase its click target to cover a particular block of content.
+{% endset %}
+
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>When creating a block text link (such as trying to make an entire card clickable while retaining the headline as the link) with the <bolt-code-snippet display="inline">expand_click_target</bolt-code-snippet> prop, the text link must be placed into a container that is not positioned static (e.g. absolute, fixed, relative, or sticky), and the text must explain clearly the block of content that it&rsquo;s trying to cover.</bolt-li>
+    <bolt-li>Only 1 block text link should be used within a particular block of content.</bolt-li>
+  </bolt-ol>
+{% endset %}
+
+{% set demo %}
+<div class="u-bolt-position-relative u-bolt-shadow-level-20 u-bolt-border-radius-large u-bolt-padding-medium t-bolt-light" style="max-width: 66ch;">
+  {% include '@bolt-components-image/image.twig' with {
+    src: '/images/placeholders/landscape-16x9-mountains.jpg',
+    alt: 'A mountain',
+    attributes: {
+      class: [
+        'u-bolt-margin-bottom-small',
+        'u-bolt-border-radius-large',
+        'u-bolt-overflow-hidden',
+      ]
+    }
+  } only %}
+  <bolt-text headline>
+    {% include '@bolt-elements-text-link/text-link.twig' with {
+      content: 'This is a block text link, its click target will cover the entire area of its closest container that is not positioned static',
+      expand_click_target: true,
+      reversed_underline: true,
+      icon_after: icon_chevron_right,
+      attributes: {
+        href: 'https://pega.com',
+      }
+    } only %}
+  </bolt-text>
+  <bolt-text>
+    Hover over this box, the whole thing is clickable.
+  </bolt-text>
+</div>
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+// Wrap this text link with a container that is not positioned static.
+{% include '@bolt-elements-text-link/text-link.twig' with {
+  content: 'This is a block text link, its click target will cover the entire area of its closest container that is not positioned static.',
+  expand_click_target: true,
+  attributes: {
+    href: 'https://pega.com',
+  }
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% set html_markup %}
+{% verbatim %}
+// Wrap this text link with a container that is not positioned static.
+<a href="https://pega.com" class="e-bolt-text-link e-bolt-text-link--expand-click-target">This is a block text link, its click target will cover the entire area of its closest container that is not positioned static.</a>
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Expand Click Target',
+  description: description,
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+  html_markup: html_markup,
+} only %}

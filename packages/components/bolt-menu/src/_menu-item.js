@@ -14,22 +14,21 @@ let cx = classNames.bind(menuStyles);
 
 @customElement('bolt-menu-item')
 class BoltMenuItem extends withContext(BoltElement) {
-  static schema = schema;
+  static schema = schema.properties.items.items;
 
   static get properties() {
-    const { url, spacing } = this.props;
+    const { url, target } = this.props;
     return {
       url,
-      spacing,
+      target,
+      spacing: {
+        type: String,
+      },
       role: {
         type: String,
         reflect: true,
       },
     };
-  }
-
-  static get observedContexts() {
-    return ['spacing'];
   }
 
   contextChangedCallback(name, oldValue, value) {
@@ -60,7 +59,6 @@ class BoltMenuItem extends withContext(BoltElement) {
 
     const classes = cx('c-bolt-menu-item', {
       [`c-bolt-menu-item--spacing-${this.spacing}`]: this.spacing,
-      [`c-bolt-menu-item--last-item`]: isLast,
     });
 
     return html`
@@ -68,11 +66,30 @@ class BoltMenuItem extends withContext(BoltElement) {
         display="block"
         no-outline
         url="${ifDefined(this.url ? this.url : undefined)}"
+        target="${ifDefined(this.target ? this.target : undefined)}"
         role="menuitem"
       >
-        <div class="${classes}">
+        <span class="${cx('c-bolt-menu-item')}">
+          ${this.slotMap.get('icon-before') &&
+            html`
+              <span
+                class="${cx('c-bolt-menu-item__icon-before')}"
+                aria-hidden="true"
+              >
+                ${this.slotify('icon-before')}
+              </span>
+            `}
           ${this.slotify('default')}
-        </div>
+          ${this.slotMap.get('icon-after') &&
+            html`
+              <span
+                class="${cx('c-bolt-menu-item__icon-after')}"
+                aria-hidden="true"
+              >
+                ${this.slotify('icon-after')}
+              </span>
+            `}
+        </span>
       </bolt-trigger>
     `;
   }
