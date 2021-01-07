@@ -6,7 +6,7 @@
 /**
  * Register custom element
  */
-@include bolt-repeat-rule(('bolt-banner', ':host')) {
+@include bolt-repeat-rule(('bolt-banner', ':host(bolt-banner)')) {
   display: block;
 
   &:not(:last-child) {
@@ -28,9 +28,9 @@
 @include bolt-repeat-rule(
   (
     'bolt-banner[status=error]',
-    ':host[status=error]',
+    ':host(bolt-banner[status=error])',
     'bolt-banner[status=success]',
-    ':host[status=success]'
+    ':host(bolt-banner[status=success])'
   )
 ) {
   --bolt-theme-headline-link: 255, 255, 255; /* [1] */
@@ -44,7 +44,7 @@
 }
 
 @include bolt-repeat-rule(
-  ('bolt-banner[status=warning]', ':host[status=warning]')
+  ('bolt-banner[status=warning]', ':host(bolt-banner[status=warning])')
 ) {
   --bolt-theme-headline-link: 0, 0, 0; /* [1] */
   --bolt-theme-headline: 0, 0, 0; /* [1] */

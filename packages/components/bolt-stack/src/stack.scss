@@ -18,13 +18,15 @@
   @include bolt-repeat-rule(
     (
       'bolt-stack:not(:last-child)[spacing=#{$size-name}]',
-      ':host:not(:last-child)[spacing=#{$size-name}]'
+      ':host(bolt-stack:not(:last-child)[spacing=#{$size-name}])'
     )
   ) {
     margin-bottom: var(--bolt-spacing-y-#{$size-name});
   }
 }
 
-@include bolt-repeat-rule(('bolt-stack[spacing=none]', ':host[spacing=none]')) {
+@include bolt-repeat-rule(
+  ('bolt-stack[spacing=none]', ':host(bolt-stack[spacing=none])')
+) {
   margin-bottom: 0;
 }
