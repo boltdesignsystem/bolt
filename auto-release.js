@@ -8,8 +8,7 @@ const { normalizeUrlAlias } = require('./scripts/utils/normalize-url-alias');
 const { branchName } = require('./scripts/utils/branch-name');
 const { NOW_TOKEN } = process.env;
 
-const isFullRelease =
-  branchName === 'release-2.x' || branchName === 'release/2.x';
+const isFullRelease = branchName.startsWith('release');
 
 const lernaConfig = require('./lerna.json');
 const currentVersion = lernaConfig.version;
@@ -126,7 +125,7 @@ async function init() {
           await shell.exec(`
             git checkout master
             git pull
-            git merge release/2.x
+            git merge ${branchName}
             git push --no-verify
           `);
         }

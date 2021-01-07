@@ -154,13 +154,13 @@ jobs:
 
     - stage: Auto-release
       name: 'Full Release'
-      if: (branch =~ /(release\/2.x)/)
+      if: (branch =~ /(release)/)
       before_script:
         - git config --global user.email ${GITHUB_EMAIL}
         - git config --global user.name ${GITHUB_USER}
         - git remote set-url origin "https://${GITHUB_TOKEN}@github.com/boltdesignsystem/bolt.git" > /dev/null 2>&1
         - echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
-        - git checkout release/2.x
+        - git checkout ${TRAVIS_BRANCH}
       install:
         - yarn install --frozen-lockfile
         - yarn run setup:php
