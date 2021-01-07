@@ -5,9 +5,6 @@ import {
   convertInitialTags,
   customElement,
 } from '@bolt/element';
-// import { props } from '@bolt/core-v3.x/utils';
-// import { render } from '@bolt/core-v3.x/renderers/renderer-lit-html';
-// import { BoltAction } from '@bolt/core-v3.x/elements/bolt-action';
 import { render } from 'lit-html';
 import classNames from 'classnames/bind';
 import styles from './chip.scss';
@@ -22,7 +19,7 @@ class BoltChip extends BoltActionElement {
 
   static get properties() {
     return {
-      ...BoltActionElement.properties, // Provides: disabled, onClick, onClickTarget, target, url
+      ...BoltActionElement.properties,
       ...this.props,
     };
   }
@@ -31,19 +28,9 @@ class BoltChip extends BoltActionElement {
     return [unsafeCSS(styles)];
   }
 
-  // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
-  // constructor(self) {
-  //   self = super(self);
-  //   self.delegateFocus = true;
-  //   return self;
-  // }
-
   render() {
     // 1. Remove line breaks before and after lit-html template tags, causes unwanted space inside and around inline chips
     // 2. Zero Width No-break Space (&#xfeff;) is needed to make the last word always stick with the icon, so the icon will never become an orphan.
-
-    // Validate the original prop data passed along -- returns back the validated data w/ added default values
-    // const { url, target, size, iconOnly } = this.validateProps(this.props);
 
     const classes = cx('c-bolt-chip', {
       [`c-bolt-chip--link`]: this.url,

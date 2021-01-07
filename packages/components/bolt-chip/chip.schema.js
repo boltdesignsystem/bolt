@@ -54,7 +54,7 @@ module.exports = {
       type: 'boolean',
       description:
         'Display only the icon and hide the text. For accessibility purposes you are still required to provide text.',
-      default: 'false,',
+      default: false,
       required: ['icon'],
     },
     no_shadow: {
