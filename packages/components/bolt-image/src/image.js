@@ -40,6 +40,11 @@ class BoltImage extends BoltElement {
   static get properties() {
     return {
       ...this.props,
+      // internal use only
+      initialClasses: {
+        type: Array,
+      },
+      // deprecated
       ratio: {
         type: String,
       },
@@ -54,18 +59,10 @@ class BoltImage extends BoltElement {
     return [unsafeCSS(styles)];
   }
 
-  constructor(self) {
-    self = super(self);
-    self.onResize = self.onResize.bind(self);
-    self.onLazyLoaded = self.onLazyLoaded.bind(self);
-    self.initialClasses = [];
-    self.valign = 'center';
-    self.align = 'center';
-    self.placeholderImage =
-      'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';
-    self.sizes = 'auto';
-    self.ratio = 'auto';
-    return self;
+  constructor() {
+    super();
+    this.onResize = this.onResize.bind(this);
+    this.onLazyLoaded = this.onLazyLoaded.bind(this);
   }
 
   disconnectedCallback() {
@@ -143,14 +140,14 @@ class BoltImage extends BoltElement {
         this.lazyImage.addEventListener('lazyloaded', this.onLazyLoaded);
         // `lazySizes.elements` may be undefined on first load. That's ok - the line below is just to catch JS injected images.
 
-        const self = this; // required so checkIfLazySizesReady has the right scope
+        // const self = this; // required so checkIfLazySizesReady has the right scope
 
         // wait until lazySizes.elements is available
         const waitForLazySizes = setInterval(checkIfLazySizesReady, 50);
         // eslint-disable-next-line no-inner-declarations
         function checkIfLazySizesReady() {
           if (lazySizes.elements) {
-            lazySizes.elements && lazySizes.elements.push(self.lazyImage);
+            lazySizes.elements && lazySizes.elements.push(this.lazyImage);
             lazySizes.loader.checkElems();
             clearInterval(waitForLazySizes);
           }
