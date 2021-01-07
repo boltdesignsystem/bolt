@@ -10,7 +10,7 @@ code {
   word-spacing: normal;
   word-break: normal;
   word-wrap: break-word;
-  color: var(--m-bolt-text);
+  color: var(--bolt-color-black);
   text-align: left;
   border-radius: bolt-border-radius(small);
 }
@@ -20,6 +20,7 @@ pre {
   overflow: auto;
   padding: calc(var(--bolt-spacing-y-small) / 2) var(--bolt-spacing-x-small);
   border: 1px solid var(--bolt-color-white);
+  box-shadow: 0 0 6px var(--bolt-color-gray-xlight);
   background-color: var(--bolt-color-gray-xlight);
 }
 
@@ -33,6 +34,7 @@ code {
   line-height: var(--bolt-type-line-height-small);
   letter-spacing: 0.05rem;
   border: 1px solid var(--bolt-color-white);
+  box-shadow: 0 0 6px var(--bolt-color-gray-xlight);
   background-color: var(--bolt-color-gray-xlight);
 }
 
@@ -40,5 +42,6 @@ pre code {
   display: block;
   padding: 0;
   border: none;
+  box-shadow: none;
   background-color: transparent;
 }
