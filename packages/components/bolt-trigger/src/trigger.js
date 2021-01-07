@@ -20,7 +20,6 @@ class BoltTrigger extends BoltActionElement {
 
   static get properties() {
     return {
-      ...BoltActionElement.properties,
       ...this.props,
     };
   }

@@ -1,3 +1,9 @@
+const elementSchemas = require('@bolt/element/element.schemas');
+const { url, target } = elementSchemas.boltActionElement.properties;
+
+url.description =
+  'Optional. Contains a URL that the chip points to. When URL is present, tag changes to `a`, otherwise tag would be `span`.';
+
 module.exports = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'Chip',
@@ -23,16 +29,8 @@ module.exports = {
       default: 'small',
       enum: ['xsmall', 'small', 'medium'],
     },
-    url: {
-      type: 'string',
-      description:
-        'Optional. Contains a URL that the chip points to. When URL is present, tag changes to `a`, otherwise tag would be `span`.',
-    },
-    target: {
-      type: 'string',
-      description:
-        'Specifies where to display the linked URL. This may also be passed as part of `attributes`.',
-    },
+    url,
+    target,
     icon: {
       type: 'object',
       description:
