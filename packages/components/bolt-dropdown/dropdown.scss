@@ -434,3 +434,8 @@ bolt-dropdown {
     )
   );
 }
+
+// Using component-specific class instead of utility class so we don't have to include the whole height utils library
+.c-bolt-dropdown--height-auto {
+  height: auto !important; // !important to overwrite inline styles
+}
