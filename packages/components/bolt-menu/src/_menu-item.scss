@@ -16,7 +16,7 @@
 @import './_menu-settings-and-tools.scss';
 
 // Register Custom Block Element
-@include bolt-repeat-rule(('bolt-menu-item', ':host')) {
+@include bolt-repeat-rule(('bolt-menu-item', ':host(bolt-menu-item)')) {
   display: block;
 
   & + * {
