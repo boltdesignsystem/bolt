@@ -40,10 +40,6 @@ class BoltImage extends BoltElement {
   static get properties() {
     return {
       ...this.props,
-      // internal use only
-      initialClasses: {
-        type: Array,
-      },
       // deprecated
       ratio: {
         type: String,
@@ -63,6 +59,9 @@ class BoltImage extends BoltElement {
     super();
     this.onResize = this.onResize.bind(this);
     this.onLazyLoaded = this.onLazyLoaded.bind(this);
+    this.initialClasses = [];
+    // Must manually set default because ratio is "deprecated" and will be filtered out by `json-schema-props` decorator
+    this.ratio = 'auto';
   }
 
   disconnectedCallback() {
@@ -140,12 +139,14 @@ class BoltImage extends BoltElement {
         this.lazyImage.addEventListener('lazyloaded', this.onLazyLoaded);
         // `lazySizes.elements` may be undefined on first load. That's ok - the line below is just to catch JS injected images.
 
+        const self = this; // required so checkIfLazySizesReady has the right scope
+
         // wait until lazySizes.elements is available
         const waitForLazySizes = setInterval(checkIfLazySizesReady, 50);
         // eslint-disable-next-line no-inner-declarations
         function checkIfLazySizesReady() {
           if (lazySizes.elements) {
-            lazySizes.elements && lazySizes.elements.push(this.lazyImage);
+            lazySizes.elements && lazySizes.elements.push(self.lazyImage);
             lazySizes.loader.checkElems();
             clearInterval(waitForLazySizes);
           }
