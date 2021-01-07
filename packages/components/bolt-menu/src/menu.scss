@@ -14,7 +14,7 @@
 @import './_menu-settings-and-tools.scss';
 
 // Register Custom Block Element
-@include bolt-repeat-rule(('bolt-menu', ':host')) {
+@include bolt-repeat-rule(('bolt-menu', ':host(bolt-menu)')) {
   --c-bolt-menu-item-spacing: calc(var(--bolt-spacing-y-small) / 2)
     var(--bolt-spacing-x-small); /* [1] */
   display: block;
@@ -36,7 +36,7 @@
 // Spacing
 @each $value in $bolt-menu-spacing-values {
   @include bolt-repeat-rule(
-    ('bolt-menu[spacing="#{$value}"]', ':host[spacing="#{$value}"]')
+    ('bolt-menu[spacing="#{$value}"]', ':host(bolt-menu[spacing=#{$value}])')
   ) {
     --c-bolt-menu-item-spacing: calc(var(--bolt-spacing-y-#{$value}) / 2)
       var(--bolt-spacing-x-#{$value}); /* [4] */
