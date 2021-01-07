@@ -22,7 +22,6 @@ bolt-carousel {
   // add custom scrollbar styling till JS kicks in
   &:not(.is-ready) {
     &:not([no-pagination]) {
-      @include bolt-carousel-scrollbar;
       padding-bottom: calc(
         #{$bolt-carousel-bullet-height} + var(--bolt-spacing-y-xsmall)
       );

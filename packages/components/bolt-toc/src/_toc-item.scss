@@ -12,7 +12,7 @@
   font-family: var(--bolt-type-font-family-headline);
   font-size: var(--bolt-type-font-size-small);
   font-weight: var(--bolt-type-font-weight-regular);
-  color: bolt-theme(text);
+  color: var(--m-bolt-text);
   line-height: var(--bolt-type-line-height-small);
   text-decoration: none;
   transition: color $bolt-transition;
@@ -27,12 +27,13 @@
   }
 
   &:before {
+    opacity: 0.05;
     top: 0;
     left: 0;
     transform: translate3d(0, 0, 0);
     width: 0;
     height: 100%;
-    background-color: bolt-theme(link, 0.05);
+    background-color: var(--m-bolt-link);
     transition: width $bolt-transition, border-radius $bolt-transition;
   }
 
@@ -43,12 +44,12 @@
     transform: translate3d(0, -50%, 0);
     width: 5px;
     height: 0;
-    background-color: bolt-color(teal);
+    background-color: var(--bolt-color-teal);
     transition: height $bolt-transition;
   }
 
   &:hover {
-    color: bolt-theme(link);
+    color: var(--m-bolt-link);
 
     &:before {
       width: 100%;
@@ -57,13 +58,13 @@
   }
 
   &:active {
-    background-color: bolt-theme(link, 0.1);
+    background-color: var(--m-bolt-tertiary);
   }
 
   &:focus,
   &--current {
     font-weight: var(--bolt-type-font-weight-semibold);
-    color: bolt-theme(headline);
+    color: var(--m-bolt-headline);
 
     &:before {
       width: 100%;
@@ -78,5 +79,5 @@
 
 .c-bolt-toc-item--2nd-level {
   padding-left: calc(var(--bolt-spacing-x-small) * 2);
-  background-color: rgba(bolt-color(gray), 0.06);
+  background-color: var(--bolt-color-gray-xlight);
 }

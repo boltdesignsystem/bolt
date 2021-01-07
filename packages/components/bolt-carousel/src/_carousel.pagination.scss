@@ -41,7 +41,7 @@
     width: 8px;
     height: $bolt-carousel-bullet-height;
     border-radius: 100%;
-    background-color: bolt-theme(text);
+    background-color: var(--m-bolt-text);
   }
 
   @at-root button#{&} {
@@ -66,6 +66,6 @@
   }
 
   &:after {
-    background-color: bolt-theme(primary);
+    background-color: var(--m-bolt-primary);
   }
 }

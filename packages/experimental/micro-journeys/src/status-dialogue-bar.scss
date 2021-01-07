@@ -4,7 +4,7 @@ bolt-status-dialogue-bar {
   display: block;
 }
 
-$bolt-tooltip-bubble-border-color: bolt-color(gray, light);
+$bolt-tooltip-bubble-border-color: var(--bolt-color-gray-light);
 $bolt-tooltip-bubble-triangle-width: 8px;
 
 .c-bolt-status-dialogue-bar {
@@ -40,9 +40,9 @@ $bolt-tooltip-bubble-triangle-width: 8px;
     flex-direction: column;
     max-width: 125px;
     padding: var(--bolt-spacing-y-xsmall) var(--bolt-spacing-x-xsmall);
-    color: bolt-color(black);
+    color: var(--bolt-color-black);
     border-radius: $bolt-border-radius;
-    background-color: bolt-color(white);
+    background-color: var(--bolt-color-white);
     @include bolt-shadow('level-20', true);
 
     @include bolt-mq(xsmall) {
@@ -57,8 +57,8 @@ $bolt-tooltip-bubble-triangle-width: 8px;
   }
 
   &--alert &__content {
-    color: bolt-color(white);
-    background-color: bolt-color(orange);
+    color: var(--bolt-color-white);
+    background-color: var(--bolt-color-orange);
   }
 
   &__icon {
@@ -96,7 +96,7 @@ $bolt-tooltip-bubble-triangle-width: 8px;
     pointer-events: none;
 
     &.c-bolt-status-dialogue-bar--alert {
-      color: bolt-color(orange);
+      color: var(--bolt-color-orange);
     }
   }
 

@@ -17,18 +17,13 @@
 .c-bolt-banner {
   display: block;
   padding: calc(var(--bolt-spacing-y-medium) / 2) var(--bolt-spacing-x-medium);
-
-  // removed by ds-208 & pr #1973
-  // &--full {
-  //   @include bolt-full-bleed;
-  // }
 }
 
 /**
  * Status prop
  * @todo: we don't have a good way to create more themes on the fly. We should consider creating 'Light Mode' and 'Dark Mode', then background-color can be set separately.
- * 1. Hacking the colors in modern browsers.
- * 2. Hacking the colors in IE.
+ * 1. Overriding the old theme colors.
+ * 2. Overriding the new mode colors. These will take effect once we convert all things to use mode colors instead of theme.
  */
 @include bolt-repeat-rule(
   (
@@ -42,6 +37,10 @@
   --bolt-theme-headline: 255, 255, 255; /* [1] */
   --bolt-theme-link: 255, 255, 255; /* [1] */
   --bolt-theme-text: 255, 255, 255; /* [1] */
+
+  --m-bolt-text: var(--bolt-color-white); /* [2] */
+  --m-bolt-headline: var(--bolt-color-white); /* [2] */
+  --m-bolt-link: var(--bolt-color-white); /* [2] */
 }
 
 @include bolt-repeat-rule(
@@ -51,47 +50,43 @@
   --bolt-theme-headline: 0, 0, 0; /* [1] */
   --bolt-theme-link: 0, 0, 0; /* [1] */
   --bolt-theme-text: 0, 0, 0; /* [1] */
+
+  --m-bolt-text: var(--bolt-color-black); /* [2] */
+  --m-bolt-headline: var(--bolt-color-black); /* [2] */
+  --m-bolt-link: var(--bolt-color-black); /* [2] */
 }
 
 .c-bolt-banner--status-error,
 .c-bolt-banner--status-success {
-  color: bolt-color(white);
+  color: var(--bolt-color-white);
 }
 
 .c-bolt-banner--status-error {
-  background-color: bolt-color(error);
-
-  &[class*='t-bolt-dark'] {
-    background-color: bolt-color(error); /* [2] */
-  }
+  background-color: var(--bolt-color-error);
 }
 
 .c-bolt-banner--status-success {
-  background-color: bolt-color(success);
-
-  &[class*='t-bolt-dark'] {
-    background-color: bolt-color(success); /* [2] */
-  }
+  background-color: var(--bolt-color-success);
 }
 
 .c-bolt-banner--status-warning {
-  color: bolt-color(black);
-  background-color: bolt-color(warning);
+  color: var(--bolt-color-black);
+  background-color: var(--bolt-color-warning);
 }
 
 .c-bolt-banner--status-information {
   position: relative;
-  color: bolt-theme(text);
-  border-left-color: bolt-theme(link);
+  color: var(--m-bolt-text);
+  border-left-color: var(--m-bolt-link);
   border-left-style: $bolt-border-style;
   border-left-width: $bolt-border-width * 3;
-  box-shadow: 0 0 var(--bolt-spacing-y-xsmall)
-    bolt-theme(neutral, bolt-opacity(20));
-  background-color: bolt-theme(background);
+  box-shadow: 0 0 var(--bolt-spacing-y-xsmall) var(--m-bolt-border);
+  background-color: var(--m-bolt-bg);
 
   &:before {
     content: '';
     display: block;
+    opacity: 0.2;
     position: absolute;
     top: 0;
     right: 0;
@@ -99,7 +94,7 @@
     left: 0;
     pointer-events: none;
     user-select: none;
-    background-color: rgba(bolt-color(white), bolt-opacity(20));
+    background-color: var(--bolt-color-white);
   }
 }
 

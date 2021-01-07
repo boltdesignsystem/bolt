@@ -6,11 +6,11 @@
   display: block;
   height: 100%;
   overflow: hidden;
-  color: bolt-color(gray);
+  color: var(--bolt-color-gray);
   text-align: center;
   text-transform: uppercase;
-  text-shadow: 1px 1px 0.08px bolt-color(gray, light);
-  background-color: bolt-color(gray, light);
+  text-shadow: 1px 1px 0.08px var(--bolt-color-gray-light);
+  background-color: var(--bolt-color-gray-light);
 }
 
 .c-bolt-placeholder__content {
@@ -68,8 +68,8 @@
   height: 100%;
   background-image: linear-gradient(
     to top,
-    bolt-color(gray) 70%,
-    rgba(bolt-color(black), 0) 0%
+    var(--bolt-color-gray) 70%,
+    transparent 0%
   );
   background-position: bottom;
   background-repeat: repeat-y;
@@ -94,8 +94,8 @@
   height: 2px;
   background-image: linear-gradient(
     to right,
-    bolt-color(gray) 71%,
-    rgba(bolt-color(black), 0) 0%
+    var(--bolt-color-gray) 70%,
+    transparent 0%
   );
   background-repeat: repeat-x;
   background-size: 11px 2px;
@@ -165,8 +165,8 @@
     &:before {
       background-image: linear-gradient(
         to top,
-        bolt-color(gray) 70%,
-        rgba(bolt-color(black), 0) 0%
+        var(--bolt-color-gray) 70%,
+        transparent 0%
       );
     }
   }
@@ -184,8 +184,8 @@
     &:before {
       background-image: linear-gradient(
         to right,
-        bolt-color(gray) 70%,
-        rgba(bolt-color(black), 0) 0%
+        var(--bolt-color-gray) 70%,
+        transparent 0%
       );
     }
   }

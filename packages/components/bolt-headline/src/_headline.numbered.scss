@@ -13,26 +13,28 @@
     width: 100%;
     height: 100%;
     border-radius: bolt-border-radius(full);
-    background-color: rgba(var(--bolt-theme-text), 0.1);
+    background-color: var(--m-bolt-tertiary);
 
     &--orange {
-      color: bolt-color(white);
-      background-color: bolt-color(orange);
+      color: var(--bolt-color-white);
+      background-color: var(--bolt-color-orange);
     }
 
+    &--navy,
     &--indigo {
-      color: bolt-color(white);
-      background-color: bolt-color(navy, light);
+      color: var(--bolt-color-white);
+      background-color: var(--bolt-color-navy-light);
     }
 
+    &--berry,
     &--purple {
-      color: bolt-color(white);
-      background-color: #751b84;
+      color: var(--bolt-color-white);
+      background-color: var(--bolt-color-berry);
     }
 
     &--teal {
-      color: bolt-color(white);
-      background-color: bolt-color(teal);
+      color: var(--bolt-color-white);
+      background-color: var(--bolt-color-teal);
     }
   }
 

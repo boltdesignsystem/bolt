@@ -9,17 +9,23 @@ $bolt-macbook-shadow: none;
 
 .c-bolt-macbook-viewer {
   width: 100%;
-  max-width: $bolt-macbook-viewer-width * .6;
-  border-top-right-radius: (34px / $bolt-macbook-viewer-width * 100%) (34px / $bolt-macbook-viewer-height * 100%);
-  border-top-left-radius: (34px / $bolt-macbook-viewer-width * 100%) (34px / $bolt-macbook-viewer-height * 100%);
-  border-bottom-right-radius: (34px / $bolt-macbook-viewer-width * 100%) (34px / $bolt-macbook-viewer-height * 100%);
-  border-bottom-left-radius: (34px / $bolt-macbook-viewer-width * 100%) (34px / $bolt-macbook-viewer-height * 100%);
+  max-width: $bolt-macbook-viewer-width * 0.6;
+  border-top-right-radius: (34px / $bolt-macbook-viewer-width * 100%)
+    (34px / $bolt-macbook-viewer-height * 100%);
+  border-top-left-radius: (34px / $bolt-macbook-viewer-width * 100%)
+    (34px / $bolt-macbook-viewer-height * 100%);
+  border-bottom-right-radius: (34px / $bolt-macbook-viewer-width * 100%)
+    (34px / $bolt-macbook-viewer-height * 100%);
+  border-bottom-left-radius: (34px / $bolt-macbook-viewer-width * 100%)
+    (34px / $bolt-macbook-viewer-height * 100%);
   box-shadow: $bolt-macbook-shadow;
   background-color: #bebebe;
 }
 
 .c-bolt-macbook-viewer__inner {
-  padding: (44px / $bolt-macbook-viewer-width * 100%) (44px / $bolt-macbook-viewer-width * 100%) (76px / $bolt-macbook-viewer-width * 100%);
+  padding: (44px / $bolt-macbook-viewer-width * 100%)
+    (44px / $bolt-macbook-viewer-width * 100%)
+    (76px / $bolt-macbook-viewer-width * 100%);
 
   &:before {
     top: 4px / $bolt-macbook-viewer-height * 100%;
@@ -28,17 +34,21 @@ $bolt-macbook-shadow: none;
     left: 4px / $bolt-macbook-viewer-width * 100%;
     width: auto;
     height: auto;
-    border-top-right-radius: (30px / $bolt-macbook-viewer-width * 100%) (30px / $bolt-macbook-viewer-height * 100%);
-    border-top-left-radius: (30px / $bolt-macbook-viewer-width * 100%) (30px / $bolt-macbook-viewer-height * 100%);
-    border-bottom-right-radius: (30px / $bolt-macbook-viewer-width * 100%) (30px / $bolt-macbook-viewer-height * 100%);
-    border-bottom-left-radius: (30px / $bolt-macbook-viewer-width * 100%) (30px / $bolt-macbook-viewer-height * 100%);
+    border-top-right-radius: (30px / $bolt-macbook-viewer-width * 100%)
+      (30px / $bolt-macbook-viewer-height * 100%);
+    border-top-left-radius: (30px / $bolt-macbook-viewer-width * 100%)
+      (30px / $bolt-macbook-viewer-height * 100%);
+    border-bottom-right-radius: (30px / $bolt-macbook-viewer-width * 100%)
+      (30px / $bolt-macbook-viewer-height * 100%);
+    border-bottom-left-radius: (30px / $bolt-macbook-viewer-width * 100%)
+      (30px / $bolt-macbook-viewer-height * 100%);
     background-color: #1e1e1e;
   }
 }
 
 .c-bolt-macbook-viewer__screen {
   padding-bottom: 62.5%;
-  background: bolt-color(white);
+  background: var(--bolt-color-white);
 }
 
 .c-bolt-macbook-viewer__top-bar,
@@ -46,7 +56,7 @@ $bolt-macbook-shadow: none;
   display: block;
   width: 100%;
   height: 3px;
-  background-color: bolt-color(black);
+  background-color: var(--bolt-color-black);
 }
 
 .c-bolt-macbook-viewer__top-bar {
@@ -59,8 +69,10 @@ $bolt-macbook-shadow: none;
   left: $offset * -1; // originally -70px
   width: calc(100% + 2 * #{$offset});
   height: 40px / $bolt-macbook-viewer-height * 100%;
-  border-bottom-right-radius: (90px / $bolt-macbook-viewer-width * 100%) (18px / 40px * 100%); // originally 90px 18px
-  border-bottom-left-radius: (90px / $bolt-macbook-viewer-width * 100%) (18px / 40px * 100%); // originally 90px 18px
+  border-bottom-right-radius: (90px / $bolt-macbook-viewer-width * 100%)
+    (18px / 40px * 100%); // originally 90px 18px
+  border-bottom-left-radius: (90px / $bolt-macbook-viewer-width * 100%)
+    (18px / 40px * 100%); // originally 90px 18px
   box-shadow: inset 0 -4px 13px 3px rgba(34, 34, 34, 0.6);
   background-color: #bebebe;
 
@@ -118,13 +130,31 @@ $bolt-macbook-shadow: none;
   &:before {
     left: 0;
     background-color: #f0f0f0;
-    background-image: linear-gradient(to right, #747474 0%, #c3c3c3 5%, #ebebeb 14%, #979797 41%, #f0f0f0 80%, #f0f0f0 100%, #f0f0f0 100%);
+    background-image: linear-gradient(
+      to right,
+      #747474 0%,
+      #c3c3c3 5%,
+      #ebebeb 14%,
+      #979797 41%,
+      #f0f0f0 80%,
+      #f0f0f0 100%,
+      #f0f0f0 100%
+    );
   }
 
   &:after {
     right: 0;
     background-color: #f0f0f0;
-    background-image: linear-gradient(to right, #f0f0f0 0%, #f0f0f0 0%, #f0f0f0 20%, #979797 59%, #ebebeb 86%, #c3c3c3 95%, #747474 100%);
+    background-image: linear-gradient(
+      to right,
+      #f0f0f0 0%,
+      #f0f0f0 0%,
+      #f0f0f0 20%,
+      #979797 59%,
+      #ebebeb 86%,
+      #c3c3c3 95%,
+      #747474 100%
+    );
   }
 }
 

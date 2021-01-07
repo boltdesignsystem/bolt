@@ -2,31 +2,3 @@
 
 $bolt-carousel-bullet-height: 8px;
 $bolt-carousel-space-around: 5.1px; // vs 5px to work around sub-pixel rendering
-
-@mixin bolt-carousel-scrollbar() {
-  &::-webkit-scrollbar {
-    width: var(--bolt-spacing-y-xsmall);
-    height: var(--bolt-spacing-y-xsmall);
-  }
-
-  &::-webkit-scrollbar-thumb {
-    border-radius: 10px;
-    background-image: linear-gradient(
-      to bottom,
-      rgba(255, 255, 255, 1) 0%,
-      rgba(63, 63, 68, 0.15) 100%
-    );
-
-    background-image: linear-gradient(
-      to bottom,
-      bolt-theme(primary-lighten-15) 0%,
-      bolt-theme(primary-darken-25) 100%
-    );
-  }
-
-  &::-webkit-scrollbar-track {
-    border-radius: 10px;
-    box-shadow: inset 0 0 6px rgba(bolt-color(gray, dark), 0.5);
-    background-color: bolt-theme(secondary, 0.1);
-  }
-}
