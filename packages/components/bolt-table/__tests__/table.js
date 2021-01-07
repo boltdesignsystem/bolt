@@ -7,7 +7,7 @@ import {
 } from '@bolt/twig-renderer';
 import { html } from '../../../testing/testing-helpers';
 import schema from '../table.schema';
-const { format, borderless, first_col_fixed_width } = schema.properties;
+const { format } = schema.properties;
 
 async function renderTwig(template, data) {
   return await render(template, data, true);
@@ -347,7 +347,7 @@ describe('<bolt-table> Component', () => {
     });
   });
 
-  borderless.enum.forEach(async option => {
+  [true, false].forEach(async option => {
     test(`borderless table: ${option}`, async () => {
       const results = await renderTwig('@bolt-components-table/table.twig', {
         borderless: option,
@@ -381,7 +381,7 @@ describe('<bolt-table> Component', () => {
     });
   });
 
-  first_col_fixed_width.enum.forEach(async option => {
+  [true, false].forEach(async option => {
     test(`first column fixed width table: ${option}`, async () => {
       const results = await renderTwig('@bolt-components-table/table.twig', {
         first_col_fixed_width: option,

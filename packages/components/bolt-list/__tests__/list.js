@@ -7,16 +7,7 @@ import {
   vrtDefaultConfig,
 } from '../../../testing/testing-helpers';
 import schema from '../list.schema';
-const {
-  display,
-  spacing,
-  separator,
-  inset,
-  align,
-  valign,
-  tag,
-  nowrap,
-} = schema.properties;
+const { display, spacing, separator, align, valign, tag } = schema.properties;
 
 const timeout = 120000;
 
@@ -82,7 +73,7 @@ describe('<bolt-list> Component', () => {
     });
   });
 
-  inset.enum.forEach(async insetChoice => {
+  [true, false].forEach(async insetChoice => {
     test(`list inset spacing: ${insetChoice}`, async () => {
       const results = await render('@bolt-components-list/list.twig', {
         inset: insetChoice,
@@ -128,7 +119,7 @@ describe('<bolt-list> Component', () => {
     });
   });
 
-  nowrap.enum.forEach(async nowrapChoice => {
+  [true, false].forEach(async nowrapChoice => {
     test(`list nowrap: ${nowrapChoice}`, async () => {
       const results = await render('@bolt-components-list/list.twig', {
         display: 'inline',

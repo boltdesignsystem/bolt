@@ -1,7 +1,5 @@
-{% set schema = bolt.data.components["@bolt-components-band"].schema %}
-
 <p><mark>Note: turn off full bleed option if you don't want the band to span the full width of the page.</mark></p>
-{% for full_bleed in schema.properties.full_bleed.enum %}
+{% for full_bleed in [true, false] %}
   {% if full_bleed == true %}
     <h3>Full bleed</h3>
     <p>This band spans the full width of the page, it ignores the spacing of its parent container.</p>

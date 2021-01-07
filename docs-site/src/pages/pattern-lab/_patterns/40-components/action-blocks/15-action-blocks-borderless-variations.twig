@@ -1,17 +1,3 @@
-{% set schema = bolt.data.components["@bolt-components-action-blocks"].schema %}
-
-{% set borderless_options = [
-    {
-      label: "True",
-      value: true
-    },
-    {
-      label: "False",
-      value: false
-    }
-  ]
-%}
-
 {% set icon_1 %}
   {% include "@bolt-components-icon/icon.twig" with {
     name: "download",
@@ -33,8 +19,7 @@
   }%}
 {% endset %}
 
-{# {% for borderless_option in borderless_options %} #}
-{% for borderless in schema.properties.borderless.enum %}
+{% for borderless in [true, false] %}
   <h3>
     Borderless: {% if borderless is sameas(true) %}true{% elseif borderless is sameas(false) %}false{% endif %}
   </h3>

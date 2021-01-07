@@ -6,7 +6,7 @@ import {
   html,
 } from '../../../testing/testing-helpers';
 import schema from '../action-blocks.schema';
-const { spacing, valign, borderless } = schema.properties;
+const { spacing, valign } = schema.properties;
 
 const timeout = 120000;
 
@@ -181,7 +181,7 @@ describe('<bolt-action-blocks> Component', () => {
     });
   });
 
-  borderless.enum.forEach(async borderlessChoice => {
+  [true, false].forEach(async borderlessChoice => {
     test(`Border in between each block: ${borderlessChoice}`, async () => {
       const results = await renderString(`
         {% set icon_1 %}

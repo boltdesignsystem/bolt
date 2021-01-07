@@ -203,6 +203,7 @@ $base-video-meta-transition: $bolt-transition;
   }
 
   .vjs-control.vjs-close-button {
+    z-index: 10;
     width: 2.5rem;
     height: 2.5rem;
 
@@ -447,11 +448,10 @@ $base-video-meta-transition: $bolt-transition;
   }
 
   &.vjs-controls-disabled {
-    pointer-events: none;
-
     .video-meta__item--title,
     .video-meta__item--duration {
       opacity: bolt-opacity(0);
+      pointer-events: none;
     }
   }
 
