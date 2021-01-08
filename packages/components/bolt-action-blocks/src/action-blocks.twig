@@ -5,7 +5,7 @@
 {% endif %}
 
 {# Variables #}
-{% set base_class = "c-bolt-action-blocks" %}
+{% set "c-bolt-action-blocks" = "c-bolt-action-blocks" %}
 {% set this = init(schema) %}
 {% set attributes = create_attribute(attributes|default({})) %}
 {% set inner_attributes = create_attribute({}) %}
@@ -38,11 +38,11 @@
 
 {# Array of classes based on the defined + default props #}
 {% set classes = [
-  base_class,
-  this.data.spacing.value != "none" ? base_class ~ "--spacing-" ~ this.data.spacing.value : "",
-  this.data.valign.value != "none" ? base_class ~ "--valign-" ~ this.data.valign.value : "",
-  this.data.max_items_per_row.value != "none" ? base_class ~ "--item-max-" ~ this.data.max_items_per_row.value : "",
-  this.data.borderless.value ? base_class ~ "--borderless",
+  "c-bolt-action-blocks",
+  this.data.spacing.value != "none" ? "c-bolt-action-blocks--spacing-" ~ this.data.spacing.value : "",
+  this.data.valign.value != "none" ? "c-bolt-action-blocks--valign-" ~ this.data.valign.value : "",
+  this.data.max_items_per_row.value != "none" ? "c-bolt-action-blocks--item-max-" ~ this.data.max_items_per_row.value : "",
+  this.data.borderless.value ? "c-bolt-action-blocks--borderless" : "",
 ] %}
 
 {#
@@ -53,7 +53,7 @@
 {% set outer_classes = [] %}
 {% set inner_classes = classes %}
 
-{% for class in attributes["class"] %}
+{% for class in this.props.class %}
   {% if class starts with "is-" or class starts with "has-" %}
     {% set inner_classes = inner_classes|merge([class]) %}
   {% elseif class starts with "c-bolt-" == false %}
@@ -71,7 +71,7 @@
       {{ children }}
     {% else %}
       {% for item in items %}
-        <li class="{{  base_class ~ "__item" }}">
+        <li class="c-bolt-action-blocks__item">
           {% include "@bolt-components-action-blocks/action-block.twig" with item only %}
         </li>
       {% endfor %}
