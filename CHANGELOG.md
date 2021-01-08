@@ -3,6 +3,36 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0](https://github.com/boltdesignsystem/bolt/compare/v2.29.3...v3.0.0) (2021-01-08)
+
+
+### Bug Fixes
+
+* browserslist path in package.json ([e5ed697](https://github.com/boltdesignsystem/bolt/commit/e5ed697a2f5c84ebf887764f7c050a37ee1c8973))
+* doc typos ([69432b6](https://github.com/boltdesignsystem/bolt/commit/69432b6dd030cd9907e97aab6f26181fd1c60868))
+* global border color ([054b521](https://github.com/boltdesignsystem/bolt/commit/054b5216d1cb363474812cb14a0362a4860369ec))
+* revert removing `.keys` command in Typeahead E2E test. ([65b3d13](https://github.com/boltdesignsystem/bolt/commit/65b3d13748575220ab82af9f7d9fb23640c8d35f))
+* tabs show more button active color ([54e8cd8](https://github.com/boltdesignsystem/bolt/commit/54e8cd8eff8742bb304d4d502531a761bb23bb02))
+
+
+### Features
+
+* add white overlay to nav-bar dropdown menu, adjust color to work in dark and xdark ([1ca77fe](https://github.com/boltdesignsystem/bolt/commit/1ca77fe1d3b57cffa0481f82f66b0146117f0588))
+* cherry pick misc monorepo updates from the broader lazy-queue related updates in [#1839](https://github.com/boltdesignsystem/bolt/issues/1839) ([727c13d](https://github.com/boltdesignsystem/bolt/commit/727c13db4923bdb80ca7791dde7c3767801cb3ff))
+* drop ie11 from browserslist, export single config from babel-preset ([a0dc9b6](https://github.com/boltdesignsystem/bolt/commit/a0dc9b64c899285300a592014cb9fdb7e2408a62))
+* manually cherry pick ajv replacement updates ([c322d0e](https://github.com/boltdesignsystem/bolt/commit/c322d0e38266ca5660d8c77868ec5f1203fbb5b7))
+* remove 'esModules' and 'compat' flags, remove 'modern' from filenames ([5f9136e](https://github.com/boltdesignsystem/bolt/commit/5f9136eb365e95688c57c6c1e2dc72ebe91291c2))
+* remove `browser.sendKeys()` which is only required for ie11 support ([eabe228](https://github.com/boltdesignsystem/bolt/commit/eabe228547fdfc6893daeb22d2ac7da110844866))
+* remove `critical-css-vars` package and all references ([c03ad27](https://github.com/boltdesignsystem/bolt/commit/c03ad27cb7159806fd642266640f0259712eb12f))
+* remove `critical-path-polyfills` and all references ([48f97f6](https://github.com/boltdesignsystem/bolt/commit/48f97f6fa1f077997aca5821cc279b16cfb01f18))
+* remove polyfill workaround from @bolt/element as part of the broader perf updates ([e082868](https://github.com/boltdesignsystem/bolt/commit/e082868e2c731e40a746a3a25e78ca7ed66156ec))
+* remove postcss-themify and critical-css-vars, replace map() usage of bolt-theme with fixed token ([373791e](https://github.com/boltdesignsystem/bolt/commit/373791ee6f133546f197f3b2cffb8d18588be204))
+* remove references to `critical-fonts` ([7e05b55](https://github.com/boltdesignsystem/bolt/commit/7e05b55e26ef3b0ab2b85cc2b7209a4216986201))
+
+
+
+
+
 
 
 **Note:** Version bump only for package bolt

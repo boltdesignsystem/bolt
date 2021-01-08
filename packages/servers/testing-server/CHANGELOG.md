@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0](https://github.com/boltdesignsystem/bolt/compare/v2.29.3...v3.0.0) (2021-01-08)
+
+
+### Features
+
+* remove 'esModules' and 'compat' flags, remove 'modern' from filenames ([5f9136e](https://github.com/boltdesignsystem/bolt/commit/5f9136eb365e95688c57c6c1e2dc72ebe91291c2))
+
+
+
+
+
 
 
 **Note:** Version bump only for package @bolt/testing-server

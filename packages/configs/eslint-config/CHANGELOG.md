@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0](https://github.com/bolt-design-system/bolt/tree/master/packages/configs/eslint-config/compare/v2.29.3...v3.0.0) (2021-01-08)
+
+**Note:** Version bump only for package @bolt/eslint-config
+
+
+
+
+
 # [2.19.0](https://github.com/bolt-design-system/bolt/tree/master/packages/configs/eslint-config/compare/v2.18.1...v2.19.0) (2020-03-04)
 
 **Note:** Version bump only for package @bolt/eslint-config

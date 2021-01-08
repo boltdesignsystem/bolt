@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0](https://github.com/bolt-design-system/bolt/compare/v2.29.3...v3.0.0) (2021-01-08)
+
+
+### Bug Fixes
+
+* doc typos ([69432b6](https://github.com/bolt-design-system/bolt/commit/69432b6dd030cd9907e97aab6f26181fd1c60868))
+
+
+### Features
+
+* cherry pick misc monorepo updates from the broader lazy-queue related updates in [#1839](https://github.com/bolt-design-system/bolt/issues/1839) ([727c13d](https://github.com/bolt-design-system/bolt/commit/727c13db4923bdb80ca7791dde7c3767801cb3ff))
+* remove 'esModules' and 'compat' flags, remove 'modern' from filenames ([5f9136e](https://github.com/bolt-design-system/bolt/commit/5f9136eb365e95688c57c6c1e2dc72ebe91291c2))
+* remove `browser.sendKeys()` which is only required for ie11 support ([eabe228](https://github.com/bolt-design-system/bolt/commit/eabe228547fdfc6893daeb22d2ac7da110844866))
+* remove `critical-path-polyfills` and all references ([48f97f6](https://github.com/bolt-design-system/bolt/commit/48f97f6fa1f077997aca5821cc279b16cfb01f18))
+* remove postcss-themify and critical-css-vars, replace map() usage of bolt-theme with fixed token ([373791e](https://github.com/bolt-design-system/bolt/commit/373791ee6f133546f197f3b2cffb8d18588be204))
+
+
+
+
+
 
 
 **Note:** Version bump only for package @bolt/website
