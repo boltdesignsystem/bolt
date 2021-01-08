@@ -19,7 +19,7 @@
     "test": "FORCE_COLOR=1 npx lerna exec --scope @bolt/build-tools--test* --concurrency 1 -- yarn run test"
   },
   "browserslist": [
-    "extends @bolt/browserslist-config/all"
+    "extends @bolt/browserslist-config"
   ],
   "dependencies": {
     "@babel/core": "^7.4.5",
@@ -28,7 +28,6 @@
     "@bolt/browserslist-config": "^2.19.0",
     "@bolt/build-utils": "^2.23.0",
     "@bolt/file-passthrough-loader": "^2.19.0",
-    "@bolt/postcss-themify": "^2.29.0",
     "@bolt/sass-export-data": "^2.19.0",
     "@bolt/sassdoc-webpack-plugin": "^2.23.0",
     "@bolt/svg-transform-loader": "^2.19.0",
