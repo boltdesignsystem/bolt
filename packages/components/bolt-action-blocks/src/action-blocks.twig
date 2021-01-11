@@ -38,9 +38,9 @@
 {# Array of classes based on the defined + default props #}
 {% set classes = [
   "c-bolt-action-blocks",
-  this.data.spacing.value != "none" ? "c-bolt-action-blocks--spacing-" ~ this.data.spacing.value : "",
-  this.data.valign.value != "none" ? "c-bolt-action-blocks--valign-" ~ this.data.valign.value : "",
-  this.data.max_items_per_row.value != "none" ? "c-bolt-action-blocks--item-max-" ~ this.data.max_items_per_row.value : "",
+  this.data.spacing.value ? "c-bolt-action-blocks--spacing-" ~ this.data.spacing.value : "",
+  this.data.valign.value ? "c-bolt-action-blocks--valign-" ~ this.data.valign.value : "",
+  this.data.max_items_per_row.value ? "c-bolt-action-blocks--item-max-" ~ this.data.max_items_per_row.value : "",
   this.data.borderless.value ? "c-bolt-action-blocks--borderless" : "",
 ] %}
 
