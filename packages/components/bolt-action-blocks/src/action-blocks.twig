@@ -4,11 +4,6 @@
   {{ validate_data_schema(schema, _self) | raw }}
 {% endif %}
 
-{# Variables #}
-{% set this = init(schema) %}
-{% set attributes = create_attribute(attributes|default({})) %}
-{% set inner_attributes = create_attribute({}) %}
-
 {# DEPRECATED: maxItemsPerRow has been renamed to max_items_per_row #}
 {% if maxItemsPerRow %}
   {% set max_items_per_row = maxItemsPerRow %}
@@ -34,6 +29,11 @@
 {% if contentItems %}
   {% set items = contentItems %}
 {% endif %}
+
+{# Variables #}
+{% set this = init(schema) %}
+{% set attributes = create_attribute(attributes|default({})) %}
+{% set inner_attributes = create_attribute({}) %}
 
 {# Array of classes based on the defined + default props #}
 {% set classes = [
@@ -62,11 +62,6 @@
 
 {# Example component's custom element wrapper #}
 <bolt-action-blocks
-  {% if this.data.spacing.value %} spacing="{{ this.data.spacing.value }}" {% endif %}
-  {% if this.data.valign.value %} valign="{{ this.data.valign.value }}" {% endif %}
-  {% if this.data.max_items_per_row.value %} max-items-per-row="{{ this.data.max_items_per_row.value }}" {% endif %}
-  {% if this.data.borderless.value %} borderless {% endif %}
-
   {% if outer_classes %} class="{{ outer_classes|join(' ') }}" {% endif %}
   {{ this.props|without("content")|without("class") }}
 >
