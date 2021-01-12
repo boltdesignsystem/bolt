@@ -1,46 +1,31 @@
 import {
   BoltActionElement,
   unsafeCSS,
-  render,
   html,
-  ifDefined,
   customElement,
   convertInitialTags,
   spread,
 } from '@bolt/element';
 import classNames from 'classnames/bind';
-import linkStyles from './link.scss';
+import styles from './link.scss';
 import schema from '../link.schema';
 
-let cx = classNames.bind(linkStyles);
+let cx = classNames.bind(styles);
 
 @customElement('bolt-link')
 @convertInitialTags(['button', 'a'])
 class BoltLink extends BoltActionElement {
-  static get styles() {
-    return [unsafeCSS(linkStyles)];
-  }
+  static schema = schema;
 
   static get properties() {
+    const { text, icon, ...filteredProps } = this.props;
     return {
-      ...BoltActionElement.properties,
-      display: String,
-      valign: String,
-      isHeadline: {
-        type: Boolean,
-        attribute: 'is-headline',
-      },
+      ...filteredProps,
     };
   }
 
-  // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
-  constructor(self) {
-    self = super(self);
-    self.schema = schema;
-    self.display = schema.properties.display.default;
-    self.valign = schema.properties.valign.default;
-    self.target = schema.properties.target.default; // @todo: remove once https://github.com/boltdesignsystem/bolt/pull/1795 lands
-    return self;
+  static get styles() {
+    return [unsafeCSS(styles)];
   }
 
   render() {

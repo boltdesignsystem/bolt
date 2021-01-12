@@ -49,7 +49,7 @@ describe('analytics autolinker', () => {
     await page.evaluate(() => {
       const btn = document.createElement('bolt-button');
       btn.textContent = 'External URL - Shadow DOM Test';
-      btn.setAttribute('url', 'https://www.brightcove.com');
+      btn.setAttribute('url', 'https://www.boltdesignsystem.com');
       document.body.appendChild(btn);
     });
 
@@ -73,7 +73,7 @@ describe('analytics autolinker', () => {
 
     await page.evaluate(() => {
       const btn = document.querySelector('bolt-button');
-      btn.setAttribute('url', 'https://www.brightcove.com');
+      btn.setAttribute('url', 'https://www.boltdesignsystem.com');
       btn.setAttribute('color', 'secondary');
       return document.body.innerHTML;
     });
@@ -82,7 +82,7 @@ describe('analytics autolinker', () => {
     const currentUrl = await page.url();
 
     expect(currentUrl).toContain('_ga');
-    expect(currentUrl).toContain('brightcove.com');
+    expect(currentUrl).toContain('boltdesignsystem.com');
   }, 5000);
 
   test('autolinker updates the URLs of a <bolt-button> with an external url + rendering to the Shadow DOM', async function() {
@@ -210,7 +210,7 @@ describe('analytics autolinker', () => {
       return window.drupalSettings.google_analytics.trackCrossDomains[0];
     });
 
-    expect(config).toBe('developer.mozilla.org');
+    expect(config).toBe('nytimes.com');
   }, 120000);
 
   test('allow Drupal to configure which domains get configured / tracked by autolink.', async function() {
@@ -224,7 +224,7 @@ describe('analytics autolinker', () => {
 
     await renderWC(
       'bolt-button',
-      `<bolt-button style="display: inline-block;" url="https://developer.mozilla.org">External URL - Normally Untracked But Now Tracked Domain</bolt-button>`,
+      `<bolt-button style="display: inline-block;" url="https://www.nytimes.com">External URL - Normally Untracked But Now Tracked Domain</bolt-button>`,
       page,
     );
 

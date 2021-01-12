@@ -5,21 +5,16 @@
    Action Blocks Container
 \* ------------------------------------ */
 
-// The Frame to Contain a Group of Action Blocks
 bolt-action-blocks {
-  display: block; // TODO: This needs to use the global block element mixin.
+  display: block;
   overflow: hidden;
 }
 
 .c-bolt-action-blocks {
   display: flex;
   flex-wrap: wrap;
-  transform: translate3d(
-    0,
-    0,
-    0
-  ); //Force hardware accelerated rendering to cleanly remove extra border from showing up sometimes
-  margin: 0 -1px -1px 0;
+  transform: translate3d(0, 0, 0);
+  margin: -1.5px 0 0 -1px; // 1.5px fixes the subpixel issue of the border showing up as the window resizes.
   padding: 0;
   list-style: none;
 }
@@ -36,39 +31,36 @@ bolt-action-blocks {
     position: absolute;
     top: 0;
     left: 0;
-    z-index: bolt-z-index('background');
+    z-index: 0;
     width: 100%;
     height: 100%;
-    border-right-color: bolt-theme(border, 0.2);
-    border-right-style: $bolt-action-blocks-border-style;
-    border-right-width: $bolt-action-blocks-border-width;
-    border-bottom-color: bolt-theme(border, 0.2);
-    border-bottom-style: $bolt-action-blocks-border-style;
-    border-bottom-width: $bolt-action-blocks-border-width;
+    border-top-color: var(--m-bolt-border);
+    border-top-style: $bolt-action-blocks-border-style;
+    border-top-width: $bolt-action-blocks-border-width;
+    border-left-color: var(--m-bolt-border);
+    border-left-style: $bolt-action-blocks-border-style;
+    border-left-width: $bolt-action-blocks-border-width;
   }
 }
 
 .c-bolt-action-blocks--borderless > .c-bolt-action-blocks__item:before {
-  border-right-color: transparent;
-  border-bottom-color: transparent;
+  border-top-color: transparent;
+  border-left-color: transparent;
 }
 
 .c-bolt-action-blocks--valign-start {
-  // TODO: [Mai] I know this feels dirty, but how else can it do this?
   .c-bolt-action-block {
     justify-content: flex-start;
   }
 }
 
 .c-bolt-action-blocks--valign-center {
-  // TODO: [Mai] I know this feels dirty, but how else can it do this?
   .c-bolt-action-block {
     justify-content: center;
   }
 }
 
 .c-bolt-action-blocks--valign-end {
-  // TODO: [Mai] I know this feels dirty, but how else can it do this?
   .c-bolt-action-block {
     justify-content: flex-end;
   }
@@ -77,17 +69,5 @@ bolt-action-blocks {
 @for $number from 2 through 12 {
   .c-bolt-action-blocks--item-max-#{$number} > .c-bolt-action-blocks__item {
     flex-basis: calc(100% / #{$number} - #{$bolt-action-blocks-border-width});
-  }
-}
-
-.c-bolt-action-block__text {
-  color: bolt-theme(headline-link);
-  transition: color $bolt-action-blocks-transition-timing
-    $bolt-action-blocks-transition-ease;
-
-  .c-bolt-action-block:focus &,
-  .c-bolt-action-block:hover &,
-  .c-bolt-action-block:active & {
-    color: bolt-theme(secondary);
   }
 }

@@ -1,0 +1,70 @@
+/* ------------------------------------ *\
+   Light and Dark Mode System
+
+   @todo: `.t-bolt-theme` classes are for backward compatibility and the `bolt-card-replacement` selectors are for the poorly built card component. They can be removed once we completely deprecate themes.
+\* ------------------------------------ */
+
+:root,
+[data-bolt-mode='light'],
+.t-bolt-light,
+.t-bolt-xlight,
+bolt-card-replacement[theme='light'],
+bolt-card-replacement[theme='xlight'] {
+  --m-bolt-neutral: var(--bolt-color-gray);
+  --m-bolt-text: var(--bolt-color-black);
+  --m-bolt-bg: var(--bolt-color-white);
+  --m-bolt-headline: var(--bolt-color-navy);
+  --m-bolt-link: var(--bolt-color-navy-light);
+  --m-bolt-primary: var(--bolt-color-navy-light);
+  --m-bolt-text-on-primary: var(--m-bolt-bg);
+  --m-bolt-secondary: var(--m-bolt-bg);
+  --m-bolt-text-on-secondary: var(--m-bolt-headline);
+  --m-bolt-tertiary: hsla(220.4, 80%, 15%, 0.15);
+  --m-bolt-text-on-tertiary: var(--m-bolt-headline);
+  --m-bolt-disabled: var(--bolt-color-gray-light);
+  --m-bolt-text-on-disabled: var(--bolt-color-gray);
+  --m-bolt-border: var(--m-bolt-tertiary);
+  --m-bolt-img-filter: none;
+}
+
+[data-bolt-mode='dark'],
+.t-bolt-dark,
+.t-bolt-xdark,
+.t-bolt-xxdark,
+bolt-card-replacement[theme='dark'],
+bolt-card-replacement[theme='xdark'] {
+  --m-bolt-neutral: var(--bolt-color-gray);
+  --m-bolt-text: var(--bolt-color-white);
+  --m-bolt-bg: var(--bolt-color-navy);
+  --m-bolt-headline: var(--bolt-color-white);
+  --m-bolt-link: var(--bolt-color-white);
+  --m-bolt-primary: var(--bolt-color-yellow);
+  --m-bolt-text-on-primary: var(--bolt-color-black);
+  --m-bolt-secondary: var(--m-bolt-headline);
+  --m-bolt-text-on-secondary: var(--m-bolt-bg);
+  --m-bolt-tertiary: hsla(0, 0%, 100%, 0.15);
+  --m-bolt-text-on-tertiary: var(--m-bolt-headline);
+  --m-bolt-disabled: var(--bolt-color-gray-light);
+  --m-bolt-text-on-disabled: var(--bolt-color-gray);
+  --m-bolt-border: var(--m-bolt-tertiary);
+  --m-bolt-img-filter: grayscale(100%) invert(100%) brightness(150%);
+}
+
+.t-bolt-light,
+bolt-card-replacement[theme='light'] {
+  --m-bolt-bg: var(--bolt-color-gray-xlight);
+}
+
+.t-bolt-xdark,
+bolt-card-replacement[theme='xdark'] {
+  --m-bolt-bg: var(--bolt-color-navy-dark);
+}
+
+.t-bolt-xxdark {
+  --m-bolt-bg: black;
+}
+
+[data-bolt-mode] {
+  color: var(--m-bolt-text);
+  background-color: var(--m-bolt-bg);
+} /* Add :root after bolt-theme() function usage is completely removed. */

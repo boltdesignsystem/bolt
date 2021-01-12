@@ -5,18 +5,16 @@ import {
   ifDefined,
   unsafeCSS,
 } from '@bolt/element';
-import classNames from 'classnames/bind';
-import { withContext } from 'wc-context';
+import { withContext } from 'wc-context/lit-element';
 import {
   smoothScroll,
   scrollOptions,
-  getScrollTarget,
 } from '@bolt/components-smooth-scroll/src/smooth-scroll';
-
-import tocItemStyles from './_toc-item.scss';
+import classNames from 'classnames/bind';
+import styles from './_toc-item.scss';
 import schema from '../toc.schema';
 
-let cx = classNames.bind(tocItemStyles);
+let cx = classNames.bind(styles);
 
 /*
  * 1. role="presentation": declares that an element is being used only for presentation and therefore does not have any accessibility semantics. This is necessary for telling Firefox + NVDA to correctly announce the number of listitems in a list.
@@ -26,13 +24,11 @@ let cx = classNames.bind(tocItemStyles);
 
 @customElement('bolt-toc-item')
 class BoltTocItem extends withContext(BoltElement) {
+  static schema = schema.properties.items.items;
+
   static get properties() {
     return {
-      url: String,
-      active: {
-        type: Boolean,
-        reflect: true,
-      },
+      ...this.props,
       role: {
         type: String,
         reflect: true,
@@ -52,7 +48,7 @@ class BoltTocItem extends withContext(BoltElement) {
   }
 
   static get styles() {
-    return [unsafeCSS(tocItemStyles)];
+    return [unsafeCSS(styles)];
   }
 
   static get observedContexts() {
@@ -63,26 +59,19 @@ class BoltTocItem extends withContext(BoltElement) {
     super.connectedCallback && super.connectedCallback();
 
     if (this.url && this.url.indexOf('#') === 0) {
-      // todo: update `this.target` when url prop changes
       this.target = document.querySelector(this.url);
     }
   }
 
   contextChangedCallback(name, oldValue, value) {
-    if (name === 'activeItem' && value) {
-      if (value === this) {
-        this.active = true;
-      } else {
-        this.active = false;
-      }
-    } else if (name === 'scrollOffsetSelector' && value) {
-      this.scrollOffsetSelector = value;
-    } else if (name === 'scrollOffset' && value) {
-      this.scrollOffset = value;
+    if (name === 'activeItem') {
+      this.active = value === this;
+    } else {
+      this[name] = value;
     }
   }
 
-  onClick(event) {
+  handleClick(event) {
     try {
       if (this.target) {
         event.preventDefault();
@@ -120,6 +109,7 @@ class BoltTocItem extends withContext(BoltElement) {
   }
 
   firstUpdated() {
+    super.firstUpdated && super.firstUpdated();
     // `smoothScroll` needs the anchor as its second argument, does not
     // appear to do anything but throws an error if missing
     // https://github.com/cferdinandi/smooth-scroll#animatescroll
@@ -136,7 +126,7 @@ class BoltTocItem extends withContext(BoltElement) {
         <a
           class="${classes}"
           href="${ifDefined(this.url ? this.url : undefined)}"
-          @click="${this.onClick}"
+          @click="${this.handleClick}"
         >
           ${this.slotify('default')}
         </a>

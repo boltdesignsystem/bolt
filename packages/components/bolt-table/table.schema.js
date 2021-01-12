@@ -115,14 +115,16 @@ module.exports = {
       type: 'boolean',
       description: 'Removes the vertical border in between cells.',
       default: false,
-      enum: [true, false],
     },
     first_col_fixed_width: {
       type: 'boolean',
       description:
         'Sets the width of the first column to be as wide as the longest text.',
       default: false,
-      enum: [true, false],
+    },
+    caption: {
+      type: 'string',
+      description: 'Set a table caption, displayed below the table content.',
     },
   },
 };

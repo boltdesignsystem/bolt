@@ -1,5 +1,32 @@
 {% import "@bolt-academy/_macros.twig" as macros %}
 
+{% set trigger %}
+  {% include "@bolt-components-button/button.twig" with {
+    text: "Pega Customer Decision Hub 8.5",
+    size: "xsmall",
+    style: "tertiary",
+    icon: {
+      name: "chevron-down",
+      position: "after",
+    }
+  } only %}
+{% endset %}
+
+{% set popoverContent %}
+  {% include "@bolt-components-menu/menu.twig" with {
+    items: [
+      {
+        content: "Pega Customer Decision Hub 8.1",
+        url: "https://pega.com"
+      },
+      {
+        content: "Pega Customer Decision Hub 8.3",
+        url: "https://pega.com"
+      },
+    ]
+  } only %}
+{% endset %}
+
 {% set cardContentItems = [
     {
       cardUrl: "#!",
@@ -8,22 +35,29 @@
       cardMetaItems: [
         macros.include("@bolt-components-headline/text.twig", {
           size: "small",
-          weight: "bold",
-          text: "#{bolt.faker.numberBetween(2,10)} Modules",
+          text: "1 Module",
+          weight: "semibold"
         }, false),
         macros.include("@bolt-components-headline/text.twig", {
           size: "small",
-          weight: "bold",
-          text: "1 Challenge",
-        }, false),
-        macros.include("@bolt-components-headline/text.twig", {
-          size: "small",
-          weight: "bold",
-          text: "25% complete",
+          text: "10 mins",
+          weight: "semibold",
           attributes: {
-            class: ["u-bolt-color-orange"]
-          }
-        }, false)
+            class: "stats-item",
+          },
+        }, false),
+        macros.include("@bolt-components-popover/popover.twig", {
+          trigger: trigger,
+          content: popoverContent,
+          spacing: "none",
+          boundary: "bolt-card-replacement",
+          placement: "top-start",
+          fallbackPlacements: [
+            "top",
+            "top-end"
+          ],
+          theme: "light"
+        }, false),
       ],
       cardGradient: "pink",
       cardIcon: "launchpad",
@@ -129,22 +163,29 @@
       cardMetaItems: [
         macros.include("@bolt-components-headline/text.twig", {
           size: "small",
-          weight: "bold",
-          text: "#{bolt.faker.numberBetween(2,10)} Modules",
+          text: "1 Module",
+          weight: "semibold"
         }, false),
         macros.include("@bolt-components-headline/text.twig", {
           size: "small",
-          weight: "bold",
-          text: "1 Challenge",
-        }, false),
-        macros.include("@bolt-components-headline/text.twig", {
-          size: "small",
-          weight: "bold",
-          text: "25% complete",
+          text: "10 mins",
+          weight: "semibold",
           attributes: {
-            class: ["u-bolt-color-orange"]
-          }
-        }, false)
+            class: "stats-item",
+          },
+        }, false),
+        macros.include("@bolt-components-popover/popover.twig", {
+          trigger: trigger,
+          content: popoverContent,
+          spacing: "none",
+          boundary: "bolt-card-replacement",
+          placement: "top-start",
+          fallbackPlacements: [
+            "top",
+            "top-end"
+          ],
+          theme: "light"
+        }, false),
       ],
       cardGradient: "pink",
       cardIcon: "launchpad",

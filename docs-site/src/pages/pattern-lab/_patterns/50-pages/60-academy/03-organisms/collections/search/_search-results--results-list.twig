@@ -1,6 +1,67 @@
+{% set trigger %}
+  {% include "@bolt-components-button/button.twig" with {
+    text: "Pega Customer Decision Hub 8.5",
+    size: "xsmall",
+    style: "tertiary",
+    icon: {
+      name: "chevron-down",
+      position: "after",
+    }
+  } only %}
+{% endset %}
+
+{% set popoverContent %}
+  {% include "@bolt-components-menu/menu.twig" with {
+    items: [
+      {
+        content: "Pega Customer Decision Hub 8.1",
+        url: "https://pega.com"
+      },
+      {
+        content: "Pega Customer Decision Hub 8.3",
+        url: "https://pega.com"
+      },
+    ]
+  } only %}
+{% endset %}
+
 {% include "@bolt-components-list/list.twig" with {
   spacing: "medium",
   items: [
+    macros.include("@bolt-academy/_horizontal-card.twig", {
+      cardUrl: "#!",
+      cardSubtitle: "Mission",
+      cardTitle: bolt.faker.sentence(3),
+      cardMetaItems: [
+        macros.include("@bolt-components-headline/text.twig", {
+          size: "small",
+          text: "1 Module",
+          weight: "semibold"
+        }, false),
+        macros.include("@bolt-components-headline/text.twig", {
+          size: "small",
+          text: "10 mins",
+          weight: "semibold",
+          attributes: {
+            class: "stats-item",
+          },
+        }, false),
+        macros.include("@bolt-components-popover/popover.twig", {
+          trigger: trigger,
+          content: popoverContent,
+          spacing: "none",
+          placement: "top-start",
+          fallbackPlacements: [
+            "top",
+            "top-end"
+          ],
+          theme: "light"
+        }, false),
+      ],
+      cardGradient: "purple",
+      cardIcon: "launchpad",
+      cardDescription: bolt.faker.paragraph(3),
+    }, false),
     macros.include("@bolt-academy/_horizontal-card.twig", {
       cardUrl: "#!",
       cardSubtitle: "Challenge",

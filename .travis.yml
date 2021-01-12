@@ -94,7 +94,7 @@ jobs:
         - travis_retry yarn gds -a success -e ${TRAVIS_BRANCH}--${GIT_SHA}--commit-preview -r ${TRAVIS_BRANCH} -l ${NOW_URL}
         - travis_retry yarn run test:e2e:quick-local
         - travis_retry yarn run test:vrt-urls
-        # - lhci autorun --collect.numberOfRuns=3 --collect.url=$NOW_URL --collect.url=$NOW_URL/pattern-lab/patterns/50-pages-10-d8-product-pages-product-t2/50-pages-10-d8-product-pages-product-t2.html --collect.url=$NOW_URL/pattern-lab/patterns/999-experiments-micro-journeys-90-micro-journeys/999-experiments-micro-journeys-90-micro-journeys.html
+        # - lhci autorun --collect.numberOfRuns=3 --collect.url=$NOW_URL --collect.url=$NOW_URL/pattern-lab/patterns/50-pages-10-d8-product-pages-product-t2/50-pages-10-d8-product-pages-product-t2.html --collect.url=$NOW_URL/pattern-lab/patterns/60-experiments-micro-journeys-90-micro-journeys/60-experiments-micro-journeys-90-micro-journeys.html
       after_success:
         - travis_retry yarn gds -a create -e ${TRAVIS_BRANCH}--branch-preview -r ${TRAVIS_BRANCH}
         - travis_retry yarn gds -a in_progress -e ${TRAVIS_BRANCH}--branch-preview -r ${TRAVIS_BRANCH}
@@ -153,29 +153,14 @@ jobs:
         - travis_retry yarn gds -a fail_if_unsuccessful -e ${TRAVIS_BRANCH}--branch-preview -r ${TRAVIS_BRANCH}
 
     - stage: Auto-release
-      name: 'Canary Release'
-      if: (branch =~ /(master)/)
-      before_script:
-        - git config --global user.email ${GITHUB_EMAIL}
-        - git config --global user.name ${GITHUB_USER}
-        - git remote set-url origin "https://${GITHUB_TOKEN}@github.com/boltdesignsystem/bolt.git" > /dev/null 2>&1
-        - echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
-        - git checkout master
-      install:
-        - yarn install --frozen-lockfile
-        - yarn run setup:php
-        - git reset --hard
-      script: yarn run release
-
-    - stage: Auto-release
       name: 'Full Release'
-      if: (branch =~ /(release\/2.x)/)
+      if: (branch =~ /(release)/)
       before_script:
         - git config --global user.email ${GITHUB_EMAIL}
         - git config --global user.name ${GITHUB_USER}
         - git remote set-url origin "https://${GITHUB_TOKEN}@github.com/boltdesignsystem/bolt.git" > /dev/null 2>&1
         - echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
-        - git checkout release/2.x
+        - git checkout ${TRAVIS_BRANCH}
       install:
         - yarn install --frozen-lockfile
         - yarn run setup:php

@@ -13,8 +13,6 @@
 {% set classes = [
   base_class,
   this.data.status ? base_class ~ "--status-" ~ this.data.status.value,
-  this.data.status.value == "error" ? "t-bolt-dark",
-  this.data.status.value == "success" ? "t-bolt-dark",
   this.data.align ? base_class ~ "--align-" ~ this.data.align.value,
 ] %}
 

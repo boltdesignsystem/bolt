@@ -1,3 +1,6 @@
+const elementSchemas = require('@bolt/element/element.schemas');
+const { url, target } = elementSchemas.boltActionElement.properties;
+
 module.exports = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'Headline',
@@ -52,15 +55,13 @@ module.exports = {
         'Automatically shrink the font size used in the `xxxlarge` headline size when 60 or more characters are used.',
       default: true,
     },
+    target,
     transform: {
       type: 'string',
       description: 'Text transformation.',
       enum: ['uppercase', 'lowercase', 'capitalize'],
     },
-    url: {
-      type: 'string',
-      description: 'If provided, turns headline into a link to given url.',
-    },
+    url,
     icon: {
       description:
         "Bolt icon. Accepts either 1) an icon name as a string 2) an icon object as expected by `@bolt-components-icon` or 3) the string 'none' to explicitly remove default icons",

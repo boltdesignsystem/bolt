@@ -7,7 +7,7 @@ import {
 } from '@bolt/twig-renderer';
 import { html } from '../../../testing/testing-helpers';
 import schema from '../table.schema';
-const { format, borderless, first_col_fixed_width } = schema.properties;
+const { format } = schema.properties;
 
 async function renderTwig(template, data) {
   return await render(template, data, true);
@@ -296,6 +296,25 @@ describe('<bolt-table> Component', () => {
     expect(results.html).toMatchSnapshot();
   });
 
+  test('table with caption', async () => {
+    const results = await renderTwig('@bolt-components-table/table.twig', {
+      rows: [
+        {
+          cells: ['R1C1', 'R1C2', 'R1C3'],
+        },
+        {
+          cells: ['R2C1', 'R2C2', 'R2C3'],
+        },
+        {
+          cells: ['R3C1', 'R3C2', 'R3C3'],
+        },
+      ],
+      caption: 'lorem ipsum',
+    });
+    expect(results.ok).toBe(true);
+    expect(results.html).toMatchSnapshot();
+  });
+
   format.enum.forEach(async option => {
     test(`table format: ${option}`, async () => {
       const results = await renderTwig('@bolt-components-table/table.twig', {
@@ -328,7 +347,7 @@ describe('<bolt-table> Component', () => {
     });
   });
 
-  borderless.enum.forEach(async option => {
+  [true, false].forEach(async option => {
     test(`borderless table: ${option}`, async () => {
       const results = await renderTwig('@bolt-components-table/table.twig', {
         borderless: option,
@@ -362,7 +381,7 @@ describe('<bolt-table> Component', () => {
     });
   });
 
-  first_col_fixed_width.enum.forEach(async option => {
+  [true, false].forEach(async option => {
     test(`first column fixed width table: ${option}`, async () => {
       const results = await renderTwig('@bolt-components-table/table.twig', {
         first_col_fixed_width: option,

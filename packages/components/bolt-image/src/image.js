@@ -6,12 +6,12 @@ import {
   unsafeCSS,
 } from '@bolt/element';
 import classNames from 'classnames/dedupe';
-import imageStyles from './image.scss';
+import styles from './image.scss';
 import { lazySizes } from './_image-lazy-sizes';
-import schemaFile from '../image.schema';
+import schema from '../image.schema';
 import '@bolt/core-v3.x/utils/optimized-resize';
 
-let cx = classNames.bind(imageStyles);
+let cx = classNames.bind(styles);
 let passiveIfSupported = false;
 
 // from https://github.com/aFarkas/lazysizes/blob/gh-pages/plugins/respimg/ls.respimg.js#L24
@@ -35,59 +35,33 @@ try {
 
 @customElement('bolt-image')
 class BoltImage extends BoltElement {
-  static get styles() {
-    return [unsafeCSS(imageStyles)];
-  }
+  static schema = schema;
 
   static get properties() {
     return {
-      src: String,
-      alt: String,
-      noLazy: {
-        type: Boolean,
-        attribute: 'no-lazy',
-        reflect: true,
-      },
-      srcset: String,
-      sizes: String,
-      ratio: String,
-      maxWidth: {
+      ...this.props,
+      // deprecated
+      ratio: {
         type: String,
-        attribute: 'max-width',
-      },
-      placeholderColor: {
-        type: String,
-        attribute: 'placeholder-color',
-      },
-      placeholderImage: {
-        type: String,
-        attribute: 'placeholder-image',
       },
       zoom: {
         type: Boolean,
         reflect: true,
       },
-      cover: {
-        type: Boolean,
-        reflect: true, // fix for bg images not getting the right classes w/ just type: Boolean
-      },
-      valign: String,
-      align: String,
     };
   }
 
-  constructor(self) {
-    self = super(self);
-    self.onResize = self.onResize.bind(self);
-    self.onLazyLoaded = self.onLazyLoaded.bind(self);
-    self.initialClasses = [];
-    self.valign = 'center';
-    self.align = 'center';
-    self.placeholderImage =
-      'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';
-    self.sizes = 'auto';
-    self.ratio = 'auto';
-    return self;
+  static get styles() {
+    return [unsafeCSS(styles)];
+  }
+
+  constructor() {
+    super();
+    this.onResize = this.onResize.bind(this);
+    this.onLazyLoaded = this.onLazyLoaded.bind(this);
+    this.initialClasses = [];
+    // Must manually set default because ratio is "deprecated" and will be filtered out by `json-schema-props` decorator
+    this.ratio = 'auto';
   }
 
   disconnectedCallback() {

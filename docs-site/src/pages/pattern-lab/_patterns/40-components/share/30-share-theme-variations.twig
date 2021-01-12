@@ -1,27 +1,41 @@
-{% set schema = bolt.data.components["@bolt-components-share"].schema %}
-{% set themes = get_data("@bolt/themes.schema.json") %}
-{% extends "@pl/_share-variables.twig" %}
-
+{% set themes = get_data('@bolt/themes.schema.json') %}
+{% extends '@pl/_share-variables.twig' %}
 {% block content %}
+
+{% set description %}
+  Share can be used in various themes.
+{% endset %}
+
+{% set demo %}
   {% for theme in themes.properties.colors.enum %}
-    <h3>{{ theme }}</h3>
-    <div class="u-bolt-margin-bottom-medium">
-      {% embed "@utils/theme-demo.twig" %}
-        {% block demo_content %}
-          {% for size in schema.properties.size.enum %}
-            {% include "@bolt-components-share/share.twig" with {
-              size: size,
-              sources: sources,
-              copy_to_clipboard: copy_to_clipboard,
-            } only %}
-          {% endfor %}
-          {% include "@bolt-components-share/share.twig" with {
-            opacity: 60,
-            sources: sources,
-            copy_to_clipboard: copy_to_clipboard,
-          } only %}
-        {% endblock %}
-      {% endembed %}
-    </div>
+    {% embed '@utils/theme-demo.twig' %}
+      {% block demo_content %}
+        {% include '@bolt-components-share/share.twig' with {
+          sources: demo_sources,
+          copy_to_clipboard: demo_copy_to_clipboard,
+        } only %}
+      {% endblock %}
+    {% endembed %}
   {% endfor %}
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+<div class="t-bolt-dark">
+  // Put the component inside a themed container
+  {% include '@bolt-components-share/share.twig' with {
+    sources: var_foo,
+    copy_to_clipboard: var_bar,
+  } only %}
+</div>
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Theme compatibility',
+  description: description,
+  demo: demo,
+  twig_markup: twig_markup,
+} only %}
+
 {% endblock %}

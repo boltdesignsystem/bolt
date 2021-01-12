@@ -1,14 +1,10 @@
 @import '@bolt/core-v3.x';
 
-bolt-icon {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  transform: translate3d(
-    0,
-    0,
-    0
-  ); // Create a stacking context to scope internal z-index values.
+// @todo: in next minor release (v2.30) test removing ':host' altogether.
+// Icon always renders to light dom, so ':host' should not be necessary.
+@include bolt-repeat-rule(('bolt-icon', ':host(bolt-icon)')) {
+  display: inline-grid;
+  place-items: center;
   vertical-align: middle;
   transition: inherit;
 
@@ -23,22 +19,15 @@ bolt-icon {
   }
 }
 
-:host {
-  display: inline-block;
-  vertical-align: middle;
-}
-
 .c-bolt-icon {
   display: block;
   position: relative;
-  height: 100%;
 }
 
 .c-bolt-icon__icon {
   display: block; // required for vertically aligning icons
   box-sizing: border-box;
   position: relative;
-  z-index: bolt-z-index('content');
   width: 1em;
   height: 1em;
   pointer-events: none;
@@ -88,7 +77,7 @@ bolt-icon {
 
 .c-bolt-icon__background {
   fill: currentColor;
-  fill: var(--bolt-theme-text, currentColor);
+  fill: var(--m-bolt-text, currentColor);
 }
 
 .c-bolt-icon__background-shape {
@@ -96,7 +85,6 @@ bolt-icon {
   position: absolute;
   top: 0;
   left: 0;
-  z-index: bolt-z-index('contentBottom');
   width: 100%;
   height: 100%;
   background-color: currentColor;
@@ -105,7 +93,7 @@ bolt-icon {
     opacity: var(--bolt-theme-icon-background-opacity, 0.1);
     background-color: var(
       --bolt-theme-icon-background,
-      var(--bolt-theme-primary-text-default, currentColor)
+      var(--m-bolt-text, currentColor)
     );
   }
 }
@@ -158,12 +146,6 @@ bolt-icon {
       .c-bolt-icon__background-shape {
         opacity: bolt-opacity(100);
         background-color: $backgroundColor;
-      }
-
-      &.c-bolt-icon--white {
-        .c-bolt-icon__background-shape {
-          border: 1px solid rgba(bolt-color(gray, dark), 0.5);
-        }
       }
     }
   }

@@ -1,0 +1,98 @@
+{% set description %}
+  Create a popover menu by combining the Popover and Menu components.
+{% endset %}
+
+{% set demo %}
+  {% set popover_trigger %}
+    {% include '@bolt-components-button/button.twig' with {
+      text: 'Popover menu',
+      size: 'xsmall',
+    } only %}
+  {% endset %}
+  {% set popover_content %}
+    {% include '@bolt-components-menu/menu.twig' with {
+      title: 'Choose one of these',
+      items: [
+        {
+          content: 'Menu item 1',
+        },
+        {
+          content: 'Menu item 2',
+        },
+        {
+          content: 'Menu item 3',
+        },
+      ]
+    } only %}
+  {% endset %}
+
+  {% include '@bolt-components-popover/popover.twig' with {
+    trigger: popover_trigger,
+    content: popover_content,
+    spacing: 'none',
+  } only %}
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% set popover_trigger %}
+  {% include '@bolt-components-button/button.twig' with {
+    text: 'Popover menu',
+    size: 'xsmall',
+  } only %}
+{% endset %}
+{% set popover_content %}
+  {% include '@bolt-components-menu/menu.twig' with {
+    title: 'Choose one of these',
+    items: [
+      {
+        content: 'Menu item 1',
+      },
+      {
+        content: 'Menu item 2',
+      },
+      {
+        content: 'Menu item 3',
+      },
+    ]
+  } only %}
+{% endset %}
+
+{% include '@bolt-components-popover/popover.twig' with {
+  trigger: popover_trigger,
+  content: popover_content,
+  spacing: 'none',
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% set html_markup %}
+{% verbatim %}
+<bolt-popover spacing="none">
+  <bolt-button size="small">
+    Popover menu
+  </bolt-button>
+  <div slot="content">
+    <bolt-menu>
+      <bolt-menu-item>
+        Menu Item 1
+      </bolt-menu-item>
+      <bolt-menu-item>
+        Menu Item 2
+      </bolt-menu-item>
+      <bolt-menu-item>
+        Menu Item 3
+      </bolt-menu-item>
+    </bolt-menu>
+  </div>
+</bolt-popover>
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Popover menu',
+  description: description,
+  demo: demo,
+  twig_markup: twig_markup,
+  html_markup: html_markup,
+} only %}

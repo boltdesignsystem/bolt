@@ -40,7 +40,7 @@ $bolt-pagination-item-size: var(--bolt-spacing-x-medium);
   font-family: var(--bolt-type-font-family-headline);
   font-size: var(--bolt-type-font-size-small);
   font-weight: var(--bolt-type-font-weight-semibold);
-  color: bolt-theme(headline-link);
+  color: var(--m-bolt-link);
   line-height: var(--bolt-type-line-height-small);
   line-height: $bolt-pagination-item-size;
   text-align: center;
@@ -61,11 +61,9 @@ $bolt-pagination-item-size: var(--bolt-spacing-x-medium);
   }
 
   &.is-current {
-    opacity: bolt-opacity(
-      100
-    ); // Current item is not a link so its styling shouldn't change based on state.
-    color: bolt-theme(background);
-    background-color: bolt-theme(headline-link);
+    opacity: 1; // Current item is not a link so its styling shouldn't change based on state.
+    color: var(--m-bolt-bg);
+    background-color: var(--m-bolt-link);
   }
 }
 
@@ -105,6 +103,6 @@ $bolt-pagination-item-size: var(--bolt-spacing-x-medium);
   &:hover,
   &:active,
   &:focus:active {
-    opacity: bolt-opacity(100);
+    opacity: 1;
   }
 }

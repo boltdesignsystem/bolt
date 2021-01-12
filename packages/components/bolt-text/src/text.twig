@@ -53,10 +53,6 @@
   {% set attributes = attributes.setAttribute("text-transform", textTransform) %}
 {% endif %}
 
-{% if url %}
-  {% set attributes = attributes.setAttribute("url", url) %}
-{% endif %}
-
 {% if quoted %}
   {% set attributes = attributes.setAttribute("quoted", "") %}
 {% endif %}
@@ -81,81 +77,6 @@
 {% if slot %}
   {% set attributes = attributes.setAttribute("slot", slot) %}
 {% endif %}
-
-{# Icon specific attributes #}
-{# this is for when someone is using an eyebrow, headline, or subheadline with url but doesn't want the chevron right #}
-
-{# @todo: remove once we're done decoupling the text component from the icon component #}
-{#
-{% if icon is defined and icon == false  %}
-  {% set attributes = attributes.setAttribute("icon", "false") %}
-{% endif %} #}
-
-{# Icon Name #}
-{# {% if iconName in schema.properties.iconName.enum %}
-  {% set theIconName = iconName %}
-{% endif %}
-{% if icon.name in schema.properties.iconName.enum %}
-  {% set theIconName = icon.name %}
-{% endif %}
-{% if theIconName %}
-  {% set attributes = attributes.setAttribute("icon-name", theIconName) %}
-{% endif %} #}
-
-{# Icon Background #}
-{# {% if iconBackground in schema.properties.iconBackground.enum %}
-  {% set theIconBackground = iconBackground %}
-{% endif %}
-{% if icon.background in schema.properties.iconBackground.enum %}
-  {% set theIconBackground = icon.background %}
-{% endif %}
-{% if theIconBackground %}
-  {% set attributes = attributes.setAttribute("icon-background", theIconBackground) %}
-{% endif %} #}
-
-{# Icon Size #}
-{# {% if iconSize in schema.properties.iconSize.enum %}
-  {% set theIconSize = iconSize %}
-{% endif %}
-{% if icon.size in schema.properties.iconSize.enum %}
-  {% set theIconSize = icon.size %}
-{% endif %}
-{% if theIconSize %}
-  {% set attributes = attributes.setAttribute("icon-size", theIconSize) %}
-{% endif %} #}
-
-{# Icon color #}
-{# {% if iconColor in schema.properties.iconColor.enum %}
-  {% set theIconColor = iconColor %}
-{% endif %}
-{% if icon.color in schema.properties.iconColor.enum %}
-  {% set theIconColor = icon.color %}
-{% endif %}
-{% if theIconColor %}
-  {% set attributes = attributes.setAttribute("icon-color", theIconColor) %}
-{% endif %} #}
-
-{# Icon Valign #}
-{# {% if iconValign in schema.properties.iconValign.enum %}
-  {% set theIconValign = iconValign %}
-{% endif %}
-{% if icon.valign in schema.properties.iconValign.enum %}
-  {% set theIconValign = icon.valign %}
-{% endif %}
-{% if theIconValign %}
-  {% set attributes = attributes.setAttribute("icon-valign", theIconValign) %}
-{% endif %} #}
-
-{# Icon Align #}
-{# {% if iconAlign in schema.properties.iconAlign.enum %}
-  {% set theIconAlign = iconAlign %}
-{% endif %}
-{% if icon.align in schema.properties.iconAlign.enum %}
-  {% set theIconAlign = icon.align %}
-{% endif %}
-{% if theIconAlign %}
-  {% set attributes = attributes.setAttribute("icon-align", theIconAlign) %}
-{% endif %} #}
 
 {# Utils #}
 {% if util %}

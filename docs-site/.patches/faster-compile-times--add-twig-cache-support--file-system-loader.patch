@@ -16,7 +16,7 @@ index 1b0e00c92..5dba4d080 100644
  		$twigLoader = new \Twig_Loader_Filesystem($filesystemLoaderPaths);
 -		$instance   = new \Twig_Environment($twigLoader, array("debug" => $twigDebug));
 +		$instance   = new \Twig_Environment($twigLoader, array(
-+			"debug" => false,
++			"debug" => $twigDebug,
 +			"cache" => $twigCache,
 +			"auto_reload" => true,
 +		));

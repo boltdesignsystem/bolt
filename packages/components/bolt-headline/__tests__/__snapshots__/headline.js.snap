@@ -330,6 +330,7 @@ exports[`<bolt-headline> Component headline with associated link 1`] = `
       >
         <bolt-icon slot="after"
                    name="chevron-right"
+                   aria-hidden="true"
         >
           <span class="c-bolt-icon c-bolt-icon--chevron-right">
             <svg class="c-bolt-icon__icon"
@@ -355,7 +356,9 @@ exports[`<bolt-headline> Component headline with icon 1`] = `
   <span class="c-bolt-headline__text">
     this is a headline
     <span class="c-bolt-headline__icon c-bolt-headline__icon--position-after">
-      <bolt-icon name="check">
+      <bolt-icon name="check"
+                 aria-hidden="true"
+      >
         <span class="c-bolt-icon c-bolt-icon--check">
           <svg class="c-bolt-icon__icon"
                xmlns="http://www.w3.org/2000/svg"

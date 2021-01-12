@@ -69,19 +69,18 @@ $bolt-copy-to-clipboard-transition: all
 
 // [4]
 .c-bolt-copy-to-clipboard__trigger {
-  display: inline-flex;
+  display: flex;
   flex-wrap: nowrap;
   align-items: center;
+  appearance: none;
   opacity: bolt-opacity(100);
+  width: 100%;
   padding: 0;
-  font-family: inherit;
-  font-size: inherit;
-  font-weight: inherit;
-  color: inherit;
-  line-height: inherit;
+  font: inherit;
+  text-align: inherit;
   cursor: pointer;
-  border: none;
-  background: none;
+  border: 0;
+  background: transparent;
   transition: $bolt-copy-to-clipboard-transition;
   transition-delay: $bolt-copy-to-clipboard-animation-duration; // [1]
 }
@@ -97,7 +96,7 @@ $bolt-copy-to-clipboard-transition: all
 }
 
 .c-bolt-copy-to-clipboard__action {
-  color: bolt-theme(link);
+  color: var(--m-bolt-link);
 
   &:hover {
     opacity: $bolt-global-link-hover-opacity;
@@ -115,7 +114,7 @@ $bolt-copy-to-clipboard-transition: all
 
 .c-bolt-copy-to-clipboard__info {
   opacity: bolt-opacity(40);
-  color: bolt-theme(text);
+  color: var(--m-bolt-text);
 }
 
 .c-bolt-copy-to-clipboard__transition,
@@ -132,5 +131,5 @@ $bolt-copy-to-clipboard-transition: all
 
 .c-bolt-copy-to-clipboard__transition-animation {
   display: inline-block;
-  color: bolt-theme(link);
+  color: var(--m-bolt-link);
 }
