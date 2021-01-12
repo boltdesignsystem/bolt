@@ -12,17 +12,19 @@
   <div {{ attributes.addClass(['c-bolt-background']) }}>
     {% if contentItems %}
       {% for item in contentItems %}
-        {% include "@bolt-components-background/background-item.twig" %}
+        {% if item %}
+          {% include "@bolt-components-background/background-item.twig" %}
+        {% endif %}
       {% endfor %}
     {% endif %}
 
-    {% if this.data.overlay.value == "enabled" or shapeGroup != 'none'  %}
+    {% if this.data.overlay.value == "enabled" or this.data.shape_group.value != 'none'  %}
       <div class="{{ "c-bolt-background__item" }}">
         {% if this.data.overlay.value == "enabled" %}
           {% include "@bolt-components-background/background-overlay.twig" %}
         {% endif %}
 
-        {% if shapeGroup != 'none' and shapeGroup != '' %}
+        {% if this.data.shape_group.value != 'none' %}
           {% include "@bolt-components-background/background-shapes-wrapper.twig" %}
         {% endif %}
       </div>
