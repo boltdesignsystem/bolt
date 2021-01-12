@@ -1,13 +1,11 @@
 {% set schema = bolt.data.components["@bolt-components-background"].schema %}
 
-{% set baseClass = "c-bolt-background" %}
+{# Variables #}
 {% set attributes = create_attribute({}) %}
-{% set shapeGroup =  shapeGroup in schema.properties.shapeGroup.enum ? shapeGroup : schema.properties.shapeGroup.default %}
-{% set shapeAlignment = shapeAlignment in schema.properties.shapeAlignment.enum ? shapeAlignment : schema.properties.shapeAlignment.default %}
 
 {% set shapeClasses = [
-  baseClass ~ "__shapes",
-  baseClass ~ "__shapes--" ~ shapeAlignment
+  "c-bolt-background__shapes",
+  "c-bolt-background__shapes--" ~ shapeAlignment
 ] %}
 
 <div {{ attributes.addClass(shapeClasses) }}>
