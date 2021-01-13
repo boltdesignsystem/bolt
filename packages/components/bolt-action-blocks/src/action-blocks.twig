@@ -64,6 +64,7 @@
   {{ this.props|without("items")|without("class") }}
 >
   <ul {{ inner_attributes.addClass(inner_classes) }}>
+    {# `children` is not in the schema but is in use on WWW, @see 'featured-partners-row.twig'. Cannot safely remove until removed there. #}
     {% if children %}
       {{ children }}
     {% else %}
