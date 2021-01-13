@@ -1,5 +1,5 @@
 import { customElement } from '@bolt/element';
-import { beforeNextRender, props, css } from '@bolt/core-v3.x/utils';
+import { props, css } from '@bolt/core-v3.x/utils';
 import { h, withPreact } from '@bolt/core-v3.x/renderers';
 import Mousetrap from 'mousetrap';
 import classNames from 'classnames';

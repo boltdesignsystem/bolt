@@ -15,21 +15,18 @@ module.exports = {
       type: 'boolean',
       description: 'Allow only one section to open at a time.',
       default: false,
-      enum: [true, false],
     },
     no_separator: {
       type: 'boolean',
       title: 'no_separator (twig) / no-separator (web component)',
       description: 'Hides the separator in between items.',
       default: false,
-      enum: [true, false],
     },
     box_shadow: {
       type: 'boolean',
       title: 'box_shadow (twig) / box-shadow (web component)',
       description: 'Creates a box shadow around the accordion.',
       default: false,
-      enum: [true, false],
     },
     spacing: {
       $ref: '#/definitions/spacing',

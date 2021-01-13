@@ -109,11 +109,11 @@
 
   // Color
   &--color-theme-headline {
-    color: bolt-theme(headline);
+    color: var(--m-bolt-headline);
   }
 
   &--color-theme-body {
-    color: bolt-theme(text);
+    color: var(--m-bolt-text);
   }
 
   // Font style
@@ -190,7 +190,7 @@
 
     &:link,
     &:visited {
-      color: bolt-theme(link);
+      color: var(--m-bolt-link);
       text-decoration: underline;
     }
 

@@ -1,3 +1,20 @@
-<bolt-banner status="warning" class="u-bolt-margin-top-large">
-  <strong>This is a placeholder element only used in Pattern Lab demos.</strong>
-</bolt-banner>
+{% set usage %}{% verbatim %}
+{% include '@bolt-components-page-header/page-header.twig' with {
+  logo: {
+    image_src: '/images/logos/pega-logo.svg',
+    label: 'Pegasystems',
+    attributes: {
+      href: 'https://pega.com',
+    }
+  },
+  content: primary_nav_and_search_panel,
+  secondary_content: secondary_nav,
+  cta: cta_button,
+  static: true,
+} only %}
+{% endverbatim %}{% endset %}
+
+{% include '@utils/docs.twig' with {
+  componentName: 'page-header',
+  usage: usage
+} only %}

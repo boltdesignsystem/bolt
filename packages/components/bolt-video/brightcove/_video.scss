@@ -203,6 +203,7 @@ $base-video-meta-transition: $bolt-transition;
   }
 
   .vjs-control.vjs-close-button {
+    z-index: 10;
     width: 2.5rem;
     height: 2.5rem;
 
@@ -446,19 +447,18 @@ $base-video-meta-transition: $bolt-transition;
     }
   }
 
-  .vjs-controls-disabled {
-    pointer-events: none;
-
+  &.vjs-controls-disabled {
     .video-meta__item--title,
     .video-meta__item--duration {
       opacity: bolt-opacity(0);
+      pointer-events: none;
     }
   }
 
   // Force control icons to be visible at smaller layout sizes, commented out names are shown here to indicate which ones are hidden.
-  .vjs-layout-tiny,
-  .vjs-layout-x-small,
-  .vjs-layout-small {
+  &.vjs-layout-tiny,
+  &.vjs-layout-x-small,
+  &.vjs-layout-small {
     &:not(.vjs-fullscreen) {
       /* .vjs-time-divider, */
       /* .vjs-duration, */

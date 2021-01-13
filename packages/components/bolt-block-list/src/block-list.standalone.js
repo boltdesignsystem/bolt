@@ -5,18 +5,25 @@ import {
   customElement,
   unsafeHTML,
 } from '@bolt/element';
-import blockListStyles from './block-list.scss';
+
+import styles from './block-list.scss';
+// import schema from '../block-list.schema';
 
 @customElement('bolt-block-list')
 class BoltBlockList extends BoltElement {
-  static get properties() {
-    return {
-      items: Array,
-    };
-  }
+  // Note: this component uses a custom <script> tag to write `items` data to the custom element (@see block-list.twig).
+  // The JS does not actually use the schema, commenting out for now. This component will likely be removed or replaced.
+
+  // static schema = schema;
+
+  // static get properties() {
+  //   return {
+  //     ...this.props,
+  //   };
+  // }
 
   static get styles() {
-    return [unsafeCSS(blockListStyles)];
+    return [unsafeCSS(styles)];
   }
 
   connectedCallback() {

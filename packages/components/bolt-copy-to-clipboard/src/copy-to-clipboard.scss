@@ -96,7 +96,7 @@ $bolt-copy-to-clipboard-transition: all
 }
 
 .c-bolt-copy-to-clipboard__action {
-  color: bolt-theme(link);
+  color: var(--m-bolt-link);
 
   &:hover {
     opacity: $bolt-global-link-hover-opacity;
@@ -114,7 +114,7 @@ $bolt-copy-to-clipboard-transition: all
 
 .c-bolt-copy-to-clipboard__info {
   opacity: bolt-opacity(40);
-  color: bolt-theme(text);
+  color: var(--m-bolt-text);
 }
 
 .c-bolt-copy-to-clipboard__transition,
@@ -131,5 +131,5 @@ $bolt-copy-to-clipboard-transition: all
 
 .c-bolt-copy-to-clipboard__transition-animation {
   display: inline-block;
-  color: bolt-theme(link);
+  color: var(--m-bolt-link);
 }

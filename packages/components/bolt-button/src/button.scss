@@ -12,16 +12,11 @@
 /**
  * Base Button
  */
-@include bolt-repeat-rule(('bolt-button', ':host')) {
+@include bolt-repeat-rule(('bolt-button', ':host(bolt-button)')) {
   // [1]
   display: inline-flex;
+  appearance: none;
   outline: none; // [2]
-
-  &[type='button'],
-  &[type='reset'],
-  &[type='submit'] {
-    appearance: none;
-  }
 }
 
 .c-bolt-button {
@@ -33,12 +28,10 @@
  */
 .c-bolt-button--primary {
   @include bolt-button-style(primary);
-  @include bolt-button-raised-effect;
 }
 
 .c-bolt-button--secondary {
   @include bolt-button-style(secondary);
-  @include bolt-button-raised-effect;
 }
 
 .c-bolt-button--tertiary {

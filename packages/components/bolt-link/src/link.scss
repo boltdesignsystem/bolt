@@ -23,24 +23,11 @@ $bolt-link-spacing: 'xxsmall';
 
 // Component styles
 .c-bolt-link {
-  @include bolt-button-reset; // [1]
+  @include bolt-button-native-styles-reset;
+  @include bolt-text-link;
+
   display: inline;
-  opacity: bolt-opacity(100);
   margin-left: calc(var(--bolt-spacing-x-#{$bolt-link-spacing}) * -1);
-  color: bolt-theme(link);
-  text-decoration: underline;
-  cursor: pointer;
-  border: none; // [1]
-  transition: all $bolt-link-transition;
-
-  &:hover {
-    opacity: $bolt-global-link-hover-opacity;
-  }
-
-  &:active,
-  &:focus:active {
-    opacity: $bolt-global-link-active-opacity;
-  }
 }
 
 button.c-bolt-link {
@@ -85,7 +72,7 @@ button.c-bolt-link {
 
 // Changes the underline styles when a link is also a headline, chevrons are added to headline links by default.
 .c-bolt-link--headline {
-  color: bolt-theme(headline-link);
+  color: var(--m-bolt-link);
   text-decoration: none;
 
   &:hover {

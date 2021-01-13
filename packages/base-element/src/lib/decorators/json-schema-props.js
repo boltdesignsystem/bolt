@@ -39,7 +39,7 @@ const jsonSchemaPropsDecorator = clazz => {
           .includes('deprecated');
 
         // these schema props are never used by Web Components, only by Twig
-        const twigOnlyProps = ['attributes', 'content', 'items'];
+        const twigOnlyProps = ['attributes', 'content', 'items', 'children'];
         const isTwigOnly = twigOnlyProps.includes(key.toLowerCase());
 
         // skip deprecated and Twig-only props
@@ -85,6 +85,11 @@ const jsonSchemaPropsDecorator = clazz => {
             reflect: property.reflect ? true : false,
             attribute: paramCase(propName),
           };
+
+          // BoltActionElement props use the `alias` key for `convertInitialTags` decorator
+          if (property.alias) {
+            props[propName].alias = property.alias;
+          }
         }
       }
 

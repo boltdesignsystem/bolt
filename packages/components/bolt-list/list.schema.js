@@ -52,7 +52,6 @@ module.exports = {
       type: 'boolean',
       description: 'Turn spacing to the inside of each item.',
       default: false,
-      enum: [true, false],
     },
     align: {
       type: 'string',
@@ -71,7 +70,6 @@ module.exports = {
       description:
         'Prevent inline/flex list items from wrapping to a second line.',
       default: false,
-      enum: [true, false],
     },
   },
 };
