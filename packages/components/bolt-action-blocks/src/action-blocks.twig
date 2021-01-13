@@ -30,6 +30,11 @@
   {% set items = contentItems %}
 {% endif %}
 
+{# DEPRECATED.  `children` has been renamed to `content` #}
+{% if children %}
+  {% set content = children %}
+{% endif %}
+
 {# Variables #}
 {% set this = init(schema) %}
 {% set inner_attributes = create_attribute({}) %}
@@ -64,9 +69,8 @@
   {{ this.props|without("items")|without("class") }}
 >
   <ul {{ inner_attributes.addClass(inner_classes) }}>
-    {# `children` is not in the schema but is in use on WWW, @see 'featured-partners-row.twig'. Cannot safely remove until removed there. #}
-    {% if children %}
-      {{ children }}
+    {% if content %}
+      {{ content }}
     {% else %}
       {% for item in items %}
         <li class="c-bolt-action-blocks__item">

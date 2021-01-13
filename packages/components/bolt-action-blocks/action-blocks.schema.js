@@ -49,6 +49,14 @@ module.exports = {
       description: 'Removes the border in between each action block.',
       default: false,
     },
+    content: {
+      type: ['string', 'array', 'object'],
+      description: 'Free form content to populate the action blocks',
+    },
+    children: {
+      title: 'DEPRECATED',
+      description: 'Use content prop instead.',
+    },
     items: {
       type: 'array',
       description: 'Content items to populate the action blocks.',
