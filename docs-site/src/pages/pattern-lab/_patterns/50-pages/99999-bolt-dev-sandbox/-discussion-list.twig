@@ -1,0 +1,252 @@
+{% extends '@pl/_default-page-template.twig' %}
+
+{% block main_content %}
+  {% set band_content %}
+    <ul class="c-bolt-discussion-list">
+      <li class="c-bolt-discussion-list__item">
+        <div class="c-bolt-discussion-flag">
+          <div class="c-bolt-discussion-flag__media" aria-hidden="true">
+            {% set tooltip_trigger %}
+              {% include '@bolt-components-icon/icon.twig' with {
+                name: 'questions',
+                background: 'circle',
+                size: 'xlarge',
+                color: 'teal',
+              } only %}
+            {% endset %}
+            {% include '@bolt-components-tooltip/tooltip.twig' with {
+              trigger: tooltip_trigger,
+              content: 'Question',
+            } only %}
+          </div>
+          <div class="c-bolt-discussion-flag__content">
+            <div class="c-bolt-discussion-info">
+              <div class="c-bolt-discussion-info__heading">
+                {% set link %}
+                  {% include '@bolt-elements-text-link/text-link.twig' with {
+                    content: 'A discussion with long title without break pneumonoultramicroscopicsilicovolcanoconiosis',
+                    reversed_underline: true,
+                    expand_click_target: true,
+                    attributes: {
+                      href: 'https://pega.com',
+                    }
+                  } only %}
+                {% endset %}
+                {% include '@bolt-components-headline/headline.twig' with {
+                  text: link,
+                  tag: 'h3',
+                  size: 'xlarge',
+                } only %}
+              </div>
+              <ul class="c-bolt-discussion-info__meta">
+                <li>Posted by <a href="https://google.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline">viswa1</a> on Aug 28, 2020</li>
+                <li>Last activity: 8 hours 15 minutes ago</li>
+              </ul>
+            </div>
+            <ul class="c-bolt-discussion-stats">
+              <li class="c-bolt-discussion-stats__item">
+                <span class="c-bolt-discussion-stats__number">3</span> Replies
+              </li>
+              <li class="c-bolt-discussion-stats__item">
+                <span class="c-bolt-discussion-stats__number">8</span> Views
+              </li>
+            </ul>
+          </div>
+        </div>
+      </li>
+      <li class="c-bolt-discussion-list__item">
+        <div class="c-bolt-discussion-flag">
+          <div class="c-bolt-discussion-flag__media" aria-hidden="true">
+            {% set tooltip_trigger %}
+              {% include '@bolt-components-icon/icon.twig' with {
+                name: 'discussions',
+                background: 'circle',
+                size: 'xlarge',
+                color: 'orange',
+              } only %}
+            {% endset %}
+            {% include '@bolt-components-tooltip/tooltip.twig' with {
+              trigger: tooltip_trigger,
+              content: 'Question',
+            } only %}
+          </div>
+          <div class="c-bolt-discussion-flag__content">
+            <div class="c-bolt-discussion-info">
+              <div class="c-bolt-discussion-info__heading">
+                {% set link %}
+                  {% include '@bolt-elements-text-link/text-link.twig' with {
+                    content: 'Another discussion',
+                    reversed_underline: true,
+                    expand_click_target: true,
+                    attributes: {
+                      href: 'https://pega.com',
+                    }
+                  } only %}
+                {% endset %}
+                {% include '@bolt-components-headline/headline.twig' with {
+                  text: link,
+                  tag: 'h3',
+                  size: 'xlarge',
+                } only %}
+              </div>
+              <ul class="c-bolt-discussion-info__meta">
+                <li>Posted by <a href="#something-else" class="e-bolt-text-link e-bolt-text-link--reversed-underline">errqwe000</a> on Aug 28, 2020</li>
+                <li>Last activity: 8 hours 15 minutes ago</li>
+              </ul>
+            </div>
+            <ul class="c-bolt-discussion-stats">
+              <li class="c-bolt-discussion-stats__item">
+                <span class="c-bolt-discussion-stats__icon c-bolt-discussion-stats__icon--solved">
+                  {% include '@bolt-components-icon/icon.twig' with {
+                    name: 'check-solid',
+                  } only %}
+                </span>
+                Solved
+              </li>
+              <li class="c-bolt-discussion-stats__item">
+                <span class="c-bolt-discussion-stats__number">12</span> Replies
+              </li>
+              <li class="c-bolt-discussion-stats__item">
+                <span class="c-bolt-discussion-stats__number">100</span> Views
+              </li>
+            </ul>
+          </div>
+        </div>
+      </li>
+      <li class="c-bolt-discussion-list__item">
+        <div class="c-bolt-discussion-flag">
+          <div class="c-bolt-discussion-flag__media" aria-hidden="true">
+            {% set tooltip_trigger %}
+              {% include '@bolt-components-icon/icon.twig' with {
+                name: 'ideas',
+                background: 'circle',
+                size: 'xlarge',
+                color: 'yellow',
+              } only %}
+            {% endset %}
+            {% include '@bolt-components-tooltip/tooltip.twig' with {
+              trigger: tooltip_trigger,
+              content: 'Question',
+            } only %}
+          </div>
+          <div class="c-bolt-discussion-flag__content">
+            <div class="c-bolt-discussion-info">
+              <div class="c-bolt-discussion-info__heading">
+                {% set link %}
+                  {% include '@bolt-elements-text-link/text-link.twig' with {
+                    content: 'Yet another discussion',
+                    reversed_underline: true,
+                    expand_click_target: true,
+                    attributes: {
+                      href: 'https://pega.com',
+                    }
+                  } only %}
+                {% endset %}
+                {% include '@bolt-components-headline/headline.twig' with {
+                  text: link,
+                  tag: 'h3',
+                  size: 'xlarge',
+                } only %}
+              </div>
+              <ul class="c-bolt-discussion-info__meta">
+                <li>Posted by <a href="#something-else" class="e-bolt-text-link e-bolt-text-link--reversed-underline">adfa13</a> on Aug 28, 2020</li>
+                <li>Last activity: 8 hours 15 minutes ago</li>
+              </ul>
+            </div>
+            <ul class="c-bolt-discussion-stats">
+              <li class="c-bolt-discussion-stats__item">
+                <span class="c-bolt-discussion-stats__icon c-bolt-discussion-stats__icon--locked">
+                  {% include '@bolt-components-icon/icon.twig' with {
+                    name: 'lock',
+                  } only %}
+                </span>
+                Locked
+              </li>
+              <li class="c-bolt-discussion-stats__item">
+                <span class="c-bolt-discussion-stats__number">0</span> Replies
+              </li>
+              <li class="c-bolt-discussion-stats__item">
+                <span class="c-bolt-discussion-stats__number">25</span> Views
+              </li>
+            </ul>
+          </div>
+        </div>
+      </li>
+      <li class="c-bolt-discussion-list__item">
+        <div class="c-bolt-discussion-flag">
+          <div class="c-bolt-discussion-flag__media" aria-hidden="true">
+            {% set tooltip_trigger %}
+              {% include '@bolt-components-icon/icon.twig' with {
+                name: 'ideas',
+                background: 'circle',
+                size: 'xlarge',
+                color: 'yellow',
+              } only %}
+            {% endset %}
+            {% include '@bolt-components-tooltip/tooltip.twig' with {
+              trigger: tooltip_trigger,
+              content: 'Question',
+            } only %}
+          </div>
+          <div class="c-bolt-discussion-flag__content">
+            <div class="c-bolt-discussion-info">
+              <div class="c-bolt-discussion-info__heading">
+                {% set link %}
+                  {% include '@bolt-elements-text-link/text-link.twig' with {
+                    content: 'Solved and locked?',
+                    reversed_underline: true,
+                    expand_click_target: true,
+                    attributes: {
+                      href: 'https://pega.com',
+                    }
+                  } only %}
+                {% endset %}
+                {% include '@bolt-components-headline/headline.twig' with {
+                  text: link,
+                  tag: 'h3',
+                  size: 'xlarge',
+                } only %}
+              </div>
+              <ul class="c-bolt-discussion-info__meta">
+                <li>Posted by <a href="#something-else" class="e-bolt-text-link e-bolt-text-link--reversed-underline">mikemai2awesome</a> on Aug 28, 2020</li>
+                <li>Last activity: 8 hours 15 minutes ago</li>
+              </ul>
+            </div>
+            <ul class="c-bolt-discussion-stats">
+              <li class="c-bolt-discussion-stats__item">
+                <span class="c-bolt-discussion-stats__icon c-bolt-discussion-stats__icon--solved">
+                  {% include '@bolt-components-icon/icon.twig' with {
+                    name: 'check-solid',
+                  } only %}
+                </span>
+                Solved
+              </li>
+              <li class="c-bolt-discussion-stats__item">
+                <span class="c-bolt-discussion-stats__icon c-bolt-discussion-stats__icon--locked">
+                  {% include '@bolt-components-icon/icon.twig' with {
+                    name: 'lock',
+                  } only %}
+                </span>
+                Locked
+              </li>
+              <li class="c-bolt-discussion-stats__item">
+                <span class="c-bolt-discussion-stats__number">10k</span> Replies
+              </li>
+              <li class="c-bolt-discussion-stats__item">
+                <span class="c-bolt-discussion-stats__number">55k</span> Views
+              </li>
+            </ul>
+          </div>
+        </div>
+      </li>
+    </ul>
+  {% endset %}
+
+  {% include '@bolt-components-band/band.twig' with {
+    content: band_content,
+    theme: 'xlight',
+  } only %}
+{% endblock %}
+
+{% block global_footer %}
+{% endblock %}
