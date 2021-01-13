@@ -6,7 +6,13 @@
       <li class="c-bolt-discussion-list__item">
         <div class="c-bolt-discussion-flag">
           <div class="c-bolt-discussion-flag__media" aria-hidden="true">
-            {% set tooltip_trigger %}
+            {% include '@bolt-components-icon/icon.twig' with {
+              name: 'questions',
+              background: 'circle',
+              size: 'xlarge',
+              color: 'teal',
+            } only %}
+            {# {% set tooltip_trigger %}
               {% include '@bolt-components-icon/icon.twig' with {
                 name: 'questions',
                 background: 'circle',
@@ -17,7 +23,7 @@
             {% include '@bolt-components-tooltip/tooltip.twig' with {
               trigger: tooltip_trigger,
               content: 'Question',
-            } only %}
+            } only %} #}
           </div>
           <div class="c-bolt-discussion-flag__content">
             <div class="c-bolt-discussion-info">
@@ -39,16 +45,17 @@
                 } only %}
               </div>
               <ul class="c-bolt-discussion-info__meta">
+                <li><bolt-chip size="xsmall">Question</bolt-chip></li>
                 <li>Posted by <a href="https://google.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline">viswa1</a> on Aug 28, 2020</li>
                 <li>Last activity: 8 hours 15 minutes ago</li>
               </ul>
             </div>
-            <ul class="c-bolt-discussion-stats">
-              <li class="c-bolt-discussion-stats__item">
-                <span class="c-bolt-discussion-stats__number">3</span> Replies
+            <ul class="c-bolt-discussion-status">
+              <li class="c-bolt-discussion-status__item">
+                <span class="c-bolt-discussion-status__number">3</span> Replies
               </li>
-              <li class="c-bolt-discussion-stats__item">
-                <span class="c-bolt-discussion-stats__number">8</span> Views
+              <li class="c-bolt-discussion-status__item">
+                <span class="c-bolt-discussion-status__number">8</span> Views
               </li>
             </ul>
           </div>
@@ -57,17 +64,11 @@
       <li class="c-bolt-discussion-list__item">
         <div class="c-bolt-discussion-flag">
           <div class="c-bolt-discussion-flag__media" aria-hidden="true">
-            {% set tooltip_trigger %}
-              {% include '@bolt-components-icon/icon.twig' with {
-                name: 'discussions',
-                background: 'circle',
-                size: 'xlarge',
-                color: 'orange',
-              } only %}
-            {% endset %}
-            {% include '@bolt-components-tooltip/tooltip.twig' with {
-              trigger: tooltip_trigger,
-              content: 'Question',
+            {% include '@bolt-components-icon/icon.twig' with {
+              name: 'discussions',
+              background: 'circle',
+              size: 'xlarge',
+              color: 'orange',
             } only %}
           </div>
           <div class="c-bolt-discussion-flag__content">
@@ -90,24 +91,25 @@
                 } only %}
               </div>
               <ul class="c-bolt-discussion-info__meta">
+                <li><bolt-chip size="xsmall">Discussion</bolt-chip></li>
                 <li>Posted by <a href="#something-else" class="e-bolt-text-link e-bolt-text-link--reversed-underline">errqwe000</a> on Aug 28, 2020</li>
                 <li>Last activity: 8 hours 15 minutes ago</li>
               </ul>
             </div>
-            <ul class="c-bolt-discussion-stats">
-              <li class="c-bolt-discussion-stats__item">
-                <span class="c-bolt-discussion-stats__icon c-bolt-discussion-stats__icon--solved">
+            <ul class="c-bolt-discussion-status">
+              <li class="c-bolt-discussion-status__item">
+                <span class="c-bolt-discussion-status__icon c-bolt-discussion-status__icon--solved">
                   {% include '@bolt-components-icon/icon.twig' with {
                     name: 'check-solid',
                   } only %}
                 </span>
                 Solved
               </li>
-              <li class="c-bolt-discussion-stats__item">
-                <span class="c-bolt-discussion-stats__number">12</span> Replies
+              <li class="c-bolt-discussion-status__item">
+                <span class="c-bolt-discussion-status__number">12</span> Replies
               </li>
-              <li class="c-bolt-discussion-stats__item">
-                <span class="c-bolt-discussion-stats__number">100</span> Views
+              <li class="c-bolt-discussion-status__item">
+                <span class="c-bolt-discussion-status__number">100</span> Views
               </li>
             </ul>
           </div>
@@ -116,17 +118,11 @@
       <li class="c-bolt-discussion-list__item">
         <div class="c-bolt-discussion-flag">
           <div class="c-bolt-discussion-flag__media" aria-hidden="true">
-            {% set tooltip_trigger %}
-              {% include '@bolt-components-icon/icon.twig' with {
-                name: 'ideas',
-                background: 'circle',
-                size: 'xlarge',
-                color: 'yellow',
-              } only %}
-            {% endset %}
-            {% include '@bolt-components-tooltip/tooltip.twig' with {
-              trigger: tooltip_trigger,
-              content: 'Question',
+            {% include '@bolt-components-icon/icon.twig' with {
+              name: 'ideas',
+              background: 'circle',
+              size: 'xlarge',
+              color: 'yellow',
             } only %}
           </div>
           <div class="c-bolt-discussion-flag__content">
@@ -149,24 +145,25 @@
                 } only %}
               </div>
               <ul class="c-bolt-discussion-info__meta">
+                <li><bolt-chip size="xsmall">Idea</bolt-chip></li>
                 <li>Posted by <a href="#something-else" class="e-bolt-text-link e-bolt-text-link--reversed-underline">adfa13</a> on Aug 28, 2020</li>
                 <li>Last activity: 8 hours 15 minutes ago</li>
               </ul>
             </div>
-            <ul class="c-bolt-discussion-stats">
-              <li class="c-bolt-discussion-stats__item">
-                <span class="c-bolt-discussion-stats__icon c-bolt-discussion-stats__icon--locked">
+            <ul class="c-bolt-discussion-status">
+              <li class="c-bolt-discussion-status__item">
+                <span class="c-bolt-discussion-status__icon c-bolt-discussion-status__icon--locked">
                   {% include '@bolt-components-icon/icon.twig' with {
                     name: 'lock',
                   } only %}
                 </span>
                 Locked
               </li>
-              <li class="c-bolt-discussion-stats__item">
-                <span class="c-bolt-discussion-stats__number">0</span> Replies
+              <li class="c-bolt-discussion-status__item">
+                <span class="c-bolt-discussion-status__number">0</span> Replies
               </li>
-              <li class="c-bolt-discussion-stats__item">
-                <span class="c-bolt-discussion-stats__number">25</span> Views
+              <li class="c-bolt-discussion-status__item">
+                <span class="c-bolt-discussion-status__number">25</span> Views
               </li>
             </ul>
           </div>
@@ -175,17 +172,11 @@
       <li class="c-bolt-discussion-list__item">
         <div class="c-bolt-discussion-flag">
           <div class="c-bolt-discussion-flag__media" aria-hidden="true">
-            {% set tooltip_trigger %}
-              {% include '@bolt-components-icon/icon.twig' with {
-                name: 'ideas',
-                background: 'circle',
-                size: 'xlarge',
-                color: 'yellow',
-              } only %}
-            {% endset %}
-            {% include '@bolt-components-tooltip/tooltip.twig' with {
-              trigger: tooltip_trigger,
-              content: 'Question',
+            {% include '@bolt-components-icon/icon.twig' with {
+              name: 'ideas',
+              background: 'circle',
+              size: 'xlarge',
+              color: 'yellow',
             } only %}
           </div>
           <div class="c-bolt-discussion-flag__content">
@@ -208,32 +199,33 @@
                 } only %}
               </div>
               <ul class="c-bolt-discussion-info__meta">
+                <li><bolt-chip size="xsmall">Idea</bolt-chip></li>
                 <li>Posted by <a href="#something-else" class="e-bolt-text-link e-bolt-text-link--reversed-underline">mikemai2awesome</a> on Aug 28, 2020</li>
                 <li>Last activity: 8 hours 15 minutes ago</li>
               </ul>
             </div>
-            <ul class="c-bolt-discussion-stats">
-              <li class="c-bolt-discussion-stats__item">
-                <span class="c-bolt-discussion-stats__icon c-bolt-discussion-stats__icon--solved">
+            <ul class="c-bolt-discussion-status">
+              <li class="c-bolt-discussion-status__item">
+                <span class="c-bolt-discussion-status__icon c-bolt-discussion-status__icon--solved">
                   {% include '@bolt-components-icon/icon.twig' with {
                     name: 'check-solid',
                   } only %}
                 </span>
                 Solved
               </li>
-              <li class="c-bolt-discussion-stats__item">
-                <span class="c-bolt-discussion-stats__icon c-bolt-discussion-stats__icon--locked">
+              <li class="c-bolt-discussion-status__item">
+                <span class="c-bolt-discussion-status__icon c-bolt-discussion-status__icon--locked">
                   {% include '@bolt-components-icon/icon.twig' with {
                     name: 'lock',
                   } only %}
                 </span>
                 Locked
               </li>
-              <li class="c-bolt-discussion-stats__item">
-                <span class="c-bolt-discussion-stats__number">10k</span> Replies
+              <li class="c-bolt-discussion-status__item">
+                <span class="c-bolt-discussion-status__number">10k</span> Replies
               </li>
-              <li class="c-bolt-discussion-stats__item">
-                <span class="c-bolt-discussion-stats__number">55k</span> Views
+              <li class="c-bolt-discussion-status__item">
+                <span class="c-bolt-discussion-status__number">55k</span> Views
               </li>
             </ul>
           </div>

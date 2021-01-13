@@ -95,14 +95,14 @@
   }
 }
 
-.c-bolt-discussion-stats {
+.c-bolt-discussion-status {
   display: flex;
   flex-wrap: nowrap;
   margin: 0;
   padding: 0;
   list-style: none;
 
-  > .c-bolt-discussion-stats__item {
+  > .c-bolt-discussion-status__item {
     display: grid;
     flex: 1 1 64px;
     align-content: center;
@@ -116,8 +116,8 @@
   }
 }
 
-.c-bolt-discussion-stats__number,
-.c-bolt-discussion-stats__icon {
+.c-bolt-discussion-status__number,
+.c-bolt-discussion-status__icon {
   display: flex;
   justify-content: center;
   align-content: center;
@@ -126,15 +126,15 @@
   line-height: 1;
 }
 
-.c-bolt-discussion-stats__number {
+.c-bolt-discussion-status__number {
   font-weight: var(--bolt-type-font-weight-bold);
   color: var(--m-bolt-headline);
 }
 
-.c-bolt-discussion-stats__icon--solved {
+.c-bolt-discussion-status__icon--solved {
   color: var(--bolt-color-success);
 }
 
-.c-bolt-discussion-stats__icon--locked {
+.c-bolt-discussion-status__icon--locked {
   color: var(--bolt-color-neutral);
 }
