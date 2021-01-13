@@ -32,7 +32,6 @@
 
 {# Variables #}
 {% set this = init(schema) %}
-{% set attributes = create_attribute(attributes|default({})) %}
 {% set inner_attributes = create_attribute({}) %}
 
 {# Array of classes based on the defined + default props #}
@@ -60,7 +59,6 @@
   {% endif %}
 {% endfor %}
 
-{# Example component's custom element wrapper #}
 <bolt-action-blocks
   {% if outer_classes %} class="{{ outer_classes|join(' ') }}" {% endif %}
   {{ this.props|without("content")|without("class") }}
