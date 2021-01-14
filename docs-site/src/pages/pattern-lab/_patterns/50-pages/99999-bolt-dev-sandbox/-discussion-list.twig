@@ -45,9 +45,9 @@
                 } only %}
               </div>
               <ul class="c-bolt-post-info__meta">
-                <li><bolt-chip size="xsmall">Question</bolt-chip></li>
-                <li>Posted by <a href="https://google.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline">viswa1</a> on Aug 28, 2020</li>
-                <li>Last activity: 8 hours 15 minutes ago</li>
+                <li class="c-bolt-post-info__meta__item"><strong>Question</strong></li>
+                <li class="c-bolt-post-info__meta__item">Posted by <a href="https://google.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline">viswa1</a> on Aug 28, 2020</li>
+                <li class="c-bolt-post-info__meta__item">Last activity: 8 hours 15 minutes ago</li>
               </ul>
             </div>
             <ul class="c-bolt-post-status">
@@ -91,9 +91,9 @@
                 } only %}
               </div>
               <ul class="c-bolt-post-info__meta">
-                <li><bolt-chip size="xsmall">Discussion</bolt-chip></li>
-                <li>Posted by <a href="#something-else" class="e-bolt-text-link e-bolt-text-link--reversed-underline">errqwe000</a> on Aug 28, 2020</li>
-                <li>Last activity: 8 hours 15 minutes ago</li>
+                <li class="c-bolt-post-info__meta__item"><strong>Discussion</strong></li>
+                <li class="c-bolt-post-info__meta__item">Posted by <a href="#something-else" class="e-bolt-text-link e-bolt-text-link--reversed-underline">errqwe000</a> on Aug 28, 2020</li>
+                <li class="c-bolt-post-info__meta__item">Last activity: 8 hours 15 minutes ago</li>
               </ul>
             </div>
             <ul class="c-bolt-post-status">
@@ -145,9 +145,9 @@
                 } only %}
               </div>
               <ul class="c-bolt-post-info__meta">
-                <li><bolt-chip size="xsmall">Idea</bolt-chip></li>
-                <li>Posted by <a href="#something-else" class="e-bolt-text-link e-bolt-text-link--reversed-underline">adfa13</a> on Aug 28, 2020</li>
-                <li>Last activity: 8 hours 15 minutes ago</li>
+                <li class="c-bolt-post-info__meta__item"><strong>Idea</strong></li>
+                <li class="c-bolt-post-info__meta__item">Posted by <a href="#something-else" class="e-bolt-text-link e-bolt-text-link--reversed-underline">adfa13</a> on Aug 28, 2020</li>
+                <li class="c-bolt-post-info__meta__item">Last activity: 8 hours 15 minutes ago</li>
               </ul>
             </div>
             <ul class="c-bolt-post-status">
@@ -173,10 +173,10 @@
         <div class="c-bolt-post-flag">
           <div class="c-bolt-post-flag__media" aria-hidden="true">
             {% include '@bolt-components-icon/icon.twig' with {
-              name: 'ideas',
+              name: 'discussions',
               background: 'circle',
               size: 'xlarge',
-              color: 'yellow',
+              color: 'teal',
             } only %}
           </div>
           <div class="c-bolt-post-flag__content">
@@ -184,7 +184,7 @@
               <div class="c-bolt-post-info__heading">
                 {% set link %}
                   {% include '@bolt-elements-text-link/text-link.twig' with {
-                    content: 'Solved and locked?',
+                    content: 'Email Account Using Microsoft Graph As Receiver With Office 365 Email Provider In 8.4.3 Doesn&rsquo;t Work',
                     reversed_underline: true,
                     expand_click_target: true,
                     attributes: {
@@ -199,10 +199,31 @@
                 } only %}
               </div>
               <ul class="c-bolt-post-info__meta">
-                <li><bolt-chip size="xsmall">Idea</bolt-chip></li>
-                <li>Posted by <a href="#something-else" class="e-bolt-text-link e-bolt-text-link--reversed-underline">mikemai2awesome</a> on Aug 28, 2020</li>
-                <li>Last activity: 8 hours 15 minutes ago</li>
+                {% set username_link %}
+                  {% include '@bolt-elements-text-link/text-link.twig' with {
+                    content: 'mikemai2awesome',
+                    reversed_underline: true,
+                    attributes: {
+                      href: 'https://mikemai.net',
+                    }
+                  } only %}
+                {% endset %}
+                <li class="c-bolt-post-info__meta__item"><strong>Discussion</strong></li>
+                <li class="c-bolt-post-info__meta__item">Posted by {{ username_link }} on Aug 28, 2020</li>
+                <li class="c-bolt-post-info__meta__item">Last activity: 8 hours 15 minutes ago</li>
               </ul>
+              <div class="c-bolt-post-info__summary">
+                {% set icon_chevron_right %}
+                  {% include '@bolt-components-icon/icon.twig' with {
+                    name: 'chevron-right',
+                  } only %}
+                {% endset %}
+                {% include '@bolt-components-headline/text.twig' with {
+                  text: 'Hello all. Our organization is migrating from the IMAP (using user name and password) approach to Microsoft Graph with Office 365 using OAUTH 2.0&hellip;Read More' ~ icon_chevron_right,
+                  tag: 'p',
+                  size: 'small',
+                } only %}
+              </div>
             </div>
             <ul class="c-bolt-post-status">
               <li class="c-bolt-post-status__item">

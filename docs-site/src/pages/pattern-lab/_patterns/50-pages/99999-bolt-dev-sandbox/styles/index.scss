@@ -5,6 +5,9 @@
 
 /* @import 'global-search'; deprecated */
 
+$_bolt-post-list-status-item-width: 4rem;
+$_bolt-post-list-flag-icon-width: 64px; // This matches the size of a xlarge icon with circle background. If that changes, this also needs to change. Reference the icon.scss to stay up to date.
+
 .c-bolt-post-list {
   margin: 0;
   padding: 0;
@@ -22,9 +25,9 @@
 }
 
 .c-bolt-post-flag {
-  // No position should be set on this element so the heading link will not be contained inside this.
   display: flex;
   flex-wrap: nowrap;
+  position: static; // Position must be static on this element so the heading link will not be contained inside this.
   padding: var(--bolt-spacing-y-medium) 0;
 
   @include bolt-mq(medium) {
@@ -39,28 +42,31 @@
 }
 
 .c-bolt-post-flag__content {
-  // No position should be set on this element so the heading link will not be contained inside this.
   display: grid;
   flex: 1;
   align-items: start;
   order: 2;
+  position: static; // Position must be static on this element so the heading link will not be contained inside this.
   margin-top: var(--bolt-spacing-y-xxsmall);
   grid-gap: var(--bolt-spacing-x-medium);
 
   @include bolt-mq(small) {
-    grid-template-columns: minmax(250px, 1fr) minmax(64px, calc(64px * 4));
+    grid-template-columns: minmax(250px, 1fr) minmax(
+        #{$_bolt-post-list-flag-icon-width},
+        calc(#{$_bolt-post-list-flag-icon-width} * 4)
+      );
   }
 }
 
 .c-bolt-post-info {
-  // No position should be set on this element so the heading link will not be contained inside this.
+  position: static; // Position must be static on this element so the heading link will not be contained inside this.
   > *:not(:last-child) {
     margin-bottom: var(--bolt-spacing-y-xsmall);
   }
 }
 
 .c-bolt-post-info__heading {
-  // No position should be set on this element so the heading link will not be contained inside this.
+  position: static; // Position must be static on this element so the heading link will not be contained inside this.
   word-break: break-word;
   hyphens: auto;
 }
@@ -73,7 +79,7 @@
   list-style: none;
   line-height: var(--bolt-type-line-height-xsmall);
 
-  > li {
+  > li.c-bolt-post-info__meta__item {
     display: inline;
 
     &:not(:last-child):after {
@@ -91,10 +97,20 @@
     }
   }
 
+  bolt-chip {
+    position: static; // This lowers the stacking order of the meta chip below the main heading link.
+  }
+
   .e-bolt-text-link,
   bolt-link {
     position: relative; // This raises the stacking order of the meta link above the main heading link.
   }
+}
+
+.c-bolt-post-info__summary {
+  display: block;
+  font-size: var(--bolt-type-font-size-xsmall);
+  line-height: var(--bolt-type-line-height-xsmall);
 }
 
 .c-bolt-post-status {
@@ -106,7 +122,7 @@
 
   > .c-bolt-post-status__item {
     display: grid;
-    flex: 1 1 64px;
+    flex: 1 1 $_bolt-post-list-status-item-width;
     align-content: center;
     padding: var(--bolt-spacing-y-small) 0;
     font-size: var(--bolt-type-font-size-xsmall);
@@ -130,7 +146,6 @@
 
 .c-bolt-post-status__number {
   font-weight: var(--bolt-type-font-weight-bold);
-  color: var(--m-bolt-headline);
 }
 
 .c-bolt-post-status__icon--solved {
