@@ -324,8 +324,8 @@
 
     > .c-bolt-page-header__nav-list-item.has-children {
       > .c-bolt-page-header__nav-list {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        display: flex;
+        flex-wrap: wrap;
         visibility: hidden;
         opacity: 0;
         position: absolute;
@@ -356,15 +356,17 @@
           transform $bolt-transition;
 
         > .c-bolt-page-header__nav-list-item {
+          flex: 1 0 calc(100% / 5);
           margin-bottom: var(--bolt-spacing-y-medium);
           padding-right: var(--bolt-spacing-x-medium);
           padding-left: var(--bolt-spacing-x-medium);
-          border-right-color: $bolt-border-color;
-          border-right-style: $bolt-border-style;
-          border-right-width: $bolt-border-width;
+          border-left-color: $bolt-border-color;
+          border-left-style: $bolt-border-style;
+          border-left-width: $bolt-border-width;
 
-          &:last-of-type {
-            border-right-width: 0;
+          &:first-of-type,
+          &:nth-child(6n + 6) {
+            border-left-width: 0;
           }
 
           .c-bolt-page-header__nav-link--heading {
