@@ -17,7 +17,7 @@ bolt-card-replacement[theme='xlight'] {
   --m-bolt-link: var(--bolt-color-navy-light);
   --m-bolt-primary: var(--bolt-color-navy-light);
   --m-bolt-text-on-primary: var(--m-bolt-bg);
-  --m-bolt-secondary: var(--m-bolt-bg);
+  --m-bolt-secondary: var(--bolt-color-white);
   --m-bolt-text-on-secondary: var(--m-bolt-headline);
   --m-bolt-tertiary: hsla(220.4, 80%, 15%, 0.15);
   --m-bolt-text-on-tertiary: var(--m-bolt-headline);
@@ -30,6 +30,7 @@ bolt-card-replacement[theme='xlight'] {
 [data-bolt-mode='dark'],
 .t-bolt-dark,
 .t-bolt-xdark,
+.t-bolt-xxdark,
 bolt-card-replacement[theme='dark'],
 bolt-card-replacement[theme='xdark'] {
   --m-bolt-neutral: var(--bolt-color-gray);
@@ -39,7 +40,7 @@ bolt-card-replacement[theme='xdark'] {
   --m-bolt-link: var(--bolt-color-white);
   --m-bolt-primary: var(--bolt-color-yellow);
   --m-bolt-text-on-primary: var(--bolt-color-black);
-  --m-bolt-secondary: var(--m-bolt-headline);
+  --m-bolt-secondary: var(--bolt-color-white);
   --m-bolt-text-on-secondary: var(--m-bolt-bg);
   --m-bolt-tertiary: hsla(0, 0%, 100%, 0.15);
   --m-bolt-text-on-tertiary: var(--m-bolt-headline);
@@ -57,6 +58,10 @@ bolt-card-replacement[theme='light'] {
 .t-bolt-xdark,
 bolt-card-replacement[theme='xdark'] {
   --m-bolt-bg: var(--bolt-color-navy-dark);
+}
+
+.t-bolt-xxdark {
+  --m-bolt-bg: black;
 }
 
 [data-bolt-mode] {

@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.30.0](https://github.com/boltdesignsystem/bolt/compare/v2.29.3...v2.30.0) (2021-01-13)
+
+
+### Bug Fixes
+
+* academy colors and xxdark theme ([e5bbed3](https://github.com/boltdesignsystem/bolt/commit/e5bbed3b3925d61832ccf298823d738da0b96949))
+* add missing vars to theming doc ([73a0d28](https://github.com/boltdesignsystem/bolt/commit/73a0d28d8c5b102445612664ef712f5261576c84))
+* doc typos ([69432b6](https://github.com/boltdesignsystem/bolt/commit/69432b6dd030cd9907e97aab6f26181fd1c60868))
+* global border color ([054b521](https://github.com/boltdesignsystem/bolt/commit/054b5216d1cb363474812cb14a0362a4860369ec))
+* pattern lab theming and color docs ([511ecfd](https://github.com/boltdesignsystem/bolt/commit/511ecfd21282d4136cb3bc10605b01509d3895b9))
+* remove global search css import ([11de7bf](https://github.com/boltdesignsystem/bolt/commit/11de7bfc84e9e1835e8547133f82b42c2a5c7ed9))
+* secondary color variable ([905a62a](https://github.com/boltdesignsystem/bolt/commit/905a62aae1547bbaa3e913e0a8d5b80e2babc875))
+* tabs show more button active color ([54e8cd8](https://github.com/boltdesignsystem/bolt/commit/54e8cd8eff8742bb304d4d502531a761bb23bb02))
+
+
+
+
+
 
 
 **Note:** Version bump only for package bolt
