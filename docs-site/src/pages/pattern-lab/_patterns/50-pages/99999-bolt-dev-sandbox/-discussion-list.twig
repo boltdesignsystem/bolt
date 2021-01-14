@@ -2,10 +2,10 @@
 
 {% block main_content %}
   {% set band_content %}
-    <ul class="c-bolt-discussion-list">
-      <li class="c-bolt-discussion-list__item">
-        <div class="c-bolt-discussion-flag">
-          <div class="c-bolt-discussion-flag__media" aria-hidden="true">
+    <ul class="c-bolt-post-list">
+      <li class="c-bolt-post-list__item">
+        <div class="c-bolt-post-flag">
+          <div class="c-bolt-post-flag__media" aria-hidden="true">
             {% include '@bolt-components-icon/icon.twig' with {
               name: 'questions',
               background: 'circle',
@@ -25,12 +25,12 @@
               content: 'Question',
             } only %} #}
           </div>
-          <div class="c-bolt-discussion-flag__content">
-            <div class="c-bolt-discussion-info">
-              <div class="c-bolt-discussion-info__heading">
+          <div class="c-bolt-post-flag__content">
+            <div class="c-bolt-post-info">
+              <div class="c-bolt-post-info__heading">
                 {% set link %}
                   {% include '@bolt-elements-text-link/text-link.twig' with {
-                    content: 'A discussion with long title without break pneumonoultramicroscopicsilicovolcanoconiosis',
+                    content: 'A post with long title without break pneumonoultramicroscopicsilicovolcanoconiosis',
                     reversed_underline: true,
                     expand_click_target: true,
                     attributes: {
@@ -41,29 +41,29 @@
                 {% include '@bolt-components-headline/headline.twig' with {
                   text: link,
                   tag: 'h3',
-                  size: 'xlarge',
+                  size: 'large',
                 } only %}
               </div>
-              <ul class="c-bolt-discussion-info__meta">
+              <ul class="c-bolt-post-info__meta">
                 <li><bolt-chip size="xsmall">Question</bolt-chip></li>
                 <li>Posted by <a href="https://google.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline">viswa1</a> on Aug 28, 2020</li>
                 <li>Last activity: 8 hours 15 minutes ago</li>
               </ul>
             </div>
-            <ul class="c-bolt-discussion-status">
-              <li class="c-bolt-discussion-status__item">
-                <span class="c-bolt-discussion-status__number">3</span> Replies
+            <ul class="c-bolt-post-status">
+              <li class="c-bolt-post-status__item">
+                <span class="c-bolt-post-status__number">3</span> Replies
               </li>
-              <li class="c-bolt-discussion-status__item">
-                <span class="c-bolt-discussion-status__number">8</span> Views
+              <li class="c-bolt-post-status__item">
+                <span class="c-bolt-post-status__number">8</span> Views
               </li>
             </ul>
           </div>
         </div>
       </li>
-      <li class="c-bolt-discussion-list__item">
-        <div class="c-bolt-discussion-flag">
-          <div class="c-bolt-discussion-flag__media" aria-hidden="true">
+      <li class="c-bolt-post-list__item">
+        <div class="c-bolt-post-flag">
+          <div class="c-bolt-post-flag__media" aria-hidden="true">
             {% include '@bolt-components-icon/icon.twig' with {
               name: 'discussions',
               background: 'circle',
@@ -71,12 +71,12 @@
               color: 'orange',
             } only %}
           </div>
-          <div class="c-bolt-discussion-flag__content">
-            <div class="c-bolt-discussion-info">
-              <div class="c-bolt-discussion-info__heading">
+          <div class="c-bolt-post-flag__content">
+            <div class="c-bolt-post-info">
+              <div class="c-bolt-post-info__heading">
                 {% set link %}
                   {% include '@bolt-elements-text-link/text-link.twig' with {
-                    content: 'Another discussion',
+                    content: 'Another post',
                     reversed_underline: true,
                     expand_click_target: true,
                     attributes: {
@@ -87,37 +87,37 @@
                 {% include '@bolt-components-headline/headline.twig' with {
                   text: link,
                   tag: 'h3',
-                  size: 'xlarge',
+                  size: 'large',
                 } only %}
               </div>
-              <ul class="c-bolt-discussion-info__meta">
+              <ul class="c-bolt-post-info__meta">
                 <li><bolt-chip size="xsmall">Discussion</bolt-chip></li>
                 <li>Posted by <a href="#something-else" class="e-bolt-text-link e-bolt-text-link--reversed-underline">errqwe000</a> on Aug 28, 2020</li>
                 <li>Last activity: 8 hours 15 minutes ago</li>
               </ul>
             </div>
-            <ul class="c-bolt-discussion-status">
-              <li class="c-bolt-discussion-status__item">
-                <span class="c-bolt-discussion-status__icon c-bolt-discussion-status__icon--solved">
+            <ul class="c-bolt-post-status">
+              <li class="c-bolt-post-status__item">
+                <span class="c-bolt-post-status__icon c-bolt-post-status__icon--solved">
                   {% include '@bolt-components-icon/icon.twig' with {
                     name: 'check-solid',
                   } only %}
                 </span>
                 Solved
               </li>
-              <li class="c-bolt-discussion-status__item">
-                <span class="c-bolt-discussion-status__number">12</span> Replies
+              <li class="c-bolt-post-status__item">
+                <span class="c-bolt-post-status__number">12</span> Replies
               </li>
-              <li class="c-bolt-discussion-status__item">
-                <span class="c-bolt-discussion-status__number">100</span> Views
+              <li class="c-bolt-post-status__item">
+                <span class="c-bolt-post-status__number">100</span> Views
               </li>
             </ul>
           </div>
         </div>
       </li>
-      <li class="c-bolt-discussion-list__item">
-        <div class="c-bolt-discussion-flag">
-          <div class="c-bolt-discussion-flag__media" aria-hidden="true">
+      <li class="c-bolt-post-list__item">
+        <div class="c-bolt-post-flag">
+          <div class="c-bolt-post-flag__media" aria-hidden="true">
             {% include '@bolt-components-icon/icon.twig' with {
               name: 'ideas',
               background: 'circle',
@@ -125,12 +125,12 @@
               color: 'yellow',
             } only %}
           </div>
-          <div class="c-bolt-discussion-flag__content">
-            <div class="c-bolt-discussion-info">
-              <div class="c-bolt-discussion-info__heading">
+          <div class="c-bolt-post-flag__content">
+            <div class="c-bolt-post-info">
+              <div class="c-bolt-post-info__heading">
                 {% set link %}
                   {% include '@bolt-elements-text-link/text-link.twig' with {
-                    content: 'Yet another discussion',
+                    content: 'Yet another post',
                     reversed_underline: true,
                     expand_click_target: true,
                     attributes: {
@@ -141,37 +141,37 @@
                 {% include '@bolt-components-headline/headline.twig' with {
                   text: link,
                   tag: 'h3',
-                  size: 'xlarge',
+                  size: 'large',
                 } only %}
               </div>
-              <ul class="c-bolt-discussion-info__meta">
+              <ul class="c-bolt-post-info__meta">
                 <li><bolt-chip size="xsmall">Idea</bolt-chip></li>
                 <li>Posted by <a href="#something-else" class="e-bolt-text-link e-bolt-text-link--reversed-underline">adfa13</a> on Aug 28, 2020</li>
                 <li>Last activity: 8 hours 15 minutes ago</li>
               </ul>
             </div>
-            <ul class="c-bolt-discussion-status">
-              <li class="c-bolt-discussion-status__item">
-                <span class="c-bolt-discussion-status__icon c-bolt-discussion-status__icon--locked">
+            <ul class="c-bolt-post-status">
+              <li class="c-bolt-post-status__item">
+                <span class="c-bolt-post-status__icon c-bolt-post-status__icon--locked">
                   {% include '@bolt-components-icon/icon.twig' with {
                     name: 'lock',
                   } only %}
                 </span>
                 Locked
               </li>
-              <li class="c-bolt-discussion-status__item">
-                <span class="c-bolt-discussion-status__number">0</span> Replies
+              <li class="c-bolt-post-status__item">
+                <span class="c-bolt-post-status__number">0</span> Replies
               </li>
-              <li class="c-bolt-discussion-status__item">
-                <span class="c-bolt-discussion-status__number">25</span> Views
+              <li class="c-bolt-post-status__item">
+                <span class="c-bolt-post-status__number">25</span> Views
               </li>
             </ul>
           </div>
         </div>
       </li>
-      <li class="c-bolt-discussion-list__item">
-        <div class="c-bolt-discussion-flag">
-          <div class="c-bolt-discussion-flag__media" aria-hidden="true">
+      <li class="c-bolt-post-list__item">
+        <div class="c-bolt-post-flag">
+          <div class="c-bolt-post-flag__media" aria-hidden="true">
             {% include '@bolt-components-icon/icon.twig' with {
               name: 'ideas',
               background: 'circle',
@@ -179,9 +179,9 @@
               color: 'yellow',
             } only %}
           </div>
-          <div class="c-bolt-discussion-flag__content">
-            <div class="c-bolt-discussion-info">
-              <div class="c-bolt-discussion-info__heading">
+          <div class="c-bolt-post-flag__content">
+            <div class="c-bolt-post-info">
+              <div class="c-bolt-post-info__heading">
                 {% set link %}
                   {% include '@bolt-elements-text-link/text-link.twig' with {
                     content: 'Solved and locked?',
@@ -195,37 +195,37 @@
                 {% include '@bolt-components-headline/headline.twig' with {
                   text: link,
                   tag: 'h3',
-                  size: 'xlarge',
+                  size: 'large',
                 } only %}
               </div>
-              <ul class="c-bolt-discussion-info__meta">
+              <ul class="c-bolt-post-info__meta">
                 <li><bolt-chip size="xsmall">Idea</bolt-chip></li>
                 <li>Posted by <a href="#something-else" class="e-bolt-text-link e-bolt-text-link--reversed-underline">mikemai2awesome</a> on Aug 28, 2020</li>
                 <li>Last activity: 8 hours 15 minutes ago</li>
               </ul>
             </div>
-            <ul class="c-bolt-discussion-status">
-              <li class="c-bolt-discussion-status__item">
-                <span class="c-bolt-discussion-status__icon c-bolt-discussion-status__icon--solved">
+            <ul class="c-bolt-post-status">
+              <li class="c-bolt-post-status__item">
+                <span class="c-bolt-post-status__icon c-bolt-post-status__icon--solved">
                   {% include '@bolt-components-icon/icon.twig' with {
                     name: 'check-solid',
                   } only %}
                 </span>
                 Solved
               </li>
-              <li class="c-bolt-discussion-status__item">
-                <span class="c-bolt-discussion-status__icon c-bolt-discussion-status__icon--locked">
+              <li class="c-bolt-post-status__item">
+                <span class="c-bolt-post-status__icon c-bolt-post-status__icon--locked">
                   {% include '@bolt-components-icon/icon.twig' with {
                     name: 'lock',
                   } only %}
                 </span>
                 Locked
               </li>
-              <li class="c-bolt-discussion-status__item">
-                <span class="c-bolt-discussion-status__number">10k</span> Replies
+              <li class="c-bolt-post-status__item">
+                <span class="c-bolt-post-status__number">10k</span> Replies
               </li>
-              <li class="c-bolt-discussion-status__item">
-                <span class="c-bolt-discussion-status__number">55k</span> Views
+              <li class="c-bolt-post-status__item">
+                <span class="c-bolt-post-status__number">55k</span> Views
               </li>
             </ul>
           </div>

@@ -5,13 +5,13 @@
 
 /* @import 'global-search'; deprecated */
 
-.c-bolt-discussion-list {
+.c-bolt-post-list {
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-.c-bolt-discussion-list__item {
+.c-bolt-post-list__item {
   position: relative; // Position is set here so the heading link can expand its click target up to this point.
   margin: 0;
   padding: 0;
@@ -21,25 +21,27 @@
   }
 }
 
-.c-bolt-discussion-flag {
+.c-bolt-post-flag {
   // No position should be set on this element so the heading link will not be contained inside this.
   display: flex;
-  flex-wrap: wrap;
-  padding: var(--bolt-spacing-y-medium) 0 var(--bolt-spacing-y-medium)
-    var(--bolt-spacing-x-small);
+  flex-wrap: nowrap;
+  padding: var(--bolt-spacing-y-medium) 0;
+
+  @include bolt-mq(medium) {
+    padding-left: var(--bolt-spacing-x-small);
+  }
 }
 
-.c-bolt-discussion-flag__media {
+.c-bolt-post-flag__media {
   order: 1;
   position: relative; // This raises the stacking order of the flag media above the main heading link.
   margin-right: var(--bolt-spacing-y-medium);
 }
 
-.c-bolt-discussion-flag__content {
+.c-bolt-post-flag__content {
   // No position should be set on this element so the heading link will not be contained inside this.
   display: grid;
   flex: 1;
-  flex-basis: 250px;
   align-items: start;
   order: 2;
   margin-top: var(--bolt-spacing-y-xxsmall);
@@ -50,20 +52,20 @@
   }
 }
 
-.c-bolt-discussion-info {
+.c-bolt-post-info {
   // No position should be set on this element so the heading link will not be contained inside this.
   > *:not(:last-child) {
     margin-bottom: var(--bolt-spacing-y-xsmall);
   }
 }
 
-.c-bolt-discussion-info__heading {
+.c-bolt-post-info__heading {
   // No position should be set on this element so the heading link will not be contained inside this.
   word-break: break-word;
   hyphens: auto;
 }
 
-.c-bolt-discussion-info__meta {
+.c-bolt-post-info__meta {
   display: block;
   margin: 0;
   padding: 0;
@@ -95,14 +97,14 @@
   }
 }
 
-.c-bolt-discussion-status {
+.c-bolt-post-status {
   display: flex;
   flex-wrap: nowrap;
   margin: 0;
   padding: 0;
   list-style: none;
 
-  > .c-bolt-discussion-status__item {
+  > .c-bolt-post-status__item {
     display: grid;
     flex: 1 1 64px;
     align-content: center;
@@ -116,8 +118,8 @@
   }
 }
 
-.c-bolt-discussion-status__number,
-.c-bolt-discussion-status__icon {
+.c-bolt-post-status__number,
+.c-bolt-post-status__icon {
   display: flex;
   justify-content: center;
   align-content: center;
@@ -126,15 +128,15 @@
   line-height: 1;
 }
 
-.c-bolt-discussion-status__number {
+.c-bolt-post-status__number {
   font-weight: var(--bolt-type-font-weight-bold);
   color: var(--m-bolt-headline);
 }
 
-.c-bolt-discussion-status__icon--solved {
+.c-bolt-post-status__icon--solved {
   color: var(--bolt-color-success);
 }
 
-.c-bolt-discussion-status__icon--locked {
+.c-bolt-post-status__icon--locked {
   color: var(--bolt-color-neutral);
 }
