@@ -10,8 +10,14 @@
 {% endif %}
 {# row_gutter, content_row_start, items are also deprecated but this twig still supports them, see more comments below where items are being rendered #}
 
+{# Deprecated #}
+{% if contentTag  %}
+  {% set tag = contentTag %}
+{% endif %}
+
 {# Variables #}
 {% set this = init(schema) %}
+{% set attributes = create_attribute(attributes|default({})) %}
 {% set inner_attributes = create_attribute(inner_attributes|default({})) %}
 
 {# Array of classes based on the defined + default props #}
@@ -39,19 +45,12 @@
   {% endif %}
 {% endfor %}
 
-{# Deprecated #}
-{% if contentTag %}
-  {% set element_tag = contentTag %}
-{% else %}
-  {% set element_tag = this.data.tag.value %}
-{% endif %}
-
 {# band component's custom element wrapper #}
 <bolt-band
   {% if outer_classes %} class="{{ outer_classes|join(' ') }}" {% endif %}
   {{ this.props|without("content")|without("class") }}
 >
-  <{{ element_tag }} {{ inner_attributes.addClass(inner_classes) }}>
+  <{{ this.data.tag.value }} {{ inner_attributes.addClass(inner_classes) }}>
     {# Render background if there is any #}
     {# Setting a block so it doesn't break legacy embeds #}
     {% block band_background %}
@@ -95,7 +94,7 @@
                   item.align ? "c-bolt-band__pinned-item--#{item.align}" : "",
                 ] %}
 
-                <div class="{{ item_classes|join(' ') }}">
+                <div {{ attributes.addClass(item_classes) }}>
                   {{ item.content }}
                 </div>
               {% endfor %}
@@ -120,7 +119,7 @@
                   item.align ? "c-bolt-band__pinned-item--#{item.align}" : "",
                 ] %}
 
-                <div class="{{ item_classes|join(' ') }}">
+                <div {{ attributes.addClass(item_classes) }}>
                   {{ item.content }}
                 </div>
               {% endfor %}
@@ -137,5 +136,5 @@
     {# Otherwise, render just the content #}
       {{ regular_content }}
     {% endif %}
-  </{{ element_tag }}>
+  </{{ this.data.tag.value }}>
 </bolt-band>
