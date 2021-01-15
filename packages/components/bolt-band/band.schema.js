@@ -79,7 +79,7 @@ module.exports = {
       description:
         "Controls the internal vertical alignment of the band's content.",
       default: 'middle',
-      enum: ['start', 'center', 'end'],
+      enum: ['start', 'center', 'end', 'top', 'bottom', '25%'],
     },
     size: {
       type: 'string',
