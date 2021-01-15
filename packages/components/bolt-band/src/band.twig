@@ -90,13 +90,12 @@
           {% set pinned_content_upper_items %}
             <div class="{{ "c-bolt-band__pinned-items" }}">
               {% for item in pinned_content_upper %}
-                {% set item_align = item.align %}
                 {% set item_classes = [
                   "c-bolt-band__pinned-item",
-                  item_align ? "c-bolt-band__pinned-item--#{item_align}" : "",
+                  item.align ? "c-bolt-band__pinned-item--#{item.align}" : "",
                 ] %}
 
-                <div {{ attributes.addClass(item_classes) }}>
+                <div class="{{ item_classes|join(' ') }}">
                   {{ item.content }}
                 </div>
               {% endfor %}
@@ -116,7 +115,12 @@
           {% set pinned_content_lower_items %}
             <div class="{{ "c-bolt-band__pinned-items" }}">
               {% for item in pinned_content_lower %}
-                <div class="{{ "c-bolt-band__pinned-item c-bolt-band__pinned-item--#{item.align}" }}">
+                {% set item_classes = [
+                  "c-bolt-band__pinned-item",
+                  item.align ? "c-bolt-band__pinned-item--#{item.align}" : "",
+                ] %}
+
+                <div class="{{ item_classes|join(' ') }}">
                   {{ item.content }}
                 </div>
               {% endfor %}
