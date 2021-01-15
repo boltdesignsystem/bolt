@@ -81,9 +81,9 @@
     {% endif %}
 
     {# Render pinned content if there is any #}
-    {% if this.data.pinned_content.value %}
-      {% set pinned_content_upper = this.data.pinned_content.upper.value %}
-      {% set pinned_content_lower = this.data.pinned_content.lower.value %}
+    {% if pinned_content %}
+      {% set pinned_content_upper = pinned_content.upper %}
+      {% set pinned_content_lower = pinned_content.lower %}
 
       {% if pinned_content_upper %}
         <div class="{{ "c-bolt-band__content c-bolt-band__content--pinned c-bolt-band__content--pinned-upper" }}">
