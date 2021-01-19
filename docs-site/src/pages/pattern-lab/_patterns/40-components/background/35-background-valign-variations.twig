@@ -2,8 +2,8 @@
   <mark>Note: <code>valign</code> is an Image component prop, not a Background component prop. Set <code>valign</code> on images passed in via <code>contentItems</code> to control the vertical alignment.</mark>
 </p>
 
-{% for valign in ["center", "top", "bottom", "25%"] %}
-  <p>valign: {{ valign }}</p>
+{% for image_valign in ["center", "top", "bottom", "25%"] %}
+  <p>valign: {{ image_valign }}</p>
   {% include "./_00-background-band-demo.twig" with {
     background: {
       fill: "color",
@@ -16,7 +16,7 @@
         {
           pattern: "image",
           src: "/images/content/backgrounds/background-tall-2.jpg",
-          valign: valign
+          valign: image_valign
         }
       ]
     }
