@@ -7,7 +7,6 @@ import {
 import schema from '../accordion.schema';
 
 const { readYamlFileSync } = require('@bolt/build-tools/utils/yaml');
-const { single } = schema.properties;
 const { spacing } = schema.definitions;
 
 const timeout = 120000;
@@ -90,7 +89,7 @@ describe('<bolt-accordion> Component', () => {
     expect(results.html).toMatchSnapshot();
   });
 
-  single.enum.forEach(async singleChoice => {
+  [true, false].forEach(async singleChoice => {
     test(`expand single items: ${singleChoice}`, async () => {
       const results = await render(
         '@bolt-components-accordion/accordion.twig',

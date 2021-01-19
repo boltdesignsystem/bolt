@@ -19,7 +19,7 @@
 }
 
 .c-bolt-action-block--link {
-  color: bolt-theme(headline);
+  color: var(--m-bolt-headline);
   text-decoration: none;
 
   &:before {
@@ -51,18 +51,18 @@
 }
 
 .c-bolt-action-block__text {
-  color: bolt-theme(link);
+  color: var(--m-bolt-link);
 }
 
 .c-bolt-action-block__item {
-  @include bolt-font-size(xsmall);
-  @include bolt-font-weight(bold);
-
   display: block;
   position: relative;
   width: 100%;
   max-width: $bolt-action-block-item-max-width;
   margin: 0 auto var(--bolt-spacing-y-small) auto;
+  font-size: var(--bolt-type-font-size-xsmall);
+  font-weight: var(--bolt-type-font-weight-bold);
+  line-height: var(--bolt-type-line-height-xsmall);
   text-align: center;
 
   &:last-child {

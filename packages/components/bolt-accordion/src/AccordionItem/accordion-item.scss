@@ -29,60 +29,34 @@ bolt-accordion-item {
 // Shadow
 .c-bolt-accordion-item--box-shadow {
   .c-bolt-accordion-item__content {
-    background-color: rgba(bolt-color(gray, light), 0.1);
+    background-color: var(--m-bolt-bg);
 
     &:before,
     &:after {
       content: '';
       display: block;
-      opacity: bolt-opacity(100);
+      opacity: 1;
       position: absolute;
+      top: 0;
       right: 0;
+      bottom: 0;
       left: 0;
-      height: var(--bolt-spacing-y-xxsmall);
       pointer-events: none;
-      will-change: opacity;
       transition: opacity ($bolt-transition-timing / 2) $bolt-transition-ease;
     }
 
     &:before {
-      top: 0;
-      // This gradient is IE proof.
-      background: -moz-linear-gradient(
-        top,
-        rgba(bolt-color(gray), 0.1) 0%,
-        transparent 100%
-      ); /* FF3.6-15 */
-      background: -webkit-linear-gradient(
-        top,
-        rgba(bolt-color(gray), 0.1) 0%,
-        transparent 100%
-      ); /* Chrome10-25,Safari5.1-6 */
-      background: linear-gradient(
-        to bottom,
-        rgba(bolt-color(gray), 0.1) 0%,
-        transparent 100%
-      ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+      opacity: 0.2;
+      background-color: var(--m-bolt-tertiary);
     }
 
     &:after {
-      bottom: 0;
-      // This gradient is IE proof.
-      background: -moz-linear-gradient(
-        top,
-        transparent 0%,
-        rgba(bolt-color(gray), 0.1) 100%
-      ); /* FF3.6-15 */
-      background: -webkit-linear-gradient(
-        top,
-        transparent 0%,
-        rgba(bolt-color(gray), 0.1) 100%
-      ); /* Chrome10-25,Safari5.1-6 */
       background: linear-gradient(
-        to bottom,
-        transparent 0%,
-        rgba(bolt-color(gray), 0.1) 100%
-      ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        var(--m-bolt-tertiary) 0%,
+        rgba(0, 0, 0, 0) var(--bolt-spacing-y-xxsmall),
+        rgba(0, 0, 0, 0) calc(100% - var(--bolt-spacing-y-xxsmall)),
+        var(--m-bolt-tertiary) 100%
+      );
     }
   }
 
@@ -126,7 +100,7 @@ bolt-accordion-item {
   padding: 0;
   font-family: var(--bolt-type-font-family-headline);
   font-size: var(--bolt-type-font-size-medium);
-  color: bolt-theme(text);
+  color: var(--m-bolt-text);
   line-height: var(--bolt-type-line-height-medium);
   text-align: left; // Fixes center aligned accordion items in the Shadow DOM.
   text-align: start; // For internationalization, will fall back to left if start is not supported.
@@ -147,15 +121,14 @@ bolt-accordion-item {
   &:before {
     content: '';
     display: block;
-    opacity: bolt-opacity(0);
+    opacity: 0;
     position: absolute;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
     pointer-events: none;
-    background-color: bolt-theme(primary, 0.15);
-    will-change: opacity;
+    background-color: var(--m-bolt-primary);
     transition: opacity ($bolt-transition-timing/2) $bolt-transition-ease;
   }
 
@@ -163,11 +136,11 @@ bolt-accordion-item {
     cursor: pointer;
 
     &:hover:before {
-      opacity: bolt-opacity(20);
+      opacity: 0.05;
     }
 
     &:active:before {
-      opacity: bolt-opacity(100);
+      opacity: 0.1;
     }
   }
 }
@@ -192,7 +165,7 @@ bolt-accordion-item {
     border-radius: 1px;
     border-width: 2px 2px 0 0;
     border-style: solid;
-    border-color: bolt-theme(link);
+    border-color: var(--m-bolt-link);
     transform-origin: 50% 50%;
   }
 
@@ -246,7 +219,7 @@ bolt-accordion-item {
   transform: translateX(var(--bolt-spacing-x-xxsmall));
   overflow: hidden; // so transformed icons don't spill out
   font-size: $bolt-accordion-icon-size;
-  color: bolt-theme(link);
+  color: var(--m-bolt-link);
   line-height: 0; // Workaround to line-height messing up icon alignment
 
   @at-root .c-bolt-accordion-item__trigger-label--inactive & {
@@ -258,7 +231,6 @@ bolt-accordion-item {
   display: block;
   transform: rotate(0deg);
   padding: var(--bolt-spacing-y-xxsmall) 0; // This is for aligning the icon with the text baseline.
-  will-change: transform;
   transition: transform $bolt-transition;
   transform-origin: 50% 50%;
 }
@@ -287,7 +259,6 @@ bolt-accordion-item {
   transform: translateY(-1rem);
   width: 100%;
   height: 0;
-  will-change: transform;
   transition: transform $bolt-transition-timing cubic-bezier(0, 0, 0.3, 1)
     ($bolt-transition-timing / 2);
 
@@ -314,7 +285,6 @@ bolt-accordion-item {
   visibility: visible;
   transform: translate3d(0, 0, 0);
   max-height: none;
-  will-change: transform, height;
   transition: transform $bolt-transition, height $bolt-transition;
 }
 
@@ -325,10 +295,9 @@ bolt-accordion-item {
 }
 
 .c-bolt-accordion-item__content-inner {
-  opacity: bolt-opacity(0);
+  opacity: 0;
   position: relative;
   overflow: auto;
-  will-change: opacity;
   transition: opacity ($bolt-transition-timing / 2) $bolt-transition-ease;
   -webkit-overflow-scrolling: touch;
 }
@@ -340,8 +309,7 @@ bolt-accordion-item {
   + .c-bolt-accordion-item
   .c-bolt-accordion-item__content-inner,
 .c-bolt-accordion-item__content--opened .c-bolt-accordion-item__content-inner {
-  opacity: bolt-opacity(100);
-  will-change: opacity;
+  opacity: 1;
   transition: opacity $bolt-transition;
 }
 

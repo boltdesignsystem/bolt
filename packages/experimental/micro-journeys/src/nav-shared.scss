@@ -18,8 +18,8 @@ $nav-circle-border-size: 2px;
         2
     );
     margin-left: -$nav-circle-size--active / 2 - $nav-circle-border-size;
-    border: $nav-circle-border-size solid bolt-theme(primary);
-    background-color: bolt-theme(background);
+    border: $nav-circle-border-size solid var(--m-bolt-primary);
+    background-color: var(--m-bolt-bg);
   } @else {
     content: '';
     display: inline-block;
@@ -40,7 +40,7 @@ $nav-circle-border-size: 2px;
     margin-right: var(--bolt-spacing-x-small);
     margin-left: -$nav-circle-size / 2;
     border-radius: 50%;
-    background-color: bolt-color(navy, light);
+    background-color: var(--bolt-color-navy-light);
   }
 }
 
@@ -54,13 +54,13 @@ $nav-circle-border-size: 2px;
   left: -$line-width / 2;
   width: $line-width;
   height: 100%;
-  background-color: bolt-color(navy, light);
+  background-color: var(--bolt-color-navy-light);
 }
 
 @mixin bolt-micro-journeys-nav-title($active: false) {
   @if $active {
     font-weight: bolder;
-    color: bolt-theme(primary);
+    color: var(--m-bolt-primary);
     cursor: default;
   } @else {
     display: flex;

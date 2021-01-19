@@ -4,22 +4,13 @@
 
 @import '@bolt/core-v3.x';
 
-$bolt-test-color-background-gradient--primary: bolt-color(
-  black
-); // This needs to map to the theme's background color.
-$bolt-test-color-background-gradient--secondary: rgba(
-  $bolt-test-color-background-gradient--primary,
-  0.1
-);
-
-$bolt-gradient-angle--default: -35deg;
-$bolt-gradient-angle--reversed: 180deg - abs($bolt-gradient-angle--default);
-
-$bolt-background-dark-overlay-opacity--light: 0.3;
-$bolt-background-dark-overlay-opacity--medium: 0.55;
-$bolt-background-dark-overlay-opacity--heavy: 0.8;
-$bolt-background-dark-overlay-opacity--full: 1;
-
+$bolt-bg-gradient-color-primary: black;
+$bolt-bg-gradient-color-secondary: rgba($bolt-bg-gradient-color-primary, 0.1);
+$bolt-bg-gradient-angle-default: -35deg;
+$bolt-bg-gradient-angle-reversed: 180deg + $bolt-bg-gradient-angle-default;
+$bolt-bg-dark-overlay-opacity-light: 0.3;
+$bolt-bg-dark-overlay-opacity-medium: 0.55;
+$bolt-bg-dark-overlay-opacity-heavy: 0.8;
 $bolt-bg-shape-offset-bottom-default: -100px;
 $bolt-bg-shape-offset-side-default: $bolt-bg-shape-offset-bottom-default * 1.2;
 $bolt-bg-shape-offset-bottom-small: -150px;
@@ -61,7 +52,6 @@ bolt-background {
 }
 
 .c-bolt-background__item {
-  display: block;
   display: flex;
   position: absolute;
   width: 100%;
@@ -97,7 +87,7 @@ bolt-background {
 
   .is-ready & {
     pointer-events: none;
-    background-color: rgba(bolt-color(navy, dark), 0.8);
+    background-color: var(--bolt-color-navy-dark);
     perspective: 500px;
     perspective-origin: 50% 150%;
   }
@@ -178,19 +168,19 @@ bolt-background {
 }
 
 .c-bolt-background__overlay--medium-opacity {
-  opacity: $bolt-background-dark-overlay-opacity--medium; // TODO: This number is only working for dark colors, it does not work for light colors. Therefore light and xlight themes with a background image would not be accessible yet.
+  opacity: $bolt-bg-dark-overlay-opacity-medium; // TODO: This number is only working for dark colors, it does not work for light colors. Therefore light and xlight themes with a background image would not be accessible yet.
 }
 
 .c-bolt-background__overlay--heavy-opacity {
-  opacity: $bolt-background-dark-overlay-opacity--heavy; // TODO: This number is only working for dark colors, it does not work for light colors. Therefore light and xlight themes with a background image would not be accessible yet.
+  opacity: $bolt-bg-dark-overlay-opacity-heavy; // TODO: This number is only working for dark colors, it does not work for light colors. Therefore light and xlight themes with a background image would not be accessible yet.
 }
 
 .c-bolt-background__overlay--light-opacity {
-  opacity: $bolt-background-dark-overlay-opacity--light; // TODO: This number is only working for dark colors, it does not work for light colors. Therefore light and xlight themes with a background image would not be accessible yet.
+  opacity: $bolt-bg-dark-overlay-opacity-light; // TODO: This number is only working for dark colors, it does not work for light colors. Therefore light and xlight themes with a background image would not be accessible yet.
 }
 
 .c-bolt-background__overlay--color-fill {
-  background-color: bolt-theme(background);
+  background-color: var(--m-bolt-bg);
 }
 
 // TODO: The gradient option is only working for the dark and xdark themes. It needs to map to the theme colors in order for it to work for the light and xlight themes.
@@ -198,42 +188,18 @@ bolt-background {
 // Default gradient if the image focal point (point of interest) is in the center or on the right side
 .c-bolt-background__overlay--gradient-fill {
   background: linear-gradient(
-    $bolt-gradient-angle--default,
-    $bolt-test-color-background-gradient--secondary,
-    $bolt-test-color-background-gradient--primary 50%
-  );
-  background: linear-gradient(
-    $bolt-gradient-angle--default,
-    var(
-      --bolt-theme-background-gradient-primary,
-      $bolt-test-color-background-gradient--secondary
-    ),
-    var(
-        --bolt-theme-background-gradient-primary,
-        $bolt-test-color-background-gradient--primary
-      )
-      50%
+    $bolt-bg-gradient-angle-default,
+    $bolt-bg-gradient-color-secondary,
+    $bolt-bg-gradient-color-primary 50%
   );
 }
 
 // Alt gradient used if the image focal point (point of interest) is on the left side
 .c-bolt-background__overlay--gradient-reversed-fill {
   background: linear-gradient(
-    $bolt-gradient-angle--reversed,
-    $bolt-test-color-background-gradient--secondary,
-    $bolt-test-color-background-gradient--primary 50%
-  );
-  background: linear-gradient(
-    $bolt-gradient-angle--reversed,
-    var(
-      --bolt-theme-background-gradient-secondary,
-      $bolt-test-color-background-gradient--secondary
-    ),
-    var(
-        --bolt-theme-background-gradient-primary,
-        $bolt-test-color-background-gradient--primary
-      )
-      50%
+    $bolt-bg-gradient-angle-reversed,
+    $bolt-bg-gradient-color-secondary,
+    $bolt-bg-gradient-color-primary 50%
   );
 }
 

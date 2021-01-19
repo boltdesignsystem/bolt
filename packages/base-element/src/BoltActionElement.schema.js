@@ -9,6 +9,7 @@ module.exports = {
       type: 'string',
       description:
         'If present, users will be directed to this URL when clicking this element.',
+      alias: 'href',
     },
     target: {
       type: 'string',

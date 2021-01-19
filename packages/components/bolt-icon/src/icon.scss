@@ -77,7 +77,7 @@
 
 .c-bolt-icon__background {
   fill: currentColor;
-  fill: var(--bolt-theme-text, currentColor);
+  fill: var(--m-bolt-text, currentColor);
 }
 
 .c-bolt-icon__background-shape {
@@ -93,7 +93,7 @@
     opacity: var(--bolt-theme-icon-background-opacity, 0.1);
     background-color: var(
       --bolt-theme-icon-background,
-      var(--bolt-theme-primary-text-default, currentColor)
+      var(--m-bolt-text, currentColor)
     );
   }
 }
@@ -146,12 +146,6 @@
       .c-bolt-icon__background-shape {
         opacity: bolt-opacity(100);
         background-color: $backgroundColor;
-      }
-
-      &.c-bolt-icon--white {
-        .c-bolt-icon__background-shape {
-          border: 1px solid rgba(bolt-color(gray, dark), 0.5);
-        }
       }
     }
   }

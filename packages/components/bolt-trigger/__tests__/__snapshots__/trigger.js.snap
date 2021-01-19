@@ -17,6 +17,7 @@ exports[`trigger Trigger with "disabled" does not add attr to <a> 1`] = `
               disabled
 >
   <a aria-disabled="true"
+     target="_self"
      class="c-bolt-trigger c-bolt-trigger--display-inline"
      is="shadow-root"
   >
@@ -30,6 +31,7 @@ exports[`trigger Trigger with "no_outline" 1`] = `
               no-outline
 >
   <a href="http://pega.com"
+     target="_self"
      class="c-bolt-trigger c-bolt-trigger--display-inline c-bolt-trigger--cursor-pointer c-bolt-trigger--outline-none"
      is="shadow-root"
   >
@@ -55,6 +57,7 @@ exports[`trigger Trigger with "type" adds attr to <button> 1`] = `
 exports[`trigger Trigger with "url" renders as link 1`] = `
 <bolt-trigger url="http://pega.com">
   <a href="http://pega.com"
+     target="_self"
      class="c-bolt-trigger c-bolt-trigger--display-inline c-bolt-trigger--cursor-pointer"
      is="shadow-root"
   >

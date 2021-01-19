@@ -47,7 +47,6 @@ module.exports = {
       type: 'boolean',
       description: 'Quoted text.',
       default: false,
-      enum: [true, false],
     },
     'line-height': {
       type: 'string',
@@ -105,20 +104,17 @@ module.exports = {
       description:
         'A preset for headlines in context of the typographic design.',
       default: false,
-      enum: [true, false],
     },
     subheadline: {
       type: 'boolean',
       description:
         'A preset for subheadlines in context of the typographic design.',
       default: false,
-      enum: [true, false],
     },
     eyebrow: {
       type: 'boolean',
       description: 'A preset for eyebrow in context of the typographic design.',
       default: false,
-      enum: [true, false],
     },
     util: {
       type: 'array',

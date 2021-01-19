@@ -25,24 +25,13 @@ $bolt-fonts--subset-loaded-class: 'js-fonts-subset-loaded' !default;
 /// Async Default font loaded class.
 $bolt-fonts--loaded-class: 'js-fonts-loaded' !default;
 
-// @todo Salem, we should probably deprecate these so there is only one way to do shadows
-// Shadows
-/// Bolt shadow color
-$bolt-shadow-color: bolt-color(black) !default;
-/// Bolt small shadow
-$bolt-shadow--small: 0 2px 0.15rem rgba($bolt-shadow-color, 0.3) !default;
-/// Bolt medium shadow
-$bolt-shadow--medium: 0 0.15rem 0.3rem rgba($bolt-shadow-color, 0.35) !default;
-/// Bolt large shadow
-$bolt-shadow--large: 0 0.35rem 0.6rem rgba($bolt-shadow-color, 0.18) !default;
-
 // Border
 /// Bolt border width
 $bolt-border-width: 1px !default;
 /// Bolt border style
 $bolt-border-style: solid !default;
 /// Bolt border color
-$bolt-border-color: rgba(bolt-color(gray), 0.2) !default;
+$bolt-border-color: var(--m-bolt-border) !default;
 /// Bolt border radius
 $bolt-border-radius: 3px !default;
 
@@ -69,20 +58,6 @@ $bolt-translate-raised--large: translate3d(0, -0.25rem, 0) !default;
 $bolt-global-link-hover-opacity: bolt-opacity(80) !default;
 /// Bolt default global link active opacity
 $bolt-global-link-active-opacity: bolt-opacity(60) !default;
-
-/// Bolt default global border opacity
-$bolt-global-border-opacity: bolt-opacity(20) !default;
-/// Bolt default global border color
-$bolt-global-border-color: bolt-color(gray) !default;
-
-/// Bolt default global button hover mix %
-$bolt-global-button-hover-mix: 15% !default;
-/// Bolt default global button hover color
-$bolt-global-button-hover-color: bolt-color(white) !default;
-/// Bolt default global button active mix %
-$bolt-global-button-active-mix: 25% !default;
-/// Bolt default global button active color
-$bolt-global-button-active-color: bolt-color(black) !default;
 
 // Wrapper padding
 $bolt-wrapper-padding: 30px;

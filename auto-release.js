@@ -8,8 +8,7 @@ const { normalizeUrlAlias } = require('./scripts/utils/normalize-url-alias');
 const { branchName } = require('./scripts/utils/branch-name');
 const { NOW_TOKEN } = process.env;
 
-const isFullRelease =
-  branchName === 'release-2.x' || branchName === 'release/2.x';
+const isFullRelease = branchName.startsWith('release');
 
 const lernaConfig = require('./lerna.json');
 const currentVersion = lernaConfig.version;
@@ -123,12 +122,16 @@ async function init() {
             );
           }
 
-          await shell.exec(`
-            git checkout master
-            git pull
-            git merge release/2.x
-            git push --no-verify
-          `);
+          // Temporarily, only merge back to master if this is the release/2.x branch.
+          if (branchName === 'release/2.x') {
+            await shell.exec(`
+              git fetch --depth=50 origin master:master
+              git checkout master
+              git pull
+              git merge ${branchName}
+              git push --no-verify
+            `);
+          }
         }
       }
     } catch (error) {

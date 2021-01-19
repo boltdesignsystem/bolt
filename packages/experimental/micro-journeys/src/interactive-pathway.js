@@ -60,7 +60,7 @@ class BoltInteractivePathway extends withLitContext {
     self.addEventListener('bolt-interactive-step:change-active-step', event => {
       const steps = self.getSteps();
       const stepId = steps.findIndex(step => step.el === event.target);
-      if (stepId > 0) {
+      if (stepId >= 0) {
         self.setActiveStep(stepId);
       } else {
         console.warn('uh oh! could not find active step', { event, steps });

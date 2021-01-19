@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.30.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-nav/compare/v2.29.3...v2.30.0) (2021-01-13)
+
+**Note:** Version bump only for package @bolt/components-navlink
+
+
+
+
+
+
+
+**Note:** Version bump only for package @bolt/components-navlink
+
+
+
+
+
 ## [2.29.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-nav/compare/v2.29.0...v2.29.1) (2020-11-25)
 
 **Note:** Version bump only for package @bolt/components-navlink
