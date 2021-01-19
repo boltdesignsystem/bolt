@@ -15,7 +15,7 @@ module.exports = {
       type: 'any',
       description:
         'Content of the layout. While anything can be passed, layout items are preferred.',
-      ...layoutItemSchema,
+      // ...layoutItemSchema,
     },
     template: {
       type: 'string',
