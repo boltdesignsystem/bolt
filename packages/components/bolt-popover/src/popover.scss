@@ -154,9 +154,12 @@ $bolt-popover-transition: $bolt-transition-timing
   white-space: nowrap;
 
   @at-root .c-bolt-popover--text-wrap & {
-    // If the content is long (more than 31 characters), the bubble will have this specific width and text will wrap. This logic is in the JS and Twig files.
     width: unquote('var(--c-bolt-popover-bubble-width, min(65vw, 250px))');
-    white-space: normal;
+    white-space: normal; // If the content is long (more than 31 characters), the bubble will have this specific width and text will wrap. This logic is in the JS and Twig files.
+
+    @include bolt-ms-edge-42-only {
+      width: var(--c-bolt-popover-bubble-width, 250px);
+    }
   }
 
   @at-root [class*='c-bolt-popover--top'] & {
