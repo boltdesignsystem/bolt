@@ -21,8 +21,9 @@ class BoltButton extends BoltActionElement {
   // static useShadow = false; example of manually disabling Shadow DOM w/ BoltElement
 
   static get properties() {
+    const { style, ...filteredProps } = this.props;
     return {
-      ...this.props,
+      ...filteredProps,
       color: { type: String },
       tabindex: { type: Number },
       inert: { type: Boolean }, // will eventually go hand in hand with https://github.com/WICG/inert#notes-on-the-polyfill
