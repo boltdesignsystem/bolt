@@ -1,3 +1,5 @@
+// Must include Custom Element polyfills for Edge < 79, no longer auto-added via Bolt webpack config
+import '@bolt/polyfills';
 export { BoltElement } from './src/BoltElement';
 export { BoltActionElement } from './src/BoltActionElement';
 export { Slotify } from './src/Slotify';
