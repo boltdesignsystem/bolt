@@ -1,0 +1,23 @@
+{% extends '@pl/_default-page-template.twig' %}
+
+{% block main_content %}
+  {% set band_content %}
+    {% include '@bolt-components-headline/headline.twig' with {
+      text: 'The best ideas now',
+      size: 'xxxlarge',
+      align: 'center',
+      tag: 'h1',
+    } only %}
+    {% include '@bolt-components-headline/subheadline.twig' with {
+      text: 'Browse our collection of fresh insights, essential new research, and more.',
+      size: 'xlarge',
+      align: 'center',
+      tag: 'h2',
+    } only %}
+  {% endset %}
+
+  {% include '@bolt-components-band/band.twig' with {
+    content: band_content,
+    theme: 'light',
+  } only %}
+{% endblock %}
