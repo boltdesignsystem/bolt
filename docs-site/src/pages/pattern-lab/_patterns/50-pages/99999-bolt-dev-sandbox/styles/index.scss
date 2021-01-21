@@ -60,6 +60,7 @@ $_bolt-post-list-flag-icon-width: 64px; // This matches the size of a xlarge ico
 
 .c-bolt-post-info {
   position: static; // Position must be static on this element so the heading link will not be contained inside this.
+
   > *:not(:last-child) {
     margin-bottom: var(--bolt-spacing-y-xsmall);
   }
@@ -95,10 +96,6 @@ $_bolt-post-list-flag-icon-width: 64px; // This matches the size of a xlarge ico
       color: var(--m-bolt-neutral);
       vertical-align: baseline;
     }
-  }
-
-  bolt-chip {
-    position: static; // This lowers the stacking order of the meta chip below the main heading link.
   }
 
   .e-bolt-text-link,
