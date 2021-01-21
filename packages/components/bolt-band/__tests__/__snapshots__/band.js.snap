@@ -1,13 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<bolt-band> Component Basic usage 1`] = `
-<bolt-band tag="div"
-           size="medium"
-           theme="dark"
-           valign="middle"
-           full-bleed
->
-  <div class="c-bolt-band c-bolt-band--medium c-bolt-band--valign-middle t-bolt-dark c-bolt-band--full-bleed">
+<bolt-band>
+  <div class="c-bolt-band c-bolt-band--medium c-bolt-band--valign-center t-bolt-dark c-bolt-band--full-bleed">
     <div class="c-bolt-band__content">
       <bolt-wrapper size="xxlarge"
                     full="true"
@@ -26,16 +21,13 @@ exports[`<bolt-band> Component Full bleed usage 2`] = `
 <bolt-band
   aria-expanded="false"
   class="is-ready"
-  size="medium"
   style=""
-  tag="div"
   theme="dark"
-  valign="middle"
 >
   
   
   <div
-    class="c-bolt-band c-bolt-band--medium c-bolt-band--valign-middle t-bolt-dark"
+    class="c-bolt-band c-bolt-band--medium c-bolt-band--valign-center t-bolt-dark"
     style=""
   >
     
@@ -93,17 +85,13 @@ exports[`<bolt-band> Component Nested bands usage 1`] = `
 <bolt-band
   aria-expanded="false"
   class="is-ready"
-  full-bleed=""
-  size="medium"
   style=""
-  tag="div"
   theme="xdark"
-  valign="middle"
 >
   
   
   <div
-    class="c-bolt-band c-bolt-band--medium c-bolt-band--valign-middle t-bolt-xdark c-bolt-band--full-bleed"
+    class="c-bolt-band c-bolt-band--medium c-bolt-band--valign-center t-bolt-xdark c-bolt-band--full-bleed"
     style=""
   >
     
@@ -175,21 +163,17 @@ exports[`<bolt-band> Component Nested bands usage 1`] = `
 
 
 
-
-
           <bolt-band
             aria-expanded="false"
             class="is-ready"
             size="xsmall"
             style=""
-            tag="div"
             theme="light"
-            valign="middle"
           >
             
   
             <div
-              class="c-bolt-band c-bolt-band--xsmall c-bolt-band--valign-middle t-bolt-light"
+              class="c-bolt-band c-bolt-band--xsmall c-bolt-band--valign-center t-bolt-light"
               style=""
             >
               
@@ -251,21 +235,17 @@ exports[`<bolt-band> Component Nested bands usage 1`] = `
 
 
 
-
-
           <bolt-band
             aria-expanded="false"
             class="is-ready"
             size="large"
             style=""
-            tag="div"
             theme="xlight"
-            valign="middle"
           >
             
   
             <div
-              class="c-bolt-band c-bolt-band--large c-bolt-band--valign-middle t-bolt-xlight"
+              class="c-bolt-band c-bolt-band--large c-bolt-band--valign-center t-bolt-xlight"
               style=""
             >
               
@@ -337,13 +317,8 @@ exports[`<bolt-band> Component Nested bands usage 1`] = `
 `;
 
 exports[`<bolt-band> Component Pinned content usage 1`] = `
-<bolt-band tag="div"
-           size="large"
-           theme="dark"
-           valign="middle"
-           full-bleed
->
-  <div class="c-bolt-band c-bolt-band--large c-bolt-band--valign-middle t-bolt-dark c-bolt-band--full-bleed">
+<bolt-band size="large">
+  <div class="c-bolt-band c-bolt-band--large c-bolt-band--valign-center t-bolt-dark c-bolt-band--full-bleed">
     <div class="c-bolt-band__content c-bolt-band__content--pinned c-bolt-band__content--pinned-upper">
       <bolt-wrapper size="xxlarge"
                     full="true"
@@ -381,13 +356,13 @@ exports[`<bolt-band> Component Pinned content usage 1`] = `
       >
         <div class="o-bolt-wrapper o-bolt-wrapper--xxlarge o-bolt-wrapper--full">
           <div class="c-bolt-band__pinned-items">
-            <div class="c-bolt-band__pinned-item c-bolt-band__pinned-item--">
+            <div class="c-bolt-band__pinned-item">
               lower pinned 1
             </div>
-            <div class="c-bolt-band__pinned-item c-bolt-band__pinned-item--">
+            <div class="c-bolt-band__pinned-item">
               lower pinned 2
             </div>
-            <div class="c-bolt-band__pinned-item c-bolt-band__pinned-item--">
+            <div class="c-bolt-band__pinned-item">
               lower pinned 3
             </div>
           </div>
@@ -399,13 +374,8 @@ exports[`<bolt-band> Component Pinned content usage 1`] = `
 `;
 
 exports[`<bolt-band> Component Semantic tag usage: article 1`] = `
-<bolt-band tag="article"
-           size="medium"
-           theme="dark"
-           valign="middle"
-           full-bleed
->
-  <article class="c-bolt-band c-bolt-band--medium c-bolt-band--valign-middle t-bolt-dark c-bolt-band--full-bleed">
+<bolt-band tag="article">
+  <article class="c-bolt-band c-bolt-band--medium c-bolt-band--valign-center t-bolt-dark c-bolt-band--full-bleed">
     <div class="c-bolt-band__content">
       <bolt-wrapper size="xxlarge"
                     full="true"
@@ -421,13 +391,8 @@ exports[`<bolt-band> Component Semantic tag usage: article 1`] = `
 `;
 
 exports[`<bolt-band> Component Semantic tag usage: div 1`] = `
-<bolt-band tag="div"
-           size="medium"
-           theme="dark"
-           valign="middle"
-           full-bleed
->
-  <div class="c-bolt-band c-bolt-band--medium c-bolt-band--valign-middle t-bolt-dark c-bolt-band--full-bleed">
+<bolt-band tag="div">
+  <div class="c-bolt-band c-bolt-band--medium c-bolt-band--valign-center t-bolt-dark c-bolt-band--full-bleed">
     <div class="c-bolt-band__content">
       <bolt-wrapper size="xxlarge"
                     full="true"
@@ -443,13 +408,8 @@ exports[`<bolt-band> Component Semantic tag usage: div 1`] = `
 `;
 
 exports[`<bolt-band> Component Semantic tag usage: figure 1`] = `
-<bolt-band tag="figure"
-           size="medium"
-           theme="dark"
-           valign="middle"
-           full-bleed
->
-  <figure class="c-bolt-band c-bolt-band--medium c-bolt-band--valign-middle t-bolt-dark c-bolt-band--full-bleed">
+<bolt-band tag="figure">
+  <figure class="c-bolt-band c-bolt-band--medium c-bolt-band--valign-center t-bolt-dark c-bolt-band--full-bleed">
     <div class="c-bolt-band__content">
       <bolt-wrapper size="xxlarge"
                     full="true"
@@ -465,13 +425,8 @@ exports[`<bolt-band> Component Semantic tag usage: figure 1`] = `
 `;
 
 exports[`<bolt-band> Component Semantic tag usage: footer 1`] = `
-<bolt-band tag="footer"
-           size="medium"
-           theme="dark"
-           valign="middle"
-           full-bleed
->
-  <footer class="c-bolt-band c-bolt-band--medium c-bolt-band--valign-middle t-bolt-dark c-bolt-band--full-bleed">
+<bolt-band tag="footer">
+  <footer class="c-bolt-band c-bolt-band--medium c-bolt-band--valign-center t-bolt-dark c-bolt-band--full-bleed">
     <div class="c-bolt-band__content">
       <bolt-wrapper size="xxlarge"
                     full="true"
@@ -487,13 +442,8 @@ exports[`<bolt-band> Component Semantic tag usage: footer 1`] = `
 `;
 
 exports[`<bolt-band> Component Semantic tag usage: header 1`] = `
-<bolt-band tag="header"
-           size="medium"
-           theme="dark"
-           valign="middle"
-           full-bleed
->
-  <header class="c-bolt-band c-bolt-band--medium c-bolt-band--valign-middle t-bolt-dark c-bolt-band--full-bleed">
+<bolt-band tag="header">
+  <header class="c-bolt-band c-bolt-band--medium c-bolt-band--valign-center t-bolt-dark c-bolt-band--full-bleed">
     <div class="c-bolt-band__content">
       <bolt-wrapper size="xxlarge"
                     full="true"
@@ -509,13 +459,8 @@ exports[`<bolt-band> Component Semantic tag usage: header 1`] = `
 `;
 
 exports[`<bolt-band> Component Semantic tag usage: nav 1`] = `
-<bolt-band tag="nav"
-           size="medium"
-           theme="dark"
-           valign="middle"
-           full-bleed
->
-  <nav class="c-bolt-band c-bolt-band--medium c-bolt-band--valign-middle t-bolt-dark c-bolt-band--full-bleed">
+<bolt-band tag="nav">
+  <nav class="c-bolt-band c-bolt-band--medium c-bolt-band--valign-center t-bolt-dark c-bolt-band--full-bleed">
     <div class="c-bolt-band__content">
       <bolt-wrapper size="xxlarge"
                     full="true"
@@ -531,13 +476,8 @@ exports[`<bolt-band> Component Semantic tag usage: nav 1`] = `
 `;
 
 exports[`<bolt-band> Component Semantic tag usage: section 1`] = `
-<bolt-band tag="section"
-           size="medium"
-           theme="dark"
-           valign="middle"
-           full-bleed
->
-  <section class="c-bolt-band c-bolt-band--medium c-bolt-band--valign-middle t-bolt-dark c-bolt-band--full-bleed">
+<bolt-band tag="section">
+  <section class="c-bolt-band c-bolt-band--medium c-bolt-band--valign-center t-bolt-dark c-bolt-band--full-bleed">
     <div class="c-bolt-band__content">
       <bolt-wrapper size="xxlarge"
                     full="true"
@@ -553,13 +493,8 @@ exports[`<bolt-band> Component Semantic tag usage: section 1`] = `
 `;
 
 exports[`<bolt-band> Component Size of the band: large 1`] = `
-<bolt-band tag="div"
-           size="large"
-           theme="dark"
-           valign="middle"
-           full-bleed
->
-  <div class="c-bolt-band c-bolt-band--large c-bolt-band--valign-middle t-bolt-dark c-bolt-band--full-bleed">
+<bolt-band size="large">
+  <div class="c-bolt-band c-bolt-band--large c-bolt-band--valign-center t-bolt-dark c-bolt-band--full-bleed">
     <div class="c-bolt-band__content">
       <bolt-wrapper size="xxlarge"
                     full="true"
@@ -575,13 +510,8 @@ exports[`<bolt-band> Component Size of the band: large 1`] = `
 `;
 
 exports[`<bolt-band> Component Size of the band: medium 1`] = `
-<bolt-band tag="div"
-           size="medium"
-           theme="dark"
-           valign="middle"
-           full-bleed
->
-  <div class="c-bolt-band c-bolt-band--medium c-bolt-band--valign-middle t-bolt-dark c-bolt-band--full-bleed">
+<bolt-band size="medium">
+  <div class="c-bolt-band c-bolt-band--medium c-bolt-band--valign-center t-bolt-dark c-bolt-band--full-bleed">
     <div class="c-bolt-band__content">
       <bolt-wrapper size="xxlarge"
                     full="true"
@@ -597,13 +527,8 @@ exports[`<bolt-band> Component Size of the band: medium 1`] = `
 `;
 
 exports[`<bolt-band> Component Size of the band: none 1`] = `
-<bolt-band tag="div"
-           size="none"
-           theme="dark"
-           valign="middle"
-           full-bleed
->
-  <div class="c-bolt-band c-bolt-band--valign-middle t-bolt-dark c-bolt-band--full-bleed">
+<bolt-band size="none">
+  <div class="c-bolt-band c-bolt-band--valign-center t-bolt-dark c-bolt-band--full-bleed">
     <div class="c-bolt-band__content">
       <bolt-wrapper size="xxlarge"
                     full="true"
@@ -619,13 +544,8 @@ exports[`<bolt-band> Component Size of the band: none 1`] = `
 `;
 
 exports[`<bolt-band> Component Size of the band: small 1`] = `
-<bolt-band tag="div"
-           size="small"
-           theme="dark"
-           valign="middle"
-           full-bleed
->
-  <div class="c-bolt-band c-bolt-band--small c-bolt-band--valign-middle t-bolt-dark c-bolt-band--full-bleed">
+<bolt-band size="small">
+  <div class="c-bolt-band c-bolt-band--small c-bolt-band--valign-center t-bolt-dark c-bolt-band--full-bleed">
     <div class="c-bolt-band__content">
       <bolt-wrapper size="xxlarge"
                     full="true"
@@ -641,13 +561,8 @@ exports[`<bolt-band> Component Size of the band: small 1`] = `
 `;
 
 exports[`<bolt-band> Component Size of the band: xsmall 1`] = `
-<bolt-band tag="div"
-           size="xsmall"
-           theme="dark"
-           valign="middle"
-           full-bleed
->
-  <div class="c-bolt-band c-bolt-band--xsmall c-bolt-band--valign-middle t-bolt-dark c-bolt-band--full-bleed">
+<bolt-band size="xsmall">
+  <div class="c-bolt-band c-bolt-band--xsmall c-bolt-band--valign-center t-bolt-dark c-bolt-band--full-bleed">
     <div class="c-bolt-band__content">
       <bolt-wrapper size="xxlarge"
                     full="true"
@@ -663,13 +578,8 @@ exports[`<bolt-band> Component Size of the band: xsmall 1`] = `
 `;
 
 exports[`<bolt-band> Component Theme of the band: dark 1`] = `
-<bolt-band tag="div"
-           size="medium"
-           theme="dark"
-           valign="middle"
-           full-bleed
->
-  <div class="c-bolt-band c-bolt-band--medium c-bolt-band--valign-middle t-bolt-dark c-bolt-band--full-bleed">
+<bolt-band theme="dark">
+  <div class="c-bolt-band c-bolt-band--medium c-bolt-band--valign-center t-bolt-dark c-bolt-band--full-bleed">
     <div class="c-bolt-band__content">
       <bolt-wrapper size="xxlarge"
                     full="true"
@@ -685,13 +595,8 @@ exports[`<bolt-band> Component Theme of the band: dark 1`] = `
 `;
 
 exports[`<bolt-band> Component Theme of the band: light 1`] = `
-<bolt-band tag="div"
-           size="medium"
-           theme="light"
-           valign="middle"
-           full-bleed
->
-  <div class="c-bolt-band c-bolt-band--medium c-bolt-band--valign-middle t-bolt-light c-bolt-band--full-bleed">
+<bolt-band theme="light">
+  <div class="c-bolt-band c-bolt-band--medium c-bolt-band--valign-center t-bolt-light c-bolt-band--full-bleed">
     <div class="c-bolt-band__content">
       <bolt-wrapper size="xxlarge"
                     full="true"
@@ -707,13 +612,8 @@ exports[`<bolt-band> Component Theme of the band: light 1`] = `
 `;
 
 exports[`<bolt-band> Component Theme of the band: none 1`] = `
-<bolt-band tag="div"
-           size="medium"
-           theme="none"
-           valign="middle"
-           full-bleed
->
-  <div class="c-bolt-band c-bolt-band--medium c-bolt-band--valign-middle c-bolt-band--full-bleed">
+<bolt-band theme="none">
+  <div class="c-bolt-band c-bolt-band--medium c-bolt-band--valign-center c-bolt-band--full-bleed">
     <div class="c-bolt-band__content">
       <bolt-wrapper size="xxlarge"
                     full="true"
@@ -729,13 +629,8 @@ exports[`<bolt-band> Component Theme of the band: none 1`] = `
 `;
 
 exports[`<bolt-band> Component Theme of the band: xdark 1`] = `
-<bolt-band tag="div"
-           size="medium"
-           theme="xdark"
-           valign="middle"
-           full-bleed
->
-  <div class="c-bolt-band c-bolt-band--medium c-bolt-band--valign-middle t-bolt-xdark c-bolt-band--full-bleed">
+<bolt-band theme="xdark">
+  <div class="c-bolt-band c-bolt-band--medium c-bolt-band--valign-center t-bolt-xdark c-bolt-band--full-bleed">
     <div class="c-bolt-band__content">
       <bolt-wrapper size="xxlarge"
                     full="true"
@@ -751,13 +646,8 @@ exports[`<bolt-band> Component Theme of the band: xdark 1`] = `
 `;
 
 exports[`<bolt-band> Component Theme of the band: xlight 1`] = `
-<bolt-band tag="div"
-           size="medium"
-           theme="xlight"
-           valign="middle"
-           full-bleed
->
-  <div class="c-bolt-band c-bolt-band--medium c-bolt-band--valign-middle t-bolt-xlight c-bolt-band--full-bleed">
+<bolt-band theme="xlight">
+  <div class="c-bolt-band c-bolt-band--medium c-bolt-band--valign-center t-bolt-xlight c-bolt-band--full-bleed">
     <div class="c-bolt-band__content">
       <bolt-wrapper size="xxlarge"
                     full="true"
@@ -773,13 +663,8 @@ exports[`<bolt-band> Component Theme of the band: xlight 1`] = `
 `;
 
 exports[`<bolt-band> Component Theme of the band: xxdark 1`] = `
-<bolt-band tag="div"
-           size="medium"
-           theme="xxdark"
-           valign="middle"
-           full-bleed
->
-  <div class="c-bolt-band c-bolt-band--medium c-bolt-band--valign-middle t-bolt-xxdark c-bolt-band--full-bleed">
+<bolt-band theme="xxdark">
+  <div class="c-bolt-band c-bolt-band--medium c-bolt-band--valign-center t-bolt-xxdark c-bolt-band--full-bleed">
     <div class="c-bolt-band__content">
       <bolt-wrapper size="xxlarge"
                     full="true"
