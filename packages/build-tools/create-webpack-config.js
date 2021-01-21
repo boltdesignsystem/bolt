@@ -69,7 +69,9 @@ async function createWebpackConfig(buildConfig) {
     if (components.global) {
       entry[globalEntryName] = ['@bolt/core-v3.x/styles/main.scss'];
 
-      entry['brightcove'] = ['@bolt/components-video/brightcove.scss'];
+      if (config.env !== 'drupal') {
+        entry['brightcove'] = ['@bolt/components-video/brightcove.scss'];
+      }
 
       components.global.forEach(component => {
         if (component.assets.style) {
