@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.30.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button/compare/v2.30.0...v2.30.1) (2021-01-14)
+
+
+### Bug Fixes
+
+* remove bolt-button[type] browser defaults ([45a353d](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button/commit/45a353d2bb0cfce2871d0d23d06aa3795ac7f232))
+
+
+
+
+
+# [2.30.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button/compare/v2.29.3...v2.30.0) (2021-01-13)
+
+**Note:** Version bump only for package @bolt/components-button
+
+
+
+
+
 
 
 **Note:** Version bump only for package @bolt/components-button
