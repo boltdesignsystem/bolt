@@ -1,0 +1,78 @@
+{% set description %}
+  The popover bubble width is set to 250px by default, but it can be customized per use case by defining the <bolt-code-snippet display="inline">--c-bolt-popover-bubble-width</bolt-code-snippet> CSS custom property via inline style.
+{% endset %}
+
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>It is recommended to always use the CSS function <bolt-code-snippet display="inline" lang="css">min()</bolt-code-snippet> when customizing the popover bubble width. This ensures the width will never break page layouts.</bolt-li>
+    <bolt-li>The following example uses <bolt-code-snippet display="inline" lang="css">min(80vw, 500px)</bolt-code-snippet>, which means the width is set to 500px unless the browser width is smaller than 500px, then the width will become 80% of the browser width.</bolt-li>
+    <bolt-li>Keep in mind that the <bolt-code-snippet display="inline" lang="css">min()</bolt-code-snippet> function is not supported in Microsoft Edge 42 and older. If you need to support such old browser, you should set the custom width to a plain old absolute value such as 500px.</bolt-li>
+  </bolt-ol>
+{% endset %}
+
+{% set demo %}
+  {% set trigger %}
+    {% include '@bolt-components-button/button.twig' with {
+      text: 'Custom width set to 500px',
+    } only %}
+  {% endset %}
+  {% set content %}
+    {% include '@bolt-components-headline/eyebrow.twig' with {
+      text: 'This Is an Eyebrow',
+    } only %}
+    {% include '@bolt-components-headline/headline.twig' with {
+      size: 'xxlarge',
+      text: 'This Is a Headline',
+    } only %}
+    {% include '@bolt-components-headline/text.twig' with {
+      text: 'This is a paragraph.',
+    } only %}
+    {% include '@bolt-components-button/button.twig' with {
+      text: 'This is a button',
+    } only %}
+  {% endset %}
+
+  {% include '@bolt-components-popover/popover.twig' with {
+    trigger: trigger,
+    content: content,
+    spacing: 'medium',
+    placement: 'top',
+    attributes: {
+      style: '--c-bolt-popover-bubble-width: min(80vw, 500px);'
+    },
+  } only %}
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% include '@bolt-components-popover/popover.twig' with {
+  trigger: trigger,
+  content: content,
+  attributes: {
+    style: '--c-bolt-popover-bubble-width: min(80vw, 500px);'
+  },
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% set html_markup %}
+{% verbatim %}
+<bolt-popover style="--c-bolt-popover-bubble-width: min(80vw, 500px);">
+  <bolt-button>
+    This triggers a popover
+  </bolt-button>
+  <div slot="content">
+    This is the content of the popover.
+  </div>
+</bolt-popover>
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Custom Popover Bubble Width',
+  description: description,
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+  html_markup: html_markup,
+} only %}
