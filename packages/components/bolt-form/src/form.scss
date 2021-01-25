@@ -244,6 +244,12 @@ $bolt-input-transition: $bolt-transition;
   display: inline;
 }
 
+.c-bolt-input--select {
+  padding-right: calc(
+    var(--bolt-spacing-x-small) + 24px
+  ); // 24px is icon size, if icon component changes, this needs to update as well.
+}
+
 .c-bolt-floating-label {
   opacity: bolt-opacity(0);
   position: absolute;
