@@ -4,26 +4,28 @@
   {{ validate_data_schema(schema, _self) | raw }}
 {% endif %}
 
+{# Variables #}
+{% set this = init(schema) %}
 {% set attributes = create_attribute(attributes|default({})) %}
-{% set baseClass = "c-bolt-background" %}
-{% set shapeGroup =  shapeGroup in schema.properties.shapeGroup.enum ? shapeGroup : schema.properties.shapeGroup.default %}
-{% set overlay = overlay in schema.properties.overlay.enum ? overlay : schema.properties.overlay.default %}
 
 <bolt-background bolt-component>
-  <div {{ attributes.addClass([baseClass]) }}>
+  <div {{ attributes.addClass(['c-bolt-background']) }}>
     {% if contentItems %}
       {% for item in contentItems %}
-        {% include "@bolt-components-background/background-item.twig" %}
+        {% if item %}
+          {% include "@bolt-components-background/background-item.twig" %}
+        {% endif %}
       {% endfor %}
     {% endif %}
 
-    {% if overlay == "enabled" or shapeGroup != 'none'  %}
-      <div class="{{ "#{baseClass}__item" }}">
-        {% if overlay == "enabled" %}
+    {% if this.data.overlay.value == "enabled" or this.data.shape_group.value != 'none'  %}
+      <div class="{{ "c-bolt-background__item" }}">
+        {# @todo `overlay` should be Boolean #}
+        {% if this.data.overlay.value == "enabled" %}
           {% include "@bolt-components-background/background-overlay.twig" %}
         {% endif %}
 
-        {% if shapeGroup != 'none' %}
+        {% if this.data.shape_group.value != 'none' %}
           {% include "@bolt-components-background/background-shapes-wrapper.twig" %}
         {% endif %}
       </div>
