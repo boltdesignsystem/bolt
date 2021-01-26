@@ -1,0 +1,68 @@
+{% set schema = bolt.data.components['@bolt-components-navbar'].schema.properties.items.items %}
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(schema, _self)|raw }}
+{% endif %}
+
+{% set this = init(schema) %}
+{% set inner_attributes = create_attribute({}) %}
+
+{# Array of classes based on the defined + default props #}
+{% set classes = [
+  'c-bolt-navbar-item',
+  this.data.active is sameas(true) ? 'c-bolt-navbar-item--active' : '',
+] %}
+
+{#
+  Sort classes passed in via attributes into two groups:
+  1. Those that should be applied to the inner tag (namely, "is-" and "has-" classes)
+  2. Those that should be applied to the outer custom element (everything else EXCEPT c-bolt-* classes, which should never be passed in via attributes)
+#}
+{% set outer_classes = [] %}
+{% set inner_classes = classes %}
+
+{% for class in this.props.class %}
+  {% if class starts with 'is-' or class starts with 'has-' %}
+    {% set inner_classes = inner_classes|merge([class]) %}
+  {% elseif class starts with 'c-bolt-' == false %}
+    {% set outer_classes = outer_classes|merge([class]) %}
+  {% endif %}
+{% endfor %}
+
+{% if url %}
+  {% set inner_attributes = inner_attributes.setAttribute("href", url) %}
+{% endif %}
+
+{% if target %}
+  {% set inner_attributes = inner_attributes.setAttribute("target", target) %}
+{% endif %}
+
+{% set icon_positions = schema.properties.icon.properties.position.enum %}
+
+{% if icon %}
+  {% set icon_position = icon.position in icon_positions ? icon.position : schema.properties.icon.properties.position.default %}
+{% endif %}
+
+{% macro slotted_icon(icon, icon_position, slot_name) %}
+  {% if icon and icon_position == slot_name %}
+    <span class="c-bolt-navbar-item__icon">
+      {% set icon = icon | merge({
+        attributes: {
+          slot: slot_name
+        }
+      }) %}
+      {% include "@bolt-components-icon/icon.twig" with icon only %}
+    </span>
+  {% endif %}
+{% endmacro %}
+
+{% import _self as macros %}
+
+<bolt-navbar-item {{ this.props|without('text') }} role="listitem">
+  {% spaceless %}
+    <a {{ inner_attributes.addClass(inner_classes) }}>
+      {{ macros.slotted_icon(icon, icon_position, "before") }}
+      <ssr-keep for="bolt-navbar-item" class="c-bolt-navbar-item__text">{{ text }}</ssr-keep>
+      {{ macros.slotted_icon(icon, icon_position, "after") }}
+    </a>
+  {% endspaceless %}
+</bolt-navbar-item>

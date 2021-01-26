@@ -37,6 +37,7 @@ class BoltButton extends BoltActionElement {
   }
 
   render() {
+    console.log(BoltButton.properties);
     const classes = cx('c-bolt-button', {
       'c-bolt-button--medium': !this.size, // Default size
       [`c-bolt-button--${this.size}`]: this.size,
@@ -54,7 +55,7 @@ class BoltButton extends BoltActionElement {
       'c-bolt-button--inert': this.tabindex === -1 || this.inert,
       'c-bolt-button--icon-only': this.iconOnly,
     });
-
+    console.log(this.url);
     // Decide on if the rendered button tag should be a <button> or <a> tag, based on if a URL exists OR if a link was passed in from the getgo
     const hasUrl = this.url && this.url.length > 0 && this.url !== 'null';
 

@@ -1,37 +1,65 @@
-import { html, customElement } from '@bolt/element';
+import { customElement, BoltElement, html, unsafeCSS } from '@bolt/element';
+import { getUniqueId } from '@bolt/core-v3.x/utils';
+import { withContext } from 'wc-context/lit-element';
+import { Waypoint } from '@bolt/core-v3.x/utils/waypoint';
+import classNames from 'classnames/bind';
+import styles from './nav-priority.scss';
+import schema from './nav-priority.schema';
+
+let cx = classNames.bind(styles);
+
+/*
+ * 2. role="list": declares that an element is a list.
+ * 3. Aria lists reference: https://www.scottohara.me/blog/2018/05/26/aria-lists.html
+ */
+
 import {
-  props,
   whichTransitionEvent,
   waitForTransitionEnd,
 } from '@bolt/core-v3.x/utils';
-import { withLitHtml } from '@bolt/core-v3.x/renderers/renderer-lit-html';
 
 import '@bolt/core-v3.x/utils/optimized-resize';
 
-/*
-  Consider using these polyfills to broaden browser support:
-    — https://www.npmjs.com/package/classlist-polyfill
-    — https://www.npmjs.com/package/nodelist-foreach-polyfill
-*/
-
 @customElement('bolt-nav-priority')
-class BoltNavPriority extends withLitHtml {
-  constructor(self) {
-    self = super(self);
-    self.activeLink = false;
-    self.useShadow = false;
-    self.isReady = false;
-    self.transitionEvent = whichTransitionEvent();
+class BoltNavPriority extends withContext(BoltElement) {
+  static schema = schema;
 
-    self._adaptPriorityNav = self._adaptPriorityNav.bind(self);
-    self._handleDropdownToggle = self._handleDropdownToggle.bind(self);
+  static get properties() {
+    return {
+      ...this.props,
+      activeItem: {
+        type: Object,
+      },
+    };
   }
 
-  static props = {
-    moreText: props.string, // Text that displays when navlinks can't all display at once
-  };
+  static useShadow = false;
 
-  connecting() {
+  constructor() {
+    super();
+
+    this.activeLink = false;
+    this.isReady = false;
+    this.transitionEvent = whichTransitionEvent();
+  }
+
+  static get styles() {
+    return [unsafeCSS(styles)];
+  }
+
+  static get providedContexts() {
+    return {
+      activeItem: { property: 'activeItem' },
+      scrollOffsetSelector: { property: 'scrollOffsetSelector' },
+      scrollOffset: { property: 'scrollOffset' },
+    };
+  }
+
+  connectedCallback() {
+    super.connectedCallback && super.connectedCallback();
+
+    this.scrollOffsetEl = document.querySelector(this.scrollOffsetSelector);
+
     Promise.all([customElements.whenDefined('bolt-navlink')]).then(_ => {
       this.isOpen = false;
 
@@ -91,19 +119,41 @@ class BoltNavPriority extends withLitHtml {
       this._waitForDropdownToFinishAnimating = this._waitForDropdownToFinishAnimating.bind(
         this,
       );
+      this._adaptPriorityNav = this._adaptPriorityNav.bind(this);
+      this._handleDropdownToggle = this._handleDropdownToggle.bind(this);
       this.dropdownButton.addEventListener('click', this._handleDropdownToggle);
       this.addEventListener('navlink:click', this._onActivateLink);
       window.addEventListener('throttledResize', this._adaptPriorityNav);
     });
   }
 
+  get items() {
+    return this.querySelectorAll('bolt-navlink:not([is-dropdown-link])');
+  }
+
+  getWaypointData() {
+    const data = [];
+
+    this.items.forEach(item => {
+      if (item.target) {
+        data.push({
+          trigger: item,
+          target: item.target,
+        });
+      }
+    });
+
+    return data;
+  }
+
   render() {
     return html`
-      ${this.slot('default')}
+      ${this.slotify('default')}
     `;
   }
 
   _adaptPriorityNav() {
+    // console.log(this);
     this.classList.add('is-resizing');
 
     // reveal all items for the calculation
@@ -172,6 +222,10 @@ class BoltNavPriority extends withLitHtml {
 
   // `_onActivateLink` handles the `navlink:active` event emitted by the children
   _onActivateLink(event) {
+    if (event?.detail?.activeItem) {
+      this.activeItem = event.detail.activeItem;
+    }
+
     this.close();
   }
 
@@ -274,9 +328,86 @@ class BoltNavPriority extends withLitHtml {
   }
 
   // Clean up event listeners when being removed from the page
-  disconnecting() {
+  disconnectedCallback() {
+    super.disconnectedCallback && super.disconnectedCallback();
+
     this.removeEventListener('navlink:click', this._onActivateLink);
     window.removeEventListener('throttledResize', this._adaptPriorityNav);
+  }
+
+  getItemByTarget(target, shift = 0) {
+    const match = this.waypointData.find(item => item.target === target);
+    const index = this.waypointData.indexOf(match) + shift;
+
+    if (index !== -1) {
+      return this.waypointData[index];
+    }
+  }
+
+  onEnter({ trigger }) {
+    // console.log(trigger);
+    // Fires when waypoint enters the boundary
+    if (trigger && trigger !== this.activeItem) {
+      this.activeItem = trigger;
+    }
+  }
+
+  onPositionChange({ target, currentPosition }) {
+    this.setStickyOffset();
+
+    // If `activeItem` is undefined (could be first load), use the first item
+    // with position 'below' to get the previous item, which is assumed to be
+    // the most visible section
+    if (!this.activeItem) {
+      if (currentPosition === 'below') {
+        let item = this.getItemByTarget(target, -1);
+        if (item) {
+          this.activeItem = item.trigger;
+        }
+      }
+    }
+  }
+
+  get stickyOffset() {
+    // if (!this.sticky) return;
+    return (this.scrollOffsetEl?.offsetHeight || 0) + (this.scrollOffset || 0);
+  }
+
+  setStickyOffset() {
+    const offset = this.stickyOffset;
+
+    if (offset) {
+      // set TOC offset
+      // @todo temp:
+      // this.closest('bolt-navbar').style.top = `${offset}px`;
+
+      if (this.waypoint) {
+        // set Waypoint offset
+        this.waypoint.options.stickyOffset = offset;
+      }
+    }
+  }
+
+  firstUpdated() {
+    super.firstUpdated && super.firstUpdated();
+
+    setTimeout(() => {
+      // console.log(this.stickyOffset);
+      this.waypointData = this.getWaypointData();
+      this.waypoint = new Waypoint({
+        items: this.waypointData,
+        topOffset: 0,
+        bottomOffset: '75%',
+        stickyOffset: this.stickyOffset || 0,
+        onEnter: args => {
+          this.onEnter(args);
+        },
+        onPositionChange: args => {
+          this.onPositionChange(args);
+        },
+        debug: true,
+      });
+    }, 500);
   }
 }
 

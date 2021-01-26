@@ -1,0 +1,217 @@
+@import '@bolt/core-v3.x';
+
+/* ------------------------------------ *\
+   Navlink
+\* ------------------------------------ */
+
+$bolt-navbar-item-bg-color: currentColor;
+$bolt-navbar-item-bg-border-radius: $bolt-border-radius;
+$bolt-navbar-item-bg-transition-timing: $bolt-transition-timing * 4;
+$bolt-navbar-item-text-transition: $bolt-transition;
+
+// Navlink Component
+@include bolt-repeat-rule(('bolt-navbar-item', ':host(bolt-navbar-item)')) {
+  display: flex;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+bolt-navbar-item {
+  &.is-hidden {
+    display: none;
+  }
+}
+
+.c-bolt-navbar-item__wrapper {
+  // display: block;
+  // display: flex;
+  // flex-direction: column;
+  // justify-content: center;
+  // width: 100%;
+}
+
+.c-bolt-navbar-item {
+  @include bolt-font-size(small);
+  @include bolt-font-weight(semibold);
+  opacity: 0.9;
+  position: relative;
+  padding: calc(var(--bolt-spacing-y-small) / 2) var(--bolt-spacing-x-xsmall);
+  color: bolt-theme(headline-link);
+  text-decoration: none;
+  border-radius: 3px;
+  // Added so that &:focus:not(:active) doesn't change the size of the band
+  // @todo: we should consider making &:focus:not(:active) with thin dotted style a mixin
+  // to share with nav-priority
+  border-width: thin;
+  border-style: dotted;
+  border-color: transparent;
+  transition: all $bolt-navbar-item-text-transition;
+
+  @include bolt-mq(xsmall) {
+    padding: calc(var(--bolt-spacing-y-small) / 2) var(--bolt-spacing-x-small);
+  }
+
+  @include bolt-ms-edge-42-only {
+    padding-top: var(--bolt-spacing-y-xsmall);
+    padding-right: var(--bolt-spacing-x-xsmall);
+    padding-bottom: var(--bolt-spacing-y-xsmall);
+    padding-left: var(--bolt-spacing-x-xsmall);
+  }
+
+  &:active,
+  &--active {
+    opacity: bolt-opacity(100);
+    color: bolt-theme(headline-link);
+    // border-color: red;
+  }
+
+  &:before {
+    content: '';
+    display: block;
+    opacity: 0.1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: scale3d(0, 0, 0);
+    width: 100%;
+    height: 100%;
+    border-radius: $bolt-navbar-item-bg-border-radius;
+    background-color: currentColor;
+    transition: all 0.1s ease;
+  }
+
+  &:active:before {
+    opacity: 0.2;
+    transform: scale3d(1, 1, 1);
+    animation: none;
+  }
+
+  &:hover,
+  &.is-hover {
+    &:before {
+      animation: a-bolt-navbar-item-bg-hover
+        $bolt-navbar-item-bg-transition-timing both;
+    }
+  }
+
+  &:active,
+  &--active {
+    &:before {
+      animation: none;
+    }
+  }
+
+  // works in chrome only
+  &:focus:not(:active) {
+    border-color: bolt-theme(primary);
+    outline: none;
+  }
+
+  &.is-dropdown-link.c-bolt-navbar-item--active:after {
+    content: '';
+    position: absolute;
+    top: 6px;
+    bottom: 6px;
+    left: 0;
+    width: 4px;
+    background-color: bolt-theme(primary);
+  }
+}
+
+// Text and icon spacing
+.c-bolt-navbar-item__text + .c-bolt-navbar-item__icon {
+  margin-left: var(--bolt-spacing-x-xxsmall);
+}
+
+.c-bolt-navbar-item__icon + .c-bolt-navbar-item__text {
+  margin-left: var(--bolt-spacing-x-xxsmall);
+}
+
+// Icon styles
+.c-bolt-navbar-item__icon {
+  display: inline-block;
+  line-height: 1; // workaround so icons can be vertically aligned properly
+  vertical-align: baseline;
+}
+
+@keyframes a-bolt-navbar-item-bg-hover {
+  0% {
+    transform: scale3d(0, 0, 0);
+  }
+
+  20% {
+    transform: scale3d(1.05, 1.05, 1.05);
+  }
+
+  40% {
+    transform: scale3d(0.97, 0.97, 0.97);
+  }
+
+  60% {
+    transform: scale3d(1, 1, 1);
+  }
+
+  80% {
+    transform: scale3d(0.99, 0.99, 0.99);
+  }
+
+  to {
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+// Active state
+$bolt-navbar-item-border-size: 4px;
+$bolt-navbar-item-border-transition-ease: ease;
+$bolt-navbar-item-border-transition-timing: $bolt-transition-timing / 2;
+
+// bolt-navbar-item {
+//   display: block;
+//   display: contents;
+// }
+
+.c-bolt-navbar-item {
+  &:after {
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: -#{$bolt-navbar-item-border-size}; // Automatically align the indicator line to the bottom of the container itself (so size changes will just work -- no modifiers required)
+    left: 0; // required so animated position is correct in IE11
+    opacity: bolt-opacity(
+      0
+    ); // [Mai] This is interrelated with the dropdown component.
+    opacity: var(
+      --c-bolt-navbar-item-opacity,
+      0
+    ); // [Mai] This is interrelated with the dropdown component.
+    // transform: translateY(
+    //   var(--c-bolt-navbar-item-transform)
+    // ); // [Mai] This is interrelated with the dropdown component.
+    // transform: scaleX(0);
+    // width: 0;
+    height: ($bolt-navbar-item-border-size);
+    background-color: bolt-theme(primary);
+    will-change: width, height, opacity, transform;
+    transition: all $bolt-navbar-item-border-transition-timing
+        $bolt-navbar-item-border-transition-ease,
+      opacity 0.35s ease-out; // [Mai] This is interrelated with the dropdown component.
+    // transition: all 1s ease-out; // [Mai] This is interrelated with the dropdown component.
+    width: 100%;
+  }
+  &--active {
+    &:after {
+      opacity: bolt-opacity(
+        100
+      ); // [Mai] This is interrelated with the dropdown component.
+      opacity: var(
+        --c-bolt-navbar-item-opacity,
+        1
+      ); // [Mai] This is interrelated with the dropdown component.
+      // transform: translateY(
+      //   var(--c-bolt-navbar-item-transform)
+      // ); // [Mai] This is interrelated with the dropdown component.
+      // transform: scaleX(1);
+      // width: 100%;
+    }
+  }
+}

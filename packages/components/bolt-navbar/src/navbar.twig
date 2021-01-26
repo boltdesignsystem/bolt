@@ -1,38 +1,60 @@
+{% set schema = bolt.data.components['@bolt-components-navbar'].schema %}
 {% if enable_json_schema_validation %}
-  {{ validate_data_schema(bolt.data.components['@bolt-components-navbar'].schema, _self) | raw }}
+  {{ validate_data_schema(schema, _self)|raw }}
 {% endif %}
 
-{% set schema = bolt.data.components["@bolt-components-navbar"].schema %}
-
-{# Support backwards compatibiliy.  Future implementations that wish to disable the theme should
+{# Support backwards compatibility.  Future implementations that wish to disable the theme should
 use the string "none" rather than a boolean false #}
 {% set theme = theme is sameas(false) ? "none" : theme %}
 
-{% set themeOptions = schema.properties.theme.enum %}
-{% set widthOptions = schema.properties.width.enum %}
+{# Support deprecated `links` prop #}
+{% if links and not items %}
+  {% set items = links %}
+{% endif %}
 
-{% set theme = theme in themeOptions ? theme : schema.properties.theme.default %}
-{% set width = width in widthOptions ? width : schema.properties.width.default %}
-{% set theme = theme == "none" ? false : theme %}
+{# Variables #}
+{% set this = init(schema) %}
+
+{# Array of classes based on the defined + default props #}
+{% set classes = [
+  'c-bolt-navbar',
+  this.data.width ? 'c-bolt-navbar--' ~ this.data.width : '',
+  this.data.center ? 'c-bolt-navbar--center c-bolt-navbar--small' : '',
+] %}
+
+{#
+  Sort classes passed in via attributes into two groups:
+  1. Those that should be applied to the inner tag (namely, "is-" and "has-" classes)
+  2. Those that should be applied to the outer custom element (everything else EXCEPT c-bolt-* classes, which should never be passed in via attributes)
+#}
+{% set outer_classes = [] %}
+{% set inner_classes = classes %}
+
+{% for class in this.props.class %}
+  {% if class starts with 'is-' or class starts with 'has-' %}
+    {% set inner_classes = inner_classes|merge([class]) %}
+  {% elseif class starts with 'c-bolt-' == false %}
+    {% set outer_classes = outer_classes|merge([class]) %}
+  {% endif %}
+{% endfor %}
 
 <bolt-navbar
-  {% if theme %} class="t-bolt-{{ theme }}" {% endif %}
-  {% if center %} center {% endif %}
-  {% if width %} width={{width}} {% endif %}
+  {{ this.props|without('theme')|without('width') }}
+  {% if this.data.theme and this.data.theme != 'none' %} class="t-bolt-{{ this.data.theme }}" {% endif %}
+  {% if this.data.width %} width={{this.data.width}} {% endif %}
 >
-  <nav class="c-bolt-navbar c-bolt-navbar--{{ width }} {% if center %} c-bolt-navbar--center c-bolt-navbar--small{% endif %}">
-    {% block navbar_inner %}
-      {% if title %}
-        <div class="c-bolt-navbar__title">
-          {% block navbar_title %}
-            {% include "@bolt-components-navbar/_navbar-title.twig" with title only %}
-          {% endblock %}
-        </div>
-      {% endif %}
-
-      {% block navbar_nav %}
-        {% include "@bolt-components-nav-priority/nav-priority.twig" %}
-      {% endblock %}
-    {% endblock %}
+  <nav role="presentation" {% if inner_classes %} class="{{ inner_classes|join(' ') }}" {% endif %}>
+    {% if title %}
+      <ssr-keep for="bolt-navbar" class="c-bolt-navbar__title">
+        {% include "@bolt-components-navbar/_navbar-title.twig" with title only %}
+      </ssr-keep>
+    {% endif %}
+    {% if items|length %}
+      <ssr-keep for="bolt-navbar" class="c-bolt-navbar__list" role="list">
+        {% for item in links %}
+          {% include "@bolt-components-navbar/_navbar-item.twig" with item only %}
+        {% endfor %}
+      </ssr-keep>
+    {% endif %}
   </nav>
 </bolt-navbar>

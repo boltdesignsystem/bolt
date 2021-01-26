@@ -31,11 +31,11 @@
 {% endset %}
 
 {% if url %}
-  <a class="c-bolt-navbar__title--link" {{ attributes }}>
+  <a class="c-bolt-navbar__title--link" {{ attributes }} slot="title">
     {{ navbar_title }}
   </a>
 {% else %}
-  <div class="c-bolt-navbar__title--static">
+  <div class="c-bolt-navbar__title--static" slot="title">
     {{ navbar_title }}
   </div>
 {% endif %}

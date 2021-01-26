@@ -13,12 +13,13 @@
   "bugs": "https://github.com/bolt-design-system/bolt/issues",
   "repository": "https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-navbar",
   "license": "MIT",
-  "style": "src/navbar.scss",
+  "main": "index.js",
+  "style": "index.scss",
   "dependencies": {
-    "@bolt/components-nav-indicator": "^2.30.0",
-    "@bolt/components-nav-priority": "^2.30.0",
-    "@bolt/components-navlink": "^2.30.0",
-    "@bolt/core-v3.x": "^2.30.0"
+    "@bolt/components-smooth-scroll": "^2.30.0",
+    "@bolt/core-v3.x": "^2.30.0",
+    "@bolt/lazy-queue": "^2.23.0",
+    "wc-context": "^0.9.0"
   },
   "publishConfig": {
     "access": "public"

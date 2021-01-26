@@ -59,7 +59,7 @@ class BoltTocItem extends withContext(BoltElement) {
     super.connectedCallback && super.connectedCallback();
 
     if (this.url && this.url.indexOf('#') === 0) {
-      this.target = document.querySelector(this.url);
+      this.waypointElement = document.querySelector(this.url);
     }
   }
 
@@ -73,7 +73,7 @@ class BoltTocItem extends withContext(BoltElement) {
 
   handleClick(event) {
     try {
-      if (this.target) {
+      if (this.waypointElement) {
         event.preventDefault();
         let scrollOpts = scrollOptions;
 
@@ -91,7 +91,11 @@ class BoltTocItem extends withContext(BoltElement) {
         // @todo We need a solution for multiple stacked fixed/sticky elements. Also see `onPositionChange()` in toc.js.
         delete scrollOpts.header;
 
-        smoothScroll.animateScroll(this.target, this.shadowLink, scrollOpts);
+        smoothScroll.animateScroll(
+          this.waypointElement,
+          this.shadowLink,
+          scrollOpts,
+        );
       }
     } catch (err) {
       console.log(err);

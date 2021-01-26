@@ -27,13 +27,14 @@
         },
         {
           "text": "The constituent experience",
-          "url": "#the-constituent-experience"
+          "url": "#section-3"
         },
         {
           "text": "Section 4",
           "url": "#section-4"
         }
-      ]
+      ],
+      scrollOffsetSelector: ".js-bolt-sticky"
     } only %}
   {% endblock %}
 {% endembed %}
@@ -217,7 +218,7 @@
   {% endblock band_content %}
 {% endembed %}
 
-{% embed "@bolt-components-sticky/sticky.twig" %}
+{# {% embed "@bolt-components-sticky/sticky.twig" %}
   {% block sticky_content %}
     {% include "@bolt-components-navbar/navbar.twig" with {
       theme: "light",
@@ -236,10 +237,11 @@
           "text": "Link",
           "url": "#section-6"
         }
-      ]
+      ],
+      scrollOffsetSelector: ".js-bolt-sticky ~ .js-bolt-sticky"
     } only %}
   {% endblock %}
-{% endembed %}
+{% endembed %} #}
 
 {% embed "@bolt-components-band/band.twig" with {
   size: "large",

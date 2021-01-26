@@ -1,3 +1,5 @@
+const navbarItemSchema = require('./navbar-item.schema.js');
+
 module.exports = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'Navbar',
@@ -52,20 +54,10 @@ module.exports = {
       default: 'full',
       enum: ['full', 'auto'],
     },
-    links: {
+    items: {
       type: 'array',
-      description: '(Inherited from nav-priority) Array of links',
-      items: {
-        type: 'object',
-        properties: {
-          text: {
-            type: 'string',
-          },
-          url: {
-            type: 'string',
-          },
-        },
-      },
+      description: 'Array of Navbar Items',
+      items: navbarItemSchema,
     },
     moreText: {
       type: 'string',
@@ -77,6 +69,32 @@ module.exports = {
       type: 'integer',
       description:
         '(Inherited from nav-indicator) Number of pixels taken up by sticky items at the top of the page.  Used for smooth scroll and gumshoe.',
+    },
+    sticky: {
+      type: 'boolean',
+      description:
+        'When enabled, TOC will automatically use sticky positioning + add a `top` offset style based on the height of the `scrollOffsetSelector` plus the `scrollOffset` (if defined),',
+    },
+    scrollOffsetSelector: {
+      type: 'string',
+      description:
+        'Selects a fixed element on the page, offsets smooth scrolling by the height of that element. Must be a valid CSS selector.',
+    },
+    scrollOffset: {
+      type: 'integer',
+      description:
+        'Additional offset for smooth scrolling, integer converted to pixel value.',
+    },
+    uuid: {
+      type: 'string',
+      description:
+        'Unique ID for the navbar, randomly generated if not provided.',
+    },
+    links: {
+      title: 'DEPRECATED',
+      description: 'Use `items` instead.',
+      type: 'array',
+      items: navbarItemSchema,
     },
   },
 };
