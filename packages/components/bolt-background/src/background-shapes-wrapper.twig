@@ -4,11 +4,11 @@
 {% set this = init(schema) %}
 {% set attributes = create_attribute({}) %}
 
-{% set shape_classes = [
+{% set classes = [
   "c-bolt-background__shapes",
   this.data.shape_alignment.value ? "c-bolt-background__shapes--" ~ this.data.shape_alignment.value : "",
 ] %}
 
-<div {{ attributes.addClass(shape_classes) }}>
+<div {{ attributes.addClass(classes) }}>
   {% include "@bolt/background-shapes.twig" with { "shapeGroup": this.data.shape_group.value } only %}
 </div>

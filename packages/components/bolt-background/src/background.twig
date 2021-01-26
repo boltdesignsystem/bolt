@@ -20,6 +20,7 @@
 
     {% if this.data.overlay.value == "enabled" or this.data.shape_group.value != 'none'  %}
       <div class="{{ "c-bolt-background__item" }}">
+        {# @todo `overlay` should be Boolean #}
         {% if this.data.overlay.value == "enabled" %}
           {% include "@bolt-components-background/background-overlay.twig" %}
         {% endif %}
