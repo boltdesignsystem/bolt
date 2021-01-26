@@ -1,23 +1,19 @@
 {% set schema = bolt.data.components["@bolt-components-background"].schema %}
 
-{% set baseClass = "c-bolt-background" %}
+{# Variables #}
+{% set this = init(schema) %}
 {% set attributes = create_attribute({}) %}
-{% set overlay = overlay in schema.properties.overlay.enum ? overlay : schema.properties.overlay.default %}
-{% set opacity = opacity in schema.properties.opacity.enum ? opacity : opacity in schema.properties.opacity.default %}
-{% set fill = fill in schema.properties.fill.enum ? fill : schema.properties.fill.default %}
-{% set fillColor = fillColor in schema.properties.fillColor.enum ? fillColor : schema.properties.fillColor.default %}
 
-{% if focalPoint and focalPoint.horizontal == "left" and fill == "gradient" %}
-  {% set fill = "gradient-reversed" %}
-{% endif %}
+{% set is_reversed = focalPoint and focalPoint.horizontal == "left" and this.data.fill.value == "gradient" %}
+{% set fill_value = is_reversed ? "gradient-reversed" : this.data.fill.value %}
 
 {% set classes = [
-  baseClass ~ "__overlay",
-  baseClass ~ "__overlay--" ~ opacity ~ "-opacity",
-  baseClass ~ "__overlay--" ~ fill ~ "-fill",
-  baseClass ~ "__overlay-fill-color--" ~ fillColor
+  "c-bolt-background__overlay",
+  "c-bolt-background__overlay--" ~ this.data.opacity.value ~ "-opacity",
+  "c-bolt-background__overlay--" ~ fill_value ~ "-fill",
+  "c-bolt-background__overlay-fill-color--" ~ this.data.fill_color.value
 ] %}
 
-{% if overlay == 'enabled' %}
+{% if this.data.overlay.value == 'enabled' %}
   <div {{ attributes.addClass(classes) }} ></div>
 {% endif %}
