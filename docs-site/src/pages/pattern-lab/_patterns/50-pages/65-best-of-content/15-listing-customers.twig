@@ -22,7 +22,7 @@
           align: 'center',
           tag: 'p',
         } only %}
-        <div class="u-bolt-text-align-center">
+        {# <div class="u-bolt-text-align-center">
           {% include '@bolt-components-button/button.twig' with {
             text: 'Subscribe',
             size: 'small',
@@ -32,7 +32,7 @@
               position: 'before',
             }
           } only %}
-        </div>
+        </div> #}
       </div>
       <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-10/12@small u-bolt-width-5/12@medium">
         {% set video %}
@@ -62,7 +62,7 @@
             url: 'https://pega.com',
           } only %}
         </bolt-stack>
-        <bolt-stack spacing="xsmall">
+        {# <bolt-stack spacing="xsmall">
           {% set views %}
             <small>{{ icon_eye }} 27 views</small>
           {% endset %}
@@ -135,7 +135,7 @@
               share_button,
             ]
           } only %}
-        </bolt-stack>
+        </bolt-stack> #}
         {% include '@bolt-components-headline/text.twig' with {
           text: 'Shank alcatra landjaeger, hamburger beef chicken chuck pork cupim pork loin andouille prosciutto ball tip. Cow tail tongue flank t-bone pig, pancetta cupim. Flank turkey bresaola pork, prosciutto shoulder pork loin cupim cow ribeye kevin buffalo meatloaf. Salami ham ground round filet mignon cow jowl.',
         } only %}
@@ -234,9 +234,9 @@
         alt: '',
       } only %}
     </bolt-stack>
-    <bolt-stack spacing="xsmall">
+    {# <bolt-stack spacing="xsmall">
       {{ action_list }}
-    </bolt-stack>
+    </bolt-stack> #}
     <bolt-stack spacing="xsmall">
       {% include '@bolt-components-headline/headline.twig' with {
         text: 'Article title. Sausage brisket meatloaf turducken buffalo, salami chislic.',
@@ -431,9 +431,8 @@
     <form class="c-bolt-form">
       {% include '@bolt-components-list/list.twig' with {
         display: 'inline',
-        align: 'justify',
+        align: 'end',
         items: [
-          filter_button,
           sort_select,
         ],
       } only %}
