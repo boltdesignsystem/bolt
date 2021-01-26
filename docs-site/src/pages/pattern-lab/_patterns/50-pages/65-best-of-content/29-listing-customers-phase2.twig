@@ -11,7 +11,7 @@
     <div class="o-bolt-grid o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center o-bolt-grid--middle o-bolt-grid--large">
       <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-8/12@small">
         {% include '@bolt-components-headline/headline.twig' with {
-          text: 'Pegaworld replays',
+          text: 'Big brands, big wins',
           size: 'xxxlarge',
           align: 'center',
           tag: 'h1',
@@ -22,7 +22,7 @@
           align: 'center',
           tag: 'p',
         } only %}
-        {# <div class="u-bolt-text-align-center">
+        <div class="u-bolt-text-align-center">
           {% include '@bolt-components-button/button.twig' with {
             text: 'Subscribe',
             size: 'small',
@@ -32,7 +32,7 @@
               position: 'before',
             }
           } only %}
-        </div> #}
+        </div>
       </div>
       <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-10/12@small u-bolt-width-5/12@medium">
         {% set video %}
@@ -62,7 +62,7 @@
             url: 'https://pega.com',
           } only %}
         </bolt-stack>
-        {# <bolt-stack spacing="xsmall">
+        <bolt-stack spacing="xsmall">
           {% set views %}
             <small>{{ icon_eye }} 27 views</small>
           {% endset %}
@@ -135,7 +135,7 @@
               share_button,
             ]
           } only %}
-        </bolt-stack> #}
+        </bolt-stack>
         {% include '@bolt-components-headline/text.twig' with {
           text: 'Shank alcatra landjaeger, hamburger beef chicken chuck pork cupim pork loin andouille prosciutto ball tip. Cow tail tongue flank t-bone pig, pancetta cupim. Flank turkey bresaola pork, prosciutto shoulder pork loin cupim cow ribeye kevin buffalo meatloaf. Salami ham ground round filet mignon cow jowl.',
         } only %}
@@ -146,16 +146,6 @@
   {% include '@bolt-components-band/band.twig' with {
     content: band_content,
     theme: 'dark',
-    background: {
-      overlay: 'disabled',
-      contentItems: [
-        {
-          pattern: 'image',
-          src: '/images/backgrounds/navy-light-circles.jpg',
-          lazyload: true,
-        },
-      ]
-    },
   } only %}
 
   {% set action_list %}
@@ -237,29 +227,19 @@
     </div>
   {% endset %}
 
-  {% set item_video %}
+  {% set item_article %}
     <bolt-stack spacing="xsmall">
-      {% set video %}
-        <video-js
-          data-account='1900410236'
-          data-player='4fVA8Ojzs'
-          data-embed='default'
-          data-video-id='3974147489001'
-          data-media-duration
-          controls
-          class='c-base-video'></video-js>
-      {% endset %}
-      {% include '@bolt-components-ratio/ratio.twig' with {
-        children: video,
-        ratio: '16/9'
+      {% include '@bolt-components-image/image.twig' with {
+        src: 'https://via.placeholder.com/1600x900.png?text=Placeholder',
+        alt: '',
       } only %}
     </bolt-stack>
-    {# <bolt-stack spacing="xsmall">
+    <bolt-stack spacing="xsmall">
       {{ action_list }}
-    </bolt-stack> #}
+    </bolt-stack>
     <bolt-stack spacing="xsmall">
       {% include '@bolt-components-headline/headline.twig' with {
-        text: 'Video title. Sausage brisket meatloaf turducken buffalo, salami chislic.',
+        text: 'Article title. Sausage brisket meatloaf turducken buffalo, salami chislic.',
         size: 'large',
         tag: 'h2',
         url: 'https://pega.com',
@@ -268,7 +248,7 @@
     {% include '@bolt-components-chip-list/chip-list.twig' with {
       items: [
         {
-          text: 'Video',
+          text: 'Whitepaper',
         },
         {
           text: 'Research',
@@ -279,50 +259,6 @@
   {% endset %}
 
   {% set band_content %}
-    {# {% set year_select %}
-      {% set label %}
-        {% include '@bolt-components-form/form-label.twig' with {
-          title: 'Year',
-          displayType: 'block',
-          attributes: {
-            for: 'year-select',
-            class: 'u-bolt-visuallyhidden',
-          },
-        } only %}
-      {% endset %}
-      {% set select %}
-        {% include '@bolt-components-form/form-select.twig' with {
-          title: 'Country',
-          options: [
-            {
-              type: 'option',
-              value: 'pegaworld-2020',
-              label: 'Pegaworld 2020',
-            },
-            {
-              type: 'option',
-              value: 'pegaworld-2019',
-              label: 'Pegaworld 2019',
-            },
-            {
-              type: 'option',
-              value: 'pegaworld-2018',
-              label: 'Pegaworld 2018',
-            },
-          ],
-          attributes: {
-            id: 'year-select',
-            name: 'year-select',
-          },
-        } only %}
-      {% endset %}
-      {% include '@bolt-components-form/form-element.twig' with {
-        label: label,
-        labelDisplay: 'before',
-        children: select,
-      } only %}
-    {% endset %}
-
     {% set filter_button %}
       {% include '@bolt-components-button/button.twig' with {
         text: 'Filters',
@@ -493,39 +429,32 @@
     {% endset %}
 
     <form class="c-bolt-form">
-      <div class="o-bolt-grid o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--small">
-        <div class="o-bolt-grid__cell u-bolt-width-6/12@small u-bolt-flex-grow">
-          {% include '@bolt-components-list/list.twig' with {
-            display: 'inline',
-            items: [
-              year_select,
-              filter_button,
-            ]
-          } only %}
-        </div>
-        <div class="o-bolt-grid__cell u-bolt-flex-shrink">
-          {{ sort_select }}
-        </div>
-      </div>
-    </form> #}
+      {% include '@bolt-components-list/list.twig' with {
+        display: 'inline',
+        align: 'end',
+        items: [
+          sort_select,
+        ],
+      } only %}
+    </form>
     <div class="o-bolt-grid o-bolt-grid--flex o-bolt-grid--matrix">
       <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@small u-bolt-width-4/12@medium">
-        {{ item_video }}
+        {{ item_article }}
       </div>
       <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@small u-bolt-width-4/12@medium">
-        {{ item_video }}
+        {{ item_article }}
       </div>
       <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@small u-bolt-width-4/12@medium">
-        {{ item_video }}
+        {{ item_article }}
       </div>
       <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@small u-bolt-width-4/12@medium">
-        {{ item_video }}
+        {{ item_article }}
       </div>
       <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@small u-bolt-width-4/12@medium">
-        {{ item_video }}
+        {{ item_article }}
       </div>
       <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@small u-bolt-width-4/12@medium">
-        {{ item_video }}
+        {{ item_article }}
       </div>
       <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-text-align-center">
         {% include '@bolt-components-button/button.twig' with {

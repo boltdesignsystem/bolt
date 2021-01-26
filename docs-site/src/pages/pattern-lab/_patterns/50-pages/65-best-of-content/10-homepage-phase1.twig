@@ -1,0 +1,173 @@
+{% set band_content %}
+  {% set icon_eye %}
+    {% include '@bolt-components-icon/icon.twig' with {
+      name: 'eye',
+    } only %}
+  {% endset %}
+
+  {% include '@bolt-components-headline/headline.twig' with {
+    text: 'Best of Pega, curated for you',
+    size: 'xxlarge',
+    align: 'center',
+    tag: 'h2',
+  } only %}
+  <div class="o-bolt-grid o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--large">
+    <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@medium">
+      {% include '@bolt-components-headline/subheadline.twig' with {
+        text: 'Recommended for you',
+        size: 'xlarge',
+        tag: 'h3'
+      } only %}
+      <bolt-stack spacing="xsmall">
+        {% include '@bolt-components-image/image.twig' with {
+          src: 'https://via.placeholder.com/1600x900.png?text=Placeholder',
+          alt: '',
+        } only %}
+      </bolt-stack>
+      <bolt-stack spacing="xsmall">
+        <small>{{ icon_eye }} 27 views</small>
+      </bolt-stack>
+      <bolt-stack spacing="xsmall">
+        {% include '@bolt-components-headline/headline.twig' with {
+          text: 'The future of work',
+          size: 'xlarge',
+          tag: 'h4',
+          url: 'https://pega.com'
+        } only %}
+        {% include '@bolt-components-headline/text.twig' with {
+          text: 'Chicken bacon doner pancetta pork corned beef, swine jowl burgdoggen pastrami buffalo beef ribs shankle. Turducken pork porchetta shankle, salami short ribs corned beef. Short ribs turkey burgdoggen, fatback jerky chuck landjaeger corned beef pork t-bone jowl hamburger brisket strip steak. Tenderloin cow bacon cupim t-bone short ribs swine biltong beef ribs capicola sausage beef.',
+        } only %}
+      </bolt-stack>
+      {% include '@bolt-components-chip-list/chip-list.twig' with {
+        items: [
+          {
+            text: 'Whitepaper',
+          },
+          {
+            text: 'Research',
+          },
+        ],
+        size: 'xsmall',
+      } only %}
+    </div>
+    <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@medium">
+      {% include '@bolt-components-headline/subheadline.twig' with {
+        text: 'Trending now',
+        size: 'xlarge',
+        tag: 'h3',
+      } only %}
+      <div class="o-bolt-grid o-bolt-grid--flex o-bolt-grid--matrix">
+        <div class="o-bolt-grid__cell u-bolt-width-3/12">
+          {% set video %}
+            <video-js
+              data-account='1900410236'
+              data-player='4fVA8Ojzs'
+              data-embed='default'
+              data-video-id='3974147489001'
+              controls
+              class='c-base-video'></video-js>
+          {% endset %}
+          {% include '@bolt-components-ratio/ratio.twig' with {
+            children: video,
+            ratio: '1/1'
+          } only %}
+        </div>
+        <div class="o-bolt-grid__cell u-bolt-width-9/12">
+          <bolt-stack spacing="xsmall">
+            <small>{{ icon_eye }} 27 views</small>
+          </bolt-stack>
+          <bolt-stack spacing="xsmall">
+            {% include '@bolt-components-headline/headline.twig' with {
+              text: 'Rethink your business architecture with a center-out approach',
+              size: 'large',
+              tag: 'h4',
+              url: 'https://pega.com',
+            } only %}
+            {% include '@bolt-components-headline/text.twig' with {
+              text: 'Short ribs turkey burgdoggen, fatback jerky chuck landjaeger corned beef pork t-bone jowl hamburger.',
+            } only %}
+          </bolt-stack>
+          {% include '@bolt-components-chip/chip.twig' with {
+            text: 'Video',
+            size: 'xsmall',
+          } only %}
+        </div>
+        <div class="o-bolt-grid__cell u-bolt-width-3/12">
+          {% include '@bolt-components-image/image.twig' with {
+            src: 'https://via.placeholder.com/500.png?text=Placeholder',
+            alt: '',
+          } only %}
+        </div>
+        <div class="o-bolt-grid__cell u-bolt-width-9/12">
+          <bolt-stack spacing="xsmall">
+            <small>{{ icon_eye }} 868 views</small>
+          </bolt-stack>
+          <bolt-stack spacing="xsmall">
+            {% include '@bolt-components-headline/headline.twig' with {
+              text: '10 golden rules for RPA success',
+              size: 'large',
+              tag: 'h4',
+              url: 'https://pega.com'
+            } only %}
+            {% include '@bolt-components-headline/text.twig' with {
+              text: 'Short ribs turkey burgdoggen, fatback jerky chuck landjaeger corned beef pork t-bone jowl hamburger.',
+            } only %}
+          </bolt-stack>
+          {% include '@bolt-components-chip/chip.twig' with {
+            text: 'Whitepaper',
+            size: 'xsmall',
+          } only %}
+        </div>
+        <div class="o-bolt-grid__cell u-bolt-width-3/12">
+          {% include '@bolt-components-image/image.twig' with {
+            src: 'https://via.placeholder.com/500.png?text=Placeholder',
+            alt: '',
+          } only %}
+        </div>
+        <div class="o-bolt-grid__cell u-bolt-width-9/12">
+          <bolt-stack spacing="xsmall">
+            <small>{{ icon_eye }} 109 views</small>
+          </bolt-stack>
+          <bolt-stack spacing="xsmall">
+            {% include '@bolt-components-headline/headline.twig' with {
+              text: 'Be strong. Leaner. More agile.',
+              size: 'large',
+              tag: 'h4',
+              url: 'https://pega.com',
+            } only %}
+            {% include '@bolt-components-headline/text.twig' with {
+              text: 'Short ribs turkey burgdoggen, fatback jerky chuck landjaeger corned beef pork t-bone jowl hamburger.',
+            } only %}
+          </bolt-stack>
+          {% include '@bolt-components-chip/chip.twig' with {
+            text: 'E-Book',
+            size: 'xsmall',
+          } only %}
+        </div>
+      </div>
+    </div>
+    <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-text-align-center">
+      {% include '@bolt-elements-button/button.twig' with {
+        content: 'See more recommendations',
+        attributes: {
+          href: 'https://pega.com'
+        }
+      } only %}
+    </div>
+  </div>
+{% endset %}
+
+{% include '@bolt-components-band/band.twig' with {
+  content: band_content,
+  theme: 'xlight',
+  background: {
+    overlay: 'disabled',
+    contentItems: [
+      {
+        pattern: 'image',
+        src: '/images/backgrounds/teal-stripes.png',
+        lazyload: true,
+      },
+    ]
+  },
+} only %}
