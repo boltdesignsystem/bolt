@@ -22,17 +22,19 @@
           align: 'center',
           tag: 'p',
         } only %}
-        <div class="u-bolt-text-align-center">
-          {% include '@bolt-components-button/button.twig' with {
-            text: 'Subscribe',
-            size: 'small',
-            style: 'secondary',
-            icon: {
-              name: 'add',
-              position: 'before',
-            }
-          } only %}
-        </div>
+        {% if phase2 %}
+          <div class="u-bolt-text-align-center">
+            {% include '@bolt-components-button/button.twig' with {
+              text: 'Subscribe',
+              size: 'small',
+              style: 'secondary',
+              icon: {
+                name: 'add',
+                position: 'before',
+              }
+            } only %}
+          </div>
+        {% endif %}
       </div>
       <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-10/12@small u-bolt-width-5/12@medium">
         {% set video %}
@@ -62,30 +64,17 @@
             url: 'https://pega.com',
           } only %}
         </bolt-stack>
-        <bolt-stack spacing="xsmall">
-          {% set views %}
-            <small>{{ icon_eye }} 27 views</small>
-          {% endset %}
-          {% set like_button %}
-            <small>
-              {% include '@bolt-components-link/link.twig' with {
-                text: 'Like',
-                icon: {
-                  name: 'heart',
-                  position: 'before',
-                },
-                type: 'button',
-                isHeadline: true,
-              } only %}
-            </small>
-          {% endset %}
-          {% set share_button %}
-            {% set popover_trigger %}
+        {% if phase1 %}
+          <bolt-stack spacing="xsmall">
+            {% set views %}
+              <small>{{ icon_eye }} 27 views</small>
+            {% endset %}
+            {% set like_button %}
               <small>
                 {% include '@bolt-components-link/link.twig' with {
-                  text: 'Share',
+                  text: 'Like',
                   icon: {
-                    name: 'share',
+                    name: 'heart',
                     position: 'before',
                   },
                   type: 'button',
@@ -93,49 +82,64 @@
                 } only %}
               </small>
             {% endset %}
-            {% set popover_content %}
-              {% include '@bolt-components-share/share.twig' with {
-                display: 'menu',
-                text: 'Share this content',
-                sources: [
-                  {
-                    name: 'facebook',
-                    url: 'https://www.facebook.com/sharer/sharer.php?u=https://pega.com&amp;src=sdkpreparse'
+            {% set share_button %}
+              {% set popover_trigger %}
+                <small>
+                  {% include '@bolt-components-link/link.twig' with {
+                    text: 'Share',
+                    icon: {
+                      name: 'share',
+                      position: 'before',
+                    },
+                    type: 'button',
+                    isHeadline: true,
+                  } only %}
+                </small>
+              {% endset %}
+              {% set popover_content %}
+                {% include '@bolt-components-share/share.twig' with {
+                  display: 'menu',
+                  text: 'Share this content',
+                  sources: [
+                    {
+                      name: 'facebook',
+                      url: 'https://www.facebook.com/sharer/sharer.php?u=https://pega.com&amp;src=sdkpreparse'
+                    },
+                    {
+                      name: 'twitter',
+                      url: 'https://twitter.com/intent/tweet?url=https://pega.com&text=Sample%20Share%20Text&via=pega&hashtags=boltDesignSystemRocks!'
+                    },
+                    {
+                      name: 'linkedin',
+                      url: 'https://www.linkedin.com/shareArticle?url=https://pega.com'
+                    },
+                    {
+                      name: 'email',
+                      url: 'mailto:?&body=Sample%20Text%20--%20https%3A//pega.com'
+                    }
+                  ],
+                  copy_to_clipboard: {
+                    text_to_copy: 'https://pega.com',
                   },
-                  {
-                    name: 'twitter',
-                    url: 'https://twitter.com/intent/tweet?url=https://pega.com&text=Sample%20Share%20Text&via=pega&hashtags=boltDesignSystemRocks!'
-                  },
-                  {
-                    name: 'linkedin',
-                    url: 'https://www.linkedin.com/shareArticle?url=https://pega.com'
-                  },
-                  {
-                    name: 'email',
-                    url: 'mailto:?&body=Sample%20Text%20--%20https%3A//pega.com'
-                  }
-                ],
-                copy_to_clipboard: {
-                  text_to_copy: 'https://pega.com',
-                },
+                } only %}
+              {% endset %}
+              {% include "@bolt-components-popover/popover.twig" with {
+                trigger: popover_trigger,
+                content: popover_content,
+                spacing: "none",
               } only %}
             {% endset %}
-            {% include "@bolt-components-popover/popover.twig" with {
-              trigger: popover_trigger,
-              content: popover_content,
-              spacing: "none",
+            {% include '@bolt-components-list/list.twig' with {
+              display: 'inline',
+              spacing: 'small',
+              items: [
+                views,
+                like_button,
+                share_button,
+              ]
             } only %}
-          {% endset %}
-          {% include '@bolt-components-list/list.twig' with {
-            display: 'inline',
-            spacing: 'small',
-            items: [
-              views,
-              like_button,
-              share_button,
-            ]
-          } only %}
-        </bolt-stack>
+          </bolt-stack>
+        {% endif %}
         {% include '@bolt-components-headline/text.twig' with {
           text: 'Shank alcatra landjaeger, hamburger beef chicken chuck pork cupim pork loin andouille prosciutto ball tip. Cow tail tongue flank t-bone pig, pancetta cupim. Flank turkey bresaola pork, prosciutto shoulder pork loin cupim cow ribeye kevin buffalo meatloaf. Salami ham ground round filet mignon cow jowl.',
         } only %}
@@ -234,9 +238,11 @@
         alt: '',
       } only %}
     </bolt-stack>
-    <bolt-stack spacing="xsmall">
-      {{ action_list }}
-    </bolt-stack>
+    {% if phase1 %}
+      <bolt-stack spacing="xsmall">
+        {{ action_list }}
+      </bolt-stack>
+    {% endif %}
     <bolt-stack spacing="xsmall">
       {% include '@bolt-components-headline/headline.twig' with {
         text: 'Article title. Sausage brisket meatloaf turducken buffalo, salami chislic.',
@@ -428,15 +434,33 @@
       } only %}
     {% endset %}
 
-    <form class="c-bolt-form">
-      {% include '@bolt-components-list/list.twig' with {
-        display: 'inline',
-        align: 'end',
-        items: [
-          sort_select,
-        ],
-      } only %}
-    </form>
+    {% if phase1 or phase2 %}
+      <form class="c-bolt-form">
+        {% if phase1 and phase2 == false %}
+          {% set form_items = []  %}
+        {% elseif phase2 %}
+          {% set form_items = [filter_button] %}
+        {% endif %}
+
+        {% set form_list %}
+          {% include '@bolt-components-list/list.twig' with {
+            display: 'inline',
+            align: 'start',
+            items: form_items,
+          } only %}
+        {% endset %}
+
+        <div class="o-bolt-grid o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--small">
+          <div class="o-bolt-grid__cell u-bolt-width-6/12@small u-bolt-flex-grow">
+            {{ form_list }}
+          </div>
+          <div class="o-bolt-grid__cell u-bolt-flex-shrink">
+            {{ sort_select }}
+          </div>
+        </div>
+      </form>
+    {% endif %}
+
     <div class="o-bolt-grid o-bolt-grid--flex o-bolt-grid--matrix">
       <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@small u-bolt-width-4/12@medium">
         {{ item_article }}
