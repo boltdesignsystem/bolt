@@ -1,46 +1,44 @@
 {% set schema = bolt.data.components["@bolt-components-card-replacement"].schema %}
 
-{% set attributes = create_attribute(body.attributes|default({})) %}
-{% set inner_attributes = create_attribute({}) %}
-{% set card_replacement_body_content = body.content %}
-{% set spacing_options = schema.properties.spacing.enum %}
-{% set spacing = spacing in spacing_options ? spacing : schema.properties.spacing.default %}
+{% set this = init(schema) %}
 {% set classes = [
   "c-bolt-card_replacement__body",
-  "c-bolt-card_replacement__body--spacing-#{spacing}",
+  "c-bolt-card_replacement__body--spacing-#{this.data.spacing.value}",
 ] %}
 
 {# @todo: `content_tag` does not appear to be used, can this safely be removed? #}
-{% if tag == "figure" %}
+{% if this.data.tag.value == "figure" %}
   {% set content_tag = "figcaption" %}
 {% else %}
   {% set content_tag = "div" %}
 {% endif %}
 
-<bolt-card-replacement-body {{ attributes }}>
-  <ssr-keep for="bolt-card-replacement-body" {{ inner_attributes.addClass(classes) }}>
-    {% block body %}
-      {% if card_replacement_body_content %}
-        {{ card_replacement_body_content }}
-      {% else %}
-        {% set card_replacement_eyebrow = body.eyebrow %}
-        {% set card_replacement_headline = body.headline %}
-        {% set card_replacement_paragraph = body.paragraph %}
+<bolt-card-replacement-body
+  {{ this.props|without("class") }}>
+  <ssr-keep for="bolt-card-replacement-body" class="{{ classes|join(' ') }}">
 
-        {% if card_replacement_eyebrow %}
+    <script>
+      console.log({{ this.data.body.eyebrow.value|json_encode() }})
+    </script>
+
+    {% block body %}
+      {% if body.content %}
+        {{ body.content }}
+      {% else %}
+        {% if this.data.body.eyebrow.value %}
           {% include "@bolt-components-headline/eyebrow.twig" with {
-            text: card_replacement_eyebrow,
+            text: this.data.body.eyebrow.value,
           } only %}
         {% endif %}
-        {% if card_replacement_headline %}
+        {% if this.data.body.headline.value %}
           {% include "@bolt-components-headline/headline.twig" with {
-            text: card_replacement_headline,
+            text: this.data.body.headline.value,
             size: "large",
           } only %}
         {% endif %}
-        {% if card_replacement_paragraph %}
+        {% if this.data.body.paragraph.value %}
           {% include "@bolt-components-headline/text.twig" with {
-            text: card_replacement_paragraph,
+            text: this.data.body.paragraph.value,
           } only %}
         {% endif %}
       {% endif %}

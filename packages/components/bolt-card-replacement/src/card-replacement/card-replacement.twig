@@ -5,29 +5,15 @@
 {% endif %}
 
 {# Variables #}
-{% set base_class = "c-bolt-card-replacement" %}
+{% set this = init(schema) %}
 {% set attributes = create_attribute(attributes|default({})) %}
 {% set inner_attributes = create_attribute({}) %}
 
-{# Set up checks to validate that the component's prop values are allowed, based on the component's schema #}
-{% set tag_options = schema.properties.tag.enum %}
-{% set spacing_options = schema.properties.spacing.enum %}
-{% set borderRadius_options = schema.properties.borderRadius.enum %}
-{% set theme_options = schema.properties.theme.enum %}
-{% set height_options = schema.properties.height.enum %}
-
-{# Check that the component's current prop values are valid. if not, default to the schema default #}
-{% set tag = tag in tag_options ? tag : schema.properties.tag.default %}
-{% set spacing = spacing in spacing_options ? spacing : schema.properties.spacing.default %}
-{% set borderRadius = borderRadius in borderRadius_options ? borderRadius : schema.properties.borderRadius.default %}
-{% set theme = theme in theme_options ? theme : schema.properties.theme.default %}
-{% set height = height in height_options ? height : schema.properties.height.default %}
-
 {% if link %}
-  {% set link_url = link.url %}
-  {% set link_text = link.text %}
-  {% set link_target = link.target %}
-  {% set link_attributes = create_attribute(link.attributes|default({})) %}
+  {% set link_url = this.data.link.url.value %}
+  {% set link_text = this.data.link.text.value %}
+  {% set link_target = this.data.link.target.value %}
+  {% set link_attributes = create_attribute(this.data.link.attributes|default({})) %}
 {% endif %}
 
 {% if block("background") %}
@@ -50,32 +36,24 @@
 
 {# card-replacement component's custom element wrapper #}
 <bolt-card-replacement
-  {% if rounded %} rounded {% endif %}
-  {% if tag %} tag="{{ tag }}" {% endif %}
-  {% if spacing %} spacing="{{ spacing }}" {% endif %}
-  {% if borderRadius %} border-radius="{{ borderRadius }}" {% endif %}
-  {% if theme %} theme="{{ theme }}" {% endif %}
-  {% if height %} height="{{ height }}" {% endif %}
-  {% if link_url %} url="{{ link_url }}" {% endif %}
-  {% if horizontal %} horizontal {% endif %}
-  {{ attributes }}>
+  {{ this.props|without("items")|without("class") }}>
 
   {# This sets none value to not render anything. #}
   {% set theme = theme == "none" ? false : theme %}
 
   {# Array of classes based on the defined + default props #}
   {% set classes = [
-    base_class,
-    horizontal ? "c-bolt-card-replacement--horizontal" : "",
-    borderRadius in borderRadius_options ? "c-bolt-card-replacement--border-radius-#{borderRadius}" : "",
-    theme in theme_options ? "t-bolt-#{theme}" : "",
+    "c-bolt-card-replacement",
+    this.data.horizontal.value ? "c-bolt-card-replacement--horizontal" : "",
+    this.data.borderRadius.value ? "c-bolt-card-replacement--border-radius-#{this.data.borderRadius.value}" : "",
+    this.data.theme.value and this.data.theme.value != "none" ? "t-bolt-#{this.data.theme.value}" : "",
   ] %}
 
   <ssr-keep for="bolt-card-replacement" {{ inner_attributes.addClass(classes) }}>
-    {% if link and link_url %}
+    {% if this.data.link.value and link_url %}
       <bolt-card-replacement-link {{ link_attributes }}>
         {% if link_url %}
-          <a href="{{ link_url }}" class="{{ "#{base_class}__link" }}" {% if link_target %} target="{{ link_target }}" {% endif %}>
+          <a href="{{ link_url }}" class="{{ "c-bolt-card-replacement__link" }}" {% if link_target %} target="{{ link_target }}" {% endif %}>
             {% if link_text %}
               <ssr-keep for="bolt-card-replacement-link" class="u-bolt-visuallyhidden">{{ link_text }}</ssr-keep>
             {% endif %}
@@ -112,7 +90,7 @@
           {% include "@bolt-components-card-replacement/_card-replacement-media.twig" %}
         {% endif %}
       {% endif %}
-      {% if horizontal %}<div class="c-bolt-card-replacement__horizontal-wrapper">{% endif %}
+      {% if this.data.horizontal.value %}<div class="c-bolt-card-replacement__horizontal-wrapper">{% endif %}
         {% if body or body_block %}
           {% if body_block %}
             {% embed "@bolt-components-card-replacement/_card-replacement-body.twig" %}
@@ -129,7 +107,7 @@
             {% include "@bolt-components-card-replacement/_card-replacement-actions.twig" %}
           {% endif %}
         {% endblock %}
-      {% if horizontal %}</div>{% endif %}
+      {% if this.data.horizontal.value %}</div>{% endif %}
     {% endif %}
   </ssr-keep>
 </bolt-card-replacement>
