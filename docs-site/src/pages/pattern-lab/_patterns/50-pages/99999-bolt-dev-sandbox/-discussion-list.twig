@@ -4,16 +4,19 @@
   {% set icon_reply %}
     {% include '@bolt-components-icon/icon.twig' with {
       name: 'reply',
+      size: 'small',
     } only %}
   {% endset %}
   {% set icon_heart %}
     {% include '@bolt-components-icon/icon.twig' with {
       name: 'heart',
+      size: 'small',
     } only %}
   {% endset %}
   {% set icon_eye %}
     {% include '@bolt-components-icon/icon.twig' with {
       name: 'eye',
+      size: 'small',
     } only %}
   {% endset %}
   {% set band_content %}
@@ -332,7 +335,7 @@
               trigger: trigger,
               content: content,
               spacing: 'none',
-              boundary: '.js-cc-post-list'
+              boundary: '.js-cc-post-list',
             } only %}
           </div>
         </div>

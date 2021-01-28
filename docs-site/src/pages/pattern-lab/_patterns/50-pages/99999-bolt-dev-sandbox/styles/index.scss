@@ -26,6 +26,7 @@ $_bolt-post-list-flag-icon-width: 64px; // This matches the size of a xlarge ico
 .c-bolt-post-flag {
   display: flex;
   flex-wrap: nowrap;
+  align-items: flex-start;
   position: static; // Position must be static on this element so the heading link will not be contained inside this.
   padding: var(--bolt-spacing-y-medium) 0;
 
@@ -36,6 +37,8 @@ $_bolt-post-list-flag-icon-width: 64px; // This matches the size of a xlarge ico
 
 .c-bolt-post-flag__media {
   margin-right: var(--bolt-spacing-y-medium);
+  pointer-events: none;
+  user-select: none;
 }
 
 .c-bolt-post-flag__actions {
@@ -114,6 +117,8 @@ $_bolt-post-list-flag-icon-width: 64px; // This matches the size of a xlarge ico
   margin: 0;
   padding: 0;
   list-style: none;
+  pointer-events: none;
+  user-select: none;
 
   > .c-bolt-post-status__item {
     display: grid;
