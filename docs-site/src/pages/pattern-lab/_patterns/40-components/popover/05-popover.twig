@@ -1,23 +1,59 @@
-{# Setting variables for demo purposes #}
-{% set link %}
-  {% include "@bolt-components-link/link.twig" with {
-    text: "call to action",
-    url: "https://pega.com",
-  } only %}
-{% endset %}
-{% set trigger %}
-  {% include "@bolt-components-button/button.twig" with {
-    text: "This triggers a popover",
-    size: "small",
-  } only %}
-{% endset %}
-{% set content %}
-  This is the content of the popover with a {{ link }}.
+{% set description %}
+  Popover usually contains a small piece of structured content that may have calls to action. For rendering more complex layouts, please consider using <bolt-link url="{{ link['viewall-components-modal'] }}">the modal component</bolt-link> instead. As for simple text or phrases, please consider using <bolt-link url="{{ link['viewall-components-tooltip'] }}">the tooltip component</bolt-link>.
 {% endset %}
 
-{# Start component specific code #}
-{% include "@bolt-components-popover/popover.twig" with {
+{% set demo %}
+  {% set link %}
+    {% include '@bolt-components-link/link.twig' with {
+      text: 'call to action',
+      url: 'https://pega.com',
+    } only %}
+  {% endset %}
+  {% set trigger %}
+    {% include '@bolt-components-button/button.twig' with {
+      text: 'This triggers a popover',
+    } only %}
+  {% endset %}
+  {% set content %}
+    This is the content of the popover with a {{ link }}.
+  {% endset %}
+  {% include '@bolt-components-popover/popover.twig' with {
+    trigger: trigger,
+    content: content,
+  } only %}
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% set trigger %}
+  {% include '@bolt-components-button/button.twig' with {
+    text: 'This triggers a popover',
+  } only %}
+{% endset %}
+{% include '@bolt-components-popover/popover.twig' with {
   trigger: trigger,
-  content: content,
+  content: 'This is the content of the popover.',
 } only %}
-{# End component specific code #}
+{% endverbatim %}
+{% endset %}
+
+{% set html_markup %}
+{% verbatim %}
+<bolt-popover spacing="medium">
+  <bolt-button>
+    This triggers a popover
+  </bolt-button>
+  <div slot="content">
+    This is the content of the popover.
+  </div>
+</bolt-popover>
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Basic Popover',
+  description: description,
+  demo: demo,
+  twig_markup: twig_markup,
+  html_markup: html_markup,
+} only %}
