@@ -128,6 +128,7 @@ $base-video-meta-transition: $bolt-transition;
       display: flex;
       flex-wrap: wrap;
       align-items: center;
+      box-sizing: border-box;
       overflow: auto;
       padding: var(--bolt-spacing-y-xsmall) 2.5rem var(--bolt-spacing-y-xsmall)
         var(--bolt-spacing-x-small);
@@ -234,6 +235,67 @@ $base-video-meta-transition: $bolt-transition;
   .vjs-overlay--hidden {
     opacity: 0;
     transition: opacity 0.2s ease;
+  }
+
+  .vjs-time-control {
+    padding-right: 0;
+    padding-left: 0;
+    font-size: 1.5em;
+    line-height: 2;
+  }
+
+  .vjs-time-divider {
+    min-width: 1.2em;
+  }
+
+  .vjs-social-embed-code {
+    display: none;
+  }
+
+  .vjs-modal-dialog-content {
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .vjs-social-overlay {
+    .vjs-social-direct-link {
+      width: 100%;
+      padding-right: 0;
+    }
+
+    .vjs-social-direct-link input {
+      background-color: #fff;
+    }
+
+    .vjs-social-share-links {
+      a:focus,
+      a:hover {
+        color: #fff;
+      }
+    }
+  }
+
+  .vjs-control {
+    width: 2em;
+    @include bolt-mq(xsmall) {
+      width: 3em;
+    }
+    @include bolt-mq(small) {
+      width: 4em;
+    }
+
+    // The playback rate needs extra space even at the smallest breakpoints to accommodate wide rates like "1.25x".
+    &.vjs-playback-rate {
+      width: 4em;
+    }
+
+    &.vjs-progress-control {
+      width: 100%;
+    }
+  }
+
+  .vjs-time-tooltip {
+    width: 40px;
   }
 
   // Cue Points
