@@ -23,15 +23,15 @@
     <bolt-text headline>Listing view</bolt-text>
     <ul class="c-bolt-post-list js-cc-post-list">
       <li class="c-bolt-post-list__item">
-        <div class="c-bolt-post-flag">
-          <div class="c-bolt-post-flag__media" aria-hidden="true">
+        <div class="c-bolt-post">
+          <div class="c-bolt-post__media" aria-hidden="true">
             {% include '@bolt-components-icon/icon.twig' with {
               name: 'questions',
               size: 'xlarge',
               color: 'teal',
             } only %}
           </div>
-          <div class="c-bolt-post-flag__content">
+          <div class="c-bolt-post__content">
             <div class="c-bolt-post-info">
               <div class="c-bolt-post-info__heading">
                 {% set link %}
@@ -67,15 +67,15 @@
         </div>
       </li>
       <li class="c-bolt-post-list__item">
-        <div class="c-bolt-post-flag">
-          <div class="c-bolt-post-flag__media" aria-hidden="true">
+        <div class="c-bolt-post">
+          <div class="c-bolt-post__media" aria-hidden="true">
             {% include '@bolt-components-icon/icon.twig' with {
               name: 'discussions',
               size: 'xlarge',
               color: 'orange',
             } only %}
           </div>
-          <div class="c-bolt-post-flag__content">
+          <div class="c-bolt-post__content">
             <div class="c-bolt-post-info">
               <div class="c-bolt-post-info__heading">
                 {% set link %}
@@ -119,15 +119,15 @@
         </div>
       </li>
       <li class="c-bolt-post-list__item">
-        <div class="c-bolt-post-flag">
-          <div class="c-bolt-post-flag__media" aria-hidden="true">
+        <div class="c-bolt-post">
+          <div class="c-bolt-post__media" aria-hidden="true">
             {% include '@bolt-components-icon/icon.twig' with {
               name: 'ideas',
               size: 'xlarge',
               color: 'berry',
             } only %}
           </div>
-          <div class="c-bolt-post-flag__content">
+          <div class="c-bolt-post__content">
             <div class="c-bolt-post-info">
               <div class="c-bolt-post-info__heading">
                 {% set link %}
@@ -174,15 +174,15 @@
     <bolt-text headline>Detailed listing view</bolt-text>
     <ul class="c-bolt-post-list js-cc-post-list">
       <li class="c-bolt-post-list__item">
-        <div class="c-bolt-post-flag">
-          <div class="c-bolt-post-flag__media" aria-hidden="true">
+        <div class="c-bolt-post">
+          <div class="c-bolt-post__media" aria-hidden="true">
             {% include '@bolt-components-icon/icon.twig' with {
               name: 'questions',
               size: 'xlarge',
               color: 'teal',
             } only %}
           </div>
-          <div class="c-bolt-post-flag__content">
+          <div class="c-bolt-post__content">
             <div class="c-bolt-post-info">
               <div class="c-bolt-post-info__heading">
                 {% set link %}
@@ -233,15 +233,15 @@
     <bolt-text headline>Manage view</bolt-text>
     <ul class="c-bolt-post-list js-cc-post-list">
       <li class="c-bolt-post-list__item">
-        <div class="c-bolt-post-flag">
-          <div class="c-bolt-post-flag__media" aria-hidden="true">
+        <div class="c-bolt-post">
+          <div class="c-bolt-post__media" aria-hidden="true">
             {% include '@bolt-components-icon/icon.twig' with {
               name: 'discussions',
               size: 'xlarge',
               color: 'teal',
             } only %}
           </div>
-          <div class="c-bolt-post-flag__content">
+          <div class="c-bolt-post__content">
             <div class="c-bolt-post-info">
               <div class="c-bolt-post-info__heading">
                 {% set link %}
@@ -299,7 +299,7 @@
               </li>
             </ul>
           </div>
-          <div class="c-bolt-post-flag__actions">
+          <div class="c-bolt-post__actions">
             {% set trigger %}
               {% include '@bolt-components-button/button.twig' with {
                 text: 'Post menu',

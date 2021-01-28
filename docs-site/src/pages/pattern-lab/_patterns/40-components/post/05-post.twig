@@ -1,0 +1,55 @@
+{% set description %}
+  Post
+{% endset %}
+
+{% set demo %}
+  {% set icon %}
+    {% include '@bolt-components-icon/icon.twig' with {
+      name: 'questions',
+      size: 'xlarge',
+      color: 'teal',
+    } only %}
+  {% endset %}
+  {% include '@bolt-components-post/post.twig' with {
+    icon: icon,
+    headline: {
+      text: 'This is a post',
+      tag: 'h3',
+      size: 'xlarge',
+      link_attributes: {
+        href: 'https://pega.com'
+      },
+    },
+    meta_items: [
+      'Posted by <a href="https://google.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline">username</a> on Aug 28, 2020',
+      'Last activity: 8 hours 15 minutes ago',
+    ],
+    status: {
+      solved: true,
+      locked: true,
+      replies: '35',
+      views: '1k',
+      favorited: true,
+      subscribed: true,
+    },
+    show_actions: true,
+  } only %}
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% endverbatim %}
+{% endset %}
+
+{% set html_markup %}
+{% verbatim %}
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Basic Post',
+  description: description,
+  demo: demo,
+  twig_markup: twig_markup,
+  html_markup: html_markup,
+} only %}

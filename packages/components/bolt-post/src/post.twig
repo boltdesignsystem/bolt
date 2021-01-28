@@ -1,0 +1,147 @@
+{# Schema Validation #}
+{% set schema = bolt.data.components['@bolt-components-post'].schema %}
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(schema, _self)|raw }}
+{% endif %}
+
+{# Variables #}
+{% set this = init(schema) %}
+{% set attributes = create_attribute(attributes|default({})) %}
+{% set headline_link_attributes = create_attribute(headline.link_attributes|default({})) %}
+{% set uuid = 'js-bolt-post-' ~ random() %}
+
+{# Array of classes based on the defined + default props #}
+{% set classes = [
+  'c-bolt-post',
+  disabled ? 'c-bolt-post--disabled' : '',
+] %}
+
+<div {{ attributes.addClass(classes)|without('id') }} id="{{ uuid }}">
+  {% if icon %}
+    <div class="c-bolt-post__media" aria-hidden="true">
+      {{ icon }}
+    </div>
+  {% endif %}
+  <div class="c-bolt-post__content">
+    <div class="c-bolt-post-info">
+      <div class="c-bolt-post-info__heading">
+        {% if headline_link_attributes %}
+          {% set _linked_text %}
+            {% include '@bolt-elements-text-link/text-link.twig' with {
+              content: headline.text,
+              reversed_underline: true,
+              expand_click_target: true,
+              attributes: headline_link_attributes
+            } only %}
+          {% endset %}
+        {% endif %}
+        {% include '@bolt-components-headline/headline.twig' with {
+          text: headline_link_attributes ? _linked_text : headline.text,
+          tag: headline.tag,
+          size: headline.size,
+        } only %}
+      </div>
+      {% if meta_items %}
+        <ul class="c-bolt-post-info__meta">
+          {% for item in meta_items %}
+            <li class="c-bolt-post-info__meta__item">{{ item }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    </div>
+    {% if status %}
+      <ul class="c-bolt-post-status">
+        {% if status.solved %}
+          <li class="c-bolt-post-status__item">
+            <span class="c-bolt-post-status__icon c-bolt-post-status__icon--solved" aria-hidden="true">
+              {% include '@bolt-components-icon/icon.twig' with {
+                name: 'check-solid',
+              } only %}
+            </span>
+            {{ 'Solved'|t }}
+          </li>
+        {% endif %}
+        {% if status.locked %}
+          <li class="c-bolt-post-status__item">
+            <span class="c-bolt-post-status__icon c-bolt-post-status__icon--locked" aria-hidden="true">
+              {% include '@bolt-components-icon/icon.twig' with {
+                name: 'lock',
+              } only %}
+            </span>
+            {{ 'Locked'|t }}
+          </li>
+        {% endif %}
+        {% if status.replies %}
+          <li class="c-bolt-post-status__item">
+            <span class="c-bolt-post-status__number">{{ status.replies }}</span> {{ 'Replies'|t }}
+          </li>
+        {% endif %}
+        {% if status.views %}
+          <li class="c-bolt-post-status__item">
+            <span class="c-bolt-post-status__number">{{ status.views }}</span> {{ 'Views'|t }}
+          </li>
+        {% endif %}
+      </ul>
+    {% endif %}
+  </div>
+  {% if status and show_actions %}
+    {% set icon_reply %}
+      {% include '@bolt-components-icon/icon.twig' with {
+        name: 'reply',
+        size: 'small',
+      } only %}
+    {% endset %}
+    {% set icon_heart %}
+      {% include '@bolt-components-icon/icon.twig' with {
+        name: 'heart',
+        size: 'small',
+        color: status.favorited ? 'pink' : 'auto',
+      } only %}
+    {% endset %}
+    {% set icon_eye %}
+      {% include '@bolt-components-icon/icon.twig' with {
+        name: status.subscribed ? 'eye-off' : 'eye',
+        size: 'small',
+      } only %}
+    {% endset %}
+    <div class="c-bolt-post__actions">
+      {% set trigger %}
+        {% include '@bolt-components-button/button.twig' with {
+          text: 'Post menu'|t,
+          size: 'small',
+          style: 'tertiary',
+          iconOnly: true,
+          icon: {
+            name: 'more',
+            position: 'before',
+          },
+        } only %}
+      {% endset %}
+      {% set content %}
+        {% include '@bolt-components-menu/menu.twig' with {
+          title: 'More actions'|t,
+          items: [
+            {
+              content: 'Reply'|t,
+              icon_before: icon_reply,
+            },
+            {
+              content: status.favorited ? 'Remove from favorites'|t : 'Favorite'|t,
+              icon_before: icon_heart,
+            },
+            {
+              content: status.subscribed ? 'Unsubscribed'|t : 'Subscribe'|t,
+              icon_before: icon_eye,
+            },
+          ]
+        } only %}
+      {% endset %}
+      {% include '@bolt-components-popover/popover.twig' with {
+        trigger: trigger,
+        content: content,
+        spacing: 'none',
+        boundary: '#' ~ uuid,
+      } only %}
+    </div>
+  {% endif %}
+</div>

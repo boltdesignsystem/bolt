@@ -1,6 +1,7 @@
 module.exports = {
   components: {
     global: [
+      '@bolt/components-post',
       '@bolt/components-progress-bar',
       '@bolt/core-v3.x',
       '@bolt/global',

@@ -5,8 +5,6 @@
 
 /* @import 'global-search'; deprecated */
 
-$_bolt-post-list-flag-icon-width: 64px; // This matches the size of a xlarge icon with circle background. If that changes, this also needs to change. Reference the icon.scss to stay up to date.
-
 .c-bolt-post-list {
   margin: 0;
   padding: 0;
@@ -14,7 +12,6 @@ $_bolt-post-list-flag-icon-width: 64px; // This matches the size of a xlarge ico
 }
 
 .c-bolt-post-list__item {
-  position: relative; // Position is set here so the heading link can expand its click target up to this point.
   margin: 0;
   padding: 0;
 
@@ -23,11 +20,11 @@ $_bolt-post-list-flag-icon-width: 64px; // This matches the size of a xlarge ico
   }
 }
 
-.c-bolt-post-flag {
+.c-bolt-post {
   display: flex;
   flex-wrap: nowrap;
   align-items: flex-start;
-  position: static; // Position must be static on this element so the heading link will not be contained inside this.
+  position: relative; // Position is set here so the heading link can expand its click target up to this point.
   padding: var(--bolt-spacing-y-medium) 0;
 
   @include bolt-mq(medium) {
@@ -35,18 +32,18 @@ $_bolt-post-list-flag-icon-width: 64px; // This matches the size of a xlarge ico
   }
 }
 
-.c-bolt-post-flag__media {
+.c-bolt-post__media {
   margin-right: var(--bolt-spacing-y-medium);
   pointer-events: none;
   user-select: none;
 }
 
-.c-bolt-post-flag__actions {
+.c-bolt-post__actions {
   position: relative; // This raises the stacking order of the flag media above the main heading link.
   margin-left: var(--bolt-spacing-y-medium);
 }
 
-.c-bolt-post-flag__content {
+.c-bolt-post__content {
   display: grid;
   flex: 1;
   align-items: start;
