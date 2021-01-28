@@ -1,7 +1,7 @@
 {% set schema = bolt.data.components['@bolt-components-popover'].schema %}
 
 {% set description %}
-  Adjust the inset spacing of the content by using the <bolt-code-snippet display="inline">spacing</bolt-code-snippet> prop.
+  Adjust the Bolt color theme of the content by using the <bolt-code-snippet display="inline">theme</bolt-code-snippet> prop.
 {% endset %}
 
 {% set demo %}
@@ -16,18 +16,18 @@
   {% endset %}
 
   <bolt-list display="inline" spacing="medium">
-    {% for spacing in schema.properties.spacing.enum %}
+    {% for theme in schema.properties.theme.enum %}
       <bolt-list-item>
         {% set trigger %}
           {% include '@bolt-components-button/button.twig' with {
-            text: 'spacing: ' ~ spacing,
+            text: 'theme: ' ~ theme,
             size: 'small',
           } only %}
         {% endset %}
         {% include '@bolt-components-popover/popover.twig' with {
           trigger: trigger,
           content: content,
-          spacing: spacing,
+          theme: theme,
         } only %}
       </bolt-list-item>
     {% endfor %}
@@ -39,14 +39,14 @@
 {% include '@bolt-components-popover/popover.twig' with {
   trigger: trigger,
   content: content,
-  spacing: 'medium',
+  theme: 'dark',
 } only %}
 {% endverbatim %}
 {% endset %}
 
 {% set html_markup %}
 {% verbatim %}
-<bolt-popover spacing="medium">
+<bolt-popover theme="dark">
   <bolt-button>
     This triggers a popover
   </bolt-button>
@@ -58,7 +58,7 @@
 {% endset %}
 
 {% include '@utils/pattern-doc-page.twig' with {
-  title: 'Popover Content Spacing',
+  title: 'Popover Content Theming',
   description: description,
   demo: demo,
   twig_markup: twig_markup,
