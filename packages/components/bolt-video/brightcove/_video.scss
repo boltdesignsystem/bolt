@@ -543,17 +543,14 @@ $base-video-meta-transition: $bolt-transition;
     .vjs-menu-button-popup .vjs-menu .vjs-menu-content {
       display: flex;
       flex-direction: column;
-      margin: 0.25em 0;
-      font-size: 1em;
-      line-height: 1.2em;
 
       .vjs-menu-item {
-        &.vjs-texttrack-settings {
-          order: 20;
-        }
+        margin: 0.25em 0;
+        font-size: 1em;
+        line-height: 1.2em;
 
-        &.vjs-selected:not(.vjs-subtitles-menu-item) {
-          order: 30;
+        &:not(.vjs-subtitles-menu-item):not(.vjs-subtitles-menu-item) {
+          order: 1;
         }
       }
     }
