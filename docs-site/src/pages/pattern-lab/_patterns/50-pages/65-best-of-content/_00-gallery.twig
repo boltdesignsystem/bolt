@@ -24,9 +24,11 @@
 
   {% set action_list %}
     <div class="o-bolt-grid o-bolt-grid--flex o-bolt-grid--matrix">
-      <div class="o-bolt-grid__cell u-bolt-flex-shrink">
-        <small>{{ icon_eye }} 27 views</small>
-      </div>
+      {% if phase2 %}
+        <div class="o-bolt-grid__cell u-bolt-flex-shrink">
+            <small>{{ icon_eye }} 27 views</small>
+        </div>
+      {% endif %}
       <div class="o-bolt-grid__cell u-bolt-width-6/12 u-bolt-flex-grow">
         {% set like_button %}
           <small>
@@ -88,9 +90,16 @@
             spacing: "none",
           } only %}
         {% endset %}
+
+        {% if phase1 and not phase2 %}
+          {% set action_alignment = 'justify' %}
+        {% else %}
+          {% set action_alignment = 'end' %}
+        {% endif %}
+
         {% include '@bolt-components-list/list.twig' with {
           display: 'inline',
-          align: 'end',
+          align: action_alignment,
           spacing: 'small',
           items: [
             like_button,
@@ -118,7 +127,7 @@
         ratio: '16/9'
       } only %}
     </bolt-stack>
-    {% if phase1 %}
+    {% if phase1 or phase2 %}
       <bolt-stack spacing="xsmall">
         {{ action_list }}
       </bolt-stack>
@@ -151,7 +160,7 @@
         alt: '',
       } only %}
     </bolt-stack>
-    {% if phase1 %}
+    {% if phase1 or phase2 %}
       <bolt-stack spacing="xsmall">
         {{ action_list }}
       </bolt-stack>
@@ -192,9 +201,22 @@
           align: 'center',
           tag: 'p',
         } only %}
+        {% if phase2 %}
+          <div class="u-bolt-text-align-center">
+            {% include '@bolt-components-button/button.twig' with {
+              text: 'Subscribe',
+              size: 'small',
+              style: 'secondary',
+              icon: {
+                name: 'add',
+                position: 'before',
+              }
+            } only %}
+          </div>
+        {% endif %}
       </div>
       <div class="o-bolt-grid__cell u-bolt-width-12/12">
-        {% if phase2 %}
+        {% if phase1 %}
           <form class="c-bolt-form">
             {% set filter_input_1 %}
               <input type="checkbox" id="filter-1" class="c-bolt-input c-bolt-input--checkbox">
