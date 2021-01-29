@@ -534,6 +534,45 @@ $base-video-meta-transition: $bolt-transition;
       }
     }
   }
+
+  &.vjs-layout-x-small,
+  &.vjs-layout-small,
+  &.vjs-layout-medium,
+  &.vjs-layout-large,
+  &.vjs-layout-x-large {
+    .vjs-menu-button-popup .vjs-menu .vjs-menu-content {
+      display: flex;
+      flex-direction: column;
+      margin: 0.25em 0;
+      font-size: 1em;
+      line-height: 1.2em;
+
+      .vjs-menu-item {
+        &.vjs-texttrack-settings {
+          order: 20;
+        }
+
+        &.vjs-selected:not(.vjs-subtitles-menu-item) {
+          order: 30;
+        }
+      }
+    }
+  }
+
+  &.vjs-layout-x-small,
+  &.vjs-layout-small {
+    .vjs-menu-button-popup .vjs-menu .vjs-menu-content {
+      max-height: 14em;
+    }
+  }
+
+  &.vjs-layout-medium,
+  &.vjs-layout-large,
+  &.vjs-layout-x-large {
+    .vjs-menu-button-popup .vjs-menu .vjs-menu-content {
+      max-height: 22em;
+    }
+  }
 }
 
 // Prevent Brightcove from rendering a video as a 'vjs-layout-tiny'
