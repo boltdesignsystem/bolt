@@ -218,7 +218,7 @@ class BoltImage extends BoltElement {
           <img
             class="${classes}"
             src="${ifDefined(this.src ? this.src : fallbackSrc)}"
-            alt="${ifDefined(this.alt ? this.alt : undefined)}"
+            alt="${ifDefined(this.alt ? this.alt : '')}"
             srcset="${ifDefined(
               !lazyload
                 ? this.srcset || this.src || undefined
@@ -267,7 +267,7 @@ class BoltImage extends BoltElement {
               },
             )}"
             src="${this.placeholderImage}"
-            alt="${ifDefined(this.alt ? this.alt : undefined)}"
+            alt="${ifDefined(this.alt ? this.alt : '')}"
           />
         `;
       }
@@ -284,7 +284,7 @@ class BoltImage extends BoltElement {
                 'c-bolt-image--cover': this.cover,
               })}"
               src="${this.src}"
-              alt="${ifDefined(this.alt ? this.alt : undefined)}"
+              alt="${ifDefined(this.alt ? this.alt : '')}"
               srcset="${ifDefined(
                 !lazyload ? this.srcset || this.src : undefined,
               )}"

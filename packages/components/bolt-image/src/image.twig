@@ -135,7 +135,8 @@
   {% if valign %}valign="{{ valign }}"{% endif %}
   {% if align %}align="{{ align }}"{% endif %}
   {% if srcset %}srcset="{{ srcset }}"{% endif %}
-  {% if alt %}alt="{{ alt }}"{% endif %}
+  {# {% if alt %}alt="{{ alt }}"{% endif %} #}
+  alt="{{ alt ? alt : '' }}"
   {% if max_width %}max-width="{{ max_width }}"{% endif %}
   {% if sizes %}sizes="{{ sizes }}"{% endif %}
   {% if ratio_string %}ratio="{{ ratio_string }}"{% elseif not use_ratio %}ratio="none"{% elseif can_use_ratio %}ratio="{{ width * 1 }}/{{ height * 1 }}"{% endif %}
