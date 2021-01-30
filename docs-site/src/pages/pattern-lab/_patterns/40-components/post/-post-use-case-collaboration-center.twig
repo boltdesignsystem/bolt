@@ -1,0 +1,218 @@
+{% set description %}
+  Post
+{% endset %}
+
+{% set demo %}
+  {% set icon_questions %}
+    {% include '@bolt-components-icon/icon.twig' with {
+      name: 'questions',
+      size: 'xlarge',
+      color: 'teal',
+    } only %}
+  {% endset %}
+  {% set icon_discussions %}
+    {% include '@bolt-components-icon/icon.twig' with {
+      name: 'discussions',
+      size: 'xlarge',
+      color: 'orange',
+    } only %}
+  {% endset %}
+  {% set icon_ideas %}
+    {% include '@bolt-components-icon/icon.twig' with {
+      name: 'ideas',
+      size: 'xlarge',
+      color: 'berry',
+    } only %}
+  {% endset %}
+  {% set post_1 %}
+    {% include '@bolt-components-post/post.twig' with {
+      icon: icon_questions,
+      headline: {
+        text: 'This is a post',
+        tag: 'h3',
+        size: 'large',
+        link_attributes: {
+          href: 'https://pega.com'
+        },
+      },
+      meta_items: [
+        'Posted by <a href="https://google.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline">username</a> on July 1, 2020',
+        'Last activity: 1 hour ago',
+      ],
+      status: {
+        replies: '5',
+        views: '216',
+      },
+    } only %}
+  {% endset %}
+  {% set post_2 %}
+    {% include '@bolt-components-post/post.twig' with {
+      icon: icon_discussions,
+      headline: {
+        text: 'This is a post that is solved',
+        tag: 'h3',
+        size: 'large',
+        link_attributes: {
+          href: 'https://pega.com'
+        },
+      },
+      meta_items: [
+        'Posted by <a href="https://google.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline">someone</a> on Aug 21, 2020',
+        'Last activity: 2 hours 3 minutes ago',
+      ],
+      status: {
+        solved: true,
+        replies: '2',
+        views: '100',
+      },
+    } only %}
+  {% endset %}
+  {% set post_3 %}
+    {% include '@bolt-components-post/post.twig' with {
+      icon: icon_ideas,
+      headline: {
+        text: 'This is a post that is locked',
+        tag: 'h3',
+        size: 'large',
+        link_attributes: {
+          href: 'https://pega.com'
+        },
+      },
+      meta_items: [
+        'Posted by <a href="https://google.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline">viswa1</a> on Aug 16, 2020',
+        'Last activity: 2 hours 35 minutes ago',
+      ],
+      status: {
+        locked: true,
+        replies: '12',
+        views: '561',
+      },
+    } only %}
+  {% endset %}
+  {% set post_4 %}
+    {% include '@bolt-components-post/post.twig' with {
+      icon: icon_discussions,
+      headline: {
+        text: 'This is a post that is both solved and locked',
+        tag: 'h3',
+        size: 'large',
+        link_attributes: {
+          href: 'https://pega.com'
+        },
+      },
+      meta_items: [
+        'Posted by <a href="https://google.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline">adfa13</a> on May 21, 2020',
+        'Last activity: 3 hours 43 minutes ago',
+      ],
+      status: {
+        solved: true,
+        locked: true,
+        replies: '35',
+        views: '1k',
+      },
+    } only %}
+  {% endset %}
+  {% set post_5 %}
+    {% include '@bolt-components-post/post.twig' with {
+      icon: icon_questions,
+      headline: {
+        text: 'This is a post with a summary',
+        tag: 'h3',
+        size: 'large',
+        link_attributes: {
+          href: 'https://pega.com'
+        },
+      },
+      meta_items: [
+        'Posted by <a href="https://google.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline">mikemai</a> on Jun 6, 2020',
+        'Last activity: 8 hours 15 minutes ago',
+      ],
+      status: {
+        replies: '26',
+        views: '666',
+      },
+      summary: 'Summary. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.'
+    } only %}
+  {% endset %}
+  {% set post_6 %}
+    {% include '@bolt-components-post/post.twig' with {
+      icon: icon_questions,
+      headline: {
+        text: 'This is a post with actions',
+        tag: 'h3',
+        size: 'large',
+        link_attributes: {
+          href: 'https://pega.com'
+        },
+      },
+      meta_items: [
+        'Posted by <a href="https://google.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline">mikemai</a> on Apr 9, 2020',
+        'Last activity: 8 hours 26 minutes ago',
+      ],
+      status: {
+        replies: '1',
+        views: '354',
+      },
+      show_actions: true,
+    } only %}
+  {% endset %}
+  {% set post_7 %}
+    {% include '@bolt-components-post/post.twig' with {
+      icon: icon_questions,
+      headline: {
+        text: 'This is a post with actions (also favorited and subscribed)',
+        tag: 'h3',
+        size: 'large',
+        link_attributes: {
+          href: 'https://pega.com'
+        },
+      },
+      meta_items: [
+        'Posted by <a href="https://google.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline">mikemai</a> on Apr 9, 2020',
+        'Last activity: 8 hours 26 minutes ago',
+      ],
+      status: {
+        favorited: true,
+        subscribed: true,
+        solved: true,
+        locked: true,
+        replies: '1',
+        views: '354',
+      },
+      show_actions: true,
+    } only %}
+  {% endset %}
+
+  {% include '@bolt-components-list/list.twig' with {
+    spacing: 'small',
+    inset: true,
+    separator: 'solid',
+    items: [
+      post_1,
+      post_2,
+      post_3,
+      post_4,
+      post_5,
+      post_6,
+      post_7,
+    ]
+  } only %}
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% endverbatim %}
+{% endset %}
+
+{% set html_markup %}
+{% verbatim %}
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Use Case: Collaboration Center Post List',
+  description: description,
+  demo: demo,
+  twig_markup: twig_markup,
+  html_markup: html_markup,
+} only %}

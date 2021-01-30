@@ -7,8 +7,8 @@
 {# Variables #}
 {% set this = init(schema) %}
 {% set attributes = create_attribute(attributes|default({})) %}
-{% set headline_link_attributes = create_attribute(headline.link_attributes|default({})) %}
-{% set uuid = 'js-bolt-post-' ~ random() %}
+{% set _headline_link_attributes = create_attribute(headline.link_attributes|default({})) %}
+{% set _id = 'js-bolt-post-' ~ random() %}
 
 {# Array of classes based on the defined + default props #}
 {% set classes = [
@@ -16,7 +16,7 @@
   disabled ? 'c-bolt-post--disabled' : '',
 ] %}
 
-<div {{ attributes.addClass(classes)|without('id') }} id="{{ uuid }}">
+<div {{ attributes.addClass(classes)|without('id') }} id="{{ _id }}">
   {% if icon %}
     <div class="c-bolt-post__media" aria-hidden="true">
       {{ icon }}
@@ -25,18 +25,18 @@
   <div class="c-bolt-post__content">
     <div class="c-bolt-post-info">
       <div class="c-bolt-post-info__heading">
-        {% if headline_link_attributes %}
+        {% if _headline_link_attributes %}
           {% set _linked_text %}
             {% include '@bolt-elements-text-link/text-link.twig' with {
               content: headline.text,
               reversed_underline: true,
               expand_click_target: true,
-              attributes: headline_link_attributes
+              attributes: _headline_link_attributes
             } only %}
           {% endset %}
         {% endif %}
         {% include '@bolt-components-headline/headline.twig' with {
-          text: headline_link_attributes ? _linked_text : headline.text,
+          text: _headline_link_attributes ? _linked_text : headline.text,
           tag: headline.tag,
           size: headline.size,
         } only %}
@@ -48,6 +48,38 @@
           {% endfor %}
         </ul>
       {% endif %}
+      {% if summary %}
+        <div class="c-bolt-post-info__summary">
+          {% set _icon_chevron_right %}
+            {% include '@bolt-components-icon/icon.twig' with {
+              name: 'chevron-right',
+            } only %}
+          {% endset %}
+          {% set _read_more_link %}
+            {{ 'Read More'|t }}{{ _icon_chevron_right|spaceless }}
+          {% endset %}
+          {% include '@bolt-components-headline/text.twig' with {
+            text: summary ~ ' &hellip; ' ~ _read_more_link|spaceless,
+            tag: 'p',
+            size: 'small',
+          } only %}
+        </div>
+      {% endif %}
+      {% if warning %}
+        <div class="c-bolt-post-info__warning">
+          {% set _icon_warning %}
+            {% include '@bolt-components-icon/icon.twig' with {
+              name: 'warning',
+              color: 'yellow',
+            } only %}
+          {% endset %}
+          {% include '@bolt-components-headline/text.twig' with {
+            text: _icon_warning ~ warning,
+            tag: 'p',
+            size: 'small',
+          } only %}
+        </div>
+      {% endif %}
     </div>
     {% if status %}
       <ul class="c-bolt-post-status">
@@ -58,7 +90,7 @@
                 name: 'check-solid',
               } only %}
             </span>
-            {{ 'Solved'|t }}
+            {{ status.solved_label ? status.solved_label|t : 'Solved'|t }}
           </li>
         {% endif %}
         {% if status.locked %}
@@ -68,7 +100,7 @@
                 name: 'lock',
               } only %}
             </span>
-            {{ 'Locked'|t }}
+            {{ status.locked_label ? status.locked_label|t : 'Locked'|t }}
           </li>
         {% endif %}
         {% if status.replies %}
@@ -84,30 +116,30 @@
       </ul>
     {% endif %}
   </div>
-  {% if status and show_actions %}
-    {% set icon_reply %}
+  {% if show_actions %}
+    {% set _icon_reply %}
       {% include '@bolt-components-icon/icon.twig' with {
         name: 'reply',
         size: 'small',
       } only %}
     {% endset %}
-    {% set icon_heart %}
+    {% set _icon_heart %}
       {% include '@bolt-components-icon/icon.twig' with {
         name: 'heart',
         size: 'small',
         color: status.favorited ? 'pink' : 'auto',
       } only %}
     {% endset %}
-    {% set icon_eye %}
+    {% set _icon_eye %}
       {% include '@bolt-components-icon/icon.twig' with {
         name: status.subscribed ? 'eye-off' : 'eye',
         size: 'small',
       } only %}
     {% endset %}
     <div class="c-bolt-post__actions">
-      {% set trigger %}
+      {% set _popover_trigger %}
         {% include '@bolt-components-button/button.twig' with {
-          text: 'Post menu'|t,
+          text: 'Action menu'|t,
           size: 'small',
           style: 'tertiary',
           iconOnly: true,
@@ -117,30 +149,31 @@
           },
         } only %}
       {% endset %}
-      {% set content %}
+      {% set _popover_content %}
         {% include '@bolt-components-menu/menu.twig' with {
           title: 'More actions'|t,
           items: [
             {
               content: 'Reply'|t,
-              icon_before: icon_reply,
+              icon_before: _icon_reply,
             },
             {
               content: status.favorited ? 'Remove from favorites'|t : 'Favorite'|t,
-              icon_before: icon_heart,
+              icon_before: _icon_heart,
             },
             {
               content: status.subscribed ? 'Unsubscribed'|t : 'Subscribe'|t,
-              icon_before: icon_eye,
+              icon_before: _icon_eye,
             },
           ]
         } only %}
       {% endset %}
       {% include '@bolt-components-popover/popover.twig' with {
-        trigger: trigger,
-        content: content,
+        trigger: _popover_trigger,
+        content: _popover_content,
         spacing: 'none',
-        boundary: '#' ~ uuid,
+        boundary: '#' ~ _id,
+        placement: 'bottom-end',
       } only %}
     </div>
   {% endif %}

@@ -1,21 +1,152 @@
 /* ------------------------------------ *\
    Post
 \* ------------------------------------ */
-
 @import '@bolt/core-v3.x';
 
-// Register Custom Block Element
-@include bolt-custom-element('bolt-post', block, medium);
+.c-bolt-post-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
 
-/**
- * Long-form comment.
- *
- * This spans multiple lines and is also constrained to no longer than 80
- * characters in width.
- *
- * 1. Provide line-comments like this.
- */
+.c-bolt-post-list__item {
+  margin: 0;
+  padding: 0;
+
+  & + #{&} {
+    border-top: 1px solid var(--m-bolt-border);
+  }
+}
+
 .c-bolt-post {
-  // Styles go here. /* [1] */
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+  position: relative; // Position is set here so the heading link can expand its click target up to this point.
+}
+
+.c-bolt-post__media {
+  margin-right: var(--bolt-spacing-y-medium);
+  pointer-events: none;
+  user-select: none;
+}
+
+.c-bolt-post__actions {
+  position: relative; // This raises the stacking order of the flag media above the main heading link.
+  margin-left: var(--bolt-spacing-y-small);
+}
+
+.c-bolt-post__content {
+  display: grid;
+  flex: 1;
+  align-items: start;
+  position: static; // Position must be static on this element so the heading link will not be contained inside this.
+  grid-gap: var(--bolt-spacing-x-medium);
+
+  @include bolt-mq(medium) {
+    grid-template-columns: 1fr auto;
+  }
+}
+
+.c-bolt-post-info {
+  position: static; // Position must be static on this element so the heading link will not be contained inside this.
+
+  > *:not(:last-child) {
+    margin-bottom: var(--bolt-spacing-y-xxsmall);
+  }
+}
+
+.c-bolt-post-info__heading {
+  position: static; // Position must be static on this element so the heading link will not be contained inside this.
+  word-break: break-word;
+  hyphens: auto;
+}
+
+.c-bolt-post-info__meta {
   display: block;
+  margin: 0;
+  padding: 0;
+  font-size: var(--bolt-type-font-size-xsmall);
+  list-style: none;
+  line-height: var(--bolt-type-line-height-xsmall);
+
+  > li.c-bolt-post-info__meta__item {
+    display: inline;
+
+    &:not(:last-child):after {
+      content: '\007C';
+      display: inline-block;
+      position: relative;
+      top: -1px; // [Mai] Offsets the 1px border to align the chevron with text.
+      width: var(--bolt-spacing-y-xsmall); // Width and height must be the same.
+      height: var(
+        --bolt-spacing-y-xsmall
+      ); // Width and height must be the same.
+      margin: 0 var(--bolt-spacing-x-xxsmall);
+      color: var(--m-bolt-neutral);
+      vertical-align: baseline;
+    }
+  }
+
+  .e-bolt-text-link,
+  bolt-link {
+    position: relative; // This raises the stacking order of the meta link above the main heading link.
+  }
+}
+
+.c-bolt-post-info__summary,
+.c-bolt-post-info__warning {
+  display: block;
+  font-size: var(--bolt-type-font-size-xsmall);
+  line-height: var(--bolt-type-line-height-xsmall);
+  pointer-events: none;
+}
+
+.c-bolt-post-status {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  pointer-events: none;
+  user-select: none;
+
+  @include bolt-mq(medium) {
+    flex-wrap: nowrap;
+  }
+
+  > .c-bolt-post-status__item {
+    display: grid;
+    align-content: center;
+    min-width: 12ch;
+    padding: var(--bolt-spacing-y-xsmall) var(--bolt-spacing-x-xxsmall);
+    font-size: var(--bolt-type-font-size-xsmall);
+    color: var(--m-bolt-neutral);
+    line-height: var(--bolt-type-line-height-xsmall);
+    text-align: center;
+    border-left: 1px solid var(--m-bolt-border);
+    white-space: nowrap;
+  }
+}
+
+.c-bolt-post-status__number,
+.c-bolt-post-status__icon {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  margin-bottom: var(--bolt-spacing-y-xxsmall);
+  font-size: var(--bolt-type-font-size-medium);
+  line-height: 1;
+}
+
+.c-bolt-post-status__number {
+  font-weight: var(--bolt-type-font-weight-bold);
+}
+
+.c-bolt-post-status__icon--solved {
+  color: var(--bolt-color-success);
+}
+
+.c-bolt-post-status__icon--locked {
+  color: var(--bolt-color-neutral);
 }

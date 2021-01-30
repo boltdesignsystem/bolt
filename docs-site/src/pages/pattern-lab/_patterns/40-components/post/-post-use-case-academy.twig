@@ -1,0 +1,172 @@
+{% set description %}
+  Post
+{% endset %}
+
+{% set demo %}
+  {% set icon_warning %}
+    {% include '@bolt-components-icon/icon.twig' with {
+      name: 'warning',
+      color: 'yellow',
+    } only %}
+  {% endset %}
+  {% set icon_orbit %}
+    {% include '@bolt-components-icon/icon.twig' with {
+      name: 'brand-orbit',
+      size: 'xlarge',
+      color: 'teal',
+    } only %}
+  {% endset %}
+  {% set icon_meteor %}
+    {% include '@bolt-components-icon/icon.twig' with {
+      name: 'brand-meteor',
+      size: 'xlarge',
+      color: 'orange',
+    } only %}
+  {% endset %}
+  {% set icon_launchpad %}
+    {% include '@bolt-components-icon/icon.twig' with {
+      name: 'launchpad',
+      size: 'xlarge',
+      color: 'navy',
+    } only %}
+  {% endset %}
+  {% set post_1 %}
+    {% include '@bolt-components-post/post.twig' with {
+      icon: icon_orbit,
+      headline: {
+        text: 'Business Process Modeling',
+        tag: 'h3',
+        size: 'large',
+        link_attributes: {
+          href: 'https://pega.com'
+        },
+      },
+      meta_items: [
+        'Module',
+        'Completed August 1, 2019',
+        'Last updated July 12, 2019',
+      ],
+      status: {
+        locked: true,
+        locked_label: 'Archived',
+      },
+    } only %}
+  {% endset %}
+  {% set post_2 %}
+    {% include '@bolt-components-post/post.twig' with {
+      icon: icon_meteor,
+      headline: {
+        text: 'Configuring a Case Type',
+        tag: 'h3',
+        size: 'large',
+        link_attributes: {
+          href: 'https://pega.com'
+        },
+      },
+      meta_items: [
+        'Challenge',
+        'Passed 85% July 31, 2019',
+        'Last updated July 12, 2019',
+      ],
+      status: {
+        solved: true,
+        solved_label: 'Completed',
+      },
+    } only %}
+  {% endset %}
+  {% set post_3 %}
+    {% include '@bolt-components-post/post.twig' with {
+      icon: icon_launchpad,
+      headline: {
+        text: 'System Architect Essentials',
+        tag: 'h3',
+        size: 'large',
+        link_attributes: {
+          href: 'https://pega.com'
+        },
+      },
+      meta_items: [
+        'Mission',
+        'Completed August 1, 2019',
+        'Last updated August 11, 2019',
+      ],
+      status: {
+        solved: true,
+        solved_label: 'Completed',
+      },
+      warning: 'This mission has been updated. Please redo to earn the mission badge again.'
+    } only %}
+  {% endset %}
+  {% set post_4 %}
+    {% include '@bolt-components-post/post.twig' with {
+      icon: icon_orbit,
+      headline: {
+        text: 'Introduction to Business Architecture',
+        tag: 'h3',
+        size: 'large',
+        link_attributes: {
+          href: 'https://pega.com'
+        },
+      },
+      meta_items: [
+        'Module',
+        'Last updated May 21, 2019',
+      ],
+    } only %}
+  {% endset %}
+  {% set post_5 %}
+    {% include '@bolt-components-post/post.twig' with {
+      icon: icon_orbit,
+      headline: {
+        text: 'This is both completed and archived',
+        tag: 'h3',
+        size: 'large',
+        link_attributes: {
+          href: 'https://pega.com'
+        },
+      },
+      meta_items: [
+        'Module',
+        'Completed August 18, 2019',
+        'Last updated August 11, 2019',
+      ],
+      status: {
+        solved: true,
+        solved_label: 'Completed',
+        locked: true,
+        locked_label: 'Archived',
+      },
+    } only %}
+  {% endset %}
+
+  {% include '@bolt-components-list/list.twig' with {
+    spacing: 'small',
+    inset: true,
+    separator: 'solid',
+    items: [
+      post_1,
+      post_2,
+      post_3,
+      post_4,
+      post_5,
+    ]
+  } only %}
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% endverbatim %}
+{% endset %}
+
+{% set html_markup %}
+{% verbatim %}
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Use Case: Academy Training List',
+  description: description,
+  demo: demo,
+  twig_markup: twig_markup,
+  html_markup: html_markup,
+} only %}
