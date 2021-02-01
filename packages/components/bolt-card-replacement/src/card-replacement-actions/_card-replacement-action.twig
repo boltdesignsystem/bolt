@@ -3,7 +3,7 @@
 <bolt-card-replacement-action {% if external %} external {% endif %} {% if url %} url="{{url}}" {% endif %}>
   <ssr-keep for="bolt-card-replacement-action" class="c-bolt-card_replacement__action">
     {% block action_item %}
-      {% if this.data.text.value %}
+      {% if text %}
         {% set button_props = {
           text: text,
           style: "text",
@@ -20,8 +20,8 @@
           {% set button_props = button_props|merge({ size: this.data.spacing.value }) %}
         {% endif %}
 
-        {% if this.data.url.value is not empty %}
-          {% set button_props = button_props|merge({ url: this.data.url.value }) %}
+        {% if url is not empty %}
+          {% set button_props = button_props|merge({ url: url }) %}
         {% endif %}
 
         {% include "@bolt-components-button/button.twig" with button_props only %}

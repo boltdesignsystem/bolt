@@ -16,29 +16,24 @@
 <bolt-card-replacement-body
   {{ this.props|without("class") }}>
   <ssr-keep for="bolt-card-replacement-body" class="{{ classes|join(' ') }}">
-
-    <script>
-      console.log({{ this.data.body.eyebrow.value|json_encode() }})
-    </script>
-
     {% block body %}
       {% if body.content %}
         {{ body.content }}
       {% else %}
-        {% if this.data.body.eyebrow.value %}
+        {% if body.eyebrow %}
           {% include "@bolt-components-headline/eyebrow.twig" with {
-            text: this.data.body.eyebrow.value,
+            text: body.eyebrow,
           } only %}
         {% endif %}
-        {% if this.data.body.headline.value %}
+        {% if body.headline %}
           {% include "@bolt-components-headline/headline.twig" with {
-            text: this.data.body.headline.value,
+            text: body.headline,
             size: "large",
           } only %}
         {% endif %}
-        {% if this.data.body.paragraph.value %}
+        {% if body.paragraph %}
           {% include "@bolt-components-headline/text.twig" with {
-            text: this.data.body.paragraph.value,
+            text: body.paragraph,
           } only %}
         {% endif %}
       {% endif %}

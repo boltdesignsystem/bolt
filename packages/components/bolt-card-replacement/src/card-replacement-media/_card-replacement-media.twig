@@ -1,6 +1,8 @@
 {% set this = init(schema) %}
-{% set card_replacement_image =this.data.media.image.value %}
-{% set card_replacement_video =this.data.media.video.value %}
+{% set card_replacement_image = media.image %}
+{% set card_replacement_video = media.video %}
+{% set attributes = create_attribute(media.attributes|default({})) %}
+
 
 {% if horizontal and card_replacement_image %}
   {% set card_replacement_image = card_replacement_image | merge({
@@ -13,7 +15,7 @@
   {{ media.content }}
 {% else %}
   {% if card_replacement_image or block("media") %}
-    <bolt-card-replacement-media {{ this.props }}>
+    <bolt-card-replacement-media {{ attributes }}>
       <ssr-keep for="bolt-card-replacement-media" class="c-bolt-card_replacement__media">
         {% if card_replacement_image %}
           {% include "@bolt-components-image/image.twig" with card_replacement_image only %}
@@ -30,7 +32,7 @@
     {% endset %}
   {% endif %}
   {% if card_replacement_video %}
-    <bolt-card-replacement-media {{ this.props }}>
+    <bolt-card-replacement-media {{ attributes }}>
       <ssr-keep for="bolt-card-replacement-media" class="c-bolt-card_replacement__media c-bolt-card_replacement__media--video">
         {{ card_replacement_video }}
       </ssr-keep>
