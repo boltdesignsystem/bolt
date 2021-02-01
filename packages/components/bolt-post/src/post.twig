@@ -17,9 +17,9 @@
 ] %}
 
 <div {{ attributes.addClass(classes)|without('id') }} id="{{ _id }}">
-  {% if icon %}
-    <div class="c-bolt-post__media" aria-hidden="true">
-      {{ icon }}
+  {% if signifier %}
+    <div class="c-bolt-post__signifier" aria-hidden="true">
+      {{ signifier }}
     </div>
   {% endif %}
   <div class="c-bolt-post__content">
@@ -48,8 +48,8 @@
           {% endfor %}
         </ul>
       {% endif %}
-      {% if summary %}
-        <div class="c-bolt-post-info__summary">
+      {% if more_info %}
+        <div class="c-bolt-post-info__more-info">
           {% set _icon_chevron_right %}
             {% include '@bolt-components-icon/icon.twig' with {
               name: 'chevron-right',
@@ -59,7 +59,7 @@
             {{ 'Read More'|t }}{{ _icon_chevron_right|spaceless }}
           {% endset %}
           {% include '@bolt-components-headline/text.twig' with {
-            text: summary ~ ' &hellip; ' ~ _read_more_link|spaceless,
+            text: more_info ~ ' &hellip; ' ~ _read_more_link|spaceless,
             tag: 'p',
             size: 'small',
           } only %}
@@ -117,25 +117,43 @@
     {% endif %}
   </div>
   {% if show_actions %}
-    {% set _icon_reply %}
-      {% include '@bolt-components-icon/icon.twig' with {
-        name: 'reply',
-        size: 'small',
-      } only %}
-    {% endset %}
-    {% set _icon_heart %}
-      {% include '@bolt-components-icon/icon.twig' with {
-        name: 'heart',
-        size: 'small',
-        color: status.favorited ? 'pink' : 'auto',
-      } only %}
-    {% endset %}
-    {% set _icon_eye %}
-      {% include '@bolt-components-icon/icon.twig' with {
-        name: status.subscribed ? 'eye-off' : 'eye',
-        size: 'small',
-      } only %}
-    {% endset %}
+    {% if show_actions.reply %}
+      {% set _icon_reply %}
+        {% include '@bolt-components-icon/icon.twig' with {
+          name: 'reply',
+          size: 'small',
+        } only %}
+      {% endset %}
+      {% set _reply_menu_item = {
+        content: 'Reply'|t,
+        icon_before: _icon_reply,
+      } %}
+    {% endif %}
+    {% if show_actions.favorite %}
+      {% set _icon_heart %}
+        {% include '@bolt-components-icon/icon.twig' with {
+          name: 'heart',
+          size: 'small',
+          color: status.favorited ? 'pink' : 'auto',
+        } only %}
+      {% endset %}
+      {% set _favorite_menu_item = {
+        content: status.favorited ? 'Remove from favorites'|t : 'Favorite'|t,
+        icon_before: _icon_heart,
+      } %}
+    {% endif %}
+    {% if show_actions.subscribe %}
+      {% set _icon_eye %}
+        {% include '@bolt-components-icon/icon.twig' with {
+          name: status.subscribed ? 'eye-off' : 'eye',
+          size: 'small',
+        } only %}
+      {% endset %}
+      {% set _subscribe_menu_item = {
+        content: status.subscribed ? 'Unsubscribed'|t : 'Subscribe'|t,
+        icon_before: _icon_eye,
+      } %}
+    {% endif %}
     <div class="c-bolt-post__actions">
       {% set _popover_trigger %}
         {% include '@bolt-components-button/button.twig' with {
@@ -153,19 +171,10 @@
         {% include '@bolt-components-menu/menu.twig' with {
           title: 'More actions'|t,
           items: [
-            {
-              content: 'Reply'|t,
-              icon_before: _icon_reply,
-            },
-            {
-              content: status.favorited ? 'Remove from favorites'|t : 'Favorite'|t,
-              icon_before: _icon_heart,
-            },
-            {
-              content: status.subscribed ? 'Unsubscribed'|t : 'Subscribe'|t,
-              icon_before: _icon_eye,
-            },
-          ]
+            _reply_menu_item,
+            _favorite_menu_item,
+            _subscribe_menu_item,
+          ],
         } only %}
       {% endset %}
       {% include '@bolt-components-popover/popover.twig' with {

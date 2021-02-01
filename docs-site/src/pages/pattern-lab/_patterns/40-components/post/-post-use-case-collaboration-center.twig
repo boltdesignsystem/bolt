@@ -1,5 +1,9 @@
 {% set description %}
-  Post
+  Post List is a way to display activities in Pega&rsquo;s Collaboration Center.
+{% endset %}
+
+{% set notes %}
+  A post list is composed of the Post component and the List component with solid separators.
 {% endset %}
 
 {% set demo %}
@@ -26,7 +30,7 @@
   {% endset %}
   {% set post_1 %}
     {% include '@bolt-components-post/post.twig' with {
-      icon: icon_questions,
+      signifier: icon_questions,
       headline: {
         text: 'This is a post',
         tag: 'h3',
@@ -36,7 +40,7 @@
         },
       },
       meta_items: [
-        'Posted by <a href="https://google.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline">username</a> on July 1, 2020',
+        'Posted by <a href="https://collaborate.pega.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline">username</a> on July 1, 2020',
         'Last activity: 1 hour ago',
       ],
       status: {
@@ -47,7 +51,7 @@
   {% endset %}
   {% set post_2 %}
     {% include '@bolt-components-post/post.twig' with {
-      icon: icon_discussions,
+      signifier: icon_discussions,
       headline: {
         text: 'This is a post that is solved',
         tag: 'h3',
@@ -57,7 +61,7 @@
         },
       },
       meta_items: [
-        'Posted by <a href="https://google.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline">someone</a> on Aug 21, 2020',
+        'Posted by <a href="https://collaborate.pega.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline">someone</a> on Aug 21, 2020',
         'Last activity: 2 hours 3 minutes ago',
       ],
       status: {
@@ -69,7 +73,7 @@
   {% endset %}
   {% set post_3 %}
     {% include '@bolt-components-post/post.twig' with {
-      icon: icon_ideas,
+      signifier: icon_ideas,
       headline: {
         text: 'This is a post that is locked',
         tag: 'h3',
@@ -79,7 +83,7 @@
         },
       },
       meta_items: [
-        'Posted by <a href="https://google.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline">viswa1</a> on Aug 16, 2020',
+        'Posted by <a href="https://collaborate.pega.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline">viswa1</a> on Aug 16, 2020',
         'Last activity: 2 hours 35 minutes ago',
       ],
       status: {
@@ -91,7 +95,7 @@
   {% endset %}
   {% set post_4 %}
     {% include '@bolt-components-post/post.twig' with {
-      icon: icon_discussions,
+      signifier: icon_discussions,
       headline: {
         text: 'This is a post that is both solved and locked',
         tag: 'h3',
@@ -101,7 +105,7 @@
         },
       },
       meta_items: [
-        'Posted by <a href="https://google.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline">adfa13</a> on May 21, 2020',
+        'Posted by <a href="https://collaborate.pega.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline">adfa13</a> on May 21, 2020',
         'Last activity: 3 hours 43 minutes ago',
       ],
       status: {
@@ -114,9 +118,9 @@
   {% endset %}
   {% set post_5 %}
     {% include '@bolt-components-post/post.twig' with {
-      icon: icon_questions,
+      signifier: icon_questions,
       headline: {
-        text: 'This is a post with a summary',
+        text: 'This is a post with more information',
         tag: 'h3',
         size: 'large',
         link_attributes: {
@@ -124,19 +128,19 @@
         },
       },
       meta_items: [
-        'Posted by <a href="https://google.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline">mikemai</a> on Jun 6, 2020',
+        'Posted by <a href="https://collaborate.pega.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline">mikemai</a> on Jun 6, 2020',
         'Last activity: 8 hours 15 minutes ago',
       ],
       status: {
         replies: '26',
         views: '666',
       },
-      summary: 'Summary. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.'
+      more_info: 'More information. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.'
     } only %}
   {% endset %}
   {% set post_6 %}
     {% include '@bolt-components-post/post.twig' with {
-      icon: icon_questions,
+      signifier: icon_questions,
       headline: {
         text: 'This is a post with actions',
         tag: 'h3',
@@ -146,21 +150,25 @@
         },
       },
       meta_items: [
-        'Posted by <a href="https://google.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline">mikemai</a> on Apr 9, 2020',
+        'Posted by <a href="https://collaborate.pega.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline">mikemai</a> on Apr 9, 2020',
         'Last activity: 8 hours 26 minutes ago',
       ],
       status: {
         solved: true,
         locked: true,
-        replies: '1',
+        replies: '2',
         views: '354',
       },
-      show_actions: true,
+      show_actions: {
+        reply: true,
+        favorite: true,
+        subscribe: true,
+      },
     } only %}
   {% endset %}
   {% set post_7 %}
     {% include '@bolt-components-post/post.twig' with {
-      icon: icon_questions,
+      signifier: icon_questions,
       headline: {
         text: 'This is a post with actions (also favorited and subscribed)',
         tag: 'h3',
@@ -170,7 +178,7 @@
         },
       },
       meta_items: [
-        'Posted by <a href="https://google.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline">mikemai</a> on Apr 9, 2020',
+        'Posted by <a href="https://collaborate.pega.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline">mikemai</a> on Apr 9, 2020',
         'Last activity: 8 hours 26 minutes ago',
       ],
       status: {
@@ -178,10 +186,14 @@
         subscribed: true,
         solved: true,
         locked: true,
-        replies: '1',
+        replies: '2',
         views: '354',
       },
-      show_actions: true,
+      show_actions: {
+        reply: true,
+        favorite: true,
+        subscribe: true,
+      },
     } only %}
   {% endset %}
 
@@ -203,11 +215,54 @@
 
 {% set twig_markup %}
 {% verbatim %}
-{% endverbatim %}
+// Set up a particular post
+{% set icon_questions %}
+  {% include '@bolt-components-icon/icon.twig' with {
+    name: 'questions',
+    size: 'xlarge',
+    color: 'teal',
+  } only %}
+{% endset %}
+{% set demo_post %}
+  {% include '@bolt-components-post/post.twig' with {
+    signifier: icon_questions,
+    headline: {
+      text: 'This is a post with actions (also favorited and subscribed)',
+      tag: 'h3',
+      size: 'large',
+      link_attributes: {
+        href: 'https://pega.com'
+      },
+    },
+    meta_items: [
+      'Posted by <a href="https://collaborate.pega.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline">mikemai</a> on Apr 9, 2020',
+      'Last activity: 8 hours 26 minutes ago',
+    ],
+    status: {
+      solved: true,
+      locked: true,
+      replies: '2',
+      views: '354',
+      favorited: true,
+      subscribed: true,
+    },
+    show_actions: {
+      reply: true,
+      favorite: true,
+      subscribe: true,
+    },
+  } only %}
 {% endset %}
 
-{% set html_markup %}
-{% verbatim %}
+// Set up a list to display posts
+{% include '@bolt-components-list/list.twig' with {
+  spacing: 'small',
+  inset: true,
+  separator: 'solid',
+  items: [
+    demo_post,
+  ]
+} only %}
 {% endverbatim %}
 {% endset %}
 
@@ -215,6 +270,6 @@
   title: 'Use Case: Collaboration Center Post List',
   description: description,
   demo: demo,
+  notes: notes,
   twig_markup: twig_markup,
-  html_markup: html_markup,
 } only %}

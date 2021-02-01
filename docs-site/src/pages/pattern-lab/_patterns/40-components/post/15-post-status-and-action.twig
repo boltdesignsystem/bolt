@@ -1,9 +1,15 @@
 {% set description %}
-  The Post component can be used to display specific information of a particular forum post, article, or thread. It is commonly used on listing pages.
+  A post can have various statuses, use the proper prop to mark the relevant status.
 {% endset %}
 
 {% set notes %}
-  The whole UI is clickable. The headline of the post is a link element that is expanding its click target.
+  <bolt-ol>
+    <bolt-li>The solved status label can be customized.</bolt-li>
+    <bolt-li>The locked status label can be customized.</bolt-li>
+    <bolt-li>The favorited status affects the favorite action label. If the status is true, the label reads &ldquo;remove from favorites&rdquo;; if the status is false, the label reads &ldquo;favorite&rdquo;.</bolt-li>
+    <bolt-li>The subscribed status affects the subscribe action label. If the status is true, the label reads &ldquo;unsubscribe&rdquo;; if the status is false, the label reads &ldquo;subscribe&rdquo;.</bolt-li>
+    <bolt-li>Each status and action can display optionally.</bolt-li>
+  </bolt-ol>
 {% endset %}
 
 {% set demo %}
@@ -17,7 +23,7 @@
   {% include '@bolt-components-post/post.twig' with {
     signifier: icon_questions,
     headline: {
-      text: 'This is a post',
+      text: 'This post has every status and action possible',
       tag: 'h3',
       size: 'xlarge',
       link_attributes: {
@@ -30,7 +36,9 @@
     ],
     status: {
       solved: true,
+      solved_label: 'Completed',
       locked: true,
+      locked_label: 'Archived',
       replies: '33',
       views: '6k',
       favorited: true,
@@ -41,24 +49,15 @@
       favorite: true,
       subscribe: true,
     },
-    more_info: 'This is the more information. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus',
-    warning: 'Warning! This is a warning message.',
   } only %}
 {% endset %}
 
 {% set twig_markup %}
 {% verbatim %}
-{% set icon_questions %}
-  {% include '@bolt-components-icon/icon.twig' with {
-    name: 'questions',
-    size: 'xlarge',
-    color: 'teal',
-  } only %}
-{% endset %}
 {% include '@bolt-components-post/post.twig' with {
   signifier: icon_questions,
   headline: {
-    text: 'This is a post',
+    text: 'This post has every status and action possible',
     tag: 'h3',
     size: 'xlarge',
     link_attributes: {
@@ -71,7 +70,9 @@
   ],
   status: {
     solved: true,
+    solved_label: 'Completed',
     locked: true,
+    locked_label: 'Archived',
     replies: '33',
     views: '6k',
     favorited: true,
@@ -82,14 +83,12 @@
     favorite: true,
     subscribe: true,
   },
-  more_info: 'This is the more information. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus',
-  warning: 'Warning! This is a warning message.',
 } only %}
 {% endverbatim %}
 {% endset %}
 
 {% include '@utils/pattern-doc-page.twig' with {
-  title: 'Basic Post',
+  title: 'Post Status and Action',
   description: description,
   demo: demo,
   notes: notes,

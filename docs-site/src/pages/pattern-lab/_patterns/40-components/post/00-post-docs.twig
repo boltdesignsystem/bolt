@@ -1,5 +1,26 @@
 {% set usage %}{% verbatim %}
-{% include '@bolt-components-post/post.twig' only %}
+{% set icon %}
+  {% include '@bolt-components-icon/icon.twig' with {
+    name: 'questions',
+    size: 'xlarge',
+    color: 'teal',
+  } only %}
+{% endset %}
+{% include '@bolt-components-post/post.twig' with {
+  signifier: icon,
+  headline: {
+    text: 'This is a post',
+    tag: 'h3',
+    size: 'xlarge',
+    link_attributes: {
+      href: 'https://pega.com'
+    },
+  },
+  meta_items: [
+    'Completed August 1, 2019',
+    'Last updated July 12, 2019',
+  ],
+} only %}
 {% endverbatim %}{% endset %}
 
 {% include '@utils/docs.twig' with {
