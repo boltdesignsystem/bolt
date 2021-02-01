@@ -437,6 +437,19 @@
     } only %}
   {% endset %}
 
+  {% set subscribe %}
+    {% if phase2 %}
+      {% include '@bolt-components-button/button.twig' with {
+        text: 'Subscribe',
+        size: 'xsmall',
+        icon: {
+          name: 'add',
+          position: 'before',
+        }
+      } only %}
+    {% endif %}
+  {% endset %}
+
   {% set band_content %}
     {% include '@bolt-components-headline/headline.twig' with {
       text: 'Most viewed',
@@ -467,6 +480,7 @@
       items: [
         headline,
         view_all_button,
+        subscribe
       ],
     } only %}
     {{ carousel }}
@@ -493,6 +507,7 @@
       items: [
         headline,
         view_all_button,
+        subscribe
       ],
     } only %}
     {{ carousel }}
