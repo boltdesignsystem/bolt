@@ -7,26 +7,15 @@
 // Register Custom Block Element
 @include bolt-custom-element('bolt-stack', block, medium);
 
-.c-bolt-stack {
-  display: block;
-}
-
 // Spcaing options
 @each $size in $bolt-spacing-multiplier-system {
   $size-name: nth($size, 1);
 
-  @include bolt-repeat-rule(
-    (
-      'bolt-stack:not(:last-child)[spacing=#{$size-name}]',
-      ':host(bolt-stack:not(:last-child)[spacing=#{$size-name}])'
-    )
-  ) {
+  bolt-stack:not(:last-child)[spacing='#{$size-name}'] {
     margin-bottom: var(--bolt-spacing-y-#{$size-name});
   }
 }
 
-@include bolt-repeat-rule(
-  ('bolt-stack[spacing=none]', ':host(bolt-stack[spacing=none])')
-) {
+bolt-stack[spacing='none'] {
   margin-bottom: 0;
 }
