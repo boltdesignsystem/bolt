@@ -87,6 +87,7 @@ class BoltAutosuggest extends withPreact {
   // @todo: replace with auto-wired up props approach originally used in Carousel
   static props = {
     placeholder: props.string,
+    disabled: props.boolean,
     value: props.string,
     noHighlight: props.boolean,
     noClearButton: props.boolean,
@@ -501,6 +502,7 @@ class BoltAutosuggest extends withPreact {
     // Autosuggest will pass through all these props to the input.
     const inputProps = {
       placeholder: this.props.placeholder,
+      disabled: this.props.disabled,
       value: this.state.value || this.value,
       onChange: this.onChange,
       onInput: this.onInput,
