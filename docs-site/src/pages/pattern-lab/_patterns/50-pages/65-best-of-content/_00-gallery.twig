@@ -22,7 +22,7 @@
     } only %}
   {% endset %}
 
-  {% set action_list %}
+  {% set action_list_video %}
     <div class="o-bolt-grid o-bolt-grid--flex o-bolt-grid--matrix">
       {% if phase2 %}
         <div class="o-bolt-grid__cell u-bolt-flex-shrink">
@@ -91,15 +91,96 @@
           } only %}
         {% endset %}
 
-        {% if phase1 and not phase2 %}
-          {% set action_alignment = 'justify' %}
-        {% else %}
-          {% set action_alignment = 'end' %}
-        {% endif %}
+        {% include '@bolt-components-list/list.twig' with {
+          display: 'inline',
+          align: 'end',
+          spacing: 'small',
+          items: [
+            like_button,
+            share_button,
+          ]
+        } only %}
+      </div>
+    </div>
+  {% endset %}
+
+  {% set action_list %}
+    <div class="o-bolt-grid o-bolt-grid--flex o-bolt-grid--matrix">
+      {% if phase1 and not phase2 %}
+        <div class="o-bolt-grid__cell u-bolt-flex-shrink">
+            <small>15 min read</small>
+        </div>
+      {% endif %}
+      {% if phase2 %}
+        <div class="o-bolt-grid__cell u-bolt-flex-shrink">
+            <small>{{ icon_eye }} 27 views</small>
+        </div>
+      {% endif %}
+      <div class="o-bolt-grid__cell u-bolt-width-6/12 u-bolt-flex-grow">
+        {% set like_button %}
+          <small>
+            {% include '@bolt-components-link/link.twig' with {
+              text: 'Like',
+              icon: {
+                name: 'heart',
+                position: 'before',
+              },
+              type: 'button',
+              isHeadline: true,
+            } only %}
+          </small>
+        {% endset %}
+        {% set share_button %}
+          {% set popover_trigger %}
+            <small>
+              {% include '@bolt-components-link/link.twig' with {
+                text: 'Share',
+                icon: {
+                  name: 'share',
+                  position: 'before',
+                },
+                type: 'button',
+                isHeadline: true,
+              } only %}
+            </small>
+          {% endset %}
+          {% set popover_content %}
+            {% include '@bolt-components-share/share.twig' with {
+              display: 'menu',
+              text: 'Share this content',
+              sources: [
+                {
+                  name: 'facebook',
+                  url: 'https://www.facebook.com/sharer/sharer.php?u=https://pega.com&amp;src=sdkpreparse'
+                },
+                {
+                  name: 'twitter',
+                  url: 'https://twitter.com/intent/tweet?url=https://pega.com&text=Sample%20Share%20Text&via=pega&hashtags=boltDesignSystemRocks!'
+                },
+                {
+                  name: 'linkedin',
+                  url: 'https://www.linkedin.com/shareArticle?url=https://pega.com'
+                },
+                {
+                  name: 'email',
+                  url: 'mailto:?&body=Sample%20Text%20--%20https%3A//pega.com'
+                }
+              ],
+              copy_to_clipboard: {
+                text_to_copy: 'https://pega.com',
+              },
+            } only %}
+          {% endset %}
+          {% include "@bolt-components-popover/popover.twig" with {
+            trigger: popover_trigger,
+            content: popover_content,
+            spacing: "none",
+          } only %}
+        {% endset %}
 
         {% include '@bolt-components-list/list.twig' with {
           display: 'inline',
-          align: action_alignment,
+          align: 'end',
           spacing: 'small',
           items: [
             like_button,
@@ -129,7 +210,7 @@
     </bolt-stack>
     {% if phase1 or phase2 %}
       <bolt-stack spacing="xsmall">
-        {{ action_list }}
+        {{ action_list_video }}
       </bolt-stack>
     {% endif %}
     <bolt-stack spacing="xsmall">
@@ -201,19 +282,6 @@
           align: 'center',
           tag: 'p',
         } only %}
-        {% if phase2 %}
-          <div class="u-bolt-text-align-center">
-            {% include '@bolt-components-button/button.twig' with {
-              text: 'Subscribe',
-              size: 'small',
-              style: 'secondary',
-              icon: {
-                name: 'add',
-                position: 'before',
-              }
-            } only %}
-          </div>
-        {% endif %}
       </div>
       <div class="o-bolt-grid__cell u-bolt-width-12/12">
         {% if phase1 %}
@@ -362,6 +430,24 @@
                 },
               } only %}
             {% endset %}
+
+            {% set subscribe_button %}
+              {% if phase2 %}
+                <div class="u-bolt-text-align-center">
+                  {% include '@bolt-components-button/button.twig' with {
+                    text: 'Subscribe',
+                    size: 'xsmall',
+                    style: 'secondary',
+                    icon: {
+                      name: 'add',
+                      position: 'before',
+                    }
+                  } only %}
+                </div>
+              {% endif %}
+            {% endset %}
+
+            
             {% include '@bolt-components-list/list.twig' with {
               display: 'inline',
               align: 'center',
@@ -372,7 +458,7 @@
                 filter_input_3,
                 filter_input_4,
                 filter_input_5,
-                filter_button,
+                filter_button
               ]
             } only %}
           </form>
@@ -404,10 +490,116 @@
     </div>
   {% endset %}
 
+  {% set subscribe_button %}
+    {% if phase2 %}
+      <div class="u-bolt-text-align-center">
+        {% include '@bolt-components-button/button.twig' with {
+          text: 'Subscribe',
+          size: 'small',
+          style: 'secondary',
+          icon: {
+            name: 'add',
+            position: 'before',
+          }
+        } only %}
+      </div>
+    {% endif %}
+  {% endset %}
+
   {% include '@bolt-components-band/band.twig' with {
     content: band_content,
+    pinned_content: {
+      upper: [
+        {
+          content: subscribe_button,
+          align: "end",
+        },
+      ],
+    },
     theme: 'light',
   } only %}
+
+  {# {% include '@bolt-components-band/band.twig' with {
+    content: band_content,
+    theme: 'light',
+  } only %} #}
+
+  {% set carousel %}
+    {% set slide %}
+      {{ item_article }}
+    {% endset %}
+    {% include '@bolt-components-carousel/carousel.twig' with {
+      slides_per_view: 3,
+      nav_button_position: 'outside',
+      slides: [
+        slide,
+        slide,
+        slide,
+        slide,
+        slide,
+        slide,
+        slide,
+        slide,
+      ],
+    } only %}
+  {% endset %}
+
+  {% set view_all_button %}
+    {% include '@bolt-components-button/button.twig' with {
+      text: 'View all',
+      size: 'xsmall',
+      type: 'button',
+    } only %}
+  {% endset %}
+
+  {% set subscribe %}
+    {% if phase2 %}
+      {% include '@bolt-components-button/button.twig' with {
+        text: 'Subscribe',
+        size: 'xsmall',
+        icon: {
+          name: 'add',
+          position: 'before',
+        }
+      } only %}
+    {% endif %}
+  {% endset %}
+
+  {% set band_content %}
+    {% set headline %}
+      {% include '@bolt-components-headline/headline.twig' with {
+        text: 'Alan\'s picks',
+        size: 'xxlarge',
+        tag: 'h2',
+      } only %}
+    {% endset %}
+
+    {% include '@bolt-components-list/list.twig' with {
+      display: 'inline',
+      spacing: 'medium',
+      align: 'justify',
+      items: [
+        headline,
+        subscribe
+      ],
+    } only %}
+
+    {% include '@bolt-components-headline/subheadline.twig' with {
+      text: 'Explore content hand-picked by our Founder and CEO, Alan Trefler.',
+      size: 'large',
+      align: 'left',
+      tag: 'p',
+    } only %}
+
+    {{ carousel }}
+  {% endset %}
+
+  {% include '@bolt-components-band/band.twig' with {
+    content: band_content,
+    theme: 'xlight',
+  } only %}
+
+  <hr>
 
   {% set carousel %}
     {% set slide %}
@@ -452,7 +644,7 @@
 
   {% set band_content %}
     {% include '@bolt-components-headline/headline.twig' with {
-      text: 'Most viewed',
+      text: 'Most popular',
       size: 'xxlarge',
       tag: 'h2',
     } only %}
@@ -468,18 +660,30 @@
 
   {% set band_content %}
     {% set headline %}
-      {% include '@bolt-components-headline/headline.twig' with {
-        text: 'PW replays',
-        size: 'xxlarge',
-        tag: 'h2',
-      } only %}
+      {% set headline_area %}
+        {% include '@bolt-components-headline/headline.twig' with {
+          text: 'PegaWorld Replays',
+          size: 'xxlarge',
+          tag: 'h2',
+        } only %} 
+      {% endset %}
+
+      {% include '@bolt-components-list/list.twig' with {
+        display: 'inline',
+        spacing: 'medium',
+        align: 'start',
+        items: [
+          headline_area,
+          view_all_button
+        ],
+      } only %}      
     {% endset %}
     {% include '@bolt-components-list/list.twig' with {
       display: 'inline',
       spacing: 'medium',
+      align: 'justify',
       items: [
         headline,
-        view_all_button,
         subscribe
       ],
     } only %}
@@ -495,18 +699,30 @@
 
   {% set band_content %}
     {% set headline %}
-      {% include '@bolt-components-headline/headline.twig' with {
-        text: 'Customer success',
-        size: 'xxlarge',
-        tag: 'h2',
-      } only %}
+      {% set headline_area %}
+        {% include '@bolt-components-headline/headline.twig' with {
+          text: 'PegaWorld Replays',
+          size: 'xxlarge',
+          tag: 'h2',
+        } only %} 
+      {% endset %}
+
+      {% include '@bolt-components-list/list.twig' with {
+        display: 'inline',
+        spacing: 'medium',
+        align: 'start',
+        items: [
+          headline_area,
+          view_all_button
+        ],
+      } only %}      
     {% endset %}
     {% include '@bolt-components-list/list.twig' with {
       display: 'inline',
       spacing: 'medium',
+      align: 'justify',
       items: [
         headline,
-        view_all_button,
         subscribe
       ],
     } only %}
