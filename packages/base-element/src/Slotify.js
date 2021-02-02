@@ -25,6 +25,7 @@ export class Slotify extends LitElement {
   }
 
   // Save a reference to the pseudoSlot content before lit-element renders
+  // 1. Always add at least a default slot to the slotMap. Otherwise, content added after the initial render will not appear.
   saveSlots() {
     const childNodes = Array.from(this.childNodes);
 
@@ -38,11 +39,12 @@ export class Slotify extends LitElement {
           this.addChildToSlotMap(slot, child);
         } else if (slot && child instanceof HTMLElement) {
           this.addChildToSlotMap(slot, child);
+        } else {
+          this.addChildToSlotMap('default', ''); // [1]
         }
       });
     } else {
-      // Always add at least a default slot to the slotMap. Otherwise, content added after the initial render will not appear.
-      this.addChildToSlotMap('default', '');
+      this.addChildToSlotMap('default', ''); // [1]
     }
   }
 
