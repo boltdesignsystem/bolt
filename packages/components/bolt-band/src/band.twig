@@ -45,10 +45,13 @@
   {% endif %}
 {% endfor %}
 
+{# @todo: remove `.is-ready` selector from calculator.css on .COM. Then, this line can be removed. #}
+{% set outer_classes = outer_classes|merge(['is-ready']) %}
+
 {# band component's custom element wrapper #}
 <bolt-band
   {% if outer_classes %} class="{{ outer_classes|join(' ') }}" {% endif %}
-  {{ this.props|without("content")|without("class") }}
+  {{ attributes|without("class") }}
 >
   <{{ this.data.tag.value }} {{ inner_attributes.addClass(inner_classes) }}>
     {# Render background if there is any #}
