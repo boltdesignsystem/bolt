@@ -14,7 +14,7 @@ module.exports = {
         'Set a visual signifier for the post. An icon or decorative image usually goes here.',
     },
     headline: {
-      type: 'any',
+      type: 'object',
       description: 'Render the headline of the post.',
       properties: {
         text: {
@@ -101,12 +101,12 @@ module.exports = {
     more_info: {
       type: 'string',
       description:
-        'Render more information for the post. Short post summary usually goes here.',
+        'Render more information for the post. Short post summary usually goes here. No links should be passed here.',
     },
     warning: {
       type: 'string',
       description:
-        'Render warning text for the post, which appears below the "more info" content.',
+        'Render warning text for the post, which appears below the "more info" content. No links should be passed here.',
     },
   },
 };

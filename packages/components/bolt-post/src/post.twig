@@ -7,7 +7,6 @@
 {# Variables #}
 {% set this = init(schema) %}
 {% set attributes = create_attribute(attributes|default({})) %}
-{% set _headline_link_attributes = create_attribute(headline.link_attributes|default({})) %}
 {% set _id = 'js-bolt-post-' ~ random() %}
 
 {# Array of classes based on the defined + default props #}
@@ -16,7 +15,7 @@
   disabled ? 'c-bolt-post--disabled' : '',
 ] %}
 
-<div {{ attributes.addClass(classes)|without('id') }} id="{{ _id }}">
+<article {{ attributes.addClass(classes)|without('id') }} id="{{ _id }}">
   {% if signifier %}
     <div class="c-bolt-post__signifier" aria-hidden="true">
       {{ signifier }}
@@ -25,7 +24,8 @@
   <div class="c-bolt-post__content">
     <div class="c-bolt-post-info">
       <div class="c-bolt-post-info__heading">
-        {% if _headline_link_attributes %}
+        {% set _headline_link_attributes = headline.link_attributes %}
+        {% if headline.link_attributes %}
           {% set _linked_text %}
             {% include '@bolt-elements-text-link/text-link.twig' with {
               content: headline.text,
@@ -186,4 +186,4 @@
       } only %}
     </div>
   {% endif %}
-</div>
+</article>

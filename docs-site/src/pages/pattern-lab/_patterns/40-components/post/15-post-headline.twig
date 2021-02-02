@@ -1,12 +1,12 @@
 {% set description %}
-  The post signifier is a decorative element that visually represents the content nature of a post.
+  The post headline&rsquo;s size, HTML tag, and link attributes can be customized via props.
 {% endset %}
 
 {% set notes %}
   <bolt-ol>
-    <bolt-li>This is a purely decorative element and is hidden from screen readers.</bolt-li>
-    <bolt-li>When using an icon as the signifier, a size must be defined.</bolt-li>
-    <bolt-li>When using an image as the signifier, a width must be defined.</bolt-li>
+    <bolt-li>While any size can be used, large and xlarge are recommended.</bolt-li>
+    <bolt-li>Based on the structure of a particular page, the proper HTML tag should be defined via the <bolt-code-snippet display="inline">tag</bolt-code-snippet> prop.</bolt-li>
+    <bolt-li>When using the <bolt-code-snippet display="inline">link_attributes</bolt-code-snippet> prop, an <bolt-code-snippet display="inline">&lt;a&gt;</bolt-code-snippet> element is wrapped around the headline text. The prop allows you to pass common link attributes such as <bolt-code-snippet display="inline">href</bolt-code-snippet> and <bolt-code-snippet display="inline">target</bolt-code-snippet>.</bolt-li>
   </bolt-ol>
 {% endset %}
 
@@ -21,7 +21,7 @@
   {% include '@bolt-components-post/post.twig' with {
     signifier: icon_questions,
     headline: {
-      text: 'This post has an icon signifier',
+      text: 'This post has an xlarge headline',
       tag: 'h3',
       size: 'xlarge',
       link_attributes: {
@@ -37,20 +37,9 @@
 
 {% set twig_markup %}
 {% verbatim %}
-// Set a signifier variable
-{% set icon_questions %}
-  {% include '@bolt-components-icon/icon.twig' with {
-    name: 'questions',
-    size: 'xlarge',
-    color: 'teal',
-  } only %}
-{% endset %}
-
-// Use the variable in the signifier prop
 {% include '@bolt-components-post/post.twig' with {
-  signifier: icon_questions,
   headline: {
-    text: 'This post has an icon signifier',
+    text: 'This post has an xlarge headline',
     tag: 'h3',
     size: 'xlarge',
     link_attributes: {
@@ -66,7 +55,7 @@
 {% endset %}
 
 {% include '@utils/pattern-doc-page.twig' with {
-  title: 'Post Signifier',
+  title: 'Post Headline',
   description: description,
   demo: demo,
   notes: notes,

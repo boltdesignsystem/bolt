@@ -1,14 +1,16 @@
 {% set description %}
-  Post
+  Training List is a way to display the progression a particular course.
+{% endset %}
+
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>A training list is composed of the Post component and the List component with solid separators.</bolt-li>
+    <bolt-li><bolt-code-snippet display="inline">solved_label</bolt-code-snippet> is used for customizing the solved status label text.</bolt-li>
+    <bolt-li><bolt-code-snippet display="inline">locked_label</bolt-code-snippet> is used for customizing the locked status label text.</bolt-li>
+  </bolt-ol>
 {% endset %}
 
 {% set demo %}
-  {% set icon_warning %}
-    {% include '@bolt-components-icon/icon.twig' with {
-      name: 'warning',
-      color: 'yellow',
-    } only %}
-  {% endset %}
   {% set icon_orbit %}
     {% include '@bolt-components-icon/icon.twig' with {
       name: 'brand-orbit',
@@ -155,11 +157,49 @@
 
 {% set twig_markup %}
 {% verbatim %}
-{% endverbatim %}
+// Set up a particular training
+{% set icon_orbit %}
+  {% include '@bolt-components-icon/icon.twig' with {
+    name: 'brand-orbit',
+    size: 'xlarge',
+    color: 'teal',
+  } only %}
+{% endset %}
+{% set demo_training %}
+  {% include '@bolt-components-post/post.twig' with {
+    signifier: icon_orbit,
+    headline: {
+      text: 'This training is both completed and archived',
+      tag: 'h3',
+      size: 'large',
+      link_attributes: {
+        href: 'https://pega.com'
+      },
+    },
+    meta_items: [
+      'Module',
+      'Completed August 18, 2019',
+      'Last updated August 11, 2019',
+    ],
+    status: {
+      solved: true,
+      solved_label: 'Completed',
+      locked: true,
+      locked_label: 'Archived',
+    },
+    warning: 'This training has a warning.'
+  } only %}
 {% endset %}
 
-{% set html_markup %}
-{% verbatim %}
+// Render a list to display trainings
+{% include '@bolt-components-list/list.twig' with {
+  spacing: 'small',
+  inset: true,
+  separator: 'solid',
+  items: [
+    demo_training,
+  ]
+} only %}
 {% endverbatim %}
 {% endset %}
 
@@ -167,6 +207,6 @@
   title: 'Use Case: Academy Training List',
   description: description,
   demo: demo,
+  notes: notes,
   twig_markup: twig_markup,
-  html_markup: html_markup,
 } only %}

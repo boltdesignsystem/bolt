@@ -1,0 +1,68 @@
+{% set description %}
+  A post can have meta data and extra information.
+{% endset %}
+
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>Meta data can be passed via the <bolt-code-snippet display="inline">meta_items</bolt-code-snippet> prop, each item is visually separated by a pipe.</bolt-li>
+    <bolt-li>Meta data can contain links, use the link element to render a link. This will generate a link that is not blocked by the headline link.</bolt-li>
+    <bolt-li>Extra text can be passed to the <bolt-code-snippet display="inline">more_info</bolt-code-snippet> prop. It will appear below the meta data. A ellipsis and &ldquo;read more&rdquo; text is appended at the end.</bolt-li>
+    <bolt-li>Warning text can be passed to the <bolt-code-snippet display="inline">warning</bolt-code-snippet> prop. It will appear below the more info text. A warning icon is appended at the start.</bolt-li>
+  </bolt-ol>
+{% endset %}
+
+{% set demo %}
+  {% set icon_questions %}
+    {% include '@bolt-components-icon/icon.twig' with {
+      name: 'questions',
+      size: 'xlarge',
+      color: 'teal',
+    } only %}
+  {% endset %}
+  {% include '@bolt-components-post/post.twig' with {
+    signifier: icon_questions,
+    headline: {
+      text: 'This post has meta data and more info',
+      tag: 'h3',
+      size: 'xlarge',
+      link_attributes: {
+        href: 'https://pega.com'
+      },
+    },
+    meta_items: [
+      'Posted by <a href="https://collaborate.pega.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline">username</a> on May 21, 2020',
+      'Last activity: 2 minutes ago',
+    ],
+    more_info: 'This is more information. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus',
+    warning: 'Warning! This is a warning message.',
+  } only %}
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% include '@bolt-components-post/post.twig' with {
+  headline: {
+    text: 'This post has meta data and more info',
+    tag: 'h3',
+    size: 'xlarge',
+    link_attributes: {
+      href: 'https://pega.com'
+    },
+  },
+  meta_items: [
+    'Posted by <a href="https://collaborate.pega.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline">username</a> on May 21, 2020',
+    'Last activity: 2 minutes ago',
+  ],
+  more_info: 'This is the more information. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus',
+  warning: 'Warning! This is a warning message.',
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Post Meta Data and More',
+  description: description,
+  demo: demo,
+  notes: notes,
+  twig_markup: twig_markup,
+} only %}

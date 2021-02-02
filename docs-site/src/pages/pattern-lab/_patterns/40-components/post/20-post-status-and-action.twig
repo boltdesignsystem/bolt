@@ -1,5 +1,5 @@
 {% set description %}
-  A post can have various statuses, use the proper prop to mark the relevant status.
+  A post can have various statuses, use the proper prop to mark the relevant status. A popover action menu can be added by using the <bolt-code-snippet display="inline">show_actions</bolt-code-snippet> prop.
 {% endset %}
 
 {% set notes %}
@@ -8,7 +8,6 @@
     <bolt-li>The locked status label can be customized.</bolt-li>
     <bolt-li>The favorited status affects the favorite action label. If the status is true, the label reads &ldquo;remove from favorites&rdquo;; if the status is false, the label reads &ldquo;favorite&rdquo;.</bolt-li>
     <bolt-li>The subscribed status affects the subscribe action label. If the status is true, the label reads &ldquo;unsubscribe&rdquo;; if the status is false, the label reads &ldquo;subscribe&rdquo;.</bolt-li>
-    <bolt-li>Each status and action can display optionally.</bolt-li>
   </bolt-ol>
 {% endset %}
 
@@ -55,7 +54,6 @@
 {% set twig_markup %}
 {% verbatim %}
 {% include '@bolt-components-post/post.twig' with {
-  signifier: icon_questions,
   headline: {
     text: 'This post has every status and action possible',
     tag: 'h3',
