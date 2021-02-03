@@ -46,6 +46,7 @@ module.exports = {
       properties: {
         solved: {
           type: 'boolean',
+          default: false,
           description: 'Mark the post as solved.',
         },
         solved_label: {
@@ -54,6 +55,7 @@ module.exports = {
         },
         locked: {
           type: 'boolean',
+          default: false,
           description: 'Mark the post as locked.',
         },
         locked_label: {
@@ -70,10 +72,12 @@ module.exports = {
         },
         favorited: {
           type: 'boolean',
+          default: false,
           description: 'Mark the post as favorited.',
         },
         subscribed: {
           type: 'boolean',
+          default: false,
           description: 'Mark the post as subscribed.',
         },
       },
@@ -84,15 +88,18 @@ module.exports = {
       properties: {
         reply: {
           type: 'boolean',
+          default: false,
           description: 'Show the reply action.',
         },
         favorite: {
           type: 'boolean',
+          default: false,
           description:
             'Show the favorite action. Label for this action is updated according to the status of the post.',
         },
         subscribe: {
           type: 'boolean',
+          default: false,
           description:
             'Show the subscribe action. Label for this action is updated according to the status of the post.',
         },

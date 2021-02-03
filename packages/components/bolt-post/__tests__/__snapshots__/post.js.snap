@@ -2,8 +2,7 @@
 
 exports[`Post basic usage 1`] = `
 <article data-foo="bar"
-         class="c-bolt-post"
-         id="js-bolt-post-1100753381"
+         class="c-bolt-post js-test-target"
 >
   <div class="c-bolt-post__content">
     <div class="c-bolt-post-info">
@@ -142,7 +141,7 @@ exports[`Post basic usage 1`] = `
   <div class="c-bolt-post__actions">
     <bolt-popover placement="bottom-end"
                   spacing="none"
-                  boundary="#js-bolt-post-1100753381"
+                  boundary=".js-test-target"
                   uuid="12345"
     >
       <div class="c-bolt-popover c-bolt-popover--bottom c-bolt-popover--text-wrap ">

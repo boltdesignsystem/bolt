@@ -7,15 +7,15 @@
 {# Variables #}
 {% set this = init(schema) %}
 {% set attributes = create_attribute(attributes|default({})) %}
-{% set _id = 'js-bolt-post-' ~ random() %}
+{% set _post_id = _post_id|default(bolt.data.config.env == 'test' ? 'js-test-target' : 'js-bolt-post-' ~ random()) %}
 
 {# Array of classes based on the defined + default props #}
 {% set classes = [
   'c-bolt-post',
-  disabled ? 'c-bolt-post--disabled' : '',
+  _post_id,
 ] %}
 
-<article {{ attributes.addClass(classes)|without('id') }} id="{{ _id }}">
+<article {{ attributes.addClass(classes) }}>
   {% if signifier %}
     <div class="c-bolt-post__signifier" aria-hidden="true">
       {{ signifier }}
@@ -48,7 +48,7 @@
           {% endfor %}
         </ul>
       {% endif %}
-      {% if more_info %}
+      {% if this.data.more_info %}
         <div class="c-bolt-post-info__more-info">
           {% set _icon_chevron_right %}
             {% include '@bolt-components-icon/icon.twig' with {
@@ -59,13 +59,13 @@
             {{ 'Read More'|t }}{{ _icon_chevron_right|spaceless }}
           {% endset %}
           {% include '@bolt-components-headline/text.twig' with {
-            text: more_info ~ ' &hellip; ' ~ _read_more_link|spaceless,
+            text: this.data.more_info.value ~ ' &hellip; ' ~ _read_more_link|spaceless,
             tag: 'p',
             size: 'small',
           } only %}
         </div>
       {% endif %}
-      {% if warning %}
+      {% if this.data.warning %}
         <div class="c-bolt-post-info__warning">
           {% set _icon_warning %}
             {% include '@bolt-components-icon/icon.twig' with {
@@ -74,7 +74,7 @@
             } only %}
           {% endset %}
           {% include '@bolt-components-headline/text.twig' with {
-            text: _icon_warning ~ warning,
+            text: _icon_warning ~ this.data.warning.value,
             tag: 'p',
             size: 'small',
           } only %}
@@ -181,7 +181,7 @@
         trigger: _popover_trigger,
         content: _popover_content,
         spacing: 'none',
-        boundary: '#' ~ _id,
+        boundary: '.' ~ _post_id,
         placement: 'bottom-end',
       } only %}
     </div>
