@@ -10,7 +10,6 @@ let config; // cached Bolt config
 
 // don't automatically include these Bolt packages as extra (undeclared) dependencies
 const missingBoltPkgsWhitelist = [
-  '@bolt/build-tools',
   '@bolt/core',
   '@bolt/core-v3.x',
   '@bolt/polyfills',
