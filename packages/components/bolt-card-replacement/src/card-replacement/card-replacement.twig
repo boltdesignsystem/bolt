@@ -38,9 +38,6 @@
 <bolt-card-replacement
   {{ this.props|without("items")|without("class") }}>
 
-  {# This sets none value to not render anything. #}
-  {% set theme = theme == "none" ? false : theme %}
-
   {# Array of classes based on the defined + default props #}
   {% set classes = [
     "c-bolt-card-replacement",

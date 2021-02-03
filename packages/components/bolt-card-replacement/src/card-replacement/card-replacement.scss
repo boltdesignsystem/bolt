@@ -110,12 +110,13 @@ bolt-card-replacement {
 
 // card-replacement container styles
 bolt-card-replacement {
+  display: flex;
+  flex-direction: column;
   position: relative;
+  min-height: 100%;
 
-  &[height='full'] {
-    display: flex;
-    flex-direction: column;
-    min-height: 100%;
+  &[height='auto'] {
+    min-height: auto;
   }
 }
 
