@@ -39,7 +39,13 @@ const jsonSchemaPropsDecorator = clazz => {
           .includes('deprecated');
 
         // these schema props are never used by Web Components, only by Twig
-        const twigOnlyProps = ['attributes', 'content', 'items', 'children'];
+        const twigOnlyProps = [
+          'attributes',
+          'content',
+          'items',
+          'children',
+          'style',
+        ];
         const isTwigOnly = twigOnlyProps.includes(key.toLowerCase());
 
         // skip deprecated and Twig-only props
