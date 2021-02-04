@@ -22,31 +22,6 @@
   margin-left: var(--bolt-spacing-x-small);
 }
 
-.c-bolt-post__content {
-  display: grid;
-  flex: 1;
-  align-items: start;
-  position: static; // Position must be static on this element so the heading link will not be contained inside this.
-
-  @include bolt-mq(medium) {
-    grid-template-columns: 1fr auto;
-  }
-}
-
-/* .c-bolt-post-info {
-  position: static; // Position must be static on this element so the heading link will not be contained inside this.
-
-  > *:not(:last-child) {
-    margin-bottom: var(--bolt-spacing-y-xxsmall);
-  }
-}
-
-.c-bolt-post-info__heading {
-  position: static; // Position must be static on this element so the heading link will not be contained inside this.
-  word-break: break-word;
-  hyphens: auto;
-} */
-
 .c-bolt-post__meta {
   display: block;
   margin: 0;
@@ -96,6 +71,16 @@
     'signifier heading status'
     'signifier content status'
     '. content status';
+  flex: 1;
+  align-items: start;
+  position: static; // Position must be static on this element so the heading link will not be contained inside this.
+}
+
+.c-bolt-post__flag-signifier {
+  grid-area: signifier;
+  display: flex;
+  align-self: center;
+  margin-right: var(--bolt-spacing-x-small);
 }
 
 .c-bolt-post__flag-heading {
@@ -124,13 +109,6 @@
   }
 }
 
-.c-bolt-post__flag-signifier {
-  grid-area: signifier;
-  display: flex;
-  align-self: center;
-  margin-right: var(--bolt-spacing-x-small);
-}
-
 .c-bolt-post__flag-content {
   grid-area: content;
   margin: var(--bolt-spacing-y-xsmall) 0;
@@ -144,8 +122,8 @@
   display: flex;
   grid-area: status;
   align-self: start;
-  overflow: hidden;
-  margin: var(--bolt-spacing-y-xsmall) 0;
+  margin: var(--bolt-spacing-y-xsmall) 0 var(--bolt-spacing-y-small)
+    var(--bolt-spacing-x-small);
   padding: 0;
   list-style: none;
   pointer-events: none;
@@ -156,22 +134,23 @@
     grid-row-start: 5;
     grid-column: 1/4;
     grid-column-start: 2;
-    flex-wrap: wrap;
+    margin-left: 0;
   }
 
   > .c-bolt-post__flag-status__item {
     display: grid;
     align-content: center;
-    min-width: 11ch;
-    margin-bottom: -1.5px;
-    padding: var(--bolt-spacing-y-xsmall) 0;
+    padding: var(--bolt-spacing-y-xsmall) var(--bolt-spacing-x-xsmall);
     font-size: var(--bolt-type-font-size-xsmall);
     color: var(--m-bolt-neutral);
     line-height: var(--bolt-type-line-height-xsmall);
     text-align: center;
-    border-bottom: 1px solid var(--m-bolt-border);
     border-left: 1px solid var(--m-bolt-border);
     white-space: nowrap;
+
+    @include bolt-mq(medium) {
+      min-width: 10.5ch;
+    }
   }
 }
 
