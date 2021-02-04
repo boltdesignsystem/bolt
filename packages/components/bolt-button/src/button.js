@@ -26,7 +26,7 @@ class BoltButton extends BoltActionElement {
   static get properties() {
     return {
       ...this.props,
-      color: { type: String },
+      hierarchy: { type: String },
       tabindex: { type: Number },
       inert: { type: Boolean }, // will eventually go hand in hand with https://github.com/WICG/inert#notes-on-the-polyfill
     };
@@ -40,8 +40,8 @@ class BoltButton extends BoltActionElement {
     const classes = cx('c-bolt-button', {
       'c-bolt-button--medium': !this.size, // Default size
       [`c-bolt-button--${this.size}`]: this.size,
-      'c-bolt-button--primary': !this.color, // Default color
-      [`c-bolt-button--${this.color}`]: this.color,
+      'c-bolt-button--primary': !this.hierarchy, // Default hierarchy
+      [`c-bolt-button--${this.hierarchy}`]: this.hierarchy,
       [`c-bolt-button--${this.width}`]: this.width && this.width !== 'auto',
       'c-bolt-button--border-radius-regular': !this.borderRadius, // Default border radius
       'c-bolt-button--border-radius-full': this.rounded && !this.borderRadius, // DEPRECATED.  Use the border-radius property instead of rounded.
