@@ -4,26 +4,26 @@ exports[`Post basic usage 1`] = `
 <article data-foo="bar"
          class="c-bolt-post js-test-target"
 >
-  <div class="c-bolt-post__content">
-    <div class="c-bolt-post-info">
-      <div class="c-bolt-post-info__heading">
-        <h3 class="c-bolt-headline c-bolt-headline--bold c-bolt-headline--xlarge">
-          <a href="https://pega.com"
-             class="e-bolt-text-link e-bolt-text-link--reversed-underline e-bolt-text-link--expand-click-target"
-          >
-            This is a post
-          </a>
-        </h3>
-      </div>
-      <ul class="c-bolt-post-info__meta">
-        <li class="c-bolt-post-info__meta__item">
+  <div class="c-bolt-post__flag">
+    <div class="c-bolt-post__flag-heading">
+      <h3 class="c-bolt-headline c-bolt-headline--bold c-bolt-headline--xlarge">
+        <a href="https://pega.com"
+           class="e-bolt-text-link e-bolt-text-link--reversed-underline e-bolt-text-link--expand-click-target"
+        >
+          This is a post
+        </a>
+      </h3>
+    </div>
+    <div class="c-bolt-post__flag-content">
+      <ul class="c-bolt-post__meta">
+        <li class="c-bolt-post__meta__item">
           Posted 8 hours 15 minutes ago
         </li>
-        <li class="c-bolt-post-info__meta__item">
+        <li class="c-bolt-post__meta__item">
           Last activity: 2 minutes ago
         </li>
       </ul>
-      <div class="c-bolt-post-info__more-info">
+      <div class="c-bolt-post__more-info">
         <p class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--small">
           This is the more information &hellip; Read More
           <bolt-icon name="chevron-right"
@@ -44,7 +44,7 @@ exports[`Post basic usage 1`] = `
           </bolt-icon>
         </p>
       </div>
-      <div class="c-bolt-post-info__warning">
+      <div class="c-bolt-post__warning">
         <p class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--small">
           <bolt-icon name="warning"
                      color="yellow"
@@ -72,9 +72,9 @@ exports[`Post basic usage 1`] = `
         </p>
       </div>
     </div>
-    <ul class="c-bolt-post-status">
-      <li class="c-bolt-post-status__item">
-        <span class="c-bolt-post-status__icon c-bolt-post-status__icon--solved"
+    <ul class="c-bolt-post__flag-status">
+      <li class="c-bolt-post__flag-status__item">
+        <span class="c-bolt-post__flag-status__icon c-bolt-post__flag-status__icon--solved"
               aria-hidden="true"
         >
           <bolt-icon name="check-solid"
@@ -96,8 +96,8 @@ exports[`Post basic usage 1`] = `
         </span>
         custom solved label
       </li>
-      <li class="c-bolt-post-status__item">
-        <span class="c-bolt-post-status__icon c-bolt-post-status__icon--locked"
+      <li class="c-bolt-post__flag-status__item">
+        <span class="c-bolt-post__flag-status__icon c-bolt-post__flag-status__icon--locked"
               aria-hidden="true"
         >
           <bolt-icon name="lock"
@@ -124,14 +124,14 @@ exports[`Post basic usage 1`] = `
         </span>
         custom locked label
       </li>
-      <li class="c-bolt-post-status__item">
-        <span class="c-bolt-post-status__number">
+      <li class="c-bolt-post__flag-status__item">
+        <span class="c-bolt-post__flag-status__number">
           33
         </span>
         Replies
       </li>
-      <li class="c-bolt-post-status__item">
-        <span class="c-bolt-post-status__number">
+      <li class="c-bolt-post__flag-status__item">
+        <span class="c-bolt-post__flag-status__number">
           123
         </span>
         Views
@@ -151,7 +151,7 @@ exports[`Post basic usage 1`] = `
              tabindex="-1"
           >
             <ssr-keep for="bolt-popover">
-              <bolt-button size="small"
+              <bolt-button size="xsmall"
                            color="tertiary"
                            width="auto"
                            border-radius="regular"
@@ -159,7 +159,7 @@ exports[`Post basic usage 1`] = `
                            transform="none"
                            icon-only
               >
-                <button class="c-bolt-button c-bolt-button--small c-bolt-button--tertiary c-bolt-button--border-radius-regular c-bolt-button--center c-bolt-button--icon-only"
+                <button class="c-bolt-button c-bolt-button--xsmall c-bolt-button--tertiary c-bolt-button--border-radius-regular c-bolt-button--center c-bolt-button--icon-only"
                         is="shadow-root"
                 >
                   <ssr-keep for="bolt-button"
