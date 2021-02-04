@@ -5,8 +5,8 @@
 {% set notes %}
   <bolt-ol>
     <bolt-li>This is a purely decorative element and is hidden from screen readers.</bolt-li>
-    <bolt-li>When using an icon as the signifier, a size must be defined.</bolt-li>
-    <bolt-li>When using an image as the signifier, a width must be defined.</bolt-li>
+    <bolt-li>When using an icon as the signifier, a size must be defined. It is recommended to match the size of the headline.</bolt-li>
+    <bolt-li>When using an image as the signifier, a width must be defined. It is recommended to use 32px in tandem with large headline, and 38px in tandem with xlarge headline.</bolt-li>
   </bolt-ol>
 {% endset %}
 
@@ -14,7 +14,7 @@
   {% set icon_questions %}
     {% include '@bolt-components-icon/icon.twig' with {
       name: 'questions',
-      size: 'xlarge',
+      size: 'large',
       color: 'teal',
     } only %}
   {% endset %}
@@ -23,7 +23,7 @@
     headline: {
       text: 'This post has an icon signifier',
       tag: 'h3',
-      size: 'xlarge',
+      size: 'large',
       link_attributes: {
         href: 'https://pega.com'
       },
@@ -41,7 +41,7 @@
 {% set icon_questions %}
   {% include '@bolt-components-icon/icon.twig' with {
     name: 'questions',
-    size: 'xlarge',
+    size: 'large',
     color: 'teal',
   } only %}
 {% endset %}
@@ -52,7 +52,7 @@
   headline: {
     text: 'This post has an icon signifier',
     tag: 'h3',
-    size: 'xlarge',
+    size: 'large',
     link_attributes: {
       href: 'https://pega.com'
     },

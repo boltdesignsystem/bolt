@@ -16,14 +16,14 @@
 ] %}
 
 <article {{ attributes.addClass(classes) }}>
-  {% if signifier %}
-    <div class="c-bolt-post__signifier" aria-hidden="true">
-      {{ signifier }}
-    </div>
-  {% endif %}
   <div class="c-bolt-post__content">
-    <div class="c-bolt-post-info">
-      <div class="c-bolt-post-info__heading">
+    <div class="c-bolt-post__flag">
+      {% if signifier %}
+        <div class="c-bolt-post__flag-signifier" aria-hidden="true">
+          {{ signifier }}
+        </div>
+      {% endif %}
+      <div class="c-bolt-post__flag-heading">
         {% set _headline_link_attributes = headline.link_attributes %}
         {% if headline.link_attributes %}
           {% set _linked_text %}
@@ -41,80 +41,82 @@
           size: headline.size,
         } only %}
       </div>
-      {% if meta_items %}
-        <ul class="c-bolt-post-info__meta">
-          {% for item in meta_items %}
-            <li class="c-bolt-post-info__meta__item">{{ item }}</li>
-          {% endfor %}
+      <div class="c-bolt-post__flag-content">
+        {% if meta_items %}
+          <ul class="c-bolt-post__meta">
+            {% for item in meta_items %}
+              <li class="c-bolt-post__meta__item">{{ item }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+        {% if this.data.more_info %}
+          <div class="c-bolt-post__more-info">
+            {% set _icon_chevron_right %}
+              {% include '@bolt-components-icon/icon.twig' with {
+                name: 'chevron-right',
+              } only %}
+            {% endset %}
+            {% set _read_more_link %}
+              {{ 'Read More'|t }}{{ _icon_chevron_right|spaceless }}
+            {% endset %}
+            {% include '@bolt-components-headline/text.twig' with {
+              text: this.data.more_info.value ~ ' &hellip; ' ~ _read_more_link|spaceless,
+              tag: 'p',
+              size: 'small',
+            } only %}
+          </div>
+        {% endif %}
+        {% if this.data.warning %}
+          <div class="c-bolt-post__warning">
+            {% set _icon_warning %}
+              {% include '@bolt-components-icon/icon.twig' with {
+                name: 'warning',
+                color: 'yellow',
+              } only %}
+            {% endset %}
+            {% include '@bolt-components-headline/text.twig' with {
+              text: _icon_warning ~ this.data.warning.value,
+              tag: 'p',
+              size: 'small',
+            } only %}
+          </div>
+        {% endif %}
+      </div>
+      {% if status %}
+        <ul class="c-bolt-post__flag-status">
+          {% if status.solved %}
+            <li class="c-bolt-post__flag-status__item">
+              <span class="c-bolt-post__flag-status__icon c-bolt-post__flag-status__icon--solved" aria-hidden="true">
+                {% include '@bolt-components-icon/icon.twig' with {
+                  name: 'check-solid',
+                } only %}
+              </span>
+              {{ status.solved_label ? status.solved_label|t : 'Solved'|t }}
+            </li>
+          {% endif %}
+          {% if status.locked %}
+            <li class="c-bolt-post__flag-status__item">
+              <span class="c-bolt-post__flag-status__icon c-bolt-post__flag-status__icon--locked" aria-hidden="true">
+                {% include '@bolt-components-icon/icon.twig' with {
+                  name: 'lock',
+                } only %}
+              </span>
+              {{ status.locked_label ? status.locked_label|t : 'Locked'|t }}
+            </li>
+          {% endif %}
+          {% if status.replies %}
+            <li class="c-bolt-post__flag-status__item">
+              <span class="c-bolt-post__flag-status__number">{{ status.replies }}</span> {{ 'Replies'|t }}
+            </li>
+          {% endif %}
+          {% if status.views %}
+            <li class="c-bolt-post__flag-status__item">
+              <span class="c-bolt-post__flag-status__number">{{ status.views }}</span> {{ 'Views'|t }}
+            </li>
+          {% endif %}
         </ul>
       {% endif %}
-      {% if this.data.more_info %}
-        <div class="c-bolt-post-info__more-info">
-          {% set _icon_chevron_right %}
-            {% include '@bolt-components-icon/icon.twig' with {
-              name: 'chevron-right',
-            } only %}
-          {% endset %}
-          {% set _read_more_link %}
-            {{ 'Read More'|t }}{{ _icon_chevron_right|spaceless }}
-          {% endset %}
-          {% include '@bolt-components-headline/text.twig' with {
-            text: this.data.more_info.value ~ ' &hellip; ' ~ _read_more_link|spaceless,
-            tag: 'p',
-            size: 'small',
-          } only %}
-        </div>
-      {% endif %}
-      {% if this.data.warning %}
-        <div class="c-bolt-post-info__warning">
-          {% set _icon_warning %}
-            {% include '@bolt-components-icon/icon.twig' with {
-              name: 'warning',
-              color: 'yellow',
-            } only %}
-          {% endset %}
-          {% include '@bolt-components-headline/text.twig' with {
-            text: _icon_warning ~ this.data.warning.value,
-            tag: 'p',
-            size: 'small',
-          } only %}
-        </div>
-      {% endif %}
     </div>
-    {% if status %}
-      <ul class="c-bolt-post-status">
-        {% if status.solved %}
-          <li class="c-bolt-post-status__item">
-            <span class="c-bolt-post-status__icon c-bolt-post-status__icon--solved" aria-hidden="true">
-              {% include '@bolt-components-icon/icon.twig' with {
-                name: 'check-solid',
-              } only %}
-            </span>
-            {{ status.solved_label ? status.solved_label|t : 'Solved'|t }}
-          </li>
-        {% endif %}
-        {% if status.locked %}
-          <li class="c-bolt-post-status__item">
-            <span class="c-bolt-post-status__icon c-bolt-post-status__icon--locked" aria-hidden="true">
-              {% include '@bolt-components-icon/icon.twig' with {
-                name: 'lock',
-              } only %}
-            </span>
-            {{ status.locked_label ? status.locked_label|t : 'Locked'|t }}
-          </li>
-        {% endif %}
-        {% if status.replies %}
-          <li class="c-bolt-post-status__item">
-            <span class="c-bolt-post-status__number">{{ status.replies }}</span> {{ 'Replies'|t }}
-          </li>
-        {% endif %}
-        {% if status.views %}
-          <li class="c-bolt-post-status__item">
-            <span class="c-bolt-post-status__number">{{ status.views }}</span> {{ 'Views'|t }}
-          </li>
-        {% endif %}
-      </ul>
-    {% endif %}
   </div>
   {% if show_actions %}
     {% if show_actions.reply %}
@@ -158,7 +160,7 @@
       {% set _popover_trigger %}
         {% include '@bolt-components-button/button.twig' with {
           text: 'Action menu'|t,
-          size: 'small',
+          size: 'xsmall',
           style: 'tertiary',
           iconOnly: true,
           icon: {
