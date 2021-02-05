@@ -13,9 +13,6 @@ import schema from '../button.schema.js';
 
 let cx = classNames.bind(styles);
 
-// Note: must use `delete` or outputs empty `style` attr on bolt-button WC
-delete schema.properties.style;
-
 @customElement('bolt-button')
 @convertInitialTags(['button', 'a'])
 class BoltButton extends BoltActionElement {

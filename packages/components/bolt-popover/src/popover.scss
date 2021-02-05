@@ -154,7 +154,10 @@ $bolt-popover-transition: $bolt-transition-timing
   white-space: nowrap;
 
   @at-root .c-bolt-popover--text-wrap & {
-    width: unquote('var(--c-bolt-popover-bubble-width, min(65vw, 250px))');
+    // Capitalize "Min" to avoid collision with SASS function named `min()`. Remove this hack once we switch to "dart-sass".
+    // @see https://css-tricks.com/when-sass-and-new-css-features-collide/#the-solution
+    /* stylelint-disable function-name-case */
+    width: var(--c-bolt-popover-bubble-width, Min(65vw, 250px));
     white-space: normal; // If the content is long (more than 31 characters), the bubble will have this specific width and text will wrap. This logic is in the JS and Twig files.
 
     @include bolt-ms-edge-42-only {
