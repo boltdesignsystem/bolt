@@ -7,7 +7,7 @@
 {# Variables #}
 {% set this = init(schema) %}
 {% set attributes = create_attribute(attributes|default({})) %}
-{% set _post_id = _post_id|default(bolt.data.config.env == 'test' ? 'js-test-target' : 'js-bolt-post-' ~ random()) %}
+{% set _post_id = bolt.data.config.env == 'test' ? 'js-test-target' : 'js-bolt-post-' ~ random() %}
 
 {# Array of classes based on the defined + default props #}
 {% set classes = [
@@ -23,19 +23,18 @@
       </div>
     {% endif %}
     <div class="c-bolt-post__flag-heading">
-      {% set _headline_link_attributes = headline.link_attributes %}
       {% if headline.link_attributes %}
         {% set _linked_text %}
           {% include '@bolt-elements-text-link/text-link.twig' with {
             content: headline.text,
             reversed_underline: true,
             expand_click_target: true,
-            attributes: _headline_link_attributes
+            attributes: headline.link_attributes
           } only %}
         {% endset %}
       {% endif %}
       {% include '@bolt-components-headline/headline.twig' with {
-        text: _headline_link_attributes ? _linked_text : headline.text,
+        text: headline.link_attributes ? _linked_text : headline.text,
         tag: headline.tag,
         size: headline.size,
       } only %}
