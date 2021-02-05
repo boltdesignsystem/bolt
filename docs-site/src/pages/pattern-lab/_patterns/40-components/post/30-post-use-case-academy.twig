@@ -158,7 +158,7 @@
 {% set twig_markup %}
 {% verbatim %}
 // Set up a particular training
-{% set icon_orbit %}
+{% set demo_icon %}
   {% include '@bolt-components-icon/icon.twig' with {
     name: 'brand-orbit',
     size: 'large',
@@ -167,7 +167,7 @@
 {% endset %}
 {% set demo_training %}
   {% include '@bolt-components-post/post.twig' with {
-    signifier: icon_orbit,
+    signifier: demo_icon,
     headline: {
       text: 'This training is both completed and archived',
       tag: 'h3',

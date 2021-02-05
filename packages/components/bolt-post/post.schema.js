@@ -70,40 +70,17 @@ module.exports = {
           type: 'string',
           description: 'Set the count of views.',
         },
-        favorited: {
-          type: 'boolean',
-          default: false,
-          description: 'Mark the post as favorited.',
-        },
-        subscribed: {
-          type: 'boolean',
-          default: false,
-          description: 'Mark the post as subscribed.',
-        },
       },
     },
-    show_actions: {
-      type: 'object',
-      description: 'Render a popover action menu for the post.',
-      properties: {
-        reply: {
-          type: 'boolean',
-          default: false,
-          description: 'Show the reply action.',
-        },
-        favorite: {
-          type: 'boolean',
-          default: false,
-          description:
-            'Show the favorite action. Label for this action is updated according to the status of the post.',
-        },
-        subscribe: {
-          type: 'boolean',
-          default: false,
-          description:
-            'Show the subscribe action. Label for this action is updated according to the status of the post.',
-        },
-      },
+    action_menu: {
+      type: 'any',
+      description:
+        'Render a popover action menu for the post. Passing the Menu component is recommended.',
+    },
+    share_menu: {
+      type: 'any',
+      description:
+        'Render a popover share menu for the post. Passing the Share component is mandatory.',
     },
     more_info: {
       type: 'string',

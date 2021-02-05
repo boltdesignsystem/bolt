@@ -19,6 +19,33 @@
   {% set signifier_3 %}
     <img src="/images/placeholders/thumb-square-ivy.jpg" alt="" width=32 height=32 class="u-bolt-border-radius-small">
   {% endset %}
+  {% set share_menu %}
+    {% include '@bolt-components-share/share.twig' with {
+      display: 'menu',
+      size: 'small',
+      sources: [
+        {
+          name: 'facebook',
+          url: 'https://www.facebook.com/sharer/sharer.php?u=https://boltdesignsystem.com&amp;src=sdkpreparse'
+        },
+        {
+          name: 'twitter',
+          url: 'https://twitter.com/intent/tweet?url=https://boltdesignsystem.com&text=Sample%20Share%20Text&via=pega&hashtags=boltDesignSystemRocks!'
+        },
+        {
+          name: 'linkedin',
+          url: 'https://www.linkedin.com/shareArticle?url=https://boltdesignsystem.com'
+        },
+        {
+          name: 'email',
+          url: 'mailto:?&body=Sample%20Text%20--%20https%3A//boltdesignsystem.com'
+        }
+      ],
+      copy_to_clipboard: {
+        text_to_copy: 'https://boltdesignsystem.com'
+      },
+    } only %}
+  {% endset %}
   {% set article_0 %}
     {% include '@bolt-components-post/post.twig' with {
       signifier: signifier_1,
@@ -35,6 +62,7 @@
         'Duration',
         'Posted by Name',
       ],
+      share_menu: share_menu,
     } only %}
   {% endset %}
   {% set article_1 %}
@@ -53,6 +81,7 @@
         '3 min read',
         'Posted by Matt Healy on Jan 22, 2021',
       ],
+      share_menu: share_menu,
     } only %}
   {% endset %}
   {% set article_2 %}
@@ -71,6 +100,7 @@
         '3 min read',
         'Posted by Jeff Nicholson on Jan 5, 2021',
       ],
+      share_menu: share_menu,
     } only %}
   {% endset %}
   {% set article_3 %}
@@ -89,6 +119,7 @@
         '10:23',
         'Posted by Genifer Graff on Dec 14, 2020',
       ],
+      share_menu: share_menu,
     } only %}
   {% endset %}
 
@@ -108,12 +139,39 @@
 {% set twig_markup %}
 {% verbatim %}
 // Set up a particular article
-{% set thumbnail %}
+{% set demo_thumbnail %}
   <img src="/image.jpg" alt="" width=32 height=32>
+{% endset %}
+{% set demo_share_menu %}
+  {% include '@bolt-components-share/share.twig' with {
+    display: 'menu',
+    size: 'small',
+    sources: [
+      {
+        name: 'facebook',
+        url: 'https://www.facebook.com/sharer/sharer.php?u=https://boltdesignsystem.com&amp;src=sdkpreparse'
+      },
+      {
+        name: 'twitter',
+        url: 'https://twitter.com/intent/tweet?url=https://boltdesignsystem.com&text=Sample%20Share%20Text&via=pega&hashtags=boltDesignSystemRocks!'
+      },
+      {
+        name: 'linkedin',
+        url: 'https://www.linkedin.com/shareArticle?url=https://boltdesignsystem.com'
+      },
+      {
+        name: 'email',
+        url: 'mailto:?&body=Sample%20Text%20--%20https%3A//boltdesignsystem.com'
+      }
+    ],
+    copy_to_clipboard: {
+      text_to_copy: 'https://boltdesignsystem.com'
+    },
+  } only %}
 {% endset %}
 {% set demo_article %}
   {% include '@bolt-components-post/post.twig' with {
-    signifier: thumbnail,
+    signifier: demo_thumbnail,
     headline: {
       text: 'This is an article',
       tag: 'h3',
@@ -127,6 +185,7 @@
       'Duration',
       'Posted by Name',
     ],
+    share_menu: demo_share_menu,
   } only %}
 {% endset %}
 

@@ -28,6 +28,75 @@
       color: 'berry',
     } only %}
   {% endset %}
+  {% set icon_reply %}
+    {% include '@bolt-components-icon/icon.twig' with {
+      name: 'reply',
+      size: 'small',
+    } only %}
+  {% endset %}
+  {% set icon_heart %}
+    {% include '@bolt-components-icon/icon.twig' with {
+      name: 'heart',
+      size: 'small',
+    } only %}
+  {% endset %}
+  {% set icon_heart_pink %}
+    {% include '@bolt-components-icon/icon.twig' with {
+      name: 'heart',
+      size: 'small',
+      color: 'pink',
+    } only %}
+  {% endset %}
+  {% set icon_eye %}
+    {% include '@bolt-components-icon/icon.twig' with {
+      name: 'eye',
+      size: 'small',
+    } only %}
+  {% endset %}
+  {% set icon_eye_off %}
+    {% include '@bolt-components-icon/icon.twig' with {
+      name: 'eye-off',
+      size: 'small',
+    } only %}
+  {% endset %}
+  {% set action_menu %}
+    {% include '@bolt-components-menu/menu.twig' with {
+      title: 'More actions',
+      items: [
+        {
+          content: 'Reply',
+          icon_before: icon_reply,
+        },
+        {
+          content: 'Favorite',
+          icon_before: icon_heart,
+        },
+        {
+          content: 'Subscribe',
+          icon_before: icon_eye,
+        },
+      ]
+    } only %}
+  {% endset %}
+  {% set action_menu_alt %}
+    {% include '@bolt-components-menu/menu.twig' with {
+      title: 'More actions',
+      items: [
+        {
+          content: 'Reply',
+          icon_before: icon_reply,
+        },
+        {
+          content: 'Remove from favorite',
+          icon_before: icon_heart_pink,
+        },
+        {
+          content: 'Unsubscribe',
+          icon_before: icon_eye_off,
+        },
+      ]
+    } only %}
+  {% endset %}
   {% set post_1 %}
     {% include '@bolt-components-post/post.twig' with {
       signifier: icon_questions,
@@ -159,11 +228,7 @@
         replies: '2',
         views: '56',
       },
-      show_actions: {
-        reply: true,
-        favorite: true,
-        subscribe: true,
-      },
+      action_menu: action_menu,
     } only %}
   {% endset %}
   {% set post_7 %}
@@ -182,18 +247,12 @@
         'Last activity: 8 hours 26 minutes ago',
       ],
       status: {
-        favorited: true,
-        subscribed: true,
         solved: true,
         locked: true,
         replies: '2',
         views: '56',
       },
-      show_actions: {
-        reply: true,
-        favorite: true,
-        subscribe: true,
-      },
+      action_menu: action_menu_alt,
     } only %}
   {% endset %}
 
@@ -216,16 +275,35 @@
 {% set twig_markup %}
 {% verbatim %}
 // Set up a particular post
-{% set icon_questions %}
+{% set demo_icon %}
   {% include '@bolt-components-icon/icon.twig' with {
     name: 'questions',
     size: 'large',
     color: 'teal',
   } only %}
 {% endset %}
+{% set demo_action_menu %}
+  {% include '@bolt-components-menu/menu.twig' with {
+    title: 'More actions',
+    items: [
+      {
+        content: 'Reply',
+        icon_before: icon_reply,
+      },
+      {
+        content: 'Favorite',
+        icon_before: icon_heart,
+      },
+      {
+        content: 'Subscribe',
+        icon_before: icon_eye,
+      },
+    ]
+  } only %}
+{% endset %}
 {% set demo_post %}
   {% include '@bolt-components-post/post.twig' with {
-    signifier: icon_questions,
+    signifier: demo_icon,
     headline: {
       text: 'This is a post with actions (also favorited and subscribed)',
       tag: 'h3',
@@ -243,14 +321,8 @@
       locked: true,
       replies: '2',
       views: '56',
-      favorited: true,
-      subscribed: true,
     },
-    show_actions: {
-      reply: true,
-      favorite: true,
-      subscribe: true,
-    },
+    action_menu: demo_action_menu,
   } only %}
 {% endset %}
 

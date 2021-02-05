@@ -38,7 +38,7 @@
 {% set twig_markup %}
 {% verbatim %}
 // Set a signifier variable
-{% set icon_questions %}
+{% set demo_icon %}
   {% include '@bolt-components-icon/icon.twig' with {
     name: 'questions',
     size: 'large',
@@ -48,7 +48,7 @@
 
 // Use the variable in the signifier prop
 {% include '@bolt-components-post/post.twig' with {
-  signifier: icon_questions,
+  signifier: demo_icon,
   headline: {
     text: 'This post has an icon signifier',
     tag: 'h3',

@@ -33,13 +33,6 @@
       locked: true,
       replies: '33',
       views: '6k',
-      favorited: true,
-      subscribed: true,
-    },
-    show_actions: {
-      reply: true,
-      favorite: true,
-      subscribe: true,
     },
     more_info: 'This is the more information. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus',
     warning: 'Warning! This is a warning message.',
@@ -48,15 +41,18 @@
 
 {% set twig_markup %}
 {% verbatim %}
-{% set icon_questions %}
+// Set a signifier variable
+{% set demo_icon %}
   {% include '@bolt-components-icon/icon.twig' with {
     name: 'questions',
     size: 'large',
     color: 'teal',
   } only %}
 {% endset %}
+
+// Use the variable in the signifier prop
 {% include '@bolt-components-post/post.twig' with {
-  signifier: icon_questions,
+  signifier: demo_icon,
   headline: {
     text: 'This is a post',
     tag: 'h3',
@@ -74,13 +70,6 @@
     locked: true,
     replies: '33',
     views: '6k',
-    favorited: true,
-    subscribed: true,
-  },
-  show_actions: {
-    reply: true,
-    favorite: true,
-    subscribe: true,
   },
   more_info: 'This is the more information. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus',
   warning: 'Warning! This is a warning message.',

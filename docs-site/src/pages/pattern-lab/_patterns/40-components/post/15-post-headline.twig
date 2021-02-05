@@ -11,17 +11,10 @@
 {% endset %}
 
 {% set demo %}
-  {% set icon_questions %}
-    {% include '@bolt-components-icon/icon.twig' with {
-      name: 'questions',
-      size: 'xlarge',
-      color: 'teal',
-    } only %}
-  {% endset %}
   {% include '@bolt-components-post/post.twig' with {
     signifier: icon_questions,
     headline: {
-      text: 'This post has an xlarge headline and xlarge icon',
+      text: 'This post has an xlarge headline',
       tag: 'h3',
       size: 'xlarge',
       link_attributes: {
