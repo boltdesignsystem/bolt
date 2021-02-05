@@ -52,13 +52,6 @@ describe('Post', () => {
         locked_label: 'custom locked label',
         replies: '33',
         views: '123',
-        favorited: true,
-        subscribed: true,
-      },
-      show_actions: {
-        reply: true,
-        favorite: true,
-        subscribe: true,
       },
       more_info: 'This is the more information',
       warning: 'This is a warning message',
