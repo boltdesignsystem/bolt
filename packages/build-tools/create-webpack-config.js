@@ -454,7 +454,9 @@ async function createWebpackConfig(buildConfig) {
       rules: [
         {
           test: /\.(js|jsx|tsx|mjs)$/,
-          exclude: /(node_modules)/,
+          // Exclude `node_modules` except `@bolt`. When this webpack config is used outside
+          // of the monorepo `node_modules/@bolt/*` dependencies must use babel-loader.
+          exclude: /node_modules\/(?!(@bolt)\/).*/,
           use: [
             {
               loader: 'babel-loader',
