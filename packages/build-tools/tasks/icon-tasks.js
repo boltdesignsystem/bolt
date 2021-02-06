@@ -8,6 +8,7 @@ const chalk = require('chalk');
 const { getConfig } = require('@bolt/build-utils/config-store');
 const log = require('@bolt/build-utils/log');
 const iconGenerator = require('@bolt/build-utils/icon-generator');
+const prettier = require('prettier');
 
 let initialBuild = true;
 
@@ -75,8 +76,13 @@ async function generateSchemaFile(icons) {
   const schema = await fs.readJson(iconComponentSchema);
   schema.properties.name.anyOf[0].enum = names;
 
+  const formattedSchema = prettier.format(JSON.stringify(schema), {
+    parser: 'json',
+  });
+
   // update bolt-icon schema with newest icons from svgs folder
-  await fs.writeJson(iconComponentSchema, schema, { spaces: 2 });
+  await fs.writeFile(iconComponentSchema, formattedSchema);
+
   // generate `icons.bolt.json` file with newest icons array
   await fs.writeFile(
     path.join(config.dataDir, 'icons.bolt.json'),

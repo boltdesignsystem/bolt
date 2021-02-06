@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.31.2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button/compare/v2.31.1...v2.31.2) (2021-02-04)
+
+**Note:** Version bump only for package @bolt/components-button
+
+
+
+
+
+# [2.31.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button/compare/v2.30.2...v2.31.0) (2021-02-02)
+
+**Note:** Version bump only for package @bolt/components-button
+
+
+
+
+
 ## [3.0.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button/compare/v3.0.0...v3.0.1) (2021-01-22)
 
 **Note:** Version bump only for package @bolt/components-button
@@ -11,7 +27,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-# [3.0.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button/compare/v2.29.3...v3.0.0) (2021-01-08)
+## [2.30.2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button/compare/v2.30.1...v2.30.2) (2021-01-21)
 
 **Note:** Version bump only for package @bolt/components-button
 
@@ -19,7 +35,26 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
+## [2.30.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button/compare/v2.30.0...v2.30.1) (2021-01-14)
 
+
+### Bug Fixes
+
+* remove bolt-button[type] browser defaults ([45a353d](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button/commit/45a353d2bb0cfce2871d0d23d06aa3795ac7f232))
+
+
+
+
+
+# [2.30.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button/compare/v2.29.3...v2.30.0) (2021-01-13)
+
+**Note:** Version bump only for package @bolt/components-button
+
+
+
+
+
+# [3.0.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button/compare/v2.29.3...v3.0.0) (2021-01-08)
 
 **Note:** Version bump only for package @bolt/components-button
 

@@ -1,15 +1,14 @@
 {% set schema = bolt.data.components["@bolt-components-background"].schema %}
 
-{% set baseClass = "c-bolt-background" %}
+{# Variables #}
+{% set this = init(schema) %}
 {% set attributes = create_attribute({}) %}
-{% set shapeGroup =  shapeGroup in schema.properties.shapeGroup.enum ? shapeGroup : schema.properties.shapeGroup.default %}
-{% set shapeAlignment = shapeAlignment in schema.properties.shapeAlignment.enum ? shapeAlignment : schema.properties.shapeAlignment.default %}
 
-{% set shapeClasses = [
-  baseClass ~ "__shapes",
-  baseClass ~ "__shapes--" ~ shapeAlignment
+{% set classes = [
+  "c-bolt-background__shapes",
+  this.data.shape_alignment.value ? "c-bolt-background__shapes--" ~ this.data.shape_alignment.value : "",
 ] %}
 
-<div {{ attributes.addClass(shapeClasses) }}>
-  {% include "@bolt/background-shapes.twig" with { "shapeGroup": shapeGroup } only %}
+<div {{ attributes.addClass(classes) }}>
+  {% include "@bolt/background-shapes.twig" with { "shapeGroup": this.data.shape_group.value } only %}
 </div>

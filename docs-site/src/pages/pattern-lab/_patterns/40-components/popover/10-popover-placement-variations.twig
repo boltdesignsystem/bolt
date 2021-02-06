@@ -1,357 +1,374 @@
-{# Setting variables for demo purposes #}
-{% set link %}
-  {% include "@bolt-components-link/link.twig" with {
-    text: "call to action",
-    url: "https://pega.com",
-  } only %}
-{% endset %}
-{% set content %}
-  This is the content of the popover with a {{ link }}.
+{% set description %}
+  Adjust the placement of the content by using the <bolt-code-snippet display="inline">placement</bolt-code-snippet> prop. It can be set to a specific placement or automatically calculated. It is recommended to use the <bolt-code-snippet display="inline">boundary</bolt-code-snippet> prop in tandem with auto placement. This ensures that the auto placement will happen within a specific container instead of the entire page. The <bolt-code-snippet display="inline">boundary</bolt-code-snippet> prop accepts all selector names (eg: .class, #id, and [attribute]).
 {% endset %}
 
-{% set popovers_top %}
-  <bolt-list display="inline" spacing="small" align="center">
-    <bolt-list-item>
-      {% set trigger %}
-        {% include "@bolt-components-button/button.twig" with {
-          size: "xsmall",
-          text: "bottom-start",
-        } only %}
-      {% endset %}
-      {# Start component specific code #}
-      {% include "@bolt-components-popover/popover.twig" with {
-        trigger: trigger,
-        content: content,
-        placement: "bottom-start"
-      } only %}
-      {# End component specific code #}
-    </bolt-list-item>
-    <bolt-list-item>
-      {% set trigger %}
-        {% include "@bolt-components-button/button.twig" with {
-          size: "xsmall",
-          text: "bottom",
-        } only %}
-      {% endset %}
-      {# Start component specific code #}
-      {% include "@bolt-components-popover/popover.twig" with {
-        trigger: trigger,
-        content: content,
-        placement: "bottom"
-      } only %}
-      {# End component specific code #}
-    </bolt-list-item>
-    <bolt-list-item>
-      {% set trigger %}
-        {% include "@bolt-components-button/button.twig" with {
-          size: "xsmall",
-          text: "bottom-end",
-        } only %}
-      {% endset %}
-      {# Start component specific code #}
-      {% include "@bolt-components-popover/popover.twig" with {
-        trigger: trigger,
-        content: content,
-        placement: "bottom-end"
-      } only %}
-      {# End component specific code #}
-    </bolt-list-item>
-  </bolt-list>
-{% endset %}
-{% set popovers_right %}
-  <bolt-list spacing="medium">
-    <bolt-list-item>
-      <div class="u-bolt-text-align-right">
-        {% set trigger %}
-          {% include "@bolt-components-button/button.twig" with {
-            size: "xsmall",
-            text: "left-start",
-          } only %}
-        {% endset %}
-        {# Start component specific code #}
-        {% include "@bolt-components-popover/popover.twig" with {
-          trigger: trigger,
-          content: content,
-          placement: "left-start"
-        } only %}
-        {# End component specific code #}
-      </div>
-    </bolt-list-item>
-    <bolt-list-item>
-      <div class="u-bolt-text-align-right">
-        {% set trigger %}
-          {% include "@bolt-components-button/button.twig" with {
-            size: "xsmall",
-            text: "left",
-          } only %}
-        {% endset %}
-        {# Start component specific code #}
-        {% include "@bolt-components-popover/popover.twig" with {
-          trigger: trigger,
-          content: content,
-          placement: "left"
-        } only %}
-        {# End component specific code #}
-      </div>
-    </bolt-list-item>
-    <bolt-list-item>
-      <div class="u-bolt-text-align-right">
-        {% set trigger %}
-          {% include "@bolt-components-button/button.twig" with {
-            size: "xsmall",
-            text: "left-end",
-          } only %}
-        {% endset %}
-        {# Start component specific code #}
-        {% include "@bolt-components-popover/popover.twig" with {
-          trigger: trigger,
-          content: content,
-          placement: "left-end"
-        } only %}
-        {# End component specific code #}
-      </div>
-    </bolt-list-item>
-  </bolt-list>
-{% endset %}
-{% set popovers_bottom %}
-  <bolt-list display="inline" spacing="small" align="center">
-    <bolt-list-item>
-      {% set trigger %}
-        {% include "@bolt-components-button/button.twig" with {
-          size: "xsmall",
-          text: "top-start",
-        } only %}
-      {% endset %}
-      {# Start component specific code #}
-      {% include "@bolt-components-popover/popover.twig" with {
-        trigger: trigger,
-        content: content,
-        placement: "top-start"
-      } only %}
-      {# End component specific code #}
-    </bolt-list-item>
-    <bolt-list-item>
-      {% set trigger %}
-        {% include "@bolt-components-button/button.twig" with {
-          size: "xsmall",
-          text: "top",
-        } only %}
-      {% endset %}
-      {# Start component specific code #}
-      {% include "@bolt-components-popover/popover.twig" with {
-        trigger: trigger,
-        content: content,
-        placement: "top"
-      } only %}
-      {# End component specific code #}
-    </bolt-list-item>
-    <bolt-list-item>
-      {% set trigger %}
-        {% include "@bolt-components-button/button.twig" with {
-          size: "xsmall",
-          text: "top-end",
-        } only %}
-      {% endset %}
-      {# Start component specific code #}
-      {% include "@bolt-components-popover/popover.twig" with {
-        trigger: trigger,
-        content: content,
-        placement: "top-end"
-      } only %}
-      {# End component specific code #}
-    </bolt-list-item>
-  </bolt-list>
-{% endset %}
-{% set popovers_left %}
-  <bolt-list spacing="medium">
-    <bolt-list-item>
-      {% set trigger %}
-        {% include "@bolt-components-button/button.twig" with {
-          size: "xsmall",
-          text: "right-start",
-        } only %}
-      {% endset %}
-      {# Start component specific code #}
-      {% include "@bolt-components-popover/popover.twig" with {
-        trigger: trigger,
-        content: content,
-        placement: "right-start"
-      } only %}
-      {# End component specific code #}
-    </bolt-list-item>
-    <bolt-list-item>
-      {% set trigger %}
-        {% include "@bolt-components-button/button.twig" with {
-          size: "xsmall",
-          text: "right",
-        } only %}
-      {% endset %}
-      {# Start component specific code #}
-      {% include "@bolt-components-popover/popover.twig" with {
-        trigger: trigger,
-        content: content,
-        placement: "right"
-      } only %}
-      {# End component specific code #}
-    </bolt-list-item>
-    <bolt-list-item>
-      {% set trigger %}
-        {% include "@bolt-components-button/button.twig" with {
-          size: "xsmall",
-          text: "right-end",
-        } only %}
-      {% endset %}
-      {# Start component specific code #}
-      {% include "@bolt-components-popover/popover.twig" with {
-        trigger: trigger,
-        content: content,
-        placement: "right-end"
-      } only %}
-      {# End component specific code #}
-    </bolt-list-item>
-  </bolt-list>
-{% endset %}
+{% set demo %}
+  {# Setting variables for demo purposes #}
+  {% set link %}
+    {% include '@bolt-components-link/link.twig' with {
+      text: 'call to action',
+      url: 'https://pega.com',
+    } only %}
+  {% endset %}
+  {% set content %}
+    This is the content of the popover with a {{ link }}.
+  {% endset %}
+  {% set trigger %}
+    {% include '@bolt-components-button/button.twig' with {
+      size: 'xsmall',
+      text: 'Auto',
+    } only %}
+  {% endset %}
 
-<bolt-text headline>
-  Preferred placement
-</bolt-text>
-<div class="u-bolt-margin-bottom-large">
-  {% include "@bolt-components-grid/grid.twig" with {
-    gutter: "small",
+  {% set popovers_top_auto %}
+    <div class="u-bolt-text-align-center">
+      {# Start component specific code #}
+      {% include '@bolt-components-popover/popover.twig' with {
+        trigger: trigger,
+        content: content,
+        placement: 'auto',
+        boundary: '.js-bolt-popover-boundary',
+      } only %}
+      {# End component specific code #}
+    </div>
+  {% endset %}
+  {% set popovers_right_auto %}
+    <div class="u-bolt-text-align-right">
+      {# Start component specific code #}
+      {% include '@bolt-components-popover/popover.twig' with {
+        trigger: trigger,
+        content: content,
+        placement: 'auto',
+        boundary: '.js-bolt-popover-boundary',
+      } only %}
+      {# End component specific code #}
+    </div>
+  {% endset %}
+  {% set popovers_bottom_auto %}
+    <div class="u-bolt-text-align-center">
+      {# Start component specific code #}
+      {% include '@bolt-components-popover/popover.twig' with {
+        trigger: trigger,
+        content: content,
+        placement: 'auto',
+        boundary: '.js-bolt-popover-boundary',
+      } only %}
+      {# End component specific code #}
+    </div>
+  {% endset %}
+  {% set popovers_left_auto %}
+    {# Start component specific code #}
+    {% include '@bolt-components-popover/popover.twig' with {
+      trigger: trigger,
+      content: content,
+      placement: 'auto',
+      boundary: '.js-bolt-popover-boundary',
+    } only %}
+    {# End component specific code #}
+  {% endset %}
+
+  <bolt-banner align="start">
+    <bolt-text><strong>Auto placement with a boundary (recommended): </strong>The following container has the <bolt-code-snippet display="inline">.js-bolt-popover-boundary</bolt-code-snippet> class and the popover&rsquo;s <bolt-code-snippet display="inline">boundary</bolt-code-snippet> prop is set to said class. The popover&rsquo;s auto placement will always appear within the container.</bolt-text>
+  </bolt-banner>
+
+  <div class="t-bolt-light u-bolt-padding-small u-bolt-margin-bottom-large js-bolt-popover-boundary">
+    {% include '@bolt-components-grid/grid.twig' with {
+      gutter: 'small',
+      items: [
+        {
+          column_start: '1',
+          column_span: '12',
+          row_start: '1',
+          content: popovers_top_auto,
+        },
+        {
+          column_start: '7',
+          column_span: '6',
+          row_start: '2',
+          content: popovers_right_auto,
+        },
+        {
+          column_start: '1',
+          column_span: '12',
+          row_start: '3',
+          content: popovers_bottom_auto,
+        },
+        {
+          column_start: '1',
+          column_span: '6',
+          row_start: '2',
+          content: popovers_left_auto,
+        },
+      ],
+    } only %}
+  </div>
+
+  {% set popovers_top %}
+    <bolt-list display="inline" spacing="small" align="center">
+      <bolt-list-item>
+        {% set trigger %}
+          {% include '@bolt-components-button/button.twig' with {
+            size: 'xsmall',
+            text: 'bottom-start',
+          } only %}
+        {% endset %}
+        {# Start component specific code #}
+        {% include '@bolt-components-popover/popover.twig' with {
+          trigger: trigger,
+          content: content,
+          placement: 'bottom-start'
+        } only %}
+        {# End component specific code #}
+      </bolt-list-item>
+      <bolt-list-item>
+        {% set trigger %}
+          {% include '@bolt-components-button/button.twig' with {
+            size: 'xsmall',
+            text: 'bottom',
+          } only %}
+        {% endset %}
+        {# Start component specific code #}
+        {% include '@bolt-components-popover/popover.twig' with {
+          trigger: trigger,
+          content: content,
+          placement: 'bottom'
+        } only %}
+        {# End component specific code #}
+      </bolt-list-item>
+      <bolt-list-item>
+        {% set trigger %}
+          {% include '@bolt-components-button/button.twig' with {
+            size: 'xsmall',
+            text: 'bottom-end',
+          } only %}
+        {% endset %}
+        {# Start component specific code #}
+        {% include '@bolt-components-popover/popover.twig' with {
+          trigger: trigger,
+          content: content,
+          placement: 'bottom-end'
+        } only %}
+        {# End component specific code #}
+      </bolt-list-item>
+    </bolt-list>
+  {% endset %}
+  {% set popovers_right %}
+    <bolt-list spacing="medium">
+      <bolt-list-item>
+        <div class="u-bolt-text-align-right">
+          {% set trigger %}
+            {% include '@bolt-components-button/button.twig' with {
+              size: 'xsmall',
+              text: 'left-start',
+            } only %}
+          {% endset %}
+          {# Start component specific code #}
+          {% include '@bolt-components-popover/popover.twig' with {
+            trigger: trigger,
+            content: content,
+            placement: 'left-start'
+          } only %}
+          {# End component specific code #}
+        </div>
+      </bolt-list-item>
+      <bolt-list-item>
+        <div class="u-bolt-text-align-right">
+          {% set trigger %}
+            {% include '@bolt-components-button/button.twig' with {
+              size: 'xsmall',
+              text: 'left',
+            } only %}
+          {% endset %}
+          {# Start component specific code #}
+          {% include '@bolt-components-popover/popover.twig' with {
+            trigger: trigger,
+            content: content,
+            placement: 'left'
+          } only %}
+          {# End component specific code #}
+        </div>
+      </bolt-list-item>
+      <bolt-list-item>
+        <div class="u-bolt-text-align-right">
+          {% set trigger %}
+            {% include '@bolt-components-button/button.twig' with {
+              size: 'xsmall',
+              text: 'left-end',
+            } only %}
+          {% endset %}
+          {# Start component specific code #}
+          {% include '@bolt-components-popover/popover.twig' with {
+            trigger: trigger,
+            content: content,
+            placement: 'left-end'
+          } only %}
+          {# End component specific code #}
+        </div>
+      </bolt-list-item>
+    </bolt-list>
+  {% endset %}
+  {% set popovers_bottom %}
+    <bolt-list display="inline" spacing="small" align="center">
+      <bolt-list-item>
+        {% set trigger %}
+          {% include '@bolt-components-button/button.twig' with {
+            size: 'xsmall',
+            text: 'top-start',
+          } only %}
+        {% endset %}
+        {# Start component specific code #}
+        {% include '@bolt-components-popover/popover.twig' with {
+          trigger: trigger,
+          content: content,
+          placement: 'top-start'
+        } only %}
+        {# End component specific code #}
+      </bolt-list-item>
+      <bolt-list-item>
+        {% set trigger %}
+          {% include '@bolt-components-button/button.twig' with {
+            size: 'xsmall',
+            text: 'top',
+          } only %}
+        {% endset %}
+        {# Start component specific code #}
+        {% include '@bolt-components-popover/popover.twig' with {
+          trigger: trigger,
+          content: content,
+          placement: 'top'
+        } only %}
+        {# End component specific code #}
+      </bolt-list-item>
+      <bolt-list-item>
+        {% set trigger %}
+          {% include '@bolt-components-button/button.twig' with {
+            size: 'xsmall',
+            text: 'top-end',
+          } only %}
+        {% endset %}
+        {# Start component specific code #}
+        {% include '@bolt-components-popover/popover.twig' with {
+          trigger: trigger,
+          content: content,
+          placement: 'top-end'
+        } only %}
+        {# End component specific code #}
+      </bolt-list-item>
+    </bolt-list>
+  {% endset %}
+  {% set popovers_left %}
+    <bolt-list spacing="medium">
+      <bolt-list-item>
+        {% set trigger %}
+          {% include '@bolt-components-button/button.twig' with {
+            size: 'xsmall',
+            text: 'right-start',
+          } only %}
+        {% endset %}
+        {# Start component specific code #}
+        {% include '@bolt-components-popover/popover.twig' with {
+          trigger: trigger,
+          content: content,
+          placement: 'right-start'
+        } only %}
+        {# End component specific code #}
+      </bolt-list-item>
+      <bolt-list-item>
+        {% set trigger %}
+          {% include '@bolt-components-button/button.twig' with {
+            size: 'xsmall',
+            text: 'right',
+          } only %}
+        {% endset %}
+        {# Start component specific code #}
+        {% include '@bolt-components-popover/popover.twig' with {
+          trigger: trigger,
+          content: content,
+          placement: 'right'
+        } only %}
+        {# End component specific code #}
+      </bolt-list-item>
+      <bolt-list-item>
+        {% set trigger %}
+          {% include '@bolt-components-button/button.twig' with {
+            size: 'xsmall',
+            text: 'right-end',
+          } only %}
+        {% endset %}
+        {# Start component specific code #}
+        {% include '@bolt-components-popover/popover.twig' with {
+          trigger: trigger,
+          content: content,
+          placement: 'right-end'
+        } only %}
+        {# End component specific code #}
+      </bolt-list-item>
+    </bolt-list>
+  {% endset %}
+
+  <bolt-banner align="start">
+    <bolt-text><strong>Specific placement: </strong>When setting a specific placement, it will ignore the <bolt-code-snippet display="inline">boundary</bolt-code-snippet> prop and always render the placement stated. This feature will cause undesired overflow issues in smaller screens, use with caution.</bolt-text>
+  </bolt-banner>
+
+  {% include '@bolt-components-grid/grid.twig' with {
+    gutter: 'small',
     items: [
       {
-        column_start: "1",
-        column_span: "12",
-        row_start: "1",
+        column_start: '1',
+        column_span: '12',
+        row_start: '1',
         content: popovers_top,
       },
       {
-        column_start: "7",
-        column_span: "6",
-        row_start: "2",
+        column_start: '7',
+        column_span: '6',
+        row_start: '2',
         content: popovers_right,
       },
       {
-        column_start: "1",
-        column_span: "12",
-        row_start: "3",
+        column_start: '1',
+        column_span: '12',
+        row_start: '3',
         content: popovers_bottom,
       },
       {
-        column_start: "1",
-        column_span: "6",
-        row_start: "2",
+        column_start: '1',
+        column_span: '6',
+        row_start: '2',
         content: popovers_left,
       },
     ]
   } only %}
-</div>
-
-{# Setting variables for demo purposes #}
-{% set trigger %}
-  {% include "@bolt-components-button/button.twig" with {
-    size: "xsmall",
-    text: "Auto",
-  } only %}
-{% endset %}
-{% set popover %}
-  {# Start component specific code #}
-  {% include "@bolt-components-popover/popover.twig" with {
-    trigger: trigger,
-    content: content,
-    placement: "auto",
-  } only %}
-  {# End component specific code #}
 {% endset %}
 
-{% set popovers_top_auto %}
-  <bolt-list display="inline" spacing="small" align="center">
-    <bolt-list-item>
-      {{ popover }}
-    </bolt-list-item>
-    <bolt-list-item>
-      {{ popover }}
-    </bolt-list-item>
-    <bolt-list-item>
-      {{ popover }}
-    </bolt-list-item>
-  </bolt-list>
-{% endset %}
-{% set popovers_right_auto %}
-  <bolt-list spacing="medium">
-    <bolt-list-item>
-      <div class="u-bolt-text-align-right">
-        {{ popover }}
-      </div>
-    </bolt-list-item>
-    <bolt-list-item>
-      <div class="u-bolt-text-align-right">
-        {{ popover }}
-      </div>
-    </bolt-list-item>
-    <bolt-list-item>
-      <div class="u-bolt-text-align-right">
-        {{ popover }}
-      </div>
-    </bolt-list-item>
-  </bolt-list>
-{% endset %}
-{% set popovers_bottom_auto %}
-  <bolt-list display="inline" spacing="small" align="center">
-    <bolt-list-item>
-      {{ popover }}
-    </bolt-list-item>
-    <bolt-list-item>
-      {{ popover }}
-    </bolt-list-item>
-    <bolt-list-item>
-      {{ popover }}
-    </bolt-list-item>
-  </bolt-list>
-{% endset %}
-{% set popovers_left_auto %}
-  <bolt-list spacing="medium">
-    <bolt-list-item>
-      {{ popover }}
-    </bolt-list-item>
-    <bolt-list-item>
-      {{ popover }}
-    </bolt-list-item>
-    <bolt-list-item>
-      {{ popover }}
-    </bolt-list-item>
-  </bolt-list>
+{% set twig_markup %}
+{% verbatim %}
+{% include '@bolt-components-popover/popover.twig' with {
+  trigger: trigger,
+  content: content,
+  placement: 'auto',
+  boundary: '.js-target-container'
+} only %}
+{% endverbatim %}
 {% endset %}
 
-<bolt-text headline>
-  Auto placement
-</bolt-text>
-{% include "@bolt-components-grid/grid.twig" with {
-  gutter: "small",
-  items: [
-    {
-      column_start: "1",
-      column_span: "12",
-      row_start: "1",
-      content: popovers_top_auto,
-    },
-    {
-      column_start: "7",
-      column_span: "6",
-      row_start: "2",
-      content: popovers_right_auto,
-    },
-    {
-      column_start: "1",
-      column_span: "12",
-      row_start: "3",
-      content: popovers_bottom_auto,
-    },
-    {
-      column_start: "1",
-      column_span: "6",
-      row_start: "2",
-      content: popovers_left_auto,
-    },
-  ]
+{% set html_markup %}
+{% verbatim %}
+<bolt-popover placement="auto" boundary=".js-target-container">
+  <bolt-button>
+    This triggers a popover
+  </bolt-button>
+  <div slot="content">
+    This is the content of the popover.
+  </div>
+</bolt-popover>
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Popover Placement and Boundary',
+  description: description,
+  demo: demo,
+  twig_markup: twig_markup,
+  html_markup: html_markup,
 } only %}

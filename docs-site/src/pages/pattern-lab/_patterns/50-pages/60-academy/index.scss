@@ -14,14 +14,15 @@
   border-top-width: 1px;
   border-bottom-style: solid;
   border-bottom-width: 1px;
-  border-color: bolt-theme(border, 0.5);
+  border-color: var(--m-bolt-border);
 }
 
 .c-acd-horizontal-divider__text {
-  @include bolt-font-weight(bold);
-  @include bolt-font-size(small);
   padding-right: var(--bolt-spacing-x-xsmall);
   padding-left: var(--bolt-spacing-x-xsmall);
+  font-size: var(--bolt-type-font-size-small);
+  font-weight: var(--bolt-type-font-weight-bold);
+  line-height: var(--bolt-type-line-height-small);
 }
 
 // WIP Rating Component
@@ -38,9 +39,10 @@
 
 .c-acd-rating__helper-text {
   display: inline-flex;
-  color: bolt-color(gray);
-  @include bolt-font-size(xsmall);
-  @include bolt-font-weight(600);
+  font-size: var(--bolt-type-font-size-xsmall);
+  font-weight: var(--bolt-type-font-weight-semibold);
+  color: var(--bolt-color-gray);
+  line-height: var(--bolt-type-line-height-xsmall);
 
   & + * {
     margin-left: var(--bolt-spacing-x-xsmall);
@@ -70,8 +72,6 @@
 }
 
 .c-acd-rating__label {
-  @include bolt-font-size(small);
-  @include bolt-font-weight(bold);
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -80,13 +80,16 @@
   height: 31px;
   margin-right: var(--bolt-spacing-x-xxsmall);
   margin-bottom: var(--bolt-spacing-y-xxsmall);
-  color: bolt-color(navy);
+  font-size: var(--bolt-type-font-size-small);
+  font-weight: var(--bolt-type-font-weight-bold);
+  color: var(--bolt-color-navy);
+  line-height: var(--bolt-type-line-height-small);
   text-align: center;
   letter-spacing: normal;
   cursor: pointer;
   user-select: none;
   border-radius: bolt-border-radius(full);
-  background-color: bolt-color(gray, light);
+  background-color: var(--bolt-color-gray-light);
   transition: all 0.01s linear;
 
   &:before,
@@ -105,11 +108,11 @@
   }
 
   &:before {
-    border: 2px solid bolt-color(blue);
+    border: 2px solid var(--bolt-color-blue);
   }
 
   &:after {
-    background-color: bolt-color(black);
+    background-color: var(--bolt-color-black);
   }
 
   &:hover:after {
@@ -126,8 +129,8 @@
 }
 
 .c-acd-rating__input:checked + .c-acd-rating__label {
-  color: bolt-color(white);
-  background-color: bolt-color(gray);
+  color: var(--bolt-color-white);
+  background-color: var(--bolt-color-gray);
 
   &--0\/10 {
     background-color: #d61219;
@@ -183,7 +186,7 @@
   width: 100%;
   height: 100%;
   pointer-events: none;
-  outline: 2px dotted bolt-color(gray);
+  outline: 2px dotted var(--bolt-color-gray);
   outline-offset: 2px;
 }
 
@@ -217,7 +220,7 @@
     padding-bottom: var(--bolt-spacing-y-small);
     border-width: 0;
     border-style: solid;
-    border-color: bolt-theme(border, 0.2);
+    border-color: var(--m-bolt-border);
 
     + .c-acd-horizontal-card-grid-item {
       padding-top: var(--bolt-spacing-y-small);
@@ -238,4 +241,13 @@
       }
     }
   }
+}
+
+.c-acd-h5p-embed {
+  @include bolt-shadow('level-20', false, var(--m-bolt-neutral));
+  display: block;
+  padding: var(--bolt-spacing-y-medium) var(--bolt-spacing-x-medium);
+  color: var(--m-bolt-text);
+  border-radius: bolt-border-radius(large);
+  background-color: var(--m-bolt-bg);
 }

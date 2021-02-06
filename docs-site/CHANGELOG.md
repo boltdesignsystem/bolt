@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.31.2](https://github.com/bolt-design-system/bolt/compare/v2.31.1...v2.31.2) (2021-02-04)
+
+**Note:** Version bump only for package @bolt/website
+
+
+
+
+
 ## [3.0.2](https://github.com/bolt-design-system/bolt/compare/v3.0.1...v3.0.2) (2021-02-03)
 
 **Note:** Version bump only for package @bolt/website
@@ -11,7 +19,62 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
+## [2.31.1](https://github.com/bolt-design-system/bolt/compare/v2.31.0...v2.31.1) (2021-02-03)
+
+**Note:** Version bump only for package @bolt/website
+
+
+
+
+
+# [2.31.0](https://github.com/bolt-design-system/bolt/compare/v2.30.2...v2.31.0) (2021-02-02)
+
+**Note:** Version bump only for package @bolt/website
+
+
+
+
+
 ## [3.0.1](https://github.com/bolt-design-system/bolt/compare/v3.0.0...v3.0.1) (2021-01-22)
+
+**Note:** Version bump only for package @bolt/website
+
+
+
+
+
+## [2.30.2](https://github.com/bolt-design-system/bolt/compare/v2.30.1...v2.30.2) (2021-01-21)
+
+**Note:** Version bump only for package @bolt/website
+
+
+
+
+
+## [2.30.1](https://github.com/bolt-design-system/bolt/compare/v2.30.0...v2.30.1) (2021-01-14)
+
+**Note:** Version bump only for package @bolt/website
+
+
+
+
+
+# [2.30.0](https://github.com/bolt-design-system/bolt/compare/v2.29.3...v2.30.0) (2021-01-13)
+
+
+### Bug Fixes
+
+* academy colors and xxdark theme ([e5bbed3](https://github.com/bolt-design-system/bolt/commit/e5bbed3b3925d61832ccf298823d738da0b96949))
+* add missing vars to theming doc ([73a0d28](https://github.com/bolt-design-system/bolt/commit/73a0d28d8c5b102445612664ef712f5261576c84))
+* doc typos ([69432b6](https://github.com/bolt-design-system/bolt/commit/69432b6dd030cd9907e97aab6f26181fd1c60868))
+* pattern lab theming and color docs ([511ecfd](https://github.com/bolt-design-system/bolt/commit/511ecfd21282d4136cb3bc10605b01509d3895b9))
+* remove global search css import ([11de7bf](https://github.com/bolt-design-system/bolt/commit/11de7bfc84e9e1835e8547133f82b42c2a5c7ed9))
+
+
+
+
+
+
 
 **Note:** Version bump only for package @bolt/website
 
@@ -34,18 +97,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * remove `browser.sendKeys()` which is only required for ie11 support ([eabe228](https://github.com/bolt-design-system/bolt/commit/eabe228547fdfc6893daeb22d2ac7da110844866))
 * remove `critical-path-polyfills` and all references ([48f97f6](https://github.com/bolt-design-system/bolt/commit/48f97f6fa1f077997aca5821cc279b16cfb01f18))
 * remove postcss-themify and critical-css-vars, replace map() usage of bolt-theme with fixed token ([373791e](https://github.com/bolt-design-system/bolt/commit/373791ee6f133546f197f3b2cffb8d18588be204))
-
-
-
-
-
-
-
-**Note:** Version bump only for package @bolt/website
-
-
-
-
 
 ## [2.29.2](https://github.com/bolt-design-system/bolt/compare/v2.29.1...v2.29.2) (2020-11-30)
 

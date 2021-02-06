@@ -11,6 +11,30 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
+## [2.31.2](https://github.com/boltdesignsystem/bolt/compare/v2.31.1...v2.31.2) (2021-02-04)
+
+**Note:** Version bump only for package bolt
+
+
+
+
+
+## [2.31.1](https://github.com/boltdesignsystem/bolt/compare/v2.31.0...v2.31.1) (2021-02-03)
+
+**Note:** Version bump only for package bolt
+
+
+
+
+
+# [2.31.0](https://github.com/boltdesignsystem/bolt/compare/v2.30.2...v2.31.0) (2021-02-02)
+
+**Note:** Version bump only for package bolt
+
+
+
+
+
 ## [3.0.1](https://github.com/boltdesignsystem/bolt/compare/v3.0.0...v3.0.1) (2021-01-22)
 
 **Note:** Version bump only for package bolt
@@ -19,7 +43,15 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-# [3.0.0](https://github.com/boltdesignsystem/bolt/compare/v2.29.3...v3.0.0) (2021-01-08)
+## [2.30.2](https://github.com/boltdesignsystem/bolt/compare/v2.30.1...v2.30.2) (2021-01-21)
+
+**Note:** Version bump only for package bolt
+
+
+
+
+
+## [2.30.1](https://github.com/boltdesignsystem/bolt/compare/v2.30.0...v2.30.1) (2021-01-14)
 
 
 ### Bug Fixes
@@ -44,12 +76,39 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * remove polyfill workaround from @bolt/element as part of the broader perf updates ([e082868](https://github.com/boltdesignsystem/bolt/commit/e082868e2c731e40a746a3a25e78ca7ed66156ec))
 * remove postcss-themify and critical-css-vars, replace map() usage of bolt-theme with fixed token ([373791e](https://github.com/boltdesignsystem/bolt/commit/373791ee6f133546f197f3b2cffb8d18588be204))
 * remove references to `critical-fonts` ([7e05b55](https://github.com/boltdesignsystem/bolt/commit/7e05b55e26ef3b0ab2b85cc2b7209a4216986201))
+* remove bolt-button[type] browser defaults ([45a353d](https://github.com/boltdesignsystem/bolt/commit/45a353d2bb0cfce2871d0d23d06aa3795ac7f232))
+
+
+
+
+
+# [2.30.0](https://github.com/boltdesignsystem/bolt/compare/v2.29.3...v2.30.0) (2021-01-13)
+
+
+### Bug Fixes
+
+* academy colors and xxdark theme ([e5bbed3](https://github.com/boltdesignsystem/bolt/commit/e5bbed3b3925d61832ccf298823d738da0b96949))
+* add missing vars to theming doc ([73a0d28](https://github.com/boltdesignsystem/bolt/commit/73a0d28d8c5b102445612664ef712f5261576c84))
+* doc typos ([69432b6](https://github.com/boltdesignsystem/bolt/commit/69432b6dd030cd9907e97aab6f26181fd1c60868))
+* global border color ([054b521](https://github.com/boltdesignsystem/bolt/commit/054b5216d1cb363474812cb14a0362a4860369ec))
+* pattern lab theming and color docs ([511ecfd](https://github.com/boltdesignsystem/bolt/commit/511ecfd21282d4136cb3bc10605b01509d3895b9))
+* remove global search css import ([11de7bf](https://github.com/boltdesignsystem/bolt/commit/11de7bfc84e9e1835e8547133f82b42c2a5c7ed9))
+* secondary color variable ([905a62a](https://github.com/boltdesignsystem/bolt/commit/905a62aae1547bbaa3e913e0a8d5b80e2babc875))
+* tabs show more button active color ([54e8cd8](https://github.com/boltdesignsystem/bolt/commit/54e8cd8eff8742bb304d4d502531a761bb23bb02))
 
 
 
 
 
 
+
+**Note:** Version bump only for package bolt
+
+
+
+
+
+# [3.0.0](https://github.com/boltdesignsystem/bolt/compare/v2.29.3...v3.0.0) (2021-01-08)
 
 **Note:** Version bump only for package bolt
 
