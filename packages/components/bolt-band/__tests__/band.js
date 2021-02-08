@@ -76,7 +76,7 @@ describe('<bolt-band> Component', () => {
   });
 
   test('Full bleed usage', async function() {
-    const template = await renderString(`
+    const renderedHTML = await renderString(`
       {% include "@bolt-components-band/band.twig" with {
         theme: "dark",
         full_bleed: false,
@@ -88,22 +88,6 @@ describe('<bolt-band> Component', () => {
         content: "This band is full bleed.",
       } only %}
     `);
-
-    const { outerHTML } = await renderWC(
-      'bolt-band',
-      `<div style="padding: 40px">
-        ${template.html}
-      </div>`,
-      page,
-    );
-
-    const renderedHTML = await html(outerHTML);
-    const image = await page.screenshot();
-
-    expect(image).toMatchImageSnapshot({
-      failureThreshold: '0.01',
-      failureThresholdType: 'percent',
-    });
 
     expect(renderedHTML).toMatchSnapshot();
   });
@@ -142,7 +126,7 @@ describe('<bolt-band> Component', () => {
   });
 
   test('Nested bands usage', async function() {
-    const template = await renderString(`
+    const renderedHTML = await renderString(`
       {% set parent_band_content %}
         {% include "@bolt-components-headline/headline.twig" with {
           size: "xxxlarge",
@@ -166,16 +150,6 @@ describe('<bolt-band> Component', () => {
         content: parent_band_content,
       } only %}
     `);
-
-    const { outerHTML } = await renderWC('bolt-band', `${template.html}`, page);
-    const renderedHTML = await html(outerHTML);
-    const image = await page.screenshot();
-
-    // @TODO Re-enable VRT test and troubleshoot failures on Travis
-    // expect(image).toMatchImageSnapshot({
-    //   failureThreshold: '0.01',
-    //   failureThresholdType: 'percent',
-    // });
 
     expect(renderedHTML).toMatchSnapshot();
   });
