@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.1.0](http://github.com/boltdesignsystem/bolt/tree/master/packages/components/bolt-progress-bar/compare/v2.31.2...v3.1.0) (2021-02-08)
+
+**Note:** Version bump only for package @bolt/components-progress-bar
+
+
+
+
+
 ## [3.0.1](http://github.com/boltdesignsystem/bolt/tree/master/packages/components/bolt-progress-bar/compare/v3.0.0...v3.0.1) (2021-01-22)
 
 **Note:** Version bump only for package @bolt/components-progress-bar

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.1.0](https://github.com/boltdesignsystem/bolt/compare/v2.31.2...v3.1.0) (2021-02-08)
+
+
+### Features
+
+* remove 'esModules' and 'compat' flags, remove 'modern' from filenames ([5f9136e](https://github.com/boltdesignsystem/bolt/commit/5f9136eb365e95688c57c6c1e2dc72ebe91291c2))
+
+
+
+
+
 ## [2.31.2](https://github.com/boltdesignsystem/bolt/compare/v2.31.1...v2.31.2) (2021-02-04)
 
 **Note:** Version bump only for package @bolt/build-tools--test-multi-lang

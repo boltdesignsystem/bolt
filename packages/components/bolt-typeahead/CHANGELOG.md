@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.1.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-typeahead/compare/v2.31.2...v3.1.0) (2021-02-08)
+
+
+### Bug Fixes
+
+* revert removing `.keys` command in Typeahead E2E test. ([65b3d13](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-typeahead/commit/65b3d13748575220ab82af9f7d9fb23640c8d35f))
+
+
+### Features
+
+* remove `browser.sendKeys()` which is only required for ie11 support ([eabe228](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-typeahead/commit/eabe228547fdfc6893daeb22d2ac7da110844866))
+* remove postcss-themify and critical-css-vars, replace map() usage of bolt-theme with fixed token ([373791e](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-typeahead/commit/373791ee6f133546f197f3b2cffb8d18588be204))
+
+
+
+
+
 ## [2.31.2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-typeahead/compare/v2.31.1...v2.31.2) (2021-02-04)
 
 **Note:** Version bump only for package @bolt/components-typeahead
