@@ -4,10 +4,6 @@
   {{ validate_data_schema(schema, _self) | raw }}
 {% endif %}
 
-{% set base_class = "c-bolt-button" %}
-{% set attributes = create_attribute(attributes|default({})) %}
-{% set inner_attributes = create_attribute({}) %}
-
 {# DEPRECATED.  Use the prooperty `align` instead of `itemAlignment`. #}
 {% if itemAlignment %}
   {% set align = itemAlignment %}
@@ -35,28 +31,14 @@
   {% set hierarchy = style %}
 {% endif %}
 
-{# Set up checks to validate that the component's prop values are allowed, based on the component's schema #}
-{% set size_options = schema.properties.size.enum %}
-{% set hierarchy_options = schema.properties.hierarchy.enum %}
-{% set width_options = schema.properties.width.enum %}
-{% set border_radius_options = schema.properties.border_radius.enum %}
-{% set align_options = schema.properties.align.enum %}
-{% set transform_options = schema.properties.transform.enum %}
-{% set icon_positions = schema.properties.icon.properties.position.enum %}
-{% set iconOnly_options = schema.properties.iconOnly.enum %}
-{% set type_options = schema.properties.type.enum %}
+{# Variables #}
+{% set this = init(schema) %}
+{% set attributes = create_attribute(attributes|default({})) %}
+{% set inner_attributes = create_attribute({}) %}
 
-{# Check that the component's current prop values are valid. if not, default to the schema default #}
-{% set size = size in size_options ? size : schema.properties.size.default %}
-{% set hierarchy = hierarchy in hierarchy_options ? hierarchy : schema.properties.hierarchy.default %}
-{% set width = width in width_options ? width : schema.properties.width.default %}
-{% set border_radius = border_radius in border_radius_options ? border_radius : schema.properties.border_radius.default %}
-{% set align = align in align_options ? align : schema.properties.align.default %}
-{% set transform = transform in transform_options ? transform : schema.properties.transform.default %}
-{% set iconOnly = iconOnly is sameas(true) or iconOnly is sameas(false) ? iconOnly : scheuma.properties.iconOnly.default %}
 
 {% if url != null %}
-  {% set tag = "a" %}
+  {% set _tag = "a" %}
   {% if disabled %}
     {% set inner_attributes = inner_attributes.setAttribute("aria-disabled", "true") %}
   {% else %}
@@ -68,30 +50,30 @@
     {% set inner_attributes = inner_attributes.setAttribute("target", attributes.target) %}
   {% endif %}
 {% else %}
-  {% set tag = "button" %}
+  {% set _tag = "button" %}
 
   {# Note that "type" does not have a default; unless an explicit value is specified, none will be set. #}
-  {% if type in type_options %}
-    {% set inner_attributes = inner_attributes.setAttribute("type", type ) %}
+  {% if this.data.type.value %}
+    {% set inner_attributes = inner_attributes.setAttribute("type", this.data.type.value ) %}
   {% endif %}
 {% endif %}
 
 {# Array of classes based on the defined + default props #}
 {% set classes = [
-  base_class,
-  disabled ? "#{base_class}--disabled" : "",
-  size ? "#{base_class}--#{size}" : "",
-  hierarchy ? "#{base_class}--#{hierarchy}" : "",
-  width != "auto" ? "#{base_class}--#{width}" : "",
-  border_radius ? "#{base_class}--border-radius-#{border_radius}" : "",
-  align ? "#{base_class}--#{align}" : "",
-  transform != "none" ? "#{base_class}--#{transform}" : "",
-  iconOnly ? "#{base_class}--icon-only",
+  "c-bolt-button",
+  this.data.disabled.value ? "c-bolt-button--disabled" : "",
+  this.data.size.value ? "c-bolt-button--#{this.data.size.value}" : "",
+  this.data.hierarchy.value ? "c-bolt-button--#{this.data.hierarchy.value}" : "",
+  this.data.width.value != "auto" ? "c-bolt-button--#{this.data.width.value}" : "",
+  this.data.border_radius.value ? "c-bolt-button--border-radius-#{this.data.border_radius.value}" : "",
+  this.data.align.value ? "c-bolt-button--#{this.data.align.value}" : "",
+  this.data.transform.value != "none" ? "c-bolt-button--#{this.data.transform.value}" : "",
+  this.data.iconOnly.value ? "c-bolt-button--icon-only",
 ] %}
 
-{% if disabled %}
+{% if this.data.disabled.value %}
   {% set attributes = attributes.setAttribute("disabled", true) %}
-  {% if tag == "button" %}
+  {% if _tag == "button" %}
     {% set inner_attributes = inner_attributes.setAttribute("disabled", true) %}
   {% endif %}
 {% endif %}
@@ -103,7 +85,7 @@
 
 {#
 Sort classes passed in via attributes into two groups:
-1. Those that should be applied to the inner tag (namely, "is-" and "has-" classes)
+1. Those that should be applied to the inner _tag (namely, "is-" and "has-" classes)
 2. Those that should be applied to the outer custom element (everything else EXCEPT c-bolt-* classes, which should never be passed in via atttributes)
 #}
 {% set outer_classes = [] %}
@@ -162,8 +144,8 @@ Sort classes passed in via attributes into two groups:
   {{ attributes|without("target")|without("on-click") }}
 >
 
-  {# choose a semantic <a> tag or <button> tag for better accessibility, depending on whether or not a url is getting passed along #}
-  <{{ tag }} {{ inner_attributes|without("on-click")|without("on-click-target") }} is="shadow-root">
+  {# choose a semantic <a> _tag or <button> _tag for better accessibility, depending on whether or not a url is getting passed along #}
+  <{{ _tag }} {{ inner_attributes|without("on-click")|without("on-click-target") }} is="shadow-root">
     {% block slot_before %}
       {{ macros.slottedIcon(icon, icon_position, "before") }}
     {% endblock %}
@@ -171,5 +153,5 @@ Sort classes passed in via attributes into two groups:
     {% block slot_after %}
       {{ macros.slottedIcon(icon, icon_position, 'after') }}
     {% endblock %}
-  </{{ tag }}>
+  </{{ _tag }}>
 </bolt-button>
