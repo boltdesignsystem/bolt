@@ -3,7 +3,47 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.31.2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-typeahead/compare/v2.31.1...v2.31.2) (2021-02-04)
+
+**Note:** Version bump only for package @bolt/components-typeahead
+
+
+
+
+
+# [2.31.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-typeahead/compare/v2.30.2...v2.31.0) (2021-02-02)
+
+**Note:** Version bump only for package @bolt/components-typeahead
+
+
+
+
+
 ## [3.0.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-typeahead/compare/v3.0.0...v3.0.1) (2021-01-22)
+
+**Note:** Version bump only for package @bolt/components-typeahead
+
+
+
+
+
+## [2.30.2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-typeahead/compare/v2.30.1...v2.30.2) (2021-01-21)
+
+**Note:** Version bump only for package @bolt/components-typeahead
+
+
+
+
+
+## [2.30.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-typeahead/compare/v2.30.0...v2.30.1) (2021-01-14)
+
+**Note:** Version bump only for package @bolt/components-typeahead
+
+
+
+
+
+# [2.30.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-typeahead/compare/v2.29.3...v2.30.0) (2021-01-13)
 
 **Note:** Version bump only for package @bolt/components-typeahead
 
@@ -23,17 +63,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 * remove `browser.sendKeys()` which is only required for ie11 support ([eabe228](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-typeahead/commit/eabe228547fdfc6893daeb22d2ac7da110844866))
 * remove postcss-themify and critical-css-vars, replace map() usage of bolt-theme with fixed token ([373791e](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-typeahead/commit/373791ee6f133546f197f3b2cffb8d18588be204))
-
-
-
-
-
-
-
-**Note:** Version bump only for package @bolt/components-typeahead
-
-
-
 
 
 ## [2.29.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-typeahead/compare/v2.29.0...v2.29.1) (2020-11-25)

@@ -3,7 +3,54 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.31.2](https://github.com/boltdesignsystem/bolt/compare/v2.31.1...v2.31.2) (2021-02-04)
+
+**Note:** Version bump only for package @bolt/starter-kit
+
+
+
+
+
+## [2.31.1](https://github.com/boltdesignsystem/bolt/compare/v2.31.0...v2.31.1) (2021-02-03)
+
+**Note:** Version bump only for package @bolt/starter-kit
+
+
+
+
+
+# [2.31.0](https://github.com/boltdesignsystem/bolt/compare/v2.30.2...v2.31.0) (2021-02-02)
+
+**Note:** Version bump only for package @bolt/starter-kit
+
+
+
+
 ## [3.0.1](https://github.com/boltdesignsystem/bolt/compare/v3.0.0...v3.0.1) (2021-01-22)
+
+**Note:** Version bump only for package @bolt/starter-kit
+
+
+
+
+
+## [2.30.2](https://github.com/boltdesignsystem/bolt/compare/v2.30.1...v2.30.2) (2021-01-21)
+
+**Note:** Version bump only for package @bolt/starter-kit
+
+
+
+
+
+## [2.30.1](https://github.com/boltdesignsystem/bolt/compare/v2.30.0...v2.30.1) (2021-01-14)
+
+**Note:** Version bump only for package @bolt/starter-kit
+
+
+
+
+
+# [2.30.0](https://github.com/boltdesignsystem/bolt/compare/v2.29.3...v2.30.0) (2021-01-13)
 
 **Note:** Version bump only for package @bolt/starter-kit
 
@@ -21,18 +68,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * remove `critical-path-polyfills` and all references ([48f97f6](https://github.com/boltdesignsystem/bolt/commit/48f97f6fa1f077997aca5821cc279b16cfb01f18))
 * remove postcss-themify and critical-css-vars, replace map() usage of bolt-theme with fixed token ([373791e](https://github.com/boltdesignsystem/bolt/commit/373791ee6f133546f197f3b2cffb8d18588be204))
 * remove references to `critical-fonts` ([7e05b55](https://github.com/boltdesignsystem/bolt/commit/7e05b55e26ef3b0ab2b85cc2b7209a4216986201))
-
-
-
-
-
-
-
-**Note:** Version bump only for package @bolt/starter-kit
-
-
-
-
 
 ## [2.29.2](https://github.com/boltdesignsystem/bolt/compare/v2.29.1...v2.29.2) (2020-11-30)
 

@@ -21,9 +21,6 @@
   {% set srcset = image_data_bolt.srcset %}
 {% endif %}
 
-{# Set alt to null if missing, prevents empty alt tags #}
-{% set alt = alt ? alt : null %}
-
 {# Temp: prefix "ph" to preserve original value for web component, better pattern in the works #}
 {% set ph_color = placeholder_color|default(image_data_bolt.color|default(schema.properties.placeholder_color.default)) %}
 {# Note: image-specific base64 data is only generated in production mode, default data is used for local development #}
@@ -82,7 +79,7 @@
 ] %}
 
 {% set image_attributes = create_attribute(imageAttributes | default({})).addClass(image_classes, lazyload_classes)
-  .setAttribute('alt', alt)
+  .setAttribute('alt', alt ? alt : "")
   .setAttribute( (lazyload ? "data-" : null) ~ "srcset", srcset ? srcset : null)
   .setAttribute( (lazyload ? "data-" : null) ~ "sizes", sizes)
   .setAttribute('srcset', lazyload ? schema.properties.placeholder_image.default : srcset)
@@ -95,7 +92,7 @@
 {% endif %}
 
 {% set image_fallback_attributes = create_attribute({}).addClass(image_classes)
-  .setAttribute('alt', alt)
+  .setAttribute('alt', alt ? alt : "")
   .setAttribute('src', src)
   .setAttribute(srcset ? "srcset" : "", srcset ? srcset : null)
 %}

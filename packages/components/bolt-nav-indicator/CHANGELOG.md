@@ -11,6 +11,14 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
+# [2.30.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-navbar/compare/v2.29.3...v2.30.0) (2021-01-13)
+
+**Note:** Version bump only for package @bolt/components-nav-indicator
+
+
+
+
+
 # [3.0.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-navbar/compare/v2.29.3...v3.0.0) (2021-01-08)
 
 **Note:** Version bump only for package @bolt/components-nav-indicator

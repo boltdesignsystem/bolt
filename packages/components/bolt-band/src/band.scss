@@ -23,12 +23,6 @@ bolt-band {
   width: 100%;
   min-height: 0;
   transition: min-height var(--bolt-transition); // Do not transition band widths
-
-  @include bolt-ie11-only {
-    .is-expanded & {
-      min-height: 56.25vh;
-    }
-  }
 }
 
 .c-bolt-band--full-bleed {

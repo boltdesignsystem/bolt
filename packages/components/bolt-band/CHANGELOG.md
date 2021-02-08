@@ -3,7 +3,31 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.31.2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-band/compare/v2.31.1...v2.31.2) (2021-02-04)
+
+**Note:** Version bump only for package @bolt/components-band
+
+
+
+
+
+# [2.31.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-band/compare/v2.30.2...v2.31.0) (2021-02-02)
+
+**Note:** Version bump only for package @bolt/components-band
+
+
+
+
+
 ## [3.0.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-band/compare/v3.0.0...v3.0.1) (2021-01-22)
+
+**Note:** Version bump only for package @bolt/components-band
+
+
+
+
+
+# [2.30.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-band/compare/v2.29.3...v2.30.0) (2021-01-13)
 
 **Note:** Version bump only for package @bolt/components-band
 

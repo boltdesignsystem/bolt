@@ -3,7 +3,31 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.31.2](https://github.com/boltdesignsystem/bolt/compare/v2.31.1...v2.31.2) (2021-02-04)
+
+**Note:** Version bump only for package @bolt/element
+
+
+
+
+
+# [2.31.0](https://github.com/boltdesignsystem/bolt/compare/v2.30.2...v2.31.0) (2021-02-02)
+
+**Note:** Version bump only for package @bolt/element
+
+
+
+
+
 ## [3.0.1](https://github.com/boltdesignsystem/bolt/compare/v3.0.0...v3.0.1) (2021-01-22)
+
+**Note:** Version bump only for package @bolt/element
+
+
+
+
+
+# [2.30.0](https://github.com/boltdesignsystem/bolt/compare/v2.29.3...v2.30.0) (2021-01-13)
 
 **Note:** Version bump only for package @bolt/element
 
@@ -17,10 +41,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Features
 
 * remove polyfill workaround from @bolt/element as part of the broader perf updates ([e082868](https://github.com/boltdesignsystem/bolt/commit/e082868e2c731e40a746a3a25e78ca7ed66156ec))
-
-
-
-
 
 # [2.29.0](https://github.com/boltdesignsystem/bolt/compare/v2.28.0...v2.29.0) (2020-11-23)
 
