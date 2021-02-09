@@ -1,12 +1,5 @@
 import { lazyQueue } from '@bolt/lazy-queue';
 
-// Component-specific examples and demos that need to get compiled:
-lazyQueue(['bolt-card'], async () => {
-  await import(
-    /*  webpackChunkName: 'bolt-docs-site--deprecated-card-tests' */ './pages/pattern-lab/_patterns/40-components/card-deprecated/__tests__'
-  );
-});
-
 lazyQueue(['bolt-typeahead'], async () => {
   await import(
     /*  webpackChunkName: 'bolt-docs-site--typeahead-demos' */ './typeahead-demos'

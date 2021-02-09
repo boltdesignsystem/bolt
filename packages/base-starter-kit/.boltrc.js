@@ -17,7 +17,6 @@ module.exports = {
       '@bolt/components-button-group',
       '@bolt/components-button',
       '@bolt/components-card-replacement',
-      '@bolt/components-card',
       '@bolt/components-carousel',
       '@bolt/components-chip-list',
       '@bolt/components-chip',
