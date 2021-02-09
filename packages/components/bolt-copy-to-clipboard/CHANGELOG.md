@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.31.0](https://github.com/bolt-design-system/bolt/compare/v2.30.2...v2.31.0) (2021-02-02)
+
+**Note:** Version bump only for package @bolt/components-copy-to-clipboard
+
+
+
+
+
 # [2.30.0](https://github.com/bolt-design-system/bolt/compare/v2.29.3...v2.30.0) (2021-01-13)
 
 **Note:** Version bump only for package @bolt/components-copy-to-clipboard
