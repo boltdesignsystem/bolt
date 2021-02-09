@@ -3,9 +3,8 @@ module.exports = {
     global: [
       '@bolt/core-v3.x',
       '@bolt/global',
-      '@bolt/elements-text-link',
       '@bolt/elements-button',
-      '@bolt/layouts-list',
+      '@bolt/elements-text-link',
       '@bolt/components-accordion',
       '@bolt/components-action-blocks',
       '@bolt/components-animate',
