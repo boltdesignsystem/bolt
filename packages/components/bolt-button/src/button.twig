@@ -1,6 +1,6 @@
-{% import "@bolt-components-button/_button-macros.twig" as macros %}
+{% import '@bolt-components-button/_button-macros.twig' as macros %}
 
-{% set schema = bolt.data.components["@bolt-components-button"].schema %}
+{% set schema = bolt.data.components['@bolt-components-button'].schema %}
 
 {% if enable_json_schema_validation %}
   {{ validate_data_schema(schema, _self) | raw }}
@@ -12,19 +12,19 @@
 {% endif %}
 
 {# DEPRECATED.  Use the values `start` and `end` insted of `left` and `right`. #}
-{% if align == "left" %}
-  {% set align = "start" %}
-{% elseif align == "right" %}
-  {% set align = "end" %}
+{% if align == 'left' %}
+  {% set align = 'start' %}
+{% elseif align == 'right' %}
+  {% set align = 'end' %}
 {% endif %}
 
 {# DEPRECATED.  Use the property `border_radius` with a value of `full` instead. #}
-{% if rounded == "rounded" %}
-  {% set border_radius = "full" %}
+{% if rounded == 'rounded' %}
+  {% set border_radius = 'full' %}
 {% endif %}
 
 {# DEPRECATED. Use the `type` property for a reset or submit button.  Tag is determined automatically based on whether you pass a url. #}
-{% if tag in ["reset", "submit"] %}
+{% if tag in ['reset', 'submit'] %}
   {% set type = type|default(tag) %}
 {% endif %}
 
@@ -40,53 +40,49 @@
 
 {% set icon_positions = schema.properties.icon.properties.position.enum %}
 
-{# TODO: Dan, should url, disabled, and target be in the schema? #}
-{% if url != null %}
-  {% set _tag = "a" %}
+{% if this.data.url.value %}
+  {% set _tag = 'a' %}
   {% if disabled %}
-    {% set inner_attributes = inner_attributes.setAttribute("aria-disabled", "true") %}
+    {% set inner_attributes = inner_attributes.setAttribute('aria-disabled', 'true') %}
   {% else %}
-    {% if url %}
-      {% set inner_attributes = inner_attributes.setAttribute("href", url) %}
-    {% endif %}
+    {% set inner_attributes = inner_attributes.setAttribute('href', url) %}
   {% endif %}
   {% if this.data.target.value %}
-    {% set inner_attributes = inner_attributes.setAttribute("target", this.data.target.value) %}
+    {% set inner_attributes = inner_attributes.setAttribute('target', this.data.target.value) %}
   {% endif %}
 {% else %}
-  {% set _tag = "button" %}
+  {% set _tag = 'button' %}
 
-  {# Note that "type" does not have a default; unless an explicit value is specified, none will be set. #}
+  {# Note that 'type' does not have a default; unless an explicit value is specified, none will be set. #}
   {% if this.data.type.value %}
-    {% set inner_attributes = inner_attributes.setAttribute("type", this.data.type.value ) %}
+    {% set inner_attributes = inner_attributes.setAttribute('type', this.data.type.value ) %}
   {% endif %}
 {% endif %}
 
 {# Array of classes based on the defined + default props #}
 {% set classes = [
-  "c-bolt-button",
-  this.data.disabled.value ? "c-bolt-button--disabled" : "",
-  this.data.size.value ? "c-bolt-button--#{this.data.size.value}" : "",
-  this.data.hierarchy.value ? "c-bolt-button--#{this.data.hierarchy.value}" : "",
-  this.data.width.value != "auto" ? "c-bolt-button--#{this.data.width.value}" : "",
-  this.data.border_radius.value ? "c-bolt-button--border-radius-#{this.data.border_radius.value}" : "",
-  this.data.align.value ? "c-bolt-button--#{this.data.align.value}" : "",
-  this.data.transform.value != "none" ? "c-bolt-button--#{this.data.transform.value}" : "",
-  this.data.iconOnly.value ? "c-bolt-button--icon-only",
+  'c-bolt-button',
+  this.data.disabled.value ? 'c-bolt-button--disabled' : '',
+  this.data.size.value ? 'c-bolt-button--' ~ this.data.size.value : '',
+  this.data.hierarchy.value ? 'c-bolt-button--' ~ this.data.hierarchy.value : '',
+  this.data.width.value != 'auto' ? 'c-bolt-button--' ~ this.data.width.value : '',
+  this.data.border_radius.value ? 'c-bolt-button--border-radius-' ~ this.data.border_radius.value : '',
+  this.data.align.value ? 'c-bolt-button--' ~ this.data.align.value : '',
+  this.data.transform.value != 'none' ? 'c-bolt-button--' ~ this.data.transform.value : '',
+  this.data.iconOnly.value ? 'c-bolt-button--icon-only',
 ] %}
 
-{% if this.data.disabled.value and _tag == "button" %}
-  {% set inner_attributes = inner_attributes.setAttribute("disabled", true) %}
+{% if this.data.disabled.value and _tag == 'button' %}
+  {% set inner_attributes = inner_attributes.setAttribute('disabled', true) %}
 {% endif %}
 
-{# TODO: Dan, can this be done the new way? #}
 {% if icon %}
   {% set icon_position = icon.position in icon_positions ? icon.position : schema.properties.icon.properties.position.default %}
 {% endif %}
 
 {#
 Sort classes passed in via attributes into two groups:
-1. Those that should be applied to the inner _tag (namely, "is-" and "has-" classes)
+1. Those that should be applied to the inner _tag (namely, 'is-' and 'has-' classes)
 2. Those that should be applied to the outer custom element (everything else EXCEPT c-bolt-* classes, which should never be passed in via atttributes)
 #}
 {% set outer_classes = [] %}
@@ -94,11 +90,11 @@ Sort classes passed in via attributes into two groups:
 {% set original_classes = [] %}
 
 {% for class in this.props.class %}
-  {% if class starts with "is-" == true %}
+  {% if class starts with 'is-' == true %}
     {% set inner_classes = inner_classes|merge([class]) %}
-  {% elseif class starts with "has-" == true %}
+  {% elseif class starts with 'has-' == true %}
     {% set inner_classes = inner_classes|merge([class]) %}
-  {% elseif class starts with "c-bolt-button" == false %}
+  {% elseif class starts with 'c-bolt-button' == false %}
     {% set outer_classes = outer_classes|merge([class]) %}
   {% endif %}
   {% set original_classes = original_classes|merge([class]) %}
@@ -108,20 +104,19 @@ Sort classes passed in via attributes into two groups:
 
 {# Set up the custom element's prop values based on the params passed into the Twig template - used to hydrate the component's initial state and appearance once the Button Component's JavaScript kicks in #}
 <bolt-button
-  {{ this.props|without("on-click") }}
-  {# TODO: rename on-click + on-click-target to only allow onClick + onClickTarget to unify the prop syntax; deprecate adding these via attributes - Dan, shouldn't this be like on_click_target?
-  #}
-  {% if onClick or attributes["on-click"] %} on-click="{{ onClick | default(attributes['on-click']) }}" {% endif %}
-  {% if onClickTarget or attributes["on-click-target"] %} on-click-target="{{ onClickTarget | default(attributes['on-click-target']) }}" {% endif %}
+  {{ this.props|without('on-click') }}
+  {# TODO: rename on-click + on-click-target to only allow on_click + on_click_target to unify the prop syntax; deprecate adding these via attributes  #}
+  {% if onClick or attributes['on-click'] %} on-click="{{ onClick | default(attributes['on-click']) }}" {% endif %}
+  {% if onClickTarget or attributes['on-click-target'] %} on-click-target="{{ onClickTarget | default(attributes['on-click-target']) }}" {% endif %}
 >
   {# choose a semantic <a> _tag or <button> _tag for better accessibility, depending on whether or not a url is getting passed along #}
-  <{{ _tag }} {{ inner_attributes|without("on-click")|without("on-click-target") }} is="shadow-root">
+  <{{ _tag }} {{ inner_attributes|without('on-click')|without('on-click-target') }} is="shadow-root">
     {% block slot_before %}
-      {{ macros.slotted_icon(icon, icon_position, "before") }}
+      {{ macros.slotted_icon(icon, icon_position, 'before') }}
     {% endblock %}
     <ssr-keep for="bolt-button" class="c-bolt-button__item">{{ text }}</ssr-keep>
     {% block slot_after %}
-      {{ macros.slotted_icon(icon, icon_position, "after") }}
+      {{ macros.slotted_icon(icon, icon_position, 'after') }}
     {% endblock %}
   </{{ _tag }}>
 </bolt-button>
