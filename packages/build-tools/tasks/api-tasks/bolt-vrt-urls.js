@@ -91,6 +91,9 @@ async function generateVrtUrls() {
   filteredUrls.components.push(
     'https://boltdesignsystem.com/pattern-lab/patterns/40-components-chips-list/index.html',
   );
+  filteredUrls.components.push(
+    'https://boltdesignsystem.com/pattern-lab/patterns/40-components-card/index.html',
+  );
 
   // Sorting only necessary because we're tacking on the components above, remove once we fix pattern names above
   filteredUrls.components = filteredUrls.components.sort();
