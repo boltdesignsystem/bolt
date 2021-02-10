@@ -1,0 +1,63 @@
+{% set description %}
+  An image element.
+{% endset %}
+
+{% set demo %}
+  <h3>Width is 400px; if parent width is below 400px, it fills 100%.</h3>
+  {% include '@bolt-elements-image/image.twig' with {
+    attributes: {
+      alt: 'Alt text.',
+      src: 'https://www.fillmurray.com/g/400/225',
+      width: 400,
+      height: 225,
+    },
+  } only %}
+
+  <h3>Fill the space, always stretching 100% of parent width.</h3>
+  {% include '@bolt-elements-image/image.twig' with {
+    fill: true,
+    attributes: {
+      alt: 'Alt text.',
+      src: 'https://www.fillmurray.com/g/400/225',
+      srcset: 'https://www.fillmurray.com/g/400/225 400w, https://www.fillmurray.com/g/800/450 800w, https://www.fillmurray.com/g/1600/900 1600w',
+      sizes: '96vw',
+      width: 400,
+      height: 225,
+    },
+  } only %}
+
+  <h3>Background image inside a relative container with relative content.</h3>
+  <div style="position:relative; display:grid; place-items:center; width:500px; height: 500px; color: white;">
+    {% include '@bolt-elements-image/image.twig' with {
+      background: true,
+      attributes: {
+        alt: 'Alt text.',
+        src: 'https://www.fillmurray.com/g/400/225',
+        srcset: 'https://www.fillmurray.com/g/400/225 400w, https://www.fillmurray.com/g/800/450 800w, https://www.fillmurray.com/g/1600/900 1600w',
+        sizes: '100vw',
+        width: 400,
+        height: 225,
+      },
+    } only %}
+    <strong style="position:relative;">500px x 500px</strong>
+  </div>
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% endverbatim %}
+{% endset %}
+
+{% set html_markup %}
+{% verbatim %}
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Basic Image',
+  description: description,
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+  html_markup: html_markup,
+} only %}
