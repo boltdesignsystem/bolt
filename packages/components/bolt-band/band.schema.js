@@ -109,11 +109,6 @@ module.exports = {
       description:
         'Please use `pinned_content`. Instructions on how to use `pinned_content` is on the Band with Pinned Content demo page.',
     },
-    items: {
-      title: 'DEPRECATED',
-      description:
-        'Please use `content` and `pinned_content`. Instructions on how to use `pinned_content` is on the Band with Pinned Content demo page.',
-    },
     fullBleed: {
       title: 'DEPRECATED',
       description: 'This prop has been renamed. Please use `full_bleed`.',
