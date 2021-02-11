@@ -1,10 +1,11 @@
 {% set usage %}{% verbatim %}
 {% include '@bolt-elements-image/image.twig' with {
   fill: true,
-  lazyload: true,
   attributes: {
-    src: 'path/image.jpg',
     alt: 'Image alt text',
+    src: 'path/image.jpg',
+    width: 48,
+    height: 48,
   },
 } only %}
 {% endverbatim %}{% endset %}
