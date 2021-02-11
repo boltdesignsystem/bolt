@@ -1,2 +1,2 @@
-import '@pattern-lab/uikit-polyfills';
+import '@bolt/polyfills';
 import './patternlab-components';

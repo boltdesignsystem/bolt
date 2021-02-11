@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.1.0](https://github.com/bolt-design-system/bolt/tree/master/packages/global/compare/v2.31.2...v3.1.0) (2021-02-08)
+
+**Note:** Version bump only for package @bolt/global
+
+
+
+
+
 ## [2.31.2](https://github.com/bolt-design-system/bolt/tree/master/packages/global/compare/v2.31.1...v2.31.2) (2021-02-04)
 
 **Note:** Version bump only for package @bolt/global
@@ -15,6 +23,13 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package @bolt/global
 
+
+
+
+
+## [3.0.1](https://github.com/bolt-design-system/bolt/tree/master/packages/global/compare/v3.0.0...v3.0.1) (2021-01-22)
+
+**Note:** Version bump only for package @bolt/global
 
 
 
@@ -44,10 +59,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * secondary color variable ([905a62a](https://github.com/bolt-design-system/bolt/tree/master/packages/global/commit/905a62aae1547bbaa3e913e0a8d5b80e2babc875))
 
 
-
-
-
-
+# [3.0.0](https://github.com/bolt-design-system/bolt/tree/master/packages/global/compare/v2.29.3...v3.0.0) (2021-01-08)
 
 **Note:** Version bump only for package @bolt/global
 

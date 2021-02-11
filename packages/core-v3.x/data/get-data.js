@@ -1,5 +1,3 @@
-import 'whatwg-fetch';
-
 /**
  * Get Data
  * Retrieve any of the "NAME.bolt.json" files found in the builds data directory
