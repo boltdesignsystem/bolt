@@ -24,7 +24,7 @@ $base-video-meta-transition: $bolt-transition;
   transition: all $base-video-js-button-transition;
 }
 
-.c-base-video {
+video-js.c-base-video {
   position: absolute; // [5]
   width: 100%;
   height: 100%;
@@ -276,21 +276,59 @@ $base-video-meta-transition: $bolt-transition;
   }
 
   .vjs-control {
-    width: 2em;
-    @include bolt-mq(xsmall) {
-      width: 3em;
-    }
-    @include bolt-mq(small) {
-      width: 4em;
-    }
+    // width: 2em;
+    // @include bolt-mq(xsmall) {
+    //   width: 3em;
+    // }
+    // @include bolt-mq(small) {
+    //   width: 4em;
+    // }
 
     // The playback rate needs extra space even at the smallest breakpoints to accommodate wide rates like "1.25x".
-    &.vjs-playback-rate {
-      width: 4em;
-    }
+    // &.vjs-playback-rate {
+    //   width: 3em;
+    //   // @include bolt-mq(xsmall) {
+    //   //   width: 3em;
+    //   // }
+    //   @include bolt-mq(small) {
+    //     width: 4em;
+    //   }
+    // }
 
     &.vjs-progress-control {
       width: 100%;
+    }
+  }
+
+  //   .video-js .vjs-volume-panel.vjs-volume-panel-horizontal.vjs-mute-toggle-only {
+  //     width: 4em;
+  // }
+
+  // &.vjs-layout-tiny,
+  // &.vjs-layout-x-small,
+  // &.vjs-layout-small {
+  //   .vjs-control {
+  //   }
+  // }
+
+  &.vjs-layout-tiny,
+  &.vjs-layout-x-small,
+  &.vjs-layout-small,
+  &.vjs-layout-medium,
+  &.vjs-layout-large,
+  &.vjs-layout-x-large {
+    .vjs-control,
+    .vjs-volume-panel.vjs-volume-panel-horizontal.vjs-mute-toggle-only {
+      width: 3em;
+
+      &.vjs-playback-rate {
+        width: 4em;
+      }
+    }
+
+    .vjs-menu-button-popup .vjs-menu .vjs-menu-content {
+      left: 0;
+      width: 9em;
     }
   }
 
@@ -528,12 +566,29 @@ $base-video-meta-transition: $bolt-transition;
       /* .vjs-volume-control, */
       .vjs-mute-control,
       .vjs-playback-rate,
-      .vjs-current-time,
-      .vjs-button.vjs-share-control {
+      .vjs-current-time {
+        // .vjs-button.vjs-share-control {
         display: flex;
       }
     }
   }
+
+  .vjs-undo-hidden {
+    display: block !important;
+  }
+
+  // &.vjs-layout-tiny,
+  // &.vjs-layout-x-small,
+  // &.vjs-layout-small {
+  //   &:not(.vjs-fullscreen) {
+  //     .vjs-playback-rate,
+  //     .vjs-share-control,
+  //     .vjs-subs-caps-button,
+  //     .vjs-quality-menu-wrapper {
+  //       display: none;
+  //     }
+  //   }
+  // }
 
   &.vjs-layout-x-small,
   &.vjs-layout-small,
@@ -556,8 +611,32 @@ $base-video-meta-transition: $bolt-transition;
     }
   }
 
+  &.vjs-layout-tiny,
   &.vjs-layout-x-small,
   &.vjs-layout-small {
+    .vjs-play-control {
+      margin-left: 0.4em;
+    }
+
+    .vjs-play-control,
+    .vjs-volume-panel {
+      width: 2em;
+    }
+
+    .vjs-time-control.vjs-current-time {
+      margin-left: 0;
+    }
+
+    .vjs-time-divider,
+    .vjs-duration {
+      display: none !important;
+    }
+
+    .vjs-time-control {
+      font-size: 1.2em;
+      line-height: 2.5;
+    }
+
     .vjs-menu-button-popup .vjs-menu .vjs-menu-content {
       max-height: 14em;
     }
