@@ -1,19 +1,27 @@
 {% set description %}
-  An image element.
+  An image element embeds a responsive graphic on the page.
+{% endset %}
+
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>To make an image accessible to screen readers and other assistive technology, make sure to include text description via the <bolt-code-snippet display="inline">alt</bolt-code-snippet> attribute.</bolt-li>
+    <bolt-li>To indicate an image as decoration, leave the <bolt-code-snippet display="inline">alt</bolt-code-snippet> attribute blank, do not remove it. For example: <bolt-code-snippet display="inline">alt=""</bolt-code-snippet>.</bolt-li>
+    <bolt-li>It is best practice to always define the <bolt-code-snippet display="inline">width</bolt-code-snippet> and <bolt-code-snippet display="inline">height</bolt-code-snippet> attributes, so the space that the image would take up is already calculated before the image finishes loading. This helps to reduce cumulative layout shifts.</bolt-li>
+    <bolt-li>If responsiveness is not needed, please use a plain <bolt-code-snippet display="inline">&lt;img&gt;</bolt-code-snippet> element instead.</bolt-li>
+  </bolt-ol>
 {% endset %}
 
 {% set demo %}
-  <h3>Width is 400px; if parent width is below 400px, it fills 100%.</h3>
   {% include '@bolt-elements-image/image.twig' with {
     attributes: {
-      alt: 'Alt text.',
-      src: 'https://www.fillmurray.com/g/400/225',
+      alt: 'Collaboration Center Logo',
+      src: '/images/logos/pega-logo-cc.svg',
       width: 400,
-      height: 225,
+      height: 34,
     },
   } only %}
 
-  <h3>Fill the space, always stretching 100% of parent width.</h3>
+{#   <h3>Fill the space, always stretching 100% of parent width.</h3>
   {% include '@bolt-elements-image/image.twig' with {
     fill: true,
     attributes: {
@@ -86,16 +94,25 @@
       },
     } only %}
     <strong style="position:relative;">500px x 500px</strong>
-  </div>
+  </div> #}
 {% endset %}
 
 {% set twig_markup %}
 {% verbatim %}
+{% include '@bolt-elements-image/image.twig' with {
+  attributes: {
+    alt: 'Collaboration Center Logo',
+    src: '/images/logos/pega-logo-cc.svg',
+    width: 400,
+    height: 34,
+  },
+} only %}
 {% endverbatim %}
 {% endset %}
 
 {% set html_markup %}
 {% verbatim %}
+  <img alt="Collaboration Center Logo" src="/images/logos/pega-logo-cc.svg" width=400 height=34 class="e-bolt-image">
 {% endverbatim %}
 {% endset %}
 

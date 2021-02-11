@@ -24,5 +24,4 @@
 ] %}
 
 {# Template #}
-{% spaceless %}<img {{ attributes.addClass(classes) }} alt="{{ alt }}" src="{{ src }}" {% if srcset %}srcset="{{ srcset }}"{% endif %} {% if sizes %}sizes="{{ sizes }}"{% endif %} style="{% if background.fit %}--e-bolt-image-fit: {{ background.fit }};{% endif %} {% if background.position %}--e-bolt-image-position: {{ background.position }};{% endif %}">{% endspaceless %}
-
+{% spaceless %}<img {{ attributes.addClass(classes) }} alt="{{ alt }}" src="{{ src }}" {% if srcset %}srcset="{{ srcset }}"{% endif %} {% if sizes %}sizes="{{ sizes }}"{% endif %} {% if background %}style="{% if background.fit %}--e-bolt-image-fit: {{ background.fit }};{% endif %} {% if background.position %}--e-bolt-image-position: {{ background.position }};{% endif %}"{% endif %}>{% endspaceless %}
