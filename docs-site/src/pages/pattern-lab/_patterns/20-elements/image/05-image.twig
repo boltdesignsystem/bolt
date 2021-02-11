@@ -29,14 +29,60 @@
   <h3>Background image inside a relative container with relative content.</h3>
   <div style="position:relative; display:grid; place-items:center; width:500px; height: 500px; color: white;">
     {% include '@bolt-elements-image/image.twig' with {
-      background: true,
+      background: {
+        fit: 'cover',
+        position: 'center center',
+      },
       attributes: {
-        alt: 'Alt text.',
         src: 'https://www.fillmurray.com/g/400/225',
         srcset: 'https://www.fillmurray.com/g/400/225 400w, https://www.fillmurray.com/g/800/450 800w, https://www.fillmurray.com/g/1600/900 1600w',
-        sizes: '100vw',
+        sizes: '500px',
         width: 400,
         height: 225,
+      },
+    } only %}
+    {% include '@bolt-elements-image/image.twig' with {
+      background: {
+        fit: 'none',
+        position: 'top left',
+      },
+      attributes: {
+        src: 'https://www.fillmurray.com/g/48/48',
+        width: 48,
+        height: 48,
+      },
+    } only %}
+    {% include '@bolt-elements-image/image.twig' with {
+      background: {
+        fit: 'none',
+        position: 'top right',
+      },
+      attributes: {
+        src: 'https://www.fillmurray.com/g/48/48',
+        width: 48,
+        height: 48,
+      },
+    } only %}
+    {% include '@bolt-elements-image/image.twig' with {
+      background: {
+        fit: 'none',
+        position: 'bottom left',
+      },
+      attributes: {
+        src: 'https://www.fillmurray.com/g/48/48',
+        width: 48,
+        height: 48,
+      },
+    } only %}
+    {% include '@bolt-elements-image/image.twig' with {
+      background: {
+        fit: 'none',
+        position: 'bottom right',
+      },
+      attributes: {
+        src: 'https://www.fillmurray.com/g/48/48',
+        width: 48,
+        height: 48,
       },
     } only %}
     <strong style="position:relative;">500px x 500px</strong>

@@ -1,16 +1,22 @@
 @import '@bolt/core-v3.x';
 
 /**
- * Button
+ * Image
  */
 
 .e-bolt-image {
+  --e-bolt-image-fit: cover;
+  --e-bolt-image-position: center center;
   max-width: 100%;
   height: auto;
-  object-fit: cover;
+  object-fit: var(--e-bolt-image-fit);
+  object-position: var(--e-bolt-image-position);
   content-visibility: auto;
   contains-intrinsic-size: 0 attr(height);
-  background-color: var(--m-bolt-tertiary);
+
+  &:not(.e-bolt-image--bg) {
+    background-color: var(--m-bolt-tertiary);
+  }
 }
 
 .e-bolt-image--fill {
