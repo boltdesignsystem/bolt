@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.1](https://github.com/boltdesignsystem/bolt/compare/v3.1.0...v3.1.1) (2021-02-11)
+
+
+### Reverts
+
+* Revert "DS-330: Remove deprecated `items` prop on Band component, related docs" ([bc1fcae](https://github.com/boltdesignsystem/bolt/commit/bc1fcae884f4932c0c38b49c79a8074e10c9ab31))
+
+
+
+
+
 # [3.1.0](https://github.com/boltdesignsystem/bolt/compare/v2.31.2...v3.1.0) (2021-02-08)
 
 
