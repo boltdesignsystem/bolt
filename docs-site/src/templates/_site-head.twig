@@ -6,12 +6,12 @@
 
 
 {# @TODO: how do we get this to use the exact same values from our global .js config without having the source of truth live as a .yml or .json file...? #}
-{% set modernManifestConfig = "@bolt-assets/bolt-webpack-manifest#{lang != "" ? "-" ~ lang : ""}.modern.json" %}
+{% set manifestConfig = "@bolt-assets/bolt-webpack-manifest#{lang != "" ? "-" ~ lang : ""}.json" %}
 
-{% set modernAssets = [] %}
+{% set assets = [] %}
 
-{% if fileExists(modernManifestConfig) %}
-  {% set modernAssets = get_data(modernManifestConfig) %}
+{% if fileExists(manifestConfig) %}
+  {% set assets = get_data(manifestConfig) %}
 {% endif %}
 
 {% set urlChunks = page.url | split('/') %}
@@ -43,7 +43,7 @@
     <link rel="preconnect dns-prefetch" href="https://www.google-analytics.com"/>
 
     <!-- async load PL's CSS -->
-    <link rel="stylesheet" href="{{ modernAssets["bolt-global.css"] | default("/build/bolt-global.css") }}" media="all" />
+    <link rel="stylesheet" href="{{ assets["bolt-global.css"] | default("/build/bolt-global.css") }}" media="all" />
     <link rel="preload" href="/pattern-lab/styleguide/css/pattern-lab.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 
     {# shared critical path scripts #}
@@ -60,7 +60,7 @@
       window.bolt.data.fullManifest.version = window.bolt.data.fullManifest.version || {{ bolt.data.fullManifest.version|json_encode|raw }};
     </script>
 
-    <script type="module" src="{{ modernAssets["bolt-global.js"] | default("/build/bolt-global.modern.js") }}" async></script>
+    <script type="module" src="{{ assets["bolt-global.js"] | default("/build/bolt-global.js") }}" async></script>
 
     <noscript>
       <link href="/pattern-lab/styleguide/css/pattern-lab.css" rel="stylesheet">
