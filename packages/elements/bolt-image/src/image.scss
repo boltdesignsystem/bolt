@@ -1,16 +1,14 @@
 @import '@bolt/core-v3.x';
 
 /**
- * Image
+ * Image Element
  */
 
 .e-bolt-image {
-  --e-bolt-image-fit: cover;
-  --e-bolt-image-position: center center;
   max-width: 100%;
   height: auto;
-  object-fit: var(--e-bolt-image-fit);
-  object-position: var(--e-bolt-image-position);
+  object-fit: var(--e-bolt-image-fit, cover);
+  object-position: var(--e-bolt-image-position, center);
   content-visibility: auto;
   contains-intrinsic-size: 0 attr(height);
 }

@@ -10,10 +10,12 @@
   {% include '@bolt-elements-image/image.twig' with {
     fill: true,
     attributes: {
-      alt: 'Collaboration Center Logo',
-      src: '/images/logos/pega-logo-cc.svg',
-      width: 1280,
-      height: 107,
+      alt: 'Alt text.',
+      src: 'https://via.placeholder.com/800x450',
+      srcset: 'https://via.placeholder.com/400x225 400w, https://via.placeholder.com/800x450 800w',
+      sizes: '96vw',
+      width: 800,
+      height: 450,
     },
   } only %}
 {% endset %}
@@ -23,10 +25,12 @@
 {% include '@bolt-elements-image/image.twig' with {
   fill: true,
   attributes: {
-    alt: 'Collaboration Center Logo',
-    src: '/images/logos/pega-logo-cc.svg',
-    width: 1280,
-    height: 107,
+    alt: 'Alt text.',
+    src: 'https://via.placeholder.com/800x450',
+    srcset: 'https://via.placeholder.com/400x225 400w, https://via.placeholder.com/800x450 800w',
+    sizes: '96vw',
+    width: 800,
+    height: 450,
   },
 } only %}
 {% endverbatim %}
@@ -34,7 +38,7 @@
 
 {% set html_markup %}
 {% verbatim %}
-  <img alt="Collaboration Center Logo" src="/images/logos/pega-logo-cc.svg" width=1280 height=107 class="e-bolt-image e-bolt-image--fill">
+<img alt="Alt text." src="https://via.placeholder.com/800x450" srcset="https://via.placeholder.com/400x225 400w, https://via.placeholder.com/800x450 800w" sizes="96vw" width="800" height="450" class="e-bolt-image e-bolt-image--fill">
 {% endverbatim %}
 {% endset %}
 
