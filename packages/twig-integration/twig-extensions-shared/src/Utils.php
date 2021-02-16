@@ -251,9 +251,17 @@ class Utils {
             $convertedPropName = $isData ? self::convertToSnakeCase($propName, $caseType) : self::convertToKebabCase($propName, $caseType);
             $props[$convertedPropName] = $items[$propName];
           }
+          elseif (isset($items["attributes"][$propName])) {
+
+            // No value for this prop was found in $items, but one was defined via attributes.
+            if ($isData) {
+              $convertedPropName = self::convertToSnakeCase($propName, $caseType);
+              $props[$convertedPropName] = $items["attributes"][$propName];
+            }
+          }
           elseif (isset($propSchema["default"])) {
 
-            // No value for this prop was found in $items, but a default is defined in the schema.
+            // No value for this prop was found in $items or attributes, but a default is defined in the schema.
             if ($isData) {
               $convertedPropName = self::convertToSnakeCase($propName, $caseType);
               $props[$convertedPropName] = $propSchema["default"];
