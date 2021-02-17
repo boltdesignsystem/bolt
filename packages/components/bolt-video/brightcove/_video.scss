@@ -276,40 +276,10 @@ video-js.c-base-video {
   }
 
   .vjs-control {
-    // width: 2em;
-    // @include bolt-mq(xsmall) {
-    //   width: 3em;
-    // }
-    // @include bolt-mq(small) {
-    //   width: 4em;
-    // }
-
-    // The playback rate needs extra space even at the smallest breakpoints to accommodate wide rates like "1.25x".
-    // &.vjs-playback-rate {
-    //   width: 3em;
-    //   // @include bolt-mq(xsmall) {
-    //   //   width: 3em;
-    //   // }
-    //   @include bolt-mq(small) {
-    //     width: 4em;
-    //   }
-    // }
-
     &.vjs-progress-control {
       width: 100%;
     }
   }
-
-  //   .video-js .vjs-volume-panel.vjs-volume-panel-horizontal.vjs-mute-toggle-only {
-  //     width: 4em;
-  // }
-
-  // &.vjs-layout-tiny,
-  // &.vjs-layout-x-small,
-  // &.vjs-layout-small {
-  //   .vjs-control {
-  //   }
-  // }
 
   &.vjs-layout-tiny,
   &.vjs-layout-x-small,
@@ -317,7 +287,7 @@ video-js.c-base-video {
   &.vjs-layout-medium,
   &.vjs-layout-large,
   &.vjs-layout-x-large {
-    .vjs-control,
+    .vjs-control:not(.vjs-progress-control),
     .vjs-volume-panel.vjs-volume-panel-horizontal.vjs-mute-toggle-only {
       width: 3em;
 
@@ -567,28 +537,10 @@ video-js.c-base-video {
       .vjs-mute-control,
       .vjs-playback-rate,
       .vjs-current-time {
-        // .vjs-button.vjs-share-control {
         display: flex;
       }
     }
   }
-
-  .vjs-undo-hidden {
-    display: block !important;
-  }
-
-  // &.vjs-layout-tiny,
-  // &.vjs-layout-x-small,
-  // &.vjs-layout-small {
-  //   &:not(.vjs-fullscreen) {
-  //     .vjs-playback-rate,
-  //     .vjs-share-control,
-  //     .vjs-subs-caps-button,
-  //     .vjs-quality-menu-wrapper {
-  //       display: none;
-  //     }
-  //   }
-  // }
 
   &.vjs-layout-x-small,
   &.vjs-layout-small,
@@ -604,7 +556,7 @@ video-js.c-base-video {
         font-size: 1em;
         line-height: 1.2em;
 
-        &:not(.vjs-subtitles-menu-item):not(.vjs-subtitles-menu-item) {
+        &:not(.vjs-subtitles-menu-item):not(.vjs-subtitles-menu-item):not(.vjs-captions-menu-item) {
           order: 1;
         }
       }
@@ -627,6 +579,8 @@ video-js.c-base-video {
       margin-left: 0;
     }
 
+    &:not(.vjs-fullscreen) .vjs-subs-caps-button,
+    .vjs-quality-menu-wrapper,
     .vjs-time-divider,
     .vjs-duration {
       display: none !important;
@@ -639,6 +593,16 @@ video-js.c-base-video {
 
     .vjs-menu-button-popup .vjs-menu .vjs-menu-content {
       max-height: 14em;
+    }
+  }
+
+  .vjs-share-control.vjs-control {
+    display: block !important;
+  }
+
+  &[data-social-disabled] {
+    .vjs-share-control.vjs-control {
+      display: none !important;
     }
   }
 
