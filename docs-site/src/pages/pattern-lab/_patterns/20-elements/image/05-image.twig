@@ -15,86 +15,11 @@
   {% include '@bolt-elements-image/image.twig' with {
     attributes: {
       alt: 'Alt text.',
-      src: 'https://via.placeholder.com/400x200',
-      width: 400,
-      height: 200,
-    },
-  } only %}
-
-{#   <h3>Fill the space, always stretching 100% of parent width.</h3>
-  {% include '@bolt-elements-image/image.twig' with {
-    fill: true,
-    attributes: {
-      alt: 'Alt text.',
-      src: 'https://www.fillmurray.com/g/400/225',
-      srcset: 'https://www.fillmurray.com/g/400/225 400w, https://www.fillmurray.com/g/800/450 800w, https://www.fillmurray.com/g/1600/900 1600w',
-      sizes: '96vw',
+      src: 'https://via.placeholder.com/400x225',
       width: 400,
       height: 225,
     },
   } only %}
-
-  <h3>Background image inside a relative container with relative content.</h3>
-  <div style="position:relative; display:grid; place-items:center; width:500px; height: 500px; color: white;">
-    {% include '@bolt-elements-image/image.twig' with {
-      background: {
-        fit: 'cover',
-        position: 'center center',
-      },
-      attributes: {
-        src: 'https://www.fillmurray.com/g/400/225',
-        srcset: 'https://www.fillmurray.com/g/400/225 400w, https://www.fillmurray.com/g/800/450 800w, https://www.fillmurray.com/g/1600/900 1600w',
-        sizes: '500px',
-        width: 400,
-        height: 225,
-      },
-    } only %}
-    {% include '@bolt-elements-image/image.twig' with {
-      background: {
-        fit: 'none',
-        position: 'top left',
-      },
-      attributes: {
-        src: 'https://www.fillmurray.com/g/48/48',
-        width: 48,
-        height: 48,
-      },
-    } only %}
-    {% include '@bolt-elements-image/image.twig' with {
-      background: {
-        fit: 'none',
-        position: 'top right',
-      },
-      attributes: {
-        src: 'https://www.fillmurray.com/g/48/48',
-        width: 48,
-        height: 48,
-      },
-    } only %}
-    {% include '@bolt-elements-image/image.twig' with {
-      background: {
-        fit: 'none',
-        position: 'bottom left',
-      },
-      attributes: {
-        src: 'https://www.fillmurray.com/g/48/48',
-        width: 48,
-        height: 48,
-      },
-    } only %}
-    {% include '@bolt-elements-image/image.twig' with {
-      background: {
-        fit: 'none',
-        position: 'bottom right',
-      },
-      attributes: {
-        src: 'https://www.fillmurray.com/g/48/48',
-        width: 48,
-        height: 48,
-      },
-    } only %}
-    <strong style="position:relative;">500px x 500px</strong>
-  </div> #}
 {% endset %}
 
 {% set twig_markup %}
@@ -102,9 +27,9 @@
 {% include '@bolt-elements-image/image.twig' with {
   attributes: {
     alt: 'Alt text.',
-    src: 'https://via.placeholder.com/400x200',
+    src: 'path/image.jpg',
     width: 400,
-    height: 200,
+    height: 225,
   },
 } only %}
 {% endverbatim %}
@@ -112,7 +37,7 @@
 
 {% set html_markup %}
 {% verbatim %}
-  <img alt="Alt text." src="https://via.placeholder.com/400x200" width=400 height=200 class="e-bolt-image">
+  <img alt="Alt text." src="path/image.jpg" width=400 height=225 class="e-bolt-image">
 {% endverbatim %}
 {% endset %}
 

@@ -1,5 +1,5 @@
 {% set description %}
-  In addition to the <bolt-code-snippet display="inline">background</bolt-code-snippet> prop, there are 2 CSS custom properties available for use to further customize background image(s). They are commonly used when multiple decorative background images are required, and the images are vector based.
+  In addition to the <bolt-code-snippet display="inline">background</bolt-code-snippet> prop, there are 2 CSS custom properties available for use to further customize background image(s). They are commonly used when multiple decorative background images are required.
 {% endset %}
 
 {% set notes %}
@@ -10,6 +10,7 @@
         <bolt-li>Setting this to <bolt-code-snippet display="inline">none</bolt-code-snippet> will allow the background image to stay exactly at its specified width and height.</bolt-li>
         <bolt-li>Setting this to <bolt-code-snippet display="inline">contain</bolt-code-snippet> will allow the background image to be contained within its parent container. No cropping will happen to the image.</bolt-li>
         <bolt-li>By default, this is set to <bolt-code-snippet display="inline">cover</bolt-code-snippet>.</bolt-li>
+        <bolt-li>More advanced options are supported, reference the CSS property <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/object-fit" class="e-bolt-text-link">object-fit</a>.</bolt-li>
       </bolt-ul>
     </bolt-li>
     <bolt-li>
@@ -17,78 +18,93 @@
       <bolt-ul>
         <bolt-li>This custom property accepts pair values: x-axis and y-axis position tokens (e.g. top left, top center, top right, bottom left, bottom center, bottom right, left center, right center, center center).</bolt-li>
         <bolt-li>By default, this is set to <bolt-code-snippet display="inline">center center</bolt-code-snippet>.</bolt-li>
+        <bolt-li>More advanced options are supported, reference the CSS property <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/object-position" class="e-bolt-text-link">object-position</a>.</bolt-li>
       </bolt-ul>
     </bolt-li>
   </bolt-ol>
 {% endset %}
 
 {% set demo %}
-  <div style="display:grid; place-items:center; position:relative; height: 500px;">
-    {% include '@bolt-elements-image/image.twig' with {
-      background: true,
-      attributes: {
-        src: 'https://via.placeholder.com/1600x900',
-        srcset: 'https://via.placeholder.com/400x225 400w, https://via.placeholder.com/800x450 800w, https://via.placeholder.com/1600x900 1600w',
-        sizes: '100vw',
-        width: 1600,
-        height: 900,
-      },
-    } only %}
-    {% include '@bolt-elements-image/image.twig' with {
-      background: true,
-      attributes: {
-        src: 'https://via.placeholder.com/150x150/661d34',
-        width: 150,
-        height: 150,
-        style: '--e-bolt-image-fit: none; --e-bolt-image-position: top left;',
-      },
-    } only %}
-    {% include '@bolt-elements-image/image.twig' with {
-      background: true,
-      attributes: {
-        src: 'https://via.placeholder.com/500x500/001f5f',
-        width: 500,
-        height: 500,
-        style: '--e-bolt-image-fit: contain; --e-bolt-image-position: right center;',
-      },
-    } only %}
-  </div>
+  <bolt-text headline font-size="xxsmall" text-transform="uppercase" letter-spacing="wide">Setting fit to contain</bolt-text>
+  <bolt-stack>
+    <div class="t-bolt-dark" style="display:grid; place-items:center; position:relative; height: 250px;">
+      {% include '@bolt-elements-image/image.twig' with {
+        background: true,
+        attributes: {
+          src: 'https://via.placeholder.com/500x500',
+          width: 500,
+          height: 500,
+          style: '--e-bolt-image-fit: contain;',
+        },
+      } only %}
+    </div>
+  </bolt-stack>
+
+  <bolt-text headline font-size="xxsmall" text-transform="uppercase" letter-spacing="wide">Setting fit to none and position to exact directions</bolt-text>
+  <bolt-stack>
+    <div class="t-bolt-dark" style="display:grid; place-items:center; position:relative; height: 250px;">
+      {% include '@bolt-elements-image/image.twig' with {
+        background: true,
+        attributes: {
+          src: 'https://via.placeholder.com/100x100',
+          width: 100,
+          height: 100,
+          style: '--e-bolt-image-fit: none; --e-bolt-image-position: top left;',
+        },
+      } only %}
+      {% include '@bolt-elements-image/image.twig' with {
+        background: true,
+        attributes: {
+          src: 'https://via.placeholder.com/100x100',
+          width: 100,
+          height: 100,
+          style: '--e-bolt-image-fit: none; --e-bolt-image-position: top right;',
+        },
+      } only %}
+      {% include '@bolt-elements-image/image.twig' with {
+        background: true,
+        attributes: {
+          src: 'https://via.placeholder.com/100x100',
+          width: 100,
+          height: 100,
+          style: '--e-bolt-image-fit: none; --e-bolt-image-position: bottom left;',
+        },
+      } only %}
+      {% include '@bolt-elements-image/image.twig' with {
+        background: true,
+        attributes: {
+          src: 'https://via.placeholder.com/100x100',
+          width: 100,
+          height: 100,
+          style: '--e-bolt-image-fit: none; --e-bolt-image-position: bottom right;',
+        },
+      } only %}
+    </div>
+  </bolt-stack>
 {% endset %}
 
 {% set twig_markup %}
 {% verbatim %}
 <div style="position:relative;">
-  // This image will cover up the non-static parent container.
+  // This background image will not be cropped and it is positioned to center of the non-static parent container.
   {% include '@bolt-elements-image/image.twig' with {
     background: true,
     attributes: {
-      src: 'https://via.placeholder.com/1600x900',
-      srcset: 'https://via.placeholder.com/400x225 400w, https://via.placeholder.com/800x450 800w, https://via.placeholder.com/1600x900 1600w',
-      sizes: '100vw',
-      width: 1600,
-      height: 900,
+      src: 'path/image.jpg',
+      width: 500,
+      height: 500,
+      style: '--e-bolt-image-fit: contain; --e-bolt-image-position: center center;',
     },
   } only %}
 
-  // This image will not stretch and it is positioned to top left of the non-static parent container.
+  // This background image will not stretch and it is positioned to top left of the non-static parent container.
   {% include '@bolt-elements-image/image.twig' with {
     background: true,
     attributes: {
-      src: 'https://via.placeholder.com/150x150/661d34',
+      src: 'path/image.jpg',
       width: 150,
       height: 150,
       style: '--e-bolt-image-fit: none; --e-bolt-image-position: top left;',
-    },
-  } only %}
-
-  // This image will not be cropped and it is positioned to right center of the non-static parent container.
-  {% include '@bolt-elements-image/image.twig' with {
-    background: true,
-    attributes: {
-      src: 'https://via.placeholder.com/500x500/001f5f',
-      width: 500,
-      height: 500,
-      style: '--e-bolt-image-fit: contain; --e-bolt-image-position: right center;',
     },
   } only %}
 </div>
@@ -98,14 +114,11 @@
 {% set html_markup %}
 {% verbatim %}
 <div style="position:relative;">
-  // This image will cover up the non-static parent container.
-  <img src="https://via.placeholder.com/1600x900" srcset="https://via.placeholder.com/400x225 400w, https://via.placeholder.com/800x450 800w, https://via.placeholder.com/1600x900 1600w" sizes="100vw" width="1600" height="900" class="e-bolt-image e-bolt-image--bg" alt="">
+  // This background image will not be cropped and it is positioned to center of the non-static parent container.
+  <img src="path/image.jpg" width=500 height=500 style="--e-bolt-image-fit: contain; --e-bolt-image-position: center center;" class="e-bolt-image e-bolt-image--bg" alt="">
 
-  // This image will not stretch and it is positioned to top left of the non-static parent container.
-  <img src="https://via.placeholder.com/150x150/661d34" width="150" height="150" style="--e-bolt-image-fit: none; --e-bolt-image-position: top left;" class="e-bolt-image e-bolt-image--bg" alt="">
-
-  // This image will not be cropped and it is positioned to right center of the non-static parent container.
-  <img src="https://via.placeholder.com/500x500/001f5f" width="500" height="500" style="--e-bolt-image-fit: contain; --e-bolt-image-position: right center;" class="e-bolt-image e-bolt-image--bg" alt="">
+  // This background image will not stretch and it is positioned to top left of the non-static parent container.
+  <img src="path/image.jpg" width=150 height=150 style="--e-bolt-image-fit: none; --e-bolt-image-position: top left;" class="e-bolt-image e-bolt-image--bg" alt="">
 </div>
 {% endverbatim %}
 {% endset %}
