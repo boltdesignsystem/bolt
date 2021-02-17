@@ -19,7 +19,6 @@ module.exports = {
       '@bolt/components-button-group',
       '@bolt/components-button',
       '@bolt/components-card-replacement',
-      '@bolt/components-card',
       '@bolt/components-carousel',
       '@bolt/components-chip-list',
       '@bolt/components-chip',
@@ -69,11 +68,6 @@ module.exports = {
       '@bolt/components-ul',
       '@bolt/components-video',
       '@bolt/analytics-autolink',
-    ],
-    individual: [
-      '@bolt/components-critical-fonts',
-      '@bolt/components-critical-css',
-      '@bolt/components-critical-css-vars',
     ],
   },
 };

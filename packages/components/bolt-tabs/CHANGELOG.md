@@ -3,12 +3,36 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.1.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tabs/compare/v2.31.2...v3.1.0) (2021-02-08)
+
+**Note:** Version bump only for package @bolt/components-tabs
+
+
+
+
+
+## [3.0.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tabs/compare/v3.0.0...v3.0.1) (2021-01-22)
+
+**Note:** Version bump only for package @bolt/components-tabs
+
+
+
+
+
 # [2.30.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tabs/compare/v2.29.3...v2.30.0) (2021-01-13)
 
 
 ### Bug Fixes
 
 * tabs show more button active color ([54e8cd8](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tabs/commit/54e8cd8eff8742bb304d4d502531a761bb23bb02))
+
+
+
+
+
+# [3.0.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tabs/compare/v2.29.3...v3.0.0) (2021-01-08)
+
+**Note:** Version bump only for package @bolt/components-tabs
 
 
 
