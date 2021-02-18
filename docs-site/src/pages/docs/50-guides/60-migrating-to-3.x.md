@@ -33,8 +33,8 @@ The following packages are no longer required. Please remove them from `.boltrc`
 
 ### Upgrade Node (if necessary)
 
-- Be sure your theme contains a `.nvmrc` file with version `v12.20.1`. See example (tbd).
-- Update Node version in your Dockerfile to `v12.20.1`. See example (tbd).
+- Be sure your theme contains a `.nvmrc` file with version `v12.20.1`. See [example](https://gitlab.com/pegadigital/pegawww/pegawwwd8/-/blob/release/release-85/docroot/themes/custom/pegawww_theme/.nvmrc).
+- Update Node version in your Dockerfile to `v12.20.1`. See [example](https://gitlab.com/pegadigital/pegawww/pegawwwd8/-/blob/release/release-85/.docksal/cli/Dockerfile#L17-18).
 - Update Bamboo to install version `v12.20.1` (tbd)
 
 ### Upgrade any Bolt dependencies in theme
@@ -54,7 +54,7 @@ In most cases, patches to the Bolt build should be deleted. In the past, patches
 
 ### Add `/cache/*` to theme `.gitignore` file
 
-The updated build tools will add a cache directory to the theme. Ignore this directory. See example (tbd).
+The updated build tools will add a cache directory to the theme. Ignore this directory. See [example](https://gitlab.com/pegadigital/pegawww/pegawwwd8/-/blob/release/release-85/docroot/themes/custom/pegawww_theme/.gitignore#L12).
 
 ### Rebuild front-end
 
