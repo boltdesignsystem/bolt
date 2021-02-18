@@ -40,7 +40,7 @@ The following packages are no longer required. Please remove them from `.boltrc`
 ### Upgrade any Bolt dependencies in theme
 
 - Search site-specific theme for `@bolt/` to find Bolt dependencies still using `^2.x.x`.
-- Update all of these to `^3.1.1`.
+- Update all of these to `^3.1.x`. The latest version for most packages is `3.1.0` or `3.1.1`. See npm ([example](https://www.npmjs.com/package/@bolt/core-v3.x)) for the exact version number of your package.
 - A common dependency is `@bolt/core-v3.x`. Update that like so:
 
 ```
