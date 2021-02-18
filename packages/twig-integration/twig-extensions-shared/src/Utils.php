@@ -241,8 +241,11 @@ class Utils {
     if (!empty($schema["properties"])) {
       foreach ($schema["properties"] as $propName => $propSchema) {
 
-        // Check the prop "type" in the schema and omit it if it is (or might be) an "array" or "object".
-        if (isset($propSchema["type"]) && self::isAllowedSchemaType($propSchema["type"])) {
+        // Check if prop is deprecated based on "title" field
+        $isDeprecated = isset($propSchema["title"]) && strpos(strtolower($propSchema["title"]), 'deprecated') !== false;
+
+        // Check the prop "type" in the schema and omit it if it is (or might be) an "array" or "object". Omit deprecated props.
+        if (isset($propSchema["type"]) && self::isAllowedSchemaType($propSchema["type"]) && !$isDeprecated) {
           $caseType = self::getCaseType($propName);
 
           if (isset($items[$propName])) {
