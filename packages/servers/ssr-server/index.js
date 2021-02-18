@@ -112,9 +112,6 @@ async function setupWebpack(config) {
       ].filter(
         item =>
           !item.includes('.scss') &&
-          !item.includes('critical-fonts') &&
-          !item.includes('bolt-critical-css') &&
-          !item.includes('bolt-critical-vars') &&
           !item.includes('bolt-smooth-scroll') &&
           !item.includes('bolt-sticky') &&
           !item.includes('bolt-placeholder') &&

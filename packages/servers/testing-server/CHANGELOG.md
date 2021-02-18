@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.1](https://github.com/boltdesignsystem/bolt/compare/v3.1.0...v3.1.1) (2021-02-11)
+
+**Note:** Version bump only for package @bolt/testing-server
+
+
+
+
+
+# [3.1.0](https://github.com/boltdesignsystem/bolt/compare/v2.31.2...v3.1.0) (2021-02-08)
+
+
+### Features
+
+* remove 'esModules' and 'compat' flags, remove 'modern' from filenames ([5f9136e](https://github.com/boltdesignsystem/bolt/commit/5f9136eb365e95688c57c6c1e2dc72ebe91291c2))
+
+
+
+
+
 ## [2.31.2](https://github.com/boltdesignsystem/bolt/compare/v2.31.1...v2.31.2) (2021-02-04)
 
 **Note:** Version bump only for package @bolt/testing-server
@@ -20,6 +39,14 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 # [2.31.0](https://github.com/boltdesignsystem/bolt/compare/v2.30.2...v2.31.0) (2021-02-02)
+
+**Note:** Version bump only for package @bolt/testing-server
+
+
+
+
+
+## [3.0.1](https://github.com/boltdesignsystem/bolt/compare/v3.0.0...v3.0.1) (2021-01-22)
 
 **Note:** Version bump only for package @bolt/testing-server
 
@@ -51,12 +78,12 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
+# [3.0.0](https://github.com/boltdesignsystem/bolt/compare/v2.29.3...v3.0.0) (2021-01-08)
 
 
-**Note:** Version bump only for package @bolt/testing-server
+### Features
 
-
-
+* remove 'esModules' and 'compat' flags, remove 'modern' from filenames ([5f9136e](https://github.com/boltdesignsystem/bolt/commit/5f9136eb365e95688c57c6c1e2dc72ebe91291c2))
 
 
 ## [2.29.1](https://github.com/boltdesignsystem/bolt/compare/v2.29.0...v2.29.1) (2020-11-25)
