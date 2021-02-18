@@ -35,14 +35,13 @@
 
 {# Variables #}
 {% set this = init(schema) %}
-{% set attributes = create_attribute(attributes|default({})) %}
 {% set inner_attributes = create_attribute({}) %}
 
 {% set icon_positions = schema.properties.icon.properties.position.enum %}
 
 {% if this.data.url.value %}
   {% set _tag = 'a' %}
-  {% if disabled %}
+  {% if this.data.disabled.value %}
     {% set inner_attributes = inner_attributes.setAttribute('aria-disabled', 'true') %}
   {% else %}
     {% set inner_attributes = inner_attributes.setAttribute('href', url) %}
@@ -69,7 +68,7 @@
   this.data.border_radius.value ? 'c-bolt-button--border-radius-' ~ this.data.border_radius.value : '',
   this.data.align.value ? 'c-bolt-button--' ~ this.data.align.value : '',
   this.data.transform.value != 'none' ? 'c-bolt-button--' ~ this.data.transform.value : '',
-  this.data.iconOnly.value ? 'c-bolt-button--icon-only',
+  this.data.icon_only.value ? 'c-bolt-button--icon-only',
 ] %}
 
 {% if this.data.disabled.value and _tag == 'button' %}
@@ -82,12 +81,11 @@
 
 {#
 Sort classes passed in via attributes into two groups:
-1. Those that should be applied to the inner _tag (namely, 'is-' and 'has-' classes)
+1. Those that should be applied to the inner tag (namely, 'is-' and 'has-' classes)
 2. Those that should be applied to the outer custom element (everything else EXCEPT c-bolt-* classes, which should never be passed in via atttributes)
 #}
 {% set outer_classes = [] %}
 {% set inner_classes = classes %}
-{% set original_classes = [] %}
 
 {% for class in this.props.class %}
   {% if class starts with 'is-' == true %}
@@ -97,20 +95,15 @@ Sort classes passed in via attributes into two groups:
   {% elseif class starts with 'c-bolt-button' == false %}
     {% set outer_classes = outer_classes|merge([class]) %}
   {% endif %}
-  {% set original_classes = original_classes|merge([class]) %}
 {% endfor %}
-
-{% set inner_attributes = inner_attributes.removeClass(original_classes).addClass(inner_classes) %}
 
 {# Set up the custom element's prop values based on the params passed into the Twig template - used to hydrate the component's initial state and appearance once the Button Component's JavaScript kicks in #}
 <bolt-button
-  {{ this.props|without('on-click') }}
-  {# TODO: rename on-click + on-click-target to only allow on_click + on_click_target to unify the prop syntax; deprecate adding these via attributes  #}
-  {% if onClick or attributes['on-click'] %} on-click="{{ onClick | default(attributes['on-click']) }}" {% endif %}
-  {% if onClickTarget or attributes['on-click-target'] %} on-click-target="{{ onClickTarget | default(attributes['on-click-target']) }}" {% endif %}
+  {{ this.props|without("text")|without("class") }}
+  {% if outer_classes %} class="{{ outer_classes|join(' ') }}" {% endif %}
 >
-  {# choose a semantic <a> _tag or <button> _tag for better accessibility, depending on whether or not a url is getting passed along #}
-  <{{ _tag }} {{ inner_attributes|without('on-click')|without('on-click-target') }} is="shadow-root">
+  {# choose a semantic <a> tag or <button> tag for better accessibility, depending on whether or not a url is getting passed along #}
+  <{{ _tag }} {{ inner_attributes.addClass(inner_classes) }}>
     {% block slot_before %}
       {{ macros.slotted_icon(icon, icon_position, 'before') }}
     {% endblock %}
