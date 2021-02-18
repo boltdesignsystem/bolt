@@ -1,0 +1,8 @@
+{% set usage %}{% verbatim %}
+{% include '@bolt-components-teaser/teaser.twig' only %}
+{% endverbatim %}{% endset %}
+
+{% include "@utils/docs.twig" with {
+  componentName: "teaser",
+  usage: usage
+} only %}

@@ -1,47 +1,22 @@
+const headlineSchema = require('@bolt/components-headline/headline.schema.js');
+const chipListSchema = require('@bolt/components-chip-list/chip-list.schema.js');
+
 module.exports = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'Teaser',
-  category: 'components',
   type: 'object',
   properties: {
-    eyebrow: {
+    attributes: {
       type: 'object',
-      description: 'Eyebrow text component',
-      ref: 'headline',
+      description:
+        'A Drupal attributes object. Applies extra HTML attributes to the &lt;bolt-teaser&gt; tag.',
     },
-    headlines: {
-      type: 'array',
-      description: 'An array of headline component objects',
-      items: {
-        type: 'object',
-        description: 'Headline text components',
-        ref: 'headline',
-      },
-    },
-    logo: {
+    media: {
       type: 'object',
-      description: 'Bolt logo component',
-      ref: 'logo',
+      description:
+        'Media section of the teaser, accepts either image and video, or custom content.',
     },
-    content: {
-      type: 'string',
-      description: 'Body text of teaser',
-    },
-    contentItems: {
-      type: 'array',
-      description: 'Array of content item objects',
-      items: {
-        type: 'object',
-      },
-    },
-    buttons: {
-      type: 'array',
-      description: 'An array of button component objects',
-      items: {
-        type: 'object',
-        description: 'A button',
-        ref: 'button',
-      },
-    },
+    headline: headlineSchema,
+    chip_list: chipListSchema,
   },
 };

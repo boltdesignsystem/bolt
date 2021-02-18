@@ -1,9 +1,21 @@
 /* ------------------------------------ *\
-   TEASER COMPONENT
+   Teaser
 \* ------------------------------------ */
 
 @import '@bolt/core-v3.x';
 
-bolt-teaser:not(:last-child) {
-  margin-bottom: var(--bolt-spacing-y-medium);
+// Register Custom Block Element
+@include bolt-custom-element('bolt-teaser', block, medium);
+
+/**
+ * Long-form comment.
+ *
+ * This spans multiple lines and is also constrained to no longer than 80
+ * characters in width.
+ *
+ * 1. Provide line-comments like this.
+ */
+.c-bolt-teaser {
+  // Styles go here. /* [1] */
+  display: block;
 }
