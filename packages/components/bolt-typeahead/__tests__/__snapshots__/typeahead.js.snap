@@ -25,19 +25,14 @@ exports[`<bolt-typeahead> Component Typeahead Twig Template Renders 1`] = `
              required
              name
       >
-      <bolt-button size="medium"
+      <bolt-button onclick="this.previousElementSibling.focus()"
+                   type="reset"
                    hierarchy="text"
-                   width="auto"
-                   border-radius="regular"
-                   align="center"
-                   transform="none"
                    icon-only
-                   onclick="this.previousElementSibling.focus()"
                    class="c-bolt-typeahead__button c-bolt-typeahead__button--clear"
       >
         <button type="reset"
                 class="c-bolt-button c-bolt-button--medium c-bolt-button--text c-bolt-button--border-radius-regular c-bolt-button--center c-bolt-button--icon-only"
-                is="shadow-root"
         >
           <ssr-keep for="bolt-button"
                     class="c-bolt-button__item"
@@ -68,18 +63,13 @@ exports[`<bolt-typeahead> Component Typeahead Twig Template Renders 1`] = `
         </button>
       </bolt-button>
       <div class="c-bolt-typeahead__button c-bolt-typeahead__button--submit">
-        <bolt-button size="medium"
+        <bolt-button type="submit"
                      hierarchy="text"
-                     width="auto"
-                     border-radius="regular"
-                     align="center"
-                     transform="none"
                      icon-only
                      class="js-typeahead-hook"
         >
           <button type="submit"
                   class="c-bolt-button c-bolt-button--medium c-bolt-button--text c-bolt-button--border-radius-regular c-bolt-button--center c-bolt-button--icon-only"
-                  is="shadow-root"
           >
             <ssr-keep for="bolt-button"
                       class="c-bolt-button__item"
