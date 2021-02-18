@@ -25,7 +25,7 @@ The following packages are no longer required. Please remove them from `.boltrc`
 
 ### Upgrade Bolt
 
-`fin composer require pega/bolt-release:dev-feature/3.0`
+`fin composer require pega/bolt-release:^3.1.1`
 
 ### Upgrade Base Theme
 
