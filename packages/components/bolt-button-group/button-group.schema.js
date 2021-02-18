@@ -5,7 +5,7 @@ module.exports = {
   properties: {
     tag: {
       type: 'string',
-      description: 'Html tag to wrap the button group.',
+      description: 'Set the HTML tag for the button group container.',
       enum: ['ul', 'ol'],
     },
     buttons: {
@@ -14,21 +14,8 @@ module.exports = {
       items: {
         type: ['string', 'object', 'array'],
         description:
-          'A single bolt button, which should be passed as renderable content (i.e. a string, render array, or included pattern).  Passing anything besides a bolt button is not supported.',
+          'Items should be passed as renderable content (i.e. a string, render array, or included pattern). Passing anything besides a Bolt button is not supported.',
       },
-    },
-    contentItems: {
-      type: 'array',
-      title: 'Content items.',
-      description: 'An array of bolt objects.',
-      items: {
-        type: 'object',
-        description: 'Bolt component information.',
-      },
-    },
-    content: {
-      type: 'string',
-      description: 'A string of content to place in the button group.',
     },
   },
 };
