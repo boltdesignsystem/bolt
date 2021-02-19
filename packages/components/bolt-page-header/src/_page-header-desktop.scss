@@ -13,10 +13,10 @@
     padding-bottom: $bolt-page-header-desktop-padding-bottom;
     padding-left: var(--bolt-page-padding-x);
     background: linear-gradient(
-      var(--bolt-color-gray-xlight) 0%,
-      var(--bolt-color-gray-xlight) $bolt-page-header-desktop-util-nav-height,
-      var(--bolt-color-white) $bolt-page-header-desktop-util-nav-height,
-      var(--bolt-color-white) 100%
+      rgba(bolt-color(gray), 0.1) 0%,
+      rgba(bolt-color(gray), 0.1) $bolt-page-header-desktop-util-nav-height,
+      var(--m-bolt-bg) $bolt-page-header-desktop-util-nav-height,
+      var(--m-bolt-bg) 100%
     );
     grid-template-columns:
       minmax(82px, var(--c-bolt-page-header-logo-max-width, auto))

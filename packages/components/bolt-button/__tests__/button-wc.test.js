@@ -51,6 +51,6 @@ describe.skip(`Server-side button component renderer`, function() {
   // WIP #3
   test(`button re-renders when attribute updated`, async function() {
     const testButton = document.querySelector('.js-button-test');
-    testButton.setAttribute('color', 'secondary');
+    testButton.setAttribute('hierarchy', 'secondary');
   });
 });

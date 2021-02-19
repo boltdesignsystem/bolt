@@ -57,5 +57,10 @@ module.exports = {
         'Disable text highlighting in matching search results (highlighting is enabled by default)',
       default: false,
     },
+    disabled: {
+      type: 'boolean',
+      description: 'Disables input as well as the search and cancel buttons.',
+      default: false,
+    },
   },
 };

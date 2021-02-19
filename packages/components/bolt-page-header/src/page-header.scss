@@ -46,7 +46,7 @@
 }
 
 .c-bolt-page-header--static {
-  position: static;
+  position: relative;
 }
 
 .c-bolt-page-header__primary,
@@ -95,6 +95,7 @@
     height: 100%;
     object-fit: contain;
     object-position: left center;
+    filter: var(--m-bolt-img-filter);
   }
 }
 

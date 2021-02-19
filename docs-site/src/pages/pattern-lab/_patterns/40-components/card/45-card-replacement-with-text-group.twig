@@ -1,0 +1,96 @@
+{% set text_group_1 %}
+  {% include "@bolt/eyebrow.twig" with {
+    text: "Eyebrow"
+  } only %}
+  {% include "@bolt-components-headline/headline.twig" with {
+    text: "This is text group 1",
+    url: "https://pega.com",
+  } only %}
+{% endset %}
+
+{% set text_group_2 %}
+  {% include "@bolt/eyebrow.twig" with {
+    text: "Eyebrow"
+  } only %}
+  {% include "@bolt-components-headline/headline.twig" with {
+    text: "This is text group 2",
+    url: "https://pega.com",
+  } only %}
+{% endset %}
+
+{% set text_group_3 %}
+  {% include "@bolt/eyebrow.twig" with {
+    text: "Eyebrow"
+  } only %}
+  {% include "@bolt-components-headline/headline.twig" with {
+    text: "This is text group 3",
+    url: "https://pega.com",
+  } only %}
+{% endset %}
+
+{% set text_group_4 %}
+  {% include "@bolt/eyebrow.twig" with {
+    text: "Eyebrow"
+  } only %}
+  {% include "@bolt-components-headline/headline.twig" with {
+    text: "This is text group 4",
+    url: "https://pega.com",
+  } only %}
+{% endset %}
+
+{% set text_group_5 %}
+  {% include "@bolt/eyebrow.twig" with {
+    text: "This is an eyebrow"
+  } only %}
+  {% include "@bolt-components-headline/headline.twig" with {
+    text: "This is a headline.",
+  } only %}
+  {% include "@bolt-components-headline/text.twig" with {
+    text: "This is body text.",
+    tag: "p"
+  } only %}
+{% endset %}
+
+{% set block_list %}
+  {% include "@bolt-components-list/list.twig" with {
+    display: "block",
+    separator: "solid",
+    spacing: "medium",
+    inset: true,
+    items: [
+      text_group_1,
+      text_group_2,
+      text_group_3,
+    ]
+  } only %}
+{% endset %}
+
+
+{% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
+  {% cell "u-bolt-width-6/12 u-bolt-width-4/12@small" %}
+    {% include "@bolt-components-card-replacement/card-replacement.twig" with {
+      height: "auto",
+      content: block_list,
+    } only %}
+  {% endcell %}
+  {% cell "u-bolt-width-6/12 u-bolt-width-4/12@small" %}
+    {% include "@bolt-components-card-replacement/card-replacement.twig" with {
+      media: {
+        image: {
+          src: "/images/placeholders/landscape-16x9-mountains.jpg",
+          alt: "Image alt.",
+        },
+      },
+      height: "auto",
+      body: {
+        content: text_group_5,
+      },
+      actions: [
+        {
+          text: "This is a button",
+          url: "https://pega.com",
+        },
+      ],
+    } only %}
+  {% endcell %}
+{% endgrid %}

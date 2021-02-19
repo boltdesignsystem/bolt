@@ -21,9 +21,6 @@ const config = {
       '@bolt/components-chip-list',
       '@bolt/components-code-snippet',
       '@bolt/components-copy-to-clipboard',
-      '@bolt/components-critical-css',
-      '@bolt/components-critical-css-vars',
-      '@bolt/components-critical-fonts',
       '@bolt/components-device-viewer',
       '@bolt/components-dropdown',
       '@bolt/components-figure',
@@ -54,11 +51,6 @@ const config = {
       '@bolt/components-tooltip',
       '@bolt/components-ul',
       '@bolt/components-video',
-    ],
-    individual: [
-      '@bolt/components-critical-fonts',
-      '@bolt/components-critical-css',
-      '@bolt/components-critical-css-vars',
     ],
   },
 };

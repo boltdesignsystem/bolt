@@ -92,13 +92,14 @@
       {% endblock %}
 
       {% block input %}
-        <input id="{{ uuid }}" type="text" autocomplete="off" aria-autocomplete="list" class="{{ classNames.input }}" placeholder="{{ this.data.input_placeholder.value }}" value="{{ this.data.input_value.value }}" required name="{{ this.data.input_name.value }}"/>
+        <input id="{{ uuid }}" type="text" autocomplete="off" aria-autocomplete="list" class="{{ classNames.input }}" placeholder="{{ this.data.input_placeholder.value }}" value="{{ this.data.input_value.value }}" required name="{{ this.data.input_name.value }}" {{ this.data.disabled.value ? 'disabled' : '' }}/>
       {% endblock %}
 
       {% embed "@bolt-components-button/button.twig" with {
         text: this.data.clear_input_text.value,
         iconOnly: true,
         style: "text",
+        disabled: this.data.disabled.value,
         attributes: {
           onclick: "this.previousElementSibling.focus()",
           class: [
@@ -119,7 +120,8 @@
           text: this.data.submit_button_text.value,
           iconOnly: true,
           style: "text",
-          type: "submit"
+          type: "submit",
+          disabled: this.data.disabled.value,
         } %}
           {% block slot_after %}
             <ssr-keep for="bolt-typeahead" class="c-bolt-button__icon">
