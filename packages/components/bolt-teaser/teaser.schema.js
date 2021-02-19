@@ -11,10 +11,13 @@ module.exports = {
       description:
         'A Drupal attributes object. Applies extra HTML attributes to the &lt;bolt-teaser&gt; tag.',
     },
-    media: {
+    trigger: {
       type: 'object',
-      description:
-        'Media section of the teaser, accepts either image and video, or custom content.',
+      description: '',
+    },
+    modal: {
+      type: 'object',
+      description: '',
     },
     headline: headlineSchema,
     chip_list: chipListSchema,

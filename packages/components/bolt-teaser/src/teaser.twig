@@ -40,17 +40,33 @@
   <replace-with-children {{ inner_attributes.addClass(inner_classes) }}>
   </replace-with-children>
 
-  {% if media %}
+  {# {% if media %}
     <bolt-stack spacing="xsmall">
       {% include '@bolt-components-ratio/ratio.twig' with {
         children: media,
         ratio: '16/9'
       } only %}
     </bolt-stack>
-  {% endif %}
+  {% endif %} #}
+
+  <bolt-stack spacing="xsmall">
+    {{ trigger }}
+    {{ modal }}
+  </bolt-stack>
 
   <bolt-stack spacing="xsmall">
     <div class="o-bolt-grid o-bolt-grid--flex o-bolt-grid--matrix">
+      <div class="o-bolt-grid__cell u-bolt-flex-shrink">
+          <small>15 min read</small>
+      </div>
+      <div class="o-bolt-grid__cell u-bolt-flex-shrink">
+          <small>
+            {% include '@bolt-components-icon/icon.twig' with {
+              name: 'eye',
+            } only %}
+            27 views
+          </small>
+      </div>
       <div class="o-bolt-grid__cell u-bolt-width-6/12 u-bolt-flex-grow">
         {% set like_button %}
           <small>
