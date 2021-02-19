@@ -23,6 +23,11 @@ The following packages are no longer required. Please remove them from `.boltrc`
 
 ## Site-specific theme updates
 
+## Remove previously deprecated features
+
+1. The deprecated old card (@bolt-components-band/band.twig) has been removed 3.x. Any usage should be replaced with
+   the new card (@bolt-components-card-replacement/card-replacement.twig) before updating.
+
 ### Upgrade Bolt
 
 `fin composer require pega/bolt-release:^3.1.1`
