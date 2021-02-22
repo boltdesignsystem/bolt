@@ -5,6 +5,7 @@ module.exports = {
       '@bolt/global',
       '@bolt/elements-button',
       '@bolt/elements-text-link',
+      '@bolt/layouts-layout',
       '@bolt/components-accordion',
       '@bolt/components-action-blocks',
       '@bolt/components-animate',
