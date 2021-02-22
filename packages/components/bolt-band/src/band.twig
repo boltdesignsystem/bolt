@@ -1,44 +1,32 @@
 {% set schema = bolt.data.components["@bolt-components-band"].schema %}
 
-{# {% if enable_json_schema_validation %}
+{% if enable_json_schema_validation %}
   {{ validate_data_schema(schema, _self) | raw }}
-{% endif %} #}
-
-{# Variables #}
-{% set base_class = "c-bolt-band" %}
-{% set attributes = create_attribute(attributes|default({})) %}
-{% set inner_attributes = create_attribute(inner_attributes|default({})) %}
-
+{% endif %}
 
 {# Deprecated #}
 {% if fullBleed is sameas(true) or fullBleed is sameas(false) %}
   {% set full_bleed = fullBleed %}
 {% endif %}
-{% if contentTag %}
-  {% set tag = contentTag %}
-{% endif %}
 {# row_gutter, content_row_start, items are also deprecated but this twig still supports them, see more comments below where items are being rendered #}
 
-{# Set up checks to validate that the component's prop values are allowed, based on the component's schema #}
-{% set tag_options = schema.properties.tag.enum %}
-{% set size_options = schema.properties.size.enum %}
-{% set theme_options = schema.properties.theme.enum %}
-{% set valign_options = schema.properties.valign.enum %}
+{# Deprecated #}
+{% if contentTag  %}
+  {% set tag = contentTag %}
+{% endif %}
 
-{# Check that the component's current prop values are valid. if not, default to the schema default #}
-{% set tag = tag in tag_options ? tag : schema.properties.tag.default %}
-{% set size = size in size_options ? size : schema.properties.size.default %}
-{% set valign = valign in valign_options ? valign : schema.properties.valign.default %}
-{% set theme = theme in theme_options ? theme : schema.properties.theme.default %}
-{% set full_bleed = full_bleed is sameas(true) or full_bleed is sameas(false) ? full_bleed : schema.properties.full_bleed.default %}
+{# Variables #}
+{% set this = init(schema) %}
+{% set attributes = create_attribute(attributes|default({})) %}
+{% set inner_attributes = create_attribute(inner_attributes|default({})) %}
 
 {# Array of classes based on the defined + default props #}
 {% set classes = [
-  base_class,
-  size != "none" ? "#{base_class}--#{size}" : "",
-  valign ? "#{base_class}--valign-#{valign}" : "",
-  theme != "none" ? "t-bolt-#{theme}" : "",
-  full_bleed ? "#{base_class}--full-bleed",
+  "c-bolt-band",
+  this.data.size.value != "none" ? "c-bolt-band--" ~ this.data.size.value : "",
+  this.data.valign.value ? "c-bolt-band--valign-" ~ this.data.valign.value : "",
+  this.data.theme.value != "none" ? "t-bolt-" ~ this.data.theme.value : "",
+  this.data.full_bleed.value ? "c-bolt-band--full-bleed" : "",
 ] %}
 
 {#
@@ -57,17 +45,15 @@
   {% endif %}
 {% endfor %}
 
+{# @todo: remove `.is-ready` selector from calculator.css on .COM. Then, this line can be removed. #}
+{% set outer_classes = outer_classes|merge(['is-ready']) %}
+
 {# band component's custom element wrapper #}
 <bolt-band
-  {% if tag %} tag="{{ tag }}" {% endif %}
-  {% if size %} size="{{ size }}" {% endif %}
-  {% if theme %} theme="{{ theme }}" {% endif %}
-  {% if valign %} valign="{{ valign }}" {% endif %}
-  {% if full_bleed %} full-bleed {% endif %}
   {% if outer_classes %} class="{{ outer_classes|join(' ') }}" {% endif %}
-  {{ attributes | without("class") }}
+  {{ attributes|without("class") }}
 >
-  <{{ tag }} {{ inner_attributes.addClass(inner_classes) }}>
+  <{{ this.data.tag.value }} {{ inner_attributes.addClass(inner_classes) }}>
     {# Render background if there is any #}
     {# Setting a block so it doesn't break legacy embeds #}
     {% block band_background %}
@@ -84,7 +70,7 @@
       {% endblock %}
     {% endset %}
     {% set regular_content %}
-      <div class="{{ "#{base_class}__content" }}">
+      <div class="{{ "c-bolt-band__content" }}">
         {% include "@bolt/wrapper.twig" with {
           content: regular_content_block,
         } only %}
@@ -102,14 +88,13 @@
       {% set pinned_content_lower = pinned_content.lower %}
 
       {% if pinned_content_upper %}
-        <div class="{{ "#{base_class}__content #{base_class}__content--pinned #{base_class}__content--pinned-upper" }}">
+        <div class="{{ "c-bolt-band__content c-bolt-band__content--pinned c-bolt-band__content--pinned-upper" }}">
           {% set pinned_content_upper_items %}
-            <div class="{{ "#{base_class}__pinned-items" }}">
+            <div class="{{ "c-bolt-band__pinned-items" }}">
               {% for item in pinned_content_upper %}
-                {% set item_align = item.align %}
                 {% set item_classes = [
-                  "#{base_class}__pinned-item",
-                  item_align ? "#{base_class}__pinned-item--#{item_align}" : "",
+                  "c-bolt-band__pinned-item",
+                  item.align ? "c-bolt-band__pinned-item--#{item.align}" : "",
                 ] %}
 
                 <div {{ attributes.addClass(item_classes) }}>
@@ -128,11 +113,16 @@
       {{ regular_content }}
 
       {% if pinned_content_lower %}
-        <div class="{{ "#{base_class}__content #{base_class}__content--pinned #{base_class}__content--pinned-lower" }}">
+        <div class="{{ "c-bolt-band__content c-bolt-band__content--pinned c-bolt-band__content--pinned-lower" }}">
           {% set pinned_content_lower_items %}
-            <div class="{{ "#{base_class}__pinned-items" }}">
+            <div class="{{ "c-bolt-band__pinned-items" }}">
               {% for item in pinned_content_lower %}
-                <div class="{{ "#{base_class}__pinned-item #{base_class}__pinned-item--#{item.align}" }}">
+                {% set item_classes = [
+                  "c-bolt-band__pinned-item",
+                  item.align ? "c-bolt-band__pinned-item--#{item.align}" : "",
+                ] %}
+
+                <div {{ attributes.addClass(item_classes) }}>
                   {{ item.content }}
                 </div>
               {% endfor %}
@@ -149,5 +139,5 @@
     {# Otherwise, render just the content #}
       {{ regular_content }}
     {% endif %}
-  </{{ tag }}>
+  </{{ this.data.tag.value }}>
 </bolt-band>

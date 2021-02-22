@@ -14,7 +14,7 @@ Optimize for content that is easy to scan. Use headings as the primary visual fo
 
 ### Use Extra-Bold only for headlines
 
-For headlines, we use [Open Sans Extra-Bold](https://fonts.google.com/specimen/Open+Sans) to optimize contrast between the heading and the content below. Only use Extra-Bold for headlines; avoid using it for body copy or other written content. 
+For headlines, we use [Open Sans Extra-Bold](https://fonts.google.com/specimen/Open+Sans) to optimize contrast between the heading and the content below. Only use Extra-Bold for headlines; avoid using it for body copy or other written content.
 
 ### Use Bold selectively to add emphasis
 
@@ -26,9 +26,9 @@ Typography in Bolt is fluid, with a base 15px font for smallest screens (320px m
 
 ### Headlines
 
-*For all headline options and API docs, see the [headline reference in Pattern Lab](/pattern-lab/?p=viewall-components-headline).*
+_For all headline options and API docs, see the [headline reference in Pattern Lab](/pattern-lab/?p=viewall-components-headline)._
 
-Bolt uses a double-stranded heading hierarchy which abstracts the HTML document hierarchy (`h1`, `h2`, etc.) from the visual hierarchy of the layout. This layer of abstraction is important to maintaining the document outline of a page for tools like screen readers. Each type style has an assigned CSS classname. These classes are independent of location or type of element. 
+Bolt uses a double-stranded heading hierarchy which abstracts the HTML document hierarchy (`h1`, `h2`, etc.) from the visual hierarchy of the layout. This layer of abstraction is important to maintaining the document outline of a page for tools like screen readers. Each type style has an assigned CSS classname. These classes are independent of location or type of element.
 
 | **Description/Example**                          | **Weight** | **Size (rem)** | **Line (rem)** |
 | ------------------------------------------------ | ---------- | -------------- | -------------- |
@@ -51,22 +51,6 @@ Subheads and body copy are displayed at Regular weight. For body copy, we defaul
 | XS                                                           | 400        | .8             | 1.45           |
 
 ## Examples
-
-### Teasers
-
-*For a full reference of teaser variations along with API docs, visit the [teaser reference in Pattern Lab](https://boltdesignsystem.com/pattern-lab/?p=viewall-components-teaser).*
-
-A teaser is most commonly used in cards and bands. It contains an eyebrow, heading, and a paragraph. In some cases, it will also include an optional subheading.
-
-<figure>
-<img src="/images/docs/type_teaser.jpg" />
-<figcaption>An example of a typical teaser.</figcaption>
-</figure>
-
-- **1.0** Eyebrow
-- **1.1** XXL Heading
-- **1.2** XL Subheading
-- **1.3** Medium body
 
 ### Articles/long form content
 
@@ -101,4 +85,3 @@ Ordered lists are also optimized for all color themes. For all options and API d
 <img src="/images/docs/type-ol-dark.jpg" />
 <figcaption>An ordered list in the `dark` theme. </figcaption>
 </figure>
-

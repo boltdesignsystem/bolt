@@ -3,6 +3,66 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.1.0](https://github.com/bolt-design-system/bolt/compare/v2.31.2...v3.1.0) (2021-02-08)
+
+
+
+## [3.0.2](https://github.com/bolt-design-system/bolt/compare/v2.31.0...v3.0.2) (2021-02-03)
+
+**Note:** Version bump only for package @bolt/micro-journeys
+
+
+
+
+
+## [2.31.2](https://github.com/bolt-design-system/bolt/compare/v2.31.1...v2.31.2) (2021-02-04)
+
+**Note:** Version bump only for package @bolt/micro-journeys
+
+
+
+
+
+## [3.0.2](https://github.com/bolt-design-system/bolt/compare/v3.0.1...v3.0.2) (2021-02-03)
+
+**Note:** Version bump only for package @bolt/micro-journeys
+
+
+
+
+
+# [2.31.0](https://github.com/bolt-design-system/bolt/compare/v2.30.2...v2.31.0) (2021-02-02)
+
+**Note:** Version bump only for package @bolt/micro-journeys
+
+
+
+
+
+## [2.31.1](https://github.com/bolt-design-system/bolt/compare/v2.31.0...v2.31.1) (2021-02-03)
+
+**Note:** Version bump only for package @bolt/micro-journeys
+
+
+
+
+
+## [3.0.1](https://github.com/bolt-design-system/bolt/compare/v3.0.0...v3.0.1) (2021-01-22)
+
+**Note:** Version bump only for package @bolt/micro-journeys
+
+
+
+
+
+## [2.30.2](https://github.com/bolt-design-system/bolt/compare/v2.30.1...v2.30.2) (2021-01-21)
+
+**Note:** Version bump only for package @bolt/micro-journeys
+
+
+
+
+
 ## [2.30.1](https://github.com/bolt-design-system/bolt/compare/v2.30.0...v2.30.1) (2021-01-14)
 
 **Note:** Version bump only for package @bolt/micro-journeys
@@ -19,7 +79,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-
+# [3.0.0](https://github.com/bolt-design-system/bolt/compare/v2.29.3...v3.0.0) (2021-01-08)
 
 **Note:** Version bump only for package @bolt/micro-journeys
 

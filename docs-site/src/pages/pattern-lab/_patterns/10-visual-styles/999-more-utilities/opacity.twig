@@ -19,21 +19,31 @@
       <div class="c-bds-docs__opacity-demo">
         <h4>Opacity class: <code>{{ ".u-bolt-opacity-#{key}" }}</code></h4>
         <div class="c-bds-docs__opacity-item {{ "u-bolt-opacity-#{key}" }}">
-          {% include "@bolt-components-teaser/teaser.twig" with {
-            content: "Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Proin vel ante a orci tempus eleifend ut et magna. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-            buttons: [
-              {
-                pattern: "button",
-                style: "primary",
-                text: "CTA 1"
-              },
-              {
-                pattern: "button",
-                style: "secondary",
-                text: "CTA 2"
-              }
-            ]
+          {% include "@bolt-components-headline/text.twig" with {
+            text: "Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Proin vel ante a orci tempus eleifend ut et magna. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            tag: "p"
           } only %}
+
+          {% set button_1 %}
+            {% include "@bolt-components-button/button.twig" with {
+              text: "CTA 1",
+              style: "primary"
+            } only %}
+          {% endset %}
+
+          {% set button_2 %}
+            {% include "@bolt-components-button/button.twig" with {
+              text: "CTA 2",
+              style: "secondary"
+            } only %}
+          {% endset %}
+
+          {% include "@bolt-components-button-group/button-group.twig" with {
+            buttons: [
+              button_1,
+              button_2
+            ]
+          } %}
         </div>
       </div>
     {% endfor %}

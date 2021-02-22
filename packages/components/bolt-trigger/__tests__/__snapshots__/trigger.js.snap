@@ -40,6 +40,20 @@ exports[`trigger Trigger with "no_outline" 1`] = `
 </bolt-trigger>
 `;
 
+exports[`trigger Trigger with "target" attribute renders same value on <bolt-trigger> and inner <a> 1`] = `
+<bolt-trigger target="_blank"
+              url="http://pega.com"
+>
+  <a href="http://pega.com"
+     target="_blank"
+     class="c-bolt-trigger c-bolt-trigger--display-inline c-bolt-trigger--cursor-pointer"
+     is="shadow-root"
+  >
+    Hello World
+  </a>
+</bolt-trigger>
+`;
+
 exports[`trigger Trigger with "type" adds attr to <button> 1`] = `
 <bolt-trigger type="submit"
               disabled
