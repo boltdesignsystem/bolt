@@ -82,6 +82,12 @@ bolt-autosuggest {
     border-bottom-left-radius: 0;
   }
 
+  &:disabled {
+    color: var(--bolt-color-gray);
+    cursor: not-allowed;
+    background-color: var(--bolt-color-gray-light);
+  }
+
   // Remove the native <input> clear button in IE 11 in lieu of JS-controlled clear button
   &::-ms-clear {
     display: none;

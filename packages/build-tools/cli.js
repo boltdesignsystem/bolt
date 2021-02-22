@@ -28,7 +28,6 @@ program
     'Pass in a specific config file instead of default of ".boltrc.js/json".',
   )
   .option('--prod', configSchema.properties.prod.description)
-  .option('--compat', configSchema.properties.compat.description)
   .option(
     '-v, --verbosity <amount>',
     configSchema.properties.verbosity.description,
@@ -36,30 +35,32 @@ program
   )
   .parse(process.argv);
 
-if (program.configFile) {
-  const configFilePath = path.join(process.cwd(), program.configFile);
-  if (!fs.existsSync(configFilePath)) {
-    console.error(`Error, config file does not exist: ${configFilePath}`);
-    process.exit(1);
-  }
-  const configFile = require(configFilePath);
-  userConfig = {
-    ...configFile,
-    configFileUsed: configFilePath,
-  };
-} else {
-  try {
-    const searchedFor = explorer.searchSync();
-    userConfig = {
-      ...searchedFor.config,
-      configFileUsed: searchedFor.filepath,
-    };
-  } catch (error) {
-    log.errorAndExit('Could not find config in a .boltrc file', error);
-  }
-}
-
 (async () => {
+  if (program.configFile) {
+    const configFilePath = path.join(process.cwd(), program.configFile);
+    if (!fs.existsSync(configFilePath)) {
+      console.error(`Error, config file does not exist: ${configFilePath}`);
+      process.exit(1);
+    }
+    const configFile = require(configFilePath);
+    userConfig = {
+      ...configFile,
+      configFileUsed: configFilePath,
+    };
+  } else {
+    try {
+      // Use `search()` which is async to cover build tools downstream that use async functions in their boltrc file.
+      // @see https://www.npmjs.com/package/cosmiconfig/v/5.2.1#explorersearch
+      const searchedFor = await explorer.search();
+      userConfig = {
+        ...searchedFor.config,
+        configFileUsed: searchedFor.filepath,
+      };
+    } catch (error) {
+      log.errorAndExit('Could not find config in a .boltrc file', error);
+    }
+  }
+
   await configStore.init(userConfig).then(async () => {
     // Now that config is initialized, we can start requiring other things
     const { buildBoltManifest } = require('@bolt/build-utils/manifest');
@@ -125,11 +126,6 @@ if (program.configFile) {
         config.prod =
           typeof program.prod === 'undefined' ? config.prod : program.prod;
 
-        config.compat =
-          typeof program.compat === 'undefined'
-            ? config.compat
-            : program.compat;
-
         // automatically set enableSSR to true in prod mode and false in dev mode, unless manually set.
         config.enableSSR = false;
 
@@ -156,10 +152,6 @@ if (program.configFile) {
 Logging Verbosity: ${config.verbosity}
 Environment: ${config.prod ? 'Production' : 'Development'}
 Multi-lang: ${config.i18n}
-
-Bundling for...
-  - Modern Browsers? ${config.esModules ? '✅' : '❌'}
-  - Legacy Browsers? ${config.compat ? '✅' : '❌'}
 `);
 
       console.log(

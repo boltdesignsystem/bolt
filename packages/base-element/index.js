@@ -1,4 +1,4 @@
-// temp workaround to auto-injected polyfills not getting bundled when Webpack DLL plugin is run outside of the Bolt Build tools
+// Must include Custom Element polyfills for Edge < 79, no longer auto-added via Bolt webpack config
 import '@bolt/polyfills';
 export { BoltElement } from './src/BoltElement';
 export { BoltActionElement } from './src/BoltActionElement';
