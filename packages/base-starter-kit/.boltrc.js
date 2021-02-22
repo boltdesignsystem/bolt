@@ -48,6 +48,7 @@ module.exports = {
       '@bolt/components-page-header',
       '@bolt/components-placeholder',
       '@bolt/components-popover',
+      '@bolt/components-post',
       '@bolt/components-progress-bar',
       '@bolt/components-share',
       '@bolt/components-site',
