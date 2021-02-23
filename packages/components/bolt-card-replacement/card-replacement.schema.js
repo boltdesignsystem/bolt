@@ -121,6 +121,9 @@ module.exports = {
         external: {
           type: 'boolean',
         },
+        icon: {
+          type: 'string',
+        },
         attributes: {
           type: 'object',
           description:
