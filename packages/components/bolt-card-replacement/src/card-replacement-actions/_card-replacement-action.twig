@@ -9,7 +9,7 @@
           align: "start",
           target: external == true ? "_blank" : "_self",
           icon: {
-            name: external == false or external == null ? "chevron-right" : "external-link",
+            name: icon ? icon : (external == false or external == null ? "chevron-right" : "external-link"),
           },
           attributes: attributes|default({})
         } %}
