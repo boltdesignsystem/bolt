@@ -11,7 +11,11 @@ module.exports = {
       description:
         'A Drupal attributes object. Applies extra HTML attributes to the &lt;bolt-teaser&gt; tag.',
     },
-    trigger: {
+    image_trigger: {
+      type: 'object',
+      description: '',
+    },
+    text_trigger: {
       type: 'object',
       description: '',
     },
@@ -19,7 +23,6 @@ module.exports = {
       type: 'object',
       description: '',
     },
-    headline: headlineSchema,
     chip_list: chipListSchema,
   },
 };

@@ -37,22 +37,14 @@
   {% if outer_classes %} class="{{ outer_classes|join(' ') }}" {% endif %}
   {{ this.props|without("class") }}
 >
-  <replace-with-children {{ inner_attributes.addClass(inner_classes) }}>
-  </replace-with-children>
+  {# <replace-with-children {{ inner_attributes.addClass(inner_classes) }}>
+  </replace-with-children> #}
 
-  {# {% if media %}
+  {% if image_trigger %}
     <bolt-stack spacing="xsmall">
-      {% include '@bolt-components-ratio/ratio.twig' with {
-        children: media,
-        ratio: '16/9'
-      } only %}
+      {{ image_trigger }}
     </bolt-stack>
-  {% endif %} #}
-
-  <bolt-stack spacing="xsmall">
-    {{ trigger }}
-    {{ modal }}
-  </bolt-stack>
+  {% endif %}
 
   <bolt-stack spacing="xsmall">
     <div class="o-bolt-grid o-bolt-grid--flex o-bolt-grid--matrix">
@@ -142,13 +134,23 @@
     </div>
   </bolt-stack>
 
-  {% if headline %}
+  {% if text_trigger %}
     <bolt-stack spacing="xsmall">
-      {% include '@bolt-components-headline/headline.twig' with headline only %}
+      {{ text_trigger }}
     </bolt-stack>
   {% endif %}
 
+  {# {% if headline %}
+    <bolt-stack spacing="xsmall">
+      {% include '@bolt-components-headline/headline.twig' with headline only %}
+    </bolt-stack>
+  {% endif %} #}
+
   {% if chip_list %}
     {% include '@bolt-components-chip-list/chip-list.twig' with chip_list only %}
+  {% endif %}
+
+  {% if modal %}
+    {{ modal }}
   {% endif %}
 </bolt-teaser>
