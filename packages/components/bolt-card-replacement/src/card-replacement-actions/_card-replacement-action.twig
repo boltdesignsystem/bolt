@@ -8,11 +8,16 @@
           width: "full",
           align: "start",
           target: external == true ? "_blank" : "_self",
-          icon: {
-            name: icon ? icon : (external == false or external == null ? "chevron-right" : "external-link"),
-          },
           attributes: attributes|default({})
         } %}
+
+        {% if icon is not empty and icon != 'none' %}
+          {% set button_props = button_props|merge({ icon: { name: icon } }) %}
+        {% elseif icon is empty and (external == false or external == null) %}
+          {% set button_props = button_props|merge({ icon: { name: "chevron-right" } }) %}
+        {% elseif icon is empty %}
+          {% set button_props = button_props|merge({ icon: { name: "external-link" } }) %}
+        {% endif %}
 
         {% if spacing is not empty %}
           {% set button_props = button_props|merge({ size: spacing }) %}
