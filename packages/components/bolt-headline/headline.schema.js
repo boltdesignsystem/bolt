@@ -13,30 +13,30 @@ module.exports = {
     },
     tag: {
       type: 'string',
-      description: 'Html tag.',
+      description: 'Set the semantic HTML tag for the headline.',
       default: 'p',
       enum: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'span', 'cite', 'div'],
     },
     align: {
-      description: 'Text alignment.',
+      description: 'Set the text alignment of the headline.',
       type: 'string',
       enum: ['left', 'center', 'right'],
     },
     weight: {
       type: 'string',
-      description: 'Font weights.',
+      description: 'Set the weight of the headline.',
       default: 'regular',
       enum: ['light', 'bold', 'regular', 'semibold'],
     },
     style: {
       type: 'string',
-      description: 'Font styles.',
+      description: 'Set the style fo the headline.',
       default: 'normal',
       enum: ['normal', 'italic'],
     },
     size: {
       type: 'string',
-      description: 'Font size.',
+      description: 'Set the size of the headline.',
       default: 'medium',
       enum: [
         'xxsmall',

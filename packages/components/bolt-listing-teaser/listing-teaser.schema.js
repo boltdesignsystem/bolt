@@ -1,3 +1,5 @@
+const headlineSchema = require('@bolt/components-headline/headline.schema');
+
 module.exports = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'Listing Teaser',
@@ -17,18 +19,9 @@ module.exports = {
       type: 'object',
       description: 'Render the headline of the listing.',
       properties: {
-        text: {
-          type: 'string',
-          description: 'Set the text of the headline.',
-        },
-        tag: {
-          type: 'string',
-          description: 'Set the semantic HTML tag for the headline.',
-        },
-        size: {
-          type: 'string',
-          description: 'Set the size of the headline.',
-        },
+        text: headlineSchema.properties.text,
+        tag: headlineSchema.properties.tag,
+        size: headlineSchema.properties.size,
         link_attributes: {
           type: 'object',
           description:
