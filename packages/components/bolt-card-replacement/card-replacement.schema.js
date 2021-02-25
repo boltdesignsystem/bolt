@@ -123,6 +123,8 @@ module.exports = {
         },
         icon: {
           type: 'string',
+          description:
+            'Allows user to specify the icon showed on the action button. If no icon is provided in this prop, the default behavior will take place and the icon shown will depend on if the URL is internal or external. Alternatively, providing "none" as the value can show no icon.',
         },
         attributes: {
           type: 'object',
