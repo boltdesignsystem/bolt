@@ -1,5 +1,5 @@
 {# Schema Validation #}
-{% set schema = bolt.data.components['@bolt-components-post'].schema %}
+{% set schema = bolt.data.components['@bolt-components-listing-teaser'].schema %}
 {% if enable_json_schema_validation %}
   {{ validate_data_schema(schema, _self)|raw }}
 {% endif %}
@@ -7,22 +7,22 @@
 {# Variables #}
 {% set this = init(schema) %}
 {% set attributes = create_attribute(attributes|default({})) %}
-{% set _post_id = bolt.data.config.env == 'test' ? 'js-test-target' : 'js-bolt-post-' ~ random() %}
+{% set _listing_id = bolt.data.config.env == 'test' ? 'js-test-target' : 'js-bolt-listing-teaser-' ~ random() %}
 
 {# Array of classes based on the defined + default props #}
 {% set classes = [
-  'c-bolt-post',
-  _post_id,
+  'c-bolt-listing-teaser',
+  _listing_id,
 ] %}
 
 <article {{ attributes.addClass(classes) }}>
-  <div class="c-bolt-post__flag">
+  <div class="c-bolt-listing-teaser__flag">
     {% if signifier %}
-      <div class="c-bolt-post__flag-signifier" aria-hidden="true">
+      <div class="c-bolt-listing-teaser__flag-signifier" aria-hidden="true">
         {{ signifier }}
       </div>
     {% endif %}
-    <div class="c-bolt-post__flag-heading">
+    <div class="c-bolt-listing-teaser__flag-heading">
       {% if headline.link_attributes %}
         {% set _linked_text %}
           {% include '@bolt-elements-text-link/text-link.twig' with {
@@ -39,16 +39,16 @@
         size: headline.size,
       } only %}
     </div>
-    <div class="c-bolt-post__flag-content">
+    <div class="c-bolt-listing-teaser__flag-content">
       {% if meta_items %}
-        <ul class="c-bolt-post__meta">
+        <ul class="c-bolt-listing-teaser__meta">
           {% for item in meta_items %}
-            <li class="c-bolt-post__meta__item">{{ item }}</li>
+            <li class="c-bolt-listing-teaser__meta__item">{{ item }}</li>
           {% endfor %}
         </ul>
       {% endif %}
       {% if this.data.more_info %}
-        <div class="c-bolt-post__flag-content__item">
+        <div class="c-bolt-listing-teaser__flag-content__item">
           {% set _icon_chevron_right %}
             {% include '@bolt-components-icon/icon.twig' with {
               name: 'chevron-right',
@@ -65,7 +65,7 @@
         </div>
       {% endif %}
       {% if this.data.warning %}
-        <div class="c-bolt-post__flag-content__item">
+        <div class="c-bolt-listing-teaser__flag-content__item">
           {% set _icon_warning %}
             {% include '@bolt-components-icon/icon.twig' with {
               name: 'warning',
@@ -81,10 +81,10 @@
       {% endif %}
     </div>
     {% if status %}
-      <ul class="c-bolt-post__flag-status">
+      <ul class="c-bolt-listing-teaser__flag-status">
         {% if status.solved %}
-          <li class="c-bolt-post__flag-status__item">
-            <span class="c-bolt-post__flag-status__icon c-bolt-post__flag-status__icon--solved" aria-hidden="true">
+          <li class="c-bolt-listing-teaser__flag-status__item">
+            <span class="c-bolt-listing-teaser__flag-status__icon c-bolt-listing-teaser__flag-status__icon--solved" aria-hidden="true">
               {% include '@bolt-components-icon/icon.twig' with {
                 name: 'check-solid',
               } only %}
@@ -93,8 +93,8 @@
           </li>
         {% endif %}
         {% if status.locked %}
-          <li class="c-bolt-post__flag-status__item">
-            <span class="c-bolt-post__flag-status__icon c-bolt-post__flag-status__icon--locked" aria-hidden="true">
+          <li class="c-bolt-listing-teaser__flag-status__item">
+            <span class="c-bolt-listing-teaser__flag-status__icon c-bolt-listing-teaser__flag-status__icon--locked" aria-hidden="true">
               {% include '@bolt-components-icon/icon.twig' with {
                 name: 'lock',
               } only %}
@@ -103,19 +103,19 @@
           </li>
         {% endif %}
         {% if status.replies %}
-          <li class="c-bolt-post__flag-status__item">
-            <span class="c-bolt-post__flag-status__number">{{ status.replies }}</span> {{ 'Replies'|t }}
+          <li class="c-bolt-listing-teaser__flag-status__item">
+            <span class="c-bolt-listing-teaser__flag-status__number">{{ status.replies }}</span> {{ 'Replies'|t }}
           </li>
         {% endif %}
         {% if status.views %}
-          <li class="c-bolt-post__flag-status__item">
-            <span class="c-bolt-post__flag-status__number">{{ status.views }}</span> {{ 'Views'|t }}
+          <li class="c-bolt-listing-teaser__flag-status__item">
+            <span class="c-bolt-listing-teaser__flag-status__number">{{ status.views }}</span> {{ 'Views'|t }}
           </li>
         {% endif %}
       </ul>
     {% endif %}
   </div>
-  {% if action_menu or share_menu %}<div class="c-bolt-post__actions">{% endif %}
+  {% if action_menu or share_menu %}<div class="c-bolt-listing-teaser__actions">{% endif %}
     {% if share_menu %}
       {% set _share_popover_trigger %}
         {% include '@bolt-components-button/button.twig' with {
@@ -133,7 +133,7 @@
         trigger: _share_popover_trigger,
         content: share_menu,
         spacing: 'none',
-        boundary: '.' ~ _post_id,
+        boundary: '.' ~ _listing_id,
       } only %}
     {% endif %}
     {% if action_menu %}
@@ -153,7 +153,7 @@
         trigger: _action_popover_trigger,
         content: action_menu,
         spacing: 'none',
-        boundary: '.' ~ _post_id,
+        boundary: '.' ~ _listing_id,
       } only %}
     {% endif %}
   {% if action_menu or share_menu %}</div>{% endif %}

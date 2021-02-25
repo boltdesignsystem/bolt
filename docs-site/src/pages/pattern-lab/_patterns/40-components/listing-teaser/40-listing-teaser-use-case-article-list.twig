@@ -4,7 +4,7 @@
 
 {% set notes %}
   <bolt-ol>
-    <bolt-li>An article list is composed of the Post component and the List component with solid separators.</bolt-li>
+    <bolt-li>An article list is composed of the Listing Teaser component and the List component with solid separators.</bolt-li>
     <bolt-li>Keep in mind the signifier and headline vertically center align with each other. When using image as the signifier, it is recommended to use 32px in tandem with large headline, and 38px in tandem with xlarge headline.</bolt-li>
   </bolt-ol>
 {% endset %}
@@ -48,7 +48,7 @@
     } only %}
   {% endset %}
   {% set article_0 %}
-    {% include '@bolt-components-post/post.twig' with {
+    {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
       signifier: signifier_1,
       headline: {
         text: 'This is an article',
@@ -67,7 +67,7 @@
     } only %}
   {% endset %}
   {% set article_1 %}
-    {% include '@bolt-components-post/post.twig' with {
+    {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
       signifier: signifier_1,
       headline: {
         text: 'How low-code is eliminating technical debt',
@@ -86,7 +86,7 @@
     } only %}
   {% endset %}
   {% set article_2 %}
-    {% include '@bolt-components-post/post.twig' with {
+    {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
       signifier: signifier_2,
       headline: {
         text: 'How autonomous customer service will shape the future',
@@ -105,7 +105,7 @@
     } only %}
   {% endset %}
   {% set article_3 %}
-    {% include '@bolt-components-post/post.twig' with {
+    {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
       signifier: signifier_3,
       headline: {
         text: '3 steps to implementing a successful DevOps culture',
@@ -172,7 +172,7 @@
   } only %}
 {% endset %}
 {% set demo_article %}
-  {% include '@bolt-components-post/post.twig' with {
+  {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
     signifier: demo_thumbnail,
     headline: {
       text: 'This is an article',

@@ -1,5 +1,5 @@
 {% set description %}
-  A post can have various statuses, use the proper prop to mark the relevant status. A popover action menu can be added by using the <bolt-code-snippet display="inline">action_menu</bolt-code-snippet> prop.
+  A listing can have various statuses, use the proper prop to mark the relevant status. A popover action menu can be added by using the <bolt-code-snippet display="inline">action_menu</bolt-code-snippet> prop.
 {% endset %}
 
 {% set notes %}
@@ -59,7 +59,7 @@
     {% include '@bolt-components-share/share.twig' with {
       display: 'menu',
       size: 'small',
-      text: 'Share this post',
+      text: 'Share this listing',
       sources: [
         {
           name: 'facebook',
@@ -83,10 +83,10 @@
       },
     } only %}
   {% endset %}
-  {% include '@bolt-components-post/post.twig' with {
+  {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
     signifier: icon_questions,
     headline: {
-      text: 'This post has every status and menu possible',
+      text: 'This listing has every status and menu possible',
       tag: 'h3',
       size: 'large',
       link_attributes: {
@@ -136,7 +136,7 @@
   {% include '@bolt-components-share/share.twig' with {
     display: 'menu',
     size: 'small',
-    text: 'Share this post',
+    text: 'Share this listing',
     sources: [
       {
         name: 'facebook',
@@ -162,9 +162,9 @@
 {% endset %}
 
 // Use the variables in action_menu and share_menu props
-{% include '@bolt-components-post/post.twig' with {
+{% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
   headline: {
-    text: 'This post has every status and menu possible',
+    text: 'This listing has every status and menu possible',
     tag: 'h3',
     size: 'large',
     link_attributes: {
@@ -190,7 +190,7 @@
 {% endset %}
 
 {% include '@utils/pattern-doc-page.twig' with {
-  title: 'Post Status, Action Menu, and Share Menu',
+  title: 'Listing Status, Action Menu, and Share Menu',
   description: description,
   demo: demo,
   notes: notes,

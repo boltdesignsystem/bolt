@@ -3,7 +3,7 @@
 {% endset %}
 
 {% set notes %}
-  A post list is composed of the Post component and the List component with solid separators.
+  A post list is composed of the Listing Teaser component and the List component with solid separators.
 {% endset %}
 
 {% set demo %}
@@ -97,8 +97,8 @@
       ]
     } only %}
   {% endset %}
-  {% set post_1 %}
-    {% include '@bolt-components-post/post.twig' with {
+  {% set listing_1 %}
+    {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
       signifier: icon_questions,
       headline: {
         text: 'This is a post',
@@ -118,8 +118,8 @@
       },
     } only %}
   {% endset %}
-  {% set post_2 %}
-    {% include '@bolt-components-post/post.twig' with {
+  {% set listing_2 %}
+    {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
       signifier: icon_discussions,
       headline: {
         text: 'This is a post that is solved',
@@ -140,8 +140,8 @@
       },
     } only %}
   {% endset %}
-  {% set post_3 %}
-    {% include '@bolt-components-post/post.twig' with {
+  {% set listing_3 %}
+    {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
       signifier: icon_ideas,
       headline: {
         text: 'This is a post that is locked',
@@ -162,8 +162,8 @@
       },
     } only %}
   {% endset %}
-  {% set post_4 %}
-    {% include '@bolt-components-post/post.twig' with {
+  {% set listing_4 %}
+    {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
       signifier: icon_discussions,
       headline: {
         text: 'This is a post that is both solved and locked',
@@ -185,8 +185,8 @@
       },
     } only %}
   {% endset %}
-  {% set post_5 %}
-    {% include '@bolt-components-post/post.twig' with {
+  {% set listing_5 %}
+    {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
       signifier: icon_questions,
       headline: {
         text: 'This is a post with more information',
@@ -207,8 +207,8 @@
       more_info: 'More information. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.'
     } only %}
   {% endset %}
-  {% set post_6 %}
-    {% include '@bolt-components-post/post.twig' with {
+  {% set listing_6 %}
+    {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
       signifier: icon_questions,
       headline: {
         text: 'This is a post with actions',
@@ -231,8 +231,8 @@
       action_menu: action_menu,
     } only %}
   {% endset %}
-  {% set post_7 %}
-    {% include '@bolt-components-post/post.twig' with {
+  {% set listing_7 %}
+    {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
       signifier: icon_questions,
       headline: {
         text: 'This is a post with actions (also favorited and subscribed)',
@@ -261,13 +261,13 @@
     inset: true,
     separator: 'solid',
     items: [
-      post_1,
-      post_2,
-      post_3,
-      post_4,
-      post_5,
-      post_6,
-      post_7,
+      listing_1,
+      listing_2,
+      listing_3,
+      listing_4,
+      listing_5,
+      listing_6,
+      listing_7,
     ]
   } only %}
 {% endset %}
@@ -302,7 +302,7 @@
   } only %}
 {% endset %}
 {% set demo_post %}
-  {% include '@bolt-components-post/post.twig' with {
+  {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
     signifier: demo_icon,
     headline: {
       text: 'This is a post with actions (also favorited and subscribed)',

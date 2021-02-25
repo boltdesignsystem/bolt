@@ -1,6 +1,6 @@
 module.exports = {
   $schema: 'http://json-schema.org/draft-04/schema#',
-  title: 'Post',
+  title: 'Listing Teaser',
   type: 'object',
   properties: {
     attributes: {
@@ -11,11 +11,11 @@ module.exports = {
     signifier: {
       type: 'any',
       description:
-        'Set a visual signifier for the post. An icon or decorative image usually goes here.',
+        'Set a visual signifier for the listing. An icon or decorative image usually goes here.',
     },
     headline: {
       type: 'object',
-      description: 'Render the headline of the post.',
+      description: 'Render the headline of the listing.',
       properties: {
         text: {
           type: 'string',
@@ -38,16 +38,16 @@ module.exports = {
     },
     meta_items: {
       type: 'array',
-      description: 'Render an array of meta data for the post.',
+      description: 'Render an array of meta data for the listing.',
     },
     status: {
       type: 'object',
-      description: 'Set the status of the post.',
+      description: 'Set the status of the listing.',
       properties: {
         solved: {
           type: 'boolean',
           default: false,
-          description: 'Mark the post as solved.',
+          description: 'Mark the listing as solved.',
         },
         solved_label: {
           type: 'string',
@@ -56,7 +56,7 @@ module.exports = {
         locked: {
           type: 'boolean',
           default: false,
-          description: 'Mark the post as locked.',
+          description: 'Mark the listing as locked.',
         },
         locked_label: {
           type: 'string',
@@ -75,22 +75,22 @@ module.exports = {
     action_menu: {
       type: 'any',
       description:
-        'Render a popover action menu for the post. Passing the Menu component is recommended.',
+        'Render a popover action menu for the listing. Passing the Menu component is recommended.',
     },
     share_menu: {
       type: 'any',
       description:
-        'Render a popover share menu for the post. Passing the Share component is mandatory.',
+        'Render a popover share menu for the listing. Passing the Share component is mandatory.',
     },
     more_info: {
       type: 'string',
       description:
-        'Render more information for the post. Short post summary usually goes here. No links should be passed here.',
+        'Render more information for the listing. Short listing summary usually goes here. No links should be passed here.',
     },
     warning: {
       type: 'string',
       description:
-        'Render warning text for the post, which appears below the "more info" content. No links should be passed here.',
+        'Render warning text for the listing, which appears below the "more info" content. No links should be passed here.',
     },
   },
 };

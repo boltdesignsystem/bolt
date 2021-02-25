@@ -1,5 +1,5 @@
 {% set description %}
-  A post can have meta data and extra information.
+  A listing can have meta data and extra information.
 {% endset %}
 
 {% set notes %}
@@ -19,10 +19,10 @@
       color: 'teal',
     } only %}
   {% endset %}
-  {% include '@bolt-components-post/post.twig' with {
+  {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
     signifier: icon_questions,
     headline: {
-      text: 'This post has meta data and more info',
+      text: 'This listing has meta data and more info',
       tag: 'h3',
       size: 'large',
       link_attributes: {
@@ -40,9 +40,9 @@
 
 {% set twig_markup %}
 {% verbatim %}
-{% include '@bolt-components-post/post.twig' with {
+{% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
   headline: {
-    text: 'This post has meta data and more info',
+    text: 'This listing has meta data and more info',
     tag: 'h3',
     size: 'large',
     link_attributes: {
@@ -60,7 +60,7 @@
 {% endset %}
 
 {% include '@utils/pattern-doc-page.twig' with {
-  title: 'Post Meta Data and More',
+  title: 'Listing Meta Data and More',
   description: description,
   demo: demo,
   notes: notes,

@@ -4,7 +4,7 @@
 
 {% set notes %}
   <bolt-ol>
-    <bolt-li>A training list is composed of the Post component and the List component with solid separators.</bolt-li>
+    <bolt-li>A training list is composed of the Listing Teaser component and the List component with solid separators.</bolt-li>
     <bolt-li><bolt-code-snippet display="inline">solved_label</bolt-code-snippet> is used for customizing the solved status label text.</bolt-li>
     <bolt-li><bolt-code-snippet display="inline">locked_label</bolt-code-snippet> is used for customizing the locked status label text.</bolt-li>
   </bolt-ol>
@@ -32,8 +32,8 @@
       color: 'navy',
     } only %}
   {% endset %}
-  {% set post_1 %}
-    {% include '@bolt-components-post/post.twig' with {
+  {% set listing_1 %}
+    {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
       signifier: icon_orbit,
       headline: {
         text: 'This module is archived',
@@ -54,8 +54,8 @@
       },
     } only %}
   {% endset %}
-  {% set post_2 %}
-    {% include '@bolt-components-post/post.twig' with {
+  {% set listing_2 %}
+    {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
       signifier: icon_meteor,
       headline: {
         text: 'This challenge is completed',
@@ -76,8 +76,8 @@
       },
     } only %}
   {% endset %}
-  {% set post_3 %}
-    {% include '@bolt-components-post/post.twig' with {
+  {% set listing_3 %}
+    {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
       signifier: icon_launchpad,
       headline: {
         text: 'This challenge is completed but it has a warnning message',
@@ -99,8 +99,8 @@
       warning: 'This mission has been updated. Please redo to earn the mission badge again.'
     } only %}
   {% endset %}
-  {% set post_4 %}
-    {% include '@bolt-components-post/post.twig' with {
+  {% set listing_4 %}
+    {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
       signifier: icon_orbit,
       headline: {
         text: 'This module has not been completed or archived',
@@ -116,8 +116,8 @@
       ],
     } only %}
   {% endset %}
-  {% set post_5 %}
-    {% include '@bolt-components-post/post.twig' with {
+  {% set listing_5 %}
+    {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
       signifier: icon_orbit,
       headline: {
         text: 'This module is both completed and archived',
@@ -146,11 +146,11 @@
     inset: true,
     separator: 'solid',
     items: [
-      post_1,
-      post_2,
-      post_3,
-      post_4,
-      post_5,
+      listing_1,
+      listing_2,
+      listing_3,
+      listing_4,
+      listing_5,
     ]
   } only %}
 {% endset %}
@@ -166,7 +166,7 @@
   } only %}
 {% endset %}
 {% set demo_training %}
-  {% include '@bolt-components-post/post.twig' with {
+  {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
     signifier: demo_icon,
     headline: {
       text: 'This training is both completed and archived',

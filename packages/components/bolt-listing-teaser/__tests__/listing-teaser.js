@@ -6,11 +6,11 @@ import {
   html,
   vrtDefaultConfig,
 } from '../../../testing/testing-helpers';
-import schema from '../post.schema';
+import schema from '../listing-teaser.schema';
 const { disabled } = schema.properties;
 const timeout = 90000;
 
-describe('Post', () => {
+describe('listing-teaser', () => {
   let page;
 
   afterAll(async () => {
@@ -32,9 +32,9 @@ describe('Post', () => {
   }, timeout);
 
   test('basic usage', async () => {
-    const results = await render('@bolt-components-post/post.twig', {
+    const results = await render('@bolt-components-listing-teaser/listing-teaser.twig', {
       headline: {
-        text: 'This is a post',
+        text: 'This is a listing-teaser',
         tag: 'h3',
         size: 'xlarge',
         link_attributes: {
@@ -42,7 +42,7 @@ describe('Post', () => {
         },
       },
       meta_items: [
-        'Posted 8 hours 15 minutes ago',
+        'listing-teasered 8 hours 15 minutes ago',
         'Last activity: 2 minutes ago',
       ],
       status: {

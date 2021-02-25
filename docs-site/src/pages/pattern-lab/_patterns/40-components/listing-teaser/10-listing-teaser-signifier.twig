@@ -1,5 +1,5 @@
 {% set description %}
-  The post signifier is a decorative element that visually represents the content nature of a post.
+  The signifier is a decorative element that visually represents the content nature of a listing.
 {% endset %}
 
 {% set notes %}
@@ -18,10 +18,10 @@
       color: 'teal',
     } only %}
   {% endset %}
-  {% include '@bolt-components-post/post.twig' with {
+  {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
     signifier: icon_questions,
     headline: {
-      text: 'This post has an icon signifier',
+      text: 'This listing has an icon signifier',
       tag: 'h3',
       size: 'large',
       link_attributes: {
@@ -47,10 +47,10 @@
 {% endset %}
 
 // Use the variable in the signifier prop
-{% include '@bolt-components-post/post.twig' with {
+{% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
   signifier: demo_icon,
   headline: {
-    text: 'This post has an icon signifier',
+    text: 'This listing has an icon signifier',
     tag: 'h3',
     size: 'large',
     link_attributes: {
@@ -66,7 +66,7 @@
 {% endset %}
 
 {% include '@utils/pattern-doc-page.twig' with {
-  title: 'Post Signifier',
+  title: 'Listing Teaser Signifier',
   description: description,
   demo: demo,
   notes: notes,

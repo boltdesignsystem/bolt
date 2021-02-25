@@ -1,5 +1,5 @@
 {% set description %}
-  The post headline&rsquo;s size, HTML tag, and link attributes can be customized via props.
+  The headline&rsquo;s size, HTML tag, and link attributes can be customized via props.
 {% endset %}
 
 {% set notes %}
@@ -11,10 +11,10 @@
 {% endset %}
 
 {% set demo %}
-  {% include '@bolt-components-post/post.twig' with {
+  {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
     signifier: icon_questions,
     headline: {
-      text: 'This post has an xlarge headline',
+      text: 'This listing has an xlarge headline',
       tag: 'h3',
       size: 'xlarge',
       link_attributes: {
@@ -30,9 +30,9 @@
 
 {% set twig_markup %}
 {% verbatim %}
-{% include '@bolt-components-post/post.twig' with {
+{% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
   headline: {
-    text: 'This post has an xlarge headline',
+    text: 'This listing has an xlarge headline',
     tag: 'h3',
     size: 'xlarge',
     link_attributes: {
@@ -48,7 +48,7 @@
 {% endset %}
 
 {% include '@utils/pattern-doc-page.twig' with {
-  title: 'Post Headline',
+  title: 'Listing Teaser Headline',
   description: description,
   demo: demo,
   notes: notes,
