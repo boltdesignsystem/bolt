@@ -1,0 +1,574 @@
+{% extends '@pl/_default-page-template.twig' %}
+
+{% block main_content %}
+  {% set icon_eye %}
+    {% include '@bolt-components-icon/icon.twig' with {
+      name: 'eye',
+    } only %}
+  {% endset %}
+
+  {% set band_content %}
+    <div class="o-bolt-grid o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center o-bolt-grid--middle o-bolt-grid--large">
+      <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-8/12@small">
+        {% include '@bolt-components-headline/headline.twig' with {
+          text: 'Pegaworld replays',
+          size: 'xxxlarge',
+          align: 'center',
+          tag: 'h1',
+        } only %}
+        {% include '@bolt-components-headline/subheadline.twig' with {
+          text: 'From flawless customer engagement to operational excellence, Pega empowers the world&rsquo;s leading companies to achieve breakthrough results.',
+          size: 'xlarge',
+          align: 'center',
+          tag: 'p',
+        } only %}
+        {% if phase2 %}
+          <div class="u-bolt-text-align-center">
+            {% include '@bolt-components-button/button.twig' with {
+              text: 'Subscribe',
+              size: 'small',
+              style: 'secondary',
+              icon: {
+                name: 'add',
+                position: 'before',
+              }
+            } only %}
+          </div>
+        {% endif %}
+      </div>
+      <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-10/12@small u-bolt-width-5/12@medium">
+        {% set video %}
+          <video-js
+            data-account='1900410236'
+            data-player='4fVA8Ojzs'
+            data-embed='default'
+            data-video-id='3974147489001'
+            data-media-duration
+            controls
+            class='c-base-video'></video-js>
+        {% endset %}
+        {% include '@bolt-components-ratio/ratio.twig' with {
+          children: video,
+          ratio: '16/9'
+        } only %}
+      </div>
+      <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-10/12@small u-bolt-width-5/12@medium">
+        <bolt-stack spacing="xsmall">
+          {% include '@bolt-components-headline/eyebrow.twig' with {
+            text: 'Featured',
+          } only %}
+          {% include '@bolt-components-headline/headline.twig' with {
+            text: 'Video title. Sausage brisket meatloaf turducken buffalo, salami chislic.',
+            size: 'xlarge',
+            tag: 'h2',
+            url: 'https://pega.com',
+          } only %}
+        </bolt-stack>
+        {% if phase1 or phase2 %}
+          <bolt-stack spacing="xsmall">
+            {% if phase2 %}
+              {% set views %}
+                <small>{{ icon_eye }} 27 views</small>
+              {% endset %}
+            {% endif %}
+            
+            {% if phase1 %}
+              {% set like_button %}
+                  <small>
+                    {% include '@bolt-components-link/link.twig' with {
+                      text: 'Like',
+                      icon: {
+                        name: 'heart',
+                        position: 'before',
+                      },
+                      type: 'button',
+                      isHeadline: true,
+                    } only %}
+                  </small>
+              {% endset %}
+              {% set share_button %}
+                {% set popover_trigger %}
+                  <small>
+                    {% include '@bolt-components-link/link.twig' with {
+                      text: 'Share',
+                      icon: {
+                        name: 'share',
+                        position: 'before',
+                      },
+                      type: 'button',
+                      isHeadline: true,
+                    } only %}
+                  </small>
+                {% endset %}
+                {% set popover_content %}
+                  {% include '@bolt-components-share/share.twig' with {
+                    display: 'menu',
+                    text: 'Share this content',
+                    sources: [
+                      {
+                        name: 'facebook',
+                        url: 'https://www.facebook.com/sharer/sharer.php?u=https://pega.com&amp;src=sdkpreparse'
+                      },
+                      {
+                        name: 'twitter',
+                        url: 'https://twitter.com/intent/tweet?url=https://pega.com&text=Sample%20Share%20Text&via=pega&hashtags=boltDesignSystemRocks!'
+                      },
+                      {
+                        name: 'linkedin',
+                        url: 'https://www.linkedin.com/shareArticle?url=https://pega.com'
+                      },
+                      {
+                        name: 'email',
+                        url: 'mailto:?&body=Sample%20Text%20--%20https%3A//pega.com'
+                      }
+                    ],
+                    copy_to_clipboard: {
+                      text_to_copy: 'https://pega.com',
+                    },
+                  } only %}
+                {% endset %}
+                {% include "@bolt-components-popover/popover.twig" with {
+                  trigger: popover_trigger,
+                  content: popover_content,
+                  spacing: "none",
+                } only %}
+              {% endset %}
+            {% endif %}
+
+            {% if phase1 and not phase2 %}
+              {% set list_items = [like_button, share_button] %}
+            {% elseif phase2 %}
+              {% set list_items = [views, like_button, share_button] %}
+            {% else %}
+              {% set list_items = [''] %}
+            {% endif %}
+
+            {% include '@bolt-components-list/list.twig' with {
+              display: 'inline',
+              spacing: 'small',
+              items: list_items
+            } only %}
+          </bolt-stack>
+        {% endif %}
+        {% include '@bolt-components-headline/text.twig' with {
+          text: 'Shank alcatra landjaeger, hamburger beef chicken chuck pork cupim pork loin andouille prosciutto ball tip. Cow tail tongue flank t-bone pig, pancetta cupim. Flank turkey bresaola pork, prosciutto shoulder pork loin cupim cow ribeye kevin buffalo meatloaf. Salami ham ground round filet mignon cow jowl.',
+        } only %}
+      </div>
+    </div>
+  {% endset %}
+
+  {% include '@bolt-components-band/band.twig' with {
+    content: band_content,
+    theme: 'dark',
+    background: {
+      overlay: 'disabled',
+      contentItems: [
+        {
+          pattern: 'image',
+          src: '/images/backgrounds/navy-light-circles.jpg',
+          lazyload: true,
+        },
+      ]
+    },
+  } only %}
+
+  {% set action_list %}
+    <div class="o-bolt-grid o-bolt-grid--flex o-bolt-grid--matrix">
+      {% if phase2 %}
+        <div class="o-bolt-grid__cell u-bolt-flex-shrink">
+            <small>{{ icon_eye }} 27 views</small>
+        </div>
+      {% endif %}
+      <div class="o-bolt-grid__cell u-bolt-width-6/12 u-bolt-flex-grow">
+        {% set like_button %}
+          <small>
+            {% include '@bolt-components-link/link.twig' with {
+              text: 'Like',
+              icon: {
+                name: 'heart',
+                position: 'before',
+              },
+              type: 'button',
+              isHeadline: true,
+            } only %}
+          </small>
+        {% endset %}
+        {% set share_button %}
+          {% set popover_trigger %}
+            <small>
+              {% include '@bolt-components-link/link.twig' with {
+                text: 'Share',
+                icon: {
+                  name: 'share',
+                  position: 'before',
+                },
+                type: 'button',
+                isHeadline: true,
+              } only %}
+            </small>
+          {% endset %}
+          {% set popover_content %}
+            {% include '@bolt-components-share/share.twig' with {
+              display: 'menu',
+              text: 'Share this content',
+              sources: [
+                {
+                  name: 'facebook',
+                  url: 'https://www.facebook.com/sharer/sharer.php?u=https://pega.com&amp;src=sdkpreparse'
+                },
+                {
+                  name: 'twitter',
+                  url: 'https://twitter.com/intent/tweet?url=https://pega.com&text=Sample%20Share%20Text&via=pega&hashtags=boltDesignSystemRocks!'
+                },
+                {
+                  name: 'linkedin',
+                  url: 'https://www.linkedin.com/shareArticle?url=https://pega.com'
+                },
+                {
+                  name: 'email',
+                  url: 'mailto:?&body=Sample%20Text%20--%20https%3A//pega.com'
+                }
+              ],
+              copy_to_clipboard: {
+                text_to_copy: 'https://pega.com',
+              },
+            } only %}
+          {% endset %}
+          {% include "@bolt-components-popover/popover.twig" with {
+            trigger: popover_trigger,
+            content: popover_content,
+            spacing: "none",
+          } only %}
+        {% endset %}
+
+        {% include '@bolt-components-list/list.twig' with {
+          display: 'inline',
+          align: 'end',
+          spacing: 'small',
+          items: [
+            like_button,
+            share_button,
+          ]
+        } only %}
+      </div>
+    </div>
+  {% endset %}
+
+  {% set item_video %}
+    <bolt-stack spacing="xsmall">
+      {% set video %}
+        <video-js
+          data-account='1900410236'
+          data-player='4fVA8Ojzs'
+          data-embed='default'
+          data-video-id='3974147489001'
+          data-media-duration
+          controls
+          class='c-base-video'></video-js>
+      {% endset %}
+      {% include '@bolt-components-ratio/ratio.twig' with {
+        children: video,
+        ratio: '16/9'
+      } only %}
+    </bolt-stack>
+    {% if phase1 or phase2 %}
+      <bolt-stack spacing="xsmall">
+        {{ action_list }}
+      </bolt-stack>
+    {% endif %}
+    <bolt-stack spacing="xsmall">
+      {% include '@bolt-components-headline/headline.twig' with {
+        text: 'Video title. Sausage brisket meatloaf turducken buffalo, salami chislic.',
+        size: 'large',
+        tag: 'h2',
+        url: 'https://pega.com',
+      } only %}
+    </bolt-stack>
+    {% include '@bolt-components-chip-list/chip-list.twig' with {
+      items: [
+        {
+          text: 'Video',
+        },
+        {
+          text: 'Research',
+        },
+      ],
+      size: 'xsmall',
+    } only %}
+  {% endset %}
+
+  {% set band_content %}
+    {% set year_select %}
+      {% set label %}
+        {% include '@bolt-components-form/form-label.twig' with {
+          title: 'Year',
+          displayType: 'block',
+          attributes: {
+            for: 'year-select',
+            class: 'u-bolt-visuallyhidden',
+          },
+        } only %}
+      {% endset %}
+      {% set select %}
+        {% include '@bolt-components-form/form-select.twig' with {
+          title: 'Country',
+          options: [
+            {
+              type: 'option',
+              value: 'pegaworld-2020',
+              label: 'Pegaworld 2020',
+            },
+            {
+              type: 'option',
+              value: 'pegaworld-2019',
+              label: 'Pegaworld 2019',
+            },
+            {
+              type: 'option',
+              value: 'pegaworld-2018',
+              label: 'Pegaworld 2018',
+            },
+          ],
+          attributes: {
+            id: 'year-select',
+            name: 'year-select',
+          },
+        } only %}
+      {% endset %}
+      {% include '@bolt-components-form/form-element.twig' with {
+        label: label,
+        labelDisplay: 'before',
+        children: select,
+      } only %}
+    {% endset %}
+
+    {% set filter_button %}
+      {% include '@bolt-components-button/button.twig' with {
+        text: 'Filters',
+        style: 'secondary',
+        width: 'full',
+        type: 'button',
+        icon: {
+          name: 'filter',
+          position: 'before',
+        },
+        attributes: {
+          'on-click': 'show',
+          'on-click-target': 'js-bolt-modal',
+        },
+      } only %}
+      {% set apply_button %}
+        {% include '@bolt-components-button/button.twig' with {
+          text: 'Save',
+          size: 'small',
+          type: 'submit',
+        } only %}
+      {% endset %}
+      {% set cancel_button %}
+        {% include '@bolt-components-button/button.twig' with {
+          text: 'Cancel',
+          size: 'small',
+          style: 'text',
+          attributes: {
+            'on-click': 'show',
+            'on-click-target': 'js-bolt-modal',
+          },
+        } only %}
+      {% endset %}
+      {% set modal_content %}
+        {% include '@bolt-components-headline/headline.twig' with {
+          text: 'More filters',
+          size: 'xlarge',
+          tag: 'h2',
+          attributes: {
+            slot: 'header',
+          }
+        } only %}
+        <div class="o-bolt-grid o-bolt-grid--flex o-bolt-grid--matrix">
+          {% set more_filter_input %}
+            <input type="checkbox" id="more-filter-1" class="c-bolt-input c-bolt-input--checkbox">
+            <label for="more-filter-1" class="c-bolt-inline-label c-bolt-inline-label--checkbox">Filter name</label>
+          {% endset %}
+          <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-4/12@small">
+            {% include '@bolt-components-headline/headline.twig' with {
+              text: 'Category',
+              size: 'large',
+              tag: 'h3',
+              attributes: {
+                class: 'u-bolt-margin-bottom-small',
+              },
+            } only %}
+            {% include '@bolt-components-list/list.twig' with {
+              items: [
+                more_filter_input,
+                more_filter_input,
+                more_filter_input,
+                more_filter_input,
+                more_filter_input,
+              ]
+            } only %}
+          </div>
+          <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-4/12@small">
+            {% include '@bolt-components-headline/headline.twig' with {
+              text: 'Category',
+              size: 'large',
+              tag: 'h3',
+              attributes: {
+                class: 'u-bolt-margin-bottom-small',
+              },
+            } only %}
+            {% include '@bolt-components-list/list.twig' with {
+              items: [
+                more_filter_input,
+                more_filter_input,
+                more_filter_input,
+                more_filter_input,
+                more_filter_input,
+              ]
+            } only %}
+          </div>
+          <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-4/12@small">
+            {% include '@bolt-components-headline/headline.twig' with {
+              text: 'Category',
+              size: 'large',
+              tag: 'h3',
+              attributes: {
+                class: 'u-bolt-margin-bottom-small',
+              },
+            } only %}
+            {% include '@bolt-components-list/list.twig' with {
+              items: [
+                more_filter_input,
+                more_filter_input,
+                more_filter_input,
+                more_filter_input,
+                more_filter_input,
+              ]
+            } only %}
+          </div>
+        </div>
+        {% include '@bolt-components-list/list.twig' with {
+          display: 'inline',
+          align: 'end',
+          items: [
+            cancel_button,
+            apply_button,
+          ],
+          attributes: {
+            slot: 'footer',
+          }
+        } only %}
+      {% endset %}
+      {% include '@bolt-components-modal/modal.twig' with {
+        content: modal_content,
+        attributes: {
+          class: 'js-bolt-modal',
+        },
+      } only %}
+    {% endset %}
+
+    {% set sort_select %}
+      {% set label %}
+        {% include '@bolt-components-form/form-label.twig' with {
+          title: 'Sort by',
+          displayType: 'block',
+          attributes: {
+            for: 'sort-select',
+            class: 'u-bolt-visuallyhidden',
+          },
+        } only %}
+      {% endset %}
+      {% set select %}
+        {% include '@bolt-components-form/form-select.twig' with {
+          title: 'Country',
+          options: [
+            {
+              type: 'option',
+              value: 'most-viewed',
+              label: 'Most viewed',
+            },
+            {
+              type: 'option',
+              value: 'most-recent',
+              label: 'Most recent',
+            },
+            {
+              type: 'option',
+              value: 'by-type',
+              label: 'By type',
+            }
+          ],
+          attributes: {
+            id: 'sort-select',
+            name: 'sort-select',
+          },
+        } only %}
+      {% endset %}
+      {% include '@bolt-components-form/form-element.twig' with {
+        label: label,
+        labelDisplay: 'before',
+        children: select,
+      } only %}
+    {% endset %}
+
+    {% if phase1 or phase2 %}
+      <form class="c-bolt-form">
+        {% if phase1 %}
+          {% set form_items = [year_select, filter_button] %}
+        {% else %}
+          {% set form_items = []  %}
+        {% endif %}
+
+        {% set form_list %}
+          {% include '@bolt-components-list/list.twig' with {
+            display: 'inline',
+            align: 'start',
+            items: form_items,
+          } only %}
+        {% endset %}
+
+        <div class="o-bolt-grid o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--small">
+          <div class="o-bolt-grid__cell u-bolt-width-6/12@small u-bolt-flex-grow">
+            {{ form_list }}
+          </div>
+          <div class="o-bolt-grid__cell u-bolt-flex-shrink">
+            {% if phase2 %}
+              {{ sort_select }}
+            {% endif %}
+          </div>
+        </div>
+      </form>
+    {% endif %}
+
+    <div class="o-bolt-grid o-bolt-grid--flex o-bolt-grid--matrix">
+      <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@small u-bolt-width-4/12@medium">
+        {{ item_video }}
+      </div>
+      <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@small u-bolt-width-4/12@medium">
+        {{ item_video }}
+      </div>
+      <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@small u-bolt-width-4/12@medium">
+        {{ item_video }}
+      </div>
+      <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@small u-bolt-width-4/12@medium">
+        {{ item_video }}
+      </div>
+      <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@small u-bolt-width-4/12@medium">
+        {{ item_video }}
+      </div>
+      <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@small u-bolt-width-4/12@medium">
+        {{ item_video }}
+      </div>
+      <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-text-align-center">
+        {% include '@bolt-components-button/button.twig' with {
+          text: 'Load more',
+        } only %}
+      </div>
+    </div>
+  {% endset %}
+
+  {% include '@bolt-components-band/band.twig' with {
+    content: band_content,
+    theme: 'xlight',
+  } only %}
+{% endblock %}

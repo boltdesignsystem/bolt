@@ -1,9 +1,10 @@
 module.exports = {
   components: {
     global: [
-      '@bolt/components-progress-bar',
       '@bolt/core-v3.x',
       '@bolt/global',
+      '@bolt/elements-button',
+      '@bolt/elements-text-link',
       '@bolt/components-accordion',
       '@bolt/components-action-blocks',
       '@bolt/components-animate',
@@ -47,6 +48,7 @@ module.exports = {
       '@bolt/components-page-header',
       '@bolt/components-placeholder',
       '@bolt/components-popover',
+      '@bolt/components-progress-bar',
       '@bolt/components-share',
       '@bolt/components-site',
       '@bolt/components-smooth-scroll',
@@ -64,9 +66,6 @@ module.exports = {
       '@bolt/components-typeahead',
       '@bolt/components-ul',
       '@bolt/components-video',
-      '@bolt/elements-text-link',
-      '@bolt/elements-button',
-      '@bolt/layouts-list',
       '@bolt/analytics-autolink',
     ],
   },

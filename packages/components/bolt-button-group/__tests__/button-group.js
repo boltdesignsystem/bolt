@@ -135,38 +135,4 @@ describe('<bolt-button-group> Component', () => {
     expect(results.ok).toBe(true);
     expect(results.html).toMatchSnapshot();
   });
-
-  test('content items button group', async () => {
-    const results = await render(
-      '@bolt-components-button-group/button-group.twig',
-      {
-        contentItems: [
-          {
-            pattern: 'button',
-            text: 'Example',
-            style: 'primary',
-            size: 'xsmall',
-            iconOnly: true,
-            border_radius: 'full',
-            icon: {
-              name: 'close',
-            },
-          },
-          {
-            pattern: 'button',
-            text: 'About Pega',
-            style: 'secondary',
-            size: 'xsmall',
-            iconOnly: true,
-            icon: {
-              name: 'close',
-            },
-          },
-        ],
-        content: 'This is text with the <bold>tags</bold> stripped.',
-      },
-    );
-    expect(results.ok).toBe(true);
-    expect(results.html).toMatchSnapshot();
-  });
 });

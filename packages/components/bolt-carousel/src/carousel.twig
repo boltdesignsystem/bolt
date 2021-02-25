@@ -1,5 +1,10 @@
 {% set schema = bolt.data.components["@bolt-components-carousel"].schema %}
 
+{# slides_per_view 'auto' is deprecated.  Only numbers are supported #}
+{% if slides_per_view == "auto" %}
+  {% set slides_per_view = 3 %}
+{% endif %}
+
 {% if slides_per_view == 1 %}
   {% set slides_per_view = "1" %}
 {% elseif slides_per_view == 2 %}
@@ -8,8 +13,6 @@
   {% set slides_per_view = "3" %}
 {% elseif slides_per_view == 4 %}
   {% set slides_per_view = "4" %}
-{% elseif slides_per_view == "auto" %}
-  {% set slides_per_view = "auto" %}
 {% else %}
   {% set slides_per_view = "1" %}
 {% endif %}
