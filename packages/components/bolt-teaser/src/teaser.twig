@@ -40,9 +40,14 @@
   {# <replace-with-children {{ inner_attributes.addClass(inner_classes) }}>
   </replace-with-children> #}
 
-  {% if image_trigger %}
+{#
+  TODO:
+  - z-index psuedoelement header link
+  #}
+
+  {% if image %}
     <bolt-stack spacing="xsmall">
-      {{ image_trigger }}
+      {% include '@bolt-components-image/image.twig' with image only %}
     </bolt-stack>
   {% endif %}
 
@@ -134,23 +139,38 @@
     </div>
   </bolt-stack>
 
-  {% if text_trigger %}
+  {% if headline %}
+    {% set headline_content %}
+      {% include '@bolt-components-headline/headline.twig' with headline only %}
+    {% endset %}
+
     <bolt-stack spacing="xsmall">
-      {{ text_trigger }}
+      {% include "@bolt-components-trigger/trigger.twig" with {
+        content: headline_content,
+        cursor: "zoom-in",
+        display: "block",
+        attributes: {
+          "on-click": "show",
+          "on-click-target": modal_id,
+        }
+      } only %}
     </bolt-stack>
   {% endif %}
-
-  {# {% if headline %}
-    <bolt-stack spacing="xsmall">
-      {% include '@bolt-components-headline/headline.twig' with headline only %}
-    </bolt-stack>
-  {% endif %} #}
 
   {% if chip_list %}
     {% include '@bolt-components-chip-list/chip-list.twig' with chip_list only %}
   {% endif %}
 
-  {% if modal %}
-    {{ modal }}
+  {% if modal_content %}
+    {% include "@bolt-components-modal/modal.twig" with {
+      attributes: {
+        class: modal_id,
+      },
+      content: modal_content,
+      width: "optimal",
+      spacing: "none",
+      theme: "none",
+      scroll: "overall",
+    } only %}
   {% endif %}
 </bolt-teaser>

@@ -1,45 +1,3 @@
-{% set thumbnail_img %}
-  {% include '@bolt-components-image/image.twig' with {
-    src: "/images/placeholders/landscape-16x9-mountains.jpg",
-    alt: "Mountains",
-  } only %}
-{% endset %}
-
-{# Teaser 1 #}
-
-{% set headline_1 %}
-  {% include '@bolt-components-headline/headline.twig' with {
-    text: 'This teaser is here to test a video modal.',
-    tag: 'h2',
-    size: 'large',
-    icon: "chevron-right",
-  } only %}
-{% endset %}
-
-{% set image_trigger_1 %}
-  {% include "@bolt-components-trigger/trigger.twig" with {
-    content: thumbnail_img,
-    cursor: "zoom-in",
-    display: "block",
-    attributes: {
-      "on-click": "show",
-      "on-click-target": "js-bolt-modal-001",
-    }
-  } only %}
-{% endset %}
-
-{% set text_trigger_1 %}
-  {% include "@bolt-components-trigger/trigger.twig" with {
-    content: headline_1,
-    cursor: "zoom-in",
-    display: "block",
-    attributes: {
-      "on-click": "show",
-      "on-click-target": "js-bolt-modal-001",
-    }
-  } only %}
-{% endset %}
-
 {% set modal_content %}
   {% set video %}
     <video-js
@@ -59,54 +17,21 @@
   } only %}
 {% endset %}
 
-{% set modal_1 %}
-  {% include "@bolt-components-modal/modal.twig" with {
-    attributes: {
-      class: "js-bolt-modal-001"
-    },
-    content: modal_content,
-    width: "optimal",
-    spacing: "none",
-    theme: "none",
-    scroll: "overall",
-  } only %}
-{% endset %}
-
-{# Teaser 2 #}
-
-{% set headline_2 %}
-  {% include '@bolt-components-headline/headline.twig' with {
-    text: 'This teaser is here to test an article link',
-    tag: 'h2',
-    size: 'large',
-    icon: "chevron-right",
-  } only %}
-{% endset %}
-
-{% set image_trigger_2 %}
-  {% include "@bolt-components-trigger/trigger.twig" with {
-    content: thumbnail_img,
-    cursor: "pointer",
-    display: "block",
-    url: "https://www.pega.com"
-  } only %}
-{% endset %}
-
-{% set text_trigger_2 %}
-  {% include "@bolt-components-trigger/trigger.twig" with {
-    content: headline_2,
-    cursor: "pointer",
-    display: "block",
-    url: "https://www.pega.com"
-  } only %}
-{% endset %}
 
 <div class="o-bolt-grid o-bolt-grid--flex o-bolt-grid--matrix">
   <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@small u-bolt-width-4/12@medium">
     {% include '@bolt-components-teaser/teaser.twig' with {
-      image_trigger: image_trigger_1,
-      text_trigger: text_trigger_1,
-      modal: modal_1,
+      image : {
+        src: "/images/placeholders/landscape-16x9-mountains.jpg",
+        alt: "Mountains",
+      },
+      headline: {
+        text: 'This teaser is here to test a video modal.',
+        tag: 'h2',
+        size: 'large',
+      },
+      modal_id: 'modal-001',
+      modal_content: modal_content,
       chip_list: {
         size: 'xsmall',
         items: [
@@ -122,16 +47,24 @@
   </div>
   <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@small u-bolt-width-4/12@medium">
     {% include '@bolt-components-teaser/teaser.twig' with {
-      image_trigger: image_trigger_2,
-      text_trigger: text_trigger_2,
+      image : {
+        src: "/images/placeholders/landscape-16x9-mountains.jpg",
+        alt: "Mountains",
+      },
+      headline: {
+        text: 'This teaser is here to test an article link.',
+        tag: 'h2',
+        size: 'large',
+      },
+      url: 'https://www.pega.com',
       chip_list: {
         size: 'xsmall',
         items: [
           {
-            text: 'Video',
+            text: 'Article',
           },
           {
-            text: 'Research',
+            text: 'Data',
           },
         ],
       }
