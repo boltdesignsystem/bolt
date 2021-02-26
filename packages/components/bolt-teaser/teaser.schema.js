@@ -1,5 +1,4 @@
 const imageSchema = require('@bolt/components-image/image.schema.js');
-const headlineSchema = require('@bolt/components-headline/headline.schema.js');
 const chipListSchema = require('@bolt/components-chip-list/chip-list.schema.js');
 
 module.exports = {
@@ -13,18 +12,27 @@ module.exports = {
         'A Drupal attributes object. Applies extra HTML attributes to the &lt;bolt-teaser&gt; tag.',
     },
     image: imageSchema,
-    headline: headlineSchema,
-    modal_id: {
-      type: 'string',
-      description: '',
-    },
-    modal_content: {
+    headline: {
       type: 'object',
       description: '',
+      properties: {
+        text: {
+          type: 'string',
+          description: '',
+        },
+        link_attributes: {
+          type: 'object',
+          description: '',
+        },
+      },
     },
-    url: {
+    description: {
       type: 'string',
       description: '',
+    },
+    type: {
+      type: 'string',
+      enum: ['pdf', 'video', 'article'],
     },
     chip_list: chipListSchema,
   },

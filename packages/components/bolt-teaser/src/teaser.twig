@@ -42,16 +42,34 @@
 
 {#
   TODO:
-  - z-index psuedoelement header link
-  #}
+  - meta / share block
+    - like toggler
+    - reference post
+  - video trigger identiification
+  - premium tag
+  - hover content
+    - description and overlay
+    - truncate description
+  - default images and styles based on `type`
+  - remove bolt-stack. refer to post?
+  - make headline object
+    - text
+    - link_attributes
+#}
 
   {% if image %}
     <bolt-stack spacing="xsmall">
-      {% include '@bolt-components-image/image.twig' with image only %}
+    {# wrapper
+      image wrapper #}
+        {% include '@bolt-components-image/image.twig' with image only %}
+      {# content wrapper
+        content
+        / /
+        icon wrapper #}
     </bolt-stack>
   {% endif %}
 
-  <bolt-stack spacing="xsmall">
+  <bolt-stack spacing="xsmall" class="c-bolt-teaser--meta-share">
     <div class="o-bolt-grid o-bolt-grid--flex o-bolt-grid--matrix">
       <div class="o-bolt-grid__cell u-bolt-flex-shrink">
           <small>15 min read</small>
@@ -140,37 +158,31 @@
   </bolt-stack>
 
   {% if headline %}
-    {% set headline_content %}
-      {% include '@bolt-components-headline/headline.twig' with headline only %}
+    {% set icon_chevron_right %}
+      {% include '@bolt-components-icon/icon.twig' with {
+        name: 'chevron-right',
+      } only %}
     {% endset %}
-
     <bolt-stack spacing="xsmall">
-      {% include "@bolt-components-trigger/trigger.twig" with {
-        content: headline_content,
-        cursor: "zoom-in",
-        display: "block",
-        attributes: {
-          "on-click": "show",
-          "on-click-target": modal_id,
-        }
+      {% set _action %}
+        {% include '@bolt-elements-text-link/text-link.twig' with {
+          content: headline.text,
+          expand_click_target: true,
+          icon_after: icon_chevron_right,
+          reversed_underline: true,
+          attributes: headline.link_attributes
+        } only %}
+      {% endset %}
+
+      {% include '@bolt-components-headline/headline.twig' with {
+        text: _action,
+        tag: 'h2',
+        size: 'large'
       } only %}
     </bolt-stack>
   {% endif %}
 
   {% if chip_list %}
     {% include '@bolt-components-chip-list/chip-list.twig' with chip_list only %}
-  {% endif %}
-
-  {% if modal_content %}
-    {% include "@bolt-components-modal/modal.twig" with {
-      attributes: {
-        class: modal_id,
-      },
-      content: modal_content,
-      width: "optimal",
-      spacing: "none",
-      theme: "none",
-      scroll: "overall",
-    } only %}
   {% endif %}
 </bolt-teaser>
