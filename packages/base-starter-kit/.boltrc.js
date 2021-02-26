@@ -36,6 +36,7 @@ module.exports = {
       '@bolt/components-image',
       '@bolt/components-link',
       '@bolt/components-list',
+      '@bolt/components-listing-teaser',
       '@bolt/components-logo',
       '@bolt/components-menu',
       '@bolt/components-modal',
