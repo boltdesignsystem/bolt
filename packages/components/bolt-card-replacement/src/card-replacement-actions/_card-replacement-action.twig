@@ -11,12 +11,14 @@
           attributes: attributes|default({})
         } %}
 
-        {% if icon is not empty and icon != 'none' %}
-          {% set button_props = button_props|merge({ icon: { name: icon } }) %}
-        {% elseif icon is empty and (external == false or external == null) %}
-          {% set button_props = button_props|merge({ icon: { name: "chevron-right" } }) %}
-        {% elseif icon is empty %}
-          {% set button_props = button_props|merge({ icon: { name: "external-link" } }) %}
+        {% if icon != 'none' %}
+          {% if icon %}
+            {% set button_props = button_props|merge({ icon: { name: icon } }) %}
+          {% elseif external == false or external == null %}
+            {% set button_props = button_props|merge({ icon: { name: "chevron-right" } }) %}
+          {% else %}
+            {% set button_props = button_props|merge({ icon: { name: "external-link" } }) %}
+          {% endif %}
         {% endif %}
 
         {% if spacing is not empty %}
@@ -26,6 +28,7 @@
         {% if url is not empty %}
           {% set button_props = button_props|merge({ url: url }) %}
         {% endif %}
+
 
         {% include "@bolt-components-button/button.twig" with button_props only %}
       {% endif %}
