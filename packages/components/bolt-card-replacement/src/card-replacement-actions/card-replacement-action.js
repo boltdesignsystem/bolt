@@ -21,7 +21,7 @@ class BoltCardReplacementAction extends withContext(BoltElement) {
       },
       icon: {
         type: String,
-      }
+      },
     };
   }
 
@@ -52,16 +52,18 @@ class BoltCardReplacementAction extends withContext(BoltElement) {
                 size="${ifDefined(this.spacing ? this.spacing : undefined)}"
               >
                 ${this.slotify('default')}
-
                 ${this.icon !== 'none'
-                  ? html`<bolt-icon
-                  slot="after"
-                  name="${this.icon ? this.icon : (this.external ? 'external-link' : 'chevron-right')}"
-                ></bolt-icon>`
-
-                  : html`${this.slotify('default')}
-                `}
-
+                  ? html`
+                      <bolt-icon
+                        slot="after"
+                        name="${this.icon
+                          ? this.icon
+                          : this.external
+                          ? 'external-link'
+                          : 'chevron-right'}"
+                      ></bolt-icon>
+                    `
+                  : ''}
               </bolt-button>
             `
           : html`
