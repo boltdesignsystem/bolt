@@ -1,0 +1,212 @@
+{% set description %}
+  Training List is a way to display the progression a particular course.
+{% endset %}
+
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>A training list is composed of the Listing Teaser component and the List component with solid separators.</bolt-li>
+    <bolt-li><bolt-code-snippet display="inline">solved_label</bolt-code-snippet> is used for customizing the solved status label text.</bolt-li>
+    <bolt-li><bolt-code-snippet display="inline">locked_label</bolt-code-snippet> is used for customizing the locked status label text.</bolt-li>
+  </bolt-ol>
+{% endset %}
+
+{% set demo %}
+  {% set icon_orbit %}
+    {% include '@bolt-components-icon/icon.twig' with {
+      name: 'brand-orbit',
+      size: 'large',
+      color: 'teal',
+    } only %}
+  {% endset %}
+  {% set icon_meteor %}
+    {% include '@bolt-components-icon/icon.twig' with {
+      name: 'brand-meteor',
+      size: 'large',
+      color: 'orange',
+    } only %}
+  {% endset %}
+  {% set icon_launchpad %}
+    {% include '@bolt-components-icon/icon.twig' with {
+      name: 'launchpad',
+      size: 'large',
+      color: 'navy',
+    } only %}
+  {% endset %}
+  {% set listing_1 %}
+    {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
+      signifier: icon_orbit,
+      headline: {
+        text: 'This module is archived',
+        tag: 'h3',
+        size: 'large',
+        link_attributes: {
+          href: 'https://pega.com'
+        },
+      },
+      meta_items: [
+        'Module',
+        'Completed August 1, 2019',
+        'Last updated July 12, 2019',
+      ],
+      status: {
+        locked: true,
+        locked_label: 'Archived',
+      },
+    } only %}
+  {% endset %}
+  {% set listing_2 %}
+    {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
+      signifier: icon_meteor,
+      headline: {
+        text: 'This challenge is completed',
+        tag: 'h3',
+        size: 'large',
+        link_attributes: {
+          href: 'https://pega.com'
+        },
+      },
+      meta_items: [
+        'Challenge',
+        'Passed 85% July 31, 2019',
+        'Last updated July 12, 2019',
+      ],
+      status: {
+        solved: true,
+        solved_label: 'Completed',
+      },
+    } only %}
+  {% endset %}
+  {% set listing_3 %}
+    {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
+      signifier: icon_launchpad,
+      headline: {
+        text: 'This challenge is completed but it has a warnning message',
+        tag: 'h3',
+        size: 'large',
+        link_attributes: {
+          href: 'https://pega.com'
+        },
+      },
+      meta_items: [
+        'Mission',
+        'Completed August 1, 2019',
+        'Last updated August 11, 2019',
+      ],
+      status: {
+        solved: true,
+        solved_label: 'Completed',
+      },
+      warning: 'This mission has been updated. Please redo to earn the mission badge again.'
+    } only %}
+  {% endset %}
+  {% set listing_4 %}
+    {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
+      signifier: icon_orbit,
+      headline: {
+        text: 'This module has not been completed or archived',
+        tag: 'h3',
+        size: 'large',
+        link_attributes: {
+          href: 'https://pega.com'
+        },
+      },
+      meta_items: [
+        'Module',
+        'Last updated May 21, 2019',
+      ],
+    } only %}
+  {% endset %}
+  {% set listing_5 %}
+    {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
+      signifier: icon_orbit,
+      headline: {
+        text: 'This module is both completed and archived',
+        tag: 'h3',
+        size: 'large',
+        link_attributes: {
+          href: 'https://pega.com'
+        },
+      },
+      meta_items: [
+        'Module',
+        'Completed August 18, 2019',
+        'Last updated August 11, 2019',
+      ],
+      status: {
+        solved: true,
+        solved_label: 'Completed',
+        locked: true,
+        locked_label: 'Archived',
+      },
+    } only %}
+  {% endset %}
+
+  {% include '@bolt-components-list/list.twig' with {
+    spacing: 'small',
+    inset: true,
+    separator: 'solid',
+    items: [
+      listing_1,
+      listing_2,
+      listing_3,
+      listing_4,
+      listing_5,
+    ]
+  } only %}
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+// Set up a particular training
+{% set demo_icon %}
+  {% include '@bolt-components-icon/icon.twig' with {
+    name: 'brand-orbit',
+    size: 'large',
+    color: 'teal',
+  } only %}
+{% endset %}
+{% set demo_training %}
+  {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
+    signifier: demo_icon,
+    headline: {
+      text: 'This training is both completed and archived',
+      tag: 'h3',
+      size: 'large',
+      link_attributes: {
+        href: 'https://pega.com'
+      },
+    },
+    meta_items: [
+      'Module',
+      'Completed August 18, 2019',
+      'Last updated August 11, 2019',
+    ],
+    status: {
+      solved: true,
+      solved_label: 'Completed',
+      locked: true,
+      locked_label: 'Archived',
+    },
+    warning: 'This training has a warning.'
+  } only %}
+{% endset %}
+
+// Render a list to display trainings
+{% include '@bolt-components-list/list.twig' with {
+  spacing: 'small',
+  inset: true,
+  separator: 'solid',
+  items: [
+    demo_training,
+  ]
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Use Case: Academy Training List',
+  description: description,
+  demo: demo,
+  notes: notes,
+  twig_markup: twig_markup,
+} only %}
