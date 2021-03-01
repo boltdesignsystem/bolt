@@ -73,9 +73,9 @@ $bolt-scrollbar-height: 10px;
   display: flex;
   flex-wrap: nowrap;
 
-  &:not(:first-child) {
-    margin-left: var(--bolt-spacing-y-small);
-  }
+  padding-right: var(
+    --bolt-spacing-x-small
+  ); // Use padding, not margin, to allow space for box-shadow
 
   input[type='checkbox']:checked + label {
     // @todo checked style
@@ -87,6 +87,20 @@ $bolt-scrollbar-height: 10px;
   }
 }
 
+$bolt-shadow-blur-radius-horizontal: 1em;
+$bolt-shadow-blur-radius-top: 1em;
+$bolt-shadow-blur-radius-bottom: 1.5em;
+
+.c-base-quick-filters__list,
 .c-base-quick-filters__more {
-  margin-left: var(--bolt-spacing-y-small);
+  padding-top: $bolt-shadow-blur-radius-top;
+  padding-bottom: $bolt-shadow-blur-radius-bottom;
+}
+
+.c-base-quick-filters__list {
+  padding-left: $bolt-shadow-blur-radius-horizontal;
+}
+
+.c-base-quick-filters__more {
+  padding-right: $bolt-shadow-blur-radius-horizontal;
 }
