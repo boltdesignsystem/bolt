@@ -33,5 +33,6 @@ module.exports = {
         useBuiltIns: false,
       },
     ],
+    '@babel/plugin-proposal-nullish-coalescing-operator',
   ],
 };

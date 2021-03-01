@@ -216,11 +216,13 @@ bolt-button[width='full@small'],
  * Border Radius
  */
 @each $radius-name, $radius-value in $bolt-border-radius-values {
-  .c-bolt-button--border-radius-#{$radius-name},
-  .c-bolt-button--border-radius-#{$radius-name}:before,
-  .c-bolt-button--border-radius-#{$radius-name}:after,
-  bolt-button[border-radius='#{$radius-name}'] {
-    border-radius: $radius-value;
+  @if $radius-name == 'full' {
+    .c-bolt-button--border-radius-#{$radius-name},
+    .c-bolt-button--border-radius-#{$radius-name}:before,
+    .c-bolt-button--border-radius-#{$radius-name}:after,
+    bolt-button[border-radius='#{$radius-name}'] {
+      border-radius: $radius-value;
+    }
   }
 }
 

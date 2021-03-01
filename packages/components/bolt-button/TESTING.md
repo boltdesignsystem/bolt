@@ -36,7 +36,7 @@ Functional testing should be performed manually by the QA team across the standa
 
 ## Scenario: style variations
 
-[Style demo](https://boltdesignsystem.com/pattern-lab/patterns/40-components-button-15-button-style-variations/40-components-button-15-button-style-variations.html)
+[Style demo](https://boltdesignsystem.com/pattern-lab/patterns/40-components-button-15-button-hierarchy-variations/40-components-button-15-button-hierarchy-variations.html)
 
 `// This is a purely visual test, use VRT`
 

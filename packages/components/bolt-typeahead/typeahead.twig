@@ -98,7 +98,7 @@
       {% embed "@bolt-components-button/button.twig" with {
         text: this.data.clear_input_text.value,
         iconOnly: true,
-        style: "text",
+        hierarchy: "text",
         disabled: this.data.disabled.value,
         attributes: {
           onclick: "this.previousElementSibling.focus()",
@@ -119,7 +119,7 @@
         {% embed "@bolt-components-button/button.twig" with {
           text: this.data.submit_button_text.value,
           iconOnly: true,
-          style: "text",
+          hierarchy: "text",
           type: "submit",
           disabled: this.data.disabled.value,
         } %}
