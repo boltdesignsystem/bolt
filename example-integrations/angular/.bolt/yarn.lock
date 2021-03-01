@@ -923,7 +923,7 @@
   dependencies:
     browserslist "^4.7.3"
 
-"@bolt/build-tools@^2.13.0", "@bolt/build-tools@^2.24.1":
+"@bolt/build-tools@^2.13.0":
   version "2.24.1"
   resolved "https://registry.yarnpkg.com/@bolt/build-tools/-/build-tools-2.24.1.tgz#fb1588af723dcbb43b999e191a1f39b2c27d7cad"
   integrity sha512-u1UeJ6g3FJtEQrRzSz1aEozhSysWaDw0osNiHwu5hQ2z9TSkOypnhjPTN1U9kq9fGRbtN2/bvnbWiLZ3DMmkkg==
@@ -1177,34 +1177,6 @@
     "@bolt/core-v3.x" "^2.24.0"
     "@bolt/lazy-queue" "^2.23.0"
     clipboard "^2.0.0"
-
-"@bolt/components-critical-css-vars@^2.13.0":
-  version "2.24.1"
-  resolved "https://registry.yarnpkg.com/@bolt/components-critical-css-vars/-/components-critical-css-vars-2.24.1.tgz#cd06b6ce6e2c9c5f3e3eb9d124cabb9b27ba7610"
-  integrity sha512-HT5O3gs6DIIe48kHBHSWKO9G3MMC25zfQbk9TYJLrIem2DyMGpUt3tPr4aa2lWCWLmYgiJcozujtI2kuMg0XnA==
-  dependencies:
-    "@bolt/build-tools" "^2.24.1"
-    "@bolt/core-v3.x" "^2.24.0"
-    fg-loadcss "^2.1.0"
-
-"@bolt/components-critical-css@^2.13.0":
-  version "2.24.1"
-  resolved "https://registry.yarnpkg.com/@bolt/components-critical-css/-/components-critical-css-2.24.1.tgz#286db8f768a36406c3526f8ae875eddb73221fad"
-  integrity sha512-+Z3RfOTAlim4hJ2zxP1B+3/ERaz8l1dwh5XpG/rVgCS+zDbWWtO8azJS7O2llGLUKx2ESKZCxFmqWjP6BfIXYQ==
-  dependencies:
-    "@bolt/build-tools" "^2.24.1"
-    "@bolt/core-v3.x" "^2.24.0"
-    fg-loadcss "^2.1.0"
-
-"@bolt/components-critical-fonts@^2.13.0":
-  version "2.24.1"
-  resolved "https://registry.yarnpkg.com/@bolt/components-critical-fonts/-/components-critical-fonts-2.24.1.tgz#609327553cb2a8a3196aa69a5bdccc4b2485642b"
-  integrity sha512-MVkOnIW777IIwxtn6uPnw2p1OQO680lm9SZkt8BxJmEN0GUFf5uqiCfXIRVeJ0wfZDUmX4jm4/nK47hMzzgg6A==
-  dependencies:
-    "@bolt/components-headline" "^2.24.1"
-    "@bolt/core-v3.x" "^2.24.0"
-    "@bolt/global" "^2.24.1"
-    fontfaceobserver "^2.0.13"
 
 "@bolt/components-device-viewer@^2.13.0":
   version "2.24.1"
@@ -1633,7 +1605,7 @@
   optionalDependencies:
     webpack "^4.0.0 || ^5.0.0"
 
-"@bolt/global@^2.13.0", "@bolt/global@^2.24.1":
+"@bolt/global@^2.13.0":
   version "2.24.1"
   resolved "https://registry.yarnpkg.com/@bolt/global/-/global-2.24.1.tgz#5dfd1116411d1ff86e55092e3fa30b02de714178"
   integrity sha512-M6TCl2jaDZDKsBNA8OF57Kj0GWkZ86AmsZwaZDFL1OTgSc/ucUf60rZOjc2GiRwd5q6Ydlnq16Mu4+CsXmMhxg==
@@ -5565,11 +5537,6 @@ fd-slicer@~1.1.0:
   dependencies:
     pend "~1.2.0"
 
-fg-loadcss@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/fg-loadcss/-/fg-loadcss-2.1.0.tgz#b3cbdf2ab5ee82a13ddb26340f10e3ac43fe2233"
-  integrity sha512-HpvR2uRoKvrYAEwimw+k4Fr2NVHYPfld5Lc/f9uy3mKeUTXhS5urL24XA2rqyq5b2i410EXCLir4Uhsb8J1QaQ==
-
 fibers@^4.0.2:
   version "4.0.3"
   resolved "https://registry.yarnpkg.com/fibers/-/fibers-4.0.3.tgz#dda5918280a48507f5d8a96dd9a525e8f4a532e2"
@@ -5846,11 +5813,6 @@ follow-redirects@1.5.10:
   integrity sha512-0V5l4Cizzvqt5D44aTXbFZz+FtyXV1vrDN6qrelxtfYQKW0KO0W2T/hkE8xvGa/540LkZlkaUjO4ailYTFtHVQ==
   dependencies:
     debug "=3.1.0"
-
-fontfaceobserver@^2.0.13:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/fontfaceobserver/-/fontfaceobserver-2.1.0.tgz#e2705d293e2c585a6531c2a722905657317a2991"
-  integrity sha512-ReOsO2F66jUa0jmv2nlM/s1MiutJx/srhAe2+TE8dJCMi02ZZOcCTxTCQFr3Yet+uODUtnr4Mewg+tNQ+4V1Ng==
 
 for-in@^1.0.2:
   version "1.0.2"
@@ -10233,9 +10195,9 @@ pretty-ms@^5.0.0:
     parse-ms "^2.1.0"
 
 prismjs@^1.17.1:
-  version "1.21.0"
-  resolved "https://registry.yarnpkg.com/prismjs/-/prismjs-1.21.0.tgz#36c086ec36b45319ec4218ee164c110f9fc015a3"
-  integrity sha512-uGdSIu1nk3kej2iZsLyDoJ7e9bnPzIgY0naW/HdknGj61zScaprVEVGHrPoXqI+M9sP0NDnTK2jpkvmldpuqDw==
+  version "1.23.0"
+  resolved "https://registry.yarnpkg.com/prismjs/-/prismjs-1.23.0.tgz#d3b3967f7d72440690497652a9d40ff046067f33"
+  integrity sha512-c29LVsqOaLbBHuIbsTxaKENh1N2EQBOHaWv7gkHN4dgRbxSREqDnDbtFJYdpPauS4YCplMSNCABQ6Eeor69bAA==
   optionalDependencies:
     clipboard "^2.0.0"
 
