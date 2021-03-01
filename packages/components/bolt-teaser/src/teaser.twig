@@ -45,23 +45,18 @@
   - meta / share block
     - like toggler
     - reference post
-  - video trigger identiification
-  - premium tag
   - remove bolt-stack. refer to post?
 #}
 
   {% if image %}
     <bolt-teaser-media class="c-bolt-teaser-media">
+
       {% include '@bolt-components-image/image.twig' with image only %}
 
-      {% if this.data.description.value %}
-        <bolt-teaser-description-wrapper class="c-bolt-teaser-description-wrapper">
-          <bolt-teaser-description class="c-bolt-teaser-description">
-            <p>
-              {{ this.data.description.value|length > 100 ? this.data.description.value|slice(0, 100) ~ '...' : this.data.description.value }}
-            </p>
-          </bolt-teaser-description>
-        </bolt-teaser-description-wrapper>
+      {% if premium %}
+        <bolt-teaser-premium class="c-bolt-teaser-premium">
+          Premium
+        </bolt-teaser-premium>
       {% endif %}
 
       {% if type %}
@@ -89,6 +84,16 @@
             } only %}
           {% endif %}
         </bolt-teaser-type>
+      {% endif %}
+
+      {% if this.data.description.value %}
+        <bolt-teaser-description-wrapper class="c-bolt-teaser-description-wrapper">
+          <bolt-teaser-description class="c-bolt-teaser-description">
+            <p>
+              {{ this.data.description.value|length > 100 ? this.data.description.value|slice(0, 100) ~ '...' : this.data.description.value }}
+            </p>
+          </bolt-teaser-description>
+        </bolt-teaser-description-wrapper>
       {% endif %}
 
     </bolt-teaser-media>

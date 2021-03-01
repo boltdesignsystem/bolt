@@ -30,6 +30,10 @@ module.exports = {
       type: 'string',
       description: '',
     },
+    premium: {
+      type: 'boolean',
+      description: '',
+    },
     type: {
       type: 'string',
       enum: ['pdf', 'video', 'article'],

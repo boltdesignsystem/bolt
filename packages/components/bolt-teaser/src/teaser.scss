@@ -29,6 +29,7 @@ bolt-teaser {
   &-media {
     display: block;
     position: relative;
+    overflow: hidden;
   }
 
   &-description-wrapper {
@@ -61,6 +62,18 @@ bolt-teaser {
     position: absolute;
     bottom: var(--bolt-spacing-y-xsmall);
     left: var(--bolt-spacing-x-xsmall);
+  }
+
+  &-premium {
+    position: absolute;
+    top: 1rem;
+    left: -1.5rem;
+    transform: rotate(-45deg);
+    padding: var(--bolt-spacing-y-xxsmall) var(--bolt-spacing-x-medium);
+    font-size: var(--bolt-type-font-size-xsmall);
+    font-weight: var(--bolt-type-font-weight-semibold);
+    color: var(--bolt-color-navy);
+    background-color: var(--bolt-color-teal-light);
   }
 
   // > *:not(:last-child) {
