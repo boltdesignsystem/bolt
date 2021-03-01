@@ -37,6 +37,7 @@
       image : {
         src: "/images/placeholders/landscape-16x9-mountains.jpg",
         alt: "Mountains",
+        ratio: '16/9'
       },
       premium: true,
       headline: {
@@ -64,10 +65,6 @@
   </div>
   <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@small u-bolt-width-4/12@large">
     {% include '@bolt-components-teaser/teaser.twig' with {
-      image : {
-        src: "/images/placeholders/landscape-16x9-mountains.jpg",
-        alt: "Mountains",
-      },
       headline: {
         text: 'This teaser is here to test an article link.',
         link_attributes: {

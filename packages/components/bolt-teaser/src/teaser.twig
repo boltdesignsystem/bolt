@@ -48,56 +48,59 @@
   - remove bolt-stack. refer to post?
 #}
 
-  {% if image %}
-    <bolt-teaser-media class="c-bolt-teaser-media">
 
+  <bolt-teaser-media class="c-bolt-teaser-media">
+    {% if image %}
       {% include '@bolt-components-image/image.twig' with image only %}
+    {% else %}
+      {% include "@bolt-components-ratio/ratio.twig" with {
+        ratio: "16/9"
+      } only %}
+    {% endif %}
 
-      {% if premium %}
-        <bolt-teaser-premium class="c-bolt-teaser-premium">
-          Premium
-        </bolt-teaser-premium>
-      {% endif %}
+    {% if premium %}
+      <bolt-teaser-premium class="c-bolt-teaser-premium">
+        Premium
+      </bolt-teaser-premium>
+    {% endif %}
 
-      {% if type %}
-        <bolt-teaser-type>
-          {% if type == 'video' %}
-            {% include "@bolt-components-icon/icon.twig" with {
-              name: "asset-video",
-              background: "square",
-              size: "small",
-              color: "yellow",
-            } only %}
-          {% elseif type == 'pdf' %}
-            {% include "@bolt-components-icon/icon.twig" with {
-              name: "asset-media",
-              background: "square",
-              size: "small",
-              color: "yellow",
-            } only %}
-          {% elseif type == 'article' %}
-            {% include "@bolt-components-icon/icon.twig" with {
-              name: "asset-text",
-              background: "square",
-              size: "small",
-              color: "yellow",
-            } only %}
-          {% endif %}
-        </bolt-teaser-type>
-      {% endif %}
+    {% if type %}
+      <bolt-teaser-type>
+        {% if type == 'video' %}
+          {% include "@bolt-components-icon/icon.twig" with {
+            name: "asset-video",
+            background: "square",
+            size: "small",
+            color: "yellow",
+          } only %}
+        {% elseif type == 'pdf' %}
+          {% include "@bolt-components-icon/icon.twig" with {
+            name: "asset-media",
+            background: "square",
+            size: "small",
+            color: "yellow",
+          } only %}
+        {% elseif type == 'article' %}
+          {% include "@bolt-components-icon/icon.twig" with {
+            name: "asset-text",
+            background: "square",
+            size: "small",
+            color: "yellow",
+          } only %}
+        {% endif %}
+      </bolt-teaser-type>
+    {% endif %}
 
-      {% if this.data.description.value %}
-        <bolt-teaser-description-wrapper class="c-bolt-teaser-description-wrapper">
-          <bolt-teaser-description class="c-bolt-teaser-description">
-            <p>
-              {{ this.data.description.value|length > 100 ? this.data.description.value|slice(0, 100) ~ '...' : this.data.description.value }}
-            </p>
-          </bolt-teaser-description>
-        </bolt-teaser-description-wrapper>
-      {% endif %}
-
-    </bolt-teaser-media>
-  {% endif %}
+    {% if this.data.description.value %}
+      <bolt-teaser-description-wrapper class="c-bolt-teaser-description-wrapper">
+        <bolt-teaser-description class="c-bolt-teaser-description">
+          <p>
+            {{ this.data.description.value|length > 100 ? this.data.description.value|slice(0, 100) ~ '...' : this.data.description.value }}
+          </p>
+        </bolt-teaser-description>
+      </bolt-teaser-description-wrapper>
+    {% endif %}
+  </bolt-teaser-media>
 
   <bolt-stack spacing="xsmall" class="c-bolt-teaser--meta-share">
     <div class="o-bolt-grid o-bolt-grid--flex o-bolt-grid--matrix">
