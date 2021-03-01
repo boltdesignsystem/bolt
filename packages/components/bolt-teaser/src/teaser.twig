@@ -47,16 +47,13 @@
     - reference post
   - video trigger identiification
   - premium tag
-  - default images and styles based on `type`
   - remove bolt-stack. refer to post?
-  - make headline object
-    - text
-    - link_attributes
 #}
 
   {% if image %}
     <bolt-teaser-media class="c-bolt-teaser-media">
       {% include '@bolt-components-image/image.twig' with image only %}
+
       {% if this.data.description.value %}
         <bolt-teaser-description-wrapper class="c-bolt-teaser-description-wrapper">
           <bolt-teaser-description class="c-bolt-teaser-description">
@@ -65,8 +62,36 @@
             </p>
           </bolt-teaser-description>
         </bolt-teaser-description-wrapper>
-      </bolt-teaser-media>
-    {% endif %}
+      {% endif %}
+
+      {% if type %}
+        <bolt-teaser-type>
+          {% if type == 'video' %}
+            {% include "@bolt-components-icon/icon.twig" with {
+              name: "asset-video",
+              background: "square",
+              size: "small",
+              color: "yellow",
+            } only %}
+          {% elseif type == 'pdf' %}
+            {% include "@bolt-components-icon/icon.twig" with {
+              name: "asset-media",
+              background: "square",
+              size: "small",
+              color: "yellow",
+            } only %}
+          {% elseif type == 'article' %}
+            {% include "@bolt-components-icon/icon.twig" with {
+              name: "asset-text",
+              background: "square",
+              size: "small",
+              color: "yellow",
+            } only %}
+          {% endif %}
+        </bolt-teaser-type>
+      {% endif %}
+
+    </bolt-teaser-media>
   {% endif %}
 
   <bolt-stack spacing="xsmall" class="c-bolt-teaser--meta-share">
