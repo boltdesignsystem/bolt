@@ -1,21 +1,27 @@
-import { declarativeClickHandler } from '@bolt/core-v3.x/utils';
-
 export default class ClickHandler {
   constructor(el) {
-    this.el = el;
-    this.setupClickHandler();
+    el.addEventListener('click', () => {
+      this.handleClick(el);
+    });
   }
 
-  setupClickHandler() {
-    // The original `declarativeClickHandler` was designed for web components,
-    // where props are automatically turned into node data. We're adapting it
-    // to work with non-WCs by manually setting that data from attributes.
+  handleClick(el) {
+    const handler = el.dataset.boltHandler;
+    const target = el.dataset.boltTarget;
 
-    this.el.onClick = this.el.dataset.onClick;
-    this.el.onClickTarget = this.el.dataset.onClickTarget;
-
-    this.el.addEventListener('click', () => {
-      declarativeClickHandler(this.el);
-    });
+    if (handler) {
+      const els = document.querySelectorAll(target);
+      if (els.length) {
+        els.forEach(el => {
+          if (el[handler]) {
+            el[handler]();
+          }
+        });
+      } else if (window[handler]) {
+        window[handler]();
+      } else if (el[handler]) {
+        el[handler]();
+      }
+    }
   }
 }

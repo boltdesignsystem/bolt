@@ -86,6 +86,20 @@ class BoltModal extends BoltElement {
       this.dialog.nodeName === 'DIALOG';
 
     this.dispatchEvent(new CustomEvent('modal:ready'));
+
+    this.setupTriggers();
+  }
+
+  setupTriggers() {
+    const triggers = document.querySelectorAll('[data-bolt-toggle="modal"]');
+    triggers.forEach(el => {
+      const target = el.dataset.boltTarget;
+      if (document.querySelector(target) === this) {
+        el.addEventListener('click', () => {
+          this.toggle();
+        });
+      }
+    });
   }
 
   get _toggleEventOptions() {

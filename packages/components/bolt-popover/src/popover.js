@@ -42,6 +42,7 @@ class BoltPopover extends BoltElement {
     this.uuid = this.uuid || Math.floor(10000 + Math.random() * 90000);
     this.hide = this.hide.bind(this);
     this.show = this.show.bind(this);
+    this.handleClick = this.handleClick.bind(this);
     this.handleExternalClick = this.handleExternalClick.bind(this);
   }
 
@@ -102,14 +103,14 @@ class BoltPopover extends BoltElement {
   }
 
   handleExternalClick(e) {
-    if (
-      !(
-        e.target.closest('bolt-popover') &&
-        e.target.closest('bolt-popover') === this
-      )
-    ) {
-      this.hide();
-    }
+    // if (
+    //   !(
+    //     e.target.closest('bolt-popover') &&
+    //     e.target.closest('bolt-popover') === this
+    //   )
+    // ) {
+    //   this.hide();
+    // }
   }
 
   handleClick(e) {
@@ -180,12 +181,26 @@ class BoltPopover extends BoltElement {
   }
 
   setupPlacement() {
-    this.popover = this.renderRoot.querySelector('.c-bolt-popover');
+    const triggers = document.querySelectorAll('[data-bolt-toggle="popover"]');
+    let popoverTrigger;
+
+    triggers.forEach(el => {
+      const target = el.dataset.boltTarget;
+      if (document.querySelector(target) === this) {
+        popoverTrigger = el;
+        el.addEventListener('click', this.handleClick);
+      }
+    });
+
+    const boundaryEl = popoverTrigger || this;
+
+    this.popover =
+      popoverTrigger || this.renderRoot.querySelector('.c-bolt-popover');
     this.content = this.renderRoot.querySelector('.c-bolt-popover__content');
 
     this.$boundary =
       this.$boundary ||
-      (this.boundary && this.closest(this.boundary)) ||
+      (this.boundary && boundaryEl.closest(this.boundary)) ||
       undefined;
 
     if (this.popover && this.content) {

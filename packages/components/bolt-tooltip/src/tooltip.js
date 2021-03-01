@@ -34,6 +34,8 @@ class BoltTooltip extends BoltElement {
     this.isHovering = false;
     this.textContentLength = 0;
     this.uuid = this.uuid || Math.floor(10000 + Math.random() * 90000);
+    this.handleHover = this.handleHover.bind(this);
+    this.handleFocus = this.handleFocus.bind(this);
   }
 
   static get styles() {
@@ -170,12 +172,29 @@ class BoltTooltip extends BoltElement {
   }
 
   setupPlacement() {
-    this.tooltip = this.renderRoot.querySelector('.c-bolt-tooltip');
+    const triggers = document.querySelectorAll('[data-bolt-toggle="tooltip"]');
+    let tooltipTrigger;
+
+    triggers.forEach(el => {
+      const target = el.dataset.boltTarget;
+      if (document.querySelector(target) === this) {
+        tooltipTrigger = el;
+        el.addEventListener('mouseenter', this.handleHover);
+        el.addEventListener('mouseleave', this.handleHover);
+        el.addEventListener('focusin', this.handleFocus);
+        el.addEventListener('focusout', this.handleFocus);
+      }
+    });
+
+    const boundaryEl = tooltipTrigger || this;
+
+    this.tooltip =
+      tooltipTrigger || this.renderRoot.querySelector('.c-bolt-tooltip');
     this.content = this.renderRoot.querySelector('.c-bolt-tooltip__content');
 
     this.$boundary =
       this.$boundary ||
-      (this.boundary && this.closest(this.boundary)) ||
+      (this.boundary && boundaryEl.closest(this.boundary)) ||
       undefined;
 
     if (this.tooltip && this.content) {

@@ -20,16 +20,9 @@
       slot: "footer",
     }
   } only %}
-{% endset %}
+  <button data-bolt-toggle="modal" data-bolt-target=".js-bolt-modal" class="e-bolt-button">Close Modal (Element)</button>
 
-{% include "@bolt-components-button/button.twig" with {
-  text: "Open Modal",
-  size: "small",
-  attributes: {
-    "on-click": "show",
-    "on-click-target": "js-bolt-modal",
-  },
-} only %}
+{% endset %}
 
 {% include "@bolt-components-modal/modal.twig" with {
   content: modal_content,
@@ -37,3 +30,72 @@
     class: "js-bolt-modal",
   },
 } only %}
+
+
+{# BEGIN: JS demo #}
+<div style="padding: var(--bolt-spacing-y-medium) var(--bolt-spacing-x-medium)">
+  <bolt-stack spacing="large">
+    <bolt-stack>
+      <bolt-text headline font-size="xxlarge" tag="h2">Declarative click-handler</bolt-text>
+      <p>A multi-purpose utility to call a function on a target element, the window, or the click target itself.</p>
+    </bolt-stack>
+
+    <bolt-stack>
+      <bolt-text headline font-size="large" tag="h3">Current</bolt-text>
+      <p>Works only on Button, Link and other WCs.</p>
+      <bolt-button on-click="show" on-click-target="js-bolt-modal">Open Modal (Component)</bolt-button>
+    </bolt-stack>
+
+    <bolt-stack>
+      <bolt-text headline font-size="large" tag="h3">New</bolt-text>
+      <p>Works anywhere with use of data-attributes.</p>
+      <button data-bolt-module="click-handler" data-bolt-handler="show" data-bolt-target=".js-bolt-modal" class="e-bolt-button">Open Modal (Element)</button>
+      <button data-bolt-module="click-handler" data-bolt-handler="someGlobalThing" class="e-bolt-button">Call global function</button>
+      <button data-bolt-module="click-handler" data-bolt-handler="testMethod" class="e-bolt-button" id="js-bolt-demo-btn">Call method on this element</button>
+
+      <script>
+        function someGlobalThing() {
+          console.log('global function called');
+        }
+      </script>
+      <script>
+        const btn = document.querySelector('#js-bolt-demo-btn');
+        btn.testMethod = () => {
+          console.log('el method called')
+        }
+      </script>
+    </bolt-stack>
+  </bolt-stack>
+
+  <bolt-stack spacing="large">
+    <bolt-stack>
+      <bolt-text headline font-size="xxlarge" tag="h2">Component-specific APIs with data-attributes</bolt-text>
+      <p>Use data-attributes to turn any element into a component trigger.</p>
+      </bolt-stack>
+      <bolt-stack>
+      <bolt-text headline font-size="large" tag="h3">Modal</bolt-text>
+      <button data-bolt-toggle="modal" data-bolt-target=".js-bolt-modal" class="e-bolt-button">Open Modal (Element)</button>
+    </bolt-stack>
+
+    <bolt-stack>
+      <bolt-text headline font-size="large" tag="h3">Tooltip</bolt-text>
+      <button data-bolt-toggle="tooltip" data-bolt-placement="bottom" data-bolt-target=".js-bolt-tooltip" class="e-bolt-button">Open Tooltip (Element)</button>
+      {# <button data-bolt-toggle="tooltip" data-bolt-placement="bottom" data-bolt-title="This is the tooltip content" class="e-bolt-button">Open Tooltip (Element)</button> #}
+    </bolt-stack>
+
+    <bolt-stack>
+      <bolt-text headline font-size="large" tag="h3">Popover</bolt-text>
+      <button data-bolt-toggle="popover" data-bolt-placement="bottom" data-bolt-target=".js-bolt-popover" class="e-bolt-button">Open Popover (Element)</button>
+    </bolt-stack>
+  </bolt-stack>
+
+  <div style="height: 100vw"><!-- EMPTY SPACE --></div>
+
+  <bolt-popover class="js-bolt-popover">
+    <div slot="content">This is some popover content</div>
+  </bolt-popover>
+
+  <bolt-tooltip class="js-bolt-tooltip">
+    <div slot="content">This is some tooltip content</div>
+  </bolt-tooltip>
+</div>
