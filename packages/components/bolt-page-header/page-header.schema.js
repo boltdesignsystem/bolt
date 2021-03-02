@@ -44,6 +44,11 @@ module.exports = {
       description:
         'Set the main call-to-action. Button element is expected here.',
     },
+    theme: {
+      type: 'string',
+      description: 'Set the color theme of the page header.',
+      enum: ['xlight', 'light', 'dark', 'xdark'],
+    },
     static: {
       type: 'boolean',
       description: 'Set the page header to be static instead of sticky.',

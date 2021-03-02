@@ -13,6 +13,7 @@
 {% set classes = [
   'c-bolt-page-header',
   static ? 'c-bolt-page-header--static',
+  theme ? 't-bolt-' ~ theme,
 ] %}
 
 {# Setting the desktop breakpoint to work with JS. See page-header.js #}
@@ -29,6 +30,11 @@
       </{{ logo_tag }}>
     {% endif %}
     <div class="c-bolt-page-header__toolbar">
+      {% if subheadline %}
+        <div class="c-bolt-page-header__subheadline">
+          {{ subheadline }}
+        </div>
+      {% endif %}
       {{ content }}
       {% if cta %}
         <div class="c-bolt-page-header__cta">
