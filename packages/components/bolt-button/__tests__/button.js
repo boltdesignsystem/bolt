@@ -138,6 +138,18 @@ describe('button', () => {
     expect(results.html).toMatchSnapshot();
   });
 
+  test('Button will add `download` attribute to inner anchor element', async () => {
+    const results = await render('@bolt-components-button/button.twig', {
+      text: 'Button with download link',
+      url: 'download.pdf',
+      attributes: {
+        download: 'download.pdf',
+      },
+    });
+    expect(results.ok).toBe(true);
+    expect(results.html).toMatchSnapshot();
+  });
+
   test('Button with inner classes via Drupal Attributes', async () => {
     const results = await render('@bolt-components-button/button.twig', {
       text: 'Button with inner classes',
