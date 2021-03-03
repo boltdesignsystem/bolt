@@ -43,7 +43,9 @@
       {% endif %}
     </div>
   </div>
-  <div class="c-bolt-page-header__secondary">
-    {{ secondary_content }}
-  </div>
+  {% if secondary_content %}
+    <div class="c-bolt-page-header__secondary">
+      {{ secondary_content }}
+    </div>
+  {% endif %}
 </header>
