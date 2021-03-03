@@ -60,9 +60,9 @@ if (missionRatingSubmit) {
 const quickFiltersScroll = el => {
   if (!el) return;
 
-  const wrapper = el.closest('.js-base-quick-filters-scroll-wrapper');
+  const wrapper = el.closest('.js-www-quick-filters-scroll-wrapper');
 
-  function handleScroll() {
+  const handleScroll = () => {
     const wrapperWidth = wrapper.offsetWidth;
     const buffer = 1; // Use buffer due to sub-pixel rounding differences between scroll and wrapper width
     const notStart = el.scrollLeft > buffer;
@@ -86,7 +86,7 @@ const quickFiltersScroll = el => {
       wrapper.classList.remove('not-start');
       wrapper.classList.remove('not-end');
     }
-  }
+  };
 
   el.addEventListener('scroll', handleScroll, { passive: true });
   window.addEventListener('resize', handleScroll, { passive: true });
@@ -95,7 +95,7 @@ const quickFiltersScroll = el => {
 };
 
 const quickFiltersScrollEl = document.querySelector(
-  '.js-base-quick-filters-scroll',
+  '.js-www-quick-filters-scroll',
 );
 
 if (quickFiltersScrollEl) {

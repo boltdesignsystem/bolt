@@ -1,15 +1,18 @@
 @import '@bolt/core-v3.x';
 
-$bolt-scrollbar-height: 10px;
+$www-quick-filters-scrollbar-height: 10px;
+$www-quick-filters-shadow-size-horizontal: 1em;
+$www-quick-filters-shadow-size-top: 1em;
+$www-quick-filters-shadow-size-bottom: 1.5em;
 
-.c-base-quick-filters {
+.c-www-quick-filters {
   display: flex;
   justify-content: center;
   white-space: nowrap;
   width: 100%;
 }
 
-.c-base-quick-filters__list-wrapper {
+.c-www-quick-filters__list-wrapper {
   flex-basis: auto;
   flex-grow: 0;
   flex-shrink: 1;
@@ -23,20 +26,29 @@ $bolt-scrollbar-height: 10px;
     position: absolute;
     top: 0;
     width: var(--bolt-spacing-x-medium);
-    height: calc(100% - #{$bolt-scrollbar-height});
+    height: calc(100% - #{$www-quick-filters-scrollbar-height});
     pointer-events: none;
     transition: opacity 0.2s ease;
   }
 
+  // 1. Safari bug, must use rgba instead of "transparent", @see https://stackoverflow.com/questions/38391457/linear-gradient-to-transparent-bug-in-latest-safari
   &:before {
     left: 0;
     z-index: 1;
-    background-image: linear-gradient(to left, transparent, var(--m-bolt-bg));
+    background-image: linear-gradient(
+      to left,
+      rgba(255, 255, 255, 0),
+      var(--m-bolt-bg)
+    ); /* [1] */
   }
 
   &:after {
     right: 0;
-    background-image: linear-gradient(to right, transparent, var(--m-bolt-bg));
+    background-image: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0),
+      var(--m-bolt-bg)
+    ); /* [1] */
   }
 
   &.is-overflowing {
@@ -47,7 +59,7 @@ $bolt-scrollbar-height: 10px;
   }
 }
 
-.c-base-quick-filters__list {
+.c-www-quick-filters__list {
   overflow-x: scroll;
   display: flex;
   margin: 0;
@@ -55,7 +67,7 @@ $bolt-scrollbar-height: 10px;
   scrollbar-color: var(--bolt-color-gray) var(--bolt-color-gray-xlight);
 
   &::-webkit-scrollbar {
-    height: $bolt-scrollbar-height;
+    height: $www-quick-filters-scrollbar-height;
   }
 
   &::-webkit-scrollbar-track {
@@ -69,7 +81,25 @@ $bolt-scrollbar-height: 10px;
   }
 }
 
-.c-base-quick-filters__list-item {
+.c-www-quick-filters__list,
+.c-www-quick-filters__more {
+  padding-top: $www-quick-filters-shadow-size-top;
+  padding-bottom: $www-quick-filters-shadow-size-bottom;
+
+  .e-bolt-button--secondary {
+    border: 1px solid transparent; // avoid shift when input is checked
+  }
+}
+
+.c-www-quick-filters__list {
+  padding-left: $www-quick-filters-shadow-size-horizontal;
+}
+
+.c-www-quick-filters__more {
+  padding-right: $www-quick-filters-shadow-size-horizontal;
+}
+
+.c-www-quick-filters__list-item {
   display: flex;
   flex-wrap: nowrap;
 
@@ -77,30 +107,14 @@ $bolt-scrollbar-height: 10px;
     --bolt-spacing-x-small
   ); // Use padding, not margin, to allow space for box-shadow
 
-  input[type='checkbox']:checked + label {
-    // @todo checked style
+  .c-bolt-input:checked + .e-bolt-button--secondary {
+    color: var(--bolt-color-navy-light);
+    border: 1px solid var(--bolt-color-navy-light);
   }
 
-  label:focus,
-  label:active {
-    // @todo focus/active style
+  .c-bolt-input:focus + .e-bolt-button--secondary {
+    transform: translate3d(0, 0, 0);
+    outline: var(--bolt-focus-ring);
+    outline-offset: 2px;
   }
-}
-
-$bolt-shadow-blur-radius-horizontal: 1em;
-$bolt-shadow-blur-radius-top: 1em;
-$bolt-shadow-blur-radius-bottom: 1.5em;
-
-.c-base-quick-filters__list,
-.c-base-quick-filters__more {
-  padding-top: $bolt-shadow-blur-radius-top;
-  padding-bottom: $bolt-shadow-blur-radius-bottom;
-}
-
-.c-base-quick-filters__list {
-  padding-left: $bolt-shadow-blur-radius-horizontal;
-}
-
-.c-base-quick-filters__more {
-  padding-right: $bolt-shadow-blur-radius-horizontal;
 }
