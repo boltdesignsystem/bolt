@@ -55,7 +55,7 @@
     "postinstall": "patch-package && npx lerna run postbootstrap",
     "jest": "jest --maxWorkers=3 --all --colors",
     "lint": "npm-run-all --parallel lint:*",
-    "lint:js": "eslint '**/*.js' --ignore-pattern example-integrations",
+    "lint:js": "eslint '**/*.js'",
     "lint:scss": "stylelint '**/*.scss' --config .stylelintrc",
     "release": "node ./auto-release.js",
     "serve": "node packages/servers/default-server",
