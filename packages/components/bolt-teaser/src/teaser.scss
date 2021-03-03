@@ -100,6 +100,15 @@
       var(--bolt-type-line-height-xsmall) *
         var(--bolt-type-line-height-multiplier-regular)
     );
+    text-align: right;
+  }
+
+  &__meta-action-item {
+    display: inline-block;
+
+    &:not(:first-child) {
+      margin-left: var(--bolt-spacing-y-xsmall);
+    }
   }
 
   @include bolt-mq(small) {

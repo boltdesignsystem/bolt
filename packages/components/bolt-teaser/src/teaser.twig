@@ -22,7 +22,6 @@
   {#
     TODO:
     - whats wrong with ratio?
-    - fix font size setting in list
     - make sure this uses the validation variables when it can.
     - refactor the stylesheet.
     - make the schema.
@@ -132,27 +131,19 @@
             {% endset %}
           {% endif %}
 
-          {# <div class="c-bolt-teaser__meta-action-items">
-            {{ like_button }}
-            {{ share_button }}
-          </div> #}
-
-          {% set _list_items = [] %}
-
-          {% if like_button %}
-            {% set _list_items = _list_items|merge([like_button]) %}
-          {% endif %}
-          {% if share_menu %}
-            {% set _list_items = _list_items|merge([share_button]) %}
-          {% endif %}
-
-          {% if _list_items is not empty %}
-            {% include '@bolt-components-list/list.twig' with {
-              display: 'inline',
-              align: 'end',
-              spacing: 'small',
-              items: _list_items
-            } only %}
+          {% if like_button or share_button %}
+            <div class="c-bolt-teaser__meta-action-items">
+              {% if like_button %}
+                <div class="c-bolt-teaser__meta-action-item">
+                  {{ like_button }}
+                </div>
+              {% endif %}
+              {% if share_button %}
+                <div class="c-bolt-teaser__meta-action-item">
+                  {{ share_button }}
+                </div>
+              {% endif %}
+            </div>
           {% endif %}
         </div>
       </div>
