@@ -126,42 +126,44 @@
 
 
   <div class="c-www-quick-filters">
-    <div class="c-www-quick-filters__list-wrapper js-www-quick-filters-scroll-wrapper">
-      <ul class="c-www-quick-filters__list js-www-quick-filters-scroll">
+    <div class="c-www-quick-filters__list-wrapper">
+      <ul class="c-www-quick-filters__list">
         <li class="c-www-quick-filters__list-item">
-          <input type="checkbox" id="filter-1" class="c-bolt-input c-bolt-input--checkbox">
+          <input type="checkbox" id="filter-1" class="c-www-quick-filters__input">
           <label for="filter-1" class="e-bolt-button e-bolt-button--secondary e-bolt-button--small">AI and decisioning</label>
         </li>
         <li class="c-www-quick-filters__list-item">
-          <input type="checkbox" id="filter-2" class="c-bolt-input c-bolt-input--checkbox">
+          <input type="checkbox" id="filter-2" class="c-www-quick-filters__input">
           <label for="filter-2" class="e-bolt-button e-bolt-button--secondary e-bolt-button--small">Customer engagement</label>
         </li>
         <li class="c-www-quick-filters__list-item">
-          <input type="checkbox" id="filter-3" class="c-bolt-input c-bolt-input--checkbox">
+          <input type="checkbox" id="filter-3" class="c-www-quick-filters__input">
           <label for="filter-3" class="e-bolt-button e-bolt-button--secondary e-bolt-button--small">Customer service</label>
         </li>
         <li class="c-www-quick-filters__list-item">
-          <input type="checkbox" id="filter-4" class="c-bolt-input c-bolt-input--checkbox">
+          <input type="checkbox" id="filter-4" class="c-www-quick-filters__input">
           <label for="filter-4" class="e-bolt-button e-bolt-button--secondary e-bolt-button--small">Digital transformation</label>
         </li>
         <li class="c-www-quick-filters__list-item">
-          <input type="checkbox" id="filter-5" class="c-bolt-input c-bolt-input--checkbox">
+          <input type="checkbox" id="filter-5" class="c-www-quick-filters__input">
           <label for="filter-5" class="e-bolt-button e-bolt-button--secondary e-bolt-button--small">Intelligent automation</label>
         </li>
       </ul>
     </div>
     <div class="c-www-quick-filters__more">
-      {% include "@bolt-elements-button/button.twig" with {
-        content: "More filters",
-        size: "small",
-        hierarchy: "secondary",
-        icon: {
+      {% set icon_filter %}
+        {% include '@bolt-components-icon/icon.twig' with {
           name: 'filter',
-          position: 'before',
-        },
+        } only %}
+      {% endset %}
+      {% include '@bolt-elements-button/button.twig' with {
+        content: 'More filters',
+        size: 'small',
+        hierarchy: 'secondary',
+        icon_before: icon_filter,
         attributes: {
-          "type": "button",
-          "data-bolt-modal-target": ".js-bolt-modal",
+          'type': 'button',
+          'data-bolt-modal-target': '.js-bolt-modal',
         },
       } only %}
     </div>
