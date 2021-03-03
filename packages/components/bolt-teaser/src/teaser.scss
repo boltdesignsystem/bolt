@@ -15,57 +15,22 @@
  *
  * 1. Provide line-comments like this.
  */
-.c-bolt-teaser,
-bolt-teaser {
-  // Styles go here. /* [1] */
+.c-bolt-teaser {
   display: block;
   position: relative;
 
-  &--meta-share {
-    position: relative;
-    z-index: 1;
+  > *:not(:last-child) {
+    margin-bottom: var(--bolt-spacing-y-xsmall);
   }
 
-  &-media {
+  &__thumbnail {
     display: block;
     position: relative;
     overflow: hidden;
     background-color: var(--bolt-color-navy);
   }
 
-  &-description-wrapper {
-    opacity: 0;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: var(--bolt-color-navy-xdark);
-    transition: opacity $bolt-transition;
-  }
-
-  &:hover {
-    .c-bolt-teaser-description-wrapper,
-    bolt-teaser-description-wrapper {
-      opacity: 0.8;
-    }
-  }
-
-  &-description {
-    position: absolute;
-    top: 50%;
-    transform: translate(0, -50%);
-    padding: var(--bolt-spacing-y-medium) var(--bolt-spacing-x-medium);
-    color: white;
-  }
-
-  &-type {
-    position: absolute;
-    bottom: var(--bolt-spacing-y-xsmall);
-    left: var(--bolt-spacing-x-xsmall);
-  }
-
-  &-premium {
+  &__thumbnail-premium {
     position: absolute;
     top: 1rem;
     left: -1.5rem;
@@ -77,7 +42,75 @@ bolt-teaser {
     background-color: var(--bolt-color-teal-light);
   }
 
-  // > *:not(:last-child) {
-  //   margin-bottom: var(--bolt-spacing-y-xsmall);
-  // }
+  &__thumbnail-type {
+    position: absolute;
+    bottom: var(--bolt-spacing-y-xsmall);
+    left: var(--bolt-spacing-x-xsmall);
+  }
+
+  &__thumbnail-description-wrapper {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--bolt-color-navy-xdark);
+    transition: opacity $bolt-transition;
+  }
+
+  &__thumbnail-description {
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+    padding: var(--bolt-spacing-y-medium) var(--bolt-spacing-x-medium);
+    color: white;
+  }
+
+  &:hover {
+    .c-bolt-teaser__thumbnail-description-wrapper {
+      opacity: 0.8;
+    }
+  }
+
+  &__content {
+    > *:not(:last-child) {
+      margin-bottom: var(--bolt-spacing-y-xsmall);
+    }
+  }
+
+  &__meta-action-content {
+    position: relative;
+    z-index: 1;
+  }
+
+  &__meta-item {
+    font-size: var(--bolt-type-font-size-xsmall);
+    line-height: var(--bolt-type-line-height-xsmall);
+    line-height: calc(
+      var(--bolt-type-line-height-xsmall) *
+        var(--bolt-type-line-height-multiplier-regular)
+    );
+  }
+
+  &__meta-action-items {
+    font-size: var(--bolt-type-font-size-xsmall);
+    line-height: var(--bolt-type-line-height-xsmall);
+    line-height: calc(
+      var(--bolt-type-line-height-xsmall) *
+        var(--bolt-type-line-height-multiplier-regular)
+    );
+  }
+
+  @include bolt-mq(small) {
+    &--horizontal {
+      display: grid;
+      column-gap: var(--bolt-spacing-x-xsmall);
+      grid-template-columns: 150px 1fr;
+
+      .c-bolt-teaser__thumbnail {
+        margin-bottom: 0;
+      }
+    }
+  }
 }

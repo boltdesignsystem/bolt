@@ -1,71 +1,66 @@
+{# Schema Validation #}
 {% set schema = bolt.data.components["@bolt-components-teaser"].schema %}
-
 {% if enable_json_schema_validation %}
-  {{ validate_data_schema(schema, _self) | raw }}
+  {{ validate_data_schema(schema, _self)|raw }}
 {% endif %}
 
 {# Variables #}
 {% set this = init(schema) %}
-{% set inner_attributes = create_attribute({}) %}
+{% set attributes = create_attribute(attributes|default({})) %}
+
 
 {# Array of classes based on the defined + default props #}
 {% set classes = [
-  "c-bolt-teaser",
+  'c-bolt-teaser',
+  this.data.horizontal.value ? 'c-bolt-teaser--horizontal' : '',
 ] %}
-{# {% set classes = [
-  "c-bolt-teaser",
-  disabled ? "c-bolt-teaser--disabled" : "",
-] %} #}
 
-{#
-  Sort classes passed in via attributes into two groups:
-  1. Those that should be applied to the inner tag (namely, "is-" and "has-" classes)
-  2. Those that should be applied to the outer custom element (everything else EXCEPT c-bolt-* classes, which should never be passed in via attributes)
-#}
-{% set outer_classes = [] %}
-{% set inner_classes = classes %}
 
-{% for class in attributes["class"] %}
-  {% if class starts with "is-" or class starts with "has-" %}
-    {% set inner_classes = inner_classes|merge([class]) %}
-  {% elseif class starts with "c-bolt-" == false %}
-    {% set outer_classes = outer_classes|merge([class]) %}
+
+
+<article {{ attributes.addClass(classes) }}>
+  {#
+    TODO:
+    - whats wrong with ratio?
+    - fix font size setting in list
+    - make sure this uses the validation variables when it can.
+    - refactor the stylesheet.
+    - make the schema.
+    - make some good demos.
+---
+    - premium tag position math, make it configurable.
+      - fixed width.
+      - up to 12 characters?
+  #}
+
+  {% if this.data.horizontal.value %}
+    {% set _ratio = '1/1' %}
+  {% else %}
+    {% set _ratio = '16/9' %}
   {% endif %}
-{% endfor %}
 
-<bolt-teaser
-  {% if outer_classes %} class="{{ outer_classes|join(' ') }}" {% endif %}
-  {{ this.props|without("class") }}
->
-  {# <replace-with-children {{ inner_attributes.addClass(inner_classes) }}>
-  </replace-with-children> #}
-
-{#
-  TODO:
-  - meta / share block
-    - like toggler
-    - reference post
-  - remove bolt-stack. refer to post?
-#}
-
-
-  <bolt-teaser-media class="c-bolt-teaser-media">
-    {% if image %}
-      {% include '@bolt-components-image/image.twig' with image only %}
-    {% else %}
-      {% include "@bolt-components-ratio/ratio.twig" with {
-        ratio: "16/9"
-      } only %}
-    {% endif %}
+  <div class="c-bolt-teaser__thumbnail">
+    <div class="c-bolt-teaser__thumbnail-image">
+      {% if image %}
+        {% include "@bolt-components-ratio/ratio.twig" with {
+          children: image,
+          ratio: _ratio
+        } only %}
+      {% else %}
+        {% include "@bolt-components-ratio/ratio.twig" with {
+          ratio: _ratio
+        } only %}
+      {% endif %}
+    </div>
 
     {% if premium %}
-      <bolt-teaser-premium class="c-bolt-teaser-premium">
+      <div class="c-bolt-teaser__thumbnail-premium">
         Premium
-      </bolt-teaser-premium>
+      </div>
     {% endif %}
 
     {% if type %}
-      <bolt-teaser-type>
+      <div class="c-bolt-teaser__thumbnail-type">
         {% if type == 'video' %}
           {% include "@bolt-components-icon/icon.twig" with {
             name: "asset-video",
@@ -88,134 +83,120 @@
             color: "yellow",
           } only %}
         {% endif %}
-      </bolt-teaser-type>
+      </div>
     {% endif %}
 
-    {% if this.data.description.value %}
-      <bolt-teaser-description-wrapper class="c-bolt-teaser-description-wrapper">
-        <bolt-teaser-description class="c-bolt-teaser-description">
+    {% if this.data.description.value and not this.data.show_description.value %}
+      <div class="c-bolt-teaser__thumbnail-description-wrapper" aria-hidden="true">
+        <div class="c-bolt-teaser__thumbnail-description">
           <p>
             {{ this.data.description.value|length > 100 ? this.data.description.value|slice(0, 100) ~ '...' : this.data.description.value }}
           </p>
-        </bolt-teaser-description>
-      </bolt-teaser-description-wrapper>
+        </div>
+      </div>
     {% endif %}
-  </bolt-teaser-media>
+  </div>
 
-  <bolt-stack spacing="xsmall" class="c-bolt-teaser--meta-share">
-    <div class="o-bolt-grid o-bolt-grid--flex o-bolt-grid--matrix">
-      <div class="o-bolt-grid__cell u-bolt-flex-shrink">
-          <small>15 min read</small>
-      </div>
-      <div class="o-bolt-grid__cell u-bolt-flex-shrink">
-          <small>
-            {% include '@bolt-components-icon/icon.twig' with {
-              name: 'eye',
-            } only %}
-            27 views
-          </small>
-      </div>
-      <div class="o-bolt-grid__cell u-bolt-width-6/12 u-bolt-flex-grow">
-        {% set like_button %}
-          <small>
-            {% include '@bolt-components-link/link.twig' with {
-              text: 'Like',
-              icon: {
-                name: 'heart',
-                position: 'before',
-              },
-              type: 'button',
-              isHeadline: true,
-            } only %}
-          </small>
-        {% endset %}
-        {% set share_button %}
-          {% set popover_trigger %}
-            <small>
-              {% include '@bolt-components-link/link.twig' with {
-                text: 'Share',
-                icon: {
-                  name: 'share',
-                  position: 'before',
-                },
-                type: 'button',
-                isHeadline: true,
+  <div class="c-bolt-teaser__content">
+    <div class="c-bolt-teaser__meta-action-content">
+      <div class="o-bolt-grid o-bolt-grid--flex">
+        {% if meta_items %}
+          {% for item in meta_items %}
+            <div class="o-bolt-grid__cell u-bolt-flex-shrink">
+              <div class="c-bolt-teaser__meta-item">
+                  {{ item }}
+              </div>
+            </div>
+          {% endfor %}
+        {% endif %}
+
+        <div class="o-bolt-grid__cell u-bolt-flex-grow">
+          {% if share_menu %}
+            {% set share_button %}
+              {% set _share_popover_trigger %}
+                  {% include '@bolt-components-link/link.twig' with {
+                    text: 'Share',
+                    icon: {
+                      name: 'share',
+                      position: 'before',
+                    },
+                    type: 'button',
+                    isHeadline: true,
+                  } only %}
+              {% endset %}
+              {% include '@bolt-components-popover/popover.twig' with {
+                trigger: _share_popover_trigger,
+                content: share_menu,
+                spacing: 'none',
               } only %}
-            </small>
-          {% endset %}
-          {% set popover_content %}
-            {% include '@bolt-components-share/share.twig' with {
-              display: 'menu',
-              text: 'Share this content',
-              sources: [
-                {
-                  name: 'facebook',
-                  url: 'https://www.facebook.com/sharer/sharer.php?u=https://pega.com&amp;src=sdkpreparse'
-                },
-                {
-                  name: 'twitter',
-                  url: 'https://twitter.com/intent/tweet?url=https://pega.com&text=Sample%20Share%20Text&via=pega&hashtags=boltDesignSystemRocks!'
-                },
-                {
-                  name: 'linkedin',
-                  url: 'https://www.linkedin.com/shareArticle?url=https://pega.com'
-                },
-                {
-                  name: 'email',
-                  url: 'mailto:?&body=Sample%20Text%20--%20https%3A//pega.com'
-                }
-              ],
-              copy_to_clipboard: {
-                text_to_copy: 'https://pega.com',
-              },
-            } only %}
-          {% endset %}
-          {% include "@bolt-components-popover/popover.twig" with {
-            trigger: popover_trigger,
-            content: popover_content,
-            spacing: "none",
-          } only %}
-        {% endset %}
+            {% endset %}
+          {% endif %}
 
-        {% include '@bolt-components-list/list.twig' with {
-          display: 'inline',
-          align: 'end',
-          spacing: 'small',
-          items: [
-            like_button,
-            share_button,
-          ]
-        } only %}
+          {# <div class="c-bolt-teaser__meta-action-items">
+            {{ like_button }}
+            {{ share_button }}
+          </div> #}
+
+          {% set _list_items = [] %}
+
+          {% if like_button %}
+            {% set _list_items = _list_items|merge([like_button]) %}
+          {% endif %}
+          {% if share_menu %}
+            {% set _list_items = _list_items|merge([share_button]) %}
+          {% endif %}
+
+          {% if _list_items is not empty %}
+            {% include '@bolt-components-list/list.twig' with {
+              display: 'inline',
+              align: 'end',
+              spacing: 'small',
+              items: _list_items
+            } only %}
+          {% endif %}
+        </div>
       </div>
     </div>
-  </bolt-stack>
 
-  {% if headline %}
-    {% set icon_chevron_right %}
-      {% include '@bolt-components-icon/icon.twig' with {
-        name: 'chevron-right',
-      } only %}
-    {% endset %}
-    <bolt-stack spacing="xsmall">
-      {% set _action %}
-        {% include '@bolt-elements-text-link/text-link.twig' with {
-          content: headline.text,
-          expand_click_target: true,
-          icon_after: icon_chevron_right,
-          reversed_underline: true,
-          attributes: headline.link_attributes
+    {% if headline %}
+      {% set icon_chevron_right %}
+        {% include '@bolt-components-icon/icon.twig' with {
+          name: 'chevron-right',
         } only %}
       {% endset %}
 
-      {% include '@bolt-components-headline/headline.twig' with {
-        text: _action,
-        tag: 'h2',
-        size: 'large'
-      } only %}
-    </bolt-stack>
-  {% endif %}
+      <div class="c-bolt-teaser__headline">
+        {% set _action %}
+          {% include '@bolt-elements-text-link/text-link.twig' with {
+            content: headline.text,
+            expand_click_target: true,
+            icon_after: icon_chevron_right,
+            reversed_underline: true,
+            attributes: headline.link_attributes
+          } only %}
+        {% endset %}
 
-  {% if chip_list %}
-    {% include '@bolt-components-chip-list/chip-list.twig' with chip_list only %}
-  {% endif %}
-</bolt-teaser>
+        {% include '@bolt-components-headline/headline.twig' with {
+          text: _action,
+          tag: 'h2',
+          size: 'large'
+        } only %}
+      </div>
+    {% endif %}
+
+    {% if this.data.description.value %}
+      <div class="c-bolt-teaser__description {{ this.data.show_description.value ? '' : 'u-bolt-visuallyhidden' }}">
+        <p>
+          {{ this.data.description.value }}
+        </p>
+      </div>
+    {% endif %}
+
+    {% if chip_list %}
+      <div class="c-bolt-teaser__chips">
+        {% include '@bolt-components-chip-list/chip-list.twig' with chip_list only %}
+      </div>
+    {% endif %}
+  </div>
+
+</article>
