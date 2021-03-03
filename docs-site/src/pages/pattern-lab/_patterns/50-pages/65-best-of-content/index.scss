@@ -1,13 +1,14 @@
 @import '@bolt/core-v3.x';
 
 $www-quick-filters-fade-width: var(--bolt-spacing-x-small);
+$www-quick-filters-shadow-offset: var(--bolt-spacing-y-medium);
 
 .c-www-quick-filters {
   display: flex;
   justify-content: center;
   white-space: nowrap;
-  margin: calc(var(--bolt-spacing-y-medium) * -1) 0
-    calc(var(--bolt-spacing-y-medium) * -1)
+  margin: calc(#{$www-quick-filters-shadow-offset} * -1) 0
+    calc(#{$www-quick-filters-shadow-offset} * -1)
     calc(#{$www-quick-filters-fade-width} * -1);
 }
 
@@ -63,7 +64,7 @@ $www-quick-filters-fade-width: var(--bolt-spacing-x-small);
   display: flex;
   align-items: center;
   height: 100%;
-  padding: var(--bolt-spacing-y-medium) 0;
+  padding: #{$www-quick-filters-shadow-offset} 0;
 }
 
 .c-www-quick-filters__list {
@@ -87,10 +88,6 @@ $www-quick-filters-fade-width: var(--bolt-spacing-x-small);
 
 .c-www-quick-filters__input {
   @include bolt-visuallyhidden;
-
-  & + .e-bolt-button--secondary {
-    // border: 1px solid transparent; // avoid shift when input is checked
-  }
 
   &:checked + .e-bolt-button--secondary,
   &:focus + .e-bolt-button--secondary {
