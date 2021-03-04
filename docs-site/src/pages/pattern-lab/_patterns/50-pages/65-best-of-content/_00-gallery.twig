@@ -283,11 +283,11 @@
           tag: 'p',
         } only %}
       </div>
-      {% if phase1 %}
-        <div class="o-bolt-grid__cell u-bolt-width-12/12">
+      <div class="o-bolt-grid__cell u-bolt-width-12/12">
+        {% if phase1 %}
           {% include '_00-quick-filters.twig' %}
-        </div>
-      {% endif %}
+        {% endif %}
+      </div>
       <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@small u-bolt-width-4/12@medium">
         {{ item_video }}
       </div>
