@@ -1,0 +1,190 @@
+{% set view_content %}
+  {% include '@bolt-components-icon/icon.twig' with {
+    name: 'eye',
+  } only %}
+  27 views
+{% endset %}
+
+{% set like_button_content %}
+  {% include '@bolt-components-link/link.twig' with {
+    text: 'Like',
+    icon: {
+      name: 'heart-open',
+      position: 'before',
+    },
+    type: 'button',
+    isHeadline: true,
+    attributes: {
+      "class": "click-me",
+    }
+  } only %}
+{% endset %}
+
+{% set share_menu_content %}
+  {% include '@bolt-components-share/share.twig' with {
+    display: 'menu',
+    text: 'Share this content',
+    sources: [
+      {
+        name: 'facebook',
+        url: 'https://www.facebook.com/sharer/sharer.php?u=https://pega.com&amp;src=sdkpreparse'
+      },
+      {
+        name: 'twitter',
+        url: 'https://twitter.com/intent/tweet?url=https://pega.com&text=Sample%20Share%20Text&via=pega&hashtags=boltDesignSystemRocks!'
+      },
+      {
+        name: 'linkedin',
+        url: 'https://www.linkedin.com/shareArticle?url=https://pega.com'
+      },
+      {
+        name: 'email',
+        url: 'mailto:?&body=Sample%20Text%20--%20https%3A//pega.com'
+      }
+    ],
+    copy_to_clipboard: {
+      text_to_copy: 'https://pega.com',
+    },
+  } only %}
+{% endset %}
+
+{% set _image %}
+  {# {% include '@bolt-components-image/image.twig' with {
+    src: "/images/placeholders/landscape-16x9-mountains.jpg",
+    alt: "Mountains",
+    ratio: "none",
+  } only %} #}
+  <img src="/images/placeholders/landscape-16x9-mountains.jpg" alt="Moutains">
+{% endset %}
+
+<div class="o-bolt-grid o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center">
+  <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@medium">
+    {% include '@bolt-components-teaser/teaser.twig' with {
+      image : _image,
+      premium: true,
+      meta_items: [
+        view_content,
+      ],
+      like_button: like_button_content,
+      share_menu: share_menu_content,
+      headline: {
+        text: 'This teaser is here to test.',
+        link_attributes: {
+          href: "https://www.pega.com"
+        }
+      },
+      show_description: true,
+      type: 'video',
+      description: 'Aliqua voluptate amet do laborum culpa tempor consectetur culpa consectetur ea. Ea officia quis do enim. Id consectetur dolor voluptate eu veniam anim adipisicing dolor ut occaecat officia fugiat magna reprehenderit.',
+      chip_list: {
+        size: 'xsmall',
+        items: [
+          {
+            text: 'Video',
+          },
+          {
+            text: 'Research',
+          },
+        ],
+      }
+    } only %}
+  </div>
+  <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@medium">
+    {% include '@bolt-components-teaser/teaser.twig' with {
+      image : _image,
+      headline: {
+        text: 'This teaser is here to test an article link.',
+        link_attributes: {
+          href: 'https://www.pega.com'
+        }
+      },
+      meta_items: [
+        '15 min read',
+      ],
+      layout: 'horizontal',
+      show_description: true,
+      type: 'article',
+      description: 'Tempor mollit cillum ea ipsum deserunt duis elit esse commodo culpa cupidatat enim non velit. Culpa pariatur eiusmod et anim. Consectetur est id aliquip ea incididunt.',
+      chip_list: {
+        size: 'xsmall',
+        items: [
+          {
+            text: 'Article',
+          },
+          {
+            text: 'Data',
+          },
+        ],
+      }
+    } only %}
+    {% include '@bolt-components-teaser/teaser.twig' with {
+      image : _image,
+      headline: {
+        text: 'This teaser is here to test an article link.',
+        link_attributes: {
+          href: 'https://www.pega.com'
+        }
+      },
+      meta_items: [
+        '15 min read',
+      ],
+      layout: 'horizontal',
+      show_description: true,
+      type: 'article',
+      description: 'Tempor mollit cillum ea ipsum deserunt duis elit esse commodo culpa cupidatat enim non velit. Culpa pariatur eiusmod et anim. Consectetur est id aliquip ea incididunt.',
+      chip_list: {
+        size: 'xsmall',
+        items: [
+          {
+            text: 'Article',
+          },
+          {
+            text: 'Data',
+          },
+        ],
+      }
+    } only %}
+    {% include '@bolt-components-teaser/teaser.twig' with {
+      image : _image,
+      headline: {
+        text: 'This teaser is here to test an article link.',
+        link_attributes: {
+          href: 'https://www.pega.com'
+        }
+      },
+      meta_items: [
+        '15 min read',
+      ],
+      layout: 'horizontal',
+      show_description: true,
+      type: 'article',
+      description: 'Tempor mollit cillum ea ipsum deserunt duis elit esse commodo culpa cupidatat enim non velit. Culpa pariatur eiusmod et anim. Consectetur est id aliquip ea incididunt.',
+      chip_list: {
+        size: 'xsmall',
+        items: [
+          {
+            text: 'Article',
+          },
+          {
+            text: 'Data',
+          },
+        ],
+      }
+    } only %}
+  </div>
+</div>
+
+{# Example Like Button JS #}
+<script>
+    document.querySelector('.click-me').addEventListener('click', function (event) {
+      var _like_icon = this.firstChild;
+
+      if ( _like_icon.getAttribute('name') == 'heart-open' ) {
+        _like_icon.setAttribute('name', 'heart');
+        _like_icon.setAttribute('color', 'pink');
+      } else {
+        _like_icon.setAttribute('name', 'heart-open');
+        _like_icon.removeAttribute('color');
+      }
+    });
+</script>

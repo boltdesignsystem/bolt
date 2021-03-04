@@ -1,11 +1,11 @@
 {% set _image %}
-  {% include '@bolt-components-image/image.twig' with {
+  {# {% include '@bolt-components-image/image.twig' with {
     src: "/images/placeholders/landscape-16x9-mountains.jpg",
     alt: "Mountains",
     ratio: "none",
-  } only %}
+  } only %} #}
+  <img src="/images/placeholders/landscape-16x9-mountains.jpg" alt="Moutains">
 {% endset %}
-{# TODO: change this to just an image #}
 
 {% include '@bolt-components-teaser/teaser.twig' with {
   image : _image,
@@ -18,7 +18,7 @@
   meta_items: [
     '15 min read',
   ],
-  horizontal: true,
+  layout: 'horizontal',
   show_description: true,
   type: 'article',
   description: 'Tempor mollit cillum ea ipsum deserunt duis elit esse commodo culpa cupidatat enim non velit. Culpa pariatur eiusmod et anim. Consectetur est id aliquip ea incididunt.',
@@ -34,3 +34,5 @@
     ],
   }
 } only %}
+
+

@@ -22,11 +22,21 @@ module.exports = {
           type: 'string',
           description: '',
         },
+        size: {
+          type: 'string',
+          description: 'Set the size of the headline.',
+          default: 'large',
+          enum: ['large', 'xlarge'],
+        },
         link_attributes: {
           type: 'object',
           description: '',
         },
       },
+    },
+    eyebrow_text: {
+      type: 'string',
+      description: '',
     },
     description: {
       type: 'string',
@@ -36,9 +46,11 @@ module.exports = {
       type: 'boolean',
       description: '',
     },
-    horizontal: {
-      type: 'boolean',
+    layout: {
+      type: 'string',
       description: '',
+      enum: ['vertical', 'horizontal', 'responsive'],
+      default: 'vertical',
     },
     show_description: {
       type: 'boolean',
