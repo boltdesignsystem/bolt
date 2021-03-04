@@ -39,21 +39,6 @@ module.exports = {
     'scss/dollar-variable-no-missing-interpolation': true,
     'scss/at-mixin-argumentless-call-parentheses': 'never',
     'selector-max-class': 2,
-    'plugin/selector-bem-pattern': {
-      preset: 'bem',
-      componentName:
-        '(((o-|c-|u-|t-|s-|is-|has-|no-|_|js-|qa-)(bolt-)[a-z0-9]+(?!-$)-?)+)',
-      componentSelectors: {
-        initial:
-          "\\.{componentName}(((__|--)(([a-z0-9\\[\\]'=]+(?!-$)-?)+))+)?$",
-      },
-      // componentSelectors: '^\\.ns-{componentName}(?:-[a-zA-Z]+)?$'
-      // ignoreSelectors: [
-      //   '.*\\.no-js.*',
-      //   '.*\\.js-.*',
-      //   '.*\\.lt-ie.*'
-      // ]
-    },
     'scss/dollar-variable-pattern': [
       '^(bolt-|_bolt-)[a-z]+([a-z0-9-]+[a-z0-9]+)?$',
       {
