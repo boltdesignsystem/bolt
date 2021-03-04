@@ -24,7 +24,7 @@ module.exports = {
       type: 'boolean',
       description:
         'If set to true, shows a premium tag in the upper left corner of the thumbnail',
-      default: 'false',
+      default: false,
     },
     type: {
       type: 'string',
