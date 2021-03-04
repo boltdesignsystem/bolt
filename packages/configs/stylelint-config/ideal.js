@@ -8,7 +8,6 @@ module.exports = {
     'stylelint-order',
     'stylelint-scss',
     'stylelint-declaration-use-variable',
-    'stylelint-selector-bem-pattern',
     'stylelint-declaration-strict-value',
   ],
   rules: {
