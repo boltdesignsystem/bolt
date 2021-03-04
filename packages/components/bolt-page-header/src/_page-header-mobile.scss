@@ -18,7 +18,7 @@
 
   // Toolbar
   .c-bolt-page-header__toolbar {
-    margin-left: auto;
+    justify-content: flex-end;
   }
 
   .c-bolt-page-header__action-trigger {
@@ -48,7 +48,6 @@
     left: 0;
     transform: translate3d(100%, 0, 0);
     overflow: hidden;
-    padding-bottom: $bolt-page-header-click-target-size;
     border-top-color: $bolt-border-color;
     border-top-style: $bolt-border-style;
     border-top-width: $bolt-border-width;
@@ -68,6 +67,7 @@
     flex-direction: column;
     width: 100%;
     height: 100%;
+    padding-bottom: $bolt-page-header-click-target-size;
   }
 
   .c-bolt-page-header__nav-list {
@@ -301,6 +301,11 @@
 
   .c-bolt-page-header__nav-link--heading {
     display: none;
+  }
+
+  // Subheadline
+  .c-bolt-page-header__subheadline {
+    margin-right: auto;
   }
 
   // Main CTA

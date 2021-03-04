@@ -67,7 +67,7 @@
   cta: cta_button,
   static: true,
   attributes: {
-    style: '--c-bolt-page-header-logo-max-width: 150px',
+    style: '--c-bolt-page-header-logo-max-width: 150px', // Only use the CSS vars on edge cases
   },
 } only %}
 
@@ -84,7 +84,9 @@
 // Nav ul template (pass to primary nav template's content prop)
 {% include '@bolt-components-page-header/page-header-nav-ul.twig' with {
   content: content,
-  category: category,
+  category: category, // ['site', 'related-sites', 'user']
+  popover_position: popover_position, // ['edge-start', 'edge-end']
+  wrap_site_nav_items: false, // This allows top level desktop site nav items to wrap
 } only %}
 
 // Nav li template (pass to nav ul template's content prop)
@@ -96,7 +98,11 @@
     },
   },
   children: children,
-  current: true,
+  content: content, // This overrides link and children
+  full_width: false, // This is for "view all" links
+  popover: false, // This is for utility nav
+  selected: false, // This is for language select
+  current: true, // This is for marking a top level desktop site nav item as the current page
 } only %}
 {% endverbatim %}
 {% endset %}
