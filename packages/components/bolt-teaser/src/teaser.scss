@@ -1,20 +1,9 @@
-/* ------------------------------------ *\
-   Teaser
-\* ------------------------------------ */
-
 @import '@bolt/core-v3.x';
 
-// Register Custom Block Element
-@include bolt-custom-element('bolt-teaser', block, medium);
+/* ------------------------------------ *\
+    Teaser
+\* ------------------------------------ */
 
-/**
- * Long-form comment.
- *
- * This spans multiple lines and is also constrained to no longer than 80
- * characters in width.
- *
- * 1. Provide line-comments like this.
- */
 .c-bolt-teaser {
   display: grid;
   position: relative;
@@ -79,6 +68,7 @@
     left: 0;
     width: 100%;
     height: 100%;
+    padding: var(--bolt-spacing-y-medium) var(--bolt-spacing-x-medium);
     background: var(--bolt-color-navy-xdark);
     transition: opacity $bolt-transition;
   }
@@ -87,7 +77,9 @@
     position: absolute;
     top: 50%;
     transform: translate(0, -50%);
-    padding: var(--bolt-spacing-y-medium) var(--bolt-spacing-x-medium);
+    max-width: calc(100% - (var(--bolt-spacing-x-medium) * 2));
+    height: calc(var(--bolt-type-line-height-medium) * 3em); // 3 lines of text
+    overflow: hidden;
     color: var(--bolt-color-white);
   }
 
@@ -111,8 +103,9 @@
   }
 
   &__meta-action-content {
+    display: flex;
+    justify-content: space-between;
     order: 0;
-    position: relative;
   }
 
   &__meta-item {
@@ -125,20 +118,24 @@
   }
 
   &__meta-action-items {
+    position: relative;
     font-size: var(--bolt-type-font-size-xsmall);
     line-height: var(--bolt-type-line-height-xsmall);
     line-height: calc(
       var(--bolt-type-line-height-xsmall) *
         var(--bolt-type-line-height-multiplier-regular)
     );
-    text-align: right;
   }
 
   &__meta-action-item {
     display: inline-block;
+    margin-left: var(--bolt-spacing-y-xsmall);
+  }
 
-    &:not(:first-child) {
-      margin-left: var(--bolt-spacing-y-xsmall);
+  &--responsive {
+    .c-bolt-teaser__meta-action-content {
+      justify-content: flex-start;
+      order: 1;
     }
   }
 
@@ -162,14 +159,6 @@
       align-items: center;
       column-gap: var(--bolt-spacing-x-large);
       grid-template-columns: 1fr 1fr;
-
-      .c-bolt-teaser__meta-action-content {
-        order: 1;
-      }
-
-      .c-bolt-teaser__meta-action-items {
-        text-align: left;
-      }
 
       .c-bolt-teaser__thumbnail {
         margin-bottom: 0;

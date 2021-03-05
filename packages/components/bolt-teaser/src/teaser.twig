@@ -15,72 +15,60 @@
   this.data.layout.value ? 'c-bolt-teaser--' ~ this.data.layout.value : '',
 ] %}
 
-  {% if this.data.layout.value == 'horizontal' %}
-    {% set _ratio = '1/1' %}
-  {% else %}
-    {% set _ratio = '16/9' %}
-  {% endif %}
-
 <article {{ attributes.addClass(classes) }}>
-  {#
+{#
     TODO:
-    - fix css overflow
-    - refactor the stylesheet.
     - make some good demos.
       - http://localhost:3000/pattern-lab/?p=viewall-elements-button
 ---
+    Need more info:
     - replicate video meta timer and put read time there
     - premium tag position math, make it configurable.
       - fixed width.
       - up to 12 characters?
+      - only on hover?
   #}
 
-  <div class="c-bolt-teaser__thumbnail">
-    <div class="c-bolt-teaser__thumbnail-image">
-      {{ image }}
-    </div>
-
-    {% if this.data.premium.value %}
-      <div class="c-bolt-teaser__thumbnail-premium">
-        Premium
-      </div>
-    {% endif %}
-
-    {% if this.data.type.value %}
-      <div class="c-bolt-teaser__thumbnail-type">
-        {% if this.data.type.value == 'video' %}
-          {% include "@bolt-components-icon/icon.twig" with {
-            name: "asset-video",
-            background: "square",
-            size: "small",
-            color: "yellow",
-          } only %}
-        {% elseif this.data.type.value == 'pdf' %}
-          {% include "@bolt-components-icon/icon.twig" with {
-            name: "asset-media",
-            background: "square",
-            size: "small",
-            color: "yellow",
-          } only %}
-        {% elseif this.data.type.value == 'article' %}
-          {% include "@bolt-components-icon/icon.twig" with {
-            name: "asset-text",
-            background: "square",
-            size: "small",
-            color: "yellow",
-          } only %}
-        {% endif %}
-      </div>
-    {% endif %}
-
-    {% if this.data.description.value and not this.data.show_description.value %}
-      <div class="c-bolt-teaser__thumbnail-description-wrapper" aria-hidden="true">
-        <div class="c-bolt-teaser__thumbnail-description">
-          {{ this.data.description.value|length > 100 ? this.data.description.value|slice(0, 100) ~ '...' : this.data.description.value }}
+    {% if image %}
+      <div class="c-bolt-teaser__thumbnail">
+        <div class="c-bolt-teaser__thumbnail-image">
+          {{ image }}
         </div>
-      </div>
-    {% endif %}
-  </div>
+
+      {% if this.data.premium.value %}
+        <div class="c-bolt-teaser__thumbnail-premium">
+          Premium
+        </div>
+      {% endif %}
+
+      {% if this.data.type.value %}
+        <div class="c-bolt-teaser__thumbnail-type">
+          {% if this.data.type.value == 'video' %}
+            {% set _icon_name = "asset-video" %}
+          {% elseif this.data.type.value == 'pdf' %}
+            {% set _icon_name = "asset-media" %}
+          {% elseif this.data.type.value == 'article' %}
+            {% set _icon_name = "asset-text" %}
+          {% endif %}
+
+          {% include "@bolt-components-icon/icon.twig" with {
+            name: _icon_name,
+            background: "square",
+            size: "small",
+            color: "yellow",
+          } only %}
+        </div>
+      {% endif %}
+
+      {% if this.data.description.value and not this.data.show_description.value %}
+        <div class="c-bolt-teaser__thumbnail-description-wrapper" aria-hidden="true">
+          <div class="c-bolt-teaser__thumbnail-description">
+            {{ this.data.description.value }}
+          </div>
+        </div>
+      {% endif %}
+    </div>
+  {% endif %}
 
   <div class="c-bolt-teaser__content">
     {% if this.data.eyebrow_text.value %}
@@ -92,19 +80,18 @@
     {% endif %}
 
     {% if headline %}
-      {% set icon_chevron_right %}
+      {% set _icon_chevron_right %}
         {% include '@bolt-components-icon/icon.twig' with {
           name: 'chevron-right',
         } only %}
       {% endset %}
-
 
       <div class="c-bolt-teaser__headline">
         {% set _action %}
           {% include '@bolt-elements-text-link/text-link.twig' with {
             content: headline.text,
             expand_click_target: true,
-            icon_after: icon_chevron_right,
+            icon_after: _icon_chevron_right,
             reversed_underline: true,
             attributes: headline.link_attributes
           } only %}
@@ -126,55 +113,49 @@
 
     {% if meta_items or share_menu or like_button %}
       <div class="c-bolt-teaser__meta-action-content">
-        <div class="o-bolt-grid o-bolt-grid--flex">
-          {% if meta_items %}
-            {% for item in meta_items %}
-              <div class="o-bolt-grid__cell u-bolt-flex-shrink">
-                <div class="c-bolt-teaser__meta-item">
-                    {{ item }}
-                </div>
+        {% if meta_items %}
+          {% for item in meta_items %}
+              <div class="c-bolt-teaser__meta-item">
+                  {{ item }}
               </div>
-            {% endfor %}
-          {% endif %}
+          {% endfor %}
+        {% endif %}
 
-          <div class="o-bolt-grid__cell u-bolt-flex-grow">
-            {% if share_menu %}
-              {% set share_button %}
-                {% set _share_popover_trigger %}
-                    {% include '@bolt-components-link/link.twig' with {
-                      text: 'Share',
-                      icon: {
-                        name: 'share',
-                        position: 'before',
-                      },
-                      type: 'button',
-                      isHeadline: true,
-                    } only %}
-                {% endset %}
-                {% include '@bolt-components-popover/popover.twig' with {
-                  trigger: _share_popover_trigger,
-                  content: share_menu,
-                  spacing: 'none',
+        {% if share_menu %}
+          {% set share_button %}
+            {% set _share_popover_trigger %}
+                {% include '@bolt-components-link/link.twig' with {
+                  text: 'Share',
+                  icon: {
+                    name: 'share',
+                    position: 'before',
+                  },
+                  type: 'button',
+                  isHeadline: true,
                 } only %}
-              {% endset %}
-            {% endif %}
+            {% endset %}
+            {% include '@bolt-components-popover/popover.twig' with {
+              trigger: _share_popover_trigger,
+              content: share_menu,
+              spacing: 'none',
+            } only %}
+          {% endset %}
+        {% endif %}
 
-            {% if like_button or share_button %}
-              <div class="c-bolt-teaser__meta-action-items">
-                {% if like_button %}
-                  <div class="c-bolt-teaser__meta-action-item">
-                    {{ like_button }}
-                  </div>
-                {% endif %}
-                {% if share_button %}
-                  <div class="c-bolt-teaser__meta-action-item">
-                    {{ share_button }}
-                  </div>
-                {% endif %}
+        {% if like_button or share_button %}
+          <div class="c-bolt-teaser__meta-action-items">
+            {% if like_button %}
+              <div class="c-bolt-teaser__meta-action-item">
+                {{ like_button }}
+              </div>
+            {% endif %}
+            {% if share_button %}
+              <div class="c-bolt-teaser__meta-action-item">
+                {{ share_button }}
               </div>
             {% endif %}
           </div>
-        </div>
+        {% endif %}
       </div>
     {% endif %}
 
@@ -190,5 +171,4 @@
       </div>
     {% endif %}
   </div>
-
 </article>
