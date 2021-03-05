@@ -1,3 +1,12 @@
+{#
+  TODO: Need more info:
+  - Are we planning to replicate the video meta timer inside the thumbnail?
+  - premium tag position math, make it configurable.
+    - fixed width.
+    - up to 12 characters?
+    - only on hover?
+#}
+
 {# Schema Validation #}
 {% set schema = bolt.data.components["@bolt-components-teaser"].schema %}
 {% if enable_json_schema_validation %}
@@ -8,7 +17,6 @@
 {% set this = init(schema) %}
 {% set attributes = create_attribute(attributes|default({})) %}
 
-
 {# Array of classes based on the defined + default props #}
 {% set classes = [
   'c-bolt-teaser',
@@ -16,19 +24,6 @@
 ] %}
 
 <article {{ attributes.addClass(classes) }}>
-{#
-    TODO:
-    - make some good demos.
-      - http://localhost:3000/pattern-lab/?p=viewall-elements-button
----
-    Need more info:
-    - replicate video meta timer and put read time there
-    - premium tag position math, make it configurable.
-      - fixed width.
-      - up to 12 characters?
-      - only on hover?
-  #}
-
     {% if image %}
       <div class="c-bolt-teaser__thumbnail">
         <div class="c-bolt-teaser__thumbnail-image">
