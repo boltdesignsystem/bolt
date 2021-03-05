@@ -15,7 +15,6 @@ module.exports = {
     'selector-list-comma-newline-after': null,
     'selector-max-class': null,
     'selector-no-qualifying-type': null,
-    'plugin/selector-bem-pattern': null,
     'no-duplicate-selectors': null,
     'function-comma-space-before': null,
     'scss/selector-no-redundant-nesting-selector': null,
