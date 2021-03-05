@@ -1,0 +1,143 @@
+@import '@bolt/core-v3.x';
+
+$www-quick-filters-fade-width: var(--bolt-spacing-x-small);
+$www-quick-filters-shadow-offset: var(--bolt-spacing-y-medium);
+
+.c-www-quick-filters {
+  display: flex;
+  justify-content: center;
+  white-space: nowrap;
+  margin: calc(#{$www-quick-filters-shadow-offset} * -1) 0
+    calc(#{$www-quick-filters-shadow-offset} * -1)
+    calc(#{$www-quick-filters-fade-width} * -1);
+}
+
+.c-www-quick-filters__list-wrapper {
+  flex-basis: auto;
+  flex-grow: 0;
+  flex-shrink: 1;
+  position: relative;
+  overflow: hidden;
+
+  &:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    pointer-events: none;
+    background: linear-gradient(
+      to right,
+      var(--m-bolt-bg) 0%,
+      var(--c-www-quick-filters-fade-gradient, rgba(white, 0)) #{$www-quick-filters-fade-width},
+      var(--c-www-quick-filters-fade-gradient, rgba(white, 0))
+        calc(100% - #{$www-quick-filters-fade-width}),
+      var(--m-bolt-bg) 100%
+    );
+  }
+
+  // @todo: this is a workaround due to mode vars not being able to use transparency
+  @at-root .t-bolt-xlight #{&}:after {
+    --c-www-quick-filters-fade-gradient: #{rgba(white, 0)};
+  }
+
+  @at-root .t-bolt-light #{&}:after {
+    --c-www-quick-filters-fade-gradient: #{rgba(bolt-color(gray, xlight), 0)};
+  }
+
+  @at-root .t-bolt-dark #{&}:after {
+    --c-www-quick-filters-fade-gradient: #{rgba(bolt-color(navy), 0)};
+  }
+
+  @at-root .t-bolt-xdark #{&}:after {
+    --c-www-quick-filters-fade-gradient: #{rgba(bolt-color(navy, dark), 0)};
+  }
+
+  @at-root .t-bolt-xxdark #{&}:after {
+    --c-www-quick-filters-fade-gradient: #{rgba(black, 0)};
+  }
+}
+
+.c-www-quick-filters__list,
+.c-www-quick-filters__more {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  height: 100%;
+  padding: #{$www-quick-filters-shadow-offset} 0;
+}
+
+.c-www-quick-filters__list {
+  @include bolt-horizontal-scroll;
+  position: relative;
+  margin: 0;
+  list-style: none;
+}
+
+.c-www-quick-filters__list-item {
+  padding-right: var(--bolt-spacing-x-xsmall);
+
+  &:first-child {
+    padding-left: #{$www-quick-filters-fade-width};
+  }
+
+  &:last-child {
+    padding-right: #{$www-quick-filters-fade-width};
+  }
+}
+
+.c-www-quick-filters__input {
+  @include bolt-visuallyhidden;
+
+  & + .e-bolt-button {
+    padding-right: var(--bolt-spacing-x-medium);
+    padding-left: var(--bolt-spacing-x-medium);
+  }
+
+  &:checked + .e-bolt-button,
+  &:focus + .e-bolt-button {
+    transform: translate3d(0, 0, 0);
+  }
+
+  &:focus + .e-bolt-button {
+    outline: var(--bolt-focus-ring);
+    outline-offset: 2px;
+  }
+
+  &:checked + .e-bolt-button {
+    color: var(--m-bolt-link);
+    box-shadow: 0 0 0 1px var(--bolt-color-navy-light);
+    background-color: rgba(bolt-color(gray, light), 0.2);
+
+    &:after {
+      content: '';
+      opacity: 1;
+      top: 50%;
+      left: 0;
+      transform: translate3d(
+          calc(100% + var(--bolt-spacing-x-xxsmall)),
+          -60%,
+          0
+        )
+        rotate(45deg);
+      width: 0.5em;
+      height: 0.75em;
+      border-right: 2px solid var(--m-bolt-headline);
+      border-bottom: 2px solid var(--m-bolt-headline);
+      border-radius: 0;
+      box-shadow: none;
+    }
+  }
+
+  &:not(:checked):focus + .e-bolt-button {
+    &:after {
+      display: none;
+    }
+  }
+
+  &:checked:focus + .e-bolt-button {
+    color: var(--m-bolt-link);
+    box-shadow: none;
+  }
+}
