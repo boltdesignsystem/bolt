@@ -24,11 +24,12 @@
 <article {{ attributes.addClass(classes) }}>
   {#
     TODO:
-    - fix ratio
-    - change order of meta and title, and remove z index.
+    - fix css overflow
     - refactor the stylesheet.
     - make some good demos.
+      - http://localhost:3000/pattern-lab/?p=viewall-elements-button
 ---
+    - replicate video meta timer and put read time there
     - premium tag position math, make it configurable.
       - fixed width.
       - up to 12 characters?
@@ -36,16 +37,7 @@
 
   <div class="c-bolt-teaser__thumbnail">
     <div class="c-bolt-teaser__thumbnail-image">
-      {% if image %}
-        {% include "@bolt-components-ratio/ratio.twig" with {
-          children: image,
-          ratio: _ratio
-        } only %}
-      {% else %}
-        {% include "@bolt-components-ratio/ratio.twig" with {
-          ratio: _ratio
-        } only %}
-      {% endif %}
+      {{ image }}
     </div>
 
     {% if this.data.premium.value %}
@@ -84,9 +76,7 @@
     {% if this.data.description.value and not this.data.show_description.value %}
       <div class="c-bolt-teaser__thumbnail-description-wrapper" aria-hidden="true">
         <div class="c-bolt-teaser__thumbnail-description">
-          <p>
-            {{ this.data.description.value|length > 100 ? this.data.description.value|slice(0, 100) ~ '...' : this.data.description.value }}
-          </p>
+          {{ this.data.description.value|length > 100 ? this.data.description.value|slice(0, 100) ~ '...' : this.data.description.value }}
         </div>
       </div>
     {% endif %}
@@ -190,9 +180,7 @@
 
     {% if this.data.description.value %}
       <div class="c-bolt-teaser__description {{ this.data.show_description.value ? '' : 'u-bolt-visuallyhidden' }}">
-        <p>
-          {{ this.data.description.value }}
-        </p>
+        {{ this.data.description.value }}
       </div>
     {% endif %}
 
