@@ -30,29 +30,70 @@ const tabsInnerHTML = `
   </bolt-tabs>
 `;
 
-describe('Bolt Tabs', () => {
-  let page;
+let page, tabsOuterDark, tabsOuterLight;
 
-  beforeEach(async () => {
-    await page.evaluate(() => {
-      document.body.innerHTML = '';
+beforeEach(async () => {
+  await page.evaluate(() => {
+    document.body.innerHTML = '';
+  });
+  await page.setViewport({ width: 600, height: 200 });
+}, timeout);
+
+beforeAll(async () => {
+  page = await global.__BROWSER__.newPage();
+  await page.goto('http://127.0.0.1:4444/', {
+    timeout: 0,
+  });
+
+  tabsOuterDark = await page.evaluate(async tabsInnerHTML => {
+    const wrapper = document.createElement('div');
+    wrapper.innerHTML = tabsInnerHTML;
+    document.body.appendChild(wrapper);
+
+    await customElements.whenDefined('ssr-keep');
+    await customElements.whenDefined('bolt-tabs');
+    const tabs = document.querySelector('bolt-tabs');
+    await tabs.updateComplete;
+
+    return tabs.outerHTML;
+  }, tabsInnerHTML);
+
+  tabsOuterLight = await page.evaluate(async tabsInnerHTML => {
+    const wrapper = document.createElement('div');
+    wrapper.innerHTML = tabsInnerHTML;
+    document.body.appendChild(wrapper);
+
+    await Promise.all([
+      customElements.whenDefined('ssr-keep'),
+      customElements.whenDefined('bolt-tabs'),
+    ]);
+
+    const tabs = document.querySelector('bolt-tabs');
+    const tabPanels = document.querySelectorAll('bolt-tab-panel');
+
+    [tabs, ...tabPanels].forEach(el => {
+      el.setAttribute('no-shadow', '');
+      el.requestUpdate();
     });
-    await page.setViewport({ width: 600, height: 200 });
-  }, timeout);
 
-  beforeAll(async () => {
-    page = await global.__BROWSER__.newPage();
-    await page.goto('http://127.0.0.1:4444/', {
-      timeout: 0,
-    });
-  }, timeout);
+    await Promise.all([
+      tabs.updateComplete,
+      [tabs, ...tabPanels].forEach(el => {
+        return el.updateComplete;
+      }),
+    ]);
 
-  afterAll(async () => {
-    await stopServer();
-    await page.close();
-  }, timeout);
+    return tabs.outerHTML;
+  }, tabsInnerHTML);
+}, timeout);
 
-  test('Twig usage', async () => {
+afterAll(async () => {
+  await stopServer();
+  await page.close();
+}, timeout);
+
+describe('Twig usage', () => {
+  test('Content output', async () => {
     const results = await render('@bolt-components-tabs/tabs.twig', {
       panels: [
         {
@@ -73,71 +114,8 @@ describe('Bolt Tabs', () => {
     expect(results.html).toMatchSnapshot();
   });
 
-  test('Web Component usage (Shadow DOM)', async () => {
-    const tabsOuter = await page.evaluate(async tabsInnerHTML => {
-      const wrapper = document.createElement('div');
-      wrapper.innerHTML = tabsInnerHTML;
-      document.body.appendChild(wrapper);
-
-      await customElements.whenDefined('ssr-keep');
-      await customElements.whenDefined('bolt-tabs');
-      const tabs = document.querySelector('bolt-tabs');
-      await tabs.updateComplete;
-
-      return tabs.outerHTML;
-    }, tabsInnerHTML);
-
-    await page.waitFor(500);
-    const renderedHTML = await html(tabsOuter);
-
-    await page.waitFor(500);
-    const image = await page.screenshot();
-
-    expect(image).toMatchImageSnapshot(vrtDefaultConfig);
-    expect(renderedHTML).toMatchSnapshot();
-  });
-
-  // @TODO Turn off until bugs with "conditional-shadow-dom" are resolved,
-  // causes a series of re-renders that makes querying the rendered DOM impossible
-  // test('Web Component usage (Light DOM)', async () => {
-  //   const tabsOuter = await page.evaluate(async tabsInnerHTML => {
-  //     const wrapper = document.createElement('div');
-  //     wrapper.innerHTML = tabsInnerHTML;
-  //     document.body.appendChild(wrapper);
-
-  //     await Promise.all([
-  //       customElements.whenDefined('ssr-keep'),
-  //       customElements.whenDefined('bolt-tabs'),
-  //     ]);
-
-  //     const tabs = document.querySelector('bolt-tabs');
-  //     const tabPanels = document.querySelectorAll('bolt-tab-panel');
-
-  //     [tabs, ...tabPanels].forEach(el => {
-  //       el.setAttribute('no-shadow', '');
-  //       el.requestUpdate();
-  //     });
-
-  //     await Promise.all([
-  //       tabs.updateComplete,
-  //       [tabs, ...tabPanels].forEach(el => {
-  //         return el.updateComplete;
-  //       }),
-  //     ]);
-
-  //     return tabs.outerHTML;
-  //   }, tabsInnerHTML);
-
-  //   const renderedHTML = await html(tabsOuter);
-  //   //@TODO Re-enable VRT test and troubleshoot failures on Travis
-  //   // await page.waitFor(500);
-  //   // const image = await page.screenshot();
-  //   // expect(image).toMatchImageSnapshot(vrtDefaultConfig);
-  //   expect(renderedHTML).toMatchSnapshot();
-  // });
-
   align.enum.forEach(option => {
-    test(`Align: ${option}`, async () => {
+    test(`Align output: ${option}`, async () => {
       const tabsOuter = await page.evaluate(
         async (option, tabsInnerHTML) => {
           const wrapper = document.createElement('div');
@@ -164,13 +142,12 @@ describe('Bolt Tabs', () => {
       await page.waitFor(500);
       const image = await page.screenshot();
 
-      expect(image).toMatchImageSnapshot(vrtDefaultConfig);
       expect(renderedHTML).toMatchSnapshot();
     });
   });
 
   inset.enum.forEach(async option => {
-    test(`Inset: ${option}`, async () => {
+    test(`Inset output: ${option}`, async () => {
       const tabsOuter = await page.evaluate(
         async (option, tabsInnerHTML) => {
           const wrapper = document.createElement('div');
@@ -206,8 +183,28 @@ describe('Bolt Tabs', () => {
       await page.waitFor(500);
       const image = await page.screenshot();
 
-      expect(image).toMatchImageSnapshot(vrtDefaultConfig);
       expect(renderedHTML).toMatchSnapshot();
     });
+  });
+});
+
+describe('Web Component usage', () => {
+  test('Shadow DOM', async () => {
+    await page.waitFor(500);
+    const renderedHTML = await html(tabsOuterDark);
+
+    // await page.waitFor(500);
+    // const image = await page.screenshot();
+
+    expect(renderedHTML).toMatchSnapshot();
+  });
+
+  test('Light DOM', async () => {
+    const renderedHTML = await html(tabsOuterLight);
+
+    // await page.waitFor(500);
+    // const image = await page.screenshot();
+
+    expect(renderedHTML).toMatchSnapshot();
   });
 });
