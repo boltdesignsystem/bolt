@@ -1,5 +1,5 @@
 {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
-  {% cell "u-bolt-width-6/12 u-bolt-width-4/12@small" %}
+  {% cell "u-bolt-width-6/12" %}
     {% include "@bolt-components-card-replacement/card-replacement.twig" with {
       media: {
         image: {
@@ -21,7 +21,7 @@
     } only %}
   {% endcell %}
 
-  {% cell "u-bolt-width-6/12 u-bolt-width-4/12@small" %}
+  {% cell "u-bolt-width-6/12" %}
     {% include "@bolt-components-card-replacement/card-replacement.twig" with {
       media: {
         image: {
@@ -43,4 +43,52 @@
       ],
     } only %}
   {% endcell %}
+
+  {% cell "u-bolt-width-6/12" %}
+    {% include "@bolt-components-card-replacement/card-replacement.twig" with {
+      media: {
+        image: {
+          src: "/images/placeholders/landscape-16x9-mountains.jpg",
+          alt: "Image alt.",
+        },
+      },
+      body: {
+        eyebrow: "This is an eyebrow",
+        headline: "This card's `action` has the `download` icon",
+        paragraph: "This is a paragraph.",
+      },
+      actions: [
+        {
+          text: "This is a button with a different icon",
+          url: "http://pega.com",
+          icon: 'download',
+        },
+      ],
+    } only %}
+  {% endcell %}
+
+  {% cell "u-bolt-width-6/12" %}
+    {% include "@bolt-components-card-replacement/card-replacement.twig" with {
+      media: {
+        image: {
+          src: "/images/placeholders/landscape-16x9-mountains.jpg",
+          alt: "Image alt.",
+        },
+      },
+      body: {
+        eyebrow: "This is an eyebrow",
+        headline: "This card's `action` has no icon",
+        paragraph: "This is a paragraph.",
+      },
+      actions: [
+        {
+          text: "This is a button with no icon",
+          url: "http://pega.com",
+          icon: 'none',
+        },
+      ],
+    } only %}
+  {% endcell %}
+
+
 {% endgrid %}

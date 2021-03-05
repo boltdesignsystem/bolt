@@ -49,14 +49,13 @@
     "clean:npm": "find . -name 'node_modules' -type d -exec rm -rf {} +",
     "clean:www": "find . -name 'www' -type d -exec rm -rf {} +",
     "create:component": "yo ./packages/generators/yeoman-create-component/generators/component/index.js",
-    "cz": "git-cz",
     "deploy": "./scripts/deploy.js",
     "fix": "yarn lint:js --fix; yarn lint:scss --fix",
     "gds": "github-deploy-status -u boltdesignsystem -p bolt --token ${GITHUB_TOKEN}",
     "postinstall": "patch-package && npx lerna run postbootstrap",
     "jest": "jest --maxWorkers=3 --all --colors",
     "lint": "npm-run-all --parallel lint:*",
-    "lint:js": "eslint '**/*.js' --ignore-pattern example-integrations",
+    "lint:js": "eslint '**/*.js'",
     "lint:scss": "stylelint '**/*.scss' --config .stylelintrc",
     "release": "node ./auto-release.js",
     "serve": "node packages/servers/default-server",
@@ -88,14 +87,8 @@
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged",
-      "pre-push": "jest ./__tests__/monorepo-basics.test.js -c jest.config.quick.js --noStackTrace",
-      "commitmsg": "commitlint -E $GIT_PARAMS"
+      "pre-push": "jest ./__tests__/monorepo-basics.test.js -c jest.config.quick.js --noStackTrace"
     }
-  },
-  "commitlint": {
-    "extends": [
-      "@commitlint/config-conventional"
-    ]
   },
   "lint-staged": {
     "*.js": [
@@ -109,11 +102,6 @@
       "git add"
     ]
   },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/@instructure/cz-lerna-changelog"
-    }
-  },
   "browserslist": [
     "extends @bolt/browserslist-config"
   ],
@@ -122,18 +110,12 @@
     "@auto-it/omit-commits": "^8.7.3",
     "@auto-it/released": "^8.7.3",
     "@bolt/testing-utils": "^3.0.0",
-    "@commitlint/cli": "^8.0.0",
-    "@commitlint/config-conventional": "^8.0.0",
-    "@instructure/cz-lerna-changelog": "^6.6.0",
     "@open-wc/testing-helpers": "^1.0.10",
     "@slack/webhook": "^5.0.2",
     "auto": "^8.7.3",
     "chalk": "^3.0.0",
     "ci-utils": "^0.6.0",
-    "commitizen": "^3.1.1",
     "conf": "^5.0.0",
-    "conventional-changelog-cli": "^2.0.21",
-    "cz-conventional-changelog": "^2.1.0",
     "eslint": "^6.0.1",
     "eslint-plugin-prettier": "^3.1.0",
     "eslint-plugin-react": "^7.14.2",
@@ -146,7 +128,7 @@
     "husky": "3.1.0",
     "jest": "^24.8.0",
     "jsonwebtoken": "^8.5.1",
-    "lerna": "^3.20.2",
+    "lerna": "^4.0.0",
     "lint-staged": "^9.5.0",
     "lit-element": "^2.2.0",
     "lit-html": "^1.1.1",
@@ -154,7 +136,6 @@
     "patch-package": "^6.1.2",
     "postinstall-postinstall": "^2.0.0",
     "proxy-polyfill": "^0.3.0",
-    "semantic-release": "^15.13.18",
     "semver": "^7.1.1",
     "shelljs": "^0.8.3",
     "sort-package-json": "^1.31.0",
