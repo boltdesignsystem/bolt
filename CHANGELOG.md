@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.2](https://github.com/boltdesignsystem/bolt/compare/v3.1.1...v3.1.2) (2021-03-05)
+
+
+### Bug Fixes
+
+* make secondary content container conditional ([66642e5](https://github.com/boltdesignsystem/bolt/commit/66642e54ff80971370c36373c7f12e9498db2e01))
+* theme colors for modal and card ([b925855](https://github.com/boltdesignsystem/bolt/commit/b9258555ccde4624ce9a2025b9c3776fd38aaee6))
+
+
+
+
+
 ## [3.1.1](https://github.com/boltdesignsystem/bolt/compare/v3.1.0...v3.1.1) (2021-02-11)
 
 

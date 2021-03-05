@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.2](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-carousel/compare/v3.1.1...v3.1.2) (2021-03-05)
+
+**Note:** Version bump only for package @bolt/components-carousel
+
+
+
+
+
 # [3.1.0](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-carousel/compare/v2.31.2...v3.1.0) (2021-02-08)
 
 **Note:** Version bump only for package @bolt/components-carousel
