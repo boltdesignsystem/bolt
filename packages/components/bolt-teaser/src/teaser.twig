@@ -1,5 +1,8 @@
 {#
-  TODO: Need more info:
+  TODO:
+  - more space when justified flex-start
+
+  Need more info:
   - Are we planning to replicate the video meta timer inside the thumbnail?
   - premium tag position math, make it configurable.
     - fixed width.
@@ -24,11 +27,11 @@
 ] %}
 
 <article {{ attributes.addClass(classes) }}>
-    {% if image %}
-      <div class="c-bolt-teaser__thumbnail">
-        <div class="c-bolt-teaser__thumbnail-image">
-          {{ image }}
-        </div>
+  {% if image %}
+    <div class="c-bolt-teaser__thumbnail">
+      <div class="c-bolt-teaser__thumbnail-image">
+        {{ image }}
+      </div>
 
       {% if this.data.premium.value %}
         <div class="c-bolt-teaser__thumbnail-premium">
