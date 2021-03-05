@@ -62,6 +62,7 @@ $www-quick-filters-shadow-offset: var(--bolt-spacing-y-medium);
 .c-www-quick-filters__list,
 .c-www-quick-filters__more {
   display: flex;
+  flex-wrap: nowrap;
   align-items: center;
   height: 100%;
   padding: #{$www-quick-filters-shadow-offset} 0;
@@ -69,12 +70,12 @@ $www-quick-filters-shadow-offset: var(--bolt-spacing-y-medium);
 
 .c-www-quick-filters__list {
   @include bolt-horizontal-scroll;
+  position: relative;
   margin: 0;
+  list-style: none;
 }
 
 .c-www-quick-filters__list-item {
-  display: flex;
-  flex-wrap: nowrap;
   padding-right: var(--bolt-spacing-x-xsmall);
 
   &:first-child {
@@ -97,6 +98,11 @@ $www-quick-filters-shadow-offset: var(--bolt-spacing-y-medium);
   &:checked + .e-bolt-button,
   &:focus + .e-bolt-button {
     transform: translate3d(0, 0, 0);
+  }
+
+  &:focus + .e-bolt-button {
+    outline: var(--bolt-focus-ring);
+    outline-offset: 2px;
   }
 
   &:checked + .e-bolt-button {
@@ -124,16 +130,7 @@ $www-quick-filters-shadow-offset: var(--bolt-spacing-y-medium);
     }
   }
 
-  &:focus + .e-bolt-button {
-    color: var(--m-bolt-headline);
-    box-shadow: none;
-    outline: var(--bolt-focus-ring);
-    outline-offset: 2px;
-  }
-
   &:not(:checked):focus + .e-bolt-button {
-    color: var(--m-bolt-link);
-
     &:after {
       display: none;
     }
@@ -141,5 +138,6 @@ $www-quick-filters-shadow-offset: var(--bolt-spacing-y-medium);
 
   &:checked:focus + .e-bolt-button {
     color: var(--m-bolt-link);
+    box-shadow: none;
   }
 }
