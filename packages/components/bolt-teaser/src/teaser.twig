@@ -11,7 +11,7 @@
 #}
 
 {# Schema Validation #}
-{% set schema = bolt.data.components["@bolt-components-teaser"].schema %}
+{% set schema = bolt.data.components['@bolt-components-teaser'].schema %}
 {% if enable_json_schema_validation %}
   {{ validate_data_schema(schema, _self)|raw }}
 {% endif %}
@@ -49,11 +49,11 @@
             {% set _icon_name = "asset-text" %}
           {% endif %}
 
-          {% include "@bolt-components-icon/icon.twig" with {
+          {% include '@bolt-components-icon/icon.twig' with {
             name: _icon_name,
-            background: "square",
-            size: "small",
-            color: "yellow",
+            background: 'square',
+            size: 'small',
+            color: 'yellow',
           } only %}
         </div>
       {% endif %}
@@ -71,7 +71,7 @@
   <div class="c-bolt-teaser__content">
     {% if this.data.eyebrow_text.value %}
       <div class="c-bolt-teaser__eyebrow">
-        {% include "@bolt-components-headline/eyebrow.twig" with {
+        {% include '@bolt-components-headline/eyebrow.twig' with {
           text: this.data.eyebrow_text.value,
         } only %}
       </div>
@@ -85,7 +85,7 @@
       {% endset %}
 
       <div class="c-bolt-teaser__headline">
-        {% set _action %}
+        {% set _headline_link %}
           {% include '@bolt-elements-text-link/text-link.twig' with {
             content: headline.text,
             expand_click_target: true,
@@ -102,7 +102,7 @@
         {% endif %}
 
         {% include '@bolt-components-headline/headline.twig' with {
-          text: _action,
+          text: _headline_link,
           tag: 'h2',
           size: _headline_size,
         } only %}
@@ -113,24 +113,24 @@
       <div class="c-bolt-teaser__meta-action-content">
         {% if meta_items %}
           {% for item in meta_items %}
-              <div class="c-bolt-teaser__meta-item">
-                  {{ item }}
-              </div>
+            <div class="c-bolt-teaser__meta-item">
+              {{ item }}
+            </div>
           {% endfor %}
         {% endif %}
 
         {% if share_menu %}
           {% set share_button %}
             {% set _share_popover_trigger %}
-                {% include '@bolt-components-link/link.twig' with {
-                  text: 'Share',
-                  icon: {
-                    name: 'share',
-                    position: 'before',
-                  },
-                  type: 'button',
-                  isHeadline: true,
-                } only %}
+              {% include '@bolt-components-link/link.twig' with {
+                text: 'Share',
+                icon: {
+                  name: 'share',
+                  position: 'before',
+                },
+                type: 'button',
+                isHeadline: true,
+              } only %}
             {% endset %}
             {% include '@bolt-components-popover/popover.twig' with {
               trigger: _share_popover_trigger,
