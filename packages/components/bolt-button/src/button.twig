@@ -49,6 +49,9 @@
   {% if this.data.target.value %}
     {% set inner_attributes = inner_attributes.setAttribute('target', this.data.target.value) %}
   {% endif %}
+  {% if this.data.download.value %}
+    {% set inner_attributes = inner_attributes.setAttribute('download', this.data.download.value) %}
+  {% endif %}
 {% else %}
   {% set _tag = 'button' %}
 

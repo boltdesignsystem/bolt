@@ -135,6 +135,24 @@ exports[`button Button type: submit 1`] = `
 </bolt-button>
 `;
 
+exports[`button Button will add \`download\` attribute to inner anchor element 1`] = `
+<bolt-button download="download.pdf"
+             url="download.pdf"
+>
+  <a href="download.pdf"
+     target="_self"
+     download="download.pdf"
+     class="c-bolt-button c-bolt-button--medium c-bolt-button--primary c-bolt-button--border-radius-regular c-bolt-button--center"
+  >
+    <ssr-keep for="bolt-button"
+              class="c-bolt-button__item"
+    >
+      Button with download link
+    </ssr-keep>
+  </a>
+</bolt-button>
+`;
+
 exports[`button Button with "disabled" adds attr to <a> 1`] = `
 <bolt-button url="http://pega.com"
              disabled
