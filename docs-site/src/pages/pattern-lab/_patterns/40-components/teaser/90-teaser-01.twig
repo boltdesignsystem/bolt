@@ -73,7 +73,7 @@
   } only %}
 {% endset %}
 
-{% set _image %}
+{% set image %}
   {% include '@bolt-components-image/image.twig' with {
     src: '/images/content/promos/promo-16x9-ai.jpg',
     alt: 'Alt text.',
@@ -83,7 +83,7 @@
 <div class="o-bolt-grid o-bolt-grid--flex o-bolt-grid--matrix">
   <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@small u-bolt-width-4/12@medium">
     {% include '@bolt-components-teaser/teaser.twig' with {
-      image : _image,
+      signifier: image,
       premium: true,
       views: '27',
       meta: '6 min read',
@@ -91,6 +91,8 @@
       share_menu: share_menu_content,
       headline: {
         text: 'This a video teaser',
+        tag: 'h2',
+        size: 'xlarge',
         link_attributes: {
           type: 'button',
           'data-bolt-modal-target': '#' ~ modal_id,
@@ -113,13 +115,15 @@
   </div>
   <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@small u-bolt-width-4/12@medium">
     {% include '@bolt-components-teaser/teaser.twig' with {
-      image : _image,
+      signifier: image,
       views: '160',
       meta: '3 min read',
       like_button: like_button_content,
       share_menu: share_menu_content,
       headline: {
         text: 'This is a PDF teaser',
+        tag: 'h2',
+        size: 'xlarge',
         link_attributes: {
           href: 'https://www.pega.com'
         }
@@ -141,13 +145,15 @@
   </div>
   <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@small u-bolt-width-4/12@medium">
     {% include '@bolt-components-teaser/teaser.twig' with {
-      image : _image,
+      signifier: image,
       views: '45',
       meta: '10 min read',
       like_button: like_button_content,
       share_menu: share_menu_content,
       headline: {
         text: 'This is an external link teaser',
+        tag: 'h2',
+        size: 'xlarge',
         link_attributes: {
           href: 'https://www.pega.com'
         }

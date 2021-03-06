@@ -41,7 +41,7 @@
   } only %}
 {% endset %}
 
-{% set _image %}
+{% set image %}
   {% include '@bolt-components-image/image.twig' with {
     src: '/images/content/promos/promo-16x9-ai.jpg',
     alt: 'Alt text.',
@@ -52,23 +52,25 @@
   <div class="o-bolt-grid o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center">
     <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-10/12@large">
       {% include '@bolt-components-teaser/teaser.twig' with {
-        image : _image,
-        meta: '10 min read',
-        views: '28k',
-        like_button: like_button_content,
-        share_menu: share_menu_content,
-        eyebrow_text: 'Featured',
+        layout: 'responsive',
+        gutter: 'large',
+        type: 'article',
+        signifier: image,
         headline: {
           text: 'Some awesome featured teaser dolore adipisicing dolore veniam occaecat cillum laboris aliqua',
+          tag: 'h2',
           size: 'xlarge',
           link_attributes: {
             href: 'https://www.pega.com',
           }
         },
-        layout: 'responsive',
-        show_description: true,
-        type: 'article',
         description: 'Aliqua voluptate amet do laborum culpa tempor consectetur culpa consectetur ea. Ea officia quis do enim. Id consectetur dolor voluptate eu veniam anim adipisicing dolor ut occaecat officia fugiat magna reprehenderit.',
+        show_description: true,
+        meta: '10 min read',
+        views: '28k',
+        like_button: like_button_content,
+        share_menu: share_menu_content,
+        featured: true,
       } only %}
     </div>
   </div>

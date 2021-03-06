@@ -90,7 +90,7 @@
 <div class="o-bolt-grid o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center o-bolt-grid--large">
   <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@medium">
     {% include '@bolt-components-teaser/teaser.twig' with {
-      image : wide_image,
+      signifier: wide_image,
       premium: true,
       meta: '6:29',
       views: '27',
@@ -98,6 +98,8 @@
       share_menu: share_menu_content,
       headline: {
         text: 'Vertical Teaser',
+        tag: 'h2',
+        size: 'xlarge',
         link_attributes: {
           type: 'button',
           'data-bolt-modal-target': '#' ~ modal_id,
@@ -121,9 +123,11 @@
   </div>
   <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@medium">
     {% include '@bolt-components-teaser/teaser.twig' with {
-      image : square_image,
+      signifier: square_image,
       headline: {
         text: 'Horizontal Teaser',
+        tag: 'h3',
+        size: 'large',
         link_attributes: {
           type: 'button',
           'data-bolt-modal-target': '#' ~ modal_id,
@@ -150,9 +154,11 @@
       }
     } only %}
     {% include '@bolt-components-teaser/teaser.twig' with {
-      image : square_image,
+      signifier: square_image,
       headline: {
         text: 'Horizontal Teaser',
+        tag: 'h3',
+        size: 'large',
         link_attributes: {
           href: 'https://www.pega.com'
         }
@@ -178,9 +184,11 @@
       }
     } only %}
     {% include '@bolt-components-teaser/teaser.twig' with {
-      image : square_image,
+      signifier: square_image,
       headline: {
         text: 'Horizontal Teaser',
+        tag: 'h3',
+        size: 'large',
         link_attributes: {
           href: 'https://www.pega.com'
         }

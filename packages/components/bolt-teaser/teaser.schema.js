@@ -1,3 +1,4 @@
+const headlineSchema = require('@bolt/components-headline/headline.schema');
 const chipListSchema = require('@bolt/components-chip-list/chip-list.schema.js');
 
 module.exports = {
@@ -16,54 +17,73 @@ module.exports = {
       enum: ['vertical', 'horizontal', 'responsive'],
       default: 'vertical',
     },
-    image: {
-      type: 'object',
-      description: 'The image to fill the thumbnail, accepts rendered images.',
-    },
-    premium: {
-      type: 'boolean',
+    gutter: {
+      type: 'string',
       description:
-        'If set to true, shows a premium tag in the upper left corner of the thumbnail',
-      default: false,
+        'Set the spacing in between columns for horizontal and responsive layouts.',
+      enum: ['small', 'medium', 'large'],
+      default: 'medium',
     },
     type: {
       type: 'string',
       description:
-        'Will add an icon to the bottom left corner of the thumbnail to denote teaser type.',
+        'Set the type of teaser. A play button will display with the video teaser signifier.',
       enum: ['pdf', 'video', 'article'],
+    },
+    signifier: {
+      type: 'object',
+      description:
+        'Set the signifier for the teaser. It accepts plain <img> element, image component and icon component.',
     },
     eyebrow_text: {
       type: 'string',
-      description: 'Used to put an eyebrow above the headline.',
+      description: 'Set the helper info above the headline.',
     },
     headline: {
       type: 'object',
       description:
-        'Used to set the headline text, size, and the link for the entire teaser.',
+        'Set the headline text, size, and the block link that covers the entire teaser.',
+      properties: {
+        text: headlineSchema.properties.text,
+        tag: headlineSchema.properties.tag,
+        size: headlineSchema.properties.size,
+        link_attributes: {
+          type: 'object',
+          description:
+            'A Drupal-style attributes object with extra attributes to append to the headline link.',
+        },
+      },
+    },
+    subheadline: {
+      type: 'object',
+      description: 'Set the subheadline text and size.',
       properties: {
         text: {
           type: 'string',
-          description: '',
+          description: 'Set the subheadline text content.',
         },
         size: {
           type: 'string',
-          description: 'Set the size of the headline.',
+          description: 'Set the size of the subheadline.',
           default: 'large',
-          enum: ['large', 'xlarge'],
-        },
-        link_attributes: {
-          type: 'object',
-          description: '',
+          enum: ['xlarge', 'xxlarge'],
         },
       },
+    },
+    description: {
+      type: 'string',
+      description:
+        'A breif description of the intended link. Trimmed to 100 characters when displayed inside the signifier.',
+    },
+    show_description: {
+      type: 'boolean',
+      default: false,
+      description:
+        'If set to true, will move the description out of the signifier area.',
     },
     meta: {
       type: 'string',
       description: 'Render meta data for the resouce.',
-    },
-    views: {
-      type: 'string',
-      description: 'Render the view count.',
     },
     like_button: {
       type: 'object',
@@ -74,17 +94,22 @@ module.exports = {
       description:
         'Render a popover share menu for the listing. Passing the Share component is mandatory.',
     },
-    description: {
-      type: 'string',
-      description:
-        'A breif description of the intended link. Trimmed to 100 characters when displayed inside the thumbnail.',
-    },
-    show_description: {
-      type: 'boolean',
-      default: false,
-      description:
-        'If set to true, will move the description out of the thumbnail area.',
-    },
     chip_list: chipListSchema,
+    views: {
+      type: 'string',
+      description: 'Render the view count.',
+    },
+    premium: {
+      type: 'boolean',
+      description:
+        'Indicate if this teaser is showing a premium resource. It shows a premium tag in the upper left corner of the signifier.',
+      default: false,
+    },
+    featured: {
+      type: 'boolean',
+      description:
+        'Indicate if this teaser is showing a featured resource. If no eyebrow text value is passed, the word "Featured" will appear as the eyebrow text.',
+      default: false,
+    },
   },
 };

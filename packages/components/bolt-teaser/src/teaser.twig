@@ -23,15 +23,16 @@
 {# Array of classes based on the defined + default props #}
 {% set classes = [
   'c-bolt-teaser',
-  this.data.layout.value ? 'c-bolt-teaser--' ~ this.data.layout.value : '',
+  this.data.layout.value ? 'c-bolt-teaser--' ~ this.data.layout.value,
+  this.data.gutter.value ? 'c-bolt-teaser--gutter-' ~ this.data.gutter.value,
   _teaser_id
 ] %}
 
 <article {{ attributes.addClass(classes) }}>
-  {% if image %}
+  {% if signifier %}
     <div class="c-bolt-teaser__thumbnail">
       <div class="c-bolt-teaser__thumbnail-image">
-        {{ image }}
+        {{ signifier }}
       </div>
 
       {% if this.data.type.value == 'video' %}
@@ -61,42 +62,45 @@
   {% endif %}
 
   <div class="c-bolt-teaser__content">
-    {% if this.data.eyebrow_text.value %}
+    {% if this.data.eyebrow_text.value or this.data.featured.value %}
       <div class="c-bolt-teaser__eyebrow">
+        {% if this.data.featured.value %}
+          {% set _eyebrow_text = 'Featured'|t %}
+        {% elseif this.data.eyebrow_text.value %}
+          {% set _eyebrow_text = this.data.eyebrow_text.value %}
+        {% endif %}
         {% include '@bolt-components-headline/eyebrow.twig' with {
-          text: this.data.eyebrow_text.value,
+          text: _eyebrow_text,
         } only %}
       </div>
     {% endif %}
 
     {% if headline %}
-      {% set _icon_chevron_right %}
-        {% include '@bolt-components-icon/icon.twig' with {
-          name: 'chevron-right',
-        } only %}
-      {% endset %}
-
       <div class="c-bolt-teaser__headline">
-        {% set _headline_link %}
-          {% include '@bolt-elements-text-link/text-link.twig' with {
-            content: headline.text,
-            expand_click_target: true,
-            icon_after: _icon_chevron_right,
-            reversed_underline: true,
-            attributes: headline.link_attributes
-          } only %}
-        {% endset %}
-
-        {% if headline.size %}
-          {% set _headline_size = headline.size %}
-        {% else %}
-          {% set _headline_size = 'large' %}
+        {% if headline.link_attributes %}
+          {% set _linked_text %}
+            {% include '@bolt-elements-text-link/text-link.twig' with {
+              content: headline.text,
+              reversed_underline: true,
+              expand_click_target: true,
+              attributes: headline.link_attributes
+            } only %}
+          {% endset %}
         {% endif %}
-
         {% include '@bolt-components-headline/headline.twig' with {
-          text: _headline_link,
-          tag: 'h2',
-          size: _headline_size,
+          text: headline.link_attributes ? _linked_text : headline.text,
+          tag: headline.tag,
+          size: headline.size,
+        } only %}
+      </div>
+    {% endif %}
+
+    {% if subheadline %}
+      <div class="c-bolt-teaser__subheadline">
+        {% include '@bolt-components-headline/subheadline.twig' with {
+          text: subheadline.text,
+          tag: subheadline.tag,
+          size: subheadline.size,
         } only %}
       </div>
     {% endif %}

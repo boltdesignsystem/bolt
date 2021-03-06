@@ -15,7 +15,7 @@
 
   &--horizontal {
     display: grid;
-    column-gap: var(--bolt-spacing-x-medium);
+    column-gap: var(--c-bolt-teaser-gutter, var(--bolt-spacing-x-medium));
     grid-template-columns: minmax(50px, 125px) minmax(160px, 1fr);
   }
 
@@ -23,9 +23,21 @@
     @include bolt-mq(medium) {
       display: grid;
       align-items: center;
-      column-gap: var(--bolt-spacing-x-large);
+      column-gap: var(--c-bolt-teaser-gutter, var(--bolt-spacing-x-medium));
       grid-template-columns: 1fr 1fr;
     }
+  }
+
+  &--gutter-small {
+    --c-bolt-teaser-gutter: var(--bolt-spacing-x-small);
+  }
+
+  &--gutter-medium {
+    --c-bolt-teaser-gutter: var(--bolt-spacing-x-medium);
+  }
+
+  &--gutter-large {
+    --c-bolt-teaser-gutter: var(--bolt-spacing-x-large);
   }
 }
 
@@ -216,7 +228,7 @@
 
 .c-bolt-teaser__description,
 .c-bolt-teaser__actions {
-  margin-bottom: var(--bolt-spacing-y-xsmall);
+  margin-bottom: var(--bolt-spacing-y-small);
 }
 
 .c-bolt-teaser__headline {
@@ -240,6 +252,7 @@
   @at-root .c-bolt-teaser--responsive #{&} {
     @include bolt-mq(medium) {
       order: 1;
+      margin-bottom: var(--bolt-spacing-y-xxsmall);
     }
   }
 }
