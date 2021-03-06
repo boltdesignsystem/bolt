@@ -1,9 +1,34 @@
-{% set view_content %}
-  {% include '@bolt-components-icon/icon.twig' with {
-    name: 'eye',
+{% set modal_id = 'js-bolt-modal-' ~ random() %}
+
+{% set modal_content %}
+  {% set video %}
+    <video-js
+      data-account='1900410236'
+      data-player='4fVA8Ojzs'
+      data-embed='default'
+      data-video-id='4892122320001'
+      controls
+      data-media-title
+      data-media-duration
+      class="c-base-video"></video-js>
+  {% endset %}
+
+  {% include '@bolt-components-ratio/ratio.twig' with {
+    children: video,
+    ratio: '16/9'
   } only %}
-  27 views
 {% endset %}
+
+{% include '@bolt-components-modal/modal.twig' with {
+  content: modal_content,
+  width: 'optimal',
+  spacing: 'none',
+  theme: 'none',
+  scroll: 'overall',
+  attributes: {
+    id: modal_id,
+  },
+} only %}
 
 {% set like_button_content %}
   {% include '@bolt-components-link/link.twig' with {
@@ -15,7 +40,7 @@
     type: 'button',
     isHeadline: true,
     attributes: {
-      "class": "click-me",
+      'class': 'click-me',
     }
   } only %}
 {% endset %}
@@ -48,29 +73,35 @@
   } only %}
 {% endset %}
 
-{% set _image %}
-  {# {% include '@bolt-components-image/image.twig' with {
-    src: "/images/placeholders/landscape-16x9-mountains.jpg",
-    alt: "Mountains",
-    ratio: "none",
-  } only %} #}
-  <img src="http://www.fillmurray.com/g/900/300" alt="Moutains">
+{% set wide_image %}
+  {% include '@bolt-components-image/image.twig' with {
+    src: '/images/content/promos/promo-16x9-ai.jpg',
+    alt: 'Alt text.',
+  } only %}
+{% endset %}
+
+{% set square_image %}
+  {% include '@bolt-components-image/image.twig' with {
+    src: '/images/placeholders/thumb-square-abstract.jpg',
+    alt: 'Alt text.',
+  } only %}
 {% endset %}
 
 <div class="o-bolt-grid o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center o-bolt-grid--large">
   <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@medium">
     {% include '@bolt-components-teaser/teaser.twig' with {
-      image : _image,
+      image : wide_image,
       premium: true,
-      views: 27,
       meta: '6:29',
+      views: '27',
       like_button: like_button_content,
       share_menu: share_menu_content,
       headline: {
-        text: 'This teaser is here to test.',
+        text: 'Vertical Teaser',
         link_attributes: {
-          href: "https://www.pega.com"
-        }
+          type: 'button',
+          'data-bolt-modal-target': '#' ~ modal_id,
+        },
       },
       show_description: true,
       type: 'video',
@@ -90,14 +121,18 @@
   </div>
   <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@medium">
     {% include '@bolt-components-teaser/teaser.twig' with {
-      image : _image,
+      image : square_image,
       headline: {
-        text: 'This teaser is here to test an article link.',
+        text: 'Horizontal Teaser',
         link_attributes: {
-          href: 'https://www.pega.com'
-        }
+          type: 'button',
+          'data-bolt-modal-target': '#' ~ modal_id,
+        },
       },
       meta: '4:55',
+      views: '35',
+      like_button: like_button_content,
+      share_menu: share_menu_content,
       layout: 'horizontal',
       show_description: true,
       type: 'video',
@@ -106,7 +141,7 @@
         size: 'xsmall',
         items: [
           {
-            text: 'Article',
+            text: 'Video',
           },
           {
             text: 'Data',
@@ -115,14 +150,17 @@
       }
     } only %}
     {% include '@bolt-components-teaser/teaser.twig' with {
-      image : _image,
+      image : square_image,
       headline: {
-        text: 'This teaser is here to test an article link.',
+        text: 'Horizontal Teaser',
         link_attributes: {
           href: 'https://www.pega.com'
         }
       },
       meta: '15 min read',
+      views: '66',
+      like_button: like_button_content,
+      share_menu: share_menu_content,
       layout: 'horizontal',
       show_description: true,
       type: 'article',
@@ -140,14 +178,17 @@
       }
     } only %}
     {% include '@bolt-components-teaser/teaser.twig' with {
-      image : _image,
+      image : square_image,
       headline: {
-        text: 'This teaser is here to test an article link.',
+        text: 'Horizontal Teaser',
         link_attributes: {
           href: 'https://www.pega.com'
         }
       },
       meta: '29 min read',
+      views: '14',
+      like_button: like_button_content,
+      share_menu: share_menu_content,
       layout: 'horizontal',
       show_description: true,
       type: 'article',
@@ -169,15 +210,15 @@
 
 {# Example Like Button JS #}
 <script>
-    document.querySelector('.click-me').addEventListener('click', function (event) {
-      var _like_icon = this.firstChild;
+  document.querySelector('.click-me').addEventListener('click', function (event) {
+    var _like_icon = this.firstChild;
 
-      if ( _like_icon.getAttribute('name') == 'heart-open' ) {
-        _like_icon.setAttribute('name', 'heart');
-        _like_icon.setAttribute('color', 'pink');
-      } else {
-        _like_icon.setAttribute('name', 'heart-open');
-        _like_icon.removeAttribute('color');
-      }
-    });
+    if ( _like_icon.getAttribute('name') == 'heart-open' ) {
+      _like_icon.setAttribute('name', 'heart');
+      _like_icon.setAttribute('color', 'pink');
+    } else {
+      _like_icon.setAttribute('name', 'heart-open');
+      _like_icon.removeAttribute('color');
+    }
+  });
 </script>

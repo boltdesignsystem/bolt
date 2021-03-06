@@ -62,7 +62,7 @@ module.exports = {
       description: 'Render meta data for the resouce.',
     },
     views: {
-      type: 'number',
+      type: 'string',
       description: 'Render the view count.',
     },
     like_button: {

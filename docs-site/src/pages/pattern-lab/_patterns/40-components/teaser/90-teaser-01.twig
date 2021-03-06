@@ -1,33 +1,33 @@
-{% set modal_id = 'modal-001' %}
+{% set modal_id = 'js-bolt-modal-' ~ random() %}
 
 {% set modal_content %}
   {% set video %}
     <video-js
-      data-account="1900410236"
-      data-player="4fVA8Ojzs"
-      data-embed="default"
-      data-video-id="4892122320001"
+      data-account='1900410236'
+      data-player='4fVA8Ojzs'
+      data-embed='default'
+      data-video-id='4892122320001'
       controls
       data-media-title
       data-media-duration
       class="c-base-video"></video-js>
   {% endset %}
 
-  {% include "@bolt-components-ratio/ratio.twig" with {
+  {% include '@bolt-components-ratio/ratio.twig' with {
     children: video,
-    ratio: "16/9"
+    ratio: '16/9'
   } only %}
 {% endset %}
 
-{% include "@bolt-components-modal/modal.twig" with {
-  attributes: {
-    class: modal_id,
-  },
+{% include '@bolt-components-modal/modal.twig' with {
   content: modal_content,
-  width: "optimal",
-  spacing: "none",
-  theme: "none",
-  scroll: "overall",
+  width: 'optimal',
+  spacing: 'none',
+  theme: 'none',
+  scroll: 'overall',
+  attributes: {
+    id: modal_id,
+  },
 } only %}
 
 {% set like_button_content %}
@@ -40,7 +40,7 @@
     type: 'button',
     isHeadline: true,
     attributes: {
-      "class": "click-me",
+      'class': 'click-me',
     }
   } only %}
 {% endset %}
@@ -74,29 +74,26 @@
 {% endset %}
 
 {% set _image %}
-  {# {% include '@bolt-components-image/image.twig' with {
-    src: "/images/placeholders/landscape-16x9-mountains.jpg",
-    alt: "Mountains",
-    ratio: "none",
-  } only %} #}
-  <img src="http://www.fillmurray.com/g/900/300" alt="Moutains">
+  {% include '@bolt-components-image/image.twig' with {
+    src: '/images/content/promos/promo-16x9-ai.jpg',
+    alt: 'Alt text.',
+  } only %}
 {% endset %}
 
-<div class="o-bolt-grid o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center">
+<div class="o-bolt-grid o-bolt-grid--flex o-bolt-grid--matrix">
   <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@small u-bolt-width-4/12@medium">
     {% include '@bolt-components-teaser/teaser.twig' with {
       image : _image,
       premium: true,
-      views: 27,
+      views: '27',
       meta: '6 min read',
       like_button: like_button_content,
       share_menu: share_menu_content,
       headline: {
-        text: 'This teaser is here to test a video modal.',
+        text: 'This a video teaser',
         link_attributes: {
           type: 'button',
-          "on-click": "show",
-          "on-click-target": modal_id,
+          'data-bolt-modal-target': '#' ~ modal_id,
         }
       },
       type: 'video',
@@ -117,14 +114,14 @@
   <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@small u-bolt-width-4/12@medium">
     {% include '@bolt-components-teaser/teaser.twig' with {
       image : _image,
-      views: 160,
+      views: '160',
       meta: '3 min read',
       like_button: like_button_content,
       share_menu: share_menu_content,
       headline: {
-        text: 'PDF Link',
+        text: 'This is a PDF teaser',
         link_attributes: {
-          href: "https://www.pega.com"
+          href: 'https://www.pega.com'
         }
       },
       type: 'pdf',
@@ -133,7 +130,7 @@
         size: 'xsmall',
         items: [
           {
-            text: 'Video',
+            text: 'White Paper',
           },
           {
             text: 'Research',
@@ -145,14 +142,14 @@
   <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@small u-bolt-width-4/12@medium">
     {% include '@bolt-components-teaser/teaser.twig' with {
       image : _image,
-      views: 45,
+      views: '45',
       meta: '10 min read',
       like_button: like_button_content,
       share_menu: share_menu_content,
       headline: {
-        text: 'Artlicle Link',
+        text: 'This is an external link teaser',
         link_attributes: {
-          href: "https://www.pega.com"
+          href: 'https://www.pega.com'
         }
       },
       type: 'article',
@@ -161,7 +158,7 @@
         size: 'xsmall',
         items: [
           {
-            text: 'Video',
+            text: 'Data Sheet',
           },
           {
             text: 'Research',
@@ -174,15 +171,15 @@
 
 {# Example Like Button JS #}
 <script>
-    document.querySelector('.click-me').addEventListener('click', function (event) {
-      var _like_icon = this.firstChild;
+  document.querySelector('.click-me').addEventListener('click', function (event) {
+    var _like_icon = this.firstChild;
 
-      if ( _like_icon.getAttribute('name') == 'heart-open' ) {
-        _like_icon.setAttribute('name', 'heart');
-        _like_icon.setAttribute('color', 'pink');
-      } else {
-        _like_icon.setAttribute('name', 'heart-open');
-        _like_icon.removeAttribute('color');
-      }
-    });
+    if ( _like_icon.getAttribute('name') == 'heart-open' ) {
+      _like_icon.setAttribute('name', 'heart');
+      _like_icon.setAttribute('color', 'pink');
+    } else {
+      _like_icon.setAttribute('name', 'heart-open');
+      _like_icon.removeAttribute('color');
+    }
+  });
 </script>

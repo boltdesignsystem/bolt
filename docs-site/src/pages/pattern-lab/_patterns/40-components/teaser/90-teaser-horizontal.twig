@@ -1,21 +1,18 @@
 {% set _image %}
-  {# {% include '@bolt-components-image/image.twig' with {
-    src: "/images/placeholders/landscape-16x9-mountains.jpg",
-    alt: "Mountains",
-    ratio: "none",
-  } only %} #}
-  <img src="/images/placeholders/landscape-16x9-mountains.jpg" alt="Moutains">
+  {% include '@bolt-components-image/image.twig' with {
+    src: '/images/placeholders/thumb-square-abstract.jpg',
+    alt: 'Alt text.',
+  } only %}
 {% endset %}
 
 {% include '@bolt-components-teaser/teaser.twig' with {
   image : _image,
   headline: {
-    text: 'This teaser is here to test an article link.',
+    text: 'This teaser is without meta, views, and actions',
     link_attributes: {
       href: 'https://www.pega.com'
     }
   },
-  meta: '15 min read',
   layout: 'horizontal',
   show_description: true,
   type: 'article',
