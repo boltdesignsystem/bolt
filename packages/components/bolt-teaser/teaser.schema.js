@@ -57,9 +57,13 @@ module.exports = {
         },
       },
     },
-    meta_items: {
-      type: 'array',
-      description: 'Render an array of meta data for the listing.',
+    meta: {
+      type: 'string',
+      description: 'Render meta data for the resouce.',
+    },
+    views: {
+      type: 'number',
+      description: 'Render the view count.',
     },
     like_button: {
       type: 'object',

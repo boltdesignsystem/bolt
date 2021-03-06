@@ -30,13 +30,6 @@
   scroll: "overall",
 } only %}
 
-{% set view_content %}
-  {% include '@bolt-components-icon/icon.twig' with {
-    name: 'eye',
-  } only %}
-  27 views
-{% endset %}
-
 {% set like_button_content %}
   {% include '@bolt-components-link/link.twig' with {
     text: 'Like',
@@ -94,9 +87,8 @@
     {% include '@bolt-components-teaser/teaser.twig' with {
       image : _image,
       premium: true,
-      meta_items: [
-        view_content,
-      ],
+      views: 27,
+      meta: '6 min read',
       like_button: like_button_content,
       share_menu: share_menu_content,
       headline: {
@@ -125,9 +117,8 @@
   <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@small u-bolt-width-4/12@medium">
     {% include '@bolt-components-teaser/teaser.twig' with {
       image : _image,
-      meta_items: [
-        view_content,
-      ],
+      views: 160,
+      meta: '3 min read',
       like_button: like_button_content,
       share_menu: share_menu_content,
       headline: {
@@ -154,9 +145,8 @@
   <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@small u-bolt-width-4/12@medium">
     {% include '@bolt-components-teaser/teaser.twig' with {
       image : _image,
-      meta_items: [
-        view_content,
-      ],
+      views: 45,
+      meta: '10 min read',
       like_button: like_button_content,
       share_menu: share_menu_content,
       headline: {

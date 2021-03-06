@@ -57,14 +57,13 @@
   <img src="http://www.fillmurray.com/g/900/300" alt="Moutains">
 {% endset %}
 
-<div class="o-bolt-grid o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center">
+<div class="o-bolt-grid o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center o-bolt-grid--large">
   <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@medium">
     {% include '@bolt-components-teaser/teaser.twig' with {
       image : _image,
       premium: true,
-      meta_items: [
-        view_content,
-      ],
+      views: 27,
+      meta: '6:29',
       like_button: like_button_content,
       share_menu: share_menu_content,
       headline: {
@@ -98,9 +97,32 @@
           href: 'https://www.pega.com'
         }
       },
-      meta_items: [
-        '15 min read',
-      ],
+      meta: '4:55',
+      layout: 'horizontal',
+      show_description: true,
+      type: 'video',
+      description: 'Tempor mollit cillum ea ipsum deserunt duis elit esse commodo culpa cupidatat enim non velit. Culpa pariatur eiusmod et anim. Consectetur est id aliquip ea incididunt.',
+      chip_list: {
+        size: 'xsmall',
+        items: [
+          {
+            text: 'Article',
+          },
+          {
+            text: 'Data',
+          },
+        ],
+      }
+    } only %}
+    {% include '@bolt-components-teaser/teaser.twig' with {
+      image : _image,
+      headline: {
+        text: 'This teaser is here to test an article link.',
+        link_attributes: {
+          href: 'https://www.pega.com'
+        }
+      },
+      meta: '15 min read',
       layout: 'horizontal',
       show_description: true,
       type: 'article',
@@ -125,36 +147,7 @@
           href: 'https://www.pega.com'
         }
       },
-      meta_items: [
-        '15 min read',
-      ],
-      layout: 'horizontal',
-      show_description: true,
-      type: 'article',
-      description: 'Tempor mollit cillum ea ipsum deserunt duis elit esse commodo culpa cupidatat enim non velit. Culpa pariatur eiusmod et anim. Consectetur est id aliquip ea incididunt.',
-      chip_list: {
-        size: 'xsmall',
-        items: [
-          {
-            text: 'Article',
-          },
-          {
-            text: 'Data',
-          },
-        ],
-      }
-    } only %}
-    {% include '@bolt-components-teaser/teaser.twig' with {
-      image : _image,
-      headline: {
-        text: 'This teaser is here to test an article link.',
-        link_attributes: {
-          href: 'https://www.pega.com'
-        }
-      },
-      meta_items: [
-        '15 min read',
-      ],
+      meta: '29 min read',
       layout: 'horizontal',
       show_description: true,
       type: 'article',

@@ -3,7 +3,6 @@
   - more space when justified flex-start
 
   Need more info:
-  - Are we planning to replicate the video meta timer inside the thumbnail?
   - premium tag position math, make it configurable.
     - fixed width.
     - up to 12 characters?
@@ -33,36 +32,27 @@
         {{ image }}
       </div>
 
-      {% if this.data.premium.value %}
-        <div class="c-bolt-teaser__thumbnail-premium">
-          Premium
-        </div>
+      {% if this.data.type.value == 'video' %}
+        <div class="c-bolt-teaser__thumbnail-type c-bolt-teaser__thumbnail-type--video" aria-hidden="true"></div>
       {% endif %}
 
-      {% if this.data.type.value %}
-        <div class="c-bolt-teaser__thumbnail-type">
-          {% if this.data.type.value == 'video' %}
-            {% set _icon_name = "asset-video" %}
-          {% elseif this.data.type.value == 'pdf' %}
-            {% set _icon_name = "asset-media" %}
-          {% elseif this.data.type.value == 'article' %}
-            {% set _icon_name = "asset-text" %}
-          {% endif %}
-
-          {% include '@bolt-components-icon/icon.twig' with {
-            name: _icon_name,
-            background: 'square',
-            size: 'small',
-            color: 'yellow',
-          } only %}
+      {% if this.data.meta.value %}
+        <div class="c-bolt-teaser__thumbnail-meta">
+          {{ meta }}
         </div>
       {% endif %}
 
       {% if this.data.description.value and not this.data.show_description.value %}
-        <div class="c-bolt-teaser__thumbnail-description-wrapper" aria-hidden="true">
-          <div class="c-bolt-teaser__thumbnail-description">
+        <div class="c-bolt-teaser__thumbnail-description" aria-hidden="true">
+          <div class="c-bolt-teaser__thumbnail-description-text">
             {{ this.data.description.value }}
           </div>
+        </div>
+      {% endif %}
+
+      {% if this.data.premium.value %}
+        <div class="c-bolt-teaser__thumbnail-premium">
+          {{ 'Premium'|t }}
         </div>
       {% endif %}
     </div>
@@ -109,14 +99,15 @@
       </div>
     {% endif %}
 
-    {% if meta_items or share_menu or like_button %}
-      <div class="c-bolt-teaser__meta-action-content">
-        {% if meta_items %}
-          {% for item in meta_items %}
-            <div class="c-bolt-teaser__meta-item">
-              {{ item }}
-            </div>
-          {% endfor %}
+    {% if views or share_menu or like_button %}
+      <div class="c-bolt-teaser__actions">
+        {% if this.data.views %}
+          <div class="c-bolt-teaser__views">
+            {% include '@bolt-components-icon/icon.twig' with {
+              name: 'eye',
+            } only %}
+            {{ this.data.views.value }} {{ 'views'|t }}
+          </div>
         {% endif %}
 
         {% if share_menu %}
@@ -141,18 +132,18 @@
         {% endif %}
 
         {% if like_button or share_button %}
-          <div class="c-bolt-teaser__meta-action-items">
+          <ul class="c-bolt-teaser__action-list">
             {% if like_button %}
-              <div class="c-bolt-teaser__meta-action-item">
+              <li class="c-bolt-teaser__action-list-item">
                 {{ like_button }}
-              </div>
+              </li>
             {% endif %}
             {% if share_button %}
-              <div class="c-bolt-teaser__meta-action-item">
+              <li class="c-bolt-teaser__action-list-item">
                 {{ share_button }}
-              </div>
+              </li>
             {% endif %}
-          </div>
+          </ul>
         {% endif %}
       </div>
     {% endif %}
