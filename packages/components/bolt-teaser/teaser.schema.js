@@ -66,7 +66,7 @@ module.exports = {
           type: 'string',
           description: 'Set the size of the subheadline.',
           default: 'large',
-          enum: ['xlarge', 'xxlarge'],
+          enum: ['xxlarge', 'xlarge', 'large'],
         },
       },
     },
