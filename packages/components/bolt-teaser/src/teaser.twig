@@ -30,31 +30,31 @@
 
 <article {{ attributes.addClass(classes) }}>
   {% if signifier %}
-    <div class="c-bolt-teaser__thumbnail">
-      <div class="c-bolt-teaser__thumbnail-image">
+    <div class="c-bolt-teaser__signifier">
+      <div class="c-bolt-teaser__signifier-image">
         {{ signifier }}
       </div>
 
       {% if this.data.type.value == 'video' %}
-        <div class="c-bolt-teaser__thumbnail-type c-bolt-teaser__thumbnail-type--video" aria-hidden="true"></div>
+        <div class="c-bolt-teaser__signifier-type c-bolt-teaser__signifier-type--video" aria-hidden="true"></div>
       {% endif %}
 
       {% if this.data.meta.value %}
-        <div class="c-bolt-teaser__thumbnail-meta">
+        <div class="c-bolt-teaser__signifier-meta">
           {{ meta }}
         </div>
       {% endif %}
 
       {% if this.data.description.value and not this.data.show_description.value %}
-        <div class="c-bolt-teaser__thumbnail-description" aria-hidden="true">
-          <div class="c-bolt-teaser__thumbnail-description-text">
+        <div class="c-bolt-teaser__signifier-description" aria-hidden="true">
+          <div class="c-bolt-teaser__signifier-description-text">
             {{ this.data.description.value }}
           </div>
         </div>
       {% endif %}
 
       {% if this.data.premium.value %}
-        <div class="c-bolt-teaser__thumbnail-premium">
+        <div class="c-bolt-teaser__signifier-premium">
           {{ 'Premium'|t }}
         </div>
       {% endif %}
@@ -62,19 +62,6 @@
   {% endif %}
 
   <div class="c-bolt-teaser__content">
-    {% if this.data.eyebrow_text.value or this.data.featured.value %}
-      <div class="c-bolt-teaser__eyebrow">
-        {% if this.data.featured.value %}
-          {% set _eyebrow_text = 'Featured'|t %}
-        {% elseif this.data.eyebrow_text.value %}
-          {% set _eyebrow_text = this.data.eyebrow_text.value %}
-        {% endif %}
-        {% include '@bolt-components-headline/eyebrow.twig' with {
-          text: _eyebrow_text,
-        } only %}
-      </div>
-    {% endif %}
-
     {% if headline %}
       <div class="c-bolt-teaser__headline">
         {% if headline.link_attributes %}
@@ -101,6 +88,19 @@
           text: subheadline.text,
           tag: subheadline.tag,
           size: subheadline.size,
+        } only %}
+      </div>
+    {% endif %}
+
+    {% if this.data.eyebrow_text.value or this.data.featured.value %}
+      <div class="c-bolt-teaser__eyebrow">
+        {% if this.data.featured.value %}
+          {% set _eyebrow_text = 'Featured'|t %}
+        {% elseif this.data.eyebrow_text.value %}
+          {% set _eyebrow_text = this.data.eyebrow_text.value %}
+        {% endif %}
+        {% include '@bolt-components-headline/eyebrow.twig' with {
+          text: _eyebrow_text,
         } only %}
       </div>
     {% endif %}
