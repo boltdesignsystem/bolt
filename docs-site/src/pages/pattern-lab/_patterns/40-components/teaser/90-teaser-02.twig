@@ -30,21 +30,6 @@
   },
 } only %}
 
-{% set like_button_content %}
-  {% include '@bolt-components-link/link.twig' with {
-    text: 'Like',
-    icon: {
-      name: 'heart-open',
-      position: 'before',
-    },
-    type: 'button',
-    isHeadline: true,
-    attributes: {
-      'class': 'click-me',
-    }
-  } only %}
-{% endset %}
-
 {% set share_menu_content %}
   {% include '@bolt-components-share/share.twig' with {
     display: 'menu',
@@ -87,14 +72,29 @@
   } only %}
 {% endset %}
 
+{% set chip_list_content %}
+  {% include '@bolt-components-chip-list/chip-list.twig' with {
+    size: 'xsmall',
+    items: [
+      {
+        text: 'Video',
+      },
+      {
+        text: 'Research',
+      },
+    ],
+  } only %}
+{% endset %}
+
 <div class="o-bolt-grid o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center o-bolt-grid--large">
   <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@medium">
     {% include '@bolt-components-teaser/teaser.twig' with {
       signifier: wide_image,
       premium: true,
       time: '6:29',
-      views: '27',
-      like_button: like_button_content,
+      like_button_attributes: {
+        'class': 'click-me'
+      },
       share_menu: share_menu_content,
       headline: {
         text: 'Vertical Teaser',
@@ -105,19 +105,13 @@
           'data-bolt-modal-target': '#' ~ modal_id,
         },
       },
-      show_description: true,
       type: 'video',
-      description: 'Aliqua voluptate amet do laborum culpa tempor consectetur culpa consectetur ea. Ea officia quis do enim. Id consectetur dolor voluptate eu veniam anim adipisicing dolor ut occaecat officia fugiat magna reprehenderit.',
-      chip_list: {
-        size: 'xsmall',
-        items: [
-          {
-            text: 'Video',
-          },
-          {
-            text: 'Research',
-          },
-        ],
+      description: {
+        content: 'Aliqua voluptate amet do laborum culpa tempor consectetur culpa consectetur ea. Ea officia quis do enim. Id consectetur dolor voluptate eu veniam anim adipisicing dolor ut occaecat officia fugiat magna reprehenderit.',
+      },
+      chip_list: chip_list_content,
+      status: {
+        views: '27'
       }
     } only %}
   </div>
@@ -134,23 +128,18 @@
         },
       },
       time: '4:55',
-      views: '35',
-      like_button: like_button_content,
+      like_button_attributes: {
+        'class': 'click-me'
+      },
       share_menu: share_menu_content,
       layout: 'horizontal',
-      show_description: true,
       type: 'video',
-      description: 'Tempor mollit cillum ea ipsum deserunt duis elit esse commodo culpa cupidatat enim non velit. Culpa pariatur eiusmod et anim. Consectetur est id aliquip ea incididunt.',
-      chip_list: {
-        size: 'xsmall',
-        items: [
-          {
-            text: 'Video',
-          },
-          {
-            text: 'Data',
-          },
-        ],
+      description: {
+        content: 'Aliqua voluptate amet do laborum culpa tempor consectetur culpa consectetur ea. Ea officia quis do enim. Id consectetur dolor voluptate eu veniam anim adipisicing dolor ut occaecat officia fugiat magna reprehenderit.',
+      },
+      chip_list: chip_list_content,
+      status: {
+        views: '35',
       }
     } only %}
     {% include '@bolt-components-teaser/teaser.twig' with {
@@ -164,23 +153,18 @@
         }
       },
       time: '15 min read',
-      views: '66',
-      like_button: like_button_content,
+      like_button_attributes: {
+        'class': 'click-me'
+      },
       share_menu: share_menu_content,
       layout: 'horizontal',
-      show_description: true,
-      type: 'article',
-      description: 'Tempor mollit cillum ea ipsum deserunt duis elit esse commodo culpa cupidatat enim non velit. Culpa pariatur eiusmod et anim. Consectetur est id aliquip ea incididunt.',
-      chip_list: {
-        size: 'xsmall',
-        items: [
-          {
-            text: 'Article',
-          },
-          {
-            text: 'Data',
-          },
-        ],
+      type: 'external-link',
+      description: {
+        content: 'Aliqua voluptate amet do laborum culpa tempor consectetur culpa consectetur ea. Ea officia quis do enim. Id consectetur dolor voluptate eu veniam anim adipisicing dolor ut occaecat officia fugiat magna reprehenderit.',
+      },
+      chip_list: chip_list_content,
+      status: {
+        views: '66',
       }
     } only %}
     {% include '@bolt-components-teaser/teaser.twig' with {
@@ -194,23 +178,18 @@
         }
       },
       time: '29 min read',
-      views: '14',
-      like_button: like_button_content,
+      like_button_attributes: {
+        'class': 'click-me'
+      },
       share_menu: share_menu_content,
       layout: 'horizontal',
-      show_description: true,
-      type: 'article',
-      description: 'Tempor mollit cillum ea ipsum deserunt duis elit esse commodo culpa cupidatat enim non velit. Culpa pariatur eiusmod et anim. Consectetur est id aliquip ea incididunt.',
-      chip_list: {
-        size: 'xsmall',
-        items: [
-          {
-            text: 'Article',
-          },
-          {
-            text: 'Data',
-          },
-        ],
+      type: 'external-link',
+      description: {
+        content: 'Aliqua voluptate amet do laborum culpa tempor consectetur culpa consectetur ea. Ea officia quis do enim. Id consectetur dolor voluptate eu veniam anim adipisicing dolor ut occaecat officia fugiat magna reprehenderit.',
+      },
+      chip_list: chip_list_content,
+      status: {
+        views: '14',
       }
     } only %}
   </div>

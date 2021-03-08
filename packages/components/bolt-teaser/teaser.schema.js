@@ -1,5 +1,4 @@
 const headlineSchema = require('@bolt/components-headline/headline.schema');
-const chipListSchema = require('@bolt/components-chip-list/chip-list.schema.js');
 
 module.exports = {
   $schema: 'http://json-schema.org/draft-04/schema#',
@@ -28,7 +27,7 @@ module.exports = {
       type: 'string',
       description:
         'Set the type of teaser. A play button will display with the video teaser signifier.',
-      enum: ['pdf', 'video', 'article'],
+      enum: ['PDF', 'video', 'external-link'],
     },
     signifier: {
       type: 'object',
@@ -71,41 +70,56 @@ module.exports = {
       },
     },
     description: {
-      type: 'string',
-      description:
-        'A breif description of the intended link. Trimmed to 100 characters when displayed inside the signifier.',
-    },
-    show_description: {
-      type: 'boolean',
-      default: false,
-      description:
-        'If set to true, will move the description out of the signifier area.',
+      type: 'object',
+      description: '',
+      properties: {
+        content: {
+          type: 'string',
+          description:
+            'A breif description of the intended link. Trimmed to 100 characters when displayed inside the signifier.',
+        },
+        show_on_hover: {
+          type: 'boolean',
+          default: false,
+          description:
+            'If set to true, will move the description out of the signifier area.',
+        },
+      },
     },
     time: {
       type: 'string',
       description:
         'Render time data (video duration or read time) for the resouce.',
     },
-    like_button: {
+    like_button_attributes: {
       type: 'object',
-      description: 'Pass a rendered button to display.',
+      description: '',
     },
     share_menu: {
       type: 'any',
       description:
         'Render a popover share menu for the listing. Passing the Share component is mandatory.',
     },
-    chip_list: chipListSchema,
-    views: {
-      type: 'string',
-      description: 'Render the view count.',
+    chip_list: {
+      type: 'object',
+      description: '',
     },
-    premium: {
-      type: 'boolean',
-      description:
-        'Indicate if this teaser is showing a premium resource. It shows a premium tag in the upper left corner of the signifier.',
-      default: false,
+    status: {
+      type: 'object',
+      description: '',
+      properties: {
+        premium: {
+          type: 'boolean',
+          description:
+            'Indicate if this teaser is showing a premium resource. It shows a premium tag in the upper left corner of the signifier.',
+          default: false,
+        },
+        views: {
+          type: 'string',
+          description: 'Render the view count.',
+        },
+      },
     },
-    // @todo: meta or meta_items reserved for author and posted date info?
+    // @TODO: meta or meta_items reserved for author and posted date info?
   },
 };

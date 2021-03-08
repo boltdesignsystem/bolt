@@ -5,6 +5,20 @@
   } only %}
 {% endset %}
 
+{% set chip_list_content %}
+  {% include '@bolt-components-chip-list/chip-list.twig' with {
+    size: 'xsmall',
+    items: [
+      {
+        text: 'Video',
+      },
+      {
+        text: 'Research',
+      },
+    ],
+  } only %}
+{% endset %}
+
 {% include '@bolt-components-teaser/teaser.twig' with {
   signifier: image,
   headline: {
@@ -16,20 +30,11 @@
     }
   },
   layout: 'horizontal',
-  show_description: true,
-  type: 'article',
-  description: 'Tempor mollit cillum ea ipsum deserunt duis elit esse commodo culpa cupidatat enim non velit. Culpa pariatur eiusmod et anim. Consectetur est id aliquip ea incididunt.',
-  chip_list: {
-    size: 'xsmall',
-    items: [
-      {
-        text: 'Article',
-      },
-      {
-        text: 'Data',
-      },
-    ],
-  }
+  type: 'external-link',
+  description: {
+    content: 'Tempor mollit cillum ea ipsum deserunt duis elit esse commodo culpa cupidatat enim non velit. Culpa pariatur eiusmod et anim. Consectetur est id aliquip ea incididunt.'
+  },
+  chip_list: chip_list_content,
 } only %}
 
 

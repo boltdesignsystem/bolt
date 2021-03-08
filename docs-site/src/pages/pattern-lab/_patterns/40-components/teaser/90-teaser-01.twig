@@ -30,21 +30,6 @@
   },
 } only %}
 
-{% set like_button_content %}
-  {% include '@bolt-components-link/link.twig' with {
-    text: 'Like',
-    icon: {
-      name: 'heart-open',
-      position: 'before',
-    },
-    type: 'button',
-    isHeadline: true,
-    attributes: {
-      'class': 'click-me',
-    }
-  } only %}
-{% endset %}
-
 {% set share_menu_content %}
   {% include '@bolt-components-share/share.twig' with {
     display: 'menu',
@@ -80,14 +65,28 @@
   } only %}
 {% endset %}
 
+{% set chip_list_content %}
+  {% include '@bolt-components-chip-list/chip-list.twig' with {
+    size: 'xsmall',
+    items: [
+      {
+        text: 'Video',
+      },
+      {
+        text: 'Research',
+      },
+    ],
+  } only %}
+{% endset %}
+
 <div class="o-bolt-grid o-bolt-grid--flex o-bolt-grid--matrix">
   <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@small u-bolt-width-4/12@medium">
     {% include '@bolt-components-teaser/teaser.twig' with {
       signifier: image,
-      premium: true,
-      views: '27',
       time: '4:55',
-      like_button: like_button_content,
+      like_button_attributes: {
+        'class': 'click-me'
+      },
       share_menu: share_menu_content,
       headline: {
         text: 'This a video teaser',
@@ -99,26 +98,24 @@
         }
       },
       type: 'video',
-      description: 'Aliqua voluptate amet do laborum culpa tempor consectetur culpa consectetur ea. Ea officia quis do enim. Id consectetur dolor voluptate eu veniam anim adipisicing dolor ut occaecat officia fugiat magna reprehenderit.',
-      chip_list: {
-        size: 'xsmall',
-        items: [
-          {
-            text: 'Video',
-          },
-          {
-            text: 'Research',
-          },
-        ],
+      description:  {
+        content:'Aliqua voluptate amet do laborum culpa tempor consectetur culpa consectetur ea. Ea officia quis do enim. Id consectetur dolor voluptate eu veniam anim adipisicing dolor ut occaecat officia fugiat magna reprehenderit.',
+        show_on_hover: true,
+      },
+      chip_list: chip_list_content,
+      status: {
+        premium: true,
+        views: '27'
       }
     } only %}
   </div>
   <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@small u-bolt-width-4/12@medium">
     {% include '@bolt-components-teaser/teaser.twig' with {
       signifier: image,
-      views: '160',
       time: '3 min read',
-      like_button: like_button_content,
+      like_button_attributes: {
+        'class': 'click-me'
+      },
       share_menu: share_menu_content,
       headline: {
         text: 'This is a PDF teaser',
@@ -128,27 +125,24 @@
           href: 'https://www.pega.com'
         }
       },
-      type: 'pdf',
-      description: 'Aliqua voluptate amet do laborum culpa tempor consectetur culpa consectetur ea. Ea officia quis do enim. Id consectetur dolor voluptate eu veniam anim adipisicing dolor ut occaecat officia fugiat magna reprehenderit.',
-      chip_list: {
-        size: 'xsmall',
-        items: [
-          {
-            text: 'White Paper',
-          },
-          {
-            text: 'Research',
-          },
-        ],
+      type: 'PDF',
+      description:  {
+        content:'Aliqua voluptate amet do laborum culpa tempor consectetur culpa consectetur ea. Ea officia quis do enim. Id consectetur dolor voluptate eu veniam anim adipisicing dolor ut occaecat officia fugiat magna reprehenderit.',
+        show_on_hover: true,
+      },
+      chip_list: chip_list_content,
+      status: {
+        views: '160',
       }
     } only %}
   </div>
   <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@small u-bolt-width-4/12@medium">
     {% include '@bolt-components-teaser/teaser.twig' with {
       signifier: image,
-      views: '45',
       time: '10 min read',
-      like_button: like_button_content,
+      like_button_attributes: {
+        'class': 'click-me'
+      },
       share_menu: share_menu_content,
       headline: {
         text: 'This is an external link teaser',
@@ -158,18 +152,14 @@
           href: 'https://www.pega.com'
         }
       },
-      type: 'article',
-      description: 'Aliqua voluptate amet do laborum culpa tempor consectetur culpa consectetur ea. Ea officia quis do enim. Id consectetur dolor voluptate eu veniam anim adipisicing dolor ut occaecat officia fugiat magna reprehenderit.',
-      chip_list: {
-        size: 'xsmall',
-        items: [
-          {
-            text: 'Data Sheet',
-          },
-          {
-            text: 'Research',
-          },
-        ],
+      type: 'external-link',
+      description:  {
+        content:'Aliqua voluptate amet do laborum culpa tempor consectetur culpa consectetur ea. Ea officia quis do enim. Id consectetur dolor voluptate eu veniam anim adipisicing dolor ut occaecat officia fugiat magna reprehenderit.',
+        show_on_hover: true,
+      },
+      chip_list: chip_list_content,
+      status: {
+        views: '45',
       }
     } only %}
   </div>

@@ -1,18 +1,3 @@
-{% set like_button_content %}
-  {% include '@bolt-components-link/link.twig' with {
-    text: 'Like',
-    icon: {
-      name: 'heart-open',
-      position: 'before',
-    },
-    type: 'button',
-    isHeadline: true,
-    attributes: {
-      'class': 'click-me',
-    }
-  } only %}
-{% endset %}
-
 {% set share_menu_content %}
   {% include '@bolt-components-share/share.twig' with {
     display: 'menu',
@@ -54,7 +39,7 @@
       {% include '@bolt-components-teaser/teaser.twig' with {
         layout: 'responsive',
         gutter: 'large',
-        type: 'article',
+        type: 'external-link',
         signifier: image,
         eyebrow_text: 'Featured',
         headline: {
@@ -65,12 +50,17 @@
             href: 'https://www.pega.com',
           }
         },
-        description: 'Aliqua voluptate amet do laborum culpa tempor consectetur culpa consectetur ea. Ea officia quis do enim. Id consectetur dolor voluptate eu veniam anim adipisicing dolor ut occaecat officia fugiat magna reprehenderit.',
-        show_description: true,
+        description: {
+          content: 'Aliqua voluptate amet do laborum culpa tempor consectetur culpa consectetur ea. Ea officia quis do enim. Id consectetur dolor voluptate eu veniam anim adipisicing dolor ut occaecat officia fugiat magna reprehenderit.',
+        } ,
         time: '10 min read',
-        views: '28k',
-        like_button: like_button_content,
+        like_button_attributes: {
+          'class': 'click-me',
+        },
         share_menu: share_menu_content,
+        status: {
+          views: '28k',
+        }
       } only %}
     </div>
   </div>

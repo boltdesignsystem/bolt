@@ -1,12 +1,9 @@
 {#
   TODO:
-  - more space when justified flex-start
-
-  Need more info:
-  - premium tag position math, make it configurable.
-    - fixed width.
-    - up to 12 characters?
-    - only on hover?
+  - make links in here the element instead
+  - documentation
+  - fallback image demos
+  - need more info on the premium banner.
 #}
 
 {# Schema Validation #}
@@ -45,15 +42,15 @@
         </div>
       {% endif %}
 
-      {% if this.data.description.value and not this.data.show_description.value %}
+      {% if description.content and description.show_on_hover %}
         <div class="c-bolt-teaser__signifier-description" aria-hidden="true">
           <div class="c-bolt-teaser__signifier-description-text">
-            {{ this.data.description.value }}
+            {{ description.content }}
           </div>
         </div>
       {% endif %}
 
-      {% if this.data.premium.value %}
+      {% if status.premium %}
         <div class="c-bolt-teaser__signifier-premium">
           {{ 'Premium'|t }}
         </div>
@@ -100,22 +97,31 @@
       </div>
     {% endif %}
 
-    {% if this.data.views or share_menu or like_button %}
+    {% if status.views or share_menu or like_button_attributes %}
       <div class="c-bolt-teaser__actions">
-        {% if this.data.views %}
+        {% if status.views %}
           <div class="c-bolt-teaser__views">
             {% include '@bolt-components-icon/icon.twig' with {
               name: 'eye',
             } only %}
-            {{ this.data.views.value }} {{ 'views'|t }}
+            {{ status.views }} {{ 'views'|t }}
           </div>
         {% endif %}
 
-        {% if like_button or share_menu %}
+        {% if like_button_attributes or share_menu %}
           <ul class="c-bolt-teaser__action-list">
-            {% if like_button %}
+            {% if like_button_attributes %}
               <li class="c-bolt-teaser__action-list-item">
-                {{ like_button }}
+                {% include '@bolt-components-link/link.twig' with {
+                  text: 'Like',
+                  icon: {
+                    name: 'heart-open',
+                    position: 'before',
+                  },
+                  type: 'button',
+                  isHeadline: true,
+                  attributes: like_button_attributes,
+                } only %}
               </li>
             {% endif %}
             {% if share_menu %}
@@ -144,16 +150,15 @@
       </div>
     {% endif %}
 
-    {% if this.data.description.value %}
-      <div class="c-bolt-teaser__description {{ this.data.show_description.value ? '' : 'u-bolt-visuallyhidden' }}">
-        {{ this.data.description.value }}
+    {% if description.content %}
+      <div class="c-bolt-teaser__description {{ description.show_on_hover ? 'u-bolt-visuallyhidden' : '' }}">
+        {{ description.content }}
       </div>
     {% endif %}
 
     {% if chip_list %}
       <div class="c-bolt-teaser__chips">
-        {# {{ chip_list }} @todo: update this to a rendered object #}
-        {% include '@bolt-components-chip-list/chip-list.twig' with chip_list only %}
+        {{ chip_list }}
       </div>
     {% endif %}
   </div>
