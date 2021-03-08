@@ -39,9 +39,9 @@
         <div class="c-bolt-teaser__signifier-type c-bolt-teaser__signifier-type--video" aria-hidden="true"></div>
       {% endif %}
 
-      {% if this.data.meta.value %}
-        <div class="c-bolt-teaser__signifier-meta">
-          {{ meta }}
+      {% if this.data.time.value %}
+        <div class="c-bolt-teaser__signifier-time">
+          {{ time }}
         </div>
       {% endif %}
 
@@ -92,15 +92,10 @@
       </div>
     {% endif %}
 
-    {% if this.data.eyebrow_text.value or this.data.featured.value %}
+    {% if this.data.eyebrow_text.value %}
       <div class="c-bolt-teaser__eyebrow">
-        {% if this.data.featured.value %}
-          {% set _eyebrow_text = 'Featured'|t %}
-        {% elseif this.data.eyebrow_text.value %}
-          {% set _eyebrow_text = this.data.eyebrow_text.value %}
-        {% endif %}
         {% include '@bolt-components-headline/eyebrow.twig' with {
-          text: _eyebrow_text,
+          text: this.data.eyebrow_text.value,
         } only %}
       </div>
     {% endif %}
@@ -127,7 +122,7 @@
               <li class="c-bolt-teaser__action-list-item">
                 {% set _share_popover_trigger %}
                   {% include '@bolt-components-link/link.twig' with {
-                    text: 'Share',
+                    text: 'Share'|t,
                     icon: {
                       name: 'share',
                       position: 'before',
@@ -157,6 +152,7 @@
 
     {% if chip_list %}
       <div class="c-bolt-teaser__chips">
+        {# {{ chip_list }} @todo: update this to a rendered object #}
         {% include '@bolt-components-chip-list/chip-list.twig' with chip_list only %}
       </div>
     {% endif %}

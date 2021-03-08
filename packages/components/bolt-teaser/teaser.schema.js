@@ -81,9 +81,10 @@ module.exports = {
       description:
         'If set to true, will move the description out of the signifier area.',
     },
-    meta: {
+    time: {
       type: 'string',
-      description: 'Render meta data for the resouce.',
+      description:
+        'Render time data (video duration or read time) for the resouce.',
     },
     like_button: {
       type: 'object',
@@ -105,11 +106,6 @@ module.exports = {
         'Indicate if this teaser is showing a premium resource. It shows a premium tag in the upper left corner of the signifier.',
       default: false,
     },
-    featured: {
-      type: 'boolean',
-      description:
-        'Indicate if this teaser is showing a featured resource. If no eyebrow text value is passed, the word "Featured" will appear as the eyebrow text.',
-      default: false,
-    },
+    // @todo: meta or meta_items reserved for author and posted date info?
   },
 };
