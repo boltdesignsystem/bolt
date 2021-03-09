@@ -4,13 +4,6 @@ module.exports = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'Teaser',
   type: 'object',
-  not: {
-    anyOf: [
-      {
-        required: ['headline'],
-      },
-    ],
-  },
   properties: {
     attributes: {
       type: 'object',
