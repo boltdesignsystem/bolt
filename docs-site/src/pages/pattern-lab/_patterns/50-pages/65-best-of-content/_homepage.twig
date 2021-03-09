@@ -60,7 +60,7 @@
 
 {% set like_button_attributes = {
   type: 'button',
-  'class': 'click-me'
+  'class': 'js-bolt-like-button'
 } %}
 
 {% set wide_image %}
@@ -82,10 +82,10 @@
     size: 'xsmall',
     items: [
       {
-        text: 'Video',
+        text: 'Chip 1',
       },
       {
-        text: 'Research',
+        text: 'Chip 2',
       },
     ],
   } only %}
@@ -257,3 +257,20 @@
     ]
   },
 } only %}
+
+{% if phase1 or phase2 %}
+  <script>
+    // Example Like Button JS
+    document.querySelector('.js-bolt-like-button').addEventListener('click', function (event) {
+      var likeIcon = this.querySelector('bolt-icon');
+
+      if (likeIcon.getAttribute('name') === 'heart-open') {
+        likeIcon.setAttribute('name', 'heart');
+        likeIcon.setAttribute('color', 'pink');
+      } else {
+        likeIcon.setAttribute('name', 'heart-open');
+        likeIcon.removeAttribute('color');
+      }
+    });
+  </script>
+{% endif %}
