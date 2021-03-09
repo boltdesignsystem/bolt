@@ -50,18 +50,8 @@
 
       {% if status.locked %}
         <div class="c-bolt-teaser__signifier-locked">
-          {% include "@bolt-components-icon/icon.twig" with {
-            name: "lock-solid",
-            background: "circle",
-            size: "small",
-            attributes: {
-              style: [
-                "color: var(--bolt-color-teal-light);",
-                "--bolt-theme-icon-background: var(--bolt-color-teal-light);",
-                "--bolt-theme-icon: var(--bolt-color-navy);",
-                "--bolt-theme-icon-background-opacity: 1;"
-              ]
-            }
+          {% include '@bolt-components-icon/icon.twig' with {
+            name: 'lock-solid',
           } only %}
         </div>
       {% endif %}
