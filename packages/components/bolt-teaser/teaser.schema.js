@@ -27,7 +27,7 @@ module.exports = {
       type: 'string',
       description:
         'Set the type of teaser. A play button will display with the video teaser signifier.',
-      enum: ['PDF', 'video', 'external-link'],
+      enum: ['pdf', 'video', 'external-link'],
     },
     signifier: {
       type: 'object',
