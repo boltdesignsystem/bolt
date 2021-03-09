@@ -1,0 +1,58 @@
+{% set description %}
+  The space between columns on the <bolt-code-snippet display="inline">horizontal</bolt-code-snippet> and <bolt-code-snippet display="inline">responsive</bolt-code-snippet> layouts can be modified with the <bolt-code-snippet display="inline">gutter</bolt-code-snippet> prop.
+{% endset %}
+
+{% set schema = bolt.data.components['@bolt-components-teaser'].schema %}
+{% set demo %}
+  <bolt-list spacing="small">
+    {% set image %}
+      <img src="/images/content/promos/promo-16x9-ai.jpg" alt="Alt text.">
+    {% endset %}
+    {% for gutter in schema.properties.gutter.enum %}
+      <bolt-list-item>
+        {% include '@bolt-components-teaser/teaser.twig' with {
+          layout: 'horizontal',
+          gutter: gutter,
+          signifier: image,
+          headline: {
+            text: gutter|capitalize,
+            link_attributes: {
+              href: 'https://www.pega.com',
+            }
+          },
+          description: {
+            content: 'Lorem reprehenderit aute aliqua duis anim ex ullamco sunt occaecat nostrud ex tempor occaecat in. Ex veniam eu mollit magna.',
+          },
+        } only %}
+      </bolt-list-item>
+    {% endfor %}
+  </bolt-list>
+{% endset %}
+
+{% set notes %}
+  The default setting for <bolt-code-snippet display="inline">gutter</bolt-code-snippet> is <bolt-code-snippet display="inline">medium</bolt-code-snippet>.
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+  {% include '@bolt-components-teaser/teaser.twig' with {
+    layout: 'horizontal',
+    gutter: 'large',
+    signifier: image,
+    headline: {
+      text: 'Some awesome Title',
+      link_attributes: {
+        href: 'https://www.pega.com',
+      }
+    }
+  } only %}
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Gutter Size',
+  description: description,
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+} only %}

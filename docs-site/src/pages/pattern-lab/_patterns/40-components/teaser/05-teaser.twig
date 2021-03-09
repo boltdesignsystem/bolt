@@ -1,0 +1,44 @@
+{% set description %}
+A teaser is an interactive block element. Its main purpose is to display relevant content for a resource or external link before user interaction, for which the entire element is clickable. The Twig template is the recommended usage for Drupal.
+{% endset %}
+
+{% set demo %}
+  {% set image %}
+    <img src="/images/content/promos/promo-16x9-ai.jpg" alt="Alt text.">
+  {% endset %}
+  {% include '@bolt-components-teaser/teaser.twig' with {
+    signifier: image,
+    headline: {
+      text: 'Some awesome Title',
+      link_attributes: {
+        href: 'https://www.pega.com',
+      }
+    },
+  } only %}
+{% endset %}
+
+{% set notes %}
+  The <bolt-code-snippet display="inline">headline</bolt-code-snippet> prop and it's children are required for use. To set an action for the teaser, set an <bolt-code-snippet display="inline">href</bolt-code-snippet> or another action with the <bolt-code-snippet display="inline">headline link_attributes</bolt-code-snippet> prop.
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+  {% include '@bolt-components-teaser/teaser.twig' with {
+    signifier: image,
+    headline: {
+      text: 'Some awesome Title',
+      link_attributes: {
+        href: 'https://www.pega.com',
+      }
+    },
+  } only %}
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Basic Teaser',
+  description: description,
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+} only %}

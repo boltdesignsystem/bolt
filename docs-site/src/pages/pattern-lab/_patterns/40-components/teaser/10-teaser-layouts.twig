@@ -1,0 +1,65 @@
+{% set description %}
+  There are currently three <bolt-code-snippet display="inline">layout</bolt-code-snippet> options, <bolt-code-snippet display="inline">vertical</bolt-code-snippet>, <bolt-code-snippet display="inline">horizontal</bolt-code-snippet>, and <bolt-code-snippet display="inline">responsive</bolt-code-snippet>. The default option is <bolt-code-snippet display="inline">vertical</bolt-code-snippet>.
+{% endset %}
+
+{% set demo %}
+  {% set image %}
+    <img src="/images/content/promos/promo-16x9-ai.jpg" alt="Alt text.">
+  {% endset %}
+  {% include '@bolt-components-teaser/teaser.twig' with {
+    layout: 'horizontal',
+    signifier: image,
+    headline: {
+      text: 'Some awesome Title',
+      link_attributes: {
+        href: 'https://www.pega.com',
+      }
+    },
+    description: {
+      content: 'Aliquip sint mollit irure eiusmod duis aliquip duis qui nostrud enim ea aute in enim. Do et eiusmod sint velit est do exercitation qui minim.',
+    },
+  } only %}
+  {% include '@bolt-components-teaser/teaser.twig' with {
+    layout: 'responsive',
+    signifier: image,
+    headline: {
+      text: 'Some awesome Title',
+      link_attributes: {
+        href: 'https://www.pega.com',
+      }
+    },
+    description: {
+      content: 'Duis dolore labore cillum excepteur aute veniam dolore consectetur est sint exercitation sit. Dolor eiusmod officia laborum tempor. Enim eiusmod Lorem laboris aliqua dolore.',
+    },
+  } only %}
+{% endset %}
+
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>Both the <bolt-code-snippet display="inline">vertical</bolt-code-snippet> and <bolt-code-snippet display="inline">responsive</bolt-code-snippet> options use a 16:9 aspect ratio, while the <bolt-code-snippet display="inline">horizontal</bolt-code-snippet> option uses a 1:1 (square) aspect ratio.</bolt-li>
+  </bolt-ol>
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% include '@bolt-components-teaser/teaser.twig' with {
+  layout: 'horizontal',
+  signifier: image,
+  headline: {
+    text: 'Some awesome Title',
+    link_attributes: {
+      href: 'https://www.pega.com',
+    }
+  },
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Layout Options',
+  description: description,
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+  demo_light_dark: true,
+} only %}
