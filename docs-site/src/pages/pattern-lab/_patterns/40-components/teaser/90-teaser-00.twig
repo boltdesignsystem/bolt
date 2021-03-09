@@ -56,7 +56,7 @@
         time: '10 min read',
         like_button_attributes: {
           type: 'button',
-          'class': 'click-me',
+          'class': 'js-bolt-like-button',
         },
         share_menu: share_menu_content,
         status: {
@@ -73,15 +73,15 @@
 
 {# Example Like Button JS #}
 <script>
-  document.querySelector('.click-me').addEventListener('click', function (event) {
-    var _like_icon = this.firstChild.firstChild;
+  document.querySelector('.js-bolt-like-button').addEventListener('click', function (event) {
+    var likeIcon = this.querySelector('bolt-icon');
 
-    if ( _like_icon.getAttribute('name') === 'heart-open' ) {
-      _like_icon.setAttribute('name', 'heart');
-      _like_icon.setAttribute('color', 'pink');
+    if (likeIcon.getAttribute('name') === 'heart-open') {
+      likeIcon.setAttribute('name', 'heart');
+      likeIcon.setAttribute('color', 'pink');
     } else {
-      _like_icon.setAttribute('name', 'heart-open');
-      _like_icon.removeAttribute('color');
+      likeIcon.setAttribute('name', 'heart-open');
+      likeIcon.removeAttribute('color');
     }
   });
 </script>
