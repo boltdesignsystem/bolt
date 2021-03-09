@@ -108,10 +108,10 @@ module.exports = {
       type: 'object',
       description: '',
       properties: {
-        premium: {
+        locked: {
           type: 'boolean',
           description:
-            'Indicate if this teaser is showing a premium resource. It shows a premium tag in the upper left corner of the signifier.',
+            'Indicate if this teaser is showing a locked resource. It shows a lock icon in the upper left corner of the signifier.',
           default: false,
         },
         views: {
