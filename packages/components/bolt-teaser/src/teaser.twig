@@ -1,7 +1,6 @@
 {#
   TODO:
-  - get modal working in a demo
-  - make links in here the element instead
+  - fix like button js demo
   - documentation
   - fallback image demos
 #}
@@ -123,15 +122,16 @@
         {% if like_button_attributes or share_menu %}
           <ul class="c-bolt-teaser__action-list">
             {% if like_button_attributes %}
+              {% set _icon_heart %}
+                {% include '@bolt-components-icon/icon.twig' with {
+                  name: 'heart-open',
+                } only %}
+              {% endset %}
               <li class="c-bolt-teaser__action-list-item">
-                {% include '@bolt-components-link/link.twig' with {
-                  text: 'Like',
-                  icon: {
-                    name: 'heart-open',
-                    position: 'before',
-                  },
-                  type: 'button',
-                  isHeadline: true,
+                {% include '@bolt-elements-text-link/text-link.twig' with {
+                  content: 'Like',
+                  icon_before: _icon_heart,
+                  reversed_underline: true,
                   attributes: like_button_attributes,
                 } only %}
               </li>
@@ -139,14 +139,18 @@
             {% if share_menu %}
               <li class="c-bolt-teaser__action-list-item">
                 {% set _share_popover_trigger %}
-                  {% include '@bolt-components-link/link.twig' with {
-                    text: 'Share'|t,
-                    icon: {
+                  {% set _icon_share %}
+                    {% include '@bolt-components-icon/icon.twig' with {
                       name: 'share',
-                      position: 'before',
+                    } only %}
+                  {% endset %}
+                  {% include '@bolt-elements-text-link/text-link.twig' with {
+                    content: 'Share',
+                    icon_before: _icon_share,
+                    reversed_underline: true,
+                    attributes: {
+                      type: 'button'
                     },
-                    type: 'button',
-                    isHeadline: true,
                   } only %}
                 {% endset %}
                 {% include '@bolt-components-popover/popover.twig' with {

@@ -55,6 +55,7 @@
         } ,
         time: '10 min read',
         like_button_attributes: {
+          type: 'button',
           'class': 'click-me',
         },
         share_menu: share_menu_content,
@@ -73,9 +74,9 @@
 {# Example Like Button JS #}
 <script>
   document.querySelector('.click-me').addEventListener('click', function (event) {
-    var _like_icon = this.firstChild;
+    var _like_icon = this.firstChild.firstChild;
 
-    if ( _like_icon.getAttribute('name') == 'heart-open' ) {
+    if ( _like_icon.getAttribute('name') === 'heart-open' ) {
       _like_icon.setAttribute('name', 'heart');
       _like_icon.setAttribute('color', 'pink');
     } else {

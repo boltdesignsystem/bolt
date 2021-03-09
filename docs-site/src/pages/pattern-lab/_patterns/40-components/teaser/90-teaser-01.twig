@@ -85,6 +85,7 @@
       signifier: image,
       time: '4:55',
       like_button_attributes: {
+        type: 'button',
         'class': 'click-me'
       },
       share_menu: share_menu_content,
@@ -113,6 +114,7 @@
       signifier: image,
       time: '3 min read',
       like_button_attributes: {
+        type: 'button',
         'class': 'click-me'
       },
       share_menu: share_menu_content,
@@ -141,6 +143,7 @@
       signifier: image,
       time: '10 min read',
       like_button_attributes: {
+        type: 'button',
         'class': 'click-me'
       },
       share_menu: share_menu_content,
@@ -164,18 +167,3 @@
     } only %}
   </div>
 </div>
-
-{# Example Like Button JS #}
-<script>
-  document.querySelector('.click-me').addEventListener('click', function (event) {
-    var _like_icon = this.firstChild;
-
-    if ( _like_icon.getAttribute('name') == 'heart-open' ) {
-      _like_icon.setAttribute('name', 'heart');
-      _like_icon.setAttribute('color', 'pink');
-    } else {
-      _like_icon.setAttribute('name', 'heart-open');
-      _like_icon.removeAttribute('color');
-    }
-  });
-</script>
