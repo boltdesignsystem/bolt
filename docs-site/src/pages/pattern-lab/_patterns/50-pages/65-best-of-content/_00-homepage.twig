@@ -1,3 +1,91 @@
+{% set modal_id = 'js-bolt-modal-' ~ random() %}
+
+{% set modal_content %}
+  {% set video %}
+    <video-js
+      data-account='1900410236'
+      data-player='4fVA8Ojzs'
+      data-embed='default'
+      data-video-id='4892122320001'
+      controls
+      data-media-title
+      data-media-duration
+      class="c-base-video"></video-js>
+  {% endset %}
+
+  {% include '@bolt-components-ratio/ratio.twig' with {
+    children: video,
+    ratio: '16/9'
+  } only %}
+{% endset %}
+
+{% include '@bolt-components-modal/modal.twig' with {
+  content: modal_content,
+  width: 'optimal',
+  spacing: 'none',
+  theme: 'none',
+  scroll: 'overall',
+  attributes: {
+    id: modal_id,
+  },
+} only %}
+
+{% set share_menu_content %}
+  {% include '@bolt-components-share/share.twig' with {
+    display: 'menu',
+    text: 'Share this content',
+    sources: [
+      {
+        name: 'facebook',
+        url: 'https://www.facebook.com/sharer/sharer.php?u=https://pega.com&amp;src=sdkpreparse'
+      },
+      {
+        name: 'twitter',
+        url: 'https://twitter.com/intent/tweet?url=https://pega.com&text=Sample%20Share%20Text&via=pega&hashtags=boltDesignSystemRocks!'
+      },
+      {
+        name: 'linkedin',
+        url: 'https://www.linkedin.com/shareArticle?url=https://pega.com'
+      },
+      {
+        name: 'email',
+        url: 'mailto:?&body=Sample%20Text%20--%20https%3A//pega.com'
+      }
+    ],
+    copy_to_clipboard: {
+      text_to_copy: 'https://pega.com',
+    },
+  } only %}
+{% endset %}
+
+{% set wide_image %}
+  {% include '@bolt-components-image/image.twig' with {
+    src: '/images/content/promos/promo-16x9-ai.jpg',
+    alt: 'Alt text.',
+  } only %}
+{% endset %}
+
+{% set square_image %}
+  {% include '@bolt-components-image/image.twig' with {
+    src: '/images/placeholders/thumb-square-abstract.jpg',
+    alt: 'Alt text.',
+  } only %}
+{% endset %}
+
+{% set chip_list_content %}
+  {% include '@bolt-components-chip-list/chip-list.twig' with {
+    size: 'xsmall',
+    items: [
+      {
+        text: 'Video',
+      },
+      {
+        text: 'Research',
+      },
+    ],
+  } only %}
+{% endset %}
+
 {% set band_content %}
   {% set icon_eye %}
     {% include '@bolt-components-icon/icon.twig' with {
@@ -18,38 +106,32 @@
         size: 'xlarge',
         tag: 'h3'
       } only %}
-      <bolt-stack spacing="xsmall">
-        {% include '@bolt-components-image/image.twig' with {
-          src: 'https://via.placeholder.com/1600x900.png?text=Placeholder',
-          alt: '',
-        } only %}
-      </bolt-stack>
-      {% if phase2 %}
-        <bolt-stack spacing="xsmall">
-          <small>{{ icon_eye }} 27 views</small>
-        </bolt-stack>
-      {% endif %}
-      <bolt-stack spacing="xsmall">
-        {% include '@bolt-components-headline/headline.twig' with {
-          text: 'The future of work',
+      {% include '@bolt-components-teaser/teaser.twig' with {
+        signifier: wide_image,
+        locked: true,
+        time: '6:29',
+        like_button_attributes: {
+          type: 'button',
+          'class': 'click-me'
+        },
+        share_menu: share_menu_content,
+        headline: {
+          text: 'Vertical Teaser',
+          tag: 'h2',
           size: 'xlarge',
-          tag: 'h4',
-          url: 'https://pega.com'
-        } only %}
-        {% include '@bolt-components-headline/text.twig' with {
-          text: 'Chicken bacon doner pancetta pork corned beef, swine jowl burgdoggen pastrami buffalo beef ribs shankle. Turducken pork porchetta shankle, salami short ribs corned beef. Short ribs turkey burgdoggen, fatback jerky chuck landjaeger corned beef pork t-bone jowl hamburger brisket strip steak. Tenderloin cow bacon cupim t-bone short ribs swine biltong beef ribs capicola sausage beef.',
-        } only %}
-      </bolt-stack>
-      {% include '@bolt-components-chip-list/chip-list.twig' with {
-        items: [
-          {
-            text: 'Whitepaper',
+          link_attributes: {
+            type: 'button',
+            'data-bolt-modal-target': '#' ~ modal_id,
           },
-          {
-            text: 'Research',
-          },
-        ],
-        size: 'xsmall',
+        },
+        type: 'video',
+        description: {
+          content: 'Aliqua voluptate amet do laborum culpa tempor consectetur culpa consectetur ea. Ea officia quis do enim. Id consectetur dolor voluptate eu veniam anim adipisicing dolor ut occaecat officia fugiat magna reprehenderit.',
+        },
+        chip_list: chip_list_content,
+        status: {
+          views: '27'
+        }
       } only %}
     </div>
     <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@medium">
@@ -58,101 +140,85 @@
         size: 'xlarge',
         tag: 'h3',
       } only %}
-      <div class="o-bolt-grid o-bolt-grid--flex o-bolt-grid--matrix">
-        <div class="o-bolt-grid__cell u-bolt-width-3/12">
-          {% set video %}
-            <video-js
-              data-account='1900410236'
-              data-player='4fVA8Ojzs'
-              data-embed='default'
-              data-video-id='3974147489001'
-              controls
-              class='c-base-video'></video-js>
-          {% endset %}
-          {% include '@bolt-components-ratio/ratio.twig' with {
-            children: video,
-            ratio: '1/1'
-          } only %}
-        </div>
-        <div class="o-bolt-grid__cell u-bolt-width-9/12">
-          {% if phase2 %}
-            <bolt-stack spacing="xsmall">
-              <small>{{ icon_eye }} 27 views</small>
-            </bolt-stack>
-          {% endif %}
-          <bolt-stack spacing="xsmall">
-            {% include '@bolt-components-headline/headline.twig' with {
-              text: 'Rethink your business architecture with a center-out approach',
-              size: 'large',
-              tag: 'h4',
-              url: 'https://pega.com',
-            } only %}
-            {% include '@bolt-components-headline/text.twig' with {
-              text: 'Short ribs turkey burgdoggen, fatback jerky chuck landjaeger corned beef pork t-bone jowl hamburger.',
-            } only %}
-          </bolt-stack>
-          {% include '@bolt-components-chip/chip.twig' with {
-            text: 'Video',
-            size: 'xsmall',
-          } only %}
-        </div>
-        <div class="o-bolt-grid__cell u-bolt-width-3/12">
-          {% include '@bolt-components-image/image.twig' with {
-            src: 'https://via.placeholder.com/500.png?text=Placeholder',
-            alt: '',
-          } only %}
-        </div>
-        <div class="o-bolt-grid__cell u-bolt-width-9/12">
-          {% if phase2 %}
-            <bolt-stack spacing="xsmall">
-              <small>{{ icon_eye }} 868 views</small>
-            </bolt-stack>
-          {% endif %}
-          <bolt-stack spacing="xsmall">
-            {% include '@bolt-components-headline/headline.twig' with {
-              text: '10 golden rules for RPA success',
-              size: 'large',
-              tag: 'h4',
-              url: 'https://pega.com'
-            } only %}
-            {% include '@bolt-components-headline/text.twig' with {
-              text: 'Short ribs turkey burgdoggen, fatback jerky chuck landjaeger corned beef pork t-bone jowl hamburger.',
-            } only %}
-          </bolt-stack>
-          {% include '@bolt-components-chip/chip.twig' with {
-            text: 'Whitepaper',
-            size: 'xsmall',
-          } only %}
-        </div>
-        <div class="o-bolt-grid__cell u-bolt-width-3/12">
-          {% include '@bolt-components-image/image.twig' with {
-            src: 'https://via.placeholder.com/500.png?text=Placeholder',
-            alt: '',
-          } only %}
-        </div>
-        <div class="o-bolt-grid__cell u-bolt-width-9/12">
-          {% if phase2 %}
-            <bolt-stack spacing="xsmall">
-              <small>{{ icon_eye }} 109 views</small>
-            </bolt-stack>
-          {% endif %}
-          <bolt-stack spacing="xsmall">
-            {% include '@bolt-components-headline/headline.twig' with {
-              text: 'Be strong. Leaner. More agile.',
-              size: 'large',
-              tag: 'h4',
-              url: 'https://pega.com',
-            } only %}
-            {% include '@bolt-components-headline/text.twig' with {
-              text: 'Short ribs turkey burgdoggen, fatback jerky chuck landjaeger corned beef pork t-bone jowl hamburger.',
-            } only %}
-          </bolt-stack>
-          {% include '@bolt-components-chip/chip.twig' with {
-            text: 'E-Book',
-            size: 'xsmall',
-          } only %}
-        </div>
-      </div>
+      {% include '@bolt-components-teaser/teaser.twig' with {
+        signifier: square_image,
+        headline: {
+          text: 'Rethink your business architecture with a center-out approach',
+          tag: 'h4',
+          size: 'large',
+          link_attributes: {
+            type: 'button',
+            'data-bolt-modal-target': '#' ~ modal_id,
+          },
+        },
+        time: '4:55',
+        like_button_attributes: {
+          type: 'button',
+          'class': 'click-me'
+        },
+        share_menu: share_menu_content,
+        layout: 'horizontal',
+        type: 'video',
+        description: {
+          content: 'Short ribs turkey burgdoggen, fatback jerky chuck landjaeger corned beef pork t-bone jowl hamburger.',
+        },
+        chip_list: chip_list_content,
+        status: {
+          views: '35',
+        }
+      } only %}
+      {% include '@bolt-components-teaser/teaser.twig' with {
+        signifier: square_image,
+        headline: {
+          text: 'Horizontal Teaser',
+          tag: 'h3',
+          size: 'large',
+          link_attributes: {
+            href: 'https://www.pega.com'
+          }
+        },
+        time: '15 min read',
+        like_button_attributes: {
+          type: 'button',
+          'class': 'click-me'
+        },
+        share_menu: share_menu_content,
+        layout: 'horizontal',
+        type: 'external-link',
+        description: {
+          content: 'Id consectetur dolor voluptate eu veniam anim adipisicing dolor ut occaecat officia fugiat magna reprehenderit.',
+        },
+        chip_list: chip_list_content,
+        status: {
+          views: '66',
+        }
+      } only %}
+      {% include '@bolt-components-teaser/teaser.twig' with {
+        signifier: square_image,
+        headline: {
+          text: 'Horizontal Teaser',
+          tag: 'h3',
+          size: 'large',
+          link_attributes: {
+            href: 'https://www.pega.com'
+          }
+        },
+        time: '29 min read',
+        like_button_attributes: {
+          type: 'button',
+          'class': 'click-me'
+        },
+        share_menu: share_menu_content,
+        layout: 'horizontal',
+        type: 'external-link',
+        description: {
+          content: 'Aliqua voluptate amet do laborum culpa tempor consectetur culpa consectetur ea. Ea officia quis do enim.',
+        },
+        chip_list: chip_list_content,
+        status: {
+          views: '14',
+        }
+      } only %}
     </div>
     <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-text-align-center">
       {% include '@bolt-elements-button/button.twig' with {
