@@ -169,42 +169,31 @@
   chip_list: chip_list_content,
 } %}
 
-{% if phase1 or phase2 %}
-  {% set main_teaser_props = main_teaser_props|merge({ 
-    like_button_attributes: like_button_attributes,
-    share_menu: share_menu, 
-  }) %}
-  {% set side_teaser_1_props = side_teaser_1_props|merge({ 
-    like_button_attributes: like_button_attributes,
-    share_menu: share_menu, 
-  }) %}
-  {% set side_teaser_2_props = side_teaser_2_props|merge({ 
-    like_button_attributes: like_button_attributes,
-    share_menu: share_menu, 
-  }) %}
-  {% set side_teaser_3_props = side_teaser_3_props|merge({ 
-    like_button_attributes: like_button_attributes,
-    share_menu: share_menu, 
-  }) %}
-{% endif %}
-
 {% if phase2 %}
   {% set main_teaser_props = main_teaser_props|merge({ 
+    like_button_attributes: like_button_attributes,
+    share_menu: share_menu, 
     status: {
       views: '27',
     } 
   }) %}
   {% set side_teaser_1_props = side_teaser_1_props|merge({ 
+    like_button_attributes: like_button_attributes,
+    share_menu: share_menu, 
     status: {
       views: '35',
     } 
   }) %}
   {% set side_teaser_2_props = side_teaser_2_props|merge({ 
+    like_button_attributes: like_button_attributes,
+    share_menu: share_menu, 
     status: {
       views: '66',
     } 
   }) %}
   {% set side_teaser_3_props = side_teaser_3_props|merge({ 
+    like_button_attributes: like_button_attributes,
+    share_menu: share_menu, 
     status: {
       views: '14',
     } 

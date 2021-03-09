@@ -87,12 +87,22 @@
   position: absolute;
   top: var(--bolt-spacing-y-small);
   left: var(--bolt-spacing-x-small);
+
+  @at-root .c-bolt-teaser--horizontal #{&} {
+    top: var(--bolt-spacing-y-xsmall);
+    left: var(--bolt-spacing-x-xsmall);
+  }
 }
 
 .c-bolt-teaser__signifier-type {
   position: absolute;
   bottom: var(--bolt-spacing-y-small);
   left: var(--bolt-spacing-x-small);
+
+  @at-root .c-bolt-teaser--horizontal #{&} {
+    bottom: var(--bolt-spacing-y-xsmall);
+    left: var(--bolt-spacing-x-xsmall);
+  }
 }
 
 .c-bolt-teaser__signifier-type--video {
@@ -147,6 +157,11 @@
   background-color: rgba(black, 0.6);
   white-space: nowrap;
   text-overflow: ellipsis;
+
+  @at-root .c-bolt-teaser--horizontal #{&} {
+    right: var(--bolt-spacing-x-xsmall);
+    bottom: var(--bolt-spacing-y-xsmall);
+  }
 }
 
 .c-bolt-teaser__signifier-description {
