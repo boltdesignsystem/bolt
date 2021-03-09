@@ -23,15 +23,18 @@ A teaser is an interactive block element. Its main purpose is to display relevan
 
 {% set twig_markup %}
 {% verbatim %}
-  {% include '@bolt-components-teaser/teaser.twig' with {
-    signifier: image,
-    headline: {
-      text: 'Some awesome Title',
-      link_attributes: {
-        href: 'https://www.pega.com',
-      }
-    },
-  } only %}
+{% set image %}
+  <img src="/images/content/promos/promo-16x9-ai.jpg" alt="Alt text.">
+{% endset %}
+{% include '@bolt-components-teaser/teaser.twig' with {
+  signifier: image,
+  headline: {
+    text: 'Some awesome Title',
+    link_attributes: {
+      href: 'https://www.pega.com',
+    }
+  },
+} only %}
 {% endverbatim %}
 {% endset %}
 

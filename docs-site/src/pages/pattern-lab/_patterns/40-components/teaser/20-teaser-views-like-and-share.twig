@@ -1,0 +1,143 @@
+{% set description %}
+  Here we have included some JS as an example for how to change the heart icon once the like button has been clicked.
+  <bolt-code-snippet>
+  <script>
+    // Example Like Button JS
+    document.querySelector('.js-bolt-like-button').addEventListener('click', function (event) {
+      var likeIcon = this.querySelector('bolt-icon');
+
+      if (likeIcon.getAttribute('name') === 'heart-open') {
+        likeIcon.setAttribute('name', 'heart');
+        likeIcon.setAttribute('color', 'pink');
+      } else {
+        likeIcon.setAttribute('name', 'heart-open');
+        likeIcon.removeAttribute('color');
+      }
+    });
+  </script>
+  </bolt-code-snippet>
+{% endset %}
+
+{% set demo %}
+  {% set image %}
+    {% include '@bolt-components-image/image.twig' with {
+      src: '/images/content/promos/promo-16x9-ai.jpg',
+      alt: 'Alt text.',
+    } only %}
+  {% endset %}
+  {% set share_menu_content %}
+    {% include '@bolt-components-share/share.twig' with {
+      display: 'menu',
+      text: 'Share this content',
+      sources: [
+        {
+          name: 'facebook',
+          url: 'https://www.facebook.com/sharer/sharer.php?u=https://pega.com&amp;src=sdkpreparse'
+        },
+        {
+          name: 'twitter',
+          url: 'https://twitter.com/intent/tweet?url=https://pega.com&text=Sample%20Share%20Text&via=pega&hashtags=boltDesignSystemRocks!'
+        },
+        {
+          name: 'linkedin',
+          url: 'https://www.linkedin.com/shareArticle?url=https://pega.com'
+        },
+        {
+          name: 'email',
+          url: 'mailto:?&body=Sample%20Text%20--%20https%3A//pega.com'
+        }
+      ],
+      copy_to_clipboard: {
+        text_to_copy: 'https://pega.com',
+      },
+    } only %}
+  {% endset %}
+  {% include '@bolt-components-teaser/teaser.twig' with {
+    layout: 'responsive',
+    gutter: 'large',
+    signifier: image,
+    eyebrow_text: 'Featured',
+    headline: {
+      text: 'A demo of the views, and the like and share buttons',
+      tag: 'h2',
+      size: 'xlarge',
+      link_attributes: {
+        href: 'https://www.pega.com',
+      }
+    },
+    description: {
+      content: 'Aliqua voluptate amet do laborum culpa tempor consectetur culpa consectetur ea. Ea officia quis do enim.',
+    } ,
+    time: '10 min read',
+    like_button_attributes: {
+      type: 'button',
+      'class': 'js-bolt-like-button',
+    },
+    share_menu: share_menu_content,
+    status: {
+      views: '28k',
+    }
+  } only %}
+{% endset %}
+
+{% set notes %}
+<bolt-ol>
+    <bolt-li>Setting a string in <bolt-code-snippet display="inline">status.views</bolt-code-snippet> will display the results on the same line as the like and share buttons.</bolt-li>
+    <bolt-li>Setting <bolt-code-snippet display="inline">type: 'button',</bolt-code-snippet> in <bolt-code-snippet display="inline">like_button_attributes</bolt-code-snippet> is required to display the like button correctly.</bolt-li>
+    <bolt-li>Use the share component to render a menu and pass it into <bolt-code-snippet display="inline">share_menu</bolt-code-snippet>. It will be displayed in a popover.</bolt-li>
+  </bolt-ol>
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% set share_menu_content %}
+  {% include '@bolt-components-share/share.twig' with {
+    ...
+  } only %}
+{% endset %}
+{% include '@bolt-components-teaser/teaser.twig' with {
+  layout: 'responsive',
+  gutter: 'large',
+  signifier: image,
+  eyebrow_text: 'Featured',
+  headline: {
+    ...
+  },
+  description: {
+    ...
+  } ,
+  time: '10 min read',
+  like_button_attributes: {
+    type: 'button',
+    'class': 'js-bolt-like-button',
+  },
+  share_menu: share_menu_content,
+  status: {
+    views: '28k',
+  }
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Teaser Views, Like, and Share',
+  description: description,
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+} only %}
+
+  <script>
+    // Example Like Button JS
+    document.querySelector('.js-bolt-like-button').addEventListener('click', function (event) {
+      var likeIcon = this.querySelector('bolt-icon');
+
+      if (likeIcon.getAttribute('name') === 'heart-open') {
+        likeIcon.setAttribute('name', 'heart');
+        likeIcon.setAttribute('color', 'pink');
+      } else {
+        likeIcon.setAttribute('name', 'heart-open');
+        likeIcon.removeAttribute('color');
+      }
+    });
+  </script>
