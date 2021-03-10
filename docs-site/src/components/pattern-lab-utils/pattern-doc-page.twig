@@ -72,6 +72,12 @@
           </bolt-banner>
         {% endif %}
       </bolt-tab-panel>
+      {% if js %}
+        <bolt-tab-panel>
+          <div slot="label">JavaScript</div>
+          {% include snippet.code_example(js) %}
+        </bolt-tab-panel>
+      {% endif %}
     </bolt-tabs>
   {% endif %}
 
