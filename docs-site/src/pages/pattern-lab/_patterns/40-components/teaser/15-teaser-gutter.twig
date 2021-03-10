@@ -1,36 +1,57 @@
 {% set description %}
-  The space between columns on the <bolt-code-snippet display="inline">horizontal</bolt-code-snippet> and <bolt-code-snippet display="inline">responsive</bolt-code-snippet> layouts can be modified with the <bolt-code-snippet display="inline">gutter</bolt-code-snippet> prop.
+  The space between columns on the horizontal and responsive teasers can be modified with the <bolt-code-snippet display="inline">gutter</bolt-code-snippet> prop. It can be small, medium, or large.
 {% endset %}
 
-{% set schema = bolt.data.components['@bolt-components-teaser'].schema %}
 {% set demo %}
-  <bolt-list spacing="small">
-    {% set image %}
-      <img src="/images/content/promos/promo-16x9-ai.jpg" alt="Alt text.">
-    {% endset %}
-    {% for gutter in schema.properties.gutter.enum %}
-      <bolt-list-item>
-        {% include '@bolt-components-teaser/teaser.twig' with {
-          layout: 'horizontal',
-          gutter: gutter,
-          signifier: image,
-          headline: {
-            text: gutter|capitalize,
-            link_attributes: {
-              href: 'https://www.pega.com',
-            }
-          },
-          description: {
-            content: 'Lorem reprehenderit aute aliqua duis anim ex ullamco sunt occaecat nostrud ex tempor occaecat in. Ex veniam eu mollit magna.',
-          },
-        } only %}
-      </bolt-list-item>
-    {% endfor %}
-  </bolt-list>
-{% endset %}
+  {% set wide_image %}
+    {% include '@bolt-components-image/image.twig' with {
+      src: '/images/placeholders/signifier-pdf.jpg',
+      alt: 'Alt text.',
+    } only %}
+  {% endset %}
+  {% set square_image %}
+    {% include '@bolt-components-image/image.twig' with {
+      src: '/images/placeholders/thumb-square-abstract.jpg',
+      alt: 'Alt text.',
+    } only %}
+  {% endset %}
 
-{% set notes %}
-  The default setting for <bolt-code-snippet display="inline">gutter</bolt-code-snippet> is <bolt-code-snippet display="inline">medium</bolt-code-snippet>.
+  <div class="o-bolt-grid o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--large">
+    <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-8/12@small">
+      {% include '@bolt-components-teaser/teaser.twig' with {
+        layout: 'responsive',
+        gutter: 'large',
+        signifier: wide_image,
+        headline: {
+          text: 'This responsive teaser is using a large gutter',
+          link_attributes: {
+            href: 'https://www.pega.com',
+          }
+        },
+        description: {
+          content: 'Duis dolore labore cillum excepteur aute veniam dolore consectetur est sint exercitation sit. Dolor eiusmod officia laborum tempor. Enim eiusmod Lorem laboris aliqua dolore.',
+        },
+      } only %}
+    </div>
+    <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@medium">
+      {% include '@bolt-components-teaser/teaser.twig' with {
+        layout: 'horizontal',
+        gutter: 'small',
+        signifier: square_image,
+        headline: {
+          text: 'This horizontal teaser is using a small gutter',
+          size: 'large',
+          link_attributes: {
+            href: 'https://www.pega.com',
+          }
+        },
+        description: {
+          content: 'Lorem reprehenderit aute aliqua duis anim ex ullamco sunt occaecat nostrud ex tempor occaecat in. Ex veniam eu mollit magna. Enim eiusmod Lorem laboris aliqua dolore. Dolor eiusmod officia laborum tempor.',
+        },
+      } only %}
+    </div>
+  </div>
+
 {% endset %}
 
 {% set twig_markup %}
@@ -44,9 +65,8 @@
 {% endset %}
 
 {% include '@utils/pattern-doc-page.twig' with {
-  title: 'Gutter Size',
+  title: 'Gutter Size for Horizontal and Responsive Teasers',
   description: description,
-  notes: notes,
   demo: demo,
   twig_markup: twig_markup,
 } only %}
