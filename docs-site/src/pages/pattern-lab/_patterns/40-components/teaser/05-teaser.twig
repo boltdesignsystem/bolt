@@ -18,13 +18,16 @@ A teaser is an interactive block element. Its main purpose is to display relevan
 {% endset %}
 
 {% set notes %}
-  The <bolt-code-snippet display="inline">headline</bolt-code-snippet> prop and it's children are required for use. To set an action for the teaser, set an <bolt-code-snippet display="inline">href</bolt-code-snippet> or another action with the <bolt-code-snippet display="inline">headline link_attributes</bolt-code-snippet> prop.
+<bolt-ol>
+  <bolt-li>Please be sure to set the <bolt-code-snippet display="inline">signifier</bolt-code-snippet> prop. It will automatically crop an <bolt-code-snippet display="inline"><img></bolt-code-snippet> but if you are using <bolt-code-snippet display="inline">bolt-image</bolt-code-snippet>, please be sure to pass in the appropriate <bolt-code-snippet display="inline">ratio</bolt-code-snippet> there.</bolt-li>
+  <bolt-li>The <bolt-code-snippet display="inline">headline</bolt-code-snippet> prop and it's children are required for use. To set an action for the teaser, set an <bolt-code-snippet display="inline">href</bolt-code-snippet> or another action with the <bolt-code-snippet display="inline">headline link_attributes</bolt-code-snippet> prop.</bolt-li>
+</bolt-ol>
 {% endset %}
 
 {% set twig_markup %}
 {% verbatim %}
 {% set image %}
-  <img src="/images/content/promos/promo-16x9-ai.jpg" alt="Alt text.">
+  ...
 {% endset %}
 {% include '@bolt-components-teaser/teaser.twig' with {
   signifier: image,

@@ -20,35 +20,22 @@
     },
     type: 'video',
     time: '1:20',
-    status: {
-      views: '3k'
-    }
   } only %}
 {% endset %}
 
 {% set notes %}
 <bolt-ol>
-    <bolt-li>Setting <bolt-code-snippet display="inline">type</bolt-code-snippet> to <bolt-code-snippet display="inline">pdf</bolt-code-snippet> or <bolt-code-snippet display="inline">external-link</bolt-code-snippet> currently has no effect.</bolt-li>
-    <bolt-li>You can pass any string to <bolt-code-snippet display="inline">time</bolt-code-snippet>, such as video length: <bolt-code-snippet display="inline">1:20</bolt-code-snippet>, or tiem to read an article: <bolt-code-snippet display="inline">3 min read</bolt-code-snippet></bolt-li>.
-  </bolt-ol>
+  <bolt-li>Setting <bolt-code-snippet display="inline">type</bolt-code-snippet> to <bolt-code-snippet display="inline">pdf</bolt-code-snippet> or <bolt-code-snippet display="inline">external-link</bolt-code-snippet> currently has no effect.</bolt-li>
+  <bolt-li>You can pass any string to <bolt-code-snippet display="inline">time</bolt-code-snippet>, such as video length: <bolt-code-snippet display="inline">1:20</bolt-code-snippet>, or tiem to read an article: <bolt-code-snippet display="inline">3 min read</bolt-code-snippet></bolt-li>.
+</bolt-ol>
 {% endset %}
 
 {% set twig_markup %}
 {% verbatim %}
 {% include '@bolt-components-teaser/teaser.twig' with {
-  layout: 'responsive',
-  signifier: image,
-  headline: {
-    text: 'Teaser Type Video Title',
-    link_attributes: {
-      href: 'https://www.pega.com',
-    }
-  },
-  description: {
-    content: 'Lorem reprehenderit aute aliqua duis anim ex ullamco sunt occaecat nostrud ex tempor occaecat in. Ex veniam eu mollit magna.',
-  },
   type: 'video',
   time: '1:20',
+  ...
 } only %}
 {% endverbatim %}
 {% endset %}

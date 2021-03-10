@@ -1,0 +1,71 @@
+{% set description %}
+  If you would like to show chips at the bottom of the teaser, just pass rendered <bolt-code-snippet display="inline">bolt-chip-list</bolt-code-snippet> into the <bolt-code-snippet display="inline">chip_list</bolt-code-snippet> property. <br />
+  In order to show the padlock icon in the top left of the thumbnail in the case of locked content, simply set <bolt-code-snippet display="inline">status.locked</bolt-code-snippet> to <bolt-code-snippet display="inline">true</bolt-code-snippet>.
+{% endset %}
+
+{% set demo %}
+  {% set wide_image %}
+    {% include '@bolt-components-image/image.twig' with {
+      src: '/images/content/promos/promo-16x9-ai.jpg',
+      alt: 'Alt text.',
+    } only %}
+  {% endset %}
+  {% set chip_list_content %}
+    {% include '@bolt-components-chip-list/chip-list.twig' with {
+      size: 'xsmall',
+      items: [
+        {
+          text: 'Video',
+        },
+        {
+          text: 'Research',
+        },
+      ],
+    } only %}
+  {% endset %}
+  {% include '@bolt-components-teaser/teaser.twig' with {
+    signifier: wide_image,
+    headline: {
+      text: 'Teaser',
+      tag: 'h2',
+      size: 'xlarge',
+      link_attributes: {
+        href: 'https://www.pega.com'
+      },
+    },
+    description: {
+      content: 'Aliqua voluptate amet do laborum culpa tempor consectetur culpa consectetur ea. Ea officia quis do enim. Id consectetur dolor voluptate eu veniam anim adipisicing dolor ut occaecat officia fugiat magna reprehenderit.',
+    },
+    chip_list: chip_list_content,
+    status: {
+      locked: true,
+    }
+  } only %}
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+  {% set chip_list_content %}
+    {% include '@bolt-components-chip-list/chip-list.twig' with {
+      size: 'xsmall',
+      items: [
+        ...
+      ],
+    } only %}
+  {% endset %}
+  {% include '@bolt-components-teaser/teaser.twig' with {
+    chip_list: chip_list_content,
+    status: {
+      locked: true,
+    },
+    ...
+  } only %}
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Teaser Chips and Locked Status',
+  description: description,
+  demo: demo,
+  twig_markup: twig_markup,
+} only %}

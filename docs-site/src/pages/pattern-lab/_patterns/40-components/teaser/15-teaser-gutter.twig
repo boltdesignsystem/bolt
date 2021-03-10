@@ -38,13 +38,7 @@
 {% include '@bolt-components-teaser/teaser.twig' with {
   layout: 'horizontal',
   gutter: 'large',
-  signifier: image,
-  headline: {
-    text: 'Some awesome Title',
-    link_attributes: {
-      href: 'https://www.pega.com',
-    }
-  }
+  ...
 } only %}
 {% endverbatim %}
 {% endset %}
