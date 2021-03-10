@@ -98,7 +98,8 @@ module.exports = {
     },
     like_button_attributes: {
       type: 'object',
-      description: '',
+      description:
+        'A Drupal-style attributes object with extra attributes to append to the like button.',
     },
     share_menu: {
       type: 'any',
