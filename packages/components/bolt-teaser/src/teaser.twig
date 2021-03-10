@@ -62,12 +62,18 @@
     {% if headline %}
       <div class="c-bolt-teaser__headline">
         {% if headline.link_attributes %}
+          {% set _icon_chevron_right %}
+            {% include '@bolt-components-icon/icon.twig' with {
+              name: 'chevron-right',
+            } only %}
+          {% endset %}
           {% set _linked_text %}
             {% include '@bolt-elements-text-link/text-link.twig' with {
               content: headline.text,
               reversed_underline: true,
               expand_click_target: true,
-              attributes: headline.link_attributes
+              icon_after: _icon_chevron_right,
+              attributes: headline.link_attributes,
             } only %}
           {% endset %}
         {% endif %}

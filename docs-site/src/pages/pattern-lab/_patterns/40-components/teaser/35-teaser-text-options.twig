@@ -2,148 +2,70 @@
   The teaser allows for a few different text options, including <bolt-code-snippet display="inline">eyebrow_text</bolt-code-snippet>, <bolt-code-snippet display="inline">headline</bolt-code-snippet>, <bolt-code-snippet display="inline">subheadline</bolt-code-snippet>, and <bolt-code-snippet display="inline">description.</bolt-code-snippet>
 {% endset %}
 
-{% set demo %}
-  {% set image %}
-    <img src="/images/content/promos/promo-16x9-ai.jpg" alt="Alt text.">
-  {% endset %}
-  {% set chip_list_content %}
-    {% include '@bolt-components-chip-list/chip-list.twig' with {
-      size: 'xsmall',
-      items: [
-        {
-          text: 'Video',
-        },
-        {
-          text: 'Research',
-        },
-      ],
-    } only %}
-  {% endset %}
-  {% set share_menu_content %}
-    {% include '@bolt-components-share/share.twig' with {
-      display: 'menu',
-      text: 'Share this content',
-      sources: [
-        {
-          name: 'facebook',
-          url: 'https://www.facebook.com/sharer/sharer.php?u=https://pega.com&amp;src=sdkpreparse'
-        },
-        {
-          name: 'twitter',
-          url: 'https://twitter.com/intent/tweet?url=https://pega.com&text=Sample%20Share%20Text&via=pega&hashtags=boltDesignSystemRocks!'
-        },
-        {
-          name: 'linkedin',
-          url: 'https://www.linkedin.com/shareArticle?url=https://pega.com'
-        },
-        {
-          name: 'email',
-          url: 'mailto:?&body=Sample%20Text%20--%20https%3A//pega.com'
-        }
-      ],
-      copy_to_clipboard: {
-        text_to_copy: 'https://pega.com',
-      },
-    } only %}
-  {% endset %}
-  {% set band_content %}
-    <div class="o-bolt-grid o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center">
-      <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-10/12@large">
-        {% include '@bolt-components-teaser/teaser.twig' with {
-          layout: 'responsive',
-          signifier: image,
-          eyebrow_text: 'Featured',
-          gutter: 'large',
-          headline: {
-            text: 'Teaser',
-            link_attributes: {
-              href: 'https://www.pega.com',
-            }
-          },
-          like_button_attributes: {
-            type: 'button',
-            'class': 'click-me'
-          },
-          share_menu: share_menu_content,
-          description: {
-            content: 'Lorem reprehenderit aute aliqua duis anim ex ullamco sunt occaecat nostrud ex tempor occaecat in. Ex veniam eu mollit magna.',
-          },
-          status: {
-            views: '27'
-          }
-        } only %}
-      </div>
-    </div>
-  {% endset %}
-  {% include '@bolt-components-band/band.twig' with {
-    content: band_content,
-  } only %}
-  {% set band_content_2 %}
-    <div class="o-bolt-grid o-bolt-grid--flex o-bolt-grid--matrix">
-      {% for i in 0..2 %}
-        <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@small u-bolt-width-4/12@medium">
-          {% include '@bolt-components-teaser/teaser.twig' with {
-            signifier: image,
-            headline: {
-              text: 'Minim veniam et exercitation fugiat aute nostrud cillum laborum',
-              link_attributes: {
-                href: 'https://www.pega.com',
-              }
-            },
-            subheadline: {
-              text: 'Aliquip id laborum mollit labore deserunt voluptate qui voluptate adipisicing.',
-              tag: 'p',
-              size: 'large',
-            },
-            description: {
-              content: 'Ea non tempor adipisicing aliqua duis nisi id ut duis cupidatat dolor do. Proident incididunt laborum minim reprehenderit proident cupidatat pariatur officia mollit.',
-              show_on_hover: true,
-            },
-            like_button_attributes: {
-              type: 'button',
-              'class': 'click-me'
-            },
-            share_menu: share_menu_content,
-            chip_list: chip_list_content,
-            status: {
-              views: '27'
-            }
-          } only %}
-        </div>
-      {% endfor %}
-    </div>
-  {% endset %}
-  {% include '@bolt-components-band/band.twig' with {
-    content: band_content_2,
-    theme: 'light'
-  } only %}
-{% endset %}
-
 {% set notes %}
 <bolt-ol>
-  <bolt-li>When setting <bolt-code-snippet display="inline">subheadline</bolt-code-snippet> please be sure to set the tag.</bolt-li>
+  <bolt-li>When setting the <bolt-code-snippet display="inline">headline</bolt-code-snippet> and <bolt-code-snippet display="inline">subheadline</bolt-code-snippet> please be sure to set the proper HTML tag to ensure SEO and accessibility best practices.</bolt-li>
   <bolt-li>The <bolt-code-snippet display="inline">description</bolt-code-snippet> has the <bolt-code-snippet display="inline">show_on_hover</bolt-code-snippet> boolean prop. When it is set to true, it moves the description into the thumbnail to be revealed on hover.</bolt-li>
+  <bolt-li>The traditional eyebrow/headline/subheadline lockup is best used in responsive layout.</bolt-li>
 </bolt-ol>
+{% endset %}
+
+{% set demo %}
+  {% set wide_image %}
+    {% include '@bolt-components-image/image.twig' with {
+      src: '/images/placeholders/signifier-pdf.jpg',
+      alt: 'Alt text.',
+    } only %}
+  {% endset %}
+
+  <div class="o-bolt-grid o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--large">
+    <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-8/12@small">
+      {% include '@bolt-components-teaser/teaser.twig' with {
+        layout: 'responsive',
+        gutter: 'large',
+        signifier: wide_image,
+        eyebrow_text: 'This is the eyebrow',
+        headline: {
+          text: 'This is the headline',
+          tag: 'h2',
+          size: 'xxlarge',
+          link_attributes: {
+            href: 'https://www.pega.com',
+          }
+        },
+        subheadline: {
+          text: 'This is the subheadline',
+          tag: 'h3',
+          size: 'xlarge',
+        },
+        description: {
+          content: 'This is the description. Aliqua voluptate amet do laborum culpa tempor consectetur culpa consectetur ea. Ea officia quis do enim.',
+          show_on_hover: true,
+        },
+      } only %}
+    </div>
+  </div>
 {% endset %}
 
 {% set twig_markup %}
 {% verbatim %}
 {% include '@bolt-components-teaser/teaser.twig' with {
-  eyebrow_text: 'Feature',
+  eyebrow_text: 'This is the eyebrow',
   headline: {
-    text: 'Minim veniam et exercitation fugiat aute nostrud cillum laborum',
+    text: 'This is the headline',
     tag: 'h2',
+    size: 'xxlarge',
     link_attributes: {
       href: 'https://www.pega.com',
     }
   },
   subheadline: {
-    text: 'Aliquip id laborum mollit labore deserunt voluptate qui voluptate adipisicing.',
+    text: 'This is the subheadline',
     tag: 'h3',
-    size: 'large',
+    size: 'xlarge',
   },
   description: {
-    content: 'Ea non tempor adipisicing aliqua duis nisi id ut duis cupidatat dolor do. Proident incididunt laborum minim reprehenderit proident cupidatat pariatur officia mollit.',
+    content: 'This is the description. Aliqua voluptate amet do laborum culpa tempor consectetur culpa consectetur ea. Ea officia quis do enim. Duis dolore labore cillum excepteur aute veniam dolore consectetur est sint exercitation sit. Dolor eiusmod officia laborum tempor. Enim eiusmod Lorem laboris aliqua dolore.',
     show_on_hover: true,
   },
   ...
