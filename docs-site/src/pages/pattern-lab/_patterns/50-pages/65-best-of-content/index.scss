@@ -18,7 +18,6 @@ $www-quick-filters-button-shadow-offset: var(--bolt-spacing-y-medium);
   flex-shrink: 1;
   position: relative;
   overflow: hidden;
-  transition: margin var(--bolt-transition);
 
   &:before,
   &:after {
@@ -30,7 +29,6 @@ $www-quick-filters-button-shadow-offset: var(--bolt-spacing-y-medium);
     width: calc(#{$www-quick-filters-overflow-shadow-width} * 2);
     pointer-events: none;
     background: radial-gradient(rgba(black, 0.2), rgba(black, 0) 50%);
-    transition: opacity var(--bolt-transition);
   }
 
   &:before {
@@ -42,8 +40,14 @@ $www-quick-filters-button-shadow-offset: var(--bolt-spacing-y-medium);
     right: calc(#{$www-quick-filters-overflow-shadow-width} * -1);
   }
 
+  &.is-not-start {
+    margin-left: #{$www-quick-filters-overflow-shadow-width};
+  }
+
   &.is-not-end {
-    margin: 0 var(--bolt-spacing-x-small) 0 0; // This is the spacing between the quick filters and the more filters button.
+    margin-right: var(
+      --bolt-spacing-x-small
+    ); // This is the spacing between the quick filters and the more filters button.
   }
 
   &.is-overflowing {
