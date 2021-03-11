@@ -1,15 +1,15 @@
 @import '@bolt/core-v3.x';
 
-$www-quick-filters-fade-width: var(--bolt-spacing-x-small);
-$www-quick-filters-shadow-offset: var(--bolt-spacing-y-medium);
+$www-quick-filters-overflow-shadow-width: var(--bolt-spacing-x-small);
+$www-quick-filters-button-shadow-offset: var(--bolt-spacing-y-medium);
 
 .c-www-quick-filters {
   display: flex;
   justify-content: center;
   white-space: nowrap;
-  margin: calc(#{$www-quick-filters-shadow-offset} * -1) 0
-    calc(#{$www-quick-filters-shadow-offset} * -1)
-    calc(#{$www-quick-filters-fade-width} * -1);
+  margin: calc(#{$www-quick-filters-button-shadow-offset} * -1) 0
+    calc(#{$www-quick-filters-button-shadow-offset} * -1)
+    calc(#{$www-quick-filters-overflow-shadow-width} * -1);
 }
 
 .c-www-quick-filters__list-wrapper {
@@ -18,44 +18,39 @@ $www-quick-filters-shadow-offset: var(--bolt-spacing-y-medium);
   flex-shrink: 1;
   position: relative;
   overflow: hidden;
+  transition: margin var(--bolt-transition);
 
+  &:before,
   &:after {
     content: '';
+    opacity: 0;
     position: absolute;
     top: 0;
-    right: 0;
     bottom: 0;
-    left: 0;
+    width: calc(#{$www-quick-filters-overflow-shadow-width} * 2);
     pointer-events: none;
-    background: linear-gradient(
-      to right,
-      var(--m-bolt-bg) 0%,
-      var(--c-www-quick-filters-fade-gradient, rgba(white, 0)) #{$www-quick-filters-fade-width},
-      var(--c-www-quick-filters-fade-gradient, rgba(white, 0))
-        calc(100% - #{$www-quick-filters-fade-width}),
-      var(--m-bolt-bg) 100%
-    );
+    background: radial-gradient(rgba(black, 0.2), rgba(black, 0) 50%);
+    transition: opacity var(--bolt-transition);
   }
 
-  // @todo: this is a workaround due to mode vars not being able to use transparency
-  @at-root .t-bolt-xlight #{&}:after {
-    --c-www-quick-filters-fade-gradient: #{rgba(white, 0)};
+  &:before {
+    left: calc(#{$www-quick-filters-overflow-shadow-width} * -1);
+    z-index: 1;
   }
 
-  @at-root .t-bolt-light #{&}:after {
-    --c-www-quick-filters-fade-gradient: #{rgba(bolt-color(gray, xlight), 0)};
+  &:after {
+    right: calc(#{$www-quick-filters-overflow-shadow-width} * -1);
   }
 
-  @at-root .t-bolt-dark #{&}:after {
-    --c-www-quick-filters-fade-gradient: #{rgba(bolt-color(navy), 0)};
+  &.is-not-end {
+    margin: 0 var(--bolt-spacing-x-small) 0 0; // This is the spacing between the quick filters and the more filters button.
   }
 
-  @at-root .t-bolt-xdark #{&}:after {
-    --c-www-quick-filters-fade-gradient: #{rgba(bolt-color(navy, dark), 0)};
-  }
-
-  @at-root .t-bolt-xxdark #{&}:after {
-    --c-www-quick-filters-fade-gradient: #{rgba(black, 0)};
+  &.is-overflowing {
+    &.is-not-start:before,
+    &.is-not-end:after {
+      opacity: 1;
+    }
   }
 }
 
@@ -65,7 +60,7 @@ $www-quick-filters-shadow-offset: var(--bolt-spacing-y-medium);
   flex-wrap: nowrap;
   align-items: center;
   height: 100%;
-  padding: #{$www-quick-filters-shadow-offset} 0;
+  padding: #{$www-quick-filters-button-shadow-offset} 0;
 }
 
 .c-www-quick-filters__list {
@@ -79,11 +74,11 @@ $www-quick-filters-shadow-offset: var(--bolt-spacing-y-medium);
   padding-right: var(--bolt-spacing-x-xsmall);
 
   &:first-child {
-    padding-left: #{$www-quick-filters-fade-width};
+    padding-left: #{$www-quick-filters-overflow-shadow-width};
   }
 
   &:last-child {
-    padding-right: #{$www-quick-filters-fade-width};
+    padding-right: #{$www-quick-filters-overflow-shadow-width};
   }
 }
 
@@ -93,6 +88,10 @@ $www-quick-filters-shadow-offset: var(--bolt-spacing-y-medium);
   & + .e-bolt-button {
     padding-right: var(--bolt-spacing-x-medium);
     padding-left: var(--bolt-spacing-x-medium);
+
+    &:after {
+      transition: opacity var(--bolt-transition);
+    }
   }
 
   &:checked + .e-bolt-button,
@@ -108,7 +107,10 @@ $www-quick-filters-shadow-offset: var(--bolt-spacing-y-medium);
   &:checked + .e-bolt-button {
     color: var(--m-bolt-link);
     box-shadow: 0 0 0 1px var(--bolt-color-navy-light);
-    background-color: rgba(bolt-color(gray, light), 0.2);
+    background-image: linear-gradient(
+      rgba(bolt-color(gray, light), 0.2),
+      rgba(bolt-color(gray, light), 0.2)
+    );
 
     &:after {
       content: '';
