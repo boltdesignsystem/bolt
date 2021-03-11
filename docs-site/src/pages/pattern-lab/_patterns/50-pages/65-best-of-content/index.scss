@@ -9,7 +9,7 @@ $www-quick-filters-button-shadow-offset: var(--bolt-spacing-y-medium);
   white-space: nowrap;
   margin: calc(#{$www-quick-filters-button-shadow-offset} * -1) 0
     calc(#{$www-quick-filters-button-shadow-offset} * -1)
-    calc(#{$www-quick-filters-overflow-shadow-width} * -1);
+    calc(#{$www-quick-filters-button-shadow-offset} * -0.5);
 }
 
 .c-www-quick-filters__list-wrapper {
@@ -18,7 +18,7 @@ $www-quick-filters-button-shadow-offset: var(--bolt-spacing-y-medium);
   flex-shrink: 1;
   position: relative;
   overflow: hidden;
-  transition: margin var(--bolt-transition);
+  transition: margin-left var(--bolt-transition);
 
   &:before,
   &:after {
@@ -41,20 +41,20 @@ $www-quick-filters-button-shadow-offset: var(--bolt-spacing-y-medium);
     right: calc(#{$www-quick-filters-overflow-shadow-width} * -1);
   }
 
-  &.is-not-start {
-    margin-left: #{$www-quick-filters-overflow-shadow-width};
-  }
-
-  &.is-not-end {
-    margin-right: var(
-      --bolt-spacing-x-small
-    ); // This is the spacing between the quick filters and the more filters button.
-  }
-
   &.is-overflowing {
+    &.is-not-start {
+      margin-left: calc(#{$www-quick-filters-button-shadow-offset} / 2);
+    }
+
     &.is-not-start:before,
     &.is-not-end:after {
       opacity: 1;
+    }
+
+    & + .c-www-quick-filters__more {
+      margin-left: var(
+        --bolt-spacing-x-small
+      ); // This is the spacing between the quick filters and the more filters button.
     }
   }
 }
