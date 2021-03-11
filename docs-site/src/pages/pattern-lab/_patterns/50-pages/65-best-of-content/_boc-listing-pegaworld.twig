@@ -265,19 +265,6 @@
           align: 'center',
           tag: 'p',
         } only %}
-        {% if phase2 %}
-          <div class="u-bolt-text-align-center">
-            {% include '@bolt-components-button/button.twig' with {
-              text: 'Subscribe',
-              size: 'small',
-              style: 'secondary',
-              icon: {
-                name: 'add',
-                position: 'before',
-              }
-            } only %}
-          </div>
-        {% endif %}
       </div>
       <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-10/12@small">
         {{ item_featured }}
