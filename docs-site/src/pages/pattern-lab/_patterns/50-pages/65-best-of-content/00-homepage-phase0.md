@@ -1,3 +1,3 @@
 ---
-title: Best of Content (Phase 0) - Homepage
+title: (Phase 0) Homepage
 ---

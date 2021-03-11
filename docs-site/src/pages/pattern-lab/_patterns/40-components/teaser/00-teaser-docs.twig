@@ -1,0 +1,17 @@
+{% set usage %}{% verbatim %}
+{% include '@bolt-components-teaser/teaser.twig' with {
+  signifier: image,
+  headline: {
+    text: 'Some awesome Title',
+    link_attributes: {
+      href: 'https://www.pega.com',
+    }
+  },
+} %}
+{% endverbatim %}{% endset %}
+
+{% include "@utils/docs.twig" with {
+  componentName: "teaser",
+  componentGroup: 'components',
+  usage: usage
+} only %}
