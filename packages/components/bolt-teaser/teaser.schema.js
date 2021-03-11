@@ -77,7 +77,7 @@ module.exports = {
     },
     description: {
       type: 'object',
-      description: 'Set a breif description of the resource.',
+      description: 'Set a brief description of the resource.',
       properties: {
         content: {
           type: 'string',
