@@ -240,7 +240,8 @@
 }
 
 .c-bolt-teaser__eyebrow,
-.c-bolt-teaser__headline {
+.c-bolt-teaser__headline,
+.c-bolt-teaser__subheadline {
   margin-bottom: var(--bolt-spacing-y-xxsmall);
 }
 
@@ -250,6 +251,10 @@
 }
 
 .c-bolt-teaser__headline {
+  & + .c-bolt-teaser__subheadline {
+    margin-top: calc(var(--bolt-spacing-y-xxsmall) * -2);
+  }
+
   @at-root .c-bolt-teaser--responsive #{&} {
     @include bolt-mq(medium) {
       margin-bottom: var(--bolt-spacing-y-xsmall);

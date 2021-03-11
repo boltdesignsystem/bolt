@@ -8,11 +8,11 @@ module.exports = {
     attributes: {
       type: 'object',
       description:
-        'A Drupal attributes object. Applies extra HTML attributes to the &lt;bolt-teaser&gt; tag.',
+        'A Drupal-style attributes object with extra attributes to append to this component.',
     },
     layout: {
       type: 'string',
-      description: '',
+      description: 'Set the layout of the teaser based on the use case.',
       enum: ['vertical', 'horizontal', 'responsive'],
       default: 'vertical',
     },
@@ -32,7 +32,7 @@ module.exports = {
     signifier: {
       type: 'object',
       description:
-        'Set the signifier for the teaser. It accepts plain <img> element, image component and icon component.',
+        'Set the signifier for the teaser. It accepts plain <img> element, the Image component, and the Icon component.',
     },
     eyebrow_text: {
       type: 'string',
@@ -71,35 +71,23 @@ module.exports = {
           type: 'string',
           description: 'Set the semantic HTML tag for the subheadline.',
           default: 'p',
-          enum: [
-            'h1',
-            'h2',
-            'h3',
-            'h4',
-            'h5',
-            'h6',
-            'p',
-            'span',
-            'cite',
-            'div',
-          ],
+          enum: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p'],
         },
       },
     },
     description: {
       type: 'object',
-      description: '',
+      description: 'Set a breif description of the resource.',
       properties: {
         content: {
           type: 'string',
-          description:
-            'A breif description of the intended link. Trimmed to 100 characters when displayed inside the signifier.',
+          description: 'Content of the description..',
         },
         show_on_hover: {
           type: 'boolean',
           default: false,
           description:
-            'If set to true, will move the description out of the signifier area.',
+            'If set to true, the description will appear as an overlay above the signifier.',
         },
       },
     },
@@ -110,16 +98,18 @@ module.exports = {
     },
     like_button_attributes: {
       type: 'object',
-      description: '',
+      description:
+        'A Drupal-style attributes object with extra attributes to append to the like button.',
     },
     share_menu: {
       type: 'any',
       description:
-        'Render a popover share menu for the listing. Passing the Share component is mandatory.',
+        'Render a popover share menu for the teaser. Passing the Share component is mandatory.',
     },
     chip_list: {
       type: 'object',
-      description: '',
+      description:
+        'Render a list of related chips for the resource.  Passing the Chip List component is mandatory.',
     },
     status: {
       type: 'object',
