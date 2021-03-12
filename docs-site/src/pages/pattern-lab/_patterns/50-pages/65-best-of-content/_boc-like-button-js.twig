@@ -1,0 +1,17 @@
+<script>
+  // Example Like Button JS
+  var likeButtons = document.querySelectorAll('.js-bolt-like-button');
+  likeButtons.forEach(function(el) {
+    el.addEventListener('click', function (event) {
+      console.log()
+      var likeIcon = this.querySelector('bolt-icon');
+      if (likeIcon.getAttribute('name') === 'heart-open') {
+        likeIcon.setAttribute('name', 'heart');
+        likeIcon.setAttribute('color', 'pink');
+      } else {
+        likeIcon.setAttribute('name', 'heart-open');
+        likeIcon.removeAttribute('color');
+      }
+    });
+  })
+</script>

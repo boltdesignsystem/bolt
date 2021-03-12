@@ -38,8 +38,7 @@ describe('Twig usage', () => {
       type: 'external-link',
       eyebrow_text: 'Featured',
       headline: {
-        text:
-          'Some awesome featured teaser dolore adipisicing dolore veniam occaecat cillum laboris aliqua',
+        text: 'Teaser headline',
         tag: 'h2',
         size: 'xlarge',
         link_attributes: {
@@ -48,18 +47,19 @@ describe('Twig usage', () => {
       },
       description: {
         content:
-          'Aliqua voluptate amet do laborum culpa tempor consectetur culpa consectetur ea. Ea officia quis do enim. Id consectetur dolor voluptate eu veniam anim adipisicing dolor ut occaecat officia fugiat magna reprehenderit.',
+          'Aliqua voluptate amet do laborum culpa tempor consectetur culpa consectetur ea. Ea officia quis do enim.',
       },
       time: '10 min read',
-      like_button_attributes: {
-        type: 'button',
-        class: 'js-bolt-like-button',
-      },
       status: {
         views: '28k',
+        locked: true,
+      },
+      attributes: {
+        class: 'js-bolt-target-teaser',
       },
     };
 
+    // Share
     const shareMenu = await render('@bolt-components-share/share.twig', {
       display: 'menu',
       text: 'Share this content',
@@ -88,6 +88,45 @@ describe('Twig usage', () => {
       },
     });
 
+    const iconShare = await render('@bolt-components-icon/icon.twig', {
+      name: 'share',
+    });
+
+    const sharePopoverTrigger = await render(
+      '@bolt-elements-text-link/text-link.twig',
+      {
+        content: 'Share',
+        icon_before: iconShare.html,
+        reversed_underline: true,
+        attributes: {
+          type: 'button',
+        },
+      },
+    );
+
+    const share = await render('@bolt-components-popover/popover.twig', {
+      trigger: sharePopoverTrigger.html,
+      content: shareMenu.html,
+      spacing: 'none',
+      boundary: '.js-bolt-target-teaser',
+    });
+
+    // Like
+    const iconHeart = await render('@bolt-components-icon/icon.twig', {
+      name: 'heart-open',
+    });
+
+    const like = await render('@bolt-elements-text-link/text-link.twig', {
+      content: 'Like',
+      icon_before: iconHeart.html,
+      reversed_underline: true,
+      attributes: {
+        type: 'button',
+        class: 'js-bolt-like-button',
+      },
+    });
+
+    // Image
     const image16x19 = await render('@bolt-components-image/image.twig', {
       src: '/fixtures/promo-16x9-ai.jpg',
       alt: 'Alt text.',
@@ -95,17 +134,18 @@ describe('Twig usage', () => {
 
     fixtures = {
       teaserData,
-      shareMenu,
+      share,
+      like,
       image16x19,
     };
   }, timeout);
 
   test('basic usage', async () => {
-    // console.log(fixtures.image16x19);
     const results = await render('@bolt-components-teaser/teaser.twig', {
       ...fixtures.teaserData,
       signifier: fixtures.image16x19.html,
-      share_menu: fixtures.shareMenu.html,
+      like: fixtures.like.html,
+      share: fixtures.share.html,
     });
     expect(results.ok).toBe(true);
     expect(results.html).toMatchSnapshot();
@@ -115,7 +155,7 @@ describe('Twig usage', () => {
     const results = await render('@bolt-components-teaser/teaser.twig', {
       ...fixtures.teaserData,
       attributes: {
-        class: ['u-bolt-margin-top-medium'],
+        class: ['u-bolt-margin-top-medium'], // Note: this overwrites the `js-` class from `teaserData`, keeping the test simple
       },
     });
     expect(results.ok).toBe(true);

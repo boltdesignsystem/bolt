@@ -33,38 +33,72 @@
     },
   } only %}
 
-  {% set share_menu %}
-    {% include '@bolt-components-share/share.twig' with {
-      display: 'menu',
-      text: 'Share this content',
-      sources: [
-        {
-          name: 'facebook',
-          url: 'https://www.facebook.com/sharer/sharer.php?u=https://pega.com&amp;src=sdkpreparse'
-        },
-        {
-          name: 'twitter',
-          url: 'https://twitter.com/intent/tweet?url=https://pega.com&text=Sample%20Share%20Text&via=pega&hashtags=boltDesignSystemRocks!'
-        },
-        {
-          name: 'linkedin',
-          url: 'https://www.linkedin.com/shareArticle?url=https://pega.com'
-        },
-        {
-          name: 'email',
-          url: 'mailto:?&body=Sample%20Text%20--%20https%3A//pega.com'
-        }
-      ],
-      copy_to_clipboard: {
-        text_to_copy: 'https://pega.com',
+  {% set like %}
+    {% set icon_heart %}
+      {% include '@bolt-components-icon/icon.twig' with {
+        name: 'heart-open',
+      } only %}
+    {% endset %}
+    {% include '@bolt-elements-text-link/text-link.twig' with {
+      content: 'Like',
+      icon_before: icon_heart,
+      reversed_underline: true,
+      attributes: {
+        type: 'button',
+        class: 'js-bolt-like-button',
       },
     } only %}
   {% endset %}
 
-  {% set like_button_attributes = {
-    type: 'button',
-    'class': 'js-bolt-like-button'
-  } %}
+  {% set share %}
+    {% set share_menu %}
+      {% include '@bolt-components-share/share.twig' with {
+        display: 'menu',
+        text: 'Share this content',
+        sources: [
+          {
+            name: 'facebook',
+            url: 'https://www.facebook.com/sharer/sharer.php?u=https://pega.com&amp;src=sdkpreparse'
+          },
+          {
+            name: 'twitter',
+            url: 'https://twitter.com/intent/tweet?url=https://pega.com&text=Sample%20Share%20Text&via=pega&hashtags=boltDesignSystemRocks!'
+          },
+          {
+            name: 'linkedin',
+            url: 'https://www.linkedin.com/shareArticle?url=https://pega.com'
+          },
+          {
+            name: 'email',
+            url: 'mailto:?&body=Sample%20Text%20--%20https%3A//pega.com'
+          }
+        ],
+        copy_to_clipboard: {
+          text_to_copy: 'https://pega.com',
+        },
+      } only %}
+    {% endset %}
+    {% set share_popover_trigger %}
+      {% set icon_share %}
+        {% include '@bolt-components-icon/icon.twig' with {
+          name: 'share',
+        } only %}
+      {% endset %}
+      {% include '@bolt-elements-text-link/text-link.twig' with {
+        content: 'Share',
+        icon_before: icon_share,
+        reversed_underline: true,
+        attributes: {
+          type: 'button'
+        },
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-popover/popover.twig' with {
+      trigger: share_popover_trigger,
+      content: share_menu,
+      spacing: 'none',
+    } only %}
+  {% endset %}
 
   {% set video_image %}
     {% include '@bolt-components-image/image.twig' with {
@@ -194,20 +228,20 @@
 
   {% if phase1 or phase2 %}
     {% set video_teaser_props = video_teaser_props|merge({ 
-      like_button_attributes: like_button_attributes,
-      share_menu: share_menu, 
+      like: like,
+      share: share, 
     }) %}
     {% set external_link_teaser_props = external_link_teaser_props|merge({ 
-      like_button_attributes: like_button_attributes,
-      share_menu: share_menu, 
+      like: like,
+      share: share, 
     }) %}
     {% set pdf_teaser_props = pdf_teaser_props|merge({ 
-      like_button_attributes: like_button_attributes,
-      share_menu: share_menu, 
+      like: like,
+      share: share, 
     }) %}
     {% set featured_teaser_props = featured_teaser_props|merge({ 
-      like_button_attributes: like_button_attributes,
-      share_menu: share_menu, 
+      like: like,
+      share: share, 
     }) %}
   {% endif %}
 
@@ -563,19 +597,6 @@
   } only %}
 
   {% if phase1 or phase2 %}
-    <script>
-      // Example Like Button JS
-      document.querySelector('.js-bolt-like-button').addEventListener('click', function (event) {
-        var likeIcon = this.querySelector('bolt-icon');
-
-        if (likeIcon.getAttribute('name') === 'heart-open') {
-          likeIcon.setAttribute('name', 'heart');
-          likeIcon.setAttribute('color', 'pink');
-        } else {
-          likeIcon.setAttribute('name', 'heart-open');
-          likeIcon.removeAttribute('color');
-        }
-      });
-    </script>
+    {% include '@pl/_boc-like-button-js.twig' %}
   {% endif %}
 {% endblock %}

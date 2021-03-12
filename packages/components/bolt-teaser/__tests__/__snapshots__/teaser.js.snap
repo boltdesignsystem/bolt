@@ -1,14 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Twig usage adds class via Drupal Attributes 1`] = `
-<article class="u-bolt-margin-top-medium c-bolt-teaser c-bolt-teaser--responsive c-bolt-teaser--gutter-large js-test-target">
+<article class="u-bolt-margin-top-medium c-bolt-teaser c-bolt-teaser--responsive c-bolt-teaser--gutter-large">
   <div class="c-bolt-teaser__content">
     <div class="c-bolt-teaser__headline">
       <h2 class="c-bolt-headline c-bolt-headline--bold c-bolt-headline--xlarge">
         <a href="https://www.pega.com"
            class="e-bolt-text-link e-bolt-text-link--reversed-underline e-bolt-text-link--expand-click-target"
         >
-          Some awesome featured teaser dolore adipisicing dolore veniam occaecat cillum laboris aliqua
+          Teaser headline
           <span class="e-bolt-text-link__icon-after"
                 aria-hidden="true"
           >
@@ -68,45 +68,16 @@ exports[`Twig usage adds class via Drupal Attributes 1`] = `
         </bolt-icon>
         28k views
       </div>
-      <ul class="c-bolt-teaser__action-list">
-        <li class="c-bolt-teaser__action-list-item">
-          <button type="button"
-                  class="js-bolt-like-button e-bolt-text-link e-bolt-text-link--reversed-underline"
-          >
-            <span class="e-bolt-text-link__icon-before"
-                  aria-hidden="true"
-            >
-              <bolt-icon name="heart-open"
-                         aria-hidden="true"
-              >
-                <span class="c-bolt-icon c-bolt-icon--heart-open">
-                  <svg class="c-bolt-icon__icon"
-                       xmlns="http://www.w3.org/2000/svg"
-                       baseprofile="full"
-                       viewbox="0 0 24 24"
-                  >
-                    <path fill="var(--bolt-theme-icon, currentColor)"
-                          d="M16.5 5c2 0 3.5 1.5 3.5 3.5 0 2.9-3.1 5.7-7.9 10.1H12l-.1-.1C6.9 14 3.7 11.1 4 8c.1-.7.4-1.4.9-1.9 1.6-1.7 4.2-1.3 5.6.3l1.2 1.4c.2.2.5.2.7 0l1.2-1.4c.7-.9 1.8-1.4 2.9-1.4m0-2A6 6 0 0012 5.1 6 6 0 007.5 3 5.4 5.4 0 002 8.5c0 3.8 3.4 6.9 8.6 11.5l1.4 1.3 1.4-1.3c5.1-4.7 8.6-7.8 8.6-11.5C22 5.4 19.6 3 16.5 3z"
-                    >
-                    </path>
-                  </svg>
-                </span>
-              </bolt-icon>
-            </span>
-            Like
-          </button>
-        </li>
-      </ul>
     </div>
     <div class="c-bolt-teaser__description ">
-      Aliqua voluptate amet do laborum culpa tempor consectetur culpa consectetur ea. Ea officia quis do enim. Id consectetur dolor voluptate eu veniam anim adipisicing dolor ut occaecat officia fugiat magna reprehenderit.
+      Aliqua voluptate amet do laborum culpa tempor consectetur culpa consectetur ea. Ea officia quis do enim.
     </div>
   </div>
 </article>
 `;
 
 exports[`Twig usage basic usage 1`] = `
-<article class="c-bolt-teaser c-bolt-teaser--responsive c-bolt-teaser--gutter-large js-test-target">
+<article class="js-bolt-target-teaser c-bolt-teaser c-bolt-teaser--responsive c-bolt-teaser--gutter-large">
   <div class="c-bolt-teaser__signifier">
     <div class="c-bolt-teaser__signifier-image">
       <bolt-image src="/fixtures/promo-16x9-ai.jpg"
@@ -148,6 +119,22 @@ exports[`Twig usage basic usage 1`] = `
     <div class="c-bolt-teaser__signifier-time">
       10 min read
     </div>
+    <div class="c-bolt-teaser__signifier-locked">
+      <bolt-icon name="lock-solid"
+                 aria-hidden="true"
+      >
+        <span class="c-bolt-icon c-bolt-icon--lock-solid">
+          <svg class="c-bolt-icon__icon"
+               xmlns="http://www.w3.org/2000/svg"
+               baseprofile="full"
+               viewbox="0 0 24 24"
+          >
+            <path d="M18.4 10h-.6V7c0-3.3-2.7-5.9-5.9-5.9s-6 2.6-6 5.8v3h-.3a2 2 0 00-2 2v9c0 1.1.9 2 2 2h12.7a2 2 0 002-2v-9c.1-1-.8-1.9-1.9-1.9zM8 10V7a3.8 3.8 0 117.6 0v3H8z">
+            </path>
+          </svg>
+        </span>
+      </bolt-icon>
+    </div>
   </div>
   <div class="c-bolt-teaser__content">
     <div class="c-bolt-teaser__headline">
@@ -155,7 +142,7 @@ exports[`Twig usage basic usage 1`] = `
         <a href="https://www.pega.com"
            class="e-bolt-text-link e-bolt-text-link--reversed-underline e-bolt-text-link--expand-click-target"
         >
-          Some awesome featured teaser dolore adipisicing dolore veniam occaecat cillum laboris aliqua
+          Teaser headline
           <span class="e-bolt-text-link__icon-after"
                 aria-hidden="true"
           >
@@ -245,7 +232,7 @@ exports[`Twig usage basic usage 1`] = `
         </li>
         <li class="c-bolt-teaser__action-list-item">
           <bolt-popover spacing="none"
-                        boundary=".js-test-target"
+                        boundary=".js-bolt-target-teaser"
                         uuid="12345"
           >
             <div class="c-bolt-popover c-bolt-popover--bottom c-bolt-popover--text-wrap ">
@@ -632,7 +619,7 @@ exports[`Twig usage basic usage 1`] = `
       </ul>
     </div>
     <div class="c-bolt-teaser__description ">
-      Aliqua voluptate amet do laborum culpa tempor consectetur culpa consectetur ea. Ea officia quis do enim. Id consectetur dolor voluptate eu veniam anim adipisicing dolor ut occaecat officia fugiat magna reprehenderit.
+      Aliqua voluptate amet do laborum culpa tempor consectetur culpa consectetur ea. Ea officia quis do enim.
     </div>
   </div>
 </article>
