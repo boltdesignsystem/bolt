@@ -1,9 +1,3 @@
-{#
-  TODO:
-  - documentation
-  - fallback image demos
-#}
-
 {# Schema Validation #}
 {% set schema = bolt.data.components['@bolt-components-teaser'].schema %}
 {% if enable_json_schema_validation %}
@@ -13,14 +7,12 @@
 {# Variables #}
 {% set this = init(schema) %}
 {% set attributes = create_attribute(attributes|default({})) %}
-{% set _teaser_id = bolt.data.config.env == 'test' ? 'js-test-target' : 'js-bolt-teaser-' ~ random() %}
 
 {# Array of classes based on the defined + default props #}
 {% set classes = [
   'c-bolt-teaser',
   this.data.layout.value ? 'c-bolt-teaser--' ~ this.data.layout.value,
   this.data.gutter.value ? 'c-bolt-teaser--gutter-' ~ this.data.gutter.value,
-  _teaser_id
 ] %}
 
 <article {{ attributes.addClass(classes) }}>
@@ -103,7 +95,7 @@
       </div>
     {% endif %}
 
-    {% if status.views or share_menu or like_button_attributes %}
+    {% if status.views or like or share %}
       <div class="c-bolt-teaser__actions">
         {% if status.views %}
           <div class="c-bolt-teaser__views">
@@ -113,47 +105,16 @@
             {{ status.views }} {{ 'views'|t }}
           </div>
         {% endif %}
-
-        {% if like_button_attributes or share_menu %}
+        {% if like or share %}
           <ul class="c-bolt-teaser__action-list">
-            {% if like_button_attributes %}
-              {% set _icon_heart %}
-                {% include '@bolt-components-icon/icon.twig' with {
-                  name: 'heart-open',
-                } only %}
-              {% endset %}
+            {% if like %}
               <li class="c-bolt-teaser__action-list-item">
-                {% include '@bolt-elements-text-link/text-link.twig' with {
-                  content: 'Like'|t,
-                  icon_before: _icon_heart,
-                  reversed_underline: true,
-                  attributes: like_button_attributes,
-                } only %}
+                {{ like }}
               </li>
             {% endif %}
-            {% if share_menu %}
+            {% if share %}
               <li class="c-bolt-teaser__action-list-item">
-                {% set _share_popover_trigger %}
-                  {% set _icon_share %}
-                    {% include '@bolt-components-icon/icon.twig' with {
-                      name: 'share',
-                    } only %}
-                  {% endset %}
-                  {% include '@bolt-elements-text-link/text-link.twig' with {
-                    content: 'Share'|t,
-                    icon_before: _icon_share,
-                    reversed_underline: true,
-                    attributes: {
-                      type: 'button'
-                    },
-                  } only %}
-                {% endset %}
-                {% include '@bolt-components-popover/popover.twig' with {
-                  trigger: _share_popover_trigger,
-                  content: share_menu,
-                  spacing: 'none',
-                  boundary: '.' ~ _teaser_id,
-                } only %}
+                {{ share }}
               </li>
             {% endif %}
           </ul>

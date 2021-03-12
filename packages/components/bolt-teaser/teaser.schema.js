@@ -96,15 +96,13 @@ module.exports = {
       description:
         'Render time data (video duration or read time) for the resouce.',
     },
-    like_button_attributes: {
+    like: {
       type: 'object',
-      description:
-        'A Drupal-style attributes object with extra attributes to append to the like button.',
+      description: 'Render the like button. Link element is expected here.',
     },
-    share_menu: {
-      type: 'any',
-      description:
-        'Render a popover share menu for the teaser. Passing the Share component is mandatory.',
+    share: {
+      type: 'object',
+      description: 'Render the share button. Share menu is expected here.',
     },
     chip_list: {
       type: 'object',
