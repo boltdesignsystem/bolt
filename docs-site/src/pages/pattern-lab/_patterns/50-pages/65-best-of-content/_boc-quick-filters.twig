@@ -108,22 +108,6 @@
     },
   } only %}
 
-  {% set subscribe_button %}
-    {% if phase2 %}
-      <div class="u-bolt-text-align-center">
-        {% include '@bolt-components-button/button.twig' with {
-          text: 'Subscribe',
-          size: 'xsmall',
-          style: 'secondary',
-          icon: {
-            name: 'add',
-            position: 'before',
-          }
-        } only %}
-      </div>
-    {% endif %}
-  {% endset %}
-
   <div class="c-www-quick-filters">
     <div class="c-www-quick-filters__list-wrapper js-www-quick-filters-scroll-wrapper">
       <ul class="c-www-quick-filters__list js-www-quick-filters-scroll">

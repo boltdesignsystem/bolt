@@ -1,5 +1,5 @@
-{% macro code_example(code) %}
-  <bolt-code-snippet syntax="dark" lang="twig">{% spaceless %}
+{% macro code_example(code, lang) %}
+  <bolt-code-snippet syntax="dark" lang="{{ lang }}">{% spaceless %}
     {{ code|replace({
       '<': '&lt;',
       '>': '&gt;',
@@ -53,7 +53,7 @@
       <bolt-tab-panel>
         <div slot="label">Twig</div>
         {% if twig_markup %}
-          {% include snippet.code_example(twig_markup) %}
+          {% include snippet.code_example(twig_markup, 'twig') %}
         {% else %}
           <bolt-banner align="start" status="warning">
             <bolt-icon name="warning" size="small" aria-hidden="true"></bolt-icon>
@@ -64,7 +64,7 @@
       <bolt-tab-panel {% if html_markup and not twig_markup %}selected{% endif %}>
         <div slot="label">HTML</div>
         {% if html_markup %}
-          {% include snippet.code_example(html_markup) %}
+          {% include snippet.code_example(html_markup, 'html') %}
         {% else %}
           <bolt-banner align="start" status="warning">
             <bolt-icon name="warning" size="small" aria-hidden="true"></bolt-icon>
@@ -72,10 +72,16 @@
           </bolt-banner>
         {% endif %}
       </bolt-tab-panel>
+      {% if css %}
+        <bolt-tab-panel>
+          <div slot="label">CSS</div>
+          {% include snippet.code_example(css, 'scss') %}
+        </bolt-tab-panel>
+      {% endif %}
       {% if js %}
         <bolt-tab-panel>
           <div slot="label">JavaScript</div>
-          {% include snippet.code_example(js) %}
+          {% include snippet.code_example(js, 'js') %}
         </bolt-tab-panel>
       {% endif %}
     </bolt-tabs>
