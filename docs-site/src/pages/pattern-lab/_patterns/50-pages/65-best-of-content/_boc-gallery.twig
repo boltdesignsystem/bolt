@@ -473,21 +473,6 @@
   } only %}
 
   {% if phase1 or phase2 %}
-    <script>
-      // Example Like Button JS
-      var likeButtons = document.querySelectorAll('.js-bolt-like-button');
-        likeButtons.forEach(function(el) {
-        el.addEventListener('click', function (event) {
-          var likeIcon = this.querySelector('bolt-icon');
-          if (likeIcon.getAttribute('name') === 'heart-open') {
-            likeIcon.setAttribute('name', 'heart');
-            likeIcon.setAttribute('color', 'pink');
-          } else {
-            likeIcon.setAttribute('name', 'heart-open');
-            likeIcon.removeAttribute('color');
-          }
-        });
-      })
-    </script>
+    {% include '@pl/_boc-like-button-js.twig' %}
   {% endif %}
 {% endblock %}
