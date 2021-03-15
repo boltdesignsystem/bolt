@@ -1,0 +1,139 @@
+{% extends '@pl/_default-page-template.twig' %}
+
+{% block main_content %}
+  {% set breadcrumbs %}
+    {% set item_home %}
+      {% include '@bolt-components-link/link.twig' with {
+        text: 'Home',
+        url: '#!',
+      } only %}
+    {% endset %}
+    {% set item_landing %}
+      {% include '@bolt-components-link/link.twig' with {
+        text: 'Landing Page',
+        url: '#!',
+      } only %}
+    {% endset %}
+    {% set item_sub %}
+      {% include '@bolt-components-link/link.twig' with {
+        text: 'Sub Page',
+        url: '#!',
+      } only %}
+    {% endset %}
+    {% set item_current %}
+      {% include '@bolt-components-link/link.twig' with {
+        text: 'Current Page',
+        url: '#!',
+        attributes: {
+          'aria-current': 'page',
+        },
+      } only %}
+    {% endset %}
+
+    {% include '@bolt-components-breadcrumb/breadcrumb.twig' with {
+      contentItems: [
+        item_home,
+        item_landing,
+        item_sub,
+        item_current,
+      ]
+    } only %}
+  {% endset %}
+
+  {% include '@bolt-components-band/band.twig' with {
+    content: breadcrumbs,
+    size: 'xsmall',
+    theme: 'light',
+  } only %}
+
+  <div class="l-bolt-documentation">
+    <div class="l-bolt-documentation__sidebar">
+      <nav>
+        <ul>
+          <li>
+            <a href="javascript:">Nav item</a>
+            <ul>
+              <li>
+                <a href="javascript:">Nav item</a>
+                <ul>
+                  <li>
+                    <a href="javascript:">Nav item</a>
+                    <ul>
+                      <li>
+                        <a href="javascript:">Nav item</a>
+                      </li>
+                      <li>
+                        <a href="javascript:">Nav item</a>
+                      </li>
+                      <li>
+                        <a href="javascript:">Nav item</a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <a href="javascript:">Nav item</a>
+                  </li>
+                  <li>
+                    <a href="javascript:">Nav item</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <a href="javascript:">Nav item</a>
+              </li>
+              <li>
+                <a href="javascript:">Nav item</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="javascript:">Nav item</a>
+          </li>
+          <li>
+            <a href="javascript:">Nav item</a>
+          </li>
+          <li>
+            <a href="javascript:">Nav item</a>
+          </li>
+          <li>
+            <a href="javascript:">Nav item</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    <div class="l-bolt-documentation__article">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae.
+    </div>
+    <div class="l-bolt-documentation__toc">
+      {% include "@bolt-components-toc/toc.twig" with {
+        header: 'Table of contents',
+        items: [
+          {
+            text: 'Section One',
+            url: '#section-one',
+          },
+          {
+            text: 'Section Two',
+            url: '#section-two',
+          },
+          {
+            text: 'Section Three',
+            url: '#section-three',
+          },
+          {
+            text: 'Section Four',
+            url: '#section-four',
+          },
+          {
+            text: 'Section Five',
+            url: '#section-five',
+          },
+        ],
+      } only %}
+    </div>
+  </div>
+
+  <footer>
+    <p>footer</p>
+  </footer>
+{% endblock %}

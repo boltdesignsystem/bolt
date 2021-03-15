@@ -4,3 +4,37 @@
 \* ------------------------------------ */
 
 /* @import 'global-search'; deprecated */
+
+.l-bolt-documentation {
+  @include bolt-full-bleed;
+
+  display: grid;
+  padding-right: var(--bolt-page-padding-x);
+  padding-left: var(--bolt-page-padding-x);
+  grid-template-columns: minmax(calc(3 / 12 * 100%), 200px) 1fr minmax(
+      calc(2 / 12 * 100%),
+      150px
+    );
+}
+
+.l-bolt-documentation__sidebar,
+.l-bolt-documentation__toc {
+  @include bolt-vertical-scroll;
+
+  position: sticky;
+  top: var(--bolt-page-header-height);
+  height: calc(100vh - var(--bolt-page-header-height));
+  padding: var(--bolt-spacing-y-medium) 0;
+}
+
+.l-bolt-documentation__sidebar {
+  background-color: red;
+}
+
+.l-bolt-documentation__toc {
+  background-color: green;
+}
+
+.l-bolt-documentation__article {
+  padding: var(--bolt-spacing-y-medium) var(--bolt-spacing-x-medium);
+}
