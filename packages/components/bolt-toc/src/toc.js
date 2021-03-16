@@ -156,11 +156,13 @@ class BoltToc extends withContext(BoltElement) {
   }
 
   render() {
+    const classes = cx('c-bolt-toc', {
+      [`c-bolt-toc--${this.variant}`]:
+        this.variant && this.variant !== 'transparent',
+    });
+
     return html`
-      <nav
-        class="${cx(`c-bolt-toc`)}"
-        aria-labelledby="js-bolt-toc-${this.uuid}"
-      >
+      <nav class="${classes}" aria-labelledby="js-bolt-toc-${this.uuid}">
         <h2
           class="${cx(`c-bolt-toc__header`, {
             [`c-bolt-toc__header--hidden`]: !this.header,

@@ -8,21 +8,27 @@
         url: '#!',
       } only %}
     {% endset %}
-    {% set item_landing %}
+    {% set item_1 %}
       {% include '@bolt-components-link/link.twig' with {
-        text: 'Landing Page',
+        text: 'Knowledgebase',
         url: '#!',
       } only %}
     {% endset %}
-    {% set item_sub %}
+    {% set item_2 %}
       {% include '@bolt-components-link/link.twig' with {
-        text: 'Sub Page',
+        text: 'All Products',
+        url: '#!',
+      } only %}
+    {% endset %}
+    {% set item_3 %}
+      {% include '@bolt-components-link/link.twig' with {
+        text: 'Pega Platform',
         url: '#!',
       } only %}
     {% endset %}
     {% set item_current %}
       {% include '@bolt-components-link/link.twig' with {
-        text: 'Current Page',
+        text: 'Low-Code Application Development',
         url: '#!',
         attributes: {
           'aria-current': 'page',
@@ -33,8 +39,9 @@
     {% include '@bolt-components-breadcrumb/breadcrumb.twig' with {
       contentItems: [
         item_home,
-        item_landing,
-        item_sub,
+        item_1,
+        item_2,
+        item_3,
         item_current,
       ]
     } only %}
@@ -46,94 +53,388 @@
     theme: 'light',
   } only %}
 
-  <div class="l-bolt-documentation">
-    <div class="l-bolt-documentation__sidebar">
-      <nav>
-        <ul>
-          <li>
-            <a href="javascript:">Nav item</a>
-            <ul>
-              <li>
-                <a href="javascript:">Nav item</a>
-                <ul>
-                  <li>
-                    <a href="javascript:">Nav item</a>
-                    <ul>
-                      <li>
-                        <a href="javascript:">Nav item</a>
-                      </li>
-                      <li>
-                        <a href="javascript:">Nav item</a>
-                      </li>
-                      <li>
-                        <a href="javascript:">Nav item</a>
-                      </li>
-                    </ul>
-                  </li>
-                  <li>
-                    <a href="javascript:">Nav item</a>
-                  </li>
-                  <li>
-                    <a href="javascript:">Nav item</a>
-                  </li>
-                </ul>
-              </li>
-              <li>
-                <a href="javascript:">Nav item</a>
-              </li>
-              <li>
-                <a href="javascript:">Nav item</a>
-              </li>
-            </ul>
-          </li>
-          <li>
-            <a href="javascript:">Nav item</a>
-          </li>
-          <li>
-            <a href="javascript:">Nav item</a>
-          </li>
-          <li>
-            <a href="javascript:">Nav item</a>
-          </li>
-          <li>
-            <a href="javascript:">Nav item</a>
-          </li>
-        </ul>
-      </nav>
-    </div>
-    <div class="l-bolt-documentation__article">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae.
-    </div>
-    <div class="l-bolt-documentation__toc">
-      {% include "@bolt-components-toc/toc.twig" with {
-        header: 'Table of contents',
-        items: [
-          {
-            text: 'Section One',
-            url: '#section-one',
-          },
-          {
-            text: 'Section Two',
-            url: '#section-two',
-          },
-          {
-            text: 'Section Three',
-            url: '#section-three',
-          },
-          {
-            text: 'Section Four',
-            url: '#section-four',
-          },
-          {
-            text: 'Section Five',
-            url: '#section-five',
-          },
-        ],
-      } only %}
-    </div>
-  </div>
+  {% set layout %}
+    <div class="l-bolt-documentation" data-bolt-info-density="compact">
+      <div class="l-bolt-documentation__sidebar">
+        <nav>
+          <ul>
+            <li>
+              <a href="javascript:">Nav item</a>
+              <ul>
+                <li>
+                  <a href="javascript:">Nav item</a>
+                  <ul>
+                    <li>
+                      <a href="javascript:">Nav item</a>
+                      <ul>
+                        <li>
+                          <a href="javascript:">Nav item</a>
+                        </li>
+                        <li>
+                          <a href="javascript:">Nav item</a>
+                        </li>
+                        <li>
+                          <a href="javascript:">Nav item</a>
+                        </li>
+                      </ul>
+                    </li>
+                    <li>
+                      <a href="javascript:">Nav item</a>
+                    </li>
+                    <li>
+                      <a href="javascript:">Nav item</a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="javascript:">Nav item</a>
+                </li>
+                <li>
+                  <a href="javascript:">Nav item</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="javascript:">Nav item</a>
+            </li>
+            <li>
+              <a href="javascript:">Nav item</a>
+            </li>
+            <li>
+              <a href="javascript:">Nav item</a>
+            </li>
+            <li>
+              <a href="javascript:">Nav item</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+      <div class="l-bolt-documentation__sidebar l-bolt-documentation__sidebar--secondary">
+        {% set scroll_to_top %}
+          {% set icon_chevron_up %}
+            {% include '@bolt-components-icon/icon.twig' with {
+              name: 'chevron-up',
+            } only %}
+          {% endset %}
+          {% set tooltip_trigger %}
+            {% include '@bolt-elements-button/button.twig' with {
+              content: 'Scroll to top',
+              hierarchy: 'tertiary',
+              size: 'xsmall',
+              icon_only: icon_chevron_up,
+              attributes: {
+                type: 'button'
+              }
+            } only %}
+          {% endset %}
+          {% include '@bolt-components-tooltip/tooltip.twig' with {
+            trigger: tooltip_trigger,
+            content: 'Scroll to top',
+          } only %}
+        {% endset %}
+        {% set download %}
+          {% set icon_download %}
+            {% include '@bolt-components-icon/icon.twig' with {
+              name: 'download',
+            } only %}
+          {% endset %}
+          {% set tooltip_trigger %}
+            {% include '@bolt-elements-button/button.twig' with {
+              content: 'Download',
+              hierarchy: 'tertiary',
+              size: 'xsmall',
+              icon_only: icon_download,
+              attributes: {
+                type: 'button'
+              }
+            } only %}
+          {% endset %}
+          {% include '@bolt-components-tooltip/tooltip.twig' with {
+            trigger: tooltip_trigger,
+            content: 'Download PDF',
+          } only %}
+        {% endset %}
+        {% set share %}
+          {% set share_menu %}
+            {% include '@bolt-components-share/share.twig' with {
+              display: 'menu',
+              size: 'small',
+              sources: [
+                {
+                  name: 'facebook',
+                  url: 'https://www.facebook.com/sharer/sharer.php?u=https://pega.com&amp;src=sdkpreparse'
+                },
+                {
+                  name: 'twitter',
+                  url: 'https://twitter.com/intent/tweet?url=https://pega.com&text=Sample%20Share%20Text&via=pega&hashtags=boltDesignSystemRocks!'
+                },
+                {
+                  name: 'linkedin',
+                  url: 'https://www.linkedin.com/shareArticle?url=https://pega.com'
+                },
+                {
+                  name: 'email',
+                  url: 'mailto:?&body=Sample%20Text%20--%20https%3A//pega.com'
+                }
+              ],
+              copy_to_clipboard: {
+                text_to_copy: 'https://pega.com',
+              },
+            } only %}
+          {% endset %}
+          {% set share_popover_trigger %}
+            {% set icon_share %}
+              {% include '@bolt-components-icon/icon.twig' with {
+                name: 'share',
+              } only %}
+            {% endset %}
+            {% include '@bolt-elements-button/button.twig' with {
+              content: 'Share',
+              hierarchy: 'tertiary',
+              size: 'xsmall',
+              icon_only: icon_share,
+              attributes: {
+                type: 'button'
+              }
+            } only %}
+          {% endset %}
+          {% include '@bolt-components-popover/popover.twig' with {
+            trigger: share_popover_trigger,
+            content: share_menu,
+            spacing: 'none',
+          } only %}
+        {% endset %}
+        {% set actions %}
+          {% include '@bolt-components-list/list.twig' with {
+            display: 'inline',
+            items: [
+              scroll_to_top,
+              download,
+              share,
+            ],
+          } only %}
+        {% endset %}
+        {% set suggest %}
+          <small>
+            {% include '@bolt-elements-text-link/text-link.twig' with {
+              content: 'Suggest edit',
+              attributes: {
+                href: 'https://pega.com',
+              }
+            } only %}
+          </small>
+        {% endset %}
+        {% set version_select %}
+          {% set label %}
+            {% include '@bolt-components-form/form-label.twig' with {
+              title: '<strong>Select available version</strong>',
+              displayType: 'block',
+              attributes: {
+                for: 'version-select',
+              },
+            } only %}
+          {% endset %}
+          {% set select %}
+            {% include '@bolt-components-form/form-select.twig' with {
+              title: 'Version',
+              options: [
+                {
+                  type: 'option',
+                  value: '8-6',
+                  label: '8.6',
+                },
+                {
+                  type: 'option',
+                  value: '8-5',
+                  label: '8.5',
+                },
+                {
+                  type: 'option',
+                  value: '8-4',
+                  label: '8.4',
+                },
+              ],
+              attributes: {
+                id: 'version-select',
+                name: 'version-select',
+              },
+            } only %}
+          {% endset %}
 
-  <footer>
+          <form>
+            {% include '@bolt-components-form/form-element.twig' with {
+              label: label,
+              labelDisplay: 'before',
+              children: select,
+            } only %}
+          </form>
+        {% endset %}
+        
+        {% include '@bolt-components-list/list.twig' with {
+          display: 'inline',
+          align: 'justify',
+          tag: 'div',
+          items: [
+            suggest,
+            actions,
+          ],
+        } only %}
+
+        <bolt-stack>
+          {{ version_select }}
+        </bolt-stack>
+        
+        {% include "@bolt-components-toc/toc.twig" with {
+          variant: 'transparent',
+          header: 'On this page',
+          items: [
+            {
+              text: 'Application development considerations',
+              url: '#application-development-considerations',
+            },
+            {
+              text: 'Authoring portals',
+              url: '#authoring-portals',
+            },
+            {
+              text: 'Section Three',
+              url: '#section-three',
+            },
+            {
+              text: 'Section Four',
+              url: '#section-four',
+            },
+            {
+              text: 'Section Five',
+              url: '#section-five',
+            },
+          ],
+        } only %}
+      </div>
+      <div class="l-bolt-documentation__article">
+        <article class="e-bolt-article u-bolt-margin-bottom-large">
+          <header>
+            <h1>Getting started with low-code application development</h1>
+            <p>Start building your applications in a user-friendly and seamless way by implementing low-code digital solutions. Save time when you create your applications by using templates, develop various aspects of your application by engaging collaborators with different skills and roles, and increase work efficiency by configuring your application for reuse. To meet your unique needs, use the Pega Platform authoring portals.</p>
+          </header>
+          <section>
+            <h2 id="application-development-considerations">Application development considerations</h2>
+            <p>Before you start developing your application, consider the following factors:</p>
+            <dl>
+              <dt>Your business goal</dt>
+              <dd>In many situations, predicting an exact course of action for application development leads to fixed and inefficient solutions. With Pega Platform, you can avoid that and instead create agile applications that adjust to dynamically changing needs. center your application development around a goal that you want to achieve to ensure that work can reach a successful resolution under any circumstances.</dd> 
+              <dt>People in your business process</dt>
+              <dd>Determine what types of users need to access your application, and then define the content that is appropriate for every user type. For example, a manager might need access more features than a regular worker. Additionally, consider what communication channels, such as email or chat bot, your users might need, and what devices they use to process work.</dd> 
+              <dt>Data in your business process</dt>
+              <dd>Every business case requires data to reach a resolution. Think about the information that you need to collect from users, as well as the ways of gathering data. To save time, define how you can organize and reuse data in your application. For example, instead of storing separate data objects for every piece of personal information about a user, such as a name, surname, and phone number, you can gather all this information in a personal details data object. Then, you can update or reference one data object instead of multiple different instances.</dd> 
+              <dt>Reusable elements</dt>
+              <dd>You can save considerable amounts of time and resources during application development by reusing various assets. For example, if you already have an application to review loan requests, you can reuse any relevant elements to develop an application for reviewing mortgage requests, or performing other banking operations.</dd>
+            </dl>
+            <ol>
+              <li>item</li>
+              <li>item</li>
+              <li>item</li>
+            </ol>
+          </section>
+          <section>
+            <h2 id="authoring-portals">Authoring portals</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae.</p>
+          </section>
+          <section>
+            <h2 id="section-three">Section Three</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae.</p>
+          </section>
+          <section>
+            <h2 id="section-four">Section Four</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae.</p>
+          </section>
+          <section>
+            <h2 id="section-five">Section Five</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae.</p>
+          </section>
+        </article>
+        
+        <bolt-banner align="start">
+          {% include '@bolt-components-headline/headline.twig' with {
+            text: 'Updated on',
+            size: 'small',
+            tag: 'p',
+          } only %}
+          {% include '@bolt-components-headline/text.twig' with {
+            text: 'January 15, 2021',
+            size: 'small',
+            tag: 'p',
+          } only %}
+          {% include '@bolt-components-headline/headline.twig' with {
+            text: 'Tags',
+            size: 'small',
+            tag: 'p',
+            attributes: {
+              class: 'u-bolt-margin-bottom-xsmall',
+            }
+          } only %}
+          {% include '@bolt-components-chip-list/chip-list.twig' with {
+            size: 'xsmall',
+            truncate: 3,
+            items: [
+              {
+                text: 'Beginner',
+                url: 'javascript:'
+              },
+              {
+                text: 'User Interface',
+                url: 'javascript:'
+              },
+              {
+                text: 'Pega Platform',
+                url: 'javascript:'
+              },
+              {
+                text: 'Application Development',
+                url: 'javascript:'
+              },
+              {
+                text: 'Case Management',
+                url: 'javascript:'
+              },
+              {
+                text: 'Robotic Process Automation',
+                url: 'javascript:'
+              },
+              {
+                text: 'Data Integration',
+                url: 'javascript:'
+              },
+            ]
+          } only %}
+
+          {% include '@bolt-components-headline/headline.twig' with {
+            text: 'Did you find this helpful?',
+            size: 'small',
+            tag: 'p',
+            attributes: {
+              class: 'u-bolt-margin-bottom-xsmall',
+            }
+          } only %}
+          {% include '@bolt-components-list/list.twig' with {
+            display: 'inline',
+            items: [
+              'Yes',
+              'No',
+            ],
+          } only %}
+        </bolt-banner>
+      </div>
+    </div>
+  {% endset %}
+
+  {% include '@bolt-components-band/band.twig' with {
+    content: layout,
+    size: 'medium',
+    theme: 'xlight',
+  } only %}
+
+  <footer style="height: 50vh">
     <p>footer</p>
   </footer>
 {% endblock %}

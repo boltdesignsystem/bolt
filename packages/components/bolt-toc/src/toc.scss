@@ -25,32 +25,46 @@ bolt-toc {
 }
 
 .c-bolt-toc {
-  @include bolt-shadow('level-20');
   display: block;
-  overflow: hidden;
-  border: 1px solid var(--m-bolt-border);
-  border-radius: bolt-border-radius(large);
+
+  &--card {
+    @include bolt-shadow('level-20');
+    overflow: hidden;
+    border: 1px solid var(--m-bolt-border);
+    border-radius: bolt-border-radius(large);
+  }
 }
 
 .c-bolt-toc__header {
   display: block;
-  margin: 0;
-  padding: var(--bolt-spacing-y-xsmall) var(--bolt-spacing-x-small);
+  margin: 0 0 var(--bolt-spacing-y-xsmall) 0;
   font-family: var(--bolt-type-font-family-headline);
-  font-size: var(--bolt-type-font-size-large);
+  font-size: var(--bolt-type-font-size-small);
   font-weight: var(--bolt-type-font-weight-bold);
-  color: var(--m-bolt-bg);
-  line-height: var(--bolt-type-line-height-large);
-  background-color: var(--m-bolt-headline);
+  color: var(--m-bolt-headline);
+  line-height: var(--bolt-type-line-height-small);
 
   &--hidden {
     @include bolt-visuallyhidden;
+  }
+
+  @at-root .c-bolt-toc--card #{&} {
+    margin: 0;
+    padding: var(--bolt-spacing-y-xsmall) var(--bolt-spacing-x-small);
+    font-size: var(--bolt-type-font-size-large);
+    font-weight: var(--bolt-type-font-weight-bold);
+    color: var(--m-bolt-bg);
+    line-height: var(--bolt-type-line-height-large);
+    background-color: var(--m-bolt-headline);
   }
 }
 
 .c-bolt-toc__list {
   display: block;
   margin: 0;
-  padding: var(--bolt-spacing-y-small) 0;
   list-style: none;
+
+  @at-root .c-bolt-toc--card #{&} {
+    padding: var(--bolt-spacing-y-small) 0;
+  }
 }
