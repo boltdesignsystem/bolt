@@ -47,7 +47,7 @@
           {% endfor %}
         </ul>
       {% endif %}
-      {% if this.data.more_info %}
+      {% if this.data.more_info.value %}
         <div class="c-bolt-listing-teaser__flag-content__item">
           {% set _icon_chevron_right %}
             {% include '@bolt-components-icon/icon.twig' with {
@@ -64,7 +64,7 @@
           } only %}
         </div>
       {% endif %}
-      {% if this.data.warning %}
+      {% if this.data.warning.value %}
         <div class="c-bolt-listing-teaser__flag-content__item">
           {% set _icon_warning %}
             {% include '@bolt-components-icon/icon.twig' with {
