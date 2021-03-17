@@ -13,7 +13,7 @@
   padding-left: var(--bolt-page-padding-x);
 
   @include bolt-mq(medium) {
-    grid-template-columns: minmax(calc(2 / 12 * 100%), 180px) 1fr auto;
+    grid-template-columns: auto 1fr auto;
   }
 }
 
@@ -38,18 +38,17 @@
 }
 
 .l-bolt-documentation__sidebar {
-  // background-color: red;
+  hyphens: auto;
+  word-break: break-word;
+  @include bolt-mq(medium) {
+    width: unquote('max(180px, 15vw)');
+  }
 }
 
 .l-bolt-documentation__sidebar--secondary {
-  // background-color: green;
-
-  width: 180px;
-  hyphens: auto;
-  word-break: break-word;
-
   @include bolt-mq(medium) {
     order: 2;
+    width: unquote('max(140px, 9vw)');
   }
 }
 
@@ -60,40 +59,120 @@
 }
 
 /* ------------------------------------ *\
+   Side nav
+\* ------------------------------------ */
+
+.c-bolt-side-nav {
+}
+
+.c-bolt-side-nav__trigger {
+  @include bolt-button-native-styles-reset;
+  display: none;
+}
+
+.c-bolt-side-nav__content {
+}
+
+.c-bolt-side-nav__header {
+  margin: 0;
+  padding: var(--bolt-spacing-y-xsmall) var(--bolt-spacing-x-small);
+  font-size: var(--bolt-type-font-size-medium);
+  font-weight: var(--bolt-type-font-weight-bold);
+  color: var(--m-bolt-bg);
+  line-height: var(--bolt-type-line-height-medium);
+  border-radius: bolt-border-radius(small);
+  background-color: var(--m-bolt-headline);
+}
+
+.c-bolt-side-nav__list {
+  margin: 0;
+  padding: 0;
+  font-size: var(--bolt-type-font-size-small);
+  list-style: none;
+  line-height: var(--bolt-type-line-height-small);
+
+  .c-bolt-side-nav__list {
+    // padding-left: var(--bolt-spacing-x-small);
+    grid-column: 1/3;
+
+    .c-bolt-side-nav__link {
+      padding-left: calc(var(--bolt-spacing-x-small) * 2);
+    }
+
+    .c-bolt-side-nav__list {
+      .c-bolt-side-nav__link {
+        padding-left: calc(var(--bolt-spacing-x-small) * 3);
+      }
+
+      .c-bolt-side-nav__list {
+        .c-bolt-side-nav__link {
+          padding-left: calc(var(--bolt-spacing-x-small) * 4);
+        }
+      }
+    }
+  }
+}
+
+.c-bolt-side-nav__list-item {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-gap: 1px;
+  grid-row-gap: 0;
+  margin-top: 1px;
+}
+
+.c-bolt-side-nav__link {
+  display: block;
+  padding: calc(var(--bolt-spacing-y-small) / 2) var(--bolt-spacing-x-small);
+  color: var(--m-bolt-link);
+  text-decoration: none;
+  border-radius: bolt-border-radius(small);
+  background-color: rgba(bolt-color(navy, light), 0.05);
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  &[aria-current] {
+    font-weight: var(--bolt-type-font-weight-semibold);
+    color: var(--m-bolt-headline);
+    border-left: 5px solid var(--m-bolt-link);
+  }
+}
+
+.c-bolt-side-nav__toggle-trigger {
+  @include bolt-button-native-styles-reset;
+  padding: calc(var(--bolt-spacing-y-small) / 2) var(--bolt-spacing-x-small);
+  border-radius: bolt-border-radius(small);
+  background-color: rgba(bolt-color(navy, light), 0.05);
+
+  &:before {
+    content: '+';
+  }
+}
+
+/* ------------------------------------ *\
    Article Styles
 \* ------------------------------------ */
 
 $_bolt-article-element-spacing: var(--bolt-spacing-y-medium);
 
 .e-bolt-article {
+  font-size: var(--bolt-type-font-size-medium);
   color: var(--m-bolt-text);
+  line-height: var(--bolt-type-line-height-medium);
 
   p,
   blockquote,
   figure,
   pre,
   ul,
-  ol,
-  hr {
+  ol {
     margin: 0 0 #{$_bolt-article-element-spacing} 0;
 
     &:last-child {
       margin-bottom: 0;
     }
-  }
-
-  hr {
-    box-sizing: content-box;
-    opacity: 1;
-    height: 0;
-    overflow: visible;
-    margin-top: #{$_bolt-article-element-spacing};
-    border: none;
-    border-bottom: 1px solid var(--m-bolt-border);
-  }
-
-  p {
-    @include bolt-font-size(medium);
   }
 
   h1,
@@ -109,9 +188,10 @@ $_bolt-article-element-spacing: var(--bolt-spacing-y-medium);
   h1,
   h2,
   h3,
-  h4,
-  dt {
+  h4 {
     letter-spacing: var(--bolt-type-letter-spacing-narrow);
+    hyphens: auto;
+    word-break: break-word;
   }
 
   h1 {
@@ -135,8 +215,8 @@ $_bolt-article-element-spacing: var(--bolt-spacing-y-medium);
   }
 
   h5 {
-    font-size: var(--bolt-type-font-size-xsmall);
-    line-height: var(--bolt-type-line-height-xsmall);
+    font-size: var(--bolt-type-font-size-small);
+    line-height: var(--bolt-type-line-height-small);
   }
 
   h6 {
@@ -147,38 +227,6 @@ $_bolt-article-element-spacing: var(--bolt-spacing-y-medium);
     letter-spacing: var(--bolt-type-letter-spacing-wide);
   }
 
-  b,
-  strong {
-    font-weight: var(--bolt-type-font-weight-bold);
-  }
-
-  small,
-  figcaption {
-    font-size: var(--bolt-type-font-size-xsmall);
-    line-height: var(--bolt-type-line-height-xsmall);
-  }
-
-  sub,
-  sup {
-    position: relative;
-    font-size: 0.8em;
-    line-height: 0;
-    vertical-align: baseline;
-  }
-
-  sub {
-    bottom: -0.25em;
-  }
-
-  sup {
-    top: -0.5em;
-  }
-
-  img {
-    max-width: 100%;
-    border-style: none;
-  }
-
   blockquote {
     margin-right: 0;
     margin-left: 0;
@@ -186,7 +234,6 @@ $_bolt-article-element-spacing: var(--bolt-spacing-y-medium);
     font-size: var(--bolt-type-font-size-large);
     font-weight: var(--bolt-type-font-weight-semibold);
     line-height: var(--bolt-type-line-height-large);
-
     border-left: 3px solid var(--bolt-color-teal);
 
     p {
@@ -200,15 +247,11 @@ $_bolt-article-element-spacing: var(--bolt-spacing-y-medium);
 
   blockquote footer,
   figcaption {
-    opacity: 0.5;
+    opacity: 0.8;
   }
 
-  figure {
-    padding: 0;
-
-    img {
-      max-width: 100%;
-    }
+  figcaption {
+    font-size: 0.8em;
   }
 
   ol,
@@ -228,23 +271,6 @@ $_bolt-article-element-spacing: var(--bolt-spacing-y-medium);
         margin-top: var(--bolt-spacing-y-xsmall);
         padding-left: 1.25em;
       }
-    }
-  }
-
-  dt {
-    font-family: var(--bolt-type-font-family-headline);
-    font-weight: var(--bolt-type-font-weight-semibold);
-    color: var(--m-bolt-headline);
-  }
-
-  dd {
-    margin-bottom: var(--bolt-spacing-y-xsmall);
-    margin-left: var(--bolt-spacing-x-medium);
-    font-size: var(--bolt-type-font-size-small);
-    line-height: var(--bolt-type-line-height-small);
-
-    &:last-child {
-      margin-bottom: 0;
     }
   }
 

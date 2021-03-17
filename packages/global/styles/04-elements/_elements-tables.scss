@@ -1,12 +1,12 @@
 /* ------------------------------------ *\
-  Basic Table Elements
+   Basic table
 \* ------------------------------------ */
-table {
-  // @include null-spacing;
 
+table {
   width: 100%;
   border-spacing: 0;
   border-collapse: collapse;
+  color: var(--m-bolt-body);
 }
 
 thead,
@@ -16,19 +16,33 @@ tfoot {
 
 th,
 td {
-  @include bolt-font-size(small);
-  // @include mm-padding(($font-leading--tight/2 + rem),($gutter/2 + rem),($font-leading--tight/2 + rem),($gutter/2 + rem));
-  // @include text-align(left);
+  font-size: var(--bolt-type-font-size-small);
+  line-height: var(--bolt-type-line-height-small);
+  text-align: left;
+  border: 1px solid var(--m-bolt-disabled);
 }
 
 thead th,
 tfoot td {
-  @include bolt-font-family(heading);
-  @include bolt-font-weight(bold);
+  padding: calc(var(--bolt-spacing-y-small) / 2) var(--bolt-spacing-x-small);
+  font-family: var(--bolt-type-font-family-headline);
+  font-weight: var(--bolt-type-font-weight-semibold);
+}
+
+th {
+  color: var(--m-bolt-headline);
+  background-color: rgba(bolt-color(gray), 0.1);
 }
 
 td {
-  // @include border(top);
-
+  padding: var(--bolt-spacing-y-small) var(--bolt-spacing-x-small);
   vertical-align: top;
+}
+
+tr,
+td,
+thead,
+tbody,
+tfoot {
+  background: transparent !important;
 }

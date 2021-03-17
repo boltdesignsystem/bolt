@@ -27,7 +27,7 @@ bolt-toc {
 .c-bolt-toc {
   display: block;
 
-  &--card {
+  &--variant-card {
     @include bolt-shadow('level-20');
     overflow: hidden;
     border: 1px solid var(--m-bolt-border);
@@ -48,7 +48,7 @@ bolt-toc {
     @include bolt-visuallyhidden;
   }
 
-  @at-root .c-bolt-toc--card #{&} {
+  @at-root .c-bolt-toc--variant-card #{&} {
     margin: 0;
     padding: var(--bolt-spacing-y-xsmall) var(--bolt-spacing-x-small);
     font-size: var(--bolt-type-font-size-large);
@@ -64,7 +64,7 @@ bolt-toc {
   margin: 0;
   list-style: none;
 
-  @at-root .c-bolt-toc--card #{&} {
+  @at-root .c-bolt-toc--variant-card #{&} {
     padding: var(--bolt-spacing-y-small) 0;
   }
 }

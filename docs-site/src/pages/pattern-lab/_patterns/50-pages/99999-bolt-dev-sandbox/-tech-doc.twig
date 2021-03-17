@@ -56,58 +56,59 @@
   {% set layout %}
     <div class="l-bolt-documentation" data-bolt-info-density="compact">
       <div class="l-bolt-documentation__sidebar">
-        <nav>
-          <ul>
-            <li>
-              <a href="javascript:">Nav item</a>
-              <ul>
-                <li>
-                  <a href="javascript:">Nav item</a>
-                  <ul>
-                    <li>
-                      <a href="javascript:">Nav item</a>
-                      <ul>
-                        <li>
-                          <a href="javascript:">Nav item</a>
-                        </li>
-                        <li>
-                          <a href="javascript:">Nav item</a>
-                        </li>
-                        <li>
-                          <a href="javascript:">Nav item</a>
-                        </li>
-                      </ul>
-                    </li>
-                    <li>
-                      <a href="javascript:">Nav item</a>
-                    </li>
-                    <li>
-                      <a href="javascript:">Nav item</a>
-                    </li>
-                  </ul>
-                </li>
-                <li>
-                  <a href="javascript:">Nav item</a>
-                </li>
-                <li>
-                  <a href="javascript:">Nav item</a>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <a href="javascript:">Nav item</a>
-            </li>
-            <li>
-              <a href="javascript:">Nav item</a>
-            </li>
-            <li>
-              <a href="javascript:">Nav item</a>
-            </li>
-            <li>
-              <a href="javascript:">Nav item</a>
-            </li>
-          </ul>
-        </nav>
+        <div class="c-bolt-side-nav">
+          <button type="button" aria-expanded="true" class="c-bolt-side-nav__trigger">Table of Contents</button>
+          <nav aria-label="Book Navigation" class="c-bolt-side-nav__content">
+            <h2 class="c-bolt-side-nav__header">Low-code application development</h2>
+            <ul class="c-bolt-side-nav__list">
+              <li class="c-bolt-side-nav__list-item">
+                <a href="javascript:" class="c-bolt-side-nav__link" aria-current="page">Getting started with low-code application development</a>
+                <button type="button" aria-expanded="true" aria-label="Toggle children links" class="c-bolt-side-nav__toggle-trigger"></button>
+                <ul class="c-bolt-side-nav__list">
+                  <li class="c-bolt-side-nav__list-item">
+                    <a href="javascript:" class="c-bolt-side-nav__link">Building your first application</a>
+                    <button type="button" aria-expanded="true" aria-label="Toggle children links" class="c-bolt-side-nav__toggle-trigger"></button>
+                    <ul class="c-bolt-side-nav__list">
+                      <li class="c-bolt-side-nav__list-item">
+                        <a href="javascript:" class="c-bolt-side-nav__link">Switching between applications</a>
+                        <button type="button" aria-expanded="true" aria-label="Toggle children links" class="c-bolt-side-nav__toggle-trigger"></button>
+                        <ul class="c-bolt-side-nav__list">
+                          <li class="c-bolt-side-nav__list-item">
+                            <a href="javascript:" class="c-bolt-side-nav__link">Adding the My Applications gadget</a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li class="c-bolt-side-nav__list-item">
+                        <a href="javascript:" class="c-bolt-side-nav__link">Level 3 nav item</a>
+                      </li>
+                      <li class="c-bolt-side-nav__list-item">
+                        <a href="javascript:" class="c-bolt-side-nav__link">Level 3 nav item</a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="c-bolt-side-nav__list-item">
+                    <a href="javascript:" class="c-bolt-side-nav__link">Level 2 nav item</a>
+                  </li>
+                  <li class="c-bolt-side-nav__list-item">
+                    <a href="javascript:" class="c-bolt-side-nav__link">Level 2 nav item</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="c-bolt-side-nav__list-item">
+                <a href="javascript:" class="c-bolt-side-nav__link">Level 1 nav item</a>
+              </li>
+              <li class="c-bolt-side-nav__list-item">
+                <a href="javascript:" class="c-bolt-side-nav__link">Level 1 nav item</a>
+              </li>
+              <li class="c-bolt-side-nav__list-item">
+                <a href="javascript:" class="c-bolt-side-nav__link">Level 1 nav item</a>
+              </li>
+              <li class="c-bolt-side-nav__list-item">
+                <a href="javascript:" class="c-bolt-side-nav__link">Level 1 nav item</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
       </div>
       <div class="l-bolt-documentation__sidebar l-bolt-documentation__sidebar--secondary">
         {% set scroll_to_top %}
@@ -227,7 +228,7 @@
         {% set version_select %}
           {% set label %}
             {% include '@bolt-components-form/form-label.twig' with {
-              title: '<strong>Select available version</strong>',
+              title: '<strong>Available version</strong>',
               displayType: 'block',
               attributes: {
                 for: 'version-select',
@@ -260,7 +261,6 @@
               },
             } only %}
           {% endset %}
-
           <form>
             {% include '@bolt-components-form/form-element.twig' with {
               label: label,
@@ -269,47 +269,54 @@
             } only %}
           </form>
         {% endset %}
-        
-        {% include '@bolt-components-list/list.twig' with {
-          display: 'inline',
-          align: 'justify',
-          tag: 'div',
-          items: [
-            suggest,
-            actions,
-          ],
-        } only %}
 
-        <bolt-stack>
+        <bolt-stack spacing="xsmall">
           {{ version_select }}
         </bolt-stack>
-        
-        {% include "@bolt-components-toc/toc.twig" with {
-          variant: 'transparent',
-          header: 'On this page',
-          items: [
-            {
-              text: 'Application development considerations',
-              url: '#application-development-considerations',
-            },
-            {
-              text: 'Authoring portals',
-              url: '#authoring-portals',
-            },
-            {
-              text: 'Section Three',
-              url: '#section-three',
-            },
-            {
-              text: 'Section Four',
-              url: '#section-four',
-            },
-            {
-              text: 'Section Five',
-              url: '#section-five',
-            },
-          ],
-        } only %}
+        <bolt-stack spacing="small">
+          <small><em>Updated on January 15, 2021</em></small>
+        </bolt-stack>
+        <bolt-stack spacing="medium">
+          {% include '@bolt-components-list/list.twig' with {
+            display: 'inline',
+            align: 'justify',
+            tag: 'div',
+            items: [
+              suggest,
+              actions,
+            ],
+          } only %}
+        </bolt-stack>
+        <bolt-stack spacing="medium">
+          {% include '@bolt-components-toc/toc.twig' with {
+            variant: 'transparent',
+            header: 'On this page',
+            items: [
+              {
+                text: 'Application development considerations',
+                url: '#application-development-considerations',
+              },
+              {
+                text: 'Authoring portals',
+                url: '#authoring-portals',
+              },
+              {
+                text: 'Section Three',
+                url: '#section-three',
+              },
+              {
+                text: 'Section Four',
+                url: '#section-four',
+              },
+              {
+                text: 'Section Five',
+                url: '#section-five',
+              },
+            ],
+            scrollOffsetSelector: '.c-bolt-page-header',
+            scrollOffset: 16,
+          } only %}
+        </bolt-stack>
       </div>
       <div class="l-bolt-documentation__article">
         <article class="e-bolt-article u-bolt-margin-bottom-large">
@@ -330,11 +337,6 @@
               <dt>Reusable elements</dt>
               <dd>You can save considerable amounts of time and resources during application development by reusing various assets. For example, if you already have an application to review loan requests, you can reuse any relevant elements to develop an application for reviewing mortgage requests, or performing other banking operations.</dd>
             </dl>
-            <ol>
-              <li>item</li>
-              <li>item</li>
-              <li>item</li>
-            </ol>
           </section>
           <section>
             <h2 id="authoring-portals">Authoring portals</h2>
@@ -342,11 +344,146 @@
           </section>
           <section>
             <h2 id="section-three">Section Three</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae.</p>
+            <p>
+              Text: <strong>bold</strong>, <em>italic</em>, <a href="javascript:">linked</a>, <code>code</code>, <kbd>kbd</kbd>, <small>small</small>, super<sup>script</sup>, sub<sub>script</sub>.
+            </p>
+            <p>
+              Paragraphs. The ultimate measure of a man is not where he stands in moments of comfort and convenience, but where he stands at times of challenge and controversy.
+            </p>
+            <p>
+              The function of education is to teach one to think intensively and to think critically. Intelligence plus character—that is the goal of true education.
+            </p>
+            <p>
+              In the end, we will remember not the words of our enemies, but the silence of our friends.
+            </p>
+            <details>
+              <summary>Summary sums up the details</summary>
+              <p>
+              Details elaborate on the summary.
+              </p>
+            </details>
+            <ul>
+              <li>
+              First level unordered item
+              </li>
+              <li>
+                First level unordered item
+                <ol>
+                  <li>
+                    Second level ordered item
+                    <ul>
+                      <li>
+                        Third level unordered item
+                      </li>
+                      <li>
+                        Third level unordered item
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    Second level ordered item
+                  </li>
+                </ol>
+              </li>
+              <li>
+                First level unordered item
+              </li>
+            </ul>
+            <ol>
+              <li>
+                First level ordered item
+              </li>
+              <li>
+                First level ordered item
+                <ul>
+                  <li>
+                    Second level unordered item
+                    <ol>
+                      <li>
+                        Third level ordered item
+                      </li>
+                      <li>
+                        Third level ordered item
+                      </li>
+                    </ol>
+                  </li>
+                  <li>
+                    Second level unordered item
+                  </li>
+                </ul>
+              </li>
+              <li>
+                First level ordered item
+              </li>
+            </ol>
+            <dl>
+              <dt>Definition list</dt>
+              <dd>A list of text and description.</dd>
+              <dt>Morgawr</dt>
+              <dd>A sea serpent.</dd>
+              <dt>Owlman</dt>
+              <dd>A giant owl-like creature.</dd>
+            </dl>
+            <pre><code>pre&nbsp;{<br>&nbsp;&nbsp;padding: .5em 1em; color: black; border-left: 5px solid; background-color: white;<br>}</code></pre>
+            <blockquote>
+              <p>
+                <q>Pull Quote. Darkness cannot drive out darkness; only <q>light</q> can do that. Hate cannot drive out hate; only <q>love</q> can do that.</q>
+              </p>
+              <p>
+                <q>The time is always right to do what is right.</q>
+              </p>
+            </blockquote>
+            <h1>
+              H1 heading text
+            </h1>
+            <h2>
+              H2 heading text
+            </h2>
+            <h3>
+              H3 heading text
+            </h3>
+            <h4>
+              H4 heading text
+            </h4>
+            <h5>
+              H5 heading text
+            </h5>
+            <h6>
+              H6 heading text
+            </h6>
+            <figure>
+              <img src="https://placehold.it/1600x900" alt="">
+              <figcaption>
+                Figure caption (image)
+              </figcaption>
+            </figure>
+            <table>
+              <thead>
+                <tr>
+                  <th>Col1</th>
+                  <th>Col2</th>
+                  <th>Col3</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Row1</td>
+                  <td>Row1</td>
+                  <td>Row1</td>
+                </tr>
+                <tr>
+                  <td>Row2</td>
+                  <td>Row2</td>
+                  <td>Row2</td>
+                </tr>
+              </tbody>
+            </table>
           </section>
           <section>
             <h2 id="section-four">Section Four</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae.</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae.</p>
+            <hr>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae.</p>
           </section>
           <section>
             <h2 id="section-five">Section Five</h2>
@@ -355,16 +492,6 @@
         </article>
         
         <bolt-banner align="start">
-          {% include '@bolt-components-headline/headline.twig' with {
-            text: 'Updated on',
-            size: 'small',
-            tag: 'p',
-          } only %}
-          {% include '@bolt-components-headline/text.twig' with {
-            text: 'January 15, 2021',
-            size: 'small',
-            tag: 'p',
-          } only %}
           {% include '@bolt-components-headline/headline.twig' with {
             text: 'Tags',
             size: 'small',

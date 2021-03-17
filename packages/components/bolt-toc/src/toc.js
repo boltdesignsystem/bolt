@@ -157,7 +157,7 @@ class BoltToc extends withContext(BoltElement) {
 
   render() {
     const classes = cx('c-bolt-toc', {
-      [`c-bolt-toc--${this.variant}`]:
+      [`c-bolt-toc--variant-${this.variant}`]:
         this.variant && this.variant !== 'transparent',
     });
 

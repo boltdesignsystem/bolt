@@ -13,7 +13,7 @@
 {# Array of classes based on the defined + default props #}
 {% set classes = [
   base_class,
-  this.data.variant.value != 'transparent' ? 'c-bolt-toc--' ~ this.data.variant.value
+  this.data.variant.value != 'transparent' ? 'c-bolt-toc--variant-' ~ this.data.variant.value
 ] %}
 
 {#
