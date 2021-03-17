@@ -15,11 +15,11 @@ class BoltActionElement extends BoltElement {
       disabled: {
         type: Boolean,
       },
-      onClick: {
+      on_click: {
         type: String,
         attribute: 'on-click',
       },
-      onClickTarget: {
+      on_click_target: {
         type: String,
         attribute: 'on-click-target',
       },

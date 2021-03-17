@@ -33,6 +33,16 @@
   {% set hierarchy = style %}
 {% endif %}
 
+{# DEPRECATED.  Use the property `on_click` instead of `onClick`. #}
+{% if onClick %}
+  {% set on_click = onClick %}
+{% endif %}
+
+{# DEPRECATED.  Use the property `on_click_target` instead of `onClickTarget`. #}
+{% if onClickTarget %}
+  {% set on_click_target = onClickTarget %}
+{% endif %}
+
 {# Variables #}
 {% set this = init(schema) %}
 {% set inner_attributes = create_attribute({}) %}
