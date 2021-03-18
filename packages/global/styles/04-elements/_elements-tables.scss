@@ -3,9 +3,8 @@
 \* ------------------------------------ */
 
 table {
-  width: 100%;
-  border-spacing: 0;
-  border-collapse: collapse;
+  border-spacing: 1px;
+  border-collapse: separate;
   color: var(--m-bolt-body);
 }
 
@@ -19,30 +18,24 @@ td {
   font-size: var(--bolt-type-font-size-small);
   line-height: var(--bolt-type-line-height-small);
   text-align: left;
-  border: 1px solid var(--m-bolt-disabled);
 }
 
-thead th,
+th,
+thead td,
 tfoot td {
   padding: calc(var(--bolt-spacing-y-small) / 2) var(--bolt-spacing-x-small);
   font-family: var(--bolt-type-font-family-headline);
   font-weight: var(--bolt-type-font-weight-semibold);
 }
 
-th {
+th,
+thead td {
   color: var(--m-bolt-headline);
   background-color: rgba(bolt-color(gray), 0.1);
 }
 
+tbody th,
 td {
   padding: var(--bolt-spacing-y-small) var(--bolt-spacing-x-small);
   vertical-align: top;
-}
-
-tr,
-td,
-thead,
-tbody,
-tfoot {
-  background: transparent !important;
 }

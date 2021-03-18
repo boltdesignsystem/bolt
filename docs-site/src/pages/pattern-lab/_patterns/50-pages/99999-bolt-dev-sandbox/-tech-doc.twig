@@ -57,21 +57,21 @@
     <div class="l-bolt-documentation" data-bolt-info-density="compact">
       <div class="l-bolt-documentation__sidebar">
         <div class="c-bolt-side-nav">
-          <button type="button" aria-expanded="true" class="c-bolt-side-nav__trigger">Table of Contents</button>
+          <button type="button" aria-expanded="true" aria-label="Toggle book navigation" class="c-bolt-side-nav__trigger js-bolt-side-nav-toggle-trigger"></button>
           <nav aria-label="Book Navigation" class="c-bolt-side-nav__content">
             <h2 class="c-bolt-side-nav__header">Low-code application development</h2>
             <ul class="c-bolt-side-nav__list">
               <li class="c-bolt-side-nav__list-item">
-                <a href="javascript:" class="c-bolt-side-nav__link" aria-current="page">Getting started with low-code application development</a>
-                <button type="button" aria-expanded="true" aria-label="Toggle children links" class="c-bolt-side-nav__toggle-trigger"></button>
+                <a href="javascript:" class="c-bolt-side-nav__link">Getting started with low-code application development</a>
+                <button type="button" aria-expanded="false" aria-label="Toggle children links" class="c-bolt-side-nav__link c-bolt-side-nav__link--toggle-trigger js-bolt-side-nav-toggle-trigger"></button>
                 <ul class="c-bolt-side-nav__list">
                   <li class="c-bolt-side-nav__list-item">
                     <a href="javascript:" class="c-bolt-side-nav__link">Building your first application</a>
-                    <button type="button" aria-expanded="true" aria-label="Toggle children links" class="c-bolt-side-nav__toggle-trigger"></button>
+                    <button type="button" aria-expanded="false" aria-label="Toggle children links" class="c-bolt-side-nav__link c-bolt-side-nav__link--toggle-trigger js-bolt-side-nav-toggle-trigger"></button>
                     <ul class="c-bolt-side-nav__list">
                       <li class="c-bolt-side-nav__list-item">
                         <a href="javascript:" class="c-bolt-side-nav__link">Switching between applications</a>
-                        <button type="button" aria-expanded="true" aria-label="Toggle children links" class="c-bolt-side-nav__toggle-trigger"></button>
+                        <button type="button" aria-expanded="false" aria-label="Toggle children links" class="c-bolt-side-nav__link c-bolt-side-nav__link--toggle-trigger js-bolt-side-nav-toggle-trigger"></button>
                         <ul class="c-bolt-side-nav__list">
                           <li class="c-bolt-side-nav__list-item">
                             <a href="javascript:" class="c-bolt-side-nav__link">Adding the My Applications gadget</a>
@@ -104,7 +104,7 @@
                 <a href="javascript:" class="c-bolt-side-nav__link">Level 1 nav item</a>
               </li>
               <li class="c-bolt-side-nav__list-item">
-                <a href="javascript:" class="c-bolt-side-nav__link">Level 1 nav item</a>
+                <a href="javascript:" class="c-bolt-side-nav__link" aria-current="page">Level 1 nav item</a>
               </li>
             </ul>
           </nav>
@@ -457,27 +457,29 @@
                 Figure caption (image)
               </figcaption>
             </figure>
-            <table>
-              <thead>
-                <tr>
-                  <th>Col1</th>
-                  <th>Col2</th>
-                  <th>Col3</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Row1</td>
-                  <td>Row1</td>
-                  <td>Row1</td>
-                </tr>
-                <tr>
-                  <td>Row2</td>
-                  <td>Row2</td>
-                  <td>Row2</td>
-                </tr>
-              </tbody>
-            </table>
+            <bolt-table>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Col1</th>
+                    <th>Col2</th>
+                    <th>Col3</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th>Row1</th>
+                    <td>Row1</td>
+                    <td>Row1</td>
+                  </tr>
+                  <tr>
+                    <th>Row2</th>
+                    <td>Row2</td>
+                    <td>Row2</td>
+                  </tr>
+                </tbody>
+              </table>
+            </bolt-table>
           </section>
           <section>
             <h2 id="section-four">Section Four</h2>
