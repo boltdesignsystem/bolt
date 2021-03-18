@@ -59,6 +59,11 @@ module.exports = function(apiConfig) {
           [
             '@babel/preset-env',
             {
+              ignoreBrowserslistConfig: true,
+              modules: false,
+              debug: false,
+              corejs: 3,
+              useBuiltIns: 'entry',
               targets: {
                 browsers: [
                   // NOTE: I'm not using the `esmodules` target due to this issue:
@@ -68,22 +73,24 @@ module.exports = function(apiConfig) {
                   'last 2 iOS versions',
                   'last 2 Edge versions',
                   'Firefox ESR',
+                  'Edge 18',
                 ],
               },
-              useBuiltIns: 'entry',
-              corejs: 3,
-              modules: false,
-              debug: false,
             },
           ],
         ],
         plugins: [
           '@babel/plugin-proposal-optional-chaining',
-          ['@babel/plugin-proposal-decorators', { legacy: true }],
-          ['@babel/plugin-proposal-class-properties', { loose: true }],
-          '@babel/plugin-syntax-jsx' /* [1] */,
           [
-            '@babel/plugin-transform-react-jsx' /* [1] */,
+            '@babel/plugin-proposal-decorators',
+            {
+              decoratorsBeforeExport: true,
+            },
+          ],
+          ['@babel/plugin-proposal-class-properties', { loose: true }],
+          '@babel/plugin-syntax-jsx',
+          [
+            '@babel/plugin-transform-react-jsx',
             {
               pragma: 'h',
               pragmaFrag: 'Fragment',
@@ -91,6 +98,7 @@ module.exports = function(apiConfig) {
               useBuiltIns: false,
             },
           ],
+          '@babel/plugin-proposal-nullish-coalescing-operator',
         ],
       };
     }
