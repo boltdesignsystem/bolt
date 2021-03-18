@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.2](https://github.com/basaltinc/theme-tools/tree/master/packages/sass-export-data/compare/v3.1.1...v3.1.2) (2021-03-05)
+
+**Note:** Version bump only for package @bolt/sass-export-data
+
+
+
+
+
+# [3.1.0](https://github.com/basaltinc/theme-tools/tree/master/packages/sass-export-data/compare/v2.31.2...v3.1.0) (2021-02-08)
+
+**Note:** Version bump only for package @bolt/sass-export-data
+
+
+
+
+
+# [3.0.0](https://github.com/basaltinc/theme-tools/tree/master/packages/sass-export-data/compare/v2.29.3...v3.0.0) (2021-01-08)
+
+**Note:** Version bump only for package @bolt/sass-export-data
+
+
+
+
+
 # [2.19.0](https://github.com/basaltinc/theme-tools/tree/master/packages/sass-export-data/compare/v2.18.1...v2.19.0) (2020-03-04)
 
 **Note:** Version bump only for package @bolt/sass-export-data

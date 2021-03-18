@@ -13,9 +13,6 @@ import schema from '../button.schema.js';
 
 let cx = classNames.bind(styles);
 
-// Note: must use `delete` or outputs empty `style` attr on bolt-button WC
-delete schema.properties.style;
-
 @customElement('bolt-button')
 @convertInitialTags(['button', 'a'])
 class BoltButton extends BoltActionElement {
@@ -26,7 +23,7 @@ class BoltButton extends BoltActionElement {
   static get properties() {
     return {
       ...this.props,
-      color: { type: String },
+      color: { type: String }, // Color is a deprecated web-component-only prop
       tabindex: { type: Number },
       inert: { type: Boolean }, // will eventually go hand in hand with https://github.com/WICG/inert#notes-on-the-polyfill
     };
@@ -37,11 +34,12 @@ class BoltButton extends BoltActionElement {
   }
 
   render() {
+    // While `color` option is in use downstream, we must provide this fallback
+    const hierarchy = this.color || this.hierarchy;
     const classes = cx('c-bolt-button', {
       'c-bolt-button--medium': !this.size, // Default size
       [`c-bolt-button--${this.size}`]: this.size,
-      'c-bolt-button--primary': !this.color, // Default color
-      [`c-bolt-button--${this.color}`]: this.color,
+      [`c-bolt-button--${hierarchy}`]: hierarchy,
       [`c-bolt-button--${this.width}`]: this.width && this.width !== 'auto',
       'c-bolt-button--border-radius-regular': !this.borderRadius, // Default border radius
       'c-bolt-button--border-radius-full': this.rounded && !this.borderRadius, // DEPRECATED.  Use the border-radius property instead of rounded.

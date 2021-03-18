@@ -6,18 +6,25 @@
       {% if text %}
         {% set button_props = {
           text: text,
-          style: "text",
+          hierarchy: "text",
           width: "full",
           align: "start",
           target: external == true ? "_blank" : "_self",
-          icon: {
-            name: external == false or external == null ? "chevron-right" : "external-link",
-          },
           attributes: attributes|default({})
         } %}
 
         {% if this.data.spacing.value is not empty %}
           {% set button_props = button_props|merge({ size: this.data.spacing.value }) %}
+        {% endif %}
+
+        {% if icon != 'none' %}
+          {% if icon %}
+            {% set button_props = button_props|merge({ icon: { name: icon } }) %}
+          {% elseif external == false or external == null %}
+            {% set button_props = button_props|merge({ icon: { name: "chevron-right" } }) %}
+          {% else %}
+            {% set button_props = button_props|merge({ icon: { name: "external-link" } }) %}
+          {% endif %}
         {% endif %}
 
         {% if url is not empty %}

@@ -6,10 +6,10 @@
   <div class="u-bolt-margin-bottom-medium">
     {% embed "@utils/theme-demo.twig" %}
       {% block demo_content %}
-        {% for style in schema.properties.style.enum %}
+        {% for hierarchy in schema.properties.hierarchy.enum %}
           {% include "@bolt-components-button/button.twig" with {
-            text: style|capitalize ~ " button",
-            style: style
+            text: hierarchy|capitalize ~ " button",
+            hierarchy: hierarchy
           } only %}
         {% endfor %}
       {% endblock %}

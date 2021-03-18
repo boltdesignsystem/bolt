@@ -1,9 +1,10 @@
 module.exports = {
   components: {
     global: [
-      '@bolt/components-progress-bar',
       '@bolt/core-v3.x',
       '@bolt/global',
+      '@bolt/elements-button',
+      '@bolt/elements-text-link',
       '@bolt/components-accordion',
       '@bolt/components-action-blocks',
       '@bolt/components-animate',
@@ -17,7 +18,6 @@ module.exports = {
       '@bolt/components-button-group',
       '@bolt/components-button',
       '@bolt/components-card-replacement',
-      '@bolt/components-card',
       '@bolt/components-carousel',
       '@bolt/components-chip-list',
       '@bolt/components-chip',
@@ -36,6 +36,7 @@ module.exports = {
       '@bolt/components-image',
       '@bolt/components-link',
       '@bolt/components-list',
+      '@bolt/components-listing-teaser',
       '@bolt/components-logo',
       '@bolt/components-menu',
       '@bolt/components-modal',
@@ -48,6 +49,7 @@ module.exports = {
       '@bolt/components-page-header',
       '@bolt/components-placeholder',
       '@bolt/components-popover',
+      '@bolt/components-progress-bar',
       '@bolt/components-share',
       '@bolt/components-site',
       '@bolt/components-smooth-scroll',
@@ -65,15 +67,7 @@ module.exports = {
       '@bolt/components-typeahead',
       '@bolt/components-ul',
       '@bolt/components-video',
-      '@bolt/elements-text-link',
-      '@bolt/elements-button',
-      '@bolt/layouts-list',
       '@bolt/analytics-autolink',
-    ],
-    individual: [
-      '@bolt/components-critical-fonts',
-      '@bolt/components-critical-css',
-      '@bolt/components-critical-css-vars',
     ],
   },
 };

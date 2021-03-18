@@ -69,7 +69,6 @@ jobs:
     #      if: (tag =~ ^v) OR (branch =~ /(master|release)/)
     #      name: 'Build Drupal Lab'
     #      script:
-    #        - cd example-integrations/drupal-lab
     #        - npm run setup
 
     # quicker build + Nightwatch tests for feature branches
@@ -83,7 +82,6 @@ jobs:
         - echo $GIT_SHA
         # - yarn global add @lhci/cli@0.3.x
       script:
-        # - cd example-integrations/drupal-lab
         # - yarn run generate # generate static version of Drupal Lab in the integration folder
         # - cd ../../
         - yarn run build
@@ -93,7 +91,6 @@ jobs:
         - export NOW_URL=$(./scripts/get-latest-deploy.js)
         - travis_retry yarn gds -a success -e ${TRAVIS_BRANCH}--${GIT_SHA}--commit-preview -r ${TRAVIS_BRANCH} -l ${NOW_URL}
         - travis_retry yarn run test:e2e:quick-local
-        - travis_retry yarn run test:vrt-urls
         # - lhci autorun --collect.numberOfRuns=3 --collect.url=$NOW_URL --collect.url=$NOW_URL/pattern-lab/patterns/50-pages-10-d8-product-pages-product-t2/50-pages-10-d8-product-pages-product-t2.html --collect.url=$NOW_URL/pattern-lab/patterns/60-experiments-micro-journeys-90-micro-journeys/60-experiments-micro-journeys-90-micro-journeys.html
       after_success:
         - travis_retry yarn gds -a create -e ${TRAVIS_BRANCH}--branch-preview -r ${TRAVIS_BRANCH}
@@ -118,7 +115,6 @@ jobs:
       before_script:
         - find . -name '.incache' -exec rm -rf {} +
       script:
-        # - cd example-integrations/drupal-lab
         # - yarn run generate # generate static version of Drupal Lab in the integration folder
         # - cd ../../
         - travis_retry yarn gds -a create -e ${TRAVIS_BRANCH}--${GIT_SHA}--commit-preview -r ${TRAVIS_BRANCH}

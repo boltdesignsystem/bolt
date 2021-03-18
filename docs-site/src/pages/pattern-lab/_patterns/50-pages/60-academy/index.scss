@@ -242,3 +242,12 @@
     }
   }
 }
+
+.c-acd-h5p-embed {
+  @include bolt-shadow('level-20', false, var(--m-bolt-neutral));
+  display: block;
+  padding: var(--bolt-spacing-y-medium) var(--bolt-spacing-x-medium);
+  color: var(--m-bolt-text);
+  border-radius: bolt-border-radius(large);
+  background-color: var(--m-bolt-bg);
+}

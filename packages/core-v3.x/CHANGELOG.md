@@ -3,6 +3,57 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.2](https://github.com/bolt-design-system/bolt/tree/master/packages/core/compare/v3.1.1...v3.1.2) (2021-03-05)
+
+**Note:** Version bump only for package @bolt/core-v3.x
+
+
+
+
+
+# [3.1.0](https://github.com/bolt-design-system/bolt/tree/master/packages/core/compare/v2.31.2...v3.1.0) (2021-02-08)
+
+
+### Bug Fixes
+
+* auto generate font-size table ([6f8df6c](https://github.com/bolt-design-system/bolt/tree/master/packages/core/commit/6f8df6c97bdb72a00719d818d207956bb0583bd6))
+* conflicts ([0545936](https://github.com/bolt-design-system/bolt/tree/master/packages/core/commit/0545936bac643f0b08f7b119b579e49d3b8998df))
+* update xxsmall font-size to follow conventions ([da323e3](https://github.com/bolt-design-system/bolt/tree/master/packages/core/commit/da323e31801a8d4ab7152564b71b5c860cfe9c0d))
+
+
+### Features
+
+* manually cherry pick ajv replacement updates ([c322d0e](https://github.com/bolt-design-system/bolt/tree/master/packages/core/commit/c322d0e38266ca5660d8c77868ec5f1203fbb5b7))
+* remove postcss-themify and critical-css-vars, replace map() usage of bolt-theme with fixed token ([373791e](https://github.com/bolt-design-system/bolt/tree/master/packages/core/commit/373791ee6f133546f197f3b2cffb8d18588be204))
+
+
+
+
+
+## [2.31.2](https://github.com/bolt-design-system/bolt/tree/master/packages/core/compare/v2.31.1...v2.31.2) (2021-02-04)
+
+**Note:** Version bump only for package @bolt/core-v3.x
+
+
+
+
+
+# [2.31.0](https://github.com/bolt-design-system/bolt/tree/master/packages/core/compare/v2.30.2...v2.31.0) (2021-02-02)
+
+**Note:** Version bump only for package @bolt/core-v3.x
+
+
+
+
+
+## [3.0.1](https://github.com/bolt-design-system/bolt/tree/master/packages/core/compare/v3.0.0...v3.0.1) (2021-01-22)
+
+**Note:** Version bump only for package @bolt/core-v3.x
+
+
+
+
+
 # [2.30.0](https://github.com/bolt-design-system/bolt/tree/master/packages/core/compare/v2.29.3...v2.30.0) (2021-01-13)
 
 
@@ -12,6 +63,20 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
+
+
+# [3.0.0](https://github.com/bolt-design-system/bolt/tree/master/packages/core/compare/v2.29.3...v3.0.0) (2021-01-08)
+
+
+### Bug Fixes
+
+* global border color ([054b521](https://github.com/bolt-design-system/bolt/tree/master/packages/core/commit/054b5216d1cb363474812cb14a0362a4860369ec))
+
+
+### Features
+
+* manually cherry pick ajv replacement updates ([c322d0e](https://github.com/bolt-design-system/bolt/tree/master/packages/core/commit/c322d0e38266ca5660d8c77868ec5f1203fbb5b7))
+* remove postcss-themify and critical-css-vars, replace map() usage of bolt-theme with fixed token ([373791e](https://github.com/bolt-design-system/bolt/tree/master/packages/core/commit/373791ee6f133546f197f3b2cffb8d18588be204))
 
 
 # [2.29.0](https://github.com/bolt-design-system/bolt/tree/master/packages/core/compare/v2.28.0...v2.29.0) (2020-11-23)

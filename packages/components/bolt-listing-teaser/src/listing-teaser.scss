@@ -1,0 +1,176 @@
+@import '@bolt/core-v3.x';
+
+/* ------------------------------------ *\
+   Listing Teaser
+\* ------------------------------------ */
+
+.c-bolt-listing-teaser {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+  position: relative; // Position is set here so the heading link can expand its click target up to this point.
+}
+
+.c-bolt-listing-teaser__actions {
+  position: relative; // This raises the stacking order of the flag media above the main heading link.
+  margin: var(--bolt-spacing-y-xsmall) 0 var(--bolt-spacing-y-xsmall)
+    var(--bolt-spacing-x-small);
+  line-height: 1;
+}
+
+.c-bolt-listing-teaser__flag {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: repeat(3, minmax(min-content, max-content)) 1fr;
+  grid-template-areas:
+    'signifier . status'
+    'signifier heading status'
+    'signifier content status'
+    '. content status';
+  flex: 1;
+  align-items: start;
+  position: static; // Position must be static on this element so the heading link will not be contained inside this.
+}
+
+.c-bolt-listing-teaser__flag-signifier {
+  display: flex;
+  align-self: start;
+  margin-right: var(--bolt-spacing-x-small);
+  pointer-events: none;
+  user-select: none;
+  grid-area: signifier;
+}
+
+.c-bolt-listing-teaser__flag-heading {
+  display: flex;
+  align-items: center;
+  align-self: center;
+  grid-area: heading;
+  word-break: break-word;
+  hyphens: auto;
+
+  ~ .c-bolt-listing-teaser__flag-content {
+    margin-top: var(--bolt-spacing-y-xxsmall);
+  }
+
+  &:empty {
+    grid-column: 1;
+    grid-row: 2;
+
+    &:after {
+      content: 'x';
+      visibility: hidden;
+    }
+
+    ~ .c-bolt-listing-teaser__flag-content {
+      margin-top: 0;
+      grid-row-start: 2;
+    }
+  }
+}
+
+.c-bolt-listing-teaser__flag-content {
+  grid-area: content;
+  margin: var(--bolt-spacing-y-xsmall) 0;
+
+  > *:not(:last-child) {
+    margin-bottom: var(--bolt-spacing-y-xsmall);
+  }
+
+  .c-bolt-listing-teaser__flag-content__item {
+    display: block;
+    font-size: var(--bolt-type-font-size-xsmall);
+    line-height: var(--bolt-type-line-height-xsmall);
+    pointer-events: none;
+  }
+}
+
+.c-bolt-listing-teaser__flag-status {
+  display: flex;
+  grid-area: status;
+  align-self: start;
+  margin: var(--bolt-spacing-y-xsmall) 0 var(--bolt-spacing-y-xsmall)
+    var(--bolt-spacing-x-small);
+  padding: 0;
+  list-style: none;
+  pointer-events: none;
+  user-select: none;
+
+  @include bolt-mq($until: medium) {
+    grid-area: none;
+    grid-row-start: 5;
+    grid-column: 1/4;
+    grid-column-start: 2;
+    margin-left: 0;
+  }
+
+  > .c-bolt-listing-teaser__flag-status__item {
+    display: grid;
+    align-content: center;
+    padding: var(--bolt-spacing-y-xxsmall) var(--bolt-spacing-x-xsmall);
+    font-size: var(--bolt-type-font-size-xsmall);
+    color: var(--m-bolt-neutral);
+    line-height: var(--bolt-type-line-height-xsmall);
+    text-align: center;
+    border-left: 1px solid var(--m-bolt-border);
+    white-space: nowrap;
+
+    @include bolt-mq(medium) {
+      min-width: 10.5ch;
+    }
+  }
+}
+
+.c-bolt-listing-teaser__flag-status__number,
+.c-bolt-listing-teaser__flag-status__icon {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  margin-bottom: var(--bolt-spacing-y-xxsmall);
+  font-size: var(--bolt-type-font-size-medium);
+  line-height: 1;
+}
+
+.c-bolt-listing-teaser__flag-status__number {
+  font-weight: var(--bolt-type-font-weight-bold);
+}
+
+.c-bolt-listing-teaser__flag-status__icon--solved {
+  color: var(--bolt-color-success);
+}
+
+.c-bolt-listing-teaser__flag-status__icon--locked {
+  color: var(--bolt-color-neutral);
+}
+
+.c-bolt-listing-teaser__meta {
+  display: block;
+  margin: 0;
+  padding: 0;
+  font-size: var(--bolt-type-font-size-xsmall);
+  list-style: none;
+  line-height: var(--bolt-type-line-height-xsmall);
+
+  > .c-bolt-listing-teaser__meta__item {
+    display: inline;
+
+    &:not(:last-child):after {
+      content: '\007C';
+      display: inline-block;
+      position: relative;
+      top: -1px; // [Mai] Offsets the 1px border to align the chevron with text.
+      width: var(--bolt-spacing-y-xsmall); // Width and height must be the same.
+      height: var(
+        --bolt-spacing-y-xsmall
+      ); // Width and height must be the same.
+      margin: 0 var(--bolt-spacing-x-xxsmall);
+      color: var(--m-bolt-neutral);
+      vertical-align: baseline;
+    }
+  }
+
+  .e-bolt-text-link,
+  bolt-link {
+    position: relative; // This raises the stacking order of the meta link above the main heading link.
+  }
+}

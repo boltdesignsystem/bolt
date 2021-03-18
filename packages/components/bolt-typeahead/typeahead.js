@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { html, customElement } from '@bolt/element';
+import { html, customElement, ifDefined } from '@bolt/element';
 import { props } from 'skatejs';
 import { withLitEvents } from '@bolt/core-v3.x/renderers/with-events';
 import { bind } from './classnames';
@@ -14,6 +14,7 @@ class BoltTypeahead extends withLitEvents {
   static props = {
     inputPlaceholder: props.string,
     inputValue: props.string,
+    disabled: props.boolean,
     noHighlight: props.boolean,
     clearInputText: {
       ...props.string,
@@ -95,6 +96,7 @@ class BoltTypeahead extends withLitEvents {
         .maxResults=${this.maxResults}
         .noHighlight=${this.noHighlight}
         .placeholder=${this.inputPlaceholder}
+        .disabled=${this.disabled}
         @keypress=${this.handleKeyPress.bind(this)}
       ></bolt-autosuggest>
       <bolt-button
@@ -103,6 +105,7 @@ class BoltTypeahead extends withLitEvents {
         icon-only
         @click=${this.submit}
         no-shadow
+        disabled=${ifDefined(this.disabled === true ? true : undefined)}
         class=${cx(
           'c-bolt-typeahead__button',
           'c-bolt-typeahead__button--submit',
@@ -122,6 +125,7 @@ class BoltTypeahead extends withLitEvents {
         type="reset"
         @click=${this.clearSearch}
         no-shadow
+        disabled=${ifDefined(this.disabled === true ? true : undefined)}
         class=${cx(
           'c-bolt-typeahead__button',
           'c-bolt-typeahead__button--clear',

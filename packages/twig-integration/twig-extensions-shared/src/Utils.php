@@ -241,8 +241,11 @@ class Utils {
     if (!empty($schema["properties"])) {
       foreach ($schema["properties"] as $propName => $propSchema) {
 
-        // Check the prop "type" in the schema and omit it if it is (or might be) an "array" or "object".
-        if (isset($propSchema["type"]) && self::isAllowedSchemaType($propSchema["type"])) {
+        // Check if prop is deprecated based on "title" field
+        $isDeprecated = isset($propSchema["title"]) && strpos(strtolower($propSchema["title"]), 'deprecated') !== false;
+
+        // Check the prop "type" in the schema and omit it if it is (or might be) an "array" or "object". Omit deprecated props.
+        if (isset($propSchema["type"]) && self::isAllowedSchemaType($propSchema["type"]) && !$isDeprecated) {
           $caseType = self::getCaseType($propName);
 
           if (isset($items[$propName])) {
@@ -251,9 +254,17 @@ class Utils {
             $convertedPropName = $isData ? self::convertToSnakeCase($propName, $caseType) : self::convertToKebabCase($propName, $caseType);
             $props[$convertedPropName] = $items[$propName];
           }
+          elseif (isset($items["attributes"][$propName])) {
+
+            // No value for this prop was found in $items, but one was defined via attributes.
+            if ($isData) {
+              $convertedPropName = self::convertToSnakeCase($propName, $caseType);
+              $props[$convertedPropName] = $items["attributes"][$propName];
+            }
+          }
           elseif (isset($propSchema["default"])) {
 
-            // No value for this prop was found in $items, but a default is defined in the schema.
+            // No value for this prop was found in $items or attributes, but a default is defined in the schema.
             if ($isData) {
               $convertedPropName = self::convertToSnakeCase($propName, $caseType);
               $props[$convertedPropName] = $propSchema["default"];

@@ -1,0 +1,97 @@
+{% set description %}
+  There are currently three <bolt-code-snippet display="inline">layout</bolt-code-snippet> options, <bolt-code-snippet display="inline">vertical</bolt-code-snippet>, <bolt-code-snippet display="inline">horizontal</bolt-code-snippet>, and <bolt-code-snippet display="inline">responsive</bolt-code-snippet>. The default option is <bolt-code-snippet display="inline">vertical</bolt-code-snippet>.
+{% endset %}
+
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>Vertical or responsive teaser accepts 16:9 aspect ratio signifier. Any other aspect ratio will automatically be cropped to a 16:9 ratio.</bolt-li>
+    <bolt-li>Horizontal teaser accepts 1:1 (square) aspect ratio signifier. Any other aspect ratio will automatically be cropped to a 1:1 ratio.</bolt-li>
+  </bolt-ol>
+{% endset %}
+
+{% set demo %}
+  {% set wide_image %}
+    {% include '@bolt-components-image/image.twig' with {
+      src: '/images/placeholders/signifier-pdf.jpg',
+      alt: 'Alt text.',
+    } only %}
+  {% endset %}
+  {% set square_image %}
+    {% include '@bolt-components-image/image.twig' with {
+      src: '/images/placeholders/thumb-square-abstract.jpg',
+      alt: 'Alt text.',
+    } only %}
+  {% endset %}
+
+  <div class="o-bolt-grid o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center o-bolt-grid--large">
+    <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@medium">
+      {% include '@bolt-components-teaser/teaser.twig' with {
+        layout: 'vertical',
+        signifier: wide_image,
+        headline: {
+          text: 'This is vertical teaser',
+          link_attributes: {
+            href: 'https://www.pega.com',
+          }
+        },
+        description: {
+          content: 'The signifier is using a 16:9 aspect ratio image. Aliquip sint mollit irure eiusmod duis aliquip duis qui nostrud enim ea aute in enim.',
+        },
+      } only %}
+    </div>
+    <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@medium">
+      {% include '@bolt-components-teaser/teaser.twig' with {
+        layout: 'horizontal',
+        signifier: square_image,
+        headline: {
+          text: 'This is horizontal teaser',
+          link_attributes: {
+            href: 'https://www.pega.com',
+          }
+        },
+        description: {
+          content: 'The signifier is using a 1:1 aspect ratio image. Aliquip sint mollit irure eiusmod duis aliquip duis qui nostrud enim ea aute in enim. Do et eiusmod sint velit est do exercitation qui minim.',
+        },
+      } only %}
+    </div>
+    <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-8/12@small">
+      {% include '@bolt-components-teaser/teaser.twig' with {
+        layout: 'responsive',
+        gutter: 'large',
+        signifier: wide_image,
+        headline: {
+          text: 'This is a responsive teaser',
+          link_attributes: {
+            href: 'https://www.pega.com',
+          }
+        },
+        description: {
+          content: 'The signifier is using a 16:9 aspect ratio image. Duis dolore labore cillum excepteur aute veniam dolore consectetur est sint exercitation sit. Dolor eiusmod officia laborum tempor. Enim eiusmod Lorem laboris aliqua dolore.',
+        },
+      } only %}
+    </div>
+  </div>
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% include '@bolt-components-teaser/teaser.twig' with {
+  layout: 'horizontal',
+  signifier: image,
+  headline: {
+    text: 'This is the teaser headline',
+    link_attributes: {
+      href: 'https://www.pega.com',
+    }
+  },
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Teaser Layout',
+  description: description,
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+} only %}

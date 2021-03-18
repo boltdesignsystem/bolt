@@ -3,6 +3,227 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.3.0](https://github.com/bolt-design-system/bolt/compare/v3.2.0...v3.3.0) (2021-03-12)
+
+
+### Bug Fixes
+
+* add transition to margins ([fa998e6](https://github.com/bolt-design-system/bolt/commit/fa998e6d75af9a0bc1e45fe30850afb8d1c22ac9))
+* enhance the scrolling at edges ([987313d](https://github.com/bolt-design-system/bolt/commit/987313dc2deef04c77ba625d6341cd9c32f27ba9))
+* overflow shadows css and js ([ef0fa61](https://github.com/bolt-design-system/bolt/commit/ef0fa6148745d8e1cefaec3c1ddf3e91b18a8f9d))
+* spacing offset on the left ([b2145ab](https://github.com/bolt-design-system/bolt/commit/b2145abeb477a6c3974d6bf41956a29239f4a4ff))
+
+
+
+
+
+# [3.2.0](https://github.com/bolt-design-system/bolt/compare/v3.1.2...v3.2.0) (2021-03-05)
+
+**Note:** Version bump only for package @bolt/website
+
+
+
+
+
+## [3.1.2](https://github.com/bolt-design-system/bolt/compare/v3.1.1...v3.1.2) (2021-03-05)
+
+**Note:** Version bump only for package @bolt/website
+
+
+
+
+
+## [3.1.1](https://github.com/bolt-design-system/bolt/compare/v3.1.0...v3.1.1) (2021-02-11)
+
+
+### Reverts
+
+* Revert "DS-330: Remove deprecated `items` prop on Band component, related docs" ([bc1fcae](https://github.com/bolt-design-system/bolt/commit/bc1fcae884f4932c0c38b49c79a8074e10c9ab31))
+
+
+
+
+
+# [3.1.0](https://github.com/bolt-design-system/bolt/compare/v2.31.2...v3.1.0) (2021-02-08)
+
+
+
+## [3.0.2](https://github.com/bolt-design-system/bolt/compare/v2.31.0...v3.0.2) (2021-02-03)
+
+
+
+## [3.0.1](https://github.com/bolt-design-system/bolt/compare/v2.30.2...v3.0.1) (2021-01-22)
+
+
+
+# [3.0.0](https://github.com/bolt-design-system/bolt/compare/v2.29.3...v3.0.0) (2021-01-08)
+
+
+### Features
+
+* remove `critical-path-polyfills` and all references ([48f97f6](https://github.com/bolt-design-system/bolt/commit/48f97f6fa1f077997aca5821cc279b16cfb01f18))
+
+
+
+## [2.22.1](https://github.com/bolt-design-system/bolt/compare/v2.22.0...v2.22.1) (2020-04-22)
+
+
+
+# [2.22.0](https://github.com/bolt-design-system/bolt/compare/v2.21.1...v2.22.0) (2020-04-22)
+
+
+### Bug Fixes
+
+* add `only` keyword to footer so background doesn't pass through. ([4104889](https://github.com/bolt-design-system/bolt/commit/41048895bb9e1fd7364bc09c7a1cf97d97c419ca))
+* add `only` per PR feedback ([2d89152](https://github.com/bolt-design-system/bolt/commit/2d89152da9ab15a4f7ebcb9e909b6d1ddf9b4e98))
+* Add missing only statements to various includes and embeds ([7ddc48c](https://github.com/bolt-design-system/bolt/commit/7ddc48cfe04dedd8564c74633cb2cb7d3298bc64))
+* math rounding ([fbf5c0e](https://github.com/bolt-design-system/bolt/commit/fbf5c0e5d055c7a09b7f753234eddacbd92f5eac))
+* Pass background params to band in landing page template ([4f25e0c](https://github.com/bolt-design-system/bolt/commit/4f25e0c415ac1923b0758e99a9037f6bb0620c49))
+* Update vertical card to use 'only' properly ([2c5dc6b](https://github.com/bolt-design-system/bolt/commit/2c5dc6b7da49a5977ef7282338ddfc764340ffc7))
+
+
+### Features
+
+* 1st pass adding favorite training dashboard ([730e5d3](https://github.com/bolt-design-system/bolt/commit/730e5d35bab361e14f550c2f0b78868a66411be9))
+* add "locked" Badge template to Blueprints ([21eb2d8](https://github.com/bolt-design-system/bolt/commit/21eb2d8b270932b8d86b901f1922658e9cf6a774))
+* add missing data on landing pages ([b16d457](https://github.com/bolt-design-system/bolt/commit/b16d457e611bba388ac5964879cfce7430c88456))
+* change `canCollapse` to `collapsible`, use `chevron-left` not `close` icon ([4c5224d](https://github.com/bolt-design-system/bolt/commit/4c5224d95da847981455c76737601ff3bbabf6f9))
+* cherry pick misc monorepo updates from the broader lazy-queue related updates in [#1839](https://github.com/bolt-design-system/bolt/issues/1839) ([727c13d](https://github.com/bolt-design-system/bolt/commit/727c13db4923bdb80ca7791dde7c3767801cb3ff))
+* support passing attributes to list-items ([8a61de4](https://github.com/bolt-design-system/bolt/commit/8a61de44ca876ba86428db775631718d83fa5110))
+
+
+
+## [2.21.1](https://github.com/bolt-design-system/bolt/compare/v2.21.0...v2.21.1) (2020-04-10)
+
+
+### Bug Fixes
+
+* add only to twig includes ([6b44b65](https://github.com/bolt-design-system/bolt/commit/6b44b65596863b4de771fd79efd88ed7e5127382))
+* card background stacking order ([c733d08](https://github.com/bolt-design-system/bolt/commit/c733d08567ae77cba718544f363fa4e874bc6df2))
+* change rounded usage to borderRadius ([5bc6eb2](https://github.com/bolt-design-system/bolt/commit/5bc6eb2c7bdcd3b3429a9d2a2151f4326d7535cc))
+* ommit options in the spacing css ([121272e](https://github.com/bolt-design-system/bolt/commit/121272ebe788585692e7ad31b5f89332e50f0b4d))
+* resolve conflict ([e8d65d4](https://github.com/bolt-design-system/bolt/commit/e8d65d4ecf2db18ac8b3745a4219a381c9067900))
+
+
+### Features
+
+* remove `browser.sendKeys()` which is only required for ie11 support ([eabe228](https://github.com/bolt-design-system/bolt/commit/eabe228547fdfc6893daeb22d2ac7da110844866))
+
+
+
+# [2.21.0](https://github.com/bolt-design-system/bolt/compare/v2.20.2...v2.21.0) (2020-04-08)
+
+
+### Bug Fixes
+
+* minor clean up on utils and css ([8b732c8](https://github.com/bolt-design-system/bolt/commit/8b732c87721a3fab083cdd48d16351847af31a01))
+* open prop typo in web component demo ([b3e46e9](https://github.com/bolt-design-system/bolt/commit/b3e46e98dc063b21b59fcfb07e62c629b7987a89))
+* update outline around rating inputs ([8dcbdc9](https://github.com/bolt-design-system/bolt/commit/8dcbdc961d1a102078c5bfcd6f2ec511aef1e2e9))
+* update rating input offset; update hard-coded colors to use bolt-color function instead ([74c4856](https://github.com/bolt-design-system/bolt/commit/74c485654e3a1d81df61bd45a7ac25cfd3b63f29))
+
+
+### Features
+
+* update Modal blueprint with new rating component ([097d123](https://github.com/bolt-design-system/bolt/commit/097d1236f21cb3f0aeda2ac5776a61b02607d42e))
+
+
+
+## [2.20.2](https://github.com/bolt-design-system/bolt/compare/v2.20.1...v2.20.2) (2020-03-30)
+
+
+### Bug Fixes
+
+* don't ignore compiling patterns in __tests__ folders ([5ed3757](https://github.com/bolt-design-system/bolt/commit/5ed3757e2da7e6544023945d026e74063ffeda81))
+* minor adjustment to PL patch logic ([4cc9846](https://github.com/bolt-design-system/bolt/commit/4cc9846437f223f1c61eb3785f8c907a1b0915e1))
+* prevent long module titles from wrapping next cell ([79f9768](https://github.com/bolt-design-system/bolt/commit/79f9768bde42ac527d82a7b541a10f0c1a91f12f))
+* replace satellite icon with orbit, satellite removed ([5d9e63b](https://github.com/bolt-design-system/bolt/commit/5d9e63b864b5287d40c3430b187b9703c3cdc944))
+
+
+### Features
+
+* add 'indigo' option to icon banner ([b3890fb](https://github.com/bolt-design-system/bolt/commit/b3890fb19d9d02ede89160a03e0a23a6831d3a91))
+* add new 'alias' field to BoltElement properties ([7956fac](https://github.com/bolt-design-system/bolt/commit/7956facc72be9d464bd0cac3c3b622f77e723adb))
+* apply patches to speed up Twig rendering in Pattern Lab + within the Twig Renderer ([5a21b5c](https://github.com/bolt-design-system/bolt/commit/5a21b5c602e4735aef0e13711a17f1e5ff6f6705))
+* remove 'esModules' and 'compat' flags, remove 'modern' from filenames ([5f9136e](https://github.com/bolt-design-system/bolt/commit/5f9136eb365e95688c57c6c1e2dc72ebe91291c2))
+* remove postcss-themify and critical-css-vars, replace map() usage of bolt-theme with fixed token ([373791e](https://github.com/bolt-design-system/bolt/commit/373791ee6f133546f197f3b2cffb8d18588be204))
+
+
+
+## [2.20.1](https://github.com/bolt-design-system/bolt/compare/v2.20.0...v2.20.1) (2020-03-26)
+
+
+### Bug Fixes
+
+* auto generate font-size table ([6f8df6c](https://github.com/bolt-design-system/bolt/commit/6f8df6c97bdb72a00719d818d207956bb0583bd6))
+* hooks up font-family to a map ([e8fd1fe](https://github.com/bolt-design-system/bolt/commit/e8fd1fe8f1b4dd687f9920703815655d68c04bfd))
+* Properly deprecate href component in link schema, update pl example ([785d951](https://github.com/bolt-design-system/bolt/commit/785d95139101ff0fca4902ed5986e1e0cd0b64ee))
+* remove extra whitespace + better adjust vertical alignment of Icon within the Headline component; update PL demo to include demoing icons at different Headline sizes ([7f116f5](https://github.com/bolt-design-system/bolt/commit/7f116f50e964943e8b8e706cacd9babff607fe31))
+* remove hardcoded copy ([087615f](https://github.com/bolt-design-system/bolt/commit/087615fac37d501313121c963589b7bfc8164abb))
+
+
+
+# [2.20.0](https://github.com/bolt-design-system/bolt/compare/v2.19.1...v2.20.0) (2020-03-18)
+
+
+### Bug Fixes
+
+* change demo to reflect actual usage ([c010fca](https://github.com/bolt-design-system/bolt/commit/c010fca45c7b561794f6e52421f66d2ae6c75062))
+* data paths ([4c7037a](https://github.com/bolt-design-system/bolt/commit/4c7037add890744348c0554c64b9321aabb2e1de))
+* update new E2E test to also work correctly in IE 11 ([aaf8916](https://github.com/bolt-design-system/bolt/commit/aaf8916a923d20274c878e462c364a5f642ae8c0))
+
+
+### Features
+
+* expose design token data for font size options + base font size used at different bps ([63c545b](https://github.com/bolt-design-system/bolt/commit/63c545bc07dbf7f4b0429aaff9496382ad3a6ff4))
+
+
+
+# [2.19.0](https://github.com/bolt-design-system/bolt/compare/v2.14.0...v2.19.0) (2020-03-04)
+
+
+
+
+
+## [2.31.2](https://github.com/bolt-design-system/bolt/compare/v2.31.1...v2.31.2) (2021-02-04)
+
+**Note:** Version bump only for package @bolt/website
+
+
+
+
+
+## [3.0.2](https://github.com/bolt-design-system/bolt/compare/v3.0.1...v3.0.2) (2021-02-03)
+
+**Note:** Version bump only for package @bolt/website
+
+
+
+
+
+## [2.31.1](https://github.com/bolt-design-system/bolt/compare/v2.31.0...v2.31.1) (2021-02-03)
+
+**Note:** Version bump only for package @bolt/website
+
+
+
+
+
+# [2.31.0](https://github.com/bolt-design-system/bolt/compare/v2.30.2...v2.31.0) (2021-02-02)
+
+**Note:** Version bump only for package @bolt/website
+
+
+
+
+
+## [3.0.1](https://github.com/bolt-design-system/bolt/compare/v3.0.0...v3.0.1) (2021-01-22)
+
+**Note:** Version bump only for package @bolt/website
+
+
+
+
+
 ## [2.30.2](https://github.com/bolt-design-system/bolt/compare/v2.30.1...v2.30.2) (2021-01-21)
 
 **Note:** Version bump only for package @bolt/website
@@ -41,6 +262,22 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
+
+# [3.0.0](https://github.com/bolt-design-system/bolt/compare/v2.29.3...v3.0.0) (2021-01-08)
+
+
+### Bug Fixes
+
+* doc typos ([69432b6](https://github.com/bolt-design-system/bolt/commit/69432b6dd030cd9907e97aab6f26181fd1c60868))
+
+
+### Features
+
+* cherry pick misc monorepo updates from the broader lazy-queue related updates in [#1839](https://github.com/bolt-design-system/bolt/issues/1839) ([727c13d](https://github.com/bolt-design-system/bolt/commit/727c13db4923bdb80ca7791dde7c3767801cb3ff))
+* remove 'esModules' and 'compat' flags, remove 'modern' from filenames ([5f9136e](https://github.com/bolt-design-system/bolt/commit/5f9136eb365e95688c57c6c1e2dc72ebe91291c2))
+* remove `browser.sendKeys()` which is only required for ie11 support ([eabe228](https://github.com/bolt-design-system/bolt/commit/eabe228547fdfc6893daeb22d2ac7da110844866))
+* remove `critical-path-polyfills` and all references ([48f97f6](https://github.com/bolt-design-system/bolt/commit/48f97f6fa1f077997aca5821cc279b16cfb01f18))
+* remove postcss-themify and critical-css-vars, replace map() usage of bolt-theme with fixed token ([373791e](https://github.com/bolt-design-system/bolt/commit/373791ee6f133546f197f3b2cffb8d18588be204))
 
 ## [2.29.2](https://github.com/bolt-design-system/bolt/compare/v2.29.1...v2.29.2) (2020-11-30)
 

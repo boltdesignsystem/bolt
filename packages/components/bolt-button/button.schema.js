@@ -57,7 +57,7 @@ module.exports = {
       default: 'medium',
       enum: ['xsmall', 'small', 'medium', 'large', 'xlarge'],
     },
-    style: {
+    hierarchy: {
       type: 'string',
       description: 'Style of the button determined by information hierarchy.',
       default: 'primary',
@@ -79,8 +79,8 @@ module.exports = {
       description:
         'Horizontal alignment of items (text and icon) inside the button. Note: the values left and right are deprecated, use start and end instead.',
       type: 'string',
-      enum: ['start', 'center', 'end'],
       default: 'center',
+      enum: ['start', 'center', 'end'],
     },
     icon: iconSchema,
     iconOnly: {
@@ -105,6 +105,13 @@ module.exports = {
       type: 'string',
       enum: ['a', 'link', 'button', 'submit', 'reset'],
       default: 'button',
+    },
+    style: {
+      title: 'DEPRECATED',
+      type: 'string',
+      description: 'Switch to using the new hierarchy prop instead.',
+      default: 'primary',
+      enum: ['primary', 'secondary', 'tertiary', 'text'],
     },
   },
 };
