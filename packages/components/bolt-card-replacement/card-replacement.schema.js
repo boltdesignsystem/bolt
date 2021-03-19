@@ -22,7 +22,7 @@ module.exports = {
       type: 'string',
       description:
         'Controls the height of the card-replacement to auto fit to content or the full height of the column in a grid.',
-      default: 'full',
+      default: 'auto',
       enum: ['auto', 'full'],
     },
     borderRadius: {
