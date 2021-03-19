@@ -77,7 +77,6 @@ async function buildBoltManifest() {
       );
     }
 
-    // @todo: remove with v3.0 and warn that the config being used has issues
     if (missingBoltPkgs.length > 0) {
       boltManifest.components.global = await aggregateBoltDependencies(
         explicitBoltDependencies,
@@ -89,21 +88,23 @@ async function buildBoltManifest() {
         return item.name;
       });
 
-      console.warn(
-        chalk.keyword('orange')(
-          `\nWarning! Some of the components being compiled have Bolt dependencies and/or peerDependencies that appear to be missing from your build configuration. \n\nTo prep for the upcoming Bolt v3.0 release, you'll need to add these packages to the `,
-        ) +
-          chalk.keyword('white')(`components: { global: [] } `) +
-          chalk.keyword('orange')(`section in your `) +
-          chalk.keyword('white')(`${config.configFileUsed} `) +
-          chalk.keyword('orange')(
-            `file to ensure that Twig namespaces are properly registered, any related Sass and JS code is compiled and loaded, and to have the fastest front-end web performance.\n`,
-          ),
-      );
+      // Note: commenting out the warning below because it's no longer relevant. We will continue to automatically include any missing Bolt dependencies rather than rework this part of the build.
 
-      console.warn(missingBoltPkgs);
+      // console.warn(
+      //   chalk.keyword('orange')(
+      //     `\nWarning! Some of the components being compiled have Bolt dependencies and/or peerDependencies that appear to be missing from your build configuration. \n\nTo prep for the upcoming Bolt v3.0 release, you'll need to add these packages to the `,
+      //   ) +
+      //     chalk.keyword('white')(`components: { global: [] } `) +
+      //     chalk.keyword('orange')(`section in your `) +
+      //     chalk.keyword('white')(`${config.configFileUsed} `) +
+      //     chalk.keyword('orange')(
+      //       `file to ensure that Twig namespaces are properly registered, any related Sass and JS code is compiled and loaded, and to have the fastest front-end web performance.\n`,
+      //     ),
+      // );
 
-      console.log('\n');
+      // console.warn(missingBoltPkgs);
+
+      // console.log('\n');
 
       hasWarnedAboutMissingPkgs = true;
     }
