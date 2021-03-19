@@ -1,0 +1,228 @@
+{% set description %}
+  The <bolt-code-snippet display="inline">status</bolt-code-snippet> prop can be used to display status information about a resource such as locked and view count. Like and share buttons can be generated via the <bolt-code-snippet display="inline">actions</bolt-code-snippet> prop.
+{% endset %}
+
+{% set notes %}
+<bolt-ol>
+  <bolt-li>View count can be set via the <bolt-code-snippet display="inline">status.views</bolt-code-snippet> prop. It can be numbers or string (eg. 28k).</bolt-li>
+  <bolt-li>Locked status can be set via the <bolt-code-snippet display="inline">status.locked</bolt-code-snippet> prop. If this is set, a lock icon will appear with the signifier.</bolt-li>
+  <bolt-li>Pass a like button into the <bolt-code-snippet display="inline">like</bolt-code-snippet> prop. Example code snippet is shown below.</bolt-li>
+  <bolt-li>Pass a share popover menu into the <bolt-code-snippet display="inline">share</bolt-code-snippet> prop. Boundary is required on the popover. Example code snippet is shown below.</bolt-li>
+</bolt-ol>
+{% endset %}
+
+{% set demo %}
+  {% set wide_image %}
+    {% include '@bolt-components-image/image.twig' with {
+      src: '/images/placeholders/signifier-pdf.jpg',
+      alt: 'Alt text.',
+    } only %}
+  {% endset %}
+  {% set like %}
+    {% set icon_heart %}
+      {% include '@bolt-components-icon/icon.twig' with {
+        name: 'heart-open',
+      } only %}
+    {% endset %}
+    {% include '@bolt-elements-text-link/text-link.twig' with {
+      content: 'Like',
+      icon_before: icon_heart,
+      reversed_underline: true,
+      attributes: {
+        type: 'button',
+        class: 'js-bolt-like-button',
+      },
+    } only %}
+  {% endset %}
+  {% set share %}
+    {% set share_menu %}
+      {% include '@bolt-components-share/share.twig' with {
+        display: 'menu',
+        text: 'Share this content',
+        sources: [
+          {
+            name: 'facebook',
+            url: 'https://www.facebook.com/sharer/sharer.php?u=https://pega.com&amp;src=sdkpreparse'
+          },
+          {
+            name: 'twitter',
+            url: 'https://twitter.com/intent/tweet?url=https://pega.com&text=Sample%20Share%20Text&via=pega&hashtags=boltDesignSystemRocks!'
+          },
+          {
+            name: 'linkedin',
+            url: 'https://www.linkedin.com/shareArticle?url=https://pega.com'
+          },
+          {
+            name: 'email',
+            url: 'mailto:?&body=Sample%20Text%20--%20https%3A//pega.com'
+          }
+        ],
+        copy_to_clipboard: {
+          text_to_copy: 'https://pega.com',
+        },
+      } only %}
+    {% endset %}
+    {% set share_popover_trigger %}
+      {% set icon_share %}
+        {% include '@bolt-components-icon/icon.twig' with {
+          name: 'share',
+        } only %}
+      {% endset %}
+      {% include '@bolt-elements-text-link/text-link.twig' with {
+        content: 'Share',
+        icon_before: icon_share,
+        reversed_underline: true,
+        attributes: {
+          type: 'button'
+        },
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-popover/popover.twig' with {
+      trigger: share_popover_trigger,
+      content: share_menu,
+      spacing: 'none',
+      boundary: '.js-bolt-target-teaser',
+    } only %}
+  {% endset %}
+
+  <div style="max-width: 60ch;">
+    {% include '@bolt-components-teaser/teaser.twig' with {
+      signifier: wide_image,
+      headline: {
+        text: 'This teaser has status and actions',
+        tag: 'h2',
+        size: 'xlarge',
+        link_attributes: {
+          href: 'https://www.pega.com',
+        }
+      },
+      description: {
+        content: 'Aliqua voluptate amet do laborum culpa tempor consectetur culpa consectetur ea. Ea officia quis do enim.',
+      },
+      like: like,
+      share: share,
+      status: {
+        views: '28k',
+        locked: true,
+      },
+      attributes: {
+        class: 'js-bolt-target-teaser',
+      },
+    } only %}
+  </div>
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+// Set up the like and share buttons
+{% set like %}
+  {% set icon_heart %}
+    {% include '@bolt-components-icon/icon.twig' with {
+      name: 'heart-open',
+    } only %}
+  {% endset %}
+  {% include '@bolt-elements-text-link/text-link.twig' with {
+    content: 'Like',
+    icon_before: icon_heart,
+    reversed_underline: true,
+    attributes: {
+      type: 'button',
+      class: 'js-bolt-like-button', // JS target for handling the like function.
+    },
+  } only %}
+{% endset %}
+{% set share %}
+  {% set share_menu %}
+    {% include '@bolt-components-share/share.twig' with {
+      display: 'menu',
+      text: 'Share this content',
+      sources: [
+        ...
+      ],
+    } only %}
+  {% endset %}
+  {% set share_popover_trigger %}
+    {% set icon_share %}
+      {% include '@bolt-components-icon/icon.twig' with {
+        name: 'share',
+      } only %}
+    {% endset %}
+    {% include '@bolt-elements-text-link/text-link.twig' with {
+      content: 'Share',
+      icon_before: icon_share,
+      reversed_underline: true,
+      attributes: {
+        type: 'button'
+      },
+    } only %}
+  {% endset %}
+  {% include '@bolt-components-popover/popover.twig' with {
+    trigger: share_popover_trigger,
+    content: share_menu,
+    spacing: 'none',
+    boundary: '.js-bolt-target-teaser', // JS target for containing the popover within the teaser.
+  } only %}
+{% endset %}
+
+// Set up the component
+{% include '@bolt-components-teaser/teaser.twig' with {
+  like: like,
+  share: share,
+  status: {
+    views: '28k',
+    locked: true,
+  },
+  attributes: {
+    class: 'js-bolt-target-teaser',
+  },
+  ...
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% set js %}
+{% verbatim %}
+<script>
+  // Example Like Button JS
+  var likeButtons = document.querySelectorAll('.js-bolt-like-button');
+  likeButtons.forEach(function(el) {
+    el.addEventListener('click', function (event) {
+      var likeIcon = this.querySelector('bolt-icon');
+      if (likeIcon.getAttribute('name') === 'heart-open') {
+        likeIcon.setAttribute('name', 'heart');
+        likeIcon.setAttribute('color', 'pink');
+      } else {
+        likeIcon.setAttribute('name', 'heart-open');
+        likeIcon.removeAttribute('color');
+      }
+    });
+  })
+</script>
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Teaser Status and Actions',
+  description: description,
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+  js: js,
+} only %}
+
+<script>
+  // Example Like Button JS
+  var likeButtons = document.querySelectorAll('.js-bolt-like-button');
+  likeButtons.forEach(function(el) {
+    el.addEventListener('click', function (event) {
+      var likeIcon = this.querySelector('bolt-icon');
+      if (likeIcon.getAttribute('name') === 'heart-open') {
+        likeIcon.setAttribute('name', 'heart');
+        likeIcon.setAttribute('color', 'pink');
+      } else {
+        likeIcon.setAttribute('name', 'heart-open');
+        likeIcon.removeAttribute('color');
+      }
+    });
+  })
+</script>

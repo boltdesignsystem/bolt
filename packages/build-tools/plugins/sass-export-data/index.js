@@ -1,6 +1,6 @@
 'use strict';
 
-const core = require('@theme-tools/core');
+const merge = require('merge');
 const fs = require('fs-extra');
 const path = require('path');
 const jsondiff = require('jsondiffpatch');
@@ -8,7 +8,7 @@ const defaultConfig = require('./config.default');
 const getValue = require('./lib/get-value');
 
 module.exports = userConfig => {
-  const config = core.utils.merge({}, defaultConfig, userConfig);
+  const config = merge.recursive({}, defaultConfig, userConfig);
   const args = '($file, $value, $options:())';
 
   const sassFunctions = {};

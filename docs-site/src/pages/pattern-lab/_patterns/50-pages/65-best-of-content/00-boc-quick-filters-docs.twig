@@ -1,0 +1,270 @@
+{% set description %}
+  <bolt-text>Quick filters are an alternative way to display the traditional search facets (checkbox based).</bolt-text>
+  <bolt-banner status="warning" align="start">
+    <bolt-icon name="warning"></bolt-icon> <strong>This is just example code. It will become obsolete once the relevant CSS and JS are moved to the www theme. Please reference the latest code in the www theme as the source of truth.</strong>
+  </bolt-banner>
+{% endset %}
+
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>This is a minimal component with a few CSS classes.</bolt-li>
+    <bolt-li>JavaScript and <bolt-code-snippet display="inline">js-*</bolt-code-snippet> classes are required. Example is shown in the code snippet below.</bolt-li>
+  </bolt-ol>
+{% endset %}
+
+{% set demo %}
+  <div style="max-width: 60ch;">
+    {% include '_boc-quick-filters.twig' %}
+  </div>
+{% endset %}
+
+{% set html_markup %}
+{% verbatim %}
+<form>
+  <div class="c-www-quick-filters">
+    <div class="c-www-quick-filters__list-wrapper js-www-quick-filters-scroll-wrapper">
+      <ul class="c-www-quick-filters__list js-www-quick-filters-scroll">
+        // Render each quick filter as a list item.
+        <li class="c-www-quick-filters__list-item">
+          <input type="checkbox" id="filter-id" class="c-www-quick-filters__input">
+          <label for="filter-id" class="e-bolt-button e-bolt-button--secondary e-bolt-button--small">Filter label</label>
+        </li>
+      </ul>
+    </div>
+    <div class="c-www-quick-filters__more">
+      // Assemble "more filters" button and modal here. The modal would contain all possible filters.
+      // {% include '@bolt-elements-button/button.twig' with {
+      //   content: 'More filters',
+      //   size: 'small',
+      //   hierarchy: 'secondary',
+      //   icon_before: icon_filter,
+      //   attributes: {
+      //     type: 'button',
+      //     'data-bolt-modal-target': '.js-bolt-modal',
+      //   },
+      // } only %}
+      // {% include '@bolt-components-modal/modal.twig' with {
+      //   attributes: {
+      //     class: 'js-bolt-modal',
+      //   },
+      //   ...
+      // } only %}
+    </div>
+  </div>
+</form>
+{% endverbatim %}
+{% endset %}
+
+{% set css %}
+{% verbatim %}
+@import '@bolt/core-v3.x';
+
+$www-quick-filters-overflow-shadow-width: var(--bolt-spacing-x-small);
+$www-quick-filters-button-shadow-offset: var(--bolt-spacing-y-medium);
+
+.c-www-quick-filters {
+  display: flex;
+  justify-content: center;
+  white-space: nowrap;
+  margin: calc(#{$www-quick-filters-button-shadow-offset} * -1) 0
+    calc(#{$www-quick-filters-button-shadow-offset} * -1)
+    calc(#{$www-quick-filters-button-shadow-offset} * -0.5);
+}
+
+.c-www-quick-filters__list-wrapper {
+  flex-basis: auto;
+  flex-grow: 0;
+  flex-shrink: 1;
+  position: relative;
+  overflow: hidden;
+  transition: margin-left var(--bolt-transition);
+
+  &:before,
+  &:after {
+    content: '';
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: calc(#{$www-quick-filters-overflow-shadow-width} * 2);
+    pointer-events: none;
+    background: radial-gradient(rgba(black, 0.2), rgba(black, 0) 50%);
+  }
+
+  &:before {
+    left: calc(#{$www-quick-filters-overflow-shadow-width} * -1);
+    z-index: 1;
+  }
+
+  &:after {
+    right: calc(#{$www-quick-filters-overflow-shadow-width} * -1);
+  }
+
+  &.is-overflowing {
+    &.is-not-start {
+      margin-left: calc(#{$www-quick-filters-button-shadow-offset} / 2);
+    }
+
+    &.is-not-start:before,
+    &.is-not-end:after {
+      opacity: 1;
+    }
+
+    & + .c-www-quick-filters__more {
+      margin-left: var(
+        --bolt-spacing-x-small
+      ); // This is the spacing between the quick filters and the more filters button.
+    }
+  }
+}
+
+.c-www-quick-filters__list,
+.c-www-quick-filters__more {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  height: 100%;
+  padding: #{$www-quick-filters-button-shadow-offset} 0;
+}
+
+.c-www-quick-filters__list {
+  @include bolt-horizontal-scroll;
+  position: relative;
+  margin: 0;
+  list-style: none;
+}
+
+.c-www-quick-filters__list-item {
+  padding-right: var(--bolt-spacing-x-xsmall);
+
+  &:first-child {
+    padding-left: #{$www-quick-filters-overflow-shadow-width};
+  }
+
+  &:last-child {
+    padding-right: #{$www-quick-filters-overflow-shadow-width};
+  }
+}
+
+.c-www-quick-filters__input {
+  @include bolt-visuallyhidden;
+
+  & + .e-bolt-button {
+    padding-right: var(--bolt-spacing-x-medium);
+    padding-left: var(--bolt-spacing-x-medium);
+
+    &:after {
+      transition: opacity var(--bolt-transition);
+    }
+  }
+
+  &:checked + .e-bolt-button,
+  &:focus + .e-bolt-button {
+    transform: translate3d(0, 0, 0);
+  }
+
+  &:focus + .e-bolt-button {
+    outline: var(--bolt-focus-ring);
+    outline-offset: 2px;
+  }
+
+  &:checked + .e-bolt-button {
+    color: var(--m-bolt-link);
+    box-shadow: 0 0 0 1px var(--bolt-color-navy-light);
+    background-image: linear-gradient(
+      rgba(bolt-color(gray, light), 0.2),
+      rgba(bolt-color(gray, light), 0.2)
+    );
+
+    &:after {
+      content: '';
+      opacity: 1;
+      top: 50%;
+      left: 0;
+      transform: translate3d(
+          calc(100% + var(--bolt-spacing-x-xxsmall)),
+          -60%,
+          0
+        )
+        rotate(45deg);
+      width: 0.5em;
+      height: 0.75em;
+      border-right: 2px solid var(--m-bolt-headline);
+      border-bottom: 2px solid var(--m-bolt-headline);
+      border-radius: 0;
+      box-shadow: none;
+    }
+  }
+
+  &:not(:checked):focus + .e-bolt-button {
+    &:after {
+      display: none;
+    }
+  }
+
+  &:checked:focus + .e-bolt-button {
+    color: var(--m-bolt-link);
+    box-shadow: none;
+  }
+}
+{% endverbatim %}
+{% endset %}
+
+{% set js %}
+{% verbatim %}
+const quickFiltersScroll = el => {
+  if (!el) return;
+
+  const wrapper = el.closest('.js-www-quick-filters-scroll-wrapper');
+
+  const handleScroll = () => {
+    const wrapperWidth = wrapper.offsetWidth;
+    const buffer = 1; // Use buffer due to sub-pixel rounding differences between scroll and wrapper width
+    const notStart = el.scrollLeft > buffer;
+    const notEnd = el.scrollLeft < el.scrollWidth - wrapperWidth - buffer;
+    const isOverflowing = el.scrollWidth > wrapperWidth;
+
+    if (isOverflowing) {
+      wrapper.classList.add('is-overflowing');
+      if (notStart) {
+        wrapper.classList.add('is-not-start');
+      } else {
+        wrapper.classList.remove('is-not-start');
+      }
+      if (notEnd) {
+        wrapper.classList.add('is-not-end');
+      } else {
+        wrapper.classList.remove('is-not-end');
+      }
+    } else {
+      wrapper.classList.remove('is-overflowing');
+      wrapper.classList.remove('is-not-start');
+      wrapper.classList.remove('is-not-end');
+    }
+  };
+
+  el.addEventListener('scroll', handleScroll, { passive: true });
+  window.addEventListener('resize', handleScroll, { passive: true });
+
+  handleScroll(); // Call once onload to setup initial classes
+};
+
+const quickFiltersScrollEl = document.querySelector(
+  '.js-www-quick-filters-scroll',
+);
+
+if (quickFiltersScrollEl) {
+  quickFiltersScroll(quickFiltersScrollEl);
+}
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Quick Filters (Best of Content)',
+  description: description,
+  notes: notes,
+  demo: demo,
+  html_markup: html_markup,
+  css: css,
+  js: js,
+} only %}

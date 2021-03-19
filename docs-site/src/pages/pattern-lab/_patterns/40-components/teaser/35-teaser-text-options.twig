@@ -1,0 +1,82 @@
+{% set description %}
+  The teaser allows for a few different text options, including <bolt-code-snippet display="inline">eyebrow_text</bolt-code-snippet>, <bolt-code-snippet display="inline">headline</bolt-code-snippet>, <bolt-code-snippet display="inline">subheadline</bolt-code-snippet>, and <bolt-code-snippet display="inline">description.</bolt-code-snippet>
+{% endset %}
+
+{% set notes %}
+<bolt-ol>
+  <bolt-li>When setting the <bolt-code-snippet display="inline">headline</bolt-code-snippet> and <bolt-code-snippet display="inline">subheadline</bolt-code-snippet> please be sure to set the proper HTML tag to ensure SEO and accessibility best practices.</bolt-li>
+  <bolt-li>The <bolt-code-snippet display="inline">description</bolt-code-snippet> has the <bolt-code-snippet display="inline">show_on_hover</bolt-code-snippet> boolean prop. When it is set to true, the description appears as an overlay above the signifier.</bolt-li>
+  <bolt-li>The traditional eyebrow/headline/subheadline lockup is best used in responsive layout.</bolt-li>
+</bolt-ol>
+{% endset %}
+
+{% set demo %}
+  {% set wide_image %}
+    {% include '@bolt-components-image/image.twig' with {
+      src: '/images/placeholders/signifier-pdf.jpg',
+      alt: 'Alt text.',
+    } only %}
+  {% endset %}
+
+  <div class="o-bolt-grid o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--large">
+    <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-8/12@small">
+      {% include '@bolt-components-teaser/teaser.twig' with {
+        layout: 'responsive',
+        gutter: 'large',
+        signifier: wide_image,
+        eyebrow_text: 'This is the eyebrow',
+        headline: {
+          text: 'This is the headline',
+          tag: 'h2',
+          size: 'xxlarge',
+          link_attributes: {
+            href: 'https://www.pega.com',
+          }
+        },
+        subheadline: {
+          text: 'This is the subheadline',
+          tag: 'h3',
+          size: 'xlarge',
+        },
+        description: {
+          content: 'This is the description. Aliqua voluptate amet do laborum culpa tempor consectetur culpa consectetur ea. Ea officia quis do enim.',
+          show_on_hover: true,
+        },
+      } only %}
+    </div>
+  </div>
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% include '@bolt-components-teaser/teaser.twig' with {
+  eyebrow_text: 'This is the eyebrow',
+  headline: {
+    text: 'This is the headline',
+    tag: 'h2',
+    size: 'xxlarge',
+    link_attributes: {
+      href: 'https://www.pega.com',
+    }
+  },
+  subheadline: {
+    text: 'This is the subheadline',
+    tag: 'h3',
+    size: 'xlarge',
+  },
+  description: {
+    content: 'This is the description. Aliqua voluptate amet do laborum culpa tempor consectetur culpa consectetur ea. Ea officia quis do enim. Duis dolore labore cillum excepteur aute veniam dolore consectetur est sint exercitation sit. Dolor eiusmod officia laborum tempor. Enim eiusmod Lorem laboris aliqua dolore.',
+    show_on_hover: true,
+  },
+  ...
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Teaser Text Options',
+  description: description,
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+} only %}

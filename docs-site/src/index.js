@@ -1,12 +1,5 @@
 import { lazyQueue } from '@bolt/lazy-queue';
 
-// Component-specific examples and demos that need to get compiled:
-lazyQueue(['bolt-card'], async () => {
-  await import(
-    /*  webpackChunkName: 'bolt-docs-site--deprecated-card-tests' */ './pages/pattern-lab/_patterns/40-components/card-deprecated/__tests__'
-  );
-});
-
 lazyQueue(['bolt-typeahead'], async () => {
   await import(
     /*  webpackChunkName: 'bolt-docs-site--typeahead-demos' */ './typeahead-demos'
@@ -61,4 +54,50 @@ if (missionRatingSubmit) {
         '/pattern-lab/patterns/50-pages-60-academy-05-pages-t1-landing-pages-mission-landing--test-with-modal-02-t1-mission-landing--test-with-modal--after-submit/50-pages-60-academy-05-pages-t1-landing-pages-mission-landing--test-with-modal-02-t1-mission-landing--test-with-modal--after-submit.html';
     }
   });
+}
+
+// Quick-filters-specific JS demoing the overflow scroll behavior of the filter menu
+const quickFiltersScroll = el => {
+  if (!el) return;
+
+  const wrapper = el.closest('.js-www-quick-filters-scroll-wrapper');
+
+  const handleScroll = () => {
+    const wrapperWidth = wrapper.offsetWidth;
+    const buffer = 1; // Use buffer due to sub-pixel rounding differences between scroll and wrapper width
+    const notStart = el.scrollLeft > buffer;
+    const notEnd = el.scrollLeft < el.scrollWidth - wrapperWidth - buffer;
+    const isOverflowing = el.scrollWidth > wrapperWidth;
+
+    if (isOverflowing) {
+      wrapper.classList.add('is-overflowing');
+      if (notStart) {
+        wrapper.classList.add('is-not-start');
+      } else {
+        wrapper.classList.remove('is-not-start');
+      }
+      if (notEnd) {
+        wrapper.classList.add('is-not-end');
+      } else {
+        wrapper.classList.remove('is-not-end');
+      }
+    } else {
+      wrapper.classList.remove('is-overflowing');
+      wrapper.classList.remove('is-not-start');
+      wrapper.classList.remove('is-not-end');
+    }
+  };
+
+  el.addEventListener('scroll', handleScroll, { passive: true });
+  window.addEventListener('resize', handleScroll, { passive: true });
+
+  handleScroll(); // Call once onload to setup initial classes
+};
+
+const quickFiltersScrollEl = document.querySelector(
+  '.js-www-quick-filters-scroll',
+);
+
+if (quickFiltersScrollEl) {
+  quickFiltersScroll(quickFiltersScrollEl);
 }

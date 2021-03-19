@@ -3,7 +3,43 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.3.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-nav-priority/compare/v3.2.0...v3.3.0) (2021-03-12)
+
+**Note:** Version bump only for package @bolt/components-nav-priority
+
+
+
+
+
+## [3.1.2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-nav-priority/compare/v3.1.1...v3.1.2) (2021-03-05)
+
+**Note:** Version bump only for package @bolt/components-nav-priority
+
+
+
+
+
+# [3.1.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-nav-priority/compare/v2.31.2...v3.1.0) (2021-02-08)
+
+
+### Features
+
+* add white overlay to nav-bar dropdown menu, adjust color to work in dark and xdark ([1ca77fe](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-nav-priority/commit/1ca77fe1d3b57cffa0481f82f66b0146117f0588))
+* remove postcss-themify and critical-css-vars, replace map() usage of bolt-theme with fixed token ([373791e](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-nav-priority/commit/373791ee6f133546f197f3b2cffb8d18588be204))
+
+
+
+
+
 # [2.31.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-nav-priority/compare/v2.30.2...v2.31.0) (2021-02-02)
+
+**Note:** Version bump only for package @bolt/components-nav-priority
+
+
+
+
+
+## [3.0.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-nav-priority/compare/v3.0.0...v3.0.1) (2021-01-22)
 
 **Note:** Version bump only for package @bolt/components-nav-priority
 
@@ -19,13 +55,13 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
+# [3.0.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-nav-priority/compare/v2.29.3...v3.0.0) (2021-01-08)
 
 
-**Note:** Version bump only for package @bolt/components-nav-priority
+### Features
 
-
-
-
+* add white overlay to nav-bar dropdown menu, adjust color to work in dark and xdark ([1ca77fe](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-nav-priority/commit/1ca77fe1d3b57cffa0481f82f66b0146117f0588))
+* remove postcss-themify and critical-css-vars, replace map() usage of bolt-theme with fixed token ([373791e](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-nav-priority/commit/373791ee6f133546f197f3b2cffb8d18588be204))
 
 ## [2.29.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-nav-priority/compare/v2.29.0...v2.29.1) (2020-11-25)
 

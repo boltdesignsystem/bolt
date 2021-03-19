@@ -30,15 +30,15 @@ Our Buttons depend on the theme they are contained in and change in appearance b
 
 ## Dos
 
-* CTAs must be clearly and succinctly labeled with a next step
-* CTA should lead with strong action verbs
-* The primary CTA should be the most important action.
-* Be consistent in placement based on the screen size and device
-* Fall back to the text button in secondary and tertiary content areas where you can. For example, cards with a button use the text style so that a filled button doesn't become overwhelming and redundant.
-* Follow theming rules
+- CTAs must be clearly and succinctly labeled with a next step
+- CTA should lead with strong action verbs
+- The primary CTA should be the most important action.
+- Be consistent in placement based on the screen size and device
+- Fall back to the text button in secondary and tertiary content areas where you can. For example, cards with a button use the text hierarchy so that a filled button doesn't become overwhelming and redundant.
+- Follow theming rules
 
 ## Don'ts
 
-* Don't clutter the page with too many buttons
-* Don't mix and match themes and their button colors. For example, do not use the indigo button on dark and xdark themes as the indigo button does not stand out enough.
-* Don't mix and match colors outside the theme, see button groups.
+- Don't clutter the page with too many buttons
+- Don't mix and match themes and their button colors. For example, do not use the indigo button on dark and xdark themes as the indigo button does not stand out enough.
+- Don't mix and match colors outside the theme, see button groups.

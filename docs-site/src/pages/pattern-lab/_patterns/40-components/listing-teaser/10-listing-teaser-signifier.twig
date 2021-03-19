@@ -1,0 +1,74 @@
+{% set description %}
+  The signifier is a decorative element that visually represents the content nature of a listing.
+{% endset %}
+
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>This is a purely decorative element and is hidden from screen readers.</bolt-li>
+    <bolt-li>When using an icon as the signifier, a size must be defined. It is recommended to match the size of the headline.</bolt-li>
+    <bolt-li>When using an image as the signifier, a width must be defined. It is recommended to use 32px in tandem with large headline, and 38px in tandem with xlarge headline.</bolt-li>
+  </bolt-ol>
+{% endset %}
+
+{% set demo %}
+  {% set icon_questions %}
+    {% include '@bolt-components-icon/icon.twig' with {
+      name: 'questions',
+      size: 'large',
+      color: 'teal',
+    } only %}
+  {% endset %}
+  {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
+    signifier: icon_questions,
+    headline: {
+      text: 'This listing has an icon signifier',
+      tag: 'h3',
+      size: 'large',
+      link_attributes: {
+        href: 'https://pega.com'
+      },
+    },
+    meta_items: [
+      'Posted 8 hours 15 minutes ago',
+      'Last activity: 2 minutes ago',
+    ],
+  } only %}
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+// Set a signifier variable
+{% set demo_icon %}
+  {% include '@bolt-components-icon/icon.twig' with {
+    name: 'questions',
+    size: 'large',
+    color: 'teal',
+  } only %}
+{% endset %}
+
+// Use the variable in the signifier prop
+{% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
+  signifier: demo_icon,
+  headline: {
+    text: 'This listing has an icon signifier',
+    tag: 'h3',
+    size: 'large',
+    link_attributes: {
+      href: 'https://pega.com'
+    },
+  },
+  meta_items: [
+    'Posted 8 hours 15 minutes ago',
+    'Last activity: 2 minutes ago',
+  ],
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Listing Teaser Signifier',
+  description: description,
+  demo: demo,
+  notes: notes,
+  twig_markup: twig_markup,
+} only %}

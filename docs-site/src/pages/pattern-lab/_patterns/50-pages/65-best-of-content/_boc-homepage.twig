@@ -1,0 +1,297 @@
+{% set modal_id = 'js-bolt-modal-' ~ random() %}
+
+{% set modal_content %}
+  {% set video %}
+    <video-js
+      data-account='1900410236'
+      data-player='4fVA8Ojzs'
+      data-embed='default'
+      data-video-id='4892122320001'
+      controls
+      data-media-title
+      data-media-duration
+      class="c-base-video"></video-js>
+  {% endset %}
+
+  {% include '@bolt-components-ratio/ratio.twig' with {
+    children: video,
+    ratio: '16/9'
+  } only %}
+{% endset %}
+
+{% include '@bolt-components-modal/modal.twig' with {
+  content: modal_content,
+  width: 'optimal',
+  spacing: 'none',
+  theme: 'none',
+  scroll: 'overall',
+  attributes: {
+    id: modal_id,
+  },
+} only %}
+
+{% set like %}
+  {% set icon_heart %}
+    {% include '@bolt-components-icon/icon.twig' with {
+      name: 'heart-open',
+    } only %}
+  {% endset %}
+  {% include '@bolt-elements-text-link/text-link.twig' with {
+    content: 'Like',
+    icon_before: icon_heart,
+    reversed_underline: true,
+    attributes: {
+      type: 'button',
+      class: 'js-bolt-like-button',
+    },
+  } only %}
+{% endset %}
+
+{% set share %}
+  {% set share_menu %}
+    {% include '@bolt-components-share/share.twig' with {
+      display: 'menu',
+      text: 'Share this content',
+      sources: [
+        {
+          name: 'facebook',
+          url: 'https://www.facebook.com/sharer/sharer.php?u=https://pega.com&amp;src=sdkpreparse'
+        },
+        {
+          name: 'twitter',
+          url: 'https://twitter.com/intent/tweet?url=https://pega.com&text=Sample%20Share%20Text&via=pega&hashtags=boltDesignSystemRocks!'
+        },
+        {
+          name: 'linkedin',
+          url: 'https://www.linkedin.com/shareArticle?url=https://pega.com'
+        },
+        {
+          name: 'email',
+          url: 'mailto:?&body=Sample%20Text%20--%20https%3A//pega.com'
+        }
+      ],
+      copy_to_clipboard: {
+        text_to_copy: 'https://pega.com',
+      },
+    } only %}
+  {% endset %}
+  {% set share_popover_trigger %}
+    {% set icon_share %}
+      {% include '@bolt-components-icon/icon.twig' with {
+        name: 'share',
+      } only %}
+    {% endset %}
+    {% include '@bolt-elements-text-link/text-link.twig' with {
+      content: 'Share',
+      icon_before: icon_share,
+      reversed_underline: true,
+      attributes: {
+        type: 'button'
+      },
+    } only %}
+  {% endset %}
+  {% include '@bolt-components-popover/popover.twig' with {
+    trigger: share_popover_trigger,
+    content: share_menu,
+    spacing: 'none',
+  } only %}
+{% endset %}
+
+{% set wide_image %}
+  {% include '@bolt-components-image/image.twig' with {
+    src: '/images/content/promos/promo-16x9-ai.jpg',
+    alt: 'Alt text.',
+  } only %}
+{% endset %}
+
+{% set square_image %}
+  {% include '@bolt-components-image/image.twig' with {
+    src: '/images/placeholders/thumb-square-abstract.jpg',
+    alt: 'Alt text.',
+  } only %}
+{% endset %}
+
+{% set chip_list_content %}
+  {% include '@bolt-components-chip-list/chip-list.twig' with {
+    size: 'xsmall',
+    items: [
+      {
+        text: 'Chip 1',
+      },
+      {
+        text: 'Chip 2',
+      },
+    ],
+  } only %}
+{% endset %}
+
+{% set main_teaser_props = {
+  signifier: wide_image,
+  locked: true,
+  time: '6:29',
+  headline: {
+    text: 'The future of work',
+    tag: 'h2',
+    size: 'xlarge',
+    link_attributes: {
+      type: 'button',
+      'data-bolt-modal-target': '#' ~ modal_id,
+    },
+  },
+  type: 'video',
+  description: {
+    content: 'Chicken bacon doner pancetta pork corned beef, swine jowl burgdoggen pastrami buffalo beef ribs shankle. Turducken pork porchetta shankle, salami short ribs corned beef. Short ribs turkey burgdoggen, fatback jerky chuck landjaeger corned beef pork t-bone jowl hamburger brisket strip steak. Tenderloin cow bacon cupim t-bone short ribs swine biltong beef ribs capicola sausage beef.',
+  },
+  chip_list: chip_list_content,
+} %}
+
+{% set side_teaser_1_props = {
+  signifier: square_image,
+  headline: {
+    text: 'Rethink your business architecture with a center-out approach',
+    tag: 'h4',
+    size: 'large',
+    link_attributes: {
+      type: 'button',
+      'data-bolt-modal-target': '#' ~ modal_id,
+    },
+  },
+  time: '4:55',
+  layout: 'horizontal',
+  type: 'video',
+  description: {
+    content: 'Short ribs turkey burgdoggen, fatback jerky chuck landjaeger corned beef pork t-bone jowl hamburger.',
+  },
+  chip_list: chip_list_content,
+} %}
+
+{% set side_teaser_2_props = {
+  signifier: square_image,
+  headline: {
+    text: 'Horizontal Teaser',
+    tag: 'h3',
+    size: 'large',
+    link_attributes: {
+      href: 'https://www.pega.com'
+    }
+  },
+  time: '15 min read',
+  layout: 'horizontal',
+  type: 'external-link',
+  description: {
+    content: 'Id consectetur dolor voluptate eu veniam anim adipisicing dolor ut occaecat officia fugiat magna reprehenderit.',
+  },
+  chip_list: chip_list_content,
+} %}
+
+{% set side_teaser_3_props = {
+  signifier: square_image,
+  headline: {
+    text: 'Horizontal Teaser',
+    tag: 'h3',
+    size: 'large',
+    link_attributes: {
+      href: 'https://www.pega.com'
+    }
+  },
+  time: '29 min read',
+  layout: 'horizontal',
+  type: 'external-link',
+  description: {
+    content: 'Aliqua voluptate amet do laborum culpa tempor consectetur culpa consectetur ea. Ea officia quis do enim.',
+  },
+  chip_list: chip_list_content,
+} %}
+
+{% if phase2 %}
+  {% set main_teaser_props = main_teaser_props|merge({ 
+    like: like,
+    share: share, 
+    status: {
+      views: '27',
+    } 
+  }) %}
+  {% set side_teaser_1_props = side_teaser_1_props|merge({ 
+    like: like,
+    share: share, 
+    status: {
+      views: '35',
+    } 
+  }) %}
+  {% set side_teaser_2_props = side_teaser_2_props|merge({ 
+    like: like,
+    share: share, 
+    status: {
+      views: '66',
+    } 
+  }) %}
+  {% set side_teaser_3_props = side_teaser_3_props|merge({ 
+    like: like,
+    share: share, 
+    status: {
+      views: '14',
+    } 
+  }) %}
+{% endif %}
+
+{% set band_content %}
+  {% set icon_eye %}
+    {% include '@bolt-components-icon/icon.twig' with {
+      name: 'eye',
+    } only %}
+  {% endset %}
+
+  {% include '@bolt-components-headline/headline.twig' with {
+    text: 'Best of Pega, curated for you',
+    size: 'xxlarge',
+    align: 'center',
+    tag: 'h2',
+  } only %}
+  <div class="o-bolt-grid o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--large">
+    <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@medium">
+      {% include '@bolt-components-headline/subheadline.twig' with {
+        text: 'Recommended for you',
+        size: 'xlarge',
+        tag: 'h3'
+      } only %}
+      {% include '@bolt-components-teaser/teaser.twig' with main_teaser_props only %}
+    </div>
+    <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@medium">
+      {% include '@bolt-components-headline/subheadline.twig' with {
+        text: 'Trending now',
+        size: 'xlarge',
+        tag: 'h3',
+      } only %}
+      {% include '@bolt-components-teaser/teaser.twig' with side_teaser_1_props only %}
+      {% include '@bolt-components-teaser/teaser.twig' with side_teaser_2_props only %}
+      {% include '@bolt-components-teaser/teaser.twig' with side_teaser_3_props only %}
+    </div>
+    <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-text-align-center">
+      {% include '@bolt-elements-button/button.twig' with {
+        content: 'See more recommendations',
+        attributes: {
+          href: 'https://pega.com'
+        }
+      } only %}
+    </div>
+  </div>
+{% endset %}
+
+{% include '@bolt-components-band/band.twig' with {
+  content: band_content,
+  theme: 'xlight',
+  background: {
+    overlay: 'disabled',
+    contentItems: [
+      {
+        pattern: 'image',
+        src: '/images/backgrounds/teal-stripes.png',
+        lazyload: true,
+      },
+    ]
+  },
+} only %}
+
+{% if phase1 or phase2 %}
+  {% include '@pl/_boc-like-button-js.twig' %}
+{% endif %}

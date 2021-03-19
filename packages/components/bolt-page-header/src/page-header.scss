@@ -210,6 +210,17 @@
   }
 }
 
+// Subheadline
+.c-bolt-page-header__subheadline {
+  font-size: var(--bolt-type-font-size-xxsmall);
+  font-weight: var(--bolt-type-font-weight-semibold);
+  line-height: calc(
+    var(--bolt-type-line-height-xxsmall) *
+      var(--bolt-type-line-height-multiplier-tight)
+  );
+  white-space: nowrap;
+}
+
 // Main CTA
 .c-bolt-page-header__cta {
   @include bolt-button-native-styles-reset;

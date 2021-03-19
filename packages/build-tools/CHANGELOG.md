@@ -3,6 +3,49 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.3.0](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/compare/v3.2.0...v3.3.0) (2021-03-12)
+
+**Note:** Version bump only for package @bolt/build-tools
+
+
+
+
+
+## [3.1.2](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/compare/v3.1.1...v3.1.2) (2021-03-05)
+
+**Note:** Version bump only for package @bolt/build-tools
+
+
+
+
+
+## [3.1.1](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/compare/v3.1.0...v3.1.1) (2021-02-11)
+
+**Note:** Version bump only for package @bolt/build-tools
+
+
+
+
+
+# [3.1.0](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/compare/v2.31.2...v3.1.0) (2021-02-08)
+
+
+### Bug Fixes
+
+* browserslist path in package.json ([e5ed697](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/e5ed697a2f5c84ebf887764f7c050a37ee1c8973))
+* temporarily disable the futureEmitAssets output config option until the WriteFilePlugin plugin error is further debugged ([937bbd1](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/937bbd13dc6847c1b17ca2a0f637d24410b6ae3b))
+
+
+### Features
+
+* drop ie11 from browserslist, export single config from babel-preset ([a0dc9b6](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/a0dc9b64c899285300a592014cb9fdb7e2408a62))
+* remove 'esModules' and 'compat' flags, remove 'modern' from filenames ([5f9136e](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/5f9136eb365e95688c57c6c1e2dc72ebe91291c2))
+* remove postcss-themify and critical-css-vars, replace map() usage of bolt-theme with fixed token ([373791e](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/373791ee6f133546f197f3b2cffb8d18588be204))
+
+
+
+
+
 ## [2.31.2](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/compare/v2.31.1...v2.31.2) (2021-02-04)
 
 **Note:** Version bump only for package @bolt/build-tools
@@ -20,6 +63,14 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 # [2.31.0](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/compare/v2.30.2...v2.31.0) (2021-02-02)
+
+**Note:** Version bump only for package @bolt/build-tools
+
+
+
+
+
+## [3.0.1](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/compare/v3.0.0...v3.0.1) (2021-01-22)
 
 **Note:** Version bump only for package @bolt/build-tools
 
@@ -51,12 +102,19 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
+# [3.0.0](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/compare/v2.29.3...v3.0.0) (2021-01-08)
 
 
-**Note:** Version bump only for package @bolt/build-tools
+### Bug Fixes
+
+* browserslist path in package.json ([e5ed697](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/e5ed697a2f5c84ebf887764f7c050a37ee1c8973))
 
 
+### Features
 
+* drop ie11 from browserslist, export single config from babel-preset ([a0dc9b6](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/a0dc9b64c899285300a592014cb9fdb7e2408a62))
+* remove 'esModules' and 'compat' flags, remove 'modern' from filenames ([5f9136e](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/5f9136eb365e95688c57c6c1e2dc72ebe91291c2))
+* remove postcss-themify and critical-css-vars, replace map() usage of bolt-theme with fixed token ([373791e](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/373791ee6f133546f197f3b2cffb8d18588be204))
 
 
 ## [2.29.1](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/compare/v2.29.0...v2.29.1) (2020-11-25)
