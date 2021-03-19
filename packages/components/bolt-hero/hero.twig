@@ -6,6 +6,11 @@
 
 {% set this = init(schema) %}
 
+{% set band_attributes = create_attribute({}) %}
+{% if attributes %}
+  {% set band_attributes = band_attributes|merge(attributes) %}
+{% endif %}
+
 {% set imageValign = this.data["image_valign"].value %}
 {% set imageAlign = this.data["image_align"].value %}
 
@@ -104,5 +109,6 @@
   background: {
     overlay: "disabled",
     contentItems: background_content
-  }
+  },
+  attributes: band_attributes
 } only %}
