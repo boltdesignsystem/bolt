@@ -61,13 +61,13 @@
             {% include '@bolt-components-icon/icon.twig' with {
               name: 'documentation',
             } only %}
-            Table of contents
+            Book Navigation
           </span>
           <span class="l-bolt-holy-grail__sidebar-trigger__text l-bolt-holy-grail__sidebar-trigger__text--close">
+            Hide Book Navigation
             {% include '@bolt-components-icon/icon.twig' with {
               name: 'close',
             } only %}
-            Hide Table of Contents
           </span>
         </button>
         <div class="l-bolt-holy-grail__sidebar-content">
@@ -76,52 +76,123 @@
               <span class="c-bolt-side-nav__trigger__text">Toggle book navigation</span>
             </button>
             <nav aria-label="Book Navigation" class="c-bolt-side-nav__content">
-              <h2 class="c-bolt-side-nav__header">Low-code application development</h2>
+              <h2 class="c-bolt-side-nav__header">
+                <a href="#!" class="c-bolt-side-nav__header__link">System Administration</a>
+              </h2>
               <ul class="c-bolt-side-nav__list">
                 <li class="c-bolt-side-nav__list-item">
-                  <a href="javascript:" class="c-bolt-side-nav__link">Getting started with low-code application development</a>
+                  <a href="#!" class="c-bolt-side-nav__link">Configuring your system</a>
                   <button type="button" aria-expanded="false" aria-label="Toggle children links" class="c-bolt-side-nav__link c-bolt-side-nav__link--toggle-trigger js-bolt-side-nav-toggle-trigger"></button>
                   <ul class="c-bolt-side-nav__list">
                     <li class="c-bolt-side-nav__list-item">
-                      <a href="javascript:" class="c-bolt-side-nav__link">Building your first application</a>
+                      <a href="#!" class="c-bolt-side-nav__link">Configuring high availability deployments</a>
                       <button type="button" aria-expanded="false" aria-label="Toggle children links" class="c-bolt-side-nav__link c-bolt-side-nav__link--toggle-trigger js-bolt-side-nav-toggle-trigger"></button>
                       <ul class="c-bolt-side-nav__list">
                         <li class="c-bolt-side-nav__list-item">
-                          <a href="javascript:" class="c-bolt-side-nav__link">Switching between applications</a>
+                          <a href="#!" class="c-bolt-side-nav__link">Configuring nodes for high availability</a>
                           <button type="button" aria-expanded="false" aria-label="Toggle children links" class="c-bolt-side-nav__link c-bolt-side-nav__link--toggle-trigger js-bolt-side-nav-toggle-trigger"></button>
                           <ul class="c-bolt-side-nav__list">
                             <li class="c-bolt-side-nav__list-item">
-                              <a href="javascript:" class="c-bolt-side-nav__link">Adding the My Applications gadget</a>
+                              <a href="#!" class="c-bolt-side-nav__link">Architecting a high availability system</a>
+                              <button type="button" aria-expanded="false" aria-label="Toggle children links" class="c-bolt-side-nav__link c-bolt-side-nav__link--toggle-trigger js-bolt-side-nav-toggle-trigger"></button>
+                              <ul class="c-bolt-side-nav__list">
+                                <li class="c-bolt-side-nav__list-item">
+                                  <a href="#!" class="c-bolt-side-nav__link">Setting up the components of highly available environments</a>
+                                  <button type="button" aria-expanded="false" aria-label="Toggle children links" class="c-bolt-side-nav__link c-bolt-side-nav__link--toggle-trigger js-bolt-side-nav-toggle-trigger"></button>
+                                  <ul class="c-bolt-side-nav__list">
+                                    <li class="c-bolt-side-nav__list-item">
+                                      <a href="#!" class="c-bolt-side-nav__link">Configuring application tier architecture for redundancy</a>
+                                      <button type="button" aria-expanded="false" aria-label="Toggle children links" class="c-bolt-side-nav__link c-bolt-side-nav__link--toggle-trigger js-bolt-side-nav-toggle-trigger"></button>
+                                      <ul class="c-bolt-side-nav__list">
+                                        <li class="c-bolt-side-nav__list-item">
+                                          <a href="#!" class="c-bolt-side-nav__link">Defining highly available integration services</a>
+                                          <button type="button" aria-expanded="false" aria-label="Toggle children links" class="c-bolt-side-nav__link c-bolt-side-nav__link--toggle-trigger js-bolt-side-nav-toggle-trigger"></button>
+                                          <ul class="c-bolt-side-nav__list">
+                                            <li class="c-bolt-side-nav__list-item">
+                                              <a href="#!" class="c-bolt-side-nav__link">Listeners</a>
+                                            </li>
+                                            <li class="c-bolt-side-nav__list-item">
+                                              <a href="#!" class="c-bolt-side-nav__link">Service packages</a>
+                                            </li>
+                                            <li class="c-bolt-side-nav__list-item">
+                                              <a href="#!" class="c-bolt-side-nav__link">Service resques processors</a>
+                                            </li>
+                                            <li class="c-bolt-side-nav__list-item">
+                                              <a href="#!" class="c-bolt-side-nav__link">Service rules</a>
+                                            </li>
+                                          </ul>
+                                        </li>
+                                      </ul>
+                                    </li>
+                                  </ul>
+                                </li>
+                              </ul>
                             </li>
                           </ul>
                         </li>
-                        <li class="c-bolt-side-nav__list-item">
-                          <a href="javascript:" class="c-bolt-side-nav__link">Level 3 nav item</a>
-                        </li>
-                        <li class="c-bolt-side-nav__list-item">
-                          <a href="javascript:" class="c-bolt-side-nav__link">Level 3 nav item</a>
-                        </li>
                       </ul>
-                    </li>
-                    <li class="c-bolt-side-nav__list-item">
-                      <a href="javascript:" class="c-bolt-side-nav__link">Level 2 nav item</a>
-                    </li>
-                    <li class="c-bolt-side-nav__list-item">
-                      <a href="javascript:" class="c-bolt-side-nav__link">Level 2 nav item</a>
                     </li>
                   </ul>
                 </li>
                 <li class="c-bolt-side-nav__list-item">
-                  <a href="javascript:" class="c-bolt-side-nav__link">Level 1 nav item</a>
+                  <a href="#!" class="c-bolt-side-nav__link">Level 1 nav item</a>
+                  <button type="button" aria-expanded="false" aria-label="Toggle children links" class="c-bolt-side-nav__link c-bolt-side-nav__link--toggle-trigger js-bolt-side-nav-toggle-trigger"></button>
+                  <ul class="c-bolt-side-nav__list">
+                    <li class="c-bolt-side-nav__list-item">
+                      <a href="#!" class="c-bolt-side-nav__link">Level 2 nav item</a>
+                      <button type="button" aria-expanded="false" aria-label="Toggle children links" class="c-bolt-side-nav__link c-bolt-side-nav__link--toggle-trigger js-bolt-side-nav-toggle-trigger"></button>
+                      <ul class="c-bolt-side-nav__list">
+                        <li class="c-bolt-side-nav__list-item">
+                          <a href="#!" class="c-bolt-side-nav__link">Level 3 nav item</a>
+                          <button type="button" aria-expanded="false" aria-label="Toggle children links" class="c-bolt-side-nav__link c-bolt-side-nav__link--toggle-trigger js-bolt-side-nav-toggle-trigger"></button>
+                          <ul class="c-bolt-side-nav__list">
+                            <li class="c-bolt-side-nav__list-item">
+                              <a href="#!" class="c-bolt-side-nav__link">Level 4 nav item</a>
+                              <button type="button" aria-expanded="false" aria-label="Toggle children links" class="c-bolt-side-nav__link c-bolt-side-nav__link--toggle-trigger js-bolt-side-nav-toggle-trigger"></button>
+                              <ul class="c-bolt-side-nav__list">
+                                <li class="c-bolt-side-nav__list-item">
+                                  <a href="#!" class="c-bolt-side-nav__link">Level 5 nav item</a>
+                                  <button type="button" aria-expanded="false" aria-label="Toggle children links" class="c-bolt-side-nav__link c-bolt-side-nav__link--toggle-trigger js-bolt-side-nav-toggle-trigger"></button>
+                                  <ul class="c-bolt-side-nav__list">
+                                    <li class="c-bolt-side-nav__list-item">
+                                      <a href="#!" class="c-bolt-side-nav__link">Level 6 nav item</a>
+                                      <button type="button" aria-expanded="false" aria-label="Toggle children links" class="c-bolt-side-nav__link c-bolt-side-nav__link--toggle-trigger js-bolt-side-nav-toggle-trigger"></button>
+                                      <ul class="c-bolt-side-nav__list">
+                                        <li class="c-bolt-side-nav__list-item">
+                                          <a href="#!" class="c-bolt-side-nav__link">Level 7 nav item</a>
+                                          <button type="button" aria-expanded="false" aria-label="Toggle children links" class="c-bolt-side-nav__link c-bolt-side-nav__link--toggle-trigger js-bolt-side-nav-toggle-trigger"></button>
+                                          <ul class="c-bolt-side-nav__list">
+                                            <li class="c-bolt-side-nav__list-item">
+                                              <a href="#!" class="c-bolt-side-nav__link">Level 8 nav item</a>
+                                              <button type="button" aria-expanded="false" aria-label="Toggle children links" class="c-bolt-side-nav__link c-bolt-side-nav__link--toggle-trigger js-bolt-side-nav-toggle-trigger"></button>
+                                              <ul class="c-bolt-side-nav__list">
+                                                <li class="c-bolt-side-nav__list-item">
+                                                  <a href="#!" class="c-bolt-side-nav__link">Level 9 nav item</a>
+                                                </li>
+                                              </ul>
+                                            </li>
+                                          </ul>
+                                        </li>
+                                      </ul>
+                                    </li>
+                                  </ul>
+                                </li>
+                              </ul>
+                            </li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
                 </li>
                 <li class="c-bolt-side-nav__list-item">
-                  <a href="javascript:" class="c-bolt-side-nav__link">Level 1 nav item</a>
+                  <a href="#!" class="c-bolt-side-nav__link">Level 1 nav item</a>
                 </li>
                 <li class="c-bolt-side-nav__list-item">
-                  <a href="javascript:" class="c-bolt-side-nav__link">Level 1 nav item</a>
+                  <a href="#!" class="c-bolt-side-nav__link">Level 1 nav item</a>
                 </li>
                 <li class="c-bolt-side-nav__list-item">
-                  <a href="javascript:" class="c-bolt-side-nav__link" aria-current="page">Level 1 nav item</a>
+                  <a href="#!" class="c-bolt-side-nav__link" aria-current="page">Level 1 nav item</a>
                 </li>
               </ul>
             </nav>
@@ -137,10 +208,10 @@
             <span class="u-bolt-visuallyhidden">Toggle more info</span>
           </span>
           <span class="l-bolt-holy-grail__sidebar-trigger__text l-bolt-holy-grail__sidebar-trigger__text--close">
+            Hide more info
             {% include '@bolt-components-icon/icon.twig' with {
               name: 'close',
             } only %}
-            Hide more info
           </span>
         </button>
         <div class="l-bolt-holy-grail__sidebar-content">
@@ -261,7 +332,7 @@
           {% set version_select %}
             {% set label %}
               {% include '@bolt-components-form/form-label.twig' with {
-                title: '<strong>Available version</strong>',
+                title: '<strong>Available versions</strong>',
                 displayType: 'block',
                 attributes: {
                   for: 'version-select',
@@ -379,7 +450,7 @@
           <section>
             <h2 id="section-three">Section Three</h2>
             <p>
-              Text: <strong>bold</strong>, <em>italic</em>, <a href="javascript:">linked</a>, <code>code</code>, <kbd>kbd</kbd>, <small>small</small>, super<sup>script</sup>, sub<sub>script</sub>.
+              Text: <strong>bold</strong>, <em>italic</em>, <a href="#!">linked</a>, <code>code</code>, <kbd>kbd</kbd>, <small>small</small>, super<sup>script</sup>, sub<sub>script</sub>.
             </p>
             <p>
               Paragraphs. The ultimate measure of a man is not where he stands in moments of comfort and convenience, but where he stands at times of challenge and controversy.
@@ -542,31 +613,31 @@
             items: [
               {
                 text: 'Beginner',
-                url: 'javascript:'
+                url: '#!'
               },
               {
                 text: 'User Interface',
-                url: 'javascript:'
+                url: '#!'
               },
               {
                 text: 'Pega Platform',
-                url: 'javascript:'
+                url: '#!'
               },
               {
                 text: 'Application Development',
-                url: 'javascript:'
+                url: '#!'
               },
               {
                 text: 'Case Management',
-                url: 'javascript:'
+                url: '#!'
               },
               {
                 text: 'Robotic Process Automation',
-                url: 'javascript:'
+                url: '#!'
               },
               {
                 text: 'Data Integration',
-                url: 'javascript:'
+                url: '#!'
               },
             ]
           } only %}
