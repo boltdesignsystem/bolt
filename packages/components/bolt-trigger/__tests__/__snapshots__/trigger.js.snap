@@ -80,6 +80,26 @@ exports[`trigger Trigger with "url" renders as link 1`] = `
 </bolt-trigger>
 `;
 
+exports[`trigger Trigger with an on_click attributes renders properly 1`] = `
+<bolt-trigger on-click="on-click-test">
+  <button type="button"
+          class="c-bolt-trigger c-bolt-trigger--display-inline c-bolt-trigger--cursor-pointer"
+          is="shadow-root"
+  >
+  </button>
+</bolt-trigger>
+`;
+
+exports[`trigger Trigger with an on_click param renders properly 1`] = `
+<bolt-trigger on-click="on-click-test">
+  <button type="button"
+          class="c-bolt-trigger c-bolt-trigger--display-inline c-bolt-trigger--cursor-pointer"
+          is="shadow-root"
+  >
+  </button>
+</bolt-trigger>
+`;
+
 exports[`trigger Trigger with an onClick attributes renders properly 1`] = `
 <bolt-trigger on-click="on-click-test">
   <button type="button"
