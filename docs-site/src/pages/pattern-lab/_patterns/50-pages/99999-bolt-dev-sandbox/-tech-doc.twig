@@ -28,7 +28,7 @@
     {% endset %}
     {% set item_current %}
       {% include '@bolt-components-link/link.twig' with {
-        text: 'Low-Code Application Development',
+        text: 'System Administration',
         url: '#!',
         attributes: {
           'aria-current': 'page',
@@ -84,8 +84,8 @@
               </h2>
               <ul class="c-bolt-side-nav__list">
                 <li class="c-bolt-side-nav__list-item">
-                  <a href="#!" class="c-bolt-side-nav__link">Configuring your system</a>
-                  <button type="button" aria-expanded="false" aria-label="Toggle children links" class="c-bolt-side-nav__link c-bolt-side-nav__link--toggle-trigger js-bolt-side-nav-toggle-trigger">
+                  <a href="#!" class="c-bolt-side-nav__link" aria-current="page">Configuring your system</a>
+                  <button type="button" aria-expanded="true" aria-label="Toggle children links" class="c-bolt-side-nav__link c-bolt-side-nav__link--toggle-trigger js-bolt-side-nav-toggle-trigger">
                     {% include '@bolt-components-icon/icon.twig' with {
                       name: 'chevron-down',
                     } only %}
@@ -162,6 +162,12 @@
                           </ul>
                         </li>
                       </ul>
+                    </li>
+                    <li class="c-bolt-side-nav__list-item">
+                      <a href="#!" class="c-bolt-side-nav__link">Level 2 nav item</a>
+                    </li>
+                    <li class="c-bolt-side-nav__list-item">
+                      <a href="#!" class="c-bolt-side-nav__link">Level 2 nav item</a>
                     </li>
                   </ul>
                 </li>
@@ -247,15 +253,6 @@
                       </ul>
                     </li>
                   </ul>
-                </li>
-                <li class="c-bolt-side-nav__list-item">
-                  <a href="#!" class="c-bolt-side-nav__link">Level 1 nav item</a>
-                </li>
-                <li class="c-bolt-side-nav__list-item">
-                  <a href="#!" class="c-bolt-side-nav__link">Level 1 nav item</a>
-                </li>
-                <li class="c-bolt-side-nav__list-item">
-                  <a href="#!" class="c-bolt-side-nav__link" aria-current="page">Current page</a>
                 </li>
               </ul>
             </nav>
@@ -600,6 +597,7 @@
               <li>Confusing "did you find this helpful" interactions</li>
               <li>Redundancy in breadcrumb and book navigation</li>
               <li>Redundancy in state select and version select</li>
+              <li>Font-size override <code>.article-content #content-inner li, .article-content #content-inner p, p.c-bolt-text.article-published-text, .abstract, section, dl { font-size: 0.85rem }</code></li>
             </ol>
             <h3>Introducing:</h3>
             <ol>
@@ -608,6 +606,12 @@
               <li>Sticky sidebars</li>
               <li>Article element that styles plain HTML</li>
               <li>New information architecture</li>
+            </ol>
+            <h3>Later enhancements:</h3>
+            <ol>
+              <li>Proper tooltips</li>
+              <li>Popover overflow issue</li>
+              <li>More complex book navigation</li>
             </ol>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae.</p>
           </section>
