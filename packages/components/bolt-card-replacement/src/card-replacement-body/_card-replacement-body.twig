@@ -13,7 +13,7 @@
   {% set content_tag = "div" %}
 {% endif %}
 
-<bolt-card-replacement-body {{ attributes }}>
+<bolt-card-replacement-body>
   <ssr-keep for="bolt-card-replacement-body" class="{{ classes|join(' ') }}">
     {% block body %}
       {% if body.content %}
