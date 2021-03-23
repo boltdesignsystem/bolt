@@ -1,3 +1,4 @@
+{# could need schema.properties.actions instead #}
 {% set this = init(schema) %}
 
 <bolt-card-replacement-action {% if external %} external {% endif %} {% if url %} url="{{url}}" {% endif %}>
@@ -13,6 +14,7 @@
           attributes: attributes|default({})
         } %}
 
+        {# this.data.spacing.value is sometimes equal to null so conditional is required. #}
         {% if this.data.spacing.value is not empty %}
           {% set button_props = button_props|merge({ size: this.data.spacing.value }) %}
         {% endif %}
