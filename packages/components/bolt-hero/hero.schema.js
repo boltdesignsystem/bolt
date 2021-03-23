@@ -62,5 +62,10 @@ module.exports = {
         'Reverses the order on larger screens (desktop) so the image comes first (left column) and the content comes second (right column).',
       default: false,
     },
+    attributes: {
+      type: 'object',
+      description:
+        'A Drupal attributes object. Applies extra HTML attributes to the parent element.',
+    },
   },
 };

@@ -6,6 +6,8 @@
 
 {% set this = init(schema) %}
 
+{% set attributes = create_attribute(attributes|default({})) %}
+
 {% set imageValign = this.data["image_valign"].value %}
 {% set imageAlign = this.data["image_align"].value %}
 
@@ -104,5 +106,6 @@
   background: {
     overlay: "disabled",
     contentItems: background_content
-  }
+  },
+  attributes: attributes
 } only %}
