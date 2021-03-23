@@ -17,6 +17,21 @@ hr {
   border-bottom: 1px solid var(--m-bolt-border);
 }
 
+details {
+  font-size: var(--bolt-type-font-size-small);
+  line-height: var(--bolt-type-line-height-small);
+}
+
+summary {
+  font-size: var(--bolt-type-font-size-medium);
+  line-height: var(--bolt-type-line-height-medium);
+  cursor: pointer;
+
+  @at-root details[open] #{&} {
+    margin-bottom: var(--bolt-spacing-y-xsmall);
+  }
+}
+
 dt,
 summary {
   font-family: var(--bolt-type-font-family-headline);
@@ -27,20 +42,12 @@ summary {
 
 dd {
   margin-bottom: var(--bolt-spacing-y-xsmall);
-  margin-left: var(--bolt-spacing-x-medium);
+  margin-left: var(--bolt-spacing-x-small);
   font-size: var(--bolt-type-font-size-small);
   line-height: var(--bolt-type-line-height-small);
 
   &:last-child {
     margin-bottom: 0;
-  }
-}
-
-summary {
-  cursor: pointer;
-
-  @at-root details[open] #{&} {
-    margin-bottom: var(--bolt-spacing-y-small);
   }
 }
 
