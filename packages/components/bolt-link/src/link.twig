@@ -9,6 +9,11 @@
 {# set up psuedo self-validation by limiting param values to what's specifically allowed in the component schema #}
 {% set icon_positions = schema.properties.icon.properties.position.enum %}
 
+{# DEPRECATED.  Use the property `is_headline` instead of `isHeadline`. #}
+{% if isHeadline %}
+  {% set is_headline = isHeadline %}
+{% endif %}
+
 {# Variables #}
 {% set base_class = "c-bolt-link" %}
 {% set attributes = create_attribute(attributes | default(attributes) | default({})) %}
@@ -46,7 +51,7 @@
 
 {% set classes = [
   base_class,
-  isHeadline ? "c-bolt-link--headline" : "",
+  is_headline ? "c-bolt-link--headline" : "",
   display in display_options ? "#{base_class}--display-#{display}" : "",
   valign in valign_options ? "#{base_class}--valign-#{valign}" : "",
 ] %}
@@ -78,7 +83,7 @@ Sort classes passed in via attributes into two groups:
   {% if valign %} valign="{{ valign }}" {% endif %}
   {% if url %} url="{{ url }}" {% endif %}
   {% if target %} target="{{ target }}" {% endif %}
-  {% if isHeadline %} is-headline="true" {% endif %}
+  {% if is_headline %} is-headline="true" {% endif %}
   {% if outer_classes %} class="{{ outer_classes|join(' ') }}" {% endif %}
 
   {# todo: rename on-click + on-click-target to only allow onClick + onClickTarget to unify the prop syntax; deprecate adding these via attributes #}
