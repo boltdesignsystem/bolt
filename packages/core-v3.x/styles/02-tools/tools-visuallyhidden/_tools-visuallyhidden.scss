@@ -18,7 +18,7 @@
     $important: !important;
   }
   position: absolute $important;
-  z-index: bolt-z-index(backgroundBottom);
+  z-index: -1; // Fix flickering/hovering issues on facets on Search pages (DS-422)
   width: 1px $important;
   height: 1px $important;
   overflow: hidden $important;
