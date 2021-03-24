@@ -1,0 +1,11 @@
+{% set usage %}{% verbatim %}
+{% include '@bolt-layouts-holy-grail/holy-grail.twig' with {
+  content: 'This is a holy grail layout.',
+} only %}
+{% endverbatim %}{% endset %}
+
+{% include '@utils/docs.twig' with {
+  componentName: 'holy-grail',
+  componentGroup: 'layouts',
+  usage: usage
+} only %}
