@@ -1,0 +1,10 @@
+{% set usage %}{% verbatim %}
+{% include '@bolt-components-side-nav/side-nav.twig' with {
+} only %}
+{% endverbatim %}{% endset %}
+
+{% include '@utils/docs.twig' with {
+  componentName: 'side-nav',
+  componentGroup: 'components',
+  usage: usage
+} only %}

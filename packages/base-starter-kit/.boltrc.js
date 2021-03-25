@@ -52,6 +52,7 @@ module.exports = {
       '@bolt/components-popover',
       '@bolt/components-progress-bar',
       '@bolt/components-share',
+      '@bolt/components-side-nav',
       '@bolt/components-site',
       '@bolt/components-smooth-scroll',
       '@bolt/components-stack',
