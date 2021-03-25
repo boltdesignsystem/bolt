@@ -6,7 +6,7 @@
 
 $_bolt-holy-grail-sidebar-trigger-click-target: 44px;
 $_bolt-holy-grail-sidebar-overflow-offset: 2rem;
-$_bolt-holy-grail-gutter: var(--bolt-spacing-x-medium);
+$_bolt-holy-grail-gutter: var(--bolt-spacing-x-large);
 
 .l-bolt-holy-grail {
   @include bolt-full-bleed;
@@ -181,7 +181,7 @@ $_bolt-holy-grail-gutter: var(--bolt-spacing-x-medium);
     margin: calc(#{$_bolt-holy-grail-sidebar-overflow-offset} * -1);
 
     @at-root .l-bolt-holy-grail__sidebar--secondary #{&} {
-      width: unquote('max(140px, 10vw)');
+      width: unquote('max(160px, 10vw)');
     }
 
     @at-root .l-bolt-holy-grail__sidebar--auto-width #{&} {

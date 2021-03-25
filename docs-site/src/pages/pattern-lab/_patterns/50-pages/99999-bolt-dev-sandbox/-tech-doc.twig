@@ -373,25 +373,27 @@
               },
             } only %}
           {% endset %}
-          {% set actions %}
-            {% include '@bolt-components-list/list.twig' with {
-              display: 'inline',
-              items: [
-                scroll_to_top,
-                download,
-                share,
-              ],
-            } only %}
-          {% endset %}
           {% set suggest %}
-            <small>
-              {% include '@bolt-elements-text-link/text-link.twig' with {
+            {% set icon_pencil %}
+              {% include '@bolt-components-icon/icon.twig' with {
+                name: 'pencil',
+              } only %}
+            {% endset %}
+            {% set tooltip_trigger %}
+              {% include '@bolt-elements-button/button.twig' with {
                 content: 'Suggest edit',
+                hierarchy: 'tertiary',
+                size: 'xsmall',
+                icon_only: icon_pencil,
                 attributes: {
-                  href: 'https://pega.com',
+                  type: 'button'
                 }
               } only %}
-            </small>
+            {% endset %}
+            {% include '@bolt-components-tooltip/tooltip.twig' with {
+              trigger: tooltip_trigger,
+              content: 'Suggest edit',
+            } only %}
           {% endset %}
           {% set state_select %}
             {% set label %}
@@ -526,11 +528,11 @@
           <bolt-stack spacing="medium">
             {% include '@bolt-components-list/list.twig' with {
               display: 'inline',
-              align: 'justify',
-              tag: 'div',
               items: [
                 suggest,
-                actions,
+                download,
+                share,
+                scroll_to_top,
               ],
             } only %}
           </bolt-stack>
@@ -884,6 +886,6 @@
   } only %}
 
   <footer style="height: 50vh">
-    <p>footer</p>
+    <p>Footer placeholder.</p>
   </footer>
 {% endblock %}
