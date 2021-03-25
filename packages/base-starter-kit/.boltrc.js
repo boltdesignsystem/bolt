@@ -3,6 +3,7 @@ module.exports = {
     global: [
       '@bolt/core-v3.x',
       '@bolt/global',
+      '@bolt/elements-article',
       '@bolt/elements-button',
       '@bolt/elements-text-link',
       '@bolt/components-accordion',
