@@ -1,13 +1,10 @@
-{% import "@bolt-components-link/_link-macros.twig" as macros %}
+{% import '@bolt-components-link/_link-macros.twig' as macros %}
 
-{% set schema = bolt.data.components["@bolt-components-link"].schema %}
+{% set schema = bolt.data.components['@bolt-components-link'].schema %}
 
 {% if enable_json_schema_validation %}
   {{ validate_data_schema(schema, _self) | raw }}
 {% endif %}
-
-{# set up psuedo self-validation by limiting param values to what's specifically allowed in the component schema #}
-{% set icon_positions = schema.properties.icon.properties.position.enum %}
 
 {# DEPRECATED.  Use the property `is_headline` instead of `isHeadline`. #}
 {% if isHeadline %}
@@ -15,13 +12,10 @@
 {% endif %}
 
 {# Variables #}
-{% set base_class = "c-bolt-link" %}
-{% set attributes = create_attribute(attributes | default(attributes) | default({})) %}
-{% set attributes = attributes.addClass(classes) %}
+{% set this = init(schema) %}
+{% set inner_attributes = create_attribute({}) %}
 
-{% if icon %}
-  {% set icon_position = icon.position in icon_positions ? icon.position : schema.properties.icon.properties.position.default %}
-{% endif %}
+{% set icon_positions = schema.properties.icon.properties.position.enum %}
 
 {% if url or attributes["url"] %}
   {% set url = url | default(attributes["url"]) %}
@@ -41,73 +35,74 @@
   {% set onClickTarget = onClickTarget | default(attributes["on-click-target"]) %}
 {% endif %}
 
-{# Set up checks to validate that the component's prop values are allowed, based on the component's schema. #}
-{% set display_options = schema.properties.display.enum %}
-{% set valign_options = schema.properties.valign.enum %}
+{% if this.data.url.value or this.props.url.value %}
+  {% set _tag = 'a' %}
+  {% if this.data.disabled.value %}
+    {% set inner_attributes = inner_attributes.setAttribute('aria-disabled', 'true') %}
+  {% else %}
+    {% set inner_attributes = inner_attributes.setAttribute('href', url) %}
+  {% endif %}
+  {% if this.data.target.value %}
+    {% set inner_attributes = inner_attributes.setAttribute('target', this.data.target.value) %}
+  {% endif %}
+{% else %}
+  {% set _tag = 'button' %}
+  {# Note that 'type' does not have a default; unless an explicit value is specified, none will be set. #}
 
-{# Check that the component's current prop values are valid. If not, default to the schema default #}
-{% set display = display in display_options ? display : schema.properties.display.default %}
-{% set valign = valign in valign_options ? valign : schema.properties.valign.default %}
+  {% if this.data.type.value %}
+    {% set inner_attributes = inner_attributes.setAttribute('type', this.data.type.value ) %}
+  {% endif %}
+{% endif %}
 
 {% set classes = [
-  base_class,
-  is_headline ? "c-bolt-link--headline" : "",
-  display in display_options ? "#{base_class}--display-#{display}" : "",
-  valign in valign_options ? "#{base_class}--valign-#{valign}" : "",
+  'c-bolt-link',
+  this.data.is_headline.value ? 'c-bolt-link--headline' : '',
+  this.data.display.value ? 'c-bolt-link--display-' ~ this.data.display.value : '',
+  this.data.valign.value ? 'c-bolt-link--valign-' ~ this.data.valign.value : '',
 ] %}
+
+{% if this.data.disabled.value and _tag == 'button' %}
+  {% set inner_attributes = inner_attributes.setAttribute('disabled', true) %}
+{% endif %}
+
+{% if icon %}
+  {% set icon_position = icon.position in icon_positions ? icon.position : schema.properties.icon.properties.position.default %}
+{% endif %}
 
 {#
 Sort classes passed in via attributes into two groups:
-1. Those that should be applied to the inner tag (namely, "is-" and "has-" classes)
+1. Those that should be applied to the inner tag (namely, 'is-' and 'has-' classes)
 2. Those that should be applied to the outer custom element (everything else EXCEPT c-bolt-* classes, which should never be passed in via atttributes)
 #}
 {% set outer_classes = [] %}
 {% set inner_classes = classes %}
 
-{% for class in attributes["class"] %}
-  {% if class starts with "is-" or class starts with "has-" %}
+{% for class in this.props.class %}
+  {% if class starts with 'is-' == true %}
     {% set inner_classes = inner_classes|merge([class]) %}
-  {% elseif class starts with "c-bolt-" == false %}
+  {% elseif class starts with 'has-' == true %}
+    {% set inner_classes = inner_classes|merge([class]) %}
+  {% elseif class starts with 'c-bolt-link' == false %}
     {% set outer_classes = outer_classes|merge([class]) %}
   {% endif %}
 {% endfor %}
 
-{# Filter out attributes assigned above #}
-{% set filtered_attributes = attributes | without("url") | without("href") | without("target") | without("class") %}
-
-{% set tagName = url ? "a" : "button" %}
-
 {# link component's custom element wrapper #}
 {% spaceless %}<bolt-link
-  {% if display %} display="{{ display }}" {% endif %}
-  {% if valign %} valign="{{ valign }}" {% endif %}
-  {% if url %} url="{{ url }}" {% endif %}
-  {% if target %} target="{{ target }}" {% endif %}
-  {% if is_headline %} is-headline="true" {% endif %}
+  {{ this.props|without('url')|without('href')|without('target')|without('class') }}
   {% if outer_classes %} class="{{ outer_classes|join(' ') }}" {% endif %}
+  {% if url %} url="{{ url }}" {% endif %}
 
   {# todo: rename on-click + on-click-target to only allow onClick + onClickTarget to unify the prop syntax; deprecate adding these via attributes #}
   {% if onClick %} on-click="{{ onClick }}" {% endif %}
   {% if onClickTarget %} on-click-target="{{ onClickTarget }}" {% endif %}
-
-  {{ filtered_attributes }}
 >
   {# For accessibility, use <a> tag if `url` provided. Otherwise use `<button type="button">`. #}
-  <{{ tagName }}
-    {% if url %}
-      href="{{ url }}" 
-      {% if target %}target="{{ target }}" {% endif %}
-    {% else %}
-      type="button"
-    {% endif %}
-    is="shadow-root"
-    class="{{ inner_classes|join(' ') }}"
-    {{ filtered_attributes|without('id') }}
-  >
-    {{ macros.slotted_icon(icon, icon_position, "before") }}
-    <ssr-keep for="bolt-link" class="{{ "#{base_class}__text" }}">
-      {{- text | default(label) | default("Learn More") -}}
+  <{{ _tag }} {{ inner_attributes.addClass(inner_classes) }}>
+    {{ macros.slotted_icon(icon, icon_position, 'before') }}
+    <ssr-keep for="bolt-link" class="c-bolt-link__text">
+      {{- text |default(label) | default('Learn More') -}}
     </ssr-keep>
-    {{ macros.slotted_icon(icon, icon_position, "after") }}
-  </{{ tagName }}>
+    {{ macros.slotted_icon(icon, icon_position, 'after') }}
+  </{{ _tag }}>
 </bolt-link>{% endspaceless %}
