@@ -55,7 +55,7 @@
 
   {% set layout %}
     {% set holy_grail_content %}
-      <article class="e-bolt-article u-bolt-margin-bottom-large">
+      {% set article_content %}
         <header>
           <h1>Configuring your system</h1>
           <p>Intro text. Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore natus ipsum totam eius corrupti, aliquam iusto eligendi inventore corporis in. Mollitia sit eius esse architecto quis, praesentium quas soluta exercitationem!</p>
@@ -252,115 +252,123 @@
           <h2 id="section-five">Section Five</h2>
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae.</p>
         </section>
-      </article>
-      
-      <bolt-banner align="start">
-        {% include '@bolt-components-headline/headline.twig' with {
-          text: 'Tags',
-          size: 'small',
-          tag: 'p',
-          attributes: {
-            class: 'u-bolt-margin-bottom-xsmall',
-          }
-        } only %}
-        {% include '@bolt-components-chip-list/chip-list.twig' with {
-          size: 'xsmall',
-          truncate: 3,
-          items: [
-            {
-              text: 'Beginner',
-              url: '#!'
-            },
-            {
-              text: 'User Interface',
-              url: '#!'
-            },
-            {
-              text: 'Pega Platform',
-              url: '#!'
-            },
-            {
-              text: 'Application Development',
-              url: '#!'
-            },
-            {
-              text: 'Case Management',
-              url: '#!'
-            },
-            {
-              text: 'Robotic Process Automation',
-              url: '#!'
-            },
-            {
-              text: 'Data Integration',
-              url: '#!'
-            },
-          ]
-        } only %}
+      {% endset %}
 
-        {% include '@bolt-components-headline/headline.twig' with {
-          text: 'Did you find this helpful?',
-          size: 'small',
-          tag: 'p',
-          attributes: {
-            class: 'u-bolt-margin-bottom-xsmall',
-          }
+      <bolt-stack spacing="large">
+        {% include '@bolt-elements-article/article.twig' with {
+          content: article_content,
+          tag: 'article',
         } only %}
-        {% set yes %}
-          {% set icon %}
-            {% include '@bolt-components-icon/icon.twig' with {
-              name: 'check-circle',
-              size: 'medium',
-            } only %}
-          {% endset %}
-          {% include '@bolt-elements-text-link/text-link.twig' with {
-            content: 'Yes',
-            icon_before: icon,
+      </bolt-stack>
+      <bolt-stack>
+        <bolt-banner align="start">
+          {% include '@bolt-components-headline/headline.twig' with {
+            text: 'Tags',
+            size: 'small',
+            tag: 'p',
             attributes: {
-              type: 'button',
+              class: 'u-bolt-margin-bottom-xsmall',
             }
           } only %}
-        {% endset %}
-        {% set no %}
-          {% set icon %}
-            {% include '@bolt-components-icon/icon.twig' with {
-              name: 'close-open',
-              size: 'medium',
-            } only %}
-          {% endset %}
-          {% include '@bolt-elements-text-link/text-link.twig' with {
-            content: 'No',
-            icon_before: icon,
+          {% include '@bolt-components-chip-list/chip-list.twig' with {
+            size: 'xsmall',
+            truncate: 3,
+            items: [
+              {
+                text: 'Beginner',
+                url: '#!'
+              },
+              {
+                text: 'User Interface',
+                url: '#!'
+              },
+              {
+                text: 'Pega Platform',
+                url: '#!'
+              },
+              {
+                text: 'Application Development',
+                url: '#!'
+              },
+              {
+                text: 'Case Management',
+                url: '#!'
+              },
+              {
+                text: 'Robotic Process Automation',
+                url: '#!'
+              },
+              {
+                text: 'Data Integration',
+                url: '#!'
+              },
+            ]
+          } only %}
+
+          {% include '@bolt-components-headline/headline.twig' with {
+            text: 'Did you find this helpful?',
+            size: 'small',
+            tag: 'p',
             attributes: {
-              type: 'button',
+              class: 'u-bolt-margin-bottom-xsmall',
             }
           } only %}
-        {% endset %}
-        {% set reset %}
-          {% set reset_button %}
+          {% set yes %}
+            {% set icon %}
+              {% include '@bolt-components-icon/icon.twig' with {
+                name: 'check-circle',
+                size: 'medium',
+              } only %}
+            {% endset %}
             {% include '@bolt-elements-text-link/text-link.twig' with {
-              content: 'Reset',
+              content: 'Yes',
+              icon_before: icon,
               attributes: {
                 type: 'button',
               }
             } only %}
           {% endset %}
-          {% include '@bolt-components-headline/text.twig' with {
-            text: '100% found this helpful. (' ~ reset_button|spaceless ~ ')',
-            size: 'small',
-            style: 'italic',
-            tag: 'p',
+          {% set no %}
+            {% set icon %}
+              {% include '@bolt-components-icon/icon.twig' with {
+                name: 'close-open',
+                size: 'medium',
+              } only %}
+            {% endset %}
+            {% include '@bolt-elements-text-link/text-link.twig' with {
+              content: 'No',
+              icon_before: icon,
+              attributes: {
+                type: 'button',
+              }
+            } only %}
+          {% endset %}
+          {% set reset %}
+            {% set reset_button %}
+              {% include '@bolt-elements-text-link/text-link.twig' with {
+                content: 'Reset',
+                attributes: {
+                  type: 'button',
+                }
+              } only %}
+            {% endset %}
+            {% include '@bolt-components-headline/text.twig' with {
+              text: '100% found this helpful. (' ~ reset_button|spaceless ~ ')',
+              size: 'small',
+              style: 'italic',
+              tag: 'p',
+            } only %}
+          {% endset %}
+          {% include '@bolt-components-list/list.twig' with {
+            display: 'inline',
+            spacing: 'small',
+            items: [
+              yes,
+              no,
+            ],
           } only %}
-        {% endset %}
-        {% include '@bolt-components-list/list.twig' with {
-          display: 'inline',
-          spacing: 'small',
-          items: [
-            yes,
-            no,
-          ],
-        } only %}
-      </bolt-banner>
+        </bolt-banner>
+      </bolt-stack>
     {% endset %}
     {% set sidebar_content %}
       <div class="c-bolt-side-nav">

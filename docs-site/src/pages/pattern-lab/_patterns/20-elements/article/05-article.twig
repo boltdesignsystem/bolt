@@ -1,0 +1,136 @@
+{% set article_content %}
+  <h1>
+    H1 heading text
+  </h1>
+  <h2>
+    H2 heading text
+  </h2>
+  <h3>
+    H3 heading text
+  </h3>
+  <h4>
+    H4 heading text
+  </h4>
+  <h5>
+    H5 heading text
+  </h5>
+  <h6>
+    H6 heading text
+  </h6>
+  <p>
+    Paragraph. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Natus dicta animi eius minus vero, commodi sequi quam tempora praesentium accusantium iusto ipsa, maiores asperiores aperiam! Natus iusto dolorem laborum nam! Lorem ipsum dolor sit amet consectetur, adipisicing elit. Temporibus, enim quo? Suscipit labore provident quae quod. Reprehenderit blanditiis voluptatem, repellendus voluptatibus maiores eaque ipsa officia quas culpa iusto alias sit.
+  </p>
+  <p>
+    Text: <strong>bold</strong>, <em>italic</em>, <a href="#!">linked</a>, <code>code</code>, <kbd>kbd</kbd>, <small>small</small>, super<sup>script</sup>, sub<sub>script</sub>.
+  </p>
+  <ul>
+    <li>
+    First level unordered item
+    </li>
+    <li>
+      First level unordered item
+      <ol>
+        <li>
+          Second level ordered item
+          <ul>
+            <li>
+              Third level unordered item
+            </li>
+            <li>
+              Third level unordered item
+            </li>
+          </ul>
+        </li>
+        <li>
+          Second level ordered item
+        </li>
+      </ol>
+    </li>
+    <li>
+      First level unordered item
+    </li>
+  </ul>
+  <ol>
+    <li>
+      First level ordered item
+    </li>
+    <li>
+      First level ordered item
+      <ul>
+        <li>
+          Second level unordered item
+          <ol>
+            <li>
+              Third level ordered item
+            </li>
+            <li>
+              Third level ordered item
+            </li>
+          </ol>
+        </li>
+        <li>
+          Second level unordered item
+        </li>
+      </ul>
+    </li>
+    <li>
+      First level ordered item
+    </li>
+  </ol>
+  <hr>
+  <details>
+    <summary>Summary sums up the details</summary>
+    <p>
+    Details elaborate on the summary.
+    </p>
+  </details>
+  <dl>
+    <dt>Definition list</dt>
+    <dd>A list of text and description.</dd>
+    <dt>Morgawr</dt>
+    <dd>A sea serpent.</dd>
+    <dt>Owlman</dt>
+    <dd>A giant owl-like creature.</dd>
+  </dl>
+  <pre><code>pre&nbsp;{<br>&nbsp;&nbsp;padding: .5em 1em; color: black; border-left: 5px solid; background-color: white;<br>}</code></pre>
+  <blockquote>
+    <p>
+      <q>Pull Quote. Darkness cannot drive out darkness; only <q>light</q> can do that. Hate cannot drive out hate; only <q>love</q> can do that.</q>
+    </p>
+    <p>
+      <q>The time is always right to do what is right.</q>
+    </p>
+  </blockquote>
+  <figure>
+    <img src="https://placehold.it/1600x900" alt="">
+    <figcaption>
+      Figure caption
+    </figcaption>
+  </figure>
+  <table>
+    <thead>
+      <tr>
+        <th>Col1</th>
+        <th>Col2</th>
+        <th>Col3</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th>Row1</th>
+        <td>Row1</td>
+        <td>Row1</td>
+      </tr>
+      <tr>
+        <th>Row2</th>
+        <td>Row2</td>
+        <td>Row2</td>
+      </tr>
+    </tbody>
+  </table>
+{% endset %}
+
+{% include '@bolt-elements-article/article.twig' with {
+  content: article_content,
+  tag: 'article',
+} only %}
