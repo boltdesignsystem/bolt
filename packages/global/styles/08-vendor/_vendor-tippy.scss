@@ -8,9 +8,6 @@
 /**
  * Component variables
  */
-$bolt-tippy-border-width: $bolt-border-width;
-$bolt-tippy-border-style: $bolt-border-style;
-$bolt-tippy-border-color: var(--m-bolt-border);
 $bolt-tippy-transition: $bolt-transition-timing
   cubic-bezier(0.175, 0.885, 0.32, 1);
 
@@ -38,14 +35,6 @@ $bolt-tippy-transition: $bolt-transition-timing
   opacity: 0;
   transform: scale3d(1, 1, 1) translate3d(0, 0, 0);
   overflow: hidden;
-  margin: var(--bolt-spacing-y-xxsmall) var(--bolt-spacing-x-xxsmall);
-  padding: 0;
-  border-radius: bolt-border-radius(small);
-  border-width: $bolt-tippy-border-width;
-  border-style: $bolt-tippy-border-style;
-  border-color: $bolt-tippy-border-color;
-  box-shadow: bolt-shadow('level-20');
-  background-color: var(--m-bolt-bg);
   transition: transform $bolt-tippy-transition, opacity $bolt-tippy-transition;
 
   // Placement: top
@@ -140,12 +129,6 @@ $bolt-tippy-transition: $bolt-transition-timing
   &[data-state='visible'] {
     opacity: 1;
     transform: scale3d(1, 1, 1) translate3d(0, 0, 0);
-  }
-
-  // Theme: tooltip
-  &[data-theme='tooltip'] {
-    padding: var(--bolt-spacing-y-xxsmall) var(--bolt-spacing-x-xsmall);
-    background-color: var(--m-bolt-text);
   }
 }
 
