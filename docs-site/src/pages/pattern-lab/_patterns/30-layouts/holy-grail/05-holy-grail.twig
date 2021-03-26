@@ -1,0 +1,14 @@
+{% include '@bolt-layouts-holy-grail/holy-grail.twig' with {
+  content: 'This is a holy grail layout.',
+  sidebar: {
+    content: 'Sidebar',
+    trigger_icon: 'documentation',
+    trigger_label: 'Book Navigation',
+    auto_width: true,
+  },
+  secondary_sidebar: {
+    content: 'Secondary sidebar',
+    trigger_icon: 'more',
+    trigger_label: 'More Info',
+  },
+} only %}

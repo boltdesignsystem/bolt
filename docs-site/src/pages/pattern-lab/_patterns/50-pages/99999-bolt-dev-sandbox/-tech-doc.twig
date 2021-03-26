@@ -54,53 +54,353 @@
   } only %}
 
   {% set layout %}
-    <div class="l-bolt-holy-grail">
-      <div class="l-bolt-holy-grail__sidebar l-bolt-holy-grail__sidebar--auto-width">
-        <button type="button" aria-expanded="false" class="l-bolt-holy-grail__sidebar-trigger js-bolt-holy-grail-sidebar-toggle-trigger">
-          <span class="l-bolt-holy-grail__sidebar-trigger__text">
+    {% set holy_grail_content %}
+      <article class="e-bolt-article u-bolt-margin-bottom-large">
+        <header>
+          <h1>Configuring your system</h1>
+          <p>Intro text. Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore natus ipsum totam eius corrupti, aliquam iusto eligendi inventore corporis in. Mollitia sit eius esse architecto quis, praesentium quas soluta exercitationem!</p>
+        </header>
+        <section>
+          <h2 id="section-one">Section One</h2>
+          <p>Use the Dev Studio, dynamic system settings rules, and properties files and scripts, to set system-wide parameters. The specific tool depends on your situation.</p>
+          <dl>
+            <dt>System-wide parameters</dt>
+            <dd>To specify system-wide parameters, use system data instances. System data instances are occurrences of your Pega Platform. See Specifying system-wide security parameters by using system data instances.</dd> 
+            <dt>Cluster-wide parameters that differ from site to site</dt>
+            <dd>To set cluster-wide parameters when the values differ from site to site, such as with URLs, user names, or port numbers, and when they might be set programmatically use dynamic system settings. See Configuring dynamic system settings. For example, you can use a dynamic system settings to configure which fields are available in full-text search. Dynamic system settings are stored in the Pega Platform database and are used by all nodes that share that database.</dd> 
+            <dt>Individual node settings</dt>
+            <dd>To apply changes to only some nodes in a system, change settings in the prconfig.xml file. Settings in the prconfig.xml file apply to the node on which the prconfig.xml file resides. See Changing node settings by modifying the prconfig.xml file.</dd> 
+            <dt>Production-level-specific run-time parameters</dt>
+            <dd>To set production-level-specific parameters, use data transforms and other rule types. Run-time application settings can differ based on a system's production level, and are further resolved at run time through rule resolution. See Configuring production-level run-time settings.</dd>
+          </dl>
+        </section>
+        <section>
+          <h2 id="section-two">Section Two</h2>
+          <h3>Fixing:</h3>
+          <ol>
+            <li>Inaccessible navigation and confusing collapse/open interactions</li>
+            <li>Inaccessible version select</li>
+            <li>Overlapping interactive elements</li>
+            <li>Actions blocking content</li>
+            <li>Confusing "did you find this helpful" interactions</li>
+            <li>Redundancy in breadcrumb and book navigation</li>
+            <li>Redundancy in state select and version select</li>
+            <li>Font-size override <code>.article-content #content-inner li, .article-content #content-inner p, p.c-bolt-text.article-published-text, .abstract, section, dl { font-size: 0.85rem }</code></li>
+          </ol>
+          <h3>Introducing:</h3>
+          <ol>
+            <li>On page table of contents</li>
+            <li>Collapsable book navigation</li>
+            <li>Sticky sidebars</li>
+            <li>Article element that styles plain HTML</li>
+            <li>New information architecture</li>
+          </ol>
+          <h3>Later enhancements:</h3>
+          <ol>
+            <li>Proper tooltips</li>
+            <li>Popover overflow issue</li>
+            <li>More complex book navigation</li>
+          </ol>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae.</p>
+        </section>
+        <section>
+          <h2 id="section-three">Section Three</h2>
+          <p>
+            Text: <strong>bold</strong>, <em>italic</em>, <a href="#!">linked</a>, <code>code</code>, <kbd>kbd</kbd>, <small>small</small>, super<sup>script</sup>, sub<sub>script</sub>.
+          </p>
+          <p>
+            Paragraphs. The ultimate measure of a man is not where he stands in moments of comfort and convenience, but where he stands at times of challenge and controversy.
+          </p>
+          <p>
+            The function of education is to teach one to think intensively and to think critically. Intelligence plus character—that is the goal of true education.
+          </p>
+          <p>
+            In the end, we will remember not the words of our enemies, but the silence of our friends.
+          </p>
+          <ul>
+            <li>
+            First level unordered item
+            </li>
+            <li>
+              First level unordered item
+              <ol>
+                <li>
+                  Second level ordered item
+                  <ul>
+                    <li>
+                      Third level unordered item
+                    </li>
+                    <li>
+                      Third level unordered item
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  Second level ordered item
+                </li>
+              </ol>
+            </li>
+            <li>
+              First level unordered item
+            </li>
+          </ul>
+          <ol>
+            <li>
+              First level ordered item
+            </li>
+            <li>
+              First level ordered item
+              <ul>
+                <li>
+                  Second level unordered item
+                  <ol>
+                    <li>
+                      Third level ordered item
+                    </li>
+                    <li>
+                      Third level ordered item
+                    </li>
+                  </ol>
+                </li>
+                <li>
+                  Second level unordered item
+                </li>
+              </ul>
+            </li>
+            <li>
+              First level ordered item
+            </li>
+          </ol>
+          <hr>
+          <details>
+            <summary>Summary sums up the details</summary>
+            <p>
+            Details elaborate on the summary.
+            </p>
+          </details>
+          <dl>
+            <dt>Definition list</dt>
+            <dd>A list of text and description.</dd>
+            <dt>Morgawr</dt>
+            <dd>A sea serpent.</dd>
+            <dt>Owlman</dt>
+            <dd>A giant owl-like creature.</dd>
+          </dl>
+          <pre><code>pre&nbsp;{<br>&nbsp;&nbsp;padding: .5em 1em; color: black; border-left: 5px solid; background-color: white;<br>}</code></pre>
+          <blockquote>
+            <p>
+              <q>Pull Quote. Darkness cannot drive out darkness; only <q>light</q> can do that. Hate cannot drive out hate; only <q>love</q> can do that.</q>
+            </p>
+            <p>
+              <q>The time is always right to do what is right.</q>
+            </p>
+          </blockquote>
+          <h1>
+            H1 heading text
+          </h1>
+          <h2>
+            H2 heading text
+          </h2>
+          <h3>
+            H3 heading text
+          </h3>
+          <h4>
+            H4 heading text
+          </h4>
+          <h5>
+            H5 heading text
+          </h5>
+          <h6>
+            H6 heading text
+          </h6>
+          <figure>
+            <img src="https://placehold.it/1600x900" alt="">
+            <figcaption>
+              Figure caption (image)
+            </figcaption>
+          </figure>
+          <bolt-table>
+            <table>
+              <thead>
+                <tr>
+                  <th>Col1</th>
+                  <th>Col2</th>
+                  <th>Col3</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th>Row1</th>
+                  <td>Row1</td>
+                  <td>Row1</td>
+                </tr>
+                <tr>
+                  <th>Row2</th>
+                  <td>Row2</td>
+                  <td>Row2</td>
+                </tr>
+              </tbody>
+            </table>
+          </bolt-table>
+        </section>
+        <section>
+          <h2 id="section-four">Section Four</h2>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae.</p>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae.</p>
+        </section>
+        <section>
+          <h2 id="section-five">Section Five</h2>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae.</p>
+        </section>
+      </article>
+      
+      <bolt-banner align="start">
+        {% include '@bolt-components-headline/headline.twig' with {
+          text: 'Tags',
+          size: 'small',
+          tag: 'p',
+          attributes: {
+            class: 'u-bolt-margin-bottom-xsmall',
+          }
+        } only %}
+        {% include '@bolt-components-chip-list/chip-list.twig' with {
+          size: 'xsmall',
+          truncate: 3,
+          items: [
+            {
+              text: 'Beginner',
+              url: '#!'
+            },
+            {
+              text: 'User Interface',
+              url: '#!'
+            },
+            {
+              text: 'Pega Platform',
+              url: '#!'
+            },
+            {
+              text: 'Application Development',
+              url: '#!'
+            },
+            {
+              text: 'Case Management',
+              url: '#!'
+            },
+            {
+              text: 'Robotic Process Automation',
+              url: '#!'
+            },
+            {
+              text: 'Data Integration',
+              url: '#!'
+            },
+          ]
+        } only %}
+
+        {% include '@bolt-components-headline/headline.twig' with {
+          text: 'Did you find this helpful?',
+          size: 'small',
+          tag: 'p',
+          attributes: {
+            class: 'u-bolt-margin-bottom-xsmall',
+          }
+        } only %}
+        {% set yes %}
+          {% set icon %}
             {% include '@bolt-components-icon/icon.twig' with {
-              name: 'documentation',
+              name: 'check-circle',
+              size: 'medium',
             } only %}
-            Book Navigation
-          </span>
-          <span class="l-bolt-holy-grail__sidebar-trigger__text l-bolt-holy-grail__sidebar-trigger__text--close">
-            Hide Book Navigation
+          {% endset %}
+          {% include '@bolt-elements-text-link/text-link.twig' with {
+            content: 'Yes',
+            icon_before: icon,
+            attributes: {
+              type: 'button',
+            }
+          } only %}
+        {% endset %}
+        {% set no %}
+          {% set icon %}
             {% include '@bolt-components-icon/icon.twig' with {
-              name: 'close',
+              name: 'close-open',
+              size: 'medium',
             } only %}
-          </span>
+          {% endset %}
+          {% include '@bolt-elements-text-link/text-link.twig' with {
+            content: 'No',
+            icon_before: icon,
+            attributes: {
+              type: 'button',
+            }
+          } only %}
+        {% endset %}
+        {% set reset %}
+          {% set reset_button %}
+            {% include '@bolt-elements-text-link/text-link.twig' with {
+              content: 'Reset',
+              attributes: {
+                type: 'button',
+              }
+            } only %}
+          {% endset %}
+          {% include '@bolt-components-headline/text.twig' with {
+            text: '100% found this helpful. (' ~ reset_button|spaceless ~ ')',
+            size: 'small',
+            style: 'italic',
+            tag: 'p',
+          } only %}
+        {% endset %}
+        {% include '@bolt-components-list/list.twig' with {
+          display: 'inline',
+          spacing: 'small',
+          items: [
+            yes,
+            no,
+          ],
+        } only %}
+      </bolt-banner>
+    {% endset %}
+    {% set sidebar_content %}
+      <div class="c-bolt-side-nav">
+        <button type="button" aria-expanded="true" class="c-bolt-side-nav__trigger js-bolt-side-nav-toggle-trigger">
+          <span class="c-bolt-side-nav__trigger__text">Toggle book navigation</span>
+          {% include '@bolt-components-icon/icon.twig' with {
+            name: 'chevron-left',
+          } only %}
         </button>
-        <div class="l-bolt-holy-grail__sidebar-content">
-          <div class="c-bolt-side-nav">
-            <button type="button" aria-expanded="true" class="c-bolt-side-nav__trigger js-bolt-side-nav-toggle-trigger">
-              <span class="c-bolt-side-nav__trigger__text">Toggle book navigation</span>
-              {% include '@bolt-components-icon/icon.twig' with {
-                name: 'chevron-left',
-              } only %}
-            </button>
-            <nav aria-label="Book Navigation" class="c-bolt-side-nav__content">
-              <h2 class="c-bolt-side-nav__header">
-                <a href="#!" class="c-bolt-side-nav__header__link">System Administration</a>
-              </h2>
+        <nav aria-label="Book Navigation" class="c-bolt-side-nav__content">
+          <h2 class="c-bolt-side-nav__header">
+            <a href="#!" class="c-bolt-side-nav__header__link">System Administration</a>
+          </h2>
+          <ul class="c-bolt-side-nav__list">
+            <li class="c-bolt-side-nav__list-item">
+              <a href="#!" class="c-bolt-side-nav__link" aria-current="page">Configuring your system</a>
+              <button type="button" aria-expanded="true" aria-label="Toggle children links" class="c-bolt-side-nav__link c-bolt-side-nav__link--toggle-trigger js-bolt-side-nav-toggle-trigger">
+                {% include '@bolt-components-icon/icon.twig' with {
+                  name: 'chevron-down',
+                } only %}
+              </button>
               <ul class="c-bolt-side-nav__list">
                 <li class="c-bolt-side-nav__list-item">
-                  <a href="#!" class="c-bolt-side-nav__link" aria-current="page">Configuring your system</a>
-                  <button type="button" aria-expanded="true" aria-label="Toggle children links" class="c-bolt-side-nav__link c-bolt-side-nav__link--toggle-trigger js-bolt-side-nav-toggle-trigger">
-                    {% include '@bolt-components-icon/icon.twig' with {
-                      name: 'chevron-down',
-                    } only %}
+                  <a href="#!" class="c-bolt-side-nav__link">Configuring high availability deployments</a>
+                  <button type="button" aria-expanded="false" aria-label="Toggle children links" class="c-bolt-side-nav__link c-bolt-side-nav__link--toggle-trigger js-bolt-side-nav-toggle-trigger">
+                {% include '@bolt-components-icon/icon.twig' with {
+                  name: 'chevron-down',
+                } only %}
                   </button>
                   <ul class="c-bolt-side-nav__list">
                     <li class="c-bolt-side-nav__list-item">
-                      <a href="#!" class="c-bolt-side-nav__link">Configuring high availability deployments</a>
+                      <a href="#!" class="c-bolt-side-nav__link">Configuring nodes for high availability</a>
                       <button type="button" aria-expanded="false" aria-label="Toggle children links" class="c-bolt-side-nav__link c-bolt-side-nav__link--toggle-trigger js-bolt-side-nav-toggle-trigger">
-                    {% include '@bolt-components-icon/icon.twig' with {
-                      name: 'chevron-down',
-                    } only %}
+                        {% include '@bolt-components-icon/icon.twig' with {
+                          name: 'chevron-down',
+                        } only %}
                       </button>
                       <ul class="c-bolt-side-nav__list">
                         <li class="c-bolt-side-nav__list-item">
-                          <a href="#!" class="c-bolt-side-nav__link">Configuring nodes for high availability</a>
+                          <a href="#!" class="c-bolt-side-nav__link">Architecting a high availability system</a>
                           <button type="button" aria-expanded="false" aria-label="Toggle children links" class="c-bolt-side-nav__link c-bolt-side-nav__link--toggle-trigger js-bolt-side-nav-toggle-trigger">
                             {% include '@bolt-components-icon/icon.twig' with {
                               name: 'chevron-down',
@@ -108,7 +408,7 @@
                           </button>
                           <ul class="c-bolt-side-nav__list">
                             <li class="c-bolt-side-nav__list-item">
-                              <a href="#!" class="c-bolt-side-nav__link">Architecting a high availability system</a>
+                              <a href="#!" class="c-bolt-side-nav__link">Setting up the components of highly available environments</a>
                               <button type="button" aria-expanded="false" aria-label="Toggle children links" class="c-bolt-side-nav__link c-bolt-side-nav__link--toggle-trigger js-bolt-side-nav-toggle-trigger">
                                 {% include '@bolt-components-icon/icon.twig' with {
                                   name: 'chevron-down',
@@ -116,7 +416,7 @@
                               </button>
                               <ul class="c-bolt-side-nav__list">
                                 <li class="c-bolt-side-nav__list-item">
-                                  <a href="#!" class="c-bolt-side-nav__link">Setting up the components of highly available environments</a>
+                                  <a href="#!" class="c-bolt-side-nav__link">Configuring application tier architecture for redundancy</a>
                                   <button type="button" aria-expanded="false" aria-label="Toggle children links" class="c-bolt-side-nav__link c-bolt-side-nav__link--toggle-trigger js-bolt-side-nav-toggle-trigger">
                                     {% include '@bolt-components-icon/icon.twig' with {
                                       name: 'chevron-down',
@@ -124,7 +424,7 @@
                                   </button>
                                   <ul class="c-bolt-side-nav__list">
                                     <li class="c-bolt-side-nav__list-item">
-                                      <a href="#!" class="c-bolt-side-nav__link">Configuring application tier architecture for redundancy</a>
+                                      <a href="#!" class="c-bolt-side-nav__link">Defining highly available integration services</a>
                                       <button type="button" aria-expanded="false" aria-label="Toggle children links" class="c-bolt-side-nav__link c-bolt-side-nav__link--toggle-trigger js-bolt-side-nav-toggle-trigger">
                                         {% include '@bolt-components-icon/icon.twig' with {
                                           name: 'chevron-down',
@@ -132,26 +432,16 @@
                                       </button>
                                       <ul class="c-bolt-side-nav__list">
                                         <li class="c-bolt-side-nav__list-item">
-                                          <a href="#!" class="c-bolt-side-nav__link">Defining highly available integration services</a>
-                                          <button type="button" aria-expanded="false" aria-label="Toggle children links" class="c-bolt-side-nav__link c-bolt-side-nav__link--toggle-trigger js-bolt-side-nav-toggle-trigger">
-                                            {% include '@bolt-components-icon/icon.twig' with {
-                                              name: 'chevron-down',
-                                            } only %}
-                                          </button>
-                                          <ul class="c-bolt-side-nav__list">
-                                            <li class="c-bolt-side-nav__list-item">
-                                              <a href="#!" class="c-bolt-side-nav__link">Listeners</a>
-                                            </li>
-                                            <li class="c-bolt-side-nav__list-item">
-                                              <a href="#!" class="c-bolt-side-nav__link">Service packages</a>
-                                            </li>
-                                            <li class="c-bolt-side-nav__list-item">
-                                              <a href="#!" class="c-bolt-side-nav__link">Service resques processors</a>
-                                            </li>
-                                            <li class="c-bolt-side-nav__list-item">
-                                              <a href="#!" class="c-bolt-side-nav__link">Service rules</a>
-                                            </li>
-                                          </ul>
+                                          <a href="#!" class="c-bolt-side-nav__link">Listeners</a>
+                                        </li>
+                                        <li class="c-bolt-side-nav__list-item">
+                                          <a href="#!" class="c-bolt-side-nav__link">Service packages</a>
+                                        </li>
+                                        <li class="c-bolt-side-nav__list-item">
+                                          <a href="#!" class="c-bolt-side-nav__link">Service resques processors</a>
+                                        </li>
+                                        <li class="c-bolt-side-nav__list-item">
+                                          <a href="#!" class="c-bolt-side-nav__link">Service rules</a>
                                         </li>
                                       </ul>
                                     </li>
@@ -163,16 +453,26 @@
                         </li>
                       </ul>
                     </li>
-                    <li class="c-bolt-side-nav__list-item">
-                      <a href="#!" class="c-bolt-side-nav__link">Level 2 nav item</a>
-                    </li>
-                    <li class="c-bolt-side-nav__list-item">
-                      <a href="#!" class="c-bolt-side-nav__link">Level 2 nav item</a>
-                    </li>
                   </ul>
                 </li>
                 <li class="c-bolt-side-nav__list-item">
-                  <a href="#!" class="c-bolt-side-nav__link">Level 1 nav item</a>
+                  <a href="#!" class="c-bolt-side-nav__link">Level 2 nav item</a>
+                </li>
+                <li class="c-bolt-side-nav__list-item">
+                  <a href="#!" class="c-bolt-side-nav__link">Level 2 nav item</a>
+                </li>
+              </ul>
+            </li>
+            <li class="c-bolt-side-nav__list-item">
+              <a href="#!" class="c-bolt-side-nav__link">Level 1 nav item</a>
+              <button type="button" aria-expanded="false" aria-label="Toggle children links" class="c-bolt-side-nav__link c-bolt-side-nav__link--toggle-trigger js-bolt-side-nav-toggle-trigger">
+                {% include '@bolt-components-icon/icon.twig' with {
+                  name: 'chevron-down',
+                } only %}
+              </button>
+              <ul class="c-bolt-side-nav__list">
+                <li class="c-bolt-side-nav__list-item">
+                  <a href="#!" class="c-bolt-side-nav__link">Level 2 nav item</a>
                   <button type="button" aria-expanded="false" aria-label="Toggle children links" class="c-bolt-side-nav__link c-bolt-side-nav__link--toggle-trigger js-bolt-side-nav-toggle-trigger">
                     {% include '@bolt-components-icon/icon.twig' with {
                       name: 'chevron-down',
@@ -180,7 +480,7 @@
                   </button>
                   <ul class="c-bolt-side-nav__list">
                     <li class="c-bolt-side-nav__list-item">
-                      <a href="#!" class="c-bolt-side-nav__link">Level 2 nav item</a>
+                      <a href="#!" class="c-bolt-side-nav__link">Level 3 nav item</a>
                       <button type="button" aria-expanded="false" aria-label="Toggle children links" class="c-bolt-side-nav__link c-bolt-side-nav__link--toggle-trigger js-bolt-side-nav-toggle-trigger">
                         {% include '@bolt-components-icon/icon.twig' with {
                           name: 'chevron-down',
@@ -188,7 +488,7 @@
                       </button>
                       <ul class="c-bolt-side-nav__list">
                         <li class="c-bolt-side-nav__list-item">
-                          <a href="#!" class="c-bolt-side-nav__link">Level 3 nav item</a>
+                          <a href="#!" class="c-bolt-side-nav__link">Level 4 nav item</a>
                           <button type="button" aria-expanded="false" aria-label="Toggle children links" class="c-bolt-side-nav__link c-bolt-side-nav__link--toggle-trigger js-bolt-side-nav-toggle-trigger">
                             {% include '@bolt-components-icon/icon.twig' with {
                               name: 'chevron-down',
@@ -196,7 +496,7 @@
                           </button>
                           <ul class="c-bolt-side-nav__list">
                             <li class="c-bolt-side-nav__list-item">
-                              <a href="#!" class="c-bolt-side-nav__link">Level 4 nav item</a>
+                              <a href="#!" class="c-bolt-side-nav__link">Level 5 nav item</a>
                               <button type="button" aria-expanded="false" aria-label="Toggle children links" class="c-bolt-side-nav__link c-bolt-side-nav__link--toggle-trigger js-bolt-side-nav-toggle-trigger">
                                 {% include '@bolt-components-icon/icon.twig' with {
                                   name: 'chevron-down',
@@ -204,7 +504,7 @@
                               </button>
                               <ul class="c-bolt-side-nav__list">
                                 <li class="c-bolt-side-nav__list-item">
-                                  <a href="#!" class="c-bolt-side-nav__link">Level 5 nav item</a>
+                                  <a href="#!" class="c-bolt-side-nav__link">Level 6 nav item</a>
                                   <button type="button" aria-expanded="false" aria-label="Toggle children links" class="c-bolt-side-nav__link c-bolt-side-nav__link--toggle-trigger js-bolt-side-nav-toggle-trigger">
                                     {% include '@bolt-components-icon/icon.twig' with {
                                       name: 'chevron-down',
@@ -212,7 +512,7 @@
                                   </button>
                                   <ul class="c-bolt-side-nav__list">
                                     <li class="c-bolt-side-nav__list-item">
-                                      <a href="#!" class="c-bolt-side-nav__link">Level 6 nav item</a>
+                                      <a href="#!" class="c-bolt-side-nav__link">Level 7 nav item</a>
                                       <button type="button" aria-expanded="false" aria-label="Toggle children links" class="c-bolt-side-nav__link c-bolt-side-nav__link--toggle-trigger js-bolt-side-nav-toggle-trigger">
                                         {% include '@bolt-components-icon/icon.twig' with {
                                           name: 'chevron-down',
@@ -220,7 +520,7 @@
                                       </button>
                                       <ul class="c-bolt-side-nav__list">
                                         <li class="c-bolt-side-nav__list-item">
-                                          <a href="#!" class="c-bolt-side-nav__link">Level 7 nav item</a>
+                                          <a href="#!" class="c-bolt-side-nav__link">Level 8 nav item</a>
                                           <button type="button" aria-expanded="false" aria-label="Toggle children links" class="c-bolt-side-nav__link c-bolt-side-nav__link--toggle-trigger js-bolt-side-nav-toggle-trigger">
                                             {% include '@bolt-components-icon/icon.twig' with {
                                               name: 'chevron-down',
@@ -228,17 +528,7 @@
                                           </button>
                                           <ul class="c-bolt-side-nav__list">
                                             <li class="c-bolt-side-nav__list-item">
-                                              <a href="#!" class="c-bolt-side-nav__link">Level 8 nav item</a>
-                                              <button type="button" aria-expanded="false" aria-label="Toggle children links" class="c-bolt-side-nav__link c-bolt-side-nav__link--toggle-trigger js-bolt-side-nav-toggle-trigger">
-                                                {% include '@bolt-components-icon/icon.twig' with {
-                                                  name: 'chevron-down',
-                                                } only %}
-                                              </button>
-                                              <ul class="c-bolt-side-nav__list">
-                                                <li class="c-bolt-side-nav__list-item">
-                                                  <a href="#!" class="c-bolt-side-nav__link">Level 9 nav item</a>
-                                                </li>
-                                              </ul>
+                                              <a href="#!" class="c-bolt-side-nav__link">Level 9 nav item</a>
                                             </li>
                                           </ul>
                                         </li>
@@ -255,628 +545,318 @@
                   </ul>
                 </li>
               </ul>
-            </nav>
-          </div>
-        </div>
+            </li>
+          </ul>
+        </nav>
       </div>
-      <div class="l-bolt-holy-grail__sidebar l-bolt-holy-grail__sidebar--secondary">
-        <button type="button" aria-expanded="false" class="l-bolt-holy-grail__sidebar-trigger js-bolt-holy-grail-sidebar-toggle-trigger">
-          <span class="l-bolt-holy-grail__sidebar-trigger__text">
-            {% include '@bolt-components-icon/icon.twig' with {
-              name: 'more',
-              size: 'medium',
-            } only %}
-            <span class="u-bolt-visuallyhidden">Toggle more info</span>
-          </span>
-          <span class="l-bolt-holy-grail__sidebar-trigger__text l-bolt-holy-grail__sidebar-trigger__text--close">
-            Hide more info
-            {% include '@bolt-components-icon/icon.twig' with {
-              name: 'close',
-            } only %}
-          </span>
-        </button>
-        <div class="l-bolt-holy-grail__sidebar-content">
-          {% set scroll_to_top %}
-            {% set icon_chevron_up %}
-              {% include '@bolt-components-icon/icon.twig' with {
-                name: 'chevron-up',
-              } only %}
-            {% endset %}
-            {% set tooltip_trigger %}
-              {% include '@bolt-elements-button/button.twig' with {
-                content: 'Scroll to top',
-                hierarchy: 'tertiary',
-                size: 'xsmall',
-                icon_only: icon_chevron_up,
-                attributes: {
-                  type: 'button'
-                }
-              } only %}
-            {% endset %}
-            {% include '@bolt-components-tooltip/tooltip.twig' with {
-              trigger: tooltip_trigger,
-              content: 'Scroll to top',
-            } only %}
-          {% endset %}
-          {% set download %}
-            {% set icon_download %}
-              {% include '@bolt-components-icon/icon.twig' with {
-                name: 'download',
-              } only %}
-            {% endset %}
-            {% set tooltip_trigger %}
-              {% include '@bolt-elements-button/button.twig' with {
-                content: 'Download',
-                hierarchy: 'tertiary',
-                size: 'xsmall',
-                icon_only: icon_download,
-                attributes: {
-                  type: 'button'
-                }
-              } only %}
-            {% endset %}
-            {% include '@bolt-components-tooltip/tooltip.twig' with {
-              trigger: tooltip_trigger,
-              content: 'Download PDF',
-            } only %}
-          {% endset %}
-          {% set share %}
-            {% set share_menu %}
-              {% include '@bolt-components-share/share.twig' with {
-                display: 'menu',
-                size: 'small',
-                sources: [
-                  {
-                    name: 'facebook',
-                    url: 'https://www.facebook.com/sharer/sharer.php?u=https://pega.com&amp;src=sdkpreparse'
-                  },
-                  {
-                    name: 'twitter',
-                    url: 'https://twitter.com/intent/tweet?url=https://pega.com&text=Sample%20Share%20Text&via=pega&hashtags=boltDesignSystemRocks!'
-                  },
-                  {
-                    name: 'linkedin',
-                    url: 'https://www.linkedin.com/shareArticle?url=https://pega.com'
-                  },
-                  {
-                    name: 'email',
-                    url: 'mailto:?&body=Sample%20Text%20--%20https%3A//pega.com'
-                  }
-                ],
-                copy_to_clipboard: {
-                  text_to_copy: 'https://pega.com',
-                },
-              } only %}
-            {% endset %}
-            {% set share_popover_trigger %}
-              {% set icon_share %}
-                {% include '@bolt-components-icon/icon.twig' with {
-                  name: 'share',
-                } only %}
-              {% endset %}
-              {% include '@bolt-elements-button/button.twig' with {
-                content: 'Share',
-                hierarchy: 'tertiary',
-                size: 'xsmall',
-                icon_only: icon_share,
-                attributes: {
-                  type: 'button'
-                }
-              } only %}
-            {% endset %}
-            {% include '@bolt-components-popover/popover.twig' with {
-              trigger: share_popover_trigger,
-              content: share_menu,
-              spacing: 'none',
-              attributes: {
-                style: '--c-bolt-popover-bubble-width: min(80vw, 200px);'
-              },
-            } only %}
-          {% endset %}
-          {% set suggest %}
-            {% set icon_pencil %}
-              {% include '@bolt-components-icon/icon.twig' with {
-                name: 'pencil',
-              } only %}
-            {% endset %}
-            {% set tooltip_trigger %}
-              {% include '@bolt-elements-button/button.twig' with {
-                content: 'Suggest edit',
-                hierarchy: 'tertiary',
-                size: 'xsmall',
-                icon_only: icon_pencil,
-                attributes: {
-                  type: 'button'
-                }
-              } only %}
-            {% endset %}
-            {% include '@bolt-components-tooltip/tooltip.twig' with {
-              trigger: tooltip_trigger,
-              content: 'Suggest edit',
-            } only %}
-          {% endset %}
-          {% set state_select %}
-            {% set label %}
-              {% include '@bolt-components-form/form-label.twig' with {
-                title: '<strong>Current state</strong>',
-                displayType: 'block',
-                attributes: {
-                  for: 'state-select',
-                },
-              } only %}
-            {% endset %}
-            {% set select %}
-              {% include '@bolt-components-form/form-select.twig' with {
-                options: [
-                  {
-                    type: 'option',
-                    value: 'draft',
-                    label: 'Draft',
-                  },
-                  {
-                    type: 'option',
-                    value: 'sme-review',
-                    label: 'SME Review',
-                  },
-                  {
-                    type: 'option',
-                    value: 'editor-review',
-                    label: 'Editor Review',
-                  },
-                  {
-                    type: 'option',
-                    value: 'publisher-review',
-                    label: 'Publisher Review',
-                  },
-                  {
-                    type: 'option',
-                    value: 'pending-publication',
-                    label: 'Pending Publication',
-                  },
-                  {
-                    type: 'option',
-                    value: 'revision-requested',
-                    label: 'Revision Requested',
-                  },
-                  {
-                    type: 'option',
-                    value: 'published',
-                    label: 'Published',
-                    selected: true,
-                  },
-                  {
-                    type: 'option',
-                    value: 'unpublished',
-                    label: 'Unpublished',
-                  },
-                ],
-                attributes: {
-                  id: 'state-select',
-                  name: 'state-select',
-                },
-              } only %}
-            {% endset %}
-            <form>
-              {% include '@bolt-components-form/form-element.twig' with {
-                label: label,
-                labelDisplay: 'before',
-                children: select,
-              } only %}
-              {% include '@bolt-elements-button/button.twig' with {
-                content: 'Update state',
-                size: 'small',
-                display: 'block',
-                attributes: {
-                  type: 'button'
-                }
-              } only %}
-            </form>
-          {% endset %}
-          {% set version_select %}
-            {% set label %}
-              {% include '@bolt-components-form/form-label.twig' with {
-                title: '<strong>Available versions</strong>',
-                displayType: 'block',
-                attributes: {
-                  for: 'version-select',
-                },
-              } only %}
-            {% endset %}
-            {% set select %}
-              {% include '@bolt-components-form/form-select.twig' with {
-                options: [
-                  {
-                    type: 'option',
-                    value: '8-6',
-                    label: '8.6',
-                  },
-                  {
-                    type: 'option',
-                    value: '8-5',
-                    label: '8.5',
-                  },
-                  {
-                    type: 'option',
-                    value: '8-4',
-                    label: '8.4',
-                  },
-                ],
-                attributes: {
-                  id: 'version-select',
-                  name: 'version-select',
-                },
-              } only %}
-            {% endset %}
-            <form>
-              {% include '@bolt-components-form/form-element.twig' with {
-                label: label,
-                labelDisplay: 'before',
-                children: select,
-              } only %}
-            </form>
-          {% endset %}
-
-          <bolt-stack spacing="medium">
-            {{ state_select }}
-          </bolt-stack>
-          <bolt-stack spacing="xsmall">
-            {{ version_select }}
-          </bolt-stack>
-          <bolt-stack spacing="small">
-            <small><em>Updated on January 15, 2021</em></small>
-          </bolt-stack>
-          <bolt-stack spacing="medium">
-            {% include '@bolt-components-list/list.twig' with {
-              display: 'inline',
-              items: [
-                suggest,
-                download,
-                share,
-                scroll_to_top,
-              ],
-            } only %}
-          </bolt-stack>
-          <bolt-stack spacing="medium">
-            {% include '@bolt-components-toc/toc.twig' with {
-              variant: 'transparent',
-              header: 'On this page',
-              items: [
-                {
-                  text: 'Section One',
-                  url: '#section-one',
-                },
-                {
-                  text: 'Section Two',
-                  url: '#section-two',
-                },
-                {
-                  text: 'Section Three',
-                  url: '#section-three',
-                },
-                {
-                  text: 'Section Four',
-                  url: '#section-four',
-                },
-                {
-                  text: 'Section Five',
-                  url: '#section-five',
-                },
-              ],
-              scrollOffsetSelector: '.c-bolt-page-header',
-              scrollOffset: 16,
-            } only %}
-          </bolt-stack>
-        </div>
-      </div>
-      <div class="l-bolt-holy-grail__article">
-        <article class="e-bolt-article u-bolt-margin-bottom-large">
-          <header>
-            <h1>Configuring your system</h1>
-            <p>Intro text. Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore natus ipsum totam eius corrupti, aliquam iusto eligendi inventore corporis in. Mollitia sit eius esse architecto quis, praesentium quas soluta exercitationem!</p>
-          </header>
-          <section>
-            <h2 id="section-one">Section One</h2>
-            <p>Use the Dev Studio, dynamic system settings rules, and properties files and scripts, to set system-wide parameters. The specific tool depends on your situation.</p>
-            <dl>
-              <dt>System-wide parameters</dt>
-              <dd>To specify system-wide parameters, use system data instances. System data instances are occurrences of your Pega Platform. See Specifying system-wide security parameters by using system data instances.</dd> 
-              <dt>Cluster-wide parameters that differ from site to site</dt>
-              <dd>To set cluster-wide parameters when the values differ from site to site, such as with URLs, user names, or port numbers, and when they might be set programmatically use dynamic system settings. See Configuring dynamic system settings. For example, you can use a dynamic system settings to configure which fields are available in full-text search. Dynamic system settings are stored in the Pega Platform database and are used by all nodes that share that database.</dd> 
-              <dt>Individual node settings</dt>
-              <dd>To apply changes to only some nodes in a system, change settings in the prconfig.xml file. Settings in the prconfig.xml file apply to the node on which the prconfig.xml file resides. See Changing node settings by modifying the prconfig.xml file.</dd> 
-              <dt>Production-level-specific run-time parameters</dt>
-              <dd>To set production-level-specific parameters, use data transforms and other rule types. Run-time application settings can differ based on a system's production level, and are further resolved at run time through rule resolution. See Configuring production-level run-time settings.</dd>
-            </dl>
-          </section>
-          <section>
-            <h2 id="section-two">Section Two</h2>
-            <h3>Fixing:</h3>
-            <ol>
-              <li>Inaccessible navigation and confusing collapse/open interactions</li>
-              <li>Inaccessible version select</li>
-              <li>Overlapping interactive elements</li>
-              <li>Actions blocking content</li>
-              <li>Confusing "did you find this helpful" interactions</li>
-              <li>Redundancy in breadcrumb and book navigation</li>
-              <li>Redundancy in state select and version select</li>
-              <li>Font-size override <code>.article-content #content-inner li, .article-content #content-inner p, p.c-bolt-text.article-published-text, .abstract, section, dl { font-size: 0.85rem }</code></li>
-            </ol>
-            <h3>Introducing:</h3>
-            <ol>
-              <li>On page table of contents</li>
-              <li>Collapsable book navigation</li>
-              <li>Sticky sidebars</li>
-              <li>Article element that styles plain HTML</li>
-              <li>New information architecture</li>
-            </ol>
-            <h3>Later enhancements:</h3>
-            <ol>
-              <li>Proper tooltips</li>
-              <li>Popover overflow issue</li>
-              <li>More complex book navigation</li>
-            </ol>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae.</p>
-          </section>
-          <section>
-            <h2 id="section-three">Section Three</h2>
-            <p>
-              Text: <strong>bold</strong>, <em>italic</em>, <a href="#!">linked</a>, <code>code</code>, <kbd>kbd</kbd>, <small>small</small>, super<sup>script</sup>, sub<sub>script</sub>.
-            </p>
-            <p>
-              Paragraphs. The ultimate measure of a man is not where he stands in moments of comfort and convenience, but where he stands at times of challenge and controversy.
-            </p>
-            <p>
-              The function of education is to teach one to think intensively and to think critically. Intelligence plus character—that is the goal of true education.
-            </p>
-            <p>
-              In the end, we will remember not the words of our enemies, but the silence of our friends.
-            </p>
-            <ul>
-              <li>
-              First level unordered item
-              </li>
-              <li>
-                First level unordered item
-                <ol>
-                  <li>
-                    Second level ordered item
-                    <ul>
-                      <li>
-                        Third level unordered item
-                      </li>
-                      <li>
-                        Third level unordered item
-                      </li>
-                    </ul>
-                  </li>
-                  <li>
-                    Second level ordered item
-                  </li>
-                </ol>
-              </li>
-              <li>
-                First level unordered item
-              </li>
-            </ul>
-            <ol>
-              <li>
-                First level ordered item
-              </li>
-              <li>
-                First level ordered item
-                <ul>
-                  <li>
-                    Second level unordered item
-                    <ol>
-                      <li>
-                        Third level ordered item
-                      </li>
-                      <li>
-                        Third level ordered item
-                      </li>
-                    </ol>
-                  </li>
-                  <li>
-                    Second level unordered item
-                  </li>
-                </ul>
-              </li>
-              <li>
-                First level ordered item
-              </li>
-            </ol>
-            <hr>
-            <details>
-              <summary>Summary sums up the details</summary>
-              <p>
-              Details elaborate on the summary.
-              </p>
-            </details>
-            <dl>
-              <dt>Definition list</dt>
-              <dd>A list of text and description.</dd>
-              <dt>Morgawr</dt>
-              <dd>A sea serpent.</dd>
-              <dt>Owlman</dt>
-              <dd>A giant owl-like creature.</dd>
-            </dl>
-            <pre><code>pre&nbsp;{<br>&nbsp;&nbsp;padding: .5em 1em; color: black; border-left: 5px solid; background-color: white;<br>}</code></pre>
-            <blockquote>
-              <p>
-                <q>Pull Quote. Darkness cannot drive out darkness; only <q>light</q> can do that. Hate cannot drive out hate; only <q>love</q> can do that.</q>
-              </p>
-              <p>
-                <q>The time is always right to do what is right.</q>
-              </p>
-            </blockquote>
-            <h1>
-              H1 heading text
-            </h1>
-            <h2>
-              H2 heading text
-            </h2>
-            <h3>
-              H3 heading text
-            </h3>
-            <h4>
-              H4 heading text
-            </h4>
-            <h5>
-              H5 heading text
-            </h5>
-            <h6>
-              H6 heading text
-            </h6>
-            <figure>
-              <img src="https://placehold.it/1600x900" alt="">
-              <figcaption>
-                Figure caption (image)
-              </figcaption>
-            </figure>
-            <bolt-table>
-              <table>
-                <thead>
-                  <tr>
-                    <th>Col1</th>
-                    <th>Col2</th>
-                    <th>Col3</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th>Row1</th>
-                    <td>Row1</td>
-                    <td>Row1</td>
-                  </tr>
-                  <tr>
-                    <th>Row2</th>
-                    <td>Row2</td>
-                    <td>Row2</td>
-                  </tr>
-                </tbody>
-              </table>
-            </bolt-table>
-          </section>
-          <section>
-            <h2 id="section-four">Section Four</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae.</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae.</p>
-          </section>
-          <section>
-            <h2 id="section-five">Section Five</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae.</p>
-          </section>
-        </article>
-        
-        <bolt-banner align="start">
-          {% include '@bolt-components-headline/headline.twig' with {
-            text: 'Tags',
-            size: 'small',
-            tag: 'p',
-            attributes: {
-              class: 'u-bolt-margin-bottom-xsmall',
-            }
+    {% endset %}
+    {% set secondary_sidebar_content %}
+      {% set scroll_to_top %}
+        {% set icon_chevron_up %}
+          {% include '@bolt-components-icon/icon.twig' with {
+            name: 'chevron-up',
           } only %}
-          {% include '@bolt-components-chip-list/chip-list.twig' with {
+        {% endset %}
+        {% set tooltip_trigger %}
+          {% include '@bolt-elements-button/button.twig' with {
+            content: 'Scroll to top',
+            hierarchy: 'tertiary',
             size: 'xsmall',
-            truncate: 3,
-            items: [
-              {
-                text: 'Beginner',
-                url: '#!'
-              },
-              {
-                text: 'User Interface',
-                url: '#!'
-              },
-              {
-                text: 'Pega Platform',
-                url: '#!'
-              },
-              {
-                text: 'Application Development',
-                url: '#!'
-              },
-              {
-                text: 'Case Management',
-                url: '#!'
-              },
-              {
-                text: 'Robotic Process Automation',
-                url: '#!'
-              },
-              {
-                text: 'Data Integration',
-                url: '#!'
-              },
-            ]
-          } only %}
-
-          {% include '@bolt-components-headline/headline.twig' with {
-            text: 'Did you find this helpful?',
-            size: 'small',
-            tag: 'p',
+            icon_only: icon_chevron_up,
             attributes: {
-              class: 'u-bolt-margin-bottom-xsmall',
+              type: 'button'
             }
           } only %}
-          {% set yes %}
-            {% set icon %}
-              {% include '@bolt-components-icon/icon.twig' with {
-                name: 'check-circle',
-                size: 'medium',
-              } only %}
-            {% endset %}
-            {% include '@bolt-elements-text-link/text-link.twig' with {
-              content: 'Yes',
-              icon_before: icon,
-              attributes: {
-                type: 'button',
-              }
-            } only %}
-          {% endset %}
-          {% set no %}
-            {% set icon %}
-              {% include '@bolt-components-icon/icon.twig' with {
-                name: 'close-open',
-                size: 'medium',
-              } only %}
-            {% endset %}
-            {% include '@bolt-elements-text-link/text-link.twig' with {
-              content: 'No',
-              icon_before: icon,
-              attributes: {
-                type: 'button',
-              }
-            } only %}
-          {% endset %}
-          {% set reset %}
-            {% set reset_button %}
-              {% include '@bolt-elements-text-link/text-link.twig' with {
-                content: 'Reset',
-                attributes: {
-                  type: 'button',
-                }
-              } only %}
-            {% endset %}
-            {% include '@bolt-components-headline/text.twig' with {
-              text: '100% found this helpful. (' ~ reset_button|spaceless ~ ')',
-              size: 'small',
-              style: 'italic',
-              tag: 'p',
-            } only %}
-          {% endset %}
-          {% include '@bolt-components-list/list.twig' with {
-            display: 'inline',
-            spacing: 'small',
-            items: [
-              yes,
-              no,
-            ],
+        {% endset %}
+        {% include '@bolt-components-tooltip/tooltip.twig' with {
+          trigger: tooltip_trigger,
+          content: 'Scroll to top',
+        } only %}
+      {% endset %}
+      {% set download %}
+        {% set icon_download %}
+          {% include '@bolt-components-icon/icon.twig' with {
+            name: 'download',
           } only %}
-        </bolt-banner>
-      </div>
-    </div>
+        {% endset %}
+        {% set tooltip_trigger %}
+          {% include '@bolt-elements-button/button.twig' with {
+            content: 'Download',
+            hierarchy: 'tertiary',
+            size: 'xsmall',
+            icon_only: icon_download,
+            attributes: {
+              type: 'button'
+            }
+          } only %}
+        {% endset %}
+        {% include '@bolt-components-tooltip/tooltip.twig' with {
+          trigger: tooltip_trigger,
+          content: 'Download PDF',
+        } only %}
+      {% endset %}
+      {% set share %}
+        {% set share_menu %}
+          {% include '@bolt-components-share/share.twig' with {
+            display: 'menu',
+            size: 'small',
+            sources: [
+              {
+                name: 'facebook',
+                url: 'https://www.facebook.com/sharer/sharer.php?u=https://pega.com&amp;src=sdkpreparse'
+              },
+              {
+                name: 'twitter',
+                url: 'https://twitter.com/intent/tweet?url=https://pega.com&text=Sample%20Share%20Text&via=pega&hashtags=boltDesignSystemRocks!'
+              },
+              {
+                name: 'linkedin',
+                url: 'https://www.linkedin.com/shareArticle?url=https://pega.com'
+              },
+              {
+                name: 'email',
+                url: 'mailto:?&body=Sample%20Text%20--%20https%3A//pega.com'
+              }
+            ],
+            copy_to_clipboard: {
+              text_to_copy: 'https://pega.com',
+            },
+          } only %}
+        {% endset %}
+        {% set share_popover_trigger %}
+          {% set icon_share %}
+            {% include '@bolt-components-icon/icon.twig' with {
+              name: 'share',
+            } only %}
+          {% endset %}
+          {% include '@bolt-elements-button/button.twig' with {
+            content: 'Share',
+            hierarchy: 'tertiary',
+            size: 'xsmall',
+            icon_only: icon_share,
+            attributes: {
+              type: 'button'
+            }
+          } only %}
+        {% endset %}
+        {% include '@bolt-components-popover/popover.twig' with {
+          trigger: share_popover_trigger,
+          content: share_menu,
+          spacing: 'none',
+          attributes: {
+            style: '--c-bolt-popover-bubble-width: min(80vw, 200px);'
+          },
+        } only %}
+      {% endset %}
+      {% set suggest %}
+        {% set icon_pencil %}
+          {% include '@bolt-components-icon/icon.twig' with {
+            name: 'pencil',
+          } only %}
+        {% endset %}
+        {% set tooltip_trigger %}
+          {% include '@bolt-elements-button/button.twig' with {
+            content: 'Suggest edit',
+            hierarchy: 'tertiary',
+            size: 'xsmall',
+            icon_only: icon_pencil,
+            attributes: {
+              type: 'button'
+            }
+          } only %}
+        {% endset %}
+        {% include '@bolt-components-tooltip/tooltip.twig' with {
+          trigger: tooltip_trigger,
+          content: 'Suggest edit',
+        } only %}
+      {% endset %}
+      {% set state_select %}
+        {% set label %}
+          {% include '@bolt-components-form/form-label.twig' with {
+            title: '<strong>Current state</strong>',
+            displayType: 'block',
+            attributes: {
+              for: 'state-select',
+            },
+          } only %}
+        {% endset %}
+        {% set select %}
+          {% include '@bolt-components-form/form-select.twig' with {
+            options: [
+              {
+                type: 'option',
+                value: 'draft',
+                label: 'Draft',
+              },
+              {
+                type: 'option',
+                value: 'sme-review',
+                label: 'SME Review',
+              },
+              {
+                type: 'option',
+                value: 'editor-review',
+                label: 'Editor Review',
+              },
+              {
+                type: 'option',
+                value: 'publisher-review',
+                label: 'Publisher Review',
+              },
+              {
+                type: 'option',
+                value: 'pending-publication',
+                label: 'Pending Publication',
+              },
+              {
+                type: 'option',
+                value: 'revision-requested',
+                label: 'Revision Requested',
+              },
+              {
+                type: 'option',
+                value: 'published',
+                label: 'Published',
+                selected: true,
+              },
+              {
+                type: 'option',
+                value: 'unpublished',
+                label: 'Unpublished',
+              },
+            ],
+            attributes: {
+              id: 'state-select',
+              name: 'state-select',
+            },
+          } only %}
+        {% endset %}
+        <form>
+          {% include '@bolt-components-form/form-element.twig' with {
+            label: label,
+            labelDisplay: 'before',
+            children: select,
+          } only %}
+          {% include '@bolt-elements-button/button.twig' with {
+            content: 'Update state',
+            size: 'small',
+            display: 'block',
+            attributes: {
+              type: 'button'
+            }
+          } only %}
+        </form>
+      {% endset %}
+      {% set version_select %}
+        {% set label %}
+          {% include '@bolt-components-form/form-label.twig' with {
+            title: '<strong>Available versions</strong>',
+            displayType: 'block',
+            attributes: {
+              for: 'version-select',
+            },
+          } only %}
+        {% endset %}
+        {% set select %}
+          {% include '@bolt-components-form/form-select.twig' with {
+            options: [
+              {
+                type: 'option',
+                value: '8-6',
+                label: '8.6',
+              },
+              {
+                type: 'option',
+                value: '8-5',
+                label: '8.5',
+              },
+              {
+                type: 'option',
+                value: '8-4',
+                label: '8.4',
+              },
+            ],
+            attributes: {
+              id: 'version-select',
+              name: 'version-select',
+            },
+          } only %}
+        {% endset %}
+        <form>
+          {% include '@bolt-components-form/form-element.twig' with {
+            label: label,
+            labelDisplay: 'before',
+            children: select,
+          } only %}
+        </form>
+      {% endset %}
+
+      <bolt-stack spacing="medium">
+        {{ state_select }}
+      </bolt-stack>
+      <bolt-stack spacing="xsmall">
+        {{ version_select }}
+      </bolt-stack>
+      <bolt-stack spacing="small">
+        <small><em>Updated on January 15, 2021</em></small>
+      </bolt-stack>
+      <bolt-stack spacing="medium">
+        {% include '@bolt-components-list/list.twig' with {
+          display: 'inline',
+          items: [
+            suggest,
+            download,
+            share,
+            scroll_to_top,
+          ],
+        } only %}
+      </bolt-stack>
+      <bolt-stack spacing="medium">
+        {% include '@bolt-components-toc/toc.twig' with {
+          variant: 'transparent',
+          header: 'On this page',
+          items: [
+            {
+              text: 'Section One',
+              url: '#section-one',
+            },
+            {
+              text: 'Section Two',
+              url: '#section-two',
+            },
+            {
+              text: 'Section Three',
+              url: '#section-three',
+            },
+            {
+              text: 'Section Four',
+              url: '#section-four',
+            },
+            {
+              text: 'Section Five',
+              url: '#section-five',
+            },
+          ],
+          scrollOffsetSelector: '.c-bolt-page-header',
+          scrollOffset: 16,
+        } only %}
+      </bolt-stack>
+    {% endset %}
+
+    {% include '@bolt-layouts-holy-grail/holy-grail.twig' with {
+      content: holy_grail_content,
+      sidebar: {
+        content: sidebar_content,
+        trigger_icon: 'documentation',
+        trigger_label: 'Book Navigation',
+        auto_width: true,
+      },
+      secondary_sidebar: {
+        content: secondary_sidebar_content,
+        trigger_icon: 'more',
+        trigger_label: 'More Info',
+      },
+    } only %}
   {% endset %}
 
   {% include '@bolt-components-band/band.twig' with {

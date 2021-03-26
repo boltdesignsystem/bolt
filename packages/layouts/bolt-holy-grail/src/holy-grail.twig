@@ -1,0 +1,72 @@
+{# Schema Validation #}
+{% set schema = bolt.data.layouts['@bolt-layouts-holy-grail'].schema %}
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(schema, _self)|raw }}
+{% endif %}
+
+{# Variables #}
+{% set this = init(schema) %}
+{% set attributes = create_attribute(attributes|default({})) %}
+
+{# Array of classes based on the defined + default props #}
+{% set classes = [
+  'l-bolt-holy-grail',
+] %}
+
+<div {{ attributes.addClass(classes) }}>
+  {% if sidebar %}
+    {% set sidebar_classes = [
+      'l-bolt-holy-grail__sidebar',
+      sidebar.auto_width ? 'l-bolt-holy-grail__sidebar--auto-width',
+    ] %}
+    <div class="{{ sidebar_classes|join(' ') }}">
+      <button type="button" aria-expanded="false" class="l-bolt-holy-grail__sidebar-trigger js-bolt-holy-grail-sidebar-toggle-trigger">
+        <span class="l-bolt-holy-grail__sidebar-trigger__text">
+          {% include '@bolt-components-icon/icon.twig' with {
+            name: sidebar.trigger_icon,
+          } only %}
+          {{ sidebar.trigger_label }}
+        </span>
+        <span class="l-bolt-holy-grail__sidebar-trigger__text l-bolt-holy-grail__sidebar-trigger__text--close">
+          {{ 'Hide'|t }} {{ sidebar.trigger_label }}
+          {% include '@bolt-components-icon/icon.twig' with {
+            name: 'close',
+          } only %}
+        </span>
+      </button>
+      <div class="l-bolt-holy-grail__sidebar-content">
+        {{ sidebar.content }}
+      </div>
+    </div>
+  {% endif %}
+
+  {% if secondary_sidebar %}
+    {% set secondary_sidebar_classes = [
+      'l-bolt-holy-grail__sidebar',
+      'l-bolt-holy-grail__sidebar--secondary',
+      secondary_sidebar.auto_width ? 'l-bolt-holy-grail__sidebar--auto-width',
+    ] %}
+    <div class="{{ secondary_sidebar_classes|join(' ') }}">
+      <button type="button" aria-expanded="false" class="l-bolt-holy-grail__sidebar-trigger js-bolt-holy-grail-sidebar-toggle-trigger">
+        <span class="l-bolt-holy-grail__sidebar-trigger__text">
+          {% include '@bolt-components-icon/icon.twig' with {
+            name: secondary_sidebar.trigger_icon,
+          } only %}
+          <span class="u-bolt-visuallyhidden">{{ secondary_sidebar.trigger_label }}</span>
+        </span>
+        <span class="l-bolt-holy-grail__sidebar-trigger__text l-bolt-holy-grail__sidebar-trigger__text--close">
+          {{ 'Hide'|t }} {{ secondary_sidebar.trigger_label }}
+          {% include '@bolt-components-icon/icon.twig' with {
+            name: 'close',
+          } only %}
+        </span>
+      </button>
+      <div class="l-bolt-holy-grail__sidebar-content">
+        {{ secondary_sidebar.content }}
+      </div>
+    </div>
+  {% endif %}
+  <div class="l-bolt-holy-grail__article">
+    {{ content }}
+  </div>
+</div>
