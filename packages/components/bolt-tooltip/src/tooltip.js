@@ -22,8 +22,6 @@ class BoltTooltip extends BoltElement {
   }
 
   initTippy() {
-    const self = this;
-
     this.$boundary =
       this.$boundary ||
       (this.boundary && this.closest(this.boundary)) ||
