@@ -1,6 +1,5 @@
 import { html, customElement, BoltElement, unsafeCSS } from '@bolt/element';
-import { isFocusable, isHidden } from './focusable';
-import { queryShadowRoot } from './shadow';
+import { queryShadowRoot, isFocusable, isHidden } from '@bolt/core-v3.x/utils';
 
 /**
  * Focus trap web component.

@@ -1,11 +1,6 @@
-import { customElement, BoltElement, html, unsafeCSS } from '@bolt/element';
-import { isFocusable } from '@bolt/core-v3.x/utils';
-import classNames from 'classnames/dedupe';
-import { createPopper } from '@popperjs/core';
-import styles from './tooltip.scss';
+import { customElement, BoltElement, html } from '@bolt/element';
+import { tippy, hideOnEsc, inspectNodeTypes } from '@bolt/core-v3.x/utils';
 import schema from '../tooltip.schema';
-
-let cx = classNames.bind(styles);
 
 @customElement('bolt-tooltip')
 class BoltTooltip extends BoltElement {
@@ -14,184 +9,39 @@ class BoltTooltip extends BoltElement {
   static get properties() {
     return {
       ...this.props,
-      open: {
-        type: Boolean,
-        reflect: true,
-      },
       dotted: {
         type: Boolean,
-      },
-      hasFocusableContent: {
-        type: Boolean,
+        reflect: true,
       },
     };
   }
 
   constructor() {
     super();
-    this.open = false;
-    this.hasFocus = false;
-    this.isHovering = false;
-    this.textContentLength = 0;
     this.uuid = this.uuid || Math.floor(10000 + Math.random() * 90000);
   }
 
-  static get styles() {
-    return [unsafeCSS(styles)];
-  }
-
-  connectedCallback() {
-    super.connectedCallback && super.connectedCallback();
-    this.setAttribute('ready', '');
-  }
-
-  disconnectedCallback() {
-    super.disconnectedCallback && super.disconnectedCallback();
-    this.removeAttribute('ready');
-  }
-
-  setOpen() {
-    if (this.isHovering || this.hasFocus) {
-      // `reference` is Popper's stored reference to the trigger.
-      const ref = this.popper?.state.rects.reference;
-
-      if (ref.width === 0 && ref.height === 0) {
-        // If trigger was hidden initially, call update() to recalculate Popper position
-        this.popper.update();
-      }
-
-      this.open = true;
-    } else {
-      this.open = false;
-    }
-  }
-
-  handleFocus(e) {
-    this.hasFocus = e.type === 'focusin' ? true : false;
-    this.setOpen();
-  }
-
-  handleHover(e) {
-    if (e.type === 'mouseenter') {
-      this.isHovering = true;
-    } else if (e.type === 'mouseleave') {
-      this.isHovering = false;
-    }
-
-    this.setOpen();
-  }
-
-  handleKeyup(e) {
-    if (e.keyCode === 27 || e.key === 'Escape' || e.key === 'Esc') {
-      this.open = false;
-    }
-  }
-
-  sortChildren() {
-    // @todo: add mutation observer and call this when content changes
-    let hasText, hasAllowedContent, hasDisallowedContent, hasFocusableContent;
-    const focusableElements = ['bolt-link', 'bolt-button', 'bolt-trigger'];
-    const allowedInlineElements = [
-      'abbr',
-      'acronym',
-      'b',
-      'cite',
-      'em',
-      'i',
-      'strong',
-      'sub',
-      'sup',
-      'time',
-    ];
-
-    const sort = e => {
-      if (e.nodeType === 3) {
-        // If text node
-        hasText = true;
-      } else if (e.nodeType === 1) {
-        // If element node
-        // Decides if tooltip gets a dotted underline style
-        if (allowedInlineElements.includes(e.nodeName.toLowerCase())) {
-          hasAllowedContent = true;
-        } else {
-          hasDisallowedContent = true;
-        }
-
-        // Decides if tooltip wrapper can get focus or not
-        if (
-          // Covers native elements and those with tabindex set
-          isFocusable(e) ||
-          // Covers custom elements which delegate focus
-          focusableElements.includes(e.nodeName.toLowerCase())
-        ) {
-          hasFocusableContent = true;
-        }
-      }
-    };
-
-    const recursivelySort = e => {
-      sort(e);
-      if (e.children) {
-        Array.from(e.children).forEach(e => {
-          recursivelySort(e);
-        });
-      }
-    };
-
-    this.slotMap.get('default') &&
-      this.slotMap.get('default').forEach(e => {
-        // Sorts through the default slot, figure out what kind of nodes it
-        // contains, and sets variables accordingly
-        recursivelySort(e);
-      });
-
-    this.dotted = (hasText || hasAllowedContent) && !hasDisallowedContent;
-    this.hasFocusableContent = hasFocusableContent;
-  }
-
-  getTextContentLength() {
-    // @todo: add mutation observer and call this when content changes
-    if (this.slotMap.get('content')) {
-      this.textContentLength = this.slotMap
-        .get('content')[0]
-        .textContent.trim().length;
-    }
-  }
-
-  update(changedProperties) {
-    super.update && super.update(changedProperties);
-
-    if (changedProperties.get('placement')) {
-      if (this.popper) {
-        this.popper.destroy();
-      }
-      this.setupPlacement();
-    }
-  }
-
-  setupPlacement() {
-    this.tooltip = this.renderRoot.querySelector('.c-bolt-tooltip');
-    this.content = this.renderRoot.querySelector('.c-bolt-tooltip__content');
+  initTippy() {
+    const self = this;
 
     this.$boundary =
       this.$boundary ||
       (this.boundary && this.closest(this.boundary)) ||
       undefined;
 
-    if (this.tooltip && this.content) {
-      this.popper = createPopper(this.tooltip, this.content, {
-        placement: this.placement,
+    // Note: trigger cannot not be a shadow DOM element or Tippy doesn't always hide properly
+    this.popover = tippy(this.trigger, {
+      content: this.content,
+      placement: this.placement || schema.properties.placement.default,
+      trigger: 'mouseenter focus', // To help debug styles set to 'click'
+      arrow: false,
+      theme: 'tooltip',
+      appendTo: document.body,
+      maxWidth: 'none', // Set width via CSS variable for legacy Edge support
+      offset: [0, 0],
+      plugins: [hideOnEsc],
+      popperOptions: {
         modifiers: [
-          {
-            name: 'onPlacementChange',
-            enabled: true,
-            phase: 'afterWrite',
-            fn: ({ state }) => {
-              if (this.placement !== state.placement) {
-                this.placement = state.placement;
-              }
-            },
-          },
           {
             name: 'flip',
             options: {
@@ -202,73 +52,55 @@ class BoltTooltip extends BoltElement {
           {
             name: 'preventOverflow',
             options: {
-              altAxis: true,
               boundary: this.$boundary,
             },
           },
         ],
-      });
-    }
+      },
+    });
   }
 
-  firstUpdated(changedProperties) {
-    super.firstUpdated && super.firstUpdated(changedProperties);
-    this.setupPlacement();
+  firstUpdated() {
+    const {
+      hasText,
+      hasAllowedContent,
+      hasDisallowedContent,
+      firstFocusableElement,
+    } = inspectNodeTypes(this.slotMap.get('default'));
+
+    this.dotted = (hasText || hasAllowedContent) && !hasDisallowedContent;
+    this.trigger = firstFocusableElement || this;
+    this.content = this.querySelector('[slot="content"]');
+
+    if (!this.content) return;
+
+    // Handle non-focusable trigger elements
+    if (!firstFocusableElement) {
+      this.trigger.setAttribute('role', 'button');
+      this.trigger.setAttribute('tabindex', 0);
+    }
+
+    // Set classes on content container
+    const contentClasslist = [`c-bolt-tooltip__content`, `t-bolt-xxxdark`];
+    const textContentLength = this.content.textContent.trim().length;
+    if (textContentLength > 31) {
+      contentClasslist.push(`c-bolt-tooltip__content--text-wrap`);
+    }
+    if (textContentLength > 31 && textContentLength < 62) {
+      contentClasslist.push(`c-bolt-tooltip__content--text-align-center`);
+    }
+    this.content.classList.add(...contentClasslist);
+
+    this.initTippy();
+    this.setAttribute('ready', '');
+
+    // Call super and dispatch "ready" event _after_ Tippy is setup
+    super.firstUpdated && super.firstUpdated();
   }
 
   render() {
-    if (!this._wasInitiallyRendered) {
-      this.sortChildren();
-      this.getTextContentLength();
-    }
-
-    // @todo: automatic schema validation?
-    const placement = this.placement || schema.properties.placement.default;
-
-    const classes = cx('c-bolt-tooltip', {
-      [`is-expanded`]: this.open,
-      [`c-bolt-tooltip--${placement}`]: placement && placement !== 'auto',
-      [`c-bolt-tooltip--dotted`]: this.dotted,
-      [`c-bolt-tooltip--text-wrap`]: this.textContentLength > 31,
-      [`c-bolt-tooltip--text-align-center`]:
-        this.textContentLength > 31 && this.textContentLength < 62,
-    });
-
     return html`
-      <span
-        class="${classes}"
-        @keyup="${this.handleKeyup}"
-        @mouseenter="${this.handleHover}"
-        @mouseleave="${this.handleHover}"
-        @focusin="${this.handleFocus}"
-        @focusout="${this.handleFocus}"
-      >
-        ${this.slotify('default') &&
-          html`
-            <span
-              tabindex="${this.hasFocusableContent ? '-1' : '0'}"
-              role="button"
-              aria-describedby="js-bolt-tooltip-${this.uuid}"
-              aria-controls="js-bolt-tooltip-${this.uuid}"
-              aria-expanded="${this.open}"
-            >
-              ${this.slotify('default')}
-            </span>
-          `}
-        ${this.slotMap.get('content') &&
-          html`
-            <span
-              id="js-bolt-tooltip-${this.uuid}"
-              class="${cx(`c-bolt-tooltip__content`)}"
-              role="tooltip"
-              aria-hidden="${!this.open}"
-            >
-              <span class="${cx(`c-bolt-tooltip__bubble`)}">
-                ${this.slotify('content')}
-              </span>
-            </span>
-          `}
-      </span>
+      ${this.slotify('default')}
     `;
   }
 }

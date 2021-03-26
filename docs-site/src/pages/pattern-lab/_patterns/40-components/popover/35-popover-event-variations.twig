@@ -1,0 +1,74 @@
+{% set schema = bolt.data.components['@bolt-components-popover'].schema %}
+
+{% set description %}
+  Show popover on hover by setting the <bolt-code-snippet display="inline">event</bolt-code-snippet> prop to "hover".
+{% endset %}
+
+{% set demo %}
+  {% set link %}
+    {% include '@bolt-components-link/link.twig' with {
+      text: 'call to action',
+      url: 'https://pega.com',
+    } only %}
+  {% endset %}
+  {% set content %}
+    This is the content of the popover with a {{ link }}.
+  {% endset %}
+
+  {% set trigger_click %}
+    {% include '@bolt-components-button/button.twig' with {
+      text: 'trigger event: click (default)',
+      size: 'small',
+    } only %}
+  {% endset %}
+  {% include '@bolt-components-popover/popover.twig' with {
+    trigger: trigger_click,
+    content: content
+  } only %}
+  {% set trigger_hover %}
+    {% include '@bolt-components-button/button.twig' with {
+      text: 'trigger event: hover',
+      size: 'small',
+    } only %}
+  {% endset %}
+  {% include '@bolt-components-popover/popover.twig' with {
+    trigger: trigger_hover,
+    content: content,
+    trigger_event: 'hover'
+  } only %}
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% include '@bolt-components-popover/popover.twig' with {
+  trigger: trigger,
+  content: content,
+} only %}
+{% include '@bolt-components-popover/popover.twig' with {
+  trigger: trigger,
+  content: content,
+  event: 'hover'
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% set html_markup %}
+{% verbatim %}
+<bolt-popover spacing="medium">
+  <bolt-button>
+    This triggers a popover on hover
+  </bolt-button>
+  <div slot="content">
+    This is the content of the popover.
+  </div>
+</bolt-popover>
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Popover Trigger Event',
+  description: description,
+  demo: demo,
+  twig_markup: twig_markup,
+  html_markup: html_markup,
+} only %}
