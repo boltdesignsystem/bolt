@@ -4,6 +4,7 @@ import {
   hideOnEsc,
   handleFocus,
   inspectNodeTypes,
+  getFocusableElement,
 } from '@bolt/core-v3.x/utils';
 import schema from '../popover.schema';
 import '@bolt/core-v3.x/elements/focus-trap';
@@ -35,6 +36,8 @@ class BoltPopover extends BoltElement {
       placement: this.placement || schema.properties.placement.default,
       trigger: this.triggerEvent === 'hover' ? 'mouseenter focus' : 'click',
       arrow: false,
+      theme: 'popover',
+      role: null,
       interactive: true,
       appendTo: document.body,
       maxWidth: 'none', // Set width via CSS variable, requires legacy Edge support
@@ -65,13 +68,16 @@ class BoltPopover extends BoltElement {
       this.slotMap.get('default'),
     );
 
-    this.trigger = firstFocusableElement || this;
+    // If `firstFocusableElement` has Shadow DOM, `getFocusableElement()` returns the focusable element within the Shadow DOM
+    this.trigger = firstFocusableElement
+      ? getFocusableElement(firstFocusableElement)
+      : this;
     this.content = this.querySelector('[slot="content"]');
 
     if (!this.content) return;
 
     // Handle non-focusable trigger elements
-    if (!this.hasFocusableContent) {
+    if (!firstFocusableElement) {
       this.trigger.setAttribute('role', 'button');
       this.trigger.setAttribute('tabindex', 0);
     }

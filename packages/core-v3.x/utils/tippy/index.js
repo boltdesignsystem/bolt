@@ -31,13 +31,6 @@ export const handleFocus = {
   fn({ popper, reference, props, ...rest }) {
     const trap = popper.querySelector('focus-trap');
     const { firstFocusableElement } = inspectNodeTypes([popper]);
-    const getFocusableElement = node => {
-      if (node.tagName.toLowerCase().includes('bolt-') && node.renderRoot) {
-        return queryShadowRoot(node.renderRoot, isHidden, isFocusable)[0];
-      } else {
-        return node;
-      }
-    };
 
     async function onKeyDown(event) {
       // tab keycode
@@ -139,4 +132,12 @@ export const inspectNodeTypes = nodes => {
     hasDisallowedContent,
     firstFocusableElement,
   };
+};
+
+export const getFocusableElement = node => {
+  if (node.tagName.toLowerCase().includes('bolt-') && node.renderRoot) {
+    return queryShadowRoot(node.renderRoot, isHidden, isFocusable)[0] || node;
+  } else {
+    return node;
+  }
 };
