@@ -67,9 +67,6 @@ class BoltPopover extends BoltElement {
 
     this.trigger = firstFocusableElement || this;
     this.content = this.querySelector('[slot="content"]');
-    // this.trigger = this.slotMap
-    //   .get('default')
-    //   .find(item => item instanceof HTMLElement);
 
     if (!this.content) return;
 
