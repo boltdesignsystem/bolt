@@ -35,9 +35,9 @@ class BoltPopover extends BoltElement {
       placement: this.placement || schema.properties.placement.default,
       trigger: this.triggerEvent === 'hover' ? 'mouseenter click' : 'click',
       arrow: false,
+      interactive: true,
       theme: 'popover',
       role: null,
-      interactive: true,
       appendTo: document.body,
       maxWidth: 'none', // Set width via CSS variable, requires legacy Edge support
       offset: [0, 0],

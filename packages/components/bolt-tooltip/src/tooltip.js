@@ -33,6 +33,7 @@ class BoltTooltip extends BoltElement {
       placement: this.placement || schema.properties.placement.default,
       trigger: 'mouseenter focus', // To help debug styles set to 'click'
       arrow: false,
+      interactive: true,
       theme: 'tooltip',
       appendTo: document.body,
       maxWidth: 'none', // Set width via CSS variable for legacy Edge support
