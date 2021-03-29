@@ -11,29 +11,29 @@
   {% set is_headline = isHeadline %}
 {% endif %}
 
+{% if url or attributes['url'] %}
+  {% set url = url | default(attributes['url']) %}
+{% elseif href or attributes['href'] %}
+  {% set url = href | default(attributes['href']) %}
+{% endif %}
+
+{% if target or attributes['target'] %}
+  {% set target = target | default(attributes['target']) %}
+{% endif %}
+
+{% if onClick or attributes['on-click'] %}
+  {% set onClick = onClick | default(attributes['on-click']) %}
+{% endif %}
+
+{% if onClickTarget or attributes['on-click-target'] %}
+  {% set onClickTarget = onClickTarget | default(attributes['on-click-target']) %}
+{% endif %}
+
 {# Variables #}
 {% set this = init(schema) %}
 {% set inner_attributes = create_attribute({}) %}
 
 {% set icon_positions = schema.properties.icon.properties.position.enum %}
-
-{% if url or attributes["url"] %}
-  {% set url = url | default(attributes["url"]) %}
-{% elseif href or attributes["href"] %}
-  {% set url = href | default(attributes["href"]) %}
-{% endif %}
-
-{% if target or attributes["target"] %}
-  {% set target = target | default(attributes["target"]) %}
-{% endif %}
-
-{% if onClick or attributes["on-click"] %}
-  {% set onClick = onClick | default(attributes["on-click"]) %}
-{% endif %}
-
-{% if onClickTarget or attributes["on-click-target"] %}
-  {% set onClickTarget = onClickTarget | default(attributes["on-click-target"]) %}
-{% endif %}
 
 {% if this.data.url.value or this.props.url.value %}
   {% set _tag = 'a' %}
