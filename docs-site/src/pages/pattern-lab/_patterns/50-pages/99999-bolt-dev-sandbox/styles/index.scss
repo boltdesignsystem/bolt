@@ -1,6 +1,46 @@
-/* ------------------------------------ *\
-   Dev Sandbox CSS
-   Keep each piece as individual files then import them here.
-\* ------------------------------------ */
+/**
+ * Add imports here
+ */
 
-/* @import 'global-search'; deprecated */
+.c-bolt-article-pagination {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  grid-template-areas:
+    'parent parent'
+    'prev next';
+}
+
+.c-bolt-article-pagination__item {
+  padding: var(--bolt-spacing-y-small) var(--bolt-spacing-x-small);
+  font-size: var(--bolt-type-font-size-small);
+  font-weight: var(--bolt-type-font-weight-semibold);
+  line-height: var(--bolt-type-line-height-small);
+  text-align: center;
+  border: 1px solid var(--m-bolt-border);
+
+  &:first-child {
+    margin-bottom: var(--bolt-spacing-x-small);
+    padding: 0;
+    font-size: var(--bolt-type-font-size-xsmall);
+    font-weight: var(--bolt-type-font-weight-bold);
+    line-height: var(--bolt-type-line-height-xsmall);
+    text-align: left;
+    border: 0;
+    grid-area: parent;
+  }
+
+  &:nth-child(2) {
+    border-top-left-radius: bolt-border-radius(small);
+    border-right: 0;
+    border-bottom-left-radius: bolt-border-radius(small);
+    grid-area: prev;
+  }
+
+  &:nth-child(3) {
+    border-top-right-radius: bolt-border-radius(small);
+    border-bottom-right-radius: bolt-border-radius(small);
+    grid-area: next;
+  }
+}

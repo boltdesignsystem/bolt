@@ -26,7 +26,7 @@ $_bolt-holy-grail-gutter: var(--bolt-spacing-x-large);
   }
 
   @include bolt-mq(medium) {
-    grid-template-columns: auto 1fr auto;
+    grid-template-columns: auto minmax(160px, 1fr) auto;
   }
 }
 
@@ -48,10 +48,8 @@ $_bolt-holy-grail-gutter: var(--bolt-spacing-x-large);
     @include bolt-vertical-scroll;
 
     position: sticky;
-    top: calc(var(--bolt-page-header-height) + var(--bolt-spacing-y-medium));
-    height: calc(
-      100vh - var(--bolt-page-header-height) - var(--bolt-spacing-y-medium)
-    );
+    top: var(--bolt-page-header-height);
+    max-height: calc(100vh - var(--bolt-page-header-height));
     margin: calc(#{$_bolt-holy-grail-sidebar-overflow-offset} * -1)
       calc(
         #{$_bolt-holy-grail-gutter} - #{$_bolt-holy-grail-sidebar-overflow-offset}
@@ -177,11 +175,13 @@ $_bolt-holy-grail-gutter: var(--bolt-spacing-x-large);
   }
 
   @include bolt-mq(medium) {
-    width: unquote('max(180px, 15vw)');
+    --l-bolt-holy-grail-layout-width: max(220px, 15vw);
+
+    width: var(--l-bolt-holy-grail-layout-width);
     margin: calc(#{$_bolt-holy-grail-sidebar-overflow-offset} * -1);
 
     @at-root .l-bolt-holy-grail__sidebar--secondary #{&} {
-      width: unquote('max(160px, 10vw)');
+      --l-bolt-holy-grail-layout-width: max(160px, 10vw);
     }
 
     @at-root .l-bolt-holy-grail__sidebar--auto-width #{&} {

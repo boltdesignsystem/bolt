@@ -1,8 +1,8 @@
 @import '@bolt/core-v3.x';
 
-/* ------------------------------------ *\
-   Side nav
-\* ------------------------------------ */
+/**
+ * Side nav
+ */
 
 .c-bolt-side-nav {
   @include bolt-mq(medium) {
@@ -83,7 +83,9 @@
 
 .c-bolt-side-nav__content {
   @include bolt-mq(medium) {
-    width: unquote('max(250px, 15vw)');
+    width: var(
+      --l-bolt-holy-grail-layout-width
+    ); // Width is set if side nav is used inside the Holy Grail layout, otherwise it will take up full width of the parent container.
   }
 }
 

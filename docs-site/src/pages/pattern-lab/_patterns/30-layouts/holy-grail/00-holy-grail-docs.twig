@@ -1,6 +1,16 @@
 {% set usage %}{% verbatim %}
 {% include '@bolt-layouts-holy-grail/holy-grail.twig' with {
-  content: 'This is a holy grail layout.',
+  content: content,
+  sidebar: {
+    content: sidebar,
+    trigger_icon: 'documentation',
+    trigger_label: 'Primary Sidebar',
+  },
+  secondary_sidebar: {
+    content: secondary_sidebar,
+    trigger_icon: 'more',
+    trigger_label: 'Secondary Sidebar',
+  },
 } only %}
 {% endverbatim %}{% endset %}
 

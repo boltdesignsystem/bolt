@@ -62,20 +62,6 @@
         </header>
         <section>
           <h2 id="section-one">Section One</h2>
-          <p>Use the Dev Studio, dynamic system settings rules, and properties files and scripts, to set system-wide parameters. The specific tool depends on your situation.</p>
-          <dl>
-            <dt>System-wide parameters</dt>
-            <dd>To specify system-wide parameters, use system data instances. System data instances are occurrences of your Pega Platform. See Specifying system-wide security parameters by using system data instances.</dd> 
-            <dt>Cluster-wide parameters that differ from site to site</dt>
-            <dd>To set cluster-wide parameters when the values differ from site to site, such as with URLs, user names, or port numbers, and when they might be set programmatically use dynamic system settings. See Configuring dynamic system settings. For example, you can use a dynamic system settings to configure which fields are available in full-text search. Dynamic system settings are stored in the Pega Platform database and are used by all nodes that share that database.</dd> 
-            <dt>Individual node settings</dt>
-            <dd>To apply changes to only some nodes in a system, change settings in the prconfig.xml file. Settings in the prconfig.xml file apply to the node on which the prconfig.xml file resides. See Changing node settings by modifying the prconfig.xml file.</dd> 
-            <dt>Production-level-specific run-time parameters</dt>
-            <dd>To set production-level-specific parameters, use data transforms and other rule types. Run-time application settings can differ based on a system's production level, and are further resolved at run time through rule resolution. See Configuring production-level run-time settings.</dd>
-          </dl>
-        </section>
-        <section>
-          <h2 id="section-two">Section Two</h2>
           <h3>Fixing:</h3>
           <ol>
             <li>Inaccessible navigation and confusing collapse/open interactions</li>
@@ -85,6 +71,7 @@
             <li>Confusing "did you find this helpful" interactions</li>
             <li>Redundancy in breadcrumb and book navigation</li>
             <li>Redundancy in state select and version select</li>
+            <li>Poor information architecture on prev/next and parent article navigation</li>
             <li>Font-size override <code>.article-content #content-inner li, .article-content #content-inner p, p.c-bolt-text.article-published-text, .abstract, section, dl { font-size: 0.85rem }</code></li>
           </ol>
           <h3>Introducing:</h3>
@@ -101,6 +88,9 @@
             <li>Popover overflow issue</li>
             <li>More complex book navigation</li>
           </ol>
+        </section>
+        <section>
+          <h2 id="section-two">Section Two</h2>
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rerum inventore eum aspernatur, aliquam harum quia nobis eius vitae modi. Recusandae maxime tempore impedit at itaque odio, nam sapiente quae.</p>
         </section>
         <section>
@@ -226,6 +216,9 @@
                   <th>Col1</th>
                   <th>Col2</th>
                   <th>Col3</th>
+                  <th>Col4</th>
+                  <th>Col5</th>
+                  <th>Col6</th>
                 </tr>
               </thead>
               <tbody>
@@ -233,9 +226,15 @@
                   <th>Row1</th>
                   <td>Row1</td>
                   <td>Row1</td>
+                  <td>Row1</td>
+                  <td>Row1</td>
+                  <td>Row1</td>
                 </tr>
                 <tr>
                   <th>Row2</th>
+                  <td>Row2</td>
+                  <td>Row2</td>
+                  <td>Row2</td>
                   <td>Row2</td>
                   <td>Row2</td>
                 </tr>
@@ -260,114 +259,235 @@
           tag: 'article',
         } only %}
       </bolt-stack>
-      <bolt-stack>
-        <bolt-banner align="start">
-          {% include '@bolt-components-headline/headline.twig' with {
-            text: 'Tags',
-            size: 'small',
-            tag: 'p',
-            attributes: {
-              class: 'u-bolt-margin-bottom-xsmall',
-            }
+      <bolt-stack spacing="large">
+        {% set icon_arrow_left %}
+          {% include '@bolt-components-icon/icon.twig' with {
+            name: 'arrow-left',
           } only %}
-          {% include '@bolt-components-chip-list/chip-list.twig' with {
-            size: 'xsmall',
-            truncate: 3,
-            items: [
-              {
-                text: 'Beginner',
-                url: '#!'
-              },
-              {
-                text: 'User Interface',
-                url: '#!'
-              },
-              {
-                text: 'Pega Platform',
-                url: '#!'
-              },
-              {
-                text: 'Application Development',
-                url: '#!'
-              },
-              {
-                text: 'Case Management',
-                url: '#!'
-              },
-              {
-                text: 'Robotic Process Automation',
-                url: '#!'
-              },
-              {
-                text: 'Data Integration',
-                url: '#!'
-              },
-            ]
+        {% endset %}
+        {% set icon_chevron_left %}
+          {% include '@bolt-components-icon/icon.twig' with {
+            name: 'chevron-left',
           } only %}
-
-          {% include '@bolt-components-headline/headline.twig' with {
-            text: 'Did you find this helpful?',
-            size: 'small',
-            tag: 'p',
-            attributes: {
-              class: 'u-bolt-margin-bottom-xsmall',
-            }
+        {% endset %}
+        {% set icon_chevron_right %}
+          {% include '@bolt-components-icon/icon.twig' with {
+            name: 'chevron-right',
           } only %}
-          {% set yes %}
-            {% set icon %}
-              {% include '@bolt-components-icon/icon.twig' with {
-                name: 'check-circle',
-                size: 'medium',
-              } only %}
-            {% endset %}
-            {% include '@bolt-elements-text-link/text-link.twig' with {
-              content: 'Yes',
-              icon_before: icon,
-              attributes: {
-                type: 'button',
-              }
-            } only %}
-          {% endset %}
-          {% set no %}
-            {% set icon %}
-              {% include '@bolt-components-icon/icon.twig' with {
-                name: 'close-open',
-                size: 'medium',
-              } only %}
-            {% endset %}
-            {% include '@bolt-elements-text-link/text-link.twig' with {
-              content: 'No',
-              icon_before: icon,
-              attributes: {
-                type: 'button',
-              }
-            } only %}
-          {% endset %}
-          {% set reset %}
-            {% set reset_button %}
+        {% endset %}
+        <ul class="c-bolt-article-pagination">
+          <li class="c-bolt-article-pagination__item">
+            {% set link %}
               {% include '@bolt-elements-text-link/text-link.twig' with {
-                content: 'Reset',
+                content: 'System Administration',
+                icon_before: icon_arrow_left,
+                reversed_underline: true,
+                attributes: {
+                  href: 'https://pega.com',
+                },
+              } only %}
+            {% endset %}
+            {% include '@bolt-components-tooltip/tooltip.twig' with {
+              trigger: link,
+              content: 'Parent topic',
+            } only %}
+          </li>
+          <li class="c-bolt-article-pagination__item">
+            {% set link %}
+              {% include '@bolt-elements-text-link/text-link.twig' with {
+                content: 'Service packages',
+                icon_before: icon_chevron_left,
+                reversed_underline: true,
+                attributes: {
+                  href: 'https://pega.com',
+                },
+              } only %}
+            {% endset %}
+            {% include '@bolt-components-tooltip/tooltip.twig' with {
+              trigger: link,
+              content: 'Previous topic',
+            } only %}
+          </li>
+          <li class="c-bolt-article-pagination__item">
+            {% set link %}
+              {% include '@bolt-elements-text-link/text-link.twig' with {
+                content: 'Service rules',
+                icon_after: icon_chevron_right,
+                reversed_underline: true,
+                attributes: {
+                  href: 'https://pega.com',
+                },
+              } only %}
+            {% endset %}
+            {% include '@bolt-components-tooltip/tooltip.twig' with {
+              trigger: link,
+              content: 'Next topic',
+            } only %}
+          </li>
+        </ul>
+      </bolt-stack>
+      <bolt-stack spacing="medium">
+        {% set banner_content %}
+          <bolt-stack spacing="medium">
+            {% set icon %}
+              {% include '@bolt-components-icon/icon.twig' with {
+                name: 'documentation',
+              } only %}
+            {% endset %}
+            {% set article_1 %}
+              {% include '@bolt-elements-text-link/text-link.twig' with {
+                content: 'Configuring nodes for high availability',
+                icon_before: icon,
+                reversed_underline: true,
+                attributes: {
+                  href: 'https://pega.com',
+                },
+              } only %}
+            {% endset %}
+            {% set article_2 %}
+              {% include '@bolt-elements-text-link/text-link.twig' with {
+                content: 'Configuring application tier architecture for redundancy',
+                icon_before: icon,
+                reversed_underline: true,
+                attributes: {
+                  href: 'https://pega.com',
+                },
+              } only %}
+            {% endset %}
+            {% include '@bolt-components-headline/headline.twig' with {
+              text: 'Related articles',
+              size: 'small',
+              tag: 'h3',
+              attributes: {
+                class: 'u-bolt-margin-bottom-xsmall',
+              }
+            } only %}
+            {% include '@bolt-components-list/list.twig' with {
+              separator: 'solid',
+              items: [
+                article_1,
+                article_2,
+              ],
+            } only %}
+          </bolt-stack>
+
+          <bolt-stack spacing="medium">
+            {% include '@bolt-components-headline/headline.twig' with {
+              text: 'Tags',
+              size: 'small',
+              tag: 'p',
+              attributes: {
+                class: 'u-bolt-margin-bottom-xsmall',
+              }
+            } only %}
+            {% include '@bolt-components-chip-list/chip-list.twig' with {
+              size: 'xsmall',
+              truncate: 3,
+              items: [
+                {
+                  text: 'Beginner',
+                  url: '#!'
+                },
+                {
+                  text: 'User Interface',
+                  url: '#!'
+                },
+                {
+                  text: 'Pega Platform',
+                  url: '#!'
+                },
+                {
+                  text: 'Application Development',
+                  url: '#!'
+                },
+                {
+                  text: 'Case Management',
+                  url: '#!'
+                },
+                {
+                  text: 'Robotic Process Automation',
+                  url: '#!'
+                },
+                {
+                  text: 'Data Integration',
+                  url: '#!'
+                },
+              ]
+            } only %}
+          </bolt-stack>
+
+          <bolt-stack spacing="medium">
+            {% include '@bolt-components-headline/headline.twig' with {
+              text: 'Did you find this helpful?',
+              size: 'small',
+              tag: 'p',
+              attributes: {
+                class: 'u-bolt-margin-bottom-xsmall',
+              }
+            } only %}
+            {% set yes %}
+              {% set icon %}
+                {% include '@bolt-components-icon/icon.twig' with {
+                  name: 'check-circle',
+                  size: 'medium',
+                } only %}
+              {% endset %}
+              {% include '@bolt-elements-text-link/text-link.twig' with {
+                content: 'Yes',
+                icon_before: icon,
+                reversed_underline: true,
                 attributes: {
                   type: 'button',
                 }
               } only %}
             {% endset %}
-            {% include '@bolt-components-headline/text.twig' with {
-              text: '100% found this helpful. (' ~ reset_button|spaceless ~ ')',
-              size: 'small',
-              style: 'italic',
-              tag: 'p',
+            {% set no %}
+              {% set icon %}
+                {% include '@bolt-components-icon/icon.twig' with {
+                  name: 'close-open',
+                  size: 'medium',
+                } only %}
+              {% endset %}
+              {% include '@bolt-elements-text-link/text-link.twig' with {
+                content: 'No',
+                icon_before: icon,
+                reversed_underline: true,
+                attributes: {
+                  type: 'button',
+                }
+              } only %}
+            {% endset %}
+            {% set reset %}
+              {% set reset_button %}
+                {% include '@bolt-elements-text-link/text-link.twig' with {
+                  content: 'Reset',
+                  attributes: {
+                    type: 'button',
+                  }
+                } only %}
+              {% endset %}
+              {% include '@bolt-components-headline/text.twig' with {
+                text: '100% found this helpful. (' ~ reset_button|spaceless ~ ')',
+                size: 'small',
+                style: 'italic',
+                tag: 'p',
+              } only %}
+            {% endset %}
+            {% include '@bolt-components-list/list.twig' with {
+              display: 'inline',
+              spacing: 'small',
+              items: [
+                yes,
+                no,
+              ],
             } only %}
-          {% endset %}
-          {% include '@bolt-components-list/list.twig' with {
-            display: 'inline',
-            spacing: 'small',
-            items: [
-              yes,
-              no,
-            ],
-          } only %}
-        </bolt-banner>
+          </bolt-stack>
+        {% endset %}
+
+        {% include "@bolt-components-banner/banner.twig" with {
+          content: banner_content,
+          align: 'start',
+        } only %}
       </bolt-stack>
     {% endset %}
     {% set sidebar_content %}

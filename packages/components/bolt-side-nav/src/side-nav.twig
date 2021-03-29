@@ -1,0 +1,31 @@
+{# Schema Validation #}
+{% set schema = bolt.data.components['@bolt-components-side-nav'].schema %}
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(schema, _self)|raw }}
+{% endif %}
+
+{# Variables #}
+{% set this = init(schema) %}
+{% set attributes = create_attribute(attributes|default({})) %}
+
+{# Template #}
+<div {{ attributes.addClass('c-bolt-side-nav') }}>
+  <button type="button" aria-expanded="true" class="c-bolt-side-nav__trigger js-bolt-side-nav-toggle-trigger">
+    <span class="c-bolt-side-nav__trigger__text">Toggle side navigation</span>
+    {% include '@bolt-components-icon/icon.twig' with {
+      name: 'chevron-left',
+    } only %}
+  </button>
+  <nav class="c-bolt-side-nav__content" {% if title %} aria-labelledby="bolt-side-nav" {% endif %}>
+    {% if title %}
+      <h2 class="c-bolt-side-nav__header" id="bolt-side-nav">
+        {% if title.attributes.href %}
+          <a href="{{ title.attributes.href }}" class="c-bolt-side-nav__header__link">{{ title.content }}</a>
+        {% else %}
+          {{ title.content }}
+        {% endif %}
+      </h2>
+    {% endif %}
+    {{ content }}
+  </nav>
+</div>
