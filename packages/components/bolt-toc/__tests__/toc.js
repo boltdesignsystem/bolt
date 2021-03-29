@@ -15,26 +15,26 @@ describe('<bolt-toc> Component', () => {
   }, 100);
 
   // Basic Usage
-  test('Basic usage', async () => {
-    const results = await render('@bolt-components-toc/toc.twig', {
-      items: [
-        {
-          text: 'Section One',
-          url: '#section-one',
-        },
-        {
-          text: 'Section Two',
-          url: '#section-two',
-        },
-        {
-          text: 'Section Three',
-          url: '#section-three',
-        },
-      ],
-    });
-    expect(results.ok).toBe(true);
-    expect(results.html).toMatchSnapshot();
-  });
+  // test('Basic usage', async () => {
+  //   const results = await render('@bolt-components-toc/toc.twig', {
+  //     items: [
+  //       {
+  //         text: 'Section One',
+  //         url: '#section-one',
+  //       },
+  //       {
+  //         text: 'Section Two',
+  //         url: '#section-two',
+  //       },
+  //       {
+  //         text: 'Section Three',
+  //         url: '#section-three',
+  //       },
+  //     ],
+  //   });
+  //   expect(results.ok).toBe(true);
+  //   expect(results.html).toMatchSnapshot();
+  // });
 
   // Props
   test(`Table of content with a header`, async () => {

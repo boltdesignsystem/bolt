@@ -1,70 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<bolt-toc> Component Basic usage 1`] = `
-<bolt-toc>
-  <div class="c-bolt-toc"
-       role="navigation"
-       aria-labelledby="js-bolt-toc-12345"
-  >
-    <h2 class="c-bolt-toc__header c-bolt-toc__header--hidden"
-        id="js-bolt-toc-12345"
-    >
-      Table of Content
-    </h2>
-    <div class="c-bolt-toc__list"
-         role="list"
-    >
-      <ssr-keep for="bolt-toc"
-                role="presentation"
-      >
-        <bolt-toc-item url="#section-one"
-                       role="presentation"
-        >
-          <div role="listitem">
-            <a class="c-bolt-toc-item "
-               href="#section-one"
-            >
-              <ssr-keep for="bolt-toc-item">
-                Section One
-              </ssr-keep>
-            </a>
-          </div>
-        </bolt-toc-item>
-        <bolt-toc-item url="#section-two"
-                       role="presentation"
-        >
-          <div role="listitem">
-            <a class="c-bolt-toc-item "
-               href="#section-two"
-            >
-              <ssr-keep for="bolt-toc-item">
-                Section Two
-              </ssr-keep>
-            </a>
-          </div>
-        </bolt-toc-item>
-        <bolt-toc-item url="#section-three"
-                       role="presentation"
-        >
-          <div role="listitem">
-            <a class="c-bolt-toc-item "
-               href="#section-three"
-            >
-              <ssr-keep for="bolt-toc-item">
-                Section Three
-              </ssr-keep>
-            </a>
-          </div>
-        </bolt-toc-item>
-      </ssr-keep>
-    </div>
-  </div>
-</bolt-toc>
-`;
-
 exports[`<bolt-toc> Component Manuualy set the current item 1`] = `
 <bolt-toc>
-  <div class="c-bolt-toc"
+  <div class="c-bolt-toc c-bolt-toc--variant-card"
        role="navigation"
        aria-labelledby="js-bolt-toc-12345"
   >
@@ -127,7 +65,7 @@ exports[`<bolt-toc> Component Manuualy set the current item 1`] = `
 
 exports[`<bolt-toc> Component Table of content with a header 1`] = `
 <bolt-toc header="This is the header">
-  <div class="c-bolt-toc"
+  <div class="c-bolt-toc c-bolt-toc--variant-card"
        role="navigation"
        aria-labelledby="js-bolt-toc-12345"
   >
