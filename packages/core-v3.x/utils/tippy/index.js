@@ -8,7 +8,7 @@ export { tippy };
 export const hideOnEsc = {
   name: 'hideOnEsc',
   defaultValue: true,
-  fn({ hide, reference, ...rest }) {
+  fn({ hide }) {
     function onKeyDown(event) {
       if (event.keyCode === 27) {
         hide();
