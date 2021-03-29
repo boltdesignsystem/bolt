@@ -37,7 +37,6 @@ export const handleFocus = {
       if (event.keyCode === 9) {
         event.preventDefault();
 
-        trap.active = true;
         // Wait or re-render will cause target element to lose focus
         await trap.updateComplete;
         trap.focusFirstElement();
@@ -48,6 +47,7 @@ export const handleFocus = {
     return {
       onShow() {
         if (firstFocusableElement && trap) {
+          trap.active = true; // Activate ASAP so that `trap.focusFirstElement()` can be called immediately on 'keydown'
           document.addEventListener('keydown', onKeyDown);
         }
       },
