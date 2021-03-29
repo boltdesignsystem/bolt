@@ -197,15 +197,12 @@ exports[`link Default <bolt-link> with Shadow DOM renders with no extra whitespa
 `;
 
 exports[`link Link with an onClick attributes renders properly 1`] = `
-<bolt-link display="inline"
-           valign="center"
+<bolt-link on-click="on-click-test"
            url="https://pega.com"
-           on-click="on-click-test"
 >
   <a href="https://pega.com"
-     is="shadow-root"
-     class="c-bolt-link  c-bolt-link--display-inline c-bolt-link--valign-center"
-     on-click="on-click-test"
+     target="_self"
+     class="c-bolt-link c-bolt-link--display-inline c-bolt-link--valign-center"
   >
     <ssr-keep for="bolt-link"
               class="c-bolt-link__text"
@@ -217,14 +214,12 @@ exports[`link Link with an onClick attributes renders properly 1`] = `
 `;
 
 exports[`link Link with an onClick param renders properly 1`] = `
-<bolt-link display="inline"
-           valign="center"
+<bolt-link on-click="on-click-test"
            url="https://pega.com"
-           on-click="on-click-test"
 >
   <a href="https://pega.com"
-     is="shadow-root"
-     class="c-bolt-link  c-bolt-link--display-inline c-bolt-link--valign-center"
+     target="_self"
+     class="c-bolt-link c-bolt-link--display-inline c-bolt-link--valign-center"
   >
     <ssr-keep for="bolt-link"
               class="c-bolt-link__text"
@@ -236,13 +231,10 @@ exports[`link Link with an onClick param renders properly 1`] = `
 `;
 
 exports[`link Link with c-bolt- class is thrown out 1`] = `
-<bolt-link display="inline"
-           valign="center"
-           url="https://pega.com"
->
+<bolt-link url="https://pega.com">
   <a href="https://pega.com"
-     is="shadow-root"
-     class="c-bolt-link  c-bolt-link--display-inline c-bolt-link--valign-center"
+     target="_self"
+     class="c-bolt-link c-bolt-link--display-inline c-bolt-link--valign-center"
   >
     <ssr-keep for="bolt-link"
               class="c-bolt-link__text"
@@ -254,13 +246,10 @@ exports[`link Link with c-bolt- class is thrown out 1`] = `
 `;
 
 exports[`link Link with inner classes via Drupal Attributes 1`] = `
-<bolt-link display="inline"
-           valign="center"
-           url="https://pega.com"
->
+<bolt-link url="https://pega.com">
   <a href="https://pega.com"
-     is="shadow-root"
-     class="c-bolt-link  c-bolt-link--display-inline c-bolt-link--valign-center is-active"
+     target="_self"
+     class="c-bolt-link c-bolt-link--display-inline c-bolt-link--valign-center is-active"
   >
     <ssr-keep for="bolt-link"
               class="c-bolt-link__text"
@@ -272,14 +261,12 @@ exports[`link Link with inner classes via Drupal Attributes 1`] = `
 `;
 
 exports[`link Link with outer JS-class via Drupal Attributes 1`] = `
-<bolt-link display="inline"
-           valign="center"
+<bolt-link class="js-click-me"
            url="https://pega.com"
-           class="js-click-me"
 >
   <a href="https://pega.com"
-     is="shadow-root"
-     class="c-bolt-link  c-bolt-link--display-inline c-bolt-link--valign-center"
+     target="_self"
+     class="c-bolt-link c-bolt-link--display-inline c-bolt-link--valign-center"
   >
     <ssr-keep for="bolt-link"
               class="c-bolt-link__text"
@@ -291,14 +278,12 @@ exports[`link Link with outer JS-class via Drupal Attributes 1`] = `
 `;
 
 exports[`link Link with outer classes via Drupal Attributes 1`] = `
-<bolt-link display="inline"
-           valign="center"
+<bolt-link class="u-bolt-padding-medium"
            url="https://pega.com"
-           class="u-bolt-padding-medium"
 >
   <a href="https://pega.com"
-     is="shadow-root"
-     class="c-bolt-link  c-bolt-link--display-inline c-bolt-link--valign-center"
+     target="_self"
+     class="c-bolt-link c-bolt-link--display-inline c-bolt-link--valign-center"
   >
     <ssr-keep for="bolt-link"
               class="c-bolt-link__text"
@@ -310,13 +295,10 @@ exports[`link Link with outer classes via Drupal Attributes 1`] = `
 `;
 
 exports[`link basic link 1`] = `
-<bolt-link display="inline"
-           valign="center"
-           url="https://pega.com"
->
+<bolt-link url="https://pega.com">
   <a href="https://pega.com"
-     is="shadow-root"
-     class="c-bolt-link  c-bolt-link--display-inline c-bolt-link--valign-center"
+     target="_self"
+     class="c-bolt-link c-bolt-link--display-inline c-bolt-link--valign-center"
   >
     <ssr-keep for="bolt-link"
               class="c-bolt-link__text"
@@ -329,12 +311,11 @@ exports[`link basic link 1`] = `
 
 exports[`link link display: block 1`] = `
 <bolt-link display="block"
-           valign="center"
            url="https://pega.com"
 >
   <a href="https://pega.com"
-     is="shadow-root"
-     class="c-bolt-link  c-bolt-link--display-block c-bolt-link--valign-center"
+     target="_self"
+     class="c-bolt-link c-bolt-link--display-block c-bolt-link--valign-center"
   >
     <ssr-keep for="bolt-link"
               class="c-bolt-link__text"
@@ -347,12 +328,11 @@ exports[`link link display: block 1`] = `
 
 exports[`link link display: flex 1`] = `
 <bolt-link display="flex"
-           valign="center"
            url="https://pega.com"
 >
   <a href="https://pega.com"
-     is="shadow-root"
-     class="c-bolt-link  c-bolt-link--display-flex c-bolt-link--valign-center"
+     target="_self"
+     class="c-bolt-link c-bolt-link--display-flex c-bolt-link--valign-center"
   >
     <ssr-keep for="bolt-link"
               class="c-bolt-link__text"
@@ -365,12 +345,11 @@ exports[`link link display: flex 1`] = `
 
 exports[`link link display: inline 1`] = `
 <bolt-link display="inline"
-           valign="center"
            url="https://pega.com"
 >
   <a href="https://pega.com"
-     is="shadow-root"
-     class="c-bolt-link  c-bolt-link--display-inline c-bolt-link--valign-center"
+     target="_self"
+     class="c-bolt-link c-bolt-link--display-inline c-bolt-link--valign-center"
   >
     <ssr-keep for="bolt-link"
               class="c-bolt-link__text"
@@ -382,13 +361,12 @@ exports[`link link display: inline 1`] = `
 `;
 
 exports[`link link valign: center 1`] = `
-<bolt-link display="inline"
-           valign="center"
+<bolt-link valign="center"
            url="https://pega.com"
 >
   <a href="https://pega.com"
-     is="shadow-root"
-     class="c-bolt-link  c-bolt-link--display-inline c-bolt-link--valign-center"
+     target="_self"
+     class="c-bolt-link c-bolt-link--display-inline c-bolt-link--valign-center"
   >
     <ssr-keep for="bolt-link"
               class="c-bolt-link__text"
@@ -400,13 +378,12 @@ exports[`link link valign: center 1`] = `
 `;
 
 exports[`link link valign: start 1`] = `
-<bolt-link display="inline"
-           valign="start"
+<bolt-link valign="start"
            url="https://pega.com"
 >
   <a href="https://pega.com"
-     is="shadow-root"
-     class="c-bolt-link  c-bolt-link--display-inline c-bolt-link--valign-start"
+     target="_self"
+     class="c-bolt-link c-bolt-link--display-inline c-bolt-link--valign-start"
   >
     <ssr-keep for="bolt-link"
               class="c-bolt-link__text"
