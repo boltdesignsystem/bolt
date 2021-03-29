@@ -33,7 +33,7 @@ class BoltPopover extends BoltElement {
     this.popover = tippy(this.trigger, {
       content: this.content,
       placement: this.placement || schema.properties.placement.default,
-      trigger: this.triggerEvent === 'hover' ? 'mouseenter focus' : 'click',
+      trigger: this.triggerEvent === 'hover' ? 'mouseenter click' : 'click',
       arrow: false,
       theme: 'popover',
       role: null,
