@@ -1,10 +1,5 @@
 import { customElement, BoltElement, html } from '@bolt/element';
-import {
-  tippy,
-  hideOnEsc,
-  inspectNodeTypes,
-  getFocusableElement,
-} from '@bolt/core-v3.x/utils';
+import { tippy, hideOnEsc, inspectNodeTypes } from '@bolt/core-v3.x/utils';
 import schema from '../tooltip.schema';
 
 @customElement('bolt-tooltip')
@@ -72,9 +67,7 @@ class BoltTooltip extends BoltElement {
     } = inspectNodeTypes(this.slotMap.get('default'));
 
     // If `firstFocusableElement` has Shadow DOM, `getFocusableElement()` returns the focusable element within the Shadow DOM
-    this.trigger = firstFocusableElement
-      ? getFocusableElement(firstFocusableElement)
-      : this;
+    this.trigger = firstFocusableElement || this;
     this.content = this.querySelector('[slot="content"]');
     this.dotted = (hasText || hasAllowedContent) && !hasDisallowedContent;
 

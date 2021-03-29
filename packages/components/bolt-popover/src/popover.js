@@ -4,7 +4,6 @@ import {
   hideOnEsc,
   handleFocus,
   inspectNodeTypes,
-  getFocusableElement,
 } from '@bolt/core-v3.x/utils';
 import schema from '../popover.schema';
 import '@bolt/core-v3.x/elements/focus-trap';
@@ -69,9 +68,7 @@ class BoltPopover extends BoltElement {
     );
 
     // If `firstFocusableElement` has Shadow DOM, `getFocusableElement()` returns the focusable element within the Shadow DOM
-    this.trigger = firstFocusableElement
-      ? getFocusableElement(firstFocusableElement)
-      : this;
+    this.trigger = firstFocusableElement || this;
     this.content = this.querySelector('[slot="content"]');
 
     if (!this.content) return;
