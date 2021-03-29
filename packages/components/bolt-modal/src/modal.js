@@ -2,7 +2,6 @@
 
 import { html, customElement, BoltElement, unsafeCSS } from '@bolt/element';
 import {
-  hasNativeShadowDomSupport,
   getTransitionDuration,
   bodyHasScrollbar,
   getScrollbarWidth,
@@ -12,7 +11,7 @@ import {
 import classNames from 'classnames/bind';
 import styles from './modal.scss';
 import schema from '../modal.schema.js';
-import '../focus-trap';
+import '@bolt/core-v3.x/elements/focus-trap';
 
 const tabbable = require('tabbable');
 const ESCAPE_KEY = 27;

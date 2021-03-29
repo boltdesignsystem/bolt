@@ -328,7 +328,6 @@ class BoltCarousel extends BoltElement {
       centerInsufficientSlides: false,
       watchSlidesProgress: true,
       watchSlidesVisibility: true,
-      slideToClickedSlide: true,
       threshold: 3,
       centeredSlides: this.slideAlign === 'center' ? true : false,
       effect: this.fade ? 'fade' : 'slide',

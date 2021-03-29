@@ -5,22 +5,12 @@
 {% endif %}
 
 {# Variables #}
-{% set base_class = "c-bolt-popover" %}
 {% set this = init(schema) %}
 {% set uuid = this.data.uuid|default(bolt.data.config.env == "test" ? "12345" : random() ~ "") %}
 {% set inner_attributes = create_attribute({}) %}
 
 {# Array of classes based on the defined + default props #}
-{% set classes = [
-  base_class,
-  base_class ~ "--bottom",
-  base_class ~ "--text-wrap",
-  this.data.spacing.value != "none" ? base_class ~ "--spacing-" ~ this.data.spacing.value : "",
-] %}
-{% set bubble_classes = [
-  base_class ~ "__bubble",
-  this.data.theme.value != "none" ? "t-bolt-#{this.data.theme.value}" : "",
-] %}
+{% set classes = [] %}
 
 {#
   Sort classes passed in via attributes into two groups:
@@ -38,9 +28,6 @@
   {% endif %}
 {% endfor %}
 
-{% set content_id = "js-bolt-popover-" ~ uuid %}
-{% set trigger_id = "js-bolt-popover-trigger-" ~ uuid %}
-
 <bolt-popover
   {% if outer_classes %} class="{{ outer_classes|join(' ') }}" {% endif %}
   {{ this.props|without("content")|without("class") }}
@@ -49,34 +36,12 @@
   {% endif %}
   uuid="{{ uuid }}"
   >
-  <div
-    {% if inner_classes %} class="{{ inner_classes|join(' ') }}" {% endif %}
-  >
-    {% if trigger %}
-      <span id="{{ trigger_id }}">
-        <a href="#{{ content_id }}" class="{{ "#{base_class}__nojs-trigger" }}" tabindex="-1">
-          <ssr-keep for="bolt-popover">
-            {{ trigger }}
-          </ssr-keep>
-        </a>
-      </span>
-    {% endif %}
-    {% if content %}
-      <span class="c-bolt-popover__no-js-content" id="{{ content_id }}">
-        <div class="{{ "#{base_class}__content" }}">
-          <span class="{{ bubble_classes|join(' ') }}">
-            <a href="#{{ trigger_id }}" class="{{ "#{base_class}__nojs-close" }}">
-              <span aria-hidden="true">&times;</span>
-              <span class="u-bolt-visuallyhidden">Close popover</span>
-            </a>
-            <ssr-keep for="bolt-popover">
-              <span slot="content">
-                {{ content }}
-              </span>
-            </ssr-keep>
-          </span>
-        </div>
-      </span>
-    {% endif %}
-  </div>
+  {% if trigger %}
+    {{ trigger }}
+  {% endif %}
+  {% if content %}
+    <span slot="content">
+      {{ content }}
+    </span>
+  {% endif %}
 </bolt-popover>
