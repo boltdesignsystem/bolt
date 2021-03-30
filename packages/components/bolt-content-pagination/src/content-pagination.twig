@@ -1,0 +1,77 @@
+{# Schema Validation #}
+{% set schema = bolt.data.components['@bolt-components-content-pagination'].schema %}
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(schema, _self)|raw }}
+{% endif %}
+
+{# Variables #}
+{% set this = init(schema) %}
+{% set attributes = create_attribute(attributes|default({})) %}
+
+{# Template #}
+<ul {{ attributes.addClass('c-bolt-content-pagination') }}>
+  {% if parent %}
+    <li class="c-bolt-content-pagination__item c-bolt-content-pagination__item--parent">
+      {% set _icon_arrow_left %}
+        {% include '@bolt-components-icon/icon.twig' with {
+          name: 'arrow-left',
+        } only %}
+      {% endset %}
+      {% set _parent_link %}
+        {% include '@bolt-elements-text-link/text-link.twig' with {
+          content: parent.content,
+          icon_before: _icon_arrow_left,
+          reversed_underline: true,
+          attributes: parent.link_attributes,
+        } only %}
+      {% endset %}
+
+      {% include '@bolt-components-tooltip/tooltip.twig' with {
+        trigger: _parent_link,
+        content: parent.tooltip_content,
+      } only %}
+    </li>
+  {% endif %}
+  {% if previous %}
+    <li class="c-bolt-content-pagination__item c-bolt-content-pagination__item--prev">
+      {% set _icon_chevron_left %}
+        {% include '@bolt-components-icon/icon.twig' with {
+          name: 'chevron-left',
+        } only %}
+      {% endset %}
+      {% set link %}
+        {% include '@bolt-elements-text-link/text-link.twig' with {
+          content: previous.content,
+          icon_before: _icon_chevron_left,
+          reversed_underline: true,
+          attributes: previous.link_attributes,
+        } only %}
+      {% endset %}
+      {% include '@bolt-components-tooltip/tooltip.twig' with {
+        trigger: link,
+        content: previous.tooltip_content,
+      } only %}
+    </li>
+  {% endif %}
+  {% if next %}
+    <li class="c-bolt-content-pagination__item c-bolt-content-pagination__item--next">
+      {% set _icon_chevron_right %}
+        {% include '@bolt-components-icon/icon.twig' with {
+          name: 'chevron-right',
+        } only %}
+      {% endset %}
+      {% set link %}
+        {% include '@bolt-elements-text-link/text-link.twig' with {
+          content: next.content,
+          icon_after: _icon_chevron_right,
+          reversed_underline: true,
+          attributes: next.link_attributes,
+        } only %}
+      {% endset %}
+      {% include '@bolt-components-tooltip/tooltip.twig' with {
+        trigger: link,
+        content: next.content,
+      } only %}
+    </li>
+  {% endif %}
+</ul>

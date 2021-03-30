@@ -28,7 +28,7 @@
     {% endset %}
     {% set item_current %}
       {% include '@bolt-components-link/link.twig' with {
-        text: 'System Administration',
+        text: 'Book title goes here',
         url: '#!',
         attributes: {
           'aria-current': 'page',
@@ -57,7 +57,7 @@
     {% set holy_grail_content %}
       {% set article_content %}
         <header>
-          <h1>Configuring your system</h1>
+          <h1>Page title goes here</h1>
           <p>Intro text. Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore natus ipsum totam eius corrupti, aliquam iusto eligendi inventore corporis in. Mollitia sit eius esse architecto quis, praesentium quas soluta exercitationem!</p>
         </header>
         <section>
@@ -260,71 +260,29 @@
         } only %}
       </bolt-stack>
       <bolt-stack spacing="large">
-        {% set icon_arrow_left %}
-          {% include '@bolt-components-icon/icon.twig' with {
-            name: 'arrow-left',
-          } only %}
-        {% endset %}
-        {% set icon_chevron_left %}
-          {% include '@bolt-components-icon/icon.twig' with {
-            name: 'chevron-left',
-          } only %}
-        {% endset %}
-        {% set icon_chevron_right %}
-          {% include '@bolt-components-icon/icon.twig' with {
-            name: 'chevron-right',
-          } only %}
-        {% endset %}
-        <ul class="c-bolt-content-pagination">
-          <li class="c-bolt-content-pagination__item c-bolt-content-pagination__item--parent">
-            {% set link %}
-              {% include '@bolt-elements-text-link/text-link.twig' with {
-                content: 'System Administration',
-                icon_before: icon_arrow_left,
-                reversed_underline: true,
-                attributes: {
-                  href: 'https://pega.com',
-                },
-              } only %}
-            {% endset %}
-            {% include '@bolt-components-tooltip/tooltip.twig' with {
-              trigger: link,
-              content: 'Parent topic',
-            } only %}
-          </li>
-          <li class="c-bolt-content-pagination__item c-bolt-content-pagination__item--prev">
-            {% set link %}
-              {% include '@bolt-elements-text-link/text-link.twig' with {
-                content: 'Service packages',
-                icon_before: icon_chevron_left,
-                reversed_underline: true,
-                attributes: {
-                  href: 'https://pega.com',
-                },
-              } only %}
-            {% endset %}
-            {% include '@bolt-components-tooltip/tooltip.twig' with {
-              trigger: link,
-              content: 'Previous topic',
-            } only %}
-          </li>
-          <li class="c-bolt-content-pagination__item c-bolt-content-pagination__item--next">
-            {% set link %}
-              {% include '@bolt-elements-text-link/text-link.twig' with {
-                content: 'Service rules',
-                icon_after: icon_chevron_right,
-                reversed_underline: true,
-                attributes: {
-                  href: 'https://pega.com',
-                },
-              } only %}
-            {% endset %}
-            {% include '@bolt-components-tooltip/tooltip.twig' with {
-              trigger: link,
-              content: 'Next topic',
-            } only %}
-          </li>
-        </ul>
+        {% include '@bolt-components-content-pagination/content-pagination.twig' with {
+          parent: {
+            content: 'System Administrations',
+            tooltip_content: 'Parent topic',
+            link_attributes: {
+              href: 'https://pega.com',
+            },
+          },
+          previous: {
+            content: 'Configuring system settings',
+            tooltip_content: 'Previous topic',
+            link_attributes: {
+              href: 'https://pega.com',
+            },
+          },
+          next: {
+            content: 'Configuring user avatar',
+            tooltip_content: 'Next topic',
+            link_attributes: {
+              href: 'https://pega.com',
+            },
+          },
+        } only %}
       </bolt-stack>
       <bolt-stack spacing="medium">
         {% set banner_content %}
@@ -491,192 +449,184 @@
       </bolt-stack>
     {% endset %}
     {% set sidebar_content %}
-      <div class="c-bolt-side-nav">
-        <button type="button" aria-expanded="true" class="c-bolt-side-nav__trigger js-bolt-side-nav-toggle-trigger">
-          <span class="c-bolt-side-nav__trigger__text">Toggle book navigation</span>
-          {% include '@bolt-components-icon/icon.twig' with {
-            name: 'chevron-left',
-          } only %}
-        </button>
-        <nav aria-label="Book Navigation" class="c-bolt-side-nav__content">
-          <h2 class="c-bolt-side-nav__header">
-            <a href="#!" class="c-bolt-side-nav__header__link">System Administration</a>
-          </h2>
-          <ul class="c-bolt-side-nav__list">
-            <li class="c-bolt-side-nav__list-item">
-              <a href="#!" class="c-bolt-side-nav__link" aria-current="page">Configuring your system</a>
-              <button type="button" aria-expanded="true" aria-label="Toggle children links" class="c-bolt-side-nav__link c-bolt-side-nav__link--toggle-trigger js-bolt-side-nav-toggle-trigger">
-                {% include '@bolt-components-icon/icon.twig' with {
-                  name: 'chevron-down',
-                } only %}
-              </button>
-              <ul class="c-bolt-side-nav__list">
-                <li class="c-bolt-side-nav__list-item">
-                  <a href="#!" class="c-bolt-side-nav__link">Configuring high availability deployments</a>
-                  <button type="button" aria-expanded="false" aria-label="Toggle children links" class="c-bolt-side-nav__link c-bolt-side-nav__link--toggle-trigger js-bolt-side-nav-toggle-trigger">
-                {% include '@bolt-components-icon/icon.twig' with {
-                  name: 'chevron-down',
-                } only %}
-                  </button>
-                  <ul class="c-bolt-side-nav__list">
-                    <li class="c-bolt-side-nav__list-item">
-                      <a href="#!" class="c-bolt-side-nav__link">Configuring nodes for high availability</a>
-                      <button type="button" aria-expanded="false" aria-label="Toggle children links" class="c-bolt-side-nav__link c-bolt-side-nav__link--toggle-trigger js-bolt-side-nav-toggle-trigger">
-                        {% include '@bolt-components-icon/icon.twig' with {
-                          name: 'chevron-down',
-                        } only %}
-                      </button>
-                      <ul class="c-bolt-side-nav__list">
-                        <li class="c-bolt-side-nav__list-item">
-                          <a href="#!" class="c-bolt-side-nav__link">Architecting a high availability system</a>
-                          <button type="button" aria-expanded="false" aria-label="Toggle children links" class="c-bolt-side-nav__link c-bolt-side-nav__link--toggle-trigger js-bolt-side-nav-toggle-trigger">
-                            {% include '@bolt-components-icon/icon.twig' with {
-                              name: 'chevron-down',
-                            } only %}
-                          </button>
-                          <ul class="c-bolt-side-nav__list">
-                            <li class="c-bolt-side-nav__list-item">
-                              <a href="#!" class="c-bolt-side-nav__link">Setting up the components of highly available environments</a>
-                              <button type="button" aria-expanded="false" aria-label="Toggle children links" class="c-bolt-side-nav__link c-bolt-side-nav__link--toggle-trigger js-bolt-side-nav-toggle-trigger">
-                                {% include '@bolt-components-icon/icon.twig' with {
-                                  name: 'chevron-down',
-                                } only %}
-                              </button>
-                              <ul class="c-bolt-side-nav__list">
-                                <li class="c-bolt-side-nav__list-item">
-                                  <a href="#!" class="c-bolt-side-nav__link">Configuring application tier architecture for redundancy</a>
-                                  <button type="button" aria-expanded="false" aria-label="Toggle children links" class="c-bolt-side-nav__link c-bolt-side-nav__link--toggle-trigger js-bolt-side-nav-toggle-trigger">
-                                    {% include '@bolt-components-icon/icon.twig' with {
-                                      name: 'chevron-down',
-                                    } only %}
-                                  </button>
-                                  <ul class="c-bolt-side-nav__list">
-                                    <li class="c-bolt-side-nav__list-item">
-                                      <a href="#!" class="c-bolt-side-nav__link">Defining highly available integration services</a>
-                                      <button type="button" aria-expanded="false" aria-label="Toggle children links" class="c-bolt-side-nav__link c-bolt-side-nav__link--toggle-trigger js-bolt-side-nav-toggle-trigger">
-                                        {% include '@bolt-components-icon/icon.twig' with {
-                                          name: 'chevron-down',
-                                        } only %}
-                                      </button>
-                                      <ul class="c-bolt-side-nav__list">
-                                        <li class="c-bolt-side-nav__list-item">
-                                          <a href="#!" class="c-bolt-side-nav__link">Listeners</a>
-                                        </li>
-                                        <li class="c-bolt-side-nav__list-item">
-                                          <a href="#!" class="c-bolt-side-nav__link">Service packages</a>
-                                        </li>
-                                        <li class="c-bolt-side-nav__list-item">
-                                          <a href="#!" class="c-bolt-side-nav__link">Service resques processors</a>
-                                        </li>
-                                        <li class="c-bolt-side-nav__list-item">
-                                          <a href="#!" class="c-bolt-side-nav__link">Service rules</a>
-                                        </li>
-                                      </ul>
-                                    </li>
-                                  </ul>
-                                </li>
-                              </ul>
-                            </li>
-                          </ul>
-                        </li>
-                      </ul>
-                    </li>
-                  </ul>
-                </li>
-                <li class="c-bolt-side-nav__list-item">
-                  <a href="#!" class="c-bolt-side-nav__link">Level 2 nav item</a>
-                </li>
-                <li class="c-bolt-side-nav__list-item">
-                  <a href="#!" class="c-bolt-side-nav__link">Level 2 nav item</a>
-                </li>
-              </ul>
-            </li>
-            <li class="c-bolt-side-nav__list-item">
-              <a href="#!" class="c-bolt-side-nav__link">Level 1 nav item</a>
-              <button type="button" aria-expanded="false" aria-label="Toggle children links" class="c-bolt-side-nav__link c-bolt-side-nav__link--toggle-trigger js-bolt-side-nav-toggle-trigger">
-                {% include '@bolt-components-icon/icon.twig' with {
-                  name: 'chevron-down',
-                } only %}
-              </button>
-              <ul class="c-bolt-side-nav__list">
-                <li class="c-bolt-side-nav__list-item">
-                  <a href="#!" class="c-bolt-side-nav__link">Level 2 nav item</a>
-                  <button type="button" aria-expanded="false" aria-label="Toggle children links" class="c-bolt-side-nav__link c-bolt-side-nav__link--toggle-trigger js-bolt-side-nav-toggle-trigger">
-                    {% include '@bolt-components-icon/icon.twig' with {
-                      name: 'chevron-down',
-                    } only %}
-                  </button>
-                  <ul class="c-bolt-side-nav__list">
-                    <li class="c-bolt-side-nav__list-item">
-                      <a href="#!" class="c-bolt-side-nav__link">Level 3 nav item</a>
-                      <button type="button" aria-expanded="false" aria-label="Toggle children links" class="c-bolt-side-nav__link c-bolt-side-nav__link--toggle-trigger js-bolt-side-nav-toggle-trigger">
-                        {% include '@bolt-components-icon/icon.twig' with {
-                          name: 'chevron-down',
-                        } only %}
-                      </button>
-                      <ul class="c-bolt-side-nav__list">
-                        <li class="c-bolt-side-nav__list-item">
-                          <a href="#!" class="c-bolt-side-nav__link">Level 4 nav item</a>
-                          <button type="button" aria-expanded="false" aria-label="Toggle children links" class="c-bolt-side-nav__link c-bolt-side-nav__link--toggle-trigger js-bolt-side-nav-toggle-trigger">
-                            {% include '@bolt-components-icon/icon.twig' with {
-                              name: 'chevron-down',
-                            } only %}
-                          </button>
-                          <ul class="c-bolt-side-nav__list">
-                            <li class="c-bolt-side-nav__list-item">
-                              <a href="#!" class="c-bolt-side-nav__link">Level 5 nav item</a>
-                              <button type="button" aria-expanded="false" aria-label="Toggle children links" class="c-bolt-side-nav__link c-bolt-side-nav__link--toggle-trigger js-bolt-side-nav-toggle-trigger">
-                                {% include '@bolt-components-icon/icon.twig' with {
-                                  name: 'chevron-down',
-                                } only %}
-                              </button>
-                              <ul class="c-bolt-side-nav__list">
-                                <li class="c-bolt-side-nav__list-item">
-                                  <a href="#!" class="c-bolt-side-nav__link">Level 6 nav item</a>
-                                  <button type="button" aria-expanded="false" aria-label="Toggle children links" class="c-bolt-side-nav__link c-bolt-side-nav__link--toggle-trigger js-bolt-side-nav-toggle-trigger">
-                                    {% include '@bolt-components-icon/icon.twig' with {
-                                      name: 'chevron-down',
-                                    } only %}
-                                  </button>
-                                  <ul class="c-bolt-side-nav__list">
-                                    <li class="c-bolt-side-nav__list-item">
-                                      <a href="#!" class="c-bolt-side-nav__link">Level 7 nav item</a>
-                                      <button type="button" aria-expanded="false" aria-label="Toggle children links" class="c-bolt-side-nav__link c-bolt-side-nav__link--toggle-trigger js-bolt-side-nav-toggle-trigger">
-                                        {% include '@bolt-components-icon/icon.twig' with {
-                                          name: 'chevron-down',
-                                        } only %}
-                                      </button>
-                                      <ul class="c-bolt-side-nav__list">
-                                        <li class="c-bolt-side-nav__list-item">
-                                          <a href="#!" class="c-bolt-side-nav__link">Level 8 nav item</a>
-                                          <button type="button" aria-expanded="false" aria-label="Toggle children links" class="c-bolt-side-nav__link c-bolt-side-nav__link--toggle-trigger js-bolt-side-nav-toggle-trigger">
-                                            {% include '@bolt-components-icon/icon.twig' with {
-                                              name: 'chevron-down',
-                                            } only %}
-                                          </button>
-                                          <ul class="c-bolt-side-nav__list">
-                                            <li class="c-bolt-side-nav__list-item">
-                                              <a href="#!" class="c-bolt-side-nav__link">Level 9 nav item</a>
-                                            </li>
-                                          </ul>
-                                        </li>
-                                      </ul>
-                                    </li>
-                                  </ul>
-                                </li>
-                              </ul>
-                            </li>
-                          </ul>
-                        </li>
-                      </ul>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </nav>
-      </div>
+      {% set level_9_items %}
+        {% include '@bolt-components-side-nav/side-nav-li.twig' with {
+          link: {
+            content: 'Level 9 page',
+            attributes: {
+              href: 'https://pega.com',
+            },
+          },
+        } only %}
+      {% endset %}
+      {% set level_9_list %}
+        {% include '@bolt-components-side-nav/side-nav-ul.twig' with {
+          content: level_9_items,
+        } only %}
+      {% endset %}
+      {% set level_8_items %}
+        {% include '@bolt-components-side-nav/side-nav-li.twig' with {
+          link: {
+            content: 'Level 8 page',
+            attributes: {
+              href: 'https://pega.com',
+            },
+          },
+          children: level_9_list,
+        } only %}
+      {% endset %}
+      {% set level_8_list %}
+        {% include '@bolt-components-side-nav/side-nav-ul.twig' with {
+          content: level_8_items,
+        } only %}
+      {% endset %}
+      {% set level_7_items %}
+        {% include '@bolt-components-side-nav/side-nav-li.twig' with {
+          link: {
+            content: 'Level 7 page',
+            attributes: {
+              href: 'https://pega.com',
+            },
+          },
+          children: level_8_list,
+        } only %}
+      {% endset %}
+      {% set level_7_list %}
+        {% include '@bolt-components-side-nav/side-nav-ul.twig' with {
+          content: level_7_items,
+        } only %}
+      {% endset %}
+      {% set level_6_items %}
+        {% include '@bolt-components-side-nav/side-nav-li.twig' with {
+          link: {
+            content: 'Level 6 page',
+            attributes: {
+              href: 'https://pega.com',
+            },
+          },
+          children: level_7_list,
+        } only %}
+      {% endset %}
+      {% set level_6_list %}
+        {% include '@bolt-components-side-nav/side-nav-ul.twig' with {
+          content: level_6_items,
+        } only %}
+      {% endset %}
+      {% set level_5_items %}
+        {% include '@bolt-components-side-nav/side-nav-li.twig' with {
+          link: {
+            content: 'Level 5 page',
+            attributes: {
+              href: 'https://pega.com',
+            },
+          },
+          children: level_6_list,
+        } only %}
+      {% endset %}
+      {% set level_5_list %}
+        {% include '@bolt-components-side-nav/side-nav-ul.twig' with {
+          content: level_5_items,
+        } only %}
+      {% endset %}
+      {% set level_4_items %}
+        {% include '@bolt-components-side-nav/side-nav-li.twig' with {
+          link: {
+            content: 'Level 4 page',
+            attributes: {
+              href: 'https://pega.com',
+            },
+          },
+          children: level_5_list,
+        } only %}
+      {% endset %}
+      {% set level_4_list %}
+        {% include '@bolt-components-side-nav/side-nav-ul.twig' with {
+          content: level_4_items,
+        } only %}
+      {% endset %}
+      {% set level_3_items %}
+        {% include '@bolt-components-side-nav/side-nav-li.twig' with {
+          link: {
+            content: 'Level 3 page',
+            attributes: {
+              href: 'https://pega.com',
+            },
+          },
+          children: level_4_list,
+        } only %}
+      {% endset %}
+      {% set level_3_list %}
+        {% include '@bolt-components-side-nav/side-nav-ul.twig' with {
+          content: level_3_items,
+        } only %}
+      {% endset %}
+      {% set level_2_items %}
+        {% include '@bolt-components-side-nav/side-nav-li.twig' with {
+          link: {
+            content: 'Level 2 page',
+            attributes: {
+              href: 'https://pega.com',
+            },
+          },
+          children: level_3_list,
+        } only %}
+        {% include '@bolt-components-side-nav/side-nav-li.twig' with {
+          link: {
+            content: 'Level 2 page',
+            attributes: {
+              href: 'https://pega.com',
+            },
+          },
+        } only %}
+      {% endset %}
+      {% set level_2_list %}
+        {% include '@bolt-components-side-nav/side-nav-ul.twig' with {
+          content: level_2_items,
+        } only %}
+      {% endset %}
+      {% set level_1_items %}
+        {% include '@bolt-components-side-nav/side-nav-li.twig' with {
+          link: {
+            content: 'Level 1 page (with nested links)',
+            attributes: {
+              href: 'https://pega.com',
+            },
+          },
+          children: level_2_list,
+        } only %}
+        {% include '@bolt-components-side-nav/side-nav-li.twig' with {
+          link: {
+            content: 'Level 1 page (current)',
+            attributes: {
+              href: 'https://pega.com',
+            },
+          },
+          current: true,
+        } only %}
+        {% include '@bolt-components-side-nav/side-nav-li.twig' with {
+          link: {
+            content: 'Level 1 page',
+            attributes: {
+              href: 'https://pega.com',
+            },
+          },
+        } only %}
+      {% endset %}
+      {% set level_1_list %}
+        {% include '@bolt-components-side-nav/side-nav-ul.twig' with {
+          content: level_1_items,
+        } only %}
+      {% endset %}
+
+      {% include '@bolt-components-side-nav/side-nav.twig' with {
+        headline: {
+          content: 'Book title goes here',
+          link_attributes: {
+            href: 'https://pega.com',
+          },
+        },
+        content: level_1_list,
+      } only %}
     {% endset %}
     {% set secondary_sidebar_content %}
       {% set scroll_to_top %}

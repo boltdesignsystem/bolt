@@ -1,4 +1,27 @@
 {% set usage %}{% verbatim %}
+{% include '@bolt-components-content-pagination/content-pagination.twig' with {
+  parent: {
+    content: 'System Administrations',
+    tooltip_content: 'Parent topic',
+    link_attributes: {
+      href: 'https://pega.com',
+    },
+  },
+  previous: {
+    content: 'Configuring system settings',
+    tooltip_content: 'Previous topic',
+    link_attributes: {
+      href: 'https://pega.com',
+    },
+  },
+  next: {
+    content: 'Configuring user avatar',
+    tooltip_content: 'Next topic',
+    link_attributes: {
+      href: 'https://pega.com',
+    },
+  },
+} only %}
 {% endverbatim %}{% endset %}
 
 {% include '@utils/docs.twig' with {
