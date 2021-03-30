@@ -8,5 +8,49 @@ module.exports = {
       description:
         'A Drupal attributes object. Applies extra HTML attributes to the parent element.',
     },
+    content: {
+      type: 'any',
+      description: 'The main content area of the layout.',
+    },
+    sidebar: {
+      type: 'object',
+      description: 'The primary sidebar of the layout.',
+      properties: {
+        content: {
+          type: 'any',
+          description: 'Render content of the primary sidebar.',
+        },
+        trigger_icon: {
+          type: 'string',
+          description:
+            'Set the icon of the trigger button that is shown in smaller viewports.',
+        },
+        trigger_label: {
+          type: 'string',
+          description:
+            'Set the text of the trigger button that is shown in smaller viewports.',
+        },
+      },
+    },
+    secondary_sidebar: {
+      type: 'object',
+      description: 'The secondary sidebar of the layout.',
+      properties: {
+        content: {
+          type: 'any',
+          description: 'Render content of the secondary sidebar.',
+        },
+        trigger_icon: {
+          type: 'string',
+          description:
+            'Set the icon of the trigger button that is shown in smaller viewports.',
+        },
+        trigger_label: {
+          type: 'string',
+          description:
+            'Set the text of the trigger button that is shown in smaller viewports.',
+        },
+      },
+    },
   },
 };

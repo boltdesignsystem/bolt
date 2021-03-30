@@ -23,6 +23,7 @@ module.exports = {
       '@bolt/components-chip-list',
       '@bolt/components-chip',
       '@bolt/components-code-snippet',
+      '@bolt/components-content-pagination',
       '@bolt/components-copy-to-clipboard',
       '@bolt/components-device-viewer',
       '@bolt/components-dropdown',

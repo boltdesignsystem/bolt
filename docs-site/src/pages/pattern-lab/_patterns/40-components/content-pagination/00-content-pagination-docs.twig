@@ -1,0 +1,8 @@
+{% set usage %}{% verbatim %}
+{% endverbatim %}{% endset %}
+
+{% include '@utils/docs.twig' with {
+  componentName: 'content-pagination',
+  componentGroup: 'components',
+  usage: usage
+} only %}
