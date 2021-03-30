@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.4.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/lists/bolt-ol/compare/v3.3.1...v3.4.0) (2021-03-29)
+
+**Note:** Version bump only for package @bolt/components-ol
+
+
+
+
+
 ## [3.1.2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/lists/bolt-ol/compare/v3.1.1...v3.1.2) (2021-03-05)
 
 **Note:** Version bump only for package @bolt/components-ol
