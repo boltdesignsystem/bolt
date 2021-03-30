@@ -769,11 +769,9 @@
         {% endset %}
         {% include '@bolt-components-popover/popover.twig' with {
           trigger: share_popover_trigger,
+          trigger_event: 'hover',
           content: share_menu,
           spacing: 'none',
-          attributes: {
-            style: '--c-bolt-popover-bubble-width: min(80vw, 200px);'
-          },
         } only %}
       {% endset %}
       {% set suggest %}
