@@ -68,6 +68,7 @@ module.exports = function(apiConfig) {
                   'last 2 iOS versions',
                   'last 2 Edge versions',
                   'Firefox ESR',
+                  'Edge 18',
                 ],
               },
               useBuiltIns: 'entry',

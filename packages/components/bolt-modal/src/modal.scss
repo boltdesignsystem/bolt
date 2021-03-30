@@ -11,21 +11,6 @@
    and customizations
 \* ------------------------------------ */
 
-/**
- * When `<dialog>` is properly supported, the overlay is implied and can be
- * styled with `::backdrop`, which means the DOM one should be removed.
- */
-/*
-[data-a11y-dialog-native] .dialog-overlay {
-  @todo: look further into this to see why the natively supported ::backdrop wasn't showing up as expected
-  display: none;
-}
-
-dialog::backdrop {
-  background-color: rgba(0, 0, 0, 0.66);
-}
-*/
-
 $bolt-modal-overlay-bg-color-dark: var(--bolt-color-navy-xdark);
 $bolt-modal-overlay-bg-color-light: var(--bolt-color-white);
 $bolt-modal-border-width: $bolt-border-width;
