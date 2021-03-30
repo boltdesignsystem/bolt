@@ -44,6 +44,12 @@ module.exports = {
       ],
       default: 'bottom',
     },
+    trigger_event: {
+      type: 'string',
+      description: 'Controls the event that triggers the popover to show.',
+      enum: ['click', 'hover'],
+      default: 'click',
+    },
     spacing: {
       type: 'string',
       description: 'Controls the spacing around the popover content.',
@@ -55,7 +61,7 @@ module.exports = {
       description:
         'Applies a Bolt color theme to the bubble that contains the main Popover content.',
       enum: ['none', 'xlight', 'light', 'dark', 'xdark'],
-      default: 'none',
+      default: 'xlight',
     },
     boundary: {
       type: 'string',

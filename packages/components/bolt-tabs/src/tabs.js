@@ -479,9 +479,7 @@ class BoltTabs extends withContext(BoltElement) {
     });
   }
 
-  firstUpdated() {
-    super.firstUpdated && super.firstUpdated();
-
+  async firstUpdated() {
     // Use `slotMap` not `querySelectorAll` so that we don't get nested panels
     this.panels = this.slotMap
       .get('default')
@@ -489,6 +487,10 @@ class BoltTabs extends withContext(BoltElement) {
 
     // Wait to set initial tab until after `this.panels` has been properly set
     this.setInitialTab();
+
+    // Wait until after `this.panels` is set and component re-renders before calling super which dispaches "ready" event
+    await this.updateComplete;
+    super.firstUpdated && super.firstUpdated();
   }
 
   disconnectedCallback() {

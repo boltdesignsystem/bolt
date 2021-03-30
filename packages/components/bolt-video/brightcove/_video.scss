@@ -552,13 +552,10 @@ video-js.c-base-video {
       flex-direction: column;
 
       .vjs-menu-item {
+        order: 15;
         margin: 0.25em 0;
         font-size: 1em;
         line-height: 1.2em;
-
-        &:not(.vjs-subtitles-menu-item):not(.vjs-subtitles-menu-item):not(.vjs-captions-menu-item) {
-          order: 1;
-        }
       }
     }
   }
