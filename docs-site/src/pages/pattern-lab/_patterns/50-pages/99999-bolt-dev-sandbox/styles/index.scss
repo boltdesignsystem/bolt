@@ -22,7 +22,7 @@
   text-align: center;
   background-color: var(--m-bolt-bg);
 
-  &:first-child {
+  &--parent {
     grid-area: parent;
     margin-top: -1px;
     margin-right: -1px;
@@ -35,11 +35,11 @@
     border-radius: 0;
   }
 
-  &:nth-child(2) {
+  &--prev {
     grid-area: prev;
   }
 
-  &:nth-child(3) {
+  &--next {
     grid-area: next;
   }
 }

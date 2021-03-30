@@ -276,7 +276,7 @@
           } only %}
         {% endset %}
         <ul class="c-bolt-article-pagination">
-          <li class="c-bolt-article-pagination__item">
+          <li class="c-bolt-article-pagination__item c-bolt-article-pagination__item--parent">
             {% set link %}
               {% include '@bolt-elements-text-link/text-link.twig' with {
                 content: 'System Administration',
@@ -292,7 +292,7 @@
               content: 'Parent topic',
             } only %}
           </li>
-          <li class="c-bolt-article-pagination__item">
+          <li class="c-bolt-article-pagination__item c-bolt-article-pagination__item--prev">
             {% set link %}
               {% include '@bolt-elements-text-link/text-link.twig' with {
                 content: 'Service packages',
@@ -308,7 +308,7 @@
               content: 'Previous topic',
             } only %}
           </li>
-          <li class="c-bolt-article-pagination__item">
+          <li class="c-bolt-article-pagination__item c-bolt-article-pagination__item--next">
             {% set link %}
               {% include '@bolt-elements-text-link/text-link.twig' with {
                 content: 'Service rules',
