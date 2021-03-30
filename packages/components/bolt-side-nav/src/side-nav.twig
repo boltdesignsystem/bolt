@@ -18,13 +18,13 @@
   </button>
   <nav class="c-bolt-side-nav__content" {% if headline %} aria-labelledby="bolt-side-nav" {% endif %}>
     {% if headline %}
-      <h2 class="c-bolt-side-nav__header" id="bolt-side-nav">
+      <strong class="c-bolt-side-nav__headline" id="bolt-side-nav">
         {% if headline.link_attributes.href %}
-          <a href="{{ headline.link_attributes.href }}" class="c-bolt-side-nav__header__link">{{ headline.content }}</a>
+          <a href="{{ headline.link_attributes.href }}" class="c-bolt-side-nav__headline__link">{{ headline.content }}</a>
         {% else %}
           {{ headline.content }}
         {% endif %}
-      </h2>
+      </strong>
     {% endif %}
     {{ content }}
   </nav>

@@ -163,14 +163,14 @@ class BoltToc extends withContext(BoltElement) {
 
     return html`
       <nav class="${classes}" aria-labelledby="js-bolt-toc-${this.uuid}">
-        <h2
+        <strong
           class="${cx(`c-bolt-toc__header`, {
             [`c-bolt-toc__header--hidden`]: !this.header,
           })}"
           id="js-bolt-toc-${this.uuid}"
         >
           ${this.header ? this.header : 'Table of Contents'}
-        </h2>
+        </strong>
         <div class="${cx(`c-bolt-toc__list`)}" role="list">
           ${this.slotify('default')}
         </div>

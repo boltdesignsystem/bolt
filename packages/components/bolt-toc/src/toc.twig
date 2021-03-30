@@ -42,7 +42,7 @@
   {{ this.props|without("items")|without("class") }}
 >
   <div {% if inner_classes %} class="{{ inner_classes|join(' ') }}" {% endif %} role="navigation" aria-labelledby="{{ "js-bolt-toc-#{uuid}" }}">
-    <h2
+    <strong
       {% if header %}
         class="c-bolt-toc__header"
       {% else %}
@@ -55,7 +55,7 @@
       {% else %}
         Table of Content
       {% endif %}
-    </h2>
+    </strong>
     <div class="c-bolt-toc__list" role="list">
       <ssr-keep for="bolt-toc" role="presentation">
       {% for item in items %}
