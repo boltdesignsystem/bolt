@@ -1,5 +1,5 @@
 {# Schema Validation #}
-{% set schema = bolt.data.layouts['@bolt-layouts-holy-grail'].schema %}
+{% set schema = bolt.data.components['@bolt-layouts-holy-grail'].schema %}
 {% if enable_json_schema_validation %}
   {{ validate_data_schema(schema, _self)|raw }}
 {% endif %}

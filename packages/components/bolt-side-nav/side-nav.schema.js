@@ -10,8 +10,24 @@ module.exports = {
         'A Drupal attributes object. Applies extra HTML attributes to the parent element.',
     },
     content: {
-      type: ['string', 'array', 'object'],
-      description: 'Content of the article.',
+      type: 'any',
+      description:
+        'Content of the side nav. side-nav-ul template is expected here.',
+    },
+    headline: {
+      type: 'object',
+      description: 'Set the title of the side nav.',
+      properties: {
+        content: {
+          type: 'string',
+          description: 'Text content of the headline.',
+        },
+        link_attributes: {
+          type: 'object',
+          description:
+            'A Drupal attributes object. Applies extra HTML attributes to the link element.',
+        },
+      },
     },
   },
 };

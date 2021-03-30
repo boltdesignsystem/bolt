@@ -1,9 +1,12 @@
 {% set description %}
-  Side nav is a secondary navigation. It is commonly used in documentation design. Although nesting is possible, it is not recommended to go more than 4 levels deep.
+  Side nav is a secondary navigation. It is commonly used in documentation design.
 {% endset %}
 
 {% set notes %}
-  Side nav is intended to be used as the left sidebar of a Holy Grail layout. The desktop collapse button works the best with that particular layout. <a href="{{ link['viewall-layouts-holy-grail'] }}" class="e-bolt-text-link">View Holy Grail layout<span class="e-bolt-text-link__icon-after"><bolt-icon name="chevron-right"></bolt-icon></span></a>
+  <bolt-ol>
+    <bolt-li>Although nesting is possible, it is not recommended to go more than 4 levels deep.</bolt-li>
+    <bolt-li>Side nav is intended to be used as the left sidebar of a Holy Grail layout. The desktop collapse button works the best with that particular layout. <a href="{{ link['viewall-layouts-holy-grail'] }}" class="e-bolt-text-link">View Holy Grail layout<span class="e-bolt-text-link__icon-after"><bolt-icon name="chevron-right"></bolt-icon></span></a></bolt-li>
+  </bolt-ol>
 {% endset %}
 
 {% set demo %}
@@ -64,11 +67,11 @@
     } only %}
   {% endset %}
 
-  <div style="max-width: 250px;">
+  <div style="max-width: 320px;">
     {% include '@bolt-components-side-nav/side-nav.twig' with {
-      title: {
+      headline: {
         content: 'This is a side nav',
-        attributes: {
+        link_attributes: {
           href: 'https://pega.com',
         },
       },
@@ -99,9 +102,9 @@
 
 // Side nav template
 {% include '@bolt-components-side-nav/side-nav.twig' with {
-  title: {
-    content: 'Title text',
-    attributes: {
+  headline: {
+    content: 'Headline text',
+    link_attributes: {
       href: 'https://pega.com',
     },
   },

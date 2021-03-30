@@ -1,3 +1,153 @@
+{% set description %}
+  An Article element can be used for any free-form content areas where a WYSIWYG editor is enabled. Basic HTML elements are styled within the Article element.
+{% endset %}
+
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>Even though plain <bolt-code-snippet display="inline">&lt;table&gt;</bolt-code-snippet> elements are styled, they are not responsive. Please wrap all <bolt-code-snippet display="inline">&lt;table&gt;</bolt-code-snippet> elements with <bolt-code-snippet display="inline">&lt;bolt-table&gt;</bolt-code-snippet> to enable responsive styles (JavaScript required).</bolt-li>
+    <bolt-li>As for <bolt-code-snippet display="inline">&lt;pre&gt;</bolt-code-snippet> and <bolt-code-snippet display="inline">&lt;code&gt;</bolt-code-snippet> elements, they do not have syntax highlighting. To enable syntax highlighting, please use <bolt-code-snippet display="inline">&lt;bolt-code-snippet&gt;</bolt-code-snippet> instead (JavaScript required).</bolt-li>
+  </bolt-ol>
+{% endset %}
+
+{% set demo %}
+  {% set article_content %}
+    <p>The following is a kitchen sink of all supported plain HTML elements.</p>
+    <h1>
+      H1 heading text
+    </h1>
+    <h2>
+      H2 heading text
+    </h2>
+    <h3>
+      H3 heading text
+    </h3>
+    <h4>
+      H4 heading text
+    </h4>
+    <h5>
+      H5 heading text
+    </h5>
+    <h6>
+      H6 heading text
+    </h6>
+    <hr>
+    <p>
+      Text: <strong>bold</strong>, <em>italic</em>, <a href="#!">linked</a>, <code>code</code>, <kbd>kbd</kbd>, <small>small</small>, super<sup>script</sup>, sub<sub>script</sub>.
+    </p>
+    <ul>
+      <li>
+      First level unordered item
+      </li>
+      <li>
+        First level unordered item
+        <ol>
+          <li>
+            Second level ordered item
+            <ul>
+              <li>
+                Third level unordered item
+              </li>
+              <li>
+                Third level unordered item
+              </li>
+            </ul>
+          </li>
+          <li>
+            Second level ordered item
+          </li>
+        </ol>
+      </li>
+      <li>
+        First level unordered item
+      </li>
+    </ul>
+    <ol>
+      <li>
+        First level ordered item
+      </li>
+      <li>
+        First level ordered item
+        <ul>
+          <li>
+            Second level unordered item
+            <ol>
+              <li>
+                Third level ordered item
+              </li>
+              <li>
+                Third level ordered item
+              </li>
+            </ol>
+          </li>
+          <li>
+            Second level unordered item
+          </li>
+        </ul>
+      </li>
+      <li>
+        First level ordered item
+      </li>
+    </ol>
+    <details>
+      <summary>Summary sums up the details</summary>
+      <p>
+      Details elaborate on the summary.
+      </p>
+    </details>
+    <dl>
+      <dt>Definition list</dt>
+      <dd>A list of text and description.</dd>
+      <dt>Morgawr</dt>
+      <dd>A sea serpent.</dd>
+      <dt>Owlman</dt>
+      <dd>A giant owl-like creature.</dd>
+    </dl>
+    <pre><code>pre&nbsp;{<br>&nbsp;&nbsp;padding: .5em 1em; color: black; border-left: 5px solid; background-color: white;<br>}</code></pre>
+    <blockquote>
+      <p>
+        <q>Pull Quote. Darkness cannot drive out darkness; only <q>light</q> can do that. Hate cannot drive out hate; only <q>love</q> can do that.</q>
+      </p>
+      <p>
+        <q>The time is always right to do what is right.</q>
+      </p>
+    </blockquote>
+    <figure>
+      <img src="/images/placeholders/tout-4x3-climber.jpg" alt="">
+      <figcaption>
+        Figure caption
+      </figcaption>
+    </figure>
+    <table>
+      <thead>
+        <tr>
+          <th>Col1</th>
+          <th>Col2</th>
+          <th>Col3</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>Row1</th>
+          <td>Row1</td>
+          <td>Row1</td>
+        </tr>
+        <tr>
+          <th>Row2</th>
+          <td>Row2</td>
+          <td>Row2</td>
+        </tr>
+      </tbody>
+    </table>
+  {% endset %}
+
+  {% include '@bolt-elements-article/article.twig' with {
+    content: article_content,
+  } only %}
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+// Render content
 {% set article_content %}
   <h1>
     H1 heading text
@@ -18,119 +168,51 @@
     H6 heading text
   </h6>
   <p>
-    Paragraph. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Natus dicta animi eius minus vero, commodi sequi quam tempora praesentium accusantium iusto ipsa, maiores asperiores aperiam! Natus iusto dolorem laborum nam! Lorem ipsum dolor sit amet consectetur, adipisicing elit. Temporibus, enim quo? Suscipit labore provident quae quod. Reprehenderit blanditiis voluptatem, repellendus voluptatibus maiores eaque ipsa officia quas culpa iusto alias sit.
-  </p>
-  <p>
     Text: <strong>bold</strong>, <em>italic</em>, <a href="#!">linked</a>, <code>code</code>, <kbd>kbd</kbd>, <small>small</small>, super<sup>script</sup>, sub<sub>script</sub>.
   </p>
-  <ul>
-    <li>
-    First level unordered item
-    </li>
-    <li>
-      First level unordered item
-      <ol>
-        <li>
-          Second level ordered item
-          <ul>
-            <li>
-              Third level unordered item
-            </li>
-            <li>
-              Third level unordered item
-            </li>
-          </ul>
-        </li>
-        <li>
-          Second level ordered item
-        </li>
-      </ol>
-    </li>
-    <li>
-      First level unordered item
-    </li>
-  </ul>
-  <ol>
-    <li>
-      First level ordered item
-    </li>
-    <li>
-      First level ordered item
-      <ul>
-        <li>
-          Second level unordered item
-          <ol>
-            <li>
-              Third level ordered item
-            </li>
-            <li>
-              Third level ordered item
-            </li>
-          </ol>
-        </li>
-        <li>
-          Second level unordered item
-        </li>
-      </ul>
-    </li>
-    <li>
-      First level ordered item
-    </li>
-  </ol>
-  <hr>
-  <details>
-    <summary>Summary sums up the details</summary>
-    <p>
-    Details elaborate on the summary.
-    </p>
-  </details>
-  <dl>
-    <dt>Definition list</dt>
-    <dd>A list of text and description.</dd>
-    <dt>Morgawr</dt>
-    <dd>A sea serpent.</dd>
-    <dt>Owlman</dt>
-    <dd>A giant owl-like creature.</dd>
-  </dl>
-  <pre><code>pre&nbsp;{<br>&nbsp;&nbsp;padding: .5em 1em; color: black; border-left: 5px solid; background-color: white;<br>}</code></pre>
-  <blockquote>
-    <p>
-      <q>Pull Quote. Darkness cannot drive out darkness; only <q>light</q> can do that. Hate cannot drive out hate; only <q>love</q> can do that.</q>
-    </p>
-    <p>
-      <q>The time is always right to do what is right.</q>
-    </p>
-  </blockquote>
-  <figure>
-    <img src="https://placehold.it/1600x900" alt="">
-    <figcaption>
-      Figure caption
-    </figcaption>
-  </figure>
-  <table>
-    <thead>
-      <tr>
-        <th>Col1</th>
-        <th>Col2</th>
-        <th>Col3</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <th>Row1</th>
-        <td>Row1</td>
-        <td>Row1</td>
-      </tr>
-      <tr>
-        <th>Row2</th>
-        <td>Row2</td>
-        <td>Row2</td>
-      </tr>
-    </tbody>
-  </table>
 {% endset %}
 
+// Pass content to the component and set proper HTML tag
 {% include '@bolt-elements-article/article.twig' with {
   content: article_content,
   tag: 'article',
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% set html_markup %}
+{% verbatim %}
+<article class="e-bolt-article">
+  <h1>
+    H1 heading text
+  </h1>
+  <h2>
+    H2 heading text
+  </h2>
+  <h3>
+    H3 heading text
+  </h3>
+  <h4>
+    H4 heading text
+  </h4>
+  <h5>
+    H5 heading text
+  </h5>
+  <h6>
+    H6 heading text
+  </h6>
+  <p>
+    Text: <strong>bold</strong>, <em>italic</em>, <a href="#!">linked</a>, <code>code</code>, <kbd>kbd</kbd>, <small>small</small>, super<sup>script</sup>, sub<sub>script</sub>.
+  </p>
+</article>
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Basic Article',
+  description: description,
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+  html_markup: html_markup,
 } only %}

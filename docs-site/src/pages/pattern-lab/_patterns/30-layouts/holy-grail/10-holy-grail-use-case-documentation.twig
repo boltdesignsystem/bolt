@@ -70,9 +70,9 @@
   {% endset %}
   {% set side_nav %}
     {% include '@bolt-components-side-nav/side-nav.twig' with {
-      title: {
+      headline: {
         content: 'This is a side nav',
-        attributes: {
+        link_attributes: {
           href: 'https://pega.com',
         },
       },
@@ -152,7 +152,7 @@
 {% endset %}
 
 {% include '@utils/pattern-doc-page.twig' with {
-  title: 'Use case: documentation',
+  title: 'Use Case: Documentation',
   description: description,
   demo: demo,
   notes: notes,

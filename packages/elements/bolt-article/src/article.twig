@@ -1,5 +1,5 @@
 {# Schema Validation #}
-{% set schema = bolt.data.elements['@bolt-elements-article'].schema %}
+{% set schema = bolt.data.components['@bolt-elements-article'].schema %}
 {% if enable_json_schema_validation %}
   {{ validate_data_schema(schema, _self)|raw }}
 {% endif %}
@@ -13,6 +13,6 @@
   'e-bolt-article',
 ] %}
 
-<{{ tag }} {{ attributes.addClass(classes) }}>
+<{{ this.data.tag.value }} {{ attributes.addClass(classes) }}>
   {{ content }}
-</{{ tag }}>
+</{{ this.data.tag.value }}>

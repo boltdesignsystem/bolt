@@ -8,7 +8,7 @@
     {{ link.content }}
   </a>
   {% if children %}
-    <button type="button" {% if expanded == true %}aria-expanded="true"{% else %}aria-expanded="false"{% endif %} aria-label="Toggle children links" class="c-bolt-side-nav__link c-bolt-side-nav__link--toggle-trigger js-bolt-side-nav-toggle-trigger">
+    <button type="button" {% if expanded == true %}aria-expanded="true"{% else %}aria-expanded="false"{% endif %} aria-label="{{ 'Toggle children links'|t }}" class="c-bolt-side-nav__link c-bolt-side-nav__link--toggle-trigger js-bolt-side-nav-toggle-trigger">
       {% include '@bolt-components-icon/icon.twig' with {
         name: 'chevron-down',
       } only %}

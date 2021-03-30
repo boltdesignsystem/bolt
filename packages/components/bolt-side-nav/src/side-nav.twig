@@ -11,18 +11,18 @@
 {# Template #}
 <div {{ attributes.addClass('c-bolt-side-nav') }}>
   <button type="button" aria-expanded="true" class="c-bolt-side-nav__trigger js-bolt-side-nav-toggle-trigger">
-    <span class="c-bolt-side-nav__trigger__text">Toggle side navigation</span>
+    <span class="c-bolt-side-nav__trigger__text">{{ 'Toggle side navigation'|t }}</span>
     {% include '@bolt-components-icon/icon.twig' with {
       name: 'chevron-left',
     } only %}
   </button>
-  <nav class="c-bolt-side-nav__content" {% if title %} aria-labelledby="bolt-side-nav" {% endif %}>
-    {% if title %}
+  <nav class="c-bolt-side-nav__content" {% if headline %} aria-labelledby="bolt-side-nav" {% endif %}>
+    {% if headline %}
       <h2 class="c-bolt-side-nav__header" id="bolt-side-nav">
-        {% if title.attributes.href %}
-          <a href="{{ title.attributes.href }}" class="c-bolt-side-nav__header__link">{{ title.content }}</a>
+        {% if headline.link_attributes.href %}
+          <a href="{{ headline.link_attributes.href }}" class="c-bolt-side-nav__header__link">{{ headline.content }}</a>
         {% else %}
-          {{ title.content }}
+          {{ headline.content }}
         {% endif %}
       </h2>
     {% endif %}
