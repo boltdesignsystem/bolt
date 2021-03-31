@@ -1,34 +1,71 @@
-<bolt-text headline>
-  Manually set an item as active
-</bolt-text>
-<bolt-text>
-  Any item can be set to <bolt-code-snippet display="inline" lang="html">active</bolt-code-snippet> to indicate that the page is anchored to the respective section.
-</bolt-text>
+{% set description %}
+  Any item can be set to <bolt-code-snippet display="inline">active</bolt-code-snippet> to indicate that the page is anchored to the respective section.
+{% endset %}
 
-{# Start component specific code #}
-{% include "@bolt-components-toc/toc.twig" with {
+{% set demo %}
+  <div style="max-width: 320px">
+    {% include '@bolt-components-toc/toc.twig' with {
+      items: [
+        {
+          text: 'Section One',
+          url: '#section-one',
+        },
+        {
+          text: 'Section Two',
+          url: '#section-two',
+          active: true,
+        },
+        {
+          text: 'Section Three',
+          url: '#section-three',
+        },
+      ]
+    } only %}
+  </div>
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% include '@bolt-components-toc/toc.twig' with {
   items: [
     {
-      text: "Section One",
-      url: "#section-one",
+      text: 'Section One',
+      url: '#section-one',
     },
     {
-      text: "Section Two",
-      url: "#section-two",
-    },
-    {
-      text: "Section Three",
-      url: "#section-three",
+      text: 'Section Two',
+      url: '#section-two',
       active: true,
     },
     {
-      text: "Section Four",
-      url: "#section-four",
-    },
-    {
-      text: "Section Five",
-      url: "#section-five",
+      text: 'Section Three',
+      url: '#section-three',
     },
   ]
 } only %}
-{# End component specific code #}
+{% endverbatim %}
+{% endset %}
+
+{% set html_markup %}
+{% verbatim %}
+<bolt-toc>
+  <bolt-toc-item url="#section-one">
+    Section One
+  </bolt-toc-item>
+  <bolt-toc-item url="#section-two" active>
+    Section Two
+  </bolt-toc-item>
+  <bolt-toc-item url="#section-three">
+    Section Three
+  </bolt-toc-item>
+</bolt-toc>
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Manually Set an Item as Active',
+  description: description,
+  demo: demo,
+  twig_markup: twig_markup,
+  html_markup: html_markup,
+} only %}

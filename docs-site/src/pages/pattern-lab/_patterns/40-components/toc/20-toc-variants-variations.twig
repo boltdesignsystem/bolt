@@ -1,15 +1,16 @@
 {% set description %}
-  A header for table of contents can be created by passing plain text into the <bolt-code-snippet display="inline">header</bolt-code-snippet> prop.
+  By default, the Table of Contents is set to the card variant, but it can be changed to transparent via the <bolt-code-snippet display="inline">variant</bolt-code-snippet> prop.
 {% endset %}
 
 {% set demo %}
   <div style="max-width: 320px">
     {% include '@bolt-components-toc/toc.twig' with {
-      header: 'This is the header',
+      header: 'This is the transparent variant',
       items: [
         {
           text: 'Section One',
           url: '#section-one',
+          active: true,
         },
         {
           text: 'Section Two',
@@ -19,7 +20,8 @@
           text: 'Section Three',
           url: '#section-three',
         },
-      ]
+      ],
+      variant: 'transparent',
     } only %}
   </div>
 {% endset %}
@@ -27,11 +29,12 @@
 {% set twig_markup %}
 {% verbatim %}
 {% include '@bolt-components-toc/toc.twig' with {
-  header: 'This is the header',
+  header: 'This is the transparent variant',
   items: [
     {
       text: 'Section One',
       url: '#section-one',
+      active: true,
     },
     {
       text: 'Section Two',
@@ -41,15 +44,16 @@
       text: 'Section Three',
       url: '#section-three',
     },
-  ]
+  ],
+  variant: 'transparent',
 } only %}
 {% endverbatim %}
 {% endset %}
 
 {% set html_markup %}
 {% verbatim %}
-<bolt-toc header="This is the header">
-  <bolt-toc-item url="#section-one">
+<bolt-toc header="This is the transparent variant" variant="transparent">
+  <bolt-toc-item url="#section-one" active>
     Section One
   </bolt-toc-item>
   <bolt-toc-item url="#section-two">
@@ -63,7 +67,7 @@
 {% endset %}
 
 {% include '@utils/pattern-doc-page.twig' with {
-  title: 'Visible Header',
+  title: 'Visual Variant',
   description: description,
   demo: demo,
   twig_markup: twig_markup,
