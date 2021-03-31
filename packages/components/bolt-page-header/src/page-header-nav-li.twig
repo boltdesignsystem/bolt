@@ -46,11 +46,7 @@
       {% endif %}
 
       {# Trigger and content for nested children #}
-      {% set children_link_classes = [
-        'js-bolt-page-header-trigger',
-        'c-bolt-page-header__nav-link',
-      ] %}
-      <button type="button" aria-expanded="false" {{ link_attributes.addClass(children_link_classes)|without('href')|without('target')|without('type')|without('aria-expanded') }}>
+      <button type="button" aria-expanded="false" class="c-bolt-page-header__nav-link js-bolt-page-header-trigger">
         <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--collapse" aria-hidden="true"></span>
         <span class="c-bolt-page-header__nav-link__content">
           {{ link.content }}
@@ -60,7 +56,7 @@
       {{ children }}
     {% else %}
       {# Simple link without children #}
-      <{{ link_tag }} {{ link_attributes.addClass(link_classes) }} {% if selected and not current %}aria-current="true"{% endif %}>
+      <{{ link_tag }} {{ link_attributes.addClass(link_classes)|without('aria-current') }} {% if selected and not current %}aria-current="true"{% endif %}>
         <span class="c-bolt-page-header__nav-link__content">
           {{ link.content }}
         </span>
