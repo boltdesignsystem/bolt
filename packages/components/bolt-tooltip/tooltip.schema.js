@@ -57,6 +57,11 @@ module.exports = {
       ],
       default: 'top',
     },
+    inverted: {
+      type: 'boolean',
+      description:
+        'Invert the colors of the tooltip content. If true, content will be dark text on light background',
+    },
     uuid: {
       type: 'string',
       description:
