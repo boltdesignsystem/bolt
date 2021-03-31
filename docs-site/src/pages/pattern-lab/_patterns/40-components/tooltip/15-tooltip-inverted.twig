@@ -1,0 +1,24 @@
+{% set tooltip %}
+  {# Start component specific code #}
+  {% include "@bolt-components-tooltip/tooltip.twig" with {
+    trigger: "this example",
+    content: "This is an inverted tooltip.",
+    inverted: true
+  } only %}
+  {# End component specific code #}
+{% endset %}
+
+{% set content %}
+  <bolt-text headline>
+    Inverted Colors
+  </bolt-text>
+  <bolt-text>
+    By default, a tooltip has white text on black background. When you are building content in dark themes, you may utilize the <bolt-code-snippet display="inline">inverted</bolt-code-snippet> prop to invert the colors so it stands out better against the dark background. Such as {{ tooltip }}.
+  </bolt-text>
+{% endset %}
+
+{% include "@bolt-components-band/band.twig" with {
+  theme: "xdark",
+  content: content,
+} only %}
+

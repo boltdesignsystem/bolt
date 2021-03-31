@@ -56,6 +56,10 @@ class BoltTooltip extends BoltElement {
           },
         ],
       },
+      onCreate: ({ popper }) => {
+        const theme = this.inverted ? `t-bolt-xlight` : `t-bolt-xxdark`;
+        popper.querySelector('.tippy-box').classList.add(theme);
+      },
     });
   }
 
@@ -81,7 +85,7 @@ class BoltTooltip extends BoltElement {
     }
 
     // Set classes on content container
-    const contentClasslist = [`c-bolt-tooltip__content`, `t-bolt-xxxdark`];
+    const contentClasslist = [`c-bolt-tooltip__content`];
     const textContentLength = this.content.textContent.trim().length;
     if (textContentLength > 31) {
       contentClasslist.push(`c-bolt-tooltip__content--text-wrap`);
