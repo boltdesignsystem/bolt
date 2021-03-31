@@ -27,7 +27,7 @@
       {% endset %}
       {% include '@bolt-components-tooltip/tooltip.twig' with {
         trigger: _parent_link,
-        content: parent.tooltip_content,
+        content: parent.tooltip_content|default('One level up'|t),
       } only %}
     </li>
   {% endif %}
@@ -48,7 +48,7 @@
       {% endset %}
       {% include '@bolt-components-tooltip/tooltip.twig' with {
         trigger: link,
-        content: previous.tooltip_content,
+        content: previous.tooltip_content|default('Previous'|t),
       } only %}
     </li>
   {% endif %}
@@ -69,7 +69,7 @@
       {% endset %}
       {% include '@bolt-components-tooltip/tooltip.twig' with {
         trigger: link,
-        content: next.content,
+        content: next.tooltip_content|default('Next'|t),
       } only %}
     </li>
   {% endif %}
