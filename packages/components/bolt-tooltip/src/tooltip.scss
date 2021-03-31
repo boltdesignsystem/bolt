@@ -10,8 +10,7 @@
  */
 //  Note: this does not actually render to the Shadow DOM so :host rule not required
 bolt-tooltip {
-  // 'inline-flex' required for proper tooltip placement on buttons
-  display: inline-flex;
+  display: inline;
 
   &:not([ready]) [slot='content'] {
     display: none;
@@ -19,8 +18,6 @@ bolt-tooltip {
 
   // Plain text trigger gets underlined
   &[dotted] {
-    // if dotted (or inline text-only) use inline or spaces will collapse when you use inline elements like `<em>`
-    display: inline;
     cursor: help;
     border-bottom: 1px dotted var(--m-bolt-neutral);
   }
