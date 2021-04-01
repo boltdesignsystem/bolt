@@ -1,9 +1,9 @@
-var sideNavLinkToggleTrigger = document.querySelectorAll(
+const sideNavLinkToggleTrigger = document.querySelectorAll(
   '.js-bolt-side-nav-toggle-trigger',
 );
 
-sideNavLinkToggleTrigger.forEach(function(el) {
-  el.addEventListener('click', function(event) {
+sideNavLinkToggleTrigger.forEach(el => {
+  el.addEventListener('click', event => {
     if (el.getAttribute('aria-expanded') === 'true') {
       el.setAttribute('aria-expanded', 'false');
     } else {

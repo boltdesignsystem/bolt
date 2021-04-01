@@ -1,9 +1,9 @@
-var holyGrailSidebarToggleTrigger = document.querySelectorAll(
+const holyGrailSidebarToggleTrigger = document.querySelectorAll(
   '.js-bolt-holy-grail-sidebar-toggle-trigger',
 );
 
-holyGrailSidebarToggleTrigger.forEach(function(el) {
-  el.addEventListener('click', function(event) {
+holyGrailSidebarToggleTrigger.forEach(el => {
+  el.addEventListener('click', event => {
     if (el.getAttribute('aria-expanded') === 'true') {
       el.setAttribute('aria-expanded', 'false');
       document.body.classList.remove('u-bolt-overflow-hidden');
