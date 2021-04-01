@@ -31,6 +31,11 @@ module.exports = {
           description:
             'Set the text of the trigger button that is shown in smaller viewports.',
         },
+        auto_width: {
+          type: 'boolean',
+          description:
+            'Allow the sidebar to have no defined width, the content inside will dictate the width.',
+        },
       },
     },
     secondary_sidebar: {
@@ -50,6 +55,11 @@ module.exports = {
           type: 'string',
           description:
             'Set the text of the trigger button that is shown in smaller viewports.',
+        },
+        auto_width: {
+          type: 'boolean',
+          description:
+            'Allow the sidebar to have no defined width, the content inside will dictate the width.',
         },
       },
     },

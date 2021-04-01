@@ -4,7 +4,7 @@
 
 {# Template #}
 <li {{ attributes.addClass('c-bolt-side-nav__list-item') }}>
-  <a {{ _link_attributes.addClass('c-bolt-side-nav__link') }} {% if current %}aria-current="page"{% endif %}>
+  <a {{ _link_attributes.addClass('c-bolt-side-nav__link')|without('aria-current') }} {% if current %}aria-current="page"{% endif %}>
     {{ link.content }}
   </a>
   {% if children %}
