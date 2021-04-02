@@ -43,6 +43,12 @@ module.exports = {
     },
     url,
     target,
+    type: {
+      description: 'Determines the button tag type for semantic buttons',
+      type: 'string',
+      default: 'button',
+      enum: ['button', 'submit', 'reset'],
+    },
     display: {
       type: 'string',
       description:

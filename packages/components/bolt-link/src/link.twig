@@ -47,11 +47,7 @@
   {% endif %}
 {% else %}
   {% set _tag = 'button' %}
-  {# Note that 'type' does not have a default; unless an explicit value is specified, none will be set. #}
-
-  {% if this.data.type.value %}
-    {% set inner_attributes = inner_attributes.setAttribute('type', this.data.type.value ) %}
-  {% endif %}
+  {% set inner_attributes = inner_attributes.setAttribute('type', this.data.type.value ) %}
 {% endif %}
 
 {% set classes = [
@@ -89,7 +85,7 @@ Sort classes passed in via attributes into two groups:
 
 {# link component's custom element wrapper #}
 {% spaceless %}<bolt-link
-  {{ this.props|without('url')|without('href')|without('target')|without('class') }}
+  {{ this.props|without('url')|without('href')|without('class') }}
   {% if outer_classes %} class="{{ outer_classes|join(' ') }}" {% endif %}
   {% if url %} url="{{ url }}" {% endif %}
 
@@ -101,7 +97,7 @@ Sort classes passed in via attributes into two groups:
   <{{ _tag }} {{ inner_attributes.addClass(inner_classes) }}>
     {{ macros.slotted_icon(icon, icon_position, 'before') }}
     <ssr-keep for="bolt-link" class="c-bolt-link__text">
-      {{- text |default(label) | default('Learn More') -}}
+      {{- text|default(label)|default('Learn More') -}}
     </ssr-keep>
     {{ macros.slotted_icon(icon, icon_position, 'after') }}
   </{{ _tag }}>
