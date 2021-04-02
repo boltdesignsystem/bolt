@@ -26,5 +26,7 @@ export * from './context/with-context';
 export * from './validate-props';
 export * from './mode';
 export * from './query';
+export * from './query-shadow-root';
+export * from './tippy';
 
 export { shadow, withComponent, props, define } from 'skatejs';
