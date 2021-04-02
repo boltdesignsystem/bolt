@@ -1,8 +1,8 @@
-const holyGrailSidebarToggleTrigger = document.querySelectorAll(
-  '.js-bolt-holy-grail-sidebar-toggle-trigger',
+const holyGrailToggleTrigger = document.querySelectorAll(
+  '[data-bolt-holy-grail-toggle-trigger]',
 );
 
-holyGrailSidebarToggleTrigger.forEach(el => {
+holyGrailToggleTrigger.forEach(el => {
   el.addEventListener('click', event => {
     if (el.getAttribute('aria-expanded') === 'true') {
       el.setAttribute('aria-expanded', 'false');

@@ -6,13 +6,14 @@
 
 $_bolt-holy-grail-sidebar-trigger-click-target: 44px;
 $_bolt-holy-grail-sidebar-overflow-offset: 2rem;
-$_bolt-holy-grail-gutter: var(--bolt-spacing-x-large);
 
-.l-bolt-holy-grail {
+bolt-holy-grail-layout {
   @include bolt-full-bleed;
 
   display: grid;
+  padding-top: var(--l-bolt-holy-grail-layout-padding-top);
   padding-right: var(--bolt-page-padding-x);
+  padding-bottom: var(--l-bolt-holy-grail-layout-padding-bottom);
   padding-left: var(--bolt-page-padding-x);
 
   @include bolt-mq($until: medium) {
@@ -26,18 +27,65 @@ $_bolt-holy-grail-gutter: var(--bolt-spacing-x-large);
   }
 
   @include bolt-mq(medium) {
+    --l-bolt-holy-grail-layout-width: max(220px, 15vw);
+    --l-bolt-holy-grail-layout-gutter: var(--bolt-spacing-x-large);
     grid-template-columns: auto minmax(160px, 1fr) auto;
+  }
+
+  // Loop through the spacing map to generate padding and gutter options.
+  @each $size in $bolt-spacing-multiplier-system {
+    $size-name: nth($size, 1);
+
+    @if (
+      $size-name ==
+        small or
+        $size-name ==
+        medium or
+        $size-name ==
+        large or
+        $size-name ==
+        xlarge
+    ) {
+      &[padding-top='#{$size-name}'] {
+        --l-bolt-holy-grail-layout-padding-top: var(
+          --bolt-spacing-y-#{$size-name}
+        );
+      }
+
+      &[padding-bottom='#{$size-name}'] {
+        --l-bolt-holy-grail-layout-padding-bottom: var(
+          --bolt-spacing-y-#{$size-name}
+        );
+      }
+
+      &[gutter='#{$size-name}'] {
+        --l-bolt-holy-grail-layout-gutter: var(--bolt-spacing-x-#{$size-name});
+      }
+    }
+  }
+
+  &[padding-top='none'] {
+    --l-bolt-holy-grail-layout-padding-top: 0;
+  }
+
+  &[padding-bottom='none'] {
+    --l-bolt-holy-grail-layout-padding-bottom: 0;
+  }
+
+  &[gutter='none'] {
+    --l-bolt-holy-grail-layout-gutter: 0;
   }
 }
 
-.l-bolt-holy-grail__article,
-.l-bolt-holy-grail__sidebar {
+bolt-holy-grail-article,
+bolt-holy-grail-sidebar {
+  display: block;
   order: 1;
 }
 
-.l-bolt-holy-grail__sidebar {
+bolt-holy-grail-sidebar {
   hyphens: auto;
-  word-break: break-word;
+  word-break: normal;
 
   @include bolt-mq($until: medium) {
     grid-area: sidebar;
@@ -52,7 +100,7 @@ $_bolt-holy-grail-gutter: var(--bolt-spacing-x-large);
     max-height: calc(100vh - var(--bolt-page-header-height));
     margin: calc(#{$_bolt-holy-grail-sidebar-overflow-offset} * -1)
       calc(
-        #{$_bolt-holy-grail-gutter} - #{$_bolt-holy-grail-sidebar-overflow-offset}
+        var(--l-bolt-holy-grail-layout-gutter) - #{$_bolt-holy-grail-sidebar-overflow-offset}
       )
       calc(#{$_bolt-holy-grail-sidebar-overflow-offset} * -1)
       calc(#{$_bolt-holy-grail-sidebar-overflow-offset} * -1);
@@ -60,9 +108,9 @@ $_bolt-holy-grail-gutter: var(--bolt-spacing-x-large);
   }
 }
 
-.l-bolt-holy-grail__sidebar--secondary {
+bolt-holy-grail-sidebar[secondary] {
   @include bolt-mq($until: medium) {
-    @at-root .l-bolt-holy-grail__sidebar ~ #{&} {
+    @at-root bolt-holy-grail-sidebar ~ #{&} {
       grid-area: sidebar2;
       width: #{$_bolt-holy-grail-sidebar-trigger-click-target};
     }
@@ -72,12 +120,12 @@ $_bolt-holy-grail-gutter: var(--bolt-spacing-x-large);
     order: 2;
     margin-right: calc(#{$_bolt-holy-grail-sidebar-overflow-offset} * -1);
     margin-left: calc(
-      #{$_bolt-holy-grail-gutter} - #{$_bolt-holy-grail-sidebar-overflow-offset}
+      var(--l-bolt-holy-grail-layout-gutter) - #{$_bolt-holy-grail-sidebar-overflow-offset}
     );
   }
 }
 
-.l-bolt-holy-grail__sidebar-trigger {
+bolt-holy-grail-sidebar > button {
   @include bolt-button-native-styles-reset;
 
   display: grid;
@@ -127,34 +175,36 @@ $_bolt-holy-grail-gutter: var(--bolt-spacing-x-large);
   }
 }
 
-.l-bolt-holy-grail__sidebar-trigger__text {
+bolt-holy-grail-sidebar-trigger-text {
   display: grid;
   grid-template-columns: auto 1fr;
   grid-gap: var(--bolt-spacing-x-xsmall);
   align-items: center;
 
-  @at-root .l-bolt-holy-grail__sidebar--secondary
-      #{&}:not(.l-bolt-holy-grail__sidebar-trigger__text--close) {
+  @at-root bolt-holy-grail-sidebar[secondary]
+      #{&}:not(bolt-holy-grail-sidebar-trigger-text[close]) {
     grid-gap: 0;
   }
 
-  @at-root .l-bolt-holy-grail__sidebar-trigger[aria-expanded='true'] #{&} {
+  @at-root button[aria-expanded='true'] #{&} {
     display: none;
   }
 }
 
-.l-bolt-holy-grail__sidebar-trigger__text--close {
+bolt-holy-grail-sidebar-trigger-text[close] {
   display: none;
   grid-template-columns: 1fr auto;
   width: 100%;
   padding: 0 var(--bolt-spacing-x-small);
 
-  @at-root .l-bolt-holy-grail__sidebar-trigger[aria-expanded='true'] #{&} {
+  @at-root button[aria-expanded='true'] #{&} {
     display: grid;
   }
 }
 
-.l-bolt-holy-grail__sidebar-content {
+bolt-holy-grail-sidebar-content {
+  display: block;
+
   @include bolt-mq($until: medium) {
     @include bolt-vertical-scroll;
 
@@ -168,29 +218,27 @@ $_bolt-holy-grail-gutter: var(--bolt-spacing-x-large);
     background-color: var(--m-bolt-bg);
   }
 
-  @at-root .l-bolt-holy-grail__sidebar-trigger[aria-expanded='false'] ~ #{&} {
+  @at-root button[aria-expanded='false'] ~ #{&} {
     @include bolt-mq($until: medium) {
       display: none;
     }
   }
 
   @include bolt-mq(medium) {
-    --l-bolt-holy-grail-layout-width: max(220px, 15vw);
-
     width: var(--l-bolt-holy-grail-layout-width);
     margin: calc(#{$_bolt-holy-grail-sidebar-overflow-offset} * -1);
 
-    @at-root .l-bolt-holy-grail__sidebar--secondary #{&} {
+    @at-root bolt-holy-grail-sidebar[secondary] #{&} {
       --l-bolt-holy-grail-layout-width: max(160px, 10vw);
     }
 
-    @at-root .l-bolt-holy-grail__sidebar--auto-width #{&} {
+    @at-root bolt-holy-grail-sidebar[auto-width] #{&} {
       width: unset;
     }
   }
 }
 
-.l-bolt-holy-grail__article {
+bolt-holy-grail-article {
   @include bolt-mq($until: medium) {
     grid-area: article;
   }

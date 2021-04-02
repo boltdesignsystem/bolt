@@ -63,5 +63,23 @@ module.exports = {
         },
       },
     },
+    gutter: {
+      type: 'string',
+      description: 'Set the horizontal spacing in between desktop columns.',
+      enum: ['none', 'small', 'medium', 'large'],
+      default: 'large',
+    },
+    padding_top: {
+      type: 'string',
+      description: 'Set the top padding of the layout.',
+      enum: ['none', 'small', 'medium', 'large', 'xlarge'],
+      default: 'none',
+    },
+    padding_bottom: {
+      type: 'string',
+      description: 'Set the bottom padding of the layout.',
+      enum: ['none', 'small', 'medium', 'large', 'xlarge'],
+      default: 'none',
+    },
   },
 };
