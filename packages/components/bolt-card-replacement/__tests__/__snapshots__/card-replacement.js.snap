@@ -69,21 +69,21 @@ exports[`<bolt-card-replacement> Component basic usage 1`] = `
           <ssr-keep for="bolt-card-replacement-action"
                     class="c-bolt-card_replacement__action"
           >
-            <bolt-button size="medium"
+            <bolt-button tag="article"
+                         height="auto"
+                         border_radius="small"
+                         spacing="medium"
+                         theme="none"
+                         size="medium"
                          hierarchy="text"
                          width="full"
                          align="start"
                          url="https://pega.com"
                          target="_self"
-                         tag="article"
-                         height="full"
-                         border_radius="small"
-                         spacing="medium"
-                         theme="none"
             >
               <a href="https://pega.com"
                  target="_self"
-                 class="c-bolt-button c-bolt-button--medium c-bolt-button--text c-bolt-button--full c-bolt-button--border-radius-regular c-bolt-button--start"
+                 class="c-bolt-button c-bolt-button--medium c-bolt-button--text c-bolt-button--full c-bolt-button--border-radius-small c-bolt-button--start"
               >
                 <ssr-keep for="bolt-button"
                           class="c-bolt-button__item"
@@ -121,138 +121,8 @@ exports[`<bolt-card-replacement> Component basic usage 1`] = `
 </bolt-card-replacement>
 `;
 
-exports[`<bolt-card-replacement> Component border radius variations: large 1`] = `
-<bolt-card-replacement border-radius="large">
-  <ssr-keep for="bolt-card-replacement"
-            class="c-bolt-card-replacement c-bolt-card-replacement--border-radius-large"
-  >
-    <bolt-card-replacement-media>
-      <ssr-keep for="bolt-card-replacement-media"
-                class="c-bolt-card_replacement__media"
-      >
-        <bolt-image src="/fixtures/landscape-16x9-mountains.jpg"
-                    srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w, /fixtures/landscape-16x9-mountains.jpg 1151w"
-                    alt="Image alt."
-                    sizes="auto"
-                    ratio="1151/638"
-                    placeholder-color="hsl(233, 33%, 97%)"
-                    placeholder-image="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                    style="background-color: hsl(233, 33%, 97%);"
-        >
-          <bolt-ratio ratio="1151/638">
-            <ssr-keep for="bolt-ratio"
-                      class="c-bolt-ratio"
-                      style="padding-bottom: calc((638 / 1151) * 100%); --aspect-ratio: 1.8040752351097;"
-            >
-              <img class="c-bolt-image__image-placeholder"
-                   alt="Image alt."
-                   src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-              >
-              <img class="c-bolt-image__image c-bolt-image__lazyload c-bolt-image__lazyload--fade c-bolt-image__lazyload--blur js-lazyload"
-                   alt="Image alt."
-                   data-srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w, /fixtures/landscape-16x9-mountains.jpg 1151w"
-                   data-sizes="auto"
-                   srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                   src="/fixtures/landscape-16x9-mountains.jpg"
-              >
-              <noscript>
-                <img class="c-bolt-image__image"
-                     alt="Image alt."
-                     src="/fixtures/landscape-16x9-mountains.jpg"
-                     srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w, /fixtures/landscape-16x9-mountains.jpg 1151w"
-                >
-              </noscript>
-            </ssr-keep>
-          </bolt-ratio>
-        </bolt-image>
-      </ssr-keep>
-    </bolt-card-replacement-media>
-    <bolt-card-replacement-body>
-      <ssr-keep for="bolt-card-replacement-body"
-                class="c-bolt-card_replacement__body c-bolt-card_replacement__body--spacing-medium"
-      >
-        <p class="c-bolt-eyebrow c-bolt-eyebrow--regular">
-          This is an eyebrow
-        </p>
-        <h2 class="c-bolt-headline c-bolt-headline--bold c-bolt-headline--large">
-          This is a headline
-        </h2>
-        <p class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--medium">
-          This is a paragraph.
-        </p>
-      </ssr-keep>
-    </bolt-card-replacement-body>
-  </ssr-keep>
-</bolt-card-replacement>
-`;
-
-exports[`<bolt-card-replacement> Component border radius variations: small 1`] = `
-<bolt-card-replacement border-radius="small">
-  <ssr-keep for="bolt-card-replacement"
-            class="c-bolt-card-replacement c-bolt-card-replacement--border-radius-small"
-  >
-    <bolt-card-replacement-media>
-      <ssr-keep for="bolt-card-replacement-media"
-                class="c-bolt-card_replacement__media"
-      >
-        <bolt-image src="/fixtures/landscape-16x9-mountains.jpg"
-                    srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w, /fixtures/landscape-16x9-mountains.jpg 1151w"
-                    alt="Image alt."
-                    sizes="auto"
-                    ratio="1151/638"
-                    placeholder-color="hsl(233, 33%, 97%)"
-                    placeholder-image="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                    style="background-color: hsl(233, 33%, 97%);"
-        >
-          <bolt-ratio ratio="1151/638">
-            <ssr-keep for="bolt-ratio"
-                      class="c-bolt-ratio"
-                      style="padding-bottom: calc((638 / 1151) * 100%); --aspect-ratio: 1.8040752351097;"
-            >
-              <img class="c-bolt-image__image-placeholder"
-                   alt="Image alt."
-                   src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-              >
-              <img class="c-bolt-image__image c-bolt-image__lazyload c-bolt-image__lazyload--fade c-bolt-image__lazyload--blur js-lazyload"
-                   alt="Image alt."
-                   data-srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w, /fixtures/landscape-16x9-mountains.jpg 1151w"
-                   data-sizes="auto"
-                   srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                   src="/fixtures/landscape-16x9-mountains.jpg"
-              >
-              <noscript>
-                <img class="c-bolt-image__image"
-                     alt="Image alt."
-                     src="/fixtures/landscape-16x9-mountains.jpg"
-                     srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w, /fixtures/landscape-16x9-mountains.jpg 1151w"
-                >
-              </noscript>
-            </ssr-keep>
-          </bolt-ratio>
-        </bolt-image>
-      </ssr-keep>
-    </bolt-card-replacement-media>
-    <bolt-card-replacement-body>
-      <ssr-keep for="bolt-card-replacement-body"
-                class="c-bolt-card_replacement__body c-bolt-card_replacement__body--spacing-medium"
-      >
-        <p class="c-bolt-eyebrow c-bolt-eyebrow--regular">
-          This is an eyebrow
-        </p>
-        <h2 class="c-bolt-headline c-bolt-headline--bold c-bolt-headline--large">
-          This is a headline
-        </h2>
-        <p class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--medium">
-          This is a paragraph.
-        </p>
-      </ssr-keep>
-    </bolt-card-replacement-body>
-  </ssr-keep>
-</bolt-card-replacement>
-`;
-
 exports[`<bolt-card-replacement> Component clickable card-replacement 1`] = `
-<bolt-card-replacement>
+<bolt-card-replacement url="https://pega.com">
   <ssr-keep for="bolt-card-replacement"
             class="c-bolt-card-replacement c-bolt-card-replacement--border-radius-small"
   >
@@ -1046,21 +916,21 @@ exports[`<bolt-card-replacement> Component with two buttons as actions 1`] = `
           <ssr-keep for="bolt-card-replacement-action"
                     class="c-bolt-card_replacement__action"
           >
-            <bolt-button size="medium"
+            <bolt-button tag="article"
+                         height="auto"
+                         border_radius="small"
+                         spacing="medium"
+                         theme="none"
+                         size="medium"
                          hierarchy="text"
                          width="full"
                          align="start"
                          url="https://pega.com"
                          target="_self"
-                         tag="article"
-                         height="full"
-                         border_radius="small"
-                         spacing="medium"
-                         theme="none"
             >
               <a href="https://pega.com"
                  target="_self"
-                 class="c-bolt-button c-bolt-button--medium c-bolt-button--text c-bolt-button--full c-bolt-button--border-radius-regular c-bolt-button--start"
+                 class="c-bolt-button c-bolt-button--medium c-bolt-button--text c-bolt-button--full c-bolt-button--border-radius-small c-bolt-button--start"
               >
                 <ssr-keep for="bolt-button"
                           class="c-bolt-button__item"
@@ -1096,21 +966,22 @@ exports[`<bolt-card-replacement> Component with two buttons as actions 1`] = `
           <ssr-keep for="bolt-card-replacement-action"
                     class="c-bolt-card_replacement__action"
           >
-            <bolt-button size="medium"
+            <bolt-button tag="article"
+                         height="auto"
+                         border_radius="small"
+                         spacing="medium"
+                         theme="none"
+                         size="medium"
                          hierarchy="text"
                          width="full"
                          align="start"
                          url="https://google.com"
                          target="_self"
-                         tag="article"
-                         height="full"
-                         border_radius="small"
-                         spacing="medium"
-                         theme="none"
+                         transform="none"
             >
               <a href="https://google.com"
                  target="_self"
-                 class="c-bolt-button c-bolt-button--medium c-bolt-button--text c-bolt-button--full c-bolt-button--border-radius-regular c-bolt-button--start"
+                 class="c-bolt-button c-bolt-button--medium c-bolt-button--text c-bolt-button--full c-bolt-button--border-radius-small c-bolt-button--start"
               >
                 <ssr-keep for="bolt-button"
                           class="c-bolt-button__item"
