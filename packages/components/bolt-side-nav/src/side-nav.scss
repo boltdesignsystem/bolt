@@ -82,9 +82,9 @@
 }
 
 .c-bolt-side-nav__content {
-  @include bolt-mq(medium) {
+  @include bolt-mq($from: medium, $until: xxxxlarge) {
     width: var(
-      --l-bolt-holy-grail-layout-width
+      --l-bolt-holy-grail-layout-sidebar-width
     ); // Width is set if side nav is used inside the Holy Grail layout, otherwise it will take up full width of the parent container.
   }
 }

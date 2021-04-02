@@ -14,6 +14,7 @@
   {% if this.data.gutter.value %}gutter="{{ this.data.gutter.value }}"{% endif %}
   {% if this.data.padding_top.value %}padding-top="{{ this.data.padding_top.value }}"{% endif %} 
   {% if this.data.padding_bottom.value %}padding-bottom="{{ this.data.padding_bottom.value }}"{% endif %}
+  {% if this.data.full_bleed.value %}full-bleed{% endif %}
 >
   {% if sidebar %}
     <bolt-holy-grail-sidebar {% if sidebar.auto_width %}auto-width{% endif %}>
@@ -60,6 +61,8 @@
     </bolt-holy-grail-sidebar>
   {% endif %}
   <bolt-holy-grail-article>
-    {{ content }}
+    <bolt-holy-grail-article-content>
+      {{ content }}
+    </bolt-holy-grail-article-content>
   </bolt-holy-grail-article>
 </bolt-holy-grail-layout>

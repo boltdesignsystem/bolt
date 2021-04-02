@@ -66,7 +66,7 @@ module.exports = {
     gutter: {
       type: 'string',
       description: 'Set the horizontal spacing in between desktop columns.',
-      enum: ['none', 'small', 'medium', 'large'],
+      enum: ['small', 'medium', 'large'],
       default: 'large',
     },
     padding_top: {
@@ -80,6 +80,11 @@ module.exports = {
       description: 'Set the bottom padding of the layout.',
       enum: ['none', 'small', 'medium', 'large', 'xlarge'],
       default: 'none',
+    },
+    full_bleed: {
+      type: 'boolean',
+      description:
+        'Force the layout to be full bleed (span edge to edge of browser width).',
     },
   },
 };
