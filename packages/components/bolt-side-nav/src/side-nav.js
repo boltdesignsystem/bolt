@@ -1,5 +1,5 @@
 const sideNavLinkToggleTrigger = document.querySelectorAll(
-  '.js-bolt-side-nav-toggle-trigger',
+  '[data-bolt-side-nav-toggle-trigger]',
 );
 
 sideNavLinkToggleTrigger.forEach(el => {
