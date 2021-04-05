@@ -112,7 +112,7 @@ Sort classes passed in via attributes into two groups:
 
 {# Set up the custom element's prop values based on the params passed into the Twig template - used to hydrate the component's initial state and appearance once the Button Component's JavaScript kicks in #}
 <bolt-button
-  {{ this.props|without("text")|without("class") }}
+  {{ this.props|without('text')|without('class') }}
   {% if outer_classes %} class="{{ outer_classes|join(' ') }}" {% endif %}
 >
   {# choose a semantic <a> tag or <button> tag for better accessibility, depending on whether or not a url is getting passed along #}
