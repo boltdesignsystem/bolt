@@ -213,21 +213,6 @@
   ); // Height and line-height must match to limit to 3 lines of text.
   hyphens: auto;
   word-break: normal;
-
-  &:after {
-    content: '\2026';
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    padding-left: 1em;
-    background: linear-gradient(to right, rgba(black, 0), black 50%);
-  }
-
-  &--no-ellipsis {
-    &:after {
-      display: none;
-    }
-  }
 }
 
 .c-bolt-teaser__content {
