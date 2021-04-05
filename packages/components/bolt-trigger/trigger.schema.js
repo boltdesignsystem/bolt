@@ -4,9 +4,7 @@ const {
   url,
   target,
   disabled,
-  // @todo convert BoltActionElement props to be snake case
-  onClick,
-  onClickTarget,
+  ...onClickProps
 } = elementSchemas.boltActionElement.properties;
 
 disabled.description =
@@ -42,8 +40,7 @@ module.exports = {
       default: 'pointer',
       enum: ['auto', 'pointer', 'zoom-in', 'zoom-out'],
     },
-    on_click: onClick,
-    on_click_target: onClickTarget,
+    ...onClickProps,
     display: {
       type: 'string',
       description: 'Set the display property',
