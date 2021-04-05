@@ -235,45 +235,6 @@ exports[`link Link with an on_click param renders properly 1`] = `
 </bolt-link>
 `;
 
-exports[`link Link with an onClick attributes renders properly 1`] = `
-<bolt-link display="inline"
-           valign="center"
-           url="https://pega.com"
-           on-click="on-click-test"
->
-  <a href="https://pega.com"
-     is="shadow-root"
-     class="c-bolt-link  c-bolt-link--display-inline c-bolt-link--valign-center"
-     on-click="on-click-test"
-  >
-    <ssr-keep for="bolt-link"
-              class="c-bolt-link__text"
-    >
-      Link w/ onClick via attributes
-    </ssr-keep>
-  </a>
-</bolt-link>
-`;
-
-exports[`link Link with an onClick param renders properly 1`] = `
-<bolt-link display="inline"
-           valign="center"
-           url="https://pega.com"
-           on-click="on-click-test"
->
-  <a href="https://pega.com"
-     is="shadow-root"
-     class="c-bolt-link  c-bolt-link--display-inline c-bolt-link--valign-center"
-  >
-    <ssr-keep for="bolt-link"
-              class="c-bolt-link__text"
-    >
-      Link with onClick via param
-    </ssr-keep>
-  </a>
-</bolt-link>
-`;
-
 exports[`link Link with c-bolt- class is thrown out 1`] = `
 <bolt-link display="inline"
            valign="center"
