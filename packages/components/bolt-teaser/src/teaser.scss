@@ -197,7 +197,7 @@
 }
 
 .c-bolt-teaser__signifier-description-text {
-  display: -webkit-box;
+  display: grid; // Grid and place-items required to center shorter descriptions
   place-items: center;
   position: relative;
   width: 197px; // Setting a width is the only way to make the ellipsis work in 99% of use cases, without complex JS counting lines and characters.
@@ -213,8 +213,13 @@
   ); // Height and line-height must match to limit to 3 lines of text.
   hyphens: auto;
   word-break: normal;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
+
+  &--line-clamp {
+    // https://css-tricks.com/almanac/properties/l/line-clamp/
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+  }
 }
 
 .c-bolt-teaser__content {
