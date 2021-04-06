@@ -196,7 +196,7 @@ exports[`link Default <bolt-link> with Shadow DOM renders with no extra whitespa
 </div>
 `;
 
-exports[`link Link with an onClick attributes renders properly 1`] = `
+exports[`link Link with an on_click attributes renders properly 1`] = `
 <bolt-link on-click="on-click-test"
            url="https://pega.com"
 >
@@ -207,15 +207,15 @@ exports[`link Link with an onClick attributes renders properly 1`] = `
     <ssr-keep for="bolt-link"
               class="c-bolt-link__text"
     >
-      Link w/ onClick via attributes
+      Link w/ on_click via attributes
     </ssr-keep>
   </a>
 </bolt-link>
 `;
 
-exports[`link Link with an onClick param renders properly 1`] = `
-<bolt-link on-click="on-click-test"
-           url="https://pega.com"
+exports[`link Link with an on_click param renders properly 1`] = `
+<bolt-link url="https://pega.com"
+           on-click="on-click-test"
 >
   <a href="https://pega.com"
      target="_self"
@@ -224,7 +224,7 @@ exports[`link Link with an onClick param renders properly 1`] = `
     <ssr-keep for="bolt-link"
               class="c-bolt-link__text"
     >
-      Link with onClick via param
+      Link with on_click via param
     </ssr-keep>
   </a>
 </bolt-link>
@@ -261,8 +261,8 @@ exports[`link Link with inner classes via Drupal Attributes 1`] = `
 `;
 
 exports[`link Link with outer JS-class via Drupal Attributes 1`] = `
-<bolt-link class="js-click-me"
-           url="https://pega.com"
+<bolt-link url="https://pega.com"
+           class="js-click-me"
 >
   <a href="https://pega.com"
      target="_self"
@@ -278,8 +278,8 @@ exports[`link Link with outer JS-class via Drupal Attributes 1`] = `
 `;
 
 exports[`link Link with outer classes via Drupal Attributes 1`] = `
-<bolt-link class="u-bolt-padding-medium"
-           url="https://pega.com"
+<bolt-link url="https://pega.com"
+           class="u-bolt-padding-medium"
 >
   <a href="https://pega.com"
      target="_self"
@@ -310,8 +310,8 @@ exports[`link basic link 1`] = `
 `;
 
 exports[`link link display: block 1`] = `
-<bolt-link display="block"
-           url="https://pega.com"
+<bolt-link url="https://pega.com"
+           display="block"
 >
   <a href="https://pega.com"
      target="_self"
@@ -327,8 +327,8 @@ exports[`link link display: block 1`] = `
 `;
 
 exports[`link link display: flex 1`] = `
-<bolt-link display="flex"
-           url="https://pega.com"
+<bolt-link url="https://pega.com"
+           display="flex"
 >
   <a href="https://pega.com"
      target="_self"
@@ -344,8 +344,8 @@ exports[`link link display: flex 1`] = `
 `;
 
 exports[`link link display: inline 1`] = `
-<bolt-link display="inline"
-           url="https://pega.com"
+<bolt-link url="https://pega.com"
+           display="inline"
 >
   <a href="https://pega.com"
      target="_self"
@@ -361,8 +361,8 @@ exports[`link link display: inline 1`] = `
 `;
 
 exports[`link link valign: center 1`] = `
-<bolt-link valign="center"
-           url="https://pega.com"
+<bolt-link url="https://pega.com"
+           valign="center"
 >
   <a href="https://pega.com"
      target="_self"
@@ -378,8 +378,8 @@ exports[`link link valign: center 1`] = `
 `;
 
 exports[`link link valign: start 1`] = `
-<bolt-link valign="start"
-           url="https://pega.com"
+<bolt-link url="https://pega.com"
+           valign="start"
 >
   <a href="https://pega.com"
      target="_self"
