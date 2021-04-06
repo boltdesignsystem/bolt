@@ -112,19 +112,19 @@ describe('link', () => {
     expect(results.html).toMatchSnapshot();
   });
 
-  test('Link with an onClick param renders properly', async () => {
+  test('Link with an on_click param renders properly', async () => {
     const results = await render('@bolt-components-link/link.twig', {
-      text: 'Link with onClick via param',
+      text: 'Link with on_click via param',
       url: 'https://pega.com',
-      onClick: 'on-click-test',
+      on_click: 'on-click-test',
     });
     expect(results.ok).toBe(true);
     expect(results.html).toMatchSnapshot();
   });
 
-  test('Link with an onClick attributes renders properly', async () => {
+  test('Link with an on_click attributes renders properly', async () => {
     const results = await render('@bolt-components-link/link.twig', {
-      text: 'Link w/ onClick via attributes',
+      text: 'Link w/ on_click via attributes',
       url: 'https://pega.com',
       attributes: {
         'on-click': 'on-click-test',
