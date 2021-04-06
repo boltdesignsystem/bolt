@@ -48,15 +48,31 @@ export async function renderWC(componentTag, html, page) {
       const undefinedElements = document.querySelectorAll(
         `${componentTag}, ssr-keep`,
       );
-
-      const promises = [...undefinedElements].map(elem =>
-        customElements.whenDefined(elem.localName),
+      const promises = [...undefinedElements].map(
+        elem =>
+          // Here in the Jest `page` context, `customElements` and `whenDefined` do not exist.
+          // It's not a complete DOM. We must set a timer and wait for component to be ready, then return.
+          new Promise((resolve, reject) => {
+            const interval = setInterval(() => {
+              // Consider component loaded once this is true
+              if (typeof elem.firstUpdated === 'function') {
+                resolve();
+                clearInterval(interval);
+              }
+            });
+            setTimeout(() => {
+              // bail after 5 seconds
+              resolve();
+            }, 5000);
+          }),
       );
+
       await Promise.all(promises);
+
       const component = document.querySelector(
         `.${uuidSelector} ${componentTag}`,
       );
-      await component.firstUpdated;
+
       return {
         innerHTML: component.renderRoot.innerHTML,
         outerHTML: component.outerHTML,
