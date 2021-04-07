@@ -5,7 +5,6 @@
 {% set notes %}
 <bolt-ol>
   <bolt-li>When setting the <bolt-code-snippet display="inline">headline</bolt-code-snippet> and <bolt-code-snippet display="inline">subheadline</bolt-code-snippet> please be sure to set the proper HTML tag to ensure SEO and accessibility best practices.</bolt-li>
-  <bolt-li>The <bolt-code-snippet display="inline">description</bolt-code-snippet> has the <bolt-code-snippet display="inline">show_on_hover</bolt-code-snippet> boolean prop. When it is set to true, the description appears as an overlay above the signifier.</bolt-li>
   <bolt-li>The traditional eyebrow/headline/subheadline lockup is best used in responsive layout.</bolt-li>
 </bolt-ol>
 {% endset %}
@@ -39,8 +38,7 @@
           size: 'xlarge',
         },
         description: {
-          content: 'This is the description. Aliqua voluptate amet do laborum culpa tempor consectetur culpa consectetur ea. Ea officia quis do enim.',
-          show_on_hover: true,
+          content: 'This is the description.',
         },
       } only %}
     </div>
@@ -65,8 +63,7 @@
     size: 'xlarge',
   },
   description: {
-    content: 'This is the description. Aliqua voluptate amet do laborum culpa tempor consectetur culpa consectetur ea. Ea officia quis do enim. Duis dolore labore cillum excepteur aute veniam dolore consectetur est sint exercitation sit. Dolor eiusmod officia laborum tempor. Enim eiusmod Lorem laboris aliqua dolore.',
-    show_on_hover: true,
+    content: 'This is the description.',
   },
   ...
 } only %}
