@@ -70,11 +70,9 @@ Sort classes passed in via attributes into two groups:
 {% set inner_classes = classes %}
 
 {% for class in this.props.class %}
-  {% if class starts with 'is-' == true %}
+  {% if class starts with 'is-' or class starts with 'has-' %}
     {% set inner_classes = inner_classes|merge([class]) %}
-  {% elseif class starts with 'has-' == true %}
-    {% set inner_classes = inner_classes|merge([class]) %}
-  {% elseif class starts with 'c-bolt-link' == false %}
+  {% elseif class starts with 'c-bolt-' == false %}
     {% set outer_classes = outer_classes|merge([class]) %}
   {% endif %}
 {% endfor %}
