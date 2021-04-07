@@ -6,6 +6,16 @@
   {{ validate_data_schema(schema, _self) | raw }}
 {% endif %}
 
+{# DEPRECATED.  Use the property `on_click` instead of `onClick`. #}
+{% if onClick %}
+  {% set on_click = onClick %}
+{% endif %}
+
+{# DEPRECATED.  Use the property `on_click_target` instead of `onClickTarget`. #}
+{% if onClickTarget %}
+  {% set on_click_target = onClickTarget %}
+{% endif %}
+
 {# set up psuedo self-validation by limiting param values to what's specifically allowed in the component schema #}
 {% set icon_positions = schema.properties.icon.properties.position.enum %}
 
@@ -28,12 +38,12 @@
   {% set target = target | default(attributes["target"]) %}
 {% endif %}
 
-{% if onClick or attributes["on-click"] %}
-  {% set onClick = onClick | default(attributes["on-click"]) %}
+{% if on_click or attributes["on-click"] %}
+  {% set on_click = on_click | default(attributes["on-click"]) %}
 {% endif %}
 
-{% if onClickTarget or attributes["on-click-target"] %}
-  {% set onClickTarget = onClickTarget | default(attributes["on-click-target"]) %}
+{% if on_click_target or attributes["on-click-target"] %}
+  {% set on_click_target = on_click_target | default(attributes["on-click-target"]) %}
 {% endif %}
 
 {# Set up checks to validate that the component's prop values are allowed, based on the component's schema. #}
@@ -80,10 +90,8 @@ Sort classes passed in via attributes into two groups:
   {% if target %} target="{{ target }}" {% endif %}
   {% if isHeadline %} is-headline="true" {% endif %}
   {% if outer_classes %} class="{{ outer_classes|join(' ') }}" {% endif %}
-
-  {# todo: rename on-click + on-click-target to only allow onClick + onClickTarget to unify the prop syntax; deprecate adding these via attributes #}
-  {% if onClick %} on-click="{{ onClick }}" {% endif %}
-  {% if onClickTarget %} on-click-target="{{ onClickTarget }}" {% endif %}
+  {% if on_click %} on-click="{{ on_click }}" {% endif %}
+  {% if on_click_target %} on-click-target="{{ on_click_target }}" {% endif %}
 
   {{ filtered_attributes }}
 >
