@@ -132,18 +132,18 @@ describe('trigger', () => {
     expect(results.html).toMatchSnapshot();
   });
 
-  test('Trigger with an onClick param renders properly', async () => {
+  test('Trigger with an on_click param renders properly', async () => {
     const results = await render('@bolt-components-trigger/trigger.twig', {
-      text: 'Trigger with onClick via param',
+      text: 'Trigger with on_click via param',
       on_click: 'on-click-test',
     });
     expect(results.ok).toBe(true);
     expect(results.html).toMatchSnapshot();
   });
 
-  test('Trigger with an onClick attributes renders properly', async () => {
+  test('Trigger with an on_click attributes renders properly', async () => {
     const results = await render('@bolt-components-trigger/trigger.twig', {
-      text: 'Trigger w/ onClick via attributes',
+      text: 'Trigger w/ on_click via attributes',
       attributes: {
         'on-click': 'on-click-test',
       },

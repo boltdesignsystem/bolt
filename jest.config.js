@@ -43,6 +43,8 @@ module.exports = {
     'default',
     './packages/testing/testing-jest/jest-reporter-vrt.js',
   ],
+  testTimeout: 120000,
+  // slowTestThreshold: 30000, // Uncomment to debug slow tests once we upgrade to Jest v26
   // Notify not working correctly; we want to only get a notification when tests fail, and then get ONE success notificaiton after it passes
   // notify: true,
   // notifyMode: 'failure-success',

@@ -185,7 +185,7 @@
   width: 100%;
   height: 100%;
   overflow: hidden;
-  padding: var(--bolt-spacing-y-medium) var(--bolt-spacing-x-large);
+  padding: var(--bolt-spacing-y-medium) 0;
   color: var(--bolt-color-white);
   background-color: black;
   place-items: center;
@@ -197,7 +197,11 @@
 }
 
 .c-bolt-teaser__signifier-description-text {
+  display: grid; // Grid and place-items required to center shorter descriptions
+  place-items: center;
   position: relative;
+  width: 197px; // Setting a width is the only way to make the ellipsis work in 99% of use cases, without complex JS counting lines and characters.
+  max-width: 100%;
   height: calc(
     var(--bolt-type-line-height-small) * 3em
   ); // Height and line-height must match to limit to 3 lines of text.
@@ -210,13 +214,11 @@
   hyphens: auto;
   word-break: normal;
 
-  &:after {
-    content: '\2026';
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    padding-left: 1em;
-    background: linear-gradient(to right, rgba(black, 0), black 50%);
+  &--line-clamp {
+    // https://css-tricks.com/almanac/properties/l/line-clamp/
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
   }
 }
 
@@ -270,6 +272,7 @@
   display: flex;
   align-items: center;
   order: 0;
+  z-index: 1; // Must use z-index to fix stacking order in FF. `position: relative` does not seem to work in FF when combined with `order: 0`.
 
   @at-root .c-bolt-teaser--horizontal #{&} {
     order: 2;

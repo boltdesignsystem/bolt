@@ -110,7 +110,7 @@ $www-quick-filters-button-shadow-offset: var(--bolt-spacing-y-medium);
   }
 
   &:checked + .e-bolt-button {
-    color: var(--m-bolt-link);
+    color: var(--m-bolt-text-on-secondary);
     box-shadow: 0 0 0 1px var(--bolt-color-navy-light);
     background-image: linear-gradient(
       rgba(bolt-color(gray, light), 0.2),
@@ -130,8 +130,8 @@ $www-quick-filters-button-shadow-offset: var(--bolt-spacing-y-medium);
         rotate(45deg);
       width: 0.5em;
       height: 0.75em;
-      border-right: 2px solid var(--m-bolt-headline);
-      border-bottom: 2px solid var(--m-bolt-headline);
+      border-right: 2px solid var(--m-bolt-text-on-secondary);
+      border-bottom: 2px solid var(--m-bolt-text-on-secondary);
       border-radius: 0;
       box-shadow: none;
     }
@@ -144,7 +144,7 @@ $www-quick-filters-button-shadow-offset: var(--bolt-spacing-y-medium);
   }
 
   &:checked:focus + .e-bolt-button {
-    color: var(--m-bolt-link);
+    color: var(--m-bolt-text-on-secondary);
     box-shadow: none;
   }
 }
