@@ -145,7 +145,8 @@ $bolt-page-header-mobile-expanded-content-spacing-x: calc(
 
 @mixin bolt-page-header-nav-background {
   background: linear-gradient(
-    var(--bolt-color-gray-light),
-    var(--bolt-color-gray-xlight)
+    rgba(bolt-color(gray), 0.1),
+    rgba(bolt-color(gray), 0.2)
   );
+  background-color: var(--m-bolt-bg);
 }

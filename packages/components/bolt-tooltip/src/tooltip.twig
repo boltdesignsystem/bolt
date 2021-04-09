@@ -5,17 +5,12 @@
 {% endif %}
 
 {# Variables #}
-{% set base_class = "c-bolt-tooltip" %}
 {% set this = init(schema) %}
 {% set uuid = this.data.uuid|default(bolt.data.config.env == "test" ? "12345" : random() ~ "") %}
-{% set tooltip_uuid = "js-bolt-tooltip-" ~ uuid %}
 {% set inner_attributes = create_attribute({}) %}
 
 {# Array of classes based on the defined + default props #}
 {% set classes = [
-  base_class,
-  this.data.placement.value != "auto" ? base_class ~ "--" ~ this.data.placement.value,
-  this.data.content.value|length > 31 ? base_class ~ "--text-wrap",
   this.data.content.value|length > 31 and this.data.content.value|length < 62 ? base_class ~ "--text-align-center",
   "c-bolt-tooltip--dotted"
 ] %}
@@ -69,72 +64,37 @@
   {% endif %}
   uuid="{{ uuid }}"
 >
-  <span {% if inner_classes %} class="{{ inner_classes|join(' ') }}" {% endif %}>
-    {% if trigger %}
-      {# Start adapter for old trigger data #}
-      {% if trigger.type == "text" %}
-        <span
-          role="button"
-          tabindex="0"
-          aria-describedby="{{ tooltip_uuid }}"
-          aria-controls="{{ tooltip_uuid }}"
-        >
-          <ssr-keep for="bolt-tooltip">
-            {% if trigger.icon %}
-              {% include "@bolt-components-icon/icon.twig" with trigger.icon %}
-            {% endif %}
-            {% if trigger.text %}
-              {{ trigger.text }}
-            {% endif %}
-          </ssr-keep>
-        </span>
-      {% elseif trigger.type == "button" %}
-        <span
-          role="button"
-          tabindex="0"
-          aria-describedby="{{ tooltip_uuid }}"
-          aria-controls="{{ tooltip_uuid }}"
-        >
-          <ssr-keep for="bolt-tooltip">
-            {% include "@bolt-components-button/button.twig" with {
-              text: trigger.text,
-              icon: {
-                name: trigger.icon.name,
-                size: trigger.icon.size,
-                position: "before",
-              },
-              style: "secondary",
-            } only %}
-          </ssr-keep>
-        </span>
-      {# End adapter for old trigger data #}
-
-      {# Start new trigger #}
-      {% else %}
-        <span
-          role="button"
-          tabindex="0"
-          aria-describedby="{{ tooltip_uuid }}"
-          aria-controls="{{ tooltip_uuid }}"
-        >
-          <ssr-keep for="bolt-tooltip">
-            {{ trigger }}
-          </ssr-keep>
-        </span>
+  {% if trigger %}
+    {# Start adapter for old trigger data #}
+    {% if trigger.type == "text" %}
+      {% if trigger.icon %}
+        {% include "@bolt-components-icon/icon.twig" with trigger.icon %}
       {% endif %}
-      {# End new trigger #}
-    {% endif %}
+      {% if trigger.text %}
+        {{ trigger.text }}
+      {% endif %}
+    {% elseif trigger.type == "button" %}
+      {% include "@bolt-components-button/button.twig" with {
+        text: trigger.text,
+        icon: {
+          name: trigger.icon.name,
+          size: trigger.icon.size,
+          position: "before",
+        },
+        style: "secondary",
+      } only %}
+    {# End adapter for old trigger data #}
 
-    {% if content %}
-      <span id="{{ tooltip_uuid }}" class="{{ "#{base_class}__content" }}" role="tooltip" aria-hidden="true">
-        <span class="{{ "#{base_class}__bubble" }}">
-          <ssr-keep for="bolt-tooltip">
-            <span slot="content">
-              {{ content }}
-            </span>
-          </ssr-keep>
-        </span>
-      </span>
+    {# Start new trigger #}
+    {% else %}
+      {{ trigger }}
     {% endif %}
-  </span>
+    {# End new trigger #}
+  {% endif %}
+
+  {% if content %}
+    <span slot="content">
+      {{ content }}
+    </span>
+  {% endif %}
 </bolt-tooltip>

@@ -1,5 +1,6 @@
 @import '@bolt/core-v3.x';
-@import '@bolt/global/styles/06-themes/_themes.all.scss';
+@import '@bolt/global/styles/06-themes/_themes.all.scss'; // @todo: remove this once bolt-theme() function is completely deprecated and removed.
+@import '@bolt/global/styles/00-vars/_vars-mode.scss';
 
 /* ------------------------------------ *\
    Modal
@@ -9,21 +10,6 @@
    before heavy modifications
    and customizations
 \* ------------------------------------ */
-
-/**
- * When `<dialog>` is properly supported, the overlay is implied and can be
- * styled with `::backdrop`, which means the DOM one should be removed.
- */
-/*
-[data-a11y-dialog-native] .dialog-overlay {
-  @todo: look further into this to see why the natively supported ::backdrop wasn't showing up as expected
-  display: none;
-}
-
-dialog::backdrop {
-  background-color: rgba(0, 0, 0, 0.66);
-}
-*/
 
 $bolt-modal-overlay-bg-color-dark: var(--bolt-color-navy-xdark);
 $bolt-modal-overlay-bg-color-light: var(--bolt-color-white);

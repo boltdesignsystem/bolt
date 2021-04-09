@@ -12,7 +12,8 @@
 
 {% set classes = [
   'c-bolt-page-header',
-  static ? 'c-bolt-page-header--static',
+  this.data.static.value ? 'c-bolt-page-header--static',
+  this.data.theme.value ? 't-bolt-' ~ this.data.theme.value,
 ] %}
 
 {# Setting the desktop breakpoint to work with JS. See page-header.js #}
@@ -24,11 +25,16 @@
     {% if logo %}
       <{{ logo_tag }} {{ logo_attributes.addClass('c-bolt-page-header__logo')|without('aria-label') }} aria-label="{{ logo.label|t }}">
         <span class="c-bolt-page-header__logo__img" aria-hidden="true">
-          <img src="{{ logo.image_src }}">
+          <img src="{{ logo.image_src }}" alt="">
         </span>
       </{{ logo_tag }}>
     {% endif %}
     <div class="c-bolt-page-header__toolbar">
+      {% if subheadline %}
+        <div class="c-bolt-page-header__subheadline">
+          {{ subheadline }}
+        </div>
+      {% endif %}
       {{ content }}
       {% if cta %}
         <div class="c-bolt-page-header__cta">
@@ -37,7 +43,9 @@
       {% endif %}
     </div>
   </div>
-  <div class="c-bolt-page-header__secondary">
-    {{ secondary_content }}
-  </div>
+  {% if secondary_content %}
+    <div class="c-bolt-page-header__secondary">
+      {{ secondary_content }}
+    </div>
+  {% endif %}
 </header>

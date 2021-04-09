@@ -1,29 +1,26 @@
 {
   "name": "@bolt/components-teaser",
-  "version": "3.1.0",
-  "description": "Text lockup for teasing larger content.",
+  "version": "3.4.3",
+  "description": "An interactive UI element that summarizes a particular resoruce.",
   "keywords": [
-    "eyeglass-module",
-    "bolt design system",
-    "bolt",
-    "ui toolkit",
-    "design system"
+    "bolt design system"
   ],
-  "homepage": "https://boltdesignsystem.com",
-  "bugs": "https://github.com/bolt-design-system/bolt/issues",
-  "repository": "https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-teaser",
+  "bugs": {
+    "url": "https://github.com/bolt-design-system/bolt/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-teaser"
+  },
   "license": "MIT",
-  "author": "Salem Ghoweri",
-  "style": "src/teaser.scss",
+  "author": "CJ White <hello@cjwhitedev.com>",
+  "style": "index.scss",
   "dependencies": {
-    "@bolt/components-headline": "^3.1.0",
-    "@bolt/components-logo": "^3.1.0",
-    "@bolt/core-v3.x": "^3.1.0"
+    "@bolt/core-v3.x": "^3.4.0"
   },
   "publishConfig": {
     "access": "public"
   },
-  "gitHead": "d41aa75ae3d195d9d7fb3952eed5e0ae80988133",
   "schema": "teaser.schema.js",
-  "sourceFilesFrom": "0.9.0"
+  "twig": "src/teaser.twig"
 }
