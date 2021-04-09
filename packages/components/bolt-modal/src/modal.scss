@@ -75,12 +75,12 @@ bolt-modal:not([ready]) {
 
     .c-bolt-modal__content {
       width: 100%;
+      height: 100vh;
     }
 
     .c-bolt-modal__container {
-      display: flex;
-      flex-direction: column;
       height: 100vh;
+      height: -webkit-fill-available;
       color: var(--bolt-color-black);
       background-color: var(--bolt-color-white);
     }
