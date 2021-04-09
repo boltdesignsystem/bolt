@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.5.0](https://github.com/boltdesignsystem/bolt/compare/v3.4.3...v3.5.0) (2021-04-09)
+
+**Note:** Version bump only for package @bolt/components-card-replacement
+
+
+
+
+
 ## [3.4.3](https://github.com/boltdesignsystem/bolt/compare/v3.4.2...v3.4.3) (2021-04-01)
 
 **Note:** Version bump only for package @bolt/components-card-replacement
