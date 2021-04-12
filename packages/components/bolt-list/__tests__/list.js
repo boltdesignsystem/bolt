@@ -1,10 +1,7 @@
 import {
-  isConnected,
   render,
   renderString,
   stopServer,
-  html,
-  vrtDefaultConfig,
 } from '../../../testing/testing-helpers';
 import schema from '../list.schema';
 const { display, spacing, separator, align, valign, tag } = schema.properties;
@@ -191,9 +188,6 @@ describe('<bolt-list> Component', () => {
     //     list.addEventListener('error', reject);
     //   });
     // }, results);
-
-    // const image = await page.screenshot();
-    // expect(image).toMatchImageSnapshot(vrtDefaultConfig);
 
     // @todo: `html()` (`@open-wc/testing-helpers`) is not handling CSS custom properties properly.
     // It converts `--` to `-`. Do not include code snapshot until that's resolved.
