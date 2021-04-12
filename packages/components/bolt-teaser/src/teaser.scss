@@ -248,7 +248,7 @@
 }
 
 .c-bolt-teaser__description,
-.c-bolt-teaser__actions {
+.c-bolt-teaser__actions-and-views {
   margin-bottom: var(--bolt-spacing-y-small);
 }
 
@@ -268,11 +268,10 @@
   order: 1;
 }
 
-.c-bolt-teaser__actions {
+.c-bolt-teaser__actions-and-views {
   display: flex;
   align-items: center;
   order: 0;
-  z-index: 1; // Must use z-index to fix stacking order in FF. `position: relative` does not seem to work in FF when combined with `order: 0`.
 
   @at-root .c-bolt-teaser--horizontal #{&} {
     order: 2;
@@ -301,6 +300,7 @@
   display: flex;
   flex-wrap: nowrap;
   position: relative;
+  z-index: 1; // Must use z-index to fix stacking order in FF.
   margin: 0 0 0 auto;
   padding: 0;
   font-size: var(--bolt-type-font-size-xsmall);
