@@ -192,6 +192,15 @@
       },
     },
   } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'View all capabilities',
+      attributes: {
+        href: 'https://pega.com/',
+      },
+    },
+    view_all: true,
+  } only %}
 {% endset %}
 
 {% set capabilities_lv3 %}
@@ -257,6 +266,7 @@
         href: 'https://pega.com',
       }
     },
+    view_all: true,
     full_width: true,
   } only %}
 {% endset %}
@@ -426,14 +436,14 @@
 {# User nav #}
 {% set user_flag %}
   <div class="c-bolt-page-header__user-flag">
-    <img src="/images/docs/500x500.jpg" alt="Portrait of Bill" class="c-bolt-page-header__user-flag__img">
+    <img src="/images/docs/500x500.jpg" alt="Portrait of Alan" class="c-bolt-page-header__user-flag__img">
     <div class="c-bolt-page-header__user-flag__content">
       {% include '@bolt-components-headline/eyebrow.twig' with {
         text: 'Hello',
         tag: 'p',
       } only %}
       {% include '@bolt-components-headline/headline.twig' with {
-        text: 'Bill',
+        text: 'Alan',
         size: 'xlarge',
         tag: 'p',
       } only %}
@@ -563,14 +573,14 @@
 {% set user_nav_lv1_ul_content %}
   {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
     link: {
-      content: icon_user ~ 'User: Bill',
+      content: icon_user ~ 'Hello Alan',
     },
     children: user_popover_lv2,
     popover: true,
   } only %}
   {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
     link: {
-      content: icon_global ~ 'Language: English',
+      content: icon_global ~ 'English',
     },
     children: language_popover_lv2,
     popover: true,

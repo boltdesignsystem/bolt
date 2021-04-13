@@ -51,6 +51,12 @@ module.exports = {
         'Set the nav li width to full. This only applies if nav ul category is set to "site".',
       default: false,
     },
+    view_all: {
+      type: 'boolean',
+      description:
+        'Set the nav li as the "view all" item. This only applies "view all" links.',
+      default: false,
+    },
     popover: {
       type: 'boolean',
       description:

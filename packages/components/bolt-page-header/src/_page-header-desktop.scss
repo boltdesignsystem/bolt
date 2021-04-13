@@ -50,6 +50,10 @@
     }
   }
 
+  .c-bolt-page-header__action-trigger__icon {
+    font-size: var(--bolt-type-font-size-xlarge);
+  }
+
   // Search panel
   .c-bolt-page-header__action-trigger--search {
     z-index: 2;
@@ -107,7 +111,7 @@
     font-family: var(--bolt-type-font-family-headline);
     font-size: var(--bolt-type-font-size-xxsmall);
     font-weight: var(--bolt-type-font-weight-semibold);
-    color: bolt-theme(link);
+    color: var(--m-bolt-link);
     line-height: var(--bolt-type-line-height-xxsmall);
 
     .c-bolt-page-header__nav-link {
@@ -116,7 +120,7 @@
       display: block;
       padding: 0 var(--bolt-spacing-x-xsmall);
       font-family: var(--bolt-type-font-family-headline);
-      color: bolt-theme(link);
+      color: var(--m-bolt-link);
       line-height: $bolt-page-header-desktop-util-nav-height;
       outline: none;
 
@@ -182,8 +186,8 @@
 
           min-height: auto;
           padding: var(--bolt-spacing-y-small) var(--bolt-spacing-x-small);
-          font-size: var(--bolt-type-font-size-small);
-          line-height: var(--bolt-type-line-height-small);
+          font-size: var(--bolt-type-font-size-xsmall);
+          line-height: var(--bolt-type-line-height-xsmall);
           border-radius: 0;
 
           &:hover,
@@ -267,12 +271,6 @@
     > .c-bolt-page-header__nav-list-item {
       margin: 1px;
 
-      &.is-current {
-        > .c-bolt-page-header__nav-link {
-          color: var(--m-bolt-headline);
-        }
-      }
-
       > .c-bolt-page-header__nav-link {
         @include bolt-page-header-action-trigger;
 
@@ -286,6 +284,7 @@
           --c-bolt-page-header-desktop-primary-nav-link-font-size,
           var(--bolt-type-font-size-small)
         );
+        color: var(--m-bolt-headline);
         line-height: calc(#{$bolt-page-header-click-target-size} / 2 - 4px);
         white-space: nowrap;
 
@@ -304,8 +303,8 @@
           background: linear-gradient(
             transparent 0%,
             transparent calc(100% - 3px),
-            bolt-theme(link) calc(100% - 3px),
-            bolt-theme(link) 100%
+            var(--m-bolt-link) calc(100% - 3px),
+            var(--m-bolt-link) 100%
           );
           transition: opacity $bolt-transition, transform $bolt-transition;
         }
@@ -387,13 +386,17 @@
             font-size: var(--bolt-type-font-size-xsmall);
             font-weight: var(--bolt-type-font-weight-semibold);
             line-height: var(--bolt-type-line-height-xsmall);
+
+            .c-bolt-page-header__nav-list {
+              font-weight: var(--bolt-type-font-weight-regular);
+            }
           }
         }
 
         .c-bolt-page-header__nav-link {
           display: block;
           padding: 1px;
-          color: var(--m-bolt-headline);
+          // color: var(--m-bolt-headline);
 
           > .c-bolt-page-header__nav-link__content {
             font-family: inherit;
@@ -408,7 +411,7 @@
         button.c-bolt-page-header__nav-link {
           @include bolt-button-native-styles-reset;
 
-          color: bolt-theme(link);
+          color: var(--m-bolt-headline);
           outline: none;
 
           &:hover {
@@ -417,7 +420,7 @@
 
           &:focus {
             border-radius: bolt-border-radius(small);
-            box-shadow: 0 0 0 1px bolt-theme(link);
+            box-shadow: 0 0 0 1px var(--m-bolt-link);
             outline: none; // Repeated here to remove Firefox default outline.
           }
         }
@@ -437,11 +440,20 @@
           }
         }
 
+        .c-bolt-page-header__nav-list-item--view-all {
+          font-size: var(--bolt-type-font-size-small);
+          font-weight: var(--bolt-type-font-weight-semibold);
+          line-height: var(--bolt-type-line-height-small);
+
+          .c-bolt-page-header__nav-link {
+            color: var(--m-bolt-link);
+          }
+        }
+
         .c-bolt-page-header__nav-list-item--full-width {
           display: grid;
           flex-basis: 100%;
           margin-bottom: 0;
-          font-weight: var(--bolt-type-font-weight-bold);
           text-align: center;
           border-left-width: 0;
           place-items: center;
@@ -499,7 +511,7 @@
   .c-bolt-page-header__cta {
     transform: translate3d(0, 0, 0);
     margin-right: #{$bolt-page-header-action-trigger-spacing-x};
-    margin-left: calc(#{$bolt-page-header-action-trigger-spacing-x} * 2);
+    margin-left: #{$bolt-page-header-action-trigger-spacing-x};
   }
 
   // User flag
