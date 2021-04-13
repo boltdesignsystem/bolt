@@ -186,8 +186,8 @@
 
           min-height: auto;
           padding: var(--bolt-spacing-y-small) var(--bolt-spacing-x-small);
-          font-size: var(--bolt-type-font-size-xsmall);
-          line-height: var(--bolt-type-line-height-xsmall);
+          font-size: var(--bolt-type-font-size-xxsmall);
+          line-height: var(--bolt-type-line-height-xxsmall);
           border-radius: 0;
 
           &:hover,
@@ -287,6 +287,7 @@
         color: var(--m-bolt-headline);
         line-height: calc(#{$bolt-page-header-click-target-size} / 2 - 4px);
         white-space: nowrap;
+        transition: var(--bolt-transition);
 
         &:after {
           content: '';
@@ -311,6 +312,8 @@
 
         &:hover,
         &[aria-expanded='true'] {
+          color: var(--m-bolt-link);
+
           &:before {
             opacity: 0;
           }
@@ -332,7 +335,7 @@
         top: var(--bolt-page-header-height);
         right: 0;
         left: 0;
-        transform: translate3d(0, calc(var(--bolt-spacing-y-xsmall) * -1), 0);
+        transform: translate3d(0, 0, 0);
         z-index: 1;
         width: 100%;
         padding-top: var(--bolt-spacing-y-medium);
@@ -352,8 +355,7 @@
         box-shadow: 0 var(--bolt-spacing-y-medium) var(--bolt-spacing-y-medium)
           rgba(black, 0.4);
         background-color: var(--m-bolt-bg);
-        transition: opacity $bolt-transition, visibility $bolt-transition,
-          transform $bolt-transition;
+        transition: opacity $bolt-transition, visibility $bolt-transition;
 
         > .c-bolt-page-header__nav-list-item {
           flex: 1 1 20%;
@@ -472,9 +474,12 @@
 
         visibility: visible;
         opacity: 1;
-        transform: translate3d(0, 0, 0);
-        transition-delay: $bolt-transition-timing;
         max-height: calc(100vh - var(--bolt-page-header-height));
+      }
+
+      > .c-bolt-page-header__nav-link[aria-expanded='false']
+        ~ .c-bolt-page-header__nav-list {
+        transition-delay: $bolt-transition-timing;
       }
     }
   }
@@ -519,5 +524,11 @@
     grid-template-columns: 48px 1fr;
     grid-gap: var(--bolt-spacing-x-small);
     align-items: center;
+  }
+}
+
+@include bolt-mq($from: xlarge) {
+  .c-bolt-page-header__primary {
+    grid-gap: var(--bolt-spacing-x-medium);
   }
 }

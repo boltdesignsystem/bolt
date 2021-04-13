@@ -177,6 +177,7 @@ export class BoltPageHeaderNav {
     // https://github.com/tristen/hoverintent#custom-options
     const opts = {
       timeout: 500,
+      interval: 0,
     };
 
     this.hoverListeners = this.hoverListeners || [];
