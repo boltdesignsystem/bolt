@@ -65,8 +65,8 @@
     z-index: 1;
     padding-right: calc(var(--bolt-page-padding-x) + 8vw);
     padding-left: calc(var(--bolt-page-padding-x) + 8vw);
-    transition: opacity $bolt-transition, visibility $bolt-transition,
-      transform $bolt-transition;
+    transition: opacity var(--bolt-transition),
+      visibility var(--bolt-transition), transform var(--bolt-transition);
 
     @at-root .c-bolt-page-header__action-trigger--search[aria-expanded='true']
         ~ #{&} {
@@ -172,8 +172,8 @@
         border-style: $bolt-border-style;
         border-color: $bolt-border-color;
         background-color: var(--m-bolt-bg);
-        transition: opacity $bolt-transition, visibility $bolt-transition,
-          transform $bolt-transition;
+        transition: opacity var(--bolt-transition),
+          visibility var(--bolt-transition), transform var(--bolt-transition);
 
         .c-bolt-page-header__nav-list-item:not(:last-of-type) {
           border-bottom-color: $bolt-border-color;
@@ -307,7 +307,8 @@
             var(--m-bolt-link) calc(100% - 3px),
             var(--m-bolt-link) 100%
           );
-          transition: opacity $bolt-transition, transform $bolt-transition;
+          transition: opacity var(--bolt-transition),
+            transform var(--bolt-transition);
         }
 
         &:hover,
@@ -355,7 +356,8 @@
         box-shadow: 0 var(--bolt-spacing-y-medium) var(--bolt-spacing-y-medium)
           rgba(black, 0.4);
         background-color: var(--m-bolt-bg);
-        transition: opacity $bolt-transition, visibility $bolt-transition;
+        transition: opacity var(--bolt-transition),
+          visibility var(--bolt-transition);
 
         > .c-bolt-page-header__nav-list-item {
           flex: 1 1 20%;
@@ -479,7 +481,7 @@
 
       > .c-bolt-page-header__nav-link[aria-expanded='false']
         ~ .c-bolt-page-header__nav-list {
-        transition-delay: $bolt-transition-timing;
+        transition-delay: var(--bolt-transition-timing);
       }
     }
   }
