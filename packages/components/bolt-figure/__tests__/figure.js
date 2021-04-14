@@ -1,5 +1,4 @@
 import {
-  isConnected,
   render,
   renderString,
   stopServer,
@@ -57,12 +56,6 @@ describe('figure', () => {
       null,
     );
 
-    // const image = await page.screenshot();
-    // expect(image).toMatchImageSnapshot({
-    //   failureThreshold: '0.01',
-    //   failureThresholdType: 'percent',
-    // });
-
     expect(renderedInnerHTML).toMatchSnapshot();
   });
 
@@ -93,12 +86,6 @@ describe('figure', () => {
         .querySelector('figcaption')
         .classList.contains('c-bolt-figure__caption'),
     ).toBe(true);
-
-    // const image = await page.screenshot();
-    // expect(image).toMatchImageSnapshot({
-    //   failureThreshold: '0.01',
-    //   failureThresholdType: 'percent',
-    // });
 
     expect(renderedHTML).toMatchSnapshot();
   });

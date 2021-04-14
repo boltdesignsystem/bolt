@@ -1,13 +1,6 @@
-import {
-  isConnected,
-  render,
-  renderString,
-  stopServer,
-  html,
-} from '../../../testing/testing-helpers';
+import { render, stopServer } from '../../../testing/testing-helpers';
 import schema from '../share.schema';
 const { size, opacity, align } = schema.properties;
-const timeout = 120000;
 
 describe('<bolt-share> Component', () => {
   afterAll(async () => {

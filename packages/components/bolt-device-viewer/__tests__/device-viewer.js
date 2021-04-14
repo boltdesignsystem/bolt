@@ -1,8 +1,4 @@
-import {
-  render,
-  renderString,
-  stopServer,
-} from '../../../testing/testing-helpers';
+import { render, stopServer } from '../../../testing/testing-helpers';
 import schema from '../device-viewer.schema';
 const { deviceName, color, orientation } = schema.properties;
 

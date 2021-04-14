@@ -1,11 +1,4 @@
-import {
-  isConnected,
-  render,
-  renderString,
-  stopServer,
-  html,
-  vrtDefaultConfig,
-} from '../../../testing/testing-helpers';
+import { render, stopServer } from '../../../testing/testing-helpers';
 import schema from '../blockquote.schema';
 const os = require('os');
 const { size, alignItems, border } = schema.properties;
@@ -132,11 +125,6 @@ describe('<bolt-blockquote> component', () => {
       // const renderedHTML = await html(renderedBlockquoteHTML);
       // expect(renderedHTML).toMatchSnapshot();
 
-      // @TODO Re-enable VRT test and troubleshoot intermittent failures on Travis
-      // await page.waitFor(500);
-      // const image = await page.screenshot();
-      // expect(image).toMatchImageSnapshot(vrtDefaultConfig);
-
       expect(results.ok).toBe(true);
       expect(results.html).toMatchSnapshot();
     });
@@ -238,12 +226,6 @@ describe('<bolt-blockquote> component', () => {
   //   // });
 
   //   const renderedHTML = await html(defaultBlockquoteOuter);
-
-  //   // @TODO Re-enable VRT test and troubleshoot intermittent failures on Travis
-  //   // await page.waitFor(500);
-  //   // const image = await page.screenshot();
-  //   // expect(image).toMatchImageSnapshot(vrtDefaultConfig);
-
   //   expect(renderedHTML).toMatchSnapshot();
   // });
 
@@ -295,11 +277,6 @@ describe('<bolt-blockquote> component', () => {
   //   //   );
   //   // });
 
-  //   // @TODO Re-enable VRT test and troubleshoot intermittent failures on Travis
-  //   // await page.waitFor(500);
-  //   // const image = await page.screenshot();
-  //   // expect(image).toMatchImageSnapshot(vrtDefaultConfig);
-
   //   expect(renderedHTML).toMatchSnapshot();
   // });
 
@@ -342,12 +319,6 @@ describe('<bolt-blockquote> component', () => {
   //   // });
 
   //   const renderedHTML = await html(renderedBlockquoteHTML);
-
-  //   // @TODO Re-enable VRT test and troubleshoot intermittent failures on Travis
-  //   // await page.waitFor(500);
-  //   // const image = await page.screenshot();
-  //   // expect(image).toMatchImageSnapshot(vrtDefaultConfig);
-
   //   expect(renderedHTML).toMatchSnapshot();
   // });
 
@@ -371,12 +342,6 @@ describe('<bolt-blockquote> component', () => {
   //   });
 
   //   const renderedHTML = await html(defaultBlockquoteOuter);
-
-  //   // @TODO Re-enable VRT test and troubleshoot intermittent failures on Travis
-  //   // await page.waitFor(500); // wait half a second before running VRTs
-  //   // const image = await page.screenshot();
-  //   // expect(image).toMatchImageSnapshot(vrtDefaultConfig);
-
   //   expect(renderedHTML).toMatchSnapshot();
   // });
 
@@ -410,12 +375,6 @@ describe('<bolt-blockquote> component', () => {
   //     const renderedShadowRoot = await html(
   //       `<div>${blockquoteShadowRoot}</div>`,
   //     );
-
-  //     // @TODO Re-enable VRT test and troubleshoot intermittent failures on Travis
-  //     // await page.waitFor(500); // wait half a second before running VRTs
-  //     // const image = await page.screenshot();
-  //     // expect(image).toMatchImageSnapshot(vrtDefaultConfig);
-
   //     expect(renderedShadowRoot.innerHTML).toMatchSnapshot();
   //   });
   // });
@@ -479,16 +438,6 @@ describe('<bolt-blockquote> component', () => {
   //       y: boundingBox.y,
   //       width: Math.min(boundingBox.width, page.viewport().width),
   //       height: Math.min(boundingBox.height, page.viewport().height),
-  //     },
-  //   });
-
-  //   // conditionally adjust VRT precision based on MacOS vs Linux text rendering differences. Both should still pick up a missing Blockquote double-quote, albeit with a ~.75% range
-  //   expect(image).toMatchImageSnapshot({
-  //     failureThreshold: os.platform() === 'darwin' ? '0.007' : '0.018',
-  //     failureThresholdType: 'percent',
-  //     customDiffConfig: {
-  //       threshold: '.7',
-  //       includeAA: true,
   //     },
   //   });
   // });

@@ -1,5 +1,4 @@
 import {
-  isConnected,
   render,
   renderString,
   renderWC,
@@ -92,12 +91,6 @@ describe('button', () => {
       renderedHTML.querySelector('.c-bolt-button').hasAttribute('disabled'),
     ).toBe(true);
     expect(renderedHTML.firstElementChild).toMatchSnapshot();
-
-    const image = await page.screenshot();
-    expect(image).toMatchImageSnapshot({
-      failureThreshold: '0.01',
-      failureThresholdType: 'percent',
-    });
   });
 
   test('Button with "disabled" adds attr to <a>', async () => {
@@ -119,12 +112,6 @@ describe('button', () => {
     ).toBe(true);
 
     expect(renderedHTML.firstElementChild).toMatchSnapshot();
-
-    const image = await page.screenshot();
-    expect(image).toMatchImageSnapshot({
-      failureThreshold: '0.01',
-      failureThresholdType: 'percent',
-    });
   });
 
   test('Button with outer classes via Drupal Attributes', async () => {
@@ -217,13 +204,6 @@ describe('button', () => {
         .querySelector('.c-bolt-button')
         .classList.contains('c-bolt-button--primary'),
     ).toBe(true);
-
-    const image = await page.screenshot();
-    expect(image).toMatchImageSnapshot({
-      failureThreshold: '0.01',
-      failureThresholdType: 'percent',
-    });
-
     expect(renderedHTML).toMatchSnapshot();
   });
 
@@ -253,14 +233,6 @@ describe('button', () => {
 
   //   // expect(renderedShadowDomHTML.querySelector('style')).toBe(true);
   //   // expect(renderedShadowDomHTML.querySelector('button')).toBe(true);
-
-  //   const image = await page.screenshot();
-
-  //   expect(image).toMatchImageSnapshot({
-  //     failureThreshold: '0.01',
-  //     failureThresholdType: 'percent',
-  //   });
-
   //   expect(renderedShadowDomHTML).toMatchSnapshot();
   //   expect(renderedHTML).toMatchSnapshot();
   // });
