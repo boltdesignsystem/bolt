@@ -1,15 +1,21 @@
 import { render, renderString } from '@bolt/twig-renderer';
+import { basicTest } from '../../../testing/testing-helpers';
 
 describe('<bolt-breadcrumb> Component', () => {
-  test('basic usage with attributes', async () => {
-    const linkOne = await render('@bolt-components-link/link.twig', {
+  let linkOne, linkTwo;
+
+  beforeAll(async () => {
+    linkOne = await render('@bolt-components-link/link.twig', {
       text: 'Home',
       url: '#!',
     });
-    const linkTwo = await render('@bolt-components-link/link.twig', {
+    linkTwo = await render('@bolt-components-link/link.twig', {
       text: 'Other Page',
       url: '#!',
     });
+  });
+
+  test('basic usage with attributes', async () => {
     const results = await render(
       '@bolt-components-breadcrumb/breadcrumb.twig',
       {
@@ -20,61 +26,64 @@ describe('<bolt-breadcrumb> Component', () => {
         },
       },
     );
-    expect(results.ok).toBe(true);
-    expect(results.html).toMatchSnapshot();
+    if (await results) {
+      basicTest(results);
+    }
   });
 
   test('basic usage with contentItems including rendered components and strings', async () => {
     const results = await renderString(`
-{% include "@bolt-components-breadcrumb/breadcrumb.twig" with {
-  contentItems: [
-    include("@bolt-components-link/link.twig", {
-      text: "Home",
-      url: "#!"
-    }),
-    include("@bolt-components-link/link.twig", {
-      text: "Landing Page",
-      url: "#!"
-    }),
-    include("@bolt-components-link/link.twig", {
-      text: "Sub Page",
-      url: "#!"
-    }),
-    "Current Page"
-  ]
-} only %}
+      {% include "@bolt-components-breadcrumb/breadcrumb.twig" with {
+        contentItems: [
+          include("@bolt-components-link/link.twig", {
+            text: "Home",
+            url: "#!"
+          }),
+          include("@bolt-components-link/link.twig", {
+            text: "Landing Page",
+            url: "#!"
+          }),
+          include("@bolt-components-link/link.twig", {
+            text: "Sub Page",
+            url: "#!"
+          }),
+          "Current Page"
+        ]
+      } only %}
     `);
-    expect(results.ok).toBe(true);
-    expect(results.html).toMatchSnapshot();
+    if (await results) {
+      basicTest(results);
+    }
   });
 
   test('current page aria variation', async () => {
     const results = await renderString(`
-{% include "@bolt-components-breadcrumb/breadcrumb.twig" with {
-  contentItems: [
-    include("@bolt-components-link/link.twig", {
-      text: "Home",
-      url: "#!"
-    }),
-    include("@bolt-components-link/link.twig", {
-      text: "Landing Page",
-      url: "#!"
-    }),
-    include("@bolt-components-link/link.twig", {
-      text: "Sub Page",
-      url: "#!"
-    }),
-    include("@bolt-components-link/link.twig", {
-      text: "Current Page",
-      url: "#!",
-      attributes: {
-        "aria-current": true
-      },
-    }),
-  ]
-} only %}
+      {% include "@bolt-components-breadcrumb/breadcrumb.twig" with {
+        contentItems: [
+          include("@bolt-components-link/link.twig", {
+            text: "Home",
+            url: "#!"
+          }),
+          include("@bolt-components-link/link.twig", {
+            text: "Landing Page",
+            url: "#!"
+          }),
+          include("@bolt-components-link/link.twig", {
+            text: "Sub Page",
+            url: "#!"
+          }),
+          include("@bolt-components-link/link.twig", {
+            text: "Current Page",
+            url: "#!",
+            attributes: {
+              "aria-current": true
+            },
+          }),
+        ]
+      } only %}
     `);
-    expect(results.ok).toBe(true);
-    expect(results.html).toMatchSnapshot();
+    if (await results) {
+      basicTest(results);
+    }
   });
 });
