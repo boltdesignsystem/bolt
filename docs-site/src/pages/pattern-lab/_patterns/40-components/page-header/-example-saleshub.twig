@@ -941,9 +941,9 @@
 {# Put all the navs together #}
 {% set primary_nav %}
   {% set primary_nav_content %}
-    {{ user_nav }}
     {{ site_nav }}
     {{ related_sites_nav }}
+    {{ user_nav }}
   {% endset %}
 
   {% include '@bolt-components-page-header/page-header-primary-nav.twig' with {
