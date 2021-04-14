@@ -1,11 +1,5 @@
-import {
-  isConnected,
-  render,
-  renderString,
-  stopServer,
-  html,
-} from '../../../testing/testing-helpers';
-import schema from '../image.schema';
+import { render, stopServer } from '../../../testing/testing-helpers';
+
 describe('<bolt-image> Component', () => {
   afterAll(async () => {
     await stopServer();

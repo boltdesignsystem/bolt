@@ -1,13 +1,4 @@
-import {
-  isConnected,
-  render,
-  renderString,
-  stopServer,
-  html,
-} from '../../../testing/testing-helpers';
-import schema from '../toc.schema';
-const { status, align } = schema.properties;
-const timeout = 120000;
+import { render, stopServer } from '../../../testing/testing-helpers';
 
 describe('<bolt-toc> Component', () => {
   afterAll(async () => {

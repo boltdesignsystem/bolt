@@ -182,12 +182,6 @@ describe('<bolt-headline> Component', () => {
 
     const renderedHTML = await html(headlineHTML);
     expect(renderedHTML).toMatchSnapshot();
-
-    const image = await page.screenshot();
-    expect(image).toMatchImageSnapshot({
-      failureThreshold: '0.01',
-      failureThresholdType: 'percent',
-    });
   });
 
   test('<span>-based Headlines horizontally align properly.', async () => {
@@ -211,11 +205,5 @@ describe('<bolt-headline> Component', () => {
 
     const renderedHTML = await html(headlineHTML);
     expect(renderedHTML).toMatchSnapshot();
-
-    const image = await page.screenshot();
-    expect(image).toMatchImageSnapshot({
-      failureThreshold: '0.01',
-      failureThresholdType: 'percent',
-    });
   });
 });

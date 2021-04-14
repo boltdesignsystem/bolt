@@ -19,16 +19,6 @@ export async function renderString(template, data) {
 
 export { stopServer };
 
-export const vrtDefaultConfig = {
-  failureThreshold: '0.002',
-  failureThresholdType: 'percent',
-  customDiffConfig: {
-    // Please note the threshold set in the customDiffConfig is the per pixel sensitivity threshold. For example with a source pixel colour of #ffffff (white) and a comparison pixel colour of #fcfcfc (really light grey) if you set the threshold to 0 then it would trigger a failure on that pixel. However if you were to use say 0.5 then it wouldn't, the colour difference would need to be much more extreme to trigger a failure on that pixel, say #000000 (black)
-    threshold: '0.1',
-    includeAA: false, // If true, disables detecting and ignoring anti-aliased pixels. false by default.
-  },
-};
-
 /**
  * Takes the web component markup passed in, waits for it to render, then returns back the rendered inner and outer HTML
  * @param {*} componentTag - the web component HTML tag being rendered
@@ -90,67 +80,24 @@ export async function basicTest(html) {
 }
 
 export function basicPropTest(page, html, innerHTML, selector, prop, option) {
-  // console.log(page);
-  // console.log(html);
-  // console.log(innerHTML);
-  // console.log(selector);
-  // console.log(prop);
-  // console.log(option);
-
-  //const tabsOuter = await page.evaluate(
-  //       async (option, tabsInnerHTML) => {
-  //         const wrapper = document.createElement('div');
-  //         wrapper.innerHTML = tabsInnerHTML;
-  //         document.body.appendChild(wrapper);
-
-  //         await customElements.whenDefined('ssr-keep');
-  //         await customElements.whenDefined('bolt-tabs');
-  //         const tabs = document.querySelector('bolt-tabs');
-  //         const tabPanels = Array.from(
-  //           document.querySelectorAll('bolt-tab-panel'),
-  //         );
-
-  //         tabs.setAttribute('inset', option);
-  //         [tabs, ...tabPanels].forEach(el => el.requestUpdate());
-
-  //         await Promise.all([
-  //           tabs.updateComplete,
-  //           [tabs, ...tabPanels].forEach(el => {
-  //             return el.updateComplete;
-  //           }),
-  //         ]);
-
-  //         return tabs.outerHTML;
-  //       },
-  //       option,
-  //       tabsInnerHTML,
-  //     );
-
-  //     const renderedHTML = await html(tabsOuter);
-  //     await expect(renderedHTML).toMatchSnapshot();
-
   const htmlOutput = page.evaluate(
     async (option, innerHTML) => {
       console.log('inside htmlOutput');
       // console.log(selector);
-      // const wrapper = document.createElement('div');
-      // wrapper.innerHTML = innerHTML;
-      // document.body.appendChild(wrapper);
-      // await customElements.whenDefined('ssr-keep');
-      // await customElements.whenDefined(selector);
-      // const wc = document.querySelector(selector);
-      // wc.setAttribute(prop, option);
+      const wrapper = document.createElement('div');
+      wrapper.innerHTML = innerHTML;
+      document.body.appendChild(wrapper);
+      await customElements.whenDefined('ssr-keep');
+      await customElements.whenDefined(selector);
+      const wc = document.querySelector(selector);
+      wc.setAttribute(prop, option);
       // // @TODO This should work, but throws mysterious error: `TypeError: Cannot read property 'forEach' of undefined`
       // // await tabs.updateComplete;
-      // return wc.outerHTML;
+      return wc.outerHTML;
     },
     option,
     innerHTML,
   );
-
-  console.log('htmlOutput when "finished"');
-  // console.log(htmlOutput);
-
   const renderedHTML = html(htmlOutput);
   expect(renderedHTML).toMatchSnapshot();
 }

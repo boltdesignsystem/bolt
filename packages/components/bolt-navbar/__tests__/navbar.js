@@ -4,13 +4,7 @@ import {
   render,
   renderString,
   stopServer,
-  html,
 } from '../../../testing/testing-helpers';
-
-const imageVrtConfig = {
-  failureThreshold: '0.02',
-  failureThresholdType: 'percent',
-};
 
 const timeout = 120000;
 
@@ -106,43 +100,6 @@ describe('<bolt-navbar> Component', () => {
         div.innerHTML = `${html}`;
         document.body.appendChild(div);
       }, html);
-
-      //@TODO Re-enable VRT test and troubleshoot failures on Travis
-      // const screenshots = [];
-
-      // async function isVisible(selector) {
-      //   return await page.evaluate(selector => {
-      //     const e = document.querySelector(selector);
-      //     if (!e) return false;
-      //     const style = window.getComputedStyle(e);
-      //     return style &&
-      //     style.display !== 'none' &&
-      //     style.visibility !== 'hidden' &&
-      //     style.opacity !== '0'
-      //     ? true
-      //     : false;
-      //   }, selector);
-      // }
-
-      // for (const item of viewportSizes) {
-      //   const { height, width, size } = item;
-      //   screenshots[size] = [];
-
-      //   await page.setViewport({ height, width });
-      //   screenshots[size].default = await page.screenshot();
-      //   expect(screenshots[size].default).toMatchImageSnapshot(imageVrtConfig);
-
-      //   if (await isVisible('.c-bolt-nav-priority__show-more')) {
-      //     await page.tap('.c-bolt-nav-priority__button');
-      //     await page.waitFor(500);
-      //     screenshots[size].navOpened = await page.screenshot();
-      //     expect(screenshots[size].navOpened).toMatchImageSnapshot(
-      //       imageVrtConfig,
-      //     );
-      //     await page.tap('.c-bolt-nav-priority__button');
-      //     await page.waitFor(500);
-      //   }
-      // }
     },
     timeout,
   );
@@ -199,9 +156,6 @@ describe('<bolt-navbar> Component', () => {
 
       const navigationPromise = page.waitForNavigation();
       await page.hover('.c-bolt-navbar__title--link');
-
-      const image = await page.screenshot();
-      expect(image).toMatchImageSnapshot(imageVrtConfig);
 
       if (isOnline) {
         await page.click('.c-bolt-navbar__title--link');
@@ -282,26 +236,6 @@ describe('<bolt-navbar> Component', () => {
             : false;
         }, selector);
       }
-
-      // for (const item of viewportSizes) {
-      //   const { height, width, size } = item;
-      //   screenshots[size] = [];
-
-      //   await page.setViewport({ height, width });
-      //   screenshots[size].default = await page.screenshot();
-      //   expect(screenshots[size].default).toMatchImageSnapshot(imageVrtConfig);
-
-      //   if (await isVisible('.c-bolt-nav-priority__show-more')) {
-      //     await page.tap('.c-bolt-nav-priority__button');
-      //     await page.waitFor(500);
-      //     screenshots[size].navOpened = await page.screenshot();
-      //     expect(screenshots[size].navOpened).toMatchImageSnapshot(
-      //       imageVrtConfig,
-      //     );
-      //     await page.tap('.c-bolt-nav-priority__button');
-      //     await page.waitFor(500);
-      //   }
-      // }
     },
     timeout,
   );
@@ -360,8 +294,6 @@ describe('<bolt-navbar> Component', () => {
         document.body.appendChild(div);
       }, html);
 
-      const screenshots = [];
-
       async function isVisible(selector) {
         return await page.evaluate(selector => {
           const e = document.querySelector(selector);
@@ -378,19 +310,12 @@ describe('<bolt-navbar> Component', () => {
 
       for (const item of viewportSizes) {
         const { height, width, size } = item;
-        screenshots[size] = [];
 
         await page.setViewport({ height, width });
-        screenshots[size].default = await page.screenshot();
-        expect(screenshots[size].default).toMatchImageSnapshot(imageVrtConfig);
 
         if (await isVisible('.c-bolt-nav-priority__show-more')) {
           await page.tap('.c-bolt-nav-priority__button');
           await page.waitFor(500);
-          // screenshots[size].navOpened = await page.screenshot();
-          // expect(screenshots[size].navOpened).toMatchImageSnapshot(
-          //   imageVrtConfig,
-          // );
           await page.tap('.c-bolt-nav-priority__button');
           await page.waitFor(500);
         }
@@ -420,14 +345,6 @@ describe('<bolt-navbar> Component', () => {
         div.innerHTML = `${html}`;
         document.body.appendChild(div);
       }, html);
-      const largeViewport = await page.screenshot();
-
-      expect(largeViewport).toMatchImageSnapshot(imageVrtConfig);
-
-      // await page.setViewport({ height: 568, width: 320 });
-      // const smallViewport = await page.screenshot();
-
-      // expect(smallViewport).toMatchImageSnapshot(imageVrtConfig);
     },
     timeout,
   );
@@ -473,14 +390,8 @@ describe('<bolt-navbar> Component', () => {
         div.innerHTML = `${html}`;
         document.body.appendChild(div);
       }, html);
-      const largeViewport = await page.screenshot();
-
-      expect(largeViewport).toMatchImageSnapshot(imageVrtConfig);
 
       await page.setViewport({ height: 568, width: 320 });
-      const smallViewport = await page.screenshot();
-
-      expect(smallViewport).toMatchImageSnapshot(imageVrtConfig);
     },
     timeout,
   );
@@ -535,15 +446,9 @@ describe('<bolt-navbar> Component', () => {
         document.body.appendChild(div);
       }, html);
 
-      const screenshots = [];
-
       for (const item of viewportSizes) {
         const { height, width, size } = item;
-        screenshots[size] = [];
-
         await page.setViewport({ height, width });
-        screenshots[size].default = await page.screenshot();
-        expect(screenshots[size].default).toMatchImageSnapshot(imageVrtConfig);
       }
     },
     timeout,
