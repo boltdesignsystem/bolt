@@ -3,24 +3,13 @@ import {
   stopServer,
   html,
   basicTest,
-  propTest,
+  basicPropTest,
 } from '../../../testing/testing-helpers';
 import schema from '../tabs.schema';
 
 let page, tabsInnerHTML;
 
 const { align, inset } = schema.properties;
-
-afterAll(async () => {
-  await stopServer();
-  await page.close();
-});
-
-beforeEach(async () => {
-  await page.evaluate(() => {
-    document.body.innerHTML = '';
-  });
-});
 
 beforeAll(async () => {
   page = await global.__BROWSER__.newPage();
@@ -29,9 +18,20 @@ beforeAll(async () => {
   });
 });
 
+beforeEach(async () => {
+  await page.evaluate(() => {
+    document.body.innerHTML = '';
+  });
+});
+
+afterAll(async () => {
+  await stopServer();
+  await page.close();
+});
+
 describe('Twig usage', () => {
-  beforeAll(async () => {
-    const tabsInnerHTML = `
+  beforeAll(() => {
+    tabsInnerHTML = `
       <bolt-tabs>
         <bolt-tab-panel>
           <div slot="label">Tab label 1</div>
@@ -49,33 +49,31 @@ describe('Twig usage', () => {
     `;
   });
 
-  test('Content output', async () => {
-    const results = await render('@bolt-components-tabs/tabs.twig', {
-      panels: [
-        {
-          label: 'Tab label 1',
-          content: 'This is the tab content.',
-        },
-        {
-          label: 'Tab label 2',
-          content: 'This is the tab content.',
-        },
-        {
-          label: 'Tab label 3',
-          content: 'This is the tab content.',
-        },
-      ],
-    });
-    if (await results) {
-      basicTest(results);
-    }
-  });
+  // test('Content output', async () => {
+  //   const results = await render('@bolt-components-tabs/tabs.twig', {
+  //     panels: [
+  //       {
+  //         label: 'Tab label 1',
+  //         content: 'This is the tab content.',
+  //       },
+  //       {
+  //         label: 'Tab label 2',
+  //         content: 'This is the tab content.',
+  //       },
+  //       {
+  //         label: 'Tab label 3',
+  //         content: 'This is the tab content.',
+  //       },
+  //     ],
+  //   });
+  //   if (await results) {
+  //     basicTest(results);
+  //   }
+  // });
 
   align.enum.forEach(option => {
     test(`Align output: ${option}`, async () => {
-      if (await page) {
-        propTest(page, html, tabsInnerHTML, 'bolt-tabs', 'align', option);
-      }
+      basicPropTest(page, html, tabsInnerHTML, 'bolt-tabs', 'align', option);
     });
   });
 
@@ -109,6 +107,9 @@ describe('Twig usage', () => {
   //       option,
   //       tabsInnerHTML,
   //     );
+
+  //     console.log('tabsOuter');
+  //     console.log(tabsOuter);
 
   //     const renderedHTML = await html(tabsOuter);
   //     await expect(renderedHTML).toMatchSnapshot();

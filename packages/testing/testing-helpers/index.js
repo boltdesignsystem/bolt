@@ -89,24 +89,68 @@ export async function basicTest(html) {
   expect(html.html).toMatchSnapshot();
 }
 
-export async function propTest(page, html, innerHTML, selector, prop, option) {
+export function basicPropTest(page, html, innerHTML, selector, prop, option) {
+  // console.log(page);
+  // console.log(html);
+  // console.log(innerHTML);
+  // console.log(selector);
+  // console.log(prop);
+  // console.log(option);
+
+  //const tabsOuter = await page.evaluate(
+  //       async (option, tabsInnerHTML) => {
+  //         const wrapper = document.createElement('div');
+  //         wrapper.innerHTML = tabsInnerHTML;
+  //         document.body.appendChild(wrapper);
+
+  //         await customElements.whenDefined('ssr-keep');
+  //         await customElements.whenDefined('bolt-tabs');
+  //         const tabs = document.querySelector('bolt-tabs');
+  //         const tabPanels = Array.from(
+  //           document.querySelectorAll('bolt-tab-panel'),
+  //         );
+
+  //         tabs.setAttribute('inset', option);
+  //         [tabs, ...tabPanels].forEach(el => el.requestUpdate());
+
+  //         await Promise.all([
+  //           tabs.updateComplete,
+  //           [tabs, ...tabPanels].forEach(el => {
+  //             return el.updateComplete;
+  //           }),
+  //         ]);
+
+  //         return tabs.outerHTML;
+  //       },
+  //       option,
+  //       tabsInnerHTML,
+  //     );
+
+  //     const renderedHTML = await html(tabsOuter);
+  //     await expect(renderedHTML).toMatchSnapshot();
+
   const htmlOutput = page.evaluate(
-    innerHTML => {
-      const wrapper = document.createElement('div');
-      wrapper.innerHTML = innerHTML;
-      document.body.appendChild(wrapper);
-      customElements.whenDefined('ssr-keep');
-      customElements.whenDefined(selector);
-      //   const wc = document.querySelector(selector);
-      //   wc.setAttribute(prop, option);
-      //   // @TODO This should work, but throws mysterious error: `TypeError: Cannot read property 'forEach' of undefined`
-      //   // await tabs.updateComplete;
-      //   return wc.outerHTML;
+    async (option, innerHTML) => {
+      console.log('inside htmlOutput');
+      // console.log(selector);
+      // const wrapper = document.createElement('div');
+      // wrapper.innerHTML = innerHTML;
+      // document.body.appendChild(wrapper);
+      // await customElements.whenDefined('ssr-keep');
+      // await customElements.whenDefined(selector);
+      // const wc = document.querySelector(selector);
+      // wc.setAttribute(prop, option);
+      // // @TODO This should work, but throws mysterious error: `TypeError: Cannot read property 'forEach' of undefined`
+      // // await tabs.updateComplete;
+      // return wc.outerHTML;
     },
     option,
     innerHTML,
   );
 
-  // const renderedHTML = html(htmlOutput);
-  // expect(renderedHTML).toMatchSnapshot();
+  console.log('htmlOutput when "finished"');
+  // console.log(htmlOutput);
+
+  const renderedHTML = html(htmlOutput);
+  expect(renderedHTML).toMatchSnapshot();
 }
