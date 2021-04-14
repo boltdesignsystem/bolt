@@ -46,6 +46,10 @@
         <th>SalesHub</th>
         <td><a href="{{ link['components-example-saleshub'] }}" class="e-bolt-text-link">View</a></td>
       </tr>
+      <tr>
+        <th>PegaWorld</th>
+        <td><a href="{{ link['components-example-pegaworld'] }}" class="e-bolt-text-link">View</a></td>
+      </tr>
     </tbody>
   </table>
 </bolt-table>
@@ -66,6 +70,7 @@
   secondary_content: secondary_nav,
   cta: cta_button,
   static: true,
+  subheadline: 'Subheadline text', // This appears next to the logo
   attributes: {
     style: '--c-bolt-page-header-logo-max-width: 150px', // Only use the CSS vars on edge cases
   },
@@ -99,7 +104,8 @@
   },
   children: children,
   content: content, // This overrides link and children
-  full_width: false, // This is for "view all" links
+  view_all: false, // This is for general "view all" links
+  full_width: false, // This is for "view all" and full-width links
   popover: false, // This is for utility nav
   selected: false, // This is for language select
   current: true, // This is for marking a top level desktop site nav item as the current page
