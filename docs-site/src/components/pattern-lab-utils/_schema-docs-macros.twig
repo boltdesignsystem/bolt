@@ -354,9 +354,9 @@
   {% endset %}
 
   {% if nested_props|length %}
-    {% set title = schema.title %}
-    <bolt-accordion icon-valign="top" single box-shadow>
-      <bolt-accordion-item>
+   {% set title = schema.title %}
+    <bolt-accordion icon-valign="top" box-shadow>
+      <bolt-accordion-item open>
         {% if title %}<strong slot="trigger">{{ title }}</strong>{% endif %}
         {{ main_schema }}
       </bolt-accordion-item>
@@ -372,4 +372,35 @@
   {% else %}
     {{ main_schema }}
   {% endif %}
+{% endmacro %}
+
+{% macro schemaWrapper(schema) %}
+  {% import _self as macros %}
+
+  {{ macros.schemaTable(schema) }}
+
+  {% set advanced_table %}
+  {% for key, prop in schema.properties if schema.properties[key].hidden %}
+    {{ macros.schemaTableRow(key, prop, key in schema.required) }}
+  {% endfor %}
+  {% endset %}
+
+  {% if advanced_table|trim %}
+    <details>
+      <summary>
+        <strong>Advanced Schema Options</strong>
+      </summary>
+      <div class="c-bds-schema-table">
+        <bolt-schema-table>
+          <div class="c-bds-docs-table">
+            <table>
+              <tbody>
+                {{ advanced_table }}
+              </tbody>
+            </table>
+          </div>
+        </bolt-schema-table>
+      </div>
+    </details>
+  {% endif %}  
 {% endmacro %}

@@ -1,35 +1,22 @@
 {% import "@utils/_schema-docs-macros.twig" as macros %}
 
-{% if schema.properties %}
-  {% include '@bolt-components-banner/banner.twig' with {
-    content: 'Note: when assigning component props as HTML attributes on a web component, make sure to use <code>kebab-case</code>.',
-    align: 'start',
-  } only %}
+{% include '@bolt-components-banner/banner.twig' with {
+  content: 'Note: when assigning component props as HTML attributes on a web component, make sure to use <code>kebab-case</code>.',
+  align: 'start',
+} only %}
 
-  {{ macros.schemaTable(schema) }}
-
-  {% set advanced_table %}
-  {% for key, prop in schema.properties if schema.properties[key].hidden %}
-    {{ macros.schemaTableRow(key, prop, key in schema.required) }}
+{% if schemas|length > 1 %}
+  <bolt-accordion icon-valign="top" box-shadow>
+    {% for schema in schemas %}
+      {% set title = schema.title %}
+      <bolt-accordion-item{% if loop.first %} open{% endif %}>
+        {% if title %}<strong slot="trigger">{{ title }}</strong>{% endif %}
+        {{ macros.schemaWrapper(schema) }}
+      </bolt-accordion-item>
+    {% endfor %}
+  </bolt-accordion>
+{% else %}
+  {% for schema in schemas %}
+    {{ macros.schemaWrapper(schema) }}
   {% endfor %}
-  {% endset %}
-
-  {% if advanced_table|trim %}
-    <details>
-      <summary>
-        <strong>Advanced Schema Options</strong>
-      </summary>
-      <div class="c-bds-schema-table">
-        <bolt-schema-table>
-          <div class="c-bds-docs-table">
-            <table>
-              <tbody>
-                {{ advanced_table }}
-              </tbody>
-            </table>
-          </div>
-        </bolt-schema-table>
-      </div>
-    </details>
-  {% endif %}
 {% endif %}
