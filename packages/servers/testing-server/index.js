@@ -16,7 +16,7 @@ getConfig().then(async boltConfig => {
 
   app.use((req, res) => {
     res.send(
-      `<html class="js-fonts-loaded">
+      `<html>
         <head>
           <title>Test</title>
           <link rel="stylesheet" href="/build/bolt-global.css" />
