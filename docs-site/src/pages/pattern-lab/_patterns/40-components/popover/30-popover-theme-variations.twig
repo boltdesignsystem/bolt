@@ -1,0 +1,66 @@
+{% set schema = bolt.data.components['@bolt-components-popover'].schema %}
+
+{% set description %}
+  Adjust the Bolt color theme of the content by using the <bolt-code-snippet display="inline">theme</bolt-code-snippet> prop.
+{% endset %}
+
+{% set demo %}
+  {% set link %}
+    {% include '@bolt-components-link/link.twig' with {
+      text: 'call to action',
+      url: 'https://pega.com',
+    } only %}
+  {% endset %}
+  {% set content %}
+    This is the content of the popover with a {{ link }}.
+  {% endset %}
+
+  <bolt-list display="inline" spacing="medium">
+    {% for theme in schema.properties.theme.enum %}
+      <bolt-list-item>
+        {% set trigger %}
+          {% include '@bolt-components-button/button.twig' with {
+            text: 'theme: ' ~ theme,
+            size: 'small',
+          } only %}
+        {% endset %}
+        {% include '@bolt-components-popover/popover.twig' with {
+          trigger: trigger,
+          content: content,
+          theme: theme,
+        } only %}
+      </bolt-list-item>
+    {% endfor %}
+  </bolt-list>
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% include '@bolt-components-popover/popover.twig' with {
+  trigger: trigger,
+  content: content,
+  theme: 'dark',
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% set html_markup %}
+{% verbatim %}
+<bolt-popover theme="dark">
+  <bolt-button>
+    This triggers a popover
+  </bolt-button>
+  <div slot="content">
+    This is the content of the popover.
+  </div>
+</bolt-popover>
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Popover Content Theming',
+  description: description,
+  demo: demo,
+  twig_markup: twig_markup,
+  html_markup: html_markup,
+} only %}

@@ -13,8 +13,6 @@ const config = deepmerge(baseConfig, {
   openServerAtStart: true,
   // Environmental variable / preset to use
   env: 'pwa',
-  compat: false,
-  esModules: true,
   srcDir: './src/pages',
   buildDir: '../www/build',
   dataDir: '../www/build/data',
@@ -91,7 +89,6 @@ const config = deepmerge(baseConfig, {
 
       '@bolt/components-radio-switch',
       '@bolt/components-page-footer',
-      '@bolt/components-page-header',
       '@bolt/docs-search',
       // '@bolt/schema-form', // Component Explorer being temporarily disabled until we've migrated our Twig Rendering Service to Now.sh v2
       '@bolt/shadow-toggle',
@@ -117,10 +114,6 @@ const config = deepmerge(baseConfig, {
     individual: [],
   },
   copy: [
-    {
-      from: require.resolve(`@bolt/critical-path-polyfills`),
-      to: path.join(__dirname, '../www/build'),
-    },
     {
       from: path.join(
         path.dirname(require.resolve(`@bolt/components-typeahead`)),

@@ -69,10 +69,23 @@
       </tr>
       <tr>
         <th>
-          <del>Link trigger</del>
+          {% include "@bolt-components-link/link.twig" with {
+            text: "Link trigger",
+            attributes: {
+              "on-click": "show",
+              "on-click-target": "js-modal-trigger-link",
+            },
+          } only %}
+
+          {% include "@bolt-components-modal/modal.twig" with {
+            attributes: {
+              class: "js-modal-trigger-link"
+            },
+            content: "This modal is triggered by a link.",
+          } only %}
         </th>
         <td>
-          Link trigger is currently not supported.
+          Buttons are preferred for opening a modal, but you can use a link in a pinch.
         </td>
       </tr>
     </tbody>

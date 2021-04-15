@@ -1,14 +1,10 @@
 import {
-  isConnected,
   render,
   renderString,
   stopServer,
-  html,
 } from '../../../testing/testing-helpers';
 import schema from '../stack.schema';
 const { spacing } = schema.properties;
-
-const timeout = 120000;
 
 describe('<bolt-stack> component', () => {
   afterAll(async () => {

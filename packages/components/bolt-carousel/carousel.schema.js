@@ -19,9 +19,10 @@ module.exports = {
     },
     slides_per_view: {
       type: 'string',
-      description: 'Controls the number of slides to be shown at once.',
+      description:
+        'Controls the number of slides to be shown at once. Note: the value auto is deprecated, please be explicit.',
       default: '1',
-      enum: ['auto', '1', '2', '3'],
+      enum: ['1', '2', '3', '4'],
     },
     slides_per_group: {
       type: 'string',
@@ -33,9 +34,9 @@ module.exports = {
       type: 'integer',
       description:
         'Limits the maximum number of slides that can display at any screen size. Combine this with the <code>slidesPerView</code> option to get the benefits of automatically adjusting the number of slides displayed at different screen sizes while putting a max limit of how many slides display at once.',
-      default: 3,
+      default: 4,
       minimum: 1,
-      maximum: 3,
+      maximum: 4,
       hidden: true,
     },
     space_between: {
@@ -102,7 +103,6 @@ module.exports = {
       description:
         'Allows the carousel to automatically rotate through its slides until the user interacts with it.',
       default: false,
-      enum: [true, false],
     },
     loop: {
       type: 'boolean',
@@ -110,7 +110,6 @@ module.exports = {
         'Enables continuous loop mode.Not: the loop option is temporarily disabled and will be re-enabled in a future Bolt release.',
       hidden: true,
       default: false,
-      enum: [true, false],
     },
     free_scroll: {
       type: 'boolean',

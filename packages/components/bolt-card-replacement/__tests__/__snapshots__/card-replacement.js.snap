@@ -75,17 +75,15 @@ exports[`<bolt-card-replacement> Component basic usage 1`] = `
                     class="c-bolt-card_replacement__action"
           >
             <bolt-button size="medium"
-                         color="text"
+                         hierarchy="text"
                          width="full"
-                         border-radius="regular"
                          align="start"
-                         transform="none"
                          url="https://pega.com"
                          target="_self"
             >
               <a href="https://pega.com"
+                 target="_self"
                  class="c-bolt-button c-bolt-button--medium c-bolt-button--text c-bolt-button--full c-bolt-button--border-radius-regular c-bolt-button--start"
-                 is="shadow-root"
               >
                 <ssr-keep for="bolt-button"
                           class="c-bolt-button__item"
@@ -1120,17 +1118,15 @@ exports[`<bolt-card-replacement> Component with two buttons as actions 1`] = `
                     class="c-bolt-card_replacement__action"
           >
             <bolt-button size="medium"
-                         color="text"
+                         hierarchy="text"
                          width="full"
-                         border-radius="regular"
                          align="start"
-                         transform="none"
                          url="https://pega.com"
                          target="_self"
             >
               <a href="https://pega.com"
+                 target="_self"
                  class="c-bolt-button c-bolt-button--medium c-bolt-button--text c-bolt-button--full c-bolt-button--border-radius-regular c-bolt-button--start"
-                 is="shadow-root"
               >
                 <ssr-keep for="bolt-button"
                           class="c-bolt-button__item"
@@ -1167,17 +1163,15 @@ exports[`<bolt-card-replacement> Component with two buttons as actions 1`] = `
                     class="c-bolt-card_replacement__action"
           >
             <bolt-button size="medium"
-                         color="text"
+                         hierarchy="text"
                          width="full"
-                         border-radius="regular"
                          align="start"
-                         transform="none"
                          url="https://google.com"
                          target="_self"
             >
               <a href="https://google.com"
+                 target="_self"
                  class="c-bolt-button c-bolt-button--medium c-bolt-button--text c-bolt-button--full c-bolt-button--border-radius-regular c-bolt-button--start"
-                 is="shadow-root"
               >
                 <ssr-keep for="bolt-button"
                           class="c-bolt-button__item"
@@ -1267,19 +1261,15 @@ exports[`<bolt-card-replacement> Component with video as media 1`] = `
           <ssr-keep for="bolt-card-replacement-action"
                     class="c-bolt-card_replacement__action"
           >
-            <bolt-button size="medium"
-                         color="text"
-                         width="full"
-                         border-radius="regular"
-                         align="start"
-                         transform="none"
-                         target="_self"
-                         on-click="toggle"
+            <bolt-button on-click="toggle"
                          on-click-target="js-bolt-video-uuid"
+                         size="medium"
+                         hierarchy="text"
+                         width="full"
+                         align="start"
+                         target="_self"
             >
-              <button class="c-bolt-button c-bolt-button--medium c-bolt-button--text c-bolt-button--full c-bolt-button--border-radius-regular c-bolt-button--start"
-                      is="shadow-root"
-              >
+              <button class="c-bolt-button c-bolt-button--medium c-bolt-button--text c-bolt-button--full c-bolt-button--border-radius-regular c-bolt-button--start">
                 <ssr-keep for="bolt-button"
                           class="c-bolt-button__item"
                 >

@@ -1,13 +1,6 @@
-import {
-  render,
-  stopServer,
-  html,
-  vrtDefaultConfig as vrtConfig,
-} from '../../../testing/testing-helpers';
+import { render, stopServer, html } from '../../../testing/testing-helpers';
 import schema from '../accordion.schema';
 
-const { readYamlFileSync } = require('@bolt/build-tools/utils/yaml');
-const { single } = schema.properties;
 const { spacing } = schema.definitions;
 
 const timeout = 120000;
@@ -90,7 +83,7 @@ describe('<bolt-accordion> Component', () => {
     expect(results.html).toMatchSnapshot();
   });
 
-  single.enum.forEach(async singleChoice => {
+  [true, false].forEach(async singleChoice => {
     test(`expand single items: ${singleChoice}`, async () => {
       const results = await render(
         '@bolt-components-accordion/accordion.twig',
@@ -225,44 +218,6 @@ describe('<bolt-accordion> Component', () => {
 
     expect(renderedShadowRoot.innerHTML).toMatchSnapshot();
     expect(renderedItemShadowRoot.innerHTML).toMatchSnapshot();
-
-    const image = await page.screenshot();
-
-    expect(image).toMatchImageSnapshot({
-      failureThreshold: 0.02,
-      failureThresholdType: 'percent',
-      customDiffConfig: {
-        threshold: 0.2,
-      },
-    });
-
-    await page.click('bolt-accordion-item:nth-child(2) > *');
-
-    await page.waitFor(250);
-
-    const imageAfterOpeningSecondItem = await page.screenshot();
-
-    expect(imageAfterOpeningSecondItem).toMatchImageSnapshot({
-      failureThreshold: 0.02,
-      failureThresholdType: 'percent',
-      customDiffConfig: {
-        threshold: 0.2,
-      },
-    });
-
-    await page.click('bolt-accordion-item:nth-child(3) > *');
-
-    await page.waitFor(250);
-
-    const imageAfterOpeningThirdItem = await page.screenshot();
-
-    expect(imageAfterOpeningThirdItem).toMatchImageSnapshot({
-      failureThreshold: 0.02,
-      failureThresholdType: 'percent',
-      customDiffConfig: {
-        threshold: 0.2,
-      },
-    });
   });
 
   test('Default <bolt-accordion> w/o Shadow DOM renders', async function() {

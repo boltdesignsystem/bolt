@@ -78,7 +78,7 @@ module.exports = {
       type: 'string',
       description:
         "Controls the internal vertical alignment of the band's content.",
-      default: 'middle',
+      default: 'center',
       enum: ['start', 'center', 'end'],
     },
     size: {
@@ -92,7 +92,6 @@ module.exports = {
       default: true,
       description:
         'If set to true, the band will take the full width of the page.',
-      enum: [true, false],
     },
     theme: {
       type: 'any',

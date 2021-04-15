@@ -6,40 +6,36 @@
  * Settings
  */
 
-$bolt-tabs-bg-border-radius: $bolt-border-radius;
-$bolt-tabs-bg-transition-timing: $bolt-transition-timing * 4;
-
-$bolt-tabs-text-transition: $bolt-transition;
-
+$bolt-tabs-bg-border-radius: bolt-border-radius(small);
+$bolt-tabs-bg-transition-timing: calc(var(--bolt-transition-timing) * 4);
+$bolt-tabs-text-transition: var(--bolt-transition);
 $bolt-tabs-selected-border-size: 4px;
-$bolt-tabs-selected-border-transition-ease: $bolt-transition-ease;
-$bolt-tabs-selected-border-transition-timing: $bolt-transition-timing;
+$bolt-tabs-selected-border-transition-ease: var(--bolt-transition-ease);
+$bolt-tabs-selected-border-transition-timing: var(--bolt-transition-timing);
+$bolt-tabs-xsmall-bp: 420px; // Slightly increase the default 400px xsmall breakpoint to be better optimized for larger plus-sized mobile devices -- value shared by the bolt-navbar, bolt-nav-menu, and bolt-navlink components
 
-// @todo: copied from tabs, consider refactoring?
-@mixin bolt-tabs-scrollbar() {
-  &::-webkit-scrollbar {
-    width: var(--bolt-spacing-y-xsmall);
-    height: var(--bolt-spacing-y-xsmall);
+@keyframes a-bolt-tabs-bg-hover {
+  0% {
+    transform: scale3d(0, 0, 0);
   }
 
-  &::-webkit-scrollbar-thumb {
-    border-radius: 10px;
-    background-image: linear-gradient(
-      to bottom,
-      rgba(255, 255, 255, 1) 0%,
-      rgba(63, 63, 68, 0.15) 100%
-    );
-
-    background-image: linear-gradient(
-      to bottom,
-      bolt-theme(secondary-darken-15) 0%,
-      bolt-theme(secondary-darken-25) 100%
-    );
+  20% {
+    transform: scale3d(1, 1, 1);
   }
 
-  &::-webkit-scrollbar-track {
-    border-radius: 10px;
-    box-shadow: inset 0 0 6px rgba(bolt-color(gray, dark), 0.25);
-    background-color: bolt-theme(secondary, 0.1);
+  40% {
+    transform: scale3d(0.97, 0.97, 0.97);
+  }
+
+  60% {
+    transform: scale3d(1, 1, 1);
+  }
+
+  80% {
+    transform: scale3d(0.99, 0.99, 0.99);
+  }
+
+  to {
+    transform: scale3d(1, 1, 1);
   }
 }

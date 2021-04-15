@@ -57,30 +57,40 @@
   } only %}
 {% endset %}
 
-{% set teaser_content %}
-  {% include "@bolt-components-teaser/teaser.twig" with {
-    content: "Body text. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Proin vel ante a orci tempus eleifend ut et magna. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    headlines: [
-      {
-        text: "This is a headline."
-      }
-    ],
-    eyebrow: {
-      text: "Eyebrow"
-    },
-    buttons: [
-      {
-        pattern: "button",
-        style: "primary",
-        text: "CTA 1"
-      },
-      {
-        pattern: "button",
-        style: "secondary",
-        text: "CTA 2"
-      }
-    ]
+{% set text_group_content %}
+  {% include "@bolt/eyebrow.twig" with {
+    text: "Eyebrow"
   } only %}
+
+  {% include "@bolt-components-headline/headline.twig" with {
+    text: "This is a headline.",
+  } only %}
+
+  {% include "@bolt-components-headline/text.twig" with {
+    text: "Body text. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Proin vel ante a orci tempus eleifend ut et magna. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    tag: "p"
+  } only %}
+
+  {% set button_1 %}
+    {% include "@bolt-components-button/button.twig" with {
+      text: "CTA 1",
+      style: "primary"
+    } only %}
+  {% endset %}
+
+  {% set button_2 %}
+    {% include "@bolt-components-button/button.twig" with {
+      text: "CTA 2",
+      style: "secondary"
+    } only %}
+  {% endset %}
+
+  {% include "@bolt-components-button-group/button-group.twig" with {
+    buttons: [
+      button_1,
+      button_2
+    ]
+  } %}
 {% endset %}
 
 {% set accordion_content %}
@@ -157,7 +167,7 @@
   {% set video %}
     <video-js
       data-account="1900410236"
-      data-player="4fVA8Ojzs"
+      data-player="O3FkeBiaDz"
       data-embed="default"
       data-video-id="4892122320001"
       data-media-title
@@ -216,8 +226,8 @@
       {% include "@bolt-components-tabs/tabs.twig" with {
         panels: [
           {
-            label: "A teaser",
-            content: teaser_content
+            label: "A text group",
+            content: text_group_content
           },
           {
             label: "A table",

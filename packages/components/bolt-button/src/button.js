@@ -8,51 +8,38 @@ import {
   spread,
 } from '@bolt/element';
 import classNames from 'classnames/bind';
+import styles from './button.scss';
+import schema from '../button.schema.js';
 
-import buttonStyles from './button.scss';
-// import schema from '../button.schema.js'; @todo: temporarily removed while we switch to `lit-element`, soon to be re-added
-
-let cx = classNames.bind(buttonStyles);
+let cx = classNames.bind(styles);
 
 @customElement('bolt-button')
 @convertInitialTags(['button', 'a'])
 class BoltButton extends BoltActionElement {
-  static get styles() {
-    return [unsafeCSS(buttonStyles)];
-  }
+  static schema = schema;
 
   // static useShadow = false; example of manually disabling Shadow DOM w/ BoltElement
 
   static get properties() {
     return {
-      ...BoltActionElement.properties, // Provides: disabled, onClick, onClickTarget, target, url
-      color: { type: String },
-      text: { type: String },
-      size: { type: String },
-      rounded: { type: Boolean }, // DEPRECATED.  Use border-radius instead of rounded.
-      borderRadius: {
-        type: String,
-        attribute: 'border-radius',
-      },
-      iconOnly: {
-        type: Boolean,
-        attribute: 'icon-only',
-      },
-      width: { type: String },
-      align: { type: String },
-      transform: { type: String },
-      type: { type: String },
+      ...this.props,
+      color: { type: String }, // Color is a deprecated web-component-only prop
       tabindex: { type: Number },
       inert: { type: Boolean }, // will eventually go hand in hand with https://github.com/WICG/inert#notes-on-the-polyfill
     };
   }
 
+  static get styles() {
+    return [unsafeCSS(styles)];
+  }
+
   render() {
+    // While `color` option is in use downstream, we must provide this fallback
+    const hierarchy = this.color || this.hierarchy;
     const classes = cx('c-bolt-button', {
       'c-bolt-button--medium': !this.size, // Default size
       [`c-bolt-button--${this.size}`]: this.size,
-      'c-bolt-button--primary': !this.color, // Default color
-      [`c-bolt-button--${this.color}`]: this.color,
+      [`c-bolt-button--${hierarchy}`]: hierarchy,
       [`c-bolt-button--${this.width}`]: this.width && this.width !== 'auto',
       'c-bolt-button--border-radius-regular': !this.borderRadius, // Default border radius
       'c-bolt-button--border-radius-full': this.rounded && !this.borderRadius, // DEPRECATED.  Use the border-radius property instead of rounded.

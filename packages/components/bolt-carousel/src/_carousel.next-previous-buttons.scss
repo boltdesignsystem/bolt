@@ -40,22 +40,10 @@ bolt-carousel:not(.is-ready) > [slot='next-btn'] {
       top: 50%;
     }
 
-    &:active,
-    &.is-pressed {
-      --bolt-theme-secondary: var(--bolt-theme-secondary-darken-15);
-    }
-
-    &:hover,
-    &:focus {
-      --bolt-theme-secondary: var(--bolt-theme-secondary-darken-5);
-    }
-
     &:focus:not(:hover) {
-      box-shadow: 0 -1px 2px bolt-theme(background),
-        0 1px 2px bolt-theme(background),
- 0 0 5px rgb(59, 153, 252),
-        0 -1px 0.65rem rgb(59, 153, 252),
- 0 1px 0.65rem rgb(59, 153, 252);
+      box-shadow: 0 -1px 2px var(--m-bolt-bg), 0 1px 2px var(--m-bolt-bg),
+        0 0 5px rgb(59, 153, 252), 0 -1px 0.65rem rgb(59, 153, 252),
+        0 1px 0.65rem rgb(59, 153, 252);
     }
 
     &.c-bolt-carousel__button--previous {
@@ -95,16 +83,12 @@ bolt-carousel:not(.is-ready) > [slot='next-btn'] {
       width: 4px;
       height: 0.9rem; // This is a magic number for fixing the subpixel issue with the CSS chevron. Don't change this unless you have a completely different method for drawing the chevron.
       border-radius: 1px;
-      box-shadow: 3px -1px 3px 0px rgba(bolt-color(black), 0.025),
-        3px 1px 3px 0px rgba(bolt-color(black), 0.025);
-      background-color: bolt-color(white);
+      box-shadow: 3px -1px 3px 0px rgba(black, 0.025),
+        3px 1px 3px 0px rgba(black, 0.025);
+      background-color: var(--bolt-color-white);
       will-change: box-shadow;
       transition: box-shadow $bolt-transition;
       transform-origin: 50% 50%;
-
-      @include bolt-ie11-only {
-        border: 1px solid bolt-color(white);
-      }
     }
 
     &.c-bolt-carousel__button--previous {
@@ -162,8 +146,8 @@ bolt-carousel:not(.is-ready) > [slot='next-btn'] {
     &:focus {
       &:before,
       &:after {
-        box-shadow: 3px -1px 3px 0px rgba(bolt-color(black), 0.1),
-          3px 1px 3px 0px rgba(bolt-color(black), 0.1);
+        box-shadow: 3px -1px 3px 0px rgba(black, 0.1),
+          3px 1px 3px 0px rgba(black, 0.1);
       }
     }
 

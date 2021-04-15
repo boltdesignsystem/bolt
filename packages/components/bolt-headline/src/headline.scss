@@ -22,11 +22,11 @@
 .c-bolt-headline,
 .c-bolt-subheadline,
 .c-bolt-eyebrow {
-  color: bolt-theme(headline);
+  color: var(--m-bolt-headline);
 }
 
 .c-bolt-text {
-  color: bolt-theme(text);
+  color: var(--m-bolt-text);
 }
 
 .c-bolt-headline {
@@ -168,6 +168,7 @@
 }
 
 .c-bolt-text--large,
+.c-bolt-subheadline--large,
 .c-bolt-headline--large {
   font-size: var(--bolt-type-font-size-large);
   line-height: var(--bolt-type-line-height-large);

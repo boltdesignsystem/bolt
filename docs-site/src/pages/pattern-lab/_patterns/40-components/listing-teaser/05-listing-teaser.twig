@@ -1,0 +1,86 @@
+{% set description %}
+  The Listing Teaser component can be used to display specific information of a particular listing, article, or thread. It is commonly used on listing pages.
+{% endset %}
+
+{% set notes %}
+  The whole listing UI is clickable. The headline of the listing is a link element that is expanding its click target.
+{% endset %}
+
+{% set demo %}
+  {% set icon_questions %}
+    {% include '@bolt-components-icon/icon.twig' with {
+      name: 'questions',
+      size: 'large',
+      color: 'teal',
+    } only %}
+  {% endset %}
+  {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
+    signifier: icon_questions,
+    headline: {
+      text: 'This is a listing',
+      tag: 'h3',
+      size: 'large',
+      link_attributes: {
+        href: 'https://pega.com'
+      },
+    },
+    meta_items: [
+      'Posted 8 hours 15 minutes ago',
+      'Last activity: 2 minutes ago',
+    ],
+    status: {
+      solved: true,
+      locked: true,
+      replies: '33',
+      views: '6k',
+    },
+    more_info: 'This is the more information. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus',
+    warning: 'Warning! This is a warning message.',
+  } only %}
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+// Set a signifier variable
+{% set demo_icon %}
+  {% include '@bolt-components-icon/icon.twig' with {
+    name: 'questions',
+    size: 'large',
+    color: 'teal',
+  } only %}
+{% endset %}
+
+// Use the variable in the signifier prop
+{% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
+  signifier: demo_icon,
+  headline: {
+    text: 'This is a listing',
+    tag: 'h3',
+    size: 'large',
+    link_attributes: {
+      href: 'https://pega.com'
+    },
+  },
+  meta_items: [
+    'Posted 8 hours 15 minutes ago',
+    'Last activity: 2 minutes ago',
+  ],
+  status: {
+    solved: true,
+    locked: true,
+    replies: '33',
+    views: '6k',
+  },
+  more_info: 'This is the more information. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus',
+  warning: 'Warning! This is a warning message.',
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Basic Listing Teaser',
+  description: description,
+  demo: demo,
+  notes: notes,
+  twig_markup: twig_markup,
+} only %}

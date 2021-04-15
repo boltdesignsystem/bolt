@@ -1,3 +1,15 @@
+const elementSchemas = require('@bolt/element/element.schemas');
+
+const {
+  url,
+  target,
+  disabled,
+  ...onClickProps
+} = elementSchemas.boltActionElement.properties;
+
+disabled.description =
+  'Make trigger unusable and un-clickable. Only applies to `button`.';
+
 module.exports = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'Bolt Trigger',
@@ -14,16 +26,8 @@ module.exports = {
       type: ['string', 'array', 'object'],
       description: 'Main content of the trigger (Twig only).',
     },
-    url: {
-      type: 'string',
-      description:
-        'Contains a URL that the link points to. This may also be passed as part of `attributes`.',
-    },
-    target: {
-      type: 'string',
-      description:
-        'Specifies where to display the linked URL. This may also be passed as part of `attributes`.',
-    },
+    url,
+    target,
     type: {
       description: 'Determines the button tag type for semantic buttons',
       type: 'string',
@@ -36,15 +40,7 @@ module.exports = {
       default: 'pointer',
       enum: ['auto', 'pointer', 'zoom-in', 'zoom-out'],
     },
-    on_click: {
-      type: 'string',
-      description: 'The name of a method on the `on_click_target`.',
-    },
-    on_click_target: {
-      type: 'string',
-      description:
-        '`className` (e.g. "js-click-me") used in `querySelector` to reference a web component on the page. `onClick`, the `on_click` method name will be called on this element.',
-    },
+    ...onClickProps,
     display: {
       type: 'string',
       description: 'Set the display property',
@@ -56,11 +52,6 @@ module.exports = {
       description: 'Turn off the default outline on focus',
       default: false,
     },
-    disabled: {
-      type: 'boolean',
-      description:
-        'Make trigger unusable and un-clickable. Only applies to `button`.',
-      default: false,
-    },
+    disabled,
   },
 };

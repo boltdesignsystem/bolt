@@ -3,10 +3,10 @@
 // Local Variables
 $bolt-blockquote-border-width: 4px;
 $bolt-blockquote-border-style: $bolt-border-style;
-$bolt-blockquote-border-color: bolt-color(teal);
+$bolt-blockquote-border-color: var(--bolt-color-teal);
 $bolt-blockquote-image-border-width: $bolt-border-width;
 $bolt-blockquote-image-border-style: $bolt-border-style;
-$bolt-blockquote-image-border-color: rgba(bolt-color(gray), 0.2);
+$bolt-blockquote-image-border-color: var(--m-bolt-border);
 $bolt-blockquote-image-size: 4rem;
 
 @mixin bolt-lang-specific-quotes($type: 'open') {
@@ -79,7 +79,7 @@ $bolt-blockquote-image-size: 4rem;
   position: relative;
   max-width: 44rem;
   margin-bottom: var(--bolt-spacing-y-medium);
-  color: bolt-theme(headline);
+  color: var(--m-bolt-headline);
 
   $sizes: 'large', 'xlarge', 'xxlarge';
   @each $size in $sizes {
@@ -158,7 +158,7 @@ bolt-blockquote {
 .c-bolt-blockquote__author-title {
   font-style: normal; // required by WC-only version
   font-size: var(--bolt-type-font-size-xsmall);
-  color: bolt-theme(headline);
+  color: var(--m-bolt-headline);
   line-height: var(--bolt-type-line-height-xsmall);
 }
 
@@ -185,7 +185,7 @@ bolt-blockquote {
 }
 
 .c-bolt-blockquote__footer {
-  color: bolt-theme(text);
+  color: var(--m-bolt-text);
   line-height: calc(
     var(--bolt-type-line-height-medium) *
       var(--bolt-type-line-height-multiplier-tight)
@@ -246,10 +246,6 @@ bolt-blockquote {
   padding: 0 var(--bolt-spacing-x-medium);
   border-style: $bolt-blockquote-border-style;
   border-color: $bolt-blockquote-border-color;
-  border-color: var(
-    --bolt-theme-blockquote-border,
-    $bolt-blockquote-border-color
-  );
 
   &:before,
   &:after {

@@ -3,13 +3,135 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-
+# [3.5.0](https://github.com/boltdesignsystem/bolt/compare/v3.4.3...v3.5.0) (2021-04-09)
 
 **Note:** Version bump only for package @bolt/build-tools--test-multi-lang
 
 
 
 
+
+## [3.4.2](https://github.com/boltdesignsystem/bolt/compare/v3.4.1...v3.4.2) (2021-03-31)
+
+**Note:** Version bump only for package @bolt/build-tools--test-multi-lang
+
+
+
+
+
+# [3.4.0](https://github.com/boltdesignsystem/bolt/compare/v3.3.1...v3.4.0) (2021-03-29)
+
+**Note:** Version bump only for package @bolt/build-tools--test-multi-lang
+
+
+
+
+
+## [3.3.1](https://github.com/boltdesignsystem/bolt/compare/v3.3.0...v3.3.1) (2021-03-22)
+
+**Note:** Version bump only for package @bolt/build-tools--test-multi-lang
+
+
+
+
+
+# [3.3.0](https://github.com/boltdesignsystem/bolt/compare/v3.2.0...v3.3.0) (2021-03-12)
+
+**Note:** Version bump only for package @bolt/build-tools--test-multi-lang
+
+
+
+
+
+## [3.1.2](https://github.com/boltdesignsystem/bolt/compare/v3.1.1...v3.1.2) (2021-03-05)
+
+**Note:** Version bump only for package @bolt/build-tools--test-multi-lang
+
+
+
+
+
+## [3.1.1](https://github.com/boltdesignsystem/bolt/compare/v3.1.0...v3.1.1) (2021-02-11)
+
+**Note:** Version bump only for package @bolt/build-tools--test-multi-lang
+
+
+
+
+
+# [3.1.0](https://github.com/boltdesignsystem/bolt/compare/v2.31.2...v3.1.0) (2021-02-08)
+
+
+### Features
+
+* remove 'esModules' and 'compat' flags, remove 'modern' from filenames ([5f9136e](https://github.com/boltdesignsystem/bolt/commit/5f9136eb365e95688c57c6c1e2dc72ebe91291c2))
+
+
+
+
+
+## [2.31.2](https://github.com/boltdesignsystem/bolt/compare/v2.31.1...v2.31.2) (2021-02-04)
+
+**Note:** Version bump only for package @bolt/build-tools--test-multi-lang
+
+
+
+
+
+## [2.31.1](https://github.com/boltdesignsystem/bolt/compare/v2.31.0...v2.31.1) (2021-02-03)
+
+**Note:** Version bump only for package @bolt/build-tools--test-multi-lang
+
+
+
+
+
+# [2.31.0](https://github.com/boltdesignsystem/bolt/compare/v2.30.2...v2.31.0) (2021-02-02)
+
+**Note:** Version bump only for package @bolt/build-tools--test-multi-lang
+
+
+
+
+
+## [3.0.1](https://github.com/boltdesignsystem/bolt/compare/v3.0.0...v3.0.1) (2021-01-22)
+
+**Note:** Version bump only for package @bolt/build-tools--test-multi-lang
+
+
+
+
+
+## [2.30.2](https://github.com/boltdesignsystem/bolt/compare/v2.30.1...v2.30.2) (2021-01-21)
+
+**Note:** Version bump only for package @bolt/build-tools--test-multi-lang
+
+
+
+
+
+## [2.30.1](https://github.com/boltdesignsystem/bolt/compare/v2.30.0...v2.30.1) (2021-01-14)
+
+**Note:** Version bump only for package @bolt/build-tools--test-multi-lang
+
+
+
+
+
+# [2.30.0](https://github.com/boltdesignsystem/bolt/compare/v2.29.3...v2.30.0) (2021-01-13)
+
+**Note:** Version bump only for package @bolt/build-tools--test-multi-lang
+
+
+
+
+
+# [3.0.0](https://github.com/boltdesignsystem/bolt/compare/v2.29.3...v3.0.0) (2021-01-08)
+
+
+### Features
+
+* remove 'esModules' and 'compat' flags, remove 'modern' from filenames ([5f9136e](https://github.com/boltdesignsystem/bolt/commit/5f9136eb365e95688c57c6c1e2dc72ebe91291c2))
 
 ## [2.29.2](https://github.com/boltdesignsystem/bolt/compare/v2.29.1...v2.29.2) (2020-11-30)
 

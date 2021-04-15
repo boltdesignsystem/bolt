@@ -1,40 +1,137 @@
+{# Schema Validation #}
+{% set schema = bolt.data.components['@bolt-components-teaser'].schema %}
 {% if enable_json_schema_validation %}
-  {{ validate_data_schema(bolt.data.components['@bolt-components-teaser'].schema, _self) | raw }}
+  {{ validate_data_schema(schema, _self)|raw }}
 {% endif %}
 
-<bolt-teaser>
-  {% if eyebrow %}
-    {% include "@bolt/eyebrow.twig" with eyebrow only %}
+{# Variables #}
+{% set this = init(schema) %}
+{% set attributes = create_attribute(attributes|default({})) %}
+
+{# Array of classes based on the defined + default props #}
+{% set classes = [
+  'c-bolt-teaser',
+  this.data.layout.value ? 'c-bolt-teaser--' ~ this.data.layout.value,
+  this.data.gutter.value ? 'c-bolt-teaser--gutter-' ~ this.data.gutter.value,
+] %}
+
+<article {{ attributes.addClass(classes) }}>
+  {% if signifier %}
+    <div class="c-bolt-teaser__signifier">
+      <div class="c-bolt-teaser__signifier-image">
+        {{ signifier }}
+      </div>
+
+      {% if this.data.type.value == 'video' %}
+        <div class="c-bolt-teaser__signifier-type c-bolt-teaser__signifier-type--video" aria-hidden="true"></div>
+      {% endif %}
+
+      {% if this.data.time.value %}
+        <div class="c-bolt-teaser__signifier-time">
+          {{ time }}
+        </div>
+      {% endif %}
+
+      {% if description.content and description.show_on_hover %}
+        <div class="c-bolt-teaser__signifier-description" aria-hidden="true">
+          <div class="c-bolt-teaser__signifier-description-text {% if description.content|length >= 80 %}c-bolt-teaser__signifier-description-text--line-clamp{% endif %}">
+            {{ description.content }}{% if description.content|length < 80 %}&hellip;{% endif %}
+          </div>
+        </div>
+      {% endif %}
+
+      {% if status.locked %}
+        <div class="c-bolt-teaser__signifier-locked">
+          {% include '@bolt-components-icon/icon.twig' with {
+            name: 'lock-solid',
+          } only %}
+        </div>
+      {% endif %}
+    </div>
   {% endif %}
 
-  {% if headlines %}
-    {% for headline in headlines %}
-      {% include "@bolt/" ~ headline.type | default("headline") ~ ".twig" with headline only %}
-    {% endfor %}
-  {% endif %}
-
-  {% if logo %}
-    {% include "@bolt/logo.twig" with logo only %}
-  {% endif %}
-
-  {% block teaser_content %}
-    {% for item in contentItems if item.pattern %}
-      {% include pattern_template(item.pattern) with item only %}
-    {% endfor %}
-
-    {% if content %}
-      {% include "@bolt-components-headline/text.twig" with {
-        text: content,
-        tag: "p"
-      } only %}
+  <div class="c-bolt-teaser__content">
+    {% if headline %}
+      <div class="c-bolt-teaser__headline">
+        {% if headline.link_attributes %}
+          {% set _icon_chevron_right %}
+            {% include '@bolt-components-icon/icon.twig' with {
+              name: 'chevron-right',
+            } only %}
+          {% endset %}
+          {% set _linked_text %}
+            {% include '@bolt-elements-text-link/text-link.twig' with {
+              content: headline.text,
+              reversed_underline: true,
+              expand_click_target: true,
+              icon_after: _icon_chevron_right,
+              attributes: headline.link_attributes,
+            } only %}
+          {% endset %}
+        {% endif %}
+        {% include '@bolt-components-headline/headline.twig' with {
+          text: headline.link_attributes ? _linked_text : headline.text,
+          tag: headline.tag,
+          size: headline.size,
+        } only %}
+      </div>
     {% endif %}
-  {% endblock teaser_content %}
 
+    {% if subheadline %}
+      <div class="c-bolt-teaser__subheadline">
+        {% include '@bolt-components-headline/subheadline.twig' with {
+          text: subheadline.text,
+          tag: subheadline.tag,
+          size: subheadline.size,
+        } only %}
+      </div>
+    {% endif %}
 
-  {# TODO: only allow max of 2 buttons #}
-  {% if buttons %}
-    {% include pattern_template("button_group") with {
-      "buttons": buttons
-    } only %}
-  {% endif %}
-</bolt-teaser>
+    {% if this.data.eyebrow_text.value %}
+      <div class="c-bolt-teaser__eyebrow">
+        {% include '@bolt-components-headline/eyebrow.twig' with {
+          text: this.data.eyebrow_text.value,
+        } only %}
+      </div>
+    {% endif %}
+
+    {% if status.views or like or share %}
+      <div class="c-bolt-teaser__actions-and-views">
+        {% if status.views %}
+          <div class="c-bolt-teaser__views">
+            {% include '@bolt-components-icon/icon.twig' with {
+              name: 'eye',
+            } only %}
+            {{ status.views }} {{ 'views'|t }}
+          </div>
+        {% endif %}
+        {% if like or share %}
+          <ul class="c-bolt-teaser__action-list">
+            {% if like %}
+              <li class="c-bolt-teaser__action-list-item">
+                {{ like }}
+              </li>
+            {% endif %}
+            {% if share %}
+              <li class="c-bolt-teaser__action-list-item">
+                {{ share }}
+              </li>
+            {% endif %}
+          </ul>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    {% if description.content %}
+      <div class="c-bolt-teaser__description {{ description.show_on_hover ? 'u-bolt-visuallyhidden' : '' }}">
+        {{ description.content }}
+      </div>
+    {% endif %}
+
+    {% if chip_list %}
+      <div class="c-bolt-teaser__chips">
+        {{ chip_list }}
+      </div>
+    {% endif %}
+  </div>
+</article>

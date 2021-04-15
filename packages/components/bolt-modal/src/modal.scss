@@ -1,5 +1,6 @@
 @import '@bolt/core-v3.x';
-@import '@bolt/global/styles/06-themes/_themes.all.scss';
+@import '@bolt/global/styles/06-themes/_themes.all.scss'; // @todo: remove this once bolt-theme() function is completely deprecated and removed.
+@import '@bolt/global/styles/00-vars/_vars-mode.scss';
 
 /* ------------------------------------ *\
    Modal
@@ -10,29 +11,14 @@
    and customizations
 \* ------------------------------------ */
 
-/**
- * When `<dialog>` is properly supported, the overlay is implied and can be
- * styled with `::backdrop`, which means the DOM one should be removed.
- */
-/*
-[data-a11y-dialog-native] .dialog-overlay {
-  @todo: look further into this to see why the natively supported ::backdrop wasn't showing up as expected
-  display: none;
-}
+// Dev Notes
+// 1. Fixes iOS-specific bug where browser navigation bar covers up modal footer, @see https://css-tricks.com/css-fix-for-100vh-in-mobile-webkit/
 
-dialog::backdrop {
-  background-color: rgba(0, 0, 0, 0.66);
-}
-*/
-
-$bolt-modal-overlay-bg-color-dark: rgba(
-  bolt-color(navy, xdark),
-  bolt-opacity(80)
-);
-$bolt-modal-overlay-bg-color-light: rgba(bolt-color(white), bolt-opacity(80));
+$bolt-modal-overlay-bg-color-dark: var(--bolt-color-navy-xdark);
+$bolt-modal-overlay-bg-color-light: var(--bolt-color-white);
 $bolt-modal-border-width: $bolt-border-width;
 $bolt-modal-border-style: $bolt-border-style;
-$bolt-modal-border-color: bolt-theme(text, 0.15);
+$bolt-modal-border-color: var(--m-bolt-border);
 $bolt-modal-border-radius: bolt-border-radius(small);
 $bolt-modal-max-height: 80vh;
 $bolt-modal-transition: $bolt-transition;
@@ -54,6 +40,7 @@ bolt-modal:not([ready]) {
   left: 0;
   width: 100%; // Use % instead of vh or modal scrollbar is hidden behind bold scrollbar in IE11
   height: 100vh;
+  height: -webkit-fill-available; // [1]
   // [Mai] reset font styles here so it doesn't inherit from parent container.
   font-family: var(--bolt-type-font-family-body);
   font-size: var(--bolt-type-font-size-medium);
@@ -82,8 +69,8 @@ bolt-modal:not([ready]) {
     transition: opacity $bolt-modal-transition;
 
     [class*='t-bolt-'] {
-      color: bolt-color(black);
-      background-color: bolt-color(white);
+      color: var(--bolt-color-black);
+      background-color: var(--bolt-color-white);
     }
 
     .c-bolt-modal__overlay {
@@ -92,14 +79,17 @@ bolt-modal:not([ready]) {
 
     .c-bolt-modal__content {
       width: 100%;
+      height: 100vh;
+      height: -webkit-fill-available; // [1]
     }
 
     .c-bolt-modal__container {
       display: flex;
       flex-direction: column;
       height: 100vh;
-      color: bolt-color(black);
-      background-color: bolt-color(white);
+      height: -webkit-fill-available; // [1]
+      color: var(--bolt-color-black);
+      background-color: var(--bolt-color-white);
     }
 
     .c-bolt-modal__container-header {
@@ -149,14 +139,25 @@ bolt-modal:not([ready]) {
 }
 
 // Overlay color options
-.c-bolt-modal,
-.c-bolt-modal--overlay-dark {
+.c-bolt-modal:before {
+  content: '';
+  opacity: 0.8;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 0;
+}
+
+.c-bolt-modal:before,
+.c-bolt-modal--overlay-dark:before {
   @include bolt-mq($bolt-modal-breakpoint) {
     background-color: $bolt-modal-overlay-bg-color-dark;
   }
 }
 
-.c-bolt-modal--overlay-light {
+.c-bolt-modal--overlay-light:before {
   @include bolt-mq($bolt-modal-breakpoint) {
     background-color: $bolt-modal-overlay-bg-color-light;
   }
@@ -309,8 +310,8 @@ bolt-modal:not([ready]) {
     height: var(--bolt-spacing-y-xxsmall);
     pointer-events: none;
     background-image: linear-gradient(
-      rgba(bolt-color(gray, light), 0.25),
-      transparent
+      var(--bolt-color-gray-light),
+      rgba(255, 255, 255, 0)
     );
   }
 }
@@ -333,8 +334,8 @@ bolt-modal:not([ready]) {
     height: var(--bolt-spacing-y-xxsmall);
     pointer-events: none;
     background-image: linear-gradient(
-      transparent,
-      rgba(bolt-color(gray, light), 0.25)
+      rgba(255, 255, 255, 0),
+      var(--bolt-color-gray-light)
     );
   }
 }
@@ -376,15 +377,8 @@ bolt-modal:not([ready]) {
 
     &:hover,
     &:focus-within {
-      background-color: bolt-theme(background, 0.1);
+      background-color: var(--m-bolt-tertiary);
     }
-  }
-}
-
-// For IE which doesn't support :focus-within
-.c-bolt-modal__close-button--focus-within {
-  @include bolt-mq($bolt-modal-breakpoint) {
-    background-color: bolt-theme(background, 0.1);
   }
 }
 
@@ -402,12 +396,12 @@ bolt-modal:not([ready]) {
   display: block;
   position: relative;
   width: var(--bolt-spacing-x-medium);
-  height: var(--bolt-spacing-y-medium);
+  height: var(--bolt-spacing-x-medium);
   margin: var(--bolt-spacing-y-small) var(--bolt-spacing-x-small);
 
   @include bolt-mq($bolt-modal-breakpoint) {
-    width: calc(var(--bolt-spacing-x-medium) - 0.2rem);
-    height: calc(var(--bolt-spacing-y-medium) - 0.2rem);
+    width: calc(var(--bolt-spacing-x-medium) - 2px);
+    height: calc(var(--bolt-spacing-x-medium) - 2px);
     margin: 0;
   }
 
@@ -421,12 +415,11 @@ bolt-modal:not([ready]) {
     width: var(--bolt-spacing-x-small);
     height: 2px;
     border-radius: $bolt-modal-border-radius;
-    background-color: bolt-color(navy, light);
+    background-color: var(--bolt-color-navy-light);
     transform-origin: 50% 50%;
 
     @include bolt-mq($bolt-modal-breakpoint) {
-      height: 0.1rem;
-      background-color: bolt-color(white);
+      background-color: var(--bolt-color-white);
     }
   }
 
@@ -440,22 +433,36 @@ bolt-modal:not([ready]) {
 }
 
 .c-bolt-modal__close-button--dark {
+  @include bolt-mq($bolt-modal-breakpoint) {
+    &:hover,
+    &:focus-within {
+      background-color: var(--bolt-color-gray-light);
+    }
+  }
+
   .c-bolt-modal__close-button__icon {
     &:before,
     &:after {
       @include bolt-mq($bolt-modal-breakpoint) {
-        background-color: bolt-color(navy, light);
+        background-color: var(--bolt-color-navy-light);
       }
     }
   }
 }
 
 .c-bolt-modal__close-button--light {
+  @include bolt-mq($bolt-modal-breakpoint) {
+    &:hover,
+    &:focus-within {
+      background-color: var(--bolt-color-navy);
+    }
+  }
+
   .c-bolt-modal__close-button__icon {
     &:before,
     &:after {
       @include bolt-mq($bolt-modal-breakpoint) {
-        background-color: bolt-color(white);
+        background-color: var(--bolt-color-white);
       }
     }
   }

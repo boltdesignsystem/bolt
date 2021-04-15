@@ -1,0 +1,72 @@
+{% set description %}
+  If you would like to show chips at the bottom of the teaser, just pass rendered Chip List component into the <bolt-code-snippet display="inline">chip_list</bolt-code-snippet> prop.
+{% endset %}
+
+{% set demo %}
+  {% set wide_image %}
+    {% include '@bolt-components-image/image.twig' with {
+      src: '/images/content/promos/promo-16x9-ai.jpg',
+      alt: 'Alt text.',
+    } only %}
+  {% endset %}
+  {% set chip_list %}
+    {% include '@bolt-components-chip-list/chip-list.twig' with {
+      size: 'xsmall',
+      items: [
+        {
+          text: 'Video',
+        },
+        {
+          text: 'Research',
+        },
+      ],
+    } only %}
+  {% endset %}
+
+  <div style="max-width: 60ch;">
+    {% include '@bolt-components-teaser/teaser.twig' with {
+      signifier: wide_image,
+      headline: {
+        text: 'This is a teaser with chips',
+        tag: 'h2',
+        size: 'xlarge',
+        link_attributes: {
+          href: 'https://www.pega.com'
+        },
+      },
+      description: {
+        content: 'Aliqua voluptate amet do laborum culpa tempor consectetur culpa consectetur ea. Ea officia quis do enim. Id consectetur dolor voluptate eu veniam anim adipisicing dolor ut occaecat officia fugiat magna reprehenderit.',
+      },
+      chip_list: chip_list,
+    } only %}
+  </div>
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% set chip_list %}
+  {% include '@bolt-components-chip-list/chip-list.twig' with {
+    size: 'xsmall',
+    items: [
+      {
+        text: 'Video',
+      },
+      {
+        text: 'Research',
+      },
+    ],
+  } only %}
+{% endset %}
+{% include '@bolt-components-teaser/teaser.twig' with {
+  chip_list: chip_list,
+  ...
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Teaser Chips',
+  description: description,
+  demo: demo,
+  twig_markup: twig_markup,
+} only %}

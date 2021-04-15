@@ -3,7 +3,134 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.5.1](https://github.com/boltdesignsystem/bolt/compare/v3.5.0...v3.5.1) (2021-04-12)
 
+**Note:** Version bump only for package @bolt/components-card-replacement
+
+
+
+
+
+# [3.5.0](https://github.com/boltdesignsystem/bolt/compare/v3.4.3...v3.5.0) (2021-04-09)
+
+**Note:** Version bump only for package @bolt/components-card-replacement
+
+
+
+
+
+## [3.4.3](https://github.com/boltdesignsystem/bolt/compare/v3.4.2...v3.4.3) (2021-04-01)
+
+**Note:** Version bump only for package @bolt/components-card-replacement
+
+
+
+
+
+# [3.4.0](https://github.com/boltdesignsystem/bolt/compare/v3.3.1...v3.4.0) (2021-03-29)
+
+**Note:** Version bump only for package @bolt/components-card-replacement
+
+
+
+
+
+# [3.3.0](https://github.com/boltdesignsystem/bolt/compare/v3.2.0...v3.3.0) (2021-03-12)
+
+**Note:** Version bump only for package @bolt/components-card-replacement
+
+
+
+
+
+## [3.1.2](https://github.com/boltdesignsystem/bolt/compare/v3.1.1...v3.1.2) (2021-03-05)
+
+
+### Bug Fixes
+
+* theme colors for modal and card ([b925855](https://github.com/boltdesignsystem/bolt/commit/b9258555ccde4624ce9a2025b9c3776fd38aaee6))
+
+
+
+
+
+# [3.1.0](https://github.com/boltdesignsystem/bolt/compare/v2.31.2...v3.1.0) (2021-02-08)
+
+
+### Bug Fixes
+
+* Allow card url attributes to be empty ([de91388](https://github.com/boltdesignsystem/bolt/commit/de91388d1415d0ede4f868fb69d9fdb17b95ac12))
+* card background stacking order ([c733d08](https://github.com/boltdesignsystem/bolt/commit/c733d08567ae77cba718544f363fa4e874bc6df2))
+* card fix related to bug when updating the Mission Completed modal blueprint ([ea89b68](https://github.com/boltdesignsystem/bolt/commit/ea89b687e6827cfa1e3f39f512809646a7b34198))
+* create tests for new props ([744a8ae](https://github.com/boltdesignsystem/bolt/commit/744a8ae923cdb976cda27cd7094a4d7f4070da8f))
+* minor clean up on utils and css ([8b732c8](https://github.com/boltdesignsystem/bolt/commit/8b732c87721a3fab083cdd48d16351847af31a01))
+* Prevent adding empty url prop to card action button ([d2ce4eb](https://github.com/boltdesignsystem/bolt/commit/d2ce4ebf1f718ca804d76c5e2664c31c623fb6df))
+* Remove join filters and related hacks in replacement card ([67beb1c](https://github.com/boltdesignsystem/bolt/commit/67beb1c8ea0409af63a28c210ad1d71f2ae7838c))
+* remove unused `.spacing` property on card-replacement-body WC markup ([8aff9cc](https://github.com/boltdesignsystem/bolt/commit/8aff9cc4d202559a53fc32c4dd3fff3897f8f09d))
+* resolve conflict ([e8d65d4](https://github.com/boltdesignsystem/bolt/commit/e8d65d4ecf2db18ac8b3745a4219a381c9067900))
+* update card so background layer doesn't interfere with other elements ([5d58dea](https://github.com/boltdesignsystem/bolt/commit/5d58deafc555aad38fef897e31ce88cd9a1159f7))
+* update card-specific updates to work around z-index issues ([622d47f](https://github.com/boltdesignsystem/bolt/commit/622d47f92d0308a0dc143b9e5bec90a28e409182))
+* update Jest snapshots ([e582e39](https://github.com/boltdesignsystem/bolt/commit/e582e39e084114ae731e2246db5e5b897e55cdf5))
+* use spacing map for css ([4a04e4f](https://github.com/boltdesignsystem/bolt/commit/4a04e4f9270619442fd046a6c4aad1ac64c10136))
+
+
+### Features
+
+* remove postcss-themify and critical-css-vars, replace map() usage of bolt-theme with fixed token ([373791e](https://github.com/boltdesignsystem/bolt/commit/373791ee6f133546f197f3b2cffb8d18588be204))
+
+
+
+
+
+## [2.31.2](https://github.com/boltdesignsystem/bolt/compare/v2.31.1...v2.31.2) (2021-02-04)
+
+**Note:** Version bump only for package @bolt/components-card-replacement
+
+
+
+
+
+# [2.31.0](https://github.com/boltdesignsystem/bolt/compare/v2.30.2...v2.31.0) (2021-02-02)
+
+**Note:** Version bump only for package @bolt/components-card-replacement
+
+
+
+
+
+## [3.0.1](https://github.com/boltdesignsystem/bolt/compare/v3.0.0...v3.0.1) (2021-01-22)
+
+**Note:** Version bump only for package @bolt/components-card-replacement
+
+
+
+
+
+## [2.30.2](https://github.com/boltdesignsystem/bolt/compare/v2.30.1...v2.30.2) (2021-01-21)
+
+**Note:** Version bump only for package @bolt/components-card-replacement
+
+
+
+
+
+## [2.30.1](https://github.com/boltdesignsystem/bolt/compare/v2.30.0...v2.30.1) (2021-01-14)
+
+**Note:** Version bump only for package @bolt/components-card-replacement
+
+
+
+
+
+# [2.30.0](https://github.com/boltdesignsystem/bolt/compare/v2.29.3...v2.30.0) (2021-01-13)
+
+**Note:** Version bump only for package @bolt/components-card-replacement
+
+
+
+
+
+# [3.0.0](https://github.com/boltdesignsystem/bolt/compare/v2.29.3...v3.0.0) (2021-01-08)
 
 **Note:** Version bump only for package @bolt/components-card-replacement
 

@@ -1,0 +1,166 @@
+/**
+ * Tippy.js - a tippy is essentially three nested divs:
+ * 1. `[data-tippy-root]` is the outermost node. It is what Popper uses to position the tippy. You don't need to apply any styles to this element (other than max-width).
+ * 2. `tippy-box` is the actual box node.
+ * 3. `tippy-content` is the content node.
+ */
+
+/**
+ * Component variables
+ */
+$bolt-tippy-transition: $bolt-transition-timing
+  cubic-bezier(0.175, 0.885, 0.32, 1);
+
+@mixin bolt-tippy-bubble-tip-point-to($where) {
+  $radius: bolt-border-radius(large);
+  $directions: top-left, top-right, bottom-right, bottom-left;
+
+  @each $direction in $directions {
+    @if $direction == $where {
+      border-#{$direction}-radius: 0;
+    } @else {
+      border-#{$direction}-radius: $radius;
+    }
+  }
+}
+
+// [1]
+[data-tippy-root] {
+  max-width: calc(100vw - var(--bolt-spacing-x-small));
+}
+
+// [2]
+.tippy-box {
+  display: block;
+  opacity: 0;
+  transform: scale3d(1, 1, 1) translate3d(0, 0, 0);
+  overflow: hidden;
+  margin: var(--bolt-spacing-y-xxsmall) var(--bolt-spacing-x-xxsmall);
+  border-radius: bolt-border-radius(small);
+  border-width: $bolt-border-width;
+  border-style: $bolt-border-style;
+  border-color: var(--m-bolt-border);
+  transition: transform $bolt-tippy-transition, opacity $bolt-tippy-transition;
+
+  // Placement: top
+  &[data-placement^='top'] {
+    transform: scale3d(0.1, 0.1, 0.1) translate3d(0, 100%, 0);
+    margin-right: 0;
+    margin-left: 0;
+  }
+
+  &[data-placement='top-end'] {
+    @include bolt-tippy-bubble-tip-point-to(bottom-right);
+    transform-origin: bottom right;
+  }
+
+  &[data-placement='top'] {
+    @include bolt-tippy-bubble-tip-point-to(null);
+    transform-origin: bottom center;
+  }
+
+  &[data-placement='top-start'] {
+    @include bolt-tippy-bubble-tip-point-to(bottom-left);
+    transform-origin: bottom left;
+  }
+
+  // Placement: left
+  &[data-placement^='left'] {
+    transform: scale3d(0.1, 0.1, 0.1) translate3d(100%, 0, 0);
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  &[data-placement='left-start'] {
+    @include bolt-tippy-bubble-tip-point-to(top-right);
+    transform-origin: top right;
+  }
+
+  &[data-placement='left'] {
+    @include bolt-tippy-bubble-tip-point-to(null);
+    transform-origin: center right;
+  }
+
+  &[data-placement='left-end'] {
+    @include bolt-tippy-bubble-tip-point-to(bottom-right);
+    transform-origin: bottom right;
+  }
+
+  // Placement: right
+  &[data-placement^='right'] {
+    transform: scale3d(0.1, 0.1, 0.1) translate3d(-100%, 0, 0);
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  &[data-placement='right-start'] {
+    @include bolt-tippy-bubble-tip-point-to(top-left);
+    transform-origin: top left;
+  }
+
+  &[data-placement='right'] {
+    @include bolt-tippy-bubble-tip-point-to(null);
+    transform-origin: center left;
+  }
+
+  &[data-placement='right-end'] {
+    @include bolt-tippy-bubble-tip-point-to(bottom-left);
+    transform-origin: bottom left;
+  }
+
+  // Placement: bottom
+  &[data-placement^='bottom'] {
+    transform: scale3d(0, 0, 0) translate3d(0, -100%, 0);
+    margin-right: 0;
+    margin-left: 0;
+  }
+
+  &[data-placement='bottom-end'] {
+    @include bolt-tippy-bubble-tip-point-to(top-right);
+    transform-origin: top right;
+  }
+
+  &[data-placement='bottom'] {
+    @include bolt-tippy-bubble-tip-point-to(null);
+    transform-origin: top center;
+  }
+
+  &[data-placement='bottom-start'] {
+    @include bolt-tippy-bubble-tip-point-to(top-left);
+    transform-origin: top left;
+  }
+
+  // State: visible
+  &[data-state='visible'] {
+    opacity: 1;
+    transform: scale3d(1, 1, 1) translate3d(0, 0, 0);
+  }
+}
+
+// [3]
+.tippy-content {
+  position: relative;
+}
+
+.tippy-box[data-theme='popover'] {
+  padding: 0;
+  font-family: var(--bolt-type-font-family-body);
+  font-size: var(--bolt-type-font-size-xsmall);
+  font-weight: var(--bolt-type-font-weight-regular);
+  color: var(--m-bolt-text);
+  line-height: var(--bolt-type-line-height-xsmall);
+  box-shadow: bolt-shadow('level-20');
+  background-color: var(--m-bolt-bg);
+}
+
+.tippy-box[data-theme='tooltip'] {
+  padding: var(--bolt-spacing-y-xxsmall) var(--bolt-spacing-x-xsmall);
+  font-family: var(--bolt-type-font-family-body);
+  font-size: var(--bolt-type-font-size-xsmall);
+  font-weight: var(--bolt-type-font-weight-semibold);
+  color: var(--m-bolt-text);
+  line-height: var(--bolt-type-line-height-xsmall);
+  border-radius: bolt-border-radius(large);
+  box-shadow: bolt-shadow('level-20');
+  background-color: var(--m-bolt-bg);
+}

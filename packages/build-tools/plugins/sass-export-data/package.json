@@ -1,6 +1,6 @@
 {
   "name": "@bolt/sass-export-data",
-  "version": "2.19.0",
+  "version": "3.1.2",
   "description": "Export Sass as JSON data",
   "keywords": [
     "theme-tools-plugin",
@@ -16,11 +16,11 @@
     "test:compile": "rm -rf tests/basics/dest/ && mkdir tests/basics/dest/ && node-sass --functions tests/basics/function.js tests/basics/scss/style.scss tests/basics/dest/style.css"
   },
   "dependencies": {
-    "@theme-tools/core": "^1.0.0",
     "chai": "^4.2.0",
     "chai-fs": "^2.0.0",
     "fs-extra": "^7.0.1",
     "jsondiffpatch": "^0.3.11",
+    "merge": "^1.2.1",
     "mocha": "^6.1.4",
     "node-sass": "^4.12.0"
   },

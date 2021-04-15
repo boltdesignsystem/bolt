@@ -1,10 +1,4 @@
-import {
-  isConnected,
-  render,
-  renderString,
-  stopServer,
-  html,
-} from '../../../testing/testing-helpers';
+import { render, stopServer } from '../../../testing/testing-helpers';
 
 describe('<bolt-icon> Component', () => {
   afterAll(async () => {

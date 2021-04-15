@@ -5,7 +5,6 @@
 $bolt-share-block-link-inset: 'small';
 $bolt-share-block-link-inline-spacing: 'xsmall';
 
-
 @include bolt-custom-element('bolt-share', block, medium);
 
 .c-bolt-share {
@@ -27,7 +26,7 @@ $bolt-share-block-link-inline-spacing: 'xsmall';
   @include bolt-font-size(xsmall);
   opacity: bolt-opacity(60);
 
-  color: bolt-theme(text);
+  color: var(--m-bolt-text);
 }
 
 .c-bolt-share__label--medium {
@@ -41,7 +40,7 @@ $bolt-share-block-link-inline-spacing: 'xsmall';
 
 .c-bolt-share__link {
   display: block;
-  color: bolt-theme(link);
+  color: var(--m-bolt-link);
   text-decoration: none;
   white-space: nowrap;
   transition: opacity $bolt-transition;
@@ -59,7 +58,6 @@ $bolt-share-block-link-inline-spacing: 'xsmall';
 .c-bolt-share__link-text {
   @include bolt-visuallyhidden;
 }
-
 
 // Custom animation is used here because the markup is different than the default copy to clipboard animation.
 .c-bolt-share__copy-animation {

@@ -1,10 +1,13 @@
-import { html, convertInitialTags, customElement } from '@bolt/element';
-import { props } from '@bolt/core-v3.x/utils';
-import { render } from '@bolt/core-v3.x/renderers/renderer-lit-html';
-import { BoltAction } from '@bolt/core-v3.x/elements/bolt-action';
+import {
+  BoltActionElement,
+  unsafeCSS,
+  html,
+  convertInitialTags,
+  customElement,
+} from '@bolt/element';
+import { render } from 'lit-html';
 import { ifDefined } from 'lit-html/directives/if-defined';
 import classNames from 'classnames/bind';
-
 import styles from './trigger.scss';
 import schema from '../trigger.schema';
 
@@ -12,20 +15,17 @@ let cx = classNames.bind(styles);
 
 @customElement('bolt-trigger')
 @convertInitialTags(['button', 'a']) // The first matching tag will have its attributes converted to component props
-class BoltTrigger extends BoltAction {
-  static props = {
-    ...BoltAction.props, // Provides: disabled, onClick, onClickTarget, target, url
-    type: props.string,
-    cursor: props.string,
-    display: props.string,
-    noOutline: props.boolean,
-  };
+class BoltTrigger extends BoltActionElement {
+  static schema = schema;
 
-  // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
-  constructor(self) {
-    self = super(self);
-    self.schema = schema;
-    return self;
+  static get properties() {
+    return {
+      ...this.props,
+    };
+  }
+
+  static get styles() {
+    return [unsafeCSS(styles)];
   }
 
   _handleFocus() {
@@ -37,24 +37,14 @@ class BoltTrigger extends BoltAction {
   }
 
   render() {
-    const {
-      url,
-      target,
-      type,
-      cursor,
-      display,
-      noOutline,
-      disabled,
-    } = this.validateProps(this.props);
-
     const classes = cx('c-bolt-trigger', {
-      [`c-bolt-trigger--cursor-${cursor}`]: cursor && !disabled,
-      [`c-bolt-trigger--display-${display}`]: display,
-      [`c-bolt-trigger--outline-none`]: noOutline,
+      [`c-bolt-trigger--cursor-${this.cursor}`]: this.cursor && !this.disabled,
+      [`c-bolt-trigger--display-${this.display}`]: this.display,
+      [`c-bolt-trigger--outline-none`]: this.noOutline,
     });
 
     // If a url has been provided the rendered tag will be an <a>
-    const hasUrl = url && url.length;
+    const hasUrl = this.url && this.url.length;
 
     // The triggerElement to render
     let triggerElement;
@@ -65,11 +55,11 @@ class BoltTrigger extends BoltAction {
 
       // @todo: find automatic way to dissolve original HTML elements into their respective props + custom attributes
       if (triggerElement.tagName === 'A') {
-        const url = this.props.url || this.originalUrl;
+        const url = this.url || this.originalUrl;
 
-        if (disabled) {
+        if (this.disabled) {
           this.originalUrl = triggerElement.getAttribute('href');
-          triggerElement.setAttribute('aria-disabled', 'true');
+          triggerElement.setAttribute('aria-this.', 'true');
           triggerElement.removeAttribute('href');
         } else {
           triggerElement.removeAttribute('aria-disabled');
@@ -78,19 +68,17 @@ class BoltTrigger extends BoltAction {
           }
         }
 
-        if (target) {
-          triggerElement.setAttribute('target', target);
+        if (this.target) {
+          triggerElement.setAttribute('target', this.target);
         }
       } else {
-        if (disabled) {
+        if (this.disabled) {
           triggerElement.setAttribute('disabled', '');
         } else {
           triggerElement.removeAttribute('disabled');
         }
-
-        // check `this.props.type` not `type` to see if type has been set, the validated `type` const will always return a value
-        if (this.props.type) {
-          triggerElement.setAttribute('type', type);
+        if (this.type) {
+          triggerElement.setAttribute('type', this.type);
         }
       }
 
@@ -98,35 +86,35 @@ class BoltTrigger extends BoltAction {
       // triggerElement.addEventListener('focus', this._handleFocus);
       // triggerElement.addEventListener('blur', this._handleBlur);
 
-      render(this.slot('default'), triggerElement);
+      render(this.slotify('default'), triggerElement);
     } else if (hasUrl) {
       triggerElement = html`
         <a
-          href="${ifDefined(url && !disabled ? url : undefined)}"
+          href="${ifDefined(this.url && !this.disabled ? this.url : undefined)}"
           class="${classes}"
-          target="${ifDefined(target ? target : undefined)}"
-          aria-disabled=${ifDefined(disabled ? 'true' : undefined)}
+          target="${ifDefined(this.target ? this.target : undefined)}"
+          aria-disabled=${ifDefined(this.disabled ? 'true' : undefined)}
           @focus="${e => this._handleFocus(e)}"
           @blur="${e => this._handleBlur(e)}"
-          >${this.slot('default')}</a
+          >${this.slotify('default')}</a
         >
       `;
     } else {
       triggerElement = html`
         <button
           class="${classes}"
-          type="${type}"
-          disabled=${ifDefined(disabled ? '' : undefined)}
+          type="${this.type}"
+          disabled=${ifDefined(this.disabled ? '' : undefined)}
           @focus="${e => this._handleFocus(e)}"
           @blur="${e => this._handleBlur(e)}"
         >
-          ${this.slot('default')}
+          ${this.slotify('default')}
         </button>
       `;
     }
 
     return html`
-      ${this.addStyles([styles])} ${triggerElement}
+      ${triggerElement}
     `;
   }
 }

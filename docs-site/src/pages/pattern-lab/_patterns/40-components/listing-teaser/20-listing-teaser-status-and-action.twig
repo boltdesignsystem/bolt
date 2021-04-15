@@ -1,0 +1,198 @@
+{% set description %}
+  A listing can have various statuses, use the proper prop to mark the relevant status. A popover action menu can be added by using the <bolt-code-snippet display="inline">action_menu</bolt-code-snippet> prop.
+{% endset %}
+
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>The solved status label can be customized.</bolt-li>
+    <bolt-li>The locked status label can be customized.</bolt-li>
+    <bolt-li>It is recommended to pass the Menu component in the <bolt-code-snippet display="inline">action_menu</bolt-code-snippet> prop. Additional use the Menu component&rsquo;s <bolt-code-snippet display="inline">title</bolt-code-snippet></bolt-li> prop to create a label for the action menu.
+  </bolt-ol>
+{% endset %}
+
+{% set demo %}
+  {% set icon_questions %}
+    {% include '@bolt-components-icon/icon.twig' with {
+      name: 'questions',
+      size: 'large',
+      color: 'teal',
+    } only %}
+  {% endset %}
+  {% set icon_reply %}
+    {% include '@bolt-components-icon/icon.twig' with {
+      name: 'reply',
+      size: 'small',
+    } only %}
+  {% endset %}
+  {% set icon_heart %}
+    {% include '@bolt-components-icon/icon.twig' with {
+      name: 'heart',
+      size: 'small',
+    } only %}
+  {% endset %}
+  {% set icon_eye %}
+    {% include '@bolt-components-icon/icon.twig' with {
+      name: 'eye',
+      size: 'small',
+    } only %}
+  {% endset %}
+  {% set action_menu %}
+    {% include '@bolt-components-menu/menu.twig' with {
+      title: 'More actions',
+      items: [
+        {
+          content: 'Reply',
+          icon_before: icon_reply,
+        },
+        {
+          content: 'Favorite',
+          icon_before: icon_heart,
+        },
+        {
+          content: 'Subscribe',
+          icon_before: icon_eye,
+        },
+      ]
+    } only %}
+  {% endset %}
+  {% set share_menu %}
+    {% include '@bolt-components-share/share.twig' with {
+      display: 'menu',
+      size: 'small',
+      text: 'Share this listing',
+      sources: [
+        {
+          name: 'facebook',
+          url: 'https://www.facebook.com/sharer/sharer.php?u=https://pega.com&amp;src=sdkpreparse'
+        },
+        {
+          name: 'twitter',
+          url: 'https://twitter.com/intent/tweet?url=https://pega.com&text=Sample%20Share%20Text&via=pega&hashtags=boltDesignSystemRocks!'
+        },
+        {
+          name: 'linkedin',
+          url: 'https://www.linkedin.com/shareArticle?url=https://pega.com'
+        },
+        {
+          name: 'email',
+          url: 'mailto:?&body=Sample%20Text%20--%20https%3A//boltdesignsystem.com'
+        }
+      ],
+      copy_to_clipboard: {
+        text_to_copy: 'https://pega.com'
+      },
+    } only %}
+  {% endset %}
+  {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
+    signifier: icon_questions,
+    headline: {
+      text: 'This listing has every status and menu possible',
+      tag: 'h3',
+      size: 'large',
+      link_attributes: {
+        href: 'https://pega.com'
+      },
+    },
+    meta_items: [
+      'Posted 8 hours 15 minutes ago',
+      'Last activity: 2 minutes ago',
+    ],
+    status: {
+      solved: true,
+      solved_label: 'Completed',
+      locked: true,
+      locked_label: 'Archived',
+      replies: '33',
+      views: '6k',
+    },
+    action_menu: action_menu,
+    share_menu: share_menu,
+  } only %}
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+// Set up action menu and share menu variables
+{% set demo_action_menu %}
+  {% include '@bolt-components-menu/menu.twig' with {
+    title: 'More actions',
+    items: [
+      {
+        content: 'Reply',
+        icon_before: icon_reply,
+      },
+      {
+        content: 'Favorite',
+        icon_before: icon_heart,
+      },
+      {
+        content: 'Subscribe',
+        icon_before: icon_eye,
+      },
+    ]
+  } only %}
+{% endset %}
+{% set demo_share_menu %}
+  {% include '@bolt-components-share/share.twig' with {
+    display: 'menu',
+    size: 'small',
+    text: 'Share this listing',
+    sources: [
+      {
+        name: 'facebook',
+        url: 'https://www.facebook.com/sharer/sharer.php?u=https://pega.com&amp;src=sdkpreparse'
+      },
+      {
+        name: 'twitter',
+        url: 'https://twitter.com/intent/tweet?url=https://pega.com&text=Sample%20Share%20Text&via=pega&hashtags=boltDesignSystemRocks!'
+      },
+      {
+        name: 'linkedin',
+        url: 'https://www.linkedin.com/shareArticle?url=https://pega.com'
+      },
+      {
+        name: 'email',
+        url: 'mailto:?&body=Sample%20Text%20--%20https%3A//boltdesignsystem.com'
+      }
+    ],
+    copy_to_clipboard: {
+      text_to_copy: 'https://pega.com'
+    },
+  } only %}
+{% endset %}
+
+// Use the variables in action_menu and share_menu props
+{% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
+  headline: {
+    text: 'This listing has every status and menu possible',
+    tag: 'h3',
+    size: 'large',
+    link_attributes: {
+      href: 'https://pega.com'
+    },
+  },
+  meta_items: [
+    'Posted 8 hours 15 minutes ago',
+    'Last activity: 2 minutes ago',
+  ],
+  status: {
+    solved: true,
+    solved_label: 'Completed',
+    locked: true,
+    locked_label: 'Archived',
+    replies: '33',
+    views: '6k',
+  },
+  action_menu: demo_action_menu,
+  share_menu: demo_share_menu,
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Listing Status, Action Menu, and Share Menu',
+  description: description,
+  demo: demo,
+  notes: notes,
+  twig_markup: twig_markup,
+} only %}

@@ -1,0 +1,116 @@
+{% set description %}
+  Page header is the global header that contains the global search, primary navigation, and secondary navigation.
+{% endset %}
+
+{% set notes %}
+  <bolt-text>
+    Additional CSS custom properties are available to further customize the page header per use case. <bolt-code-snippet display="inline">px</bolt-code-snippet>, <bolt-code-snippet display="inline">em</bolt-code-snippet>, and <bolt-code-snippet display="inline">rem</bolt-code-snippet> unit values are supported in addition to tokens.
+  </bolt-text>
+  <bolt-ol>
+    <bolt-li>
+      <strong>--c-bolt-page-header-logo-max-width</strong>: At any breakpoint, limit the logo to a specific max-width.
+    </bolt-li>
+    <bolt-li>
+      <strong>--c-bolt-page-header-desktop-spacing-y</strong>: Above large breakpoint, set the spacing-y (padding top/bottom) of the page header to a specific value. Spacing tokens are recommended.
+    </bolt-li>
+    <bolt-li>
+      <strong>--c-bolt-page-header-desktop-site-nav-link-spacing-x</strong>: Above large breakpoint, set the spacing-x (padding left/right) of any primary nav link (top level) to a specific value. Spacing tokens are recommended.
+    </bolt-li>
+    <bolt-li>
+      <strong>--c-bolt-page-header-desktop-primary-nav-link-font-size</strong>: Above large breakpoint, set the font-size of any primary nav link to a specific value. Font-size tokens are recommended.
+    </bolt-li>
+  </bolt-ol>
+{% endset %}
+
+{% set demo %}
+<bolt-table>
+  <table>
+    <tbody>
+      <tr>
+        <th>Pega.com</th>
+        <td><a href="{{ link['components-example-main-site-with-subnav'] }}" class="e-bolt-text-link">View</a></td>
+      </tr>
+      <tr>
+        <th>Academy</th>
+        <td><a href="{{ link['components-example-academy'] }}" class="e-bolt-text-link">View</a></td>
+      </tr>
+      <tr>
+        <th>Community</th>
+        <td><a href="{{ link['components-example-community'] }}" class="e-bolt-text-link">View</a></td>
+      </tr>
+      <tr>
+        <th>Collaboration Center</th>
+        <td><a href="{{ link['components-example-collaboration-center'] }}" class="e-bolt-text-link">View</a></td>
+      </tr>
+      <tr>
+        <th>SalesHub</th>
+        <td><a href="{{ link['components-example-saleshub'] }}" class="e-bolt-text-link">View</a></td>
+      </tr>
+    </tbody>
+  </table>
+</bolt-table>
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+// The main template
+{% include '@bolt-components-page-header/page-header.twig' with {
+  logo: {
+    image_src: '/images/logos/pega-logo.svg',
+    label: 'Pegasystems',
+    attributes: {
+      href: 'https://pega.com',
+    }
+  },
+  content: primary_nav_and_search_panel,
+  secondary_content: secondary_nav,
+  cta: cta_button,
+  static: true,
+  attributes: {
+    style: '--c-bolt-page-header-logo-max-width: 150px', // Only use the CSS vars on edge cases
+  },
+} only %}
+
+// Search panel template (pass to main template's content prop)
+{% include '@bolt-components-page-header/page-header-search-panel.twig' with {
+  content: content,
+} only %}
+
+// Primary nav template (pass to main template's content prop)
+{% include '@bolt-components-page-header/page-header-primary-nav.twig' with {
+  content: content,
+} only %}
+
+// Nav ul template (pass to primary nav template's content prop)
+{% include '@bolt-components-page-header/page-header-nav-ul.twig' with {
+  content: content,
+  category: category, // ['site', 'related-sites', 'user']
+  popover_position: popover_position, // ['edge-start', 'edge-end']
+  wrap_site_nav_items: false, // This allows top level desktop site nav items to wrap
+} only %}
+
+// Nav li template (pass to nav ul template's content prop)
+{% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+  link: {
+    content: 'Products',
+    attributes: {
+      href: 'https://pega.com/products',
+    },
+  },
+  children: children,
+  content: content, // This overrides link and children
+  full_width: false, // This is for "view all" links
+  popover: false, // This is for utility nav
+  selected: false, // This is for language select
+  current: true, // This is for marking a top level desktop site nav item as the current page
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Basic Page Header',
+  description: description,
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+} only %}

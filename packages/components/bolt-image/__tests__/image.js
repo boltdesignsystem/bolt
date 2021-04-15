@@ -1,11 +1,5 @@
-import {
-  isConnected,
-  render,
-  renderString,
-  stopServer,
-  html,
-} from '../../../testing/testing-helpers';
-import schema from '../image.schema';
+import { render, stopServer } from '../../../testing/testing-helpers';
+
 describe('<bolt-image> Component', () => {
   afterAll(async () => {
     await stopServer();
@@ -61,5 +55,19 @@ describe('<bolt-image> Component', () => {
     });
     expect(results.ok).toBe(true);
     expect(results.html).toMatchSnapshot();
+  });
+  test('<bolt-image> should always render alt attribute on <img> tags', async () => {
+    const result1 = await render('@bolt-components-image/image.twig', {
+      src: '/fixtures/1200x660.jpg',
+      alt: '',
+    });
+    expect(result1.ok).toBe(true);
+    expect(result1.html).toMatchSnapshot();
+
+    const result2 = await render('@bolt-components-image/image.twig', {
+      src: '/fixtures/1200x660.jpg',
+    });
+    expect(result2.ok).toBe(true);
+    expect(result2.html).toMatchSnapshot();
   });
 });

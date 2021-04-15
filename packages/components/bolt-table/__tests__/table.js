@@ -7,7 +7,7 @@ import {
 } from '@bolt/twig-renderer';
 import { html } from '../../../testing/testing-helpers';
 import schema from '../table.schema';
-const { format, borderless, first_col_fixed_width } = schema.properties;
+const { format } = schema.properties;
 
 async function renderTwig(template, data) {
   return await render(template, data, true);
@@ -18,15 +18,6 @@ async function renderTwigString(template, data) {
 }
 
 const timeout = 120000;
-
-const vrtDefaultConfig = {
-  failureThreshold: '0.02',
-  failureThresholdType: 'percent',
-  customDiffConfig: {
-    threshold: '0.1',
-    includeAA: false,
-  },
-};
 
 describe('<bolt-table> Component', () => {
   let page;
@@ -87,9 +78,6 @@ describe('<bolt-table> Component', () => {
         .querySelector('.c-bolt-table')
         .classList.contains('c-bolt-table--first-col-fixed-width'),
     ).toBe(true);
-
-    const image = await page.screenshot();
-    expect(image).toMatchImageSnapshot(vrtDefaultConfig);
   });
 
   test('Web Component-rendered Table with HTML comments', async () => {
@@ -172,9 +160,6 @@ describe('<bolt-table> Component', () => {
         .querySelector('.c-bolt-table')
         .classList.contains('c-bolt-table--first-col-fixed-width'),
     ).toBe(true);
-
-    const image = await page.screenshot();
-    expect(image).toMatchImageSnapshot(vrtDefaultConfig);
   });
 
   test('table with rows only', async () => {
@@ -347,7 +332,7 @@ describe('<bolt-table> Component', () => {
     });
   });
 
-  borderless.enum.forEach(async option => {
+  [true, false].forEach(async option => {
     test(`borderless table: ${option}`, async () => {
       const results = await renderTwig('@bolt-components-table/table.twig', {
         borderless: option,
@@ -381,7 +366,7 @@ describe('<bolt-table> Component', () => {
     });
   });
 
-  first_col_fixed_width.enum.forEach(async option => {
+  [true, false].forEach(async option => {
     test(`first column fixed width table: ${option}`, async () => {
       const results = await renderTwig('@bolt-components-table/table.twig', {
         first_col_fixed_width: option,

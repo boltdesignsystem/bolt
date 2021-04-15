@@ -3,6 +3,36 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.3.1](https://github.com/bolt-design-system/bolt/tree/master/packages/configs/browserslist-config/compare/v3.3.0...v3.3.1) (2021-03-22)
+
+**Note:** Version bump only for package @bolt/browserslist-config
+
+
+
+
+
+# [3.1.0](https://github.com/bolt-design-system/bolt/tree/master/packages/configs/browserslist-config/compare/v2.31.2...v3.1.0) (2021-02-08)
+
+
+### Features
+
+* drop ie11 from browserslist, export single config from babel-preset ([a0dc9b6](https://github.com/bolt-design-system/bolt/tree/master/packages/configs/browserslist-config/commit/a0dc9b64c899285300a592014cb9fdb7e2408a62))
+
+
+
+
+
+# [3.0.0](https://github.com/bolt-design-system/bolt/tree/master/packages/configs/browserslist-config/compare/v2.29.3...v3.0.0) (2021-01-08)
+
+
+### Features
+
+* drop ie11 from browserslist, export single config from babel-preset ([a0dc9b6](https://github.com/bolt-design-system/bolt/tree/master/packages/configs/browserslist-config/commit/a0dc9b64c899285300a592014cb9fdb7e2408a62))
+
+
+
+
+
 # [2.19.0](https://github.com/bolt-design-system/bolt/tree/master/packages/configs/browserslist-config/compare/v2.18.1...v2.19.0) (2020-03-04)
 
 **Note:** Version bump only for package @bolt/browserslist-config

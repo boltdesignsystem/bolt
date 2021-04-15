@@ -7,13 +7,11 @@
 $bolt-clear-button-size: 1.7rem;
 $bolt-clear-button-size-at-med: 1.4rem;
 $bolt-typeahead-button-width: calc(var(--bolt-spacing-x-medium) + 0.75rem);
-
 $bolt-typeahead-border-width: $bolt-border-width;
 $bolt-typeahead-border-style: $bolt-border-style;
 $bolt-typeahead-border-radius: 6px;
-$bolt-typeahead-placeholder-color: bolt-theme(text-on-secondary, 0.4);
-
-$bolt-typeahead-result-highlight-color: #f5f5fa;
+$bolt-typeahead-placeholder-color: var(--bolt-color-gray);
+$bolt-typeahead-result-highlight-color: var(--bolt-color-gray-xlight);
 
 /**
  * 1. relative z-index so doesn't need to use bolt z-index mixin
@@ -39,10 +37,7 @@ bolt-autosuggest {
   flex-direction: column;
   position: relative;
   width: 100%;
-  color: bolt-theme(text);
   border-radius: $bolt-typeahead-border-radius;
-  background-color: inherit;
-  --bolt-theme-background: 255, 255, 255;
 }
 
 .c-bolt-typeahead__label {
@@ -56,12 +51,12 @@ bolt-autosuggest {
   max-width: 100%;
   padding: calc(var(--bolt-spacing-y-medium) / 2) $bolt-typeahead-button-width;
   font-size: 16px; // prevent zooming in on mobile
-  color: bolt-theme(text-on-secondary);
+  color: var(--bolt-color-black);
   border-radius: $bolt-typeahead-border-radius;
   border-width: $bolt-typeahead-border-width;
   border-style: $bolt-typeahead-border-style;
-  border-color: bolt-theme(link, 0.5);
-  background-color: bolt-theme(secondary, 1);
+  border-color: var(--bolt-color-navy-xlight);
+  background-color: var(--bolt-color-white);
   transition: all 0.1s ease;
   text-overflow: ellipsis;
   outline-offset: -3px;
@@ -76,16 +71,21 @@ bolt-autosuggest {
   }
 
   &:focus {
-    border-color: rgba(84, 93, 166, 0.8);
-    border-color: bolt-theme(link, 0.8);
-    box-shadow: 0 0 0 2px rgba(var(--bolt-theme-link), 0.5),
-      inset 0 0 0 1px rgba(var(--bolt-theme-link), 1);
+    border-color: var(--bolt-color-navy-light);
+    box-shadow: 0 0 0 2px var(--bolt-color-navy-xlight),
+      inset 0 0 0 1px var(--bolt-color-navy-light);
     outline: 0;
   }
 
   &--open {
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
+  }
+
+  &:disabled {
+    color: var(--bolt-color-gray);
+    cursor: not-allowed;
+    background-color: var(--bolt-color-gray-light);
   }
 
   // Remove the native <input> clear button in IE 11 in lieu of JS-controlled clear button
@@ -130,24 +130,12 @@ bolt-autosuggest {
   min-width: 100%;
   max-height: 0;
   overflow: hidden;
-  color: bolt-theme(text-on-secondary);
+  color: var(--bolt-color-black);
   text-transform: capitalize;
   border-bottom-right-radius: $bolt-typeahead-border-radius;
   border-bottom-left-radius: $bolt-typeahead-border-radius;
-  box-shadow: rgba(bolt-color(gray, dark), 0.3) 0px 15px 46px -10px;
-
-  background-color: bolt-theme(
-    (
-      xdark: brand-darken-5,
-      dark: brand-lighten-20,
-      light: secondary,
-      xlight: secondary,
-    )
-  );
-  background-color: var(
-    --bolt-typeahead-menu-background,
-    rgba(var(--bolt-theme-secondary), 1)
-  );
+  box-shadow: var(--bolt-color-gray-light) 0px 15px 46px -10px;
+  background-color: var(--bolt-color-white);
   transition: max-height 0.3s cubic-bezier(0.645, 0.045, 0.355, 1),
     opacity 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
 
@@ -184,7 +172,7 @@ bolt-autosuggest {
 
   &:active,
   &:focus {
-    background-color: rgba(bolt-color(navy, xlight), 0.5);
+    background-color: var(--bolt-color-navy-xlight);
   }
 }
 
@@ -235,9 +223,8 @@ bolt-autosuggest {
 
 .c-bolt-typeahead__icon {
   font-size: 1.5rem;
-  color: bolt-color(navy, light);
+  color: var(--bolt-color-navy-light);
   line-height: 1;
-  --bolt-theme-background: 255, 255, 255; // workaround so dark themes don't wipe the inner icon color. @todo: remove once full theming support added
 }
 
 .c-bolt-typeahead__icon--clear {
