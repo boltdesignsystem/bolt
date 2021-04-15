@@ -40,7 +40,8 @@
 {% endset %}
 {% set inline_items = inline_items|merge([inline_label]) %}
 
-{% set menu_items = [] %}
+{% set menu_items %}
+{% endset %}
 
 {% for source in sources %}
   {% set source_name = source.name %}
@@ -93,7 +94,10 @@
         }
       } only %}
     {% endset %}
-    {% set menu_items = menu_items|merge([source_menu_items]) %}
+    {% set menu_items %}
+      {{ menu_items }}
+      {{ source_menu_items }}
+    {% endset %}
   {% endif %}
 {% endfor %}
 
@@ -195,7 +199,10 @@
       }
     } only %}
   {% endset %}
-  {% set menu_items = menu_items|merge([menu_copy_to_clipboard_include]) %}
+  {% set menu_items %}
+    {{ menu_items }}
+    {{ menu_copy_to_clipboard_include }}
+  {% endset %}
 {% endif %}
 
 {# Share component's custom element wrapper. #}
@@ -223,7 +230,7 @@
     {% elseif display == 'menu' %}
       {% include '@bolt-components-menu/menu.twig' with {
         title: text,
-        content: menu_items|join,
+        content: menu_items,
         spacing: size,
       } only %}
     {% endif %}
