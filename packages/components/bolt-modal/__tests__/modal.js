@@ -4,18 +4,9 @@ import {
   stopServer,
   renderWC,
   html,
-  vrtDefaultConfig as vrtConfig,
 } from '../../../testing/testing-helpers';
 import schema from '../modal.schema';
 const { width, spacing, theme, scroll } = schema.properties;
-
-const vrtDefaultConfig = Object.assign(vrtConfig, {
-  failureThreshold: '0.02',
-  customDiffConfig: {
-    includeAA: true,
-  },
-  allowSizeMismatch: true,
-});
 
 const timeout = 120000;
 
@@ -132,12 +123,8 @@ describe('<bolt-modal> Component', () => {
 
       await renderWC('bolt-modal', html, page);
 
-      const screenshots = [];
-
       for (const item of viewportSizes) {
         const { height, width, size } = item;
-
-        screenshots[size] = [];
 
         await page.setViewport({ height, width });
         await page.evaluate(async () => {
@@ -156,12 +143,6 @@ describe('<bolt-modal> Component', () => {
           });
         });
         await page.waitFor(500);
-
-        // @TODO Re-enable VRT test and troubleshoot failures on Travis
-        // screenshots[size].modalOpened = await page.screenshot();
-        // expect(screenshots[size].modalOpened).toMatchImageSnapshot(
-        //   vrtDefaultConfig,
-        // );
 
         await page.evaluate(() => {
           document.querySelector('bolt-modal').hide();
@@ -186,10 +167,8 @@ describe('<bolt-modal> Component', () => {
         page,
       );
 
-      const screenshots = [];
       for (const item of viewportSizes) {
         const { height, width, size } = item;
-        screenshots[size] = [];
 
         await page.setViewport({ height, width });
 
@@ -198,11 +177,6 @@ describe('<bolt-modal> Component', () => {
         });
         await page.waitFor(500);
 
-        // @TODO Re-enable VRT test and troubleshoot failures on Travis
-        // screenshots[size].modalOpened = await page.screenshot();
-        // expect(screenshots[size].modalOpened).toMatchImageSnapshot(
-        //   vrtDefaultConfig,
-        // );
         await page.evaluate(() => {
           document.querySelector('bolt-modal').hide();
         });
@@ -229,24 +203,14 @@ describe('<bolt-modal> Component', () => {
         page,
       );
 
-      const screenshots = [];
-
       for (const item of viewportSizes) {
         const { height, width, size } = item;
-
-        screenshots[size] = [];
 
         await page.setViewport({ height, width });
         await page.evaluate(() => {
           document.querySelector('bolt-modal').show();
         });
         await page.waitFor(500);
-
-        // @TODO Re-enable VRT test and troubleshoot failures on Travis
-        // screenshots[size].modalOpened = await page.screenshot();
-        // expect(screenshots[size].modalOpened).toMatchImageSnapshot(
-        //   vrtDefaultConfig,
-        // );
 
         await page.evaluate(() => {
           document.querySelector('bolt-modal').hide();
@@ -274,24 +238,14 @@ describe('<bolt-modal> Component', () => {
 
         await renderWC('bolt-modal', html, page);
 
-        const screenshots = [];
-
         for (const item of viewportSizes) {
           const { height, width, size } = item;
-
-          screenshots[size] = [];
 
           await page.setViewport({ height, width });
           await page.evaluate(() => {
             document.querySelector('bolt-modal').show();
           });
           await page.waitFor(500);
-
-          // @TODO Re-enable VRT test and troubleshoot failures on Travis
-          // screenshots[size].modalOpened = await page.screenshot();
-          // expect(screenshots[size].modalOpened).toMatchImageSnapshot(
-          //   vrtDefaultConfig,
-          // );
 
           await page.evaluate(() => {
             document.querySelector('bolt-modal').hide();
@@ -324,23 +278,14 @@ describe('<bolt-modal> Component', () => {
 
         await renderWC('bolt-modal', html, page);
 
-        const screenshots = [];
-
         for (const item of viewportSizes) {
           const { height, width, size } = item;
-          screenshots[size] = [];
 
           await page.setViewport({ height, width });
           await page.evaluate(() => {
             document.querySelector('bolt-modal').show();
           });
           await page.waitFor(500);
-
-          // @TODO Re-enable VRT test and troubleshoot failures on Travis
-          // screenshots[size].modalOpened = await page.screenshot();
-          // expect(screenshots[size].modalOpened).toMatchImageSnapshot(
-          //   vrtDefaultConfig,
-          // );
 
           await page.evaluate(() => {
             document.querySelector('bolt-modal').hide();

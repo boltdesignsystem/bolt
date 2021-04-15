@@ -1,13 +1,4 @@
-import {
-  render,
-  renderString,
-  stop as stopTwigRenderer,
-} from '@bolt/twig-renderer';
-import { fixture as html } from '@open-wc/testing-helpers';
-import schema from '../typeahead.schema';
-async function renderTwig(template, data) {
-  return await render(template, data, true);
-}
+import { renderString, stop as stopTwigRenderer } from '@bolt/twig-renderer';
 
 async function renderTwigString(template, data) {
   return await renderString(template, data, true);

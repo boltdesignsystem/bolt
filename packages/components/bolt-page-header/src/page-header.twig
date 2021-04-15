@@ -23,7 +23,7 @@
 <header {{ attributes.addClass(classes)|without('data-bolt-page-header-desktop-bp') }} data-bolt-page-header-desktop-bp="{{ breakpoint }}">
   <div class="c-bolt-page-header__primary">
     {% if logo %}
-      <{{ logo_tag }} {{ logo_attributes.addClass('c-bolt-page-header__logo')|without('aria-label') }} aria-label="{{ logo.label|t }}">
+      <{{ logo_tag }} {{ logo_attributes.addClass('c-bolt-page-header__logo')|without('aria-label') }} aria-label="{{ logo.label }}">
         <span class="c-bolt-page-header__logo__img" aria-hidden="true">
           <img src="{{ logo.image_src }}" alt="">
         </span>

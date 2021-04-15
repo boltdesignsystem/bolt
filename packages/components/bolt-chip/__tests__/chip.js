@@ -1,6 +1,6 @@
 import { render } from '@bolt/twig-renderer';
 import schema from '../chip.schema';
-const { url, target, icon, size } = schema.properties;
+const { size } = schema.properties;
 
 describe('chip', () => {
   test('basic usage', async () => {
