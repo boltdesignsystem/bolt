@@ -40,8 +40,8 @@
 {% endset %}
 {% set inline_items = inline_items|merge([inline_label]) %}
 
-{% set menu_items %}
-{% endset %}
+{# After initial set, you must use {% set/endset %} to modify menu_items. Otherwise, Drupal may render content as raw HTML. @see https://www.drupal.org/project/drupal/issues/2994673 #}
+{% set menu_items = '' %}
 
 {% for source in sources %}
   {% set source_name = source.name %}
