@@ -9,7 +9,7 @@
 {% set attributes = create_attribute(attributes|default({})) %}
 
 {# Template #}
-<div {{ attributes.addClass('c-bolt-side-nav') }}>
+<div {{ attributes.addClass('c-bolt-side-nav') }} data-bolt-side-nav>
   <button type="button" aria-expanded="true" class="c-bolt-side-nav__trigger" data-bolt-side-nav-toggle-trigger>
     <span class="c-bolt-side-nav__trigger__text">{{ 'Toggle side navigation'|t }}</span>
     {% include '@bolt-components-icon/icon.twig' with {
