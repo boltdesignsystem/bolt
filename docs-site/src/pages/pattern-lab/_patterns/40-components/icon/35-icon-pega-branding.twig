@@ -4,6 +4,16 @@
   A set of icons designed and created by Pega branding.
 {% endset %}
 
+{% set notes %}
+  <bolt-ul>
+    <bolt-li>Auto/undefined: 1em (same size as inline text)</bolt-li>
+    <bolt-li>Small: 16px</bolt-li>
+    <bolt-li>Medium: 24px</bolt-li>
+    <bolt-li>Large: 32px</bolt-li>
+    <bolt-li>Xlarge: 38px</bolt-li>
+  </bolt-ul>
+{% endset %}
+
 {% set demo %}
   <bolt-accordion spacing="small" icon-valign="top" single>
     {% for name in schema.properties.name.anyOf[0].enum %}
@@ -63,6 +73,7 @@
 {% include '@utils/pattern-doc-page.twig' with {
   title: 'Pega Brand Icons',
   description: description,
+  notes: notes,
   demo: demo,
   twig_markup: twig_markup,
   html_markup: html_markup,
