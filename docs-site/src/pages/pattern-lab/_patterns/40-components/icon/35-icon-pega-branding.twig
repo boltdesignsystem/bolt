@@ -15,45 +15,47 @@
 {% endset %}
 
 {% set demo %}
-  <bolt-accordion spacing="small" icon-valign="top" single>
-    {% for name in schema.properties.name.anyOf[0].enum %}
-      {% if 'pega-' in name %}
-        <bolt-accordion-item>
-          <div slot="trigger">
-            {% include '@bolt-components-headline/text.twig' with {
-              text: name,
-              icon: {
-                name: name,
-                position: 'before'
-              }
-            } only %}
-          </div>
-          <div>
-            <bolt-grid gutter="small" row-gutter="small">
-              <bolt-grid-item column-start="1" column-span="12 6@small">
-                {% for size in schema.properties.size.enum %}
-                  {% include '@bolt-components-icon/icon.twig' with {
-                    name: name,
-                    size: size,
-                  } only %}
-                {% endfor %}
-              </bolt-grid-item>
-              <bolt-grid-item column-start="1 7@small" column-span="12 6@small">
-                {% for size in schema.properties.size.enum %}
-                  {% include '@bolt-components-icon/icon.twig' with {
-                    name: name,
-                    size: size,
-                    color: 'navy',
-                    background: 'circle',
-                  } only %}
-                {% endfor %}
-              </bolt-grid-item>
-            </bolt-grid>
-          </div>
-        </bolt-accordion-item>
-      {% endif %}
-    {% endfor %}
-  </bolt-accordion>
+  <div class="u-bolt-overflow-auto" style="max-height: 25rem; -webkit-overflow-scrolling: touch;">
+    <bolt-accordion spacing="small" icon-valign="top" single>
+      {% for name in schema.properties.name.anyOf[0].enum %}
+        {% if 'pega-' in name %}
+          <bolt-accordion-item>
+            <div slot="trigger">
+              {% include '@bolt-components-headline/text.twig' with {
+                text: name,
+                icon: {
+                  name: name,
+                  position: 'before'
+                }
+              } only %}
+            </div>
+            <div>
+              <bolt-grid gutter="small" row-gutter="small">
+                <bolt-grid-item column-start="1" column-span="12 6@small">
+                  {% for size in schema.properties.size.enum %}
+                    {% include '@bolt-components-icon/icon.twig' with {
+                      name: name,
+                      size: size,
+                    } only %}
+                  {% endfor %}
+                </bolt-grid-item>
+                <bolt-grid-item column-start="1 7@small" column-span="12 6@small">
+                  {% for size in schema.properties.size.enum %}
+                    {% include '@bolt-components-icon/icon.twig' with {
+                      name: name,
+                      size: size,
+                      color: 'navy',
+                      background: 'circle',
+                    } only %}
+                  {% endfor %}
+                </bolt-grid-item>
+              </bolt-grid>
+            </div>
+          </bolt-accordion-item>
+        {% endif %}
+      {% endfor %}
+    </bolt-accordion>
+  </div>
 {% endset %}
 
 {% set twig_markup %}
