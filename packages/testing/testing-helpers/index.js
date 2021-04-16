@@ -73,32 +73,3 @@ export async function renderWC(componentTag, html, page) {
     uuid,
   );
 }
-
-export async function basicTest(html) {
-  expect(html.ok).toBe(true);
-  expect(html.html).toMatchSnapshot();
-}
-
-export function basicPropTest(innerHTML, selector, prop, option) {
-  // const htmlOutput = page.evaluate(
-  //   async (option, innerHTML) => {
-  console.log('inside htmlOutput');
-  // console.log(selector);
-  const wrapper = document.createElement('div');
-  wrapper.innerHTML = innerHTML;
-  document.body.appendChild(wrapper);
-  customElements.whenDefined('ssr-keep');
-  customElements.whenDefined(selector);
-  const wc = document.querySelector(selector);
-  wc.setAttribute(prop, option);
-  // // @TODO This should work, but throws mysterious error: `TypeError: Cannot read property 'forEach' of undefined`
-  // // await tabs.updateComplete;
-  return wc.outerHTML;
-  //   },
-  //   option,
-  //   innerHTML,
-  // );
-  // return
-  // const renderedHTML = html(htmlOutput);
-  // expect(renderedHTML).toMatchSnapshot();
-}

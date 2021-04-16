@@ -1,7 +1,7 @@
 import { render, renderString } from '@bolt/twig-renderer';
-import { basicTest } from '../../../testing/testing-helpers';
+// import { basicTest } from '../../../testing/testing-helpers';
 
-describe('<bolt-breadcrumb> Component', () => {
+describe('Bolt Breadcrumb', () => {
   let linkOne, linkTwo;
 
   beforeAll(async () => {
@@ -26,9 +26,8 @@ describe('<bolt-breadcrumb> Component', () => {
         },
       },
     );
-    if (await results) {
-      basicTest(results);
-    }
+    await expect(results.ok).toBe(true);
+    await expect(results.html).toMatchSnapshot();
   });
 
   test('basic usage with contentItems including rendered components and strings', async () => {
@@ -51,9 +50,8 @@ describe('<bolt-breadcrumb> Component', () => {
         ]
       } only %}
     `);
-    if (await results) {
-      basicTest(results);
-    }
+    await expect(results.ok).toBe(true);
+    await expect(results.html).toMatchSnapshot();
   });
 
   test('current page aria variation', async () => {
@@ -82,8 +80,7 @@ describe('<bolt-breadcrumb> Component', () => {
         ]
       } only %}
     `);
-    if (await results) {
-      basicTest(results);
-    }
+    await expect(results.ok).toBe(true);
+    await expect(results.html).toMatchSnapshot();
   });
 });
