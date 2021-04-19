@@ -6,6 +6,10 @@
 @import '_page-header-settings-and-tools.scss';
 
 @include bolt-mq($until: large) {
+  .c-bolt-page-header {
+    pointer-events: all;
+  }
+
   // Primary section container
   .c-bolt-page-header__primary {
     padding-top: $bolt-page-header-mobile-spacing-y;

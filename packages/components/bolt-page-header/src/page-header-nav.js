@@ -333,7 +333,10 @@ export class BoltPageHeaderActionNav extends BoltPageHeaderNav {
   showMenu(el) {
     super.showMenu(el);
 
-    document.body.classList.add('u-bolt-overflow-hidden');
+    document.body.classList.add(
+      'u-bolt-overflow-hidden',
+      'u-bolt-pointer-events-none',
+    );
 
     const searchInput = this.state.activeMenu.menu.querySelector(
       '.js-c-typeahead__input',
@@ -349,7 +352,10 @@ export class BoltPageHeaderActionNav extends BoltPageHeaderNav {
   hideMenu(el) {
     super.hideMenu(el);
 
-    document.body.classList.remove('u-bolt-overflow-hidden');
+    document.body.classList.remove(
+      'u-bolt-overflow-hidden',
+      'u-bolt-pointer-events-none',
+    );
   }
 
   canHideSearch() {
