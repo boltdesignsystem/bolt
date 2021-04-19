@@ -34,10 +34,7 @@ module.exports = {
   ],
   globalSetup: './packages/testing/testing-jest/jest-global-setup.js',
   globalTeardown: './packages/testing/testing-jest/jest-global-teardown.js',
-  setupFilesAfterEnv: [
-    './packages/testing/testing-jest/jest-setup-files-after-env.js',
-    'jest-expect-message',
-  ],
+  setupFilesAfterEnv: ['jest-dom/extend-expect', 'jest-expect-message'],
   snapshotSerializers: ['jest-serializer-html'],
   reporters: [
     'default',

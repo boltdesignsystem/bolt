@@ -1,10 +1,4 @@
-import {
-  isConnected,
-  render,
-  renderString,
-  stopServer,
-  html,
-} from '../../../testing/testing-helpers';
+import { render, stopServer, html } from '../../../testing/testing-helpers';
 
 const timeout = 60000;
 
@@ -66,13 +60,6 @@ describe('<bolt-icon> Component', () => {
     const renderedShadowDomHTML = await html(defaultIconShadowRoot);
     const renderedHTML = await html(defaultIconOuter);
 
-    const image = await page.screenshot();
-
-    expect(image).toMatchImageSnapshot({
-      failureThreshold: '0.01',
-      failureThresholdType: 'percent',
-    });
-
     expect(renderedShadowDomHTML).toMatchSnapshot();
     expect(renderedHTML).toMatchSnapshot();
   });
@@ -101,13 +88,6 @@ describe('<bolt-icon> Component', () => {
 
     const renderedShadowDomHTML = await html(defaultIconShadowRoot);
     const renderedHTML = await html(defaultIconOuter);
-
-    const image = await page.screenshot();
-
-    expect(image).toMatchImageSnapshot({
-      failureThreshold: '0.01',
-      failureThresholdType: 'percent',
-    });
 
     expect(renderedShadowDomHTML).toMatchSnapshot();
     expect(renderedHTML).toMatchSnapshot();
