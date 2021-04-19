@@ -1,13 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<bolt-image> Component <bolt-image> should always render alt attribute on <img> tags 1`] = `
-<bolt-image src="/fixtures/1200x660.jpg"
-            srcset="/fixtures/1200x660-50.jpg 50w, /fixtures/1200x660-100.jpg 100w, /fixtures/1200x660-200.jpg 200w, /fixtures/1200x660-320.jpg 320w, /fixtures/1200x660-480.jpg 480w, /fixtures/1200x660-640.jpg 640w, /fixtures/1200x660-800.jpg 800w, /fixtures/1200x660-1024.jpg 1024w, /fixtures/1200x660.jpg 1200w"
-            sizes="auto"
-            ratio="1200/660"
+<bolt-image ratio="1200/660"
             placeholder-color="hsl(233, 33%, 97%)"
             placeholder-image="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
             style="background-color: hsl(233, 33%, 97%);"
+            src="/fixtures/1200x660.jpg"
+            alt
+            lazyload
+            srcset="/fixtures/1200x660-50.jpg 50w, /fixtures/1200x660-100.jpg 100w, /fixtures/1200x660-200.jpg 200w, /fixtures/1200x660-320.jpg 320w, /fixtures/1200x660-480.jpg 480w, /fixtures/1200x660-640.jpg 640w, /fixtures/1200x660-800.jpg 800w, /fixtures/1200x660-1024.jpg 1024w, /fixtures/1200x660.jpg 1200w"
 >
   <bolt-ratio ratio="20/11">
     <ssr-keep for="bolt-ratio"
@@ -38,13 +39,13 @@ exports[`<bolt-image> Component <bolt-image> should always render alt attribute 
 `;
 
 exports[`<bolt-image> Component <bolt-image> should always render alt attribute on <img> tags 2`] = `
-<bolt-image src="/fixtures/1200x660.jpg"
-            srcset="/fixtures/1200x660-50.jpg 50w, /fixtures/1200x660-100.jpg 100w, /fixtures/1200x660-200.jpg 200w, /fixtures/1200x660-320.jpg 320w, /fixtures/1200x660-480.jpg 480w, /fixtures/1200x660-640.jpg 640w, /fixtures/1200x660-800.jpg 800w, /fixtures/1200x660-1024.jpg 1024w, /fixtures/1200x660.jpg 1200w"
-            sizes="auto"
-            ratio="1200/660"
+<bolt-image ratio="1200/660"
             placeholder-color="hsl(233, 33%, 97%)"
             placeholder-image="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
             style="background-color: hsl(233, 33%, 97%);"
+            src="/fixtures/1200x660.jpg"
+            lazyload
+            srcset="/fixtures/1200x660-50.jpg 50w, /fixtures/1200x660-100.jpg 100w, /fixtures/1200x660-200.jpg 200w, /fixtures/1200x660-320.jpg 320w, /fixtures/1200x660-480.jpg 480w, /fixtures/1200x660-640.jpg 640w, /fixtures/1200x660-800.jpg 800w, /fixtures/1200x660-1024.jpg 1024w, /fixtures/1200x660.jpg 1200w"
 >
   <bolt-ratio ratio="20/11">
     <ssr-keep for="bolt-ratio"
@@ -75,15 +76,15 @@ exports[`<bolt-image> Component <bolt-image> should always render alt attribute 
 `;
 
 exports[`<bolt-image> Component <bolt-image> with max-width and additional style attribute renders as expected 1`] = `
-<bolt-image src="/fixtures/1200x660.jpg"
-            srcset="/fixtures/1200x660-50.jpg 50w, /fixtures/1200x660-100.jpg 100w, /fixtures/1200x660-200.jpg 200w, /fixtures/1200x660-320.jpg 320w, /fixtures/1200x660-480.jpg 480w, /fixtures/1200x660-640.jpg 640w, /fixtures/1200x660-800.jpg 800w, /fixtures/1200x660-1024.jpg 1024w, /fixtures/1200x660.jpg 1200w"
-            alt="A Rock Climber"
-            max-width="200px"
-            sizes="auto"
-            ratio="1200/660"
+<bolt-image ratio="1200/660"
             placeholder-color="hsl(233, 33%, 97%)"
             placeholder-image="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
             style="display: block;background-color: hsl(233, 33%, 97%); width: 200px; max-width: 100%;"
+            src="/fixtures/1200x660.jpg"
+            alt="A Rock Climber"
+            lazyload
+            srcset="/fixtures/1200x660-50.jpg 50w, /fixtures/1200x660-100.jpg 100w, /fixtures/1200x660-200.jpg 200w, /fixtures/1200x660-320.jpg 320w, /fixtures/1200x660-480.jpg 480w, /fixtures/1200x660-640.jpg 640w, /fixtures/1200x660-800.jpg 800w, /fixtures/1200x660-1024.jpg 1024w, /fixtures/1200x660.jpg 1200w"
+            max-width="200px"
 >
   <bolt-ratio ratio="20/11">
     <ssr-keep for="bolt-ratio"
@@ -114,15 +115,15 @@ exports[`<bolt-image> Component <bolt-image> with max-width and additional style
 `;
 
 exports[`<bolt-image> Component <bolt-image> with max-width of 50% renders as expected 1`] = `
-<bolt-image src="/fixtures/1200x660.jpg"
-            srcset="/fixtures/1200x660-50.jpg 50w, /fixtures/1200x660-100.jpg 100w, /fixtures/1200x660-200.jpg 200w, /fixtures/1200x660-320.jpg 320w, /fixtures/1200x660-480.jpg 480w, /fixtures/1200x660-640.jpg 640w, /fixtures/1200x660-800.jpg 800w, /fixtures/1200x660-1024.jpg 1024w, /fixtures/1200x660.jpg 1200w"
-            alt="A Rock Climber"
-            max-width="50%"
-            sizes="auto"
-            ratio="1200/660"
+<bolt-image ratio="1200/660"
             placeholder-color="hsl(233, 33%, 97%)"
             placeholder-image="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
             style="background-color: hsl(233, 33%, 97%); width: 50%;"
+            src="/fixtures/1200x660.jpg"
+            alt="A Rock Climber"
+            lazyload
+            srcset="/fixtures/1200x660-50.jpg 50w, /fixtures/1200x660-100.jpg 100w, /fixtures/1200x660-200.jpg 200w, /fixtures/1200x660-320.jpg 320w, /fixtures/1200x660-480.jpg 480w, /fixtures/1200x660-640.jpg 640w, /fixtures/1200x660-800.jpg 800w, /fixtures/1200x660-1024.jpg 1024w, /fixtures/1200x660.jpg 1200w"
+            max-width="50%"
 >
   <bolt-ratio ratio="20/11">
     <ssr-keep for="bolt-ratio"
@@ -153,15 +154,15 @@ exports[`<bolt-image> Component <bolt-image> with max-width of 50% renders as ex
 `;
 
 exports[`<bolt-image> Component <bolt-image> with max-width of 200px renders as expected 1`] = `
-<bolt-image src="/fixtures/1200x660.jpg"
-            srcset="/fixtures/1200x660-50.jpg 50w, /fixtures/1200x660-100.jpg 100w, /fixtures/1200x660-200.jpg 200w, /fixtures/1200x660-320.jpg 320w, /fixtures/1200x660-480.jpg 480w, /fixtures/1200x660-640.jpg 640w, /fixtures/1200x660-800.jpg 800w, /fixtures/1200x660-1024.jpg 1024w, /fixtures/1200x660.jpg 1200w"
-            alt="A Rock Climber"
-            max-width="200px"
-            sizes="auto"
-            ratio="1200/660"
+<bolt-image ratio="1200/660"
             placeholder-color="hsl(233, 33%, 97%)"
             placeholder-image="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
             style="background-color: hsl(233, 33%, 97%); width: 200px; max-width: 100%;"
+            src="/fixtures/1200x660.jpg"
+            alt="A Rock Climber"
+            lazyload
+            srcset="/fixtures/1200x660-50.jpg 50w, /fixtures/1200x660-100.jpg 100w, /fixtures/1200x660-200.jpg 200w, /fixtures/1200x660-320.jpg 320w, /fixtures/1200x660-480.jpg 480w, /fixtures/1200x660-640.jpg 640w, /fixtures/1200x660-800.jpg 800w, /fixtures/1200x660-1024.jpg 1024w, /fixtures/1200x660.jpg 1200w"
+            max-width="200px"
 >
   <bolt-ratio ratio="20/11">
     <ssr-keep for="bolt-ratio"
@@ -192,15 +193,13 @@ exports[`<bolt-image> Component <bolt-image> with max-width of 200px renders as 
 `;
 
 exports[`<bolt-image> Component <bolt-image> with ratio object and lazyloading disabled compiles 1`] = `
-<bolt-image src="/fixtures/1200x660.jpg"
-            srcset="/fixtures/1200x660-50.jpg 50w, /fixtures/1200x660-100.jpg 100w, /fixtures/1200x660-200.jpg 200w, /fixtures/1200x660-320.jpg 320w, /fixtures/1200x660-480.jpg 480w, /fixtures/1200x660-640.jpg 640w, /fixtures/1200x660-800.jpg 800w, /fixtures/1200x660-1024.jpg 1024w, /fixtures/1200x660.jpg 1200w"
-            alt="A Rock Climber"
-            sizes="auto"
-            ratio="1200/660"
+<bolt-image ratio="1200/660"
             placeholder-color="hsl(233, 33%, 97%)"
             placeholder-image="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-            no-lazy
             style="background-color: hsl(233, 33%, 97%);"
+            src="/fixtures/1200x660.jpg"
+            alt="A Rock Climber"
+            srcset="/fixtures/1200x660-50.jpg 50w, /fixtures/1200x660-100.jpg 100w, /fixtures/1200x660-200.jpg 200w, /fixtures/1200x660-320.jpg 320w, /fixtures/1200x660-480.jpg 480w, /fixtures/1200x660-640.jpg 640w, /fixtures/1200x660-800.jpg 800w, /fixtures/1200x660-1024.jpg 1024w, /fixtures/1200x660.jpg 1200w"
 >
   <bolt-ratio ratio="20/11">
     <ssr-keep for="bolt-ratio"
@@ -224,14 +223,14 @@ exports[`<bolt-image> Component <bolt-image> with ratio object and lazyloading d
 `;
 
 exports[`<bolt-image> Component <bolt-image> with ratio object compiles 1`] = `
-<bolt-image src="/fixtures/1200x660.jpg"
-            srcset="/fixtures/1200x660-50.jpg 50w, /fixtures/1200x660-100.jpg 100w, /fixtures/1200x660-200.jpg 200w, /fixtures/1200x660-320.jpg 320w, /fixtures/1200x660-480.jpg 480w, /fixtures/1200x660-640.jpg 640w, /fixtures/1200x660-800.jpg 800w, /fixtures/1200x660-1024.jpg 1024w, /fixtures/1200x660.jpg 1200w"
-            alt="A Rock Climber"
-            sizes="auto"
-            ratio="1200/660"
+<bolt-image ratio="1200/660"
             placeholder-color="hsl(233, 33%, 97%)"
             placeholder-image="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
             style="background-color: hsl(233, 33%, 97%);"
+            src="/fixtures/1200x660.jpg"
+            alt="A Rock Climber"
+            lazyload
+            srcset="/fixtures/1200x660-50.jpg 50w, /fixtures/1200x660-100.jpg 100w, /fixtures/1200x660-200.jpg 200w, /fixtures/1200x660-320.jpg 320w, /fixtures/1200x660-480.jpg 480w, /fixtures/1200x660-640.jpg 640w, /fixtures/1200x660-800.jpg 800w, /fixtures/1200x660-1024.jpg 1024w, /fixtures/1200x660.jpg 1200w"
 >
   <bolt-ratio ratio="20/11">
     <ssr-keep for="bolt-ratio"
