@@ -35,7 +35,7 @@
       {% if description.content and description.show_on_hover %}
         <div class="c-bolt-teaser__signifier-description" aria-hidden="true">
           <div class="c-bolt-teaser__signifier-description-text {% if description.content|length >= 80 %}c-bolt-teaser__signifier-description-text--line-clamp{% endif %}">
-            {{ description.content }}
+            {{ description.content }}{% if description.content|length < 80 %}&hellip;{% endif %}
           </div>
         </div>
       {% endif %}
