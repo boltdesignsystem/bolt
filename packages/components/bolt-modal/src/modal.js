@@ -266,19 +266,6 @@ class BoltModal extends BoltElement {
     }
   }
 
-  _setScrollbar() {
-    BoltModal.bodyHasScrollbar &&
-      setScrollbarPadding(document.body, BoltModal.scrollbarWidth);
-
-    document.body.classList.add('u-bolt-overflow-hidden');
-  }
-
-  _resetScrollbar() {
-    resetScrollbarPadding(document.body);
-
-    document.body.classList.remove('u-bolt-overflow-hidden');
-  }
-
   /**
    * Set focus on the close button, the first element with `data-bolt-autofocus`,
    * `autofocus`, or the first focusable element in the modal (in that order)
