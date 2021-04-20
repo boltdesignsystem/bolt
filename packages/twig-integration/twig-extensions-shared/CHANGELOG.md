@@ -7,495 +7,252 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package @bolt/core-php
 
-
-
-
-
 ## [3.5.1](https://github.com/bolt-design-system/bolt/tree/master/packages/core-php/compare/v3.5.0...v3.5.1) (2021-04-12)
 
 **Note:** Version bump only for package @bolt/core-php
 
-
-
-
-
 # [3.5.0](https://github.com/bolt-design-system/bolt/tree/master/packages/core-php/compare/v3.4.3...v3.5.0) (2021-04-09)
 
+## [3.4.4](https://github.com/bolt-design-system/bolt/tree/master/packages/core-php/compare/v3.4.3...v3.4.4) (2021-04-19)
+
 **Note:** Version bump only for package @bolt/core-php
-
-
-
-
 
 ## [3.4.3](https://github.com/bolt-design-system/bolt/tree/master/packages/core-php/compare/v3.4.2...v3.4.3) (2021-04-01)
 
 **Note:** Version bump only for package @bolt/core-php
 
-
-
-
-
 ## [3.4.2](https://github.com/bolt-design-system/bolt/tree/master/packages/core-php/compare/v3.4.1...v3.4.2) (2021-03-31)
 
 **Note:** Version bump only for package @bolt/core-php
-
-
-
-
 
 ## [3.4.1](https://github.com/bolt-design-system/bolt/tree/master/packages/core-php/compare/v3.4.0...v3.4.1) (2021-03-30)
 
 **Note:** Version bump only for package @bolt/core-php
 
-
-
-
-
 # [3.4.0](https://github.com/bolt-design-system/bolt/tree/master/packages/core-php/compare/v3.3.1...v3.4.0) (2021-03-29)
 
 **Note:** Version bump only for package @bolt/core-php
-
-
-
-
 
 ## [3.3.1](https://github.com/bolt-design-system/bolt/tree/master/packages/core-php/compare/v3.3.0...v3.3.1) (2021-03-22)
 
 **Note:** Version bump only for package @bolt/core-php
 
-
-
-
-
 # [3.3.0](https://github.com/bolt-design-system/bolt/tree/master/packages/core-php/compare/v3.2.0...v3.3.0) (2021-03-12)
 
 **Note:** Version bump only for package @bolt/core-php
-
-
-
-
 
 # [3.2.0](https://github.com/bolt-design-system/bolt/tree/master/packages/core-php/compare/v3.1.2...v3.2.0) (2021-03-05)
 
 **Note:** Version bump only for package @bolt/core-php
 
-
-
-
-
 ## [3.1.2](https://github.com/bolt-design-system/bolt/tree/master/packages/core-php/compare/v3.1.1...v3.1.2) (2021-03-05)
 
 **Note:** Version bump only for package @bolt/core-php
-
-
-
-
 
 ## [3.1.1](https://github.com/bolt-design-system/bolt/tree/master/packages/core-php/compare/v3.1.0...v3.1.1) (2021-02-11)
 
 **Note:** Version bump only for package @bolt/core-php
 
-
-
-
-
 # [3.1.0](https://github.com/bolt-design-system/bolt/tree/master/packages/core-php/compare/v2.31.2...v3.1.0) (2021-02-08)
-
-
 
 ## [3.0.2](https://github.com/bolt-design-system/bolt/tree/master/packages/core-php/compare/v2.31.0...v3.0.2) (2021-02-03)
 
 **Note:** Version bump only for package @bolt/core-php
 
-
-
-
-
 ## [2.31.2](https://github.com/bolt-design-system/bolt/tree/master/packages/core-php/compare/v2.31.1...v2.31.2) (2021-02-04)
 
 **Note:** Version bump only for package @bolt/core-php
-
-
-
-
 
 ## [3.0.2](https://github.com/bolt-design-system/bolt/tree/master/packages/core-php/compare/v3.0.1...v3.0.2) (2021-02-03)
 
 **Note:** Version bump only for package @bolt/core-php
 
-
-
-
-
 ## [2.31.1](https://github.com/bolt-design-system/bolt/tree/master/packages/core-php/compare/v2.31.0...v2.31.1) (2021-02-03)
 
 **Note:** Version bump only for package @bolt/core-php
-
-
-
-
 
 # [2.31.0](https://github.com/bolt-design-system/bolt/tree/master/packages/core-php/compare/v2.30.2...v2.31.0) (2021-02-02)
 
 **Note:** Version bump only for package @bolt/core-php
 
-
-
-
-
 ## [3.0.1](https://github.com/bolt-design-system/bolt/tree/master/packages/core-php/compare/v3.0.0...v3.0.1) (2021-01-22)
 
 **Note:** Version bump only for package @bolt/core-php
-
-
-
-
 
 ## [2.30.2](https://github.com/bolt-design-system/bolt/tree/master/packages/core-php/compare/v2.30.1...v2.30.2) (2021-01-21)
 
 **Note:** Version bump only for package @bolt/core-php
 
-
-
-
-
 ## [2.30.1](https://github.com/bolt-design-system/bolt/tree/master/packages/core-php/compare/v2.30.0...v2.30.1) (2021-01-14)
 
 **Note:** Version bump only for package @bolt/core-php
-
-
-
-
 
 # [2.30.0](https://github.com/bolt-design-system/bolt/tree/master/packages/core-php/compare/v2.29.3...v2.30.0) (2021-01-13)
 
 **Note:** Version bump only for package @bolt/core-php
 
-
-
-
-
 # [3.0.0](https://github.com/bolt-design-system/bolt/tree/master/packages/core-php/compare/v2.29.3...v3.0.0) (2021-01-08)
 
 **Note:** Version bump only for package @bolt/core-php
-
-
-
-
 
 ## [2.29.2](https://github.com/bolt-design-system/bolt/tree/master/packages/core-php/compare/v2.29.1...v2.29.2) (2020-11-30)
 
 **Note:** Version bump only for package @bolt/core-php
 
-
-
-
-
 ## [2.29.1](https://github.com/bolt-design-system/bolt/tree/master/packages/core-php/compare/v2.29.0...v2.29.1) (2020-11-25)
 
 **Note:** Version bump only for package @bolt/core-php
-
-
-
-
 
 # [2.29.0](https://github.com/bolt-design-system/bolt/tree/master/packages/core-php/compare/v2.28.0...v2.29.0) (2020-11-23)
 
 **Note:** Version bump only for package @bolt/core-php
 
-
-
-
-
 # [2.28.0](https://github.com/bolt-design-system/bolt/tree/master/packages/core-php/compare/v2.27.1...v2.28.0) (2020-09-16)
 
 **Note:** Version bump only for package @bolt/core-php
-
-
-
-
 
 ## [2.27.1](https://github.com/bolt-design-system/bolt/tree/master/packages/core-php/compare/v2.27.0...v2.27.1) (2020-08-28)
 
 **Note:** Version bump only for package @bolt/core-php
 
-
-
-
-
 # [2.27.0](https://github.com/bolt-design-system/bolt/tree/master/packages/core-php/compare/v2.27.0-alpha-calculator-2...v2.27.0) (2020-08-28)
 
 **Note:** Version bump only for package @bolt/core-php
-
-
-
-
 
 ## [2.26.3](https://github.com/bolt-design-system/bolt/tree/master/packages/core-php/compare/v2.26.2...v2.26.3) (2020-07-31)
 
 **Note:** Version bump only for package @bolt/core-php
 
-
-
-
-
 ## [2.26.2](https://github.com/bolt-design-system/bolt/tree/master/packages/core-php/compare/v2.26.1...v2.26.2) (2020-07-30)
 
 **Note:** Version bump only for package @bolt/core-php
-
-
-
-
 
 ## [2.26.1](https://github.com/bolt-design-system/bolt/tree/master/packages/core-php/compare/v2.26.0...v2.26.1) (2020-07-29)
 
 **Note:** Version bump only for package @bolt/core-php
 
-
-
-
-
 # [2.26.0](https://github.com/bolt-design-system/bolt/tree/master/packages/core-php/compare/v2.25.1...v2.26.0) (2020-07-22)
 
 **Note:** Version bump only for package @bolt/core-php
-
-
-
-
 
 ## [2.25.1](https://github.com/bolt-design-system/bolt/tree/master/packages/core-php/compare/v2.25.0...v2.25.1) (2020-07-14)
 
 **Note:** Version bump only for package @bolt/core-php
 
-
-
-
-
 # [2.25.0](https://github.com/bolt-design-system/bolt/tree/master/packages/core-php/compare/v2.22.2...v2.25.0) (2020-07-13)
-
 
 ### Bug Fixes
 
-* github url ([d914331](https://github.com/bolt-design-system/bolt/tree/master/packages/core-php/commit/d914331f7b34493ea72f20605f51ac0345317719))
-
-
-
-
+- github url ([d914331](https://github.com/bolt-design-system/bolt/tree/master/packages/core-php/commit/d914331f7b34493ea72f20605f51ac0345317719))
 
 ## [2.24.1](https://github.com/bolt-design-system/bolt/tree/master/packages/core-php/compare/v2.24.0...v2.24.1) (2020-06-17)
 
 **Note:** Version bump only for package @bolt/core-php
 
-
-
-
-
 # [2.24.0](https://github.com/bolt-design-system/bolt/tree/master/packages/core-php/compare/v2.23.0...v2.24.0) (2020-06-05)
 
 **Note:** Version bump only for package @bolt/core-php
-
-
-
-
 
 # [2.23.0](https://github.com/bolt-design-system/bolt/tree/master/packages/core-php/compare/v2.22.1...v2.23.0) (2020-05-06)
 
 **Note:** Version bump only for package @bolt/core-php
 
-
-
-
-
 ## [2.22.1](https://github.com/bolt-design-system/bolt/tree/master/packages/core-php/compare/v2.22.0...v2.22.1) (2020-04-22)
 
 **Note:** Version bump only for package @bolt/core-php
-
-
-
-
 
 # [2.22.0](https://github.com/bolt-design-system/bolt/tree/master/packages/core-php/compare/v2.21.1...v2.22.0) (2020-04-22)
 
 **Note:** Version bump only for package @bolt/core-php
 
-
-
-
-
 ## [2.21.1](https://github.com/bolt-design-system/bolt/tree/master/packages/core-php/compare/v2.21.0...v2.21.1) (2020-04-10)
 
 **Note:** Version bump only for package @bolt/core-php
 
-
-
-
-
 # [2.21.0](https://github.com/bolt-design-system/bolt/tree/master/packages/core-php/compare/v2.20.2...v2.21.0) (2020-04-08)
-
 
 ### Features
 
-* apply patches to speed up Twig rendering in Pattern Lab + within the Twig Renderer ([5a21b5c](https://github.com/bolt-design-system/bolt/tree/master/packages/core-php/commit/5a21b5c602e4735aef0e13711a17f1e5ff6f6705))
-
-
-
-
+- apply patches to speed up Twig rendering in Pattern Lab + within the Twig Renderer ([5a21b5c](https://github.com/bolt-design-system/bolt/tree/master/packages/core-php/commit/5a21b5c602e4735aef0e13711a17f1e5ff6f6705))
 
 ## [2.20.2](https://github.com/bolt-design-system/bolt/tree/master/packages/core-php/compare/v2.20.1...v2.20.2) (2020-03-30)
 
 **Note:** Version bump only for package @bolt/core-php
 
-
-
-
-
 ## [2.20.1](https://github.com/bolt-design-system/bolt/tree/master/packages/core-php/compare/v2.20.0...v2.20.1) (2020-03-26)
 
 **Note:** Version bump only for package @bolt/core-php
-
-
-
-
 
 # [2.20.0](https://github.com/bolt-design-system/bolt/tree/master/packages/core-php/compare/v2.19.1...v2.20.0) (2020-03-18)
 
 **Note:** Version bump only for package @bolt/core-php
 
-
-
-
-
 ## [2.19.1](https://github.com/bolt-design-system/bolt/tree/master/packages/core-php/compare/v2.19.0...v2.19.1) (2020-03-11)
 
 **Note:** Version bump only for package @bolt/core-php
-
-
-
-
 
 # [2.19.0](https://github.com/bolt-design-system/bolt/tree/master/packages/core-php/compare/v2.18.1...v2.19.0) (2020-03-04)
 
 **Note:** Version bump only for package @bolt/core-php
 
-
-
-
-
 ## [2.18.1](https://github.com/bolt-design-system/bolt/tree/master/packages/core-php/compare/v2.18.0...v2.18.1) (2020-02-21)
 
 **Note:** Version bump only for package @bolt/core-php
-
-
-
-
 
 # [2.18.0](https://github.com/bolt-design-system/bolt/tree/master/packages/core-php/compare/v2.17.1...v2.18.0) (2020-02-19)
 
 **Note:** Version bump only for package @bolt/core-php
 
-
-
-
-
 ## [2.17.1](https://github.com/bolt-design-system/bolt/tree/master/packages/core-php/compare/v2.17.0...v2.17.1) (2020-02-11)
 
 **Note:** Version bump only for package @bolt/core-php
-
-
-
-
 
 # [2.17.0](https://github.com/bolt-design-system/bolt/tree/master/packages/core-php/compare/v2.16.3...v2.17.0) (2020-02-04)
 
 **Note:** Version bump only for package @bolt/core-php
 
-
-
-
-
 ## [2.16.3](https://github.com/bolt-design-system/bolt/tree/master/packages/core-php/compare/v2.16.2...v2.16.3) (2020-01-28)
 
 **Note:** Version bump only for package @bolt/core-php
-
-
-
-
 
 ## [2.16.2](https://github.com/bolt-design-system/bolt/tree/master/packages/core-php/compare/v2.16.1...v2.16.2) (2020-01-28)
 
 **Note:** Version bump only for package @bolt/core-php
 
-
-
-
-
 ## [2.16.1](https://github.com/bolt-design-system/bolt/tree/master/packages/core-php/compare/v2.16.0...v2.16.1) (2020-01-27)
 
 **Note:** Version bump only for package @bolt/core-php
-
-
-
-
 
 # [2.16.0](https://github.com/bolt-design-system/bolt/tree/master/packages/core-php/compare/v2.15.2...v2.16.0) (2020-01-24)
 
 **Note:** Version bump only for package @bolt/core-php
 
-
-
-
-
 ## [2.15.2](https://github.com/bolt-design-system/bolt/tree/master/packages/core-php/compare/v2.15.1...v2.15.2) (2020-01-21)
 
 **Note:** Version bump only for package @bolt/core-php
-
-
-
-
 
 ## [2.15.1](https://github.com/bolt-design-system/bolt/tree/master/packages/core-php/compare/v2.15.0...v2.15.1) (2020-01-18)
 
 **Note:** Version bump only for package @bolt/core-php
 
-
-
-
-
 # [2.15.0](https://github.com/bolt-design-system/bolt/tree/master/packages/core-php/compare/v2.14.3...v2.15.0) (2020-01-17)
 
 **Note:** Version bump only for package @bolt/core-php
 
-
-
-
-
 # [2.14.0](https://github.com/bolt-design-system/bolt/tree/master/packages/core-php/compare/v2.13.3...v2.14.0) (2020-01-06)
-
 
 ### Bug Fixes
 
-* update testing-helpers package path ([9b431b6](https://github.com/bolt-design-system/bolt/tree/master/packages/core-php/commit/9b431b6))
-* update version in composer.json ([8285d44](https://github.com/bolt-design-system/bolt/tree/master/packages/core-php/commit/8285d44))
-
-
-
-
+- update testing-helpers package path ([9b431b6](https://github.com/bolt-design-system/bolt/tree/master/packages/core-php/commit/9b431b6))
+- update version in composer.json ([8285d44](https://github.com/bolt-design-system/bolt/tree/master/packages/core-php/commit/8285d44))
 
 ## [2.13.3](https://github.com/bolt-design-system/bolt/tree/master/packages/core-php/compare/v2.13.2...v2.13.3) (2020-01-02)
 
 **Note:** Version bump only for package @bolt/core-php
 
-
-
-
-
 ## [2.13.2](https://github.com/bolt-design-system/bolt/tree/master/packages/core-php/compare/v2.13.1...v2.13.2) (2019-12-30)
 
 **Note:** Version bump only for package @bolt/core-php
-
-
-
-
 
 ## [2.13.1](https://github.com/bolt-design-system/bolt/tree/master/packages/core-php/compare/v2.13.0...v2.13.1) (2019-12-17)
 
