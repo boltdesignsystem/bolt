@@ -8,8 +8,8 @@ export class Waypoint {
     this.options = {
       /**
        * `items` is an array of objects. Each object contains two keys:
-       *   - `target` is the element monitored as it scrolls in and out of the boundary area.
-       *   - `trigger` is the link or actionable element associated with this target (optional).
+       *   - `element` is the element monitored as it scrolls in and out of the boundary area.
+       *   - `trigger` is the link or actionable element associated with this element (optional).
        */
       items: [],
 
@@ -114,9 +114,9 @@ export class Waypoint {
   checkWaypoint(item) {
     if (this.scrolling) return;
 
-    const { trigger, target, position } = item;
+    const { trigger, element, position } = item;
     const bounds = getBounds(
-      target,
+      element,
       window,
       this.options.topOffset,
       this.options.bottomOffset,
@@ -135,7 +135,7 @@ export class Waypoint {
 
     const callbackArg = {
       trigger,
-      target,
+      element,
       currentPosition,
       previousPosition,
       waypointTop: bounds.waypointTop,
