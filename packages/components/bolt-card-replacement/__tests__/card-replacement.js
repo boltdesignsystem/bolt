@@ -1,21 +1,6 @@
-import {
-  isConnected,
-  render,
-  renderString,
-  stopServer,
-  html,
-} from '../../../testing/testing-helpers';
+import { render, stopServer } from '../../../testing/testing-helpers';
 import schema from '../card-replacement.schema';
-const {
-  media,
-  body,
-  actions,
-  tag,
-  link,
-  theme,
-  spacing,
-  borderRadius,
-} = schema.properties;
+const { tag, theme, spacing, borderRadius } = schema.properties;
 
 describe('<bolt-card-replacement> Component', () => {
   afterAll(async () => {

@@ -4,6 +4,7 @@ All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
 # [3.5.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tabs/compare/v3.4.3...v3.5.0) (2021-04-09)
+## [3.4.4](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tabs/compare/v3.4.3...v3.4.4) (2021-04-19)
 
 **Note:** Version bump only for package @bolt/components-tabs
 
