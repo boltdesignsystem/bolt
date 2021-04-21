@@ -20,7 +20,6 @@ exports[`<bolt-card-replacement> Component basic usage 1`] = `
                     style="background-color: hsl(233, 33%, 97%);"
                     src="/fixtures/landscape-16x9-mountains.jpg"
                     alt="Image alt."
-                    lazyload
                     srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w, /fixtures/landscape-16x9-mountains.jpg 1151w"
         >
           <bolt-ratio ratio="1151/638">
@@ -98,9 +97,15 @@ exports[`<bolt-card-replacement> Component basic usage 1`] = `
                              aria-hidden="true"
                   >
                     <span class="c-bolt-icon c-bolt-icon--chevron-right">
-                      <svg class="c-bolt-icon__icon">
-                        <use xlink:href="#chevron-right">
-                        </use>
+                      <svg class="c-bolt-icon__icon"
+                           xmlns="http://www.w3.org/2000/svg"
+                           viewbox="0 0 32 32"
+                      >
+                        <path fill="var(--bolt-theme-icon, currentColor)"
+                              fill-rule="evenodd"
+                              d="M13 7c-.6-.5-1.4-.5-2 0-.5.6-.5 1.4 0 2l7.1 7-7 7a1.3 1.3 0 00.9 2.3c.3 0 .7-.1 1-.4l8-8c.5-.5.5-1.3 0-1.8l-8-8z"
+                        >
+                        </path>
                       </svg>
                     </span>
                   </bolt-icon>
@@ -135,7 +140,6 @@ exports[`<bolt-card-replacement> Component border radius variations: large 1`] =
                     style="background-color: hsl(233, 33%, 97%);"
                     src="/fixtures/landscape-16x9-mountains.jpg"
                     alt="Image alt."
-                    lazyload
                     srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w, /fixtures/landscape-16x9-mountains.jpg 1151w"
         >
           <bolt-ratio ratio="1151/638">
@@ -205,7 +209,6 @@ exports[`<bolt-card-replacement> Component border radius variations: small 1`] =
                     style="background-color: hsl(233, 33%, 97%);"
                     src="/fixtures/landscape-16x9-mountains.jpg"
                     alt="Image alt."
-                    lazyload
                     srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w, /fixtures/landscape-16x9-mountains.jpg 1151w"
         >
           <bolt-ratio ratio="1151/638">
@@ -287,7 +290,6 @@ exports[`<bolt-card-replacement> Component clickable card-replacement 1`] = `
                     style="background-color: hsl(233, 33%, 97%);"
                     src="/fixtures/landscape-16x9-mountains.jpg"
                     alt="Image alt."
-                    lazyload
                     srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w, /fixtures/landscape-16x9-mountains.jpg 1151w"
         >
           <bolt-ratio ratio="1151/638">
@@ -357,7 +359,6 @@ exports[`<bolt-card-replacement> Component spacing variations: medium 1`] = `
                     style="background-color: hsl(233, 33%, 97%);"
                     src="/fixtures/landscape-16x9-mountains.jpg"
                     alt="Image alt."
-                    lazyload
                     srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w, /fixtures/landscape-16x9-mountains.jpg 1151w"
         >
           <bolt-ratio ratio="1151/638">
@@ -427,7 +428,6 @@ exports[`<bolt-card-replacement> Component spacing variations: small 1`] = `
                     style="background-color: hsl(233, 33%, 97%);"
                     src="/fixtures/landscape-16x9-mountains.jpg"
                     alt="Image alt."
-                    lazyload
                     srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w, /fixtures/landscape-16x9-mountains.jpg 1151w"
         >
           <bolt-ratio ratio="1151/638">
@@ -497,7 +497,6 @@ exports[`<bolt-card-replacement> Component tag variations: article 1`] = `
                     style="background-color: hsl(233, 33%, 97%);"
                     src="/fixtures/landscape-16x9-mountains.jpg"
                     alt="Image alt."
-                    lazyload
                     srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w, /fixtures/landscape-16x9-mountains.jpg 1151w"
         >
           <bolt-ratio ratio="1151/638">
@@ -567,7 +566,6 @@ exports[`<bolt-card-replacement> Component tag variations: div 1`] = `
                     style="background-color: hsl(233, 33%, 97%);"
                     src="/fixtures/landscape-16x9-mountains.jpg"
                     alt="Image alt."
-                    lazyload
                     srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w, /fixtures/landscape-16x9-mountains.jpg 1151w"
         >
           <bolt-ratio ratio="1151/638">
@@ -637,7 +635,6 @@ exports[`<bolt-card-replacement> Component tag variations: figure 1`] = `
                     style="background-color: hsl(233, 33%, 97%);"
                     src="/fixtures/landscape-16x9-mountains.jpg"
                     alt="Image alt."
-                    lazyload
                     srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w, /fixtures/landscape-16x9-mountains.jpg 1151w"
         >
           <bolt-ratio ratio="1151/638">
@@ -707,7 +704,6 @@ exports[`<bolt-card-replacement> Component theme variations: dark 1`] = `
                     style="background-color: hsl(233, 33%, 97%);"
                     src="/fixtures/landscape-16x9-mountains.jpg"
                     alt="Image alt."
-                    lazyload
                     srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w, /fixtures/landscape-16x9-mountains.jpg 1151w"
         >
           <bolt-ratio ratio="1151/638">
@@ -777,7 +773,6 @@ exports[`<bolt-card-replacement> Component theme variations: light 1`] = `
                     style="background-color: hsl(233, 33%, 97%);"
                     src="/fixtures/landscape-16x9-mountains.jpg"
                     alt="Image alt."
-                    lazyload
                     srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w, /fixtures/landscape-16x9-mountains.jpg 1151w"
         >
           <bolt-ratio ratio="1151/638">
@@ -847,7 +842,6 @@ exports[`<bolt-card-replacement> Component theme variations: none 1`] = `
                     style="background-color: hsl(233, 33%, 97%);"
                     src="/fixtures/landscape-16x9-mountains.jpg"
                     alt="Image alt."
-                    lazyload
                     srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w, /fixtures/landscape-16x9-mountains.jpg 1151w"
         >
           <bolt-ratio ratio="1151/638">
@@ -917,7 +911,6 @@ exports[`<bolt-card-replacement> Component theme variations: xdark 1`] = `
                     style="background-color: hsl(233, 33%, 97%);"
                     src="/fixtures/landscape-16x9-mountains.jpg"
                     alt="Image alt."
-                    lazyload
                     srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w, /fixtures/landscape-16x9-mountains.jpg 1151w"
         >
           <bolt-ratio ratio="1151/638">
@@ -987,7 +980,6 @@ exports[`<bolt-card-replacement> Component theme variations: xlight 1`] = `
                     style="background-color: hsl(233, 33%, 97%);"
                     src="/fixtures/landscape-16x9-mountains.jpg"
                     alt="Image alt."
-                    lazyload
                     srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w, /fixtures/landscape-16x9-mountains.jpg 1151w"
         >
           <bolt-ratio ratio="1151/638">
@@ -1057,7 +1049,6 @@ exports[`<bolt-card-replacement> Component with two buttons as actions 1`] = `
                     style="background-color: hsl(233, 33%, 97%);"
                     src="/fixtures/landscape-16x9-mountains.jpg"
                     alt="Image alt."
-                    lazyload
                     srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w, /fixtures/landscape-16x9-mountains.jpg 1151w"
         >
           <bolt-ratio ratio="1151/638">
@@ -1135,9 +1126,15 @@ exports[`<bolt-card-replacement> Component with two buttons as actions 1`] = `
                              aria-hidden="true"
                   >
                     <span class="c-bolt-icon c-bolt-icon--chevron-right">
-                      <svg class="c-bolt-icon__icon">
-                        <use xlink:href="#chevron-right">
-                        </use>
+                      <svg class="c-bolt-icon__icon"
+                           xmlns="http://www.w3.org/2000/svg"
+                           viewbox="0 0 32 32"
+                      >
+                        <path fill="var(--bolt-theme-icon, currentColor)"
+                              fill-rule="evenodd"
+                              d="M13 7c-.6-.5-1.4-.5-2 0-.5.6-.5 1.4 0 2l7.1 7-7 7a1.3 1.3 0 00.9 2.3c.3 0 .7-.1 1-.4l8-8c.5-.5.5-1.3 0-1.8l-8-8z"
+                        >
+                        </path>
                       </svg>
                     </span>
                   </bolt-icon>
@@ -1174,9 +1171,15 @@ exports[`<bolt-card-replacement> Component with two buttons as actions 1`] = `
                              aria-hidden="true"
                   >
                     <span class="c-bolt-icon c-bolt-icon--chevron-right">
-                      <svg class="c-bolt-icon__icon">
-                        <use xlink:href="#chevron-right">
-                        </use>
+                      <svg class="c-bolt-icon__icon"
+                           xmlns="http://www.w3.org/2000/svg"
+                           viewbox="0 0 32 32"
+                      >
+                        <path fill="var(--bolt-theme-icon, currentColor)"
+                              fill-rule="evenodd"
+                              d="M13 7c-.6-.5-1.4-.5-2 0-.5.6-.5 1.4 0 2l7.1 7-7 7a1.3 1.3 0 00.9 2.3c.3 0 .7-.1 1-.4l8-8c.5-.5.5-1.3 0-1.8l-8-8z"
+                        >
+                        </path>
                       </svg>
                     </span>
                   </bolt-icon>
@@ -1265,9 +1268,15 @@ exports[`<bolt-card-replacement> Component with video as media 1`] = `
                              aria-hidden="true"
                   >
                     <span class="c-bolt-icon c-bolt-icon--chevron-right">
-                      <svg class="c-bolt-icon__icon">
-                        <use xlink:href="#chevron-right">
-                        </use>
+                      <svg class="c-bolt-icon__icon"
+                           xmlns="http://www.w3.org/2000/svg"
+                           viewbox="0 0 32 32"
+                      >
+                        <path fill="var(--bolt-theme-icon, currentColor)"
+                              fill-rule="evenodd"
+                              d="M13 7c-.6-.5-1.4-.5-2 0-.5.6-.5 1.4 0 2l7.1 7-7 7a1.3 1.3 0 00.9 2.3c.3 0 .7-.1 1-.4l8-8c.5-.5.5-1.3 0-1.8l-8-8z"
+                        >
+                        </path>
                       </svg>
                     </span>
                   </bolt-icon>
@@ -1302,7 +1311,6 @@ exports[`<bolt-card-replacement> Component without actions 1`] = `
                     style="background-color: hsl(233, 33%, 97%);"
                     src="/fixtures/landscape-16x9-mountains.jpg"
                     alt="Image alt."
-                    lazyload
                     srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w, /fixtures/landscape-16x9-mountains.jpg 1151w"
         >
           <bolt-ratio ratio="1151/638">
