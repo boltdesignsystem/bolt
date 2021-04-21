@@ -150,7 +150,7 @@ async function getPkgInfo(pkgName) {
     if (pkg.schema) {
       if (typeof pkg.schema === 'object') {
         if (info.schema === undefined) {
-          info.schema = [];
+          info.schema = {};
         }
 
         const schemas = pkg.schema;
