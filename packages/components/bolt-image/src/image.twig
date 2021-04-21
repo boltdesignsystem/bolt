@@ -127,7 +127,9 @@
 {% endset %}
 
 <bolt-image
+  {% if slot %}slot="{{ slot }}"{% endif %}
   {% if not lazyload %}no-lazy{% endif %}
+
   {% if _ratio_string %}ratio="{{ _ratio_string }}"{% elseif not _use_ratio %}ratio="none"{% elseif _can_use_ratio %}ratio="{{ width * 1 }}/{{ height * 1 }}"{% endif %}
   {% if (placeholder_color or _ph_color) %}placeholder-color="{{ placeholder_color | default(_ph_color) }}"{% endif %}
   {% if (placeholder_image or _ph_image) %}placeholder-image="{{ placeholder_image | default(_ph_image) }}"{% endif %}
