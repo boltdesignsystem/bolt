@@ -132,7 +132,7 @@
   {% if (placeholder_color or _ph_color) %}placeholder-color="{{ placeholder_color | default(_ph_color) }}"{% endif %}
   {% if (placeholder_image or _ph_image) %}placeholder-image="{{ placeholder_image | default(_ph_image) }}"{% endif %}
 
-  {{ this.props }}
+  {{ this.props|without('lazyload') }}
   {{ attributes }}
   >
 
