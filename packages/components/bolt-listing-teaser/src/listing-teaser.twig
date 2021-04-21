@@ -55,7 +55,7 @@
             } only %}
           {% endset %}
           {% set _more_info_content %}
-            {{ this.data.more_info.value }}&hellip; {{ 'Read More'|t }}{{ _icon_chevron_right }}
+            {{ this.data.more_info.value }} &hellip; {{ 'Read More'|t }}{{ _icon_chevron_right }}
           {%  endset %}
           {% include '@bolt-components-headline/text.twig' with {
             text: _more_info_content,
