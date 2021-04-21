@@ -135,6 +135,8 @@ class BoltModal extends BoltElement {
 
     this._noBodyScroll && this._setScrollbar();
 
+    document.body.classList.add('u-bolt-overflow-hidden');
+
     // @todo: re-evaluate if the trigger element used needs to have it's tabindex messed with
     // this.querySelector('[slot="trigger"]').setAttribute('tabindex', '-1');
 
@@ -169,6 +171,8 @@ class BoltModal extends BoltElement {
     this.ready = false;
 
     this.dispatchEvent(new CustomEvent('modal:hide', this._toggleEventOptions));
+
+    document.body.classList.remove('u-bolt-overflow-hidden');
 
     this.transitionDuration = getTransitionDuration(
       this.renderRoot.querySelector('.c-bolt-modal'),
