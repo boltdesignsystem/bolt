@@ -23,7 +23,8 @@
   grid-template-columns: auto 1fr;
   grid-template-rows: repeat(3, minmax(min-content, max-content)) 1fr;
   grid-template-areas:
-    'signifier . status'
+    '. eyebrow status'
+    'signifier eyebrow status'
     'signifier heading status'
     'signifier content status'
     '. content status';
@@ -39,6 +40,10 @@
   pointer-events: none;
   user-select: none;
   grid-area: signifier;
+}
+
+.c-bolt-listing-teaser__flag-eyebrow {
+  grid-area: eyebrow;
 }
 
 .c-bolt-listing-teaser__flag-heading {

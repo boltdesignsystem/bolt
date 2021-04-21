@@ -22,6 +22,11 @@
         {{ signifier }}
       </div>
     {% endif %}
+    <div class="c-bolt-listing-teaser__flag-eyebrow">
+      {% include '@bolt-components-headline/eyebrow.twig' with {
+        text: 'eyebrow',
+      } only %}
+    </div>
     <div class="c-bolt-listing-teaser__flag-heading">
       {% if headline.link_attributes %}
         {% set _linked_text %}

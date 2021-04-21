@@ -1,0 +1,133 @@
+{% set description %}
+  Search List is a way to display teasers for a list of search results.
+{% endset %}
+
+{% set notes %}
+{% endset %}
+
+{% set demo %}
+  {% set icon_orbit %}
+    {% include '@bolt-components-icon/icon.twig' with {
+      name: 'brand-orbit',
+      size: 'large',
+      color: 'teal',
+    } only %}
+  {% endset %}
+  {% set share_menu %}
+    {% include '@bolt-components-share/share.twig' with {
+      display: 'menu',
+      size: 'small',
+      text: 'Share this article',
+      sources: [
+        {
+          name: 'facebook',
+          url: 'https://www.facebook.com/sharer/sharer.php?u=https://pega.com&amp;src=sdkpreparse'
+        },
+        {
+          name: 'twitter',
+          url: 'https://twitter.com/intent/tweet?url=https://pega.com&text=Sample%20Share%20Text&via=pega&hashtags=boltDesignSystemRocks!'
+        },
+        {
+          name: 'linkedin',
+          url: 'https://www.linkedin.com/shareArticle?url=https://pega.com'
+        },
+        {
+          name: 'email',
+          url: 'mailto:?&body=Sample%20Text%20--%20https%3A//boltdesignsystem.com'
+        }
+      ],
+      copy_to_clipboard: {
+        text_to_copy: 'https://pega.com'
+      },
+    } only %}
+  {% endset %}
+  {% set article_0 %}
+    {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
+      signifier: icon_orbit,
+      headline: {
+        text: 'This is a search result',
+        tag: 'h3',
+        size: 'large',
+        link_attributes: {
+          href: 'https://pega.com'
+        },
+      },
+      meta_items: [
+        'Meta data 1',
+        'Meta data 2',
+        'Meta data 3',
+      ],
+      more_info: 'Tri-tip shank tongue fatback kevin. Venison frankfurter cupim picanha meatloaf ham hock beef ribs. Burgdoggen porchetta spare ribs bresaola chuck filet mignon. Spare ribs filet mignon pig pastrami'
+    } only %}
+  {% endset %}
+  {% set article_1 %}
+    {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
+      headline: {
+        text: 'This is a documentation',
+        tag: 'h3',
+        size: 'large',
+        link_attributes: {
+          href: 'https://pega.com'
+        },
+      },
+      more_info: 'Tri-tip shank tongue fatback kevin. Venison frankfurter cupim picanha meatloaf ham hock beef ribs. Burgdoggen porchetta spare ribs bresaola chuck filet mignon. Spare ribs filet mignon pig pastrami'
+    } only %}
+  {% endset %}
+  {% set article_2 %}
+    {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
+      headline: {
+        text: 'This is a blog post',
+        tag: 'h3',
+        size: 'large',
+        link_attributes: {
+          href: 'https://pega.com'
+        },
+      },
+      meta_items: [
+        'Tom Taylor',
+        'August 29, 2021',
+        '3 min read',
+      ],
+      more_info: 'Tri-tip shank tongue fatback kevin. Venison frankfurter cupim picanha meatloaf ham hock beef ribs. Burgdoggen porchetta spare ribs bresaola chuck filet mignon. Spare ribs filet mignon pig pastrami'
+    } only %}
+  {% endset %}
+  {% set article_3 %}
+    {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
+      headline: {
+        text: 'This is a design pattern',
+        tag: 'h3',
+        size: 'large',
+        link_attributes: {
+          href: 'https://pega.com'
+        },
+      },
+      more_info: 'Tri-tip shank tongue fatback kevin. Venison frankfurter cupim picanha meatloaf ham hock beef ribs. Burgdoggen porchetta spare ribs bresaola chuck filet mignon. Spare ribs filet mignon pig pastrami'
+    } only %}
+  {% endset %}
+
+  <bolt-text headline font-size="small">Community Results</bolt-text>
+  {% include '@bolt-components-list/list.twig' with {
+    spacing: 'small',
+    inset: true,
+    separator: 'solid',
+    items: [
+      article_0,
+      article_1,
+      article_2,
+      article_3,
+    ]
+  } only %}
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Use Case: Search List',
+  description: description,
+  demo: demo,
+  notes: notes,
+  twig_markup: twig_markup,
+} only %}
