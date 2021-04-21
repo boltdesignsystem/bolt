@@ -16,11 +16,6 @@
   {% endif %}
 {% endif %}
 
-{# DEPRECATED.  'magnify' is deprecated for device viewer-- when it is removed, 'zoom' will be unnecessary. #}
-{% if zoom %}
-  {% set image_attributes = image_attributes.setAttribute("data-zoom", src) %}
-{% endif %}
-
 {% set _image_data_bolt = bolt.data.images[src] %} {# Data from Bolt Manifest #}
 {% set _image_data_twig = getImageData(src)  %} {# Data from processing image file #}
 
@@ -91,6 +86,11 @@
   .setAttribute('src', this.data.src.value)
 %}
 
+{# DEPRECATED.  'magnify' is deprecated for device viewer-- when it is removed, 'zoom' will be unnecessary. #}
+{% if zoom %}
+  {% set image_attributes = image_attributes.setAttribute("data-zoom", src) %}
+{% endif %}
+
 {% set image_fallback_attributes = create_attribute({}).addClass(image_classes)
   .setAttribute('alt', this.data.alt.value ? this.data.alt.value : "")
   .setAttribute('src', this.data.src.value)
@@ -129,6 +129,9 @@
 <bolt-image
   {% if slot %}slot="{{ slot }}"{% endif %}
   {% if not lazyload %}no-lazy{% endif %}
+
+  {# DEPRECATED.  'magnify' is deprecated for device viewer-- when it is removed, 'zoom' will be unnecessary. #}
+  {% if zoom %}zoom{% endif %}
 
   {% if _ratio_string %}ratio="{{ _ratio_string }}"{% elseif not _use_ratio %}ratio="none"{% elseif _can_use_ratio %}ratio="{{ width * 1 }}/{{ height * 1 }}"{% endif %}
   {% if (placeholder_color or _ph_color) %}placeholder-color="{{ placeholder_color | default(_ph_color) }}"{% endif %}
