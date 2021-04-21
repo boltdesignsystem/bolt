@@ -7,7 +7,7 @@
 $_bolt-holy-grail-sidebar-trigger-click-target: 44px;
 $_bolt-holy-grail-sidebar-overflow-offset: 2rem;
 
-bolt-holy-grail-layout {
+.l-bolt-holy-grail {
   @include bolt-full-bleed;
 
   display: grid;
@@ -35,98 +35,102 @@ bolt-holy-grail-layout {
   @include bolt-mq($from: medium) {
     grid-template-columns: auto minmax(160px, 1fr) auto;
   }
+}
 
-  // Loop through the spacing map to generate padding and gutter options.
-  @each $size in $bolt-spacing-multiplier-system {
-    $size-name: nth($size, 1);
+// Loop through the spacing map to generate padding and gutter options.
+@each $size in $bolt-spacing-multiplier-system {
+  $size-name: nth($size, 1);
 
-    @if (
+  @if (
+    $size-name ==
+      small or
       $size-name ==
-        small or
-        $size-name ==
-        medium or
-        $size-name ==
-        large or
-        $size-name ==
-        xlarge
-    ) {
-      &[padding-top='#{$size-name}'] {
-        --l-bolt-holy-grail-layout-padding-top: var(
-          --bolt-spacing-y-#{$size-name}
-        );
-      }
-
-      &[padding-bottom='#{$size-name}'] {
-        --l-bolt-holy-grail-layout-padding-bottom: var(
-          --bolt-spacing-y-#{$size-name}
-        );
-      }
-
-      &[gutter='#{$size-name}'] {
-        --l-bolt-holy-grail-layout-gutter: var(
-          --bolt-spacing-x-#{$size-name},
-          var(--bolt-spacing-x-large)
-        );
-      }
-    }
-  }
-
-  &[padding-top='none'] {
-    --l-bolt-holy-grail-layout-padding-top: 1px;
-  }
-
-  &[padding-bottom='none'] {
-    --l-bolt-holy-grail-layout-padding-bottom: 1px;
-  }
-
-  &[full-bleed] {
-    @include bolt-mq($from: medium) {
-      --l-bolt-holy-grail-layout-padding-x: var(
-        --l-bolt-holy-grail-layout-gutter
+      medium or
+      $size-name ==
+      large or
+      $size-name ==
+      xlarge
+  ) {
+    .l-bolt-holy-grail--padding-top-#{$size-name} {
+      --l-bolt-holy-grail-layout-padding-top: var(
+        --bolt-spacing-y-#{$size-name}
       );
     }
 
-    @include bolt-mq($from: xxxxlarge) {
-      grid-template-columns: auto 1fr auto;
+    .l-bolt-holy-grail--padding-bottom-#{$size-name} {
+      --l-bolt-holy-grail-layout-padding-bottom: var(
+        --bolt-spacing-y-#{$size-name}
+      );
+    }
+
+    .l-bolt-holy-grail--gutter-#{$size-name} {
+      --l-bolt-holy-grail-layout-gutter: var(
+        --bolt-spacing-x-#{$size-name},
+        var(--bolt-spacing-x-large)
+      );
     }
   }
 }
 
-bolt-holy-grail-article,
-bolt-holy-grail-sidebar {
+.l-bolt-holy-grail--padding-top-none {
+  --l-bolt-holy-grail-layout-padding-top: 1px;
+}
+
+.l-bolt-holy-grail--padding-bottom-none {
+  --l-bolt-holy-grail-layout-padding-bottom: 1px;
+}
+
+.l-bolt-holy-grail--gutter-none {
+  --l-bolt-holy-grail-layout-gutter: 0;
+}
+
+.l-bolt-holy-grail--full-bleed {
+  @include bolt-mq($from: medium) {
+    --l-bolt-holy-grail-layout-padding-x: var(
+      --l-bolt-holy-grail-layout-gutter
+    );
+  }
+
+  @include bolt-mq($from: xxxxlarge) {
+    grid-template-columns: auto 1fr auto;
+  }
+}
+
+.l-bolt-holy-grail__article,
+.l-bolt-holy-grail__sidebar {
   display: block;
   order: 1;
 }
 
-bolt-holy-grail-article {
+.l-bolt-holy-grail__article {
   @include bolt-mq($until: medium) {
     grid-area: article;
   }
 
   @include bolt-mq($from: medium) {
-    @at-root bolt-holy-grail-layout[full-bleed] #{&} {
+    @at-root .l-bolt-holy-grail--full-bleed #{&} {
       padding: 0 var(--l-bolt-holy-grail-layout-gutter);
     }
   }
 
   @include bolt-mq($from: xxxxlarge) {
-    @at-root bolt-holy-grail-layout[full-bleed] #{&} {
+    @at-root .l-bolt-holy-grail--full-bleed #{&} {
       padding: 0 var(--bolt-spacing-x-xlarge);
     }
   }
 }
 
-bolt-holy-grail-article-content {
+.l-bolt-holy-grail__article__content {
   display: block;
 
   @include bolt-mq($from: xxlarge) {
-    @at-root bolt-holy-grail-layout[full-bleed] #{&} {
+    @at-root .l-bolt-holy-grail--full-bleed #{&} {
       max-width: 100ch;
     }
   }
 }
 
-bolt-holy-grail-sidebar {
+.l-bolt-holy-grail__sidebar {
   hyphens: auto;
   word-break: normal;
 
@@ -149,15 +153,15 @@ bolt-holy-grail-sidebar {
       calc(var(--l-bolt-holy-grail-layout-padding-bottom) * 2)
       calc(var(--l-bolt-holy-grail-layout-gutter) * 2);
 
-    @at-root bolt-holy-grail-layout[full-bleed] #{&} {
+    @at-root .l-bolt-holy-grail--full-bleed #{&} {
       background-color: rgba(bolt-color(gray), 0.05);
     }
   }
 }
 
-bolt-holy-grail-sidebar[secondary] {
+.l-bolt-holy-grail__sidebar--secondary {
   @include bolt-mq($until: medium) {
-    @at-root bolt-holy-grail-sidebar ~ #{&} {
+    @at-root .l-bolt-holy-grail__sidebar ~ #{&} {
       grid-area: sidebar2;
       width: #{$_bolt-holy-grail-sidebar-trigger-click-target};
     }
@@ -168,13 +172,13 @@ bolt-holy-grail-sidebar[secondary] {
     margin-right: calc(var(--l-bolt-holy-grail-layout-gutter) * -1);
     margin-left: 0;
 
-    @at-root bolt-holy-grail-layout[full-bleed] #{&} {
+    @at-root .l-bolt-holy-grail--full-bleed #{&} {
       background-color: transparent;
     }
   }
 }
 
-bolt-holy-grail-sidebar > button {
+.l-bolt-holy-grail__sidebar-trigger {
   @include bolt-button-native-styles-reset;
 
   display: grid;
@@ -224,34 +228,34 @@ bolt-holy-grail-sidebar > button {
   }
 }
 
-bolt-holy-grail-sidebar-trigger-text {
+.l-bolt-holy-grail__sidebar-trigger__text {
   display: grid;
   grid-template-columns: auto 1fr;
   grid-gap: var(--bolt-spacing-x-xsmall);
   align-items: center;
 
-  @at-root bolt-holy-grail-sidebar[secondary]
-      #{&}:not(bolt-holy-grail-sidebar-trigger-text[close]) {
+  @at-root .l-bolt-holy-grail__sidebar--secondary
+      #{&}:not(.l-bolt-holy-grail__sidebar-trigger__text--close) {
     grid-gap: 0;
   }
 
-  @at-root button[aria-expanded='true'] #{&} {
+  @at-root .l-bolt-holy-grail__sidebar-trigger[aria-expanded='true'] #{&} {
     display: none;
   }
 }
 
-bolt-holy-grail-sidebar-trigger-text[close] {
+.l-bolt-holy-grail__sidebar-trigger__text--close {
   display: none;
   grid-template-columns: 1fr auto;
   width: 100%;
   padding: 0 var(--bolt-spacing-x-small);
 
-  @at-root button[aria-expanded='true'] #{&} {
+  @at-root .l-bolt-holy-grail__sidebar-trigger[aria-expanded='true'] #{&} {
     display: grid;
   }
 }
 
-bolt-holy-grail-sidebar-content {
+.l-bolt-holy-grail__sidebar__content {
   display: block;
 
   @include bolt-mq($until: medium) {
@@ -280,11 +284,11 @@ bolt-holy-grail-sidebar-content {
       calc(var(--l-bolt-holy-grail-layout-padding-bottom) * -1)
       calc(var(--l-bolt-holy-grail-layout-gutter) * -1);
 
-    @at-root bolt-holy-grail-sidebar[secondary] #{&} {
+    @at-root .l-bolt-holy-grail__sidebar--secondary #{&} {
       --l-bolt-holy-grail-layout-sidebar-width: max(160px, 10vw);
     }
 
-    @at-root bolt-holy-grail-sidebar[auto-width] #{&} {
+    @at-root .l-bolt-holy-grail__sidebar--auto-width #{&} {
       width: unset;
     }
   }

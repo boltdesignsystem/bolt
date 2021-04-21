@@ -66,7 +66,7 @@ module.exports = {
     gutter: {
       type: 'string',
       description: 'Set the horizontal spacing in between desktop columns.',
-      enum: ['small', 'medium', 'large'],
+      enum: ['none', 'small', 'medium', 'large'],
       default: 'large',
     },
     padding_top: {
