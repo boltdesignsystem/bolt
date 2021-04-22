@@ -1,4 +1,4 @@
-{% set schema = bolt.data.components["@bolt-components-image"].schema %}
+{% set schema = bolt.data.components['@bolt-components-image'].schema %}
 
 {% if enable_json_schema_validation %}
   {{ validate_data_schema(schema, _self) | raw }}
@@ -9,7 +9,7 @@
   {% set _ratio_bool = ratio %}
 {% else %}
   {% set _ratio_string = ratio %}
-  {% set _ratio_split = _ratio_string|split("/") %}
+  {% set _ratio_split = _ratio_string|split('/') %}
   {% if _ratio_split|length == 2 %}
     {% set width = _ratio_split[0] %}
     {% set height = _ratio_split[1] %}
@@ -19,8 +19,8 @@
 {% set _image_data_bolt = bolt.data.images[src] %} {# Data from Bolt Manifest #}
 {% set _image_data_twig = getImageData(src)  %} {# Data from processing image file #}
 
-{% set _is_jpg = src|split('.')|last == "jpg" %}
-{% set _is_gif = src|split('.')|last == "gif" %}
+{% set _is_jpg = src|split('.')|last == 'jpg' %}
+{% set _is_gif = src|split('.')|last == 'gif' %}
 
 {% set height = height|default(_image_data_twig.height) %}
 {% set width = width|default(_image_data_twig.width) %}
@@ -31,20 +31,20 @@
   {% set srcset = _image_data_bolt.srcset %}
 {% endif %}
 
-{# Temp: prefix "ph" to preserve original value for web component, better pattern in the works #}
+{# Temp: prefix 'ph' to preserve original value for web component, better pattern in the works #}
 {% set _ph_color = placeholder_color|default(_image_data_bolt.color|default(schema.properties.placeholder_color.default)) %}
 {# Note: image-specific base64 data is only generated in production mode, default data is used for local development #}
 {% set _ph_image = placeholder_image|default(_image_data_bolt.base64|default(schema.properties.placeholder_image.default)) %}
 
 {% set _use_ratio = useAspectRatio or _ratio_bool ?? true %}
-{% set _can_use_ratio = _use_ratio is sameas(true) and _ratio_string != "none" and width > 0 and height > 0 and not cover %}
+{% set _can_use_ratio = _use_ratio is sameas(true) and _ratio_string != 'none' and width > 0 and height > 0 and not cover %}
 {# Only JPGs allowed, PNGs can have transparency and may not look right layered over placeholder #}
 {% set _can_use_placeholder = _can_use_ratio or cover %}
 
 {# Setup inline styles that will be added to the custom element  #}
-{% set _inline_bg_color = _can_use_placeholder and _is_jpg ? "background-color: " ~ _ph_color ~ "; " : "" %}
-{% set _inline_width = max_width ? "width: " ~ max_width ~ "; " : "" %}
-{% set _inline_max_width = max_width and "%" not in max_width ? "max-width: 100%; " : "" %}
+{% set _inline_bg_color = _can_use_placeholder and _is_jpg ? 'background-color: ' ~ _ph_color ~ '; ' : '' %}
+{% set _inline_width = max_width ? 'width: ' ~ max_width ~ '; ' : '' %}
+{% set _inline_max_width = max_width and '%' not in max_width ? 'max-width: 100%; ' : '' %}
 {% set _inline_style = _inline_bg_color ~ _inline_width ~ _inline_max_width %}
 
 {% if _inline_style|length %}
@@ -64,47 +64,47 @@
 {% set attributes = create_attribute(attributes | default({})) %}
 
 {% set image_classes = [
-  "c-bolt-image__image"
+  'c-bolt-image__image'
 ] %}
 
 {% set placeholder_classes = [
-  "c-bolt-image__image-placeholder"
+  'c-bolt-image__image-placeholder'
 ] %}
 
 {% set lazyload_classes = [
-  this.data.lazyload.value ? "c-bolt-image__lazyload",
-  this.data.lazyload.value ? "c-bolt-image__lazyload--fade" : "",
-  this.data.lazyload.value and _is_jpg ? "c-bolt-image__lazyload--blur" : "",
-  this.data.lazyload.value ? "js-lazyload" : ""
+  this.data.lazyload.value ? 'c-bolt-image__lazyload',
+  this.data.lazyload.value ? 'c-bolt-image__lazyload--fade' : '',
+  this.data.lazyload.value and _is_jpg ? 'c-bolt-image__lazyload--blur' : '',
+  this.data.lazyload.value ? 'js-lazyload' : ''
 ] %}
 
 {% set image_attributes = create_attribute(imageAttributes | default({})).addClass(image_classes, lazyload_classes)
-  .setAttribute('alt', this.data.alt.value ? this.data.alt.value : "")
-  .setAttribute( (this.data.lazyload.value ? "data-" : null) ~ "srcset", this.data.srcset.value ? this.data.srcset.value : null)
-  .setAttribute( (this.data.lazyload.value ? "data-" : null) ~ "sizes", this.data.sizes.value)
+  .setAttribute('alt', this.data.alt.value ? this.data.alt.value : '')
+  .setAttribute( (this.data.lazyload.value ? 'data-' : null) ~ 'srcset', this.data.srcset.value ? this.data.srcset.value : null)
+  .setAttribute( (this.data.lazyload.value ? 'data-' : null) ~ 'sizes', this.data.sizes.value)
   .setAttribute('srcset', this.data.lazyload.value ? schema.properties.placeholder_image.default : this.data.srcset.value)
   .setAttribute('src', this.data.src.value)
 %}
 
 {# DEPRECATED.  'magnify' is deprecated for device viewer-- when it is removed, 'zoom' will be unnecessary. #}
 {% if zoom %}
-  {% set image_attributes = image_attributes.setAttribute("data-zoom", src) %}
+  {% set image_attributes = image_attributes.setAttribute('data-zoom', src) %}
 {% endif %}
 
 {% set image_fallback_attributes = create_attribute({}).addClass(image_classes)
-  .setAttribute('alt', this.data.alt.value ? this.data.alt.value : "")
+  .setAttribute('alt', this.data.alt.value ? this.data.alt.value : '')
   .setAttribute('src', this.data.src.value)
-  .setAttribute(srcset ? "srcset" : "", this.data.srcset.value ? this.data.srcset.value : null)
+  .setAttribute(srcset ? 'srcset' : '', this.data.srcset.value ? this.data.srcset.value : null)
 %}
 
 {% if this.data.cover.value %}
-  {% set image_attributes = image_attributes.addClass("c-bolt-image--cover") %}
-  {% set image_fallback_attributes = image_fallback_attributes.addClass("c-bolt-image--cover") %}
+  {% set image_attributes = image_attributes.addClass('c-bolt-image--cover') %}
+  {% set image_fallback_attributes = image_fallback_attributes.addClass('c-bolt-image--cover') %}
 {% endif %}
 
 {% if this.data.valign.value and this.data.cover.value %}
-  {% set image_attributes = image_attributes.setAttribute("style", "object-position: #{align|default('50%')} #{valign};") %}
-  {% set image_fallback_attributes = image_fallback_attributes.setAttribute("style", "object-position: #{align|default('50%')} #{valign};") %}
+  {% set image_attributes = image_attributes.setAttribute('style', 'object-position: #{align|default('50%')} #{valign};') %}
+  {% set image_fallback_attributes = image_fallback_attributes.setAttribute('style', 'object-position: #{align|default('50%')} #{valign};') %}
 {% endif %}
 
 {% set _image_tag %}
@@ -118,11 +118,11 @@
 
 {% set image_placeholder %}
   <img {{ image_attributes.removeClass(image_classes, lazyload_classes).addClass(placeholder_classes)
-  .removeAttribute("data-srcset")
-  .removeAttribute("src")
-  .removeAttribute("data-sizes")
-  .removeAttribute("srcset")
-  .setAttribute("src", _ph_image)
+  .removeAttribute('data-srcset')
+  .removeAttribute('src')
+  .removeAttribute('data-sizes')
+  .removeAttribute('srcset')
+  .setAttribute('src', _ph_image)
   }} />
 {% endset %}
 
@@ -142,14 +142,14 @@
   >
 
   {% set children %}
-    {{ _is_jpg ? image_placeholder : "" }}
+    {{ _is_jpg ? image_placeholder : '' }}
     {{ _image_tag }}
   {% endset %}
 
   {% block image_content %}
     {% if _can_use_ratio %}
-      {% include "@bolt-components-ratio/ratio.twig" with {
-        ratio: width * 1 ~ "/" ~ height * 1,
+      {% include '@bolt-components-ratio/ratio.twig' with {
+        ratio: width * 1 ~ '/' ~ height * 1,
         children: children
       } only %}
     {% else %}
