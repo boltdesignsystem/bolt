@@ -1,7 +1,31 @@
-{% set schema = bolt.data.components["@bolt-components-background"].schema %}
+{% set schema = bolt.data.components['@bolt-components-background'].schema %}
 
 {% if enable_json_schema_validation %}
   {{ validate_data_schema(schema, _self) | raw }}
+{% endif %}
+
+{# DEPRECATED.  Use the property `content_items` instead of `contentItems`. #}
+{% if contentItems %}
+  {% set content_items = contentItems %}
+{% endif %}
+
+{# DEPRECATED.  Use the property `shape_group` instead of `shapeGroup`. #}
+{% if shapeGroup %}
+  {% set shape_group = shapeGroup %}
+{% endif %}
+
+{# DEPRECATED.  Use the property `shape_alignment` instead of `shapeAlignment`. #}
+{% if shapeAlignment %}
+  {% set shape_alignment = shapeAlignment %}
+{% endif %}
+
+{# DEPRECATED.  Use the boolean option instead of string. #}
+{% if overlay %}
+  {% if overlay == 'enabled' and opacity == null %}
+    {% set opacity = 'medium' %}
+  {% elseif overlay == 'disabled' %}
+    {% set opacity = 'none' %}
+  {% endif %}
 {% endif %}
 
 {# Variables #}
@@ -10,23 +34,22 @@
 
 <bolt-background bolt-component>
   <div {{ attributes.addClass(['c-bolt-background']) }}>
-    {% if contentItems %}
-      {% for item in contentItems %}
+    {% if content_items %}
+      {% for item in content_items %}
         {% if item %}
-          {% include "@bolt-components-background/background-item.twig" %}
+          {% include '@bolt-components-background/background-item.twig' %}
         {% endif %}
       {% endfor %}
     {% endif %}
 
-    {% if this.data.overlay.value == "enabled" or this.data.shape_group.value != 'none'  %}
-      <div class="{{ "c-bolt-background__item" }}">
-        {# @todo `overlay` should be Boolean #}
-        {% if this.data.overlay.value == "enabled" %}
-          {% include "@bolt-components-background/background-overlay.twig" %}
+    {% if this.data.opacity.value != 'none' or this.data.shape_group.value != 'none' %}
+      <div class="{{ 'c-bolt-background__item' }}">
+        {% if this.data.opacity.value != 'none'  %}
+          {% include '@bolt-components-background/background-overlay.twig' %}
         {% endif %}
 
         {% if this.data.shape_group.value != 'none' %}
-          {% include "@bolt-components-background/background-shapes-wrapper.twig" %}
+          {% include '@bolt-components-background/background-shapes-wrapper.twig' %}
         {% endif %}
       </div>
     {% endif %}

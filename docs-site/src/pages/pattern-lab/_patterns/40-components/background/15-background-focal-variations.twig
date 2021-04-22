@@ -1,6 +1,6 @@
 {% set schema = bolt.data.components['@bolt-components-background'].schema %}
 
-{% for horz in schema.properties.focalPoint.properties.horizontal.enum if horz != 'center' %}{# @todo: bolt background currently only reverses gradient on horz = 'left' #}
+{% for horz in schema.properties.focal_point.properties.horizontal.enum if horz != 'center' %}{# @todo: bolt background currently only reverses gradient on horz = 'left' #}
   <p>Heavy Opacity with {{  horz|capitalize }} Focal Point</p>
   {% include "./_00-background-band-demo.twig" with {
     background: {

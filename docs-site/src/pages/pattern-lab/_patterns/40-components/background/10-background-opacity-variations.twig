@@ -1,7 +1,7 @@
 {% set schema = bolt.data.components['@bolt-components-background'].schema %}
 
 {% for opacity in schema.properties.opacity.enum %}
-<p>{{ opacity|capitalize }} Opacity</p>
+<p>Opacity: {{ opacity|capitalize }}</p>
 {% include "./_00-background-band-demo.twig" with {
   background: {
     opacity: opacity,

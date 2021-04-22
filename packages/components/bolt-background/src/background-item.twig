@@ -1,17 +1,17 @@
-{% set schema = bolt.data.components["@bolt-components-background"].schema %}
+{% set schema = bolt.data.components['@bolt-components-background'].schema %}
 
 {# Variables #}
 {% set this = init(schema) %}
-{% set item_attributes = item.pattern ~ "Attributes" %}
+{% set item_attributes = item.pattern ~ 'Attributes' %}
 
-{# Image expects "ratio" to be passed as string, Video expects boolean #}
+{# Image expects 'ratio' to be passed as string, Video expects boolean #}
 {# todo: in v3.0 remove reference to Video, no longer supported #}
-{% set ratio_value = item.pattern == "image" ? "none" : false %}
+{% set _ratio_value = item.pattern == 'image' ? 'none' : false %}
 
-{% if item.pattern and item.pattern != "image" %}
+{% if item.pattern and item.pattern != 'image' %}
   {% set item = item | merge({
     (item_attributes): {
-      class: ["c-bolt-background__#{item.pattern}"]
+      class: ['c-bolt-background__#{item.pattern}']
     }
   }) %}
 {% endif %}
@@ -19,15 +19,15 @@
 
 {# todo: in v3.0 nix the pattern_template pattern? #}
 {% if item.pattern %}
-  <div class="{{ "c-bolt-background__item" }}">
+  <div class="{{ 'c-bolt-background__item' }}">
     {% include pattern_template(item.pattern) with item | merge({
-      ratio: ratio_value,
+      ratio: _ratio_value,
       lazyload: item.lazyload ?? true,
       cover: item.cover ?? true
     }) only %}
   </div>
 {% elseif (item is iterable) %}
-  <div class="{{ "c-bolt-background__item" }}">
+  <div class="{{ 'c-bolt-background__item' }}">
     {{ item }}
   </div>
 {% else %}
