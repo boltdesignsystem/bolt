@@ -29,6 +29,10 @@ module.exports = {
         },
       },
     },
+    eyebrow_items: {
+      type: 'array',
+      description: 'Render an array of eyebrow text for the listing.',
+    },
     meta_items: {
       type: 'array',
       description: 'Render an array of meta data for the listing.',
@@ -84,6 +88,11 @@ module.exports = {
       type: 'string',
       description:
         'Render warning text for the listing, which appears below the "more info" content. No links should be passed here.',
+    },
+    chip_list: {
+      type: 'object',
+      description:
+        'Render a list of related chips for the resource.  Passing the Chip List component is mandatory.',
     },
   },
 };

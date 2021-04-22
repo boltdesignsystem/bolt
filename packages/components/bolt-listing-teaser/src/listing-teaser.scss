@@ -23,8 +23,7 @@
   grid-template-columns: auto 1fr;
   grid-template-rows: repeat(3, minmax(min-content, max-content)) 1fr;
   grid-template-areas:
-    '. eyebrow status'
-    'signifier eyebrow status'
+    '. eyebrow .'
     'signifier heading status'
     'signifier content status'
     '. content status';
@@ -43,6 +42,8 @@
 }
 
 .c-bolt-listing-teaser__flag-eyebrow {
+  margin-bottom: var(--bolt-spacing-y-xxsmall);
+  pointer-events: none;
   grid-area: eyebrow;
 }
 
@@ -87,6 +88,13 @@
     font-size: var(--bolt-type-font-size-xsmall);
     line-height: var(--bolt-type-line-height-xsmall);
     pointer-events: none;
+  }
+
+  .e-bolt-text-link,
+  bolt-link,
+  bolt-chip {
+    position: relative; // This raises the stacking order of the content link above the main heading link.
+    pointer-events: all;
   }
 }
 
@@ -172,10 +180,33 @@
       color: var(--m-bolt-neutral);
       vertical-align: baseline;
     }
-  }
 
-  .e-bolt-text-link,
-  bolt-link {
-    position: relative; // This raises the stacking order of the meta link above the main heading link.
+    > * {
+      display: inline;
+    }
   }
+}
+
+.c-bolt-listing-teaser__flag-signifier {
+  order: 1;
+}
+
+.c-bolt-listing-teaser__flag-eyebrow {
+  order: 2;
+}
+
+.c-bolt-listing-teaser__flag-heading {
+  order: 3;
+}
+
+.c-bolt-listing-teaser__flag-content {
+  order: 4;
+}
+
+.c-bolt-listing-teaser__flag-status {
+  order: 5;
+}
+
+.c-bolt-listing-teaser__actions {
+  order: 6;
 }
