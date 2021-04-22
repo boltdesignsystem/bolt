@@ -103,8 +103,8 @@
 {% endif %}
 
 {% if this.data.valign.value and this.data.cover.value %}
-  {% set image_attributes = image_attributes.setAttribute('style', 'object-position: #{align|default('50%')} #{valign};') %}
-  {% set image_fallback_attributes = image_fallback_attributes.setAttribute('style', 'object-position: #{align|default('50%')} #{valign};') %}
+  {% set image_attributes = image_attributes.setAttribute('style', 'object-position: #{align|default("50%")} #{valign};') %}
+  {% set image_fallback_attributes = image_fallback_attributes.setAttribute('style', 'object-position: #{align|default("50%")} #{valign};') %}
 {% endif %}
 
 {% set _image_tag %}
