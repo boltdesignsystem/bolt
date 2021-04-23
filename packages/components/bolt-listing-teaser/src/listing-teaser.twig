@@ -59,16 +59,16 @@
       {% endif %}
       {% if this.data.more_info.value %}
         <div class="c-bolt-listing-teaser__flag-content__item">
-          {% set _icon_chevron_right %}
+          {% set _icon_chevron_right %}{% spaceless %}
             {% include '@bolt-components-icon/icon.twig' with {
               name: 'chevron-right',
             } only %}
-          {% endset %}
-          {% set _read_more_link %}
-            {{ 'Read More'|t }}{{ _icon_chevron_right|spaceless }}
-          {% endset %}
+          {% endspaceless %}{% endset %}
+          {% set _more_info_content %}
+            {{ this.data.more_info.value }} &hellip; {{ 'Read More'|t }}{{ _icon_chevron_right }}
+          {%  endset %}
           {% include '@bolt-components-headline/text.twig' with {
-            text: this.data.more_info.value ~ ' &hellip; ' ~ _read_more_link|spaceless,
+            text: _more_info_content,
             tag: 'p',
             size: 'small',
           } only %}
@@ -82,8 +82,11 @@
               color: 'yellow',
             } only %}
           {% endset %}
+          {% set _warning_content %}
+            {{ _icon_warning }}{{ this.data.warning.value }}
+          {% endset %}
           {% include '@bolt-components-headline/text.twig' with {
-            text: _icon_warning ~ this.data.warning.value,
+            text: _warning_content,
             tag: 'p',
             size: 'small',
           } only %}
