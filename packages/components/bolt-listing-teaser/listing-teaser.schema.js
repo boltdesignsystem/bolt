@@ -85,5 +85,9 @@ module.exports = {
       description:
         'Render warning text for the listing, which appears below the "more info" content. No links should be passed here.',
     },
+    reply: {
+      type: 'any',
+      description: 'Render a preview of a reply to the post.',
+    },
   },
 };

@@ -1,0 +1,62 @@
+{% set description %}
+  A listing can show one relevant reply at a time. Content can be added by using the <bolt-code-snippet display="inline">reply</bolt-code-snippet> prop.
+{% endset %}
+
+{% set demo %}
+  {% set reply %}
+    <p><strong>Replied on Aug 21, 2021</strong></p>
+    <p>This is a reply. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aut, repellat natus! Nemo, fugiat. Unde deserunt soluta assumenda magnam sit excepturi voluptates repudiandae iure tempore omnis? Dolorem impedit quo iusto sapiente.</p>
+    <p>Some more text. Excepturi deleniti possimus sed corrupti illo doloribus, nam nemo hic, saepe quam repellendus officiis quaerat pariatur aliquid molestiae illum natus dolore aliquam?</p>
+  {% endset %}
+
+  {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
+    headline: {
+      text: 'RE: This is a post showing one of the replies',
+      tag: 'h3',
+      size: 'large',
+      link_attributes: {
+        href: 'https://pega.com'
+      },
+    },
+    meta_items: [
+      'Posted 8 hours 15 minutes ago',
+      'Last activity: 2 minutes ago',
+    ],
+    reply: reply,
+  } only %}
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+// Set up the reply content
+{% set reply %}
+  <p><strong>Replied on Aug 21, 2021</strong></p>
+  <p>This is a reply. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aut, repellat natus! Nemo, fugiat. Unde deserunt soluta assumenda magnam sit excepturi voluptates repudiandae iure tempore omnis? Dolorem impedit quo iusto sapiente.</p>
+  <p>Some more text. Excepturi deleniti possimus sed corrupti illo doloribus, nam nemo hic, saepe quam repellendus officiis quaerat pariatur aliquid molestiae illum natus dolore aliquam?</p>
+{% endset %}
+
+// Pass the content to the reply prop
+{% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
+  headline: {
+    text: 'RE: This is a post showing one of the replies',
+    tag: 'h3',
+    size: 'large',
+    link_attributes: {
+      href: 'https://pega.com'
+    },
+  },
+  meta_items: [
+    'Posted 8 hours 15 minutes ago',
+    'Last activity: 2 minutes ago',
+  ],
+  reply: reply,
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Listing Reply',
+  description: description,
+  demo: demo,
+  twig_markup: twig_markup,
+} only %}

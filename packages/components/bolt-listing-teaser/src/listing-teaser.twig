@@ -82,6 +82,26 @@
           } only %}
         </div>
       {% endif %}
+      {% if this.data.reply %}
+        <div class="c-bolt-listing-teaser__flag-content__item c-bolt-listing-teaser__flag-content__item--reply">
+          {% set _icon_chevron_right %}{% spaceless %}
+            {% include '@bolt-components-icon/icon.twig' with {
+              name: 'chevron-right',
+            } only %}
+          {% endspaceless %}{% endset %}
+          {% set _reply_link %}
+            <span class="e-bolt-text-link e-bolt-text-link--reversed-underline">{{ 'Go to reply'|t }}<span class="e-bolt-text-link__icon-after">{{ _icon_chevron_right }}</span></span>
+          {%  endset %}
+          {% include '@bolt-components-stack/stack.twig' with {
+            content: this.data.reply,
+          } only %}
+          {% include '@bolt-components-headline/text.twig' with {
+            text: _reply_link,
+            tag: 'p',
+            size: 'small',
+          } only %}
+        </div>
+      {% endif %}
     </div>
     {% if status %}
       <ul class="c-bolt-listing-teaser__flag-status">
