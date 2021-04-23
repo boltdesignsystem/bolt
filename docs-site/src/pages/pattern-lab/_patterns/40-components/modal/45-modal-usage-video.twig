@@ -25,10 +25,11 @@
   {% set modal_content_1 %}
     {% set video %}
       <video-js
-        data-account="1900410236"
-        data-player="O3FkeBiaDz"
+        data-modal-account="1900410236"
+        data-modal-player="O3FkeBiaDz"
         data-embed="default"
-        data-video-id="4892122320001"
+        data-modal-video-id="4892122320001"
+        data-video-modal
         controls
         data-media-title
         data-media-duration
@@ -79,7 +80,7 @@
   // Show modal on video toggle, pause on modal hide
   const modal2 = document.querySelector('.js-bolt-modal-456');
   const video2 = document.querySelector('.js-modal-video-456');
-\
+
   video2.addEventListener('playing', function() {
     videojs.getPlayer(video2).show();
   });
@@ -95,10 +96,11 @@
   {% set modal_content_2 %}
     {% set video %}
       <video-js
-        data-account="1900410236"
-        data-player="O3FkeBiaDz"
+        data-modal-account="1900410236"
+        data-modal-player="O3FkeBiaDz"
         data-embed="default"
-        data-video-id="4892122320001"
+        data-modal-video-id="4892122320001"
+        data-video-modal
         data-media-title
         data-media-duration
         controls
