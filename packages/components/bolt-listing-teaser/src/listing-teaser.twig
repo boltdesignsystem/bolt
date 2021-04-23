@@ -55,7 +55,7 @@
             } only %}
           {% endspaceless %}{% endset %}
           {% set _more_info_content %}
-            {{ this.data.more_info.value }} &hellip; {{ 'Read More'|t }}{{ _icon_chevron_right }}
+            {{ this.data.more_info.value }} &hellip; <span class="e-bolt-text-link e-bolt-text-link--reversed-underline">{{ 'Read More'|t }}<span class="e-bolt-text-link__icon-after">{{ _icon_chevron_right }}</span></span>
           {%  endset %}
           {% include '@bolt-components-headline/text.twig' with {
             text: _more_info_content,
