@@ -12,6 +12,7 @@
 {# Array of classes based on the defined + default props #}
 {% set classes = [
   'c-bolt-listing-teaser',
+  this.data.gutter ? 'c-bolt-listing-teaser--gutter-' ~ this.data.gutter,
   _listing_id,
 ] %}
 

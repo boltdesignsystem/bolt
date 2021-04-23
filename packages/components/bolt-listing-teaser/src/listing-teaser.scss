@@ -39,6 +39,18 @@
   pointer-events: none;
   user-select: none;
   grid-area: signifier;
+
+  @at-root .c-bolt-listing-teaser--gutter-large #{&} {
+    margin-right: var(--bolt-spacing-x-large);
+  }
+
+  @at-root .c-bolt-listing-teaser--gutter-medium #{&} {
+    margin-right: var(--bolt-spacing-x-medium);
+  }
+
+  @at-root .c-bolt-listing-teaser--gutter-small #{&} {
+    margin-right: var(--bolt-spacing-x-small);
+  }
 }
 
 .c-bolt-listing-teaser__flag-eyebrow {

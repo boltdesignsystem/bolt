@@ -10,6 +10,13 @@ module.exports = {
       description:
         'A Drupal-style attributes object with extra attributes to append to this component.',
     },
+    gutter: {
+      type: 'string',
+      description:
+        'Set the spacing in between the signifier and the rest of the content.',
+      enum: ['small', 'medium', 'large'],
+      default: 'small',
+    },
     signifier: {
       type: 'any',
       description:
