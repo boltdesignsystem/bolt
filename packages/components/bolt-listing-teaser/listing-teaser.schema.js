@@ -101,5 +101,9 @@ module.exports = {
       description:
         'Render a list of related chips for the resource.  Passing the Chip List component is mandatory.',
     },
+    reply: {
+      type: 'any',
+      description: 'Render a preview of a reply to the post.',
+    },
   },
 };

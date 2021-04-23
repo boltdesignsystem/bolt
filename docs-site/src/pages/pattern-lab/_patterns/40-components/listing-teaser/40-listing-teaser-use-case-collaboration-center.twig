@@ -208,6 +208,35 @@
     } only %}
   {% endset %}
   {% set listing_6 %}
+    {% set reply %}
+      <p><strong>Replied on Aug 21, 2021</strong></p>
+      <p>Hi&nbsp;<a href="/users/ClayN538"></a><a href="/user/1622491" target="_blank" class="mentions mentions-1622491"></a><a href="/user/1622491" target="_blank" class="mentions mentions-1622491">@ClayN538</a>&nbsp;</p>
+      <p>Here is the information for <a href="https://collaborate.pega.com/discussion/pega-826-patch-available">Pega Patch 8.2.6</a>&nbsp;within the PCC and a direct link to our <a href="https://community.pega.com/digital-delivery" target="_blank" rel="noopener">Digital Delivery Software</a>.</p>
+      <p>Here is the&nbsp;<a href="https://collaborate.pega.com/search?f%5B0%5D=search_site_moderator_tag%3APatch%20Release">link </a>to all of our posts regarding Pega Patches.</p>
+      <p>If you can't find the Patch for 8.2.6, please reach out to your Account Executive.</p>
+    {% endset %}
+    {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
+      signifier: icon_questions,
+      headline: {
+        text: 'RE: This is a post showing one of the replies',
+        tag: 'h3',
+        size: 'large',
+        link_attributes: {
+          href: 'https://pega.com'
+        },
+      },
+      meta_items: [
+        'Posted by <a href="https://collaborate.pega.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline">username</a> on July 1, 2020',
+        'Last activity: 1 hour ago',
+      ],
+      status: {
+        replies: '5',
+        views: '216',
+      },
+      reply: reply,
+    } only %}
+  {% endset %}
+  {% set listing_7 %}
     {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
       signifier: icon_questions,
       headline: {
@@ -231,7 +260,7 @@
       action_menu: action_menu,
     } only %}
   {% endset %}
-  {% set listing_7 %}
+  {% set listing_8 %}
     {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
       signifier: icon_questions,
       headline: {
@@ -268,6 +297,7 @@
       listing_5,
       listing_6,
       listing_7,
+      listing_8,
     ]
   } only %}
 {% endset %}
@@ -316,6 +346,8 @@
       'Posted by <a href="https://collaborate.pega.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline">mikemai</a> on Apr 9, 2020',
       'Last activity: 8 hours 26 minutes ago',
     ],
+    more_info: more_info,
+    reply: reply,
     status: {
       solved: true,
       locked: true,
