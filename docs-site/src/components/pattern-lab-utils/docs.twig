@@ -1,10 +1,16 @@
 {% if componentName %}
   {% set data = getBoltData() %} {# grab a fresh copy of the full manifest data to reflect schema.yml file changes, etc #}
   {% set componentGroup = componentGroup|default("components") %}
-  {% set schema = data.components["@bolt-#{componentGroup}-#{componentName}"].schema %}
   {% set readme_file = "@bolt-#{componentGroup}-#{componentName}/README.md" %}
   {% set change_log_file = "@bolt-#{componentGroup}-#{componentName}/CHANGELOG.md" %}
   {% set pkg = get_data("@bolt-#{componentGroup}-#{componentName}/package.json") %}
+  {# Handle multiple schemas #}
+  {% if data.components["@bolt-#{componentGroup}-#{componentName}"].schema["#{componentName}"] is defined %}
+    {% set component_schemas = data.components["@bolt-#{componentGroup}-#{componentName}"].schema %}
+    {% set schema = component_schemas["#{componentName}"] %}
+  {% else %} 
+    {% set schema = data.components["@bolt-#{componentGroup}-#{componentName}"].schema %}
+  {% endif %}
 {% endif %}
 
 {% set component_version = pkg.version %}
@@ -121,7 +127,7 @@
       <bolt-tab-panel>
         <bolt-text slot="label" tag="h2">Schema</bolt-text>
 
-        {% include "@utils/schema-docs.twig" with { schema: schema } only %}
+        {% include "@utils/schema-docs.twig" with { schemas: component_schemas|default([schema]) } only %}
       </bolt-tab-panel>
     {% endif %}
 

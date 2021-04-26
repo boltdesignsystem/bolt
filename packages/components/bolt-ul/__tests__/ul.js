@@ -1,9 +1,7 @@
 import {
-  isConnected,
   render,
   renderString,
   stopServer,
-  html,
 } from '../../../testing/testing-helpers';
 
 describe('<bolt-ul> Component', () => {

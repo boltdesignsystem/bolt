@@ -1,16 +1,7 @@
-import {
-  isConnected,
-  render,
-  renderString,
-  stopServer,
-  html,
-  vrtDefaultConfig,
-} from '../../../testing/testing-helpers';
-import schema from '../teaser.schema';
-const { disabled } = schema.properties;
+import { render, stopServer } from '../../../testing/testing-helpers';
 const timeout = 90000;
 
-let page, results, fixtures;
+let page, fixtures;
 
 afterAll(async () => {
   await stopServer();

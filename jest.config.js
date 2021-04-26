@@ -34,15 +34,14 @@ module.exports = {
   ],
   globalSetup: './packages/testing/testing-jest/jest-global-setup.js',
   globalTeardown: './packages/testing/testing-jest/jest-global-teardown.js',
-  setupFilesAfterEnv: [
-    './packages/testing/testing-jest/jest-setup-files-after-env.js',
-    'jest-expect-message',
-  ],
+  setupFilesAfterEnv: ['jest-dom/extend-expect', 'jest-expect-message'],
   snapshotSerializers: ['jest-serializer-html'],
   reporters: [
     'default',
     './packages/testing/testing-jest/jest-reporter-vrt.js',
   ],
+  testTimeout: 120000,
+  // slowTestThreshold: 30000, // Uncomment to debug slow tests once we upgrade to Jest v26
   // Notify not working correctly; we want to only get a notification when tests fail, and then get ONE success notificaiton after it passes
   // notify: true,
   // notifyMode: 'failure-success',

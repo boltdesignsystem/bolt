@@ -1,14 +1,6 @@
-import {
-  isConnected,
-  render,
-  renderString,
-  stopServer,
-  html,
-} from '../../../testing/testing-helpers';
+import { render, stopServer } from '../../../testing/testing-helpers';
 import schema from '../pagination.schema';
 const { align } = schema.properties;
-
-const timeout = 120000;
 
 describe('<bolt-pagination> Component', () => {
   afterAll(async () => {

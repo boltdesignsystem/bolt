@@ -1,11 +1,4 @@
-import {
-  isConnected,
-  render,
-  renderString,
-  stopServer,
-  html,
-  vrtDefaultConfig,
-} from '../../../testing/testing-helpers';
+import { render, stopServer, html } from '../../../testing/testing-helpers';
 import schema from '../progress-bar.schema';
 const { valueFormat, animated } = schema.properties;
 const timeout = 90000;
@@ -100,9 +93,6 @@ describe('<progress-bar> component', () => {
 
     const renderedHTML = await html(outerHTML);
     expect(renderedHTML).toMatchSnapshot();
-
-    const image = await page.screenshot();
-    expect(image).toMatchImageSnapshot(vrtDefaultConfig);
   });
 
   test('renders without Shadow DOM', async function() {
@@ -118,9 +108,6 @@ describe('<progress-bar> component', () => {
 
     const renderedHTML = await html(outerHTML);
     expect(renderedHTML).toMatchSnapshot();
-
-    const image = await page.screenshot();
-    expect(image).toMatchImageSnapshot(vrtDefaultConfig);
   });
 
   // Props
