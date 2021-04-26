@@ -3,9 +3,9 @@
 \* ------------------------------------ */
 
 @mixin bolt-button-reset() {
-  @include bolt-font-family(body);
   appearance: none; // override default [type=submit] button styles coming from Normalize
   padding: 0;
+  font-family: var(--bolt-type-font-family-body);
   background: none;
 }
 
