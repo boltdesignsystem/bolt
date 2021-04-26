@@ -15,13 +15,13 @@ module.exports = {
       .url(
         `${testingUrl}/pattern-lab/patterns/40-components-trigger-35-trigger-advanced-usage/40-components-trigger-35-trigger-advanced-usage.html`,
       )
-      .waitForElementVisible('bolt-trigger[on-click="show"]', 1000)
-      // .click('bolt-trigger[on-click="show"]') // [1]
+      .waitForElementVisible('bolt-trigger[data-bolt-modal-target]', 1000)
+      // .click('bolt-trigger[data-bolt-modal-target]') // [1]
       .execute(
         function(selector) {
           document.querySelector(selector).click();
         },
-        ['bolt-trigger[on-click="show"]'],
+        ['bolt-trigger[data-bolt-modal-target]'],
       )
       .pause(1000)
       .execute(
@@ -39,14 +39,17 @@ module.exports = {
       .saveScreenshot(
         `screenshots/bolt-trigger/${testName}--has-opened-modal--${currentBrowser}.png`,
       )
-      .waitForElementVisible('bolt-trigger[on-click="hide"]', 1000)
+      .waitForElementVisible(
+        'bolt-modal bolt-trigger[data-bolt-modal-target]',
+        1000,
+      )
       .pause(1000)
-      // .click('bolt-trigger[on-click="hide"]') // [1]
+      // .click('bolt-modal bolt-trigger[data-bolt-modal-target]') // [1]
       .execute(
         function(selector) {
           document.querySelector(selector).click();
         },
-        ['bolt-trigger[on-click="hide"]'],
+        ['bolt-modal bolt-trigger[data-bolt-modal-target]'],
       )
       .pause(1000)
       .execute(
