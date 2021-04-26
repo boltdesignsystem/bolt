@@ -114,37 +114,63 @@
   };
 
   players.forEach(function(player) {
+    // Initialize the player if it hasn't already been.
+    var playerId = player.getAttribute("data-player");
+    if (
+      !player.classList.contains("bc-player-" + playerId + "_default") &&
+      !player.hasAttribute("data-video-delayed")
+    ) {
+      bc(player);
+    }
+
     // [data-video-modal] prevents the video from being loaded on page load
-    if(!player.hasAttribute('data-video-modal')){
+    if (!player.hasAttribute("data-video-delayed")) {
+      const myPlayer = videojs.getPlayer(player.id);
       // Initialize the Brigthcove video functionality
-      videoInit(videojs.getPlayer(player.id))
+      videoInit(myPlayer);
     } else {
       // Find all videos that have the 'data-video-modal' data attribute
-      const videoModals = document.querySelectorAll('[data-video-modal]');
-      videoModals.forEach(video => {
-        let myPlayer;
+      const videoModals = document.querySelectorAll(
+        "video-js[data-video-delayed]"
+      );
+      videoModals.forEach((video) => {
         // Find the closest bolt-modal for each of the modal videos
-        const modal = video.closest('bolt-modal');
-        if(modal){
+        const modal = video.closest("bolt-modal");
+        if (modal) {
+          let myPlayer;
           // Target the modal's 'modal:show' event (as defined in "packages/components/bolt-modal/src/modal.js")
-          modal.addEventListener('modal:show', (e) => {
-            if(!video.classList.contains('vjs-player-info')){
+          modal.addEventListener("modal:show", (e) => {
+            if (video.hasAttribute("data-video-delayed")) {
               // Using the temporary data attribute ("data-modal..." attributes), create the Brightcove atttributes required for init
-              video.setAttribute('data-account', video.dataset.modalAccount);
-              video.setAttribute('data-player', video.dataset.modalPlayer);
-              video.setAttribute('data-video-id', video.dataset.modalVideoId);
-              // Initialize the Brightcove video
+              video.setAttribute(
+                "data-account",
+                video.dataset.delayedAccount
+              );
+              video.setAttribute(
+                "data-player",
+                video.dataset.delayedPlayer
+              );
+              video.setAttribute(
+                "data-video-id",
+                video.dataset.delayedVideoId
+              );
+              // Initialize thse Brightcove video
               myPlayer = bc(video);
-              // Pass in the initialized video into the Pega custom videoInit function 
-              videoInit(myPlayer); 
+              // Pass in the initialized video into the Pega custom videoInit function
+              videoInit(myPlayer);
+              //Remove the 'data-video-modal'
+              video.removeAttribute("data-video-delayed");
             }
-            // Play the video automatically
-            myPlayer.play();
+            if (myPlayer) {
+              myPlayer.play();
+            }
           });
           // Target the modal's 'modal:hide' event (as defined in "packages/components/bolt-modal/src/modal.js")
-          modal.addEventListener('modal:hide', (e) => {
-            // Pause the video automatically
-            myPlayer.pause();
+          modal.addEventListener("modal:hide", (e) => {
+            if (myPlayer) {
+              // Pause the video automatically
+              myPlayer.pause();
+            }
           });
         }
       });
