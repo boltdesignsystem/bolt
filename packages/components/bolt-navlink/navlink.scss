@@ -19,11 +19,11 @@ bolt-navlink {
 }
 
 .c-bolt-navlink {
-  @include bolt-font-size(small);
   @include bolt-font-weight(semibold);
   opacity: 0.9;
   position: relative;
   padding: calc(var(--bolt-spacing-y-small) / 2) var(--bolt-spacing-x-xsmall);
+  font-size: var(--bolt-type-font-size-small);
   color: bolt-theme(headline-link);
   text-decoration: none;
   border-radius: 3px;

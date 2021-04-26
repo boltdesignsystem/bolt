@@ -1,10 +1,10 @@
 @import '@bolt/core-v3.x';
 
 .c-bolt-toolbar {
-  @include bolt-font-size(small);
   position: relative;
   min-width: 100%;
   margin: 0 auto;
+  font-size: var(--bolt-type-font-size-small);
   color: var(--m-bolt-secondary);
 }
 
@@ -41,8 +41,8 @@
 }
 
 .c-bolt-toolbar__title-text {
-  @include bolt-font-size(medium);
   @include bolt-font-weight(semibold);
+  font-size: var(--bolt-type-font-size-medium);
 }
 
 .c-bolt-toolbar__title-icon {
