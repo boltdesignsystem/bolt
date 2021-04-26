@@ -378,8 +378,7 @@
           position: 'before',
         },
         attributes: {
-          'on-click': 'show',
-          'on-click-target': 'js-bolt-modal',
+          'data-bolt-modal-target': '.js-bolt-modal',
         },
       } only %}
       {% set apply_button %}
@@ -395,8 +394,7 @@
           size: 'small',
           style: 'text',
           attributes: {
-            'on-click': 'show',
-            'on-click-target': 'js-bolt-modal',
+            'data-bolt-modal-target': '.js-bolt-modal',
           },
         } only %}
       {% endset %}

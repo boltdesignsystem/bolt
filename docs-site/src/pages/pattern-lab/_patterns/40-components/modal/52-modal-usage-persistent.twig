@@ -90,19 +90,19 @@
   text: "Activate the persistent modal",
   size: "small",
   attributes: {
-    onclick: "this.nextElementSibling.show()",
+    "data-bolt-modal-target": ".js-bolt-modal--usage-persistent",
   }
 } only %}
 
 {# The persistent modal #}
 {% include "@bolt-components-modal/modal.twig" with {
-  attributes: {
-    class: "js-image-modal-advanced-complex-layout",
-  },
   persistent_return_url: return_link_url,
   content: modal_content,
   width: "full",
   spacing: "none",
   scroll: "overall",
   persistent: true,
+  attributes: {
+    class: "js-bolt-modal--usage-persistent",
+  },
 } only %}

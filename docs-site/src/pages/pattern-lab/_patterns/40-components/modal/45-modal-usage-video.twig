@@ -45,20 +45,19 @@
   {% include "@bolt-components-button/button.twig" with {
     text: "Play the video",
     attributes: {
-      "on-click": "show",
-      "on-click-target": "js-bolt-modal-123"
+      "data-bolt-modal-target": ".js-bolt-modal--video-1",
     }
   } only %}
 
   {% include "@bolt-components-modal/modal.twig" with {
-    attributes: {
-      class: "js-bolt-modal-123"
-    },
     content: modal_content_1,
     width: "optimal",
     spacing: "none",
     theme: "none",
     scroll: "overall",
+    attributes: {
+      class: "js-bolt-modal--video-1",
+    },
   } only %}
 
   {{ javascript_1 }}
@@ -116,20 +115,19 @@
   {% include "@bolt-components-button/button.twig" with {
     text: "Play the video",
     attributes: {
-      "on-click": "toggle",
-      "on-click-target": "js-bolt-modal-456"
+      "data-bolt-modal-target": ".js-bolt-modal--video-2",
     }
   } only %}
 
   {% include "@bolt-components-modal/modal.twig" with {
-    attributes: {
-      class: "js-bolt-modal-456"
-    },
     content: modal_content_2,
     width: "optimal",
     spacing: "none",
     theme: "none",
     scroll: "overall",
+    attributes: {
+      class: "js-bolt-modal--video-2",
+    },
   } only %}
 
   {{ javascript_2 }}
