@@ -7,6 +7,25 @@
     <p><strong>Replied on Aug 21, 2021</strong></p>
     <p>This is a reply. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aut, repellat natus! Nemo, fugiat. Unde deserunt soluta assumenda magnam sit excepturi voluptates repudiandae iure tempore omnis? Dolorem impedit quo iusto sapiente.</p>
     <p>Some more text. Excepturi deleniti possimus sed corrupti illo doloribus, nam nemo hic, saepe quam repellendus officiis quaerat pariatur aliquid molestiae illum natus dolore aliquam?</p>
+    {% set reply_link %}
+      {% set icon_chevron_right %}
+        {% include '@bolt-components-icon/icon.twig' with {
+          name: 'chevron-right',
+        } only %}
+      {% endset %}
+      {% include '@bolt-elements-text-link/text-link.twig' with {
+        content: 'Go to reply',
+        icon_after: icon_chevron_right,
+        attributes: {
+          href: '/reply-123',
+        }
+      } only %}
+    {%  endset %}
+    {% include '@bolt-components-headline/text.twig' with {
+      text: reply_link,
+      tag: 'p',
+      size: 'small',
+    } only %}
   {% endset %}
 
   {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
@@ -33,6 +52,25 @@
   <p><strong>Replied on Aug 21, 2021</strong></p>
   <p>This is a reply. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aut, repellat natus! Nemo, fugiat. Unde deserunt soluta assumenda magnam sit excepturi voluptates repudiandae iure tempore omnis? Dolorem impedit quo iusto sapiente.</p>
   <p>Some more text. Excepturi deleniti possimus sed corrupti illo doloribus, nam nemo hic, saepe quam repellendus officiis quaerat pariatur aliquid molestiae illum natus dolore aliquam?</p>
+  {% set reply_link %}
+    {% set icon_chevron_right %}
+      {% include '@bolt-components-icon/icon.twig' with {
+        name: 'chevron-right',
+      } only %}
+    {% endset %}
+    {% include '@bolt-elements-text-link/text-link.twig' with {
+      content: 'Go to reply',
+      icon_after: icon_chevron_right,
+      attributes: {
+        href: '/reply-123',
+      }
+    } only %}
+  {%  endset %}
+  {% include '@bolt-components-headline/text.twig' with {
+    text: reply_link,
+    tag: 'p',
+    size: 'small',
+  } only %}
 {% endset %}
 
 // Pass the content to the reply prop

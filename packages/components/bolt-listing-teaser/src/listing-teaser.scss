@@ -117,15 +117,14 @@
     border-left: 3px solid var(--m-bolt-link);
 
     a {
+      position: relative; // This raises the stacking order of the meta link above the main heading link.
       text-decoration: none;
-    }
-  }
+      pointer-events: all;
 
-  .e-bolt-text-link,
-  bolt-link,
-  bolt-chip {
-    position: relative; // This raises the stacking order of the content link above the main heading link.
-    pointer-events: all;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
   }
 }
 
