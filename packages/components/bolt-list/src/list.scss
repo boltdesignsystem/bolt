@@ -27,11 +27,11 @@
 // 4. Full width and 1px offset must be defined in order for the list to dislay correctly in Safari.
 .c-bolt-list {
   @include bolt-font-family(body); // [1]
-  @include bolt-font-weight(regular); // [1]
 
   margin: 0;
   padding: 0;
   font-size: var(--bolt-type-font-size-medium);
+  font-weight: var(--bolt-type-font-weight-regular);
   list-style: none;
   text-align: left; // [2]
   text-align: start; // [2]
