@@ -13,6 +13,7 @@
 {% set classes = [
   'c-bolt-listing-teaser',
   this.data.gutter ? 'c-bolt-listing-teaser--gutter-' ~ this.data.gutter,
+  variant == 'card' ? 'c-bolt-listing-teaser--variant-' ~ variant,
   _listing_id,
 ] %}
 
@@ -182,4 +183,13 @@
       } only %}
     {% endif %}
   {% if action_menu or share_menu %}</div>{% endif %}
+  {% if callout %}
+    {% set callout_attributes = create_attribute(callout.attributes|default({})) %}
+    {% set callout_classes = [
+      'c-bolt-listing-teaser__callout',
+    ] %}
+    <div {{ callout_attributes.addClass(callout_classes) }}>
+      {{ callout.content }}
+    </div>
+  {% endif %}
 </article>

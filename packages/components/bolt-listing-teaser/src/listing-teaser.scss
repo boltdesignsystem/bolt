@@ -5,13 +5,21 @@
 \* ------------------------------------ */
 
 .c-bolt-listing-teaser {
-  display: flex;
-  flex-wrap: nowrap;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-areas:
+    'flag actions'
+    'callout callout';
   align-items: flex-start;
   position: relative; // Position is set here so the heading link can expand its click target up to this point.
 }
 
+.c-bolt-listing-teaser__callout {
+  grid-area: callout;
+}
+
 .c-bolt-listing-teaser__actions {
+  grid-area: actions;
   position: relative; // This raises the stacking order of the flag media above the main heading link.
   margin: var(--bolt-spacing-y-xsmall) 0 var(--bolt-spacing-y-xsmall)
     var(--bolt-spacing-x-small);
@@ -27,8 +35,8 @@
     'signifier heading status'
     'signifier content status'
     '. content status';
-  flex: 1;
   align-items: start;
+  grid-area: flag;
   position: static; // Position must be static on this element so the heading link will not be contained inside this.
 }
 
@@ -214,6 +222,11 @@
     > * {
       display: inline;
     }
+
+    a,
+    button {
+      position: relative; // This raises the stacking order of the meta link above the main heading link.
+    }
   }
 }
 
@@ -239,4 +252,23 @@
 
 .c-bolt-listing-teaser__actions {
   order: 6;
+}
+
+.c-bolt-listing-teaser--variant-card {
+  @include bolt-shadow('level-20');
+
+  border: 1px solid var(--m-bolt-border);
+  border-radius: bolt-border-radius(small);
+  background-color: var(--m-bolt-bg);
+
+  .c-bolt-listing-teaser__callout {
+    border-top: 1px solid var(--m-bolt-border);
+    border-bottom-right-radius: inherit;
+    border-bottom-left-radius: inherit;
+  }
+
+  .c-bolt-listing-teaser__callout,
+  .c-bolt-listing-teaser__flag {
+    padding: var(--bolt-spacing-y-small) var(--bolt-spacing-x-medium);
+  }
 }

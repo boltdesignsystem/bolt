@@ -105,5 +105,20 @@ module.exports = {
       type: 'any',
       description: 'Render a preview of a reply to the post.',
     },
+    callout: {
+      type: 'object',
+      description: 'Render a callout section to feature important notes.',
+      properties: {
+        attributes: {
+          type: 'object',
+          description:
+            'A Drupal-style attributes object with extra attributes to append to the callout container.',
+        },
+        content: {
+          type: 'any',
+          description: 'Render the content of the callout.',
+        },
+      },
+    },
   },
 };
