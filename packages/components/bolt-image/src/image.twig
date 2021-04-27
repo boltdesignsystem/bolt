@@ -1,7 +1,7 @@
 {% set schema = bolt.data.components['@bolt-components-image'].schema %}
 
 {% if enable_json_schema_validation %}
-  {{ validate_data_schema(schema, _self) | raw }}
+  {{ validate_data_schema(schema, _self)|raw }}
 {% endif %}
 
 {# DEPRECATED. 'ratio' should be a string, but boolean was previously supported. Boolean is now DEPRECATED. #}
@@ -72,10 +72,10 @@
   this.data.lazyload.value ? 'js-lazyload' : ''
 ] %}
 
-{% set image_attributes = create_attribute(imageAttributes | default({})).addClass(image_classes, lazyload_classes)
+{% set image_attributes = create_attribute(imageAttributes|default({})).addClass(image_classes, lazyload_classes)
   .setAttribute('alt', this.data.alt.value ? this.data.alt.value : '')
-  .setAttribute( (this.data.lazyload.value ? 'data-' : null) ~ 'srcset', this.data.srcset.value ? this.data.srcset.value : null)
-  .setAttribute( (this.data.lazyload.value ? 'data-' : null) ~ 'sizes', this.data.sizes.value)
+  .setAttribute((this.data.lazyload.value ? 'data-' : null) ~ 'srcset', this.data.srcset.value ? this.data.srcset.value : null)
+  .setAttribute((this.data.lazyload.value ? 'data-' : null) ~ 'sizes', this.data.sizes.value)
   .setAttribute('srcset', this.data.lazyload.value ? schema.properties.placeholder_image.default : this.data.srcset.value)
   .setAttribute('src', this.data.src.value)
 %}
@@ -128,8 +128,8 @@
   {% if zoom %}zoom{% endif %}
 
   {% if _ratio_string %}ratio="{{ _ratio_string }}"{% elseif not _use_ratio %}ratio="none"{% elseif _can_use_ratio %}ratio="{{ width * 1 }}/{{ height * 1 }}"{% endif %}
-  {% if (placeholder_color or _ph_color) %}placeholder-color="{{ placeholder_color | default(_ph_color) }}"{% endif %}
-  {% if (placeholder_image or _ph_image) %}placeholder-image="{{ placeholder_image | default(_ph_image) }}"{% endif %}
+  {% if (placeholder_color or _ph_color) %}placeholder-color="{{ placeholder_color|default(_ph_color) }}"{% endif %}
+  {% if (placeholder_image or _ph_image) %}placeholder-image="{{ placeholder_image|default(_ph_image) }}"{% endif %}
 
   {{ this.props|without('lazyload') }}
   >
