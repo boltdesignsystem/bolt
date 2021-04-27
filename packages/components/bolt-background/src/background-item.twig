@@ -5,7 +5,7 @@
 {% set item_attributes = item.pattern ~ 'Attributes' %}
 
 {# Image expects 'ratio' to be passed as string, Video expects boolean #}
-{# todo: in v3.0 remove reference to Video, no longer supported #}
+{# todo: in v4.0 remove reference to Video, no longer supported #}
 {% set _ratio_value = item.pattern == 'image' ? 'none' : false %}
 
 {% if item.pattern and item.pattern != 'image' %}
@@ -17,7 +17,7 @@
 {% endif %}
 
 
-{# todo: in v3.0 nix the pattern_template pattern? #}
+{# todo: in v4.0 nix the pattern_template pattern #}
 {% if item.pattern %}
   <div class="{{ 'c-bolt-background__item' }}">
     {% include pattern_template(item.pattern) with item|merge({
