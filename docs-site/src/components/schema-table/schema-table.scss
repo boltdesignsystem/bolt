@@ -87,11 +87,11 @@ bolt-schema-table.is-wc {
   overflow-y: hidden;
 
   table {
-    @include bolt-font-size(xsmall);
     @include bolt-font-family(body);
     transform: translate3d(0, 0, 0);
     width: 100%;
     margin-bottom: 0;
+    font-size: var(--bolt-type-font-size-xsmall);
     border: 1px solid bolt-color(gray, light);
     table-layout: auto;
   }
@@ -113,9 +113,9 @@ bolt-schema-table.is-wc {
   }
 
   th {
-    @include bolt-font-size(xsmall);
     @include bolt-font-weight(semibold);
     padding: var(--bolt-spacing-y-xsmall) var(--bolt-spacing-x-xsmall);
+    font-size: var(--bolt-type-font-size-xsmall);
     color: bolt-color(gray, dark);
     text-align: left;
     vertical-align: bottom;

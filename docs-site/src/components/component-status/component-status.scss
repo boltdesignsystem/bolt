@@ -1,18 +1,18 @@
 .c-bds-component-status {
-  @include bolt-font-size(xsmall);
   @include bolt-shadow('level-10');
   margin-bottom: var(--bolt-spacing-y-medium);
   padding: calc(var(--bolt-spacing-y-small) * 1.5)
     calc(var(--bolt-spacing-x-small) * 1.5);
+  font-size: var(--bolt-type-font-size-xsmall);
   border-radius: 12px;
   background: #ffffff;
 }
 
 .c-bds-component-status__title {
-  @include bolt-font-size(large);
   display: block;
   position: relative;
   margin-bottom: var(--bolt-spacing-y-xsmall);
+  font-size: var(--bolt-type-font-size-large);
 
   > *,
   > .c-bolt-headline {

@@ -428,13 +428,13 @@ $bds-sidebar-width: 320px;
 }
 
 .c-bds-docs__page-nav__link {
-  @include bolt-font-size(small);
+  font-size: var(--bolt-type-font-size-small);
 }
 
 .c-bds-docs__title {
-  @include bolt-font-size(xxlarge);
   @include bolt-font-weight(semibold);
   margin-bottom: var(--var-spacing-y-medium);
+  font-size: var(--bolt-type-font-size-xxlarge);
   color: bolt-color(black);
 }
 
@@ -468,33 +468,32 @@ $bds-sidebar-width: 320px;
 
   h1,
   h2 {
-    @include bolt-font-size(xxlarge);
+    font-size: var(--bolt-type-font-size-xxlarge);
   }
 
   h3 {
-    @include bolt-font-size(xlarge);
+    font-size: var(--bolt-type-font-size-xlarge);
   }
 
   h4 {
-    @include bolt-font-size(large);
+    font-size: var(--bolt-type-font-size-large);
   }
 
   h5 {
-    @include bolt-font-size(small);
+    font-size: var(--bolt-type-font-size-small);
   }
 
   h6 {
-    @include bolt-font-size(xsmall);
-
+    font-size: var(--bolt-type-font-size-xsmall);
     text-transform: uppercase;
     letter-spacing: 0.05rem;
   }
 
   table {
-    @include bolt-font-size(small);
     @include bolt-font-family(code);
     transform: translate3d(0, 0, 0);
     width: 100%;
+    font-size: var(--bolt-type-font-size-small);
     border: 1px solid bolt-color(gray, light);
     table-layout: auto;
   }
@@ -516,9 +515,9 @@ $bds-sidebar-width: 320px;
   }
 
   th {
-    @include bolt-font-size(xsmall);
     @include bolt-font-weight(semibold);
     padding: var(--bolt-spacing-y-small) var(--bolt-spacing-x-small);
+    font-size: var(--bolt-type-font-size-xsmall);
     color: bolt-color(gray, dark);
     text-align: left;
     text-transform: uppercase;
@@ -563,7 +562,6 @@ $bds-sidebar-width: 320px;
   position: relative;
 
   &:before {
-    @include bolt-font-size(small);
     content: '#';
     align-self: center;
     opacity: 0.3;
@@ -572,6 +570,7 @@ $bds-sidebar-width: 320px;
     left: -1.5rem;
     transform: translateY(-50%); // Fix IE11 vcentering
     width: 1.5rem;
+    font-size: var(--bolt-type-font-size-small);
     color: inherit;
     text-align: center;
     text-decoration: none;

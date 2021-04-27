@@ -3,8 +3,8 @@
 
 .#{$choices-selector}__inner {
   min-height: 0; // overrides min-height 44px
-  @include bolt-font-size(small);
   @include bolt-font-weight(semibold);
+  font-size: var(--bolt-type-font-size-small);
   vertical-align: middle;
 }
 
@@ -73,7 +73,7 @@
 }
 
 .c-bds-version-selector {
-  @include bolt-font-size(small);
+  font-size: var(--bolt-type-font-size-small);
   color: inherit;
   line-height: 1;
   border-color: transparent;
