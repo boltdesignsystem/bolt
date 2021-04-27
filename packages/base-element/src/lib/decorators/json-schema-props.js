@@ -23,7 +23,7 @@ const jsonSchemaPropsDecorator = clazz => {
 
     // uses the static schema data passed to to generate default property data
     static get props() {
-      this.defaultProps = this.defaultProps || {};
+      this.defaultProps = {};
 
       if (!this.schema) {
         return {};
