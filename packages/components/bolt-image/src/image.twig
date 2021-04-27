@@ -54,14 +54,8 @@
   }) %}
 {% endif %}
 
-{#--------------------#}
-{# STOP!!!!!!!!!#}
-{# The ONLY thing that can happen below here is creating and building the `attributes`, then calling the template - ALL data must be prepped by this point #}
-{#--------------------#}
-
 {# Variables #}
 {% set this = init(schema) %}
-{% set attributes = create_attribute(attributes | default({})) %}
 
 {% set image_classes = [
   'c-bolt-image__image'
@@ -138,7 +132,6 @@
   {% if (placeholder_image or _ph_image) %}placeholder-image="{{ placeholder_image | default(_ph_image) }}"{% endif %}
 
   {{ this.props|without('lazyload') }}
-  {{ attributes }}
   >
 
   {% set children %}
