@@ -432,14 +432,14 @@ $bds-sidebar-width: 320px;
 }
 
 .c-bds-docs__title {
-  @include bolt-font-weight(semibold);
   margin-bottom: var(--var-spacing-y-medium);
   font-size: var(--bolt-type-font-size-xxlarge);
+  font-weight: var(--bolt-type-font-weight-semibold);
   color: bolt-color(black);
 }
 
 .c-bds-docs__lead {
-  @include bolt-font-weight(regular);
+  font-weight: var(--bolt-type-font-weight-regular);
   color: bolt-color(black);
   border: 1px dotted transparent;
   border-radius: 4px;
@@ -515,9 +515,9 @@ $bds-sidebar-width: 320px;
   }
 
   th {
-    @include bolt-font-weight(semibold);
     padding: var(--bolt-spacing-y-small) var(--bolt-spacing-x-small);
     font-size: var(--bolt-type-font-size-xsmall);
+    font-weight: var(--bolt-type-font-weight-semibold);
     color: bolt-color(gray, dark);
     text-align: left;
     text-transform: uppercase;

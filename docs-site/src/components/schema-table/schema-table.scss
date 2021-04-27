@@ -113,9 +113,9 @@ bolt-schema-table.is-wc {
   }
 
   th {
-    @include bolt-font-weight(semibold);
     padding: var(--bolt-spacing-y-xsmall) var(--bolt-spacing-x-xsmall);
     font-size: var(--bolt-type-font-size-xsmall);
+    font-weight: var(--bolt-type-font-weight-semibold);
     color: bolt-color(gray, dark);
     text-align: left;
     vertical-align: bottom;
@@ -137,7 +137,7 @@ bolt-schema-table.is-wc {
 }
 
 .c-bds-schema-table__col--key {
-  font-weight: bolt-font-weight(600);
+  font-weight: var(--bolt-type-font-weight-semibold);
 }
 
 .c-bds-schema-table .c-bds-schema-table {
