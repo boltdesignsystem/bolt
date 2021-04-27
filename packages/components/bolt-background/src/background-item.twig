@@ -9,7 +9,7 @@
 {% set _ratio_value = item.pattern == 'image' ? 'none' : false %}
 
 {% if item.pattern and item.pattern != 'image' %}
-  {% set item = item | merge({
+  {% set item = item|merge({
     (item_attributes): {
       class: ['c-bolt-background__#{item.pattern}']
     }
@@ -20,7 +20,7 @@
 {# todo: in v3.0 nix the pattern_template pattern? #}
 {% if item.pattern %}
   <div class="{{ 'c-bolt-background__item' }}">
-    {% include pattern_template(item.pattern) with item | merge({
+    {% include pattern_template(item.pattern) with item|merge({
       ratio: _ratio_value,
       lazyload: item.lazyload ?? true,
       cover: item.cover ?? true

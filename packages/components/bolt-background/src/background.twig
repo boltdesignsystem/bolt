@@ -1,7 +1,7 @@
 {% set schema = bolt.data.components['@bolt-components-background'].schema %}
 
 {% if enable_json_schema_validation %}
-  {{ validate_data_schema(schema, _self) | raw }}
+  {{ validate_data_schema(schema, _self)|raw }}
 {% endif %}
 
 {# DEPRECATED.  Use the property `content_items` instead of `contentItems`. #}
