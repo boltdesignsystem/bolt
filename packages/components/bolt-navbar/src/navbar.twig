@@ -1,38 +1,38 @@
+{% set schema = bolt.data.components["@bolt-components-navbar"].schema["navbar"] %}
 {% if enable_json_schema_validation %}
-  {{ validate_data_schema(bolt.data.components['@bolt-components-navbar'].schema, _self) | raw }}
+  {{ validate_data_schema(schema, _self)|raw }}
 {% endif %}
 
-{% set schema = bolt.data.components["@bolt-components-navbar"].schema %}
+{# Variables #}
+{% set this = init(schema) %}
+{% set attributes = create_attribute(attributes|default({})) %}
 
-{# Support backwards compatibiliy.  Future implementations that wish to disable the theme should
-use the string "none" rather than a boolean false #}
-{% set theme = theme is sameas(false) ? "none" : theme %}
+{# Array of classes based on the defined + default props #}
+{% set classes = [
+  "c-bolt-navbar",
+  this.data.full_bleed.value ? "c-bolt-navbar--full-bleed" : "",
+  this.data.center.value ? "c-bolt-navbar--center" : "",
+  this.data.theme.value and this.data.theme.value != "none" ? "t-bolt-#{this.data.theme.value}" : ""
+] %}
 
-{% set themeOptions = schema.properties.theme.enum %}
-{% set widthOptions = schema.properties.width.enum %}
+{% for class in this.props.class %}
+  {% set classes = classes|merge([class]) %}
+{% endfor %}
 
-{% set theme = theme in themeOptions ? theme : schema.properties.theme.default %}
-{% set width = width in widthOptions ? width : schema.properties.width.default %}
-{% set theme = theme == "none" ? false : theme %}
-
-<bolt-navbar
-  {% if theme %} class="t-bolt-{{ theme }}" {% endif %}
-  {% if center %} center {% endif %}
-  {% if width %} width={{width}} {% endif %}
->
-  <nav class="c-bolt-navbar c-bolt-navbar--{{ width }} {% if center %} c-bolt-navbar--center c-bolt-navbar--small{% endif %}">
-    {% block navbar_inner %}
-      {% if title %}
-        <div class="c-bolt-navbar__title">
-          {% block navbar_title %}
-            {% include "@bolt-components-navbar/_navbar-title.twig" with title only %}
-          {% endblock %}
-        </div>
-      {% endif %}
-
-      {% block navbar_nav %}
-        {% include "@bolt-components-nav-priority/nav-priority.twig" %}
+<nav {{ attributes.addClass(classes)}}>
+  <div class="c-bolt-navbar__inner">
+    {% if title %}
+      {# Note: navbar_title block is included just for use on Bolt homepage to include version selector #}
+      {% block navbar_title %}
+        {% include "@bolt-components-navbar/_navbar-title.twig" with title only %}
       {% endblock %}
-    {% endblock %}
-  </nav>
-</bolt-navbar>
+    {% endif %}
+    {% if content %}
+      <div class="c-bolt-navbar__list" role="list">
+        <div class="c-bolt-navbar__list-inner" role="presentation">
+          {{ content }}
+        </div>
+      </div>
+    {% endif %}
+  </div>
+</nav>

@@ -1,36 +1,44 @@
+{% set data = [
+  {
+    text: "Real-Time AI",
+    url: "#!"
+  },
+  {
+    text: "End-to-end Automation",
+    url: "#!"
+  },
+  {
+    text: "Journey-centric Delivery",
+    url: "#!"
+  },
+  {
+    text: "Low Code",
+    url: "#!"
+  },
+  {
+    text: "Multi-dimensional Power",
+    url: "#!"
+  },
+  {
+    text: "Cloud Choice",
+    url: "#!"
+  }
+] %}
+
+{% set content %}
+  {% for item in data %}
+    {% include "@bolt-components-navbar/navbar-item.twig" with item only %}  
+  {% endfor %}
+{% endset %}
+
 {% include "@bolt-components-navbar/navbar.twig" with {
-  "title": {
-    "tag": "h2",
-    "text": "Title Text",
-    "icon": {
-      "name": "marketing-gray"
+  title: {
+    tag: "h2",
+    text: "Title Text",
+    icon: {
+      name: "marketing-gray"
     }
   },
   center: true,
-  links: [
-    {
-      "text": "Real-Time AI",
-      "url": "#!"
-    },
-    {
-      "text": "End-to-end Automation",
-      "url": "#!"
-    },
-    {
-      "text": "Journey-centric Delivery",
-      "url": "#!"
-    },
-    {
-      "text": "Low Code",
-      "url": "#!"
-    },
-    {
-      "text": "Multi-dimensional Power",
-      "url": "#!"
-    },
-    {
-      "text": "Cloud Choice",
-      "url": "#!"
-    }
-  ]
+  content: content
 } %}

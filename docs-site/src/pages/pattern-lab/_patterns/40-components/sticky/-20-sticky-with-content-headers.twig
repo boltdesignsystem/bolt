@@ -1,35 +1,3 @@
-{% set navbar_items = [] %}
-{% set navbar_item_data = [
-    {
-      "text": "Visualization & Simulation",
-      "url": "#visualization-and-simulation"
-    },
-    {
-      "text": "Section 1",
-      "url": "#section-1"
-    },
-    {
-      "text": "Section 2 is a lot longer",
-      "url": "#section-2"
-    },
-    {
-      "text": "The constituent experience",
-      "url": "#section-3"
-    },
-    {
-      "text": "Section 4",
-      "url": "#section-4"
-    }
-  ]
-%}
-
-{% for item in navbar_item_data %}
-  {% set navbar_item %}
-    {% include "@bolt-components-navbar/navbar-item.twig" with item only %}
-  {% endset %}
-  {% set navbar_items = navbar_items|merge([navbar_item]) %}
-{% endfor %}
-
 {% embed "@bolt-components-sticky/sticky.twig" %}
   {% block sticky_content %}
     {% include "@bolt-components-navbar/navbar.twig" with {
@@ -43,7 +11,29 @@
           "name": "marketing-gray"
         }
       },
-      content: navbar_items|join,
+      "links":
+      [
+        {
+          "text": "Visualization & Simulation",
+          "url": "#visualization-and-simulation"
+        },
+        {
+          "text": "Section 1",
+          "url": "#section-1"
+        },
+        {
+          "text": "Section 2 is a lot longer",
+          "url": "#section-2"
+        },
+        {
+          "text": "The constituent experience",
+          "url": "#section-3"
+        },
+        {
+          "text": "Section 4",
+          "url": "#section-4"
+        }
+      ],
       scrollOffsetSelector: ".js-bolt-sticky"
     } only %}
   {% endblock %}
@@ -115,19 +105,19 @@
 {% embed "@bolt-components-band/band.twig" with {
   size: "large",
   theme: "xlight",
-  full_bleed: true,
-  attributes: {
-    id: [
-      "section-1"
-    ]
-  }
+  full_bleed: true
 } %}
   {% block band_content %}
 
     {% include "@bolt-components-headline/headline.twig" with {
       text: "Section 1",
       size: "xxlarge",
-      tag: "h2"
+      tag: "h2",
+      attributes: {
+        id: [
+          "section-1"
+        ]
+      }
     } only %}
 
     {% include "@bolt-components-headline/text.twig" with {
@@ -145,18 +135,18 @@
   size: "large",
   theme: "dark",
   full_bleed: true,
-  attributes: {
-    id: [
-      "section-2"
-    ]
-  }
 } %}
   {% block band_content %}
 
     {% include "@bolt-components-headline/headline.twig" with {
       text: "Section 2",
       size: "xxlarge",
-      tag: "h2"
+      tag: "h2",
+      attributes: {
+        id: [
+          "section-2"
+        ]
+      }
     } only %}
 
     {% include "@bolt-components-headline/text.twig" with {
@@ -174,18 +164,18 @@
   size: "large",
   theme: "light",
   full_bleed: true,
-  attributes: {
-    id: [
-      "section-3"
-    ]
-  }
 } %}
   {% block band_content %}
 
     {% include "@bolt-components-headline/headline.twig" with {
       text: "Section 3",
       size: "xxlarge",
-      tag: "h2"
+      tag: "h2",
+      attributes: {
+        id: [
+          "section-3"
+        ]
+      }
     } only %}
 
     {% include "@bolt-components-headline/text.twig" with {
@@ -202,19 +192,19 @@
 {% embed "@bolt-components-band/band.twig" with {
   size: "large",
   theme: "xdark",
-  full_bleed: true,
-  attributes: {
-    id: [
-      "section-4"
-    ]
-  }
+  full_bleed: true
 } %}
   {% block band_content %}
 
     {% include "@bolt-components-headline/headline.twig" with {
       text: "Section 4",
       size: "xxlarge",
-      tag: "h2"
+      tag: "h2",
+      attributes: {
+        id: [
+          "section-4"
+        ]
+      }
     } only %}
 
     {% include "@bolt-components-headline/text.twig" with {
@@ -256,19 +246,19 @@
 {% embed "@bolt-components-band/band.twig" with {
   size: "large",
   theme: "xlight",
-  full_bleed: true,
-  attributes: {
-    id: [
-      "section-5"
-    ]
-  }
+  full_bleed: true
 } %}
   {% block band_content %}
 
     {% include "@bolt-components-headline/headline.twig" with {
       text: "Section 5",
       size: "xxlarge",
-      tag: "h2"
+      tag: "h2",
+      attributes: {
+        id: [
+          "section-5"
+        ]
+      }
     } only %}
 
     {% include "@bolt-components-headline/text.twig" with {
@@ -310,19 +300,19 @@
 {% embed "@bolt-components-band/band.twig" with {
   size: "large",
   theme: "light",
-  full_bleed: true,
-  attributes: {
-    id: [
-    "section-6"
-    ]
-  }
+  full_bleed: true
 } %}
   {% block band_content %}
 
     {% include "@bolt-components-headline/headline.twig" with {
       text: "Section 6",
       size: "xxlarge",
-      tag: "h2"
+      tag: "h2",
+      attributes: {
+        id: [
+        "section-6"
+        ]
+      }
     } only %}
 
     {% include "@bolt-components-headline/text.twig" with {

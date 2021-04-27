@@ -1,3 +1,5 @@
+const navbarItemSchema = require('./navbar-item.schema.js');
+
 module.exports = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'Navbar',
@@ -38,6 +40,12 @@ module.exports = {
             'Set the breakpoint at which you wish to hide the title text.',
           enum: ['from-xsmall-bp', 'from-small-bp'],
         },
+        url: {
+          type: 'string',
+          description:
+            'Make the Navbar title a link, used only on Pattern Lab homepage',
+          hidden: true,
+        },
       },
     },
     center: {
@@ -45,38 +53,46 @@ module.exports = {
       description:
         'Determines if you want the Navbar content to be center aligned or not',
     },
-    width: {
-      type: 'string',
+    full_bleed: {
+      type: 'boolean',
+      default: true,
       description:
-        "Adjusts the Navbar's overall maximum width behavior -- either filling up the entire browser's total screen width (full) or just the component's parent container width (auto).",
-      default: 'full',
-      enum: ['full', 'auto'],
+        'If set to true, the Navbar will take the full width of the page.',
     },
-    links: {
-      type: 'array',
-      description: '(Inherited from nav-priority) Array of links',
-      items: {
-        type: 'object',
-        properties: {
-          text: {
-            type: 'string',
-          },
-          url: {
-            type: 'string',
-          },
-        },
-      },
+    content: {
+      type: 'any',
+      description: 'Content of the Navbar. Navbar-items are expected here.',
     },
     moreText: {
       type: 'string',
       description:
-        '(Inherited from nav-priority) Button text that displays when the Priority+ Nav Dropdown is displayed.',
+        'Button text that displays when the Priority+ Nav Dropdown is displayed.',
       default: 'More',
     },
     offset: {
       type: 'integer',
       description:
         '(Inherited from nav-indicator) Number of pixels taken up by sticky items at the top of the page.  Used for smooth scroll and gumshoe.',
+    },
+    // sticky: {
+    //   type: 'boolean',
+    //   description:
+    //     'When enabled, TOC will automatically use sticky positioning + add a `top` offset style based on the height of the `scrollOffsetSelector` plus the `scrollOffset` (if defined),',
+    // },
+    scrollOffsetSelector: {
+      type: 'string',
+      description:
+        'Selects a fixed element on the page, offsets smooth scrolling by the height of that element. Must be a valid CSS selector.',
+    },
+    scrollOffset: {
+      type: 'integer',
+      description:
+        'Additional offset for smooth scrolling, integer converted to pixel value.',
+    },
+    uuid: {
+      type: 'string',
+      description:
+        'Unique ID for the navbar, randomly generated if not provided.',
     },
   },
 };

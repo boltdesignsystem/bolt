@@ -106,9 +106,20 @@ export class Waypoint {
   }
 
   updateWaypoints() {
+    this.setDirection();
     this.options.items.forEach(item => {
       this.checkWaypoint(item);
     });
+  }
+
+  setDirection() {
+    if (!this.oldScroll) {
+      this.oldScroll = window.scrollY;
+    }
+
+    this.newScroll = window.scrollY;
+    this.direction = this.newScroll >= this.oldScroll ? 'down' : 'up';
+    this.oldScroll = this.newScroll;
   }
 
   checkWaypoint(item) {
@@ -138,6 +149,7 @@ export class Waypoint {
       element,
       currentPosition,
       previousPosition,
+      direction: this.direction,
       waypointTop: bounds.waypointTop,
       waypointBottom: bounds.waypointBottom,
       viewportTop: bounds.viewportTop,

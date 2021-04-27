@@ -473,6 +473,7 @@ const requireAutotrackPlugins = () => {
     ],
   });
   ga('require', 'outboundLinkTracker', {
+    // @todo: replace with new selector
     linkSelector: '.c-bolt-navlink',
   });
 
