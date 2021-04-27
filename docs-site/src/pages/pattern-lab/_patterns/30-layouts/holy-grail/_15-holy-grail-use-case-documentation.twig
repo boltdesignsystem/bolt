@@ -1,0 +1,161 @@
+{% set description %}
+  The Holy Grail layout is commonly used for documentation design where a page might display side nav and table of contents.
+{% endset %}
+
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>The primary sidebar works best with the Side Nav component, but you need to use the <bolt-code-snippet display="inline">auto_width</bolt-code-snippet> prop for the desktop collapsible feature to work properly. <a href="{{ link['viewall-components-side-nav'] }}" class="e-bolt-text-link">View Side Nav component<span class="e-bolt-text-link__icon-after"><bolt-icon name="chevron-right"></bolt-icon></span></a></bolt-li>
+    <bolt-li>The secondary sidebar works best with the Table of Contents component. <a href="{{ link['viewall-components-toc'] }}" class="e-bolt-text-link">View Table of Contents component<span class="e-bolt-text-link__icon-after"><bolt-icon name="chevron-right"></bolt-icon></span></a></bolt-li>
+    <bolt-li>For smaller viewports, the primary sidebar and the secondary sidebar are transformed into modals. User can tap the trigger buttons to activate the modals. <bolt-code-snippet display="inline">trigger_icon</bolt-code-snippet> and <bolt-code-snippet display="inline">trigger_label</bolt-code-snippet> props are available for customizing the icon and label text in the respective trigger buttons.</bolt-li>
+  </bolt-ol>
+{% endset %}
+
+{% set demo %}
+  {% set level_2_items %}
+    {% include '@bolt-components-side-nav/side-nav-li.twig' with {
+      link: {
+        content: 'Level 2 page',
+        attributes: {
+          href: 'https://pega.com',
+        },
+      },
+    } only %}
+    {% include '@bolt-components-side-nav/side-nav-li.twig' with {
+      link: {
+        content: 'Level 2 page',
+        attributes: {
+          href: 'https://pega.com',
+        },
+      },
+    } only %}
+  {% endset %}
+  {% set level_2_list %}
+    {% include '@bolt-components-side-nav/side-nav-ul.twig' with {
+      content: level_2_items,
+    } only %}
+  {% endset %}
+  {% set level_1_items %}
+    {% include '@bolt-components-side-nav/side-nav-li.twig' with {
+      link: {
+        content: 'Level 1 page (with nested links)',
+        attributes: {
+          href: 'https://pega.com',
+        },
+      },
+      children: level_2_list,
+    } only %}
+    {% include '@bolt-components-side-nav/side-nav-li.twig' with {
+      link: {
+        content: 'Level 1 page (current)',
+        attributes: {
+          href: 'https://pega.com',
+        },
+      },
+      current: true,
+    } only %}
+    {% include '@bolt-components-side-nav/side-nav-li.twig' with {
+      link: {
+        content: 'Level 1 page',
+        attributes: {
+          href: 'https://pega.com',
+        },
+      },
+    } only %}
+  {% endset %}
+  {% set level_1_list %}
+    {% include '@bolt-components-side-nav/side-nav-ul.twig' with {
+      content: level_1_items,
+    } only %}
+  {% endset %}
+  {% set side_nav %}
+    {% include '@bolt-components-side-nav/side-nav.twig' with {
+      headline: {
+        content: 'This is a side nav',
+        link_attributes: {
+          href: 'https://pega.com',
+        },
+      },
+      content: level_1_list,
+    } only %}
+  {% endset %}
+  {% set table_of_contents %}
+    {% include '@bolt-components-toc/toc.twig' with {
+      variant: 'transparent',
+      header: 'This is the TOC',
+      items: [
+        {
+          text: 'Section One',
+          url: '#section-one',
+        },
+        {
+          text: 'Section Two',
+          url: '#section-two',
+        },
+        {
+          text: 'Section Three',
+          url: '#section-three',
+        },
+        {
+          text: 'Section Four',
+          url: '#section-four',
+        },
+        {
+          text: 'Section Five',
+          url: '#section-five',
+        },
+      ],
+      scrollOffset: 16,
+    } only %}
+  {% endset %}
+  {% set content %}
+    <article class="e-bolt-article">
+      <h2 id="section-one">Section One</h2>
+      <p>This is a holy grail layout.</p>
+      <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Corporis harum placeat magni voluptas maiores iure explicabo magnam delectus et molestias tempore, dolore sed voluptate voluptatibus! Voluptas pariatur rerum quidem blanditiis! Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae atque molestias esse iusto laboriosam, repellendus voluptate adipisci consequatur consectetur? Fuga recusandae excepturi deleniti quo natus voluptas sequi, optio nemo aspernatur.</p>
+      <h2 id="section-two">Section Two</h2>
+      <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Corporis harum placeat magni voluptas maiores iure explicabo magnam delectus et molestias tempore, dolore sed voluptate voluptatibus! Voluptas pariatur rerum quidem blanditiis! Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae atque molestias esse iusto laboriosam, repellendus voluptate adipisci consequatur consectetur? Fuga recusandae excepturi deleniti quo natus voluptas sequi, optio nemo aspernatur.</p>
+    </article>
+  {% endset %}
+
+  {% include '@bolt-layouts-holy-grail/holy-grail.twig' with {
+    content: content,
+    sidebar: {
+      content: side_nav,
+      trigger_icon: 'documentation',
+      trigger_label: 'Book Navigation',
+      auto_width: true,
+    },
+    secondary_sidebar: {
+      content: table_of_contents,
+      trigger_icon: 'more',
+      trigger_label: 'More Info',
+    },
+  } only %}
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% include '@bolt-layouts-holy-grail/holy-grail.twig' with {
+  content: content,
+  sidebar: {
+    content: side_nav,
+    trigger_icon: 'documentation',
+    trigger_label: 'Book Navigation',
+    auto_width: true,
+  },
+  secondary_sidebar: {
+    content: table_of_contents,
+    trigger_icon: 'more',
+    trigger_label: 'More Info',
+  },
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Use Case: Documentation',
+  description: description,
+  demo: demo,
+  notes: notes,
+  twig_markup: twig_markup,
+} only %}
