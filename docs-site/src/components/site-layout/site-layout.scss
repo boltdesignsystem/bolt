@@ -490,9 +490,9 @@ $bds-sidebar-width: 320px;
   }
 
   table {
-    @include bolt-font-family(code);
     transform: translate3d(0, 0, 0);
     width: 100%;
+    font-family: var(--bolt-type-font-family-code);
     font-size: var(--bolt-type-font-size-small);
     border: 1px solid bolt-color(gray, light);
     table-layout: auto;
