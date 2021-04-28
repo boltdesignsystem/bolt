@@ -25,7 +25,7 @@ module.exports = {
         desktop_heading: {
           type: 'boolean',
           description:
-            'Indicate if the link should also act as a heading for the children in desktop view. This has no effects in mobile view. This only applies if children is passed and nav ul category is set to "site".',
+            'Indicate if the link should also act as a heading for the children in desktop view. This has no effects in mobile view. This only applies if children is passed, nav ul category is set to "site", and nav ul is not flat.',
         },
       },
     },
