@@ -16,6 +16,43 @@
 {% endset %}
 
 {# Site nav #}
+
+{% set placeholder_lv2_ul_content %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Agenda',
+      desktop_heading: true,
+      attributes: {
+        href: 'https://pega.com',
+      },
+    },
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Replays',
+      desktop_heading: true,
+      attributes: {
+        href: 'https://pega.com',
+      },
+    },
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Call for presentations',
+      desktop_heading: true,
+      attributes: {
+        href: 'https://pega.com',
+      },
+    },
+  } only %}
+{% endset %}
+{% set placeholder_lv2 %}
+  {% include '@bolt-components-page-header/page-header-nav-ul.twig' with {
+    content: placeholder_lv2_ul_content,
+    flat: true,
+  } only %}
+{% endset %}
+
 {% set site_nav_lv1_list_items = [
   {
     link: {
@@ -24,6 +61,7 @@
         href: 'https://pega.com',
       }
     },
+    children: placeholder_lv2,
   },
   {
     link: {
@@ -254,7 +292,4 @@
   subheadline: subheadline,
   cta: cta,
   theme: 'dark',
-  attributes: {
-    style: '--c-bolt-page-header-desktop-spacing-y: var(--bolt-spacing-y-medium);',
-  },
 } only %}

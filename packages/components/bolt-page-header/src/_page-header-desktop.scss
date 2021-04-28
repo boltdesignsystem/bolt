@@ -8,9 +8,9 @@
 @include bolt-mq($from: large) {
   // Primary section container
   .c-bolt-page-header__primary {
-    padding-top: $bolt-page-header-desktop-padding-top;
+    padding-top: var(--c-bolt-page-header-desktop-padding-top);
     padding-right: var(--bolt-page-padding-x);
-    padding-bottom: $bolt-page-header-desktop-padding-bottom;
+    padding-bottom: var(--c-bolt-page-header-desktop-padding-bottom);
     padding-left: var(--bolt-page-padding-x);
     background: linear-gradient(
       rgba(bolt-color(gray), 0.1) 0%,
@@ -177,13 +177,13 @@
         border-radius: bolt-border-radius(small);
         border-width: $bolt-border-width;
         border-style: $bolt-border-style;
-        border-color: $bolt-border-color;
+        border-color: var(--m-bolt-border);
         background-color: var(--m-bolt-bg);
         transition: opacity var(--bolt-transition),
           visibility var(--bolt-transition), transform var(--bolt-transition);
 
         .c-bolt-page-header__nav-list-item:not(:last-of-type) {
-          border-bottom-color: $bolt-border-color;
+          border-bottom-color: var(--m-bolt-border);
           border-bottom-style: $bolt-border-style;
           border-bottom-width: $bolt-border-width;
         }
@@ -302,7 +302,7 @@
           z-index: 0;
           width: 100%;
           height: calc(
-            #{$bolt-page-header-desktop-spacing-y} * 2 + #{$bolt-page-header-click-target-size}
+            var(--c-bolt-page-header-desktop-spacing-y) * 2 + #{$bolt-page-header-click-target-size}
           );
           background: linear-gradient(
             transparent 0%,
@@ -330,12 +330,14 @@
     }
 
     > .c-bolt-page-header__nav-list-item.has-children {
+      position: relative;
+
       > .c-bolt-page-header__nav-list {
         display: flex;
         flex-wrap: wrap;
         visibility: hidden;
         opacity: 0;
-        position: absolute;
+        position: fixed;
         top: var(--bolt-page-header-height);
         right: 0;
         left: 0;
@@ -350,10 +352,10 @@
         padding-left: calc(
           var(--bolt-page-padding-x) - var(--bolt-spacing-x-medium)
         );
-        border-top-color: $bolt-border-color;
+        border-top-color: var(--m-bolt-border);
         border-top-style: $bolt-border-style;
         border-top-width: $bolt-border-width;
-        border-bottom-color: $bolt-border-color;
+        border-bottom-color: var(--m-bolt-border);
         border-bottom-style: $bolt-border-style;
         border-bottom-width: $bolt-border-width;
         box-shadow: 0 var(--bolt-spacing-y-xxsmall) var(--bolt-spacing-y-xsmall)
@@ -367,7 +369,7 @@
           margin-bottom: var(--bolt-spacing-y-medium);
           padding-right: var(--bolt-spacing-x-medium);
           padding-left: var(--bolt-spacing-x-medium);
-          border-left-color: $bolt-border-color;
+          border-left-color: var(--m-bolt-border);
           border-left-style: $bolt-border-style;
           border-left-width: $bolt-border-width;
 
@@ -472,6 +474,38 @@
         }
       }
 
+      .c-bolt-page-header__nav-list--flat {
+        display: block;
+        position: absolute;
+        top: calc(var(--bolt-page-header-height) / 2 - 0.1rem);
+        right: auto;
+        left: 50%;
+        transform: translate3d(-50%, 0, 0);
+        width: auto;
+        padding-right: 0;
+        padding-left: 0;
+        border-radius: bolt-border-radius(small);
+        border-width: $bolt-border-width;
+        border-style: $bolt-border-style;
+        border-color: var(--m-bolt-border);
+
+        > .c-bolt-page-header__nav-list-item {
+          border-left-width: 0;
+          white-space: nowrap;
+
+          &:last-of-type {
+            margin-bottom: 0;
+          }
+
+          .c-bolt-page-header__nav-link {
+            margin-bottom: 0;
+            font-size: var(--bolt-type-font-size-small);
+            font-weight: var(--bolt-type-font-weight-semibold);
+            line-height: var(--bolt-type-line-height-small);
+          }
+        }
+      }
+
       > .c-bolt-page-header__nav-link[aria-expanded='true']
         ~ .c-bolt-page-header__nav-list {
         @include bolt-vertical-scroll;
@@ -483,7 +517,7 @@
 
       > .c-bolt-page-header__nav-link[aria-expanded='false']
         ~ .c-bolt-page-header__nav-list {
-        transition-delay: var(--bolt-transition-timing);
+        transition-delay: calc(var(--bolt-transition-timing) * 1.25);
       }
     }
   }

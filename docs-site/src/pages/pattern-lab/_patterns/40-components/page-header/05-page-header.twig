@@ -4,11 +4,11 @@
 
 {% set notes %}
   <bolt-text>
-    Additional CSS custom properties are available to further customize the page header per use case. <bolt-code-snippet display="inline">px</bolt-code-snippet>, <bolt-code-snippet display="inline">em</bolt-code-snippet>, and <bolt-code-snippet display="inline">rem</bolt-code-snippet> unit values are supported in addition to tokens.
+    Additional CSS custom properties are available to further customize the page header per use case. <bolt-code-snippet display="inline">px</bolt-code-snippet>, <bolt-code-snippet display="inline">em</bolt-code-snippet>, and <bolt-code-snippet display="inline">rem</bolt-code-snippet> unit values are supported in addition to tokens. These properties must be defined at the <bolt-code-snippet display="inline">:root</bolt-code-snippet> level.
   </bolt-text>
   <bolt-ol>
     <bolt-li>
-      <strong>--c-bolt-page-header-logo-max-width</strong>: At any breakpoint, limit the logo to a specific max-width.
+      <strong>--c-bolt-page-header-logo-max-width</strong>: At any breakpoint, limit the logo to a specific max-width. This is only effective on long logos, do not use on the plain Pega logo.
     </bolt-li>
     <bolt-li>
       <strong>--c-bolt-page-header-desktop-spacing-y</strong>: Above large breakpoint, set the spacing-y (padding top/bottom) of the page header to a specific value. Spacing tokens are recommended.
@@ -17,7 +17,7 @@
       <strong>--c-bolt-page-header-desktop-site-nav-link-spacing-x</strong>: Above large breakpoint, set the spacing-x (padding left/right) of any primary nav link (top level) to a specific value. Spacing tokens are recommended.
     </bolt-li>
     <bolt-li>
-      <strong>--c-bolt-page-header-desktop-primary-nav-link-font-size</strong>: Above large breakpoint, set the font-size of any primary nav link to a specific value. Font-size tokens are recommended.
+      <strong>--c-bolt-page-header-desktop-primary-nav-link-font-size</strong>: Above large breakpoint, set the font-size of any primary nav link (top level) to a specific value. Font-size tokens are recommended.
     </bolt-li>
   </bolt-ol>
 {% endset %}
@@ -71,9 +71,6 @@
   cta: cta_button,
   static: true,
   subheadline: 'Subheadline text', // This appears next to the logo
-  attributes: {
-    style: '--c-bolt-page-header-logo-max-width: 150px', // Only use the CSS vars on edge cases
-  },
 } only %}
 
 // Search panel template (pass to main template's content prop)

@@ -30,5 +30,11 @@ module.exports = {
         'Set the position of the nav ul if the parent nav li has popover set to "true". This only applies if the nav ul is a child of a nav li.',
       enum: ['edge-start', 'edge-end'],
     },
+    flat: {
+      type: 'boolean',
+      description:
+        'Indicate if the nav ul is a flat list (no nesting at all). This only applies when category is set to "site", it has no effects on other categories.',
+      default: false,
+    },
   },
 };

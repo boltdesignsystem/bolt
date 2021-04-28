@@ -176,8 +176,8 @@ export class BoltPageHeaderNav {
   addHoverHandler(menus = []) {
     // https://github.com/tristen/hoverintent#custom-options
     const opts = {
-      timeout: 100,
-      interval: 100,
+      timeout: 50,
+      interval: 50,
     };
 
     this.hoverListeners = this.hoverListeners || [];
