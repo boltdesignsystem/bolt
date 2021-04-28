@@ -182,6 +182,23 @@
     } only %}
   {% endset %}
   {% set listing_5 %}
+    {% set description %}
+      {% set more_link %}
+        {% set icon_chevron_right %}
+          {% include '@bolt-components-icon/icon.twig' with {
+            name: 'chevron-right',
+          } only %}
+        {% endset %}
+        {% include '@bolt-elements-text-link/text-link.twig' with {
+          content: 'Read more',
+          icon_after: icon_chevron_right,
+          attributes: {
+            href: 'https://pega.com',
+          }
+        } only %}
+      {% endset %}
+      <p>This is the description. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus&hellip;{{ more_link }}</p>
+    {% endset %}
     {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
       signifier: icon_questions,
       headline: {
@@ -200,7 +217,7 @@
         replies: '26',
         views: '666',
       },
-      description: 'More information. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.'
+      description: description
     } only %}
   {% endset %}
   {% set listing_6 %}
