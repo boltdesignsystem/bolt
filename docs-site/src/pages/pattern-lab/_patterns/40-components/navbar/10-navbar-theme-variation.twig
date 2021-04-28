@@ -1,6 +1,6 @@
 {% set schema = bolt.data.components['@bolt-components-navbar'].schema['navbar'] %}
 
-{% set data = [
+{% set navbar_data = [
   {
     text: "Link 1 Text",
     url: "#!"
@@ -15,8 +15,8 @@
   }
 ] %}
 
-{% set content %}
-  {% for item in data %}
+{% set navbar_content %}
+  {% for item in navbar_data %}
     {% include "@bolt-components-navbar/navbar-item.twig" with item only %}  
   {% endfor %}
 {% endset %}
@@ -39,7 +39,7 @@
           name: "marketing-gray"
         }
       },
-      content: content
-    } %}
+      content: navbar_content
+    } only %}
   </div>
 {% endfor %}

@@ -1,6 +1,6 @@
 <p>Setting <code>"hide_title"</code> to a breakpoint size will hide the title text at that size. This example shows <code>"hide_title": "from-xsmall-bp"</code>. Resize to see the change.</p>
 
-{% set data = [
+{% set navbar_data = [
   {
     text: "Features",
     url: "#!"
@@ -19,8 +19,8 @@
   }
 ] %}
 
-{% set content %}
-  {% for item in data %}
+{% set navbar_content %}
+  {% for item in navbar_data %}
     {% include "@bolt-components-navbar/navbar-item.twig" with item only %}  
   {% endfor %}
 {% endset %}
@@ -35,5 +35,5 @@
     }
   },
   center: true,
-  content: content
-} %}
+  content: navbar_content
+} only %}

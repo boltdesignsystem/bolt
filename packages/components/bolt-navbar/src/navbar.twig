@@ -22,10 +22,7 @@
 <nav {{ attributes.addClass(classes)}}>
   <div class="c-bolt-navbar__inner">
     {% if title %}
-      {# Note: navbar_title block is included just for use on Bolt homepage to include version selector #}
-      {% block navbar_title %}
-        {% include "@bolt-components-navbar/_navbar-title.twig" with title only %}
-      {% endblock %}
+      {% include "@bolt-components-navbar/_navbar-title.twig" with title only %}
     {% endif %}
     {% if content %}
       <div class="c-bolt-navbar__list" role="list">

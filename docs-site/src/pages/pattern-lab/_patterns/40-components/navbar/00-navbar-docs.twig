@@ -1,4 +1,4 @@
-{% set data = [
+{% set navbar_data = [
   {
     text: "Features",
     url: "#!"
@@ -17,8 +17,8 @@
   }
 ] %}
 
-{% set content %}
-  {% for item in data %}
+{% set navbar_content %}
+  {% for item in navbar_data %}
     {% include "@bolt-components-navbar/navbar-item.twig" with item only %}  
   {% endfor %}
 {% endset %}
@@ -32,7 +32,7 @@
       name: "icon-name"
     }
   },
-  content: content
+  content: navbar_content
 } only %}
 {% endverbatim %}{% endset %}
 
@@ -51,7 +51,7 @@
           name: "marketing-gray"
         }
       },
-      content: content
+      content: navbar_content
     },
   },
 } only %}

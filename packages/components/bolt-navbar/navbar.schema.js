@@ -23,7 +23,9 @@ module.exports = {
           enum: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'],
         },
         text: {
-          type: 'string',
+          type: 'any',
+          description:
+            'Title text should be plain-text but may contain some HTML.',
         },
         icon: {
           type: 'object',
@@ -45,6 +47,11 @@ module.exports = {
           description:
             'Make the Navbar title a link, used only on Pattern Lab homepage',
           hidden: true,
+        },
+        content: {
+          type: 'any',
+          description:
+            'Additional content to appear after the Navbar title text.',
         },
       },
     },

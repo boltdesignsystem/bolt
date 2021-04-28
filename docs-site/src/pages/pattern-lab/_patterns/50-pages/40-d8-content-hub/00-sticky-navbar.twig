@@ -65,42 +65,49 @@
 
 {% embed "@bolt-components-sticky/sticky.twig" %}
   {% block sticky_content %}
+    {% set navbar_data = [
+      {
+        text: "Take the Automation Journey",
+        url: "#automation"
+      },
+      {
+        text: "Attain Transformational Results",
+        url: "#transformation"
+      },
+      {
+        text: "Increase Employee Productivity",
+        url: "#productivity",
+      },
+      {
+        text: "Drive Workforce Intelligence",
+        url: "#intelligence",
+      },
+      {
+        text: "Create full system integration",
+        url: "#integration"
+      },
+      {
+        text: "Instill governance and oversite",
+        url: "#governance",
+      }
+    ] %}
+
+    {% set navbar_content %}
+      {% for item in navbar_data %}
+        {% include "@bolt-components-navbar/navbar-item.twig" with item only %}  
+      {% endfor %}
+    {% endset %}
 
     {% include "@bolt-components-navbar/navbar.twig" with {
-        theme: "xlight",
-        center: true,
-        title: {
-          "tag": "h2",
-          "text": "Discover Intelligent Process Automation",
-        },
-        links: [
-          {
-            "text": "Take the Automation Journey",
-            "url": "#automation"
-          },
-          {
-            "text": "Attain Transformational Results",
-            "url": "#transformation"
-          },
-          {
-            "text": "Increase Employee Productivity",
-            "url": "#productivity",
-          },
-          {
-            "text": "Drive Workforce Intelligence",
-            "url": "#intelligence",
-          },
-          {
-            "text": "Create full system integration",
-            "url": "#integration"
-          },
-          {
-            "text": "Instill governance and oversite",
-            "url": "#governance",
-          }
-        ],
-        scrollOffsetSelector: ".js-bolt-sticky"
-      } only %}
+      theme: "xlight",
+      center: true,
+      title: {
+        tag: "h2",
+        text: "Discover Intelligent Process Automation"
+      },
+      content: navbar_content,
+      scrollOffsetSelector: ".js-bolt-sticky"
+    } only %}
   {% endblock %}
 {% endembed %}
 

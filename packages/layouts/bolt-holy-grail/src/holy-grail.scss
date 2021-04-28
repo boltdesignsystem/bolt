@@ -1,0 +1,295 @@
+@import '@bolt/core-v3.x';
+
+/**
+ * Holy Grail Layout
+ */
+
+$_bolt-holy-grail-sidebar-trigger-click-target: 44px;
+$_bolt-holy-grail-sidebar-overflow-offset: 2rem;
+
+.l-bolt-holy-grail {
+  @include bolt-full-bleed;
+
+  display: grid;
+  padding-top: var(--l-bolt-holy-grail-layout-padding-top);
+  padding-right: var(
+    --l-bolt-holy-grail-layout-padding-x,
+    var(--bolt-page-padding-x)
+  );
+  padding-bottom: var(--l-bolt-holy-grail-layout-padding-bottom);
+  padding-left: var(
+    --l-bolt-holy-grail-layout-padding-x,
+    var(--bolt-page-padding-x)
+  );
+
+  @include bolt-mq($until: medium) {
+    grid-template-areas:
+      'sidebar sidebar2'
+      'article article';
+    grid-template-rows: auto 1fr;
+    grid-template-columns: 1fr auto;
+    grid-gap: var(--bolt-spacing-x-xxsmall);
+    grid-row-gap: var(--bolt-spacing-y-medium);
+  }
+
+  @include bolt-mq($from: medium) {
+    grid-template-columns: auto minmax(160px, 1fr) auto;
+  }
+}
+
+// Loop through the spacing map to generate padding and gutter options.
+@each $size in $bolt-spacing-multiplier-system {
+  $size-name: nth($size, 1);
+
+  @if (
+    $size-name ==
+      small or
+      $size-name ==
+      medium or
+      $size-name ==
+      large or
+      $size-name ==
+      xlarge
+  ) {
+    .l-bolt-holy-grail--padding-top-#{$size-name} {
+      --l-bolt-holy-grail-layout-padding-top: var(
+        --bolt-spacing-y-#{$size-name}
+      );
+    }
+
+    .l-bolt-holy-grail--padding-bottom-#{$size-name} {
+      --l-bolt-holy-grail-layout-padding-bottom: var(
+        --bolt-spacing-y-#{$size-name}
+      );
+    }
+
+    .l-bolt-holy-grail--gutter-#{$size-name} {
+      --l-bolt-holy-grail-layout-gutter: var(
+        --bolt-spacing-x-#{$size-name},
+        var(--bolt-spacing-x-large)
+      );
+    }
+  }
+}
+
+.l-bolt-holy-grail--padding-top-none {
+  --l-bolt-holy-grail-layout-padding-top: 1px;
+}
+
+.l-bolt-holy-grail--padding-bottom-none {
+  --l-bolt-holy-grail-layout-padding-bottom: 1px;
+}
+
+.l-bolt-holy-grail--gutter-none {
+  --l-bolt-holy-grail-layout-gutter: 0;
+}
+
+.l-bolt-holy-grail--full-bleed {
+  @include bolt-mq($from: medium) {
+    --l-bolt-holy-grail-layout-padding-x: var(
+      --l-bolt-holy-grail-layout-gutter
+    );
+  }
+
+  @include bolt-mq($from: xxxxlarge) {
+    grid-template-columns: auto 1fr auto;
+  }
+}
+
+.l-bolt-holy-grail__article,
+.l-bolt-holy-grail__sidebar {
+  display: block;
+  order: 1;
+}
+
+.l-bolt-holy-grail__article {
+  @include bolt-mq($until: medium) {
+    grid-area: article;
+  }
+
+  @include bolt-mq($from: medium) {
+    @at-root .l-bolt-holy-grail--full-bleed #{&} {
+      padding: 0 var(--l-bolt-holy-grail-layout-gutter);
+    }
+  }
+
+  @include bolt-mq($from: xxxxlarge) {
+    @at-root .l-bolt-holy-grail--full-bleed #{&} {
+      padding: 0 var(--bolt-spacing-x-xlarge);
+    }
+  }
+}
+
+.l-bolt-holy-grail__article__content {
+  display: block;
+
+  @include bolt-mq($from: xxlarge) {
+    @at-root .l-bolt-holy-grail--full-bleed #{&} {
+      max-width: 100ch;
+    }
+  }
+}
+
+.l-bolt-holy-grail__sidebar {
+  hyphens: auto;
+  word-break: normal;
+
+  @include bolt-mq($until: medium) {
+    grid-area: sidebar;
+    width: 100%;
+  }
+
+  @include bolt-mq($from: medium) {
+    @include bolt-vertical-scroll;
+
+    position: sticky;
+    top: var(--bolt-page-header-height);
+    max-height: calc(100vh - var(--bolt-page-header-height));
+    margin: calc(var(--l-bolt-holy-grail-layout-padding-top) * -1) 0
+      calc(var(--l-bolt-holy-grail-layout-padding-bottom) * -1)
+      calc(var(--l-bolt-holy-grail-layout-gutter) * -1);
+    padding: calc(var(--l-bolt-holy-grail-layout-padding-top) * 2)
+      calc(var(--l-bolt-holy-grail-layout-gutter) * 2)
+      calc(var(--l-bolt-holy-grail-layout-padding-bottom) * 2)
+      calc(var(--l-bolt-holy-grail-layout-gutter) * 2);
+
+    @at-root .l-bolt-holy-grail--full-bleed #{&} {
+      background-color: rgba(bolt-color(gray), 0.05);
+    }
+  }
+}
+
+.l-bolt-holy-grail__sidebar--secondary {
+  @include bolt-mq($until: medium) {
+    @at-root .l-bolt-holy-grail__sidebar ~ #{&} {
+      grid-area: sidebar2;
+      width: #{$_bolt-holy-grail-sidebar-trigger-click-target};
+    }
+  }
+
+  @include bolt-mq($from: medium) {
+    order: 2;
+    margin-right: calc(var(--l-bolt-holy-grail-layout-gutter) * -1);
+    margin-left: 0;
+
+    @at-root .l-bolt-holy-grail--full-bleed #{&} {
+      background-color: transparent;
+    }
+  }
+}
+
+.l-bolt-holy-grail__sidebar-trigger {
+  @include bolt-button-native-styles-reset;
+
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: #{$_bolt-holy-grail-sidebar-trigger-click-target};
+  font-family: var(--bolt-type-font-family-headline);
+  font-size: var(--bolt-type-font-size-small);
+  font-weight: var(--bolt-type-font-weight-semibold);
+  color: var(--m-bolt-link);
+  line-height: 1;
+  border: 1px solid var(--m-bolt-tertiary);
+  border-radius: bolt-border-radius(small);
+  background-color: var(--m-bolt-bg);
+  transition: color var(--bolt-transition), border-color var(--bolt-transition);
+
+  &:hover {
+    color: var(--m-bolt-headline);
+    border-color: var(--m-bolt-link);
+  }
+
+  &:focus {
+    border-radius: inherit;
+    outline: var(--bolt-focus-ring);
+    outline-offset: 2px;
+  }
+
+  &[aria-expanded='true'] {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: bolt-z-index(modal);
+    border-top: 0;
+    border-right: 0;
+    border-left: 0;
+    border-radius: 0;
+
+    &:focus {
+      outline-offset: -2px;
+    }
+  }
+
+  @include bolt-mq($from: medium) {
+    display: none;
+  }
+}
+
+.l-bolt-holy-grail__sidebar-trigger__text {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-gap: var(--bolt-spacing-x-xsmall);
+  align-items: center;
+
+  @at-root .l-bolt-holy-grail__sidebar--secondary
+      #{&}:not(.l-bolt-holy-grail__sidebar-trigger__text--close) {
+    grid-gap: 0;
+  }
+
+  @at-root .l-bolt-holy-grail__sidebar-trigger[aria-expanded='true'] #{&} {
+    display: none;
+  }
+}
+
+.l-bolt-holy-grail__sidebar-trigger__text--close {
+  display: none;
+  grid-template-columns: 1fr auto;
+  width: 100%;
+  padding: 0 var(--bolt-spacing-x-small);
+
+  @at-root .l-bolt-holy-grail__sidebar-trigger[aria-expanded='true'] #{&} {
+    display: grid;
+  }
+}
+
+.l-bolt-holy-grail__sidebar__content {
+  display: block;
+
+  @include bolt-mq($until: medium) {
+    @include bolt-vertical-scroll;
+
+    position: fixed;
+    top: $_bolt-holy-grail-sidebar-trigger-click-target;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: bolt-z-index(modal);
+    padding: var(--bolt-spacing-y-medium) var(--bolt-page-padding-x);
+    background-color: var(--m-bolt-bg);
+
+    @at-root button[aria-expanded='false'] ~ #{&} {
+      display: none;
+    }
+  }
+
+  @include bolt-mq($from: medium) {
+    --l-bolt-holy-grail-layout-sidebar-width: max(220px, 15vw);
+
+    width: var(--l-bolt-holy-grail-layout-sidebar-width);
+    margin: calc(var(--l-bolt-holy-grail-layout-padding-top) * -1)
+      calc(var(--l-bolt-holy-grail-layout-gutter) * -1)
+      calc(var(--l-bolt-holy-grail-layout-padding-bottom) * -1)
+      calc(var(--l-bolt-holy-grail-layout-gutter) * -1);
+
+    @at-root .l-bolt-holy-grail__sidebar--secondary #{&} {
+      --l-bolt-holy-grail-layout-sidebar-width: max(160px, 10vw);
+    }
+
+    @at-root .l-bolt-holy-grail__sidebar--auto-width #{&} {
+      width: unset;
+    }
+  }
+}

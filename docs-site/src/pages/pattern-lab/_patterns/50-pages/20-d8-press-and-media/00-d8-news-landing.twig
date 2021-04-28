@@ -7,33 +7,41 @@
 {% block main_content %}
   {% embed "@bolt-components-sticky/sticky.twig" %}
     {% block sticky_content %}
+      {% set navbar_data = [
+        {
+          text: "News",
+          url: "#"
+        },
+        {
+          text: "Press Kit & Resources",
+          url: "#"
+        },
+        {
+          text: "Media Contacts",
+          url: "#"
+        },
+        {
+          text: "Another Link",
+          url: "#"
+        }
+      ] %}
+
+      {% set navbar_content %}
+        {% for item in navbar_data %}
+          {% include "@bolt-components-navbar/navbar-item.twig" with item only %}  
+        {% endfor %}
+      {% endset %}
+
       {% include "@bolt-components-navbar/navbar.twig" with {
         theme: "xdark",
-        "title": {
-          "tag": "h2",
-          "text": "Newsroom",
-          "icon": {
-            "name": "info-solid"
+        title: {
+          tag: "h2",
+          text: "Newsroom",
+          icon: {
+            name: "info-solid"
           }
         },
-        "links": [
-          {
-            "text": "News",
-            "url": "#"
-          },
-          {
-            "text": "Press Kit & Resources",
-            "url": "#"
-          },
-          {
-            "text": "Media Contacts",
-            "url": "#"
-          },
-          {
-            "text": "Another Link",
-            "url": "#"
-          }
-        ]
+        content: navbar_content
       } only %}
     {% endblock %}
   {% endembed %}

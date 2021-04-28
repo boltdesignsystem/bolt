@@ -9,8 +9,6 @@
 {% set attributes = create_attribute(attributes|default({})) %}
 {% set inner_attributes = create_attribute({}) %}
 
-<script>console.log({{this.data|json_encode}})</script>
-
 {# Array of classes based on the defined + default props #}
 {% set classes = [
   "c-bolt-navbar-item",
