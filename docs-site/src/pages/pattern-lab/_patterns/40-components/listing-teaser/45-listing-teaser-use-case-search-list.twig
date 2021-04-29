@@ -49,6 +49,48 @@
       ],
     } only %}
   {% endset %}
+  {% set version_popover %}
+    {% set icon_chevron_down %}
+      {% include '@bolt-components-icon/icon.twig' with {
+        name: 'chevron-down',
+      } only %}
+    {% endset %}
+    {% set trigger %}
+      {% include '@bolt-elements-text-link/text-link.twig' with {
+        content: 'Pega platform 8.5',
+        icon_after: icon_chevron_down,
+        reversed_underline: true,
+        attributes: {
+          type: 'button',
+        }
+      } only %}
+    {% endset %}
+    {% set content %}
+      {% include '@bolt-components-menu/menu.twig' with {
+        title: 'Choose a version',
+        items: [
+          {
+            content: 'Pega platform 8.4',
+            url: 'https://pega.com',
+          },
+          {
+            content: 'Pega platform 8.5',
+            url: 'https://pega.com',
+          },
+          {
+            content: 'Pega platform 8.6',
+            url: 'https://pega.com',
+          },
+        ]
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-popover/popover.twig' with {
+      trigger: trigger,
+      content: content,
+      spacing: 'none',
+      trigger_event: 'hover',
+    } only %}
+  {% endset %}
 
   {% set product_result_1 %}
     {% set eyebrow_1 %}
@@ -148,7 +190,7 @@
           href: 'https://pega.com'
         },
       },
-      more_info: 'Tri-tip shank tongue fatback kevin. Venison frankfurter cupim picanha meatloaf ham hock beef ribs. Burgdoggen porchetta spare ribs bresaola chuck filet mignon. Spare ribs filet mignon pig pastrami',
+      description: 'Tri-tip shank tongue fatback kevin. Venison frankfurter cupim picanha meatloaf ham hock beef ribs. Burgdoggen porchetta spare ribs bresaola chuck filet mignon. Spare ribs filet mignon pig pastrami&hellip;',
       variant: 'card',
       callout: {
         attributes: {
@@ -219,8 +261,9 @@
       meta_items: [
         book_link,
         parent_link,
+        version_popover,
       ],
-      more_info: 'Tri-tip shank tongue fatback kevin. Venison frankfurter cupim picanha meatloaf ham hock beef ribs. Burgdoggen porchetta spare ribs bresaola chuck filet mignon. Spare ribs filet mignon pig pastrami',
+      description: 'Tri-tip shank tongue fatback kevin. Venison frankfurter cupim picanha meatloaf ham hock beef ribs. Burgdoggen porchetta spare ribs bresaola chuck filet mignon. Spare ribs filet mignon pig pastrami&hellip;',
       chip_list: chip_list,
     } only %}
   {% endset %}
@@ -247,7 +290,7 @@
         'August 29, 2021',
         '3 min read',
       ],
-      more_info: 'Tri-tip shank tongue fatback kevin. Venison frankfurter cupim picanha meatloaf ham hock beef ribs. Burgdoggen porchetta spare ribs bresaola chuck filet mignon. Spare ribs filet mignon pig pastrami',
+      description: 'Tri-tip shank tongue fatback kevin. Venison frankfurter cupim picanha meatloaf ham hock beef ribs. Burgdoggen porchetta spare ribs bresaola chuck filet mignon. Spare ribs filet mignon pig pastrami&hellip;',
       chip_list: chip_list,
     } only %}
   {% endset %}
@@ -269,7 +312,7 @@
           href: 'https://pega.com'
         },
       },
-      more_info: 'Tri-tip shank tongue fatback kevin. Venison frankfurter cupim picanha meatloaf ham hock beef ribs. Burgdoggen porchetta spare ribs bresaola chuck filet mignon. Spare ribs filet mignon pig pastrami',
+      description: 'Tri-tip shank tongue fatback kevin. Venison frankfurter cupim picanha meatloaf ham hock beef ribs. Burgdoggen porchetta spare ribs bresaola chuck filet mignon. Spare ribs filet mignon pig pastrami&hellip;',
       chip_list: chip_list,
     } only %}
   {% endset %}
@@ -296,48 +339,6 @@
         text: 'Mission',
       } only %}
     {% endset %}
-    {% set version_popover %}
-      {% set icon_chevron_down %}
-        {% include '@bolt-components-icon/icon.twig' with {
-          name: 'chevron-down',
-        } only %}
-      {% endset %}
-      {% set trigger %}
-        {% include '@bolt-elements-text-link/text-link.twig' with {
-          content: 'Pega platform 8.5',
-          icon_after: icon_chevron_down,
-          reversed_underline: true,
-          attributes: {
-            type: 'button',
-          }
-        } only %}
-      {% endset %}
-      {% set content %}
-        {% include '@bolt-components-menu/menu.twig' with {
-          title: 'Choose one of these',
-          items: [
-            {
-              content: 'Pega platform 8.4',
-              url: 'https://pega.com',
-            },
-            {
-              content: 'Pega platform 8.5',
-              url: 'https://pega.com',
-            },
-            {
-              content: 'Pega platform 8.6',
-              url: 'https://pega.com',
-            },
-          ]
-        } only %}
-      {% endset %}
-      {% include '@bolt-components-popover/popover.twig' with {
-        trigger: trigger,
-        content: content,
-        spacing: 'none',
-        trigger_event: 'hover',
-      } only %}
-    {% endset %}
     {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
       eyebrow_items: [
         eyebrow_1,
@@ -357,7 +358,7 @@
         '10 hr 35 min',
         version_popover,
       ],
-      more_info: 'Tri-tip shank tongue fatback kevin. Venison frankfurter cupim picanha meatloaf ham hock beef ribs. Burgdoggen porchetta spare ribs bresaola chuck filet mignon. Spare ribs filet mignon pig pastrami',
+      description: 'Tri-tip shank tongue fatback kevin. Venison frankfurter cupim picanha meatloaf ham hock beef ribs. Burgdoggen porchetta spare ribs bresaola chuck filet mignon. Spare ribs filet mignon pig pastrami&hellip;',
       chip_list: chip_list,
     } only %}
   {% endset %}
@@ -389,7 +390,7 @@
         '5 topics',
         '1 hr 20 min',
       ],
-      more_info: 'Tri-tip shank tongue fatback kevin. Venison frankfurter cupim picanha meatloaf ham hock beef ribs. Burgdoggen porchetta spare ribs bresaola chuck filet mignon. Spare ribs filet mignon pig pastrami',
+      description: 'Tri-tip shank tongue fatback kevin. Venison frankfurter cupim picanha meatloaf ham hock beef ribs. Burgdoggen porchetta spare ribs bresaola chuck filet mignon. Spare ribs filet mignon pig pastrami&hellip;',
       chip_list: chip_list,
     } only %}
   {% endset %}
@@ -421,7 +422,7 @@
         '9 tasks',
         '45 min',
       ],
-      more_info: 'Tri-tip shank tongue fatback kevin. Venison frankfurter cupim picanha meatloaf ham hock beef ribs. Burgdoggen porchetta spare ribs bresaola chuck filet mignon. Spare ribs filet mignon pig pastrami',
+      description: 'Tri-tip shank tongue fatback kevin. Venison frankfurter cupim picanha meatloaf ham hock beef ribs. Burgdoggen porchetta spare ribs bresaola chuck filet mignon. Spare ribs filet mignon pig pastrami&hellip;',
       chip_list: chip_list,
     } only %}
   {% endset %}
@@ -465,7 +466,7 @@
         'Posted by <a href="https://collaborate.pega.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline">mikemai</a> on Apr 9, 2020',
         'Last activity: 8 hours 26 minutes ago',
       ],
-      more_info: 'Tri-tip shank tongue fatback kevin. Venison frankfurter cupim picanha meatloaf ham hock beef ribs. Burgdoggen porchetta spare ribs bresaola chuck filet mignon. Spare ribs filet mignon pig pastrami',
+      description: 'Tri-tip shank tongue fatback kevin. Venison frankfurter cupim picanha meatloaf ham hock beef ribs. Burgdoggen porchetta spare ribs bresaola chuck filet mignon. Spare ribs filet mignon pig pastrami&hellip;',
       chip_list: chip_list,
       status: {
         solved: true,
@@ -503,7 +504,7 @@
         'Posted by <a href="https://collaborate.pega.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline">mikemai</a> on Apr 9, 2020',
         'Last activity: 8 hours 26 minutes ago',
       ],
-      more_info: 'Tri-tip shank tongue fatback kevin. Venison frankfurter cupim picanha meatloaf ham hock beef ribs. Burgdoggen porchetta spare ribs bresaola chuck filet mignon. Spare ribs filet mignon pig pastrami',
+      description: 'Tri-tip shank tongue fatback kevin. Venison frankfurter cupim picanha meatloaf ham hock beef ribs. Burgdoggen porchetta spare ribs bresaola chuck filet mignon. Spare ribs filet mignon pig pastrami&hellip;',
       chip_list: chip_list,
       status: {
         locked: true,
@@ -540,7 +541,7 @@
         'Posted by <a href="https://collaborate.pega.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline">mikemai</a> on Apr 9, 2020',
         'Last activity: 8 hours 26 minutes ago',
       ],
-      more_info: 'Tri-tip shank tongue fatback kevin. Venison frankfurter cupim picanha meatloaf ham hock beef ribs. Burgdoggen porchetta spare ribs bresaola chuck filet mignon. Spare ribs filet mignon pig pastrami',
+      description: 'Tri-tip shank tongue fatback kevin. Venison frankfurter cupim picanha meatloaf ham hock beef ribs. Burgdoggen porchetta spare ribs bresaola chuck filet mignon. Spare ribs filet mignon pig pastrami&hellip;',
       chip_list: chip_list,
       status: {
         replies: '2',
@@ -617,7 +618,7 @@
         'Apr 9, 2020',
         '17:11',
       ],
-      more_info: 'Tri-tip shank tongue fatback kevin. Venison frankfurter cupim picanha meatloaf ham hock beef ribs. Burgdoggen porchetta spare ribs bresaola chuck filet mignon. Spare ribs filet mignon pig pastrami',
+      description: 'Tri-tip shank tongue fatback kevin. Venison frankfurter cupim picanha meatloaf ham hock beef ribs. Burgdoggen porchetta spare ribs bresaola chuck filet mignon. Spare ribs filet mignon pig pastrami&hellip;',
       chip_list: chip_list,
     } only %}
   {% endset %}

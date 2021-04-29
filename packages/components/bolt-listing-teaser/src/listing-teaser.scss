@@ -104,7 +104,7 @@
   }
 }
 
-.c-bolt-listing-teaser__flag-content__item {
+.c-bolt-listing-teaser__flag-content__item:not(.c-bolt-listing-teaser__flag-content__item--chips) {
   --bolt-spacing-y-xxsmall: 0.0625rem;
   --bolt-spacing-y-xsmall: 0.125rem;
   --bolt-spacing-y-small: 0.25rem;
@@ -119,10 +119,15 @@
   line-height: var(--bolt-type-line-height-small);
   pointer-events: none;
 
-  a {
+  a,
+  button,
+  bolt-chip {
     position: relative; // This raises the stacking order of the meta link above the main heading link.
-    text-decoration: none;
     pointer-events: all;
+  }
+
+  a {
+    text-decoration: none;
 
     &:hover {
       text-decoration: underline;
