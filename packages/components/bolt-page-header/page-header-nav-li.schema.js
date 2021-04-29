@@ -54,7 +54,7 @@ module.exports = {
     view_all: {
       type: 'boolean',
       description:
-        'Set the nav li as the "view all" item. This only applies "view all" links.',
+        'Set the nav li as the "view all" item. This should only be used on "view all" links.',
       default: false,
     },
     popover: {

@@ -472,7 +472,7 @@
         }
       }
 
-      .c-bolt-page-header__nav-list--flat {
+      > .c-bolt-page-header__nav-list--flat {
         display: block;
         position: absolute;
         top: calc(var(--bolt-page-header-height) / 2 - 0.1rem);
@@ -488,6 +488,7 @@
         border-color: var(--m-bolt-border);
 
         > .c-bolt-page-header__nav-list-item {
+          margin-bottom: var(--bolt-spacing-y-small);
           border-left-width: 0;
           white-space: nowrap;
 
