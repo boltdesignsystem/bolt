@@ -1,26 +1,96 @@
-{# Start component specific code #}
-{% include "@bolt-components-toc/toc.twig" with {
+{% set description %}
+  Table of Contents is a list of anchor links that match the section headings of an article or page.
+{% endset %}
+
+{% set notes %}
+  Each item&rsquo;s url should match the <bolt-code-snippet display="inline">id</bolt-code-snippet> of the particular section container or section heading.
+{% endset %}
+
+{% set demo %}
+  <div style="max-width: 320px">
+    {% include '@bolt-components-toc/toc.twig' with {
+      items: [
+        {
+          text: 'Section One',
+          url: '#section-one',
+        },
+        {
+          text: 'Section Two',
+          url: '#section-two',
+        },
+        {
+          text: 'Section Three',
+          url: '#section-three',
+        },
+        {
+          text: 'Section Four',
+          url: '#section-four',
+        },
+        {
+          text: 'Section Five',
+          url: '#section-five',
+        },
+      ]
+    } only %}
+  </div>
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% include '@bolt-components-toc/toc.twig' with {
   items: [
     {
-      text: "Section One",
-      url: "#section-one",
+      text: 'Section One',
+      url: '#section-one',
     },
     {
-      text: "Section Two",
-      url: "#section-two",
+      text: 'Section Two',
+      url: '#section-two',
     },
     {
-      text: "Section Three",
-      url: "#section-three",
+      text: 'Section Three',
+      url: '#section-three',
     },
     {
-      text: "Section Four",
-      url: "#section-four",
+      text: 'Section Four',
+      url: '#section-four',
     },
     {
-      text: "Section Five",
-      url: "#section-five",
+      text: 'Section Five',
+      url: '#section-five',
     },
   ]
 } only %}
-{# End component specific code #}
+{% endverbatim %}
+{% endset %}
+
+{% set html_markup %}
+{% verbatim %}
+<bolt-toc>
+  <bolt-toc-item url="#section-one">
+    Section One
+  </bolt-toc-item>
+  <bolt-toc-item url="#section-two">
+    Section Two
+  </bolt-toc-item>
+  <bolt-toc-item url="#section-three">
+    Section Three
+  </bolt-toc-item>
+  <bolt-toc-item url="#section-four">
+    Section Four
+  </bolt-toc-item>
+  <bolt-toc-item url="#section-five">
+    Section Five
+  </bolt-toc-item>
+</bolt-toc>
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Basic Table of Contents',
+  description: description,
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+  html_markup: html_markup,
+} only %}

@@ -1,0 +1,7 @@
+{# Variables #}
+{% set attributes = create_attribute(attributes|default({})) %}
+
+{# Template #}
+<ul {{ attributes.addClass('c-bolt-side-nav__list') }}>
+  {{ content }}
+</ul>
