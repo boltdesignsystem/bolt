@@ -272,8 +272,6 @@
     order: 1;
 
     > .c-bolt-page-header__nav-list-item {
-      margin: 1px;
-
       > .c-bolt-page-header__nav-link {
         @include bolt-page-header-action-trigger;
 
@@ -517,7 +515,7 @@
 
       > .c-bolt-page-header__nav-link[aria-expanded='false']
         ~ .c-bolt-page-header__nav-list {
-        transition-delay: calc(var(--bolt-transition-timing) * 1.25);
+        transition-delay: calc(var(--bolt-transition-timing) * 1.05);
       }
     }
   }

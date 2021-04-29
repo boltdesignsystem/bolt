@@ -53,7 +53,7 @@
     left: 0;
     transform: translate3d(100%, 0, 0);
     overflow: hidden;
-    border-top-color: $bolt-border-color;
+    border-top-color: var(--m-bolt-border);
     border-top-style: $bolt-border-style;
     border-top-width: $bolt-border-width;
     transition: visibility var(--bolt-transition),
@@ -89,7 +89,7 @@
   .c-bolt-page-header__nav-list-item {
     @include bolt-shadow('level-10');
 
-    border-bottom-color: $bolt-border-color;
+    border-bottom-color: var(--m-bolt-border);
     border-bottom-style: $bolt-border-style;
     border-bottom-width: $bolt-border-width;
     background-color: var(--m-bolt-bg);
@@ -103,7 +103,7 @@
       left: 0;
       z-index: 1;
       height: $bolt-page-header-click-target-size;
-      border-bottom-color: $bolt-border-color;
+      border-bottom-color: var(--m-bolt-border);
       border-bottom-style: $bolt-border-style;
       border-bottom-width: $bolt-border-width;
       background-color: var(--m-bolt-bg);
