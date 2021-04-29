@@ -58,39 +58,20 @@
           {% endfor %}
         </ul>
       {% endif %}
-      {% if this.data.more_info.value %}
+      {% if description %}
         <div class="c-bolt-listing-teaser__flag-content__item">
-          {% set _icon_chevron_right %}{% spaceless %}
-            {% include '@bolt-components-icon/icon.twig' with {
-              name: 'chevron-right',
-            } only %}
-          {% endspaceless %}{% endset %}
-          {% set _more_info_content %}
-            {{ this.data.more_info.value }} &hellip; <span class="e-bolt-text-link e-bolt-text-link--reversed-underline">{{ 'Read More'|t }}<span class="e-bolt-text-link__icon-after">{{ _icon_chevron_right }}</span></span>
-          {%  endset %}
-          {% include '@bolt-components-headline/text.twig' with {
-            text: _more_info_content,
-            tag: 'p',
-            size: 'small',
-          } only %}
+          {{ description }}
         </div>
       {% endif %}
-      {% if this.data.warning.value %}
-        <div class="c-bolt-listing-teaser__flag-content__item">
-          {% set _icon_warning %}
-            {% include '@bolt-components-icon/icon.twig' with {
-              name: 'warning',
-              color: 'yellow',
-            } only %}
-          {% endset %}
-          {% set _warning_content %}
-            {{ _icon_warning }}{{ this.data.warning.value }}
-          {% endset %}
-          {% include '@bolt-components-headline/text.twig' with {
-            text: _warning_content,
-            tag: 'p',
-            size: 'small',
+      {% if warning %}
+        <div class="c-bolt-listing-teaser__flag-content__item c-bolt-listing-teaser__flag-content__item--warning">
+          {% include '@bolt-components-icon/icon.twig' with {
+            name: 'warning',
+            color: 'yellow',
           } only %}
+          <div>
+            {{ warning }}
+          </div>
         </div>
       {% endif %}
       {% if chip_list %}
@@ -100,9 +81,7 @@
       {% endif %}
       {% if reply %}
         <div class="c-bolt-listing-teaser__flag-content__item c-bolt-listing-teaser__flag-content__item--reply">
-          {% include '@bolt-components-stack/stack.twig' with {
-            content: reply,
-          } only %}
+          {{ reply }}
         </div>
       {% endif %}
     </div>

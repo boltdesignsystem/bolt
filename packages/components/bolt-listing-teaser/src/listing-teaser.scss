@@ -105,34 +105,42 @@
 }
 
 .c-bolt-listing-teaser__flag-content__item {
+  --bolt-spacing-y-xxsmall: 0.0625rem;
+  --bolt-spacing-y-xsmall: 0.125rem;
+  --bolt-spacing-y-small: 0.25rem;
+  --bolt-spacing-y-medium: 0.5rem;
+  --bolt-spacing-y-large: 0.75rem;
+  --bolt-spacing-y-xlarge: 1rem;
+  --bolt-spacing-y-xxlarge: 1.25rem;
+  --bolt-spacing-y-xxxlarge: 1.5rem;
+
   display: block;
-  font-size: var(--bolt-type-font-size-xsmall);
-  line-height: var(--bolt-type-line-height-xsmall);
+  font-size: var(--bolt-type-font-size-small);
+  line-height: var(--bolt-type-line-height-small);
   pointer-events: none;
 
-  &--reply {
-    --bolt-spacing-y-xxsmall: 0.0625rem;
-    --bolt-spacing-y-xsmall: 0.125rem;
-    --bolt-spacing-y-small: 0.25rem;
-    --bolt-spacing-y-medium: 0.5rem;
-    --bolt-spacing-y-large: 0.75rem;
-    --bolt-spacing-y-xlarge: 1rem;
-    --bolt-spacing-y-xxlarge: 1.25rem;
-    --bolt-spacing-y-xxxlarge: 1.5rem;
-    padding-left: var(--bolt-spacing-x-medium);
-    font-size: var(--bolt-type-font-size-small);
-    line-height: var(--bolt-type-line-height-small);
-    border-left: 3px solid var(--m-bolt-link);
+  a {
+    position: relative; // This raises the stacking order of the meta link above the main heading link.
+    text-decoration: none;
+    pointer-events: all;
 
-    a {
-      position: relative; // This raises the stacking order of the meta link above the main heading link.
-      text-decoration: none;
-      pointer-events: all;
-
-      &:hover {
-        text-decoration: underline;
-      }
+    &:hover {
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 2px;
     }
+  }
+
+  &--reply {
+    padding-left: var(--bolt-spacing-x-medium);
+    border-left: 3px solid var(--m-bolt-link);
+  }
+
+  &--warning {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-gap: var(--bolt-spacing-x-xxsmall);
+    align-items: center;
   }
 }
 

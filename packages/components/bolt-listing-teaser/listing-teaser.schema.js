@@ -86,15 +86,15 @@ module.exports = {
       description:
         'Render a popover share menu for the listing. Passing the Share component is mandatory.',
     },
-    more_info: {
-      type: 'string',
+    description: {
+      type: 'any',
       description:
-        'Render more information for the listing. Short listing summary usually goes here. No links should be passed here.',
+        'Render a short description for the listing. Listing summary usually goes here. Do not pass links here unless absolutely necessary.',
     },
     warning: {
-      type: 'string',
+      type: 'any',
       description:
-        'Render warning text for the listing, which appears below the "more info" content. No links should be passed here.',
+        'Render warning text for the listing, which appears below the "description" content. Do not pass links here unless absolutely necessary.',
     },
     chip_list: {
       type: 'object',

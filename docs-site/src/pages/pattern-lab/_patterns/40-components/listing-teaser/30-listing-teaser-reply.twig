@@ -1,7 +1,3 @@
-{% set description %}
-  A listing can show one relevant reply at a time. Content can be added by using the <bolt-code-snippet display="inline">reply</bolt-code-snippet> prop.
-{% endset %}
-
 {% set demo %}
   {% set reply %}
     <p><strong>Replied on Aug 21, 2021</strong></p>
@@ -94,7 +90,7 @@
 
 {% include '@utils/pattern-doc-page.twig' with {
   title: 'Listing Reply',
-  description: description,
+  description: 'A listing can show one relevant reply at a time. Content can be added by using the <bolt-code-snippet display="inline">reply</bolt-code-snippet> prop.',
   demo: demo,
   twig_markup: twig_markup,
 } only %}

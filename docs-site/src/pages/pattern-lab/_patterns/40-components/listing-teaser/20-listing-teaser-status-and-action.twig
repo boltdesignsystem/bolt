@@ -1,12 +1,9 @@
-{% set description %}
-  A listing can have various statuses, use the proper prop to mark the relevant status. A popover action menu can be added by using the <bolt-code-snippet display="inline">action_menu</bolt-code-snippet> prop.
-{% endset %}
-
 {% set notes %}
   <bolt-ol>
     <bolt-li>The solved status label can be customized.</bolt-li>
     <bolt-li>The locked status label can be customized.</bolt-li>
-    <bolt-li>It is recommended to pass the Menu component in the <bolt-code-snippet display="inline">action_menu</bolt-code-snippet> prop. Additional use the Menu component&rsquo;s <bolt-code-snippet display="inline">title</bolt-code-snippet></bolt-li> prop to create a label for the action menu.
+    <bolt-li>It is recommended to pass the Menu component in the <bolt-code-snippet display="inline">action_menu</bolt-code-snippet> prop. Additionally use the Menu component&rsquo;s <bolt-code-snippet display="inline">title</bolt-code-snippet></bolt-li> prop to create a label for the action menu.</bolt-li>
+    <bolt-li>It is mandatory to pass the Share component with menu display in the <bolt-code-snippet display="inline">share_menu</bolt-code-snippet> prop.</bolt-li>
   </bolt-ol>
 {% endset %}
 
@@ -191,7 +188,7 @@
 
 {% include '@utils/pattern-doc-page.twig' with {
   title: 'Listing Status, Action Menu, and Share Menu',
-  description: description,
+  description: 'A listing can have various statuses, use the proper prop to mark the relevant status. A popover action menu can be added by using the <bolt-code-snippet display="inline">action_menu</bolt-code-snippet> prop.',
   demo: demo,
   notes: notes,
   twig_markup: twig_markup,
