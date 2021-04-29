@@ -29,7 +29,7 @@
 .c-bolt-listing-teaser__flag {
   display: grid;
   grid-template-columns: auto 1fr;
-  grid-template-rows: repeat(3, minmax(min-content, max-content)) 1fr;
+  grid-template-rows: repeat(4, minmax(min-content, max-content)) 1fr;
   grid-template-areas:
     '. eyebrow .'
     'signifier heading status'
@@ -282,6 +282,22 @@
 
   .c-bolt-listing-teaser__callout,
   .c-bolt-listing-teaser__flag {
-    padding: var(--bolt-spacing-y-small) var(--bolt-spacing-x-medium);
+    padding: var(--bolt-spacing-y-medium) var(--bolt-spacing-x-medium);
+  }
+}
+
+@include bolt-mq($until: small) {
+  .c-bolt-listing-teaser--signifier-wrap {
+    .c-bolt-listing-teaser__flag {
+      grid-template-areas:
+        'signifier . .'
+        'eyebrow eyebrow status'
+        'heading heading status'
+        'content content status';
+    }
+
+    .c-bolt-listing-teaser__flag-signifier {
+      margin-bottom: var(--bolt-spacing-y-small);
+    }
   }
 }

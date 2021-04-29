@@ -13,6 +13,7 @@
 {% set classes = [
   'c-bolt-listing-teaser',
   this.data.gutter ? 'c-bolt-listing-teaser--gutter-' ~ this.data.gutter,
+  this.data.signifier_wrap ? 'c-bolt-listing-teaser--signifier-wrap',
   variant == 'card' ? 'c-bolt-listing-teaser--variant-' ~ variant,
   _listing_id,
 ] %}
