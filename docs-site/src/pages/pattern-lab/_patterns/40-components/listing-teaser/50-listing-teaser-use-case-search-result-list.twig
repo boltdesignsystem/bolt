@@ -6,6 +6,16 @@
 {% endset %}
 
 {% set demo %}
+  {% set icon_chevron_down %}
+    {% include '@bolt-components-icon/icon.twig' with {
+      name: 'chevron-down',
+    } only %}
+  {% endset %}
+  {% set icon_chevron_right %}
+    {% include '@bolt-components-icon/icon.twig' with {
+      name: 'chevron-right',
+    } only %}
+  {% endset %}
   {% set share_menu %}
     {% include '@bolt-components-share/share.twig' with {
       display: 'menu',
@@ -50,11 +60,6 @@
     } only %}
   {% endset %}
   {% set version_popover %}
-    {% set icon_chevron_down %}
-      {% include '@bolt-components-icon/icon.twig' with {
-        name: 'chevron-down',
-      } only %}
-    {% endset %}
     {% set trigger %}
       {% include '@bolt-elements-text-link/text-link.twig' with {
         content: 'Pega platform 8.5',
@@ -121,11 +126,6 @@
       {% endset %}
       {% set popover %}
         {% set popover_trigger %}
-          {% set icon_chevron_down %}
-            {% include '@bolt-components-icon/icon.twig' with {
-              name: 'chevron-down',
-            } only %}
-          {% endset %}
           {% include '@bolt-elements-button/button.twig' with {
             content: 'Version 8.5',
             size: 'small',
@@ -465,7 +465,7 @@
       },
       meta_items: [
         'Posted by <a href="https://collaborate.pega.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline">mikemai</a> on Apr 9, 2020',
-        'Last activity: 8 hours 26 minutes ago',
+        'Last activity: 8 hr 26 min ago',
       ],
       description: 'Tri-tip shank tongue fatback kevin. Venison frankfurter cupim picanha meatloaf ham hock beef ribs. Burgdoggen porchetta spare ribs bresaola chuck filet mignon. Spare ribs filet mignon pig pastrami&hellip;',
       chip_list: chip_list,
@@ -503,7 +503,7 @@
       },
       meta_items: [
         'Posted by <a href="https://collaborate.pega.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline">mikemai</a> on Apr 9, 2020',
-        'Last activity: 8 hours 26 minutes ago',
+        'Last activity: 8 hr 26 min ago',
       ],
       description: 'Tri-tip shank tongue fatback kevin. Venison frankfurter cupim picanha meatloaf ham hock beef ribs. Burgdoggen porchetta spare ribs bresaola chuck filet mignon. Spare ribs filet mignon pig pastrami&hellip;',
       chip_list: chip_list,
@@ -540,7 +540,7 @@
       },
       meta_items: [
         'Posted by <a href="https://collaborate.pega.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline">mikemai</a> on Apr 9, 2020',
-        'Last activity: 8 hours 26 minutes ago',
+        'Last activity: 8 hr 26 min ago',
       ],
       description: 'Tri-tip shank tongue fatback kevin. Venison frankfurter cupim picanha meatloaf ham hock beef ribs. Burgdoggen porchetta spare ribs bresaola chuck filet mignon. Spare ribs filet mignon pig pastrami&hellip;',
       chip_list: chip_list,
@@ -579,11 +579,24 @@
         ratio: '16/9'
       } only %}
     {% endset %}
+    {% set modal_content %}
+      {{ video }}
+      <div class="u-bolt-padding-small">
+        {% include '@bolt-elements-text-link/text-link.twig' with {
+          content: 'View the video resource page',
+          icon_after: icon_chevron_right,
+          reversed_underline: true,
+          attributes: {
+            href: 'https://pega.com',
+          }
+        } only %}
+      </div>
+    {% endset %}
     {% include '@bolt-components-modal/modal.twig' with {
-      content: video,
+      content: modal_content,
       width: 'optimal',
       spacing: 'none',
-      theme: 'none',
+      theme: 'xlight',
       scroll: 'overall',
       attributes: {
         id: modal_id,
@@ -673,6 +686,27 @@
 
 {% set twig_markup %}
 {% verbatim %}
+{% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
+  eyebrow_items: [
+    eyebrow_1,
+    eyebrow_2,
+  ],
+  headline: {
+    text: 'This is a documentation',
+    tag: 'h3',
+    size: 'xlarge',
+    link_attributes: {
+      href: 'https://pega.com'
+    },
+  },
+  meta_items: [
+    book_link,
+    parent_link,
+    version_popover,
+  ],
+  description: 'Tri-tip shank tongue fatback kevin. Venison frankfurter cupim picanha meatloaf ham hock beef ribs. Burgdoggen porchetta spare ribs bresaola chuck filet mignon. Spare ribs filet mignon pig pastrami&hellip;',
+  chip_list: chip_list,
+} only %}
 {% endverbatim %}
 {% endset %}
 
