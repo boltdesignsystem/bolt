@@ -515,7 +515,7 @@
       }
 
       > .c-bolt-page-header__nav-link[aria-expanded='false']
-        ~ .c-bolt-page-header__nav-list {
+        ~ .c-bolt-page-header__nav-list:not(.c-bolt-page-header__nav-list--flat) {
         transition-delay: calc(var(--bolt-transition-timing) * 1.05);
       }
     }
