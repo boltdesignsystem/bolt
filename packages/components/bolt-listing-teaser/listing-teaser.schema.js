@@ -126,5 +126,11 @@ module.exports = {
         },
       },
     },
+    variant: {
+      type: 'string',
+      description: 'Set the style variant of the listing teaser.',
+      enum: ['transparent', 'card'],
+      default: 'transparent',
+    },
   },
 };

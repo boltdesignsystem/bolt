@@ -12,9 +12,9 @@
 {# Array of classes based on the defined + default props #}
 {% set classes = [
   'c-bolt-listing-teaser',
-  this.data.gutter ? 'c-bolt-listing-teaser--gutter-' ~ this.data.gutter,
-  this.data.signifier_wrap ? 'c-bolt-listing-teaser--signifier-wrap',
-  variant == 'card' ? 'c-bolt-listing-teaser--variant-' ~ variant,
+  this.data.gutter.value ? 'c-bolt-listing-teaser--gutter-' ~ this.data.gutter.value,
+  this.data.signifier_wrap.value ? 'c-bolt-listing-teaser--signifier-wrap',
+  this.data.variant.value != 'transparent' ? 'c-bolt-listing-teaser--variant-' ~ this.data.variant.value,
   _listing_id,
 ] %}
 
