@@ -1,0 +1,40 @@
+<bolt-banner status="warning" class="u-bolt-margin-top-large">
+  <bolt-icon name="warning"></bolt-icon>&nbsp;<strong>This component is in a work in progress.</strong>
+</bolt-banner>
+
+{# {% set usage %}{% verbatim %}
+// List item template
+{% include '@bolt-components-side-nav/side-nav-li.twig' with {
+  link: {
+    content: 'Item text',
+    attributes: {
+      href: 'https://pega.com',
+    },
+  },
+  current: true, // When set to true, the item is indicated as the current page.
+  expanded: true, // When set to true, it will show children.
+  children: children, // Pass another list in here.
+} only %}
+
+// List template
+{% include '@bolt-components-side-nav/side-nav-ul.twig' with {
+  content: content, // Pass list items in here.
+} only %}
+
+// Side nav template
+{% include '@bolt-components-side-nav/side-nav.twig' with {
+  headline: {
+    content: 'Headline text',
+    link_attributes: {
+      href: 'https://pega.com',
+    },
+  },
+  content: content, // Pass list in here.
+} only %}
+{% endverbatim %}{% endset %}
+
+{% include '@utils/docs.twig' with {
+  componentName: 'side-nav',
+  componentGroup: 'components',
+  usage: usage
+} only %} #}
