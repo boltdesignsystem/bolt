@@ -1,10 +1,4 @@
-import {
-  isConnected,
-  render,
-  renderString,
-  stopServer,
-  html,
-} from '../../../testing/testing-helpers';
+import { stopServer, html } from '../../../testing/testing-helpers';
 
 const timeout = 90000;
 
@@ -41,13 +35,6 @@ describe('<bolt-text> Component', () => {
     });
 
     const renderedHTML = await html(renderedTextHTML);
-    const image = await page.screenshot();
-
-    // @TODO Re-enable VRT test and troubleshoot failures on Travis
-    // expect(image).toMatchImageSnapshot({
-    //   failureThreshold: '0.015',
-    //   failureThresholdType: 'percent',
-    // });
 
     expect(renderedHTML).toMatchSnapshot();
   });
@@ -70,13 +57,6 @@ describe('<bolt-text> Component', () => {
     });
 
     const renderedHTML = await html(renderedTextHTML);
-    const image = await page.screenshot();
-
-    // @TODO Re-enable VRT test and troubleshoot failures on Travis
-    // expect(image).toMatchImageSnapshot({
-    //   failureThreshold: '0.03',
-    //   failureThresholdType: 'percent',
-    // });
 
     expect(renderedHTML).toMatchSnapshot();
   });
@@ -94,14 +74,6 @@ describe('<bolt-text> Component', () => {
     });
 
     const renderedHTML = await html(renderedTextHTML);
-    const image = await page.screenshot();
-
-    // @TODO Re-enable VRT test and troubleshoot failures on Travis
-    // expect(image).toMatchImageSnapshot({
-    //   failureThreshold: '0.015',
-    //   failureThresholdType: 'percent',
-    // });
-
     expect(renderedHTML).toMatchSnapshot();
   });
 
@@ -119,13 +91,6 @@ describe('<bolt-text> Component', () => {
     });
 
     const renderedHTML = await html(renderedTextHTML);
-    const image = await page.screenshot();
-
-    // @TODO Re-enable VRT test and troubleshoot failures on Travis
-    // expect(image).toMatchImageSnapshot({
-    //   failureThreshold: '0.012',
-    //   failureThresholdType: 'percent',
-    // });
 
     expect(renderedHTML).toMatchSnapshot();
   });
@@ -160,12 +125,6 @@ describe('<bolt-text> Component', () => {
         .classList.contains('is-long'),
     ).toBe(false);
 
-    // @TODO Re-enable VRT test and troubleshoot failures on Travis
-    // expect(image).toMatchImageSnapshot({
-    //   failureThreshold: '0.015',
-    //   failureThresholdType: 'percent',
-    // });
-
     expect(renderedHTML).toMatchSnapshot();
   });
 
@@ -183,13 +142,6 @@ describe('<bolt-text> Component', () => {
     });
 
     const renderedHTML = await html(renderedTextHTML);
-    const image = await page.screenshot();
-
-    // @TODO Re-enable VRT test and troubleshoot failures on Travis
-    // expect(image).toMatchImageSnapshot({
-    //   failureThreshold: '0.015',
-    //   failureThresholdType: 'percent',
-    // });
 
     expect(renderedHTML).toMatchSnapshot();
   });
@@ -211,19 +163,12 @@ describe('<bolt-text> Component', () => {
   //   });
 
   //   const renderedHTML = await html(renderedTextHTML);
-  //   const image = await page.screenshot();
 
   //   expect(
   //     renderedHTML
   //       .querySelector('.c-bolt-text-v2')
   //       .classList.contains('is-long'),
   //   ).toBe(true);
-
-  //   // @TODO Re-enable VRT test and troubleshoot failures on Travis
-  //   // expect(image).toMatchImageSnapshot({
-  //   //   failureThreshold: '0.015',
-  //   //   failureThresholdType: 'percent',
-  //   // });
 
   //   expect(renderedHTML).toMatchSnapshot();
   // });
@@ -246,13 +191,6 @@ describe('<bolt-text> Component', () => {
     });
 
     const renderedHTML = await html(renderedTextHTML);
-    const image = await page.screenshot();
-
-    // @TODO Re-enable VRT test and troubleshoot failures on Travis
-    // expect(image).toMatchImageSnapshot({
-    //   failureThreshold: '0.015',
-    //   failureThresholdType: 'percent',
-    // });
 
     expect(renderedHTML).toMatchSnapshot();
   });
@@ -277,7 +215,6 @@ describe('<bolt-text> Component', () => {
     });
 
     const renderedHTML = await html(renderedTextHTML);
-    const image = await page.screenshot();
 
     expect(
       renderedHTML
@@ -291,12 +228,6 @@ describe('<bolt-text> Component', () => {
           'c-bolt-text-v2--font-weight-bold',
         ),
     ).toBe(true);
-
-    // @TODO Re-enable VRT test and troubleshoot failures on Travis
-    // expect(image).toMatchImageSnapshot({
-    //   failureThreshold: '0.015',
-    //   failureThresholdType: 'percent',
-    // });
 
     expect(renderedHTML).toMatchSnapshot();
   });

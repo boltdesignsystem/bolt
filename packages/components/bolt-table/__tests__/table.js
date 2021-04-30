@@ -19,15 +19,6 @@ async function renderTwigString(template, data) {
 
 const timeout = 120000;
 
-const vrtDefaultConfig = {
-  failureThreshold: '0.02',
-  failureThresholdType: 'percent',
-  customDiffConfig: {
-    threshold: '0.1',
-    includeAA: false,
-  },
-};
-
 describe('<bolt-table> Component', () => {
   let page;
 
@@ -87,9 +78,6 @@ describe('<bolt-table> Component', () => {
         .querySelector('.c-bolt-table')
         .classList.contains('c-bolt-table--first-col-fixed-width'),
     ).toBe(true);
-
-    const image = await page.screenshot();
-    expect(image).toMatchImageSnapshot(vrtDefaultConfig);
   });
 
   test('Web Component-rendered Table with HTML comments', async () => {
@@ -172,9 +160,6 @@ describe('<bolt-table> Component', () => {
         .querySelector('.c-bolt-table')
         .classList.contains('c-bolt-table--first-col-fixed-width'),
     ).toBe(true);
-
-    const image = await page.screenshot();
-    expect(image).toMatchImageSnapshot(vrtDefaultConfig);
   });
 
   test('table with rows only', async () => {

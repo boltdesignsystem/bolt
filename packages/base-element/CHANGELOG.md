@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.5.4](https://github.com/boltdesignsystem/bolt/compare/v3.5.3...v3.5.4) (2021-04-21)
+
+**Note:** Version bump only for package @bolt/element
+
+
+
+
+
+# [3.5.0](https://github.com/boltdesignsystem/bolt/compare/v3.4.3...v3.5.0) (2021-04-09)
+
+**Note:** Version bump only for package @bolt/element
+
+
+
+
+
 # [3.4.0](https://github.com/boltdesignsystem/bolt/compare/v3.3.1...v3.4.0) (2021-03-29)
 
 **Note:** Version bump only for package @bolt/element

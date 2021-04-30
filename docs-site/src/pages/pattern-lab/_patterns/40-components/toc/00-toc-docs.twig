@@ -1,13 +1,18 @@
 {% set usage %}{% verbatim %}
-{% include "@bolt-components-toc/toc.twig" with {
+{% include '@bolt-components-toc/toc.twig' with {
+  header: 'This is the header',
   items: [
     {
-      text: "Section 1",
-      url: "#section-1"
+      text: 'Section One',
+      url: '#section-one',
     },
     {
-      text: "Section 2",
-      url: "#section-2"
+      text: 'Section Two',
+      url: '#section-two',
+    },
+    {
+      text: 'Section Three',
+      url: '#section-three',
     },
   ]
 } only %}

@@ -25,6 +25,12 @@ module.exports = {
       description:
         'Additional offset for smooth scrolling, integer converted to pixel value.',
     },
+    variant: {
+      type: 'string',
+      description: 'Set the visual variant.',
+      enum: ['transparent', 'card'],
+      default: 'card',
+    },
     items: {
       type: 'array',
       description:

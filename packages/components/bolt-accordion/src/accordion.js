@@ -234,6 +234,29 @@ class BoltAccordion extends withContext(BoltElement) {
       this.handleDeepLink();
       this._wasMutated = false;
     });
+
+    setTimeout(() => {
+      // "Open item" hack: This hack is required to fix accordion items that are supposed to open on load but do not because they are inside a hidden element, e.g. an inactive tab panel
+      const openItems = this.querySelectorAll('bolt-accordion-item[open]');
+      if (openItems.length && openItems[0].offsetWidth === 0) {
+        this.openItemToFix = openItems[0];
+        this.setAttribute('will-update', '');
+      }
+    }, 250); // timeout allows parent components (such as Tabs) to finish rendering
+  }
+
+  // Public method called when a Tab Panel that contains an Accordion is opened and that Accordion has been flagged with the "[will-update]" attribute
+  updateLayout() {
+    // "Open item" hack continued...
+    if (this.openItemToFix) {
+      const index = Array.from(this.accordionItemElements).indexOf(
+        this.openItemToFix,
+      );
+      this.accordion.folds[index].close();
+      this.accordion.folds[index].open();
+      this.openItemToFix = null;
+      this.removeAttribute('will-update', '');
+    }
   }
 
   addMutationObserver() {

@@ -74,9 +74,6 @@ describe('<%= props.name.titleCase %>', () => {
 
     const renderedHTML = await html(outerHTML);
     expect(renderedHTML).toMatchSnapshot();
-
-    const image = await page.screenshot();
-    expect(image).toMatchImageSnapshot(vrtDefaultConfig);
   });
 
   test('renders without Shadow DOM', async function() {
@@ -92,9 +89,6 @@ describe('<%= props.name.titleCase %>', () => {
 
     const renderedHTML = await html(outerHTML);
     expect(renderedHTML).toMatchSnapshot();
-
-    const image = await page.screenshot();
-    expect(image).toMatchImageSnapshot(vrtDefaultConfig);
   });
 
   test(`sets 'disabled' prop`, async () => {
