@@ -5,10 +5,20 @@
 \* ------------------------------------ */
 
 .c-bolt-navbar {
-  overflow: visible;
-  margin-top: 0;
-  margin-bottom: 0;
+  padding-right: var(--bolt-spacing-x-medium);
+  padding-left: var(--bolt-spacing-x-medium);
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2);
+
+  @include bolt-mq($until: xsmall) {
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+  }
+}
+
+.c-bolt-navbar--full-bleed {
+  @include bolt-full-bleed;
+  padding-right: var(--bolt-page-padding-x);
+  padding-left: var(--bolt-page-padding-x);
 }
 
 .c-bolt-navbar__inner {
@@ -20,46 +30,26 @@
   max-width: bolt-breakpoint(xxlarge);
   margin: 0 auto;
   padding-top: var(--bolt-spacing-y-small);
-  padding-right: var(--bolt-spacing-x-small);
-  padding-left: var(--bolt-spacing-x-small);
 
-  > *:not(:last-child) {
-    margin-right: var(--bolt-spacing-x-small);
+  @include bolt-mq($until: xsmall) {
+    display: grid;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    padding-top: 0;
+    grid-template-columns: var(--bolt-spacing-x-small) auto 1fr var(
+        --bolt-spacing-y-medium
+      );
+    grid-template-rows: 1fr auto;
   }
 
-  @include bolt-mq(xsmall) {
-    padding-right: $bolt-wrapper-padding;
-    padding-left: $bolt-wrapper-padding;
-  }
-
-  @include bolt-mq(medium) {
-    padding-right: $bolt-wrapper-padding-at-medium-bp;
-    padding-left: $bolt-wrapper-padding-at-medium-bp;
-  }
-
-  /**
-    * 1. Global spacing fallbacks if CSS variables aren't supported
-    */
   > * {
     padding-bottom: var(--bolt-spacing-y-small);
   }
 
-  @include bolt-if-browser-supports-display-contents {
-    @include bolt-mq($until: xsmall) {
-      display: grid;
-      flex-direction: row;
-      justify-content: center;
-      align-content: center;
-      align-items: center;
-      padding-top: 0;
-      padding-right: 0;
-      padding-left: 0;
-      border: 1px solid red;
-      grid-template-columns: var(--bolt-spacing-x-small) auto 1fr var(
-          --bolt-spacing-y-medium
-        );
-      grid-template-rows: 1fr auto;
-    }
+  > *:not(:last-child) {
+    margin-right: var(--bolt-spacing-x-small);
   }
 
   @at-root .c-bolt-navbar--center & {
@@ -96,16 +86,6 @@
   @at-root .c-bolt-navbar--align-items-end & {
     justify-content: flex-end;
   }
-}
-
-.c-bolt-navbar--full-bleed {
-  @include bolt-full-bleed;
-
-  // &--full {
-  //   @include bolt-full-bleed;
-  //   padding-right: var(--bolt-page-padding-x);
-  //   padding-left: var(--bolt-page-padding-x);
-  // }
 }
 
 // Nav title
@@ -220,40 +200,13 @@
   }
 }
 
-// Nav items
-// @todo: I don't think this is used
-// .c-bolt-navbar__list {
-//   flex-shrink: 1;
-//   width: 100%;
-//   margin: 0 0 0 var(--bolt-spacing-x-small);
-//   -webkit-overflow-scrolling: touch;
-// }
-// .c-bolt-navbar__list {
-//   &:only-child {
-//     margin: 0 auto;
-//   }
-// }
-
-$bolt-navbar-vspacing-small: var(--bolt-spacing-y-small);
-
 .c-bolt-navbar__list {
   display: block;
+  display: flex;
   flex-shrink: 4; // shrink faster than other components in tight spots
   align-self: center;
   position: relative;
-  // padding-bottom: var(--bolt-spacing-y-medium);
-
-  @include bolt-if-browser-supports-display-contents {
-    @include bolt-mq($until: xsmall) {
-      @at-root bolt-navbar[is-ready] & {
-        display: contents;
-      }
-
-      @supports (--css: variables) {
-        padding-top: var(--bolt-spacing-y-medium, $bolt-navbar-vspacing-small);
-      }
-    }
-  }
+  margin: 0;
 
   @at-root .c-bolt-navbar:not(.is-ready) & {
     background-attachment: local, local, scroll, scroll;
@@ -264,304 +217,21 @@ $bolt-navbar-vspacing-small: var(--bolt-spacing-y-small);
     overflow-x: auto;
   }
 
-  &.is-resizing {
-    overflow: hidden;
-  }
-}
+  @include bolt-mq($until: xsmall) {
+    padding-top: var(--bolt-spacing-y-small); // @todo?
 
-.c-bolt-navbar__list {
-  @include bolt-if-browser-supports-display-contents {
-    @include bolt-mq($until: xsmall) {
-      @at-root bolt-navbar[is-ready] & {
-        display: contents;
-      }
-    }
-  }
-}
-
-// .c-bolt-navbar__primary {
-.c-bolt-navbar__list {
-  @include bolt-if-browser-supports-display-contents {
-    @include bolt-mq($until: xsmall) {
-      @at-root bolt-navbar[is-ready] & {
-        display: contents;
-      }
-    }
-  }
-
-  display: flex;
-  margin: 0;
-  list-style: none;
-}
-
-.c-bolt-navbar__list {
-  @at-root bolt-navbar[is-ready] & {
-    padding-bottom: var(--bolt-spacing-y-small);
-  }
-}
-
-.c-bolt-navbar__list-inner {
-  display: flex;
-}
-// .c-bolt-navbar__list-item {
-//   display: flex;
-//   flex-shrink: 0;
-//   white-space: nowrap;
-// }
-
-// required so the dropdown can be positioned consistently
-.c-bolt-navbar__show-more {
-  display: flex;
-  flex-shrink: 0;
-  position: relative;
-  white-space: nowrap;
-}
-
-@include bolt-if-browser-supports-display-contents {
-  .c-bolt-navbar__show-more {
-    @include bolt-mq($until: xsmall) {
+    @at-root .c-bolt-navbar.is-ready & {
       display: contents;
     }
   }
 }
 
-.c-bolt-navbar__dropdown-list {
-  opacity: bolt-opacity(0);
-  transform: translate3d(0, calc(var(--bolt-spacing-y-medium) * -1), 0);
-  width: 100%;
-  overflow: hidden;
-  margin: 0;
-  padding: var(--bolt-spacing-y-xsmall) var(--bolt-spacing-x-xsmall);
-  list-style: none;
-  pointer-events: none;
-  transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1) 0s,
-    opacity 0.2s cubic-bezier(0.23, 1, 0.32, 1) 0.1s;
-
-  .c-bolt-navbar--show-dropdown & {
-    opacity: bolt-opacity(100);
-    transform: translate3d(0, 0, 0);
-    pointer-events: auto;
-    transition-delay: 0.2s, 0.1s;
-  }
-}
-
-.c-bolt-navbar__dropdown {
-  @include bolt-z-index(tooltip);
-  visibility: hidden;
-  position: absolute;
-  top: 100%;
-  right: 0;
-  width: calc(100vw - #{var(--bolt-spacing-x-large)});
-  min-width: 12rem;
-  max-width: 100vw;
-  max-height: 0;
-  border-bottom-right-radius: $bolt-border-radius;
-  border-bottom-left-radius: $bolt-border-radius;
-  box-shadow: 0 1px 2px 1px rgba(6, 10, 36, 0.1);
-  background-color: var(--m-bolt-bg);
-  transition: max-height 0.3s cubic-bezier(0.28, 0.11, 0.32, 1) 0s,
-    visibility 0s linear 0.3s;
-
-  * {
-    white-space: normal;
-  }
-
-  @include bolt-mq(xsmall) {
-    width: auto;
-    max-width: 100%;
-  }
-
-  @include bolt-if-browser-supports-display-contents {
-    @include bolt-mq($until: xsmall) {
-      left: 0;
-      width: auto;
-      grid-row: 2 / span 1;
-      grid-column: 1 / span 6;
-    }
-  }
-
-  @at-root .c-bolt-navbar--show-dropdown & {
-    visibility: visible;
-    visibility: visible;
-    max-height: 400px;
-    max-height: calc(100vh - 48px - 48px);
-    pointer-events: auto;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-    transition-delay: 0.1s, 0s;
-  }
-
-  .is-closing &,
-  .is-opening & {
-    overflow: hidden;
-  }
-}
-
-// keyframes
-@keyframes nav-dropdown {
-  0% {
-    opacity: bolt-opacity(0);
-    transform: translateY(-1em);
-  }
-
-  100% {
-    opacity: bolt-opacity(100);
-    transform: translateY(0);
-  }
-}
-
-.c-bolt-navbar__show-button {
-  @include bolt-button-reset;
-  display: block;
-
-  position: relative;
-  width: 100%;
-  padding: calc(var(--bolt-spacing-y-xsmall) / 2) var(--bolt-spacing-x-xsmall);
-  color: var(--m-bolt-headline);
-  cursor: pointer;
-  border-radius: 3px;
-  border-radius: $bolt-border-radius;
-  // Added border so that &:after,&:focus doesn't change the size of the band
-  // We should consider making this thin dotted style a mixin to share with navbar
-  border-width: thin;
-  border-style: solid;
-  border-color: transparent;
-  // background-color: transparent;
-  background-color: red;
-  // background-color: bolt-theme(secondary, 0.05);
-  transition: background-color 0.3s ease;
-  white-space: nowrap;
-
-  @include bolt-mq(xsmall) {
-    padding: calc(var(--bolt-spacing-y-small) / 2) var(--bolt-spacing-x-small);
-  }
+.c-bolt-navbar__list-inner {
+  display: flex;
 
   @include bolt-mq($until: xsmall) {
-    height: 100%; // fix for height: 100% causing issues on larger screen sizes
-    border-left-width: 1px;
-    border-radius: 0;
-    // border-left-color: bolt-theme(headline, 0.2);
-    border-color: var(--m-bolt-primary);
-  }
-
-  &:before {
-    content: '';
-    opacity: bolt-opacity(0);
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1;
-    width: 100%;
-    height: 100%;
-
-    overflow: hidden;
-    pointer-events: none;
-    pointer-events: none;
-    background-color: var(--m-bolt-primary);
-    transition: opacity 0.3s ease;
-  }
-
-  &:hover {
-    // background-color: bolt-theme(secondary, 0.15);
-
-    &:before {
-      opacity: 0.1;
+    @at-root .c-bolt-navbar.is-ready & {
+      display: contents;
     }
   }
-
-  &:focus,
-  &.is-active {
-    border-style: dotted;
-    // border-color: bolt-theme(primary);
-    outline: none;
-  }
-
-  &.is-active,
-  &:active {
-    // background-color: bolt-theme(secondary, 0.1);
-
-    &:before {
-      opacity: 0.1;
-    }
-  }
-
-  @include bolt-if-browser-supports-display-contents {
-    @include bolt-mq($until: xsmall) {
-      @at-root bolt-navbar[is-ready] & {
-        grid-row: 1 / span 1;
-        grid-column: 5 / span 1;
-      }
-    }
-  }
-}
-
-.c-bolt-navbar__show-text {
-  position: relative;
-  z-index: 10;
-  font-family: var(--bolt-type-font-family-body);
-  font-size: var(--bolt-type-font-size-small);
-  font-weight: var(--bolt-type-font-weight-semibold);
-  line-height: var(--bolt-type-line-height-small);
-
-  @include bolt-mq($until: xsmall) {
-    @include bolt-visuallyhidden;
-  }
-}
-
-.c-bolt-navbar__show-icon {
-  display: inline-block;
-  position: relative;
-  z-index: 10;
-  font-size: 1em;
-  line-height: 0;
-  transition: transform 0.2s;
-
-  @include bolt-mq($until: xsmall) {
-    font-size: 24px;
-  }
-
-  .c-bolt-navbar--show-dropdown & {
-    transform: rotate(180deg);
-  }
-}
-
-.c-bolt-navbar__dropdown-list > .c-bolt-navbar__dropdown-item {
-  opacity: bolt-opacity(0);
-  transform: translate3d(0, calc(var(--bolt-spacing-x-large) * -1), 0);
-  transition: opacity 0.3s cubic-bezier(0.28, 0.11, 0.32, 1),
-    transform 0.3s cubic-bezier(0.28, 0.11, 0.32, 1); // transition:
-  transition-property: transform, opacity;
-}
-
-@for $quantity from 1 through 12 {
-  $time: 0;
-
-  @for $i from $quantity through 1 {
-    $time: $time + 50;
-
-    .c-bolt-navbar:not(.is-closing)
-      .c-bolt-navbar__dropdown-list
-      > .c-bolt-navbar__dropdown-item:nth-last-child(n + #{$quantity}),
-    .c-bolt-navbar:not(.is-closing)
-      .c-bolt-navbar__dropdown-list
-      > .c-bolt-navbar__dropdown-item:nth-last-child(n + #{$quantity})
-      ~ .c-bolt-navbar__dropdown-item:nth-child(#{$i}) {
-      transition-delay: $time + ms;
-    }
-
-    .is-closing
-      .c-bolt-navbar__dropdown-list
-      > .c-bolt-navbar__dropdown-item:nth-child(#{$i}) {
-      transition-delay: $i * 17 + ms;
-    }
-  }
-
-  $time: $time + 50;
-}
-
-.c-bolt-navbar--show-dropdown
-  .c-bolt-navbar__dropdown-list
-  > .c-bolt-navbar__dropdown-item {
-  opacity: bolt-opacity(100);
-  transform: translate3d(0, 0, 0);
 }
