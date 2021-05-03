@@ -5,7 +5,7 @@
 {% set background = {
   opacity: "full",
   fill: "radial-gradient",
-  fillColor: "navy"
+  fill_color: "navy"
 } %}
 
 {% block page_content %}
@@ -145,8 +145,7 @@
                     size: "small",
                     border_radius: "full",
                     attributes: {
-                      "on-click": "hide",
-                      "on-click-target": "js-modal-advanced-auto-open",
+                      "data-bolt-modal-target": ".js-modal-advanced-auto-open",
                     },
                   }),
                 ]

@@ -1,5 +1,5 @@
 <p>
-  <mark>Note: <code>valign</code> is an Image component prop, not a Background component prop. Set <code>valign</code> on images passed in via <code>contentItems</code> to control the vertical alignment.</mark>
+  <mark>Note: <code>valign</code> is an Image component prop, not a Background component prop. Set <code>valign</code> on images passed in via <code>content_items</code> to control the vertical alignment.</mark>
 </p>
 
 {% for image_valign in ["center", "top", "bottom", "25%"] %}
@@ -8,11 +8,11 @@
     background: {
       fill: "color",
       opacity: "medium",
-      focalPoint: {
+      focal_point: {
         vertical: "center",
         horizontal: "center"
       },
-      contentItems: [
+      content_items: [
         {
           pattern: "image",
           src: "/images/content/backgrounds/background-tall-2.jpg",
