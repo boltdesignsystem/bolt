@@ -4,6 +4,11 @@
   {{ validate_data_schema(schema, _self) | raw }}
 {% endif %}
 
+{# DEPRECATED.  Use the property `border_radius` instead of `borderRadius`. #}
+{% if borderRadius %}
+  {% set border_radius = borderRadius %}
+{% endif %}
+
 {# Variables #}
 {% set base_class = "c-bolt-card-replacement" %}
 {% set attributes = create_attribute(attributes|default({})) %}
@@ -12,14 +17,14 @@
 {# Set up checks to validate that the component's prop values are allowed, based on the component's schema #}
 {% set tag_options = schema.properties.tag.enum %}
 {% set spacing_options = schema.properties.spacing.enum %}
-{% set borderRadius_options = schema.properties.borderRadius.enum %}
+{% set border_radius_options = schema.properties.border_radius.enum %}
 {% set theme_options = schema.properties.theme.enum %}
 {% set height_options = schema.properties.height.enum %}
 
 {# Check that the component's current prop values are valid. if not, default to the schema default #}
 {% set tag = tag in tag_options ? tag : schema.properties.tag.default %}
 {% set spacing = spacing in spacing_options ? spacing : schema.properties.spacing.default %}
-{% set borderRadius = borderRadius in borderRadius_options ? borderRadius : schema.properties.borderRadius.default %}
+{% set border_radius = border_radius in border_radius_options ? border_radius : schema.properties.border_radius.default %}
 {% set theme = theme in theme_options ? theme : schema.properties.theme.default %}
 {% set height = height in height_options ? height : schema.properties.height.default %}
 
@@ -53,7 +58,7 @@
   {% if rounded %} rounded {% endif %}
   {% if tag %} tag="{{ tag }}" {% endif %}
   {% if spacing %} spacing="{{ spacing }}" {% endif %}
-  {% if borderRadius %} border-radius="{{ borderRadius }}" {% endif %}
+  {% if border_radius %} border-radius="{{ border_radius }}" {% endif %}
   {% if theme %} theme="{{ theme }}" {% endif %}
   {% if height %} height="{{ height }}" {% endif %}
   {% if link_url %} url="{{ link_url }}" {% endif %}
@@ -67,7 +72,7 @@
   {% set classes = [
     base_class,
     horizontal ? "c-bolt-card-replacement--horizontal" : "",
-    borderRadius in borderRadius_options ? "c-bolt-card-replacement--border-radius-#{borderRadius}" : "",
+    border_radius in border_radius_options ? "c-bolt-card-replacement--border-radius-#{border_radius}" : "",
     theme in theme_options ? "t-bolt-#{theme}" : "",
   ] %}
 
