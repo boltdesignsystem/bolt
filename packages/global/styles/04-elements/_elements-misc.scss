@@ -1,5 +1,84 @@
+/* ------------------------------------ *\
+   Misc. resets
+\* ------------------------------------ */
+
+img {
+  max-width: 100%;
+}
+
+hr {
+  box-sizing: content-box;
+  opacity: 1;
+  height: 0;
+  overflow: visible;
+  margin-top: var(--bolt-spacing-y-medium);
+  margin-bottom: var(--bolt-spacing-y-medium);
+  border: none;
+  border-bottom: 1px solid var(--m-bolt-border);
+}
+
 details {
-  &:hover {
-    cursor: pointer;
+  font-size: var(--bolt-type-font-size-small);
+  line-height: var(--bolt-type-line-height-small);
+}
+
+summary {
+  font-size: var(--bolt-type-font-size-medium);
+  line-height: var(--bolt-type-line-height-medium);
+  cursor: pointer;
+
+  @at-root details[open] #{&} {
+    margin-bottom: var(--bolt-spacing-y-xsmall);
   }
+}
+
+dt,
+summary {
+  font-family: var(--bolt-type-font-family-headline);
+  font-weight: var(--bolt-type-font-weight-semibold);
+  color: var(--m-bolt-headline);
+  letter-spacing: var(--bolt-type-letter-spacing-narrow);
+}
+
+dd {
+  margin-bottom: var(--bolt-spacing-y-xsmall);
+  margin-left: var(--bolt-spacing-x-small);
+  font-size: var(--bolt-type-font-size-small);
+  line-height: var(--bolt-type-line-height-small);
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+i,
+em {
+  font-style: italic;
+}
+
+b,
+strong {
+  font-weight: var(--bolt-type-font-weight-bold);
+}
+
+small,
+kbd {
+  font-size: 0.8em;
+}
+
+sub,
+sup {
+  font-size: 0.6em;
+  font-weight: var(--bolt-type-font-weight-semibold);
+  line-height: 0;
+  vertical-align: baseline;
+}
+
+kbd {
+  padding: 0.2em 0.4em;
+  font-family: var(--bolt-type-font-family-code);
+  color: var(--m-bolt-text);
+  border-radius: bolt-border-radius(small);
+  box-shadow: 0 1px 2px 1px var(--m-bolt-text);
+  background-color: var(--m-bolt-bg);
 }

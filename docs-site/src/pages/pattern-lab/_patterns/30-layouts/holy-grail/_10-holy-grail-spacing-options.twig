@@ -1,0 +1,58 @@
+{% set description %}
+  There are a few spacing options for the Holy Grail layout.
+{% endset %}
+
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>The <bolt-code-snippet display="inline">gutter</bolt-code-snippet> prop controls the spacing in between columns when above the medium breakpoint.</bolt-li>
+    <bolt-li>The <bolt-code-snippet display="inline">padding_top</bolt-code-snippet> prop controls the top padding of the layout.</bolt-li>
+    <bolt-li>The <bolt-code-snippet display="inline">padding_bottom</bolt-code-snippet> prop controls the bottom padding of the layout.</bolt-li>
+    <bolt-li>Optionally, a theme class can be used in tandem with the spacing options.</bolt-li>
+  </bolt-ol>
+{% endset %}
+
+{% set demo %}
+  {% set placeholder %}
+    {% include '@bolt-components-placeholder/placeholder.twig' with {
+      text: 'Placeholder',
+    } only %}
+  {% endset %}
+
+  {% include '@bolt-layouts-holy-grail/holy-grail.twig' with {
+    content: 'This is a holy grail layout has large gutter and padding (top and bottom).',
+    sidebar: {
+      content: placeholder,
+    },
+    secondary_sidebar: {
+      content: placeholder,
+    },
+    gutter: 'large',
+    padding_top: 'large',
+    padding_bottom: 'large',
+    attributes: {
+      class: 't-bolt-dark',
+    },
+  } only %}
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% include '@bolt-layouts-holy-grail/holy-grail.twig' with {
+  gutter: 'medium',
+  padding_top: 'medium',
+  padding_bottom: 'medium',
+  attributes: {
+    class: 't-bolt-dark',
+  },
+  ...
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Spacing Options',
+  description: description,
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+} only %}

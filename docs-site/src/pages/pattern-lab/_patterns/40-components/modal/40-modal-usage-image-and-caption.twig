@@ -38,18 +38,17 @@
       display: "block",
       cursor: "zoom-in",
       attributes: {
-        "on-click": "show",
-        "on-click-target": "js-image-modal-advanced-image-and-caption",
-      }
+        "data-bolt-modal-target": ".js-bolt-modal--image-and-caption",
+      },
     } only %}
     {% include "@bolt-components-modal/modal.twig" with {
-      attributes: {
-        class: "js-image-modal-advanced-image-and-caption",
-      },
       content: modal_content,
       spacing: "none",
       scroll: "overall",
       width: "auto",
+      attributes: {
+        class: "js-bolt-modal--image-and-caption",
+      },
     } only %}
   {% endset %}
   {% set description %}
@@ -117,9 +116,8 @@
       display: "block",
       cursor: "zoom-in",
       attributes: {
-        "on-click": "show",
-        "on-click-target": "js-image-modal-advanced-device-viewer",
-      }
+        "data-bolt-modal-target": ".js-bolt-modal--device-viewer",
+      },
     } only %}
   {% endset %}
 
@@ -132,13 +130,13 @@
       {% endblock %}
     {% endembed %}
     {% include "@bolt-components-modal/modal.twig" with {
-      attributes: {
-        class: "js-image-modal-advanced-device-viewer",
-      },
       content: modal_content,
       spacing: "none",
       scroll: "overall",
       width: "optimal",
+      attributes: {
+        class: "js-bolt-modal--device-viewer",
+      },
     } only %}
   {% endset %}
 

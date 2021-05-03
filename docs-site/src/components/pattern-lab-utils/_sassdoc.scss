@@ -13,8 +13,8 @@
 }
 
 .c-bds-docs__return-label {
-  @include bolt-font-weight(bold);
   font-family: monospace;
+  font-weight: var(--bolt-type-font-weight-bold);
   color: bolt-color(navy, light);
 }
 
@@ -28,7 +28,7 @@
     margin: 0;
 
     &[open] summary {
-      @include bolt-font-weight(bold);
+      font-weight: var(--bolt-type-font-weight-bold);
     }
   }
 
