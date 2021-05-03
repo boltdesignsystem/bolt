@@ -15,12 +15,15 @@
               size: "small",
               width: "full",
               attributes: {
-                onclick: "this.nextElementSibling.show()",
+                "data-bolt-modal-target": ".js-bolt-modal--width-" ~ width,
               }
             } only %}
             {% include "@bolt-components-modal/modal.twig" with {
               content: "This is a modal set to " ~ width ~ " width.",
               width: width,
+              attributes: {
+                class: "js-bolt-modal--width-" ~ width,
+              },
             } only %}
           </th>
           <td>
