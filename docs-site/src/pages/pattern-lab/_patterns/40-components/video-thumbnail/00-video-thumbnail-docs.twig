@@ -1,0 +1,10 @@
+{% set usage %}{% verbatim %}
+{% include '@bolt-components-video-thumbnail/video-thumbnail.twig' with {
+} only %}
+{% endverbatim %}{% endset %}
+
+{% include "@utils/docs.twig" with {
+  componentName: "video-thumbnail",
+  componentGroup: 'components',
+  usage: usage
+} only %}

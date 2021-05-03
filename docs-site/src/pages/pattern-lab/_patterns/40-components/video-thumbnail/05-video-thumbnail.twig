@@ -1,0 +1,52 @@
+{% set demo %}
+  <div style="max-width: 25ch">
+    {% set image %}
+      <img src="/images/placeholders/thumb-square-abstract.jpg" alt="" width=250 height=250>
+    {% endset %}
+    {% include '@bolt-components-video-thumbnail/video-thumbnail.twig' with {
+      content: image,
+      aspect_ratio: '1:1',
+      duration: '4:55',
+    } only %}
+
+    <hr>
+
+    {% set image %}
+      {% include '@bolt-components-image/image.twig' with {
+        src: '/images/placeholders/tout-4x3-climber.jpg',
+        alt: 'A Rock Climber',
+        ratio: false,
+        cover: true,
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-video-thumbnail/video-thumbnail.twig' with {
+      content: image,
+      aspect_ratio: '16:9',
+      duration: '4:55',
+    } only %}
+
+    <hr>
+
+    {% set image %}
+      <img src="/images/placeholders/thumb-square-abstract.jpg" alt="" width=250 height=250>
+    {% endset %}
+    {% include '@bolt-components-video-thumbnail/video-thumbnail.twig' with {
+      content: image,
+      aspect_ratio: '4:3',
+      duration: '4:55',
+    } only %}
+  </div>
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Basic Video Thumbnail',
+  description: 'A video thumbnail is...',
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+} only %}

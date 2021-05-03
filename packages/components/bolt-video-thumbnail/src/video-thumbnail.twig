@@ -1,0 +1,28 @@
+{# Schema Validation #}
+{% set schema = bolt.data.components['@bolt-components-video-thumbnail'].schema %}
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(schema, _self)|raw }}
+{% endif %}
+
+{# Variables #}
+{% set this = init(schema) %}
+{% set attributes = create_attribute(attributes|default({})) %}
+
+{% set classes = [
+  'c-bolt-video-thumbnail',
+  this.data.border_radius.value ? 'c-bolt-video-thumbnail--border-radius-' ~ this.data.border_radius.value,
+  this.data.aspect_ratio.value ? 'c-bolt-video-thumbnail--aspect-ratio-' ~ this.data.aspect_ratio.value,
+] %}
+
+{# Template #}
+<div {{ attributes.addClass(classes) }}>
+  <div class="c-bolt-video-thumbnail__content">
+    {{ content }}
+  </div>
+  <div class="c-bolt-video-thumbnail__play-icon" aria-hidden="true"></div>
+  {% if this.data.duration.value %}
+    <div class="c-bolt-video-thumbnail__duration">
+      {{ duration }}
+    </div>
+  {% endif %}
+</div>
