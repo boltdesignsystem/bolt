@@ -404,7 +404,14 @@ class BoltTabs extends withContext(BoltElement) {
     this.priorityDropdown = this.renderRoot.querySelector(
       '.c-bolt-tabs__dropdown',
     );
-    customElements.whenDefined('bolt-trigger').then(() => {
+    customElements.whenDefined('bolt-trigger').then(async () => {
+      const tabLabels = this.renderRoot.querySelectorAll('.c-bolt-tabs__label');
+
+      // Tab Labels are bolt-trigger elements. Wait for them to be ready or _resizeMenu() will miscalculate widths.
+      await Promise.all(
+        [...tabLabels].map(async el => await el.updateComplete),
+      );
+
       this._resizeMenu();
     });
 
