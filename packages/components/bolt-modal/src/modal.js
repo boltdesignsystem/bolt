@@ -1,13 +1,7 @@
 // based originally off of https://github.com/edenspiekermann/a11y-dialog before heavy modifications and customizations
 
 import { html, customElement, BoltElement, unsafeCSS } from '@bolt/element';
-import {
-  getTransitionDuration,
-  bodyHasScrollbar,
-  getScrollbarWidth,
-  setScrollbarPadding,
-  resetScrollbarPadding,
-} from '@bolt/core-v3.x/utils';
+import { getTransitionDuration } from '@bolt/core-v3.x/utils';
 import classNames from 'classnames/bind';
 import styles from './modal.scss';
 import schema from '../modal.schema.js';
@@ -29,21 +23,8 @@ class BoltModal extends BoltElement {
     };
   }
 
-  constructor() {
-    super();
-
-    // Internal switch to enable 'no-body-scroll' feature which is not ready for release
-    this._noBodyScroll = false;
-  }
-
   static get styles() {
     return [unsafeCSS(styles)];
-  }
-
-  static scrollbarWidth = getScrollbarWidth();
-
-  static get bodyHasScrollbar() {
-    return bodyHasScrollbar();
   }
 
   connectedCallback() {
@@ -101,18 +82,6 @@ class BoltModal extends BoltElement {
     });
   }
 
-  get _toggleEventOptions() {
-    return this._noBodyScroll
-      ? {
-          detail: {
-            hasScrollbar: BoltModal.bodyHasScrollbar,
-            scrollbarWidth: BoltModal.scrollbarWidth,
-          },
-          bubbles: true,
-        }
-      : {};
-  }
-
   /**
    * Show the dialog element, disable all the targets (siblings), trap the
    * current focus within it, listen for some specific key presses and fire all
@@ -131,9 +100,9 @@ class BoltModal extends BoltElement {
     // triggers re-render
     this.open = true;
 
-    this.dispatchEvent(new CustomEvent('modal:show', this._toggleEventOptions));
+    this.dispatchEvent(new CustomEvent('modal:show'));
 
-    this._noBodyScroll && this._setScrollbar();
+    document.body.classList.add('u-bolt-overflow-hidden');
 
     // @todo: re-evaluate if the trigger element used needs to have it's tabindex messed with
     // this.querySelector('[slot="trigger"]').setAttribute('tabindex', '-1');
@@ -145,9 +114,7 @@ class BoltModal extends BoltElement {
     // this.dialog.setAttribute('open', '');
     // this.container.removeAttribute('aria-hidden');
 
-    this.dispatchEvent(
-      new CustomEvent('modal:shown', this._toggleEventOptions),
-    );
+    this.dispatchEvent(new CustomEvent('modal:shown'));
   }
 
   /**
@@ -168,7 +135,9 @@ class BoltModal extends BoltElement {
     this.open = false;
     this.ready = false;
 
-    this.dispatchEvent(new CustomEvent('modal:hide', this._toggleEventOptions));
+    this.dispatchEvent(new CustomEvent('modal:hide'));
+
+    document.body.classList.remove('u-bolt-overflow-hidden');
 
     this.transitionDuration = getTransitionDuration(
       this.renderRoot.querySelector('.c-bolt-modal'),
@@ -176,10 +145,7 @@ class BoltModal extends BoltElement {
 
     // Wait until after transition or modal will shift
     setTimeout(() => {
-      this._noBodyScroll && this._resetScrollbar();
-      this.dispatchEvent(
-        new CustomEvent('modal:hidden', this._toggleEventOptions),
-      );
+      this.dispatchEvent(new CustomEvent('modal:hidden'));
     }, this.transitionDuration);
 
     // @todo: refactor this to be more component / element agnostic
@@ -264,19 +230,6 @@ class BoltModal extends BoltElement {
     if (e.target.contains(modalContent) && !this.persistent) {
       this.hide();
     }
-  }
-
-  _setScrollbar() {
-    BoltModal.bodyHasScrollbar &&
-      setScrollbarPadding(document.body, BoltModal.scrollbarWidth);
-
-    document.body.classList.add('u-bolt-overflow-hidden');
-  }
-
-  _resetScrollbar() {
-    resetScrollbarPadding(document.body);
-
-    document.body.classList.remove('u-bolt-overflow-hidden');
   }
 
   /**

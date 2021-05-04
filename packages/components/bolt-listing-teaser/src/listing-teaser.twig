@@ -47,36 +47,25 @@
           {% endfor %}
         </ul>
       {% endif %}
-      {% if this.data.more_info.value %}
+      {% if description %}
         <div class="c-bolt-listing-teaser__flag-content__item">
-          {% set _icon_chevron_right %}
-            {% include '@bolt-components-icon/icon.twig' with {
-              name: 'chevron-right',
-            } only %}
-          {% endset %}
-          {% set _read_more_link %}
-            {{ 'Read More'|t }}{{ _icon_chevron_right|spaceless }}
-          {% endset %}
-          {% include '@bolt-components-headline/text.twig' with {
-            text: this.data.more_info.value ~ ' &hellip; ' ~ _read_more_link|spaceless,
-            tag: 'p',
-            size: 'small',
-          } only %}
+          {{ description }}
         </div>
       {% endif %}
-      {% if this.data.warning.value %}
-        <div class="c-bolt-listing-teaser__flag-content__item">
-          {% set _icon_warning %}
-            {% include '@bolt-components-icon/icon.twig' with {
-              name: 'warning',
-              color: 'yellow',
-            } only %}
-          {% endset %}
-          {% include '@bolt-components-headline/text.twig' with {
-            text: _icon_warning ~ this.data.warning.value,
-            tag: 'p',
-            size: 'small',
+      {% if warning %}
+        <div class="c-bolt-listing-teaser__flag-content__item c-bolt-listing-teaser__flag-content__item--warning">
+          {% include '@bolt-components-icon/icon.twig' with {
+            name: 'warning',
+            color: 'yellow',
           } only %}
+          <div>
+            {{ warning }}
+          </div>
+        </div>
+      {% endif %}
+      {% if reply %}
+        <div class="c-bolt-listing-teaser__flag-content__item c-bolt-listing-teaser__flag-content__item--reply">
+          {{ reply }}
         </div>
       {% endif %}
     </div>

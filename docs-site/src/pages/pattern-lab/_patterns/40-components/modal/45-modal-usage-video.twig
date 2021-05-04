@@ -7,8 +7,8 @@
 {% set javascript_1 %}
 <script>
   // Play the video on modal show, pause on hide
-  const modal1 = document.querySelector('.js-bolt-modal-123');
-  const video1 = document.querySelector('.js-modal-video-123');
+  const modal1 = document.querySelector('.js-bolt-modal--demo-1');
+  const video1 = document.querySelector('.js-bolt-video--demo-1');
 
   modal1.addEventListener('modal:show', function() {
     videojs.getPlayer(video1).play();
@@ -32,7 +32,7 @@
         controls
         data-media-title
         data-media-duration
-        class="c-base-video js-modal-video-123"></video-js>
+        class="c-base-video js-bolt-video--demo-1"></video-js>
     {% endset %}
 
     {% include "@bolt-components-ratio/ratio.twig" with {
@@ -44,20 +44,19 @@
   {% include "@bolt-components-button/button.twig" with {
     text: "Play the video",
     attributes: {
-      "on-click": "show",
-      "on-click-target": "js-bolt-modal-123"
+      "data-bolt-modal-target": ".js-bolt-modal--demo-1",
     }
   } only %}
 
   {% include "@bolt-components-modal/modal.twig" with {
-    attributes: {
-      class: "js-bolt-modal-123"
-    },
     content: modal_content_1,
     width: "optimal",
     spacing: "none",
     theme: "none",
     scroll: "overall",
+    attributes: {
+      class: "js-bolt-modal--demo-1",
+    },
   } only %}
 
   {{ javascript_1 }}
@@ -74,19 +73,25 @@
 <bolt-text headline font-size="large">Option 2: Video triggers Modal</bolt-text>
 <bolt-text>Clicking a button calls a video's <code>toggle</code> method. Custom JavaScript listens for the event and opens the modal when it happens.</bolt-text>
 
+{# @todo, load brightcove before this code runs. Then we can move lines 85-92 out of the click event handler. Otherwise, videojs is not defined. #}
 {% set javascript_2 %}
 <script>
   // Show modal on video toggle, pause on modal hide
-  const modal2 = document.querySelector('.js-bolt-modal-456');
-  const video2 = document.querySelector('.js-modal-video-456');
-\
-  video2.addEventListener('playing', function() {
-    videojs.getPlayer(video2).show();
-  });
+  const modal2 = document.querySelector('.js-bolt-modal--demo-2');
+  const video2 = document.querySelector('.js-bolt-video--demo-2');
+  const button2 = document.querySelector('.js-bolt-button--demo-2');
 
-  modal2.addEventListener('modal:hide', function() {
-    videojs.getPlayer(video2).pause();
-  });
+  button2.addEventListener('click', function() {
+    videojs.getPlayer(video2).on('playing', function() {
+      modal2.show();
+    });
+
+    modal2.addEventListener('modal:hide', function() {
+      videojs.getPlayer(video2).pause();
+    });
+
+    videojs.getPlayer(video2).play();
+  })
 </script>
 {% endset %}
 
@@ -102,7 +107,7 @@
         data-media-title
         data-media-duration
         controls
-        class="c-base-video js-modal-video-456"></video-js>
+        class="c-base-video js-bolt-video--demo-2"></video-js>
     {% endset %}
 
     {% include "@bolt-components-ratio/ratio.twig" with {
@@ -114,20 +119,19 @@
   {% include "@bolt-components-button/button.twig" with {
     text: "Play the video",
     attributes: {
-      "on-click": "toggle",
-      "on-click-target": "js-bolt-modal-456"
+      class: "js-bolt-button--demo-2",
     }
   } only %}
 
   {% include "@bolt-components-modal/modal.twig" with {
-    attributes: {
-      class: "js-bolt-modal-456"
-    },
     content: modal_content_2,
     width: "optimal",
     spacing: "none",
     theme: "none",
     scroll: "overall",
+    attributes: {
+      class: "js-bolt-modal--demo-2",
+    },
   } only %}
 
   {{ javascript_2 }}
