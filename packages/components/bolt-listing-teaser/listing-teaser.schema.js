@@ -22,12 +22,6 @@ module.exports = {
       description:
         'Set a visual signifier for the listing. An icon or decorative image usually goes here.',
     },
-    signifier_wrap: {
-      type: 'boolean',
-      default: false,
-      description:
-        'Allow the content to wrap under the signifier when it runs out of space.',
-    },
     headline: {
       type: 'object',
       description: 'Render the headline of the listing.',
@@ -131,6 +125,13 @@ module.exports = {
       description: 'Set the style variant of the listing teaser.',
       enum: ['transparent', 'card'],
       default: 'transparent',
+    },
+    layout: {
+      type: 'string',
+      description:
+        'Set the layout of the listing teaser based on the use case.',
+      enum: ['vertical', 'horizontal', 'responsive'],
+      default: 'horizontal',
     },
   },
 };

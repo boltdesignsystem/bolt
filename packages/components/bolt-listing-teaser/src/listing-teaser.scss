@@ -306,12 +306,12 @@
   }
 }
 
-.c-bolt-listing-teaser--vertical {
+.c-bolt-listing-teaser--layout-vertical {
   @include _bolt-listing-teaser-vertical;
 }
 
 @include bolt-mq($until: small) {
-  .c-bolt-listing-teaser--signifier-wrap {
+  .c-bolt-listing-teaser--layout-responsive {
     @include _bolt-listing-teaser-vertical;
   }
 }

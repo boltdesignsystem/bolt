@@ -162,15 +162,18 @@
       {% endset %}
       {% include '@bolt-components-grid/grid.twig' with {
         valign: 'center',
+        gutter: 'small',
         items: [
           {
             column_start: '1',
             column_span: '12 11@small',
+            row_start: '1 1@small',
             content: headlines,
           },
           {
             column_start: '1 12@small',
             column_span: '12 1@small',
+            row_start: '2 1@small',
             content: popover,
           },
         ]
@@ -179,7 +182,7 @@
     {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
       gutter: 'medium',
       signifier: signifier,
-      signifier_wrap: true,
+      layout: 'responsive',
       eyebrow_items: [
         eyebrow_1,
       ],
@@ -614,6 +617,7 @@
       {% include '@bolt-components-video-thumbnail/video-thumbnail.twig' with {
         content: image,
         aspect_ratio: '16:9',
+        border_radius: 'small',
       } only %}
     {% endset %}
     {% set eyebrow_1 %}
@@ -624,7 +628,7 @@
     {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
       gutter: 'medium',
       signifier: signifier,
-      signifier_wrap: true,
+      layout: 'responsive',
       eyebrow_items: [
         eyebrow_1,
       ],
@@ -698,7 +702,7 @@
 {% verbatim %}
 {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
   signifier: signifier,
-  signifier_wrap: true, // Allow the content to wrap under the signifier when it runs out of space.
+  layout: 'responsive', // Allow the content to wrap under the signifier when it runs out of space.
   eyebrow_items: [
     eyebrow_1,
     eyebrow_2,
