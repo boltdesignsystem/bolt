@@ -19,8 +19,7 @@
     cursor: "zoom-out",
     display: "block",
     attributes: {
-      "on-click": "hide",
-      "on-click-target": modal_class
+      "data-bolt-modal-target": "." ~ modal_class
     }
   } only %}
 {% endset %}
@@ -30,8 +29,7 @@
     content: thumbnail_image,
     cursor: "zoom-in",
     attributes: {
-      "on-click": "show",
-      "on-click-target": modal_class,
+      "data-bolt-modal-target": "." ~ modal_class,
     }
   } only %}
 {% endset %}

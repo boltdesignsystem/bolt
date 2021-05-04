@@ -17,15 +17,15 @@
       size: "small",
       width: "full",
       attributes: {
-        onclick: "this.nextElementSibling.show()",
+        "data-bolt-modal-target": ".js-bolt-modal--simple-layout",
       }
     } only %}
     {% include "@bolt-components-modal/modal.twig" with {
-      attributes: {
-        class: "js-image-modal-simple-layout",
-      },
       content: modal_content,
       spacing: "large",
+      attributes: {
+        class: "js-bolt-modal--simple-layout",
+      },
     } only %}
   {% endset %}
   {% set description %}
@@ -126,17 +126,17 @@
       size: "small",
       width: "full",
       attributes: {
-        onclick: "this.nextElementSibling.show()",
+        "data-bolt-modal-target": ".js-bolt-modal--complex-layout",
       }
     } only %}
     {% include "@bolt-components-modal/modal.twig" with {
-      attributes: {
-        class: "js-image-modal-advanced-complex-layout",
-      },
       content: modal_content,
       width: "full",
       spacing: "none",
       scroll: "overall",
+      attributes: {
+        class: "js-bolt-modal--complex-layout",
+      },
     } only %}
   {% endset %}
   {% set description %}

@@ -74,13 +74,13 @@ $bolt-tooltip-bubble-triangle-width: 8px;
 
   &__slot {
     &--text {
+      font-size: var(--bolt-type-font-size-xsmall);
+      font-weight: var(--bolt-type-font-weight-regular);
       line-height: calc(
         var(--bolt-type-line-height-xsmall) *
           var(--bolt-type-line-height-multiplier-loose)
       );
       text-align: left;
-      @include bolt-font-weight(regular);
-      @include bolt-font-size(xsmall);
     }
   }
 
