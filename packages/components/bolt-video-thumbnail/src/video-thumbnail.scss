@@ -7,6 +7,8 @@
 .c-bolt-video-thumbnail {
   display: block;
   position: relative;
+  width: 100%;
+  min-width: 10rem;
   height: 0;
   overflow: hidden;
   padding-bottom: var(--c-bolt-video-thumbnail-aspect-ratio);
@@ -64,7 +66,10 @@
   min-height: 20px;
   max-height: 32px;
   overflow: hidden;
-  border-radius: var(--c-bolt-video-thumbnail-border-radius);
+  border-radius: var(
+    --c-bolt-video-thumbnail-border-radius,
+    #{bolt-border-radius(small)}
+  );
   box-shadow: 0 0 2em var(--bolt-color-gray);
   background-color: var(--bolt-color-yellow);
   transform-origin: bottom left;
@@ -113,7 +118,10 @@
   font-weight: var(--bolt-type-font-weight-semibold);
   color: var(--bolt-color-white);
   line-height: var(--bolt-type-line-height-xxsmall);
-  border-radius: bolt-border-radius(small);
+  border-radius: var(
+    --c-bolt-video-thumbnail-border-radius,
+    #{bolt-border-radius(small)}
+  );
   background-color: rgba(black, 0.6);
   white-space: nowrap;
   text-overflow: ellipsis;

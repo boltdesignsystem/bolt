@@ -17,13 +17,13 @@ module.exports = {
       type: 'string',
       description: 'Set the border radius of the video thumbnail.',
       enum: ['none', 'small', 'large'],
-      default: 'small',
+      default: 'none',
     },
     aspect_ratio: {
       type: 'string',
       description: 'Set the aspect ratio of the video thumbnail.',
       enum: ['1:1', '16:9', '4:3'],
-      default: '4:3',
+      default: '16:9',
     },
     duration: {
       type: 'string',

@@ -1,0 +1,117 @@
+{% set notes %}
+  The video poster image from a particular Brightcove video is recommended to be used as the video thumbnail.
+{% endset %}
+
+{% set demo %}
+  {% set modal_id = 'js-bolt-modal-' ~ random() %}
+  {% set video %}
+    {% set video_embed %}
+      <video-js
+        data-account='1900410236'
+        data-player='O3FkeBiaDz'
+        data-embed='default'
+        data-video-id='4892122320001'
+        controls
+        class="c-base-video"></video-js>
+    {% endset %}
+    {% include '@bolt-components-ratio/ratio.twig' with {
+      children: video_embed,
+      ratio: '16/9'
+    } only %}
+  {% endset %}
+  {% set video_thumbnail %}
+    {% set image %}
+      {% include '@bolt-components-image/image.twig' with {
+        src: '/images/placeholders/tout-4x3-climber.jpg',
+        alt: 'A Rock Climber',
+        ratio: false,
+        cover: true,
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-video-thumbnail/video-thumbnail.twig' with {
+      content: image,
+      duration: '4:55',
+    } only %}
+  {% endset %}
+  <div style="max-width: 60ch">
+    {% include '@bolt-components-trigger/trigger.twig' with {
+      content: video_thumbnail,
+      display: 'block',
+      attributes: {
+        'data-bolt-modal-target': '#' ~ modal_id,
+      }
+    } only %}
+    {% include '@bolt-components-modal/modal.twig' with {
+      content: video,
+      width: 'optimal',
+      spacing: 'none',
+      theme: 'xlight',
+      scroll: 'overall',
+      attributes: {
+        id: modal_id,
+      },
+    } only %}
+  </div>
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+// Set up the trigger
+{% set video_thumbnail %}
+  {% set image %}
+    {% include '@bolt-components-image/image.twig' with {
+      src: '/images/placeholders/tout-4x3-climber.jpg',
+      alt: 'A Rock Climber',
+      ratio: false,
+      cover: true,
+    } only %}
+  {% endset %}
+  {% include '@bolt-components-video-thumbnail/video-thumbnail.twig' with {
+    content: image,
+    duration: '4:55',
+  } only %}
+{% endset %}
+{% include '@bolt-components-trigger/trigger.twig' with {
+  content: video_thumbnail,
+  display: 'block',
+  attributes: {
+    'data-bolt-modal-target': '#js-modal-target',
+  }
+} only %}
+
+// Set up the modal
+{% set video %}
+  {% set video_embed %}
+    <video-js
+      data-account='1900410236'
+      data-player='O3FkeBiaDz'
+      data-embed='default'
+      data-video-id='4892122320001'
+      controls
+      class="c-base-video"></video-js>
+  {% endset %}
+  {% include '@bolt-components-ratio/ratio.twig' with {
+    children: video_embed,
+    ratio: '16/9'
+  } only %}
+{% endset %}
+{% include '@bolt-components-modal/modal.twig' with {
+  content: video,
+  width: 'optimal',
+  spacing: 'none',
+  theme: 'xlight',
+  scroll: 'overall',
+  attributes: {
+    id: 'js-modal-target',
+  },
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Video Thumbnail Modal Trigger',
+  description: 'A video thumbnail can be used as the trigger for a video modal.',
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+} only %}

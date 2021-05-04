@@ -28,16 +28,15 @@
 
 .c-bolt-listing-teaser__flag {
   display: grid;
+  align-items: start;
+  position: static; // Position must be static on this element so the heading link will not be contained inside this.
   grid-template-columns: auto 1fr;
-  grid-template-rows: repeat(4, minmax(min-content, max-content)) 1fr;
+  grid-template-rows: repeat(3, minmax(min-content, max-content)) 1fr;
   grid-template-areas:
     '. eyebrow .'
     'signifier heading status'
-    'signifier content status'
-    '. content status';
-  align-items: start;
+    'signifier content status';
   grid-area: flag;
-  position: static; // Position must be static on this element so the heading link will not be contained inside this.
 }
 
 .c-bolt-listing-teaser__flag-signifier {
@@ -288,22 +287,31 @@
   }
 }
 
+@mixin _bolt-listing-teaser-vertical {
+  .c-bolt-listing-teaser__flag {
+    display: block;
+  }
+
+  .c-bolt-listing-teaser__flag-signifier {
+    width: 100%;
+    margin-bottom: var(--bolt-spacing-y-small);
+  }
+
+  .c-bolt-listing-teaser__flag-status {
+    grid-column-start: 1;
+  }
+
+  .c-bolt-listing-teaser__flag-content {
+    margin-bottom: 0;
+  }
+}
+
+.c-bolt-listing-teaser--vertical {
+  @include _bolt-listing-teaser-vertical;
+}
+
 @include bolt-mq($until: small) {
   .c-bolt-listing-teaser--signifier-wrap {
-    .c-bolt-listing-teaser__flag {
-      grid-template-areas:
-        'signifier . .'
-        'eyebrow eyebrow status'
-        'heading heading status'
-        'content content status';
-    }
-
-    .c-bolt-listing-teaser__flag-signifier {
-      margin-bottom: var(--bolt-spacing-y-small);
-    }
-
-    .c-bolt-listing-teaser__flag-status {
-      grid-column-start: 1;
-    }
+    @include _bolt-listing-teaser-vertical;
   }
 }

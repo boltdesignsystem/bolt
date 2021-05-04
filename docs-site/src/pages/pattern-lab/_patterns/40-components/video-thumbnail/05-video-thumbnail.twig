@@ -1,16 +1,14 @@
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>Video thumbnail is a graphical element, it is not an interactive element. Interactions should be handled via links and buttons.</bolt-li>
+    <bolt-li>The <bolt-code-snippet display="inline">content</bolt-code-snippet> prop accepts both plain <bolt-code-snippet display="inline">&lt;img&gt;</bolt-code-snippet> element and Bolt Image component.</bolt-li>
+    <bolt-li>When passing the Bolt Image component, <bolt-code-snippet display="inline">ratio</bolt-code-snippet> prop must be set to false and <bolt-code-snippet display="inline">cover</bolt-code-snippet> prop set to true.</bolt-li>
+    <bolt-li><bolt-code-snippet display="inline">duration</bolt-code-snippet> prop is optional while recommended.</bolt-li>
+  </bolt-ol>
+{% endset %}
+
 {% set demo %}
-  <div style="max-width: 25ch">
-    {% set image %}
-      <img src="/images/placeholders/thumb-square-abstract.jpg" alt="" width=250 height=250>
-    {% endset %}
-    {% include '@bolt-components-video-thumbnail/video-thumbnail.twig' with {
-      content: image,
-      aspect_ratio: '1:1',
-      duration: '4:55',
-    } only %}
-
-    <hr>
-
+  <div style="max-width: 60ch">
     {% set image %}
       {% include '@bolt-components-image/image.twig' with {
         src: '/images/placeholders/tout-4x3-climber.jpg',
@@ -21,18 +19,6 @@
     {% endset %}
     {% include '@bolt-components-video-thumbnail/video-thumbnail.twig' with {
       content: image,
-      aspect_ratio: '16:9',
-      duration: '4:55',
-    } only %}
-
-    <hr>
-
-    {% set image %}
-      <img src="/images/placeholders/thumb-square-abstract.jpg" alt="" width=250 height=250>
-    {% endset %}
-    {% include '@bolt-components-video-thumbnail/video-thumbnail.twig' with {
-      content: image,
-      aspect_ratio: '4:3',
       duration: '4:55',
     } only %}
   </div>
@@ -40,12 +26,24 @@
 
 {% set twig_markup %}
 {% verbatim %}
+{% set image %}
+  {% include '@bolt-components-image/image.twig' with {
+    src: '/images/placeholders/tout-4x3-climber.jpg',
+    alt: 'A Rock Climber',
+    ratio: false,
+    cover: true,
+  } only %}
+{% endset %}
+{% include '@bolt-components-video-thumbnail/video-thumbnail.twig' with {
+  content: image,
+  duration: '4:55',
+} only %}
 {% endverbatim %}
 {% endset %}
 
 {% include '@utils/pattern-doc-page.twig' with {
   title: 'Basic Video Thumbnail',
-  description: 'A video thumbnail is...',
+  description: 'A video thumbnail is an image that displays a play icon and other relevant video information such as duration.',
   notes: notes,
   demo: demo,
   twig_markup: twig_markup,
