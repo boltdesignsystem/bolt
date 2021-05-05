@@ -146,7 +146,11 @@
     display: grid;
     grid-template-columns: auto 1fr;
     grid-gap: var(--bolt-spacing-x-xxsmall);
-    align-items: center;
+    align-items: baseline;
+
+    bolt-icon {
+      transform: translateY(0.1em);
+    }
   }
 }
 
