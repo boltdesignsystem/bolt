@@ -10,6 +10,13 @@ module.exports = {
       description:
         'A Drupal-style attributes object with extra attributes to append to this component.',
     },
+    layout: {
+      type: 'string',
+      description:
+        'Set the layout of the listing teaser based on the use case.',
+      enum: ['vertical', 'horizontal', 'responsive'],
+      default: 'horizontal',
+    },
     gutter: {
       type: 'string',
       description:
@@ -126,12 +133,12 @@ module.exports = {
       enum: ['transparent', 'card'],
       default: 'transparent',
     },
-    layout: {
+    inset_spacing: {
       type: 'string',
       description:
-        'Set the layout of the listing teaser based on the use case.',
-      enum: ['vertical', 'horizontal', 'responsive'],
-      default: 'horizontal',
+        'Set the inset spacing of the listing teaser. This only applies to card variant.',
+      enum: ['xsmall', 'small', 'medium'],
+      default: 'medium',
     },
   },
 };

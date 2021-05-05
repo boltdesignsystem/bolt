@@ -21,6 +21,7 @@
       'Last activity: 2 minutes ago',
     ],
     variant: 'card',
+    inset_spacing: 'small',
   } only %}
 {% endset %}
 
@@ -36,13 +37,14 @@
     },
   },
   variant: 'card',
+  inset_spacing: 'small',
 } only %}
 {% endverbatim %}
 {% endset %}
 
 {% include '@utils/pattern-doc-page.twig' with {
-  title: 'Listing Teaser Variant',
-  description: 'By default, a listing teaser is transparent, but it can take on the card styles by setting variant to card.',
+  title: 'Listing Teaser Card Variant and Spacing',
+  description: 'By default, a listing teaser is transparent, but the card variant can activate card styles. Additionally, inset spacing can be adjusted for the card variant.',
   demo: demo,
   twig_markup: twig_markup,
 } only %}
