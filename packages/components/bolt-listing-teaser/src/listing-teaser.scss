@@ -1,8 +1,8 @@
 @import '@bolt/core-v3.x';
 
-/* ------------------------------------ *\
-   Listing Teaser
-\* ------------------------------------ */
+/**
+ * Listing Teaser
+ */
 
 .c-bolt-listing-teaser {
   display: grid;
@@ -310,7 +310,7 @@
   }
 }
 
-@mixin _bolt-listing-teaser-vertical {
+@mixin _c-bolt-listing-teaser-vertical {
   .c-bolt-listing-teaser__flag {
     display: block;
   }
@@ -330,11 +330,11 @@
 }
 
 .c-bolt-listing-teaser--layout-vertical {
-  @include _bolt-listing-teaser-vertical;
+  @include _c-bolt-listing-teaser-vertical;
 }
 
 @include bolt-mq($until: small) {
   .c-bolt-listing-teaser--layout-responsive {
-    @include _bolt-listing-teaser-vertical;
+    @include _c-bolt-listing-teaser-vertical;
   }
 }
