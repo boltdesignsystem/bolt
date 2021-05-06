@@ -1,3 +1,5 @@
+const navbarItemSchema = require('./navbar-item.schema.js');
+
 module.exports = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'Navbar',
@@ -21,7 +23,9 @@ module.exports = {
           enum: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'],
         },
         text: {
-          type: 'string',
+          type: 'any',
+          description:
+            'Title text should be plain-text but may contain some HTML.',
         },
         icon: {
           type: 'object',
@@ -38,6 +42,17 @@ module.exports = {
             'Set the breakpoint at which you wish to hide the title text.',
           enum: ['from-xsmall-bp', 'from-small-bp'],
         },
+        url: {
+          type: 'string',
+          description:
+            'Make the Navbar title a link, used only on Pattern Lab homepage',
+          hidden: true,
+        },
+        content: {
+          type: 'any',
+          description:
+            'Additional content to appear after the Navbar title text.',
+        },
       },
     },
     center: {
@@ -45,38 +60,46 @@ module.exports = {
       description:
         'Determines if you want the Navbar content to be center aligned or not',
     },
-    width: {
+    full_bleed: {
+      type: 'boolean',
+      default: true,
+      description:
+        'If set to true, the Navbar will take the full width of the page.',
+    },
+    content: {
+      type: 'any',
+      description: 'Content of the Navbar. Navbar-items are expected here.',
+    },
+    more_text: {
       type: 'string',
       description:
-        "Adjusts the Navbar's overall maximum width behavior -- either filling up the entire browser's total screen width (full) or just the component's parent container width (auto).",
-      default: 'full',
-      enum: ['full', 'auto'],
-    },
-    links: {
-      type: 'array',
-      description: '(Inherited from nav-priority) Array of links',
-      items: {
-        type: 'object',
-        properties: {
-          text: {
-            type: 'string',
-          },
-          url: {
-            type: 'string',
-          },
-        },
-      },
-    },
-    moreText: {
-      type: 'string',
-      description:
-        '(Inherited from nav-priority) Button text that displays when the Priority+ Nav Dropdown is displayed.',
+        'Button text that displays when the overflow menu is displayed.',
       default: 'More',
     },
     offset: {
       type: 'integer',
       description:
         '(Inherited from nav-indicator) Number of pixels taken up by sticky items at the top of the page.  Used for smooth scroll and gumshoe.',
+    },
+    static: {
+      type: 'boolean',
+      default: false,
+      description: 'Set the navbar to be static instead of sticky.',
+    },
+    scroll_offset_selector: {
+      type: 'string',
+      description:
+        'Selects one or more elements on the page, offset navbar and smooth scrolling by the total height of the element(s). Must be a valid CSS selector.',
+    },
+    scroll_offset: {
+      type: 'integer',
+      description:
+        'Additional offset for navbar and smooth scrolling, integer converted to pixel value.',
+    },
+    uuid: {
+      type: 'string',
+      description:
+        'Unique ID for the navbar, randomly generated if not provided.',
     },
   },
 };
