@@ -60,11 +60,12 @@ module.exports = {
       description:
         'Determines if you want the Navbar content to be center aligned or not',
     },
-    full_bleed: {
-      type: 'boolean',
-      default: true,
+    width: {
+      type: 'string',
       description:
-        'If set to true, the Navbar will take the full width of the page.',
+        'Control the width of the navbar. Full will span the entire screen width ignoring any wrapper or page max-width.',
+      enum: ['full', 'auto'],
+      default: 'full',
     },
     content: {
       type: 'any',

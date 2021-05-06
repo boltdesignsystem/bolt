@@ -9,9 +9,7 @@
   top: 0;
   right: 0;
   left: 0;
-  z-index: 1;
-  margin-right: 0;
-  margin-left: 0;
+  z-index: bolt-z-index(nav);
 }
 
 .c-bolt-navbar--static {
@@ -23,25 +21,19 @@
   justify-content: space-between;
   align-items: center;
   position: relative;
-  width: 100%;
-  margin: 0 auto;
   padding-top: var(--bolt-spacing-y-small);
-  padding-right: var(--bolt-spacing-x-medium);
-  padding-left: var(--bolt-spacing-x-medium);
+  padding-right: calc(
+    var(--bolt-page-padding-x) - var(--bolt-spacing-x-small)
+  ); // Offsets item padding
+  padding-left: var(--bolt-page-padding-x);
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2);
 
   @include bolt-mq($until: xsmall) {
     display: grid;
-    flex-direction: row;
-    justify-content: center;
-    align-content: center;
-    align-items: center;
     padding-top: 0;
-    padding-right: 0 !important;
-    padding-left: 0 !important;
-    grid-template-columns: var(--bolt-spacing-x-small) auto 1fr var(
-        --bolt-spacing-y-medium
-      );
+    padding-right: 0;
+    padding-left: 0;
+    grid-template-columns: auto 1fr;
     grid-template-rows: 1fr auto;
   }
 
@@ -88,14 +80,20 @@
     justify-content: flex-end;
   }
 
-  @at-root .c-bolt-navbar--full-bleed & {
+  @at-root .c-bolt-navbar:not(.c-bolt-navbar--auto-width) & {
     @include bolt-full-bleed;
-    padding-right: var(--bolt-page-padding-x);
-    padding-left: var(--bolt-page-padding-x);
   }
 
-  @at-root .c-bolt-navbar:not(.c-bolt-navbar--full-bleed) & {
-    max-width: bolt-breakpoint(xxlarge);
+  @at-root .c-bolt-navbar--auto-width & {
+    padding-right: calc(
+      var(--bolt-spacing-x-medium) - var(--bolt-spacing-x-small)
+    ); // Offsets item padding
+    padding-left: var(--bolt-spacing-x-medium);
+
+    @include bolt-mq($until: xsmall) {
+      padding-right: 0;
+      padding-left: 0;
+    }
   }
 }
 
@@ -114,6 +112,9 @@
   @include bolt-mq($until: xsmall) {
     padding-top: var(--bolt-spacing-y-xsmall);
     padding-bottom: var(--bolt-spacing-y-xsmall);
+    padding-left: calc(
+      var(--bolt-spacing-x-small) + var(--bolt-spacing-x-xsmall)
+    ); // Matches page header padding
     grid-column: 2 / span 1;
   }
 

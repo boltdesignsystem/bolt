@@ -13,7 +13,7 @@
 {% set classes = [
   'c-bolt-navbar',
   this.data.static.value ? 'c-bolt-navbar--static' : 'c-bolt-navbar--sticky',
-  this.data.full_bleed.value ? 'c-bolt-navbar--full-bleed' : '',
+  this.data.width.value == 'auto' ? 'c-bolt-navbar--auto-width',
   this.data.center.value ? 'c-bolt-navbar--center' : '',
   this.data.theme.value and this.data.theme.value != 'none' ? 't-bolt-' ~ this.data.theme.value : ''
 ] %}
