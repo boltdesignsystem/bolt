@@ -11,49 +11,62 @@
 
 
       {% set navbar %}
-        {% include "@bolt-site/_navbar-with-version-selector.twig" with {
+        {% set navbar_data = [
+          {
+            text: "Visual Styles",
+            url: "/pattern-lab/?p=visual-styles-color-system",
+          },
+          {
+            text: "Elements",
+            url: "/pattern-lab/?p=viewall-elements-all",
+          },
+          {
+            text: "Components",
+            url: "/pattern-lab/",
+          },
+          {
+            text: "Guidelines",
+            url: "https://github.com/boltdesignsystem/bolt/wiki",
+            attributes: {
+              target: "_blank",
+            },
+          },
+          {
+            text: "Github",
+            url: "https://github.com/bolt-design-system/bolt",
+            attributes: {
+              target: "_blank",
+            },
+            icon: {
+              name: "github",
+              position: "after",
+            }
+          },
+        ] %}
+
+        {% set navbar_content %}
+          {% for item in navbar_data %}
+            {% include "@bolt-components-navbar/navbar-item.twig" with item only %}  
+          {% endfor %}
+        {% endset %}
+
+        {% set version_selector %}
+          {% include "@bolt-site/version-selector.twig" only %}
+        {% endset %}
+        
+        {% include "@bolt-components-navbar/navbar.twig" with {
           theme: "none",
-          width: "auto",
+          static: true,
           title: {
             tag: "h1",
             text: "<span aria-label='Bolt Design System'>Bolt</span>",
             url: "/",
             icon: {
               name: "bolt-logo-colored"
-            }
+            },
+            content: version_selector
           },
-          links: [
-            {
-              text: "Visual Styles",
-              url: "/pattern-lab/?p=visual-styles-color-system",
-            },
-            {
-              text: "Elements",
-              url: "/pattern-lab/?p=viewall-elements-all",
-            },
-            {
-              text: "Components",
-              url: "/pattern-lab/",
-            },
-            {
-              text: "Guidelines",
-              url: "https://github.com/boltdesignsystem/bolt/wiki",
-              attributes: {
-                target: "_blank",
-              },
-            },
-            {
-              text: "Github",
-              url: "https://github.com/bolt-design-system/bolt",
-              attributes: {
-                target: "_blank",
-              },
-              icon: {
-                name: "github",
-                position: "after",
-              }
-            },
-          ],
+          content: navbar_content
         } only %}
       {% endset %}
 

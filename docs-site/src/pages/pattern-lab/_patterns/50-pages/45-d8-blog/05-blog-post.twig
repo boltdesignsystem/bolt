@@ -8,27 +8,35 @@
   {# Navigation #}
   {% embed "@bolt-components-sticky/sticky.twig" %}
     {% block sticky_content %}
+      {% set navbar_data = [
+        {
+          text: "Digital Process Automation",
+          url: "#a",
+        },
+        {
+          text: "1-to-1 Customer Engagement",
+          url: "#a",
+        },
+        {
+          text: "Customer Service",
+          url: "#a",
+        },
+      ] %}
+
+      {% set navbar_content %}
+        {% for item in navbar_data %}
+          {% include "@bolt-components-navbar/navbar-item.twig" with item only %}  
+        {% endfor %}
+      {% endset %}
+
       {% include "@bolt-components-navbar/navbar.twig" with {
         theme: "dark",
         title: {
           tag: "h1",
           text: "Future Proof",
-          url: "http://pega.com/blog",
+          url: "http://pega.com/blog"
         },
-        links: [
-          {
-            text: "Digital Process Automation",
-            url: "#a",
-          },
-          {
-            text: "1-to-1 Customer Engagement",
-            url: "#a",
-          },
-          {
-            text: "Customer Service",
-            url: "#a",
-          },
-        ]
+        content: navbar_content
       } only %}
     {% endblock %}
   {% endembed %}
