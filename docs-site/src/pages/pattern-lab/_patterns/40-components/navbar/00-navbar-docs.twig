@@ -1,3 +1,28 @@
+{% set navbar_data = [
+  {
+    text: "Features",
+    url: "#!"
+  },
+  {
+    text: "Resources",
+    url: "#!"
+  },
+  {
+    text: "Industry Apps",
+    url: "#!"
+  },
+  {
+    text: "Customer Success",
+    url: "#!"
+  }
+] %}
+
+{% set navbar_content %}
+  {% for item in navbar_data %}
+    {% include "@bolt-components-navbar/navbar-item.twig" with item only %}  
+  {% endfor %}
+{% endset %}
+
 {% set usage %}{% verbatim %}
 {% include "@bolt-components-navbar/navbar.twig" with {
   title: {
@@ -7,20 +32,7 @@
       name: "icon-name"
     }
   },
-  links: [
-    {
-      text: "Link 1 Text",
-      url: "#!"
-    },
-    {
-      text: "Link 2 Text",
-      url: "#!"
-    },
-    {
-      text: "Link 3 Text",
-      url: "#!"
-    }
-  ]
+  content: navbar_content
 } only %}
 {% endverbatim %}{% endset %}
 
@@ -32,31 +44,14 @@
     layout: "horizontal",
     initialData: {
       width: "auto",
-      "title": {
-        "tag": "h2",
-        "text": "Title Text",
-        "icon": {
-          "name": "marketing-gray"
+      title: {
+        tag: "h2",
+        text: "Title Text",
+        icon: {
+          name: "marketing-gray"
         }
       },
-      "links": [
-        {
-          "text": "Features",
-          "url": "#!"
-        },
-        {
-          "text": "Resources",
-          "url": "#!"
-        },
-        {
-          "text": "Industry Apps",
-          "url": "#!"
-        },
-        {
-          "text": "Customer Success",
-          "url": "#!"
-        }
-      ]
+      content: navbar_content
     },
   },
 } only %}

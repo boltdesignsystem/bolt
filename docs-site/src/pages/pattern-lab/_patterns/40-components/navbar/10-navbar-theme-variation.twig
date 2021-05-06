@@ -1,37 +1,45 @@
-{% set schema = bolt.data.components['@bolt-components-navbar'].schema %}
+{% set schema = bolt.data.components['@bolt-components-navbar'].schema['navbar'] %}
+
+{% set navbar_data = [
+  {
+    text: "Link 1 Text",
+    url: "#!"
+  },
+  {
+    text: "Link 2 Text",
+    url: "#!"
+  },
+  {
+    text: "Link 3 Text",
+    url: "#!"
+  }
+] %}
+
+{% set navbar_content %}
+  {% for item in navbar_data %}
+    {% include "@bolt-components-navbar/navbar-item.twig" with item only %}  
+  {% endfor %}
+{% endset %}
 
 {% for theme in schema.properties.theme.enum %}
   {% set headline %}
     Theme: {{ theme }}
   {% endset %}
   {% include "@bolt-components-headline/headline.twig" with {
-    "size": "large",
-    "text": headline
+    size: "large",
+    text: headline
   } only %}
   <div class="u-bolt-margin-bottom-large">
     {% include "@bolt-components-navbar/navbar.twig" with {
-      "theme": theme,
-      "title": {
-        "tag": "h2",
-        "text": "Title Text",
-        "icon": {
-          "name": "marketing-gray"
+      theme: theme,
+      title: {
+        tag: "h2",
+        text: "Title Text",
+        icon: {
+          name: "marketing-gray"
         }
       },
-      "links": [
-        {
-          "text": "Link 1 Text",
-          "url": "#!"
-        },
-        {
-          "text": "Link 2 Text",
-          "url": "#!"
-        },
-        {
-          "text": "Link 3 Text",
-          "url": "#!"
-        }
-      ]
-    } %}
+      content: navbar_content
+    } only %}
   </div>
 {% endfor %}
