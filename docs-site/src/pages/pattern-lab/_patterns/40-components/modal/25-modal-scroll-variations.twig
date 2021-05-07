@@ -23,7 +23,7 @@
               size: "small",
               width: "full",
               attributes: {
-                onclick: "this.nextElementSibling.show()",
+                "data-bolt-modal-target": ".js-bolt-modal--scroll-" ~ scroll,
               }
             } only %}
             {% include "@bolt-components-modal/modal.twig" with {
@@ -31,6 +31,9 @@
               scroll: scroll,
               spacing: "none",
               theme: "none",
+              attributes: {
+                class: "js-bolt-modal--scroll-" ~ scroll,
+              },
             } only %}
           </th>
           <td>

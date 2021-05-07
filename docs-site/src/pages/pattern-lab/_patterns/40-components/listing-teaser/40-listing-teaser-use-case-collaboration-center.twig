@@ -1,7 +1,3 @@
-{% set description %}
-  Post List is a way to display activities in Pega&rsquo;s Collaboration Center.
-{% endset %}
-
 {% set notes %}
   A post list is composed of the Listing Teaser component and the List component with solid separators.
 {% endset %}
@@ -186,6 +182,23 @@
     } only %}
   {% endset %}
   {% set listing_5 %}
+    {% set description %}
+      {% set more_link %}
+        {% set icon_chevron_right %}
+          {% include '@bolt-components-icon/icon.twig' with {
+            name: 'chevron-right',
+          } only %}
+        {% endset %}
+        {% include '@bolt-elements-text-link/text-link.twig' with {
+          content: 'Read more',
+          icon_after: icon_chevron_right,
+          attributes: {
+            href: 'https://pega.com',
+          }
+        } only %}
+      {% endset %}
+      <p>This is the description. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus&hellip;{{ more_link }}</p>
+    {% endset %}
     {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
       signifier: icon_questions,
       headline: {
@@ -204,10 +217,58 @@
         replies: '26',
         views: '666',
       },
-      more_info: 'More information. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.'
+      description: description
     } only %}
   {% endset %}
   {% set listing_6 %}
+    {% set reply %}
+      <p><strong>Replied on Aug 21, 2021</strong></p>
+      <p>Hi <a href="/user/1622491" target="_blank">@ClayN538</a></p>
+      <p>Here is the information for <a href="https://collaborate.pega.com/discussion/pega-826-patch-available">Pega Patch 8.2.6</a>&nbsp;within the PCC and a direct link to our <a href="https://community.pega.com/digital-delivery" target="_blank" rel="noopener">Digital Delivery Software</a>.</p>
+      <p>Here is the <a href="https://collaborate.pega.com/search?f%5B0%5D=search_site_moderator_tag%3APatch%20Release">link</a> to all of our posts regarding Pega Patches.</p>
+      <p>If you can't find the Patch for 8.2.6, please reach out to your Account Executive.</p>
+      {% set reply_link %}
+        {% set icon_chevron_right %}
+          {% include '@bolt-components-icon/icon.twig' with {
+            name: 'chevron-right',
+          } only %}
+        {% endset %}
+        {% include '@bolt-elements-text-link/text-link.twig' with {
+          content: 'Go to reply',
+          icon_after: icon_chevron_right,
+          attributes: {
+            href: '/reply-123',
+          }
+        } only %}
+      {%  endset %}
+      {% include '@bolt-components-headline/text.twig' with {
+        text: reply_link,
+        tag: 'p',
+        size: 'small',
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
+      signifier: icon_questions,
+      headline: {
+        text: 'RE: This is a post showing one of the replies',
+        tag: 'h3',
+        size: 'large',
+        link_attributes: {
+          href: 'https://pega.com'
+        },
+      },
+      meta_items: [
+        'Posted by <a href="https://collaborate.pega.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline">username</a> on July 1, 2020',
+        'Last activity: 1 hour ago',
+      ],
+      status: {
+        replies: '5',
+        views: '216',
+      },
+      reply: reply,
+    } only %}
+  {% endset %}
+  {% set listing_7 %}
     {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
       signifier: icon_questions,
       headline: {
@@ -231,7 +292,7 @@
       action_menu: action_menu,
     } only %}
   {% endset %}
-  {% set listing_7 %}
+  {% set listing_8 %}
     {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
       signifier: icon_questions,
       headline: {
@@ -268,6 +329,7 @@
       listing_5,
       listing_6,
       listing_7,
+      listing_8,
     ]
   } only %}
 {% endset %}
@@ -316,6 +378,8 @@
       'Posted by <a href="https://collaborate.pega.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline">mikemai</a> on Apr 9, 2020',
       'Last activity: 8 hours 26 minutes ago',
     ],
+    description: description,
+    reply: reply,
     status: {
       solved: true,
       locked: true,
@@ -340,7 +404,7 @@
 
 {% include '@utils/pattern-doc-page.twig' with {
   title: 'Use Case: Collaboration Center Post List',
-  description: description,
+  description: 'Post List is a way to display activities in Pega&rsquo;s Collaboration Center.',
   demo: demo,
   notes: notes,
   twig_markup: twig_markup,
