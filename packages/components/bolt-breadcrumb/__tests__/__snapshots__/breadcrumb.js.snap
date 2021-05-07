@@ -1,5 +1,63 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Bolt Breadcrumb basic usage with contentItems including rendered components and strings 1`] = `
+<bolt-breadcrumb bolt-component>
+  <nav class="c-bolt-breadcrumb"
+       aria-label="Breadcrumb"
+       role="navigation"
+  >
+    <ol class="c-bolt-breadcrumb__list">
+      <li class="c-bolt-breadcrumb__item">
+        <bolt-link url="#!">
+          <a href="#!"
+             target="_self"
+             class="c-bolt-link c-bolt-link--display-inline c-bolt-link--valign-center"
+          >
+            <ssr-keep for="bolt-link"
+                      class="c-bolt-link__text"
+            >
+              Home
+            </ssr-keep>
+          </a>
+        </bolt-link>
+      </li>
+      <li class="c-bolt-breadcrumb__item">
+        <bolt-link url="#!">
+          <a href="#!"
+             target="_self"
+             class="c-bolt-link c-bolt-link--display-inline c-bolt-link--valign-center"
+          >
+            <ssr-keep for="bolt-link"
+                      class="c-bolt-link__text"
+            >
+              Other Page
+            </ssr-keep>
+          </a>
+        </bolt-link>
+      </li>
+      <li class="c-bolt-breadcrumb__item">
+        <bolt-link url="#!">
+          <a href="#!"
+             target="_self"
+             class="c-bolt-link c-bolt-link--display-inline c-bolt-link--valign-center"
+          >
+            <ssr-keep for="bolt-link"
+                      class="c-bolt-link__text"
+            >
+              Sub Page
+            </ssr-keep>
+          </a>
+        </bolt-link>
+      </li>
+      <li class="c-bolt-breadcrumb__item">
+        Notice: Array to string conversion in /Users/cookc/dev/bolt/node_modules/@basalt/twig-renderer/vendor/twig/twig/src/Environment.php(497) : eval()'d code on line 79
+Array
+      </li>
+    </ol>
+  </nav>
+</bolt-breadcrumb>
+`;
+
 exports[`Bolt Breadcrumb default 1`] = `
 <bolt-breadcrumb bolt-component>
   <nav class="c-bolt-breadcrumb"
