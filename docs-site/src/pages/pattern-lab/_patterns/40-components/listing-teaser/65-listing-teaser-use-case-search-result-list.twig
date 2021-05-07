@@ -1,0 +1,735 @@
+{% set description %}
+  Search Result List is a way to display teasers for a list of search results.
+{% endset %}
+
+{% set notes %}
+{% endset %}
+
+{% set demo %}
+  {% set icon_chevron_down %}
+    {% include '@bolt-components-icon/icon.twig' with {
+      name: 'chevron-down',
+    } only %}
+  {% endset %}
+  {% set icon_chevron_right %}
+    {% include '@bolt-components-icon/icon.twig' with {
+      name: 'chevron-right',
+    } only %}
+  {% endset %}
+  {% set share_menu %}
+    {% include '@bolt-components-share/share.twig' with {
+      display: 'menu',
+      size: 'small',
+      text: 'Share this article',
+      sources: [
+        {
+          name: 'facebook',
+          url: 'https://www.facebook.com/sharer/sharer.php?u=https://pega.com&amp;src=sdkpreparse'
+        },
+        {
+          name: 'twitter',
+          url: 'https://twitter.com/intent/tweet?url=https://pega.com&text=Sample%20Share%20Text&via=pega&hashtags=boltDesignSystemRocks!'
+        },
+        {
+          name: 'linkedin',
+          url: 'https://www.linkedin.com/shareArticle?url=https://pega.com'
+        },
+        {
+          name: 'email',
+          url: 'mailto:?&body=Sample%20Text%20--%20https%3A//boltdesignsystem.com'
+        }
+      ],
+      copy_to_clipboard: {
+        text_to_copy: 'https://pega.com'
+      },
+    } only %}
+  {% endset %}
+  {% set chip_list %}
+    {% include '@bolt-components-chip-list/chip-list.twig' with {
+      size: 'xsmall',
+      items: [
+        {
+          text: 'Chip 1',
+          url: 'https://pega.com/test',
+        },
+        {
+          text: 'Chip 2',
+          url: 'https://pega.com/test',
+        },
+      ],
+    } only %}
+  {% endset %}
+  {% set version_popover %}
+    {% set trigger %}
+      {% include '@bolt-elements-text-link/text-link.twig' with {
+        content: 'Pega platform 8.5',
+        icon_after: icon_chevron_down,
+        reversed_underline: true,
+        attributes: {
+          type: 'button',
+        }
+      } only %}
+    {% endset %}
+    {% set content %}
+      {% include '@bolt-components-menu/menu.twig' with {
+        title: 'Choose a version',
+        items: [
+          {
+            content: 'Pega platform 8.4',
+            url: 'https://pega.com',
+          },
+          {
+            content: 'Pega platform 8.5',
+            url: 'https://pega.com',
+          },
+          {
+            content: 'Pega platform 8.6',
+            url: 'https://pega.com',
+          },
+        ]
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-popover/popover.twig' with {
+      trigger: trigger,
+      content: content,
+      spacing: 'none',
+      trigger_event: 'hover',
+    } only %}
+  {% endset %}
+
+  {% set product_result_1 %}
+    {% set eyebrow_1 %}
+      {% include '@bolt-components-headline/eyebrow.twig' with {
+        text: 'Product',
+      } only %}
+    {% endset %}
+    {% set signifier %}
+      {% include '@bolt-components-icon/icon.twig' with {
+        name: 'platform',
+        color: 'teal',
+        background: 'circle',
+        size: 'large',
+      } only %}
+    {% endset %}
+    {% set callout_content %}
+      {% set headlines %}
+        {% include '@bolt-components-headline/headline.twig' with {
+          text: 'Looking for deployment guides for your environment?',
+          tag: 'h4',
+          size: 'large',
+        } only %}
+        {% include '@bolt-components-headline/text.twig' with {
+          text: 'Select your version to view documentation.',
+          tag: 'p',
+          size: 'small',
+        } only %}
+      {% endset %}
+      {% set popover %}
+        {% set popover_trigger %}
+          {% include '@bolt-elements-button/button.twig' with {
+            content: 'Version 8.5',
+            size: 'small',
+            border_radius: 'full',
+            icon_after: icon_chevron_down,
+            attributes: {
+              type: 'button',
+              style: 'white-space: nowrap;',
+            }
+          } only %}
+        {% endset %}
+        {% set popover_content %}
+          {% include '@bolt-components-menu/menu.twig' with {
+            title: 'Choose a version',
+            items: [
+              {
+                content: 'Version 8.4',
+              },
+              {
+                content: 'Version 8.5',
+              },
+              {
+                content: 'Version 8.6',
+              },
+            ]
+          } only %}
+        {% endset %}
+        {% include '@bolt-components-popover/popover.twig' with {
+          trigger: popover_trigger,
+          trigger_event: 'hover',
+          content: popover_content,
+          spacing: 'none',
+        } only %}
+      {% endset %}
+      {% include '@bolt-components-grid/grid.twig' with {
+        valign: 'center',
+        gutter: 'small',
+        items: [
+          {
+            column_start: '1',
+            column_span: '12 11@small',
+            row_start: '1 1@small',
+            content: headlines,
+          },
+          {
+            column_start: '1 12@small',
+            column_span: '12 1@small',
+            row_start: '2 1@small',
+            content: popover,
+          },
+        ]
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
+      gutter: 'medium',
+      signifier: signifier,
+      layout: 'responsive',
+      eyebrow_items: [
+        eyebrow_1,
+      ],
+      headline: {
+        text: 'This is a product',
+        tag: 'h3',
+        size: 'xlarge',
+        link_attributes: {
+          href: 'https://pega.com'
+        },
+      },
+      description: 'Tri-tip shank tongue fatback kevin. Venison frankfurter cupim picanha meatloaf ham hock beef ribs. Burgdoggen porchetta spare ribs bresaola chuck filet mignon. Spare ribs filet mignon pig pastrami&hellip;',
+      variant: 'card',
+      callout: {
+        attributes: {
+          class: 't-bolt-dark',
+        },
+        content: callout_content,
+      },
+    } only %}
+  {% endset %}
+
+  {# <bolt-text headline font-size="small">Product Results</bolt-text>
+  {% include '@bolt-components-list/list.twig' with {
+    spacing: 'small',
+    separator: 'solid',
+    items: [
+      product_result_1,
+    ]
+  } only %} #}
+
+  {% set com_result_1 %}
+    {% set eyebrow_1 %}
+      {% include '@bolt-components-headline/eyebrow.twig' with {
+        text: 'Documentation',
+      } only %}
+    {% endset %}
+    {% set eyebrow_2 %}
+      {% include '@bolt-components-headline/eyebrow.twig' with {
+        text: 'Article',
+      } only %}
+    {% endset %}
+    {% set icon_documentation %}
+      {% include '@bolt-components-icon/icon.twig' with {
+        name: 'documentation',
+      } only %}
+    {% endset %}
+    {% set book_link %}
+      {% include '@bolt-elements-text-link/text-link.twig' with {
+        content: 'Book name',
+        icon_before: icon_documentation,
+        reversed_underline: true,
+        attributes: {
+          href: 'https://pega.com',
+        }
+      } only %}
+    {% endset %}
+    {% set parent_link %}
+      {% include '@bolt-elements-text-link/text-link.twig' with {
+        content: 'Parent name (one level up)',
+        reversed_underline: true,
+        attributes: {
+          href: 'https://pega.com',
+        }
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
+      eyebrow_items: [
+        eyebrow_1,
+        eyebrow_2,
+      ],
+      headline: {
+        text: 'This is a documentation',
+        tag: 'h3',
+        size: 'xlarge',
+        link_attributes: {
+          href: 'https://pega.com'
+        },
+      },
+      meta_items: [
+        book_link,
+        parent_link,
+        version_popover,
+      ],
+      description: 'Tri-tip shank tongue fatback kevin. Venison frankfurter cupim picanha meatloaf ham hock beef ribs. Burgdoggen porchetta spare ribs bresaola chuck filet mignon. Spare ribs filet mignon pig pastrami&hellip;',
+      chip_list: chip_list,
+    } only %}
+  {% endset %}
+  {% set com_result_2 %}
+    {% set eyebrow_1 %}
+      {% include '@bolt-components-headline/eyebrow.twig' with {
+        text: 'Community blog',
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
+      eyebrow_items: [
+        eyebrow_1,
+      ],
+      headline: {
+        text: 'This is a blog post',
+        tag: 'h3',
+        size: 'xlarge',
+        link_attributes: {
+          href: 'https://pega.com'
+        },
+      },
+      meta_items: [
+        'Author Name',
+        'August 29, 2021',
+        '3 min read',
+      ],
+      description: 'Tri-tip shank tongue fatback kevin. Venison frankfurter cupim picanha meatloaf ham hock beef ribs. Burgdoggen porchetta spare ribs bresaola chuck filet mignon. Spare ribs filet mignon pig pastrami&hellip;',
+      chip_list: chip_list,
+    } only %}
+  {% endset %}
+  {% set com_result_3 %}
+    {% set eyebrow_1 %}
+      {% include '@bolt-components-headline/eyebrow.twig' with {
+        text: 'Design pattern',
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
+      eyebrow_items: [
+        eyebrow_1,
+      ],
+      headline: {
+        text: 'This is a design pattern',
+        tag: 'h3',
+        size: 'xlarge',
+        link_attributes: {
+          href: 'https://pega.com'
+        },
+      },
+      description: 'Tri-tip shank tongue fatback kevin. Venison frankfurter cupim picanha meatloaf ham hock beef ribs. Burgdoggen porchetta spare ribs bresaola chuck filet mignon. Spare ribs filet mignon pig pastrami&hellip;',
+      chip_list: chip_list,
+    } only %}
+  {% endset %}
+
+  {# <bolt-text headline font-size="small">Community Results</bolt-text>
+  {% include '@bolt-components-list/list.twig' with {
+    spacing: 'small',
+    separator: 'solid',
+    items: [
+      com_result_1,
+      com_result_2,
+      com_result_3,
+    ]
+  } only %} #}
+
+  {% set acd_result_1 %}
+    {% set eyebrow_1 %}
+      {% include '@bolt-components-headline/eyebrow.twig' with {
+        text: 'Pega Academy',
+      } only %}
+    {% endset %}
+    {% set eyebrow_2 %}
+      {% include '@bolt-components-headline/eyebrow.twig' with {
+        text: 'Mission',
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
+      eyebrow_items: [
+        eyebrow_1,
+        eyebrow_2,
+      ],
+      headline: {
+        text: 'This is an Academy mission',
+        tag: 'h3',
+        size: 'xlarge',
+        link_attributes: {
+          href: 'https://pega.com'
+        },
+      },
+      meta_items: [
+        '11 modules',
+        '10 challenges',
+        '10 hr 35 min',
+        version_popover,
+      ],
+      description: 'Tri-tip shank tongue fatback kevin. Venison frankfurter cupim picanha meatloaf ham hock beef ribs. Burgdoggen porchetta spare ribs bresaola chuck filet mignon. Spare ribs filet mignon pig pastrami&hellip;',
+      chip_list: chip_list,
+    } only %}
+  {% endset %}
+  {% set acd_result_2 %}
+    {% set eyebrow_1 %}
+      {% include '@bolt-components-headline/eyebrow.twig' with {
+        text: 'Pega Academy',
+      } only %}
+    {% endset %}
+    {% set eyebrow_2 %}
+      {% include '@bolt-components-headline/eyebrow.twig' with {
+        text: 'Module',
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
+      eyebrow_items: [
+        eyebrow_1,
+        eyebrow_2,
+      ],
+      headline: {
+        text: 'This is an Academy module',
+        tag: 'h3',
+        size: 'xlarge',
+        link_attributes: {
+          href: 'https://pega.com'
+        },
+      },
+      meta_items: [
+        '5 topics',
+        '1 hr 20 min',
+      ],
+      description: 'Tri-tip shank tongue fatback kevin. Venison frankfurter cupim picanha meatloaf ham hock beef ribs. Burgdoggen porchetta spare ribs bresaola chuck filet mignon. Spare ribs filet mignon pig pastrami&hellip;',
+      chip_list: chip_list,
+    } only %}
+  {% endset %}
+  {% set acd_result_3 %}
+    {% set eyebrow_1 %}
+      {% include '@bolt-components-headline/eyebrow.twig' with {
+        text: 'Pega Academy',
+      } only %}
+    {% endset %}
+    {% set eyebrow_2 %}
+      {% include '@bolt-components-headline/eyebrow.twig' with {
+        text: 'Challenge',
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
+      eyebrow_items: [
+        eyebrow_1,
+        eyebrow_2,
+      ],
+      headline: {
+        text: 'This is an Academy challenge',
+        tag: 'h3',
+        size: 'xlarge',
+        link_attributes: {
+          href: 'https://pega.com'
+        },
+      },
+      meta_items: [
+        '9 tasks',
+        '45 min',
+      ],
+      description: 'Tri-tip shank tongue fatback kevin. Venison frankfurter cupim picanha meatloaf ham hock beef ribs. Burgdoggen porchetta spare ribs bresaola chuck filet mignon. Spare ribs filet mignon pig pastrami&hellip;',
+      chip_list: chip_list,
+    } only %}
+  {% endset %}
+
+  {# <bolt-text headline font-size="small">Academy Results</bolt-text>
+  {% include '@bolt-components-list/list.twig' with {
+    spacing: 'small',
+    separator: 'solid',
+    items: [
+      acd_result_1,
+      acd_result_2,
+      acd_result_3,
+    ]
+  } only %} #}
+
+  {% set cc_result_1 %}
+    {% set eyebrow_1 %}
+      {% include '@bolt-components-headline/eyebrow.twig' with {
+        text: 'Collaboration Center',
+      } only %}
+    {% endset %}
+    {% set eyebrow_2 %}
+      {% include '@bolt-components-headline/eyebrow.twig' with {
+        text: 'Question',
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
+      eyebrow_items: [
+        eyebrow_1,
+        eyebrow_2,
+      ],
+      headline: {
+        text: 'This is a Collaboration Center question',
+        tag: 'h3',
+        size: 'xlarge',
+        link_attributes: {
+          href: 'https://pega.com'
+        },
+      },
+      meta_items: [
+        'Posted by <a href="https://collaborate.pega.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline">mikemai</a> on Apr 9, 2020',
+        'Last activity: 8 hr 26 min ago',
+      ],
+      description: 'Tri-tip shank tongue fatback kevin. Venison frankfurter cupim picanha meatloaf ham hock beef ribs. Burgdoggen porchetta spare ribs bresaola chuck filet mignon. Spare ribs filet mignon pig pastrami&hellip;',
+      chip_list: chip_list,
+      status: {
+        solved: true,
+        locked: true,
+        replies: '2',
+        views: '56',
+      },
+    } only %}
+  {% endset %}
+  {% set cc_result_2 %}
+    {% set eyebrow_1 %}
+      {% include '@bolt-components-headline/eyebrow.twig' with {
+        text: 'Collaboration Center',
+      } only %}
+    {% endset %}
+    {% set eyebrow_2 %}
+      {% include '@bolt-components-headline/eyebrow.twig' with {
+        text: 'Discussion',
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
+      eyebrow_items: [
+        eyebrow_1,
+        eyebrow_2,
+      ],
+      headline: {
+        text: 'This is a Collaboration Center discussion',
+        tag: 'h3',
+        size: 'xlarge',
+        link_attributes: {
+          href: 'https://pega.com'
+        },
+      },
+      meta_items: [
+        'Posted by <a href="https://collaborate.pega.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline">mikemai</a> on Apr 9, 2020',
+        'Last activity: 8 hr 26 min ago',
+      ],
+      description: 'Tri-tip shank tongue fatback kevin. Venison frankfurter cupim picanha meatloaf ham hock beef ribs. Burgdoggen porchetta spare ribs bresaola chuck filet mignon. Spare ribs filet mignon pig pastrami&hellip;',
+      chip_list: chip_list,
+      status: {
+        locked: true,
+        replies: '2',
+        views: '56',
+      },
+    } only %}
+  {% endset %}
+  {% set cc_result_3 %}
+    {% set eyebrow_1 %}
+      {% include '@bolt-components-headline/eyebrow.twig' with {
+        text: 'Collaboration Center',
+      } only %}
+    {% endset %}
+    {% set eyebrow_2 %}
+      {% include '@bolt-components-headline/eyebrow.twig' with {
+        text: 'Challenge',
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
+      eyebrow_items: [
+        eyebrow_1,
+        eyebrow_2,
+      ],
+      headline: {
+        text: 'This is a Collaboration Center idea',
+        tag: 'h3',
+        size: 'xlarge',
+        link_attributes: {
+          href: 'https://pega.com'
+        },
+      },
+      meta_items: [
+        'Posted by <a href="https://collaborate.pega.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline">mikemai</a> on Apr 9, 2020',
+        'Last activity: 8 hr 26 min ago',
+      ],
+      description: 'Tri-tip shank tongue fatback kevin. Venison frankfurter cupim picanha meatloaf ham hock beef ribs. Burgdoggen porchetta spare ribs bresaola chuck filet mignon. Spare ribs filet mignon pig pastrami&hellip;',
+      chip_list: chip_list,
+      status: {
+        replies: '2',
+        views: '56',
+      },
+    } only %}
+  {% endset %}
+
+  {# <bolt-text headline font-size="small">Collaboration Center Results</bolt-text>
+  {% include '@bolt-components-list/list.twig' with {
+    spacing: 'small',
+    separator: 'solid',
+    items: [
+      cc_result_1,
+      cc_result_2,
+      cc_result_3,
+    ]
+  } only %} #}
+
+  {% set vid_result_1 %}
+    {% set modal_id = 'js-bolt-modal-' ~ random() %}
+    {% set video %}
+      {% set video_embed %}
+        <video-js
+          data-account='1900410236'
+          data-player='O3FkeBiaDz'
+          data-embed='default'
+          data-video-id='4892122320001'
+          controls
+          class="c-base-video"></video-js>
+      {% endset %}
+      {% include '@bolt-components-ratio/ratio.twig' with {
+        children: video_embed,
+        ratio: '16/9'
+      } only %}
+    {% endset %}
+    {% set modal_content %}
+      {{ video }}
+      <div class="u-bolt-padding-small">
+        {% include '@bolt-elements-text-link/text-link.twig' with {
+          content: 'View the video resource page',
+          icon_after: icon_chevron_right,
+          reversed_underline: true,
+          attributes: {
+            href: 'https://pega.com',
+          }
+        } only %}
+      </div>
+    {% endset %}
+    {% include '@bolt-components-modal/modal.twig' with {
+      content: modal_content,
+      width: 'optimal',
+      spacing: 'none',
+      theme: 'xlight',
+      scroll: 'overall',
+      attributes: {
+        id: modal_id,
+      },
+    } only %}
+    {% set signifier %}
+      {% set image %}
+        {% include '@bolt-components-image/image.twig' with {
+          src: '/images/placeholders/tout-4x3-climber.jpg',
+          alt: 'A Rock Climber',
+          ratio: false,
+          cover: true,
+        } only %}
+      {% endset %}
+      {% include '@bolt-components-video-thumbnail/video-thumbnail.twig' with {
+        content: image,
+        aspect_ratio: '16:9',
+        border_radius: 'small',
+      } only %}
+    {% endset %}
+    {% set eyebrow_1 %}
+      {% include '@bolt-components-headline/eyebrow.twig' with {
+        text: 'Video',
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
+      gutter: 'medium',
+      signifier: signifier,
+      layout: 'responsive',
+      eyebrow_items: [
+        eyebrow_1,
+      ],
+      headline: {
+        text: 'This is a video',
+        tag: 'h3',
+        size: 'xlarge',
+        link_attributes: {
+          type: 'button',
+          'data-bolt-modal-target': '#' ~ modal_id,
+        },
+      },
+      meta_items: [
+        'TechTalk',
+        'Apr 9, 2020',
+        '17:11',
+      ],
+      description: 'Tri-tip shank tongue fatback kevin. Venison frankfurter cupim picanha meatloaf ham hock beef ribs. Burgdoggen porchetta spare ribs bresaola chuck filet mignon. Spare ribs filet mignon pig pastrami&hellip;',
+      chip_list: chip_list,
+    } only %}
+  {% endset %}
+
+  {# <bolt-text headline font-size="small">Video Results</bolt-text>
+  {% include '@bolt-components-list/list.twig' with {
+    spacing: 'small',
+    separator: 'solid',
+    items: [
+      vid_result_1,
+    ]
+  } only %} #}
+
+  {% set related_vids %}
+    {% include '@bolt-components-headline/headline.twig' with {
+      text: 'Related videos',
+      tag: 'h4',
+      size: 'large',
+      attributes: {
+        class: 'u-bolt-margin-bottom-xsmall',
+      },
+    } only %}
+    {% include '@bolt-components-list/list.twig' with {
+      spacing: 'small',
+      separator: 'solid',
+      items: [
+        vid_result_1,
+        vid_result_1,
+        vid_result_1,
+      ]
+    } only %}
+  {% endset %}
+  {% include '@bolt-components-list/list.twig' with {
+    spacing: 'small',
+    separator: 'solid',
+    items: [
+      product_result_1,
+      cc_result_1,
+      com_result_1,
+      acd_result_1,
+      related_vids,
+      acd_result_3,
+      cc_result_2,
+      com_result_3,
+      cc_result_3,
+      acd_result_2,
+      com_result_2,
+    ]
+  } only %}
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
+  signifier: signifier,
+  layout: 'responsive', // Allow the content to wrap under the signifier when it runs out of space.
+  eyebrow_items: [
+    eyebrow_1,
+    eyebrow_2,
+  ],
+  headline: {
+    text: 'This is a listing',
+    tag: 'h3',
+    size: 'xlarge',
+    link_attributes: {
+      href: 'https://pega.com', // Or set type: 'button' for video modals
+    },
+  },
+  meta_items: [
+    meta_item_1,
+    meta_item_2,
+    meta_item_3,
+  ],
+  description: description,
+  chip_list: chip_list,
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Use Case: Search Result List',
+  description: description,
+  demo: demo,
+  notes: notes,
+  twig_markup: twig_markup,
+} only %}
