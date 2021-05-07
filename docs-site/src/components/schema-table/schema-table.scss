@@ -87,11 +87,12 @@ bolt-schema-table.is-wc {
   overflow-y: hidden;
 
   table {
-    @include bolt-font-size(xsmall);
-    @include bolt-font-family(body);
     transform: translate3d(0, 0, 0);
     width: 100%;
     margin-bottom: 0;
+    font-family: var(--bolt-type-font-family-body);
+    font-size: var(--bolt-type-font-size-xsmall);
+    line-height: var(--bolt-type-line-height-xsmall);
     border: 1px solid bolt-color(gray, light);
     table-layout: auto;
   }
@@ -113,10 +114,11 @@ bolt-schema-table.is-wc {
   }
 
   th {
-    @include bolt-font-size(xsmall);
-    @include bolt-font-weight(semibold);
     padding: var(--bolt-spacing-y-xsmall) var(--bolt-spacing-x-xsmall);
+    font-size: var(--bolt-type-font-size-xsmall);
+    font-weight: var(--bolt-type-font-weight-semibold);
     color: bolt-color(gray, dark);
+    line-height: var(--bolt-type-line-height-xsmall);
     text-align: left;
     vertical-align: bottom;
     background-color: bolt-color(gray, xlight);
@@ -137,7 +139,7 @@ bolt-schema-table.is-wc {
 }
 
 .c-bds-schema-table__col--key {
-  font-weight: bolt-font-weight(600);
+  font-weight: var(--bolt-type-font-weight-semibold);
 }
 
 .c-bds-schema-table .c-bds-schema-table {

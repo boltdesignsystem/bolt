@@ -102,9 +102,9 @@ $bolt-search-filter-transition: $bolt-transition;
 }
 
 .c-bolt-search-inline-tag {
-  @include bolt-font-weight(semibold);
   display: inline;
   display: inline-flex;
+  font-weight: var(--bolt-type-font-weight-semibold);
   color: var(--m-bolt-link);
   text-decoration: none;
   transition: all $bolt-transition;

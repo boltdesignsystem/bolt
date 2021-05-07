@@ -14,21 +14,15 @@ module.exports = {
       type: 'string',
       description: 'Overlay opacity',
       default: 'medium',
-      enum: ['light', 'medium', 'heavy', 'full'],
+      enum: ['none', 'light', 'medium', 'heavy', 'full'],
     },
-    overlay: {
-      type: 'string',
-      description: 'Should an overlay be used for this background.',
-      default: 'enabled',
-      enum: ['enabled', 'disabled'],
-    },
-    shapeGroup: {
+    shape_group: {
       type: 'string',
       description: 'Add a Bolt Background Shapes group.',
       default: 'none',
       enum: ['A', 'B', 'none'],
     },
-    shapeAlignment: {
+    shape_alignment: {
       type: 'string',
       description: 'Alignment of shape group.',
       default: 'right',
@@ -40,13 +34,13 @@ module.exports = {
       default: 'color',
       enum: ['color', 'gradient', 'linear-gradient', 'radial-gradient'],
     },
-    fillColor: {
+    fill_color: {
       type: 'string',
       description: 'Color of the fill to use in the overlay.',
       default: 'default',
       enum: ['default', 'pink', 'navy', 'black', 'indigo'],
     },
-    focalPoint: {
+    focal_point: {
       type: 'object',
       description: 'Where the opacity background should originate.',
       properties: {
@@ -63,13 +57,37 @@ module.exports = {
         enum: ['center', 'top', 'bottom'],
       },
     },
-    contentItems: {
+    content_items: {
       type: 'array',
       description:
         'An array of objects to place in the background.Works with Image and Shape components.Video option is deprecated.',
       items: {
         type: 'any',
       },
+    },
+    overlay: {
+      title: 'DEPRECATED',
+      description: 'Use opacity instead',
+    },
+    shapeGroup: {
+      title: 'DEPRECATED',
+      description: 'Use shape_group instead.',
+    },
+    shapeAlignment: {
+      title: 'DEPRECATED',
+      description: 'Use shape_alignment instead.',
+    },
+    fillColor: {
+      title: 'DEPRECATED',
+      description: 'Use fill_color instead.',
+    },
+    focalPoint: {
+      title: 'DEPRECATED',
+      description: 'Use focal_point instead.',
+    },
+    contentItems: {
+      title: 'DEPRECATED',
+      description: 'Use content_items instead.',
     },
   },
 };
