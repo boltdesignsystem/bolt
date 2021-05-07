@@ -9,15 +9,14 @@
             text: "Button trigger",
             size: "small",
             attributes: {
-              "on-click": "show",
-              "on-click-target": "js-modal-trigger-button",
+              "data-bolt-modal-target": ".js-bolt-modal--trigger-button",
             },
           } only %}
           {% include "@bolt-components-modal/modal.twig" with {
-            attributes: {
-              class: "js-modal-trigger-button"
-            },
             content: "This modal is triggered by a button.",
+            attributes: {
+              class: "js-bolt-modal--trigger-button"
+            },
           } only %}
         </th>
         <td>
@@ -46,20 +45,19 @@
             cursor: "zoom-in",
             display: "block",
             attributes: {
-              "on-click": "show",
-              "on-click-target": "js-modal-trigger-image",
+              "data-bolt-modal-target": ".js-bolt-modal--trigger-image",
             },
           } only %}
 
           {% include "@bolt-components-modal/modal.twig" with {
-            attributes: {
-              class: "js-modal-trigger-image"
-            },
             content: modal_content,
             spacing: "none",
             theme: "none",
             scroll: "overall",
             width: "auto",
+            attributes: {
+              class: "js-bolt-modal--trigger-image"
+            },
           } only %}
         </th>
         <td>
@@ -72,16 +70,15 @@
           {% include "@bolt-components-link/link.twig" with {
             text: "Link trigger",
             attributes: {
-              "on-click": "show",
-              "on-click-target": "js-modal-trigger-link",
+              "data-bolt-modal-target": ".js-bolt-modal--trigger-link",
             },
           } only %}
 
           {% include "@bolt-components-modal/modal.twig" with {
-            attributes: {
-              class: "js-modal-trigger-link"
-            },
             content: "This modal is triggered by a link.",
+            attributes: {
+              class: "js-bolt-modal--trigger-link"
+            },
           } only %}
         </th>
         <td>

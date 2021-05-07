@@ -1,13 +1,6 @@
-import {
-  isConnected,
-  render,
-  renderString,
-  stopServer,
-  html,
-} from '../../../testing/testing-helpers';
+import { render, stopServer } from '../../../testing/testing-helpers';
 import schema from '../popover.schema';
-const { placement, spacing, theme, uuid } = schema.properties;
-const timeout = 120000;
+const { placement, spacing, theme } = schema.properties;
 
 describe('<bolt-popover> Component', () => {
   afterAll(async () => {

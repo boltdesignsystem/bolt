@@ -1,14 +1,10 @@
 import {
-  isConnected,
   render,
   renderString,
   stopServer,
-  html,
 } from '../../../testing/testing-helpers';
 import schema from '../action-blocks.schema';
 const { spacing, valign } = schema.properties;
-
-const timeout = 120000;
 
 describe('<bolt-action-blocks> Component', () => {
   afterAll(async () => {

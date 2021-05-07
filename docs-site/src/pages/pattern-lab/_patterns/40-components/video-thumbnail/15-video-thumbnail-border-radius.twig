@@ -1,0 +1,34 @@
+{% set demo %}
+  <div style="max-width: 60ch">
+    {% set image %}
+      {% include '@bolt-components-image/image.twig' with {
+        src: '/images/placeholders/tout-4x3-climber.jpg',
+        alt: 'A Rock Climber',
+        ratio: false,
+        cover: true,
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-video-thumbnail/video-thumbnail.twig' with {
+      content: image,
+      duration: '4:55',
+      border_radius: 'large',
+    } only %}
+  </div>
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% include '@bolt-components-video-thumbnail/video-thumbnail.twig' with {
+  content: image,
+  duration: '4:55',
+  border_radius: 'large',
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Video Thumbnail Border Radius',
+  description: 'Border radius can be adjusted per use case.',
+  demo: demo,
+  twig_markup: twig_markup,
+} only %}

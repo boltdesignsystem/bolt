@@ -1,10 +1,4 @@
-import {
-  isConnected,
-  render,
-  renderString,
-  stopServer,
-  html,
-} from '../../../testing/testing-helpers';
+import { render, stopServer, html } from '../../../testing/testing-helpers';
 
 const timeout = 90000;
 
@@ -62,12 +56,6 @@ describe('logo', () => {
 
     const renderedHTML = await html(renderedLogoHTML);
     await page.waitFor(500);
-    const image = await page.screenshot();
-
-    expect(image).toMatchImageSnapshot({
-      failureThreshold: '0.01',
-      failureThresholdType: 'percent',
-    });
 
     expect(renderedHTML).toMatchSnapshot();
   });
@@ -105,12 +93,6 @@ describe('logo', () => {
 
     const renderedHTML = await html(renderedLogoHTML);
     await page.waitFor(500);
-    const image = await page.screenshot();
-
-    expect(image).toMatchImageSnapshot({
-      failureThreshold: '0.01',
-      failureThresholdType: 'percent',
-    });
 
     expect(renderedHTML).toMatchSnapshot();
   });

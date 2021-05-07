@@ -39,6 +39,10 @@ module.exports = {
         },
       },
     },
+    subheadline: {
+      type: 'any',
+      description: 'Text or other content to display next to the logo.',
+    },
     cta: {
       type: 'object',
       description:
