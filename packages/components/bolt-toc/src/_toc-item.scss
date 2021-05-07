@@ -42,7 +42,7 @@
     bottom: 0;
     left: 0;
     transform: translate3d(0, -50%, 0);
-    width: 5px;
+    width: var(--bolt-spacing-x-xxsmall);
     height: 0;
     background-color: var(--bolt-color-teal);
     transition: height $bolt-transition;
@@ -75,9 +75,4 @@
       height: calc(100% - var(--bolt-spacing-y-small));
     }
   }
-}
-
-.c-bolt-toc-item--2nd-level {
-  padding-left: calc(var(--bolt-spacing-x-small) * 2);
-  background-color: var(--bolt-color-gray-xlight);
 }
