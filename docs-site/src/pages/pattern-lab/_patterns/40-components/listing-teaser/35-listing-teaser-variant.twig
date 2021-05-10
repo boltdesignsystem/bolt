@@ -1,0 +1,50 @@
+{% set demo %}
+  {% set icon_questions %}
+    {% include '@bolt-components-icon/icon.twig' with {
+      name: 'questions',
+      size: 'large',
+      color: 'teal',
+    } only %}
+  {% endset %}
+  {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
+    signifier: icon_questions,
+    headline: {
+      text: 'This listing is a card variant',
+      tag: 'h3',
+      size: 'large',
+      link_attributes: {
+        href: 'https://pega.com'
+      },
+    },
+    meta_items: [
+      'Posted 8 hours 15 minutes ago',
+      'Last activity: 2 minutes ago',
+    ],
+    variant: 'card',
+    inset_spacing: 'small',
+  } only %}
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
+  headline: {
+    text: 'This listing is a card variant',
+    tag: 'h3',
+    size: 'large',
+    link_attributes: {
+      href: 'https://pega.com'
+    },
+  },
+  variant: 'card',
+  inset_spacing: 'small',
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Listing Teaser Card Variant and Spacing',
+  description: 'By default, a listing teaser is transparent, but the card variant can activate card styles. Additionally, inset spacing can be adjusted for the card variant.',
+  demo: demo,
+  twig_markup: twig_markup,
+} only %}

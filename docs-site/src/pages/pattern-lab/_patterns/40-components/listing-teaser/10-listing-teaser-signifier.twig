@@ -1,7 +1,3 @@
-{% set description %}
-  The signifier is a decorative element that visually represents the content nature of a listing.
-{% endset %}
-
 {% set notes %}
   <bolt-ol>
     <bolt-li>This is a purely decorative element and is hidden from screen readers.</bolt-li>
@@ -67,7 +63,7 @@
 
 {% include '@utils/pattern-doc-page.twig' with {
   title: 'Listing Teaser Signifier',
-  description: description,
+  description: 'The signifier is a decorative element that visually represents the content nature of a listing.',
   demo: demo,
   notes: notes,
   twig_markup: twig_markup,
