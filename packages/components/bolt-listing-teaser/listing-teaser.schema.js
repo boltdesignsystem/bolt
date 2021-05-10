@@ -10,6 +10,20 @@ module.exports = {
       description:
         'A Drupal-style attributes object with extra attributes to append to this component.',
     },
+    layout: {
+      type: 'string',
+      description:
+        'Set the layout of the listing teaser based on the use case.',
+      enum: ['vertical', 'horizontal', 'responsive'],
+      default: 'horizontal',
+    },
+    gutter: {
+      type: 'string',
+      description:
+        'Set the spacing in between the signifier and the rest of the content.',
+      enum: ['small', 'medium', 'large'],
+      default: 'small',
+    },
     signifier: {
       type: 'any',
       description:
@@ -28,6 +42,10 @@ module.exports = {
             'A Drupal-style attributes object with extra attributes to append to the headline link.',
         },
       },
+    },
+    eyebrow_items: {
+      type: 'array',
+      description: 'Render an array of eyebrow text for the listing.',
     },
     meta_items: {
       type: 'array',
@@ -85,9 +103,42 @@ module.exports = {
       description:
         'Render warning text for the listing, which appears below the "description" content. Do not pass links here unless absolutely necessary.',
     },
+    chip_list: {
+      type: 'object',
+      description:
+        'Render a list of related chips for the resource.  Passing the Chip List component is mandatory.',
+    },
     reply: {
       type: 'any',
       description: 'Render a preview of a reply to the post.',
+    },
+    callout: {
+      type: 'object',
+      description: 'Render a callout section to feature important notes.',
+      properties: {
+        attributes: {
+          type: 'object',
+          description:
+            'A Drupal-style attributes object with extra attributes to append to the callout container.',
+        },
+        content: {
+          type: 'any',
+          description: 'Render the content of the callout.',
+        },
+      },
+    },
+    variant: {
+      type: 'string',
+      description: 'Set the style variant of the listing teaser.',
+      enum: ['transparent', 'card'],
+      default: 'transparent',
+    },
+    inset_spacing: {
+      type: 'string',
+      description:
+        'Set the inset spacing of the listing teaser. This only applies to card variant.',
+      enum: ['xsmall', 'small', 'medium'],
+      default: 'medium',
     },
   },
 };

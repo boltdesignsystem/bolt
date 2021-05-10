@@ -1,0 +1,12 @@
+{% set usage %}{% verbatim %}
+{% include '@bolt-components-video-thumbnail/video-thumbnail.twig' with {
+  content: image,
+  duration: '4:55',
+} only %}
+{% endverbatim %}{% endset %}
+
+{% include "@utils/docs.twig" with {
+  componentName: "video-thumbnail",
+  componentGroup: 'components',
+  usage: usage
+} only %}

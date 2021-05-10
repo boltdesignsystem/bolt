@@ -71,6 +71,7 @@ module.exports = {
       '@bolt/components-typeahead',
       '@bolt/components-ul',
       '@bolt/components-video',
+      '@bolt/components-video-thumbnail',
       '@bolt/layouts-holy-grail',
       '@bolt/analytics-autolink',
     ],

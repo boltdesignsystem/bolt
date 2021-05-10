@@ -1,0 +1,39 @@
+{% set notes %}
+  If you do not want the image to get cropped, make sure the source image has the same aspect ratio as the one you are using for the component.
+{% endset %}
+
+{% set demo %}
+  <div style="max-width: 25ch">
+    {% set image %}
+      {% include '@bolt-components-image/image.twig' with {
+        src: '/images/placeholders/tout-4x3-climber.jpg',
+        alt: 'A Rock Climber',
+        ratio: false,
+        cover: true,
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-video-thumbnail/video-thumbnail.twig' with {
+      content: image,
+      aspect_ratio: '1:1',
+      duration: '4:55',
+    } only %}
+  </div>
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% include '@bolt-components-video-thumbnail/video-thumbnail.twig' with {
+  content: image,
+  aspect_ratio: '1:1',
+  duration: '4:55',
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Video Thumbnail Aspect Ratio',
+  description: 'Based on the use case, the aspect ratio of the thumbnail can be changed to fit a particular layout. Availalbe aspect ratios are: 1:1, 4:3, and 16:9.',
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+} only %}
