@@ -41,7 +41,7 @@ async function init() {
       (await shell
         .exec(`auto version --from v${currentVersion}`, {
           silent: true,
-          maxBuffer: 1024 * 500,
+          maxBuffer: 1024 * 1000,
         })
         .stdout.trim()) || 'minor';
 
