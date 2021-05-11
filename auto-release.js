@@ -39,7 +39,10 @@ async function init() {
   if (isFullRelease) {
     const version =
       (await shell
-        .exec(`auto version --from v${currentVersion}`, { silent: true })
+        .exec(`auto version --from v${currentVersion}`, {
+          silent: true,
+          maxBuffer: 1024 * 500,
+        })
         .stdout.trim()) || 'minor';
 
     try {
