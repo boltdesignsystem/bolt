@@ -4,13 +4,6 @@
    Chips
 \* ------------------------------------ */
 
-// Chip Variables
-$bolt-chip-border-radius: bolt-border-radius(full);
-$bolt-chip-color: var(--m-bolt-text);
-$bolt-chip-color-link: var(--m-bolt-link);
-$bolt-chip-background-color: var(--m-bolt-tertiary);
-$bolt-chip-item-size: calc(var(--bolt-spacing-x-xxsmall) / 2);
-
 // Custom element styles
 bolt-chip {
   display: inline-block;
@@ -24,31 +17,27 @@ bolt-chip {
 .c-bolt-chip {
   display: flex;
   align-items: center;
-  position: relative;
   font-family: var(--bolt-type-font-family-body);
   font-size: var(--bolt-type-font-size-xsmall);
   font-weight: var(--bolt-type-font-weight-regular);
-  color: $bolt-chip-color;
+  color: var(--m-bolt-text);
   line-height: calc(
     var(--bolt-type-line-height-xsmall) *
       var(--bolt-type-line-height-multiplier-tight)
   );
   text-decoration: none;
-  border-radius: $bolt-chip-border-radius;
+  background-color: hsla(220.4, 80%, 15%, 0.08);
+  transition: color var(--bolt-transition),
+    background-color var(--bolt-transition),
+    text-decoration var(--bolt-transition);
+}
 
-  &:before {
-    content: '';
-    opacity: 0.6;
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 0;
-    border-radius: inherit;
-    background-color: $bolt-chip-background-color;
-    transition: opacity var(--bolt-transition);
-  }
+.c-bolt-chip--border-radius-full {
+  border-radius: bolt-border-radius(full);
+}
+
+.c-bolt-chip--border-radius-small {
+  border-radius: bolt-border-radius(small);
 }
 
 $bolt-chip-sizes: (xsmall, small, medium);
@@ -61,19 +50,153 @@ $bolt-chip-sizes: (xsmall, small, medium);
 }
 
 .c-bolt-chip--link {
-  color: $bolt-chip-color-link;
+  color: var(--m-bolt-link);
 
   &:hover,
   &:focus {
-    &:before {
-      opacity: 0.4;
-    }
+    color: var(--m-bolt-headline);
+    text-decoration: underline;
+    background-color: hsla(220.4, 80%, 15%, 0.06);
   }
 
   &:active,
   &:focus:active {
-    &:before {
-      opacity: 0.8;
+    color: var(--m-bolt-headline);
+    text-decoration: none;
+  }
+}
+
+.c-bolt-chip--color-error {
+  color: var(--bolt-color-error-dark) !important;
+  box-shadow: 0 0 0 1px currentColor;
+  background-color: var(--bolt-color-error-light);
+
+  &.c-bolt-chip--link {
+    &:hover,
+    &:focus {
+      background-color: var(--bolt-color-error-light);
+    }
+  }
+}
+
+.c-bolt-chip--color-warning {
+  color: var(--bolt-color-black) !important;
+  box-shadow: 0 0 0 1px var(--bolt-color-warning-dark);
+  background-color: var(--bolt-color-warning-light);
+
+  &.c-bolt-chip--link {
+    &:hover,
+    &:focus {
+      background-color: var(--bolt-color-warning-light);
+    }
+  }
+}
+
+.c-bolt-chip--color-success {
+  color: var(--bolt-color-success-dark) !important;
+  box-shadow: 0 0 0 1px currentColor;
+  background-color: var(--bolt-color-success-light);
+
+  &.c-bolt-chip--link {
+    &:hover,
+    &:focus {
+      background-color: var(--bolt-color-success-light);
+    }
+  }
+}
+
+.c-bolt-chip--color-navy {
+  color: var(--bolt-color-white) !important;
+  background-color: var(--bolt-color-navy);
+
+  &.c-bolt-chip--link {
+    &:hover,
+    &:focus {
+      background-color: var(--bolt-color-navy-light);
+    }
+  }
+}
+
+.c-bolt-chip--color-teal {
+  color: var(--bolt-color-white) !important;
+  background-color: var(--bolt-color-teal-dark);
+
+  &.c-bolt-chip--link {
+    &:hover,
+    &:focus {
+      background-color: var(--bolt-color-teal);
+    }
+  }
+}
+
+.c-bolt-chip--color-orange {
+  color: var(--bolt-color-white) !important;
+  background-color: var(--bolt-color-orange-dark);
+
+  &.c-bolt-chip--link {
+    &:hover,
+    &:focus {
+      background-color: var(--bolt-color-orange);
+    }
+  }
+}
+
+.c-bolt-chip--color-yellow {
+  color: var(--bolt-color-black) !important;
+  background-color: var(--bolt-color-yellow);
+
+  &.c-bolt-chip--link {
+    &:hover,
+    &:focus {
+      background-color: var(--bolt-color-yellow-light);
+    }
+  }
+}
+
+.c-bolt-chip--color-wine {
+  color: var(--bolt-color-white) !important;
+  background-color: var(--bolt-color-wine);
+
+  &.c-bolt-chip--link {
+    &:hover,
+    &:focus {
+      background-color: var(--bolt-color-wine);
+    }
+  }
+}
+
+.c-bolt-chip--color-pink {
+  color: var(--bolt-color-white) !important;
+  background-color: var(--bolt-color-pink);
+
+  &.c-bolt-chip--link {
+    &:hover,
+    &:focus {
+      background-color: var(--bolt-color-pink);
+    }
+  }
+}
+
+.c-bolt-chip--color-berry {
+  color: var(--bolt-color-white) !important;
+  background-color: var(--bolt-color-berry);
+
+  &.c-bolt-chip--link {
+    &:hover,
+    &:focus {
+      background-color: var(--bolt-color-berry);
+    }
+  }
+}
+
+.c-bolt-chip--color-violet {
+  color: var(--bolt-color-white) !important;
+  background-color: var(--bolt-color-violet);
+
+  &.c-bolt-chip--link {
+    &:hover,
+    &:focus {
+      background-color: var(--bolt-color-violet);
     }
   }
 }
@@ -81,7 +204,7 @@ $bolt-chip-sizes: (xsmall, small, medium);
 .c-bolt-chip__text,
 .c-bolt-chip__icon {
   display: inline;
-  padding: 0 $bolt-chip-item-size;
+  padding: 0 calc(var(--bolt-spacing-x-xxsmall) / 2);
 }
 
 .c-bolt-chip--icon-only {
