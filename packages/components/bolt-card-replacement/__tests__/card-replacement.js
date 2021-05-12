@@ -1,6 +1,6 @@
 import { render, stopServer } from '../../../testing/testing-helpers';
 import schema from '../card-replacement.schema';
-const { tag, theme, spacing, borderRadius } = schema.properties;
+const { tag, theme, spacing, border_radius } = schema.properties;
 
 describe('<bolt-card-replacement> Component', () => {
   afterAll(async () => {
@@ -238,12 +238,12 @@ describe('<bolt-card-replacement> Component', () => {
     });
   });
 
-  borderRadius.enum.forEach(async option => {
+  border_radius.enum.forEach(async option => {
     test(`border radius variations: ${option}`, async () => {
       const results = await render(
         '@bolt-components-card-replacement/card-replacement.twig',
         {
-          borderRadius: option,
+          border_radius: option,
           media: {
             image: {
               src: '/fixtures/landscape-16x9-mountains.jpg',

@@ -41,7 +41,9 @@
 {# card-replacement component's custom element wrapper #}
 <bolt-card-replacement
   {% if _link_url %} url="{{ _link_url }}" {% endif %}
-  {{ this.props }}
+  {# this line is here to prevent a breaking change with property validation #}
+  {% if this.data.height.value %} height="{{ this.data.height.value }}" {% endif %}
+  {{ this.props|without('height') }}
   >
 
   {# Array of classes based on the defined + default props #}
