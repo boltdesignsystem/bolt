@@ -289,43 +289,73 @@ bolt-layout[template~='flag'] {
   }
 }
 
-@each $size in $bolt-spacing-multiplier-system {
-  $size-name: nth($size, 1);
+@include bolt-mq(small) {
+  @each $size in $bolt-spacing-multiplier-system {
+    $size-name: nth($size, 1);
 
-  @if (
-    $size-name ==
-      small or
+    @if (
       $size-name ==
-      medium or
-      $size-name ==
-      large or
-      $size-name ==
-      xlarge
-  ) {
-    bolt-layout[template~='halves@from-#{$size-name}'],
-    bolt-layout[template~='33/67@from-#{$size-name}'],
-    bolt-layout[template~='67/33@from-#{$size-name}'] {
-      > bolt-layout-item[exclude-from-template] {
-        @include bolt-mq(small) {
+        small or
+        $size-name ==
+        medium or
+        $size-name ==
+        large or
+        $size-name ==
+        xlarge
+    ) {
+      bolt-layout[template~='halves@from-#{$size-name}'],
+      bolt-layout[template~='33/67@from-#{$size-name}'],
+      bolt-layout[template~='67/33@from-#{$size-name}'] {
+        > bolt-layout-item[exclude-from-template] {
           --l-bolt-layout-exclude-from-template: 1/3;
         }
       }
     }
+  }
+}
 
-    bolt-layout[template~='thirds@from-#{$size-name}'],
-    bolt-layout[template~='25/25/50@from-#{$size-name}'],
-    bolt-layout[template~='25/50/25@from-#{$size-name}'],
-    bolt-layout[template~='50/25/25@from-#{$size-name}'] {
-      > bolt-layout-item[exclude-from-template] {
-        @include bolt-mq(small) {
+@include bolt-mq(small) {
+  @each $size in $bolt-spacing-multiplier-system {
+    $size-name: nth($size, 1);
+
+    @if (
+      $size-name ==
+        small or
+        $size-name ==
+        medium or
+        $size-name ==
+        large or
+        $size-name ==
+        xlarge
+    ) {
+      bolt-layout[template~='thirds@from-#{$size-name}'],
+      bolt-layout[template~='25/25/50@from-#{$size-name}'],
+      bolt-layout[template~='25/50/25@from-#{$size-name}'],
+      bolt-layout[template~='50/25/25@from-#{$size-name}'] {
+        > bolt-layout-item[exclude-from-template] {
           --l-bolt-layout-exclude-from-template: 1/4;
         }
       }
     }
+  }
+}
 
-    bolt-layout[template~='fourths@from-#{$size-name}'] {
-      > bolt-layout-item[exclude-from-template] {
-        @include bolt-mq(small) {
+@include bolt-mq(small) {
+  @each $size in $bolt-spacing-multiplier-system {
+    $size-name: nth($size, 1);
+
+    @if (
+      $size-name ==
+        small or
+        $size-name ==
+        medium or
+        $size-name ==
+        large or
+        $size-name ==
+        xlarge
+    ) {
+      bolt-layout[template~='fourths@from-#{$size-name}'] {
+        > bolt-layout-item[exclude-from-template] {
           --l-bolt-layout-exclude-from-template: 1/5;
         }
       }
