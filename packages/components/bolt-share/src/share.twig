@@ -50,7 +50,7 @@
   {% set source_attributes = create_attribute(source.attributes|default({})) %}
   
   {% if source_url %}
-    {% set source_attributes = source_attributes.addAttributes('href', source_url) %}
+    {% set source_attributes = source_attributes.setAttribute('href', source_url) %}
   {% endif %}
 
   {% if 'facebook' == source_name %}
