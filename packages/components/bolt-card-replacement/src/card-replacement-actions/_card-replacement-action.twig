@@ -1,4 +1,4 @@
-{% set schema = bolt.data.components["@bolt-components-card-replacement"].schema.properties.actions %}
+{% set schema = bolt.data.components['@bolt-components-card-replacement'].schema.properties.actions %}
 {% set this = init(schema) %}
 
 <bolt-card-replacement-action
@@ -8,34 +8,34 @@
   <ssr-keep for="bolt-card-replacement-action" class="c-bolt-card_replacement__action">
     {% block action_item %}
       {% if this.data.text.value %}
-        {% set button_props = {
+        {% set _button_props = {
           text: this.data.text.value,
-          hierarchy: "text",
-          width: "full",
-          align: "start",
-          target: this.data.external.value == true ? "_blank" : "_self",
+          hierarchy: 'text',
+          width: 'full',
+          align: 'start',
+          target: this.data.external.value == true ? '_blank' : '_self',
           attributes: attributes|default({})
         } %}
 
         {% if this.data.icon.value != 'none' %}
           {% if this.data.icon.value %}
-            {% set button_props = button_props|merge({ icon: { name: this.data.icon.value } }) %}
+            {% set _button_props = _button_props|merge({ icon: { name: this.data.icon.value } }) %}
           {% elseif this.data.external.value == false or this.data.external.value == null %}
-            {% set button_props = button_props|merge({ icon: { name: "chevron-right" } }) %}
+            {% set _button_props = _button_props|merge({ icon: { name: 'chevron-right' } }) %}
           {% else %}
-            {% set button_props = button_props|merge({ icon: { name: "external-link" } }) %}
+            {% set _button_props = _button_props|merge({ icon: { name: 'external-link' } }) %}
           {% endif %}
         {% endif %}
 
         {% if spacing is not empty %}
-          {% set button_props = button_props|merge({ size: spacing }) %}
+          {% set _button_props = _button_props|merge({ size: spacing }) %}
         {% endif %}
 
         {% if this.data.url.value %}
-          {% set button_props = button_props|merge({ url: this.data.url.value }) %}
+          {% set _button_props = _button_props|merge({ url: this.data.url.value }) %}
         {% endif %}
 
-        {% include "@bolt-components-button/button.twig" with button_props only %}
+        {% include '@bolt-components-button/button.twig' with _button_props only %}
       {% endif %}
     {% endblock %}
   </ssr-keep>

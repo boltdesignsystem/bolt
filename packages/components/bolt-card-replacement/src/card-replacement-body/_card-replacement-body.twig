@@ -1,46 +1,41 @@
-{% set schema = bolt.data.components["@bolt-components-card-replacement"].schema %}
+{% set parent_schema = bolt.data.components['@bolt-components-card-replacement'].schema %}
 
-{% set attributes = create_attribute(body.attributes|default({})) %}
+{% set schema = bolt.data.components['@bolt-components-card-replacement'].schema.properties.body %}
+{% set this = init(schema) %}
+
+{# Variables #}
 {% set inner_attributes = create_attribute({}) %}
-{% set card_replacement_body_content = body.content %}
-{% set spacing_options = schema.properties.spacing.enum %}
-{% set spacing = spacing in spacing_options ? spacing : schema.properties.spacing.default %}
-{% set classes = [
-  "c-bolt-card_replacement__body",
-  "c-bolt-card_replacement__body--spacing-#{spacing}",
+{% set _spacing_options = parent_schema.properties.spacing.enum %}
+{% set spacing = spacing in _spacing_options ? spacing : parent_schema.properties.spacing.default %}
+
+{% set _classes = [
+  'c-bolt-card_replacement__body',
+  'c-bolt-card_replacement__body--spacing-' ~ spacing,
 ] %}
 
-{# @todo: `content_tag` does not appear to be used, can this safely be removed? #}
-{% if tag == "figure" %}
-  {% set content_tag = "figcaption" %}
-{% else %}
-  {% set content_tag = "div" %}
-{% endif %}
-
-<bolt-card-replacement-body {{ attributes }}>
-  <ssr-keep for="bolt-card-replacement-body" {{ inner_attributes.addClass(classes) }}>
+<bolt-card-replacement-body
+  {{ this.props|without('eyebrow')|without('headline')|without('paragraph') }}
+  >
+  <ssr-keep for="bolt-card-replacement-body" {{ inner_attributes.addClass(_classes) }}>
     {% block body %}
-      {% if card_replacement_body_content %}
-        {{ card_replacement_body_content }}
+      {% if body.content %}
+        {{ body.content }}
       {% else %}
-        {% set card_replacement_eyebrow = body.eyebrow %}
-        {% set card_replacement_headline = body.headline %}
-        {% set card_replacement_paragraph = body.paragraph %}
 
-        {% if card_replacement_eyebrow %}
-          {% include "@bolt-components-headline/eyebrow.twig" with {
-            text: card_replacement_eyebrow,
+        {% if this.data.eyebrow.value %}
+          {% include '@bolt-components-headline/eyebrow.twig' with {
+            text: this.data.eyebrow.value,
           } only %}
         {% endif %}
-        {% if card_replacement_headline %}
-          {% include "@bolt-components-headline/headline.twig" with {
-            text: card_replacement_headline,
-            size: "large",
+        {% if this.data.headline.value %}
+          {% include '@bolt-components-headline/headline.twig' with {
+            text: this.data.headline.value,
+            size: 'large',
           } only %}
         {% endif %}
-        {% if card_replacement_paragraph %}
-          {% include "@bolt-components-headline/text.twig" with {
-            text: card_replacement_paragraph,
+        {% if this.data.paragraph.value %}
+          {% include '@bolt-components-headline/text.twig' with {
+            text: this.data.paragraph.value,
           } only %}
         {% endif %}
       {% endif %}
