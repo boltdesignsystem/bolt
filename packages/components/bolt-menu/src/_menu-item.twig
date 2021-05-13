@@ -37,9 +37,8 @@
     no_outline: true,
     attributes: item_attributes
   } %}
-
   {% if url %}
     {% set trigger_options = trigger_options|merge({url: url}) %}
-  {% endif %}  
+  {% endif %}
   {% include '@bolt-components-trigger/trigger.twig' with trigger_options only %}
 </bolt-menu-item>
