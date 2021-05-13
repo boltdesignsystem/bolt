@@ -26,7 +26,9 @@ bolt-chip {
       var(--bolt-type-line-height-multiplier-tight)
   );
   text-decoration: none;
-  background-color: hsla(220.4, 80%, 15%, 0.08);
+  border-radius: bolt-border-radius(full);
+  box-shadow: 0 0 0 1px rgba(bolt-color(gray, light), 0.2);
+  background-color: rgba(bolt-color(gray), 0.16);
   transition: color var(--bolt-transition),
     background-color var(--bolt-transition),
     text-decoration var(--bolt-transition);
@@ -40,9 +42,13 @@ bolt-chip {
   border-radius: bolt-border-radius(small);
 }
 
-$bolt-chip-sizes: (xsmall, small, medium);
+.c-bolt-chip--border-radius-none {
+  border-radius: 0;
+}
 
-@each $size in $bolt-chip-sizes {
+$_bolt-chip-sizes: (xsmall, small, medium);
+
+@each $size in $_bolt-chip-sizes {
   .c-bolt-chip--size-#{$size} {
     padding: calc(var(--bolt-spacing-y-#{$size}) / 2)
       var(--bolt-spacing-x-#{$size});
@@ -56,7 +62,7 @@ $bolt-chip-sizes: (xsmall, small, medium);
   &:focus {
     color: var(--m-bolt-headline);
     text-decoration: underline;
-    background-color: hsla(220.4, 80%, 15%, 0.06);
+    background-color: rgba(bolt-color(gray), 0.08);
   }
 
   &:active,
