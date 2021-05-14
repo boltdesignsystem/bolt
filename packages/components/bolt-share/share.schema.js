@@ -52,9 +52,15 @@ module.exports = {
             description: 'Name of the social media source.',
             enum: ['facebook', 'twitter', 'linkedin', 'email'],
           },
+          attributes: {
+            type: 'object',
+            description:
+              'A Drupal-style attributes object with extra attributes to append to this component.',
+          },
           url: {
-            type: 'string',
-            description: 'The specifically formed share URL with query string.',
+            title: 'DEPRECATED',
+            description:
+              'Please pass the href value through the source attributes object.',
           },
         },
       },

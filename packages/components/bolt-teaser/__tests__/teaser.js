@@ -57,21 +57,29 @@ describe('Twig usage', () => {
       sources: [
         {
           name: 'facebook',
-          url:
-            'https://www.facebook.com/sharer/sharer.php?u=https://pega.com&amp;src=sdkpreparse',
+          attributes: {
+            href:
+              'https://www.facebook.com/sharer/sharer.php?u=https://pega.com&amp;src=sdkpreparse',
+          },
         },
         {
           name: 'twitter',
-          url:
-            'https://twitter.com/intent/tweet?url=https://pega.com&text=Sample%20Share%20Text&via=pega&hashtags=boltDesignSystemRocks!',
+          attributes: {
+            href:
+              'https://twitter.com/intent/tweet?url=https://pega.com&text=Sample%20Share%20Text&via=pega&hashtags=boltDesignSystemRocks!',
+          },
         },
         {
           name: 'linkedin',
-          url: 'https://www.linkedin.com/shareArticle?url=https://pega.com',
+          attributes: {
+            href: 'https://www.linkedin.com/shareArticle?url=https://pega.com',
+          },
         },
         {
           name: 'email',
-          url: 'mailto:?&body=Sample%20Text%20--%20https%3A//pega.com',
+          attributes: {
+            href: 'mailto:?&body=Sample%20Text%20--%20https%3A//pega.com',
+          },
         },
       ],
       copy_to_clipboard: {
