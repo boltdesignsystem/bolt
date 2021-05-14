@@ -5,7 +5,7 @@
 {% set _card_replacement_media_content = media.content %}
 
 {% if horizontal and _card_replacement_image %}
-  {% set _card_replacement_image = _card_replacement_image | merge({
+  {% set _card_replacement_image = _card_replacement_image|merge({
     ratio: false,
     cover: true,
   }) %}

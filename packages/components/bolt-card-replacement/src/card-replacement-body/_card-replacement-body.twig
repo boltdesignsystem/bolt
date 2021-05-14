@@ -8,7 +8,7 @@
 {% set _spacing_options = parent_schema.properties.spacing.enum %}
 {% set spacing = spacing in _spacing_options ? spacing : parent_schema.properties.spacing.default %}
 
-{% set _classes = [
+{% set classes = [
   'c-bolt-card_replacement__body',
   'c-bolt-card_replacement__body--spacing-' ~ spacing,
 ] %}
@@ -16,7 +16,7 @@
 <bolt-card-replacement-body
   {{ this.props|without('eyebrow')|without('headline')|without('paragraph') }}
   >
-  <ssr-keep for="bolt-card-replacement-body" {{ inner_attributes.addClass(_classes) }}>
+  <ssr-keep for="bolt-card-replacement-body" {{ inner_attributes.addClass(classes) }}>
     {% block body %}
       {% if body.content %}
         {{ body.content }}

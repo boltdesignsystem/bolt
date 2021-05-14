@@ -1,7 +1,7 @@
 {% set schema = bolt.data.components['@bolt-components-card-replacement'].schema %}
 
 {% if enable_json_schema_validation %}
-  {{ validate_data_schema(schema, _self) | raw }}
+  {{ validate_data_schema(schema, _self)|raw }}
 {% endif %}
 
 {# DEPRECATED.  Use the property `border_radius` instead of `borderRadius`. #}
@@ -47,14 +47,14 @@
   >
 
   {# Array of classes based on the defined + default props #}
-  {% set _classes = [
+  {% set classes = [
     'c-bolt-card-replacement',
     this.data.horizontal.value ? 'c-bolt-card-replacement--horizontal' : '',
     this.data.border_radius.value ? 'c-bolt-card-replacement--border-radius-' ~ this.data.border_radius.value : '',
     this.data.theme.value != 'none' ? 't-bolt-' ~ this.data.theme.value : '',
   ] %}
 
-  <ssr-keep for="bolt-card-replacement" {{ inner_attributes.addClass(_classes) }}>
+  <ssr-keep for="bolt-card-replacement" {{ inner_attributes.addClass(classes) }}>
     {% if link and _link_url %}
       <bolt-card-replacement-link {{ _link_attributes }}>
         {% if _link_url %}
