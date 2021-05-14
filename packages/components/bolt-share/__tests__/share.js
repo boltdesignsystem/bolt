@@ -120,7 +120,19 @@ describe('Bolt Share Props', () => {
 
     await expect(results.ok).toBe(true);
     await expect(results.html).toMatchSnapshot();
+
+    const deprecatedResults = await render(
+      '@bolt-components-share/share.twig',
+      {
+        ...fixtures.deprecatedData,
+        display: 'menu',
+      },
+    );
+
+    await expect(deprecatedResults.ok).toBe(true);
+    await expect(deprecatedResults.html).toMatchSnapshot();
   });
+
   size.enum.forEach(async option => {
     test(`size items: ${option}`, async () => {
       const results = await render('@bolt-components-share/share.twig', {
