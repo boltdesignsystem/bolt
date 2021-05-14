@@ -29,6 +29,11 @@ module.exports = {
           'A Drupal attributes object. Applies extra HTML attributes to the outer &lt;bolt-menu&gt; tag.',
         properties: {
           ...modifiedTriggerProps,
+          attributes: {
+            type: 'object',
+            description:
+              'A Drupal-style attributes object with extra attributes to append to this component.',
+          },
           icon_before: {
             type: 'object',
             description:
