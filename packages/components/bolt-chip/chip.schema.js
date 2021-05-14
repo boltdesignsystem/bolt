@@ -38,6 +38,7 @@ module.exports = {
     color: {
       type: 'string',
       description: 'Controls the color of the chip.',
+      default: 'gray',
       enum: [
         'error',
         'warning',
@@ -50,6 +51,7 @@ module.exports = {
         'pink',
         'berry',
         'violet',
+        'gray',
       ],
     },
     url,
