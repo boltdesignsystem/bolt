@@ -45,7 +45,13 @@
 
 {% for source in sources %}
   {% set source_name = source.name %}
+  {% set source_attributes = create_attribute(source.attributes|default({})) %}
+
+  {# DEPRECATED.  Use the property `attributes.href` instead of `url`. #}
   {% set source_url = source.url %}
+  {% if source_url %}
+    {% set source_attributes = source_attributes.setAttribute('href', source_url) %}
+  {% endif %}
 
   {% if 'facebook' == source_name %}
     {% set source_text = 'Share via Facebook'|t %}
@@ -65,7 +71,7 @@
 
   {% if source_text %}
     {% set source_inline_items %}
-      <a class="{{ base_class }}__link js-bolt-share__link--{{ source_name }}" href="{{ source_url }}" target="_blank">
+      <a {{ source_attributes.addClass(base_class ~ '__link js-bolt-share__link--' ~ source_name).setAttribute('target', '_blank') }}>
         {% include '@bolt-components-icon/icon.twig' with {
           name: source_icon,
           size: size,
@@ -84,15 +90,22 @@
       } only %}
     {% endset %}
     {% set source_menu_items %}
-      {% include '@bolt-components-menu/_menu-item.twig' with {
+
+      {% set menu_item_props = {
         content: source_text,
-        url: source_url,
         icon_before: icon_before,
-        attributes: {
-          class: 'js-bolt-share__link--' ~ source_name,
-          target: '_blank',
-        }
-      } only %}
+      } %}
+
+      {% if source.attributes %}
+        {% if source.attributes.href %}
+          {% set menu_item_props = menu_item_props|merge({url: source.attributes.href}) %}
+        {% endif %}
+        {% set menu_item_attributes = source.attributes|without('href') %}
+        {% set menu_item_attributes = menu_item_attributes|merge({target: '_blank', class: 'js-bolt-share__link--' ~ source_name}) %}
+        {% set menu_item_props = menu_item_props|merge({attributes: menu_item_attributes}) %}
+      {% endif %}
+
+      {% include '@bolt-components-menu/_menu-item.twig' with menu_item_props only %}
     {% endset %}
     {% set menu_items %}
       {{ menu_items }}
