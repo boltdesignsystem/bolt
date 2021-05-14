@@ -1,4 +1,4 @@
-{% set schema = bolt.data.components['@bolt-components-card-replacement'].schema.properties.actions %}
+{% set schema = bolt.data.components['@bolt-components-card-replacement'].schema.properties.actions.items %}
 {% set this = init(schema) %}
 
 <bolt-card-replacement-action
@@ -8,6 +8,7 @@
   <ssr-keep for="bolt-card-replacement-action" class="c-bolt-card_replacement__action">
     {% block action_item %}
       {% if this.data.text.value %}
+        {# @todo we should not be passing the `item` attributes into the button template. Try to fix with next breaking change. #}
         {% set _button_props = {
           text: this.data.text.value,
           hierarchy: 'text',
