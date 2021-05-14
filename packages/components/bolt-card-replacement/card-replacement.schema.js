@@ -82,6 +82,11 @@ module.exports = {
           description:
             "Passing free-form content into the card-replacement media will ignore image or video data. Use this if the pre-configured image or video doesn't satisfy your needs.",
         },
+        attributes: {
+          type: 'object',
+          description:
+            'A Drupal-style attributes object with extra attributes to append to this component.',
+        },
       },
     },
     body: {
@@ -106,30 +111,42 @@ module.exports = {
           description:
             "Passing free-form content into the card-replacement body will ignore eyebrow, headline, and paragraph data. Use this if the pre-configured eyebrow, headline, and paragraph don't satisfy your needs.",
         },
+        attributes: {
+          type: 'object',
+          description:
+            'A Drupal-style attributes object with extra attributes to append to this component.',
+        },
       },
     },
     actions: {
       type: 'array',
       description: 'Actions section of the card-replacement, accepts buttons.',
-      properties: {
-        text: {
-          type: 'string',
-        },
-        url: {
-          type: 'string',
-        },
-        external: {
-          type: 'boolean',
-        },
-        icon: {
-          type: 'string',
-          description:
-            'Allows user to specify the icon showed on the action button. If no icon is provided in this prop, the default behavior will take place and the icon shown will depend on if the URL is internal or external. Alternatively, providing "none" as the value can show no icon.',
-        },
-        attributes: {
-          type: 'object',
-          description:
-            'A Drupal-style attributes object with extra attributes to append to this component.',
+      items: {
+        type: 'object',
+        properties: {
+          text: {
+            type: 'string',
+            description: 'Action link text.',
+          },
+          url: {
+            type: 'string',
+            description: 'Action link url.',
+          },
+          external: {
+            type: 'boolean',
+            description:
+              'Indicate if this is an external link. If true, the link will open in a new tab.',
+          },
+          icon: {
+            type: 'string',
+            description:
+              'Allows user to specify the icon showed on the action button. If no icon is provided in this prop, the default behavior will take place and the icon shown will depend on if the URL is internal or external. Alternatively, providing "none" as the value can show no icon.',
+          },
+          attributes: {
+            type: 'object',
+            description:
+              'A Drupal-style attributes object with extra attributes to append to this component.',
+          },
         },
       },
     },
