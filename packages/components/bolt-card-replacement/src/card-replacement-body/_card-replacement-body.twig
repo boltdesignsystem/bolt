@@ -1,41 +1,37 @@
-{% set parent_schema = bolt.data.components['@bolt-components-card-replacement'].schema %}
-
-{% set schema = bolt.data.components['@bolt-components-card-replacement'].schema.properties.body %}
-{% set this = init(schema) %}
+{% set schema = bolt.data.components['@bolt-components-card-replacement'].schema %}
 
 {# Variables #}
+{# @todo this template should use init() but it cannot because it currently gets all of the parent data. Try to fix with next breaking change. #}
+{% set attributes = create_attribute(body.attributes|default({})) %}
 {% set inner_attributes = create_attribute({}) %}
-{% set _spacing_options = parent_schema.properties.spacing.enum %}
-{% set spacing = spacing in _spacing_options ? spacing : parent_schema.properties.spacing.default %}
+{% set _spacing_options = schema.properties.spacing.enum %}
+{% set spacing = spacing in _spacing_options ? spacing : schema.properties.spacing.default %}
 
 {% set classes = [
   'c-bolt-card_replacement__body',
   'c-bolt-card_replacement__body--spacing-' ~ spacing,
 ] %}
 
-<bolt-card-replacement-body
-  {{ this.props|without('eyebrow')|without('headline')|without('paragraph') }}
-  >
+<bolt-card-replacement-body {{ attributes }}>
   <ssr-keep for="bolt-card-replacement-body" {{ inner_attributes.addClass(classes) }}>
     {% block body %}
       {% if body.content %}
         {{ body.content }}
       {% else %}
-
-        {% if this.data.eyebrow.value %}
+        {% if body.eyebrow %}
           {% include '@bolt-components-headline/eyebrow.twig' with {
-            text: this.data.eyebrow.value,
+            text: body.eyebrow,
           } only %}
         {% endif %}
-        {% if this.data.headline.value %}
+        {% if body.headline %}
           {% include '@bolt-components-headline/headline.twig' with {
-            text: this.data.headline.value,
+            text: body.headline,
             size: 'large',
           } only %}
         {% endif %}
-        {% if this.data.paragraph.value %}
+        {% if body.paragraph %}
           {% include '@bolt-components-headline/text.twig' with {
-            text: this.data.paragraph.value,
+            text: body.paragraph,
           } only %}
         {% endif %}
       {% endif %}
