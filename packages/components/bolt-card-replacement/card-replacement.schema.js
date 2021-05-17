@@ -25,7 +25,7 @@ module.exports = {
       default: 'full',
       enum: ['auto', 'full'],
     },
-    borderRadius: {
+    border_radius: {
       type: 'string',
       description: 'Controls the border-radius of the card-replacement.',
       default: 'small',
