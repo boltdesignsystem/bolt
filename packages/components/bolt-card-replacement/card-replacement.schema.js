@@ -145,7 +145,7 @@ module.exports = {
           attributes: {
             type: 'object',
             description:
-              'A Drupal-style attributes object with extra attributes to append to this component.',
+              'A Drupal-style attributes object with extra attributes to append to this component. Attributes are added to the bolt-button element inside the action item.',
           },
         },
       },
