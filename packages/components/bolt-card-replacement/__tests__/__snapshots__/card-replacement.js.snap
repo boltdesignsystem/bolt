@@ -1636,42 +1636,25 @@ exports[`Bolt Card Video Card 1`] = `
   >
     <bolt-card-replacement-media>
       <ssr-keep for="bolt-card-replacement-media"
-                class="c-bolt-card_replacement__media"
+                class="c-bolt-card_replacement__media c-bolt-card_replacement__media--video"
       >
-        <bolt-image ratio="1151/638"
-                    placeholder-color="hsl(233, 33%, 97%)"
-                    placeholder-image="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                    style="background-color: hsl(233, 33%, 97%);"
-                    src="/fixtures/landscape-16x9-mountains.jpg"
-                    alt="Image alt."
-                    srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w, /fixtures/landscape-16x9-mountains.jpg 1151w"
-        >
-          <bolt-ratio ratio="1151/638">
-            <ssr-keep for="bolt-ratio"
-                      class="c-bolt-ratio"
-                      style="padding-bottom: calc((638 / 1151) * 100%); --aspect-ratio: 1.8040752351097;"
+        <bolt-ratio ratio="16/9">
+          <ssr-keep for="bolt-ratio"
+                    class="c-bolt-ratio"
+                    style="padding-bottom: calc((9 / 16) * 100%); --aspect-ratio: 1.7777777777778;"
+          >
+            <video-js data-account="1900410236"
+                      data-player="O3FkeBiaDz"
+                      data-embed="default"
+                      data-video-id="5609376179001"
+                      data-media-title
+                      data-media-duration
+                      controls
+                      class="c-base-video"
             >
-              <img class="c-bolt-image__image-placeholder"
-                   alt="Image alt."
-                   src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-              >
-              <img class="c-bolt-image__image c-bolt-image__lazyload c-bolt-image__lazyload--fade c-bolt-image__lazyload--blur js-lazyload"
-                   alt="Image alt."
-                   data-srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w, /fixtures/landscape-16x9-mountains.jpg 1151w"
-                   data-sizes="auto"
-                   srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                   src="/fixtures/landscape-16x9-mountains.jpg"
-              >
-              <noscript>
-                <img class="c-bolt-image__image"
-                     alt="Image alt."
-                     src="/fixtures/landscape-16x9-mountains.jpg"
-                     srcset="/fixtures/landscape-16x9-mountains-50.jpg 50w, /fixtures/landscape-16x9-mountains-100.jpg 100w, /fixtures/landscape-16x9-mountains-200.jpg 200w, /fixtures/landscape-16x9-mountains-320.jpg 320w, /fixtures/landscape-16x9-mountains-480.jpg 480w, /fixtures/landscape-16x9-mountains-640.jpg 640w, /fixtures/landscape-16x9-mountains-800.jpg 800w, /fixtures/landscape-16x9-mountains-1024.jpg 1024w, /fixtures/landscape-16x9-mountains.jpg 1151w"
-                >
-              </noscript>
-            </ssr-keep>
-          </bolt-ratio>
-        </bolt-image>
+            </video-js>
+          </ssr-keep>
+        </bolt-ratio>
       </ssr-keep>
     </bolt-card-replacement-media>
     <bolt-card-replacement-body>
@@ -1689,6 +1672,56 @@ exports[`Bolt Card Video Card 1`] = `
         </p>
       </ssr-keep>
     </bolt-card-replacement-body>
+    <bolt-card-replacement-actions>
+      <ssr-keep for="bolt-card-replacement-actions"
+                class="c-bolt-card_replacement__actions"
+      >
+        <bolt-card-replacement-action url="https://pega.com">
+          <ssr-keep for="bolt-card-replacement-action"
+                    class="c-bolt-card_replacement__action"
+          >
+            <bolt-button hierarchy="text"
+                         width="full"
+                         align="start"
+                         url="https://pega.com"
+                         target="_self"
+            >
+              <a href="https://pega.com"
+                 target="_self"
+                 class="c-bolt-button c-bolt-button--medium c-bolt-button--text c-bolt-button--full c-bolt-button--border-radius-regular c-bolt-button--start"
+              >
+                <ssr-keep for="bolt-button"
+                          class="c-bolt-button__item"
+                >
+                  This is a button
+                </ssr-keep>
+                <ssr-keep for="bolt-button"
+                          class="c-bolt-button__icon c-bolt-button__icon-sizer"
+                >
+                  <bolt-icon slot="after"
+                             name="chevron-right"
+                             aria-hidden="true"
+                  >
+                    <span class="c-bolt-icon c-bolt-icon--chevron-right">
+                      <svg class="c-bolt-icon__icon"
+                           xmlns="http://www.w3.org/2000/svg"
+                           viewbox="0 0 32 32"
+                      >
+                        <path fill="var(--bolt-theme-icon, currentColor)"
+                              fill-rule="evenodd"
+                              d="M13 7c-.6-.5-1.4-.5-2 0-.5.6-.5 1.4 0 2l7.1 7-7 7a1.3 1.3 0 00.9 2.3c.3 0 .7-.1 1-.4l8-8c.5-.5.5-1.3 0-1.8l-8-8z"
+                        >
+                        </path>
+                      </svg>
+                    </span>
+                  </bolt-icon>
+                </ssr-keep>
+              </a>
+            </bolt-button>
+          </ssr-keep>
+        </bolt-card-replacement-action>
+      </ssr-keep>
+    </bolt-card-replacement-actions>
   </ssr-keep>
 </bolt-card-replacement>
 `;

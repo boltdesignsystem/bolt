@@ -26,7 +26,6 @@ beforeAll(async () => {
     data-player="O3FkeBiaDz"
     data-embed="default"
     data-video-id="5609376179001"
-    id="{{ video_uuid2 }}"
     data-media-title
     data-media-duration
     controls
@@ -137,9 +136,11 @@ describe('Bolt Card', () => {
     const results = await render(
       '@bolt-components-card-replacement/card-replacement.twig',
       {
-        ...fixtures.videoData,
-        ...fixtures.mediaData,
+        ...fixtures.actionsData,
         ...fixtures.bodyData,
+        media: {
+          video: fixtures.videoData.html,
+        },
       },
     );
     await expect(results.ok).toBe(true);
