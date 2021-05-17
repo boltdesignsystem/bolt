@@ -1,17 +1,29 @@
 @import '@bolt/core-v3.x';
 
-/* ------------------------------------ *\
-   Listing Teaser
-\* ------------------------------------ */
+/**
+ * Listing Teaser
+ */
 
 .c-bolt-listing-teaser {
-  display: flex;
-  flex-wrap: nowrap;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-areas:
+    'flag actions'
+    'callout callout';
   align-items: flex-start;
   position: relative; // Position is set here so the heading link can expand its click target up to this point.
 }
 
+.c-bolt-listing-teaser__callout {
+  grid-area: callout;
+  margin-top: var(--bolt-spacing-y-xsmall);
+  padding: var(--bolt-spacing-y-xsmall) var(--bolt-spacing-x-small);
+  border: 1px solid var(--m-bolt-border);
+  border-radius: bolt-border-radius(small);
+}
+
 .c-bolt-listing-teaser__actions {
+  grid-area: actions;
   position: relative; // This raises the stacking order of the flag media above the main heading link.
   margin: var(--bolt-spacing-y-xsmall) 0 var(--bolt-spacing-y-xsmall)
     var(--bolt-spacing-x-small);
@@ -20,16 +32,15 @@
 
 .c-bolt-listing-teaser__flag {
   display: grid;
+  align-items: start;
+  position: static; // Position must be static on this element so the heading link will not be contained inside this.
   grid-template-columns: auto 1fr;
   grid-template-rows: repeat(3, minmax(min-content, max-content)) 1fr;
   grid-template-areas:
-    'signifier . status'
+    '. eyebrow .'
     'signifier heading status'
-    'signifier content status'
-    '. content status';
-  flex: 1;
-  align-items: start;
-  position: static; // Position must be static on this element so the heading link will not be contained inside this.
+    'signifier content status';
+  grid-area: flag;
 }
 
 .c-bolt-listing-teaser__flag-signifier {
@@ -39,6 +50,20 @@
   pointer-events: none;
   user-select: none;
   grid-area: signifier;
+
+  @at-root .c-bolt-listing-teaser--gutter-large #{&} {
+    margin-right: var(--bolt-spacing-x-large);
+  }
+
+  @at-root .c-bolt-listing-teaser--gutter-medium #{&} {
+    margin-right: var(--bolt-spacing-x-medium);
+  }
+}
+
+.c-bolt-listing-teaser__flag-eyebrow {
+  margin-bottom: var(--bolt-spacing-y-xxsmall);
+  pointer-events: none;
+  grid-area: eyebrow;
 }
 
 .c-bolt-listing-teaser__flag-heading {
@@ -78,7 +103,7 @@
   }
 }
 
-.c-bolt-listing-teaser__flag-content__item {
+.c-bolt-listing-teaser__flag-content__item:not(.c-bolt-listing-teaser__flag-content__item--chips) {
   --bolt-spacing-y-xxsmall: 0.0625rem;
   --bolt-spacing-y-xsmall: 0.125rem;
   --bolt-spacing-y-small: 0.25rem;
@@ -87,16 +112,23 @@
   --bolt-spacing-y-xlarge: 1rem;
   --bolt-spacing-y-xxlarge: 1.25rem;
   --bolt-spacing-y-xxxlarge: 1.5rem;
+}
 
+.c-bolt-listing-teaser__flag-content__item {
   display: block;
   font-size: var(--bolt-type-font-size-small);
   line-height: var(--bolt-type-line-height-small);
   pointer-events: none;
 
-  a {
+  a,
+  button,
+  bolt-chip {
     position: relative; // This raises the stacking order of the meta link above the main heading link.
-    text-decoration: none;
     pointer-events: all;
+  }
+
+  a {
+    text-decoration: none;
 
     &:hover {
       text-decoration: underline;
@@ -114,7 +146,11 @@
     display: grid;
     grid-template-columns: auto 1fr;
     grid-gap: var(--bolt-spacing-x-xxsmall);
-    align-items: center;
+    align-items: baseline;
+
+    bolt-icon {
+      transform: translateY(0.1em);
+    }
   }
 }
 
@@ -200,10 +236,105 @@
       color: var(--m-bolt-neutral);
       vertical-align: baseline;
     }
+
+    > * {
+      display: inline;
+    }
+
+    a,
+    button {
+      position: relative; // This raises the stacking order of the meta link above the main heading link.
+    }
+  }
+}
+
+.c-bolt-listing-teaser__flag-signifier {
+  order: 1;
+}
+
+.c-bolt-listing-teaser__flag-eyebrow {
+  order: 2;
+}
+
+.c-bolt-listing-teaser__flag-heading {
+  order: 3;
+}
+
+.c-bolt-listing-teaser__flag-content {
+  order: 4;
+}
+
+.c-bolt-listing-teaser__flag-status {
+  order: 5;
+}
+
+.c-bolt-listing-teaser__actions {
+  order: 6;
+}
+
+.c-bolt-listing-teaser--variant-card {
+  @include bolt-shadow('level-20');
+
+  border: 1px solid var(--m-bolt-border);
+  border-radius: bolt-border-radius(small);
+  background-color: var(--m-bolt-bg);
+
+  .c-bolt-listing-teaser__callout {
+    margin-top: 0;
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+    border-right: 0;
+    border-bottom: 0;
+    border-bottom-right-radius: inherit;
+    border-bottom-left-radius: inherit;
+    border-left: 0;
   }
 
-  .e-bolt-text-link,
-  bolt-link {
-    position: relative; // This raises the stacking order of the meta link above the main heading link.
+  .c-bolt-listing-teaser__callout,
+  .c-bolt-listing-teaser__flag {
+    padding: var(--bolt-spacing-y-medium) var(--bolt-spacing-x-medium);
+  }
+
+  &.c-bolt-listing-teaser--inset-spacing-small {
+    .c-bolt-listing-teaser__callout,
+    .c-bolt-listing-teaser__flag {
+      padding: var(--bolt-spacing-y-small) var(--bolt-spacing-x-small);
+    }
+  }
+
+  &.c-bolt-listing-teaser--inset-spacing-xsmall {
+    .c-bolt-listing-teaser__callout,
+    .c-bolt-listing-teaser__flag {
+      padding: var(--bolt-spacing-y-xsmall) var(--bolt-spacing-x-xsmall);
+    }
+  }
+}
+
+@mixin _c-bolt-listing-teaser-vertical {
+  .c-bolt-listing-teaser__flag {
+    display: block;
+  }
+
+  .c-bolt-listing-teaser__flag-signifier {
+    width: 100%;
+    margin-bottom: var(--bolt-spacing-y-small);
+  }
+
+  .c-bolt-listing-teaser__flag-status {
+    grid-column-start: 1;
+  }
+
+  .c-bolt-listing-teaser__flag-content {
+    margin-bottom: 0;
+  }
+}
+
+.c-bolt-listing-teaser--layout-vertical {
+  @include _c-bolt-listing-teaser-vertical;
+}
+
+@include bolt-mq($until: small) {
+  .c-bolt-listing-teaser--layout-responsive {
+    @include _c-bolt-listing-teaser-vertical;
   }
 }
