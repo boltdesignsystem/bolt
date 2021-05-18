@@ -39,6 +39,7 @@ class BoltTooltip extends BoltElement {
       maxWidth: 'none', // Set width via CSS variable for legacy Edge support
       offset: [0, 0],
       plugins: [hideOnEsc],
+      zIndex: 140,
       popperOptions: {
         modifiers: [
           {

@@ -42,6 +42,7 @@ class BoltPopover extends BoltElement {
       maxWidth: 'none', // Set width via CSS variable, requires legacy Edge support
       offset: [0, 0],
       plugins: [hideOnEsc, handleFocus],
+      zIndex: 120,
       popperOptions: {
         modifiers: [
           {
