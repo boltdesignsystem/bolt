@@ -251,3 +251,25 @@
   border-radius: bolt-border-radius(large);
   background-color: var(--m-bolt-bg);
 }
+
+// print styles
+@media print {
+  *:not(.printer-content):not(.printer-content *) {
+    visibility: hidden;
+    height: 0;
+  }
+
+  .printer-content {
+    visibility: visible;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    width: 100% !important;
+    padding: 0 !important;
+
+    & * {
+      visibility: visible;
+    }
+  }
+}
