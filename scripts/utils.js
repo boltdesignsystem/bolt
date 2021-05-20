@@ -26,7 +26,7 @@ function post({ path, requestBody, query, TOKEN }) {
       headers: {
         'Content-Type': 'application/json',
         Accept: 'application/json',
-        Authorization: `Bearer ${TOKEN || process.env.VERCEL_TOKEN}`,
+        Authorization: `Bearer ${TOKEN || process.env.NOW_TOKEN}`,
       },
     };
 
@@ -66,7 +66,7 @@ function get({ path, query, hostname, TOKEN }) {
       headers: {
         'Content-Type': 'application/json',
         Accept: 'application/json',
-        Authorization: `Bearer ${TOKEN || process.env.VERCEL_TOKEN}`,
+        Authorization: `Bearer ${TOKEN || process.env.NOW_TOKEN}`,
       },
     };
     const req = http.request(options, res => {
@@ -91,8 +91,8 @@ function get({ path, query, hostname, TOKEN }) {
  * @return {Promise<string>} - URL of latest deploymennt
  */
 function getLatestDeploy() {
-  if (!process.env.VERCEL_TOKEN) {
-    process.stderr.write('VERCEL_TOKEN env var required and is missing');
+  if (!process.env.NOW_TOKEN) {
+    process.stderr.write('NOW_TOKEN env var required and is missing');
     process.exit(1);
   }
   return new Promise((resolve, reject) => {
@@ -105,7 +105,7 @@ function getLatestDeploy() {
       headers: {
         'Content-Type': 'application/json',
         Accept: 'application/json',
-        Authorization: `Bearer ${process.env.VERCEL_TOKEN}`,
+        Authorization: `Bearer ${process.env.NOW_TOKEN}`,
       },
     })
       .then(results => {

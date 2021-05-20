@@ -6,7 +6,7 @@ const { getLatestDeploy } = require('./scripts/utils');
 const { gitSha } = require('./scripts/utils');
 const { normalizeUrlAlias } = require('./scripts/utils/normalize-url-alias');
 const { branchName } = require('./scripts/utils/branch-name');
-const { VERCEL_TOKEN } = process.env;
+const { NOW_TOKEN } = process.env;
 
 const isFullRelease = branchName.startsWith('release');
 
@@ -88,16 +88,16 @@ async function init() {
         await shell.exec(`
           npx json -I -f docs-site/.incache -e 'this["bolt-tags"].expiresOn = "2019-06-14T12:30:26.377Z"'
           npx json -I -f docs-site/.incache -e 'this["bolt-urls-to-test"].expiresOn = "2019-06-14T12:30:26.377Z"'
-          npx vercel alias boltdesignsystem.com ${tagSpecificUrl} --token=${VERCEL_TOKEN}
+          npx vercel alias boltdesignsystem.com ${tagSpecificUrl} --token=${NOW_TOKEN}
           npm run build
-          npx vercel deploy --meta gitSha='${gitSha}' --token=${VERCEL_TOKEN}
+          npx vercel deploy --meta gitSha='${gitSha}' --token=${NOW_TOKEN}
         `);
 
         const latestUrl = await getLatestDeploy();
 
         vercelAliases.forEach(alias => {
           shell.exec(
-            `npx vercel alias ${latestUrl} ${alias} --token=${VERCEL_TOKEN}`,
+            `npx vercel alias ${latestUrl} ${alias} --token=${NOW_TOKEN}`,
           );
         });
 
