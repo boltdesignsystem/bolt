@@ -8,7 +8,7 @@ const { getConfig } = require('../packages/build-tools/utils/config-store');
 const { fileExists } = require('../packages/build-tools/utils/general');
 
 const { TRAVIS, TRAVIS_TAG } = require('./utils/travis-vars');
-const { NOW_TOKEN } = process.env;
+const { VERCEL_TOKEN } = process.env;
 
 let setCheckRun, outputBanner, deployedUrlPretty, deployedUrl;
 
@@ -45,12 +45,12 @@ async function init() {
       //     `cd ${path.join(
       //       process.cwd(),
       //       config.wwwDir,
-      //     )} && now deploy --meta gitSha="${gitSha}" --token=${NOW_TOKEN} --no-verify`,
+      //     )} && now deploy --meta gitSha="${gitSha}" --token=${VERCEL_TOKEN} --no-verify`,
       //   );
       // } else {
       // }
       deployedUrl = shell.exec(
-        `npx now --meta gitSha="${gitSha}" --token=${NOW_TOKEN}`,
+        `npx vercel --meta gitSha="${gitSha}" --token=${VERCEL_TOKEN}`,
       ).stdout;
 
       deployedUrlPretty = deployedUrl.trim();

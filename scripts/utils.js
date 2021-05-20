@@ -26,7 +26,7 @@ function post({ path, requestBody, query, TOKEN }) {
       headers: {
         'Content-Type': 'application/json',
         Accept: 'application/json',
-        Authorization: `Bearer ${TOKEN || process.env.NOW_TOKEN}`,
+        Authorization: `Bearer ${TOKEN || process.env.VERCEL_TOKEN}`,
       },
     };
 
@@ -66,7 +66,7 @@ function get({ path, query, hostname, TOKEN }) {
       headers: {
         'Content-Type': 'application/json',
         Accept: 'application/json',
-        Authorization: `Bearer ${TOKEN || process.env.NOW_TOKEN}`,
+        Authorization: `Bearer ${TOKEN || process.env.VERCEL_TOKEN}`,
       },
     };
     const req = http.request(options, res => {
@@ -91,13 +91,13 @@ function get({ path, query, hostname, TOKEN }) {
  * @return {Promise<string>} - URL of latest deploymennt
  */
 function getLatestDeploy() {
-  if (!process.env.NOW_TOKEN) {
-    process.stderr.write('NOW_TOKEN env var required and is missing');
+  if (!process.env.VERCEL_TOKEN) {
+    process.stderr.write('VERCEL_TOKEN env var required and is missing');
     process.exit(1);
   }
   return new Promise((resolve, reject) => {
     get({
-      path: '/v4/now/deployments',
+      path: '/v4/vercel/deployments',
       hostname: 'api.zeit.co',
       query: {
         teamId: 'team_etXPus2wqbe3W15GcdHsbAs8', // boltdesignsystem
@@ -105,7 +105,7 @@ function getLatestDeploy() {
       headers: {
         'Content-Type': 'application/json',
         Accept: 'application/json',
-        Authorization: `Bearer ${process.env.NOW_TOKEN}`,
+        Authorization: `Bearer ${process.env.VERCEL_TOKEN}`,
       },
     })
       .then(results => {

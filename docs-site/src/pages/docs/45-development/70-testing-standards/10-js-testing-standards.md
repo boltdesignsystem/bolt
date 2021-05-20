@@ -54,8 +54,8 @@ All commands must be run from the root directory of your Bolt project.
    - Full: `yarn test:e2e:full-master`
    - Quick: `yarn test:e2e:quick-master`
 1. E2E specific test locally
-   - `NOW_URL='url-for-test' ./node_modules/.bin/nightwatch --config 'path-to-config' --env 'brwosers-list' --test 'path-to-e2e-test-file'`
-   - Example: `NOW_URL=http://localhost:3000 ./node_modules/.bin/nightwatch --config packages/testing/testing-nightwatch/nightwatch.local.js --env chrome,safari --test packages/components/bolt-accordion/__tests__/accordion.e2e.js`
+   - `VERCEL_URL='url-for-test' ./node_modules/.bin/nightwatch --config 'path-to-config' --env 'brwosers-list' --test 'path-to-e2e-test-file'`
+   - Example: `VERCEL_URL=http://localhost:3000 ./node_modules/.bin/nightwatch --config packages/testing/testing-nightwatch/nightwatch.local.js --env chrome,safari --test packages/components/bolt-accordion/__tests__/accordion.e2e.js`
 
 _Note: To run E2E local test you must first "watch" Bolt files by launching: `yarn start`.\
 Note 2: Monorepo test will fail if you have not yet compiled Bolt at least once._

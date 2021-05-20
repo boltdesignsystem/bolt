@@ -1,9 +1,9 @@
 const globby = require('globby');
 const path = require('path');
 const { handleNightwatchResults } = require('./nightwatch.handle-results');
-const { NOW_URL } = process.env;
+const { VERCEL_URL } = process.env;
 
-const testingUrl = NOW_URL ? NOW_URL : 'https://boltdesignsystem.com';
+const testingUrl = VERCEL_URL ? VERCEL_URL : 'https://boltdesignsystem.com';
 
 console.log(`Nightwatch testingUrl is ${testingUrl}`);
 

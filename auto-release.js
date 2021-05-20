@@ -6,7 +6,7 @@ const { getLatestDeploy } = require('./scripts/utils');
 const { gitSha } = require('./scripts/utils');
 const { normalizeUrlAlias } = require('./scripts/utils/normalize-url-alias');
 const { branchName } = require('./scripts/utils/branch-name');
-const { NOW_TOKEN } = process.env;
+const { VERCEL_TOKEN } = process.env;
 
 const isFullRelease = branchName.startsWith('release');
 
@@ -75,29 +75,29 @@ async function init() {
         const releaseVersion = `v${nextVersion}`; // ex. v2.9.0
         const branchSpecificUrl = await normalizeUrlAlias(branchName);
         const tagSpecificUrl = await normalizeUrlAlias(releaseVersion);
-        const nowAliases = [];
+        const vercelAliases = [];
 
-        nowAliases.push(branchSpecificUrl);
-        nowAliases.push(tagSpecificUrl);
-        nowAliases.push('www.boltdesignsystem.com');
-        nowAliases.push('boltdesignsystem.com');
-        nowAliases.push('www.bolt-design-system.com');
-        nowAliases.push('bolt-design-system.com');
-        nowAliases.push(await normalizeUrlAlias('latest'));
+        vercelAliases.push(branchSpecificUrl);
+        vercelAliases.push(tagSpecificUrl);
+        vercelAliases.push('www.boltdesignsystem.com');
+        vercelAliases.push('boltdesignsystem.com');
+        vercelAliases.push('www.bolt-design-system.com');
+        vercelAliases.push('bolt-design-system.com');
+        vercelAliases.push(await normalizeUrlAlias('latest'));
 
         await shell.exec(`
           npx json -I -f docs-site/.incache -e 'this["bolt-tags"].expiresOn = "2019-06-14T12:30:26.377Z"'
           npx json -I -f docs-site/.incache -e 'this["bolt-urls-to-test"].expiresOn = "2019-06-14T12:30:26.377Z"'
-          npx now alias boltdesignsystem.com ${tagSpecificUrl} --token=${NOW_TOKEN}
+          npx vercel alias boltdesignsystem.com ${tagSpecificUrl} --token=${VERCEL_TOKEN}
           npm run build
-          npx now deploy --meta gitSha='${gitSha}' --token=${NOW_TOKEN}
+          npx vercel deploy --meta gitSha='${gitSha}' --token=${VERCEL_TOKEN}
         `);
 
         const latestUrl = await getLatestDeploy();
 
-        nowAliases.forEach(alias => {
+        vercelAliases.forEach(alias => {
           shell.exec(
-            `npx now alias ${latestUrl} ${alias} --token=${NOW_TOKEN}`,
+            `npx vercel alias ${latestUrl} ${alias} --token=${VERCEL_TOKEN}`,
           );
         });
 
