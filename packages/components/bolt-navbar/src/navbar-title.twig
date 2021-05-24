@@ -1,0 +1,66 @@
+{% set schema = bolt.data.components['@bolt-components-navbar'].schema['navbar-title'] %}
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(schema, _self)|raw }}
+{% endif %}
+
+{# Override hide_title if no text provided #}
+{% if not hide_title and not content %}
+  {% set hide_title = 'from-xsmall-bp' %}
+{% endif %}
+
+{# Variables #}
+{% set this = init(schema) %}
+{% set attributes = create_attribute(attributes|default({})) %}
+{% set _inner_attributes = create_attribute(link.attributes|default({})) %}
+{% set _inner_tag = link.attributes.type ? 'button' : link.attributes.href ? 'a' : 'div' %}
+{% set _text_attributes = create_attribute({}) %}
+
+{# Array of classes based on the defined + default props #}
+{% set classes = [
+  'c-bolt-navbar__title'
+] %}
+
+{% set _inner_classes = [
+  'c-bolt-navbar__title-inner',
+  link  ? 'c-bolt-navbar__title-inner--link' : ''
+] %}
+
+{% set _text_classes = [
+  'c-bolt-navbar__title-text',
+  this.data.hide_title.value ? 'c-bolt-navbar__title-text--hide-' ~ this.data.hide_title.value : ''
+] %}
+
+{# {% if url %}
+  {% set attributes = attributes.setAttribute('href', url) %}
+{% endif %} #}
+
+{# {% if uuid %}
+  {% set _title_attributes = _title_attributes.setAttribute('id', 'js-bolt-navbar-title-' ~ uuid) %}
+{% endif %} #}
+
+{# @todo, set via JS #}
+{# {% if title %}
+  {% set title = title|merge({ uuid: uuid }) %}
+  {% set attributes = attributes.setAttribute('aria-labelledby', 'js-bolt-navbar-title-' ~ uuid) %}
+{% endif %} #}
+
+{% set navbar_title %}
+  {% if icon %}
+    <div class="c-bolt-navbar__title-icon">
+      {% include "@bolt-components-icon/icon.twig" with {
+        name: icon.name,
+        size: "large"
+      } only %}
+    </div>
+  {% endif %}
+  <{{ this.data.tag.value }} {{ _text_attributes.addClass(_text_classes) }}>
+    {{ content|default('Go to'|t) }}
+  </{{ this.data.tag.value }}>
+{% endset %}
+
+
+<div {{ attributes.addClass(classes)}}>
+  <{{ _inner_tag}} {{ _inner_attributes.addClass(_inner_classes)}}>
+    {{ navbar_title }}
+  </{{ _inner_tag}}>
+</div>

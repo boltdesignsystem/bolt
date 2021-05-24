@@ -7,38 +7,31 @@
 
 {% set this = init(schema) %}
 {% set attributes = create_attribute(attributes|default({})) %}
-{% set inner_attributes = create_attribute({}) %}
+{% set _link_attributes = create_attribute(link.attributes|default({})) %}
+{% set _link_tag = _link_attributes.type ? 'button' : _link_attributes.href ? 'a' : 'span' %}
 
 {# Array of classes based on the defined + default props #}
 {% set classes = [
   'c-bolt-navbar-item',
   'js-bolt-navbar-item',
-  this.data.active.value is sameas(true) ? 'js-bolt-navbar-item--active' : ''
+  this.data.current.value is sameas(true) ? 'js-bolt-navbar-item--current' : ''
 ] %}
 
-{% if this.data.url.value %}
-  {% set inner_attributes = inner_attributes.setAttribute('href', this.data.url.value) %}
-{% endif %}
-
-{% if this.data.target.value %}
-  {% set inner_attributes = inner_attributes.setAttribute('target', this.data.target.value) %}
-{% endif %}
-
 {# [data-scroll-ignore] opts out of automatic smoothscroll behavior, @see packages/bolt-smooth-scroll #}
-{% set inner_attributes = inner_attributes.setAttribute('data-scroll-ignore', '') %}
+{% set _link_attributes = _link_attributes.setAttribute('data-scroll-ignore', '') %}
 
-{% if icon %}
-  {% set icon_position = icon.position in schema.properties.icon.properties.position.enum ? icon.position : schema.properties.icon.properties.position.default %}
+{% if link.icon %}
+  {% set _icon_position = link.icon.position in schema.properties.link.icon.properties.position.enum ? link.icon.position : schema.properties.link.icon.properties.position.default %}
 {% endif %}
 
 <div {{ attributes.addClass(classes)|without('role')}} role="listitem">
   <div class="c-bolt-navbar-item__inner">
     {% spaceless %}
-      <a {{ inner_attributes.addClass('c-bolt-navbar-item__link') }}>
-        {{ macros.slotted_icon(icon, icon_position, 'before') }}
-        <span class="c-bolt-navbar-item__text">{{ text }}</span>
-        {{ macros.slotted_icon(icon, icon_position, 'after') }}
-      </a>
+      <{{ _link_tag }} {{ _link_attributes.addClass('c-bolt-navbar-item__link') }}>
+        {{ macros.slotted_icon(link.icon, _icon_position, 'before') }}
+        <span class="c-bolt-navbar-item__text">{{ link.content }}</span>
+        {{ macros.slotted_icon(link.icon, _icon_position, 'after') }}
+      </{{ _link_tag }}>
     {% endspaceless %}
   </div>
 </div>

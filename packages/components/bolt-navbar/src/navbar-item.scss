@@ -30,6 +30,24 @@
       // "center" option has smaller padding
       bottom: calc(var(--bolt-spacing-y-xsmall) * -1);
     }
+    @each $size in $bolt-spacing-multiplier-system {
+      $size-name: nth($size, 1);
+
+      @if (
+        $size-name !=
+          'xxsmall' and
+          $size-name !=
+          'large' and
+          $size-name !=
+          'xlarge' and
+          $size-name !=
+          'xxlarge'
+      ) {
+        @at-root .c-bolt-navbar--spacing-#{$size-name} & {
+          bottom: calc(var(--bolt-spacing-y-#{$size-name}) * -1);
+        }
+      }
+    }
   }
 
   &.is-dropdown-link:after {
@@ -40,7 +58,7 @@
   }
 }
 
-.js-bolt-navbar-item--active {
+.js-bolt-navbar-item--current {
   &:after {
     opacity: bolt-opacity(100);
   }
@@ -123,11 +141,16 @@
     outline: none;
   }
 
-  @at-root .js-bolt-navbar-item--active & {
+  @at-root .js-bolt-navbar-item--current & {
     &:hover:before {
       animation: none;
     }
   }
+}
+
+button.c-bolt-navbar-item__link {
+  font-family: var(--bolt-type-font-family-body);
+  text-align: start;
 }
 
 // Text and icon spacing

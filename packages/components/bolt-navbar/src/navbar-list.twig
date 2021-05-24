@@ -1,0 +1,19 @@
+{% set schema = bolt.data.components['@bolt-components-navbar'].schema['navbar-list'] %}
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(schema, _self)|raw }}
+{% endif %}
+
+{# Not using `init()` here because the only prop is `content` which `init()` will skip. #}
+{% set attributes = create_attribute(attributes|default({})) %}
+{% set inner_attributes = create_attribute({}) %}
+
+{% set classes = [
+  'c-bolt-navbar__list',
+  'js-bolt-navbar__list',
+] %}
+
+{% set attributes = attributes.setAttribute('role', 'list') %}
+
+<div {{ attributes.addClass(classes) }}>
+  {{ content }}
+</div>

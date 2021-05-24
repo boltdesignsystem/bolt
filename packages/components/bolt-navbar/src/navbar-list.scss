@@ -1,0 +1,25 @@
+@import '@bolt/core-v3.x';
+
+/* ------------------------------------ *\
+   Navbar List
+\* ------------------------------------ */
+
+.c-bolt-navbar__list {
+  display: flex;
+
+  @include bolt-mq($until: xsmall) {
+    // padding-top: var(--bolt-spacing-y-small);
+
+    @at-root .c-bolt-navbar.has-list.is-ready & {
+      display: contents;
+    }
+  }
+}
+
+.js-bolt-navbar__list-wrapper {
+  @include bolt-mq($until: xsmall) {
+    @at-root .c-bolt-navbar.is-ready & {
+      display: contents;
+    }
+  }
+}
