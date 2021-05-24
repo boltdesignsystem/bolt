@@ -26,13 +26,13 @@
         }
       ] %}
 
-      {% set navbar_content %}
+      {# {% set navbar_content %}
         {% for item in navbar_data %}
           {% include "@bolt-components-navbar/navbar-item.twig" with item only %}  
         {% endfor %}
-      {% endset %}
+      {% endset %} #}
 
-      {% include "@bolt-components-navbar/navbar.twig" with {
+      {# {% include "@bolt-components-navbar/navbar.twig" with {
         theme: "xdark",
         title: {
           tag: "h2",
@@ -42,7 +42,7 @@
           }
         },
         content: navbar_content
-      } only %}
+      } only %} #}
     {% endblock %}
   {% endembed %}
 

@@ -1,34 +1,62 @@
-{% set navbar_data = [
+{# {% set navbar_data = [
   {
-    text: "Real-Time AI",
-    url: "#!"
+    link: {
+      content: "Real-Time AI",
+      attributes: {
+        href: "#!"
+      }
+    }
   },
   {
-    text: "End-to-end Automation",
-    url: "#!",
+    link: {
+      content: "End-to-end Automation",
+      attributes: {
+        href: "#!",
+      }
+    }
   },
   {
-    text: "Journey-centric Delivery",
-    url: "#!"
+    link: {
+      content: "Journey-centric Delivery",
+      attributes: {
+        href: "#!"
+      }
+    }
   },
   {
-    text: "Low Code",
-    url: "#!"
+    link: {
+      content: "Low Code",
+      attributes: {
+        href: "#!"
+      }
+    }
   },
   {
-    text: "Multi-dimensional Power",
-    url: "#!"
+    link: {
+      content: "Multi-dimensional Power",
+      attributes: {
+        href: "#!"
+      }
+    }
   },
   {
-    text: "Cloud Choice",
-    url: "#!"
+    link: {
+      content: "Cloud Choice",
+      attributes: {
+        href: "#!"
+      }
+    }
   }
 ] %}
 
-{% set navbar_content %}
+{% set navbar_items %}
   {% for item in navbar_data %}
     {% include "@bolt-components-navbar/navbar-item.twig" with item only %}  
   {% endfor %}
+{% endset %}
+
+{% set navbar_list %}
+  {% include "@bolt-components-navbar/navbar-list.twig" with { content: navbar_items } only %}  
 {% endset %}
 
 {% include "@bolt-components-navbar/navbar.twig" with {
@@ -39,5 +67,5 @@
       name: "marketing-gray"
     }
   },
-  content: navbar_content
-} only %}
+  content: navbar_list
+} only %} #}

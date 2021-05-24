@@ -1,6 +1,6 @@
 {% embed "@bolt-components-sticky/sticky.twig" %}
   {% block sticky_content %}
-    {% include "@bolt-components-navbar/navbar.twig" with {
+    {# {% include "@bolt-components-navbar/navbar.twig" with {
       "theme": "dark",
       "title":
       {
@@ -34,7 +34,7 @@
           "url": "#section-4"
         }
       ]
-    } only %}
+    } only %} #}
   {% endblock %}
 {% endembed %}
 
@@ -219,7 +219,7 @@
 
 {% embed "@bolt-components-sticky/sticky.twig" %}
   {% block sticky_content %}
-    {% include "@bolt-components-navbar/navbar.twig" with {
+    {# {% include "@bolt-components-navbar/navbar.twig" with {
       theme: "light",
       center: true,
       title:
@@ -237,7 +237,7 @@
           "url": "#section-6"
         }
       ]
-    } only %}
+    } only %} #}
   {% endblock %}
 {% endembed %}
 

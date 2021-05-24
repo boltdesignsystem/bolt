@@ -44,7 +44,7 @@
           },
         ] %}
 
-        {% set navbar_content %}
+        {# {% set navbar_content %}
           {% for item in navbar_data %}
             {% include "@bolt-components-navbar/navbar-item.twig" with item only %}  
           {% endfor %}
@@ -67,7 +67,7 @@
             content: version_selector
           },
           content: navbar_content
-        } only %}
+        } only %} #}
       {% endset %}
 
       {% include "@bolt-components-sticky/sticky.twig" with {

@@ -25,11 +25,11 @@
   }
 ] %}
 
-{% set navbar_content %}
+{# {% set navbar_content %}
   {% for item in navbar_data %}
     {% include "@bolt-components-navbar/navbar-item.twig" with item only %}  
   {% endfor %}
-{% endset %}
+{% endset %} #}
 
 <div class="o-bolt-wrapper u-bolt-padding-top-large u-bolt-padding-bottom-large">
   {% grid "o-bolt-grid--center o-bolt-grid--large o-bolt-grid--matrix o-bolt-grid--middle u-bolt-margin-bottom-medium" %}
@@ -38,7 +38,7 @@
     {% endcell %}
 
     {% cell "u-bolt-width-1/1" %}
-      {% include "@bolt-components-navbar/navbar.twig" with {
+      {# {% include "@bolt-components-navbar/navbar.twig" with {
         title: {
           tag: "h2",
           text: "Title Text",
@@ -47,7 +47,7 @@
           }
         },
         content: navbar_content
-      } only %}
+      } only %} #}
     {% endcell %}
 
     {% cell "u-bolt-width-1/1" %}
@@ -55,7 +55,7 @@
     {% endcell %}
 
     {% cell "u-bolt-width-1/1" %}
-      {% include "@bolt-components-navbar/navbar.twig" with {
+      {# {% include "@bolt-components-navbar/navbar.twig" with {
         title: {
           tag: "h2",
           text: "Title Text",
@@ -65,7 +65,7 @@
         },
         width: 'auto',
         content: navbar_content
-      } only %}
+      } only %} #}
     {% endcell %}
   {% endgrid %}
 </div>

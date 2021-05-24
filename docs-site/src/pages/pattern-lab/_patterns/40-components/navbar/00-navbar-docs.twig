@@ -17,11 +17,11 @@
   }
 ] %}
 
-{% set navbar_content %}
+{# {% set navbar_content %}
   {% for item in navbar_data %}
     {% include "@bolt-components-navbar/navbar-item.twig" with item only %}  
   {% endfor %}
-{% endset %}
+{% endset %} #}
 
 {% set usage %}{% verbatim %}
 {% include "@bolt-components-navbar/navbar.twig" with {
@@ -36,7 +36,7 @@
 } only %}
 {% endverbatim %}{% endset %}
 
-{% include "@utils/docs.twig" with {
+{# {% include "@utils/docs.twig" with {
   componentName: "navbar",
   usage: usage,
   schemaForm: {
@@ -54,4 +54,4 @@
       content: navbar_content
     },
   },
-} only %}
+} only %} #}

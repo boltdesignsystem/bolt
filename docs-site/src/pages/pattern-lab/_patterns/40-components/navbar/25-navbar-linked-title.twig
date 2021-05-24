@@ -18,7 +18,7 @@
   }
 ] %}
 
-{% set navbar_content %}
+{# {% set navbar_content %}
   {% for item in navbar_data %}
     {% include "@bolt-components-navbar/navbar-item.twig" with item only %}  
   {% endfor %}
@@ -34,4 +34,4 @@
     url: "#!"
   },
   content: navbar_content
-} only %}
+} only %} #}

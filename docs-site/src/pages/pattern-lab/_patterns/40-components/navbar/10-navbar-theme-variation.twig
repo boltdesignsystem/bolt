@@ -15,11 +15,11 @@
   }
 ] %}
 
-{% set navbar_content %}
+{# {% set navbar_content %}
   {% for item in navbar_data %}
     {% include "@bolt-components-navbar/navbar-item.twig" with item only %}  
   {% endfor %}
-{% endset %}
+{% endset %} #}
 
 {% for theme in schema.properties.theme.enum %}
   {% set headline %}
@@ -30,7 +30,7 @@
     text: headline
   } only %}
   <div class="u-bolt-margin-bottom-large">
-    {% include "@bolt-components-navbar/navbar.twig" with {
+    {# {% include "@bolt-components-navbar/navbar.twig" with {
       theme: theme,
       title: {
         tag: "h2",
@@ -40,6 +40,6 @@
         }
       },
       content: navbar_content
-    } only %}
+    } only %} #}
   </div>
 {% endfor %}
