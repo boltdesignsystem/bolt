@@ -1,0 +1,43 @@
+{% include '@bolt-components-navbar/navbar-title.twig' with {
+  content: 'Title text',
+  icon: {
+    name: "marketing-gray"
+  }
+} only %}  
+
+{% include '@bolt-components-navbar/navbar-title.twig' with {
+  content: 'Title text link',
+  icon: {
+    name: "marketing-gray"
+  },
+  link: {
+    attributes: {
+      href: "http://google.com",
+      'data-foo': 'bar'
+    }
+  }
+} only %}
+
+{% include '@bolt-components-navbar/navbar-title.twig' with {
+  content: 'Title text button',
+  icon: {
+    name: "marketing-gray"
+  },
+  link: {
+    attributes: {
+      type: "button",
+    }
+  }
+} only %}
+
+{% include '@bolt-components-navbar/navbar-title.twig' with {
+  content: 'Title text span',
+  icon: {
+    name: "marketing-gray"
+  },
+  link: {
+    attributes: {
+      'data-foo': 'bar'
+    }
+  }
+} only %}

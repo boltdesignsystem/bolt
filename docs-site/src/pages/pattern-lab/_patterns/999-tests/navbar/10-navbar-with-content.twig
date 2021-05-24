@@ -1,0 +1,44 @@
+{% extends "@pl/_default-page-template.twig" %}
+
+{% block main_content %}
+
+{% set schema = bolt.data.components['@bolt-components-navbar'].schema['navbar'] %}
+
+{% set custom_title %}
+  {% include "@bolt-components-headline/headline.twig" with {
+    text: "Custom Title",
+    size: "large",
+  } only %}
+{% endset %}
+
+{% set custom_content %}
+  {% include "@bolt-components-list/list.twig" with {
+    display: 'inline',
+    items: [
+      'List item',
+      'List item',
+      'List item',
+    ]
+  } only %}
+{% endset %}
+
+{% set section_content %}
+  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita nesciunt necessitatibus, nostrum aliquam sed qui et totam deserunt quasi. Quae fugit aliquam velit aperiam at quibusdam tempore repellat commodi sapiente!</p>
+  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita nesciunt necessitatibus, nostrum aliquam sed qui et totam deserunt quasi. Quae fugit aliquam velit aperiam at quibusdam tempore repellat commodi sapiente!</p>
+  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita nesciunt necessitatibus, nostrum aliquam sed qui et totam deserunt quasi. Quae fugit aliquam velit aperiam at quibusdam tempore repellat commodi sapiente!</p>
+  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita nesciunt necessitatibus, nostrum aliquam sed qui et totam deserunt quasi. Quae fugit aliquam velit aperiam at quibusdam tempore repellat commodi sapiente!</p>
+  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita nesciunt necessitatibus, nostrum aliquam sed qui et totam deserunt quasi. Quae fugit aliquam velit aperiam at quibusdam tempore repellat commodi sapiente!</p>
+{% endset %}
+
+{% for spacing in schema.properties.spacing.enum %}
+  <div style="margin: 0 auto; max-width: 1300px;">
+    {% include "@bolt-components-navbar/navbar.twig" with {
+      title: custom_title,
+      content: custom_content,
+      spacing: spacing
+    } only %}
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita nesciunt necessitatibus, nostrum aliquam sed qui et totam deserunt quasi. Quae fugit aliquam velit aperiam at quibusdam tempore repellat commodi sapiente!</p>
+  </div>
+{% endfor %}
+
+{% endblock %}

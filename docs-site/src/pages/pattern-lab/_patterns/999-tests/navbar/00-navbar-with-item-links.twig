@@ -1,0 +1,121 @@
+{% extends "@pl/_default-page-template.twig" %}
+
+{% block main_content %}
+
+{% set navbar_data = [
+  {
+    link: {
+      content: 'Section 1',
+      attributes: {
+        href: '#section-1'
+      }
+    }
+  },
+  {
+    link: {
+      content: 'Button',
+      attributes: {
+        type: 'button',
+        'data-foo': 'bar'
+      }
+    }
+  },
+  {
+    link: {
+      content: 'External Link',
+      attributes: {
+        href: 'http://google.com/',
+        target: '_blank'
+      }
+    }
+  },
+  {
+    link: {
+      content: 'Section 2',
+      attributes: {
+        href: '#section-2'
+      }
+    }
+  },
+  {
+    link: {
+      content: 'External Link',
+      attributes: {
+        href: 'http://google.com/'
+      }
+    }
+  },
+  {
+    link: {
+      content: 'Button',
+      attributes: {
+        type: 'button',
+        onclick: 'alert("test")'
+      }
+    }
+  },
+  {
+    link: {
+      content: 'Section 3',
+      attributes: {
+        href: '#section-3'
+      }
+    }
+  }
+] %}
+
+{% set navbar_items %}
+  {% for item in navbar_data %}
+    {% include '@bolt-components-navbar/navbar-item.twig' with item only %}  
+  {% endfor %}
+{% endset %}
+
+{% set navbar_list %}
+  {% include '@bolt-components-navbar/navbar-list.twig' with { content: navbar_items } only %}  
+{% endset %}
+
+{% set navbar_title %}
+  {% include '@bolt-components-navbar/navbar-title.twig' with {
+    content: 'Title text',
+    icon: {
+      name: "marketing-gray"
+    },
+    attributes: {
+      'data-foo': 'bar'
+    }
+  } only %}  
+{% endset %}
+
+{% include '@bolt-components-navbar/navbar.twig' with {
+  title: navbar_title,
+  content: navbar_list
+} only %}
+
+{% set section_content %}
+  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita nesciunt necessitatibus, nostrum aliquam sed qui et totam deserunt quasi. Quae fugit aliquam velit aperiam at quibusdam tempore repellat commodi sapiente!</p>
+  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita nesciunt necessitatibus, nostrum aliquam sed qui et totam deserunt quasi. Quae fugit aliquam velit aperiam at quibusdam tempore repellat commodi sapiente!</p>
+  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita nesciunt necessitatibus, nostrum aliquam sed qui et totam deserunt quasi. Quae fugit aliquam velit aperiam at quibusdam tempore repellat commodi sapiente!</p>
+  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita nesciunt necessitatibus, nostrum aliquam sed qui et totam deserunt quasi. Quae fugit aliquam velit aperiam at quibusdam tempore repellat commodi sapiente!</p>
+  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita nesciunt necessitatibus, nostrum aliquam sed qui et totam deserunt quasi. Quae fugit aliquam velit aperiam at quibusdam tempore repellat commodi sapiente!</p>
+  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita nesciunt necessitatibus, nostrum aliquam sed qui et totam deserunt quasi. Quae fugit aliquam velit aperiam at quibusdam tempore repellat commodi sapiente!</p>
+  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita nesciunt necessitatibus, nostrum aliquam sed qui et totam deserunt quasi. Quae fugit aliquam velit aperiam at quibusdam tempore repellat commodi sapiente!</p>
+  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita nesciunt necessitatibus, nostrum aliquam sed qui et totam deserunt quasi. Quae fugit aliquam velit aperiam at quibusdam tempore repellat commodi sapiente!</p>
+  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita nesciunt necessitatibus, nostrum aliquam sed qui et totam deserunt quasi. Quae fugit aliquam velit aperiam at quibusdam tempore repellat commodi sapiente!</p>
+{% endset %}
+
+<div id="section-1">
+  <h2>Section 1</h2>
+  {{ section_content }}
+</div>
+
+<div id="section-2">
+  <h2>Section 2</h2>
+  {{ section_content }}
+</div>
+
+<div id="section-3">
+  <h2>Section 3</h2>
+  {{ section_content }}
+</div>
+
+{% endblock %}
