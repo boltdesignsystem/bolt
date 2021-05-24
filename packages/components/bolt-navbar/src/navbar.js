@@ -63,14 +63,15 @@ export class BoltNavbar {
   }
 
   init() {
-    this.activeClass = 'js-bolt-navbar-item--active';
+    this.activeClass = 'js-bolt-navbar-item--current';
     this.state = {
       activeItem: null,
       isOpen: false,
       visibleElements: [],
     };
-    this.visibleElements = [];
+    // this.visibleElements = []; // @todo do we need to set this here?
 
+    // Setup Sticky
     const selectors = ['[data-bolt-sticky-header]'];
     const scrollOffsetSelector = this.el.dataset.boltScrollOffsetSelector;
     if (scrollOffsetSelector) {
@@ -80,39 +81,47 @@ export class BoltNavbar {
     this.scrollOffset = parseInt(this.el.dataset.boltScrollOffset);
     this.static = this.el.hasAttribute('data-bolt-static');
 
-    this.navbarItems = this.el.querySelectorAll(
-      '.js-bolt-navbar-item:not(.is-dropdown-link)',
-    );
-    this.navbarData = [...this.navbarItems].reduce((arr, item) => {
-      const link = item.querySelector('a');
-      if (link) {
-        return arr.concat({ item, link });
-      }
-    }, []);
-
     this.setStickyOffset = this.setStickyOffset.bind(this);
     window.addEventListener('throttledResize', this.setStickyOffset);
     this.setStickyOffset();
 
-    if (this.navbarData.length) {
+    // Setup Navbar List
+    this.navbarList = this.el.querySelector('.js-bolt-navbar__list');
+    this.navbarItems = this.el.querySelectorAll(
+      '.js-bolt-navbar-item:not(.is-dropdown-link)',
+    );
+    this.navbarLinks = [...this.navbarItems].reduce((arr, item) => {
+      const link = item.querySelector('a');
+      if (link) {
+        return arr.concat({ item, link });
+      } else {
+        return arr;
+      }
+    }, []);
+
+    if (this.navbarList && this.navbarLinks.length) {
+      this.el.classList.add('has-list');
       this.setupNavbarItems();
       this.setupWaypoints();
       this.setupOverflowMenu();
 
       // On initial load, if scrolled to top and two sections are visible, force the first to be active until user scrolls
       if (window.scrollY === 0 && this.visibleElements.length) {
-        this.activeItem = this.navbarData[0].item;
+        this.activeItem = this.navbarLinks[0].item;
       }
     }
 
     this.el.classList.add('is-ready');
+
+    // After everything is ready, trigger overflow menu once more to
+    this.overflowMenu?.handleResize();
   }
 
   setupNavbarItems() {
-    this.itemActiveClass = 'js-bolt-navbar-item--active';
+    this.itemActiveClass = 'js-bolt-navbar-item--current';
     this.handleNavItemClick = this.handleNavItemClick.bind(this);
 
-    this.navbarData.forEach(itemSet => {
+    this.navbarLinks.forEach(itemSet => {
       // item = <div class="c-bolt-navbar-item"> // we store waypoint data on this element, receives the active class
       // link = <a class="c-bolt-navbar-item__link"> // click events are bound to this element
       const { item, link } = itemSet;
@@ -140,7 +149,7 @@ export class BoltNavbar {
   }
 
   setupWaypoints() {
-    this.waypointData = this.navbarData.reduce((arr, set) => {
+    this.waypointData = this.navbarLinks.reduce((arr, set) => {
       // each set contains an `item` and `link`, waypoint data is stored on the `item`
       const { item } = set;
       if (item.waypointElement) {
@@ -148,6 +157,8 @@ export class BoltNavbar {
           trigger: item,
           element: item.waypointElement,
         });
+      } else {
+        return arr;
       }
     }, []);
 
@@ -171,11 +182,11 @@ export class BoltNavbar {
 
   setupOverflowMenu() {
     const menu = document.createElement('div');
-    this.el.querySelector('.js-bolt-navbar__list-inner')?.append(menu);
+    this.el.querySelector('.js-bolt-navbar__list')?.append(menu);
 
     this.overflowMenu = new BoltOverflowMenu(menu, {
       items: [...this.navbarItems],
-      container: this.el.querySelector('.js-bolt-navbar__list'),
+      container: this.el.querySelector('.js-bolt-navbar__list-wrapper'),
       baseClass: 'js-bolt-navbar-menu',
       activeClass: this.activeClass,
       moreText: this.el.dataset.boltMoreText,
@@ -185,7 +196,7 @@ export class BoltNavbar {
   handleNavItemClick(event) {
     // sometimes target is the inner span
     const link = event.target.closest('a');
-    const { item } = this.navbarData.find(item => item.link === link);
+    const { item } = this.navbarLinks.find(item => item.link === link);
 
     try {
       if (item.waypointElement) {

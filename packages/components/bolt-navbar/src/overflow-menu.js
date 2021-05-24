@@ -55,7 +55,10 @@ export class BoltOverflowMenu {
       );
 
       const menuItemLink = menuItem.querySelector('a');
-      menuItemLink.addEventListener('click', this.handleMenuItemClick);
+      // menu item may also contain <button>, only bind to <a>
+      if (menuItemLink) {
+        menuItemLink.addEventListener('click', this.handleMenuItemClick);
+      }
 
       return menuItem;
     });
