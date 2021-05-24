@@ -19,24 +19,34 @@ module.exports = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'Navbar item',
   type: 'object',
-  required: ['text'],
+  required: ['link'],
   properties: {
     attributes: {
       type: 'object',
       description:
-        'A Drupal-style attributes object with extra attributes to append to this component.',
+        'A Drupal attributes object. Applies extra HTML attributes to the parent element.',
     },
-    active: {
+    link: {
+      type: 'object',
+      description:
+        'Link of the navbar item. Pass a hash to the "href" attribute to link to an in-page section.',
+      properties: {
+        attributes: {
+          type: 'object',
+          description:
+            'A Drupal attributes object. Applies extra HTML attributes to the parent element.',
+        },
+        content: {
+          type: 'any',
+          description: 'Content of the link.',
+        },
+        icon: iconSchema,
+      },
+    },
+    current: {
       type: 'boolean',
-      description: 'Automatically mark a Navlink as active',
+      description: 'Automatically mark a Navlink as current',
       default: false,
     },
-    text: {
-      type: 'any',
-      description: 'Renderable text content for the link.',
-    },
-    url,
-    target,
-    icon: iconSchema,
   },
 };
