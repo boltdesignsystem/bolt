@@ -254,18 +254,93 @@
 
 // print styles
 @media print {
-  *:not(.acd-article-content):not(.acd-article-content *) {
+  body * {
     visibility: hidden;
-    height: 0;
+    max-height: 0; // Modify max-height instead of height, it is less problematic to reset
   }
 
-  .acd-article-content {
+  .e-bolt-printable,
+  .e-bolt-printable * {
     visibility: visible;
-    width: 100% !important;
-    padding: 0 !important;
+    max-height: unset;
+  }
 
-    & * {
-      visibility: visible;
+  .e-bolt-printable--article {
+    position: absolute;
+    top: 0;
+    width: 100% !important;
+    // Ensure the article is not wider than default print settings
+    max-width: 8.5in !important;
+    max-height: 11in !important;
+
+    * {
+      float: none !important; // Reset float because it does not work in all browsers
+      orphans: 2; // Prevent ending up with a single line at the end of a page
+      widows: 2; // Prevent ending up with a single line at the top the next page
+    }
+
+    a,
+    button {
+      // Reset link and button styles to simple underline text
+      all: initial;
+      font-weight: var(--bolt-type-font-weight-semibold);
+      color: var(--m-bolt-link);
+      text-decoration: underline;
+
+      &:before,
+      &:after {
+        all: initial;
+      }
+    }
+
+    a[href^='http']:not([href*='pega.com']):after {
+      content: ' (' attr(href) ')'; // Manually write out external link
+    }
+
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      break-after: avoid-page; // Prevent page break immediately after a heading
+    }
+
+    img,
+    video,
+    embed,
+    iframe,
+    figure,
+    video-js,
+    bolt-ratio,
+    bolt-figure,
+    bolt-image {
+      display: block;
+      max-width: 4in; // Prevent media to be wider than half the width of the page
+      break-inside: avoid; // Prevent breaking up media embed into separate pages
+    }
+
+    video,
+    embed,
+    iframe,
+    figure,
+    bolt-ratio,
+    bolt-figure,
+    bolt-image {
+      margin: 0 0 var(--bolt-spacing-y-medium) 0 !important; // Ensure there's spacing between text and media embed
+    }
+
+    embed,
+    iframe,
+    video-js {
+      padding: var(--bolt-spacing-y-medium) var(--bolt-spacing-x-medium);
+
+      * {
+        display: none !important;
+      }
+
+      &:after {
+        content: '(Media embed)'; // Visually labeling a media embed
+      }
     }
   }
 }
