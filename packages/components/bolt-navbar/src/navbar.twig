@@ -16,7 +16,7 @@
   this.data.width.value == 'auto' ? 'c-bolt-navbar--auto-width',
   this.data.center.value ? 'c-bolt-navbar--center' : '',
   this.data.spacing.value ? 'c-bolt-navbar--spacing-' ~ this.data.spacing.value : '',
-  this.data.theme.value and this.data.theme.value != 'none' ? 't-bolt-' ~ this.data.theme.value : ''
+  content ? '' : 'c-bolt-navbar--offset-padding'
 ] %}
 
 {% set inner_classes = [
@@ -44,17 +44,24 @@
   {% set attributes = attributes.setAttribute('data-bolt-more-text', this.data.more_text.value|t) %}
 {% endif %}
 
+{% if title %}
+  {% set title = title|merge({ uuid: uuid }) %}
+  {% set attributes = attributes.setAttribute('aria-labelledby', 'js-bolt-navbar-title-' ~ uuid) %}
+{% endif %}
+
 <nav {{ attributes.addClass(classes) }}>
   <div {{ inner_attributes.addClass(inner_classes) }}>
-    {% if title %}
-      <div class="c-bolt-navbar__title-wrapper">
-        {{ title }}
-      </div>
-    {% endif %}
     {% if content %}
-      <div class="c-bolt-navbar__content-wrapper js-bolt-navbar__list-wrapper">
-        {{ content }}
-      </div>
+      {{ content }}
+    {% else %}
+      {% if title %}
+        {% include '@bolt-components-navbar/_navbar-title.twig' with title only %}
+      {% endif %}
+      {% if links %}
+        <div class="c-bolt-navbar__list-wrapper js-bolt-navbar__list-wrapper">
+          {{ links }}
+        </div>
+      {% endif %}
     {% endif %}
   </div>
 </nav>

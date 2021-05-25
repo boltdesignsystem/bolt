@@ -1,6 +1,7 @@
 import { html, render } from '@bolt/element';
 import '@bolt/core-v3.x/utils/optimized-resize';
 
+// @todo this JS could be shared between Navbar and Tabs, nothing Navbar-specific here
 export class BoltOverflowMenu {
   constructor(el, options = {}) {
     if (!el) return;

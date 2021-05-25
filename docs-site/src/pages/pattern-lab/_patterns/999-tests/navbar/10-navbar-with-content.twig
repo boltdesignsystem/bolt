@@ -4,17 +4,12 @@
 
 {% set schema = bolt.data.components['@bolt-components-navbar'].schema['navbar'] %}
 
-{% set custom_title %}
-  {% include "@bolt-components-headline/headline.twig" with {
-    text: "Custom Title",
-    size: "large",
-  } only %}
-{% endset %}
-
 {% set custom_content %}
   {% include "@bolt-components-list/list.twig" with {
     display: 'inline',
     items: [
+      'List item',
+      'List item',
       'List item',
       'List item',
       'List item',
@@ -33,7 +28,12 @@
 {% for spacing in schema.properties.spacing.enum %}
   <div style="margin: 0 auto; max-width: 1300px;">
     {% include "@bolt-components-navbar/navbar.twig" with {
-      title: custom_title,
+      title: {
+        content: 'Title text',
+        icon: {
+          name: "marketing-gray"
+        },
+      },
       content: custom_content,
       spacing: spacing
     } only %}

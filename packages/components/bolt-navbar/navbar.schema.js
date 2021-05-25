@@ -4,14 +4,58 @@ module.exports = {
   type: 'object',
   properties: {
     title: {
-      type: 'any',
+      type: 'object',
       description:
-        'Content of navbar title. Navbar title template expected here. Although, custom custom allowed.',
+        'Navbar title. Icon is optional. Tag can be set to h1 to h6 depending on the page.',
+      properties: {
+        content: {
+          type: 'any',
+          description:
+            'Title text. Should be plain-text but may contain some HTML.',
+        },
+        tag: {
+          type: 'string',
+          default: 'h2',
+          enum: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'],
+        },
+        icon: {
+          type: 'object',
+          properties: {
+            name: {
+              type: 'string',
+              description: 'Name of the (optional) icon to be used.',
+            },
+          },
+        },
+        hide_title: {
+          type: 'string',
+          description:
+            'Set the breakpoint at which you wish to hide the title text.',
+          enum: ['from-xsmall-bp', 'from-small-bp'],
+        },
+        link: {
+          type: 'object',
+          description:
+            'Make the Navbar title a link, used only on Pattern Lab homepage.',
+          hidden: true,
+          properties: {
+            attributes: {
+              type: 'object',
+              description:
+                'A Drupal attributes object. Applies extra HTML attributes to the parent element. Add "href" attribute here.',
+            },
+          },
+        },
+      },
+    },
+    links: {
+      type: 'any',
+      description: 'Content of navbar links. Navbar ul is expected here.',
     },
     content: {
       type: 'any',
       description:
-        'Content of navbar. Navbar list is expected here. Although, custom content is allowed.',
+        'Custom navbar content. Content provided here will replace title and links.',
     },
     theme: {
       type: 'string',

@@ -45,8 +45,7 @@ module.exports = {
     },
     current: {
       type: 'boolean',
-      description: 'Automatically mark a Navlink as current',
-      default: false,
+      description: 'Automatically mark a navbar link as current',
     },
   },
 };

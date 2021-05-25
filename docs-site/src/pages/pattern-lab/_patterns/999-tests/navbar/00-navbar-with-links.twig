@@ -66,29 +66,22 @@
 
 {% set navbar_items %}
   {% for item in navbar_data %}
-    {% include '@bolt-components-navbar/navbar-item.twig' with item only %}  
+    {% include '@bolt-components-navbar/navbar-li.twig' with item only %}  
   {% endfor %}
 {% endset %}
 
-{% set navbar_list %}
-  {% include '@bolt-components-navbar/navbar-list.twig' with { content: navbar_items } only %}  
+{% set navbar_links %}
+  {% include '@bolt-components-navbar/navbar-ul.twig' with { content: navbar_items } only %}  
 {% endset %}
 
-{% set navbar_title %}
-  {% include '@bolt-components-navbar/navbar-title.twig' with {
+{% include '@bolt-components-navbar/navbar.twig' with {
+  title: {
     content: 'Title text',
     icon: {
       name: "marketing-gray"
     },
-    attributes: {
-      'data-foo': 'bar'
-    }
-  } only %}  
-{% endset %}
-
-{% include '@bolt-components-navbar/navbar.twig' with {
-  title: navbar_title,
-  content: navbar_list
+  },
+  links: navbar_links
 } only %}
 
 {% set section_content %}

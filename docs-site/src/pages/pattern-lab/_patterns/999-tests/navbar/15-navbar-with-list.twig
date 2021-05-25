@@ -77,26 +77,23 @@
 
   {% set navbar_items %}
     {% for item in navbar_data %}
-      {% include '@bolt-components-navbar/navbar-item.twig' with item only %}  
+      {% include '@bolt-components-navbar/navbar-li.twig' with item only %}  
     {% endfor %}
   {% endset %}
 
-  {% set navbar_list %}
-    {% include '@bolt-components-navbar/navbar-list.twig' with { content: navbar_items } only %}  
+  {% set navbar_links %}
+    {% include '@bolt-components-navbar/navbar-ul.twig' with { content: navbar_items } only %}  
   {% endset %}
 
-  {% set navbar_title %}
-    {% include '@bolt-components-navbar/navbar-title.twig' with {
-      content: 'Title text ' ~ spacing,
-      icon: {
-        name: "marketing-gray"
-      }
-    } only %}  
-  {% endset %}
   <div>
     {% include "@bolt-components-navbar/navbar.twig" with {
-      title: navbar_title,
-      content: navbar_list,
+      title: {
+        content: 'Title text ' ~ spacing,
+        icon: {
+          name: "marketing-gray"
+        }
+      },
+      links: navbar_links,
       spacing: spacing
     } only %}
 

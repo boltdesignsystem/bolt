@@ -100,7 +100,6 @@ export class BoltNavbar {
     }, []);
 
     if (this.navbarList && this.navbarLinks.length) {
-      this.el.classList.add('has-list');
       this.setupNavbarItems();
       this.setupWaypoints();
       this.setupOverflowMenu();
@@ -111,7 +110,7 @@ export class BoltNavbar {
       }
     }
 
-    this.el.classList.add('is-ready');
+    this.el.setAttribute('data-bolt-ready', '');
 
     // After everything is ready, trigger overflow menu once more to
     this.overflowMenu?.handleResize();
@@ -181,8 +180,8 @@ export class BoltNavbar {
   }
 
   setupOverflowMenu() {
-    const menu = document.createElement('div');
-    this.el.querySelector('.js-bolt-navbar__list')?.append(menu);
+    const menu = document.createElement('li');
+    this.navbarList.append(menu);
 
     this.overflowMenu = new BoltOverflowMenu(menu, {
       items: [...this.navbarItems],

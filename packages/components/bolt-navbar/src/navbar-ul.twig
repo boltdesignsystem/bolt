@@ -12,8 +12,6 @@
   'js-bolt-navbar__list',
 ] %}
 
-{% set attributes = attributes.setAttribute('role', 'list') %}
-
-<div {{ attributes.addClass(classes) }}>
+<ul {{ attributes.addClass(classes) }}>
   {{ content }}
-</div>
+</ul>

@@ -24,7 +24,7 @@
   {% set _icon_position = link.icon.position in schema.properties.link.icon.properties.position.enum ? link.icon.position : schema.properties.link.icon.properties.position.default %}
 {% endif %}
 
-<div {{ attributes.addClass(classes)|without('role')}} role="listitem">
+<li {{ attributes.addClass(classes) }}>
   <div class="c-bolt-navbar-item__inner">
     {% spaceless %}
       <{{ _link_tag }} {{ _link_attributes.addClass('c-bolt-navbar-item__link') }}>
@@ -34,4 +34,4 @@
       </{{ _link_tag }}>
     {% endspaceless %}
   </div>
-</div>
+</li>

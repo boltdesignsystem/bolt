@@ -11,8 +11,7 @@ module.exports = {
     },
     content: {
       type: 'any',
-      description:
-        'Content of navbar list. Navbar list items are expected here.',
+      description: 'Content of navbar ul. Navbar li are expected here.',
     },
   },
 };
