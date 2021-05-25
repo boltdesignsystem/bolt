@@ -19,11 +19,11 @@ export class BoltNavbar {
 
   set activeItem(item) {
     if (!this.state.activeItem) {
-      item.classList.add(this.activeClass);
+      item.setAttribute('data-bolt-current', '');
       this.state.activeItem = item;
     } else if (this.state.activeItem !== item) {
-      this.state.activeItem.classList.remove(this.activeClass);
-      item.classList.add(this.activeClass);
+      this.state.activeItem.removeAttribute('data-bolt-current');
+      item.setAttribute('data-bolt-current', '');
       this.state.activeItem = item;
     }
 
@@ -63,7 +63,6 @@ export class BoltNavbar {
   }
 
   init() {
-    this.activeClass = 'js-bolt-navbar-item--current';
     this.state = {
       activeItem: null,
       isOpen: false,
@@ -117,14 +116,13 @@ export class BoltNavbar {
   }
 
   setupNavbarItems() {
-    this.itemActiveClass = 'js-bolt-navbar-item--current';
     this.handleNavItemClick = this.handleNavItemClick.bind(this);
 
     this.navbarLinks.forEach(itemSet => {
       // item = <div class="c-bolt-navbar-item"> // we store waypoint data on this element, receives the active class
       // link = <a class="c-bolt-navbar-item__link"> // click events are bound to this element
       const { item, link } = itemSet;
-      const hasActiveClass = item.classList.contains(this.itemActiveClass);
+      const isActive = item.hasAttribute('data-bolt-current');
       let activeHashMatchesElement;
 
       if (link.hash) {
@@ -141,7 +139,7 @@ export class BoltNavbar {
       }
 
       // Set an initially active link if appropriate.
-      if (hasActiveClass || activeHashMatchesElement) {
+      if (isActive || activeHashMatchesElement) {
         this.activeItem = item;
       }
     });
@@ -187,7 +185,6 @@ export class BoltNavbar {
       items: [...this.navbarItems],
       container: this.el.querySelector('.js-bolt-navbar__list-wrapper'),
       baseClass: 'js-bolt-navbar-menu',
-      activeClass: this.activeClass,
       moreText: this.el.dataset.boltMoreText,
     });
   }

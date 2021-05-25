@@ -162,9 +162,9 @@ export class BoltOverflowMenu {
 
     this.menuItems.forEach((el, i) => {
       if (i === index) {
-        el.classList.add(this.options.activeClass);
+        el.setAttribute('bolt-data-current', '');
       } else {
-        el.classList.remove(this.options.activeClass);
+        el.removeAttribute('bolt-data-current');
       }
     });
   }

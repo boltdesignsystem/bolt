@@ -13,9 +13,12 @@
 {# Array of classes based on the defined + default props #}
 {% set classes = [
   'c-bolt-navbar-item',
-  'js-bolt-navbar-item',
-  this.data.current.value is sameas(true) ? 'js-bolt-navbar-item--current' : ''
+  'js-bolt-navbar-item'
 ] %}
+
+{% if this.data.current.value is sameas(true) %}
+  {% set attributes = attributes.setAttribute('data-bolt-current') %}
+{% endif %}
 
 {# [data-scroll-ignore] opts out of automatic smoothscroll behavior, @see packages/bolt-smooth-scroll #}
 {% set _link_attributes = _link_attributes.setAttribute('data-scroll-ignore', '') %}

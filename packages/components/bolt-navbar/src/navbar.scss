@@ -343,7 +343,7 @@ button.c-bolt-navbar__title-inner--link {
   }
 }
 
-.js-bolt-navbar-item--current {
+.c-bolt-navbar-item[data-bolt-current] {
   &:after {
     opacity: bolt-opacity(100);
   }
@@ -426,7 +426,7 @@ button.c-bolt-navbar__title-inner--link {
     outline: none;
   }
 
-  @at-root .js-bolt-navbar-item--current & {
+  @at-root .c-bolt-navbar-item[data-bolt-current] & {
     &:hover:before {
       animation: none;
     }
