@@ -254,6 +254,7 @@
 
 // print styles
 @media print {
+  // @todo: we need a target selector for the body to indicate if a specific page should get print styles, we wouldn't want to to disable printing on any given page.
   body * {
     visibility: hidden;
     max-height: 0; // Modify max-height instead of height, it is less problematic to reset
