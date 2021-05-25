@@ -1,0 +1,72 @@
+{% set demo %}
+  <bolt-list display="inline">
+    <bolt-list-item>
+      {% include '@bolt-components-chip/chip.twig' with {
+        text: 'Icon before',
+        icon: {
+          name: 'lock',
+          position: 'before',
+        },
+      } only %}
+    </bolt-list-item>
+    <bolt-list-item>
+      {% include '@bolt-components-chip/chip.twig' with {
+        text: 'Icon after',
+        icon: {
+          name: 'lock',
+          position: 'after',
+        },
+      } only %}
+    </bolt-list-item>
+    <bolt-list-item>
+      {% include '@bolt-components-chip/chip.twig' with {
+        text: 'Show more',
+        icon: {
+          name: 'more',
+        },
+        iconOnly: true
+      } only %}
+    </bolt-list-item>
+  </bolt-list>
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+// Regular chip with icon
+{% include '@bolt-components-chip/chip.twig' with {
+  text: 'Chip with icon',
+  icon: {
+    name: 'lock',
+    position: 'after',
+  },
+} only %}
+
+// Icon-only chip
+{% include '@bolt-components-chip/chip.twig' with {
+  text: 'Chip with icon',
+  icon: {
+    name: 'lock',
+  },
+  iconOnly: true,
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% set html_markup %}
+{% verbatim %}
+// Regular chip with icon
+<bolt-chip><bolt-icon name="lock" slot="before"></bolt-icon>Chip with icon</bolt-chip>
+
+// Icon-only chip
+<bolt-chip icon-only><bolt-icon name="lock" slot="before"></bolt-icon>Chip with icon</bolt-chip>
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Chip Icons',
+  description: 'Icons can be used within a chip.',
+  notes: 'When using icon-only chips, make sure to still pass text. The text will act as a label for the icon.',
+  demo: demo,
+  twig_markup: twig_markup,
+  html_markup: html_markup,
+} only %}
