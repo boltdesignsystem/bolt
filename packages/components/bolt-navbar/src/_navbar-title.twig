@@ -3,8 +3,6 @@
   {{ validate_data_schema(schema, _self)|raw }}
 {% endif %}
 
-<script>console.log({{ schema|json_encode }})</script>
-
 {# Override hide_title if no text provided #}
 {% if not hide_title and not content %}
   {% set hide_title = 'from-xsmall-bp' %}
@@ -50,10 +48,8 @@
   </{{ this.data.tag.value }}>
 {% endset %}
 
-<div class="c-bolt-navbar__title-wrapper">
-  <div {{ attributes.addClass(classes)}}>
-    <{{ _inner_tag}} {{ _inner_attributes.addClass(_inner_classes)}}>
-      {{ navbar_title }}
-    </{{ _inner_tag}}>
-  </div>
+<div {{ attributes.addClass(classes)}}>
+  <{{ _inner_tag}} {{ _inner_attributes.addClass(_inner_classes)}}>
+    {{ navbar_title }}
+  </{{ _inner_tag}}>
 </div>
