@@ -315,6 +315,7 @@ button.c-bolt-navbar__title-inner--link {
       // "center" option has smaller padding
       bottom: calc(var(--bolt-spacing-y-xsmall) * -1);
     }
+
     @each $size in $bolt-spacing-multiplier-system {
       $size-name: nth($size, 1);
 
@@ -333,13 +334,13 @@ button.c-bolt-navbar__title-inner--link {
         }
       }
     }
-  }
 
-  &.is-dropdown-link:after {
-    top: 6px;
-    bottom: 6px;
-    width: 4px;
-    height: auto;
+    @at-root .js-bolt-navbar-menu__dropdown & {
+      top: 6px;
+      bottom: 6px;
+      width: 4px;
+      height: auto;
+    }
   }
 }
 

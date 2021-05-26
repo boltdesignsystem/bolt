@@ -50,10 +50,6 @@ export class BoltOverflowMenu {
     return this.options.items.map(item => {
       const menuItem = item.cloneNode(true);
       menuItem.setAttribute('role', 'menuitem');
-      menuItem.classList.add(
-        `${this.options.baseClass}__dropdown-item`,
-        'is-dropdown-link',
-      );
 
       const menuItemLink = menuItem.querySelector('a');
       // menu item may also contain <button>, only bind to <a>

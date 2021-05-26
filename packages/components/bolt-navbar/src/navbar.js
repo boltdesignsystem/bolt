@@ -87,7 +87,7 @@ export class BoltNavbar {
     // Setup Navbar List
     this.navbarList = this.el.querySelector('.js-bolt-navbar__list');
     this.navbarItems = this.el.querySelectorAll(
-      '.js-bolt-navbar-item:not(.is-dropdown-link)',
+      '.js-bolt-navbar__list > .js-bolt-navbar-item',
     );
     this.navbarLinks = [...this.navbarItems].reduce((arr, item) => {
       const link = item.querySelector('a');
