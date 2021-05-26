@@ -106,7 +106,7 @@ module.exports = {
     spacing: {
       type: 'string',
       description: 'Controls the inset spacing of the navbar',
-      enum: ['xsmall', 'small', 'medium'],
+      enum: ['none', 'xsmall', 'small', 'medium'],
       default: 'small',
     },
     uuid: {

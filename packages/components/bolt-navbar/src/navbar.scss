@@ -28,6 +28,11 @@
   padding-left: var(--bolt-page-padding-x);
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2);
 
+  @at-root .c-bolt-navbar--spacing-none & {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
   @each $size in $bolt-spacing-multiplier-system {
     $size-name: nth($size, 1);
 
