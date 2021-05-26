@@ -34,6 +34,8 @@ class BoltChip extends BoltActionElement {
     const classes = cx('c-bolt-chip', {
       [`c-bolt-chip--link`]: this.url,
       [`c-bolt-chip--size-${this.size}`]: this.size,
+      [`c-bolt-chip--border-radius-${this.borderRadius}`]: this.borderRadius,
+      [`c-bolt-chip--color-${this.color}`]: this.color,
       [`c-bolt-chip--icon-only`]: this.iconOnly,
     });
 
