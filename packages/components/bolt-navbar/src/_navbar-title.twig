@@ -4,8 +4,11 @@
 {% endif %}
 
 {# Override hide_title if no text provided #}
-{% if not hide_title and not content %}
-  {% set hide_title = 'from-xsmall-bp' %}
+{% if not content or content is empty %}
+  {% set content = schema.properties.content.default %}
+  {% if not hide_title %}
+    {% set hide_title = 'from-xsmall-bp' %}
+  {% endif %}
 {% endif %}
 
 {# Variables #}

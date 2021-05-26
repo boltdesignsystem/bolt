@@ -54,9 +54,8 @@
     {% if content %}
       {{ content }}
     {% else %}
-      {% if title %}
-        {% include '@bolt-components-navbar/_navbar-title.twig' with title only %}
-      {% endif %}
+      {# There is no conditional check for 'title', render defaults if title is undefined #}
+      {% include '@bolt-components-navbar/_navbar-title.twig' with title|default({}) only %}
       {% if links %}
         <div class="c-bolt-navbar__list-wrapper js-bolt-navbar__list-wrapper">
           {{ links }}

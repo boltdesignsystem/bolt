@@ -10,8 +10,9 @@ module.exports = {
       properties: {
         content: {
           type: 'any',
+          default: 'Go to',
           description:
-            'Title text. Should be plain-text but may contain some HTML.',
+            'Title text. Should be plain-text but may contain some HTML. Defaults to "Go to" on small screens if empty.',
         },
         tag: {
           type: 'string',
