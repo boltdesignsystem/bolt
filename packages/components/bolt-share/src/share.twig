@@ -161,12 +161,16 @@
     </div>
   {% endset %}
   {% set inline_copy_to_clipboard_include %}
-    {% include '@bolt-components-copy-to-clipboard/copy-to-clipboard.twig' with {
+    {% set copy_to_clipboard_props = {
       text_to_copy: text_to_copy,
       custom_trigger: inline_custom_trigger,
       custom_transition: inline_custom_transition,
       custom_confirmation: inline_custom_confirmation,
-    } only %}
+    } %}
+    {% if copy_to_clipboard.attributes %}
+      {% set copy_to_clipboard_props = copy_to_clipboard_props|merge({ attributes: copy_to_clipboard.attributes }) %}
+    {% endif %}
+    {% include '@bolt-components-copy-to-clipboard/copy-to-clipboard.twig' with copy_to_clipboard_props only %}
   {% endset %}
   {% set inline_items = inline_items|merge([inline_copy_to_clipboard_include]) %}
 
