@@ -10,6 +10,7 @@
  */
 //  Note: this does not actually render to the Shadow DOM so :host rule not required
 bolt-tooltip {
+  --c-bolt-tooltip-zindex: #{bolt-z-index('tooltip')};
   display: inline;
 
   &:not([ready]) [slot='content'] {

@@ -13,12 +13,30 @@ class BoltTooltip extends BoltElement {
         type: Boolean,
         reflect: true,
       },
+      zIndex: { type: Number },
+      paddingTop: { type: Number },
     };
   }
 
   constructor() {
     super();
     this.uuid = this.uuid || Math.floor(10000 + Math.random() * 90000);
+
+    this.zIndex = parseInt(
+      getComputedStyle(this).getPropertyValue('--c-bolt-tooltip-zindex'),
+      10,
+    );
+
+    let offsetHeight = 0;
+    // if header is sticky
+    if (
+      document.querySelector('header.is-fixed') !== null ||
+      document.querySelector('header.c-bolt-page-header') !== null
+    ) {
+      offsetHeight += document.querySelector('header').clientHeight;
+    }
+    // @TODO: also add tallest js-sticky element?
+    this.paddingTop = offsetHeight;
   }
 
   initTippy() {
@@ -39,7 +57,7 @@ class BoltTooltip extends BoltElement {
       maxWidth: 'none', // Set width via CSS variable for legacy Edge support
       offset: [0, 0],
       plugins: [hideOnEsc],
-      zIndex: 140,
+      zIndex: this.zIndex,
       popperOptions: {
         modifiers: [
           {
@@ -47,6 +65,7 @@ class BoltTooltip extends BoltElement {
             options: {
               fallbackPlacements: this.fallbackPlacements ?? undefined,
               boundary: this.$boundary,
+              padding: { top: this.paddingTop },
             },
           },
           {

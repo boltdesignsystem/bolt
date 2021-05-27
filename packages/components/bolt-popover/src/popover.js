@@ -15,12 +15,30 @@ class BoltPopover extends BoltElement {
   static get properties() {
     return {
       ...this.props,
+      zIndex: { type: Number },
+      paddingTop: { type: Number },
     };
   }
 
   constructor() {
     super();
     this.uuid = this.uuid || Math.floor(10000 + Math.random() * 90000);
+
+    this.zIndex = parseInt(
+      getComputedStyle(this).getPropertyValue('--c-bolt-popover-zindex'),
+      10,
+    );
+
+    let offsetHeight = 0;
+    // if header is sticky
+    if (
+      document.querySelector('header.is-fixed') !== null ||
+      document.querySelector('header.c-bolt-page-header') !== null
+    ) {
+      offsetHeight += document.querySelector('header').clientHeight;
+    }
+    // @TODO: also add tallest js-sticky element?
+    this.paddingTop = offsetHeight;
   }
 
   initTippy() {
@@ -42,7 +60,7 @@ class BoltPopover extends BoltElement {
       maxWidth: 'none', // Set width via CSS variable, requires legacy Edge support
       offset: [0, 0],
       plugins: [hideOnEsc, handleFocus],
-      zIndex: 120,
+      zIndex: this.zIndex,
       popperOptions: {
         modifiers: [
           {
@@ -50,6 +68,7 @@ class BoltPopover extends BoltElement {
             options: {
               fallbackPlacements: this.fallbackPlacements ?? undefined,
               boundary: this.$boundary,
+              padding: { top: this.paddingTop },
             },
           },
           {

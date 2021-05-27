@@ -12,6 +12,7 @@
 
 //  Note: this does not actually render to the Shadow DOM so :host rule not required
 bolt-popover {
+  --c-bolt-popover-zindex: #{bolt-z-index('popover')};
   display: inline;
 
   &:not([ready]) [slot='content'] {
