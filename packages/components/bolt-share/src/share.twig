@@ -122,6 +122,7 @@
   {% set transition_text = 'Copying...'|t %}
   {% set confirmation_text = 'Copied!'|t %}
   {% set text_to_copy = copy_to_clipboard.text_to_copy %}
+  {% set copy_attributes = create_attribute(copy_to_clipboard.attributes|default({})) %}
 
   {# Custom content is used here because the icon size and text styles are all different than the defaults from Copy to Clipboard. #}
   {% set inline_custom_trigger %}
@@ -161,16 +162,13 @@
     </div>
   {% endset %}
   {% set inline_copy_to_clipboard_include %}
-    {% set copy_to_clipboard_props = {
+    {% include '@bolt-components-copy-to-clipboard/copy-to-clipboard.twig' with {
       text_to_copy: text_to_copy,
       custom_trigger: inline_custom_trigger,
       custom_transition: inline_custom_transition,
       custom_confirmation: inline_custom_confirmation,
-    } %}
-    {% if copy_to_clipboard.attributes %}
-      {% set copy_to_clipboard_props = copy_to_clipboard_props|merge({ attributes: copy_to_clipboard.attributes }) %}
-    {% endif %}
-    {% include '@bolt-components-copy-to-clipboard/copy-to-clipboard.twig' with copy_to_clipboard_props only %}
+      attributes: copy_attributes,
+    } only %}
   {% endset %}
   {% set inline_items = inline_items|merge([inline_copy_to_clipboard_include]) %}
 
@@ -214,9 +212,7 @@
       custom_trigger: menu_custom_trigger,
       custom_transition: menu_custom_transition,
       custom_confirmation: menu_custom_confirmation,
-      attributes: {
-        role: 'menu-item',
-      }
+      attributes: copy_attributes.setAttribute('role', 'menu-item'),
     } only %}
   {% endset %}
   {% set menu_items %}
