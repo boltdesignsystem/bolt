@@ -33,7 +33,7 @@
       }
     },
   ] %}
-
+{# 
   {% set navbar_content %}
     {% for item in navbar_data %}
       {% include "@bolt-components-navbar/navbar-item.twig" with item only %}  
@@ -42,9 +42,9 @@
 
   {% set version_selector %}
     {% include "@bolt-site/version-selector.twig" only %}
-  {% endset %}
+  {% endset %} #}
 
-  {% include "@bolt-components-navbar/navbar.twig" with {
+  {# {% include "@bolt-components-navbar/navbar.twig" with {
     theme: "light",
     static: true,
     title: {
@@ -57,7 +57,7 @@
       content: version_selector
     },
     content: navbar_content
-  } only %}
+  } only %} #}
 {% endset %}
 
 {% include "@bolt-components-sticky/sticky.twig" with {

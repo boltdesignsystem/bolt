@@ -1,0 +1,63 @@
+{% extends "@pl/_default-page-template.twig" %}
+
+{% block main_content %}
+
+{% set schema = bolt.data.components['@bolt-components-navbar'].schema['navbar'] %}
+
+{% set custom_content %}
+  {% set link_1 %}
+    {% include '@bolt-elements-button/button.twig' with {
+      content: 'Link 1',
+      size: 'small',
+      attributes: {
+        href: 'https://pega.com',
+      }
+    } only %}
+  {% endset %}
+  {% set link_2 %}
+    {% include '@bolt-elements-button/button.twig' with {
+      content: 'Link 2',
+      size: 'small',
+      hierarchy: 'secondary',
+      attributes: {
+        href: 'https://pega.com',
+      }
+    } only %}
+  {% endset %}
+
+  {% grid "o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--small u-bolt-padding-top-xsmall u-bolt-padding-bottom-xsmall u-bolt-padding-top-medium@xsmall u-bolt-padding-bottom-medium@xsmall" %}
+    {% cell "u-bolt-width-12/12 u-bolt-width-1/2@xxsmall u-bolt-flex-grow" %}
+      {% include '@bolt/headline.twig' with {
+        text: 'Navbar title',
+        size: 'large'
+      } only %}
+    {% endcell %}
+    {% cell "u-bolt-padding-top-xsmall u-bolt-padding-top-none@xxsmall" %}
+      {% include '@bolt-components-list/list.twig' with {
+        display: 'inline',
+        items: [
+          link_1,
+          link_2
+        ]
+      } only %}
+    {% endcell %}
+  {% endgrid %}
+{% endset %}
+
+{% set section_content %}
+  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita nesciunt necessitatibus, nostrum aliquam sed qui et totam deserunt quasi. Quae fugit aliquam velit aperiam at quibusdam tempore repellat commodi sapiente!</p>
+  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita nesciunt necessitatibus, nostrum aliquam sed qui et totam deserunt quasi. Quae fugit aliquam velit aperiam at quibusdam tempore repellat commodi sapiente!</p>
+  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita nesciunt necessitatibus, nostrum aliquam sed qui et totam deserunt quasi. Quae fugit aliquam velit aperiam at quibusdam tempore repellat commodi sapiente!</p>
+  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita nesciunt necessitatibus, nostrum aliquam sed qui et totam deserunt quasi. Quae fugit aliquam velit aperiam at quibusdam tempore repellat commodi sapiente!</p>
+  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita nesciunt necessitatibus, nostrum aliquam sed qui et totam deserunt quasi. Quae fugit aliquam velit aperiam at quibusdam tempore repellat commodi sapiente!</p>
+{% endset %}
+
+{% for spacing in schema.properties.spacing.enum %}
+  {% include '@bolt-components-navbar/navbar.twig' with {
+    content: custom_content,
+    spacing: spacing
+  } only %}
+  <br>
+{% endfor %}
+
+{% endblock %}

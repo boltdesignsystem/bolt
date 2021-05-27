@@ -1,0 +1,43 @@
+{% set schema = bolt.data.components['@bolt-components-navbar'].schema['navbar-item'] %}
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(schema, _self)|raw }}
+{% endif %}
+
+{% set this = init(schema) %}
+{% set attributes = create_attribute(attributes|default({})) %}
+{% set _link_attributes = create_attribute(link.attributes|default({})) %}
+{% set _link_tag = _link_attributes.type ? 'button' : _link_attributes.href ? 'a' : 'span' %}
+
+{# Array of classes based on the defined + default props #}
+{% set classes = [
+  'c-bolt-navbar-item',
+  'js-bolt-navbar-item'
+] %}
+
+{% if this.data.current.value is sameas(true) %}
+  {% set attributes = attributes.setAttribute('data-bolt-current') %}
+{% endif %}
+
+{# [data-scroll-ignore] opts out of automatic smoothscroll behavior, @see packages/bolt-smooth-scroll #}
+{% set _link_attributes = _link_attributes.setAttribute('data-scroll-ignore', '') %}
+
+{% if link.icon %}
+  {% set _icon_position = link.icon.position in schema.properties.link.properties.icon.properties.position.enum ? link.icon.position : schema.properties.link.properties.icon.properties.position.default %}
+  {% set _inline_icon %}
+    <span class="c-bolt-navbar-item__icon">
+      {% include "@bolt-components-icon/icon.twig" with link.icon only %}
+    </span>
+  {% endset %}
+{% endif %}
+
+<li {{ attributes.addClass(classes) }}>
+  <div class="c-bolt-navbar-item__inner">
+    {% spaceless %}
+      <{{ _link_tag }} {{ _link_attributes.addClass('c-bolt-navbar-item__link') }}>
+        {% if _icon_position == 'before' %}{{ _inline_icon }}{% endif %}
+        <span class="c-bolt-navbar-item__text">{{ link.content }}</span>
+        {% if _icon_position == 'after' %}{{ _inline_icon }}{% endif %}
+      </{{ _link_tag }}>
+    {% endspaceless %}
+  </div>
+</li>

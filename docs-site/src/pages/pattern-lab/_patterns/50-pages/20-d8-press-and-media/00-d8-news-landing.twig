@@ -9,39 +9,58 @@
     {% block sticky_content %}
       {% set navbar_data = [
         {
-          text: "News",
-          url: "#"
+          link: {
+            content: 'News',
+            attributes: {
+              href: '#'
+            }
+          }
         },
         {
-          text: "Press Kit & Resources",
-          url: "#"
+          link: {
+            content: 'Press Kit & Resources',
+            attributes: {
+              href: '#'
+            }
+          }
         },
         {
-          text: "Media Contacts",
-          url: "#"
+          link: {
+            content: 'Media Contacts',
+            attributes: {
+              href: '#'
+            }
+          }
         },
         {
-          text: "Another Link",
-          url: "#"
+          link: {
+            content: 'Another Link',
+            attributes: {
+              href: '#'
+            }
+          }
         }
       ] %}
 
-      {% set navbar_content %}
+      {% set navbar_items %}
         {% for item in navbar_data %}
-          {% include "@bolt-components-navbar/navbar-item.twig" with item only %}  
+          {% include '@bolt-components-navbar/navbar-li.twig' with item only %}  
         {% endfor %}
       {% endset %}
 
-      {% include "@bolt-components-navbar/navbar.twig" with {
-        theme: "xdark",
+      {% set navbar_list %}
+        {% include '@bolt-components-navbar/navbar-ul.twig' with { content: navbar_items } only %}  
+      {% endset %}
+
+      {% include '@bolt-components-navbar/navbar.twig' with {
+        theme: 'xdark',
         title: {
-          tag: "h2",
-          text: "Newsroom",
+          content: 'Newsroom',
           icon: {
-            name: "info-solid"
+            name: 'info-solid'
           }
         },
-        content: navbar_content
+        links: navbar_list
       } only %}
     {% endblock %}
   {% endembed %}

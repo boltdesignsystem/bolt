@@ -4,28 +4,37 @@
 {% endif %}
 
 {# Override hide_title if no text provided #}
-{% if not hide_title and not text %}
-  {% set hide_title = 'from-xsmall-bp' %}
+{% if not content or content is empty %}
+  {% set content = schema.properties.content.default %}
+  {% if not hide_title %}
+    {% set hide_title = 'from-xsmall-bp' %}
+  {% endif %}
 {% endif %}
 
 {# Variables #}
 {% set this = init(schema) %}
+{% set attributes = create_attribute(attributes|default({})) %}
+{% set _inner_attributes = create_attribute(link.attributes|default({})) %}
+{% set _inner_tag = link.attributes.type ? 'button' : link.attributes.href ? 'a' : 'div' %}
+{% set _text_attributes = create_attribute({}) %}
 
 {# Array of classes based on the defined + default props #}
 {% set classes = [
+  'c-bolt-navbar__title'
+] %}
+
+{% set _inner_classes = [
+  'c-bolt-navbar__title-inner',
+  link  ? 'c-bolt-navbar__title-inner--link' : ''
+] %}
+
+{% set _text_classes = [
   'c-bolt-navbar__title-text',
   this.data.hide_title.value ? 'c-bolt-navbar__title-text--hide-' ~ this.data.hide_title.value : ''
 ] %}
 
-{% set attributes = create_attribute({}) %}
-{% set title_attributes = create_attribute({}) %}
-
-{% if url %}
-  {% set attributes = attributes.setAttribute('href', url) %}
-{% endif %}
-
 {% if uuid %}
-  {% set title_attributes = title_attributes.setAttribute('id', 'js-bolt-navbar-title-' ~ uuid) %}
+  {% set _text_attributes = _text_attributes.setAttribute('id', 'js-bolt-navbar-title-' ~ uuid) %}
 {% endif %}
 
 {% set navbar_title %}
@@ -37,22 +46,14 @@
       } only %}
     </div>
   {% endif %}
-  <{{ tag }} {{ title_attributes.addClass(classes) }}>
-    {{ text|default('Go to'|t) }}
-  </{{ tag }}>
+  <{{ this.data.tag.value }} {{ _text_attributes.addClass(_text_classes) }}>
+    {{ content|default('Go to'|t) }}
+  </{{ this.data.tag.value }}>
 {% endset %}
 
-<div class="c-bolt-navbar__title">
-  {% if url %}
-    <a class="c-bolt-navbar__title--link" {{ attributes }}>
-      {{ navbar_title }}
-    </a>
-  {% else %}
-    <div class="c-bolt-navbar__title--static">
-      {{ navbar_title }}
-    </div>
-  {% endif %}
-  {% if content %}
-    {{ content }}
-  {% endif %}
+<div {{ attributes.addClass(classes)}}>
+  <{{ _inner_tag}} {{ _inner_attributes.addClass(_inner_classes)}}>
+    {{ navbar_title }}
+  </{{ _inner_tag}}>
+  {{ secondary_content }}
 </div>

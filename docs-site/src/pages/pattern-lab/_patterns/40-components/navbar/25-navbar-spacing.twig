@@ -1,3 +1,5 @@
+{% set schema = bolt.data.components['@bolt-components-navbar'].schema['navbar'] %}
+
 {% set navbar_data = [
   {
     link: {
@@ -51,12 +53,16 @@
   {% include '@bolt-components-navbar/navbar-ul.twig' with { content: navbar_items } only %}  
 {% endset %}
 
-{% include '@bolt-components-navbar/navbar.twig' with {
-  title: {
-    content: 'Title Text',
-    icon: {
-      name: 'marketing-gray'
-    }
-  },
-  links: navbar_list
-} only %}
+{% for spacing in schema.properties.spacing.enum %}
+  {% include '@bolt-components-navbar/navbar.twig' with {
+    title: {
+      content: 'Title Text',
+      icon: {
+        name: 'marketing-gray'
+      }
+    },
+    links: navbar_list,
+    spacing: spacing
+  } only %}
+  <br>
+{% endfor %}

@@ -60,50 +60,75 @@
 
 
   {# Anchor Band #}
-
-
-
   {% set navbar_data = [
     {
-      text: "Take the Automation Journey",
-      url: "#automation"
+      link: {
+        content: 'Take the Automation Journey',
+        attributes: {
+          href: '#automation'
+        }
+      }
     },
     {
-      text: "Attain Transformational Results",
-      url: "#transformation"
+      link: {
+        content: 'Attain Transformational Results',
+        attributes: {
+          href: '#transformation'
+        }
+      }
     },
     {
-      text: "Increase Employee Productivity",
-      url: "#productivity",
+      link: {
+        content: 'Increase Employee Productivity',
+        attributes: {
+          href: '#productivity',
+        }
+      }
     },
     {
-      text: "Drive Workforce Intelligence",
-      url: "#intelligence",
+      link: {
+        content: 'Drive Workforce Intelligence',
+        attributes: {
+          href: '#intelligence',
+        }
+      }
     },
     {
-      text: "Create full system integration",
-      url: "#integration"
+      link: {
+        content: 'Create full system integration',
+        attributes: {
+          href: '#integration'
+        }
+      }
     },
     {
-      text: "Instill governance and oversite",
-      url: "#governance",
+      link: {
+        content: 'Instill governance and oversite',
+        attributes: {
+          href: '#governance',
+        }
+      }
     }
   ] %}
 
-  {% set navbar_content %}
+  {% set navbar_items %}
     {% for item in navbar_data %}
-      {% include "@bolt-components-navbar/navbar-item.twig" with item only %}  
+      {% include '@bolt-components-navbar/navbar-li.twig' with item only %}  
     {% endfor %}
   {% endset %}
 
-  {% include "@bolt-components-navbar/navbar.twig" with {
-    theme: "xlight",
-    center: true,
+  {% set navbar_list %}
+    {% include '@bolt-components-navbar/navbar-ul.twig' with { content: navbar_items } only %}  
+  {% endset %}
+
+  {% include '@bolt-components-navbar/navbar.twig' with {
     title: {
-      tag: "h2",
-      text: "Discover Intelligent Process Automation"
+      content: 'Discover Intelligent Process Automation'
     },
-    content: navbar_content
+    links: navbar_list,
+    theme: 'xlight',
+    center: true,
+    spacing: 'xsmall'
   } only %}
 
   {# End Anchor Band #}

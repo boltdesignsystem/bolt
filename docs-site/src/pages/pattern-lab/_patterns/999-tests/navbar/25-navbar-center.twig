@@ -58,5 +58,33 @@
       name: 'marketing-gray'
     }
   },
-  links: navbar_list
+  links: navbar_list,
+  center: true,
+  spacing: 'xsmall'
+} only %}
+<br>
+{% include '@bolt-components-navbar/navbar.twig' with {
+  title: {
+    content: 'Title Text'
+  },
+  links: navbar_list,
+  center: true,
+  spacing: 'xsmall'
+} only %}
+<br>
+{% include '@bolt-components-navbar/navbar.twig' with {
+  title: {
+    icon: {
+      name: 'marketing-gray'
+    }
+  },
+  links: navbar_list,
+  center: true,
+  spacing: 'xsmall'
+} only %}
+<br>
+{% include '@bolt-components-navbar/navbar.twig' with {
+  links: navbar_list,
+  center: true,
+  spacing: 'xsmall'
 } only %}

@@ -1,6 +1,7 @@
 import { html, render } from '@bolt/element';
 import '@bolt/core-v3.x/utils/optimized-resize';
 
+// @todo this JS could be shared between Navbar and Tabs, nothing Navbar-specific here
 export class BoltOverflowMenu {
   constructor(el, options = {}) {
     if (!el) return;
@@ -49,13 +50,12 @@ export class BoltOverflowMenu {
     return this.options.items.map(item => {
       const menuItem = item.cloneNode(true);
       menuItem.setAttribute('role', 'menuitem');
-      menuItem.classList.add(
-        `${this.options.baseClass}__dropdown-item`,
-        'is-dropdown-link',
-      );
 
       const menuItemLink = menuItem.querySelector('a');
-      menuItemLink.addEventListener('click', this.handleMenuItemClick);
+      // menu item may also contain <button>, only bind to <a>
+      if (menuItemLink) {
+        menuItemLink.addEventListener('click', this.handleMenuItemClick);
+      }
 
       return menuItem;
     });
@@ -158,9 +158,9 @@ export class BoltOverflowMenu {
 
     this.menuItems.forEach((el, i) => {
       if (i === index) {
-        el.classList.add(this.options.activeClass);
+        el.setAttribute('bolt-data-current', '');
       } else {
-        el.classList.remove(this.options.activeClass);
+        el.removeAttribute('bolt-data-current');
       }
     });
   }
