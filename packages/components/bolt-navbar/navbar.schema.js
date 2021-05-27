@@ -36,9 +36,7 @@ module.exports = {
         },
         link: {
           type: 'object',
-          description:
-            'Make the Navbar title a link, used only on Pattern Lab homepage.',
-          hidden: true,
+          description: 'Make the Navbar title a link.',
           properties: {
             attributes: {
               type: 'object',
@@ -46,6 +44,11 @@ module.exports = {
                 'A Drupal attributes object. Applies extra HTML attributes to the parent element. Add "href" attribute here.',
             },
           },
+        },
+        secondary_content: {
+          type: 'any',
+          description:
+            'Insert additional content into the title region, only used on Bolt homepage.',
         },
       },
     },

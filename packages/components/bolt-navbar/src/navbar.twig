@@ -16,7 +16,7 @@
   this.data.width.value == 'auto' ? 'c-bolt-navbar--auto-width',
   this.data.center.value ? 'c-bolt-navbar--center' : '',
   this.data.spacing.value ? 'c-bolt-navbar--spacing-' ~ this.data.spacing.value : '',
-  content ? '' : 'c-bolt-navbar--offset-padding'
+  content ? 'c-bolt-navbar--custom' : ''
 ] %}
 
 {% set inner_classes = [

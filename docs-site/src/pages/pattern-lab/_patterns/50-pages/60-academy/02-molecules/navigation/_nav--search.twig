@@ -1,30 +1,50 @@
 {% set navbar_data = [
   {
-    text: "Product Training (2300)",
-    url: "50-pages-55-d8-academy-15-search-results-t1a.html"
+    link:  {
+      content: 'Product Training (2300)',
+      attributes: {
+        href: '50-pages-55-d8-academy-15-search-results-t1a.html'
+      }
+    }
   },
   {
-    text: "Sales Training (211)",
-    url: "#!"
+    link:  {
+      content: 'Sales Training (211)',
+      attributes: {
+        href: '#!'
+      }
+    }
   },
   {
-    text: "Corporate Training (342)",
-    url: "#!"
+    link:  {
+      content: 'Corporate Training (342)',
+      attributes: {
+        href: '#!'
+      }
+    }
   },
   {
-    text: "UAP Training (57)",
-    url: "#!"
+    link:  {
+      content: 'UAP Training (57)',
+      attributes: {
+        href: '#!'
+      }
+    }
   },
 ] %}
 
-{# {% set navbar_content %}
+{% set navbar_items %}
   {% for item in navbar_data %}
-    {% include "@bolt-components-navbar/navbar-item.twig" with item only %}  
+    {% include '@bolt-components-navbar/navbar-li.twig' with item only %}  
   {% endfor %}
 {% endset %}
 
-{% include "@bolt-components-navbar/navbar.twig" with {
-  theme: "xlight",
+{% set navbar_list %}
+  {% include '@bolt-components-navbar/navbar-ul.twig' with { content: navbar_items } only %}  
+{% endset %}
+
+{% include '@bolt-components-navbar/navbar.twig' with {
+  theme: 'xlight',
   center: true,
-  content: navbar_content
-} only %} #}
+  links: navbar_list
+} only %}

@@ -13,61 +13,85 @@
       {% set navbar %}
         {% set navbar_data = [
           {
-            text: "Visual Styles",
-            url: "/pattern-lab/?p=visual-styles-color-system",
-          },
-          {
-            text: "Elements",
-            url: "/pattern-lab/?p=viewall-elements-all",
-          },
-          {
-            text: "Components",
-            url: "/pattern-lab/",
-          },
-          {
-            text: "Guidelines",
-            url: "https://github.com/boltdesignsystem/bolt/wiki",
-            attributes: {
-              target: "_blank",
-            },
-          },
-          {
-            text: "Github",
-            url: "https://github.com/bolt-design-system/bolt",
-            attributes: {
-              target: "_blank",
-            },
-            icon: {
-              name: "github",
-              position: "after",
+            link: {
+              content: 'Visual Styles',
+              attributes: {
+                href: '/pattern-lab/?p=visual-styles-color-system',
+              }  
             }
           },
+          {
+            link: {
+              content: 'Elements',
+              attributes: {
+                href: '/pattern-lab/?p=viewall-elements-all',
+              }
+            }
+          },
+          {
+            link: {
+              content: 'Components',
+              attributes: {
+                href: '/pattern-lab/',
+              }
+            }
+          },
+          {
+            link: {
+              content: 'Guidelines',
+              attributes: {
+                href: 'https://github.com/boltdesignsystem/bolt/wiki',
+                target: '_blank',
+              },
+            }
+          },
+          {
+            link: {
+              content: 'Github',
+              attributes: {
+                href: 'https://github.com/bolt-design-system/bolt',
+                target: '_blank',
+              },
+              icon: {
+                name: 'github',
+                position: 'after',
+              }
+            }
+          }
         ] %}
 
-        {# {% set navbar_content %}
+        {% set navbar_items %}
           {% for item in navbar_data %}
-            {% include "@bolt-components-navbar/navbar-item.twig" with item only %}  
+            {% include '@bolt-components-navbar/navbar-li.twig' with item only %}  
           {% endfor %}
         {% endset %}
 
-        {% set version_selector %}
-          {% include "@bolt-site/version-selector.twig" only %}
+        {% set navbar_list %}
+          {% include '@bolt-components-navbar/navbar-ul.twig' with { content: navbar_items } only %}  
         {% endset %}
-        
-        {% include "@bolt-components-navbar/navbar.twig" with {
-          theme: "none",
+
+        {% set version_selector %}
+          {% include '@bolt-site/version-selector.twig' only %}
+        {% endset %}
+
+        {% include '@bolt-components-navbar/navbar.twig' with {
+          theme: 'none',
           static: true,
           title: {
-            tag: "h1",
-            text: "<span aria-label='Bolt Design System'>Bolt</span>",
-            url: "/",
-            icon: {
-              name: "bolt-logo-colored"
+            tag: 'h1',
+            content: '<span aria-label="Bolt Design System">Bolt</span>',
+            link: {
+              attributes: {
+                href: '/',
+              }
             },
-            content: version_selector
+            icon: {
+              name: 'bolt-logo-colored'
+            },
+            secondary_content: version_selector
           },
-          content: navbar_content
-        } only %} #}
+          links: navbar_list
+        } only %}
       {% endset %}
 
       {% include "@bolt-components-sticky/sticky.twig" with {

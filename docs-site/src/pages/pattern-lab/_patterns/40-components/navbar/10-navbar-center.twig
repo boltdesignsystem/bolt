@@ -1,3 +1,5 @@
+<p>Note: we recommend using "xsmall" <code>spacing</code> with the <code>center</code> prop to reduce the overall height of the navbar, especially if navbar is sticky.</p>
+
 {% set navbar_data = [
   {
     link: {
@@ -58,5 +60,7 @@
       name: 'marketing-gray'
     }
   },
-  links: navbar_list
+  links: navbar_list,
+  center: true,
+  spacing: 'xsmall'
 } only %}

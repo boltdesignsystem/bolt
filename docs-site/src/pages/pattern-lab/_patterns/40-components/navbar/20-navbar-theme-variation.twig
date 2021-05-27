@@ -1,3 +1,5 @@
+{% set schema = bolt.data.components['@bolt-components-navbar'].schema['navbar'] %}
+
 {% set navbar_data = [
   {
     link: {
@@ -51,12 +53,24 @@
   {% include '@bolt-components-navbar/navbar-ul.twig' with { content: navbar_items } only %}  
 {% endset %}
 
-{% include '@bolt-components-navbar/navbar.twig' with {
-  title: {
-    content: 'Title Text',
-    icon: {
-      name: 'marketing-gray'
-    }
-  },
-  links: navbar_list
-} only %}
+{% for theme in schema.properties.theme.enum %}
+  {% set headline %}
+    Theme: {{ theme }}
+  {% endset %}
+  {% include "@bolt-components-headline/headline.twig" with {
+    size: "large",
+    text: headline
+  } only %}
+  <div class="u-bolt-margin-bottom-large">
+    {% include '@bolt-components-navbar/navbar.twig' with {
+      title: {
+        content: 'Title Text',
+        icon: {
+          name: 'marketing-gray'
+        }
+      },
+      links: navbar_list,
+      theme: theme
+    } only %}
+  </div>
+{% endfor %}

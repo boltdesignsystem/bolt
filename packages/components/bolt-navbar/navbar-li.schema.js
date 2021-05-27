@@ -1,6 +1,4 @@
 const iconSchema = require('@bolt/components-icon/icon.schema.json');
-const elementSchemas = require('@bolt/element/element.schemas');
-const { url, target } = elementSchemas.boltActionElement.properties;
 
 iconSchema.properties = {
   position: {
