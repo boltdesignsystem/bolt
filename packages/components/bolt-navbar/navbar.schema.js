@@ -80,12 +80,6 @@ module.exports = {
       enum: ['full', 'auto'],
       default: 'full',
     },
-    more_text: {
-      type: 'string',
-      description:
-        'Button text that displays when the overflow menu is displayed.',
-      default: 'More',
-    },
     offset: {
       type: 'integer',
       description:

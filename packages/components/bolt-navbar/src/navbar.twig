@@ -40,13 +40,13 @@
   {% set attributes = attributes.setAttribute('data-bolt-scroll-offset', this.data.scroll_offset.value) %}
 {% endif %}
 
-{% if this.data.more_text.value %}
-  {% set attributes = attributes.setAttribute('data-bolt-more-text', this.data.more_text.value|t) %}
-{% endif %}
-
-{% if title %}
-  {% set title = title|merge({ uuid: uuid }) %}
-  {% set attributes = attributes.setAttribute('aria-labelledby', 'js-bolt-navbar-title-' ~ uuid) %}
+{% if not content %}
+  {# These features won't work if `content` is passed #}
+  {% set attributes = attributes.setAttribute('data-bolt-more-text', 'More'|t) %}
+  {% if title %}
+    {% set title = title|merge({ uuid: uuid }) %}
+    {% set attributes = attributes.setAttribute('aria-labelledby', 'js-bolt-navbar-title-' ~ uuid) %}
+  {% endif %}
 {% endif %}
 
 <nav {{ attributes.addClass(classes) }}>
