@@ -4,6 +4,9 @@
    Navbar
 \* ------------------------------------ */
 
+// Dev Notes
+// 1. Balances out space around title when title + links are stacked. Can't apply padding to container or there will be extra space when title is hidden.
+
 .c-bolt-navbar--sticky {
   position: sticky;
   top: 0;
@@ -136,9 +139,6 @@
   @at-root .c-bolt-navbar--center & {
     @include bolt-mq(xsmall) {
       width: 100%;
-      // @todo can't apply these or else when title is hidden by bp there is extra padding
-      // padding-top: var(--bolt-spacing-y-xsmall); // balances out space below links
-      // padding-bottom: var(--bolt-spacing-y-xsmall); // adds space between stacked title + links
     }
   }
 }
@@ -182,6 +182,12 @@ button.c-bolt-navbar__title-inner--link {
   flex-shrink: 0;
   margin: 0 var(--bolt-spacing-x-small) 0 0;
   line-height: 0; // fix vertical alignment of icon + title
+  @at-root .c-bolt-navbar--center & {
+    @include bolt-mq(xsmall) {
+      padding-top: var(--bolt-spacing-y-xsmall); // [1]
+      padding-bottom: var(--bolt-spacing-y-xsmall); // [1]
+    }
+  }
 }
 
 .c-bolt-navbar__title-text {
@@ -195,6 +201,8 @@ button.c-bolt-navbar__title-inner--link {
   // Adjust the Navbar Title size when being stacked vertically
   @at-root .c-bolt-navbar--center & {
     flex-wrap: nowrap; // fixes IE 11 flex-bug causing text to resist staying on one line and prematurely wraps to two-lines -- even if plenty of space is available
+    padding-top: var(--bolt-spacing-y-xsmall); // [1]
+    padding-bottom: var(--bolt-spacing-y-xsmall); // [1]
     font-family: var(--bolt-type-font-family-headline);
     font-size: var(--bolt-type-font-size-small);
     font-weight: var(--bolt-type-font-weight-bold);
