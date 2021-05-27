@@ -7,16 +7,16 @@
 // Dev Notes
 // 1. Balances out space around title when title + links are stacked. Can't apply padding to container or there will be extra space when title is hidden.
 
+.c-bolt-navbar {
+  position: relative;
+  z-index: bolt-z-index(nav); // prevents overflow menu from being covered up
+}
+
 .c-bolt-navbar--sticky {
   position: sticky;
   top: 0;
   right: 0;
   left: 0;
-  z-index: bolt-z-index(nav);
-}
-
-.c-bolt-navbar--static {
-  position: relative;
 }
 
 // Inner

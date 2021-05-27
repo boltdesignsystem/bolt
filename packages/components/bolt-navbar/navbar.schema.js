@@ -49,6 +49,7 @@ module.exports = {
           type: 'any',
           description:
             'Insert additional content into the title region, only used on Bolt homepage.',
+          hidden: true,
         },
       },
     },
