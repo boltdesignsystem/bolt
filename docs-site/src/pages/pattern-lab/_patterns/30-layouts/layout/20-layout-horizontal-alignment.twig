@@ -1,0 +1,35 @@
+{% set demo %}
+  <bolt-layout template="50" align-items="center">
+    <bolt-layout-item>
+      <bolt-placeholder>50% and centered</bolt-placeholder>
+    </bolt-layout-item>
+  </bolt-layout>
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% include '@bolt-layouts-layout/layout.twig' with {
+  content: layout_items,
+  template: '50',
+  align_items: 'center',
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% set html_markup %}
+{% verbatim %}
+<bolt-layout template="50" align-items="center">
+  <bolt-layout-item>
+    <!-- Content goes here -->
+  </bolt-layout-item>
+</bolt-layout>
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Horizontal Alignment',
+  description: 'Layout items can be horizontally centered only in a single-column layout (e.g. 50%, 67%, and 75%).',
+  demo: demo,
+  twig_markup: twig_markup,
+  html_markup: html_markup,
+} only %}

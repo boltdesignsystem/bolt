@@ -97,7 +97,7 @@ bolt-layout {
     @each $breakpoint in $bolt-breakpoints {
       $breakpoint-name: nth($breakpoint, 1);
 
-      @if ($breakpoint-name == small or $breakpoint-name == medium) {
+      @if ($breakpoint-name == 'small' or $breakpoint-name == 'medium') {
         &[order~='first@from-#{$breakpoint-name}'] {
           @include bolt-mq(#{$breakpoint-name}) {
             --l-bolt-layout-item-order: 0;
@@ -134,13 +134,17 @@ bolt-layout {
   @each $template-name, $template-value in $_bolt-layout-templates {
     @if (
       $template-name ==
-        halves or
+        '50' or
         $template-name ==
-        tiles or
+        '67' or
         $template-name ==
-        flag or
+        '75' or
         $template-name ==
-        flag-reverse
+        'halves' or
+        $template-name ==
+        'tiles' or
+        $template-name ==
+        'flag'
     ) {
       &[template~='#{$template-name}'] {
         --l-bolt-layout-template: #{$template-value};
@@ -152,7 +156,7 @@ bolt-layout {
   @each $breakpoint in $bolt-breakpoints {
     $breakpoint-name: nth($breakpoint, 1);
 
-    @if ($breakpoint-name == small or $breakpoint-name == medium) {
+    @if ($breakpoint-name == 'small' or $breakpoint-name == 'medium') {
       @each $template-name, $template-value in $_bolt-layout-templates {
         @include bolt-mq($breakpoint-name) {
           &[template~='#{$template-name}@from-#{$breakpoint-name}'] {
@@ -182,13 +186,13 @@ bolt-layout {
 
     @if (
       $size-name ==
-        small or
+        'small' or
         $size-name ==
-        medium or
+        'medium' or
         $size-name ==
-        large or
+        'large' or
         $size-name ==
-        xlarge
+        'xlarge'
     ) {
       &[padding-top='#{$size-name}'] {
         --l-bolt-layout-padding-top: var(--bolt-spacing-y-#{$size-name});
@@ -275,13 +279,13 @@ bolt-layout[template~='flag'] {
 
     @if (
       $size-name ==
-        small or
+        'small' or
         $size-name ==
-        medium or
+        'medium' or
         $size-name ==
-        large or
+        'large' or
         $size-name ==
-        xlarge
+        'xlarge'
     ) {
       bolt-layout[template~='halves@from-#{$size-name}'],
       bolt-layout[template~='33/67@from-#{$size-name}'],
@@ -300,13 +304,13 @@ bolt-layout[template~='flag'] {
 
     @if (
       $size-name ==
-        small or
+        'small' or
         $size-name ==
-        medium or
+        'medium' or
         $size-name ==
-        large or
+        'large' or
         $size-name ==
-        xlarge
+        'xlarge'
     ) {
       bolt-layout[template~='thirds@from-#{$size-name}'],
       bolt-layout[template~='25/25/50@from-#{$size-name}'],
@@ -326,13 +330,13 @@ bolt-layout[template~='flag'] {
 
     @if (
       $size-name ==
-        small or
+        'small' or
         $size-name ==
-        medium or
+        'medium' or
         $size-name ==
-        large or
+        'large' or
         $size-name ==
-        xlarge
+        'xlarge'
     ) {
       bolt-layout[template~='fourths@from-#{$size-name}'] {
         > bolt-layout-item[exclude-from-template] {

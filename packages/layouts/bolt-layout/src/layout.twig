@@ -1,5 +1,4 @@
-{% set schema = bolt.data.components["@bolt-layouts-layout"].schema %}
-
+{% set schema = bolt.data.components['@bolt-layouts-layout'].schema %}
 {# {% if enable_json_schema_validation %}
   {{ validate_data_schema(schema, _self) | raw }}
 {% endif %} #}
@@ -8,7 +7,7 @@
 {% set this = init(schema) %}
 
 <bolt-layout
-  {{ this.props|without("content") }}
+  {{ this.props|without('content') }}
 >
   {% if background %}
     {{ background }}

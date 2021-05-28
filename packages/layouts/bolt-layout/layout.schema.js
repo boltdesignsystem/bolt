@@ -1,4 +1,3 @@
-const layoutItemSchema = require('@bolt/layouts-layout/layout-item.schema');
 const backgroundSchema = require('@bolt/components-background/background.schema');
 
 module.exports = {
@@ -15,17 +14,19 @@ module.exports = {
       type: 'any',
       description:
         'Content of the layout. While anything can be passed, layout items are preferred.',
-      // ...layoutItemSchema,
     },
     template: {
       type: 'string',
       description:
         'Select from a predefined set of layout templates. Numbers represent % of each layout item widths. The @from-* keywords mean "starting from a particular breakpoint".',
       enum: [
+        '50',
         '50@from-small',
         '50@from-medium',
+        '67',
         '67@from-small',
         '67@from-medium',
+        '75',
         '75@from-small',
         '75@from-medium',
         '25/25/50@from-small',
@@ -42,13 +43,13 @@ module.exports = {
         '67/33@from-medium',
         '75/25@from-small',
         '75/25@from-medium',
-        'fourths@from-small',
-        'fourths@from-medium',
         'halves',
         'halves@from-small',
         'halves@from-medium',
         'thirds@from-small',
         'thirds@from-medium',
+        'fourths@from-small',
+        'fourths@from-medium',
         'tiles',
         'tiles@from-small',
         'tiles@from-medium',

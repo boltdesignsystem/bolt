@@ -1,0 +1,59 @@
+{% set demo %}
+  <bolt-text headline font-size="xxsmall" text-transform="uppercase" letter-spacing="wide">Gutter</bolt-text>
+  <bolt-layout template="tiles" gutter="large" padding-top="none">
+    <bolt-layout-item>
+      <bolt-placeholder>large gutter</bolt-placeholder>
+    </bolt-layout-item>
+    <bolt-layout-item>
+      <bolt-placeholder>large gutter</bolt-placeholder>
+    </bolt-layout-item>
+    <bolt-layout-item>
+      <bolt-placeholder>large gutter</bolt-placeholder>
+    </bolt-layout-item>
+  </bolt-layout>
+
+  <bolt-text headline font-size="xxsmall" text-transform="uppercase" letter-spacing="wide">Row Gutter</bolt-text>
+  <bolt-layout row-gutter="small" padding-top="none">
+    <bolt-layout-item>
+      <bolt-placeholder>small row gutter</bolt-placeholder>
+    </bolt-layout-item>
+    <bolt-layout-item>
+      <bolt-placeholder>small row gutter</bolt-placeholder>
+    </bolt-layout-item>
+    <bolt-layout-item>
+      <bolt-placeholder>small row gutter</bolt-placeholder>
+    </bolt-layout-item>
+  </bolt-layout>
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% include '@bolt-layouts-layout/layout.twig' with {
+  content: layout_items,
+  template: 'tiles',
+  gutter: 'large',
+  row_gutter: 'large',
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% set html_markup %}
+{% verbatim %}
+<bolt-layout gutter="large" row-gutter="large">
+  <bolt-layout-item>
+    <!-- Content goes here -->
+  </bolt-layout-item>
+  <bolt-layout-item>
+    <!-- Content goes here -->
+  </bolt-layout-item>
+</bolt-layout>
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Gutter',
+  description: 'Gutter is the horizontal spacing in between layout items. Row gutter is the vertical spacing in between layout items.',
+  demo: demo,
+  twig_markup: twig_markup,
+  html_markup: html_markup,
+} only %}
