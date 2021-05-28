@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.6.3](https://github.com/bolt-design-system/bolt/tree/master/packages/generator-bolt/compare/v3.6.2...v3.6.3) (2021-05-28)
+
+**Note:** Version bump only for package @bolt/generator-bolt
+
+
+
+
+
 ## [3.6.2](https://github.com/bolt-design-system/bolt/tree/master/packages/generator-bolt/compare/v3.6.1...v3.6.2) (2021-05-26)
 
 **Note:** Version bump only for package @bolt/generator-bolt
