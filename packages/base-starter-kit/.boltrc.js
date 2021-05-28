@@ -42,7 +42,6 @@ module.exports = {
       '@bolt/components-logo',
       '@bolt/components-menu',
       '@bolt/components-modal',
-      '@bolt/components-navbar',
       '@bolt/components-ol',
       '@bolt/components-pagination',
       '@bolt/components-page-header',
@@ -71,5 +70,6 @@ module.exports = {
       '@bolt/layouts-holy-grail',
       '@bolt/analytics-autolink',
     ],
+    individual: ['@bolt/components-navbar'],
   },
 };

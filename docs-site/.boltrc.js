@@ -149,7 +149,4 @@ const config = deepmerge(baseConfig, {
   ],
 });
 
-// removing here first before removing from @bolt/starter-kit directly
-delete config.components.individual;
-
 module.exports = config;
