@@ -1,0 +1,24 @@
+{% set tooltip %}
+  {% include "@bolt-components-tooltip/tooltip.twig" with {
+    trigger: "this piece of text",
+    content: "This is what we call a tooltip."
+  } only %}
+{% endset %}
+
+{% set tooltip_no_shadow %}
+  {% include "@bolt-components-tooltip/tooltip.twig" with {
+    trigger: "this piece of text",
+    content: "This is what we call a tooltip.",
+    attributes: {
+      'no-shadow': ''
+    }
+  } only %}
+{% endset %}
+
+<h2>Tooltip with no-shadow</h2>
+<p>A tooltip is used to provide descriptive help to the user about the control that the mouse is over. For instance, moving the mouse over {{ tooltip }} for a second can display a small popup label containing more detailed description. When the mouse is moved again, the tooltip disappears. This is a useful means of providing additional details about a user interface without cluttering up the main interface.</p>
+
+<h2>Tooltip in a form</h2>
+<form action="">
+<p>A tooltip is used to provide descriptive help to the user about the control that the mouse is over. For instance, moving the mouse over {{ tooltip_no_shadow }} for a second can display a small popup label containing more detailed description. When the mouse is moved again, the tooltip disappears. This is a useful means of providing additional details about a user interface without cluttering up the main interface.</p>
+</form>
