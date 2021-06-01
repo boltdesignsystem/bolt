@@ -12,7 +12,8 @@
 bolt-tooltip {
   display: inline;
 
-  &:not([ready]) [slot='content'] {
+  // This element is copied by Tippy and appended to the document.body
+  [slot='content'] {
     display: none;
   }
 
