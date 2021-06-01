@@ -1,0 +1,75 @@
+{% set schema = bolt.data.components['@bolt-components-chip'].schema %}
+
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>When using status chips, it is recommended to append an appropriate icon in front of the text.</bolt-li>
+    <bolt-li>When using branded chips, always make sure a chip has good contrast with the page background. For example, do not use navy colored chip on a navy background.</bolt-li>
+  </bolt-ol>
+{% endset %}
+
+{% set demo %}
+  <bolt-text headline font-size="xxsmall" text-transform="uppercase" letter-spacing="wide">Status Colors</bolt-text>
+  <bolt-list display="inline">
+    {% for color in schema.properties.color.enum %}
+      {% if color == 'error' or color == 'warning' or color == 'success' %}
+        {% if color == 'error' %}
+          {% set icon_name = 'close' %}
+        {% endif %}
+        {% if color == 'warning' %}
+          {% set icon_name = 'warning' %}
+        {% endif %}
+        {% if color == 'success' %}
+          {% set icon_name = 'check' %}
+        {% endif %}
+        <bolt-list-item>
+          {% include '@bolt-components-chip/chip.twig' with {
+            text: color|capitalize,
+            color: color,
+            icon: {
+              name: icon_name,
+              position: 'before',
+            },
+          } only %}
+        </bolt-list-item>
+      {% endif %}
+    {% endfor %}
+  </bolt-list>
+  <bolt-text headline font-size="xxsmall" text-transform="uppercase" letter-spacing="wide">Selective Brand Colors</bolt-text>
+  <bolt-list display="inline">
+    {% for color in schema.properties.color.enum %}
+      {% if color != 'error' and color != 'warning' and color != 'success' %}
+        <bolt-list-item>
+          {% include '@bolt-components-chip/chip.twig' with {
+            text: color,
+            color: color,
+          } only %}
+        </bolt-list-item>
+      {% endif %}
+    {% endfor %}
+  </bolt-list>
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% include '@bolt-components-chip/chip.twig' with {
+  text: 'Colored chip',
+  color: 'teal',
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% set html_markup %}
+{% verbatim %}
+<bolt-chip color="teal">Colored chip</bolt-chip>
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Colored Chips',
+  description: 'When appropriate, use the color prop to apply status or brand colors to a chip.',
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+  html_markup: html_markup,
+} only %}
+

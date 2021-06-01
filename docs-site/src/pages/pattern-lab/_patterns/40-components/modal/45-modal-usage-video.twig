@@ -1,34 +1,29 @@
 <bolt-text headline font-size="xlarge">Video Modal Usage</bolt-text>
-<bolt-text>There are two options for playing a video in a modal. Both require some custom JavaScript.</bolt-text>
+<bolt-text>Videos opening and playing in a modal are handled by a couple data attributes.</bolt-text>
 
-<bolt-text headline font-size="large">Option 1: Modal triggers Video</bolt-text>
-<bolt-text>Clicking a button calls a modal's <code>show</code> method. Custom JavaScript listens for the event and plays the video when it happens.</bolt-text>
+<bolt-text headline font-size="large">Button Attribute</bolt-text> 
+<bolt-text>To open a modal, the triggering button requires a <code>data-bolt-modal-target</code> attribute. The value of this attribute is the target modal's class. There is JS that will handle the opening on target modal based on the attribute's value.</bolt-text>
 
-{% set javascript_1 %}
-<script>
-  // Play the video on modal show, pause on hide
-  const modal1 = document.querySelector('.js-bolt-modal--demo-1');
-  const video1 = document.querySelector('.js-bolt-video--demo-1');
-
-  modal1.addEventListener('modal:show', function() {
-    videojs.getPlayer(video1).play();
-  });
-
-  modal1.addEventListener('modal:hide', function() {
-    videojs.getPlayer(video1).pause();
-  });
-</script>
-{% endset %}
+<bolt-text headline font-size="large">Video Attributes</bolt-text> 
+<bolt-text>To prevent a video from initializing on page load, the <code>video-js</code> requires a couple of attributes to delay the initialization. There are four attributes that are required, three of these <em>replace</em> the default Brightcove attributes.</bolt-text>
+<ul>
+  <li><strong>data-delayed-account</strong> (replaces <em>data-account</em>)</li>
+  <li><strong>data-delayed-player</strong/> (replaces <em>data-player</em>)</li>
+  <li><strong>data-delayed-video-id</strong/> (replaces <em>data-video-id</em>)</li>
+  <li><strong>data-video-delayed</strong/> (flag to delay the initialization)</li>
+</ul>
+<bolt-text>Within the Brightcove initialization logic these attributes will defer the video initialization until the <em>modal:show</em> event is fired. The JS will create the Brigthcove required attributes on the fly and start the initialization shortly after. After the modal is opened, it will automatically start playing the video</bolt-text>
 
 <bolt-text headline font-size="large">Demo</bolt-text>
 <div class="t-bolt-light u-bolt-padding-medium u-bolt-margin-bottom-small">
   {% set modal_content_1 %}
     {% set video %}
       <video-js
-        data-account="1900410236"
-        data-player="O3FkeBiaDz"
+        data-delayed-account="1900410236"
+        data-delayed-player="O3FkeBiaDz"
+        data-delayed-video-id="4892122320001"
+        data-video-delayed
         data-embed="default"
-        data-video-id="4892122320001"
         controls
         data-media-title
         data-media-duration
@@ -61,86 +56,3 @@
 
   {{ javascript_1 }}
 </div>
-
-<bolt-text headline font-size="large">Custom JavaScript</bolt-text>
-<bolt-code-snippet syntax="dark" lang="html">{% spaceless %}
-  {{ javascript_1 | replace({
-    '<': '&lt;',
-    '>': '&gt;',
-  }) | trim | raw }}
-{% endspaceless %}</bolt-code-snippet>
-
-<bolt-text headline font-size="large">Option 2: Video triggers Modal</bolt-text>
-<bolt-text>Clicking a button calls a video's <code>toggle</code> method. Custom JavaScript listens for the event and opens the modal when it happens.</bolt-text>
-
-{# @todo, load brightcove before this code runs. Then we can move lines 85-92 out of the click event handler. Otherwise, videojs is not defined. #}
-{% set javascript_2 %}
-<script>
-  // Show modal on video toggle, pause on modal hide
-  const modal2 = document.querySelector('.js-bolt-modal--demo-2');
-  const video2 = document.querySelector('.js-bolt-video--demo-2');
-  const button2 = document.querySelector('.js-bolt-button--demo-2');
-
-  button2.addEventListener('click', function() {
-    videojs.getPlayer(video2).on('playing', function() {
-      modal2.show();
-    });
-
-    modal2.addEventListener('modal:hide', function() {
-      videojs.getPlayer(video2).pause();
-    });
-
-    videojs.getPlayer(video2).play();
-  })
-</script>
-{% endset %}
-
-<bolt-text headline font-size="large">Demo</bolt-text>
-<div class="t-bolt-light u-bolt-padding-medium u-bolt-margin-bottom-small">
-  {% set modal_content_2 %}
-    {% set video %}
-      <video-js
-        data-account="1900410236"
-        data-player="O3FkeBiaDz"
-        data-embed="default"
-        data-video-id="4892122320001"
-        data-media-title
-        data-media-duration
-        controls
-        class="c-base-video js-bolt-video--demo-2"></video-js>
-    {% endset %}
-
-    {% include "@bolt-components-ratio/ratio.twig" with {
-      children: video,
-      ratio: "16/9"
-    } only %}
-  {% endset %}
-
-  {% include "@bolt-components-button/button.twig" with {
-    text: "Play the video",
-    attributes: {
-      class: "js-bolt-button--demo-2",
-    }
-  } only %}
-
-  {% include "@bolt-components-modal/modal.twig" with {
-    content: modal_content_2,
-    width: "optimal",
-    spacing: "none",
-    theme: "none",
-    scroll: "overall",
-    attributes: {
-      class: "js-bolt-modal--demo-2",
-    },
-  } only %}
-
-  {{ javascript_2 }}
-</div>
-
-<bolt-text headline font-size="large">Custom JavaScript</bolt-text>
-<bolt-code-snippet syntax="dark" lang="html">{% spaceless %}
-  {{ javascript_2 | replace({
-    '<': '&lt;',
-    '>': '&gt;',
-  }) | trim | raw }}
-{% endspaceless %}</bolt-code-snippet>

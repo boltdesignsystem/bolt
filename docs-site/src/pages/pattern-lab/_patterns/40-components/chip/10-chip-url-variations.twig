@@ -1,39 +1,31 @@
-<bolt-text headline>URL</bolt-text>
-<bolt-list display="inline">
-  <bolt-list-item>
-    {# Start component specific code #}
-    {% include "@bolt-components-chip/chip.twig" with {
-      text: "No URL",
-    } only %}
-    {# End component specific code #}
-  </bolt-list-item>
-  <bolt-list-item>
-    {# Start component specific code #}
-    {% include "@bolt-components-chip/chip.twig" with {
-      text: "Has URL",
-      url: "https://pega.com",
-    } only %}
-    {# End component specific code #}
-  </bolt-list-item>
-</bolt-list>
+{% set demo %}
+  {% include '@bolt-components-chip/chip.twig' with {
+    text: 'This is a linked chip',
+    url: 'https://pega.com',
+    target: '_blank',
+  } only %}
+{% endset %}
 
-<bolt-text headline>Target</bolt-text>
-<bolt-list display="inline">
-  <bolt-list-item>
-    {# Start component specific code #}
-    {% include "@bolt-components-chip/chip.twig" with {
-      text: "Open link in current tab",
-      url: "https://pega.com",
-    } only %}
-    {# End component specific code #}
-  </bolt-list-item>
-  <bolt-list-item>
-    {# Start component specific code #}
-    {% include "@bolt-components-chip/chip.twig" with {
-      text: "Open link in new tab",
-      url: "https://pega.com",
-      target: "_blank",
-    } only %}
-    {# End component specific code #}
-  </bolt-list-item>
-</bolt-list>
+{% set twig_markup %}
+{% verbatim %}
+{% include '@bolt-components-chip/chip.twig' with {
+  text: 'This is a linked chip',
+  url: 'https://pega.com',
+  target: '_blank',
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% set html_markup %}
+{% verbatim %}
+<bolt-chip url="https://pega.com" target="_blank">This is a linked chip</bolt-chip>
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Linked Chip',
+  description: 'A chip can be linked and its target can be modified.',
+  demo: demo,
+  twig_markup: twig_markup,
+  html_markup: html_markup,
+} only %}

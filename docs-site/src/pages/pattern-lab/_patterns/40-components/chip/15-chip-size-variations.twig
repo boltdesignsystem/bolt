@@ -1,16 +1,37 @@
-{# Setting variables for demo purposes #}
-{% set schema = bolt.data.components["@bolt-components-chip"].schema %}
+{% set schema = bolt.data.components['@bolt-components-chip'].schema %}
 
-<bolt-text headline>Size</bolt-text>
-<bolt-list display="inline">
-  {% for size in schema.properties.size.enum %}
-    <bolt-list-item>
-      {# Start component specific code #}
-      {% include "@bolt-components-chip/chip.twig" with {
-        text: size,
-        size: size,
-      } only %}
-      {# End component specific code #}
-    </bolt-list-item>
-  {% endfor %}
-</bolt-list>
+{% set demo %}
+  <bolt-list display="inline">
+    {% for size in schema.properties.size.enum %}
+      <bolt-list-item>
+        {% include '@bolt-components-chip/chip.twig' with {
+          text: size,
+          size: size,
+        } only %}
+      </bolt-list-item>
+    {% endfor %}
+  </bolt-list>
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% include '@bolt-components-chip/chip.twig' with {
+  text: 'This is a medium chip',
+  size: 'medium',
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% set html_markup %}
+{% verbatim %}
+<bolt-chip size="medium">This is a medium chip</bolt-chip>
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Chip Size',
+  description: 'Chips come with a few sizing options.',
+  demo: demo,
+  twig_markup: twig_markup,
+  html_markup: html_markup,
+} only %}
