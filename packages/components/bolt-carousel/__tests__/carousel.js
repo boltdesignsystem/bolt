@@ -1,31 +1,42 @@
 /* eslint-disable no-await-in-loop */
-import {
-  render,
-  renderString,
-  stopServer,
-  renderWC,
-} from '../../../testing/testing-helpers';
-import schema from '../carousel.schema';
-// eslint-disable-next-line camelcase
-const { slides_per_view } = schema.properties;
-const componentSelector = 'bolt-carousel';
-const componentSelectorInner = 'bolt-carousel-slide';
-let page, fixtures;
+import { renderWC } from '../../../testing/testing-helpers';
 
-beforeEach(async () => {
-  await page.evaluate(() => {
-    document.body.innerHTML = '';
-  });
-  //await page.setViewport({ width: 600, height: 200 });
-});
+const timeout = 180000;
 
-beforeAll(async () => {
-  page = await global.__BROWSER__.newPage();
-  await page.goto('http://127.0.0.1:4444/', {
-    timeout: 0,
-  });
+const viewportSizes = [
+  {
+    size: 'xlarge',
+    width: 1200,
+    height: 600,
+  },
+  {
+    size: 'large',
+    width: 1000,
+    height: 1024,
+  },
+  {
+    size: 'medium',
+    width: 800,
+    height: 600,
+  },
+  {
+    size: 'small',
+    width: 600,
+    height: 1024,
+  },
+  {
+    size: 'xsmall',
+    width: 400,
+    height: 640,
+  },
+  {
+    size: 'xxsmall',
+    width: 320,
+    height: 568,
+  },
+];
 
-  const carouselSlideImage = `
+const carouselSlideImage = `
     <bolt-image
       src="/fixtures/1200x660.jpg"
       srcset="/fixtures/1200x660-50.jpg 50w, /fixtures/1200x660-100.jpg 100w, /fixtures/1200x660-200.jpg 200w, /fixtures/1200x660-320.jpg 320w, /fixtures/1200x660-480.jpg 480w, /fixtures/1200x660-640.jpg 640w, /fixtures/1200x660-800.jpg 800w, /fixtures/1200x660-1024.jpg 1024w"
@@ -35,107 +46,219 @@ beforeAll(async () => {
       no-lazy
       style="background-color: hsl(233, 33%, 97%); width: 100%;">
     </bolt-image>
-  `;
+`;
 
-  const carouselButtonControls = `
-    <bolt-button slot="previous-btn" color="secondary" border-radius="full" icon-only>Previous <bolt-icon slot="before" name="chevron-left"></bolt-icon></bolt-button>
-    <bolt-button slot="next-btn" color="secondary" border-radius="full" icon-only>Next <bolt-icon slot="after" name="chevron-right"></bolt-icon></bolt-button>
-  `;
+const carouselButtonControls = `
+  <bolt-button slot="previous-btn" color="secondary" border-radius="full" icon-only>Previous <bolt-icon slot="before" name="chevron-left"></bolt-icon></bolt-button>
+  <bolt-button slot="next-btn" color="secondary" border-radius="full" icon-only>Next <bolt-icon slot="after" name="chevron-right"></bolt-icon></bolt-button>
+`;
 
-  const slideOne = `
-    ${carouselSlideImage}<div>Slide 1</div>
-  `;
+describe('carousel', () => {
+  let page;
 
-  const slideTwo = `
-    ${carouselSlideImage}
-    <div>Slide 2</div>
-  `;
-
-  const slideThree = `
-    ${carouselSlideImage}
-    <div>Slide 3</div>
-  `;
-
-  fixtures = {
-    slideOne,
-    slideTwo,
-    slideThree,
-  };
-});
-
-afterAll(async () => {
-  await stopServer();
-  await page.close();
-});
-
-describe('Bolt Carousel', () => {
-  test('default', async () => {
-    const results = await render('@bolt-components-carousel/carousel.twig', {
-      slides: [fixtures.slideOne, fixtures.slideTwo, fixtures.slideThree],
+  beforeEach(async () => {
+    await page.evaluate(() => {
+      document.body.innerHTML = '';
     });
+    await page.setViewport({ width: 800, height: 600 });
+  }, timeout);
 
-    const { innerHTML, outerHTML } = await renderWC(
-      componentSelectorInner,
-      results.html,
-      page,
-    );
-
-    await expect(results.ok).toBe(true);
-    await expect(results.html).toMatchSnapshot();
-    await expect(innerHTML).toMatchSnapshot();
-    await expect(outerHTML).toMatchSnapshot();
-  });
-
-  test('default with seven slides', async () => {
-    const results = await render('@bolt-components-carousel/carousel.twig', {
-      slides: [
-        fixtures.slideOne,
-        fixtures.slideTwo,
-        fixtures.slideThree,
-        fixtures.slideOne,
-        fixtures.slideTwo,
-        fixtures.slideThree,
-        fixtures.slideOne,
-      ],
+  beforeAll(async () => {
+    page = await global.__BROWSER__.newPage();
+    await page.goto('http://127.0.0.1:4444/', {
+      timeout: 0,
     });
+  }, timeout);
 
-    const { innerHTML, outerHTML } = await renderWC(
-      componentSelector,
-      results.html,
-      page,
-    );
+  afterAll(async () => {
+    await page.close();
+  }, 100);
 
-    await expect(results.ok).toBe(true);
-    await expect(results.html).toMatchSnapshot();
-    await expect(innerHTML).toMatchSnapshot();
-    await expect(outerHTML).toMatchSnapshot();
-  });
+  // test('basic carousel component renders', async () => {
+  //   const results = await render('@bolt-components-carousel/carousel.twig');
+  //   expect(results.ok).toBe(true);
+  //   expect(results.html).toMatchSnapshot();
+  // });
 
-  // @todo: Render with controls
-});
+  // test('basic carousel component with the global `no-shadow` prop added', async () => {
+  //   const results = await render(
+  //     '@bolt-components-carousel/carousel.twig',
+  //     {
+  //       no_shadow: true,
+  //     },
+  //   );
+  //   expect(results.ok).toBe(true);
+  //   expect(results.html).toMatchSnapshot();
+  // });
 
-describe('Bolt Tabs Props', () => {
-  slides_per_view.enum.forEach(async option => {
-    test(`slides_per_view: ${option}`, async () => {
-      const results = await render('@bolt-components-carousel/carousel.twig', {
-        slides: [
-          fixtures.slideOne.html,
-          fixtures.slideTwo.html,
-          fixtures.slideThree.html,
-        ],
-        slides_per_view: option,
-      });
+  // test('carousel with outer CSS class via Drupal Attributes', async () => {
+  //   const results = await render(
+  //     '@bolt-components-carousel/carousel.twig',
+  //     {
+  //       attributes: {
+  //         class: ['u-bolt-margin-top-medium'],
+  //       },
+  //     },
+  //   );
+  //   expect(results.ok).toBe(true);
+  //   expect(results.html).toMatchSnapshot();
+  // });
 
-      const { innerHTML, outerHTML } = await renderWC(
-        componentSelector,
-        results.html,
+  test(
+    'Basic 3 Slide <bolt-carousel> Renders',
+    async function() {
+      const { outerHTML } = await renderWC(
+        'bolt-carousel',
+        `<bolt-carousel>
+            <bolt-carousel-slide>
+              ${carouselSlideImage}
+              <div>Slide 1</div>
+            </bolt-carousel-slide>
+            <bolt-carousel-slide>
+              ${carouselSlideImage}
+              <div>Slide 2</div>
+            </bolt-carousel-slide>
+            <bolt-carousel-slide>
+              ${carouselSlideImage}
+              <div>Slide 3</div>
+            </bolt-carousel-slide>
+          </bolt-carousel>
+        `,
         page,
       );
 
-      await expect(results.ok).toBe(true);
-      await expect(results.html).toMatchSnapshot();
-      await expect(innerHTML).toMatchSnapshot();
-      await expect(outerHTML).toMatchSnapshot();
-    });
-  });
+      expect(outerHTML).toMatchSnapshot();
+    },
+    timeout,
+  );
+
+  test(
+    'Basic 3 Slide <bolt-carousel> Renders w/ Nav Controls',
+    async function() {
+      const { outerHTML } = await renderWC(
+        'bolt-carousel',
+        `<bolt-carousel>
+            <bolt-carousel-slide>
+              ${carouselSlideImage}
+              <div>Slide 1</div>
+            </bolt-carousel-slide>
+            <bolt-carousel-slide>
+              ${carouselSlideImage}
+              <div>Slide 2</div>
+            </bolt-carousel-slide>
+            <bolt-carousel-slide>
+              ${carouselSlideImage}
+              <div>Slide 3</div>
+            </bolt-carousel-slide>
+            ${carouselButtonControls}
+          </bolt-carousel>
+        `,
+        page,
+      );
+
+      expect(outerHTML).toMatchSnapshot();
+    },
+    timeout,
+  );
+
+  test(
+    'Basic 3 Slide <bolt-carousel> Renders w/ Outer Nav Controls',
+    async function() {
+      const { outerHTML } = await renderWC(
+        'bolt-carousel',
+        `<bolt-carousel nav-button-position="outside">
+          <bolt-carousel-slide>
+            ${carouselSlideImage}
+            <div>Slide 1</div>
+          </bolt-carousel-slide>
+          <bolt-carousel-slide>
+            ${carouselSlideImage}
+            <div>Slide 2</div>
+          </bolt-carousel-slide>
+          <bolt-carousel-slide>
+            ${carouselSlideImage}
+            <div>Slide 3</div>
+          </bolt-carousel-slide>
+          ${carouselButtonControls}
+        </bolt-carousel>
+        `,
+        page,
+      );
+
+      expect(outerHTML).toMatchSnapshot();
+    },
+    timeout,
+  );
+
+  test(
+    'Basic 3 Slide <bolt-carousel> Renders w/ Variable (Auto) Slide Per View',
+    async function() {
+      const { outerHTML } = await renderWC(
+        'bolt-carousel',
+        `<bolt-carousel slides-per-view="auto">
+          <bolt-carousel-slide>
+            ${carouselSlideImage}
+            <div>Slide 1</div>
+          </bolt-carousel-slide>
+          <bolt-carousel-slide>
+            ${carouselSlideImage}
+            <div>Slide 2</div>
+          </bolt-carousel-slide>
+          <bolt-carousel-slide>
+            ${carouselSlideImage}
+            <div>Slide 3</div>
+          </bolt-carousel-slide>
+        </bolt-carousel>
+        `,
+        page,
+      );
+
+      expect(outerHTML).toMatchSnapshot();
+    },
+    timeout,
+  );
+
+  test(
+    'Basic 7 Slide <bolt-carousel> Renders',
+    async function() {
+      const { outerHTML } = await renderWC(
+        'bolt-carousel',
+        `<bolt-carousel>
+          <bolt-carousel-slide>
+            ${carouselSlideImage}
+            <div>Slide 1</div>
+          </bolt-carousel-slide>
+          <bolt-carousel-slide>
+            ${carouselSlideImage}
+            <div>Slide 2</div>
+          </bolt-carousel-slide>
+          <bolt-carousel-slide>
+            ${carouselSlideImage}
+            <div>Slide 3</div>
+          </bolt-carousel-slide>
+          <bolt-carousel-slide>
+            ${carouselSlideImage}
+            <div>Slide 4</div>
+          </bolt-carousel-slide>
+          <bolt-carousel-slide>
+            ${carouselSlideImage}
+            <div>Slide 5</div>
+          </bolt-carousel-slide>
+          <bolt-carousel-slide>
+            ${carouselSlideImage}
+            <div>Slide 6</div>
+          </bolt-carousel-slide>
+          <bolt-carousel-slide>
+            ${carouselSlideImage}
+            <div>Slide 7</div>
+          </bolt-carousel-slide>
+        </bolt-carousel>
+        `,
+        page,
+      );
+
+      expect(outerHTML).toMatchSnapshot();
+    },
+    timeout,
+  );
 });
