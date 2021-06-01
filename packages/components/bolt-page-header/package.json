@@ -1,6 +1,6 @@
 {
   "name": "@bolt/components-page-header",
-  "version": "3.5.0",
+  "version": "3.6.0",
   "description": "Global header that contains the global search, primary navigation, and secondary navigation.",
   "keywords": [
     "bolt design system",
@@ -15,8 +15,8 @@
   "main": "index.js",
   "style": "index.scss",
   "dependencies": {
-    "@bolt/components-typeahead": "^3.5.0",
-    "@bolt/core-v3.x": "^3.5.0",
+    "@bolt/components-typeahead": "^3.6.0",
+    "@bolt/core-v3.x": "^3.6.0",
     "hoverintent": "^2.2.1"
   },
   "publishConfig": {
@@ -34,6 +34,12 @@
       "web": "https://github.com/danielamorse"
     }
   ],
-  "schema": "page-header.schema.js",
+  "schema": [
+    "page-header.schema.js",
+    "page-header-primary-nav.schema.js",
+    "page-header-search-panel.schema.js",
+    "page-header-nav-ul.schema.js",
+    "page-header-nav-li.schema.js"
+  ],
   "twig": "src/page-header.twig"
 }

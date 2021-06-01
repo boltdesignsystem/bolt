@@ -46,7 +46,7 @@ describe('listing-teaser', () => {
           replies: '33',
           views: '123',
         },
-        more_info: 'This is the more information',
+        description: 'This is the description',
         warning: 'This is a warning message',
         attributes: {
           'data-foo': 'bar',

@@ -76,7 +76,7 @@ class BoltBlockquote extends BoltElement {
       AuthorImage(this),
       AuthorName(this),
       AuthorTitle(this),
-    ].filter((el) => el);
+    ].filter(el => el);
 
     return html`
       <blockquote class="${classes}">
@@ -94,7 +94,7 @@ class BoltBlockquote extends BoltElement {
           ? html`
               <footer class="${cx('c-bolt-blockquote__footer')}">
                 ${footerItems.map(
-                  (footerItem) => html`
+                  footerItem => html`
                     <div class="${cx('c-bolt-blockquote__footer-item')}">
                       ${footerItem}
                     </div>

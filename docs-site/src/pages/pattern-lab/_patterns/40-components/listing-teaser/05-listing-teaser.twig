@@ -1,7 +1,3 @@
-{% set description %}
-  The Listing Teaser component can be used to display specific information of a particular listing, article, or thread. It is commonly used on listing pages.
-{% endset %}
-
 {% set notes %}
   The whole listing UI is clickable. The headline of the listing is a link element that is expanding its click target.
 {% endset %}
@@ -34,7 +30,7 @@
       replies: '33',
       views: '6k',
     },
-    more_info: 'This is the more information. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus',
+    description: 'This is the description. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.',
     warning: 'Warning! This is a warning message.',
   } only %}
 {% endset %}
@@ -71,7 +67,7 @@
     replies: '33',
     views: '6k',
   },
-  more_info: 'This is the more information. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus',
+  description: 'This is the description. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.',
   warning: 'Warning! This is a warning message.',
 } only %}
 {% endverbatim %}
@@ -79,7 +75,7 @@
 
 {% include '@utils/pattern-doc-page.twig' with {
   title: 'Basic Listing Teaser',
-  description: description,
+  description: 'The Listing Teaser component can be used to display specific information of a particular listing, article, or thread. It is commonly used on listing pages.',
   demo: demo,
   notes: notes,
   twig_markup: twig_markup,

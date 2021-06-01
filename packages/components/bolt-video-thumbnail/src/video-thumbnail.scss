@@ -1,0 +1,133 @@
+@import '@bolt/core-v3.x';
+
+/**
+ * Signifier
+ */
+
+.c-bolt-video-thumbnail {
+  display: block;
+  position: relative;
+  width: 100%;
+  min-width: 10rem;
+  height: 0;
+  overflow: hidden;
+  padding-bottom: var(--c-bolt-video-thumbnail-aspect-ratio);
+  border-radius: var(--c-bolt-video-thumbnail-border-radius);
+}
+
+.c-bolt-video-thumbnail--aspect-ratio-1\:1 {
+  --c-bolt-video-thumbnail-aspect-ratio: 100%;
+}
+
+.c-bolt-video-thumbnail--aspect-ratio-16\:9 {
+  --c-bolt-video-thumbnail-aspect-ratio: calc(9 / 16 * 100%);
+}
+
+.c-bolt-video-thumbnail--aspect-ratio-4\:3 {
+  --c-bolt-video-thumbnail-aspect-ratio: calc(3 / 4 * 100%);
+}
+
+.c-bolt-video-thumbnail--border-radius-small {
+  --c-bolt-video-thumbnail-border-radius: #{bolt-border-radius(small)};
+}
+
+.c-bolt-video-thumbnail--border-radius-large {
+  --c-bolt-video-thumbnail-border-radius: #{bolt-border-radius(large)};
+}
+
+.c-bolt-video-thumbnail__content {
+  display: flex;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+
+  > img {
+    display: block;
+    object-fit: cover;
+    object-position: center center;
+    width: 100%;
+    height: auto;
+  }
+
+  > bolt-image {
+    flex-grow: 1;
+  }
+}
+
+.c-bolt-video-thumbnail__play-icon {
+  display: block;
+  position: absolute;
+  bottom: var(--bolt-spacing-y-xsmall);
+  left: var(--bolt-spacing-x-xsmall);
+  width: 10%;
+  min-width: 24px;
+  max-width: 44px;
+  height: 10%;
+  min-height: 20px;
+  max-height: 32px;
+  overflow: hidden;
+  border-radius: var(
+    --c-bolt-video-thumbnail-border-radius,
+    #{bolt-border-radius(small)}
+  );
+  box-shadow: 0 0 2em var(--bolt-color-gray);
+  background-color: var(--bolt-color-yellow);
+  transform-origin: bottom left;
+
+  @include bolt-mq(small) {
+    bottom: var(--bolt-spacing-y-small);
+    left: var(--bolt-spacing-x-small);
+  }
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0);
+    width: 25%;
+    height: 45%;
+    background-color: var(--bolt-color-black);
+    clip-path: polygon(0 0, 0 100%, 100% 50%);
+  }
+
+  @at-root .c-bolt-video-thumbnail--aspect-ratio-1\:1 #{&} {
+    min-width: 24px;
+    max-width: 44px;
+    min-height: 24px;
+    max-height: 44px;
+
+    &:before {
+      width: 35%;
+    }
+  }
+
+  @at-root .c-bolt-video-thumbnail--aspect-ratio-16\:9 #{&} {
+    height: 14%;
+  }
+}
+
+.c-bolt-video-thumbnail__duration {
+  position: absolute;
+  right: var(--bolt-spacing-x-xsmall);
+  bottom: var(--bolt-spacing-y-xsmall);
+  max-width: calc(100% - var(--bolt-spacing-x-xsmall) * 2);
+  overflow: hidden;
+  padding: var(--bolt-spacing-y-xxsmall) var(--bolt-spacing-x-xxsmall);
+  font-size: var(--bolt-type-font-size-xxsmall);
+  font-weight: var(--bolt-type-font-weight-semibold);
+  color: var(--bolt-color-white);
+  line-height: var(--bolt-type-line-height-xxsmall);
+  border-radius: var(
+    --c-bolt-video-thumbnail-border-radius,
+    #{bolt-border-radius(small)}
+  );
+  background-color: rgba(black, 0.6);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+
+  @include bolt-mq(small) {
+    right: var(--bolt-spacing-x-small);
+    bottom: var(--bolt-spacing-y-small);
+  }
+}

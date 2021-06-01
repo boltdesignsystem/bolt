@@ -111,12 +111,12 @@
       size: "small",
       width: "full",
       attributes: {
-        onclick: "this.nextElementSibling.show()",
+        "data-bolt-modal-target": ".js-bolt-modal--usage-form",
       }
     } only %}
     {% include "@bolt-components-modal/modal.twig" with {
       attributes: {
-        class: "js-image-modal-advanced-form",
+        class: "js-bolt-modal--usage-form",
       },
       content: modal_content,
     } only %}
