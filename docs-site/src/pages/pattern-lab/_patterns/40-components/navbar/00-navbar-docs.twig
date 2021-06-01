@@ -1,63 +1,37 @@
-{% set navbar_data = [
-  {
+{% set usage %}{% verbatim %}
+// Set up the navbar items
+{% set navbar_items %}
+  {% include '@bolt-components-navbar/navbar-li.twig' with {
     link: {
       content: 'Section 1',
       attributes: {
         href: '#section-1'
       }
     }
-  },
-  {
+  } only %} 
+  {% include '@bolt-components-navbar/navbar-li.twig' with {
     link: {
       content: 'Section 2',
       attributes: {
         href: '#section-2'
       }
     }
-  },
-  {
-    link: {
-      content: 'Section 3',
-      attributes: {
-        href: '#section-3'
-      }
-    }
-  },
-  {
-    link: {
-      content: 'Section 4',
-      attributes: {
-        href: '#section-4'
-      }
-    }
-  },
-  {
-    link: {
-      content: 'Section 5',
-      attributes: {
-        href: '#section-5'
-      }
-    }
-  }
-] %}
-
-{% set navbar_items %}
-  {% for item in navbar_data %}
-    {% include '@bolt-components-navbar/navbar-li.twig' with item only %}  
-  {% endfor %}
+  } only %}
+  ...
 {% endset %}
-
 {% set navbar_list %}
-  {% include '@bolt-components-navbar/navbar-ul.twig' with { content: navbar_items } only %}  
+  {% include '@bolt-components-navbar/navbar-ul.twig' with { 
+    content: navbar_items,
+  } only %}  
 {% endset %}
 
-{% set usage %}{% verbatim %}
+// Pass the navbar items to the navbar template
 {% include '@bolt-components-navbar/navbar.twig' with {
   title: {
-    content: 'Title text',
+    content: 'This is the navbar title',
     icon: {
-      name: 'icon-name'
-    },
+      name: 'marketing-gray'
+    }
   },
   links: navbar_list
 } only %}
@@ -65,19 +39,5 @@
 
 {% include '@utils/docs.twig' with {
   componentName: 'navbar',
-  usage: usage,
-  schemaForm: {
-    template: '@bolt-components-navbar/navbar.twig',
-    layout: 'horizontal',
-    initialData: {
-      width: 'auto',
-      title: {
-        content: 'Title Text',
-        icon: {
-          name: 'marketing-gray'
-        }
-      },
-      content: navbar_list
-    },
-  },
+  usage: usage
 } only %}

@@ -1,62 +1,107 @@
-{% set navbar_data = [
-  {
+{% set demo %}
+  {% set navbar_items %}
+    {% include '@bolt-components-navbar/navbar-li.twig' with {
+      link: {
+        content: 'Section 1',
+        attributes: {
+          href: '#section-1'
+        }
+      }
+    } only %} 
+    {% include '@bolt-components-navbar/navbar-li.twig' with {
+      link: {
+        content: 'Section 2',
+        attributes: {
+          href: '#section-2'
+        }
+      }
+    } only %} 
+    {% include '@bolt-components-navbar/navbar-li.twig' with {
+      link: {
+        content: 'Section 3',
+        attributes: {
+          href: '#section-3'
+        }
+      }
+    } only %} 
+    {% include '@bolt-components-navbar/navbar-li.twig' with {
+      link: {
+        content: 'Section 4',
+        attributes: {
+          href: '#section-4'
+        }
+      }
+    } only %} 
+    {% include '@bolt-components-navbar/navbar-li.twig' with {
+      link: {
+        content: 'Section 5',
+        attributes: {
+          href: '#section-5'
+        }
+      }
+    } only %} 
+  {% endset %}
+  {% set navbar_list %}
+    {% include '@bolt-components-navbar/navbar-ul.twig' with { 
+      content: navbar_items,
+    } only %}  
+  {% endset %}
+
+  {% include '@bolt-components-navbar/navbar.twig' with {
+    title: {
+      content: 'This is the navbar title',
+      icon: {
+        name: 'marketing-gray'
+      }
+    },
+    links: navbar_list
+  } only %}
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+// Set up the navbar items
+{% set navbar_items %}
+  {% include '@bolt-components-navbar/navbar-li.twig' with {
     link: {
       content: 'Section 1',
       attributes: {
         href: '#section-1'
       }
     }
-  },
-  {
+  } only %} 
+  {% include '@bolt-components-navbar/navbar-li.twig' with {
     link: {
       content: 'Section 2',
       attributes: {
         href: '#section-2'
       }
     }
-  },
-  {
-    link: {
-      content: 'Section 3',
-      attributes: {
-        href: '#section-3'
-      }
-    }
-  },
-  {
-    link: {
-      content: 'Section 4',
-      attributes: {
-        href: '#section-4'
-      }
-    }
-  },
-  {
-    link: {
-      content: 'Section 5',
-      attributes: {
-        href: '#section-5'
-      }
-    }
-  }
-] %}
-
-{% set navbar_items %}
-  {% for item in navbar_data %}
-    {% include '@bolt-components-navbar/navbar-li.twig' with item only %}  
-  {% endfor %}
+  } only %}
+  ...
 {% endset %}
-
 {% set navbar_list %}
-  {% include '@bolt-components-navbar/navbar-ul.twig' with { content: navbar_items } only %}  
+  {% include '@bolt-components-navbar/navbar-ul.twig' with { 
+    content: navbar_items,
+  } only %}  
 {% endset %}
 
+// Pass the navbar items to the navbar template
 {% include '@bolt-components-navbar/navbar.twig' with {
   title: {
-    content: 'Title Text',
+    content: 'This is the navbar title',
     icon: {
       name: 'marketing-gray'
     }
   },
   links: navbar_list
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Basic Navbar',
+  description: 'Navbar is a sticky container for secondary page navigation.',
+  demo: demo,
+  twig_markup: twig_markup,
 } only %}
