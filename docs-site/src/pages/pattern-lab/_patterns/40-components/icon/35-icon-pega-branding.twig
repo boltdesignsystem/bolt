@@ -15,65 +15,45 @@
 {% endset %}
 
 {% set demo %}
-  <style>
-    .bds-demo-vertical-scrollbar {
-      max-height: 25rem;
-      overflow: auto;
-      -webkit-overflow-scrolling: touch;
-    }
-
-    .bds-demo-vertical-scrollbar::-webkit-scrollbar {
-      -webkit-appearance: none;
-      width: 7px;
-    }
-
-    .bds-demo-vertical-scrollbar::-webkit-scrollbar-thumb {
-      border-radius: 4px;
-      background-color: rgba(0, 0, 0, 0.25);
-      box-shadow: 0 0 1px rgba(255, 255, 255, 0.25);
-    }
-  </style>
-  <div class="bds-demo-vertical-scrollbar">
-    <bolt-accordion spacing="small" icon-valign="top" single>
-      {% for name in schema.properties.name.anyOf[0].enum %}
-        {% if 'pega-' in name %}
-          <bolt-accordion-item>
-            <div slot="trigger">
-              {% include '@bolt-components-headline/text.twig' with {
-                text: name,
-                icon: {
-                  name: name,
-                  position: 'before'
-                }
-              } only %}
-            </div>
-            <div>
-              <bolt-grid gutter="small" row-gutter="small">
-                <bolt-grid-item column-start="1" column-span="12 6@small">
-                  {% for size in schema.properties.size.enum %}
-                    {% include '@bolt-components-icon/icon.twig' with {
-                      name: name,
-                      size: size,
-                    } only %}
-                  {% endfor %}
-                </bolt-grid-item>
-                <bolt-grid-item column-start="1 7@small" column-span="12 6@small">
-                  {% for size in schema.properties.size.enum %}
-                    {% include '@bolt-components-icon/icon.twig' with {
-                      name: name,
-                      size: size,
-                      color: 'navy',
-                      background: 'circle',
-                    } only %}
-                  {% endfor %}
-                </bolt-grid-item>
-              </bolt-grid>
-            </div>
-          </bolt-accordion-item>
-        {% endif %}
-      {% endfor %}
-    </bolt-accordion>
-  </div>
+  <bolt-accordion spacing="small" icon-valign="top" single>
+    {% for name in schema.properties.name.anyOf[0].enum %}
+      {% if 'pega-' in name %}
+        <bolt-accordion-item>
+          <div slot="trigger">
+            {% include '@bolt-components-headline/text.twig' with {
+              text: name,
+              icon: {
+                name: name,
+                position: 'before'
+              }
+            } only %}
+          </div>
+          <div>
+            <bolt-grid gutter="small" row-gutter="small">
+              <bolt-grid-item column-start="1" column-span="12 6@small">
+                {% for size in schema.properties.size.enum %}
+                  {% include '@bolt-components-icon/icon.twig' with {
+                    name: name,
+                    size: size,
+                  } only %}
+                {% endfor %}
+              </bolt-grid-item>
+              <bolt-grid-item column-start="1 7@small" column-span="12 6@small">
+                {% for size in schema.properties.size.enum %}
+                  {% include '@bolt-components-icon/icon.twig' with {
+                    name: name,
+                    size: size,
+                    color: 'navy',
+                    background: 'circle',
+                  } only %}
+                {% endfor %}
+              </bolt-grid-item>
+            </bolt-grid>
+          </div>
+        </bolt-accordion-item>
+      {% endif %}
+    {% endfor %}
+  </bolt-accordion>
 {% endset %}
 
 {% set twig_markup %}
@@ -95,6 +75,7 @@
   description: description,
   notes: notes,
   demo: demo,
+  demo_vertical_scroll: true,
   twig_markup: twig_markup,
   html_markup: html_markup,
 } only %}
