@@ -31,7 +31,7 @@
   padding-left: var(--bolt-page-padding-x);
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2);
 
-  @at-root .c-bolt-navbar--spacing-none & {
+  @at-root .c-bolt-navbar--spacing-none #{&} {
     padding-top: 0;
     padding-bottom: 0;
   }
@@ -49,14 +49,14 @@
         $size-name !=
         'xxlarge'
     ) {
-      @at-root .c-bolt-navbar--spacing-#{$size-name} & {
+      @at-root .c-bolt-navbar--spacing-#{$size-name} #{&} {
         padding-top: var(--bolt-spacing-y-#{$size-name});
         padding-bottom: var(--bolt-spacing-y-#{$size-name});
       }
     }
   }
 
-  @at-root .c-bolt-navbar:not(.c-bolt-navbar--custom) & {
+  @at-root .c-bolt-navbar:not(.c-bolt-navbar--custom) #{&} {
     padding-right: calc(
       var(--bolt-page-padding-x) - var(--bolt-spacing-x-small)
     ); // Offsets item padding
@@ -69,36 +69,36 @@
     }
   }
 
-  @at-root .c-bolt-navbar:not(.c-bolt-navbar--center) & {
+  @at-root .c-bolt-navbar:not(.c-bolt-navbar--center) #{&} {
     > *:not(:last-child) {
       margin-right: var(--bolt-spacing-x-small);
     }
   }
 
-  @at-root .c-bolt-navbar--center & {
+  @at-root .c-bolt-navbar--center #{&} {
     @include bolt-mq(xsmall) {
       flex-wrap: wrap;
       justify-content: center;
     }
   }
 
-  @at-root .c-bolt-navbar--align-items-start & {
+  @at-root .c-bolt-navbar--align-items-start #{&} {
     justify-content: flex-start;
   }
 
-  @at-root .c-bolt-navbar--align-items-center & {
+  @at-root .c-bolt-navbar--align-items-center #{&} {
     justify-content: center;
   }
 
-  @at-root .c-bolt-navbar--align-items-end & {
+  @at-root .c-bolt-navbar--align-items-end #{&} {
     justify-content: flex-end;
   }
 
-  @at-root .c-bolt-navbar:not(.c-bolt-navbar--auto-width) & {
+  @at-root .c-bolt-navbar:not(.c-bolt-navbar--auto-width) #{&} {
     @include bolt-full-bleed;
   }
 
-  @at-root .c-bolt-navbar--auto-width & {
+  @at-root .c-bolt-navbar--auto-width #{&} {
     padding-right: var(--bolt-spacing-x-medium);
     padding-left: var(--bolt-spacing-x-medium);
 
@@ -108,12 +108,16 @@
     }
   }
 
-  @at-root .c-bolt-navbar--auto-width:not(.c-bolt-navbar--custom) & {
+  @at-root .c-bolt-navbar--auto-width:not(.c-bolt-navbar--custom) #{&} {
     @include bolt-mq(xsmall) {
       padding-right: calc(
         var(--bolt-spacing-x-medium) - var(--bolt-spacing-x-small)
       ); // Offsets item padding
     }
+  }
+
+  @at-root .c-bolt-navbar--custom #{&} {
+    display: block;
   }
 }
 
@@ -136,7 +140,7 @@
     margin-right: var(--bolt-spacing-x-small);
   }
 
-  @at-root .c-bolt-navbar--center & {
+  @at-root .c-bolt-navbar--center #{&} {
     @include bolt-mq(xsmall) {
       width: 100%;
     }
@@ -151,7 +155,7 @@
   align-self: center;
   white-space: nowrap;
 
-  @at-root .c-bolt-navbar--center & {
+  @at-root .c-bolt-navbar--center #{&} {
     @include bolt-mq(xsmall) {
       justify-content: center;
       align-items: center;
@@ -182,7 +186,7 @@ button.c-bolt-navbar__title-inner--link {
   flex-shrink: 0;
   margin: 0 var(--bolt-spacing-x-small) 0 0;
   line-height: 0; // fix vertical alignment of icon + title
-  @at-root .c-bolt-navbar--center & {
+  @at-root .c-bolt-navbar--center #{&} {
     @include bolt-mq(xsmall) {
       padding-top: var(--bolt-spacing-y-xsmall); // [1]
       padding-bottom: var(--bolt-spacing-y-xsmall); // [1]
@@ -199,7 +203,7 @@ button.c-bolt-navbar__title-inner--link {
   white-space: normal; // wrap to multiple lines if needed
 
   // Adjust the Navbar Title size when being stacked vertically
-  @at-root .c-bolt-navbar--center & {
+  @at-root .c-bolt-navbar--center #{&} {
     flex-wrap: nowrap; // fixes IE 11 flex-bug causing text to resist staying on one line and prematurely wraps to two-lines -- even if plenty of space is available
     padding-top: var(--bolt-spacing-y-xsmall); // [1]
     padding-bottom: var(--bolt-spacing-y-xsmall); // [1]
@@ -240,7 +244,7 @@ button.c-bolt-navbar__title-inner--link {
 
 // List
 .c-bolt-navbar__list-wrapper {
-  @at-root .c-bolt-navbar:not([data-bolt-ready]) & {
+  @at-root .c-bolt-navbar:not([data-bolt-ready]) #{&} {
     background-attachment: local, local, scroll, scroll;
     background-position: 0 0, 100% 0, 0 0, 100% 0;
     background-repeat: no-repeat;
@@ -256,7 +260,7 @@ button.c-bolt-navbar__title-inner--link {
   margin: 0;
 
   @include bolt-mq($until: xsmall) {
-    @at-root .c-bolt-navbar[data-bolt-ready] & {
+    @at-root .c-bolt-navbar[data-bolt-ready] #{&} {
       display: contents;
     }
   }
@@ -264,7 +268,7 @@ button.c-bolt-navbar__title-inner--link {
 
 .js-bolt-navbar__list-wrapper {
   @include bolt-mq($until: xsmall) {
-    @at-root .c-bolt-navbar[data-bolt-ready] & {
+    @at-root .c-bolt-navbar[data-bolt-ready] #{&} {
       display: contents;
     }
   }
@@ -293,7 +297,7 @@ button.c-bolt-navbar__title-inner--link {
       transition: none !important;
     }
 
-    @at-root .c-bolt-navbar--center & {
+    @at-root .c-bolt-navbar--center #{&} {
       // "center" option has smaller padding
       bottom: calc(var(--bolt-spacing-y-xsmall) * -1);
     }
@@ -317,7 +321,7 @@ button.c-bolt-navbar__title-inner--link {
       }
     }
 
-    @at-root .js-bolt-navbar-menu__dropdown & {
+    @at-root .js-bolt-navbar-menu__dropdown #{&} {
       top: 6px;
       bottom: 6px;
       width: 4px;
@@ -409,7 +413,7 @@ button.c-bolt-navbar__title-inner--link {
     outline: none;
   }
 
-  @at-root .c-bolt-navbar-item[data-bolt-current] & {
+  @at-root .c-bolt-navbar-item[data-bolt-current] #{&} {
     &:hover:before {
       animation: none;
     }

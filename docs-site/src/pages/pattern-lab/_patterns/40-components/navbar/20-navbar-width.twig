@@ -1,7 +1,3 @@
-{% set notes %}
-  The title can be turned into a link by passing link attributes.
-{% endset %}
-
 {% set demo %}
   {% set navbar_items %}
     {% include '@bolt-components-navbar/navbar-li.twig' with {
@@ -56,67 +52,25 @@
       content: 'This is the navbar title',
       icon: {
         name: 'marketing-gray'
-      },
-      link: {
-        attributes: {
-          href: 'https://pega.com'
-        },
-      },
+      }
     },
-    links: navbar_list
+    links: navbar_list,
+    width: 'auto',
   } only %}
 {% endset %}
 
 {% set twig_markup %}
 {% verbatim %}
-// Set up the navbar items
-{% set navbar_items %}
-  {% include '@bolt-components-navbar/navbar-li.twig' with {
-    link: {
-      content: 'Section 1',
-      attributes: {
-        href: '#section-1'
-      }
-    }
-  } only %} 
-  {% include '@bolt-components-navbar/navbar-li.twig' with {
-    link: {
-      content: 'Section 2',
-      attributes: {
-        href: '#section-2'
-      }
-    }
-  } only %}
-  ...
-{% endset %}
-{% set navbar_list %}
-  {% include '@bolt-components-navbar/navbar-ul.twig' with { 
-    content: navbar_items,
-  } only %}  
-{% endset %}
-
-// Pass the navbar items to the navbar template
 {% include '@bolt-components-navbar/navbar.twig' with {
-  title: {
-    content: 'This is the navbar title',
-    icon: {
-      name: 'marketing-gray'
-    },
-    link: {
-      attributes: {
-        href: 'https://pega.com'
-      },
-    },
-  },
-  links: navbar_list
+  width: 'auto',
+  ...
 } only %}
 {% endverbatim %}
 {% endset %}
 
 {% include '@utils/pattern-doc-page.twig' with {
-  title: 'Basic Navbar',
-  description: 'Navbar is a sticky container for secondary page navigation.',
-  notes: notes,
+  title: 'Auto Width',
+  description: 'By default the navbar takes up the full width of the viewport, but the width can be set to auto as well.',
   demo: demo,
   twig_markup: twig_markup,
 } only %}

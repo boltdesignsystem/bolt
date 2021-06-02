@@ -8,14 +8,6 @@
         href: '#section-1'
       }
     }
-  } only %} 
-  {% include '@bolt-components-navbar/navbar-li.twig' with {
-    link: {
-      content: 'Section 2',
-      attributes: {
-        href: '#section-2'
-      }
-    }
   } only %}
   ...
 {% endset %}
@@ -31,7 +23,12 @@
     content: 'This is the navbar title',
     icon: {
       name: 'marketing-gray'
-    }
+    },
+    link: {
+      attributes: {
+        href: 'https://pega.com'
+      },
+    },
   },
   links: navbar_list
 } only %}
