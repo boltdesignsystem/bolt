@@ -51,6 +51,15 @@ describe('Bolt Tabs', () => {
       ...fixtures.defaultData,
     });
 
+    await expect(results.ok).toBe(true);
+    await expect(results.html).toMatchSnapshot();
+  });
+
+  test('default with web component', async () => {
+    const results = await render('@bolt-components-tabs/tabs.twig', {
+      ...fixtures.defaultData,
+    });
+
     const { innerHTML, outerHTML } = await renderWC(
       componentSelector,
       results.html,
@@ -72,16 +81,8 @@ describe('Bolt Tabs Props', () => {
         align: option,
       });
 
-      const { innerHTML, outerHTML } = await renderWC(
-        componentSelector,
-        results.html,
-        page,
-      );
-
       await expect(results.ok).toBe(true);
       await expect(results.html).toMatchSnapshot();
-      await expect(innerHTML).toMatchSnapshot();
-      await expect(outerHTML).toMatchSnapshot();
     });
   });
 
@@ -93,16 +94,8 @@ describe('Bolt Tabs Props', () => {
         label_spacing: option,
       });
 
-      const { innerHTML, outerHTML } = await renderWC(
-        componentSelector,
-        results.html,
-        page,
-      );
-
       await expect(results.ok).toBe(true);
       await expect(results.html).toMatchSnapshot();
-      await expect(innerHTML).toMatchSnapshot();
-      await expect(outerHTML).toMatchSnapshot();
     });
   });
 
@@ -114,16 +107,8 @@ describe('Bolt Tabs Props', () => {
         panel_spacing: option,
       });
 
-      const { innerHTML, outerHTML } = await renderWC(
-        componentSelector,
-        results.html,
-        page,
-      );
-
       await expect(results.ok).toBe(true);
       await expect(results.html).toMatchSnapshot();
-      await expect(innerHTML).toMatchSnapshot();
-      await expect(outerHTML).toMatchSnapshot();
     });
   });
 
@@ -134,16 +119,8 @@ describe('Bolt Tabs Props', () => {
         inset: option,
       });
 
-      const { innerHTML, outerHTML } = await renderWC(
-        componentSelector,
-        results.html,
-        page,
-      );
-
       await expect(results.ok).toBe(true);
       await expect(results.html).toMatchSnapshot();
-      await expect(innerHTML).toMatchSnapshot();
-      await expect(outerHTML).toMatchSnapshot();
     });
   });
 
@@ -153,18 +130,27 @@ describe('Bolt Tabs Props', () => {
       selected_tab: 2,
     });
 
-    const { innerHTML, outerHTML } = await renderWC(
-      componentSelector,
-      results.html,
-      page,
-    );
+    await expect(results.ok).toBe(true);
+    await expect(results.html).toMatchSnapshot();
+  });
+
+  test('scrollOffsetSelector', async () => {
+    const results = await render('@bolt-components-tabs/tabs.twig', {
+      ...fixtures.defaultData,
+      scrollOffsetSelector: '.example-selector',
+    });
 
     await expect(results.ok).toBe(true);
     await expect(results.html).toMatchSnapshot();
-    await expect(innerHTML).toMatchSnapshot();
-    await expect(outerHTML).toMatchSnapshot();
   });
 
-  // @todo NEEDS scrollOffsetSelector test
-  // @todo NEEDS scrollOffset test
+  test('scrollOffset', async () => {
+    const results = await render('@bolt-components-tabs/tabs.twig', {
+      ...fixtures.defaultData,
+      scrollOffset: 100,
+    });
+
+    await expect(results.ok).toBe(true);
+    await expect(results.html).toMatchSnapshot();
+  });
 });

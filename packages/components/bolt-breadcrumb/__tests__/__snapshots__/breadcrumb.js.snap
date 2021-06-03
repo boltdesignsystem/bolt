@@ -50,8 +50,20 @@ exports[`Bolt Breadcrumb basic usage with contentItems including rendered compon
         </bolt-link>
       </li>
       <li class="c-bolt-breadcrumb__item">
-        Notice: Array to string conversion in /Users/cookc/dev/bolt/node_modules/@basalt/twig-renderer/vendor/twig/twig/src/Environment.php(497) : eval()'d code on line 79
-Array
+        <bolt-link aria-current
+                   url="#!"
+        >
+          <a href="#!"
+             target="_self"
+             class="c-bolt-link c-bolt-link--display-inline c-bolt-link--valign-center"
+          >
+            <ssr-keep for="bolt-link"
+                      class="c-bolt-link__text"
+            >
+              Fourth Page
+            </ssr-keep>
+          </a>
+        </bolt-link>
       </li>
     </ol>
   </nav>

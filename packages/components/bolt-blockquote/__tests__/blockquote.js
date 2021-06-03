@@ -46,6 +46,18 @@ describe('Bolt Blockquote', () => {
       },
     );
 
+    await expect(results.ok).toBe(true);
+    await expect(results.html).toMatchSnapshot();
+  });
+
+  test(`default with web component`, async () => {
+    const results = await render(
+      '@bolt-components-blockquote/blockquote.twig',
+      {
+        ...fixtures.defaultData,
+      },
+    );
+
     const { innerHTML, outerHTML } = await renderWC(
       componentSelector,
       results.html,
@@ -70,16 +82,8 @@ describe('Bolt Blockquote Props', () => {
         },
       );
 
-      const { innerHTML, outerHTML } = await renderWC(
-        componentSelector,
-        results.html,
-        page,
-      );
-
       await expect(results.ok).toBe(true);
       await expect(results.html).toMatchSnapshot();
-      await expect(innerHTML).toMatchSnapshot();
-      await expect(outerHTML).toMatchSnapshot();
     });
   });
 
@@ -93,16 +97,8 @@ describe('Bolt Blockquote Props', () => {
         },
       );
 
-      const { innerHTML, outerHTML } = await renderWC(
-        componentSelector,
-        results.html,
-        page,
-      );
-
       await expect(results.ok).toBe(true);
       await expect(results.html).toMatchSnapshot();
-      await expect(innerHTML).toMatchSnapshot();
-      await expect(outerHTML).toMatchSnapshot();
     });
   });
 
@@ -116,16 +112,8 @@ describe('Bolt Blockquote Props', () => {
         },
       );
 
-      const { innerHTML, outerHTML } = await renderWC(
-        componentSelector,
-        results.html,
-        page,
-      );
-
       await expect(results.ok).toBe(true);
       await expect(results.html).toMatchSnapshot();
-      await expect(innerHTML).toMatchSnapshot();
-      await expect(outerHTML).toMatchSnapshot();
     });
   });
 });
@@ -141,16 +129,8 @@ describe('Bolt Blockquote Language', () => {
         },
       );
 
-      const { innerHTML, outerHTML } = await renderWC(
-        componentSelector,
-        results.html,
-        page,
-      );
-
       await expect(results.ok).toBe(true);
       await expect(results.html).toMatchSnapshot();
-      await expect(innerHTML).toMatchSnapshot();
-      await expect(outerHTML).toMatchSnapshot();
     });
   });
 });

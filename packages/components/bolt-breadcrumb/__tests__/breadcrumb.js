@@ -30,10 +30,19 @@ beforeAll(async () => {
     url: '#!',
   });
 
+  const linkFour = await render('@bolt-components-link/link.twig', {
+    text: 'Fourth Page',
+    url: '#!',
+    attributes: {
+      'aria-current': true,
+    },
+  });
+
   fixtures = {
     linkOne,
     linkTwo,
     linkThree,
+    linkFour,
   };
 });
 
@@ -60,13 +69,6 @@ describe('Bolt Breadcrumb', () => {
   });
 
   test('basic usage with contentItems including rendered components and strings', async () => {
-    const linkFour = await render('@bolt-components-link/link.twig', {
-      text: 'Sub Page',
-      url: '#!',
-      attributes: {
-        'aria-current': true,
-      },
-    });
     const results = await render(
       '@bolt-components-breadcrumb/breadcrumb.twig',
       {
@@ -74,7 +76,7 @@ describe('Bolt Breadcrumb', () => {
           fixtures.linkOne.html,
           fixtures.linkTwo.html,
           fixtures.linkThree.html,
-          linkFour,
+          fixtures.linkFour.html,
         ],
       },
     );
