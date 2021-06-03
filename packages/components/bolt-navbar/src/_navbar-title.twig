@@ -25,12 +25,13 @@
 
 {% set _inner_classes = [
   'c-bolt-navbar__title-inner',
-  link  ? 'c-bolt-navbar__title-inner--link' : ''
+  link ? 'c-bolt-navbar__title-inner--link' : ''
 ] %}
 
 {% set _text_classes = [
   'c-bolt-navbar__title-text',
-  this.data.hide_title.value ? 'c-bolt-navbar__title-text--hide-' ~ this.data.hide_title.value : ''
+  this.data.hide_title.value ? 'c-bolt-navbar__title-text--hide-' ~ this.data.hide_title.value : '',
+  secondary_content ? 'c-bolt-navbar__title-text--no-min-width' : '',
 ] %}
 
 {% if uuid %}
@@ -39,21 +40,21 @@
 
 {% set navbar_title %}
   {% if icon %}
-    <div class="c-bolt-navbar__title-icon">
-      {% include "@bolt-components-icon/icon.twig" with {
+    <span class="c-bolt-navbar__title-icon">
+      {% include '@bolt-components-icon/icon.twig' with {
         name: icon.name,
-        size: "large"
+        size: 'large'
       } only %}
-    </div>
+    </span>
   {% endif %}
-  <{{ this.data.tag.value }} {{ _text_attributes.addClass(_text_classes) }}>
+  <span {{ _text_attributes.addClass(_text_classes) }}>
     {{ content|default('Go to'|t) }}
-  </{{ this.data.tag.value }}>
+  </span>
 {% endset %}
 
-<div {{ attributes.addClass(classes)}}>
+<{{ this.data.tag.value }} {{ attributes.addClass(classes)}}>
   <{{ _inner_tag}} {{ _inner_attributes.addClass(_inner_classes)}}>
     {{ navbar_title }}
   </{{ _inner_tag}}>
   {{ secondary_content }}
-</div>
+</{{ this.data.tag.value }}>

@@ -4,11 +4,17 @@
    Navbar
 \* ------------------------------------ */
 
-// Dev Notes
-// 1. Balances out space around title when title + links are stacked. Can't apply padding to container or there will be extra space when title is hidden.
-
 .c-bolt-navbar {
+  display: block;
   position: relative;
+
+  &:not(.c-bolt-navbar--static) {
+    position: sticky;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: bolt-z-index(nav); // prevents overflow menu from being covered up
+  }
 
   @media (prefers-reduced-motion) {
     *,
@@ -20,29 +26,52 @@
   }
 }
 
-.c-bolt-navbar--sticky {
-  position: sticky;
-  top: 0;
-  right: 0;
-  left: 0;
-  z-index: bolt-z-index(nav); // prevents overflow menu from being covered up
-}
-
 // Inner
 .c-bolt-navbar__inner {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  position: relative;
-  padding-top: var(--bolt-spacing-y-small);
+  display: block;
+  width: 100%;
+  padding-top: var(--c-bolt-navbar-padding-y, var(--bolt-spacing-y-small));
   padding-right: calc(var(--bolt-page-padding-x));
-  padding-bottom: var(--bolt-spacing-y-small);
+  padding-bottom: var(--c-bolt-navbar-padding-y, var(--bolt-spacing-y-small));
   padding-left: var(--bolt-page-padding-x);
+  color: inherit;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2);
+  background-color: inherit;
 
+  @at-root .c-bolt-navbar:not(.c-bolt-navbar--custom) #{&} {
+    display: flex;
+    align-items: center;
+    padding-right: calc(
+      var(--bolt-page-padding-x) - var(--bolt-spacing-x-small)
+    ); // Offsets item padding
+
+    @include bolt-mq($until: xsmall) {
+      display: grid;
+      padding: 0;
+      grid-template-columns: auto 1fr;
+      grid-template-rows: 1fr auto;
+    }
+  }
+
+  // Center alignment
+  @at-root .c-bolt-navbar:not(.c-bolt-navbar--center) #{&} {
+    justify-content: space-between;
+
+    > *:not(:last-child) {
+      margin-right: var(--bolt-spacing-x-small);
+    }
+  }
+
+  @at-root .c-bolt-navbar--center #{&} {
+    @include bolt-mq(xsmall) {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  }
+
+  // Spacing options
   @at-root .c-bolt-navbar--spacing-none #{&} {
-    padding-top: 0;
-    padding-bottom: 0;
+    --c-bolt-navbar-padding-y: 0;
   }
 
   @each $size in $bolt-spacing-multiplier-system {
@@ -59,50 +88,12 @@
         'xxlarge'
     ) {
       @at-root .c-bolt-navbar--spacing-#{$size-name} #{&} {
-        padding-top: var(--bolt-spacing-y-#{$size-name});
-        padding-bottom: var(--bolt-spacing-y-#{$size-name});
+        --c-bolt-navbar-padding-y: var(--bolt-spacing-y-#{$size-name});
       }
     }
   }
 
-  @at-root .c-bolt-navbar:not(.c-bolt-navbar--custom) #{&} {
-    padding-right: calc(
-      var(--bolt-page-padding-x) - var(--bolt-spacing-x-small)
-    ); // Offsets item padding
-
-    @include bolt-mq($until: xsmall) {
-      display: grid;
-      padding: 0;
-      grid-template-columns: auto 1fr;
-      grid-template-rows: 1fr auto;
-    }
-  }
-
-  @at-root .c-bolt-navbar:not(.c-bolt-navbar--center) #{&} {
-    > *:not(:last-child) {
-      margin-right: var(--bolt-spacing-x-small);
-    }
-  }
-
-  @at-root .c-bolt-navbar--center #{&} {
-    @include bolt-mq(xsmall) {
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-  }
-
-  @at-root .c-bolt-navbar--align-items-start #{&} {
-    justify-content: flex-start;
-  }
-
-  @at-root .c-bolt-navbar--align-items-center #{&} {
-    justify-content: center;
-  }
-
-  @at-root .c-bolt-navbar--align-items-end #{&} {
-    justify-content: flex-end;
-  }
-
+  // Width options
   @at-root .c-bolt-navbar:not(.c-bolt-navbar--auto-width) #{&} {
     @include bolt-full-bleed;
   }
@@ -124,15 +115,11 @@
       ); // Offsets item padding
     }
   }
-
-  @at-root .c-bolt-navbar--custom #{&} {
-    display: block;
-  }
 }
 
 // Title
 .c-bolt-navbar__title {
-  display: flex; // required for secondary_content
+  display: flex;
   color: var(--m-bolt-headline);
   white-space: nowrap;
 
@@ -175,18 +162,20 @@
 }
 
 .c-bolt-navbar__title-inner--link {
-  opacity: bolt-opacity(100);
   text-decoration: none;
-  transition: all var(--bolt-transition);
+  transition: text-decoration var(--bolt-transition);
 
-  &:hover {
-    opacity: $bolt-global-link-hover-opacity;
+  &:hover,
+  &:focus {
+    text-decoration: underline;
+    text-decoration-color: currentColor;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
   }
 }
 
 button.c-bolt-navbar__title-inner--link {
-  @include bolt-button-reset;
-  border: none;
+  @include bolt-button-native-styles-reset;
 }
 
 .c-bolt-navbar__title-icon {
@@ -195,25 +184,33 @@ button.c-bolt-navbar__title-inner--link {
   flex-shrink: 0;
   margin: 0 var(--bolt-spacing-x-small) 0 0;
   line-height: 0; // fix vertical alignment of icon + title
+
   @at-root .c-bolt-navbar--center #{&} {
     @include bolt-mq(xsmall) {
-      padding-top: var(--bolt-spacing-y-xsmall); // [1]
-      padding-bottom: var(--bolt-spacing-y-xsmall); // [1]
+      // Balances out space around title when title + links are stacked. Can't apply padding to container or there will be extra space when title is hidden.
+      padding-top: var(--bolt-spacing-y-xsmall);
+      padding-bottom: var(--bolt-spacing-y-xsmall);
     }
   }
 }
 
 .c-bolt-navbar__title-text {
   flex-flow: wrap;
+  min-width: 25vw;
   font-family: var(--bolt-type-font-family-headline);
   font-size: var(--bolt-type-font-size-medium);
   font-weight: var(--bolt-type-font-weight-semibold);
   line-height: var(--bolt-type-line-height-medium);
   white-space: normal; // wrap to multiple lines if needed
 
+  &--no-min-width {
+    min-width: auto;
+  }
+
   // Adjust the Navbar Title size when being stacked vertically
   @at-root .c-bolt-navbar--center #{&} {
     flex-wrap: nowrap; // fixes IE 11 flex-bug causing text to resist staying on one line and prematurely wraps to two-lines -- even if plenty of space is available
+    min-width: auto;
     padding-top: var(--bolt-spacing-y-xsmall); // [1]
     padding-bottom: var(--bolt-spacing-y-xsmall); // [1]
     font-family: var(--bolt-type-font-family-headline);
@@ -295,17 +292,13 @@ button.c-bolt-navbar__title-inner--link {
     display: block;
     opacity: bolt-opacity(0);
     position: absolute;
-    bottom: calc(var(--bolt-spacing-y-small) * -1);
+    bottom: calc(var(--c-bolt-navbar-padding-y) * -1);
     left: 0;
     width: 100%;
     height: 4px;
     background-color: var(--m-bolt-primary);
-    transition: all $bolt-transition-timing / 2 ease, opacity 0.35s ease-out;
-
-    @at-root .c-bolt-navbar--center #{&} {
-      // "center" option has smaller padding
-      bottom: calc(var(--bolt-spacing-y-xsmall) * -1);
-    }
+    transition: opacity calc(var(--bolt-transition-timing) * 2)
+      var(--bolt-transition-ease);
 
     @each $size in $bolt-spacing-multiplier-system {
       $size-name: nth($size, 1);
@@ -357,14 +350,10 @@ button.c-bolt-navbar__title-inner--link {
   color: var(--m-bolt-link);
   line-height: var(--bolt-type-line-height-small);
   text-decoration: none;
-  border-radius: $bolt-border-radius;
-  // Added so that &:focus:not(:active) doesn't change the size of the band
-  // @todo: we should consider making &:focus:not(:active) with thin dotted style a mixin
-  // to share with nav-priority
+  border-radius: bolt-border-radius(small);
   border-width: thin;
   border-style: dotted;
   border-color: transparent;
-  transition: all $bolt-transition;
 
   @include bolt-ms-edge-42-only {
     padding-top: var(--bolt-spacing-y-xsmall);
@@ -383,10 +372,10 @@ button.c-bolt-navbar__title-inner--link {
     transform: scale3d(0, 0, 0);
     width: 100%;
     height: 100%;
-    border-radius: $bolt-border-radius;
+    border-radius: bolt-border-radius(small);
     background-color: currentColor;
     will-change: transform;
-    transition: opacity 0.1s ease, transform 0.1s ease;
+    transition: opacity var(--bolt-transition), transform var(--bolt-transition);
   }
 
   &:active {
@@ -400,7 +389,8 @@ button.c-bolt-navbar__title-inner--link {
   }
 
   &:hover:before {
-    animation: a-bolt-navbar-item-bg-hover $bolt-transition-timing * 4 both;
+    animation: a-bolt-navbar-item-bg-hover
+      calc(var(--bolt-transition-timing) * 5) both;
 
     @media (prefers-reduced-motion) {
       transform: scale3d(1, 1, 1);

@@ -7,21 +7,16 @@
 {% set this = init(schema) %}
 {% set uuid = this.data.uuid|default(bolt.data.config.env == 'test' ? '12345' : random() ~ '') %}
 {% set attributes = create_attribute(attributes|default({})) %}
-{% set inner_attributes = create_attribute({}) %}
 
 {# Array of classes based on the defined + default props #}
 {% set classes = [
   'c-bolt-navbar',
-  this.data.static.value ? 'c-bolt-navbar--static' : 'c-bolt-navbar--sticky',
+  this.data.static.value ? 'c-bolt-navbar--static' : '',
   this.data.width.value == 'auto' ? 'c-bolt-navbar--auto-width',
   this.data.center.value ? 'c-bolt-navbar--center' : '',
   this.data.spacing.value ? 'c-bolt-navbar--spacing-' ~ this.data.spacing.value : '',
+  this.data.theme.value and this.data.theme.value != 'none' ? 't-bolt-' ~ this.data.theme.value : '',
   content ? 'c-bolt-navbar--custom' : ''
-] %}
-
-{% set inner_classes = [
-  'c-bolt-navbar__inner',
-  this.data.theme.value and this.data.theme.value != 'none' ? 't-bolt-' ~ this.data.theme.value : ''
 ] %}
 
 {% for class in this.props.class %}
@@ -50,7 +45,7 @@
 {% endif %}
 
 <nav {{ attributes.addClass(classes) }}>
-  <div {{ inner_attributes.addClass(inner_classes) }}>
+  <div class="c-bolt-navbar__inner">
     {% if content %}
       {{ content }}
     {% else %}

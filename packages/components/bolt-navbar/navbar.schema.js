@@ -16,8 +16,8 @@ module.exports = {
         },
         tag: {
           type: 'string',
-          default: 'h2',
-          enum: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'],
+          default: 'div',
+          enum: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'div'],
         },
         icon: {
           type: 'object',
@@ -62,17 +62,11 @@ module.exports = {
       description:
         'Custom navbar content. Content provided here will replace title and links.',
     },
-    theme: {
+    spacing: {
       type: 'string',
-      description:
-        "Color theme. Can be set to 'none' for a transparent background.",
-      default: 'dark',
-      enum: ['xlight', 'light', 'dark', 'xdark', 'none'],
-    },
-    center: {
-      type: 'boolean',
-      description:
-        'Determines if you want the Navbar content to be center aligned or not',
+      description: 'Controls the inset spacing of the navbar',
+      enum: ['none', 'xsmall', 'small', 'medium'],
+      default: 'small',
     },
     width: {
       type: 'string',
@@ -81,15 +75,28 @@ module.exports = {
       enum: ['full', 'auto'],
       default: 'full',
     },
-    offset: {
-      type: 'integer',
+    center: {
+      type: 'boolean',
+      default: false,
       description:
-        'Number of pixels taken up by sticky items at the top of the page, used for smooth scroll.',
+        'Determines if you want the Navbar content to be center aligned or not',
     },
     static: {
       type: 'boolean',
       default: false,
       description: 'Set the navbar to be static instead of sticky.',
+    },
+    theme: {
+      type: 'string',
+      description:
+        "Color theme. Can be set to 'none' for a transparent background.",
+      default: 'dark',
+      enum: ['xlight', 'light', 'dark', 'xdark', 'none'],
+    },
+    offset: {
+      type: 'integer',
+      description:
+        'Number of pixels taken up by sticky items at the top of the page, used for smooth scroll.',
     },
     scroll_offset_selector: {
       type: 'string',
@@ -100,12 +107,6 @@ module.exports = {
       type: 'integer',
       description:
         'Additional offset for navbar and smooth scrolling, integer converted to pixel value.',
-    },
-    spacing: {
-      type: 'string',
-      description: 'Controls the inset spacing of the navbar',
-      enum: ['none', 'xsmall', 'small', 'medium'],
-      default: 'small',
     },
     uuid: {
       type: 'string',
