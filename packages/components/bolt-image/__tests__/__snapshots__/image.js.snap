@@ -1,6 +1,178 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<bolt-image> Component <bolt-image> should always render alt attribute on <img> tags 1`] = `
+exports[`Bolt Image Image default 1`] = `
+<bolt-image ratio="1200/660"
+            placeholder-color="hsl(233, 33%, 97%)"
+            placeholder-image="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+            style="background-color: hsl(233, 33%, 97%);"
+            src="/fixtures/1200x660.jpg"
+            alt="A Rock Climber"
+            srcset="/fixtures/1200x660-50.jpg 50w, /fixtures/1200x660-100.jpg 100w, /fixtures/1200x660-200.jpg 200w, /fixtures/1200x660-320.jpg 320w, /fixtures/1200x660-480.jpg 480w, /fixtures/1200x660-640.jpg 640w, /fixtures/1200x660-800.jpg 800w, /fixtures/1200x660-1024.jpg 1024w, /fixtures/1200x660.jpg 1200w"
+>
+  <bolt-ratio ratio="20/11">
+    <ssr-keep for="bolt-ratio"
+              class="c-bolt-ratio"
+              style="padding-bottom: calc((11 / 20) * 100%); --aspect-ratio: 1.8181818181818;"
+    >
+      <img class="c-bolt-image__image-placeholder"
+           alt="A Rock Climber"
+           src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+      >
+      <img class="c-bolt-image__image c-bolt-image__lazyload c-bolt-image__lazyload--fade c-bolt-image__lazyload--blur js-lazyload"
+           alt="A Rock Climber"
+           data-srcset="/fixtures/1200x660-50.jpg 50w, /fixtures/1200x660-100.jpg 100w, /fixtures/1200x660-200.jpg 200w, /fixtures/1200x660-320.jpg 320w, /fixtures/1200x660-480.jpg 480w, /fixtures/1200x660-640.jpg 640w, /fixtures/1200x660-800.jpg 800w, /fixtures/1200x660-1024.jpg 1024w, /fixtures/1200x660.jpg 1200w"
+           data-sizes="auto"
+           srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+           src="/fixtures/1200x660.jpg"
+      >
+      <noscript>
+        <img class="c-bolt-image__image"
+             alt="A Rock Climber"
+             src="/fixtures/1200x660.jpg"
+             srcset="/fixtures/1200x660-50.jpg 50w, /fixtures/1200x660-100.jpg 100w, /fixtures/1200x660-200.jpg 200w, /fixtures/1200x660-320.jpg 320w, /fixtures/1200x660-480.jpg 480w, /fixtures/1200x660-640.jpg 640w, /fixtures/1200x660-800.jpg 800w, /fixtures/1200x660-1024.jpg 1024w, /fixtures/1200x660.jpg 1200w"
+        >
+      </noscript>
+    </ssr-keep>
+  </bolt-ratio>
+</bolt-image>
+`;
+
+exports[`Bolt Image Image default with web component 1`] = `
+<bolt-image ratio="1200/660"
+            placeholder-color="hsl(233, 33%, 97%)"
+            placeholder-image="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+            style="background-color: hsl(233, 33%, 97%);"
+            src="/fixtures/1200x660.jpg"
+            alt="A Rock Climber"
+            srcset="/fixtures/1200x660-50.jpg 50w, /fixtures/1200x660-100.jpg 100w, /fixtures/1200x660-200.jpg 200w, /fixtures/1200x660-320.jpg 320w, /fixtures/1200x660-480.jpg 480w, /fixtures/1200x660-640.jpg 640w, /fixtures/1200x660-800.jpg 800w, /fixtures/1200x660-1024.jpg 1024w, /fixtures/1200x660.jpg 1200w"
+>
+  <bolt-ratio ratio="20/11">
+    <ssr-keep for="bolt-ratio"
+              class="c-bolt-ratio"
+              style="padding-bottom: calc((11 / 20) * 100%); --aspect-ratio: 1.8181818181818;"
+    >
+      <img class="c-bolt-image__image-placeholder"
+           alt="A Rock Climber"
+           src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+      >
+      <img class="c-bolt-image__image c-bolt-image__lazyload c-bolt-image__lazyload--fade c-bolt-image__lazyload--blur js-lazyload"
+           alt="A Rock Climber"
+           data-srcset="/fixtures/1200x660-50.jpg 50w, /fixtures/1200x660-100.jpg 100w, /fixtures/1200x660-200.jpg 200w, /fixtures/1200x660-320.jpg 320w, /fixtures/1200x660-480.jpg 480w, /fixtures/1200x660-640.jpg 640w, /fixtures/1200x660-800.jpg 800w, /fixtures/1200x660-1024.jpg 1024w, /fixtures/1200x660.jpg 1200w"
+           data-sizes="auto"
+           srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+           src="/fixtures/1200x660.jpg"
+      >
+      <noscript>
+        <img class="c-bolt-image__image"
+             alt="A Rock Climber"
+             src="/fixtures/1200x660.jpg"
+             srcset="/fixtures/1200x660-50.jpg 50w, /fixtures/1200x660-100.jpg 100w, /fixtures/1200x660-200.jpg 200w, /fixtures/1200x660-320.jpg 320w, /fixtures/1200x660-480.jpg 480w, /fixtures/1200x660-640.jpg 640w, /fixtures/1200x660-800.jpg 800w, /fixtures/1200x660-1024.jpg 1024w, /fixtures/1200x660.jpg 1200w"
+        >
+      </noscript>
+    </ssr-keep>
+  </bolt-ratio>
+</bolt-image>
+`;
+
+exports[`Bolt Image Image default with web component 2`] = `
+<bolt-ratio ratio="1200/660">
+  <img class="c-bolt-image__image-placeholder"
+       src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+       alt="A Rock Climber"
+  >
+  <img class="c-bolt-image__image c-bolt-image__lazyload c-bolt-image__lazyload--fade c-bolt-image__lazyload--blur lazyautosizes is-lazyloaded ls-is-cached "
+       src="/fixtures/1200x660.jpg"
+       alt="A Rock Climber"
+       srcset="/fixtures/1200x660-50.jpg 50w, /fixtures/1200x660-100.jpg 100w, /fixtures/1200x660-200.jpg 200w, /fixtures/1200x660-320.jpg 320w, /fixtures/1200x660-480.jpg 480w, /fixtures/1200x660-640.jpg 640w, /fixtures/1200x660-800.jpg 800w, /fixtures/1200x660-1024.jpg 1024w, /fixtures/1200x660.jpg 1200w"
+       data-srcset="/fixtures/1200x660-50.jpg 50w, /fixtures/1200x660-100.jpg 100w, /fixtures/1200x660-200.jpg 200w, /fixtures/1200x660-320.jpg 320w, /fixtures/1200x660-480.jpg 480w, /fixtures/1200x660-640.jpg 640w, /fixtures/1200x660-800.jpg 800w, /fixtures/1200x660-1024.jpg 1024w, /fixtures/1200x660.jpg 1200w"
+       sizes="800px"
+       data-sizes="auto"
+       style="object-position: center center;"
+  >
+</bolt-ratio>
+`;
+
+exports[`Bolt Image Image default with web component 3`] = `
+<bolt-image ratio="1200/660"
+            placeholder-color="hsl(233, 33%, 97%)"
+            placeholder-image="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+            style="background-color: hsl(233, 33%, 97%);"
+            src="/fixtures/1200x660.jpg"
+            alt="A Rock Climber"
+            srcset="/fixtures/1200x660-50.jpg 50w, /fixtures/1200x660-100.jpg 100w, /fixtures/1200x660-200.jpg 200w, /fixtures/1200x660-320.jpg 320w, /fixtures/1200x660-480.jpg 480w, /fixtures/1200x660-640.jpg 640w, /fixtures/1200x660-800.jpg 800w, /fixtures/1200x660-1024.jpg 1024w, /fixtures/1200x660.jpg 1200w"
+>
+</bolt-image>
+`;
+
+exports[`Bolt Image Props Image ratio object and lazyload:false compiles 1`] = `
+<bolt-image no-lazy
+            ratio="1200/660"
+            placeholder-color="hsl(233, 33%, 97%)"
+            placeholder-image="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+            style="background-color: hsl(233, 33%, 97%);"
+            src="/fixtures/1200x660.jpg"
+            alt="A Rock Climber"
+            srcset="/fixtures/1200x660-50.jpg 50w, /fixtures/1200x660-100.jpg 100w, /fixtures/1200x660-200.jpg 200w, /fixtures/1200x660-320.jpg 320w, /fixtures/1200x660-480.jpg 480w, /fixtures/1200x660-640.jpg 640w, /fixtures/1200x660-800.jpg 800w, /fixtures/1200x660-1024.jpg 1024w, /fixtures/1200x660.jpg 1200w"
+>
+  <bolt-ratio ratio="20/11">
+    <ssr-keep for="bolt-ratio"
+              class="c-bolt-ratio"
+              style="padding-bottom: calc((11 / 20) * 100%); --aspect-ratio: 1.8181818181818;"
+    >
+      <img class="c-bolt-image__image-placeholder"
+           alt="A Rock Climber"
+           sizes="auto"
+           src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+      >
+      <img class="c-bolt-image__image"
+           alt="A Rock Climber"
+           srcset="/fixtures/1200x660-50.jpg 50w, /fixtures/1200x660-100.jpg 100w, /fixtures/1200x660-200.jpg 200w, /fixtures/1200x660-320.jpg 320w, /fixtures/1200x660-480.jpg 480w, /fixtures/1200x660-640.jpg 640w, /fixtures/1200x660-800.jpg 800w, /fixtures/1200x660-1024.jpg 1024w, /fixtures/1200x660.jpg 1200w"
+           sizes="auto"
+           src="/fixtures/1200x660.jpg"
+      >
+    </ssr-keep>
+  </bolt-ratio>
+</bolt-image>
+`;
+
+exports[`Bolt Image Props Image ratio object and lazyload:true compiles 1`] = `
+<bolt-image ratio="1200/660"
+            placeholder-color="hsl(233, 33%, 97%)"
+            placeholder-image="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+            style="background-color: hsl(233, 33%, 97%);"
+            src="/fixtures/1200x660.jpg"
+            alt="A Rock Climber"
+            srcset="/fixtures/1200x660-50.jpg 50w, /fixtures/1200x660-100.jpg 100w, /fixtures/1200x660-200.jpg 200w, /fixtures/1200x660-320.jpg 320w, /fixtures/1200x660-480.jpg 480w, /fixtures/1200x660-640.jpg 640w, /fixtures/1200x660-800.jpg 800w, /fixtures/1200x660-1024.jpg 1024w, /fixtures/1200x660.jpg 1200w"
+>
+  <bolt-ratio ratio="20/11">
+    <ssr-keep for="bolt-ratio"
+              class="c-bolt-ratio"
+              style="padding-bottom: calc((11 / 20) * 100%); --aspect-ratio: 1.8181818181818;"
+    >
+      <img class="c-bolt-image__image-placeholder"
+           alt="A Rock Climber"
+           src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+      >
+      <img class="c-bolt-image__image c-bolt-image__lazyload c-bolt-image__lazyload--fade c-bolt-image__lazyload--blur js-lazyload"
+           alt="A Rock Climber"
+           data-srcset="/fixtures/1200x660-50.jpg 50w, /fixtures/1200x660-100.jpg 100w, /fixtures/1200x660-200.jpg 200w, /fixtures/1200x660-320.jpg 320w, /fixtures/1200x660-480.jpg 480w, /fixtures/1200x660-640.jpg 640w, /fixtures/1200x660-800.jpg 800w, /fixtures/1200x660-1024.jpg 1024w, /fixtures/1200x660.jpg 1200w"
+           data-sizes="auto"
+           srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+           src="/fixtures/1200x660.jpg"
+      >
+      <noscript>
+        <img class="c-bolt-image__image"
+             alt="A Rock Climber"
+             src="/fixtures/1200x660.jpg"
+             srcset="/fixtures/1200x660-50.jpg 50w, /fixtures/1200x660-100.jpg 100w, /fixtures/1200x660-200.jpg 200w, /fixtures/1200x660-320.jpg 320w, /fixtures/1200x660-480.jpg 480w, /fixtures/1200x660-640.jpg 640w, /fixtures/1200x660-800.jpg 800w, /fixtures/1200x660-1024.jpg 1024w, /fixtures/1200x660.jpg 1200w"
+        >
+      </noscript>
+    </ssr-keep>
+  </bolt-ratio>
+</bolt-image>
+`;
+
+exports[`Bolt Image Props Image should always render alt attribute on <img> tags 1`] = `
 <bolt-image ratio="1200/660"
             placeholder-color="hsl(233, 33%, 97%)"
             placeholder-image="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
@@ -37,7 +209,7 @@ exports[`<bolt-image> Component <bolt-image> should always render alt attribute 
 </bolt-image>
 `;
 
-exports[`<bolt-image> Component <bolt-image> should always render alt attribute on <img> tags 2`] = `
+exports[`Bolt Image Props Image should always render alt attribute on <img> tags 2`] = `
 <bolt-image ratio="1200/660"
             placeholder-color="hsl(233, 33%, 97%)"
             placeholder-image="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
@@ -73,7 +245,7 @@ exports[`<bolt-image> Component <bolt-image> should always render alt attribute 
 </bolt-image>
 `;
 
-exports[`<bolt-image> Component <bolt-image> with max-width and additional style attribute renders as expected 1`] = `
+exports[`Bolt Image Props Image with max-width and additional style attribute renders as expected 1`] = `
 <bolt-image ratio="1200/660"
             placeholder-color="hsl(233, 33%, 97%)"
             placeholder-image="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
@@ -111,7 +283,7 @@ exports[`<bolt-image> Component <bolt-image> with max-width and additional style
 </bolt-image>
 `;
 
-exports[`<bolt-image> Component <bolt-image> with max-width of 50% renders as expected 1`] = `
+exports[`Bolt Image Props Image with max-width of 50% renders as expected 1`] = `
 <bolt-image ratio="1200/660"
             placeholder-color="hsl(233, 33%, 97%)"
             placeholder-image="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
@@ -149,7 +321,7 @@ exports[`<bolt-image> Component <bolt-image> with max-width of 50% renders as ex
 </bolt-image>
 `;
 
-exports[`<bolt-image> Component <bolt-image> with max-width of 200px renders as expected 1`] = `
+exports[`Bolt Image Props Image with max-width of 200px renders as expected 1`] = `
 <bolt-image ratio="1200/660"
             placeholder-color="hsl(233, 33%, 97%)"
             placeholder-image="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
@@ -158,74 +330,6 @@ exports[`<bolt-image> Component <bolt-image> with max-width of 200px renders as 
             alt="A Rock Climber"
             srcset="/fixtures/1200x660-50.jpg 50w, /fixtures/1200x660-100.jpg 100w, /fixtures/1200x660-200.jpg 200w, /fixtures/1200x660-320.jpg 320w, /fixtures/1200x660-480.jpg 480w, /fixtures/1200x660-640.jpg 640w, /fixtures/1200x660-800.jpg 800w, /fixtures/1200x660-1024.jpg 1024w, /fixtures/1200x660.jpg 1200w"
             max-width="200px"
->
-  <bolt-ratio ratio="20/11">
-    <ssr-keep for="bolt-ratio"
-              class="c-bolt-ratio"
-              style="padding-bottom: calc((11 / 20) * 100%); --aspect-ratio: 1.8181818181818;"
-    >
-      <img class="c-bolt-image__image-placeholder"
-           alt="A Rock Climber"
-           src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-      >
-      <img class="c-bolt-image__image c-bolt-image__lazyload c-bolt-image__lazyload--fade c-bolt-image__lazyload--blur js-lazyload"
-           alt="A Rock Climber"
-           data-srcset="/fixtures/1200x660-50.jpg 50w, /fixtures/1200x660-100.jpg 100w, /fixtures/1200x660-200.jpg 200w, /fixtures/1200x660-320.jpg 320w, /fixtures/1200x660-480.jpg 480w, /fixtures/1200x660-640.jpg 640w, /fixtures/1200x660-800.jpg 800w, /fixtures/1200x660-1024.jpg 1024w, /fixtures/1200x660.jpg 1200w"
-           data-sizes="auto"
-           srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-           src="/fixtures/1200x660.jpg"
-      >
-      <noscript>
-        <img class="c-bolt-image__image"
-             alt="A Rock Climber"
-             src="/fixtures/1200x660.jpg"
-             srcset="/fixtures/1200x660-50.jpg 50w, /fixtures/1200x660-100.jpg 100w, /fixtures/1200x660-200.jpg 200w, /fixtures/1200x660-320.jpg 320w, /fixtures/1200x660-480.jpg 480w, /fixtures/1200x660-640.jpg 640w, /fixtures/1200x660-800.jpg 800w, /fixtures/1200x660-1024.jpg 1024w, /fixtures/1200x660.jpg 1200w"
-        >
-      </noscript>
-    </ssr-keep>
-  </bolt-ratio>
-</bolt-image>
-`;
-
-exports[`<bolt-image> Component <bolt-image> with ratio object and lazyloading disabled compiles 1`] = `
-<bolt-image no-lazy
-            ratio="1200/660"
-            placeholder-color="hsl(233, 33%, 97%)"
-            placeholder-image="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-            style="background-color: hsl(233, 33%, 97%);"
-            src="/fixtures/1200x660.jpg"
-            alt="A Rock Climber"
-            srcset="/fixtures/1200x660-50.jpg 50w, /fixtures/1200x660-100.jpg 100w, /fixtures/1200x660-200.jpg 200w, /fixtures/1200x660-320.jpg 320w, /fixtures/1200x660-480.jpg 480w, /fixtures/1200x660-640.jpg 640w, /fixtures/1200x660-800.jpg 800w, /fixtures/1200x660-1024.jpg 1024w, /fixtures/1200x660.jpg 1200w"
->
-  <bolt-ratio ratio="20/11">
-    <ssr-keep for="bolt-ratio"
-              class="c-bolt-ratio"
-              style="padding-bottom: calc((11 / 20) * 100%); --aspect-ratio: 1.8181818181818;"
-    >
-      <img class="c-bolt-image__image-placeholder"
-           alt="A Rock Climber"
-           sizes="auto"
-           src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-      >
-      <img class="c-bolt-image__image"
-           alt="A Rock Climber"
-           srcset="/fixtures/1200x660-50.jpg 50w, /fixtures/1200x660-100.jpg 100w, /fixtures/1200x660-200.jpg 200w, /fixtures/1200x660-320.jpg 320w, /fixtures/1200x660-480.jpg 480w, /fixtures/1200x660-640.jpg 640w, /fixtures/1200x660-800.jpg 800w, /fixtures/1200x660-1024.jpg 1024w, /fixtures/1200x660.jpg 1200w"
-           sizes="auto"
-           src="/fixtures/1200x660.jpg"
-      >
-    </ssr-keep>
-  </bolt-ratio>
-</bolt-image>
-`;
-
-exports[`<bolt-image> Component <bolt-image> with ratio object compiles 1`] = `
-<bolt-image ratio="1200/660"
-            placeholder-color="hsl(233, 33%, 97%)"
-            placeholder-image="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-            style="background-color: hsl(233, 33%, 97%);"
-            src="/fixtures/1200x660.jpg"
-            alt="A Rock Climber"
-            srcset="/fixtures/1200x660-50.jpg 50w, /fixtures/1200x660-100.jpg 100w, /fixtures/1200x660-200.jpg 200w, /fixtures/1200x660-320.jpg 320w, /fixtures/1200x660-480.jpg 480w, /fixtures/1200x660-640.jpg 640w, /fixtures/1200x660-800.jpg 800w, /fixtures/1200x660-1024.jpg 1024w, /fixtures/1200x660.jpg 1200w"
 >
   <bolt-ratio ratio="20/11">
     <ssr-keep for="bolt-ratio"
