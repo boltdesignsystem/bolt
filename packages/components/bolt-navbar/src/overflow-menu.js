@@ -10,7 +10,7 @@ export class BoltOverflowMenu {
     this.options = {
       items: [],
       container: null,
-      baseClass: 'js-bolt-overflow-menu',
+      baseClass: 'c-bolt-overflow-menu',
       moreText: 'More',
       ...options,
     };

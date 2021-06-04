@@ -184,7 +184,7 @@ export class BoltNavbar {
     this.overflowMenu = new BoltOverflowMenu(menu, {
       items: [...this.navbarItems],
       container: this.el.querySelector('.js-bolt-navbar__list-wrapper'),
-      baseClass: 'js-bolt-navbar-menu',
+      baseClass: 'c-bolt-navbar-menu',
       moreText: this.el.dataset.boltMoreText,
     });
   }

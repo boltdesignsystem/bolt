@@ -259,11 +259,6 @@ button.c-bolt-navbar__title-inner--link {
     overflow-x: auto;
     overflow-y: hidden; // active item pseudo element will cause vertical scrollbars
   }
-}
-
-.c-bolt-navbar__list {
-  display: flex;
-  margin: 0;
 
   @include bolt-mq($until: xsmall) {
     @at-root .c-bolt-navbar[data-bolt-ready] #{&} {
@@ -272,7 +267,10 @@ button.c-bolt-navbar__title-inner--link {
   }
 }
 
-.js-bolt-navbar__list-wrapper {
+.c-bolt-navbar__list {
+  display: flex;
+  margin: 0;
+
   @include bolt-mq($until: xsmall) {
     @at-root .c-bolt-navbar[data-bolt-ready] #{&} {
       display: contents;
@@ -319,7 +317,7 @@ button.c-bolt-navbar__title-inner--link {
       }
     }
 
-    @at-root .js-bolt-navbar-menu__dropdown #{&} {
+    @at-root .c-bolt-navbar-menu__dropdown #{&} {
       top: 6px;
       bottom: 6px;
       width: 4px;

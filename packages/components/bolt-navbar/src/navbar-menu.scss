@@ -4,7 +4,7 @@
    Navbar Menu
 \* ------------------------------------ */
 
-.js-bolt-navbar-menu {
+.c-bolt-navbar-menu {
   display: flex;
   flex-shrink: 0;
   position: relative;
@@ -14,7 +14,7 @@
   }
 }
 
-.js-bolt-navbar-menu__button {
+.c-bolt-navbar-menu__button {
   @include bolt-button-reset;
   display: block;
   position: relative;
@@ -73,14 +73,14 @@
     outline: none;
   }
 
-  @at-root .js-bolt-navbar-menu--is-open & {
+  @at-root .c-bolt-navbar-menu--is-open & {
     &:before {
       opacity: 0.1;
     }
   }
 }
 
-.js-bolt-navbar-menu__button-text {
+.c-bolt-navbar-menu__button-text {
   position: relative;
   // z-index: 10; // @todo
   font-family: var(--bolt-type-font-family-body);
@@ -93,7 +93,7 @@
   }
 }
 
-.js-bolt-navbar-menu__button-icon {
+.c-bolt-navbar-menu__button-icon {
   display: inline-block;
   position: relative;
   // z-index: 10; // @todo
@@ -109,12 +109,12 @@
     font-size: 24px;
   }
 
-  @at-root .js-bolt-navbar-menu--is-open & {
+  @at-root .c-bolt-navbar-menu--is-open & {
     transform: rotate(180deg);
   }
 }
 
-.js-bolt-navbar-menu__dropdown {
+.c-bolt-navbar-menu__dropdown {
   @include bolt-z-index(tooltip);
   opacity: bolt-opacity(0);
   position: absolute;
@@ -167,13 +167,13 @@
     white-space: normal;
   }
 
-  @at-root .js-bolt-navbar-menu--is-open & {
+  @at-root .c-bolt-navbar-menu--is-open & {
     opacity: bolt-opacity(100);
     pointer-events: auto;
   }
 }
 
-.js-bolt-navbar-menu__dropdown-inner {
+.c-bolt-navbar-menu__dropdown-inner {
   width: 100%;
   overflow: hidden;
   margin: 0;
