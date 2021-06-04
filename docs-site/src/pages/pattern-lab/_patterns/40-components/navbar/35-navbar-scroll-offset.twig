@@ -5,7 +5,8 @@
 {% set twig_markup %}
 {% verbatim %}
 {% include '@bolt-components-navbar/navbar.twig' with {
-  scroll_offset_selector: '.js-sticky-target', // Target the other sticky element on the same page.
+  scroll_offset_selector: '#js-target-another-sticky', // Target the other sticky element on the same page.
+  scroll_offset: 16, // Adds a specific pixel value to the smooth scroll position of each section of the page.
   ...
 } only %}
 {% endverbatim %}
