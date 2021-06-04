@@ -28,7 +28,14 @@ module.exports = {
   description: 'Text link.',
   type: 'object',
   not: {
-    required: ['href'],
+    anyOf: [
+      {
+        required: ['href'],
+      },
+      {
+        required: ['isHeadline'],
+      },
+    ],
   },
   properties: {
     attributes: {
