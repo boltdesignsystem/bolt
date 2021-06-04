@@ -59,7 +59,7 @@ export class BoltNavbar {
       scrollOffsetElementsHeight += el.offsetHeight;
     });
 
-    return scrollOffsetElementsHeight + (this.scrollOffset || 0);
+    return scrollOffsetElementsHeight;
   }
 
   init() {
@@ -77,7 +77,7 @@ export class BoltNavbar {
       selectors.push(scrollOffsetSelector);
     }
     this.scrollOffsetElements = document.querySelectorAll(selectors.join(','));
-    this.scrollOffset = parseInt(this.el.dataset.boltScrollOffset);
+    this.scrollOffset = parseInt(this.el.dataset.boltScrollOffset) || 0;
     this.static = this.el.hasAttribute('data-bolt-static');
 
     this.setStickyOffset = this.setStickyOffset.bind(this);
@@ -203,7 +203,8 @@ export class BoltNavbar {
         document.activeElement.blur();
 
         const scrollOpts = scrollOptions;
-        scrollOpts.offset = this.stickyOffset + this.el.offsetHeight || 0;
+        scrollOpts.offset =
+          this.stickyOffset + this.scrollOffset + this.el.offsetHeight || 0;
         // Delete the default `header` value: https://github.com/cferdinandi/smooth-scroll#fixed-headers
         // It works with fixed but not sticky elements. For consistency, handle scroll position entirely through `offset`.
         delete scrollOpts.header;
