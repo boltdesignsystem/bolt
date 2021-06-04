@@ -35,6 +35,12 @@ module.exports = {
       {
         required: ['isHeadline'],
       },
+      {
+        required: ['onClick'],
+      },
+      {
+        required: ['onClickTarget'],
+      },
     ],
   },
   properties: {
