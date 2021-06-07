@@ -188,8 +188,8 @@
 {% set twig_markup %}
 {% verbatim %}
 {% include '@bolt-layouts-layout/layout.twig' with {
-  content: layout_items,
   template: '67/33@from-small 75/25@from-medium',
+  ...
 } only %}
 {% endverbatim %}
 {% endset %}

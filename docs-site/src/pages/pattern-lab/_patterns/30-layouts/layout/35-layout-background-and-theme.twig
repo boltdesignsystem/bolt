@@ -1,0 +1,74 @@
+{% set demo %}
+  <bolt-layout padding-top="xlarge" padding-bottom="xlarge" class="t-bolt-dark">
+    {% include '@bolt-components-background/background.twig' with {
+      opacity: 'heavy',
+      fill: 'gradient',
+      focalPoint: {
+        vertical: 'center',
+        horizontal: 'center'
+      },
+      contentItems: [
+        {
+          pattern: 'image',
+          src: '/images/content/backgrounds/background-tall-4.jpg'
+        }
+      ]
+    } only %}
+    <bolt-layout-item>
+      This layout has a background image and theme is set to dark.
+    </bolt-layout-item>
+  </bolt-layout>
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+// Set a background
+{% set background %}
+  {% include '@bolt-components-background/background.twig' with {
+    opacity: 'heavy',
+    fill: 'gradient',
+    focalPoint: {
+      vertical: 'center',
+      horizontal: 'center'
+    },
+    contentItems: [
+      {
+        pattern: 'image',
+        src: '/images/content/backgrounds/background-tall-4.jpg'
+      }
+    ]
+  } only %}
+{% endset %}
+
+// Pass the background to the background prop
+{% include '@bolt-layouts-layout/layout.twig' with {
+  background: background,
+  attributes: {
+    class: 't-bolt-dark',
+  },
+  ...
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% set html_markup %}
+{% verbatim %}
+<bolt-layout class="t-bolt-dark">
+  <!-- Background image goes here before layout items -->
+  <bolt-layout-item>
+    <!-- Content goes here -->
+  </bolt-layout-item>
+  <bolt-layout-item>
+    <!-- Content goes here -->
+  </bolt-layout-item>
+</bolt-layout>
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Background Image and Color Themes',
+  description: 'Background images can be added to any layout and color themes can be enabled by theme classes.',
+  demo: demo,
+  twig_markup: twig_markup,
+  html_markup: html_markup,
+} only %}

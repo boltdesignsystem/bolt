@@ -29,10 +29,9 @@
 {% set twig_markup %}
 {% verbatim %}
 {% include '@bolt-layouts-layout/layout.twig' with {
-  content: layout_items,
-  template: 'tiles',
   gutter: 'large',
   row_gutter: 'large',
+  ...
 } only %}
 {% endverbatim %}
 {% endset %}

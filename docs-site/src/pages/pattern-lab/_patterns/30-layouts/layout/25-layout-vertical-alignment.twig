@@ -1,0 +1,54 @@
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>If vertical alignment is set, layout items cannot match each other&rsquo;s height even if 100% height is used.</bolt-li>
+    <bolt-li>This option is only available in a multi-column layout.</bolt-li>
+  </bolt-ol>
+{% endset %}
+
+{% set demo %}
+  {% set schema = bolt.data.components['@bolt-layouts-layout'].schema %}
+  {% for alignment in schema.properties.valign_items.enum %}
+    <bolt-text headline font-size="xxsmall" text-transform="uppercase" letter-spacing="wide">Vertically aligned {{ alignment }}</bolt-text>
+    <bolt-layout template="halves" valign-items="{{ alignment }}" padding-top="none">
+      <bolt-layout-item>
+        <div class="t-bolt-dark u-bolt-padding-small u-bolt-height-full">
+          <strong>Short item</strong>
+        </div>
+      </bolt-layout-item>
+      <bolt-layout-item>
+        <div class="t-bolt-dark u-bolt-padding-small u-bolt-height-full">
+          <strong>Tall item</strong> (The height of the layout items will not match. Some more text to make this taller. Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla tenetur natus dolore recusandae incidunt odio quasi reiciendis fugiat nihil quod? Assumenda culpa, cupiditate debitis ipsum excepturi tempora similique eum saepe!)
+        </div>
+      </bolt-layout-item>
+    </bolt-layout>
+  {% endfor %}
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% include '@bolt-layouts-layout/layout.twig' with {
+  template: 'halves',
+  valign_items: 'center',
+  ...
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% set html_markup %}
+{% verbatim %}
+<bolt-layout template="halves" valign-items="center">
+  <bolt-layout-item>
+    <!-- Content goes here -->
+  </bolt-layout-item>
+</bolt-layout>
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Vertical Alignment',
+  description: 'Layout items can be vertically aligned to start, center, or end.',
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+  html_markup: html_markup,
+} only %}
