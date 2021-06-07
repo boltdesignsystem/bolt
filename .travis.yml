@@ -30,9 +30,9 @@ before_install:
 # see more conditions: https://docs.travis-ci.com/user/conditions-v1
 # Stages run sequentially; the jobs in them run in parallel
 stages:
-  # - Pre-deploy
+  - Pre-deploy
   - Post-deploy
-  # - Auto-release
+  - Auto-release
 #  Just an example of having a whole stage be branch conditional; see more conditions: https://docs.travis-ci.com/user/conditions-v1
 #  - name: Super Hard Tests
 #    if: branch = master
@@ -129,7 +129,7 @@ jobs:
 
     - stage: Post-deploy
       name: 'Nightwatch End-to-End (Full)'
-      if: (tag =~ ^v) OR (branch =~ /(master|release|bug|feature|fix)/)
+      if: (tag =~ ^v) OR (branch =~ /(master|release|bug|fix)/)
       install:
         - yarn
         - npx lerna run postbootstrap
