@@ -129,7 +129,7 @@ jobs:
 
     - stage: Post-deploy
       name: 'Nightwatch End-to-End (Full)'
-      if: (tag =~ ^v) OR (branch =~ /(master|release|bug|fix)/)
+      if: (tag =~ ^v) OR (branch =~ /(master|release|bug|feature|fix)/)
       install:
         - yarn
         - npx lerna run postbootstrap
