@@ -12,6 +12,10 @@
 {# Array of classes based on the defined + default props #}
 {% set classes = [
   'c-bolt-listing-teaser',
+  this.data.gutter.value != 'small' ? 'c-bolt-listing-teaser--gutter-' ~ this.data.gutter.value,
+  this.data.layout.value != 'horizontal' ? 'c-bolt-listing-teaser--layout-' ~ this.data.layout.value,
+  this.data.variant.value != 'transparent' ? 'c-bolt-listing-teaser--variant-' ~ this.data.variant.value,
+  this.data.inset_spacing.value != 'medium' ? 'c-bolt-listing-teaser--inset-spacing-' ~ this.data.inset_spacing.value,
   _listing_id,
 ] %}
 
@@ -39,6 +43,15 @@
         size: headline.size,
       } only %}
     </div>
+    {% if eyebrow_items %}
+      <div class="c-bolt-listing-teaser__flag-eyebrow">
+        <ul class="c-bolt-listing-teaser__meta">
+          {% for item in eyebrow_items %}
+            <li class="c-bolt-listing-teaser__meta__item">{{ item }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+    {% endif %}
     <div class="c-bolt-listing-teaser__flag-content">
       {% if meta_items %}
         <ul class="c-bolt-listing-teaser__meta">
@@ -61,6 +74,11 @@
           <div>
             {{ warning }}
           </div>
+        </div>
+      {% endif %}
+      {% if chip_list %}
+        <div class="c-bolt-listing-teaser__flag-content__item c-bolt-listing-teaser__flag-content__item--chips">
+          {{ chip_list }}
         </div>
       {% endif %}
       {% if reply %}
@@ -146,4 +164,13 @@
       } only %}
     {% endif %}
   {% if action_menu or share_menu %}</div>{% endif %}
+  {% if callout %}
+    {% set callout_attributes = create_attribute(callout.attributes|default({})) %}
+    {% set callout_classes = [
+      'c-bolt-listing-teaser__callout',
+    ] %}
+    <div {{ callout_attributes.addClass(callout_classes) }}>
+      {{ callout.content }}
+    </div>
+  {% endif %}
 </article>
