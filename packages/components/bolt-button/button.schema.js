@@ -23,7 +23,6 @@ module.exports = {
   not: {
     anyOf: [
       {
-        required: ['itemAlignment'],
       },
     ],
   },
@@ -88,9 +87,5 @@ module.exports = {
       required: ['icon'],
     },
     ...elementSchemas.boltActionElement.properties,
-    itemAlignment: {
-      title: 'DEPRECATED',
-      description: 'Use the align parameter instead.',
-    },
   },
 };
