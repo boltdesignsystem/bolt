@@ -18,11 +18,6 @@
   {% set align = 'end' %}
 {% endif %}
 
-{# DEPRECATED. Use the `type` property for a reset or submit button.  Tag is determined automatically based on whether you pass a url. #}
-{% if tag in ['reset', 'submit'] %}
-  {% set type = type|default(tag) %}
-{% endif %}
-
 {# DEPRECATED.  Use the property `on_click` instead of `onClick`. #}
 {% if onClick %}
   {% set on_click = onClick %}
