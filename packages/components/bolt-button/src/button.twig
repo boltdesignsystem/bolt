@@ -23,11 +23,6 @@
   {% set type = type|default(tag) %}
 {% endif %}
 
-{# DEPRECATED. Use the `hierarcy` property instead. #}
-{% if style %}
-  {% set hierarchy = style %}
-{% endif %}
-
 {# DEPRECATED.  Use the property `on_click` instead of `onClick`. #}
 {% if onClick %}
   {% set on_click = onClick %}

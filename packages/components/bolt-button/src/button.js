@@ -34,12 +34,10 @@ class BoltButton extends BoltActionElement {
   }
 
   render() {
-    // While `color` option is in use downstream, we must provide this fallback
-    const hierarchy = this.color || this.hierarchy;
     const classes = cx('c-bolt-button', {
       'c-bolt-button--medium': !this.size, // Default size
       [`c-bolt-button--${this.size}`]: this.size,
-      [`c-bolt-button--${hierarchy}`]: hierarchy,
+      [`c-bolt-button--${this.hierarchy}`]: this.hierarchy,
       [`c-bolt-button--${this.width}`]: this.width && this.width !== 'auto',
       'c-bolt-button--border-radius-regular': !this.borderRadius, // Default border radius
       [`c-bolt-button--border-radius-${this.borderRadius}`]: this.borderRadius,
