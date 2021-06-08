@@ -324,7 +324,7 @@
     {% set filter_button %}
       {% include '@bolt-components-button/button.twig' with {
         text: 'Filters',
-        style: 'secondary',
+        hierarchy: 'secondary',
         width: 'full',
         type: 'button',
         icon: {
@@ -346,7 +346,7 @@
         {% include '@bolt-components-button/button.twig' with {
           text: 'Cancel',
           size: 'small',
-          style: 'text',
+          hierarchy: 'text',
           attributes: {
             'data-bolt-modal-target': '.js-bolt-modal',
           },

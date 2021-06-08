@@ -25,6 +25,9 @@ module.exports = {
       {
         required: ['itemAlignment'],
       },
+      {
+        required: ['style'],
+      },
     ],
   },
   properties: {
