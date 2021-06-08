@@ -1,3 +1,13 @@
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>Single-column: <code>50</code>, <code>67</code>, and <code>75</code> represent the percentage of width for the layout items. Layout item width is full if no template is set. Layout items can be horizontally centered only in a single-column layout.</bolt-li>
+    <bolt-li>Multi-column: again, numbers represent percentage. Combinations of <code>25</code>, <code>50</code>, <code>67</code>, and <code>75</code> can be used as long as they add up to 100 (eg. <code>25/50/25@from-small</code>). These options must be used with the <code>@from-*</code> breakpoint postfix. <code>@from-small</code> means starting from small breakpoint and beyond; <code>@from-medium</code> means starting from medium breakpoint and beyond.</bolt-li>
+    <bolt-li>Traditional: even columns can be created with <code>halves</code>, <code>thirds</code>, and <code>fourths</code>. These options also must be used with the <code>@from-*</code> breakpoint postfix.</bolt-li>
+    <bolt-li>Special: <code>flag</code> is a common layout that contains an image on the left and text content on the right; <code>tiles</code> renders even-width layout items that will wrap once they hit a certain min-width.</bolt-li>
+    <bolt-li>Reference the schema for all options. <a href="{{ link['viewall-layouts-layout'] }}" class="e-bolt-text-link">Layout schema<span class="e-bolt-text-link__icon-after"><bolt-icon name="chevron-right"></bolt-icon></span></a></bolt-li>
+  </bolt-ol>
+{% endset %}
+
 {% set demo %}
   <bolt-tabs inset="off">
     <bolt-tab-panel>
@@ -174,15 +184,6 @@
       </bolt-layout>
     </bolt-tab-panel>
   </bolt-tabs>
-{% endset %}
-
-{% set notes %}
-  <bolt-ol>
-    <bolt-li>Single-column: <code>50</code>, <code>67</code>, and <code>75</code> represent the percentage of width for the layout items. Layout item width is full if no template is set. Layout items can be horizontally centered only in a single-column layout.</bolt-li>
-    <bolt-li>Multi-column: again, numbers represent percentage. Combinations of <code>25</code>, <code>50</code>, <code>67</code>, and <code>75</code> can be used as long as they add up to 100 (eg. <code>25/50/25@from-small</code>). These options must be used with the <code>@from-*</code> breakpoint postfix. <code>@from-small</code> means starting from small breakpoint and beyond; <code>@from-medium</code> means starting from medium breakpoint and beyond.</bolt-li>
-    <bolt-li>Traditional: even columns can be created with <code>halves</code>, <code>thirds</code>, and <code>fourths</code>. These options also must be used with the <code>@from-*</code> breakpoint postfix.</bolt-li>
-    <bolt-li>Special: <code>flag</code> is a common layout that contains an image on the left and text content on the right; <code>tiles</code> renders even-width layout items that will wrap once they hit a certain min-width.</bolt-li>
-  </bolt-ol>
 {% endset %}
 
 {% set twig_markup %}

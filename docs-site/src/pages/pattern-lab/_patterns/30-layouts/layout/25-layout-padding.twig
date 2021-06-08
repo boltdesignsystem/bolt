@@ -1,13 +1,24 @@
+{% set notes %}
+  Reference the schema for all options. <a href="{{ link['viewall-layouts-layout'] }}" class="e-bolt-text-link">Layout schema<span class="e-bolt-text-link__icon-after"><bolt-icon name="chevron-right"></bolt-icon></span></a>
+{% endset %}
+
 {% set demo %}
-  <bolt-layout template="tiles" padding-top="small" padding-bottom="xlarge" class="t-bolt-dark">
+  <bolt-text headline font-size="xxsmall" text-transform="uppercase" letter-spacing="wide">Medium padding-top and xlarge padding-bottom</bolt-text>
+  <bolt-layout template="tiles" padding-top="medium" padding-bottom="xlarge" class="t-bolt-light">
     <bolt-layout-item>
-      <bolt-placeholder>small padding-top and xlarge padding-bottom</bolt-placeholder>
+      <div class="t-bolt-dark u-bolt-padding-small">
+        Layout item
+      </div>
     </bolt-layout-item>
     <bolt-layout-item>
-      <bolt-placeholder>small padding-top and xlarge padding-bottom</bolt-placeholder>
+      <div class="t-bolt-dark u-bolt-padding-small">
+        Layout item
+      </div>
     </bolt-layout-item>
     <bolt-layout-item>
-      <bolt-placeholder>small padding-top and xlarge padding-bottom</bolt-placeholder>
+      <div class="t-bolt-dark u-bolt-padding-small">
+        Layout item
+      </div>
     </bolt-layout-item>
   </bolt-layout>
 {% endset %}
@@ -38,6 +49,7 @@
 {% include '@utils/pattern-doc-page.twig' with {
   title: 'Padding',
   description: 'Padding top and bottom can be individually adjusted based on the use case.',
+  notes: notes,
   demo: demo,
   twig_markup: twig_markup,
   html_markup: html_markup,

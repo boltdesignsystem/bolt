@@ -1,7 +1,8 @@
 {% set notes %}
   <bolt-ol>
-    <bolt-li>If vertical alignment is set, layout items cannot match each other&rsquo;s height even if 100% height is used.</bolt-li>
-    <bolt-li>This option is only available in a multi-column layout.</bolt-li>
+    <bolt-li>If vertical alignment is set, layout items cannot match each other&rsquo;s height even if 100% height is used. Do not use this prop if equal height layout items are desired.</bolt-li>
+    <bolt-li>This prop is only effective in a multi-column layout.</bolt-li>
+    <bolt-li>Reference the schema for all options. <a href="{{ link['viewall-layouts-layout'] }}" class="e-bolt-text-link">Layout schema<span class="e-bolt-text-link__icon-after"><bolt-icon name="chevron-right"></bolt-icon></span></a></bolt-li>
   </bolt-ol>
 {% endset %}
 
@@ -46,7 +47,7 @@
 
 {% include '@utils/pattern-doc-page.twig' with {
   title: 'Vertical Alignment',
-  description: 'Layout items can be vertically aligned to start, center, or end.',
+  description: 'A group of layout items can be vertically aligned to the start, center, or end.',
   notes: notes,
   demo: demo,
   twig_markup: twig_markup,

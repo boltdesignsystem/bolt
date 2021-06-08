@@ -1,0 +1,158 @@
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>If vertical alignment is set, layout items cannot match each other&rsquo;s height even if 100% height is used. Do not use this prop if equal height layout items are desired.</bolt-li>
+    <bolt-li>This prop is only effective in a multi-column layout.</bolt-li>
+    <bolt-li>For regular options, they are only effective when applied to the shorter item.</bolt-li>
+    <bolt-li>For advanced usage, the offset options can even offset the top or bottom padding of the layout. This is useful when a design calls for a layout item to touch the edge of the layout.</bolt-li>
+    <bolt-li>If you intend to vertically align all layout items uniformly, please use the prop on the layout level. <a href="{{ link['layouts-layout-vertical-alignment'] }}" class="e-bolt-text-link">View layout vertical alignment<span class="e-bolt-text-link__icon-after"><bolt-icon name="chevron-right"></bolt-icon></span></a></bolt-li>
+  </bolt-ol>
+{% endset %}
+
+{% set demo %}
+  <bolt-tabs inset="off">
+    <bolt-tab-panel>
+      <bolt-text slot="label">Regular Alignments</bolt-text>
+      
+      <bolt-text headline font-size="xxsmall" text-transform="uppercase" letter-spacing="wide">Vertically aligned itself start</bolt-text>
+      <bolt-layout template="halves" padding-top="none">
+        <bolt-layout-item valign-self="start">
+          <div class="t-bolt-dark u-bolt-padding-small">
+            <strong>Short item</strong> (start)
+          </div>
+        </bolt-layout-item>
+        <bolt-layout-item>
+          <div class="t-bolt-dark u-bolt-padding-small">
+            <strong>Tall item</strong> (Some more text to make this taller. Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla tenetur natus dolore recusandae incidunt odio quasi reiciendis fugiat nihil quod? Assumenda culpa, cupiditate debitis ipsum excepturi tempora similique eum saepe!)
+          </div>
+        </bolt-layout-item>
+      </bolt-layout>
+      <bolt-text headline font-size="xxsmall" text-transform="uppercase" letter-spacing="wide">Vertically aligned itself center</bolt-text>
+      <bolt-layout template="halves" padding-top="none">
+        <bolt-layout-item valign-self="center">
+          <div class="t-bolt-dark u-bolt-padding-small">
+            <strong>Short item</strong> (center)
+          </div>
+        </bolt-layout-item>
+        <bolt-layout-item>
+          <div class="t-bolt-dark u-bolt-padding-small">
+            <strong>Tall item</strong> (Some more text to make this taller. Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla tenetur natus dolore recusandae incidunt odio quasi reiciendis fugiat nihil quod? Assumenda culpa, cupiditate debitis ipsum excepturi tempora similique eum saepe!)
+          </div>
+        </bolt-layout-item>
+      </bolt-layout>
+      <bolt-text headline font-size="xxsmall" text-transform="uppercase" letter-spacing="wide">Vertically aligned itself end</bolt-text>
+      <bolt-layout template="halves" padding-top="none">
+        <bolt-layout-item valign-self="end">
+          <div class="t-bolt-dark u-bolt-padding-small">
+            <strong>Short item</strong> (end)
+          </div>
+        </bolt-layout-item>
+        <bolt-layout-item>
+          <div class="t-bolt-dark u-bolt-padding-small">
+            <strong>Tall item</strong> (Some more text to make this taller. Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla tenetur natus dolore recusandae incidunt odio quasi reiciendis fugiat nihil quod? Assumenda culpa, cupiditate debitis ipsum excepturi tempora similique eum saepe!)
+          </div>
+        </bolt-layout-item>
+      </bolt-layout>
+    </bolt-tab-panel>
+    <bolt-tab-panel>
+      <bolt-text slot="label">Offset Alignments</bolt-text>
+
+      <bolt-text headline font-size="xxsmall" text-transform="uppercase" letter-spacing="wide">Vertically aligned itself start-offset</bolt-text>
+      <bolt-stack>
+        <bolt-layout template="halves" padding-top="large" padding-bottom="large" class="t-bolt-light">
+          <bolt-layout-item valign-self="start-offset">
+            <div class="t-bolt-dark u-bolt-padding-small">
+              <strong>Layout item</strong> (start-offset)
+            </div>
+          </bolt-layout-item>
+          <bolt-layout-item>
+            <div class="t-bolt-dark u-bolt-padding-small">
+              <strong>Layout item</strong>
+            </div>
+          </bolt-layout-item>
+        </bolt-layout>
+      </bolt-stack>
+      <bolt-text headline font-size="xxsmall" text-transform="uppercase" letter-spacing="wide">Vertically aligned itself end-offset</bolt-text>
+      <bolt-layout template="halves" padding-top="large" padding-bottom="large" class="t-bolt-light">
+        <bolt-layout-item valign-self="end-offset">
+          <div class="t-bolt-dark u-bolt-padding-small">
+            <strong>Layout item</strong> (end-offset)
+          </div>
+        </bolt-layout-item>
+        <bolt-layout-item>
+          <div class="t-bolt-dark u-bolt-padding-small">
+            <strong>Layout item</strong>
+          </div>
+        </bolt-layout-item>
+      </bolt-layout>
+    </bolt-tab-panel>
+    <bolt-tab-panel>
+      <bolt-text slot="label">Offset Use Cases</bolt-text>
+
+      <bolt-text headline font-size="xxsmall" text-transform="uppercase" letter-spacing="wide">Vertically aligned itself start-offset</bolt-text>
+      <bolt-stack>
+        <bolt-layout template="halves@from-small 33/67@from-medium" padding-top="large" padding-bottom="large" gutter="large" valign-items="center" class="t-bolt-light">
+          <bolt-layout-item valign-self="start-offset">
+            {% include '@bolt-components-image/image.twig' with {
+              src: '/images/heros/hero-foreground--indigo.png',
+              alt: '',
+            } only %}
+          </bolt-layout-item>
+          <bolt-layout-item>
+            <bolt-text headline font-size="xxxlarge" align="end">Layout item</bolt-text>
+            <bolt-text align="end">The other layout item (the image) is using start-offset.</bolt-text>
+          </bolt-layout-item>
+        </bolt-layout>
+      </bolt-stack>
+      <bolt-text headline font-size="xxsmall" text-transform="uppercase" letter-spacing="wide">Vertically aligned itself end-offset</bolt-text>
+      <bolt-layout template="halves@from-small 67/33@from-medium" padding-top="large" padding-bottom="large" gutter="large" valign-items="center" class="t-bolt-light">
+        <bolt-layout-item>
+          <bolt-text headline font-size="xxxlarge">Layout item</bolt-text>
+          <bolt-text>The other layout item (the image) is using end-offset.</bolt-text>
+        </bolt-layout-item>
+        <bolt-layout-item valign-self="end-offset">
+          {% include '@bolt-components-image/image.twig' with {
+            src: '/images/heros/hero-foreground--yellow.png',
+            alt: '',
+          } only %}
+        </bolt-layout-item>
+      </bolt-layout>
+    </bolt-tab-panel>
+  </bolt-tabs>
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% set layout_items %}
+  {% include '@bolt-layouts-layout/layout-item.twig' with {
+    content: 'Short item'
+    align_self: 'end',
+  } only %}
+  {% include '@bolt-layouts-layout/layout-item.twig' with {
+    content: 'Long item (Some more text to make this taller. Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla tenetur natus dolore recusandae incidunt odio quasi reiciendis fugiat nihil quod? Assumenda culpa, cupiditate debitis ipsum excepturi tempora similique eum saepe!)'
+  } only %}
+{% endset %}
+
+{% include '@bolt-layouts-layout/layout.twig' with {
+  content: layout_items,
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% set html_markup %}
+{% verbatim %}
+<bolt-layout template="halves" valign-items="center">
+  <bolt-layout-item>
+    <!-- Content goes here -->
+  </bolt-layout-item>
+</bolt-layout>
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Vertical Alignment for Individual Layout Item',
+  description: 'A particular layout item can be vertically aligned itself to start, center, or end, ignoring the vertical aligment on the layout level.',
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+  html_markup: html_markup,
+} only %}

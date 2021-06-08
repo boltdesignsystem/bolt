@@ -1,27 +1,31 @@
+{% set notes %}
+  Reference the schema for all options. <a href="{{ link['viewall-layouts-layout'] }}" class="e-bolt-text-link">Layout schema<span class="e-bolt-text-link__icon-after"><bolt-icon name="chevron-right"></bolt-icon></span></a>
+{% endset %}
+
 {% set demo %}
   <bolt-text headline font-size="xxsmall" text-transform="uppercase" letter-spacing="wide">Gutter</bolt-text>
   <bolt-layout template="tiles" gutter="large" padding-top="none">
     <bolt-layout-item>
-      <bolt-placeholder>large gutter</bolt-placeholder>
+      <div class="t-bolt-dark u-bolt-padding-small">large gutter</div>
     </bolt-layout-item>
     <bolt-layout-item>
-      <bolt-placeholder>large gutter</bolt-placeholder>
+      <div class="t-bolt-dark u-bolt-padding-small">large gutter</div>
     </bolt-layout-item>
     <bolt-layout-item>
-      <bolt-placeholder>large gutter</bolt-placeholder>
+      <div class="t-bolt-dark u-bolt-padding-small">large gutter</div>
     </bolt-layout-item>
   </bolt-layout>
 
   <bolt-text headline font-size="xxsmall" text-transform="uppercase" letter-spacing="wide">Row Gutter</bolt-text>
   <bolt-layout row-gutter="small" padding-top="none">
     <bolt-layout-item>
-      <bolt-placeholder>small row gutter</bolt-placeholder>
+      <div class="t-bolt-dark u-bolt-padding-small">small row gutter</div>
     </bolt-layout-item>
     <bolt-layout-item>
-      <bolt-placeholder>small row gutter</bolt-placeholder>
+      <div class="t-bolt-dark u-bolt-padding-small">small row gutter</div>
     </bolt-layout-item>
     <bolt-layout-item>
-      <bolt-placeholder>small row gutter</bolt-placeholder>
+      <div class="t-bolt-dark u-bolt-padding-small">small row gutter</div>
     </bolt-layout-item>
   </bolt-layout>
 {% endset %}
@@ -52,6 +56,7 @@
 {% include '@utils/pattern-doc-page.twig' with {
   title: 'Gutter',
   description: 'Gutter is the horizontal spacing in between layout items. Row gutter is the vertical spacing in between layout items.',
+  notes: notes,
   demo: demo,
   twig_markup: twig_markup,
   html_markup: html_markup,
