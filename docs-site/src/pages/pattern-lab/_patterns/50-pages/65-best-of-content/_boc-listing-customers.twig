@@ -236,44 +236,44 @@
   } %}
 
   {% if phase1 or phase2 %}
-    {% set video_teaser_props = video_teaser_props|merge({ 
+    {% set video_teaser_props = video_teaser_props|merge({
       like: like,
-      share: share, 
+      share: share,
     }) %}
-    {% set external_link_teaser_props = external_link_teaser_props|merge({ 
+    {% set external_link_teaser_props = external_link_teaser_props|merge({
       like: like,
-      share: share, 
+      share: share,
     }) %}
-    {% set pdf_teaser_props = pdf_teaser_props|merge({ 
+    {% set pdf_teaser_props = pdf_teaser_props|merge({
       like: like,
-      share: share, 
+      share: share,
     }) %}
-    {% set featured_teaser_props = featured_teaser_props|merge({ 
+    {% set featured_teaser_props = featured_teaser_props|merge({
       like: like,
-      share: share, 
+      share: share,
     }) %}
   {% endif %}
 
   {% if phase2 %}
-    {% set video_teaser_props = video_teaser_props|merge({ 
+    {% set video_teaser_props = video_teaser_props|merge({
       status: {
         views: '27',
-      } 
+      }
     }) %}
-    {% set external_link_teaser_props = external_link_teaser_props|merge({ 
+    {% set external_link_teaser_props = external_link_teaser_props|merge({
       status: {
         views: '3k',
-      } 
+      }
     }) %}
-    {% set pdf_teaser_props = pdf_teaser_props|merge({ 
+    {% set pdf_teaser_props = pdf_teaser_props|merge({
       status: {
         views: '66',
-      } 
+      }
     }) %}
-    {% set featured_teaser_props = featured_teaser_props|merge({ 
+    {% set featured_teaser_props = featured_teaser_props|merge({
       status: {
         views: '20k',
-      } 
+      }
     }) %}
   {% endif %}
 
