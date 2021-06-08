@@ -25,6 +25,9 @@ module.exports = {
       {
         required: ['itemAlignment'],
       },
+      {
+        required: ['tag'],
+      },
     ],
   },
   properties: {
