@@ -25,9 +25,6 @@ module.exports = {
       {
         required: ['itemAlignment'],
       },
-      {
-        required: ['rounded'],
-      },
     ],
   },
   properties: {
@@ -94,10 +91,6 @@ module.exports = {
     itemAlignment: {
       title: 'DEPRECATED',
       description: 'Use the align parameter instead.',
-    },
-    rounded: {
-      title: 'DEPRECATED',
-      description: 'Use the border_radius parameter instead.',
     },
     tag: {
       title: 'DEPRECATED',
