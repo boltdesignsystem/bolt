@@ -7,10 +7,15 @@
 {% endset %}
 
 {% set demo %}
-  <bolt-layout template="tiles">
+  <bolt-layout template="thirds@from-small">
     <bolt-layout-item order="last@from-small">
       <div class="t-bolt-dark u-bolt-padding-small">
         <strong>Layout item</strong> (this will come last once the viewport is larger than the small breakpoint)
+      </div>
+    </bolt-layout-item>
+    <bolt-layout-item>
+      <div class="t-bolt-dark u-bolt-padding-small">
+        <strong>Layout item</strong>
       </div>
     </bolt-layout-item>
     <bolt-layout-item>
@@ -23,17 +28,32 @@
 
 {% set twig_markup %}
 {% verbatim %}
+{% set layout_items %}
+  {% include '@bolt-layouts-layout/layout-item.twig' with {
+    content: 'Layout item (this will come last once the viewport is larger than the small breakpoint)',
+    order: 'last@from-small',
+  } only %}
+  {% include '@bolt-layouts-layout/layout-item.twig' with {
+    content: 'Layout item',
+  } only %}
+  {% include '@bolt-layouts-layout/layout-item.twig' with {
+    content: 'Layout item',
+  } only %}
+{% endset %}
+
 {% include '@bolt-layouts-layout/layout.twig' with {
-  padding_top: 'small',
-  padding_bottom: 'xlarge',
-  ...
+  content: layout_items,
+  template: 'thirds@from-small',
 } only %}
 {% endverbatim %}
 {% endset %}
 
 {% set html_markup %}
 {% verbatim %}
-<bolt-layout padding-top="small" padding-bottom="xlarge">
+<bolt-layout template="thirds@from-small">
+  <bolt-layout-item order="last@from-small">
+    <!-- Content goes here -->
+  </bolt-layout-item>
   <bolt-layout-item>
     <!-- Content goes here -->
   </bolt-layout-item>

@@ -124,7 +124,7 @@
 {% verbatim %}
 {% set layout_items %}
   {% include '@bolt-layouts-layout/layout-item.twig' with {
-    content: 'Short item'
+    content: 'Short item',
     align_self: 'end',
   } only %}
   {% include '@bolt-layouts-layout/layout-item.twig' with {
@@ -134,15 +134,19 @@
 
 {% include '@bolt-layouts-layout/layout.twig' with {
   content: layout_items,
+  template: 'halves',
 } only %}
 {% endverbatim %}
 {% endset %}
 
 {% set html_markup %}
 {% verbatim %}
-<bolt-layout template="halves" valign-items="center">
+<bolt-layout template="halves">
+  <bolt-layout-item align-self="end">
+    <!-- Shorter content goes here -->
+  </bolt-layout-item>
   <bolt-layout-item>
-    <!-- Content goes here -->
+    <!-- Longer content goes here -->
   </bolt-layout-item>
 </bolt-layout>
 {% endverbatim %}

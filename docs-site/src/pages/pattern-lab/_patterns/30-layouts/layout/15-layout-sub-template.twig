@@ -1,0 +1,98 @@
+{% set notes %}
+  All templates work with nested layouts, while there is one special template that is specifically designed for nested layouts. <code>full-vertical-push-last-item</code> enables a layout to be 100% height with vertical items, and its last item is pushed to the bottom. This particular template serves a specific purpose and does not work with vertical and horizontal alignments.
+{% endset %}
+
+{% set demo %}
+<bolt-layout template="halves@from-small">
+  <bolt-layout-item>
+    <bolt-layout template="full-vertical-push-last-item">
+      <bolt-layout-item>
+        <bolt-text>In this layout, there is a parent layout that is handling the 2 columns. Within each column, there is a nested layout that is full height and it pushes its last item to the bottom. Even though the first column is taller than the second column, the last items in each column are aligned to the bottom.</bolt-text>
+      </bolt-layout-item>
+      <bolt-layout-item>
+        <bolt-placeholder>Last layout item pushed to bottom</bolt-placeholder>
+      </bolt-layout-item>
+    </bolt-layout>
+  </bolt-layout-item>
+  <bolt-layout-item>
+    <bolt-layout template="full-vertical-push-last-item">
+      <bolt-layout-item>
+        <bolt-text>Nested layout with 2 layout items, this paragraph of text being the first item.</bolt-text>
+      </bolt-layout-item>
+      <bolt-layout-item>
+        <bolt-placeholder>Last layout item pushed to bottom</bolt-placeholder>
+      </bolt-layout-item>
+    </bolt-layout>
+  </bolt-layout-item>
+</bolt-layout>
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+// Set up nested layout
+{% set nested_layout %}
+  {% set layout_items %}
+    {% include '@bolt-layouts-layout/layout-item.twig' with {
+      content: 'Layout item'
+    } only %}
+    {% include '@bolt-layouts-layout/layout-item.twig' with {
+      content: 'Layout item'
+    } only %}
+  {% endset %}
+  {% include '@bolt-layouts-layout/layout.twig' with {
+    content: layout_items,
+    template: 'full-vertical-push-last-item',
+  } only %}
+{% endset %}
+
+// Pass nested layouts to parent layout
+{% set layout_items %}
+  {% include '@bolt-layouts-layout/layout-item.twig' with {
+    content: nested_layout
+  } only %}
+  {% include '@bolt-layouts-layout/layout-item.twig' with {
+    content: nested_layout
+  } only %}
+{% endset %}
+{% include '@bolt-layouts-layout/layout.twig' with {
+  content: layout_items,
+  template: 'halves@from-small',
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% set html_markup %}
+{% verbatim %}
+<bolt-layout template="halves@from-small">
+  <bolt-layout-item>
+    <bolt-layout template="full-vertical-push-last-item">
+      <bolt-layout-item>
+        <!-- Content goes here -->
+      </bolt-layout-item>
+      <bolt-layout-item>
+        <!-- Content goes here -->
+      </bolt-layout-item>
+    </bolt-layout>
+  </bolt-layout-item>
+  <bolt-layout-item>
+    <bolt-layout template="full-vertical-push-last-item">
+      <bolt-layout-item>
+        <!-- Content goes here -->
+      </bolt-layout-item>
+      <bolt-layout-item>
+        <!-- Content goes here -->
+      </bolt-layout-item>
+    </bolt-layout>
+  </bolt-layout-item>
+</bolt-layout>
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Sub-template and Nested Layout',
+  description: 'A layout can be nested in another layout (i.e. put a layout inside a layout item).',
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+  html_markup: html_markup,
+} only %}

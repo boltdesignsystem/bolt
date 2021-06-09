@@ -72,9 +72,7 @@ bolt-layout {
   grid-template-columns: var(--l-bolt-layout-template);
 
   > bolt-layout-item {
-    display: flex;
-    flex: 0 1 100%;
-    flex-direction: column;
+    display: block;
     align-self: var(--l-bolt-layout-item-valign-self);
     order: var(--l-bolt-layout-item-order);
     position: relative;
@@ -125,12 +123,9 @@ bolt-layout {
     &[exclude-from-template] {
       grid-column: var(--l-bolt-layout-exclude-from-template);
     }
-
-    > *:last-child:not(:only-child) {
-      margin-top: auto; // Pushes the last child in a layout item (when all items are equal in height) to the bottom.
-    }
   }
 
+  // loop through non-breakpoint-specific templates
   @each $template-name, $template-value in $_bolt-layout-templates {
     @if (
       $template-name ==
@@ -164,6 +159,16 @@ bolt-layout {
           }
         }
       }
+    }
+  }
+
+  // Special sub-layout that pushes last item to the bottom
+  &[template~='full-vertical-push-last-item'] {
+    --l-bolt-layout-template: 1fr;
+    height: 100%;
+
+    > bolt-layout-item:last-of-type {
+      margin-top: auto;
     }
   }
 
