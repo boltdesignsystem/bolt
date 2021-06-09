@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.7.1](https://github.com/boltdesignsystem/bolt/compare/v3.7.0...v3.7.1) (2021-06-08)
+
+
+### Bug Fixes
+
+* paragraph spacing and redundant rules ([13d7ffe](https://github.com/boltdesignsystem/bolt/commit/13d7ffe0868b8b09199ffacd852875fadd1c4e1f))
+
+
+
+
+
+# [3.7.0](https://github.com/boltdesignsystem/bolt/compare/v3.6.3...v3.7.0) (2021-06-01)
+
+**Note:** Version bump only for package bolt
+
+
+
+
+
 ## [3.6.3](https://github.com/boltdesignsystem/bolt/compare/v3.6.2...v3.6.3) (2021-05-28)
 
 **Note:** Version bump only for package bolt
