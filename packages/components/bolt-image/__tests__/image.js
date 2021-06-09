@@ -27,13 +27,13 @@ beforeAll(async () => {
     alt: 'A Rock Climber',
   };
 
-  const imageData = {
+  const srcData = {
     src: '/fixtures/1200x660.jpg',
   };
 
   fixtures = {
     defaultData,
-    imageData,
+    srcData,
   };
 });
 
@@ -116,7 +116,7 @@ describe('Bolt Image Props', () => {
 
   test(`Image should always render alt attribute on <img> tags`, async () => {
     const results1 = await render('@bolt-components-image/image.twig', {
-      ...fixtures.imageData,
+      ...fixtures.srcData,
       alt: '',
     });
 
@@ -124,7 +124,7 @@ describe('Bolt Image Props', () => {
     await expect(results1.html).toMatchSnapshot();
 
     const results2 = await render('@bolt-components-image/image.twig', {
-      ...fixtures.imageData,
+      ...fixtures.srcData,
     });
 
     await expect(results2.ok).toBe(true);
