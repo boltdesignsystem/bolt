@@ -89,17 +89,14 @@
 	};
 
 	var addClass = function(ele, cls) {
-		if (!hasClass(ele, cls)){
-			ele.setAttribute('class', (ele[_getAttribute]('class') || '').trim() + ' ' + cls);
-		}
-	};
+		// Bolt edit: replace regex with `classList`, was sometimes adding trailing space and breaking jest snapshots
+		ele.classList.add(cls);
+  };
 
 	var removeClass = function(ele, cls) {
-		var reg;
-		if ((reg = hasClass(ele,cls))) {
-			ele.setAttribute('class', (ele[_getAttribute]('class') || '').replace(reg, ' '));
-		}
-	};
+		// Bolt edit: replace regex with `classList`, was sometimes adding trailing space and breaking jest snapshots
+		ele.classList.remove(cls);
+  };
 
 	var addRemoveLoadEvents = function(dom, fn, add){
 		var action = add ? _addEventListener : 'removeEventListener';
