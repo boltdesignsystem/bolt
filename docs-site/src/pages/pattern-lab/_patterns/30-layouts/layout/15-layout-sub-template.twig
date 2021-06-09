@@ -3,7 +3,7 @@
 {% endset %}
 
 {% set demo %}
-<bolt-layout template="halves@from-small">
+<bolt-layout template="tiles@from-small" gutter="xlarge" class="t-bolt-light">
   <bolt-layout-item>
     <bolt-layout template="full-vertical-push-last-item">
       <bolt-layout-item>
@@ -21,6 +21,18 @@
       </bolt-layout-item>
       <bolt-layout-item>
         <bolt-placeholder>Last layout item pushed to bottom</bolt-placeholder>
+      </bolt-layout-item>
+    </bolt-layout>
+  </bolt-layout-item>
+  <bolt-layout-item>
+    <bolt-layout template="full-vertical-push-last-item">
+      <bolt-layout-item>
+        <bolt-text>Now with actual text and a CTA button. Ready to crush business complexity? Our software helps you work smarter, simpler, and faster.</bolt-text>
+      </bolt-layout-item>
+      <bolt-layout-item>
+        <a href="https://pega.com" class="e-bolt-button e-bolt-button--block">
+          Let&rsquo;s go!
+        </a>
       </bolt-layout-item>
     </bolt-layout>
   </bolt-layout-item>
