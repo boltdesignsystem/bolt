@@ -1,36 +1,42 @@
-<bolt-card-replacement-action {% if external %} external {% endif %} {% if url %} url="{{url}}" {% endif %}>
+{% set schema = bolt.data.components['@bolt-components-card-replacement'].schema.properties.actions.items %}
+{% set this = init(schema) %}
+
+<bolt-card-replacement-action
+  {% if this.data.external.value %} external {% endif %}
+  {% if this.data.url.value %} url="{{this.data.url.value}}" {% endif %}
+  >
   <ssr-keep for="bolt-card-replacement-action" class="c-bolt-card_replacement__action">
     {% block action_item %}
-      {% if text %}
-        {% set button_props = {
-          text: text,
-          hierarchy: "text",
-          width: "full",
-          align: "start",
-          target: external == true ? "_blank" : "_self",
+      {% if this.data.text.value %}
+        {# @todo we should not be passing the `item` attributes into the button template. Try to fix with next breaking change. #}
+        {% set _button_props = {
+          text: this.data.text.value,
+          hierarchy: 'text',
+          width: 'full',
+          align: 'start',
+          target: this.data.external.value == true ? '_blank' : '_self',
           attributes: attributes|default({})
         } %}
 
-        {% if icon != 'none' %}
-          {% if icon %}
-            {% set button_props = button_props|merge({ icon: { name: icon } }) %}
-          {% elseif external == false or external == null %}
-            {% set button_props = button_props|merge({ icon: { name: "chevron-right" } }) %}
+        {% if this.data.icon.value != 'none' %}
+          {% if this.data.icon.value %}
+            {% set _button_props = _button_props|merge({ icon: { name: this.data.icon.value } }) %}
+          {% elseif this.data.external.value == false or this.data.external.value == null %}
+            {% set _button_props = _button_props|merge({ icon: { name: 'chevron-right' } }) %}
           {% else %}
-            {% set button_props = button_props|merge({ icon: { name: "external-link" } }) %}
+            {% set _button_props = _button_props|merge({ icon: { name: 'external-link' } }) %}
           {% endif %}
         {% endif %}
 
         {% if spacing is not empty %}
-          {% set button_props = button_props|merge({ size: spacing }) %}
+          {% set _button_props = _button_props|merge({ size: spacing }) %}
         {% endif %}
 
-        {% if url is not empty %}
-          {% set button_props = button_props|merge({ url: url }) %}
+        {% if this.data.url.value %}
+          {% set _button_props = _button_props|merge({ url: this.data.url.value }) %}
         {% endif %}
 
-
-        {% include "@bolt-components-button/button.twig" with button_props only %}
+        {% include '@bolt-components-button/button.twig' with _button_props only %}
       {% endif %}
     {% endblock %}
   </ssr-keep>
