@@ -68,8 +68,7 @@ describe('Bolt Image', () => {
 describe('Bolt Image Props', () => {
   // Target each of the schema keys with the following pattern
 
-  const booleans = [true, false];
-  booleans.forEach(async option => {
+  [true, false].forEach(async option => {
     test(`Image ratio object and lazyload:${option} compiles`, async () => {
       const results = await render('@bolt-components-image/image.twig', {
         ...fixtures.defaultData,
