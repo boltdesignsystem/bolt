@@ -1,5 +1,4 @@
 import { lazyQueue } from '@bolt/lazy-queue';
-import { Behaviors } from './behaviors';
 
 lazyQueue(['bolt-typeahead'], async () => {
   await import(
@@ -28,13 +27,6 @@ lazyQueue([], async () => {
   await import(
     /*  webpackChunkName: 'bolt-docs-site--analytics-autotrack' */ '@bolt/analytics-autotrack'
   );
-});
-
-// Load Behaviors
-Object.keys(Behaviors).forEach(behavior => {
-  if (typeof Behaviors[behavior].attach === 'function') {
-    Behaviors[behavior].attach(document);
-  }
 });
 
 // Academy-specific JS demoing the Mission Completed form's button re-activating

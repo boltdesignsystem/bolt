@@ -1,191 +1,156 @@
-import { render, stopServer, html } from '../../../testing/testing-helpers';
+import { render, stopServer, renderWC } from '../../../testing/testing-helpers';
 import schema from '../tabs.schema';
-const { align, inset } = schema.properties;
+// eslint-disable-next-line camelcase
+const { align, label_spacing, panel_spacing, inset } = schema.properties;
+const componentSelector = 'bolt-tabs';
+let page, fixtures;
 
-const timeout = 120000;
+beforeEach(async () => {
+  await page.evaluate(() => {
+    document.body.innerHTML = '';
+  });
+  await page.setViewport({ width: 600, height: 200 });
+});
 
-const tabsInnerHTML = `
-  <bolt-tabs>
-    <bolt-tab-panel>
-      <div slot="label">Tab label 1</div>
-      Tab panel 1
-    </bolt-tab-panel>
-    <bolt-tab-panel>
-      <div slot="label">Tab label 2</div>
-      Tab panel 2
-    </bolt-tab-panel>
-    <bolt-tab-panel>
-      <div slot="label">Tab label 3</div>
-      Tab panel 3
-    </bolt-tab-panel>
-  </bolt-tabs>
-`;
+beforeAll(async () => {
+  page = await global.__BROWSER__.newPage();
+  await page.goto('http://127.0.0.1:4444/', {
+    timeout: 0,
+  });
+
+  const defaultData = {
+    panels: [
+      {
+        label: 'Tab label 1',
+        content: 'This is the tab content.',
+      },
+      {
+        label: 'Tab label 2',
+        content: 'This is the tab content.',
+      },
+      {
+        label: 'Tab label 3',
+        content: 'This is the tab content.',
+      },
+    ],
+  };
+
+  fixtures = {
+    defaultData,
+  };
+});
+
+afterAll(async () => {
+  await stopServer();
+  await page.close();
+});
 
 describe('Bolt Tabs', () => {
-  let page;
-
-  beforeEach(async () => {
-    await page.evaluate(() => {
-      document.body.innerHTML = '';
-    });
-    await page.setViewport({ width: 600, height: 200 });
-  }, timeout);
-
-  beforeAll(async () => {
-    page = await global.__BROWSER__.newPage();
-    await page.goto('http://127.0.0.1:4444/', {
-      timeout: 0,
-    });
-  }, timeout);
-
-  afterAll(async () => {
-    await stopServer();
-    await page.close();
-  }, timeout);
-
-  test('Twig usage', async () => {
+  test('default', async () => {
     const results = await render('@bolt-components-tabs/tabs.twig', {
-      panels: [
-        {
-          label: 'Tab label 1',
-          content: 'This is the tab content.',
-        },
-        {
-          label: 'Tab label 2',
-          content: 'This is the tab content.',
-        },
-        {
-          label: 'Tab label 3',
-          content: 'This is the tab content.',
-        },
-      ],
+      ...fixtures.defaultData,
     });
-    expect(results.ok).toBe(true);
-    expect(results.html).toMatchSnapshot();
+
+    await expect(results.ok).toBe(true);
+    await expect(results.html).toMatchSnapshot();
   });
 
-  test('Web Component usage (Shadow DOM)', async () => {
-    const tabsOuter = await page.evaluate(async tabsInnerHTML => {
-      const wrapper = document.createElement('div');
-      wrapper.innerHTML = tabsInnerHTML;
-      document.body.appendChild(wrapper);
+  test('default with web component', async () => {
+    const results = await render('@bolt-components-tabs/tabs.twig', {
+      ...fixtures.defaultData,
+    });
 
-      await customElements.whenDefined('ssr-keep');
-      await customElements.whenDefined('bolt-tabs');
-      const tabs = document.querySelector('bolt-tabs');
-      await tabs.updateComplete;
+    const { innerHTML, outerHTML } = await renderWC(
+      componentSelector,
+      results.html,
+      page,
+    );
 
-      return tabs.outerHTML;
-    }, tabsInnerHTML);
+    await expect(results.ok).toBe(true);
+    await expect(results.html).toMatchSnapshot();
+    await expect(innerHTML).toMatchSnapshot();
+    await expect(outerHTML).toMatchSnapshot();
+  });
+});
 
-    await page.waitFor(500);
-    const renderedHTML = await html(tabsOuter);
+describe('Bolt Tabs Props', () => {
+  align.enum.forEach(async option => {
+    test(`align: ${option}`, async () => {
+      const results = await render('@bolt-components-tabs/tabs.twig', {
+        ...fixtures.defaultData,
+        align: option,
+      });
 
-    await page.waitFor(500);
-    expect(renderedHTML).toMatchSnapshot();
+      await expect(results.ok).toBe(true);
+      await expect(results.html).toMatchSnapshot();
+    });
   });
 
-  // @TODO Turn off until bugs with "conditional-shadow-dom" are resolved,
-  // causes a series of re-renders that makes querying the rendered DOM impossible
-  // test('Web Component usage (Light DOM)', async () => {
-  //   const tabsOuter = await page.evaluate(async tabsInnerHTML => {
-  //     const wrapper = document.createElement('div');
-  //     wrapper.innerHTML = tabsInnerHTML;
-  //     document.body.appendChild(wrapper);
+  // eslint-disable-next-line camelcase
+  label_spacing.enum.forEach(async option => {
+    test(`label_spacing: ${option}`, async () => {
+      const results = await render('@bolt-components-tabs/tabs.twig', {
+        ...fixtures.defaultData,
+        label_spacing: option,
+      });
 
-  //     await Promise.all([
-  //       customElements.whenDefined('ssr-keep'),
-  //       customElements.whenDefined('bolt-tabs'),
-  //     ]);
+      await expect(results.ok).toBe(true);
+      await expect(results.html).toMatchSnapshot();
+    });
+  });
 
-  //     const tabs = document.querySelector('bolt-tabs');
-  //     const tabPanels = document.querySelectorAll('bolt-tab-panel');
+  // eslint-disable-next-line camelcase
+  panel_spacing.enum.forEach(async option => {
+    test(`panel_spacing: ${option}`, async () => {
+      const results = await render('@bolt-components-tabs/tabs.twig', {
+        ...fixtures.defaultData,
+        panel_spacing: option,
+      });
 
-  //     [tabs, ...tabPanels].forEach(el => {
-  //       el.setAttribute('no-shadow', '');
-  //       el.requestUpdate();
-  //     });
-
-  //     await Promise.all([
-  //       tabs.updateComplete,
-  //       [tabs, ...tabPanels].forEach(el => {
-  //         return el.updateComplete;
-  //       }),
-  //     ]);
-
-  //     return tabs.outerHTML;
-  //   }, tabsInnerHTML);
-
-  //   const renderedHTML = await html(tabsOuter);
-  //   expect(renderedHTML).toMatchSnapshot();
-  // });
-
-  align.enum.forEach(option => {
-    test(`Align: ${option}`, async () => {
-      const tabsOuter = await page.evaluate(
-        async (option, tabsInnerHTML) => {
-          const wrapper = document.createElement('div');
-          wrapper.innerHTML = tabsInnerHTML;
-          document.body.appendChild(wrapper);
-
-          await customElements.whenDefined('ssr-keep');
-          await customElements.whenDefined('bolt-tabs');
-          const tabs = document.querySelector('bolt-tabs');
-          tabs.setAttribute('align', option);
-
-          // @TODO This should work, but throws mysterious error: `TypeError: Cannot read property 'forEach' of undefined`
-          // await tabs.updateComplete;
-
-          return tabs.outerHTML;
-        },
-        option,
-        tabsInnerHTML,
-      );
-
-      await page.waitFor(500);
-      const renderedHTML = await html(tabsOuter);
-
-      await page.waitFor(500);
-      expect(renderedHTML).toMatchSnapshot();
+      await expect(results.ok).toBe(true);
+      await expect(results.html).toMatchSnapshot();
     });
   });
 
   inset.enum.forEach(async option => {
     test(`Inset: ${option}`, async () => {
-      const tabsOuter = await page.evaluate(
-        async (option, tabsInnerHTML) => {
-          const wrapper = document.createElement('div');
-          wrapper.innerHTML = tabsInnerHTML;
-          document.body.appendChild(wrapper);
+      const results = await render('@bolt-components-tabs/tabs.twig', {
+        ...fixtures.defaultData,
+        inset: option,
+      });
 
-          await customElements.whenDefined('ssr-keep');
-          await customElements.whenDefined('bolt-tabs');
-          const tabs = document.querySelector('bolt-tabs');
-          const tabPanels = Array.from(
-            document.querySelectorAll('bolt-tab-panel'),
-          );
-
-          tabs.setAttribute('inset', option);
-          [tabs, ...tabPanels].forEach(el => el.requestUpdate());
-
-          await Promise.all([
-            tabs.updateComplete,
-            [tabs, ...tabPanels].forEach(el => {
-              return el.updateComplete;
-            }),
-          ]);
-
-          return tabs.outerHTML;
-        },
-        option,
-        tabsInnerHTML,
-      );
-
-      await page.waitFor(500);
-      const renderedHTML = await html(tabsOuter);
-
-      await page.waitFor(500);
-      expect(renderedHTML).toMatchSnapshot();
+      await expect(results.ok).toBe(true);
+      await expect(results.html).toMatchSnapshot();
     });
+  });
+
+  test('selected_tab', async () => {
+    const results = await render('@bolt-components-tabs/tabs.twig', {
+      ...fixtures.defaultData,
+      selected_tab: 2,
+    });
+
+    await expect(results.ok).toBe(true);
+    await expect(results.html).toMatchSnapshot();
+  });
+
+  test('scrollOffsetSelector', async () => {
+    const results = await render('@bolt-components-tabs/tabs.twig', {
+      ...fixtures.defaultData,
+      scrollOffsetSelector: '.example-selector',
+    });
+
+    await expect(results.ok).toBe(true);
+    await expect(results.html).toMatchSnapshot();
+  });
+
+  test('scrollOffset', async () => {
+    const results = await render('@bolt-components-tabs/tabs.twig', {
+      ...fixtures.defaultData,
+      scrollOffset: 100,
+    });
+
+    await expect(results.ok).toBe(true);
+    await expect(results.html).toMatchSnapshot();
   });
 });
