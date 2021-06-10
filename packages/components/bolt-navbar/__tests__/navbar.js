@@ -1,6 +1,5 @@
 import { render, stopServer } from '../../../testing/testing-helpers';
 import schema from '../navbar.schema';
-const componentSelector = 'bolt-navbar';
 const { spacing, theme } = schema.properties;
 let page, fixtures;
 
