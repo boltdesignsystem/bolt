@@ -102,6 +102,7 @@ class BoltTypeahead extends withLitEvents {
       <bolt-button
         type="submit"
         color="text"
+        size="medium"
         icon-only
         @click=${this.submit}
         no-shadow
@@ -121,6 +122,7 @@ class BoltTypeahead extends withLitEvents {
 
       <bolt-button
         color="text"
+        size="medium"
         icon-only
         type="reset"
         @click=${this.clearSearch}
