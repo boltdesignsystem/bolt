@@ -86,7 +86,6 @@ describe('Twig Usage', () => {
       title: fixtures.navbarTitle,
       links: fixtures.navbarList.html,
     });
-
     await expect(results.ok).toBe(true);
     await expect(results.html).toMatchSnapshot();
   });
@@ -155,6 +154,16 @@ describe('Bolt Navbar Props', () => {
       title: fixtures.navbarTitle,
       links: fixtures.navbarList.html,
       width: 'auto',
+    });
+    await expect(results.ok).toBe(true);
+    await expect(results.html).toMatchSnapshot();
+  });
+
+  test(`Navbar static`, async () => {
+    const results = await render('@bolt-components-navbar/navbar.twig', {
+      title: fixtures.navbarTitle,
+      links: fixtures.navbarList.html,
+      static: true,
     });
     await expect(results.ok).toBe(true);
     await expect(results.html).toMatchSnapshot();
