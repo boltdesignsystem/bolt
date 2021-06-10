@@ -1,13 +1,13 @@
-import {
-  render,
-  stopServer,
-  renderWC,
-  renderString,
-} from '../../../testing/testing-helpers';
+import { render, stopServer } from '../../../testing/testing-helpers';
 import schema from '../navbar.schema';
 const componentSelector = 'bolt-navbar';
-const { title, links } = schema.properties;
+const { spacing, theme } = schema.properties;
 let page, fixtures;
+
+// @TODO:
+// - add test for viewports, reference git history.
+//   - we should be testing the hide title here.
+//   - we want to be testing the show-more menu.
 
 afterAll(async () => {
   await stopServer();
@@ -26,219 +26,150 @@ beforeAll(async () => {
     timeout: 0,
   });
 
-  const shortLinks = {
-    links: [
-      {
-        text: 'Components',
-        url: '/pattern-lab/index.html',
-      },
-      {
-        text: 'Docs',
-        url: '/docs/getting-started/index.html',
-      },
-      {
-        text: 'Releases',
-        url: 'https://github.com/bolt-design-system/bolt/releases',
+  const itemData = [
+    {
+      link: {
+        content: 'Section 1',
         attributes: {
-          target: '_blank',
+          href: '#section-1',
         },
       },
-      {
-        text: 'Github',
-        url: 'https://github.com/bolt-design-system/bolt',
+    },
+    {
+      link: {
+        content: 'Section 2',
         attributes: {
-          target: '_blank',
-        },
-        icon: {
-          name: 'github',
-          position: 'after',
+          href: '#section-2',
         },
       },
-    ],
-  };
+    },
+    {
+      link: {
+        content: 'Section 3',
+        attributes: {
+          href: '#section-3',
+        },
+      },
+    },
+  ];
 
-  const longLinks = {
-    links: [
-      {
-        text: 'Components',
-        url: '/pattern-lab/index.html',
-      },
-      {
-        text: 'Docs',
-        url: '/docs/getting-started/index.html',
-      },
-      {
-        text: 'Releases',
-        url: 'https://github.com/bolt-design-system/bolt/releases',
-        attributes: {
-          target: '_blank',
-        },
-      },
-      {
-        text: 'Github',
-        url: 'https://github.com/bolt-design-system/bolt',
-        attributes: {
-          target: '_blank',
-        },
-        icon: {
-          name: 'github',
-          position: 'after',
-        },
-      },
-    ],
+  const itemArray = [];
+
+  await Promise.all(
+    itemData.map(item =>
+      render('@bolt-components-navbar/navbar-li.twig', item),
+    ),
+  ).then(results => {
+    results.forEach(({ ok, html }) => {
+      if (ok) {
+        itemArray.push(html);
+      }
+    });
+  });
+
+  const navbarList = await render('@bolt-components-navbar/navbar-ul.twig', {
+    content: itemArray.join(''),
+  });
+
+  const navbarTitle = {
+    content: 'Bolt Design System',
   };
 
   fixtures = {
-    shortLinks,
-    longLinks,
+    navbarList,
+    navbarTitle,
   };
 });
 
-describe('Bolt Navbar', () => {
-  test(`Navbar with 4 short links`, async () => {
+describe('Twig Usage', () => {
+  test(`Navbar default`, async () => {
     const results = await render('@bolt-components-navbar/navbar.twig', {
-      theme: 'xdark',
-      width: 'auto',
-      title: {
-        tag: 'h1',
-        text:
-          'Bolt<span class="u-bolt-hidden u-bolt-inline@xlarge"> Design System</span></span>',
-        url: '/',
-        icon: {
-          name: 'bolt-logo-colored',
-        },
-      },
-      ...fixtures.shortLinks,
+      title: fixtures.navbarTitle,
+      links: fixtures.navbarList.html,
     });
 
     await expect(results.ok).toBe(true);
     await expect(results.html).toMatchSnapshot();
   });
 
-  test(`Navbar with 6 lengthy links`, async () => {
-    const results = await render('@bolt-components-navbar/navbar.twig', {
-      title: {
-        tag: 'h2',
-        text: 'Navbar with links',
-        icon: {
-          name: 'marketing-gray',
-        },
-      },
-      ...fixtures.longLinks,
-    });
-
-    await expect(results.ok).toBe(true);
-    await expect(results.html).toMatchSnapshot();
-  });
-});
-
-describe('Bolt navbar Props', () => {
   test(`Navbar without links`, async () => {
     const results = await render('@bolt-components-navbar/navbar.twig', {
-      title: {
-        tag: 'h2',
-        text: 'Navbar without links',
-        icon: {
-          name: 'marketing-gray',
-        },
-      },
-      links: [],
+      title: fixtures.navbarTitle,
     });
-
     await expect(results.ok).toBe(true);
     await expect(results.html).toMatchSnapshot();
   });
 
   test(`Navbar without a title`, async () => {
     const results = await render('@bolt-components-navbar/navbar.twig', {
-      ...fixtures.shortLinks,
+      links: fixtures.navbarList.html,
     });
-
     await expect(results.ok).toBe(true);
     await expect(results.html).toMatchSnapshot();
   });
+});
 
-  test(`Navbar with a linked title`, async () => {
+describe('Bolt Navbar Props', () => {
+  test(`Navbar with a linked title and icon`, async () => {
     const results = await render('@bolt-components-navbar/navbar.twig', {
-      theme: 'light',
-      width: 'full',
       title: {
-        tag: 'h1',
-        text: 'Bolt Design System',
-        url: 'https://www.boltdesignsystem.com',
+        content: 'This is the navbar title',
         icon: {
-          name: 'bolt-logo-colored',
+          name: 'marketing-gray',
+        },
+        link: {
+          attributes: {
+            href: 'https://pega.com',
+          },
         },
       },
-      ...fixtures.longLinks,
+      links: fixtures.navbarList.html,
     });
-
     await expect(results.ok).toBe(true);
     await expect(results.html).toMatchSnapshot();
   });
 
-  test(`Navbar centered with 4 short links`, async () => {
+  spacing.enum.forEach(async option => {
+    test(`Navbar spacing`, async () => {
+      const results = await render('@bolt-components-navbar/navbar.twig', {
+        title: fixtures.navbarTitle,
+        links: fixtures.navbarList.html,
+        spacing: option,
+      });
+      await expect(results.ok).toBe(true);
+      await expect(results.html).toMatchSnapshot();
+    });
+  });
+
+  test(`Navbar centered`, async () => {
     const results = await render('@bolt-components-navbar/navbar.twig', {
-      theme: 'xdark',
-      width: 'auto',
+      title: fixtures.navbarTitle,
+      links: fixtures.navbarList.html,
       center: true,
-      title: {
-        tag: 'h1',
-        text:
-          'Bolt<span class="u-bolt-hidden u-bolt-inline@xlarge"> Design System</span></span>',
-        url: '/',
-        icon: {
-          name: 'bolt-logo-colored',
-        },
-      },
-      ...fixtures.shortLinks,
     });
-
     await expect(results.ok).toBe(true);
     await expect(results.html).toMatchSnapshot();
   });
 
-  test(`Navbar variable width`, async () => {
-    const results = await renderString(`
-    {% grid "o-bolt-grid--center" %}
-      {% cell "u-bolt-width-2/3 u-bolt-width-1/2@small" %}
-        {% include "@bolt-components-navbar/navbar.twig" with {
-          width: 'auto',
-          center: true,
-          links: [
-            {
-              text: 'Components',
-              url: '/pattern-lab/index.html',
-            },
-            {
-              text: 'Docs',
-              url: '/docs/getting-started/index.html',
-            },
-            {
-              text: 'Releases',
-              url: 'https://github.com/bolt-design-system/bolt/releases',
-              attributes: {
-                target: '_blank',
-              },
-            },
-            {
-              text: 'Github',
-              url: 'https://github.com/bolt-design-system/bolt',
-              attributes: {
-                target: '_blank',
-              },
-              icon: {
-                name: 'github',
-                position: 'after',
-              },
-            },
-          ],
-        } only %}
-      {% endcell %}
-    {% endgrid %}
-  `);
-
+  test(`Navbar width`, async () => {
+    const results = await render('@bolt-components-navbar/navbar.twig', {
+      title: fixtures.navbarTitle,
+      links: fixtures.navbarList.html,
+      width: 'auto',
+    });
     await expect(results.ok).toBe(true);
     await expect(results.html).toMatchSnapshot();
+  });
+
+  theme.enum.forEach(async option => {
+    test(`Navbar theme`, async () => {
+      const results = await render('@bolt-components-navbar/navbar.twig', {
+        title: fixtures.navbarTitle,
+        links: fixtures.navbarList.html,
+        theme: option,
+      });
+      await expect(results.ok).toBe(true);
+      await expect(results.html).toMatchSnapshot();
+    });
   });
 });
