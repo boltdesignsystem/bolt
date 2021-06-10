@@ -23,10 +23,10 @@
           }
         } %}
 
-          {% embed "@bolt-components-card/card.twig" with {
+          {% embed "@bolt-components-card-replacement/card-replacement.twig" with {
             theme: card_theme
           } only %}
-            {% block card_body %}
+            {% block body %}
               {% include "@pl/60-form-full-campaign-landing.twig" only %}
             {% endblock %}
           {% endembed %}

@@ -104,22 +104,19 @@
 
   <div class="u-bolt-margin-bottom-large">
     <h3>Card Carousel</h3>
-    {% embed "@bolt-components-card/card.twig" with {
-      contentItems: [
+    {% embed "@bolt-components-card-replacement/card-replacement.twig" with {
+      body: {
+        headline: "This card's media has an image carousel",
+      },
+      actions: [
         {
-          pattern: "headline",
-          tag: "h3",
-          size: "large",
-          text: "This card's media has an image carousel"
-        },
-        {
-          pattern: "button",
           text: "This is a button",
-          url: "https://pega.com",
+          url: "http://pega.com",
         }
-      ]
+      ],
     } only %}
-      {% block card_media %}
+
+      {% block media %}
         {# Specific Combination of Props to Create Card Carousel #}
         {% include "@bolt-components-carousel/carousel.twig" with {
           slides: [
@@ -127,7 +124,7 @@
             '<bolt-ratio ratio="16/9" style="--aspect-ratio: 16/9; background-size: cover; background-image:url(/images/content/backgrounds/background-tall-2.jpg)"></bolt-ratio>',
             '<bolt-ratio ratio="16/9" style="--aspect-ratio: 16/9; background-size: cover; background-image:url(/images/content/backgrounds/background-tall-3.jpg)"></bolt-ratio>',
             '<bolt-ratio ratio="16/9" style="--aspect-ratio: 16/9; background-size: cover; background-image:url(/images/content/backgrounds/background-tall-4.jpg)"></bolt-ratio>',
-          '<bolt-ratio ratio="16/9" style="--aspect-ratio: 16/9; background-size: cover; background-image:url(/images/content/backgrounds/background-tall-1.jpg)"></bolt-ratio>',
+            '<bolt-ratio ratio="16/9" style="--aspect-ratio: 16/9; background-size: cover; background-image:url(/images/content/backgrounds/background-tall-1.jpg)"></bolt-ratio>',
             '<bolt-ratio ratio="16/9" style="--aspect-ratio: 16/9; background-size: cover; background-image:url(/images/content/backgrounds/background-tall-2.jpg)"></bolt-ratio>',
           ],
           slides_per_view: 1,
