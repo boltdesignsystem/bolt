@@ -23,7 +23,7 @@ class BoltTooltip extends BoltElement {
     this.uuid = this.uuid || Math.floor(10000 + Math.random() * 90000);
 
     this.zIndex = parseInt(
-      getComputedStyle(this).getPropertyValue('--c-bolt-tooltip-zindex'),
+      getComputedStyle(this).getPropertyValue('--c-bolt-tooltip-z-index'),
       10,
     );
 
