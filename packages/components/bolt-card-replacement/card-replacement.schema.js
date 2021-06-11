@@ -2,13 +2,6 @@ module.exports = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'Card',
   type: 'object',
-  not: {
-    anyOf: [
-      {
-        required: ['borderRadius'],
-      },
-    ],
-  },
   properties: {
     attributes: {
       type: 'object',
@@ -167,10 +160,6 @@ module.exports = {
       description:
         'Manually switch on / off the raised (shadow + animation effect) treament. By default this config option is applied if the card-replacement contains a bolt-card-replacement-link OR includes the `url` prop.',
       hidden: true,
-    },
-    borderRadius: {
-      title: 'DEPRECATED',
-      description: 'Use border_radius instead.',
     },
   },
 };
