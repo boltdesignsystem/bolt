@@ -3,11 +3,11 @@
   {{ validate_data_schema(schema, _self)|raw }}
 {% endif %}
 
-{# Override hide_title if no text provided #}
+{# Override hide_text if no text provided #}
 {% if not content or content is empty %}
   {% set content = schema.properties.content.default %}
-  {% if not hide_title %}
-    {% set hide_title = 'from-xsmall-bp' %}
+  {% if not hide_text %}
+    {% set hide_text = 'from-xsmall-bp' %}
   {% endif %}
 {% endif %}
 
@@ -30,7 +30,7 @@
 
 {% set _text_classes = [
   'c-bolt-navbar__title-text',
-  this.data.hide_title.value ? 'c-bolt-navbar__title-text--hide-' ~ this.data.hide_title.value : '',
+  this.data.hide_text.value ? 'c-bolt-navbar__title-text--hide-' ~ this.data.hide_text.value : '',
   secondary_content ? 'c-bolt-navbar__title-text--no-min-width' : '',
 ] %}
 

@@ -57,7 +57,7 @@
   {% include '@bolt-components-navbar/navbar.twig' with {
     title: {
       content: 'This is the navbar title',
-      hide_title: 'from-xsmall-bp',
+      hide_text: 'from-xsmall-bp',
     },
     links: navbar_list,
     center: true,
@@ -69,7 +69,7 @@
 {% include '@bolt-components-navbar/navbar.twig' with {
   title: {
     ...
-    hide_title: 'from-xsmall-bp',
+    hide_text: 'from-xsmall-bp',
   },
   center: true,
   ...
@@ -78,8 +78,8 @@
 {% endset %}
 
 {% include '@utils/pattern-doc-page.twig' with {
-  title: 'Visually Hide the Title at Specific Breakpoints',
-  description: 'The navbar title can be visually hidden at specific breakpoints. This is useful when working with a navbar that has a lot of links.',
+  title: 'Visually Hide the Title text at Specific Breakpoints',
+  description: 'The navbar title text can be visually hidden at specific breakpoints. This is useful when working with a navbar that has a lot of links.',
   notes: notes,
   demo: demo,
   twig_markup: twig_markup,

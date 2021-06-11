@@ -28,7 +28,7 @@ module.exports = {
             },
           },
         },
-        hide_title: {
+        hide_text: {
           type: 'string',
           description:
             'Set the breakpoint at which you wish to hide the title text.',
