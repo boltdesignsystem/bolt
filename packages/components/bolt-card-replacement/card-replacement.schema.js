@@ -2,6 +2,13 @@ module.exports = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'Card',
   type: 'object',
+  not: {
+    anyOf: [
+      {
+        required: ['borderRadius'],
+      },
+    ],
+  },
   properties: {
     attributes: {
       type: 'object',
