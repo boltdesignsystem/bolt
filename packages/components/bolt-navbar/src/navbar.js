@@ -68,10 +68,12 @@ export class BoltNavbar {
       isOpen: false,
       visibleElements: [],
     };
-    // this.visibleElements = []; // @todo do we need to set this here?
 
     // Setup Sticky
-    const selectors = ['[data-bolt-sticky-header]'];
+    const selectors = [
+      '[data-bolt-sticky-header]',
+      '.js-global-header.is-fixed',
+    ]; // First selector covers new header, second covers old header
     const scrollOffsetSelector = this.el.dataset.boltScrollOffsetSelector;
     if (scrollOffsetSelector) {
       selectors.push(scrollOffsetSelector);
