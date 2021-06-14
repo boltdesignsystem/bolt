@@ -27,6 +27,22 @@ module.exports = {
   title: 'Link',
   description: 'Text link.',
   type: 'object',
+  not: {
+    anyOf: [
+      {
+        required: ['href'],
+      },
+      {
+        required: ['isHeadline'],
+      },
+      {
+        required: ['onClick'],
+      },
+      {
+        required: ['onClickTarget'],
+      },
+    ],
+  },
   properties: {
     attributes: {
       type: 'object',
@@ -66,5 +82,13 @@ module.exports = {
     },
     icon: iconSchema,
     ...onClickProps,
+    href: {
+      title: 'DEPRECATED',
+      description: 'Use url instead.',
+    },
+    isHeadline: {
+      title: 'DEPRECATED',
+      description: 'Use is_headline instead.',
+    },
   },
 };
