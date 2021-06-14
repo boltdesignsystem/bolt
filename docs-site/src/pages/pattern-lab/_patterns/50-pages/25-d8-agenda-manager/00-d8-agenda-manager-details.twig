@@ -347,8 +347,11 @@
           {% include "@bolt-components-headline/text.twig" with {
             text: "Time is running out to take advantage of end-of-year pricing.",
           } only %}
-          {% include "@bolt-components-button/button.twig" with {
-            text: "Register Now!",
+          {% include '@bolt-elements-button/button.twig' with {
+            content: 'Register Now!',
+            attributes: {
+              type: 'button'
+            }
           } only %}
         {% endcell %}
 
