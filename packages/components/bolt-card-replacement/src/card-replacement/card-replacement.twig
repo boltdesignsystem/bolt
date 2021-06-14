@@ -4,11 +4,6 @@
   {{ validate_data_schema(schema, _self)|raw }}
 {% endif %}
 
-{# DEPRECATED.  Use the property `border_radius` instead of `borderRadius`. #}
-{% if borderRadius %}
-  {% set border_radius = borderRadius %}
-{% endif %}
-
 {# Variables #}
 {% set this = init(schema) %}
 {% set inner_attributes = create_attribute({}) %}
