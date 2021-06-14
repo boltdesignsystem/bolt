@@ -4,166 +4,178 @@
    Navbar
 \* ------------------------------------ */
 
-$bolt-navbar-title-transition: $bolt-transition;
+.c-bolt-navbar {
+  display: block;
+  position: relative;
 
-bolt-navbar {
-  // @todo: remove once Navbar refactored to have theming classes added to the `.c-bolt-navbar` inner.
-  &[width*='full'] {
+  &:not(.c-bolt-navbar--static) {
+    position: sticky;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: bolt-z-index(nav); // prevents overflow menu from being covered up
+  }
+
+  @media (prefers-reduced-motion) {
+    *,
+    *:before,
+    *:after {
+      transition: none !important;
+      animation: none !important;
+    }
+  }
+}
+
+// Inner
+.c-bolt-navbar__inner {
+  display: block;
+  width: 100%;
+  padding-top: var(--c-bolt-navbar-padding-y, var(--bolt-spacing-y-small));
+  padding-right: calc(var(--bolt-page-padding-x));
+  padding-bottom: var(--c-bolt-navbar-padding-y, var(--bolt-spacing-y-small));
+  padding-left: var(--bolt-page-padding-x);
+  color: inherit;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2);
+  background-color: inherit;
+
+  @at-root .c-bolt-navbar:not(.c-bolt-navbar--custom) #{&} {
+    display: flex;
+    align-items: center;
+    padding-right: calc(
+      var(--bolt-page-padding-x) - var(--bolt-spacing-x-small)
+    ); // Offsets item padding
+
+    @include bolt-mq($until: xsmall) {
+      display: grid;
+      padding: 0;
+      grid-template-columns: auto 1fr;
+      grid-template-rows: 1fr auto;
+    }
+  }
+
+  // Center alignment
+  @at-root .c-bolt-navbar:not(.c-bolt-navbar--center) #{&} {
+    justify-content: space-between;
+
+    > *:not(:last-child) {
+      margin-right: var(--bolt-spacing-x-small);
+    }
+  }
+
+  @at-root .c-bolt-navbar--center #{&} {
+    @include bolt-mq(xsmall) {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  }
+
+  // Spacing options
+  @at-root .c-bolt-navbar--spacing-none #{&} {
+    --c-bolt-navbar-padding-y: 0;
+  }
+
+  @each $size in $bolt-spacing-multiplier-system {
+    $size-name: nth($size, 1);
+
+    @if (
+      $size-name !=
+        'xxsmall' and
+        $size-name !=
+        'large' and
+        $size-name !=
+        'xlarge' and
+        $size-name !=
+        'xxlarge'
+    ) {
+      @at-root .c-bolt-navbar--spacing-#{$size-name} #{&} {
+        --c-bolt-navbar-padding-y: var(--bolt-spacing-y-#{$size-name});
+      }
+    }
+  }
+
+  // Width options
+  @at-root .c-bolt-navbar:not(.c-bolt-navbar--auto-width) #{&} {
     @include bolt-full-bleed;
   }
 
-  display: block;
-  overflow: visible;
-  margin-top: 0; // workaround to -.5px in bolt-full-bleed
-  margin-bottom: 0; // workaround to -.5px in bolt-full-bleed
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2);
-}
+  @at-root .c-bolt-navbar--auto-width #{&} {
+    padding-right: var(--bolt-spacing-x-medium);
+    padding-left: var(--bolt-spacing-x-medium);
 
-.c-bolt-navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  position: relative;
-  width: 100%;
-  max-width: bolt-breakpoint(xxlarge);
-  margin: 0 auto;
-  padding-top: var(--bolt-spacing-y-small);
-  padding-right: var(--bolt-spacing-x-small);
-  padding-left: var(--bolt-spacing-x-small);
-
-  > *:not(:last-child) {
-    margin-right: var(--bolt-spacing-x-small);
-  }
-
-  @include bolt-mq(xsmall) {
-    padding-right: $bolt-wrapper-padding;
-    padding-left: $bolt-wrapper-padding;
-  }
-
-  @include bolt-mq(medium) {
-    padding-right: $bolt-wrapper-padding-at-medium-bp;
-    padding-left: $bolt-wrapper-padding-at-medium-bp;
-  }
-
-  /**
-    * 1. Global spacing fallbacks if CSS variables aren't supported
-    */
-  > * {
-    padding-bottom: var(--bolt-spacing-y-small);
-  }
-
-  @include bolt-if-browser-supports-display-contents {
     @include bolt-mq($until: xsmall) {
-      display: grid;
-      flex-direction: row;
-      justify-content: center;
-      align-content: center;
-      align-items: center;
-      grid-template-columns: var(--bolt-spacing-x-small) auto 1fr var(
-          --bolt-spacing-y-medium
-        );
-      grid-template-rows: 1fr auto;
-      padding-top: 0;
       padding-right: 0;
       padding-left: 0;
     }
   }
 
-  &--center {
+  @at-root .c-bolt-navbar--auto-width:not(.c-bolt-navbar--custom) #{&} {
     @include bolt-mq(xsmall) {
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-    > *:first-child {
-      align-self: center;
-      padding-top: var(--bolt-spacing-y-xsmall);
-    }
-
-    > *:only-child {
-      padding-top: var(--bolt-spacing-y-xsmall);
-      padding-bottom: var(--bolt-spacing-y-xsmall);
-    }
-  }
-
-  // Don't include these inner "full-bleed" styles till Navbar is updated to support theming classes internally,
-  // otherwise full bleed + center styling combos are broken
-  // @todo: uncomment once the [width*="full"] updates from above ^ are addressed
-  // &--full {
-  //   @include bolt-full-bleed;
-  // }
-
-  &--small {
-    @include bolt-mq(xsmall) {
-      // Below xsmall this causes unwanted space above mobile menu.
-      padding-top: var(--bolt-spacing-y-xsmall);
-    }
-
-    > * {
-      padding-bottom: var(--bolt-spacing-y-xsmall);
+      padding-right: calc(
+        var(--bolt-spacing-x-medium) - var(--bolt-spacing-x-small)
+      ); // Offsets item padding
     }
   }
 }
 
-// Nav title
+// Title
 .c-bolt-navbar__title {
   display: flex;
-  flex-shrink: 1; // make sure the title can wrap to multiple lines and shrink if needed, but only when absolutely necessary (prevents jumps when resizing)
-  flex-wrap: nowrap;
-  align-items: center;
-  align-self: center;
-  margin-right: var(--bolt-spacing-x-small); // Maintain space between items
-  padding-bottom: var(--bolt-spacing-y-small);
-  color: bolt-theme(headline);
+  color: var(--m-bolt-headline);
   white-space: nowrap;
 
   @include bolt-mq($until: xsmall) {
     padding-top: var(--bolt-spacing-y-xsmall);
     padding-bottom: var(--bolt-spacing-y-xsmall);
+    padding-left: calc(
+      var(--bolt-spacing-x-small) + var(--bolt-spacing-x-xsmall)
+    ); // Matches page header padding
     grid-column: 2 / span 1;
-  }
-
-  &:only-child {
-    margin-right: auto;
   }
 
   > *:not(:last-child) {
     margin-right: var(--bolt-spacing-x-small);
   }
 
-  .c-bolt-navbar--center & {
+  @at-root .c-bolt-navbar--center #{&} {
     @include bolt-mq(xsmall) {
-      justify-content: center;
-      align-items: center;
       width: 100%;
-      margin-right: auto;
-      margin-left: auto;
     }
-  }
-
-  .c-bolt-navbar--small & {
-    padding-bottom: var(--bolt-spacing-y-xsmall);
   }
 }
 
-.c-bolt-navbar__title--static,
-.c-bolt-navbar__title--link {
+.c-bolt-navbar__title-inner {
   display: flex;
   flex-shrink: 1; // make sure the title can wrap to multiple lines and shrink if needed.
   flex-wrap: nowrap;
   align-items: center;
   align-self: center;
   white-space: nowrap;
+
+  @at-root .c-bolt-navbar--center #{&} {
+    @include bolt-mq(xsmall) {
+      justify-content: center;
+      align-items: center;
+      margin-right: auto;
+      margin-left: auto;
+    }
+  }
 }
 
-.c-bolt-navbar__title--link {
-  opacity: bolt-opacity(100);
+.c-bolt-navbar__title-inner--link {
   text-decoration: none;
-  transition: all $bolt-navbar-title-transition;
+  transition: text-decoration var(--bolt-transition);
 
-  &:hover {
-    opacity: $bolt-global-link-hover-opacity;
+  &:hover,
+  &:focus {
+    text-decoration: underline;
+    text-decoration-color: currentColor;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
   }
+}
+
+button.c-bolt-navbar__title-inner--link {
+  @include bolt-button-native-styles-reset;
 }
 
 .c-bolt-navbar__title-icon {
@@ -172,19 +184,35 @@ bolt-navbar {
   flex-shrink: 0;
   margin: 0 var(--bolt-spacing-x-small) 0 0;
   line-height: 0; // fix vertical alignment of icon + title
+
+  @at-root .c-bolt-navbar--center #{&} {
+    @include bolt-mq(xsmall) {
+      // Balances out space around title when title + links are stacked. Can't apply padding to container or there will be extra space when title is hidden.
+      padding-top: var(--bolt-spacing-y-xsmall);
+      padding-bottom: var(--bolt-spacing-y-xsmall);
+    }
+  }
 }
 
 .c-bolt-navbar__title-text {
   flex-flow: wrap;
+  min-width: 25vw;
   font-family: var(--bolt-type-font-family-headline);
   font-size: var(--bolt-type-font-size-medium);
   font-weight: var(--bolt-type-font-weight-semibold);
   line-height: var(--bolt-type-line-height-medium);
   white-space: normal; // wrap to multiple lines if needed
 
+  &--no-min-width {
+    min-width: auto;
+  }
+
   // Adjust the Navbar Title size when being stacked vertically
-  .c-bolt-navbar--center & {
+  @at-root .c-bolt-navbar--center #{&} {
     flex-wrap: nowrap; // fixes IE 11 flex-bug causing text to resist staying on one line and prematurely wraps to two-lines -- even if plenty of space is available
+    min-width: auto;
+    padding-top: var(--bolt-spacing-y-xsmall); // [1]
+    padding-bottom: var(--bolt-spacing-y-xsmall); // [1]
     font-family: var(--bolt-type-font-family-headline);
     font-size: var(--bolt-type-font-size-small);
     font-weight: var(--bolt-type-font-weight-bold);
@@ -211,6 +239,7 @@ bolt-navbar {
         'xxxxlarge'
     ) {
       &--hide-from-#{$breakpoint-name}-bp {
+        // @todo see compiled styles for optimization
         @include bolt-mq(#{$breakpoint-name}) {
           @include bolt-visuallyhidden;
         }
@@ -219,28 +248,206 @@ bolt-navbar {
   }
 }
 
-// Nav items
-.c-bolt-navbar__nav {
-  flex-shrink: 1;
-  width: 100%;
-  margin: 0 0 0 var(--bolt-spacing-x-small);
-  -webkit-overflow-scrolling: touch;
-}
+// List
+.c-bolt-navbar__list-wrapper {
+  @at-root .c-bolt-navbar:not([data-bolt-ready]) #{&} {
+    background-attachment: local, local, scroll, scroll;
+    background-position: 0 0, 100% 0, 0 0, 100% 0;
+    background-repeat: no-repeat;
+    background-size: 4em 100%, 4em 100%, 1em 100%, 1em 100%;
+    -webkit-overflow-scrolling: touch;
+    overflow-x: auto;
+    overflow-y: hidden; // active item pseudo element will cause vertical scrollbars
+  }
 
-.c-bolt-navbar__nav {
-  &:only-child {
-    margin: 0 auto;
+  @include bolt-mq($until: xsmall) {
+    @at-root .c-bolt-navbar[data-bolt-ready] #{&} {
+      display: contents;
+    }
   }
 }
 
-.c-bolt-navbar--align-items-start {
-  justify-content: flex-start;
+.c-bolt-navbar__list {
+  display: flex;
+  margin: 0;
+
+  @include bolt-mq($until: xsmall) {
+    @at-root .c-bolt-navbar[data-bolt-ready] #{&} {
+      display: contents;
+    }
+  }
 }
 
-.c-bolt-navbar--align-items-center {
+// List item
+.c-bolt-navbar-item {
+  display: flex;
+  flex-shrink: 0;
+  white-space: nowrap;
+  position: relative;
+
+  &:after {
+    content: '';
+    display: block;
+    opacity: bolt-opacity(0);
+    position: absolute;
+    bottom: calc(var(--c-bolt-navbar-padding-y) * -1);
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background-color: var(--m-bolt-primary);
+    transition: opacity calc(var(--bolt-transition-timing) * 2)
+      var(--bolt-transition-ease);
+
+    @each $size in $bolt-spacing-multiplier-system {
+      $size-name: nth($size, 1);
+
+      @if (
+        $size-name !=
+          'xxsmall' and
+          $size-name !=
+          'large' and
+          $size-name !=
+          'xlarge' and
+          $size-name !=
+          'xxlarge'
+      ) {
+        @at-root .c-bolt-navbar--spacing-#{$size-name} & {
+          bottom: calc(var(--bolt-spacing-y-#{$size-name}) * -1);
+        }
+      }
+    }
+
+    @at-root .c-bolt-navbar-menu__dropdown #{&} {
+      top: 6px;
+      bottom: 6px;
+      width: 4px;
+      height: auto;
+    }
+  }
+}
+
+.c-bolt-navbar-item[data-bolt-current] {
+  &:after {
+    opacity: bolt-opacity(100);
+  }
+}
+
+.c-bolt-navbar-item__inner {
+  display: flex;
+  flex-direction: column;
   justify-content: center;
+  width: 100%;
 }
 
-.c-bolt-navbar--align-items-end {
-  justify-content: flex-end;
+.c-bolt-navbar-item__link {
+  opacity: 0.9;
+  position: relative;
+  padding: calc(var(--bolt-spacing-y-small) / 2) var(--bolt-spacing-x-small);
+  font-size: var(--bolt-type-font-size-small);
+  font-weight: var(--bolt-type-font-weight-semibold);
+  color: var(--m-bolt-link);
+  line-height: var(--bolt-type-line-height-small);
+  text-decoration: none;
+  border-radius: bolt-border-radius(small);
+  border-width: thin;
+  border-style: dotted;
+  border-color: transparent;
+
+  @include bolt-ms-edge-42-only {
+    padding-top: var(--bolt-spacing-y-xsmall);
+    padding-right: var(--bolt-spacing-x-xsmall);
+    padding-bottom: var(--bolt-spacing-y-xsmall);
+    padding-left: var(--bolt-spacing-x-xsmall);
+  }
+
+  &:before {
+    content: '';
+    display: block;
+    opacity: 0.1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: scale3d(0, 0, 0);
+    width: 100%;
+    height: 100%;
+    border-radius: bolt-border-radius(small);
+    background-color: currentColor;
+    will-change: transform;
+    transition: opacity var(--bolt-transition), transform var(--bolt-transition);
+  }
+
+  &:active {
+    border-color: transparent;
+  }
+
+  &:active:before {
+    opacity: 0.2;
+    transform: scale3d(1, 1, 1);
+    animation: none;
+  }
+
+  &:hover:before {
+    animation: a-bolt-navbar-item-bg-hover
+      calc(var(--bolt-transition-timing) * 5) both;
+
+    @media (prefers-reduced-motion) {
+      transform: scale3d(1, 1, 1);
+    }
+  }
+
+  // works in chrome only
+  &:focus:not(:active) {
+    border-color: var(--bolt-theme-secondary);
+    outline: none;
+  }
+
+  @at-root .c-bolt-navbar-item[data-bolt-current] #{&} {
+    &:hover:before {
+      animation: none;
+    }
+  }
+}
+
+button.c-bolt-navbar-item__link {
+  font-family: var(--bolt-type-font-family-body);
+  text-align: start;
+}
+
+// Text and icon spacing
+.c-bolt-navbar-item__text + .c-bolt-navbar-item__icon,
+.c-bolt-navbar-item__icon + .c-bolt-navbar-item__text {
+  margin-left: var(--bolt-spacing-x-xxsmall);
+}
+
+// Icon styles
+.c-bolt-navbar-item__icon {
+  display: inline-block;
+  line-height: 1; // workaround so icons can be vertically aligned properly
+  vertical-align: baseline;
+}
+
+@keyframes a-bolt-navbar-item-bg-hover {
+  0% {
+    transform: scale3d(0, 0, 0);
+  }
+
+  20% {
+    transform: scale3d(1.05, 1.05, 1.05);
+  }
+
+  40% {
+    transform: scale3d(0.97, 0.97, 0.97);
+  }
+
+  60% {
+    transform: scale3d(1, 1, 1);
+  }
+
+  80% {
+    transform: scale3d(0.99, 0.99, 0.99);
+  }
+
+  to {
+    transform: scale3d(1, 1, 1);
+  }
 }
