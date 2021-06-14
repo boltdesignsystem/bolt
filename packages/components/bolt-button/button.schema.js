@@ -25,6 +25,9 @@ module.exports = {
       {
         required: ['itemAlignment'],
       },
+      {
+        required: ['tag'],
+      },
     ],
   },
   properties: {
@@ -91,6 +94,13 @@ module.exports = {
     itemAlignment: {
       title: 'DEPRECATED',
       description: 'Use the align parameter instead.',
+    },
+    tag: {
+      title: 'DEPRECATED',
+      description: 'Switch to using the new type prop instead.',
+      type: 'string',
+      enum: ['a', 'link', 'button', 'submit', 'reset'],
+      default: 'button',
     },
   },
 };
