@@ -2,8 +2,7 @@
 {% include "@bolt-components-button/button.twig" with {
   text: "Open Modal",
   attributes: {
-    "on-click": "show",
-    "on-click-target": "js-target-name"
+    "data-bolt-modal-target": ".js-target-name",
   }
 } only %}
 
