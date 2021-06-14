@@ -28,6 +28,9 @@ module.exports = {
       {
         required: ['tag'],
       },
+      {
+        required: ['style'],
+      },
     ],
   },
   properties: {
@@ -101,6 +104,13 @@ module.exports = {
       type: 'string',
       enum: ['a', 'link', 'button', 'submit', 'reset'],
       default: 'button',
+    },
+    style: {
+      title: 'DEPRECATED',
+      type: 'string',
+      description: 'Switch to using the new hierarchy prop instead.',
+      default: 'primary',
+      enum: ['primary', 'secondary', 'tertiary', 'text'],
     },
   },
 };
