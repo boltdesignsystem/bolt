@@ -20,6 +20,12 @@ module.exports = {
   description: 'Buttons are the core of our action components.',
   type: 'object',
   required: ['text'],
+  not: {
+    anyOf: [
+      {
+      },
+    ],
+  },
   properties: {
     attributes: {
       type: 'object',

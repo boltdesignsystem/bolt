@@ -6,6 +6,23 @@
   {{ validate_data_schema(schema, _self) | raw }}
 {% endif %}
 
+{# DEPRECATED.  Use the values `start` and `end` insted of `left` and `right`. #}
+{% if align == 'left' %}
+  {% set align = 'start' %}
+{% elseif align == 'right' %}
+  {% set align = 'end' %}
+{% endif %}
+
+{# DEPRECATED.  Use the property `on_click` instead of `onClick`. #}
+{% if onClick %}
+  {% set on_click = onClick %}
+{% endif %}
+
+{# DEPRECATED.  Use the property `on_click_target` instead of `onClickTarget`. #}
+{% if onClickTarget %}
+  {% set on_click_target = onClickTarget %}
+{% endif %}
+
 {# Variables #}
 {% set this = init(schema) %}
 {% set inner_attributes = create_attribute({}) %}
