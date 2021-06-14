@@ -21,8 +21,6 @@ $bolt-table-row-hover-background-color: rgba(bolt-color(gray), 0.1);
 
 .c-bolt-table {
   @include bolt-horizontal-scroll;
-  @include bolt-table-border(right);
-  @include bolt-table-border(bottom);
   @include bolt-table-border(left);
 
   display: inline-block;
@@ -31,27 +29,41 @@ $bolt-table-row-hover-background-color: rgba(bolt-color(gray), 0.1);
   margin: 0;
   padding: 0;
   vertical-align: top;
-  background: -webkit-radial-gradient(
-        left,
-        ellipse,
-        var(--m-bolt-border) 0%,
-        transparent 75%
-      )
-      0 center,
-    -webkit-radial-gradient(
-        right,
-        ellipse,
-        var(--m-bolt-border) 0%,
-        transparent 75%
-      ) 100% center;
-  background-attachment: scroll, scroll;
-  background-color: var(--m-bolt-bg);
-  background-repeat: no-repeat;
-  background-size: 0.5em 100%, 0.5em 100%;
   overflow-x: auto;
   border-collapse: collapse;
   border-spacing: 0;
   -ms-overflow-style: -ms-autohiding-scrollbar;
+
+  &--background {
+    @include bolt-table-border(right);
+    @include bolt-table-border(bottom);
+
+    background: -webkit-radial-gradient(
+          left,
+          ellipse,
+          var(--m-bolt-border) 0%,
+          transparent 75%
+        )
+        0 center,
+      -webkit-radial-gradient(
+          right,
+          ellipse,
+          var(--m-bolt-border) 0%,
+          transparent 75%
+        ) 100% center;
+    background-attachment: scroll, scroll;
+    background-color: var(--m-bolt-bg);
+    background-repeat: no-repeat;
+    background-size: 0.5em 100%, 0.5em 100%;
+
+    .c-bolt-table__cell:last-child {
+      border-right: 0;
+    }
+
+    .c-bolt-table__body {
+      border-bottom: 0;
+    }
+  }
 }
 
 .c-bolt-table__head,
@@ -66,6 +78,10 @@ $bolt-table-row-hover-background-color: rgba(bolt-color(gray), 0.1);
   );
 }
 
+.c-bolt-table__body {
+  @include bolt-table-border(bottom);
+}
+
 .c-bolt-table__row {
   @include bolt-table-border(top);
   transition: background-color $bolt-transition;
@@ -76,12 +92,10 @@ $bolt-table-row-hover-background-color: rgba(bolt-color(gray), 0.1);
 }
 
 .c-bolt-table__cell {
+  @include bolt-table-border(right);
+
   text-align: left;
   vertical-align: top;
-
-  &:not(:last-child) {
-    @include bolt-table-border(right);
-  }
 
   &:first-child:empty ~ .c-bolt-table__cell {
     width: auto;

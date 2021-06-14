@@ -27,6 +27,14 @@ class BoltTable extends BoltElement {
     return [unsafeCSS(styles)];
   }
 
+  connectedCallback() {
+    super.connectedCallback && super.connectedCallback();
+    const elem = this;
+    window.addEventListener('resize', function() {
+      elem.checkWidth();
+    });
+  }
+
   removeEmptyNodes(nodes) {
     return nodes.filter(node => {
       if (node.type !== 'comment') {
@@ -111,6 +119,17 @@ class BoltTable extends BoltElement {
     return boltedObject;
   }
 
+  checkWidth() {
+    const bodyWidth = this.querySelector('tbody').offsetWidth;
+    const tableWidth = this.offsetWidth - 2; // border width offset
+
+    if (bodyWidth >= tableWidth) {
+      this.querySelector('.c-bolt-table').classList.add(
+        'c-bolt-table--background',
+      );
+    }
+  }
+
   updated(changedProperties) {
     super.updated && super.updated();
 
@@ -141,6 +160,7 @@ class BoltTable extends BoltElement {
 
     // If there's no table inside stop here, only errors lie ahead
     if (!slottedTable) return;
+    this.checkWidth();
 
     const parseCode =
       slottedTable &&
