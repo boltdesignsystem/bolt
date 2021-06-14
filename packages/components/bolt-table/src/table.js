@@ -121,7 +121,7 @@ class BoltTable extends BoltElement {
 
   checkWidth() {
     const bodyWidth = this.querySelector('tbody').offsetWidth;
-    const tableWidth = this.offsetWidth - 2; // border width offset
+    const tableWidth = this.querySelector('table').clientWidth;
 
     if (bodyWidth >= tableWidth) {
       this.querySelector('.c-bolt-table').classList.add(
