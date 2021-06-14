@@ -42,6 +42,7 @@ class BoltButton extends BoltActionElement {
       [`c-bolt-button--${hierarchy}`]: hierarchy,
       [`c-bolt-button--${this.width}`]: this.width && this.width !== 'auto',
       'c-bolt-button--border-radius-regular': !this.borderRadius, // Default border radius
+      'c-bolt-button--border-radius-full': this.rounded && !this.borderRadius, // DEPRECATED.  Use the border-radius property instead of rounded.
       [`c-bolt-button--border-radius-${this.borderRadius}`]: this.borderRadius,
       'c-bolt-button--center': !this.align, // Default align
       [`c-bolt-button--${this.align}`]: this.align,

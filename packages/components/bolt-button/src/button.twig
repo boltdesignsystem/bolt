@@ -18,6 +18,11 @@
   {% set align = 'end' %}
 {% endif %}
 
+{# DEPRECATED.  Use the property `border_radius` with a value of `full` instead. #}
+{% if rounded == 'rounded' %}
+  {% set border_radius = 'full' %}
+{% endif %}
+
 {# DEPRECATED. Use the `type` property for a reset or submit button.  Tag is determined automatically based on whether you pass a url. #}
 {% if tag in ['reset', 'submit'] %}
   {% set type = type|default(tag) %}
