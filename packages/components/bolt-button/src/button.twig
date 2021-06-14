@@ -6,6 +6,11 @@
   {{ validate_data_schema(schema, _self) | raw }}
 {% endif %}
 
+{# DEPRECATED.  Use the property `align` instead of `itemAlignment`. #}
+{% if itemAlignment %}
+  {% set align = itemAlignment %}
+{% endif %}
+
 {# DEPRECATED.  Use the values `start` and `end` insted of `left` and `right`. #}
 {% if align == 'left' %}
   {% set align = 'start' %}
