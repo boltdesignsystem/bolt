@@ -33,17 +33,26 @@
       Demo
     </bolt-text>
     <bolt-stack>
+      {% set rendered_demo %}
+        {% if demo_vertical_scroll %}
+          <div class="c-bds-demo-visible-scrollbar">
+            {{ demo }}
+          </div>
+        {% else %}
+          {{ demo }}       
+        {% endif %}
+      {% endset %}
       {% if demo_light_dark %}
         <div class="u-bolt-padding-medium t-bolt-xlight">
           <bolt-text headline font-size="xxsmall" text-transform="uppercase" letter-spacing="wide">Light</bolt-text>
-          {{ demo }}
+          {{ rendered_demo }}
         </div>
         <div class="u-bolt-padding-medium t-bolt-dark">
           <bolt-text headline font-size="xxsmall" text-transform="uppercase" letter-spacing="wide">Dark</bolt-text>
-          {{ demo }}
+          {{ rendered_demo }}
         </div>
       {% else %}
-        {{ demo }}
+        {{ rendered_demo }}
       {% endif %}
     </bolt-stack>
   {% endif %}
