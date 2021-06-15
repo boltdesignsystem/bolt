@@ -6,6 +6,26 @@
   {{ validate_data_schema(schema, _self) | raw }}
 {% endif %}
 
+{# DEPRECATED.  Use the property `url` instead of `href`. #}
+{% if href %}
+  {% set url = href %}
+{% endif %}
+
+{# DEPRECATED.  Use the property `is_headline` instead of `isHeadline`. #}
+{% if isHeadline %}
+  {% set is_headline = isHeadline %}
+{% endif %}
+
+{# DEPRECATED.  Use the property `on_click` instead of `onClick`. #}
+{% if onClick %}
+  {% set on_click = onClick %}
+{% endif %}
+
+{# DEPRECATED.  Use the property `on_click_target` instead of `onClickTarget`. #}
+{% if onClickTarget %}
+  {% set on_click_target = onClickTarget %}
+{% endif %}
+
 {# Variables #}
 {% set this = init(schema) %}
 {% set inner_attributes = create_attribute({}) %}
