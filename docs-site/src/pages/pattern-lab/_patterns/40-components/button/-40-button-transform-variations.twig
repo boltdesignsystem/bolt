@@ -1,5 +1,6 @@
-{% set schema = bolt.data.components["@bolt-components-button"].schema %}
+{% include '@pl/00-deprecated-button-docs.twig' %}
 
+{% set schema = bolt.data.components["@bolt-components-button"].schema %}
 
 {% for transform in schema.properties.transform.enum %}
   <p>
