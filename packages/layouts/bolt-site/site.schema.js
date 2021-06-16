@@ -8,10 +8,22 @@ module.exports = {
       description:
         'A Drupal attributes object. Applies extra HTML attributes to the parent element.',
     },
-    content: {
-      type: 'any',
+    main: {
+      type: 'object',
       description:
         'The main content of the site. <code>site_content</code> block is also available.',
+      properties: {
+        attributes: {
+          type: 'object',
+          description:
+            'A Drupal attributes object. Applies extra HTML attributes to the main element.',
+        },
+        content: {
+          type: 'any',
+          description:
+            'The main content of the site. <code>site_content</code> block is also available.',
+        },
+      },
     },
     header: {
       type: 'any',

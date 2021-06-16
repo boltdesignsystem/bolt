@@ -15,38 +15,34 @@
 
 {# Template #}
 <div {{ attributes.addClass(classes) }}>
-  {#
-  /**
-  *  The contents of `header` must be a single element, for example:
-  *  <header>
-  *    ...
-  *  </header>
-  */
-  #}
-  {{ header }}
+  {% block site_header %}
+    {#
+    /**
+    *  The contents of `header` must be a single element, for example:
+    *  <header>
+    *    ...
+    *  </header>
+    */
+    #}
+    {{ header }}
+  {% endblock %}
 
-  <main id="main-content" class="c-bolt-site__content">
-    {% if content %}
-      {{ content }}
-    {% else %}
-      {% block site_content %}
-        {# Main content goes here #}
-      {% endblock %}
-    {% endif %}
+  <main id="main-content" {{ main.attributes }}>
+    {% block site_content %}
+      {# Main content goes here #}
+      {{ main.content }}
+    {% endblock %}
   </main>
 
-  {% if footer %}
+  {% block site_footer %}
+    {#
+    /**
+    *  This must be a single element, for example:
+    *  <footer>
+    *    ...
+    *  </footer>
+    */
+    #}
     {{ footer }}
-  {% else %}
-    {% block site_footer %}
-      {#
-      /**
-      *  This must be a single element, for example:
-      *  <footer>
-      *    ...
-      *  </footer>
-      */
-      #}
-    {% endblock %}
-  {% endif %}
+  {% endblock %}
 </div>

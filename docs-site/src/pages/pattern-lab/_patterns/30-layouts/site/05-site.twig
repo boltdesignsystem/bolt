@@ -13,7 +13,7 @@
       This is the header.
     </header>
   {% endset %}
-  {% set content %}
+  {% set main_content %}
     <div class="u-bolt-padding-small">
       This is the main content. The site layout is at least 100% of viewport height and the footer is always positioned on the bottom.
     </div>
@@ -25,7 +25,9 @@
   {% endset %}
   {% include '@bolt-layouts-site/site.twig' with {
     header: header,
-    content: content,
+    main: {
+      content: main_content,
+    },
     footer: footer,
     attributes: {
       class: 't-bolt-light',
@@ -38,7 +40,12 @@
 // Include method
 {% include '@bolt-layouts-site/site.twig' with {
   header: 'This is the header.',
-  content: 'This is the main content.',
+  main: {
+    content: 'This is the main content.',
+    attributes: {
+      'data-foo': 'bar',
+    }
+  },
   footer: 'This is the footer.',
 } only %}
 
@@ -63,7 +70,7 @@
   <header>
     // This is the header
   </header>
-  <main>
+  <main id="main-content">
     // This is the main content
   </main>
   <footer>
