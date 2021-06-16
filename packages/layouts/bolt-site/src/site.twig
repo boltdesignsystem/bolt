@@ -15,20 +15,15 @@
 
 {# Template #}
 <div {{ attributes.addClass(classes) }}>
-  {% if header %}
-    {{ header }}
-  {% else %}
-    {% block site_header %}
-      {#
-      /**
-      *  This must be a single element, for example:
-      *  <header>
-      *    ...
-      *  </header>
-      */
-      #}
-    {% endblock %}
-  {% endif %}
+  {#
+  /**
+  *  The contents of `header` must be a single element, for example:
+  *  <header>
+  *    ...
+  *  </header>
+  */
+  #}
+  {{ header }}
 
   <main id="main-content" class="c-bolt-site__content">
     {% if content %}
