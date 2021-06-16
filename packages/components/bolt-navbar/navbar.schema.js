@@ -98,15 +98,25 @@ module.exports = {
       description:
         'Number of pixels taken up by sticky items at the top of the page, used for smooth scroll.',
     },
-    scroll_offset_selector: {
+    sticky_offset: {
+      type: 'integer',
+      description:
+        'Offset the top position of the navbar by a specific pixel value. Only works when Navbar is sticky.',
+    },
+    sticky_offset_selector: {
       type: 'string',
       description:
-        'Selects one or more elements on the page, offset navbar and smooth scrolling by the total height of the element(s). Must be a valid CSS selector.',
+        'Offset the top position of the navbar by the height of a specific element or elements, which the selector points to. Selector can match multiple elements, uses the cumulative height. Must be a valid CSS selector.',
     },
     scroll_offset: {
       type: 'integer',
       description:
-        'Additional offset for navbar and smooth scrolling, integer converted to pixel value.',
+        'Ofset the top position of a page section anchor by a specific pixel value.',
+    },
+    scroll_offset_selector: {
+      type: 'string',
+      description:
+        'Offset the top position of a page section anchor by the height of a specific element or elements, which the selector points to. Selector can match multiple elements, uses the cumulative height. Must be a valid CSS selector.',
     },
     uuid: {
       type: 'string',
