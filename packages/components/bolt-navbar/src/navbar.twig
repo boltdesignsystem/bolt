@@ -27,16 +27,12 @@
   {% set attributes = attributes.setAttribute('data-bolt-static', this.data.static.value) %}
 {% endif %}
 
-{% if this.data.sticky_offset_selector.value %}
-  {% set attributes = attributes.setAttribute('data-bolt-sticky-offset-selector', this.data.sticky_offset_selector.value) %}
-{% endif %}
-
 {% if this.data.sticky_offset.value %}
   {% set attributes = attributes.setAttribute('data-bolt-sticky-offset', this.data.sticky_offset.value) %}
 {% endif %}
 
-{% if this.data.scroll_offset_selector.value %}
-  {% set attributes = attributes.setAttribute('data-bolt-scroll-offset-selector', this.data.scroll_offset_selector.value) %}
+{% if this.data.sticky_offset_selector.value %}
+  {% set attributes = attributes.setAttribute('data-bolt-sticky-offset-selector', this.data.sticky_offset_selector.value) %}
 {% endif %}
 
 {% if this.data.scroll_offset.value %}

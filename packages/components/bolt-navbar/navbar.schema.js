@@ -113,11 +113,6 @@ module.exports = {
       description:
         'Ofset the top position of a page section anchor by a specific pixel value.',
     },
-    scroll_offset_selector: {
-      type: 'string',
-      description:
-        'Offset the top position of a page section anchor by the height of a specific element or elements, which the selector points to. Selector can match multiple elements, uses the cumulative height. Must be a valid CSS selector.',
-    },
     uuid: {
       type: 'string',
       description:

@@ -59,12 +59,6 @@ export class BoltNavbar {
     );
   }
 
-  get scrollOffset() {
-    return (
-      this.getCumulativeHeight(this.scrollOffsetElements) + this.scrollOffsetPx
-    );
-  }
-
   init() {
     this.state = {
       activeItem: null,
@@ -240,10 +234,12 @@ export class BoltNavbar {
     let height = 0;
 
     els.forEach(el => {
-      height += el.offsetHeight;
+      // This can be a floating point
+      height += el.getBoundingClientRect().height;
     });
 
-    return height;
+    // Always round down, subpixel rendering can leave an unwanted gap above navbar
+    return Math.floor(height);
   }
 
   setupOffsets() {
@@ -260,10 +256,8 @@ export class BoltNavbar {
       ...this.trySelector(stickyOffsetSelector),
     ];
 
-    // Scroll offsets
-    this.scrollOffsetPx = parseInt(this.el.dataset.boltScrollOffset) || 0;
-    const scrollOffsetSelector = this.el.dataset.boltScrollOffsetSelector;
-    this.scrollOffsetElements = [...this.trySelector(scrollOffsetSelector)];
+    // Scroll offset
+    this.scrollOffset = parseInt(this.el.dataset.boltScrollOffset) || 0;
   }
 
   setStickyOffset() {
