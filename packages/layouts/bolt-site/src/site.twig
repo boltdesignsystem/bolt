@@ -15,17 +15,15 @@
 
 {# Template #}
 <div {{ attributes.addClass(classes) }}>
-  {% block site_header %}
-    {#
-    /**
-    *  The contents of `header` must be a single element, for example:
-    *  <header>
-    *    ...
-    *  </header>
-    */
-    #}
-    {{ header }}
-  {% endblock %}
+  {#
+  /**
+   * The contents of `header` must be a single element, for example:
+   * <header>
+   *   ...
+   * </header>
+   */
+  #}
+  {{ header }}
 
   <main id="main-content" {{ main.attributes }}>
     {% block site_content %}
@@ -34,15 +32,13 @@
     {% endblock %}
   </main>
 
-  {% block site_footer %}
-    {#
-    /**
-    *  This must be a single element, for example:
-    *  <footer>
-    *    ...
-    *  </footer>
-    */
-    #}
-    {{ footer }}
-  {% endblock %}
+  {#
+  /**
+   *  This must be a single element, for example:
+   *  <footer>
+   *    ...
+   *  </footer>
+   */
+  #}
+  {{ footer }}
 </div>
