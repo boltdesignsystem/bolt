@@ -35,11 +35,25 @@
 
 {% set twig_markup %}
 {% verbatim %}
+// Include method
 {% include '@bolt-layouts-site/site.twig' with {
   header: 'This is the header.',
   content: 'This is the main content.',
   footer: 'This is the footer.',
 } only %}
+
+// Embed method
+{% embed '@bolt-layouts-site/site.twig' %}
+  {% block site_header %}
+    This is the header.
+  {% endblock %}
+  {% block site_content %}
+    This is the main content.
+  {% endblock %}
+  {% block site_footer %}
+    This is the footer.
+  {% endblock %}
+{% endembed %}
 {% endverbatim %}
 {% endset %}
 
