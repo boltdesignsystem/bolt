@@ -96,9 +96,11 @@ ClassicEditor
     </figure>
     <h3>Link</h3>
     <figure class="u-bolt-margin-bottom-medium">
-      {% include "@bolt-components-link/link.twig" with {
-        text: "Link is link component with default settings.",
-        url: "#!",
+      {% include '@bolt-elements-text-link/text-link.twig' with {
+        content: 'Link is link component with default settings.',
+        attributes {
+          href: '#!'
+        }
       } only %}
     </figure>
     <h3>Blockquote</h3>

@@ -11,15 +11,19 @@
     } only %}
   {% endset %}
   {% set crumb_1 %}
-    {% include "@bolt-components-link/link.twig" with {
-      text: "Mission Title",
-      url: "#!",
+    {% include '@bolt-elements-text-link/text-link.twig' with {
+      content: "Mission Title",
+      attributes: {
+        href: '#!'
+      }
     } only %}
   {% endset %}
   {% set crumb_2 %}
-    {% include "@bolt-components-link/link.twig" with {
-      text: "Describing a data object",
-      url: "#!",
+    {% include '@bolt-elements-text-link/text-link.twig' with {
+      content: "Describing a data object",
+      attributes: {
+        href: '#!'
+      }
     } only %}
   {% endset %}
   {% set breadcrumb %}
@@ -118,27 +122,35 @@
     } only %}
   {% endset %}
   {% set data_type_1 %}
-    {% include "@bolt-components-link/link.twig" with {
-      text: "Data types in the application data model",
-      url: "#!",
+    {% include '@bolt-elements-text-link/text-link.twig' with {
+      content: "Data types in the application data model",
+      attributes: {
+        href: '#!'
+      }
     } only %}
   {% endset %}
   {% set data_type_2 %}
-    {% include "@bolt-components-link/link.twig" with {
-      text: "Data type structure",
-      url: "#!",
+    {% include '@bolt-elements-text-link/text-link.twig' with {
+      content: "Data type structure",
+      attributes: {
+        href: '#!'
+      }
     } only %}
   {% endset %}
   {% set data_type_3 %}
-    {% include "@bolt-components-link/link.twig" with {
-      text: "Data type sourcing",
-      url: "#!",
+    {% include '@bolt-elements-text-link/text-link.twig' with {
+      content: "Data type sourcing",
+      attributes: {
+        href: '#!'
+      }
     } only %}
   {% endset %}
   {% set data_type_4 %}
-    {% include "@bolt-components-link/link.twig" with {
-      text: "Data type best practices",
-      url: "#!",
+    {% include '@bolt-elements-text-link/text-link.twig' with {
+      content: "Data type best practices",
+      attributes: {
+        href: '#!'
+      }
     } only %}
   {% endset %}
   {% set content %}

@@ -13,21 +13,27 @@
 {% endset %}
 
 {% set breadcrumb_item_1 %}
-  {% include "@bolt-components-link/link.twig" with {
-    text: "Home",
-    url: "#!"
+  {% include '@bolt-elements-text-link/text-link.twig' with {
+    content: 'Home',
+    attributes: {
+      href: '#!'
+    }
   } only %}
 {% endset %}
 {% set breadcrumb_item_2 %}
-  {% include "@bolt-components-link/link.twig" with {
-    text: "Landing Page",
-    url: "#!"
+  {% include '@bolt-elements-text-link/text-link.twig' with {
+    content: 'Landing Page',
+    attributes: {
+      href: '#!'
+    }
   } only %}
 {% endset %}
 {% set breadcrumb_item_3 %}
-  {% include "@bolt-components-link/link.twig" with {
-    text: "Sub Page",
-    url: "#!"
+  {% include '@bolt-elements-text-link/text-link.twig' with {
+    content: 'Sub Page',
+    attributes: {
+      href: '#!'
+    }
   } only %}
 {% endset %}
 

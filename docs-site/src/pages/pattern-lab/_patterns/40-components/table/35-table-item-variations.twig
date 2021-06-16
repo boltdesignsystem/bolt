@@ -31,9 +31,11 @@
           }
         },
         {},
-        include("@bolt-components-link/link.twig", {
-          text: "Build 1.1.354 — SR-44889",
-          url: "#!",
+        include('@bolt-elements-text-link/text-link.twig', {
+          content: "Build 1.1.354 — SR-44889",
+          attributes: {
+            href: '#!'
+          }
         }),
       ]
     }

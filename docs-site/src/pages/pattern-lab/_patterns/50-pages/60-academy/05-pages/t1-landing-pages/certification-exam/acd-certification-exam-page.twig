@@ -31,9 +31,11 @@
           display: "block",
           spacing: "none",
           items: [
-            macros.include("@bolt-components-link/link.twig", {
-              url: "https://www.google.com",
-              text: "Name of Mission will go here"
+            macros.include('@bolt-elements-text-link/text-link.twig', {
+              attributes: {
+                href: 'https://www.google.com'
+              },
+              content: "Name of Mission will go here"
             }),
           ],
           attributes: {

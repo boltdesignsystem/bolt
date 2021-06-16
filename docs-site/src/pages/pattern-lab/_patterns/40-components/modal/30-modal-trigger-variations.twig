@@ -67,9 +67,10 @@
       </tr>
       <tr>
         <th>
-          {% include "@bolt-components-link/link.twig" with {
-            text: "Link trigger",
+          {% include '@bolt-elements-text-link/text-link.twig' with {
+            content: "Link trigger",
             attributes: {
+              href: '#',
               "data-bolt-modal-target": ".js-bolt-modal--trigger-link",
             },
           } only %}

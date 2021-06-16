@@ -3,9 +3,11 @@
     text: "Headline Link with Default Icon",
     url: "#!"
   } only %}
-  {% include "@bolt-components-link/link.twig" with {
-    text: "Text link",
-    url: "#!"
+  {% include '@bolt-elements-text-link/text-link.twig' with {
+    content: "Text link",
+    attributes: {
+      href: '#!'
+    }
   } only %}
 {% endset %}
 

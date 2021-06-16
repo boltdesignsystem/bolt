@@ -2,9 +2,11 @@
 {% set schema = bolt.data.components["@bolt-components-banner"].schema %}
 
 {% set link %}
-{% include "@bolt-components-link/link.twig" with {
-  text: "View Details",
-  url: "https://pega.com",
+{% include '@bolt-elements-text-link/text-link.twig' with {
+  content: 'View Details',
+  attributes: {
+    href: 'https://pega.com'
+  }
 } only %}
 {% endset %}
 

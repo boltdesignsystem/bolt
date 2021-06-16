@@ -4,9 +4,11 @@
 
 {% set demo %}
   {% set link %}
-    {% include '@bolt-components-link/link.twig' with {
-      text: 'call to action',
-      url: 'https://pega.com',
+    {% include '@bolt-elements-text-link/text-link.twig' with {
+      content: 'call to action',
+      attributes: {
+        href: 'https://pega.com'
+      }
     } only %}
   {% endset %}
   {% set trigger %}

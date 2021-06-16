@@ -1,4 +1,6 @@
-{% include "@bolt-components-link/link.twig" with {
-  text: "This is a text link",
-  url: "https://pega.com",
+{% include '@bolt-elements-text-link/text-link.twig' with {
+  content: "This is a text link",
+  attributes: {
+    href: 'https://pega.com'
+  }
 } only %}

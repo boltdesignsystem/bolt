@@ -1,8 +1,10 @@
 {# Setting variables for demo purposes #}
 {% set link_1 %}
-  {% include "@bolt-components-link/link.twig" with {
-    text: "Item 1",
-    url: "#!",
+  {% include '@bolt-elements-text-link/text-link.twig' with {
+    content: "Item 1",
+    attributes: {
+      href: '#!'
+    }
   } only %}
 {% endset %}
 {% set button_1 %}
