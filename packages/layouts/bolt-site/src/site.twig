@@ -1,0 +1,57 @@
+{# Schema Validation #}
+{% set schema = bolt.data.components['@bolt-layouts-site'].schema %}
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(schema, _self)|raw }}
+{% endif %}
+
+{# Variables #}
+{% set this = init(schema) %}
+{% set attributes = create_attribute(attributes|default({})) %}
+
+{# Array of classes based on the defined + default props #}
+{% set classes = [
+  'l-bolt-site',
+] %}
+
+{# Template #}
+<div {{ attributes.addClass(classes) }}>
+  {% if header %}
+    {{ header }}
+  {% else %}
+    {% block site_header %}
+      {#
+      /**
+      *  This must be a single element, for example:
+      *  <header>
+      *    ...
+      *  </header>
+      */
+      #}
+    {% endblock %}
+  {% endif %}
+
+  <main id="main-content" class="c-bolt-site__content">
+    {% if content %}
+      {{ content }}
+    {% else %}
+      {% block site_content %}
+        {# Main content goes here #}
+      {% endblock %}
+    {% endif %}
+  </main>
+
+  {% if footer %}
+    {{ footer }}
+  {% else %}
+    {% block site_footer %}
+      {#
+      /**
+      *  This must be a single element, for example:
+      *  <footer>
+      *    ...
+      *  </footer>
+      */
+      #}
+    {% endblock %}
+  {% endif %}
+</div>
