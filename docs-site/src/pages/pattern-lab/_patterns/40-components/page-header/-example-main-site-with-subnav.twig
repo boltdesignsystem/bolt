@@ -16,6 +16,205 @@
 {% endset %}
 
 {# Site nav #}
+{% set demos_lv3_ul_content %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Product Demo Videos',
+      attributes: {
+        href: 'https://pega.com/',
+      },
+    },
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Low-code Live Workshops',
+      attributes: {
+        href: 'https://pega.com/',
+      },
+    },
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Pega Platform Trial',
+      attributes: {
+        href: 'https://pega.com/',
+      },
+    },
+  } only %}
+{% endset %}
+{% set demos_lv3 %}
+  {% include '@bolt-components-page-header/page-header-nav-ul.twig' with {
+    content: demos_lv3_ul_content,
+  } only %}
+{% endset %}
+
+{% set capabilities_lv3_ul_content %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'BPM &amp; Case Management',
+      attributes: {
+        href: 'https://pega.com/',
+      },
+    },
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Chatbots &amp; Virtual Assistants',
+      attributes: {
+        href: 'https://pega.com/',
+      },
+    },
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'DevOps & Testing',
+      attributes: {
+        href: 'https://pega.com/',
+      },
+    },
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Real-time Intelligence',
+      attributes: {
+        href: 'https://pega.com/',
+      },
+    },
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Robotic Process Automation',
+      attributes: {
+        href: 'https://pega.com/',
+      },
+    },
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'UX Design',
+      attributes: {
+        href: 'https://pega.com/',
+      },
+    },
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Workforce Intelligence',
+      attributes: {
+        href: 'https://pega.com/',
+      },
+    },
+  } only %}
+{% endset %}
+{% set capabilities_lv3 %}
+  {% include '@bolt-components-page-header/page-header-nav-ul.twig' with {
+    content: capabilities_lv3_ul_content,
+  } only %}
+{% endset %}
+
+{% set explore_lv3_ul_content %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Pega Platform Overview',
+      attributes: {
+        href: 'https://pega.com/',
+      },
+    },
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Low-code App Development',
+      attributes: {
+        href: 'https://pega.com/',
+      },
+    },
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Center-out Business Architecture',
+      attributes: {
+        href: 'https://pega.com/',
+      },
+    },
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Security &amp; Compliance',
+      attributes: {
+        href: 'https://pega.com/',
+      },
+    },
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Cloud Services',
+      attributes: {
+        href: 'https://pega.com/',
+      },
+    },
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Upgrade Center',
+      attributes: {
+        href: 'https://pega.com/',
+      },
+    },
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Latest release: 8.5',
+      attributes: {
+        href: 'https://pega.com/',
+      },
+    },
+  } only %}
+{% endset %}
+{% set explore_lv3 %}
+  {% include '@bolt-components-page-header/page-header-nav-ul.twig' with {
+    content: explore_lv3_ul_content,
+  } only %}
+{% endset %}
+
+{% set platform_lv2_ul_content %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Explore Pega Platform',
+      desktop_heading: true,
+      attributes: {
+        href: 'https://pega.com',
+      },
+    },
+    children: explore_lv3,
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Capabilities',
+      desktop_heading: true,
+      attributes: {
+        href: 'https://pega.com',
+      },
+    },
+    children: capabilities_lv3,
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Demos &amp; Trials',
+      desktop_heading: true,
+      attributes: {
+        href: 'https://pega.com',
+      },
+    },
+    children: demos_lv3,
+  } only %}
+{% endset %}
+
+{% set platform_lv2 %}
+  {% include '@bolt-components-page-header/page-header-nav-ul.twig' with {
+    content: platform_lv2_ul_content,
+  } only %}
+{% endset %}
+
 {% set intelligent_automation_lv4_ul_content %}
   {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
     link: {
@@ -50,7 +249,6 @@
     },
   } only %}
 {% endset %}
-
 {% set intelligent_automation_lv4 %}
   {% include '@bolt-components-page-header/page-header-nav-ul.twig' with {
     content: intelligent_automation_lv4_ul_content,
@@ -91,7 +289,6 @@
     },
   } only %}
 {% endset %}
-
 {% set customer_engagement_crm_lv4 %}
   {% include '@bolt-components-page-header/page-header-nav-ul.twig' with {
     content: customer_engagement_crm_lv4_ul_content,
@@ -127,10 +324,19 @@
   } only %}
 {% endset %}
 
-{% set capabilities_lv3_ul_content %}
+{% set placeholder_lv4_ul_content %}
   {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
     link: {
-      content: 'AI-powered Decisioning',
+      content: 'Placeholder Level 4',
+      attributes: {
+        href: 'https://pega.com/',
+      },
+    },
+    children: placeholder_lv4,
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Placeholder Level 4',
       attributes: {
         href: 'https://pega.com/',
       },
@@ -138,69 +344,87 @@
   } only %}
   {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
     link: {
-      content: 'BPM &amp; Case Management',
-      attributes: {
-        href: 'https://pega.com/',
-      },
-    },
-  } only %}
-  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
-    link: {
-      content: 'Chatbots &amp; Virtual Assistants',
-      attributes: {
-        href: 'https://pega.com/',
-      },
-    },
-  } only %}
-  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
-    link: {
-      content: 'Cloud Services',
-      attributes: {
-        href: 'https://pega.com/',
-      },
-    },
-  } only %}
-  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
-    link: {
-      content: 'DevOps & Testing',
-      attributes: {
-        href: 'https://pega.com/',
-      },
-    },
-  } only %}
-  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
-    link: {
-      content: 'Low-code App Development',
-      attributes: {
-        href: 'https://pega.com/',
-      },
-    },
-  } only %}
-  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
-    link: {
-      content: 'Robotic Process Automation',
-      attributes: {
-        href: 'https://pega.com/',
-      },
-    },
-  } only %}
-  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
-    link: {
-      content: 'Workforce Intelligence',
+      content: 'Placeholder Level 4',
       attributes: {
         href: 'https://pega.com/',
       },
     },
   } only %}
 {% endset %}
-
-{% set capabilities_lv3 %}
+{% set placeholder_lv4 %}
   {% include '@bolt-components-page-header/page-header-nav-ul.twig' with {
-    content: capabilities_lv3_ul_content,
+    content: placeholder_lv4_ul_content,
   } only %}
 {% endset %}
 
-{% set products_lv2_ul_content %}
+{% set placeholder_lv3_ul_content %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Placeholder Level 3',
+      desktop_heading: true,
+      attributes: {
+        href: 'https://pega.com/',
+      },
+    },
+    children: placeholder_lv4,
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Placeholder Level 3',
+      attributes: {
+        href: 'https://pega.com/',
+      },
+    },
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Placeholder Level 3',
+      attributes: {
+        href: 'https://pega.com/',
+      },
+    },
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Placeholder Level 3',
+      attributes: {
+        href: 'https://pega.com/',
+      },
+    },
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Placeholder Level 3',
+      attributes: {
+        href: 'https://pega.com/',
+      },
+    },
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Placeholder Level 3',
+      attributes: {
+        href: 'https://pega.com/',
+      },
+    },
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'View all placeholders',
+      attributes: {
+        href: 'https://pega.com/',
+      },
+    },
+    view_all: true,
+  } only %}
+{% endset %}
+{% set placeholder_lv3 %}
+  {% include '@bolt-components-page-header/page-header-nav-ul.twig' with {
+    content: placeholder_lv3_ul_content,
+  } only %}
+{% endset %}
+
+{% set solutions_lv2_ul_content %}
   {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
     link: {
       content: 'Products',
@@ -213,21 +437,25 @@
   } only %}
   {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
     link: {
-      content: 'Capabilities',
+      content: 'Placeholder Level 2',
       desktop_heading: true,
       attributes: {
         href: 'https://pega.com',
       },
     },
-    children: capabilities_lv3,
+    children: placeholder_lv3,
   } only %}
 
   {% set card %}
     {% set card_body_content %}
       {% include '@bolt-components-headline/headline.twig' with {
-        text: 'CBA: Exceeding customer expectations',
+        text: 'Placeholder Card',
         size: 'large',
         tag: 'p',
+        icon: {
+          name: 'chevron-right',
+          position: 'after',
+        },
       } only %}
     {% endset %}
     {% include '@bolt-components-card-replacement/card-replacement.twig' with {
@@ -252,29 +480,13 @@
 
   {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
     link: {
-      content: 'View all products',
+      content: 'View all solutions',
       attributes: {
         href: 'https://pega.com',
       }
     },
+    view_all: true,
     full_width: true,
-  } only %}
-{% endset %}
-
-{% set products_lv2 %}
-  {% include '@bolt-components-page-header/page-header-nav-ul.twig' with {
-    content: products_lv2_ul_content,
-  } only %}
-{% endset %}
-
-{% set solutions_lv2_ul_content %}
-  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
-    link: {
-      content: 'solutions placeholder',
-      attributes: {
-        href: 'https://pega.com',
-      }
-    },
   } only %}
 {% endset %}
 {% set solutions_lv2 %}
@@ -283,92 +495,102 @@
   } only %}
 {% endset %}
 
-{% set customers_lv2_ul_content %}
+{% set placeholder_lv2_ul_content %}
   {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
     link: {
-      content: 'customers placeholder',
+      content: 'Placeholder Level 2',
+      desktop_heading: true,
+      attributes: {
+        href: 'https://pega.com',
+      },
+    },
+    children: placeholder_lv3,
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Placeholder Level 2',
+      desktop_heading: true,
+      attributes: {
+        href: 'https://pega.com',
+      },
+    },
+    children: placeholder_lv3,
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Placeholder Level 2',
+      desktop_heading: true,
+      attributes: {
+        href: 'https://pega.com',
+      },
+    },
+    children: placeholder_lv3,
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'View all',
       attributes: {
         href: 'https://pega.com',
       }
     },
+    view_all: true,
+    full_width: true,
   } only %}
 {% endset %}
-{% set customers_lv2 %}
+{% set placeholder_lv2 %}
   {% include '@bolt-components-page-header/page-header-nav-ul.twig' with {
-    content: customers_lv2_ul_content,
+    content: placeholder_lv2_ul_content,
   } only %}
 {% endset %}
 
-{% set why_pega_lv2_ul_content %}
+{% set flat_lv2_ul_content %}
   {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
     link: {
-      content: 'why pega placeholder',
+      content: 'Flat Level 2',
+      attributes: {
+        href: 'https://pega.com',
+      },
+    },
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Flat Level 2',
+      attributes: {
+        href: 'https://pega.com',
+      },
+    },
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Flat Level 2',
+      attributes: {
+        href: 'https://pega.com',
+      },
+    },
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'View all',
       attributes: {
         href: 'https://pega.com',
       }
     },
+    view_all: true,
   } only %}
 {% endset %}
-{% set why_pega_lv2 %}
+{% set flat_lv2 %}
   {% include '@bolt-components-page-header/page-header-nav-ul.twig' with {
-    content: why_pega_lv2_ul_content,
-  } only %}
-{% endset %}
-
-{% set services_and_partners_lv2_ul_content %}
-  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
-    link: {
-      content: 'services &amp; partners placeholder',
-      attributes: {
-        href: 'https://pega.com',
-      }
-    },
-  } only %}
-{% endset %}
-{% set services_and_partners_lv2 %}
-  {% include '@bolt-components-page-header/page-header-nav-ul.twig' with {
-    content: services_and_partners_lv2_ul_content,
-  } only %}
-{% endset %}
-
-{% set events_lv2_ul_content %}
-  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
-    link: {
-      content: 'events placeholder',
-      attributes: {
-        href: 'https://pega.com',
-      }
-    },
-  } only %}
-{% endset %}
-{% set events_lv2 %}
-  {% include '@bolt-components-page-header/page-header-nav-ul.twig' with {
-    content: events_lv2_ul_content,
-  } only %}
-{% endset %}
-
-{% set about_lv2_ul_content %}
-  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
-    link: {
-      content: 'about placeholder',
-      attributes: {
-        href: 'https://pega.com',
-      }
-    },
-  } only %}
-{% endset %}
-{% set about_lv2 %}
-  {% include '@bolt-components-page-header/page-header-nav-ul.twig' with {
-    content: about_lv2_ul_content,
+    content: flat_lv2_ul_content,
+    flat: true,
   } only %}
 {% endset %}
 
 {% set site_nav_lv1_list_items = [
   {
     link: {
-      content: 'Products',
+      content: 'Platform',
     },
-    children: products_lv2,
+    children: platform_lv2,
   },
   {
     link: {
@@ -380,31 +602,31 @@
     link: {
       content: 'Customers',
     },
-    children: customers_lv2,
+    children: placeholder_lv2,
   },
   {
     link: {
       content: 'Why Pega?',
     },
-    children: why_pega_lv2,
+    children: flat_lv2,
   },
   {
     link: {
       content: 'Services &amp; Partners',
     },
-    children: services_and_partners_lv2,
+    children: placeholder_lv2,
   },
   {
     link: {
       content: 'Events',
     },
-    children: events_lv2,
+    children: flat_lv2,
   },
   {
     link: {
       content: 'About',
     },
-    children: about_lv2,
+    children: placeholder_lv2,
   },
 ] %}
 
@@ -426,15 +648,15 @@
 {# User nav #}
 {% set user_flag %}
   <div class="c-bolt-page-header__user-flag">
-    <img src="/images/docs/500x500.jpg" alt="Portrait of Bill" class="c-bolt-page-header__user-flag__img">
+    <img src="/images/docs/500x500.jpg" alt="Portrait of Alan" class="c-bolt-page-header__user-flag__img">
     <div class="c-bolt-page-header__user-flag__content">
       {% include '@bolt-components-headline/eyebrow.twig' with {
         text: 'Hello',
         tag: 'p',
       } only %}
       {% include '@bolt-components-headline/headline.twig' with {
-        text: 'Bill',
-        size: 'xlarge',
+        text: 'Alan',
+        size: 'large',
         tag: 'p',
       } only %}
     </div>
@@ -489,7 +711,7 @@
 {% set language_popover_lv2_ul_content %}
   {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
     link: {
-      content: 'English',
+      content: '<span class="u-bolt-visuallyhidden">Site language: </span>' ~ 'English',
       attributes: {
         href: 'https://pega.com/',
       },
@@ -557,20 +779,21 @@
 {% set language_popover_lv2 %}
   {% include '@bolt-components-page-header/page-header-nav-ul.twig' with {
     content: language_popover_lv2_ul_content,
+    popover_position: 'edge-end',
   } only %}
 {% endset %}
 
 {% set user_nav_lv1_ul_content %}
   {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
     link: {
-      content: icon_user ~ 'User: Bill',
+      content: icon_user ~ '<span aria-hidden="true">Hello Alan</span>' ~ '<span class="u-bolt-visuallyhidden">User settings</span>',
     },
     children: user_popover_lv2,
     popover: true,
   } only %}
   {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
     link: {
-      content: icon_global ~ 'Language: English',
+      content: icon_global ~ 'English',
     },
     children: language_popover_lv2,
     popover: true,
@@ -677,7 +900,7 @@
   } only %}
   {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
     link: {
-      content: icon_menu ~ 'More Pega Sites',
+      content: icon_menu ~ 'More' ~ ' <span class="u-bolt-visuallyhidden">Pega Sites</span>',
     },
     children: more_pega_sites_nav_lv3,
     popover: true,
@@ -709,9 +932,9 @@
 {# Put all the navs together #}
 {% set primary_nav %}
   {% set primary_nav_content %}
-    {{ user_nav }}
     {{ site_nav }}
     {{ related_sites_nav }}
+    {{ user_nav }}
   {% endset %}
 
   {% include '@bolt-components-page-header/page-header-primary-nav.twig' with {

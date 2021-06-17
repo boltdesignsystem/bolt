@@ -13,7 +13,8 @@ bolt-tooltip {
   --c-bolt-tooltip-z-index: #{bolt-z-index('tooltip')};
   display: inline;
 
-  &:not([ready]) [slot='content'] {
+  // This element is copied by Tippy and appended to the document.body
+  [slot='content'] {
     display: none;
   }
 

@@ -124,7 +124,7 @@ class BoltTooltip extends BoltElement {
 
   render() {
     return html`
-      ${this.slotify('default')}
+      ${this.slotify('default')} ${this.slotify('content')}
     `;
   }
 }
