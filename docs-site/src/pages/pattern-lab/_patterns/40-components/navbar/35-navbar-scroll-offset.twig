@@ -5,7 +5,6 @@
 {% set twig_markup %}
 {% verbatim %}
 {% include '@bolt-components-navbar/navbar.twig' with {
-  scroll_offset_selector: '#js-target-another-sticky', // Target the other sticky element on the same page.
   scroll_offset: 16, // Adds a specific pixel value to the smooth scroll position of each section of the page.
   ...
 } only %}
@@ -14,7 +13,7 @@
 
 {% include '@utils/pattern-doc-page.twig' with {
   title: 'Scroll Offset',
-  description: 'When there are multiple sticky elements on the same page, scroll offset can be used to prevent sticky elements from overlapping each other.',
+  description: 'Scroll offset can be used when you want to offset the target scroll position of each navbar link. When a navbar link is pressed, the page will scroll down to the repsective anchor. The offset adds a specific pixel value on top of it.',
   demo: demo,
   twig_markup: twig_markup,
 } only %}
