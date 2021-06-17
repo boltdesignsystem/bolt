@@ -150,7 +150,7 @@ jobs:
 
     - stage: Auto-release
       name: 'Full Release'
-      if: (branch =~ /(release)/)
+      if: (branch =~ /(release)\/[1-3]/)
       before_script:
         - git config --global user.email ${GITHUB_EMAIL}
         - git config --global user.name ${GITHUB_USER}

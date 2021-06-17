@@ -473,7 +473,7 @@ const requireAutotrackPlugins = () => {
     ],
   });
   ga('require', 'outboundLinkTracker', {
-    linkSelector: '.c-bolt-navlink',
+    linkSelector: '.c-bolt-navbar-item__link',
   });
 
   ga('require', 'pageVisibilityTracker', {

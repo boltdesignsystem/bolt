@@ -1,0 +1,20 @@
+{% set demo %}
+  <a href="{{ link['components-navbar-use-case-scroll-offset'] }}" class="e-bolt-text-link">View full page demo<span class="e-bolt-text-link__icon-after"><bolt-icon name="chevron-right"></bolt-icon></span></a>
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% include '@bolt-components-navbar/navbar.twig' with {
+  scroll_offset_selector: '#js-target-another-sticky', // Target the other sticky element on the same page.
+  scroll_offset: 16, // Adds a specific pixel value to the smooth scroll position of each section of the page.
+  ...
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Scroll Offset',
+  description: 'When there are multiple sticky elements on the same page, scroll offset can be used to prevent sticky elements from overlapping each other.',
+  demo: demo,
+  twig_markup: twig_markup,
+} only %}
