@@ -93,7 +93,7 @@
       buttons: [
         {
           text: "今すぐ営業目標を上げる",
-          style: "primary",
+          hierarchy: "primary",
           url: "https://www.google.com",
           icon: {
             name: "chevron-right"
@@ -146,12 +146,12 @@
             buttons: [
               {
                 text: "会社概要",
-                style: "primary",
+                hierarchy: "primary",
                 size: "small"
               },
               {
                 text: "ビジョンと主要な概念",
-                style: "secondary",
+                hierarchy: "secondary",
                 size: "small"
               }
             ]
@@ -280,7 +280,7 @@
             pattern: "button",
             width: "full",
             text: "レポートを読む",
-            style: "text"
+            hierarchy: "text"
           }
         ]
       },
@@ -305,7 +305,7 @@
             pattern: "button",
             width: "full",
             text: "発見を探索",
-            style: "text"
+            hierarchy: "text"
           }
         ]
       },
@@ -330,7 +330,7 @@
             pattern: "button",
             width: "full",
             text: "事例を見る",
-            style: "text"
+            hierarchy: "text"
           }
         ]
       }
@@ -371,7 +371,7 @@
             } only %}
             {% include "@bolt/button.twig" with {
               text: "本物を知る",
-              style: "primary",
+              hierarchy: "primary",
               size: "small"
             } only %}
           {% endcell %}

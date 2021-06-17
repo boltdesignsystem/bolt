@@ -26,6 +26,12 @@ module.exports = {
         required: ['itemAlignment'],
       },
       {
+        required: ['tag'],
+      },
+      {
+        required: ['style'],
+      },
+      {
         required: ['rounded'],
       },
     ],
