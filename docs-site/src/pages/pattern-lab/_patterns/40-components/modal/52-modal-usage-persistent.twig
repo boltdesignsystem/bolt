@@ -60,14 +60,17 @@
   {% grid "o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--matrix" %}
     {{ persistent_modal_content }}
     {% cell "u-bolt-width-12/12" %}
-      {% include "@bolt-components-link/link.twig" with {
-        text: return_link_text,
-        url: return_link_url,
-        icon: {
+      {% set icon_chevron_left %}
+        {% include "@bolt-components-icon/icon.twig" with {
           name: "chevron-left",
-          position: "before"
-        },
+        } only %}
+      {% endset %}
+
+      {% include '@bolt-elements-text-link/text-link.twig' with {
+        content: return_link_text,
+        icon_before: icon_chevron_left,
         attributes: {
+          href: return_link_url,
           "data-bolt-autofocus": ""
         }
       } only %}

@@ -1,22 +1,31 @@
+{% set icon_presentation %}
+  {% include "@bolt-components-icon/icon.twig" with {
+    name: "asset-presentation",
+  } only %}
+{% endset %}
+{% set icon_video %}
+  {% include "@bolt-components-icon/icon.twig" with {
+    name: "asset-video",
+  } only %}
+{% endset %}
+
 {% set link_1 %}
-  {% include "@bolt-components-link/link.twig" with {
-    text: "Get the presentation",
-    url: "https://pega.com",
-    icon: {
-      position: "before",
-      name: "asset-presentation",
-    },
+  {% include '@bolt-elements-text-link/text-link.twig' with {
+    content: 'Get the presentation',
+    icon_before: icon_presentation,
+    attributes: {
+      href: 'https://pega.com',
+    }
   } only %}
 {% endset %}
 
 {% set link_2 %}
-  {% include "@bolt-components-link/link.twig" with {
-    text: "Watch video",
-    url: "https://pega.com",
-    icon: {
-      position: "before",
-      name: "asset-video",
-    },
+  {% include '@bolt-elements-text-link/text-link.twig' with {
+    content: 'Watch video',
+    icon_before: icon_video,
+    attributes: {
+      href: 'https://pega.com',
+    }
   } only %}
 {% endset %}
 
