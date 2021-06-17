@@ -1,13 +1,19 @@
-{% set schema = bolt.data.components['@bolt-layouts-layout'].schema %}
-{# {% if enable_json_schema_validation %}
+{% set schema = bolt.data.components['@bolt-layouts-layout'].schema['layout'] %}
+{% if enable_json_schema_validation %}
   {{ validate_data_schema(schema, _self) | raw }}
-{% endif %} #}
+{% endif %}
 
 {# Variables #}
 {% set this = init(schema) %}
+{% set attributes = create_attribute({}) %}
+
+{% if template|length %}
+  {% set attributes = attributes.setAttribute('template', template|join(' ')) %}
+{% endif %}
 
 <bolt-layout
-  {{ this.props|without('content') }}
+  {{ this.props|without('content')|without('template') }}
+  {{ attributes }}
 >
   {% if background %}
     {{ background }}

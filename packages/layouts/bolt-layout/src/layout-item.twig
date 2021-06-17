@@ -1,7 +1,7 @@
-{% set schema = bolt.data.components['@bolt-layouts-layout'].schema %}
-{# {% if enable_json_schema_validation %}
+{% set schema = bolt.data.components['@bolt-layouts-layout'].schema['layout-item'] %}
+{% if enable_json_schema_validation %}
   {{ validate_data_schema(schema, _self) | raw }}
-{% endif %} #}
+{% endif %}
 
 {# Variables #}
 {% set this = init(schema.properties.content) %}

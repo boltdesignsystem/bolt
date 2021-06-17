@@ -3,14 +3,18 @@
 {% endset %}
 
 {% set demo %}
-<bolt-layout template="67/33@from-small 75/25@from-medium">
-  <bolt-layout-item>
-    <bolt-placeholder>Layout item</bolt-placeholder>
-  </bolt-layout-item>
-  <bolt-layout-item>
-    <bolt-placeholder>Layout item</bolt-placeholder>
-  </bolt-layout-item>
-</bolt-layout>
+  {% set layout_items %}
+    {% include '@bolt-layouts-layout/layout-item.twig' with {
+      content: 'Layout item'
+    } only %}
+    {% include '@bolt-layouts-layout/layout-item.twig' with {
+      content: 'Layout item'
+    } only %}
+  {% endset %}
+  {% include '@bolt-layouts-layout/layout.twig' with {
+    content: layout_items,
+    template: ['67/33@from-small', '75/25@from-medium'],
+  } only %}
 {% endset %}
 
 {% set twig_markup %}
@@ -28,7 +32,7 @@
 // Pass layout items to the content prop
 {% include '@bolt-layouts-layout/layout.twig' with {
   content: layout_items,
-  template: '67/33@from-small 75/25@from-medium',
+  template: ['67/33@from-small', '75/25@from-medium'],
 } only %}
 {% endverbatim %}
 {% endset %}
