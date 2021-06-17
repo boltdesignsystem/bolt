@@ -23,13 +23,9 @@ class BoltPopover extends BoltElement {
   constructor() {
     super();
     this.uuid = this.uuid || Math.floor(10000 + Math.random() * 90000);
-    this.zIndex = parseInt(
-      getComputedStyle(this).getPropertyValue('--c-bolt-popover-z-index'),
-      10,
-    );
   }
 
-  get topPadding() {
+  getPaddingTop() {
     const stickyPageHeader =
       document.querySelector('.c-bolt-page-header') ||
       document.querySelector('.c-page-header.is-fixed'); // use [data-sticky-page-header] once navbar work merged into master
@@ -56,6 +52,11 @@ class BoltPopover extends BoltElement {
   }
 
   initTippy() {
+    this.zIndex = parseInt(
+      getComputedStyle(this).getPropertyValue('--c-bolt-popover-z-index'),
+      10,
+    );
+    this.paddingTop = this.getPaddingTop();
     this.$boundary =
       this.$boundary ||
       (this.boundary && this.closest(this.boundary)) ||
@@ -82,7 +83,7 @@ class BoltPopover extends BoltElement {
             options: {
               fallbackPlacements: this.fallbackPlacements ?? undefined,
               boundary: this.$boundary,
-              padding: { top: this.topPadding },
+              padding: { top: this.paddingTop },
             },
           },
           {
