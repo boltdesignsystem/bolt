@@ -270,6 +270,8 @@ button.c-bolt-navbar__title-inner--link {
 .c-bolt-navbar__list {
   display: flex;
   margin: 0;
+  padding: 0;
+  list-style: none;
 
   @include bolt-mq($until: xsmall) {
     @at-root .c-bolt-navbar[data-bolt-ready] #{&} {
@@ -282,8 +284,10 @@ button.c-bolt-navbar__title-inner--link {
 .c-bolt-navbar-item {
   display: flex;
   flex-shrink: 0;
-  white-space: nowrap;
   position: relative;
+  margin: 0;
+  padding: 0;
+  white-space: nowrap;
 
   &:after {
     content: '';

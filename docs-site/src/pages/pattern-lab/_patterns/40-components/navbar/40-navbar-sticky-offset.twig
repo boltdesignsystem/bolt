@@ -1,3 +1,10 @@
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>The Navbar component already accounts for the sticky Page Header component, it is not necessary to pass Page Header&rsquo;s selector to <code>sticky_offset_selector</code>.</bolt-li>
+    <bolt-li>While <code>sticky_offset_selector</code> can automatically calculate the dynamic height of a specific element, the <code>sticky_offset</code> can offset a specific pixel value manually. You may choose to use that instead if you need an absolute value. Ideally, the two props are not used in tandem.</bolt-li>
+  </bolt-ol>
+{% endset %}
+
 {% set demo %}
   <a href="{{ link['components-navbar-use-case-sticky-offset'] }}" class="e-bolt-text-link">View full page demo<span class="e-bolt-text-link__icon-after"><bolt-icon name="chevron-right"></bolt-icon></span></a>
 {% endset %}
@@ -5,8 +12,7 @@
 {% set twig_markup %}
 {% verbatim %}
 {% include '@bolt-components-navbar/navbar.twig' with {
-  sticky_offset_selector: '#js-sticky-target', // Target another sticky element on the same page.
-  sticky_offset: 16, // Adds an additional pixel value to the top position of the navbar.
+  sticky_offset_selector: '#js-sticky-target', // Adds the height of the other sticky element to the top position of the sticky navbar.
   ...
 } only %}
 {% endverbatim %}
@@ -15,6 +21,7 @@
 {% include '@utils/pattern-doc-page.twig' with {
   title: 'Sticky Offset',
   description: 'When there are multiple sticky elements on the same page, sticky offset can be used to prevent sticky elements from overlapping each other.',
+  notes: notes,
   demo: demo,
   twig_markup: twig_markup,
 } only %}
