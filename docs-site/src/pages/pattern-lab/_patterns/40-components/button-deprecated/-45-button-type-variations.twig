@@ -1,0 +1,16 @@
+{% include '@pl/00-deprecated-button-docs.twig' %}
+
+<bolt-banner status="success" align="start">
+  <bolt-icon name="documentation" size="medium"></bolt-icon> Please reference <a href="{{ link['elements-button-attributes'] }}" class="e-bolt-text-link"> element doc</a> instead.
+</bolt-banner>
+
+{% set schema = bolt.data.components["@bolt-components-button"].schema %}
+
+{% for type in schema.properties.type.enum %}
+  <p>
+    {% include "@bolt-components-button/button.twig" with {
+      type: type,
+      text: "This button's type is: " ~ type
+    } only %}
+  </p>
+{% endfor %}
