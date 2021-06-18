@@ -1,0 +1,27 @@
+@import '@bolt/core-v3.x';
+
+/**
+ * Site
+ */
+
+.l-bolt-site {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas:
+    'header'
+    'main'
+    'footer';
+  min-height: 100vh;
+
+  > *:last-child:not(main) {
+    grid-area: footer;
+  }
+
+  > *:only-child {
+    grid-area: main !important;
+  }
+
+  > main {
+    grid-area: main;
+  }
+}
