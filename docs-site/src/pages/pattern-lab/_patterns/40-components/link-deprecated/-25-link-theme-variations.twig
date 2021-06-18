@@ -1,3 +1,5 @@
+{% include '@pl/00-deprecated-link-docs.twig' %}
+
 {% set link %}
   {% include "@bolt-components-headline/headline.twig" with {
     text: "Headline Link with Default Icon",
@@ -10,7 +12,6 @@
     }
   } only %}
 {% endset %}
-
 
 {% include "@bolt-components-band/band.twig" with {
   theme: "xlight",
