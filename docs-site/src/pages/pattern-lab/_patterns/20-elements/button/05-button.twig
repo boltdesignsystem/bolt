@@ -2,6 +2,13 @@
   A button is generally an inline interactive graphical element. Its main purpose is to help the user perform a function (sometimes navigate). <bolt-code-snippet display="inline" lang="html">&lt;button class="e-bolt-button"&gt;</bolt-code-snippet> is acceptable at rendering a button, though the Twig template is the recommended usage for Drupal.
 {% endset %}
 
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>Only text should be passed to the <bolt-code-snippet display="inline">content</bolt-code-snippet> prop. However, <bolt-code-snippet display="inline" lang="html">&lt;span&gt;</bolt-code-snippet>, <bolt-code-snippet display="inline" lang="html">&lt;em&gt;</bolt-code-snippet>, and <bolt-code-snippet display="inline" lang="html">&lt;strong&gt;</bolt-code-snippet> elements can be used.</bolt-li>
+    <bolt-li>Button element is a replacement for the <a href="{{ link['viewall-components-button'] }}" class="e-bolt-text-link"> Button commponent</a>.</bolt-li>
+  </bolt-ol>
+{% endset %}
+
 {% set demo %}
   {% include '@bolt-elements-button/button.twig' with {
     content: 'This is a button',
@@ -9,10 +16,6 @@
       type: 'button'
     }
   } only %}
-{% endset %}
-
-{% set notes %}
-  Only text should be passed to the <bolt-code-snippet display="inline">content</bolt-code-snippet> prop. However, <bolt-code-snippet display="inline" lang="html">&lt;span&gt;</bolt-code-snippet>, <bolt-code-snippet display="inline" lang="html">&lt;em&gt;</bolt-code-snippet>, and <bolt-code-snippet display="inline" lang="html">&lt;strong&gt;</bolt-code-snippet> elements can be used.
 {% endset %}
 
 {% set twig_markup %}
