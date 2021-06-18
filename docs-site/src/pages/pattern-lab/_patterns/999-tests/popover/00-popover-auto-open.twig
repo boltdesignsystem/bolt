@@ -15,9 +15,12 @@
   {% for theme in schema.properties.theme.enum %}
     <bolt-list-item>
       {% set trigger %}
-        {% include "@bolt-components-button/button.twig" with {
-          text: "theme: " ~ theme,
+        {% include '@bolt-elements-button/button.twig' with {
+          content: "theme: " ~ theme,
           size: "small",
+          attributes: {
+            type: 'button'
+          }
         } only %}
       {% endset %}
       {% include "@bolt-components-popover/popover.twig" with {

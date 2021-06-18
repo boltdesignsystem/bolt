@@ -8,10 +8,12 @@
 {% endset %}
 
 {% set trigger %}
-  {% include '@bolt-components-button/button.twig' with {
-    text: 'This triggers a popover',
+  {% include '@bolt-elements-button/button.twig' with {
+  content: 'This triggers a popover',
+  attributes: {
     type: 'button'
-  } only %}
+  }
+} only %}
 {% endset %}
 
 {% set content %}

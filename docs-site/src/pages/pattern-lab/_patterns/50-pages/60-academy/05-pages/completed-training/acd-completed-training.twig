@@ -36,33 +36,37 @@
 
   {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--small o-bolt-grid--bottom u-bolt-padding-bottom-medium" %}
     {% cell "u-bolt-width-1/1" %}
+      {% set _icon_upload %}
+        {% include "@bolt-components-icon/icon.twig" with {
+          name: "upload",
+          size: "medium",
+        } only %}
+      {% endset %}
+      {% set _icon_print %}
+        {% include "@bolt-components-icon/icon.twig" with {
+          name: "print",
+          size: "medium",
+        } only %}
+      {% endset %}
       {% include "@bolt-components-list/list.twig" with {
         spacing: "none",
         display: "inline",
         align: "end",
         items: [
-          macros.include("@bolt-components-button/button.twig", {
-            text: "Upload",
-            url: "#!",
-            hierarchy: "text",
-            iconOnly: true,
-            icon: {
-              name: "upload",
-              size: "medium",
-              color: "auto",
-              background: "square"
+          macros.include("@bolt-elements-button/button.twig", {
+            content: "Upload",
+            hierarchy: "tertiary",
+            icon_only: _icon_upload,
+            attributes: {
+              type: 'button'
             }
           }, false),
-          macros.include("@bolt-components-button/button.twig", {
-            text: "Print",
-            url: "#!",
-            hierarchy: "text",
-            iconOnly: true,
-            icon: {
-              name: "print",
-              size: "medium",
-              color: "auto",
-              background: "square"
+          macros.include("@bolt-elements-button/button.twig", {
+            content: "Print",
+            hierarchy: "tertiary",
+            icon_only: _icon_print,
+            attributes: {
+              type: 'button'
             }
           }, false),
         ]
