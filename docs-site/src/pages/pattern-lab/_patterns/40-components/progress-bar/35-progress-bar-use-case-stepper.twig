@@ -51,15 +51,18 @@
 {% endset %}
 
 {% set prevButton %}
-  {% include "@bolt-components-button/button.twig" with {
-    text: "Go Back",
-    icon: {
-      name: "chevron-left"
-    },
-    disabled: true,
-    iconOnly: true,
+  {% set icon_left %}
+    {% include '@bolt-components-icon/icon.twig' with {
+      name: 'chevron-left',
+    } only %}
+  {% endset %}
+  {% include '@bolt-elements-button/button.twig' with {
+    content: 'Go Back',
+    icon_only: icon_left,
     size: "small",
     attributes: {
+      type: 'button',
+      disabled: 'disabled',
       class: [
         "js-bolt-progress-bar-stepper-back"
       ]
@@ -68,14 +71,17 @@
 {% endset %}
 
 {% set nextButton %}
-  {% include "@bolt-components-button/button.twig" with {
-    text: "Go Forward",
-    icon: {
-      name: "chevron-right"
-    },
-    iconOnly: true,
+  {% set icon_right %}
+    {% include '@bolt-components-icon/icon.twig' with {
+      name: 'chevron-right',
+    } only %}
+  {% endset %}
+  {% include '@bolt-elements-button/button.twig' with {
+    content: 'Go Forward',
+    icon_only: icon_right,
     size: "small",
     attributes: {
+      type: 'button',
       class: [
         "js-bolt-progress-bar-stepper-forward"
       ]

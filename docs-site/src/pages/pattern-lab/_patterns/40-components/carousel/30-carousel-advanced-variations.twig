@@ -156,8 +156,11 @@
             style: "max-width: 200px; margin: 0 auto;",
           },
         } only %}
-        {% include "@bolt-components-button/button.twig" with {
-          text: "This is band slide 1",
+        {% include "@bolt-elements-button/button.twig" with {
+          content: "This is band slide 1",
+          attributes: {
+            type: 'button'
+          }
         } only %}
       </div>
     {% endset %}
@@ -203,8 +206,11 @@
             style: "max-width: 200px; margin: 0 auto;",
           },
         } only %}
-        {% include "@bolt-components-button/button.twig" with {
-          text: "This is band slide 2",
+        {% include "@bolt-elements-button/button.twig" with {
+          content: "This is band slide 2",
+          attributes: {
+            type: 'button'
+          }
         } only %}
       </div>
     {% endset %}

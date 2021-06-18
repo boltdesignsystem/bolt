@@ -8,24 +8,30 @@
   } only %}
 {% endset %}
 {% set button_1 %}
-  {% include "@bolt-components-button/button.twig" with {
-    text: "Item 1",
-    url: "#!",
-    width: "full",
+  {% include "@bolt-elements-button/button.twig" with {
+    content: "Item 1",
+    display: "block",
+    attributes: {
+      href: "#!",
+    }
   } only %}
 {% endset %}
 {% set button_2 %}
-  {% include "@bolt-components-button/button.twig" with {
-    text: "Item 2",
-    url: "#!",
-    width: "full",
+  {% include "@bolt-elements-button/button.twig" with {
+    content: "Item 2",
+    display: "block",
+    attributes: {
+      href: "#!",
+    }
   } only %}
 {% endset %}
 {% set button_3 %}
-  {% include "@bolt-components-button/button.twig" with {
-    text: "Item 3",
-    url: "#!",
-    width: "full",
+  {% include "@bolt-elements-button/button.twig" with {
+    content: "Item 3",
+    display: "block",
+    attributes: {
+      href: "#!",
+    }
   } only %}
 {% endset %}
 {% set chip_1 %}

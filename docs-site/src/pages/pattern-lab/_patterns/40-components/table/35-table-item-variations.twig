@@ -43,10 +43,12 @@
   rows: [
     {
       cells: [
-        include("@bolt-components-button/button.twig", {
-          text: "SR-49941",
-          url: "#!",
+        include("@bolt-elements-button/button.twig", {
+          content: "SR-49941",
           size: "small",
+          attributes: {
+            href: "#!",
+          }
         }),
         "This hotfix changes Updater requirements for .NET. If you are using Updater with 7.1 or 8.0 Robotic Automation Runtime clients, you now need to have both .NET 4.0 and .NET 3.5 installed.",
         "OpenSpan.UpdaterService.Remoting.dll<br>OpenSpan.Updater.ServerClientInterface.dll<br>OpenSpan.Updater.ScheduledTasks.dll<br>OpenSpan.Updater.PrePostOperation.dll<br>OpenSpan.Updater.Git.dll<br>OpenSpan.VersionFinder.exe<br>OpenSpan.UpdaterService.exe<br>OpenSpan.Updater.X509tool.exe<br>OpenSpan.Updater.UserHelper.exe<br>OpenSpan.Updater.UninstallHelper.exe<br>OpenSpan.Updater.RuntimeLauncher.exe<br>OpenSpan.Updater.InstallHelper.exe<br>OpenSpan.Updater.Initializer.exe",

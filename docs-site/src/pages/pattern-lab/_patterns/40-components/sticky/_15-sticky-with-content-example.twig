@@ -93,8 +93,11 @@
           text: "Continuously improve results by visualizing how future adjustments to your strategies can impact business performance. Simulate and test your ideas, evaluate the results using intuitive views, and then deploy optimal alterations."
         } only %}
 
-        {% include "@bolt-components-button/button.twig" with {
-          text: "View the data sheet"
+        {% include "@bolt-elements-button/button.twig" with {
+          content: "View the data sheet",
+          attributes: {
+            type: 'button'
+          }
         } only %}
       {% endcell %}
     {% endgrid %}

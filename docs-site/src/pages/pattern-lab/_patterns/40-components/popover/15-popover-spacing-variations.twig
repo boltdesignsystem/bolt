@@ -21,9 +21,12 @@
     {% for spacing in schema.properties.spacing.enum %}
       <bolt-list-item>
         {% set trigger %}
-          {% include '@bolt-components-button/button.twig' with {
-            text: 'spacing: ' ~ spacing,
+          {% include '@bolt-elements-button/button.twig' with {
+            content: 'spacing: ' ~ spacing,
             size: 'small',
+            attributes: {
+              type: 'button'
+            }
           } only %}
         {% endset %}
         {% include '@bolt-components-popover/popover.twig' with {

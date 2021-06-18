@@ -363,9 +363,12 @@
           {% include "@bolt-components-headline/text.twig" with {
             text: "Stay up-to-date on all the latest PegaWorld news and announcements.",
           } only %}
-          {% include "@bolt-components-button/button.twig" with {
-            text: "Sign up",
+          {% include '@bolt-elements-button/button.twig' with {
+            content: 'Sign up',
             hierarchy: 'secondary',
+            attributes: {
+              type: 'button'
+            }
           } only %}
         {% endcell %}
 

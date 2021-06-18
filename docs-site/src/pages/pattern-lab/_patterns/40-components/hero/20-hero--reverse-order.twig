@@ -24,9 +24,12 @@
         ]
       }
     }),
-    macros.include("@bolt-components-button/button.twig", {
-      text: "See full agenda",
-      hierarchy: "secondary"
+    macros.include("@bolt-elements-button/button.twig", {
+      content: "See full agenda",
+      hierarchy: "secondary",
+      attributes: {
+        type: 'button'
+      }
     }),
   ]|join(''),
   background: "/images/heros/hero-background--orange.jpg",

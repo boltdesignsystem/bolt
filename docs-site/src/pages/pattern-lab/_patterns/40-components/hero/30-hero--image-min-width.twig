@@ -25,9 +25,12 @@
       size: "xlarge",
       text: "This one even includes a tagline.",
     }),
-    macros.include("@bolt-components-button/button.twig", {
-      text: "Learn More",
-      hierarchy: "primary"
+    macros.include("@bolt-elements-button/button.twig", {
+      content: "Learn More",
+      hierarchy: "primary",
+      attributes: {
+        type: 'button'
+      }
     }),
   ]|join(''),
   imageMinWidth: '60vw',

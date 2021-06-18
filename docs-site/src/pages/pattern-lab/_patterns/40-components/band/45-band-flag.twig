@@ -11,17 +11,23 @@
     {% endcell %}
     {% cell "u-bolt-width-12/12@only-small" %}
       {% set button_1 %}
-        {% include "@bolt-components-button/button.twig" with {
+        {% include "@bolt-elements-button/button.twig" with {
           size: "small",
           hierarchy: "primary",
-          text: "Primary action",
+          content: "Primary action",
+          attributes: {
+            type: 'button'
+          }
         } only %}
       {% endset %}
       {% set button_2 %}
-        {% include "@bolt-components-button/button.twig" with {
+        {% include "@bolt-elements-button/button.twig" with {
           size: "small",
           hierarchy: "secondary",
-          text: "Secondary action",
+          content: "Secondary action",
+          attributes: {
+            type: 'button'
+          }
         } only %}
       {% endset %}
       {% include "@bolt-components-list/list.twig" with {

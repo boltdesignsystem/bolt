@@ -16,9 +16,12 @@
     This is the content of the popover with a {{ link }}.
   {% endset %}
   {% set trigger %}
-    {% include '@bolt-components-button/button.twig' with {
+    {% include '@bolt-elements-button/button.twig' with {
       size: 'xsmall',
-      text: 'Auto',
+      content: 'Auto',
+      attributes: {
+        type: 'button'
+      }
     } only %}
   {% endset %}
 
@@ -109,9 +112,12 @@
     <bolt-list display="inline" spacing="small" align="center">
       <bolt-list-item>
         {% set trigger %}
-          {% include '@bolt-components-button/button.twig' with {
+          {% include '@bolt-elements-button/button.twig' with {
             size: 'xsmall',
-            text: 'bottom-start',
+            content: 'bottom-start',
+            attributes: {
+              type: 'button'
+            }
           } only %}
         {% endset %}
         {# Start component specific code #}
@@ -124,9 +130,12 @@
       </bolt-list-item>
       <bolt-list-item>
         {% set trigger %}
-          {% include '@bolt-components-button/button.twig' with {
+          {% include '@bolt-elements-button/button.twig' with {
             size: 'xsmall',
-            text: 'bottom',
+            content: 'bottom',
+            attributes: {
+              type: 'button'
+            }
           } only %}
         {% endset %}
         {# Start component specific code #}
@@ -139,9 +148,12 @@
       </bolt-list-item>
       <bolt-list-item>
         {% set trigger %}
-          {% include '@bolt-components-button/button.twig' with {
+          {% include '@bolt-elements-button/button.twig' with {
             size: 'xsmall',
-            text: 'bottom-end',
+            content: 'bottom-end',
+            attributes: {
+              type: 'button'
+            }
           } only %}
         {% endset %}
         {# Start component specific code #}
@@ -159,9 +171,12 @@
       <bolt-list-item>
         <div class="u-bolt-text-align-right">
           {% set trigger %}
-            {% include '@bolt-components-button/button.twig' with {
+            {% include '@bolt-elements-button/button.twig' with {
               size: 'xsmall',
-              text: 'left-start',
+              content: 'left-start',
+              attributes: {
+                type: 'button'
+              }
             } only %}
           {% endset %}
           {# Start component specific code #}
@@ -176,9 +191,12 @@
       <bolt-list-item>
         <div class="u-bolt-text-align-right">
           {% set trigger %}
-            {% include '@bolt-components-button/button.twig' with {
+            {% include '@bolt-elements-button/button.twig' with {
               size: 'xsmall',
-              text: 'left',
+              content: 'left',
+              attributes: {
+                type: 'button'
+              }
             } only %}
           {% endset %}
           {# Start component specific code #}
@@ -193,9 +211,12 @@
       <bolt-list-item>
         <div class="u-bolt-text-align-right">
           {% set trigger %}
-            {% include '@bolt-components-button/button.twig' with {
+            {% include '@bolt-elements-button/button.twig' with {
               size: 'xsmall',
-              text: 'left-end',
+              content: 'left-end',
+              attributes: {
+                type: 'button'
+              }
             } only %}
           {% endset %}
           {# Start component specific code #}
@@ -213,9 +234,12 @@
     <bolt-list display="inline" spacing="small" align="center">
       <bolt-list-item>
         {% set trigger %}
-          {% include '@bolt-components-button/button.twig' with {
+          {% include '@bolt-elements-button/button.twig' with {
             size: 'xsmall',
-            text: 'top-start',
+            content: 'top-start',
+            attributes: {
+              type: 'button'
+            }
           } only %}
         {% endset %}
         {# Start component specific code #}
@@ -228,9 +252,12 @@
       </bolt-list-item>
       <bolt-list-item>
         {% set trigger %}
-          {% include '@bolt-components-button/button.twig' with {
+          {% include '@bolt-elements-button/button.twig' with {
             size: 'xsmall',
-            text: 'top',
+            content: 'top',
+            attributes: {
+              type: 'button'
+            }
           } only %}
         {% endset %}
         {# Start component specific code #}
@@ -243,9 +270,12 @@
       </bolt-list-item>
       <bolt-list-item>
         {% set trigger %}
-          {% include '@bolt-components-button/button.twig' with {
+          {% include '@bolt-elements-button/button.twig' with {
             size: 'xsmall',
-            text: 'top-end',
+            content: 'top-end',
+            attributes: {
+              type: 'button'
+            }
           } only %}
         {% endset %}
         {# Start component specific code #}
@@ -262,9 +292,12 @@
     <bolt-list spacing="medium">
       <bolt-list-item>
         {% set trigger %}
-          {% include '@bolt-components-button/button.twig' with {
+          {% include '@bolt-elements-button/button.twig' with {
             size: 'xsmall',
-            text: 'right-start',
+            content: 'right-start',
+            attributes: {
+              type: 'button'
+            }
           } only %}
         {% endset %}
         {# Start component specific code #}
@@ -277,9 +310,12 @@
       </bolt-list-item>
       <bolt-list-item>
         {% set trigger %}
-          {% include '@bolt-components-button/button.twig' with {
+          {% include '@bolt-elements-button/button.twig' with {
             size: 'xsmall',
-            text: 'right',
+            content: 'right',
+            attributes: {
+              type: 'button'
+            }
           } only %}
         {% endset %}
         {# Start component specific code #}
@@ -292,9 +328,12 @@
       </bolt-list-item>
       <bolt-list-item>
         {% set trigger %}
-          {% include '@bolt-components-button/button.twig' with {
+          {% include '@bolt-elements-button/button.twig' with {
             size: 'xsmall',
-            text: 'right-end',
+            content: 'right-end',
+            attributes: {
+              type: 'button'
+            }
           } only %}
         {% endset %}
         {# Start component specific code #}

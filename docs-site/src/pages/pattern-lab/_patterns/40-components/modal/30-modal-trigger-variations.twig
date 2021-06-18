@@ -5,10 +5,11 @@
     <tbody>
       <tr>
         <th>
-          {% include "@bolt-components-button/button.twig" with {
-            text: "Button trigger",
+          {% include "@bolt-elements-button/button.twig" with {
+            content: "Button trigger",
             size: "small",
             attributes: {
+              type: 'button',
               "data-bolt-modal-target": ".js-bolt-modal--trigger-button",
             },
           } only %}

@@ -5,8 +5,11 @@
       size: "xxxlarge",
       text: "This Band Has a Backround Image",
     } only %}
-    {% include "@bolt-components-button/button.twig" with {
-      text: "This is a button",
+    {% include "@bolt-elements-button/button.twig" with {
+      content: "This is a button",
+      attributes: {
+        type: 'button'
+      }
     } only %}
   {% endset %}
 
@@ -38,9 +41,10 @@
     size: "xxxlarge",
     text: "This Band Has a Backround Video",
   } only %}
-  {% include "@bolt-components-button/button.twig" with {
-    text: "This button activates the video",
+  {% include "@bolt-elements-button/button.twig" with {
+    content: "This button activates the video",
     attributes: {
+      type: 'button',
       "on-click": "toggle",
       "on-click-target": "js-video-bg-test-1"
     }

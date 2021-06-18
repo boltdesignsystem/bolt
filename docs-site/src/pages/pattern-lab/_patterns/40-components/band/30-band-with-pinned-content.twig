@@ -7,8 +7,11 @@
     size: "xxlarge",
     text: "This Is a Subheadline",
   } only %}
-  {% include "@bolt-components-button/button.twig" with {
-    text: "This is a button",
+  {% include "@bolt-elements-button/button.twig" with {
+    content: "This is a button",
+    attributes: {
+      type: 'button'
+    }
   } only %}
 {% endset %}
 

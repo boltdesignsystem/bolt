@@ -113,9 +113,11 @@
         text: "There’s nothing artificial about Pega’s proven AI. This always-on brain gets results. Using pragmatic artificial intelligence and decision management, you can improve response rates by up to 6X, NPS by 30 points, and get ROI as high as 500%.",
         size: "medium"
       } only %}
-      {% include "@bolt-components-button/button.twig" with {
-        text: "Call to Action",
-        url: "www.google.com"
+      {% include "@bolt-elements-button/button.twig" with {
+        content: "Call to Action",
+        attributes: {
+          href: "www.google.com"
+        }
       } only %}
     {% endcell %}
   {% endgrid %}

@@ -55,10 +55,12 @@
   } only %}
 </bolt-stack>
 <bolt-stack>
-  {% include "@bolt-components-button/button.twig" with {
-    text: "Hang tight before resetting...",
+  {% include "@bolt-elements-button/button.twig" with {
+    content: "Hang tight before resetting...",
     disabled: true,
     attributes: {
+      type: 'button',
+      disabled: 'disabled',
       class: [
         "js-bolt-progress-bar-loading-reset"
       ]

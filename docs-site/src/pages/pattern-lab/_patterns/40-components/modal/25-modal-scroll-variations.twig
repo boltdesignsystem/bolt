@@ -18,11 +18,12 @@
       {% for scroll in schema.properties.scroll.enum %}
         <tr>
           <th>
-            {% include "@bolt-components-button/button.twig" with {
-              text: scroll|capitalize,
+            {% include "@bolt-elements-button/button.twig" with {
+              content: scroll|capitalize,
               size: "small",
-              width: "full",
+              display: "block",
               attributes: {
+                type: 'button',
                 "data-bolt-modal-target": ".js-bolt-modal--scroll-" ~ scroll,
               }
             } only %}

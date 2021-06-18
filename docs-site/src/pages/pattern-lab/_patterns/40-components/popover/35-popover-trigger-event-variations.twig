@@ -4,9 +4,12 @@
 
 {% set demo %}
   {% set trigger %}
-    {% include '@bolt-components-button/button.twig' with {
-      text: 'This triggers a popover on hover',
+    {% include '@bolt-elements-button/button.twig' with {
+      content: 'This triggers a popover on hover',
       size: 'small',
+      attributes: {
+        type: 'button'
+      }
     } only %}
   {% endset %}
   {% set link %}

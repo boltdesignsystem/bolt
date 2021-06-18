@@ -12,8 +12,11 @@
 
 {% set demo %}
   {% set trigger %}
-    {% include '@bolt-components-button/button.twig' with {
-      text: 'Custom width set to 500px',
+    {% include '@bolt-elements-button/button.twig' with {
+      content: 'Custom width set to 500px',
+      attributes: {
+        type: 'button'
+      }
     } only %}
   {% endset %}
   {% set content %}
@@ -27,8 +30,11 @@
     {% include '@bolt-components-headline/text.twig' with {
       text: 'This is a paragraph.',
     } only %}
-    {% include '@bolt-components-button/button.twig' with {
-      text: 'This is a button',
+    {% include '@bolt-elements-button/button.twig' with {
+      content: 'This is a button',
+      attributes: {
+        type: 'button'
+      }
     } only %}
   {% endset %}
 

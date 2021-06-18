@@ -8,8 +8,11 @@
 
 {% set demo %}
   {% set trigger %}
-    {% include '@bolt-components-button/button.twig' with {
-      text: 'This triggers a popover menu',
+    {% include '@bolt-elements-button/button.twig' with {
+      content: 'This triggers a popover menu',
+      attributes: {
+        type: 'button'
+      }
     } only %}
   {% endset %}
   {% set content %}
@@ -38,8 +41,11 @@
 {% set twig_markup %}
 {% verbatim %}
 {% set trigger %}
-  {% include '@bolt-components-button/button.twig' with {
-    text: 'This triggers a popover menu',
+  {% include '@bolt-elements-button/button.twig' with {
+    content: 'This triggers a popover menu',
+    attributes: {
+      type: 'button'
+    }
   } only %}
 {% endset %}
 {% set content %}

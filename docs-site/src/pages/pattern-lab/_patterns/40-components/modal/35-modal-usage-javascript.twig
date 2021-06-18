@@ -9,19 +9,21 @@
 {% set modal_content %}
   <bolt-text>This modal was shown via the <bolt-code-snippet display="inline" lang="html">data-bolt-modal-target</bolt-code-snippet> data attribute.</bolt-text>
   <bolt-text>The same data attribute is used on the button below to hide the modal.</bolt-text>
-  {% include "@bolt-components-button/button.twig" with {
-    text: "Close Modal",
+  {% include "@bolt-elements-button/button.twig" with {
+    content: "Close Modal",
     size: "small",
     attributes: {
+      type: 'button',
       "data-bolt-modal-target": ".js-bolt-modal",
     },
   } only %}
 {% endset %}
 
-{% include "@bolt-components-button/button.twig" with {
-  text: "Open Modal",
+{% include "@bolt-elements-button/button.twig" with {
+  content: "Open Modal",
   size: "small",
   attributes: {
+    type: 'button',
     "data-bolt-modal-target": ".js-bolt-modal",
   },
 } only %}
@@ -42,10 +44,11 @@
 {% set js_modal_content %}
   <bolt-text>This modal was shown by calling the <bolt-code-snippet display="inline" lang="html">show()</bolt-code-snippet> method.</bolt-text>
   <bolt-text>The <bolt-code-snippet display="inline" lang="html">hide()</bolt-code-snippet> method will be called when you click the button below.</bolt-text>
-  {% include "@bolt-components-button/button.twig" with {
-    text: "Close Modal",
+  {% include "@bolt-elements-button/button.twig" with {
+    content: "Close Modal",
     size: "small",
     attributes: {
+      type: 'button',
       class: [
         "js-bolt-modal-trigger--close"
       ]
@@ -53,10 +56,11 @@
   } only %}
 {% endset %}
 
-{% include "@bolt-components-button/button.twig" with {
-  text: "Open Modal",
+{% include "@bolt-elements-button/button.twig" with {
+  content: "Open Modal",
   size: "small",
   attributes: {
+    type:'button',
     class: [
       "js-bolt-modal-trigger--open"
     ]
