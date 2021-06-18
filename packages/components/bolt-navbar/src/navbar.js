@@ -54,12 +54,9 @@ export class BoltNavbar {
   }
 
   get stickyOffset() {
-    let scrollOffsetElementsHeight = 0;
-    this.scrollOffsetElements.forEach(el => {
-      scrollOffsetElementsHeight += el.offsetHeight;
-    });
-
-    return scrollOffsetElementsHeight;
+    return (
+      this.getCumulativeHeight(this.stickyOffsetElements) + this.stickyOffsetPx
+    );
   }
 
   init() {
@@ -69,18 +66,9 @@ export class BoltNavbar {
       visibleElements: [],
     };
 
-    // Setup Sticky
-    const selectors = [
-      '[data-bolt-sticky-header]',
-      '.js-global-header.is-fixed',
-    ]; // First selector covers new header, second covers old header
-    const scrollOffsetSelector = this.el.dataset.boltScrollOffsetSelector;
-    if (scrollOffsetSelector) {
-      selectors.push(scrollOffsetSelector);
-    }
-    this.scrollOffsetElements = document.querySelectorAll(selectors.join(','));
-    this.scrollOffset = parseInt(this.el.dataset.boltScrollOffset) || 0;
     this.static = this.el.hasAttribute('data-bolt-static');
+
+    this.setupOffsets();
 
     this.setStickyOffset = this.setStickyOffset.bind(this);
     window.addEventListener('throttledResize', this.setStickyOffset);
@@ -230,6 +218,46 @@ export class BoltNavbar {
     this.visibleElements = this.visibleElements.filter(
       value => value !== element,
     );
+  }
+
+  trySelector(selector) {
+    // Prevent invalid user-provided selector from throwing an error
+    try {
+      return document.querySelectorAll(selector);
+    } catch (err) {
+      console.log(err);
+      return [];
+    }
+  }
+
+  getCumulativeHeight(els = []) {
+    let height = 0;
+
+    els.forEach(el => {
+      // This can be a floating point
+      height += el.getBoundingClientRect().height;
+    });
+
+    // Always round down, subpixel rendering can leave an unwanted gap above navbar
+    return Math.floor(height);
+  }
+
+  setupOffsets() {
+    // Default sticky elements
+    const defaultStickyElements = document.querySelectorAll(
+      '[data-bolt-sticky-header], .js-global-header.is-fixed',
+    ); // First selector covers new header, second covers old header
+
+    // Sticky offsets
+    this.stickyOffsetPx = parseInt(this.el.dataset.boltStickyOffset) || 0;
+    const stickyOffsetSelector = this.el.dataset.boltStickyOffsetSelector;
+    this.stickyOffsetElements = [
+      ...defaultStickyElements,
+      ...this.trySelector(stickyOffsetSelector),
+    ];
+
+    // Scroll offset
+    this.scrollOffset = parseInt(this.el.dataset.boltScrollOffset) || 0;
   }
 
   setStickyOffset() {
