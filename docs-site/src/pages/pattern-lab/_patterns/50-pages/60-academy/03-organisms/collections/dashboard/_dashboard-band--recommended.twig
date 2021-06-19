@@ -1,5 +1,16 @@
 {% import "@bolt-academy/_macros.twig" as macros %}
 
+{% set _share_icon %}
+  {% include '@bolt-components-icon/icon.twig' with {
+    name: "share"
+  } only %}
+{% endset %}
+{% set _close_icon %}
+  {% include '@bolt-components-icon/icon.twig' with {
+    name: "close"
+  } only %}
+{% endset %}
+
 {% include "@bolt-academy/_dashboard-band.twig" with {
   sectionTitle: "Recommended Missions",
   theme: "light",
@@ -32,26 +43,24 @@
       cardIcon: "launchpad",
       cardDescription: bolt.faker.paragraph(2),
       cardUtilityItems: [
-        macros.include("@bolt-components-button/button.twig", {
-          text: "Share",
+        macros.include("@bolt-elements-button/button.twig", {
+          content: "Share",
           size: "xsmall",
-          hierarchy: "text",
-          icon: {
-            name: "share",
-            size: "small"
-          },
-          iconOnly: true
-        }, false ),
-        macros.include("@bolt-components-button/button.twig", {
-          text: "Remove from Dashboard",
+          hierarchy: "tertiary",
+          icon_only: _share_icon,
+          attributes: {
+            type: 'button'
+          }
+        }, false),
+        macros.include("@bolt-elements-button/button.twig", {
+          content: "Remove from Dashboard",
           size: "xsmall",
-          hierarchy: "text",
-          icon: {
-            name: "add-open",
-            size: "small"
-          },
-          iconOnly: true
-        }, false )
+          hierarchy: "tertiary",
+          icon_only: _close_icon,
+          attributes: {
+            type: 'button'
+          }
+        }, false),
       ]
     },
     {
@@ -82,27 +91,24 @@
       cardIcon: "launchpad",
       cardDescription: bolt.faker.paragraph(2),
       cardUtilityItems: [
-        macros.include("@bolt-components-button/button.twig", {
-          text: "Share",
+        macros.include("@bolt-elements-button/button.twig", {
+          content: "Share",
           size: "xsmall",
-          hierarchy: "text",
-          icon: {
-            name: "share",
-            size: "small"
-          },
-          iconOnly: true
-        }, false ),
-        macros.include("@bolt-components-button/button.twig", {
-          text: "Remove from Dashboard",
+          hierarchy: "tertiary",
+          icon_only: _share_icon,
+          attributes: {
+            type: 'button'
+          }
+        }, false),
+        macros.include("@bolt-elements-button/button.twig", {
+          content: "Remove from Dashboard",
           size: "xsmall",
-          hierarchy: "text",
-          icon: {
-            name: "add-open",
-            size: "small"
-          },
-          iconOnly: true,
-          disabled: true
-        }, false )
+          hierarchy: "tertiary",
+          icon_only: _close_icon,
+          attributes: {
+            type: 'button'
+          }
+        }, false),
       ]
     },
     {
@@ -133,26 +139,24 @@
       cardIcon: "launchpad",
       cardDescription: bolt.faker.paragraph(2),
       cardUtilityItems: [
-        macros.include("@bolt-components-button/button.twig", {
-          text: "Share",
+        macros.include("@bolt-elements-button/button.twig", {
+          content: "Share",
           size: "xsmall",
-          hierarchy: "text",
-          icon: {
-            name: "share",
-            size: "small"
-          },
-          iconOnly: true
-        }, false ),
-        macros.include("@bolt-components-button/button.twig", {
-          text: "Remove from Dashboard",
+          hierarchy: "tertiary",
+          icon_only: _share_icon,
+          attributes: {
+            type: 'button'
+          }
+        }, false),
+        macros.include("@bolt-elements-button/button.twig", {
+          content: "Remove from Dashboard",
           size: "xsmall",
-          hierarchy: "text",
-          icon: {
-            name: "add-open",
-            size: "small"
-          },
-          iconOnly: true,
-        }, false )
+          hierarchy: "tertiary",
+          icon_only: _close_icon,
+          attributes: {
+            type: 'button'
+          }
+        }, false),
       ]
     }
   ]

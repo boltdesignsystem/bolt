@@ -1,13 +1,19 @@
 {% set button %}
-  {% include "@bolt-components-button/button.twig" with {
-    text: buttonText,
+  {% set _button_icon %}
+    {% include '@bolt-components-icon/icon.twig' with {
+      name: buttonIcon,
+      size: 'small'
+    } only %}
+  {% endset %}
+  {% set button_attributes = buttonAttributes|default({})|merge({
+    type: 'button'
+  }) %}
+  {% include "@bolt-elements-button/button.twig" with {
+    content: buttonText,
     size: "small",
     hierarchy: "tertiary",
-    iconOnly: true,
-    icon: {
-      name: buttonIcon,
-    },
-    attributes: buttonAttributes | default({})
+    icon_only: _button_icon,
+    attributes: button_attributes
   } only %}
 {% endset %}
 

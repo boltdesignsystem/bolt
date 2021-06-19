@@ -13,8 +13,11 @@
         text: "Anything can be passed inside the card body container. Woohoo!",
         size: "xlarge",
       } only %}
-      {% include "@bolt-button.twig" with {
-        text: "This is a button"
+      {% include "@bolt-elements-button/button.twig" with {
+        content: "This is a button",
+        attributes: {
+          type: "button"
+        }
       } only %}
     {% endset %}
     {% include "@bolt-components-card-replacement/card-replacement.twig" with {
