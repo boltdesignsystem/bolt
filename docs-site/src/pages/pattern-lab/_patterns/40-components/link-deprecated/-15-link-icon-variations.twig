@@ -1,3 +1,10 @@
+{% include '@pl/00-deprecated-link-docs.twig' %}
+
+<bolt-banner status="success" align="start">
+  <bolt-icon name="documentation" size="medium"></bolt-icon> Please reference <a href="{{ link['elements-text-link-with-icon'] }}" class="e-bolt-text-link"> element doc</a> instead.
+</bolt-banner>
+
+
 <h3>Icon before (default)</h3>
 <p>
   {% include "@bolt-components-link/link.twig" with {
