@@ -38,24 +38,6 @@
     {% set signifier %}
       <img src="/images/placeholders/thumb-square-abstract.jpg" alt="" width=56 height=56 class="u-bolt-border-radius-full">
     {% endset %}
-    {% set hired_date %}
-      Hired date: June 21, 2021
-    {% endset %}
-    {% set phone %}
-      Phone: <a href="tel:+79261204482" class="e-bolt-text-link e-bolt-text-link--reversed-underline">+79261204482</a>
-    {% endset %}
-    {% set mobile_phone %}
-      Mobile: <a href="tel:+79261204482" class="e-bolt-text-link e-bolt-text-link--reversed-underline">+79261204482</a>
-    {% endset %}
-    {% set email %}
-      Email: <a href="mailto:evgeny.vyatkin@pega.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline">evgeny.vyatkin@pega.com</a>
-    {% endset %}
-    {% set location %}
-      Location: Germany
-    {% endset %}
-    {% set id %}
-      Pega ID: VYATE
-    {% endset %}
     {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
       gutter: 'small',
       signifier: signifier,
@@ -69,12 +51,12 @@
         },
       },
       meta_items: [
-        phone,
-        mobile_phone,
-        email,
-        location,
-        id,
-        hired_date,
+        'Phone: <a href="tel:+79261204482" class="e-bolt-text-link e-bolt-text-link--reversed-underline">+79261204482</a>',
+        'Mobile: <a href="tel:+79261204482" class="e-bolt-text-link e-bolt-text-link--reversed-underline">+79261204482</a>',
+        'Email: <a href="mailto:evgeny.vyatkin@pega.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline">evgeny.vyatkin@pega.com</a>',
+        'Location: Germany',
+        'Pega ID: VYATE',
+        'Hired date: June 21, 2021',
       ],
       description: '<strong>Project Delivery Leader</strong>, Pega Consulting',
       variant: 'card',
@@ -85,25 +67,80 @@
 
   {% set contact_result_2 %}
     {% set signifier %}
+      <img src="/images/placeholders/thumb-square-ivy.jpg" alt="" width=56 height=56 class="u-bolt-border-radius-full">
+    {% endset %}
+    {% set teaser_description %}
+      <p><strong>Chief Product Officer</strong>, Product R&amp;D</p>
+      {% set icon_chevron_down %}
+        {% include '@bolt-components-icon/icon.twig' with {
+          name: 'chevron-down',
+        } only %}
+      {% endset %}
+      {% set trigger %}
+        {% include '@bolt-elements-text-link/text-link.twig' with {
+          content: 'Recent articles by Kerim Akgonul',
+          icon_after: icon_chevron_down,
+          reversed_underline: true,
+          attributes: {
+            type: 'button',
+          }
+        } only %}
+      {% endset %}
+      {% set content %}
+        {% include '@bolt-components-menu/menu.twig' with {
+          items: [
+            {
+              content: 'Survey Takes 5 Minutes to Complete',
+              url: 'https://pega.com',
+            },
+            {
+              content: 'I Do Love Customer Go Live Stories (and Stylish Puppies)',
+              url: 'https://pega.com',
+            },
+            {
+              content: 'Greate to See Pega Professionals Recognized',
+              url: 'https://pega.com',
+            },
+          ]
+        } only %}
+      {% endset %}
+      {% include '@bolt-components-popover/popover.twig' with {
+        trigger: trigger,
+        content: content,
+        spacing: 'none',
+        trigger_event: 'hover',
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
+      gutter: 'small',
+      signifier: signifier,
+      layout: 'responsive',
+      headline: {
+        text: 'Kerim Akgonul',
+        tag: 'h3',
+        size: 'xlarge',
+        link_attributes: {
+          href: 'https://pega.com'
+        },
+      },
+      meta_items: [
+        'Phone: <a href="tel:+1(123)-456-7890x1346" class="e-bolt-text-link e-bolt-text-link--reversed-underline">+1(123)-456-7890x1346</a>',
+        'Mobile: <a href="tel:1 098-765-4321" class="e-bolt-text-link e-bolt-text-link--reversed-underline">+1(098)-765-4321</a>',
+        'Email: <a href="mailto:evgeny.vyatkin@pega.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline">kerim.akgonul@pega.com</a>',
+        'Location: Cambridge HQ',
+        'Pega ID: AKGOK',
+        'Hired date: Jan 1, 1999',
+      ],
+      description: teaser_description,
+      variant: 'card',
+      inset_spacing: 'small',
+      action_menu: action_menu,
+    } only %}
+  {% endset %}
+
+  {% set contact_result_3 %}
+    {% set signifier %}
       <img src="/images/placeholders/500x500.jpg" alt="" width=56 height=56 class="u-bolt-border-radius-full">
-    {% endset %}
-    {% set hired_date %}
-      Hired date: May 4, 2021
-    {% endset %}
-    {% set phone %}
-      Phone: <a href="tel:+1(123)456-7890" class="e-bolt-text-link e-bolt-text-link--reversed-underline">+1(123)456-7890</a>
-    {% endset %}
-    {% set mobile_phone %}
-      Mobile: <a href="tel:1(098)765-4321" class="e-bolt-text-link e-bolt-text-link--reversed-underline">+1(098)765-4321</a>
-    {% endset %}
-    {% set email %}
-      Email: <a href="mailto:evgeny.vyatkin@pega.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline">mike.mai@pega.com</a>
-    {% endset %}
-    {% set location %}
-      Location: Cambridge
-    {% endset %}
-    {% set id %}
-      Pega ID: MMAI
     {% endset %}
     {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
       gutter: 'small',
@@ -118,14 +155,14 @@
         },
       },
       meta_items: [
-        phone,
-        mobile_phone,
-        email,
-        location,
-        id,
-        hired_date,
+        'Phone: <a href="tel:+1(123)-456-7890" class="e-bolt-text-link e-bolt-text-link--reversed-underline">+1(123)-456-7890</a>',
+        'Mobile: <a href="tel:1 098-765-4321" class="e-bolt-text-link e-bolt-text-link--reversed-underline">+1(098)-765-4321</a>',
+        'Email: <a href="mailto:evgeny.vyatkin@pega.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline">mike.mai@pega.com</a>',
+        'Location: Cambridge HQ',
+        'Pega ID: MMAI',
+        'Hired date: May 4, 2018',
       ],
-      description: '<strong>Lead Web Architect</strong>, Pega Digital IT',
+      description: '<p><strong>Lead Web Architect</strong>, Pega Digital IT</p>',
       variant: 'card',
       inset_spacing: 'small',
       action_menu: action_menu,
@@ -137,18 +174,84 @@
     items: [
       contact_result_1,
       contact_result_2,
+      contact_result_3,
     ]
   } only %}
 {% endset %}
 
 {% set twig_markup %}
 {% verbatim %}
+// Set up variables
+{% set icon_map %}
+  {% include '@bolt-components-icon/icon.twig' with {
+    name: 'pega-map',
+  } only %}
+{% endset %}
+{% set icon_partners %}
+  {% include '@bolt-components-icon/icon.twig' with {
+    name: 'partners',
+  } only %}
+{% endset %}
+{% set icon_connection_hierachy %}
+  {% include '@bolt-components-icon/icon.twig' with {
+    name: 'pega-connection-hierachy',
+  } only %}
+{% endset %}
+{% set action_menu %}
+  {% include '@bolt-components-menu/menu.twig' with {
+    title: 'More actions',
+    items: [
+      {
+        content: 'View in Org Chart',
+        icon_before: icon_connection_hierachy,
+      },
+      {
+        content: 'View on PeopleHub',
+        icon_before: icon_partners,
+      },
+      {
+        content: 'Show where I sit',
+        icon_before: icon_map,
+      },
+    ]
+  } only %}
+{% endset %}
+{% set signifier %}
+  <img src="/images/placeholders/500x500.jpg" alt="" width=56 height=56 class="u-bolt-border-radius-full">
+{% endset %}
+
+// Pass variables to the component
+{% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
+  gutter: 'small',
+  signifier: signifier,
+  layout: 'responsive',
+  headline: {
+    text: 'Firstname Lastname',
+    tag: 'h3',
+    size: 'xlarge',
+    link_attributes: {
+      href: 'https://pega.com'
+    },
+  },
+  meta_items: [
+    'Phone: <a href="tel:+1(123)-456-7890" class="e-bolt-text-link e-bolt-text-link--reversed-underline">+1(123)-456-7890</a>',
+    'Mobile: <a href="tel:1 098-765-4321" class="e-bolt-text-link e-bolt-text-link--reversed-underline">+1(098)-765-4321</a>',
+    'Email: <a href="mailto:evgeny.vyatkin@pega.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline">mike.mai@pega.com</a>',
+    'Location: Cambridge HQ',
+    'Pega ID: FLAST',
+    'Hired date: May 4, 2018',
+  ],
+  description: '<p><strong>Lead Web Architect</strong>, Pega Digital IT</p>',
+  variant: 'card',
+  inset_spacing: 'small',
+  action_menu: action_menu,
+} only %}
 {% endverbatim %}
 {% endset %}
 
 {% include '@utils/pattern-doc-page.twig' with {
-  title: 'Use Case: Contact List',
-  description: 'Contact list is...',
+  title: 'Use Case: Contact Cards',
+  description: 'A list of contact card teasers, each displays a quick summary of a particular person.',
   demo: demo,
   twig_markup: twig_markup,
 } only %}
