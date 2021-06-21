@@ -1,0 +1,76 @@
+{% set demo %}
+  {% set navbar_items %}
+    {% include '@bolt-components-navbar/navbar-li.twig' with {
+      link: {
+        content: 'Section 1',
+        attributes: {
+          href: '#section-1'
+        }
+      }
+    } only %} 
+    {% include '@bolt-components-navbar/navbar-li.twig' with {
+      link: {
+        content: 'Section 2',
+        attributes: {
+          href: '#section-2'
+        }
+      }
+    } only %} 
+    {% include '@bolt-components-navbar/navbar-li.twig' with {
+      link: {
+        content: 'Section 3',
+        attributes: {
+          href: '#section-3'
+        }
+      }
+    } only %} 
+    {% include '@bolt-components-navbar/navbar-li.twig' with {
+      link: {
+        content: 'Section 4',
+        attributes: {
+          href: '#section-4'
+        }
+      }
+    } only %} 
+    {% include '@bolt-components-navbar/navbar-li.twig' with {
+      link: {
+        content: 'Section 5',
+        attributes: {
+          href: '#section-5'
+        }
+      }
+    } only %} 
+  {% endset %}
+  {% set navbar_list %}
+    {% include '@bolt-components-navbar/navbar-ul.twig' with { 
+      content: navbar_items,
+    } only %}  
+  {% endset %}
+
+  {% include '@bolt-components-navbar/navbar.twig' with {
+    title: {
+      content: 'This is the navbar title',
+      icon: {
+        name: 'marketing-gray'
+      }
+    },
+    links: navbar_list,
+    static: true
+  } only %}
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% include '@bolt-components-navbar/navbar.twig' with {
+  static: true,
+  ...
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Static',
+  description: 'Use the static prop to disable Navbar\'s default sticky position.',
+  demo: demo,
+  twig_markup: twig_markup,
+} only %}
